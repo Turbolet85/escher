@@ -1,0 +1,330 @@
+[
+{
+"tool": "planlint",
+"v": "1.7",
+"sha8": "7f1d2c57",
+"ts": "2026-10-05T21:06:18Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.1.0/chunks/2026-10-05-fork-ci-reached/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T20-51-19-phase",
+"--marker",
+"2026-10-05-fork-ci-reached"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"fence: 14 entries · plan: escher-0.1.0/chunks/2026-10-05-fork-ci-reached/plan.md · research: escher-0.1.0/chunks/2026-1…",
+"check 9 · CI-outcome reads: 3 · leg operator exempt: 3 · Platform issues consulted: none · `none. No CI verdict was fo…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` — 0…`",
+"check 4 (5) · leg entries with a content atom: 3 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 3 · not ci.py conclusion: 1 → HIT",
+"  gate 14 · leg operator · gh run view <id> --json jobs --jq '.jobs[] | [.name, .conclusion, .startedAt, .completedAt] …",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"hits: 1 — each resolved by its check's resolution (validation.md 2 · 5 · 9 · 4 (5) · 4 (13)–(16)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 3,
+"operator": 3,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 3,
+"bare": []
+},
+"tool": {
+"operator": 3,
+"hand": [
+14
+]
+},
+"base": {
+"operator": 6,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 6,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"check2": {
+"entries": 16,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.7",
+"sha8": "7f1d2c57",
+"ts": "2026-10-05T21:06:31Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.1.0/chunks/2026-10-05-fork-ci-reached/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T20-51-19-phase",
+"--marker",
+"2026-10-05-fork-ci-reached"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"fence: 14 entries · plan: escher-0.1.0/chunks/2026-10-05-fork-ci-reached/plan.md · research: escher-0.1.0/chunks/2026-1…",
+"check 9 · CI-outcome reads: 3 · leg operator exempt: 3 · Platform issues consulted: none · `none. No CI verdict was fo…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` — 0…`",
+"check 4 (5) · leg entries with a content atom: 3 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 3 · not ci.py conclusion: 1 → HIT",
+"  gate 14 · leg operator · gh run view <id> --json jobs --jq '.jobs[] | [.name, .startedAt, .completedAt] | @tsv' ",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"hits: 1 — each resolved by its check's resolution (validation.md 2 · 5 · 9 · 4 (5) · 4 (13)–(16)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 3,
+"operator": 3,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 3,
+"bare": []
+},
+"tool": {
+"operator": 3,
+"hand": [
+14
+]
+},
+"base": {
+"operator": 6,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 6,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"check2": {
+"entries": 16,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.7",
+"sha8": "7f1d2c57",
+"ts": "2026-10-05T21:08:22Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.1.0/chunks/2026-10-05-fork-ci-reached/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T20-51-19-phase",
+"--marker",
+"2026-10-05-fork-ci-reached"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"fence: 15 entries · plan: escher-0.1.0/chunks/2026-10-05-fork-ci-reached/plan.md · research: escher-0.1.0/chunks/2026-1…",
+"check 9 · CI-outcome reads: 3 · leg operator exempt: 3 · Platform issues consulted: none · `none. No CI verdict was fo…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` — 0…`",
+"check 4 (5) · leg entries with a content atom: 3 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 3 · not ci.py conclusion: 1 → HIT",
+"  gate 15 · leg operator · gh run view <id> --json jobs --jq '.jobs[] | [.name, .startedAt, .completedAt] | @tsv' ",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"hits: 1 — each resolved by its check's resolution (validation.md 2 · 5 · 9 · 4 (5) · 4 (13)–(16)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 3,
+"operator": 3,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 3,
+"bare": []
+},
+"tool": {
+"operator": 3,
+"hand": [
+15
+]
+},
+"base": {
+"operator": 6,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 6,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"check2": {
+"entries": 16,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.7",
+"sha8": "7f1d2c57",
+"ts": "2026-10-05T21:10:36Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.1.0/chunks/2026-10-05-fork-ci-reached/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T20-51-19-phase",
+"--marker",
+"2026-10-05-fork-ci-reached"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"fence: 15 entries · plan: escher-0.1.0/chunks/2026-10-05-fork-ci-reached/plan.md · research: escher-0.1.0/chunks/2026-1…",
+"check 9 · CI-outcome reads: 3 · leg operator exempt: 3 · Platform issues consulted: none · `none. No CI verdict was fo…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` — 0…`",
+"check 4 (5) · leg entries with a content atom: 3 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 3 · not ci.py conclusion: 1 → HIT",
+"  gate 15 · leg operator · gh run view <id> --json jobs --jq '.jobs[] | [.name, .startedAt, .completedAt] | @tsv' ",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"hits: 1 — each resolved by its check's resolution (validation.md 2 · 5 · 9 · 4 (5) · 4 (13)–(16)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 3,
+"operator": 3,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 3,
+"bare": []
+},
+"tool": {
+"operator": 3,
+"hand": [
+15
+]
+},
+"base": {
+"operator": 6,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 6,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"check2": {
+"entries": 16,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"hits": 1
+}
+}
+]

@@ -192,6 +192,9 @@ rayon = "1"
 test-that = "0.5.2"
 thread_local = "1"
 
+[profile.dev]
+debug = "line-tables-only"
+
 [profile.profile]
 inherits = "release"
 debug = true

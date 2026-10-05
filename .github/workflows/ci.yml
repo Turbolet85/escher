@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - v0.*
+      - build/**
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -15,6 +16,9 @@ env:
   RUSTDOCFLAGS: "-D warnings"
   CARGO_REGISTRIES_CRATES_IO_PROTOCOL: "sparse"
 
+# Every linux leg runs through .github/scripts/ci-leg.sh, which the dev host runs too
+# (`bash .github/scripts/ci-leg.sh fast` is the local pre-push gate). The fast legs (fmt, clippy,
+# test-features-default, ci-scripts) carry no `needs`; every slower leg waits on all four.
 jobs:
 
   # MSRV check.
@@ -26,24 +30,44 @@ jobs:
   build-msrv:
     name: "MSRV Build [Rust 1.91]"
     runs-on: ubuntu-latest
+    needs: [fmt, clippy, test-features-default, ci-scripts]
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@master
         with:
           toolchain: 1.91
-      - run: perl -pi.bak -e 's/opt-level = 2/opt-level = 0/g' Cargo.toml
+      - uses: Swatinem/rust-cache@v2
+        with:
+          save-if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/build/') }}
       - run: sudo apt-get update && sudo apt-get install -y libfontconfig1-dev
-      - run: cargo build --workspace
+      - run: bash .github/scripts/ci-leg.sh msrv
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: ci-log-build-msrv
+          path: target/ci-logs/msrv.log
+          retention-days: 7
+          if-no-files-found: ignore
 
   build-features-default:
     name: "Build [default features]"
     runs-on: ubuntu-latest
+    needs: [fmt, clippy, test-features-default, ci-scripts]
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
-      - run: perl -pi.bak -e 's/opt-level = 2/opt-level = 0/g' Cargo.toml
+      - uses: Swatinem/rust-cache@v2
+        with:
+          save-if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/build/') }}
       - run: sudo apt-get update && sudo apt-get install -y libfontconfig1-dev
-      - run: cargo build --workspace
+      - run: bash .github/scripts/ci-leg.sh build
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: ci-log-build-features-default
+          path: target/ci-logs/build.log
+          retention-days: 7
+          if-no-files-found: ignore
 
   test-features-default:
     name: "Test [default features]"
@@ -51,38 +75,62 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
-      - run: perl -pi.bak -e 's/opt-level = 2/opt-level = 0/g' Cargo.toml
+      - uses: Swatinem/rust-cache@v2
+        with:
+          save-if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/build/') }}
       - run: sudo apt-get update && sudo apt-get install -y libfontconfig1-dev
-      - run: cargo test --workspace
+      - run: bash .github/scripts/ci-leg.sh test
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: ci-log-test-features-default
+          path: target/ci-logs/test.log
+          retention-days: 7
+          if-no-files-found: ignore
 
   build-counter:
     name: "Build counter example"
     runs-on: ubuntu-latest
+    needs: [fmt, clippy, test-features-default, ci-scripts]
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
-      - run: perl -pi.bak -e 's/opt-level = 2/opt-level = 0/g' Cargo.toml
+      - uses: Swatinem/rust-cache@v2
+        with:
+          save-if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/build/') }}
       - run: sudo apt-get update && sudo apt-get install -y libfontconfig1-dev
-      - run: cargo build -p counter
+      - run: bash .github/scripts/ci-leg.sh counter
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: ci-log-build-counter
+          path: target/ci-logs/counter.log
+          retention-days: 7
+          if-no-files-found: ignore
 
   # wasm_hello is a standalone workspace; seven_guis and todomvc are workspace
   # members with a [lib] crate-type = ["cdylib"] target for wasm.
   build-wasm-examples:
     name: "Build wasm examples"
     runs-on: ubuntu-latest
+    needs: [fmt, clippy, test-features-default, ci-scripts]
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@master
         with:
           toolchain: stable
           targets: wasm32-unknown-unknown
-      - name: Build wasm_hello
-        run: cargo build --target wasm32-unknown-unknown
-        working-directory: examples/wasm_hello
-      - name: Build seven_guis (wasm)
-        run: cargo build -p seven_guis --lib --target wasm32-unknown-unknown --no-default-features --features hybrid
-      - name: Build todomvc (wasm)
-        run: cargo build -p todomvc --lib --target wasm32-unknown-unknown --no-default-features --features hybrid
+      - uses: Swatinem/rust-cache@v2
+        with:
+          save-if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/build/') }}
+      - run: bash .github/scripts/ci-leg.sh wasm
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: ci-log-build-wasm-examples
+          path: target/ci-logs/wasm.log
+          retention-days: 7
+          if-no-files-found: ignore
 
   fmt:
     name: Rustfmt
@@ -93,7 +141,14 @@ jobs:
         with:
           toolchain: stable
           components: rustfmt
-      - run: cargo fmt --all --check
+      - run: bash .github/scripts/ci-leg.sh fmt
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: ci-log-fmt
+          path: target/ci-logs/fmt.log
+          retention-days: 7
+          if-no-files-found: ignore
 
   clippy:
     name: Clippy
@@ -104,30 +159,61 @@ jobs:
         with:
           toolchain: stable
           components: clippy
-      - run: perl -pi.bak -e 's/opt-level = 2/opt-level = 0/g' Cargo.toml
+      - uses: Swatinem/rust-cache@v2
+        with:
+          save-if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/build/') }}
       - run: sudo apt-get update && sudo apt-get install -y libfontconfig1-dev
-      - run: cargo clippy --workspace -- -D warnings
+      - run: bash .github/scripts/ci-leg.sh clippy
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: ci-log-clippy
+          path: target/ci-logs/clippy.log
+          retention-days: 7
+          if-no-files-found: ignore
 
   ci-scripts:
     name: "Test CI scripts"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python3 -m unittest discover -s .github/scripts
+      - run: python3 -c 'import yaml' || (sudo apt-get update && sudo apt-get install -y python3-yaml)
+      - run: bash .github/scripts/ci-leg.sh ci-scripts
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: ci-log-ci-scripts
+          path: target/ci-logs/ci-scripts.log
+          retention-days: 7
+          if-no-files-found: ignore
 
   doc:
     name: Documentation
     runs-on: ubuntu-latest
+    needs: [fmt, clippy, test-features-default, ci-scripts]
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
-      - run: cargo doc
+      - uses: Swatinem/rust-cache@v2
+        with:
+          save-if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/build/') }}
+      - run: bash .github/scripts/ci-leg.sh doc
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: ci-log-doc
+          path: target/ci-logs/doc.log
+          retention-days: 7
+          if-no-files-found: ignore
 
+  # Linux is tested by the fast test-features-default leg (doctests included), so the matrix
+  # carries no linux entry.
   matrix_test:
     runs-on: ${{ matrix.platform.os }}
+    needs: [fmt, clippy, test-features-default, ci-scripts]
     env:
       RUST_CARGO_COMMAND: ${{ matrix.platform.cross == true && 'cross' || 'cargo' }}
-      RUSTFLAGS: ${{ matrix.platform.name == 'ios' && '-Clink-arg=-target -Clink-arg=arm64-apple-ios18.4 -Clink-arg=-miphoneos-version-min=18.4' || '' }}  
+      RUSTFLAGS: ${{ matrix.platform.name == 'ios' && '-Clink-arg=-target -Clink-arg=arm64-apple-ios18.4 -Clink-arg=-miphoneos-version-min=18.4' || '' }}
     strategy:
       fail-fast: false
       matrix:
@@ -144,14 +230,6 @@ jobs:
               name: macos,
               target: aarch64-apple-darwin,
               os: macos-latest,
-              cross: false,
-              command: "test",
-              args: "--all --tests",
-            }
-          - {
-              name: linux,
-              target: x86_64-unknown-linux-gnu,
-              os: ubuntu-latest,
               cross: false,
               command: "test",
               args: "--all --tests",
@@ -202,7 +280,7 @@ jobs:
         with:
           key: "${{ matrix.platform.target }}"
           cache-all-crates: "true"
-          save-if: ${{ github.ref == 'refs/heads/main' }}
+          save-if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/build/') }}
           cache-bin: ${{ matrix.platform.os != 'macos-latest' }} # works around https://github.com/Swatinem/rust-cache/issues/341
 
       - name: Install apt deps
@@ -213,9 +291,19 @@ jobs:
           version: 1.0
 
       - name: Setup
-        run: ${{ matrix.platform.setup }} 
+        run: ${{ matrix.platform.setup }}
         shell: bash
 
       - name: test
+        shell: bash
         run: |
-          ${{ env.RUST_CARGO_COMMAND }} ${{ matrix.platform.command }} ${{ matrix.platform.args }} --target ${{ matrix.platform.target }}
+          mkdir -p target/ci-logs
+          ${{ env.RUST_CARGO_COMMAND }} ${{ matrix.platform.command }} ${{ matrix.platform.args }} --target ${{ matrix.platform.target }} --locked 2>&1 | tee "target/ci-logs/matrix-${{ matrix.platform.name }}.log"
+
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: ci-log-matrix-${{ matrix.platform.name }}
+          path: target/ci-logs/matrix-${{ matrix.platform.name }}.log
+          retention-days: 7
+          if-no-files-found: ignore

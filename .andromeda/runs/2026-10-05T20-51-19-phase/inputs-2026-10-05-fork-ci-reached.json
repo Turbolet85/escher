@@ -1,0 +1,90 @@
+[
+{
+"tool": "inputs",
+"v": "1.0",
+"sha8": "d30b83fd",
+"ts": "2026-10-05T20:51:44Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-05-fork-ci-reached",
+"--message-file",
+".andromeda/runs/2026-10-05T20-51-19-phase/relay-1.md",
+"--kind",
+"relay",
+"--why",
+"overseer PHASE directive: four measured CI/build facts + the cache/debuginfo hypothesis and the founder fast-feedback concern",
+"--step",
+"phase:P1",
+"--run-dir",
+".andromeda/runs/2026-10-05T20-51-19-phase",
+"--marker",
+"2026-10-05-fork-ci-reached",
+"--claimed-commit",
+"50c13b5910bd3cd9b405f8f3cacefa3a7bcb1e25"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 2,
+"stdout": [],
+"stderr": "--message-file needs --origin (who sent it, when)",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "inputs",
+"v": "1.0",
+"sha8": "d30b83fd",
+"ts": "2026-10-05T20:51:48Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-05-fork-ci-reached",
+"--message-file",
+".andromeda/runs/2026-10-05T20-51-19-phase/relay-1.md",
+"--origin",
+"overseer (the operator pair), pasted by the operator into this session 2026-10-05 ~20:51Z",
+"--kind",
+"relay",
+"--why",
+"overseer PHASE directive: four measured CI/build facts + the cache/debuginfo hypothesis and the founder fast-feedback concern",
+"--step",
+"phase:P1",
+"--run-dir",
+".andromeda/runs/2026-10-05T20-51-19-phase",
+"--marker",
+"2026-10-05-fork-ci-reached"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"snapped I1 · copy message · message: overseer (the operator pair), pasted by the operator into this session 2026-10-05 ~20:51Z",
+"cite: inputs#I1"
+],
+"stderr": null,
+"wrote": [
+"inputs/.gitattributes",
+"inputs/I1-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I1",
+"kind": "relay",
+"repo": null,
+"path": "message: overseer (the operator pair), pasted by the operator into this session 2026-10-05 ~20:51Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "23a9dd0291762e4a4cf5df5668a4e55f42b224772c1003ce559b856bb3b47215",
+"copy": "I1-relay-1.md.txt",
+"link": false,
+"read_at": "2026-10-05T20:51:48Z",
+"step": "phase:P1",
+"why": "overseer PHASE directive: four measured CI/build facts + the cache/debuginfo hypothesis and the founder fast-feedback concern"
+}
+}
+]
