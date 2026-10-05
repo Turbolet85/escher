@@ -1,0 +1,41 @@
+# Accessibility Summary — escher
+
+_Distilled from `.andromeda/a11y-plan.md` (adopted reading). wrap-session's cascade re-derives it when the plan changes._
+
+## A11y tier
+
+**Tier:** 0
+**WCAG target:** SC 2.1.1 Keyboard · SC 1.4.3 Contrast (Minimum) · SC 2.4.3 Focus Order
+
+## Harness contract (§3)
+
+- **Tool:** Rust tests in `tests/blitz-tests` over the AccessKit tree — `build_accessibility_tree()` after `resolve`, `test_that` matchers on `role()` / `is_hidden()`, `assert_role(html, id, expected)` and `unknown_tags(html)` helpers.
+- **Focus harness:** `Harness::focused()` / `hovered()`.
+- **Keyboard harness:** observed absent (no Tab-order or key-event tests).
+- **Contrast harness:** observed absent (a Chrome-matching contrast-ratio helper exists in `blitz-paint/src/color.rs`).
+- **Structured violation JSON / WCAG mapping of existing tests:** NOT YET MEASURED.
+
+## Engine behaviour (measured)
+- Roles: `role` attribute → HTML-AAM mapping → `Role::Unknown`; landmarks, lists, tables, form inputs by `type`, links only with `href`.
+- Hidden: `hidden` / `display:none` / `visibility:hidden` exclude the subtree; `aria-hidden` marks hidden.
+- Focus: Tab / Shift+Tab via `focus_next_node` / `focus_prev_node`; focusability recomputed on `tabindex` / `href` / `disabled`; focus resets to body on removal; `:focus-visible` / `:focus-within` never match.
+- Platform: accesskit_xplat adapters (windows, macos, unix, android, null); ActionRequested and AccessibilityDeactivated are unhandled TODOs; the tree is rebuilt on poll when the document changed.
+
+## Critical paths (must-be-accessible)
+> NOT YET MEASURED — the 0.1.0 route makes the stand controls the target: every stand control reachable (2.1.1), in order (2.4.3), with measured contrast (1.4.3).
+
+## Bootstrap phases (owners on the working route)
+1. `contrast-verification-harness-setup` → "Stand contrast harness"
+2. Headless keyboard dispatch with focused-node read-back → "Stand keyboard harness"
+3. Stable id + role + name on every accessibility node → "Accessibility-tree identity"
+4. SC assertions on every stand control + a gating a11y CI leg (`a11y-ci-gate-wire`) → "Stand a11y assertions" / "CI gate legs"
+
+## Universal anti-patterns
+> NO RECORDED INTENT.
+
+## Critical decisions
+> NO RECORDED INTENT.
+
+---
+
+**Full plan:** `.andromeda/a11y-plan.md`. Path-scoped rules: `.claude/rules/a11y.md`.

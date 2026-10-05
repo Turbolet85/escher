@@ -1,0 +1,35 @@
+# dioxus-native-dom
+
+_Crate notes. Primary source: `.andromeda/architecture.md` §Standard Contracts Dioxus DOM bridge._
+
+## Responsibility
+The headless Dioxus renderer on blitz: `DioxusDocument` integrates `BaseDocument` with a `VirtualDom`, writes vdom mutations into the DOM and routes DOM events back to vdom handlers. The windowed `dioxus-native` crate builds on it; the seven_guis stand runs through it.
+
+## Key integrations
+
+### Consumes from
+- blitz-dom (shared as `Rc<RefCell<BaseDocument>>`), dioxus-core / dioxus-html 0.7.3.
+
+### Publishes to
+- `DioxusDocument` (`vdom`, `inner`, `initial_build`, `poll`, `handle_ui_event`, `vdom_state.try_element_to_node_id(ElementId)`), `NodeHandle` backing `MountedData`.
+
+## Internal conventions
+- DOM events route to the vdom via the nearest `data-dioxus-id` attribute (parsed as `usize`); listener registration sets a `"<rust func>"` placeholder.
+- `style`-namespace attributes become style properties; falsy `checked` clears; `dangerous_inner_html` sets inner HTML.
+- Every document starts as `<html><head></head><body><main id="main"></main></body></html>` with `DEFAULT_CSS`; base URL `dioxus://index.html`.
+- `mounted` listeners fire after `initial_build` and each `poll`; event kinds with zero handlers are skipped.
+- A crate-local `trace!` macro expands to `tracing::debug!` under `tracing` (its 4-argument arm passes only the first two items).
+
+## Crate-specific gotchas
+- `mutation_writer.rs` has a "WARNING: DO NOT REORDER" block.
+- Twelve event-data conversions call `unimplemented!()`; IME events are not handled; `NativeFormData::valid` always returns true.
+- `element_to_node_id` unwraps; `NodeHandle::node` panics if the node is gone.
+
+## Entry points for modification
+- `src/{dioxus_document,mutation_writer,events,write_once_attr}.rs`
+
+## Testing this crate
+- `cargo test -p dioxus-native-dom` (`keyed_nodes_do_not_crash`, touch tests); Dioxus integration in `tests/blitz-tests` via `Harness::from_component` / `from_vdom`.
+
+## References
+- `.andromeda/architecture.md` · `.claude/docs/services/blitz-test-harness.md`

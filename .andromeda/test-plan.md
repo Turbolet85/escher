@@ -1,0 +1,298 @@
+## 1. Test Scope Summary
+
+**Test tier:** `0`
+
+**Coverage scope (testable entities):**
+
+- **Workspace (CI):** `cargo test --workspace` runs on ubuntu with default features (.github/workflows/ci.yml:48-56)
+- **CI Python scripts:** unit-tested with `python3 -m unittest discover -s .github/scripts` (.github/workflows/ci.yml:111-116)
+- **apps/browser:** tests exist only in the browser crates: about_pages (3), browser_history (4), favicon (5), url_suggestions (12 `#[test]` plus 4 `#[tokio::test]`), persistence (10) (apps/browser/src/about_pages.rs:204-239; apps/browser/src/browser_history.rs:178-225; apps/browser/src/favicon.rs:83-112; apps/browser/src/url_suggestions.rs:415-629; apps/browser/persistence/src/lib.rs:341-506)
+- **apps (rdme, bump, examples, accesskit_xplat):** no tests — observed absent · searched: `#\[(tokio::)?test\]` over the 86 files of slice s04 (hits only in the five browser files above)
+- **blitz-dom (document, mutator, net):** 25 `#[test]` functions: 9 in document.rs, 12 in mutator.rs, 4 in net.rs (packages/blitz-dom/src/document.rs:2859; packages/blitz-dom/src/mutator.rs:1352; packages/blitz-dom/src/net.rs:616)
+- **blitz-dom covered behaviours:** media type defaults, disabled state, id map, redraw-after-mutation, in-document flags, style-property relayout, rule-tree copy-on-write (packages/blitz-dom/src/mutator.rs:1352-1799); zoom redraw, hover cursor, hover/checked/pseudo/background-image invalidation, `@font-face` alias registration (packages/blitz-dom/src/document.rs:2843-3402); `@font-face` style mapping (packages/blitz-dom/src/net.rs:606-646)
+- **blitz-dom (style bridge):** `stylo_to_parley.rs` holds nine unit tests of font feature mapping (packages/blitz-dom/src/stylo_to_parley.rs:525-655); `util.rs` holds seven SVG parsing tests compiled only with the `svg` feature (packages/blitz-dom/src/util.rs:180-243); `stylo.rs` holds two `#[test]` functions whose bodies are entirely commented out (packages/blitz-dom/src/stylo.rs:1492-1518)
+- **blitz-dom (layout):** one inline unit-test module, in list.rs, covering `marker_for_style` (packages/blitz-dom/src/layout/list.rs:185-237)
+- **blitz-dom (node):** in-file tests cover overlay scrollbar opacity, text-input scrolling, and the element state of the `disabled` attribute (packages/blitz-dom/src/node/scrollbar.rs:224-237; packages/blitz-dom/src/node/element.rs:958-1092; packages/blitz-dom/src/node/node.rs:1736-1822)
+- **blitz-html:** one test parses a full HTML document through `DocumentHtmlParser` (packages/blitz-html/src/html_sink.rs:315-333)
+- **blitz-net:** no test — observed absent · searched: `#\[test\]|#\[cfg\(test\)\]` over packages/blitz-net/src/lib.rs (no match)
+- **blitz-paint:** inline unit tests exist in gradient.rs and css_box.rs (packages/blitz-paint/src/gradient.rs:517-536; packages/blitz-paint/src/kurbo_css/css_box.rs:661-847)
+- **blitz-test-harness:** a dedicated, unpublished headless harness crate for Blitz documents (packages/blitz-test-harness/Cargo.toml:1-4)
+- **blitz-vibey-script:** tests/dom.rs holds 26 `#[test]` functions covering the JS DOM APIs (packages/blitz-vibey-script/tests/dom.rs:1; packages/blitz-vibey-script/tests/dom.rs:23-786); tests/preact.rs holds 2 `#[test]` functions running the vendored Preact TodoMVC example headlessly (packages/blitz-vibey-script/tests/preact.rs:1-2; packages/blitz-vibey-script/tests/preact.rs:102-199)
+- **blitz-vibey-script inline unit test modules:** observed absent · searched: `#\[cfg\(test\)\]|mod tests` over the 32 files of slice s10
+- **dioxus-native-dom:** three unit tests: `keyed_nodes_do_not_crash`, `touches_reports_all_active_pointers` and `touches_is_empty_when_no_pointers_are_active` (packages/dioxus-native-dom/src/dioxus_document.rs:375-411; packages/dioxus-native-dom/src/events.rs:684-728)
+- **dioxus-native and stylo_taffy:** no tests — observed absent · searched: `#\[test\]|#\[cfg\(test\)\]` over the 21 files of slice s11 (matches only in dioxus_document.rs and events.rs)
+- **tests/blitz-tests:** holds Blitz's integration tests, one file per behavior under `tests/` (tests/blitz-tests/lib.rs:1; tests/blitz-tests/Cargo.toml:3); coverage spans accessibility, layout, text, paint, hit testing, input events, scrolling, style invalidation, DOM mutation leaks, network-driven stylesheet loading and Dioxus integration (tests/blitz-tests/tests/accessibility_roles.rs:1; tests/blitz-tests/tests/incremental_oracle.rs:1; tests/blitz-tests/tests/whitespace_modes.rs:15; tests/blitz-tests/tests/paint_order.rs:1; tests/blitz-tests/tests/pointer_events.rs:1; tests/blitz-tests/tests/touch_events.rs:1; tests/blitz-tests/tests/fragment_navigation.rs:1; tests/blitz-tests/tests/style_property_invalidation.rs:1; tests/blitz-tests/tests/inner_html_leak.rs:1; tests/blitz-tests/tests/link_rel_attribute.rs:1; tests/blitz-tests/tests/stale_node_mapping.rs:1)
+- **tests/stylo_usage.rs:** the only file under the root `tests/` in its slice; all its code lines are commented out (tests/stylo_usage.rs:4-160)
+- **wpt/runner:** the WPT conformance runner; it runs reftests, checkLayout attr tests, crashtests, testharness.js tests and `.any.js`/`.window.js` tests (wpt/runner/src/test_runners/mod.rs:240-327); its unit tests: 8 in fuzzy.rs, 3 in js_wrapper.rs, 2 in harness_test.rs, 1 in mod.rs (wpt/runner/src/test_runners/fuzzy.rs:146-235; wpt/runner/src/test_runners/js_wrapper.rs:102-132; wpt/runner/src/test_runners/harness_test.rs:294-315; wpt/runner/src/test_runners/mod.rs:408-443)
+- **examples/assets:** a set of HTML example documents, each built around one rendering feature or a real page (examples/assets/hr.html:192; examples/assets/inline-backgrounds.html:57; examples/assets/iframe_navigation.html:29; examples/assets/object_fit.html:12)
+
+**Surfaces under test:**
+
+- **Native platforms:** the CI matrix runs `test --all --tests` on windows, macos, linux and `build --all` on ios and android (.github/workflows/ci.yml:135-174; .github/workflows/ci.yml:219-221)
+- **Web Platform Tests:** run for `css` and `svg` (.github/workflows/wpt.yml:55-56)
+
+> NOT YET MEASURED — the reading gathered no tier justification, critical-path list or coverage triggers for this summary
+
+---
+
+## 2. Test Strategy
+
+**Test levels observed:**
+
+- **Inline unit tests:** Rust `#[test]` functions inside `#[cfg(test)]` modules next to the code under test (packages/blitz-dom/src/stylo_to_parley.rs:525-528; packages/blitz-dom/src/util.rs:180-182; packages/blitz-dom/src/node/scrollbar.rs:224-229; packages/blitz-dom/src/node/element.rs:958-976; packages/blitz-dom/src/node/node.rs:1736-1742; packages/dioxus-native-dom/src/dioxus_document.rs:366-367; packages/dioxus-native-dom/src/events.rs:656-657)
+- **blitz-dom pipeline tests:** tests build a `BaseDocument` directly from `DocumentConfig` and construct the DOM through `DocumentMutator` (packages/blitz-dom/src/mutator.rs:1482-1498); DOM fixtures are built manually because the HTML parser lives in blitz-html, which the comment says would be a circular dev-dependency (packages/blitz-dom/src/document.rs:2885-2890; packages/blitz-dom/src/document.rs:3345-3350); pipeline tests call `resolve(0.0)` and assert on resulting layout or computed styles (packages/blitz-dom/src/mutator.rs:1693-1718; packages/blitz-dom/src/document.rs:3028-3060)
+- **Browser app:** persistence tests target the inner SQL functions with a freshly migrated in-memory connection rather than the `HistoryStore` wrapper (apps/browser/persistence/src/lib.rs:306-326); in-memory history tests call `record_visit_inner` directly on a `VecDeque` (apps/browser/src/browser_history.rs:178-207); URL suggestion tests split a synchronous nucleo driver from worker-level tokio tests covering the command state machine (apps/browser/src/url_suggestions.rs:390-406; apps/browser/src/url_suggestions.rs:547-549)
+- **Harness-driven tests:** the harness wraps any blitz_dom Document, such as HtmlDocument or DioxusDocument, with deterministic construction defaults, a pump/tick loop, inspection helpers and input synthesis (packages/blitz-test-harness/src/lib.rs:1-14); dom_string produces a stable one-node-per-line tree serialization with geometry, described as suitable for snapshot-style assertions (packages/blitz-test-harness/src/inspect.rs:117-131)
+- **Integration tests (tests/blitz-tests):** two styles — direct `HtmlDocument` + `DocumentConfig` construction, and the `blitz_test_harness::Harness` wrapper over `HtmlDocument` and `DioxusDocument` (tests/blitz-tests/tests/comment_layout.rs:14-25; tests/blitz-tests/tests/harness_smoke.rs:1-3)
+- **Differential oracle:** the same fixture and mutation sequence runs in an incremental and a non-incremental document, comparing every node's `final_layout()`, `layout_children` and paint tree after each step and asserting no damage remains (tests/blitz-tests/tests/incremental_oracle.rs:1-19; tests/blitz-tests/tests/incremental_oracle.rs:314-347)
+- **Pixel tests:** render to a CPU buffer and sample pixels; box-shadow expectations come from Chromium renders with a 1px antialiasing tolerance (tests/blitz-tests/tests/paint_order.rs:12-29; tests/blitz-tests/tests/outset_box_shadow_shape.rs:6; tests/blitz-tests/tests/outset_box_shadow_shape.rs:82-88)
+- **Randomized stress:** deterministic pseudo-random template swaps (an LCG) run 1000 steps to shake out slab/ElementId reuse bugs (tests/blitz-tests/tests/stale_node_mapping.rs:176-217)
+- **Pure-restyle paths:** driven by `:hover` rather than attribute mutation because mutations insert full damage and mask under-damaging bugs (tests/blitz-tests/tests/oof_dynamic_cb.rs:143-145; tests/blitz-tests/tests/anonymous_block_cache_invalidation.rs:6-9)
+- **Font-dependent tests:** skip at runtime with `eprintln!` when no usable font is available (tests/blitz-tests/tests/text_selection_anonymous_block.rs:63-78; tests/blitz-tests/tests/text_selection_anonymous_block.rs:104-109)
+- **Script tests (blitz-vibey-script):** tests build a `ScriptDocument` from inline HTML, run its scripts, then assert DOM text via selector queries (packages/blitz-vibey-script/tests/dom.rs:8-21); events are driven with synthetic click events and `UiEvent::KeyDown` rather than real input (packages/blitz-vibey-script/tests/dom.rs:179-190; packages/blitz-vibey-script/tests/preact.rs:68-100); timer tests sleep in real time before polling (packages/blitz-vibey-script/tests/dom.rs:278-280; packages/blitz-vibey-script/tests/dom.rs:299-300)
+- **WPT conformance:** reftests render test and reference to RGBA buffers at 800x600 and compare them exactly, by fuzzy tolerance, or by dify diff (wpt/runner/src/test_runners/ref_test.rs:25-102; wpt/runner/src/test_runners/ref_test.rs:179-211); attr tests check element layout against `data-expected-*` attributes, one subtest per element matching the selector (wpt/runner/src/test_runners/attr_test.rs:71-124); harness tests run real testharness.js and collect per-subtest results (wpt/runner/src/test_runners/harness_test.rs:119-183)
+- **WPT scoring:** partial passes are counted fractionally (pass/total per test) in addition to whole-test counts (wpt/runner/src/main.rs:139-145; wpt/runner/src/main.rs:666-667; wpt/runner/src/main.rs:812-815); failures are bucketed by the first matching feature flag (grid-lanes, subgrid, writing-mode, direction, intrinsic size, calc, float, script) else "other" (wpt/runner/src/main.rs:639-658); WPT results are diffed against the main-branch report and summarised per test as gained/lost subtests (.github/workflows/wpt.yml:75-85; .github/scripts/wpt_diff_to_pr.py:116-161)
+- **WPT ports:** WPT script tests are ported to Rust when the WPT runner cannot run them (tests/blitz-tests/tests/oof_dynamic_cb.rs:7-12)
+- **MSRV:** verified by build only, not test (.github/workflows/ci.yml:20-25)
+- **Example fixtures (human-read):** fixture prose states the expected rendering for a human viewer: frame navigation replaces only the sub-document (examples/assets/iframe_navigation.html:33-36; examples/assets/iframe_navigation.html:58-61); fixture comments state what a case checks: correct alpha with no double-paint, and per-run ascent/descent (examples/assets/inline-backgrounds.html:40; examples/assets/inline-backgrounds.html:47; examples/assets/inline-backgrounds.html:84-86); the hr fixture's first case is left unstyled to show the UA stylesheet only (examples/assets/hr.html:33-36; examples/assets/hr.html:195); full real-page snapshots are paired with reduced variants (examples/assets/google_reduced.html:1-9; examples/assets/gosub_reduced.html:1-12; examples/assets/servo-new-reduced.html:1-51; examples/assets/servo-new-reduced-1.html:1-31)
+- **Slice s03:** no test functions — observed absent · searched: `#\[test\]` and `#\[cfg\(test` over the 32 files of slice s03
+
+**Test directory + naming conventions:**
+
+- **Directory pattern:** inline `#[cfg(test)]` modules in source files (as above); `tests/blitz-tests` holds integration tests, one file per behavior under `tests/` (tests/blitz-tests/lib.rs:1; tests/blitz-tests/Cargo.toml:3)
+- **Test function naming:** regression tests are named for the bug they guard, e.g. transposed tall corners and k == 2 NaN (packages/blitz-paint/src/kurbo_css/css_box.rs:684-691; packages/blitz-paint/src/kurbo_css/css_box.rs:756-765); `keyed_nodes_do_not_crash` is a regression test for a panic when keyed nodes are reordered (packages/dioxus-native-dom/src/dioxus_document.rs:375-378); regression tests document the bug and the real-world page that exposed it (tests/blitz-tests/tests/stale_dirty_descendants.rs:1-20; tests/blitz-tests/tests/rem_after_viewport_change.rs:1-8)
+- **Doc examples:** a rustdoc usage example for `DioxusDocument` sits in the doc comment (packages/dioxus-native-dom/src/dioxus_document.rs:41-63)
+
+---
+
+## 3. Test Harness Contract
+
+**Runners and invocation:**
+
+- **WPT in CI:** invoked as `cargo build -rp wpt` then `cargo run -rp wpt css svg`, producing `./wpt/output/wptreport.json` (.github/workflows/wpt.yml:53-58); the `wpt` cli provides `calc-scores` and `diff --format json` (.github/workflows/wpt.yml:69-80)
+- **WPT runner CLI:** `WPT_DIR` env var, optional suite arguments, `--verbose`/`-v`, `--run-quarantined`, `--list` (wpt/runner/src/main.rs:240-250; wpt/runner/src/main.rs:461-479)
+- **WPT outputs:** `wpt_expectations.txt` and `wptreport.json` in the output directory (wpt/runner/src/main.rs:832-847)
+- **WPT status set:** PASS, FAIL, TIMEOUT, SKIP, CRASH (wpt/runner/src/main.rs:104-122)
+- **Python script tests:** the test file states it runs with `python3 -m unittest discover .github/scripts` (.github/scripts/test_wpt_diff_to_pr.py:2)
+- **Rust tests:** the standard built-in harness — `#[cfg(test)]` modules with `#[test]` functions and `assert!`/`assert_eq!` (packages/blitz-dom/src/net.rs:606-618; packages/blitz-dom/src/stylo_to_parley.rs:550-564; packages/blitz-dom/src/util.rs:191-200; packages/blitz-dom/src/layout/list.rs:185-204; packages/blitz-dom/src/node/scrollbar.rs:228-236; packages/blitz-dom/src/node/node.rs:1754-1761), with `#[tokio::test]` for async worker tests (apps/browser/src/url_suggestions.rs:415; apps/browser/src/url_suggestions.rs:551)
+- **Feature gating:** SVG tests are gated on both `test` and the `svg` feature (packages/blitz-dom/src/util.rs:180)
+- **Third-party test frameworks:** observed absent · searched: `proptest|insta::|criterion|mock` over the 15 files of slice s05
+
+**blitz-test-harness (`Harness`):**
+
+- **Construction:** from_html, from_html_with, from_component, from_vdom, wrap; constructors pump once, wrap does not (packages/blitz-test-harness/src/harness.rs:59-92). `Harness::from_html(html)` and `Harness::from_html_with(html, HarnessOptions)` build an HTML-backed harness; `Harness::from_component(fn)` and `Harness::from_vdom(vdom, options)` build Dioxus-backed ones (tests/blitz-tests/tests/harness_smoke.rs:10; tests/blitz-tests/tests/pointer_events.rs:8-17; tests/blitz-tests/tests/harness_smoke.rs:104; tests/blitz-tests/tests/stale_node_mapping.rs:49-56)
+- **Core:** into_inner, base, base_mut, time, pump, tick, dispatch, dispatch_recorded, set_viewport_size (packages/blitz-test-harness/src/harness.rs:94-184)
+- **Pump semantics:** pump polls the document with no waker context and resolves at the harness time; dispatch and dispatch_recorded do not pump (packages/blitz-test-harness/src/harness.rs:113-138); `pump()` applies pending changes after a mutation through `base_mut().mutate()` (tests/blitz-tests/tests/dir_attribute.rs:72-79; tests/blitz-tests/tests/oof_dynamic_cb.rs:37-43)
+- **Recorded dispatch:** `dispatch_recorded([UiEvent, ...])` returns the list of dispatched event names (tests/blitz-tests/tests/touch_events.rs:40-44)
+- **Input helpers:** click, click_at, mouse_down_at, mouse_up_at, move_mouse_to, drag, tap, tap_at, touch_down, touch_move, touch_up, wheel_at, press, press_with, type_text, ime — each pumps after dispatch (packages/blitz-test-harness/src/input.rs:95-232); synthesized pointer events set page, screen and client coordinates to the same values (packages/blitz-test-harness/src/input.rs:18-27); key_event uses Code::Unidentified and Location::Standard and fills text only for pressed character keys (packages/blitz-test-harness/src/input.rs:75-93); the crate exports a `pointer_event(id, x, y, button, buttons, mods)` builder (tests/blitz-tests/tests/touch_events.rs:6; tests/blitz-tests/tests/touch_events.rs:12-21)
+- **Inspection helpers:** query, node, query_all, layout_rect, layout_rect_of, center_of, text_content, attr, hit, hit_node, focused, hovered, dom_string (packages/blitz-test-harness/src/inspect.rs:26-131); `layout_rect(selector)` returns a rect with `x`, `y`, `width`, `height`; `center_of` returns an `(x, y)` tuple (tests/blitz-tests/tests/harness_smoke.rs:16-21)
+
+**Crate-local test helpers:**
+
+- **apps/browser:** `drive_worker` queues messages, drops the sender, captures publications, and bounds the run with a 2-second timeout (apps/browser/src/url_suggestions.rs:364-388); `make_conn` opens an in-memory sqlite connection and migrates it to latest (apps/browser/persistence/src/lib.rs:322-326)
+- **blitz-dom node tests:** DOM tests construct `BaseDocument::new(DocumentConfig::default())` and create nodes with `create_node` (packages/blitz-dom/src/node/node.rs:1743-1752); text-input tests build a `TextInputData` laid out at scale 1.0 with fresh parley `FontContext`/`LayoutContext` (packages/blitz-dom/src/node/element.rs:963-974)
+- **blitz-vibey-script:** `doc_from_html` constructs with the default `DocumentConfig` and calls `execute_scripts`; `text_of_selector` reads text content (packages/blitz-vibey-script/tests/dom.rs:8-21); preact helpers: load_todomvc, resolve, query, query_all, text_of, enter_key, click, add_todo (packages/blitz-vibey-script/tests/preact.rs:16-100); virtual time and `without_timer_thread` are intended for embedders driving timers manually, e.g. test runners (packages/blitz-vibey-script/src/clock.rs:10-14; packages/blitz-vibey-script/src/document.rs:108-133); dev-dependency blitz-dom enables `system-fonts` so text inputs shape real text in the selection tests (packages/blitz-vibey-script/Cargo.toml:42-48)
+- **dioxus-native-dom:** the tests use the `dioxus` crate as a dev-dependency (packages/dioxus-native-dom/Cargo.toml:43-44; packages/dioxus-native-dom/src/dioxus_document.rs:370); the document test builds a `DioxusDocument` with `DocumentConfig::default()`, calls `initial_build`, and drives updates with `mark_dirty` and `poll(None)` (packages/dioxus-native-dom/src/dioxus_document.rs:394-404)
+
+> NOT YET MEASURED — the reading reached the test runners and the in-process harness only; no product boot, status, cleanup or logs command, status endpoint shape, log format, PID file or test-data bootstrap mechanism of a 5-command contract was gathered
+
+### Bootstrap phases (derive for route / setup-project)
+
+- **coverage-tooling-install:** coverage tooling is recorded absent — see `## 9. CI Integration`.
+
+---
+
+## 4. Unit Test Strategy
+
+**Conventions:**
+
+- **Test file location:** unit tests sit in `#[cfg(test)] mod tests` blocks inside the source file (packages/blitz-paint/src/gradient.rs:517-536; packages/blitz-paint/src/kurbo_css/css_box.rs:661-775); two `#[test]` functions sit at file top level outside the tests module (packages/blitz-paint/src/kurbo_css/css_box.rs:777-847)
+- **Assertion helpers:** a helper `assert_solves` checks `start_angle` numerically against its defining equation across a grid of inputs (packages/blitz-paint/src/kurbo_css/css_box.rs:665-682; packages/blitz-paint/src/kurbo_css/css_box.rs:767-774)
+
+**What unit tests cover:**
+
+- **CI Python script:** test_wpt_diff_to_pr.py covers `format_lines` ordering/alignment/markers, `render` headline counts and empty diff, and `splice` idempotent replacement (.github/scripts/test_wpt_diff_to_pr.py:51-88)
+- **apps/browser:** about-page URL parsing: known paths, unknown rejection, round-trip (apps/browser/src/about_pages.rs:204-239); history fold, non-consecutive revisit, truncation to the cap, elapsed-label buckets (apps/browser/src/browser_history.rs:178-225); favicon decode acceptance and rejection cases (apps/browser/src/favicon.rs:83-112); suggestions: empty query, literal-first, search-last, case-insensitive and fuzzy matching, cap of six history rows, URL dedup, ranking (apps/browser/src/url_suggestions.rs:415-545); persistence: schema bootstrap, migration validation, round trip, ordering, clear, fold, NULL-only favicon patching, prune cap (apps/browser/persistence/src/lib.rs:341-506)
+- **blitz-dom (net, mutator):** `stylo_to_fontique_style` is unit-tested for Italic, `Oblique(0,0)` → Normal, single angle and range-uses-min cases (packages/blitz-dom/src/net.rs:616-645); disabled-state toggling is tested on a node created without a tree (packages/blitz-dom/src/mutator.rs:1379-1413)
+- **blitz-dom (style bridge):** feature-mapping tests assert exact OpenType tag and value pairs per `font-variant-*` input (packages/blitz-dom/src/stylo_to_parley.rs:550-635); a test asserts `font-feature-settings` entries come after variant-derived ones so they win (packages/blitz-dom/src/stylo_to_parley.rs:637-654); SVG tests assert intrinsic width, height and aspect ratio for viewBox, absolute, percentage, unit and non-numeric dimensions (packages/blitz-dom/src/util.rs:184-242)
+- **blitz-dom (layout):** four unit tests check list markers: disc, decimal, lower-alpha (including `aa.`/`ab.` past 26), upper-alpha (packages/blitz-dom/src/layout/list.rs:200-236)
+- **blitz-dom (node):** `opacity_holds_through_the_fade_delay_then_fades_out` asserts scrollbar opacity at fixed durations (packages/blitz-dom/src/node/scrollbar.rs:228-236); five text-input scroll tests cover no-scroll for short text, following the caret on a single line, vertical-only multiline scroll, clamping and bubbling of `scroll_by`, and no scroll when text fits (packages/blitz-dom/src/node/element.rs:976-1091); four tests assert `DISABLED`/`ENABLED` element state for a button with `disabled` (empty or `"false"` value), an `<a>` with `disabled`, and a bare button (packages/blitz-dom/src/node/node.rs:1742-1821)
+- **Conditional assertions:** two text-input tests assert only inside an `if` on the measured layout size, so they pass without asserting when the text does not overflow (packages/blitz-dom/src/node/element.rs:997-1007; packages/blitz-dom/src/node/element.rs:1038-1044)
+- **dioxus-native-dom:** touch-data tests build `BlitzPointerEvent` values directly and check `touches`/`touches_changed` counts and coordinates (packages/dioxus-native-dom/src/events.rs:684-728)
+- **wpt/runner:** fuzzy.rs tests parse named, spaced, positional and per-reference ranges, invalid input, metas from HTML, tolerance selection and buffer diff (wpt/runner/src/test_runners/fuzzy.rs:146-235); js_wrapper.rs tests META block parsing, absence of the GLOBAL block for `.window.js`, and exclusion of worker-only `.any.js` (wpt/runner/src/test_runners/js_wrapper.rs:102-132); mod.rs tests the timeout quarantine file's validity against a list of known reasons (wpt/runner/src/test_runners/mod.rs:408-443)
+
+**Observed absent:**
+
+- Unit tests in slice s03 · searched: `#\[test\]` and `#\[cfg\(test` over the 32 files of slice s03
+- Tests in the other seven files of slice s07 · searched: `#\[test\]` over the 8 files of slice s07
+- Unit tests inside blitz-vibey-script source files · searched: `#\[cfg\(test\)\]|mod tests` over the 32 files of slice s10
+- In-file `#[cfg(test)]` unit-test modules in tests/blitz-tests · searched: `#\[cfg` over the 61 files of slice s12
+
+---
+
+## 5. Integration Test Strategy
+
+**Boundaries covered:**
+
+- **tests/blitz-tests crate:** a workspace member (Cargo.toml:22); all tests are Cargo integration tests in `tests/blitz-tests/tests/` with `#[test]` functions, depending only on dev-dependencies (tests/blitz-tests/lib.rs:1; tests/blitz-tests/Cargo.toml:13)
+- **Layout assertions:** read `final_layout()` location/size, `scrollable_overflow_rect`, `scroll_width()`/`scroll_height()` (tests/blitz-tests/tests/display_contents.rs:76-86; tests/blitz-tests/tests/inline_box_scrollable_overflow.rs:32-40)
+- **Style assertions:** read computed values via `primary_styles()` (tests/blitz-tests/tests/style_property_invalidation.rs:45-56); restyle-avoidance is asserted by comparing computed-style pointers before and after (tests/blitz-tests/tests/resize_restyle.rs:39-44; tests/blitz-tests/tests/resize_restyle.rs:77-94)
+- **Leak checks:** compare `doc.tree().len()` and anonymous-block counts across repeated operations (tests/blitz-tests/tests/anonymous_block_leak.rs:23-76; tests/blitz-tests/tests/inner_html_leak.rs:11-43)
+- **DOM ↔ resource loading (blitz-dom):** `load_resource` is driven with a fabricated `ResourceLoadResponse` to pin the `@font-face` override load path (packages/blitz-dom/src/document.rs:3336-3401); hover invalidation tests drive `set_hover_to` and `resolve` and compare computed styles before/after (packages/blitz-dom/src/document.rs:3028-3060)
+- **HTML parser ↔ DOM:** `parses_some_html` parses an HTML string into a `BaseDocument` via html5ever and calls `print_tree`, with no assertion (packages/blitz-html/src/html_sink.rs:315-333)
+- **Harness ↔ event pipeline:** harness input routes through the document's real event-dispatch pipeline without a window (packages/blitz-test-harness/src/lib.rs:11-12; packages/blitz-test-harness/src/input.rs:1-5); dispatch_recorded drives events against the underlying BaseDocument, bypassing document-specific handling such as Dioxus VirtualDom forwarding (packages/blitz-test-harness/src/harness.rs:132-170)
+- **Script ↔ DOM (blitz-vibey-script):** dom.rs covers inline scripts, document order, tree mutation, attributes, selectors, innerHTML, click listeners, bubbling, microtasks, timers, requestAnimationFrame, input value, checkbox events, DOMContentLoaded/load, on-event properties, wrapper identity, style, modifier state, hidden, selection offsets, interface globals (packages/blitz-vibey-script/tests/dom.rs:23-578); CSSOM rules, CSSOM restyle, font-face and keyframes rules (packages/blitz-vibey-script/tests/dom.rs:580-703); `fetch()` through a custom ScriptFetcher and the window error event path (packages/blitz-vibey-script/tests/dom.rs:705-786); the selection test uses an explicit 800×600 viewport at scale 1.0 (packages/blitz-vibey-script/tests/dom.rs:540-548)
+- **Dioxus VirtualDom ↔ DioxusDocument:** `keyed_nodes_do_not_crash` runs a real `VirtualDom` against a `DioxusDocument` through 100 inserts, then checks that `<main>` has 100 children (packages/dioxus-native-dom/src/dioxus_document.rs:394-410)
+- **WPT runner ↔ ScriptDocument:** a unit test evaluates `TESTDRIVER_VENDOR_JS` in a real `ScriptDocument` and asserts the `unsupported_feature` message it emits (wpt/runner/src/test_runners/harness_test.rs:294-310)
+- **Stylo sketch:** `tests/stylo_usage.rs` sketches styling a DOM with Stylo (stylist, stylesheet, traversal) entirely in comments (tests/stylo_usage.rs:55-160)
+
+**Observed absent:**
+
+- Integration tests outside `src` in the apps · searched: `#\[(tokio::)?test\]` over the 86 files of slice s04; every hit sits inside a `#[cfg(test)] mod tests` in `src`
+
+---
+
+## 6. E2E Test Strategy
+
+**Drivers per surface:**
+
+- **WPT (css, svg):** reftests are run with a Thai font installed because some reftests depend on Thai glyph widths (.github/workflows/wpt.yml:43-50); successful PR WPT runs have their results posted into the PR description (.github/workflows/wpt-post-results.yml:43-49)
+- **Headless harness smoke:** `harness_smoke.rs` is described as end-to-end smoke tests for the harness covering document construction, inspection and input synthesis for `HtmlDocument` and `DioxusDocument` (tests/blitz-tests/tests/harness_smoke.rs:1-3); a Dioxus counter component is clicked through the harness and its rendered text asserted (tests/blitz-tests/tests/harness_smoke.rs:89-113)
+- **Preact TodoMVC (headless script):** preact.rs loads `examples/preact/index.html` with a `file:` base URL and drives add, toggle, filter, destroy and clear-completed flows (packages/blitz-vibey-script/tests/preact.rs:12-34; packages/blitz-vibey-script/tests/preact.rs:127-199)
+- **Paint ↔ reftests:** a paint comment states never-scrolled containers paint no scrollbar thumbs, keeping them out of static reftest screenshots (packages/blitz-paint/src/render.rs:715-720); paint comments reference WPT cases by path (packages/blitz-paint/src/render/background.rs:370-373; packages/blitz-paint/src/render/background.rs:590)
+
+**Manual and inspection tools:**
+
+- The iframe fixtures carry click-through instructions and expected outcomes instead of assertions (examples/assets/iframe_navigation.html:33-36; examples/assets/iframe_navigation.html:42-45; examples/assets/iframe_navigation.html:67-70)
+- `rowspan.html` is a minimal reproduction page stating its expected rendering in text (examples/rowspan.html:15-16)
+- `paint_bench` is a manual benchmark of paint and rasterize phases (examples/paint_bench.rs:1-7)
+- `screenshot` renders a page to a PNG file for inspection (examples/screenshot.rs:107-143)
+
+**Observed absent:**
+
+- Automated assertions in the example fixtures · searched: `\bassert|expect\(` over the 21 files of slice s02
+- End-to-end or UI-driving tests in the apps · searched: `#\[(tokio::)?test\]` over the 86 files of slice s04; no test launches a window or document
+
+> NOT YET MEASURED — windowed or browser-driven end-to-end runs lay outside every slice read
+
+---
+
+## 7. Test Data & Fixtures
+
+**Fixture sources:**
+
+- **WPT checkout:** WPT tests are cloned at the commit in `./wpt/WPT_COMMIT` (.github/workflows/wpt.yml:51-52); test inputs come from the WPT checkout at `WPT_DIR` (wpt/runner/src/main.rs:463-470); the quarantine list is `timeout-quarantine.txt`, two directories above `src/test_runners`, embedded at compile time (wpt/runner/src/test_runners/mod.rs:32)
+- **examples/assets:** static HTML pages for rendering CSS features and reduced real-world pages (examples/assets/clip-path.html:193; examples/assets/bbc_reduced.html:6; examples/assets/bottom_only.html:6); page snapshots name their origins: google.com, graphite.art and servo.org (examples/assets/google.html:6; examples/assets/graphite.html:7; examples/assets/servo-new.html:18); servo.html is a snapshot of the servo.org home page referencing a local `servo.css` (examples/assets/servo.html:7; examples/assets/servo.html:25; examples/assets/servo.html:332); servo_header_reduced.html reduces the navbar with `<base href="https://servo.org" />` (examples/assets/servo_header_reduced.html:5-18); servo_reduced.html reduces a flex wrapping case (examples/assets/servo_reduced.html:4-8); visual fixtures: text-decoration.html, shadow.html, svg.html, svg_size.html (examples/assets/text-decoration.html:150; examples/assets/shadow.html:118; examples/assets/svg.html:3-13; examples/assets/svg_size.html:5)
+- **Fixture dependencies:** fixtures reference sibling images square.png, wide.png, tall.png and gosub-logo.svg, which are not s02 files (examples/assets/object_fit.html:13-15; examples/assets/noscript.html:6; examples/assets/iframe_page_b.html:18; examples/assets/gosub.html:101); several fixtures load images and styles from remote hosts at render time (examples/assets/newservo.html:4; examples/assets/newservo.html:8; examples/assets/servo-new-reduced.html:16; examples/assets/graphite_software_overview.html:1641); the iframe page A fixture links to does_not_exist.html as a deliberate broken link (examples/assets/iframe_page_a.html:25)
+- **examples/preact:** the Preact TodoMVC page and a Core DOM APIs reference page (examples/preact/index.html:6; examples/preact/core_dom_apis.html:6); the E2E fixture is the vendored example at `../../examples/preact` relative to the crate manifest (packages/blitz-vibey-script/tests/preact.rs:12-14)
+
+**Seed strategies:**
+
+| Data type | Strategy | Source |
+|-----------|----------|--------|
+| Inline HTML | inline HTML string constants or `format!`-built pages | (tests/blitz-tests/tests/incremental_oracle.rs:371-420; tests/blitz-tests/tests/dir_attribute.rs:12-29) |
+| Inline HTML (script tests) | inline raw strings per test | (packages/blitz-vibey-script/tests/dom.rs:25-36) |
+| Inline literals | inline string literals, including generated multi-line text | (packages/blitz-html/src/html_sink.rs:319; packages/blitz-dom/src/node/element.rs:986; packages/blitz-dom/src/node/element.rs:1019-1022) |
+| SVG inputs | inline byte-string literals | (packages/blitz-dom/src/util.rs:186; packages/blitz-dom/src/util.rs:193) |
+| Fuzzy runner inputs | inline HTML and byte-array fixtures | (wpt/runner/src/test_runners/fuzzy.rs:184-188; wpt/runner/src/test_runners/fuzzy.rs:231-232) |
+| Python script entries | inline `ENTRIES` list covering changed, added and removed entries | (.github/scripts/test_wpt_diff_to_pr.py:8-48) |
+| Style fixtures | inline user-agent stylesheets | (packages/blitz-dom/src/document.rs:2983-2985; packages/blitz-dom/src/document.rs:3274-3277) |
+| Viewports | fixed sizes (800x600 and 400x300, scale 1.0, Light) | (packages/blitz-dom/src/mutator.rs:1673; packages/blitz-dom/src/document.rs:2893) |
+| Font payload | the embedded bullet font | (packages/blitz-dom/src/document.rs:3366-3381) |
+| Image loads | injected directly into `background_images` layers as `ImageData::Raster` or `ImageData::Svg` with `Status::Ok` | (tests/blitz-tests/tests/background_size.rs:31-43; tests/blitz-tests/tests/svg_background_size.rs:37-46) |
+| Benchmark pages | generated in code: ~2000-node realistic, 5000-item stress, 50 nested stacking contexts, ~40k-node large page | (tests/blitz-tests/tests/paint_tree_bench.rs:59-98; tests/blitz-tests/tests/paint_tree_bench.rs:208-221) |
+| External benchmark page | supplied through `PAINT_TREE_BENCH_HTML`, with stylesheets inlined | (tests/blitz-tests/tests/paint_tree_bench.rs:258-269) |
+| Browser entries | helpers build entries from URL strings, with titles or fixed timestamps | (apps/browser/src/url_suggestions.rs:348-362; apps/browser/persistence/src/lib.rs:328-339; apps/browser/src/browser_history.rs:170-176) |
+| Test URLs | the `.test` TLD | (apps/browser/src/browser_history.rs:181; apps/browser/persistence/src/lib.rs:377-379) |
+| Favicon bytes | a 1x1 PNG encoded in-test | (apps/browser/src/favicon.rs:75-81) |
+| Fetch body | base URL `http://example.test/dir/page.html` and a fixed JSON body for `/data.json` | (packages/blitz-vibey-script/tests/dom.rs:710-720; packages/blitz-vibey-script/tests/dom.rs:740-742) |
+
+**Builders and options:**
+
+- Test helpers `pairs` and `feature_settings` build and flatten feature lists (packages/blitz-dom/src/stylo_to_parley.rs:530-548)
+- Unit tests build `ListStyleType` values inline with a `list_style` helper (packages/blitz-dom/src/layout/list.rs:196-198)
+- `finger_event(id, x, y)` builds a finger `BlitzPointerEvent` fixture (packages/dioxus-native-dom/src/events.rs:663-682)
+- The keyed-nodes test uses a shared `Rc<RefCell<HashMap<usize, usize>>>` as app props (packages/dioxus-native-dom/src/dioxus_document.rs:379-394)
+- HarnessOptions carries width, height, scale, color_scheme, an optional base_url and an optional net_provider for sub-resources (packages/blitz-test-harness/src/harness.rs:11-21); harness documents always use HtmlProvider as the HTML parser provider (packages/blitz-test-harness/src/harness.rs:36-51)
+
+**Observed absent:**
+
+- Fixture files or loaders in slice s08 · searched: `fixture` over the 16 files of slice s08 (no match)
+
+---
+
+## 8. Mocking & Stubbing Discipline
+
+**Hand-written fakes and stubs:**
+
+| Concern | Stand-in | Source |
+|---------|----------|--------|
+| Shell | hand-written `ShellProvider` fakes count redraw requests | (packages/blitz-dom/src/mutator.rs:1540-1549; packages/blitz-dom/src/document.rs:2849-2857) |
+| Shell | `RecordingShell` implements `ShellProvider` and records `set_ime_enabled` calls | (tests/blitz-tests/tests/interaction_state_teardown.rs:27-35) |
+| Network | `RecordingNetProvider` records requested URLs instead of fetching | (tests/blitz-tests/tests/link_rel_attribute.rs:14-24) |
+| Network | `ManualNetProvider` holds requests and handlers so the test delivers responses when it chooses | (tests/blitz-tests/tests/render_blocking_stylesheet.rs:16-30; tests/blitz-tests/tests/render_blocking_stylesheet.rs:62-66) |
+| Network (WPT) | `WptNetProvider` serves files from the local WPT directory | (wpt/runner/src/net_provider.rs:16-27; wpt/runner/src/net_provider.rs:70-78) |
+| Script fetch | a test-local `MapFetcher` implements `ScriptFetcher`, returning a NotFound IO error for unknown paths | (packages/blitz-vibey-script/tests/dom.rs:710-720; packages/blitz-vibey-script/tests/dom.rs:745) |
+| Navigation (WPT) | `DummyNavigationProvider` and base URL `http://dummy.local` | (wpt/runner/src/main.rs:568-569) |
+| Net, navigation, shell | no-op provider implementations | (packages/blitz-traits/src/net.rs:165-173; packages/blitz-traits/src/navigation.rs:14-20; packages/blitz-traits/src/shell.rs:65-66) |
+| Events | `RecordingHandler` EventHandler installed by dispatch_recorded records each dispatched DOM event name | (packages/blitz-test-harness/src/harness.rs:144-169) |
+| Events | `NoopEventHandler` is passed to `EventDriver` | (tests/blitz-tests/tests/scrollbar_drag.rs:3; tests/blitz-tests/tests/scrollbar_drag.rs:35) |
+| Widgets | `Probe`/`SizedProbe` stub widgets implement `Widget` | (tests/blitz-tests/tests/custom_widget_layout.rs:12-24) |
+| Renderer | `NullScenePainter` stands in for a renderer in timings | (tests/blitz-tests/tests/paint_tree_bench.rs:162) |
+| Time (WPT) | timers run on virtual time without the background timer thread | (wpt/runner/src/test_runners/mod.rs:121-128) |
+| Timer instrumentation | debug_timer swaps in a zero-cost dummy timer when `enable` is off | (packages/debug_timer/src/lib.rs:70-82; packages/debug_timer/src/lib.rs:109-123) |
+| WPT JS harness | stock `testharnessreport.js` and `testdriver-vendor.js` replaced by runner-provided versions | (wpt/runner/src/test_runners/harness_test.rs:18-81; wpt/runner/src/test_runners/harness_test.rs:99-104) |
+| Worker publication | worker tests inject a capturing `publish` closure instead of a Dioxus signal | (apps/browser/src/url_suggestions.rs:374-378) |
+| Notify | the synchronous nucleo driver uses a no-op notify closure | (apps/browser/src/url_suggestions.rs:398) |
+| GitHub API | the script's `--dry-run` prints instead of calling the GitHub API, and tests call `render` with `run_url=None` | (.github/scripts/wpt_diff_to_pr.py:204-206; .github/scripts/test_wpt_diff_to_pr.py:67) |
+
+**Real dependencies kept:**
+
+- Tests needing real font metrics skip with an `eprintln!` when text measures 0x0 without `system-fonts` (packages/blitz-dom/src/document.rs:2918-2936)
+
+**Observed absent:**
+
+- Mocking libraries in CI and build configuration · searched: `mock` over .github/workflows/*.yml, Cargo.toml, Cross.toml, flake.nix, .github/scripts/*.py
+- Mocking libraries in the apps · searched: `mockall|mock` (case-insensitive) over the 86 files of slice s04
+- Mocks or stubs in slice s03 · searched: `mock|Mock|stub|fake` over the 32 files of slice s03
+- Mocks or fixtures in slice s06 · searched: `mock|fixture` over the 17 files of slice s06
+- Mocks or fixtures in slice s07 · searched: `mock|fixture` over the 8 files of slice s07
+- Mocks, fakes or stubs in slice s08 · searched: `mock|fake|stub` over the 16 files of slice s08 (no match)
+- Mock or stub types in slice s09 · searched: `mock|Mock|stub|fake` over the 32 files of slice s09
+- Mocks, stubs or fakes in slice s11 · searched: `mock|stub|fake` over the 21 files of slice s11
+
+---
+
+## 9. CI Integration
+
+**Platform:** GitHub Actions; tests run on PRs and pushes to main/v0.* (.github/workflows/ci.yml:3-8)
+
+**Pipeline facts:**
+
+- **WPT workflow:** runs on PRs and pushes to main, publishes a step summary on PRs, and uploads the diff artifact (.github/workflows/wpt.yml:3-7; .github/workflows/wpt.yml:81-93)
+- **Benchmarks:** benchmark tests are `#[ignore]` and run with `cargo test -p blitz-tests --release --test paint_tree_bench -- --ignored --nocapture` (tests/blitz-tests/tests/paint_tree_bench.rs:3; tests/blitz-tests/tests/paint_tree_bench.rs:225-227; tests/blitz-tests/tests/paint_tree_bench.rs:262-263; tests/blitz-tests/tests/paint_tree_bench.rs:341-342)
+- **Fonts:** font-dependent assertions rely on the `system-fonts` feature, stated to be on by default when testing the whole workspace (tests/blitz-tests/tests/br_trailing_line.rs:11-13)
+- **Hang guard:** a test comment states the worker timeout exists so a regression would not hang CI (apps/browser/src/url_suggestions.rs:380-382)
+- **WPT timeouts:** a comment states heavy interpolation suites run longer "on loaded CI machines", motivating the harness timeout multiplier (wpt/runner/src/test_runners/harness_test.rs:30-34)
+
+**Observed absent:**
+
+- Coverage tooling · searched: `coverage|tarpaulin|llvm-cov|codecov` over .github/workflows/*.yml, Cargo.toml, Cross.toml, flake.nix, .github/scripts/*.py
+
+---
+
+## 10. Quality Gates & Coverage Targets
+
+> NOT YET MEASURED — no slice gathered a quality gate, coverage threshold, flakiness budget or performance budget
+
+---
+
+## 11. Test Anti-Patterns (NEVER do these)
+
+> NO RECORDED INTENT
+
+---
+
+## 12. Test Decisions Log
+
+> NO RECORDED INTENT

@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "version": "escher-0.1.0",
+  "source": "intent",
+  "id_scheme": "v010-NN",
+  "capabilities": [
+    {
+      "id": "v010-01",
+      "title": "Stable element ids",
+      "requirement": "every element of the stand carries a stable id: the author's key where given, else its component path",
+      "observed_gap": "a node's id is a slot index plus a version; a remount re-clones nodes into fresh ids, and no semantic id exists — an agent can aim only at coordinates or selectors.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "On every stand task, every element in the screen reads an id; elements the author keyed read that key, and the rest read their component path.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v010-02",
+      "title": "Id persistence",
+      "requirement": "an element's id is identical across a re-render, a remount and a fresh process",
+      "observed_gap": "a node's id is a slot index plus a version; a remount re-clones nodes into fresh ids, and no semantic id exists — an agent can aim only at coordinates or selectors.",
+      "verification": {
+        "method": "e2e",
+        "acceptance": "For each stand element, the id read before and after a re-render, a remount, and a restart in a new process is the same.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v010-03",
+      "title": "Id coherence",
+      "requirement": "an element has the same id in the snapshot, the accessibility tree and the driver",
+      "observed_gap": "a node's id is a slot index plus a version; a remount re-clones nodes into fresh ids, and no semantic id exists — an agent can aim only at coordinates or selectors.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "For each stand element, the id in the snapshot, the id on its accessibility node, and the id the driver accepts to act on it are identical.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v010-04",
+      "title": "Compact semantic snapshot",
+      "requirement": "one command returns the screen as a tree of id · role · name · state · bounds, readable whole in one tool result",
+      "observed_gap": "the screen is readable only as an HTML string, a debug tree print or a screenshot — large, noisy or lossy for an agent.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "One snapshot command returns each stand task's screen as a tree where every node carries id, role, name, state and bounds, and the whole result fits in a single tool result.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v010-05",
+      "title": "Snapshot state fidelity",
+      "requirement": "snapshot state reflects enabled, checked, value and focused; a disabled control reads disabled, a typed value reads its value",
+      "observed_gap": "the screen is readable only as an HTML string, a debug tree print or a screenshot — large, noisy or lossy for an agent.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "On the stand, a disabled control reads disabled, a checked control reads checked, the focused control reads focused, and text typed into a field reads back as its value.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v010-06",
+      "title": "Post-action diff",
+      "requirement": "after an action the driver returns exactly the nodes that changed; an action that changes nothing returns an empty diff",
+      "observed_gap": "no mutation stream exists, changed nodes are never drained, and has_changes() answers inverted.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "After a stand action, the returned diff names exactly the nodes whose snapshot changed and no others; an action that changes nothing returns an empty diff.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v010-07",
+      "title": "Headless screenshot",
+      "requirement": "the driver screenshots the whole screen or one element with no display",
+      "observed_gap": "a CPU raster and a PNG writer exist, apart from the test harness; the harness has no screenshot.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "With no display present, the driver returns an image of the whole stand screen and an image cropped to one element addressed by its id.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v010-08",
+      "title": "Screenshot determinism",
+      "requirement": "a repeated screenshot on the same host yields the same pixels",
+      "observed_gap": "a CPU raster and a PNG writer exist, apart from the test harness; the harness has no screenshot.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "Two screenshots of the same stand state taken in separate runs on the same host are pixel-identical.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v010-09",
+      "title": "Act by id",
+      "requirement": "driver actions target an element by its stable id",
+      "observed_gap": "the test harness clicks at a box's centre, by selector or coordinates, and a check must pump or wait on its own.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "Every driver action on the stand is addressed by an element's stable id alone, with no coordinates or selectors, and takes effect on that element.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v010-10",
+      "title": "Settled actions",
+      "requirement": "acting returns only once the UI has settled; a stand flow with a delayed update passes with no sleep anywhere in the check",
+      "observed_gap": "the test harness clicks at a box's centre, by selector or coordinates, and a check must pump or wait on its own.",
+      "verification": {
+        "method": "e2e",
+        "acceptance": "A stand flow whose action triggers a delayed update (the timer task) passes with the post-action state already present when the action returns, and no sleep or wait appears anywhere in the check.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v010-11",
+      "title": "Explainable refusals",
+      "requirement": "an action that cannot happen is refused with its cause named: not found · stale · disabled · covered by another element · off-screen",
+      "observed_gap": "an action that cannot take effect gives no reason.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "On the stand, an action aimed at a missing element, a stale id, a disabled control, an element covered by another, and an off-screen element is each refused, and each refusal names its cause.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v010-12",
+      "title": "Command line",
+      "requirement": "every driver command runs from a CLI with JSON output and an exit code meaning accepted or refused; a stand flow is scriptable in shell alone",
+      "observed_gap": "the headless harness is a Rust API in a test-only crate (publish = false) — no command an agent runs.",
+      "verification": {
+        "method": "e2e",
+        "acceptance": "Every driver command runs from the command line with JSON output and a process status that tells accepted from refused, and a stand flow completes as a shell script with no other tooling.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v010-13",
+      "title": "MCP surface",
+      "requirement": "the same commands are exposed as MCP tools, and an agent session completes a stand flow through them",
+      "observed_gap": "none.",
+      "verification": {
+        "method": "dynamic-external",
+        "acceptance": "Every command available on the command line is also offered as an MCP tool, and an agent session completes a stand flow using only those tools.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v010-14",
+      "title": "Self-describing API",
+      "requirement": "one consistent verb set, with help and schemas served by the tool itself, and every refusal naming its remedy",
+      "observed_gap": "none — a user learns the harness from its source.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "The tool itself serves its verb list, help and schemas on both surfaces from one verb set, and every refusal cause the stand can provoke names a remedy.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v010-15",
+      "title": "Cold-agent test",
+      "requirement": "a fresh agent given only the tool completes a stand task and writes a passing check, with its wrong calls counted",
+      "observed_gap": "none — a user learns the harness from its source.",
+      "verification": {
+        "method": "dynamic-external",
+        "acceptance": "A fresh agent with no prior context, given only the tool, completes a stand task and writes a check that passes; the run records its count of wrong calls.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    }
+  ]
+}

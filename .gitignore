@@ -11,3 +11,21 @@
 /apps/wpt/output
 /sites
 .blitz-cache
+
+# Claude Code / Andromeda (setup-project)
+.claude/backup/
+.claude/settings.local.json
+.andromeda/cache/
+__pycache__/
+
+# Rust build output (nested workspaces too — /target covers only the root)
+target/
+
+# rustfmt backups
+**/*.rs.bk
+
+# IDE
+*.iml
+
+# Environment files
+.env

@@ -1,0 +1,529 @@
+[
+{
+"tool": "inventory",
+"v": "1.0",
+"sha8": "0ca92b39",
+"ts": "2026-10-05T17:08:07Z",
+"argv": [
+"scan",
+"--root",
+"/home/turbolet/dev/projects/escher",
+"--cap",
+"400000",
+"--run-dir",
+".andromeda/runs/2026-10-05T19-08-04-adopt"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"control: ls-tree · ls-files -v · lfs header · tables — fired",
+"head 0f60502ea724 · entries 430 · bytes 8145600",
+"hidden: 0 (index entries tagged skip-worktree or assume-unchanged)",
+"modes: regular 429 · executable 1 · symlink 0 · submodule 0",
+"lfs pointers: 0",
+"classes: source 346 · agent-file 0 · ci 4 · manifest 27 · secret-shaped 0 · binary 22 · over-cap 3 · other 28",
+"units: 27 — . (102 files, 4127089 B) · packages/blitz-dom (53 files, 1044852 B) · apps/browser (39 files, 547889 B) · p…",
+"lang: rust 272 · html 54 · toml 31 · markdown 13 · css 10 · yaml 4 · javascript 3 · python 2",
+"lang UNPARSED: 37 — .svg 12 · (no extension) 9 · .png 6 · .woff2 3 · .lock 2 · .ico 1",
+"UNPARSED paths: 0",
+"wrote .andromeda/runs/2026-10-05T19-08-04-adopt/inventory.tsv (430 rows, 35811 B)"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-10-05T19-08-04-adopt/inventory.tsv"
+],
+"before": null,
+"after": null,
+"extra": {
+"hidden": [],
+"classes": {
+"source": 346,
+"ci": 4,
+"other": 28,
+"manifest": 27,
+"binary": 22,
+"over-cap": 3
+},
+"units": {
+".": {
+"files": 102,
+"bytes": 4127089
+},
+"apps/browser": {
+"files": 39,
+"bytes": 547889
+},
+"apps/browser/persistence": {
+"files": 2,
+"bytes": 18134
+},
+"apps/bump": {
+"files": 2,
+"bytes": 3255
+},
+"apps/readme": {
+"files": 7,
+"bytes": 51713
+},
+"examples/counter": {
+"files": 6,
+"bytes": 4323
+},
+"examples/seven_guis": {
+"files": 16,
+"bytes": 310319
+},
+"examples/todomvc": {
+"files": 12,
+"bytes": 280662
+},
+"examples/transparent": {
+"files": 3,
+"bytes": 7820
+},
+"examples/wasm_hello": {
+"files": 6,
+"bytes": 265493
+},
+"examples/wgpu_texture": {
+"files": 7,
+"bytes": 20641
+},
+"packages/accesskit_xplat": {
+"files": 10,
+"bytes": 59341
+},
+"packages/blitz-dom": {
+"files": 53,
+"bytes": 1044852
+},
+"packages/blitz-html": {
+"files": 4,
+"bytes": 15035
+},
+"packages/blitz-net": {
+"files": 2,
+"bytes": 16602
+},
+"packages/blitz-paint": {
+"files": 19,
+"bytes": 257644
+},
+"packages/blitz-shell": {
+"files": 8,
+"bytes": 96533
+},
+"packages/blitz-test-harness": {
+"files": 5,
+"bytes": 21269
+},
+"packages/blitz-traits": {
+"files": 8,
+"bytes": 40390
+},
+"packages/blitz-vibey-script": {
+"files": 20,
+"bytes": 346970
+},
+"packages/blitz": {
+"files": 2,
+"bytes": 6105
+},
+"packages/debug_timer": {
+"files": 2,
+"bytes": 4032
+},
+"packages/dioxus-native-dom": {
+"files": 6,
+"bytes": 58335
+},
+"packages/dioxus-native": {
+"files": 11,
+"bytes": 39459
+},
+"packages/stylo_taffy": {
+"files": 4,
+"bytes": 61360
+},
+"tests/blitz-tests": {
+"files": 61,
+"bytes": 307984
+},
+"wpt/runner": {
+"files": 13,
+"bytes": 132351
+}
+},
+"unparsed_ext": {
+"(none)": 9,
+"lock": 2,
+"svg": 12,
+"ico": 1,
+"png": 6,
+"mmd": 1,
+"hbs": 1,
+"woff2": 3,
+"wgsl": 1,
+"otf": 1
+}
+}
+},
+{
+"tool": "inventory",
+"v": "1.0",
+"sha8": "0ca92b39",
+"ts": "2026-10-05T17:33:42Z",
+"argv": [
+"gather",
+"--master",
+"architecture",
+"--template",
+"/home/turbolet/.claude/skills/andromeda-arch/references/phase-7/output-template.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T19-08-04-adopt"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"template: output-template.md · keys 11",
+"sheets: 13 — facts-s01.md · facts-s02.md · facts-s03.md · facts-s04.md · facts-s05.md · facts-s06.md · facts-s07.md · f…",
+"blocks for architecture: 130 under 10 of 11 keys · other masters' blocks 595 · preamble lines 13 · UNPARSED 0",
+"wrote .andromeda/runs/2026-10-05T19-08-04-adopt/architecture-facts.md (213996 B)",
+"keys with no block: 1 — Inherited Defaults"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-10-05T19-08-04-adopt/architecture-facts.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"keys": [
+"Design Philosophy",
+"Stack and Technologies",
+"Established Decisions",
+"Conventions",
+"Standard Contracts",
+"Occupied Resources",
+"Infrastructure Patterns",
+"Cross-cutting Patterns",
+"Project Intent",
+"Inherited Defaults",
+"Existing Scopes"
+],
+"empty": [
+"Inherited Defaults"
+],
+"unparsed": []
+}
+},
+{
+"tool": "inventory",
+"v": "1.0",
+"sha8": "0ca92b39",
+"ts": "2026-10-05T17:33:42Z",
+"argv": [
+"gather",
+"--master",
+"security-plan",
+"--template",
+"/home/turbolet/.claude/skills/andromeda-security/references/phase-3/output-template.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T19-08-04-adopt"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"template: output-template.md · keys 13",
+"sheets: 13 — facts-s01.md · facts-s02.md · facts-s03.md · facts-s04.md · facts-s05.md · facts-s06.md · facts-s07.md · f…",
+"blocks for security-plan: 117 under 9 of 13 keys · other masters' blocks 608 · preamble lines 13 · UNPARSED 0",
+"wrote .andromeda/runs/2026-10-05T19-08-04-adopt/security-plan-facts.md (61379 B)",
+"keys with no block: 4 — Bootstrap phases · Compliance Controls · Security Anti-Patterns · Security Decisions Log"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-10-05T19-08-04-adopt/security-plan-facts.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"keys": [
+"Threat Model Summary",
+"Authentication & Authorization",
+"Input Validation",
+"Data Protection",
+"API Security",
+"Dependency Security",
+"Bootstrap phases",
+"Secret Management",
+"Error Handling",
+"Logging & Monitoring",
+"Compliance Controls",
+"Security Anti-Patterns",
+"Security Decisions Log"
+],
+"empty": [
+"Bootstrap phases",
+"Compliance Controls",
+"Security Anti-Patterns",
+"Security Decisions Log"
+],
+"unparsed": []
+}
+},
+{
+"tool": "inventory",
+"v": "1.0",
+"sha8": "0ca92b39",
+"ts": "2026-10-05T17:33:42Z",
+"argv": [
+"gather",
+"--master",
+"design-system",
+"--template",
+"/home/turbolet/.claude/skills/andromeda-design/references/phase-4/output-template.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T19-08-04-adopt"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"template: output-template.md · keys 12",
+"sheets: 13 — facts-s01.md · facts-s02.md · facts-s03.md · facts-s04.md · facts-s05.md · facts-s06.md · facts-s07.md · f…",
+"blocks for design-system: 109 under 8 of 12 keys · other masters' blocks 616 · preamble lines 13 · UNPARSED 0",
+"wrote .andromeda/runs/2026-10-05T19-08-04-adopt/design-system-facts.md (55688 B)",
+"keys with no block: 4 — Brand Identity · Anti-Patterns · Self-Validation Protocol · Design Decisions Log"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-10-05T19-08-04-adopt/design-system-facts.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"keys": [
+"Brand Identity",
+"Color Palette",
+"Typography",
+"Spacing",
+"Depth Strategy",
+"Border Radius",
+"Motion",
+"Iconography",
+"Surface: {…}",
+"Anti-Patterns",
+"Self-Validation Protocol",
+"Design Decisions Log"
+],
+"empty": [
+"Brand Identity",
+"Anti-Patterns",
+"Self-Validation Protocol",
+"Design Decisions Log"
+],
+"unparsed": []
+}
+},
+{
+"tool": "inventory",
+"v": "1.0",
+"sha8": "0ca92b39",
+"ts": "2026-10-05T17:33:42Z",
+"argv": [
+"gather",
+"--master",
+"layout-templates",
+"--template",
+"/home/turbolet/.claude/skills/andromeda-design/references/phase-8/output-template.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T19-08-04-adopt"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"template: output-template.md · keys 2",
+"sheets: 13 — facts-s01.md · facts-s02.md · facts-s03.md · facts-s04.md · facts-s05.md · facts-s06.md · facts-s07.md · f…",
+"blocks for layout-templates: 18 under 1 of 2 keys · other masters' blocks 707 · preamble lines 13 · UNPARSED 0",
+"wrote .andromeda/runs/2026-10-05T19-08-04-adopt/layout-templates-facts.md (8030 B)",
+"keys with no block: 1 — Decisions Log"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-10-05T19-08-04-adopt/layout-templates-facts.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"keys": [
+"Surface: {…}",
+"Decisions Log"
+],
+"empty": [
+"Decisions Log"
+],
+"unparsed": []
+}
+},
+{
+"tool": "inventory",
+"v": "1.0",
+"sha8": "0ca92b39",
+"ts": "2026-10-05T17:33:42Z",
+"argv": [
+"gather",
+"--master",
+"test-plan",
+"--template",
+"/home/turbolet/.claude/skills/andromeda-tests/references/phase-3/output-template.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T19-08-04-adopt"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"template: output-template.md · keys 13",
+"sheets: 13 — facts-s01.md · facts-s02.md · facts-s03.md · facts-s04.md · facts-s05.md · facts-s06.md · facts-s07.md · f…",
+"blocks for test-plan: 117 under 9 of 13 keys · other masters' blocks 608 · preamble lines 13 · UNPARSED 0",
+"wrote .andromeda/runs/2026-10-05T19-08-04-adopt/test-plan-facts.md (43529 B)",
+"keys with no block: 4 — Bootstrap phases · Quality Gates & Coverage Targets · Test Anti-Patterns · Test Decisions Log"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-10-05T19-08-04-adopt/test-plan-facts.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"keys": [
+"Test Scope Summary",
+"Test Strategy",
+"Test Harness Contract",
+"Bootstrap phases",
+"Unit Test Strategy",
+"Integration Test Strategy",
+"E2E Test Strategy",
+"Test Data & Fixtures",
+"Mocking & Stubbing Discipline",
+"CI Integration",
+"Quality Gates & Coverage Targets",
+"Test Anti-Patterns",
+"Test Decisions Log"
+],
+"empty": [
+"Bootstrap phases",
+"Quality Gates & Coverage Targets",
+"Test Anti-Patterns",
+"Test Decisions Log"
+],
+"unparsed": []
+}
+},
+{
+"tool": "inventory",
+"v": "1.0",
+"sha8": "0ca92b39",
+"ts": "2026-10-05T17:33:42Z",
+"argv": [
+"gather",
+"--master",
+"obs-plan",
+"--template",
+"/home/turbolet/.claude/skills/andromeda-obs/references/phase-3/output-template.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T19-08-04-adopt"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"template: output-template.md · keys 13",
+"sheets: 13 — facts-s01.md · facts-s02.md · facts-s03.md · facts-s04.md · facts-s05.md · facts-s06.md · facts-s07.md · f…",
+"blocks for obs-plan: 117 under 9 of 13 keys · other masters' blocks 608 · preamble lines 13 · UNPARSED 0",
+"wrote .andromeda/runs/2026-10-05T19-08-04-adopt/obs-plan-facts.md (30517 B)",
+"keys with no block: 4 — Bootstrap phases · SLO Invariants & Telemetry Budgets · Obs Anti-Patterns · Obs Decisions Log"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-10-05T19-08-04-adopt/obs-plan-facts.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"keys": [
+"Obs Scope Summary",
+"Telemetry Strategy",
+"Observability Harness Contract",
+"Bootstrap phases",
+"Span / Trace Coverage",
+"Metric Coverage",
+"Log Coverage",
+"Error Capture & Reporting",
+"PII Scrubbing & Compliance",
+"CI Integration",
+"SLO Invariants & Telemetry Budgets",
+"Obs Anti-Patterns",
+"Obs Decisions Log"
+],
+"empty": [
+"Bootstrap phases",
+"SLO Invariants & Telemetry Budgets",
+"Obs Anti-Patterns",
+"Obs Decisions Log"
+],
+"unparsed": []
+}
+},
+{
+"tool": "inventory",
+"v": "1.0",
+"sha8": "0ca92b39",
+"ts": "2026-10-05T17:33:42Z",
+"argv": [
+"gather",
+"--master",
+"a11y-plan",
+"--template",
+"/home/turbolet/.claude/skills/andromeda-a11y/references/phase-3/output-template.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T19-08-04-adopt"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"template: output-template.md · keys 13",
+"sheets: 13 — facts-s01.md · facts-s02.md · facts-s03.md · facts-s04.md · facts-s05.md · facts-s06.md · facts-s07.md · f…",
+"blocks for a11y-plan: 117 under 9 of 13 keys · other masters' blocks 608 · preamble lines 13 · UNPARSED 0",
+"wrote .andromeda/runs/2026-10-05T19-08-04-adopt/a11y-plan-facts.md (38514 B)",
+"keys with no block: 4 — Bootstrap phases · SLO Invariants & A11y Budgets · A11y Anti-Patterns · A11y Decisions Log"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-10-05T19-08-04-adopt/a11y-plan-facts.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"keys": [
+"A11y Scope Summary",
+"A11y Strategy",
+"A11y Assertion Harness Contract",
+"Bootstrap phases",
+"ARIA Patterns & Roles",
+"Keyboard Navigation",
+"Visual Design Verification",
+"Screen Reader Support",
+"Cognitive Accessibility",
+"CI Integration",
+"SLO Invariants & A11y Budgets",
+"A11y Anti-Patterns",
+"A11y Decisions Log"
+],
+"empty": [
+"Bootstrap phases",
+"SLO Invariants & A11y Budgets",
+"A11y Anti-Patterns",
+"A11y Decisions Log"
+],
+"unparsed": []
+}
+}
+]

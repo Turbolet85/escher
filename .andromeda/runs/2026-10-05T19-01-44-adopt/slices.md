@@ -1,0 +1,416 @@
+# Slices · HEAD 0f60502ea724ef703b34220b3847bb3483f70b5f · cap 400000 · 9 slices · 307 files · 2363703 B
+## s01 · 356539 B · 75 files · units .github · examples/preact · examples (own files) · tests · . (own files) · apps/browser · apps/browser/persistence · apps/bump · apps/readme · examples/counter
+- .github/scripts/test_wpt_diff_to_pr.py
+- .github/scripts/wpt_diff_to_pr.py
+- .github/workflows/ci.yml
+- .github/workflows/publish-browser.yml
+- .github/workflows/wpt-post-results.yml
+- .github/workflows/wpt.yml
+- examples/preact/core_dom_apis.html
+- examples/preact/index.html
+- examples/preact/vendor/hooks.umd.js
+- examples/preact/vendor/preact.min.js
+- examples/box_shadow.rs
+- examples/custom_widget.rs
+- examples/flex.rs
+- examples/form.rs
+- examples/gradient.rs
+- examples/html.rs
+- examples/inline.rs
+- examples/inner_html.rs
+- examples/mutations.rs
+- examples/outline.rs
+- examples/paint_bench.rs
+- examples/preact_script.rs
+- examples/restyle.rs
+- examples/rowspan.html
+- examples/screenshot.rs
+- examples/svg.rs
+- examples/svg_native.rs
+- examples/transforms.rs
+- examples/url.rs
+- tests/stylo_usage.rs
+- Cargo.toml
+- Cross.toml
+- flake.nix
+- apps/browser/Cargo.toml
+- apps/browser/Dioxus.toml
+- apps/browser/MainActivity.kt
+- apps/browser/assets/404.html
+- apps/browser/assets/about-history.css
+- apps/browser/assets/about-newtab.css
+- apps/browser/assets/about-stub.css
+- apps/browser/assets/browser.css
+- apps/browser/assets/error.html
+- apps/browser/assets/view-source.html
+- apps/browser/src/about_pages.rs
+- apps/browser/src/browser_history.rs
+- apps/browser/src/capture.rs
+- apps/browser/src/document_loader.rs
+- apps/browser/src/favicon.rs
+- apps/browser/src/fps_overlay.rs
+- apps/browser/src/history.rs
+- apps/browser/src/icons.rs
+- apps/browser/src/main.rs
+- apps/browser/src/nav.rs
+- apps/browser/src/status_bar.rs
+- apps/browser/src/tab.rs
+- apps/browser/src/tab_strip.rs
+- apps/browser/src/toolbar.rs
+- apps/browser/src/url_suggestions.rs
+- apps/browser/src/util.rs
+- apps/browser/persistence/Cargo.toml
+- apps/browser/persistence/src/lib.rs
+- apps/bump/Cargo.toml
+- apps/bump/src/main.rs
+- apps/readme/Cargo.toml
+- apps/readme/assets/blitz-markdown-overrides.css
+- apps/readme/assets/github-markdown.css
+- apps/readme/src/main.rs
+- apps/readme/src/markdown/comrak.rs
+- apps/readme/src/markdown/pulldown_cmark.rs
+- apps/readme/src/readme_application.rs
+- examples/counter/Cargo.toml
+- examples/counter/Dioxus.toml
+- examples/counter/src/app.rs
+- examples/counter/src/lib.rs
+- examples/counter/src/main.rs
+## s02 · 213234 B · 49 files · units examples/seven_guis · examples/todomvc · examples/transparent · examples/wasm_hello · examples/wgpu_texture · packages/accesskit_xplat · packages/blitz-dom/assets · packages/blitz-dom/src/events
+- examples/seven_guis/Cargo.toml
+- examples/seven_guis/index.html
+- examples/seven_guis/src/app.rs
+- examples/seven_guis/src/lib.rs
+- examples/seven_guis/src/main.rs
+- examples/seven_guis/src/tasks/cells.rs
+- examples/seven_guis/src/tasks/circle_drawer.rs
+- examples/seven_guis/src/tasks/counter.rs
+- examples/seven_guis/src/tasks/crud.rs
+- examples/seven_guis/src/tasks/flight_booker.rs
+- examples/seven_guis/src/tasks/mod.rs
+- examples/seven_guis/src/tasks/temp_converter.rs
+- examples/seven_guis/src/tasks/timer.rs
+- examples/todomvc/Cargo.toml
+- examples/todomvc/Dioxus.toml
+- examples/todomvc/MainActivity.kt
+- examples/todomvc/index.html
+- examples/todomvc/src/app.rs
+- examples/todomvc/src/lib.rs
+- examples/todomvc/src/main.rs
+- examples/todomvc/src/todomvc.css
+- examples/todomvc/src/wasm.rs
+- examples/transparent/Cargo.toml
+- examples/transparent/src/app.rs
+- examples/transparent/src/main.rs
+- examples/wasm_hello/Cargo.toml
+- examples/wasm_hello/index.html
+- examples/wasm_hello/src/lib.rs
+- examples/wgpu_texture/Cargo.toml
+- examples/wgpu_texture/src/demo_renderer.rs
+- examples/wgpu_texture/src/dioxus_native.rs
+- examples/wgpu_texture/src/html.rs
+- examples/wgpu_texture/src/main.rs
+- examples/wgpu_texture/src/styles.css
+- packages/accesskit_xplat/Cargo.toml
+- packages/accesskit_xplat/src/lib.rs
+- packages/accesskit_xplat/src/platform_impl/android.rs
+- packages/accesskit_xplat/src/platform_impl/macos.rs
+- packages/accesskit_xplat/src/platform_impl/mod.rs
+- packages/accesskit_xplat/src/platform_impl/null.rs
+- packages/accesskit_xplat/src/platform_impl/unix.rs
+- packages/accesskit_xplat/src/platform_impl/windows.rs
+- packages/blitz-dom/assets/default.css
+- packages/blitz-dom/src/events/driver.rs
+- packages/blitz-dom/src/events/focus.rs
+- packages/blitz-dom/src/events/ime.rs
+- packages/blitz-dom/src/events/keyboard.rs
+- packages/blitz-dom/src/events/mod.rs
+- packages/blitz-dom/src/events/pointer.rs
+## s03 · 231887 B · 8 files · units packages/blitz-dom/src/layout
+- packages/blitz-dom/src/layout/construct.rs
+- packages/blitz-dom/src/layout/damage.rs
+- packages/blitz-dom/src/layout/inline.rs
+- packages/blitz-dom/src/layout/list.rs
+- packages/blitz-dom/src/layout/mod.rs
+- packages/blitz-dom/src/layout/paint_tree.rs
+- packages/blitz-dom/src/layout/replaced.rs
+- packages/blitz-dom/src/layout/table.rs
+## s04 · 208613 B · 17 files · units packages/blitz-dom/src/node · packages/blitz-dom (own files) · packages/blitz-html · packages/blitz-net
+- packages/blitz-dom/src/node/attributes.rs
+- packages/blitz-dom/src/node/custom_widget.rs
+- packages/blitz-dom/src/node/element.rs
+- packages/blitz-dom/src/node/mod.rs
+- packages/blitz-dom/src/node/node.rs
+- packages/blitz-dom/src/node/scrollbar.rs
+- packages/blitz-dom/src/node/serialize.rs
+- packages/blitz-dom/src/node/stylo_data.rs
+- packages/blitz-dom/src/node/svg.rs
+- packages/blitz-dom/src/node/text.rs
+- packages/blitz-dom/Cargo.toml
+- packages/blitz-html/Cargo.toml
+- packages/blitz-html/src/html_document.rs
+- packages/blitz-html/src/html_sink.rs
+- packages/blitz-html/src/lib.rs
+- packages/blitz-net/Cargo.toml
+- packages/blitz-net/src/lib.rs
+## s05 · 375446 B · 32 files · units packages/blitz-paint · packages/blitz-shell · packages/blitz-test-harness
+- packages/blitz-paint/Cargo.toml
+- packages/blitz-paint/src/color.rs
+- packages/blitz-paint/src/debug_overlay.rs
+- packages/blitz-paint/src/filters.rs
+- packages/blitz-paint/src/gradient.rs
+- packages/blitz-paint/src/kurbo_css/css_box.rs
+- packages/blitz-paint/src/kurbo_css/mod.rs
+- packages/blitz-paint/src/kurbo_css/non_uniform_radii.rs
+- packages/blitz-paint/src/layers.rs
+- packages/blitz-paint/src/lib.rs
+- packages/blitz-paint/src/render.rs
+- packages/blitz-paint/src/render/background.rs
+- packages/blitz-paint/src/render/border.rs
+- packages/blitz-paint/src/render/box_shadow.rs
+- packages/blitz-paint/src/render/clip_path.rs
+- packages/blitz-paint/src/render/form_controls.rs
+- packages/blitz-paint/src/render/mask.rs
+- packages/blitz-paint/src/sizing.rs
+- packages/blitz-paint/src/text.rs
+- packages/blitz-shell/Cargo.toml
+- packages/blitz-shell/src/accessibility.rs
+- packages/blitz-shell/src/application.rs
+- packages/blitz-shell/src/convert_events.rs
+- packages/blitz-shell/src/event.rs
+- packages/blitz-shell/src/lib.rs
+- packages/blitz-shell/src/net.rs
+- packages/blitz-shell/src/window.rs
+- packages/blitz-test-harness/Cargo.toml
+- packages/blitz-test-harness/src/harness.rs
+- packages/blitz-test-harness/src/input.rs
+- packages/blitz-test-harness/src/inspect.rs
+- packages/blitz-test-harness/src/lib.rs
+## s06 · 397497 B · 32 files · units packages/blitz-traits · packages/blitz-vibey-script · packages/blitz · packages/debug_timer
+- packages/blitz-traits/Cargo.toml
+- packages/blitz-traits/src/devtools.rs
+- packages/blitz-traits/src/events.rs
+- packages/blitz-traits/src/lib.rs
+- packages/blitz-traits/src/navigation.rs
+- packages/blitz-traits/src/net.rs
+- packages/blitz-traits/src/node_id.rs
+- packages/blitz-traits/src/shell.rs
+- packages/blitz-vibey-script/Cargo.toml
+- packages/blitz-vibey-script/src/clock.rs
+- packages/blitz-vibey-script/src/document.rs
+- packages/blitz-vibey-script/src/dom/document.rs
+- packages/blitz-vibey-script/src/dom/element.rs
+- packages/blitz-vibey-script/src/dom/event.rs
+- packages/blitz-vibey-script/src/dom/hyperlink.rs
+- packages/blitz-vibey-script/src/dom/mod.rs
+- packages/blitz-vibey-script/src/dom/node.rs
+- packages/blitz-vibey-script/src/dom/style.rs
+- packages/blitz-vibey-script/src/dom/stylesheet.rs
+- packages/blitz-vibey-script/src/event_handler.rs
+- packages/blitz-vibey-script/src/fetch.rs
+- packages/blitz-vibey-script/src/geometry.js
+- packages/blitz-vibey-script/src/lib.rs
+- packages/blitz-vibey-script/src/runtime.rs
+- packages/blitz-vibey-script/src/state.rs
+- packages/blitz-vibey-script/src/timers.rs
+- packages/blitz-vibey-script/tests/dom.rs
+- packages/blitz-vibey-script/tests/preact.rs
+- packages/blitz/Cargo.toml
+- packages/blitz/src/lib.rs
+- packages/debug_timer/Cargo.toml
+- packages/debug_timer/src/lib.rs
+## s07 · 159154 B · 21 files · units packages/dioxus-native-dom · packages/dioxus-native · packages/stylo_taffy
+- packages/dioxus-native-dom/Cargo.toml
+- packages/dioxus-native-dom/src/dioxus_document.rs
+- packages/dioxus-native-dom/src/events.rs
+- packages/dioxus-native-dom/src/lib.rs
+- packages/dioxus-native-dom/src/mutation_writer.rs
+- packages/dioxus-native-dom/src/write_once_attr.rs
+- packages/dioxus-native/Cargo.toml
+- packages/dioxus-native/src/assets.rs
+- packages/dioxus-native/src/config.rs
+- packages/dioxus-native/src/contexts.rs
+- packages/dioxus-native/src/dioxus_application.rs
+- packages/dioxus-native/src/dioxus_renderer.rs
+- packages/dioxus-native/src/event_handlers.rs
+- packages/dioxus-native/src/hooks.rs
+- packages/dioxus-native/src/lib.rs
+- packages/dioxus-native/src/link_handler.rs
+- packages/dioxus-native/src/prelude.rs
+- packages/stylo_taffy/Cargo.toml
+- packages/stylo_taffy/src/convert.rs
+- packages/stylo_taffy/src/lib.rs
+- packages/stylo_taffy/src/wrapper.rs
+## s08 · 307984 B · 61 files · units tests/blitz-tests
+- tests/blitz-tests/Cargo.toml
+- tests/blitz-tests/lib.rs
+- tests/blitz-tests/tests/accessibility_hidden.rs
+- tests/blitz-tests/tests/accessibility_roles.rs
+- tests/blitz-tests/tests/animations.rs
+- tests/blitz-tests/tests/anonymous_block_cache_invalidation.rs
+- tests/blitz-tests/tests/anonymous_block_leak.rs
+- tests/blitz-tests/tests/background_size.rs
+- tests/blitz-tests/tests/br_trailing_line.rs
+- tests/blitz-tests/tests/comment_layout.rs
+- tests/blitz-tests/tests/custom_widget_layout.rs
+- tests/blitz-tests/tests/detached_attribute.rs
+- tests/blitz-tests/tests/details_element.rs
+- tests/blitz-tests/tests/device_coalescing.rs
+- tests/blitz-tests/tests/dir_attribute.rs
+- tests/blitz-tests/tests/display_contents.rs
+- tests/blitz-tests/tests/flex_grid_order.rs
+- tests/blitz-tests/tests/focusability_updates.rs
+- tests/blitz-tests/tests/fragment_navigation.rs
+- tests/blitz-tests/tests/harness_smoke.rs
+- tests/blitz-tests/tests/hover_dom_ancestors.rs
+- tests/blitz-tests/tests/incremental_oracle.rs
+- tests/blitz-tests/tests/inline_bfc_padding.rs
+- tests/blitz-tests/tests/inline_box_baseline.rs
+- tests/blitz-tests/tests/inline_box_scrollable_overflow.rs
+- tests/blitz-tests/tests/inline_fragment_rects.rs
+- tests/blitz-tests/tests/inline_svg_restyle.rs
+- tests/blitz-tests/tests/inline_svg_serialize.rs
+- tests/blitz-tests/tests/inner_html_leak.rs
+- tests/blitz-tests/tests/interaction_state_canonicalization.rs
+- tests/blitz-tests/tests/interaction_state_teardown.rs
+- tests/blitz-tests/tests/lang_attribute.rs
+- tests/blitz-tests/tests/line_break.rs
+- tests/blitz-tests/tests/link_rel_attribute.rs
+- tests/blitz-tests/tests/oof_dynamic_cb.rs
+- tests/blitz-tests/tests/outset_box_shadow_shape.rs
+- tests/blitz-tests/tests/paint_order.rs
+- tests/blitz-tests/tests/paint_tree_bench.rs
+- tests/blitz-tests/tests/paint_tree_incremental.rs
+- tests/blitz-tests/tests/pointer_events.rs
+- tests/blitz-tests/tests/pre_overflow_scroll.rs
+- tests/blitz-tests/tests/pseudo_element_update.rs
+- tests/blitz-tests/tests/rem_after_viewport_change.rs
+- tests/blitz-tests/tests/render_blocking_stylesheet.rs
+- tests/blitz-tests/tests/resize_restyle.rs
+- tests/blitz-tests/tests/rotate_z_axis.rs
+- tests/blitz-tests/tests/scoped_query_selector.rs
+- tests/blitz-tests/tests/scrollbar_drag.rs
+- tests/blitz-tests/tests/scrollbars.rs
+- tests/blitz-tests/tests/stale_dirty_descendants.rs
+- tests/blitz-tests/tests/stale_interaction_state.rs
+- tests/blitz-tests/tests/stale_node_mapping.rs
+- tests/blitz-tests/tests/style_property_invalidation.rs
+- tests/blitz-tests/tests/svg_attr_sizing.rs
+- tests/blitz-tests/tests/svg_background_size.rs
+- tests/blitz-tests/tests/text_selection_anonymous_block.rs
+- tests/blitz-tests/tests/touch_action.rs
+- tests/blitz-tests/tests/touch_events.rs
+- tests/blitz-tests/tests/transform_2d_subset.rs
+- tests/blitz-tests/tests/transform_viewport_scale.rs
+- tests/blitz-tests/tests/whitespace_modes.rs
+## s09 · 113349 B · 12 files · units wpt/runner
+- wpt/runner/Cargo.toml
+- wpt/runner/src/main.rs
+- wpt/runner/src/net_provider.rs
+- wpt/runner/src/panic_backtrace.rs
+- wpt/runner/src/report.rs
+- wpt/runner/src/test_runners/attr_test.rs
+- wpt/runner/src/test_runners/crash_test.rs
+- wpt/runner/src/test_runners/fuzzy.rs
+- wpt/runner/src/test_runners/harness_test.rs
+- wpt/runner/src/test_runners/js_wrapper.rs
+- wpt/runner/src/test_runners/mod.rs
+- wpt/runner/src/test_runners/ref_test.rs
+## Excluded
+- apps/browser/assets/blitz-logo-with-text3.svg · binary
+- apps/browser/assets/blitz-logo.ico · over-cap
+- apps/browser/assets/blitz-logo.png · binary
+- apps/browser/assets/icons/arrow-left.svg · binary
+- apps/browser/assets/icons/arrow-right.svg · binary
+- apps/browser/assets/icons/camera.svg · binary
+- apps/browser/assets/icons/chevron-left.svg · binary
+- apps/browser/assets/icons/chevron-right.svg · binary
+- apps/browser/assets/icons/code.svg · binary
+- apps/browser/assets/icons/ellipsis-vertical.svg · binary
+- apps/browser/assets/icons/external-link.svg · binary
+- apps/browser/assets/icons/house.svg · binary
+- apps/browser/assets/icons/rotate-cw.svg · binary
+- examples/assets/bbc.html · over-cap
+- examples/assets/blitz-logo.png · binary
+- examples/assets/guardian.html · over-cap
+- examples/assets/hello_world.svg · binary
+- examples/assets/servo-color-negative-no-container.png · binary
+- examples/assets/square.png · binary
+- examples/assets/tall.png · binary
+- examples/assets/wide.png · binary
+- examples/seven_guis/assets/DejaVuSans.woff2 · binary
+- examples/todomvc/assets/DejaVuSans.woff2 · binary
+- examples/wasm_hello/assets/DejaVuSans.woff2 · binary
+- packages/blitz-dom/assets/moz-bullet-font.otf · binary
+- examples/assets/after_bug.html · over budget
+- examples/assets/animated_layout.html · over budget
+- examples/assets/animation.html · over budget
+- examples/assets/bbc_reduced.html · over budget
+- examples/assets/border-styles.html · over budget
+- examples/assets/border.html · over budget
+- examples/assets/bottom_only.html · over budget
+- examples/assets/clip-path.html · over budget
+- examples/assets/cursor.html · over budget
+- examples/assets/docsrs_header.html · over budget
+- examples/assets/filters.html · over budget
+- examples/assets/float-width.html · over budget
+- examples/assets/github_profile_reduced.html · over budget
+- examples/assets/github_profile_reduced2.html · over budget
+- examples/assets/github_profile_reduced3.html · over budget
+- examples/assets/google.html · over budget
+- examples/assets/google_reduced.html · over budget
+- examples/assets/gosub.html · over budget
+- examples/assets/gosub_reduced.html · over budget
+- examples/assets/graphite.html · over budget
+- examples/assets/graphite_blog_section.html · over budget
+- examples/assets/graphite_software_overview.html · over budget
+- examples/assets/hr.html · over budget
+- examples/assets/iframe_navigation.html · over budget
+- examples/assets/iframe_page_a.html · over budget
+- examples/assets/iframe_page_b.html · over budget
+- examples/assets/inline-backgrounds.html · over budget
+- examples/assets/inline-flex-transform.html · over budget
+- examples/assets/input.html · over budget
+- examples/assets/newservo.html · over budget
+- examples/assets/noscript.html · over budget
+- examples/assets/object_fit.html · over budget
+- examples/assets/pseudo.html · over budget
+- examples/assets/servo-new-reduced-1.html · over budget
+- examples/assets/servo-new-reduced.html · over budget
+- examples/assets/servo-new.html · over budget
+- examples/assets/servo.css · over budget
+- examples/assets/servo.html · over budget
+- examples/assets/servo_header_reduced.html · over budget
+- examples/assets/servo_reduced.html · over budget
+- examples/assets/shadow.html · over budget
+- examples/assets/svg.html · over budget
+- examples/assets/svg_size.html · over budget
+- examples/assets/text-decoration.html · over budget
+- packages/blitz-dom/src/accessibility.rs · over budget
+- packages/blitz-dom/src/config.rs · over budget
+- packages/blitz-dom/src/cssom.rs · over budget
+- packages/blitz-dom/src/debug.rs · over budget
+- packages/blitz-dom/src/document.rs · over budget
+- packages/blitz-dom/src/font_metrics.rs · over budget
+- packages/blitz-dom/src/form.rs · over budget
+- packages/blitz-dom/src/html.rs · over budget
+- packages/blitz-dom/src/iframe.rs · over budget
+- packages/blitz-dom/src/lib.rs · over budget
+- packages/blitz-dom/src/mutator.rs · over budget
+- packages/blitz-dom/src/net.rs · over budget
+- packages/blitz-dom/src/query_selector.rs · over budget
+- packages/blitz-dom/src/resolve.rs · over budget
+- packages/blitz-dom/src/resolved_style.rs · over budget
+- packages/blitz-dom/src/scrolling.rs · over budget
+- packages/blitz-dom/src/selection.rs · over budget
+- packages/blitz-dom/src/stylo.rs · over budget
+- packages/blitz-dom/src/stylo_device.rs · over budget
+- packages/blitz-dom/src/stylo_to_cursor_icon.rs · over budget
+- packages/blitz-dom/src/stylo_to_kurbo.rs · over budget
+- packages/blitz-dom/src/stylo_to_parley.rs · over budget
+- packages/blitz-dom/src/traversal.rs · over budget
+- packages/blitz-dom/src/tree.rs · over budget
+- packages/blitz-dom/src/url.rs · over budget
+- packages/blitz-dom/src/util.rs · over budget
+## Not read
+- other: 28 files · 378035 B
+end
