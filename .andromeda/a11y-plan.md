@@ -86,12 +86,7 @@
 
 > NOT YET MEASURED — the structured violation JSON schema / log format, the WCAG criteria mapping of the existing tests and a screen-reader test pattern: no slice recorded them (s01, s02, s06, s07 and s13 recorded the a11y assertion harness as out of slice), and the test plan (§3) and obs plan (§3, §6 Log Coverage) leave the log format unmeasured.
 
-### Bootstrap phases (derive for route / setup-project)
-
-- **contrast-verification-harness-setup** — contrast checks are observed absent; recorded in §6 Visual Design Verification.
-- **a11y-ci-gate-wire** — accessibility checks in CI are observed absent; recorded in §9 CI Integration.
-
----
+Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py contracts; read one contracts/a11y-plan/{key}.md; never whole.
 
 ## 4. ARIA Patterns & Roles
 

@@ -1,0 +1,213 @@
+[
+{
+"tool": "registry",
+"v": "1.1",
+"sha8": "352b879e",
+"ts": "2026-10-05T18:44:30Z",
+"argv": [
+"migrate",
+"--stage",
+"--project",
+".",
+"--dir",
+".andromeda/runs/2026-10-05T18-44-30-wrap/u35",
+"--run-dir",
+".andromeda/runs/2026-10-05T18-44-30-wrap",
+"--marker",
+"no-marker"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"staged a11y-plan.md K · 1 keys",
+"staged obs-plan.md K · 1 keys",
+"staged test-plan.md K · 1 keys",
+"staged 0 log(s) + 3 keyed section(s) (3 keys) → .andromeda/runs/2026-10-05T18-44-30-wrap/u35 · the rewriter writes {doc}.lifts.toml + {doc}.record.md there for each log"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-10-05T18-44-30-wrap/u35/units/a11y-plan/bootstrap-phases-derive-for-route-setup-project.md",
+".andromeda/runs/2026-10-05T18-44-30-wrap/u35/units/a11y-plan-contracts.toml",
+".andromeda/runs/2026-10-05T18-44-30-wrap/u35/units/obs-plan/bootstrap-phases-derive-for-route-setup-project.md",
+".andromeda/runs/2026-10-05T18-44-30-wrap/u35/units/obs-plan-contracts.toml",
+".andromeda/runs/2026-10-05T18-44-30-wrap/u35/units/test-plan/bootstrap-phases-derive-for-route-setup-project.md",
+".andromeda/runs/2026-10-05T18-44-30-wrap/u35/units/test-plan-contracts.toml",
+".andromeda/runs/2026-10-05T18-44-30-wrap/u35/stage.json"
+],
+"before": null,
+"after": null,
+"extra": {
+"sections": [
+[
+"a11y-plan.md",
+"K"
+],
+[
+"obs-plan.md",
+"K"
+],
+[
+"test-plan.md",
+"K"
+]
+]
+}
+},
+{
+"tool": "registry",
+"v": "1.1",
+"sha8": "352b879e",
+"ts": "2026-10-05T18:44:35Z",
+"argv": [
+"migrate",
+"--verify",
+"--project",
+".",
+"--dir",
+".andromeda/runs/2026-10-05T18-44-30-wrap/u35",
+"--run-dir",
+".andromeda/runs/2026-10-05T18-44-30-wrap",
+"--marker",
+"no-marker"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"verify: 3 section(s) · 0 failure(s) · 0 D-id(s) outside a log · 0 marker(s) only in a log · 0 key-file lift(s) — clean"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"failures": [],
+"facts": []
+}
+},
+{
+"tool": "registry",
+"v": "1.1",
+"sha8": "352b879e",
+"ts": "2026-10-05T18:44:46Z",
+"argv": [
+"migrate",
+"--apply",
+"--dry-run",
+"--project",
+".",
+"--dir",
+".andromeda/runs/2026-10-05T18-44-30-wrap/u35",
+"--date",
+"2026-10-05",
+"--run-dir",
+".andromeda/runs/2026-10-05T18-44-30-wrap",
+"--marker",
+"no-marker"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 3,
+"stdout": [],
+"stderr": "/home/turbolet/dev/projects/escher/.andromeda/a11y-plan-amendments-archive.md: absent — pass --header-file with the letter's authored archive header (`{doc}` names the doc)",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "registry",
+"v": "1.1",
+"sha8": "352b879e",
+"ts": "2026-10-05T18:44:52Z",
+"argv": [
+"migrate",
+"--apply",
+"--dry-run",
+"--project",
+".",
+"--dir",
+".andromeda/runs/2026-10-05T18-44-30-wrap/u35",
+"--date",
+"2026-10-05",
+"--header-file",
+".andromeda/runs/2026-10-05T18-44-30-wrap/u35/header.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T18-44-30-wrap",
+"--marker",
+"no-marker"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"dry-run - would write: 6 registry file(s) · 0 lift(s) in key files · 0 lifted bod(ies) · 3 archive(s) · 0 record(s) · 3 stubbed master(s)",
+"  a11y-plan.md: 37081 → 36925 B",
+"  obs-plan.md: 29736 → 29508 B",
+"  test-plan.md: 42369 → 42348 B"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "registry",
+"v": "1.1",
+"sha8": "352b879e",
+"ts": "2026-10-05T18:45:11Z",
+"argv": [
+"migrate",
+"--apply",
+"--project",
+".",
+"--dir",
+".andromeda/runs/2026-10-05T18-44-30-wrap/u35",
+"--date",
+"2026-10-05",
+"--header-file",
+".andromeda/runs/2026-10-05T18-44-30-wrap/u35/header.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T18-44-30-wrap",
+"--marker",
+"no-marker"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"a11y-plan.md: 37081 → 36925 B · K stubbed",
+"obs-plan.md: 29736 → 29508 B · K stubbed",
+"test-plan.md: 42369 → 42348 B · K stubbed",
+"wrote: 6 registry file(s) · 0 lift(s) in key files · 0 lifted bod(ies) · 3 archive(s) · 0 record(s) · 3 stubbed master(s) — re-read: every migrated section ok, every index clean"
+],
+"stderr": null,
+"wrote": [
+"/home/turbolet/dev/projects/escher/.andromeda/registries/contracts/a11y-plan/bootstrap-phases-derive-for-route-setup-project.md",
+"/home/turbolet/dev/projects/escher/.andromeda/registries/a11y-plan-contracts.toml",
+"/home/turbolet/dev/projects/escher/.andromeda/registries/contracts/obs-plan/bootstrap-phases-derive-for-route-setup-project.md",
+"/home/turbolet/dev/projects/escher/.andromeda/registries/obs-plan-contracts.toml",
+"/home/turbolet/dev/projects/escher/.andromeda/registries/contracts/test-plan/bootstrap-phases-derive-for-route-setup-project.md",
+"/home/turbolet/dev/projects/escher/.andromeda/registries/test-plan-contracts.toml",
+"/home/turbolet/dev/projects/escher/.andromeda/a11y-plan-amendments-archive.md",
+"/home/turbolet/dev/projects/escher/.andromeda/obs-plan-amendments-archive.md",
+"/home/turbolet/dev/projects/escher/.andromeda/test-plan-amendments-archive.md",
+"/home/turbolet/dev/projects/escher/.andromeda/a11y-plan.md",
+"/home/turbolet/dev/projects/escher/.andromeda/obs-plan.md",
+"/home/turbolet/dev/projects/escher/.andromeda/test-plan.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"written": [
+"/home/turbolet/dev/projects/escher/.andromeda/registries/contracts/a11y-plan/bootstrap-phases-derive-for-route-setup-project.md",
+"/home/turbolet/dev/projects/escher/.andromeda/registries/a11y-plan-contracts.toml",
+"/home/turbolet/dev/projects/escher/.andromeda/registries/contracts/obs-plan/bootstrap-phases-derive-for-route-setup-project.md",
+"/home/turbolet/dev/projects/escher/.andromeda/registries/obs-plan-contracts.toml",
+"/home/turbolet/dev/projects/escher/.andromeda/registries/contracts/test-plan/bootstrap-phases-derive-for-route-setup-project.md",
+"/home/turbolet/dev/projects/escher/.andromeda/registries/test-plan-contracts.toml",
+"/home/turbolet/dev/projects/escher/.andromeda/a11y-plan-amendments-archive.md",
+"/home/turbolet/dev/projects/escher/.andromeda/obs-plan-amendments-archive.md",
+"/home/turbolet/dev/projects/escher/.andromeda/test-plan-amendments-archive.md",
+"/home/turbolet/dev/projects/escher/.andromeda/a11y-plan.md",
+"/home/turbolet/dev/projects/escher/.andromeda/obs-plan.md",
+"/home/turbolet/dev/projects/escher/.andromeda/test-plan.md"
+]
+}
+}
+]

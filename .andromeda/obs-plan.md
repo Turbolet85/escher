@@ -77,12 +77,7 @@
 
 > NOT YET MEASURED — product mode, service identity, log format JSON schema, log file location, snapshot integration, trace context propagation and heartbeat ticks: the reading recorded none of them
 
-### Bootstrap phases (derive for route / setup-project)
-
-- **otel-sdk-install:** no OTel SDK or telemetry backend is present — recorded absent in §2 Telemetry Strategy and §3 Observability Harness Contract (OTel SDK init).
-- **pii-scrubbing-wire:** no redaction or scrubbing of logged values is present — recorded absent in §8 PII Scrubbing & Compliance.
-
----
+Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py contracts; read one contracts/obs-plan/{key}.md; never whole.
 
 ## 4. Span / Trace Coverage
 

@@ -96,11 +96,7 @@
 
 > NOT YET MEASURED — the reading reached the test runners and the in-process harness only; no product boot, status, cleanup or logs command, status endpoint shape, log format, PID file or test-data bootstrap mechanism of a 5-command contract was gathered
 
-### Bootstrap phases (derive for route / setup-project)
-
-- **coverage-tooling-install:** coverage tooling is recorded absent — see `## 9. CI Integration`.
-
----
+Contracts: .andromeda/registries/test-plan-contracts.toml — ask registry.py contracts; read one contracts/test-plan/{key}.md; never whole.
 
 ## 4. Unit Test Strategy
 
