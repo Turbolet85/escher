@@ -13,3 +13,35 @@ One entry per amendment to `architecture.md` (sidecar-contract.md §Entry form).
 **Change:** the row now states that the flake's rust-bin "1.90.0" pin sits below the workspace `rust-version` "1.91.0" its own comment says to keep in sync with, and carries the dev-host reading as measured at the chunk's `evidence/baseline.md` (Omarchy 4.0.4, Arch-based, 2026-10-05): the flake is not used; host stable rustc/cargo 1.99.0; no `rust-toolchain*` file, no `.cargo/config*`; Arch packages fontconfig 2.18.3, openssl 3.6.4, pkgconf 3.0.7, python 3.14.7 stand in for CI's `libfontconfig1-dev` and build-time python3.
 **Why:** the baseline is the first verified dev-host build; host-tool versions are readings on that host, not pins — no lockfile resolves them.
 **Ref:** .andromeda/runs/2026-10-05T20-35-18-wrap/
+
+## 2026-10-05-fork-ci-reached — fork CI on the build branch through one leg script
+**Section:** §Stack and Technologies (CI/CD row · Code quality row) · §Conventions (Formatting and lints) · §Standard Contracts (CI contracts) · §Occupied Resources (Filesystem) · §Infrastructure Patterns (CI/CD) · §Inherited Defaults (Code quality)
+**Change:** was ci.yml on pull_request + push to `main` / `v0.*`, inline cargo commands without `--locked`, an `opt-level = 2` → `0` rewrite before building, a matrix testing windows/macos/linux, rust-cache only on the matrix and saved only on `refs/heads/main`; now:
+- trigger adds `build/**`; `fmt`, `clippy`, `test-features-default`, `ci-scripts` carry no `needs` and every other job, the matrix included, `needs` all four;
+- each of the nine linux jobs runs `bash .github/scripts/ci-leg.sh {leg}` — legs fmt · clippy · test · ci-scripts · build · msrv (`cargo +1.91 build`) · counter · wasm · doc · fast — every cargo leg `--locked` but `examples/wasm_hello` (no `Cargo.lock`); the script tees merged output to `target/ci-logs/{leg}.log` (truncated per leg), exits with the leg's status, exits 2 on an unknown leg; `fast` (fmt → clippy → test → ci-scripts) is the local pre-push gate; clippy is `cargo clippy --workspace --locked -- -D warnings`, the doc job bare `cargo doc --locked`;
+- no opt-level rewrite; the matrix tests windows and macos, builds ios and android, `--locked`, tee'd to `target/ci-logs/matrix-{platform}.log`; linux is tested by the fast `test` leg;
+- `Swatinem/rust-cache@v2` on every compiling ci.yml job, saved on `main` and `build/*` (publish and WPT caches still main-only);
+- every leg job uploads its own log `if: failure()` as `ci-log-{job id}`, 7 days, only from `target/ci-logs/` — registered as a CI contract and a Filesystem path;
+- §Stack adds the bash leg runner, `test_ci_workflows.py` with PyYAML (Ubuntu `python3-yaml`, ensured by the `ci-scripts` job), and the tag-pinned `rust-cache@v2` / `upload-artifact@v7` actions.
+**Why:** a push to escher's build branch triggered nothing and every run would have been cold; one script both CI and the host run makes every linux leg host-reproducible by construction, and the fast set gives the common push its verdict first (founder's concern: CI must not rebuild everything each run). The first build-branch run read green, 1255 s cold and 475 s on its warm same-sha re-run.
+**Kept:** the docs job stays bare `cargo doc` (the real rustdoc gate, SHA-pinned actions and least-privilege tokens belong to "CI gate legs"); the dead `ubuntu-24.04` Free Disk Space condition is unchanged.
+**Ref:** .andromeda/runs/2026-10-05T21-59-55-wrap/
+
+## 2026-10-05-fork-ci-reached — one dev-profile debuginfo level for host and CI
+**Section:** §Established Decisions ([Build profiles])
+**Change:** was six named profiles (`profile` … `tiny`) and no `[profile.dev]`; now `[profile.dev] debug = "line-tables-only"` precedes them, inherited by the `test` profile, one level for the dev host and CI; `production` and every other profile unchanged. Its effect is recorded as measured: a blitz-tests binary's debuginfo share 82 % → 55 %, the cold local baseline (build + blitz-tests + workspace tests) 2239.59 s → 161.36 s (dev host, 32 CPUs).
+**Why:** debuginfo was 82 % of a test binary's bytes and the cold test-profile compile dominated; the P4 fork chose a workspace stanza over a CI-only `CARGO_PROFILE_DEV_DEBUG` (no new env var, no host/CI divergence) — answered by the overseer under the founder's explicit delegation, relayed verbatim by the operator at the P5 review.
+**Kept:** consolidating the 59 blitz-tests binaries was deferred until measured after cache + debuginfo (the same P4 round).
+**Ref:** .andromeda/runs/2026-10-05T21-59-55-wrap/
+
+## 2026-10-05-fork-ci-reached — upstream-only signing, WPT and dispatch; the fork's cache budget
+**Section:** §Occupied Resources (CI infrastructure · Outbound hosts) · §Standard Contracts (CI contracts) · §Infrastructure Patterns (Deployment model · CI/CD) · §Inherited Defaults (Deployment)
+**Change:** was "Signed Builds" / "WPT" environments, the warp runner, the Pages deploy, the `update-results` dispatch and browser bundling reached by ref (main / `ci-test`) in this repository; now every job that reaches them — `release-cli`, `wpt`, `trigger-archive`, `post-results` — carries `github.repository == 'DioxusLabs/blitz'`, so no fork ref reaches the environments, their secrets, the Pages deploy, the dispatch or the WPT report fetch; the ref-keyed expressions inside stand, unreachable on the fork. CI infrastructure adds the fork's Actions cache: 12 entries, ≈ 9.73 GB of the 10 GB per-repository budget (LRU eviction) after the first build-branch run — one rust cache per compiling ci.yml job (11) plus one apt cache — as measured, so a lockfile or toolchain change mints new keys and evicts.
+**Why:** a ref-only `if:` re-arms signing on the fork's own `main` and its existing `ci-test/sign-android-builds` branch, and the fork holds no secrets or environments; a repository guard keeps upstream's behaviour byte-equal and future upstream merges small (removing the workflows was rejected).
+**Ref:** .andromeda/runs/2026-10-05T21-59-55-wrap/
+
+## 2026-10-05-fork-ci-reached — file:line citations re-pointed after the CI files moved
+**Section:** every section citing `Cargo.toml`, `ci.yml`, `wpt.yml` or `publish-browser.yml` lines
+**Change:** 64 citations re-pointed to the moved files — `Cargo.toml` from line 195 on +3 (the `[profile.dev]` stanza), `wpt.yml` from line 26 on +1 and `publish-browser.yml` from line 37 on +1 (the repository guards), `ci.yml` by a range map over the rewritten file (e.g. fmt job 135-151, clippy job 153-173, the jobs 30-309); the two citations of the removed opt-level rewrite went with the CI/CD rewrite. No claim text changed by the re-point.
+**Why:** this chunk moved the cited lines; a stale `file:line` sends every later reader to the wrong code.
+**Ref:** .andromeda/runs/2026-10-05T21-59-55-wrap/

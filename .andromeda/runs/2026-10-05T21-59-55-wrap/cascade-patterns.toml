@@ -1,0 +1,80 @@
+# Cascade sweep — 2026-10-05-fork-ci-reached. One pattern per retired claim (its wording and its mechanism).
+
+# trigger: main / v0.* only
+[[pattern]]
+id = "trig-v0"
+regex = 'main/v0|`main` and `v0\.\*`|main and v0'
+
+# the opt-level rewrite (searched by its mechanism, never by "perl" — hyperlink hazard)
+[[pattern]]
+id = "optlevel"
+regex = 'opt-level = 2`? to `?0|opt-level. rewrite|rewrite `opt-level'
+
+# rust-cache saved only on main
+[[pattern]]
+id = "cache-main"
+regex = 'saves only on|save-if|only on `refs/heads/main`'
+
+# linux in the matrix
+[[pattern]]
+id = "matrix-lin"
+regex = 'windows, macos, linux'
+
+# signing reached on main / ci-test (the ref-only gate)
+[[pattern]]
+id = "signed"
+fixed = 'Signed Builds'
+
+# unlocked clippy / test / build commands as CI's
+[[pattern]]
+id = "clippy-unl"
+fixed = 'cargo clippy --workspace -- -D warnings'
+
+[[pattern]]
+id = "test-ws"
+regex = 'cargo test --workspace`'
+
+# WPT / publish / dispatch reached in this repo
+[[pattern]]
+id = "wpt-dispatch"
+fixed = 'blitz-wpt-results'
+
+[[pattern]]
+id = "wpt-pages"
+regex = 'Pages|warp-ubuntu'
+
+[[pattern]]
+id = "publish"
+regex = 'publish job|Publish builds|dx bundle'
+
+# CI artifact upload / retention unmeasured
+[[pattern]]
+id = "artifact"
+regex = 'artifact upload|artifact retention|upload-artifact'
+
+# the old local baseline figures and profile
+[[pattern]]
+id = "baseline"
+regex = '120\.26|486\.45|1632\.88|27m 00s'
+
+[[pattern]]
+id = "profiles"
+regex = 'Build profiles|debuginfo|\[profile\.'
+
+# the CI-scripts leg / python helper scripts
+[[pattern]]
+id = "ci-scripts"
+regex = 'unittest discover|helper scripts'
+
+# CI job set / docs job
+[[pattern]]
+id = "docs-job"
+regex = 'bare `cargo doc`'
+
+[[pattern]]
+id = "locked"
+fixed = '--locked'
+
+[[pattern]]
+id = "pr-vector"
+regex = 'post-results|pull_request'

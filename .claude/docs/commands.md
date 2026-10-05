@@ -9,20 +9,24 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 - `pip install -r scripts/requirements.txt` — code-graph Python deps (duckdb + protobuf)
 - `rustup component add rust-analyzer` — the SCIP indexer for the code-graph, if not on PATH
 
+## CI legs (one script for CI and the host)
+- `bash .github/scripts/ci-leg.sh fast` — the local pre-push gate: fmt → clippy → test → ci-scripts, stops at the first red
+- `bash .github/scripts/ci-leg.sh {leg}` — one CI leg exactly as CI runs it: `fmt` · `clippy` · `test` · `ci-scripts` · `build` · `msrv` (needs toolchain 1.91) · `counter` · `wasm` · `doc`; its merged output lands in `target/ci-logs/{leg}.log`; unknown leg → exit 2
+
 ## Build
-- `cargo build --workspace` — every crate (CI rewrites `opt-level = 2` to `0` first to save time)
+- `cargo build --workspace --locked` — every crate (dev profile, `debug = "line-tables-only"`); the `build` leg
 - `cargo check --workspace` / `just check`
-- `cargo build -p counter` — the counter example
-- `cargo build -p seven_guis --lib --target wasm32-unknown-unknown --no-default-features --features hybrid` — stand as wasm
+- `cargo build -p counter --locked` — the counter example
+- `cargo build -p seven_guis --lib --target wasm32-unknown-unknown --no-default-features --features hybrid --locked` — stand as wasm
 - `just small` — size-profile counter build
 
 ## Testing
-- `cargo test --workspace` — the CI test leg (ubuntu, default features)
-- `cargo test --all --tests` — the cross-platform matrix leg
+- `cargo test --workspace --locked` — the CI `test` leg (ubuntu, default features)
+- `cargo test --all --tests --locked` — the windows/macos matrix leg (linux is covered by the `test` leg)
 - `cargo test -p blitz-tests --test {name}` — one integration-test file
 - `cargo test -p {crate}` — one crate's unit tests
 - `cargo test -p blitz-tests --release --test paint_tree_bench -- --ignored --nocapture` — ignored benchmarks (`PAINT_TREE_BENCH_HTML=<file>` for an external page)
-- `python3 -m unittest discover -s .github/scripts` — CI Python script tests
+- `python3 -m unittest discover -s .github/scripts` — CI Python script tests (the `ci-scripts` leg; needs PyYAML)
 
 ## WPT
 - `WPT_DIR=<wpt checkout> cargo run -rp wpt css svg` — the CI suites (default without args: `css/css-flexbox` + `css/css-grid`; `full` = every suite)
@@ -32,8 +36,8 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 ## Linting & Formatting
 - `cargo fmt --all` / `just fmt` — format
 - `cargo fmt --all --check` — the CI format gate
-- `cargo clippy --workspace -- -D warnings` — the CI lint gate (`just clippy` runs without `-D warnings`)
-- `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps` — the docs gate over every workspace crate (red at baseline: 3 crates, 9 errors). CI's bare `cargo doc` documents only the lib-less root package `blitz-examples` and gates no library crate
+- `cargo clippy --workspace --locked -- -D warnings` — the CI lint gate, the `clippy` leg (`just clippy` runs without `-D warnings`)
+- `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps` — the docs gate over every workspace crate (red at baseline: 3 crates, 9 errors). CI's bare `cargo doc --locked` (the `doc` leg) documents only the lib-less root package `blitz-examples` and gates no library crate
 
 ## Running apps and examples
 - `just seven_guis` — the 7GUIs stand (`cargo run --release --package seven_guis --bin seven_guis_native`)
@@ -45,8 +49,7 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 
 ## Release
 - `just bump blitz {version}` / `just bump anyrender {version}` — version bumps
-- Browser bundles: `dx bundle --package browser --release --profile production --locked` (publish workflow)
-
+- Browser bundles: `dx bundle --package browser --release --profile production --locked` (publish workflow — runs only in `DioxusLabs/blitz`)
 ## Code graph
 - `python scripts/code-graph.py refresh` — rebuild `.andromeda/cache/rust/tree.db`
 - `python scripts/code-graph.py query <run_dir> <marker> "<sql>"` — query + trace (see `scripts/code-graph-cookbook.md`)

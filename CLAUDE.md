@@ -46,7 +46,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 - DOM mutations go through `DocumentMutator` (`doc.mutate()`), which flushes on Drop — extend the mutator rather than reaching through `DocumentMutator::doc`.
 - `NodeId` is a versioned slot id: a dropped node's id stops resolving and indexing a stale id panics — use `get`/`contains_key` for ids that may be stale.
 - Dependency pins are coupled (html5ever family ↔ stylo web_atoms, skrifa ↔ parley/vello, svgtypes ↔ usvg, taffy/parley git revs, winit exact beta) — never bump one side alone.
-- Work is not done until `cargo fmt --all --check`, `cargo clippy --workspace -- -D warnings` and rustdoc `-D warnings` (`cargo doc --workspace --no-deps`; red at baseline, owned by "CI gate legs") pass.
+- Work is not done until `bash .github/scripts/ci-leg.sh fast` (fmt · clippy `--locked -D warnings` · workspace tests · CI scripts — the same legs CI runs) and rustdoc `-D warnings` (`cargo doc --workspace --no-deps`; red at baseline, owned by "CI gate legs") pass.
 <!-- GENERATED:setup:warnings end -->
 
 ## Where to Look
@@ -71,7 +71,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 | Accessibility tree | `packages/blitz-dom/src/accessibility.rs` |
 | The 7GUIs stand | `examples/seven_guis/src/tasks/` |
 | WPT runner | `wpt/runner/src/main.rs` · `wpt/runner/src/test_runners/` |
-| CI pipeline | `.github/workflows/ci.yml` · `wpt.yml` · `publish-browser.yml` |
+| CI pipeline | `.github/workflows/ci.yml` · `wpt.yml` · `publish-browser.yml` (the last two upstream-only) · legs `.github/scripts/ci-leg.sh` · invariants `.github/scripts/test_ci_workflows.py` |
 | Drift detectors · amendment playbook | `.andromeda/drift-base.md` · `.andromeda/playbook.md` |
 <!-- GENERATED:setup:pointer-table end -->
 
@@ -79,9 +79,9 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 <!-- GENERATED:setup:workflow start -->
 **Key commands:**
 - `cargo build --workspace` — build every crate (Linux needs `libfontconfig1-dev`; Arch: `fontconfig`)
-- `cargo test --workspace` — the CI test leg
+- `bash .github/scripts/ci-leg.sh fast` — the local pre-push gate: fmt → clippy → workspace tests → CI scripts, as CI runs them
 - `cargo test -p blitz-tests --test {name}` — one integration-test file
-- `cargo fmt --all --check && cargo clippy --workspace -- -D warnings` — the format and lint gates
+- `bash .github/scripts/ci-leg.sh {leg}` — one CI leg exactly (`fmt` · `clippy` · `test` · `build` · `doc` · …); log in `target/ci-logs/{leg}.log`
 - `just seven_guis` — run the 7GUIs stand natively (windowed)
 
 See `.claude/docs/commands.md` for the full reference.
@@ -122,5 +122,5 @@ For complete Andromeda documentation: `/andromeda-help`
 ## Session Learnings
 _This section is curated by `/andromeda-wrap-session`. It accumulates universal (Tier 1) rules captured from work sessions — one sentence each, ≤600 B._
 
-_No entries yet — no plan records an anti-pattern section, so curation starts at the first chunk wrap._
+- 2026-10-05: This checkout carries an `upstream` remote (DioxusLabs/blitz) and no `gh repo set-default`, so a bare `gh run` / `gh cache` / `gh api` call reads upstream — pass `-R Turbolet85/escher` on every read of the fork. (confidence 0.8)
 <!-- USER:session-learnings end -->

@@ -36,15 +36,17 @@ _Mirrors `.andromeda/architecture.md` §Stack and Technologies (citations live t
 - `tracing` 0.1 + `tracing-subscriber` 0.3 behind per-crate `tracing` features; `log` + `env_logger` in the WPT runner; `debug_timer` phase timing behind `log-phase-times`. No OTel, metrics or error-reporting service.
 
 ## Development & CI
-- `cargo fmt --all --check`, `cargo clippy --workspace -- -D warnings`; `RUSTDOCFLAGS=-D warnings` is set workflow-wide, but the docs job's bare `cargo doc` documents only the lib-less root package `blitz-examples`, so no library crate's docs are gated — `cargo doc --workspace --no-deps` under it fails (3 crates, 9 errors at baseline).
-- GitHub Actions: `ci.yml` (MSRV build, build, test, counter, wasm, fmt, clippy, CI-script tests, docs — root package only, cross-platform matrix), `wpt.yml` (css + svg WPT, scores, Pages), `wpt-post-results.yml`, `publish-browser.yml` (dx bundle, signed builds).
+- `cargo fmt --all --check`, `cargo clippy --workspace --locked -- -D warnings`, run as legs of `.github/scripts/ci-leg.sh` (the same script on the dev host; `ci-leg.sh fast` is the local pre-push gate); `RUSTDOCFLAGS=-D warnings` is set workflow-wide, but the docs job's bare `cargo doc --locked` documents only the lib-less root package `blitz-examples`, so no library crate's docs are gated — `cargo doc --workspace --no-deps` under it fails (3 crates, 9 errors at baseline).
+- Dev profile `debug = "line-tables-only"` (one debuginfo level for host and CI; the test profile inherits it).
+- GitHub Actions: `ci.yml` on PRs and pushes to `main`, `v0.*`, `build/**` — fast legs fmt, clippy, test, CI-script tests (no `needs`), then MSRV build, build, counter, wasm, docs (root package only) and the windows/macos/ios/android matrix; rust-cache on every compiling job (saved on `main` + `build/*`), a 7-day `ci-log-*` artifact per failed leg. `wpt.yml` (css + svg WPT, scores, Pages), `wpt-post-results.yml`, `publish-browser.yml` (dx bundle, signed builds) run only in `DioxusLabs/blitz` (repository guard).
+- CI scripts: Python 3 (`wpt_diff_to_pr.py`, unittest suites; `test_ci_workflows.py` needs PyYAML) and the bash leg runner `ci-leg.sh`.
 - Testing deps: blitz-test-harness, test-that 0.5.2, usvg; WPT runner: dify 0.7.4, wptreport 0.0.5, glob, regex, owo-colors.
 
 ## Infrastructure
-- Library workspace — no deployment target for the engine. The browser bundles per platform via `dx bundle --package browser --release --profile production --locked`; Nix `packages.browser`; WASM examples via Trunk.
+- Library workspace — no deployment target for the engine. The browser bundles per platform via `dx bundle --package browser --release --profile production --locked` (upstream `DioxusLabs/blitz` only); Nix `packages.browser`; WASM examples via Trunk.
 
 ## Third-party services
-- None at runtime. CI uses GitHub Pages and a repository dispatch to `DioxusLabs/blitz-wpt-results` (upstream).
+- None at runtime. Upstream CI uses GitHub Pages and a repository dispatch to `DioxusLabs/blitz-wpt-results`; neither runs on the fork. The fork's Actions cache sat at ≈ 9.7 GB of its 10 GB budget after the first build-branch run.
 
 ## Rationale
 See `.andromeda/architecture.md` §Established Decisions — each `[Tag]` explains a pin or a default.
@@ -52,5 +54,5 @@ See `.andromeda/architecture.md` §Established Decisions — each `[Tag]` explai
 ## Version updates
 1. Amend `.andromeda/architecture.md` §Stack (via the pipeline's amendment flow).
 2. Update `Cargo.toml` `[workspace.dependencies]` — respect the coupled pins (see gotchas.md).
-3. Run the gates (`cargo fmt --all --check`, `cargo clippy --workspace -- -D warnings`, `cargo test --workspace`).
+3. Run the gates (`bash .github/scripts/ci-leg.sh fast` — fmt, clippy, test, CI scripts).
 4. Commit as `chore: bump {crate} to {version}`.

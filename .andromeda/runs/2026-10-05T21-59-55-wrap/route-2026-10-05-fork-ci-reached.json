@@ -1,0 +1,63 @@
+[
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "699f7ef0",
+"ts": "2026-10-05T22:21:02Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-05-fork-ci-reached",
+"--run-dir",
+".andromeda/runs/2026-10-05T21-59-55-wrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"flip master-route.md:12 - 2026-10-05-fork-ci-reached pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "699f7ef0",
+"ts": "2026-10-05T22:21:02Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-05-fork-ci-reached",
+"--date",
+"2026-10-05",
+"--run-dir",
+".andromeda/runs/2026-10-05T21-59-55-wrap",
+"--dry-run"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"pin listing NOT DERIVED -- 2026-10-05-fork-ci-reached's line :13 carries no freight (already compact)",
+"compacted 0 lines (2 stamped read) -- an empty sweep is a verdict, not an absence proof"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [],
+"skips": [],
+"kept_notes": []
+}
+}
+]

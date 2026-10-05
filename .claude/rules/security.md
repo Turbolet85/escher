@@ -4,7 +4,7 @@ Universal security rules for escher. No `paths:` frontmatter — this file loads
 Source: `.andromeda/security-plan.md` (security tier 0; application threat model NOT YET MEASURED).
 
 ## Secrets
-- Secrets live only in GitHub Actions secrets/vars (macOS signing key, Android keystore + passwords, Apple certificate, `WPT_GITHUB_TOKEN`, `GITHUB_TOKEN`); signing material written to disk in CI is removed in an `always()` step — keep that pairing.
+- Secrets live only in GitHub Actions secrets/vars (macOS signing key, Android keystore + passwords, Apple certificate, `WPT_GITHUB_TOKEN`, `GITHUB_TOKEN`); signing material written to disk in CI is removed in an `always()` step — keep that pairing. The jobs that reach them (publish, WPT, post-results) run only in `DioxusLabs/blitz` — keep the `github.repository` guard; a ref-only `if:` re-arms them on the fork.
 - Source reads no secret: env reads are `WPT_DIR`, `PAINT_TREE_BENCH_HTML`, `HOME`, `CARGO_MANIFEST_DIR` only. Never commit `.env*`.
 
 ## Untrusted input (remote content, scripts, CLI)

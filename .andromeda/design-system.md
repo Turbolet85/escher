@@ -329,7 +329,7 @@
 
 ## Surface: desktop-native
 
-**Platform:** Windows (NSIS .exe), macOS (.dmg) and Linux (.AppImage) on x86_64 and aarch64 (.github/workflows/publish-browser.yml:46-81); the flake's default package is the browser app whose binary is `blitz`, wrapped with winit/wgpu runtime libraries on Linux (flake.nix:40-53; flake.nix:117-121)
+**Platform:** Windows (NSIS .exe), macOS (.dmg) and Linux (.AppImage) on x86_64 and aarch64 (.github/workflows/publish-browser.yml:47-82); the flake's default package is the browser app whose binary is `blitz`, wrapped with winit/wgpu runtime libraries on Linux (flake.nix:40-53; flake.nix:117-121)
 **Toolkit / Framework:** winit windows (packages/blitz-shell/src/window.rs:200-206); HTML launches into a native window with `WindowConfig` and the Vello window renderer (packages/blitz/src/lib.rs:106-131; examples/inner_html.rs:28-30; examples/preact_script.rs:37); Dioxus apps open through `dioxus_native::launch` (examples/box_shadow.rs:4; examples/custom_widget.rs:18; examples/counter/src/main.rs:15-17; examples/seven_guis/src/main.rs:4-7; examples/todomvc/src/main.rs:15-19), built from `WindowAttributes` and titled from dioxus-cli-config or "Dioxus App" (packages/dioxus-native/src/config.rs:17-20; packages/dioxus-native/src/lib.rs:236-237)
 
 ### Tokens (platform-specific)
@@ -359,7 +359,7 @@
 
 ## Surface: mobile-native
 
-**Platform:** Android aarch64 APK bundled with `--android --package-types apk --no-default-features --features android-defaults` (.github/workflows/publish-browser.yml:82-88); CI builds (does not test) for `aarch64-apple-ios` and `aarch64-linux-android` (.github/workflows/ci.yml:159-174)
+**Platform:** Android aarch64 APK bundled with `--android --package-types apk --no-default-features --features android-defaults` (.github/workflows/publish-browser.yml:83-89); CI builds (does not test) for `aarch64-apple-ios` and `aarch64-linux-android` (.github/workflows/ci.yml:237-252)
 **Toolkit / Framework:** the browser app; `IS_MOBILE` is true for Android and iOS and adds the `mobile` class to the frame (apps/browser/src/main.rs:48; apps/browser/src/main.rs:172)
 
 ### Tokens (platform-specific)
@@ -373,7 +373,7 @@
 
 ### Platform-Specific Notes
 - On mobile, screenshots save to a default file name without a dialog (apps/browser/src/capture.rs:109-110)
-- iOS and Android targets are built but not tested in CI (.github/workflows/ci.yml:159-174)
+- iOS and Android targets are built but not tested in CI (.github/workflows/ci.yml:237-252)
 
 ---
 

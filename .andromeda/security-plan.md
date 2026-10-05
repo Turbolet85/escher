@@ -19,7 +19,7 @@
 - **Vector:** WPT runner local file reads
   - **Entry point:** Non-`data:` request URLs have their path joined onto the WPT base path and the file is read (wpt/runner/src/net_provider.rs:70-78)
 - **Vector:** CI workflow triggered by pull requests
-  - **Entry point / Trust boundary:** The post-results workflow runs only for successful `pull_request`-triggered WPT runs and checks out scripts from the default branch, a step named "Checkout trusted scripts" (.github/workflows/wpt-post-results.yml:3-6; .github/workflows/wpt-post-results.yml:15-21)
+  - **Entry point / Trust boundary:** The post-results workflow runs only in `DioxusLabs/blitz` (repository guard), only for successful `pull_request`-triggered WPT runs, and checks out scripts from the default branch, a step named "Checkout trusted scripts" (.github/workflows/wpt-post-results.yml:3-6; .github/workflows/wpt-post-results.yml:15-21)
 
 ---
 
@@ -45,7 +45,7 @@ The s02 fixtures hold no auth code; the google fixture only shows a "Sign in" li
 | Token / session storage | With feature `cookies`, the reqwest client enables a cookie store (packages/blitz-net/Cargo.toml:15; packages/blitz-net/src/lib.rs:88-89) | reqwest cookie store |
 | RBAC / permissions (CI tokens) | wpt-post-results.yml grants `pull-requests: write`, `actions: read`, `contents: read` (.github/workflows/wpt-post-results.yml:8-11) | GitHub Actions `permissions` |
 | RBAC / permissions (CI tokens) | wpt.yml grants `contents: read`, `pages: write`, `id-token: write` (.github/workflows/wpt.yml:18-21) | GitHub Actions `permissions` |
-| RBAC / permissions (CI tokens) | The publish job grants `contents: write` and uses environment "Signed Builds" only on main or `ci-test` branches (.github/workflows/publish-browser.yml:37-40) | GitHub Actions environment |
+| RBAC / permissions (CI tokens) | The publish job runs only in `DioxusLabs/blitz` (`if: github.repository == 'DioxusLabs/blitz'`); there it grants `contents: write` and uses environment "Signed Builds" only on main or `ci-test` branches, so no fork ref — the fork's `main`, `ci-test/*`, `build/**` — reaches the environment or its secrets (.github/workflows/publish-browser.yml:37-41) | GitHub Actions repository guard + environment |
 | RBAC / permissions (CI tokens) | A workflow-level permissions block in ci.yml is observed absent — searched: `permissions` over .github/workflows/ci.yml | GitHub Actions `permissions` |
 
 Other `password` occurrences are not credentials:
@@ -208,11 +208,11 @@ Fixture pages also issue requests: the graphite fixture's script calls api.githu
 
 **Pinning:**
 - Git dependencies are pinned by commit rev (Cargo.toml:101; Cargo.toml:111)
-- Builds pass `--locked` in the flake and in `dx bundle` (flake.nix:100; .github/workflows/publish-browser.yml:154)
+- Builds pass `--locked` in the flake, in `dx bundle` and in every ci.yml cargo leg but `examples/wasm_hello`, which has no `Cargo.lock` (flake.nix:100; .github/workflows/publish-browser.yml:155; .github/scripts/ci-leg.sh:20-32; .github/workflows/ci.yml:301)
 - Most dependency versions are inherited with `workspace = true` (apps/browser/Cargo.toml:45-74; packages/blitz-dom/Cargo.toml:42-95); every dependency in the blitz-html and blitz-net manifests does so (packages/blitz-html/Cargo.toml:19-26; packages/blitz-net/Cargo.toml:22-41), as do the blitz-traits and blitz manifests (packages/blitz-traits/Cargo.toml:14-22; packages/blitz/Cargo.toml:22-37) and every dev-dependency of blitz-tests (tests/blitz-tests/Cargo.toml:15-35)
 - Inline versions outside the workspace: examples pin `idna_adapter` to exactly 1.0.0 (examples/counter/Cargo.toml:31-33); android-activity is pinned at "0.6.0" in blitz-shell (packages/blitz-shell/Cargo.toml:53-54); `cfg-if` is pinned at "1.0.4" and `android-activity` at "0.6" in dioxus-native (packages/dioxus-native/Cargo.toml:118; packages/dioxus-native/Cargo.toml:125); `log = "0.4"` is the one inline version in blitz-vibey-script (packages/blitz-vibey-script/Cargo.toml:36); the WPT runner's non-workspace dependencies declare explicit versions, and `dify` and `wptreport` disable default features (wpt/runner/Cargo.toml:33-50)
 - rusqlite is built with its `bundled` feature (apps/browser/persistence/Cargo.toml:9)
-- CI tooling: `cross` is installed from a pinned git rev; dioxus-cli is pinned to 0.7.8; wpt cli to 0.0.14 (.github/workflows/ci.yml:191; .github/workflows/publish-browser.yml:125; .github/workflows/wpt.yml:70); `awalsh128/cache-apt-pkgs-action` is referenced at `@latest` (.github/workflows/ci.yml:210; .github/workflows/publish-browser.yml:147; .github/workflows/wpt.yml:47)
+- CI tooling: `cross` is installed from a pinned git rev; dioxus-cli is pinned to 0.7.8; wpt cli to 0.0.14 (.github/workflows/ci.yml:269; .github/workflows/publish-browser.yml:126; .github/workflows/wpt.yml:71); `awalsh128/cache-apt-pkgs-action` is referenced at `@latest` (.github/workflows/ci.yml:288; .github/workflows/publish-browser.yml:148; .github/workflows/wpt.yml:48)
 - Vendored JS: Preact is vendored as an unmodified copy of its UMD builds (examples/preact/index.html:46-48); each vendored Preact file ends with a `sourceMappingURL` comment for a `.map` file (examples/preact/vendor/preact.min.js:2; examples/preact/vendor/hooks.umd.js:2)
 - The blitz-tests crate is not published (`publish = false`) (tests/blitz-tests/Cargo.toml:4)
 
@@ -226,8 +226,8 @@ Fixture pages also issue requests: the graphite fixture's script calls api.githu
 
 ### Supply chain integrity
 
-- **Signed artifacts:** The publish job uses environment "Signed Builds" only on main or `ci-test` branches (.github/workflows/publish-browser.yml:37-40); a macOS signing key and an Android keystore are written from secrets for the build and removed in `always()` steps (.github/workflows/publish-browser.yml:105-107; .github/workflows/publish-browser.yml:167-169; .github/workflows/publish-browser.yml:109-119; .github/workflows/publish-browser.yml:171-173)
-- **Lockfile verification:** builds pass `--locked` (flake.nix:100; .github/workflows/publish-browser.yml:154)
+- **Signed artifacts:** The publish job runs only in `DioxusLabs/blitz` and there uses environment "Signed Builds" only on main or `ci-test` branches, so the fork produces no signed artifact (.github/workflows/publish-browser.yml:37-41); a macOS signing key and an Android keystore are written from secrets for the build and removed in `always()` steps (.github/workflows/publish-browser.yml:106-108; .github/workflows/publish-browser.yml:168-170; .github/workflows/publish-browser.yml:110-120; .github/workflows/publish-browser.yml:172-174)
+- **Lockfile verification:** builds pass `--locked` (flake.nix:100; .github/workflows/publish-browser.yml:155), and so does every ci.yml cargo leg — the leg script's build, test, clippy, doc, msrv, counter and wasm commands and the matrix command — except `examples/wasm_hello`, a standalone workspace with no `Cargo.lock` (.github/scripts/ci-leg.sh:20-32; .github/workflows/ci.yml:301)
 - **Subresource integrity (fixtures):** the gosub fixture's Font Awesome link carries an integrity hash with crossorigin=anonymous and referrerpolicy=no-referrer (examples/assets/gosub.html:86); the servo.org snapshot fixture loads jQuery with an `integrity` hash and `crossorigin="anonymous"` (examples/assets/servo.html:337); other remote stylesheets are linked without integrity attributes (examples/assets/pseudo.html:4; examples/assets/newservo.html:4; examples/assets/servo-new-reduced.html:7; examples/assets/servo-new.html:18; examples/assets/servo-new.html:20) — integrity attributes outside gosub.html are observed absent, searched: `integrity=` over the 21 s02 files; the servo.org snapshot fixture references third-party CDN resources: Font Awesome v5.12.0, Google Fonts, prismjs@1.20.0 on unpkg, jquery-3.4.1 on code.jquery.com (examples/assets/servo.html:26-29; examples/assets/servo.html:337)
 
 > NOT YET MEASURED — SBOM generation, base image scanning and license compliance: no slice gathered them.
@@ -247,10 +247,10 @@ Fixture pages also issue requests: the graphite fixture's script calls api.githu
 
 **Storage:**
 - **Production (CI):** secrets live in GitHub Actions secrets and vars:
-  - A macOS signing key is written from a secret to the path in `vars.APPLE_API_KEY_PATH` and removed in an `always()` step (.github/workflows/publish-browser.yml:105-107; .github/workflows/publish-browser.yml:167-169)
-  - An Android keystore is base64-decoded from a secret to `apps/browser/keystore.jks`, `password` fields (`jks_password`, `key_password`) are appended to Dioxus.toml from a secret, and the keystore is removed in an `always()` step (.github/workflows/publish-browser.yml:109-119; .github/workflows/publish-browser.yml:171-173)
-  - Apple certificate and certificate `password` are passed as env from secrets; API issuer, key id and key path come from `vars` (.github/workflows/publish-browser.yml:155-160)
-  - A `token` field is read from secret `WPT_GITHUB_TOKEN` for the cross-repo dispatch (.github/workflows/wpt.yml:113-116)
+  - A macOS signing key is written from a secret to the path in `vars.APPLE_API_KEY_PATH` and removed in an `always()` step (.github/workflows/publish-browser.yml:106-108; .github/workflows/publish-browser.yml:168-170)
+  - An Android keystore is base64-decoded from a secret to `apps/browser/keystore.jks`, `password` fields (`jks_password`, `key_password`) are appended to Dioxus.toml from a secret, and the keystore is removed in an `always()` step (.github/workflows/publish-browser.yml:110-120; .github/workflows/publish-browser.yml:172-174)
+  - Apple certificate and certificate `password` are passed as env from secrets; API issuer, key id and key path come from `vars` (.github/workflows/publish-browser.yml:156-161)
+  - A `token` field is read from secret `WPT_GITHUB_TOKEN` for the cross-repo dispatch (.github/workflows/wpt.yml:114-117)
   - The workflow `token` secret `GITHUB_TOKEN` is passed as `github-token` and `GH_TOKEN` (.github/workflows/wpt-post-results.yml:28; .github/workflows/wpt-post-results.yml:32; .github/workflows/wpt-post-results.yml:46)
 
 **Never in code:** secret reads in source are observed absent in every slice that searched:
@@ -308,7 +308,7 @@ Fixture pages also issue requests: the graphite fixture's script calls api.githu
 - Missing nodes in mounted-element operations return `MountedError::OperationFailed` wrapping `NodeNotExistErr` (packages/dioxus-native-dom/src/events.rs:178-192; packages/dioxus-native-dom/src/events.rs:211-214; packages/dioxus-native-dom/src/events.rs:228-233)
 - WPT runner net errors are typed as `WptNetProviderError` (Io, DataUrl, DataUrlBase64, HandlerPanic) and logged with `warn!` (wpt/runner/src/net_provider.rs:107-111; wpt/runner/src/net_provider.rs:116-141)
 - wasm_hello maps event-loop errors into `JsValue` (examples/wasm_hello/src/lib.rs:120; examples/wasm_hello/src/lib.rs:143-145)
-- `gh_api` runs `subprocess.run(..., check=True)`, raising on non-zero exit (.github/scripts/wpt_diff_to_pr.py:175-182); CI matrix jobs set `fail-fast: false` (.github/workflows/ci.yml:131-132; .github/workflows/publish-browser.yml:42-43)
+- `gh_api` runs `subprocess.run(..., check=True)`, raising on non-zero exit (.github/scripts/wpt_diff_to_pr.py:175-182); CI matrix jobs set `fail-fast: false` (.github/workflows/ci.yml:217-218; .github/workflows/publish-browser.yml:43-44)
 
 **Graceful degradation (no panic):**
 - Stale node ids in layout children are skipped rather than panicking (packages/blitz-dom/src/resolve.rs:253-257; packages/blitz-dom/src/resolve.rs:302-306); stale node ids resolve to `None` through `get` (packages/blitz-dom/src/tree.rs:89-97)
@@ -348,7 +348,7 @@ Fixture pages also issue requests: the graphite fixture's script calls api.githu
 - JS console output (log/info/warn/error) goes to the `log` crate at debug level, target `js_console`, keeping stdout/stderr clean (packages/blitz-vibey-script/src/runtime.rs:1245-1267); with the `tracing` feature, uncaught JS errors are logged with `tracing::error!` (packages/blitz-vibey-script/src/runtime.rs:1101-1102; packages/blitz-vibey-script/src/document.rs:265-266)
 - A devtools hover-highlight mode logs the clicked node instead of handling the click (packages/blitz-dom/src/events/pointer.rs:561-571)
 - WPT runner: WPT_DIR value (info) and its absence (error) (wpt/runner/src/main.rs:464-469); glob failure (error) (wpt/runner/src/main.rs:290); net load errors with URL and path at warn, pending requests at debug (wpt/runner/src/net_provider.rs:79; wpt/runner/src/net_provider.rs:110; wpt/runner/src/net_provider.rs:205; wpt/runner/src/net_provider.rs:220); skips — quarantined (debug), non-UTF-8 (warn), unsupported testdriver (debug), unresolvable/unreadable refs (warn) (wpt/runner/src/test_runners/mod.rs:187; wpt/runner/src/test_runners/mod.rs:201; wpt/runner/src/test_runners/harness_test.rs:160; wpt/runner/src/test_runners/ref_test.rs:118; wpt/runner/src/test_runners/ref_test.rs:132; wpt/runner/src/test_runners/ref_test.rs:137)
-- CI publish sets `CARGO_LOG: info` and runs `dx bundle --verbose --trace` (.github/workflows/publish-browser.yml:33; .github/workflows/publish-browser.yml:154)
+- CI publish sets `CARGO_LOG: info` and runs `dx bundle --verbose --trace`, on upstream `DioxusLabs/blitz` only — the `release-cli` job is repository-guarded (.github/workflows/publish-browser.yml:33; .github/workflows/publish-browser.yml:37; .github/workflows/publish-browser.yml:155)
 
 **Log format and backends:**
 - Engine crates log through the `tracing` crate behind a `tracing` feature (packages/blitz-dom/src/lib.rs:26-29; packages/blitz-dom/src/layout/mod.rs:131-136); the macros compile only with that feature (packages/blitz-dom/src/stylo_to_cursor_icon.rs:9-10; packages/blitz-dom/src/events/ime.rs:27-28; packages/blitz-dom/src/events/pointer.rs:752-758; packages/blitz-dom/src/util.rs:26-27; packages/blitz-shell/src/convert_events.rs:44-48; packages/blitz-paint/src/render/background.rs:201-220; packages/blitz-paint/src/render/mask.rs:104-111)

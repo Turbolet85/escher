@@ -4,7 +4,7 @@
 
 **Instrumentation scope (entities needing instrumentation):**
 
-- **Workspace** — dependencies include tracing, tracing-subscriber, tracing-wasm and console_error_panic_hook; the root dev-dependencies add env_logger (Cargo.toml:169; Cargo.toml:172; Cargo.toml:183-184; Cargo.toml:282)
+- **Workspace** — dependencies include tracing, tracing-subscriber, tracing-wasm and console_error_panic_hook; the root dev-dependencies add env_logger (Cargo.toml:169; Cargo.toml:172; Cargo.toml:183-184; Cargo.toml:285)
 - **Workspace** — `packages/debug_timer` is a workspace member (Cargo.toml:4; Cargo.toml:55)
 - **apps/browser** — observability is `tracing` logging, optional frame/phase timing features, and an in-app FPS overlay (apps/browser/Cargo.toml:27-29; apps/browser/Cargo.toml:36; apps/browser/src/fps_overlay.rs:94-124)
 - **examples** — the only runtime output of the examples slice is console printing of timings (examples/screenshot.rs:200-214)
@@ -101,7 +101,7 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 
 | Operation | What is recorded | Output | Source |
 |-----------|------------------|--------|--------|
-| Frame / phase timing | Timing logs gated by `log-frame-times`, `log-phase-times`, umbrella `log-times` | log features only | (Cargo.toml:249-252); (packages/dioxus-native/Cargo.toml:58-66) |
+| Frame / phase timing | Timing logs gated by `log-frame-times`, `log-phase-times`, umbrella `log-times` | log features only | (Cargo.toml:252-255); (packages/dioxus-native/Cargo.toml:58-66) |
 | blitz-dom `resolve` | Phase times style, mark_all, damage, construct, pconstruct, layout, transform, paint_tree, c_damage, subdocs | printed, prefixed `Resolve({id}): ` | (packages/blitz-dom/src/resolve.rs:75-167) |
 | debug_timer | Labelled instants; total and per-step durations in ns/us/ms/s | printed | (packages/debug_timer/src/lib.rs:14-24; packages/debug_timer/src/lib.rs:33-66) |
 | Browser FPS overlay | Frame deltas in a 60-entry ring, polled every 250 ms; average FPS and ms | in-app overlay, toggled from the menu item "Toggle FPS" | (apps/browser/src/fps_overlay.rs:7; apps/browser/src/fps_overlay.rs:27-49; apps/browser/src/fps_overlay.rs:105-123); (apps/browser/src/toolbar.rs:437-440) |
@@ -113,7 +113,7 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 | WPT runner, per test | Duration in ms | printed | (wpt/runner/src/main.rs:614; wpt/runner/src/main.rs:695; wpt/runner/src/main.rs:369) |
 | WPT runner, per run | Pass, fail, timeout, skip, crash, subtests, fractional pass, failure buckets and total duration | printed | (wpt/runner/src/main.rs:488-508; wpt/runner/src/main.rs:784-830) |
 | WPT runner, report | Report generation and write times in ms | printed | (wpt/runner/src/main.rs:838-852) |
-| WPT scores (CI) | Scores computed into `wptscores.json` | published to Pages | (.github/workflows/wpt.yml:71-74) |
+| WPT scores (CI) | Scores computed into `wptscores.json` | published to Pages, on upstream `DioxusLabs/blitz` only (the `wpt` job is repository-guarded) | (.github/workflows/wpt.yml:26; .github/workflows/wpt.yml:72-75) |
 
 **Absent:**
 
@@ -195,7 +195,7 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
   - Log calls cover WPT_DIR setup, glob failures, net load errors, pending requests, skips, JS errors and missing harness results (wpt/runner/src/main.rs:464-469; wpt/runner/src/main.rs:290; wpt/runner/src/net_provider.rs:79; wpt/runner/src/net_provider.rs:205; wpt/runner/src/net_provider.rs:220; wpt/runner/src/test_runners/harness_test.rs:151-153; wpt/runner/src/test_runners/harness_test.rs:179)
   - Log messages are free-form format strings, not structured fields (wpt/runner/src/net_provider.rs:110; wpt/runner/src/test_runners/mod.rs:182)
 - **CI publish builds**
-  - Publish builds log at `CARGO_LOG: info` with `--verbose --trace` (.github/workflows/publish-browser.yml:33; .github/workflows/publish-browser.yml:154)
+  - Publish builds log at `CARGO_LOG: info` with `--verbose --trace`, on upstream `DioxusLabs/blitz` only — the `release-cli` job is repository-guarded (.github/workflows/publish-browser.yml:33; .github/workflows/publish-browser.yml:37; .github/workflows/publish-browser.yml:155)
 
 **Absent:**
 
@@ -274,18 +274,19 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 
 ## 9. CI Integration
 
-**Platform:** workflows under `.github/workflows/` (.github/workflows/wpt.yml:94-118)
+**Platform:** workflows under `.github/workflows/` (.github/workflows/wpt.yml:95-119)
 
 **Telemetry artifact handling (current truth):**
 
 | Artifact | Storage | Source |
 |----------|---------|--------|
-| WPT report and scores | archived to GitHub Pages and dispatched to `DioxusLabs/blitz-wpt-results` on main | (.github/workflows/wpt.yml:94-118) |
-| `wptscores.json` | computed from the WPT run and published to Pages | (.github/workflows/wpt.yml:71-74) |
+| WPT report and scores | archived to GitHub Pages and dispatched to `DioxusLabs/blitz-wpt-results` on main, on upstream `DioxusLabs/blitz` only (`wpt` and `trigger-archive` are repository-guarded; neither runs on the fork) | (.github/workflows/wpt.yml:26; .github/workflows/wpt.yml:95-119) |
+| `wptscores.json` | computed from the WPT run and published to Pages, upstream only | (.github/workflows/wpt.yml:26; .github/workflows/wpt.yml:72-75) |
+| Per-leg CI log | each ci.yml leg's merged stdout+stderr, written by `ci-leg.sh` to `target/ci-logs/{leg}.log` (matrix: `target/ci-logs/matrix-{platform}.log`), truncated at the leg's start; uploaded only on failure as artifact `ci-log-{job id}` (`if-no-files-found: ignore`), kept 7 days, from `target/ci-logs/` alone; unscrubbed build output (no user data — §8) | (.github/scripts/ci-leg.sh:55-56; .github/workflows/ci.yml:44-50; .github/workflows/ci.yml:300-309) |
 
-- Publish builds log at `CARGO_LOG: info` with `--verbose --trace` (.github/workflows/publish-browser.yml:33; .github/workflows/publish-browser.yml:154)
+- Publish builds log at `CARGO_LOG: info` with `--verbose --trace`, on upstream `DioxusLabs/blitz` only (.github/workflows/publish-browser.yml:33; .github/workflows/publish-browser.yml:37; .github/workflows/publish-browser.yml:155)
 
-> NOT YET MEASURED — log-file and snapshot artifact upload, CI resource attributes and artifact retention: the reading recorded none
+> NOT YET MEASURED — snapshot artifact upload and CI resource attributes: the reading recorded none
 
 ---
 

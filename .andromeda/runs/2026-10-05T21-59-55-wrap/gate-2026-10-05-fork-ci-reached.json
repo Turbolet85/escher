@@ -1,0 +1,529 @@
+[
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-05T22:00:05Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-05-fork-ci-reached",
+"--run-dir",
+".andromeda/runs/2026-10-05T21-59-55-wrap",
+"--marker",
+"2026-10-05-fork-ci-reached"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base 50c13b59 (the parent of the oldest pre-CI commit 4268555d) · lists new 2 · modify 5 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 7 · listed 7 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 47"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "50c13b5910bd3cd9b405f8f3cacefa3a7bcb1e25",
+"base_why": "the parent of the oldest pre-CI commit 4268555d",
+"counts": {
+"changed": 7,
+"listed": 7,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 47,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-05T22:20:43Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-05-fork-ci-reached/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T21-59-55-wrap",
+"--marker",
+"2026-10-05-fork-ci-reached"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-05-fork-ci-reached · entries 15",
+"logs $TMPDIR/andromeda-gate/2026-10-05-fork-ci-reached/wrap-2026-10-05T21-59-55 · bound: GNU timeout",
+"delta docs 47",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L116-134: Host gates first (entries 1-9), then the operator pass (entries 10-15). No boot path and n… (2156 chars)",
+"  1 unit        green · exit 0 · 0.1s · 115 B → 1.log · python3 -m unittest discover -s .github/scripts",
+"  2 lint        green · exit 0 · 0.45s · 0 B → 2.log · bash .github/scripts/ci-leg.sh fmt",
+"  3 lint        green · exit 0 · 0.41s · 72 B → 3.log · bash .github/scripts/ci-leg.sh clippy",
+"  4 build       green · exit 0 · 2.16s · 160 B → 4.log · bash .github/scripts/ci-leg.sh build",
+"  5 integration green · exit 0 · 11.56s · 44729 B → 5.log · bash .github/scripts/ci-leg.sh test",
+"  6 integration green · exit 0 · 0.23s · 445 B → 6.log · cargo test -p blitz-tests --locked --test text_selection_a… (87 chars)",
+"  7 probe       green · exit 1 · 0.0s · 2 B → 7.log · git diff -U0 50c13b5910bd3cd9b405f8f3cacefa3a7bcb1e25 -- C… (92 chars)",
+"  8 probe       green · exit 0 · 0.0s · 43 B → 8.log · git diff -U0 50c13b5910bd3cd9b405f8f3cacefa3a7bcb1e25 -- C… (88 chars)",
+"  9 probe       recorded · exit 0 · 0.01s · 39 B → 9.log · f=$(ls -t target/debug/deps/accessibility_roles-* | grep -… (198 chars)",
+" 10 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 11 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 12 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+" 13 probe       not run — leg operator (the letter drives it) · gh run rerun <id>",
+" 14 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+" 15 probe       not run — leg operator (the letter drives it) · gh run view <id> --json jobs --jq '.jobs[] | [.name, .star… (87 chars)",
+"entries 15 · green 8 · red 0 · recorded 1 · timeout 0 · not-run 6"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-05-fork-ci-reached",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-05-fork-ci-reached/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-05-fork-ci-reached/wrap-2026-10-05T21-59-55",
+"delta": {
+"docs": [
+".andromeda/architecture-amendments.md",
+".andromeda/architecture.md",
+".andromeda/design-system.md",
+".andromeda/friction-log.ndjson",
+".andromeda/obs-plan.md",
+".andromeda/security-plan.md",
+".andromeda/state.yaml",
+".andromeda/test-plan-amendments.md",
+".andromeda/test-plan.md",
+".claude/docs/commands.md",
+".claude/docs/obs-summary.md",
+".claude/docs/security-summary.md",
+".claude/docs/session-learnings.md",
+".claude/docs/stack.md",
+".claude/docs/tests-summary.md",
+".claude/docs/workflow.md",
+".claude/rules/security.md",
+".claude/rules/testing.md",
+".claude/session-handoff.md",
+"CLAUDE.md",
+"escher-0.1.0/chunks/2026-10-05-fork-ci-reached/evidence/operator-pass.md",
+".andromeda/design-system-amendments.md",
+".andromeda/obs-plan-amendments.md",
+".andromeda/runs/2026-10-05T21-59-55-wrap/a11y-plan-contracts.md",
+".andromeda/runs/2026-10-05T21-59-55-wrap/architecture-entry-1.md",
+".andromeda/runs/2026-10-05T21-59-55-wrap/architecture-entry-2.md",
+".andromeda/runs/2026-10-05T21-59-55-wrap/architecture-entry-3.md",
+".andromeda/runs/2026-10-05T21-59-55-wrap/architecture-entry-4.md",
+".andromeda/runs/2026-10-05T21-59-55-wrap/cascade-2026-10-05-fork-ci-reached.json",
+".andromeda/runs/2026-10-05T21-59-55-wrap/cascade-dispositions.md",
+".andromeda/runs/2026-10-05T21-59-55-wrap/cascade-patterns.toml",
+".andromeda/runs/2026-10-05T21-59-55-wrap/curation.md",
+".andromeda/runs/2026-10-05T21-59-55-wrap/evolve-2026-10-05-fork-ci-reached.json",
+".andromeda/runs/2026-10-05T21-59-55-wrap/fanout-results.md",
+".andromeda/runs/2026-10-05T21-59-55-wrap/gate-2026-10-05-fork-ci-reached.json",
+".andromeda/runs/2026-10-05T21-59-55-wrap/health-2026-10-05-fork-ci-reached.json",
+".andromeda/runs/2026-10-05T21-59-55-wrap/inputs-2026-10-05-fork-ci-reached.json",
+".andromeda/runs/2026-10-05T21-59-55-wrap/obs-plan-contracts.md",
+".andromeda/runs/2026-10-05T21-59-55-wrap/registry-2026-10-05-fork-ci-reached.json",
+".andromeda/runs/2026-10-05T21-59-55-wrap/route-no-marker.json",
+".andromeda/runs/2026-10-05T21-59-55-wrap/splice-2026-10-05-fork-ci-reached.json",
+".andromeda/runs/2026-10-05T21-59-55-wrap/test-plan-contracts.md",
+".andromeda/runs/2026-10-05T21-59-55-wrap/test-plan-entry-1.md",
+".andromeda/runs/2026-10-05T21-59-55-wrap/test-plan-entry-2.md",
+".andromeda/runs/2026-10-05T21-59-55-wrap/test-plan-entry-3.md",
+".andromeda/security-plan-amendments.md",
+"escher-0.1.0/chunks/2026-10-05-fork-ci-reached/report.md"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 47,
+"problem": null
+},
+"prose": [
+{
+"from": 116,
+"to": 134,
+"text": "Host gates first (entries 1-9), then the operator pass (entries 10-15). No boot path and no live leg: the chunk changes CI plumbing and a build profile, so there is no smoke, no self-verify (no UI surface) and no `live` leg — the absence is this sentence. The local pre-push gate this Foundation chunk builds is `bash .github/scripts/ci-leg.sh fast`; it rides inside the push entry (11), so the operator pass re-runs it before every push and fix push. The CI reads (11, 13) need the operator's commit and push first — /implement never commits — so they and the push are `operator` entries, fired in the operator pass after the hygiene entry, with `/home/turbolet/.claude/skills/andromeda-tools/scripts` as `{tools_dir}` substituted literally. Operator's word (operator, 2026-10-05, P5 review): the session drives the operator pass on this approval — hygiene, the fast leg + clean-tree guard, the pre-CI commit, the push, the cold and warm `ci.py` reads (via `gh run rerun`) and the timings. `--wait 6000` covers a cold first run (fast legs, then the uncached windows/macos/ios/android legs behind them; the fork has no prior CI wall-clock — phase Setup 5a read `none recorded`). Entry 13 re-runs that same run once its caches are saved, so entry 14 reads the WARM verdict on the same sha; entry 15 records both runs' job timings — the cache's effect is recorded, not forecast as a pass/fail. Two criteria have no listed producer by design. Step 9's baseline re-measure (`evidence/baseline-rerun.md`) begins with `cargo clean`, so it is a ONE-SHOT run at /implement, its readings in `evidence/`; listing it would make every light-gate re-run cold. Its counts are guarded on re-run by the `ci-leg.sh test` and `--nocapture` entries. The failure log `target/ci-logs/{leg}.log` is produced inside the unit entry's own temporary directory (step 8's shim TestCase), not in the tree. Both instruments this chunk builds run red before green at /implement: `test_ci_workflows.py` is run against the untouched workflows first, where it must FAIL its (a), (b), (c), (f) and (h) assertions, and `ci-leg.sh`'s must-fail control is the shim TestCase. Both readings go in `evidence/`."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "python3 -m unittest discover -s .github/scripts",
+"run_sha8": "07d6c28c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-fork-ci-reached/wrap-2026-10-05T21-59-55/1.log",
+"bytes": 115,
+"log_sha8": "f5faa6d4",
+"exit": 0,
+"seconds": 0.1,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fmt",
+"run_sha8": "acbd681e",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-fork-ci-reached/wrap-2026-10-05T21-59-55/2.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.45,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh clippy",
+"run_sha8": "8be93962",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-fork-ci-reached/wrap-2026-10-05T21-59-55/3.log",
+"bytes": 72,
+"log_sha8": "b2c020f2",
+"exit": 0,
+"seconds": 0.41,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "build",
+"run": "bash .github/scripts/ci-leg.sh build",
+"run_sha8": "32c5cbb0",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-fork-ci-reached/wrap-2026-10-05T21-59-55/4.log",
+"bytes": 160,
+"log_sha8": "73f6aa53",
+"exit": 0,
+"seconds": 2.16,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh test",
+"run_sha8": "b27b3230",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-fork-ci-reached/wrap-2026-10-05T21-59-55/5.log",
+"bytes": 44729,
+"log_sha8": "e61408d1",
+"exit": 0,
+"seconds": 11.56,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test text_selection_anonymous_block -- --nocapture",
+"run_sha8": "4e53f0d6",
+"expect": [
+"exit 0",
+"lacks skipping: no usable font"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-fork-ci-reached/wrap-2026-10-05T21-59-55/6.log",
+"bytes": 445,
+"log_sha8": "8f577ccb",
+"exit": 0,
+"seconds": 0.23,
+"readings": [
+"exit 0 ✓",
+"lacks 'skipping: no usable font' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff -U0 50c13b5910bd3cd9b405f8f3cacefa3a7bcb1e25 -- Cargo.toml | grep -cE '^-([^-]|$)' ",
+"run_sha8": "032cd5d3",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-fork-ci-reached/wrap-2026-10-05T21-59-55/7.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "git diff -U0 50c13b5910bd3cd9b405f8f3cacefa3a7bcb1e25 -- Cargo.toml | grep -E '^\\+[^+]' ",
+"run_sha8": "a7f3929a",
+"expect": [
+"exit 0",
+"contains +[profile.dev]",
+"contains +debug = \"line-tables-only\""
+],
+"log": "/tmp/andromeda-gate/2026-10-05-fork-ci-reached/wrap-2026-10-05T21-59-55/8.log",
+"bytes": 43,
+"log_sha8": "6e45a826",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"contains '+[profile.dev]' ✓",
+"contains '+debug = \"line-tables-only\"' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "f=$(ls -t target/debug/deps/accessibility_roles-* | grep -v '\\.d$' | head -1); s=$(stat -c %s \"$f\"); size -A \"$f\" | awk -v s=\"$s\" '/^\\.debug/{d+=$2} END{printf \"debug %d of %d file bytes\\n\", d, s}' ",
+"run_sha8": "4e693b52",
+"expect": [],
+"log": "/tmp/andromeda-gate/2026-10-05-fork-ci-reached/wrap-2026-10-05T21-59-55/9.log",
+"bytes": 39,
+"log_sha8": "b5f492cc",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"report-only (expect = [])"
+],
+"survivors": [],
+"outcome": "recorded"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 6000",
+"run_sha8": "db597ff0",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "gh run rerun <id>",
+"run_sha8": "d69fe82b",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 6000",
+"run_sha8": "db597ff0",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "gh run view <id> --json jobs --jq '.jobs[] | [.name, .startedAt, .completedAt] | @tsv' ",
+"run_sha8": "39a1ba55",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-05T22:20:57Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-10-05T21-59-55-wrap",
+"--marker",
+"2026-10-05-fork-ci-reached"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 24 (runs 23 · evidence 1 · inputs 0) · trails 9 not read · copies 0 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 23,
+"evidence": 1,
+"inputs": 0,
+"trails": 9,
+"copies": 0,
+"kept": 0,
+"binary": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-05T22:20:57Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-05-fork-ci-reached",
+"--run-dir",
+".andromeda/runs/2026-10-05T21-59-55-wrap",
+"--marker",
+"2026-10-05-fork-ci-reached"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base 50c13b59 (the parent of the oldest pre-CI commit 4268555d) · lists new 2 · modify 5 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 7 · listed 7 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 92"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "50c13b5910bd3cd9b405f8f3cacefa3a7bcb1e25",
+"base_why": "the parent of the oldest pre-CI commit 4268555d",
+"counts": {
+"changed": 7,
+"listed": 7,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 92,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

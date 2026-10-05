@@ -8,6 +8,18 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-05 — A chunk that moves cited source lines stales the masters' file:line citations
+The spec masters cite code as `file:line` throughout. A chunk that inserts or removes lines in a cited file — a profile stanza in `Cargo.toml`, a guard in a workflow, a rewritten `ci.yml` — leaves every citation past the edit pointing at the wrong line, and no drift detector sees it: the detectors read the chunk report alone, and the report carries no map of moved lines. The first such chunk on escher left 114 stale citations across five masters.
+
+At wrap, for every source file the chunk changed, grep the seven masters and the registry key files for `{file}:{N}` citations past the first changed line and re-point them — a fixed offset for a pure insert, a range map for a rewrite — then verify the re-point touched only digits (the masters' text with digits stripped equals the pre-pass text). Do it before the semantic amendments, so their freshly written citations are never shifted twice.
+
+---
+
+## 2026-10-05 — Count from the listing you just read, never from the plan's forecast
+A plan's implementation notes often predict a count ("one cache per compiling job, 6 + 4 = 10"). When an evidence record states the measured figure, take it from the tool output read at that moment and count it there; a number carried over from the plan's forecast survives into the record looking measured. On escher the operator-pass evidence first recorded the plan's 10 caches where `gh cache list` listed 11 + 1, caught only when the report re-counted the listing. If the measurement disagrees with the forecast, record both and name the forecast as disproved.
+
+---
+
 ## 2026-10-05 — A secret probe over a record that quotes the probe matches itself
 A credential or secret grep run over an evidence record (`grep -ciE 'token=|password=|…'` expecting `0`) counts its own pattern when that record lists the probe's command verbatim — a self-match, never a leaked secret. A plan that asks the record to copy "every gate run verbatim" and also runs a secret probe over the same record is jointly unsatisfiable for the probe's own line.
 

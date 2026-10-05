@@ -1,0 +1,13 @@
+
+## 2026-10-05-fork-ci-reached — fork CI on the build branch through one leg script
+**Section:** §Stack and Technologies (CI/CD row · Code quality row) · §Conventions (Formatting and lints) · §Standard Contracts (CI contracts) · §Occupied Resources (Filesystem) · §Infrastructure Patterns (CI/CD) · §Inherited Defaults (Code quality)
+**Change:** was ci.yml on pull_request + push to `main` / `v0.*`, inline cargo commands without `--locked`, an `opt-level = 2` → `0` rewrite before building, a matrix testing windows/macos/linux, rust-cache only on the matrix and saved only on `refs/heads/main`; now:
+- trigger adds `build/**`; `fmt`, `clippy`, `test-features-default`, `ci-scripts` carry no `needs` and every other job, the matrix included, `needs` all four;
+- each of the nine linux jobs runs `bash .github/scripts/ci-leg.sh {leg}` — legs fmt · clippy · test · ci-scripts · build · msrv (`cargo +1.91 build`) · counter · wasm · doc · fast — every cargo leg `--locked` but `examples/wasm_hello` (no `Cargo.lock`); the script tees merged output to `target/ci-logs/{leg}.log` (truncated per leg), exits with the leg's status, exits 2 on an unknown leg; `fast` (fmt → clippy → test → ci-scripts) is the local pre-push gate; clippy is `cargo clippy --workspace --locked -- -D warnings`, the doc job bare `cargo doc --locked`;
+- no opt-level rewrite; the matrix tests windows and macos, builds ios and android, `--locked`, tee'd to `target/ci-logs/matrix-{platform}.log`; linux is tested by the fast `test` leg;
+- `Swatinem/rust-cache@v2` on every compiling ci.yml job, saved on `main` and `build/*` (publish and WPT caches still main-only);
+- every leg job uploads its own log `if: failure()` as `ci-log-{job id}`, 7 days, only from `target/ci-logs/` — registered as a CI contract and a Filesystem path;
+- §Stack adds the bash leg runner, `test_ci_workflows.py` with PyYAML (Ubuntu `python3-yaml`, ensured by the `ci-scripts` job), and the tag-pinned `rust-cache@v2` / `upload-artifact@v7` actions.
+**Why:** a push to escher's build branch triggered nothing and every run would have been cold; one script both CI and the host run makes every linux leg host-reproducible by construction, and the fast set gives the common push its verdict first (founder's concern: CI must not rebuild everything each run). The first build-branch run read green, 1255 s cold and 475 s on its warm same-sha re-run.
+**Kept:** the docs job stays bare `cargo doc` (the real rustdoc gate, SHA-pinned actions and least-privilege tokens belong to "CI gate legs"); the dead `ubuntu-24.04` Free Disk Space condition is unchanged.
+**Ref:** .andromeda/runs/2026-10-05T21-59-55-wrap/

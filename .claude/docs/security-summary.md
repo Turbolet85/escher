@@ -16,7 +16,7 @@ escher is a native-API engine library with no served API, no listener and no aut
 - **Outbound HTTP** → 6 concurrent requests per host; no response-size cap, no timeout (observed absent); TLS via reqwest `native-tls`.
 - **CLI input** → examples parse URLs with `Url::parse` (+ `https://` retry), numeric args with defaults; `bump` validates target + semver.
 - **rdme markdown** → comrak with `unsafe: true` passes raw HTML through.
-- **CI** → post-results workflow checks out trusted scripts from the default branch; `ci.yml` has no workflow-level `permissions` block.
+- **CI** → post-results workflow checks out trusted scripts from the default branch; `ci.yml` has no workflow-level `permissions` block and references no secret. The publish (signing), WPT and post-results jobs carry `github.repository == 'DioxusLabs/blitz'`, so no fork ref reaches "Signed Builds", "WPT" or their secrets.
 
 ## Data classifications (as measured)
 | Class | Examples | Handling |

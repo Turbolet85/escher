@@ -4,8 +4,8 @@
 
 **Coverage scope (testable entities):**
 
-- **Workspace (CI):** `cargo test --workspace` runs on ubuntu with default features (.github/workflows/ci.yml:48-56)
-- **CI Python scripts:** unit-tested with `python3 -m unittest discover -s .github/scripts` (.github/workflows/ci.yml:111-116)
+- **Workspace (CI):** `cargo test --workspace --locked` runs on ubuntu with default features as the fast `test` leg, `bash .github/scripts/ci-leg.sh test` (.github/workflows/ci.yml:72-89; .github/scripts/ci-leg.sh:21)
+- **CI Python scripts:** unit-tested with `python3 -m unittest discover -s .github/scripts` as the fast `ci-scripts` leg, the job first ensuring PyYAML (.github/workflows/ci.yml:175-188; .github/scripts/ci-leg.sh:22)
 - **apps/browser:** tests exist only in the browser crates: about_pages (3), browser_history (4), favicon (5), url_suggestions (12 `#[test]` plus 4 `#[tokio::test]`), persistence (10) (apps/browser/src/about_pages.rs:204-239; apps/browser/src/browser_history.rs:178-225; apps/browser/src/favicon.rs:83-112; apps/browser/src/url_suggestions.rs:415-629; apps/browser/persistence/src/lib.rs:341-506)
 - **apps (rdme, bump, examples, accesskit_xplat):** no tests — observed absent · searched: `#\[(tokio::)?test\]` over the 86 files of slice s04 (hits only in the five browser files above)
 - **blitz-dom (document, mutator, net):** 25 `#[test]` functions: 9 in document.rs, 12 in mutator.rs, 4 in net.rs (packages/blitz-dom/src/document.rs:2859; packages/blitz-dom/src/mutator.rs:1352; packages/blitz-dom/src/net.rs:616)
@@ -28,8 +28,8 @@
 
 **Surfaces under test:**
 
-- **Native platforms:** the CI matrix runs `test --all --tests` on windows, macos, linux and `build --all` on ios and android (.github/workflows/ci.yml:135-174; .github/workflows/ci.yml:219-221)
-- **Web Platform Tests:** run for `css` and `svg` (.github/workflows/wpt.yml:55-56)
+- **Native platforms:** the CI matrix runs `test --all --tests --locked` on windows and macos and `build --all --locked` on ios and android; linux is tested by the fast `test` leg, not the matrix (.github/workflows/ci.yml:220-252; .github/workflows/ci.yml:297-301)
+- **Web Platform Tests:** run for `css` and `svg` on upstream `DioxusLabs/blitz` only — the `wpt` job is repository-guarded and does not run on the fork; on the fork WPT is run on the host, `cargo run -rp wpt css svg` (.github/workflows/wpt.yml:26; .github/workflows/wpt.yml:56-57)
 
 > NOT YET MEASURED — the reading gathered no tier justification, critical-path list or coverage triggers for this summary
 
@@ -51,9 +51,9 @@
 - **Font-dependent tests:** skip at runtime with `eprintln!` when no usable font is available (tests/blitz-tests/tests/text_selection_anonymous_block.rs:63-78; tests/blitz-tests/tests/text_selection_anonymous_block.rs:104-109)
 - **Script tests (blitz-vibey-script):** tests build a `ScriptDocument` from inline HTML, run its scripts, then assert DOM text via selector queries (packages/blitz-vibey-script/tests/dom.rs:8-21); events are driven with synthetic click events and `UiEvent::KeyDown` rather than real input (packages/blitz-vibey-script/tests/dom.rs:179-190; packages/blitz-vibey-script/tests/preact.rs:68-100); timer tests sleep in real time before polling (packages/blitz-vibey-script/tests/dom.rs:278-280; packages/blitz-vibey-script/tests/dom.rs:299-300)
 - **WPT conformance:** reftests render test and reference to RGBA buffers at 800x600 and compare them exactly, by fuzzy tolerance, or by dify diff (wpt/runner/src/test_runners/ref_test.rs:25-102; wpt/runner/src/test_runners/ref_test.rs:179-211); attr tests check element layout against `data-expected-*` attributes, one subtest per element matching the selector (wpt/runner/src/test_runners/attr_test.rs:71-124); harness tests run real testharness.js and collect per-subtest results (wpt/runner/src/test_runners/harness_test.rs:119-183)
-- **WPT scoring:** partial passes are counted fractionally (pass/total per test) in addition to whole-test counts (wpt/runner/src/main.rs:139-145; wpt/runner/src/main.rs:666-667; wpt/runner/src/main.rs:812-815); failures are bucketed by the first matching feature flag (grid-lanes, subgrid, writing-mode, direction, intrinsic size, calc, float, script) else "other" (wpt/runner/src/main.rs:639-658); WPT results are diffed against the main-branch report and summarised per test as gained/lost subtests (.github/workflows/wpt.yml:75-85; .github/scripts/wpt_diff_to_pr.py:116-161)
+- **WPT scoring:** partial passes are counted fractionally (pass/total per test) in addition to whole-test counts (wpt/runner/src/main.rs:139-145; wpt/runner/src/main.rs:666-667; wpt/runner/src/main.rs:812-815); failures are bucketed by the first matching feature flag (grid-lanes, subgrid, writing-mode, direction, intrinsic size, calc, float, script) else "other" (wpt/runner/src/main.rs:639-658); WPT results are diffed against the main-branch report and summarised per test as gained/lost subtests (.github/workflows/wpt.yml:76-86; .github/scripts/wpt_diff_to_pr.py:116-161)
 - **WPT ports:** WPT script tests are ported to Rust when the WPT runner cannot run them (tests/blitz-tests/tests/oof_dynamic_cb.rs:7-12)
-- **MSRV:** verified by build only, not test (.github/workflows/ci.yml:20-25)
+- **MSRV:** verified by build only, not test (.github/workflows/ci.yml:24-29)
 - **Example fixtures (human-read):** fixture prose states the expected rendering for a human viewer: frame navigation replaces only the sub-document (examples/assets/iframe_navigation.html:33-36; examples/assets/iframe_navigation.html:58-61); fixture comments state what a case checks: correct alpha with no double-paint, and per-run ascent/descent (examples/assets/inline-backgrounds.html:40; examples/assets/inline-backgrounds.html:47; examples/assets/inline-backgrounds.html:84-86); the hr fixture's first case is left unstyled to show the UA stylesheet only (examples/assets/hr.html:33-36; examples/assets/hr.html:195); full real-page snapshots are paired with reduced variants (examples/assets/google_reduced.html:1-9; examples/assets/gosub_reduced.html:1-12; examples/assets/servo-new-reduced.html:1-51; examples/assets/servo-new-reduced-1.html:1-31)
 - **Slice s03:** no test functions — observed absent · searched: `#\[test\]` and `#\[cfg\(test` over the 32 files of slice s03
 
@@ -69,7 +69,7 @@
 
 **Runners and invocation:**
 
-- **WPT in CI:** invoked as `cargo build -rp wpt` then `cargo run -rp wpt css svg`, producing `./wpt/output/wptreport.json` (.github/workflows/wpt.yml:53-58); the `wpt` cli provides `calc-scores` and `diff --format json` (.github/workflows/wpt.yml:69-80)
+- **WPT in CI:** invoked as `cargo build -rp wpt` then `cargo run -rp wpt css svg`, producing `./wpt/output/wptreport.json` (.github/workflows/wpt.yml:54-59); the `wpt` cli provides `calc-scores` and `diff --format json` (.github/workflows/wpt.yml:70-81)
 - **WPT runner CLI:** `WPT_DIR` env var, optional suite arguments, `--verbose`/`-v`, `--run-quarantined`, `--list` (wpt/runner/src/main.rs:240-250; wpt/runner/src/main.rs:461-479)
 - **WPT outputs:** `wpt_expectations.txt` and `wptreport.json` in the output directory (wpt/runner/src/main.rs:832-847)
 - **WPT status set:** PASS, FAIL, TIMEOUT, SKIP, CRASH (wpt/runner/src/main.rs:104-122)
@@ -108,6 +108,7 @@ Contracts: .andromeda/registries/test-plan-contracts.toml — ask registry.py co
 **What unit tests cover:**
 
 - **CI Python script:** test_wpt_diff_to_pr.py covers `format_lines` ordering/alignment/markers, `render` headline counts and empty diff, and `splice` idempotent replacement (.github/scripts/test_wpt_diff_to_pr.py:51-88)
+- **CI workflows and leg script:** test_ci_workflows.py — `CiWorkflowTest` pins ci.yml's `build/**` trigger, a rust-cache with a `main` + `build/` save rule on every compiling job, the fast four with no `needs` and every other job needing all four, each linux job's leg through `ci-leg.sh` (the leg present in the script's list), each leg job's own `if: failure()` log upload under `target/ci-logs/` kept 7 days, no `secrets.`, no perl rewrite, and the matrix platforms windows/macos/ios/android; `UpstreamGuardTest` pins the `DioxusLabs/blitz` repository guard on every job of publish-browser, wpt and wpt-post-results; `LegScriptTest` runs `ci-leg.sh` in a temp dir with a `cargo` shim on PATH — a failing leg exits non-zero and writes its log, the log is truncated at the leg's start, an unknown leg exits 2 (.github/scripts/test_ci_workflows.py:61-177); the CI-scripts leg runs 16 tests
 - **apps/browser:** about-page URL parsing: known paths, unknown rejection, round-trip (apps/browser/src/about_pages.rs:204-239); history fold, non-consecutive revisit, truncation to the cap, elapsed-label buckets (apps/browser/src/browser_history.rs:178-225); favicon decode acceptance and rejection cases (apps/browser/src/favicon.rs:83-112); suggestions: empty query, literal-first, search-last, case-insensitive and fuzzy matching, cap of six history rows, URL dedup, ranking (apps/browser/src/url_suggestions.rs:415-545); persistence: schema bootstrap, migration validation, round trip, ordering, clear, fold, NULL-only favicon patching, prune cap (apps/browser/persistence/src/lib.rs:341-506)
 - **blitz-dom (net, mutator):** `stylo_to_fontique_style` is unit-tested for Italic, `Oblique(0,0)` → Normal, single angle and range-uses-min cases (packages/blitz-dom/src/net.rs:616-645); disabled-state toggling is tested on a node created without a tree (packages/blitz-dom/src/mutator.rs:1379-1413)
 - **blitz-dom (style bridge):** feature-mapping tests assert exact OpenType tag and value pairs per `font-variant-*` input (packages/blitz-dom/src/stylo_to_parley.rs:550-635); a test asserts `font-feature-settings` entries come after variant-derived ones so they win (packages/blitz-dom/src/stylo_to_parley.rs:637-654); SVG tests assert intrinsic width, height and aspect ratio for viewBox, absolute, percentage, unit and non-numeric dimensions (packages/blitz-dom/src/util.rs:184-242)
@@ -152,7 +153,7 @@ Contracts: .andromeda/registries/test-plan-contracts.toml — ask registry.py co
 
 **Drivers per surface:**
 
-- **WPT (css, svg):** reftests are run with a Thai font installed because some reftests depend on Thai glyph widths (.github/workflows/wpt.yml:43-50); successful PR WPT runs have their results posted into the PR description (.github/workflows/wpt-post-results.yml:43-49)
+- **WPT (css, svg):** reftests are run with a Thai font installed because some reftests depend on Thai glyph widths (.github/workflows/wpt.yml:44-51); successful PR WPT runs have their results posted into the PR description (.github/workflows/wpt-post-results.yml:43-49) — both on upstream `DioxusLabs/blitz` only, the `wpt` and `post-results` jobs being repository-guarded (.github/workflows/wpt.yml:26; .github/workflows/wpt-post-results.yml:15)
 - **Headless harness smoke:** `harness_smoke.rs` is described as end-to-end smoke tests for the harness covering document construction, inspection and input synthesis for `HtmlDocument` and `DioxusDocument` (tests/blitz-tests/tests/harness_smoke.rs:1-3); a Dioxus counter component is clicked through the harness and its rendered text asserted (tests/blitz-tests/tests/harness_smoke.rs:89-113)
 - **Preact TodoMVC (headless script):** preact.rs loads `examples/preact/index.html` with a `file:` base URL and drives add, toggle, filter, destroy and clear-completed flows (packages/blitz-vibey-script/tests/preact.rs:12-34; packages/blitz-vibey-script/tests/preact.rs:127-199)
 - **Paint ↔ reftests:** a paint comment states never-scrolled containers paint no scrollbar thumbs, keeping them out of static reftest screenshots (packages/blitz-paint/src/render.rs:715-720); paint comments reference WPT cases by path (packages/blitz-paint/src/render/background.rs:370-373; packages/blitz-paint/src/render/background.rs:590)
@@ -177,7 +178,7 @@ Contracts: .andromeda/registries/test-plan-contracts.toml — ask registry.py co
 
 **Fixture sources:**
 
-- **WPT checkout:** WPT tests are cloned at the commit in `./wpt/WPT_COMMIT` (.github/workflows/wpt.yml:51-52); test inputs come from the WPT checkout at `WPT_DIR` (wpt/runner/src/main.rs:463-470); the quarantine list is `timeout-quarantine.txt`, two directories above `src/test_runners`, embedded at compile time (wpt/runner/src/test_runners/mod.rs:32)
+- **WPT checkout:** WPT tests are cloned at the commit in `./wpt/WPT_COMMIT` (.github/workflows/wpt.yml:52-53); test inputs come from the WPT checkout at `WPT_DIR` (wpt/runner/src/main.rs:463-470); the quarantine list is `timeout-quarantine.txt`, two directories above `src/test_runners`, embedded at compile time (wpt/runner/src/test_runners/mod.rs:32)
 - **examples/assets:** static HTML pages for rendering CSS features and reduced real-world pages (examples/assets/clip-path.html:193; examples/assets/bbc_reduced.html:6; examples/assets/bottom_only.html:6); page snapshots name their origins: google.com, graphite.art and servo.org (examples/assets/google.html:6; examples/assets/graphite.html:7; examples/assets/servo-new.html:18); servo.html is a snapshot of the servo.org home page referencing a local `servo.css` (examples/assets/servo.html:7; examples/assets/servo.html:25; examples/assets/servo.html:332); servo_header_reduced.html reduces the navbar with `<base href="https://servo.org" />` (examples/assets/servo_header_reduced.html:5-18); servo_reduced.html reduces a flex wrapping case (examples/assets/servo_reduced.html:4-8); visual fixtures: text-decoration.html, shadow.html, svg.html, svg_size.html (examples/assets/text-decoration.html:150; examples/assets/shadow.html:118; examples/assets/svg.html:3-13; examples/assets/svg_size.html:5)
 - **Fixture dependencies:** fixtures reference sibling images square.png, wide.png, tall.png and gosub-logo.svg, which are not s02 files (examples/assets/object_fit.html:13-15; examples/assets/noscript.html:6; examples/assets/iframe_page_b.html:18; examples/assets/gosub.html:101); several fixtures load images and styles from remote hosts at render time (examples/assets/newservo.html:4; examples/assets/newservo.html:8; examples/assets/servo-new-reduced.html:16; examples/assets/graphite_software_overview.html:1641); the iframe page A fixture links to does_not_exist.html as a deliberate broken link (examples/assets/iframe_page_a.html:25)
 - **examples/preact:** the Preact TodoMVC page and a Core DOM APIs reference page (examples/preact/index.html:6; examples/preact/core_dom_apis.html:6); the E2E fixture is the vendored example at `../../examples/preact` relative to the crate manifest (packages/blitz-vibey-script/tests/preact.rs:12-14)
@@ -261,20 +262,26 @@ Contracts: .andromeda/registries/test-plan-contracts.toml — ask registry.py co
 
 ## 9. CI Integration
 
-**Platform:** GitHub Actions; tests run on PRs and pushes to main/v0.* (.github/workflows/ci.yml:3-8)
+**Platform:** GitHub Actions; tests run on PRs and pushes to main, v0.* and build/** — escher's build branch included (.github/workflows/ci.yml:3-9)
 
 **Pipeline facts:**
 
-- **WPT workflow:** runs on PRs and pushes to main, publishes a step summary on PRs, and uploads the diff artifact (.github/workflows/wpt.yml:3-7; .github/workflows/wpt.yml:81-93)
+- **Legs:** each of the nine linux ci.yml jobs runs `bash .github/scripts/ci-leg.sh {leg}` — fmt, clippy, test, ci-scripts, build, msrv (`cargo +1.91 build`), counter, wasm, doc — every cargo leg `--locked` but `examples/wasm_hello` (no `Cargo.lock`); the dev host runs the same script, so every linux leg is host-reproducible (.github/scripts/ci-leg.sh:17-34; .github/workflows/ci.yml:43)
+- **Fast/slow split:** `fmt`, `clippy`, `test-features-default` and `ci-scripts` carry no `needs`; every other job, the windows/macos/ios/android matrix included, `needs` all four (.github/workflows/ci.yml:33; .github/workflows/ci.yml:213)
+- **Cache:** `Swatinem/rust-cache@v2` on every compiling job, saved on `main` and `build/*` (.github/workflows/ci.yml:39-41; .github/workflows/ci.yml:279-284); the first build-branch run took 1255 s cold and its same-sha re-run 475 s warm, the fast `test` leg 315 → 169 s, as measured at escher-0.1.0/chunks/2026-10-05-fork-ci-reached/evidence/operator-pass.md (CI run 37375560233, GitHub-hosted runners)
+- **Failure logs:** each leg's merged output goes to `target/ci-logs/{leg}.log` (truncated at the leg's start) and is uploaded only on failure as `ci-log-{job id}`, kept 7 days (.github/scripts/ci-leg.sh:55-56; .github/workflows/ci.yml:44-50)
+- **Local pre-push gate:** `bash .github/scripts/ci-leg.sh fast` — fmt → clippy → test → ci-scripts, stopping at the first red (.github/scripts/ci-leg.sh:47-52)
+- **WPT workflow:** runs on upstream `DioxusLabs/blitz` only (repository guard on its `wpt` job; `trigger-archive` additionally on main), where it runs on PRs and pushes to main, publishes a step summary on PRs, and uploads the diff artifact (.github/workflows/wpt.yml:3-7; .github/workflows/wpt.yml:26; .github/workflows/wpt.yml:82-94; .github/workflows/wpt.yml:109)
 - **Benchmarks:** benchmark tests are `#[ignore]` and run with `cargo test -p blitz-tests --release --test paint_tree_bench -- --ignored --nocapture` (tests/blitz-tests/tests/paint_tree_bench.rs:3; tests/blitz-tests/tests/paint_tree_bench.rs:225-227; tests/blitz-tests/tests/paint_tree_bench.rs:262-263; tests/blitz-tests/tests/paint_tree_bench.rs:341-342)
 - **Fonts:** font-dependent assertions rely on the `system-fonts` feature, stated to be on by default when testing the whole workspace (tests/blitz-tests/tests/br_trailing_line.rs:11-13)
 - **Hang guard:** a test comment states the worker timeout exists so a regression would not hang CI (apps/browser/src/url_suggestions.rs:380-382)
 - **WPT timeouts:** a comment states heavy interpolation suites run longer "on loaded CI machines", motivating the harness timeout multiplier (wpt/runner/src/test_runners/harness_test.rs:30-34)
-- **Local baseline (the reference the fork's CI is compared against):** dev host, dev profile, workspace default features, every cargo command with `--locked`, no `opt-level` rewrite (it touches only `[profile.p2]`); cold = first run after `cargo clean`, entries in sequence in one `target/`, warm = an immediate re-run — as measured at escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/baseline.md (2026-10-05, 32 CPUs):
-  - `cargo build --workspace` green, 120.26 s cold / 5.54 s warm
-  - `cargo test -p blitz-tests` green, 486.45 s / 7.41 s — 61 result lines, 255 passed · 0 failed · 3 ignored (`paint_tree_bench`); the `text_selection_anonymous_block` font-skip line absent under `--nocapture`
-  - `cargo test --workspace` (CI's test leg) exit 0, 1632.88 s / 13.08 s — 108 result lines, 407 · 0 · 3; the test-profile compile (27m 00s cold) dominates
-  - `cargo fmt --all --check` and `cargo clippy --workspace -- -D warnings` exit 0; `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps` exit 101 (3 crates, 9 errors)
+- **Local baseline (the reference the fork's CI is compared against):** dev host, dev profile with `debug = "line-tables-only"` (Cargo.toml:195-196), workspace default features, every cargo command with `--locked`, no `opt-level` rewrite; cold = first run after `cargo clean`, entries in sequence in one `target/`, warm = an immediate re-run — as measured at escher-0.1.0/chunks/2026-10-05-fork-ci-reached/evidence/baseline-rerun.md (2026-10-05, 32 CPUs, rustc 1.99.0):
+  - `cargo build --workspace` green, 63.90 s cold / 2.07 s warm
+  - `cargo test -p blitz-tests` green, 45.36 s / 6.51 s — 61 result lines, 255 passed · 0 failed · 3 ignored (`paint_tree_bench`); the `text_selection_anonymous_block` font-skip line absent under `--nocapture`
+  - `cargo test --workspace` (CI's test leg) exit 0, 52.10 s / 11.44 s — 108 result lines, 407 · 0 · 3
+  - cold total 161.36 s, against 2239.59 s under full debuginfo (escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/baseline.md); `target/debug` 32G
+  - `ci-leg.sh fmt` and `ci-leg.sh clippy` exit 0 (the 2026-10-05-fork-ci-reached gate run); `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps` exit 101 (3 crates, 9 errors), as measured at escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/baseline.md — not re-measured under the new profile
 
 **Observed absent:**
 

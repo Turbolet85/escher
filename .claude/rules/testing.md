@@ -14,7 +14,7 @@ Path-scoped rules for test files. Source: `.andromeda/test-plan.md` §2 §4 §5 
 - **Unit:** Rust built-in harness — `#[cfg(test)] mod tests` at the end of the source file; `#[tokio::test]` for async workers.
 - **Integration:** `tests/blitz-tests/tests/*.rs`, one file per behaviour, depending only on dev-dependencies.
 - **Headless E2E:** `blitz_test_harness::Harness` over `HtmlDocument` / `DioxusDocument`; WPT via `cargo run -rp wpt css svg` (needs `WPT_DIR`).
-- **CI scripts:** `python3 -m unittest discover -s .github/scripts`, one `TestCase` per function.
+- **CI scripts:** `python3 -m unittest discover -s .github/scripts` (the `ci-scripts` leg; PyYAML for the workflow tests), one `TestCase` per function.
 - No mocking library, property-test or snapshot crate is used — stand-ins are hand-written fakes (`RecordingNetProvider`, `ManualNetProvider`, `RecordingShell`, `NoopEventHandler`, probe widgets).
 
 ## File and naming conventions
@@ -36,7 +36,8 @@ Path-scoped rules for test files. Source: `.andromeda/test-plan.md` §2 §4 §5 
 ## Running tests
 - **One file:** `cargo test -p blitz-tests --test {name}`
 - **One crate:** `cargo test -p {crate}`
-- **Whole workspace (CI leg):** `cargo test --workspace`
+- **Whole workspace (CI leg):** `cargo test --workspace --locked` — or `bash .github/scripts/ci-leg.sh test`, exactly as CI runs it
+- **Before a push:** `bash .github/scripts/ci-leg.sh fast` (fmt → clippy → test → CI scripts)
 - **Benchmarks (ignored):** `cargo test -p blitz-tests --release --test paint_tree_bench -- --ignored --nocapture`
 
 ## Not yet measured

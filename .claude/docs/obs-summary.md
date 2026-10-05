@@ -21,9 +21,11 @@ _Distilled from `.andromeda/obs-plan.md` (adopted reading). wrap-session's casca
 | Frame times | `log-frame-times` per anyrender backend |
 | `debug_timer` labelled instants | stdout when `enable` |
 | Browser FPS overlay | in-app |
-| WPT per-test / per-run stats | printed; scores to Pages |
+| WPT per-test / per-run stats | printed; scores to Pages (upstream `DioxusLabs/blitz` only) |
 
 No counters, histograms or exporters exist.
+
+CI artifacts (§9): each ci.yml leg's merged output, `target/ci-logs/{leg}.log`, is uploaded only when the leg fails (`ci-log-{job id}`, kept 7 days, unscrubbed build output).
 
 ## SLO invariants (§10)
 > NO RECORDED INTENT.
