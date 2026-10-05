@@ -1,0 +1,1946 @@
+[
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-05T22:58:11Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T22-50-45-implement",
+"--marker",
+"2026-10-05-ci-gate-legs"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-05-ci-gate-legs · entries 19",
+"logs $TMPDIR/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45 · bound: GNU timeout",
+"delta docs 37 · python 1 · rust 8 · unmapped 2",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L142-154: Host gates come first (entries 1-14), then the operator pass (entries 15-18). There is no … (1335 chars)",
+"  1 unit        green · exit 0 · 0.12s · 122 B → 1.log · python3 -m unittest discover -s .github/scripts",
+"  2 lint        green · exit 0 · 0.44s · 0 B → 2.log · bash .github/scripts/ci-leg.sh fmt",
+"  3 lint        green · exit 0 · 3.19s · 1796 B → 3.log · bash .github/scripts/ci-leg.sh clippy",
+"  4 integration green · exit 0 · 47.48s · 46677 B → 4.log · bash .github/scripts/ci-leg.sh test",
+"  5 probe       green · exit 0 · 0.0s · 8 B → 5.log · grep -oE '[0-9]+ passed; [0-9]+ failed; [0-9]+ ignored' ta… (130 chars)",
+"  6 lint        green · exit 0 · 0.36s · 177 B → 6.log · bash .github/scripts/ci-leg.sh doc",
+"  7 probe       green · exit 0 · 0.99s · 14 B → 7.log · bash .github/scripts/ci-leg.sh audit",
+"  8 integration green · exit 0 · 2.51s · 2007 B → 8.log · bash .github/scripts/ci-leg.sh a11y",
+"  9 probe       red · exit 0 ✗ (exit 1) · exit 1 · 70.12s · 68417 B → 9.log · bash .github/scripts/ci-leg.sh coverage",
+" 10 probe       red · exit 0 ✗ (exit 1) · exit 1 · 0.0s · 0 B → 10.log · test -s target/coverage/lcov.info",
+" 11 probe       green · exit 1 · 0.0s · 2 B → 11.log · grep -E '^ *(- )?uses:' .github/workflows/ci.yml | grep -c… (82 chars)",
+" 12 probe       green · exit 0 · 0.0s · 2 B → 12.log · grep -cE 'a11y|accessib|axe' .github/workflows/ci.yml",
+" 13 probe       green · exit 1 · 0.0s · 2 B → 13.log · git diff -U0 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- C… (96 chars)",
+" 14 probe       green · exit 1 · 0.01s · 2 B → 14.log · git diff -U0 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- p… (163 chars)",
+" 15 probe       recorded · exit 0 · 0.01s · 42 B → 15.log · git diff 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- Cargo… (99 chars)",
+" 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 17 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 18 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+" 19 probe       not run — leg operator (the letter drives it) · gh run view <id> -R Turbolet85/escher --json jobs --jq '.j… (108 chars)",
+"entries 19 · green 12 · red 2 (9,10) · recorded 1 · timeout 0 · not-run 4"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-05-ci-gate-legs",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-05-ci-gate-legs/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-05T21-59-55-wrap/evolve-2026-10-05-fork-ci-reached.json",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/a11y-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/a11y.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/arch-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/arch.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/control-e13.diff",
+".andromeda/runs/2026-10-05T22-31-57-phase/control-e14.diff",
+".andromeda/runs/2026-10-05T22-31-57-phase/design.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/evolve-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/gate-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/layouts.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/master-record.txt",
+".andromeda/runs/2026-10-05T22-31-57-phase/matrix-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/obs-contracts.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/obs-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/obs.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/planlint-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/registry-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/route-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/route-no-marker.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/security-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/security.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/sidecar-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/tests-contracts.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/tests-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/tests.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/tree-query-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-50-45-implement/evolve-2026-10-05-ci-gate-legs.json",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/plan.md",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/research.md",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/scope.md"
+],
+"python": [
+".github/scripts/test_ci_workflows.py"
+],
+"rust": [
+"Cargo.lock",
+"apps/browser/Cargo.toml",
+"examples/transparent/src/main.rs",
+"packages/blitz-dom/src/layout/replaced.rs",
+"packages/blitz-dom/src/node/node.rs",
+"packages/blitz-dom/src/traversal.rs",
+"packages/blitz-vibey-script/src/document.rs",
+"deny.toml"
+]
+},
+"unmapped": [
+".github/scripts/ci-leg.sh",
+".github/workflows/ci.yml"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 48,
+"problem": null
+},
+"prose": [
+{
+"from": 142,
+"to": 154,
+"text": "Host gates come first (entries 1-14), then the operator pass (entries 15-18). There is no boot path and no `live` leg: the chunk changes CI legs, a lockfile entry, doc text and one manifest key, so there is no smoke and no self-verify (no UI surface). This sentence is the record of that absence. The local pre-push gate is `bash .github/scripts/ci-leg.sh fast`, and it rides inside the push entry, so the operator pass re-runs it before every push and fix push. The CI reads need the operator's commit and push first, because /implement never commits, so the hygiene entry, the push and the CI reads are `operator` entries. They use `/home/turbolet/.claude/skills/andromeda-tools/scripts` as `{tools_dir}`, substituted literally. `--wait 3000` covers the pipeline this chunk produces. Its Cargo.lock change re-keys every rust cache once (arch §Occupied Resources → CI infrastructure), and the uncached coverage leg runs cold. Phase Setup 5a read the last warm run at 431 s, and the first cold build-branch run was 1255 s. Entry 18 records the per-job timings. If the coverage job lengthens the pipeline wall-clock, that is RECORDED, not gated: it is the overseer's ask at the P4 fork, and the shared-cache-key lever is for a later chunk. The instrument this chunk extends runs red before green at /implement (step 6, `evidence/instrument-red.md`)."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "python3 -m unittest discover -s .github/scripts",
+"run_sha8": "07d6c28c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/1.log",
+"bytes": 122,
+"log_sha8": "e0b6f4f3",
+"exit": 0,
+"seconds": 0.12,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fmt",
+"run_sha8": "acbd681e",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/2.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.44,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh clippy",
+"run_sha8": "8be93962",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/3.log",
+"bytes": 1796,
+"log_sha8": "e3ffaea9",
+"exit": 0,
+"seconds": 3.19,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh test",
+"run_sha8": "b27b3230",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/4.log",
+"bytes": 46677,
+"log_sha8": "85207284",
+"exit": 0,
+"seconds": 47.48,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "grep -oE '[0-9]+ passed; [0-9]+ failed; [0-9]+ ignored' target/ci-logs/test.log | awk '{p+=$1; f+=$3; i+=$5} END {print p, f, i}' ",
+"run_sha8": "9da556be",
+"expect": [
+"exit 0",
+"last line 407 0 3"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/5.log",
+"bytes": 8,
+"log_sha8": "47e97342",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '407 0 3' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": [
+"exit 0",
+"lacks output filename collision"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/6.log",
+"bytes": 177,
+"log_sha8": "ab87c3c2",
+"exit": 0,
+"seconds": 0.36,
+"readings": [
+"exit 0 ✓",
+"lacks 'output filename collision' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/7.log",
+"bytes": 14,
+"log_sha8": "799fc05e",
+"exit": 0,
+"seconds": 0.99,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": [
+"exit 0",
+"contains running 6 tests",
+"contains running 3 tests",
+"lacks running 0 tests"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/8.log",
+"bytes": 2007,
+"log_sha8": "af1f8795",
+"exit": 0,
+"seconds": 2.51,
+"readings": [
+"exit 0 ✓",
+"contains 'running 6 tests' ✓",
+"contains 'running 3 tests' ✓",
+"lacks 'running 0 tests' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh coverage",
+"run_sha8": "8c67d572",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/9.log",
+"bytes": 68417,
+"log_sha8": "2e96c413",
+"exit": 1,
+"seconds": 70.12,
+"readings": [
+"exit 0 ✗ (exit 1)",
+"artifact ABSENT (target/coverage/)"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 1)"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "test -s target/coverage/lcov.info",
+"run_sha8": "ffd36100",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/10.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✗ (exit 1)"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 1)"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "grep -E '^ *(- )?uses:' .github/workflows/ci.yml | grep -cvE '@[0-9a-f]{40}( |$)' ",
+"run_sha8": "47862b3e",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/11.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "grep -cE 'a11y|accessib|axe' .github/workflows/ci.yml",
+"run_sha8": "9382626e",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/12.log",
+"bytes": 2,
+"log_sha8": "f0b5c2c2",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "git diff -U0 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- Cargo.toml | grep -cE '^[-+]([^-+]|$)' ",
+"run_sha8": "52e9b123",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/13.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "git diff -U0 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- packages examples | grep -E '^[-+][^-+]' | grep -vE '^[-+] *//[/!]' | grep -cE 'cfg\\(|tracing::|println!' ",
+"run_sha8": "c2ad53de",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/14.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "git diff 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- Cargo.lock | grep -E '^[-+](name|version) = ' ",
+"run_sha8": "052b0a63",
+"expect": [],
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/15.log",
+"bytes": 42,
+"log_sha8": "0932026d",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"report-only (expect = [])"
+],
+"survivors": [],
+"outcome": "recorded"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 3000",
+"run_sha8": "b6f1d47c",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "gh run view <id> -R Turbolet85/escher --json jobs --jq '.jobs[] | [.name, .startedAt, .completedAt] | @tsv' ",
+"run_sha8": "1665796d",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-05T22:58:18Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-05T22-50-45-implement",
+"--marker",
+"2026-10-05-ci-gate-legs",
+"--n",
+"9"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"9 probe red · exit 0 ✗ (exit 1)",
+"run (8c67d572): bash .github/scripts/ci-leg.sh coverage",
+"  exit 0 ✗ (exit 1)",
+"  artifact ABSENT (target/coverage/)",
+"log $TMPDIR/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/9.log · 68417 B · 2e96c413",
+"--- failing block from L1652 ---",
+"error: failed to generate report: failed to create file `target/coverage/lcov.info`: No such file or directory (os error 2)",
+""
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-05T22:59:03Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T22-50-45-implement",
+"--marker",
+"2026-10-05-ci-gate-legs",
+"--only",
+"1,9,10"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-05-ci-gate-legs · entries 19",
+"logs $TMPDIR/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45 · bound: GNU timeout",
+"delta docs 41 · python 1 · rust 8 · unmapped 2",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L142-154: Host gates come first (entries 1-14), then the operator pass (entries 15-18). There is no … (1335 chars)",
+"  1 unit        green · exit 0 · 0.13s · 122 B → 1.log · python3 -m unittest discover -s .github/scripts",
+"  2 lint        not run — excluded · bash .github/scripts/ci-leg.sh fmt",
+"  3 lint        not run — excluded · bash .github/scripts/ci-leg.sh clippy",
+"  4 integration not run — excluded · bash .github/scripts/ci-leg.sh test",
+"  5 probe       not run — excluded · grep -oE '[0-9]+ passed; [0-9]+ failed; [0-9]+ ignored' ta… (130 chars)",
+"  6 lint        not run — excluded · bash .github/scripts/ci-leg.sh doc",
+"  7 probe       not run — excluded · bash .github/scripts/ci-leg.sh audit",
+"  8 integration not run — excluded · bash .github/scripts/ci-leg.sh a11y",
+"  9 probe       green · exit 0 · 37.27s · 46853 B → 9.log · bash .github/scripts/ci-leg.sh coverage",
+" 10 probe       green · exit 0 · 0.0s · 0 B → 10.log · test -s target/coverage/lcov.info",
+" 11 probe       not run — excluded · grep -E '^ *(- )?uses:' .github/workflows/ci.yml | grep -c… (82 chars)",
+" 12 probe       not run — excluded · grep -cE 'a11y|accessib|axe' .github/workflows/ci.yml",
+" 13 probe       not run — excluded · git diff -U0 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- C… (96 chars)",
+" 14 probe       not run — excluded · git diff -U0 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- p… (163 chars)",
+" 15 probe       not run — excluded · git diff 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- Cargo… (99 chars)",
+" 16 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 17 probe       not run — excluded · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 18 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+" 19 probe       not run — excluded · gh run view <id> -R Turbolet85/escher --json jobs --jq '.j… (108 chars)",
+"entries 19 · green 3 · red 0 · recorded 0 · timeout 0 · not-run 16"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-05-ci-gate-legs",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-05-ci-gate-legs/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-05T21-59-55-wrap/evolve-2026-10-05-fork-ci-reached.json",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/a11y-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/a11y.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/arch-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/arch.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/control-e13.diff",
+".andromeda/runs/2026-10-05T22-31-57-phase/control-e14.diff",
+".andromeda/runs/2026-10-05T22-31-57-phase/design.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/evolve-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/gate-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/layouts.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/master-record.txt",
+".andromeda/runs/2026-10-05T22-31-57-phase/matrix-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/obs-contracts.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/obs-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/obs.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/planlint-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/registry-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/route-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/route-no-marker.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/security-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/security.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/sidecar-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/tests-contracts.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/tests-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/tests.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/tree-query-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-50-45-implement/evolve-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-50-45-implement/gate-2026-10-05-ci-gate-legs.json",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/evidence/audit.md",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/evidence/host.md",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/evidence/instrument-red.md",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/plan.md",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/research.md",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/scope.md"
+],
+"python": [
+".github/scripts/test_ci_workflows.py"
+],
+"rust": [
+"Cargo.lock",
+"apps/browser/Cargo.toml",
+"examples/transparent/src/main.rs",
+"packages/blitz-dom/src/layout/replaced.rs",
+"packages/blitz-dom/src/node/node.rs",
+"packages/blitz-dom/src/traversal.rs",
+"packages/blitz-vibey-script/src/document.rs",
+"deny.toml"
+]
+},
+"unmapped": [
+".github/scripts/ci-leg.sh",
+".github/workflows/ci.yml"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 52,
+"problem": null
+},
+"prose": [
+{
+"from": 142,
+"to": 154,
+"text": "Host gates come first (entries 1-14), then the operator pass (entries 15-18). There is no boot path and no `live` leg: the chunk changes CI legs, a lockfile entry, doc text and one manifest key, so there is no smoke and no self-verify (no UI surface). This sentence is the record of that absence. The local pre-push gate is `bash .github/scripts/ci-leg.sh fast`, and it rides inside the push entry, so the operator pass re-runs it before every push and fix push. The CI reads need the operator's commit and push first, because /implement never commits, so the hygiene entry, the push and the CI reads are `operator` entries. They use `/home/turbolet/.claude/skills/andromeda-tools/scripts` as `{tools_dir}`, substituted literally. `--wait 3000` covers the pipeline this chunk produces. Its Cargo.lock change re-keys every rust cache once (arch §Occupied Resources → CI infrastructure), and the uncached coverage leg runs cold. Phase Setup 5a read the last warm run at 431 s, and the first cold build-branch run was 1255 s. Entry 18 records the per-job timings. If the coverage job lengthens the pipeline wall-clock, that is RECORDED, not gated: it is the overseer's ask at the P4 fork, and the shared-cache-key lever is for a later chunk. The instrument this chunk extends runs red before green at /implement (step 6, `evidence/instrument-red.md`)."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "python3 -m unittest discover -s .github/scripts",
+"run_sha8": "07d6c28c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/1.log",
+"bytes": 122,
+"log_sha8": "fd3d2e5d",
+"exit": 0,
+"seconds": 0.13,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fmt",
+"run_sha8": "acbd681e",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh clippy",
+"run_sha8": "8be93962",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh test",
+"run_sha8": "b27b3230",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "grep -oE '[0-9]+ passed; [0-9]+ failed; [0-9]+ ignored' target/ci-logs/test.log | awk '{p+=$1; f+=$3; i+=$5} END {print p, f, i}' ",
+"run_sha8": "9da556be",
+"expect": [
+"exit 0",
+"last line 407 0 3"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": [
+"exit 0",
+"lacks output filename collision"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": [
+"exit 0",
+"contains running 6 tests",
+"contains running 3 tests",
+"lacks running 0 tests"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh coverage",
+"run_sha8": "8c67d572",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/9.log",
+"bytes": 46853,
+"log_sha8": "b3040781",
+"exit": 0,
+"seconds": 37.27,
+"readings": [
+"exit 0 ✓",
+"artifact fresh (target/coverage/ → .)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "test -s target/coverage/lcov.info",
+"run_sha8": "ffd36100",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/10.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "grep -E '^ *(- )?uses:' .github/workflows/ci.yml | grep -cvE '@[0-9a-f]{40}( |$)' ",
+"run_sha8": "47862b3e",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "grep -cE 'a11y|accessib|axe' .github/workflows/ci.yml",
+"run_sha8": "9382626e",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "git diff -U0 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- Cargo.toml | grep -cE '^[-+]([^-+]|$)' ",
+"run_sha8": "52e9b123",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "git diff -U0 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- packages examples | grep -E '^[-+][^-+]' | grep -vE '^[-+] *//[/!]' | grep -cE 'cfg\\(|tracing::|println!' ",
+"run_sha8": "c2ad53de",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "git diff 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- Cargo.lock | grep -E '^[-+](name|version) = ' ",
+"run_sha8": "052b0a63",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 3000",
+"run_sha8": "b6f1d47c",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "gh run view <id> -R Turbolet85/escher --json jobs --jq '.jobs[] | [.name, .startedAt, .completedAt] | @tsv' ",
+"run_sha8": "1665796d",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-05T23:00:15Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T22-50-45-implement",
+"--marker",
+"2026-10-05-ci-gate-legs",
+"--only",
+"1,9,10"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-05-ci-gate-legs · entries 19",
+"logs $TMPDIR/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45 · bound: GNU timeout",
+"delta docs 41 · python 1 · rust 8 · unmapped 2",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L142-154: Host gates come first (entries 1-14), then the operator pass (entries 15-18). There is no … (1335 chars)",
+"  1 unit        green · exit 0 · 0.12s · 122 B → 1.log · python3 -m unittest discover -s .github/scripts",
+"  2 lint        not run — excluded · bash .github/scripts/ci-leg.sh fmt",
+"  3 lint        not run — excluded · bash .github/scripts/ci-leg.sh clippy",
+"  4 integration not run — excluded · bash .github/scripts/ci-leg.sh test",
+"  5 probe       not run — excluded · grep -oE '[0-9]+ passed; [0-9]+ failed; [0-9]+ ignored' ta… (130 chars)",
+"  6 lint        not run — excluded · bash .github/scripts/ci-leg.sh doc",
+"  7 probe       not run — excluded · bash .github/scripts/ci-leg.sh audit",
+"  8 integration not run — excluded · bash .github/scripts/ci-leg.sh a11y",
+"  9 probe       green · exit 0 · 37.12s · 79589 B → 9.log · bash .github/scripts/ci-leg.sh coverage",
+" 10 probe       green · exit 0 · 0.0s · 0 B → 10.log · test -s target/coverage/lcov.info",
+" 11 probe       not run — excluded · grep -E '^ *(- )?uses:' .github/workflows/ci.yml | grep -c… (82 chars)",
+" 12 probe       not run — excluded · grep -cE 'a11y|accessib|axe' .github/workflows/ci.yml",
+" 13 probe       not run — excluded · git diff -U0 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- C… (96 chars)",
+" 14 probe       not run — excluded · git diff -U0 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- p… (163 chars)",
+" 15 probe       not run — excluded · git diff 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- Cargo… (99 chars)",
+" 16 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 17 probe       not run — excluded · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 18 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+" 19 probe       not run — excluded · gh run view <id> -R Turbolet85/escher --json jobs --jq '.j… (108 chars)",
+"entries 19 · green 3 · red 0 · recorded 0 · timeout 0 · not-run 16"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-05-ci-gate-legs",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-05-ci-gate-legs/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-05T21-59-55-wrap/evolve-2026-10-05-fork-ci-reached.json",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/a11y-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/a11y.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/arch-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/arch.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/control-e13.diff",
+".andromeda/runs/2026-10-05T22-31-57-phase/control-e14.diff",
+".andromeda/runs/2026-10-05T22-31-57-phase/design.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/evolve-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/gate-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/layouts.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/master-record.txt",
+".andromeda/runs/2026-10-05T22-31-57-phase/matrix-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/obs-contracts.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/obs-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/obs.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/planlint-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/registry-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/route-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/route-no-marker.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/security-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/security.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/sidecar-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/tests-contracts.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/tests-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/tests.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/tree-query-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-50-45-implement/evolve-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-50-45-implement/gate-2026-10-05-ci-gate-legs.json",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/evidence/audit.md",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/evidence/host.md",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/evidence/instrument-red.md",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/plan.md",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/research.md",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/scope.md"
+],
+"python": [
+".github/scripts/test_ci_workflows.py"
+],
+"rust": [
+"Cargo.lock",
+"apps/browser/Cargo.toml",
+"examples/transparent/src/main.rs",
+"packages/blitz-dom/src/layout/replaced.rs",
+"packages/blitz-dom/src/node/node.rs",
+"packages/blitz-dom/src/traversal.rs",
+"packages/blitz-vibey-script/src/document.rs",
+"deny.toml"
+]
+},
+"unmapped": [
+".github/scripts/ci-leg.sh",
+".github/workflows/ci.yml"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 52,
+"problem": null
+},
+"prose": [
+{
+"from": 142,
+"to": 154,
+"text": "Host gates come first (entries 1-14), then the operator pass (entries 15-18). There is no boot path and no `live` leg: the chunk changes CI legs, a lockfile entry, doc text and one manifest key, so there is no smoke and no self-verify (no UI surface). This sentence is the record of that absence. The local pre-push gate is `bash .github/scripts/ci-leg.sh fast`, and it rides inside the push entry, so the operator pass re-runs it before every push and fix push. The CI reads need the operator's commit and push first, because /implement never commits, so the hygiene entry, the push and the CI reads are `operator` entries. They use `/home/turbolet/.claude/skills/andromeda-tools/scripts` as `{tools_dir}`, substituted literally. `--wait 3000` covers the pipeline this chunk produces. Its Cargo.lock change re-keys every rust cache once (arch §Occupied Resources → CI infrastructure), and the uncached coverage leg runs cold. Phase Setup 5a read the last warm run at 431 s, and the first cold build-branch run was 1255 s. Entry 18 records the per-job timings. If the coverage job lengthens the pipeline wall-clock, that is RECORDED, not gated: it is the overseer's ask at the P4 fork, and the shared-cache-key lever is for a later chunk. The instrument this chunk extends runs red before green at /implement (step 6, `evidence/instrument-red.md`)."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "python3 -m unittest discover -s .github/scripts",
+"run_sha8": "07d6c28c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/1.log",
+"bytes": 122,
+"log_sha8": "75c1841d",
+"exit": 0,
+"seconds": 0.12,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fmt",
+"run_sha8": "acbd681e",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh clippy",
+"run_sha8": "8be93962",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh test",
+"run_sha8": "b27b3230",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "grep -oE '[0-9]+ passed; [0-9]+ failed; [0-9]+ ignored' target/ci-logs/test.log | awk '{p+=$1; f+=$3; i+=$5} END {print p, f, i}' ",
+"run_sha8": "9da556be",
+"expect": [
+"exit 0",
+"last line 407 0 3"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": [
+"exit 0",
+"lacks output filename collision"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": [
+"exit 0",
+"contains running 6 tests",
+"contains running 3 tests",
+"lacks running 0 tests"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh coverage",
+"run_sha8": "8c67d572",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/9.log",
+"bytes": 79589,
+"log_sha8": "d72c9373",
+"exit": 0,
+"seconds": 37.12,
+"readings": [
+"exit 0 ✓",
+"artifact fresh (target/coverage/ → lcov.info)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "test -s target/coverage/lcov.info",
+"run_sha8": "ffd36100",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/10.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "grep -E '^ *(- )?uses:' .github/workflows/ci.yml | grep -cvE '@[0-9a-f]{40}( |$)' ",
+"run_sha8": "47862b3e",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "grep -cE 'a11y|accessib|axe' .github/workflows/ci.yml",
+"run_sha8": "9382626e",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "git diff -U0 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- Cargo.toml | grep -cE '^[-+]([^-+]|$)' ",
+"run_sha8": "52e9b123",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "git diff -U0 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- packages examples | grep -E '^[-+][^-+]' | grep -vE '^[-+] *//[/!]' | grep -cE 'cfg\\(|tracing::|println!' ",
+"run_sha8": "c2ad53de",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "git diff 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- Cargo.lock | grep -E '^[-+](name|version) = ' ",
+"run_sha8": "052b0a63",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 3000",
+"run_sha8": "b6f1d47c",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "gh run view <id> -R Turbolet85/escher --json jobs --jq '.jobs[] | [.name, .startedAt, .completedAt] | @tsv' ",
+"run_sha8": "1665796d",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-05T23:01:13Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T22-50-45-implement",
+"--marker",
+"2026-10-05-ci-gate-legs"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-05-ci-gate-legs · entries 19",
+"logs $TMPDIR/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45 · bound: GNU timeout",
+"delta docs 41 · python 1 · rust 8 · unmapped 2",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L142-154: Host gates come first (entries 1-14), then the operator pass (entries 15-18). There is no … (1335 chars)",
+"  1 unit        green · exit 0 · 0.13s · 122 B → 1.log · python3 -m unittest discover -s .github/scripts",
+"  2 lint        green · exit 0 · 0.46s · 0 B → 2.log · bash .github/scripts/ci-leg.sh fmt",
+"  3 lint        green · exit 0 · 0.35s · 72 B → 3.log · bash .github/scripts/ci-leg.sh clippy",
+"  4 integration green · exit 0 · 11.41s · 44641 B → 4.log · bash .github/scripts/ci-leg.sh test",
+"  5 probe       green · exit 0 · 0.0s · 8 B → 5.log · grep -oE '[0-9]+ passed; [0-9]+ failed; [0-9]+ ignored' ta… (130 chars)",
+"  6 lint        green · exit 0 · 0.3s · 177 B → 6.log · bash .github/scripts/ci-leg.sh doc",
+"  7 probe       green · exit 0 · 1.02s · 14 B → 7.log · bash .github/scripts/ci-leg.sh audit",
+"  8 integration green · exit 0 · 0.77s · 1415 B → 8.log · bash .github/scripts/ci-leg.sh a11y",
+"  9 probe       green · exit 0 · 37.44s · 79589 B → 9.log · bash .github/scripts/ci-leg.sh coverage",
+" 10 probe       green · exit 0 · 0.0s · 0 B → 10.log · test -s target/coverage/lcov.info",
+" 11 probe       green · exit 1 · 0.0s · 2 B → 11.log · grep -E '^ *(- )?uses:' .github/workflows/ci.yml | grep -c… (82 chars)",
+" 12 probe       green · exit 0 · 0.0s · 2 B → 12.log · grep -cE 'a11y|accessib|axe' .github/workflows/ci.yml",
+" 13 probe       green · exit 1 · 0.0s · 2 B → 13.log · git diff -U0 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- C… (96 chars)",
+" 14 probe       green · exit 1 · 0.01s · 2 B → 14.log · git diff -U0 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- p… (163 chars)",
+" 15 probe       recorded · exit 0 · 0.01s · 42 B → 15.log · git diff 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- Cargo… (99 chars)",
+" 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 17 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 18 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+" 19 probe       not run — leg operator (the letter drives it) · gh run view <id> -R Turbolet85/escher --json jobs --jq '.j… (108 chars)",
+"entries 19 · green 14 · red 0 · recorded 1 · timeout 0 · not-run 4"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-05-ci-gate-legs",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-05-ci-gate-legs/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-05T21-59-55-wrap/evolve-2026-10-05-fork-ci-reached.json",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/a11y-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/a11y.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/arch-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/arch.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/control-e13.diff",
+".andromeda/runs/2026-10-05T22-31-57-phase/control-e14.diff",
+".andromeda/runs/2026-10-05T22-31-57-phase/design.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/evolve-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/gate-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/layouts.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/master-record.txt",
+".andromeda/runs/2026-10-05T22-31-57-phase/matrix-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/obs-contracts.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/obs-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/obs.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/planlint-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/registry-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/route-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/route-no-marker.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/security-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/security.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/sidecar-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-31-57-phase/tests-contracts.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/tests-history.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/tests.md",
+".andromeda/runs/2026-10-05T22-31-57-phase/tree-query-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-50-45-implement/evolve-2026-10-05-ci-gate-legs.json",
+".andromeda/runs/2026-10-05T22-50-45-implement/gate-2026-10-05-ci-gate-legs.json",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/evidence/audit.md",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/evidence/host.md",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/evidence/instrument-red.md",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/plan.md",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/research.md",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs/scope.md"
+],
+"python": [
+".github/scripts/test_ci_workflows.py"
+],
+"rust": [
+"Cargo.lock",
+"apps/browser/Cargo.toml",
+"examples/transparent/src/main.rs",
+"packages/blitz-dom/src/layout/replaced.rs",
+"packages/blitz-dom/src/node/node.rs",
+"packages/blitz-dom/src/traversal.rs",
+"packages/blitz-vibey-script/src/document.rs",
+"deny.toml"
+]
+},
+"unmapped": [
+".github/scripts/ci-leg.sh",
+".github/workflows/ci.yml"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 52,
+"problem": null
+},
+"prose": [
+{
+"from": 142,
+"to": 154,
+"text": "Host gates come first (entries 1-14), then the operator pass (entries 15-18). There is no boot path and no `live` leg: the chunk changes CI legs, a lockfile entry, doc text and one manifest key, so there is no smoke and no self-verify (no UI surface). This sentence is the record of that absence. The local pre-push gate is `bash .github/scripts/ci-leg.sh fast`, and it rides inside the push entry, so the operator pass re-runs it before every push and fix push. The CI reads need the operator's commit and push first, because /implement never commits, so the hygiene entry, the push and the CI reads are `operator` entries. They use `/home/turbolet/.claude/skills/andromeda-tools/scripts` as `{tools_dir}`, substituted literally. `--wait 3000` covers the pipeline this chunk produces. Its Cargo.lock change re-keys every rust cache once (arch §Occupied Resources → CI infrastructure), and the uncached coverage leg runs cold. Phase Setup 5a read the last warm run at 431 s, and the first cold build-branch run was 1255 s. Entry 18 records the per-job timings. If the coverage job lengthens the pipeline wall-clock, that is RECORDED, not gated: it is the overseer's ask at the P4 fork, and the shared-cache-key lever is for a later chunk. The instrument this chunk extends runs red before green at /implement (step 6, `evidence/instrument-red.md`)."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "python3 -m unittest discover -s .github/scripts",
+"run_sha8": "07d6c28c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/1.log",
+"bytes": 122,
+"log_sha8": "75c1841d",
+"exit": 0,
+"seconds": 0.13,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fmt",
+"run_sha8": "acbd681e",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/2.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.46,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh clippy",
+"run_sha8": "8be93962",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/3.log",
+"bytes": 72,
+"log_sha8": "9a30d54c",
+"exit": 0,
+"seconds": 0.35,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh test",
+"run_sha8": "b27b3230",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/4.log",
+"bytes": 44641,
+"log_sha8": "a83b4737",
+"exit": 0,
+"seconds": 11.41,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "grep -oE '[0-9]+ passed; [0-9]+ failed; [0-9]+ ignored' target/ci-logs/test.log | awk '{p+=$1; f+=$3; i+=$5} END {print p, f, i}' ",
+"run_sha8": "9da556be",
+"expect": [
+"exit 0",
+"last line 407 0 3"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/5.log",
+"bytes": 8,
+"log_sha8": "47e97342",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '407 0 3' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": [
+"exit 0",
+"lacks output filename collision"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/6.log",
+"bytes": 177,
+"log_sha8": "5652e695",
+"exit": 0,
+"seconds": 0.3,
+"readings": [
+"exit 0 ✓",
+"lacks 'output filename collision' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/7.log",
+"bytes": 14,
+"log_sha8": "799fc05e",
+"exit": 0,
+"seconds": 1.02,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": [
+"exit 0",
+"contains running 6 tests",
+"contains running 3 tests",
+"lacks running 0 tests"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/8.log",
+"bytes": 1415,
+"log_sha8": "e18479ce",
+"exit": 0,
+"seconds": 0.77,
+"readings": [
+"exit 0 ✓",
+"contains 'running 6 tests' ✓",
+"contains 'running 3 tests' ✓",
+"lacks 'running 0 tests' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh coverage",
+"run_sha8": "8c67d572",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/9.log",
+"bytes": 79589,
+"log_sha8": "86270b1b",
+"exit": 0,
+"seconds": 37.44,
+"readings": [
+"exit 0 ✓",
+"artifact fresh (target/coverage/ → lcov.info)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "test -s target/coverage/lcov.info",
+"run_sha8": "ffd36100",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/10.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "grep -E '^ *(- )?uses:' .github/workflows/ci.yml | grep -cvE '@[0-9a-f]{40}( |$)' ",
+"run_sha8": "47862b3e",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/11.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "grep -cE 'a11y|accessib|axe' .github/workflows/ci.yml",
+"run_sha8": "9382626e",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/12.log",
+"bytes": 2,
+"log_sha8": "f0b5c2c2",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "git diff -U0 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- Cargo.toml | grep -cE '^[-+]([^-+]|$)' ",
+"run_sha8": "52e9b123",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/13.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "git diff -U0 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- packages examples | grep -E '^[-+][^-+]' | grep -vE '^[-+] *//[/!]' | grep -cE 'cfg\\(|tracing::|println!' ",
+"run_sha8": "c2ad53de",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/14.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "git diff 15e36b8ac1440bcfcaf2084698eacfc9dd12f7da -- Cargo.lock | grep -E '^[-+](name|version) = ' ",
+"run_sha8": "052b0a63",
+"expect": [],
+"log": "/tmp/andromeda-gate/2026-10-05-ci-gate-legs/implement-2026-10-05T22-50-45/15.log",
+"bytes": 42,
+"log_sha8": "0932026d",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"report-only (expect = [])"
+],
+"survivors": [],
+"outcome": "recorded"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 3000",
+"run_sha8": "b6f1d47c",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "gh run view <id> -R Turbolet85/escher --json jobs --jq '.jobs[] | [.name, .startedAt, .completedAt] | @tsv' ",
+"run_sha8": "1665796d",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-05T23:02:07Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-05-ci-gate-legs",
+"--run-dir",
+".andromeda/runs/2026-10-05T22-50-45-implement",
+"--marker",
+"2026-10-05-ci-gate-legs"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 1 · modify 10 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 11 · listed 11 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 42"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 11,
+"listed": 11,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 42,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

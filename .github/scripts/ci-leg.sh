@@ -5,7 +5,7 @@
 # the leg command's own status.
 set -euo pipefail
 
-LEGS=(fmt clippy test ci-scripts build msrv counter wasm doc fast)
+LEGS=(fmt clippy test ci-scripts build msrv counter wasm doc audit a11y coverage fast)
 FAST_LEGS=(fmt clippy test ci-scripts)
 
 usage() {
@@ -29,7 +29,14 @@ run_leg() {
             cargo build -p seven_guis --lib --target wasm32-unknown-unknown --no-default-features --features hybrid --locked &&
             cargo build -p todomvc --lib --target wasm32-unknown-unknown --no-default-features --features hybrid --locked
         ;;
-    doc) cargo doc --locked ;;
+    doc) cargo doc --workspace --no-deps --locked ;;
+    audit) cargo deny --locked check advisories ;;
+    a11y) cargo test --workspace --locked --test accessibility_hidden --test accessibility_roles --test focusability_updates ;;
+    coverage)
+        mkdir -p target/coverage &&
+            cargo llvm-cov --workspace --locked --lcov --output-path target/coverage/lcov.info &&
+            cargo llvm-cov report --workspace --locked
+        ;;
     esac
 }
 

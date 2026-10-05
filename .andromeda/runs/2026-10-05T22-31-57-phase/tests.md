@@ -1,0 +1,35 @@
+# tests extract
+
+## Relevance
+relevant — the chunk extends the CI pipeline test-plan §9 describes (new legs, workflow invariants), closes the §3 Bootstrap phases `coverage-tooling-install` item, and turns the §9 Local baseline's red rustdoc measurement green; test tier is `0` per test-plan §1.
+
+## Constraints
+- Every new linux job (audit, coverage, a11y, the real doc gate) must run as `bash .github/scripts/ci-leg.sh {leg}`, its leg listed in the script so the dev host can reproduce it, and every cargo leg must pass `--locked`. test-plan §9 Pipeline facts → Legs requires this, and §4 ("CI workflows and leg script") pins it through `CiWorkflowTest`.
+- Placement must follow the fast/slow split. Only `fmt`, `clippy`, `test-features-default` and `ci-scripts` may carry no `needs`, and every other job `needs` all four, per test-plan §9 Fast/slow split. The `CiWorkflowTest` of test-plan §4 enforces this, so a new leg goes in the slow tier unless that test is changed on purpose. Whether a coverage or a11y job should run in the fast tier is P4's call.
+- Every compiling job must carry `Swatinem/rust-cache@v2` with the `main` + `build/` save rule. test-plan §9 Cache requires this and test-plan §4 pins it. A coverage leg compiles a separate instrumented build, so it hits this rule. Exempting it, or leaving its cache unsaved, needs a deliberate change to the pinned invariant, not a silent skip.
+- Each new leg job must write its merged output to `target/ci-logs/{leg}.log`, truncated at the leg's start, and must carry its own `if: failure()` upload as `ci-log-{job id}` kept 7 days, per test-plan §9 Failure logs. The coverage report artifact is a separate, always-on upload.
+- The a11y leg must run the existing accessibility tests under the same feature set as the workspace `test` leg. test-plan §9 Fonts says font-dependent assertions rely on `system-fonts`, which is on by default when the whole workspace is tested. test-plan §2 (Font-dependent tests) says such tests skip with `eprintln!` when no usable font is available. If the leg runs a narrower `-p`/`--test` selection, its features may differ and it could pass vacuously. Whether the accessibility test files are font-dependent is research's question.
+- The coverage leg must measure the same test set the workspace `test` leg runs, which is `cargo test --workspace --locked` with default features per test-plan §1 Coverage scope. test-plan §9 Benchmarks says the `#[ignore]` benchmark tests stay out unless they are run explicitly. test-plan §9 Observed absent records coverage tooling as absent, and test-plan §3 Bootstrap phases (`coverage-tooling-install`) assigns its install here.
+- The rustdoc gate's starting measurement is stale. Exit 101, 3 crates and 9 errors were measured under full debuginfo and were "not re-measured under the new profile", per test-plan §9 Local baseline. P3 re-measures at HEAD before the fix is sized.
+
+## Patterns to follow
+- Pin each new workflow invariant as a test in `.github/scripts/test_ci_workflows.py`. That covers SHA-pinned `uses:`, per-workflow and per-job `permissions:`, the new legs being present in ci.yml and in `ci-leg.sh`, and the doc leg's `--workspace --no-deps` with `-D warnings`. Follow the `CiWorkflowTest`, `UpstreamGuardTest` and `LegScriptTest` shapes of test-plan §4. The `ci-scripts` leg runs them, per test-plan §1 (CI Python scripts).
+- Test leg-script behaviour with `LegScriptTest`: run `ci-leg.sh` in a temp dir with a `cargo` shim on PATH, so that a failing leg exits non-zero and writes its log and an unknown leg exits 2, per test-plan §4. Any new leg the script dispatches gets the same shim-level check, so no real audit or coverage tool runs inside unit tests.
+- Select the a11y leg's tests by file, because `tests/blitz-tests` holds one integration-test file per behaviour (test-plan §2, Directory pattern). `accessibility_roles.rs` is the named accessibility file under test-plan §1 (tests/blitz-tests). Whether other a11y test files exist, for example in `blitz-dom/src/accessibility.rs`, is research's question.
+- Use the §9 Local baseline protocol to prove "no behaviour change" for the rustdoc fixes: dev profile, default features, `--locked`, cold after `cargo clean` and then a warm re-run, counts compared against the recorded workspace and blitz-tests counts (test-plan §9 Local baseline).
+
+## Anti-patterns to avoid
+- Do not put a `secrets.` reference or a perl/`opt-level` rewrite in ci.yml. `CiWorkflowTest` pins both as absent (test-plan §4), and the §9 Local baseline is defined with "no `opt-level` rewrite". An audit or coverage step needs neither.
+- Do not ship a leg that passes without asserting. test-plan §4 (Conditional assertions) records tests that pass without asserting when a measured condition does not hold. A named a11y leg that selects zero tests, or whose tests all font-skip, would repeat that at leg level. The leg must fail if it ran no tests.
+
+## Contract bindings
+- tests ↔ a11y: the named a11y leg is a test-plan §9 CI leg that also satisfies a11y-plan §9's "accessibility checks in CI absent". It runs inside ci.yml through `ci-leg.sh`, and "Stand a11y assertions" fills it later.
+- tests ↔ security: the dependency-audit leg, SHA-pinned actions and `permissions:` blocks implement security-plan §Dependency Security (`dep-audit-tooling-install`, `dep-security-ci-gate`), and test-plan §4's `test_ci_workflows.py` pins them as workflow invariants.
+- tests ↔ arch: a coverage leg's cache use counts against the CI infrastructure entry in arch §Occupied Resources. test-plan §9 Cache supplies the save rule it must honour or deliberately change.
+- The obs 5-command, status or log-format binding does not apply: test-plan §3's 5-command contract is NOT YET MEASURED.
+
+## Acceptance criteria contributions
+- `bash .github/scripts/ci-leg.sh fast` exits 0. The `ci-scripts` leg's count rises above 16, with new `test_ci_workflows.py` tests pinning the new legs (in ci.yml and in the script's leg list), SHA-pinned `uses:` on fork-active workflows, explicit `permissions:` on every workflow and job, and the doc leg's `--workspace --no-deps` + `-D warnings` (per test-plan §4 What unit tests cover / §9 Pipeline facts).
+- Each new leg exits 0 on the dev host when run as `bash .github/scripts/ci-leg.sh {leg}`, for `doc`, the audit leg, the coverage leg and the a11y leg. On failure each writes `target/ci-logs/{leg}.log`, and an unknown leg name still exits 2 (per test-plan §9 Legs / Failure logs, §4 `LegScriptTest`).
+- `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps` exits 0, against the recorded exit 101. The workspace test counts stay at the §9 Local baseline values: `cargo test --workspace` 407 · 0 · 3 and `cargo test -p blitz-tests` 255 · 0 · 3. Unchanged counts show the doc fixes changed no behaviour (per test-plan §9 Local baseline).
+- The coverage leg produces a line-coverage report of the workspace test set and uploads it as an artifact on fork CI, with no threshold applied. The a11y leg reports a non-zero count of tests executed, not skipped (per test-plan §3 Bootstrap phases `coverage-tooling-install` / §9 Observed absent).

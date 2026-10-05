@@ -1,0 +1,28 @@
+[
+{
+"sql": "SELECT symbol, kind, file, def_line FROM symbol WHERE name IN ('is_offset_parent','offset_parent','poll','Config') AND kind = 'fn' AND (file LIKE '%blitz-dom%' OR file LIKE '%blitz-traits%') ORDER BY name",
+"rows": 3,
+"result": [
+{
+"symbol": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 node/node/impl#[Node]is_offset_parent().",
+"kind": "fn",
+"file": "packages/blitz-dom/src/node/node.rs",
+"def_line": 1573
+},
+{
+"symbol": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 node/node/impl#[Node]offset_parent().",
+"kind": "fn",
+"file": "packages/blitz-dom/src/node/node.rs",
+"def_line": 1597
+},
+{
+"symbol": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/Document#poll().",
+"kind": "fn",
+"file": "packages/blitz-dom/src/document.rs",
+"def_line": 141
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

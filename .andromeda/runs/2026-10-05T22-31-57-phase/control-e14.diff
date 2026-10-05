@@ -1,0 +1,6 @@
+--- a/packages/blitz-dom/src/x.rs
++++ b/packages/blitz-dom/src/x.rs
+@@ -1 +1,2 @@
+-    /// [`tracing::error!`].
++    /// `tracing::error!`.
++    #[cfg(feature = "tracing")] tracing::info!("x");

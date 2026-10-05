@@ -1,0 +1,21 @@
+# cargo-deny configuration for the `audit` leg (`bash .github/scripts/ci-leg.sh audit`, which runs
+# `cargo deny --locked check advisories`).
+
+[graph]
+# Every platform ci.yml builds, with every feature on, so the audit sees each graph a user can build.
+targets = [
+    "x86_64-unknown-linux-gnu",
+    "x86_64-pc-windows-msvc",
+    "aarch64-apple-darwin",
+    "aarch64-apple-ios",
+    "aarch64-linux-android",
+    "wasm32-unknown-unknown",
+]
+all-features = true
+
+[advisories]
+# Per-ID ignores only, each a bounded deferral: the audit leg re-reads the advisory database on every
+# push, so a new advisory, or a fix landing upstream, surfaces at the next run.
+ignore = [
+    { id = "RUSTSEC-2026-0192", reason = "ttf-parser 0.25.1 is unmaintained, no patched release exists; it reaches the graph only through winit 0.31.0-beta.3 -> winit-wayland -> sctk-adwaita -> ab_glyph -> owned_ttf_parser, and winit is an exact coupled pin (CLAUDE.md), so no fix is reachable without a winit bump; re-checked by the audit leg on every push" },
+]
