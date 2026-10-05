@@ -1,0 +1,1633 @@
+[
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-05T18:52:13Z",
+"argv": [
+"scope",
+"--lists-only",
+"--research",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/research.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T18-46-29-phase",
+"--marker",
+"2026-10-05-as-built-baseline"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"control: lists · glob · record — each fired on its synthetic known positive",
+"scope lists: parsed 1 items (new 1 · modify 0 · derived 0)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"items": 1,
+"unparsed": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-05T18:55:12Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T18-46-29-phase",
+"--marker",
+"2026-10-05-as-built-baseline",
+"--dry-run"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-05-as-built-baseline · entries 10",
+"logs $TMPDIR/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29 · bound: GNU timeout",
+"delta docs 29",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L64-67: No boot-path and no live leg in this chunk: it touches no source, so there is no `smoke` e… (434 chars)",
+"  1 build       not run — dry-run · cargo build --workspace --locked",
+"  2 integration not run — dry-run · cargo test -p blitz-tests --locked",
+"  3 integration not run — dry-run · cargo test -p blitz-tests --locked --test text_selection_a… (87 chars)",
+"  4 unit        not run — dry-run · cargo test --workspace --locked",
+"  5 lint        not run — dry-run · cargo fmt --all --check",
+"  6 lint        not run — dry-run · cargo clippy --workspace --locked -- -D warnings",
+"  7 lint        not run — dry-run · RUSTDOCFLAGS=\"-D warnings\" cargo doc --locked",
+"  8 probe       not run — dry-run · git status --porcelain -- packages tests examples apps wpt… (80 chars)",
+"  9 probe       not run — dry-run · grep -cE '^## (Host|Commands|Wall-clock|Tests|A11y-bearing… (149 chars)",
+" 10 probe       not run — dry-run · cat escher-0.1.0/chunks/2026-10-05-as-built-baseline/evide… (140 chars)",
+"entries 10 · green 0 · red 0 · recorded 0 · timeout 0 · not-run 10"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-05-as-built-baseline",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/arch-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/arch.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/design-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/design.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/evolve-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/gate-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/layouts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/master-record.txt",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/registry-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/route-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/route-no-marker.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/security-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/security.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/research.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/scope.md"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 29,
+"problem": null
+},
+"prose": [
+{
+"from": 64,
+"to": 67,
+"text": "No boot-path and no live leg in this chunk: it touches no source, so there is no `smoke` entry and no harness verb (`scripts/agent-run.*` is owned by \"Stand test contract\"). The four wider gates are report-only (`expect = []`, outcome `recorded` — never counted green): their reading is the baseline's content, not its acceptance. No entry reads CI, so no `operator` entry exists and the tree guard below reads the worktree base-less."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "build",
+"run": "cargo build --workspace --locked",
+"run_sha8": "4b0b16e3",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked",
+"run_sha8": "0080020b",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test text_selection_anonymous_block -- --nocapture",
+"run_sha8": "4e53f0d6",
+"expect": [
+"exit 0",
+"lacks skipping: no usable font"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 4,
+"role": "unit",
+"run": "cargo test --workspace --locked",
+"run_sha8": "f8ba5f9d",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 5,
+"role": "lint",
+"run": "cargo fmt --all --check",
+"run_sha8": "2d009b4c",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 6,
+"role": "lint",
+"run": "cargo clippy --workspace --locked -- -D warnings",
+"run_sha8": "125d29b7",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 7,
+"role": "lint",
+"run": "RUSTDOCFLAGS=\"-D warnings\" cargo doc --locked",
+"run_sha8": "1cdfa0da",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "git status --porcelain -- packages tests examples apps wpt Cargo.toml Cargo.lock",
+"run_sha8": "90c8d159",
+"expect": [
+"exit 0",
+"no output"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "grep -cE '^## (Host|Commands|Wall-clock|Tests|A11y-bearing files|Wider gates)$' escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/baseline.md",
+"run_sha8": "654ca611",
+"expect": [
+"exit 0",
+"last line 6"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "cat escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/*.md | grep -ciE 'ghp_|github_pat_|BEGIN [A-Z ]*PRIVATE KEY|password=|token=' ",
+"run_sha8": "5e5a3f64",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-05T19:40:32Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T18-46-29-phase",
+"--marker",
+"2026-10-05-as-built-baseline"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-05-as-built-baseline · entries 10",
+"logs $TMPDIR/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29 · bound: GNU timeout",
+"delta docs 30",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L64-69: No boot-path and no live leg in this chunk: it touches no source, so there is no `smoke` e… (672 chars)",
+"  1 build       green · exit 0 · 182.3s · 23412 B → 1.log · cargo build --workspace --locked",
+"  2 integration green · exit 0 · 744.88s · 34300 B → 2.log · cargo test -p blitz-tests --locked",
+"  3 integration green · exit 0 · 0.51s · 445 B → 3.log · cargo test -p blitz-tests --locked --test text_selection_a… (87 chars)",
+"  4 unit        recorded · exit 0 · 1724.48s · 48932 B → 4.log · cargo test --workspace --locked",
+"  5 lint        recorded · exit 0 · 0.46s · 0 B → 5.log · cargo fmt --all --check",
+"  6 lint        recorded · exit 0 · 22.33s · 20337 B → 6.log · cargo clippy --workspace --locked -- -D warnings",
+"  7 lint        recorded · exit 0 · 0.16s · 72 B → 7.log · RUSTDOCFLAGS=\"-D warnings\" cargo doc --locked",
+"  8 probe       green · exit 0 · 0.02s · 0 B → 8.log · git status --porcelain -- packages tests examples apps wpt… (80 chars)",
+"  9 probe       red · exit 0 ✗ (exit 2) · exit 2 · 0.0s · 103 B → 9.log · grep -cE '^## (Host|Commands|Wall-clock|Tests|A11y-bearing… (149 chars)",
+" 10 probe       green · exit 1 · 0.0s · 99 B → 10.log · cat escher-0.1.0/chunks/2026-10-05-as-built-baseline/evide… (140 chars)",
+"entries 10 · green 5 · red 1 (9) · recorded 4 · timeout 0 · not-run 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-05-as-built-baseline",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/arch-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/arch.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/design-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/design.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/evolve-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/gate-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/layouts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/master-record.txt",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/planlint-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/registry-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/route-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/route-no-marker.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/security-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/security.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/research.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/scope.md"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 30,
+"problem": null
+},
+"prose": [
+{
+"from": 64,
+"to": 69,
+"text": "No boot-path and no live leg in this chunk: it touches no source, so there is no `smoke` entry and no harness verb (`scripts/agent-run.*` is owned by \"Stand test contract\"). The four wider gates are report-only (`expect = []`, outcome `recorded` — never counted green): their reading is the baseline's content, not its acceptance. No entry reads CI, so no `operator` entry exists and the tree guard below reads the worktree base-less. The record `evidence/baseline.md` has no producing entry by construction: /implement step 4 authors it from the gate trail (it is a document, not a runtime artifact a command emits); the evidence probe and the credential probe verify it."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "build",
+"run": "cargo build --workspace --locked",
+"run_sha8": "4b0b16e3",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29/1.log",
+"bytes": 23412,
+"log_sha8": "99478227",
+"exit": 0,
+"seconds": 182.3,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked",
+"run_sha8": "0080020b",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29/2.log",
+"bytes": 34300,
+"log_sha8": "7b78c947",
+"exit": 0,
+"seconds": 744.88,
+"readings": [
+"exit 0 ✓",
+"lacks 'test result: FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test text_selection_anonymous_block -- --nocapture",
+"run_sha8": "4e53f0d6",
+"expect": [
+"exit 0",
+"lacks skipping: no usable font"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29/3.log",
+"bytes": 445,
+"log_sha8": "64842cc6",
+"exit": 0,
+"seconds": 0.51,
+"readings": [
+"exit 0 ✓",
+"lacks 'skipping: no usable font' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "unit",
+"run": "cargo test --workspace --locked",
+"run_sha8": "f8ba5f9d",
+"expect": [],
+"log": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29/4.log",
+"bytes": 48932,
+"log_sha8": "dce51c17",
+"exit": 0,
+"seconds": 1724.48,
+"readings": [
+"report-only (expect = [])"
+],
+"survivors": [],
+"outcome": "recorded"
+},
+{
+"n": 5,
+"role": "lint",
+"run": "cargo fmt --all --check",
+"run_sha8": "2d009b4c",
+"expect": [],
+"log": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29/5.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.46,
+"readings": [
+"report-only (expect = [])"
+],
+"survivors": [],
+"outcome": "recorded"
+},
+{
+"n": 6,
+"role": "lint",
+"run": "cargo clippy --workspace --locked -- -D warnings",
+"run_sha8": "125d29b7",
+"expect": [],
+"log": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29/6.log",
+"bytes": 20337,
+"log_sha8": "502db481",
+"exit": 0,
+"seconds": 22.33,
+"readings": [
+"report-only (expect = [])"
+],
+"survivors": [],
+"outcome": "recorded"
+},
+{
+"n": 7,
+"role": "lint",
+"run": "RUSTDOCFLAGS=\"-D warnings\" cargo doc --locked",
+"run_sha8": "1cdfa0da",
+"expect": [],
+"log": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29/7.log",
+"bytes": 72,
+"log_sha8": "a4105156",
+"exit": 0,
+"seconds": 0.16,
+"readings": [
+"report-only (expect = [])"
+],
+"survivors": [],
+"outcome": "recorded"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "git status --porcelain -- packages tests examples apps wpt Cargo.toml Cargo.lock",
+"run_sha8": "90c8d159",
+"expect": [
+"exit 0",
+"no output"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29/8.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"no output ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "grep -cE '^## (Host|Commands|Wall-clock|Tests|A11y-bearing files|Wider gates)$' escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/baseline.md",
+"run_sha8": "654ca611",
+"expect": [
+"exit 0",
+"last line 6"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29/9.log",
+"bytes": 103,
+"log_sha8": "8562d7b4",
+"exit": 2,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✗ (exit 2)",
+"last line '6' ✗ (last: 'grep: escher-0.1.0/chunks/2026-10-05-as-… (102 chars)')"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 2)"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "cat escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/*.md | grep -ciE 'ghp_|github_pat_|BEGIN [A-Z ]*PRIVATE KEY|password=|token=' ",
+"run_sha8": "5e5a3f64",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29/10.log",
+"bytes": 99,
+"log_sha8": "5a1d7bb3",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-05T19:41:47Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T18-46-29-phase",
+"--marker",
+"2026-10-05-as-built-baseline",
+"--entry",
+"7"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-05-as-built-baseline · entries 10",
+"logs $TMPDIR/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29 · bound: GNU timeout",
+"delta docs 30",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L64-69: No boot-path and no live leg in this chunk: it touches no source, so there is no `smoke` e… (672 chars)",
+"  1 build       not run — excluded · cargo build --workspace --locked",
+"  2 integration not run — excluded · cargo test -p blitz-tests --locked",
+"  3 integration not run — excluded · cargo test -p blitz-tests --locked --test text_selection_a… (87 chars)",
+"  4 unit        not run — excluded · cargo test --workspace --locked",
+"  5 lint        not run — excluded · cargo fmt --all --check",
+"  6 lint        not run — excluded · cargo clippy --workspace --locked -- -D warnings",
+"  7 lint        recorded · exit 101 · 1.6s · 5473 B → 7.log · RUSTDOCFLAGS=\"-D warnings\" cargo doc --workspace --no-deps… (67 chars)",
+"  8 probe       not run — excluded · git status --porcelain -- packages tests examples apps wpt… (80 chars)",
+"  9 probe       not run — excluded · grep -cE '^## (Host|Commands|Wall-clock|Tests|A11y-bearing… (149 chars)",
+" 10 probe       not run — excluded · cat escher-0.1.0/chunks/2026-10-05-as-built-baseline/evide… (140 chars)",
+"entries 10 · green 0 · red 0 · recorded 1 · timeout 0 · not-run 9"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-05-as-built-baseline",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/arch-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/arch.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/design-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/design.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/evolve-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/gate-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/layouts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/master-record.txt",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/planlint-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/registry-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/route-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/route-no-marker.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/security-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/security.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/research.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/scope.md"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 30,
+"problem": null
+},
+"prose": [
+{
+"from": 64,
+"to": 69,
+"text": "No boot-path and no live leg in this chunk: it touches no source, so there is no `smoke` entry and no harness verb (`scripts/agent-run.*` is owned by \"Stand test contract\"). The four wider gates are report-only (`expect = []`, outcome `recorded` — never counted green): their reading is the baseline's content, not its acceptance. No entry reads CI, so no `operator` entry exists and the tree guard below reads the worktree base-less. The record `evidence/baseline.md` has no producing entry by construction: /implement step 4 authors it from the gate trail (it is a document, not a runtime artifact a command emits); the evidence probe and the credential probe verify it."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "build",
+"run": "cargo build --workspace --locked",
+"run_sha8": "4b0b16e3",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked",
+"run_sha8": "0080020b",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test text_selection_anonymous_block -- --nocapture",
+"run_sha8": "4e53f0d6",
+"expect": [
+"exit 0",
+"lacks skipping: no usable font"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 4,
+"role": "unit",
+"run": "cargo test --workspace --locked",
+"run_sha8": "f8ba5f9d",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 5,
+"role": "lint",
+"run": "cargo fmt --all --check",
+"run_sha8": "2d009b4c",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "lint",
+"run": "cargo clippy --workspace --locked -- -D warnings",
+"run_sha8": "125d29b7",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 7,
+"role": "lint",
+"run": "RUSTDOCFLAGS=\"-D warnings\" cargo doc --workspace --no-deps --locked",
+"run_sha8": "0f55e787",
+"expect": [],
+"log": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29/7.log",
+"bytes": 5473,
+"log_sha8": "fa31cab3",
+"exit": 101,
+"seconds": 1.6,
+"readings": [
+"report-only (expect = [])"
+],
+"survivors": [],
+"outcome": "recorded"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "git status --porcelain -- packages tests examples apps wpt Cargo.toml Cargo.lock",
+"run_sha8": "90c8d159",
+"expect": [
+"exit 0",
+"no output"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "grep -cE '^## (Host|Commands|Wall-clock|Tests|A11y-bearing files|Wider gates)$' escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/baseline.md",
+"run_sha8": "654ca611",
+"expect": [
+"exit 0",
+"last line 6"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "cat escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/*.md | grep -ciE 'ghp_|github_pat_|BEGIN [A-Z ]*PRIVATE KEY|password=|token=' ",
+"run_sha8": "5e5a3f64",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-05T19:42:13Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T18-46-29-phase",
+"--marker",
+"2026-10-05-as-built-baseline",
+"--entry",
+"7"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-05-as-built-baseline · entries 10",
+"logs $TMPDIR/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29 · bound: GNU timeout",
+"delta docs 30",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L64-69: No boot-path and no live leg in this chunk: it touches no source, so there is no `smoke` e… (672 chars)",
+"  1 build       not run — excluded · cargo build --workspace --locked",
+"  2 integration not run — excluded · cargo test -p blitz-tests --locked",
+"  3 integration not run — excluded · cargo test -p blitz-tests --locked --test text_selection_a… (87 chars)",
+"  4 unit        not run — excluded · cargo test --workspace --locked",
+"  5 lint        not run — excluded · cargo fmt --all --check",
+"  6 lint        not run — excluded · cargo clippy --workspace --locked -- -D warnings",
+"  7 lint        recorded · exit 101 · 2.96s · 7773 B → 7.log · RUSTDOCFLAGS=\"-D warnings\" cargo doc --workspace --no-deps… (80 chars)",
+"  8 probe       not run — excluded · git status --porcelain -- packages tests examples apps wpt… (80 chars)",
+"  9 probe       not run — excluded · grep -cE '^## (Host|Commands|Wall-clock|Tests|A11y-bearing… (149 chars)",
+" 10 probe       not run — excluded · cat escher-0.1.0/chunks/2026-10-05-as-built-baseline/evide… (140 chars)",
+"entries 10 · green 0 · red 0 · recorded 1 · timeout 0 · not-run 9"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-05-as-built-baseline",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/arch-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/arch.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/design-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/design.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/evolve-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/gate-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/layouts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/master-record.txt",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/planlint-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/registry-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/route-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/route-no-marker.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/security-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/security.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/research.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/scope.md"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 30,
+"problem": null
+},
+"prose": [
+{
+"from": 64,
+"to": 69,
+"text": "No boot-path and no live leg in this chunk: it touches no source, so there is no `smoke` entry and no harness verb (`scripts/agent-run.*` is owned by \"Stand test contract\"). The four wider gates are report-only (`expect = []`, outcome `recorded` — never counted green): their reading is the baseline's content, not its acceptance. No entry reads CI, so no `operator` entry exists and the tree guard below reads the worktree base-less. The record `evidence/baseline.md` has no producing entry by construction: /implement step 4 authors it from the gate trail (it is a document, not a runtime artifact a command emits); the evidence probe and the credential probe verify it."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "build",
+"run": "cargo build --workspace --locked",
+"run_sha8": "4b0b16e3",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked",
+"run_sha8": "0080020b",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test text_selection_anonymous_block -- --nocapture",
+"run_sha8": "4e53f0d6",
+"expect": [
+"exit 0",
+"lacks skipping: no usable font"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 4,
+"role": "unit",
+"run": "cargo test --workspace --locked",
+"run_sha8": "f8ba5f9d",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 5,
+"role": "lint",
+"run": "cargo fmt --all --check",
+"run_sha8": "2d009b4c",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "lint",
+"run": "cargo clippy --workspace --locked -- -D warnings",
+"run_sha8": "125d29b7",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 7,
+"role": "lint",
+"run": "RUSTDOCFLAGS=\"-D warnings\" cargo doc --workspace --no-deps --locked --keep-going",
+"run_sha8": "05ec77f7",
+"expect": [],
+"log": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29/7.log",
+"bytes": 7773,
+"log_sha8": "4ab3052d",
+"exit": 101,
+"seconds": 2.96,
+"readings": [
+"report-only (expect = [])"
+],
+"survivors": [],
+"outcome": "recorded"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "git status --porcelain -- packages tests examples apps wpt Cargo.toml Cargo.lock",
+"run_sha8": "90c8d159",
+"expect": [
+"exit 0",
+"no output"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "grep -cE '^## (Host|Commands|Wall-clock|Tests|A11y-bearing files|Wider gates)$' escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/baseline.md",
+"run_sha8": "654ca611",
+"expect": [
+"exit 0",
+"last line 6"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "cat escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/*.md | grep -ciE 'ghp_|github_pat_|BEGIN [A-Z ]*PRIVATE KEY|password=|token=' ",
+"run_sha8": "5e5a3f64",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-05T19:43:04Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T18-46-29-phase",
+"--marker",
+"2026-10-05-as-built-baseline",
+"--dry-run"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-05-as-built-baseline · entries 10",
+"logs $TMPDIR/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29 · bound: GNU timeout",
+"delta docs 30",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L64-69: No boot-path and no live leg in this chunk: it touches no source, so there is no `smoke` e… (672 chars)",
+"  1 build       not run — dry-run · cargo build --workspace --locked",
+"  2 integration not run — dry-run · cargo test -p blitz-tests --locked",
+"  3 integration not run — dry-run · cargo test -p blitz-tests --locked --test text_selection_a… (87 chars)",
+"  4 unit        not run — dry-run · cargo test --workspace --locked",
+"  5 lint        not run — dry-run · cargo fmt --all --check",
+"  6 lint        not run — dry-run · cargo clippy --workspace --locked -- -D warnings",
+"  7 lint        not run — dry-run · RUSTDOCFLAGS=\"-D warnings\" cargo doc --workspace --no-deps… (80 chars)",
+"  8 probe       not run — dry-run · git status --porcelain -- packages tests examples apps wpt… (80 chars)",
+"  9 probe       not run — dry-run · grep -cE '^## (Host|Commands|Wall-clock|Tests|A11y-bearing… (149 chars)",
+" 10 probe       not run — dry-run · cat escher-0.1.0/chunks/2026-10-05-as-built-baseline/evide… (140 chars)",
+"entries 10 · green 0 · red 0 · recorded 0 · timeout 0 · not-run 10"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-05-as-built-baseline",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/arch-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/arch.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/design-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/design.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/evolve-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/gate-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/layouts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/master-record.txt",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/planlint-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/registry-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/route-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/route-no-marker.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/security-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/security.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/research.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/scope.md"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 30,
+"problem": null
+},
+"prose": [
+{
+"from": 64,
+"to": 69,
+"text": "No boot-path and no live leg in this chunk: it touches no source, so there is no `smoke` entry and no harness verb (`scripts/agent-run.*` is owned by \"Stand test contract\"). The four wider gates are report-only (`expect = []`, outcome `recorded` — never counted green): their reading is the baseline's content, not its acceptance. No entry reads CI, so no `operator` entry exists and the tree guard below reads the worktree base-less. The record `evidence/baseline.md` has no producing entry by construction: /implement step 4 authors it from the gate trail (it is a document, not a runtime artifact a command emits); the evidence probe and the credential probe verify it."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "build",
+"run": "cargo build --workspace --locked",
+"run_sha8": "4b0b16e3",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked",
+"run_sha8": "0080020b",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test text_selection_anonymous_block -- --nocapture",
+"run_sha8": "4e53f0d6",
+"expect": [
+"exit 0",
+"lacks skipping: no usable font"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 4,
+"role": "unit",
+"run": "cargo test --workspace --locked",
+"run_sha8": "f8ba5f9d",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 5,
+"role": "lint",
+"run": "cargo fmt --all --check",
+"run_sha8": "2d009b4c",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 6,
+"role": "lint",
+"run": "cargo clippy --workspace --locked -- -D warnings",
+"run_sha8": "125d29b7",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 7,
+"role": "lint",
+"run": "RUSTDOCFLAGS=\"-D warnings\" cargo doc --workspace --no-deps --locked --keep-going",
+"run_sha8": "05ec77f7",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "git status --porcelain -- packages tests examples apps wpt Cargo.toml Cargo.lock",
+"run_sha8": "90c8d159",
+"expect": [
+"exit 0",
+"no output"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "grep -cE '^## (Host|Commands|Wall-clock|Tests|A11y-bearing files|Wider gates)$' escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/baseline.md",
+"run_sha8": "654ca611",
+"expect": [
+"exit 0",
+"last line 6"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "cat escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/*.md | grep -ciE 'ghp_|github_pat_|BEGIN [A-Z ]*PRIVATE KEY|password=|token=' ",
+"run_sha8": "5e5a3f64",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-05T19:47:42Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-05T18-46-29-phase",
+"--marker",
+"2026-10-05-as-built-baseline",
+"--dry-run"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-05-as-built-baseline · entries 10",
+"logs $TMPDIR/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29 · bound: GNU timeout",
+"delta docs 30",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L64-69: No boot-path and no live leg in this chunk: it touches no source, so there is no `smoke` e… (672 chars)",
+"  1 build       not run — dry-run · cargo build --workspace --locked",
+"  2 integration not run — dry-run · cargo test -p blitz-tests --locked",
+"  3 integration not run — dry-run · cargo test -p blitz-tests --locked --test text_selection_a… (87 chars)",
+"  4 unit        not run — dry-run · cargo test --workspace --locked",
+"  5 lint        not run — dry-run · cargo fmt --all --check",
+"  6 lint        not run — dry-run · cargo clippy --workspace --locked -- -D warnings",
+"  7 lint        not run — dry-run · RUSTDOCFLAGS=\"-D warnings\" cargo doc --workspace --no-deps… (80 chars)",
+"  8 probe       not run — dry-run · git status --porcelain -- packages tests examples apps wpt… (80 chars)",
+"  9 probe       not run — dry-run · grep -cE '^## (Host|Commands|Wall-clock|Tests|A11y-bearing… (149 chars)",
+" 10 probe       not run — dry-run · cat escher-0.1.0/chunks/2026-10-05-as-built-baseline/evide… (140 chars)",
+"entries 10 · green 0 · red 0 · recorded 0 · timeout 0 · not-run 10"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-05-as-built-baseline",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-05-as-built-baseline/phase-2026-10-05T18-46-29",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/a11y.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/arch-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/arch.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/design-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/design.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/evolve-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/gate-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/layouts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/master-record.txt",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/obs.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/planlint-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/registry-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/route-2026-10-05-as-built-baseline.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/route-no-marker.json",
+".andromeda/runs/2026-10-05T18-46-29-phase/security-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/security.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests-contracts.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests-history.md",
+".andromeda/runs/2026-10-05T18-46-29-phase/tests.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/plan.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/research.md",
+"escher-0.1.0/chunks/2026-10-05-as-built-baseline/scope.md"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 30,
+"problem": null
+},
+"prose": [
+{
+"from": 64,
+"to": 69,
+"text": "No boot-path and no live leg in this chunk: it touches no source, so there is no `smoke` entry and no harness verb (`scripts/agent-run.*` is owned by \"Stand test contract\"). The four wider gates are report-only (`expect = []`, outcome `recorded` — never counted green): their reading is the baseline's content, not its acceptance. No entry reads CI, so no `operator` entry exists and the tree guard below reads the worktree base-less. The record `evidence/baseline.md` has no producing entry by construction: /implement step 4 authors it from the gate trail (it is a document, not a runtime artifact a command emits); the evidence probe and the credential probe verify it."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "build",
+"run": "cargo build --workspace --locked",
+"run_sha8": "4b0b16e3",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked",
+"run_sha8": "0080020b",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test text_selection_anonymous_block -- --nocapture",
+"run_sha8": "4e53f0d6",
+"expect": [
+"exit 0",
+"lacks skipping: no usable font"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 4,
+"role": "unit",
+"run": "cargo test --workspace --locked",
+"run_sha8": "f8ba5f9d",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 5,
+"role": "lint",
+"run": "cargo fmt --all --check",
+"run_sha8": "2d009b4c",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 6,
+"role": "lint",
+"run": "cargo clippy --workspace --locked -- -D warnings",
+"run_sha8": "125d29b7",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 7,
+"role": "lint",
+"run": "RUSTDOCFLAGS=\"-D warnings\" cargo doc --workspace --no-deps --locked --keep-going",
+"run_sha8": "05ec77f7",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "git status --porcelain -- packages tests examples apps wpt Cargo.toml Cargo.lock",
+"run_sha8": "90c8d159",
+"expect": [
+"exit 0",
+"no output"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "grep -cE '^## (Host|Commands|Wall-clock|Tests|A11y-bearing files|Wider gates)$' escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/baseline.md",
+"run_sha8": "654ca611",
+"expect": [
+"exit 0",
+"last line 6"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "cat escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/*.md | grep -ciE 'ghp_|github_pat_|BEGIN [A-Z ]*PRIVATE KEY|password=|token=' ",
+"run_sha8": "5e5a3f64",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — dry-run"
+}
+]
+}
+}
+]

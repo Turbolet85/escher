@@ -1,0 +1,44 @@
+# O1 — the rustdoc -D warnings "doc gate" claim (its names and its mechanism phrasing)
+[[pattern]]
+id = "rustdoc"
+regex = 'rustdoc'
+ignore_case = true
+
+[[pattern]]
+id = "docgate"
+regex = 'docs? gates?'
+ignore_case = true
+
+[[pattern]]
+id = "rdflags"
+fixed = 'RUSTDOCFLAGS'
+
+[[pattern]]
+id = "warn-err"
+regex = 'warnings (are|as) errors'
+ignore_case = true
+
+[[pattern]]
+id = "docsjob"
+regex = 'docs job|, docs,|Documentation job'
+ignore_case = true
+
+# O2 — Build environment (flake pin, CI apt stand-ins)
+[[pattern]]
+id = "flake190"
+regex = '1\.90'
+
+[[pattern]]
+id = "fontconfig"
+fixed = 'libfontconfig'
+
+[[pattern]]
+id = "buildenv"
+fixed = 'Build environment'
+ignore_case = true
+
+# O3 — test-plan §9 CI Integration (extension; finds leaves citing the section)
+[[pattern]]
+id = "ci-integ"
+fixed = 'CI Integration'
+ignore_case = true

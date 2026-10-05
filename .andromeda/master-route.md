@@ -8,4 +8,4 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 -->
 
 ## escher-0.1.0
-_(no chunks promoted yet)_
+2026-10-05-as-built-baseline · complete · workspace build + blitz-tests green on this host, wall-clock recorded · → escher-0.1.0/chunks/2026-10-05-as-built-baseline/

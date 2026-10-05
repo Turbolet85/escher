@@ -46,7 +46,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 - DOM mutations go through `DocumentMutator` (`doc.mutate()`), which flushes on Drop — extend the mutator rather than reaching through `DocumentMutator::doc`.
 - `NodeId` is a versioned slot id: a dropped node's id stops resolving and indexing a stale id panics — use `get`/`contains_key` for ids that may be stale.
 - Dependency pins are coupled (html5ever family ↔ stylo web_atoms, skrifa ↔ parley/vello, svgtypes ↔ usvg, taffy/parley git revs, winit exact beta) — never bump one side alone.
-- Work is not done until `cargo fmt --all --check`, `cargo clippy --workspace -- -D warnings` and rustdoc `-D warnings` pass.
+- Work is not done until `cargo fmt --all --check`, `cargo clippy --workspace -- -D warnings` and rustdoc `-D warnings` (`cargo doc --workspace --no-deps`; red at baseline, owned by "CI gate legs") pass.
 <!-- GENERATED:setup:warnings end -->
 
 ## Where to Look
@@ -78,7 +78,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 ## Workflow
 <!-- GENERATED:setup:workflow start -->
 **Key commands:**
-- `cargo build --workspace` — build every crate (Linux needs `libfontconfig1-dev`)
+- `cargo build --workspace` — build every crate (Linux needs `libfontconfig1-dev`; Arch: `fontconfig`)
 - `cargo test --workspace` — the CI test leg
 - `cargo test -p blitz-tests --test {name}` — one integration-test file
 - `cargo fmt --all --check && cargo clippy --workspace -- -D warnings` — the format and lint gates

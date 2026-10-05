@@ -270,6 +270,11 @@ Contracts: .andromeda/registries/test-plan-contracts.toml — ask registry.py co
 - **Fonts:** font-dependent assertions rely on the `system-fonts` feature, stated to be on by default when testing the whole workspace (tests/blitz-tests/tests/br_trailing_line.rs:11-13)
 - **Hang guard:** a test comment states the worker timeout exists so a regression would not hang CI (apps/browser/src/url_suggestions.rs:380-382)
 - **WPT timeouts:** a comment states heavy interpolation suites run longer "on loaded CI machines", motivating the harness timeout multiplier (wpt/runner/src/test_runners/harness_test.rs:30-34)
+- **Local baseline (the reference the fork's CI is compared against):** dev host, dev profile, workspace default features, every cargo command with `--locked`, no `opt-level` rewrite (it touches only `[profile.p2]`); cold = first run after `cargo clean`, entries in sequence in one `target/`, warm = an immediate re-run — as measured at escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/baseline.md (2026-10-05, 32 CPUs):
+  - `cargo build --workspace` green, 120.26 s cold / 5.54 s warm
+  - `cargo test -p blitz-tests` green, 486.45 s / 7.41 s — 61 result lines, 255 passed · 0 failed · 3 ignored (`paint_tree_bench`); the `text_selection_anonymous_block` font-skip line absent under `--nocapture`
+  - `cargo test --workspace` (CI's test leg) exit 0, 1632.88 s / 13.08 s — 108 result lines, 407 · 0 · 3; the test-profile compile (27m 00s cold) dominates
+  - `cargo fmt --all --check` and `cargo clippy --workspace -- -D warnings` exit 0; `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps` exit 101 (3 crates, 9 errors)
 
 **Observed absent:**
 

@@ -20,6 +20,7 @@ _Distilled from `.andromeda/test-plan.md` (adopted reading). wrap-session's casc
 - Pixel tests on a CPU buffer (box-shadow expectations from Chromium, 1px AA tolerance).
 - `blitz-vibey-script`: 26 DOM API tests + 2 headless Preact TodoMVC flows.
 - WPT `css` + `svg` in CI, diffed against main and posted to PRs.
+- Local baseline (§9, dev host, 2026-10-05): `cargo test -p blitz-tests` 255 passed · 0 failed · 3 ignored (`paint_tree_bench`), 486 s cold; `cargo test --workspace` 407 · 0 · 3, 1633 s cold — the test-profile compile dominates. The reference "Fork CI reached" compares against.
 - Apps: only the browser crates test (about pages, history, favicon, suggestions, persistence).
 
 ## E2E coverage (§6)
@@ -33,7 +34,7 @@ _Distilled from `.andromeda/test-plan.md` (adopted reading). wrap-session's casc
 | Coverage | NOT YET MEASURED (tooling absent) | owned by "CI gate legs" / "Quality gates" |
 | Flakiness budget | NOT YET MEASURED | "Quality gates" |
 | Performance budget | NOT YET MEASURED | — |
-| Format / lint / docs | must pass | `cargo fmt --all --check` · `cargo clippy --workspace -- -D warnings` · rustdoc `-D warnings` |
+| Format / lint / docs | must pass — fmt and clippy green at baseline; workspace rustdoc red (3 crates, 9 errors), owned by "CI gate legs" | `cargo fmt --all --check` · `cargo clippy --workspace -- -D warnings` · `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps` |
 
 ## Universal anti-patterns
 > NO RECORDED INTENT.

@@ -5,7 +5,8 @@ _Mirrors `.andromeda/architecture.md` §Stack and Technologies (citations live t
 ## Languages & Runtimes
 - Rust Cargo workspace, resolver "2", edition 2024, `rust-version` 1.91.0 (CI guarantees latest stable; an MSRV job builds only). `debug_timer` and `wgpu_texture` are edition 2021.
 - Workspace version `0.3.0-beta.2`, license MIT OR Apache-2.0; in-repo engine crates pinned `=0.3.0-beta.2`, dioxus-native / dioxus-native-dom `0.7.0`.
-- Nix flake dev shell: rust-bin stable 1.90.0 with rust-src, rust-analyzer, clippy; openssl, fontconfig (Linux), pkg-config, python3 (build-time codegen for stylo).
+- Nix flake dev shell: rust-bin stable 1.90.0 with rust-src, rust-analyzer, clippy; openssl, fontconfig (Linux), pkg-config, python3 (build-time codegen for stylo). The 1.90.0 pin sits below `rust-version` 1.91.0 despite its keep-in-sync comment.
+- Measured dev host (2026-10-05, Omarchy 4.0.4 / Arch, `escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/baseline.md`): no flake; host stable rustc/cargo 1.99.0, no `rust-toolchain*` file; Arch fontconfig 2.18.3, openssl 3.6.4, pkgconf 3.0.7, python 3.14.7 stand in for CI's `libfontconfig1-dev` + python3.
 - WASM: wasm-bindgen 0.2, web-sys, tracing-wasm, console_error_panic_hook; examples built with Trunk.
 
 ## Core Frameworks
@@ -35,8 +36,8 @@ _Mirrors `.andromeda/architecture.md` §Stack and Technologies (citations live t
 - `tracing` 0.1 + `tracing-subscriber` 0.3 behind per-crate `tracing` features; `log` + `env_logger` in the WPT runner; `debug_timer` phase timing behind `log-phase-times`. No OTel, metrics or error-reporting service.
 
 ## Development & CI
-- `cargo fmt --all --check`, `cargo clippy --workspace -- -D warnings`, `RUSTDOCFLAGS=-D warnings`.
-- GitHub Actions: `ci.yml` (MSRV build, build, test, counter, wasm, fmt, clippy, CI-script tests, docs, cross-platform matrix), `wpt.yml` (css + svg WPT, scores, Pages), `wpt-post-results.yml`, `publish-browser.yml` (dx bundle, signed builds).
+- `cargo fmt --all --check`, `cargo clippy --workspace -- -D warnings`; `RUSTDOCFLAGS=-D warnings` is set workflow-wide, but the docs job's bare `cargo doc` documents only the lib-less root package `blitz-examples`, so no library crate's docs are gated — `cargo doc --workspace --no-deps` under it fails (3 crates, 9 errors at baseline).
+- GitHub Actions: `ci.yml` (MSRV build, build, test, counter, wasm, fmt, clippy, CI-script tests, docs — root package only, cross-platform matrix), `wpt.yml` (css + svg WPT, scores, Pages), `wpt-post-results.yml`, `publish-browser.yml` (dx bundle, signed builds).
 - Testing deps: blitz-test-harness, test-that 0.5.2, usvg; WPT runner: dify 0.7.4, wptreport 0.0.5, glob, regex, owo-colors.
 
 ## Infrastructure

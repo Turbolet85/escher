@@ -8,11 +8,11 @@ _verbatim line to route-archive.md); markerless lines stay mutable._
 _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` headers are structural._
 
 ### Epoch 1 — Foundation
-As-built baseline — workspace build and blitz-tests green on this host, one run's wall-clock recorded
+[2026-10-05-as-built-baseline] As-built baseline — workspace build and blitz-tests green on this host, one run's wall-clock recorded
    ↓
 Fork CI reached — escher build-branch pipeline green, host-reproducible legs run locally, cached builds, fast/slow split, failure artifacts uploaded, signing-secret jobs excluded
    ↓
-CI gate legs — dependency audit, pinned actions, least-privilege tokens, coverage report, named a11y leg on fork CI (per security-plan, test-plan §9, a11y-plan §9)
+CI gate legs — dependency audit, pinned actions, least-privilege tokens, coverage report, named a11y leg on fork CI (per security-plan, test-plan §9, a11y-plan §9)  CARRY: a real rustdoc gate — CI's docs job runs bare `cargo doc`, which documents only the lib-less root package `blitz-examples`, and `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps` is red: exit 101, 3 crates not documented (blitz-dom, blitz-vibey-script, example transparent), 9 rustdoc errors, plus a `target/doc/blitz/index.html` output-filename collision (bin `blitz` of `browser` vs lib `blitz`) — measured at 2026-10-05-as-built-baseline evidence/baseline.md §Wider gates; owner named at that chunk's P5 review
    ↓
 Telemetry bootstrap — tracing subscriber, opt-in OTel export, service identity, panic logging, scrub layer; logs never on stdout (per obs-plan §3 §8)
    ↓

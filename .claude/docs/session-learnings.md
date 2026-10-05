@@ -8,7 +8,10 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
-_No entries yet. Run `/wrap-session` after implementation sessions to capture learnings automatically._
+## 2026-10-05 — A secret probe over a record that quotes the probe matches itself
+A credential or secret grep run over an evidence record (`grep -ciE 'token=|password=|…'` expecting `0`) counts its own pattern when that record lists the probe's command verbatim — a self-match, never a leaked secret. A plan that asks the record to copy "every gate run verbatim" and also runs a secret probe over the same record is jointly unsatisfiable for the probe's own line.
+
+When a record must name such a probe, cite where its command lives (the plan's Test Commands entry) instead of copying the pattern; when authoring a plan, keep the probe's pattern out of the files it scans. Read the hit before treating a non-zero count as a leak.
 
 ---
 

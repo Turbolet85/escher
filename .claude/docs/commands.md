@@ -4,6 +4,7 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 
 ## Installation
 - Linux system deps (as CI): `sudo apt-get install -y libfontconfig1-dev`
+- Arch dev host: `fontconfig`, `pkgconf`, `openssl`, `python` (the measured stand-ins)
 - Nix: `nix develop` — the `blitz-dev` dev shell (toolchain, fontconfig, openssl, python3)
 - `pip install -r scripts/requirements.txt` — code-graph Python deps (duckdb + protobuf)
 - `rustup component add rust-analyzer` — the SCIP indexer for the code-graph, if not on PATH
@@ -32,7 +33,7 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 - `cargo fmt --all` / `just fmt` — format
 - `cargo fmt --all --check` — the CI format gate
 - `cargo clippy --workspace -- -D warnings` — the CI lint gate (`just clippy` runs without `-D warnings`)
-- `RUSTDOCFLAGS="-D warnings" cargo doc` — the docs gate
+- `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps` — the docs gate over every workspace crate (red at baseline: 3 crates, 9 errors). CI's bare `cargo doc` documents only the lib-less root package `blitz-examples` and gates no library crate
 
 ## Running apps and examples
 - `just seven_guis` — the 7GUIs stand (`cargo run --release --package seven_guis --bin seven_guis_native`)

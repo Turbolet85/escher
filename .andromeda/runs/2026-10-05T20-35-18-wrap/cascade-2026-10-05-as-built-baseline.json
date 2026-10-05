@@ -1,0 +1,151 @@
+[
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "43eb863f",
+"ts": "2026-10-05T20:39:58Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-05T20-35-18-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-05T20-35-18-wrap",
+"--marker",
+"2026-10-05-as-built-baseline"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"baseline eaca28ba (head — no operator pre-CI commit for 2026-10-05-as-built-baseline)",
+"rustdoc · new 2 · standing 5 · leaf 4 · curation 0 · base 0 · control architecture.md:67 (prose)",
+"docgate · new 1 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:67 (prose)",
+"rdflags · new 1 · standing 1 · leaf 2 · curation 0 · base 0 · control architecture.md:67 (prose)",
+"warn-err · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:104 (pros…",
+"docsjob · new 4 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:174 (prose)",
+"flake190 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:65 (prose)",
+"fontconfig · new 1 · standing 1 · leaf 2 · curation 0 · base 0 · control architecture.md:174 (prose)",
+"buildenv · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:65 (prose)",
+"ci-integ · new 0 · standing 7 · leaf 0 · curation 0 · base 0 · control security-plan.md:221 (prose)",
+".andromeda/architecture.md:67 rustdoc standing edited mixed ×2 …/ci.yml:98-109); `RUSTDOCFLAGS: \"-D warnings\"` (.github…",
+".andromeda/architecture.md:104 rustdoc standing edited …ows/ci.yml:98-109); rustdoc warnings set to errors workflow-wid…",
+".andromeda/architecture.md:155 rustdoc standing edited …and a workflow-wide rustdoc `-D warnings` setting whose docs jo…",
+".andromeda/architecture.md:174 rustdoc new …so CI runs no effective rustdoc gate over the library crates (as measured a…",
+".andromeda/architecture.md:217 rustdoc standing edited …ce -- -D warnings`, rustdoc `-D warnings` set workflow-wide but…",
+".andromeda/test-plan.md:64 rustdoc standing - **Doc examples:** a rustdoc usage example for `DioxusDocument` sits in th…",
+".andromeda/test-plan.md:277 rustdoc new …-- -D warnings` exit 0; `RUSTDOCFLAGS=\"-D warnings\" cargo doc --workspace --no…",
+"CLAUDE.md:49 rustdoc leaf …fmt --all --check`, `cargo clippy --workspace -- -D warnings` and rustdoc `-D warnings` pass.",
+".claude/docs/commands.md:35 rustdoc leaf - `RUSTDOCFLAGS=\"-D warnings\" cargo doc` — the docs gate",
+".claude/docs/stack.md:38 rustdoc leaf … --check`, `cargo clippy --workspace -- -D warnings`, `RUSTDOCFLAGS=-D warnings`.",
+".claude/docs/tests-summary.md:36 rustdoc leaf …ck` · `cargo clippy --workspace -- -D warnings` · rustdoc `-D warnings` |",
+".andromeda/architecture.md:67 docgate standing edited …ng and lint gates; a nominal doc gate covering no library crate |",
+".andromeda/architecture.md:174 docgate new …I runs no effective rustdoc gate over the library crates (as measured at es…",
+".claude/docs/commands.md:35 docgate leaf - `RUSTDOCFLAGS=\"-D warnings\" cargo doc` — the docs gate",
+".andromeda/architecture.md:67 rdflags standing edited …ows/ci.yml:98-109); `RUSTDOCFLAGS: \"-D warnings\"` (.github/workf…",
+".andromeda/test-plan.md:277 rdflags new …-- -D warnings` exit 0; `RUSTDOCFLAGS=\"-D warnings\" cargo doc --workspace --no…",
+".claude/docs/commands.md:35 rdflags leaf - `RUSTDOCFLAGS=\"-D warnings\" cargo doc` — the docs gate",
+".claude/docs/stack.md:38 rdflags leaf … --check`, `cargo clippy --workspace -- -D warnings`, `RUSTDOCFLAGS=-D warnings`.",
+".andromeda/architecture.md:67 docsjob new …yml:13-14), applied by a docs job running bare `cargo doc` (.github/workflow…",
+".andromeda/architecture.md:104 docsjob new …yml:13-14), though CI's docs job documents only the root `blitz-examples` p…",
+".andromeda/architecture.md:155 docsjob new …warnings` setting whose docs job reaches no library crate (.github/workflow…",
+".andromeda/architecture.md:174 docsjob standing edited mixed ×2 …, CI-script tests, docs, cross-platform matrix (.githu…",
+".andromeda/architecture.md:217 docsjob new … no library crate — the docs job documents only the root package (.github/w…",
+".claude/docs/stack.md:39 docsjob leaf …t, clippy, CI-script tests, docs, cross-platform matrix), `wpt.yml` (css + svg W…",
+".andromeda/architecture.md:65 flake190 standing edited mixed ×2 …rust-bin stable \"1.90.0\" with rust-src, rust-analyzer,…",
+".claude/docs/stack.md:8 flake190 leaf …ev shell: rust-bin stable 1.90.0 with rust-src, rust-analyzer, clippy; openssl, …",
+".andromeda/architecture.md:65 fontconfig new …14.7 stand in for CI's `libfontconfig1-dev` and build-time python3 | Repr…",
+".andromeda/architecture.md:174 fontconfig standing edited …untu jobs install `libfontconfig1-dev` and rewrite `opt-leve…",
+"CLAUDE.md:81 fontconfig leaf - `cargo build --workspace` — build every crate (Linux needs `libfontconfig1-dev`)",
+".claude/docs/commands.md:6 fontconfig leaf - Linux system deps (as CI): `sudo apt-get install -y libfontconfig1-dev`",
+".andromeda/architecture.md:65 buildenv standing edited | Build environment | Nix flake inputs nixpkgs-unstable, flake-p…",
+".andromeda/security-plan.md:221 ci-integ standing **CI integration:** no audit step — the search above covered .github/…",
+".andromeda/test-plan.md:262 ci-integ standing ## 9. CI Integration",
+".andromeda/obs-plan.md:275 ci-integ standing ## 9. CI Integration",
+".andromeda/a11y-plan.md:77 ci-integ standing **CI integration:** accessibility checks in CI are observed absent — see §…",
+".andromeda/a11y-plan.md:319 ci-integ standing ## 9. CI Integration",
+".andromeda/registries/contracts/a11y-plan/bootstrap-phases-derive-for-route-setup-project.md:4 ci-integ standing … CI I…",
+".andromeda/registries/contracts/test-plan/bootstrap-phases-derive-for-route-setup-project.md:3 ci-integ standing … CI I…",
+"rustdoc · new 2 · standing 5 · leaf 4 · curation 0 · base 0 · control architecture.md:67 (prose)",
+"docgate · new 1 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:67 (prose)",
+"rdflags · new 1 · standing 1 · leaf 2 · curation 0 · base 0 · control architecture.md:67 (prose)",
+"warn-err · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:104 (pros…",
+"docsjob · new 4 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:174 (prose)",
+"flake190 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:65 (prose)",
+"fontconfig · new 1 · standing 1 · leaf 2 · curation 0 · base 0 · control architecture.md:174 (prose)",
+"buildenv · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:65 (prose)",
+"ci-integ · new 0 · standing 7 · leaf 0 · curation 0 · base 0 · control security-plan.md:221 (prose)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "eaca28bae9e777d43bd51be13f689690f648f20c",
+"how": "head — no operator pre-CI commit for 2026-10-05-as-built-baseline",
+"counts": {
+"rustdoc": {
+"new": 2,
+"standing": 5,
+"leaf": 4,
+"curation": 0,
+"base": 0
+},
+"docgate": {
+"new": 1,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"rdflags": {
+"new": 1,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"warn-err": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"docsjob": {
+"new": 4,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"flake190": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"fontconfig": {
+"new": 1,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"buildenv": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"ci-integ": {
+"new": 0,
+"standing": 7,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+}
+}
+}
+]
