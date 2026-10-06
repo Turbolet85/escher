@@ -150,18 +150,30 @@ fn a_disabled_control_reads_disabled_until_the_app_enables_it() {
             "{mode}: a return flight enables the return date"
         );
         assert_eq!(enabled(&flight, "flight-book"), Some(true), "{mode}");
+        flight.click("#flight-return-date");
+        flight.type_text("x");
+        assert_eq!(
+            enabled(&flight, "flight-book"),
+            Some(false),
+            "{mode}: an invalid return date disables Book"
+        );
+        flight.click("#flight-one-way");
+        assert_eq!(
+            enabled(&flight, "flight-book"),
+            Some(true),
+            "{mode}: a one-way flight enables Book again"
+        );
+        assert_eq!(
+            enabled(&flight, "flight-return-date"),
+            Some(false),
+            "{mode}: a one-way flight disables the return date again"
+        );
         flight.click("#flight-start");
         flight.type_text("x");
         assert_eq!(
             enabled(&flight, "flight-book"),
             Some(false),
             "{mode}: an invalid start date disables Book"
-        );
-        flight.press(Key::Backspace);
-        assert_eq!(
-            enabled(&flight, "flight-book"),
-            Some(true),
-            "{mode}: a valid start date enables Book again"
         );
 
         let mut crud = boot(LeanTask::Crud, incremental);

@@ -1035,5 +1035,448 @@
 "unparsed": 0,
 "widening_without_word": 0
 }
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T22:28:45Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-06-snapshot-state-fidelity/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T22-00-40-implement",
+"--marker",
+"2026-10-06-snapshot-state-fidelity"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-06-snapshot-state-fidelity · entries 19",
+"logs $TMPDIR/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40 · bound: GNU timeout",
+"delta docs 1 · rust 1",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L132-142: No live leg runs this chunk: the agent-run entries drive the in-process stand through `scr… (1179 chars)",
+"  1 unit        green · exit 0 · 0.29s · 1130 B → 1.log · cargo test -p dioxus-native-dom --locked --lib snapshot::",
+"  2 unit        green · exit 0 · 0.64s · 692 B → 2.log · cargo test -p blitz-tests --locked --test stand_snapshot_s… (62 chars)",
+"  3 integration green · exit 0 · 0.89s · 557 B → 3.log · cargo test -p blitz-tests --locked --test dioxus_falsy_boo… (68 chars)",
+"  4 integration green · exit 0 · 11.31s · 6625 B → 4.log · cargo test -p blitz-tests --locked --test stand_snapshot -… (433 chars)",
+"  5 build       green · exit 0 · 0.17s · 72 B → 5.log · cargo build -p dioxus-native-dom --no-default-features --l… (63 chars)",
+"  6 probe       green · exit 0 · 0.0s · 0 B → 6.log · git diff --quiet 52616c1874cd398126b2cc78333f8efa7cf17c95 … (458 chars)",
+"  7 probe       green · exit 1 · 0.0s · 2 B → 7.log · test -f tests/blitz-tests/tests/stand_snapshot_state.rs &&… (429 chars)",
+"  8 probe       green · exit 0 · 0.0s · 3 B → 8.log · grep -c 'trace!' packages/dioxus-native-dom/src/mutation_w… (66 chars)",
+"  9 build       green · exit 0 · 16.17s · 137 B → 9.log · bash scripts/agent-run.sh boot",
+" 10 integration green · exit 0 · 6.63s · 6025 B → 10.log · bash scripts/agent-run.sh run stand",
+" 11 integration green · exit 0 · 0.02s · 3 B → 11.log · bash scripts/agent-run.sh logs | python3 -c 'import json,s… (223 chars)",
+" 12 probe       green · exit 0 · 0.02s · 2 B → 12.log · bash scripts/agent-run.sh logs | python3 -c 'import json,s… (321 chars)",
+" 13 integration green · exit 0 · 0.02s · 40 B → 13.log · bash scripts/agent-run.sh cleanup",
+" 14 lint        green · exit 0 · 60.5s · 55223 B → 14.log · bash .github/scripts/ci-leg.sh fast",
+" 15 lint        green · exit 0 · 1.09s · 271 B → 15.log · bash .github/scripts/ci-leg.sh doc",
+" 16 integration green · exit 0 · 2.55s · 1597 B → 16.log · bash .github/scripts/ci-leg.sh a11y",
+" 17 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 18 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 19 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 19 · green 16 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-06-snapshot-state-fidelity",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-snapshot-state-fidelity/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40",
+"delta": {
+"docs": [
+"escher-0.1.0/chunks/2026-10-06-snapshot-state-fidelity/evidence/operator-pass.md"
+],
+"rust": [
+"tests/blitz-tests/tests/stand_snapshot_state.rs"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 2,
+"problem": null
+},
+"prose": [
+{
+"from": 132,
+"to": 142,
+"text": "No live leg runs this chunk: the agent-run entries drive the in-process stand through `scripts/agent-run.sh` and no external process is started, so there is no liveness probe and no `stop`. There is no headful self-verify — the stand is headless (`.claude/rules/verification-harness.md`). There is no `smoke` entry: test-plan declares no boot-smoke trigger list (`grep -n -i smoke .andromeda/test-plan.md` → 5 lines, none a trigger list), and the boot path as earlier plans read it by shape (`stand.rs`, `app.rs`, `main.rs`) is untouched, which the `git diff --quiet` guard holds (`examples`). The windowed `seven_guis_native` binary names no `accessibility` feature, so the snapshot module compiles out of it. The one runtime file this chunk touches, the bridge's `mutation_writer.rs`, is on the headless boot's own path — every stand check and every Dioxus check in the fast leg builds its document through it — and its windowed boot (`just seven_guis`) is /implement P3's smoke, not a gate here. The red-before-green control of step 9 is implement's one-shot run, not an entry. The CI acceptance follows the operator pass (pre-CI commit, push, CI read) like every prior chunk."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib snapshot::",
+"run_sha8": "43868cbb",
+"expect": [
+"exit 0",
+"contains 13 passed; 0 failed"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40/1.log",
+"bytes": 1130,
+"log_sha8": "3083cbdf",
+"exit": 0,
+"seconds": 0.29,
+"readings": [
+"exit 0 ✓",
+"contains '13 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p blitz-tests --locked --test stand_snapshot_state",
+"run_sha8": "b8426126",
+"expect": [
+"exit 0",
+"contains 7 passed; 0 failed"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40/2.log",
+"bytes": 692,
+"log_sha8": "db1df55d",
+"exit": 0,
+"seconds": 0.64,
+"readings": [
+"exit 0 ✓",
+"contains '7 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test dioxus_falsy_boolean_attrs",
+"run_sha8": "346fa0e3",
+"expect": [
+"exit 0",
+"contains 3 passed; 0 failed"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40/3.log",
+"bytes": 557,
+"log_sha8": "c9c3da59",
+"exit": 0,
+"seconds": 0.89,
+"readings": [
+"exit 0 ✓",
+"contains '3 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_snapshot --test stand_accessibility_ids --test stand_actionable_keys --test stand_element_ids --test stand_id_persistence --test stand_id_edits --test stand_boot --test stand_counter --test stand_flight_booker --test stand_timer --test stand_crud --test dioxus_falsy_disabled --test accessibility_names --test accessibility_hidden --test accessibility_roles --test focusability_updates",
+"run_sha8": "0cecc679",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40/4.log",
+"bytes": 6625,
+"log_sha8": "878427e4",
+"exit": 0,
+"seconds": 11.31,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "build",
+"run": "cargo build -p dioxus-native-dom --no-default-features --locked",
+"run_sha8": "b3e7d2c4",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40/5.log",
+"bytes": 72,
+"log_sha8": "f0788aa3",
+"exit": 0,
+"seconds": 0.17,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "git diff --quiet 52616c1874cd398126b2cc78333f8efa7cf17c95 -- Cargo.toml Cargo.lock deny.toml packages/blitz-dom packages/blitz-traits packages/blitz-shell packages/blitz-paint packages/blitz-test-harness packages/dioxus-native packages/dioxus-native-dom/Cargo.toml packages/dioxus-native-dom/src/dioxus_document.rs packages/dioxus-native-dom/src/element_id.rs packages/dioxus-native-dom/src/actionable.rs examples tests/blitz-tests/Cargo.toml scripts .github",
+"run_sha8": "555b3105",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40/6.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "test -f tests/blitz-tests/tests/stand_snapshot_state.rs && test -f tests/blitz-tests/tests/dioxus_falsy_boolean_attrs.rs && cat packages/dioxus-native-dom/src/snapshot.rs tests/blitz-tests/tests/stand_snapshot_state.rs tests/blitz-tests/tests/dioxus_falsy_boolean_attrs.rs | grep -c -E 'tracing|trace!|debug!|info!|warn!|error!|println!|eprintln!|dbg!|escher_telemetry|env::var|set_var|TcpListener|UnixListener|UdpSocket|bind\\(' ",
+"run_sha8": "4cba362c",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40/7.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "grep -c 'trace!' packages/dioxus-native-dom/src/mutation_writer.rs",
+"run_sha8": "b5e71fa9",
+"expect": [
+"exit 0",
+"last line 13"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40/8.log",
+"bytes": 3,
+"log_sha8": "1a252402",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '13' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": [
+"exit 0",
+"contains \"ready\""
+],
+"log": "/tmp/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40/9.log",
+"bytes": 137,
+"log_sha8": "412edeef",
+"exit": 0,
+"seconds": 16.17,
+"readings": [
+"exit 0 ✓",
+"contains '\"ready\"' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": [
+"exit 0",
+"contains \"run.end\""
+],
+"log": "/tmp/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40/10.log",
+"bytes": 6025,
+"log_sha8": "5c7a22bd",
+"exit": 0,
+"seconds": 6.63,
+"readings": [
+"exit 0 ✓",
+"contains '\"run.end\"' ✓",
+"artifact fresh (target/agent-run/events.jsonl)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "bash scripts/agent-run.sh logs | python3 -c 'import json,sys; ev=[json.loads(l) for l in sys.stdin]; print(sum(1 for e in ev if e.get(\"event\")==\"test\" and e.get(\"outcome\")==\"ok\" and e.get(\"file\",\"\").startswith(\"stand_\")))' ",
+"run_sha8": "cb721ae0",
+"expect": [
+"exit 0",
+"last line 48"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40/11.log",
+"bytes": 3,
+"log_sha8": "654ee9da",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"last line '48' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "bash scripts/agent-run.sh logs | python3 -c 'import json,sys; bad={\"url\",\"href\",\"src\",\"html\",\"text\",\"value\",\"attrs\",\"path\",\"request\",\"error\"}; ev=[json.loads(l) for l in sys.stdin]; print(sum(1 for e in ev if bad & set(e)) if any(e.get(\"file\")==\"stand_snapshot_state\" for e in ev) else \"no-stand_snapshot_state-events\")' ",
+"run_sha8": "7d87f3a4",
+"expect": [
+"exit 0",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40/12.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "integration",
+"run": "bash scripts/agent-run.sh cleanup",
+"run_sha8": "d676b018",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40/13.log",
+"bytes": 40,
+"log_sha8": "8b6274d8",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40/14.log",
+"bytes": 55223,
+"log_sha8": "f453b4bb",
+"exit": 0,
+"seconds": 60.5,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40/15.log",
+"bytes": 271,
+"log_sha8": "dc61cc9d",
+"exit": 0,
+"seconds": 1.09,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-snapshot-state-fidelity/implement-2026-10-06T22-00-40/16.log",
+"bytes": 1597,
+"log_sha8": "08dc4eaf",
+"exit": 0,
+"seconds": 2.55,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "675d3a19",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
 }
 ]
