@@ -43,7 +43,7 @@
         "status": "planned"
       },
       "chunk": null,
-      "notes": "2026-10-06 (2026-10-06-accessibility-tree-identity, phase P5): not claimed — this chunk delivers only the accessibility-tree leg (every stand element's AccessKit node carries its stable id as `author_id`, through `Document::accessibility_tree`, checked against `DioxusDocument::element_id`). The acceptance also requires the id in the snapshot (v010-04, Epoch 3) and the id the driver accepts (Epoch 4), and neither surface exists at HEAD, so no assertion this chunk can write proves the three-way identity. The cap stays pooled for the chunk that lands the last of the three legs."
+      "notes": "2026-10-06 (2026-10-06-accessibility-tree-identity, phase P5): not claimed — this chunk delivers only the accessibility-tree leg (every stand element's AccessKit node carries its stable id as `author_id`, through `Document::accessibility_tree`, checked against `DioxusDocument::element_id`). The acceptance also requires the id in the snapshot (v010-04, Epoch 3) and the id the driver accepts (Epoch 4), and neither surface exists at HEAD, so no assertion this chunk can write proves the three-way identity. The cap stays pooled for the chunk that lands the last of the three legs.\n\n2026-10-06 (2026-10-06-snapshot-model, phase P5): not claimed — this chunk adds the snapshot leg (every snapshot node's id equals its element's `element_id` and its AccessKit `author_id`, checked by `stand_snapshot`), so two of the three legs now exist. The id the driver accepts (Epoch 4) does not exist at HEAD, so the three-way identity is still unprovable; the cap stays pooled for the chunk that lands the driver leg."
     },
     {
       "id": "v010-04",
@@ -56,7 +56,8 @@
         "ref": null,
         "status": "planned"
       },
-      "chunk": null
+      "chunk": null,
+      "notes": "2026-10-06 (2026-10-06-snapshot-model, phase P5): not claimed — this chunk builds the snapshot tree (`DioxusDocument::snapshot()`: every node carries id, role, name, state and bounds, proven on the four lean stand tasks in both layout modes by `stand_snapshot`), but the acceptance also requires \"the whole result fits in a single tool result\", which needs a serialized form and a recorded size budget — the Compact snapshot serialization entry's work. No assertion this chunk can write proves the size half, so the cap stays pooled for that chunk."
     },
     {
       "id": "v010-05",
