@@ -46,7 +46,7 @@ The s02 fixtures hold no auth code; the google fixture only shows a "Sign in" li
 | RBAC / permissions (CI tokens) | wpt-post-results.yml grants `pull-requests: write`, `actions: read`, `contents: read` (.github/workflows/wpt-post-results.yml:8-11) | GitHub Actions `permissions` |
 | RBAC / permissions (CI tokens) | wpt.yml grants `contents: read`, `pages: write`, `id-token: write` (.github/workflows/wpt.yml:18-21) | GitHub Actions `permissions` |
 | RBAC / permissions (CI tokens) | The publish job runs only in `DioxusLabs/blitz` (`if: github.repository == 'DioxusLabs/blitz'`); there it grants `contents: write` and uses environment "Signed Builds" only on main or `ci-test` branches, so no fork ref — the fork's `main`, `ci-test/*`, `build/**` — reaches the environment or its secrets (.github/workflows/publish-browser.yml:37-41) | GitHub Actions repository guard + environment |
-| RBAC / permissions (CI tokens) | A workflow-level permissions block in ci.yml is observed absent — searched: `permissions` over .github/workflows/ci.yml | GitHub Actions `permissions` |
+| RBAC / permissions (CI tokens) | ci.yml declares a workflow-level `permissions: contents: read` and no job-level grant, so every ci.yml job's `GITHUB_TOKEN` is read-only; asserted by `test_ci_workflows.py` (.github/workflows/ci.yml:16-17; .github/scripts/test_ci_workflows.py:178-182) | GitHub Actions `permissions` |
 
 Other `password` occurrences are not credentials:
 - A `password` accessor (the URL password component) is defined on the element prototype for `<a>`/`<area>`, read from and written into the resolved `href` (packages/blitz-vibey-script/src/dom/hyperlink.rs:32; packages/blitz-vibey-script/src/dom/hyperlink.rs:127; packages/blitz-vibey-script/src/dom/hyperlink.rs:170-172)
@@ -204,30 +204,30 @@ Fixture pages also issue requests: the graphite fixture's script calls api.githu
 
 ## Dependency Security
 
-**Audit tool:** observed absent — searched: `audit|deny|dependabot|cargo-vet` over .github/workflows/*.yml, Cargo.toml, Cross.toml, flake.nix, .github/scripts/*.py; `cargo-deny|audit` over the 32 s10 files; `cargo-audit|cargo-deny|advisory` over the 12 listed s13 files.
+**Audit tool:** cargo-deny 0.20.2 — `cargo deny --locked check advisories` against the RustSec advisory database — configured by the root `deny.toml`: `[graph]` the six platforms ci.yml builds (x86_64-unknown-linux-gnu, x86_64-pc-windows-msvc, aarch64-apple-darwin, aarch64-apple-ios, aarch64-linux-android, wasm32-unknown-unknown) with `all-features = true`; `[advisories]` per-ID ignores only, each with a written reason, no blanket allow, `unmaintained` and `unsound` at their defaults (deny.toml:1-21; .github/scripts/ci-leg.sh:33). One ignore stands: RUSTSEC-2026-0192 (ttf-parser 0.25.1, unmaintained, no patched release), reached only through winit 0.31.0-beta.3 → winit-wayland → sctk-adwaita → ab_glyph → owned_ttf_parser, so no fix is reachable without a lone bump of the coupled winit pin — a bounded deferral the audit leg re-reads on every push. RUSTSEC-2026-0285 (rustls 0.23.43) is fixed by the lockfile update to rustls 0.23.45, which no build graph reaches. The audit's reach is cargo-deny's resolved graph, not the whole lockfile: cargo-deny 0.20.2 prunes `http-cache` (blitz-net's `cache` feature) and `ravif` even with `all-features = true`, so RUSTSEC-2024-0436 (paste 1.0.15, unmaintained) and RUSTSEC-2026-0186 (memmap2 0.5.10, unsound), both in `cargo tree --all-features`, never reach the gate — as measured at escher-0.1.0/chunks/2026-10-05-ci-gate-legs/evidence/audit.md (dev host, advisory database fetched 2026-10-05).
 
 **Pinning:**
 - Git dependencies are pinned by commit rev (Cargo.toml:101; Cargo.toml:111)
-- Builds pass `--locked` in the flake, in `dx bundle` and in every ci.yml cargo leg but `examples/wasm_hello`, which has no `Cargo.lock` (flake.nix:100; .github/workflows/publish-browser.yml:155; .github/scripts/ci-leg.sh:20-32; .github/workflows/ci.yml:301)
+- Builds pass `--locked` in the flake, in `dx bundle` and in every ci.yml cargo leg but `examples/wasm_hello`, which has no `Cargo.lock` (flake.nix:100; .github/workflows/publish-browser.yml:155; .github/scripts/ci-leg.sh:20-38; .github/workflows/ci.yml:392)
 - Most dependency versions are inherited with `workspace = true` (apps/browser/Cargo.toml:45-74; packages/blitz-dom/Cargo.toml:42-95); every dependency in the blitz-html and blitz-net manifests does so (packages/blitz-html/Cargo.toml:19-26; packages/blitz-net/Cargo.toml:22-41), as do the blitz-traits and blitz manifests (packages/blitz-traits/Cargo.toml:14-22; packages/blitz/Cargo.toml:22-37) and every dev-dependency of blitz-tests (tests/blitz-tests/Cargo.toml:15-35)
 - Inline versions outside the workspace: examples pin `idna_adapter` to exactly 1.0.0 (examples/counter/Cargo.toml:31-33); android-activity is pinned at "0.6.0" in blitz-shell (packages/blitz-shell/Cargo.toml:53-54); `cfg-if` is pinned at "1.0.4" and `android-activity` at "0.6" in dioxus-native (packages/dioxus-native/Cargo.toml:118; packages/dioxus-native/Cargo.toml:125); `log = "0.4"` is the one inline version in blitz-vibey-script (packages/blitz-vibey-script/Cargo.toml:36); the WPT runner's non-workspace dependencies declare explicit versions, and `dify` and `wptreport` disable default features (wpt/runner/Cargo.toml:33-50)
 - rusqlite is built with its `bundled` feature (apps/browser/persistence/Cargo.toml:9)
-- CI tooling: `cross` is installed from a pinned git rev; dioxus-cli is pinned to 0.7.8; wpt cli to 0.0.14 (.github/workflows/ci.yml:269; .github/workflows/publish-browser.yml:126; .github/workflows/wpt.yml:71); `awalsh128/cache-apt-pkgs-action` is referenced at `@latest` (.github/workflows/ci.yml:288; .github/workflows/publish-browser.yml:148; .github/workflows/wpt.yml:48)
+- CI tooling: `cross` is installed from a pinned git rev; dioxus-cli is pinned to 0.7.8; wpt cli to 0.0.14 (.github/workflows/ci.yml:360; .github/workflows/publish-browser.yml:126; .github/workflows/wpt.yml:71); ci.yml installs `cargo-deny@0.20.2` (the audit tool) and `cargo-llvm-cov@0.9.1` (the coverage tool) through `taiki-e/install-action` (.github/workflows/ci.yml:234-236; .github/workflows/ci.yml:281-283); every ci.yml `uses:` is pinned to a 40-hex commit SHA with its ref kept as a trailing comment, asserted by `test_ci_workflows.py` (.github/scripts/test_ci_workflows.py:163-169) — `awalsh128/cache-apt-pkgs-action` included (.github/workflows/ci.yml:379); the upstream-only publish-browser and wpt workflows still reference it at `@latest` (.github/workflows/publish-browser.yml:148; .github/workflows/wpt.yml:48)
 - Vendored JS: Preact is vendored as an unmodified copy of its UMD builds (examples/preact/index.html:46-48); each vendored Preact file ends with a `sourceMappingURL` comment for a `.map` file (examples/preact/vendor/preact.min.js:2; examples/preact/vendor/hooks.umd.js:2)
 - The blitz-tests crate is not published (`publish = false`) (tests/blitz-tests/Cargo.toml:4)
 
-**Update policy:** automated update tooling is observed absent — the search above included `dependabot` over .github/workflows/*.yml, Cargo.toml, Cross.toml, flake.nix, .github/scripts/*.py.
+**Update policy:** automated update tooling is observed absent — searched: `dependabot` over .github/workflows/*.yml, Cargo.toml, Cross.toml, flake.nix, .github/scripts/*.py.
 
-**CI integration:** no audit step — the search above covered .github/workflows/*.yml.
+**CI integration:** ci.yml's `audit` job ("Dependency audit") runs `bash .github/scripts/ci-leg.sh audit` on every pull request and push, in the slow tier behind the four fast jobs, uncached, its log uploaded on failure as `ci-log-audit` (.github/workflows/ci.yml:225-244).
 
 **Unsafe code:** one `unsafe` block builds a taffy `LengthPercentage` from a raw calc pointer (packages/stylo_taffy/src/convert.rs:81-86); two `unsafe` raw-pointer operations exist for calc values in layout (packages/blitz-dom/src/layout/mod.rs:73; packages/blitz-dom/src/layout/table.rs:165-168)
 
-> NOT YET MEASURED — the lockfile and a critical-CVE response SLA: no slice reached the lockfile, and none states a response SLA.
+> NOT YET MEASURED — a critical-CVE response SLA: none is stated. The lockfile's advisory state is read on every push by the audit leg, within cargo-deny's resolved graph (Audit tool above).
 
 ### Supply chain integrity
 
 - **Signed artifacts:** The publish job runs only in `DioxusLabs/blitz` and there uses environment "Signed Builds" only on main or `ci-test` branches, so the fork produces no signed artifact (.github/workflows/publish-browser.yml:37-41); a macOS signing key and an Android keystore are written from secrets for the build and removed in `always()` steps (.github/workflows/publish-browser.yml:106-108; .github/workflows/publish-browser.yml:168-170; .github/workflows/publish-browser.yml:110-120; .github/workflows/publish-browser.yml:172-174)
-- **Lockfile verification:** builds pass `--locked` (flake.nix:100; .github/workflows/publish-browser.yml:155), and so does every ci.yml cargo leg — the leg script's build, test, clippy, doc, msrv, counter and wasm commands and the matrix command — except `examples/wasm_hello`, a standalone workspace with no `Cargo.lock` (.github/scripts/ci-leg.sh:20-32; .github/workflows/ci.yml:301)
+- **Lockfile verification:** builds pass `--locked` (flake.nix:100; .github/workflows/publish-browser.yml:155), and so does every ci.yml cargo leg — the leg script's build, test, clippy, doc, msrv, counter, wasm, audit, a11y and coverage commands and the matrix command — except `examples/wasm_hello`, a standalone workspace with no `Cargo.lock` (.github/scripts/ci-leg.sh:20-38; .github/workflows/ci.yml:392)
 - **Subresource integrity (fixtures):** the gosub fixture's Font Awesome link carries an integrity hash with crossorigin=anonymous and referrerpolicy=no-referrer (examples/assets/gosub.html:86); the servo.org snapshot fixture loads jQuery with an `integrity` hash and `crossorigin="anonymous"` (examples/assets/servo.html:337); other remote stylesheets are linked without integrity attributes (examples/assets/pseudo.html:4; examples/assets/newservo.html:4; examples/assets/servo-new-reduced.html:7; examples/assets/servo-new.html:18; examples/assets/servo-new.html:20) — integrity attributes outside gosub.html are observed absent, searched: `integrity=` over the 21 s02 files; the servo.org snapshot fixture references third-party CDN resources: Font Awesome v5.12.0, Google Fonts, prismjs@1.20.0 on unpkg, jquery-3.4.1 on code.jquery.com (examples/assets/servo.html:26-29; examples/assets/servo.html:337)
 
 > NOT YET MEASURED — SBOM generation, base image scanning and license compliance: no slice gathered them.
@@ -237,9 +237,9 @@ Fixture pages also issue requests: the graphite fixture's script calls api.githu
 ## Bootstrap phases (derive for route / setup-project)
 
 - **auth-scaffolding-baseline:** authentication or authorization code is recorded absent — see Authentication & Authorization.
-- **dep-audit-tooling-install:** dependency audit tooling is recorded absent — see Dependency Security.
+- **dep-audit-tooling-install:** discharged — cargo-deny 0.20.2 with the root `deny.toml` is the audit tool — see Dependency Security.
 - **logging-redaction-wire:** redaction or sanitization of data is recorded absent in the s05 files — see Data Protection.
-- **dep-security-ci-gate:** no dependency-audit step exists in the CI workflows — see Dependency Security.
+- **dep-security-ci-gate:** discharged — ci.yml's `audit` job runs the audit on every push — see Dependency Security.
 
 ---
 
@@ -308,7 +308,7 @@ Fixture pages also issue requests: the graphite fixture's script calls api.githu
 - Missing nodes in mounted-element operations return `MountedError::OperationFailed` wrapping `NodeNotExistErr` (packages/dioxus-native-dom/src/events.rs:178-192; packages/dioxus-native-dom/src/events.rs:211-214; packages/dioxus-native-dom/src/events.rs:228-233)
 - WPT runner net errors are typed as `WptNetProviderError` (Io, DataUrl, DataUrlBase64, HandlerPanic) and logged with `warn!` (wpt/runner/src/net_provider.rs:107-111; wpt/runner/src/net_provider.rs:116-141)
 - wasm_hello maps event-loop errors into `JsValue` (examples/wasm_hello/src/lib.rs:120; examples/wasm_hello/src/lib.rs:143-145)
-- `gh_api` runs `subprocess.run(..., check=True)`, raising on non-zero exit (.github/scripts/wpt_diff_to_pr.py:175-182); CI matrix jobs set `fail-fast: false` (.github/workflows/ci.yml:217-218; .github/workflows/publish-browser.yml:43-44)
+- `gh_api` runs `subprocess.run(..., check=True)`, raising on non-zero exit (.github/scripts/wpt_diff_to_pr.py:175-182); CI matrix jobs set `fail-fast: false` (.github/workflows/ci.yml:308-309; .github/workflows/publish-browser.yml:43-44)
 
 **Graceful degradation (no panic):**
 - Stale node ids in layout children are skipped rather than panicking (packages/blitz-dom/src/resolve.rs:253-257; packages/blitz-dom/src/resolve.rs:302-306); stale node ids resolve to `None` through `get` (packages/blitz-dom/src/tree.rs:89-97)

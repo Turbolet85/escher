@@ -8,6 +8,13 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-06 — The project's Bash guards refuse a heredoc written to a file and a leading cd, and read payload prose too
+escher's PreToolUse Bash hook blocks a `cat`/`tee` heredoc that writes a file, and a leading `cd` into a subdirectory (it would move the session's working directory for every later call). The heredoc match is a token match over the whole command text, so a heredoc PIPED into a tool — an evolve append, an inline python script — is also refused when its payload's prose quotes the guarded shell form: the record's text tripped it, not the command.
+
+Write documents and scripts with the Write tool — a script into the session scratchpad and run by path, never into a committed run dir, which the hygiene read inspects — reach subdirectories by absolute path or a subshell, and when a payload must mention the guarded form, describe it in words instead of quoting it.
+
+---
+
 ## 2026-10-05 — A chunk that moves cited source lines stales the masters' file:line citations
 The spec masters cite code as `file:line` throughout. A chunk that inserts or removes lines in a cited file — a profile stanza in `Cargo.toml`, a guard in a workflow, a rewritten `ci.yml` — leaves every citation past the edit pointing at the wrong line, and no drift detector sees it: the detectors read the chunk report alone, and the report carries no map of moved lines. The first such chunk on escher left 114 stale citations across five masters.
 

@@ -74,7 +74,7 @@
 
 **Contrast verification harness:** contrast checks are observed absent — see §6.
 
-**CI integration:** accessibility checks in CI are observed absent — see §9.
+**CI integration:** ci.yml's `a11y` job runs the accessibility integration tests as their own leg — see §9.
 
 **Observed absent (assertion searches):**
 - accessibility tree or assertion tooling · searched: `accesskit|AccessKit` over the 32 s03 slice files
@@ -318,7 +318,7 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 
 ## 9. CI Integration
 
-Accessibility checks in CI are observed absent · searched: `a11y|accessib|axe` over .github/workflows/*.yml (s01); every other slice held no CI configuration.
+ci.yml's `a11y` job, "Accessibility (a11y) tests", runs `bash .github/scripts/ci-leg.sh a11y` — `cargo test --workspace --locked --test accessibility_hidden --test accessibility_roles --test focusability_updates`, 6 + 6 + 3 tests — in the slow tier behind the four fast jobs, restoring the test job's cache and saving none (.github/workflows/ci.yml:247-268; .github/scripts/ci-leg.sh:34); it runs existing tests and adds no stand assertion. The search `a11y|accessib|axe` over .github/workflows/*.yml finds it — as measured at escher-0.1.0/chunks/2026-10-05-ci-gate-legs/evidence/gates.md.
 
 ---
 

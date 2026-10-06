@@ -28,7 +28,7 @@ _Distilled from `.andromeda/a11y-plan.md` (adopted reading). wrap-session's casc
 1. `contrast-verification-harness-setup` → "Stand contrast harness"
 2. Headless keyboard dispatch with focused-node read-back → "Stand keyboard harness"
 3. Stable id + role + name on every accessibility node → "Accessibility-tree identity"
-4. SC assertions on every stand control + a gating a11y CI leg (`a11y-ci-gate-wire`) → "Stand a11y assertions" / "CI gate legs"
+4. SC assertions on every stand control, gating merges through the a11y CI leg (the `a11y` job runs the accessibility integration tests — `a11y-ci-gate-wire` discharged) → "Stand a11y assertions"
 
 ## Universal anti-patterns
 > NO RECORDED INTENT.

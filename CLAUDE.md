@@ -46,7 +46,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 - DOM mutations go through `DocumentMutator` (`doc.mutate()`), which flushes on Drop — extend the mutator rather than reaching through `DocumentMutator::doc`.
 - `NodeId` is a versioned slot id: a dropped node's id stops resolving and indexing a stale id panics — use `get`/`contains_key` for ids that may be stale.
 - Dependency pins are coupled (html5ever family ↔ stylo web_atoms, skrifa ↔ parley/vello, svgtypes ↔ usvg, taffy/parley git revs, winit exact beta) — never bump one side alone.
-- Work is not done until `bash .github/scripts/ci-leg.sh fast` (fmt · clippy `--locked -D warnings` · workspace tests · CI scripts — the same legs CI runs) and rustdoc `-D warnings` (`cargo doc --workspace --no-deps`; red at baseline, owned by "CI gate legs") pass.
+- Work is not done until `bash .github/scripts/ci-leg.sh fast` (fmt · clippy `--locked -D warnings` · workspace tests · CI scripts — the same legs CI runs) and `bash .github/scripts/ci-leg.sh doc` (rustdoc `-D warnings` over every workspace crate — `cargo doc --workspace --no-deps --locked`) pass.
 <!-- GENERATED:setup:warnings end -->
 
 ## Where to Look
@@ -81,7 +81,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 - `cargo build --workspace` — build every crate (Linux needs `libfontconfig1-dev`; Arch: `fontconfig`)
 - `bash .github/scripts/ci-leg.sh fast` — the local pre-push gate: fmt → clippy → workspace tests → CI scripts, as CI runs them
 - `cargo test -p blitz-tests --test {name}` — one integration-test file
-- `bash .github/scripts/ci-leg.sh {leg}` — one CI leg exactly (`fmt` · `clippy` · `test` · `build` · `doc` · …); log in `target/ci-logs/{leg}.log`
+- `bash .github/scripts/ci-leg.sh {leg}` — one CI leg exactly (`fmt` · `clippy` · `test` · `build` · `doc` · `audit` · `a11y` · `coverage` · …); log in `target/ci-logs/{leg}.log`
 - `just seven_guis` — run the 7GUIs stand natively (windowed)
 
 See `.claude/docs/commands.md` for the full reference.

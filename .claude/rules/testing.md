@@ -41,7 +41,7 @@ Path-scoped rules for test files. Source: `.andromeda/test-plan.md` §2 §4 §5 
 - **Benchmarks (ignored):** `cargo test -p blitz-tests --release --test paint_tree_bench -- --ignored --nocapture`
 
 ## Not yet measured
-- Coverage tooling (absent), quality gates and flakiness budget (§10) are owned by the working route's "CI gate legs" and "Quality gates" chunks.
+- Coverage is measured with no threshold (`bash .github/scripts/ci-leg.sh coverage`, cargo-llvm-cov); a coverage floor, quality gates and the flakiness budget (§10) are owned by the working route's "Quality gates" chunk.
 
 ## Session Additions
 _This section is owned by `/andromeda-wrap-session`. setup-project preserves content added here on re-run._

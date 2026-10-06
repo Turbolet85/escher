@@ -17,7 +17,7 @@ Source: `.andromeda/security-plan.md` (security tier 0; application threat model
 - No served API, listener or auth exists. A new socket, port, IPC endpoint or credential path is an arch §Occupied Resources + security-plan amendment first.
 
 ## Dependencies
-- Audit tooling (cargo-audit / cargo-deny) is observed absent; it is owned by the working route's "CI gate legs" chunk. Until then, review new crates by hand.
+- The dependency audit is cargo-deny (`bash .github/scripts/ci-leg.sh audit`, config `deny.toml`): an advisory it fires on is fixed by a semver-compatible update, or ignored by ID with a written reason — never a blanket allow, never `unmaintained`/`unsound` set to none. Its reach is cargo-deny's resolved graph, which misses the paste and memmap2 advisories in optional chains — still review new crates by hand.
 - `Cargo.lock` is committed; git deps are pinned by `rev`; builds pass `--locked` — keep all three.
 
 ## Session Additions

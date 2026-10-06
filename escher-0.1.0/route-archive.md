@@ -1,0 +1,6 @@
+# Route archive — escher-0.1.0
+
+Verbatim working-route lines as they stood before /andromeda-wrap-session P7's flip-compaction stripped their spent annotation freight — one `## {marker} — archived at the {date} wrap` section per compacted line. Writer: wrap P7 only. Read by NO loop skill: cold history, superseded at take-up by the chunk's scope fold and at the flip by the master desc — never cite it for current truth. Not a complete pin chronicle: tail annotations cleared before their entry froze live only in git and the wraps' P5 summaries.
+
+## 2026-10-05-ci-gate-legs — archived at the 2026-10-06 wrap
+[2026-10-05-ci-gate-legs] CI gate legs — dependency audit, pinned actions, least-privilege tokens, coverage report, named a11y leg on fork CI (per security-plan, test-plan §9, a11y-plan §9)  CARRY: a real rustdoc gate — CI's docs job runs bare `cargo doc`, which documents only the lib-less root package `blitz-examples`, and `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps` is red: exit 101, 3 crates not documented (blitz-dom, blitz-vibey-script, example transparent), 9 rustdoc errors, plus a `target/doc/blitz/index.html` output-filename collision (bin `blitz` of `browser` vs lib `blitz`) — measured at 2026-10-05-as-built-baseline evidence/baseline.md §Wider gates; owner named at that chunk's P5 review

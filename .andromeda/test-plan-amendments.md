@@ -31,3 +31,16 @@ One entry per amendment to `test-plan.md` (sidecar-contract.md §Entry form). Ap
 **Change:** 13 citations re-pointed — `wpt.yml` from line 26 on +1 (the repository guard), `ci.yml` by a range map over the rewritten file (e.g. the test job 72-89, the CI-scripts job 175-188, the matrix platforms 220-252); no claim text changed by the re-point.
 **Why:** this chunk moved the cited lines.
 **Ref:** .andromeda/runs/2026-10-05T21-59-55-wrap/
+
+## 2026-10-05-ci-gate-legs — audit, a11y and coverage legs; workspace rustdoc green; first coverage reading
+**Section:** §3 → `coverage-tooling-install` · §4 Unit Test Strategy (CI workflows and leg script) · §9 CI Integration (Legs · Cache · Failure logs · Local baseline · Coverage — was Observed absent) · §10 Quality Gates & Coverage Targets · every section citing `ci.yml`, `ci-leg.sh` or `test_ci_workflows.py` lines
+**Change:**
+- was nine linux leg jobs; now twelve — `audit` (`cargo deny check advisories`), `a11y` (`--test accessibility_hidden --test accessibility_roles --test focusability_updates`), `coverage`; the `doc` leg runs `cargo doc --workspace --no-deps --locked`;
+- was "Coverage tooling" observed absent and `coverage-tooling-install` recorded absent; now the `coverage` leg runs `cargo llvm-cov --workspace --locked --lcov --output-path target/coverage/lcov.info`, then `cargo llvm-cov report --workspace --locked`, no threshold; cargo-llvm-cov 0.9.1 + `llvm-tools-preview` in CI, the `llvm-tools` component on the dev host; the job uploads `coverage-report` on success, 7 days; the key reads discharged;
+- §10 records the first line-coverage reading, no threshold: 53.23 % dev host (34 900 lines, 151 files), 53.25 % CI; the NOT YET MEASURED marker keeps the gate, threshold, flakiness and performance budgets;
+- Local baseline: was workspace rustdoc exit 101 (3 crates, 9 errors), per "2026-10-05-fork-ci-reached — local baseline re-measured under line-tables-only debuginfo"; now `ci-leg.sh doc` exit 0, no collision, audit `advisories ok`, a11y 6 · 6 · 3, coverage exit 0 (its instrumented run 404 · 0 · 3 — no doctests);
+- Cache: was rust-cache on every compiling job; now every compiling job but `coverage`, the test job under `shared-key: workspace-test`, `a11y` restoring it with `save-if: false` (an exact hit in CI); run 37386253475 took 769 s wall, windows the critical path at 506 s, the uncached coverage job 256 s off it;
+- §4: was 16 tests; now 23 — the CI-workflow invariants add SHA pins, toolchain inputs, workflow `permissions`, the a11y job name, the `coverage-report` upload and the cache-less / restore-only split; the leg-script shim checks the doc, audit, a11y and coverage legs;
+- 15 citations re-pointed by a measured line map; no claim text changed by the re-point.
+**Why:** the CI gate legs chunk; the `coverage-report` upload is a boundary widening recorded PROVISIONAL — delegate overseer, 2026-10-05, under the founder's standing delegation (relayed verbatim by overseer). Trap: `cargo llvm-cov report` without `--workspace` exits 0 with an empty table in this workspace.
+**Ref:** .andromeda/runs/2026-10-05T23-50-17-wrap/

@@ -1,5 +1,5 @@
 ### Bootstrap phases (derive for route / setup-project)
 
-- **coverage-tooling-install:** coverage tooling is recorded absent — see `## 9. CI Integration`.
+- **coverage-tooling-install:** discharged — coverage tooling is present as the `coverage` CI leg (cargo-llvm-cov) — see `## 9. CI Integration`.
 
 ---

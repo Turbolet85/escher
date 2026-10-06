@@ -16,7 +16,7 @@ escher is a native-API engine library with no served API, no listener and no aut
 - **Outbound HTTP** → 6 concurrent requests per host; no response-size cap, no timeout (observed absent); TLS via reqwest `native-tls`.
 - **CLI input** → examples parse URLs with `Url::parse` (+ `https://` retry), numeric args with defaults; `bump` validates target + semver.
 - **rdme markdown** → comrak with `unsafe: true` passes raw HTML through.
-- **CI** → post-results workflow checks out trusted scripts from the default branch; `ci.yml` has no workflow-level `permissions` block and references no secret. The publish (signing), WPT and post-results jobs carry `github.repository == 'DioxusLabs/blitz'`, so no fork ref reaches "Signed Builds", "WPT" or their secrets.
+- **CI** → post-results workflow checks out trusted scripts from the default branch; `ci.yml` declares a workflow-level `permissions: contents: read` with no job grant, pins every action to a commit SHA and references no secret. The publish (signing), WPT and post-results jobs carry `github.repository == 'DioxusLabs/blitz'`, so no fork ref reaches "Signed Builds", "WPT" or their secrets.
 
 ## Data classifications (as measured)
 | Class | Examples | Handling |
@@ -29,7 +29,7 @@ escher is a native-API engine library with no served API, no listener and no aut
 > NO RECORDED INTENT — the plan carries none yet; Tier 1 warnings and `.claude/rules/security.md` hold the measured invariants.
 
 ## Not yet measured (owners on the working route)
-- Dependency audit tooling + CI gate, pinned actions, least-privilege tokens → "CI gate legs".
+- The dependency audit's reach — paste / memmap2 advisories in optional chains unseen by cargo-deny's resolved graph → "Quality gates".
 - Logging redaction (`logging-redaction-wire`) → "Telemetry bootstrap" (scrub layer).
 - Driver/MCP surface — local to the invoking user, no listener or auth surface → "MCP surface".
 - TLS policy, key management, retention, SBOM, secret scanning, security-event logging → no owner yet.

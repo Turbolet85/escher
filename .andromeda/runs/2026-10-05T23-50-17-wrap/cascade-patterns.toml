@@ -1,0 +1,71 @@
+# Cascade step-2 sweep — every claim this pass retired (wrap 2026-10-05T23-50-17, chunk 2026-10-05-ci-gate-legs).
+
+[[pattern]]
+id = "nine-linux"
+regex = '(?i)nine linux'
+
+[[pattern]]
+id = "16-tests"
+regex = '16 tests'
+
+[[pattern]]
+id = "tag-pinned"
+regex = '(?i)tag-pinned|tag- or branch-pinned'
+
+[[pattern]]
+id = "cache-at-v2"
+fixed = 'rust-cache@v2'
+
+[[pattern]]
+id = "upload-at-v7"
+fixed = 'upload-artifact@v7'
+
+[[pattern]]
+id = "bare-doc"
+regex = 'bare `cargo doc|cargo doc --locked'
+
+[[pattern]]
+id = "no-lib-crate"
+regex = '(?i)no library crate|nominal doc|documents only the|documenting only the'
+
+[[pattern]]
+id = "doc-exit101"
+regex = 'exit 101|9 errors'
+
+[[pattern]]
+id = "cov-absent"
+regex = '(?i)coverage tooling'
+
+[[pattern]]
+id = "audit-absent"
+regex = '(?i)audit[^.|]{0,60}(absent|no audit)|no audit step|no dependency-audit'
+
+[[pattern]]
+id = "perm-absent"
+regex = '(?i)permissions block.{0,40}absent'
+
+[[pattern]]
+id = "a11y-ci-absent"
+regex = '(?i)(accessibility|a11y) checks in CI'
+
+[[pattern]]
+id = "at-latest"
+fixed = '@latest'
+
+[[pattern]]
+id = "cache-973"
+regex = '9\.73|9 728 732 229|≈ 97 %'
+
+[[pattern]]
+id = "every-compiling"
+regex = '(?i)every compiling'
+
+[[pattern]]
+id = "lockfile-unread"
+regex = '(?i)reached the lockfile'
+
+[[pattern]]
+id = "ci-logs-only"
+regex = '(?i)only path the CI|`target/ci-logs/` alone|only[^.|]{0,30}target/ci-logs'
+
+# gate-legs-owner ('CI gate legs') dropped: its control never fires over the masters; its leaf sites are swept by hand (cascade-dispositions.md).

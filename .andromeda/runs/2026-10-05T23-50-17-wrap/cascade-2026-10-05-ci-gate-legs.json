@@ -1,0 +1,231 @@
+[
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "43eb863f",
+"ts": "2026-10-06T00:03:39Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-05T23-50-17-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-05T23-50-17-wrap",
+"--marker",
+"2026-10-05-ci-gate-legs"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 3,
+"stdout": [
+"baseline 15e36b8a (pre-CI parent — the oldest of 1 pre-CI commit(s), 5dc809a1)",
+"perm-absent · control UNFIRED over the seven masters at 15e36b8a",
+"gate-legs-owner · control UNFIRED over the seven masters at 15e36b8a"
+],
+"stderr": "control: perm-absent, gate-legs-owner never fired over the seven masters' pre-pass text (15e36b8a) — a sweep runs a positive control or refuses; drop the pattern or control it by hand",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "43eb863f",
+"ts": "2026-10-06T00:03:52Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-05T23-50-17-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-05T23-50-17-wrap",
+"--marker",
+"2026-10-05-ci-gate-legs"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"baseline 15e36b8a (pre-CI parent — the oldest of 1 pre-CI commit(s), 5dc809a1)",
+"nine-linux · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:174 (pr…",
+"16-tests · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:111 (prose)",
+"tag-pinned · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:66 (pro…",
+"cache-at-v2 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:66 (pr…",
+"upload-at-v7 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:66 (prose)",
+"bare-doc · new 0 · standing 0 · leaf 2 · curation 0 · base 0 · control architecture.md:67 (prose)",
+"no-lib-crate · new 0 · standing 0 · leaf 2 · curation 0 · base 0 · control architecture.md:67 (prose)",
+"doc-exit101 · new 0 · standing 0 · leaf 3 · curation 0 · base 0 · control architecture.md:67 (prose)",
+"cov-absent · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:288 (prose)",
+"audit-absent · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control security-plan.md:207 (prose)",
+"perm-absent · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:49 (p…",
+"a11y-ci-absent · 0 rows (control fired) — a statement about this pattern, not the masters · control a11y-plan.md:77 (pr…",
+"at-latest · new 1 · standing 0 · leaf 0 · curation 0 · base 0 · control security-plan.md:215 (prose)",
+"cache-973 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:151 (pro…",
+"every-compiling · new 0 · standing 4 · leaf 1 · curation 0 · base 0 · control architecture.md:66 (prose)",
+"lockfile-unread · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:2…",
+"ci-logs-only · new 0 · standing 3 · leaf 0 · curation 0 · base 0 · control architecture.md:137 (prose)",
+".andromeda/architecture.md:173 upload-at-v7 standing …zipped with `actions/upload-artifact@v7` (.github/workflows/publi…",
+".claude/docs/commands.md:40 bare-doc leaf … crates, 9 errors). CI's bare `cargo doc --locked` (the `doc` leg) documents…",
+".claude/docs/stack.md:39 bare-doc leaf …-wide, but the docs job's bare `cargo doc --locked` documents only the lib-less…",
+".claude/docs/commands.md:40 no-lib-crate leaf ×2 …cked` (the `doc` leg) documents only the lib-less root package `blitz…",
+".claude/docs/stack.md:39 no-lib-crate leaf ×2 …e `cargo doc --locked` documents only the lib-less root package `blitz-e…",
+".claude/docs/commands.md:40 doc-exit101 leaf … at baseline: 3 crates, 9 errors). CI's bare `cargo doc --locked` (the `d…",
+".claude/docs/stack.md:39 doc-exit101 leaf …o doc --workspace --no-deps` under it fails (3 crates, 9 errors at baseline).",
+".claude/docs/tests-summary.md:38 doc-exit101 leaf …ustdoc red (3 crates, 9 errors), owned by \"CI gate legs\" | `ci-leg.s…",
+".andromeda/registries/contracts/test-plan/bootstrap-phases-derive-for-route-setup-project.md:3 cov-absent standing edited",
+".claude/rules/testing.md:44 cov-absent leaf - Coverage tooling (absent), quality gates and flakiness budget (§10) are o…",
+".claude/rules/security.md:20 audit-absent leaf - Audit tooling (cargo-audit / cargo-deny) is observed absent; it is own…",
+".andromeda/security-plan.md:215 at-latest new …still reference it at `@latest` (.github/workflows/publish-browser.yml:1…",
+".andromeda/architecture.md:66 every-compiling standing edited …ache` (`# v2`) on every compiling job but `coverage`, `a…",
+".andromeda/architecture.md:174 every-compiling standing edited @c1829/3324 …d, `# v2`) on every compiling ci.yml job bu…",
+".andromeda/test-plan.md:111 every-compiling standing edited …ild/` save rule on every compiling job but the cache-less …",
+".andromeda/test-plan.md:271 every-compiling standing edited …pinned, `# v2`) on every compiling job but `coverage`, sav…",
+".claude/docs/stack.md:41 every-compiling leaf … matrix; rust-cache on every compiling job (saved on `main` + `build/*`)…",
+".andromeda/architecture.md:137 ci-logs-only standing edited @c2222/2800 …}`), uploading only its own log under `target/…",
+".andromeda/architecture.md:145 ci-logs-only standing edited … leg's start — the only path the CI failure artifacts uplo…",
+".andromeda/obs-plan.md:285 ci-logs-only standing edited …, kept 7 days, from `target/ci-logs/` alone; unscrubbed build …",
+"nine-linux · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:174 (pr…",
+"16-tests · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:111 (prose)",
+"tag-pinned · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:66 (pro…",
+"cache-at-v2 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:66 (pr…",
+"upload-at-v7 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:66 (prose)",
+"bare-doc · new 0 · standing 0 · leaf 2 · curation 0 · base 0 · control architecture.md:67 (prose)",
+"no-lib-crate · new 0 · standing 0 · leaf 2 · curation 0 · base 0 · control architecture.md:67 (prose)",
+"doc-exit101 · new 0 · standing 0 · leaf 3 · curation 0 · base 0 · control architecture.md:67 (prose)",
+"cov-absent · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:288 (prose)",
+"audit-absent · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control security-plan.md:207 (prose)",
+"perm-absent · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:49 (p…",
+"a11y-ci-absent · 0 rows (control fired) — a statement about this pattern, not the masters · control a11y-plan.md:77 (pr…",
+"at-latest · new 1 · standing 0 · leaf 0 · curation 0 · base 0 · control security-plan.md:215 (prose)",
+"cache-973 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:151 (pro…",
+"every-compiling · new 0 · standing 4 · leaf 1 · curation 0 · base 0 · control architecture.md:66 (prose)",
+"lockfile-unread · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:2…",
+"ci-logs-only · new 0 · standing 3 · leaf 0 · curation 0 · base 0 · control architecture.md:137 (prose)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "15e36b8ac1440bcfcaf2084698eacfc9dd12f7da",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), 5dc809a1",
+"counts": {
+"nine-linux": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"16-tests": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"tag-pinned": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cache-at-v2": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"upload-at-v7": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"bare-doc": {
+"new": 0,
+"standing": 0,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"no-lib-crate": {
+"new": 0,
+"standing": 0,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"doc-exit101": {
+"new": 0,
+"standing": 0,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"cov-absent": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"audit-absent": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"perm-absent": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"a11y-ci-absent": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"at-latest": {
+"new": 1,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cache-973": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"every-compiling": {
+"new": 0,
+"standing": 4,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"lockfile-unread": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"ci-logs-only": {
+"new": 0,
+"standing": 3,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+}
+}
+}
+]

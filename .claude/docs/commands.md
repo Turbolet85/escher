@@ -37,7 +37,7 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 - `cargo fmt --all` / `just fmt` — format
 - `cargo fmt --all --check` — the CI format gate
 - `cargo clippy --workspace --locked -- -D warnings` — the CI lint gate, the `clippy` leg (`just clippy` runs without `-D warnings`)
-- `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps` — the docs gate over every workspace crate (red at baseline: 3 crates, 9 errors). CI's bare `cargo doc --locked` (the `doc` leg) documents only the lib-less root package `blitz-examples` and gates no library crate
+- `bash .github/scripts/ci-leg.sh doc` — `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps --locked`, the docs gate over every workspace library crate (green; CI's docs job runs the same leg). Beside it: `ci-leg.sh audit` (cargo-deny advisories over `deny.toml`), `ci-leg.sh a11y` (the accessibility integration tests) and `ci-leg.sh coverage` (cargo-llvm-cov lcov to `target/coverage/lcov.info`, then the per-file table; needs the `llvm-tools` rustup component)
 
 ## Running apps and examples
 - `just seven_guis` — the 7GUIs stand (`cargo run --release --package seven_guis --bin seven_guis_native`)

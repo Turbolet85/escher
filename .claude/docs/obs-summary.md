@@ -25,7 +25,7 @@ _Distilled from `.andromeda/obs-plan.md` (adopted reading). wrap-session's casca
 
 No counters, histograms or exporters exist.
 
-CI artifacts (§9): each ci.yml leg's merged output, `target/ci-logs/{leg}.log`, is uploaded only when the leg fails (`ci-log-{job id}`, kept 7 days, unscrubbed build output).
+CI artifacts (§9): each ci.yml leg's merged output, `target/ci-logs/{leg}.log`, is uploaded only when the leg fails (`ci-log-{job id}`, kept 7 days, unscrubbed build output); the `coverage` job also uploads `coverage-report` (`target/coverage/`, line counts, no user data) on success, kept 7 days.
 
 ## SLO invariants (§10)
 > NO RECORDED INTENT.

@@ -7,3 +7,9 @@ One entry per amendment to `design-system.md` (sidecar-contract.md §Entry form)
 **Change:** 4 citations re-pointed — `publish-browser.yml` from line 37 on +1 (the repository guard), `ci.yml` by a range map over the rewritten file (the ios/android matrix entries now 237-252); no claim text changed by the re-point.
 **Why:** this chunk moved the cited lines.
 **Ref:** .andromeda/runs/2026-10-05T21-59-55-wrap/
+
+## 2026-10-05-ci-gate-legs — file:line citations re-pointed after ci.yml moved
+**Section:** every section citing `ci.yml` lines
+**Change:** 2 citations re-pointed — the ios/android matrix entries 237-252 → 328-343, by a measured line map over ci.yml; no claim text changed by the re-point.
+**Why:** this chunk moved the cited lines.
+**Ref:** .andromeda/runs/2026-10-05T23-50-17-wrap/

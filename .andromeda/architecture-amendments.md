@@ -45,3 +45,26 @@ One entry per amendment to `architecture.md` (sidecar-contract.md §Entry form).
 **Change:** 64 citations re-pointed to the moved files — `Cargo.toml` from line 195 on +3 (the `[profile.dev]` stanza), `wpt.yml` from line 26 on +1 and `publish-browser.yml` from line 37 on +1 (the repository guards), `ci.yml` by a range map over the rewritten file (e.g. fmt job 135-151, clippy job 153-173, the jobs 30-309); the two citations of the removed opt-level rewrite went with the CI/CD rewrite. No claim text changed by the re-point.
 **Why:** this chunk moved the cited lines; a stale `file:line` sends every later reader to the wrong code.
 **Ref:** .andromeda/runs/2026-10-05T21-59-55-wrap/
+
+## 2026-10-05-ci-gate-legs — CI gate legs, SHA-pinned actions, a read-only token, a real rustdoc gate
+**Section:** §Stack and Technologies (CI/CD · Code quality) · §Conventions (Formatting and lints) · §Standard Contracts (CI contracts) · §Infrastructure Patterns (Build system · CI/CD) · §Inherited Defaults (Code quality)
+**Change:**
+- was a docs job running bare `cargo doc --locked`, documenting only the lib-less root package — a nominal doc gate the workspace failed (3 crates, 9 errors); now the `doc` leg runs `cargo doc --workspace --no-deps --locked` under `-D warnings`, green over every workspace library crate, the `browser` bin `blitz` `doc = false` so the lib `blitz` alone writes `target/doc/blitz/`;
+- was nine linux leg jobs; now twelve — `ci-leg.sh` adds `audit` (`cargo deny --locked check advisories`, root `deny.toml`), `a11y` (`accessibility_hidden`, `accessibility_roles`, `focusability_updates`) and `coverage` (`cargo llvm-cov` lcov to `target/coverage/lcov.info`, then the per-file report, no threshold); each new job in the slow tier with its failure-only `ci-log-{job id}`; the docs job installs `libfontconfig1-dev`;
+- the `coverage` job also uploads `coverage-report` (`target/coverage/`, on success, 7 days) — the one fork-CI artifact outside `target/ci-logs/`;
+- was tag-pinned actions; now every ci.yml `uses:` is pinned to a 40-hex commit SHA with its ref as a trailing comment, each `dtolnay/rust-toolchain` step naming its `toolchain`; CI installs cargo-deny 0.20.2 and cargo-llvm-cov 0.9.1 through `taiki-e/install-action`;
+- ci.yml declares a workflow-level `permissions: contents: read`, no job-level grant;
+- was rust-cache on every compiling job; now every compiling job but `coverage`, `a11y` restore-only on the test job's key.
+**Why:** the CI gate legs chunk landed the audit, a11y and coverage legs, the pins and the read-only token, and discharged the as-built baseline's CARRY (a real rustdoc gate). The `coverage-report` upload is a boundary widening recorded PROVISIONAL — delegate overseer, 2026-10-05, under the founder's standing delegation of technical decisions (relayed verbatim by overseer); the founder's own later word supersedes it. A pinned `dtolnay/rust-toolchain` loses the toolchain its `@stable` branch name selected — every pinned step names one.
+**Supersedes:** 2026-10-05-as-built-baseline — the rustdoc doc gate reaches no library crate
+**Ref:** .andromeda/runs/2026-10-05T23-50-17-wrap/
+
+## 2026-10-05-ci-gate-legs — shared test cache, the coverage path, the cache budget re-measured over
+**Section:** §Occupied Resources (Filesystem · CI infrastructure) · every section citing `ci.yml`, `ci-leg.sh` or `test_ci_workflows.py` lines
+**Change:**
+- Filesystem registers the coverage leg's `target/coverage/lcov.info`, uploaded on success as `coverage-report`; `target/ci-logs/` stays the failure artifacts' only path;
+- CI infrastructure was "12 entries, ≈ 9.73 GB of the 10 GB budget, one rust cache per compiling ci.yml job (11)", per "2026-10-05-fork-ci-reached — upstream-only signing, WPT and dispatch; the fork's cache budget"; now the test job saves under `shared-key: workspace-test`, which `a11y` restores with `save-if: false`, and `audit` and `coverage` carry no cache; after the first run on a re-keyed lockfile the cache held 12 entries, 10 723 071 252 B — over the budget — the `workspace-test` and clippy entries already evicted while two pre-re-key matrix entries (≈ 2.16 GB) stood;
+- 70 citations on 28 lines re-pointed by a measured line map (ci.yml +4 … +91, ci-leg.sh +7 after its doc arm); no claim text changed by the re-point.
+**Why:** a `Cargo.lock` change re-mints every rust-cache key and evicts until the old keys age out — over budget, a new cache entry or a lockfile/toolchain change starves the legs that restore last.
+**Kept:** `deny.toml` is not registered under Filesystem — a repository config file is below the registry's grain; Build system names it.
+**Ref:** .andromeda/runs/2026-10-05T23-50-17-wrap/

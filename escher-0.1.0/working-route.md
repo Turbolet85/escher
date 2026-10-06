@@ -12,7 +12,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
    ↓
 [2026-10-05-fork-ci-reached] Fork CI reached — escher build-branch pipeline green, host-reproducible legs run locally, cached builds, fast/slow split, failure artifacts uploaded, signing-secret jobs excluded
    ↓
-[2026-10-05-ci-gate-legs] CI gate legs — dependency audit, pinned actions, least-privilege tokens, coverage report, named a11y leg on fork CI (per security-plan, test-plan §9, a11y-plan §9)  CARRY: a real rustdoc gate — CI's docs job runs bare `cargo doc`, which documents only the lib-less root package `blitz-examples`, and `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps` is red: exit 101, 3 crates not documented (blitz-dom, blitz-vibey-script, example transparent), 9 rustdoc errors, plus a `target/doc/blitz/index.html` output-filename collision (bin `blitz` of `browser` vs lib `blitz`) — measured at 2026-10-05-as-built-baseline evidence/baseline.md §Wider gates; owner named at that chunk's P5 review
+[2026-10-05-ci-gate-legs] CI gate legs — dependency audit, pinned actions, least-privilege tokens, coverage report, named a11y leg on fork CI (per security-plan, test-plan §9, a11y-plan §9)
    ↓
 Telemetry bootstrap — tracing subscriber, opt-in OTel export, service identity, panic logging, scrub layer; logs never on stdout (per obs-plan §3 §8)
    ↓
@@ -69,6 +69,6 @@ Stand a11y assertions — SC 2.1.1 keyboard reach, SC 2.4.3 focus order, SC 1.4.
    ↓
 Stand requirement sweep — every 0.1.0 capability proven headless by an agent across the stand tasks (per intent §Principles)
    ↓
-Quality gates — coverage floor on driver crates and flakiness budget for stand checks, enforced on fork CI (per test-plan §10)
+Quality gates — coverage floor on driver crates and flakiness budget for stand checks, enforced on fork CI (per test-plan §10)  CARRY: audit reach — cargo-deny 0.20.2's resolved graph prunes `http-cache` (blitz-net's `cache` feature) and `ravif`, so RUSTSEC-2024-0436 (paste 1.0.15, unmaintained) and RUSTSEC-2026-0186 (memmap2 0.5.10, unsound) never reach the `audit` leg though both are in the build graph; close it (a lockfile-wide scan beside it, or a graph that reaches them) — measured at 2026-10-05-ci-gate-legs evidence/audit.md, security-plan §Dependency Security; pinned on the overseer's word at that chunk's wrap (delegate overseer, under the founder's standing delegation of technical decisions)
    ↓
 Cold-agent test — fresh agent given only the tool completes a stand task and writes a passing check, wrong calls counted (v010-15)

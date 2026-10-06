@@ -32,10 +32,10 @@ _Distilled from `.andromeda/test-plan.md` (adopted reading). wrap-session's casc
 ## Quality gates (§10)
 | Gate | Threshold | Tool |
 |---|---|---|
-| Coverage | NOT YET MEASURED (tooling absent) | owned by "CI gate legs" / "Quality gates" |
+| Coverage | no threshold — first reading 53.23 % lines (dev host), 53.25 % (CI); a floor is "Quality gates" | `ci-leg.sh coverage` (cargo-llvm-cov; `coverage-report` artifact) |
 | Flakiness budget | NOT YET MEASURED | "Quality gates" |
 | Performance budget | NOT YET MEASURED | — |
-| Format / lint / docs | must pass — fmt and clippy green at baseline; workspace rustdoc red (3 crates, 9 errors), owned by "CI gate legs" | `ci-leg.sh fmt` · `ci-leg.sh clippy` (`cargo clippy --workspace --locked -- -D warnings`) · `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps` |
+| Format / lint / docs | must pass — fmt, clippy and the workspace rustdoc gate green | `ci-leg.sh fmt` · `ci-leg.sh clippy` (`cargo clippy --workspace --locked -- -D warnings`) · `ci-leg.sh doc` (`RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps --locked`) |
 
 ## Universal anti-patterns
 > NO RECORDED INTENT.

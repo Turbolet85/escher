@@ -36,7 +36,7 @@ This project was adopted into the Andromeda pipeline (`/andromeda-adopt` at `0f6
 
 ## Release process
 - Upstream model: main is a prepatch until 1.0, one minor ahead of the release; `bump` versions blitz packages together and anyrender packages together; the browser is bundled by `publish-browser.yml` (signed builds only on main / `ci-test`, and only in `DioxusLabs/blitz` — the fork never runs it).
-- escher's fork CI runs on the build branch (fast legs fmt · clippy · test · CI scripts, then the slow legs; cached; failure logs kept 7 days); its hardening (rustdoc gate, action pinning, audit, least-privilege tokens) is owned by the working route's "CI gate legs" chunk.
+- escher's fork CI runs on the build branch (fast legs fmt · clippy · test · CI scripts, then the slow legs — builds, docs, dependency audit, a11y, coverage, the matrix; cached; failure logs kept 7 days), every action SHA-pinned and the `GITHUB_TOKEN` read-only.
 
 ## Troubleshooting workflow
 - Tests failing? `.claude/rules/testing.md`; harness behaviour? `.claude/rules/verification-harness.md`.
