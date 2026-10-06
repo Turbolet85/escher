@@ -12,7 +12,7 @@ _Distilled from `.andromeda/obs-plan.md` (adopted reading). wrap-session's casca
 - **escher's sink:** `seven_guis_native` calls `escher_telemetry::init(service_identity!())` before `launch` (an `Err` is `eprintln!`ed, the stand continues): a global `Registry` + `EnvFilter` (`RUST_LOG`, default `warn`) + one non-ANSI fmt layer with the escher formatter, **stderr only**, plus the `log` → `tracing` bridge (`LogTracer`). Idempotent; a foreign subscriber is `InitError::ForeignSubscriber`, never a panic. The headless stand (`seven_guis::stand`, booted in-process by the `stand_*` checks) installs no subscriber.
 - **Line format:** `{RFC 3339 UTC time} {LEVEL} {target} service.name={name} service.version={version} {field}={value}…` — one text line per event, not JSON; identity from the binary's own `CARGO_PKG_NAME` / `CARGO_PKG_VERSION` (the OTel resource keys).
 - **Upstream loggers:** engine crates emit `tracing` 0.1 events behind per-crate `tracing` features (no-op when off; off in the stand); `tracing-subscriber` 0.3 `fmt::init()` to stdout in the upstream apps; `tracing_wasm` on wasm; `log` + `env_logger` in the WPT runner.
-- **OTel SDK:** observed absent — the opt-in export was deferred (egress + `OTEL_EXPORTER_OTLP_HEADERS` credential path, a founder decision) and is carried to "Driver command spans".
+- **OTel SDK:** observed absent — escher 0.1.0 ships no OTel export (ruled by the founder, 2026-10-06): no OTel crate, egress or `OTEL_EXPORTER_OTLP_HEADERS` credential path; the transport and the credential path stay undecided, held in `.andromeda/residuals.md` for a later version.
 - **Agent-run harness log (measured, not a telemetry sink):** `scripts/agent-run.sh` (test-plan §3) prints JSON lines — `boot`, `run.start`, `test`, `run.end` (also appended to `target/agent-run/events.jsonl`), `status`, `cleanup` — encoded by python3's `json`; harness metadata only, no captured test output, no content-named field; raw cargo output in `target/agent-run/run.log`, never printed.
 - **Cold-agent pipe log (measured, not a telemetry sink):** `scripts/cold-agent.sh` (test-plan §3) prints JSON lines — `run.start {ts, task}`, `run.end {every verdict field}` (also appended to `target/cold-agent/events.jsonl`), `status`, `cleanup` — encoded by python3's `json`; the stdlib MCP stub appends `{seq, tool, outcome, cause}` per call to `calls.jsonl`; no `tracing`, OTel or env read.
 - **escher's sink — JSON schema · log-file sink · rotation · heartbeat:** NOT YET MEASURED.
@@ -46,7 +46,7 @@ CI artifacts (§9): each ci.yml leg's merged output, `target/ci-logs/{leg}.log`,
 
 ## Bootstrap phases (owners on the working route)
 - `pii-scrubbing-wire` — discharged for escher's sink; still open for the upstream sinks.
-- `otel-sdk-install` — open; the opt-in export is carried to "Driver command spans" (which also owns the driver's spans).
+- `otel-sdk-install` — not in escher 0.1.0 (the founder, 2026-10-06); a cross-version residual in `.andromeda/residuals.md`. The driver's spans stay with "Driver command spans".
 
 ## Universal anti-patterns
 > NO RECORDED INTENT.

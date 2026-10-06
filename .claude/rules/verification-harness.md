@@ -23,7 +23,7 @@ Development Style is agent-driven — escher's own driver is meant to become the
 
 ## The cold-agent run pipe (measured — `scripts/cold-agent.sh`)
 - Run from the repository root: `bash scripts/cold-agent.sh run counter`, then `status` · `logs` · `cleanup`; `scripts/cold-agent.ps1` only forwards. Same exit grammar as agent-run (`0` · `1` a `failed` verdict · `2` usage, checked first · `3` precondition — `claude`/`python3` absent, no verdict, no events).
-- `run` starts ONE live model session (`claude -p`, the operator's own login; PROVISIONAL pending the founder's word) from a per-run `mktemp -d` dir whose path names nothing, with only the stdio stub's `list`/`read`/`press` — never fire it in CI or in a loop; the contract tests (`.github/scripts/test_cold_agent.py`) use a `claude` shim.
+- `run` starts ONE live model session (`claude -p`, the operator's own login; ratified by the founder, 2026-10-06) from a per-run `mktemp -d` dir whose path names nothing, with only the stdio stub's `list`/`read`/`press` — never fire it in CI or in a loop; the contract tests (`.github/scripts/test_cold_agent.py`) use a `claude` shim.
 - The verdict (`target/cold-agent/verdict.json`) reads `passed` only on positive evidence — client exit 0, a successful `result`, `isolated`, `counts_agree`, ≥ 1 tool call, and the stub's own count at 3 (never the agent's reply); `wrong_calls` is recorded, never deciding. Events carry counts and identities only — no transcript text, argument or result.
 - State lives in `target/cold-agent/` only (`cleanup` touches nothing else); `transcript.jsonl` is raw (host paths included) — a copy committed as evidence is host-path-masked first (`gate.py hygiene` refuses an unmasked one).
 

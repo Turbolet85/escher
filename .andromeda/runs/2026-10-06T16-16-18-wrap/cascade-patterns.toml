@@ -1,0 +1,49 @@
+# Cascade step-2 sweep for the 0-pending founder-rulings wrap (2026-10-06): the PROVISIONAL batch discharge.
+# Cold-agent crossings ratified; coverage-report upload and falsy-disabled fix ratified; OTel export ruled out of 0.1.0.
+
+[[pattern]]
+id = "provisional"
+fixed = 'PROVISIONAL'
+ignore_case = true
+
+[[pattern]]
+id = "pending-word"
+regex = 'pending the founder(.s)? (own )?word'
+ignore_case = true
+
+[[pattern]]
+id = "standing-deleg"
+fixed = 'standing delegation'
+ignore_case = true
+
+[[pattern]]
+id = "otel-carried"
+regex = 'carried to "?Driver command spans|deferred when the telemetry bootstrap'
+ignore_case = true
+
+[[pattern]]
+id = "otel-headers"
+fixed = 'OTEL_EXPORTER_OTLP_HEADERS'
+
+[[pattern]]
+id = "optin-export"
+regex = 'opt-in (OTel )?export'
+ignore_case = true
+
+[[pattern]]
+id = "founder-decide"
+regex = 'founder decision|decision for the founder'
+ignore_case = true
+
+[[pattern]]
+id = "otel-sdk"
+fixed = 'otel-sdk-install'
+
+[[pattern]]
+id = "cov-report"
+fixed = 'coverage-report'
+
+[[pattern]]
+id = "falsy"
+regex = 'falsy'
+ignore_case = true

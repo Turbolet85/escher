@@ -15,7 +15,7 @@ escher is a native-API engine library with no served API, no listener and no aut
 - **`file:` reads** → blitz-net reads any `file:` path with no restriction; the WPT net provider joins request paths onto the WPT base.
 - **Outbound HTTP** → 6 concurrent requests per host; no response-size cap, no timeout (observed absent); TLS via reqwest `native-tls`.
 - **CLI input** → examples parse URLs with `Url::parse` (+ `https://` retry), numeric args with defaults; `bump` validates target + semver; `scripts/agent-run.sh` allowlists its verb and admits a run selection only as `stand`, `all` or an existing `^[a-z0-9_]+$` blitz-tests file stem (else exit 2, no cargo call); `scripts/cold-agent.sh` allowlists its verb and the task `counter` (else exit 2, before any precondition or `claude` call).
-- **Cold-agent pipe (PROVISIONAL, pending the founder's word)** → an operator-host-only `claude -p` session on the operator's own Claude Code login (`apiKeySource` none, no API key, no env read, no CI secret) reaches the model provider; its only tools are a stdlib stdio MCP stub that refuses an unknown id, a disabled button, a press on the display and a malformed argument (`isError`, no state change) and logs no argument value.
+- **Cold-agent pipe (ratified by the founder, 2026-10-06)** → an operator-host-only `claude -p` session on the operator's own Claude Code login (`apiKeySource` none, no API key, no env read, no CI secret) reaches the model provider; its only tools are a stdlib stdio MCP stub that refuses an unknown id, a disabled button, a press on the display and a malformed argument (`isError`, no state change) and logs no argument value.
 - **rdme markdown** → comrak with `unsafe: true` passes raw HTML through.
 - **CI** → post-results workflow checks out trusted scripts from the default branch; `ci.yml` declares a workflow-level `permissions: contents: read` with no job grant, pins every action to a commit SHA and references no secret. The publish (signing), WPT and post-results jobs carry `github.repository == 'DioxusLabs/blitz'`, so no fork ref reaches "Signed Builds", "WPT" or their secrets.
 
@@ -35,7 +35,7 @@ escher is a native-API engine library with no served API, no listener and no aut
 ## Not yet measured (owners on the working route)
 - The dependency audit's reach — paste / memmap2 advisories in optional chains unseen by cargo-deny's resolved graph → "Quality gates".
 - Logging redaction (`logging-redaction-wire`) — discharged for escher's sink; the upstream sinks stay unscrubbed (no owner).
-- Opt-in OTel export — egress plus the `OTEL_EXPORTER_OTLP_HEADERS` credential path, a founder decision → "Driver command spans".
+- Opt-in OTel export — not in escher 0.1.0 (ruled by the founder, 2026-10-06): no egress and no `OTEL_EXPORTER_OTLP_HEADERS` credential path; the transport and the credential path stay undecided → `.andromeda/residuals.md` (a later version).
 - Driver/MCP surface — local to the invoking user, no listener or auth surface → "MCP surface".
 - TLS policy, key management, retention, SBOM, secret scanning, security-event logging → no owner yet.
 

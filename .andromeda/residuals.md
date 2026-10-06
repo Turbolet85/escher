@@ -1,0 +1,8 @@
+<!-- Cross-version residuals. One line per entry, master-route grammar minus the link tail:
+  {origin-marker} · open · {text} (target: {version-hint|next})
+Two writers total: /andromeda-wrap-session route-resolve APPENDS `open` entries and REWRITES an `open`
+entry's text whose premise a chunk measured false (`[premise-corrected: …]`); /andromeda-route
+Phase A decides dispositions and Phase 6 flips `open → absorbed:{cap-id}[+{cap-id}…] | re-carried:{version} |
+dropped ({why})`, `[premise-corrected: {evidence}]` at the line's end where a premise was corrected.
+Nothing else writes here. -->
+2026-10-06-telemetry-bootstrap · open · opt-in OTel export (`otel-sdk-install`) — not built in escher 0.1.0: the founder's ruling, 2026-10-06, option (c), no OTel export in 0.1.0 with neither the export transport nor the credential path decided; moved here from the "Driver command spans" CARRY on that ruling, which named the entry and this file. Two decisions before take-up: the export transport (http-only, as the workspace `reqwest` has no TLS feature, or a TLS feature added) and the credential path (opentelemetry-otlp 0.33.0 reads `OTEL_EXPORTER_OTLP_HEADERS` unconditionally at `build()`, measured at 2026-10-06-telemetry-bootstrap's research.md). Facts as measured then: the opentelemetry 0.33 family + tracing-opentelemetry 0.34 are MSRV 1.75 and fit the locked reqwest 0.13.4 / http 1.5.0 / tracing-subscriber 0.3.23, no coupled pin moves; the sink already stamps `service.name` / `service.version` (the OTel resource keys). A take-up registers the egress and the credential path in arch §Occupied Resources and the security plan first (target: next)

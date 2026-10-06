@@ -132,3 +132,9 @@ One entry per amendment to `test-plan.md` (sidecar-contract.md §Entry form). Ap
 - 22 citations into the changed files re-pointed by the measured line map.
 **Why:** the chunk added the two files, and its `ci-leg.sh fast` runs (at /implement and on its pre-CI commit) and `run stand` measured the counts. The new files ride the workspace test leg, not the a11y leg, which keeps its three files.
 **Ref:** .andromeda/runs/2026-10-06T12-55-34-wrap/
+
+## 2026-10-06-founder-rulings — coverage-report upload ratified
+**Section:** §4 Unit Test Strategy · §9 CI Integration (the `coverage` job's `coverage-report` upload)
+**Change:** no body text changes — the body states the upload (`target/coverage/` on success, kept 7 days) as current truth with no provisional clause; its status is now ratified, no longer PROVISIONAL per the 2026-10-05-ci-gate-legs entry.
+**Why:** the founder's own word at the Epoch 2 boundary (the founder, 2026-10-06), superseding the delegate overseer's provisional answer by rule.
+**Ref:** .andromeda/runs/2026-10-06T16-16-18-wrap/
