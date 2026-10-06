@@ -24,3 +24,4 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 2026-10-06-snapshot-model · complete · Snapshot model — screen as a tree of id, role, name, state, bounds (v010-04) · → escher-0.1.0/chunks/2026-10-06-snapshot-model/
 2026-10-06-id-stability-across-code-edits · complete · ids hold across code edits — paths anchor at the nearest keyed ancestor; actionable elements must be keyed, with a check · → escher-0.1.0/chunks/2026-10-06-id-stability-across-code-edits/
 2026-10-06-snapshot-state-fidelity · complete · Snapshot state fidelity — enabled, checked, value, focused read true per control; password values masked (v010-05) · → escher-0.1.0/chunks/2026-10-06-snapshot-state-fidelity/
+2026-10-06-compact-snapshot-serialization · pending · Compact snapshot serialization — whole stand screen readable in one tool result, size budget recorded (v010-04) · → escher-0.1.0/chunks/2026-10-06-compact-snapshot-serialization/

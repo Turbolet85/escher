@@ -8,8 +8,8 @@ use blitz_dom::{BaseDocument, BoundingRect, Document, ElementData, NodeId, local
 
 use crate::DioxusDocument;
 
-/// What a password `input` holding text reads as its [`NodeState::value`]: one fixed marker,
-/// the same whatever was typed, so neither the text nor its length is in a [`Snapshot`].
+/// What a password or file `input` holding a value reads as its [`NodeState::value`]: one fixed
+/// marker, whatever was typed or chosen, so no text, length or file path is in a [`Snapshot`].
 pub const MASKED_VALUE: &str = "••••••••";
 
 /// The screen of a document as a tree of the elements its accessibility tree keeps, in
@@ -52,8 +52,8 @@ pub struct NodeState {
     /// For a checkbox or radio `input`, whether it is checked; `None` for every other element.
     pub checked: Option<bool>,
     /// For a text-entry `input` or a `textarea`, its current text, else its `value` attribute;
-    /// `None` for every other element. A password `input` reads [`MASKED_VALUE`] when it holds
-    /// text and `""` when it holds none, never the text.
+    /// `None` for every other element. A password or file `input` whose value is not empty reads
+    /// [`MASKED_VALUE`], never the text or the path; an empty one reads as any other `input`.
     pub value: Option<String>,
     /// Whether the element is the document's focused node.
     pub focused: bool,
@@ -180,17 +180,20 @@ impl Builder<'_> {
 }
 
 /// The form reader's value of a text-entry control: its editor's text, else its `value`
-/// attribute. A password `input` reads [`MASKED_VALUE`] in place of a non-empty one.
+/// attribute. A password or file `input` reads [`MASKED_VALUE`] in place of a non-empty one.
 fn value(element: &ElementData) -> Option<String> {
     let input_type = element.attr(local_name!("type"));
-    let (entry, password) = match &*element.name.local {
+    let (entry, masked) = match &*element.name.local {
         "textarea" => (true, false),
         "input" => (
             !matches!(
                 input_type,
                 Some("checkbox" | "radio" | "button" | "submit" | "reset" | "hidden")
             ),
-            input_type.is_some_and(|input_type| input_type.eq_ignore_ascii_case("password")),
+            input_type.is_some_and(|input_type| {
+                input_type.eq_ignore_ascii_case("password")
+                    || input_type.eq_ignore_ascii_case("file")
+            }),
         ),
         _ => (false, false),
     };
@@ -202,7 +205,7 @@ fn value(element: &ElementData) -> Option<String> {
         None => element.attr(local_name!("value")).map(str::to_string),
     };
     match value {
-        Some(text) if password && !text.is_empty() => Some(MASKED_VALUE.to_string()),
+        Some(text) if masked && !text.is_empty() => Some(MASKED_VALUE.to_string()),
         value => value,
     }
 }
@@ -438,6 +441,67 @@ mod tests {
         }
         assert_eq!(MASKED_VALUE.chars().count(), 8);
         assert!(MASKED_VALUE.chars().all(|c| c == '\u{2022}'));
+    }
+
+    #[test]
+    fn a_file_input_reads_a_masked_value() {
+        const PATH: &str = "/synthetic/dir/chosen-report.txt";
+        fn app() -> Element {
+            rsx! {
+                input { id: "filled", r#type: "file", value: PATH }
+                input { id: "empty", r#type: "file" }
+                input { id: "upper", r#type: "FILE", value: PATH }
+            }
+        }
+        let doc = build(app);
+        let attribute = |id: &str| {
+            let base = doc.inner();
+            base.query_selector(&format!("#{id}"))
+                .ok()
+                .flatten()
+                .and_then(|node_id| base.get_node(node_id)?.attr(local_name!("value")))
+                .map(str::to_string)
+        };
+        assert!(
+            attribute("filled").as_deref() == Some(PATH),
+            "the fixture's file input holds the path"
+        );
+        assert!(
+            attribute("empty").is_none(),
+            "the fixture's empty file input holds no value"
+        );
+        assert!(
+            attribute("upper").as_deref() == Some(PATH),
+            "the fixture's upper-case file input holds the path"
+        );
+
+        let snapshot = doc.snapshot();
+        assert!(
+            value_of(&snapshot, "filled") == Some(MASKED_VALUE),
+            "a file input holding a value reads the mask"
+        );
+        assert!(
+            value_of(&snapshot, "empty").is_none(),
+            "a file input with no value reads none"
+        );
+        assert!(
+            value_of(&snapshot, "upper") == Some(MASKED_VALUE),
+            "the type is compared case-insensitively"
+        );
+        for node in snapshot.nodes() {
+            let carried = [
+                Some(node.id.as_str()),
+                Some(node.name.as_str()),
+                node.state.value.as_deref(),
+            ];
+            assert!(
+                carried
+                    .into_iter()
+                    .flatten()
+                    .all(|field| !field.contains(PATH)),
+                "a field of a snapshot node holds the path"
+            );
+        }
     }
 
     /// The crate's unit tests carry no HTML parser, so the two attributes are written through

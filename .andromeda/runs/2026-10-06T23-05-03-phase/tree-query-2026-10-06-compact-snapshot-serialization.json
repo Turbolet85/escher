@@ -1,0 +1,468 @@
+[
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'snapshot' AND callee_kind = 'fn' AND callee_file LIKE '%dioxus-native-dom/src/snapshot.rs' ORDER BY file, line",
+"rows": 40,
+"result": [
+{
+"caller_name": "an_aria_labelled_button_reads_its_label",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 234
+},
+{
+"caller_name": "a_label_bound_input_reads_the_label_text",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 248
+},
+{
+"caller_name": "a_text_only_paragraph_reads_its_text",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 257
+},
+{
+"caller_name": "a_display_none_subtree_is_absent",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 273
+},
+{
+"caller_name": "a_disabled_button_reads_not_enabled",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 292
+},
+{
+"caller_name": "a_checkbox_reads_checked",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 306
+},
+{
+"caller_name": "a_text_input_reads_its_value",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 320
+},
+{
+"caller_name": "text_runs_are_never_nodes",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 332
+},
+{
+"caller_name": "every_id_is_the_element_id_of_its_element",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 349
+},
+{
+"caller_name": "a_password_input_reads_a_masked_value",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 411
+},
+{
+"caller_name": "a_present_disabled_attribute_reads_not_enabled_whatever_its_value",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 484
+},
+{
+"caller_name": "a_radio_reads_checked",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 503
+},
+{
+"caller_name": "a_range_input_reads_its_value_attribute",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 515
+},
+{
+"caller_name": "assert_displayed",
+"file": "tests/blitz-tests/tests/dioxus_falsy_boolean_attrs.rs",
+"line": 46
+},
+{
+"caller_name": "a_falsy_hidden_element_is_displayed",
+"file": "tests/blitz-tests/tests/dioxus_falsy_boolean_attrs.rs",
+"line": 68
+},
+{
+"caller_name": "every_node_carries_the_five_fields",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 159
+},
+{
+"caller_name": "ids_are_the_accessibility_tree_ids",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 184
+},
+{
+"caller_name": "role_and_name_match_the_accessibility_tree",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 220
+},
+{
+"caller_name": "tree_follows_the_task_shell",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 251
+},
+{
+"caller_name": "controls_lie_inside_the_viewport",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 306
+},
+{
+"caller_name": "state_reads_the_engine",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 340
+},
+{
+"caller_name": "state_reads_the_engine",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 354
+},
+{
+"caller_name": "state_reads_the_engine",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 371
+},
+{
+"caller_name": "snapshot_is_deterministic",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 397
+},
+{
+"caller_name": "snapshot_is_deterministic",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 402
+},
+{
+"caller_name": "snapshot_follows_a_rerender",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 413
+},
+{
+"caller_name": "snapshot_follows_a_rerender",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 415
+},
+{
+"caller_name": "snapshot_follows_a_rerender",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 423
+},
+{
+"caller_name": "snapshot_follows_a_rerender",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 426
+},
+{
+"caller_name": "enabled",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 39
+},
+{
+"caller_name": "checked",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 52
+},
+{
+"caller_name": "reads_value",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 58
+},
+{
+"caller_name": "focused",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 78
+},
+{
+"caller_name": "a_disabled_control_reads_disabled_until_the_app_enables_it",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 135
+},
+{
+"caller_name": "a_disabled_control_reads_disabled_until_the_app_enables_it",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 180
+},
+{
+"caller_name": "typed_text_reads_back_as_the_value",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 270
+},
+{
+"caller_name": "the_range_input_reads_the_apps_duration",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 291
+},
+{
+"caller_name": "focus_reads_on_exactly_the_focused_control",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 314
+},
+{
+"caller_name": "the_fixture_controls_are_keyed_named_and_typed",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 390
+},
+{
+"caller_name": "a_typed_password_never_appears_in_the_snapshot",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 510
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, callee_kind, COUNT(*) AS sites, COUNT(DISTINCT file) AS files FROM refs WHERE callee_file LIKE '%dioxus-native-dom/src/snapshot.rs' AND file NOT LIKE '%dioxus-native-dom/src/snapshot.rs' GROUP BY 1, 2 ORDER BY sites DESC, callee_name",
+"rows": 19,
+"result": [
+{
+"callee_name": "snapshot",
+"callee_kind": "fn",
+"sites": 27,
+"files": 3
+},
+{
+"callee_name": "id",
+"callee_kind": "term",
+"sites": 19,
+"files": 2
+},
+{
+"callee_name": "state",
+"callee_kind": "term",
+"sites": 15,
+"files": 2
+},
+{
+"callee_name": "nodes",
+"callee_kind": "fn",
+"sites": 11,
+"files": 2
+},
+{
+"callee_name": "name",
+"callee_kind": "term",
+"sites": 8,
+"files": 2
+},
+{
+"callee_name": "SnapshotNode",
+"callee_kind": "type",
+"sites": 7,
+"files": 3
+},
+{
+"callee_name": "bounds",
+"callee_kind": "term",
+"sites": 7,
+"files": 2
+},
+{
+"callee_name": "Snapshot",
+"callee_kind": "type",
+"sites": 6,
+"files": 3
+},
+{
+"callee_name": "role",
+"callee_kind": "term",
+"sites": 6,
+"files": 2
+},
+{
+"callee_name": "enabled",
+"callee_kind": "term",
+"sites": 5,
+"files": 2
+},
+{
+"callee_name": "get",
+"callee_kind": "fn",
+"sites": 5,
+"files": 3
+},
+{
+"callee_name": "value",
+"callee_kind": "term",
+"sites": 5,
+"files": 2
+},
+{
+"callee_name": "children",
+"callee_kind": "term",
+"sites": 4,
+"files": 1
+},
+{
+"callee_name": "MASKED_VALUE",
+"callee_kind": "term",
+"sites": 3,
+"files": 2
+},
+{
+"callee_name": "focused",
+"callee_kind": "term",
+"sites": 3,
+"files": 2
+},
+{
+"callee_name": "checked",
+"callee_kind": "term",
+"sites": 2,
+"files": 2
+},
+{
+"callee_name": "roots",
+"callee_kind": "term",
+"sites": 2,
+"files": 1
+},
+{
+"callee_name": "snapshot",
+"callee_kind": "module",
+"sites": 2,
+"files": 1
+},
+{
+"callee_name": "NodeState",
+"callee_kind": "type",
+"sites": 1,
+"files": 1
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT from_crate, to_crate FROM crate_edges WHERE to_crate = 'dioxus-native-dom' OR from_crate = 'dioxus-native-dom'",
+"rows": 9,
+"result": [
+{
+"from_crate": "blitz-examples",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "browser",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "wgpu_texture",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "dioxus-native-dom",
+"to_crate": "blitz-traits"
+},
+{
+"from_crate": "blitz-tests",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "dioxus-native-dom",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "dioxus-native",
+"to_crate": "dioxus-native-dom"
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT name, crate, kind, file, def_line FROM symbol WHERE name IN ('to_text', 'to_compact', 'serialize', 'render', 'write_text', 'SNAPSHOT_BUDGET', 'SIZE_BUDGET', 'dom_string', 'BoundingRect', 'snapshot_text') AND kind <> 'meta' ORDER BY name, crate",
+"rows": 12,
+"result": [
+{
+"name": "BoundingRect",
+"crate": "blitz-dom",
+"kind": "type",
+"file": "packages/blitz-dom/src/document.rs",
+"def_line": 2708
+},
+{
+"name": "dom_string",
+"crate": "blitz-test-harness",
+"kind": "fn",
+"file": "packages/blitz-test-harness/src/inspect.rs",
+"def_line": 124
+},
+{
+"name": "render",
+"crate": "blitz-paint",
+"kind": "module",
+"file": "packages/blitz-paint/src/render.rs",
+"def_line": 0
+},
+{
+"name": "render",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/scrollbar_drag.rs",
+"def_line": 141
+},
+{
+"name": "render",
+"crate": "blitz-tests",
+"kind": "term",
+"file": "tests/blitz-tests/tests/paint_tree_bench.rs",
+"def_line": 130
+},
+{
+"name": "render",
+"crate": "dioxus-native",
+"kind": "fn",
+"file": "packages/dioxus-native/src/dioxus_renderer.rs",
+"def_line": 165
+},
+{
+"name": "render",
+"crate": "dioxus-native-dom",
+"kind": "fn",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"def_line": 384
+},
+{
+"name": "render",
+"crate": "wgpu_texture",
+"kind": "fn",
+"file": "examples/wgpu_texture/src/demo_renderer.rs",
+"def_line": 136
+},
+{
+"name": "render",
+"crate": "wgpu_texture",
+"kind": "fn",
+"file": "examples/wgpu_texture/src/demo_renderer.rs",
+"def_line": 201
+},
+{
+"name": "serialize",
+"crate": "blitz-dom",
+"kind": "module",
+"file": "packages/blitz-dom/src/node/serialize.rs",
+"def_line": 0
+},
+{
+"name": "serialize",
+"crate": "blitz-traits",
+"kind": "fn",
+"file": "packages/blitz-traits/src/net.rs",
+"def_line": 96
+},
+{
+"name": "serialize",
+"crate": "blitz-traits",
+"kind": "fn",
+"file": "packages/blitz-traits/src/net.rs",
+"def_line": 122
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

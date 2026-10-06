@@ -26,3 +26,6 @@
 - recurrence-despite-learning: "A chunk that moves cited source lines stales the masters' file:line citations" (Tier 3, 2026-10-05). Partial recurrence at this wrap: the report listed the sites citing one shifted file and not the other's; the detectors found them.
 - carried, still unreviewed, no recurrence this session: "The project's Bash guards refuse a heredoc written to a file and a leading cd, and read payload prose too" (Tier 3, 2026-10-06) · "Count from the listing you just read, never from the plan's forecast" (Tier 3, 2026-10-05) · "On this host `grep` is ugrep, and a long bounded repetition can print nothing" (Tier 3, 2026-10-06).
 Review with `/andromeda-wrap-session --review` if any should be applied.
+
+## Session End Status
+Completed normally at 2026-10-07 01:33:17

@@ -1,0 +1,29 @@
+Stand screen sizes — bytes of DioxusDocument::snapshot().to_text() at boot
+Measured 2026-10-06T23:38Z on the dev host (linux, rustc 1.99.0), tree = 97cc4842 + this chunk's edits.
+
+Run (step 7's control, every ceiling at 0):
+  cargo test -p blitz-tests --locked --test stand_snapshot_text
+  exit 101 · 5 passed; 1 failed — every_screen_fits_the_budget, the one red, as intended:
+  the assertion bites on all eight screens. Readings are the test's own failure message (numbers only).
+
+task          incremental=false   incremental=true
+Counter               755                755
+FlightBooker         1269               1269
+Timer                1259               1259
+Crud                 2034               2034
+
+Ceilings (the larger of the two readings, rounded down to a multiple of 256, plus 512):
+Counter        512 + 512 = 1024
+FlightBooker  1024 + 512 = 1536
+Timer         1024 + 512 = 1536
+Crud          1792 + 512 = 2304
+
+Second reading, 2026-10-06T23:46Z, after the quoting moved from str::escape_debug to the Debug
+form (the operator's direction): the same run with every ceiling at 0 again read exit 101,
+5 passed; 1 failed, and the same eight numbers — 755 · 755 · 1269 · 1269 · 1259 · 1259 · 2034 · 2034.
+The ceilings stand as derived; the file was restored byte-identical and its gate entry re-read green.
+
+Budget: SNAPSHOT_TEXT_BUDGET = 10000 bytes. The largest screen (Crud, 2034) is 20.3 % of it;
+the largest ceiling (2304) is 23.0 %.
+Forecast was 1.5-3 KB a screen (research.md, an estimate): Counter, FlightBooker and Timer
+read below it, Crud inside it.
