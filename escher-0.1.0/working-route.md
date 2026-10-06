@@ -31,7 +31,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
    ↓
 [2026-10-06-project-readme] Project README — the repository front page describes escher, not Blitz: what it is, why it exists, its Blitz lineage, the plans, a contact
    ↓
-[2026-10-06-accessibility-tree-identity] Accessibility-tree identity — stable id on every accessibility node, stand controls carrying role and name (v010-03; per a11y-plan §2)  CARRY: id source (from 2026-10-06-stable-element-ids) — the stable element id is computed only in dioxus-native-dom (`DioxusDocument::element_id` / `element_ids`, a vdom walk joined with a DOM walk), since blitz-dom holds no component information; blitz-dom's `build_accessibility_tree` keys AccessKit nodes by `NodeId::as_u64()` and has no access to the id (arch §Standard Contracts → Dioxus DOM bridge; a11y-plan §2)
+[2026-10-06-accessibility-tree-identity] Accessibility-tree identity — stable id on every accessibility node, stand controls carrying role and name (v010-03; per a11y-plan §2)
 
 ### Epoch 3 — Observation model
 Upstream sync ahead of the observation model — upstream/main merged, our changes kept additive; our tests and CI prove our logic survived (per intent §Principles)
@@ -77,7 +77,7 @@ Stand contrast harness — text/background pair of every stand control measured,
    ↓
 Stand keyboard harness — Tab, Shift+Tab and activation keys dispatched headlessly on the stand, focused node read back per step (per a11y-plan §5)
    ↓
-Stand a11y assertions — SC 2.1.1 keyboard reach, SC 2.4.3 focus order, SC 1.4.3 contrast on every stand control; a11y CI leg gating merges
+Stand a11y assertions — SC 2.1.1 keyboard reach, SC 2.4.3 focus order, SC 1.4.3 contrast on every stand control; a11y CI leg gating merges  CARRY: author_id on the platform tree (from 2026-10-06-accessibility-tree-identity) — the operator ratified, at that wrap (2026-10-06, P2 escalation, "Ratify + track"), the stable element id leaving the process as AccessKit `author_id` through the platform accessibility adapter; assert here that no `author_id` on the tree the shell hands the adapter carries a `NodeId`, `ElementId`, `ScopeId` or pointer form (today's headless proof: `stand_accessibility_ids`, which reads `DioxusDocument::accessibility_tree`, not the platform adapter) (security-plan §Input Validation `id` row)  CARRY: the stand binary builds no AccessKit (from 2026-10-06-accessibility-tree-identity) — seven_guis takes dioxus-native with the workspace's `default-features = false` and names no `accessibility` feature, so `just seven_guis` compiles no platform adapter and no AT can read the windowed stand (measured at that chunk: `cargo tree -p seven_guis -e features -i dioxus-native` lists only prelude · system-fonts · vello-hybrid · woff); whether the stand enables it is decided at this entry's promotion, on the operator's placement 2026-10-06 (a11y-plan §1 Dioxus crates)
    ↓
 Stand requirement sweep — every 0.1.0 capability proven headless by an agent across the stand tasks (per intent §Principles)
    ↓

@@ -1,0 +1,9 @@
+
+## 2026-10-06-accessibility-tree-identity — the stable id reaches the platform accessibility API; accessible-name attributes row
+**Section:** §Input Validation → Markup attributes `id` row · a new Markup attributes row (`aria-label` · `<label for>`) · citations re-pointed
+**Change:**
+- `id` row: was "the id is computed on demand, written nowhere"; now computed on demand and written to no log, DOM or vdom. Under `accessibility`, `DioxusDocument::accessibility_tree` carries it as each element node's AccessKit `author_id` (never on a `TextRun`, the document root or `Window`, never by indexing the slab with a tree id), so it leaves the process only through the platform accessibility adapter when an assistive technology is active — the crossing text runs and labels already take.
+- New row: `aria-label` and `<label for>` are read from parsed content (the browser's remote HTML included) into the accessibility tree by an in-process reader. The parser already admits both, so no new input class enters. A whitespace-only `aria-label` names nothing; a label associates only when both it and its bound `<input>` have built nodes; no lookup panics; the names are logged nowhere and reach the adapter like any text run.
+- 11 citations into the changed files re-pointed by the measured line map.
+**Why:** the operator ratified the id's new crossing at this wrap (their own word, 2026-10-06, P2 escalation) — an existing crossing gaining a new author-derived data class, for AccessKit's test-automation purpose. The ratification set a CARRY on "Stand a11y assertions": assert that `author_id` never carries a `NodeId`, `ElementId` or pointer form on the platform tree. The name-source read was judged not a boundary widening at phase P4 (playbook read recorded in the plan). Standing rule: any further consumer of the id beyond the platform accessibility API re-opens this row.
+**Ref:** .andromeda/runs/2026-10-06T12-55-34-wrap/

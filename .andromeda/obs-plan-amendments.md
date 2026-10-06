@@ -80,3 +80,9 @@ One entry per amendment to `obs-plan.md` (sidecar-contract.md §Entry form). App
 **Change:** the stand bullet said "no `escher_telemetry::init`, no `println!`, no env read in it or its checks". It now says: no `escher_telemetry::init` and no env read; no `println!` save `stand_id_persistence`'s re-executed child, which prints its pid and ids to stdout that the parent captures and reads only into its assertion — never a log. A headless boot still has no escher sink.
 **Why:** the fresh-process proof needs the child's ids in the parent. Captured stdout read by an assertion is not a log channel, so the no-sink invariant holds.
 **Ref:** .andromeda/runs/2026-10-06T10-55-07-wrap/
+
+## 2026-10-06-accessibility-tree-identity — citations re-pointed
+**Section:** citations into blitz-dom `document.rs` and blitz-shell `window.rs`
+**Change:** 10 citations re-pointed by the chunk's measured line map (`document.rs` +10 from old line 151; `window.rs` −1 from old 525); no claim text changed — the chunk added no log, span, metric or event field.
+**Why:** the new `Document::accessibility_tree` method and the shell's re-threaded callers moved the cited lines.
+**Ref:** .andromeda/runs/2026-10-06T12-55-34-wrap/

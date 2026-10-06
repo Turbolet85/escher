@@ -5,15 +5,15 @@
 **A11y scope (entities needing assertions):**
 - **Workspace AccessKit dependency** — accesskit "0.25" and the in-repo `accesskit_xplat` package are workspace dependencies/members (Cargo.toml:3; Cargo.toml:57; Cargo.toml:141)
 - **accesskit_xplat** — provides the AccessKit platform adapter crate (packages/accesskit_xplat/Cargo.toml:2-6)
-- **blitz-dom accessibility tree** — under the `accessibility` feature, `BaseDocument::build_accessibility_tree` builds an AccessKit tree from the DOM (packages/blitz-dom/src/lib.rs:83-84; packages/blitz-dom/src/accessibility.rs:5-44); blitz-dom's default features include `accessibility`, which enables `accesskit`, and `custom-widget` also requires it (packages/blitz-dom/Cargo.toml:14-22; packages/blitz-dom/Cargo.toml:27)
+- **blitz-dom accessibility tree** — under the `accessibility` feature, `BaseDocument::build_accessibility_tree` builds an AccessKit tree from the DOM (packages/blitz-dom/src/lib.rs:83-84; packages/blitz-dom/src/accessibility.rs:5-62); blitz-dom's default features include `accessibility`, which enables `accesskit`, and `custom-widget` also requires it (packages/blitz-dom/Cargo.toml:14-22; packages/blitz-dom/Cargo.toml:27)
 - **Custom widgets** — a custom widget accessibility-tree hook is commented out as a TODO (packages/blitz-dom/src/node/custom_widget.rs:6; packages/blitz-dom/src/node/custom_widget.rs:142-143)
 - **blitz-html** — its `accessibility` feature forwards to `blitz-dom/accessibility` (packages/blitz-html/Cargo.toml:14)
 - **blitz-shell** — accessibility is a default feature enabling accesskit, accesskit_xplat and blitz-dom/accessibility (packages/blitz-shell/Cargo.toml:14-19); each View holds an AccessibilityState wrapping an accesskit_xplat Adapter (packages/blitz-shell/src/window.rs:111-113; packages/blitz-shell/src/accessibility.rs:12-16)
 - **blitz** — has an `accessibility` feature, on by default, forwarding to `blitz-shell/accessibility` (packages/blitz/Cargo.toml:14; packages/blitz/Cargo.toml:16)
 - **blitz-traits node ids** — `NodeId::as_u64` is described as useful for interop with integer-id APIs such as AccessKit (packages/blitz-traits/src/node_id.rs:15-22)
-- **Dioxus crates** — `accessibility` is a default feature of both Dioxus crates and forwards to blitz-dom (and blitz-shell in dioxus-native) (packages/dioxus-native-dom/Cargo.toml:13; packages/dioxus-native-dom/Cargo.toml:18; packages/dioxus-native/Cargo.toml:13; packages/dioxus-native/Cargo.toml:30)
+- **Dioxus crates** — `accessibility` is a default feature of both Dioxus crates; dioxus-native-dom's forwards to blitz-dom and enables its own optional `accesskit`, and dioxus-native's forwards to blitz-dom, blitz-shell and dioxus-native-dom (packages/dioxus-native-dom/Cargo.toml:13; packages/dioxus-native-dom/Cargo.toml:18; packages/dioxus-native-dom/Cargo.toml:39; packages/dioxus-native/Cargo.toml:13; packages/dioxus-native/Cargo.toml:30); the workspace takes both with `default-features = false`, so a crate gets the feature only by naming it — the seven_guis stand binary names none and builds no platform adapter (Cargo.toml:54-55; examples/seven_guis/Cargo.toml:22; examples/seven_guis/Cargo.toml:31) — as measured at escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/report.md
 - **Browser app** — the browser's `accessibility` feature (dioxus-native accessibility) is not in its default set (apps/browser/Cargo.toml:13; apps/browser/Cargo.toml:38)
-- **blitz-tests** — `blitz-dom` is built with the `accessibility` feature and `accesskit` is a dev-dependency (tests/blitz-tests/Cargo.toml:17; tests/blitz-tests/Cargo.toml:31)
+- **blitz-tests** — `blitz-dom` and `dioxus-native-dom` are built with the `accessibility` feature and `accesskit` is a dev-dependency (tests/blitz-tests/Cargo.toml:17; tests/blitz-tests/Cargo.toml:21; tests/blitz-tests/Cargo.toml:31)
 - **Input fixture** — exercises focusable divs with tabindex 0 and tabindex -1 beside a text input (examples/assets/input.html:4-9)
 
 **A11y surfaces & assistive tech reach:** the AccessKit platform adapters and their per-platform gaps are recorded in §2 (Platform adapters).
@@ -33,14 +33,14 @@
 ## 2. A11y Strategy
 
 **Accessibility tree lifecycle:**
-- The accessibility tree is built from the document on InitialTreeRequested and refreshed on poll when the document has changes (packages/blitz-shell/src/application.rs:77-83; packages/blitz-shell/src/window.rs:376-382; packages/blitz-shell/src/accessibility.rs:44-48)
-- `changed_nodes` is documented as the set of changed nodes for updating the accessibility tree (packages/blitz-dom/src/document.rs:316-317)
+- The accessibility tree is built from the document on InitialTreeRequested and refreshed on poll when the document has changes, through the `Document::accessibility_tree` trait method, so a wrapper's override (DioxusDocument's stable ids) reaches the platform tree (packages/blitz-shell/src/application.rs:77-83; packages/blitz-shell/src/window.rs:376-382; packages/blitz-shell/src/window.rs:521-524; packages/blitz-shell/src/accessibility.rs:44-46; packages/blitz-dom/src/document.rs:152-160)
+- `changed_nodes` is documented as the set of changed nodes for updating the accessibility tree (packages/blitz-dom/src/document.rs:326-327)
 - AccessibilityDeactivated and ActionRequested events are unhandled TODOs (packages/blitz-shell/src/application.rs:84-89)
-- Window focus and outer/inner bounds are forwarded to the adapter on every window event before it is handled (packages/blitz-shell/src/accessibility.rs:50-76; packages/blitz-shell/src/window.rs:586-589)
+- Window focus and outer/inner bounds are forwarded to the adapter on every window event before it is handled (packages/blitz-shell/src/accessibility.rs:48-74; packages/blitz-shell/src/window.rs:585-588)
 
 **Role derivation (semantic HTML and ARIA):**
-- A node's role comes from its `role` attribute, else from the HTML element mapping, else `Role::Unknown` (packages/blitz-dom/src/accessibility.rs:57-67)
-- A TODO notes that elements with strong native semantics can currently have their role overridden, contrary to WAI-ARIA 1.2 (packages/blitz-dom/src/accessibility.rs:60-61)
+- A node's role comes from its `role` attribute, else from the HTML element mapping, else `Role::Unknown` (packages/blitz-dom/src/accessibility.rs:75-85)
+- A TODO notes that elements with strong native semantics can currently have their role overridden, contrary to WAI-ARIA 1.2 (packages/blitz-dom/src/accessibility.rs:78-79)
 - Role mapping follows the HTML-AAM spec, linked in the test doc; previously links, lists, tables, labels and landmarks arrived as `Role::Unknown` (tests/blitz-tests/tests/accessibility_roles.rs:1-7)
 - A semantic page asserts that only `<html>` and `<body>` map to `Role::Unknown` (tests/blitz-tests/tests/accessibility_roles.rs:182-198)
 
@@ -52,7 +52,7 @@
 - The Android adapter reads the `mSurfaceView` field typed `GameActivity$InputEnabledSurfaceView` (packages/accesskit_xplat/src/platform_impl/android.rs:26-34)
 
 **Feature exposure:**
-- The crate docs state the `accessibility` feature enables accesskit support; the Dioxus crates only forward the feature to blitz (packages/dioxus-native-dom/src/lib.rs:7; packages/dioxus-native/src/lib.rs:7; packages/dioxus-native/Cargo.toml:30)
+- The crate docs state the `accessibility` feature enables accesskit support; dioxus-native-dom's feature also gates its own `accessibility_tree` override, and dioxus-native forwards the feature to blitz and to dioxus-native-dom (packages/dioxus-native-dom/src/lib.rs:7; packages/dioxus-native/src/lib.rs:7; packages/dioxus-native/Cargo.toml:30; packages/dioxus-native-dom/src/dioxus_document.rs:288-304)
 
 > NOT YET MEASURED — a stated accessibility strategy (POUR coverage depth, agent-runnable invariants, naming conventions): no slice states one, and s01, s02, s03, s06, s07, s08, s10 and s13 recorded accessibility strategy as out of slice.
 
@@ -91,19 +91,19 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 ## 4. ARIA Patterns & Roles
 
 **Landmark roles inventory (engine HTML-to-AccessKit mapping):**
-- Native element mapping follows HTML-AAM: landmarks, headings, lists, tables, interactive and inline semantics (packages/blitz-dom/src/accessibility.rs:165-233)
+- Native element mapping follows HTML-AAM: landmarks, headings, lists, tables, interactive and inline semantics (packages/blitz-dom/src/accessibility.rs:191-259)
 - Landmarks: nav→Navigation, main→Main, aside→Complementary, footer→Footer, article→Article, blockquote→Blockquote, figure→Figure (tests/blitz-tests/tests/accessibility_roles.rs:74-93)
 - header→Header, section→Section (tests/blitz-tests/tests/accessibility_roles.rs:157-180)
 
 **Per-component pattern catalog (engine mapping):**
-- **ARIA `role` attribute** — `role_from_name` maps ARIA role names (alert, button, checkbox, dialog, link, tab, textbox, landmark roles, etc.) to AccessKit roles (packages/blitz-dom/src/accessibility.rs:101-163)
+- **ARIA `role` attribute** — `role_from_name` maps ARIA role names (alert, button, checkbox, dialog, link, tab, textbox, landmark roles, etc.) to AccessKit roles (packages/blitz-dom/src/accessibility.rs:127-189)
 - **Button** — button→Button, submit→Button (tests/blitz-tests/tests/accessibility_roles.rs:157-180; tests/blitz-tests/tests/accessibility_roles.rs:128-155)
-- **Link** — `<a>` is a Link only with `href`, else GenericContainer (packages/blitz-dom/src/accessibility.rs:200-217; tests/blitz-tests/tests/accessibility_roles.rs:117-126)
-- **Select** — `<select multiple>` is ListBox, else ComboBox (packages/blitz-dom/src/accessibility.rs:200-217; tests/blitz-tests/tests/accessibility_roles.rs:128-155)
-- **Lists and tables** — ul/ol→List, li→ListItem, table→Table, thead→RowGroup, tr→Row, th→ColumnHeader, th scope=row→RowHeader, td→Cell (tests/blitz-tests/tests/accessibility_roles.rs:95-115); `<th>` is RowHeader for `scope=row|rowgroup`, else ColumnHeader (packages/blitz-dom/src/accessibility.rs:200-217)
-- **Form input** — `<input>` roles are mapped by `type`, defaulting to TextInput (packages/blitz-dom/src/accessibility.rs:234-252); label→Label, textarea→MultilineTextInput, progress→ProgressIndicator, meter→Meter, radio→RadioButton, range→Slider, email→EmailInput, password→PasswordInput (tests/blitz-tests/tests/accessibility_roles.rs:128-155); text→TextInput, number→NumberInput, checkbox→CheckBox (tests/blitz-tests/tests/accessibility_roles.rs:157-180)
+- **Link** — `<a>` is a Link only with `href`, else GenericContainer (packages/blitz-dom/src/accessibility.rs:226-243; tests/blitz-tests/tests/accessibility_roles.rs:117-126)
+- **Select** — `<select multiple>` is ListBox, else ComboBox (packages/blitz-dom/src/accessibility.rs:226-243; tests/blitz-tests/tests/accessibility_roles.rs:128-155)
+- **Lists and tables** — ul/ol→List, li→ListItem, table→Table, thead→RowGroup, tr→Row, th→ColumnHeader, th scope=row→RowHeader, td→Cell (tests/blitz-tests/tests/accessibility_roles.rs:95-115); `<th>` is RowHeader for `scope=row|rowgroup`, else ColumnHeader (packages/blitz-dom/src/accessibility.rs:226-243)
+- **Form input** — `<input>` roles are mapped by `type`, defaulting to TextInput (packages/blitz-dom/src/accessibility.rs:260-278); label→Label, textarea→MultilineTextInput, progress→ProgressIndicator, meter→Meter, radio→RadioButton, range→Slider, email→EmailInput, password→PasswordInput (tests/blitz-tests/tests/accessibility_roles.rs:128-155); text→TextInput, number→NumberInput, checkbox→CheckBox (tests/blitz-tests/tests/accessibility_roles.rs:157-180)
 - **Generic and text** — div→GenericContainer, h2→Heading, p→Paragraph (tests/blitz-tests/tests/accessibility_roles.rs:157-180)
-- **Hidden content** — `aria-hidden="true"` keeps the node but marks it hidden (`is_hidden`); `hidden`, `display: none` and `visibility: hidden` exclude it; children of a hidden element are excluded (packages/blitz-dom/src/accessibility.rs:70-73; tests/blitz-tests/tests/accessibility_hidden.rs:28-137)
+- **Hidden content** — `aria-hidden="true"` keeps the node but marks it hidden (`is_hidden`); `hidden`, `display: none` and `visibility: hidden` exclude it; children of a hidden element are excluded (packages/blitz-dom/src/accessibility.rs:96-99; tests/blitz-tests/tests/accessibility_hidden.rs:28-137)
 
 **Application markup:**
 - Browser controls are clickable `div`s rather than buttons: icon buttons, tabs, tab close, new tab, menu items (apps/browser/src/icons.rs:28-39; apps/browser/src/tab_strip.rs:83-106; apps/browser/src/toolbar.rs:419-441)
@@ -139,18 +139,18 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 
 **Focus order per layout (engine):**
 - An element is focusable if it holds a sub-document, or if its `disabled` attribute does not parse as `true` and either has `tabindex >= 0` or, with no tabindex, is an `<a>`/`<area>` with `href` or a `button`, `input`, `select`, `textarea`, `frame`, `iframe` or `summary` (packages/blitz-dom/src/node/element.rs:628-660)
-- Tab moves focus to the next node and Shift+Tab to the previous, dispatching focus events (packages/blitz-dom/src/events/keyboard.rs:22-41); `focus_next_node` / `focus_prev_node` move focus to the next/previous focussable node (packages/blitz-dom/src/document.rs:1634-1647)
+- Tab moves focus to the next node and Shift+Tab to the previous, dispatching focus events (packages/blitz-dom/src/events/keyboard.rs:22-41); `focus_next_node` / `focus_prev_node` move focus to the next/previous focussable node (packages/blitz-dom/src/document.rs:1644-1657)
 - Cached focusability is recomputed when `tabindex`, `href` or `disabled` is set or removed (packages/blitz-dom/src/mutator.rs:328-337; packages/blitz-dom/src/mutator.rs:449-456); tests assert focusability follows `tabindex` set or cleared after creation (roving tabindex) (tests/blitz-tests/tests/focusability_updates.rs:1-6; tests/blitz-tests/tests/focusability_updates.rs:34-57)
 - `button`, `input`, `select` and `textarea` can be disabled, which toggles the `DISABLED`/`ENABLED` states (packages/blitz-dom/src/node/element.rs:445-452; packages/blitz-dom/src/node/element.rs:476-478; packages/blitz-dom/src/node/node.rs:775-797); setting `disabled` removes a button's focusability (tests/blitz-tests/tests/focusability_updates.rs:63-76)
 - Disabled-ness is keyed two ways: the `DISABLED`/`ENABLED` element state (hence `:disabled`) and the pointer click target on the attribute's PRESENCE, focusability on its value PARSED as a bool — so `disabled="false"` matches `:disabled` yet stays focusable, and a bare `disabled=""` is focusable too (packages/blitz-dom/src/node/element.rs:446-451; packages/blitz-dom/src/node/element.rs:629; packages/blitz-dom/src/events/pointer.rs:330; packages/blitz-dom/src/events/pointer.rs:457; tests/blitz-tests/tests/focusability_updates.rs:59-62), as measured at escher-0.1.0/chunks/2026-10-06-headless-stand/evidence/disabled-false-probe.txt
 - The file input's generated inner button gets `tabindex="-1"` (packages/blitz-dom/src/mutator.rs:1255-1269)
 - Under the `autofocus` feature, the latest mounted focussable node with `autofocus="true"` is focused on flush (packages/blitz-dom/src/mutator.rs:963-972; packages/blitz-dom/src/mutator.rs:890-895)
-- Focusing sets the `FOCUS` and `FOCUSRING` element states; blurring removes them (packages/blitz-dom/src/document.rs:1683-1688; packages/blitz-dom/src/node/node.rs:711-749)
+- Focusing sets the `FOCUS` and `FOCUSRING` element states; blurring removes them (packages/blitz-dom/src/document.rs:1693-1698; packages/blitz-dom/src/node/node.rs:711-749)
 - `:focus` matches the focus element state while `:focus-visible` and `:focus-within` never match (packages/blitz-dom/src/stylo.rs:476-478)
 - focus and blur do not bubble; focusin and focusout bubble (packages/blitz-traits/src/events.rs:441-444)
 
 **Focus restoration:**
-- Removing the focused node resets focus to the body (encoded as `None`) and runs blur side effects (packages/blitz-dom/src/document.rs:898-900; packages/blitz-dom/src/document.rs:916-920); removing a focused text input runs blur side-effects and disables IME (tests/blitz-tests/tests/interaction_state_teardown.rs:189-217)
+- Removing the focused node resets focus to the body (encoded as `None`) and runs blur side effects (packages/blitz-dom/src/document.rs:908-910; packages/blitz-dom/src/document.rs:926-930); removing a focused text input runs blur side-effects and disables IME (tests/blitz-tests/tests/interaction_state_teardown.rs:189-217)
 - Clicking a non-interactive area clears focus (packages/blitz-dom/src/events/pointer.rs:814-817)
 - Activating the first `summary` of a `details` toggles it open and focuses the summary (packages/blitz-dom/src/events/pointer.rs:696-722)
 - Checkbox and radio clicks toggle state, dispatch `input` and move focus to the control (packages/blitz-dom/src/events/pointer.rs:645-695); clicking a checkbox focuses it (tests/blitz-tests/tests/harness_smoke.rs:33-44)
@@ -163,19 +163,19 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 - Clicking a label runs the default click of its bound input (packages/blitz-dom/src/events/pointer.rs:723-734)
 - `synthetic_click_event` builds a primary mouse click at the node's center (packages/blitz-dom/src/node/node.rs:1822-1852)
 - winit key events are converted to keyboard-types Key, Code, Location and Modifiers, with is_composing always false (packages/blitz-shell/src/convert_events.rs:52-69; packages/blitz-shell/src/convert_events.rs:151-175)
-- Every key press and release is dispatched as KeyDown or KeyUp after shell shortcuts are checked (packages/blitz-shell/src/window.rs:690-698)
-- macOS standard key bindings are forwarded as `AppleStandardKeybinding` UI events (packages/blitz-shell/src/application.rs:189-202; packages/blitz-shell/src/window.rs:578-583; packages/blitz-traits/src/events.rs:71; packages/blitz-traits/src/events.rs:155)
-- IME Enabled, Disabled, Preedit, Commit and DeleteSurrounding events are forwarded to the document, with shell hooks to enable IME and set its cursor area (packages/blitz-shell/src/convert_events.rs:31-50; packages/blitz-shell/src/window.rs:638-641; packages/blitz-traits/src/events.rs:734-779; packages/blitz-traits/src/shell.rs:19-27)
+- Every key press and release is dispatched as KeyDown or KeyUp after shell shortcuts are checked (packages/blitz-shell/src/window.rs:689-697)
+- macOS standard key bindings are forwarded as `AppleStandardKeybinding` UI events (packages/blitz-shell/src/application.rs:189-202; packages/blitz-shell/src/window.rs:577-582; packages/blitz-traits/src/events.rs:71; packages/blitz-traits/src/events.rs:155)
+- IME Enabled, Disabled, Preedit, Commit and DeleteSurrounding events are forwarded to the document, with shell hooks to enable IME and set its cursor area (packages/blitz-shell/src/convert_events.rs:31-50; packages/blitz-shell/src/window.rs:637-640; packages/blitz-traits/src/events.rs:734-779; packages/blitz-traits/src/shell.rs:19-27)
 
 **Script and framework exposure:**
 - Elements expose `focus()` and `blur()`; `document.activeElement` returns the focused node (packages/blitz-vibey-script/src/dom/element.rs:173-174; packages/blitz-vibey-script/src/dom/element.rs:939-951; packages/blitz-vibey-script/src/dom/document.rs:142-147)
 - `autofocus` reflection writes the value "true" because blitz-dom's autofocus handling expects it; blitz-dom is used with feature `autofocus` (packages/blitz-vibey-script/src/dom/element.rs:473-491; packages/blitz-vibey-script/Cargo.toml:19)
 - JS keyboard events carry key, code, location, repeat, isComposing and modifier flags (packages/blitz-vibey-script/src/dom/event.rs:128-153; packages/blitz-vibey-script/src/dom/event.rs:207-229)
-- KeyDown, KeyUp and KeyPress events reach Dioxus as keyboard data with key, code, location, repeat, composing state and modifiers (packages/dioxus-native-dom/src/dioxus_document.rs:345-349; packages/dioxus-native-dom/src/events.rs:328-361)
-- Focus, Blur, FocusIn and FocusOut events are forwarded as focus data (packages/dioxus-native-dom/src/dioxus_document.rs:340-343)
+- KeyDown, KeyUp and KeyPress events reach Dioxus as keyboard data with key, code, location, repeat, composing state and modifiers (packages/dioxus-native-dom/src/dioxus_document.rs:365-369; packages/dioxus-native-dom/src/events.rs:328-361)
+- Focus, Blur, FocusIn and FocusOut events are forwarded as focus data (packages/dioxus-native-dom/src/dioxus_document.rs:360-363)
 - Mounted elements can take or drop focus with `set_focus`; focus/blur events are not queued (TODO) (packages/dioxus-native-dom/src/events.rs:283-295)
 - An `autofocus` feature forwards to blitz-dom (packages/dioxus-native-dom/Cargo.toml:23; packages/dioxus-native/Cargo.toml:19)
-- IME events are not handled in dioxus-native-dom (TODO) (packages/dioxus-native-dom/src/dioxus_document.rs:356-357)
+- IME events are not handled in dioxus-native-dom (TODO) (packages/dioxus-native-dom/src/dioxus_document.rs:376-377)
 - A falsy Dioxus `disabled` or `checked` (Bool false, Text `"false"`, Int 0, Float 0.0, None) removes the attribute, so an enabled Dioxus control no longer matches `:disabled` (packages/dioxus-native-dom/src/mutation_writer.rs:406-407; tests/blitz-tests/tests/dioxus_falsy_disabled.rs:24-39); every other Dioxus boolean attribute (`readonly`, `required`, `hidden`, `multiple`, `selected`, `open`, `autofocus`) is still written as the literal `"false"`, so a presence read takes it as set — for `hidden`, which §4 says excludes a node from the tree, that would drop a `hidden: false` node: recorded, not established (no stand control measured using one)
 
 **Per-surface keyboard shortcuts:**
@@ -223,7 +223,7 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 - Browser urlbar focus shows a `#5E9ED6` border and 1px outline (apps/browser/assets/browser.css:172-175)
 - New-tab search input removes the outline and changes only border color on focus (apps/browser/assets/about-newtab.css:30-34)
 - todomvc sets `:focus` outline to 0 (examples/todomvc/src/todomvc.css:36-38)
-- seven_guis inputs replace the outline with a border color or box-shadow on focus (examples/seven_guis/src/tasks/temp_converter.rs:75-79; examples/seven_guis/src/tasks/flight_booker.rs:180-183)
+- seven_guis inputs replace the outline with a border color or box-shadow on focus (examples/seven_guis/src/tasks/temp_converter.rs:75-79; examples/seven_guis/src/tasks/flight_booker.rs:182-185)
 - counter and transparent buttons show a 4px focus outline (examples/counter/src/app.rs:79-81; examples/transparent/src/app.rs:180-182)
 - rdme stylesheet shows a 2px outline in its focus-outline color custom property on focus-visible (apps/readme/assets/github-markdown.css:356-363)
 - blitz-dom default stylesheet gives inputs a 2px `#4D90FE` focus outline and suppresses outlines on iframe/body/html focus-visible (packages/blitz-dom/assets/default.css:92-95; packages/blitz-dom/assets/default.css:833-839)
@@ -243,14 +243,14 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 - The viewport carries a light/dark color scheme and a document zoom level (`1.0` unzoomed) (packages/blitz-traits/src/shell.rs:68-82; packages/blitz-traits/src/shell.rs:134-150)
 - Color-scheme changes on the viewport are tracked as a device change that rebuilds the stylist device (packages/blitz-dom/src/stylo_device.rs:37-38; packages/blitz-dom/src/stylo_device.rs:55-57)
 - Total scale changes from hidpi or zoom are tracked and invalidate text shaping (packages/blitz-dom/src/stylo_device.rs:33-36; packages/blitz-dom/src/stylo_device.rs:52-54)
-- Page zoom is adjustable from the keyboard in 0.1 steps and resettable to 1.0 (packages/blitz-shell/src/window.rs:655-663)
+- Page zoom is adjustable from the keyboard in 0.1 steps and resettable to 1.0 (packages/blitz-shell/src/window.rs:654-662)
 - rdme follows `prefers-color-scheme` for dark/light tokens and backgrounds (apps/readme/assets/github-markdown.css:13-124; apps/readme/assets/blitz-markdown-overrides.css:11-35)
 - The TodoMVC page declares `color-scheme: light`; the reference page declares `color-scheme: light dark` (examples/preact/index.html:8; examples/preact/core_dom_apis.html:8)
 - blitz-dom default stylesheet un-inverts images and video under `inverted-colors` (packages/blitz-dom/assets/default.css:1077-1088)
 - Touch panning honours the `touch-action` property per axis (packages/blitz-dom/src/events/pointer.rs:158-204; packages/blitz-dom/src/events/pointer.rs:247-260)
 
 **Visibility and hit-testing:**
-- Nodes with `display: none` or `visibility: hidden`, and their descendants, are excluded from the accessibility tree (packages/blitz-dom/src/accessibility.rs:11-20; packages/blitz-dom/src/accessibility.rs:86-98)
+- Nodes with `display: none` or `visibility: hidden`, and their descendants, are excluded from the accessibility tree (packages/blitz-dom/src/accessibility.rs:12-21; packages/blitz-dom/src/accessibility.rs:112-124)
 - Elements with `visibility: hidden` or `collapse` are never hit-test targets (packages/blitz-dom/src/node/node.rs:1305-1313)
 - `pointer-events: none` makes an element transparent to hits while its descendants are still tested (packages/blitz-dom/src/node/node.rs:1315-1319; packages/blitz-dom/src/node/node.rs:1477-1485)
 - `scrollbar-width: none` suppresses overlay scrollbars (packages/blitz-dom/src/node/scrollbar.rs:76-87); a test asserts it paints no scrollbar (tests/blitz-tests/tests/scrollbars.rs:162-175)
@@ -263,9 +263,12 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 ## 7. Screen Reader Support
 
 **Accessibility tree output:**
-- Text nodes become `TextRun` nodes carrying their text, and the parent is labelled by them (packages/blitz-dom/src/accessibility.rs:74-78)
-- Element nodes carry their HTML tag name (packages/blitz-dom/src/accessibility.rs:68)
-- The tree root is a `Window` node with id `u64::MAX`, and the focused DOM node is reported as tree focus (packages/blitz-dom/src/accessibility.rs:8; packages/blitz-dom/src/accessibility.rs:35-43)
+- Text nodes become `TextRun` nodes carrying their text, and the parent is labelled by them (packages/blitz-dom/src/accessibility.rs:100-104)
+- An element's `aria-label`, when non-empty after trimming, becomes its `label` (accname-1.2 §2C); a whitespace-only one names nothing (packages/blitz-dom/src/accessibility.rs:88-94; tests/blitz-tests/tests/accessibility_names.rs:64-82)
+- A `<label>` names the `<input>` it is bound to — its `for`-target by id, else its first nested `<input>` — by being pushed onto that input's `labelled_by` after the whole tree is built, so a label before or after its input both work; the bound input must be an `input` element with a built node (packages/blitz-dom/src/accessibility.rs:29-48; packages/blitz-dom/src/document.rs:637-674; tests/blitz-tests/tests/accessibility_names.rs:84-93)
+- In a Dioxus document every element node carries its stable element id as AccessKit `author_id`, and no `TextRun`, document-root or `Window` node carries one; on the stand the 15 interactive controls carry an HTML-AAM role and a non-empty accessible name — the six inputs named by four `<label for>` and two `aria-label` attributes — in both layout modes, with the Tab order unchanged (packages/dioxus-native-dom/src/dioxus_document.rs:288-304; tests/blitz-tests/tests/stand_accessibility_ids.rs:1-4) — as measured at escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/report.md
+- Element nodes carry their HTML tag name (packages/blitz-dom/src/accessibility.rs:86)
+- The tree root is a `Window` node with id `u64::MAX`, and the focused DOM node is reported as tree focus (packages/blitz-dom/src/accessibility.rs:8; packages/blitz-dom/src/accessibility.rs:53-61)
 - The role-mapping test states its goal as giving assistive technology something to navigate by (tests/blitz-tests/tests/accessibility_roles.rs:3-5; tests/blitz-tests/tests/accessibility_roles.rs:195-196)
 
 **Landmark roles:** the engine's landmark mapping is recorded in §4.
@@ -306,7 +309,7 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 
 **Error recovery:**
 - Error and 404 pages show "Failed to load page" and "404 Not found" (apps/browser/assets/error.html:19; apps/browser/assets/404.html:12)
-- Invalid dates get an `invalid` class with red styling and the Book button disables (examples/seven_guis/src/tasks/flight_booker.rs:80-96; examples/seven_guis/src/tasks/flight_booker.rs:191-195); the headless-stand check asserts the cue without colour — a typed non-date sets `invalid` on the start field and gives `.flight-btn` a `disabled` attribute it did not carry before (tests/blitz-tests/tests/stand_flight_booker.rs:14-30); no test asserts a Dioxus control's focusability or Tab order
+- Invalid dates get an `invalid` class with red styling and the Book button disables (examples/seven_guis/src/tasks/flight_booker.rs:80-98; examples/seven_guis/src/tasks/flight_booker.rs:193-197); the headless-stand check asserts the cue without colour — a typed non-date sets `invalid` on the start field and gives `.flight-btn` a `disabled` attribute it did not carry before (tests/blitz-tests/tests/stand_flight_booker.rs:14-30); no test asserts a Dioxus control's focusability or Tab order
 
 **Orientation and status cues:**
 - History rows show relative time labels: "Just now", minutes, hours, days (apps/browser/src/browser_history.rs:88-102)

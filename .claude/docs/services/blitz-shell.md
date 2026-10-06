@@ -15,7 +15,7 @@ Event loop, windowing and system integration on winit: `BlitzApplication`, `View
 
 ## Internal conventions
 - Shell events flow through an mpsc channel drained in `proxy_wake_up`; every window event is followed by a Poll.
-- The accessibility tree is rebuilt on poll when the document changed; window focus and bounds are forwarded to the adapter on every window event.
+- The accessibility tree is rebuilt on poll when the document changed, through `Document::accessibility_tree` (`AccessibilityState::update_tree(&dyn Document)`), so a wrapper's override reaches the platform tree; window focus and bounds are forwarded to the adapter on every window event.
 - Default features: accessibility, clipboard, file-dialog.
 
 ## Crate-specific gotchas

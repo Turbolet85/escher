@@ -1,0 +1,180 @@
+[
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "43eb863f",
+"ts": "2026-10-06T13:06:29Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-06T12-55-34-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-06T12-55-34-wrap",
+"--marker",
+"2026-10-06-accessibility-tree-identity"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 3,
+"stdout": [
+"baseline 076d74cb (pre-CI parent — the oldest of 1 pre-CI commit(s), 9285fe75)",
+"update-tree · control UNFIRED over the seven masters at 076d74cb",
+"shell-inner · control UNFIRED over the seven masters at 076d74cb"
+],
+"stderr": "control: update-tree, shell-inner never fired over the seven masters' pre-pass text (076d74cb) — a sweep runs a positive control or refuses; drop the pattern or control it by hand",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "43eb863f",
+"ts": "2026-10-06T13:06:39Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-06T12-55-34-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-06T12-55-34-wrap",
+"--marker",
+"2026-10-06-accessibility-tree-identity"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"baseline 076d74cb (pre-CI parent — the oldest of 1 pre-CI commit(s), 9285fe75)",
+"written-nowhere · new 2 · standing 0 · leaf 1 · curation 0 · base 0 · control security-plan.md:107 (prose)",
+"only-forward · new 0 · standing 5 · leaf 2 · curation 0 · base 0 · control architecture.md:189 (prose)",
+"build-a11y-tree · new 1 · standing 3 · leaf 4 · curation 0 · base 0 · control architecture.md:121 (prose)",
+"text-child-name · new 4 · standing 1 · leaf 1 · curation 0 · base 0 · control a11y-plan.md:266 (prose)",
+"aria-label · new 6 · standing 6 · leaf 0 · curation 0 · base 0 · control a11y-plan.md:114 (prose)",
+"count-444 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"stand-20 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:111 (prose)",
+"default-feature · new 0 · standing 8 · leaf 3 · curation 0 · base 0 · case-variants +4 · control architecture.md:152 (p…",
+".andromeda/architecture.md:134 written-nowhere new @c5664/6371 …ll builds, and is written to neither the DOM nor the vd…",
+".andromeda/security-plan.md:107 written-nowhere new …mputed on demand and written to no log, DOM or vdom; under the `ac…",
+".claude/docs/services/dioxus-native-dom.md:15 written-nowhere leaf …d on demand and written nowhere — author key (the H…",
+".andromeda/architecture.md:189 only-forward standing edited …xus-native feature forwarding to the same-named feature of…",
+".andromeda/obs-plan.md:45 only-forward standing …led; `log-phase-times` forwards to blitz-dom (packages/dioxus-native/C…",
+".andromeda/a11y-plan.md:10 only-forward standing markup …essibility` feature forwards to `blitz-dom/accessibility` (pac…",
+".andromeda/a11y-plan.md:14 only-forward standing edited mixed ×2 …xus-native-dom's forwards to blitz-dom and enables it…",
+".andromeda/a11y-plan.md:177 only-forward standing …n `autofocus` feature forwards to blitz-dom (packages/dioxus-native-…",
+".claude/rules/verification-harness.md:16 only-forward leaf …pts/agent-run.ps1` only forwards to it (Windows; untested h…",
+".claude/rules/verification-harness.md:25 only-forward leaf …ts/cold-agent.ps1` only forwards. Same exit grammar as agen…",
+".andromeda/architecture.md:120 build-a11y-tree new …turning `self.inner().build_accessibility_tree()`, which a wrapper …",
+".andromeda/architecture.md:121 build-a11y-tree standing edited mixed ×2 @c1768,2539/3053 …-2714); `build_accessibility_…",
+".andromeda/a11y-plan.md:8 build-a11y-tree standing edited …re, `BaseDocument::build_accessibility_tree` builds an Acces…",
+".andromeda/a11y-plan.md:64 build-a11y-tree standing …Tests call `document.build_accessibility_tree()` after `resolve` a…",
+".claude/rules/a11y.md:22 build-a11y-tree leaf - `build_accessibility_tree` returns an AccessKit `TreeUpdate`; the root …",
+".claude/rules/a11y.md:38 build-a11y-tree leaf - Assert over `build_accessibility_tree()` after `resolve`, matching `rol…",
+".claude/docs/a11y-summary.md:12 build-a11y-tree leaf …he AccessKit tree — `build_accessibility_tree()` after `resolve`,…",
+".claude/docs/services/blitz-dom.md:15 build-a11y-tree leaf …SSOM, scroll API, `build_accessibility_tree`, `BoundingRect…",
+".andromeda/architecture.md:121 text-child-name new @c1912/3053 …rces — its direct text children (`labelled_by` its `Tex…",
+".andromeda/security-plan.md:108 text-child-name new …el` · `<label for>` (accessible names) | Read from parsed content …",
+".andromeda/test-plan.md:25 text-child-name new @c1469/2497 …ersistence.rs:1) — accessible names from `aria-label` and `…",
+".andromeda/a11y-plan.md:266 text-child-name standing edited … and the parent is labelled by them (packages/blitz-dom/sr…",
+".andromeda/a11y-plan.md:269 text-child-name new …M role and a non-empty accessible name — the six inputs named by four …",
+".claude/rules/a11y.md:25 text-child-name leaf - Text nodes become `TextRun` nodes and label their parent.",
+".andromeda/architecture.md:121 aria-label new @c1962/3053 …s `TextRun`s), an `aria-label` non-empty after trimming (`la…",
+".andromeda/security-plan.md:108 aria-label new ×2 | Markup attributes | `aria-label` · `<label for>` (accessible names)…",
+".andromeda/layout-templates.md:10 aria-label new @c1579/2127 … `crud-surname`, `aria-label` \"Departure date\" / \"Return …",
+".andromeda/test-plan.md:25 aria-label new @c1492/2497 …cessible names from `aria-label` and `<label>` association, and …",
+".andromeda/a11y-plan.md:114 aria-label standing ×2 …`, `role=\"img\"` with `aria-label`, and `aria-labelledby` (examples/…",
+".andromeda/a11y-plan.md:119 aria-label standing …mburger button carries aria-label and aria-expanded, which its script …",
+".andromeda/a11y-plan.md:120 aria-label standing … nav and sections with aria-label (examples/assets/servo-new.html:25; …",
+".andromeda/a11y-plan.md:121 aria-label standing …carousel buttons carry aria-label text (examples/assets/graphite.html:…",
+".andromeda/a11y-plan.md:122 aria-label standing ×2 …th `role=\"navigation\" aria-label=\"main navigation\"`; burger `a` wit…",
+".andromeda/a11y-plan.md:267 aria-label new - An element's `aria-label`, when non-empty after trimming, becomes its `lab…",
+".andromeda/a11y-plan.md:269 aria-label new … `<label for>` and two `aria-label` attributes — in both layout modes, with…",
+".andromeda/a11y-plan.md:291 aria-label standing …inks carry descriptive aria-labels such as \"Gmail (opens a new tab)\" (…",
+".andromeda/test-plan.md:314 count-444 standing edited @c1693/2350 …22 result lines, 444 passed · 0 failed · 5 ignored (…",
+".claude/docs/tests-summary.md:28 count-444 leaf …argo test --workspace` 444 · 0 · 5 at 2026-10-06-id-persistence (+3 `s…",
+".andromeda/test-plan.md:111 stand-20 standing edited …istence: `run stand` 20 `ok` stand events (+3 `stand_id_persisten…",
+".andromeda/architecture.md:152 default-feature standing …s]` path entry with default features (Cargo.toml:61), consumed…",
+".andromeda/security-plan.md:218 default-feature standing …`wptreport` disable default features (wpt/runner/Cargo.toml:3…",
+".andromeda/test-plan.md:7 default-feature standing …` runs on ubuntu with default features as the fast `test` leg, `bas…",
+".andromeda/test-plan.md:311 default-feature standing …:199-200), workspace default features, every cargo command with `…",
+".andromeda/obs-plan.md:41 default-feature standing - `tracing` is a default feature of blitz and forwards to blitz-shel…",
+".andromeda/a11y-plan.md:8 default-feature standing edited …5-62); blitz-dom's default features include `accessibility`,…",
+".andromeda/a11y-plan.md:11 default-feature standing …— accessibility is a default feature enabling accesskit, accesskit…",
+".andromeda/a11y-plan.md:14 default-feature standing edited …Dioxus crates** — `accessibility` is a default feature of b…",
+"CLAUDE.md:44 default-feature leaf …2.1.1 · 1.4.3 · 2.4.3 and `accessibility` is a default feature — focusability, focus…",
+".claude/docs/commands.md:24 default-feature leaf …t --workspace --locked` — the CI `test` leg (ubuntu, default features)",
+".claude/docs/services/seven_guis.md:14 default-feature leaf …]` path entry with default features (dioxus-native refuses…",
+"written-nowhere · new 2 · standing 0 · leaf 1 · curation 0 · base 0 · control security-plan.md:107 (prose)",
+"only-forward · new 0 · standing 5 · leaf 2 · curation 0 · base 0 · control architecture.md:189 (prose)",
+"build-a11y-tree · new 1 · standing 3 · leaf 4 · curation 0 · base 0 · control architecture.md:121 (prose)",
+"text-child-name · new 4 · standing 1 · leaf 1 · curation 0 · base 0 · control a11y-plan.md:266 (prose)",
+"aria-label · new 6 · standing 6 · leaf 0 · curation 0 · base 0 · control a11y-plan.md:114 (prose)",
+"count-444 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"stand-20 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:111 (prose)",
+"default-feature · new 0 · standing 8 · leaf 3 · curation 0 · base 0 · case-variants +4 · control architecture.md:152 (p…"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "076d74cbf793be55e784f8b7d08875429fca2dfc",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), 9285fe75",
+"counts": {
+"written-nowhere": {
+"new": 2,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"only-forward": {
+"new": 0,
+"standing": 5,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"build-a11y-tree": {
+"new": 1,
+"standing": 3,
+"leaf": 4,
+"curation": 0,
+"base": 0
+},
+"text-child-name": {
+"new": 4,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"aria-label": {
+"new": 6,
+"standing": 6,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"count-444": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"stand-20": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"default-feature": {
+"new": 0,
+"standing": 8,
+"leaf": 3,
+"curation": 0,
+"base": 0
+}
+}
+}
+}
+]
