@@ -1,0 +1,1039 @@
+{
+ "anchors": [
+  {
+   "consumer": "phase/take-up",
+   "consumer_line": 4,
+   "chunk": "2026-10-05-as-built-baseline",
+   "artifact": "working-entry",
+   "quality": "thin",
+   "consumer_frictions": [],
+   "producer": null,
+   "producer_line": null,
+   "producer_outcome": null,
+   "producer_signals": null
+  },
+  {
+   "consumer": "implement/fix-loop",
+   "consumer_line": 12,
+   "chunk": "2026-10-05-as-built-baseline",
+   "artifact": "plan",
+   "quality": "thin",
+   "consumer_frictions": [
+    13,
+    14
+   ],
+   "producer": "phase/validate",
+   "producer_line": 9,
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "baseline-exposed-vacuous-entry"
+   ]
+  },
+  {
+   "consumer": "wrap-session/report",
+   "consumer_line": 36,
+   "chunk": "2026-10-05-fork-ci-reached",
+   "artifact": "plan",
+   "quality": "thin",
+   "consumer_frictions": [
+    37
+   ],
+   "producer": "phase/plan",
+   "producer_line": 28,
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "designed-dialogue:debuginfo-locus",
+    "designed-dialogue:fast-slow-shape",
+    "designed-dialogue:test-binary-consolidation",
+    "delegate-answer-provisional"
+   ]
+  },
+  {
+   "consumer": "wrap-session/reconcile",
+   "consumer_line": 38,
+   "chunk": "2026-10-05-fork-ci-reached",
+   "artifact": "report",
+   "quality": "thin",
+   "consumer_frictions": [
+    39,
+    40,
+    41,
+    42
+   ],
+   "producer": "wrap-session/report",
+   "producer_line": 36,
+   "producer_outcome": "ok",
+   "producer_signals": []
+  },
+  {
+   "consumer": "phase/plan",
+   "consumer_line": 52,
+   "chunk": "2026-10-05-ci-gate-legs",
+   "artifact": "research",
+   "quality": "thin",
+   "consumer_frictions": [
+    53
+   ],
+   "producer": "phase/research",
+   "producer_line": 50,
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "unresolved-questions"
+   ]
+  },
+  {
+   "consumer": "implement/fix-loop",
+   "consumer_line": 59,
+   "chunk": "2026-10-05-ci-gate-legs",
+   "artifact": "plan",
+   "quality": "thin",
+   "consumer_frictions": [
+    60,
+    61,
+    62
+   ],
+   "producer": "phase/plan",
+   "producer_line": 52,
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "designed-dialogue:audit-tool",
+    "designed-dialogue:coverage-cache",
+    "authority-resolved:tests cache-rule yields to arch cache budget via named NO_CACHE/RESTORE_ONLY sets"
+   ]
+  },
+  {
+   "consumer": "wrap-session/report",
+   "consumer_line": 64,
+   "chunk": "2026-10-05-ci-gate-legs",
+   "artifact": "plan",
+   "quality": "thin",
+   "consumer_frictions": [],
+   "producer": "phase/plan",
+   "producer_line": 52,
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "designed-dialogue:audit-tool",
+    "designed-dialogue:coverage-cache",
+    "authority-resolved:tests cache-rule yields to arch cache budget via named NO_CACHE/RESTORE_ONLY sets"
+   ]
+  },
+  {
+   "consumer": "wrap-session/reconcile",
+   "consumer_line": 65,
+   "chunk": "2026-10-05-ci-gate-legs",
+   "artifact": "drift-base",
+   "quality": "thin",
+   "consumer_frictions": [
+    66,
+    67,
+    68
+   ],
+   "producer": null,
+   "producer_line": null,
+   "producer_outcome": null,
+   "producer_signals": null
+  },
+  {
+   "consumer": "phase/take-up",
+   "consumer_line": 77,
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "artifact": "working-entry",
+   "quality": "thin",
+   "consumer_frictions": [],
+   "producer": null,
+   "producer_line": null,
+   "producer_outcome": null,
+   "producer_signals": null
+  },
+  {
+   "consumer": "implement/code",
+   "consumer_line": 86,
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "artifact": "research",
+   "quality": "thin",
+   "consumer_frictions": [
+    87,
+    88
+   ],
+   "producer": "phase/research",
+   "producer_line": 81,
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "unresolved-questions"
+   ]
+  },
+  {
+   "consumer": "implement/fix-loop",
+   "consumer_line": 89,
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "artifact": "plan",
+   "quality": "wrong",
+   "consumer_frictions": [
+    90,
+    91
+   ],
+   "producer": "phase/validate",
+   "producer_line": 83,
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "baseline-controls-run"
+   ]
+  },
+  {
+   "consumer": "wrap-session/report",
+   "consumer_line": 93,
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "artifact": "plan",
+   "quality": "thin",
+   "consumer_frictions": [
+    94
+   ],
+   "producer": "phase/validate",
+   "producer_line": 83,
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "baseline-controls-run"
+   ]
+  },
+  {
+   "consumer": "wrap-session/gates",
+   "consumer_line": 104,
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "artifact": "plan",
+   "quality": "thin",
+   "consumer_frictions": [
+    105
+   ],
+   "producer": "phase/validate",
+   "producer_line": 83,
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "baseline-controls-run"
+   ]
+  },
+  {
+   "consumer": "wrap-session/reconcile",
+   "consumer_line": 122,
+   "chunk": "2026-10-06-headless-stand",
+   "artifact": "report",
+   "quality": "wrong",
+   "consumer_frictions": [
+    123,
+    124,
+    125
+   ],
+   "producer": "wrap-session/report",
+   "producer_line": 121,
+   "producer_outcome": "ok",
+   "producer_signals": []
+  },
+  {
+   "consumer": "phase/take-up",
+   "consumer_line": 130,
+   "chunk": "2026-10-06-stand-test-contract",
+   "artifact": "working-entry",
+   "quality": "thin",
+   "consumer_frictions": [
+    131
+   ],
+   "producer": null,
+   "producer_line": null,
+   "producer_outcome": null,
+   "producer_signals": null
+  },
+  {
+   "consumer": "phase/distill",
+   "consumer_line": 132,
+   "chunk": "2026-10-06-stand-test-contract",
+   "artifact": "spec:test-plan",
+   "quality": "thin",
+   "consumer_frictions": [],
+   "producer": null,
+   "producer_line": null,
+   "producer_outcome": null,
+   "producer_signals": null
+  },
+  {
+   "consumer": "phase/distill",
+   "consumer_line": 132,
+   "chunk": "2026-10-06-stand-test-contract",
+   "artifact": "spec:obs-plan",
+   "quality": "thin",
+   "consumer_frictions": [],
+   "producer": null,
+   "producer_line": null,
+   "producer_outcome": null,
+   "producer_signals": null
+  },
+  {
+   "consumer": "phase/take-up",
+   "consumer_line": 153,
+   "chunk": "2026-10-06-cold-agent-run-pipe",
+   "artifact": "working-entry",
+   "quality": "thin",
+   "consumer_frictions": [
+    154
+   ],
+   "producer": null,
+   "producer_line": null,
+   "producer_outcome": null,
+   "producer_signals": null
+  },
+  {
+   "consumer": "wrap-session/reconcile",
+   "consumer_line": 168,
+   "chunk": "2026-10-06-cold-agent-run-pipe",
+   "artifact": "report",
+   "quality": "thin",
+   "consumer_frictions": [
+    169,
+    170,
+    171,
+    172,
+    173,
+    174
+   ],
+   "producer": "wrap-session/report",
+   "producer_line": 167,
+   "producer_outcome": "ok",
+   "producer_signals": []
+  },
+  {
+   "consumer": "wrap-session/reconcile",
+   "consumer_line": 40,
+   "chunk": "2026-10-05-fork-ci-reached",
+   "artifact": "report",
+   "quality": "friction:input.report-insufficient (consumer step verdict: thin)",
+   "consumer_frictions": [
+    40
+   ],
+   "producer": "wrap-session/report",
+   "producer_line": 36,
+   "producer_outcome": "ok",
+   "producer_signals": []
+  },
+  {
+   "consumer": "implement/code",
+   "consumer_line": 57,
+   "chunk": "2026-10-05-ci-gate-legs",
+   "artifact": "plan",
+   "quality": "friction:input.plan-step-ambiguous (consumer step verdict: ok)",
+   "consumer_frictions": [
+    57
+   ],
+   "producer": "phase/plan",
+   "producer_line": 52,
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "designed-dialogue:audit-tool",
+    "designed-dialogue:coverage-cache",
+    "authority-resolved:tests cache-rule yields to arch cache budget via named NO_CACHE/RESTORE_ONLY sets"
+   ]
+  },
+  {
+   "consumer": "implement/code",
+   "consumer_line": 88,
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "artifact": "plan",
+   "quality": "friction:input.plan-step-ambiguous (consumer step verdict: ok)",
+   "consumer_frictions": [
+    88
+   ],
+   "producer": "phase/validate",
+   "producer_line": 83,
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "baseline-controls-run"
+   ]
+  },
+  {
+   "consumer": "implement/code",
+   "consumer_line": 116,
+   "chunk": "2026-10-06-headless-stand",
+   "artifact": "plan",
+   "quality": "friction:input.plan-step-ambiguous (consumer step verdict: ok)",
+   "consumer_frictions": [
+    116
+   ],
+   "producer": "phase/plan",
+   "producer_line": 111,
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "designed-dialogue:timer-tick-seam",
+    "authority-resolved:extract net-option yields to research DummyNetProvider default"
+   ]
+  },
+  {
+   "consumer": "wrap-session/reconcile",
+   "consumer_line": 123,
+   "chunk": "2026-10-06-headless-stand",
+   "artifact": "report",
+   "quality": "friction:input.report-insufficient (consumer step verdict: wrong)",
+   "consumer_frictions": [
+    123
+   ],
+   "producer": "wrap-session/report",
+   "producer_line": 121,
+   "producer_outcome": "ok",
+   "producer_signals": []
+  },
+  {
+   "consumer": "phase/take-up",
+   "consumer_line": 131,
+   "chunk": "2026-10-06-stand-test-contract",
+   "artifact": "working-entry",
+   "quality": "friction:input.working-entry-thin (consumer step verdict: thin)",
+   "consumer_frictions": [
+    131
+   ],
+   "producer": null,
+   "producer_line": null,
+   "producer_outcome": null,
+   "producer_signals": null
+  },
+  {
+   "consumer": "implement/code",
+   "consumer_line": 140,
+   "chunk": "2026-10-06-stand-test-contract",
+   "artifact": "plan",
+   "quality": "friction:input.plan-step-ambiguous (consumer step verdict: ok)",
+   "consumer_frictions": [
+    140
+   ],
+   "producer": "phase/validate",
+   "producer_line": 136,
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "baseline-controls-ran"
+   ]
+  },
+  {
+   "consumer": "phase/take-up",
+   "consumer_line": 154,
+   "chunk": "2026-10-06-cold-agent-run-pipe",
+   "artifact": "working-entry",
+   "quality": "friction:input.working-entry-thin (consumer step verdict: thin)",
+   "consumer_frictions": [
+    154
+   ],
+   "producer": null,
+   "producer_line": null,
+   "producer_outcome": null,
+   "producer_signals": null
+  },
+  {
+   "consumer": "wrap-session/reconcile",
+   "consumer_line": 169,
+   "chunk": "2026-10-06-cold-agent-run-pipe",
+   "artifact": "report",
+   "quality": "friction:input.report-insufficient (consumer step verdict: thin)",
+   "consumer_frictions": [
+    169
+   ],
+   "producer": "wrap-session/report",
+   "producer_line": 167,
+   "producer_outcome": "ok",
+   "producer_signals": []
+  },
+  {
+   "consumer": "wrap-session/reconcile",
+   "consumer_line": 170,
+   "chunk": "2026-10-06-cold-agent-run-pipe",
+   "artifact": "report",
+   "quality": "friction:input.report-insufficient (consumer step verdict: thin)",
+   "consumer_frictions": [
+    170
+   ],
+   "producer": "wrap-session/report",
+   "producer_line": 167,
+   "producer_outcome": "ok",
+   "producer_signals": []
+  }
+ ],
+ "shapes": [
+  {
+   "shape": "None -working-entry-> phase/take-up",
+   "chunks": [
+    "2026-10-05-as-built-baseline",
+    "2026-10-06-cold-agent-run-pipe",
+    "2026-10-06-stand-test-contract",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "k": 4,
+   "anchors": [
+    {
+     "consumer": "phase/take-up",
+     "consumer_line": 4,
+     "chunk": "2026-10-05-as-built-baseline",
+     "artifact": "working-entry",
+     "quality": "thin",
+     "consumer_frictions": [],
+     "producer": null,
+     "producer_line": null,
+     "producer_outcome": null,
+     "producer_signals": null
+    },
+    {
+     "consumer": "phase/take-up",
+     "consumer_line": 77,
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "artifact": "working-entry",
+     "quality": "thin",
+     "consumer_frictions": [],
+     "producer": null,
+     "producer_line": null,
+     "producer_outcome": null,
+     "producer_signals": null
+    },
+    {
+     "consumer": "phase/take-up",
+     "consumer_line": 130,
+     "chunk": "2026-10-06-stand-test-contract",
+     "artifact": "working-entry",
+     "quality": "thin",
+     "consumer_frictions": [
+      131
+     ],
+     "producer": null,
+     "producer_line": null,
+     "producer_outcome": null,
+     "producer_signals": null
+    },
+    {
+     "consumer": "phase/take-up",
+     "consumer_line": 153,
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "artifact": "working-entry",
+     "quality": "thin",
+     "consumer_frictions": [
+      154
+     ],
+     "producer": null,
+     "producer_line": null,
+     "producer_outcome": null,
+     "producer_signals": null
+    },
+    {
+     "consumer": "phase/take-up",
+     "consumer_line": 131,
+     "chunk": "2026-10-06-stand-test-contract",
+     "artifact": "working-entry",
+     "quality": "friction:input.working-entry-thin (consumer step verdict: thin)",
+     "consumer_frictions": [
+      131
+     ],
+     "producer": null,
+     "producer_line": null,
+     "producer_outcome": null,
+     "producer_signals": null
+    },
+    {
+     "consumer": "phase/take-up",
+     "consumer_line": 154,
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "artifact": "working-entry",
+     "quality": "friction:input.working-entry-thin (consumer step verdict: thin)",
+     "consumer_frictions": [
+      154
+     ],
+     "producer": null,
+     "producer_line": null,
+     "producer_outcome": null,
+     "producer_signals": null
+    }
+   ]
+  },
+  {
+   "shape": "wrap-session/report -report-> wrap-session/reconcile",
+   "chunks": [
+    "2026-10-05-fork-ci-reached",
+    "2026-10-06-cold-agent-run-pipe",
+    "2026-10-06-headless-stand"
+   ],
+   "k": 3,
+   "anchors": [
+    {
+     "consumer": "wrap-session/reconcile",
+     "consumer_line": 38,
+     "chunk": "2026-10-05-fork-ci-reached",
+     "artifact": "report",
+     "quality": "thin",
+     "consumer_frictions": [
+      39,
+      40,
+      41,
+      42
+     ],
+     "producer": "wrap-session/report",
+     "producer_line": 36,
+     "producer_outcome": "ok",
+     "producer_signals": []
+    },
+    {
+     "consumer": "wrap-session/reconcile",
+     "consumer_line": 122,
+     "chunk": "2026-10-06-headless-stand",
+     "artifact": "report",
+     "quality": "wrong",
+     "consumer_frictions": [
+      123,
+      124,
+      125
+     ],
+     "producer": "wrap-session/report",
+     "producer_line": 121,
+     "producer_outcome": "ok",
+     "producer_signals": []
+    },
+    {
+     "consumer": "wrap-session/reconcile",
+     "consumer_line": 168,
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "artifact": "report",
+     "quality": "thin",
+     "consumer_frictions": [
+      169,
+      170,
+      171,
+      172,
+      173,
+      174
+     ],
+     "producer": "wrap-session/report",
+     "producer_line": 167,
+     "producer_outcome": "ok",
+     "producer_signals": []
+    },
+    {
+     "consumer": "wrap-session/reconcile",
+     "consumer_line": 40,
+     "chunk": "2026-10-05-fork-ci-reached",
+     "artifact": "report",
+     "quality": "friction:input.report-insufficient (consumer step verdict: thin)",
+     "consumer_frictions": [
+      40
+     ],
+     "producer": "wrap-session/report",
+     "producer_line": 36,
+     "producer_outcome": "ok",
+     "producer_signals": []
+    },
+    {
+     "consumer": "wrap-session/reconcile",
+     "consumer_line": 123,
+     "chunk": "2026-10-06-headless-stand",
+     "artifact": "report",
+     "quality": "friction:input.report-insufficient (consumer step verdict: wrong)",
+     "consumer_frictions": [
+      123
+     ],
+     "producer": "wrap-session/report",
+     "producer_line": 121,
+     "producer_outcome": "ok",
+     "producer_signals": []
+    },
+    {
+     "consumer": "wrap-session/reconcile",
+     "consumer_line": 169,
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "artifact": "report",
+     "quality": "friction:input.report-insufficient (consumer step verdict: thin)",
+     "consumer_frictions": [
+      169
+     ],
+     "producer": "wrap-session/report",
+     "producer_line": 167,
+     "producer_outcome": "ok",
+     "producer_signals": []
+    },
+    {
+     "consumer": "wrap-session/reconcile",
+     "consumer_line": 170,
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "artifact": "report",
+     "quality": "friction:input.report-insufficient (consumer step verdict: thin)",
+     "consumer_frictions": [
+      170
+     ],
+     "producer": "wrap-session/report",
+     "producer_line": 167,
+     "producer_outcome": "ok",
+     "producer_signals": []
+    }
+   ]
+  },
+  {
+   "shape": "phase/validate -plan-> implement/fix-loop",
+   "chunks": [
+    "2026-10-05-as-built-baseline",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "k": 2,
+   "anchors": [
+    {
+     "consumer": "implement/fix-loop",
+     "consumer_line": 12,
+     "chunk": "2026-10-05-as-built-baseline",
+     "artifact": "plan",
+     "quality": "thin",
+     "consumer_frictions": [
+      13,
+      14
+     ],
+     "producer": "phase/validate",
+     "producer_line": 9,
+     "producer_outcome": "ok",
+     "producer_signals": [
+      "baseline-exposed-vacuous-entry"
+     ]
+    },
+    {
+     "consumer": "implement/fix-loop",
+     "consumer_line": 89,
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "artifact": "plan",
+     "quality": "wrong",
+     "consumer_frictions": [
+      90,
+      91
+     ],
+     "producer": "phase/validate",
+     "producer_line": 83,
+     "producer_outcome": "ok",
+     "producer_signals": [
+      "baseline-controls-run"
+     ]
+    }
+   ]
+  },
+  {
+   "shape": "phase/plan -plan-> wrap-session/report",
+   "chunks": [
+    "2026-10-05-ci-gate-legs",
+    "2026-10-05-fork-ci-reached"
+   ],
+   "k": 2,
+   "anchors": [
+    {
+     "consumer": "wrap-session/report",
+     "consumer_line": 36,
+     "chunk": "2026-10-05-fork-ci-reached",
+     "artifact": "plan",
+     "quality": "thin",
+     "consumer_frictions": [
+      37
+     ],
+     "producer": "phase/plan",
+     "producer_line": 28,
+     "producer_outcome": "ok",
+     "producer_signals": [
+      "designed-dialogue:debuginfo-locus",
+      "designed-dialogue:fast-slow-shape",
+      "designed-dialogue:test-binary-consolidation",
+      "delegate-answer-provisional"
+     ]
+    },
+    {
+     "consumer": "wrap-session/report",
+     "consumer_line": 64,
+     "chunk": "2026-10-05-ci-gate-legs",
+     "artifact": "plan",
+     "quality": "thin",
+     "consumer_frictions": [],
+     "producer": "phase/plan",
+     "producer_line": 52,
+     "producer_outcome": "ok",
+     "producer_signals": [
+      "designed-dialogue:audit-tool",
+      "designed-dialogue:coverage-cache",
+      "authority-resolved:tests cache-rule yields to arch cache budget via named NO_CACHE/RESTORE_ONLY sets"
+     ]
+    }
+   ]
+  },
+  {
+   "shape": "phase/plan -plan-> implement/code",
+   "chunks": [
+    "2026-10-05-ci-gate-legs",
+    "2026-10-06-headless-stand"
+   ],
+   "k": 2,
+   "anchors": [
+    {
+     "consumer": "implement/code",
+     "consumer_line": 57,
+     "chunk": "2026-10-05-ci-gate-legs",
+     "artifact": "plan",
+     "quality": "friction:input.plan-step-ambiguous (consumer step verdict: ok)",
+     "consumer_frictions": [
+      57
+     ],
+     "producer": "phase/plan",
+     "producer_line": 52,
+     "producer_outcome": "ok",
+     "producer_signals": [
+      "designed-dialogue:audit-tool",
+      "designed-dialogue:coverage-cache",
+      "authority-resolved:tests cache-rule yields to arch cache budget via named NO_CACHE/RESTORE_ONLY sets"
+     ]
+    },
+    {
+     "consumer": "implement/code",
+     "consumer_line": 116,
+     "chunk": "2026-10-06-headless-stand",
+     "artifact": "plan",
+     "quality": "friction:input.plan-step-ambiguous (consumer step verdict: ok)",
+     "consumer_frictions": [
+      116
+     ],
+     "producer": "phase/plan",
+     "producer_line": 111,
+     "producer_outcome": "ok",
+     "producer_signals": [
+      "designed-dialogue:timer-tick-seam",
+      "authority-resolved:extract net-option yields to research DummyNetProvider default"
+     ]
+    }
+   ]
+  },
+  {
+   "shape": "phase/validate -plan-> implement/code",
+   "chunks": [
+    "2026-10-06-stand-test-contract",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "k": 2,
+   "anchors": [
+    {
+     "consumer": "implement/code",
+     "consumer_line": 88,
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "artifact": "plan",
+     "quality": "friction:input.plan-step-ambiguous (consumer step verdict: ok)",
+     "consumer_frictions": [
+      88
+     ],
+     "producer": "phase/validate",
+     "producer_line": 83,
+     "producer_outcome": "ok",
+     "producer_signals": [
+      "baseline-controls-run"
+     ]
+    },
+    {
+     "consumer": "implement/code",
+     "consumer_line": 140,
+     "chunk": "2026-10-06-stand-test-contract",
+     "artifact": "plan",
+     "quality": "friction:input.plan-step-ambiguous (consumer step verdict: ok)",
+     "consumer_frictions": [
+      140
+     ],
+     "producer": "phase/validate",
+     "producer_line": 136,
+     "producer_outcome": "ok",
+     "producer_signals": [
+      "baseline-controls-ran"
+     ]
+    }
+   ]
+  },
+  {
+   "shape": "phase/research -research-> phase/plan",
+   "chunks": [
+    "2026-10-05-ci-gate-legs"
+   ],
+   "k": 1,
+   "anchors": [
+    {
+     "consumer": "phase/plan",
+     "consumer_line": 52,
+     "chunk": "2026-10-05-ci-gate-legs",
+     "artifact": "research",
+     "quality": "thin",
+     "consumer_frictions": [
+      53
+     ],
+     "producer": "phase/research",
+     "producer_line": 50,
+     "producer_outcome": "ok",
+     "producer_signals": [
+      "unresolved-questions"
+     ]
+    }
+   ]
+  },
+  {
+   "shape": "phase/plan -plan-> implement/fix-loop",
+   "chunks": [
+    "2026-10-05-ci-gate-legs"
+   ],
+   "k": 1,
+   "anchors": [
+    {
+     "consumer": "implement/fix-loop",
+     "consumer_line": 59,
+     "chunk": "2026-10-05-ci-gate-legs",
+     "artifact": "plan",
+     "quality": "thin",
+     "consumer_frictions": [
+      60,
+      61,
+      62
+     ],
+     "producer": "phase/plan",
+     "producer_line": 52,
+     "producer_outcome": "ok",
+     "producer_signals": [
+      "designed-dialogue:audit-tool",
+      "designed-dialogue:coverage-cache",
+      "authority-resolved:tests cache-rule yields to arch cache budget via named NO_CACHE/RESTORE_ONLY sets"
+     ]
+    }
+   ]
+  },
+  {
+   "shape": "None -drift-base-> wrap-session/reconcile",
+   "chunks": [
+    "2026-10-05-ci-gate-legs"
+   ],
+   "k": 1,
+   "anchors": [
+    {
+     "consumer": "wrap-session/reconcile",
+     "consumer_line": 65,
+     "chunk": "2026-10-05-ci-gate-legs",
+     "artifact": "drift-base",
+     "quality": "thin",
+     "consumer_frictions": [
+      66,
+      67,
+      68
+     ],
+     "producer": null,
+     "producer_line": null,
+     "producer_outcome": null,
+     "producer_signals": null
+    }
+   ]
+  },
+  {
+   "shape": "phase/research -research-> implement/code",
+   "chunks": [
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "k": 1,
+   "anchors": [
+    {
+     "consumer": "implement/code",
+     "consumer_line": 86,
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "artifact": "research",
+     "quality": "thin",
+     "consumer_frictions": [
+      87,
+      88
+     ],
+     "producer": "phase/research",
+     "producer_line": 81,
+     "producer_outcome": "ok",
+     "producer_signals": [
+      "unresolved-questions"
+     ]
+    }
+   ]
+  },
+  {
+   "shape": "phase/validate -plan-> wrap-session/report",
+   "chunks": [
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "k": 1,
+   "anchors": [
+    {
+     "consumer": "wrap-session/report",
+     "consumer_line": 93,
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "artifact": "plan",
+     "quality": "thin",
+     "consumer_frictions": [
+      94
+     ],
+     "producer": "phase/validate",
+     "producer_line": 83,
+     "producer_outcome": "ok",
+     "producer_signals": [
+      "baseline-controls-run"
+     ]
+    }
+   ]
+  },
+  {
+   "shape": "phase/validate -plan-> wrap-session/gates",
+   "chunks": [
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "k": 1,
+   "anchors": [
+    {
+     "consumer": "wrap-session/gates",
+     "consumer_line": 104,
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "artifact": "plan",
+     "quality": "thin",
+     "consumer_frictions": [
+      105
+     ],
+     "producer": "phase/validate",
+     "producer_line": 83,
+     "producer_outcome": "ok",
+     "producer_signals": [
+      "baseline-controls-run"
+     ]
+    }
+   ]
+  },
+  {
+   "shape": "None -spec:test-plan-> phase/distill",
+   "chunks": [
+    "2026-10-06-stand-test-contract"
+   ],
+   "k": 1,
+   "anchors": [
+    {
+     "consumer": "phase/distill",
+     "consumer_line": 132,
+     "chunk": "2026-10-06-stand-test-contract",
+     "artifact": "spec:test-plan",
+     "quality": "thin",
+     "consumer_frictions": [],
+     "producer": null,
+     "producer_line": null,
+     "producer_outcome": null,
+     "producer_signals": null
+    }
+   ]
+  },
+  {
+   "shape": "None -spec:obs-plan-> phase/distill",
+   "chunks": [
+    "2026-10-06-stand-test-contract"
+   ],
+   "k": 1,
+   "anchors": [
+    {
+     "consumer": "phase/distill",
+     "consumer_line": 132,
+     "chunk": "2026-10-06-stand-test-contract",
+     "artifact": "spec:obs-plan",
+     "quality": "thin",
+     "consumer_frictions": [],
+     "producer": null,
+     "producer_line": null,
+     "producer_outcome": null,
+     "producer_signals": null
+    }
+   ]
+  }
+ ]
+}

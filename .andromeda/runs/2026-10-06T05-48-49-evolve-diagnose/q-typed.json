@@ -1,0 +1,1704 @@
+{
+ "per_step_groups": [
+  {
+   "key": "wrap-session/reconcile/contract.in-pass-correction",
+   "n": 7,
+   "weight": 22,
+   "impact": {
+    "retries": 15
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-ci-gate-legs",
+    "2026-10-05-fork-ci-reached",
+    "2026-10-06-cold-agent-run-pipe",
+    "2026-10-06-stand-test-contract",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "above_threshold": true,
+   "cases": [
+    {
+     "line": 42,
+     "id": "2026-10-05T22:17:51Z-e",
+     "chunk": "2026-10-05-fork-ci-reached",
+     "step": "wrap-session/reconcile",
+     "what": "5 first-write errors corrected before commit: arch ci-leg.sh:46-51 -> 47-52 and test_ci_workflows.py:13 -> 12 (caught by a line read), test_ci_workflows.py:61-176 -> 61-177 in arch and test-plan (wc -l), security sidecar first written into the run dir with section 'Security Logging' (caught re-reading the heading) and rewritten at .andromeda/, test-plan entry carrying a Supersedes over a still-standing claim (dropped for a partial-retirement Change)",
+     "impact": {
+      "retries": 5
+     },
+     "evidence": null
+    },
+    {
+     "line": 67,
+     "id": "2026-10-06T00:07:40Z-c",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "wrap-session/reconcile",
+     "what": "3 in-pass corrections: a sweep regex [^.] could not cross 'ci.yml' (caught by the tool's unfired control); the security sidecar payload claimed a CARRY not yet in any body (caught by re-read before append); the first architecture payload carried a trailing blank, leaving a double gap (caught by read-back, collapsed)",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": ".andromeda/runs/2026-10-05T23-50-17-wrap/cascade-dispositions.md"
+    },
+    {
+     "line": 97,
+     "id": "2026-10-06T01:48:08Z-c",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "wrap-session/reconcile",
+     "what": "5 new citation ranges into escher-telemetry sources wrong on first write (arch lib.rs:90-133 -> 90-134, panic.rs:4-21 -> 4-24, format.rs:96-160 -> 96-165, format.rs:17-85 -> 17-84; obs lib.rs:32-55 -> 32-54), each caught by re-reading the cited source lines before the sidecars landed",
+     "impact": {
+      "retries": 3
+     },
+     "evidence": null
+    },
+    {
+     "line": 145,
+     "id": "2026-10-06T03:50:18Z-b",
+     "chunk": "2026-10-06-stand-test-contract",
+     "step": "wrap-session/reconcile",
+     "what": "test-plan §4 first write split the 37 CI-script tests as test_ci_workflows.py's 23 + 14; the prior 23 covered every CI-script file (test_wpt_diff_to_pr.py too) — corrected to 'the 23 of the files above' on re-read before the sweep",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 146,
+     "id": "2026-10-06T03:50:18Z-c",
+     "chunk": "2026-10-06-stand-test-contract",
+     "step": "wrap-session/reconcile",
+     "what": "security-plan §Input Validation row first cited scripts/agent-run.sh:160-161 for the verb check; a grep put it at :161 alone — corrected before the sweep",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 147,
+     "id": "2026-10-06T03:50:18Z-d",
+     "chunk": "2026-10-06-stand-test-contract",
+     "step": "wrap-session/reconcile",
+     "what": "the test-plan sidecar entry's Why first named the founder as the ruling's author; whose word it was (founder or overseer delegate) is not known from this session — re-worded to the operator's ruling on re-read, before the append",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 172,
+     "id": "2026-10-06T04:47:33Z-e",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "wrap-session/reconcile",
+     "what": "two first writes corrected before commit: arch Names cited scripts/cold-agent.sh:14 for the MCP server name (caught by a citation read: it is :181); the report's corrected count basis said 21 rows (caught by re-running the grep with offsets: 18)",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": ".andromeda/runs/2026-10-06T04-34-08-wrap/cascade-dispositions.md"
+    }
+   ],
+   "rate": "7/7"
+  },
+  {
+   "key": "phase/validate/contract.mechanical-check",
+   "n": 10,
+   "weight": 21,
+   "impact": {
+    "iterations": 9,
+    "retries": 2
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-as-built-baseline",
+    "2026-10-05-fork-ci-reached",
+    "2026-10-06-cold-agent-run-pipe",
+    "2026-10-06-headless-stand",
+    "2026-10-06-stand-test-contract",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "above_threshold": true,
+   "cases": [
+    {
+     "line": 10,
+     "id": "2026-10-05T19:47:53Z-b",
+     "chunk": "2026-10-05-as-built-baseline",
+     "step": "phase/validate",
+     "what": "check 4(4) fired REQUIRED-RESOLUTION on criteria asserting evidence/baseline.md, an implement-authored record with no producing entry; resolved by a by-construction prose line in Test Commands",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 30,
+     "id": "2026-10-05T21:10:44Z-b",
+     "chunk": "2026-10-05-fork-ci-reached",
+     "step": "phase/validate",
+     "what": "check 8 (mechanism reach) found P4's lacks-font-skip atom on the full cargo test leg vacuous: libtest captures a passing test's eprintln; moved to the --nocapture entry the baseline chunk used",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 31,
+     "id": "2026-10-05T21:10:44Z-c",
+     "chunk": "2026-10-05-fork-ci-reached",
+     "step": "phase/validate",
+     "what": "check 4 (9) baseline run of the report-only debuginfo probe read 746 MB total for a 402 MB file: size -A's Total row was summed; denominator switched to stat file size",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": ".andromeda/runs/2026-10-05T20-51-19-phase/baseline-e8.sh"
+    },
+    {
+     "line": 84,
+     "id": "2026-10-06T00:32:46Z-b",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "phase/validate",
+     "what": "check 4 (2): P4 listed seven_guis main.rs (a boot path) with no smoke entry, prose claiming no boot path; resolved at P5 with a WAYLAND_DISPLAY-gated 10 s boot smoke + build entry",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 85,
+     "id": "2026-10-06T00:32:46Z-c",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "phase/validate",
+     "what": "check 4 (6): the security criterion asserted Cargo.lock gains no registry crate with no listed entry proving it; resolved by adding the git diff | grep -c '^+name = ' probe; and a second doubled-quote TOML literal (in a baseline string) written then fixed before the dry-run",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 113,
+     "id": "2026-10-06T02:12:07Z-b",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "phase/validate",
+     "what": "check 4 (2) required a smoke: app.rs/lib.rs/timer.rs change what seven_guis_native launches and P4 had written no smoke; added the exit-0-on-stay-up windowed smoke and baselined it green",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": "escher-0.1.0/chunks/2026-10-06-headless-stand/plan.md"
+    },
+    {
+     "line": 114,
+     "id": "2026-10-06T02:12:07Z-c",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "phase/validate",
+     "what": "check 4 (9)'s known-positive control showed the P4 probe cargo tree -i blitz-dom | grep woff could never go green (cargo tree prints no woff feature node; read 1 on blitz which enables woff); replaced with cargo tree -i wuff, red-baselined with a workspace control",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-06T01-54-25-phase/"
+    },
+    {
+     "line": 137,
+     "id": "2026-10-06T03:22:08Z-b",
+     "chunk": "2026-10-06-stand-test-contract",
+     "step": "phase/validate",
+     "what": "P5 checks surfaced 4 REQUIRED-RESOLUTIONs the P4 self-check (dry-run + planlint, 0 hits) passed: check 2 an Expected-amendments entry naming a rule leaf; 4(4) the events.jsonl producer without artifact; 4(9) census entry 12 green-vacuous on an absent script (cat exit 1 matched expect exit 1); 4(9) entry 16 unmarked new; plus check 7 WARN by construction (the only rust-plane file is a doc-comment edit)",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 162,
+     "id": "2026-10-06T04:13:41Z-b",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "phase/validate",
+     "what": "check 4(9) REQUIRED-RESOLUTION: the P4-authored evidence-secrets census (grep -c over cat of absent files) read exit 1 / last line 0 — green — on the untouched tree; P4's authoring self-check (dry-run + planlint) does not baseline, so the vacuity surfaced only at P5",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 163,
+     "id": "2026-10-06T04:13:41Z-c",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "phase/validate",
+     "what": "check 4(4) REQUIRED-RESOLUTION: a criterion asserts committed evidence files that no gate entry produces (a one-shot copy after an operator live entry); resolved by stating the producer in the Test Commands prose",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null
+    }
+   ],
+   "rate": "10/7"
+  },
+  {
+   "key": "wrap-session/curation/recall.corpus-recurrence",
+   "n": 3,
+   "weight": 7,
+   "impact": {
+    "retries": 4,
+    "extra_reads": 0
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-06-stand-test-contract",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "above_threshold": true,
+   "cases": [
+    {
+     "line": 101,
+     "id": "2026-10-06T01:49:36Z-b",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "wrap-session/curation",
+     "what": "the 2026-10-06 Tier-3 entry on the project's Bash guards (leading cd refused) was already curated, yet two calls this session began with cd into a subdirectory and were blocked; Tier 3 is not auto-loaded",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null
+    },
+    {
+     "line": 102,
+     "id": "2026-10-06T01:49:36Z-c",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "wrap-session/curation",
+     "what": "the 2026-10-05 Tier-3 entry on re-pointing masters' file:line citations after a chunk's line shifts was already curated; this wrap derived the same procedure independently (not consulted) and applied it — the finding deduped",
+     "impact": {
+      "extra_reads": 0
+     },
+     "evidence": null
+    },
+    {
+     "line": 149,
+     "id": "2026-10-06T03:51:12Z-b",
+     "chunk": "2026-10-06-stand-test-contract",
+     "step": "wrap-session/curation",
+     "what": "session-learnings.md already records that the project's Bash guard refuses a leading cd; this session (implement and wrap) issued two more leading-cd calls (into a chunk evidence dir, into .andromeda/) and both were blocked — the entry stated the rule correctly and the work reproduced it",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null
+    }
+   ],
+   "rate": "3/8"
+  },
+  {
+   "key": "wrap-session/reconcile/input.report-insufficient",
+   "n": 4,
+   "weight": 7,
+   "impact": {
+    "retries": 3,
+    "extra_reads": 7
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-fork-ci-reached",
+    "2026-10-06-cold-agent-run-pipe",
+    "2026-10-06-headless-stand"
+   ],
+   "above_threshold": true,
+   "cases": [
+    {
+     "line": 40,
+     "id": "2026-10-05T22:17:51Z-c",
+     "chunk": "2026-10-05-fork-ci-reached",
+     "step": "wrap-session/reconcile",
+     "what": "report Dependencies bullet read 'none added' while Schema/config named the PyYAML install; the architecture detector proposed the Stack row from Schema/config; bullet corrected at Validate",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 123,
+     "id": "2026-10-06T02:58:48Z-b",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "wrap-session/reconcile",
+     "what": "the report (written by the same agent that ran implement) asserted an unmeasured mechanism — focusability presence-keyed — carried from implement's probe write-up; two detectors read the cited source and contradicted it",
+     "impact": {
+      "extra_reads": 5
+     },
+     "evidence": ".andromeda/runs/2026-10-06T02-44-36-wrap/fanout-results.md"
+    },
+    {
+     "line": 169,
+     "id": "2026-10-06T04:47:33Z-b",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "wrap-session/reconcile",
+     "what": "the report claimed no master states the CI-scripts 37 count; the authoring grep returned test-plan.md:127 but each row was viewed through cut -c1-220 and the hit dismissed unread (the count sat at offset 1554 of a 1773-char line); the test-plan detector named it",
+     "impact": {
+      "retries": 1,
+      "extra_reads": 2
+     },
+     "evidence": ".andromeda/runs/2026-10-06T04-34-08-wrap/fanout-results.md"
+    },
+    {
+     "line": 170,
+     "id": "2026-10-06T04:47:33Z-c",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "wrap-session/reconcile",
+     "what": "the report counted an a11y-plan agent-run site from grep -c; the one hit was 'agent-runnable invariants' (a11y-plan.md:57), not the contract; the a11y detector flagged it",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-06T04-34-08-wrap/fanout-results.md"
+    }
+   ],
+   "rate": "4/7"
+  },
+  {
+   "key": "implement/code/input.plan-step-ambiguous",
+   "n": 4,
+   "weight": 6,
+   "impact": {
+    "reformulations": 2,
+    "extra_reads": 2,
+    "dialogue_rounds": 0
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-ci-gate-legs",
+    "2026-10-06-headless-stand",
+    "2026-10-06-stand-test-contract",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "above_threshold": true,
+   "cases": [
+    {
+     "line": 57,
+     "id": "2026-10-05T22:55:35Z-b",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "implement/code",
+     "what": "plan step 6 requires the extended unittest to run red against the untouched ci-leg.sh, but step 4 (ordered earlier) edits ci-leg.sh; executed 6 before 4",
+     "impact": {
+      "reformulations": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 88,
+     "id": "2026-10-06T00:37:33Z-c",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "implement/code",
+     "what": "plan step 7 lists dev-deps escher-telemetry + tracing only, but the scrub test's js_console log record needs a log emitter and the workspace has no log dep; added tracing-log (workspace) and used its log re-export",
+     "impact": {
+      "reformulations": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 116,
+     "id": "2026-10-06T02:17:49Z-b",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "implement/code",
+     "what": "plan step 4 asks for a public ColorScheme::Light constant while step 5's manifest list gives seven_guis no crate exporting ColorScheme (blitz-traits not re-exported by dioxus-native, blitz-dom or blitz-test-harness)",
+     "impact": {
+      "extra_reads": 2
+     },
+     "evidence": null
+    },
+    {
+     "line": 140,
+     "id": "2026-10-06T03:26:50Z-b",
+     "chunk": "2026-10-06-stand-test-contract",
+     "step": "implement/code",
+     "what": "step 2 left three points open, settled in the impl and surfaced in the report: run.start files for selection all (chose []), run stand with zero stand_*.rs files (chose empty-run failed, exit 1, no cargo call), usage-vs-not-booted order for run (usage 2 checked first)",
+     "impact": {
+      "dialogue_rounds": 0
+     },
+     "evidence": null
+    }
+   ],
+   "rate": "4/7"
+  },
+  {
+   "key": "wrap-session/reconcile/ambiguity.escalation-rounds",
+   "n": 1,
+   "weight": 6,
+   "impact": {
+    "dialogue_rounds": 1,
+    "halted": 1
+   },
+   "halt_or_softexit_cases": 1,
+   "chunks": [
+    "2026-10-05-ci-gate-legs"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 68,
+     "id": "2026-10-06T00:07:40Z-d",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "wrap-session/reconcile",
+     "what": "E1 boundary widening: the plan's P5 overseer word was a delegate answer; the contract needs the founder's own word; the overseer re-ratified under the standing delegation and directed a PROVISIONAL record pending the founder",
+     "impact": {
+      "dialogue_rounds": 1,
+      "halted": 1
+     },
+     "evidence": null
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "implement/code/tooling.hook-friction",
+   "n": 2,
+   "weight": 5,
+   "impact": {
+    "retries": 3
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-ci-gate-legs",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 58,
+     "id": "2026-10-05T22:55:35Z-c",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "implement/code",
+     "what": "the project PreToolUse Bash heredoc-file-target guard blocked twice: once a real heredoc-to-scratch-file write (re-issued as a Write-tool script), once this evolve append because a record's what-text quoted that shell form (token match on payload prose)",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null
+    },
+    {
+     "line": 87,
+     "id": "2026-10-06T00:37:33Z-b",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "implement/code",
+     "what": "PreToolUse cd guard blocked a Bash call that began with cd into the new crate dir; re-issued with repo-relative paths",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null
+    }
+   ],
+   "rate": "2/7"
+  },
+  {
+   "key": "wrap-session/reconcile/contract.false-positive-proposal",
+   "n": 2,
+   "weight": 5,
+   "impact": {
+    "reformulations": 3
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-ci-gate-legs",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 66,
+     "id": "2026-10-06T00:07:40Z-b",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "wrap-session/reconcile",
+     "what": "test-plan detector proposed 7 citation re-points with line numbers read from the sources (re-derivation tell); one was also wrong (test job 78-97, measured 78-98); rejected and re-raised by the orchestrator's line map",
+     "impact": {
+      "reformulations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-05T23-50-17-wrap/fanout-results.md"
+    },
+    {
+     "line": 96,
+     "id": "2026-10-06T01:48:08Z-b",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "wrap-session/reconcile",
+     "what": "D-security-auth's proposal cited packages/escher-telemetry/src/lib.rs:113, a source location the report does not carry (re-derivation tell) - rejected, its fact raised by the orchestrator under check 5; D-a11y-obs-schema's forward mandate (future a11y JSON schema must match the line) narrowed away as unsupported by the report",
+     "impact": {
+      "reformulations": 2
+     },
+     "evidence": null
+    }
+   ],
+   "rate": "2/7"
+  },
+  {
+   "key": "wrap-session/reconcile/recall.corpus-recurrence",
+   "n": 2,
+   "weight": 5,
+   "impact": {
+    "retries": 3
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-06-cold-agent-run-pipe",
+    "2026-10-06-headless-stand"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 125,
+     "id": "2026-10-06T02:58:48Z-d",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "wrap-session/reconcile",
+     "what": "the Tier 3 learning 'the project's Bash guards refuse a heredoc written to a file and a leading cd' recurred twice this session: a cat heredoc into a probe test file at implement, a leading cd into .claude/docs at this wrap",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null
+    },
+    {
+     "line": 174,
+     "id": "2026-10-06T04:47:33Z-g",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "wrap-session/reconcile",
+     "what": "a cat heredoc with a file target was blocked by the project's Bash guard, though the handoff's deferred learning (2026-10-06, Tier 3) states that the guards refuse a heredoc written to a file",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": "this session, the fanout-results append"
+    }
+   ],
+   "rate": "2/7"
+  },
+  {
+   "key": "implement/fix-loop/contract.spec-reality-gap",
+   "n": 1,
+   "weight": 4,
+   "impact": {
+    "iterations": 1,
+    "dialogue_rounds": 1
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-06-headless-stand"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 118,
+     "id": "2026-10-06T02:22:58Z-b",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "implement/fix-loop",
+     "what": "plan step 6 assumed a Dioxus disabled:false leaves no attribute; the engine wrote disabled=\"false\", which blitz reads as disabled (:disabled matches, focus excluded) — gate 1 red at the flight-booker check [clause retracted: discount the clause 'focus excluded' in '(:disabled matches, focus excluded)' — focusability parses the value as a bool (element.rs:629); :disabled matching stands]",
+     "impact": {
+      "iterations": 1,
+      "dialogue_rounds": 1
+     },
+     "evidence": "escher-0.1.0/chunks/2026-10-06-headless-stand/evidence/disabled-false-probe.txt"
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "phase/distill/tooling.output-cap-overflow",
+   "n": 4,
+   "weight": 4,
+   "impact": {
+    "extra_reads": 10
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-as-built-baseline",
+    "2026-10-05-fork-ci-reached",
+    "2026-10-06-cold-agent-run-pipe",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "above_threshold": true,
+   "cases": [
+    {
+     "line": 6,
+     "id": "2026-10-05T18:50:12Z-b",
+     "chunk": "2026-10-05-as-built-baseline",
+     "step": "phase/distill",
+     "what": "one cat of all seven extracts (30.3 KB) overflowed the tool-result cap; recovered by one Read of the persisted output",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 25,
+     "id": "2026-10-05T20:55:54Z-b",
+     "chunk": "2026-10-05-fork-ci-reached",
+     "step": "phase/distill",
+     "what": "one cat of all 7 extracts (30.1 KB) exceeded the tool-result cap and was persisted; recovered by one Read of the persisted file",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 80,
+     "id": "2026-10-06T00:19:53Z-c",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "phase/distill",
+     "what": "a single cat of all seven extracts (30 KB) exceeded the tool-result cap; recovered by one Read of the persisted file",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 157,
+     "id": "2026-10-06T04:02:06Z-c",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "phase/distill",
+     "what": "one cat of all 7 extracts returned 33.8 KB and was persisted past the tool-result cap; recovered by reading each extract with the Read tool",
+     "impact": {
+      "extra_reads": 7
+     },
+     "evidence": null
+    }
+   ],
+   "rate": "4/7"
+  },
+  {
+   "key": "phase/plan/retry.synthesis-rework",
+   "n": 2,
+   "weight": 4,
+   "impact": {
+    "iterations": 2
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-06-cold-agent-run-pipe",
+    "2026-10-06-stand-test-contract"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 135,
+     "id": "2026-10-06T03:18:53Z-b",
+     "chunk": "2026-10-06-stand-test-contract",
+     "step": "phase/plan",
+     "what": "gate entry 6 asserted lacks \"failed\" over run output whose own plan-fixed run.end schema carries a \"failed\" count key, so the atom could never hold; caught at the authoring self-check (dry-run parses, it does not evaluate atoms against the schema) and rewritten with its acceptance line",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 160,
+     "id": "2026-10-06T04:10:36Z-b",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "phase/plan",
+     "what": "the rejected-approaches line on --bare named a non-existent setting (apiKeySolver) beside the real apiKeyHelper; caught at self-review and corrected to the --help wording before P5",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null
+    }
+   ],
+   "rate": "2/7"
+  },
+  {
+   "key": "wrap-session/curation/ambiguity.filter-borderline",
+   "n": 2,
+   "weight": 4,
+   "impact": {
+    "reformulations": 0,
+    "iterations": 2
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-ci-gate-legs",
+    "2026-10-06-cold-agent-run-pipe"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 70,
+     "id": "2026-10-06T00:09:12Z-b",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "wrap-session/curation",
+     "what": "two measured gotchas (llvm-cov report needing --workspace; llvm-cov not creating the output dir) scored exactly 0.6 and rejected by the lean default; neither conditional +0.2 applied (the first reached the test-plan sidecar, the second was fixed in code)",
+     "impact": {
+      "reformulations": 0
+     },
+     "evidence": null
+    },
+    {
+     "line": 176,
+     "id": "2026-10-06T04:49:03Z-b",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "wrap-session/curation",
+     "what": "both applied candidates scored exactly 0.6 before the conditional no-other-home +0.2 decided them (Filter 4); the two sweep hazards' fixes otherwise live only in skill references, not a project home",
+     "impact": {
+      "iterations": 2
+     },
+     "evidence": ".andromeda/runs/2026-10-06T04-34-08-wrap/curation.md"
+    }
+   ],
+   "rate": "2/8"
+  },
+  {
+   "key": "implement/fix-loop/ambiguity.scope-pressure",
+   "n": 1,
+   "weight": 3,
+   "impact": {
+    "dialogue_rounds": 1
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-06-headless-stand"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 119,
+     "id": "2026-10-06T02:22:58Z-c",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "implement/fix-loop",
+     "what": "Trigger 3 fired: the engine fix lives outside research's lists and changes engine behaviour; soft-exited for the operator's word via AskUserQuestion, answered by the delegate overseer, recorded as two widening lines",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "evidence": null
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "implement/fix-loop/contract.instrument-validity",
+   "n": 1,
+   "weight": 2,
+   "impact": {
+    "retries": 1
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 90,
+     "id": "2026-10-06T00:40:59Z-b",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "implement/fix-loop",
+     "what": "gate.py maps any entry exit 124/137 to its own 'timeout' word (runio.py:311), so a plan atom 'exit 124' (timeout-stopped stand) is unreadable green; the phase dry-run self-check did not catch it; validated by the trail: 10.12s run, fresh log with the identity line",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-06T00-33-34-implement/gate-2026-10-06-telemetry-bootstrap.json"
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "implement/fix-loop/contract.token-proxy-check",
+   "n": 1,
+   "weight": 2,
+   "impact": {
+    "iterations": 1
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-as-built-baseline"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 13,
+     "id": "2026-10-05T20:31:28Z-b",
+     "chunk": "2026-10-05-as-built-baseline",
+     "step": "implement/fix-loop",
+     "what": "false positive: credential probe (gate 10) counted its own pattern quoted verbatim in baseline.md §Commands per plan step 4 — no credential present; truth from reading the one hit (line 49). P5's controls planted a token= line but never a record quoting the probe; plan step and gate authored together at P4",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-05T19-48-32-implement/"
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "implement/fix-loop/contract.vacuous-check-found",
+   "n": 1,
+   "weight": 2,
+   "impact": {
+    "iterations": 1
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-ci-gate-legs"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 61,
+     "id": "2026-10-05T23:01:44Z-c",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "implement/fix-loop",
+     "what": "coverage entry (expect exit 0) went green while 'cargo llvm-cov report --summary-only' printed an all-zero TOTAL table (root-package selection); only reading the log caught it; fixed to 'report --workspace --locked'. The entry's expect stays insensitive to an empty summary",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "implement/fix-loop/retry.fix-iterations",
+   "n": 1,
+   "weight": 2,
+   "impact": {
+    "iterations": 1
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-ci-gate-legs"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 60,
+     "id": "2026-10-05T23:01:44Z-b",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "implement/fix-loop",
+     "what": "coverage entry red: cargo llvm-cov failed to create target/coverage/lcov.info (no parent dir); fixed with mkdir -p in the leg arm",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-05T22-50-45-implement"
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "new-session/orientation/tooling.output-cap-overflow",
+   "n": 2,
+   "weight": 2,
+   "impact": {
+    "extra_reads": 3
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "None"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 2,
+     "id": "2026-10-05T18:43:33Z-b",
+     "chunk": null,
+     "step": "new-session/orientation",
+     "what": "one cat of evolve-system.md + health-criteria.md (31.5 KB) overflowed the tool-result cap; recovered via a heading grep and an offset Read",
+     "impact": {
+      "extra_reads": 2
+     },
+     "evidence": null
+    },
+    {
+     "line": 75,
+     "id": "2026-10-06T00:13:35Z-b",
+     "chunk": null,
+     "step": "new-session/orientation",
+     "what": "a bundled cat of two skill references (31.5 KB) exceeded the tool-result cap; recovered by reading the persisted file whole",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null
+    }
+   ],
+   "rate": "2/7"
+  },
+  {
+   "key": "phase/distill/contract.extract-format",
+   "n": 2,
+   "weight": 2,
+   "impact": {
+    "retries": 0
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-06-headless-stand",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 79,
+     "id": "2026-10-06T00:19:53Z-b",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "phase/distill",
+     "what": "arch-history bold spans carry marker plus the entry title instead of the marker alone; sidecar.py cites still resolved 8/8 and no named check fails, kept without re-spawn",
+     "impact": {},
+     "evidence": null
+    },
+    {
+     "line": 109,
+     "id": "2026-10-06T01:59:52Z-b",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "phase/distill",
+     "what": "arch history agent put the full sidecar heading text inside the bold instead of the marker alone; sidecar.py cites still resolved 8/8, no retry",
+     "impact": {
+      "retries": 0
+     },
+     "evidence": ".andromeda/runs/2026-10-06T01-54-25-phase/arch-history.md"
+    }
+   ],
+   "rate": "2/7"
+  },
+  {
+   "key": "phase/research/contract.instrument-validity",
+   "n": 1,
+   "weight": 2,
+   "impact": {
+    "retries": 1
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-ci-gate-legs"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 51,
+     "id": "2026-10-05T22:40:19Z-b",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "phase/research",
+     "what": "first rustdoc re-measure ran without --keep-going; cargo stopped at blitz-dom (5 errors, 1 crate) - structurally unable to show the other 2 crates; re-run with --keep-going reproduced the CARRY's 3 crates / 9 errors",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": "research.md §Measurements at HEAD"
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "phase/take-up/input.working-entry-thin",
+   "n": 2,
+   "weight": 2,
+   "impact": {
+    "extra_reads": 6
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-06-cold-agent-run-pipe",
+    "2026-10-06-stand-test-contract"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 131,
+     "id": "2026-10-06T03:07:03Z-b",
+     "chunk": "2026-10-06-stand-test-contract",
+     "step": "phase/take-up",
+     "what": "entry says 'per test-plan §3' but §3 holds no boot/run/status/cleanup/logs recipe (NOT YET MEASURED) and setup's agent-run template assumes a daemon + status endpoint the in-process stand lacks; verification-harness.md says the scripts are 'generated' after a test-plan amendment phase cannot make — all five verb meanings and the script-authorship path left as P3/P4 forks",
+     "impact": {
+      "extra_reads": 2
+     },
+     "evidence": "escher-0.1.0/chunks/2026-10-06-stand-test-contract/scope.md"
+    },
+    {
+     "line": 154,
+     "id": "2026-10-06T03:57:41Z-b",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "phase/take-up",
+     "what": "entry names a gate-reachability pipe that no spec source describes (0 grep hits across .andromeda plans/.claude docs); its rationale was recovered from the route run dir's 1a-tree and route's GATE_REACHABILITY validation letter",
+     "impact": {
+      "extra_reads": 4
+     },
+     "evidence": null
+    }
+   ],
+   "rate": "2/7"
+  },
+  {
+   "key": "wrap-session/curation/ambiguity.tier-routing",
+   "n": 1,
+   "weight": 2,
+   "impact": {
+    "retries": 1
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-fork-ci-reached"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 44,
+     "id": "2026-10-05T22:19:17Z-b",
+     "chunk": "2026-10-05-fork-ci-reached",
+     "step": "wrap-session/curation",
+     "what": "the gh -R fact was first written by the P2 cascade into the generated leaf .claude/docs/commands.md, which no master sources; moved at P3 to CLAUDE.md USER:session-learnings (Tier 1) and removed from the leaf",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null
+    }
+   ],
+   "rate": "1/8"
+  },
+  {
+   "key": "wrap-session/reconcile/contract.structural-blind-spot",
+   "n": 2,
+   "weight": 2,
+   "impact": {
+    "extra_reads": 5
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-fork-ci-reached",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 39,
+     "id": "2026-10-05T22:17:51Z-b",
+     "chunk": "2026-10-05-fork-ci-reached",
+     "step": "wrap-session/reconcile",
+     "what": "the first source-moving chunk left 114 file:line citations stale across five masters; no detector reads citation line numbers (they read the report alone, which carries no moved-line map), so the orchestrator found them by its own grep",
+     "impact": {
+      "extra_reads": 3
+     },
+     "evidence": ".andromeda/runs/2026-10-05T21-59-55-wrap/fanout-results.md"
+    },
+    {
+     "line": 98,
+     "id": "2026-10-06T01:48:08Z-d",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "wrap-session/reconcile",
+     "what": "no detector or cascade step covers masters' file:line citations into files the chunk edited (80 shifted by inserted lines in Cargo.toml and three others); found only because the orchestrator noticed the Cargo.toml line move while pre-reading",
+     "impact": {
+      "extra_reads": 2
+     },
+     "evidence": ".andromeda/runs/2026-10-06T01-33-33-wrap/fanout-results.md"
+    }
+   ],
+   "rate": "2/7"
+  },
+  {
+   "key": "new-session/orientation/tooling.health-false-red",
+   "n": 1,
+   "weight": 1,
+   "impact": {},
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "None"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 76,
+     "id": "2026-10-06T00:13:35Z-c",
+     "chunk": null,
+     "step": "new-session/orientation",
+     "what": "check 13 warns agent-driven harness missing with recipe 're-run setup Phase 4', but scripts/agent-run.* is owned by the unstarted Foundation chunk 'Stand test contract' (handoff Notes) - dashboard passed it through annotated as expected",
+     "impact": {},
+     "evidence": null
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "phase/plan/contract.narrow-basis-claim",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 3
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-ci-gate-legs"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 53,
+     "id": "2026-10-05T22:46:53Z-b",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "phase/plan",
+     "what": "the audit-tool question stated 1 vuln + 3 warnings that cargo-deny would gate on, from cargo-audit's lockfile-wide scan; cargo-deny's own graph fired on 1 (ttf-parser) and filtered rustls/paste/memmap2 - the operator answered on the wider framing, re-surfaced at P5 review",
+     "impact": {
+      "extra_reads": 3
+     },
+     "evidence": "research.md §Measurements (The same advisories under cargo-deny)"
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "phase/research/contract.narrow-basis-claim",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 0
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-fork-ci-reached"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 27,
+     "id": "2026-10-05T20:59:26Z-b",
+     "chunk": "2026-10-05-fork-ci-reached",
+     "step": "phase/research",
+     "what": "the overseer relay's uncached-job list named 5 jobs; re-derivation over ci.yml:26-124 found 7 (build-counter, build-wasm-examples omitted) and that save-if main-only leaves even the cached job cold on build/** runs",
+     "impact": {
+      "extra_reads": 0
+     },
+     "evidence": "escher-0.1.0/chunks/2026-10-05-fork-ci-reached/research.md"
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "wrap-session/gates/contract.instrument-validity",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "retries": 0
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 105,
+     "id": "2026-10-06T01:52:28Z-b",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "wrap-session/gates",
+     "what": "the light gate's smoke entry read 'timeout' a third time for the same reason as at implement (gate.py maps entry exit 124 to its own bound); its ASSERT arm (timeout = FLAG) was satisfied only by the operator's recorded direction and the hand evidence",
+     "impact": {
+      "retries": 0
+     },
+     "evidence": ".andromeda/runs/2026-10-06T01-33-33-wrap/gate-2026-10-06-telemetry-bootstrap.json"
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "wrap-session/gates/tooling.gate-deferral",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "deferred": 1
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-06-cold-agent-run-pipe"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 179,
+     "id": "2026-10-06T04:52:12Z-b",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "wrap-session/gates",
+     "what": "ci-leg.sh doc deferred on zero Rust delta (plan defer key, held at implement and re-checked at the light gate); pinned as PREREQ: close rust gate deferral on Stable element ids",
+     "impact": {
+      "deferred": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-06T04-34-08-wrap/"
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "wrap-session/gates/tooling.result-not-run-stable",
+   "n": 1,
+   "weight": 1,
+   "impact": {},
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-ci-gate-legs"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 73,
+     "id": "2026-10-06T00:12:17Z-b",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "wrap-session/gates",
+     "what": "cargo-llvm-cov missed-line count differs across identical-tree runs (16296 / 16302 / 16321 / 16322 of 34900); the test-plan §10 body froze the 16321 reading (53.23 %), which the light gate reproduced to the percent but not to the line",
+     "impact": {},
+     "evidence": "escher-0.1.0/chunks/2026-10-05-ci-gate-legs/evidence/gates.md"
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "wrap-session/reconcile/ambiguity.playbook-no-match",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "dialogue_rounds": 0
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 99,
+     "id": "2026-10-06T01:48:08Z-e",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "wrap-session/reconcile",
+     "what": "D-obs-pii proposals arrived severity escalate (drift-base: escalate = halt+ask) but recorded ADDED redaction; applied without a halt on the P5-approved expected amendments that name the change — drift-base severity semantics vs amendment-flow's recorded-direction clause read as conflicting",
+     "impact": {
+      "dialogue_rounds": 0
+     },
+     "evidence": null
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "wrap-session/reconcile/contract.cascade-miss",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 2
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-fork-ci-reached"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 41,
+     "id": "2026-10-05T22:17:51Z-d",
+     "chunk": "2026-10-05-fork-ci-reached",
+     "step": "wrap-session/reconcile",
+     "what": "four restatements no detector proposed (security-plan :211 and :230 --locked, :351 publish logging; architecture :143 WPT report fetch) found by site reads and the cascade sweep, amended in the same pass",
+     "impact": {
+      "extra_reads": 2
+     },
+     "evidence": ".andromeda/runs/2026-10-05T21-59-55-wrap/cascade-dispositions.md"
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "wrap-session/reconcile/contract.narrow-basis-claim",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 5
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-06-headless-stand"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 124,
+     "id": "2026-10-06T02:58:48Z-c",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "wrap-session/reconcile",
+     "what": "implement's fix-loop friction record claimed focus exclusion for disabled=false from a probe that never measured focus; the source read at the wrap showed focusability parses a bool",
+     "impact": {
+      "extra_reads": 5
+     },
+     "evidence": ".andromeda/runs/2026-10-06T02-44-36-wrap/fanout-results.md"
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "wrap-session/reconcile/contract.proposal-format",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "retries": 0
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-06-cold-agent-run-pipe"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 171,
+     "id": "2026-10-06T04:47:33Z-d",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "wrap-session/reconcile",
+     "what": "3 security-plan proposals (D-security-input x2, D-security-auth x1) cited scripts/cold-agent.sh and cold_agent_stub.py line numbers the report does not carry, against the prompt's no-re-derivation ban; rejected, the two input-validation facts raised by the orchestrator from the report (check 5)",
+     "impact": {
+      "retries": 0
+     },
+     "evidence": ".andromeda/runs/2026-10-06T04-34-08-wrap/fanout-results.md"
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "wrap-session/reconcile/contract.token-proxy-check",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 1
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-06-cold-agent-run-pipe"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 173,
+     "id": "2026-10-06T04:47:33Z-f",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "wrap-session/reconcile",
+     "what": "the cascade sweep's fixed pattern agent-run also matched inside the marker cold-agent-run-pipe (false-positive direction: 12 new-text rows were the marker); the truth came from reading every row",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-06T04-34-08-wrap/sweep-listing.txt"
+    }
+   ],
+   "rate": "1/7"
+  },
+  {
+   "key": "wrap-session/report/contract.narrow-basis-claim",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 1
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 94,
+     "id": "2026-10-06T01:35:20Z-b",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "wrap-session/report",
+     "what": "expected-amendment site grep over the 7 master bodies read pii-scrubbing-wire / otel-sdk-install 0 hits; the labels live in .andromeda/registries (U35) — re-derived over the registries before naming owners",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null
+    }
+   ],
+   "rate": "1/7"
+  }
+ ],
+ "cross_step_type_groups": [
+  {
+   "key": "*/recall.corpus-recurrence",
+   "n": 5,
+   "weight": 12,
+   "impact": {
+    "retries": 7,
+    "extra_reads": 0
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-06-cold-agent-run-pipe",
+    "2026-10-06-headless-stand",
+    "2026-10-06-stand-test-contract",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "above_threshold": true,
+   "cases": [
+    {
+     "line": 101,
+     "id": "2026-10-06T01:49:36Z-b",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "wrap-session/curation",
+     "what": "the 2026-10-06 Tier-3 entry on the project's Bash guards (leading cd refused) was already curated, yet two calls this session began with cd into a subdirectory and were blocked; Tier 3 is not auto-loaded",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null
+    },
+    {
+     "line": 102,
+     "id": "2026-10-06T01:49:36Z-c",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "wrap-session/curation",
+     "what": "the 2026-10-05 Tier-3 entry on re-pointing masters' file:line citations after a chunk's line shifts was already curated; this wrap derived the same procedure independently (not consulted) and applied it — the finding deduped",
+     "impact": {
+      "extra_reads": 0
+     },
+     "evidence": null
+    },
+    {
+     "line": 125,
+     "id": "2026-10-06T02:58:48Z-d",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "wrap-session/reconcile",
+     "what": "the Tier 3 learning 'the project's Bash guards refuse a heredoc written to a file and a leading cd' recurred twice this session: a cat heredoc into a probe test file at implement, a leading cd into .claude/docs at this wrap",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null
+    },
+    {
+     "line": 149,
+     "id": "2026-10-06T03:51:12Z-b",
+     "chunk": "2026-10-06-stand-test-contract",
+     "step": "wrap-session/curation",
+     "what": "session-learnings.md already records that the project's Bash guard refuses a leading cd; this session (implement and wrap) issued two more leading-cd calls (into a chunk evidence dir, into .andromeda/) and both were blocked — the entry stated the rule correctly and the work reproduced it",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null
+    },
+    {
+     "line": 174,
+     "id": "2026-10-06T04:47:33Z-g",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "wrap-session/reconcile",
+     "what": "a cat heredoc with a file target was blocked by the project's Bash guard, though the handoff's deferred learning (2026-10-06, Tier 3) states that the guards refuse a heredoc written to a file",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": "this session, the fanout-results append"
+    }
+   ]
+  },
+  {
+   "key": "*/tooling.output-cap-overflow",
+   "n": 6,
+   "weight": 6,
+   "impact": {
+    "extra_reads": 13
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-as-built-baseline",
+    "2026-10-05-fork-ci-reached",
+    "2026-10-06-cold-agent-run-pipe",
+    "2026-10-06-telemetry-bootstrap",
+    "None"
+   ],
+   "above_threshold": true,
+   "cases": [
+    {
+     "line": 2,
+     "id": "2026-10-05T18:43:33Z-b",
+     "chunk": null,
+     "step": "new-session/orientation",
+     "what": "one cat of evolve-system.md + health-criteria.md (31.5 KB) overflowed the tool-result cap; recovered via a heading grep and an offset Read",
+     "impact": {
+      "extra_reads": 2
+     },
+     "evidence": null
+    },
+    {
+     "line": 6,
+     "id": "2026-10-05T18:50:12Z-b",
+     "chunk": "2026-10-05-as-built-baseline",
+     "step": "phase/distill",
+     "what": "one cat of all seven extracts (30.3 KB) overflowed the tool-result cap; recovered by one Read of the persisted output",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 25,
+     "id": "2026-10-05T20:55:54Z-b",
+     "chunk": "2026-10-05-fork-ci-reached",
+     "step": "phase/distill",
+     "what": "one cat of all 7 extracts (30.1 KB) exceeded the tool-result cap and was persisted; recovered by one Read of the persisted file",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 75,
+     "id": "2026-10-06T00:13:35Z-b",
+     "chunk": null,
+     "step": "new-session/orientation",
+     "what": "a bundled cat of two skill references (31.5 KB) exceeded the tool-result cap; recovered by reading the persisted file whole",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 80,
+     "id": "2026-10-06T00:19:53Z-c",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "phase/distill",
+     "what": "a single cat of all seven extracts (30 KB) exceeded the tool-result cap; recovered by one Read of the persisted file",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 157,
+     "id": "2026-10-06T04:02:06Z-c",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "phase/distill",
+     "what": "one cat of all 7 extracts returned 33.8 KB and was persisted past the tool-result cap; recovered by reading each extract with the Read tool",
+     "impact": {
+      "extra_reads": 7
+     },
+     "evidence": null
+    }
+   ]
+  },
+  {
+   "key": "*/contract.narrow-basis-claim",
+   "n": 4,
+   "weight": 4,
+   "impact": {
+    "extra_reads": 9
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-ci-gate-legs",
+    "2026-10-05-fork-ci-reached",
+    "2026-10-06-headless-stand",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "above_threshold": true,
+   "cases": [
+    {
+     "line": 27,
+     "id": "2026-10-05T20:59:26Z-b",
+     "chunk": "2026-10-05-fork-ci-reached",
+     "step": "phase/research",
+     "what": "the overseer relay's uncached-job list named 5 jobs; re-derivation over ci.yml:26-124 found 7 (build-counter, build-wasm-examples omitted) and that save-if main-only leaves even the cached job cold on build/** runs",
+     "impact": {
+      "extra_reads": 0
+     },
+     "evidence": "escher-0.1.0/chunks/2026-10-05-fork-ci-reached/research.md"
+    },
+    {
+     "line": 53,
+     "id": "2026-10-05T22:46:53Z-b",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "phase/plan",
+     "what": "the audit-tool question stated 1 vuln + 3 warnings that cargo-deny would gate on, from cargo-audit's lockfile-wide scan; cargo-deny's own graph fired on 1 (ttf-parser) and filtered rustls/paste/memmap2 - the operator answered on the wider framing, re-surfaced at P5 review",
+     "impact": {
+      "extra_reads": 3
+     },
+     "evidence": "research.md §Measurements (The same advisories under cargo-deny)"
+    },
+    {
+     "line": 94,
+     "id": "2026-10-06T01:35:20Z-b",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "wrap-session/report",
+     "what": "expected-amendment site grep over the 7 master bodies read pii-scrubbing-wire / otel-sdk-install 0 hits; the labels live in .andromeda/registries (U35) — re-derived over the registries before naming owners",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null
+    },
+    {
+     "line": 124,
+     "id": "2026-10-06T02:58:48Z-c",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "wrap-session/reconcile",
+     "what": "implement's fix-loop friction record claimed focus exclusion for disabled=false from a probe that never measured focus; the source read at the wrap showed focusability parses a bool",
+     "impact": {
+      "extra_reads": 5
+     },
+     "evidence": ".andromeda/runs/2026-10-06T02-44-36-wrap/fanout-results.md"
+    }
+   ]
+  },
+  {
+   "key": "*/contract.token-proxy-check",
+   "n": 2,
+   "weight": 3,
+   "impact": {
+    "iterations": 1,
+    "extra_reads": 1
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-as-built-baseline",
+    "2026-10-06-cold-agent-run-pipe"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 13,
+     "id": "2026-10-05T20:31:28Z-b",
+     "chunk": "2026-10-05-as-built-baseline",
+     "step": "implement/fix-loop",
+     "what": "false positive: credential probe (gate 10) counted its own pattern quoted verbatim in baseline.md §Commands per plan step 4 — no credential present; truth from reading the one hit (line 49). P5's controls planted a token= line but never a record quoting the probe; plan step and gate authored together at P4",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-05T19-48-32-implement/"
+    },
+    {
+     "line": 173,
+     "id": "2026-10-06T04:47:33Z-f",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "wrap-session/reconcile",
+     "what": "the cascade sweep's fixed pattern agent-run also matched inside the marker cold-agent-run-pipe (false-positive direction: 12 new-text rows were the marker); the truth came from reading every row",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-06T04-34-08-wrap/sweep-listing.txt"
+    }
+   ]
+  },
+  {
+   "key": "*/contract.structural-blind-spot",
+   "n": 2,
+   "weight": 2,
+   "impact": {
+    "extra_reads": 5
+   },
+   "halt_or_softexit_cases": 0,
+   "chunks": [
+    "2026-10-05-fork-ci-reached",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "above_threshold": false,
+   "cases": [
+    {
+     "line": 39,
+     "id": "2026-10-05T22:17:51Z-b",
+     "chunk": "2026-10-05-fork-ci-reached",
+     "step": "wrap-session/reconcile",
+     "what": "the first source-moving chunk left 114 file:line citations stale across five masters; no detector reads citation line numbers (they read the report alone, which carries no moved-line map), so the orchestrator found them by its own grep",
+     "impact": {
+      "extra_reads": 3
+     },
+     "evidence": ".andromeda/runs/2026-10-05T21-59-55-wrap/fanout-results.md"
+    },
+    {
+     "line": 98,
+     "id": "2026-10-06T01:48:08Z-d",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "wrap-session/reconcile",
+     "what": "no detector or cascade step covers masters' file:line citations into files the chunk edited (80 shifted by inserted lines in Cargo.toml and three others); found only because the orchestrator noticed the Cargo.toml line move while pre-reading",
+     "impact": {
+      "extra_reads": 2
+     },
+     "evidence": ".andromeda/runs/2026-10-06T01-33-33-wrap/fanout-results.md"
+    }
+   ]
+  }
+ ],
+ "step_run_denominators": {
+  "new-session/orientation": 7,
+  "wrap-session/curation": 8,
+  "phase/take-up": 7,
+  "phase/distill": 7,
+  "phase/research": 7,
+  "phase/plan": 7,
+  "phase/validate": 7,
+  "implement/code": 7,
+  "implement/fix-loop": 7,
+  "implement/smoke": 7,
+  "wrap-session/report": 7,
+  "wrap-session/reconcile": 7,
+  "wrap-session/route-resolve": 7,
+  "wrap-session/gates": 7
+ }
+}

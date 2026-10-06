@@ -1,0 +1,1065 @@
+{
+ "pass_a_pool_size": 37,
+ "unassigned_pass_a": [],
+ "themes": {
+  "T1 project Bash guard (leading cd / heredoc-to-file) refusals": {
+   "n": 11,
+   "natures": {
+    "environment": 8,
+    "process": 3
+   },
+   "solutions": {
+    "workaround": 11
+   },
+   "chunks": [
+    "2026-10-05-as-built-baseline",
+    "2026-10-05-ci-gate-legs",
+    "2026-10-05-fork-ci-reached",
+    "2026-10-06-cold-agent-run-pipe",
+    "2026-10-06-headless-stand",
+    "2026-10-06-telemetry-bootstrap",
+    "None"
+   ],
+   "facts": [
+    {
+     "line": 1,
+     "id": "2026-10-05T18:43:33Z-a",
+     "chunk": null,
+     "step": "new-session/orientation",
+     "index": 0,
+     "nature": "environment",
+     "solution": "workaround",
+     "note": "PreToolUse hook blocked a leading cd into the skill references dir; re-ran with absolute paths"
+    },
+    {
+     "line": 5,
+     "id": "2026-10-05T18:50:12Z-a",
+     "chunk": "2026-10-05-as-built-baseline",
+     "step": "phase/distill",
+     "index": 0,
+     "nature": "environment",
+     "solution": "workaround",
+     "note": "PreToolUse hook blocked a leading cd into the run dir; re-ran with absolute paths"
+    },
+    {
+     "line": 16,
+     "id": "2026-10-05T20:36:57Z-a",
+     "chunk": "2026-10-05-as-built-baseline",
+     "step": "wrap-session/report",
+     "index": 0,
+     "nature": "environment",
+     "solution": "workaround",
+     "note": "project PreToolUse Bash guard blocked a leading cd into .andromeda/ for the master grep — re-run inside a subshell"
+    },
+    {
+     "line": 24,
+     "id": "2026-10-05T20:55:54Z-a",
+     "chunk": "2026-10-05-fork-ci-reached",
+     "step": "phase/distill",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "a PreToolUse hook blocked a leading cd into the run dir for the extract read; re-ran with absolute paths"
+    },
+    {
+     "line": 49,
+     "id": "2026-10-05T22:36:48Z-a",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "phase/distill",
+     "index": 0,
+     "nature": "environment",
+     "solution": "workaround",
+     "note": "an earlier probe ran `cd {run_dir} && ...`, moving the session cwd; a later leading `cd` was blocked by the PreToolUse cwd hook; switched to subshell `( cd ... && ... )` and absolute paths"
+    },
+    {
+     "line": 64,
+     "id": "2026-10-05T23:53:00Z-a",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "wrap-session/report",
+     "index": 0,
+     "nature": "environment",
+     "solution": "workaround",
+     "note": "the project PreToolUse guard blocked a leading cd into .andromeda for the per-master sweep; re-run as a scratch python script over absolute paths"
+    },
+    {
+     "line": 78,
+     "id": "2026-10-06T00:19:53Z-a",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "phase/distill",
+     "index": 0,
+     "nature": "environment",
+     "solution": "workaround",
+     "note": "a bare cd into the run dir in an earlier call moved the session cwd; the PreToolUse hook blocked the next leading cd, re-run inside a subshell"
+    },
+    {
+     "line": 81,
+     "id": "2026-10-06T00:23:29Z-a",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "phase/research",
+     "index": 0,
+     "nature": "environment",
+     "solution": "workaround",
+     "note": "session cwd still in the run dir from P2; first P3 read was blocked by the leading-cd hook and re-run in a subshell"
+    },
+    {
+     "line": 155,
+     "id": "2026-10-06T04:02:06Z-a",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "phase/distill",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "a leading cd into the run dir was blocked by the project's Bash guard; reran with absolute paths"
+    },
+    {
+     "line": 117,
+     "id": "2026-10-06T02:22:58Z-a",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "implement/fix-loop",
+     "index": 1,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "a cat heredoc into a throwaway probe test file was blocked by the project's Bash guard; wrote the probe with the Write tool and deleted it after the run"
+    },
+    {
+     "line": 168,
+     "id": "2026-10-06T04:47:33Z-a",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "wrap-session/reconcile",
+     "index": 0,
+     "nature": "environment",
+     "solution": "workaround",
+     "note": "a cat-heredoc append to fanout-results.md was blocked by the project's Bash guard; the file was written whole with the Write tool"
+    }
+   ]
+  },
+  "T2 shell/python writes where the letter names Write/Edit for document payloads": {
+   "n": 6,
+   "natures": {
+    "process": 6
+   },
+   "solutions": {
+    "workaround": 6
+   },
+   "chunks": [
+    "2026-10-05-as-built-baseline",
+    "2026-10-05-ci-gate-legs",
+    "2026-10-06-headless-stand",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "facts": [
+    {
+     "line": 5,
+     "id": "2026-10-05T18:50:12Z-a",
+     "chunk": "2026-10-05-as-built-baseline",
+     "step": "phase/distill",
+     "index": 1,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "the six (none) history files were written with a printf redirect in one Bash call rather than six Write-tool calls"
+    },
+    {
+     "line": 48,
+     "id": "2026-10-05T22:33:01Z-a",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "phase/take-up",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "master-record.txt (one line) written via shell printf in the promote Bash call instead of the Write tool; content correct, promote exit 0"
+    },
+    {
+     "line": 77,
+     "id": "2026-10-06T00:15:46Z-a",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "phase/take-up",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "wrote the one-line master-record.txt with shell printf instead of the Write tool the letter names for document payloads"
+    },
+    {
+     "line": 82,
+     "id": "2026-10-06T00:28:48Z-a",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "phase/plan",
+     "index": 1,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "fixed an invalid TOML literal (doubled quote in a single-quoted note) and the stdout census regex with a python heredoc replace on plan.md instead of the Edit tool"
+    },
+    {
+     "line": 103,
+     "id": "2026-10-06T01:50:26Z-a",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "wrap-session/route-resolve",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "the CARRY was appended to line 52 by a python line-indexed rewrite with an exact-prior-text assert instead of the anchored Edit the line-write contract names; git diff -U0 confirmed only line 52 changed"
+    },
+    {
+     "line": 122,
+     "id": "2026-10-06T02:58:48Z-a",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "wrap-session/reconcile",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "the report and evidence corrections were applied with python heredoc replaces instead of the Edit tool the skill names for document writes; the masters, leaves and sidecars used Edit/Write/splice"
+    }
+   ]
+  },
+  "T3 committed evidence carrying host paths refused by hygiene P1, masked by hand": {
+   "n": 3,
+   "natures": {
+    "process": 3
+   },
+   "solutions": {
+    "removed-cause": 1,
+    "workaround": 2
+   },
+   "chunks": [
+    "2026-10-06-cold-agent-run-pipe",
+    "2026-10-06-headless-stand",
+    "2026-10-06-stand-test-contract"
+   ],
+   "facts": [
+    {
+     "line": 128,
+     "id": "2026-10-06T03:02:59Z-a",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "wrap-session/gates",
+     "index": 0,
+     "nature": "process",
+     "solution": "removed-cause",
+     "note": "hygiene refused evidence/operator-16-ci.txt for a home-directory path in its run line (operator-14 carried the same, committed earlier, outside the read); both rewritten to ~/ form, hygiene re-run clean"
+    },
+    {
+     "line": 144,
+     "id": "2026-10-06T03:50:18Z-a",
+     "chunk": "2026-10-06-stand-test-contract",
+     "step": "wrap-session/reconcile",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "the a11y raw fan-out twin was written with its one absolute basis path made repo-relative, so hygiene would not refuse a .raw twin it may never rewrite; the twin is a transcription of the return, not byte-exact"
+    },
+    {
+     "line": 165,
+     "id": "2026-10-06T04:22:19Z-a",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "implement/fix-loop",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "plan step 6 says copy the live transcript into evidence/; it held the session tmp dir and the operator home prefix, which the hygiene P1 rule refuses in committed chunk evidence; the committed copy masks those two paths (one each) and live-run.md records the masking"
+    }
+   ]
+  },
+  "T4 masters file:line citations re-pointed by an ad-hoc scratch script (no pipeline tool)": {
+   "n": 2,
+   "natures": {
+    "process": 2
+   },
+   "solutions": {
+    "workaround": 2
+   },
+   "chunks": [
+    "2026-10-05-fork-ci-reached",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "facts": [
+    {
+     "line": 38,
+     "id": "2026-10-05T22:17:51Z-a",
+     "chunk": "2026-10-05-fork-ci-reached",
+     "step": "wrap-session/reconcile",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "112 stale file:line citations re-pointed by a scratchpad python regex script writing the five masters directly (not Edit/splice); verified digits-only by comparing digit-stripped text against HEAD per master"
+    },
+    {
+     "line": 95,
+     "id": "2026-10-06T01:48:08Z-a",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "wrap-session/reconcile",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "80 masters file:line citations into files the chunk shifted (Cargo.toml, blitz-tests/seven_guis manifests, seven_guis main.rs) re-pointed by a scratchpad script with an old/new content check; no pipeline tool re-points citations after a chunk's line shifts"
+    }
+   ]
+  },
+  "T5 plan steps reordered so a red-before-green reading is possible": {
+   "n": 2,
+   "natures": {
+    "process": 2
+   },
+   "solutions": {
+    "workaround": 2
+   },
+   "chunks": [
+    "2026-10-05-ci-gate-legs",
+    "2026-10-05-fork-ci-reached"
+   ],
+   "facts": [
+    {
+     "line": 33,
+     "id": "2026-10-05T21:14:33Z-a",
+     "chunk": "2026-10-05-fork-ci-reached",
+     "step": "implement/code",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "wrote step 8 (test_ci_workflows.py) before steps 3-7 so the plan-required red-before-green reading could be taken against the untouched workflows without stashing or copying them"
+    },
+    {
+     "line": 56,
+     "id": "2026-10-05T22:55:35Z-a",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "implement/code",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "plan steps 4 and 6 reordered (6 first) so the extended unittest could run red against the untouched ci-leg.sh as step 6 requires"
+    }
+   ]
+  },
+  "T6 gate.py runner behaviour routed around (stdout buffering off a tty; exit 124 = own timeout)": {
+   "n": 2,
+   "natures": {
+    "environment": 1,
+    "process": 1
+   },
+   "solutions": {
+    "workaround": 2
+   },
+   "chunks": [
+    "2026-10-05-as-built-baseline",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "facts": [
+    {
+     "line": 12,
+     "id": "2026-10-05T20:31:28Z-a",
+     "chunk": "2026-10-05-as-built-baseline",
+     "step": "implement/fix-loop",
+     "index": 1,
+     "nature": "environment",
+     "solution": "workaround",
+     "note": "backgrounded gate.py printed nothing to its output file for 30 min (stdout block-buffered off a tty), so the Monitor was silent — progress read from the gate log dir instead; warm run fired with PYTHONUNBUFFERED=1"
+    },
+    {
+     "line": 89,
+     "id": "2026-10-06T00:40:59Z-a",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "implement/fix-loop",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "gate 7 non-leg smoke entry read as timeout by gate.py because its expected exit 124 collides with the tool's own bound mapping; drove the entry once by hand and recorded exit + atoms in evidence/smoke-004017Z.txt"
+    }
+   ]
+  },
+  "T7 tool output filtered / bundled against the run-bare or per-file letter": {
+   "n": 3,
+   "natures": {
+    "process": 3
+   },
+   "solutions": {
+    "workaround": 3
+   },
+   "chunks": [
+    "2026-10-05-as-built-baseline",
+    "2026-10-06-headless-stand",
+    "None"
+   ],
+   "facts": [
+    {
+     "line": 18,
+     "id": "2026-10-05T20:43:00Z-a",
+     "chunk": "2026-10-05-as-built-baseline",
+     "step": "wrap-session/curation",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "health.py check output filtered through grep for the check 1 row instead of run bare with other rows unread"
+    },
+    {
+     "line": 108,
+     "id": "2026-10-06T01:59:52Z-a",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "phase/distill",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "ran sidecar.py summary through | head -3 in a loop; the skill says every tool call runs bare — verdict lines read intact, nothing lost"
+    },
+    {
+     "line": 74,
+     "id": "2026-10-06T00:13:35Z-a",
+     "chunk": null,
+     "step": "new-session/orientation",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "loaded evolve-system.md and health-criteria.md in one cat call although the letter says skill references load per-file; output persisted past the cap and was re-read with one Read"
+    }
+   ]
+  },
+  "T8 plan omission filled at implement (dep / field the plan step did not list)": {
+   "n": 2,
+   "natures": {
+    "product-logic": 2
+   },
+   "solutions": {
+    "workaround": 2
+   },
+   "chunks": [
+    "2026-10-06-headless-stand",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "facts": [
+    {
+     "line": 86,
+     "id": "2026-10-06T00:37:33Z-a",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "implement/code",
+     "index": 1,
+     "nature": "product-logic",
+     "solution": "workaround",
+     "note": "plan step 5 branch (a) would print log.target=[redacted] on bridged engine records; the formatter instead omits the log.target field because the resolved target is printed in the target column; surfaced in the P4 report"
+    },
+    {
+     "line": 115,
+     "id": "2026-10-06T02:17:49Z-a",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "implement/code",
+     "index": 0,
+     "nature": "product-logic",
+     "solution": "workaround",
+     "note": "plan step 5 lists the seven_guis manifest additions as blitz-test-harness + woff only; naming the pinned ColorScheme::Light constant needed a direct blitz-traits dependency, added in the listed manifest and reported as a deviation"
+    }
+   ]
+  },
+  "singletons": {
+   "n": 6,
+   "natures": {
+    "environment": 3,
+    "process": 2,
+    "product-logic": 1
+   },
+   "solutions": {
+    "workaround": 5,
+    "removed-cause": 1
+   },
+   "chunks": [
+    "2026-10-05-as-built-baseline",
+    "2026-10-05-ci-gate-legs",
+    "2026-10-06-headless-stand",
+    "2026-10-06-telemetry-bootstrap"
+   ],
+   "facts": [
+    {
+     "line": 9,
+     "id": "2026-10-05T19:47:53Z-a",
+     "chunk": "2026-10-05-as-built-baseline",
+     "step": "phase/validate",
+     "index": 0,
+     "nature": "environment",
+     "solution": "workaround",
+     "note": "a control-file Bash call (shell redirects + rm -r into the run dir) was denied by permission; controls re-done with Write-tool files in the session scratchpad and read-only greps"
+    },
+    {
+     "line": 12,
+     "id": "2026-10-05T20:31:28Z-a",
+     "chunk": "2026-10-05-as-built-baseline",
+     "step": "implement/fix-loop",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "plan step 4 asks every gate run verbatim in baseline.md; gate 10's verbatim text matched its own credential pattern (warm run read 1) — item 10 rewritten to cite plan.md §Test Commands gate 10 instead of copying"
+    },
+    {
+     "line": 50,
+     "id": "2026-10-05T22:40:19Z-a",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "phase/research",
+     "index": 0,
+     "nature": "environment",
+     "solution": "workaround",
+     "note": "cargo tree -i could not name rustls/memmap2 (host-target-only resolution; --edges kind mixing refused); walked Cargo.lock reverse deps with a script instead"
+    },
+    {
+     "line": 83,
+     "id": "2026-10-06T00:32:46Z-a",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "phase/validate",
+     "index": 0,
+     "nature": "process",
+     "solution": "workaround",
+     "note": "the approval word carried a standing instruction (session drives the operator pass); recorded in the run dir p5-approval.md rather than editing plan.md after the word"
+    },
+    {
+     "line": 86,
+     "id": "2026-10-06T00:37:33Z-a",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "implement/code",
+     "index": 0,
+     "nature": "environment",
+     "solution": "workaround",
+     "note": "tracing 0.1.44 error! macro rejected dotted panic.* field names after target: (local ambiguity) and string-literal keys; used the braced event!(target, Level::ERROR, {fields}, msg) form"
+    },
+    {
+     "line": 117,
+     "id": "2026-10-06T02:22:58Z-a",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "implement/fix-loop",
+     "index": 0,
+     "nature": "product-logic",
+     "solution": "removed-cause",
+     "note": "dioxus-native-dom wrote a falsy disabled as disabled=\"false\" (only checked was cleared); fixed in mutation_writer.rs outside research's lists as a widening on the delegate overseer's word, pinned by a regression test"
+    }
+   ]
+  }
+ },
+ "signatures": {
+  "override": [
+   {
+    "line": 65,
+    "id": "2026-10-06T00:07:40Z-a",
+    "chunk": "2026-10-05-ci-gate-legs",
+    "step": "wrap-session/reconcile",
+    "index": 0,
+    "nature": "process",
+    "solution": "overridden",
+    "note": "E1 boundary widening (coverage-report upload) applied on a delegate overseer ratification recorded PROVISIONAL — the contract ratifies a widening only on the founder's own word, who was unavailable; the record names the provisional authority"
+   },
+   {
+    "line": 82,
+    "id": "2026-10-06T00:28:48Z-a",
+    "chunk": "2026-10-06-telemetry-bootstrap",
+    "step": "phase/plan",
+    "index": 0,
+    "nature": "process",
+    "solution": "overridden",
+    "note": "OTel export fork: operator (overseer delegate) chose Defer over the recommended http-only-now option, naming the boundary-widening escalation to the founder; scope/research/plan re-cut to drop the exporter and add a route CARRY to Driver command spans"
+   },
+   {
+    "line": 158,
+    "id": "2026-10-06T04:05:52Z-a",
+    "chunk": "2026-10-06-cold-agent-run-pipe",
+    "step": "phase/research",
+    "index": 0,
+    "nature": "process",
+    "solution": "overridden",
+    "note": "a second live probe from a neutral mktemp /tmp cwd was denied at the operator's permission prompt; the neutral-cwd equality is left unmeasured and carried to the recorded run's context check"
+   }
+  ],
+  "deferred": [
+   {
+    "line": 56,
+    "id": "2026-10-05T22:55:35Z-a",
+    "chunk": "2026-10-05-ci-gate-legs",
+    "step": "implement/code",
+    "index": 1,
+    "nature": "environment",
+    "solution": "deferred",
+    "note": "cargo-deny 0.20.2 prunes http-cache and ravif from its graph even with all-features=true, so paste/memmap2 advisories never reach the audit leg; recorded in evidence/audit.md for the wrap, not fixed"
+   },
+   {
+    "line": 122,
+    "id": "2026-10-06T02:58:48Z-a",
+    "chunk": "2026-10-06-headless-stand",
+    "step": "wrap-session/reconcile",
+    "index": 1,
+    "nature": "process",
+    "solution": "deferred",
+    "note": "tests/blitz-tests/tests/dioxus_falsy_disabled.rs:4-6 doc comment states the retired focus-order claim; wrap touches no source — routed to the next chunk (CARRY) and the handoff"
+   },
+   {
+    "line": 179,
+    "id": "2026-10-06T04:52:12Z-b",
+    "chunk": "2026-10-06-cold-agent-run-pipe",
+    "type": "tooling.gate-deferral",
+    "what": "ci-leg.sh doc deferred on zero Rust delta (plan defer key, held at implement and re-checked at the light gate); pinned as PREREQ: close rust gate deferral on Stable element ids"
+   }
+  ],
+  "ok_degraded_outcomes": [
+   {
+    "line": 89,
+    "chunk": "2026-10-06-telemetry-bootstrap",
+    "step": "implement/fix-loop"
+   },
+   {
+    "line": 104,
+    "chunk": "2026-10-06-telemetry-bootstrap",
+    "step": "wrap-session/gates"
+   }
+  ],
+  "halted_resolved_outcomes": [
+   {
+    "line": 65,
+    "chunk": "2026-10-05-ci-gate-legs",
+    "step": "wrap-session/reconcile"
+   },
+   {
+    "line": 117,
+    "chunk": "2026-10-06-headless-stand",
+    "step": "implement/fix-loop"
+   },
+   {
+    "line": 168,
+    "chunk": "2026-10-06-cold-agent-run-pipe",
+    "step": "wrap-session/reconcile"
+   }
+  ],
+  "tooling_recurrence": {
+   "tooling.gate-deferral": [
+    179
+   ],
+   "tooling.health-false-red": [
+    76
+   ],
+   "tooling.hook-friction": [
+    58,
+    87
+   ],
+   "tooling.output-cap-overflow": [
+    2,
+    6,
+    25,
+    75,
+    80,
+    157
+   ],
+   "tooling.result-not-run-stable": [
+    73
+   ]
+  }
+ },
+ "all_facts": [
+  {
+   "line": 1,
+   "id": "2026-10-05T18:43:33Z-a",
+   "chunk": null,
+   "step": "new-session/orientation",
+   "index": 0,
+   "nature": "environment",
+   "solution": "workaround",
+   "note": "PreToolUse hook blocked a leading cd into the skill references dir; re-ran with absolute paths"
+  },
+  {
+   "line": 5,
+   "id": "2026-10-05T18:50:12Z-a",
+   "chunk": "2026-10-05-as-built-baseline",
+   "step": "phase/distill",
+   "index": 0,
+   "nature": "environment",
+   "solution": "workaround",
+   "note": "PreToolUse hook blocked a leading cd into the run dir; re-ran with absolute paths"
+  },
+  {
+   "line": 5,
+   "id": "2026-10-05T18:50:12Z-a",
+   "chunk": "2026-10-05-as-built-baseline",
+   "step": "phase/distill",
+   "index": 1,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "the six (none) history files were written with a printf redirect in one Bash call rather than six Write-tool calls"
+  },
+  {
+   "line": 9,
+   "id": "2026-10-05T19:47:53Z-a",
+   "chunk": "2026-10-05-as-built-baseline",
+   "step": "phase/validate",
+   "index": 0,
+   "nature": "environment",
+   "solution": "workaround",
+   "note": "a control-file Bash call (shell redirects + rm -r into the run dir) was denied by permission; controls re-done with Write-tool files in the session scratchpad and read-only greps"
+  },
+  {
+   "line": 12,
+   "id": "2026-10-05T20:31:28Z-a",
+   "chunk": "2026-10-05-as-built-baseline",
+   "step": "implement/fix-loop",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "plan step 4 asks every gate run verbatim in baseline.md; gate 10's verbatim text matched its own credential pattern (warm run read 1) — item 10 rewritten to cite plan.md §Test Commands gate 10 instead of copying"
+  },
+  {
+   "line": 12,
+   "id": "2026-10-05T20:31:28Z-a",
+   "chunk": "2026-10-05-as-built-baseline",
+   "step": "implement/fix-loop",
+   "index": 1,
+   "nature": "environment",
+   "solution": "workaround",
+   "note": "backgrounded gate.py printed nothing to its output file for 30 min (stdout block-buffered off a tty), so the Monitor was silent — progress read from the gate log dir instead; warm run fired with PYTHONUNBUFFERED=1"
+  },
+  {
+   "line": 16,
+   "id": "2026-10-05T20:36:57Z-a",
+   "chunk": "2026-10-05-as-built-baseline",
+   "step": "wrap-session/report",
+   "index": 0,
+   "nature": "environment",
+   "solution": "workaround",
+   "note": "project PreToolUse Bash guard blocked a leading cd into .andromeda/ for the master grep — re-run inside a subshell"
+  },
+  {
+   "line": 18,
+   "id": "2026-10-05T20:43:00Z-a",
+   "chunk": "2026-10-05-as-built-baseline",
+   "step": "wrap-session/curation",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "health.py check output filtered through grep for the check 1 row instead of run bare with other rows unread"
+  },
+  {
+   "line": 24,
+   "id": "2026-10-05T20:55:54Z-a",
+   "chunk": "2026-10-05-fork-ci-reached",
+   "step": "phase/distill",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "a PreToolUse hook blocked a leading cd into the run dir for the extract read; re-ran with absolute paths"
+  },
+  {
+   "line": 33,
+   "id": "2026-10-05T21:14:33Z-a",
+   "chunk": "2026-10-05-fork-ci-reached",
+   "step": "implement/code",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "wrote step 8 (test_ci_workflows.py) before steps 3-7 so the plan-required red-before-green reading could be taken against the untouched workflows without stashing or copying them"
+  },
+  {
+   "line": 38,
+   "id": "2026-10-05T22:17:51Z-a",
+   "chunk": "2026-10-05-fork-ci-reached",
+   "step": "wrap-session/reconcile",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "112 stale file:line citations re-pointed by a scratchpad python regex script writing the five masters directly (not Edit/splice); verified digits-only by comparing digit-stripped text against HEAD per master"
+  },
+  {
+   "line": 48,
+   "id": "2026-10-05T22:33:01Z-a",
+   "chunk": "2026-10-05-ci-gate-legs",
+   "step": "phase/take-up",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "master-record.txt (one line) written via shell printf in the promote Bash call instead of the Write tool; content correct, promote exit 0"
+  },
+  {
+   "line": 49,
+   "id": "2026-10-05T22:36:48Z-a",
+   "chunk": "2026-10-05-ci-gate-legs",
+   "step": "phase/distill",
+   "index": 0,
+   "nature": "environment",
+   "solution": "workaround",
+   "note": "an earlier probe ran `cd {run_dir} && ...`, moving the session cwd; a later leading `cd` was blocked by the PreToolUse cwd hook; switched to subshell `( cd ... && ... )` and absolute paths"
+  },
+  {
+   "line": 50,
+   "id": "2026-10-05T22:40:19Z-a",
+   "chunk": "2026-10-05-ci-gate-legs",
+   "step": "phase/research",
+   "index": 0,
+   "nature": "environment",
+   "solution": "workaround",
+   "note": "cargo tree -i could not name rustls/memmap2 (host-target-only resolution; --edges kind mixing refused); walked Cargo.lock reverse deps with a script instead"
+  },
+  {
+   "line": 56,
+   "id": "2026-10-05T22:55:35Z-a",
+   "chunk": "2026-10-05-ci-gate-legs",
+   "step": "implement/code",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "plan steps 4 and 6 reordered (6 first) so the extended unittest could run red against the untouched ci-leg.sh as step 6 requires"
+  },
+  {
+   "line": 56,
+   "id": "2026-10-05T22:55:35Z-a",
+   "chunk": "2026-10-05-ci-gate-legs",
+   "step": "implement/code",
+   "index": 1,
+   "nature": "environment",
+   "solution": "deferred",
+   "note": "cargo-deny 0.20.2 prunes http-cache and ravif from its graph even with all-features=true, so paste/memmap2 advisories never reach the audit leg; recorded in evidence/audit.md for the wrap, not fixed"
+  },
+  {
+   "line": 64,
+   "id": "2026-10-05T23:53:00Z-a",
+   "chunk": "2026-10-05-ci-gate-legs",
+   "step": "wrap-session/report",
+   "index": 0,
+   "nature": "environment",
+   "solution": "workaround",
+   "note": "the project PreToolUse guard blocked a leading cd into .andromeda for the per-master sweep; re-run as a scratch python script over absolute paths"
+  },
+  {
+   "line": 65,
+   "id": "2026-10-06T00:07:40Z-a",
+   "chunk": "2026-10-05-ci-gate-legs",
+   "step": "wrap-session/reconcile",
+   "index": 0,
+   "nature": "process",
+   "solution": "overridden",
+   "note": "E1 boundary widening (coverage-report upload) applied on a delegate overseer ratification recorded PROVISIONAL — the contract ratifies a widening only on the founder's own word, who was unavailable; the record names the provisional authority"
+  },
+  {
+   "line": 74,
+   "id": "2026-10-06T00:13:35Z-a",
+   "chunk": null,
+   "step": "new-session/orientation",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "loaded evolve-system.md and health-criteria.md in one cat call although the letter says skill references load per-file; output persisted past the cap and was re-read with one Read"
+  },
+  {
+   "line": 77,
+   "id": "2026-10-06T00:15:46Z-a",
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "step": "phase/take-up",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "wrote the one-line master-record.txt with shell printf instead of the Write tool the letter names for document payloads"
+  },
+  {
+   "line": 78,
+   "id": "2026-10-06T00:19:53Z-a",
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "step": "phase/distill",
+   "index": 0,
+   "nature": "environment",
+   "solution": "workaround",
+   "note": "a bare cd into the run dir in an earlier call moved the session cwd; the PreToolUse hook blocked the next leading cd, re-run inside a subshell"
+  },
+  {
+   "line": 81,
+   "id": "2026-10-06T00:23:29Z-a",
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "step": "phase/research",
+   "index": 0,
+   "nature": "environment",
+   "solution": "workaround",
+   "note": "session cwd still in the run dir from P2; first P3 read was blocked by the leading-cd hook and re-run in a subshell"
+  },
+  {
+   "line": 82,
+   "id": "2026-10-06T00:28:48Z-a",
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "step": "phase/plan",
+   "index": 0,
+   "nature": "process",
+   "solution": "overridden",
+   "note": "OTel export fork: operator (overseer delegate) chose Defer over the recommended http-only-now option, naming the boundary-widening escalation to the founder; scope/research/plan re-cut to drop the exporter and add a route CARRY to Driver command spans"
+  },
+  {
+   "line": 82,
+   "id": "2026-10-06T00:28:48Z-a",
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "step": "phase/plan",
+   "index": 1,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "fixed an invalid TOML literal (doubled quote in a single-quoted note) and the stdout census regex with a python heredoc replace on plan.md instead of the Edit tool"
+  },
+  {
+   "line": 83,
+   "id": "2026-10-06T00:32:46Z-a",
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "step": "phase/validate",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "the approval word carried a standing instruction (session drives the operator pass); recorded in the run dir p5-approval.md rather than editing plan.md after the word"
+  },
+  {
+   "line": 86,
+   "id": "2026-10-06T00:37:33Z-a",
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "step": "implement/code",
+   "index": 0,
+   "nature": "environment",
+   "solution": "workaround",
+   "note": "tracing 0.1.44 error! macro rejected dotted panic.* field names after target: (local ambiguity) and string-literal keys; used the braced event!(target, Level::ERROR, {fields}, msg) form"
+  },
+  {
+   "line": 86,
+   "id": "2026-10-06T00:37:33Z-a",
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "step": "implement/code",
+   "index": 1,
+   "nature": "product-logic",
+   "solution": "workaround",
+   "note": "plan step 5 branch (a) would print log.target=[redacted] on bridged engine records; the formatter instead omits the log.target field because the resolved target is printed in the target column; surfaced in the P4 report"
+  },
+  {
+   "line": 89,
+   "id": "2026-10-06T00:40:59Z-a",
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "step": "implement/fix-loop",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "gate 7 non-leg smoke entry read as timeout by gate.py because its expected exit 124 collides with the tool's own bound mapping; drove the entry once by hand and recorded exit + atoms in evidence/smoke-004017Z.txt"
+  },
+  {
+   "line": 95,
+   "id": "2026-10-06T01:48:08Z-a",
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "step": "wrap-session/reconcile",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "80 masters file:line citations into files the chunk shifted (Cargo.toml, blitz-tests/seven_guis manifests, seven_guis main.rs) re-pointed by a scratchpad script with an old/new content check; no pipeline tool re-points citations after a chunk's line shifts"
+  },
+  {
+   "line": 103,
+   "id": "2026-10-06T01:50:26Z-a",
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "step": "wrap-session/route-resolve",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "the CARRY was appended to line 52 by a python line-indexed rewrite with an exact-prior-text assert instead of the anchored Edit the line-write contract names; git diff -U0 confirmed only line 52 changed"
+  },
+  {
+   "line": 108,
+   "id": "2026-10-06T01:59:52Z-a",
+   "chunk": "2026-10-06-headless-stand",
+   "step": "phase/distill",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "ran sidecar.py summary through | head -3 in a loop; the skill says every tool call runs bare — verdict lines read intact, nothing lost"
+  },
+  {
+   "line": 115,
+   "id": "2026-10-06T02:17:49Z-a",
+   "chunk": "2026-10-06-headless-stand",
+   "step": "implement/code",
+   "index": 0,
+   "nature": "product-logic",
+   "solution": "workaround",
+   "note": "plan step 5 lists the seven_guis manifest additions as blitz-test-harness + woff only; naming the pinned ColorScheme::Light constant needed a direct blitz-traits dependency, added in the listed manifest and reported as a deviation"
+  },
+  {
+   "line": 117,
+   "id": "2026-10-06T02:22:58Z-a",
+   "chunk": "2026-10-06-headless-stand",
+   "step": "implement/fix-loop",
+   "index": 0,
+   "nature": "product-logic",
+   "solution": "removed-cause",
+   "note": "dioxus-native-dom wrote a falsy disabled as disabled=\"false\" (only checked was cleared); fixed in mutation_writer.rs outside research's lists as a widening on the delegate overseer's word, pinned by a regression test"
+  },
+  {
+   "line": 117,
+   "id": "2026-10-06T02:22:58Z-a",
+   "chunk": "2026-10-06-headless-stand",
+   "step": "implement/fix-loop",
+   "index": 1,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "a cat heredoc into a throwaway probe test file was blocked by the project's Bash guard; wrote the probe with the Write tool and deleted it after the run"
+  },
+  {
+   "line": 122,
+   "id": "2026-10-06T02:58:48Z-a",
+   "chunk": "2026-10-06-headless-stand",
+   "step": "wrap-session/reconcile",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "the report and evidence corrections were applied with python heredoc replaces instead of the Edit tool the skill names for document writes; the masters, leaves and sidecars used Edit/Write/splice"
+  },
+  {
+   "line": 122,
+   "id": "2026-10-06T02:58:48Z-a",
+   "chunk": "2026-10-06-headless-stand",
+   "step": "wrap-session/reconcile",
+   "index": 1,
+   "nature": "process",
+   "solution": "deferred",
+   "note": "tests/blitz-tests/tests/dioxus_falsy_disabled.rs:4-6 doc comment states the retired focus-order claim; wrap touches no source — routed to the next chunk (CARRY) and the handoff"
+  },
+  {
+   "line": 128,
+   "id": "2026-10-06T03:02:59Z-a",
+   "chunk": "2026-10-06-headless-stand",
+   "step": "wrap-session/gates",
+   "index": 0,
+   "nature": "process",
+   "solution": "removed-cause",
+   "note": "hygiene refused evidence/operator-16-ci.txt for a home-directory path in its run line (operator-14 carried the same, committed earlier, outside the read); both rewritten to ~/ form, hygiene re-run clean"
+  },
+  {
+   "line": 144,
+   "id": "2026-10-06T03:50:18Z-a",
+   "chunk": "2026-10-06-stand-test-contract",
+   "step": "wrap-session/reconcile",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "the a11y raw fan-out twin was written with its one absolute basis path made repo-relative, so hygiene would not refuse a .raw twin it may never rewrite; the twin is a transcription of the return, not byte-exact"
+  },
+  {
+   "line": 155,
+   "id": "2026-10-06T04:02:06Z-a",
+   "chunk": "2026-10-06-cold-agent-run-pipe",
+   "step": "phase/distill",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "a leading cd into the run dir was blocked by the project's Bash guard; reran with absolute paths"
+  },
+  {
+   "line": 158,
+   "id": "2026-10-06T04:05:52Z-a",
+   "chunk": "2026-10-06-cold-agent-run-pipe",
+   "step": "phase/research",
+   "index": 0,
+   "nature": "process",
+   "solution": "overridden",
+   "note": "a second live probe from a neutral mktemp /tmp cwd was denied at the operator's permission prompt; the neutral-cwd equality is left unmeasured and carried to the recorded run's context check"
+  },
+  {
+   "line": 165,
+   "id": "2026-10-06T04:22:19Z-a",
+   "chunk": "2026-10-06-cold-agent-run-pipe",
+   "step": "implement/fix-loop",
+   "index": 0,
+   "nature": "process",
+   "solution": "workaround",
+   "note": "plan step 6 says copy the live transcript into evidence/; it held the session tmp dir and the operator home prefix, which the hygiene P1 rule refuses in committed chunk evidence; the committed copy masks those two paths (one each) and live-run.md records the masking"
+  },
+  {
+   "line": 168,
+   "id": "2026-10-06T04:47:33Z-a",
+   "chunk": "2026-10-06-cold-agent-run-pipe",
+   "step": "wrap-session/reconcile",
+   "index": 0,
+   "nature": "environment",
+   "solution": "workaround",
+   "note": "a cat-heredoc append to fanout-results.md was blocked by the project's Bash guard; the file was written whole with the Write tool"
+  }
+ ]
+}

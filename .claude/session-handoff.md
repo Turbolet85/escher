@@ -1,27 +1,26 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-06T04:50:04Z
-**Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's Setup (the operator pass pushed `021668fa`)
+**Last Updated:** 2026-10-06T06:23:10Z
+**Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-06-cold-agent-run-pipe — feat(2026-10-06-cold-agent-run-pipe): cold-agent run pipe — isolated claude -p session with a stub MCP tool, wrong-call count, positive-evidence verdict, one live run green
+**Last Commit:** route — chore(route): operator-requested adaptation — 0-pending wrap (Epoch 1 boundary: Upstream sync at the head of Epochs 2–6)
 
 ## Position
-- Done: 2026-10-06-cold-agent-run-pipe — `bash scripts/cold-agent.sh {run counter | status | cleanup | logs}`: one isolated `claude -p` session given only a stdlib stdio MCP stub's tools, transcript captured, wrong calls counted from the stub's log, verdict in `target/cold-agent/verdict.json`; one live run passed (5 calls · 0 wrong · 0.042 USD). CI run 37413576977 green 16/16 on `021668fa`. Epoch 1 — Foundation is complete.
-- Next: Stable element ids (Epoch 2 — Element identity, its first entry) — /andromeda-phase to promote + plan it; it carries `PREREQ: close rust gate deferral` (the `doc` leg, deferred here on zero Rust delta).
+- Done: Epoch 1 — Foundation is complete. This wrap was 0-pending: the route adaptation below, plus the boundary's code-audit and evolve-diagnose runs committed.
+- Next: Upstream sync ahead of element identity, the first entry of Epoch 2 — Element identity. Promote and plan it with /andromeda-phase. Stable element ids follows it and still carries `PREREQ: close rust gate deferral` (the `doc` leg).
 
 ## Work done
-4 new files (`scripts/cold-agent.{sh,ps1}`, `scripts/cold_agent_stub.py`, `.github/scripts/test_cold_agent.py`) + live evidence; CI-scripts 37 → 64; workspace tests 430 · 0 · 4 unchanged.
+Founder direction of 2026-10-06: an "Upstream sync" entry now heads each of Epochs 2–6, where `upstream/main` is merged small and often, our changes stay additive, and our tests and CI prove our logic survived. The matching `intent.md` Principles bullet rides this commit, and "Upstream sync is out of 0.1.0" is dropped. Details are in `.andromeda/runs/2026-10-06T06-21-32-wrap/adaptation-record.md`.
 
 ## Drift resolved
-20 amendments (arch 7 · security-plan 5 · test-plan 3 · obs-plan 4 · layout-templates 1, incl. 3 orchestrator-raised and 1 narrowed), 3 proposals rejected (source-line citations the report did not carry), 2 escalations resolved; 5 sidecar entries; 11 leaf files re-derived.
+none. No chunk was wrapped and no fan-out ran.
 
 ## Notes
-- FOR THE FOUNDER (new, FOR DISCUSSION 7): the cold-agent pipe's crossings — the spawned `claude` client, its stdio MCP stub, the outbound model path, the operator's own Claude Code login (`apiKeySource` none, no CI secret) — were ratified into arch and security-plan by the overseer under your standing delegation and stand PROVISIONAL in the bodies until your own word. A CARRY on "Cold-agent test" repeats it.
-- FOR THE FOUNDER (carried): the falsy-`disabled` engine fix is PROVISIONAL; opt-in OTel export DEFERRED (CARRY on "Driver command spans"); the `coverage-report` upload widening PROVISIONAL.
-- The committed live transcript masks two host paths (`/tmp/<session-dir>`, `/home/<user>/`) — the operator ruled it fine; `gate.py hygiene` refuses an unmasked one.
-- CARRY on "Snapshot state fidelity" stands (Dioxus boolean attributes still write a literal `"false"`); the audit leg's paste/memmap2 blind spot stays CARRY-pinned on "Quality gates".
-- Last failed command: none
+- FOR THE FOUNDER (carried, unchanged this wrap): the cold-agent pipe's crossings (FOR DISCUSSION 7), the falsy-`disabled` engine fix and the `coverage-report` upload widening stand PROVISIONAL. Opt-in OTel export is DEFERRED (CARRY on "Driver command spans").
+- The five Upstream sync titles name their epoch, so their phase markers cannot collide.
+- CARRY on "Snapshot state fidelity" still stands, and so does the audit leg's paste/memmap2 CARRY on "Quality gates".
+- Last failed command: none. One chained `rm -r … && for … gate.py hygiene` was refused by the permission guard. It was re-run as a plain `rm` + `rmdir` and the bare hygiene calls, and both succeeded.
 
 ## Deferred learnings
-- recurrence-despite-learning: "The project's Bash guards refuse a heredoc written to a file and a leading cd, and read payload prose too" (Tier 3, 2026-10-06) — a cat heredoc appending to a run-dir file was blocked again this session.
+- recurrence-despite-learning: "The project's Bash guards refuse a heredoc written to a file and a leading cd, and read payload prose too" (Tier 3, 2026-10-06) — a cat heredoc appending to a run-dir file was blocked again in the prior session.
 Review with `/andromeda-wrap-session --review` if any should be applied.

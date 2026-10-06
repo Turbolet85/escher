@@ -1,0 +1,126 @@
+{
+ "pct": 3.961,
+ "duplicated_lines": 2935,
+ "total_lines": 74102,
+ "clones": 264,
+ "sources": 279,
+ "top": [
+  [
+   "tests/blitz-tests/tests/device_coalescing.rs",
+   "tests/blitz-tests/tests/resize_restyle.rs",
+   43
+  ],
+  [
+   "packages/blitz-traits/src/events.rs",
+   "packages/blitz-traits/src/events.rs",
+   37
+  ],
+  [
+   "examples/counter/src/app.rs",
+   "examples/transparent/src/app.rs",
+   35
+  ],
+  [
+   "tests/blitz-tests/tests/inline_svg_restyle.rs",
+   "tests/blitz-tests/tests/inline_svg_serialize.rs",
+   32
+  ],
+  [
+   "packages/blitz-dom/src/layout/inline.rs",
+   "packages/blitz-dom/src/layout/inline.rs",
+   29
+  ],
+  [
+   "tests/blitz-tests/tests/interaction_state_canonicalization.rs",
+   "tests/blitz-tests/tests/interaction_state_teardown.rs",
+   28
+  ],
+  [
+   "tests/blitz-tests/tests/details_element.rs",
+   "tests/blitz-tests/tests/fragment_navigation.rs",
+   27
+  ],
+  [
+   "examples/custom_widget.rs",
+   "examples/wgpu_texture/src/dioxus_native.rs",
+   25
+  ],
+  [
+   "tests/blitz-tests/tests/scrollbar_drag.rs",
+   "tests/blitz-tests/tests/stale_interaction_state.rs",
+   24
+  ],
+  [
+   "tests/blitz-tests/tests/br_trailing_line.rs",
+   "tests/blitz-tests/tests/inline_box_baseline.rs",
+   23
+  ]
+ ],
+ "top_sites": [
+  [
+   "tests/blitz-tests/tests/device_coalescing.rs:5",
+   "tests/blitz-tests/tests/resize_restyle.rs:5",
+   43
+  ],
+  [
+   "packages/blitz-traits/src/events.rs:534",
+   "packages/blitz-traits/src/events.rs:585",
+   37
+  ],
+  [
+   "examples/counter/src/app.rs:80",
+   "examples/transparent/src/app.rs:181",
+   35
+  ],
+  [
+   "tests/blitz-tests/tests/inline_svg_restyle.rs:17",
+   "tests/blitz-tests/tests/inline_svg_serialize.rs:9",
+   32
+  ],
+  [
+   "packages/blitz-dom/src/layout/inline.rs:115",
+   "packages/blitz-dom/src/layout/inline.rs:263",
+   29
+  ],
+  [
+   "tests/blitz-tests/tests/interaction_state_canonicalization.rs:32",
+   "tests/blitz-tests/tests/interaction_state_teardown.rs:47",
+   28
+  ],
+  [
+   "tests/blitz-tests/tests/details_element.rs:41",
+   "tests/blitz-tests/tests/fragment_navigation.rs:43",
+   27
+  ],
+  [
+   "examples/custom_widget.rs:28",
+   "examples/wgpu_texture/src/dioxus_native.rs:27",
+   25
+  ],
+  [
+   "tests/blitz-tests/tests/scrollbar_drag.rs:9",
+   "tests/blitz-tests/tests/stale_interaction_state.rs:25",
+   24
+  ],
+  [
+   "tests/blitz-tests/tests/br_trailing_line.rs:10",
+   "tests/blitz-tests/tests/inline_box_baseline.rs:3",
+   23
+  ]
+ ],
+ "split": {
+  "src": {
+   "pairs": 154,
+   "lines": 1595
+  },
+  "test": {
+   "pairs": 106,
+   "lines": 1288
+  },
+  "mixed": {
+   "pairs": 4,
+   "lines": 52
+  }
+ },
+ "split_rule": "test = a '/tests/' path segment (leading included); pair class test|src|mixed by its two files"
+}

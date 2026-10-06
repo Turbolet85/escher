@@ -13,6 +13,9 @@ an internal stand; no other project consumes escher in this version.
 - **The stand is the proof.** Every requirement below is verified headless, by an agent, on the stand: three or four
   7GUIs tasks already in the repo (`examples/seven_guis/src/tasks/` — counter, flight booker, timer, CRUD are the lean)
   that together exercise every requirement.
+- **Upstream stays in reach.** Blitz upstream keeps adding needed functionality, so it is merged in regularly: an
+  "Upstream sync" chunk at each epoch boundary merges `upstream/main`, our tests and CI proving our logic survived;
+  small and often, while our changes stay mostly additive (founder, 2026-10-06).
 - **The API explains itself.** Any agent, with no prior context, learns the framework from the tool alone.
 
 ## Findings (OBSERVED → EXPECT)
@@ -69,5 +72,4 @@ an internal stand; no other project consumes escher in this version.
 ## Out of this version
 The UI graph (component → handlers → state → readers), virtual time everywhere, complete accessibility names and
 states beyond what the snapshot needs, visual lint, trace-to-test, auto-exploration, handler coverage, component
-isolation — the full list is the founder's capability list; they are later versions, chosen by value. Upstream sync
-is out of 0.1.0.
+isolation — the full list is the founder's capability list; they are later versions, chosen by value.

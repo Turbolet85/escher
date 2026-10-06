@@ -1,0 +1,25 @@
+{
+ "unit": "escher-telemetry",
+ "baseline_outcome": "Success",
+ "counts": {
+  "mutants": 12,
+  "caught": 2,
+  "missed": 1,
+  "not_measured": 0,
+  "timeout": 0,
+  "unviable": 9
+ },
+ "score": 66.67,
+ "score_formula": "caught/(caught+missed)",
+ "unit_state": "complete 12/12",
+ "survivors": [
+  [
+   "packages/escher-telemetry/src/lib.rs:74:9",
+   "replace <impl fmt::Display for InitError>::fmt -> fmt::Result with Ok(Default::default())"
+  ]
+ ],
+ "not_measured": [],
+ "host": "x86_64-unknown-linux-gnu",
+ "missed_total_tool": 1,
+ "union_verdict": "no project union verdict"
+}

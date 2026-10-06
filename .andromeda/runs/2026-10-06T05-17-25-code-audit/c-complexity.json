@@ -1,0 +1,80 @@
+{
+ "functions": 4559,
+ "cyclomatic_p50": 1.0,
+ "cyclomatic_p90": 6.0,
+ "cyclomatic_max": 313.0,
+ "cognitive_p50": 0.0,
+ "cognitive_p90": 3.0,
+ "over_ceiling": 74,
+ "max": {
+  "fn": "compute_inline_layout_inner",
+  "file": "packages/blitz-dom/src/layout/inline.rs",
+  "val": 140.0
+ },
+ "top": [
+  {
+   "fn": "compute_inline_layout_inner",
+   "file": "packages/blitz-dom/src/layout/inline.rs:195",
+   "value": 140.0,
+   "cyclomatic": 93.0
+  },
+  {
+   "fn": "synthesize_presentational_hints_for_legacy_attributes",
+   "file": "packages/blitz-dom/src/stylo.rs:870",
+   "value": 135.0,
+   "cyclomatic": 106.0
+  },
+  {
+   "fn": "resolved_style_value",
+   "file": "packages/blitz-dom/src/resolved_style.rs:341",
+   "value": 104.0,
+   "cyclomatic": 87.0
+  },
+  {
+   "fn": "handle_pointermove",
+   "file": "packages/blitz-dom/src/events/pointer.rs:206",
+   "value": 77.0,
+   "cyclomatic": 36.0
+  },
+  {
+   "fn": "handle_click",
+   "file": "packages/blitz-dom/src/events/pointer.rs:614",
+   "value": 69.0,
+   "cyclomatic": 42.0
+  },
+  {
+   "fn": "apply_keypress_event",
+   "file": "packages/blitz-dom/src/node/text.rs:195",
+   "value": 66.0,
+   "cyclomatic": 48.0
+  },
+  {
+   "fn": "dispatch_child_layout",
+   "file": "packages/blitz-dom/src/layout/mod.rs:104",
+   "value": 64.0,
+   "cyclomatic": 57.0
+  },
+  {
+   "fn": "hit_inner",
+   "file": "packages/blitz-dom/src/node/node.rs:1295",
+   "value": 63.0,
+   "cyclomatic": 47.0
+  },
+  {
+   "fn": "compute_replaced_layout",
+   "file": "packages/blitz-dom/src/layout/replaced.rs:52",
+   "value": 57.0,
+   "cyclomatic": 55.0
+  },
+  {
+   "fn": "resolve_color_stops",
+   "file": "packages/blitz-paint/src/gradient.rs:325",
+   "value": 56.0,
+   "cyclomatic": 29.0
+  }
+ ],
+ "fn_sloc_p50": 5.0,
+ "fn_sloc_p90": 30.0,
+ "fn_sloc_max": 854.0,
+ "rule": "per rca 'function' space (nested included, each its own row): metrics.cognitive.sum / cyclomatic.sum; ceiling cognitive > 15; nearest-rank"
+}

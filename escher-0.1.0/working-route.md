@@ -23,6 +23,8 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
 [2026-10-06-cold-agent-run-pipe] Cold-agent run pipe — fresh agent session given only a stub tool; transcript, wrong-call count and verdict recorded green
 
 ### Epoch 2 — Element identity
+Upstream sync ahead of element identity — upstream/main merged, our changes kept additive; our tests and CI prove our logic survived (per intent §Principles)
+   ↓
 Stable element ids — author key else component path, on every stand element (v010-01)  PREREQ: close rust gate deferral (deferred since 2026-10-06-cold-agent-run-pipe: doc — record: 2026-10-06-cold-agent-run-pipe's report)
    ↓
 Id persistence — same id across re-render, remount and fresh process on the stand (v010-02)
@@ -30,6 +32,8 @@ Id persistence — same id across re-render, remount and fresh process on the st
 Accessibility-tree identity — stable id on every accessibility node, stand controls carrying role and name (v010-03; per a11y-plan §2)
 
 ### Epoch 3 — Observation model
+Upstream sync ahead of the observation model — upstream/main merged, our changes kept additive; our tests and CI prove our logic survived (per intent §Principles)
+   ↓
 Snapshot model — screen as a tree of id, role, name, state, bounds (v010-04)
    ↓
 Snapshot state fidelity — enabled, checked, value, focused per control; disabled reads disabled, typed value reads back, password values masked (v010-05)  CARRY: Dioxus boolean attributes (from 2026-10-06-headless-stand) — dioxus-native-dom now removes a falsy `disabled` / `checked`, but still writes `readonly`, `required`, `hidden`, `multiple`, `selected`, `open`, `autofocus` as the literal `"false"`, which a presence read takes as set (arch §Standard Contracts → Dioxus DOM bridge); and blitz-dom reads `disabled` two ways — presence for the DISABLED state, `:disabled` and click targeting, a parsed bool for focusability (arch §Established Decisions → DOM semantics) — so a snapshot's enabled/disabled must pick one reader; hypothesis: a Dioxus `hidden: false` node drops out of the accessibility tree (not measured)
@@ -39,6 +43,8 @@ Compact snapshot serialization — whole stand screen readable in one tool resul
 Change tracking and diff — changed-node set drained per step, truthful change flag, empty diff for a no-op (v010-06)
 
 ### Epoch 4 — Driver core
+Upstream sync ahead of the driver core — upstream/main merged, our changes kept additive; our tests and CI prove our logic survived (per intent §Principles)
+   ↓
 Driver session — one headless stand instance held across commands, own lifecycle (start, attach, stop); the one process both CLI and MCP drive
    ↓
 Settle detection — UI quiescence across render, layout, timers and pending loads; delayed stand update passes with no sleep (v010-10)
@@ -52,6 +58,8 @@ Refusal detection — not found, stale, disabled, covered by another element, of
 Driver command spans — one span per driver command covering settle wait, diff size and refusal cause, through the scrub layer (per obs-plan §4 §8)  CARRY: otel-sdk-install — the opt-in OTel export deferred from 2026-10-06-telemetry-bootstrap (no OTel crate, egress or credential path shipped); two founder decisions before take-up: export transport (http-only, as the workspace `reqwest` has no TLS feature, or a TLS feature added) and the credential path (opentelemetry-otlp 0.33.0 reads `OTEL_EXPORTER_OTLP_HEADERS` unconditionally at `build()`, measured at that chunk's research.md); facts: the opentelemetry 0.33 family + tracing-opentelemetry 0.34 are MSRV 1.75 and fit the locked reqwest 0.13.4 / http 1.5.0 / tracing-subscriber 0.3.23, no coupled pin moves; the sink already stamps `service.name` / `service.version` (the OTel resource keys) — deferred by the overseer delegate under the founder's standing delegation of technical forks, 2026-10-06, provisional on the founder's word
 
 ### Epoch 5 — Agent surfaces
+Upstream sync ahead of agent surfaces — upstream/main merged, our changes kept additive; our tests and CI prove our logic survived (per intent §Principles)
+   ↓
 Driver CLI — every command with uncoloured JSON on stdout, diagnostics on stderr, accepted/refused exit codes, shell-scriptable stand flow (v010-12)
    ↓
 MCP surface — driver commands as MCP tools, local to the invoking user, no listener or auth surface, tool call parents its trace (v010-13)
@@ -61,6 +69,8 @@ Self-description — verb list, help and schemas served by CLI and MCP from the 
 Headless screenshot — screen or one element by id, no display, identical pixels on repeat with bundled fonts; fails, never skips, without fonts (v010-07, v010-08)
 
 ### Epoch 6 — Polish & ship
+Upstream sync ahead of polish and ship — upstream/main merged, our changes kept additive; our tests and CI prove our logic survived (per intent §Principles)
+   ↓
 Stand contrast harness — text/background pair of every stand control measured, per-pair result recorded (per a11y-plan §6)
    ↓
 Stand keyboard harness — Tab, Shift+Tab and activation keys dispatched headlessly on the stand, focused node read back per step (per a11y-plan §5)
