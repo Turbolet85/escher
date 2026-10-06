@@ -147,3 +147,11 @@ One entry per amendment to `architecture.md` (sidecar-contract.md §Entry form).
 - Process-wide state and threads: registers `telemetry_stdout_silent` and `stand_id_persistence`. Each re-executes its own test binary once under `cargo test` (`current_exe()` with `--ignored --exact {child} --nocapture`, output captured; only `telemetry_stdout_silent` removes `RUST_LOG`). Test-only, a fixed argv, no socket or port.
 **Why:** v010-02 proves the id an agent holds survives re-render, remount and restart, which Epoch 3 diffs and Epoch 4 act-by-id rest on. The operator chose person keys over index keys at P4. The operator ruled at the P5 review (2026-10-06, given directly) that the test re-exec is not a boundary widening and that both spawns register here. Trap: the html/head/body/#main skeleton is never remounted, so "every node is fresh after a remount" is false for those four.
 **Ref:** .andromeda/runs/2026-10-06T10-55-07-wrap/
+
+## 2026-10-06-project-readme — README is escher's front page; stylo_taffy triple licence recorded
+**Section:** §Conventions → Licensing exceptions · §Project Intent → Front page
+**Change:**
+- Licensing exceptions now also lists `stylo_taffy`, which declares `license = "MIT OR Apache-2.0 OR MPL-2.0"`: the workspace's dual licence plus MPL 2.0.
+- Project Intent gains a **Front page** bullet. The root `README.md` is escher's own page, not upstream Blitz's. It covers what escher is, what is built and what is planned (stable element ids and the headless 7GUIs stand are built; snapshot, driver, CLI and MCP are planned), its Blitz lineage, the 0.1.0 epochs, the licence and an Author / Contact section. Its one image is the fork's `ci.yml` badge. No build, doc or test step reads it; `rdme` resolves a README at runtime only. At an Upstream sync, an upstream change to `README.md` resolves to escher's version.
+**Why:** the chunk replaced upstream's front page wholesale, so later Upstream syncs will meet README conflicts at some syncs; the rule records which side wins. The README states stylo_taffy's MPL 2.0, which no master recorded. Trap: Product type's homepage/repository still name dioxuslabs/blitz; the release-metadata repoint is a separate decision pinned on the route, not this bullet.
+**Ref:** .andromeda/runs/2026-10-06T11-42-50-wrap/

@@ -1,0 +1,41 @@
+[
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "e9ac70c7",
+"ts": "2026-10-06T11:47:51Z",
+"argv": [
+"append",
+"--file",
+".andromeda/architecture-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-06T11-42-50-wrap/architecture-entry.md",
+"--lines",
+"8",
+"--run-dir",
+".andromeda/runs/2026-10-06T11-42-50-wrap",
+"--marker",
+"2026-10-06-project-readme"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"append architecture-amendments.md:+8 at line 150 · lines 149→157 · bytes 26464→27825 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-06T11-42-50-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/architecture-amendments.md"
+],
+"before": {
+"lines": 149,
+"bytes": 26464,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 157,
+"bytes": 27825
+}
+}
+]

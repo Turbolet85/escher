@@ -1,0 +1,21 @@
+Operator pass — entries 26 and 27 (leg = 'operator'), driven by hand at the operator's direction, 2026-10-06.
+
+Pre-CI commit: 3f384bca8673bf72c1394130dfefa96d741d9e18
+  chore(2026-10-06-project-readme): operator pre-CI commit, for the run this chunk's verdict reads
+  (git add -A after entry 25 read hygiene: clean; tree clean after the commit)
+
+Entry 26
+run: bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0
+bound: timeout 3600 · exit 0
+  fast leg green (its last leg, CI scripts: "Ran 64 tests … OK")
+  To https://github.com/Turbolet85/escher.git
+     0ab4513f..3f384bca  build/escher-0.1.0 -> build/escher-0.1.0
+  HEAD == origin/build/escher-0.1.0 == 3f384bca after the push
+
+Entry 27
+run: python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800
+bound: timeout 1980 · exit 0
+  repo Turbolet85/escher (the push remote `origin`) · polled 17× over 497 s
+  3f384bca8673 verdict: green · checks 16/16 · wall 463 s · runs CI#37457160310 completed/success
+  runs: CI#37457160310 push completed/success
+Atoms: exit 0 ✓ · contains "verdict: green" ✓

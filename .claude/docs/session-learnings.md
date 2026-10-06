@@ -8,6 +8,16 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-06 — A case-insensitive grep for an upper-case acronym matches inside ordinary words
+A licence or protocol acronym searched with `grep -i` matches inside common words: `-i 'MPL'` hits every "example", so a per-master site count reads dozens where the acronym itself occurs once or not at all. Sweep for an acronym case-sensitively with word boundaries (`grep -E '\bMPL\b'`), and when an `-i` count looks large, read a few hits before trusting it.
+
+---
+
+## 2026-10-06 — Committed run-dir and evidence text must not spell a host temp path, even as prose
+The hygiene read (`gate.py hygiene`) refuses any committed run-dir or evidence file whose text holds an absolute host path, and a temp-dir path counts even inside an explanatory sentence: a phase extract that named the Claude Code session's temp-folder prefix literally, to say the README must not contain it, was refused at the pre-CI commit. When such a file has to talk about a host path, describe it in words ("the session temp-dir prefix") or write it repo-relative, and run the hygiene read before the commit.
+
+---
+
 ## 2026-10-06 — A presentation guard that diffs grepped source lines must strip leading whitespace
 A gate that proves "no class / style / author-id change" by grepping those lines from the base and the working tree and diffing them reads RED on a re-nest alone: un-nesting an element by one level shifts its `class:` line's indentation while the expression stays byte-identical. The guard's intent is the attribute text, not the indentation — so pipe both grepped sides through `sed 's/^[[:space:]]*//'` before the diff (a CSS-block comparison, whose indentation is content, stays exact). When authoring the guard, add a re-nest control beside the changed-value controls.
 
