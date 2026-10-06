@@ -1,0 +1,8 @@
+Operator entry 16 — local pre-push gate, clean-tree guard, push (2026-10-06, hand-driven at the operator pass, after the pre-CI commit 021668fa)
+
+run: bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0
+started: 2026-10-06T04:24:21Z · ended: 2026-10-06T04:24:39Z
+exit: 0
+fast leg: fmt · clippy · workspace tests · CI scripts (Ran 64 tests, OK)
+push: d73df1a4..021668fa  build/escher-0.1.0 -> build/escher-0.1.0
+after: HEAD = origin/build/escher-0.1.0 = 021668faaa95406bd151320d93ee21c26291b057

@@ -8,6 +8,16 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-06 — A grep hit seen through a clipped view is not read
+The `.andromeda/` masters carry lines of 1–5 KB, so a grep row viewed through `cut -c1-N`, `head -c` or a truncating tool shows a few hundred characters of a line whose fact may sit thousands of characters further in. A report that calls such a hit "unrelated" or claims "no master states X" from the clipped view is guessing; the hit is read at its match offset (a script printing a window around `match.start()`, or `cascade.py window --at`) before it is dispositioned. Absence and caught-all claims carry the full hit list, each row with its offset and its disposition.
+
+---
+
+## 2026-10-06 — Grepping `agent-run` also finds the cold-agent marker and "agent-runnable"
+A fixed-string grep or sweep pattern `agent-run` matches inside the chunk marker `cold-agent-run-pipe` (every evidence path and sidecar citation under it) and the prose word "agent-runnable". So a hit count of the agent-run contract's sites overcounts. Anchor the pattern on the contract's own forms (`scripts/agent-run`, `target/agent-run`, `agent-run contract`) or read every row before counting it as a site.
+
+---
+
 ## 2026-10-06 — A probe's write-up claims only what the probe read
 A probe that reads an attribute and a selector match says nothing about a third consumer of the same attribute. blitz-dom reads `disabled` two ways — presence for the element state, `:disabled` and click targeting, a parsed bool for focusability — so a probe that saw `disabled="false"` match `:disabled` did not show the control leaving the focus order, yet the evidence file, the implement report, the operator question and the regression test's doc comment all said it did; two drift detectors reading the cited source caught it at the wrap. When a write-up names a mechanism, either the probe measures it or the sentence cites the code line that decides it — and a claim about one consumer of an attribute is not a claim about the others.
 

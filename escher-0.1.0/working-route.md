@@ -23,7 +23,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
 [2026-10-06-cold-agent-run-pipe] Cold-agent run pipe — fresh agent session given only a stub tool; transcript, wrong-call count and verdict recorded green
 
 ### Epoch 2 — Element identity
-Stable element ids — author key else component path, on every stand element (v010-01)
+Stable element ids — author key else component path, on every stand element (v010-01)  PREREQ: close rust gate deferral (deferred since 2026-10-06-cold-agent-run-pipe: doc — record: 2026-10-06-cold-agent-run-pipe's report)
    ↓
 Id persistence — same id across re-render, remount and fresh process on the stand (v010-02)
    ↓
@@ -71,4 +71,4 @@ Stand requirement sweep — every 0.1.0 capability proven headless by an agent a
    ↓
 Quality gates — coverage floor on driver crates and flakiness budget for stand checks, enforced on fork CI (per test-plan §10)  CARRY: audit reach — cargo-deny 0.20.2's resolved graph prunes `http-cache` (blitz-net's `cache` feature) and `ravif`, so RUSTSEC-2024-0436 (paste 1.0.15, unmaintained) and RUSTSEC-2026-0186 (memmap2 0.5.10, unsound) never reach the `audit` leg though both are in the build graph; close it (a lockfile-wide scan beside it, or a graph that reaches them) — measured at 2026-10-05-ci-gate-legs evidence/audit.md, security-plan §Dependency Security; pinned on the overseer's word at that chunk's wrap (delegate overseer, under the founder's standing delegation of technical decisions)
    ↓
-Cold-agent test — fresh agent given only the tool completes a stand task and writes a passing check, wrong calls counted (v010-15)
+Cold-agent test — fresh agent given only the tool completes a stand task and writes a passing check, wrong calls counted (v010-15)  CARRY: cold-agent run pipe (from 2026-10-06-cold-agent-run-pipe) — `scripts/cold-agent.sh` exists with a stdlib stdio MCP stub and the one task `counter`; this entry swaps the stub for the driver's MCP surface and `counter` for a stand task, keeping the isolation check, wrong-call count and positive-evidence verdict (test-plan §3). Measured at its live run (2026-10-06-cold-agent-run-pipe's report, Cross-project): `--allowedTools mcp__stub` (server-wide) let the MCP calls run in `-p` mode, and `--tools ""` removes only the built-in tools. Its crossings — the spawned `claude` client, the stdio stub, the outbound model path, the operator's Claude Code login — are PROVISIONAL pending the founder's own word (FOR DISCUSSION 7); the founder's budget ruling was one live run, so a further live run needs the operator's word

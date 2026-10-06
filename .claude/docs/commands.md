@@ -27,13 +27,18 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 - `cargo test -p blitz-tests --locked --test stand_boot --test stand_counter --test stand_flight_booker --test stand_timer --test stand_crud` — the headless-stand checks, package-alone (the bundled font must decode without workspace feature unification)
 - `cargo test -p {crate}` — one crate's unit tests
 - `cargo test -p blitz-tests --release --test paint_tree_bench -- --ignored --nocapture` — ignored benchmarks (`PAINT_TREE_BENCH_HTML=<file>` for an external page)
-- `python3 -m unittest discover -s .github/scripts` — CI Python script tests (the `ci-scripts` leg; needs PyYAML) — `test_ci_workflows.py` and `test_agent_run.py` among them
+- `python3 -m unittest discover -s .github/scripts` — CI Python script tests (the `ci-scripts` leg; needs PyYAML) — `test_ci_workflows.py`, `test_agent_run.py` and `test_cold_agent.py` among them
 
 ## Agent-run test contract
 - `bash scripts/agent-run.sh boot` — build every blitz-tests test binary; opens `target/agent-run/` (exit 0 ready · 1 failed)
 - `bash scripts/agent-run.sh run stand|all|{file}` — run the stand checks, the whole blitz-tests package, or one file; JSON-line `test` events and a `run.end` with the counts (exit 1 on a failing or empty run)
 - `bash scripts/agent-run.sh status` · `logs` · `cleanup` — the status object (exit 3 when not booted) · the appended events · remove `target/agent-run/` (idempotent)
 - Exit grammar `0` · `1` failed · `2` usage · `3` precondition unmet; raw cargo output in `target/agent-run/run.log`; `scripts/agent-run.ps1` forwards on Windows (contract: test-plan §3)
+
+## Cold-agent run pipe
+- `bash scripts/cold-agent.sh run counter` — one isolated `claude -p` session given only the stub's MCP tools; writes `target/cold-agent/verdict.json` (exit 0 passed · 1 failed; 3 when `claude` or `python3` is not on PATH). A live model call on the operator's own Claude Code login — never in CI
+- `bash scripts/cold-agent.sh status` · `logs` · `cleanup` — the last verdict (exit 3 when none) · the appended events · remove `target/cold-agent/` (idempotent)
+- Exit grammar `0` · `1` failed · `2` usage · `3` precondition unmet; the raw session transcript in `target/cold-agent/transcript.jsonl`; `scripts/cold-agent.ps1` forwards on Windows (contract: test-plan §3)
 
 ## WPT
 - `WPT_DIR=<wpt checkout> cargo run -rp wpt css svg` — the CI suites (default without args: `css/css-flexbox` + `css/css-grid`; `full` = every suite)

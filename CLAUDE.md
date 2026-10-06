@@ -14,6 +14,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 - `examples/` — example crates and root examples; `examples/seven_guis/` is the 7GUIs stand
 - `apps/` — reference browser (`blitz`), markdown viewer (`rdme`), release `bump`
 - `wpt/runner/` — the Web Platform Tests conformance runner
+- `scripts/` — the agent-run test contract, the cold-agent run pipe and its stub, the code-graph tooling
 <!-- GENERATED:setup:overview end -->
 
 ## Modules
@@ -38,7 +39,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 
 ## Critical Warnings (universal invariants)
 <!-- GENERATED:setup:warnings start -->
-- Secrets live only in GitHub Actions secrets/vars and source reads none — never put a credential in code, fixtures or logs.
+- Secrets live only in GitHub Actions secrets/vars — plus, on the dev host, the operator's own Claude Code login that the cold-agent live run uses, held by the `claude` CLI — and source reads none; never put a credential in code, fixtures, logs or committed evidence.
 - The workspace binds no network port or socket — a new listener, port, env var or workspace crate is an arch §Occupied Resources registration, never a silent add.
 - The a11y target is WCAG SC 2.1.1 · 1.4.3 · 2.4.3 and `accessibility` is a default feature — focusability, focus order and painted colours are a11y surface.
 - Engine telemetry is `tracing` behind each crate's `tracing` feature: call sites are `#[cfg(feature = "tracing")]` with a no-op fallback, never an unconditional `println!`; escher binaries install `escher_telemetry::init` (stderr only, never stdout).
@@ -63,6 +64,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 | Design tokens (as built) | `.andromeda/design-system.md` §Color Palette / §Typography |
 | Screen layouts per surface | `.andromeda/layout-templates.md` |
 | Test harness · agent-run contract | `.andromeda/test-plan.md` §3 · `scripts/agent-run.sh` (contract tests `.github/scripts/test_agent_run.py`) |
+| Cold-agent run pipe (isolated agent session · stub MCP tool · verdict) | `.andromeda/test-plan.md` §3 · `scripts/cold-agent.sh` · `scripts/cold_agent_stub.py` (contract tests `.github/scripts/test_cold_agent.py`) |
 | Observability pipeline | `.andromeda/obs-plan.md` §3 |
 | WCAG criteria · a11y harness | `.andromeda/a11y-plan.md` §1 / §3 |
 | Chunk history (version-agnostic) | `.andromeda/master-route.md` |

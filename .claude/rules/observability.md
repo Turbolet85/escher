@@ -23,6 +23,7 @@ Path-scoped rules for telemetry, logging and timing code. Source: `.andromeda/ob
 - Panics: escher-telemetry's hook logs one ERROR at target `escher_telemetry::panic` (`panic.payload` redacted) and chains the previous hook.
 - No spans, `#[instrument]`, metrics or OTel exist yet (observed absent).
 - The agent-run test contract (`scripts/agent-run.sh`) writes JSON-line harness events to stdout and `target/agent-run/events.jsonl` — harness metadata, not a telemetry sink and not escher's line format; its rules live in `.claude/rules/verification-harness.md`.
+- The cold-agent pipe (`scripts/cold-agent.sh`) writes JSON-line run events (`run.start`, `run.end`, `status`, `cleanup`) to stdout and `target/cold-agent/events.jsonl` — counts and identities only, never transcript text, tool arguments or results; its raw session transcript stays in `target/cold-agent/transcript.jsonl`, never printed (test-plan §3).
 
 ## Timing
 - Phase timing is opt-in: `log-phase-times` (→ `debug_timer/enable`) and `log-frame-times`; `debug_timer` swaps in a zero-cost dummy when `enable` is off and prints to stdout when on.

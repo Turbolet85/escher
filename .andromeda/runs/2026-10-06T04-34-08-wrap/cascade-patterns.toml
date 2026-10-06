@@ -1,0 +1,23 @@
+[[pattern]]
+id = "ci37"
+regex = '\b37 (tests|CI-script)'
+
+[[pattern]]
+id = "run37"
+fixed = '37409303977'
+
+[[pattern]]
+id = "agentrun"
+fixed = 'agent-run'
+
+[[pattern]]
+id = "secretread"
+regex = '(?i)(secret reads in source|reads no secret|no secret)'
+
+[[pattern]]
+id = "noport"
+regex = '(?i)(binds no (network )?port|no (served )?(api|port|socket|listener)|ports and listeners:\*\* none)'
+
+[[pattern]]
+id = "outbound"
+regex = '(?i)(outbound|egress)'

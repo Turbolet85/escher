@@ -1,6 +1,8 @@
 ---
 paths:
   - "scripts/agent-run.*"
+  - "scripts/cold-agent.*"
+  - "scripts/cold_agent_stub.py"
   - "packages/blitz-test-harness/**"
   - "tests/blitz-tests/tests/harness_*.rs"
 ---
@@ -18,6 +20,12 @@ Development Style is agent-driven — escher's own driver is meant to become the
 - State lives in `target/agent-run/{status.json, events.jsonl, run.log}` only — no daemon, PID file, socket, port or env var (the stand is an in-process boot; adding one is an arch §Occupied Resources registration). One driver at a time: a killed run leaves `running`, the next `run` overwrites it.
 - libtest's `--format json` is nightly-only, so the parser reads the pretty lines (`Running …`, `Doc-tests …`, `test … ... ok|FAILED|ignored`); the contract tests are `.github/scripts/test_agent_run.py` (a `cargo` shim, run by the `ci-scripts` leg).
 - NOT YET MEASURED: a test-data bootstrap mechanism.
+
+## The cold-agent run pipe (measured — `scripts/cold-agent.sh`)
+- Run from the repository root: `bash scripts/cold-agent.sh run counter`, then `status` · `logs` · `cleanup`; `scripts/cold-agent.ps1` only forwards. Same exit grammar as agent-run (`0` · `1` a `failed` verdict · `2` usage, checked first · `3` precondition — `claude`/`python3` absent, no verdict, no events).
+- `run` starts ONE live model session (`claude -p`, the operator's own login; PROVISIONAL pending the founder's word) from a per-run `mktemp -d` dir whose path names nothing, with only the stdio stub's `list`/`read`/`press` — never fire it in CI or in a loop; the contract tests (`.github/scripts/test_cold_agent.py`) use a `claude` shim.
+- The verdict (`target/cold-agent/verdict.json`) reads `passed` only on positive evidence — client exit 0, a successful `result`, `isolated`, `counts_agree`, ≥ 1 tool call, and the stub's own count at 3 (never the agent's reply); `wrong_calls` is recorded, never deciding. Events carry counts and identities only — no transcript text, argument or result.
+- State lives in `target/cold-agent/` only (`cleanup` touches nothing else); `transcript.jsonl` is raw (host paths included) — a copy committed as evidence is host-path-masked first (`gate.py hygiene` refuses an unmasked one).
 
 ## In-process `Harness` (measured — `packages/blitz-test-harness`)
 - Constructors `from_html`, `from_html_with(html, HarnessOptions)`, `from_component`, `from_vdom` pump once; `wrap` does not.

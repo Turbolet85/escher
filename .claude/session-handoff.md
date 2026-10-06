@@ -1,32 +1,27 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-06T03:51:51Z
-**Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's Setup (the operator pass pushed `73fd624c`)
+**Last Updated:** 2026-10-06T04:50:04Z
+**Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's Setup (the operator pass pushed `021668fa`)
 **Status:** clean
-**Last Commit:** 2026-10-06-stand-test-contract — feat(2026-10-06-stand-test-contract): stand test contract — scripts/agent-run.sh five verbs, exit grammar 0/1/2/3, JSON-line events, ps1 pass-through
+**Last Commit:** 2026-10-06-cold-agent-run-pipe — feat(2026-10-06-cold-agent-run-pipe): cold-agent run pipe — isolated claude -p session with a stub MCP tool, wrong-call count, positive-evidence verdict, one live run green
 
 ## Position
-- Done: 2026-10-06-stand-test-contract — `bash scripts/agent-run.sh {boot | run stand|all|{name} | status | cleanup | logs}`, JSON lines on stdout, state in `target/agent-run/` only; 14 shim contract tests in the `ci-scripts` leg; the regression test's false focus-order doc corrected (PREREQ discharged). CI run 37409303977 green 16/16 on `73fd624c` (472 s)
-- Next: Cold-agent run pipe (Epoch 1 — Foundation, its last entry) — /andromeda-phase to promote + plan it
+- Done: 2026-10-06-cold-agent-run-pipe — `bash scripts/cold-agent.sh {run counter | status | cleanup | logs}`: one isolated `claude -p` session given only a stdlib stdio MCP stub's tools, transcript captured, wrong calls counted from the stub's log, verdict in `target/cold-agent/verdict.json`; one live run passed (5 calls · 0 wrong · 0.042 USD). CI run 37413576977 green 16/16 on `021668fa`. Epoch 1 — Foundation is complete.
+- Next: Stable element ids (Epoch 2 — Element identity, its first entry) — /andromeda-phase to promote + plan it; it carries `PREREQ: close rust gate deferral` (the `doc` leg, deferred here on zero Rust delta).
 
 ## Work done
-3 new files (`scripts/agent-run.sh`, `scripts/agent-run.ps1`, `.github/scripts/test_agent_run.py`) + a `//!`-only edit; workspace tests 430 · 0 · 4 unchanged; CI-scripts 23 → 37.
+4 new files (`scripts/cold-agent.{sh,ps1}`, `scripts/cold_agent_stub.py`, `.github/scripts/test_cold_agent.py`) + live evidence; CI-scripts 37 → 64; workspace tests 430 · 0 · 4 unchanged.
 
 ## Drift resolved
-12 amendments applied (arch 2 · test-plan 3 · obs-plan 4 · security-plan 2, one raised by the expected-amendments check and one from the security detector's note · layout 1), 0 escalations; 5 sidecar entries; 11 leaves re-derived (incl. the verification-harness rule's 5-command section, now measured).
+20 amendments (arch 7 · security-plan 5 · test-plan 3 · obs-plan 4 · layout-templates 1, incl. 3 orchestrator-raised and 1 narrowed), 3 proposals rejected (source-line citations the report did not carry), 2 escalations resolved; 5 sidecar entries; 11 leaf files re-derived.
 
 ## Notes
-- The operator's ruling this session stands as built and is in test-plan §3: `run.start.files` is `[]` under `all`; `run stand` with no `stand_*.rs` is an empty run (exit 1, no cargo call); a usage error (2) is checked before not-booted (3).
-- `scripts/agent-run.ps1` is untested on this host (`pwsh` absent) and Windows CI runs `cargo test` directly, not through it.
-- FOR THE FOUNDER (carried): the falsy-`disabled` engine fix (`packages/dioxus-native-dom/src/mutation_writer.rs`) is PROVISIONAL on the overseer delegate's word, 2026-10-06; opt-in OTel export DEFERRED (CARRY on "Driver command spans"); the `coverage-report` upload widening PROVISIONAL.
-- CARRY on "Snapshot state fidelity" stands: Dioxus `readonly` / `required` / `hidden` / `multiple` / `selected` / `open` / `autofocus` still write a literal `"false"`.
-- Fork CI wall 472 s on this push (1104 s on the previous, which changed `Cargo.lock`); cause of either not measured.
-- The audit leg misses the paste and memmap2 advisories — CARRY pinned on "Quality gates" (carried).
+- FOR THE FOUNDER (new, FOR DISCUSSION 7): the cold-agent pipe's crossings — the spawned `claude` client, its stdio MCP stub, the outbound model path, the operator's own Claude Code login (`apiKeySource` none, no CI secret) — were ratified into arch and security-plan by the overseer under your standing delegation and stand PROVISIONAL in the bodies until your own word. A CARRY on "Cold-agent test" repeats it.
+- FOR THE FOUNDER (carried): the falsy-`disabled` engine fix is PROVISIONAL; opt-in OTel export DEFERRED (CARRY on "Driver command spans"); the `coverage-report` upload widening PROVISIONAL.
+- The committed live transcript masks two host paths (`/tmp/<session-dir>`, `/home/<user>/`) — the operator ruled it fine; `gate.py hygiene` refuses an unmasked one.
+- CARRY on "Snapshot state fidelity" stands (Dioxus boolean attributes still write a literal `"false"`); the audit leg's paste/memmap2 blind spot stays CARRY-pinned on "Quality gates".
 - Last failed command: none
 
 ## Deferred learnings
-- recurrence-despite-learning: "The project's Bash guards refuse a heredoc written to a file and a leading cd" (Tier 3, 2026-10-06) — two more leading-`cd` calls were blocked this session (into a chunk evidence dir; into `.andromeda/`).
+- recurrence-despite-learning: "The project's Bash guards refuse a heredoc written to a file and a leading cd, and read payload prose too" (Tier 3, 2026-10-06) — a cat heredoc appending to a run-dir file was blocked again this session.
 Review with `/andromeda-wrap-session --review` if any should be applied.
-
-## Session End Status
-Completed normally at 2026-10-06 06:14:54

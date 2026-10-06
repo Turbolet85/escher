@@ -38,6 +38,7 @@ Path-scoped rules for test files. Source: `.andromeda/test-plan.md` §2 §4 §5 
 - **One file:** `cargo test -p blitz-tests --test {name}`
 - **One crate:** `cargo test -p {crate}`
 - **Agent-driven (stand checks · blitz-tests):** `bash scripts/agent-run.sh boot`, then `run stand` · `run all` · `run {name}` — JSON-line results, exit `0`/`1`/`2`/`3` (test-plan §3; `.claude/rules/verification-harness.md`)
+- **Cold-agent pipe (one live model session — operator host only, never in CI):** `bash scripts/cold-agent.sh run counter` → `target/cold-agent/verdict.json`; its contract tests run in the `ci-scripts` leg under a `claude` shim (`.github/scripts/test_cold_agent.py`)
 - **Whole workspace (CI leg):** `cargo test --workspace --locked` — or `bash .github/scripts/ci-leg.sh test`, exactly as CI runs it
 - **Before a push:** `bash .github/scripts/ci-leg.sh fast` (fmt → clippy → test → CI scripts)
 - **Benchmarks (ignored):** `cargo test -p blitz-tests --release --test paint_tree_bench -- --ignored --nocapture`

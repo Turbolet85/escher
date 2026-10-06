@@ -14,7 +14,8 @@ escher is a native-API engine library with no served API, no listener and no aut
 - **Script execution** → default `ScriptFetcher` accepts only `file:` / `data:`; JS `fetch()` is GET/HEAD only through the embedder's fetcher; same-origin / CORS observed absent; every runtime event is `isTrusted`; the browser's JS is behind the non-default `javascript` feature.
 - **`file:` reads** → blitz-net reads any `file:` path with no restriction; the WPT net provider joins request paths onto the WPT base.
 - **Outbound HTTP** → 6 concurrent requests per host; no response-size cap, no timeout (observed absent); TLS via reqwest `native-tls`.
-- **CLI input** → examples parse URLs with `Url::parse` (+ `https://` retry), numeric args with defaults; `bump` validates target + semver; `scripts/agent-run.sh` allowlists its verb and admits a run selection only as `stand`, `all` or an existing `^[a-z0-9_]+$` blitz-tests file stem (else exit 2, no cargo call).
+- **CLI input** → examples parse URLs with `Url::parse` (+ `https://` retry), numeric args with defaults; `bump` validates target + semver; `scripts/agent-run.sh` allowlists its verb and admits a run selection only as `stand`, `all` or an existing `^[a-z0-9_]+$` blitz-tests file stem (else exit 2, no cargo call); `scripts/cold-agent.sh` allowlists its verb and the task `counter` (else exit 2, before any precondition or `claude` call).
+- **Cold-agent pipe (PROVISIONAL, pending the founder's word)** → an operator-host-only `claude -p` session on the operator's own Claude Code login (`apiKeySource` none, no API key, no env read, no CI secret) reaches the model provider; its only tools are a stdlib stdio MCP stub that refuses an unknown id, a disabled button, a press on the display and a malformed argument (`isError`, no state change) and logs no argument value.
 - **rdme markdown** → comrak with `unsafe: true` passes raw HTML through.
 - **CI** → post-results workflow checks out trusted scripts from the default branch; `ci.yml` declares a workflow-level `permissions: contents: read` with no job grant, pins every action to a commit SHA and references no secret. The publish (signing), WPT and post-results jobs carry `github.repository == 'DioxusLabs/blitz'`, so no fork ref reaches "Signed Builds", "WPT" or their secrets.
 
@@ -25,6 +26,8 @@ escher is a native-API engine library with no served API, no listener and no aut
 | Local user data (browser app) | history `history.sqlite3`, HTTP cache, cookies, clipboard, chosen file paths | unencrypted on disk; history in-memory on mobile; "Clear history" / "Clear Cache" |
 | Logged values | request URLs, cache dir path, attribute values | escher's stderr sink (`seven_guis_native`) redacts them by allowlist; the upstream apps' `fmt::init()` and the WPT runner's `env_logger` log them as-is |
 | Harness test logs | the agent-run contract's JSON-line events; raw cargo/libtest output in `target/agent-run/run.log` | events carry no content-named field and no captured output; `run.log` unscrubbed like `target/ci-logs/`, gitignored, never printed |
+| Operator credential (dev host) | the operator's Claude Code claude.ai login, used by the cold-agent live run | held by the `claude` CLI outside the repo (at-rest location unmeasured); no artifact, event or verdict carries it |
+| Agent-session transcript | `target/cold-agent/transcript.jsonl` — model output, tool I/O, host paths | raw by design, never printed, gitignored; events and verdict carry counts and identities only; the one committed copy host-path-masked |
 
 ## Universal anti-patterns
 > NO RECORDED INTENT — the plan carries none yet; Tier 1 warnings and `.claude/rules/security.md` hold the measured invariants.

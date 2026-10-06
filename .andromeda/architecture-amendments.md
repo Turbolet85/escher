@@ -2,12 +2,6 @@
 
 One entry per amendment to `architecture.md` (sidecar-contract.md §Entry form). Appended at wrap P2; rewritten only by the epoch-close consolidation.
 
-## 2026-10-05-as-built-baseline — the rustdoc doc gate reaches no library crate
-**Section:** §Stack and Technologies (Code quality row) · §Conventions (Formatting and lints) · §Infrastructure Patterns (Build system · CI/CD) · §Inherited Defaults (Code quality)
-**Change:** was "Formatting, lint and doc gates" / "rustdoc warnings are errors" / "fmt, clippy and rustdoc gates" — a CI rustdoc `-D warnings` gate over the workspace; now `RUSTDOCFLAGS: "-D warnings"` is set workflow-wide but CI's docs job runs bare `cargo doc`, which documents only the lib-less root package `blitz-examples`, so no library crate's rustdoc is gated; `cargo doc --workspace --no-deps` under `-D warnings` fails — 3 crates (blitz-dom, blitz-vibey-script, example transparent), 9 errors — as measured at the chunk's `evidence/baseline.md`.
-**Why:** the as-built baseline measured the docs job documenting nothing and the workspace form red; making the gate real and green is owned by the "CI gate legs" route entry (named at the P5 review on the founder's word, relayed by the overseer).
-**Ref:** .andromeda/runs/2026-10-05T20-35-18-wrap/
-
 ## 2026-10-05-as-built-baseline — measured dev-host build environment
 **Section:** §Stack and Technologies (Build environment row)
 **Change:** the row now states that the flake's rust-bin "1.90.0" pin sits below the workspace `rust-version` "1.91.0" its own comment says to keep in sync with, and carries the dev-host reading as measured at the chunk's `evidence/baseline.md` (Omarchy 4.0.4, Arch-based, 2026-10-05): the flake is not used; host stable rustc/cargo 1.99.0; no `rust-toolchain*` file, no `.cargo/config*`; Arch packages fontconfig 2.18.3, openssl 3.6.4, pkgconf 3.0.7, python 3.14.7 stand in for CI's `libfontconfig1-dev` and build-time python3.
@@ -104,3 +98,15 @@ One entry per amendment to `architecture.md` (sidecar-contract.md §Entry form).
 **Why:** the stand test contract chunk added a project-authored harness script and its state area; no port, socket, env var, crate or dependency.
 **Kept:** "the one fork-CI artifact outside `target/ci-logs/`" stays true — `target/agent-run/` is never uploaded.
 **Ref:** .andromeda/runs/2026-10-06T03-39-41-wrap/
+
+## 2026-10-06-cold-agent-run-pipe — the cold-agent pipe registered; its crossings PROVISIONAL
+**Section:** §Standard Contracts → CI contracts · §Occupied Resources → Filesystem · Process-wide state · Outbound hosts · Names · §Stack and Technologies → CI/CD · §Infrastructure Patterns → Directory structure
+**Change:**
+- CI contracts: adds the cold-agent run pipe beside agent-run — `bash scripts/cold-agent.sh {run <task> | status | cleanup | logs}`, task `counter`, exit `0` · `1` failed verdict · `2` usage before any precondition · `3` precondition; python3-`json` events `run.start` · `run.end` · `status` · `cleanup`; `run` starts one isolated `claude -p` session from a per-run `mktemp -d` dir with only the stub's MCP tools and writes `verdict.json` (`passed` only on positive evidence); the stdlib stdio MCP stub (`list` · `read` · `press`; `not-found` · `disabled` · `not-pressable` · `malformed`); pinned by `test_cold_agent.py` in the `ci-scripts` leg.
+- Filesystem: `target/cold-agent/` (verdict, events, raw transcript, client log, call log, stub state), the per-run session dir, the live run's committed `evidence/live-*`.
+- Process-wide state: one spawned `claude` client per run and its stdio stub. Outbound hosts: the model provider via the operator's own Claude Code login, live run only, never CI.
+- Names: the three scripts and the MCP server name `stub`. Stack CI/CD: the Claude Code CLI as the host-only agent client (read at 2.1.288 on the dev host). Directory structure: a `scripts/` line.
+- Network ports and listeners stays none.
+**Why:** the cold-agent run pipe chunk built the cold-agent gate's reachability pipe. The client, its stdio stub, the outbound path and the login are a Boundary widening: answered at P4 and ratified at this wrap by the overseer under the founder's standing delegation, kept PROVISIONAL in the body until the founder's own word.
+**Kept:** "the one fork-CI artifact outside `target/ci-logs/`" stays true — `target/cold-agent/` is uploaded by no CI job.
+**Ref:** .andromeda/runs/2026-10-06T04-34-08-wrap/

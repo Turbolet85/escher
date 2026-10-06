@@ -1,0 +1,593 @@
+[
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T04:34:21Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe",
+"--run-dir",
+".andromeda/runs/2026-10-06T04-34-08-wrap",
+"--marker",
+"2026-10-06-cold-agent-run-pipe"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base d73df1a4 (the parent of the oldest pre-CI commit 021668fa) · lists new 5 · modify 0 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe/evidence/ (dir) ×0",
+"scope: clean — changed 4 · listed 4 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 46"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "d73df1a4b9d1ad0603d1ae106fb730f9baf5723e",
+"base_why": "the parent of the oldest pre-CI commit 021668fa",
+"counts": {
+"changed": 4,
+"listed": 4,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 46,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T04:50:58Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T04-34-08-wrap",
+"--marker",
+"2026-10-06-cold-agent-run-pipe"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-06-cold-agent-run-pipe · entries 17",
+"logs $TMPDIR/andromeda-gate/2026-10-06-cold-agent-run-pipe/wrap-2026-10-06T04-34-08 · bound: GNU timeout",
+"delta docs 47 · unmapped 2",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L193-206: The gates below run in /implement P2 and the wrap's light gate, in block order. Notes on t… (1233 chars)",
+"  1 unit        green · exit 0 · 2.54s · 3882 B → 1.log · python3 -m unittest discover -s .github/scripts -p 'test_c… (74 chars)",
+"  2 unit        green · exit 0 · 0.85s · 113 B → 2.log · python3 -m unittest discover -s .github/scripts -p 'test_a… (71 chars)",
+"  3 integration green · exit 0 · 0.05s · 80 B → 3.log · bash scripts/cold-agent.sh cleanup && bash scripts/cold-ag… (103 chars)",
+"  4 integration green · exit 3 · 0.02s · 39 B → 4.log · bash scripts/cold-agent.sh status",
+"  5 integration green · exit 2 · 0.01s · 93 B → 5.log · bash scripts/cold-agent.sh run nonesuch",
+"  6 probe       green · exit 1 · 0.0s · 2 B → 6.log · test -f scripts/cold-agent.sh && test -f scripts/cold_agen… (256 chars)",
+"  7 probe       green · exit 0 · 0.0s · 0 B → 7.log · git diff --quiet d73df1a4b9d1ad0603d1ae106fb730f9baf5723e … (236 chars)",
+"  8 probe       not run — leg operator (the letter drives it) · claude --version",
+"  9 e2e         not run — leg operator (the letter drives it) · bash scripts/cold-agent.sh run counter",
+" 10 probe       green · exit 0 · 0.02s · 29 B → 10.log · python3 -c 'import json; v=json.load(open(\"escher-0.1.0/ch… (306 chars)",
+" 11 probe       green · exit 1 · 0.0s · 2 B → 11.log · test -f escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe… (473 chars)",
+" 12 probe       green · exit 0 · 0.02s · 7 B → 12.log · python3 -c 'import json; bad={\"url\",\"href\",\"src\",\"html\",\"t… (400 chars)",
+" 13 lint        green · exit 0 · 15.76s · 48721 B → 13.log · bash .github/scripts/ci-leg.sh fast",
+" 14 lint        not run — defer (key): zero Rust delta: the chunk adds shell, p… (115 chars) · bash .github/scripts/ci-leg.sh doc",
+" 15 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 16 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 17 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 17 · green 11 · red 0 · recorded 0 · timeout 0 · not-run 6"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-06-cold-agent-run-pipe",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-06-cold-agent-run-pipe/wrap-2026-10-06T04-34-08",
+"delta": {
+"docs": [
+".andromeda/architecture-amendments.md",
+".andromeda/architecture.md",
+".andromeda/friction-log.ndjson",
+".andromeda/layout-templates-amendments.md",
+".andromeda/layout-templates.md",
+".andromeda/obs-plan-amendments.md",
+".andromeda/obs-plan.md",
+".andromeda/security-plan-amendments.md",
+".andromeda/security-plan.md",
+".andromeda/state.yaml",
+".andromeda/test-plan-amendments.md",
+".andromeda/test-plan.md",
+".claude/docs/commands.md",
+".claude/docs/design-summary.md",
+".claude/docs/obs-summary.md",
+".claude/docs/security-summary.md",
+".claude/docs/session-learnings.md",
+".claude/docs/stack.md",
+".claude/docs/tests-summary.md",
+".claude/rules/observability.md",
+".claude/rules/security.md",
+".claude/rules/testing.md",
+".claude/rules/verification-harness.md",
+".claude/session-handoff.md",
+"CLAUDE.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-06T04-34-08-wrap/a11y-plan-contracts.md",
+".andromeda/runs/2026-10-06T04-34-08-wrap/architecture-entry.md",
+".andromeda/runs/2026-10-06T04-34-08-wrap/cascade-2026-10-06-cold-agent-run-pipe.json",
+".andromeda/runs/2026-10-06T04-34-08-wrap/cascade-dispositions.md",
+".andromeda/runs/2026-10-06T04-34-08-wrap/cascade-patterns.toml",
+".andromeda/runs/2026-10-06T04-34-08-wrap/curation.md",
+".andromeda/runs/2026-10-06T04-34-08-wrap/evolve-2026-10-06-cold-agent-run-pipe.json",
+".andromeda/runs/2026-10-06T04-34-08-wrap/fanout-results.md",
+".andromeda/runs/2026-10-06T04-34-08-wrap/gate-2026-10-06-cold-agent-run-pipe.json",
+".andromeda/runs/2026-10-06T04-34-08-wrap/inputs-2026-10-06-cold-agent-run-pipe.json",
+".andromeda/runs/2026-10-06T04-34-08-wrap/layout-templates-entry.md",
+".andromeda/runs/2026-10-06T04-34-08-wrap/obs-plan-contracts.md",
+".andromeda/runs/2026-10-06T04-34-08-wrap/obs-plan-entry.md",
+".andromeda/runs/2026-10-06T04-34-08-wrap/registry-2026-10-06-cold-agent-run-pipe.json",
+".andromeda/runs/2026-10-06T04-34-08-wrap/route-no-marker.json",
+".andromeda/runs/2026-10-06T04-34-08-wrap/security-plan-entry.md",
+".andromeda/runs/2026-10-06T04-34-08-wrap/splice-2026-10-06-cold-agent-run-pipe.json",
+".andromeda/runs/2026-10-06T04-34-08-wrap/sweep-listing.txt",
+".andromeda/runs/2026-10-06T04-34-08-wrap/test-plan-contracts.md",
+".andromeda/runs/2026-10-06T04-34-08-wrap/test-plan-entry.md",
+"escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe/report.md"
+]
+},
+"unmapped": [
+"escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe/evidence/operator-16-push.txt",
+"escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe/evidence/operator-17-ci.txt"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 49,
+"problem": null
+},
+"prose": [
+{
+"from": 193,
+"to": 206,
+"text": "The gates below run in /implement P2 and the wrap's light gate, in block order. Notes on the block: - The contract tests run first, with no live model. - The live run is an `operator` entry. /implement fires it once, records it in `evidence/`, and the wrap never re-runs   it. Its non-priming probe (the client on PATH) comes first. - No boot smoke: the chunk ships no binary. - No a11y entry: no rendered surface changes (a11y extract: no domain coverage). - No audit entry: `Cargo.lock` is unchanged, guarded below. - `doc` is deferred: the chunk has zero Rust delta. - The git-reading guards set their base at `d73df1a4`, so they survive the operator's pre-CI commit. - The operator entries push this chunk and read the CI run whose `ci-scripts` job runs the new tests on the runner. - The committed evidence files (`evidence/live-*` and `live-run.md`) have no producing entry of their own. Step 6's   one-shot copy produces them after the live `operator` entry, which produces `target/cold-agent/` (its `artifact`). The   copy is never re-run: the live run happens once (the founder's budget ruling). The entries after the live one read   those committed files, so the wrap re-verifies the evidence without a second live session."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "python3 -m unittest discover -s .github/scripts -p 'test_cold_agent.py' -v",
+"run_sha8": "c9e7b32e",
+"expect": [
+"exit 0",
+"contains OK",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-cold-agent-run-pipe/wrap-2026-10-06T04-34-08/1.log",
+"bytes": 3882,
+"log_sha8": "27a0eac8",
+"exit": 0,
+"seconds": 2.54,
+"readings": [
+"exit 0 ✓",
+"contains 'OK' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "python3 -m unittest discover -s .github/scripts -p 'test_agent_run.py' ",
+"run_sha8": "d9b2f7e5",
+"expect": [
+"exit 0",
+"contains Ran 14 tests",
+"contains OK"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-cold-agent-run-pipe/wrap-2026-10-06T04-34-08/2.log",
+"bytes": 113,
+"log_sha8": "8691b81d",
+"exit": 0,
+"seconds": 0.85,
+"readings": [
+"exit 0 ✓",
+"contains 'Ran 14 tests' ✓",
+"contains 'OK' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "bash scripts/cold-agent.sh cleanup && bash scripts/cold-agent.sh cleanup && test ! -e target/cold-agent",
+"run_sha8": "03d3217c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-cold-agent-run-pipe/wrap-2026-10-06T04-34-08/3.log",
+"bytes": 80,
+"log_sha8": "f29f1adb",
+"exit": 0,
+"seconds": 0.05,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "bash scripts/cold-agent.sh status",
+"run_sha8": "f6dd4bd1",
+"expect": [
+"exit 3"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-cold-agent-run-pipe/wrap-2026-10-06T04-34-08/4.log",
+"bytes": 39,
+"log_sha8": "331bb0e2",
+"exit": 3,
+"seconds": 0.02,
+"readings": [
+"exit 3 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "bash scripts/cold-agent.sh run nonesuch",
+"run_sha8": "2566dd89",
+"expect": [
+"exit 2"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-cold-agent-run-pipe/wrap-2026-10-06T04-34-08/5.log",
+"bytes": 93,
+"log_sha8": "4219c22f",
+"exit": 2,
+"seconds": 0.01,
+"readings": [
+"exit 2 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "test -f scripts/cold-agent.sh && test -f scripts/cold_agent_stub.py && cat scripts/cold-agent.sh scripts/cold_agent_stub.py scripts/cold-agent.ps1 | grep -c -E 'socket|TcpListener|bind\\(|listen\\(|http\\.server|urllib|requests|os\\.environ|getenv|ANTHROPIC_' ",
+"run_sha8": "ee60ce2d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-cold-agent-run-pipe/wrap-2026-10-06T04-34-08/6.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff --quiet d73df1a4b9d1ad0603d1ae106fb730f9baf5723e -- Cargo.lock Cargo.toml packages examples tests apps wpt scripts/agent-run.sh scripts/agent-run.ps1 .github/scripts/test_agent_run.py .github/scripts/ci-leg.sh .github/workflows",
+"run_sha8": "23abb2d4",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-cold-agent-run-pipe/wrap-2026-10-06T04-34-08/7.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "claude --version",
+"run_sha8": "f9e55353",
+"expect": [
+"exit 0",
+"contains Claude Code"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 9,
+"role": "e2e",
+"run": "bash scripts/cold-agent.sh run counter",
+"run_sha8": "c9a3fbda",
+"expect": [
+"exit 0",
+"contains \"outcome\": \"passed\"",
+"contains \"isolated\": true",
+"contains \"counts_agree\": true"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "python3 -c 'import json; v=json.load(open(\"escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe/evidence/live-verdict.json\")); print(v[\"outcome\"], v[\"isolated\"], v[\"counts_agree\"], v[\"final_count\"], v[\"tool_calls\"] >= 1, all(isinstance(v[k], int) for k in (\"wrong_calls\", \"input_tokens\", \"output_tokens\")))' ",
+"run_sha8": "0ea2a973",
+"expect": [
+"exit 0",
+"last line passed True True 3 True True"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-cold-agent-run-pipe/wrap-2026-10-06T04-34-08/10.log",
+"bytes": 29,
+"log_sha8": "29590200",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"last line 'passed True True 3 True True' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "test -f escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe/evidence/live-verdict.json && test -f escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe/evidence/live-transcript.jsonl && cat escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe/evidence/live-*.jsonl escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe/evidence/live-verdict.json | grep -c -i -E 'sk-ant-|x-api-key|authorization|\\.credentials|oauth_?token|refresh_?token|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[a-z]{2,}' ",
+"run_sha8": "e570459d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-cold-agent-run-pipe/wrap-2026-10-06T04-34-08/11.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "python3 -c 'import json; bad={\"url\",\"href\",\"src\",\"html\",\"text\",\"value\",\"attrs\",\"path\",\"request\",\"error\",\"panic.payload\"}; ev=[json.loads(l) for l in open(\"escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe/evidence/live-events.jsonl\")]; v=json.load(open(\"escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe/evidence/live-verdict.json\")); print(len(ev) >= 2, sum(1 for e in ev + [v] if bad & set(e)))' ",
+"run_sha8": "2a97923b",
+"expect": [
+"exit 0",
+"last line True 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-cold-agent-run-pipe/wrap-2026-10-06T04-34-08/12.log",
+"bytes": 7,
+"log_sha8": "383835c0",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"last line 'True 0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-cold-agent-run-pipe/wrap-2026-10-06T04-34-08/13.log",
+"bytes": 48721,
+"log_sha8": "e2a757c6",
+"exit": 0,
+"seconds": 15.76,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — defer (key): zero Rust delta: the chunk adds shell, p… (115 chars)"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "675d3a19",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T04:51:29Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-10-06T04-34-08-wrap",
+"--marker",
+"2026-10-06-cold-agent-run-pipe"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 26 (runs 24 · evidence 2 · inputs 0) · trails 9 not read · copies 0 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 24,
+"evidence": 2,
+"inputs": 0,
+"trails": 9,
+"copies": 0,
+"kept": 0,
+"binary": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T04:51:29Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe",
+"--run-dir",
+".andromeda/runs/2026-10-06T04-34-08-wrap",
+"--marker",
+"2026-10-06-cold-agent-run-pipe"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base d73df1a4 (the parent of the oldest pre-CI commit 021668fa) · lists new 5 · modify 0 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe/evidence/ (dir) ×0",
+"scope: clean — changed 4 · listed 4 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 95"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "d73df1a4b9d1ad0603d1ae106fb730f9baf5723e",
+"base_why": "the parent of the oldest pre-CI commit 021668fa",
+"counts": {
+"changed": 4,
+"listed": 4,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 95,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

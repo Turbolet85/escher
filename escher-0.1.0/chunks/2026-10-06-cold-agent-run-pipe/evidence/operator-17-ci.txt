@@ -1,0 +1,16 @@
+Operator entry 17 — CI conclusion on the pushed sha (2026-10-06, hand-driven at the operator pass)
+
+run: python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800
+started: 2026-10-06T04:24:47Z · ended: 2026-10-06T04:32:01Z
+exit: 0
+expect: exit 0 ✓ · contains 'verdict: green' ✓
+
+ci v1.0 · 84a1732c
+repo Turbolet85/escher (the push remote `origin`) · polled 15× over 434 s
+021668faaa95 verdict: green · checks 16/16 · wall 429 s · runs CI#37413576977 completed/success
+runs: CI#37413576977 push completed/success
+
+ci-scripts on the runner: job "Test CI scripts" (112107167629) success — `Ran 64 tests … OK`
+(gh run view 37413576977 -R Turbolet85/escher --job 112107167629 --log). The job runs unittest without -v, so no
+test name is printed; 64 = the 37 before this chunk + the 27 in test_cold_agent.py, the same 64 the local fast leg
+counted with the file present.

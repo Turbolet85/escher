@@ -1,0 +1,10 @@
+# architecture — archived amendment originals
+Writer = wrap P7 only · read by NO loop skill · cold history, never cited for current truth; each run's originals under its own heading.
+
+# Consolidated at the 2026-10-06-cold-agent-run-pipe wrap — 0 re-worded · 1 pruned
+
+## 2026-10-05-as-built-baseline — the rustdoc doc gate reaches no library crate
+**Section:** §Stack and Technologies (Code quality row) · §Conventions (Formatting and lints) · §Infrastructure Patterns (Build system · CI/CD) · §Inherited Defaults (Code quality)
+**Change:** was "Formatting, lint and doc gates" / "rustdoc warnings are errors" / "fmt, clippy and rustdoc gates" — a CI rustdoc `-D warnings` gate over the workspace; now `RUSTDOCFLAGS: "-D warnings"` is set workflow-wide but CI's docs job runs bare `cargo doc`, which documents only the lib-less root package `blitz-examples`, so no library crate's rustdoc is gated; `cargo doc --workspace --no-deps` under `-D warnings` fails — 3 crates (blitz-dom, blitz-vibey-script, example transparent), 9 errors — as measured at the chunk's `evidence/baseline.md`.
+**Why:** the as-built baseline measured the docs job documenting nothing and the workspace form red; making the gate real and green is owned by the "CI gate legs" route entry (named at the P5 review on the founder's word, relayed by the overseer).
+**Ref:** .andromeda/runs/2026-10-05T20-35-18-wrap/
