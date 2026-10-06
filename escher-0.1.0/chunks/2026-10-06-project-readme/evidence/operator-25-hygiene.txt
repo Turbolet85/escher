@@ -1,0 +1,15 @@
+Operator pass — entry 25 (leg = 'operator'), driven by hand at the operator's direction, 2026-10-06
+("continue with the operator pass (hygiene, pre-CI commit, push, ci.py conclusion --wait)").
+
+run: python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene
+
+First firing — exit 0, verdict refused:
+  P1 .andromeda/runs/2026-10-06T11-11-14-phase/security.md:31 ×1 · tmp
+  hygiene: refused 1 files — P1 1 · P2 0 · P3 0 · read 32 (runs 30 · evidence 2 · inputs 0) · trails 11 not read · copies 0 not read by P1 — 0 host paths kept · binary 0 not read by P1
+Repair (gate-contract §Hygiene: on refused the letter rewrites the listed file): the phase security extract's
+line 31 named the Claude session temp-dir prefix as a literal temp path; reworded in plain words, meaning unchanged.
+No acceptance or report cites that file.
+
+Second firing — exit 0:
+  hygiene: clean — read 32 (runs 30 · evidence 2 · inputs 0) · trails 11 not read · copies 0 not read by P1 — 0 host paths kept · binary 0 not read by P1
+Atoms: exit 0 ✓ · contains "hygiene: clean" ✓

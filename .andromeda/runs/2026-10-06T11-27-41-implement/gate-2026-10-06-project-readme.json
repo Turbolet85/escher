@@ -1,0 +1,1374 @@
+[
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T11:30:19Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-06-project-readme/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T11-27-41-implement",
+"--marker",
+"2026-10-06-project-readme"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-06-project-readme · entries 27",
+"logs $TMPDIR/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41 · bound: GNU timeout",
+"delta docs 38",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L45-45: No live leg runs this chunk. The agent-run entries drive the in-process stand through `scr… (444 chars)",
+"prose L47-47: The README checks are text censuses over the one file. The structure check carries `role =… (582 chars)",
+"  1 unit        green · exit 0 · 0.0s · 112 B → 1.log · grep -E '^#{1,6} ' README.md | paste -sd '|' ",
+"  2 probe       green · exit 0 · 0.0s · 6 B → 2.log · test \"$(wc -l < README.md)\" -le 90 && echo short",
+"  3 probe       green · exit 1 · 0.0s · 2 B → 3.log · grep -c -E '<img|<picture|<svg' README.md",
+"  4 probe       green · exit 0 · 0.0s · 2 B → 4.log · grep -c '!\\[' README.md",
+"  5 probe       green · exit 0 · 0.0s · 2 B → 5.log · grep -c -F '[![CI status](https://github.com/Turbolet85/es… (173 chars)",
+"  6 probe       green · exit 1 · 0.0s · 2 B → 6.log · grep -c -i -E 'crates\\.io|docs\\.rs|deps\\.rs|discord|blitz\\… (134 chars)",
+"  7 probe       green · exit 0 · 0.0s · 2 B → 7.log · grep -c -F 'https://github.com/DioxusLabs/blitz' README.md",
+"  8 probe       green · exit 0 · 0.01s · 2 B → 8.log · grep '^### Epoch' escher-0.1.0/working-route.md | sed 's/^… (244 chars)",
+"  9 probe       green · exit 0 · 0.0s · 2 B → 9.log · sed -n '/^## Plans$/,/^## License$/p' README.md | grep -c … (77 chars)",
+" 10 probe       green · exit 0 · 0.01s · 15 B → 10.log · sed -n '/^## Try it$/,/^## Plans$/p' README.md > /dev/null… (361 chars)",
+" 11 probe       green · exit 0 · 0.02s · 5 B → 11.log · cargo metadata --no-deps --format-version 1 --locked | pyt… (247 chars)",
+" 12 probe       green · exit 0 · 0.01s · 16 B → 12.log · for t in 'MIT' 'Apache 2.0' 'MPL 2.0' 'stylo_taffy' 'LICEN… (215 chars)",
+" 13 probe       green · exit 0 · 0.0s · 2 B → 13.log · test \"$(grep -c -F 'turbolet85@gmail.com' README.md)\" = 1 … (151 chars)",
+" 14 probe       green · exit 1 · 0.0s · 2 B → 14.log · grep -c -i -E 'token|secret|password|api[_-]?key|authoriza… (101 chars)",
+" 15 probe       green · exit 1 · 0.0s · 2 B → 15.log · grep -c -i -E 'sandbox|secure|wcag|screen.?reader|opentele… (109 chars)",
+" 16 probe       green · exit 0 · 0.0s · 16 B → 16.log · test -s escher-0.1.0/chunks/2026-10-06-project-readme/evid… (96 chars)",
+" 17 probe       green · exit 0 · 0.01s · 10 B → 17.log · { git diff --name-only 0ab4513f35f5f7360c4280b11f17d38a2fc… (212 chars)",
+" 18 build       green · exit 0 · 29.05s · 137 B → 18.log · bash scripts/agent-run.sh boot",
+" 19 integration green · exit 0 · 3.2s · 2707 B → 19.log · bash scripts/agent-run.sh run stand",
+" 20 integration green · exit 0 · 0.02s · 3 B → 20.log · bash scripts/agent-run.sh logs | python3 -c 'import json,s… (223 chars)",
+" 21 integration green · exit 0 · 0.03s · 40 B → 21.log · bash scripts/agent-run.sh cleanup",
+" 22 lint        green · exit 0 · 45.48s · 50238 B → 22.log · bash .github/scripts/ci-leg.sh fast",
+" 23 lint        green · exit 0 · 0.34s · 177 B → 23.log · bash .github/scripts/ci-leg.sh doc",
+" 24 integration green · exit 0 · 2.41s · 1597 B → 24.log · bash .github/scripts/ci-leg.sh a11y",
+" 25 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 26 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 27 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 27 · green 24 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-06-project-readme",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-project-readme/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-06T10-55-07-wrap/evolve-2026-10-06-id-persistence.json",
+".claude/session-handoff.md",
+"README.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/a11y-history.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/a11y.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/arch-history.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/arch.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-06T11-11-14-phase/control-credential.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/control-no-lineage.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/control-overclaim.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/design.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/evolve-2026-10-06-project-readme.json",
+".andromeda/runs/2026-10-06T11-11-14-phase/gate-2026-10-06-project-readme.json",
+".andromeda/runs/2026-10-06T11-11-14-phase/layouts.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/master-record.txt",
+".andromeda/runs/2026-10-06T11-11-14-phase/matrix-2026-10-06-project-readme.json",
+".andromeda/runs/2026-10-06T11-11-14-phase/obs-contracts.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/obs-history.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/obs.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/planlint-2026-10-06-project-readme.json",
+".andromeda/runs/2026-10-06T11-11-14-phase/registry-2026-10-06-project-readme.json",
+".andromeda/runs/2026-10-06T11-11-14-phase/route-2026-10-06-project-readme.json",
+".andromeda/runs/2026-10-06T11-11-14-phase/security-history.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/security.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/sidecar-2026-10-06-project-readme.json",
+".andromeda/runs/2026-10-06T11-11-14-phase/tests-contracts.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/tests-history.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/tests.md",
+".andromeda/runs/2026-10-06T11-27-41-implement/evolve-2026-10-06-project-readme.json",
+"escher-0.1.0/chunks/2026-10-06-project-readme/evidence/claims.md",
+"escher-0.1.0/chunks/2026-10-06-project-readme/plan.md",
+"escher-0.1.0/chunks/2026-10-06-project-readme/research.md",
+"escher-0.1.0/chunks/2026-10-06-project-readme/scope.md"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 38,
+"problem": null
+},
+"prose": [
+{
+"from": 45,
+"to": 45,
+"text": "No live leg runs this chunk. The agent-run entries drive the in-process stand through `scripts/agent-run.sh`, and no external process is started, so there is no liveness probe and no `stop`. No headful self-verify exists in this project (the stand is headless, per `.claude/rules/verification-harness.md`), so no `self-verify` entry is listed. There is no `smoke` entry: nothing that boots is touched, and the stand boot runs under `run stand`."
+},
+{
+"from": 47,
+"to": 47,
+"text": "The README checks are text censuses over the one file. The structure check carries `role = 'unit'` because it is this chunk's unit-level check of its only artifact. The base sha in the diff guard is `0ab4513f35f5f7360c4280b11f17d38a2fca471c` (HEAD at take-up). The claims record `evidence/claims.md` is authored by step 3, not produced by a command; its entry checks only that it exists, and its content is read at the review. The `logs` count reads only this run's events, because `boot` deletes `target/agent-run/` and starts a fresh `events.jsonl` (scripts/agent-run.sh:164-170)."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "grep -E '^#{1,6} ' README.md | paste -sd '|' ",
+"run_sha8": "3ac5a72d",
+"expect": [
+"exit 0",
+"last line # escher|## What escher is|## Why it exists|## Built on Blitz|## Try it|## Plans|## License|## Author / Contact"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/1.log",
+"bytes": 112,
+"log_sha8": "4bec0cc5",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '# escher|## What escher is|## Why it exists|## Built on Blitz|## Try it|## Plans|## License|## Author / Contact' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "probe",
+"run": "test \"$(wc -l < README.md)\" -le 90 && echo short",
+"run_sha8": "290ec78e",
+"expect": [
+"exit 0",
+"last line short"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/2.log",
+"bytes": 6,
+"log_sha8": "c962fa1b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line 'short' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "probe",
+"run": "grep -c -E '<img|<picture|<svg' README.md",
+"run_sha8": "f3f6dec9",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/3.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "grep -c '!\\[' README.md",
+"run_sha8": "be58d340",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/4.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "grep -c -F '[![CI status](https://github.com/Turbolet85/escher/actions/workflows/ci.yml/badge.svg)](https://github.com/Turbolet85/escher/actions/workflows/ci.yml)' README.md",
+"run_sha8": "076cef34",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/5.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "grep -c -i -E 'crates\\.io|docs\\.rs|deps\\.rs|discord|blitz\\.is|blitz-website|dioxuslabs/blitz/actions|dioxuslabs/screenshots' README.md",
+"run_sha8": "d41596a0",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/6.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "grep -c -F 'https://github.com/DioxusLabs/blitz' README.md",
+"run_sha8": "f30054f7",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/7.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "grep '^### Epoch' escher-0.1.0/working-route.md | sed 's/^### //' | while IFS= read -r h; do grep -qF -- \"- **$h** — \" README.md || echo \"missing: $h\"; done; sed -n '/^## Plans$/,/^## License$/p' README.md | grep -c -E '^- \\*\\*Epoch [0-9]+ — ' ",
+"run_sha8": "ded053a7",
+"expect": [
+"exit 0",
+"lacks missing:",
+"last line 6"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/8.log",
+"bytes": 2,
+"log_sha8": "06e9d52c",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"lacks 'missing:' ✓",
+"last line '6' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "sed -n '/^## Plans$/,/^## License$/p' README.md | grep -c '^Beyond 0\\.1\\.0:' ",
+"run_sha8": "c58632b9",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/9.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "sed -n '/^## Try it$/,/^## Plans$/p' README.md > /dev/null && for t in 'cargo run --release -p seven_guis --bin seven_guis_native' 'bash scripts/agent-run.sh boot' 'bash scripts/agent-run.sh run stand' 'demo stand' 'headless checks' 'planned'; do sed -n '/^## Try it$/,/^## Plans$/p' README.md | grep -qF -- \"$t\" || echo \"missing: $t\"; done; echo try-it-checked",
+"run_sha8": "2dca6f3f",
+"expect": [
+"exit 0",
+"lacks missing:",
+"last line try-it-checked"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/10.log",
+"bytes": 15,
+"log_sha8": "7dc59cc3",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"lacks 'missing:' ✓",
+"last line 'try-it-checked' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "cargo metadata --no-deps --format-version 1 --locked | python3 -c 'import json,sys; m=json.load(sys.stdin); print(any(t[\"name\"]==\"seven_guis_native\" and \"bin\" in t[\"kind\"] for p in m[\"packages\"] if p[\"name\"]==\"seven_guis\" for t in p[\"targets\"]))' ",
+"run_sha8": "6bbc4d0f",
+"expect": [
+"exit 0",
+"last line True"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/11.log",
+"bytes": 5,
+"log_sha8": "a9ac0c3a",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"last line 'True' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "for t in 'MIT' 'Apache 2.0' 'MPL 2.0' 'stylo_taffy' 'LICENSE-MIT' 'LICENSE-APACHE'; do sed -n '/^## License$/,/^## Author \\/ Contact$/p' README.md | grep -qF -- \"$t\" || echo \"missing: $t\"; done; echo licence-checked",
+"run_sha8": "cbdef2c1",
+"expect": [
+"exit 0",
+"lacks missing:",
+"last line licence-checked"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/12.log",
+"bytes": 16,
+"log_sha8": "513c8328",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"lacks 'missing:' ✓",
+"last line 'licence-checked' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "test \"$(grep -c -F 'turbolet85@gmail.com' README.md)\" = 1 && sed -n '/^## Author \\/ Contact$/,$p' README.md | grep -c -F 'mailto:turbolet85@gmail.com' ",
+"run_sha8": "36846e4d",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/13.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "grep -c -i -E 'token|secret|password|api[_-]?key|authorization|private key|/home/|/tmp/|~/' README.md",
+"run_sha8": "e224900c",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/14.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "grep -c -i -E 'sandbox|secure|wcag|screen.?reader|opentelemetry|\\botel\\b|production.ready|json log' README.md",
+"run_sha8": "c9b94255",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/15.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "test -s escher-0.1.0/chunks/2026-10-06-project-readme/evidence/claims.md && echo claims-recorded",
+"run_sha8": "f304084d",
+"expect": [
+"exit 0",
+"last line claims-recorded"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/16.log",
+"bytes": 16,
+"log_sha8": "3005ff9c",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line 'claims-recorded' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "{ git diff --name-only 0ab4513f35f5f7360c4280b11f17d38a2fca471c; git ls-files --others --exclude-standard; } | grep -v -E '^(\\.andromeda/|escher-0\\.1\\.0/|\\.claude/session-handoff\\.md$)' | sort -u | paste -sd ' ' ",
+"run_sha8": "d6ff6a27",
+"expect": [
+"exit 0",
+"last line README.md"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/17.log",
+"bytes": 10,
+"log_sha8": "d0919d5b",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line 'README.md' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 18,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": [
+"exit 0",
+"contains \"ready\""
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/18.log",
+"bytes": 137,
+"log_sha8": "f70714db",
+"exit": 0,
+"seconds": 29.05,
+"readings": [
+"exit 0 ✓",
+"contains '\"ready\"' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 19,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": [
+"exit 0",
+"contains \"run.end\""
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/19.log",
+"bytes": 2707,
+"log_sha8": "1d6c0561",
+"exit": 0,
+"seconds": 3.2,
+"readings": [
+"exit 0 ✓",
+"contains '\"run.end\"' ✓",
+"artifact fresh (target/agent-run/events.jsonl)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 20,
+"role": "integration",
+"run": "bash scripts/agent-run.sh logs | python3 -c 'import json,sys; ev=[json.loads(l) for l in sys.stdin]; print(sum(1 for e in ev if e.get(\"event\")==\"test\" and e.get(\"outcome\")==\"ok\" and e.get(\"file\",\"\").startswith(\"stand_\")))' ",
+"run_sha8": "cb721ae0",
+"expect": [
+"exit 0",
+"last line 20"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/20.log",
+"bytes": 3,
+"log_sha8": "53787963",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"last line '20' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 21,
+"role": "integration",
+"run": "bash scripts/agent-run.sh cleanup",
+"run_sha8": "d676b018",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/21.log",
+"bytes": 40,
+"log_sha8": "8b6274d8",
+"exit": 0,
+"seconds": 0.03,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 22,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/22.log",
+"bytes": 50238,
+"log_sha8": "70fec57a",
+"exit": 0,
+"seconds": 45.48,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 23,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/23.log",
+"bytes": 177,
+"log_sha8": "742b654b",
+"exit": 0,
+"seconds": 0.34,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 24,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/24.log",
+"bytes": 1597,
+"log_sha8": "a4ba145e",
+"exit": 0,
+"seconds": 2.41,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 25,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 26,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 27,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "675d3a19",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T11:30:41Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-project-readme",
+"--run-dir",
+".andromeda/runs/2026-10-06T11-27-41-implement",
+"--marker",
+"2026-10-06-project-readme"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 0 · modify 1 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 1 · listed 1 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 38"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 1,
+"listed": 1,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 38,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T11:31:30Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-06-project-readme/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T11-27-41-implement",
+"--marker",
+"2026-10-06-project-readme",
+"--only",
+"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-06-project-readme · entries 27",
+"logs $TMPDIR/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41 · bound: GNU timeout",
+"delta docs 39",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L45-45: No live leg runs this chunk. The agent-run entries drive the in-process stand through `scr… (444 chars)",
+"prose L47-47: The README checks are text censuses over the one file. The structure check carries `role =… (582 chars)",
+"  1 unit        green · exit 0 · 0.0s · 112 B → 1.log · grep -E '^#{1,6} ' README.md | paste -sd '|' ",
+"  2 probe       green · exit 0 · 0.0s · 6 B → 2.log · test \"$(wc -l < README.md)\" -le 90 && echo short",
+"  3 probe       green · exit 1 · 0.0s · 2 B → 3.log · grep -c -E '<img|<picture|<svg' README.md",
+"  4 probe       green · exit 0 · 0.0s · 2 B → 4.log · grep -c '!\\[' README.md",
+"  5 probe       green · exit 0 · 0.0s · 2 B → 5.log · grep -c -F '[![CI status](https://github.com/Turbolet85/es… (173 chars)",
+"  6 probe       green · exit 1 · 0.0s · 2 B → 6.log · grep -c -i -E 'crates\\.io|docs\\.rs|deps\\.rs|discord|blitz\\… (134 chars)",
+"  7 probe       green · exit 0 · 0.0s · 2 B → 7.log · grep -c -F 'https://github.com/DioxusLabs/blitz' README.md",
+"  8 probe       green · exit 0 · 0.01s · 2 B → 8.log · grep '^### Epoch' escher-0.1.0/working-route.md | sed 's/^… (244 chars)",
+"  9 probe       green · exit 0 · 0.0s · 2 B → 9.log · sed -n '/^## Plans$/,/^## License$/p' README.md | grep -c … (77 chars)",
+" 10 probe       green · exit 0 · 0.01s · 15 B → 10.log · sed -n '/^## Try it$/,/^## Plans$/p' README.md > /dev/null… (361 chars)",
+" 11 probe       green · exit 0 · 0.02s · 5 B → 11.log · cargo metadata --no-deps --format-version 1 --locked | pyt… (247 chars)",
+" 12 probe       green · exit 0 · 0.01s · 16 B → 12.log · for t in 'MIT' 'Apache 2.0' 'MPL 2.0' 'stylo_taffy' 'LICEN… (215 chars)",
+" 13 probe       green · exit 0 · 0.0s · 2 B → 13.log · test \"$(grep -c -F 'turbolet85@gmail.com' README.md)\" = 1 … (151 chars)",
+" 14 probe       green · exit 1 · 0.0s · 2 B → 14.log · grep -c -i -E 'token|secret|password|api[_-]?key|authoriza… (101 chars)",
+" 15 probe       green · exit 1 · 0.0s · 2 B → 15.log · grep -c -i -E 'sandbox|secure|wcag|screen.?reader|opentele… (109 chars)",
+" 16 probe       green · exit 0 · 0.0s · 16 B → 16.log · test -s escher-0.1.0/chunks/2026-10-06-project-readme/evid… (96 chars)",
+" 17 probe       green · exit 0 · 0.01s · 10 B → 17.log · { git diff --name-only 0ab4513f35f5f7360c4280b11f17d38a2fc… (212 chars)",
+" 18 build       not run — excluded · bash scripts/agent-run.sh boot",
+" 19 integration not run — excluded · bash scripts/agent-run.sh run stand",
+" 20 integration not run — excluded · bash scripts/agent-run.sh logs | python3 -c 'import json,s… (223 chars)",
+" 21 integration not run — excluded · bash scripts/agent-run.sh cleanup",
+" 22 lint        not run — excluded · bash .github/scripts/ci-leg.sh fast",
+" 23 lint        not run — excluded · bash .github/scripts/ci-leg.sh doc",
+" 24 integration not run — excluded · bash .github/scripts/ci-leg.sh a11y",
+" 25 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 26 probe       not run — excluded · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 27 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 27 · green 17 · red 0 · recorded 0 · timeout 0 · not-run 10"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-06-project-readme",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-project-readme/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-06T10-55-07-wrap/evolve-2026-10-06-id-persistence.json",
+".claude/session-handoff.md",
+"README.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/a11y-history.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/a11y.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/arch-history.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/arch.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-06T11-11-14-phase/control-credential.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/control-no-lineage.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/control-overclaim.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/design.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/evolve-2026-10-06-project-readme.json",
+".andromeda/runs/2026-10-06T11-11-14-phase/gate-2026-10-06-project-readme.json",
+".andromeda/runs/2026-10-06T11-11-14-phase/layouts.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/master-record.txt",
+".andromeda/runs/2026-10-06T11-11-14-phase/matrix-2026-10-06-project-readme.json",
+".andromeda/runs/2026-10-06T11-11-14-phase/obs-contracts.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/obs-history.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/obs.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/planlint-2026-10-06-project-readme.json",
+".andromeda/runs/2026-10-06T11-11-14-phase/registry-2026-10-06-project-readme.json",
+".andromeda/runs/2026-10-06T11-11-14-phase/route-2026-10-06-project-readme.json",
+".andromeda/runs/2026-10-06T11-11-14-phase/security-history.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/security.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/sidecar-2026-10-06-project-readme.json",
+".andromeda/runs/2026-10-06T11-11-14-phase/tests-contracts.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/tests-history.md",
+".andromeda/runs/2026-10-06T11-11-14-phase/tests.md",
+".andromeda/runs/2026-10-06T11-27-41-implement/evolve-2026-10-06-project-readme.json",
+".andromeda/runs/2026-10-06T11-27-41-implement/gate-2026-10-06-project-readme.json",
+"escher-0.1.0/chunks/2026-10-06-project-readme/evidence/claims.md",
+"escher-0.1.0/chunks/2026-10-06-project-readme/plan.md",
+"escher-0.1.0/chunks/2026-10-06-project-readme/research.md",
+"escher-0.1.0/chunks/2026-10-06-project-readme/scope.md"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 39,
+"problem": null
+},
+"prose": [
+{
+"from": 45,
+"to": 45,
+"text": "No live leg runs this chunk. The agent-run entries drive the in-process stand through `scripts/agent-run.sh`, and no external process is started, so there is no liveness probe and no `stop`. No headful self-verify exists in this project (the stand is headless, per `.claude/rules/verification-harness.md`), so no `self-verify` entry is listed. There is no `smoke` entry: nothing that boots is touched, and the stand boot runs under `run stand`."
+},
+{
+"from": 47,
+"to": 47,
+"text": "The README checks are text censuses over the one file. The structure check carries `role = 'unit'` because it is this chunk's unit-level check of its only artifact. The base sha in the diff guard is `0ab4513f35f5f7360c4280b11f17d38a2fca471c` (HEAD at take-up). The claims record `evidence/claims.md` is authored by step 3, not produced by a command; its entry checks only that it exists, and its content is read at the review. The `logs` count reads only this run's events, because `boot` deletes `target/agent-run/` and starts a fresh `events.jsonl` (scripts/agent-run.sh:164-170)."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "grep -E '^#{1,6} ' README.md | paste -sd '|' ",
+"run_sha8": "3ac5a72d",
+"expect": [
+"exit 0",
+"last line # escher|## What escher is|## Why it exists|## Built on Blitz|## Try it|## Plans|## License|## Author / Contact"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/1.log",
+"bytes": 112,
+"log_sha8": "4bec0cc5",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '# escher|## What escher is|## Why it exists|## Built on Blitz|## Try it|## Plans|## License|## Author / Contact' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "probe",
+"run": "test \"$(wc -l < README.md)\" -le 90 && echo short",
+"run_sha8": "290ec78e",
+"expect": [
+"exit 0",
+"last line short"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/2.log",
+"bytes": 6,
+"log_sha8": "c962fa1b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line 'short' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "probe",
+"run": "grep -c -E '<img|<picture|<svg' README.md",
+"run_sha8": "f3f6dec9",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/3.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "grep -c '!\\[' README.md",
+"run_sha8": "be58d340",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/4.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "grep -c -F '[![CI status](https://github.com/Turbolet85/escher/actions/workflows/ci.yml/badge.svg)](https://github.com/Turbolet85/escher/actions/workflows/ci.yml)' README.md",
+"run_sha8": "076cef34",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/5.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "grep -c -i -E 'crates\\.io|docs\\.rs|deps\\.rs|discord|blitz\\.is|blitz-website|dioxuslabs/blitz/actions|dioxuslabs/screenshots' README.md",
+"run_sha8": "d41596a0",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/6.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "grep -c -F 'https://github.com/DioxusLabs/blitz' README.md",
+"run_sha8": "f30054f7",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/7.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "grep '^### Epoch' escher-0.1.0/working-route.md | sed 's/^### //' | while IFS= read -r h; do grep -qF -- \"- **$h** — \" README.md || echo \"missing: $h\"; done; sed -n '/^## Plans$/,/^## License$/p' README.md | grep -c -E '^- \\*\\*Epoch [0-9]+ — ' ",
+"run_sha8": "ded053a7",
+"expect": [
+"exit 0",
+"lacks missing:",
+"last line 6"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/8.log",
+"bytes": 2,
+"log_sha8": "06e9d52c",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"lacks 'missing:' ✓",
+"last line '6' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "sed -n '/^## Plans$/,/^## License$/p' README.md | grep -c '^Beyond 0\\.1\\.0:' ",
+"run_sha8": "c58632b9",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/9.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "sed -n '/^## Try it$/,/^## Plans$/p' README.md > /dev/null && for t in 'cargo run --release -p seven_guis --bin seven_guis_native' 'bash scripts/agent-run.sh boot' 'bash scripts/agent-run.sh run stand' 'demo stand' 'headless checks' 'planned'; do sed -n '/^## Try it$/,/^## Plans$/p' README.md | grep -qF -- \"$t\" || echo \"missing: $t\"; done; echo try-it-checked",
+"run_sha8": "2dca6f3f",
+"expect": [
+"exit 0",
+"lacks missing:",
+"last line try-it-checked"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/10.log",
+"bytes": 15,
+"log_sha8": "7dc59cc3",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"lacks 'missing:' ✓",
+"last line 'try-it-checked' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "cargo metadata --no-deps --format-version 1 --locked | python3 -c 'import json,sys; m=json.load(sys.stdin); print(any(t[\"name\"]==\"seven_guis_native\" and \"bin\" in t[\"kind\"] for p in m[\"packages\"] if p[\"name\"]==\"seven_guis\" for t in p[\"targets\"]))' ",
+"run_sha8": "6bbc4d0f",
+"expect": [
+"exit 0",
+"last line True"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/11.log",
+"bytes": 5,
+"log_sha8": "a9ac0c3a",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"last line 'True' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "for t in 'MIT' 'Apache 2.0' 'MPL 2.0' 'stylo_taffy' 'LICENSE-MIT' 'LICENSE-APACHE'; do sed -n '/^## License$/,/^## Author \\/ Contact$/p' README.md | grep -qF -- \"$t\" || echo \"missing: $t\"; done; echo licence-checked",
+"run_sha8": "cbdef2c1",
+"expect": [
+"exit 0",
+"lacks missing:",
+"last line licence-checked"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/12.log",
+"bytes": 16,
+"log_sha8": "513c8328",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"lacks 'missing:' ✓",
+"last line 'licence-checked' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "test \"$(grep -c -F 'turbolet85@gmail.com' README.md)\" = 1 && sed -n '/^## Author \\/ Contact$/,$p' README.md | grep -c -F 'mailto:turbolet85@gmail.com' ",
+"run_sha8": "36846e4d",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/13.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "grep -c -i -E 'token|secret|password|api[_-]?key|authorization|private key|/home/|/tmp/|~/' README.md",
+"run_sha8": "e224900c",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/14.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "grep -c -i -E 'sandbox|secure|wcag|screen.?reader|opentelemetry|\\botel\\b|production.ready|json log' README.md",
+"run_sha8": "c9b94255",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/15.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "test -s escher-0.1.0/chunks/2026-10-06-project-readme/evidence/claims.md && echo claims-recorded",
+"run_sha8": "f304084d",
+"expect": [
+"exit 0",
+"last line claims-recorded"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/16.log",
+"bytes": 16,
+"log_sha8": "3005ff9c",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line 'claims-recorded' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "{ git diff --name-only 0ab4513f35f5f7360c4280b11f17d38a2fca471c; git ls-files --others --exclude-standard; } | grep -v -E '^(\\.andromeda/|escher-0\\.1\\.0/|\\.claude/session-handoff\\.md$)' | sort -u | paste -sd ' ' ",
+"run_sha8": "d6ff6a27",
+"expect": [
+"exit 0",
+"last line README.md"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-project-readme/implement-2026-10-06T11-27-41/17.log",
+"bytes": 10,
+"log_sha8": "d0919d5b",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line 'README.md' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 18,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": [
+"exit 0",
+"contains \"ready\""
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 19,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": [
+"exit 0",
+"contains \"run.end\""
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 20,
+"role": "integration",
+"run": "bash scripts/agent-run.sh logs | python3 -c 'import json,sys; ev=[json.loads(l) for l in sys.stdin]; print(sum(1 for e in ev if e.get(\"event\")==\"test\" and e.get(\"outcome\")==\"ok\" and e.get(\"file\",\"\").startswith(\"stand_\")))' ",
+"run_sha8": "cb721ae0",
+"expect": [
+"exit 0",
+"last line 20"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 21,
+"role": "integration",
+"run": "bash scripts/agent-run.sh cleanup",
+"run_sha8": "d676b018",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 22,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 23,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 24,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 25,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 26,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 27,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "675d3a19",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+]
+}
+}
+]

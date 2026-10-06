@@ -45,3 +45,6 @@
 - recurrence-despite-learning: "The project's Bash guards refuse a heredoc written to a file and a leading cd, and read payload prose too" (Tier 3, 2026-10-06). It recurred twice this chunk: a `cat >>` evidence heredoc and a `cd` into the scratchpad.
 - recurrence-despite-learning: "On this host `grep` is ugrep, and a long bounded repetition can print nothing" (Tier 3, 2026-10-06). A `grep -oE '.{0,60}…'` site sweep failed with "exceeds complexity limits".
 Review with `/andromeda-wrap-session --review` if any should be applied.
+
+## Session End Status
+Completed normally at 2026-10-06 13:27:27

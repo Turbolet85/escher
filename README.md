@@ -1,115 +1,61 @@
-<p>
-<picture >
-  <source media="(prefers-color-scheme: dark)" srcset="https://blitz-website.fly.dev/static/blitz-logo-with-text3-white.svg">
-  <img height="70" alt="Blitz" src="https://blitz-website.fly.dev/static/blitz-logo-with-text3.svg">
-</picture>
-</p>
+# escher
 
-**A modular HTML/CSS rendering engine**
+An agent-first UI framework, built on Blitz.
 
-[![Build Status](https://github.com/dioxuslabs/blitz/actions/workflows/ci.yml/badge.svg)](https://github.com/dioxuslabs/blitz/actions)
-[![Crates.io](https://img.shields.io/crates/v/blitz.svg)](https://crates.io/crates/blitz)
-[![Docs](https://docs.rs/blitz/badge.svg)](https://docs.rs/blitz)
-[![Crates.io License](https://img.shields.io/crates/l/blitz)](#license)
-[![dependency status](https://deps.rs/repo/github/dioxuslabs/blitz/status.svg)](https://deps.rs/repo/github/dioxuslabs/blitz)
+[![CI status](https://github.com/Turbolet85/escher/actions/workflows/ci.yml/badge.svg)](https://github.com/Turbolet85/escher/actions/workflows/ci.yml)
 
-Talk to us in: the [#native](https://discord.gg/AnNPqT95pu) channel in the [Dioxus Discord](https://discord.gg/AnNPqT95pu)
+## What escher is
 
-## Status
+escher is a UI framework whose screens an AI agent can see, drive and verify headlessly, with no display and no outside driver. Today every element of the demo app carries a stable id that stays the same across a re-render, a remount and a restart. The screen snapshot, the agent driver and its command-line and MCP tools are being built (see Plans).
 
-Blitz is currently in a **beta** state. It can already render many popular no-JS websites (Wikipedia, (Old) Reddit, etc), and is usable for making apps if you are an early adopter and willing to live on the bleeding edge. But there are also still many bugs and missing features. We are actively working on bringing it up to production quality.
+## Why it exists
 
-Check out:
-- The [downloads page](https://blitz.is/downloads) for runnable builds of the Browser UI (Windows / macOS / Linux / Android)
-- The [status page](https://blitz.is/status/css) for current status
-- The [roadmap issue](https://github.com/DioxusLabs/blitz/issues/119) for planned work
+An agent with no prior context should learn the framework from the tool alone, then drive and check a UI headlessly. Today a screen is readable only as an HTML string, a debug print or a screenshot, and its elements have no stable id to aim at.
 
+## Built on Blitz
 
-![screenshot](https://raw.githubusercontent.com/DioxusLabs/screenshots/main/blitz/wikipedia.png)
+escher is a fork of [Blitz](https://github.com/DioxusLabs/blitz), the modular HTML/CSS rendering engine by DioxusLabs and its contributors. Upstream changes are merged in at the end of each stage of work, so escher stays close to Blitz and its own changes stay additive. All credit for the engine goes to the Blitz authors.
 
+## Try it
 
-## Trying it out
+You need Rust 1.91 or newer, and on Linux the fontconfig development package (`libfontconfig1-dev`, or `fontconfig` on Arch).
 
-1. Clone this repo
-2. Run one of our examples:
-    - The Browser UI: `cargo run -rp browser`
-    - The Markdown viewer: `cargo run -rp rdme ./README.md`
-    - TodoMVC app: `cargo run -rp todomvc`
-    - WGPU texture integration example: `cargo run -rp wgpu_texture`
+Run the demo stand in a window:
 
-Other examples are available in the [examples/](./examples/) folder.
+```sh
+cargo run --release -p seven_guis --bin seven_guis_native
+```
 
-## Goals
+Run its headless checks:
 
-Blitz is designed to render HTML and CSS - we *don't* want to support the entirety of browser features (or at least we want to make all such "extra" features opt-in). In our opinion, the browser is bloated for the basic use case of rendering HTML/CSS.
+```sh
+bash scripts/agent-run.sh boot
+bash scripts/agent-run.sh run stand
+```
 
-We do intend to support:
+These run the demo stand (the 7GUIs tasks) and its headless checks, not the agent driver, which is planned.
 
-- Modern HTML layout (flexbox, grid, table, block, inline, absolute/fixed, etc).
-- Advanced CSS (complex selectors, media queries, css variables)
-- HTML Form controls
-- Accessibility using AccessKit
-- Extensibility via custom widgets
+## Plans
 
-Notably we *don't* provide features like webrtc, websockets, bluetooth, localstorage, etc. In a native app, much of this functionality can be fulfilled using regular Rust crates and doesn't need to be coupled with the renderer.
+Version 0.1.0 is built in six stages:
 
-We don't yet have Blitz bindings for other languages (JavaScript, Python, etc) but would accept contributions along those lines.
+- **Epoch 1 — Foundation** — the inherited engine building and tested on the fork's CI, a headless 7GUIs demo stand, and a test harness an agent can run.
+- **Epoch 2 — Element identity** — a stable id for every element, kept across re-renders, remounts and restarts, and carried into the accessibility tree.
+- **Epoch 3 — Observation model** — a compact, semantic snapshot of the screen, and the exact diff after each action.
+- **Epoch 4 — Driver core** — acting on elements by id, waiting until the UI has settled, and explaining every refused action.
+- **Epoch 5 — Agent surfaces** — a command line, MCP tools, built-in help and schemas, and screenshots with no display.
+- **Epoch 6 — Polish & ship** — keyboard, contrast and accessibility checks on the stand, quality gates, and a test where a fresh agent learns escher from the tool alone.
 
-## Architecture
-
-Blitz consists of a core DOM abstraction; several modular pieces which provide additional functionality like networking, rendering, windows, and state management; and two high-level wrappers that support rendering either a Dioxus application or HTML with a simplified API.
-
-These pieces can be combined together to make a cohesive web engine.
-
-### High-level "wrapper" crates
-
-- **`blitz`** - An HTML/markdown frontend that can render an HTML string. This is useful for previewing HTML and/or markdown files but currently lacks interactivity.
-<br /><small><b>Uses: `blitz-dom`, `blitz-html`, `blitz-shell`, `blitz-renderer-vello`</b></small>
-- **`dioxus-native`** - A Dioxus frontend that can render a Dioxus VirtualDom. This has full interactivity support via Dioxus's event handling.
-<br /><small><b>Uses: `blitz-dom`, `dioxus-core`, `blitz-shell`, `blitz-renderer-vello`</b></small>
-
-Both wrappers can optionally use <b>`blitz-net`</b> to fetch sub-resources.
-
-
-### Using the git verison of Dioxus Native
-
-The latest development version of the Dioxus Native lives in this repository. As Dioxus Native is under rapid development it can be useful to use this version to get access to the latest features and bug fixes sooner than they are available in an official release.
-
-To use the git version of `dioxus-native`:
-
-- Remove your dependency on the `dioxus` crate entirely.
-- Add `dioxus-native = { git = "https://github.com/DioxusLabs/blitz", rev = "e64a3d8", features = ["prelude"] }`
-- (replace `e64a3d8` with the git commit id of the version you want to use)
-- In your rust code change all instances of `use dioxus::prelude::*` to `use dioxus_native::prelude::*`.
-- If you need to access additonal functionality from the `dioxus` crate that is not exported from the Dioxus Native prelude then you can import it from the individual sub-crates (`dioxus-html`, `dioxus-signals`, `dioxus-router`, etc) instead.
-
-The git versions of Dioxus Native still depend on the stable v0.7.x version of Dioxus from crates.io, so any additional libraries that you are using (`dioxus-sdk`, `dioxus-components`, `dioxus-free-icons`, etc) should still work.
-
-### Modular Components
-
-#### Core crates
-
-- **`blitz-dom`** - The core DOM abstraction that includes style resolution, layout and event handling (but not parsing, rendering or system integration).
-<br /><small><b>Uses: [Stylo](https://github.com/servo/stylo) (CSS parsing/resolution), [Taffy](https://github.com/DioxusLabs/taffy) (box-level layout), [Parley](https://github.com/linebender/parley) (text layout)</b></small>
-- **`blitz-traits`** - Minimal base crate containing types and traits to allow the other crates to interoperate without depending on each other
-
-#### Additional crates
-
-- **`blitz-net`** -  Networking that can fetch resources over http, from the file-system or from encoded data URIs.
-<br /><small><b>Uses: [reqwest](https://github.com/seanmonstar/reqwest) (HTTP client)</b></small>
-- **`blitz-paint`** - Translates a `blitz-dom` tree into `anyrender` draw commands.
-<br /><small><b>Uses: [anyrender](https://github.com/dioxuslabs/anyrender) (2D drawing abstraction)</b></small>
-- **`blitz-html`** -  Adds HTML parsing to `blitz-dom`
-<br /><small><b>Uses: [html5ever](https://github.com/servo/html5ever) (HTML parsing) and [xml5ever](https://github.com/servo/html5ever/tree/main/xml5ever) (XHTML parsing)</b></small>
-- **`blitz-shell`** - A shell that allows Blitz to render to a window (integrates a Winit event loop, AccessKit, Muda etc).
-<br /><small><b>Uses: [winit](https://github.com/rust-windowing/winit) (windowing/input), [accesskit](https://github.com/AccessKit/accesskit) (accessibility), [muda](https://github.com/tauri-apps/muda) (system menus)</b></small>
-
-The AnyRender rendering abstraction now lives in it's repository over at https://github.com/dioxuslabs/anyrender
+Beyond 0.1.0: a graph of components, handlers and state; virtual time; fuller accessibility names and states; visual lint; turning traces into tests; automatic exploration; handler coverage; component isolation.
 
 ## License
 
-This project is dual licensed under the Apache 2.0 and MIT licenses.
+escher is dual licensed under the MIT and Apache 2.0 licenses: see [`LICENSE-MIT`](LICENSE-MIT) and [`LICENSE-APACHE`](LICENSE-APACHE).
 
-The `stylo_taffy` crate is ADDITIONALLY licensed under MPL 2.0 (so it is triple licensed under Apache 2.0, MIT, and MPL 2.0 licenses) for easier interop with the Servo project.
+The `stylo_taffy` crate is additionally licensed under MPL 2.0, so it is triple licensed under MIT, Apache 2.0 and MPL 2.0.
 
-Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in Blitz by you, shall be dual licensed as Apache 2.0 and MIT (and MPL 2.0 if submitted to the `stylo_taffy` crate), without any additional terms or conditions.
+Unless you explicitly state otherwise, any contribution you intentionally submit for inclusion in escher is dual licensed as MIT and Apache 2.0 (and MPL 2.0 if submitted to the `stylo_taffy` crate), without any additional terms or conditions.
+
+## Author / Contact
+
+escher is written by [Turbolet85](https://github.com/Turbolet85), open to AI-related work. Contact: [turbolet85@gmail.com](mailto:turbolet85@gmail.com).

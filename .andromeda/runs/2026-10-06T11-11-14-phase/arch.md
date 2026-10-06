@@ -1,0 +1,34 @@
+# arch extract
+
+## Relevance
+partial — a docs-only chunk (root `README.md`, no code or crate). Arch has no say over the prose, but it is the authority for the facts the README states: escher's identity and Blitz lineage, the workspace layout, licensing, publishability and which CI belongs to the fork.
+
+## Constraints
+- The lineage facts must match the plan's records. These are the adoption commit (`Origin: adopted at 0f60502e…`), the upstream (`DioxusLabs/blitz` `main`) and the last merge base (`Upstream sync … 23354585…`), all per architecture §Project Intent. That section records the last sync, not how often syncs happen. The "an Upstream sync at each epoch boundary" claim takes its source from intent.md §Principles, not from arch.
+- The one-line description of escher (a fork of Blitz being turned into an agent-first UI framework: headless driver (CLI + MCP), stable ids, a compact semantic snapshot, proven on the 7GUIs stand) is the framing in architecture §Project Intent. The Blitz half of the "built on" story is "radically modular, embeddable engine" plus "headless, measurable, testable", per architecture §Design Philosophy.
+- The licence statement must agree with the workspace licence `MIT OR Apache-2.0`, per architecture §Stack and Technologies (Workspace package row). It must also not contradict the recorded per-crate exceptions, per architecture §Conventions (Licensing exceptions): `accesskit_xplat` Apache-2.0, `wgpu_texture` MIT, the MPL-2.0 header on blitz-dom `assets/default.css`, and `wasm_hello` with no licence field. That section records no MPL-2.0 for `stylo_taffy`. Whether `stylo_taffy` carries the additional MPL-2.0 licence the scope names is a question for research (P3).
+- Arch records no escher crate as published. The root package is virtual, and `blitz-test-harness`, `escher-telemetry`, the apps, the examples and the tests set `publish = false`. The publishable `packages/` crates are upstream's, versioned by `bump`. All of this is per architecture §Inherited Defaults (Publishability). The README must not present crates.io or docs.rs as escher's distribution.
+- Fork CI is `ci.yml` on `build/**` / `main` / `v0.*`, per architecture §Infrastructure Patterns → CI/CD. The WPT, post-results and publish-browser workflows, and the `dioxuslabs.github.io/blitz/wptreport.json` host, are upstream-only behind a `DioxusLabs/blitz` repository guard, per architecture §Occupied Resources (CI infrastructure, Outbound hosts) and §Inherited Defaults (Deployment). A badge or link the README keeps or repoints must point at what actually runs on the fork.
+- Every crate, directory or binary the README names must exist in the workspace tree. That means `packages/` (including `dioxus-native-dom`, `blitz-test-harness`, `escher-telemetry`), `examples/seven_guis/`, `scripts/` and `apps/`, per architecture §Infrastructure Patterns (Directory structure) and §Existing Scopes.
+- The chunk lands no new resource: no crate, env var, port, script or file beyond the README, per architecture §Occupied Resources.
+
+## Patterns to follow
+- Separate what is built from what is planned using the plan's Standard Contracts. Built surfaces have a recorded contract: the Dioxus DOM bridge's stable element id, which persists across a re-render, a remount and a fresh process; the headless stand `seven_guis::stand`; and the headless `Harness`. All three are per architecture §Standard Contracts (Dioxus DOM bridge, Headless stand, Test harness). Snapshot, diff, settle, act-by-id, CLI and MCP have no contract there, so they are planned.
+- Name the crates the way §Existing Scopes and §Design Philosophy describe them (a headless DOM in blitz-dom; parsing, net, paint and shell in separate crates), not with upstream's crate-architecture prose verbatim.
+- Cite facts the plan states with as-measured evidence (for example the stable-id persistence report path) rather than restating capability from memory, following architecture §Standard Contracts (Dioxus DOM bridge, "as measured at …").
+
+## Anti-patterns to avoid
+- Presenting upstream-only infrastructure as escher's: the DioxusLabs CI, WPT report, browser bundles, crates.io or docs.rs. These are against architecture §Occupied Resources (CI infrastructure) and §Inherited Defaults (Deployment, Publishability).
+- Touching any file but `README.md` to make the README "consistent", for example repointing the root `Cargo.toml` `homepage`/`repository` (still `https://github.com/dioxuslabs/blitz`, per architecture §Project Intent → Product type). Any such change is a separate decision, never a silent add, per architecture §Occupied Resources.
+
+## Contract bindings
+- arch ↔ tests (gates): the rustdoc `-D warnings` docs leg (`cargo doc --workspace --no-deps --locked`) and the fast leg are the done-gate, per architecture §Infrastructure Patterns → CI/CD. Whether any crate pulls the root README in (a `#![doc = include_str!(…)]`, a Cargo `readme =` field, a doctest or a CI script) is research's question. If one does, the rewrite is gated by those legs.
+- arch ↔ apps: `rdme` (`apps/readme`) by default resolves the nearest `README.md` from the current directory, per architecture §Standard Contracts (CLIs). Run from the repo root, the root README is its default document, so it must still render there as Markdown.
+- arch ↔ wrap amendment: the wholesale README divergence is a merge surface for the next Upstream sync recorded in architecture §Project Intent. Whether arch or the playbook records "keep escher's README on sync" is a wrap question, not a phase edit.
+- arch ↔ security: no secret, host path or new outbound host enters through the README, per architecture §Occupied Resources (Outbound hosts) and security-plan.
+
+## Acceptance criteria contributions
+- Every lineage fact in the README (fork of DioxusLabs/blitz, adopted at `0f60502e`) matches the §Project Intent Origin and Upstream sync lines. The sync cadence is sourced to intent.md, not stated as an arch fact (per architecture §Project Intent).
+- The README presents as built only capabilities with a recorded Standard Contract: stable element ids and their persistence, the headless stand, and the headless harness. Driver CLI/MCP, snapshot, diff, settle and act-by-id read as planned. No crates.io, docs.rs or upstream-CI badge is presented as escher's (per architecture §Standard Contracts and §Inherited Defaults → Publishability).
+- The licence section states `MIT OR Apache-2.0` and contradicts none of the recorded exceptions. Every crate, path and command it names exists in the workspace tree (per architecture §Stack and Technologies, §Conventions → Licensing exceptions and §Infrastructure Patterns → Directory structure).
+- `git diff --name-only` for the chunk lists only `README.md`, and `bash .github/scripts/ci-leg.sh fast` and `bash .github/scripts/ci-leg.sh doc` pass (per architecture §Occupied Resources and §Infrastructure Patterns → CI/CD).
