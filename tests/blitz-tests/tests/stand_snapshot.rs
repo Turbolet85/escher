@@ -286,12 +286,13 @@ fn tree_follows_the_task_shell() {
                 let rows: Vec<&str> = descendants(list)
                     .into_iter()
                     .map(|n| n.id.as_str())
-                    .filter(|id| id.contains("/div["))
+                    .filter(|id| id.starts_with("crud-person-"))
                     .collect();
-                assert_eq!(rows.len(), 3, "{task:?}: three rows in {rows:?}");
-                for (row, key) in rows.iter().zip(["div[0]", "div[1]", "div[2]"]) {
-                    assert!(row.ends_with(key), "{task:?}: {row:?} ends {key:?}");
-                }
+                assert_eq!(
+                    rows,
+                    ["crud-person-0", "crud-person-1", "crud-person-2"],
+                    "{task:?}: three rows under crud-list"
+                );
             }
         }
     }
@@ -418,7 +419,7 @@ fn snapshot_follows_a_rerender() {
         let row = |snapshot: &Snapshot| {
             descendants(node(snapshot, "crud-list"))
                 .into_iter()
-                .any(|n| n.id.ends_with("/div[3]"))
+                .any(|n| n.id == "crud-person-3")
         };
         assert!(!row(&crud.doc.snapshot()), "no fourth row at boot");
         crud.click("#crud-create");

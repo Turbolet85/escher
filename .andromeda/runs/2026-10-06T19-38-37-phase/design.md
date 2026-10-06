@@ -1,0 +1,37 @@
+# design extract
+
+## Relevance
+partial — the chunk changes the id grammar and adds a check, neither of which paints; design applies only where it touches stand markup (author `id` attributes on `examples/seven_guis/src/tasks/*.rs` / `app.rs`) and where it adds a fixture beside the stand that is booted and laid out like a task.
+
+## Constraints
+- The stand's painted values must read the same after this chunk: design-system §Color Palette → Core Colors, → Surface Scale, → Text Hierarchy and → Semantic Colors record the seven_guis accent, page, text, invalid and success values as built, and the scope states painted colours are not changed. Adding an author `id` is the only markup edit the chunk makes to a task; whether any stand style rule or user-agent rule selects by `#id` (so that a new `id` would gain or lose a declaration) is research's question.
+- The edit-proof fixture must boot under the stand's font regime, per design-system §Typography → Loading (the seven_guis headless stand entry): one bundled font for every generic, system fonts off, supplied through the harness options. A fixture booted another way would not be "booted the same way as the task", and bounds read through the snapshot would not be comparable.
+- Where the fixture carries style at all, it reuses the task's as-built values and introduces none of its own: design-system §Color Palette → Core Colors (seven_guis row), §Typography (seven_guis row), §Spacing → Untokenized values in the apps and examples (seven_guis entry), §Border Radius (seven_guis row) and §Depth Strategy → Observed values in the apps and examples (seven_guis entry) are the whole recorded vocabulary for this surface.
+- No design token exists to cite for this surface: design-system §Color Palette → Token sets records color tokens and CSS custom properties as observed absent in the engine and integration crates, and the seven_guis rows in §Spacing and §Border Radius are recorded as untokenized. The chunk therefore cites recorded values, not `--color-*` names, and must not invent a token layer as a side effect.
+- The chunk adds no motion: design-system §Motion → This project's values records transitions and animations as observed absent in the seven_guis styles, and §Motion → Reduced motion records reduced-motion handling as observed absent, so an animation added to a task or to the fixture would have no reduce-motion path.
+- Every document the fixture boots carries the engine's default user-agent stylesheet, per design-system §Surface: desktop-native → Tokens (platform-specific). A wrapper element that an edit variant inserts (the "ancestor wrapped" and "wrapper inserted" cases) takes user-agent defaults; whether a bare wrapper changes the painted result of the element left in place is research's question, and the fixture's wrap variant should be chosen so the id comparison is not confounded by it.
+- The fixture boots at the default colour scheme, per design-system §Color Palette → Color model and scheme (engine) and §Surface: desktop-native → Tokens (platform-specific); the chunk has no reason to set one.
+
+## Patterns to follow
+- Stand styles live inline in the task source beside the markup — the coordinates design-system §Color Palette → Core Colors and §Border Radius give for seven_guis all point into `examples/seven_guis/src/tasks/*.rs` and `app.rs`. A fixture beside the stand follows the same placement rather than a separate stylesheet.
+- The single-bundled-font context is the recorded way to get deterministic text in a headless boot, per design-system §Typography → Loading (the `build_single_font_ctx` entries). Reuse the stand's boot path for the fixture instead of constructing a second font context.
+- design-system §Typography → Loading also records that without a font source text measures zero and font-dependent assertions pass vacuously. The re-pinned `stand_snapshot.rs` bounds expectations and any bounds the edit proof compares should keep a non-zero-size guard on text-bearing elements; whether the existing checks already carry one is research's question.
+- The card, button and input shapes the tasks already use (design-system §Border Radius seven_guis row; §Depth Strategy → Observed values, seven_guis entry) are the primitives an edited task variant keeps — the variant changes structure around an element, not the element's look.
+
+## Anti-patterns to avoid
+- design-system §Anti-Patterns reads `NO RECORDED INTENT`, so no ban is cited from it. The avoidances below follow from the measured sections above.
+- Do not restyle while re-keying: a diff that adds an `id` and also moves a colour, size, spacing, radius or shadow declaration on the same element breaks the "painted values unchanged" reading of design-system §Color Palette and §Border Radius, and hides which change moved a pinned snapshot bound.
+- Do not give the fixture its own palette, type size or spacing; design-system §Color Palette → Example fixtures shows how many one-off fixture palettes the repo already carries, and none of them is the stand's.
+- Do not add a transition, animation or keyframe to make an edit variant "visible" (design-system §Motion → This project's values; → Reduced motion).
+
+## Contract bindings
+- design ↔ a11y: painted colours are a11y surface (SC 1.4.3). If research finds that an added `id` or an inserted wrapper does change a painted colour on the stand, the changed pair is an a11y-plan contrast question before it is a design one. The scope's own claim is that no painted colour changes.
+- design ↔ tests: the fixture's font regime and viewport are the test harness's stand boot (design-system §Typography → Loading ↔ test-plan §3). The design constraint is satisfied by booting the fixture through the same path the stand checks use.
+- design ↔ layouts: the wrap / unwrap and sibling-added edit variants change box structure. Their effect on placement is the layouts distiller's; design only requires that the element left in place keeps its recorded look.
+- design ↔ wrap drift: design-system.md cites seven_guis values by file and line (`examples/seven_guis/src/tasks/counter.rs`, `flight_booker.rs`, `timer.rs`, `circle_drawer.rs`, `temp_converter.rs`, `app.rs`). Adding `id` attributes to those files moves lines, so the plan's coordinates for §Color Palette, §Typography, §Spacing, §Depth Strategy and §Border Radius are expected to drift at this chunk's wrap. No value changes; coordinates only.
+
+## Acceptance criteria contributions
+- (design) The chunk's diff over `examples/seven_guis/src/` changes no colour, font, spacing, radius or shadow declaration — only attributes and structure needed for author keys (per design-system §Color Palette → Core Colors / → Semantic Colors; §Border Radius; §Depth Strategy → Observed values in the apps and examples)
+- (design) The edit-proof fixture boots through the stand's headless path with the stand's bundled single-font context and system fonts off (per design-system §Typography → Loading)
+- (design) Any style the fixture declares uses only values the plan records for seven_guis; it introduces no new colour, type size, spacing, radius or shadow value (per design-system §Color Palette → Core Colors; §Typography; §Spacing → Untokenized values in the apps and examples; §Border Radius)
+- (design) No `transition`, `animation` or `@keyframes` is added to the stand tasks or the fixture (per design-system §Motion → This project's values)

@@ -1,0 +1,8 @@
+On the stand — the four lean tasks (counter, flight booker, timer, CRUD), Home, and the edit fixture beside them in tests/blitz-tests/tests/stand_id_edits.rs — each booted with `stand::options(false)` and `stand::options(true)`, an element left in place reads the same `DioxusDocument::element_id` before and after an edit of the code around it. The edit is a before/after pair: components of the same name in two modules, and an edited shell around the real lean-task components.
+- Every element of each lean task reads the same id when the shell it is rendered in gains an earlier sibling of the task root's tag, a wrapper around the task and one more level.
+- Every element that reads an author key reads the same id when a same-tag sibling is added before it, a sibling is removed, or an ancestor is wrapped.
+- Every unkeyed element under a keyed element of its own component reads `{key}//{relative path}` and keeps it under every edit outside that keyed element.
+- Every element reads the same id under an edit of text, an attribute, a class or a handler.
+- The edits that may change an id are measured: an earlier same-tag sibling or a wrapper inserted between an unkeyed element and the point its path starts at changes that element's id and no keyed element's id.
+- Every element an agent can act on — focusable, or carrying an interactive role, or carrying an event listener — reads an author key: `DioxusDocument::unkeyed_actionable()` returns nothing on the four lean tasks and on Home, at boot and after Book, Create and a row selection, with the flight booker's Book button held to the rule enabled and disabled.
+Witness: cargo test -p blitz-tests --locked --test stand_id_edits --test stand_actionable_keys.

@@ -187,14 +187,23 @@ impl DioxusDocument {
     ///
     /// 1. the **author key** — the element's HTML `id` attribute, verbatim, when it is
     ///    non-empty, contains no `/` and no element earlier in document order claimed it;
-    /// 2. the **component path** — the `/`-joined names of the components from the app root
+    /// 2. the **anchored path** — for an element under an element of its own component that
+    ///    reads an author key: that key, `//`, then one segment per DOM level below the keyed
+    ///    element, e.g. `toolbar//div:0/span:1`. The nearest such element anchors, so an
+    ///    edit outside it leaves the id as it was;
+    /// 3. the **component path** — the `/`-joined names of the components from the app root
     ///    to the element's owning component (a later instance of a name its owner already
     ///    rendered reads `{name}:{k}`), then one segment per DOM level below that component's
-    ///    template root: `{tag}[{key}]` for the root of a Dioxus-keyed node, else `{tag}:{n}`
-    ///    with `n` its index among same-owner, same-tag element siblings;
-    /// 3. the **document path** — for an element no component renders (the `html`, `head`
+    ///    template root. A component's template root always reads this path, whatever keyed
+    ///    element it is mounted under;
+    /// 4. the **document path** — for an element no component renders (the `html`, `head`
     ///    and `body` skeleton): `/` then one `{tag}:{n}` segment per DOM level, e.g.
     ///    `/html:0/body:0`.
+    ///
+    /// A segment is `{tag}[{key}]` for the root of a Dioxus-keyed node, else `{tag}:{n}` with
+    /// `n` its index among same-owner, same-tag element siblings. Paths always contain `/`
+    /// and keys never do, and an anchored path is the only id holding `//`: a key holds no
+    /// `/`, a component path has no empty segment, and a document path starts with `/`.
     ///
     /// Returns `None` for a non-element, stale or detached node.
     pub fn element_id(&self, node: NodeId) -> Option<String> {

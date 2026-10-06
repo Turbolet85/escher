@@ -66,6 +66,7 @@ pub fn Crud() -> Element {
                             }) {
                                 div {
                                     key: "{person.id}",
+                                    id: "crud-person-{person.id}",
                                     class: if selected() == Some(i) { "list-item selected" } else { "list-item" },
                                     onclick: move |_| {
                                         if let Some(p) = people.read().get(i).cloned() {

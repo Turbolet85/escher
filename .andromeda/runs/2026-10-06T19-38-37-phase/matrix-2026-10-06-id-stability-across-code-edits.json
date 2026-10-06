@@ -1,0 +1,189 @@
+[
+{
+"tool": "matrix",
+"v": "1.3",
+"sha8": "cd774c8a",
+"ts": "2026-10-06T20:30:24Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.1.0",
+"--run-dir",
+".andromeda/runs/2026-10-06T19-38-37-phase",
+"--marker",
+"2026-10-06-id-stability-across-code-edits"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"verified 2/16 · deferred 0 · planned 14 · implemented 0 · unclaimed 14",
+"unclaimed: v010-03 v010-04 v010-05 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14",
+"          v010-15 v010-16",
+"claimed-unfinished: none",
+"done-test: NO — 14 not verified|deferred · unclaimed 14",
+"chunks referenced: 2 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.3",
+"sha8": "cd774c8a",
+"ts": "2026-10-06T20:30:30Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-16",
+"--text-file",
+".andromeda/runs/2026-10-06T19-38-37-phase/note-v010-16.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T19-38-37-phase",
+"--marker",
+"2026-10-06-id-stability-across-code-edits"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"note v010-16: +1592 chars (total 2225) · status planned · ref/acceptance untouched",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-16",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, after an edit of a task's code that leaves an element in place, that element reads the same id as before t… (128 chars)",
+"notes_chars": 631
+},
+"after": {
+"id": "v010-16",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, after an edit of a task's code that leaves an element in place, that element reads the same id as before t… (128 chars)",
+"notes_chars": 2225
+}
+},
+{
+"tool": "matrix",
+"v": "1.3",
+"sha8": "cd774c8a",
+"ts": "2026-10-06T20:30:30Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-16",
+"--chunk",
+"2026-10-06-id-stability-across-code-edits",
+"--acceptance-file",
+".andromeda/runs/2026-10-06T19-38-37-phase/acceptance-v010-16.md",
+"--method",
+"integration",
+"--run-dir",
+".andromeda/runs/2026-10-06T19-38-37-phase"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"claim v010-16 → chunk 2026-10-06-id-stability-across-code-edits (was null; status planned kept)",
+"acceptance: On the stand, after an edit of a task's code that leaves an element in… (128 chars)",
+"         → On the stand — the four lean tasks (counter, flight booker, timer, CRU… (1722 chars)",
+"method: integration → integration",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 13 [v010-03 v010-04 v010-05 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-16",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, after an edit of a task's code that leaves an element in place, that element reads the same id as before t… (128 chars)",
+"notes_chars": 2225
+},
+"after": {
+"id": "v010-16",
+"chunk": "2026-10-06-id-stability-across-code-edits",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand — the four lean tasks (counter, flight booker, timer, CRUD), Home, and the edit fixture beside them in test… (1722 chars)",
+"notes_chars": 2225
+}
+},
+{
+"tool": "matrix",
+"v": "1.3",
+"sha8": "cd774c8a",
+"ts": "2026-10-06T20:30:30Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-06-id-stability-across-code-edits",
+"--plan",
+"escher-0.1.0/chunks/2026-10-06-id-stability-across-code-edits/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T19-38-37-phase"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-06-id-stability-across-code-edits: 1 · ## Acceptance Criteria: line 342, 60 lines",
+"v010-16: cited in ## Acceptance Criteria (line 348)",
+"ledger-note entries (P7.3's input, not claim citations): v010-01 (line 484)",
+"pool: unclaimed 13 [v010-03 v010-04 v010-05 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.3",
+"sha8": "cd774c8a",
+"ts": "2026-10-06T20:30:30Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.1.0",
+"--run-dir",
+".andromeda/runs/2026-10-06T19-38-37-phase",
+"--marker",
+"2026-10-06-id-stability-across-code-edits"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"verified 2/16 · deferred 0 · planned 14 · implemented 0 · unclaimed 13",
+"unclaimed: v010-03 v010-04 v010-05 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14",
+"          v010-15",
+"claimed-unfinished: 2026-10-06-id-stability-across-code-edits: v010-16",
+"done-test: NO — 14 not verified|deferred · unclaimed 13",
+"chunks referenced: 3 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

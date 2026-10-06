@@ -4,15 +4,21 @@
 //! An element's id is, in order of precedence:
 //! 1. its **author key** — the HTML `id` attribute, when non-empty, free of `/` and not already
 //!    claimed by an element earlier in document pre-order;
-//! 2. its **component path** — the names of the components between the app root and the element's
+//! 2. its **anchored path** — under an element of its own component that reads an author key:
+//!    that key, `//`, then one `{tag}[{key}]` / `{tag}:{n}` segment per DOM level below the keyed
+//!    element (`{key}//{segment}/{segment}`). The nearest such element anchors, so an edit outside
+//!    it renames nothing inside it;
+//! 3. its **component path** — the names of the components between the app root and the element's
 //!    owning component (`{name}:{k}` for an owner's later instance of a name it already rendered),
 //!    then one `{tag}[{key}]` / `{tag}:{n}` segment per DOM level below that component's template
-//!    root;
-//! 3. its **document path** — for elements no component renders: a leading `/`, then one
+//!    root. A component's template root always starts here, whatever keyed element it sits under;
+//! 4. its **document path** — for elements no component renders: a leading `/`, then one
 //!    `{tag}:{n}` segment per DOM level from the document root.
 //!
-//! Paths always contain `/` and keys never do, so the two never collide. No `NodeId`, `ElementId`,
-//! `ScopeId` or pointer appears in an id, so the same tree reads the same ids in any process.
+//! Paths always contain `/` and keys never do, so the two never collide. An anchored path is the
+//! only id holding `//`: a key holds no `/`, a component path has no empty segment, and a document
+//! path starts with `/` and has none after it. No `NodeId`, `ElementId`, `ScopeId` or pointer
+//! appears in an id, so the same tree reads the same ids in any process.
 
 use crate::NodeId;
 use crate::mutation_writer::DioxusState;
@@ -172,15 +178,23 @@ pub(crate) fn element_ids(
             .and_then(|element| element.attr(local_name!("id")))
             .filter(|key| !key.is_empty() && !key.contains('/'))
             .filter(|key| claimed_keys.insert(key.to_string()));
-        let mut children = place_children(doc, &roots, placed.node, placed.owner, &placed.path);
-        ids.push((placed.node, author_key.map_or(placed.path, str::to_string)));
+        // A keyed element anchors its same-owner children: `{key}/` + `/{segment}`.
+        let (id, anchor) = match author_key {
+            Some(key) => (key.to_string(), Some(format!("{key}/"))),
+            None => (placed.path, None),
+        };
+        let base = anchor.as_deref().unwrap_or(&id);
+        let mut children = place_children(doc, &roots, placed.node, placed.owner, base);
+        ids.push((placed.node, id));
         children.reverse();
         stack.extend(children);
     }
     ids
 }
 
-/// The element children of `parent`, each placed per the id grammar.
+/// The element children of `parent`, each placed per the id grammar. `parent_path` is what a
+/// child continuing its parent's path extends: the parent's own path, or `{key}/` when the parent
+/// reads its author key.
 fn place_children(
     doc: &BaseDocument,
     roots: &FxHashMap<NodeId, RootInfo>,
@@ -406,5 +420,158 @@ mod tests {
         assert_eq!(doc.element_id(p).as_deref(), Some("/p:0"));
         assert_eq!(doc.element_id(text), None);
         assert_eq!(doc.element_id(root), None);
+    }
+
+    #[test]
+    fn a_keyed_parent_anchors_its_unkeyed_children() {
+        fn app() -> Element {
+            rsx! {
+                div { id: "box",
+                    span {}
+                    p {
+                        b {}
+                    }
+                }
+            }
+        }
+        let ids = ids(&build(app));
+        assert_eq!(
+            &ids[4..],
+            ["box", "box//span:0", "box//p:0", "box//p:0/b:0"]
+        );
+        assert_distinct(&ids);
+    }
+
+    #[test]
+    fn the_nearest_keyed_ancestor_anchors() {
+        fn app() -> Element {
+            rsx! {
+                div { id: "outer",
+                    div { id: "inner",
+                        i {}
+                    }
+                    u {}
+                }
+            }
+        }
+        let ids = ids(&build(app));
+        assert_eq!(&ids[4..], ["outer", "inner", "inner//i:0", "outer//u:0"]);
+        assert_distinct(&ids);
+    }
+
+    #[test]
+    fn an_unusable_id_anchors_nothing() {
+        fn app() -> Element {
+            rsx! {
+                div { id: "",
+                    i {}
+                }
+                div { id: "a/b",
+                    i {}
+                }
+                div { id: "dup" }
+                div { id: "dup",
+                    i {}
+                }
+            }
+        }
+        let ids = ids(&build(app));
+        assert_eq!(
+            &ids[4..],
+            [
+                "/div:0",
+                "/div:0/i:0",
+                "/div:1",
+                "/div:1/i:0",
+                "dup",
+                "/div:3",
+                "/div:3/i:0",
+            ]
+        );
+        assert_distinct(&ids);
+    }
+
+    #[test]
+    fn a_component_root_under_a_keyed_element_restarts_at_its_chain() {
+        #[component]
+        fn Item() -> Element {
+            rsx! { b {} }
+        }
+        fn app() -> Element {
+            rsx! {
+                div { id: "slot", Item {} }
+            }
+        }
+        let ids = ids(&build(app));
+        assert_eq!(&ids[4..], ["slot", "Item/b:0"]);
+    }
+
+    #[test]
+    fn a_key_spelled_like_a_component_stays_distinct() {
+        #[component]
+        fn Item() -> Element {
+            rsx! { b {} }
+        }
+        fn app() -> Element {
+            rsx! {
+                div { id: "Item",
+                    b {}
+                }
+                Item {}
+            }
+        }
+        let ids = ids(&build(app));
+        assert_eq!(&ids[4..], ["Item", "Item//b:0", "Item/b:0"]);
+        assert_distinct(&ids);
+    }
+
+    #[test]
+    fn a_dioxus_keyed_row_under_a_keyed_list_reads_its_key_segment() {
+        fn app() -> Element {
+            rsx! {
+                ul { id: "list",
+                    for name in ["ada", "grace"] {
+                        li { key: "{name}", "{name}" }
+                    }
+                }
+            }
+        }
+        let ids = ids(&build(app));
+        assert_eq!(&ids[4..], ["list", "list//li[ada]", "list//li[grace]"]);
+        assert_distinct(&ids);
+    }
+
+    #[test]
+    fn an_edit_outside_the_anchor_keeps_the_anchored_id() {
+        fn before() -> Element {
+            rsx! {
+                div { id: "box",
+                    p {}
+                }
+            }
+        }
+        fn edited_outside() -> Element {
+            rsx! {
+                div {}
+                section {
+                    div { id: "box",
+                        p {}
+                    }
+                }
+            }
+        }
+        fn edited_inside() -> Element {
+            rsx! {
+                div { id: "box",
+                    p {}
+                    p {}
+                }
+            }
+        }
+        // The `p` left in place is the last element of each app.
+        let last = |app: fn() -> Element| ids(&build(app)).pop().expect("the p element");
+        assert_eq!(last(before), "box//p:0");
+        assert_eq!(last(edited_outside), "box//p:0");
+        assert_eq!(last(edited_inside), "box//p:1");
     }
 }

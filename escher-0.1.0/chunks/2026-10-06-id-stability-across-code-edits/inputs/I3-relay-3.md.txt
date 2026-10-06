@@ -1,0 +1,5 @@
+The founder's review of the plan at this phase's P5, before the approval word. The review card had listed three decisions made without asking: the actionable check test-local with no new method on `DioxusDocument`; the check covering the four lean tasks only, Home's seven task cards left as known and the three non-lean tasks not measured; the edit fixture in the test file.
+
+The founder's review, verbatim:
+
+"review: two changes, then show me the card again. (1) Put the actionable-key check in the library, not in the test: a public function in dioxus-native-dom that returns the actionable elements reading a positional path, each with the element and the remedy. The stand check asserts it is empty. The rule is for app authors, so the check must be callable outside the stand tests, and the later CLI and driver will reuse it. A contract addition is fine here; record it for the wrap. (2) Key the seven Home task cards in this chunk too, and measure the three non-lean tasks with the same function: report their counts and pin a CARRY for them instead of leaving them unmeasured."

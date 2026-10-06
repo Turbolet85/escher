@@ -27,3 +27,6 @@ Carried from session 15, still unreviewed:
 - recurrence-despite-learning: "The project's Bash guards refuse a heredoc written to a file and a leading cd, and read payload prose too" (Tier 3, 2026-10-06). Sixth recurrence, at this wrap.
 - recurrence-despite-learning: "On this host `grep` is ugrep, and a long bounded repetition can print nothing" (Tier 3, 2026-10-06). Recurred again at this wrap (five patterns refused, re-run through python).
 Review with `/andromeda-wrap-session --review` if any should be applied.
+
+## Session End Status
+Completed normally at 2026-10-06 22:31:14

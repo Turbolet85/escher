@@ -5,11 +5,14 @@
 //! ## Feature flags
 //!  - `default`: Enables the features listed below.
 //!  - `accessibility`: Enables [`accesskit`](https://docs.rs/accesskit/latest/accesskit/) accessibility support,
-//!    and the snapshot model (`DioxusDocument::snapshot`) built on it.
+//!    and the snapshot model (`DioxusDocument::snapshot`) and the actionable-key check
+//!    (`DioxusDocument::unkeyed_actionable`) built on it.
 //!  - `hot-reload`: Enables hot-reloading of Dioxus RSX.
 //!  - `menu`: Enables the [`muda`](https://docs.rs/muda/latest/muda/) menubar.
 //!  - `tracing`: Enables tracing support.
 
+#[cfg(feature = "accessibility")]
+mod actionable;
 mod dioxus_document;
 mod element_id;
 mod events;
@@ -17,6 +20,8 @@ mod mutation_writer;
 #[cfg(feature = "accessibility")]
 mod snapshot;
 mod write_once_attr;
+#[cfg(feature = "accessibility")]
+pub use actionable::UnkeyedActionable;
 pub use blitz_dom::DocumentConfig;
 pub use dioxus_document::DioxusDocument;
 pub use events::{NodeHandle, synthetic_click_event};

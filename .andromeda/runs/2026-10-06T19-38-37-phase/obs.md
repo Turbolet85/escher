@@ -1,0 +1,35 @@
+# obs extract
+
+## Relevance
+partial — the chunk adds no telemetry surface (an id-grammar change, an in-process check, author keys on the stand, a fixture and re-pinned checks); obs applies only as guard rails on what the new code and checks may print or log, and on how the check's failure reaches the agent-run log.
+
+## Constraints
+- Obs tier is 0 and the plan records no span and no metric exporter anywhere in the workspace, so no span, metric or new log event is required to accompany the id rule, the actionable-element check or the fixture (per obs-plan §1 Obs Scope Summary · §4 Span / Trace Coverage · §5 Metric Coverage).
+- obs-plan §2 requires any telemetry in an engine or bridge crate to be a `tracing` event compiled only under that crate's `tracing` cargo feature, with a no-op path when the feature is off; `dioxus-native-dom` carries that optional feature. If the chunk adds a diagnostic to `element_id.rs`, `dioxus_document.rs` or `snapshot.rs`, it takes that form (per obs-plan §2 Telemetry Strategy → Telemetry mechanism). Whether those files carry any log call site today is research's question.
+- obs-plan §3 requires the headless stand (`seven_guis::stand`) and its `stand_*` checks to install no subscriber, read no env var and print nothing — the single recorded exception being `stand_id_persistence`'s re-executed child, whose stdout (pid and ids) the parent captures and reads only into its assertion, never a log. The edit-proof fixture, the new check and every re-pinned check stay inside that rule (per obs-plan §3 Observability Harness Contract → Logging stack).
+- obs-plan §6 requires the agent-run harness to emit one `test` event per libtest result line carrying `file`, `test`, `outcome` only, and to read nothing between a `failures:` line and the next `test result:` — so the check's failure text ("names the element and the remedy") reaches `target/agent-run/run.log` and direct cargo output, never an event. The verdict an agent reads from the events is the test's name and outcome alone (per obs-plan §6 Log Coverage → Log format (the agent-run harness)).
+- obs-plan §8 requires escher's sink to print, for any event at a target starting `dioxus_native` (which covers `dioxus_native_dom`), only the allowlisted fields, and to redact the content-named fields at every target. An element id or author key placed in a new event field would print as `[redacted]`; the chunk does not widen the allowlist to make ids printable — a scrub-set change is its own decision (per obs-plan §8 PII Scrubbing & Compliance → Scrubbing).
+- obs-plan §8 records that `dioxus-native-dom`'s mutation log writes attribute values at debug under the `tracing` feature; the author `id` attributes the chunk adds to the stand tasks travel that existing path. No new user-content log field is added, and the existing site is not edited (per obs-plan §8 → Values logged as-is · §6 → Logged events, dioxus-native-dom).
+- obs-plan §9 requires the agent-run state area and the per-leg CI log to be the only places raw test output lands (`target/agent-run/`, `target/ci-logs/`), both gitignored and uploaded only as recorded; the chunk adds no CI leg, artifact or log file (per obs-plan §9 CI Integration → Telemetry artifact handling).
+
+## Patterns to follow
+- A diagnostic in `dioxus-native-dom` follows the crate's existing mutation-log shape: a `tracing` macro behind the `tracing` feature, never an unconditional print (per obs-plan §6 → Logged events, dioxus-native, dioxus-native-dom · §2 → Telemetry mechanism).
+- A cross-process id comparison (if the fixture needs a fresh process, as v010-02's proof did) follows `stand_id_persistence`'s shape: the child writes ids to stdout, the parent captures them and reads them only into its assertion (per obs-plan §3 → Logging stack).
+- The check reports its offenders as data — a return value and a test assertion message — and is exercised through `scripts/agent-run.sh run stand`, whose `test` events are encoded by the script's embedded `json` module (per obs-plan §3 → Agent-run harness log · §6 → Log format (the agent-run harness)).
+- Recoverable conditions in engine-side code are logged and a fallback is used rather than surfaced as a new error channel; an id that falls back from author key to path is such a fallback and needs no error event (per obs-plan §7 Error Capture & Reporting → Error classes captured).
+
+## Anti-patterns to avoid
+- An unconditional `println!` / `eprintln!` or an ungated `tracing` call in `dioxus-native-dom`, in `seven_guis::stand` or in the fixture to dump ids, paths or the offender list (per obs-plan §2 → Telemetry mechanism · §3 → Logging stack).
+- Installing `escher_telemetry::init`, or reading `RUST_LOG` or any env var, in the headless stand, the fixture or a `stand_*` check to make ids visible (per obs-plan §3 → Logging stack).
+- Editing escher-telemetry's allowlist or content-named set, or adding a field named in that set (`value`, `attrs`, `text`, `path`, …) to carry an id or an element's attributes (per obs-plan §8 → Scrubbing).
+
+## Contract bindings
+- obs ↔ tests (test-plan §3, the agent-run contract): the new check and the fixture's checks surface as `test {file, test, outcome}` events, `file` the test binary's stem; the failure message that names the element and the remedy is not in an event. The test names therefore have to say which rule failed, since the name is all the event carries (per obs-plan §3 → Agent-run harness log · §6 → Log format (the agent-run harness)).
+- obs ↔ security (security-plan §Logging & Monitoring): the scrub sets are the redaction boundary; author keys are app-authored attribute values and stay redacted under escher's sink at engine and bridge targets (per obs-plan §8 → Scrubbing).
+- obs ↔ a11y: none added — the plan records no a11y violation schema, and the re-spelled `author_id` on accessibility nodes is not a log field.
+
+## Acceptance criteria contributions
+- Any diagnostic the chunk adds under `packages/dioxus-native-dom/src/` is a `tracing` call site behind `#[cfg(feature = "tracing")]` with a no-op path, and the crate builds with the feature off and on; zero unconditional `println!` / `eprintln!` added there (per obs-plan §2 Telemetry Strategy → Telemetry mechanism).
+- `seven_guis::stand`, the edit-proof fixture and the new and re-pinned `stand_*` checks add no subscriber install, no env read and no print, other than a captured-stdout child of the `stand_id_persistence` shape if a fresh process is used (per obs-plan §3 Observability Harness Contract → Logging stack).
+- `bash scripts/agent-run.sh run stand` emits one `test` event per new libtest result with keys `file`, `test`, `outcome` only, and `target/agent-run/events.jsonl` holds no element id, path or remedy text from the check's failure message (per obs-plan §6 Log Coverage → Log format (the agent-run harness) · §8 → Scrubbing).
+- `packages/escher-telemetry/src/format.rs`'s allowlist and content-named set are unchanged by the chunk's diff (per obs-plan §8 PII Scrubbing & Compliance → Scrubbing).

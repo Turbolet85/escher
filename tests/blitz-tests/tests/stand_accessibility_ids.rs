@@ -268,7 +268,7 @@ fn ids_hold_after_a_rerender() {
         assert_eq!(rows.len(), 4, "Create added a row");
         let tree = crud.doc.accessibility_tree();
         assert_carried(&crud, &tree, LeanTask::Crud);
-        let (created, _) = find(&tree, "TaskShell/Crud/div:0/div:1/div:0/div[3]");
+        let (created, _) = find(&tree, "crud-person-3");
         assert_eq!(
             created.0,
             rows[3].as_u64(),

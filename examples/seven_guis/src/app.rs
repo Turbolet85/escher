@@ -16,6 +16,7 @@ pub enum Task {
 
 struct TaskMeta {
     task: Task,
+    slug: &'static str,
     name: &'static str,
     description: &'static str,
     tag: &'static str,
@@ -24,42 +25,49 @@ struct TaskMeta {
 const TASKS: &[TaskMeta] = &[
     TaskMeta {
         task: Task::Counter,
+        slug: "counter",
         name: "Counter",
         description: "Increment a count. Tests basic state mutation.",
         tag: "State",
     },
     TaskMeta {
         task: Task::TempConverter,
+        slug: "temp-converter",
         name: "Temp Converter",
         description: "Celsius \u{21c4} Fahrenheit. Tests bidirectional data flow.",
         tag: "Data Flow",
     },
     TaskMeta {
         task: Task::FlightBooker,
+        slug: "flight-booker",
         name: "Flight Booker",
         description: "One-way or return flight form. Tests constraint logic.",
         tag: "Constraints",
     },
     TaskMeta {
         task: Task::Timer,
+        slug: "timer",
         name: "Timer",
         description: "Elapsed time bar with adjustable duration. Tests concurrency.",
         tag: "Concurrency",
     },
     TaskMeta {
         task: Task::Crud,
+        slug: "crud",
         name: "CRUD",
         description: "Create, read, update, delete names. Tests list management.",
         tag: "List Ops",
     },
     TaskMeta {
         task: Task::CircleDrawer,
+        slug: "circle-drawer",
         name: "Circle Drawer",
         description: "Draw and resize circles with undo/redo. Tests history.",
         tag: "Undo / Redo",
     },
     TaskMeta {
         task: Task::Cells,
+        slug: "cells",
         name: "Cells",
         description: "Mini spreadsheet with formula evaluation. Tests reactivity.",
         tag: "Reactivity",
@@ -133,6 +141,7 @@ fn Home(on_select: EventHandler<Task>) -> Element {
                         let task = meta.task;
                         rsx! {
                             button {
+                                id: "task-card-{meta.slug}",
                                 class: "task-card",
                                 onclick: move |_| on_select.call(task),
                                 div { class: "card-number", "{i + 1}" }

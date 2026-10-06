@@ -12,7 +12,7 @@ use seven_guis::stand::{self, LeanTask};
 use seven_guis::tasks::timer::TimerTicks;
 
 const ROWS: &str = ".list > .list-item";
-const ROW_PATH: &str = "TaskShell/Crud/div:0/div:1/div:0/div";
+const ROW_KEY: &str = "crud-person-";
 const CHILD_LINE: &str = "stand-id";
 
 fn ids(harness: &Harness<DioxusDocument>) -> Vec<(NodeId, String)> {
@@ -55,8 +55,8 @@ fn row_ids(harness: &Harness<DioxusDocument>) -> BTreeMap<String, String> {
         .collect()
 }
 
-fn row_path(key: u64) -> String {
-    format!("{ROW_PATH}[{key}]")
+fn row_key(key: u64) -> String {
+    format!("{ROW_KEY}{key}")
 }
 
 /// Run `rerender` on `harness`, asserting the DOM changed and every surviving element kept its id.
@@ -122,9 +122,9 @@ fn ids_hold_across_rerenders() {
 fn crud_rows_follow_their_person(incremental: bool) {
     let mode = format!("incremental={incremental}");
     let fixture = BTreeMap::from([
-        ("Emil, Hans".to_string(), row_path(0)),
-        ("Mustermann, Max".to_string(), row_path(1)),
-        ("Tisch, Roman".to_string(), row_path(2)),
+        ("Emil, Hans".to_string(), row_key(0)),
+        ("Mustermann, Max".to_string(), row_key(1)),
+        ("Tisch, Roman".to_string(), row_key(2)),
     ]);
 
     let mut crud = stand::boot(LeanTask::Crud, stand::options(incremental));
@@ -135,7 +135,7 @@ fn crud_rows_follow_their_person(incremental: bool) {
     });
     assert_eq!(
         row_ids(&crud),
-        BTreeMap::from([("Mustermann, Max".to_string(), row_path(1))]),
+        BTreeMap::from([("Mustermann, Max".to_string(), row_key(1))]),
         "crud filter {mode}: the filtered row keeps its id"
     );
 
@@ -148,7 +148,7 @@ fn crud_rows_follow_their_person(incremental: bool) {
         h.click("#crud-create");
     });
     let mut created = fixture.clone();
-    created.insert("Lovelace, Ada".to_string(), row_path(3));
+    created.insert("Lovelace, Ada".to_string(), row_key(3));
     assert_eq!(
         row_ids(&crud),
         created,
@@ -168,13 +168,13 @@ fn crud_rows_follow_their_person(incremental: bool) {
     assert_eq!(
         after_delete,
         BTreeMap::from([
-            ("Mustermann, Max".to_string(), row_path(1)),
-            ("Tisch, Roman".to_string(), row_path(2)),
-            ("Lovelace, Ada".to_string(), row_path(3)),
+            ("Mustermann, Max".to_string(), row_key(1)),
+            ("Tisch, Roman".to_string(), row_key(2)),
+            ("Lovelace, Ada".to_string(), row_key(3)),
         ]),
         "crud delete {mode}: the remaining people keep their ids"
     );
-    assert!(!after_delete.values().any(|id| *id == row_path(0)));
+    assert!(!after_delete.values().any(|id| *id == row_key(0)));
 }
 
 fn app_root() -> Element {

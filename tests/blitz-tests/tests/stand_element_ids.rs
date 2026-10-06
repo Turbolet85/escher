@@ -1,6 +1,8 @@
 //! Every element of each lean stand task, booted headlessly in both layout modes, reads exactly
-//! one stable element id: elements the author keyed with an HTML `id` read that key, and every
-//! other element reads its component path (or, outside every component, its document path).
+//! one stable element id, by the grammar's four tiers: an element the author keyed with an HTML
+//! `id` reads that key (a CRUD row included); an unkeyed element under a keyed element of its own
+//! component reads an anchored path, `{key}//{segment}`; every other element a component renders
+//! reads its component path; and an element outside every component reads its document path.
 
 use std::collections::HashSet;
 
@@ -47,6 +49,9 @@ fn task_keys(task: LeanTask) -> &'static [&'static str] {
         LeanTask::Crud => &[
             "crud-filter",
             "crud-list",
+            "crud-person-0",
+            "crud-person-1",
+            "crud-person-2",
             "crud-name",
             "crud-surname",
             "crud-create",
@@ -228,7 +233,7 @@ fn unkeyed_elements_read_their_component_path() {
         let first_row = crud.query_all(".list > .list-item")[0];
         assert_eq!(
             crud.doc.element_id(first_row).as_deref(),
-            Some("TaskShell/Crud/div:0/div:1/div:0/div[0]")
+            Some("crud-person-0")
         );
     }
 }
