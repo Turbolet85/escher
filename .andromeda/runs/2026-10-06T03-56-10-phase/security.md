@@ -1,0 +1,35 @@
+# security extract
+
+## Relevance
+relevant: the chunk adds the workspace's first outbound model-provider session, a credential path, a stub-tool input surface (CLI or MCP stdio IPC) and a transcript artifact holding tool I/O.
+
+## Constraints
+- The model-provider credential must never be read by source or written to code, fixtures, transcripts, verdict records or logs. security-plan §Secret Management (Never in code; Environment values read) records source env reads as a closed, non-secret list. A provider-key env var, a client login token path or a fork CI secret is therefore an addition to that list and to §Secret Management (Storage), recorded as an amendment before it is used. Whether the chosen client (for example `claude`'s own login) keeps the key entirely outside escher's source is research's question.
+- If the pipe runs in fork CI, any provider secret must sit in GitHub Actions secrets, and the job must keep ci.yml's workflow-level read-only `GITHUB_TOKEN` with no job-level grant. Per security-plan §Authentication & Authorization (RBAC / permissions (CI tokens), ci.yml row) and §Secret Management (Storage), a new secret is a §Storage entry. A local-only pipe adds no CI secret.
+- The stub tool's argument checking must reject before acting: unknown verbs, wrong argument counts and malformed arguments get a usage or refusal that names its cause, and no unchecked agent-supplied string reaches a filesystem path, a subprocess or cargo. The precedent is the agent-run.sh row of security-plan §Input Validation (CLI arguments (agent-run.sh)): selections are allowlisted and checked against a regex, and usage exits 2 before any cargo call.
+- If the stub task boots the stand, it must stay offline. Agent-supplied URLs or paths must not be routed through `blitz-net`, which per security-plan §Input Validation (`file:` URLs (net provider)) and §API Security (Request size limit; Request timeout) reads `file:` paths without restriction and has no size cap or timeout.
+- Any machine-readable event or verdict stream the pipe emits must carry harness metadata only, with no content-named field (`url`, `href`, `src`, `html`, `text`, `value`, `attrs`, `path`, `request`, `error`, `panic.payload`). Raw model or tool output may go only to a gitignored file under `target/`, and a status or logs verb must never print it. This follows the agent-run contract's events.jsonl/run.log split in security-plan §Logging & Monitoring (Log format and backends, agent-run row and escher's own sink row). Whether the verdict's `transcript path` field collides with the redacted `path` key is research's question.
+- Transcripts must not reach escher's telemetry sink (`escher_telemetry::init`) or any stdout `fmt::init()` subscriber. Per security-plan §Logging & Monitoring (escher's own sink), the scrub covers only that sink. A transcript is an artifact file, not a log field.
+- Any new crate, for example an MCP SDK or an HTTP or model client for a direct-API driver loop, must enter through `Cargo.lock` with `--locked` builds and git deps pinned by `rev`, and must pass the cargo-deny audit leg. It must also be reviewed by hand, because the audit's reach is cargo-deny's resolved graph. See security-plan §Dependency Security (Audit tool; Pinning; Supply chain integrity → Lockfile verification).
+
+## Patterns to follow
+- The agent-run.sh invocation contract is the template for the pipe's own verbs: allowlisted verbs, regex-checked selection, usage exit 2 before any side effect, JSON-line events with no content fields, and raw output confined to `target/` (security-plan §Input Validation, CLI arguments (agent-run.sh); §Logging & Monitoring, agent-run row).
+- CLI failure surfaces exit non-zero after a stderr message and are never printed to stdout (security-plan §Error Handling, External responses, CLI tools row).
+- Secret-bearing CI material is gated by a repository guard and confined to named secrets, with an `always()` cleanup for anything written to disk (security-plan §Secret Management, Storage; §Authentication & Authorization, publish-job row).
+- New tooling installed in CI is version-pinned, and every `uses:` is pinned to a 40-hex SHA (security-plan §Dependency Security, Pinning, CI tooling bullet).
+
+## Anti-patterns to avoid
+- Do not put a provider key, a login token or the operator's client config path into a committed transcript, the evidence copy, a fixture or a log. The committed green-run evidence is the riskiest place for this (security-plan §Secret Management, Never in code; §Logging & Monitoring, escher's own sink).
+- Do not add a CI job that reaches a provider secret through a ref-only `if:` without the repository or permission discipline the existing jobs keep (security-plan §Authentication & Authorization, RBAC rows).
+- Do not let raw cargo, libtest or model output leak into a status, verdict or events stream that agents read (security-plan §Logging & Monitoring, agent-run row).
+
+## Contract bindings
+- security ↔ arch §Occupied Resources: a credential path, a new env var, an MCP stdio endpoint (local IPC), transcript paths under `target/` and the committed evidence copy, and any stub workspace crate are each a registration plus a security-plan amendment (§Secret Management; §Logging & Monitoring) at the wrap.
+- security ↔ obs: the transcript and verdict are artifacts outside escher-telemetry's scrubbed sink. The redacted field names in security-plan §Logging & Monitoring (escher's own sink) bind the verdict and event schema.
+- security ↔ tests: the pipe's contract tests run with no live model and no credential, using a scripted or replayed session. They join the ci-scripts leg the same way agent-run.sh's shim tests did (security-plan §Logging & Monitoring, agent-run row, measured at the stand-test-contract chunk). The cargo-deny audit leg gates any new dependency (security-plan §Dependency Security, CI integration).
+
+## Acceptance criteria contributions
+- (security) Grepping the committed transcript, verdict and evidence files, plus any new script or crate source, finds no provider key pattern (for example `sk-ant-`), no `Authorization`/`x-api-key` header value and no client credential file path. Any new env read appears in an amended §Secret Management (Environment values read) list (per security-plan §Secret Management).
+- (security) The stub tool rejects an unknown verb, a wrong argument count and a malformed argument with a refusal that names its cause and has no side effect. A contract test asserts each case (per security-plan §Input Validation, CLI arguments (agent-run.sh) precedent).
+- (security) The pipe's event and verdict records hold no scrub-set field (`url href src html text value attrs path request error panic.payload`) and no raw transcript text. A live status or logs read shows 0 such keys (per security-plan §Logging & Monitoring, agent-run row and escher's own sink).
+- (security) If a dependency is added, `bash .github/scripts/ci-leg.sh audit` passes and `Cargo.lock` changes only through `--locked`-compatible resolution (per security-plan §Dependency Security).

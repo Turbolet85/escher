@@ -20,7 +20,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
    ↓
 [2026-10-06-stand-test-contract] Stand test contract — agent-invocable boot, run, status, cleanup and JSON-line logs for stand checks and blitz-tests (per test-plan §3)
    ↓
-Cold-agent run pipe — fresh agent session given only a stub tool; transcript, wrong-call count and verdict recorded green
+[2026-10-06-cold-agent-run-pipe] Cold-agent run pipe — fresh agent session given only a stub tool; transcript, wrong-call count and verdict recorded green
 
 ### Epoch 2 — Element identity
 Stable element ids — author key else component path, on every stand element (v010-01)

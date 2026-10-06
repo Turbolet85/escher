@@ -1,0 +1,8 @@
+Operator entry 15 — hygiene (2026-10-06, hand-driven at the operator pass, before the pre-CI commit)
+
+run: python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene
+exit: 0
+expect: exit 0 ✓ · contains 'hygiene: clean' ✓
+
+control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P2 · P3 rust — each fired on its synthetic known positive
+hygiene: clean — read 35 (runs 30 · evidence 5 · inputs 0) · trails 12 not read · copies 0 not read by P1 — 0 host paths kept · binary 0 not read by P1
