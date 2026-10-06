@@ -14,6 +14,7 @@ members = [
     "packages/dioxus-native",
     "packages/dioxus-native-dom",
     "packages/blitz-test-harness",
+    "packages/escher-telemetry",
     "apps/browser",
     "apps/browser/persistence",
     "apps/readme",
@@ -56,6 +57,7 @@ debug_timer = { version = "0.1.2", path = "./packages/debug_timer" }
 accesskit_xplat = { version = "0.2", path = "./packages/accesskit_xplat", default-features = false }
 browser-persistence = { path = "./apps/browser/persistence" }
 blitz-test-harness = { path = "./packages/blitz-test-harness" }
+escher-telemetry = { path = "./packages/escher-telemetry" }
 
 # Servo dependencies
 style = { version = "0.22.0", package = "stylo" }
@@ -182,6 +184,7 @@ bytes = "1.7.1"
 slotmap = "1.0.7"
 tracing = "0.1.40"
 tracing-subscriber = "0.3"
+tracing-log = "0.2"
 futures-util = "0.3.30"
 futures-intrusive = "0.5.0"
 pollster = "0.4"

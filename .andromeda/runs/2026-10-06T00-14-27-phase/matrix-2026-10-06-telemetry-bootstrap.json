@@ -1,0 +1,58 @@
+[
+{
+"tool": "matrix",
+"v": "1.3",
+"sha8": "cd774c8a",
+"ts": "2026-10-06T00:32:42Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.1.0",
+"--run-dir",
+".andromeda/runs/2026-10-06T00-14-27-phase",
+"--marker",
+"2026-10-06-telemetry-bootstrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"verified 0/15 · deferred 0 · planned 15 · implemented 0 · unclaimed 15",
+"unclaimed: v010-01 v010-02 v010-03 v010-04 v010-05 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12",
+"          v010-13 v010-14 v010-15",
+"claimed-unfinished: none",
+"done-test: NO — 15 not verified|deferred · unclaimed 15",
+"chunks referenced: 0 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.3",
+"sha8": "cd774c8a",
+"ts": "2026-10-06T00:32:43Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-06-telemetry-bootstrap",
+"--plan",
+"escher-0.1.0/chunks/2026-10-06-telemetry-bootstrap/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T00-14-27-phase"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-06-telemetry-bootstrap: 0 · ## Acceptance Criteria: line 261, 14 lines",
+"pool: unclaimed 15 [v010-01 v010-02 v010-03 v010-04 v010-05 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

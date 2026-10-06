@@ -11,3 +11,4 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 2026-10-05-as-built-baseline · complete · workspace build + blitz-tests green on this host, wall-clock recorded · → escher-0.1.0/chunks/2026-10-05-as-built-baseline/
 2026-10-05-fork-ci-reached · complete · Fork CI on the build branch — cached, fast/slow split, failure artifacts, signing jobs excluded · → escher-0.1.0/chunks/2026-10-05-fork-ci-reached/
 2026-10-05-ci-gate-legs · complete · CI gate legs — dependency audit, SHA-pinned actions, least-privilege tokens, coverage report, a11y leg, real rustdoc gate · → escher-0.1.0/chunks/2026-10-05-ci-gate-legs/
+2026-10-06-telemetry-bootstrap · pending · Telemetry bootstrap — stderr tracing subscriber, service identity, panic logging, scrub layer, opt-in OTel export · → escher-0.1.0/chunks/2026-10-06-telemetry-bootstrap/

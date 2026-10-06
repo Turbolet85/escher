@@ -1,0 +1,128 @@
+[
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'launch' AND callee_kind = 'fn' AND callee_file LIKE '%dioxus-native/src/lib.rs' ORDER BY file, line;",
+"rows": 19,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-examples 0.0.1 main().",
+"file": "examples/box_shadow.rs",
+"line": 3
+},
+{
+"caller": "rust-analyzer cargo counter 0.1.0 crate/",
+"file": "examples/counter/src/lib.rs",
+"line": 8
+},
+{
+"caller": "rust-analyzer cargo counter 0.1.0 crate/",
+"file": "examples/counter/src/main.rs",
+"line": 11
+},
+{
+"caller": "rust-analyzer cargo counter 0.1.0 main().",
+"file": "examples/counter/src/main.rs",
+"line": 15
+},
+{
+"caller": "rust-analyzer cargo blitz-examples 0.0.1 main().",
+"file": "examples/custom_widget.rs",
+"line": 17
+},
+{
+"caller": "rust-analyzer cargo blitz-examples 0.0.1 main().",
+"file": "examples/flex.rs",
+"line": 9
+},
+{
+"caller": "rust-analyzer cargo blitz-examples 0.0.1 main().",
+"file": "examples/form.rs",
+"line": 5
+},
+{
+"caller": "rust-analyzer cargo blitz-examples 0.0.1 main().",
+"file": "examples/gradient.rs",
+"line": 3
+},
+{
+"caller": "rust-analyzer cargo blitz-examples 0.0.1 main().",
+"file": "examples/inline.rs",
+"line": 5
+},
+{
+"caller": "rust-analyzer cargo blitz-examples 0.0.1 main().",
+"file": "examples/mutations.rs",
+"line": 3
+},
+{
+"caller": "rust-analyzer cargo blitz-examples 0.0.1 main().",
+"file": "examples/outline.rs",
+"line": 6
+},
+{
+"caller": "rust-analyzer cargo blitz-examples 0.0.1 main().",
+"file": "examples/restyle.rs",
+"line": 11
+},
+{
+"caller": "rust-analyzer cargo seven_guis 0.1.0 main().",
+"file": "examples/seven_guis/src/main.rs",
+"line": 5
+},
+{
+"caller": "rust-analyzer cargo blitz-examples 0.0.1 main().",
+"file": "examples/svg.rs",
+"line": 6
+},
+{
+"caller": "rust-analyzer cargo blitz-examples 0.0.1 main().",
+"file": "examples/svg_native.rs",
+"line": 6
+},
+{
+"caller": "rust-analyzer cargo todomvc 0.1.0 crate/",
+"file": "examples/todomvc/src/lib.rs",
+"line": 11
+},
+{
+"caller": "rust-analyzer cargo todomvc 0.1.0 crate/",
+"file": "examples/todomvc/src/main.rs",
+"line": 11
+},
+{
+"caller": "rust-analyzer cargo todomvc 0.1.0 main().",
+"file": "examples/todomvc/src/main.rs",
+"line": 17
+},
+{
+"caller": "rust-analyzer cargo blitz-examples 0.0.1 main().",
+"file": "examples/transforms.rs",
+"line": 5
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT symbol, crate, kind, file FROM symbol WHERE (name LIKE 'telemetry%' OR name LIKE 'escher%' OR name = 'scrub' OR name LIKE 'init_tracing%') AND kind <> 'meta';",
+"rows": 0,
+"result": [],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT from_crate, to_crate FROM crate_edges WHERE from_crate = 'seven_guis' OR to_crate = 'seven_guis';",
+"rows": 2,
+"result": [
+{
+"from_crate": "seven_guis",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "dioxus-native"
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]
