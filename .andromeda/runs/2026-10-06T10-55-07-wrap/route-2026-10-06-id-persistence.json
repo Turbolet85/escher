@@ -1,0 +1,117 @@
+[
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "699f7ef0",
+"ts": "2026-10-06T11:09:26Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-06-id-persistence",
+"--run-dir",
+".andromeda/runs/2026-10-06T10-55-07-wrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"flip master-route.md:20 - 2026-10-06-id-persistence pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "699f7ef0",
+"ts": "2026-10-06T11:09:26Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-06-id-persistence",
+"--date",
+"2026-10-06",
+"--run-dir",
+".andromeda/runs/2026-10-06T10-55-07-wrap",
+"--dry-run"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"pin :30 strip CARRY: 520ch \"CARRY: positional id parts (from 2026-10\"",
+"pin next markerless :32 holds CONTEXT:×1",
+"30 · 2026-10-06-id-persistence · strip 1 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 30,
+"marker": "2026-10-06-id-persistence",
+"blocks": 1,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "699f7ef0",
+"ts": "2026-10-06T11:09:31Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-06-id-persistence",
+"--date",
+"2026-10-06",
+"--run-dir",
+".andromeda/runs/2026-10-06T10-55-07-wrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"pin :30 strip CARRY: 520ch \"CARRY: positional id parts (from 2026-10\"",
+"pin next markerless :32 holds CONTEXT:×1",
+"30 · 2026-10-06-id-persistence · strip 1 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.1.0/route-archive.md",
+"./escher-0.1.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 30,
+"marker": "2026-10-06-id-persistence",
+"blocks": 1,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]

@@ -1,0 +1,130 @@
+[
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "43eb863f",
+"ts": "2026-10-06T11:02:33Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-06T10-55-07-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-06T10-55-07-wrap",
+"--marker",
+"2026-10-06-id-persistence"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 3,
+"stdout": [
+"baseline 06529554 (pre-CI parent — the oldest of 1 pre-CI commit(s), 8c1dd035)",
+"row-index-key · control UNFIRED over the seven masters at 06529554"
+],
+"stderr": "control: row-index-key never fired over the seven masters' pre-pass text (06529554) — a sweep runs a positive control or refuses; drop the pattern or control it by hand",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "43eb863f",
+"ts": "2026-10-06T11:02:43Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-06T10-55-07-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-06T10-55-07-wrap",
+"--marker",
+"2026-10-06-id-persistence"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"baseline 06529554 (pre-CI parent — the oldest of 1 pre-CI commit(s), 8c1dd035)",
+"key-i · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control layout-templates.md:10 (prose)",
+"index-people · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control layout-templates.md:10 (prose)",
+"no-println · new 1 · standing 0 · leaf 0 · curation 0 · base 0 · control obs-plan.md:68 (prose)",
+"crud-41-119 · 0 rows (control fired) — a statement about this pattern, not the masters · control layout-templates.md:10…",
+"stand-17 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:111 (prose)",
+"ws-441 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"re-exec · new 3 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+".claude/docs/services/seven_guis.md:36 key-i leaf … CRUD row carries the Dioxus key `{i}`, its index in the people list.",
+".claude/docs/services/seven_guis.md:36 index-people leaf …ow carries the Dioxus key `{i}`, its index in the people list.",
+".andromeda/obs-plan.md:68 no-println new …in it or its checks, and no `println!` in it or its checks save `stand_id_per…",
+".andromeda/test-plan.md:111 stand-17 standing edited …stable-element-ids: `run stand` 17 `ok` stand events (+4 `stand_e…",
+".andromeda/test-plan.md:314 ws-441 standing edited …ds: 121 result lines, 441 passed · 0 failed · 4 ignored (+6 `dioxus…",
+".claude/docs/tests-summary.md:28 ws-441 leaf …cargo test --workspace` 441 · 0 · 4 at 2026-10-06-stable-element-ids (+6 …",
+".andromeda/architecture.md:148 re-exec new ×3 @c2217,2318,2357/2828 …n binaries each re-execute their own test binary o…",
+".andromeda/test-plan.md:25 re-exec new @c863/2108 …ess — the test binary re-executing its own `#[ignore]` child `ids_in…",
+".andromeda/test-plan.md:314 re-exec standing edited …n tests, +1 ignored `child_emits`), timings not re-measured — as m…",
+".andromeda/obs-plan.md:68 re-exec new … `stand_id_persistence`'s re-executed child, which prints its pid and its ids to…",
+"key-i · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control layout-templates.md:10 (prose)",
+"index-people · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control layout-templates.md:10 (prose)",
+"no-println · new 1 · standing 0 · leaf 0 · curation 0 · base 0 · control obs-plan.md:68 (prose)",
+"crud-41-119 · 0 rows (control fired) — a statement about this pattern, not the masters · control layout-templates.md:10…",
+"stand-17 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:111 (prose)",
+"ws-441 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"re-exec · new 3 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:314 (prose)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "065295540ec0b80c0e40b7b186c7aecfba6f6121",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), 8c1dd035",
+"counts": {
+"key-i": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"index-people": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"no-println": {
+"new": 1,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"crud-41-119": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"stand-17": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"ws-441": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"re-exec": {
+"new": 3,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+}
+}
+}
+]

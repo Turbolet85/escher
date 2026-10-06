@@ -1,0 +1,32 @@
+# Cascade sweep — 2026-10-06-id-persistence. Retired claims of this pass:
+# the CRUD row keyed by its list index; "no println! in the stand checks"; the crud.rs:41-119 citation;
+# (row-index-key dropped: its control never fired on the pre-pass masters)
+# the superseded current counts (17 run-stand ok, 441 · 0 · 4 workspace).
+
+[[pattern]]
+id = "key-i"
+fixed = "key `{i}`"
+
+[[pattern]]
+id = "index-people"
+regex = '(?i)index in the (full )?people list'
+
+[[pattern]]
+id = "no-println"
+regex = 'no `println!`'
+
+[[pattern]]
+id = "crud-41-119"
+fixed = "crud.rs:41-119"
+
+[[pattern]]
+id = "stand-17"
+regex = '(?i)(17 `?ok`?|run stand`? 17|17 stand)'
+
+[[pattern]]
+id = "ws-441"
+regex = '441 (passed|·)'
+
+[[pattern]]
+id = "re-exec"
+regex = '(?i)(current_exe|re-?execut|child_emits)'

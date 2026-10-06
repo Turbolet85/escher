@@ -1,0 +1,582 @@
+[
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T10:55:14Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-id-persistence",
+"--run-dir",
+".andromeda/runs/2026-10-06T10-55-07-wrap",
+"--marker",
+"2026-10-06-id-persistence"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base 06529554 (the parent of the oldest pre-CI commit 8c1dd035) · lists new 1 · modify 3 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 2 · listed 2 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 46"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "065295540ec0b80c0e40b7b186c7aecfba6f6121",
+"base_why": "the parent of the oldest pre-CI commit 8c1dd035",
+"counts": {
+"changed": 2,
+"listed": 2,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 46,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T11:09:02Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-06-id-persistence/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T10-55-07-wrap",
+"--marker",
+"2026-10-06-id-persistence"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-06-id-persistence · entries 16",
+"logs $TMPDIR/andromeda-gate/2026-10-06-id-persistence/wrap-2026-10-06T10-55-07 · bound: GNU timeout",
+"delta docs 42",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L72-72: No live leg runs this chunk. The agent-run entries drive the in-process stand through `scr… (262 chars)",
+"prose L74-74: No headful self-verify exists in this project, because the stand is headless (`.claude/rul… (156 chars)",
+"prose L76-76: No `smoke` entry either. test-plan declares no boot-smoke trigger list, and the stand boot… (205 chars)",
+"prose L78-78: The base sha in the diff guards is `065295540ec0b80c0e40b7b186c7aecfba6f6121`.",
+"  1 unit        green · exit 0 · 2.92s · 692 B → 1.log · cargo test -p blitz-tests --locked --test stand_id_persist… (62 chars)",
+"  2 integration green · exit 0 · 3.97s · 2291 B → 2.log · cargo test -p blitz-tests --locked --test stand_boot --tes… (162 chars)",
+"  3 probe       green · exit 0 · 0.01s · 23 B → 3.log · git show 065295540ec0b80c0e40b7b186c7aecfba6f6121:examples… (519 chars)",
+"  4 probe       green · exit 0 · 0.0s · 0 B → 4.log · git diff --quiet 065295540ec0b80c0e40b7b186c7aecfba6f6121 … (395 chars)",
+"  5 probe       green · exit 1 · 0.0s · 2 B → 5.log · test -f tests/blitz-tests/tests/stand_id_persistence.rs &&… (248 chars)",
+"  6 build       green · exit 0 · 21.35s · 137 B → 6.log · bash scripts/agent-run.sh boot",
+"  7 integration green · exit 0 · 3.21s · 2707 B → 7.log · bash scripts/agent-run.sh run stand",
+"  8 integration green · exit 0 · 0.02s · 3 B → 8.log · bash scripts/agent-run.sh logs | python3 -c 'import json,s… (223 chars)",
+"  9 probe       green · exit 0 · 0.02s · 2 B → 9.log · bash scripts/agent-run.sh logs | python3 -c 'import json,s… (205 chars)",
+" 10 integration green · exit 0 · 0.03s · 40 B → 10.log · bash scripts/agent-run.sh cleanup",
+" 11 lint        green · exit 0 · 45.13s · 50238 B → 11.log · bash .github/scripts/ci-leg.sh fast",
+" 12 lint        green · exit 0 · 0.34s · 177 B → 12.log · bash .github/scripts/ci-leg.sh doc",
+" 13 integration green · exit 0 · 2.46s · 1597 B → 13.log · bash .github/scripts/ci-leg.sh a11y",
+" 14 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 15 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 16 · green 13 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-06-id-persistence",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-id-persistence/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-06-id-persistence/wrap-2026-10-06T10-55-07",
+"delta": {
+"docs": [
+".andromeda/architecture-amendments.md",
+".andromeda/architecture.md",
+".andromeda/friction-log.ndjson",
+".andromeda/layout-templates-amendments.md",
+".andromeda/layout-templates.md",
+".andromeda/obs-plan-amendments.md",
+".andromeda/obs-plan.md",
+".andromeda/security-plan-amendments.md",
+".andromeda/security-plan.md",
+".andromeda/state.yaml",
+".andromeda/test-plan-amendments.md",
+".andromeda/test-plan.md",
+".claude/docs/commands.md",
+".claude/docs/services/dioxus-native-dom.md",
+".claude/docs/services/seven_guis.md",
+".claude/docs/session-learnings.md",
+".claude/docs/tests-summary.md",
+".claude/session-handoff.md",
+"CLAUDE.md",
+"escher-0.1.0/chunks/2026-10-06-id-persistence/evidence/operator-pass.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-06T10-55-07-wrap/a11y-plan-contracts.md",
+".andromeda/runs/2026-10-06T10-55-07-wrap/architecture-entry.md",
+".andromeda/runs/2026-10-06T10-55-07-wrap/cascade-2026-10-06-id-persistence.json",
+".andromeda/runs/2026-10-06T10-55-07-wrap/cascade-dispositions.md",
+".andromeda/runs/2026-10-06T10-55-07-wrap/cascade-patterns.toml",
+".andromeda/runs/2026-10-06T10-55-07-wrap/curation.md",
+".andromeda/runs/2026-10-06T10-55-07-wrap/evolve-2026-10-06-id-persistence.json",
+".andromeda/runs/2026-10-06T10-55-07-wrap/fanout-results.md",
+".andromeda/runs/2026-10-06T10-55-07-wrap/gate-2026-10-06-id-persistence.json",
+".andromeda/runs/2026-10-06T10-55-07-wrap/inputs-2026-10-06-id-persistence.json",
+".andromeda/runs/2026-10-06T10-55-07-wrap/layout-templates-entry.md",
+".andromeda/runs/2026-10-06T10-55-07-wrap/obs-plan-contracts.md",
+".andromeda/runs/2026-10-06T10-55-07-wrap/obs-plan-entry.md",
+".andromeda/runs/2026-10-06T10-55-07-wrap/registry-2026-10-06-id-persistence.json",
+".andromeda/runs/2026-10-06T10-55-07-wrap/route-insert.txt",
+".andromeda/runs/2026-10-06T10-55-07-wrap/route-no-marker.json",
+".andromeda/runs/2026-10-06T10-55-07-wrap/security-plan-entry.md",
+".andromeda/runs/2026-10-06T10-55-07-wrap/splice-2026-10-06-id-persistence.json",
+".andromeda/runs/2026-10-06T10-55-07-wrap/test-plan-contracts.md",
+".andromeda/runs/2026-10-06T10-55-07-wrap/test-plan-entry.md",
+"escher-0.1.0/chunks/2026-10-06-id-persistence/report.md"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 42,
+"problem": null
+},
+"prose": [
+{
+"from": 72,
+"to": 72,
+"text": "No live leg runs this chunk. The agent-run entries drive the in-process stand through `scripts/agent-run.sh`, and the fresh-process check spawns its own test binary inside `cargo test`. No external process is started, so there is no liveness probe and no `stop`."
+},
+{
+"from": 74,
+"to": 74,
+"text": "No headful self-verify exists in this project, because the stand is headless (`.claude/rules/verification-harness.md`). So no `self-verify` entry is listed."
+},
+{
+"from": 76,
+"to": 76,
+"text": "No `smoke` entry either. test-plan declares no boot-smoke trigger list, and the stand boot (`stand.rs`, `app.rs`) is untouched, as the diff-guard entry checks. The boot itself runs under every stand check."
+},
+{
+"from": 78,
+"to": 78,
+"text": "The base sha in the diff guards is `065295540ec0b80c0e40b7b186c7aecfba6f6121`."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-tests --locked --test stand_id_persistence",
+"run_sha8": "9e894c6d",
+"expect": [
+"exit 0",
+"contains 3 passed; 0 failed; 1 ignored"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-id-persistence/wrap-2026-10-06T10-55-07/1.log",
+"bytes": 692,
+"log_sha8": "36db242c",
+"exit": 0,
+"seconds": 2.92,
+"readings": [
+"exit 0 ✓",
+"contains '3 passed; 0 failed; 1 ignored' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_boot --test stand_counter --test stand_flight_booker --test stand_timer --test stand_crud --test stand_element_ids",
+"run_sha8": "3bdd421d",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-id-persistence/wrap-2026-10-06T10-55-07/2.log",
+"bytes": 2291,
+"log_sha8": "d0d3cda1",
+"exit": 0,
+"seconds": 3.97,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "probe",
+"run": "git show 065295540ec0b80c0e40b7b186c7aecfba6f6121:examples/seven_guis/src/tasks/crud.rs | grep -E 'class:|style|id: \"|^const CSS' | sed 's/^[[:space:]]*//' | diff - <(grep -E 'class:|style|id: \"|^const CSS' examples/seven_guis/src/tasks/crud.rs | sed 's/^[[:space:]]*//') > /dev/null && git show 065295540ec0b80c0e40b7b186c7aecfba6f6121:examples/seven_guis/src/tasks/crud.rs | sed -n '/^const CSS/,$p' | diff - <(sed -n '/^const CSS/,$p' examples/seven_guis/src/tasks/crud.rs) > /dev/null && echo presentation-unchanged",
+"run_sha8": "aed604d8",
+"expect": [
+"exit 0",
+"last line presentation-unchanged"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-id-persistence/wrap-2026-10-06T10-55-07/3.log",
+"bytes": 23,
+"log_sha8": "52a15633",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line 'presentation-unchanged' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "git diff --quiet 065295540ec0b80c0e40b7b186c7aecfba6f6121 -- Cargo.lock Cargo.toml tests/blitz-tests/Cargo.toml examples/seven_guis/Cargo.toml packages examples/seven_guis/src/app.rs examples/seven_guis/src/stand.rs examples/seven_guis/src/tasks/counter.rs examples/seven_guis/src/tasks/flight_booker.rs examples/seven_guis/src/tasks/timer.rs scripts tests/blitz-tests/tests/stand_element_ids.rs",
+"run_sha8": "75cf1702",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-id-persistence/wrap-2026-10-06T10-55-07/4.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "test -f tests/blitz-tests/tests/stand_id_persistence.rs && cat examples/seven_guis/src/tasks/crud.rs tests/blitz-tests/tests/stand_id_persistence.rs | grep -c -E 'tracing|escher_telemetry|env::var|set_var|TcpListener|UnixListener|UdpSocket|bind\\(' ",
+"run_sha8": "20b626d1",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-id-persistence/wrap-2026-10-06T10-55-07/5.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": [
+"exit 0",
+"contains \"ready\""
+],
+"log": "/tmp/andromeda-gate/2026-10-06-id-persistence/wrap-2026-10-06T10-55-07/6.log",
+"bytes": 137,
+"log_sha8": "9da7b12d",
+"exit": 0,
+"seconds": 21.35,
+"readings": [
+"exit 0 ✓",
+"contains '\"ready\"' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": [
+"exit 0",
+"contains \"run.end\""
+],
+"log": "/tmp/andromeda-gate/2026-10-06-id-persistence/wrap-2026-10-06T10-55-07/7.log",
+"bytes": 2707,
+"log_sha8": "f5a90c97",
+"exit": 0,
+"seconds": 3.21,
+"readings": [
+"exit 0 ✓",
+"contains '\"run.end\"' ✓",
+"artifact fresh (target/agent-run/events.jsonl)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "bash scripts/agent-run.sh logs | python3 -c 'import json,sys; ev=[json.loads(l) for l in sys.stdin]; print(sum(1 for e in ev if e.get(\"event\")==\"test\" and e.get(\"outcome\")==\"ok\" and e.get(\"file\",\"\").startswith(\"stand_\")))' ",
+"run_sha8": "cb721ae0",
+"expect": [
+"exit 0",
+"last line 20"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-id-persistence/wrap-2026-10-06T10-55-07/8.log",
+"bytes": 3,
+"log_sha8": "53787963",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"last line '20' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "bash scripts/agent-run.sh logs | python3 -c 'import json,sys; bad={\"url\",\"href\",\"src\",\"html\",\"text\",\"value\",\"attrs\",\"path\",\"request\",\"error\"}; print(sum(1 for l in sys.stdin if bad & set(json.loads(l))))' ",
+"run_sha8": "45703729",
+"expect": [
+"exit 0",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-id-persistence/wrap-2026-10-06T10-55-07/9.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "bash scripts/agent-run.sh cleanup",
+"run_sha8": "d676b018",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-id-persistence/wrap-2026-10-06T10-55-07/10.log",
+"bytes": 40,
+"log_sha8": "8b6274d8",
+"exit": 0,
+"seconds": 0.03,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-id-persistence/wrap-2026-10-06T10-55-07/11.log",
+"bytes": 50238,
+"log_sha8": "c1c68f79",
+"exit": 0,
+"seconds": 45.13,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-id-persistence/wrap-2026-10-06T10-55-07/12.log",
+"bytes": 177,
+"log_sha8": "665cb6a0",
+"exit": 0,
+"seconds": 0.34,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-id-persistence/wrap-2026-10-06T10-55-07/13.log",
+"bytes": 1597,
+"log_sha8": "2b179ef0",
+"exit": 0,
+"seconds": 2.46,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "675d3a19",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T11:09:20Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-10-06T10-55-07-wrap",
+"--marker",
+"2026-10-06-id-persistence"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base 06529554 (the parent of the oldest pre-CI commit 8c1dd035)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 62 (runs 60 · evidence 2 · inputs 0) · trails 21 not read · copies 0 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 60,
+"evidence": 2,
+"inputs": 0,
+"trails": 21,
+"copies": 0,
+"kept": 0,
+"binary": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T11:09:21Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-id-persistence",
+"--run-dir",
+".andromeda/runs/2026-10-06T10-55-07-wrap",
+"--marker",
+"2026-10-06-id-persistence"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base 06529554 (the parent of the oldest pre-CI commit 8c1dd035) · lists new 1 · modify 3 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 2 · listed 2 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 88"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "065295540ec0b80c0e40b7b186c7aecfba6f6121",
+"base_why": "the parent of the oldest pre-CI commit 8c1dd035",
+"counts": {
+"changed": 2,
+"listed": 2,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 88,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

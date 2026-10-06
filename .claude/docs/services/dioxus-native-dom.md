@@ -12,7 +12,7 @@ The headless Dioxus renderer on blitz: `DioxusDocument` integrates `BaseDocument
 
 ### Publishes to
 - `DioxusDocument` (`vdom`, `inner`, `initial_build`, `poll`, `handle_ui_event`, `vdom_state.try_element_to_node_id(ElementId)`), `NodeHandle` backing `MountedData`.
-- Stable element ids: `element_id(NodeId) -> Option<String>` and `element_ids() -> Vec<(NodeId, String)>` (document pre-order, pairwise distinct), computed on demand and written nowhere — author key (the HTML `id`: non-empty, `/`-free, first in document order) → component path (`TaskShell/Counter/div:0`; `{tag}[{key}]` for a Dioxus-keyed root) → document path (`/html:0/body:0`).
+- Stable element ids: `element_id(NodeId) -> Option<String>` and `element_ids() -> Vec<(NodeId, String)>` (document pre-order, pairwise distinct), computed on demand and written nowhere — author key (the HTML `id`: non-empty, `/`-free, first in document order) → component path (`TaskShell/Counter/div:0`; `{tag}[{key}]` for a Dioxus-keyed root) → document path (`/html:0/body:0`). Proven persistent on the stand: the same id across a re-render, a remount (fresh `NodeId`s for every element bar the `html`/`head`/`body`/`#main` skeleton, which lives outside the VirtualDom) and a second process (`stand_id_persistence`).
 
 ## Internal conventions
 - DOM events route to the vdom via the nearest `data-dioxus-id` attribute (parsed as `usize`); listener registration sets a `"<rust func>"` placeholder.
@@ -27,6 +27,7 @@ The headless Dioxus renderer on blitz: `DioxusDocument` integrates `BaseDocument
 - `element_to_node_id` unwraps; `NodeHandle::node` panics if the node is gone.
 - `VComponent.name` is the component's full type path (`crate::module::Name`, generics included), and the user root sits under dioxus-core's RootScopeWrapper → SuspenseBoundary → ErrorBoundary scopes — the id walk strips the path and skips those four scopes.
 - A node a re-render removes is only DETACHED (parent `None`) and keeps resolving until its ElementId is reassigned; `element_id` reads `None` for it, but `get_node` still returns it.
+- A `key:` on an element inside an `if` within a `for` body does not key the list: the `for` items are the unkeyed `if` wrappers, diffed by position, and a changed inner key replaces the node — put the filter in the iterator so each `for` item is the keyed element.
 - Every other boolean attribute (`readonly`, `required`, `hidden`, `multiple`, `selected`, `open`, `autofocus`) is still written with the literal value `"false"` when falsy — blitz-dom keys element state and click targeting on presence, so a presence read takes it as set.
 
 ## Entry points for modification

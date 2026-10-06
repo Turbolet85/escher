@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-06 — A presentation guard that diffs grepped source lines must strip leading whitespace
+A gate that proves "no class / style / author-id change" by grepping those lines from the base and the working tree and diffing them reads RED on a re-nest alone: un-nesting an element by one level shifts its `class:` line's indentation while the expression stays byte-identical. The guard's intent is the attribute text, not the indentation — so pipe both grepped sides through `sed 's/^[[:space:]]*//'` before the diff (a CSS-block comparison, whose indentation is content, stays exact). When authoring the guard, add a re-nest control beside the changed-value controls.
+
+---
+
 ## 2026-10-06 — On this host `grep` is ugrep, and a long bounded repetition can print nothing
 The shell's `grep` here is ugrep. A pattern carrying a long bounded repetition — a context window like `.{0,200}` around the match — exceeds ugrep's complexity limit: the error goes to stderr, and in a call that pipes or alternates several patterns stdout stays empty, which reads exactly like zero hits. Two site sweeps over the masters returned nothing that way while the same patterns in Python found four sites. For a site sweep or an absence claim, use Python's `re` (print a window around `match.start()`), or keep ugrep patterns free of long `{m,n}` counts, and read stderr before trusting an empty result.
 
