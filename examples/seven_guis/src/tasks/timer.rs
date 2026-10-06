@@ -71,12 +71,13 @@ pub fn Timer() -> Element {
             div { class: "timer-card",
                 // Progress bar
                 div { class: "progress-track",
-                    div { class: "progress-fill", style: "width: {pct:.1}%;" }
+                    div { id: "timer-progress", class: "progress-fill", style: "width: {pct:.1}%;" }
                 }
-                p { class: "timer-elapsed", "Elapsed: {elapsed():.1}s" }
+                p { id: "timer-elapsed", class: "timer-elapsed", "Elapsed: {elapsed():.1}s" }
                 div { class: "timer-slider-row",
                     label { class: "timer-label", "Duration: " }
                     input {
+                        id: "timer-duration",
                         r#type: "range",
                         min: "0",
                         max: "30",
@@ -89,9 +90,10 @@ pub fn Timer() -> Element {
                             }
                         }
                     }
-                    span { class: "timer-duration-label", "{duration():.1}s" }
+                    span { id: "timer-duration-value", class: "timer-duration-label", "{duration():.1}s" }
                 }
                 button {
+                    id: "timer-reset",
                     class: "timer-reset-btn",
                     onclick: move |_| elapsed.set(0.0),
                     "Reset"

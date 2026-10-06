@@ -10,6 +10,7 @@
 //!  - `tracing`: Enables tracing support.
 
 mod dioxus_document;
+mod element_id;
 mod events;
 mod mutation_writer;
 mod write_once_attr;

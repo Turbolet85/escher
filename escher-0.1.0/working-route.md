@@ -25,7 +25,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
 ### Epoch 2 — Element identity
 [2026-10-06-upstream-sync-element-identity] Upstream sync ahead of element identity — upstream/main merged, our changes kept additive; our tests and CI prove our logic survived (per intent §Principles)
    ↓
-Stable element ids — author key else component path, on every stand element (v010-01)
+[2026-10-06-stable-element-ids] Stable element ids — author key else component path, on every stand element (v010-01)
    ↓
 Id persistence — same id across re-render, remount and fresh process on the stand (v010-02)
    ↓

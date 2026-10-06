@@ -1,0 +1,76 @@
+[
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'try_element_to_node_id' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 3,
+"result": [
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 mutation_writer/impl#[DioxusState]element_to_node_id().",
+"file": "packages/dioxus-native-dom/src/mutation_writer.rs",
+"line": 42
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 mutation_writer/impl#[`MutationWriter<'_>`][WriteMutations]assign_node_id().",
+"file": "packages/dioxus-native-dom/src/mutation_writer.rs",
+"line": 125
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 assert_no_stale_mappings().",
+"file": "tests/blitz-tests/tests/stale_node_mapping.rs",
+"line": 79
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT from_crate, to_crate FROM crate_edges WHERE to_crate = 'dioxus-native-dom' OR from_crate = 'dioxus-native-dom'",
+"rows": 9,
+"result": [
+{
+"from_crate": "blitz-examples",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "browser",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "wgpu_texture",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "dioxus-native-dom",
+"to_crate": "blitz-traits"
+},
+{
+"from_crate": "blitz-tests",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "dioxus-native-dom",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "dioxus-native",
+"to_crate": "dioxus-native-dom"
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT symbol, crate, kind, file FROM symbol WHERE name IN ('element_id_of','stable_id','StableId','ElementKey','element_key') AND kind <> 'meta'",
+"rows": 0,
+"result": [],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

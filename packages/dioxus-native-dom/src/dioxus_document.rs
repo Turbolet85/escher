@@ -180,6 +180,31 @@ impl DioxusDocument {
         }
     }
 
+    /// The stable element id of `node`: a semantic name an agent can aim at, unlike the
+    /// versioned slot index a [`NodeId`] is. It is, in order of precedence:
+    ///
+    /// 1. the **author key** — the element's HTML `id` attribute, verbatim, when it is
+    ///    non-empty, contains no `/` and no element earlier in document order claimed it;
+    /// 2. the **component path** — the `/`-joined names of the components from the app root
+    ///    to the element's owning component (a later instance of a name its owner already
+    ///    rendered reads `{name}:{k}`), then one segment per DOM level below that component's
+    ///    template root: `{tag}[{key}]` for the root of a Dioxus-keyed node, else `{tag}:{n}`
+    ///    with `n` its index among same-owner, same-tag element siblings;
+    /// 3. the **document path** — for an element no component renders (the `html`, `head`
+    ///    and `body` skeleton): `/` then one `{tag}:{n}` segment per DOM level, e.g.
+    ///    `/html:0/body:0`.
+    ///
+    /// Returns `None` for a non-element, stale or detached node.
+    pub fn element_id(&self, node: NodeId) -> Option<String> {
+        crate::element_id::element_id(&self.vdom, &self.vdom_state, &self.inner.borrow(), node)
+    }
+
+    /// Every element of the document with its stable element id (see
+    /// [`element_id`](Self::element_id)), in document pre-order. The ids are pairwise distinct.
+    pub fn element_ids(&self) -> Vec<(NodeId, String)> {
+        crate::element_id::element_ids(&self.vdom, &self.vdom_state, &self.inner.borrow())
+    }
+
     pub(crate) fn flush_queued_mounted_events(&mut self) {
         let mut queued_mounted_events = mem::take(&mut self.vdom_state.queued_mounted_events);
         for element_id in queued_mounted_events.drain(..) {

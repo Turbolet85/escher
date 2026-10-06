@@ -1,0 +1,40 @@
+# arch extract
+
+## Relevance
+relevant. The stable id is a new identity layer over the engine's `NodeId`. It is built where the Dioxus DOM bridge, blitz-dom and the headless harness meet, and it needs a public read surface that architecture §Standard Contracts enumerates.
+
+## Constraints
+- The stable id must not embed or be derived from the engine's internal identity. Architecture §Established Decisions → [Node identity] and §Design Philosophy ("One incremental pipeline, safe identities") define `NodeId` as a versioned slot (32-bit index plus 32-bit version) whose dropped ids stop resolving. Per §Standard Contracts → "Scrolling, selection, tree", indexing `NodeTree` with a stale id panics. So any id map keyed by `NodeId` must look ids up with `get`/`contains_key`, and the id's form must contain no `NodeId`, `ElementId` or pointer.
+- Mutations go through the mutator. Per arch §Conventions → "DOM API patterns" and §Standard Contracts → "Mutation, query and CSSOM", any DOM write the id needs (for example an attribute or stored node data) goes through `doc.mutate()`. That means extending `DocumentMutator`, not reaching through `DocumentMutator::doc`. The mutator flushes on Drop and requests a redraw only for in-document mutations.
+- The id must hold across both layout modes. Per arch §Design Philosophy ("One incremental pipeline…") and §Conventions → Tests, incremental and non-incremental runs must give identical results, and pipeline scenarios run `for incremental in [false, true]`. Assigning ids must not perturb layout in either mode.
+- Respect the Dioxus bridge's existing identity facts (arch §Standard Contracts → "Dioxus DOM bridge"; §Established Decisions → [DOM semantics]):
+  - Events route through the `data-dioxus-id` attribute.
+  - `DioxusDocument` exposes `vdom_state.try_element_to_node_id(ElementId)`.
+  - `node_id_mapping` entries are intentionally not cleared on removal, so dioxus-core can reuse detached nodes. An id derived through that mapping must tolerate reuse.
+- Respect the reserved document identities. Per arch §Occupied Resources → "URL schemes and identities", the Dioxus document's app root is `<main id="main">` under `<body>`. Per §Standard Contracts → "Headless stand", the stand's public surface is `seven_guis::stand` plus `app::task_in_shell`, with `TaskShell` kept private. An author-key rule that reads HTML `id` will meet `main` and the TaskShell chrome ids, and the uniqueness rule must cover them.
+- No new workspace resource without registration. Per arch §Occupied Resources → Names / Environment variables, and the §Infrastructure Patterns → Directory structure tree, a new workspace crate or env var is a registration, not a silent add. Per §Conventions → Manifests, dependencies are declared once in `[workspace.dependencies]` and in-repo crates use `default-features = false`.
+- Public additions carry docs and pass the gates. Per arch §Conventions → "Visibility and naming" / Documentation and §Inherited Defaults → Code quality, internals stay `pub(crate)`/`pub(super)`. Every new public item carries `///` docs, because rustdoc `-D warnings` runs over every workspace library crate (`cargo doc --workspace --no-deps --locked`).
+
+## Patterns to follow
+- **Structural identity of parent plus sibling position.** Anonymous-block selection endpoints store a parent id plus a sibling index because anonymous ids change across reconstruction (arch §Established Decisions → [Selection, animation, pseudo-elements]). This is the in-tree precedent for a reconstruction-tolerant path. Anonymous blocks exist only in `layout_children` (§Cross-cutting Patterns → "Invalidation and state integrity"), so a DOM-ancestry path walks DOM children, not layout children.
+- **Read surfaces return typed results and never panic.** Fallible APIs return typed `Result`s (arch §Cross-cutting Patterns → "Error handling"), and query APIs return `Result<Option<NodeId>, ParseError>` (§Standard Contracts → "Mutation, query and CSSOM"). Follow this shape for a lookup by id, and for a refusal on a duplicate key if the chunk chooses "refuse".
+- **The harness inspection API is the home for test-facing reads.** blitz-test-harness's inspection set (`attr`, `query`, `query_all`, `dom_string`, `node`, …) and `Harness<DioxusDocument>` are the existing test-facing read surface (arch §Standard Contracts → "Test harness"). The stand boots through `seven_guis::stand::boot`/`boot_timer` with pinned options (§Standard Contracts → "Headless stand").
+- **Stand checks follow the integration-test conventions.** Each check is one behaviour per file, opening with a `//!` doc. It first asserts that the fixture produces the condition under test, and uses `#[track_caller]` helpers (arch §Conventions → Tests). The stand files are `tests/blitz-tests/tests/stand_*.rs` (§Existing Scopes → blitz-tests).
+- **Tracing is gated per call site.** Any diagnostics use `#[cfg(feature = "tracing")]` with a `#[cfg(not(feature = "tracing"))]` fallback. dioxus-native-dom uses its crate-local `trace!` macro (arch §Conventions → "Feature gating").
+
+## Anti-patterns to avoid
+- Do not make an id that depends on a `NodeId`, an `ElementId`, a slot index or a pointer. Do not index `NodeTree` with an id that may be stale (arch §Established Decisions → [Node identity]; §Standard Contracts → "Scrolling, selection, tree").
+- Do not write to the DOM through `DocumentMutator::doc` or around the mutator, and do not keep a side-channel write that bypasses its Drop flush (arch §Conventions → "DOM API patterns").
+- Do not use an unconditional `println!`, ungated tracing, or a log field that carries the author key in the engine crates (arch §Conventions → "Feature gating"; §Cross-cutting Patterns → "Logging and timing").
+
+## Contract bindings
+- **arch ↔ tests:** the per-task proof checks bind to the harness and stand contracts (arch §Standard Contracts → "Test harness" / "Headless stand"). If a public read call is added to `Harness`, `DioxusDocument` or `BaseDocument`, §Standard Contracts is amended at wrap.
+- **arch ↔ obs/security:** an author key is author content. Tracing stays gated per call site, and the escher-telemetry allowlist scrub (`SAFE_FIELDS` / `CONTENT_FIELDS`, arch §Standard Contracts → "Telemetry bootstrap (escher-telemetry)") must not gain a field that carries a key value.
+- **arch ↔ a11y (forward):** `build_accessibility_tree` returns `(NodeId, accesskit::Node)` pairs (arch §Standard Contracts → "Mutation, query and CSSOM"). The id's read surface must be reachable from a `NodeId` so that v010-03 can bind it to accessibility nodes. Whether the code already offers such a NodeId → id path is research's question.
+- **arch ↔ build (wasm):** seven_guis also builds as a wasm cdylib with `--no-default-features --features hybrid`, and its `stand` module is native-only (arch §Infrastructure Patterns → CI/CD; §Existing Scopes → seven_guis). Stand markup added for author keys must compile and render the same tree on the windowed and wasm builds.
+
+## Acceptance criteria contributions
+- The id's computation and read surface live in existing workspace crates. No new workspace crate, env var, port or listener is added, and any new public item is recorded as a §Standard Contracts amendment at wrap (per architecture §Occupied Resources → Names, and §Standard Contracts → "Test harness" / "Dioxus DOM bridge").
+- Every DOM write the id needs goes through `doc.mutate()`. The stand id checks run `for incremental in [false, true]` and read the same id set in both modes (per architecture §Conventions → "DOM API patterns" / Tests, and §Design Philosophy → "One incremental pipeline, safe identities").
+- The id's form contains no `NodeId`, `ElementId`, slot index or pointer component. Lookups through a `NodeId` that may be stale use `get`/`contains_key` and never index (per architecture §Established Decisions → [Node identity]).
+- `bash .github/scripts/ci-leg.sh fast` and `bash .github/scripts/ci-leg.sh doc` pass, with every new public item documented with `///` (per architecture §Inherited Defaults → Code quality, and §Conventions → Documentation).

@@ -8,8 +8,9 @@ pub fn Counter() -> Element {
         div { class: "counter-root",
             style { {CSS} }
             div { class: "counter-card",
-                p { class: "counter-display", "{count}" }
+                p { id: "counter-value", class: "counter-display", "{count}" }
                 button {
+                    id: "counter-increment",
                     class: "counter-btn",
                     onclick: move |_| { count += 1 },
                     "Count"

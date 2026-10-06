@@ -65,28 +65,33 @@ pub fn FlightBooker() -> Element {
                 h2 { class: "flight-title", "Flight Booker" }
                 div { class: "flight-type-row",
                     button {
+                        id: "flight-one-way",
                         class: if !is_return { "type-btn type-btn-active" } else { "type-btn" },
                         onclick: move |_| flight_type.set("one-way".into()),
                         "one-way flight"
                     }
                     button {
+                        id: "flight-return",
                         class: if is_return { "type-btn type-btn-active" } else { "type-btn" },
                         onclick: move |_| flight_type.set("return".into()),
                         "return flight"
                     }
                 }
                 input {
+                    id: "flight-start",
                     class: if start_valid { "date-input" } else { "date-input invalid" },
                     value: "{start_str}",
                     oninput: move |evt| start_str.set(evt.value()),
                 }
                 input {
+                    id: "flight-return-date",
                     class: if return_valid { "date-input" } else { "date-input invalid" },
                     disabled: !is_return,
                     value: "{return_str}",
                     oninput: move |evt| return_str.set(evt.value()),
                 }
                 button {
+                    id: "flight-book",
                     class: "flight-btn",
                     disabled: !dates_ok,
                     onclick: move |_| {
@@ -100,7 +105,7 @@ pub fn FlightBooker() -> Element {
                     "Book"
                 }
                 if let Some(msg) = booked_msg() {
-                    p { class: "booked-msg", "{msg}" }
+                    p { id: "flight-booked", class: "booked-msg", "{msg}" }
                 }
             }
         }

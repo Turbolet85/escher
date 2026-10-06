@@ -38,6 +38,7 @@ pub fn Crud() -> Element {
             div { class: "row",
                 label { "Filter prefix: " }
                 input {
+                    id: "crud-filter",
                     value: "{filter}",
                     oninput: move |e| {
                         selected.set(None);
@@ -48,7 +49,7 @@ pub fn Crud() -> Element {
             // List + fields side by side
             div { class: "crud-body",
                 // List
-                div { class: "list",
+                div { id: "crud-list", class: "list",
                     {
                         let filter_lower = filter().to_lowercase();
                         let people_snap = people();
@@ -59,6 +60,7 @@ pub fn Crud() -> Element {
                                     .starts_with(&filter_lower)
                                 {
                                     div {
+                                        key: "{i}",
                                         class: if selected() == Some(i) { "list-item selected" } else { "list-item" },
                                         onclick: move |_| {
                                             if let Some(p) = people.read().get(i).cloned() {
@@ -78,11 +80,13 @@ pub fn Crud() -> Element {
                 div { class: "fields",
                     label { "Name: " }
                     input {
+                        id: "crud-name",
                         value: "{first_field}",
                         oninput: move |e| first_field.set(e.value())
                     }
                     label { "Surname: " }
                     input {
+                        id: "crud-surname",
                         value: "{last_field}",
                         oninput: move |e| last_field.set(e.value())
                     }
@@ -91,12 +95,14 @@ pub fn Crud() -> Element {
             // Buttons
             div { class: "crud-buttons",
                 button {
+                    id: "crud-create",
                     onclick: move |_| {
                         people.write().push(Person { first: first_field(), last: last_field() });
                     },
                     "Create"
                 }
                 button {
+                    id: "crud-update",
                     class: if has_selection { "" } else { "btn-off" },
                     disabled: !has_selection,
                     onclick: move |_| {
@@ -110,6 +116,7 @@ pub fn Crud() -> Element {
                     "Update"
                 }
                 button {
+                    id: "crud-delete",
                     class: if has_selection { "" } else { "btn-off" },
                     disabled: !has_selection,
                     onclick: move |_| {
