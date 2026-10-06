@@ -22,7 +22,7 @@ _Extracted from `.andromeda/architecture.md` §Conventions (citations live there
 - Crate internals are `pub(crate)` / `pub(super)`; the slotmap key is used only at the storage boundary — public APIs use `NodeId`.
 
 ## Feature gating
-- Optional capabilities are Cargo features forwarded across crates (each dioxus-native feature forwards to the same-named blitz feature; `accessibility` also to dioxus-native-dom's, which gates its own `accessibility_tree` override and its `snapshot` module). The workspace takes both Dioxus crates with `default-features = false`, so a feature is on only where a crate names it.
+- Optional capabilities are Cargo features forwarded across crates (each dioxus-native feature forwards to the same-named blitz feature; `accessibility` also to dioxus-native-dom's, which gates its own `accessibility_tree` override and its `snapshot` and `actionable` modules). The workspace takes both Dioxus crates with `default-features = false`, so a feature is on only where a crate names it.
 - In the engine and upstream crates `tracing` is gated per call site with a `#[cfg(not(feature = "tracing"))] let _ = …;` fallback; escher-telemetry (no `[features]`) emits its startup and panic events ungated.
 - Desktop-only code gated by the repeated cfg list windows / macos / linux / dragonfly / freebsd / netbsd / openbsd.
 

@@ -1,0 +1,117 @@
+[
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "699f7ef0",
+"ts": "2026-10-06T21:19:37Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-06-id-stability-across-code-edits",
+"--run-dir",
+".andromeda/runs/2026-10-06T20-55-58-wrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"flip master-route.md:25 - 2026-10-06-id-stability-across-code-edits pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "699f7ef0",
+"ts": "2026-10-06T21:19:37Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-06-id-stability-across-code-edits",
+"--date",
+"2026-10-06",
+"--run-dir",
+".andromeda/runs/2026-10-06T20-55-58-wrap",
+"--dry-run"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"pin :41 strip CARRY: 802ch \"CARRY: the founder's ruling (2026-10-06,\"",
+"pin next markerless :43 holds CARRY:×1",
+"41 · 2026-10-06-id-stability-across-code-edits · strip 1 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 41,
+"marker": "2026-10-06-id-stability-across-code-edits",
+"blocks": 1,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "699f7ef0",
+"ts": "2026-10-06T21:19:46Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-06-id-stability-across-code-edits",
+"--date",
+"2026-10-06",
+"--run-dir",
+".andromeda/runs/2026-10-06T20-55-58-wrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"pin :41 strip CARRY: 802ch \"CARRY: the founder's ruling (2026-10-06,\"",
+"pin next markerless :43 holds CARRY:×1",
+"41 · 2026-10-06-id-stability-across-code-edits · strip 1 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.1.0/route-archive.md",
+"./escher-0.1.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 41,
+"marker": "2026-10-06-id-stability-across-code-edits",
+"blocks": 1,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]

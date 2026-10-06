@@ -1,0 +1,275 @@
+[
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "43eb863f",
+"ts": "2026-10-06T21:10:46Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-06T20-55-58-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-06T20-55-58-wrap",
+"--marker",
+"2026-10-06-id-stability-across-code-edits"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"baseline e4324247 (pre-CI parent — the oldest of 1 pre-CI commit(s), 75f12a09)",
+"two-paths · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control security-plan.md:107 (prose)",
+"component-path · new 1 · standing 1 · leaf 3 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"document-path · new 1 · standing 2 · leaf 2 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"tier-one · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"appends · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 (prose)",
+"row-path · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 (pros…",
+"row-segment · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"row-id · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"row-dioxus-key · 0 rows (control fired) — a statement about this pattern, not the masters · control layout-templates.md…",
+"gates-snapshot · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"tree-override · new 0 · standing 3 · leaf 4 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"second-reader · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control security-plan.md:107 (prose)",
+"carries-no-id · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:107…",
+"unit-18 · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control test-plan.md:23 (prose)",
+"four-files · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:23 (prose)",
+"six-on-id · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:23 (prose)",
+"test-census · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:24 (prose)",
+"count-471 · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control architecture.md:84 (prose)",
+"lines-125 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"stand-33 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:111 (prose)",
+"stand-files · new 0 · standing 7 · leaf 5 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"module-list · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:251 (prose)",
+".andromeda/security-plan.md:107 two-paths standing edited @c857/4369 …ing `//`, and a component or document path has no…",
+".andromeda/architecture.md:134 component-path standing edited mixed ×2 @c2500,4157/13815 …3) the **component path** — `…",
+".andromeda/security-plan.md:107 component-path new @c602/4369 …hor key, else its component path, else its document path…",
+"CLAUDE.md:33 component-path leaf …`element_ids`: author key → component path → document path) and, under `accessibility…",
+"CLAUDE.md:99 component-path leaf …TML `id` else the element's component path, proven the same across a re-render, a rem…",
+".claude/docs/services/dioxus-native-dom.md:15 component-path leaf …ocument order) → component path (`TaskShell/Counter/…",
+".andromeda/architecture.md:134 document-path standing edited @c3674/13815 …lse (4) the **document path** of an element …",
+".andromeda/security-plan.md:107 document-path standing edited mixed ×2 @c627,870/4369 … else its document path, a templ…",
+".andromeda/test-plan.md:23 document-path new … key, the component and document paths and the nodes that read no id, and…",
+"CLAUDE.md:33 document-path leaf …thor key → component path → document path) and, under `accessibility`, carries it as A…",
+".claude/docs/services/dioxus-native-dom.md:15 document-path leaf …us-keyed root) → document path (`/html:0/body:0`). Pr…",
+".andromeda/architecture.md:134 tier-one standing edited @c2101/13815 …of precedence — (1) the **author key** — the HTML…",
+".claude/docs/services/seven_guis.md:36 row-segment leaf … — so a row's id `…/div[{person.id}]` follows its person under…",
+".andromeda/architecture.md:134 row-id standing edited @c7330/13815 … that key, so a row's id is its author key `crud-pe…",
+".claude/docs/services/seven_guis.md:36 row-id leaf …n the iterator — so a row's id `…/div[{person.id}]` follows its per…",
+".andromeda/architecture.md:189 gates-snapshot standing edited …cessibility_tree` override and its `snapshot` and `actio…",
+".claude/docs/conventions.md:25 gates-snapshot leaf … `accessibility_tree` override and its `snapshot` module). The work…",
+".andromeda/architecture.md:134 tree-override standing edited @c9094/13815 …ds from that `accessibility_tree` override a…",
+".andromeda/architecture.md:189 tree-override standing edited …t` and gates its `accessibility_tree` override and its `s…",
+".andromeda/a11y-plan.md:55 tree-override standing edited …also gates its own `accessibility_tree` override, its snapsho…",
+"CLAUDE.md:33 tree-override leaf …_id` through its `Document::accessibility_tree` override and reads the screen as a sna…",
+".claude/docs/conventions.md:25 tree-override leaf … which gates its own `accessibility_tree` override and its `snapshot…",
+".claude/docs/services/dioxus-native-dom.md:15 tree-override leaf …nt`'s `Document::accessibility_tree` override carries…",
+".claude/docs/services/dioxus-native-dom.md:16 tree-override leaf … built from the `accessibility_tree` override. `Snaps…",
+".andromeda/security-plan.md:107 second-reader standing edited @c1718/4369 …napshot` is a second, in-process reader of t…",
+".claude/docs/services/dioxus-native-dom.md:38 unit-18 leaf …ioxus-native-dom` (18 unit tests: `keyed_nodes_do_not_crash…",
+".andromeda/architecture.md:84 count-471 standing …/blitz-dom/src/net.rs:471-489); default generic base size is 13px mon…",
+".andromeda/test-plan.md:314 count-471 standing edited @c2411/3296 …25 result lines, 471 passed · 0 failed · 5 ignored (…",
+".claude/docs/tests-summary.md:28 count-471 leaf …argo test --workspace` 471 · 0 · 5 over 125 result lines at 2026-10-06…",
+".andromeda/test-plan.md:314 lines-125 standing edited @c2393/3296 …-snapshot-model: 125 result lines, 471 passed · 0 fa…",
+".claude/docs/tests-summary.md:28 lines-125 leaf …pace` 471 · 0 · 5 over 125 result lines at 2026-10-06-snapshot-model (…",
+".andromeda/test-plan.md:111 stand-33 standing edited …t-model: `run stand` 33 `ok` stand events (+8 `stand_snapshot`, p…",
+".andromeda/architecture.md:134 stand-files standing edited @c11020/13815 …z-tests/tests/stand_snapshot.rs:1-5) — as mea…",
+".andromeda/security-plan.md:107 stand-files standing edited @c4187/4369 …tz-tests/tests/stand_snapshot.rs:1-5; packages…",
+".andromeda/test-plan.md:25 stand-files standing edited @c2201/3623 …itz-tests/tests/stand_snapshot.rs:1; tests/blitz-te…",
+".andromeda/test-plan.md:111 stand-files standing edited …` stand events (+8 `stand_snapshot`, picked up by its `stand_`…",
+".andromeda/test-plan.md:314 stand-files standing edited @c2543/3296 …esult line, +8 `stand_snapshot` stand checks in on…",
+".andromeda/a11y-plan.md:270 stand-files standing …sts/blitz-tests/tests/stand_snapshot.rs:1-5) — as measured at escher-…",
+".andromeda/a11y-plan.md:314 stand-files standing edited …e such move (tests/blitz-tests/tests/stand_snapshot.rs:337-390)",
+"CLAUDE.md:76 stand-files leaf …dioxus-native-dom/src/snapshot.rs` · checks `tests/blitz-tests/tests/stand_snapshot.rs` |",
+".claude/docs/commands.md:27 stand-files leaf …ccessibility_ids --test stand_snapshot` — the headless-stand checks, pack…",
+".claude/docs/services/dioxus-native-dom.md:16 stand-files leaf …yet and no driver command exposes it (`stand_snapshot`).",
+".claude/docs/services/seven_guis.md:36 stand-files leaf …s/blitz-tests/tests/stand_{boot,counter,flight_booker,timer,cr…",
+".claude/docs/tests-summary.md:28 stand-files leaf …shot` unit tests, +8 `stand_snapshot`; 454 · 0 · 5 at accessibility-…",
+".andromeda/architecture.md:251 module-list standing edited …ent_ids`), events, mutation_writer, snapshot (crate-private…",
+"two-paths · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control security-plan.md:107 (prose)",
+"component-path · new 1 · standing 1 · leaf 3 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"document-path · new 1 · standing 2 · leaf 2 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"tier-one · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"appends · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 (prose)",
+"row-path · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 (pros…",
+"row-segment · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"row-id · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"row-dioxus-key · 0 rows (control fired) — a statement about this pattern, not the masters · control layout-templates.md…",
+"gates-snapshot · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"tree-override · new 0 · standing 3 · leaf 4 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"second-reader · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control security-plan.md:107 (prose)",
+"carries-no-id · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:107…",
+"unit-18 · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control test-plan.md:23 (prose)",
+"four-files · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:23 (prose)",
+"six-on-id · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:23 (prose)",
+"test-census · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:24 (prose)",
+"count-471 · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control architecture.md:84 (prose)",
+"lines-125 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"stand-33 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:111 (prose)",
+"stand-files · new 0 · standing 7 · leaf 5 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"module-list · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:251 (prose)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "e4324247f0d6f1a17b7526f3acac2057c02d0195",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), 75f12a09",
+"counts": {
+"two-paths": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"component-path": {
+"new": 1,
+"standing": 1,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"document-path": {
+"new": 1,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"tier-one": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"appends": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"row-path": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"row-segment": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"row-id": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"row-dioxus-key": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"gates-snapshot": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"tree-override": {
+"new": 0,
+"standing": 3,
+"leaf": 4,
+"curation": 0,
+"base": 0
+},
+"second-reader": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"carries-no-id": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"unit-18": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"four-files": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"six-on-id": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"test-census": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"count-471": {
+"new": 0,
+"standing": 2,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"lines-125": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"stand-33": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"stand-files": {
+"new": 0,
+"standing": 7,
+"leaf": 5,
+"curation": 0,
+"base": 0
+},
+"module-list": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+}
+}
+}
+]

@@ -1,0 +1,146 @@
+[
+{
+"tool": "matrix",
+"v": "1.3",
+"sha8": "cd774c8a",
+"ts": "2026-10-06T21:19:29Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-06-id-stability-across-code-edits",
+"--run-dir",
+".andromeda/runs/2026-10-06T20-55-58-wrap",
+"--dry-run"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-06-id-stability-across-code-edits: 1 · to flip 1 · already verified 0 · below 0",
+"flipped v010-16 → verified — On the stand — the four lean tasks (counter, flight booker, timer, CRUD), Home, … (1722 chars)",
+"dry-run: nothing written",
+"version: verified 3/16"
+],
+"stderr": null,
+"wrote": [],
+"before": [
+{
+"id": "v010-16",
+"chunk": "2026-10-06-id-stability-across-code-edits",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_id_edits.rs::a_task_keeps_every_id_when_the_code_around_it_changes · ::keyed_elements_keep… (453 chars)",
+"acceptance": "On the stand — the four lean tasks (counter, flight booker, timer, CRUD), Home, and the edit fixture beside them in test… (1722 chars)",
+"notes_chars": 2225
+}
+],
+"after": [
+{
+"id": "v010-16",
+"chunk": "2026-10-06-id-stability-across-code-edits",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_id_edits.rs::a_task_keeps_every_id_when_the_code_around_it_changes · ::keyed_elements_keep… (453 chars)",
+"acceptance": "On the stand — the four lean tasks (counter, flight booker, timer, CRUD), Home, and the edit fixture beside them in test… (1722 chars)",
+"notes_chars": 2225
+}
+]
+},
+{
+"tool": "matrix",
+"v": "1.3",
+"sha8": "cd774c8a",
+"ts": "2026-10-06T21:19:29Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-06-id-stability-across-code-edits",
+"--run-dir",
+".andromeda/runs/2026-10-06T20-55-58-wrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-06-id-stability-across-code-edits: 1 · to flip 1 · already verified 0 · below 0",
+"flipped v010-16 → verified — On the stand — the four lean tasks (counter, flight booker, timer, CRUD), Home, … (1722 chars)",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed",
+"version: verified 3/16"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": [
+{
+"id": "v010-16",
+"chunk": "2026-10-06-id-stability-across-code-edits",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_id_edits.rs::a_task_keeps_every_id_when_the_code_around_it_changes · ::keyed_elements_keep… (453 chars)",
+"acceptance": "On the stand — the four lean tasks (counter, flight booker, timer, CRUD), Home, and the edit fixture beside them in test… (1722 chars)",
+"notes_chars": 2225
+}
+],
+"after": [
+{
+"id": "v010-16",
+"chunk": "2026-10-06-id-stability-across-code-edits",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_id_edits.rs::a_task_keeps_every_id_when_the_code_around_it_changes · ::keyed_elements_keep… (453 chars)",
+"acceptance": "On the stand — the four lean tasks (counter, flight booker, timer, CRUD), Home, and the edit fixture beside them in test… (1722 chars)",
+"notes_chars": 2225
+}
+]
+},
+{
+"tool": "matrix",
+"v": "1.3",
+"sha8": "cd774c8a",
+"ts": "2026-10-06T21:19:29Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-01",
+"--text-file",
+".andromeda/runs/2026-10-06T20-55-58-wrap/note-v010-01.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T20-55-58-wrap",
+"--marker",
+"2026-10-06-id-stability-across-code-edits"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"note v010-01: +1293 chars (total 1293) · status verified · ref/acceptance untouched",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-01",
+"chunk": "2026-10-06-stable-element-ids",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_element_ids.rs::every_element_reads_exactly_one_unique_id · ::author_keyed_elements_read_t… (213 chars)",
+"acceptance": "On each of the four lean stand tasks (counter, flight booker, timer, CRUD), booted by `seven_guis::stand` with `stand::o… (830 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v010-01",
+"chunk": "2026-10-06-stable-element-ids",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_element_ids.rs::every_element_reads_exactly_one_unique_id · ::author_keyed_elements_read_t… (213 chars)",
+"acceptance": "On each of the four lean stand tasks (counter, flight booker, timer, CRUD), booted by `seven_guis::stand` with `stand::o… (830 chars)",
+"notes_chars": 1293
+}
+}
+]

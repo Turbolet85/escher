@@ -1,0 +1,94 @@
+# Cascade step-2 sweep — 2026-10-06-id-stability-across-code-edits.
+# Derived from every amendment of this pass: the retired three-tier grammar and its mechanism wording,
+# the CRUD row's retired path spelling, the feature-gating restatements, the moved counts, and the
+# reader enumeration in the security row.
+
+[[pattern]]
+id = "two-paths"
+fixed = 'component or document path'
+
+[[pattern]]
+id = "component-path"
+regex = 'component path'
+ignore_case = true
+
+[[pattern]]
+id = "document-path"
+regex = 'document path'
+ignore_case = true
+
+[[pattern]]
+id = "tier-one"
+fixed = '(1) the **author key**'
+
+[[pattern]]
+id = "appends"
+regex = 'appends to the parent.s path'
+
+[[pattern]]
+id = "row-path"
+fixed = 'div:0/div:1/div:0/div'
+
+[[pattern]]
+id = "row-segment"
+fixed = 'div[{person.id}]'
+
+[[pattern]]
+id = "row-id"
+regex = 'row.s id'
+
+[[pattern]]
+id = "row-dioxus-key"
+fixed = 'a Dioxus key `{person.id}`'
+
+[[pattern]]
+id = "gates-snapshot"
+regex = 'override and (its|the) .?snapshot'
+
+[[pattern]]
+id = "tree-override"
+regex = 'accessibility_tree. override'
+
+[[pattern]]
+id = "second-reader"
+fixed = 'second, in-process reader'
+
+[[pattern]]
+id = "carries-no-id"
+regex = 'carries no .NodeId.'
+
+[[pattern]]
+id = "unit-18"
+fixed = '18 unit tests'
+
+[[pattern]]
+id = "four-files"
+fixed = 'four files'
+
+[[pattern]]
+id = "six-on-id"
+fixed = 'six on the stable element id'
+
+[[pattern]]
+id = "test-census"
+regex = 'element_id\.rs and snapshot\.rs'
+
+[[pattern]]
+id = "count-471"
+regex = '\b471\b'
+
+[[pattern]]
+id = "lines-125"
+fixed = '125 result lines'
+
+[[pattern]]
+id = "stand-33"
+fixed = '33 `ok`'
+
+[[pattern]]
+id = "stand-files"
+regex = 'stand_snapshot|stand_\{'
+
+[[pattern]]
+id = "module-list"
+regex = 'mutation_writer, snapshot'
