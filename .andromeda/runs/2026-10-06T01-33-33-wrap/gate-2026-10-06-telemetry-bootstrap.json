@@ -1,0 +1,480 @@
+[
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T01:33:42Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-telemetry-bootstrap",
+"--run-dir",
+".andromeda/runs/2026-10-06T01-33-33-wrap",
+"--marker",
+"2026-10-06-telemetry-bootstrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base 1ff57e3c (the parent of the oldest pre-CI commit 6102cf03) · lists new 9 · modify 5 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 13 · listed 13 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 40"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "1ff57e3c4b282ef95fdfb2be7e0e2d564e609d48",
+"base_why": "the parent of the oldest pre-CI commit 6102cf03",
+"counts": {
+"changed": 13,
+"listed": 13,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 40,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T01:51:33Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-06-telemetry-bootstrap/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T01-33-33-wrap",
+"--marker",
+"2026-10-06-telemetry-bootstrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-06-telemetry-bootstrap · entries 12",
+"logs $TMPDIR/andromeda-gate/2026-10-06-telemetry-bootstrap/wrap-2026-10-06T01-33-33 · bound: GNU timeout",
+"delta docs 52 · unmapped 1",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L166-175: The gates below run in /implement P2 and the wrap's light gate. The boot smoke runs the wi… (1040 chars)",
+"  1 unit        green · exit 0 · 0.14s · 749 B → 1.log · cargo test -p escher-telemetry --locked",
+"  2 integration green · exit 0 · 0.19s · 1247 B → 2.log · cargo test -p blitz-tests --locked --test telemetry_stdout… (149 chars)",
+"  3 probe       green · exit 1 · 0.0s · 0 B → 3.log · grep -rn -E '(^|[^e])print(ln)?!|io::stdout' packages/esch… (74 chars)",
+"  4 probe       green · exit 0 · 0.0s · 0 B → 4.log · git diff --quiet 1ff57e3c4b282ef95fdfb2be7e0e2d564e609d48 … (296 chars)",
+"  5 probe       green · exit 0 · 0.01s · 2 B → 5.log · git diff 1ff57e3c4b282ef95fdfb2be7e0e2d564e609d48 -- Cargo… (86 chars)",
+"  6 build       green · exit 0 · 1.64s · 549 B → 6.log · cargo build -p seven_guis --bin seven_guis_native --locked",
+"  7 smoke       timeout · 10.12s → 7.log · RUST_LOG=info timeout 10 target/debug/seven_guis_native",
+"  8 lint        green · exit 0 · 12.38s · 46773 B → 8.log · bash .github/scripts/ci-leg.sh fast",
+"  9 lint        green · exit 0 · 0.31s · 177 B → 9.log · bash .github/scripts/ci-leg.sh doc",
+" 10 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 11 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 12 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 12 · green 8 · red 0 · recorded 0 · timeout 1 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-06-telemetry-bootstrap",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-telemetry-bootstrap/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-06-telemetry-bootstrap/wrap-2026-10-06T01-33-33",
+"delta": {
+"docs": [
+".andromeda/a11y-plan-amendments.md",
+".andromeda/a11y-plan.md",
+".andromeda/architecture-amendments.md",
+".andromeda/architecture.md",
+".andromeda/design-system-amendments.md",
+".andromeda/design-system.md",
+".andromeda/friction-log.ndjson",
+".andromeda/obs-plan-amendments.md",
+".andromeda/obs-plan.md",
+".andromeda/registries/contracts/obs-plan/bootstrap-phases-derive-for-route-setup-project.md",
+".andromeda/security-plan-amendments.md",
+".andromeda/security-plan.md",
+".andromeda/state.yaml",
+".andromeda/test-plan-amendments.md",
+".andromeda/test-plan.md",
+".claude/docs/commands.md",
+".claude/docs/conventions.md",
+".claude/docs/obs-summary.md",
+".claude/docs/security-summary.md",
+".claude/docs/services/seven_guis.md",
+".claude/docs/session-learnings.md",
+".claude/docs/stack.md",
+".claude/docs/tests-summary.md",
+".claude/rules/observability.md",
+".claude/rules/security.md",
+".claude/rules/verification-harness.md",
+".claude/session-handoff.md",
+"CLAUDE.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-06T01-33-33-wrap/a11y-plan-contracts.md",
+".andromeda/runs/2026-10-06T01-33-33-wrap/cascade-2026-10-06-telemetry-bootstrap.json",
+".andromeda/runs/2026-10-06T01-33-33-wrap/cascade-dispositions.md",
+".andromeda/runs/2026-10-06T01-33-33-wrap/cascade-patterns.toml",
+".andromeda/runs/2026-10-06T01-33-33-wrap/curation.md",
+".andromeda/runs/2026-10-06T01-33-33-wrap/entries/a11y-plan-entry.md",
+".andromeda/runs/2026-10-06T01-33-33-wrap/entries/architecture-entry.md",
+".andromeda/runs/2026-10-06T01-33-33-wrap/entries/design-system-entry.md",
+".andromeda/runs/2026-10-06T01-33-33-wrap/entries/obs-plan-entry.md",
+".andromeda/runs/2026-10-06T01-33-33-wrap/entries/security-plan-entry.md",
+".andromeda/runs/2026-10-06T01-33-33-wrap/entries/test-plan-entry.md",
+".andromeda/runs/2026-10-06T01-33-33-wrap/evolve-2026-10-06-telemetry-bootstrap.json",
+".andromeda/runs/2026-10-06T01-33-33-wrap/fanout-results.md",
+".andromeda/runs/2026-10-06T01-33-33-wrap/gate-2026-10-06-telemetry-bootstrap.json",
+".andromeda/runs/2026-10-06T01-33-33-wrap/health-2026-10-06-telemetry-bootstrap.json",
+".andromeda/runs/2026-10-06T01-33-33-wrap/inputs-2026-10-06-telemetry-bootstrap.json",
+".andromeda/runs/2026-10-06T01-33-33-wrap/obs-plan-contracts.md",
+".andromeda/runs/2026-10-06T01-33-33-wrap/registry-2026-10-06-telemetry-bootstrap.json",
+".andromeda/runs/2026-10-06T01-33-33-wrap/route-no-marker.json",
+".andromeda/runs/2026-10-06T01-33-33-wrap/splice-2026-10-06-telemetry-bootstrap.json",
+".andromeda/runs/2026-10-06T01-33-33-wrap/sweep.txt",
+".andromeda/runs/2026-10-06T01-33-33-wrap/test-plan-contracts.md",
+"escher-0.1.0/chunks/2026-10-06-telemetry-bootstrap/report.md"
+]
+},
+"unmapped": [
+"escher-0.1.0/chunks/2026-10-06-telemetry-bootstrap/evidence/operator-004223Z.txt"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 53,
+"problem": null
+},
+"prose": [
+{
+"from": 166,
+"to": 175,
+"text": "The gates below run in /implement P2 and the wrap's light gate. The boot smoke runs the windowed stand. It stays windowed until \"Headless stand\" lands, so the entry declares the display handle `WAYLAND_DISPLAY` and reads `not run — env unset` in a session without one, never red. It boots `seven_guis_native` for 10 s under `RUST_LOG=info`, so the bootstrap's `info` identity event passes the filter, and asserts that `timeout` had to stop it (exit 124, the stand stayed up) and that the identity reached the merged log. The `agent-run.sh` smoke form does not exist yet: \"Stand test contract\" owns it (health check 13). Two legs are CI-only on this host: `msrv` needs the 1.91 toolchain and `wasm` needs the wasm32 target, and neither is installed (measured: `rustup target list --installed` → x86_64 only; `rustup toolchain list` → no 1.91). The operator entries push this chunk and read the CI run that covers both. The coverage leg is not a gate (no threshold, test-plan §9 \"Coverage\"): CI's `coverage` job records the crate at the push."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-telemetry --locked",
+"run_sha8": "0c878b7b",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-telemetry-bootstrap/wrap-2026-10-06T01-33-33/1.log",
+"bytes": 749,
+"log_sha8": "93c5fe28",
+"exit": 0,
+"seconds": 0.14,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test telemetry_stdout_silent --test telemetry_scrub --test telemetry_panic_hook --test telemetry_init_idempotent",
+"run_sha8": "abd81864",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-telemetry-bootstrap/wrap-2026-10-06T01-33-33/2.log",
+"bytes": 1247,
+"log_sha8": "f5a39543",
+"exit": 0,
+"seconds": 0.19,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "probe",
+"run": "grep -rn -E '(^|[^e])print(ln)?!|io::stdout' packages/escher-telemetry/src",
+"run_sha8": "eaf5b61d",
+"expect": [
+"exit 1",
+"no output"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-telemetry-bootstrap/wrap-2026-10-06T01-33-33/3.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"no output ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "git diff --quiet 1ff57e3c4b282ef95fdfb2be7e0e2d564e609d48 -- packages/blitz-dom packages/blitz-net packages/blitz-html packages/blitz-paint packages/blitz-shell packages/blitz-traits packages/blitz packages/blitz-vibey-script packages/dioxus-native packages/dioxus-native-dom packages/stylo_taffy",
+"run_sha8": "073b5029",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-telemetry-bootstrap/wrap-2026-10-06T01-33-33/4.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "git diff 1ff57e3c4b282ef95fdfb2be7e0e2d564e609d48 -- Cargo.lock | grep -c '^+name = ' ",
+"run_sha8": "2343db1e",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-telemetry-bootstrap/wrap-2026-10-06T01-33-33/5.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "build",
+"run": "cargo build -p seven_guis --bin seven_guis_native --locked",
+"run_sha8": "094a3644",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-telemetry-bootstrap/wrap-2026-10-06T01-33-33/6.log",
+"bytes": 549,
+"log_sha8": "54bbfc46",
+"exit": 0,
+"seconds": 1.64,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "smoke",
+"run": "RUST_LOG=info timeout 10 target/debug/seven_guis_native",
+"run_sha8": "4c8297ad",
+"expect": [
+"exit 124",
+"contains service.name=seven_guis"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-telemetry-bootstrap/wrap-2026-10-06T01-33-33/7.log",
+"bytes": 636,
+"log_sha8": "56d93e1f",
+"exit": "timeout",
+"seconds": 10.12,
+"readings": [],
+"survivors": [],
+"outcome": "timeout"
+},
+{
+"n": 8,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-telemetry-bootstrap/wrap-2026-10-06T01-33-33/8.log",
+"bytes": 46773,
+"log_sha8": "7edea61e",
+"exit": 0,
+"seconds": 12.38,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-telemetry-bootstrap/wrap-2026-10-06T01-33-33/9.log",
+"bytes": 177,
+"log_sha8": "c10e24ba",
+"exit": 0,
+"seconds": 0.31,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "675d3a19",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T01:51:51Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-10-06T01-33-33-wrap",
+"--marker",
+"2026-10-06-telemetry-bootstrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 24 (runs 23 · evidence 1 · inputs 0) · trails 9 not read · copies 0 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 23,
+"evidence": 1,
+"inputs": 0,
+"trails": 9,
+"copies": 0,
+"kept": 0,
+"binary": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T01:51:51Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-telemetry-bootstrap",
+"--run-dir",
+".andromeda/runs/2026-10-06T01-33-33-wrap",
+"--marker",
+"2026-10-06-telemetry-bootstrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base 1ff57e3c (the parent of the oldest pre-CI commit 6102cf03) · lists new 9 · modify 5 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 13 · listed 13 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 90"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "1ff57e3c4b282ef95fdfb2be7e0e2d564e609d48",
+"base_why": "the parent of the oldest pre-CI commit 6102cf03",
+"counts": {
+"changed": 13,
+"listed": 13,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 90,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

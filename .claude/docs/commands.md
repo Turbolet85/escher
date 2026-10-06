@@ -41,6 +41,7 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 
 ## Running apps and examples
 - `just seven_guis` — the 7GUIs stand (`cargo run --release --package seven_guis --bin seven_guis_native`)
+- `RUST_LOG=info just seven_guis` — the stand with escher-telemetry's stderr log lines visible (default filter `warn`)
 - `just todomvc` · `just browser` · `just open {path}` (rdme) · `just screenshot {url}`
 - `cargo run --example {name}` — root examples (box_shadow, custom_widget, flex, form, gradient, html, inline, inner_html, mutations, outline, paint_bench, preact_script, restyle, screenshot, svg, svg_native, transforms, url)
 - `cargo run --release --example screenshot -- {url} [width]` — headless render to `examples/output/*.png`

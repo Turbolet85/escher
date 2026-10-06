@@ -49,7 +49,7 @@ Act by id — driver actions addressed by stable id, returning after settle with
    ↓
 Refusal detection — not found, stale, disabled, covered by another element, off-screen named per action (v010-11)
    ↓
-Driver command spans — one span per driver command covering settle wait, diff size and refusal cause, through the scrub layer (per obs-plan §4 §8)
+Driver command spans — one span per driver command covering settle wait, diff size and refusal cause, through the scrub layer (per obs-plan §4 §8)  CARRY: otel-sdk-install — the opt-in OTel export deferred from 2026-10-06-telemetry-bootstrap (no OTel crate, egress or credential path shipped); two founder decisions before take-up: export transport (http-only, as the workspace `reqwest` has no TLS feature, or a TLS feature added) and the credential path (opentelemetry-otlp 0.33.0 reads `OTEL_EXPORTER_OTLP_HEADERS` unconditionally at `build()`, measured at that chunk's research.md); facts: the opentelemetry 0.33 family + tracing-opentelemetry 0.34 are MSRV 1.75 and fit the locked reqwest 0.13.4 / http 1.5.0 / tracing-subscriber 0.3.23, no coupled pin moves; the sink already stamps `service.name` / `service.version` (the OTel resource keys) — deferred by the overseer delegate under the founder's standing delegation of technical forks, 2026-10-06, provisional on the founder's word
 
 ### Epoch 5 — Agent surfaces
 Driver CLI — every command with uncoloured JSON on stdout, diagnostics on stderr, accepted/refused exit codes, shell-scriptable stand flow (v010-12)

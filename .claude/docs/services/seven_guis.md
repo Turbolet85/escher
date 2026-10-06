@@ -9,6 +9,7 @@ The 7GUIs benchmark app ("Seven benchmark tasks for GUI frameworks") in Dioxus �
 
 ### Consumes from
 - dioxus-native (native binary `seven_guis_native`) or a wasm32 cdylib (`--no-default-features --features hybrid`, `console_error_panic_hook`).
+- escher-telemetry (native target only): `main` calls `escher_telemetry::init(escher_telemetry::service_identity!())` before `launch` — stderr log lines carry `service.name=seven_guis`; an init `Err` is `eprintln!`ed and the stand still launches. The engine `tracing` features stay off.
 
 ### Publishes to
 - Nothing — an app. Screens: Home (centered 640px column of task cards with description and tag) and TaskShell (header with back button, title, spacer over a scrolling body).
@@ -28,7 +29,8 @@ The 7GUIs benchmark app ("Seven benchmark tasks for GUI frameworks") in Dioxus �
 
 ## Testing this crate
 - No tests yet; the headless stand (no display, fixed viewport, bundled fonts, no live network, fresh per check) is the working route's "Headless stand" chunk.
-- Run windowed: `just seven_guis`.
+- Run windowed: `just seven_guis` (`RUST_LOG=info` shows the telemetry lines on stderr).
+- Boot smoke (windowed, needs `WAYLAND_DISPLAY`): `RUST_LOG=info timeout 10 target/debug/seven_guis_native` — exit 124 (still up when stopped) and `service.name=seven_guis` in the log.
 
 ## References
 - `.claude/rules/a11y.md` (the stand is in its paths) · `.claude/docs/design-summary.md`

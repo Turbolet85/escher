@@ -4,10 +4,11 @@
 
 **Instrumentation scope (entities needing instrumentation):**
 
-- **Workspace** — dependencies include tracing, tracing-subscriber, tracing-wasm and console_error_panic_hook; the root dev-dependencies add env_logger (Cargo.toml:169; Cargo.toml:172; Cargo.toml:183-184; Cargo.toml:285)
-- **Workspace** — `packages/debug_timer` is a workspace member (Cargo.toml:4; Cargo.toml:55)
+- **Workspace** — dependencies include tracing, tracing-subscriber, tracing-log, tracing-wasm and console_error_panic_hook; the root dev-dependencies add env_logger (Cargo.toml:171; Cargo.toml:174; Cargo.toml:185-187; Cargo.toml:288)
+- **Workspace** — `packages/debug_timer` is a workspace member (Cargo.toml:4; Cargo.toml:56)
 - **apps/browser** — observability is `tracing` logging, optional frame/phase timing features, and an in-app FPS overlay (apps/browser/Cargo.toml:27-29; apps/browser/Cargo.toml:36; apps/browser/src/fps_overlay.rs:94-124)
-- **examples** — the only runtime output of the examples slice is console printing of timings (examples/screenshot.rs:200-214)
+- **examples** — console printing of timings (examples/screenshot.rs:200-214), and `seven_guis_native`'s escher-telemetry events on stderr (examples/seven_guis/src/main.rs:6-9)
+- **escher-telemetry** — escher's telemetry bootstrap crate: the stderr subscriber with service identity, the allowlist scrub formatter and the chaining panic hook (packages/escher-telemetry/src/lib.rs:1-15; Cargo.toml:17)
 - **blitz-dom** — optional `tracing` logging, `println!` debug dumps and `debug_timer` phase timings (packages/blitz-dom/src/lib.rs:26-29; packages/blitz-dom/src/debug.rs:6-153; packages/blitz-dom/src/resolve.rs:75)
 - **blitz-dom (events / util)** — six `tracing` log call sites, all behind the `tracing` feature (packages/blitz-dom/src/stylo_to_cursor_icon.rs:9-10; packages/blitz-dom/src/events/ime.rs:27-28; packages/blitz-dom/src/events/pointer.rs:752-758; packages/blitz-dom/src/util.rs:26-27; packages/blitz-dom/src/util.rs:34-35)
 - **blitz-dom (layout)** — emits `tracing` events only when the `tracing` feature is enabled (packages/blitz-dom/src/layout/mod.rs:131; packages/blitz-dom/src/layout/construct.rs:480; packages/blitz-dom/src/layout/damage.rs:491; packages/blitz-dom/src/layout/table.rs:507)
@@ -26,7 +27,7 @@
 
 **Telemetry mechanism (current truth):**
 
-- Telemetry is the `tracing` crate's event macros, compiled in only with the `tracing` cargo feature (packages/blitz-dom/src/util.rs:26-27; packages/blitz-dom/src/events/ime.rs:27-28)
+- Telemetry is the `tracing` crate's event macros, in the engine and upstream crates compiled in only with the `tracing` cargo feature (packages/blitz-dom/src/util.rs:26-27; packages/blitz-dom/src/events/ime.rs:27-28); escher-telemetry depends on `tracing` with no feature and always compiles its startup and panic events into `seven_guis_native`, whose engine `tracing` features stay off (packages/escher-telemetry/Cargo.toml:13-16; packages/escher-telemetry/src/lib.rs:132; packages/escher-telemetry/src/panic.rs:11-21)
 - Each feature-gated `tracing` call has a no-op path when the feature is off (packages/blitz-dom/src/layout/mod.rs:131-139; packages/blitz-dom/src/layout/construct.rs:480-488)
 - Each blitz-dom log site is compiled only with `#[cfg(feature = "tracing")]` (packages/blitz-dom/src/document.rs:1260; packages/blitz-dom/src/mutator.rs:1188)
 - The blitz-dom crate root comment lists a `tracing` feature that "Enables tracing support", under a TODO to document features (packages/blitz-dom/src/lib.rs:26-29)
@@ -63,7 +64,8 @@
 
 **Logging stack (subscriber installation):**
 
-- Native subscribers are installed with `tracing_subscriber::fmt::init()` under the `tracing` feature (apps/browser/src/main.rs:73-74; apps/readme/src/main.rs:61-62; examples/todomvc/src/main.rs:16-17)
+- escher's stand installs `escher_telemetry::init(escher_telemetry::service_identity!())` in the native `main` before `dioxus_native::launch`, reporting an `Err` with `eprintln!` and continuing (examples/seven_guis/src/main.rs:4-10): a global `Registry` with an `EnvFilter` from `RUST_LOG` (default `warn`) and one non-ANSI fmt layer using the escher formatter, writing to stderr only, plus the `tracing_log::LogTracer` bridge for `log` records (packages/escher-telemetry/src/lib.rs:99-134)
+- The upstream apps install `tracing_subscriber::fmt::init()` under the `tracing` feature, writing to stdout (apps/browser/src/main.rs:73-74; apps/readme/src/main.rs:61-62; examples/todomvc/src/main.rs:16-17)
 - wasm_hello installs `tracing_wasm::set_as_global_default()` (examples/wasm_hello/src/lib.rs:105)
 - The wpt runner logs through the `log` facade via `env_logger` (wpt/runner/src/main.rs:458; wpt/runner/src/main.rs:784-830)
 - observed absent — tracing subscriber or exporter setup · searched: `subscriber|opentelemetry|sentry` over the 15 s05 files
@@ -75,7 +77,9 @@
 - Embedders drain JS errors with `take_js_errors` and JS messages with `take_messages` (packages/blitz-vibey-script/src/document.rs:242-261)
 - At most 256 errors are retained between drains (packages/blitz-vibey-script/src/state.rs:101-103; packages/blitz-vibey-script/src/document.rs:256)
 
-> NOT YET MEASURED — product mode, service identity, log format JSON schema, log file location, snapshot integration, trace context propagation and heartbeat ticks: the reading recorded none of them
+**Service identity and line format (escher's sink):** every line carries `service.name` / `service.version`, read from the binary's own `CARGO_PKG_NAME` / `CARGO_PKG_VERSION` by `service_identity!()` — the OTel resource keys — in a one-line text format, not JSON (packages/escher-telemetry/src/lib.rs:32-54; §6 Log format); `seven_guis_native` logs `service.name=seven_guis` (as measured at escher-0.1.0/chunks/2026-10-06-telemetry-bootstrap/evidence/smoke-004017Z.txt)
+
+> NOT YET MEASURED — product mode, a JSON log schema, log file location, snapshot integration, trace context propagation and heartbeat ticks: the reading recorded none of them
 
 Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py contracts; read one contracts/obs-plan/{key}.md; never whole.
 
@@ -101,7 +105,7 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 
 | Operation | What is recorded | Output | Source |
 |-----------|------------------|--------|--------|
-| Frame / phase timing | Timing logs gated by `log-frame-times`, `log-phase-times`, umbrella `log-times` | log features only | (Cargo.toml:252-255); (packages/dioxus-native/Cargo.toml:58-66) |
+| Frame / phase timing | Timing logs gated by `log-frame-times`, `log-phase-times`, umbrella `log-times` | log features only | (Cargo.toml:255-258); (packages/dioxus-native/Cargo.toml:58-66) |
 | blitz-dom `resolve` | Phase times style, mark_all, damage, construct, pconstruct, layout, transform, paint_tree, c_damage, subdocs | printed, prefixed `Resolve({id}): ` | (packages/blitz-dom/src/resolve.rs:75-167) |
 | debug_timer | Labelled instants; total and per-step durations in ns/us/ms/s | printed | (packages/debug_timer/src/lib.rs:14-24; packages/debug_timer/src/lib.rs:33-66) |
 | Browser FPS overlay | Frame deltas in a 60-entry ring, polled every 250 ms; average FPS and ms | in-app overlay, toggled from the menu item "Toggle FPS" | (apps/browser/src/fps_overlay.rs:7; apps/browser/src/fps_overlay.rs:27-49; apps/browser/src/fps_overlay.rs:105-123); (apps/browser/src/toolbar.rs:437-440) |
@@ -129,9 +133,12 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 
 ## 6. Log Coverage
 
-**Log format JSON schema:**
+**Log format (escher's sink):**
 
-> NOT YET MEASURED — the log format: the reading recorded no log JSON schema, log-file sink, rotation policy or per-module level configuration
+- One line per event on stderr, no ANSI: `{RFC 3339 UTC time} {LEVEL} {target} service.name={name} service.version={version} {field}={value}…`; newlines and carriage returns in values escaped as `\n` / `\r`, string values Debug-quoted; a bridged `log` record printed under its `log.target`, that field itself omitted; every field passes the §8 allowlist scrub (packages/escher-telemetry/src/format.rs:96-165)
+- Per-module levels come from `RUST_LOG` through `EnvFilter`, defaulting to `warn` when unset or unparsable (packages/escher-telemetry/src/lib.rs:113)
+
+> NOT YET MEASURED — a log JSON schema, a log-file sink and a rotation policy: the reading recorded none of them
 
 **Logged events (current truth):**
 
@@ -143,7 +150,10 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
   - Dropped disk writes log at warn (apps/browser/src/browser_history.rs:161)
 - **examples**
   - wasm_hello logs "Starting app..." at info (examples/wasm_hello/src/lib.rs:107)
-  - Example output uses `println!`/`eprintln!` only (examples/screenshot.rs:203; examples/paint_bench.rs:34; examples/paint_bench.rs:321)
+  - Example output uses `println!`/`eprintln!` (examples/screenshot.rs:203; examples/paint_bench.rs:34; examples/paint_bench.rs:321), except `seven_guis_native`, which logs through escher-telemetry (below)
+- **escher-telemetry (in `seven_guis_native`)**
+  - info at target `escher_telemetry`, message `telemetry installed`, once per successful init — no argv, path or URL (packages/escher-telemetry/src/lib.rs:132)
+  - ERROR at target `escher_telemetry::panic`, message `panic`, fields `panic.file`, `panic.line`, `panic.column`, `panic.payload` (redacted), once per panic (packages/escher-telemetry/src/panic.rs:11-21)
 - **blitz-dom (document / resolve / mutator / net)**
   - warn: no DOM on resolve (packages/blitz-dom/src/resolve.rs:44) and on hit test (packages/blitz-dom/src/document.rs:1801)
   - warn: unimplemented form scheme/method (packages/blitz-dom/src/form.rs:152-157)
@@ -200,7 +210,7 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 **Absent:**
 
 - observed absent — console logging calls · searched: `console\.` over the 21 s02 files
-- observed absent — structured logging · searched: `tracing::|log::|env_logger` over the 32 slice files (examples slice)
+- observed absent — structured logging · searched: `tracing::|log::|env_logger` over the 32 slice files (examples slice); `seven_guis_native` has since gained escher-telemetry's subscriber (§3)
 
 ---
 
@@ -208,9 +218,10 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 
 **Panic hooks:**
 
-- `console_error_panic_hook` is a workspace dependency (Cargo.toml:172)
+- `console_error_panic_hook` is a workspace dependency (Cargo.toml:174)
 - WASM builds install `console_error_panic_hook` (examples/seven_guis/src/lib.rs:13; examples/todomvc/src/wasm.rs:8; examples/wasm_hello/src/lib.rs:104)
 - The wpt runner's panic hook captures message, file, line, column and a forced backtrace (wpt/runner/src/panic_backtrace.rs:12-38)
+- `seven_guis_native`'s escher-telemetry hook chains: it takes the previous hook, logs one ERROR event at target `escher_telemetry::panic` with `panic.file`, `panic.line`, `panic.column` and `panic.payload` (redacted, §8), then runs the previous hook — std's default still prints the raw message to stderr and the exit code is unchanged (packages/escher-telemetry/src/panic.rs:4-24)
 - A crashed WPT test's panic message is carried into the report's `message` field (wpt/runner/src/report.rs:95)
 - `pump_net_provider` logs pending items before panicking on its 500 ms timeout (wpt/runner/src/test_runners/mod.rs:392-398)
 
@@ -257,8 +268,13 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 - Full request URLs are logged as field `url` (packages/blitz-net/src/lib.rs:229; packages/blitz-net/src/lib.rs:276; packages/blitz-net/src/lib.rs:281)
 - The CSS property value is logged in the "Invalid property value" warning (packages/blitz-dom/src/node/element.rs:706-707)
 - dioxus-native debug logs record text-node contents and attribute values; asset logs record the full request (packages/dioxus-native-dom/src/mutation_writer.rs:150; packages/dioxus-native-dom/src/mutation_writer.rs:202; packages/dioxus-native-dom/src/mutation_writer.rs:388; packages/dioxus-native/src/assets.rs:48)
+- Past escher's scrub: the chained std panic hook prints the raw panic message to stderr, and the allowlisted `log.file` carries a host path for bridged third-party `log` records at `RUST_LOG=info` (as measured at escher-0.1.0/chunks/2026-10-06-telemetry-bootstrap/report.md)
 
-**Scrubbing (absent):**
+**Scrubbing:**
+
+- escher's own sink scrubs by allowlist in its formatter (packages/escher-telemetry/src/format.rs:17-84): an event whose target — or a bridged `log` record's `log.target` — starts with `blitz`, `dioxus_native`, `stylo_taffy`, `accesskit_xplat`, `debug_timer` or `js_console` prints only `node_id`, `status`, `waiting_nodes`, `property`, `log.module_path`, `log.file`, `log.line`, every other field (the message included) as `{name}=[redacted]`; `url`, `href`, `src`, `html`, `text`, `value`, `attrs`, `path`, `request`, `error` and `panic.payload` are redacted at any target; no engine call site is edited
+- Its reach is that sink: in `seven_guis_native` the engine `tracing` features stay off, so engine events reach it only when one is turned on; the upstream apps' `fmt::init()` stdout subscribers and the WPT runner's `env_logger` stay unscrubbed, and the values above remain logged as-is there
+- The searches below predate it and stand for their slices:
 
 - observed absent — redaction or scrubbing · searched: `redact|scrub|mask` (case-insensitive) over the 86 slice files; hits are a comment and CSS `mask-image` only (apps slice)
 - observed absent — scrubbing or redaction · searched: `sanitiz|redact|scrub` over the 15 s05 files

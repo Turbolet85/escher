@@ -1,0 +1,72 @@
+# Retired / moved claims of the 2026-10-06-telemetry-bootstrap reconcile pass.
+[[pattern]]
+id = "no-scrub"
+regex = '(no|absent)[^.\n]{0,40}(scrub|redact)|(scrub|redact)[^.\n]{0,60}(absent|exists yet|not exist)'
+ignore_case = true
+
+[[pattern]]
+id = "scrub-word"
+regex = 'scrub'
+ignore_case = true
+
+[[pattern]]
+id = "unscrubbed"
+regex = 'unscrubbed|as-is'
+ignore_case = true
+
+[[pattern]]
+id = "fmt-init"
+fixed = 'fmt::init'
+
+[[pattern]]
+id = "native-sub"
+regex = 'subscriber[s]? (are|is) installed|installs? (a|the) (global )?subscriber'
+ignore_case = true
+
+[[pattern]]
+id = "gated-only"
+regex = 'only (with|under|when) the `?tracing`? (cargo )?feature|tracing gated per call site|behind (a|the|each crate.s) `?tracing`? feature'
+ignore_case = true
+
+[[pattern]]
+id = "examples-only"
+regex = 'only runtime output|println!`?/`?eprintln!`? only|`println!` and `eprintln!` only'
+
+[[pattern]]
+id = "log-format"
+regex = 'log format|log-format|JSON schema'
+ignore_case = true
+
+[[pattern]]
+id = "svc-identity"
+regex = 'service identity|service\.name'
+ignore_case = true
+
+[[pattern]]
+id = "count-407"
+regex = '407 · 0 · 3|407 passed|\b407\b'
+
+[[pattern]]
+id = "count-255"
+regex = '255 passed|255 · 0'
+
+[[pattern]]
+id = "count-404"
+fixed = '404 · 0 · 3'
+
+[[pattern]]
+id = "boot-labels"
+regex = 'pii-scrubbing-wire|logging-redaction-wire|otel-sdk-install'
+
+[[pattern]]
+id = "otel"
+regex = 'opentelemetry|OTel'
+
+[[pattern]]
+id = "panic-hook"
+regex = 'panic hook|panic_hook|set_hook'
+ignore_case = true
+
+[[pattern]]
+id = "publish-bump"
+regex = 'versioned together|publish = false'

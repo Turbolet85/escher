@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-06 — The rustfmt write hook leaves a crate root unformatted when its module files do not exist yet
+The PostToolUse hook formats each file as it is written, but rustfmt resolves `mod` declarations: a new crate's `lib.rs` written before its `format.rs` / `panic.rs` exist fails to resolve its modules and is left as written, while the module files written after it are formatted. The miss surfaces only at the `fast` leg's `cargo fmt --check`. When creating a crate, write the module files first, or run `cargo fmt -p {crate}` once the burst of writes is done.
+
+---
+
 ## 2026-10-06 — The project's Bash guards refuse a heredoc written to a file and a leading cd, and read payload prose too
 escher's PreToolUse Bash hook blocks a `cat`/`tee` heredoc that writes a file, and a leading `cd` into a subdirectory (it would move the session's working directory for every later call). The heredoc match is a token match over the whole command text, so a heredoc PIPED into a tool — an evolve append, an inline python script — is also refused when its payload's prose quotes the guarded shell form: the record's text tripped it, not the command.
 

@@ -3,7 +3,7 @@
 **A11y tier:** `0 — SC 2.1.1 · 1.4.3 · 2.4.3`
 
 **A11y scope (entities needing assertions):**
-- **Workspace AccessKit dependency** — accesskit "0.25" and the in-repo `accesskit_xplat` package are workspace dependencies/members (Cargo.toml:3; Cargo.toml:56; Cargo.toml:138)
+- **Workspace AccessKit dependency** — accesskit "0.25" and the in-repo `accesskit_xplat` package are workspace dependencies/members (Cargo.toml:3; Cargo.toml:57; Cargo.toml:140)
 - **accesskit_xplat** — provides the AccessKit platform adapter crate (packages/accesskit_xplat/Cargo.toml:2-6)
 - **blitz-dom accessibility tree** — under the `accessibility` feature, `BaseDocument::build_accessibility_tree` builds an AccessKit tree from the DOM (packages/blitz-dom/src/lib.rs:83-84; packages/blitz-dom/src/accessibility.rs:5-44); blitz-dom's default features include `accessibility`, which enables `accesskit`, and `custom-widget` also requires it (packages/blitz-dom/Cargo.toml:14-22; packages/blitz-dom/Cargo.toml:27)
 - **Custom widgets** — a custom widget accessibility-tree hook is commented out as a TODO (packages/blitz-dom/src/node/custom_widget.rs:6; packages/blitz-dom/src/node/custom_widget.rs:142-143)
@@ -13,7 +13,7 @@
 - **blitz-traits node ids** — `NodeId::as_u64` is described as useful for interop with integer-id APIs such as AccessKit (packages/blitz-traits/src/node_id.rs:15-22)
 - **Dioxus crates** — `accessibility` is a default feature of both Dioxus crates and forwards to blitz-dom (and blitz-shell in dioxus-native) (packages/dioxus-native-dom/Cargo.toml:13; packages/dioxus-native-dom/Cargo.toml:18; packages/dioxus-native/Cargo.toml:13; packages/dioxus-native/Cargo.toml:30)
 - **Browser app** — the browser's `accessibility` feature (dioxus-native accessibility) is not in its default set (apps/browser/Cargo.toml:13; apps/browser/Cargo.toml:38)
-- **blitz-tests** — `blitz-dom` is built with the `accessibility` feature and `accesskit` is a dev-dependency (tests/blitz-tests/Cargo.toml:16; tests/blitz-tests/Cargo.toml:30)
+- **blitz-tests** — `blitz-dom` is built with the `accessibility` feature and `accesskit` is a dev-dependency (tests/blitz-tests/Cargo.toml:17; tests/blitz-tests/Cargo.toml:31)
 - **Input fixture** — exercises focusable divs with tabindex 0 and tabindex -1 beside a text input (examples/assets/input.html:4-9)
 
 **A11y surfaces & assistive tech reach:** the AccessKit platform adapters and their per-platform gaps are recorded in §2 (Platform adapters).
@@ -84,7 +84,7 @@
 - accessibility assertions in tests · searched: `aria-|aria[A-Z]|\brole\b` over the 32 s10 slice files
 - accessibility assertions in tests · searched: `aria|role|accesskit` over the 21 listed s11 files (matches only in crate docs and unrelated comments)
 
-> NOT YET MEASURED — the structured violation JSON schema / log format, the WCAG criteria mapping of the existing tests and a screen-reader test pattern: no slice recorded them (s01, s02, s06, s07 and s13 recorded the a11y assertion harness as out of slice), and the test plan (§3) and obs plan (§3, §6 Log Coverage) leave the log format unmeasured.
+> NOT YET MEASURED — the structured violation JSON schema / log format, the WCAG criteria mapping of the existing tests and a screen-reader test pattern: no slice recorded them (s01, s02, s06, s07 and s13 recorded the a11y assertion harness as out of slice). The obs log format is now measured for escher's own sink (obs plan §3, §6 Log Coverage, §8): one non-JSON text line per event on stderr, `{RFC 3339 UTC time} {LEVEL} {target} service.name=… service.version=… {field}={value}…`, behind an allowlist scrub that, among others, prints only `node_id` / `status` / `waiting_nodes` / `property` / `log.*` fields for `blitz*` and `accesskit_xplat` targets and redacts `text`, `value`, `html` and `attrs` at any target; an a11y violation schema is not yet defined against it.
 
 Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py contracts; read one contracts/a11y-plan/{key}.md; never whole.
 

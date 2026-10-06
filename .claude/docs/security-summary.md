@@ -23,14 +23,15 @@ escher is a native-API engine library with no served API, no listener and no aut
 |---|---|---|
 | CI secrets | signing key, Android keystore + passwords, Apple certificate, `WPT_GITHUB_TOKEN`, `GITHUB_TOKEN` | GitHub secrets/vars; written files removed in `always()` steps |
 | Local user data (browser app) | history `history.sqlite3`, HTTP cache, cookies, clipboard, chosen file paths | unencrypted on disk; history in-memory on mobile; "Clear history" / "Clear Cache" |
-| Logged values | request URLs, cache dir path, attribute values | logged as-is (no redaction) |
+| Logged values | request URLs, cache dir path, attribute values | escher's stderr sink (`seven_guis_native`) redacts them by allowlist; the upstream apps' `fmt::init()` and the WPT runner's `env_logger` log them as-is |
 
 ## Universal anti-patterns
 > NO RECORDED INTENT — the plan carries none yet; Tier 1 warnings and `.claude/rules/security.md` hold the measured invariants.
 
 ## Not yet measured (owners on the working route)
 - The dependency audit's reach — paste / memmap2 advisories in optional chains unseen by cargo-deny's resolved graph → "Quality gates".
-- Logging redaction (`logging-redaction-wire`) → "Telemetry bootstrap" (scrub layer).
+- Logging redaction (`logging-redaction-wire`) — discharged for escher's sink; the upstream sinks stay unscrubbed (no owner).
+- Opt-in OTel export — egress plus the `OTEL_EXPORTER_OTLP_HEADERS` credential path, a founder decision → "Driver command spans".
 - Driver/MCP surface — local to the invoking user, no listener or auth surface → "MCP surface".
 - TLS policy, key management, retention, SBOM, secret scanning, security-event logging → no owner yet.
 

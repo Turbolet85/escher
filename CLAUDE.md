@@ -9,7 +9,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 **Stack:** Rust 2024 Cargo workspace (MSRV 1.91) · Stylo CSS · Taffy layout · Parley text · anyrender/Vello paint · winit shell · AccessKit · Dioxus 0.7 · Boa JS — a native-API engine library with no server and no database (the browser app keeps a rusqlite history).
 
 **Key directories:**
-- `packages/` — the engine and integration crates (DOM, paint, shell, traits, Dioxus bridge, test harness)
+- `packages/` — the engine and integration crates (DOM, paint, shell, traits, Dioxus bridge, test harness) and escher's telemetry bootstrap
 - `tests/blitz-tests/` — integration tests, one file per behaviour
 - `examples/` — example crates and root examples; `examples/seven_guis/` is the 7GUIs stand
 - `apps/` — reference browser (`blitz`), markdown viewer (`rdme`), release `bump`
@@ -32,6 +32,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 - **`dioxus-native-dom`** — headless Dioxus renderer on blitz (`DioxusDocument`)
 - **`dioxus-native`** — windowed Dioxus renderer (`launch`)
 - **`blitz-test-harness`** — headless `Harness`: construction, pump, input synthesis, inspection
+- **`escher-telemetry`** — escher's telemetry bootstrap (`init`): stderr `tracing` subscriber with service identity, allowlist scrub, `log` bridge, chaining panic hook
 - **`seven_guis`** — the 7GUIs example app, the stand every 0.1.0 capability is proven on
 <!-- GENERATED:setup:modules end -->
 
@@ -40,8 +41,8 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 - Secrets live only in GitHub Actions secrets/vars and source reads none — never put a credential in code, fixtures or logs.
 - The workspace binds no network port or socket — a new listener, port, env var or workspace crate is an arch §Occupied Resources registration, never a silent add.
 - The a11y target is WCAG SC 2.1.1 · 1.4.3 · 2.4.3 and `accessibility` is a default feature — focusability, focus order and painted colours are a11y surface.
-- Telemetry is `tracing` behind each crate's `tracing` feature: call sites are `#[cfg(feature = "tracing")]` with a no-op fallback, never an unconditional `println!`.
-- Log events carry URLs, attribute values and outer HTML unscrubbed and no scrub layer exists yet — add no new user-content log fields.
+- Engine telemetry is `tracing` behind each crate's `tracing` feature: call sites are `#[cfg(feature = "tracing")]` with a no-op fallback, never an unconditional `println!`; escher binaries install `escher_telemetry::init` (stderr only, never stdout).
+- escher's sink scrubs by allowlist (engine targets print only safe fields; content-named fields redacted everywhere), but the upstream apps' `fmt::init()` and the WPT runner's `env_logger` log URLs, attribute values and outer HTML unscrubbed — add no new user-content log fields.
 - Incremental and non-incremental layout must stay identical (incremental_oracle); pipeline tests run `for incremental in [false, true]`.
 - DOM mutations go through `DocumentMutator` (`doc.mutate()`), which flushes on Drop — extend the mutator rather than reaching through `DocumentMutator::doc`.
 - `NodeId` is a versioned slot id: a dropped node's id stops resolving and indexing a stale id panics — use `get`/`contains_key` for ids that may be stale.
@@ -55,7 +56,8 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 |---|---|
 | Architecture decisions | `.andromeda/architecture.md` |
 | Directory tree · resource registry | `.andromeda/architecture.md` §Infrastructure Patterns / §Occupied Resources |
-| Public API contracts (Document, mutator, events, harness, providers) | `.andromeda/architecture.md` §Standard Contracts |
+| Public API contracts (Document, mutator, events, harness, providers, telemetry) | `.andromeda/architecture.md` §Standard Contracts |
+| Telemetry bootstrap (subscriber · scrub sets · panic hook) | `packages/escher-telemetry/src/{lib,format,panic}.rs` |
 | Code map / impact (symbols · callers · crate deps) | `.andromeda/cache/rust/tree.db` — query via `scripts/code-graph.py query <run_dir> <marker> "<sql>"`; schema + templates in `scripts/code-graph-cookbook.md` |
 | Threat model · trust boundaries | `.andromeda/security-plan.md` §Threat Model Summary / §Input Validation |
 | Design tokens (as built) | `.andromeda/design-system.md` §Color Palette / §Typography |

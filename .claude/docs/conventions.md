@@ -16,14 +16,14 @@ _Extracted from `.andromeda/architecture.md` §Conventions (citations live there
 ## Manifests
 - Dependencies declared once in `[workspace.dependencies]` and consumed as `{ workspace = true }`; dependency groups separated by comment headers.
 - In-repo crates are declared with `default-features = false`; package metadata inherited with `*.workspace = true`.
-- App and example crates set `publish = false`; docs.rs builds with all features and `doc_cfg` under `docsrs`.
+- App and example crates, blitz-test-harness and escher-telemetry set `publish = false`; docs.rs builds with all features and `doc_cfg` under `docsrs`.
 
 ## Visibility
 - Crate internals are `pub(crate)` / `pub(super)`; the slotmap key is used only at the storage boundary — public APIs use `NodeId`.
 
 ## Feature gating
 - Optional capabilities are Cargo features forwarded across crates (each dioxus-native feature forwards to the same-named blitz feature).
-- `tracing` gated per call site with a `#[cfg(not(feature = "tracing"))] let _ = …;` fallback.
+- In the engine and upstream crates `tracing` is gated per call site with a `#[cfg(not(feature = "tracing"))] let _ = …;` fallback; escher-telemetry (no `[features]`) emits its startup and panic events ungated.
 - Desktop-only code gated by the repeated cfg list windows / macos / linux / dragonfly / freebsd / netbsd / openbsd.
 
 ## Error handling

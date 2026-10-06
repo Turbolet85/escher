@@ -4,3 +4,15 @@ entry 10 (leg operator · probe) — gate.py hygiene, fired 2026-10-06T00:42:23Z
 exit: 0
 atoms: exit 0 ✓ · contains hygiene: clean ✓
 summary: hygiene: clean — read 32 (runs 31 · evidence 1 · inputs 0) · trails 14 not read · copies 0 not read by P1 — 0 host paths kept · binary 0 not read by P1
+
+pre-CI commit: 6102cf03 chore(2026-10-06-telemetry-bootstrap): operator pre-CI commit, for the run this chunk's verdict reads
+
+entry 11 (leg operator · probe) — fast && clean-tree guard && push, fired 2026-10-06T00:42:33Z, ended 00:42:46Z
+exit: 0
+push: 1ff57e3c..6102cf03  build/escher-0.1.0 -> build/escher-0.1.0 (origin Turbolet85/escher)
+
+entry 12 (leg operator · probe) — ci.py conclusion --sha HEAD --wait 1800, fired 2026-10-06T00:42:54Z, ended 00:52:43Z
+exit: 0
+atoms: exit 0 ✓ · contains verdict: green ✓
+summary: 6102cf033cae verdict: green · checks 16/16 · wall 561 s · runs CI#37395425505 completed/success
+jobs (gh run view 37395425505 -R Turbolet85/escher): all 16 success — MSRV Build [Rust 1.91] ✓ · Build wasm examples ✓ · Coverage report ✓ · Dependency audit ✓ · Documentation ✓ · Test [default features] ✓
