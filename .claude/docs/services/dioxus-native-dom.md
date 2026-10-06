@@ -15,7 +15,7 @@ The headless Dioxus renderer on blitz: `DioxusDocument` integrates `BaseDocument
 
 ## Internal conventions
 - DOM events route to the vdom via the nearest `data-dioxus-id` attribute (parsed as `usize`); listener registration sets a `"<rust func>"` placeholder.
-- `style`-namespace attributes become style properties; falsy `checked` clears; `dangerous_inner_html` sets inner HTML.
+- `style`-namespace attributes become style properties; a falsy `checked` or `disabled` (Bool false, `"false"`, 0, None) clears the attribute; `dangerous_inner_html` sets inner HTML.
 - Every document starts as `<html><head></head><body><main id="main"></main></body></html>` with `DEFAULT_CSS`; base URL `dioxus://index.html`.
 - `mounted` listeners fire after `initial_build` and each `poll`; event kinds with zero handlers are skipped.
 - A crate-local `trace!` macro expands to `tracing::debug!` under `tracing` (its 4-argument arm passes only the first two items).
@@ -24,12 +24,13 @@ The headless Dioxus renderer on blitz: `DioxusDocument` integrates `BaseDocument
 - `mutation_writer.rs` has a "WARNING: DO NOT REORDER" block.
 - Twelve event-data conversions call `unimplemented!()`; IME events are not handled; `NativeFormData::valid` always returns true.
 - `element_to_node_id` unwraps; `NodeHandle::node` panics if the node is gone.
+- Every other boolean attribute (`readonly`, `required`, `hidden`, `multiple`, `selected`, `open`, `autofocus`) is still written with the literal value `"false"` when falsy — blitz-dom keys element state and click targeting on presence, so a presence read takes it as set.
 
 ## Entry points for modification
 - `src/{dioxus_document,mutation_writer,events,write_once_attr}.rs`
 
 ## Testing this crate
-- `cargo test -p dioxus-native-dom` (`keyed_nodes_do_not_crash`, touch tests); Dioxus integration in `tests/blitz-tests` via `Harness::from_component` / `from_vdom`.
+- `cargo test -p dioxus-native-dom` (`keyed_nodes_do_not_crash`, touch tests); Dioxus integration in `tests/blitz-tests` via `Harness::from_component` / `from_vdom`; `dioxus_falsy_disabled.rs` pins the falsy-`disabled` clearing.
 
 ## References
 - `.andromeda/architecture.md` · `.claude/docs/services/blitz-test-harness.md`

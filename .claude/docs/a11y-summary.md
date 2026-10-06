@@ -19,6 +19,8 @@ _Distilled from `.andromeda/a11y-plan.md` (adopted reading). wrap-session's casc
 - Roles: `role` attribute → HTML-AAM mapping → `Role::Unknown`; landmarks, lists, tables, form inputs by `type`, links only with `href`.
 - Hidden: `hidden` / `display:none` / `visibility:hidden` exclude the subtree; `aria-hidden` marks hidden.
 - Focus: Tab / Shift+Tab via `focus_next_node` / `focus_prev_node`; focusability recomputed on `tabindex` / `href` / `disabled`; focus resets to body on removal; `:focus-visible` / `:focus-within` never match.
+- Disabled-ness is keyed two ways: the `DISABLED` state (`:disabled`) and click targeting on the attribute's presence, focusability on its value parsed as a bool — `disabled="false"` matches `:disabled` yet stays focusable. dioxus-native-dom now removes a falsy `disabled` / `checked`; its other boolean attributes still write `"false"`.
+- Stand cue: `stand_flight_booker.rs` asserts the invalid-date cue (`invalid` class + `disabled` Book) without colour; no test asserts a Dioxus control's focus / Tab order.
 - Platform: accesskit_xplat adapters (windows, macos, unix, android, null); ActionRequested and AccessibilityDeactivated are unhandled TODOs; the tree is rebuilt on poll when the document changed.
 
 ## Critical paths (must-be-accessible)

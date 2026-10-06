@@ -1,0 +1,628 @@
+[
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T02:44:46Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-headless-stand",
+"--run-dir",
+"/home/turbolet/dev/projects/escher/.andromeda/runs/2026-10-06T02-44-36-wrap",
+"--marker",
+"2026-10-06-headless-stand"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base d57a6c69 (the parent of the oldest pre-CI commit 1503df2e) · lists new 6 · modify 8 · derived 0 · record 2",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"recorded widening packages/dioxus-native-dom/src/mutation_writer.rs",
+"recorded widening tests/blitz-tests/tests/dioxus_falsy_disabled.rs",
+"scope: clean — changed 16 · listed 14 · recorded 2 (companion 0 · mechanical 0 · in-intent 0 · widening 2) · absorbed 0 · excluded 43"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "d57a6c69b28fe8c9af9998a87ae87d4a8c8b9faa",
+"base_why": "the parent of the oldest pre-CI commit 1503df2e",
+"counts": {
+"changed": 16,
+"listed": 14,
+"recorded": 2,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 2
+},
+"excluded": 43,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T03:02:04Z",
+"argv": [
+"run",
+"--plan",
+"/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-headless-stand/plan.md",
+"--run-dir",
+"/home/turbolet/dev/projects/escher/.andromeda/runs/2026-10-06T02-44-36-wrap",
+"--marker",
+"2026-10-06-headless-stand"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-06-headless-stand · entries 16",
+"logs $TMPDIR/andromeda-gate/2026-10-06-headless-stand/wrap-2026-10-06T02-44-36 · bound: GNU timeout",
+"delta docs 57 · unmapped 3",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L123-138: The gates below run in /implement P2 and the wrap's light gate. - The first entry is the c… (1649 chars)",
+"  1 unit        green · exit 0 · 3.65s · 1967 B → 1.log · cargo test -p blitz-tests --locked --test stand_boot --tes… (137 chars)",
+"  2 probe       green · exit 0 · 0.2s · 2 B → 2.log · cargo tree -p blitz-tests -e features -i wuff --locked | g… (75 chars)",
+"  3 probe       green · exit 0 · 0.2s · 2 B → 3.log · cargo tree -p blitz-tests -e features -i accesskit --locke… (106 chars)",
+"  4 probe       green · exit 1 · 0.0s · 2 B → 4.log · test -f examples/seven_guis/src/stand.rs && cat examples/s… (190 chars)",
+"  5 probe       green · exit 1 · 0.0s · 2 B → 5.log · ls tests/blitz-tests/tests/stand_*.rs > /dev/null && cat t… (147 chars)",
+"  6 probe       green · exit 1 · 0.01s · 2 B → 6.log · git diff d57a6c69b28fe8c9af9998a87ae87d4a8c8b9faa -- Cargo… (86 chars)",
+"  7 probe       green · exit 0 · 0.0s · 0 B → 7.log · git diff --quiet d57a6c69b28fe8c9af9998a87ae87d4a8c8b9faa … (92 chars)",
+"  8 build       green · exit 0 · 1.67s · 549 B → 8.log · cargo build -p seven_guis --bin seven_guis_native --locked",
+"  9 smoke       green · exit 0 · 10.12s · 636 B → 9.log · RUST_LOG=info timeout 10 target/debug/seven_guis_native; t… (72 chars)",
+" 10 lint        green · exit 0 · 35.92s · 48863 B → 10.log · bash .github/scripts/ci-leg.sh fast",
+" 11 lint        green · exit 0 · 0.33s · 177 B → 11.log · bash .github/scripts/ci-leg.sh doc",
+" 12 integration green · exit 0 · 2.46s · 1597 B → 12.log · bash .github/scripts/ci-leg.sh a11y",
+" 13 probe       green · exit 0 · 1.02s · 14 B → 13.log · bash .github/scripts/ci-leg.sh audit",
+" 14 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 15 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 16 · green 13 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-06-headless-stand",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-headless-stand/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-06-headless-stand/wrap-2026-10-06T02-44-36",
+"delta": {
+"docs": [
+".andromeda/a11y-plan-amendments.md",
+".andromeda/a11y-plan.md",
+".andromeda/architecture-amendments.md",
+".andromeda/architecture.md",
+".andromeda/design-system-amendments.md",
+".andromeda/design-system.md",
+".andromeda/friction-log.ndjson",
+".andromeda/layout-templates.md",
+".andromeda/obs-plan-amendments.md",
+".andromeda/obs-plan.md",
+".andromeda/security-plan-amendments.md",
+".andromeda/security-plan.md",
+".andromeda/state.yaml",
+".andromeda/test-plan-amendments.md",
+".andromeda/test-plan.md",
+".claude/docs/a11y-summary.md",
+".claude/docs/commands.md",
+".claude/docs/conventions.md",
+".claude/docs/design-summary.md",
+".claude/docs/gotchas.md",
+".claude/docs/obs-summary.md",
+".claude/docs/services/blitz-test-harness.md",
+".claude/docs/services/dioxus-native-dom.md",
+".claude/docs/services/seven_guis.md",
+".claude/docs/session-learnings.md",
+".claude/docs/stack.md",
+".claude/docs/tests-summary.md",
+".claude/rules/a11y.md",
+".claude/rules/observability.md",
+".claude/rules/testing.md",
+".claude/rules/verification-harness.md",
+".claude/session-handoff.md",
+"CLAUDE.md",
+"escher-0.1.0/working-route.md",
+".andromeda/layout-templates-amendments.md",
+".andromeda/runs/2026-10-06T02-44-36-wrap/a11y-plan-contracts.md",
+".andromeda/runs/2026-10-06T02-44-36-wrap/a11y-plan-entry.md",
+".andromeda/runs/2026-10-06T02-44-36-wrap/architecture-entry.md",
+".andromeda/runs/2026-10-06T02-44-36-wrap/cascade-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T02-44-36-wrap/cascade-dispositions.md",
+".andromeda/runs/2026-10-06T02-44-36-wrap/cascade-patterns.toml",
+".andromeda/runs/2026-10-06T02-44-36-wrap/curation.md",
+".andromeda/runs/2026-10-06T02-44-36-wrap/design-system-entry.md",
+".andromeda/runs/2026-10-06T02-44-36-wrap/evolve-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T02-44-36-wrap/fanout-results.md",
+".andromeda/runs/2026-10-06T02-44-36-wrap/gate-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T02-44-36-wrap/health-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T02-44-36-wrap/inputs-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T02-44-36-wrap/obs-plan-contracts.md",
+".andromeda/runs/2026-10-06T02-44-36-wrap/obs-plan-entry.md",
+".andromeda/runs/2026-10-06T02-44-36-wrap/registry-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T02-44-36-wrap/route-no-marker.json",
+".andromeda/runs/2026-10-06T02-44-36-wrap/security-plan-entry.md",
+".andromeda/runs/2026-10-06T02-44-36-wrap/splice-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T02-44-36-wrap/test-plan-contracts.md",
+".andromeda/runs/2026-10-06T02-44-36-wrap/test-plan-entry.md",
+"escher-0.1.0/chunks/2026-10-06-headless-stand/report.md"
+]
+},
+"unmapped": [
+"escher-0.1.0/chunks/2026-10-06-headless-stand/evidence/disabled-false-probe.txt",
+"escher-0.1.0/chunks/2026-10-06-headless-stand/evidence/operator-15-push.txt",
+"escher-0.1.0/chunks/2026-10-06-headless-stand/evidence/operator-16-ci.txt"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 60,
+"problem": null
+},
+"prose": [
+{
+"from": 123,
+"to": 138,
+"text": "The gates below run in /implement P2 and the wrap's light gate. - The first entry is the chunk's witness. It builds `-p blitz-tests` alone, without the workspace's feature unification,   so it proves the bundled woff2 decodes in the stand's own build and not only when `blitz` happens to turn `woff` on. - The census probes keep network, env and telemetry calls out of the stand, keep sleeps and recorded dispatch out of the   checks, keep `Cargo.lock` free of new packages, and keep the windowed `main.rs` untouched. Their base is `d57a6c69`,   the commit this chunk starts from, so they survive the operator's pre-CI commit. - The boot smoke runs the windowed stand. `app.rs`, `lib.rs` and `timer.rs` change what `seven_guis_native` launches,   so the stand must still boot and still log its identity. The entry declares the display handle `WAYLAND_DISPLAY` and   reads `not run — env unset` in a session without one, never red. It boots for 10 s under `RUST_LOG=info` and turns   `timeout`'s 124 (the stand stayed up) into the entry's own exit 0. The gate tool reads an entry exit 124 as its own   bound (verification-harness.md Session Additions). The `agent-run.sh` smoke form belongs to \"Stand test contract\"   (health check 13). - Two legs run on CI only, because this host has neither the wasm32 target nor the 1.91 toolchain (measured in   2026-10-06-telemetry-bootstrap's plan: `rustup target list --installed` → x86_64 only). The `wasm` leg proves the   seven_guis cdylib still builds after `lib.rs`/`app.rs`/`timer.rs` change, and `msrv` proves the 1.91 floor. The   operator entries push this chunk and read the CI run that covers both."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-tests --locked --test stand_boot --test stand_counter --test stand_flight_booker --test stand_timer --test stand_crud",
+"run_sha8": "93035799",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/wrap-2026-10-06T02-44-36/1.log",
+"bytes": 1967,
+"log_sha8": "8c7ef1bb",
+"exit": 0,
+"seconds": 3.65,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "probe",
+"run": "cargo tree -p blitz-tests -e features -i wuff --locked | grep -c '^wuff v' ",
+"run_sha8": "a32ff924",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/wrap-2026-10-06T02-44-36/2.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.2,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "probe",
+"run": "cargo tree -p blitz-tests -e features -i accesskit --locked | grep -c 'blitz-dom feature \"accessibility\"' ",
+"run_sha8": "8df0643b",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/wrap-2026-10-06T02-44-36/3.log",
+"bytes": 2,
+"log_sha8": "53c234e5",
+"exit": 0,
+"seconds": 0.2,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "test -f examples/seven_guis/src/stand.rs && cat examples/seven_guis/src/stand.rs tests/blitz-tests/tests/stand_*.rs | grep -c -E 'blitz_net|reqwest|env::var|escher_telemetry::init|println!' ",
+"run_sha8": "129f864d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/wrap-2026-10-06T02-44-36/4.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "ls tests/blitz-tests/tests/stand_*.rs > /dev/null && cat tests/blitz-tests/tests/stand_*.rs | grep -c -E 'sleep|Delay|dispatch_recorded|eprintln!' ",
+"run_sha8": "c045ee1b",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/wrap-2026-10-06T02-44-36/5.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "git diff d57a6c69b28fe8c9af9998a87ae87d4a8c8b9faa -- Cargo.lock | grep -c '^+name = ' ",
+"run_sha8": "bc3acbc0",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/wrap-2026-10-06T02-44-36/6.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff --quiet d57a6c69b28fe8c9af9998a87ae87d4a8c8b9faa -- examples/seven_guis/src/main.rs",
+"run_sha8": "9051a669",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/wrap-2026-10-06T02-44-36/7.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "build",
+"run": "cargo build -p seven_guis --bin seven_guis_native --locked",
+"run_sha8": "094a3644",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/wrap-2026-10-06T02-44-36/8.log",
+"bytes": 549,
+"log_sha8": "ee0328d7",
+"exit": 0,
+"seconds": 1.67,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "smoke",
+"run": "RUST_LOG=info timeout 10 target/debug/seven_guis_native; test $? -eq 124",
+"run_sha8": "e0f15baf",
+"expect": [
+"exit 0",
+"contains service.name=seven_guis"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/wrap-2026-10-06T02-44-36/9.log",
+"bytes": 636,
+"log_sha8": "202977a3",
+"exit": 0,
+"seconds": 10.12,
+"readings": [
+"exit 0 ✓",
+"contains 'service.name=seven_guis' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": [
+"exit 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/wrap-2026-10-06T02-44-36/10.log",
+"bytes": 48863,
+"log_sha8": "d3d33ff7",
+"exit": 0,
+"seconds": 35.92,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/wrap-2026-10-06T02-44-36/11.log",
+"bytes": 177,
+"log_sha8": "742b654b",
+"exit": 0,
+"seconds": 0.33,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/wrap-2026-10-06T02-44-36/12.log",
+"bytes": 1597,
+"log_sha8": "dd6ed4ec",
+"exit": 0,
+"seconds": 2.46,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/wrap-2026-10-06T02-44-36/13.log",
+"bytes": 14,
+"log_sha8": "799fc05e",
+"exit": 0,
+"seconds": 1.02,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "675d3a19",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T03:02:13Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-10-06T02-44-36-wrap",
+"--marker",
+"2026-10-06-headless-stand"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P2 · P3 rust — each fired on its synthetic known positive",
+"P1 escher-0.1.0/chunks/2026-10-06-headless-stand/evidence/operator-16-ci.txt:3 ×1 · home",
+"hygiene: refused 1 files — P1 1 · P2 0 · P3 0 · read 25 (runs 22 · evidence 3 · inputs 0) · trails 9 not read · copies 0 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [
+"P1 escher-0.1.0/chunks/2026-10-06-headless-stand/evidence/operator-16-ci.txt:3 ×1 · home"
+],
+"counts": {
+"P1": 1,
+"P2": 0,
+"P3": 0,
+"runs": 22,
+"evidence": 3,
+"inputs": 0,
+"trails": 9,
+"copies": 0,
+"kept": 0,
+"binary": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T03:02:29Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-10-06T02-44-36-wrap",
+"--marker",
+"2026-10-06-headless-stand"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 26 (runs 22 · evidence 4 · inputs 0) · trails 9 not read · copies 0 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 22,
+"evidence": 4,
+"inputs": 0,
+"trails": 9,
+"copies": 0,
+"kept": 0,
+"binary": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T03:02:29Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-headless-stand",
+"--run-dir",
+".andromeda/runs/2026-10-06T02-44-36-wrap",
+"--marker",
+"2026-10-06-headless-stand"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base d57a6c69 (the parent of the oldest pre-CI commit 1503df2e) · lists new 6 · modify 8 · derived 0 · record 2",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"recorded widening packages/dioxus-native-dom/src/mutation_writer.rs",
+"recorded widening tests/blitz-tests/tests/dioxus_falsy_disabled.rs",
+"scope: clean — changed 16 · listed 14 · recorded 2 (companion 0 · mechanical 0 · in-intent 0 · widening 2) · absorbed 0 · excluded 98"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "d57a6c69b28fe8c9af9998a87ae87d4a8c8b9faa",
+"base_why": "the parent of the oldest pre-CI commit 1503df2e",
+"counts": {
+"changed": 16,
+"listed": 14,
+"recorded": 2,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 2
+},
+"excluded": 98,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

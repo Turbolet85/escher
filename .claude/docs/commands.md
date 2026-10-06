@@ -24,6 +24,7 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 - `cargo test --workspace --locked` — the CI `test` leg (ubuntu, default features)
 - `cargo test --all --tests --locked` — the windows/macos matrix leg (linux is covered by the `test` leg)
 - `cargo test -p blitz-tests --test {name}` — one integration-test file
+- `cargo test -p blitz-tests --locked --test stand_boot --test stand_counter --test stand_flight_booker --test stand_timer --test stand_crud` — the headless-stand checks, package-alone (the bundled font must decode without workspace feature unification)
 - `cargo test -p {crate}` — one crate's unit tests
 - `cargo test -p blitz-tests --release --test paint_tree_bench -- --ignored --nocapture` — ignored benchmarks (`PAINT_TREE_BENCH_HTML=<file>` for an external page)
 - `python3 -m unittest discover -s .github/scripts` — CI Python script tests (the `ci-scripts` leg; needs PyYAML)
@@ -60,4 +61,4 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 
 ## Troubleshooting
 - `cargo clean` — clear `target/`
-- Fonts missing in headless tests → `system-fonts` feature / fontconfig installed
+- Fonts missing in headless tests → `system-fonts` feature / fontconfig installed; stand checks need neither — they boot with the bundled DejaVu Sans (`seven_guis::stand::options`)

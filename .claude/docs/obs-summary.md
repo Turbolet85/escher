@@ -9,7 +9,7 @@ _Distilled from `.andromeda/obs-plan.md` (adopted reading). wrap-session's casca
 
 ## Harness contract (§3)
 
-- **escher's sink:** `seven_guis_native` calls `escher_telemetry::init(service_identity!())` before `launch` (an `Err` is `eprintln!`ed, the stand continues): a global `Registry` + `EnvFilter` (`RUST_LOG`, default `warn`) + one non-ANSI fmt layer with the escher formatter, **stderr only**, plus the `log` → `tracing` bridge (`LogTracer`). Idempotent; a foreign subscriber is `InitError::ForeignSubscriber`, never a panic.
+- **escher's sink:** `seven_guis_native` calls `escher_telemetry::init(service_identity!())` before `launch` (an `Err` is `eprintln!`ed, the stand continues): a global `Registry` + `EnvFilter` (`RUST_LOG`, default `warn`) + one non-ANSI fmt layer with the escher formatter, **stderr only**, plus the `log` → `tracing` bridge (`LogTracer`). Idempotent; a foreign subscriber is `InitError::ForeignSubscriber`, never a panic. The headless stand (`seven_guis::stand`, booted in-process by the `stand_*` checks) installs no subscriber.
 - **Line format:** `{RFC 3339 UTC time} {LEVEL} {target} service.name={name} service.version={version} {field}={value}…` — one text line per event, not JSON; identity from the binary's own `CARGO_PKG_NAME` / `CARGO_PKG_VERSION` (the OTel resource keys).
 - **Upstream loggers:** engine crates emit `tracing` 0.1 events behind per-crate `tracing` features (no-op when off; off in the stand); `tracing-subscriber` 0.3 `fmt::init()` to stdout in the upstream apps; `tracing_wasm` on wasm; `log` + `env_logger` in the WPT runner.
 - **OTel SDK:** observed absent — the opt-in export was deferred (egress + `OTEL_EXPORTER_OTLP_HEADERS` credential path, a founder decision) and is carried to "Driver command spans".

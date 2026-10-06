@@ -21,10 +21,10 @@ _Distilled from `.andromeda/design-system.md` + `.andromeda/layout-templates.md`
 - Default scrollbar thumbs follow the scheme and paint fill + thin contrast stroke.
 
 ### Typography · spacing · depth · radius · motion
-> NOT YET MEASURED / NO RECORDED INTENT — no project-wide type scale, spacing unit, elevation, radius or motion tokens. Engine facts: default generic size 16px (13px monospace); WASM builds bundle DejaVu Sans for every generic family.
+> NOT YET MEASURED / NO RECORDED INTENT — no project-wide type scale, spacing unit, elevation, radius or motion tokens. Engine facts: default generic size 16px (13px monospace); WASM builds bundle DejaVu Sans for every generic family, and so does the native headless stand (system fonts off, decoded by seven_guis' `woff` feature).
 
 ## Primary surfaces
-- **desktop-native** — winit windows; Dioxus apps via `dioxus_native::launch`; seven_guis Home (640px card column) and TaskShell (header + scrolling body) are the stand's screens.
+- **desktop-native** — winit windows; Dioxus apps via `dioxus_native::launch`; seven_guis Home (640px card column) and TaskShell (header + scrolling body) are the stand's screens; the headless stand skips Home and mounts one lean task in TaskShell under `main#main` at the pinned 800 × 600 Light viewport.
 - **cli** — WPT runner (owo-colors status words + colour), `paint_bench`, `screenshot`, `bump`; escher's driver CLI (uncoloured JSON on stdout) is a route chunk.
 - **web-spa** — WASM canvas filling the body (seven_guis, todomvc), wasm_hello 640px card.
 - **mobile-native** — Android browser APK (built, not tested in CI).

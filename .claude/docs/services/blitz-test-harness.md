@@ -11,7 +11,8 @@ The headless harness for Blitz documents (unpublished): wraps any blitz-dom `Doc
 - blitz-dom (built with `accessibility`), blitz-html (`HtmlProvider`), dioxus-native-dom, keyboard-types.
 
 ### Publishes to
-- `Harness`, `HarnessOptions { width, height, scale, color_scheme, base_url, net_provider }`, `key_event`, `mouse_pointer_event`, `pointer_event`, `touch_pointer_event`, `Rect`.
+- `Harness`, `HarnessOptions { width, height, scale, color_scheme, base_url, net_provider, font_ctx, incremental }` (`font_ctx` → `DocumentConfig.font_ctx`, `incremental` → `DocumentConfig.incremental`; `Default` leaves both `None`), `key_event`, `mouse_pointer_event`, `pointer_event`, `touch_pointer_event`, `Rect`.
+- Consumed by seven_guis' headless stand (`seven_guis::stand::{boot, boot_timer, options}`), which builds its pinned options as a full `HarnessOptions` literal.
 
 ## Internal conventions
 - Constructors pump once; `wrap` does not. `pump` polls with no waker and resolves at harness time; `dispatch` / `dispatch_recorded` do not pump; input helpers pump after dispatch.

@@ -35,3 +35,9 @@ One entry per amendment to `obs-plan.md` (sidecar-contract.md §Entry form). App
 - 7 `file:line` citations re-pointed.
 **Why:** the telemetry bootstrap chunk shipped the bootstrap; OTel export was deferred at P4 by the overseer delegate under the founder's standing delegation of technical forks (egress + credential path), provisional on the founder's word.
 **Ref:** .andromeda/runs/2026-10-06T01-33-33-wrap/
+
+## 2026-10-06-headless-stand — telemetry installer named; the headless stand installs none
+**Section:** §3 Observability Harness Contract → Logging stack
+**Change:** was "escher's stand installs `escher_telemetry::init`"; now `seven_guis_native` (the windowed stand binary) installs it, and the headless stand `seven_guis::stand` with its in-process checks installs no subscriber — no `escher_telemetry::init`, no `println!`, no env read — so a headless boot has no escher sink.
+**Why:** after the headless stand chunk "the stand" names two surfaces; only the windowed binary installs telemetry, and init stays once per process.
+**Ref:** .andromeda/runs/2026-10-06T02-44-36-wrap/

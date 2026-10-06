@@ -1,0 +1,17 @@
+Operator entry 16 — CI read on the pushed sha (2026-10-06, hand-driven at the operator pass)
+
+run: python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800
+exit: 0
+expect: exit 0 ✓ · contains 'verdict: green' ✓
+
+repo Turbolet85/escher (the push remote `origin`) · polled 37× over 1114 s
+1503df2e1a4f verdict: green · checks 16/16 · wall 1104 s · runs CI#37404017734 completed/success
+runs: CI#37404017734 push completed/success
+
+Jobs (gh run view 37404017734 -R Turbolet85/escher --json jobs), all success:
+Test CI scripts · Test [default features] · Clippy · Rustfmt · Build [default features] · Dependency audit ·
+MSRV Build [Rust 1.91] · Build counter example · Build wasm examples · Documentation · Test (macos) ·
+Coverage report · Accessibility (a11y) tests · Test (windows) · Test (ios) · Test (android)
+
+CI-only proofs: "Build wasm examples" (the seven_guis cdylib after the app/lib/timer change) and "MSRV Build [Rust 1.91]" both success.
+Note: wall 1104 s against 561 s (run 37395425505) and 642 s (run 37401351553) for the previous two pipelines.

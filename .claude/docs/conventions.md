@@ -15,7 +15,7 @@ _Extracted from `.andromeda/architecture.md` §Conventions (citations live there
 
 ## Manifests
 - Dependencies declared once in `[workspace.dependencies]` and consumed as `{ workspace = true }`; dependency groups separated by comment headers.
-- In-repo crates are declared with `default-features = false`; package metadata inherited with `*.workspace = true`.
+- In-repo crates are declared with `default-features = false` — except `seven_guis`, which keeps its default renderer feature (dioxus-native refuses to compile with none); package metadata inherited with `*.workspace = true`.
 - App and example crates, blitz-test-harness and escher-telemetry set `publish = false`; docs.rs builds with all features and `doc_cfg` under `docsrs`.
 
 ## Visibility

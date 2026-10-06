@@ -138,10 +138,11 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 ## 5. Keyboard Navigation
 
 **Focus order per layout (engine):**
-- An element is focusable if it holds a sub-document, or if it is not disabled and either has `tabindex >= 0` or, with no tabindex, is an `<a>`/`<area>` with `href` or a `button`, `input`, `select`, `textarea`, `frame`, `iframe` or `summary` (packages/blitz-dom/src/node/element.rs:628-660)
+- An element is focusable if it holds a sub-document, or if its `disabled` attribute does not parse as `true` and either has `tabindex >= 0` or, with no tabindex, is an `<a>`/`<area>` with `href` or a `button`, `input`, `select`, `textarea`, `frame`, `iframe` or `summary` (packages/blitz-dom/src/node/element.rs:628-660)
 - Tab moves focus to the next node and Shift+Tab to the previous, dispatching focus events (packages/blitz-dom/src/events/keyboard.rs:22-41); `focus_next_node` / `focus_prev_node` move focus to the next/previous focussable node (packages/blitz-dom/src/document.rs:1635-1648)
 - Cached focusability is recomputed when `tabindex`, `href` or `disabled` is set or removed (packages/blitz-dom/src/mutator.rs:328-337; packages/blitz-dom/src/mutator.rs:449-456); tests assert focusability follows `tabindex` set or cleared after creation (roving tabindex) (tests/blitz-tests/tests/focusability_updates.rs:1-6; tests/blitz-tests/tests/focusability_updates.rs:34-57)
 - `button`, `input`, `select` and `textarea` can be disabled, which toggles the `DISABLED`/`ENABLED` states (packages/blitz-dom/src/node/element.rs:445-452; packages/blitz-dom/src/node/element.rs:476-478; packages/blitz-dom/src/node/node.rs:775-797); setting `disabled` removes a button's focusability (tests/blitz-tests/tests/focusability_updates.rs:63-76)
+- Disabled-ness is keyed two ways: the `DISABLED`/`ENABLED` element state (hence `:disabled`) and the pointer click target on the attribute's PRESENCE, focusability on its value PARSED as a bool — so `disabled="false"` matches `:disabled` yet stays focusable, and a bare `disabled=""` is focusable too (packages/blitz-dom/src/node/element.rs:446-451; packages/blitz-dom/src/node/element.rs:629; packages/blitz-dom/src/events/pointer.rs:330; packages/blitz-dom/src/events/pointer.rs:457; tests/blitz-tests/tests/focusability_updates.rs:59-62), as measured at escher-0.1.0/chunks/2026-10-06-headless-stand/evidence/disabled-false-probe.txt
 - The file input's generated inner button gets `tabindex="-1"` (packages/blitz-dom/src/mutator.rs:1255-1269)
 - Under the `autofocus` feature, the latest mounted focussable node with `autofocus="true"` is focused on flush (packages/blitz-dom/src/mutator.rs:963-972; packages/blitz-dom/src/mutator.rs:890-895)
 - Focusing sets the `FOCUS` and `FOCUSRING` element states; blurring removes them (packages/blitz-dom/src/document.rs:1684-1689; packages/blitz-dom/src/node/node.rs:711-749)
@@ -175,6 +176,7 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 - Mounted elements can take or drop focus with `set_focus`; focus/blur events are not queued (TODO) (packages/dioxus-native-dom/src/events.rs:283-295)
 - An `autofocus` feature forwards to blitz-dom (packages/dioxus-native-dom/Cargo.toml:23; packages/dioxus-native/Cargo.toml:19)
 - IME events are not handled in dioxus-native-dom (TODO) (packages/dioxus-native-dom/src/dioxus_document.rs:331-332)
+- A falsy Dioxus `disabled` or `checked` (Bool false, Text `"false"`, Int 0, Float 0.0, None) removes the attribute, so an enabled Dioxus control no longer matches `:disabled` (packages/dioxus-native-dom/src/mutation_writer.rs:406-407; tests/blitz-tests/tests/dioxus_falsy_disabled.rs:24-39); every other Dioxus boolean attribute (`readonly`, `required`, `hidden`, `multiple`, `selected`, `open`, `autofocus`) is still written as the literal `"false"`, so a presence read takes it as set — for `hidden`, which §4 says excludes a node from the tree, that would drop a `hidden: false` node: recorded, not established (no stand control measured using one)
 
 **Per-surface keyboard shortcuts:**
 - Browser urlbar handles ArrowDown/ArrowUp to move selection, Escape to blur, Enter to submit (apps/browser/src/toolbar.rs:376-397)
@@ -304,7 +306,7 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 
 **Error recovery:**
 - Error and 404 pages show "Failed to load page" and "404 Not found" (apps/browser/assets/error.html:19; apps/browser/assets/404.html:12)
-- Invalid dates get an `invalid` class with red styling and the Book button disables (examples/seven_guis/src/tasks/flight_booker.rs:78-91; examples/seven_guis/src/tasks/flight_booker.rs:186-190)
+- Invalid dates get an `invalid` class with red styling and the Book button disables (examples/seven_guis/src/tasks/flight_booker.rs:78-91; examples/seven_guis/src/tasks/flight_booker.rs:186-190); the headless-stand check asserts the cue without colour — a typed non-date sets `invalid` on the start field and gives `.flight-btn` a `disabled` attribute it did not carry before (tests/blitz-tests/tests/stand_flight_booker.rs:14-30); no test asserts a Dioxus control's focusability or Tab order
 
 **Orientation and status cues:**
 - History rows show relative time labels: "Just now", minutes, hours, days (apps/browser/src/browser_history.rs:88-102)

@@ -98,7 +98,7 @@ Other `password` occurrences are not credentials:
 | Markup numeric attributes | `rowspan` | Clamped to 1..=65534 (packages/blitz-dom/src/layout/table.rs:599-603) |
 | Markup numeric attributes | `<ol start>` | Parsed as `usize` and has 1 subtracted (packages/blitz-dom/src/layout/construct.rs:494-500) |
 | Markup attributes | `attr_parsed` | Returns `None` on parse failure, as for `tabindex` and `disabled` (packages/blitz-dom/src/node/element.rs:466-469; packages/blitz-dom/src/node/element.rs:628-630) |
-| Markup attributes | `disabled` | Parsed as a boolean value (tests/blitz-tests/tests/focusability_updates.rs:59-76); elements with it ignore pointer selection and click default actions (packages/blitz-dom/src/events/pointer.rs:330-333; packages/blitz-dom/src/events/pointer.rs:457; packages/blitz-dom/src/events/pointer.rs:635-638) |
+| Markup attributes | `disabled` | Parsed as a boolean value for focusability (packages/blitz-dom/src/node/element.rs:629; tests/blitz-tests/tests/focusability_updates.rs:59-76); its presence alone — `disabled="false"` included — sets the `DISABLED` element state (packages/blitz-dom/src/node/element.rs:446-451) and makes an element ignore pointer selection and click default actions (packages/blitz-dom/src/events/pointer.rs:330-333; packages/blitz-dom/src/events/pointer.rs:457; packages/blitz-dom/src/events/pointer.rs:635-638) |
 | Markup attributes | `dir` | Matched case-insensitively (tests/blitz-tests/tests/dir_attribute.rs:45-50) |
 | Markup attributes | Canvas `src` | Accepted only if it parses as `u64` (packages/blitz-dom/src/mutator.rs:1222-1233) |
 | Layout values | Aspect ratios | Degenerate aspect ratios (zero, infinite, NaN) are discarded before use (packages/blitz-dom/src/layout/replaced.rs:132-147) |

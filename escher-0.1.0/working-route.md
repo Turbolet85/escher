@@ -18,7 +18,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
    ↓
 [2026-10-06-headless-stand] Headless stand — seven_guis counter, flight booker, timer, CRUD in TaskShell; no display, fixed viewport, bundled fonts, no live network, fresh per check
    ↓
-Stand test contract — agent-invocable boot, run, status, cleanup and JSON-line logs for stand checks and blitz-tests (per test-plan §3)
+Stand test contract — agent-invocable boot, run, status, cleanup and JSON-line logs for stand checks and blitz-tests (per test-plan §3)  PREREQ: correct the `//!` doc of `tests/blitz-tests/tests/dioxus_falsy_disabled.rs` (from 2026-10-06-headless-stand) — it says a `disabled="false"` Dioxus control was "dropped from the focus order"; focusability parses the value as a bool and never excluded it, only the DISABLED state, `:disabled` and click targeting key on presence (measured at blitz-dom `element.rs:629` vs `:446-451`, that chunk's report and a11y-plan §5); the wrap touches no source
    ↓
 Cold-agent run pipe — fresh agent session given only a stub tool; transcript, wrong-call count and verdict recorded green
 
@@ -32,7 +32,7 @@ Accessibility-tree identity — stable id on every accessibility node, stand con
 ### Epoch 3 — Observation model
 Snapshot model — screen as a tree of id, role, name, state, bounds (v010-04)
    ↓
-Snapshot state fidelity — enabled, checked, value, focused per control; disabled reads disabled, typed value reads back, password values masked (v010-05)
+Snapshot state fidelity — enabled, checked, value, focused per control; disabled reads disabled, typed value reads back, password values masked (v010-05)  CARRY: Dioxus boolean attributes (from 2026-10-06-headless-stand) — dioxus-native-dom now removes a falsy `disabled` / `checked`, but still writes `readonly`, `required`, `hidden`, `multiple`, `selected`, `open`, `autofocus` as the literal `"false"`, which a presence read takes as set (arch §Standard Contracts → Dioxus DOM bridge); and blitz-dom reads `disabled` two ways — presence for the DISABLED state, `:disabled` and click targeting, a parsed bool for focusability (arch §Established Decisions → DOM semantics) — so a snapshot's enabled/disabled must pick one reader; hypothesis: a Dioxus `hidden: false` node drops out of the accessibility tree (not measured)
    ↓
 Compact snapshot serialization — whole stand screen readable in one tool result, size budget recorded (v010-04)
    ↓

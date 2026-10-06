@@ -1,0 +1,219 @@
+[
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "43eb863f",
+"ts": "2026-10-06T02:55:07Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-06T02-44-36-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-06T02-44-36-wrap",
+"--marker",
+"2026-10-06-headless-stand"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 2,
+"stdout": [],
+"stderr": "[[pattern]] #15 (blitztests-devdeps): `id` is 1-16 chars of A-Z a-z 0-9 _ . -",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "43eb863f",
+"ts": "2026-10-06T02:55:18Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-06T02-44-36-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-06T02-44-36-wrap",
+"--marker",
+"2026-10-06-headless-stand"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"baseline d57a6c69 (pre-CI parent — the oldest of 1 pre-CI commit(s), 1503df2e)",
+"disabled-parsed · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:91 (prose)",
+"not-disabled · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control a11y-plan.md:141 (prose)",
+"falsy-checked · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"escher-stand · 0 rows (control fired) — a statement about this pattern, not the masters · control obs-plan.md:67 (prose)",
+"stand-installs · new 2 · standing 0 · leaf 0 · curation 0 · base 0 · control obs-plan.md:67 (prose)",
+"harnessopts · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:129 (prose)",
+"harness-cites · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:84 (pro…",
+"app-cites · 0 rows (control fired) — a statement about this pattern, not the masters · control layout-templates.md:10 (…",
+"lib-cite · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:174 (pros…",
+"font-skip · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control test-plan.md:52 (prose)",
+"system-fonts-dep · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:279 (prose)",
+"wasm-dejavu · new 0 · standing 2 · leaf 2 · curation 0 · base 0 · control design-system.md:127 (prose)",
+"count-416 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:285 (prose)",
+"default-feat · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:105 (prose)",
+"bt-devdeps · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:64 (prose)",
+"sg-tasks-row · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:256 (prose)",
+".andromeda/security-plan.md:101 disabled-parsed standing edited …s | `disabled` | Parsed as a boolean value for focusab…",
+".claude/rules/a11y.md:28 not-disabled leaf …olds a sub-document, or not disabled and `tabindex >= 0`, or (no tabindex) …",
+".andromeda/architecture.md:134 falsy-checked standing edited …yle properties, a falsy `checked` or `disabled` (Bool fal…",
+".claude/docs/services/dioxus-native-dom.md:18 falsy-checked leaf …tyle properties; falsy `checked` clears; `dangerous_i…",
+".andromeda/obs-plan.md:67 stand-installs new …s_native` (the windowed stand binary) installs `escher_telemetry::init(es…",
+".andromeda/obs-plan.md:68 stand-installs new …iven in-process by the `stand_*` checks) installs no subscriber — no `esc…",
+".andromeda/architecture.md:129 harnessopts standing edited …_smoke.rs:28-30); `HarnessOptions { width, height }` with `…",
+".andromeda/test-plan.md:216 harnessopts standing edited - HarnessOptions carries width, height, scale, color_scheme, an…",
+".andromeda/test-plan.md:52 font-skip standing edited …he pre-existing ones skip at runtime with `eprintln!` when no usa…",
+".andromeda/test-plan.md:253 font-skip standing …ding real font metrics skip with an `eprintln!` when text measures 0x0 …",
+".claude/rules/testing.md:30 font-skip leaf …pendent tests currently skip with `eprintln!` when no usable font exists (`…",
+".andromeda/test-plan.md:282 system-fonts-dep standing edited …endent assertions rely on the `system-fonts` feature, sta…",
+".andromeda/design-system.md:127 wasm-dejavu standing - WASM builds register bundled DejaVu Sans for sans-serif, serif, …",
+".andromeda/design-system.md:410 wasm-dejavu standing - WASM builds register bundled DejaVu Sans for sans-serif, serif, …",
+".claude/docs/design-summary.md:24 wasm-dejavu leaf …6px (13px monospace); WASM builds bundle DejaVu Sans for every gene…",
+".claude/docs/gotchas.md:47 wasm-dejavu leaf …rministic text bundle their fonts (as the WASM builds do with DejaVu Sans).",
+".andromeda/test-plan.md:288 count-416 standing edited …p: 114 result lines, 416 passed · 0 failed · 4 ignored (+5 esche…",
+".andromeda/architecture.md:105 default-feat standing edited …tes declared with `default-features = false` (Cargo.toml:4…",
+".claude/docs/conventions.md:18 default-feat leaf …es are declared with `default-features = false`; package metadata inh…",
+".andromeda/architecture.md:64 bt-devdeps standing edited | Testing | blitz-tests dev-dependencies: blitz-test-harness, …",
+".andromeda/architecture.md:257 sg-tasks-row standing edited …mples/seven_guis | Tasks cells, circle_drawer, counter, cr…",
+"disabled-parsed · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:91 (prose)",
+"not-disabled · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control a11y-plan.md:141 (prose)",
+"falsy-checked · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"escher-stand · 0 rows (control fired) — a statement about this pattern, not the masters · control obs-plan.md:67 (prose)",
+"stand-installs · new 2 · standing 0 · leaf 0 · curation 0 · base 0 · control obs-plan.md:67 (prose)",
+"harnessopts · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:129 (prose)",
+"harness-cites · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:84 (pro…",
+"app-cites · 0 rows (control fired) — a statement about this pattern, not the masters · control layout-templates.md:10 (…",
+"lib-cite · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:174 (pros…",
+"font-skip · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control test-plan.md:52 (prose)",
+"system-fonts-dep · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:279 (prose)",
+"wasm-dejavu · new 0 · standing 2 · leaf 2 · curation 0 · base 0 · control design-system.md:127 (prose)",
+"count-416 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:285 (prose)",
+"default-feat · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:105 (prose)",
+"bt-devdeps · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:64 (prose)",
+"sg-tasks-row · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:256 (prose)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "d57a6c69b28fe8c9af9998a87ae87d4a8c8b9faa",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), 1503df2e",
+"counts": {
+"disabled-parsed": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"not-disabled": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"falsy-checked": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"escher-stand": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"stand-installs": {
+"new": 2,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"harnessopts": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"harness-cites": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"app-cites": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"lib-cite": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"font-skip": {
+"new": 0,
+"standing": 2,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"system-fonts-dep": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"wasm-dejavu": {
+"new": 0,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"count-416": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"default-feat": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"bt-devdeps": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"sg-tasks-row": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+}
+}
+}
+]

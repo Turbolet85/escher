@@ -27,7 +27,8 @@ Path-scoped rules for test files. Source: `.andromeda/test-plan.md` §2 §4 §5 
 - Run pipeline scenarios in both layout modes: `for incremental in [false, true]`.
 - Drive pure-restyle paths through `:hover`, not attribute mutation — a mutation inserts full damage and masks under-damaging bugs.
 - Randomized stress uses a seeded LCG, never an unseeded RNG.
-- Font-dependent tests currently skip with `eprintln!` when no usable font exists (`system-fonts` is on when testing the workspace); this skip is a known gap, not a pattern to copy into stand checks.
+- The pre-existing font-dependent tests skip with `eprintln!` when no usable font exists (`system-fonts` is on when testing the workspace); this skip is a known gap, not a pattern to copy. Stand checks boot through `seven_guis::stand::boot(task, stand::options(incremental))` — pinned 800×600 · scale 1 · Light, the bundled DejaVu Sans with system fonts off, offline — and assert unconditionally: no font skip, no sleep (drive the timer through its `TimerTicks` handle), no `dispatch_recorded`.
+- A harness check that needs a font or a layout mode sets `HarnessOptions.font_ctx` / `.incremental`.
 
 ## Fixtures
 - Inline HTML string constants or `format!`-built pages; image loads injected as `ImageData` with `Status::Ok`; test URLs use the `.test` TLD or `example.com`.

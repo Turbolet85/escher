@@ -44,7 +44,7 @@ _Documented architectural traps from `.andromeda/architecture.md` and the specia
 
 ## Font-dependent output
 **What breaks:** text measures 0×0 without `system-fonts`, and some tests skip silently.
-**How to avoid:** headless checks that need deterministic text bundle their fonts (as the WASM builds do with DejaVu Sans).
+**How to avoid:** headless checks that need deterministic text bundle their fonts — the stand checks boot through `seven_guis::stand::options`, which registers the bundled DejaVu Sans with system fonts off (as the WASM builds do); the woff2 decodes only under blitz-dom's `woff` feature, which seven_guis enables itself so a package-alone `-p blitz-tests` build is not vacuous.
 **References:** test-plan §8; `tests/blitz-tests/tests/text_selection_anonymous_block.rs`
 
 ## Edition split under the write-time formatter

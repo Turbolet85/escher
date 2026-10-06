@@ -1,36 +1,31 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-06T01:50:39Z
+**Last Updated:** 2026-10-06T03:00:50Z
 **Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-06-telemetry-bootstrap — feat(2026-10-06-telemetry-bootstrap): telemetry bootstrap — escher-telemetry stderr subscriber, service identity, allowlist scrub, chaining panic hook
+**Last Commit:** 2026-10-06-headless-stand — feat(2026-10-06-headless-stand): headless stand — seven_guis lean four booted in TaskShell, pinned viewport, bundled font, offline, timer tick seam
 
 ## Position
-- Done: 2026-10-06-telemetry-bootstrap — new crate `escher-telemetry` (`init`: stderr-only `tracing` subscriber, `service.name`/`service.version` on every line, `log` bridge, chaining panic hook, allowlist scrub); `seven_guis_native` adopts it. CI run 37395425505 green 16/16 on `6102cf03` (561 s); opt-in OTel export deferred (CARRY on "Driver command spans")
-- Next: Headless stand (Epoch 1 — Foundation) — /andromeda-phase to promote + plan it
+- Done: 2026-10-06-headless-stand — `seven_guis::stand` boots counter / flight booker / timer / CRUD in TaskShell headlessly (800×600 Light, bundled DejaVu Sans, offline, fresh per boot; `TimerTicks` drives the timer); `HarnessOptions` gains `font_ctx` + `incremental`. CI run 37404017734 green 16/16 on `1503df2e` (1104 s)
+- Next: Stand test contract (Epoch 1 — Foundation) — /andromeda-phase to promote + plan it; it carries a PREREQ (correct the regression test's false doc comment)
 
 ## Work done
-`packages/escher-telemetry` (lib · format · panic, 5 unit tests) + 4 one-process integration tests in blitz-tests; stand `main` calls `init` before `launch`; `Cargo.lock` gained only the path crate. Workspace tests 416 · 0 · 4 (was 407 · 0 · 3).
+13 stand checks (`tests/blitz-tests/tests/stand_*.rs`) + 1 regression test; workspace tests 430 · 0 · 4 (was 416 · 0 · 4). One engine fix outside the plan: dioxus-native-dom now removes a falsy `disabled` (was written as `disabled="false"`, which blitz matches as `:disabled`) — upstreamable.
 
 ## Drift resolved
-29 detector proposals (arch 12 · obs-plan 10 · test-plan 5 · security-plan 1 · a11y-plan 1) — 28 applied, 1 rejected (re-derivation tell) and re-raised with 3 more security-plan raises; 0 escalations; 80 stale `file:line` citations re-pointed (Cargo.toml + 3 files shifted); 6 sidecar entries; 13 leaves re-derived (CLAUDE.md warnings/modules/pointer table, obs/security/tests summaries, observability/security/verification-harness rules, conventions, stack, commands, seven_guis notes).
+26 detector proposals (arch 10 · tests 10 · a11y 4 · layout 1 · obs 1) + 1 expected-amendment raise (design) + 1 sweep fold (security-plan `disabled` row) = 28 applied, all 7 masters; 0 escalations; 7 sidecar entries (layout-templates sidecar created); 18 leaves re-derived. The report's first draft claimed blitz focusability is presence-keyed — two detectors falsified it (it parses a bool); report and evidence corrected before apply.
 
 ## Notes
-- FOR THE FOUNDER: opt-in OTel export is DEFERRED — two decisions before "Driver command spans" is taken up: export transport (http-only vs a reqwest TLS feature) and the `OTEL_EXPORTER_OTLP_HEADERS` credential path (opentelemetry-otlp 0.33 reads it unconditionally). The deferral and the scrub reach (allowlist at the subscriber, no engine edits) were decided by the overseer delegate under the founder's standing delegation of technical forks, 2026-10-06 — PROVISIONAL; the founder's own word supersedes them.
-- FOR THE FOUNDER (carried): the `coverage-report` upload is a boundary widening recorded PROVISIONAL on the overseer's delegate ratification; the founder's own word supersedes it.
-- Gate-tool defect (pipeline, overseer-recorded): `gate.py` reads any entry exit 124/137 as its own bound, so the plan's smoke `expect = ['exit 124']` read `timeout`; entry 7's result is the hand-recorded `chunks/2026-10-06-telemetry-bootstrap/evidence/smoke-004017Z.txt` (operator's word). Future smoke entries: exit 0 on stay-up, or hand-drive (curated, verification-harness.md).
-- Scrub reach: the upstream apps' `fmt::init()` and the WPT runner's `env_logger` stay unscrubbed (out of scope); `log.file` carries a host path for bridged third-party records at `RUST_LOG=info`.
+- FOR THE FOUNDER: the falsy-`disabled` engine fix (`packages/dioxus-native-dom/src/mutation_writer.rs`) is a scope widening on the overseer delegate's word under the founder's standing delegation, 2026-10-06 — PROVISIONAL; the founder's own word supersedes it. The question that obtained it said the enabled buttons were "dropped from focus order" — that clause was false (focusability was never affected); the `:disabled` styling and DISABLED-state defect it fixed was real.
+- FOR THE FOUNDER (carried): opt-in OTel export DEFERRED (CARRY on "Driver command spans"); the `coverage-report` upload widening PROVISIONAL.
+- The regression test `tests/blitz-tests/tests/dioxus_falsy_disabled.rs:4-6` still states the false focus-order claim in its doc — PREREQ on "Stand test contract" (wrap touches no source).
+- New CARRY on "Snapshot state fidelity": Dioxus `readonly` / `required` / `hidden` / `multiple` / `selected` / `open` / `autofocus` still write a literal `"false"`; blitz reads `disabled` two ways.
+- seven_guis gained an unplanned direct `blitz-traits` edge (to name `ColorScheme`); recorded in arch §Occupied Resources.
+- Fork CI wall rose to 1104 s (561 / 642 s before) on the push that changed `Cargo.lock` — cause not measured; the Actions cache was already over its 10 GB budget (carried, not re-measured).
 - The audit leg misses the paste and memmap2 advisories — CARRY pinned on "Quality gates" (carried).
-- The fork's Actions cache read 10.72 GB after run 37386253475 — over the 10 GB budget (carried; not re-measured this wrap).
-- Health check 13 (agent-run.* missing) is expected: 'Stand test contract' owns `scripts/agent-run.*`.
 - In this checkout bare `gh` reads the `upstream` remote — pass `-R Turbolet85/escher` (curated, Tier 1).
 - Last failed command: none
 
 ## Deferred learnings
-1 learning analyzed but not applied (max-3 cap):
-- U35 bootstrap-phase labels (`pii-scrubbing-wire`, `otel-sdk-install`, …) live in `.andromeda/registries/`; a body-only grep over the seven masters reads them absent (confidence 0.8)
-- recurrence-despite-learning: "The project's Bash guards refuse a heredoc written to a file and a leading cd" (Tier 3, 2026-10-06) — two calls this session still began with `cd` into a subdirectory and were blocked
+- recurrence-despite-learning: "The project's Bash guards refuse a heredoc written to a file and a leading cd" (Tier 3, 2026-10-06) — two calls this session were blocked again (a `cat` heredoc into a probe test file; a leading `cd` into `.claude/docs`)
 Review with `/andromeda-wrap-session --review` if any should be applied.
-
-## Session End Status
-Completed normally at 2026-10-06 04:13:23

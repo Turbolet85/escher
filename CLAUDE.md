@@ -33,7 +33,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 - **`dioxus-native`** — windowed Dioxus renderer (`launch`)
 - **`blitz-test-harness`** — headless `Harness`: construction, pump, input synthesis, inspection
 - **`escher-telemetry`** — escher's telemetry bootstrap (`init`): stderr `tracing` subscriber with service identity, allowlist scrub, `log` bridge, chaining panic hook
-- **`seven_guis`** — the 7GUIs example app, the stand every 0.1.0 capability is proven on
+- **`seven_guis`** — the 7GUIs example app, the stand every 0.1.0 capability is proven on; its native `stand` module boots counter, flight booker, timer or CRUD headlessly in TaskShell (pinned viewport, bundled font, offline, fresh per boot)
 <!-- GENERATED:setup:modules end -->
 
 ## Critical Warnings (universal invariants)
@@ -71,7 +71,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 | Headless `Harness` API | `packages/blitz-test-harness/src/{harness,input,inspect}.rs` |
 | DOM entry point · config | `packages/blitz-dom/src/document.rs` · `packages/blitz-dom/src/config.rs` |
 | Accessibility tree | `packages/blitz-dom/src/accessibility.rs` |
-| The 7GUIs stand | `examples/seven_guis/src/tasks/` |
+| The 7GUIs stand | `examples/seven_guis/src/tasks/` · headless boot `examples/seven_guis/src/stand.rs` · checks `tests/blitz-tests/tests/stand_*.rs` |
 | WPT runner | `wpt/runner/src/main.rs` · `wpt/runner/src/test_runners/` |
 | CI pipeline | `.github/workflows/ci.yml` · `wpt.yml` · `publish-browser.yml` (the last two upstream-only) · legs `.github/scripts/ci-leg.sh` · invariants `.github/scripts/test_ci_workflows.py` |
 | Drift detectors · amendment playbook | `.andromeda/drift-base.md` · `.andromeda/playbook.md` |
@@ -93,7 +93,7 @@ See `.claude/docs/commands.md` for the full reference.
 <!-- GENERATED:setup:architecture start -->
 Blitz is a radically modular, embeddable web engine: a headless DOM (`BaseDocument` in blitz-dom) that external code drives and any renderer paints, with parsing, networking, painting and windowing in separate crates. Embedder services — net, navigation, shell, HTML parsing — reach the DOM only through provider traits in `DocumentConfig`, defaulting to `Dummy*` no-ops; web behaviour is written against named specs and named engines. Style, damage, box construction, layout and paint topology run one incremental pipeline over versioned node ids.
 
-The engine is already exercised headlessly — `blitz-test-harness` synthesizes input through the real event-dispatch pipeline with no window or GPU, and the WPT runner renders to CPU buffers. escher builds on that: stable element ids, a semantic snapshot with diffs, settle detection and a driver (CLI + MCP) that acts by id, proven on the seven_guis stand.
+The engine is already exercised headlessly — `blitz-test-harness` synthesizes input through the real event-dispatch pipeline with no window or GPU, and the WPT runner renders to CPU buffers; the seven_guis stand boots through it (`seven_guis::stand`) at a pinned viewport with its bundled font and no network. escher builds on that: stable element ids, a semantic snapshot with diffs, settle detection and a driver (CLI + MCP) that acts by id, proven on the seven_guis stand.
 
 **Primary source:** `.andromeda/architecture.md` (the pointer table's row — not imported; read explicitly where a step needs it).
 <!-- GENERATED:setup:architecture end -->

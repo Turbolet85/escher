@@ -1,0 +1,73 @@
+# Cascade step-2 sweep — 2026-10-06-headless-stand. One pattern per retired claim / stale citation of this pass.
+
+# disabled-ness mechanism (arch DOM semantics, a11y §5, security §Input Validation)
+[[pattern]]
+id = "disabled-parsed"
+regex = 'disabled[^|]{0,60}[Pp]arsed|[Pp]arsed as a boolean'
+
+[[pattern]]
+id = "not-disabled"
+fixed = 'not disabled'
+
+[[pattern]]
+id = "falsy-checked"
+regex = 'falsy .?checked'
+
+# telemetry actor (obs §3)
+[[pattern]]
+id = "escher-stand"
+fixed = "escher's stand"
+
+[[pattern]]
+id = "stand-installs"
+regex = 'stand[^.]{0,40}install'
+
+# HarnessOptions shape (arch Test harness, test-plan §3/§7)
+[[pattern]]
+id = "harnessopts"
+regex = 'HarnessOptions (\{ width, height \}|carries)'
+
+[[pattern]]
+id = "harness-cites"
+regex = 'harness\.rs:(11-21|36-51|59-92|94-184|113-138|144-169)'
+
+# seven_guis citations shifted by this chunk
+[[pattern]]
+id = "app-cites"
+regex = 'app\.rs:(114-164|202-209|274-319)'
+
+[[pattern]]
+id = "lib-cite"
+fixed = 'seven_guis/src/lib.rs:4-20'
+
+# fonts (test-plan §2/§8/§9, design §Typography Loading)
+[[pattern]]
+id = "font-skip"
+regex = 'skip[^.]{0,40}eprintln|eprintln[^.]{0,40}skip'
+
+[[pattern]]
+id = "system-fonts-dep"
+regex = 'rely on the .system-fonts.'
+
+[[pattern]]
+id = "wasm-dejavu"
+regex = 'WASM (builds|entry points)[^.]{0,60}DejaVu'
+
+# counts (test-plan §9)
+[[pattern]]
+id = "count-416"
+fixed = '416 passed'
+
+# manifests convention (arch §Conventions)
+[[pattern]]
+id = "default-feat"
+fixed = 'default-features = false'
+
+# seven_guis scope rows / dev-deps
+[[pattern]]
+id = "bt-devdeps"
+fixed = 'blitz-tests dev-dependencies'
+
+[[pattern]]
+id = "sg-tasks-row"
+fixed = 'Tasks cells, circle_drawer'

@@ -18,7 +18,8 @@ Development Style is agent-driven — escher's own driver is meant to become the
 - `pump` polls with no waker and resolves at harness time; `dispatch` / `dispatch_recorded` do NOT pump. Input helpers (`click`, `type_text`, `press`, `tap`, `wheel_at`, `drag`, `ime`, …) pump after dispatch.
 - `dispatch_recorded` drives the underlying `BaseDocument` and bypasses Dioxus VirtualDom forwarding — use input helpers for Dioxus behaviour.
 - Synthesized pointer events set page, screen and client coordinates equal; `key_event` uses `Code::Unidentified` and fills text only for pressed character keys.
-- `HarnessOptions` defaults: 800×600, scale 1, light scheme; harness documents always use `HtmlProvider`.
+- `HarnessOptions` defaults: 800×600, scale 1, light scheme, no `font_ctx` (system fonts) and no `incremental` override; harness documents always use `HtmlProvider`.
+- The headless stand boots through `seven_guis::stand::{boot, boot_timer}` over `from_vdom` with `stand::options(incremental)` (bundled DejaVu Sans, system fonts off, offline); the timer advances only via its `TimerTicks` handle — `deliver(n)`, then `pump`.
 - `dom_string()` is a stable one-node-per-line serialization with geometry (`<div #box .a .b> @ (20,10) 100x50`) — the snapshot-style assertion surface.
 
 ## Session Additions

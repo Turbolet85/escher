@@ -64,7 +64,8 @@
 
 **Logging stack (subscriber installation):**
 
-- escher's stand installs `escher_telemetry::init(escher_telemetry::service_identity!())` in the native `main` before `dioxus_native::launch`, reporting an `Err` with `eprintln!` and continuing (examples/seven_guis/src/main.rs:4-10): a global `Registry` with an `EnvFilter` from `RUST_LOG` (default `warn`) and one non-ANSI fmt layer using the escher formatter, writing to stderr only, plus the `tracing_log::LogTracer` bridge for `log` records (packages/escher-telemetry/src/lib.rs:99-134)
+- `seven_guis_native` (the windowed stand binary) installs `escher_telemetry::init(escher_telemetry::service_identity!())` in the native `main` before `dioxus_native::launch`, reporting an `Err` with `eprintln!` and continuing (examples/seven_guis/src/main.rs:4-10): a global `Registry` with an `EnvFilter` from `RUST_LOG` (default `warn`) and one non-ANSI fmt layer using the escher formatter, writing to stderr only, plus the `tracing_log::LogTracer` bridge for `log` records (packages/escher-telemetry/src/lib.rs:99-134)
+- the headless stand `seven_guis::stand` (native only; `boot` / `boot_timer` / `options`, driven in-process by the `stand_*` checks) installs no subscriber — no `escher_telemetry::init`, no `println!`, no env read in it or its checks, by the chunk's census gate — so a headless boot has no escher sink (examples/seven_guis/src/stand.rs:1-103)
 - The upstream apps install `tracing_subscriber::fmt::init()` under the `tracing` feature, writing to stdout (apps/browser/src/main.rs:73-74; apps/readme/src/main.rs:61-62; examples/todomvc/src/main.rs:16-17)
 - wasm_hello installs `tracing_wasm::set_as_global_default()` (examples/wasm_hello/src/lib.rs:105)
 - The wpt runner logs through the `log` facade via `env_logger` (wpt/runner/src/main.rs:458; wpt/runner/src/main.rs:784-830)

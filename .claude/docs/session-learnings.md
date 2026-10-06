@@ -8,8 +8,13 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-06 — A probe's write-up claims only what the probe read
+A probe that reads an attribute and a selector match says nothing about a third consumer of the same attribute. blitz-dom reads `disabled` two ways — presence for the element state, `:disabled` and click targeting, a parsed bool for focusability — so a probe that saw `disabled="false"` match `:disabled` did not show the control leaving the focus order, yet the evidence file, the implement report, the operator question and the regression test's doc comment all said it did; two drift detectors reading the cited source caught it at the wrap. When a write-up names a mechanism, either the probe measures it or the sentence cites the code line that decides it — and a claim about one consumer of an attribute is not a claim about the others.
+
+---
+
 ## 2026-10-06 — The rustfmt write hook leaves a crate root unformatted when its module files do not exist yet
-The PostToolUse hook formats each file as it is written, but rustfmt resolves `mod` declarations: a new crate's `lib.rs` written before its `format.rs` / `panic.rs` exist fails to resolve its modules and is left as written, while the module files written after it are formatted. The miss surfaces only at the `fast` leg's `cargo fmt --check`. When creating a crate, write the module files first, or run `cargo fmt -p {crate}` once the burst of writes is done.
+The PostToolUse hook formats each file as it is written, but rustfmt resolves `mod` declarations: a new crate's `lib.rs` written before its `format.rs` / `panic.rs` exist fails to resolve its modules and is left as written, while the module files written after it are formatted. The miss surfaces only at the `fast` leg's `cargo fmt --check`. When creating a crate, write the module files first, or run `cargo fmt -p {crate}` once the burst of writes is done. Extended 2026-10-06: an edit made through a Bash script (`python`, `sed`) never fires the hook at all — write Rust through the Write/Edit tools, or run `cargo fmt --all` after a scripted edit.
 
 ---
 

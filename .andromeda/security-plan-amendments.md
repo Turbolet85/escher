@@ -38,3 +38,9 @@ One entry per amendment to `security-plan.md` (sidecar-contract.md §Entry form)
 - 3 `file:line` citations re-pointed by the chunk's measured line shifts.
 **Why:** the telemetry bootstrap chunk wired the scrub at escher's subscriber; the opt-in OTel export (egress + the `OTEL_EXPORTER_OTLP_HEADERS` credential path) was deferred at P4 by the overseer delegate under the founder's standing delegation of technical forks, provisional on the founder's word, and adds no surface here.
 **Ref:** .andromeda/runs/2026-10-06T01-33-33-wrap/
+
+## 2026-10-06-headless-stand — `disabled` row: parsed for focus, presence for state and clicks
+**Section:** §Input Validation → Markup attributes (`disabled`)
+**Change:** was "Parsed as a boolean value; elements with it ignore pointer selection and click default actions"; now parsed as a bool for focusability only, while its presence alone — `disabled="false"` included — sets the DISABLED element state and makes the element ignore pointer selection and click default actions.
+**Why:** the headless stand chunk measured `disabled="false"` matching `:disabled`; the row conflated the two readers.
+**Ref:** .andromeda/runs/2026-10-06T02-44-36-wrap/

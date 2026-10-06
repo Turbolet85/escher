@@ -40,7 +40,7 @@ _Mirrors `.andromeda/architecture.md` §Stack and Technologies (citations live t
 - Dev profile `debug = "line-tables-only"` (one debuginfo level for host and CI; the test profile inherits it).
 - GitHub Actions: `ci.yml` on PRs and pushes to `main`, `v0.*`, `build/**`, under a workflow-level `permissions: contents: read` with every `uses:` pinned to a commit SHA — fast legs fmt, clippy, test, CI-script tests (no `needs`), then MSRV build, build, counter, wasm, docs (the whole workspace), dependency audit, accessibility (a11y) tests, coverage report and the windows/macos/ios/android matrix; rust-cache on every compiling job but coverage (saved on `main` + `build/*`; a11y restores the test job's `workspace-test` key and never saves), a 7-day `ci-log-*` artifact per failed leg and a 7-day `coverage-report` artifact on success. `wpt.yml` (css + svg WPT, scores, Pages), `wpt-post-results.yml`, `publish-browser.yml` (dx bundle, signed builds) run only in `DioxusLabs/blitz` (repository guard).
 - CI scripts: Python 3 (`wpt_diff_to_pr.py`, unittest suites; `test_ci_workflows.py` needs PyYAML) and the bash leg runner `ci-leg.sh`.
-- Testing deps: blitz-test-harness, test-that 0.5.2, usvg; WPT runner: dify 0.7.4, wptreport 0.0.5, glob, regex, owo-colors.
+- Testing deps: blitz-test-harness, seven_guis (the headless stand), test-that 0.5.2, usvg; WPT runner: dify 0.7.4, wptreport 0.0.5, glob, regex, owo-colors.
 
 ## Infrastructure
 - Library workspace — no deployment target for the engine. The browser bundles per platform via `dx bundle --package browser --release --profile production --locked` (upstream `DioxusLabs/blitz` only); Nix `packages.browser`; WASM examples via Trunk.
