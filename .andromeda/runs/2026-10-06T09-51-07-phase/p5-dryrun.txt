@@ -1,0 +1,27 @@
+gate v1.11 · 0aca1113
+shell /usr/bin/bash (from $SHELL; -c, non-login)
+root . · marker 2026-10-06-id-persistence · entries 16
+logs $TMPDIR/andromeda-gate/2026-10-06-id-persistence/run-20261006T100541Z · bound: GNU timeout
+delta docs 37
+walk-class 0 marked (an unmarked walker reads as none)
+prose L72-72: No live leg runs this chunk. The agent-run entries drive the in-process stand through `scr… (262 chars)
+prose L74-74: No headful self-verify exists in this project, because the stand is headless (`.claude/rul… (156 chars)
+prose L76-76: No `smoke` entry either. test-plan declares no boot-smoke trigger list, and the stand boot… (205 chars)
+prose L78-78: The base sha in the diff guards is `065295540ec0b80c0e40b7b186c7aecfba6f6121`.
+  1 unit        not run — dry-run · cargo test -p blitz-tests --locked --test stand_id_persist… (62 chars)
+  2 integration not run — dry-run · cargo test -p blitz-tests --locked --test stand_boot --tes… (162 chars)
+  3 probe       not run — dry-run · git show 065295540ec0b80c0e40b7b186c7aecfba6f6121:examples… (467 chars)
+  4 probe       not run — dry-run · git diff --quiet 065295540ec0b80c0e40b7b186c7aecfba6f6121 … (395 chars)
+  5 probe       not run — dry-run · test -f tests/blitz-tests/tests/stand_id_persistence.rs &&… (248 chars)
+  6 build       not run — dry-run · bash scripts/agent-run.sh boot
+  7 integration not run — dry-run · bash scripts/agent-run.sh run stand
+  8 integration not run — dry-run · bash scripts/agent-run.sh logs | python3 -c 'import json,s… (223 chars)
+  9 probe       not run — dry-run · bash scripts/agent-run.sh logs | python3 -c 'import json,s… (205 chars)
+ 10 integration not run — dry-run · bash scripts/agent-run.sh cleanup
+ 11 lint        not run — dry-run · bash .github/scripts/ci-leg.sh fast
+ 12 lint        not run — dry-run · bash .github/scripts/ci-leg.sh doc
+ 13 integration not run — dry-run · bash .github/scripts/ci-leg.sh a11y
+ 14 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)
+ 15 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+ 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)
+entries 16 · green 0 · red 0 · recorded 0 · timeout 0 · not-run 16

@@ -2,6 +2,7 @@ use dioxus_native::prelude::*;
 
 #[derive(Clone, PartialEq)]
 struct Person {
+    id: u64,
     first: String,
     last: String,
 }
@@ -11,19 +12,23 @@ pub fn Crud() -> Element {
     let mut people = use_signal(|| {
         vec![
             Person {
+                id: 0,
                 first: "Hans".into(),
                 last: "Emil".into(),
             },
             Person {
+                id: 1,
                 first: "Max".into(),
                 last: "Mustermann".into(),
             },
             Person {
+                id: 2,
                 first: "Roman".into(),
                 last: "Tisch".into(),
             },
         ]
     });
+    let mut next_id = use_signal(|| 3u64);
     let mut selected: Signal<Option<usize>> = use_signal(|| None);
     let mut filter = use_signal(String::new);
     let mut first_field = use_signal(String::new);
@@ -54,23 +59,22 @@ pub fn Crud() -> Element {
                         let filter_lower = filter().to_lowercase();
                         let people_snap = people();
                         rsx! {
-                            for (i, person) in people_snap.iter().enumerate() {
-                                if format!("{}, {}", person.last, person.first)
+                            for (i, person) in people_snap.iter().enumerate().filter(|(_, p)| {
+                                format!("{}, {}", p.last, p.first)
                                     .to_lowercase()
                                     .starts_with(&filter_lower)
-                                {
-                                    div {
-                                        key: "{i}",
-                                        class: if selected() == Some(i) { "list-item selected" } else { "list-item" },
-                                        onclick: move |_| {
-                                            if let Some(p) = people.read().get(i).cloned() {
-                                                selected.set(Some(i));
-                                                first_field.set(p.first);
-                                                last_field.set(p.last);
-                                            }
-                                        },
-                                        "{person.last}, {person.first}"
-                                    }
+                            }) {
+                                div {
+                                    key: "{person.id}",
+                                    class: if selected() == Some(i) { "list-item selected" } else { "list-item" },
+                                    onclick: move |_| {
+                                        if let Some(p) = people.read().get(i).cloned() {
+                                            selected.set(Some(i));
+                                            first_field.set(p.first);
+                                            last_field.set(p.last);
+                                        }
+                                    },
+                                    "{person.last}, {person.first}"
                                 }
                             }
                         }
@@ -97,7 +101,8 @@ pub fn Crud() -> Element {
                 button {
                     id: "crud-create",
                     onclick: move |_| {
-                        people.write().push(Person { first: first_field(), last: last_field() });
+                        people.write().push(Person { id: next_id(), first: first_field(), last: last_field() });
+                        next_id += 1;
                     },
                     "Create"
                 }
@@ -109,7 +114,8 @@ pub fn Crud() -> Element {
                         if let Some(idx) = selected() {
                             let mut p = people.write();
                             if let Some(entry) = p.get_mut(idx) {
-                                *entry = Person { first: first_field(), last: last_field() };
+                                entry.first = first_field();
+                                entry.last = last_field();
                             }
                         }
                     },

@@ -1,0 +1,57 @@
+# Codebase Research — 2026-10-06-id-persistence
+
+## Scope
+- **Depth:** moderate · **Reads:** 14 · **Globs/Greps:** 9 · **Graph queries:** 1 (rust plane)
+- **Harness rules consulted:** `.claude/rules/verification-harness.md`, read in full, 5 452 B. Its 1 Session Addition is a `timeout`-bounded boot smoke reading exit 124. It does not apply, because this chunk names no live leg and its proofs are in-process `cargo test` checks. `.claude/rules/a11y.md` was auto-loaded and read: removing the focused node resets focus to body.
+- **Platform issues consulted:** none. No runner-only bullet was folded, and the Setup 5a CI read was in progress, not red.
+- **External inputs:** none — every fact this chunk turns on lives in this repository.
+
+## Files inspected
+- `packages/dioxus-native-dom/src/element_id.rs` (1-241) — the id is computed in `element_ids` (153-181). It is a pre-order stack walk over `parent_node.children`, each child placed by `place_children` (184-228). Its inputs are four, and only four: (a) component names from `VComponent.name` cut to the last `::` segment with generics stripped (38-42); (b) per-owner component ordinals `{name}:{k}` (103-109); (c) the Dioxus `VNode.key` of a template root (85, 210-214); (d) the tag and same-owner/same-tag sibling index `{tag}:{n}` (206-215); plus the HTML `id` attribute (170-174). `FxHashMap`/`FxHashSet` are used only for lookup (`roots.get`, `counts.entry`, `keyed.insert`, `claimed_keys.insert`), and no output is ever produced by iterating a hash container. Output order is the order of the DOM children `Vec`, and the vdom walk follows `template.roots` / `dynamic_nodes` order (74-126).
+- `packages/dioxus-native-dom/src/mutation_writer.rs` (84-140, 185-195, 290-303) — `remove_node` (189-193) calls `DocumentMutator::remove_node`, which only detaches. A detached node stays in the slab until its `ElementId` is reassigned. `assign_node_id` then drops it through `remove_node_if_unparented_with` and clears its mappings (119-138). `load_template` deep-clones the template (303), so a (re)mounted subtree is a fresh set of nodes.
+- `packages/blitz-dom/src/mutator.rs` (530-555) — `remove_node` detaches without dropping: "Remove the node from it's parent but don't drop it".
+- `packages/blitz-dom/src/document.rs` (844-855) — `create_node` inserts into the `SlotMap` (`insert_with_key`). A fresh node therefore takes a slot no live (detached) node holds. If it reuses a freed slot, the slot's version is bumped. Either way the new `NodeId` differs from every pre-remount `NodeId`.
+- `examples/seven_guis/src/stand.rs` (1-103) — `boot` / `boot_timer` → `boot_with_ticks` → `VirtualDom::new_with_props(stand_root, …)` → `Harness::from_vdom` (85-91). `stand_root` provides `TimerTicks` and calls `task_in_shell(task, EventHandler::new(|_| {}))` (100-103). Back is a no-op on the stand. `options(incremental)` is `pub` (58-69).
+- `examples/seven_guis/src/app.rs` (69-120, 153-172) — `pub fn app()` holds `active: Signal<Option<Task>>`. `None` renders `style{HOME_CSS}` + `Home`, and `Some(task)` renders `task_in_shell(task, on_back → active.set(None))` (69-79). Home's cards are `button.task-card` in `#task-grid`, in `TASKS` order: Counter 1, TempConverter 2, FlightBooker 3, Timer 4, Crud 5, CircleDrawer 6, Cells 7 (24-67, 130-147). `TaskShell`'s `#back-btn` calls `on_back` (159-163).
+- `examples/seven_guis/src/lib.rs` (1-4) — `pub mod app; pub mod stand; pub mod tasks;`. A test can reach `seven_guis::app::app` and `seven_guis::tasks::timer::TimerTicks` directly.
+- `examples/seven_guis/src/tasks/crud.rs` (1-136) — `Person { first, last }` has no identity field (3-7). Rows are `div.list-item` with `key: "{i}"`, where `i` is the index in the FULL `people` list, not the filtered one (57-63). Selection, Update and Delete are index-based (27, 64-69, 109-128). Delete removes `people[idx]`, so every later person shifts down one index (126).
+- `examples/seven_guis/src/tasks/flight_booker.rs` (43-113) — re-render shape changes: `#flight-return-date` toggles `disabled` presence on the flight type (89), `#flight-book` toggles `disabled` on validity (96), and `p#flight-booked` is inserted by `if let Some(msg)` as the LAST child of `.flight-card`, author-keyed (107-109).
+- `examples/seven_guis/src/tasks/counter.rs` (4-21) — a click changes only the text of `p#counter-value`.
+- `examples/seven_guis/src/tasks/timer.rs` (43-104) — a delivered tick changes the text of `#timer-elapsed` and the `style` width of `#timer-progress`, with no node added or removed. Without a `TimerTicks` context the coroutine falls back to a wall-clock `futures_timer::Delay` (53-56).
+- `tests/blitz-tests/tests/telemetry_stdout_silent.rs` (1-37) — the in-repo re-exec precedent: `Command::new(std::env::current_exe().unwrap()).args(["--ignored", "--exact", "child_emits", "--nocapture"])`, with the child an `#[ignore = "spawned as a child process by …"]` test in the same file. This is the source of the baseline's 4th ignored test.
+- `tests/blitz-tests/tests/stand_element_ids.rs` (1-271) — pins `TaskShell/Crud/div:0/div:1/div:0/div[0]` for the first CRUD row (227-231), and `text_and_removed_nodes_read_no_id` (236-271) deletes the selected first row.
+- `tests/blitz-tests/tests/stand_crud.rs` (8-10) — `:nth-of-type` / `:nth-child` selectors already drive stand input. `harness.click(selector)` is the click helper (`packages/blitz-test-harness/src/input.rs:97`), and `harness.focused()` is the focus query (`packages/blitz-test-harness/src/inspect.rs:108`).
+- `.andromeda/architecture.md:148` — §Occupied Resources → Process-wide state and threads registers WPT's `git` and cold-agent's `claude` spawns. It does NOT register `telemetry_stdout_silent`'s re-exec of the test binary (`grep -n 'current_exe' .andromeda/architecture.md` → 0 hits).
+
+## Graph impact (from the code-graph query; trace `tree-query-2026-10-06-id-persistence.json`)
+- **element_ids** — callers: `DioxusDocument::element_ids` @ `packages/dioxus-native-dom/src/dioxus_document.rs:205`, `element_id` @ `element_id.rs:238`, 3 unit tests in `element_id.rs`, and 3 stand checks in `stand_element_ids.rs` (132, 220, 266). The chunk reads it and does not change its signature.
+- **element_id** — callers: `DioxusDocument::element_id` @ `dioxus_document.rs:199`, 5 unit-test sites, and 7 sites in `stand_element_ids.rs`. Read-only here.
+- **boot / boot_timer** — 13 call sites in 6 stand files (`stand_boot.rs` 50-113, `stand_counter.rs:9`, `stand_crud.rs` 16, 27, `stand_element_ids.rs:70`, `stand_flight_booker.rs:16`, `stand_timer.rs` 10, 26, 38). Each `line + 1` is from the trace's 0-indexed `line`. An additive function in `stand.rs` leaves them unchanged.
+- **task_in_shell** — 2 callers: `app::app` @ `app.rs:77` and `stand::stand_root` @ `stand.rs:102`. Both render it as the root component's only child, so its `TaskShell` instance sits under the same `ScopeId::APP`-owned chain in both.
+- **Person / crud.rs** — no symbol outside `crud.rs` names `Person`. Its only external pins are the `stand_element_ids.rs` row id (229) and `stand_crud.rs` selectors.
+
+## Patterns detected
+- **Ids carry no runtime identity** (`element_id.rs:14-15`, 153-228): an element's id is a pure function of the rendered component chain, the keys, the tag structure and the `id` attributes. Equality: the same rendered tree yields the same id list, in any process and after any remount that re-renders the same tree. This was verified by reading every input and the iteration order above. The chunk's checks are its empirical proof.
+- **App root and stand root give the same task ids** (`app.rs:77`, `stand.rs:102`): `app` and `stand_root` are both the `ScopeId::APP` root, and that scope adds no path segment (`element_id.rs:47-54`). `task_in_shell` renders `TaskShell` as its direct child in both, so a task's ids under `app` after Home → task equal its ids under `stand::boot`. This holds by construction. The remount check can assert it outright.
+- **Remount mints fresh nodes** (`mutation_writer.rs:290-303`, `mutator.rs:533`, `document.rs:844-855`): unmounting detaches, and remounting deep-clones templates into newly created slab nodes. Equality: for every element, the post-remount `NodeId` differs from its pre-remount `NodeId`. The check must assert this, so it cannot pass vacuously. The pre-remount `NodeId` then reads `element_id == None`, because a detached node is unreachable from the root, or because a dropped one is stale (`element_id.rs:237`; `doc.get_node` → `None`).
+- **Re-exec the test binary as the child** (`telemetry_stdout_silent.rs:10-11, 32-33`): the parent runs `current_exe()` with `--ignored --exact {child} --nocapture` and reads the child's output. The child is an ignored test in the same file.
+- **Index keys follow position, not entity** (`crud.rs:57-63`, 126): after `Delete` at index `k`, every person after `k` moves to key `k…`. Dioxus's keyed diff keeps the DOM nodes of keys `0..len-1` and drops the last key's node. A person's row therefore changes id, and the surviving DOM node at a key now shows another person. This re-derives the CARRY's measured claim at HEAD, by reading `crud.rs` plus the keyed-diff rule. The existing `stand_element_ids.rs:236-271` test is its witness.
+
+## Conventions to follow
+- **One behaviour per integration file, `//!` doc first** (`tests/blitz-tests/tests/stand_element_ids.rs:1-3`); `for incremental in [false, true]` around each scenario (`stand_element_ids.rs:126`); stand files carry the `stand_` prefix for `run stand` (`.claude/rules/verification-harness.md` §The 5-command contract).
+- **Stand boot surface** — `stand::boot(LeanTask, stand::options(incremental))` / `stand::boot_timer` for in-place tasks; the timer advances only via `TimerTicks::deliver(n)` + `pump` (`stand.rs:71-81`, `timer.rs:18-26`).
+- **Harness input through Dioxus** — `click` / `type_text` (pump after dispatch), never `dispatch_recorded` (`.claude/rules/verification-harness.md` §In-process Harness).
+- **Child-process diagnostics on the libtest channel** — the child is a `#[test] #[ignore = "…"]` and its output is read by the parent only, never committed and never an event (`telemetry_stdout_silent.rs`; obs-plan §3, per the obs extract).
+- **Workspace deps** — no new dependency is needed. `std::process::Command` and `seven_guis` (dev-dep, `tests/blitz-tests/Cargo.toml:22`) cover it.
+
+## New files to create
+- `tests/blitz-tests/tests/stand_id_persistence.rs` — the re-render, remount and fresh-process checks over the lean four, plus the ignored child test the fresh-process check re-executes
+
+## Files to modify
+- `examples/seven_guis/src/tasks/crud.rs` — only if P4 re-keys rows by person: a person identity field, a next-id source in the model, and `key` from it
+- `examples/seven_guis/src/stand.rs` — only if P4 puts the remount path in the stand module: an additive boot of the full app, or a remount handle
+- `tests/blitz-tests/tests/stand_element_ids.rs` — only if a re-key changes the pinned first-row id or the removed-row assertion's wording
+
+## Open questions
+- What is a remount on the stand: the app's own Back → Home → task-card path (a test-side `app::app` root with `stand::options`, or a `stand::boot_app`), or a stand-side handle that unmounts and remounts the task without UI? → blocks: plan-decision
+- Does a CRUD row's id follow its person, by re-keying rows on a stable person identity in `crud.rs`'s model, or stay index-keyed (the DOM node keeps its id, the person does not)? → blocks: plan-decision

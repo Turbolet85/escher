@@ -1,0 +1,262 @@
+[
+{
+"sql": "SELECT caller, callee_name, file, line FROM calls WHERE callee_name IN ('element_ids','element_id','task_in_shell','boot','boot_with_ticks','boot_timer') AND callee_kind = 'fn' AND (callee_file LIKE '%element_id.rs' OR callee_file LIKE '%dioxus_document.rs' OR callee_file LIKE '%seven_guis%') ORDER BY callee_name, file, line",
+"rows": 42,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 each_lean_task_mounts_inside_task_shell().",
+"callee_name": "boot",
+"file": "tests/blitz-tests/tests/stand_boot.rs",
+"line": 49
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 task_title_measures_non_zero_under_the_bundled_font().",
+"callee_name": "boot",
+"file": "tests/blitz-tests/tests/stand_boot.rs",
+"line": 62
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 two_fresh_boots_lay_out_identically().",
+"callee_name": "boot",
+"file": "tests/blitz-tests/tests/stand_boot.rs",
+"line": 77
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 two_fresh_boots_lay_out_identically().",
+"callee_name": "boot",
+"file": "tests/blitz-tests/tests/stand_boot.rs",
+"line": 78
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 incremental_and_full_layout_boots_lay_out_identically().",
+"callee_name": "boot",
+"file": "tests/blitz-tests/tests/stand_boot.rs",
+"line": 88
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 incremental_and_full_layout_boots_lay_out_identically().",
+"callee_name": "boot",
+"file": "tests/blitz-tests/tests/stand_boot.rs",
+"line": 89
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 boot_and_click_make_no_net_requests().",
+"callee_name": "boot",
+"file": "tests/blitz-tests/tests/stand_boot.rs",
+"line": 112
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 counter_click_increments_the_display().",
+"callee_name": "boot",
+"file": "tests/blitz-tests/tests/stand_counter.rs",
+"line": 8
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 update_and_delete_are_disabled_before_a_selection().",
+"callee_name": "boot",
+"file": "tests/blitz-tests/tests/stand_crud.rs",
+"line": 15
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 create_adds_one_entry_from_the_typed_fields().",
+"callee_name": "boot",
+"file": "tests/blitz-tests/tests/stand_crud.rs",
+"line": 26
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 boot().",
+"callee_name": "boot",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 69
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 malformed_start_date_marks_the_field_invalid_and_disables_booking().",
+"callee_name": "boot",
+"file": "tests/blitz-tests/tests/stand_flight_booker.rs",
+"line": 15
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 delivered_ticks_advance_elapsed_and_progress().",
+"callee_name": "boot_timer",
+"file": "tests/blitz-tests/tests/stand_timer.rs",
+"line": 9
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 reset_zeroes_elapsed().",
+"callee_name": "boot_timer",
+"file": "tests/blitz-tests/tests/stand_timer.rs",
+"line": 25
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 ticks_past_the_duration_stop_at_it().",
+"callee_name": "boot_timer",
+"file": "tests/blitz-tests/tests/stand_timer.rs",
+"line": 37
+},
+{
+"caller": "rust-analyzer cargo seven_guis 0.1.0 stand/boot().",
+"callee_name": "boot_with_ticks",
+"file": "examples/seven_guis/src/stand.rs",
+"line": 73
+},
+{
+"caller": "rust-analyzer cargo seven_guis 0.1.0 stand/boot_timer().",
+"callee_name": "boot_with_ticks",
+"file": "examples/seven_guis/src/stand.rs",
+"line": 80
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 dioxus_document/impl#[DioxusDocument]element_id().",
+"callee_name": "element_id",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 198
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/a_removed_element_reads_no_id().",
+"callee_name": "element_id",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 381
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/a_removed_element_reads_no_id().",
+"callee_name": "element_id",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 388
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/non_elements_read_no_id().",
+"callee_name": "element_id",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 405
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/non_elements_read_no_id().",
+"callee_name": "element_id",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 406
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/non_elements_read_no_id().",
+"callee_name": "element_id",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 407
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 every_element_reads_exactly_one_unique_id().",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 137
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 author_keyed_elements_read_their_key().",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 155
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 unkeyed_elements_read_their_component_path().",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 178
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 unkeyed_elements_read_their_component_path().",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 201
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 unkeyed_elements_read_their_component_path().",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 229
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 text_and_removed_nodes_read_no_id().",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 244
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 text_and_removed_nodes_read_no_id().",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 261
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 dioxus_document/impl#[DioxusDocument]element_ids().",
+"callee_name": "element_ids",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 204
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/element_id().",
+"callee_name": "element_ids",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 237
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/ids().",
+"callee_name": "element_ids",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 256
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/a_removed_element_reads_no_id().",
+"callee_name": "element_ids",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 367
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/a_removed_element_reads_no_id().",
+"callee_name": "element_ids",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 389
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/non_elements_read_no_id().",
+"callee_name": "element_ids",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 400
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 every_element_reads_exactly_one_unique_id().",
+"callee_name": "element_ids",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 131
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 unkeyed_elements_read_their_component_path().",
+"callee_name": "element_ids",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 219
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 text_and_removed_nodes_read_no_id().",
+"callee_name": "element_ids",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 265
+},
+{
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/app().",
+"callee_name": "task_in_shell",
+"file": "examples/seven_guis/src/app.rs",
+"line": 76
+},
+{
+"caller": "rust-analyzer cargo seven_guis 0.1.0 stand/",
+"callee_name": "task_in_shell",
+"file": "examples/seven_guis/src/stand.rs",
+"line": 9
+},
+{
+"caller": "rust-analyzer cargo seven_guis 0.1.0 stand/stand_root().",
+"callee_name": "task_in_shell",
+"file": "examples/seven_guis/src/stand.rs",
+"line": 101
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

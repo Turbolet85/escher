@@ -1,0 +1,113 @@
+[
+{
+"tool": "matrix",
+"v": "1.3",
+"sha8": "cd774c8a",
+"ts": "2026-10-06T10:06:46Z",
+"argv": [
+"coverage",
+"--dir",
+"/home/turbolet/dev/projects/escher/escher-0.1.0",
+"--run-dir",
+"/home/turbolet/dev/projects/escher/.andromeda/runs/2026-10-06T09-51-07-phase",
+"--marker",
+"2026-10-06-id-persistence"
+],
+"cwd": "/home/turbolet/dev/projects/escher/.andromeda/runs/2026-10-06T09-51-07-phase",
+"exit": 0,
+"stdout": [
+"verified 1/15 · deferred 0 · planned 14 · implemented 0 · unclaimed 14",
+"unclaimed: v010-02 v010-03 v010-04 v010-05 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13",
+"          v010-14 v010-15",
+"claimed-unfinished: none",
+"done-test: NO — 14 not verified|deferred · unclaimed 14",
+"chunks referenced: 1 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.3",
+"sha8": "cd774c8a",
+"ts": "2026-10-06T10:06:56Z",
+"argv": [
+"claim",
+"--dir",
+"/home/turbolet/dev/projects/escher/escher-0.1.0",
+"--id",
+"v010-02",
+"--chunk",
+"2026-10-06-id-persistence",
+"--acceptance-file",
+"/home/turbolet/dev/projects/escher/.andromeda/runs/2026-10-06T09-51-07-phase/acceptance-v010-02.md",
+"--method",
+"e2e",
+"--run-dir",
+"/home/turbolet/dev/projects/escher/.andromeda/runs/2026-10-06T09-51-07-phase"
+],
+"cwd": "/home/turbolet/dev/projects/escher/.andromeda/runs/2026-10-06T09-51-07-phase",
+"exit": 0,
+"stdout": [
+"claim v010-02 → chunk 2026-10-06-id-persistence (was null; status planned kept)",
+"acceptance: For each stand element, the id read before and after a re-render, a re… (120 chars)",
+"         → On each of the four lean stand tasks (counter, flight booker, timer, C… (1233 chars)",
+"method: e2e → e2e",
+"wrote /home/turbolet/dev/projects/escher/escher-0.1.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 13 [v010-03 v010-04 v010-05 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [
+"/home/turbolet/dev/projects/escher/escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-02",
+"chunk": null,
+"status": "planned",
+"method": "e2e",
+"ref": "null",
+"acceptance": "For each stand element, the id read before and after a re-render, a remount, and a restart in a new process is the same.",
+"notes_chars": 0
+},
+"after": {
+"id": "v010-02",
+"chunk": "2026-10-06-id-persistence",
+"status": "planned",
+"method": "e2e",
+"ref": "null",
+"acceptance": "On each of the four lean stand tasks (counter, flight booker, timer, CRUD), in both layout modes (stand::options(false) … (1233 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.3",
+"sha8": "cd774c8a",
+"ts": "2026-10-06T10:06:56Z",
+"argv": [
+"audit",
+"--dir",
+"/home/turbolet/dev/projects/escher/escher-0.1.0",
+"--chunk",
+"2026-10-06-id-persistence",
+"--plan",
+"/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-id-persistence/plan.md",
+"--run-dir",
+"/home/turbolet/dev/projects/escher/.andromeda/runs/2026-10-06T09-51-07-phase"
+],
+"cwd": "/home/turbolet/dev/projects/escher/.andromeda/runs/2026-10-06T09-51-07-phase",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-06-id-persistence: 1 · ## Acceptance Criteria: line 191, 11 lines",
+"v010-02: cited in ## Acceptance Criteria (line 192)",
+"  shape v010-02: method e2e · no interaction verb",
+"pool: unclaimed 13 [v010-03 v010-04 v010-05 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

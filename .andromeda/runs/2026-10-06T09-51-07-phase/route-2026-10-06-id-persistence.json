@@ -1,0 +1,36 @@
+[
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "699f7ef0",
+"ts": "2026-10-06T09:52:19Z",
+"argv": [
+"route.py",
+"promote",
+"--root",
+".",
+"--chunk",
+"2026-10-06-id-persistence",
+"--expect-prefix",
+"Id persistence",
+"--record-file",
+".andromeda/runs/2026-10-06T09-51-07-phase/master-record.txt",
+"--run-dir",
+".andromeda/runs/2026-10-06T09-51-07-phase"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"stamp working-route.md:30 - [2026-10-06-id-persistence]",
+"record master-route.md:20 - appended under `## escher-0.1.0`",
+"promoted 2026-10-06-id-persistence - working-route:30 frozen - master record appended"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.1.0/working-route.md",
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+}
+]

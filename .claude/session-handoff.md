@@ -38,3 +38,6 @@
 - recurrence-despite-learning: "The rustfmt write hook … Extended: an edit made through a Bash script never fires the hook" (Tier 3, 2026-10-06). A python-scripted `.rs` edit reddened the fast leg's fmt check again this chunk.
 - recurrence-despite-learning: "The project's Bash guards refuse a heredoc written to a file and a leading cd, and read payload prose too" (Tier 3, 2026-10-06). It recurred again this chunk, with a probe test file.
 Review with `/andromeda-wrap-session --review` if any should be applied.
+
+## Session End Status
+Completed normally at 2026-10-06 11:50:13
