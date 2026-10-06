@@ -1,0 +1,662 @@
+[
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T03:28:19Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-06-stand-test-contract/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T03-23-46-implement",
+"--marker",
+"2026-10-06-stand-test-contract"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-06-stand-test-contract · entries 23",
+"logs $TMPDIR/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46 · bound: GNU timeout",
+"delta docs 35 · python 1 · rust 1 · unmapped 3",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L119-129: The gates below run in /implement P2 and the wrap's light gate. - The contract tests run f… (922 chars)",
+"  1 unit        green · exit 0 · 0.85s · 1779 B → 1.log · python3 -m unittest discover -s .github/scripts -p 'test_a… (73 chars)",
+"  2 integration green · exit 0 · 0.02s · 40 B → 2.log · bash scripts/agent-run.sh cleanup",
+"  3 integration green · exit 3 · 0.02s · 153 B → 3.log · bash scripts/agent-run.sh status",
+"  4 build       green · exit 0 · 22.85s · 137 B → 4.log · bash scripts/agent-run.sh boot",
+"  5 integration green · exit 0 · 0.02s · 208 B → 5.log · bash scripts/agent-run.sh status",
+"  6 integration green · exit 0 · 1.43s · 1782 B → 6.log · bash scripts/agent-run.sh run stand",
+"  7 integration green · exit 0 · 0.02s · 3 B → 7.log · bash scripts/agent-run.sh logs | python3 -c 'import json,s… (223 chars)",
+"  8 probe       green · exit 0 · 0.02s · 2 B → 8.log · bash scripts/agent-run.sh logs | python3 -c 'import json,s… (205 chars)",
+"  9 integration green · exit 0 · 7.17s · 3 B → 9.log · bash scripts/agent-run.sh run all > /dev/null && bash scri… (321 chars)",
+" 10 integration green · exit 0 · 0.04s · 80 B → 10.log · bash scripts/agent-run.sh cleanup && bash scripts/agent-ru… (100 chars)",
+" 11 probe       green · exit 0 · 0.09s · 1283 B → 11.log · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/he… (114 chars)",
+" 12 probe       green · exit 1 · 0.0s · 2 B → 12.log · test -f scripts/agent-run.sh && test -f scripts/agent-run.… (177 chars)",
+" 13 probe       green · exit 1 · 0.0s · 2 B → 13.log · git diff -U0 913f5918bc22e1c7bb3b1500b839ab0fdbd571d7 -- t… (184 chars)",
+" 14 probe       green · exit 1 · 0.0s · 2 B → 14.log · grep -E '^//!' tests/blitz-tests/tests/dioxus_falsy_disabl… (85 chars)",
+" 15 probe       green · exit 0 · 0.0s · 2 B → 15.log · grep -E '^//!' tests/blitz-tests/tests/dioxus_falsy_disabl… (89 chars)",
+" 16 unit        green · exit 0 · 0.27s · 356 B → 16.log · cargo test -p blitz-tests --locked --test dioxus_falsy_dis… (63 chars)",
+" 17 probe       green · exit 0 · 0.0s · 0 B → 17.log · git diff --quiet 913f5918bc22e1c7bb3b1500b839ab0fdbd571d7 … (174 chars)",
+" 18 lint        green · exit 0 · 38.91s · 48877 B → 18.log · bash .github/scripts/ci-leg.sh fast",
+" 19 lint        green · exit 0 · 0.72s · 271 B → 19.log · bash .github/scripts/ci-leg.sh doc",
+" 20 integration green · exit 0 · 2.44s · 1597 B → 20.log · bash .github/scripts/ci-leg.sh a11y",
+" 21 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 22 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 23 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 23 · green 20 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-06-stand-test-contract",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-stand-test-contract/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-06T02-44-36-wrap/evolve-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T02-44-36-wrap/health-2026-10-06-headless-stand.json",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-06T03-05-16-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-06T03-05-16-phase/a11y-history.md",
+".andromeda/runs/2026-10-06T03-05-16-phase/a11y.md",
+".andromeda/runs/2026-10-06T03-05-16-phase/arch-history.md",
+".andromeda/runs/2026-10-06T03-05-16-phase/arch.md",
+".andromeda/runs/2026-10-06T03-05-16-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-06T03-05-16-phase/design.md",
+".andromeda/runs/2026-10-06T03-05-16-phase/evolve-2026-10-06-stand-test-contract.json",
+".andromeda/runs/2026-10-06T03-05-16-phase/gate-2026-10-06-stand-test-contract.json",
+".andromeda/runs/2026-10-06T03-05-16-phase/layouts.md",
+".andromeda/runs/2026-10-06T03-05-16-phase/master-record.txt",
+".andromeda/runs/2026-10-06T03-05-16-phase/matrix-2026-10-06-stand-test-contract.json",
+".andromeda/runs/2026-10-06T03-05-16-phase/obs-contracts.md",
+".andromeda/runs/2026-10-06T03-05-16-phase/obs-history.md",
+".andromeda/runs/2026-10-06T03-05-16-phase/obs.md",
+".andromeda/runs/2026-10-06T03-05-16-phase/planlint-2026-10-06-stand-test-contract.json",
+".andromeda/runs/2026-10-06T03-05-16-phase/registry-2026-10-06-stand-test-contract.json",
+".andromeda/runs/2026-10-06T03-05-16-phase/route-2026-10-06-stand-test-contract.json",
+".andromeda/runs/2026-10-06T03-05-16-phase/route-no-marker.json",
+".andromeda/runs/2026-10-06T03-05-16-phase/security-history.md",
+".andromeda/runs/2026-10-06T03-05-16-phase/security.md",
+".andromeda/runs/2026-10-06T03-05-16-phase/sidecar-2026-10-06-stand-test-contract.json",
+".andromeda/runs/2026-10-06T03-05-16-phase/tests-contracts.md",
+".andromeda/runs/2026-10-06T03-05-16-phase/tests-history.md",
+".andromeda/runs/2026-10-06T03-05-16-phase/tests.md",
+".andromeda/runs/2026-10-06T03-23-46-implement/evolve-2026-10-06-stand-test-contract.json",
+"escher-0.1.0/chunks/2026-10-06-stand-test-contract/plan.md",
+"escher-0.1.0/chunks/2026-10-06-stand-test-contract/research.md",
+"escher-0.1.0/chunks/2026-10-06-stand-test-contract/scope.md"
+],
+"rust": [
+"tests/blitz-tests/tests/dioxus_falsy_disabled.rs"
+],
+"python": [
+".github/scripts/test_agent_run.py"
+]
+},
+"unmapped": [
+"escher-0.1.0/chunks/2026-10-06-stand-test-contract/evidence/p3-stand-run.log",
+"scripts/agent-run.ps1",
+"scripts/agent-run.sh"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 40,
+"problem": null
+},
+"prose": [
+{
+"from": 119,
+"to": 129,
+"text": "The gates below run in /implement P2 and the wrap's light gate. - The contract tests run first, under a cargo shim. Then the contract runs live against the real cargo, in block   order: cleanup first, so a prior run's residue cannot satisfy a later status read. Every status read follows an   entry of this block that set its state. - No entry relies on a `timeout` exit (verification-harness.md Session Additions, 2026-10-06). - The census probes set their base at `913f5918`, the commit this chunk starts from, so they survive the operator's   pre-CI commit. - Health check 13 itself is the witness that both scripts exist, the `.sh` is executable and both name the five verbs. - No `audit` entry: `Cargo.lock` is unchanged, and an entry below guards that. - No boot smoke of a binary: no binary changes. - The operator entries push this chunk and read the CI run whose `ci-scripts` job runs the new tests on the runner."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "python3 -m unittest discover -s .github/scripts -p 'test_agent_run.py' -v",
+"run_sha8": "e44b53a5",
+"expect": [
+"exit 0",
+"contains OK",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/1.log",
+"bytes": 1779,
+"log_sha8": "1820ecc9",
+"exit": 0,
+"seconds": 0.85,
+"readings": [
+"exit 0 ✓",
+"contains 'OK' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "bash scripts/agent-run.sh cleanup",
+"run_sha8": "d676b018",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/2.log",
+"bytes": 40,
+"log_sha8": "8b6274d8",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "bash scripts/agent-run.sh status",
+"run_sha8": "9ac12d36",
+"expect": [
+"exit 3"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/3.log",
+"bytes": 153,
+"log_sha8": "d889d38e",
+"exit": 3,
+"seconds": 0.02,
+"readings": [
+"exit 3 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": [
+"exit 0",
+"contains \"ready\""
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/4.log",
+"bytes": 137,
+"log_sha8": "fffe0906",
+"exit": 0,
+"seconds": 22.85,
+"readings": [
+"exit 0 ✓",
+"contains '\"ready\"' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "bash scripts/agent-run.sh status",
+"run_sha8": "9ac12d36",
+"expect": [
+"exit 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/5.log",
+"bytes": 208,
+"log_sha8": "efdde7a2",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": [
+"exit 0",
+"contains \"run.end\""
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/6.log",
+"bytes": 1782,
+"log_sha8": "e4c8ba19",
+"exit": 0,
+"seconds": 1.43,
+"readings": [
+"exit 0 ✓",
+"contains '\"run.end\"' ✓",
+"artifact fresh (target/agent-run/events.jsonl)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "bash scripts/agent-run.sh logs | python3 -c 'import json,sys; ev=[json.loads(l) for l in sys.stdin]; print(sum(1 for e in ev if e.get(\"event\")==\"test\" and e.get(\"outcome\")==\"ok\" and e.get(\"file\",\"\").startswith(\"stand_\")))' ",
+"run_sha8": "cb721ae0",
+"expect": [
+"exit 0",
+"last line 13"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/7.log",
+"bytes": 3,
+"log_sha8": "1a252402",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"last line '13' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "bash scripts/agent-run.sh logs | python3 -c 'import json,sys; bad={\"url\",\"href\",\"src\",\"html\",\"text\",\"value\",\"attrs\",\"path\",\"request\",\"error\"}; print(sum(1 for l in sys.stdin if bad & set(json.loads(l))))' ",
+"run_sha8": "45703729",
+"expect": [
+"exit 0",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/8.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run all > /dev/null && bash scripts/agent-run.sh logs | python3 -c 'import json,sys; ev=[json.loads(l) for l in sys.stdin]; print(sum(1 for e in ev if e.get(\"event\")==\"test\" and e.get(\"outcome\")==\"ok\" and e.get(\"file\") in (\"accessibility_hidden\",\"accessibility_roles\",\"focusability_updates\")))' ",
+"run_sha8": "4760dcc5",
+"expect": [
+"exit 0",
+"last line 15"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/9.log",
+"bytes": 3,
+"log_sha8": "23890318",
+"exit": 0,
+"seconds": 7.17,
+"readings": [
+"exit 0 ✓",
+"last line '15' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "bash scripts/agent-run.sh cleanup && bash scripts/agent-run.sh cleanup && test ! -e target/agent-run",
+"run_sha8": "81bc5aff",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/10.log",
+"bytes": 80,
+"log_sha8": "f29f1adb",
+"exit": 0,
+"seconds": 0.04,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/health.py check --root . --stack rust --style agent-driven",
+"run_sha8": "d985c5fa",
+"expect": [
+"exit 0",
+"contains check 13 · ✓"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/11.log",
+"bytes": 1283,
+"log_sha8": "380ee58c",
+"exit": 0,
+"seconds": 0.09,
+"readings": [
+"exit 0 ✓",
+"contains 'check 13 · ✓' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "test -f scripts/agent-run.sh && test -f scripts/agent-run.ps1 && cat scripts/agent-run.sh scripts/agent-run.ps1 | grep -c -E 'TcpListener|bind\\(|listen\\(|socat|HARNESS_|TMPDIR' ",
+"run_sha8": "beb0206d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/12.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "git diff -U0 913f5918bc22e1c7bb3b1500b839ab0fdbd571d7 -- tests/blitz-tests/tests/dioxus_falsy_disabled.rs | grep -E '^[+-]' | grep -v -E '^(\\+\\+\\+|---)' | grep -c -v -E '^[+-](//!|$)' ",
+"run_sha8": "639f7677",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/13.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "grep -E '^//!' tests/blitz-tests/tests/dioxus_falsy_disabled.rs | grep -c -i 'focus' ",
+"run_sha8": "20dff64f",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/14.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "grep -E '^//!' tests/blitz-tests/tests/dioxus_falsy_disabled.rs | grep -c -F ':disabled' ",
+"run_sha8": "7c0ad805",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/15.log",
+"bytes": 2,
+"log_sha8": "53c234e5",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "unit",
+"run": "cargo test -p blitz-tests --locked --test dioxus_falsy_disabled",
+"run_sha8": "283f349b",
+"expect": [
+"exit 0",
+"contains 1 passed"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/16.log",
+"bytes": 356,
+"log_sha8": "f08cfcca",
+"exit": 0,
+"seconds": 0.27,
+"readings": [
+"exit 0 ✓",
+"contains '1 passed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "git diff --quiet 913f5918bc22e1c7bb3b1500b839ab0fdbd571d7 -- Cargo.lock Cargo.toml examples/seven_guis packages/blitz-test-harness .github/workflows .github/scripts/ci-leg.sh",
+"run_sha8": "75ea58dc",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/17.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 18,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/18.log",
+"bytes": 48877,
+"log_sha8": "194eb602",
+"exit": 0,
+"seconds": 38.91,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 19,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/19.log",
+"bytes": 271,
+"log_sha8": "64308ab5",
+"exit": 0,
+"seconds": 0.72,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 20,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/20.log",
+"bytes": 1597,
+"log_sha8": "13155ad1",
+"exit": 0,
+"seconds": 2.44,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 21,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 22,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 23,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "675d3a19",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T03:28:27Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-06T03-23-46-implement",
+"--marker",
+"2026-10-06-stand-test-contract",
+"--n",
+"6"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"6 integration green",
+"run (712f53cb): bash scripts/agent-run.sh run stand",
+"  exit 0 ✓",
+"  contains '\"run.end\"' ✓",
+"  artifact fresh (target/agent-run/events.jsonl)",
+"log $TMPDIR/andromeda-gate/2026-10-06-stand-test-contract/implement-2026-10-06T03-23-46/6.log · 1782 B · e4c8ba19",
+"--- no anchored failure; last 20 non-empty lines ---",
+"{\"event\": \"run.start\", \"ts\": \"2026-10-06T03:27:27Z\", \"selection\": \"stand\", \"files\": [\"stand_boot\", \"stand_counter\", \"stand_crud\", \"stand_flight_booker\", \"stand_timer\"]}",
+"{\"event\": \"test\", \"file\": \"stand_boot\", \"test\": \"stand_options_reach_the_injected_net_provider\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_boot\", \"test\": \"boot_and_click_make_no_net_requests\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_boot\", \"test\": \"each_lean_task_mounts_inside_task_shell\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_boot\", \"test\": \"task_title_measures_non_zero_under_the_bundled_font\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_boot\", \"test\": \"two_fresh_boots_lay_out_identically\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_boot\", \"test\": \"incremental_and_full_layout_boots_lay_out_identically\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_counter\", \"test\": \"counter_click_increments_the_display\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_crud\", \"test\": \"update_and_delete_are_disabled_before_a_selection\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_crud\", \"test\": \"create_adds_one_entry_from_the_typed_fields\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_flight_booker\", \"test\": \"malformed_start_date_marks_the_field_invalid_and_disables_booking\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_timer\", \"test\": \"ticks_past_the_duration_stop_at_it\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_timer\", \"test\": \"reset_zeroes_elapsed\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_timer\", \"test\": \"delivered_ticks_advance_elapsed_and_progress\", \"outcome\": \"ok\"}",
+"{\"event\": \"run.end\", \"ts\": \"2026-10-06T03:27:29Z\", \"selection\": \"stand\", \"passed\": 13, \"failed\": 0, \"ignored\": 0, \"cargo_exit\": 0, \"outcome\": \"passed\"}"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T03:28:46Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-stand-test-contract",
+"--run-dir",
+".andromeda/runs/2026-10-06T03-23-46-implement",
+"--marker",
+"2026-10-06-stand-test-contract"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 3 · modify 1 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 4 · listed 4 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 37"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 4,
+"listed": 4,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 37,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

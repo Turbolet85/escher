@@ -1,0 +1,34 @@
+# tests extract
+
+## Relevance
+partial. The chunk's core, the 5-command discipline (boot / run / status / cleanup / logs, status shape, PID/status file, JSON log), sits under test-plan §3's `> NOT YET MEASURED` marker, so the plan gives no target shape for it. What does apply is the measured surround: runners, the in-process stand, the stand log line, CI legs and the leg-script test pattern, plus the PREREQ regression-test doc.
+
+## Constraints
+- Rust tests run on the standard built-in libtest harness, and third-party test frameworks are recorded absent (per test-plan §3 Runners and invocation, "Rust tests" / "Third-party test frameworks"). Any per-test machine-readable output from `run` must therefore come from libtest output or from a newly introduced tool. The plan names no nextest, so adding one is a new dependency that P4 must decide explicitly.
+- The stand is in-process. Each lean task boots fresh through `seven_guis::stand::boot` / `boot_timer` over `Harness::from_vdom`, with `stand::options(incremental)` as the pinned options (per test-plan §3 blitz-test-harness, Construction; test-plan §7 Builders and options). No daemon or process exists for `boot` / `status` / `cleanup` to manage. What those verbs act on is research's and P4's question, not something the plan states.
+- The `run` selection's units are fixed. Stand checks are the five `tests/blitz-tests/tests/stand_*.rs` files (per test-plan §1 Coverage scope, tests/blitz-tests). blitz-tests is one Cargo integration-test file per behaviour, dev-dependencies only (per test-plan §2 Directory pattern; test-plan §5 tests/blitz-tests crate). One-file selection maps to `cargo test -p blitz-tests --test {name}`.
+- Stand checks have no font-skip path. They assert unconditionally under the bundled DejaVu Sans with system fonts off, so the stand selection is deterministic on any runner (per test-plan §2 Font-dependent tests; test-plan §9 Fonts). A `run` that reports a skip for a stand check is a defect, not an environment issue.
+- The stand's only measured log line is stderr text, one line per event: `{time} {LEVEL} {target} service.name=… service.version=… {field}={value}…`, with escher-telemetry's allowlist scrub (per test-plan §3 Stand log format, binding obs-plan §3). It is not JSON. The JSON-line log is new surface, and the allowlist scrub has to hold on it.
+- Every cargo leg runs `--locked` (except `examples/wasm_hello`), and linux legs are host-reproducible through `ci-leg.sh` (per test-plan §9 Legs). Cargo invocations from the new scripts should follow the same `--locked` discipline.
+- Work closes on the local pre-push gate `bash .github/scripts/ci-leg.sh fast` (fmt → clippy → test → ci-scripts) against the recorded baseline of workspace tests 430 passed · 0 failed · 4 ignored (per test-plan §9 Local pre-push gate; test-plan §9 Local baseline, the headless-stand recount).
+
+## Patterns to follow
+- The leg-script test pattern: `LegScriptTest` runs `ci-leg.sh` in a temp dir with a `cargo` shim on PATH. It asserts that a failing leg exits non-zero and writes its log, that the log is truncated at the leg's start, and that an unknown leg exits 2 (per test-plan §4 What unit tests cover, "CI workflows and leg script"). This is the existing way to prove a shell entrypoint's exit and output contract without a real cargo run. It fits "status non-zero before boot", "cleanup idempotent" and "unknown verb rejected".
+- `ci-leg.sh`'s log discipline: per-leg merged output goes to `target/ci-logs/{leg}.log`, truncated at the leg's start (per test-plan §9 Failure logs). This is an in-repo precedent for a per-invocation log path under `target/`.
+- Regression tests document the bug they guard and the case that exposed it (per test-plan §2 Test function naming). The PREREQ correction keeps this form and narrows the claim to the defect the fix removed.
+- For the PREREQ wording, blitz-dom's node tests assert `DISABLED` element state for a button whose `disabled` is empty or `"false"` (per test-plan §4 What unit tests cover, blitz-dom (node), `node.rs:1742-1821`). The plan's own record of where presence-keying lives is this DISABLED state. Whether focusability parses the value as a bool is research's re-verification at HEAD (scope's `[inferred]` marker).
+
+## Anti-patterns to avoid
+- Do not borrow a daemon or status-endpoint shape as if the plan prescribed one. test-plan §3's 5-command contract, status endpoint shape and PID file are NOT YET MEASURED, and the measured stand is in-process (per test-plan §3 blitz-test-harness, Construction). test-plan §11 records no test anti-patterns, so this ban comes from §3's measured facts, not from a recorded rule.
+- Do not change the body of `dioxus_falsy_disabled.rs`, or any stand check's content, under this chunk. The plan records that file as the guard for the falsy-`disabled` clearing (per test-plan §1 Coverage scope, tests/blitz-tests). The PREREQ is doc-only.
+
+## Contract bindings
+- tests ↔ obs: the JSON-line `logs` output and any harness-written events bind to obs-plan §3's line format and allowlist scrub (per test-plan §3 Stand log format). The schema and file location are an obs-plan §3/§6 amendment at the wrap.
+- tests ↔ CI: if the checks proving the commands are Python unittests, the `ci-scripts` leg discovers only `.github/scripts` (per test-plan §1 Coverage scope, CI Python scripts; test-plan §9 Legs). A new CI leg would also be pinned by `test_ci_workflows.py`'s invariants, e.g. each linux job's leg present in `ci-leg.sh`'s list (per test-plan §4 "CI workflows and leg script").
+- tests ↔ a11y: the PREREQ doc's focus-order claim is a11y surface (focusability), bound to a11y-plan §5, which scope cites.
+
+## Acceptance criteria contributions
+- `bash .github/scripts/ci-leg.sh fast` and `bash .github/scripts/ci-leg.sh doc` exit 0. Workspace tests show 0 failed, with the pass count delta from 430 · 0 · 4 accounted for by the new checks alone (per test-plan §9 Local pre-push gate; test-plan §9 Local baseline).
+- `run` on the stand selection reports all 13 stand checks passed across the five files (stand_boot 6 · stand_counter 1 · stand_flight_booker 1 · stand_timer 3 · stand_crud 2). It reports no skip and exits 0, and a forced failure exits non-zero (per test-plan §9 Local baseline, headless-stand recount; test-plan §2 Font-dependent tests).
+- The script's contract checks run in an existing gate leg or a leg the chunk adds and pins. They follow the `LegScriptTest` shape: status non-zero before boot, cleanup idempotent on a clean tree, unknown verb non-zero (per test-plan §4 "CI workflows and leg script").
+- `cargo test -p blitz-tests --test dioxus_falsy_disabled` still passes with only its `//!` doc changed, and the doc no longer claims focus-order exclusion (per test-plan §2 Test function naming; test-plan §4 blitz-dom (node)).

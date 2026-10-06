@@ -1,9 +1,9 @@
 //! A Dioxus `disabled: false` leaves the element without a `disabled` attribute,
-//! so an enabled control does not match `:disabled` and stays focusable.
+//! so an enabled control does not match `:disabled`.
 //!
 //! dioxus-native-dom wrote a falsy `disabled` as the literal `disabled="false"`;
-//! blitz-dom keys disabled-ness on the attribute's presence, so every enabled
-//! Dioxus control was styled disabled and dropped from the focus order.
+//! blitz-dom keys the DISABLED element state and `:disabled` on the attribute's
+//! presence, so every enabled Dioxus control was styled and stated disabled.
 
 use blitz_test_harness::Harness;
 use dioxus::prelude::*;

@@ -29,3 +29,6 @@
 ## Deferred learnings
 - recurrence-despite-learning: "The project's Bash guards refuse a heredoc written to a file and a leading cd" (Tier 3, 2026-10-06) — two calls this session were blocked again (a `cat` heredoc into a probe test file; a leading `cd` into `.claude/docs`)
 Review with `/andromeda-wrap-session --review` if any should be applied.
+
+## Session End Status
+Completed normally at 2026-10-06 05:23:28
