@@ -1,17 +1,64 @@
+use std::cell::RefCell;
+use std::rc::Rc;
+use std::task::{Poll, Waker};
+
 use dioxus_native::prelude::*;
+
+/// A tick source for [`Timer`]. Provided in context, it replaces the timer's
+/// 100 ms wall-clock delay: each delivered tick advances elapsed time once.
+#[derive(Clone, Default)]
+pub struct TimerTicks(Rc<RefCell<TickState>>);
+
+#[derive(Default)]
+struct TickState {
+    pending: u64,
+    waker: Option<Waker>,
+}
+
+impl TimerTicks {
+    /// Queue `n` ticks and wake the timer; they apply on the next poll of the VirtualDom.
+    pub fn deliver(&self, n: u64) {
+        let mut state = self.0.borrow_mut();
+        state.pending += n;
+        if let Some(waker) = state.waker.take() {
+            waker.wake();
+        }
+    }
+
+    async fn next(&self) {
+        std::future::poll_fn(|cx| {
+            let mut state = self.0.borrow_mut();
+            if state.pending > 0 {
+                state.pending -= 1;
+                Poll::Ready(())
+            } else {
+                state.waker = Some(cx.waker().clone());
+                Poll::Pending
+            }
+        })
+        .await
+    }
+}
 
 #[component]
 pub fn Timer() -> Element {
     let mut elapsed = use_signal(|| 0.0f64);
     let mut duration = use_signal(|| 15.0f64);
+    let ticks = try_use_context::<TimerTicks>();
 
-    use_coroutine(move |_: UnboundedReceiver<()>| async move {
-        loop {
-            futures_timer::Delay::new(std::time::Duration::from_millis(100)).await;
-            let dur = *duration.peek();
-            let current = *elapsed.peek();
-            if current < dur {
-                elapsed.set((current + 0.1).min(dur));
+    use_coroutine(move |_: UnboundedReceiver<()>| {
+        let ticks = ticks.clone();
+        async move {
+            loop {
+                match &ticks {
+                    Some(ticks) => ticks.next().await,
+                    None => futures_timer::Delay::new(std::time::Duration::from_millis(100)).await,
+                }
+                let dur = *duration.peek();
+                let current = *elapsed.peek();
+                if current < dur {
+                    elapsed.set((current + 0.1).min(dur));
+                }
             }
         }
     });

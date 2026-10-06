@@ -1,0 +1,1030 @@
+[
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T02:19:19Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-06-headless-stand/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T02-13-34-implement",
+"--marker",
+"2026-10-06-headless-stand"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-06-headless-stand · entries 16",
+"logs $TMPDIR/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34 · bound: GNU timeout",
+"delta docs 37 · rust 14",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L123-138: The gates below run in /implement P2 and the wrap's light gate. - The first entry is the c… (1649 chars)",
+"  1 unit        red · exit 0 ✗ (exit 101) · exit 101 · 33.21s · 4490 B → 1.log · cargo test -p blitz-tests --locked --test stand_boot --tes… (137 chars)",
+"  2 probe       green · exit 0 · 0.19s · 2 B → 2.log · cargo tree -p blitz-tests -e features -i wuff --locked | g… (75 chars)",
+"  3 probe       green · exit 0 · 0.19s · 2 B → 3.log · cargo tree -p blitz-tests -e features -i accesskit --locke… (106 chars)",
+"  4 probe       green · exit 1 · 0.0s · 2 B → 4.log · test -f examples/seven_guis/src/stand.rs && cat examples/s… (190 chars)",
+"  5 probe       green · exit 1 · 0.0s · 2 B → 5.log · ls tests/blitz-tests/tests/stand_*.rs > /dev/null && cat t… (147 chars)",
+"  6 probe       green · exit 1 · 0.01s · 2 B → 6.log · git diff d57a6c69b28fe8c9af9998a87ae87d4a8c8b9faa -- Cargo… (86 chars)",
+"  7 probe       green · exit 0 · 0.0s · 0 B → 7.log · git diff --quiet d57a6c69b28fe8c9af9998a87ae87d4a8c8b9faa … (92 chars)",
+"  8 build       green · exit 0 · 1.66s · 549 B → 8.log · cargo build -p seven_guis --bin seven_guis_native --locked",
+"  9 smoke       green · exit 0 · 10.12s · 636 B → 9.log · RUST_LOG=info timeout 10 target/debug/seven_guis_native; t… (72 chars)",
+" 10 lint        red · exit 0 ✗ (exit 1) · exit 1 · 0.44s · 601 B → 10.log · bash .github/scripts/ci-leg.sh fast",
+" 11 lint        green · exit 0 · 2.08s · 558 B → 11.log · bash .github/scripts/ci-leg.sh doc",
+" 12 integration green · exit 0 · 25.39s · 2000 B → 12.log · bash .github/scripts/ci-leg.sh a11y",
+" 13 probe       green · exit 0 · 1.02s · 14 B → 13.log · bash .github/scripts/ci-leg.sh audit",
+" 14 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 15 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 16 · green 11 · red 2 (1,10) · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-06-headless-stand",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-headless-stand/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-06T01-33-33-wrap/evolve-2026-10-06-telemetry-bootstrap.json",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/a11y-history.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/a11y.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/arch-history.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/arch.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/design-history.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/design.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/evolve-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/gate-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/layouts-history.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/layouts.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/master-record.txt",
+".andromeda/runs/2026-10-06T01-54-25-phase/matrix-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/obs-contracts.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/obs-history.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/obs.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/planlint-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/registry-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/route-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/route-no-marker.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/security-history.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/security.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/sidecar-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/tests-contracts.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/tests-history.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/tests.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/tree-query-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T02-13-34-implement/evolve-2026-10-06-headless-stand.json",
+"escher-0.1.0/chunks/2026-10-06-headless-stand/plan.md",
+"escher-0.1.0/chunks/2026-10-06-headless-stand/research.md",
+"escher-0.1.0/chunks/2026-10-06-headless-stand/scope.md"
+],
+"rust": [
+"Cargo.lock",
+"Cargo.toml",
+"examples/seven_guis/Cargo.toml",
+"examples/seven_guis/src/app.rs",
+"examples/seven_guis/src/lib.rs",
+"examples/seven_guis/src/tasks/timer.rs",
+"packages/blitz-test-harness/src/harness.rs",
+"tests/blitz-tests/Cargo.toml",
+"examples/seven_guis/src/stand.rs",
+"tests/blitz-tests/tests/stand_boot.rs",
+"tests/blitz-tests/tests/stand_counter.rs",
+"tests/blitz-tests/tests/stand_crud.rs",
+"tests/blitz-tests/tests/stand_flight_booker.rs",
+"tests/blitz-tests/tests/stand_timer.rs"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 51,
+"problem": null
+},
+"prose": [
+{
+"from": 123,
+"to": 138,
+"text": "The gates below run in /implement P2 and the wrap's light gate. - The first entry is the chunk's witness. It builds `-p blitz-tests` alone, without the workspace's feature unification,   so it proves the bundled woff2 decodes in the stand's own build and not only when `blitz` happens to turn `woff` on. - The census probes keep network, env and telemetry calls out of the stand, keep sleeps and recorded dispatch out of the   checks, keep `Cargo.lock` free of new packages, and keep the windowed `main.rs` untouched. Their base is `d57a6c69`,   the commit this chunk starts from, so they survive the operator's pre-CI commit. - The boot smoke runs the windowed stand. `app.rs`, `lib.rs` and `timer.rs` change what `seven_guis_native` launches,   so the stand must still boot and still log its identity. The entry declares the display handle `WAYLAND_DISPLAY` and   reads `not run — env unset` in a session without one, never red. It boots for 10 s under `RUST_LOG=info` and turns   `timeout`'s 124 (the stand stayed up) into the entry's own exit 0. The gate tool reads an entry exit 124 as its own   bound (verification-harness.md Session Additions). The `agent-run.sh` smoke form belongs to \"Stand test contract\"   (health check 13). - Two legs run on CI only, because this host has neither the wasm32 target nor the 1.91 toolchain (measured in   2026-10-06-telemetry-bootstrap's plan: `rustup target list --installed` → x86_64 only). The `wasm` leg proves the   seven_guis cdylib still builds after `lib.rs`/`app.rs`/`timer.rs` change, and `msrv` proves the 1.91 floor. The   operator entries push this chunk and read the CI run that covers both."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-tests --locked --test stand_boot --test stand_counter --test stand_flight_booker --test stand_timer --test stand_crud",
+"run_sha8": "93035799",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/1.log",
+"bytes": 4490,
+"log_sha8": "3bd65410",
+"exit": 101,
+"seconds": 33.21,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+},
+{
+"n": 2,
+"role": "probe",
+"run": "cargo tree -p blitz-tests -e features -i wuff --locked | grep -c '^wuff v' ",
+"run_sha8": "a32ff924",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/2.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.19,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "probe",
+"run": "cargo tree -p blitz-tests -e features -i accesskit --locked | grep -c 'blitz-dom feature \"accessibility\"' ",
+"run_sha8": "8df0643b",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/3.log",
+"bytes": 2,
+"log_sha8": "53c234e5",
+"exit": 0,
+"seconds": 0.19,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "test -f examples/seven_guis/src/stand.rs && cat examples/seven_guis/src/stand.rs tests/blitz-tests/tests/stand_*.rs | grep -c -E 'blitz_net|reqwest|env::var|escher_telemetry::init|println!' ",
+"run_sha8": "129f864d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/4.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "ls tests/blitz-tests/tests/stand_*.rs > /dev/null && cat tests/blitz-tests/tests/stand_*.rs | grep -c -E 'sleep|Delay|dispatch_recorded|eprintln!' ",
+"run_sha8": "c045ee1b",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/5.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "git diff d57a6c69b28fe8c9af9998a87ae87d4a8c8b9faa -- Cargo.lock | grep -c '^+name = ' ",
+"run_sha8": "bc3acbc0",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/6.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff --quiet d57a6c69b28fe8c9af9998a87ae87d4a8c8b9faa -- examples/seven_guis/src/main.rs",
+"run_sha8": "9051a669",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/7.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "build",
+"run": "cargo build -p seven_guis --bin seven_guis_native --locked",
+"run_sha8": "094a3644",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/8.log",
+"bytes": 549,
+"log_sha8": "ee0328d7",
+"exit": 0,
+"seconds": 1.66,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "smoke",
+"run": "RUST_LOG=info timeout 10 target/debug/seven_guis_native; test $? -eq 124",
+"run_sha8": "e0f15baf",
+"expect": [
+"exit 0",
+"contains service.name=seven_guis"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/9.log",
+"bytes": 636,
+"log_sha8": "9a8d459f",
+"exit": 0,
+"seconds": 10.12,
+"readings": [
+"exit 0 ✓",
+"contains 'service.name=seven_guis' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": [
+"exit 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/10.log",
+"bytes": 601,
+"log_sha8": "255574d2",
+"exit": 1,
+"seconds": 0.44,
+"readings": [
+"exit 0 ✗ (exit 1)"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 1)"
+},
+{
+"n": 11,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/11.log",
+"bytes": 558,
+"log_sha8": "420e1ef1",
+"exit": 0,
+"seconds": 2.08,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/12.log",
+"bytes": 2000,
+"log_sha8": "3bbb67d1",
+"exit": 0,
+"seconds": 25.39,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/13.log",
+"bytes": 14,
+"log_sha8": "799fc05e",
+"exit": 0,
+"seconds": 1.02,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "675d3a19",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T02:19:26Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-06T02-13-34-implement",
+"--marker",
+"2026-10-06-headless-stand",
+"--n",
+"1"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"1 unit red · exit 0 ✗ (exit 101)",
+"run (93035799): cargo test -p blitz-tests --locked --test stand_boot --test stand_counter --test stand_flight_booker --test stand_timer --test stand_crud",
+"  exit 0 ✗ (exit 101)",
+"  lacks 'running 0 tests' ✓",
+"  lacks 'FAILED' ✗",
+"log $TMPDIR/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/1.log · 4490 B · 3bd65410",
+"--- failing block from L79 ---",
+"test malformed_start_date_marks_the_field_invalid_and_disables_booking ... FAILED",
+"",
+"failures:",
+"",
+"---- malformed_start_date_marks_the_field_invalid_and_disables_booking stdout ----",
+"",
+"thread 'malformed_start_date_marks_the_field_invalid_and_disables_booking' (240719) panicked at tests/blitz-tests/tests/stand_flight_booker.rs:17:9:",
+"assertion `left == right` failed",
+"  left: Some(\"false\")",
+" right: None",
+"note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+"",
+"",
+"failures:",
+"    malformed_start_date_marks_the_field_invalid_and_disables_booking",
+"",
+"test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s",
+"",
+"error: test failed, to rerun pass `-p blitz-tests --test stand_flight_booker`",
+""
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T02:19:27Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-06T02-13-34-implement",
+"--marker",
+"2026-10-06-headless-stand",
+"--n",
+"10"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"10 lint red · exit 0 ✗ (exit 1)",
+"run (b93c6d21): bash .github/scripts/ci-leg.sh fast",
+"  exit 0 ✗ (exit 1)",
+"log $TMPDIR/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/10.log · 601 B · 255574d2",
+"--- failing block from L1 ---",
+"Diff in ./examples/seven_guis/src/tasks/timer.rs:52:",
+"             loop {",
+"                 match &ticks {",
+"                     Some(ticks) => ticks.next().await,",
+"\u001b[31m-                    None => {",
+"\u001b(B\u001b[m\u001b[31m-                        futures_timer::Delay::new(std::time::Duration::from_millis(100)).await",
+"\u001b(B\u001b[m\u001b[31m-                    }",
+"\u001b(B\u001b[m\u001b[32m+                    None => futures_timer::Delay::new(std::time::Duration::from_millis(100)).await,",
+"\u001b(B\u001b[m                 }",
+"                 let dur = *duration.peek();",
+"                 let current = *elapsed.peek();",
+""
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T02:22:38Z",
+"argv": [
+"run",
+"--plan",
+"/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-headless-stand/plan.md",
+"--run-dir",
+"/home/turbolet/dev/projects/escher/.andromeda/runs/2026-10-06T02-13-34-implement",
+"--marker",
+"2026-10-06-headless-stand"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-06-headless-stand · entries 16",
+"logs $TMPDIR/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34 · bound: GNU timeout",
+"delta docs 39 · rust 16 · unmapped 1",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L123-138: The gates below run in /implement P2 and the wrap's light gate. - The first entry is the c… (1649 chars)",
+"  1 unit        green · exit 0 · 4.08s · 2274 B → 1.log · cargo test -p blitz-tests --locked --test stand_boot --tes… (137 chars)",
+"  2 probe       green · exit 0 · 0.19s · 2 B → 2.log · cargo tree -p blitz-tests -e features -i wuff --locked | g… (75 chars)",
+"  3 probe       green · exit 0 · 0.2s · 2 B → 3.log · cargo tree -p blitz-tests -e features -i accesskit --locke… (106 chars)",
+"  4 probe       green · exit 1 · 0.0s · 2 B → 4.log · test -f examples/seven_guis/src/stand.rs && cat examples/s… (190 chars)",
+"  5 probe       green · exit 1 · 0.0s · 2 B → 5.log · ls tests/blitz-tests/tests/stand_*.rs > /dev/null && cat t… (147 chars)",
+"  6 probe       green · exit 1 · 0.01s · 2 B → 6.log · git diff d57a6c69b28fe8c9af9998a87ae87d4a8c8b9faa -- Cargo… (86 chars)",
+"  7 probe       green · exit 0 · 0.0s · 0 B → 7.log · git diff --quiet d57a6c69b28fe8c9af9998a87ae87d4a8c8b9faa … (92 chars)",
+"  8 build       green · exit 0 · 2.07s · 856 B → 8.log · cargo build -p seven_guis --bin seven_guis_native --locked",
+"  9 smoke       green · exit 0 · 10.08s · 636 B → 9.log · RUST_LOG=info timeout 10 target/debug/seven_guis_native; t… (72 chars)",
+" 10 lint        green · exit 0 · 43.55s · 50485 B → 10.log · bash .github/scripts/ci-leg.sh fast",
+" 11 lint        green · exit 0 · 4.35s · 1407 B → 11.log · bash .github/scripts/ci-leg.sh doc",
+" 12 integration green · exit 0 · 2.77s · 1691 B → 12.log · bash .github/scripts/ci-leg.sh a11y",
+" 13 probe       green · exit 0 · 1.01s · 14 B → 13.log · bash .github/scripts/ci-leg.sh audit",
+" 14 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 15 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 16 · green 13 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-06-headless-stand",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-headless-stand/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-06T01-33-33-wrap/evolve-2026-10-06-telemetry-bootstrap.json",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/a11y-history.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/a11y.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/arch-history.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/arch.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/design-history.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/design.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/evolve-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/gate-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/layouts-history.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/layouts.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/master-record.txt",
+".andromeda/runs/2026-10-06T01-54-25-phase/matrix-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/obs-contracts.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/obs-history.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/obs.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/planlint-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/registry-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/route-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/route-no-marker.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/security-history.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/security.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/sidecar-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T01-54-25-phase/tests-contracts.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/tests-history.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/tests.md",
+".andromeda/runs/2026-10-06T01-54-25-phase/tree-query-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T02-13-34-implement/evolve-2026-10-06-headless-stand.json",
+".andromeda/runs/2026-10-06T02-13-34-implement/gate-2026-10-06-headless-stand.json",
+"escher-0.1.0/chunks/2026-10-06-headless-stand/plan.md",
+"escher-0.1.0/chunks/2026-10-06-headless-stand/research.md",
+"escher-0.1.0/chunks/2026-10-06-headless-stand/scope-record.md",
+"escher-0.1.0/chunks/2026-10-06-headless-stand/scope.md"
+],
+"rust": [
+"Cargo.lock",
+"Cargo.toml",
+"examples/seven_guis/Cargo.toml",
+"examples/seven_guis/src/app.rs",
+"examples/seven_guis/src/lib.rs",
+"examples/seven_guis/src/tasks/timer.rs",
+"packages/blitz-test-harness/src/harness.rs",
+"packages/dioxus-native-dom/src/mutation_writer.rs",
+"tests/blitz-tests/Cargo.toml",
+"examples/seven_guis/src/stand.rs",
+"tests/blitz-tests/tests/dioxus_falsy_disabled.rs",
+"tests/blitz-tests/tests/stand_boot.rs",
+"tests/blitz-tests/tests/stand_counter.rs",
+"tests/blitz-tests/tests/stand_crud.rs",
+"tests/blitz-tests/tests/stand_flight_booker.rs",
+"tests/blitz-tests/tests/stand_timer.rs"
+]
+},
+"unmapped": [
+"escher-0.1.0/chunks/2026-10-06-headless-stand/evidence/disabled-false-probe.txt"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 56,
+"problem": null
+},
+"prose": [
+{
+"from": 123,
+"to": 138,
+"text": "The gates below run in /implement P2 and the wrap's light gate. - The first entry is the chunk's witness. It builds `-p blitz-tests` alone, without the workspace's feature unification,   so it proves the bundled woff2 decodes in the stand's own build and not only when `blitz` happens to turn `woff` on. - The census probes keep network, env and telemetry calls out of the stand, keep sleeps and recorded dispatch out of the   checks, keep `Cargo.lock` free of new packages, and keep the windowed `main.rs` untouched. Their base is `d57a6c69`,   the commit this chunk starts from, so they survive the operator's pre-CI commit. - The boot smoke runs the windowed stand. `app.rs`, `lib.rs` and `timer.rs` change what `seven_guis_native` launches,   so the stand must still boot and still log its identity. The entry declares the display handle `WAYLAND_DISPLAY` and   reads `not run — env unset` in a session without one, never red. It boots for 10 s under `RUST_LOG=info` and turns   `timeout`'s 124 (the stand stayed up) into the entry's own exit 0. The gate tool reads an entry exit 124 as its own   bound (verification-harness.md Session Additions). The `agent-run.sh` smoke form belongs to \"Stand test contract\"   (health check 13). - Two legs run on CI only, because this host has neither the wasm32 target nor the 1.91 toolchain (measured in   2026-10-06-telemetry-bootstrap's plan: `rustup target list --installed` → x86_64 only). The `wasm` leg proves the   seven_guis cdylib still builds after `lib.rs`/`app.rs`/`timer.rs` change, and `msrv` proves the 1.91 floor. The   operator entries push this chunk and read the CI run that covers both."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-tests --locked --test stand_boot --test stand_counter --test stand_flight_booker --test stand_timer --test stand_crud",
+"run_sha8": "93035799",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/1.log",
+"bytes": 2274,
+"log_sha8": "77aaa0aa",
+"exit": 0,
+"seconds": 4.08,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "probe",
+"run": "cargo tree -p blitz-tests -e features -i wuff --locked | grep -c '^wuff v' ",
+"run_sha8": "a32ff924",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/2.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.19,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "probe",
+"run": "cargo tree -p blitz-tests -e features -i accesskit --locked | grep -c 'blitz-dom feature \"accessibility\"' ",
+"run_sha8": "8df0643b",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/3.log",
+"bytes": 2,
+"log_sha8": "53c234e5",
+"exit": 0,
+"seconds": 0.2,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "test -f examples/seven_guis/src/stand.rs && cat examples/seven_guis/src/stand.rs tests/blitz-tests/tests/stand_*.rs | grep -c -E 'blitz_net|reqwest|env::var|escher_telemetry::init|println!' ",
+"run_sha8": "129f864d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/4.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "ls tests/blitz-tests/tests/stand_*.rs > /dev/null && cat tests/blitz-tests/tests/stand_*.rs | grep -c -E 'sleep|Delay|dispatch_recorded|eprintln!' ",
+"run_sha8": "c045ee1b",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/5.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "git diff d57a6c69b28fe8c9af9998a87ae87d4a8c8b9faa -- Cargo.lock | grep -c '^+name = ' ",
+"run_sha8": "bc3acbc0",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/6.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff --quiet d57a6c69b28fe8c9af9998a87ae87d4a8c8b9faa -- examples/seven_guis/src/main.rs",
+"run_sha8": "9051a669",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/7.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "build",
+"run": "cargo build -p seven_guis --bin seven_guis_native --locked",
+"run_sha8": "094a3644",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/8.log",
+"bytes": 856,
+"log_sha8": "2c9b4e18",
+"exit": 0,
+"seconds": 2.07,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "smoke",
+"run": "RUST_LOG=info timeout 10 target/debug/seven_guis_native; test $? -eq 124",
+"run_sha8": "e0f15baf",
+"expect": [
+"exit 0",
+"contains service.name=seven_guis"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/9.log",
+"bytes": 636,
+"log_sha8": "a71e4381",
+"exit": 0,
+"seconds": 10.08,
+"readings": [
+"exit 0 ✓",
+"contains 'service.name=seven_guis' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": [
+"exit 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/10.log",
+"bytes": 50485,
+"log_sha8": "25358bd3",
+"exit": 0,
+"seconds": 43.55,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/11.log",
+"bytes": 1407,
+"log_sha8": "ceae6185",
+"exit": 0,
+"seconds": 4.35,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/12.log",
+"bytes": 1691,
+"log_sha8": "83d20146",
+"exit": 0,
+"seconds": 2.77,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/13.log",
+"bytes": 14,
+"log_sha8": "799fc05e",
+"exit": 0,
+"seconds": 1.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "675d3a19",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T02:23:14Z",
+"argv": [
+"show",
+"--run-dir",
+"/home/turbolet/dev/projects/escher/.andromeda/runs/2026-10-06T02-13-34-implement",
+"--marker",
+"2026-10-06-headless-stand",
+"--n",
+"9"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"9 smoke green",
+"run (e0f15baf): RUST_LOG=info timeout 10 target/debug/seven_guis_native; test $? -eq 124",
+"  exit 0 ✓",
+"  contains 'service.name=seven_guis' ✓",
+"log $TMPDIR/andromeda-gate/2026-10-06-headless-stand/implement-2026-10-06T02-13-34/9.log · 636 B · a71e4381",
+"--- no anchored failure; last 20 non-empty lines ---",
+"2026-10-06T02:21:36.555639Z INFO escher_telemetry service.name=seven_guis service.version=0.1.0 message=telemetry installed",
+"2026-10-06T02:21:36.689211Z WARN winit_wayland::window::state service.name=seven_guis service.version=0.1.0 message=`xdg_toplevel_icon_manager_v1` is not supported",
+"2026-10-06T02:21:36.711238Z INFO wgpu_hal::vulkan::adapter service.name=seven_guis service.version=0.1.0 message=Found 6 cooperative matrix configurations supported by wgpu log.module_path=\"wgpu_hal::vulkan::adapter\" log.file=\"~/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wgpu-hal-30.0.1/src/vulkan/adapter.rs\" log.line=3546"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.10",
+"sha8": "a74d389d",
+"ts": "2026-10-06T02:23:18Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-headless-stand",
+"--run-dir",
+"/home/turbolet/dev/projects/escher/.andromeda/runs/2026-10-06T02-13-34-implement",
+"--marker",
+"2026-10-06-headless-stand"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 6 · modify 8 · derived 0 · record 2",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"recorded widening packages/dioxus-native-dom/src/mutation_writer.rs",
+"recorded widening tests/blitz-tests/tests/dioxus_falsy_disabled.rs",
+"scope: clean — changed 16 · listed 14 · recorded 2 (companion 0 · mechanical 0 · in-intent 0 · widening 2) · absorbed 0 · excluded 40"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 16,
+"listed": 14,
+"recorded": 2,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 2
+},
+"excluded": 40,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

@@ -31,3 +31,6 @@
 - U35 bootstrap-phase labels (`pii-scrubbing-wire`, `otel-sdk-install`, …) live in `.andromeda/registries/`; a body-only grep over the seven masters reads them absent (confidence 0.8)
 - recurrence-despite-learning: "The project's Bash guards refuse a heredoc written to a file and a leading cd" (Tier 3, 2026-10-06) — two calls this session still began with `cd` into a subdirectory and were blocked
 Review with `/andromeda-wrap-session --review` if any should be applied.
+
+## Session End Status
+Completed normally at 2026-10-06 04:13:23

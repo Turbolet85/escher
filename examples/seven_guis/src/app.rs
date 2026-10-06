@@ -2,8 +2,9 @@ use dioxus_native::prelude::*;
 
 use crate::tasks::{cells, circle_drawer, counter, crud, flight_booker, temp_converter, timer};
 
-#[derive(Clone, Copy, PartialEq)]
-enum Task {
+/// One of the seven 7GUIs tasks.
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum Task {
     Counter,
     TempConverter,
     FlightBooker,
@@ -73,38 +74,45 @@ pub fn app() -> Element {
             style { {HOME_CSS} }
             Home { on_select: move |t| active.set(Some(t)) }
         },
-        Some(Task::Counter) => rsx! {
-            TaskShell { title: "Counter", on_back: move |_| active.set(None),
+        Some(task) => task_in_shell(task, EventHandler::new(move |_| active.set(None))),
+    }
+}
+
+/// `task` rendered inside the stand's `TaskShell` chrome; `on_back` fires on the Back button.
+pub fn task_in_shell(task: Task, on_back: EventHandler<()>) -> Element {
+    match task {
+        Task::Counter => rsx! {
+            TaskShell { title: "Counter", on_back,
                 counter::Counter {}
             }
         },
-        Some(Task::TempConverter) => rsx! {
-            TaskShell { title: "Temperature Converter", on_back: move |_| active.set(None),
+        Task::TempConverter => rsx! {
+            TaskShell { title: "Temperature Converter", on_back,
                 temp_converter::TempConverter {}
             }
         },
-        Some(Task::FlightBooker) => rsx! {
-            TaskShell { title: "Flight Booker", on_back: move |_| active.set(None),
+        Task::FlightBooker => rsx! {
+            TaskShell { title: "Flight Booker", on_back,
                 flight_booker::FlightBooker {}
             }
         },
-        Some(Task::Timer) => rsx! {
-            TaskShell { title: "Timer", on_back: move |_| active.set(None),
+        Task::Timer => rsx! {
+            TaskShell { title: "Timer", on_back,
                 timer::Timer {}
             }
         },
-        Some(Task::Crud) => rsx! {
-            TaskShell { title: "CRUD", on_back: move |_| active.set(None),
+        Task::Crud => rsx! {
+            TaskShell { title: "CRUD", on_back,
                 crud::Crud {}
             }
         },
-        Some(Task::CircleDrawer) => rsx! {
-            TaskShell { title: "Circle Drawer", on_back: move |_| active.set(None),
+        Task::CircleDrawer => rsx! {
+            TaskShell { title: "Circle Drawer", on_back,
                 circle_drawer::CircleDrawer {}
             }
         },
-        Some(Task::Cells) => rsx! {
-            TaskShell { title: "Cells", on_back: move |_| active.set(None),
+        Task::Cells => rsx! {
+            TaskShell { title: "Cells", on_back,
                 cells::Cells {}
             }
         },

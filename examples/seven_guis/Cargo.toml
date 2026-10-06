@@ -27,9 +27,11 @@ futures-timer = "3"
 idna_adapter = "=1.0.0"
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
-# Native: pull in system fonts (wasm bundles DejaVu instead).
-dioxus-native = { workspace = true, features = ["system-fonts"] }
+# Native: pull in system fonts; `woff` decodes the bundled DejaVu the headless stand uses.
+dioxus-native = { workspace = true, features = ["system-fonts", "woff"] }
 escher-telemetry = { workspace = true }
+blitz-test-harness = { workspace = true }
+blitz-traits = { workspace = true }
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 # WASM-only: additive wasm-bindgen feature on futures-timer

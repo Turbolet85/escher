@@ -1,0 +1,25 @@
+Probe — a falsy Dioxus `disabled` reaches blitz as a literal attribute (2026-10-06, /implement P2)
+
+Subject: a throwaway test file (deleted after the run) booting the stand through seven_guis::stand at the pinned
+options (incremental = true), run with `cargo test -p blitz-tests --locked --test zz_probe_disabled -- --nocapture`.
+
+Readings, verbatim:
+flight initial: disabled=Some("false") matches_:disabled=true class=Some("date-input")
+flight after Book click on valid dates: booked-msg present=true
+flight after typing x: disabled=Some("true") class=Some("date-input invalid") value=Some("01.01.2026x")
+crud initial: update disabled=Some("true")
+crud after selecting: selected=true update disabled=Some("false") matches_:disabled=true
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+
+Cause (source read): packages/dioxus-native-dom/src/mutation_writer.rs `set_attribute_inner` clears a falsy value only
+for `checked`; `disabled: false` is written as `disabled="false"`. blitz-dom keys disabled-ness on attribute presence
+(element.rs focusability `has_attr(disabled)`, pointer.rs click target, Stylo `:disabled`).
+
+Effect on the stand: an enabled Book / Update / Delete button matches `:disabled` (disabled styling) and is excluded
+from focus by the presence rule, while a pointer click still reaches its Dioxus handler.
+
+Effect on the plan: stand_flight_booker.rs's first assertion (`.flight-btn` carries no `disabled` attribute initially,
+plan step 6) reads Some("false") — red at gate 1 of run 2026-10-06T02-13-34-implement.
+
+Also witnessed: `type_text` into a Dioxus controlled input reaches `oninput` (value "01.01.2026x" → class "invalid";
+stand_crud.rs create check green) — the implementation note's open question resolves positively.

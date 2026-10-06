@@ -1,0 +1,269 @@
+[
+{
+"sql": "SELECT callee_name, caller, file, line FROM calls WHERE callee_name IN ('app','TaskShell','Timer','Counter','Crud','FlightBooker') AND callee_file LIKE '%seven_guis%' ORDER BY callee_name, file, line",
+"rows": 22,
+"result": [
+{
+"callee_name": "Counter",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/TASKS.",
+"file": "examples/seven_guis/src/app.rs",
+"line": 24
+},
+{
+"callee_name": "Counter",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/app().",
+"file": "examples/seven_guis/src/app.rs",
+"line": 75
+},
+{
+"callee_name": "Counter",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/app().",
+"file": "examples/seven_guis/src/app.rs",
+"line": 77
+},
+{
+"callee_name": "Crud",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/TASKS.",
+"file": "examples/seven_guis/src/app.rs",
+"line": 48
+},
+{
+"callee_name": "Crud",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/app().",
+"file": "examples/seven_guis/src/app.rs",
+"line": 95
+},
+{
+"callee_name": "Crud",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/app().",
+"file": "examples/seven_guis/src/app.rs",
+"line": 97
+},
+{
+"callee_name": "FlightBooker",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/TASKS.",
+"file": "examples/seven_guis/src/app.rs",
+"line": 36
+},
+{
+"callee_name": "FlightBooker",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/app().",
+"file": "examples/seven_guis/src/app.rs",
+"line": 85
+},
+{
+"callee_name": "FlightBooker",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/app().",
+"file": "examples/seven_guis/src/app.rs",
+"line": 87
+},
+{
+"callee_name": "TaskShell",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/app().",
+"file": "examples/seven_guis/src/app.rs",
+"line": 76
+},
+{
+"callee_name": "TaskShell",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/app().",
+"file": "examples/seven_guis/src/app.rs",
+"line": 81
+},
+{
+"callee_name": "TaskShell",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/app().",
+"file": "examples/seven_guis/src/app.rs",
+"line": 86
+},
+{
+"callee_name": "TaskShell",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/app().",
+"file": "examples/seven_guis/src/app.rs",
+"line": 91
+},
+{
+"callee_name": "TaskShell",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/app().",
+"file": "examples/seven_guis/src/app.rs",
+"line": 96
+},
+{
+"callee_name": "TaskShell",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/app().",
+"file": "examples/seven_guis/src/app.rs",
+"line": 101
+},
+{
+"callee_name": "TaskShell",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/app().",
+"file": "examples/seven_guis/src/app.rs",
+"line": 106
+},
+{
+"callee_name": "Timer",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/TASKS.",
+"file": "examples/seven_guis/src/app.rs",
+"line": 42
+},
+{
+"callee_name": "Timer",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/app().",
+"file": "examples/seven_guis/src/app.rs",
+"line": 90
+},
+{
+"callee_name": "Timer",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 app/app().",
+"file": "examples/seven_guis/src/app.rs",
+"line": 92
+},
+{
+"callee_name": "app",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 crate/",
+"file": "examples/seven_guis/src/lib.rs",
+"line": 0
+},
+{
+"callee_name": "app",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 main().",
+"file": "examples/seven_guis/src/main.rs",
+"line": 8
+},
+{
+"callee_name": "app",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 main().",
+"file": "examples/seven_guis/src/main.rs",
+"line": 8
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT from_crate, to_crate FROM crate_edges WHERE to_crate = 'seven_guis' OR from_crate = 'seven_guis' OR to_crate = 'blitz-test-harness'",
+"rows": 4,
+"result": [
+{
+"from_crate": "seven_guis",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "dioxus-native"
+},
+{
+"from_crate": "blitz-tests",
+"to_crate": "blitz-test-harness"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "escher-telemetry"
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, file, line FROM refs WHERE callee_name IN ('HarnessOptions','from_vdom','into_config') AND callee_file LIKE '%blitz-test-harness%' ORDER BY file, line",
+"rows": 19,
+"result": [
+{
+"callee_name": "HarnessOptions",
+"file": "packages/blitz-test-harness/src/harness.rs",
+"line": 22
+},
+{
+"callee_name": "HarnessOptions",
+"file": "packages/blitz-test-harness/src/harness.rs",
+"line": 35
+},
+{
+"callee_name": "HarnessOptions",
+"file": "packages/blitz-test-harness/src/harness.rs",
+"line": 61
+},
+{
+"callee_name": "HarnessOptions",
+"file": "packages/blitz-test-harness/src/harness.rs",
+"line": 64
+},
+{
+"callee_name": "into_config",
+"file": "packages/blitz-test-harness/src/harness.rs",
+"line": 65
+},
+{
+"callee_name": "from_vdom",
+"file": "packages/blitz-test-harness/src/harness.rs",
+"line": 75
+},
+{
+"callee_name": "HarnessOptions",
+"file": "packages/blitz-test-harness/src/harness.rs",
+"line": 75
+},
+{
+"callee_name": "HarnessOptions",
+"file": "packages/blitz-test-harness/src/harness.rs",
+"line": 78
+},
+{
+"callee_name": "into_config",
+"file": "packages/blitz-test-harness/src/harness.rs",
+"line": 79
+},
+{
+"callee_name": "HarnessOptions",
+"file": "packages/blitz-test-harness/src/lib.rs",
+"line": 19
+},
+{
+"callee_name": "HarnessOptions",
+"file": "tests/blitz-tests/tests/dir_attribute.rs",
+"line": 7
+},
+{
+"callee_name": "HarnessOptions",
+"file": "tests/blitz-tests/tests/dir_attribute.rs",
+"line": 22
+},
+{
+"callee_name": "HarnessOptions",
+"file": "tests/blitz-tests/tests/pointer_events.rs",
+"line": 5
+},
+{
+"callee_name": "HarnessOptions",
+"file": "tests/blitz-tests/tests/pointer_events.rs",
+"line": 10
+},
+{
+"callee_name": "HarnessOptions",
+"file": "tests/blitz-tests/tests/stale_node_mapping.rs",
+"line": 17
+},
+{
+"callee_name": "from_vdom",
+"file": "tests/blitz-tests/tests/stale_node_mapping.rs",
+"line": 55
+},
+{
+"callee_name": "HarnessOptions",
+"file": "tests/blitz-tests/tests/stale_node_mapping.rs",
+"line": 55
+},
+{
+"callee_name": "HarnessOptions",
+"file": "tests/blitz-tests/tests/touch_events.rs",
+"line": 5
+},
+{
+"callee_name": "HarnessOptions",
+"file": "tests/blitz-tests/tests/touch_events.rs",
+"line": 27
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

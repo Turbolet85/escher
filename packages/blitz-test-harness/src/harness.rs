@@ -1,6 +1,6 @@
 use std::sync::Arc;
 
-use blitz_dom::{DocGuard, DocGuardMut, Document, DocumentConfig};
+use blitz_dom::{DocGuard, DocGuardMut, Document, DocumentConfig, FontContext};
 use blitz_html::{HtmlDocument, HtmlProvider};
 use blitz_traits::events::UiEvent;
 use blitz_traits::net::NetProvider;
@@ -18,6 +18,11 @@ pub struct HarnessOptions {
     pub base_url: Option<String>,
     /// Net provider used to fetch sub-resources (stylesheets, images, fonts, etc)
     pub net_provider: Option<Arc<dyn NetProvider>>,
+    /// Font context used for text shaping. `None` uses the document's default
+    /// (system fonts when the `system-fonts` feature is on).
+    pub font_ctx: Option<FontContext>,
+    /// Whether incremental layout is enabled. `None` uses the document's default.
+    pub incremental: Option<bool>,
 }
 
 impl Default for HarnessOptions {
@@ -29,6 +34,8 @@ impl Default for HarnessOptions {
             color_scheme: ColorScheme::Light,
             base_url: None,
             net_provider: None,
+            font_ctx: None,
+            incremental: None,
         }
     }
 }
@@ -45,6 +52,8 @@ impl HarnessOptions {
             base_url: self.base_url,
             net_provider: self.net_provider,
             html_parser_provider: Some(Arc::new(HtmlProvider) as _),
+            font_ctx: self.font_ctx,
+            incremental: self.incremental,
             ..Default::default()
         }
     }
