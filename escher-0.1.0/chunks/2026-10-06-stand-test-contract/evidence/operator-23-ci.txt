@@ -1,0 +1,18 @@
+Operator entry 23 — CI read on the pushed sha (2026-10-06, hand-driven at the operator pass)
+
+run: python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800
+exit: 0
+expect: exit 0 ✓ · contains 'verdict: green' ✓
+
+repo Turbolet85/escher (the push remote `origin`) · polled 17× over 496 s
+73fd624c2457 verdict: green · checks 16/16 · wall 472 s · runs CI#37409303977 completed/success
+runs: CI#37409303977 push completed/success
+
+Jobs (gh run view 37409303977 -R Turbolet85/escher --json jobs), all success:
+Rustfmt · Test CI scripts · Clippy · Test [default features] · Accessibility (a11y) tests · MSRV Build [Rust 1.91] ·
+Build [default features] · Documentation · Dependency audit · Build counter example · Build wasm examples ·
+Test (macos) · Coverage report · Test (windows) · Test (ios) · Test (android)
+
+On the runner, "Test CI scripts" (bash .github/scripts/ci-leg.sh ci-scripts): Ran 37 tests in 1.010s · OK —
+test_agent_run.py's 14 contract cases among them.
+Note: wall 472 s against 1104 s (run 37404017734) for the previous pipeline; Cargo.lock unchanged this push.

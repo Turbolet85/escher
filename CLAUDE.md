@@ -62,7 +62,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 | Threat model · trust boundaries | `.andromeda/security-plan.md` §Threat Model Summary / §Input Validation |
 | Design tokens (as built) | `.andromeda/design-system.md` §Color Palette / §Typography |
 | Screen layouts per surface | `.andromeda/layout-templates.md` |
-| Test harness | `.andromeda/test-plan.md` §3 |
+| Test harness · agent-run contract | `.andromeda/test-plan.md` §3 · `scripts/agent-run.sh` (contract tests `.github/scripts/test_agent_run.py`) |
 | Observability pipeline | `.andromeda/obs-plan.md` §3 |
 | WCAG criteria · a11y harness | `.andromeda/a11y-plan.md` §1 / §3 |
 | Chunk history (version-agnostic) | `.andromeda/master-route.md` |
@@ -82,7 +82,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 **Key commands:**
 - `cargo build --workspace` — build every crate (Linux needs `libfontconfig1-dev`; Arch: `fontconfig`)
 - `bash .github/scripts/ci-leg.sh fast` — the local pre-push gate: fmt → clippy → workspace tests → CI scripts, as CI runs them
-- `cargo test -p blitz-tests --test {name}` — one integration-test file
+- `cargo test -p blitz-tests --test {name}` — one integration-test file; agent-driven: `bash scripts/agent-run.sh boot`, then `run stand|all|{name}` (JSON-line results; `status` · `logs` · `cleanup`)
 - `bash .github/scripts/ci-leg.sh {leg}` — one CI leg exactly (`fmt` · `clippy` · `test` · `build` · `doc` · `audit` · `a11y` · `coverage` · …); log in `target/ci-logs/{leg}.log`
 - `just seven_guis` — run the 7GUIs stand natively (windowed)
 

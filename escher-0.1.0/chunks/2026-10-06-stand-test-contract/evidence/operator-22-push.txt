@@ -1,0 +1,11 @@
+Operator entry 22 — local pre-push gate, clean-tree guard, push (2026-10-06, hand-driven at the operator pass)
+
+preceded by: 73fd624c chore(2026-10-06-stand-test-contract): operator pre-CI commit, for the run this chunk's verdict reads
+run: bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0
+exit: 0 (read from the chain's own process, not through a pipe)
+
+last lines of the log:
+Ran 37 tests in 0.870s
+OK
+To https://github.com/Turbolet85/escher.git
+   913f5918..73fd624c  build/escher-0.1.0 -> build/escher-0.1.0

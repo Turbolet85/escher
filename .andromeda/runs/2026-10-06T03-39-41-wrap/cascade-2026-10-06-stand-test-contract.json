@@ -1,0 +1,183 @@
+[
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "43eb863f",
+"ts": "2026-10-06T03:47:07Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-06T03-39-41-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-06T03-39-41-wrap",
+"--marker",
+"2026-10-06-stand-test-contract"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 3,
+"stdout": [
+"baseline 913f5918 (pre-CI parent — the oldest of 1 pre-CI commit(s), 73fd624c)",
+"notrendered · control UNFIRED over the seven masters at 913f5918"
+],
+"stderr": "control: notrendered never fired over the seven masters' pre-pass text (913f5918) — a sweep runs a positive control or refuses; drop the pattern or control it by hand",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "43eb863f",
+"ts": "2026-10-06T03:47:18Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-06T03-39-41-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-06T03-39-41-wrap",
+"--marker",
+"2026-10-06-stand-test-contract"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"baseline 913f5918 (pre-CI parent — the oldest of 1 pre-CI commit(s), 73fd624c)",
+"5cmd · new 1 · standing 2 · leaf 2 · curation 0 · base 1 · control test-plan.md:100 (prose)",
+"cmdlist · new 0 · standing 0 · leaf 2 · curation 0 · base 0 · control test-plan.md:100 (prose)",
+"statusendp · new 0 · standing 1 · leaf 1 · curation 0 · base 1 · case-variants +1 · control test-plan.md:100 (prose)",
+"pidfile · new 1 · standing 0 · leaf 2 · curation 0 · base 0 · control test-plan.md:100 (prose)",
+"bootstrap · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:100 (prose)",
+"jsonschema · new 0 · standing 1 · leaf 3 · curation 0 · base 0 · control obs-plan.md:83 (prose)",
+"logfileloc · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control obs-plan.md:83 (prose)",
+"ci23 · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:114 (prose)",
+"agentrun · new 21 · standing 1 · leaf 3 · curation 0 · base 0 · case-variants +1 · control a11y-plan.md:57 (prose)",
+".andromeda/test-plan.md:100 5cmd standing edited …ent-run contract (the 5-command discipline, for the stand checks and …",
+".andromeda/test-plan.md:113 5cmd standing edited …bootstrap mechanism of the 5-command contract: no reading gathered one",
+".andromeda/obs-plan.md:83 5cmd new …cripts/agent-run.sh` — the 5-command test contract of test-plan §3 — writes JSON li…",
+".andromeda/drift-base.md:87 5cmd base   invariant: the 5-command harness / status shape / log format stays consistent b…",
+".claude/rules/verification-harness.md:13 5cmd leaf ## The 5-command contract — NOT YET MEASURED",
+".claude/docs/tests-summary.md:15 5cmd leaf - **5-command discipline (boot / run / status / cleanup / logs):** NOT YET M…",
+".claude/rules/verification-harness.md:14 cmdlist leaf - No product boot / run / status / cleanup / logs command, status…",
+".claude/docs/tests-summary.md:15 cmdlist leaf …*5-command discipline (boot / run / status / cleanup / logs):** NOT YET …",
+".andromeda/test-plan.md:102 statusendp standing edited …o daemon, PID file, status endpoint, port or socket, and the sc…",
+".andromeda/drift-base.md:88 statusendp base …rt changes the harness, status endpoint, or log format, confirm §3 ↔ obs-p…",
+".claude/docs/obs-summary.md:16 statusendp leaf … sink path · rotation · heartbeat · status endpoint:** NOT YET MEASURED.",
+".andromeda/test-plan.md:102 pidfile new … listened on: no daemon, PID file, status endpoint, port or socket, and the sc…",
+".claude/rules/verification-harness.md:14 pidfile leaf …mmand, status shape, PID file or JSON-line log format exists yet…",
+".claude/docs/tests-summary.md:17 pidfile leaf - **Status endpoint · PID file · JSON-line logs · tempdir:** NOT YET MEAS…",
+".andromeda/test-plan.md:113 bootstrap standing edited …T YET MEASURED — the test-data bootstrap mechanism of the 5-comm…",
+".andromeda/obs-plan.md:149 jsonschema standing edited …NOT YET MEASURED — a log JSON schema, a log-file sink and a rota…",
+".claude/rules/verification-harness.md:14 jsonschema leaf ×2 …shape, PID file or JSON-line log format exists yet (the st…",
+".claude/docs/obs-summary.md:16 jsonschema leaf - **JSON log schema · log sink path · rotation · heartbeat · status endp…",
+".claude/docs/tests-summary.md:17 jsonschema leaf …endpoint · PID file · JSON-line logs · tempdir:** NOT YET MEASURED (s…",
+".andromeda/obs-plan.md:149 logfileloc standing edited …a log JSON schema, a log-file sink and a rotation policy for esc…",
+".andromeda/architecture.md:139 agentrun new ×6 @c2685,2723,3128,3187,3326,3354/3535 …-264); the agent-run test contract…",
+".andromeda/architecture.md:147 agentrun new ×5 @c1444,1489,1824,1848,1878/2147 …6-291); the agent-run test contract's s…",
+".andromeda/security-plan.md:66 agentrun new ×4 | CLI arguments (agent-run.sh) | Verb and run selection | A verb outside…",
+".andromeda/security-plan.md:362 agentrun new ×5 - The agent-run test contract (`scripts/agent-run.sh`) logs harness met…",
+".andromeda/layout-templates.md:71 agentrun new ×6 - `scripts/agent-run.sh` — the agent-invocable test contract, run fro…",
+".andromeda/test-plan.md:102 agentrun new ×6 …cation:** `bash scripts/agent-run.sh {boot | run {selection} | status | cl…",
+".andromeda/test-plan.md:103 agentrun new ×2 …efore not-booted (scripts/agent-run.sh:12-17; scripts/agent-run.sh:176-195)",
+".andromeda/test-plan.md:104 agentrun new ×2 …irst, recreates `target/agent-run/` (a fresh `events.jsonl`), builds every…",
+".andromeda/test-plan.md:105 agentrun new ×2 …` null, exit 1 (scripts/agent-run.sh:176-210; scripts/agent-run.sh:126-138)",
+".andromeda/test-plan.md:106 agentrun new ×2 …booted` false) (scripts/agent-run.sh:111-116; scripts/agent-run.sh:211-213)",
+".andromeda/test-plan.md:107 agentrun new ×2 …nup`:** removes `target/agent-run/` if present and prints the `cleanup` ev…",
+".andromeda/test-plan.md:108 agentrun new … cargo output stays in `run.log`, never printed (scripts/agent-run.sh:220-226)",
+".andromeda/test-plan.md:109 agentrun new ×3 … (obs-plan §3) (scripts/agent-run.sh:34-36; scripts/agent-run.sh:80-98; sc…",
+".andromeda/test-plan.md:110 agentrun new - **State:** `target/agent-run/{status.json, events.jsonl, run.log}` only, git…",
+".andromeda/test-plan.md:128 agentrun new …ntRunTest` runs `scripts/agent-run.sh` in a temp dir with a `cargo` shim on P…",
+".andromeda/obs-plan.md:83 agentrun new ×4 …cher's sink):** `scripts/agent-run.sh` — the 5-command test contract of test…",
+".andromeda/obs-plan.md:144 agentrun new **Log format (the agent-run harness, §3):**",
+".andromeda/obs-plan.md:146 agentrun new ×2 …nes appended to `target/agent-run/events.jsonl` (recreated by `boot`, remov…",
+".andromeda/obs-plan.md:147 agentrun new ×3 … output goes to `target/agent-run/run.log`, truncated at each run's start a…",
+".andromeda/obs-plan.md:285 agentrun new ×2 - The agent-run harness log (§3) sits outside that sink and carries no user …",
+".andromeda/obs-plan.md:312 agentrun new ×5 …harness state | `target/agent-run/{status.json, events.jsonl, run.log}` — t…",
+".andromeda/a11y-plan.md:57 agentrun standing …y (POUR coverage depth, agent-runnable invariants, naming conventions): n…",
+".claude/rules/verification-harness.md:3 agentrun leaf   - \"scripts/agent-run.*\"",
+".claude/rules/verification-harness.md:14 agentrun leaf …metry), so `scripts/agent-run.{sh,ps1}` is not rendered. It is …",
+".claude/docs/tests-summary.md:15 agentrun leaf …oute's \"Stand test contract\" chunk; no `scripts/agent-run.*` exists yet.",
+"5cmd · new 1 · standing 2 · leaf 2 · curation 0 · base 1 · control test-plan.md:100 (prose)",
+"cmdlist · new 0 · standing 0 · leaf 2 · curation 0 · base 0 · control test-plan.md:100 (prose)",
+"statusendp · new 0 · standing 1 · leaf 1 · curation 0 · base 1 · case-variants +1 · control test-plan.md:100 (prose)",
+"pidfile · new 1 · standing 0 · leaf 2 · curation 0 · base 0 · control test-plan.md:100 (prose)",
+"bootstrap · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:100 (prose)",
+"jsonschema · new 0 · standing 1 · leaf 3 · curation 0 · base 0 · control obs-plan.md:83 (prose)",
+"logfileloc · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control obs-plan.md:83 (prose)",
+"ci23 · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:114 (prose)",
+"agentrun · new 21 · standing 1 · leaf 3 · curation 0 · base 0 · case-variants +1 · control a11y-plan.md:57 (prose)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "913f5918bc22e1c7bb3b1500b839ab0fdbd571d7",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), 73fd624c",
+"counts": {
+"5cmd": {
+"new": 1,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 1
+},
+"cmdlist": {
+"new": 0,
+"standing": 0,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"statusendp": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 1
+},
+"pidfile": {
+"new": 1,
+"standing": 0,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"bootstrap": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"jsonschema": {
+"new": 0,
+"standing": 1,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"logfileloc": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"ci23": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"agentrun": {
+"new": 21,
+"standing": 1,
+"leaf": 3,
+"curation": 0,
+"base": 0
+}
+}
+}
+}
+]

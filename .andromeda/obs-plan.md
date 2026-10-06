@@ -80,7 +80,9 @@
 
 **Service identity and line format (escher's sink):** every line carries `service.name` / `service.version`, read from the binary's own `CARGO_PKG_NAME` / `CARGO_PKG_VERSION` by `service_identity!()` — the OTel resource keys — in a one-line text format, not JSON (packages/escher-telemetry/src/lib.rs:32-54; §6 Log format); `seven_guis_native` logs `service.name=seven_guis` (as measured at escher-0.1.0/chunks/2026-10-06-telemetry-bootstrap/evidence/smoke-004017Z.txt)
 
-> NOT YET MEASURED — product mode, a JSON log schema, log file location, snapshot integration, trace context propagation and heartbeat ticks: the reading recorded none of them
+**Agent-run harness log (the test contract's, not escher's sink):** `scripts/agent-run.sh` — the 5-command test contract of test-plan §3 — writes JSON lines, one object per event, encoded by python3's `json` module embedded in the script, never assembled in bash: `boot`, `run.start`, one `test` per libtest result line, `run.end` (printed to stdout and appended to `target/agent-run/events.jsonl`), and `status`, `cleanup` (printed only); `logs` prints `events.jsonl` verbatim. Its state area is `target/agent-run/{status.json, events.jsonl, run.log}` — `run.log` the raw merged cargo/libtest output, never printed. It is harness metadata, not a telemetry sink: no `tracing` subscriber is involved and the stand checks install no escher sink (scripts/agent-run.sh:25-142; test-plan §3; as measured at escher-0.1.0/chunks/2026-10-06-stand-test-contract/report.md)
+
+> NOT YET MEASURED — product mode, snapshot integration, trace context propagation and heartbeat ticks, and a JSON schema or log-file location for escher's own sink: the reading recorded none of them
 
 Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py contracts; read one contracts/obs-plan/{key}.md; never whole.
 
@@ -139,7 +141,12 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 - One line per event on stderr, no ANSI: `{RFC 3339 UTC time} {LEVEL} {target} service.name={name} service.version={version} {field}={value}…`; newlines and carriage returns in values escaped as `\n` / `\r`, string values Debug-quoted; a bridged `log` record printed under its `log.target`, that field itself omitted; every field passes the §8 allowlist scrub (packages/escher-telemetry/src/format.rs:96-165)
 - Per-module levels come from `RUST_LOG` through `EnvFilter`, defaulting to `warn` when unset or unparsable (packages/escher-telemetry/src/lib.rs:113)
 
-> NOT YET MEASURED — a log JSON schema, a log-file sink and a rotation policy: the reading recorded none of them
+**Log format (the agent-run harness, §3):**
+
+- One JSON object per line on stdout, the same lines appended to `target/agent-run/events.jsonl` (recreated by `boot`, removed by `cleanup`): `boot {ts, outcome, cargo_exit, head}` · `run.start {ts, selection, files}` · `test {file, test, outcome}` · `run.end {ts, selection, passed, failed, ignored, cargo_exit, outcome}`; `status {booted, boot_ts, head, run}` and `cleanup {outcome}` are printed only (scripts/agent-run.sh:100-142)
+- One `test` event per libtest result line, `file` the target binary's stem with its hash stripped or `doc:{crate}`; nothing between a `failures:` line and the next `test result:` is read, so captured stdout and panic text never reach an event; the raw cargo output goes to `target/agent-run/run.log`, truncated at each run's start and never printed (scripts/agent-run.sh:80-98; scripts/agent-run.sh:196-208)
+
+> NOT YET MEASURED — a log JSON schema, a log-file sink and a rotation policy for escher's own sink: the reading recorded none of them
 
 **Logged events (current truth):**
 
@@ -275,6 +282,7 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 
 - escher's own sink scrubs by allowlist in its formatter (packages/escher-telemetry/src/format.rs:17-84): an event whose target — or a bridged `log` record's `log.target` — starts with `blitz`, `dioxus_native`, `stylo_taffy`, `accesskit_xplat`, `debug_timer` or `js_console` prints only `node_id`, `status`, `waiting_nodes`, `property`, `log.module_path`, `log.file`, `log.line`, every other field (the message included) as `{name}=[redacted]`; `url`, `href`, `src`, `html`, `text`, `value`, `attrs`, `path`, `request`, `error` and `panic.payload` are redacted at any target; no engine call site is edited
 - Its reach is that sink: in `seven_guis_native` the engine `tracing` features stay off, so engine events reach it only when one is turned on; the upstream apps' `fmt::init()` stdout subscribers and the WPT runner's `env_logger` stay unscrubbed, and the values above remain logged as-is there
+- The agent-run harness log (§3) sits outside that sink and carries no user content: its events hold only `event`, `ts`, `outcome`, `cargo_exit`, `head`, `selection`, `files`, `file`, `test`, `passed`, `failed`, `ignored`, `booted`, `boot_ts`, `run`, `state` — none in the content-named set — and no captured test output; its `target/agent-run/run.log` is raw cargo/libtest output, unscrubbed by design like `target/ci-logs/`, never printed by `logs` and gitignored under `target/` (as measured at escher-0.1.0/chunks/2026-10-06-stand-test-contract/report.md — a live `logs` read held 0 scrub-set keys)
 - The searches below predate it and stand for their slices:
 
 - observed absent — redaction or scrubbing · searched: `redact|scrub|mask` (case-insensitive) over the 86 slice files; hits are a comment and CSS `mask-image` only (apps slice)
@@ -301,6 +309,7 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 | `wptscores.json` | computed from the WPT run and published to Pages, upstream only | (.github/workflows/wpt.yml:26; .github/workflows/wpt.yml:72-75) |
 | Per-leg CI log | each ci.yml leg's merged stdout+stderr, written by `ci-leg.sh` to `target/ci-logs/{leg}.log` (matrix: `target/ci-logs/matrix-{platform}.log`), truncated at the leg's start; uploaded only on failure as artifact `ci-log-{job id}` (`if-no-files-found: ignore`), kept 7 days, from `target/ci-logs/` alone; unscrubbed build output (no user data — §8) | (.github/scripts/ci-leg.sh:62-63; .github/workflows/ci.yml:48-54; .github/workflows/ci.yml:391-400) |
 | Coverage report | the `coverage` leg's lcov file `target/coverage/lcov.info` — line counts of the workspace's public source, no user data (§8); uploaded only on success as artifact `coverage-report` from `target/coverage/`, kept 7 days — the one fork-CI artifact outside `target/ci-logs/` | (.github/scripts/ci-leg.sh:35-39; .github/workflows/ci.yml:286-291) |
+| Agent-run harness state | `target/agent-run/{status.json, events.jsonl, run.log}` — the test contract's status, its JSON-line events (§6) and the raw merged cargo/libtest output (unscrubbed, no user data — §8); local only, gitignored under `target/`, uploaded by no CI leg, removed by `agent-run.sh cleanup`, which touches nothing else under `target/` | (scripts/agent-run.sh:9; scripts/agent-run.sh:165-174; scripts/agent-run.sh:215-218) |
 
 - Publish builds log at `CARGO_LOG: info` with `--verbose --trace`, on upstream `DioxusLabs/blitz` only (.github/workflows/publish-browser.yml:33; .github/workflows/publish-browser.yml:37; .github/workflows/publish-browser.yml:155)
 

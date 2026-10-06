@@ -10,8 +10,14 @@ paths:
 Path-scoped rules for the agent-driven verification harness. Source: `.andromeda/test-plan.md` §3.
 Development Style is agent-driven — escher's own driver is meant to become the harness.
 
-## The 5-command contract — NOT YET MEASURED
-- No product boot / run / status / cleanup / logs command, status shape, PID file or JSON-line log format exists yet (the stand's stderr text line is measured — test-plan §3, escher-telemetry), so `scripts/agent-run.{sh,ps1}` is not rendered. It is owned by the working route's "Stand test contract" chunk (agent-invocable boot, run, status, cleanup and JSON-line logs for stand checks and blitz-tests); that chunk amends test-plan §3 and then the scripts are generated.
+## The 5-command contract (measured — `scripts/agent-run.sh`)
+- Run from the repository root: `bash scripts/agent-run.sh boot`, then `run stand` · `run all` · `run {blitz-tests file}`, `status`, `logs`, `cleanup`. `scripts/agent-run.ps1` only forwards to it (Windows; untested here — no `pwsh`). The scripts are project-authored: setup preserves them, never re-renders them.
+- Exit grammar, every verb: `0` success · `1` the verb ran and failed — a build failure, a failing run, or an EMPTY run (cargo 0 with no test line parsed is never a pass) · `2` usage, checked before · `3` a precondition is unmet (not booted; `logs` with nothing to read).
+- `{name}` must match `^[a-z0-9_]+$` and name an existing `tests/blitz-tests/tests/{name}.rs`; `run stand` with no `stand_*.rs` files is an empty run (exit 1, no cargo call); under `all`, `run.start.files` is `[]`.
+- Stdout is JSON lines only — `boot`, `run.start`, one `test {file, test, outcome}` per libtest line, `run.end {passed, failed, ignored, cargo_exit, outcome}`, `status`, `cleanup` — encoded by python3's `json`, never by bash string building. No event carries captured test output or a panic message, and no field takes a scrub-set name (`url href src html text value attrs path request error`); raw cargo output stays in `target/agent-run/run.log`.
+- State lives in `target/agent-run/{status.json, events.jsonl, run.log}` only — no daemon, PID file, socket, port or env var (the stand is an in-process boot; adding one is an arch §Occupied Resources registration). One driver at a time: a killed run leaves `running`, the next `run` overwrites it.
+- libtest's `--format json` is nightly-only, so the parser reads the pretty lines (`Running …`, `Doc-tests …`, `test … ... ok|FAILED|ignored`); the contract tests are `.github/scripts/test_agent_run.py` (a `cargo` shim, run by the `ci-scripts` leg).
+- NOT YET MEASURED: a test-data bootstrap mechanism.
 
 ## In-process `Harness` (measured — `packages/blitz-test-harness`)
 - Constructors `from_html`, `from_html_with(html, HarnessOptions)`, `from_component`, `from_vdom` pump once; `wrap` does not.

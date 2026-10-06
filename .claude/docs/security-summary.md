@@ -14,7 +14,7 @@ escher is a native-API engine library with no served API, no listener and no aut
 - **Script execution** → default `ScriptFetcher` accepts only `file:` / `data:`; JS `fetch()` is GET/HEAD only through the embedder's fetcher; same-origin / CORS observed absent; every runtime event is `isTrusted`; the browser's JS is behind the non-default `javascript` feature.
 - **`file:` reads** → blitz-net reads any `file:` path with no restriction; the WPT net provider joins request paths onto the WPT base.
 - **Outbound HTTP** → 6 concurrent requests per host; no response-size cap, no timeout (observed absent); TLS via reqwest `native-tls`.
-- **CLI input** → examples parse URLs with `Url::parse` (+ `https://` retry), numeric args with defaults; `bump` validates target + semver.
+- **CLI input** → examples parse URLs with `Url::parse` (+ `https://` retry), numeric args with defaults; `bump` validates target + semver; `scripts/agent-run.sh` allowlists its verb and admits a run selection only as `stand`, `all` or an existing `^[a-z0-9_]+$` blitz-tests file stem (else exit 2, no cargo call).
 - **rdme markdown** → comrak with `unsafe: true` passes raw HTML through.
 - **CI** → post-results workflow checks out trusted scripts from the default branch; `ci.yml` declares a workflow-level `permissions: contents: read` with no job grant, pins every action to a commit SHA and references no secret. The publish (signing), WPT and post-results jobs carry `github.repository == 'DioxusLabs/blitz'`, so no fork ref reaches "Signed Builds", "WPT" or their secrets.
 
@@ -24,6 +24,7 @@ escher is a native-API engine library with no served API, no listener and no aut
 | CI secrets | signing key, Android keystore + passwords, Apple certificate, `WPT_GITHUB_TOKEN`, `GITHUB_TOKEN` | GitHub secrets/vars; written files removed in `always()` steps |
 | Local user data (browser app) | history `history.sqlite3`, HTTP cache, cookies, clipboard, chosen file paths | unencrypted on disk; history in-memory on mobile; "Clear history" / "Clear Cache" |
 | Logged values | request URLs, cache dir path, attribute values | escher's stderr sink (`seven_guis_native`) redacts them by allowlist; the upstream apps' `fmt::init()` and the WPT runner's `env_logger` log them as-is |
+| Harness test logs | the agent-run contract's JSON-line events; raw cargo/libtest output in `target/agent-run/run.log` | events carry no content-named field and no captured output; `run.log` unscrubbed like `target/ci-logs/`, gitignored, never printed |
 
 ## Universal anti-patterns
 > NO RECORDED INTENT — the plan carries none yet; Tier 1 warnings and `.claude/rules/security.md` hold the measured invariants.

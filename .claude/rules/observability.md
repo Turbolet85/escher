@@ -22,6 +22,7 @@ Path-scoped rules for telemetry, logging and timing code. Source: `.andromeda/ob
 - JS console output goes to the `log` crate at debug level, target `js_console`, keeping stdout/stderr clean; embedders drain JS errors with `take_js_errors` (≤256 retained between drains).
 - Panics: escher-telemetry's hook logs one ERROR at target `escher_telemetry::panic` (`panic.payload` redacted) and chains the previous hook.
 - No spans, `#[instrument]`, metrics or OTel exist yet (observed absent).
+- The agent-run test contract (`scripts/agent-run.sh`) writes JSON-line harness events to stdout and `target/agent-run/events.jsonl` — harness metadata, not a telemetry sink and not escher's line format; its rules live in `.claude/rules/verification-harness.md`.
 
 ## Timing
 - Phase timing is opt-in: `log-phase-times` (→ `debug_timer/enable`) and `log-frame-times`; `debug_timer` swaps in a zero-cost dummy when `enable` is off and prints to stdout when on.

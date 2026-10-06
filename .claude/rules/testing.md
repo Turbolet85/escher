@@ -37,6 +37,7 @@ Path-scoped rules for test files. Source: `.andromeda/test-plan.md` §2 §4 §5 
 ## Running tests
 - **One file:** `cargo test -p blitz-tests --test {name}`
 - **One crate:** `cargo test -p {crate}`
+- **Agent-driven (stand checks · blitz-tests):** `bash scripts/agent-run.sh boot`, then `run stand` · `run all` · `run {name}` — JSON-line results, exit `0`/`1`/`2`/`3` (test-plan §3; `.claude/rules/verification-harness.md`)
 - **Whole workspace (CI leg):** `cargo test --workspace --locked` — or `bash .github/scripts/ci-leg.sh test`, exactly as CI runs it
 - **Before a push:** `bash .github/scripts/ci-leg.sh fast` (fmt → clippy → test → CI scripts)
 - **Benchmarks (ignored):** `cargo test -p blitz-tests --release --test paint_tree_bench -- --ignored --nocapture`
@@ -46,3 +47,4 @@ Path-scoped rules for test files. Source: `.andromeda/test-plan.md` §2 §4 §5 
 
 ## Session Additions
 _This section is owned by `/andromeda-wrap-session`. setup-project preserves content added here on re-run._
+- 2026-10-06: In a `.github/scripts` unittest file, never give a helper method a `test_` prefix — `unittest` collects it as a test case; name helpers without it and check the run's `Ran N tests` against the cases written.

@@ -68,6 +68,7 @@
 
 - `paint_bench` — usage line `paint_bench <url> [width] [height] [scale] [iters] [backend]` with `backend: vello (default) | cpu | hybrid` (examples/paint_bench.rs:6-7)
 - `bump` — takes two positional arguments and emits single-line output (apps/bump/src/main.rs:67-91; apps/bump/src/main.rs:100; apps/bump/src/main.rs:109)
+- `scripts/agent-run.sh` — the agent-invocable test contract, run from the repository root: usage `agent-run.sh <verb> [selection]` with verbs `boot · run · status · cleanup · logs` and run selections `stand · all · <blitz-tests file name>`, printed to stderr on a usage error (exit 2); every verb's stdout is JSON lines only, one object per event, and the raw cargo output stays in `target/agent-run/run.log`; `scripts/agent-run.ps1` is its Windows pass-through. The exit grammar and event schema live in test-plan §3 (scripts/agent-run.sh:12-17; scripts/agent-run.ps1:1-4)
 
 ### Output structure — wpt runner
 

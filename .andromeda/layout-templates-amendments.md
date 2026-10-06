@@ -7,3 +7,10 @@ One entry per amendment to `layout-templates.md` (sidecar-contract.md §Entry fo
 **Change:** the seven_guis entry adds the headless stand: it skips Home and mounts one lean task (Counter, FlightBooker, Timer, Crud) in TaskShell through `task_in_shell` — `main#main > #task-shell`, `#task-header > #back-btn + #task-title` above `#task-body` — at the pinned 800 × 600, scale 1.0, Light viewport with the bundled DejaVu Sans; its `app.rs` citations re-pointed to Home, TaskShell and the CSS constants after the chunk's line shift.
 **Why:** the headless stand chunk added a second way into TaskShell; the windowed Home → TaskShell flow is unchanged.
 **Ref:** .andromeda/runs/2026-10-06T02-44-36-wrap/
+
+## 2026-10-06-stand-test-contract — agent-run.sh on the cli surface
+**Section:** §Surface: cli → Primary screens
+**Change:** adds `scripts/agent-run.sh` — usage `agent-run.sh <verb> [selection]` (verbs `boot · run · status · cleanup · logs`, selections `stand · all · <blitz-tests file name>`), usage on stderr with exit 2, stdout JSON lines only, raw cargo output kept in `target/agent-run/run.log`; `scripts/agent-run.ps1` its Windows pass-through; the exit grammar and event schema stay in test-plan §3.
+**Why:** the stand test contract chunk added a repository CLI entry point beside `paint_bench` and `bump`.
+**Kept:** the surface's NOT YET MEASURED marker (tooling context, expression level, signature placement) stands.
+**Ref:** .andromeda/runs/2026-10-06T03-39-41-wrap/

@@ -25,7 +25,7 @@ _Distilled from `.andromeda/design-system.md` + `.andromeda/layout-templates.md`
 
 ## Primary surfaces
 - **desktop-native** — winit windows; Dioxus apps via `dioxus_native::launch`; seven_guis Home (640px card column) and TaskShell (header + scrolling body) are the stand's screens; the headless stand skips Home and mounts one lean task in TaskShell under `main#main` at the pinned 800 × 600 Light viewport.
-- **cli** — WPT runner (owo-colors status words + colour), `paint_bench`, `screenshot`, `bump`; escher's driver CLI (uncoloured JSON on stdout) is a route chunk.
+- **cli** — WPT runner (owo-colors status words + colour), `paint_bench`, `screenshot`, `bump`, and `scripts/agent-run.sh` (the agent-run test contract: usage on stderr, JSON lines only on stdout); escher's driver CLI (uncoloured JSON on stdout) is a route chunk.
 - **web-spa** — WASM canvas filling the body (seven_guis, todomvc), wasm_hello 640px card.
 - **mobile-native** — Android browser APK (built, not tested in CI).
 
