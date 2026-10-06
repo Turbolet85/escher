@@ -12,6 +12,7 @@ The headless Dioxus renderer on blitz: `DioxusDocument` integrates `BaseDocument
 
 ### Publishes to
 - `DioxusDocument` (`vdom`, `inner`, `initial_build`, `poll`, `handle_ui_event`, `vdom_state.try_element_to_node_id(ElementId)`), `NodeHandle` backing `MountedData`.
+- Stable element ids: `element_id(NodeId) -> Option<String>` and `element_ids() -> Vec<(NodeId, String)>` (document pre-order, pairwise distinct), computed on demand and written nowhere — author key (the HTML `id`: non-empty, `/`-free, first in document order) → component path (`TaskShell/Counter/div:0`; `{tag}[{key}]` for a Dioxus-keyed root) → document path (`/html:0/body:0`).
 
 ## Internal conventions
 - DOM events route to the vdom via the nearest `data-dioxus-id` attribute (parsed as `usize`); listener registration sets a `"<rust func>"` placeholder.
@@ -24,13 +25,15 @@ The headless Dioxus renderer on blitz: `DioxusDocument` integrates `BaseDocument
 - `mutation_writer.rs` has a "WARNING: DO NOT REORDER" block.
 - Twelve event-data conversions call `unimplemented!()`; IME events are not handled; `NativeFormData::valid` always returns true.
 - `element_to_node_id` unwraps; `NodeHandle::node` panics if the node is gone.
+- `VComponent.name` is the component's full type path (`crate::module::Name`, generics included), and the user root sits under dioxus-core's RootScopeWrapper → SuspenseBoundary → ErrorBoundary scopes — the id walk strips the path and skips those four scopes.
+- A node a re-render removes is only DETACHED (parent `None`) and keeps resolving until its ElementId is reassigned; `element_id` reads `None` for it, but `get_node` still returns it.
 - Every other boolean attribute (`readonly`, `required`, `hidden`, `multiple`, `selected`, `open`, `autofocus`) is still written with the literal value `"false"` when falsy — blitz-dom keys element state and click targeting on presence, so a presence read takes it as set.
 
 ## Entry points for modification
-- `src/{dioxus_document,mutation_writer,events,write_once_attr}.rs`
+- `src/{dioxus_document,element_id,mutation_writer,events,write_once_attr}.rs`
 
 ## Testing this crate
-- `cargo test -p dioxus-native-dom` (`keyed_nodes_do_not_crash`, touch tests); Dioxus integration in `tests/blitz-tests` via `Harness::from_component` / `from_vdom`; `dioxus_falsy_disabled.rs` pins the falsy-`disabled` clearing.
+- `cargo test -p dioxus-native-dom` (`keyed_nodes_do_not_crash`, touch tests, six `element_id` unit tests); Dioxus integration in `tests/blitz-tests` via `Harness::from_component` / `from_vdom`; `dioxus_falsy_disabled.rs` pins the falsy-`disabled` clearing.
 
 ## References
 - `.andromeda/architecture.md` · `.claude/docs/services/blitz-test-harness.md`

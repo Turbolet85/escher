@@ -16,4 +16,4 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 2026-10-06-stand-test-contract · complete · Stand test contract — agent-invocable boot/run/status/cleanup + JSON-line logs for stand checks and blitz-tests · → escher-0.1.0/chunks/2026-10-06-stand-test-contract/
 2026-10-06-cold-agent-run-pipe · complete · Cold-agent run pipe — fresh agent session with only a stub tool; transcript, wrong-call count and verdict recorded green · → escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe/
 2026-10-06-upstream-sync-element-identity · complete · Upstream sync ahead of element identity — upstream/main 23354585 merged, our changes additive, our tests and CI green · → escher-0.1.0/chunks/2026-10-06-upstream-sync-element-identity/
-2026-10-06-stable-element-ids · pending · Stable element ids — author key else component path, on every stand element (v010-01) · → escher-0.1.0/chunks/2026-10-06-stable-element-ids/
+2026-10-06-stable-element-ids · complete · Stable element ids — author key else component path, on every stand element (v010-01) · → escher-0.1.0/chunks/2026-10-06-stable-element-ids/

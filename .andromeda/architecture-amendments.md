@@ -126,3 +126,15 @@ One entry per amendment to `architecture.md` (sidecar-contract.md §Entry form).
 **Change:** 43 root `Cargo.toml` citations re-pointed +1 per number past 60 — they read one line low since the `seven_guis` path entry was inserted at `Cargo.toml:61`; each verified against the cited text. The two citations of `Cargo.toml:61` itself, written after the insert, unchanged. No claim text changed.
 **Why:** the 2026-10-06-headless-stand wrap did not re-point the root-manifest citations past its insert; the operator chose at this wrap's escalation (2026-10-06) to fix them in this pass rather than carry them.
 **Ref:** .andromeda/runs/2026-10-06T08-31-16-wrap/
+
+## 2026-10-06-stable-element-ids — stable element ids registered on the Dioxus DOM bridge
+**Section:** §Standard Contracts → Dioxus DOM bridge · §Existing Scopes → dioxus-native-dom · §Existing Scopes → tests/blitz-tests · the citations below
+**Change:**
+- Dioxus DOM bridge: `DioxusDocument::element_id(NodeId) -> Option<String>` (`None` for a non-element, stale or detached node; never panics) and `element_ids() -> Vec<(NodeId, String)>` (document pre-order, pairwise distinct), computed on demand from a vdom walk joined with a DOM walk, written to neither the DOM nor the vdom.
+- The grammar: (1) author key = the HTML `id` verbatim when non-empty, `/`-free and first in document pre-order; (2) component path = `/`-joined component segments below the app root — dioxus-core's four framework scopes (ROOT · ROOT_SUSPENSE_BOUNDARY · ROOT_ERROR_BOUNDARY · APP) add none, a segment is the last `::` segment of `VComponent.name` with generics stripped, an owner's 2nd+ same-name instance reads `{name}:{k}` — then `{tag}[{key}]` for a Dioxus-keyed template root else `{tag}:{n}` among same-parent, same-owner, same-tag siblings; a same-owner template root appends to its parent's path, another owner's restarts at its chain; the app root's own elements read `/{tag}:{n}…`; (3) document path `/{tag}:{n}…` from the document root. No `NodeId`, `ElementId`, `ScopeId` or pointer in an id.
+- A node a re-render removes is detached (parent `None`) and keeps resolving until its ElementId is reassigned; it reads no id.
+- dioxus-native-dom's module list gains the crate-private `element_id`; the tests/blitz-tests row gains `stand_element_ids` (one stable element id per element).
+- 8 `file:line` citations into `dioxus_document.rs`, `lib.rs` and the four lean-task files re-pointed by the chunk's measured line maps.
+**Why:** the chunk built the ids for v010-01; the grammar is recorded as BUILT — the plan's text assumed the base scope is the user root `root`, that `VComponent.name` is a bare name, and a grammar two component instances or a nested same-owner root could collide under; dioxus-core 0.7.10 and the measured ids corrected all three. Later chunks (persistence, a11y identity, snapshot, driver) address elements by this grammar.
+**Kept:** the edge where the app root renders a top-level `html` element (it would read `/html:0`, the skeleton's document path) — never on the stand, untested.
+**Ref:** .andromeda/runs/2026-10-06T09-35-44-wrap/

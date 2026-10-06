@@ -1,0 +1,590 @@
+[
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T09:35:49Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-stable-element-ids",
+"--run-dir",
+".andromeda/runs/2026-10-06T09-35-44-wrap",
+"--marker",
+"2026-10-06-stable-element-ids"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base 5371292e (the parent of the oldest pre-CI commit 405a562b) · lists new 2 · modify 6 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 8 · listed 8 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 45"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "5371292e0627afc7e4f58eaf9c9c11f60226e97e",
+"base_why": "the parent of the oldest pre-CI commit 405a562b",
+"counts": {
+"changed": 8,
+"listed": 8,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 45,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T09:49:18Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-06-stable-element-ids/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T09-35-44-wrap",
+"--marker",
+"2026-10-06-stable-element-ids"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-06-stable-element-ids · entries 17",
+"logs $TMPDIR/andromeda-gate/2026-10-06-stable-element-ids/wrap-2026-10-06T09-35-44 · bound: GNU timeout",
+"delta docs 43 · unmapped 2",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L175-181: No live leg runs this chunk. The agent-run entries drive the in-process stand through `scr… (749 chars)",
+"  1 unit        green · exit 0 · 0.29s · 673 B → 1.log · cargo test -p dioxus-native-dom --lib --locked element_id",
+"  2 integration green · exit 0 · 2.42s · 667 B → 2.log · cargo test -p blitz-tests --locked --test stand_element_id… (59 chars)",
+"  3 integration green · exit 0 · 3.03s · 1879 B → 3.log · cargo test -p blitz-tests --locked --test stand_boot --tes… (137 chars)",
+"  4 probe       green · exit 0 · 0.02s · 12 B → 4.log · for f in counter flight_booker timer crud; do git show 537… (304 chars)",
+"  5 probe       green · exit 0 · 0.0s · 0 B → 5.log · git diff --quiet 5371292e0627afc7e4f58eaf9c9c11f60226e97e … (341 chars)",
+"  6 probe       green · exit 1 · 0.0s · 2 B → 6.log · test -f packages/dioxus-native-dom/src/element_id.rs && te… (281 chars)",
+"  7 build       green · exit 0 · 17.85s · 137 B → 7.log · bash scripts/agent-run.sh boot",
+"  8 integration green · exit 0 · 2.03s · 2259 B → 8.log · bash scripts/agent-run.sh run stand",
+"  9 integration green · exit 0 · 0.02s · 3 B → 9.log · bash scripts/agent-run.sh logs | python3 -c 'import json,s… (223 chars)",
+" 10 probe       green · exit 0 · 0.02s · 2 B → 10.log · bash scripts/agent-run.sh logs | python3 -c 'import json,s… (205 chars)",
+" 11 integration green · exit 0 · 0.03s · 40 B → 11.log · bash scripts/agent-run.sh cleanup",
+" 12 lint        green · exit 0 · 36.3s · 49801 B → 12.log · bash .github/scripts/ci-leg.sh fast",
+" 13 lint        green · exit 0 · 0.33s · 177 B → 13.log · bash .github/scripts/ci-leg.sh doc",
+" 14 integration green · exit 0 · 2.39s · 1597 B → 14.log · bash .github/scripts/ci-leg.sh a11y",
+" 15 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 16 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 17 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 17 · green 14 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-06-stable-element-ids",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-stable-element-ids/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-06-stable-element-ids/wrap-2026-10-06T09-35-44",
+"delta": {
+"docs": [
+".andromeda/a11y-plan-amendments.md",
+".andromeda/a11y-plan.md",
+".andromeda/architecture-amendments.md",
+".andromeda/architecture.md",
+".andromeda/design-system-amendments.md",
+".andromeda/design-system.md",
+".andromeda/friction-log.ndjson",
+".andromeda/layout-templates-amendments.md",
+".andromeda/layout-templates.md",
+".andromeda/security-plan-amendments.md",
+".andromeda/security-plan.md",
+".andromeda/state.yaml",
+".andromeda/test-plan-amendments.md",
+".andromeda/test-plan.md",
+".claude/docs/commands.md",
+".claude/docs/design-summary.md",
+".claude/docs/services/dioxus-native-dom.md",
+".claude/docs/services/seven_guis.md",
+".claude/docs/tests-summary.md",
+".claude/session-handoff.md",
+"CLAUDE.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-06T09-35-44-wrap/a11y-plan-contracts.md",
+".andromeda/runs/2026-10-06T09-35-44-wrap/a11y-plan-entry.md",
+".andromeda/runs/2026-10-06T09-35-44-wrap/architecture-entry.md",
+".andromeda/runs/2026-10-06T09-35-44-wrap/cascade-2026-10-06-stable-element-ids.json",
+".andromeda/runs/2026-10-06T09-35-44-wrap/cascade-citations.md",
+".andromeda/runs/2026-10-06T09-35-44-wrap/cascade-dispositions.md",
+".andromeda/runs/2026-10-06T09-35-44-wrap/cascade-patterns.toml",
+".andromeda/runs/2026-10-06T09-35-44-wrap/design-system-entry.md",
+".andromeda/runs/2026-10-06T09-35-44-wrap/evolve-2026-10-06-stable-element-ids.json",
+".andromeda/runs/2026-10-06T09-35-44-wrap/fanout-results.md",
+".andromeda/runs/2026-10-06T09-35-44-wrap/gate-2026-10-06-stable-element-ids.json",
+".andromeda/runs/2026-10-06T09-35-44-wrap/inputs-2026-10-06-stable-element-ids.json",
+".andromeda/runs/2026-10-06T09-35-44-wrap/layout-templates-entry.md",
+".andromeda/runs/2026-10-06T09-35-44-wrap/obs-plan-contracts.md",
+".andromeda/runs/2026-10-06T09-35-44-wrap/registry-2026-10-06-stable-element-ids.json",
+".andromeda/runs/2026-10-06T09-35-44-wrap/route-no-marker.json",
+".andromeda/runs/2026-10-06T09-35-44-wrap/security-plan-entry.md",
+".andromeda/runs/2026-10-06T09-35-44-wrap/splice-2026-10-06-stable-element-ids.json",
+".andromeda/runs/2026-10-06T09-35-44-wrap/test-plan-contracts.md",
+".andromeda/runs/2026-10-06T09-35-44-wrap/test-plan-entry.md",
+"escher-0.1.0/chunks/2026-10-06-stable-element-ids/report.md"
+]
+},
+"unmapped": [
+"escher-0.1.0/chunks/2026-10-06-stable-element-ids/evidence/operator-16-push.txt",
+"escher-0.1.0/chunks/2026-10-06-stable-element-ids/evidence/operator-17-ci.txt"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 45,
+"problem": null
+},
+"prose": [
+{
+"from": 175,
+"to": 181,
+"text": "No live leg runs this chunk. The agent-run entries drive the in-process stand through `scripts/agent-run.sh`; no external process is started, so there is no liveness probe and no `stop`. No headful self-verify exists in this project (the stand is headless; `.claude/rules/verification-harness.md`), so no `self-verify` entry is listed. No `smoke` entry either: no boot-path touchpoint — test-plan declares no boot-smoke trigger list, and the stand boot (`stand.rs`, `app.rs`, `main.rs`) is untouched (guarded by the `git diff --quiet` entry); the boot itself runs under every stand check. The base sha in the diff guards is `5371292e`, the commit this chunk starts from (plan-template `run` rule for git reads in a plan listing an `operator` entry)."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --lib --locked element_id",
+"run_sha8": "6f601376",
+"expect": [
+"exit 0",
+"contains 6 passed"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stable-element-ids/wrap-2026-10-06T09-35-44/1.log",
+"bytes": 673,
+"log_sha8": "305c45d4",
+"exit": 0,
+"seconds": 0.29,
+"readings": [
+"exit 0 ✓",
+"contains '6 passed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_element_ids",
+"run_sha8": "13a64277",
+"expect": [
+"exit 0",
+"contains 4 passed"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stable-element-ids/wrap-2026-10-06T09-35-44/2.log",
+"bytes": 667,
+"log_sha8": "cfcfe713",
+"exit": 0,
+"seconds": 2.42,
+"readings": [
+"exit 0 ✓",
+"contains '4 passed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_boot --test stand_counter --test stand_flight_booker --test stand_timer --test stand_crud",
+"run_sha8": "93035799",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stable-element-ids/wrap-2026-10-06T09-35-44/3.log",
+"bytes": 1879,
+"log_sha8": "82b745c5",
+"exit": 0,
+"seconds": 3.03,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "for f in counter flight_booker timer crud; do git show 5371292e0627afc7e4f58eaf9c9c11f60226e97e:examples/seven_guis/src/tasks/$f.rs | diff -wB - <(sed -E 's/ ?(id|key): \"[^\"]*\",?//g' examples/seven_guis/src/tasks/$f.rs) > /dev/null || { echo \"changed beyond id/key: $f\"; exit 1; }; done; echo markup-only",
+"run_sha8": "2b40bd7b",
+"expect": [
+"exit 0",
+"last line markup-only"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stable-element-ids/wrap-2026-10-06T09-35-44/4.log",
+"bytes": 12,
+"log_sha8": "d606d59b",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"last line 'markup-only' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "git diff --quiet 5371292e0627afc7e4f58eaf9c9c11f60226e97e -- Cargo.lock Cargo.toml packages/dioxus-native-dom/Cargo.toml tests/blitz-tests/Cargo.toml examples/seven_guis/Cargo.toml packages/blitz-dom packages/blitz-test-harness packages/dioxus-native-dom/src/mutation_writer.rs examples/seven_guis/src/app.rs examples/seven_guis/src/stand.rs",
+"run_sha8": "cac3ec71",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-stable-element-ids/wrap-2026-10-06T09-35-44/5.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "test -f packages/dioxus-native-dom/src/element_id.rs && test -f tests/blitz-tests/tests/stand_element_ids.rs && cat packages/dioxus-native-dom/src/element_id.rs tests/blitz-tests/tests/stand_element_ids.rs | grep -c -E 'println!|eprintln!|tracing|trace!|escher_telemetry|std::env' ",
+"run_sha8": "41e35ed6",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stable-element-ids/wrap-2026-10-06T09-35-44/6.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": [
+"exit 0",
+"contains \"ready\""
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stable-element-ids/wrap-2026-10-06T09-35-44/7.log",
+"bytes": 137,
+"log_sha8": "683accef",
+"exit": 0,
+"seconds": 17.85,
+"readings": [
+"exit 0 ✓",
+"contains '\"ready\"' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": [
+"exit 0",
+"contains \"run.end\""
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stable-element-ids/wrap-2026-10-06T09-35-44/8.log",
+"bytes": 2259,
+"log_sha8": "57984f02",
+"exit": 0,
+"seconds": 2.03,
+"readings": [
+"exit 0 ✓",
+"contains '\"run.end\"' ✓",
+"artifact fresh (target/agent-run/events.jsonl)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "bash scripts/agent-run.sh logs | python3 -c 'import json,sys; ev=[json.loads(l) for l in sys.stdin]; print(sum(1 for e in ev if e.get(\"event\")==\"test\" and e.get(\"outcome\")==\"ok\" and e.get(\"file\",\"\").startswith(\"stand_\")))' ",
+"run_sha8": "cb721ae0",
+"expect": [
+"exit 0",
+"last line 17"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stable-element-ids/wrap-2026-10-06T09-35-44/9.log",
+"bytes": 3,
+"log_sha8": "54183f43",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"last line '17' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "bash scripts/agent-run.sh logs | python3 -c 'import json,sys; bad={\"url\",\"href\",\"src\",\"html\",\"text\",\"value\",\"attrs\",\"path\",\"request\",\"error\"}; print(sum(1 for l in sys.stdin if bad & set(json.loads(l))))' ",
+"run_sha8": "45703729",
+"expect": [
+"exit 0",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-stable-element-ids/wrap-2026-10-06T09-35-44/10.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "bash scripts/agent-run.sh cleanup",
+"run_sha8": "d676b018",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-stable-element-ids/wrap-2026-10-06T09-35-44/11.log",
+"bytes": 40,
+"log_sha8": "8b6274d8",
+"exit": 0,
+"seconds": 0.03,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-stable-element-ids/wrap-2026-10-06T09-35-44/12.log",
+"bytes": 49801,
+"log_sha8": "f157dbda",
+"exit": 0,
+"seconds": 36.3,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-stable-element-ids/wrap-2026-10-06T09-35-44/13.log",
+"bytes": 177,
+"log_sha8": "742b654b",
+"exit": 0,
+"seconds": 0.33,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-stable-element-ids/wrap-2026-10-06T09-35-44/14.log",
+"bytes": 1597,
+"log_sha8": "2dcdf20c",
+"exit": 0,
+"seconds": 2.39,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "675d3a19",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T09:49:28Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-10-06T09-35-44-wrap",
+"--marker",
+"2026-10-06-stable-element-ids"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base 5371292e (the parent of the oldest pre-CI commit 405a562b)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 58 (runs 55 · evidence 3 · inputs 0) · trails 22 not read · copies 0 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 55,
+"evidence": 3,
+"inputs": 0,
+"trails": 22,
+"copies": 0,
+"kept": 0,
+"binary": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T09:49:32Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-stable-element-ids",
+"--run-dir",
+".andromeda/runs/2026-10-06T09-35-44-wrap",
+"--marker",
+"2026-10-06-stable-element-ids"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base 5371292e (the parent of the oldest pre-CI commit 405a562b) · lists new 2 · modify 6 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 8 · listed 8 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 86"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "5371292e0627afc7e4f58eaf9c9c11f60226e97e",
+"base_why": "the parent of the oldest pre-CI commit 405a562b",
+"counts": {
+"changed": 8,
+"listed": 8,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 86,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

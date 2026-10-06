@@ -37,3 +37,9 @@ One entry per amendment to `a11y-plan.md` (sidecar-contract.md §Entry form). Ap
 **Change:** 1 root `Cargo.toml` citation re-pointed +1 — it read one line low since the `seven_guis` path entry was inserted at `Cargo.toml:61`; verified against the cited text. No claim text changed.
 **Why:** the 2026-10-06-headless-stand wrap did not re-point the root-manifest citations past its insert; the operator chose at this wrap's escalation (2026-10-06) to fix them in this pass rather than carry them.
 **Ref:** .andromeda/runs/2026-10-06T08-31-16-wrap/
+
+## 2026-10-06-stable-element-ids — citations re-pointed after the element-id inserts
+**Section:** the sections citing `dioxus_document.rs` and `flight_booker.rs`
+**Change:** 6 `file:line` citations into `dioxus_document.rs`, `lib.rs` and the four lean-task files re-pointed by the chunk's measured line maps; no claim text changed.
+**Why:** the chunk inserted the element-id methods into `dioxus_document.rs` and author ids into the task files, moving the cited lines.
+**Ref:** .andromeda/runs/2026-10-06T09-35-44-wrap/

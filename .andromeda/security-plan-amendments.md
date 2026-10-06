@@ -77,3 +77,9 @@ One entry per amendment to `security-plan.md` (sidecar-contract.md §Entry form)
 **Change:** 2 root `Cargo.toml` citations (the taffy and parley rev pins) re-pointed +1 — they read one line low since the `seven_guis` path entry was inserted at `Cargo.toml:61`; verified against the cited text. No claim text changed.
 **Why:** the 2026-10-06-headless-stand wrap did not re-point the root-manifest citations past its insert; the operator chose at this wrap's escalation (2026-10-06) to fix them in this pass rather than carry them.
 **Ref:** .andromeda/runs/2026-10-06T08-31-16-wrap/
+
+## 2026-10-06-stable-element-ids — the HTML `id` gains the stable-element-id reader
+**Section:** §Input Validation (Markup attributes)
+**Change:** a new `Markup attributes | id` row: besides CSS matching and `getElementById`, a Dioxus document's `element_id` / `element_ids` read the HTML `id` as an author key only when non-empty, `/`-free and the first in document pre-order; an empty, `/`-bearing or later-duplicate value gives no key and the element reads its `/`-bearing path, so no `id` makes two ids equal; a non-element, stale or detached node reads `None`; no path panics; the id is computed on demand, written nowhere, and carries no engine id or pointer.
+**Why:** the chunk added an in-process reader of an already-admitted attribute; no new input class, crossing or write — not a boundary widening. The rule is the reader's validation.
+**Ref:** .andromeda/runs/2026-10-06T09-35-44-wrap/

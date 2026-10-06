@@ -13,7 +13,7 @@
         "method": "integration",
         "acceptance": "On each of the four lean stand tasks (counter, flight booker, timer, CRUD), booted by `seven_guis::stand` with `stand::options(false)` and `stand::options(true)`, `DioxusDocument::element_ids()` gives every element node of the document exactly one id, all pairwise distinct; an element whose HTML `id` is non-empty, `/`-free and the first of its value in document order reads that value verbatim (the TaskShell chrome and every lean-task control key), every other element reads its component path (the component names below the root, then `{tag}:{n}` / `{tag}[{key}]` element segments) or, outside every component (`html`, `head`, `body`), its document path `/html:0/…`; both layout modes read the same id list. Witness: `cargo test -p blitz-tests --locked --test stand_element_ids` (tests/blitz-tests/tests/stand_element_ids.rs).",
         "ref": "tests/blitz-tests/tests/stand_element_ids.rs::every_element_reads_exactly_one_unique_id · ::author_keyed_elements_read_their_key · ::unkeyed_elements_read_their_component_path · ::text_and_removed_nodes_read_no_id",
-        "status": "implemented"
+        "status": "verified"
       },
       "chunk": "2026-10-06-stable-element-ids"
     },

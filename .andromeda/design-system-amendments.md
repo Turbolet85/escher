@@ -31,3 +31,9 @@ One entry per amendment to `design-system.md` (sidecar-contract.md §Entry form)
 **Change:** 17 `file:line` citations into the merged upstream files re-pointed by the merge's measured line map; no claim text changed by the re-point.
 **Why:** the chunk merged upstream `main` at `23354585`; the merged files' lines moved.
 **Ref:** .andromeda/runs/2026-10-06T08-31-16-wrap/
+
+## 2026-10-06-stable-element-ids — citations re-pointed after the author-id inserts
+**Section:** the sections citing `counter.rs` and `flight_booker.rs` (palette, typography, spacing, contrast rows)
+**Change:** 15 `file:line` citations into `dioxus_document.rs`, `lib.rs` and the four lean-task files re-pointed by the chunk's measured line maps; no claim text changed — the task markup gained `id:` attributes only.
+**Why:** the chunk inserted author `id:` lines into the lean-task files, moving the cited CSS lines.
+**Ref:** .andromeda/runs/2026-10-06T09-35-44-wrap/

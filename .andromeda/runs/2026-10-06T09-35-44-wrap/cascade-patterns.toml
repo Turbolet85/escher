@@ -1,0 +1,37 @@
+# Cascade step-2 sweep — 2026-10-06-stable-element-ids. Each pattern names a claim this pass amended or extended.
+
+[[pattern]]
+id = "dnd-modules"
+fixed = 'dioxus_document, events, mutation_writer'
+
+[[pattern]]
+id = "dioxus-exposes"
+regex = 'DioxusDocument`? exposes'
+
+[[pattern]]
+id = "ws-baseline"
+regex = '431 (passed|·)'
+
+[[pattern]]
+id = "run-stand-13"
+regex = '13 `?ok`? stand'
+
+[[pattern]]
+id = "stand-count-13"
+regex = '13 stand'
+
+[[pattern]]
+id = "markup-id-row"
+regex = 'Markup attributes'
+
+[[pattern]]
+id = "taskshell-sel"
+fixed = 'main#main > #task-shell'
+
+[[pattern]]
+id = "stand-list"
+fixed = 'stand_crud.rs:1'
+
+[[pattern]]
+id = "old-cites"
+regex = 'dioxus_document\.rs:(3[4-9][0-9]|4[01][0-9])'

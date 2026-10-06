@@ -171,11 +171,11 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 - Elements expose `focus()` and `blur()`; `document.activeElement` returns the focused node (packages/blitz-vibey-script/src/dom/element.rs:173-174; packages/blitz-vibey-script/src/dom/element.rs:939-951; packages/blitz-vibey-script/src/dom/document.rs:142-147)
 - `autofocus` reflection writes the value "true" because blitz-dom's autofocus handling expects it; blitz-dom is used with feature `autofocus` (packages/blitz-vibey-script/src/dom/element.rs:473-491; packages/blitz-vibey-script/Cargo.toml:19)
 - JS keyboard events carry key, code, location, repeat, isComposing and modifier flags (packages/blitz-vibey-script/src/dom/event.rs:128-153; packages/blitz-vibey-script/src/dom/event.rs:207-229)
-- KeyDown, KeyUp and KeyPress events reach Dioxus as keyboard data with key, code, location, repeat, composing state and modifiers (packages/dioxus-native-dom/src/dioxus_document.rs:320-324; packages/dioxus-native-dom/src/events.rs:328-361)
-- Focus, Blur, FocusIn and FocusOut events are forwarded as focus data (packages/dioxus-native-dom/src/dioxus_document.rs:315-318)
+- KeyDown, KeyUp and KeyPress events reach Dioxus as keyboard data with key, code, location, repeat, composing state and modifiers (packages/dioxus-native-dom/src/dioxus_document.rs:345-349; packages/dioxus-native-dom/src/events.rs:328-361)
+- Focus, Blur, FocusIn and FocusOut events are forwarded as focus data (packages/dioxus-native-dom/src/dioxus_document.rs:340-343)
 - Mounted elements can take or drop focus with `set_focus`; focus/blur events are not queued (TODO) (packages/dioxus-native-dom/src/events.rs:283-295)
 - An `autofocus` feature forwards to blitz-dom (packages/dioxus-native-dom/Cargo.toml:23; packages/dioxus-native/Cargo.toml:19)
-- IME events are not handled in dioxus-native-dom (TODO) (packages/dioxus-native-dom/src/dioxus_document.rs:331-332)
+- IME events are not handled in dioxus-native-dom (TODO) (packages/dioxus-native-dom/src/dioxus_document.rs:356-357)
 - A falsy Dioxus `disabled` or `checked` (Bool false, Text `"false"`, Int 0, Float 0.0, None) removes the attribute, so an enabled Dioxus control no longer matches `:disabled` (packages/dioxus-native-dom/src/mutation_writer.rs:406-407; tests/blitz-tests/tests/dioxus_falsy_disabled.rs:24-39); every other Dioxus boolean attribute (`readonly`, `required`, `hidden`, `multiple`, `selected`, `open`, `autofocus`) is still written as the literal `"false"`, so a presence read takes it as set — for `hidden`, which §4 says excludes a node from the tree, that would drop a `hidden: false` node: recorded, not established (no stand control measured using one)
 
 **Per-surface keyboard shortcuts:**
@@ -223,7 +223,7 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 - Browser urlbar focus shows a `#5E9ED6` border and 1px outline (apps/browser/assets/browser.css:172-175)
 - New-tab search input removes the outline and changes only border color on focus (apps/browser/assets/about-newtab.css:30-34)
 - todomvc sets `:focus` outline to 0 (examples/todomvc/src/todomvc.css:36-38)
-- seven_guis inputs replace the outline with a border color or box-shadow on focus (examples/seven_guis/src/tasks/temp_converter.rs:75-79; examples/seven_guis/src/tasks/flight_booker.rs:175-178)
+- seven_guis inputs replace the outline with a border color or box-shadow on focus (examples/seven_guis/src/tasks/temp_converter.rs:75-79; examples/seven_guis/src/tasks/flight_booker.rs:180-183)
 - counter and transparent buttons show a 4px focus outline (examples/counter/src/app.rs:79-81; examples/transparent/src/app.rs:180-182)
 - rdme stylesheet shows a 2px outline in its focus-outline color custom property on focus-visible (apps/readme/assets/github-markdown.css:356-363)
 - blitz-dom default stylesheet gives inputs a 2px `#4D90FE` focus outline and suppresses outlines on iframe/body/html focus-visible (packages/blitz-dom/assets/default.css:92-95; packages/blitz-dom/assets/default.css:833-839)
@@ -306,7 +306,7 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 
 **Error recovery:**
 - Error and 404 pages show "Failed to load page" and "404 Not found" (apps/browser/assets/error.html:19; apps/browser/assets/404.html:12)
-- Invalid dates get an `invalid` class with red styling and the Book button disables (examples/seven_guis/src/tasks/flight_booker.rs:78-91; examples/seven_guis/src/tasks/flight_booker.rs:186-190); the headless-stand check asserts the cue without colour — a typed non-date sets `invalid` on the start field and gives `.flight-btn` a `disabled` attribute it did not carry before (tests/blitz-tests/tests/stand_flight_booker.rs:14-30); no test asserts a Dioxus control's focusability or Tab order
+- Invalid dates get an `invalid` class with red styling and the Book button disables (examples/seven_guis/src/tasks/flight_booker.rs:80-96; examples/seven_guis/src/tasks/flight_booker.rs:191-195); the headless-stand check asserts the cue without colour — a typed non-date sets `invalid` on the start field and gives `.flight-btn` a `disabled` attribute it did not carry before (tests/blitz-tests/tests/stand_flight_booker.rs:14-30); no test asserts a Dioxus control's focusability or Tab order
 
 **Orientation and status cues:**
 - History rows show relative time labels: "Just now", minutes, hours, days (apps/browser/src/browser_history.rs:88-102)
