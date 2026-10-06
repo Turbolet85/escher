@@ -63,10 +63,10 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 | Threat model · trust boundaries | `.andromeda/security-plan.md` §Threat Model Summary / §Input Validation |
 | Design tokens (as built) | `.andromeda/design-system.md` §Color Palette / §Typography |
 | Screen layouts per surface | `.andromeda/layout-templates.md` |
-| Test harness · agent-run contract | `.andromeda/test-plan.md` §3 · `scripts/agent-run.sh` (contract tests `.github/scripts/test_agent_run.py`) |
+| Test harness · agent-run contract | `.andromeda/test-plan.md` §3 (keyed contracts: `.andromeda/registries/test-plan-contracts.toml`) · `scripts/agent-run.sh` (contract tests `.github/scripts/test_agent_run.py`) |
 | Cold-agent run pipe (isolated agent session · stub MCP tool · verdict) | `.andromeda/test-plan.md` §3 · `scripts/cold-agent.sh` · `scripts/cold_agent_stub.py` (contract tests `.github/scripts/test_cold_agent.py`) |
-| Observability pipeline | `.andromeda/obs-plan.md` §3 |
-| WCAG criteria · a11y harness | `.andromeda/a11y-plan.md` §1 / §3 |
+| Observability pipeline | `.andromeda/obs-plan.md` §3 (keyed contracts: `.andromeda/registries/obs-plan-contracts.toml`) |
+| WCAG criteria · a11y harness | `.andromeda/a11y-plan.md` §1 / §3 (keyed contracts: `.andromeda/registries/a11y-plan-contracts.toml`) |
 | Chunk history (version-agnostic) | `.andromeda/master-route.md` |
 | Working route · requirements · matrix | the active `escher-X.Y.Z/` (highest version dir): `working-route.md`, `requirements.md`, `verification-matrix.json` |
 | Product intent · vision | the active `escher-X.Y.Z/intent.md` / `vision.md` |
@@ -113,7 +113,7 @@ The engine is already exercised headlessly — `blitz-test-harness` synthesizes 
 On-demand references in `.claude/docs/` (Claude reads when relevant):
 - Specialist summaries: `security-summary.md` / `design-summary.md` / `tests-summary.md` / `obs-summary.md` / `a11y-summary.md`
 - Core: `stack.md` / `conventions.md` / `commands.md` / `gotchas.md` / `workflow.md`
-- `services/{name}.md` — per-crate notes (blitz-dom, blitz-traits, blitz-paint, blitz-shell, blitz-test-harness, dioxus-native-dom, seven_guis)
+- `services/{name}.md` — per-crate notes (blitz-dom, blitz-traits, blitz-paint, blitz-shell, blitz-test-harness, dioxus-native-dom, escher-telemetry, seven_guis)
 - `session-learnings.md` — curated by /andromeda-wrap-session
 
 Path-scoped rules in `.claude/rules/` (auto-load when matching files touched):
