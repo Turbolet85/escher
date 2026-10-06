@@ -375,9 +375,9 @@ impl<Rend: WindowRenderer> View<Rend> {
             if self.doc.poll(Some(cx)) {
                 #[cfg(feature = "accessibility")]
                 {
-                    let inner = self.doc.inner();
-                    if inner.has_changes() {
-                        self.accessibility.update_tree(&inner);
+                    let has_changes = self.doc.inner().has_changes();
+                    if has_changes {
+                        self.accessibility.update_tree(&*self.doc);
                     }
                 }
 
@@ -520,8 +520,7 @@ impl<Rend: WindowRenderer> View<Rend> {
 
     #[cfg(feature = "accessibility")]
     pub fn build_accessibility_tree(&mut self) {
-        let inner = self.doc.inner();
-        self.accessibility.update_tree(&inner);
+        self.accessibility.update_tree(&*self.doc);
     }
 
     #[cfg(target_arch = "wasm32")]

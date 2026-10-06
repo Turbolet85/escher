@@ -75,7 +75,7 @@ pub fn Timer() -> Element {
                 }
                 p { id: "timer-elapsed", class: "timer-elapsed", "Elapsed: {elapsed():.1}s" }
                 div { class: "timer-slider-row",
-                    label { class: "timer-label", "Duration: " }
+                    label { class: "timer-label", r#for: "timer-duration", "Duration: " }
                     input {
                         id: "timer-duration",
                         r#type: "range",

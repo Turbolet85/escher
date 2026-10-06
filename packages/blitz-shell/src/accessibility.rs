@@ -1,7 +1,7 @@
 use crate::{BlitzShellEvent, event::BlitzShellProxy};
 use accesskit::Rect;
 use accesskit_xplat::{Adapter, EventHandler, WindowEvent as AccessKitEvent};
-use blitz_dom::BaseDocument;
+use blitz_dom::Document;
 use std::sync::Arc;
 use winit::{
     event::WindowEvent,
@@ -41,10 +41,8 @@ impl AccessibilityState {
             ),
         }
     }
-    pub fn update_tree(&mut self, doc: &BaseDocument) {
-        let _ = doc;
-        self.adapter
-            .update_if_active(|| doc.build_accessibility_tree());
+    pub fn update_tree(&mut self, doc: &dyn Document) {
+        self.adapter.update_if_active(|| doc.accessibility_tree());
     }
 
     /// Allows reacting to window events.

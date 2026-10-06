@@ -7,6 +7,7 @@ impl BaseDocument {
         let mut nodes = std::collections::HashMap::new();
         let mut window = AccessKitNode::new(Role::Window);
         let mut hidden_nodes = std::collections::HashSet::new();
+        let mut labels = Vec::new();
 
         self.visit(|node_id, node| {
             if node.is_hidden_from_accessibility_tree()
@@ -25,8 +26,25 @@ impl BaseDocument {
                 .unwrap_or(&mut window);
             let (id, builder) = self.build_accessibility_node(node, parent);
 
+            if node
+                .element_data()
+                .is_some_and(|el| el.name.local == local_name!("label"))
+            {
+                labels.push(node_id);
+            }
             nodes.insert(node_id, (id, builder));
         });
+
+        // A label may precede or follow its input, so association waits for every node.
+        // https://www.w3.org/TR/html-aam-1.0/#accessible-name-computations-by-html-element
+        for label_id in labels {
+            let Some(input_id) = self.label_bound_input_element(label_id).map(|n| n.id) else {
+                continue;
+            };
+            if let Some((_, input)) = nodes.get_mut(&input_id) {
+                input.push_labelled_by(NodeId(label_id.as_u64()));
+            }
+        }
 
         let mut nodes: Vec<_> = nodes
             .into_iter()
@@ -66,6 +84,14 @@ impl BaseDocument {
 
             builder.set_role(role);
             builder.set_html_tag(name);
+
+            // https://www.w3.org/TR/accname-1.2/#step2C
+            if let Some(label) = element_data
+                .attr(local_name!("aria-label"))
+                .filter(|label| !label.trim().is_empty())
+            {
+                builder.set_label(label);
+            }
 
             // https://www.w3.org/TR/wai-aria-1.2/#tree_exclusion
             if element_data.attr(local_name!("aria-hidden")) == Some("true") {

@@ -15,6 +15,8 @@ use dioxus_core::{ElementId, Event, VirtualDom};
 use dioxus_html::{PlatformEventData, set_event_converter};
 use futures_util::task::noop_waker;
 use std::cell::RefCell;
+#[cfg(feature = "accessibility")]
+use std::collections::HashMap;
 use std::future::Future;
 use std::mem;
 use std::pin::pin;
@@ -281,6 +283,24 @@ impl Document for DioxusDocument {
         };
         let mut driver = EventDriver::new(&mut self.inner, handler);
         driver.handle_ui_event(event);
+    }
+
+    /// The base tree, with each element's node carrying its stable element id (see
+    /// [`element_id`](DioxusDocument::element_id)) as its AccessKit `author_id`.
+    #[cfg(feature = "accessibility")]
+    fn accessibility_tree(&self) -> accesskit::TreeUpdate {
+        let mut tree = self.inner.borrow().build_accessibility_tree();
+        let mut ids: HashMap<u64, String> = self
+            .element_ids()
+            .into_iter()
+            .map(|(node, id)| (node.as_u64(), id))
+            .collect();
+        for (node_id, node) in &mut tree.nodes {
+            if let Some(id) = ids.remove(&node_id.0) {
+                node.set_author_id(id);
+            }
+        }
+        tree
     }
 }
 

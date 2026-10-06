@@ -148,6 +148,16 @@ pub trait Document: Any + 'static {
     fn id(&self) -> usize {
         self.inner().id
     }
+
+    /// Build the AccessKit tree for the [`Document`].
+    ///
+    /// The default is [`BaseDocument::build_accessibility_tree`]. A wrapper may override it
+    /// to enrich the nodes with what only the wrapper knows, as `DioxusDocument` does with
+    /// each element's stable id.
+    #[cfg(feature = "accessibility")]
+    fn accessibility_tree(&self) -> accesskit::TreeUpdate {
+        self.inner().build_accessibility_tree()
+    }
 }
 
 pub struct PlainDocument(pub BaseDocument);

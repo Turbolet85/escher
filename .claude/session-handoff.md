@@ -35,3 +35,6 @@
 - recurrence-despite-learning: "The project's Bash guards refuse a heredoc written to a file and a leading cd, and read payload prose too" (Tier 3, 2026-10-06). A leading `cd` into the skill references directory was refused again this session — the third recurrence.
 - recurrence-despite-learning (carried): "On this host `grep` is ugrep, and a long bounded repetition can print nothing" (Tier 3, 2026-10-06).
 Review with `/andromeda-wrap-session --review` if any should be applied.
+
+## Session End Status
+Completed normally at 2026-10-06 14:22:36

@@ -1,0 +1,136 @@
+[
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'build_accessibility_tree' AND callee_kind = 'fn' ORDER BY file, line;",
+"rows": 10,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-shell 0.3.0-beta.2 accessibility/impl#[AccessibilityState]update_tree().",
+"file": "packages/blitz-shell/src/accessibility.rs",
+"line": 46
+},
+{
+"caller": "rust-analyzer cargo blitz-shell 0.3.0-beta.2 application/impl#[`BlitzApplication<Rend>`]handle_blitz_shell_event().",
+"file": "packages/blitz-shell/src/application.rs",
+"line": 81
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 includes_ordinary_div_as_node().",
+"file": "tests/blitz-tests/tests/accessibility_hidden.rs",
+"line": 13
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 excludes_div_with_hidden_attribute().",
+"file": "tests/blitz-tests/tests/accessibility_hidden.rs",
+"line": 33
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 excludes_div_with_display_none().",
+"file": "tests/blitz-tests/tests/accessibility_hidden.rs",
+"line": 54
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 excludes_div_with_visibility_hidden().",
+"file": "tests/blitz-tests/tests/accessibility_hidden.rs",
+"line": 75
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 sets_hidden_flag_on_element_with_aria_hidden_attribute().",
+"file": "tests/blitz-tests/tests/accessibility_hidden.rs",
+"line": 96
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 excludes_child_element_of_hidden_element().",
+"file": "tests/blitz-tests/tests/accessibility_hidden.rs",
+"line": 125
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 unknown_tags().",
+"file": "tests/blitz-tests/tests/accessibility_roles.rs",
+"line": 28
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 assert_role().",
+"file": "tests/blitz-tests/tests/accessibility_roles.rs",
+"line": 56
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'update_tree' AND callee_kind = 'fn' AND callee_file LIKE '%blitz-shell/src/accessibility.rs' ORDER BY file, line;",
+"rows": 2,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-shell 0.3.0-beta.2 window/impl#[`View<Rend>`]poll().",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 379
+},
+{
+"caller": "rust-analyzer cargo blitz-shell 0.3.0-beta.2 window/impl#[`View<Rend>`]build_accessibility_tree().",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 523
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'element_ids' AND callee_kind = 'fn' ORDER BY file, line;",
+"rows": 10,
+"result": [
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 dioxus_document/impl#[DioxusDocument]element_ids().",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 204
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/element_id().",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 237
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/ids().",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 256
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/a_removed_element_reads_no_id().",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 367
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/a_removed_element_reads_no_id().",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 389
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/non_elements_read_no_id().",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 400
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 every_element_reads_exactly_one_unique_id().",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 131
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 unkeyed_elements_read_their_component_path().",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 219
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 text_and_removed_nodes_read_no_id().",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 265
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 ids().",
+"file": "tests/blitz-tests/tests/stand_id_persistence.rs",
+"line": 18
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

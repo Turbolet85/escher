@@ -1,0 +1,6 @@
+# Gate 6 (the diff guard): amended and re-run
+
+- **Before:** in the first full gate run (run dir `2026-10-06T12-22-52-implement`, between 12:28Z and 12:39Z on 2026-10-06), entry 6 read `red · exit 0 ✗ (exit 1)`. Its only hit was `tests/blitz-tests/Cargo.toml` (`git diff --name-only 076d74cb -- {the guarded list}` printed that one path). The cause is the operator-approved widening: `features = ["accessibility"]` on dioxus-native-dom. Without it, the `DioxusDocument::accessibility_tree` override is compiled out of blitz-tests (scope-record.md).
+- **Amendment:** on the operator's direction, 2026-10-06, `tests/blitz-tests/Cargo.toml` was removed from entry 6's guarded path list in `plan.md`. The entry's `note` records the change. Every other guarded path is unchanged.
+- **Re-run:** `gate.py run --plan … --entry 6` printed `6 probe green · exit 0 · 0.0s · 0 B → 6.log`, and the summary read `entries 20 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 19`.
+- **What the manifest diff is:** one line, `dioxus-native-dom = { workspace = true }` → `dioxus-native-dom = { workspace = true, features = ["accessibility"] }`. It adds no dependency and changes no lock line. Gate 7's lockfile check still reads only `+ "accesskit",`.

@@ -79,12 +79,14 @@ pub fn FlightBooker() -> Element {
                 }
                 input {
                     id: "flight-start",
+                    aria_label: "Departure date",
                     class: if start_valid { "date-input" } else { "date-input invalid" },
                     value: "{start_str}",
                     oninput: move |evt| start_str.set(evt.value()),
                 }
                 input {
                     id: "flight-return-date",
+                    aria_label: "Return date",
                     class: if return_valid { "date-input" } else { "date-input invalid" },
                     disabled: !is_return,
                     value: "{return_str}",

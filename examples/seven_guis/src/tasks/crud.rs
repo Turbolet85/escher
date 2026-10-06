@@ -41,7 +41,7 @@ pub fn Crud() -> Element {
             style { {CSS} }
             // Filter row
             div { class: "row",
-                label { "Filter prefix: " }
+                label { r#for: "crud-filter", "Filter prefix: " }
                 input {
                     id: "crud-filter",
                     value: "{filter}",
@@ -82,13 +82,13 @@ pub fn Crud() -> Element {
                 }
                 // Fields
                 div { class: "fields",
-                    label { "Name: " }
+                    label { r#for: "crud-name", "Name: " }
                     input {
                         id: "crud-name",
                         value: "{first_field}",
                         oninput: move |e| first_field.set(e.value())
                     }
-                    label { "Surname: " }
+                    label { r#for: "crud-surname", "Surname: " }
                     input {
                         id: "crud-surname",
                         value: "{last_field}",

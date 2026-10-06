@@ -31,7 +31,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
    ↓
 [2026-10-06-project-readme] Project README — the repository front page describes escher, not Blitz: what it is, why it exists, its Blitz lineage, the plans, a contact
    ↓
-Accessibility-tree identity — stable id on every accessibility node, stand controls carrying role and name (v010-03; per a11y-plan §2)  CARRY: id source (from 2026-10-06-stable-element-ids) — the stable element id is computed only in dioxus-native-dom (`DioxusDocument::element_id` / `element_ids`, a vdom walk joined with a DOM walk), since blitz-dom holds no component information; blitz-dom's `build_accessibility_tree` keys AccessKit nodes by `NodeId::as_u64()` and has no access to the id (arch §Standard Contracts → Dioxus DOM bridge; a11y-plan §2)
+[2026-10-06-accessibility-tree-identity] Accessibility-tree identity — stable id on every accessibility node, stand controls carrying role and name (v010-03; per a11y-plan §2)  CARRY: id source (from 2026-10-06-stable-element-ids) — the stable element id is computed only in dioxus-native-dom (`DioxusDocument::element_id` / `element_ids`, a vdom walk joined with a DOM walk), since blitz-dom holds no component information; blitz-dom's `build_accessibility_tree` keys AccessKit nodes by `NodeId::as_u64()` and has no access to the id (arch §Standard Contracts → Dioxus DOM bridge; a11y-plan §2)
 
 ### Epoch 3 — Observation model
 Upstream sync ahead of the observation model — upstream/main merged, our changes kept additive; our tests and CI prove our logic survived (per intent §Principles)
