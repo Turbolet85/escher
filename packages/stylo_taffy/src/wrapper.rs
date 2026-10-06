@@ -78,6 +78,11 @@ impl<T: Deref<Target = ComputedValues>> taffy::CoreStyle for TaffyStyloStyle<T> 
     }
 
     #[inline]
+    fn is_replaced(&self) -> bool {
+        self.flags.contains(StyleFlags::IS_REPLACED)
+    }
+
+    #[inline]
     fn box_sizing(&self) -> taffy::BoxSizing {
         convert::box_sizing(self.style.get_position().box_sizing)
     }
@@ -209,10 +214,24 @@ impl<T: Deref<Target = ComputedValues>> taffy::BlockContainerStyle for TaffyStyl
     }
 
     #[inline]
-    fn align_content(&self) -> Option<taffy::AlignContent> {
-        convert::content_alignment(
-            self.style.get_position().align_content,
-            self.style.clone_display(),
+    fn align_content(&self) -> taffy::AlignContent {
+        let display = self.style.clone_display();
+        let align_content =
+            convert::content_alignment(self.style.get_position().align_content, display);
+        if align_content.keyword() == taffy::AlignContentKeyword::Normal
+            && display.inside() == stylo::DisplayInside::TableCell
+        {
+            convert::table_cell_vertical_align(&self.style).unwrap_or(align_content)
+        } else {
+            align_content
+        }
+    }
+
+    #[inline]
+    fn justify_items(&self) -> taffy::AlignItems {
+        convert::default_item_alignment(
+            (self.style.get_position().justify_items.computed.0).0,
+            self.style.clone_direction() == stylo::Direction::Rtl,
         )
     }
 }
@@ -223,6 +242,25 @@ impl<T: Deref<Target = ComputedValues>> taffy::BlockItemStyle for TaffyStyloStyl
     #[inline]
     fn is_table(&self) -> bool {
         convert::is_table(self.style.clone_display())
+    }
+
+    #[inline]
+    fn align_self(&self) -> Option<taffy::AlignSelf> {
+        convert::oof_item_alignment(self.style.get_position().align_self.0, false, false)
+    }
+
+    #[inline]
+    fn justify_self(&self) -> Option<taffy::AlignSelf> {
+        convert::oof_item_alignment(
+            self.style.get_position().justify_self.0,
+            true,
+            self.style.clone_direction() == stylo::Direction::Rtl,
+        )
+    }
+
+    #[inline]
+    fn align_content(&self) -> taffy::AlignContent {
+        taffy::BlockContainerStyle::align_content(self)
     }
 
     #[cfg(feature = "floats")]
@@ -266,7 +304,7 @@ impl<T: Deref<Target = ComputedValues>> taffy::FlexboxContainerStyle for TaffySt
     }
 
     #[inline]
-    fn align_content(&self) -> Option<taffy::AlignContent> {
+    fn align_content(&self) -> taffy::AlignContent {
         convert::content_alignment(
             self.style.get_position().align_content,
             self.style.clone_display(),
@@ -274,12 +312,12 @@ impl<T: Deref<Target = ComputedValues>> taffy::FlexboxContainerStyle for TaffySt
     }
 
     #[inline]
-    fn align_items(&self) -> Option<taffy::AlignItems> {
+    fn align_items(&self) -> taffy::AlignItems {
         convert::default_item_alignment(self.style.get_position().align_items.0, false)
     }
 
     #[inline]
-    fn justify_content(&self) -> Option<taffy::JustifyContent> {
+    fn justify_content(&self) -> taffy::JustifyContent {
         let position_styles = self.style.get_position();
         convert::justify_content(
             position_styles.justify_content,
@@ -559,7 +597,7 @@ impl<T: Deref<Target = ComputedValues>> taffy::GridContainerStyle for TaffyStylo
     }
 
     #[inline]
-    fn align_content(&self) -> Option<taffy::AlignContent> {
+    fn align_content(&self) -> taffy::AlignContent {
         convert::content_alignment(
             self.style.get_position().align_content,
             self.style.clone_display(),
@@ -567,7 +605,7 @@ impl<T: Deref<Target = ComputedValues>> taffy::GridContainerStyle for TaffyStylo
     }
 
     #[inline]
-    fn justify_content(&self) -> Option<taffy::JustifyContent> {
+    fn justify_content(&self) -> taffy::JustifyContent {
         let position_styles = self.style.get_position();
         convert::justify_content(
             position_styles.justify_content,
@@ -578,12 +616,12 @@ impl<T: Deref<Target = ComputedValues>> taffy::GridContainerStyle for TaffyStylo
     }
 
     #[inline]
-    fn align_items(&self) -> Option<taffy::AlignItems> {
+    fn align_items(&self) -> taffy::AlignItems {
         convert::default_item_alignment(self.style.get_position().align_items.0, false)
     }
 
     #[inline]
-    fn justify_items(&self) -> Option<taffy::AlignItems> {
+    fn justify_items(&self) -> taffy::AlignItems {
         convert::default_item_alignment(
             (self.style.get_position().justify_items.computed.0).0,
             self.style.clone_direction() == stylo::Direction::Rtl,
@@ -627,6 +665,25 @@ impl<T: Deref<Target = ComputedValues>> taffy::GridItemStyle for TaffyStyloStyle
 }
 
 impl<T: Deref<Target = ComputedValues>> taffy::OofItemStyle for TaffyStyloStyle<T> {
+    #[inline]
+    fn align_self(&self) -> Option<taffy::AlignSelf> {
+        convert::oof_item_alignment(self.style.get_position().align_self.0, false, false)
+    }
+
+    #[inline]
+    fn justify_self(&self) -> Option<taffy::AlignSelf> {
+        convert::oof_item_alignment(
+            self.style.get_position().justify_self.0,
+            true,
+            self.style.clone_direction() == stylo::Direction::Rtl,
+        )
+    }
+
+    #[inline]
+    fn is_table(&self) -> bool {
+        convert::is_table(self.style.clone_display())
+    }
+
     #[inline]
     fn grid_row(&self) -> taffy::Line<taffy::GridPlacement<Atom>> {
         let position_styles = self.style.get_position();

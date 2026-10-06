@@ -1,0 +1,6 @@
+# Pre-merge workspace test count (implementation step 1)
+head: ab936a9e46ee19365929465444725a0bc837dbbc
+read: 2026-10-06T08:12:03Z — bash .github/scripts/ci-leg.sh test, exit 0, target/ci-logs/test.log (mtime 2026-10-06T08:11:51Z)
+sum: grep -E '^test result:' target/ci-logs/test.log | awk '{p+=$4; f+=$6; i+=$8} END {print "passed " p " failed " f " ignored " i}'
+test result lines: 120
+passed 430 failed 0 ignored 4

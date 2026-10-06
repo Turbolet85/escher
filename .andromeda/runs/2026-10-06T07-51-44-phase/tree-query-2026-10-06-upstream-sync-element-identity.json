@@ -1,0 +1,100 @@
+[
+{
+"sql": "SELECT callee_name, caller, file, line FROM calls WHERE callee_name IN ('inline_fragment_rects','default_item_alignment','item_alignment') AND callee_kind = 'fn' ORDER BY callee_name, file, line",
+"rows": 15,
+"result": [
+{
+"callee_name": "default_item_alignment",
+"caller": "rust-analyzer cargo stylo_taffy 0.3.0-beta.2 convert/to_taffy_style().",
+"file": "packages/stylo_taffy/src/convert.rs",
+"line": 912
+},
+{
+"callee_name": "default_item_alignment",
+"caller": "rust-analyzer cargo stylo_taffy 0.3.0-beta.2 convert/to_taffy_style().",
+"file": "packages/stylo_taffy/src/convert.rs",
+"line": 916
+},
+{
+"callee_name": "default_item_alignment",
+"caller": "rust-analyzer cargo stylo_taffy 0.3.0-beta.2 wrapper/impl#[`TaffyStyloStyle<T>`][FlexboxContainerStyle]align_items().",
+"file": "packages/stylo_taffy/src/wrapper.rs",
+"line": 277
+},
+{
+"callee_name": "default_item_alignment",
+"caller": "rust-analyzer cargo stylo_taffy 0.3.0-beta.2 wrapper/impl#[`TaffyStyloStyle<T>`][GridContainerStyle]align_items().",
+"file": "packages/stylo_taffy/src/wrapper.rs",
+"line": 581
+},
+{
+"callee_name": "default_item_alignment",
+"caller": "rust-analyzer cargo stylo_taffy 0.3.0-beta.2 wrapper/impl#[`TaffyStyloStyle<T>`][GridContainerStyle]justify_items().",
+"file": "packages/stylo_taffy/src/wrapper.rs",
+"line": 586
+},
+{
+"callee_name": "inline_fragment_rects",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/impl#[BaseDocument]get_client_bounding_rect().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2231
+},
+{
+"callee_name": "inline_fragment_rects",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/impl#[BaseDocument]offset_rect().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2276
+},
+{
+"callee_name": "inline_fragment_rects",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/impl#[BaseDocument]node_client_rects().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2335
+},
+{
+"callee_name": "inline_fragment_rects",
+"caller": "rust-analyzer cargo blitz-paint 0.3.0-beta.2 debug_overlay/render_debug_overlay().",
+"file": "packages/blitz-paint/src/debug_overlay.rs",
+"line": 19
+},
+{
+"callee_name": "item_alignment",
+"caller": "rust-analyzer cargo stylo_taffy 0.3.0-beta.2 convert/default_item_alignment().",
+"file": "packages/stylo_taffy/src/convert.rs",
+"line": 532
+},
+{
+"callee_name": "item_alignment",
+"caller": "rust-analyzer cargo stylo_taffy 0.3.0-beta.2 convert/to_taffy_style().",
+"file": "packages/stylo_taffy/src/convert.rs",
+"line": 914
+},
+{
+"callee_name": "item_alignment",
+"caller": "rust-analyzer cargo stylo_taffy 0.3.0-beta.2 convert/to_taffy_style().",
+"file": "packages/stylo_taffy/src/convert.rs",
+"line": 921
+},
+{
+"callee_name": "item_alignment",
+"caller": "rust-analyzer cargo stylo_taffy 0.3.0-beta.2 wrapper/impl#[`TaffyStyloStyle<T>`][FlexboxItemStyle]align_self().",
+"file": "packages/stylo_taffy/src/wrapper.rs",
+"line": 312
+},
+{
+"callee_name": "item_alignment",
+"caller": "rust-analyzer cargo stylo_taffy 0.3.0-beta.2 wrapper/impl#[`TaffyStyloStyle<T>`][GridItemStyle]align_self().",
+"file": "packages/stylo_taffy/src/wrapper.rs",
+"line": 616
+},
+{
+"callee_name": "item_alignment",
+"caller": "rust-analyzer cargo stylo_taffy 0.3.0-beta.2 wrapper/impl#[`TaffyStyloStyle<T>`][GridItemStyle]justify_self().",
+"file": "packages/stylo_taffy/src/wrapper.rs",
+"line": 621
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

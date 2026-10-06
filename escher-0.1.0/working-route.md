@@ -23,7 +23,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
 [2026-10-06-cold-agent-run-pipe] Cold-agent run pipe — fresh agent session given only a stub tool; transcript, wrong-call count and verdict recorded green
 
 ### Epoch 2 — Element identity
-Upstream sync ahead of element identity — upstream/main merged, our changes kept additive; our tests and CI prove our logic survived (per intent §Principles)
+[2026-10-06-upstream-sync-element-identity] Upstream sync ahead of element identity — upstream/main merged, our changes kept additive; our tests and CI prove our logic survived (per intent §Principles)
    ↓
 Stable element ids — author key else component path, on every stand element (v010-01)  PREREQ: close rust gate deferral (deferred since 2026-10-06-cold-agent-run-pipe: doc — record: 2026-10-06-cold-agent-run-pipe's report)
    ↓

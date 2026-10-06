@@ -1,0 +1,568 @@
+[
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T08:01:56Z",
+"argv": [
+"scope",
+"--lists-only",
+"--research",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-element-identity/research.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T07-51-44-phase",
+"--marker",
+"2026-10-06-upstream-sync-element-identity"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"control: lists · glob · record — each fired on its synthetic known positive",
+"scope lists: parsed 18 items (new 1 · modify 17 · derived 0)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"items": 18,
+"unparsed": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T08:07:27Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-element-identity/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T07-51-44-phase",
+"--marker",
+"2026-10-06-upstream-sync-element-identity",
+"--only",
+"1,2,3,4,5,6,7,8,9,10,12,13"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-06-upstream-sync-element-identity · entries 23",
+"logs $TMPDIR/andromeda-gate/2026-10-06-upstream-sync-element-identity/phase-2026-10-06T07-51-44 · bound: GNU timeout",
+"delta docs 36 · unmapped 3",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L77-85: The gates below run in /implement P2 (on the merged, uncommitted tree) and in the wrap's l… (2131 chars)",
+"  1 probe       red · exit 0 ✗ (exit 1) · exit 1 · 0.01s · 0 B → 1.log · git merge-base --is-ancestor 2335458530518cdf167c55ce635fa… (167 chars)",
+"  2 probe       green · exit 0 · 0.0s · 2 B → 2.log · grep -c -E '^    \"packages/escher-telemetry\",$|^escher-tel… (153 chars)",
+"  3 probe       red · exit 0 ✗ (exit 1) · exit 1 · 0.0s · 2 B → 3.log · grep -c -E 'rev = \"(4142c9d8cac05d8b39eac9632856ed04f7623d… (115 chars)",
+"  4 probe       green · exit 0 · 0.0s · 2 B → 4.log · grep -c '^name = \"skrifa\"$' Cargo.lock",
+"  5 probe       green · exit 0 · 0.33s · 0 B → 5.log · cargo metadata --locked --format-version 1 > /dev/null",
+"  6 probe       green · exit 0 · 0.0s · 0 B → 6.log · git diff --quiet ab936a9e46ee19365929465444725a0bc837dbbc … (69 chars)",
+"  7 probe       green · exit 0 · 0.0s · 0 B → 7.log · git diff --quiet ab936a9e46ee19365929465444725a0bc837dbbc … (125 chars)",
+"  8 probe       green · exit 1 · 0.0s · 2 B → 8.log · git diff ab936a9e46ee19365929465444725a0bc837dbbc -- Cargo… (89 chars)",
+"  9 probe       green · exit 1 · 0.01s · 2 B → 9.log · git diff 0f60502ea724ef703b34220b3847bb3483f70b5f 23354585… (218 chars)",
+" 10 probe       recorded · exit 0 · 0.02s · 1157 B → 10.log · git diff --stat $(git merge-tree --write-tree ab936a9e46ee… (202 chars)",
+" 11 unit        not run — excluded · bash .github/scripts/ci-leg.sh fast",
+" 12 probe       green · exit 0 · 0.01s · 30 B → 12.log · grep -E '^test result:' target/ci-logs/test.log | awk '{p+… (129 chars)",
+" 13 probe       green · exit 0 · 0.0s · 2 B → 13.log · grep -c '^Ran 64 tests' target/ci-logs/ci-scripts.log",
+" 14 lint        not run — excluded · bash .github/scripts/ci-leg.sh doc",
+" 15 probe       not run — excluded · bash .github/scripts/ci-leg.sh audit",
+" 16 integration not run — excluded · bash .github/scripts/ci-leg.sh a11y",
+" 17 build       not run — excluded · bash scripts/agent-run.sh boot",
+" 18 integration not run — excluded · bash scripts/agent-run.sh run stand",
+" 19 build       not run — excluded · cargo build -p seven_guis --bin seven_guis_native --locked",
+" 20 smoke       not run — excluded · RUST_LOG=info timeout 10 target/debug/seven_guis_native; t… (72 chars)",
+" 21 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 22 probe       not run — excluded · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 23 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 23 · green 9 · red 2 (1,3) · recorded 1 · timeout 0 · not-run 11"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-06-upstream-sync-element-identity",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-upstream-sync-element-identity/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-06-upstream-sync-element-identity/phase-2026-10-06T07-51-44",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/a11y-history.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/a11y.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/arch-history.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/arch.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-06T07-51-44-phase/design-history.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/design.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/evolve-2026-10-06-upstream-sync-element-identity.json",
+".andromeda/runs/2026-10-06T07-51-44-phase/gate-2026-10-06-upstream-sync-element-identity.json",
+".andromeda/runs/2026-10-06T07-51-44-phase/inputs-2026-10-06-upstream-sync-element-identity.json",
+".andromeda/runs/2026-10-06T07-51-44-phase/layouts-history.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/layouts.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/master-record.txt",
+".andromeda/runs/2026-10-06T07-51-44-phase/obs-contracts.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/obs-history.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/obs.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/planlint-2026-10-06-upstream-sync-element-identity.json",
+".andromeda/runs/2026-10-06T07-51-44-phase/registry-2026-10-06-upstream-sync-element-identity.json",
+".andromeda/runs/2026-10-06T07-51-44-phase/relay-1.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/route-2026-10-06-upstream-sync-element-identity.json",
+".andromeda/runs/2026-10-06T07-51-44-phase/route-no-marker.json",
+".andromeda/runs/2026-10-06T07-51-44-phase/security-history.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/security.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/sidecar-2026-10-06-upstream-sync-element-identity.json",
+".andromeda/runs/2026-10-06T07-51-44-phase/tests-contracts.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/tests-history.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/tests.md",
+".andromeda/runs/2026-10-06T07-51-44-phase/tree-query-2026-10-06-upstream-sync-element-identity.json",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-element-identity/plan.md",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-element-identity/research.md",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-element-identity/scope.md"
+]
+},
+"unmapped": [
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-element-identity/inputs/.gitattributes",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-element-identity/inputs/I1-relay-1.md.txt",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-element-identity/inputs/andromeda-inputs.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 39,
+"problem": null
+},
+"prose": [
+{
+"from": 77,
+"to": 85,
+"text": "The gates below run in /implement P2 (on the merged, uncommitted tree) and in the wrap's light gate (on the committed merge). - **Merge witness and guards.** The first entry is the merge witness. It is green when upstream's pin is MERGE_HEAD (before the operator's commit) or an ancestor of HEAD (after it), and red on the untouched tree. The next eight probe the merged manifest, the lock, `.github/`, the package manifests and stand sources, and the upstream delta:   - Their git bases are the chunk start commit `ab936a9e` or the fixed upstream shas, so they survive the pre-CI commit.   - The additivity entry is report-only. It lists every code path whose content differs from the clean auto-merge, re-derived by `git merge-tree`, which is deterministic. Each listed path must be a recorded step-5 fix. - **Gate legs.** `fast` is the local pre-push gate, and its `target/ci-logs/test.log` feeds the count entry. Then `doc`, `audit` and `a11y`, then the agent-run proof. - **Windowed boot smoke.** It runs because blitz-paint `render.rs` and the Taffy and Parley pins change what `seven_guis_native` renders. It declares `WAYLAND_DISPLAY` and reads `not run — env unset` without one. It turns `timeout`'s 124 into exit 0 (verification-harness.md Session Additions, 2026-10-06), and its atom comes from test-plan.md's Stand log format reading, as in 2026-10-06-headless-stand's plan. - **Not listed locally.** The `msrv` leg (`cargo +1.91`) and the wasm leg run on CI only: this host has no 1.91 toolchain or wasm32 target (measured in 2026-10-06-telemetry-bootstrap's plan). P3 read every new dependency's rust-version as ≤ 1.91.0 (parley 1.88, vello 1.89, taffy 1.71). The operator entries push the merge and read the CI run that covers both legs. - **No live leg.** This chunk drives no external process. - **The pre-merge count has no listed producer, by construction.** `evidence/pre-merge-counts.txt` is read on `ab936a9e` before the merge. No gate can re-run it on the merged tree, so implementation step 1 produces it once, as a one-shot reading. The count entry and the report compare it against the post-merge reading."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "probe",
+"run": "git merge-base --is-ancestor 2335458530518cdf167c55ce635fae99323e0789 HEAD || test \"$(git rev-parse -q --verify MERGE_HEAD)\" = 2335458530518cdf167c55ce635fae99323e0789",
+"run_sha8": "92366c93",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-element-identity/phase-2026-10-06T07-51-44/1.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✗ (exit 1)"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 1)"
+},
+{
+"n": 2,
+"role": "probe",
+"run": "grep -c -E '^    \"packages/escher-telemetry\",$|^escher-telemetry = \\{ path|^seven_guis = \\{ path|^tracing-log = |^debug = \"line-tables-only\"$' Cargo.toml",
+"run_sha8": "cb5e70a3",
+"expect": [
+"exit 0",
+"last line 5"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-element-identity/phase-2026-10-06T07-51-44/2.log",
+"bytes": 2,
+"log_sha8": "f0b5c2c2",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '5' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "probe",
+"run": "grep -c -E 'rev = \"(4142c9d8cac05d8b39eac9632856ed04f7623d52|e41dfea5cf50669ac67c5a8aca8d1664ffb72904)\"' Cargo.toml",
+"run_sha8": "1ff26584",
+"expect": [
+"exit 0",
+"last line 2"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-element-identity/phase-2026-10-06T07-51-44/3.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✗ (exit 1)",
+"last line '2' ✗ (last: '0')"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 1)"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "grep -c '^name = \"skrifa\"$' Cargo.lock",
+"run_sha8": "84382880",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-element-identity/phase-2026-10-06T07-51-44/4.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "cargo metadata --locked --format-version 1 > /dev/null",
+"run_sha8": "79e78c79",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-element-identity/phase-2026-10-06T07-51-44/5.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.33,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "git diff --quiet ab936a9e46ee19365929465444725a0bc837dbbc -- .github/",
+"run_sha8": "0f857b7c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-element-identity/phase-2026-10-06T07-51-44/6.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff --quiet ab936a9e46ee19365929465444725a0bc837dbbc -- 'packages/*/Cargo.toml' 'apps/*/Cargo.toml' examples/seven_guis/",
+"run_sha8": "c38c2355",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-element-identity/phase-2026-10-06T07-51-44/7.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "git diff ab936a9e46ee19365929465444725a0bc837dbbc -- Cargo.lock | grep -c '^[-+]name = ' ",
+"run_sha8": "a5bcf4f7",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-element-identity/phase-2026-10-06T07-51-44/8.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "git diff 0f60502ea724ef703b34220b3847bb3483f70b5f 2335458530518cdf167c55ce635fae99323e0789 -- packages wpt | grep -c -E '^[-+][^-+].*(unsafe|tracing::|log::|println!|eprintln!|env::var|TcpListener|UdpSocket|\\.bind\\()' ",
+"run_sha8": "1e804182",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-element-identity/phase-2026-10-06T07-51-44/9.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "git diff --stat $(git merge-tree --write-tree ab936a9e46ee19365929465444725a0bc837dbbc 2335458530518cdf167c55ce635fae99323e0789) -- . ':(exclude)escher-0.1.0' ':(exclude).andromeda' ':(exclude).claude' ",
+"run_sha8": "1a439244",
+"expect": [],
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-element-identity/phase-2026-10-06T07-51-44/10.log",
+"bytes": 1157,
+"log_sha8": "f9cf2f0c",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"report-only (expect = [])"
+],
+"survivors": [],
+"outcome": "recorded"
+},
+{
+"n": 11,
+"role": "unit",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "grep -E '^test result:' target/ci-logs/test.log | awk '{p+=$4; f+=$6; i+=$8} END {print \"passed \" p \" failed \" f \" ignored \" i}' ",
+"run_sha8": "d0bbf5f9",
+"expect": [
+"exit 0",
+"contains failed 0 ignored"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-element-identity/phase-2026-10-06T07-51-44/12.log",
+"bytes": 30,
+"log_sha8": "8c754c8f",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"contains 'failed 0 ignored' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "grep -c '^Ran 64 tests' target/ci-logs/ci-scripts.log",
+"run_sha8": "1f7f4274",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-element-identity/phase-2026-10-06T07-51-44/13.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": [
+"exit 0",
+"contains advisories ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 16,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 17,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 18,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": [
+"exit 0",
+"contains \"outcome\": \"passed\""
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 19,
+"role": "build",
+"run": "cargo build -p seven_guis --bin seven_guis_native --locked",
+"run_sha8": "094a3644",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 20,
+"role": "smoke",
+"run": "RUST_LOG=info timeout 10 target/debug/seven_guis_native; test $? -eq 124",
+"run_sha8": "e0f15baf",
+"expect": [
+"exit 0",
+"contains service.name=seven_guis"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 21,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 22,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 23,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 3600",
+"run_sha8": "68724cfa",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+]
+}
+}
+]

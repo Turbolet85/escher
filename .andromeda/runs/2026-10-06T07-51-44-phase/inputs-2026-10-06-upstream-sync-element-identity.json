@@ -1,0 +1,88 @@
+[
+{
+"tool": "inputs",
+"v": "1.0",
+"sha8": "d30b83fd",
+"ts": "2026-10-06T07:52:42Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-element-identity",
+"--message-file",
+".andromeda/runs/2026-10-06T07-51-44-phase/relay-1.md",
+"--kind",
+"relay",
+"--why",
+"operator measured upstream/main at 23354585, 11 commits past merge base 0f60502e, 17 files +607/-247; ours 16 past base",
+"--step",
+"phase:P1",
+"--run-dir",
+".andromeda/runs/2026-10-06T07-51-44-phase",
+"--marker",
+"2026-10-06-upstream-sync-element-identity"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 2,
+"stdout": [],
+"stderr": "--message-file needs --origin (who sent it, when)",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "inputs",
+"v": "1.0",
+"sha8": "d30b83fd",
+"ts": "2026-10-06T07:52:48Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-element-identity",
+"--message-file",
+".andromeda/runs/2026-10-06T07-51-44-phase/relay-1.md",
+"--origin",
+"operator, /andromeda-phase arguments, 2026-10-06 ~07:52Z",
+"--kind",
+"relay",
+"--why",
+"operator measured upstream/main at 23354585, 11 commits past merge base 0f60502e, 17 files +607/-247; ours 16 past base",
+"--step",
+"phase:P1",
+"--run-dir",
+".andromeda/runs/2026-10-06T07-51-44-phase",
+"--marker",
+"2026-10-06-upstream-sync-element-identity"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"snapped I1 · copy message · message: operator, /andromeda-phase arguments, 2026-10-06 ~07:52Z",
+"cite: inputs#I1"
+],
+"stderr": null,
+"wrote": [
+"inputs/.gitattributes",
+"inputs/I1-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I1",
+"kind": "relay",
+"repo": null,
+"path": "message: operator, /andromeda-phase arguments, 2026-10-06 ~07:52Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "7cdf88fe5efe63c0e3aa3d564c17136625481d81e546debf972378315709be85",
+"copy": "I1-relay-1.md.txt",
+"link": false,
+"read_at": "2026-10-06T07:52:48Z",
+"step": "phase:P1",
+"why": "operator measured upstream/main at 23354585, 11 commits past merge base 0f60502e, 17 files +607/-247; ours 16 past base"
+}
+}
+]

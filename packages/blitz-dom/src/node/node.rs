@@ -1452,6 +1452,7 @@ impl Node {
             if let Some(ild) = element_data.inline_layout_data.as_ref() {
                 let layout = &ild.layout;
                 let scale = layout.scale();
+                let y = y - ild.block_offset;
 
                 if let Some((cluster, _side)) =
                     Cluster::from_point_exact(layout, x * scale, y * scale)
@@ -1511,6 +1512,7 @@ impl Node {
         let inline_layout = element_data.inline_layout_data.as_ref()?;
         let layout = &inline_layout.layout;
         let scale = layout.scale();
+        let y = y - inline_layout.block_offset;
 
         // Use Parley's cluster hit testing (from_point is more forgiving than from_point_exact)
         let (cluster, side) = Cluster::from_point(layout, x * scale, y * scale)?;
@@ -1536,6 +1538,24 @@ impl Node {
         };
 
         Some(offset)
+    }
+
+    /// Whether this node is a non-atomic inline element: one that has no layout box of its
+    /// own because it is flattened into the containing inline root's text layout as a style
+    /// span.
+    pub fn is_non_atomic_inline(&self) -> bool {
+        let Some(element) = self.element_data() else {
+            return false;
+        };
+        if self.flags.is_inline_root()
+            || crate::layout::replaced::is_inline_box_element(&element.name.local)
+        {
+            return false;
+        }
+        self.primary_styles().is_some_and(|styles| {
+            let display = styles.clone_display();
+            display.outside() == DisplayOutside::Inline && display.inside() == DisplayInside::Flow
+        })
     }
 
     /// The node whose box this node's `Layout.location` is relative to: the
@@ -1605,12 +1625,138 @@ impl Node {
         }
     }
 
+    /// The per-line-box fragment boxes of a non-atomic inline element, in CSS pixels relative
+    /// to the border box of its inline root.
+    ///
+    /// Returns `None` for nodes that have their own layout box.
+    pub fn inline_fragment_boxes(&self) -> Option<impl Iterator<Item = taffy::Rect<f32>> + '_> {
+        use parley::PositionedLayoutItem;
+
+        if !self.is_non_atomic_inline() {
+            return None;
+        }
+
+        let inline_root = self.inline_root_ancestor()?;
+        let inline_layout = inline_root.element_data()?.inline_layout_data.as_ref()?;
+        let layout = &inline_layout.layout;
+        let scale = layout.scale();
+
+        // Walk up the DOM parent chain from `id` to check whether it is (or is
+        // inside) the target node, stopping at the inline root.
+        let inline_root_id = inline_root.id;
+        let is_in_target = move |mut id: NodeId| -> bool {
+            loop {
+                if id == self.id {
+                    return true;
+                }
+                if id == inline_root_id {
+                    return false;
+                }
+                match self.with(id).parent {
+                    Some(parent) => id = parent,
+                    None => return false,
+                }
+            }
+        };
+
+        let root_layout = inline_root.unrounded_layout();
+        let content_box_inset = root_layout.padding + root_layout.border;
+        let origin_x = content_box_inset.left;
+        let origin_y = content_box_inset.top + inline_layout.block_offset;
+
+        fn union(acc: &mut Option<taffy::Rect<f32>>, left: f32, top: f32, right: f32, bottom: f32) {
+            *acc = Some(match *acc {
+                Some(rect) => taffy::Rect {
+                    left: rect.left.min(left),
+                    top: rect.top.min(top),
+                    right: rect.right.max(right),
+                    bottom: rect.bottom.max(bottom),
+                },
+                None => taffy::Rect {
+                    left,
+                    top,
+                    right,
+                    bottom,
+                },
+            });
+        }
+
+        // One rect per line box: the union of all of the target's fragments on that line
+        Some(layout.lines().filter_map(move |line| {
+            let line_metrics = line.metrics();
+            let mut line_rect: Option<taffy::Rect<f32>> = None;
+
+            for item in line.items() {
+                match item {
+                    PositionedLayoutItem::GlyphRun(glyph_run) => {
+                        if !is_in_target(glyph_run.style().brush.id) {
+                            continue;
+                        }
+                        let x0 = glyph_run.offset();
+                        let x1 = x0 + glyph_run.advance();
+                        // Use the line box's block extent rather than the
+                        // run's font ascent/descent: fonts with small
+                        // typographic metrics would otherwise produce rects
+                        // that clip the rendered glyphs. This matches the
+                        // geometry used for text selection highlights.
+                        let y0 = line_metrics.block_min_coord;
+                        let y1 = line_metrics.block_max_coord;
+                        union(&mut line_rect, x0, y0, x1, y1);
+                    }
+                    PositionedLayoutItem::InlineBox(inline_box) => {
+                        if !is_in_target(NodeId::from_u64(inline_box.id)) {
+                            continue;
+                        }
+                        let x0 = inline_box.x;
+                        let y0 = inline_box.y;
+                        union(
+                            &mut line_rect,
+                            x0,
+                            y0,
+                            x0 + inline_box.width,
+                            y0 + inline_box.height,
+                        );
+                    }
+                }
+            }
+
+            line_rect.map(|rect| taffy::Rect {
+                left: origin_x + rect.left / scale,
+                top: origin_y + rect.top / scale,
+                right: origin_x + rect.right / scale,
+                bottom: origin_y + rect.bottom / scale,
+            })
+        }))
+    }
+
     /// CSSOM View's `offsetLeft`/`offsetTop`: the offset of this node's border box from the
     /// padding edge of its [`offset_parent`](Self::offset_parent).
     pub fn offset_top_left(&self) -> crate::util::Point<f32> {
         let mut x = 0.0;
         let mut y = 0.0;
         let mut current = self;
+
+        // Non-atomic inlines have no layout box of their own: start from the first
+        // fragment box (relative to the inline root's border box) and continue the
+        // walk from the inline root.
+        if let Some(mut fragments) = self.inline_fragment_boxes() {
+            if let Some(first) = fragments.next() {
+                x += first.left;
+                y += first.top;
+            }
+            let Some(inline_root) = self.inline_root_ancestor() else {
+                return crate::util::Point { x, y };
+            };
+            if inline_root.is_offset_parent() && !inline_root.is_static_body() {
+                let border = inline_root.final_layout().border;
+                return crate::util::Point {
+                    x: x - border.left,
+                    y: y - border.top,
+                };
+            }
+            current = inline_root;
+        }
+
         loop {
             let layout = current.final_layout();
             x += layout.location.x;

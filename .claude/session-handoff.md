@@ -24,3 +24,6 @@ none. No chunk was wrapped and no fan-out ran.
 ## Deferred learnings
 - recurrence-despite-learning: "The project's Bash guards refuse a heredoc written to a file and a leading cd, and read payload prose too" (Tier 3, 2026-10-06) — a cat heredoc appending to a run-dir file was blocked again in the prior session.
 Review with `/andromeda-wrap-session --review` if any should be applied.
+
+## Session End Status
+Completed normally at 2026-10-06 10:10:48

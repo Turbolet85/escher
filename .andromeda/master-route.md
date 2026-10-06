@@ -15,3 +15,4 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 2026-10-06-headless-stand · complete · Headless stand — seven_guis lean four in TaskShell, no display, fixed viewport, bundled fonts, no network, fresh per check · → escher-0.1.0/chunks/2026-10-06-headless-stand/
 2026-10-06-stand-test-contract · complete · Stand test contract — agent-invocable boot/run/status/cleanup + JSON-line logs for stand checks and blitz-tests · → escher-0.1.0/chunks/2026-10-06-stand-test-contract/
 2026-10-06-cold-agent-run-pipe · complete · Cold-agent run pipe — fresh agent session with only a stub tool; transcript, wrong-call count and verdict recorded green · → escher-0.1.0/chunks/2026-10-06-cold-agent-run-pipe/
+2026-10-06-upstream-sync-element-identity · pending · Upstream sync ahead of element identity — upstream/main 23354585 merged, our changes additive, our tests and CI green · → escher-0.1.0/chunks/2026-10-06-upstream-sync-element-identity/

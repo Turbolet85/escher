@@ -1,0 +1,11 @@
+# Post-merge workspace test count (implementation step 6)
+tree: merged, uncommitted (HEAD ab936a9e46ee19365929465444725a0bc837dbbc + MERGE_HEAD 2335458530518cdf167c55ce635fae99323e0789)
+read: gate entry 12 over target/ci-logs/test.log written by entry 11 (bash .github/scripts/ci-leg.sh fast, exit 0; log mtime 2026-10-06T08:13:30Z, fresh for this run)
+test result lines: 120
+passed 431 failed 0 ignored 4
+
+## Against pre-merge-counts.txt (passed 430 failed 0 ignored 4)
+passed +1 · failed 0 · ignored 0
+test-name diff (sorted "test … ..." names, pre vs post): exactly one added, none removed:
+  + test_runners::attr_test::tests::subtest_names_include_nonempty_root_titles ... ok
+  traced to upstream 3aa87bc1 (#1067) fix(wpt): include root titles in native checkLayout subtest names — the predicted +1
