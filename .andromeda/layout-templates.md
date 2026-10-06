@@ -38,9 +38,9 @@
 - Launch config carries `stylesheets` and `base_url` (packages/blitz/src/lib.rs:72-75; packages/blitz/src/lib.rs:113-121)
 - The viewport is the window surface minus safe-area insets, while the render surface covers the whole window including the safe area (packages/blitz-shell/src/window.rs:183-190; packages/blitz-shell/src/window.rs:306-309)
 - Pointer client coordinates subtract the safe-area left/top insets and page coordinates add viewport scroll (packages/blitz-shell/src/window.rs:442-463)
-- The document element is the scrolling element; `window.scrollTo`/`scrollBy` scroll the root element (packages/blitz-vibey-script/src/dom/document.rs:115-119; packages/blitz-vibey-script/src/runtime.rs:2149-2184)
-- The root element's `clientWidth`/`clientHeight` are viewport size minus scrollbar size (packages/blitz-vibey-script/src/dom/element.rs:976-1021)
-- Fixed-position children of the root element are not scrolled with the viewport (packages/blitz-paint/src/render.rs:1034-1049)
+- The document element is the scrolling element; `window.scrollTo`/`scrollBy` scroll the root element (packages/blitz-vibey-script/src/dom/document.rs:122-126; packages/blitz-vibey-script/src/runtime.rs:2152-2187)
+- The root element's `clientWidth`/`clientHeight` are viewport size minus scrollbar size (packages/blitz-vibey-script/src/dom/element.rs:1004-1049)
+- Fixed-position children of the root element are not scrolled with the viewport (packages/blitz-paint/src/render.rs:1039-1054)
 - The test harness defaults to an 800x600 viewport at scale 1 in light mode (packages/blitz-test-harness/src/harness.rs:23-34; packages/blitz-test-harness/src/harness.rs:60)
 
 ---

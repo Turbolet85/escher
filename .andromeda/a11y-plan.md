@@ -3,7 +3,7 @@
 **A11y tier:** `0 — SC 2.1.1 · 1.4.3 · 2.4.3`
 
 **A11y scope (entities needing assertions):**
-- **Workspace AccessKit dependency** — accesskit "0.25" and the in-repo `accesskit_xplat` package are workspace dependencies/members (Cargo.toml:3; Cargo.toml:57; Cargo.toml:140)
+- **Workspace AccessKit dependency** — accesskit "0.25" and the in-repo `accesskit_xplat` package are workspace dependencies/members (Cargo.toml:3; Cargo.toml:57; Cargo.toml:141)
 - **accesskit_xplat** — provides the AccessKit platform adapter crate (packages/accesskit_xplat/Cargo.toml:2-6)
 - **blitz-dom accessibility tree** — under the `accessibility` feature, `BaseDocument::build_accessibility_tree` builds an AccessKit tree from the DOM (packages/blitz-dom/src/lib.rs:83-84; packages/blitz-dom/src/accessibility.rs:5-44); blitz-dom's default features include `accessibility`, which enables `accesskit`, and `custom-widget` also requires it (packages/blitz-dom/Cargo.toml:14-22; packages/blitz-dom/Cargo.toml:27)
 - **Custom widgets** — a custom widget accessibility-tree hook is commented out as a TODO (packages/blitz-dom/src/node/custom_widget.rs:6; packages/blitz-dom/src/node/custom_widget.rs:142-143)
@@ -34,7 +34,7 @@
 
 **Accessibility tree lifecycle:**
 - The accessibility tree is built from the document on InitialTreeRequested and refreshed on poll when the document has changes (packages/blitz-shell/src/application.rs:77-83; packages/blitz-shell/src/window.rs:376-382; packages/blitz-shell/src/accessibility.rs:44-48)
-- `changed_nodes` is documented as the set of changed nodes for updating the accessibility tree (packages/blitz-dom/src/document.rs:317-318)
+- `changed_nodes` is documented as the set of changed nodes for updating the accessibility tree (packages/blitz-dom/src/document.rs:316-317)
 - AccessibilityDeactivated and ActionRequested events are unhandled TODOs (packages/blitz-shell/src/application.rs:84-89)
 - Window focus and outer/inner bounds are forwarded to the adapter on every window event before it is handled (packages/blitz-shell/src/accessibility.rs:50-76; packages/blitz-shell/src/window.rs:586-589)
 
@@ -139,37 +139,37 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 
 **Focus order per layout (engine):**
 - An element is focusable if it holds a sub-document, or if its `disabled` attribute does not parse as `true` and either has `tabindex >= 0` or, with no tabindex, is an `<a>`/`<area>` with `href` or a `button`, `input`, `select`, `textarea`, `frame`, `iframe` or `summary` (packages/blitz-dom/src/node/element.rs:628-660)
-- Tab moves focus to the next node and Shift+Tab to the previous, dispatching focus events (packages/blitz-dom/src/events/keyboard.rs:22-41); `focus_next_node` / `focus_prev_node` move focus to the next/previous focussable node (packages/blitz-dom/src/document.rs:1635-1648)
+- Tab moves focus to the next node and Shift+Tab to the previous, dispatching focus events (packages/blitz-dom/src/events/keyboard.rs:22-41); `focus_next_node` / `focus_prev_node` move focus to the next/previous focussable node (packages/blitz-dom/src/document.rs:1634-1647)
 - Cached focusability is recomputed when `tabindex`, `href` or `disabled` is set or removed (packages/blitz-dom/src/mutator.rs:328-337; packages/blitz-dom/src/mutator.rs:449-456); tests assert focusability follows `tabindex` set or cleared after creation (roving tabindex) (tests/blitz-tests/tests/focusability_updates.rs:1-6; tests/blitz-tests/tests/focusability_updates.rs:34-57)
 - `button`, `input`, `select` and `textarea` can be disabled, which toggles the `DISABLED`/`ENABLED` states (packages/blitz-dom/src/node/element.rs:445-452; packages/blitz-dom/src/node/element.rs:476-478; packages/blitz-dom/src/node/node.rs:775-797); setting `disabled` removes a button's focusability (tests/blitz-tests/tests/focusability_updates.rs:63-76)
 - Disabled-ness is keyed two ways: the `DISABLED`/`ENABLED` element state (hence `:disabled`) and the pointer click target on the attribute's PRESENCE, focusability on its value PARSED as a bool — so `disabled="false"` matches `:disabled` yet stays focusable, and a bare `disabled=""` is focusable too (packages/blitz-dom/src/node/element.rs:446-451; packages/blitz-dom/src/node/element.rs:629; packages/blitz-dom/src/events/pointer.rs:330; packages/blitz-dom/src/events/pointer.rs:457; tests/blitz-tests/tests/focusability_updates.rs:59-62), as measured at escher-0.1.0/chunks/2026-10-06-headless-stand/evidence/disabled-false-probe.txt
 - The file input's generated inner button gets `tabindex="-1"` (packages/blitz-dom/src/mutator.rs:1255-1269)
 - Under the `autofocus` feature, the latest mounted focussable node with `autofocus="true"` is focused on flush (packages/blitz-dom/src/mutator.rs:963-972; packages/blitz-dom/src/mutator.rs:890-895)
-- Focusing sets the `FOCUS` and `FOCUSRING` element states; blurring removes them (packages/blitz-dom/src/document.rs:1684-1689; packages/blitz-dom/src/node/node.rs:711-749)
+- Focusing sets the `FOCUS` and `FOCUSRING` element states; blurring removes them (packages/blitz-dom/src/document.rs:1683-1688; packages/blitz-dom/src/node/node.rs:711-749)
 - `:focus` matches the focus element state while `:focus-visible` and `:focus-within` never match (packages/blitz-dom/src/stylo.rs:476-478)
 - focus and blur do not bubble; focusin and focusout bubble (packages/blitz-traits/src/events.rs:441-444)
 
 **Focus restoration:**
-- Removing the focused node resets focus to the body (encoded as `None`) and runs blur side effects (packages/blitz-dom/src/document.rs:899-901; packages/blitz-dom/src/document.rs:917-921); removing a focused text input runs blur side-effects and disables IME (tests/blitz-tests/tests/interaction_state_teardown.rs:189-217)
+- Removing the focused node resets focus to the body (encoded as `None`) and runs blur side effects (packages/blitz-dom/src/document.rs:898-900; packages/blitz-dom/src/document.rs:916-920); removing a focused text input runs blur side-effects and disables IME (tests/blitz-tests/tests/interaction_state_teardown.rs:189-217)
 - Clicking a non-interactive area clears focus (packages/blitz-dom/src/events/pointer.rs:814-817)
 - Activating the first `summary` of a `details` toggles it open and focuses the summary (packages/blitz-dom/src/events/pointer.rs:696-722)
 - Checkbox and radio clicks toggle state, dispatch `input` and move focus to the control (packages/blitz-dom/src/events/pointer.rs:645-695); clicking a checkbox focuses it (tests/blitz-tests/tests/harness_smoke.rs:33-44)
 
 **Keyboard handling (engine and shell):**
-- Text inputs handle arrow keys, Home/End, Delete/Backspace, Enter (newline or submit) and action-modifier copy/cut/paste/select-all, plus word movement with the action modifier (packages/blitz-dom/src/node/text.rs:195-363)
-- On macOS, Backspace is left to the Apple standard keybindings, which map Cocoa selector commands to editor actions (packages/blitz-dom/src/node/text.rs:326-335; packages/blitz-dom/src/node/text.rs:365-754)
+- Text inputs handle arrow keys, Home/End, Delete/Backspace, Enter (newline or submit) and action-modifier copy/cut/paste/select-all, plus word movement with the action modifier (packages/blitz-dom/src/node/text.rs:198-366)
+- On macOS, Backspace is left to the Apple standard keybindings, which map Cocoa selector commands to editor actions (packages/blitz-dom/src/node/text.rs:329-338; packages/blitz-dom/src/node/text.rs:368-757)
 - The action modifier plus C copies selected text when no text input is focused (packages/blitz-dom/src/events/keyboard.rs:43-61)
 - A text input's generated submit triggers implicit form submission unless the form has more than one blocking field type (packages/blitz-dom/src/events/keyboard.rs:130-133; packages/blitz-dom/src/events/keyboard.rs:138-174)
 - Clicking a label runs the default click of its bound input (packages/blitz-dom/src/events/pointer.rs:723-734)
-- `synthetic_click_event` builds a primary mouse click at the node's center (packages/blitz-dom/src/node/node.rs:1676-1706)
+- `synthetic_click_event` builds a primary mouse click at the node's center (packages/blitz-dom/src/node/node.rs:1822-1852)
 - winit key events are converted to keyboard-types Key, Code, Location and Modifiers, with is_composing always false (packages/blitz-shell/src/convert_events.rs:52-69; packages/blitz-shell/src/convert_events.rs:151-175)
 - Every key press and release is dispatched as KeyDown or KeyUp after shell shortcuts are checked (packages/blitz-shell/src/window.rs:690-698)
 - macOS standard key bindings are forwarded as `AppleStandardKeybinding` UI events (packages/blitz-shell/src/application.rs:189-202; packages/blitz-shell/src/window.rs:578-583; packages/blitz-traits/src/events.rs:71; packages/blitz-traits/src/events.rs:155)
 - IME Enabled, Disabled, Preedit, Commit and DeleteSurrounding events are forwarded to the document, with shell hooks to enable IME and set its cursor area (packages/blitz-shell/src/convert_events.rs:31-50; packages/blitz-shell/src/window.rs:638-641; packages/blitz-traits/src/events.rs:734-779; packages/blitz-traits/src/shell.rs:19-27)
 
 **Script and framework exposure:**
-- Elements expose `focus()` and `blur()`; `document.activeElement` returns the focused node (packages/blitz-vibey-script/src/dom/element.rs:165-166; packages/blitz-vibey-script/src/dom/element.rs:911-923; packages/blitz-vibey-script/src/dom/document.rs:135-140)
-- `autofocus` reflection writes the value "true" because blitz-dom's autofocus handling expects it; blitz-dom is used with feature `autofocus` (packages/blitz-vibey-script/src/dom/element.rs:465-483; packages/blitz-vibey-script/Cargo.toml:19)
+- Elements expose `focus()` and `blur()`; `document.activeElement` returns the focused node (packages/blitz-vibey-script/src/dom/element.rs:173-174; packages/blitz-vibey-script/src/dom/element.rs:939-951; packages/blitz-vibey-script/src/dom/document.rs:142-147)
+- `autofocus` reflection writes the value "true" because blitz-dom's autofocus handling expects it; blitz-dom is used with feature `autofocus` (packages/blitz-vibey-script/src/dom/element.rs:473-491; packages/blitz-vibey-script/Cargo.toml:19)
 - JS keyboard events carry key, code, location, repeat, isComposing and modifier flags (packages/blitz-vibey-script/src/dom/event.rs:128-153; packages/blitz-vibey-script/src/dom/event.rs:207-229)
 - KeyDown, KeyUp and KeyPress events reach Dioxus as keyboard data with key, code, location, repeat, composing state and modifiers (packages/dioxus-native-dom/src/dioxus_document.rs:320-324; packages/dioxus-native-dom/src/events.rs:328-361)
 - Focus, Blur, FocusIn and FocusOut events are forwarded as focus data (packages/dioxus-native-dom/src/dioxus_document.rs:315-318)
@@ -228,7 +228,7 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 - rdme stylesheet shows a 2px outline in its focus-outline color custom property on focus-visible (apps/readme/assets/github-markdown.css:356-363)
 - blitz-dom default stylesheet gives inputs a 2px `#4D90FE` focus outline and suppresses outlines on iframe/body/html focus-visible (packages/blitz-dom/assets/default.css:92-95; packages/blitz-dom/assets/default.css:833-839)
 - The google fixture switches focus outlines to currentcolor under @media (forced-colors:active) (examples/assets/google.html:475-479)
-- Focused text inputs paint a caret honouring caret-color and a selection highlight (packages/blitz-paint/src/render.rs:911-937)
+- Focused text inputs paint a caret honouring caret-color and a selection highlight (packages/blitz-paint/src/render.rs:915-941)
 
 **Motion:**
 - The BBC fixture contains `prefers-reduced-motion` media queries (examples/assets/bbc_reduced.html:10; examples/assets/bbc_reduced.html:11; examples/assets/bbc_reduced.html:17)
@@ -252,7 +252,7 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 **Visibility and hit-testing:**
 - Nodes with `display: none` or `visibility: hidden`, and their descendants, are excluded from the accessibility tree (packages/blitz-dom/src/accessibility.rs:11-20; packages/blitz-dom/src/accessibility.rs:86-98)
 - Elements with `visibility: hidden` or `collapse` are never hit-test targets (packages/blitz-dom/src/node/node.rs:1305-1313)
-- `pointer-events: none` makes an element transparent to hits while its descendants are still tested (packages/blitz-dom/src/node/node.rs:1315-1319; packages/blitz-dom/src/node/node.rs:1476-1484)
+- `pointer-events: none` makes an element transparent to hits while its descendants are still tested (packages/blitz-dom/src/node/node.rs:1315-1319; packages/blitz-dom/src/node/node.rs:1477-1485)
 - `scrollbar-width: none` suppresses overlay scrollbars (packages/blitz-dom/src/node/scrollbar.rs:76-87); a test asserts it paints no scrollbar (tests/blitz-tests/tests/scrollbars.rs:162-175)
 - Devtools layout outlines and hover/node highlight overlays exist as settings (packages/blitz-traits/src/devtools.rs:5-34)
 
@@ -293,7 +293,7 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 
 **Input method (IME):**
 - Focusing a text input enables IME and sets the IME cursor area to the input's content box; blurring disables IME (packages/blitz-dom/src/node/node.rs:718-731; packages/blitz-dom/src/node/node.rs:741-748)
-- IME commit, preedit and disable events are applied to the text editor; `DeleteSurrounding` is a TODO (packages/blitz-dom/src/node/text.rs:756-796)
+- IME commit, preedit and disable events are applied to the text editor; `DeleteSurrounding` is a TODO (packages/blitz-dom/src/node/text.rs:759-799)
 
 **Observed absent:**
 - screen-reader or accessibility API integration · searched: `\baria-|accesskit|\brole\b|screen.?reader` over the 17 listed s06 files

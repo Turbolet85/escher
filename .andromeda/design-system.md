@@ -9,7 +9,7 @@
 **Color model and scheme (engine):**
 - The `Color` type is `AlphaColor<Srgb>` and Stylo colors convert to it via sRGB (packages/blitz-dom/src/util.rs:12; packages/blitz-dom/src/util.rs:166-178)
 - The system color scheme is an enum `Light` (default) / `Dark`, set on the viewport, and it feeds `prefers-color-scheme` (packages/blitz-traits/src/shell.rs:68-74; tests/blitz-tests/tests/device_coalescing.rs:101; packages/blitz-dom/src/stylo_device.rs:80-83)
-- Color-scheme changes trigger a full recascade because `light-dark()` and system colors resolve at cascade time (packages/blitz-dom/src/document.rs:2069-2076)
+- Color-scheme changes trigger a full recascade because `light-dark()` and system colors resolve at cascade time (packages/blitz-dom/src/document.rs:2068-2075)
 - The parent viewport's color scheme is copied to iframe sub-documents (packages/blitz-dom/src/resolve.rs:146-150)
 - The legacy `bgcolor` attribute maps to `background-color` (packages/blitz-dom/src/stylo.rs:1182-1189)
 - The frame clear color is an optional `base_color` (a `peniko::Color`), unset by default (packages/dioxus-native/src/config.rs:12; packages/dioxus-native/src/config.rs:40; packages/dioxus-native/src/config.rs:76-80; packages/dioxus-native/src/dioxus_renderer.rs:37-38)
@@ -76,7 +76,7 @@
 - `scrollbar-color` resolves to absolute thumb and track colors against the element's computed `color`, defaulting to `Auto` (packages/blitz-dom/src/node/scrollbar.rs:38-48; packages/blitz-dom/src/node/scrollbar.rs:58-74); author thumbs blend for contrast at 1.8 on hover and 1.3 when active (packages/blitz-paint/src/render.rs:768-770; packages/blitz-paint/src/render.rs:805-812), and a near-white author thumb darkens on hover/drag (tests/blitz-tests/tests/scrollbars.rs:125-160; tests/blitz-tests/tests/scrollbar_drag.rs:224-227)
 - Unchecked radio rings use the CSS palette GRAY; checkbox ticks/gaps use white (packages/blitz-paint/src/render/form_controls.rs:76-79; packages/blitz-paint/src/render/form_controls.rs:99-101)
 - Debug overlay: content blue 66,144,245,128 · padding green 81,144,66,128 · border red 245,66,66,128 · margin orange 249,204,157,128 (packages/blitz-paint/src/debug_overlay.rs:95; packages/blitz-paint/src/debug_overlay.rs:98; packages/blitz-paint/src/debug_overlay.rs:110; packages/blitz-paint/src/debug_overlay.rs:119)
-- Devtools layout strokes are red for block/flow-root, green for flex, blue for grid (packages/blitz-paint/src/render.rs:1208-1215); devtools `show_layout` documents "different border colors" without stating values (packages/blitz-traits/src/devtools.rs:8-10)
+- Devtools layout strokes are red for block/flow-root, green for flex, blue for grid (packages/blitz-paint/src/render.rs:1213-1220); devtools `show_layout` documents "different border colors" without stating values (packages/blitz-traits/src/devtools.rs:8-10)
 - In SVG serialization, `currentColor` in attribute values is replaced with the element's computed `color` (packages/blitz-dom/src/node/serialize.rs:18-19; packages/blitz-dom/src/node/serialize.rs:120-125; packages/blitz-dom/src/node/serialize.rs:186-194)
 
 **Token sets:**
@@ -119,7 +119,7 @@
 | seven_guis | sans-serif | home title 700 | base 14px; home title 36px | not stated | (examples/seven_guis/src/app.rs:169-195) |
 | todomvc | `'Helvetica Neue', Helvetica, Arial, sans-serif` | body 300; h1 100 | body 14px; h1 100px | not stated | (examples/todomvc/src/todomvc.css:24; examples/todomvc/src/todomvc.css:33; examples/todomvc/src/todomvc.css:73-74) |
 | wgpu_texture | `system-ui, sans` | not stated | not stated | not stated | (examples/wgpu_texture/src/styles.css:7) |
-| Text input editors | not stated | not stated | `parley::PlainEditor::new(16.0)` | not stated | (packages/blitz-dom/src/node/text.rs:79) |
+| Text input editors | not stated | not stated | `parley::PlainEditor::new(16.0)` | not stated | (packages/blitz-dom/src/node/text.rs:82) |
 | Engine generic base size | generics | not stated | monospace 13px; other generics 16px | not stated | (packages/blitz-dom/src/font_metrics.rs:167-176) |
 | List bullets | `"Bullet, monospace, sans-serif"` | not stated | not stated | not stated | (packages/blitz-dom/src/layout/list.rs:15; packages/blitz-dom/src/layout/list.rs:160-167; packages/blitz-dom/src/layout/construct.rs:1086-1092) |
 
@@ -128,8 +128,8 @@
 - The seven_guis headless stand registers the same bundled DejaVu Sans for every generic, with system fonts off, on native — `build_single_font_ctx(DEJAVU_SANS)` through `HarnessOptions.font_ctx`, decoded by seven_guis' native `woff` feature (examples/seven_guis/src/stand.rs:52-54; examples/seven_guis/src/lib.rs:7; examples/seven_guis/Cargo.toml:31)
 - A custom `FontContext` can be set; on WASM a context with bundled fonts must be provided, using `build_single_font_ctx` for one font (packages/dioxus-native/src/config.rs:56-64); `build_single_font_ctx` registers one font as fallback for SansSerif, Serif, Monospace and SystemUi with system fonts disabled (packages/blitz-dom/src/lib.rs:126-157)
 - Font features: system-fonts, woff, complex-scripts (dictionary line-breaking), font-embolden and apple-font-embolden (packages/dioxus-native/Cargo.toml:20-25; packages/dioxus-native/Cargo.toml:45-46)
-- A bullet font is always registered in the default font context (packages/blitz-dom/src/document.rs:389-391; packages/blitz-dom/src/lib.rs:32)
-- `document.fonts` is a stub FontFaceSet where all fonts report as loaded (packages/blitz-vibey-script/src/runtime.rs:1057-1071)
+- A bullet font is always registered in the default font context (packages/blitz-dom/src/document.rs:388-390; packages/blitz-dom/src/lib.rs:32)
+- `document.fonts` is a stub FontFaceSet where all fonts report as loaded (packages/blitz-vibey-script/src/runtime.rs:1060-1074)
 - `blitz-dom` is built with the `system-fonts` feature for the blitz-tests crate; without it text measures 0x0 and font-dependent assertions pass vacuously, and the feature is stated to be enabled by default when testing the whole workspace (tests/blitz-tests/Cargo.toml:17; tests/blitz-tests/tests/br_trailing_line.rs:11-13; tests/blitz-tests/tests/inline_box_baseline.rs:4-6)
 
 **Engine text mapping:**
@@ -141,7 +141,7 @@
 - Text locale comes from the computed `_x_lang` value, which the `lang` attribute sets (packages/blitz-dom/src/stylo_to_parley.rs:495; packages/blitz-dom/src/stylo.rs:1197-1199)
 - `text-align` and `text-align-last` map to Parley alignment (packages/blitz-dom/src/stylo_to_parley.rs:304-329); word break, line break, overflow wrap, wrap mode and white-space collapse map to Parley settings (packages/blitz-dom/src/stylo_to_parley.rs:331-346; packages/blitz-dom/src/stylo_to_parley.rs:467-484)
 - `ch` and `ic` metrics measure `'0'` and `'\u{6C34}'` advances scaled like Parley's shaped glyph advances (packages/blitz-dom/src/font_metrics.rs:104-161)
-- The new stylist device is seeded with the root element's font size and line height so rem/rlh units do not fall back to the 16px default (packages/blitz-dom/src/document.rs:2079-2100); `rem` resolves against the root font-size after viewport and hidpi changes, with an initial root font-size of 16px (tests/blitz-tests/tests/rem_after_viewport_change.rs:1-8; tests/blitz-tests/tests/rem_after_viewport_change.rs:49-77)
+- The new stylist device is seeded with the root element's font size and line height so rem/rlh units do not fall back to the 16px default (packages/blitz-dom/src/document.rs:2078-2099); `rem` resolves against the root font-size after viewport and hidpi changes, with an initial root font-size of 16px (tests/blitz-tests/tests/rem_after_viewport_change.rs:1-8; tests/blitz-tests/tests/rem_after_viewport_change.rs:49-77)
 - List markers: decimal `"N. "`, lower/upper-alpha, disc `•`, circle `◦`, square `▪`, disclosure-open `▾`, disclosure-closed `▸`, other names `□` (packages/blitz-dom/src/layout/list.rs:116-158)
 - Font emboldening is enabled by the font-embolden feature, or apple-font-embolden on macOS and iOS (packages/blitz-paint/Cargo.toml:18-19; packages/blitz-paint/src/lib.rs:22-26); strength is 0.015125 and 0.0121 times the CSS font size, each capped at 0.3, with hinting off when emboldening (packages/blitz-paint/src/text.rs:631-642)
 - Auto text-decoration thickness is font-size / 10 with a 1px minimum, floored to whole device pixels (packages/blitz-paint/src/text.rs:249-272); overline and line-through positions use the font's OS/2 usWinAscent, cached per font face (packages/blitz-paint/src/text.rs:70-95; packages/blitz-paint/src/text.rs:485-535)
@@ -182,7 +182,7 @@
 - Body `marginwidth`, `marginheight`, `leftmargin` and `topmargin` map to pixel margins; `rightmargin` and `bottommargin` are deliberately ignored (packages/blitz-dom/src/stylo.rs:1143-1180)
 - Overlay scrollbar thumb geometry: thickness 10.0, thin thickness 6.0, margin 2.0 and minimum length 32.0 CSS px (packages/blitz-dom/src/node/scrollbar.rs:122-126)
 - Single-line text inputs are vertically centered within their content box (packages/blitz-dom/src/node/node.rs:807-825)
-- Outside list markers using a character are padded 8 CSS px from the item's border box (packages/blitz-paint/src/render.rs:959-970)
+- Outside list markers using a character are padded 8 CSS px from the item's border box (packages/blitz-paint/src/render.rs:963-974)
 - The double text decoration places its second line thickness + 1 CSS px away (packages/blitz-paint/src/text.rs:318-328)
 
 **Example fixtures:**
@@ -212,7 +212,7 @@
 **Engine depth behavior:**
 - Paint children and stacking contexts are built after layout and transforms; `StackingContext` and `HoistedPaintChild` are public re-exports (packages/blitz-dom/src/resolve.rs:119-123; packages/blitz-dom/src/lib.rs:86)
 - A node is a stacking-context root for opacity not equal to 1, fixed or sticky position, z-index on relative or absolute (or static flex/grid items), any transform/rotate/scale/translate, atomic paint effects, or `isolation: isolate` (packages/blitz-dom/src/node/node.rs:1203-1246); atomic paint effects are opacity, filter, clip-path and mask-image (packages/blitz-dom/src/node/node.rs:1248-1277)
-- Children paint in stacking order: negative z-index hoisted children, regular paint children, then positive z-index hoisted children (packages/blitz-paint/src/render.rs:1007-1070); hit-testing walks positive-z hoisted children, then paint children in reverse, then negative-z hoisted children (packages/blitz-dom/src/node/node.rs:1385-1447)
+- Children paint in stacking order: negative z-index hoisted children, regular paint children, then positive z-index hoisted children (packages/blitz-paint/src/render.rs:1012-1075); hit-testing walks positive-z hoisted children, then paint children in reverse, then negative-z hoisted children (packages/blitz-dom/src/node/node.rs:1385-1447)
 - Positioned descendants with `z-index: auto` share one paint level per CSS 2.1 Appendix E and paint in tree order (tests/blitz-tests/tests/paint_order.rs:1-2)
 - Outset box shadows are clipped when opacity is below 1 or the background is not opaque, and blurred shadows use the averaged border radius per a TODO (packages/blitz-paint/src/render/box_shadow.rs:15-24; packages/blitz-paint/src/render/box_shadow.rs:77-82); an outset shadow takes the element's shape corner for corner, so one with no blur and no spread hides behind the element, with expected pixels from Chromium (tests/blitz-tests/tests/outset_box_shadow_shape.rs:1-6)
 - Inset box shadows fill the padding box then cut a blurred hole with Compose::DestOut (packages/blitz-paint/src/render/box_shadow.rs:89-156)
@@ -249,7 +249,7 @@
 > NO RECORDED INTENT
 
 **Engine radius handling:**
-- Per-corner elliptical radii are resolved from computed border-*-radius values and scaled to device pixels (packages/blitz-paint/src/render.rs:1248-1265)
+- Per-corner elliptical radii are resolved from computed border-*-radius values and scaled to device pixels (packages/blitz-paint/src/render.rs:1253-1270)
 - `inset()` clip-path ignores border-radius per a TODO (packages/blitz-paint/src/render/clip_path.rs:167-168)
 - The `border` attribute on `img`, `object` and image inputs maps to four solid pixel borders (packages/blitz-dom/src/stylo.rs:1120-1141)
 
@@ -279,15 +279,15 @@
 **This project's values:**
 - Micro-interactions (apps): todomvc transitions label color over 0.4s and destroy button color over 0.2s ease-out (examples/todomvc/src/todomvc.css:214; examples/todomvc/src/todomvc.css:234); observed absent — transitions or animations in browser chrome and seven_guis styles · searched: `transition|animation|@keyframes` over apps/browser/assets/*.css and examples/seven_guis/src/**/*.rs
 - Smooth scrolls run 300 ms on a cubic ease-in-out curve (packages/blitz-dom/src/scrolling.rs:113-123; packages/blitz-dom/src/scrolling.rs:433-434); `scroll-behavior: smooth` makes `Auto` scrolls animate and `auto` behavior jumps (packages/blitz-dom/src/scrolling.rs:532-549; tests/blitz-tests/tests/fragment_navigation.rs:264-293; tests/blitz-tests/tests/fragment_navigation.rs:374-383); a wheel event over a scroller cancels an in-progress smooth scroll (tests/blitz-tests/tests/fragment_navigation.rs:356-372)
-- Scroll behaviour values `auto`, `instant`, `smooth` are parsed by the script runtime and passed to blitz-dom (packages/blitz-vibey-script/src/dom/element.rs:1059-1074); programmatic scrolling in dioxus-native-dom supports `Smooth` and `Instant` (packages/dioxus-native-dom/src/events.rs:235-238; packages/dioxus-native-dom/src/events.rs:274-277)
+- Scroll behaviour values `auto`, `instant`, `smooth` are parsed by the script runtime and passed to blitz-dom (packages/blitz-vibey-script/src/dom/element.rs:1087-1102); programmatic scrolling in dioxus-native-dom supports `Smooth` and `Instant` (packages/dioxus-native-dom/src/events.rs:235-238; packages/dioxus-native-dom/src/events.rs:274-277)
 - Touch flings decelerate per frame until velocity drops below 0.1 (packages/blitz-dom/src/scrolling.rs:724-747)
-- Overlay scrollbars show at full opacity on scroll, stay opaque for `FADE_DELAY` = 500 ms after last activity, then fade linearly over `FADE_DURATION` = 200 ms, documented as Chromium's overlay timings (packages/blitz-dom/src/node/scrollbar.rs:12-26; packages/blitz-dom/src/document.rs:1752-1769; packages/blitz-paint/src/render.rs:715-720; packages/blitz-paint/src/render.rs:742-745); finished fades are dropped each resolve (packages/blitz-dom/src/resolve.rs:66-72); hovering where a hidden thumb would be does not summon it, and the thumb changes appearance on hover and while dragged (tests/blitz-tests/tests/scrollbars.rs:1-4; tests/blitz-tests/tests/scrollbar_drag.rs:136-166; tests/blitz-tests/tests/scrollbar_drag.rs:168-222)
+- Overlay scrollbars show at full opacity on scroll, stay opaque for `FADE_DELAY` = 500 ms after last activity, then fade linearly over `FADE_DURATION` = 200 ms, documented as Chromium's overlay timings (packages/blitz-dom/src/node/scrollbar.rs:12-26; packages/blitz-dom/src/document.rs:1751-1768; packages/blitz-paint/src/render.rs:715-720; packages/blitz-paint/src/render.rs:742-745); finished fades are dropped each resolve (packages/blitz-dom/src/resolve.rs:66-72); hovering where a hidden thumb would be does not summon it, and the thumb changes appearance on hover and while dragged (tests/blitz-tests/tests/scrollbars.rs:1-4; tests/blitz-tests/tests/scrollbar_drag.rs:136-166; tests/blitz-tests/tests/scrollbar_drag.rs:168-222)
 
 **Animation runtime:**
 - CSS animations and transitions move from pending to running to finished by the current time during style resolution (packages/blitz-dom/src/stylo.rs:105-123)
-- Active CSS animations/transitions, canvases, animating sub-documents, custom widgets, scroll animations and scrollbar fades keep the document animating (packages/blitz-dom/src/document.rs:2019-2036); a custom widget returning `true` from `requires_redraw` causes continuous redraw scheduling (packages/blitz-dom/src/node/custom_widget.rs:100-106)
+- Active CSS animations/transitions, canvases, animating sub-documents, custom widgets, scroll animations and scrollbar fades keep the document animating (packages/blitz-dom/src/document.rs:2018-2035); a custom widget returning `true` from `requires_redraw` causes continuous redraw scheduling (packages/blitz-dom/src/node/custom_widget.rs:100-106)
 - The shell's animation clock is seconds since the first animation-time query, and frames keep redrawing while the document is animating (packages/blitz-shell/src/window.rs:280-288; packages/blitz-shell/src/window.rs:437-439); the test harness drives animation from a controlled clock advanced by tick (packages/blitz-test-harness/src/harness.rs:108-123)
-- `requestAnimationFrame` is a timer approximated as 16ms away, passing 16 as the timestamp (packages/blitz-vibey-script/src/runtime.rs:2084-2109)
+- `requestAnimationFrame` is a timer approximated as 16ms away, passing 16 as the timestamp (packages/blitz-vibey-script/src/runtime.rs:2087-2112)
 - Animation and transition event data are `unimplemented!()` in dioxus-native-dom (packages/dioxus-native-dom/src/events.rs:70-72; packages/dioxus-native-dom/src/events.rs:122-124)
 
 **Reduced motion:**
@@ -311,9 +311,9 @@
 **Size grid:** toolbar icon images 20px high (apps/browser/src/icons.rs:13-40; apps/browser/assets/browser.css:200-202); menu item icons 16x16 (apps/browser/assets/browser.css:243-246); favicons 16x16 (apps/browser/src/tab.rs:269-281)
 
 **Cursors and favicons (engine):**
-- The cursor is taken from the CSS `cursor` keyword, else Text for text inputs, Pointer inside links, Text over selectable text, Default otherwise (packages/blitz-dom/src/document.rs:2147-2201)
+- The cursor is taken from the CSS `cursor` keyword, else Text for text inputs, Pointer inside links, Text over selectable text, Default otherwise (packages/blitz-dom/src/document.rs:2146-2200)
 - CSS `cursor` keywords map one-to-one to `CursorIcon` values, and `cursor: none` maps to no cursor (packages/blitz-dom/src/stylo_to_cursor_icon.rs:4-49); cursor icons use the `cursor-icon` crate and `ShellProvider::set_cursor` takes an optional `CursorIcon` (packages/blitz-traits/Cargo.toml:21; packages/blitz-traits/src/shell.rs:3; packages/blitz-traits/src/shell.rs:13-15); in the shell they are winit CursorIcon values, and None hides the cursor and resets it to Default (packages/blitz-shell/src/lib.rs:101-112)
-- `favicon_url` returns the `href` of the first `<link>` whose `rel` contains `icon` (packages/blitz-dom/src/document.rs:582-597)
+- `favicon_url` returns the `href` of the first `<link>` whose `rel` contains `icon` (packages/blitz-dom/src/document.rs:581-596)
 
 **Example fixtures:**
 - A fixture enumerates 36 CSS cursor values as "the built-in cursor styles supported by blitz" (examples/assets/cursor.html:54-91)
@@ -337,7 +337,7 @@
 - Every document gets the blitz `DEFAULT_CSS` user-agent stylesheet (packages/dioxus-native-dom/src/dioxus_document.rs:95-96)
 - The initial theme is the window's theme, defaulting to Light (packages/blitz-shell/src/window.rs:181-182)
 - The default viewport is window size (0, 0), hidpi scale 1.0, zoom 1.0, Light scheme; its logical size is the physical window size divided by hidpi × zoom (packages/blitz-traits/src/shell.rs:84-93; packages/blitz-traits/src/shell.rs:110-127)
-- JS `innerWidth`/`innerHeight` are window size ÷ scale, `outerWidth`/`outerHeight` alias them, `devicePixelRatio` is the scale (packages/blitz-vibey-script/src/runtime.rs:1405-1410; packages/blitz-vibey-script/src/runtime.rs:2113-2135)
+- JS `innerWidth`/`innerHeight` are window size ÷ scale, `outerWidth`/`outerHeight` alias them, `devicePixelRatio` is the scale (packages/blitz-vibey-script/src/runtime.rs:1408-1413; packages/blitz-vibey-script/src/runtime.rs:2116-2138)
 
 ### Component Patterns
 - On macOS the browser tabstrip gets `merged-titlebar` with 90px left padding and 44px height (apps/browser/src/tab_strip.rs:9-12; apps/browser/assets/browser.css:28-31)

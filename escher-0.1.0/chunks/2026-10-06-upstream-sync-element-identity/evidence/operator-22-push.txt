@@ -1,0 +1,12 @@
+Operator entry 22 — local pre-push gate, clean-tree guard, push (2026-10-06, hand-driven at the operator pass, after the pre-CI commit f00b0216)
+
+pre-CI commit: f00b021610bbd4ace587372e446809bc6de963dc · parents ab936a9e46ee19365929465444725a0bc837dbbc (first) 2335458530518cdf167c55ce635fae99323e0789
+  subject: chore(2026-10-06-upstream-sync-element-identity): operator pre-CI commit, for the run this chunk's verdict reads
+  body: Merge upstream/main 2335458530518cdf167c55ce635fae99323e0789 (11 commits)
+
+run: bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0
+started: 2026-10-06T08:16:45Z · ended: 2026-10-06T08:17:28Z
+exit: 0
+fast leg: fmt · clippy · workspace tests (passed 431 failed 0 ignored 4) · CI scripts (Ran 64 tests, OK)
+push: ab936a9e..f00b0216  build/escher-0.1.0 -> build/escher-0.1.0
+after: HEAD = origin/build/escher-0.1.0 = f00b021610bbd4ace587372e446809bc6de963dc

@@ -1,0 +1,41 @@
+# Cascade step-2 sweep — 2026-10-06-upstream-sync-element-identity
+# Retired claims (A1, O3), the mechanisms they asserted, the moved count (T1), the inventory (O4),
+# the merge-base fact (O2) and the stale root-manifest citation numbers (E1).
+# Dropped (control never fired on the pre-pass masters): per-item, normal-stretch — swept by hand over every file.
+
+[[pattern]]
+id = "left-unset"
+fixed = "left unset"
+
+[[pattern]]
+id = "mapped-none"
+regex = 'mapped to none|maps? to none'
+ignore_case = true
+
+[[pattern]]
+id = "align-items"
+regex = 'align-items|justify-items|item_alignment|content_alignment'
+
+[[pattern]]
+id = "safe-default"
+regex = 'defaults? to `?safe'
+
+[[pattern]]
+id = "count-430"
+regex = '430 (passed|·)'
+
+[[pattern]]
+id = "wpt-inventory"
+regex = '1 in mod\.rs|8 in fuzzy\.rs'
+
+[[pattern]]
+id = "adopted-at"
+fixed = "0f60502e"
+
+[[pattern]]
+id = "cargo-103"
+regex = '(?<![\w/.-])Cargo\.toml:(103|113)\b'
+
+[[pattern]]
+id = "cargo-198"
+regex = '(?<![\w/.-])Cargo\.toml:198-199'

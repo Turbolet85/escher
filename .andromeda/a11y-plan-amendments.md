@@ -25,3 +25,15 @@ One entry per amendment to `a11y-plan.md` (sidecar-contract.md §Entry form). Ap
 - Error recovery: the stand check asserts the invalid-date cue without colour (`invalid` class, `disabled` Book it did not carry before); no test asserts a Dioxus control's focusability or Tab order.
 **Why:** the headless stand chunk measured `disabled="false"` matching `:disabled` on enabled stand buttons and fixed the Dioxus write (widening on the delegate overseer's word, 2026-10-06, PROVISIONAL). Trap: the focusability path never had the defect — only state, styling and click targeting did.
 **Ref:** .andromeda/runs/2026-10-06T02-44-36-wrap/
+
+## 2026-10-06-upstream-sync-element-identity — file:line citations re-pointed after the upstream merge
+**Section:** every section citing a merged upstream file's lines
+**Change:** 16 `file:line` citations into the merged upstream files re-pointed by the merge's measured line map; no claim text changed by the re-point.
+**Why:** the chunk merged upstream `main` at `23354585`; the merged files' lines moved. The `ci-leg.sh a11y` files stay unnarrowed (6 · 6 · 3).
+**Ref:** .andromeda/runs/2026-10-06T08-31-16-wrap/
+
+## 2026-10-06-upstream-sync-element-identity — root-manifest citations re-pointed after the line-61 insert
+**Section:** §1 A11y Scope Summary (workspace dependencies)
+**Change:** 1 root `Cargo.toml` citation re-pointed +1 — it read one line low since the `seven_guis` path entry was inserted at `Cargo.toml:61`; verified against the cited text. No claim text changed.
+**Why:** the 2026-10-06-headless-stand wrap did not re-point the root-manifest citations past its insert; the operator chose at this wrap's escalation (2026-10-06) to fix them in this pass rather than carry them.
+**Ref:** .andromeda/runs/2026-10-06T08-31-16-wrap/

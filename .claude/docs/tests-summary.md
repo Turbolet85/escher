@@ -25,7 +25,7 @@ _Distilled from `.andromeda/test-plan.md` (adopted reading). wrap-session's casc
 - `blitz-vibey-script`: 26 DOM API tests + 2 headless Preact TodoMVC flows.
 - WPT `css` + `svg` in upstream CI only (diffed against main, posted to PRs); on the fork WPT runs on the host.
 - CI (§9): every linux leg runs through `.github/scripts/ci-leg.sh` — fast legs fmt · clippy · `test` (`cargo test --workspace --locked`) · CI scripts, then build/MSRV/counter/wasm/docs and the windows/macos/ios/android matrix; `test_ci_workflows.py` pins the workflow invariants, `test_agent_run.py` the agent-run contract under a `cargo` shim and `test_cold_agent.py` the cold-agent pipe and stub under a `claude` shim (64 CI-script tests).
-- Local baseline (§9, dev host, dev profile `debug = "line-tables-only"`): `cargo test -p blitz-tests` 255 passed · 0 failed · 3 ignored (`paint_tree_bench`), 45 s cold (2026-10-05; +18 tests, +1 ignored since, not re-measured per crate); `cargo test --workspace` 430 · 0 · 4 at 2026-10-06-headless-stand (416 · 0 · 4 at telemetry-bootstrap; 407 · 0 · 3, 52 s cold at the 2026-10-05 baseline, was 1633 s under full debuginfo).
+- Local baseline (§9, dev host, dev profile `debug = "line-tables-only"`): `cargo test -p blitz-tests` 255 passed · 0 failed · 3 ignored (`paint_tree_bench`), 45 s cold (2026-10-05; +18 tests, +1 ignored since, not re-measured per crate); `cargo test --workspace` 431 · 0 · 4 at 2026-10-06-upstream-sync-element-identity (+1 upstream wpt/runner unit test; 430 · 0 · 4 at headless-stand; 416 · 0 · 4 at telemetry-bootstrap; 407 · 0 · 3, 52 s cold at the 2026-10-05 baseline, was 1633 s under full debuginfo).
 - Apps: only the browser crates test (about pages, history, favicon, suggestions, persistence).
 
 ## E2E coverage (§6)

@@ -62,3 +62,18 @@ One entry per amendment to `security-plan.md` (sidecar-contract.md §Entry form)
 - §Logging & Monitoring: the cold-agent pipe logs counts and identities only; its transcript is raw by design, never printed, gitignored; the one committed copy host-path-masked.
 **Why:** a credential path and a new IPC input surface are a security-plan amendment first. Ratified at this wrap by the overseer under the founder's standing delegation as a Boundary widening, PROVISIONAL in the body until the founder's own word.
 **Ref:** .andromeda/runs/2026-10-06T04-34-08-wrap/
+
+## 2026-10-06-upstream-sync-element-identity — unknown alignment flags; merge citation re-point
+**Section:** §Error Handling · every section citing a merged upstream file's lines
+**Change:**
+- Error Handling: was "unknown alignment flags are mapped to none rather than panicking"; now an unknown alignment flag is mapped rather than panicking — to Taffy's `AlignContent::NORMAL` for content alignment, to none for item alignment.
+- 40 `file:line` citations into the merged upstream files re-pointed by the merge's measured line map; no other claim text changed by the re-point.
+**Why:** the chunk merged upstream `main` at `23354585`; upstream's switch to Taffy's first-class `normal` keyword changed content alignment's fallback. The no-panic guarantee holds.
+**Kept:** the three script-reachable accessors the merge brought (`document.children`, `textContent`, `CSSStyleSheet.disabled`) are realizations on the already registered script-to-DOM binding crossing, validated per §Input Validation's JS API rows — not a boundary widening.
+**Ref:** .andromeda/runs/2026-10-06T08-31-16-wrap/
+
+## 2026-10-06-upstream-sync-element-identity — root-manifest citations re-pointed after the line-61 insert
+**Section:** §Dependency Security (Pinning)
+**Change:** 2 root `Cargo.toml` citations (the taffy and parley rev pins) re-pointed +1 — they read one line low since the `seven_guis` path entry was inserted at `Cargo.toml:61`; verified against the cited text. No claim text changed.
+**Why:** the 2026-10-06-headless-stand wrap did not re-point the root-manifest citations past its insert; the operator chose at this wrap's escalation (2026-10-06) to fix them in this pass rather than carry them.
+**Ref:** .andromeda/runs/2026-10-06T08-31-16-wrap/

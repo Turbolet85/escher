@@ -25,7 +25,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
 ### Epoch 2 — Element identity
 [2026-10-06-upstream-sync-element-identity] Upstream sync ahead of element identity — upstream/main merged, our changes kept additive; our tests and CI prove our logic survived (per intent §Principles)
    ↓
-Stable element ids — author key else component path, on every stand element (v010-01)  PREREQ: close rust gate deferral (deferred since 2026-10-06-cold-agent-run-pipe: doc — record: 2026-10-06-cold-agent-run-pipe's report)
+Stable element ids — author key else component path, on every stand element (v010-01)
    ↓
 Id persistence — same id across re-render, remount and fresh process on the stand (v010-02)
    ↓
@@ -34,7 +34,7 @@ Accessibility-tree identity — stable id on every accessibility node, stand con
 ### Epoch 3 — Observation model
 Upstream sync ahead of the observation model — upstream/main merged, our changes kept additive; our tests and CI prove our logic survived (per intent §Principles)
    ↓
-Snapshot model — screen as a tree of id, role, name, state, bounds (v010-04)
+Snapshot model — screen as a tree of id, role, name, state, bounds (v010-04)  CARRY: upstream inline-geometry APIs (from 2026-10-06-upstream-sync-element-identity) — the `23354585` merge brought `Node::inline_fragment_boxes` (per-fragment `taffy::Rect<f32>` boxes of a non-atomic inline) and `BaseDocument::inline_fragment_rects` returning `Option<impl Iterator<Item = BoundingRect>>` (was a `Vec`); no escher code calls either yet — candidates for an inline element's snapshot bounds (that chunk's report, Changes → Symbols / APIs)
    ↓
 Snapshot state fidelity — enabled, checked, value, focused per control; disabled reads disabled, typed value reads back, password values masked (v010-05)  CARRY: Dioxus boolean attributes (from 2026-10-06-headless-stand) — dioxus-native-dom now removes a falsy `disabled` / `checked`, but still writes `readonly`, `required`, `hidden`, `multiple`, `selected`, `open`, `autofocus` as the literal `"false"`, which a presence read takes as set (arch §Standard Contracts → Dioxus DOM bridge); and blitz-dom reads `disabled` two ways — presence for the DISABLED state, `:disabled` and click targeting, a parsed bool for focusability (arch §Established Decisions → DOM semantics) — so a snapshot's enabled/disabled must pick one reader; hypothesis: a Dioxus `hidden: false` node drops out of the accessibility tree (not measured)
    ↓

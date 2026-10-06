@@ -1,0 +1,17 @@
+Operator entry 23 — CI conclusion on the pushed merge commit (2026-10-06, hand-driven at the operator pass)
+
+run: python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 3600
+started: 2026-10-06T08:17:45Z · ended: 2026-10-06T08:29:39Z
+exit: 0
+expect: exit 0 ✓ · contains 'verdict: green' ✓
+
+ci v1.0 · 84a1732c
+repo Turbolet85/escher (the push remote `origin`) · polled 24× over 714 s
+f00b021610bb verdict: green · checks 16/16 · wall 710 s · runs CI#37435129918 completed/success
+runs: CI#37435129918 push completed/success
+
+jobs (gh run view 37435129918 -R Turbolet85/escher --json jobs), all success: Test [default features] · Rustfmt ·
+Clippy · Test CI scripts · Build [default features] · Build wasm examples · Documentation · Accessibility (a11y) tests ·
+Build counter example · Dependency audit · MSRV Build [Rust 1.91] · Test (ios) · Coverage report · Test (windows) ·
+Test (macos) · Test (android). The MSRV and wasm legs, which this host cannot run, are green here.
+Wall 710 s against 464 s on ab936a9e: the Cargo.lock change re-keyed the rust caches (the plan's expected cold run).

@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-06 — On this host `grep` is ugrep, and a long bounded repetition can print nothing
+The shell's `grep` here is ugrep. A pattern carrying a long bounded repetition — a context window like `.{0,200}` around the match — exceeds ugrep's complexity limit: the error goes to stderr, and in a call that pipes or alternates several patterns stdout stays empty, which reads exactly like zero hits. Two site sweeps over the masters returned nothing that way while the same patterns in Python found four sites. For a site sweep or an absence claim, use Python's `re` (print a window around `match.start()`), or keep ugrep patterns free of long `{m,n}` counts, and read stderr before trusting an empty result.
+
+---
+
 ## 2026-10-06 — A grep hit seen through a clipped view is not read
 The `.andromeda/` masters carry lines of 1–5 KB, so a grep row viewed through `cut -c1-N`, `head -c` or a truncating tool shows a few hundred characters of a line whose fact may sit thousands of characters further in. A report that calls such a hit "unrelated" or claims "no master states X" from the clipped view is guessing; the hit is read at its match offset (a script printing a window around `match.start()`, or `cascade.py window --at`) before it is dispositioned. Absence and caught-all claims carry the full hit list, each row with its offset and its disposition.
 
@@ -38,7 +43,7 @@ Write documents and scripts with the Write tool — a script into the session sc
 ## 2026-10-05 — A chunk that moves cited source lines stales the masters' file:line citations
 The spec masters cite code as `file:line` throughout. A chunk that inserts or removes lines in a cited file — a profile stanza in `Cargo.toml`, a guard in a workflow, a rewritten `ci.yml` — leaves every citation past the edit pointing at the wrong line, and no drift detector sees it: the detectors read the chunk report alone, and the report carries no map of moved lines. The first such chunk on escher left 114 stale citations across five masters.
 
-At wrap, for every source file the chunk changed, grep the seven masters and the registry key files for `{file}:{N}` citations past the first changed line and re-point them — a fixed offset for a pure insert, a range map for a rewrite — then verify the re-point touched only digits (the masters' text with digits stripped equals the pre-pass text). Do it before the semantic amendments, so their freshly written citations are never shifted twice.
+At wrap, for every source file the chunk changed, grep the seven masters and the registry key files for `{file}:{N}` citations past the first changed line and re-point them — a fixed offset for a pure insert, a range map for a rewrite — then verify the re-point touched only digits (the masters' text with digits stripped equals the pre-pass text). Do it before the semantic amendments, so their freshly written citations are never shifted twice. Extended 2026-10-06: key the line map on full repository paths, never basenames (several unchanged files share `document.rs`, `node.rs`, `element.rs`, `text.rs`), and read every citation that lands inside a rewritten hunk against the new code — there the claim may have moved, not only its number.
 
 ---
 

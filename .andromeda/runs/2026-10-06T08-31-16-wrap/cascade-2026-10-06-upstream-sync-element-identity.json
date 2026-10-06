@@ -1,0 +1,147 @@
+[
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "43eb863f",
+"ts": "2026-10-06T08:43:50Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-06T08-31-16-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-06T08-31-16-wrap",
+"--marker",
+"2026-10-06-upstream-sync-element-identity"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 3,
+"stdout": [
+"baseline ab936a9e (pre-CI parent — the oldest of 1 pre-CI commit(s), f00b0216)",
+"per-item · control UNFIRED over the seven masters at ab936a9e",
+"normal-stretch · control UNFIRED over the seven masters at ab936a9e"
+],
+"stderr": "control: per-item, normal-stretch never fired over the seven masters' pre-pass text (ab936a9e) — a sweep runs a positive control or refuses; drop the pattern or control it by hand",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "43eb863f",
+"ts": "2026-10-06T08:44:00Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-06T08-31-16-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-06T08-31-16-wrap",
+"--marker",
+"2026-10-06-upstream-sync-element-identity"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"baseline ab936a9e (pre-CI parent — the oldest of 1 pre-CI commit(s), f00b0216)",
+"left-unset · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:85 (pro…",
+"mapped-none · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:321 (…",
+"align-items · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:85 (prose)",
+"safe-default · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:85 (prose)",
+"count-430 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"wpt-inventory · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:27 (prose)",
+"adopted-at · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:201 (prose)",
+"cargo-103 · new 1 · standing 0 · leaf 0 · curation 0 · base 0 · control architecture.md:49 (prose)",
+"cargo-198 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:74 (pros…",
+".andromeda/architecture.md:85 align-items standing edited ×2 …ert.rs:443-454); `align-items`/`justify-items`/`align-sel…",
+".andromeda/architecture.md:85 safe-default standing edited … content-alignment defaults to `safe`, a table cell countin…",
+".andromeda/test-plan.md:314 count-430 standing edited …d: 120 result lines, 430 passed · 0 failed · 4 ignored (+13 stan…",
+".claude/docs/tests-summary.md:28 count-430 leaf …argo test --workspace` 430 · 0 · 4 at 2026-10-06-headless-stand (416 ·…",
+".andromeda/test-plan.md:27 wpt-inventory standing edited mixed ×2 … its unit tests: 8 in fuzzy.rs, 3 in js_wrapper.rs, …",
+".andromeda/architecture.md:201 adopted-at standing Origin: adopted at 0f60502ea724ef703b34220b3847bb3483f70b5f",
+".claude/docs/workflow.md:15 adopted-at leaf …(`/andromeda-adopt` at `0f60502e`); its masters describe the code as built.",
+".andromeda/architecture.md:48 cargo-103 new …, detailed_layout_info (Cargo.toml:103-113); `stylo_taffy` bridge (package…",
+"left-unset · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:85 (pro…",
+"mapped-none · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:321 (…",
+"align-items · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:85 (prose)",
+"safe-default · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:85 (prose)",
+"count-430 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"wpt-inventory · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:27 (prose)",
+"adopted-at · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:201 (prose)",
+"cargo-103 · new 1 · standing 0 · leaf 0 · curation 0 · base 0 · control architecture.md:49 (prose)",
+"cargo-198 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:74 (pros…"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "ab936a9e46ee19365929465444725a0bc837dbbc",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), f00b0216",
+"counts": {
+"left-unset": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"mapped-none": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"align-items": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"safe-default": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"count-430": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"wpt-inventory": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"adopted-at": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"cargo-103": {
+"new": 1,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cargo-198": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+}
+}
+}
+]

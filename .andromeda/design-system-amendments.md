@@ -25,3 +25,9 @@ One entry per amendment to `design-system.md` (sidecar-contract.md §Entry form)
 **Change:** a new Loading bullet: the seven_guis headless stand registers the bundled DejaVu Sans for every generic with system fonts off on native — `build_single_font_ctx(DEJAVU_SANS)` through `HarnessOptions.font_ctx`, the woff2 decoded by seven_guis' native `woff` feature. The WASM bullet stands.
 **Why:** the headless stand chunk pins text measurement to one bundled face so layout is the same on the dev host and the CI runner.
 **Ref:** .andromeda/runs/2026-10-06T02-44-36-wrap/
+
+## 2026-10-06-upstream-sync-element-identity — file:line citations re-pointed after the upstream merge
+**Section:** every section citing a merged upstream file's lines
+**Change:** 17 `file:line` citations into the merged upstream files re-pointed by the merge's measured line map; no claim text changed by the re-point.
+**Why:** the chunk merged upstream `main` at `23354585`; the merged files' lines moved.
+**Ref:** .andromeda/runs/2026-10-06T08-31-16-wrap/
