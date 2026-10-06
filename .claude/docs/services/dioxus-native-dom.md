@@ -13,6 +13,7 @@ The headless Dioxus renderer on blitz: `DioxusDocument` integrates `BaseDocument
 ### Publishes to
 - `DioxusDocument` (`vdom`, `inner`, `initial_build`, `poll`, `handle_ui_event`, `vdom_state.try_element_to_node_id(ElementId)`), `NodeHandle` backing `MountedData`.
 - Stable element ids: `element_id(NodeId) -> Option<String>` and `element_ids() -> Vec<(NodeId, String)>` (document pre-order, pairwise distinct), computed on demand and written to neither the DOM nor the vdom; under the `accessibility` feature (which enables an optional `accesskit` and is forwarded from dioxus-native's) `DioxusDocument`'s `Document::accessibility_tree` override carries each one as its element node's AccessKit `author_id`, never on a `TextRun`, the document root or the `Window` node — author key (the HTML `id`: non-empty, `/`-free, first in document order) → component path (`TaskShell/Counter/div:0`; `{tag}[{key}]` for a Dioxus-keyed root) → document path (`/html:0/body:0`). Proven persistent on the stand: the same id across a re-render, a remount (fresh `NodeId`s for every element bar the `html`/`head`/`body`/`#main` skeleton, which lives outside the VirtualDom) and a second process (`stand_id_persistence`).
+- Snapshot model (under `accessibility` only): `DioxusDocument::snapshot() -> Snapshot`, a read-only tree built from the `accessibility_tree` override. `Snapshot { roots }` with `nodes()` (pre-order) and `get(id)`; a `SnapshotNode` carries `id` (the `author_id`), `role` (`accesskit::Role`), `name` (the node's `label`, else its `labelled_by` targets' names, trimmed), `state` (`NodeState { enabled, checked, value, focused }`), `bounds` (`get_client_bounding_rect`) and `children`. A node is every element the accessibility tree keeps, generic containers included; `TextRun`s, the document root and the `Window` are not nodes. No field holds a `NodeId`, tree id, `ElementId`, `ScopeId` or pointer; there is no wire form yet and no driver command exposes it (`stand_snapshot`).
 
 ## Internal conventions
 - DOM events route to the vdom via the nearest `data-dioxus-id` attribute (parsed as `usize`); listener registration sets a `"<rust func>"` placeholder.
@@ -31,10 +32,10 @@ The headless Dioxus renderer on blitz: `DioxusDocument` integrates `BaseDocument
 - Every other boolean attribute (`readonly`, `required`, `hidden`, `multiple`, `selected`, `open`, `autofocus`) is still written with the literal value `"false"` when falsy — blitz-dom keys element state and click targeting on presence, so a presence read takes it as set.
 
 ## Entry points for modification
-- `src/{dioxus_document,element_id,mutation_writer,events,write_once_attr}.rs`
+- `src/{dioxus_document,element_id,mutation_writer,events,snapshot,write_once_attr}.rs`
 
 ## Testing this crate
-- `cargo test -p dioxus-native-dom` (`keyed_nodes_do_not_crash`, touch tests, six `element_id` unit tests); Dioxus integration in `tests/blitz-tests` via `Harness::from_component` / `from_vdom`; `dioxus_falsy_disabled.rs` pins the falsy-`disabled` clearing.
+- `cargo test -p dioxus-native-dom` (18 unit tests: `keyed_nodes_do_not_crash`, two touch tests, six `element_id` tests, nine `snapshot` tests that call `resolve(0.0)` after `initial_build`); Dioxus integration in `tests/blitz-tests` via `Harness::from_component` / `from_vdom`; `dioxus_falsy_disabled.rs` pins the falsy-`disabled` clearing.
 
 ## References
 - `.andromeda/architecture.md` · `.claude/docs/services/blitz-test-harness.md`

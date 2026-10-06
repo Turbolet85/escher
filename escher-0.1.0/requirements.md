@@ -1,7 +1,8 @@
 # escher 0.1.0 — requirements
 
 *Source: `escher-0.1.0/intent.md` §Findings. Ids are version-scoped (`v010-NN`) because the project has no prior
-capability numbering. Every capability is verified headless, by an agent, on the 7GUIs stand (intent §Principles).*
+capability numbering. Every capability is verified headless, by an agent, on the 7GUIs stand, or on a minimal fixture
+beside it where the tasks lack the case (intent §Principles).*
 
 - v010-01 · Stable element ids — every element of the stand carries a stable id: the author's key where given, else its component path (per intent §1)
 - v010-02 · Id persistence — an element's id is identical across a re-render, a remount and a fresh process (per intent §1)
@@ -17,4 +18,5 @@ capability numbering. Every capability is verified headless, by an agent, on the
 - v010-12 · Command line — every driver command runs from a CLI with JSON output and an exit code meaning accepted or refused; a stand flow is scriptable in shell alone (per intent §7)
 - v010-13 · MCP surface — the same commands are exposed as MCP tools, and an agent session completes a stand flow through them (per intent §8)
 - v010-14 · Self-describing API — one consistent verb set, with help and schemas served by the tool itself, and every refusal naming its remedy (per intent §9)
-- v010-15 · Cold-agent test — a fresh agent given only the tool completes a stand task and writes a passing check, with its wrong calls counted (per intent §9; covers v010-01…v010-14 end to end)
+- v010-15 · Cold-agent test — a fresh agent given only the tool completes a stand task and writes a passing check, with its wrong calls counted (per intent §9; covers v010-01…v010-14 end to end; the count is 0.1.0's baseline, a bar on it starts in 0.2.0)
+- v010-16 · Id stability across code edits — an element's id stays the same when the app's code is edited around it, not only across a re-render, a remount and a fresh process (per intent §1)

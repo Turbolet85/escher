@@ -12,10 +12,13 @@ an internal stand; no other project consumes escher in this version.
   one schema → its CLI, then its MCP surface → the screenshot command → the cold-agent test last.
 - **The stand is the proof.** Every requirement below is verified headless, by an agent, on the stand: three or four
   7GUIs tasks already in the repo (`examples/seven_guis/src/tasks/` — counter, flight booker, timer, CRUD are the lean)
-  that together exercise every requirement.
+  that together exercise every requirement. Where the tasks lack a case — an element covered by another is one — a
+  minimal fixture beside the stand proves it, so that everything built is validated (founder, 2026-10-06).
 - **Upstream stays in reach.** Blitz upstream keeps adding needed functionality, so it is merged in regularly: an
   "Upstream sync" chunk at each epoch boundary merges `upstream/main`, our tests and CI proving our logic survived;
-  small and often, while our changes stay mostly additive (founder, 2026-10-06).
+  small and often, while our changes stay mostly additive (founder, 2026-10-06). Additivity is a preference, not a
+  goal: where staying additive would force contorted logic, the upstream code is changed directly (founder,
+  2026-10-06).
 - **The API explains itself.** Any agent, with no prior context, learns the framework from the tool alone.
 
 ## Findings (OBSERVED → EXPECT)
@@ -24,8 +27,8 @@ an internal stand; no other project consumes escher in this version.
    OBSERVED: a node's id is a slot index plus a version; a remount re-clones nodes into fresh ids, and no semantic id
    exists — an agent can aim only at coordinates or selectors.
    EXPECT: every element of the stand carries a stable id — the author's key where given, else its component path —
-   identical across a re-render, a remount and a fresh process, and the same id in the snapshot, the accessibility tree
-   and the driver.
+   identical across a re-render, a remount and a fresh process, stable across edits of the app's code (founder,
+   2026-10-06), and the same id in the snapshot, the accessibility tree and the driver.
 
 2. **A compact semantic snapshot.**
    OBSERVED: the screen is readable only as an HTML string, a debug tree print or a screenshot — large, noisy or
@@ -67,7 +70,8 @@ an internal stand; no other project consumes escher in this version.
    OBSERVED: none — a user learns the harness from its source.
    EXPECT: one consistent verb set, help and schemas from the tool itself, every refusal naming its remedy; proven by
    the cold-agent test — a fresh agent given only the tool completes a stand task and writes a passing check, its wrong
-   calls counted.
+   calls counted. 0.1.0 sets no bar on that count: its run is the baseline that shows which values are reasonable, and
+   a bar starts in 0.2.0 (founder, 2026-10-06).
 
 ## Out of this version
 The UI graph (component → handlers → state → readers), virtual time everywhere, complete accessibility names and

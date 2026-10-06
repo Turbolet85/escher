@@ -1,0 +1,54 @@
+# Cascade step 2 — 2026-10-06-snapshot-model. One pattern per retired or extended claim of this pass.
+
+# "the accessibility feature gates only the accessibility_tree override" (architecture §Standard Contracts,
+# §Cross-cutting Patterns; a11y-plan §2)
+[[pattern]]
+id = "override-only"
+fixed = 'accessibility_tree` override'
+
+[[pattern]]
+id = "gets-override"
+fixed = 'gets the override'
+
+# dioxus-native-dom's module list (architecture §Existing Scopes)
+[[pattern]]
+id = "module-list"
+fixed = 'mutation_writer, write_once_attr'
+
+# every citation into the file whose lines shifted
+[[pattern]]
+id = "lib-rs-cites"
+fixed = 'dioxus-native-dom/src/lib.rs:'
+
+# the id's only exit (security-plan §Input Validation id row) and its restatements
+[[pattern]]
+id = "only-exit"
+regex = 'leaves the process only|platform accessibility adapter'
+
+# the workspace baseline count and the stand ok count (test-plan §9, §3)
+[[pattern]]
+id = "count-454"
+regex = '454 passed|454 · 0 · 5'
+
+[[pattern]]
+id = "count-25-ok"
+regex = '25 `ok`|25 ok|passed 25'
+
+# dioxus-native-dom's unit-test count and the search note beside it (test-plan §1)
+[[pattern]]
+id = "three-unit"
+fixed = 'three unit tests'
+
+[[pattern]]
+id = "two-files"
+fixed = 'dioxus_document.rs and events.rs'
+
+# the stand coverage enumeration (test-plan §1) and its restatements
+[[pattern]]
+id = "stand-coverage"
+fixed = 'Tab order'
+
+# a leaf or master still describing the snapshot as not built
+[[pattern]]
+id = "snapshot-planned"
+regex = '(?i)snapshot[^.;]{0,60}planned'

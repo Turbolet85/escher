@@ -1,0 +1,60 @@
+$ matrix.py show --dir escher-0.1.0 --id v010-16
+matrix v1.3 · cd774c8a
+id: v010-16
+title: Id stability across code edits
+requirement: an element's id stays the same when the app's code is edited around it, not only across a re-render, a remount and a fresh process
+observed_gap: a node's id is a slot index plus a version; a remount re-clones nodes into fresh ids, and no semantic id exists — an agent can aim only at coordinates or selectors.
+method: integration
+status: planned
+ref: None
+acceptance: On the stand, after an edit of a task's code that leaves an element in place, that element reads the same id as before the edit.
+chunk: None
+notes: 2026-10-06 (2026-10-06-snapshot-model wrap): added on the founder's ruling, given as that wrap's directive — element ids must stay stable across edits of the app's code, not only across a re-render, a remount and a restart; a requirement of its own, with its own route entry ahead of the diff and driver work (working-route.md, "Id stability across code edits"). Entered by a scripted append, because the ledger tool has no verb that creates an entry; the founder chose that path at the wrap, and the entry was read back through matrix.py show. The acceptance is outcome-level: which edits must keep the id is concretized at claim.
+pool: unclaimed 14 [v010-03 v010-04 v010-05 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14 v010-15 v010-16]
+exit 0
+
+$ matrix.py show --dir escher-0.1.0 --id v010-06
+matrix v1.3 · cd774c8a
+id: v010-06
+title: Post-action diff
+requirement: after an action the driver returns exactly the nodes that changed; an action that changes nothing returns an empty diff
+observed_gap: no mutation stream exists, changed nodes are never drained, and has_changes() answers inverted.
+method: integration
+status: planned
+ref: None
+acceptance: After a stand action, the returned diff names exactly the nodes whose snapshot changed and no others; an action that changes nothing returns an empty diff.
+chunk: None
+notes: None
+pool: unclaimed 14 [v010-03 v010-04 v010-05 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14 v010-15 v010-16]
+exit 0
+
+$ matrix.py show --dir escher-0.1.0 --unclaimed
+matrix v1.3 · cd774c8a
+unclaimed 14 of 16
+v010-03 · integration · planned · ref null · chunk — · For each stand element, the id in the snapshot, the id on its accessibil… (139 chars)
+v010-04 · integration · planned · ref null · chunk — · One snapshot command returns each stand task's screen as a tree where ev… (173 chars)
+v010-05 · integration · planned · ref null · chunk — · On the stand, a disabled control reads disabled, a checked control reads… (169 chars)
+v010-06 · integration · planned · ref null · chunk — · After a stand action, the returned diff names exactly the nodes whose sn… (155 chars)
+v010-07 · integration · planned · ref null · chunk — · With no display present, the driver returns an image of the whole stand … (135 chars)
+v010-08 · integration · planned · ref null · chunk — · Two screenshots of the same stand state taken in separate runs on the sa… (100 chars)
+v010-09 · integration · planned · ref null · chunk — · Every driver action on the stand is addressed by an element's stable id … (146 chars)
+v010-10 · e2e · planned · ref null · chunk — · A stand flow whose action triggers a delayed update (the timer task) pas… (195 chars)
+v010-11 · integration · planned · ref null · chunk — · On the stand, an action aimed at a missing element, a stale id, a disabl… (191 chars)
+v010-12 · e2e · planned · ref null · chunk — · Every driver command runs from the command line with JSON output and a p… (187 chars)
+v010-13 · dynamic-external · planned · ref null · chunk — · Every command available on the command line is also offered as an MCP to… (143 chars)
+v010-14 · integration · planned · ref null · chunk — · The tool itself serves its verb list, help and schemas on both surfaces … (152 chars)
+v010-15 · dynamic-external · planned · ref null · chunk — · A fresh agent with no prior context, given only the tool, completes a st… (154 chars)
+v010-16 · integration · planned · ref null · chunk — · On the stand, after an edit of a task's code that leaves an element in p… (128 chars)
+pool: unclaimed 14 [v010-03 v010-04 v010-05 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14 v010-15 v010-16]
+exit 0
+
+$ matrix.py coverage --dir escher-0.1.0
+matrix v1.3 · cd774c8a
+verified 2/16 · deferred 0 · planned 14 · implemented 0 · unclaimed 14
+unclaimed: v010-03 v010-04 v010-05 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14
+          v010-15 v010-16
+claimed-unfinished: none
+done-test: NO — 14 not verified|deferred · unclaimed 14
+chunks referenced: 2 distinct
+exit 0
+

@@ -30,11 +30,11 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 - **`stylo_taffy`** — Stylo-to-Taffy style bridge
 - **`accesskit_xplat`** — cross-platform AccessKit adapter without winit
 - **`debug_timer`** — opt-in phase timing
-- **`dioxus-native-dom`** — headless Dioxus renderer on blitz (`DioxusDocument`); computes each element's stable element id on demand (`element_id` / `element_ids`: author key → component path → document path) and, under `accessibility`, carries it as AccessKit `author_id` through its `Document::accessibility_tree` override
+- **`dioxus-native-dom`** — headless Dioxus renderer on blitz (`DioxusDocument`); computes each element's stable element id on demand (`element_id` / `element_ids`: author key → component path → document path) and, under `accessibility`, carries it as AccessKit `author_id` through its `Document::accessibility_tree` override and reads the screen as a snapshot tree of id · role · name · state · bounds (`DioxusDocument::snapshot`)
 - **`dioxus-native`** — windowed Dioxus renderer (`launch`)
 - **`blitz-test-harness`** — headless `Harness`: construction, pump, input synthesis, inspection
 - **`escher-telemetry`** — escher's telemetry bootstrap (`init`): stderr `tracing` subscriber with service identity, allowlist scrub, `log` bridge, chaining panic hook
-- **`seven_guis`** — the 7GUIs example app, the stand every 0.1.0 capability is proven on; its native `stand` module boots counter, flight booker, timer or CRUD headlessly in TaskShell (pinned viewport, bundled font, offline, fresh per boot)
+- **`seven_guis`** — the 7GUIs example app, the stand every 0.1.0 capability is proven on (with a minimal fixture beside it where the tasks lack a case); its native `stand` module boots counter, flight booker, timer or CRUD headlessly in TaskShell (pinned viewport, bundled font, offline, fresh per boot)
 <!-- GENERATED:setup:modules end -->
 
 ## Critical Warnings (universal invariants)
@@ -73,6 +73,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 | Headless `Harness` API | `packages/blitz-test-harness/src/{harness,input,inspect}.rs` |
 | DOM entry point · config | `packages/blitz-dom/src/document.rs` · `packages/blitz-dom/src/config.rs` |
 | Accessibility tree | `packages/blitz-dom/src/accessibility.rs` |
+| Snapshot model (id · role · name · state · bounds) | `packages/dioxus-native-dom/src/snapshot.rs` · checks `tests/blitz-tests/tests/stand_snapshot.rs` |
 | The 7GUIs stand | `examples/seven_guis/src/tasks/` · headless boot `examples/seven_guis/src/stand.rs` · checks `tests/blitz-tests/tests/stand_*.rs` |
 | WPT runner | `wpt/runner/src/main.rs` · `wpt/runner/src/test_runners/` |
 | CI pipeline | `.github/workflows/ci.yml` · `wpt.yml` · `publish-browser.yml` (the last two upstream-only) · legs `.github/scripts/ci-leg.sh` · invariants `.github/scripts/test_ci_workflows.py` |
@@ -95,7 +96,7 @@ See `.claude/docs/commands.md` for the full reference.
 <!-- GENERATED:setup:architecture start -->
 Blitz is a radically modular, embeddable web engine: a headless DOM (`BaseDocument` in blitz-dom) that external code drives and any renderer paints, with parsing, networking, painting and windowing in separate crates. Embedder services — net, navigation, shell, HTML parsing — reach the DOM only through provider traits in `DocumentConfig`, defaulting to `Dummy*` no-ops; web behaviour is written against named specs and named engines. Style, damage, box construction, layout and paint topology run one incremental pipeline over versioned node ids.
 
-The engine is already exercised headlessly — `blitz-test-harness` synthesizes input through the real event-dispatch pipeline with no window or GPU, and the WPT runner renders to CPU buffers; the seven_guis stand boots through it (`seven_guis::stand`) at a pinned viewport with its bundled font and no network. escher builds on that: stable element ids (built — `DioxusDocument::element_id(s)`, the author's HTML `id` else the element's component path, proven the same across a re-render, a remount and a fresh process, and carried on every element's accessibility node as AccessKit `author_id`), a semantic snapshot with diffs, settle detection and a driver (CLI + MCP) that acts by id, proven on the seven_guis stand.
+The engine is already exercised headlessly — `blitz-test-harness` synthesizes input through the real event-dispatch pipeline with no window or GPU, and the WPT runner renders to CPU buffers; the seven_guis stand boots through it (`seven_guis::stand`) at a pinned viewport with its bundled font and no network. escher builds on that: stable element ids (built — `DioxusDocument::element_id(s)`, the author's HTML `id` else the element's component path, proven the same across a re-render, a remount and a fresh process, and carried on every element's accessibility node as AccessKit `author_id`), a semantic snapshot (its data model built — `DioxusDocument::snapshot`, every element the accessibility tree keeps as a node of id · role · name · state · bounds, each field from a reader the engine already had; its serialization and diffs are still to come), settle detection and a driver (CLI + MCP) that acts by id, proven on the seven_guis stand.
 
 **Primary source:** `.andromeda/architecture.md` (the pointer table's row — not imported; read explicitly where a step needs it).
 <!-- GENERATED:setup:architecture end -->

@@ -148,7 +148,8 @@
         "ref": null,
         "status": "planned"
       },
-      "chunk": null
+      "chunk": null,
+      "notes": "2026-10-06 (2026-10-06-snapshot-model wrap): the founder's ruling, given as that wrap's directive — the stand is the proof, plus minimal fixtures beside it for cases the 7GUIs tasks lack, an element covered by another named as one. This acceptance still opens \"On the stand\"; under the ruling its covered-by-another case may be proven on a minimal fixture beside the stand. The acceptance text is left as written and is concretized at claim by the \"Refusal detection\" entry, which carries the ruling as a CARRY."
     },
     {
       "id": "v010-12",
@@ -201,7 +202,21 @@
         "status": "planned"
       },
       "chunk": null,
-      "notes": "2026-10-06 (2026-10-06-cold-agent-run-pipe, phase P5): not claimed — the cold-agent pipe this chunk builds (scripts/cold-agent.sh: an isolated claude -p session given only a stub MCP tool, transcript, wrong-call count, verdict) is the reachability half; the acceptance needs the real tool (driver CLI/MCP, Epoch 5) and a stand task, so the capability stays pooled for the Epoch 6 \"Cold-agent test\" entry, which drives them through this pipe."
+      "notes": "2026-10-06 (2026-10-06-cold-agent-run-pipe, phase P5): not claimed — the cold-agent pipe this chunk builds (scripts/cold-agent.sh: an isolated claude -p session given only a stub MCP tool, transcript, wrong-call count, verdict) is the reachability half; the acceptance needs the real tool (driver CLI/MCP, Epoch 5) and a stand task, so the capability stays pooled for the Epoch 6 \"Cold-agent test\" entry, which drives them through this pipe.\n\n2026-10-06 (2026-10-06-snapshot-model wrap): the founder's ruling, given as that wrap's directive — the cold-agent test's bar on wrong calls starts in 0.2.0, and 0.1.0's run is the baseline that shows which values are reasonable. So this acceptance's \"the run records its count of wrong calls\" asks for the count only: no threshold decides the 0.1.0 verdict. The 0.2.0 bar is an open entry in .andromeda/residuals.md, and the \"Cold-agent test\" entry carries the ruling as a CARRY."
+    },
+    {
+      "id": "v010-16",
+      "title": "Id stability across code edits",
+      "requirement": "an element's id stays the same when the app's code is edited around it, not only across a re-render, a remount and a fresh process",
+      "observed_gap": "a node's id is a slot index plus a version; a remount re-clones nodes into fresh ids, and no semantic id exists — an agent can aim only at coordinates or selectors.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "On the stand, after an edit of a task's code that leaves an element in place, that element reads the same id as before the edit.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null,
+      "notes": "2026-10-06 (2026-10-06-snapshot-model wrap): added on the founder's ruling, given as that wrap's directive — element ids must stay stable across edits of the app's code, not only across a re-render, a remount and a restart; a requirement of its own, with its own route entry ahead of the diff and driver work (working-route.md, \"Id stability across code edits\"). Entered by a scripted append, because the ledger tool has no verb that creates an entry; the founder chose that path at the wrap, and the entry was read back through matrix.py show. The acceptance is outcome-level: which edits must keep the id is concretized at claim."
     }
   ]
 }
