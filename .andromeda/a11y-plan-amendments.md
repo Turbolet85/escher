@@ -78,3 +78,13 @@ One entry per amendment to `a11y-plan.md` (sidecar-contract.md §Entry form). Ap
 - Eleven line citations re-pointed, and `lib.rs:14-15` added in §2. Two of the eleven, the seven_guis card citations in §8, had already drifted before this chunk and now point at the `TASKS` table and the card markup.
 **Why:** the rule is the founder's (the founder, 2026-10-06). Trap for later chunks: never satisfy the check by adding a `tabindex` or a role — that changes the Tab order §5 pins; key the element.
 **Ref:** .andromeda/runs/2026-10-06T20-55-58-wrap/
+
+## 2026-10-06-snapshot-state-fidelity — a falsy `hidden` no longer drops a node; a key-press focus check exists
+**Section:** §3 Keyboard test harness · §5 Script and framework exposure · §5 Test harness pattern · §7 Accessibility tree output
+**Change:**
+- Script and framework exposure: was "a falsy `disabled` or `checked` removes the attribute; every other boolean attribute is still written as `"false"` — for `hidden` that would drop a `hidden: false` node: recorded, not established"; now a falsy value of one of the bridge's 27 boolean attributes removes it on both attribute paths, so an element rendered `hidden: false` is laid out and stays in the tree and the snapshot, while a truthy `hidden` still excludes it. The drop was established at the chunk's base before the fix.
+- Test harness pattern and §3: was "keyboard-event or Tab-order navigation tests observed absent"; now a Tab / Shift+Tab key-press focus check exists on the stand (`crud-name` → `crud-surname` and back, `back-btn` on a fresh boot's first Tab), each time exactly the focused control's node reading `focused` and equal to the tree's focus. The other three observed-absent bullets stand.
+- Accessibility tree output: the snapshot reads `enabled` (the presence of `disabled`), `checked` and `value` from the element, since the tree gives an element none of them; a password input reads `MASKED_VALUE`; focus is proven after a click, a Tab press and Shift+Tab.
+- 3 line citations re-pointed (`mutation_writer.rs`, `snapshot.rs`).
+**Why:** the chunk measured each reading on the stand through real input. The 27-name clear is PROVISIONAL on the direction given at phase's P5 review (2026-10-06), pending the founder's own word at the Epoch 3 boundary. Trap for later chunks: a bare or `"false"` `disabled` control still takes focus by Tab while reading not enabled; and, by phase's code read, not measured, a click on a plain button clears focus instead of focusing it — pointer focus was proven on a text input and a checkbox.
+**Ref:** .andromeda/runs/2026-10-06T22-39-16-wrap/

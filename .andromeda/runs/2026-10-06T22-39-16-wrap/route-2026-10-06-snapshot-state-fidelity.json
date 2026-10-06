@@ -1,0 +1,117 @@
+[
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "699f7ef0",
+"ts": "2026-10-06T23:02:38Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-06-snapshot-state-fidelity",
+"--run-dir",
+".andromeda/runs/2026-10-06T22-39-16-wrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"flip master-route.md:26 - 2026-10-06-snapshot-state-fidelity pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "699f7ef0",
+"ts": "2026-10-06T23:02:38Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-06-snapshot-state-fidelity",
+"--date",
+"2026-10-06",
+"--run-dir",
+".andromeda/runs/2026-10-06T22-39-16-wrap",
+"--dry-run"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"pin :43 strip CARRY: 668ch \"CARRY: Dioxus boolean attributes (from 2\"",
+"pin next markerless :45 holds CARRY:×1",
+"43 · 2026-10-06-snapshot-state-fidelity · strip 1 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 43,
+"marker": "2026-10-06-snapshot-state-fidelity",
+"blocks": 1,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "699f7ef0",
+"ts": "2026-10-06T23:02:43Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-06-snapshot-state-fidelity",
+"--date",
+"2026-10-06",
+"--run-dir",
+".andromeda/runs/2026-10-06T22-39-16-wrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"pin :43 strip CARRY: 668ch \"CARRY: Dioxus boolean attributes (from 2\"",
+"pin next markerless :45 holds CARRY:×1",
+"43 · 2026-10-06-snapshot-state-fidelity · strip 1 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.1.0/route-archive.md",
+"./escher-0.1.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 43,
+"marker": "2026-10-06-snapshot-state-fidelity",
+"blocks": 1,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]

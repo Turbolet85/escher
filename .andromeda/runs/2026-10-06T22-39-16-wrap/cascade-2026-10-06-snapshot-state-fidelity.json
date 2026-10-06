@@ -1,0 +1,407 @@
+[
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "43eb863f",
+"ts": "2026-10-06T22:52:54Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-06T22-39-16-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-06T22-39-16-wrap",
+"--marker",
+"2026-10-06-snapshot-state-fidelity"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"baseline 52616c18 (pre-CI parent — the oldest of 1 pre-CI commit(s), 70b9997d)",
+"falsy-two · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"falsy-disabled · new 0 · standing 1 · leaf 2 · curation 0 · base 0 · control architecture.md:259 (prose)",
+"still-written · new 2 · standing 1 · leaf 3 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"literal-false · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"hidden-false · new 3 · standing 0 · leaf 0 · curation 0 · base 0 · control a11y-plan.md:179 (prose)",
+"not-established · 0 rows (control fired) — a statement about this pattern, not the masters · control a11y-plan.md:179 (…",
+"kbd-absent · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control a11y-plan.md:73 (prose)",
+"unit-29 · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control test-plan.md:23 (prose)",
+"nine-snapshot · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:23 (pro…",
+"ws-490 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"ws-127 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"stand-41 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:111 (prose)",
+"mw-cites · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:108 (pros…",
+"snap-cites · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 (pr…",
+"three-types · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:251 (p…",
+"value-reader · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"enabled-reader · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:134 (prose)",
+".claude/docs/services/dioxus-native-dom.md:21 falsy-two leaf …yle properties; a falsy `checked` or `disabled` (Bool fal…",
+".andromeda/test-plan.md:25 falsy-disabled standing edited @c369/4518 …e clearing of a falsy Dioxus `disabled`, tests/bl…",
+".claude/rules/a11y.md:31 falsy-disabled leaf …us-native-dom removes a falsy `disabled`/`checked`; its other boolean att…",
+".claude/docs/a11y-summary.md:22 falsy-disabled leaf …ve-dom now removes a falsy `disabled` / `checked`; its other boole…",
+".andromeda/architecture.md:134 still-written standing edited mixed ×2 @c1387,1492/15434 … name is still written, and an…",
+".andromeda/security-plan.md:125 still-written new … holding `false`, are still written. It is an in-process mutation pa…",
+".andromeda/a11y-plan.md:179 still-written new ×2 …e of a listed name is still written, and an attribute outside the lis…",
+".claude/rules/a11y.md:31 still-written leaf …ther boolean attributes still write `\"false\"`, so never read them by prese…",
+".claude/docs/a11y-summary.md:22 still-written leaf …ed` / `checked`; its other boolean attributes still write `\"false\"`.",
+".claude/docs/services/dioxus-native-dom.md:33 still-written leaf … `autofocus`) is still written with the literal value…",
+".claude/docs/services/dioxus-native-dom.md:33 literal-false leaf …written with the literal value `\"false\"` when falsy —…",
+".andromeda/architecture.md:134 hidden-false new @c1543/15434 … element rendered `hidden: false` carries no `hidden` att…",
+".andromeda/test-plan.md:25 hidden-false new @c549/4518 …th layout modes — a `hidden: false` element displayed and a sna…",
+".andromeda/a11y-plan.md:179 hidden-false new …and an element rendered `hidden: false` carries no `hidden` attribute, is…",
+".claude/rules/a11y.md:34 kbd-absent leaf - Keyboard-event tests are observed absent (`stand_accessibility_ids` pins onl…",
+".claude/docs/services/dioxus-native-dom.md:39 unit-29 leaf …ioxus-native-dom` (29 unit tests: `keyed_nodes_do_not_crash…",
+".andromeda/test-plan.md:314 ws-490 standing edited @c2855/3756 …127 result lines, 490 passed · 0 failed · 5 ignored (+7…",
+".andromeda/test-plan.md:314 ws-127 standing edited @c2837/3756 …cross-code-edits: 127 result lines, 490 passed · 0 fail…",
+".claude/docs/tests-summary.md:28 ws-127 leaf …space` 490 · 0 · 5 over 127 result lines at 2026-10-06-id-stability-acros…",
+".andromeda/test-plan.md:111 stand-41 standing edited …e-edits: `run stand` 41 `ok` stand events (+5 `stand_id_edits`, +…",
+".andromeda/architecture.md:134 value-reader standing edited @c11681/15434 …d()`, `value` the editor text else the `valu…",
+".andromeda/architecture.md:134 enabled-reader standing edited @c11342/15434 …enabled` the `disabled`-presence reading o…",
+"falsy-two · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"falsy-disabled · new 0 · standing 1 · leaf 2 · curation 0 · base 0 · control architecture.md:259 (prose)",
+"still-written · new 2 · standing 1 · leaf 3 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"literal-false · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"hidden-false · new 3 · standing 0 · leaf 0 · curation 0 · base 0 · control a11y-plan.md:179 (prose)",
+"not-established · 0 rows (control fired) — a statement about this pattern, not the masters · control a11y-plan.md:179 (…",
+"kbd-absent · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control a11y-plan.md:73 (prose)",
+"unit-29 · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control test-plan.md:23 (prose)",
+"nine-snapshot · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:23 (pro…",
+"ws-490 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"ws-127 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"stand-41 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:111 (prose)",
+"mw-cites · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:108 (pros…",
+"snap-cites · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 (pr…",
+"three-types · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:251 (p…",
+"value-reader · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"enabled-reader · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:134 (prose)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "52616c1874cd398126b2cc78333f8efa7cf17c95",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), 70b9997d",
+"counts": {
+"falsy-two": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"falsy-disabled": {
+"new": 0,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"still-written": {
+"new": 2,
+"standing": 1,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"literal-false": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"hidden-false": {
+"new": 3,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"not-established": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"kbd-absent": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"unit-29": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"nine-snapshot": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"ws-490": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"ws-127": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"stand-41": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"mw-cites": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"snap-cites": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"three-types": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"value-reader": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"enabled-reader": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+}
+}
+},
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "43eb863f",
+"ts": "2026-10-06T22:54:43Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-06T22-39-16-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-06T22-39-16-wrap",
+"--marker",
+"2026-10-06-snapshot-state-fidelity"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"baseline 52616c18 (pre-CI parent — the oldest of 1 pre-CI commit(s), 70b9997d)",
+"falsy-two · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 (pro…",
+"falsy-disabled · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:259 (prose)",
+"still-written · new 2 · standing 1 · leaf 2 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"literal-false · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 …",
+"hidden-false · new 3 · standing 0 · leaf 3 · curation 0 · base 0 · control a11y-plan.md:179 (prose)",
+"not-established · 0 rows (control fired) — a statement about this pattern, not the masters · control a11y-plan.md:179 (…",
+"kbd-absent · 0 rows (control fired) — a statement about this pattern, not the masters · control a11y-plan.md:73 (prose)",
+"unit-29 · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:23 (prose)",
+"nine-snapshot · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:23 (pro…",
+"ws-490 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"ws-127 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"stand-41 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:111 (prose)",
+"mw-cites · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:108 (pros…",
+"snap-cites · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 (pr…",
+"three-types · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:251 (p…",
+"value-reader · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"enabled-reader · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:134 (prose)",
+".andromeda/test-plan.md:25 falsy-disabled standing edited @c369/4518 …e clearing of a falsy Dioxus `disabled`, tests/bl…",
+".andromeda/architecture.md:134 still-written standing edited mixed ×2 @c1387,1492/15434 … name is still written, and an…",
+".andromeda/security-plan.md:125 still-written new … holding `false`, are still written. It is an in-process mutation pa…",
+".andromeda/a11y-plan.md:179 still-written new ×2 …e of a listed name is still written, and an attribute outside the lis…",
+".claude/rules/a11y.md:31 still-written leaf …list holding `false` is still written as `\"false\"`. The snapshot's `enable…",
+".claude/docs/a11y-summary.md:22 still-written leaf …st holding `false` is still written as `\"false\"`. The snapshot read…",
+".andromeda/architecture.md:134 hidden-false new @c1543/15434 … element rendered `hidden: false` carries no `hidden` att…",
+".andromeda/test-plan.md:25 hidden-false new @c549/4518 …th layout modes — a `hidden: false` element displayed and a sna…",
+".andromeda/a11y-plan.md:179 hidden-false new …and an element rendered `hidden: false` carries no `hidden` attribute, is…",
+".claude/rules/a11y.md:31 hidden-false leaf …ocus` among them), so a `hidden: false` element stays displayed and in the …",
+".claude/docs/a11y-summary.md:22 hidden-false leaf …en` among them), so a `hidden: false` element stays displayed, in th…",
+".claude/docs/tests-summary.md:21 hidden-false leaf …ributes when falsy, a `hidden: false` element staying displayed), t…",
+".andromeda/test-plan.md:314 ws-490 standing edited @c2855/3756 …127 result lines, 490 passed · 0 failed · 5 ignored (+7…",
+".andromeda/test-plan.md:314 ws-127 standing edited @c2837/3756 …cross-code-edits: 127 result lines, 490 passed · 0 fail…",
+".andromeda/test-plan.md:111 stand-41 standing edited …e-edits: `run stand` 41 `ok` stand events (+5 `stand_id_edits`, +…",
+".andromeda/architecture.md:134 value-reader standing edited @c11681/15434 …d()`, `value` the editor text else the `valu…",
+".andromeda/architecture.md:134 enabled-reader standing edited @c11342/15434 …enabled` the `disabled`-presence reading o…",
+"falsy-two · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 (pro…",
+"falsy-disabled · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:259 (prose)",
+"still-written · new 2 · standing 1 · leaf 2 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"literal-false · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 …",
+"hidden-false · new 3 · standing 0 · leaf 3 · curation 0 · base 0 · control a11y-plan.md:179 (prose)",
+"not-established · 0 rows (control fired) — a statement about this pattern, not the masters · control a11y-plan.md:179 (…",
+"kbd-absent · 0 rows (control fired) — a statement about this pattern, not the masters · control a11y-plan.md:73 (prose)",
+"unit-29 · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:23 (prose)",
+"nine-snapshot · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:23 (pro…",
+"ws-490 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"ws-127 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"stand-41 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:111 (prose)",
+"mw-cites · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:108 (pros…",
+"snap-cites · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 (pr…",
+"three-types · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:251 (p…",
+"value-reader · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"enabled-reader · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:134 (prose)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "52616c1874cd398126b2cc78333f8efa7cf17c95",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), 70b9997d",
+"counts": {
+"falsy-two": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"falsy-disabled": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"still-written": {
+"new": 2,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"literal-false": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"hidden-false": {
+"new": 3,
+"standing": 0,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"not-established": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"kbd-absent": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"unit-29": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"nine-snapshot": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"ws-490": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"ws-127": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"stand-41": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"mw-cites": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"snap-cites": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"three-types": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"value-reader": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"enabled-reader": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+}
+}
+}
+]

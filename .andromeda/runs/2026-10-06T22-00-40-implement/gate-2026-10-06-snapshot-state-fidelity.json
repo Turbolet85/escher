@@ -1478,5 +1478,54 @@
 }
 ]
 }
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T22:38:35Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-snapshot-state-fidelity",
+"--run-dir",
+".andromeda/runs/2026-10-06T22-00-40-implement",
+"--marker",
+"2026-10-06-snapshot-state-fidelity"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base 52616c18 (the parent of the oldest pre-CI commit 70b9997d) · lists new 2 · modify 3 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 5 · listed 5 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 50"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "52616c1874cd398126b2cc78333f8efa7cf17c95",
+"base_why": "the parent of the oldest pre-CI commit 70b9997d",
+"counts": {
+"changed": 5,
+"listed": 5,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 50,
+"unparsed": 0,
+"widening_without_word": 0
+}
 }
 ]

@@ -29,6 +29,19 @@ Driven by the agent on the operator's direction (2026-10-06), each by hand, in p
 - Local reading before the fix commit: the plan's block through the gate tool, `entries 19 · green 16 · red 0 · recorded 0 · timeout 0 · not-run 3`; `stand_snapshot_state` 7 passed; `run stand` 48 ok.
 - The first run's final state, read after it closed: CI#37539756517 `completed · failure`, `Test (macos)` its only non-success job (Windows and coverage passed).
 
+## Fix commit
+- `0f944800` `fix(2026-10-06-snapshot-state-fidelity): prove Book's re-enable with clicks and typing only` (`git add -A`: 3 files — the stand check, this record, the implement run's gate trail). Hygiene before it: `hygiene: clean — read 2 (runs 1 · evidence 1 · inputs 0)`.
+
+## Entry 18, re-fired for the fix push
+- run: `bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0`
+- exit 0 (2026-10-06T22:30Z) · fast green (workspace 504 · 0 · 5 over 129 result lines from `target/ci-logs/test.log`; `Ran 64 tests`) · tree clean · push `70b9997d..0f944800  build/escher-0.1.0 -> build/escher-0.1.0` · after it, `HEAD` = `origin/build/escher-0.1.0` = `0f944800f014`.
+
+## Entry 19, re-fired — CI conclusion: green
+- run: `python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800`
+- exit 0 · atom `contains verdict: green` ✓ (read 2026-10-06T22:38Z)
+- `0f944800f014 verdict: green · checks 16/16 · wall 468 s · runs CI#37540961596 completed/success` (repo Turbolet85/escher, polled 17× over 496 s)
+- The fix-commit, re-fired entry 18 and this section were written after the fix push, so they ride the wrap's commit.
+
 ## For the wrap's route pass — a fifth engine defect that needs an owner
 The plan's Implementation notes list four (the password painted in the clear, the bare `disabled` control that stays focusable, the plain-button click that clears focus, the missing `select` and range interaction model). The operator added a fifth (2026-10-06):
 - **On macOS the editor has no Backspace arm.** `packages/blitz-dom/src/node/text.rs:330-331` compiles `Key::Backspace` only off macOS and leaves the delete to the Apple standard key bindings, so a headless key press deletes nothing there (measured: the macOS job above). The driver will need typed deletion to work headless on every platform.

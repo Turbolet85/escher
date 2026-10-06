@@ -49,3 +49,4 @@ Path-scoped rules for test files. Source: `.andromeda/test-plan.md` §2 §4 §5 
 ## Session Additions
 _This section is owned by `/andromeda-wrap-session`. setup-project preserves content added here on re-run._
 - 2026-10-06: In a `.github/scripts` unittest file, never give a helper method a `test_` prefix — `unittest` collects it as a test case; name helpers without it and check the run's `Ran N tests` against the cases written.
+- 2026-10-06: Never drive a stand or harness check with a deleting or other platform-bound key — the editor's `Key::Backspace` arm is compiled out on macOS (the delete arrives there as an Apple standard key binding the harness does not synthesize), so the press does nothing on the macOS CI leg while the Linux host reads green; prove a state change with clicks and typed characters, and read the `#[cfg]` lines above a `match` arm before trusting a grep hit of it on every platform.

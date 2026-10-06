@@ -211,7 +211,7 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
   - Uncaught JS errors are logged as "Uncaught JS error in" plus the source description (packages/blitz-vibey-script/src/runtime.rs:1104-1105)
   - JS console log, info, warn and error all map to one debug-level log call (packages/blitz-vibey-script/src/runtime.rs:1253-1269)
 - **dioxus-native, dioxus-native-dom**
-  - Every DOM mutation (assign_node_id, create_placeholder, create_text_node, append/insert/replace, remove_node, push_root, set_node_text, load_template, set_attribute) is logged at debug through `trace!` (packages/dioxus-native-dom/src/mutation_writer.rs:119-205; packages/dioxus-native-dom/src/mutation_writer.rs:305; packages/dioxus-native-dom/src/mutation_writer.rs:388)
+  - Every DOM mutation (assign_node_id, create_placeholder, create_text_node, append/insert/replace, remove_node, push_root, set_node_text, load_template, set_attribute) is logged at debug through `trace!` (packages/dioxus-native-dom/src/mutation_writer.rs:152-238; packages/dioxus-native-dom/src/mutation_writer.rs:338; packages/dioxus-native-dom/src/mutation_writer.rs:421)
   - Asset fetch success is logged at trace and failure at warn; fetches without a net provider are logged at warn (packages/dioxus-native/src/assets.rs:47-60)
   - A failure to open a URL is logged at error (packages/dioxus-native/src/link_handler.rs:14-15)
   - Injecting the document provider into windows is logged at debug (packages/dioxus-native/src/dioxus_application.rs:137-138)
@@ -284,7 +284,7 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 - Image-fetch info events carry the full image URL (packages/blitz-dom/src/layout/damage.rs:489-507)
 - Full request URLs are logged as field `url` (packages/blitz-net/src/lib.rs:229; packages/blitz-net/src/lib.rs:276; packages/blitz-net/src/lib.rs:281)
 - The CSS property value is logged in the "Invalid property value" warning (packages/blitz-dom/src/node/element.rs:706-707)
-- dioxus-native debug logs record text-node contents and attribute values; asset logs record the full request (packages/dioxus-native-dom/src/mutation_writer.rs:150; packages/dioxus-native-dom/src/mutation_writer.rs:202; packages/dioxus-native-dom/src/mutation_writer.rs:388; packages/dioxus-native/src/assets.rs:48)
+- dioxus-native debug logs record text-node contents and attribute values; asset logs record the full request (packages/dioxus-native-dom/src/mutation_writer.rs:183; packages/dioxus-native-dom/src/mutation_writer.rs:235; packages/dioxus-native-dom/src/mutation_writer.rs:421; packages/dioxus-native/src/assets.rs:48)
 - Past escher's scrub: the chained std panic hook prints the raw panic message to stderr, and the allowlisted `log.file` carries a host path for bridged third-party `log` records at `RUST_LOG=info` (as measured at escher-0.1.0/chunks/2026-10-06-telemetry-bootstrap/report.md)
 
 **Scrubbing:**

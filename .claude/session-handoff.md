@@ -1,32 +1,28 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-06T21:16:48Z
+**Last Updated:** 2026-10-06T23:00:11Z
 **Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-06-id-stability-across-code-edits — feat(2026-10-06-id-stability-across-code-edits): an element left in place keeps its id when the code around it changes
+**Last Commit:** 2026-10-06-snapshot-state-fidelity — feat(2026-10-06-snapshot-state-fidelity): the snapshot's state reads true per control; a password's value is masked
 
 ## Position
-- Done: 2026-10-06-id-stability-across-code-edits — ids hold across code edits (v010-16, verified). An unkeyed element under a keyed element of its own component reads `{key}//{relative path}`; every element an agent can act on reads an author key, checked by `DioxusDocument::unkeyed_actionable()`. Workspace 490 · 0 · 5 (127 result lines), stand `ok` 41, `Ran 64 tests`, fork CI green 16/16 on `75f12a09`.
-- Next: "Snapshot state fidelity — enabled, checked, value, focused per control; disabled reads disabled, typed value reads back, password values masked (v010-05)" (working-route.md:43) — promote and plan it with /andromeda-phase.
+- Done: 2026-10-06-snapshot-state-fidelity — the snapshot's `enabled`, `checked`, `value` and `focused` are proven per control through real input (v010-05, verified); a password input's value reads the fixed mask `MASKED_VALUE`; the Dioxus bridge clears a falsy value of 27 boolean attributes, so a `hidden: false` element stays displayed. Workspace 504 · 0 · 5 (129 result lines), stand `ok` 48, `Ran 64 tests`, fork CI green 16/16 on `0f944800`.
+- Next: "Compact snapshot serialization — whole stand screen readable in one tool result, size budget recorded (v010-04)" (working-route.md:45) — promote and plan it with /andromeda-phase.
 
 ## Work done
-- The id grammar gained an anchored tier in `element_id.rs`; a new accessibility-gated `actionable` module holds the check; CRUD's rows read `crud-person-{id}` and Home's seven cards `task-card-{slug}`. Two new stand checks (`stand_id_edits`, `stand_actionable_keys`), four re-pinned.
-- The three tasks outside the lean four are measured, not keyed: Temperature Converter 2 · Circle Drawer 3 · Cells 676 unkeyed actionable elements, pinned by a test.
+- `snapshot.rs` masks a password's value and exports `MASKED_VALUE`; `mutation_writer.rs` holds the 27-name `BOOLEAN_ATTRIBUTES` list. Two new test files: `stand_snapshot_state` (7) and `dioxus_falsy_boolean_attrs` (3); four new snapshot unit tests.
+- The operator pass read red once on the macOS CI leg (a `Key::Backspace` press does nothing there) and green after the fix commit `0f944800`.
 
 ## Drift resolved
-30 detector proposals (architecture 13 · security-plan 4 · layout-templates 3 · test-plan 10) and 4 raised from the plan's expected-amendments list (a11y-plan 3 · design-system 1), all applied; obs-plan returned none and needed none. Six sidecar entries. The cascade re-derived CLAUDE.md, the two crate notes, four summaries and docs, and the a11y rule. 0 escalations: the grammar change and the public check carry the founder's ratification from phase.
+33 detector proposals (architecture 12 · security-plan 10 · test-plan 5 · a11y-plan 4 · obs-plan 2; design-system and layout-templates none), all applied as five amendments with five sidecar entries; most are line citations moved by the two edited files. The cascade re-derived CLAUDE.md, the dioxus-native-dom and seven_guis notes, the a11y and tests summaries, commands and the a11y rule. 0 escalations.
 
 ## Notes
-- Two CARRYs pinned: "Stand requirement sweep" owns keying the three non-lean tasks (the wrap's placement; "Stand a11y assertions" was the other candidate — move it if that reads wrong), and "Driver CLI" carries that the check has no wire form and must leave its `NodeId` field behind when it gets one.
-- v010-01 carries a premise-correction note: an unkeyed element under a keyed element of its own component now reads an anchored path, and CRUD's rows read author keys.
-- No gate deferral, so no PREREQ is pinned. No new learnings curated.
+- **PROVISIONAL, awaiting the founder at the Epoch 3 boundary:** the bridge's 27-name falsy clear (answered at phase, recorded provisional at its P5 review). It is recorded in the architecture, security-plan and a11y-plan sidecars, not in the bodies and not on the route.
+- Three CARRYs pinned for the five engine defects found (the wrap's placement — move one if it reads wrong): "Act by id" owns typed deletion on macOS and the missing `select` / range interaction; "Headless screenshot" owns the password painted in the clear; "Stand keyboard harness" owns the bare-`disabled` control that stays focusable and the button click that clears focus ("Stand a11y assertions" was the other candidate). The next entry's CARRY now reads the password mask as measured and carries the file-input host-path hypothesis.
+- No gate deferral, so no PREREQ is pinned. One learning curated: `.claude/rules/testing.md` — no platform-bound keys in a stand check.
 - Last failed command: none.
 
 ## Deferred learnings
-- recurrence-despite-learning: "The project's Bash guards refuse a heredoc written to a file and a leading cd, and read payload prose too" (Tier 3, 2026-10-06). Seventh recurrence, at this wrap.
-- recurrence-despite-learning: "Count from the listing you just read, never from the plan's forecast" (Tier 3, 2026-10-05). Recurred at this wrap: a citation tally typed into the report draft without a count, corrected before the fan-out.
-- carried from session 15, still unreviewed, no recurrence this session: "On this host `grep` is ugrep, and a long bounded repetition can print nothing" (Tier 3, 2026-10-06).
+- recurrence-despite-learning: "A chunk that moves cited source lines stales the masters' file:line citations" (Tier 3, 2026-10-05). Partial recurrence at this wrap: the report listed the sites citing one shifted file and not the other's; the detectors found them.
+- carried, still unreviewed, no recurrence this session: "The project's Bash guards refuse a heredoc written to a file and a leading cd, and read payload prose too" (Tier 3, 2026-10-06) · "Count from the listing you just read, never from the plan's forecast" (Tier 3, 2026-10-05) · "On this host `grep` is ugrep, and a long bounded repetition can print nothing" (Tier 3, 2026-10-06).
 Review with `/andromeda-wrap-session --review` if any should be applied.
-
-## Session End Status
-Completed normally at 2026-10-07 00:00:31
