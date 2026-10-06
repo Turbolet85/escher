@@ -1,0 +1,35 @@
+Red-before-green control — 2026-10-06-snapshot-state-fidelity (plan step 9)
+
+Tree: the tests of steps 4, 6 and 7-8 written; MASKED_VALUE declared and exported so they compile;
+both readers untouched — snapshot.rs `value` and mutation_writer.rs `set_attribute_inner` as at 52616c18.
+Run between 2026-10-06T22:01Z and 22:06Z (the last command's clock read 22:06:06Z). Exits read from the
+bare command, output redirected to a session scratch file outside the tree.
+
+1. cargo test -p dioxus-native-dom --locked --lib snapshot::
+   exit 101 · test result: FAILED. 11 passed; 2 failed; 0 ignored; 0 measured; 20 filtered out
+   FAILED a_password_input_reads_a_masked_value
+     first diagnostic: "a password holding text reads the mask" (its two fixture conditions held first:
+     the editor holds the text; the empty input's editor holds none)
+   FAILED disabled_in_parsed_markup_reads_not_enabled_whatever_its_value
+     first diagnostic: "the fixture renders "falsy"" — the test's FIXTURE condition, not a reader red:
+     through the unit module's `build` helper (DocumentConfig::default()) `dangerous_inner_html` produced
+     no button. The fixture was rebuilt after this run; see implement's report.
+
+2. cargo test -p blitz-tests --locked --test stand_snapshot_state
+   exit 101 · test result: FAILED. 6 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
+   FAILED a_typed_password_never_appears_in_the_snapshot
+     first diagnostic: "incremental=false: a password holding text reads the mask" (its fixture condition
+     held first: the password input's editor holds the typed text)
+
+3. cargo test -p blitz-tests --locked --test dioxus_falsy_boolean_attrs
+   exit 101 · test result: FAILED. 1 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out
+   FAILED a_falsy_hidden_element_is_displayed
+     first diagnostic: at boot, incremental=false — (hidden attribute, layout box, snapshot node) read
+     (Some("false"), false, false), expected (None, true, true)
+   FAILED every_listed_boolean_attribute_is_removed_when_falsy
+     first diagnostic: incremental=false — a falsy "allowfullscreen" on "literal" read Some("false"),
+     expected None
+   ok     a_truthy_or_unlisted_attribute_is_kept (the negative controls hold on the untouched bridge)
+
+The CARRY's hypothesis, measured: a Dioxus `hidden: false` element is written `hidden="false"`, has no
+layout box and is no snapshot node (reading 3, first test).

@@ -8,6 +8,10 @@ use blitz_dom::{BaseDocument, BoundingRect, Document, ElementData, NodeId, local
 
 use crate::DioxusDocument;
 
+/// What a password `input` holding text reads as its [`NodeState::value`]: one fixed marker,
+/// the same whatever was typed, so neither the text nor its length is in a [`Snapshot`].
+pub const MASKED_VALUE: &str = "••••••••";
+
 /// The screen of a document as a tree of the elements its accessibility tree keeps, in
 /// document order. Built by [`DioxusDocument::snapshot`].
 #[derive(Debug, Clone, PartialEq)]
@@ -41,12 +45,15 @@ pub struct SnapshotNode {
 #[derive(Debug, Clone, PartialEq, Default)]
 pub struct NodeState {
     /// For an element that can be disabled (`button`, `input`, `select`, `textarea`), whether
-    /// it lacks a `disabled` attribute; `None` for every other element.
+    /// it lacks a `disabled` attribute; `None` for every other element. The reading follows
+    /// the attribute's presence, which is what decides whether a click acts on the element, so
+    /// a `disabled="false"` and a bare `disabled` both read not enabled.
     pub enabled: Option<bool>,
     /// For a checkbox or radio `input`, whether it is checked; `None` for every other element.
     pub checked: Option<bool>,
     /// For a text-entry `input` or a `textarea`, its current text, else its `value` attribute;
-    /// `None` for every other element.
+    /// `None` for every other element. A password `input` reads [`MASKED_VALUE`] when it holds
+    /// text and `""` when it holds none, never the text.
     pub value: Option<String>,
     /// Whether the element is the document's focused node.
     pub focused: bool,
@@ -173,22 +180,30 @@ impl Builder<'_> {
 }
 
 /// The form reader's value of a text-entry control: its editor's text, else its `value`
-/// attribute.
+/// attribute. A password `input` reads [`MASKED_VALUE`] in place of a non-empty one.
 fn value(element: &ElementData) -> Option<String> {
-    let entry = match &*element.name.local {
-        "textarea" => true,
-        "input" => !matches!(
-            element.attr(local_name!("type")),
-            Some("checkbox" | "radio" | "button" | "submit" | "reset" | "hidden")
+    let input_type = element.attr(local_name!("type"));
+    let (entry, password) = match &*element.name.local {
+        "textarea" => (true, false),
+        "input" => (
+            !matches!(
+                input_type,
+                Some("checkbox" | "radio" | "button" | "submit" | "reset" | "hidden")
+            ),
+            input_type.is_some_and(|input_type| input_type.eq_ignore_ascii_case("password")),
         ),
-        _ => false,
+        _ => (false, false),
     };
     if !entry {
         return None;
     }
-    match element.text_input_data() {
+    let value = match element.text_input_data() {
         Some(text) => Some(text.editor.text().to_string()),
         None => element.attr(local_name!("value")).map(str::to_string),
+    };
+    match value {
+        Some(text) if password && !text.is_empty() => Some(MASKED_VALUE.to_string()),
+        value => value,
     }
 }
 
@@ -343,5 +358,170 @@ mod tests {
         assert_eq!(ids, expected);
         assert_eq!(snapshot.roots.len(), 1);
         assert_eq!(snapshot.roots[0].id, "/html:0");
+    }
+
+    /// The value `id`'s node reads. Names only the id on failure.
+    #[track_caller]
+    fn value_of<'s>(snapshot: &'s Snapshot, id: &str) -> Option<&'s str> {
+        snapshot
+            .get(id)
+            .unwrap_or_else(|| panic!("{id:?} is a snapshot node"))
+            .state
+            .value
+            .as_deref()
+    }
+
+    #[test]
+    fn a_password_input_reads_a_masked_value() {
+        const SECRET: &str = "synthetic-pw-7Qz";
+        fn app() -> Element {
+            rsx! {
+                input { id: "filled", r#type: "password", value: SECRET }
+                input { id: "empty", r#type: "password" }
+                input { id: "upper", r#type: "PASSWORD", value: SECRET }
+            }
+        }
+        let doc = build(app);
+        let editor = |id: &str| {
+            let base = doc.inner();
+            let node_id = base.query_selector(&format!("#{id}")).ok().flatten()?;
+            let data = base.get_node(node_id)?.element_data()?.text_input_data()?;
+            Some(data.editor.text().to_string())
+        };
+        assert!(
+            editor("filled").as_deref() == Some(SECRET),
+            "the fixture's password input holds the text"
+        );
+        assert!(
+            editor("empty").as_deref() == Some(""),
+            "the fixture's empty password input holds none"
+        );
+        let upper_attribute = {
+            let base = doc.inner();
+            base.query_selector("#upper")
+                .ok()
+                .flatten()
+                .and_then(|node_id| base.get_node(node_id)?.attr(local_name!("value")))
+                .map(str::to_string)
+        };
+        assert!(
+            upper_attribute.as_deref() == Some(SECRET),
+            "the fixture's upper-case password input holds the text"
+        );
+
+        let snapshot = doc.snapshot();
+        assert!(
+            value_of(&snapshot, "filled") == Some(MASKED_VALUE),
+            "a password holding text reads the mask"
+        );
+        assert!(
+            value_of(&snapshot, "empty") == Some(""),
+            "an empty password reads empty"
+        );
+        assert!(
+            value_of(&snapshot, "upper") == Some(MASKED_VALUE),
+            "the type is compared case-insensitively"
+        );
+        for node in snapshot.nodes() {
+            let carried = [
+                Some(node.id.as_str()),
+                Some(node.name.as_str()),
+                node.state.value.as_deref(),
+            ];
+            assert!(
+                carried
+                    .into_iter()
+                    .flatten()
+                    .all(|field| !field.contains(SECRET)),
+                "a field of a snapshot node holds the typed text"
+            );
+        }
+        assert_eq!(MASKED_VALUE.chars().count(), 8);
+        assert!(MASKED_VALUE.chars().all(|c| c == '\u{2022}'));
+    }
+
+    /// The crate's unit tests carry no HTML parser, so the two attributes are written through
+    /// the mutator, as parsed markup leaves them: the bridge itself never writes a falsy
+    /// `disabled`.
+    #[test]
+    fn a_present_disabled_attribute_reads_not_enabled_whatever_its_value() {
+        fn app() -> Element {
+            rsx! {
+                button { id: "falsy", "A" }
+                button { id: "bare", "B" }
+            }
+        }
+        let mut doc = build(app);
+        for (id, written) in [("falsy", "false"), ("bare", "")] {
+            let mut base = doc.inner_mut();
+            let node_id = base
+                .query_selector(&format!("#{id}"))
+                .ok()
+                .flatten()
+                .unwrap_or_else(|| panic!("the fixture renders {id:?}"));
+            base.mutate()
+                .set_attribute(node_id, crate::qual_name("disabled", None), written);
+        }
+        doc.inner_mut().resolve(0.0);
+        for (id, written) in [("falsy", "false"), ("bare", "")] {
+            let base = doc.inner();
+            let node_id = base
+                .query_selector(&format!("#{id}"))
+                .ok()
+                .flatten()
+                .unwrap_or_else(|| panic!("the fixture renders {id:?}"));
+            let node = base.get_node(node_id).expect("a queried node resolves");
+            assert_eq!(
+                node.attr(local_name!("disabled")),
+                Some(written),
+                "{id:?} carries the disabled attribute"
+            );
+            assert!(
+                node.is_focussable(),
+                "{id:?}: the focusability reader takes it as enabled"
+            );
+        }
+
+        let snapshot = doc.snapshot();
+        for id in ["falsy", "bare"] {
+            let enabled = snapshot
+                .get(id)
+                .unwrap_or_else(|| panic!("{id:?} is a snapshot node"))
+                .state
+                .enabled;
+            assert_eq!(enabled, Some(false), "{id:?}");
+        }
+    }
+
+    #[test]
+    fn a_radio_reads_checked() {
+        fn app() -> Element {
+            rsx! {
+                input { id: "picked", r#type: "radio", name: "plan", checked: true }
+                input { id: "other", r#type: "radio", name: "plan" }
+            }
+        }
+        let snapshot = build(app).snapshot();
+        assert_eq!(node(&snapshot, "picked").role, Role::RadioButton);
+        assert_eq!(node(&snapshot, "picked").state.checked, Some(true));
+        assert_eq!(node(&snapshot, "other").state.checked, Some(false));
+    }
+
+    #[test]
+    fn a_range_input_reads_its_value_attribute() {
+        fn app() -> Element {
+            rsx! { input { id: "level", r#type: "range", value: "15" } }
+        }
+        let doc = build(app);
+        let snapshot = doc.snapshot();
+        assert_eq!(
+            snapshot.get("level").map(|node| node.role),
+            Some(Role::Slider),
+            "the fixture renders a range input"
+        );
+        assert!(
+            value_of(&snapshot, "level") == Some("15"),
+            "a range input reads its value attribute"
+        );
     }
 }

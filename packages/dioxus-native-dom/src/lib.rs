@@ -26,7 +26,7 @@ pub use blitz_dom::DocumentConfig;
 pub use dioxus_document::DioxusDocument;
 pub use events::{NodeHandle, synthetic_click_event};
 #[cfg(feature = "accessibility")]
-pub use snapshot::{NodeState, Snapshot, SnapshotNode};
+pub use snapshot::{MASKED_VALUE, NodeState, Snapshot, SnapshotNode};
 pub use write_once_attr::{CustomWidgetAttr, SubDocumentAttr};
 
 pub use blitz_dom::NodeId;

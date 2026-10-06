@@ -1,0 +1,115 @@
+[
+{
+"tool": "matrix",
+"v": "1.3",
+"sha8": "cd774c8a",
+"ts": "2026-10-06T21:58:58Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.1.0",
+"--run-dir",
+".andromeda/runs/2026-10-06T21-32-20-phase",
+"--marker",
+"2026-10-06-snapshot-state-fidelity"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"verified 3/16 · deferred 0 · planned 13 · implemented 0 · unclaimed 13",
+"unclaimed: v010-03 v010-04 v010-05 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14",
+"          v010-15",
+"claimed-unfinished: none",
+"done-test: NO — 13 not verified|deferred · unclaimed 13",
+"chunks referenced: 3 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.3",
+"sha8": "cd774c8a",
+"ts": "2026-10-06T21:58:58Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-05",
+"--chunk",
+"2026-10-06-snapshot-state-fidelity",
+"--acceptance-file",
+".andromeda/runs/2026-10-06T21-32-20-phase/acceptance-v010-05.md",
+"--method",
+"integration",
+"--note-file",
+".andromeda/runs/2026-10-06T21-32-20-phase/note-v010-05.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T21-32-20-phase"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"claim v010-05 → chunk 2026-10-06-snapshot-state-fidelity (was null; status planned kept)",
+"acceptance: On the stand, a disabled control reads disabled, a checked control rea… (169 chars)",
+"         → On the stand, in both layout modes, read through `DioxusDocument::snap… (1017 chars)",
+"method: integration → integration",
+"notes: +652 chars (total 652)",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 12 [v010-03 v010-04 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-05",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, a disabled control reads disabled, a checked control reads checked, the focused control reads focused, and… (169 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v010-05",
+"chunk": "2026-10-06-snapshot-state-fidelity",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, in both layout modes, read through `DioxusDocument::snapshot`: a disabled control (`flight-return-date`, `… (1017 chars)",
+"notes_chars": 652
+}
+},
+{
+"tool": "matrix",
+"v": "1.3",
+"sha8": "cd774c8a",
+"ts": "2026-10-06T21:58:58Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-06-snapshot-state-fidelity",
+"--plan",
+"escher-0.1.0/chunks/2026-10-06-snapshot-state-fidelity/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T21-32-20-phase"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-06-snapshot-state-fidelity: 1 · ## Acceptance Criteria: line 275, 58 lines",
+"v010-05: cited in ## Acceptance Criteria (line 327)",
+"pool: unclaimed 12 [v010-03 v010-04 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

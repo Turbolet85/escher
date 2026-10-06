@@ -8,6 +8,39 @@ use dioxus_core::{
 use rustc_hash::FxHashMap;
 use std::str::FromStr as _;
 
+/// The boolean attributes: presence alone makes them true, so a falsy value removes them.
+/// The names are the `isBoolAttr` list of Dioxus 0.7.10's web interpreter
+/// (`dioxus-interpreter-js`, `set_attribute.ts`), which removes them the same way.
+const BOOLEAN_ATTRIBUTES: [&str; 27] = [
+    "allowfullscreen",
+    "allowpaymentrequest",
+    "async",
+    "autofocus",
+    "autoplay",
+    "checked",
+    "controls",
+    "default",
+    "defer",
+    "disabled",
+    "formnovalidate",
+    "hidden",
+    "ismap",
+    "itemscope",
+    "loop",
+    "multiple",
+    "muted",
+    "nomodule",
+    "novalidate",
+    "open",
+    "playsinline",
+    "readonly",
+    "required",
+    "reversed",
+    "selected",
+    "truespeed",
+    "webkitdirectory",
+];
+
 /// The state of the Dioxus integration with the RealDom
 #[derive(Debug)]
 pub struct DioxusState {
@@ -403,8 +436,7 @@ fn set_attribute_inner(
     match value {
         None => docm.clear_attribute(node_id, name),
         Some(value) => {
-            // Presence alone makes these boolean attributes true, so a falsy value must remove them
-            if matches!(local_name, "checked" | "disabled") && is_falsy {
+            if is_falsy && BOOLEAN_ATTRIBUTES.contains(&local_name) {
                 docm.clear_attribute(node_id, name);
             } else if local_name == "dangerous_inner_html" {
                 docm.set_inner_html(node_id, value);

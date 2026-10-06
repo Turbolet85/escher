@@ -27,3 +27,6 @@
 - recurrence-despite-learning: "Count from the listing you just read, never from the plan's forecast" (Tier 3, 2026-10-05). Recurred at this wrap: a citation tally typed into the report draft without a count, corrected before the fan-out.
 - carried from session 15, still unreviewed, no recurrence this session: "On this host `grep` is ugrep, and a long bounded repetition can print nothing" (Tier 3, 2026-10-06).
 Review with `/andromeda-wrap-session --review` if any should be applied.
+
+## Session End Status
+Completed normally at 2026-10-07 00:00:31

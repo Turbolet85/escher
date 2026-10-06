@@ -1,0 +1,189 @@
+[
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'snapshot' AND callee_kind = 'fn' AND callee_file LIKE '%dioxus-native-dom/src/snapshot.rs' ORDER BY file, line",
+"rows": 23,
+"result": [
+{
+"caller_name": "an_aria_labelled_button_reads_its_label",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 219
+},
+{
+"caller_name": "a_label_bound_input_reads_the_label_text",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 233
+},
+{
+"caller_name": "a_text_only_paragraph_reads_its_text",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 242
+},
+{
+"caller_name": "a_display_none_subtree_is_absent",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 258
+},
+{
+"caller_name": "a_disabled_button_reads_not_enabled",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 277
+},
+{
+"caller_name": "a_checkbox_reads_checked",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 291
+},
+{
+"caller_name": "a_text_input_reads_its_value",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 305
+},
+{
+"caller_name": "text_runs_are_never_nodes",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 317
+},
+{
+"caller_name": "every_id_is_the_element_id_of_its_element",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 334
+},
+{
+"caller_name": "every_node_carries_the_five_fields",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 159
+},
+{
+"caller_name": "ids_are_the_accessibility_tree_ids",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 184
+},
+{
+"caller_name": "role_and_name_match_the_accessibility_tree",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 220
+},
+{
+"caller_name": "tree_follows_the_task_shell",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 251
+},
+{
+"caller_name": "controls_lie_inside_the_viewport",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 306
+},
+{
+"caller_name": "state_reads_the_engine",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 340
+},
+{
+"caller_name": "state_reads_the_engine",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 354
+},
+{
+"caller_name": "state_reads_the_engine",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 371
+},
+{
+"caller_name": "snapshot_is_deterministic",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 397
+},
+{
+"caller_name": "snapshot_is_deterministic",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 402
+},
+{
+"caller_name": "snapshot_follows_a_rerender",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 413
+},
+{
+"caller_name": "snapshot_follows_a_rerender",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 415
+},
+{
+"caller_name": "snapshot_follows_a_rerender",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 423
+},
+{
+"caller_name": "snapshot_follows_a_rerender",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 426
+}
+],
+"db_state": "regenerated",
+"plane": "rust"
+},
+{
+"sql": "SELECT file, COUNT(*) AS sites FROM refs WHERE callee_name IN ('NodeState','enabled','checked','focused') AND callee_file LIKE '%dioxus-native-dom/src/snapshot.rs' GROUP BY 1 ORDER BY 1",
+"rows": 3,
+"result": [
+{
+"file": "packages/dioxus-native-dom/src/lib.rs",
+"sites": 1
+},
+{
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"sites": 11
+},
+{
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"sites": 5
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, callee_file, file, line FROM calls WHERE callee_name IN ('can_be_disabled','checkbox_input_checked','text_input_data','is_focussable','has_attr') AND callee_kind = 'fn' AND (file LIKE '%accessibility.rs' OR file LIKE '%snapshot.rs' OR file LIKE '%actionable.rs') ORDER BY callee_name, file, line",
+"rows": 6,
+"result": [
+{
+"callee_name": "can_be_disabled",
+"callee_file": "packages/blitz-dom/src/node/element.rs",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 134
+},
+{
+"callee_name": "checkbox_input_checked",
+"callee_file": "packages/blitz-dom/src/node/element.rs",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 136
+},
+{
+"callee_name": "has_attr",
+"callee_file": "packages/blitz-dom/src/node/element.rs",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 135
+},
+{
+"callee_name": "is_focussable",
+"callee_file": "packages/blitz-dom/src/node/node.rs",
+"file": "packages/dioxus-native-dom/src/actionable.rs",
+"line": 69
+},
+{
+"callee_name": "text_input_data",
+"callee_file": "packages/blitz-dom/src/node/element.rs",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 188
+},
+{
+"callee_name": "text_input_data",
+"callee_file": "packages/blitz-dom/src/node/element.rs",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 381
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]
