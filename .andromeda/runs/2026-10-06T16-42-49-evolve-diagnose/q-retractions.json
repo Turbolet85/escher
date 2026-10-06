@@ -1,0 +1,28 @@
+{
+ "records": 307,
+ "unparseable": 0,
+ "malformed_ts": [],
+ "retracted_ids": [],
+ "retracted_problems": [],
+ "clause_retracted": {
+  "2026-10-06T02:22:58Z-b": [
+   "discount the clause 'focus excluded' in '(:disabled matches, focus excluded)' — focusability parses the value as a bool (element.rs:629); :disabled matching stands"
+  ]
+ },
+ "unresolvable": [],
+ "retraction_of_retraction": [],
+ "retraction_records": [
+  {
+   "id": "2026-10-06T02:58:48Z-c",
+   "epoch": "Epoch 1 - Foundation",
+   "retracts": [
+    {
+     "id": "2026-10-06T02:22:58Z-b",
+     "scope": "clause",
+     "note": "discount the clause 'focus excluded' in '(:disabled matches, focus excluded)' — focusability parses the value as a bool (element.rs:629); :disabled matching stands"
+    }
+   ],
+   "what": "implement's fix-loop friction record claimed focus exclusion for disabled=false from a probe that never measured focus; the source read at the wrap showed focusability parses a bool"
+  }
+ ]
+}

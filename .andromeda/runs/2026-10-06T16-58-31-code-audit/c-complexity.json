@@ -1,0 +1,68 @@
+{
+ "complexity": {
+  "cyclomatic_p50": 1.0,
+  "cyclomatic_p90": 6.0,
+  "cognitive_p50": 0.0,
+  "cognitive_p90": 3.0,
+  "over_ceiling": 77,
+  "max": {
+   "fn": "synthesize_presentational_hints_for_legacy_attributes",
+   "file": "packages/blitz-dom/src/stylo.rs",
+   "val": 135.0
+  },
+  "top": [
+   [
+    "synthesize_presentational_hints_for_legacy_attributes",
+    "packages/blitz-dom/src/stylo.rs:870",
+    135.0
+   ],
+   [
+    "compute_inline_layout_inner",
+    "packages/blitz-dom/src/layout/inline.rs:195",
+    129.0
+   ],
+   [
+    "resolved_style_value",
+    "packages/blitz-dom/src/resolved_style.rs:341",
+    104.0
+   ],
+   [
+    "handle_pointermove",
+    "packages/blitz-dom/src/events/pointer.rs:206",
+    77.0
+   ],
+   [
+    "handle_click",
+    "packages/blitz-dom/src/events/pointer.rs:614",
+    69.0
+   ],
+   [
+    "apply_keypress_event",
+    "packages/blitz-dom/src/node/text.rs:198",
+    66.0
+   ],
+   [
+    "dispatch_child_layout",
+    "packages/blitz-dom/src/layout/mod.rs:104",
+    64.0
+   ],
+   [
+    "hit_inner",
+    "packages/blitz-dom/src/node/node.rs:1295",
+    63.0
+   ],
+   [
+    "compute_replaced_layout",
+    "packages/blitz-dom/src/layout/replaced.rs:52",
+    57.0
+   ],
+   [
+    "resolve_color_stops",
+    "packages/blitz-paint/src/gradient.rs:325",
+    56.0
+   ]
+  ]
+ },
+ "functions": 4718,
+ "files_with_functions": 279
+}

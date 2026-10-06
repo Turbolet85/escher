@@ -20,3 +20,4 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 2026-10-06-id-persistence · complete · Id persistence — same id across re-render, remount and fresh process on the stand (v010-02) · → escher-0.1.0/chunks/2026-10-06-id-persistence/
 2026-10-06-project-readme · complete · Project README — the repository front page describes escher, not Blitz · → escher-0.1.0/chunks/2026-10-06-project-readme/
 2026-10-06-accessibility-tree-identity · complete · Accessibility-tree identity — stable id on every accessibility node, stand controls carrying role and name (v010-03) · → escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/
+2026-10-06-upstream-sync-observation-model · complete · Upstream sync ahead of the observation model — upstream/main still 23354585, 0 ahead: measured no-op, no merge · → escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model/

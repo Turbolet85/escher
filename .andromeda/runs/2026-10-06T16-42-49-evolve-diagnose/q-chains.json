@@ -1,0 +1,986 @@
+{
+ "epoch": "Epoch 2 — Element identity",
+ "anchors": 28,
+ "chains": [
+  {
+   "anchor": {
+    "src": "friction",
+    "id": "2026-10-06T08:53:27Z-b",
+    "line": 209,
+    "chunk": "2026-10-06-stable-element-ids",
+    "skill": "phase",
+    "step": "take-up",
+    "artifact": "escher-0.1.0/working-route.md:28",
+    "artifacts": [
+     "escher-0.1.0/working-route.md:28",
+     "verification-matrix.json#v010-01"
+    ],
+    "what": "entry and v010-01 say 'author key else component path' but neither is defined anywhere the engine sees (Dioxus key not written to DOM; no component info at the mutation writer); scope carries both as [inferred] P4 forks",
+    "type": "input.working-entry-thin"
+   },
+   "producers": [],
+   "hypothesis": false
+  },
+  {
+   "anchor": {
+    "src": "friction",
+    "id": "2026-10-06T09:21:01Z-c",
+    "line": 218,
+    "chunk": "2026-10-06-stable-element-ids",
+    "skill": "implement",
+    "step": "code",
+    "artifact": "escher-0.1.0/chunks/2026-10-06-stable-element-ids/plan.md",
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-06-stable-element-ids/plan.md"
+    ],
+    "what": "grammar as written is not unique by construction: two same-name component instances read the same path, and restarting segments at every template root collides a same-owner nested root with a top-level one (and contradicts the plan's own pinned CRUD literal)",
+    "type": "input.plan-step-ambiguous"
+   },
+   "producers": [],
+   "hypothesis": false
+  },
+  {
+   "anchor": {
+    "src": "friction",
+    "id": "2026-10-06T10:11:37Z-b",
+    "line": 243,
+    "chunk": "2026-10-06-id-persistence",
+    "skill": "implement",
+    "step": "code",
+    "artifact": null,
+    "artifacts": null,
+    "what": "plan step 4c asserts every post-remount NodeId is fresh; the document skeleton (/html:0, head, body, #main) lives outside the VirtualDom and survives; the check asserts the kept set equals that skeleton instead — surfaced in the P4 report",
+    "type": "input.plan-step-ambiguous"
+   },
+   "producers": [],
+   "hypothesis": false
+  },
+  {
+   "anchor": {
+    "src": "friction",
+    "id": "2026-10-06T10:11:37Z-c",
+    "line": 244,
+    "chunk": "2026-10-06-id-persistence",
+    "skill": "implement",
+    "step": "code",
+    "artifact": null,
+    "artifacts": null,
+    "what": "plan step 3 left the CRUD Create's boot unspecified; Create after Delete appended typed text to the selected person's still-filled fields and the check went red; reordered create -> select -> delete on one fresh boot",
+    "type": "input.plan-step-ambiguous"
+   },
+   "producers": [],
+   "hypothesis": false
+  },
+  {
+   "anchor": {
+    "src": "friction",
+    "id": "2026-10-06T12:58:15Z-b",
+    "line": 295,
+    "chunk": "2026-10-06-accessibility-tree-identity",
+    "skill": "wrap-session",
+    "step": "report",
+    "artifact": null,
+    "artifacts": null,
+    "what": "implement's P4 outcome (surfaced, diff guard red) was superseded by an operator directive amending plan.md gate 6 and by the agent-driven operator pass; the report's basis is the pass's evidence at 9285fe75",
+    "type": "input.implement-outcome-unsettled"
+   },
+   "producers": [],
+   "hypothesis": false
+  },
+  {
+   "anchor": {
+    "src": "friction",
+    "id": "2026-10-06T13:10:15Z-b",
+    "line": 298,
+    "chunk": "2026-10-06-accessibility-tree-identity",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "artifact": "escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/report.md",
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/report.md"
+    ],
+    "what": "the report's obs-plan expected-amendment line listed only dioxus-native-dom sites, though obs-plan cites 8 document.rs and 2 window.rs lines past the shift points; the obs detector supplied them in out-of-scope commentary",
+    "type": "input.report-insufficient"
+   },
+   "producers": [],
+   "hypothesis": false
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T07:53:29Z-a",
+    "line": 181,
+    "chunk": "2026-10-06-upstream-sync-element-identity",
+    "skill": "phase",
+    "step": "take-up",
+    "artifact": "working-entry",
+    "quality": "thin",
+    "note": "one-line sync entry; boundaries (pin, merge form, overlap, coupled pins) derived from git measurement"
+   },
+   "producers": [],
+   "hypothesis": false
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T08:37:04Z-a",
+    "line": 192,
+    "chunk": "2026-10-06-upstream-sync-element-identity",
+    "skill": "wrap-session",
+    "step": "report",
+    "artifact": "implement-outcome",
+    "quality": "thin",
+    "note": "its step-7 API list carried the inline_fragment and children changes but not upstream #1063's alignment-mapping change, which falsifies two master claims; found at P1 by reading convert.rs"
+   },
+   "producers": [
+    {
+     "id": "2026-10-06T08:15:16Z-a",
+     "line": 190,
+     "skill": "implement",
+     "step": "fix-loop",
+     "outcome": "ok",
+     "artifact": "implement-outcome",
+     "signals": [
+      "green"
+     ],
+     "producer_frictions": []
+    },
+    {
+     "id": "2026-10-06T08:15:26Z-a",
+     "line": 191,
+     "skill": "implement",
+     "step": "smoke",
+     "outcome": "ok",
+     "artifact": "implement-outcome",
+     "signals": [
+      "green"
+     ],
+     "producer_frictions": []
+    }
+   ],
+   "hypothesis": true
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T08:37:04Z-a",
+    "line": 192,
+    "chunk": "2026-10-06-upstream-sync-element-identity",
+    "skill": "wrap-session",
+    "step": "report",
+    "artifact": "plan",
+    "quality": "thin",
+    "note": "expected-amendment citation counts keyed on basenames overcount; the plan did not foresee semantic claim falsification in convert.rs"
+   },
+   "producers": [
+    {
+     "id": "2026-10-06T08:06:09Z-a",
+     "line": 186,
+     "skill": "phase",
+     "step": "plan",
+     "outcome": "ok",
+     "artifact": "plan",
+     "signals": [
+      "authority-resolved:merge mechanics yielded to implement-never-commits (git merge --no-commit, operator pre-CI commit records the two-parent merge)"
+     ],
+     "producer_frictions": []
+    }
+   ],
+   "hypothesis": true
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T08:46:30Z-a",
+    "line": 198,
+    "chunk": "2026-10-06-upstream-sync-element-identity",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "artifact": "drift-base",
+    "quality": "thin",
+    "note": "no detector covers citation re-points or a claim falsified by a merged dependency change; 6 of 11 dispositions were orchestrator raises"
+   },
+   "producers": [],
+   "hypothesis": false
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T08:53:27Z-a",
+    "line": 208,
+    "chunk": "2026-10-06-stable-element-ids",
+    "skill": "phase",
+    "step": "take-up",
+    "artifact": "working-entry",
+    "quality": "thin",
+    "note": "names 'author key' and 'component path' without either having an engine definition"
+   },
+   "producers": [],
+   "hypothesis": false
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T09:21:01Z-a",
+    "line": 216,
+    "chunk": "2026-10-06-stable-element-ids",
+    "skill": "implement",
+    "step": "code",
+    "artifact": "plan",
+    "quality": "thin",
+    "note": "id grammar's dioxus-core premises partly false: base scope is RootScopeWrapper (SuspenseBoundary/ErrorBoundary/root under it), VComponent.name is the full type path, restart-at-template-root contradicts the plan's own CRUD literal, repeated component instances collide"
+   },
+   "producers": [
+    {
+     "id": "2026-10-06T09:06:35Z-a",
+     "line": 213,
+     "skill": "phase",
+     "step": "plan",
+     "outcome": "ok",
+     "artifact": "plan",
+     "signals": [
+      "designed-dialogue:author-key-binding",
+      "designed-dialogue:lean-task-keys",
+      "authority-resolved:arch DOM-write mutator rule yielded to research's computed-read finding"
+     ],
+     "producer_frictions": [
+      {
+       "id": "2026-10-06T09:06:35Z-b",
+       "type": null,
+       "what": "the hygiene entry's atom citation was copied from the prior plan as gate-contract.md:271; the contract has moved and the summary line is now :279 — caught by re-reading the line, plus an unescaped apostrophe in a literal note and a missing env = [] caught by the dry-run"
+      }
+     ]
+    }
+   ],
+   "hypothesis": true
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T09:37:59Z-a",
+    "line": 224,
+    "chunk": "2026-10-06-stable-element-ids",
+    "skill": "wrap-session",
+    "step": "report",
+    "artifact": "plan",
+    "quality": "thin",
+    "note": "five plan premises measured false (dioxus-core base scope, VComponent.name, grammar uniqueness, re-render removal, delete-row node)"
+   },
+   "producers": [
+    {
+     "id": "2026-10-06T09:06:35Z-a",
+     "line": 213,
+     "skill": "phase",
+     "step": "plan",
+     "outcome": "ok",
+     "artifact": "plan",
+     "signals": [
+      "designed-dialogue:author-key-binding",
+      "designed-dialogue:lean-task-keys",
+      "authority-resolved:arch DOM-write mutator rule yielded to research's computed-read finding"
+     ],
+     "producer_frictions": [
+      {
+       "id": "2026-10-06T09:06:35Z-b",
+       "type": null,
+       "what": "the hygiene entry's atom citation was copied from the prior plan as gate-contract.md:271; the contract has moved and the summary line is now :279 — caught by re-reading the line, plus an unescaped apostrophe in a literal note and a missing env = [] caught by the dry-run"
+      }
+     ]
+    }
+   ],
+   "hypothesis": true
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T10:11:37Z-a",
+    "line": 242,
+    "chunk": "2026-10-06-id-persistence",
+    "skill": "implement",
+    "step": "code",
+    "artifact": "plan",
+    "quality": "thin",
+    "note": "remount step 4c 'no NodeId in after appears in before' ignores the html/head/body/#main skeleton DioxusDocument builds outside the vdom; CRUD step says 'four scenarios' and lists three"
+   },
+   "producers": [
+    {
+     "id": "2026-10-06T10:04:02Z-a",
+     "line": 240,
+     "skill": "phase",
+     "step": "plan",
+     "outcome": "ok",
+     "artifact": "plan",
+     "signals": [
+      "designed-dialogue:remount-path",
+      "designed-dialogue:crud-row-key",
+      "authority-resolved:layouts no-focusable-control and a11y native-focusable-if-rendered both satisfied by rendering no new control"
+     ],
+     "producer_frictions": []
+    },
+    {
+     "id": "2026-10-06T10:06:59Z-a",
+     "line": 241,
+     "skill": "phase",
+     "step": "validate",
+     "outcome": "ok",
+     "artifact": "plan",
+     "signals": [
+      "review-ruling-folded"
+     ],
+     "producer_frictions": []
+    }
+   ],
+   "hypothesis": true
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T10:17:15Z-a",
+    "line": 245,
+    "chunk": "2026-10-06-id-persistence",
+    "skill": "implement",
+    "step": "fix-loop",
+    "artifact": "plan",
+    "quality": "wrong",
+    "note": "implementation note 'deleted row is Hans's own row, one row node leaves' false for the if-in-for row form; entry 3 compares class lines with indentation"
+   },
+   "producers": [
+    {
+     "id": "2026-10-06T10:04:02Z-a",
+     "line": 240,
+     "skill": "phase",
+     "step": "plan",
+     "outcome": "ok",
+     "artifact": "plan",
+     "signals": [
+      "designed-dialogue:remount-path",
+      "designed-dialogue:crud-row-key",
+      "authority-resolved:layouts no-focusable-control and a11y native-focusable-if-rendered both satisfied by rendering no new control"
+     ],
+     "producer_frictions": []
+    },
+    {
+     "id": "2026-10-06T10:06:59Z-a",
+     "line": 241,
+     "skill": "phase",
+     "step": "validate",
+     "outcome": "ok",
+     "artifact": "plan",
+     "signals": [
+      "review-ruling-folded"
+     ],
+     "producer_frictions": []
+    }
+   ],
+   "hypothesis": true
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T10:17:15Z-a",
+    "line": 245,
+    "chunk": "2026-10-06-id-persistence",
+    "skill": "implement",
+    "step": "fix-loop",
+    "artifact": "research",
+    "quality": "thin",
+    "note": "patterns cite the keyed-diff rule without seeing the if wrapper makes the list positional"
+   },
+   "producers": [
+    {
+     "id": "2026-10-06T10:00:34Z-a",
+     "line": 239,
+     "skill": "phase",
+     "step": "research",
+     "outcome": "ok",
+     "artifact": "research",
+     "signals": [
+      "unresolved-questions"
+     ],
+     "producer_frictions": []
+    }
+   ],
+   "hypothesis": true
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T10:57:29Z-a",
+    "line": 250,
+    "chunk": "2026-10-06-id-persistence",
+    "skill": "wrap-session",
+    "step": "report",
+    "artifact": "implement-outcome",
+    "quality": "thin",
+    "note": "superseded by the operator pass and the post-implement entry-3 amendment; its surfaced items stood"
+   },
+   "producers": [
+    {
+     "id": "2026-10-06T10:17:15Z-a",
+     "line": 245,
+     "skill": "implement",
+     "step": "fix-loop",
+     "outcome": "halted-resolved",
+     "artifact": "implement-outcome",
+     "signals": [
+      "surfaced"
+     ],
+     "producer_frictions": [
+      {
+       "id": "2026-10-06T10:17:15Z-b",
+       "type": "contract.spec-reality-gap",
+       "what": "plan premise 'Delete drops only the deleted person's row node' false while the keyed div sits inside an if within the for (3 nodes re-minted); fixed in crud.rs by moving the filter into the iterator"
+      },
+      {
+       "id": "2026-10-06T10:17:15Z-c",
+       "type": "contract.instrument-validity",
+       "what": "entry 3 presentation guard diffs grepped lines with leading whitespace, so an indentation-only change reads red; its P5 controls never tried a re-nest"
+      },
+      {
+       "id": "2026-10-06T10:17:15Z-d",
+       "type": "contract.spec-reality-gap",
+       "what": "v010-02 remount acceptance 'every element's NodeId differs / every pre-remount NodeId reads None' false for /html:0, head, body, #main which DioxusDocument builds outside the VirtualDom; test asserts the kept set equals that skeleton; ref withheld"
+      }
+     ]
+    },
+    {
+     "id": "2026-10-06T10:17:34Z-a",
+     "line": 249,
+     "skill": "implement",
+     "step": "smoke",
+     "outcome": "ok",
+     "artifact": "implement-outcome",
+     "signals": [
+      "surfaced"
+     ],
+     "producer_frictions": []
+    }
+   ],
+   "hypothesis": true
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T10:57:29Z-a",
+    "line": 250,
+    "chunk": "2026-10-06-id-persistence",
+    "skill": "wrap-session",
+    "step": "report",
+    "artifact": "plan",
+    "quality": "thin",
+    "note": "three plan claims disproved (index-key note, remount skeleton, whitespace guard)"
+   },
+   "producers": [
+    {
+     "id": "2026-10-06T10:04:02Z-a",
+     "line": 240,
+     "skill": "phase",
+     "step": "plan",
+     "outcome": "ok",
+     "artifact": "plan",
+     "signals": [
+      "designed-dialogue:remount-path",
+      "designed-dialogue:crud-row-key",
+      "authority-resolved:layouts no-focusable-control and a11y native-focusable-if-rendered both satisfied by rendering no new control"
+     ],
+     "producer_frictions": []
+    },
+    {
+     "id": "2026-10-06T10:06:59Z-a",
+     "line": 241,
+     "skill": "phase",
+     "step": "validate",
+     "outcome": "ok",
+     "artifact": "plan",
+     "signals": [
+      "review-ruling-folded"
+     ],
+     "producer_frictions": []
+    }
+   ],
+   "hypothesis": true
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T11:05:00Z-a",
+    "line": 251,
+    "chunk": "2026-10-06-id-persistence",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "artifact": "spec:obs-plan",
+    "quality": "thin",
+    "note": "obs-plan:68 'no println! in the stand checks' was never in any census pattern of this chunk"
+   },
+   "producers": [],
+   "hypothesis": false
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T11:09:47Z-a",
+    "line": 259,
+    "chunk": "2026-10-06-id-persistence",
+    "skill": "wrap-session",
+    "step": "gates",
+    "artifact": "matrix",
+    "quality": "thin",
+    "note": "v010-02 remount clause falsified for the 4-element document skeleton"
+   },
+   "producers": [
+    {
+     "id": "2026-10-06T10:06:59Z-a",
+     "line": 241,
+     "skill": "phase",
+     "step": "validate",
+     "outcome": "ok",
+     "artifact": "matrix",
+     "signals": [
+      "claims-refined"
+     ],
+     "producer_frictions": []
+    },
+    {
+     "id": "2026-10-06T10:17:15Z-a",
+     "line": 245,
+     "skill": "implement",
+     "step": "fix-loop",
+     "outcome": "halted-resolved",
+     "artifact": "matrix",
+     "signals": [
+      "ref-withheld"
+     ],
+     "producer_frictions": [
+      {
+       "id": "2026-10-06T10:17:15Z-b",
+       "type": "contract.spec-reality-gap",
+       "what": "plan premise 'Delete drops only the deleted person's row node' false while the keyed div sits inside an if within the for (3 nodes re-minted); fixed in crud.rs by moving the filter into the iterator"
+      },
+      {
+       "id": "2026-10-06T10:17:15Z-c",
+       "type": "contract.instrument-validity",
+       "what": "entry 3 presentation guard diffs grepped lines with leading whitespace, so an indentation-only change reads red; its P5 controls never tried a re-nest"
+      },
+      {
+       "id": "2026-10-06T10:17:15Z-d",
+       "type": "contract.spec-reality-gap",
+       "what": "v010-02 remount acceptance 'every element's NodeId differs / every pre-remount NodeId reads None' false for /html:0, head, body, #main which DioxusDocument builds outside the VirtualDom; test asserts the kept set equals that skeleton; ref withheld"
+      }
+     ]
+    }
+   ],
+   "hypothesis": true
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T11:52:55Z-a",
+    "line": 280,
+    "chunk": "2026-10-06-project-readme",
+    "skill": "wrap-session",
+    "step": "gates",
+    "artifact": "plan",
+    "quality": "thin",
+    "note": "diff-guard entry's bookkeeping exclusion omits the curation homes the wrap itself writes"
+   },
+   "producers": [
+    {
+     "id": "2026-10-06T11:22:43Z-a",
+     "line": 265,
+     "skill": "phase",
+     "step": "plan",
+     "outcome": "ok",
+     "artifact": "plan",
+     "signals": [
+      "designed-dialogue:readme-extras",
+      "authority-resolved:just-recipe yielded to its cargo form (just absent on host)"
+     ],
+     "producer_frictions": []
+    },
+    {
+     "id": "2026-10-06T11:26:17Z-a",
+     "line": 266,
+     "skill": "phase",
+     "step": "validate",
+     "outcome": "ok",
+     "artifact": "plan",
+     "signals": [
+      "rerun-caught-edit-break"
+     ],
+     "producer_frictions": [
+      {
+       "id": "2026-10-06T11:26:17Z-b",
+       "type": "contract.mechanical-check",
+       "what": "check 4 (9) found three grep-over-README entries unmarked new (P4 marked only the red-baseline ones) and check 4 (4) found claims.md with no stated producer; both resolved in plan before the review"
+      },
+      {
+       "id": "2026-10-06T11:26:17Z-c",
+       "type": null,
+       "what": "two time stamps were estimated instead of read from the clock (a P5 CI re-read at 11:27Z, a baseline at 11:25Z, both ahead of the 11:24Z clock); the stamp-ahead hook refused the first, the second was found and corrected from the gate trail's ts"
+      }
+     ]
+    }
+   ],
+   "hypothesis": true
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T12:28:40Z-a",
+    "line": 288,
+    "chunk": "2026-10-06-accessibility-tree-identity",
+    "skill": "implement",
+    "step": "code",
+    "artifact": "plan",
+    "quality": "thin",
+    "note": "step 3's feature wiring (dioxus-native-dom accessibility optional, following blitz-shell) left the override compiled out in blitz-tests and the windowed app; the diff guard (entry 6) forbade the manifest that enables it"
+   },
+   "producers": [
+    {
+     "id": "2026-10-06T12:16:31Z-a",
+     "line": 286,
+     "skill": "phase",
+     "step": "plan",
+     "outcome": "ok",
+     "artifact": "plan",
+     "signals": [
+      "designed-dialogue:name-sources"
+     ],
+     "producer_frictions": []
+    }
+   ],
+   "hypothesis": true
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T12:39:20Z-a",
+    "line": 291,
+    "chunk": "2026-10-06-accessibility-tree-identity",
+    "skill": "implement",
+    "step": "fix-loop",
+    "artifact": "plan",
+    "quality": "thin",
+    "note": "Test Commands ran as written; entry 6's diff guard lists tests/blitz-tests/Cargo.toml, which the operator-approved widening must change, so it reads red by construction"
+   },
+   "producers": [
+    {
+     "id": "2026-10-06T12:16:31Z-a",
+     "line": 286,
+     "skill": "phase",
+     "step": "plan",
+     "outcome": "ok",
+     "artifact": "plan",
+     "signals": [
+      "designed-dialogue:name-sources"
+     ],
+     "producer_frictions": []
+    }
+   ],
+   "hypothesis": true
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T12:40:26Z-a",
+    "line": 292,
+    "chunk": "2026-10-06-accessibility-tree-identity",
+    "skill": "implement",
+    "step": "smoke",
+    "artifact": "plan",
+    "quality": "thin",
+    "note": "the plan names just seven_guis as the windowed boot, but seven_guis enables no accessibility feature, so that recipe never compiles the changed shell path"
+   },
+   "producers": [
+    {
+     "id": "2026-10-06T12:16:31Z-a",
+     "line": 286,
+     "skill": "phase",
+     "step": "plan",
+     "outcome": "ok",
+     "artifact": "plan",
+     "signals": [
+      "designed-dialogue:name-sources"
+     ],
+     "producer_frictions": []
+    }
+   ],
+   "hypothesis": true
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T12:58:15Z-a",
+    "line": 294,
+    "chunk": "2026-10-06-accessibility-tree-identity",
+    "skill": "wrap-session",
+    "step": "report",
+    "artifact": "implement-outcome",
+    "quality": "thin",
+    "note": "implement P4 ended surfaced (gate 6 red); a later operator directive amended the gate and the operator pass ran, so the outcome basis is the pass at 9285fe75"
+   },
+   "producers": [
+    {
+     "id": "2026-10-06T12:39:20Z-a",
+     "line": 291,
+     "skill": "implement",
+     "step": "fix-loop",
+     "outcome": "ok-degraded",
+     "artifact": "implement-outcome",
+     "signals": [
+      "surfaced"
+     ],
+     "producer_frictions": []
+    },
+    {
+     "id": "2026-10-06T12:40:26Z-a",
+     "line": 292,
+     "skill": "implement",
+     "step": "smoke",
+     "outcome": "ok-degraded",
+     "artifact": "implement-outcome",
+     "signals": [
+      "surfaced"
+     ],
+     "producer_frictions": [
+      {
+       "id": "2026-10-06T12:40:26Z-b",
+       "type": "contract.structural-blind-spot",
+       "what": "the windowed smoke cannot reach Document::accessibility_tree: AccessKit's update_if_active only builds when an AT is active, and the host's AT-SPI IsEnabled reads false, so the boot proves the re-threaded callers compile and run but never the platform tree build"
+      }
+     ]
+    }
+   ],
+   "hypothesis": true
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T12:58:15Z-a",
+    "line": 294,
+    "chunk": "2026-10-06-accessibility-tree-identity",
+    "skill": "wrap-session",
+    "step": "report",
+    "artifact": "plan",
+    "quality": "thin",
+    "note": "step 3's feature-wiring premise was disproved by cargo tree; the expected-amendments list lacked the feature-forwarding facts"
+   },
+   "producers": [
+    {
+     "id": "2026-10-06T12:16:31Z-a",
+     "line": 286,
+     "skill": "phase",
+     "step": "plan",
+     "outcome": "ok",
+     "artifact": "plan",
+     "signals": [
+      "designed-dialogue:name-sources"
+     ],
+     "producer_frictions": []
+    }
+   ],
+   "hypothesis": true
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T13:10:15Z-a",
+    "line": 297,
+    "chunk": "2026-10-06-accessibility-tree-identity",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "artifact": "report",
+    "quality": "thin",
+    "note": "its obs-plan expected-amendment line named only dioxus-native-dom sites; the obs and security detectors found document.rs (+10) and window.rs (-1) citations it had not dispositioned"
+   },
+   "producers": [
+    {
+     "id": "2026-10-06T12:58:15Z-a",
+     "line": 294,
+     "skill": "wrap-session",
+     "step": "report",
+     "outcome": "ok",
+     "artifact": "report",
+     "signals": [
+      "line-map-measured"
+     ],
+     "producer_frictions": [
+      {
+       "id": "2026-10-06T12:58:15Z-b",
+       "type": "input.implement-outcome-unsettled",
+       "what": "implement's P4 outcome (surfaced, diff guard red) was superseded by an operator directive amending plan.md gate 6 and by the agent-driven operator pass; the report's basis is the pass's evidence at 9285fe75"
+      },
+      {
+       "id": "2026-10-06T12:58:15Z-c",
+       "type": null,
+       "what": "the report's Date was written as an estimated 13:05Z; the stamp-ahead PostToolUse hook refused it (+7 min ahead of the clock) and it was corrected from date -u"
+      }
+     ]
+    }
+   ],
+   "hypothesis": true
+  },
+  {
+   "anchor": {
+    "src": "step",
+    "id": "2026-10-06T13:10:15Z-a",
+    "line": 297,
+    "chunk": "2026-10-06-accessibility-tree-identity",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "artifact": "drift-base",
+    "quality": "thin",
+    "note": "no detector owns citation re-points or count re-counts; 5 of 7 agents returned [] with those facts in commentary, and all 159 re-points plus 6 raises were orchestrator-raised"
+   },
+   "producers": [],
+   "hypothesis": false
+  }
+ ],
+ "shapes": [
+  {
+   "producer": "phase/plan",
+   "artifact": "plan",
+   "consumer": "wrap-session/report",
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-id-persistence",
+    "2026-10-06-stable-element-ids",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cross_step_candidate": true
+  },
+  {
+   "producer": "implement/fix-loop",
+   "artifact": "implement-outcome",
+   "consumer": "wrap-session/report",
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-id-persistence",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cross_step_candidate": true
+  },
+  {
+   "producer": "implement/smoke",
+   "artifact": "implement-outcome",
+   "consumer": "wrap-session/report",
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-id-persistence",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cross_step_candidate": true
+  },
+  {
+   "producer": "phase/plan",
+   "artifact": "plan",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-id-persistence",
+    "2026-10-06-stable-element-ids"
+   ],
+   "cross_step_candidate": true
+  },
+  {
+   "producer": "phase/plan",
+   "artifact": "plan",
+   "consumer": "implement/fix-loop",
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-id-persistence"
+   ],
+   "cross_step_candidate": true
+  },
+  {
+   "producer": "phase/validate",
+   "artifact": "plan",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-06-id-persistence"
+   ],
+   "cross_step_candidate": false
+  },
+  {
+   "producer": "phase/validate",
+   "artifact": "plan",
+   "consumer": "implement/fix-loop",
+   "chunks": [
+    "2026-10-06-id-persistence"
+   ],
+   "cross_step_candidate": false
+  },
+  {
+   "producer": "phase/research",
+   "artifact": "research",
+   "consumer": "implement/fix-loop",
+   "chunks": [
+    "2026-10-06-id-persistence"
+   ],
+   "cross_step_candidate": false
+  },
+  {
+   "producer": "phase/validate",
+   "artifact": "plan",
+   "consumer": "wrap-session/report",
+   "chunks": [
+    "2026-10-06-id-persistence"
+   ],
+   "cross_step_candidate": false
+  },
+  {
+   "producer": "phase/validate",
+   "artifact": "matrix",
+   "consumer": "wrap-session/gates",
+   "chunks": [
+    "2026-10-06-id-persistence"
+   ],
+   "cross_step_candidate": false
+  },
+  {
+   "producer": "implement/fix-loop",
+   "artifact": "matrix",
+   "consumer": "wrap-session/gates",
+   "chunks": [
+    "2026-10-06-id-persistence"
+   ],
+   "cross_step_candidate": false
+  },
+  {
+   "producer": "phase/plan",
+   "artifact": "plan",
+   "consumer": "wrap-session/gates",
+   "chunks": [
+    "2026-10-06-project-readme"
+   ],
+   "cross_step_candidate": false
+  },
+  {
+   "producer": "phase/validate",
+   "artifact": "plan",
+   "consumer": "wrap-session/gates",
+   "chunks": [
+    "2026-10-06-project-readme"
+   ],
+   "cross_step_candidate": false
+  },
+  {
+   "producer": "phase/plan",
+   "artifact": "plan",
+   "consumer": "implement/smoke",
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity"
+   ],
+   "cross_step_candidate": false
+  },
+  {
+   "producer": "wrap-session/report",
+   "artifact": "report",
+   "consumer": "wrap-session/reconcile",
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity"
+   ],
+   "cross_step_candidate": false
+  }
+ ]
+}

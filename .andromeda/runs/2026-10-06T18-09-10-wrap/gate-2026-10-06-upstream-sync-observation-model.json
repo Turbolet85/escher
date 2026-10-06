@@ -1,0 +1,476 @@
+[
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T18:09:29Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model",
+"--run-dir",
+".andromeda/runs/2026-10-06T18-09-10-wrap",
+"--marker",
+"2026-10-06-upstream-sync-observation-model"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 1 · modify 0 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model/evidence/ (dir) ×0",
+"scope: clean — changed 0 · listed 0 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 74"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 0,
+"listed": 0,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 74,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T18:14:18Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-06T18-09-10-wrap",
+"--marker",
+"2026-10-06-upstream-sync-observation-model"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-06-upstream-sync-observation-model · entries 7",
+"logs $TMPDIR/andromeda-gate/2026-10-06-upstream-sync-observation-model/wrap-2026-10-06T18-09-10 · bound: GNU timeout",
+"delta docs 78 · python 9 · unmapped 4",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L38-43: The gates below run in /implement P2 and in the wrap's light gate. - **No boot smoke, no l… (1195 chars)",
+"  1 probe       green · exit 0 · 0.46s · 9 B → 1.log · test \"$(git ls-remote upstream refs/heads/main | cut -f1)\"… (196 chars)",
+"  2 probe       green · exit 1 · 0.01s · 2 B → 2.log · { git diff --name-only 42b80ad94e1c96014c0325e2a3f4a7135ff… (189 chars)",
+"  3 unit        green · exit 0 · 19.91s · 50893 B → 3.log · bash .github/scripts/ci-leg.sh fast",
+"  4 probe       green · exit 0 · 0.0s · 40 B → 4.log · grep -E '^test result:' target/ci-logs/test.log | awk '{p+… (146 chars)",
+"  5 probe       green · exit 0 · 0.0s · 2 B → 5.log · grep -c '^Ran 64 tests' target/ci-logs/ci-scripts.log",
+"  6 lint        green · exit 0 · 0.32s · 177 B → 6.log · bash .github/scripts/ci-leg.sh doc",
+"  7 probe       green · exit 0 · 1.72s · 213 B → 7.log · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (119 chars)",
+"entries 7 · green 7 · red 0 · recorded 0 · timeout 0 · not-run 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-06-upstream-sync-observation-model",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-06-upstream-sync-observation-model/wrap-2026-10-06T18-09-10",
+"delta": {
+"docs": [
+".andromeda/code-metrics.ndjson",
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/state.yaml",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-06T16-42-49-evolve-diagnose/proposals.md",
+".andromeda/runs/2026-10-06T16-42-49-evolve-diagnose/q-chains.json",
+".andromeda/runs/2026-10-06T16-42-49-evolve-diagnose/q-facts.json",
+".andromeda/runs/2026-10-06T16-42-49-evolve-diagnose/q-health.json",
+".andromeda/runs/2026-10-06T16-42-49-evolve-diagnose/q-level.json",
+".andromeda/runs/2026-10-06T16-42-49-evolve-diagnose/q-retractions.json",
+".andromeda/runs/2026-10-06T16-42-49-evolve-diagnose/q-typed.json",
+".andromeda/runs/2026-10-06T16-42-49-evolve-diagnose/q-untyped.json",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/c-churn.json",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/c-complexity.json",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/c-coverage.json",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/c-dead.json",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/c-duplication.json",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/c-graph.json",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/c-hotspots.json",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/c-mutation-dioxus-native-dom.json",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/c-sizes.json",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/c1-attempts.txt",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/proposals.md",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/record.json",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/srcfiles.txt",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/tree-query-code-audit.json",
+".andromeda/runs/2026-10-06T17-53-46-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-06T17-53-46-phase/a11y-history.md",
+".andromeda/runs/2026-10-06T17-53-46-phase/a11y.md",
+".andromeda/runs/2026-10-06T17-53-46-phase/arch-history.md",
+".andromeda/runs/2026-10-06T17-53-46-phase/arch.md",
+".andromeda/runs/2026-10-06T17-53-46-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-06T17-53-46-phase/design.md",
+".andromeda/runs/2026-10-06T17-53-46-phase/evolve-2026-10-06-upstream-sync-observation-model.json",
+".andromeda/runs/2026-10-06T17-53-46-phase/gate-2026-10-06-upstream-sync-observation-model.json",
+".andromeda/runs/2026-10-06T17-53-46-phase/inputs-2026-10-06-upstream-sync-observation-model.json",
+".andromeda/runs/2026-10-06T17-53-46-phase/layouts.md",
+".andromeda/runs/2026-10-06T17-53-46-phase/master-record.txt",
+".andromeda/runs/2026-10-06T17-53-46-phase/matrix-2026-10-06-upstream-sync-observation-model.json",
+".andromeda/runs/2026-10-06T17-53-46-phase/obs-contracts.md",
+".andromeda/runs/2026-10-06T17-53-46-phase/obs-history.md",
+".andromeda/runs/2026-10-06T17-53-46-phase/obs.md",
+".andromeda/runs/2026-10-06T17-53-46-phase/planlint-2026-10-06-upstream-sync-observation-model.json",
+".andromeda/runs/2026-10-06T17-53-46-phase/registry-2026-10-06-upstream-sync-observation-model.json",
+".andromeda/runs/2026-10-06T17-53-46-phase/relay-1.md",
+".andromeda/runs/2026-10-06T17-53-46-phase/relay-2.md",
+".andromeda/runs/2026-10-06T17-53-46-phase/route-2026-10-06-upstream-sync-observation-model.json",
+".andromeda/runs/2026-10-06T17-53-46-phase/route-no-marker.json",
+".andromeda/runs/2026-10-06T17-53-46-phase/security-history.md",
+".andromeda/runs/2026-10-06T17-53-46-phase/security.md",
+".andromeda/runs/2026-10-06T17-53-46-phase/sidecar-2026-10-06-upstream-sync-observation-model.json",
+".andromeda/runs/2026-10-06T17-53-46-phase/tests-contracts.md",
+".andromeda/runs/2026-10-06T17-53-46-phase/tests-history.md",
+".andromeda/runs/2026-10-06T17-53-46-phase/tests.md",
+".andromeda/runs/2026-10-06T18-06-37-implement/evolve-2026-10-06-upstream-sync-observation-model.json",
+".andromeda/runs/2026-10-06T18-06-37-implement/gate-2026-10-06-upstream-sync-observation-model.json",
+".andromeda/runs/2026-10-06T18-09-10-wrap/.raw-fanout-a11y-plan.md",
+".andromeda/runs/2026-10-06T18-09-10-wrap/.raw-fanout-architecture.md",
+".andromeda/runs/2026-10-06T18-09-10-wrap/.raw-fanout-design-system.md",
+".andromeda/runs/2026-10-06T18-09-10-wrap/.raw-fanout-layout-templates.md",
+".andromeda/runs/2026-10-06T18-09-10-wrap/.raw-fanout-obs-plan.md",
+".andromeda/runs/2026-10-06T18-09-10-wrap/.raw-fanout-security-plan.md",
+".andromeda/runs/2026-10-06T18-09-10-wrap/a11y-plan-contracts.md",
+".andromeda/runs/2026-10-06T18-09-10-wrap/evolve-2026-10-06-upstream-sync-observation-model.json",
+".andromeda/runs/2026-10-06T18-09-10-wrap/fanout-results.md",
+".andromeda/runs/2026-10-06T18-09-10-wrap/gate-2026-10-06-upstream-sync-observation-model.json",
+".andromeda/runs/2026-10-06T18-09-10-wrap/inputs-2026-10-06-upstream-sync-observation-model.json",
+".andromeda/runs/2026-10-06T18-09-10-wrap/obs-plan-contracts.md",
+".andromeda/runs/2026-10-06T18-09-10-wrap/registry-2026-10-06-upstream-sync-observation-model.json",
+".andromeda/runs/2026-10-06T18-09-10-wrap/route-no-marker.json",
+".andromeda/runs/2026-10-06T18-09-10-wrap/test-plan-contracts.md",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model/evidence/sync.md",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model/plan.md",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model/report.md",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model/research.md",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model/scope.md"
+],
+"python": [
+".andromeda/runs/2026-10-06T16-42-49-evolve-diagnose/analyze.py",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/assemble.py",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/cleanup.py",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/dead_class.py",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/graph_q.py",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/mut_sum.py",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/render.py",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/summarize.py",
+".andromeda/runs/2026-10-06T16-58-31-code-audit/summarize_gdc.py"
+]
+},
+"unmapped": [
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model/inputs/.gitattributes",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model/inputs/I1-relay-1.md.txt",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model/inputs/I2-relay-2.md.txt",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model/inputs/andromeda-inputs.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 91,
+"problem": null
+},
+"prose": [
+{
+"from": 38,
+"to": 43,
+"text": "The gates below run in /implement P2 and in the wrap's light gate. - **No boot smoke, no live leg, no agent-run leg.** The chunk changes no code path, so it drives no external process. - **The Rust legs run, not deferred.** The project's done-rule (CLAUDE.md Critical Warnings: \"Work is not done until `bash .github/scripts/ci-leg.sh fast` … and `bash .github/scripts/ci-leg.sh doc` … pass\") outranks the zero-delta `defer` the gate contract would allow. Running them leaves no PREREQ for the next chunk (scope §What it builds, premise-corrected at P3). - **`a11y`, `audit`, `coverage`, `msrv` and the matrix legs are not listed locally.** They ran green in CI#37495205882 on `42b80ad9`, whose code tree the guard entry pins as this chunk's. The CI entry asserts that run's verdict. - **No operator push or fresh CI run.** No commit is owed before the wrap, and the wrap's own push runs CI on the bookkeeping commit. - **`evidence/sync.md` has no listed producer, by construction.** Implementation step 3 writes it from the printed lines of entries 1, 4, 5 and 7. It is a record of their readings, not a runtime artifact any command emits. The entries themselves are what the light gate re-runs."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "probe",
+"run": "test \"$(git ls-remote upstream refs/heads/main | cut -f1)\" = 2335458530518cdf167c55ce635fae99323e0789 && git merge-base --is-ancestor 2335458530518cdf167c55ce635fae99323e0789 HEAD && echo pin-held",
+"run_sha8": "b0df7ce0",
+"expect": [
+"exit 0",
+"last line pin-held"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-observation-model/wrap-2026-10-06T18-09-10/1.log",
+"bytes": 9,
+"log_sha8": "7d7c8ab7",
+"exit": 0,
+"seconds": 0.46,
+"readings": [
+"exit 0 ✓",
+"last line 'pin-held' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "probe",
+"run": "{ git diff --name-only 42b80ad94e1c96014c0325e2a3f4a7135ff1f9ca; git ls-files --others --exclude-standard; } | grep -c -v -E '^(\\.andromeda/|escher-0\\.1\\.0/|\\.claude/session-handoff\\.md$)' ",
+"run_sha8": "49830bd0",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-observation-model/wrap-2026-10-06T18-09-10/2.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "unit",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-observation-model/wrap-2026-10-06T18-09-10/3.log",
+"bytes": 50893,
+"log_sha8": "d3babc77",
+"exit": 0,
+"seconds": 19.91,
+"readings": [
+"exit 0 ✓",
+"artifact fresh (target/ci-logs/test.log)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "grep -E '^test result:' target/ci-logs/test.log | awk '{p+=$4; f+=$6; i+=$8; n++} END {print \"lines \" n \" passed \" p \" failed \" f \" ignored \" i}' ",
+"run_sha8": "2ec38d01",
+"expect": [
+"exit 0",
+"last line lines 124 passed 454 failed 0 ignored 5"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-observation-model/wrap-2026-10-06T18-09-10/4.log",
+"bytes": 40,
+"log_sha8": "da8266e0",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line 'lines 124 passed 454 failed 0 ignored 5' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "grep -c '^Ran 64 tests' target/ci-logs/ci-scripts.log",
+"run_sha8": "1f7f4274",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-observation-model/wrap-2026-10-06T18-09-10/5.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-observation-model/wrap-2026-10-06T18-09-10/6.log",
+"bytes": 177,
+"log_sha8": "742b654b",
+"exit": 0,
+"seconds": 0.32,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha 42b80ad94e1c96014c0325e2a3f4a7135ff1f9ca",
+"run_sha8": "9d312e50",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": "/tmp/andromeda-gate/2026-10-06-upstream-sync-observation-model/wrap-2026-10-06T18-09-10/7.log",
+"bytes": 213,
+"log_sha8": "3a976150",
+"exit": 0,
+"seconds": 1.72,
+"readings": [
+"exit 0 ✓",
+"contains 'verdict: green' ✓"
+],
+"survivors": [],
+"outcome": "green"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T18:14:26Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-06T18-09-10-wrap",
+"--marker",
+"2026-10-06-upstream-sync-observation-model",
+"--n",
+"6",
+"--tail",
+"8"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"6 lint green",
+"run (5bc2a184): bash .github/scripts/ci-leg.sh doc",
+"  exit 0 ✓",
+"log $TMPDIR/andromeda-gate/2026-10-06-upstream-sync-observation-model/wrap-2026-10-06T18-09-10/6.log · 177 B · 742b654b",
+"--- no anchored failure; last 8 non-empty lines ---",
+"    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.28s",
+"   Generated ./target/doc/accesskit_xplat/index.html and 27 other files"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T18:14:32Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-10-06T18-09-10-wrap",
+"--marker",
+"2026-10-06-upstream-sync-observation-model"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base HEAD (no pre-CI commit)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 82 (runs 77 · evidence 1 · inputs 4) · trails 18 not read · copies 2 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 77,
+"evidence": 1,
+"inputs": 4,
+"trails": 18,
+"copies": 2,
+"kept": 0,
+"binary": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "0aca1113",
+"ts": "2026-10-06T18:14:37Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model",
+"--run-dir",
+".andromeda/runs/2026-10-06T18-09-10-wrap",
+"--marker",
+"2026-10-06-upstream-sync-observation-model"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 1 · modify 0 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model/evidence/ (dir) ×0",
+"scope: clean — changed 0 · listed 0 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 92"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 0,
+"listed": 0,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 92,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

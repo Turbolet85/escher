@@ -1,0 +1,3673 @@
+{
+ "epoch": "Epoch 2 — Element identity",
+ "step_runs": {
+  "new-session/orientation": 5,
+  "phase/take-up": 5,
+  "phase/distill": 5,
+  "phase/research": 5,
+  "phase/plan": 5,
+  "phase/validate": 5,
+  "implement/code": 5,
+  "implement/fix-loop": 5,
+  "implement/smoke": 5,
+  "wrap-session/report": 5,
+  "wrap-session/reconcile": 5,
+  "wrap-session/curation": 5,
+  "wrap-session/route-resolve": 5,
+  "wrap-session/gates": 5
+ },
+ "groups": [
+  {
+   "key": "wrap-session/curation/recall.corpus-recurrence",
+   "n": 6,
+   "step_runs": 5,
+   "rate": 1.2,
+   "impact": {
+    "iterations": 1,
+    "retries": 6
+   },
+   "weight": 13,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": true,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-id-persistence",
+    "2026-10-06-project-readme",
+    "2026-10-06-stable-element-ids"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T09:46:51Z-b",
+     "line": 229,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "a python-scripted .rs edit bypassed the PostToolUse rustfmt hook and reddened the fast leg's fmt check, though session-learnings already carries 'an edit made through a Bash script never fires the hook — run cargo fmt after a scripted edit'",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T09:46:51Z-c",
+     "line": 230,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "the project Bash guard refused a file-target heredoc again (a probe test file), past the curated entry on the guard and the handoff's carried recurrence",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:05:55Z-b",
+     "line": 255,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "the curated Bash-guard entry (heredoc-to-file and leading cd refused) recurred twice this session: a cat >> evidence heredoc and a leading cd into the scratchpad were both refused",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:05:55Z-c",
+     "line": 256,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "the curated ugrep long-bounded-repetition entry recurred: a P1 site sweep with grep -oE '.{0,60}crud.{0,80}' failed 'exceeds complexity limits' (stderr read, python used)",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:48:46Z-b",
+     "line": 277,
+     "chunk": "2026-10-06-project-readme",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "a leading cd into the skill references directory was refused by the project Bash guard during implement, though session-learnings already records that guard (third recurrence after two at the previous chunk)",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T13:11:21Z-b",
+     "line": 302,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "the Tier-3 entry 'The project's Bash guards refuse a heredoc written to a file and a leading cd' already states the rule; a cat heredoc to scope-record.md was still sent at implement P1 and refused whole (fourth recurrence)",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.in-pass-correction",
+   "n": 4,
+   "step_runs": 5,
+   "rate": 0.8,
+   "impact": {
+    "retries": 7,
+    "iterations": 4
+   },
+   "weight": 15,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": true,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-id-persistence",
+    "2026-10-06-stable-element-ids",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:46:30Z-c",
+     "line": 200,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.in-pass-correction",
+     "untyped": false,
+     "what": "the architecture and obs-plan root-manifest sidecar entries named guessed Sections on first write (arch: Occupied Resources, no Design Philosophy/Standard Contracts; obs: §9 for §7); a per-citation section map caught and corrected both before append",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "architecture-entry-2.md",
+      "obs-plan-entry-2.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T09:46:15Z-b",
+     "line": 226,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.in-pass-correction",
+     "untyped": false,
+     "what": "7 citation spans and 2 counts this pass wrote were wrong on first write: architecture element_id.rs:153-243/72-130/356-384 (fn ends 241/127/391), security element_id.rs:286-321 + stand_element_ids.rs:237-266 (296-320, 237-270), test-plan element_id.rs:250-264 (250-254), sidecar re-point counts 14/9 (8/7); caught by re-reading the cited spans and by counting cascade-citations.md rows per master",
+     "impact": {
+      "iterations": 4
+     },
+     "evidence": ".andromeda/runs/2026-10-06T09-35-44-wrap/cascade-citations.md",
+     "artifacts": [
+      ".andromeda/architecture.md",
+      ".andromeda/security-plan.md",
+      ".andromeda/test-plan.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:05:00Z-c",
+     "line": 253,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.in-pass-correction",
+     "untyped": false,
+     "what": "first Edit of services/seven_guis.md anchored on a leading backtick the line does not carry at that position (path opens the code span); Edit refused, re-anchored without it",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T13:10:15Z-c",
+     "line": 299,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.in-pass-correction",
+     "untyped": false,
+     "what": "6 first writes corrected before commit: arch and report window.rs:376-381/521-523 -> 376-382/521-524 (re-read of window.rs); a11y accessibility_names.rs:84-92 -> 84-93 (grep of test fns); layout-templates entry '4 into flight_booker.rs' -> 1 + 3 dioxus_document.rs, design-system entry count split, architecture entry file list naming two files it does not cite (per-file count re-derived from the applied listing)",
+     "impact": {
+      "retries": 5
+     },
+     "evidence": ".andromeda/runs/2026-10-06T12-55-34-wrap/repoint-masters-applied.txt",
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/code/contract.premise-falsified",
+   "n": 3,
+   "step_runs": 5,
+   "rate": 0.6,
+   "impact": {
+    "iterations": 3,
+    "extra_reads": 4,
+    "dialogue_rounds": 1
+   },
+   "weight": 8,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": true,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-stable-element-ids"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T09:21:01Z-b",
+     "line": 217,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "implement",
+     "step": "code",
+     "type": "contract.premise-falsified",
+     "untyped": false,
+     "what": "plan step 1a/grammar premises: base_scope named 'root' (it is RootScopeWrapper over SuspenseBoundary/ErrorBoundary/root) and VComponent.name a bare name (it is the full type path)",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 4
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-stable-element-ids/plan.md",
+      "packages/dioxus-native-dom/src/element_id.rs"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T09:21:01Z-d",
+     "line": 219,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "implement",
+     "step": "code",
+     "type": "contract.premise-falsified",
+     "untyped": false,
+     "what": "unit case 5 premise 'a re-render removal leaves the old NodeId no longer resolving' is false: dioxus-native-dom only detaches the node until its ElementId is reassigned",
+     "impact": {
+      "iterations": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      "packages/dioxus-native-dom/src/element_id.rs"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T12:28:40Z-b",
+     "line": 289,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "implement",
+     "step": "code",
+     "type": "contract.premise-falsified",
+     "untyped": false,
+     "what": "plan step 3 gated the DioxusDocument override behind dioxus-native-dom's accessibility feature, but nothing in the blitz-tests or seven_guis graph enables that feature (cargo tree), and every manifest that could was on the plan's diff-guard list",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "evidence": "escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/scope-record.md",
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/plan.md",
+      "tests/blitz-tests/Cargo.toml",
+      "packages/dioxus-native/Cargo.toml"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/route-resolve/contract.carry-no-owner",
+   "n": 2,
+   "step_runs": 5,
+   "rate": 0.4,
+   "impact": {
+    "dialogue_rounds": 2,
+    "halted": 2
+   },
+   "weight": 12,
+   "halt_or_softexit_occurrences": 2,
+   "above_threshold": true,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-project-readme"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T11:49:50Z-b",
+     "line": 279,
+     "chunk": "2026-10-06-project-readme",
+     "skill": "wrap-session",
+     "step": "route-resolve",
+     "type": "contract.carry-no-owner",
+     "untyped": false,
+     "what": "the operator's P5 directive named 'the Polish & ship entry that owns release metadata' but no Epoch 6 entry names release metadata; armed halt with four dispositions, operator chose pin to Quality gates",
+     "impact": {
+      "dialogue_rounds": 1,
+      "halted": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/working-route.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T13:12:15Z-b",
+     "line": 305,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "route-resolve",
+     "type": "contract.carry-no-owner",
+     "untyped": false,
+     "what": "the operator directed the seven_guis-ships-without-AccessKit note onto the route without naming an entry (a partial direction); one armed placement question, answered Stand a11y assertions",
+     "impact": {
+      "dialogue_rounds": 1,
+      "halted": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/report/UNTYPED",
+   "n": 3,
+   "step_runs": 5,
+   "rate": 0.6,
+   "impact": {
+    "retries": 3
+   },
+   "weight": 6,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": true,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-project-readme",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:37:04Z-f",
+     "line": 197,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": null,
+     "untyped": true,
+     "what": "the report's Date field was written as an estimated time 8 min ahead of the clock; the stamp-ahead PostToolUse hook refused it and the clock was read and the field corrected",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "report.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:44:41Z-c",
+     "line": 274,
+     "chunk": "2026-10-06-project-readme",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": null,
+     "untyped": true,
+     "what": "report Date written as an estimated 11:50Z without reading the clock; the stamp-ahead PostToolUse hook refused it (+5 min) and it was corrected from date -u",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-project-readme/report.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T12:58:15Z-c",
+     "line": 296,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": null,
+     "untyped": true,
+     "what": "the report's Date was written as an estimated 13:05Z; the stamp-ahead PostToolUse hook refused it (+7 min ahead of the clock) and it was corrected from date -u",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/code/input.plan-step-ambiguous",
+   "n": 3,
+   "step_runs": 5,
+   "rate": 0.6,
+   "impact": {
+    "iterations": 2
+   },
+   "weight": 5,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": true,
+   "chunks": [
+    "2026-10-06-id-persistence",
+    "2026-10-06-stable-element-ids"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T09:21:01Z-c",
+     "line": 218,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "implement",
+     "step": "code",
+     "type": "input.plan-step-ambiguous",
+     "untyped": false,
+     "what": "grammar as written is not unique by construction: two same-name component instances read the same path, and restarting segments at every template root collides a same-owner nested root with a top-level one (and contradicts the plan's own pinned CRUD literal)",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-stable-element-ids/plan.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T10:11:37Z-b",
+     "line": 243,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "implement",
+     "step": "code",
+     "type": "input.plan-step-ambiguous",
+     "untyped": false,
+     "what": "plan step 4c asserts every post-remount NodeId is fresh; the document skeleton (/html:0, head, body, #main) lives outside the VirtualDom and survives; the check asserts the kept set equals that skeleton instead — surfaced in the P4 report",
+     "impact": {
+      "iterations": 0
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T10:11:37Z-c",
+     "line": 244,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "implement",
+     "step": "code",
+     "type": "input.plan-step-ambiguous",
+     "untyped": false,
+     "what": "plan step 3 left the CRUD Create's boot unspecified; Create after Delete appended typed text to the selected person's still-filled fields and the check went red; reordered create -> select -> delete on one fresh boot",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/fix-loop/contract.spec-reality-gap",
+   "n": 2,
+   "step_runs": 5,
+   "rate": 0.4,
+   "impact": {
+    "iterations": 1,
+    "dialogue_rounds": 1
+   },
+   "weight": 5,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-id-persistence"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T10:17:15Z-b",
+     "line": 246,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "implement",
+     "step": "fix-loop",
+     "type": "contract.spec-reality-gap",
+     "untyped": false,
+     "what": "plan premise 'Delete drops only the deleted person's row node' false while the keyed div sits inside an if within the for (3 nodes re-minted); fixed in crud.rs by moving the filter into the iterator",
+     "impact": {
+      "iterations": 1,
+      "dialogue_rounds": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T10:17:15Z-d",
+     "line": 248,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "implement",
+     "step": "fix-loop",
+     "type": "contract.spec-reality-gap",
+     "untyped": false,
+     "what": "v010-02 remount acceptance 'every element's NodeId differs / every pre-remount NodeId reads None' false for /html:0, head, body, #main which DioxusDocument builds outside the VirtualDom; test asserts the kept set equals that skeleton; ref withheld",
+     "impact": {},
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/validate/contract.mechanical-check",
+   "n": 2,
+   "step_runs": 5,
+   "rate": 0.4,
+   "impact": {
+    "iterations": 2,
+    "extra_reads": 0
+   },
+   "weight": 4,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-project-readme",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:09:16Z-b",
+     "line": 188,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "phase",
+     "step": "validate",
+     "type": "contract.mechanical-check",
+     "untyped": false,
+     "what": "check 4 (6) and (4) required resolution: criteria named the no-feature-forward-dropped, no-new-crate/env/port and stand-sources-untouched properties with no proving entry, and the pre-merge count evidence had no listed producer; resolved by adding 3 guard entries, widening the sweep regex and a by-construction prose line, then the whole check set re-ran",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 0
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-upstream-sync-element-identity/plan.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:26:17Z-b",
+     "line": 267,
+     "chunk": "2026-10-06-project-readme",
+     "skill": "phase",
+     "step": "validate",
+     "type": "contract.mechanical-check",
+     "untyped": false,
+     "what": "check 4 (9) found three grep-over-README entries unmarked new (P4 marked only the red-baseline ones) and check 4 (4) found claims.md with no stated producer; both resolved in plan before the review",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-project-readme/plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/report/contract.token-proxy-check",
+   "n": 2,
+   "step_runs": 5,
+   "rate": 0.4,
+   "impact": {
+    "extra_reads": 1,
+    "retries": 2
+   },
+   "weight": 4,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-project-readme",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:37:04Z-d",
+     "line": 195,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "contract.token-proxy-check",
+     "untyped": false,
+     "what": "the plan's expected-amendment count of citation-bearing lines matched basenames (document.rs, node.rs, element.rs, text.rs) — false-positive direction: unchanged files sharing those names counted; truth came from a map keyed on the 17 full changed paths",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "plan.md:304"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:44:41Z-b",
+     "line": 273,
+     "chunk": "2026-10-06-project-readme",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "contract.token-proxy-check",
+     "untyped": false,
+     "what": "expected-amendment site sweep used grep -i 'MPL' which matched 'exaMPLe' (false positive: architecture 81 hits vs 1 case-sensitive); recurred in a second pipeline before the truth came from reading the hits",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/architecture.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.false-positive-proposal",
+   "n": 2,
+   "step_runs": 5,
+   "rate": 0.4,
+   "impact": {
+    "extra_reads": 1,
+    "reformulations": 2
+   },
+   "weight": 4,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-id-persistence",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:46:30Z-b",
+     "line": 199,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.false-positive-proposal",
+     "untyped": false,
+     "what": "D-tests-coverage T2/T3 cited attr_test.rs:262-293, a source locator the report does not carry (re-derivation tell) — rejected; the fact was real and re-raised by the orchestrator citing the test by path",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "fanout-results.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:05:00Z-b",
+     "line": 252,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.false-positive-proposal",
+     "untyped": false,
+     "what": "architecture (D-arch-resources) and obs-plan (D-obs-stack) proposals were accurate but cited source line spans the report does not carry (re-derivation tell); both rejected and their facts raised by the orchestrator from the report",
+     "impact": {
+      "reformulations": 2
+     },
+     "evidence": ".andromeda/runs/2026-10-06T10-55-07-wrap/fanout-results.md",
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/distill/UNTYPED",
+   "n": 2,
+   "step_runs": 5,
+   "rate": 0.4,
+   "impact": {
+    "retries": 2
+   },
+   "weight": 4,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-id-persistence",
+    "2026-10-06-stable-element-ids"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:58:03Z-b",
+     "line": 211,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "phase",
+     "step": "distill",
+     "type": null,
+     "untyped": true,
+     "what": "leading cd into the run dir refused by the project's Bash guard during extract probing — the same guard the handoff carries as a deferred recurrence-despite-learning",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T09:56:54Z-c",
+     "line": 238,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "phase",
+     "step": "distill",
+     "type": null,
+     "untyped": true,
+     "what": "recurrence of the deferred learning on the leading-cd guard: a cd mid-command (after git diff-tree) moved the session cwd; the next call's leading cd back to the project root was refused, costing one retry",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/code/tooling.hook-friction",
+   "n": 2,
+   "step_runs": 5,
+   "rate": 0.4,
+   "impact": {
+    "retries": 2
+   },
+   "weight": 4,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-stable-element-ids"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T09:21:01Z-e",
+     "line": 220,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "implement",
+     "step": "code",
+     "type": "tooling.hook-friction",
+     "untyped": false,
+     "what": "the project Bash guard refused a cat heredoc with a file target for a probe test file; rewritten through the Write tool (a carried deferred learning, recurring)",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T12:28:40Z-c",
+     "line": 290,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "implement",
+     "step": "code",
+     "type": "tooling.hook-friction",
+     "untyped": false,
+     "what": "a Bash call combining manifest edits with a cat heredoc to scope-record.md was refused whole by the project's PreToolUse heredoc guard; re-split into a Write plus the python edit",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/gates/tooling.light-gate-red",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "halted": 1,
+    "dialogue_rounds": 1
+   },
+   "weight": 6,
+   "halt_or_softexit_occurrences": 1,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-project-readme"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T11:52:55Z-b",
+     "line": 281,
+     "chunk": "2026-10-06-project-readme",
+     "skill": "wrap-session",
+     "step": "gates",
+     "type": "tooling.light-gate-red",
+     "untyped": false,
+     "what": "plan diff-guard entry green twice at implement read red at the light gate: the wrap's own P3 curation write (.claude/docs/session-learnings.md) falls outside the plan's bookkeeping exclusion (.andromeda/, version dir, handoff), while gate.py scope's ruled exclusion set covers .claude/docs/** and read clean",
+     "impact": {
+      "halted": 1,
+      "dialogue_rounds": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-project-readme/plan.md",
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/ambiguity.escalation-rounds",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "dialogue_rounds": 1,
+    "halted": 1
+   },
+   "weight": 6,
+   "halt_or_softexit_occurrences": 1,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T13:10:15Z-d",
+     "line": 300,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "ambiguity.escalation-rounds",
+     "untyped": false,
+     "what": "S1 (the stable id newly crossing to the platform accessibility adapter as author_id) escalated as a possible boundary widening; one AskUserQuestion round, the operator chose Ratify + track",
+     "impact": {
+      "dialogue_rounds": 1,
+      "halted": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/security-plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/curation/ambiguity.filter-borderline",
+   "n": 2,
+   "step_runs": 5,
+   "rate": 0.4,
+   "impact": {
+    "extra_reads": 0
+   },
+   "weight": 2,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:47:42Z-b",
+     "line": 203,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "ambiguity.filter-borderline",
+     "untyped": false,
+     "what": "both surviving candidates scored exactly 0.6 on base signals and crossed only through Filter 4's conditional no-other-home +0.2",
+     "impact": {
+      "extra_reads": 0
+     },
+     "evidence": null,
+     "artifacts": [
+      "curation.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T13:11:21Z-c",
+     "line": 303,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "ambiguity.filter-borderline",
+     "untyped": false,
+     "what": "the feature-gate sweep hazard scored exactly 0.6 and was rejected because P2 amended it into masters and the cascade wrote it into rules/a11y.md's generated body, so neither conditional +0.2 applied",
+     "impact": {},
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/report/tooling.host-shell",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "retries": 2
+   },
+   "weight": 3,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:37:04Z-c",
+     "line": 194,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "tooling.host-shell",
+     "untyped": false,
+     "what": "ugrep (aliased as grep) rejects bounded repetition .{0,200} with 'exceeds complexity limits'; one alternation sweep printed nothing to stdout, reading as zero hits where python found 4 master sites",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/recall.corpus-recurrence",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "dialogue_rounds": 1
+   },
+   "weight": 3,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:46:30Z-d",
+     "line": 201,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "the 2026-10-05 Tier-3 entry 'a chunk that moves cited source lines stales the masters' citations' states the re-point rule; the 2026-10-06-headless-stand wrap still left 53 root Cargo.toml citations one line low after its line-61 insert",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md:38"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/fix-loop/contract.instrument-validity",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "dialogue_rounds": 1
+   },
+   "weight": 3,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-id-persistence"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T10:17:15Z-c",
+     "line": 247,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "implement",
+     "step": "fix-loop",
+     "type": "contract.instrument-validity",
+     "untyped": false,
+     "what": "entry 3 presentation guard diffs grepped lines with leading whitespace, so an indentation-only change reads red; its P5 controls never tried a re-nest",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "evidence": "escher-0.1.0/chunks/2026-10-06-id-persistence/evidence/entry-3-whitespace.md",
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/route-resolve/ambiguity.trajectory-halt",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "dialogue_rounds": 1
+   },
+   "weight": 3,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-id-persistence"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T11:07:07Z-b",
+     "line": 258,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "wrap-session",
+     "step": "route-resolve",
+     "type": "ambiguity.trajectory-halt",
+     "untyped": false,
+     "what": "the route-adaptation request arrived as a bare pasted block with no wrapping user text; one confirmation round established it as the operator's own request before the new-chunk-ahead insert",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/gates/contract.coverage-hold",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "dialogue_rounds": 1
+   },
+   "weight": 3,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-id-persistence"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T11:09:47Z-b",
+     "line": 260,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "wrap-session",
+     "step": "gates",
+     "type": "contract.coverage-hold",
+     "untyped": false,
+     "what": "v010-02 reached the coverage gate with ref withheld (acceptance premise disproved post-claim); resolved by the refine-with-evidence valve on the operator's answer, then implement + flip",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/validate/UNTYPED",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "retries": 2
+   },
+   "weight": 3,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-project-readme"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T11:26:17Z-c",
+     "line": 268,
+     "chunk": "2026-10-06-project-readme",
+     "skill": "phase",
+     "step": "validate",
+     "type": null,
+     "untyped": true,
+     "what": "two time stamps were estimated instead of read from the clock (a P5 CI re-read at 11:27Z, a baseline at 11:25Z, both ahead of the 11:24Z clock); the stamp-ahead hook refused the first, the second was found and corrected from the gate trail's ts",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-project-readme/scope.md",
+      "escher-0.1.0/chunks/2026-10-06-project-readme/plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/take-up/contract.skill-reference-drift",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "retries": 1
+   },
+   "weight": 2,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T07:53:29Z-b",
+     "line": 182,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "phase",
+     "step": "take-up",
+     "type": "contract.skill-reference-drift",
+     "untyped": false,
+     "what": "promotion.md §External inputs says a relay is snapped with --message-file in place of --source, but inputs.py refuses --message-file without --origin (exit 2); re-fired with --origin",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "andromeda-phase/references/promotion.md",
+      "andromeda-tools/scripts/inputs.py"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/research/UNTYPED",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "retries": 1
+   },
+   "weight": 2,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:02:00Z-b",
+     "line": 185,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "phase",
+     "step": "research",
+     "type": null,
+     "untyped": true,
+     "what": "Bash permission guard refused a chained export command containing rm -rf and a leading cd (the deferred-learning recurrence named in the handoff); recovered with guard-safe forms",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/plan/UNTYPED",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "iterations": 1
+   },
+   "weight": 2,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-stable-element-ids"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T09:06:35Z-b",
+     "line": 214,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "phase",
+     "step": "plan",
+     "type": null,
+     "untyped": true,
+     "what": "the hygiene entry's atom citation was copied from the prior plan as gate-contract.md:271; the contract has moved and the summary line is now :279 — caught by re-reading the line, plus an unescaped apostrophe in a literal note and a missing env = [] caught by the dry-run",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-stable-element-ids/plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/fix-loop/UNTYPED",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "iterations": 1
+   },
+   "weight": 2,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-stable-element-ids"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T09:24:50Z-b",
+     "line": 222,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "implement",
+     "step": "fix-loop",
+     "type": null,
+     "untyped": true,
+     "what": "the fast leg's fmt check went red on element_id.rs: edits applied through a python script in Bash bypass the PostToolUse rustfmt hook that Write/Edit trigger; fixed by rustfmt and one re-run",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-06T09-11-52-implement (gate entry 12)",
+     "artifacts": [
+      "packages/dioxus-native-dom/src/element_id.rs"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/take-up/UNTYPED",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "retries": 1
+   },
+   "weight": 2,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-id-persistence"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T09:52:27Z-b",
+     "line": 235,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "phase",
+     "step": "take-up",
+     "type": null,
+     "untyped": true,
+     "what": "working-route.md read by a guessed path .andromeda/working-route.md; it lives in the version dir escher-0.1.0/ — sed failed, re-read at the right path",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/working-route.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/gates/contract.token-proxy-check",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "retries": 1
+   },
+   "weight": 2,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T13:15:16Z-b",
+     "line": 307,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "gates",
+     "type": "contract.token-proxy-check",
+     "untyped": false,
+     "what": "the evolve-nudge record count read 0 for the Epoch 2 label through grep (ugrep on this host) while python's json read 126 records / 57 friction; a false negative on an em-dash-bearing fixed string, caught by recounting with python",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/friction-log.ndjson"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/report/recall.change-reconstruction",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "extra_reads": 6
+   },
+   "weight": 1,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:37:04Z-b",
+     "line": 193,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "recall.change-reconstruction",
+     "untyped": false,
+     "what": "a merge chunk carries ~600 upstream lines no session wrote; the Symbols family and a 414-number citation shift map had to be reconstructed by git archaeology at P1",
+     "impact": {
+      "extra_reads": 6
+     },
+     "evidence": null,
+     "artifacts": [
+      "report.md",
+      "packages/stylo_taffy/src/convert.rs"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/report/contract.structural-blind-spot",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "extra_reads": 2
+   },
+   "weight": 1,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:37:04Z-e",
+     "line": 196,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "contract.structural-blind-spot",
+     "untyped": false,
+     "what": "root Cargo.toml citations past line 60 have read one line low since 1503df2e (headless-stand inserted line 61) — that wrap's report carried no line map for Cargo.toml, so no detector could see it; class 55 citations in 5 masters",
+     "impact": {
+      "extra_reads": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/architecture.md:73",
+      ".andromeda/test-plan.md:311"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "new-session/orientation/tooling.output-cap-overflow",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "extra_reads": 1
+   },
+   "weight": 1,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "None"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:51:43Z-b",
+     "line": 207,
+     "chunk": null,
+     "skill": "new-session",
+     "step": "orientation",
+     "type": "tooling.output-cap-overflow",
+     "untyped": false,
+     "what": "evolve-system.md and health-criteria.md read in one bundled cat (31.5 KB) overflowed the tool-result cap; recovered by one re-read of the persisted output",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "references/evolve/evolve-system.md",
+      "references/health-criteria.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/take-up/input.working-entry-thin",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "extra_reads": 2
+   },
+   "weight": 1,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-stable-element-ids"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:53:27Z-b",
+     "line": 209,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "phase",
+     "step": "take-up",
+     "type": "input.working-entry-thin",
+     "untyped": false,
+     "what": "entry and v010-01 say 'author key else component path' but neither is defined anywhere the engine sees (Dioxus key not written to DOM; no component info at the mutation writer); scope carries both as [inferred] P4 forks",
+     "impact": {
+      "extra_reads": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/working-route.md:28",
+      "verification-matrix.json#v010-01"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/ambiguity.playbook-no-match",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "extra_reads": 3
+   },
+   "weight": 1,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-stable-element-ids"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T09:46:15Z-c",
+     "line": 227,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "ambiguity.playbook-no-match",
+     "untyped": false,
+     "what": "6 plan-listed expected amendments (test-plan counts x2, test-plan coverage + helpers, layout-templates author ids, citation re-points) had no detector whose invariant reaches them; raised by the orchestrator under check 5",
+     "impact": {
+      "extra_reads": 3
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/distill/tooling.output-cap-overflow",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {
+    "extra_reads": 1
+   },
+   "weight": 1,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-id-persistence"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T09:56:54Z-b",
+     "line": 237,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "phase",
+     "step": "distill",
+     "type": "tooling.output-cap-overflow",
+     "untyped": false,
+     "what": "one cat of the 7 extracts (45.2 KB) exceeded the tool-result cap; recovered by a Read of the persisted output file",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/runs/2026-10-06T09-51-07-phase/*.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/smoke/contract.structural-blind-spot",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {},
+   "weight": 1,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T12:40:26Z-b",
+     "line": 293,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "implement",
+     "step": "smoke",
+     "type": "contract.structural-blind-spot",
+     "untyped": false,
+     "what": "the windowed smoke cannot reach Document::accessibility_tree: AccessKit's update_if_active only builds when an AT is active, and the host's AT-SPI IsEnabled reads false, so the boot proves the re-threaded callers compile and run but never the platform tree build",
+     "impact": {},
+     "evidence": "escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/evidence/smoke.md",
+     "artifacts": [
+      "packages/blitz-shell/src/accessibility.rs",
+      "packages/blitz-shell/src/window.rs"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/report/input.implement-outcome-unsettled",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {},
+   "weight": 1,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T12:58:15Z-b",
+     "line": 295,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "input.implement-outcome-unsettled",
+     "untyped": false,
+     "what": "implement's P4 outcome (surfaced, diff guard red) was superseded by an operator directive amending plan.md gate 6 and by the agent-driven operator pass; the report's basis is the pass's evidence at 9285fe75",
+     "impact": {},
+     "evidence": "escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/evidence/gate6-amended.md",
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/input.report-insufficient",
+   "n": 1,
+   "step_runs": 5,
+   "rate": 0.2,
+   "impact": {},
+   "weight": 1,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T13:10:15Z-b",
+     "line": 298,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "input.report-insufficient",
+     "untyped": false,
+     "what": "the report's obs-plan expected-amendment line listed only dioxus-native-dom sites, though obs-plan cites 8 document.rs and 2 window.rs lines past the shift points; the obs detector supplied them in out-of-scope commentary",
+     "impact": {},
+     "evidence": ".andromeda/runs/2026-10-06T12-55-34-wrap/.raw-fanout-obs-plan.md",
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/report.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  }
+ ],
+ "universal_by_type": [
+  {
+   "key": "*/*/recall.corpus-recurrence",
+   "n": 7,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "dialogue_rounds": 1,
+    "iterations": 1,
+    "retries": 6
+   },
+   "weight": 16,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": true,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-id-persistence",
+    "2026-10-06-project-readme",
+    "2026-10-06-stable-element-ids",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:46:30Z-d",
+     "line": 201,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "the 2026-10-05 Tier-3 entry 'a chunk that moves cited source lines stales the masters' citations' states the re-point rule; the 2026-10-06-headless-stand wrap still left 53 root Cargo.toml citations one line low after its line-61 insert",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md:38"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T09:46:51Z-b",
+     "line": 229,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "a python-scripted .rs edit bypassed the PostToolUse rustfmt hook and reddened the fast leg's fmt check, though session-learnings already carries 'an edit made through a Bash script never fires the hook — run cargo fmt after a scripted edit'",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T09:46:51Z-c",
+     "line": 230,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "the project Bash guard refused a file-target heredoc again (a probe test file), past the curated entry on the guard and the handoff's carried recurrence",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:05:55Z-b",
+     "line": 255,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "the curated Bash-guard entry (heredoc-to-file and leading cd refused) recurred twice this session: a cat >> evidence heredoc and a leading cd into the scratchpad were both refused",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:05:55Z-c",
+     "line": 256,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "the curated ugrep long-bounded-repetition entry recurred: a P1 site sweep with grep -oE '.{0,60}crud.{0,80}' failed 'exceeds complexity limits' (stderr read, python used)",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:48:46Z-b",
+     "line": 277,
+     "chunk": "2026-10-06-project-readme",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "a leading cd into the skill references directory was refused by the project Bash guard during implement, though session-learnings already records that guard (third recurrence after two at the previous chunk)",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T13:11:21Z-b",
+     "line": 302,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "the Tier-3 entry 'The project's Bash guards refuse a heredoc written to a file and a leading cd' already states the rule; a cat heredoc to scope-record.md was still sent at implement P1 and refused whole (fourth recurrence)",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "*/*/contract.premise-falsified",
+   "n": 3,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "iterations": 3,
+    "extra_reads": 4,
+    "dialogue_rounds": 1
+   },
+   "weight": 8,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": true,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-stable-element-ids"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T09:21:01Z-b",
+     "line": 217,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "implement",
+     "step": "code",
+     "type": "contract.premise-falsified",
+     "untyped": false,
+     "what": "plan step 1a/grammar premises: base_scope named 'root' (it is RootScopeWrapper over SuspenseBoundary/ErrorBoundary/root) and VComponent.name a bare name (it is the full type path)",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 4
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-stable-element-ids/plan.md",
+      "packages/dioxus-native-dom/src/element_id.rs"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T09:21:01Z-d",
+     "line": 219,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "implement",
+     "step": "code",
+     "type": "contract.premise-falsified",
+     "untyped": false,
+     "what": "unit case 5 premise 'a re-render removal leaves the old NodeId no longer resolving' is false: dioxus-native-dom only detaches the node until its ElementId is reassigned",
+     "impact": {
+      "iterations": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      "packages/dioxus-native-dom/src/element_id.rs"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T12:28:40Z-b",
+     "line": 289,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "implement",
+     "step": "code",
+     "type": "contract.premise-falsified",
+     "untyped": false,
+     "what": "plan step 3 gated the DioxusDocument override behind dioxus-native-dom's accessibility feature, but nothing in the blitz-tests or seven_guis graph enables that feature (cargo tree), and every manifest that could was on the plan's diff-guard list",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "evidence": "escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/scope-record.md",
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/plan.md",
+      "tests/blitz-tests/Cargo.toml",
+      "packages/dioxus-native/Cargo.toml"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "*/*/contract.token-proxy-check",
+   "n": 3,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "extra_reads": 1,
+    "retries": 3
+   },
+   "weight": 6,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": true,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-project-readme",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:37:04Z-d",
+     "line": 195,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "contract.token-proxy-check",
+     "untyped": false,
+     "what": "the plan's expected-amendment count of citation-bearing lines matched basenames (document.rs, node.rs, element.rs, text.rs) — false-positive direction: unchanged files sharing those names counted; truth came from a map keyed on the 17 full changed paths",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "plan.md:304"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:44:41Z-b",
+     "line": 273,
+     "chunk": "2026-10-06-project-readme",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "contract.token-proxy-check",
+     "untyped": false,
+     "what": "expected-amendment site sweep used grep -i 'MPL' which matched 'exaMPLe' (false positive: architecture 81 hits vs 1 case-sensitive); recurred in a second pipeline before the truth came from reading the hits",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/architecture.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T13:15:16Z-b",
+     "line": 307,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "gates",
+     "type": "contract.token-proxy-check",
+     "untyped": false,
+     "what": "the evolve-nudge record count read 0 for the Epoch 2 label through grep (ugrep on this host) while python's json read 126 records / 57 friction; a false negative on an em-dash-bearing fixed string, caught by recounting with python",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/friction-log.ndjson"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "*/*/contract.structural-blind-spot",
+   "n": 2,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "extra_reads": 2
+   },
+   "weight": 2,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:37:04Z-e",
+     "line": 196,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "contract.structural-blind-spot",
+     "untyped": false,
+     "what": "root Cargo.toml citations past line 60 have read one line low since 1503df2e (headless-stand inserted line 61) — that wrap's report carried no line map for Cargo.toml, so no detector could see it; class 55 citations in 5 masters",
+     "impact": {
+      "extra_reads": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/architecture.md:73",
+      ".andromeda/test-plan.md:311"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T12:40:26Z-b",
+     "line": 293,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "implement",
+     "step": "smoke",
+     "type": "contract.structural-blind-spot",
+     "untyped": false,
+     "what": "the windowed smoke cannot reach Document::accessibility_tree: AccessKit's update_if_active only builds when an AT is active, and the host's AT-SPI IsEnabled reads false, so the boot proves the re-threaded callers compile and run but never the platform tree build",
+     "impact": {},
+     "evidence": "escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/evidence/smoke.md",
+     "artifacts": [
+      "packages/blitz-shell/src/accessibility.rs",
+      "packages/blitz-shell/src/window.rs"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "*/*/tooling.output-cap-overflow",
+   "n": 2,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "extra_reads": 2
+   },
+   "weight": 2,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-id-persistence",
+    "None"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:51:43Z-b",
+     "line": 207,
+     "chunk": null,
+     "skill": "new-session",
+     "step": "orientation",
+     "type": "tooling.output-cap-overflow",
+     "untyped": false,
+     "what": "evolve-system.md and health-criteria.md read in one bundled cat (31.5 KB) overflowed the tool-result cap; recovered by one re-read of the persisted output",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "references/evolve/evolve-system.md",
+      "references/health-criteria.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T09:56:54Z-b",
+     "line": 237,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "phase",
+     "step": "distill",
+     "type": "tooling.output-cap-overflow",
+     "untyped": false,
+     "what": "one cat of the 7 extracts (45.2 KB) exceeded the tool-result cap; recovered by a Read of the persisted output file",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/runs/2026-10-06T09-51-07-phase/*.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "*/*/tooling.host-shell",
+   "n": 1,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "retries": 2
+   },
+   "weight": 3,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:37:04Z-c",
+     "line": 194,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "tooling.host-shell",
+     "untyped": false,
+     "what": "ugrep (aliased as grep) rejects bounded repetition .{0,200} with 'exceeds complexity limits'; one alternation sweep printed nothing to stdout, reading as zero hits where python found 4 master sites",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "*/*/contract.skill-reference-drift",
+   "n": 1,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "retries": 1
+   },
+   "weight": 2,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T07:53:29Z-b",
+     "line": 182,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "phase",
+     "step": "take-up",
+     "type": "contract.skill-reference-drift",
+     "untyped": false,
+     "what": "promotion.md §External inputs says a relay is snapped with --message-file in place of --source, but inputs.py refuses --message-file without --origin (exit 2); re-fired with --origin",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "andromeda-phase/references/promotion.md",
+      "andromeda-tools/scripts/inputs.py"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "*/*/recall.change-reconstruction",
+   "n": 1,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "extra_reads": 6
+   },
+   "weight": 1,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:37:04Z-b",
+     "line": 193,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "recall.change-reconstruction",
+     "untyped": false,
+     "what": "a merge chunk carries ~600 upstream lines no session wrote; the Symbols family and a 414-number citation shift map had to be reconstructed by git archaeology at P1",
+     "impact": {
+      "extra_reads": 6
+     },
+     "evidence": null,
+     "artifacts": [
+      "report.md",
+      "packages/stylo_taffy/src/convert.rs"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  }
+ ],
+ "all_by_type_info": [
+  {
+   "key": "type:UNTYPED",
+   "n": 10,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "retries": 9,
+    "iterations": 2
+   },
+   "weight": 21,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": true,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-id-persistence",
+    "2026-10-06-project-readme",
+    "2026-10-06-stable-element-ids",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:02:00Z-b",
+     "line": 185,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "phase",
+     "step": "research",
+     "type": null,
+     "untyped": true,
+     "what": "Bash permission guard refused a chained export command containing rm -rf and a leading cd (the deferred-learning recurrence named in the handoff); recovered with guard-safe forms",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T08:37:04Z-f",
+     "line": 197,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": null,
+     "untyped": true,
+     "what": "the report's Date field was written as an estimated time 8 min ahead of the clock; the stamp-ahead PostToolUse hook refused it and the clock was read and the field corrected",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "report.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T08:58:03Z-b",
+     "line": 211,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "phase",
+     "step": "distill",
+     "type": null,
+     "untyped": true,
+     "what": "leading cd into the run dir refused by the project's Bash guard during extract probing — the same guard the handoff carries as a deferred recurrence-despite-learning",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T09:06:35Z-b",
+     "line": 214,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "phase",
+     "step": "plan",
+     "type": null,
+     "untyped": true,
+     "what": "the hygiene entry's atom citation was copied from the prior plan as gate-contract.md:271; the contract has moved and the summary line is now :279 — caught by re-reading the line, plus an unescaped apostrophe in a literal note and a missing env = [] caught by the dry-run",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-stable-element-ids/plan.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T09:24:50Z-b",
+     "line": 222,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "implement",
+     "step": "fix-loop",
+     "type": null,
+     "untyped": true,
+     "what": "the fast leg's fmt check went red on element_id.rs: edits applied through a python script in Bash bypass the PostToolUse rustfmt hook that Write/Edit trigger; fixed by rustfmt and one re-run",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-06T09-11-52-implement (gate entry 12)",
+     "artifacts": [
+      "packages/dioxus-native-dom/src/element_id.rs"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T09:52:27Z-b",
+     "line": 235,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "phase",
+     "step": "take-up",
+     "type": null,
+     "untyped": true,
+     "what": "working-route.md read by a guessed path .andromeda/working-route.md; it lives in the version dir escher-0.1.0/ — sed failed, re-read at the right path",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/working-route.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T09:56:54Z-c",
+     "line": 238,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "phase",
+     "step": "distill",
+     "type": null,
+     "untyped": true,
+     "what": "recurrence of the deferred learning on the leading-cd guard: a cd mid-command (after git diff-tree) moved the session cwd; the next call's leading cd back to the project root was refused, costing one retry",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:26:17Z-c",
+     "line": 268,
+     "chunk": "2026-10-06-project-readme",
+     "skill": "phase",
+     "step": "validate",
+     "type": null,
+     "untyped": true,
+     "what": "two time stamps were estimated instead of read from the clock (a P5 CI re-read at 11:27Z, a baseline at 11:25Z, both ahead of the 11:24Z clock); the stamp-ahead hook refused the first, the second was found and corrected from the gate trail's ts",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-project-readme/scope.md",
+      "escher-0.1.0/chunks/2026-10-06-project-readme/plan.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:44:41Z-c",
+     "line": 274,
+     "chunk": "2026-10-06-project-readme",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": null,
+     "untyped": true,
+     "what": "report Date written as an estimated 11:50Z without reading the clock; the stamp-ahead PostToolUse hook refused it (+5 min) and it was corrected from date -u",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-project-readme/report.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T12:58:15Z-c",
+     "line": 296,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": null,
+     "untyped": true,
+     "what": "the report's Date was written as an estimated 13:05Z; the stamp-ahead PostToolUse hook refused it (+7 min ahead of the clock) and it was corrected from date -u",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:recall.corpus-recurrence",
+   "n": 7,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "dialogue_rounds": 1,
+    "iterations": 1,
+    "retries": 6
+   },
+   "weight": 16,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": true,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-id-persistence",
+    "2026-10-06-project-readme",
+    "2026-10-06-stable-element-ids",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:46:30Z-d",
+     "line": 201,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "the 2026-10-05 Tier-3 entry 'a chunk that moves cited source lines stales the masters' citations' states the re-point rule; the 2026-10-06-headless-stand wrap still left 53 root Cargo.toml citations one line low after its line-61 insert",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md:38"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T09:46:51Z-b",
+     "line": 229,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "a python-scripted .rs edit bypassed the PostToolUse rustfmt hook and reddened the fast leg's fmt check, though session-learnings already carries 'an edit made through a Bash script never fires the hook — run cargo fmt after a scripted edit'",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T09:46:51Z-c",
+     "line": 230,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "the project Bash guard refused a file-target heredoc again (a probe test file), past the curated entry on the guard and the handoff's carried recurrence",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:05:55Z-b",
+     "line": 255,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "the curated Bash-guard entry (heredoc-to-file and leading cd refused) recurred twice this session: a cat >> evidence heredoc and a leading cd into the scratchpad were both refused",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:05:55Z-c",
+     "line": 256,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "the curated ugrep long-bounded-repetition entry recurred: a P1 site sweep with grep -oE '.{0,60}crud.{0,80}' failed 'exceeds complexity limits' (stderr read, python used)",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:48:46Z-b",
+     "line": 277,
+     "chunk": "2026-10-06-project-readme",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "a leading cd into the skill references directory was refused by the project Bash guard during implement, though session-learnings already records that guard (third recurrence after two at the previous chunk)",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T13:11:21Z-b",
+     "line": 302,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "untyped": false,
+     "what": "the Tier-3 entry 'The project's Bash guards refuse a heredoc written to a file and a leading cd' already states the rule; a cat heredoc to scope-record.md was still sent at implement P1 and refused whole (fourth recurrence)",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:contract.in-pass-correction",
+   "n": 4,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "retries": 7,
+    "iterations": 4
+   },
+   "weight": 15,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": true,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-id-persistence",
+    "2026-10-06-stable-element-ids",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:46:30Z-c",
+     "line": 200,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.in-pass-correction",
+     "untyped": false,
+     "what": "the architecture and obs-plan root-manifest sidecar entries named guessed Sections on first write (arch: Occupied Resources, no Design Philosophy/Standard Contracts; obs: §9 for §7); a per-citation section map caught and corrected both before append",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "architecture-entry-2.md",
+      "obs-plan-entry-2.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T09:46:15Z-b",
+     "line": 226,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.in-pass-correction",
+     "untyped": false,
+     "what": "7 citation spans and 2 counts this pass wrote were wrong on first write: architecture element_id.rs:153-243/72-130/356-384 (fn ends 241/127/391), security element_id.rs:286-321 + stand_element_ids.rs:237-266 (296-320, 237-270), test-plan element_id.rs:250-264 (250-254), sidecar re-point counts 14/9 (8/7); caught by re-reading the cited spans and by counting cascade-citations.md rows per master",
+     "impact": {
+      "iterations": 4
+     },
+     "evidence": ".andromeda/runs/2026-10-06T09-35-44-wrap/cascade-citations.md",
+     "artifacts": [
+      ".andromeda/architecture.md",
+      ".andromeda/security-plan.md",
+      ".andromeda/test-plan.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:05:00Z-c",
+     "line": 253,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.in-pass-correction",
+     "untyped": false,
+     "what": "first Edit of services/seven_guis.md anchored on a leading backtick the line does not carry at that position (path opens the code span); Edit refused, re-anchored without it",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T13:10:15Z-c",
+     "line": 299,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.in-pass-correction",
+     "untyped": false,
+     "what": "6 first writes corrected before commit: arch and report window.rs:376-381/521-523 -> 376-382/521-524 (re-read of window.rs); a11y accessibility_names.rs:84-92 -> 84-93 (grep of test fns); layout-templates entry '4 into flight_booker.rs' -> 1 + 3 dioxus_document.rs, design-system entry count split, architecture entry file list naming two files it does not cite (per-file count re-derived from the applied listing)",
+     "impact": {
+      "retries": 5
+     },
+     "evidence": ".andromeda/runs/2026-10-06T12-55-34-wrap/repoint-masters-applied.txt",
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:contract.premise-falsified",
+   "n": 3,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "iterations": 3,
+    "extra_reads": 4,
+    "dialogue_rounds": 1
+   },
+   "weight": 8,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": true,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-stable-element-ids"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T09:21:01Z-b",
+     "line": 217,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "implement",
+     "step": "code",
+     "type": "contract.premise-falsified",
+     "untyped": false,
+     "what": "plan step 1a/grammar premises: base_scope named 'root' (it is RootScopeWrapper over SuspenseBoundary/ErrorBoundary/root) and VComponent.name a bare name (it is the full type path)",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 4
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-stable-element-ids/plan.md",
+      "packages/dioxus-native-dom/src/element_id.rs"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T09:21:01Z-d",
+     "line": 219,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "implement",
+     "step": "code",
+     "type": "contract.premise-falsified",
+     "untyped": false,
+     "what": "unit case 5 premise 'a re-render removal leaves the old NodeId no longer resolving' is false: dioxus-native-dom only detaches the node until its ElementId is reassigned",
+     "impact": {
+      "iterations": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      "packages/dioxus-native-dom/src/element_id.rs"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T12:28:40Z-b",
+     "line": 289,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "implement",
+     "step": "code",
+     "type": "contract.premise-falsified",
+     "untyped": false,
+     "what": "plan step 3 gated the DioxusDocument override behind dioxus-native-dom's accessibility feature, but nothing in the blitz-tests or seven_guis graph enables that feature (cargo tree), and every manifest that could was on the plan's diff-guard list",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "evidence": "escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/scope-record.md",
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/plan.md",
+      "tests/blitz-tests/Cargo.toml",
+      "packages/dioxus-native/Cargo.toml"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:contract.carry-no-owner",
+   "n": 2,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "dialogue_rounds": 2,
+    "halted": 2
+   },
+   "weight": 12,
+   "halt_or_softexit_occurrences": 2,
+   "above_threshold": true,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-project-readme"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T11:49:50Z-b",
+     "line": 279,
+     "chunk": "2026-10-06-project-readme",
+     "skill": "wrap-session",
+     "step": "route-resolve",
+     "type": "contract.carry-no-owner",
+     "untyped": false,
+     "what": "the operator's P5 directive named 'the Polish & ship entry that owns release metadata' but no Epoch 6 entry names release metadata; armed halt with four dispositions, operator chose pin to Quality gates",
+     "impact": {
+      "dialogue_rounds": 1,
+      "halted": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/working-route.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T13:12:15Z-b",
+     "line": 305,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "route-resolve",
+     "type": "contract.carry-no-owner",
+     "untyped": false,
+     "what": "the operator directed the seven_guis-ships-without-AccessKit note onto the route without naming an entry (a partial direction); one armed placement question, answered Stand a11y assertions",
+     "impact": {
+      "dialogue_rounds": 1,
+      "halted": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:contract.token-proxy-check",
+   "n": 3,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "extra_reads": 1,
+    "retries": 3
+   },
+   "weight": 6,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": true,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-project-readme",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:37:04Z-d",
+     "line": 195,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "contract.token-proxy-check",
+     "untyped": false,
+     "what": "the plan's expected-amendment count of citation-bearing lines matched basenames (document.rs, node.rs, element.rs, text.rs) — false-positive direction: unchanged files sharing those names counted; truth came from a map keyed on the 17 full changed paths",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "plan.md:304"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:44:41Z-b",
+     "line": 273,
+     "chunk": "2026-10-06-project-readme",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "contract.token-proxy-check",
+     "untyped": false,
+     "what": "expected-amendment site sweep used grep -i 'MPL' which matched 'exaMPLe' (false positive: architecture 81 hits vs 1 case-sensitive); recurred in a second pipeline before the truth came from reading the hits",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/architecture.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T13:15:16Z-b",
+     "line": 307,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "gates",
+     "type": "contract.token-proxy-check",
+     "untyped": false,
+     "what": "the evolve-nudge record count read 0 for the Epoch 2 label through grep (ugrep on this host) while python's json read 126 records / 57 friction; a false negative on an em-dash-bearing fixed string, caught by recounting with python",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/friction-log.ndjson"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:input.plan-step-ambiguous",
+   "n": 3,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "iterations": 2
+   },
+   "weight": 5,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": true,
+   "chunks": [
+    "2026-10-06-id-persistence",
+    "2026-10-06-stable-element-ids"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T09:21:01Z-c",
+     "line": 218,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "implement",
+     "step": "code",
+     "type": "input.plan-step-ambiguous",
+     "untyped": false,
+     "what": "grammar as written is not unique by construction: two same-name component instances read the same path, and restarting segments at every template root collides a same-owner nested root with a top-level one (and contradicts the plan's own pinned CRUD literal)",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-stable-element-ids/plan.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T10:11:37Z-b",
+     "line": 243,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "implement",
+     "step": "code",
+     "type": "input.plan-step-ambiguous",
+     "untyped": false,
+     "what": "plan step 4c asserts every post-remount NodeId is fresh; the document skeleton (/html:0, head, body, #main) lives outside the VirtualDom and survives; the check asserts the kept set equals that skeleton instead — surfaced in the P4 report",
+     "impact": {
+      "iterations": 0
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T10:11:37Z-c",
+     "line": 244,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "implement",
+     "step": "code",
+     "type": "input.plan-step-ambiguous",
+     "untyped": false,
+     "what": "plan step 3 left the CRUD Create's boot unspecified; Create after Delete appended typed text to the selected person's still-filled fields and the check went red; reordered create -> select -> delete on one fresh boot",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:contract.spec-reality-gap",
+   "n": 2,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "iterations": 1,
+    "dialogue_rounds": 1
+   },
+   "weight": 5,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-id-persistence"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T10:17:15Z-b",
+     "line": 246,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "implement",
+     "step": "fix-loop",
+     "type": "contract.spec-reality-gap",
+     "untyped": false,
+     "what": "plan premise 'Delete drops only the deleted person's row node' false while the keyed div sits inside an if within the for (3 nodes re-minted); fixed in crud.rs by moving the filter into the iterator",
+     "impact": {
+      "iterations": 1,
+      "dialogue_rounds": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T10:17:15Z-d",
+     "line": 248,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "implement",
+     "step": "fix-loop",
+     "type": "contract.spec-reality-gap",
+     "untyped": false,
+     "what": "v010-02 remount acceptance 'every element's NodeId differs / every pre-remount NodeId reads None' false for /html:0, head, body, #main which DioxusDocument builds outside the VirtualDom; test asserts the kept set equals that skeleton; ref withheld",
+     "impact": {},
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:contract.mechanical-check",
+   "n": 2,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "iterations": 2,
+    "extra_reads": 0
+   },
+   "weight": 4,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-project-readme",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:09:16Z-b",
+     "line": 188,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "phase",
+     "step": "validate",
+     "type": "contract.mechanical-check",
+     "untyped": false,
+     "what": "check 4 (6) and (4) required resolution: criteria named the no-feature-forward-dropped, no-new-crate/env/port and stand-sources-untouched properties with no proving entry, and the pre-merge count evidence had no listed producer; resolved by adding 3 guard entries, widening the sweep regex and a by-construction prose line, then the whole check set re-ran",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 0
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-upstream-sync-element-identity/plan.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:26:17Z-b",
+     "line": 267,
+     "chunk": "2026-10-06-project-readme",
+     "skill": "phase",
+     "step": "validate",
+     "type": "contract.mechanical-check",
+     "untyped": false,
+     "what": "check 4 (9) found three grep-over-README entries unmarked new (P4 marked only the red-baseline ones) and check 4 (4) found claims.md with no stated producer; both resolved in plan before the review",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-project-readme/plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:contract.false-positive-proposal",
+   "n": 2,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "extra_reads": 1,
+    "reformulations": 2
+   },
+   "weight": 4,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-id-persistence",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:46:30Z-b",
+     "line": 199,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.false-positive-proposal",
+     "untyped": false,
+     "what": "D-tests-coverage T2/T3 cited attr_test.rs:262-293, a source locator the report does not carry (re-derivation tell) — rejected; the fact was real and re-raised by the orchestrator citing the test by path",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "fanout-results.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T11:05:00Z-b",
+     "line": 252,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.false-positive-proposal",
+     "untyped": false,
+     "what": "architecture (D-arch-resources) and obs-plan (D-obs-stack) proposals were accurate but cited source line spans the report does not carry (re-derivation tell); both rejected and their facts raised by the orchestrator from the report",
+     "impact": {
+      "reformulations": 2
+     },
+     "evidence": ".andromeda/runs/2026-10-06T10-55-07-wrap/fanout-results.md",
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:tooling.hook-friction",
+   "n": 2,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "retries": 2
+   },
+   "weight": 4,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-stable-element-ids"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T09:21:01Z-e",
+     "line": 220,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "implement",
+     "step": "code",
+     "type": "tooling.hook-friction",
+     "untyped": false,
+     "what": "the project Bash guard refused a cat heredoc with a file target for a probe test file; rewritten through the Write tool (a carried deferred learning, recurring)",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T12:28:40Z-c",
+     "line": 290,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "implement",
+     "step": "code",
+     "type": "tooling.hook-friction",
+     "untyped": false,
+     "what": "a Bash call combining manifest edits with a cat heredoc to scope-record.md was refused whole by the project's PreToolUse heredoc guard; re-split into a Write plus the python edit",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:tooling.light-gate-red",
+   "n": 1,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "halted": 1,
+    "dialogue_rounds": 1
+   },
+   "weight": 6,
+   "halt_or_softexit_occurrences": 1,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-project-readme"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T11:52:55Z-b",
+     "line": 281,
+     "chunk": "2026-10-06-project-readme",
+     "skill": "wrap-session",
+     "step": "gates",
+     "type": "tooling.light-gate-red",
+     "untyped": false,
+     "what": "plan diff-guard entry green twice at implement read red at the light gate: the wrap's own P3 curation write (.claude/docs/session-learnings.md) falls outside the plan's bookkeeping exclusion (.andromeda/, version dir, handoff), while gate.py scope's ruled exclusion set covers .claude/docs/** and read clean",
+     "impact": {
+      "halted": 1,
+      "dialogue_rounds": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-project-readme/plan.md",
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:ambiguity.escalation-rounds",
+   "n": 1,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "dialogue_rounds": 1,
+    "halted": 1
+   },
+   "weight": 6,
+   "halt_or_softexit_occurrences": 1,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T13:10:15Z-d",
+     "line": 300,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "ambiguity.escalation-rounds",
+     "untyped": false,
+     "what": "S1 (the stable id newly crossing to the platform accessibility adapter as author_id) escalated as a possible boundary widening; one AskUserQuestion round, the operator chose Ratify + track",
+     "impact": {
+      "dialogue_rounds": 1,
+      "halted": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/security-plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:contract.structural-blind-spot",
+   "n": 2,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "extra_reads": 2
+   },
+   "weight": 2,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:37:04Z-e",
+     "line": 196,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "contract.structural-blind-spot",
+     "untyped": false,
+     "what": "root Cargo.toml citations past line 60 have read one line low since 1503df2e (headless-stand inserted line 61) — that wrap's report carried no line map for Cargo.toml, so no detector could see it; class 55 citations in 5 masters",
+     "impact": {
+      "extra_reads": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/architecture.md:73",
+      ".andromeda/test-plan.md:311"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T12:40:26Z-b",
+     "line": 293,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "implement",
+     "step": "smoke",
+     "type": "contract.structural-blind-spot",
+     "untyped": false,
+     "what": "the windowed smoke cannot reach Document::accessibility_tree: AccessKit's update_if_active only builds when an AT is active, and the host's AT-SPI IsEnabled reads false, so the boot proves the re-threaded callers compile and run but never the platform tree build",
+     "impact": {},
+     "evidence": "escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/evidence/smoke.md",
+     "artifacts": [
+      "packages/blitz-shell/src/accessibility.rs",
+      "packages/blitz-shell/src/window.rs"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:ambiguity.filter-borderline",
+   "n": 2,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "extra_reads": 0
+   },
+   "weight": 2,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity",
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:47:42Z-b",
+     "line": 203,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "ambiguity.filter-borderline",
+     "untyped": false,
+     "what": "both surviving candidates scored exactly 0.6 on base signals and crossed only through Filter 4's conditional no-other-home +0.2",
+     "impact": {
+      "extra_reads": 0
+     },
+     "evidence": null,
+     "artifacts": [
+      "curation.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T13:11:21Z-c",
+     "line": 303,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "ambiguity.filter-borderline",
+     "untyped": false,
+     "what": "the feature-gate sweep hazard scored exactly 0.6 and was rejected because P2 amended it into masters and the cascade wrote it into rules/a11y.md's generated body, so neither conditional +0.2 applied",
+     "impact": {},
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:tooling.output-cap-overflow",
+   "n": 2,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "extra_reads": 2
+   },
+   "weight": 2,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-id-persistence",
+    "None"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:51:43Z-b",
+     "line": 207,
+     "chunk": null,
+     "skill": "new-session",
+     "step": "orientation",
+     "type": "tooling.output-cap-overflow",
+     "untyped": false,
+     "what": "evolve-system.md and health-criteria.md read in one bundled cat (31.5 KB) overflowed the tool-result cap; recovered by one re-read of the persisted output",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "references/evolve/evolve-system.md",
+      "references/health-criteria.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-06T09:56:54Z-b",
+     "line": 237,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "phase",
+     "step": "distill",
+     "type": "tooling.output-cap-overflow",
+     "untyped": false,
+     "what": "one cat of the 7 extracts (45.2 KB) exceeded the tool-result cap; recovered by a Read of the persisted output file",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/runs/2026-10-06T09-51-07-phase/*.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:tooling.host-shell",
+   "n": 1,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "retries": 2
+   },
+   "weight": 3,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:37:04Z-c",
+     "line": 194,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "tooling.host-shell",
+     "untyped": false,
+     "what": "ugrep (aliased as grep) rejects bounded repetition .{0,200} with 'exceeds complexity limits'; one alternation sweep printed nothing to stdout, reading as zero hits where python found 4 master sites",
+     "impact": {
+      "retries": 2
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:contract.instrument-validity",
+   "n": 1,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "dialogue_rounds": 1
+   },
+   "weight": 3,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-id-persistence"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T10:17:15Z-c",
+     "line": 247,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "implement",
+     "step": "fix-loop",
+     "type": "contract.instrument-validity",
+     "untyped": false,
+     "what": "entry 3 presentation guard diffs grepped lines with leading whitespace, so an indentation-only change reads red; its P5 controls never tried a re-nest",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "evidence": "escher-0.1.0/chunks/2026-10-06-id-persistence/evidence/entry-3-whitespace.md",
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:ambiguity.trajectory-halt",
+   "n": 1,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "dialogue_rounds": 1
+   },
+   "weight": 3,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-id-persistence"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T11:07:07Z-b",
+     "line": 258,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "wrap-session",
+     "step": "route-resolve",
+     "type": "ambiguity.trajectory-halt",
+     "untyped": false,
+     "what": "the route-adaptation request arrived as a bare pasted block with no wrapping user text; one confirmation round established it as the operator's own request before the new-chunk-ahead insert",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:contract.coverage-hold",
+   "n": 1,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "dialogue_rounds": 1
+   },
+   "weight": 3,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-id-persistence"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T11:09:47Z-b",
+     "line": 260,
+     "chunk": "2026-10-06-id-persistence",
+     "skill": "wrap-session",
+     "step": "gates",
+     "type": "contract.coverage-hold",
+     "untyped": false,
+     "what": "v010-02 reached the coverage gate with ref withheld (acceptance premise disproved post-claim); resolved by the refine-with-evidence valve on the operator's answer, then implement + flip",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:contract.skill-reference-drift",
+   "n": 1,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "retries": 1
+   },
+   "weight": 2,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T07:53:29Z-b",
+     "line": 182,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "phase",
+     "step": "take-up",
+     "type": "contract.skill-reference-drift",
+     "untyped": false,
+     "what": "promotion.md §External inputs says a relay is snapped with --message-file in place of --source, but inputs.py refuses --message-file without --origin (exit 2); re-fired with --origin",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "andromeda-phase/references/promotion.md",
+      "andromeda-tools/scripts/inputs.py"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:recall.change-reconstruction",
+   "n": 1,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "extra_reads": 6
+   },
+   "weight": 1,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-upstream-sync-element-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:37:04Z-b",
+     "line": 193,
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "recall.change-reconstruction",
+     "untyped": false,
+     "what": "a merge chunk carries ~600 upstream lines no session wrote; the Symbols family and a 414-number citation shift map had to be reconstructed by git archaeology at P1",
+     "impact": {
+      "extra_reads": 6
+     },
+     "evidence": null,
+     "artifacts": [
+      "report.md",
+      "packages/stylo_taffy/src/convert.rs"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:input.working-entry-thin",
+   "n": 1,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "extra_reads": 2
+   },
+   "weight": 1,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-stable-element-ids"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T08:53:27Z-b",
+     "line": 209,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "phase",
+     "step": "take-up",
+     "type": "input.working-entry-thin",
+     "untyped": false,
+     "what": "entry and v010-01 say 'author key else component path' but neither is defined anywhere the engine sees (Dioxus key not written to DOM; no component info at the mutation writer); scope carries both as [inferred] P4 forks",
+     "impact": {
+      "extra_reads": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.1.0/working-route.md:28",
+      "verification-matrix.json#v010-01"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:ambiguity.playbook-no-match",
+   "n": 1,
+   "step_runs": null,
+   "rate": null,
+   "impact": {
+    "extra_reads": 3
+   },
+   "weight": 1,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-stable-element-ids"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T09:46:15Z-c",
+     "line": 227,
+     "chunk": "2026-10-06-stable-element-ids",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "ambiguity.playbook-no-match",
+     "untyped": false,
+     "what": "6 plan-listed expected amendments (test-plan counts x2, test-plan coverage + helpers, layout-templates author ids, citation re-points) had no detector whose invariant reaches them; raised by the orchestrator under check 5",
+     "impact": {
+      "extra_reads": 3
+     },
+     "evidence": null,
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:input.implement-outcome-unsettled",
+   "n": 1,
+   "step_runs": null,
+   "rate": null,
+   "impact": {},
+   "weight": 1,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T12:58:15Z-b",
+     "line": 295,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "input.implement-outcome-unsettled",
+     "untyped": false,
+     "what": "implement's P4 outcome (surfaced, diff guard red) was superseded by an operator directive amending plan.md gate 6 and by the agent-driven operator pass; the report's basis is the pass's evidence at 9285fe75",
+     "impact": {},
+     "evidence": "escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/evidence/gate6-amended.md",
+     "artifacts": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "type:input.report-insufficient",
+   "n": 1,
+   "step_runs": null,
+   "rate": null,
+   "impact": {},
+   "weight": 1,
+   "halt_or_softexit_occurrences": 0,
+   "above_threshold": false,
+   "chunks": [
+    "2026-10-06-accessibility-tree-identity"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-06T13:10:15Z-b",
+     "line": 298,
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "input.report-insufficient",
+     "untyped": false,
+     "what": "the report's obs-plan expected-amendment line listed only dioxus-native-dom sites, though obs-plan cites 8 document.rs and 2 window.rs lines past the shift points; the obs detector supplied them in out-of-scope commentary",
+     "impact": {},
+     "evidence": ".andromeda/runs/2026-10-06T12-55-34-wrap/.raw-fanout-obs-plan.md",
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-06-accessibility-tree-identity/report.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  }
+ ]
+}

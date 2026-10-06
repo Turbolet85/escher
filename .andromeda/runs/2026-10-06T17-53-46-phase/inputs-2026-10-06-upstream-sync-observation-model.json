@@ -1,0 +1,113 @@
+[
+{
+"tool": "inputs",
+"v": "1.0",
+"sha8": "d30b83fd",
+"ts": "2026-10-06T17:56:12Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model",
+"--message-file",
+".andromeda/runs/2026-10-06T17-53-46-phase/relay-1.md",
+"--kind",
+"relay",
+"--origin",
+"orchestrator git measurement, /andromeda-phase take-up, 2026-10-06 ~17:54Z",
+"--why",
+"upstream/main measured at 23354585 (ls-remote), 0 commits past merge base; ours 27 past",
+"--step",
+"phase:P1",
+"--run-dir",
+".andromeda/runs/2026-10-06T17-53-46-phase",
+"--marker",
+"2026-10-06-upstream-sync-observation-model"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"snapped I1 · copy message · message: orchestrator git measurement, /andromeda-phase take-up, 2026-10-06 ~17:54Z",
+"cite: inputs#I1"
+],
+"stderr": null,
+"wrote": [
+"inputs/.gitattributes",
+"inputs/I1-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I1",
+"kind": "relay",
+"repo": null,
+"path": "message: orchestrator git measurement, /andromeda-phase take-up, 2026-10-06 ~17:54Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "061932cab85382eb108ce6e615aa1fb243b5f5d1f269ef61e93457bf3991b932",
+"copy": "I1-relay-1.md.txt",
+"link": false,
+"read_at": "2026-10-06T17:56:12Z",
+"step": "phase:P1",
+"why": "upstream/main measured at 23354585 (ls-remote), 0 commits past merge base; ours 27 past"
+}
+},
+{
+"tool": "inputs",
+"v": "1.0",
+"sha8": "d30b83fd",
+"ts": "2026-10-06T17:56:12Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-06-upstream-sync-observation-model",
+"--message-file",
+".andromeda/runs/2026-10-06T17-53-46-phase/relay-2.md",
+"--kind",
+"relay",
+"--origin",
+"operator (founder), AskUserQuestion answer at /andromeda-phase take-up, 2026-10-06 ~17:55Z",
+"--why",
+"founder ruled the empty sync a measured no-op: record the pin and 0-ahead read, no merge commit, no work beyond what the gates require",
+"--step",
+"phase:P1",
+"--run-dir",
+".andromeda/runs/2026-10-06T17-53-46-phase",
+"--marker",
+"2026-10-06-upstream-sync-observation-model"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"snapped I2 · copy message · message: operator (founder), AskUserQuestion answer at /andromeda-phase take-up, 2026-10-06 ~17:55Z",
+"cite: inputs#I2"
+],
+"stderr": null,
+"wrote": [
+"inputs/I2-relay-2.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I2",
+"kind": "relay",
+"repo": null,
+"path": "message: operator (founder), AskUserQuestion answer at /andromeda-phase take-up, 2026-10-06 ~17:55Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "b7a81377d4c6219163796d2e047d87196177abf09608a4324f7af728e5fbc7d9",
+"copy": "I2-relay-2.md.txt",
+"link": false,
+"read_at": "2026-10-06T17:56:12Z",
+"step": "phase:P1",
+"why": "founder ruled the empty sync a measured no-op: record the pin and 0-ahead read, no merge commit, no work beyond what the gates require"
+}
+}
+]

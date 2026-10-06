@@ -1,0 +1,51 @@
+{
+ "unit": "dioxus-native-dom",
+ "unit_state": "complete 57/57",
+ "score": 86.27,
+ "counts": {
+  "mutants": 57,
+  "caught": 44,
+  "missed": 7,
+  "not_measured": 0,
+  "timeout": 0,
+  "unviable": 6
+ },
+ "score_formula": "caught/(caught+missed)",
+ "survivors": [
+  [
+   "packages/dioxus-native-dom/src/dioxus_document.rs:166:9",
+   "replace DioxusDocument::create_head_element with ()"
+  ],
+  [
+   "packages/dioxus-native-dom/src/dioxus_document.rs:211:9",
+   "replace DioxusDocument::flush_queued_mounted_events with ()"
+  ],
+  [
+   "packages/dioxus-native-dom/src/dioxus_document.rs:236:9",
+   "replace <impl Document for DioxusDocument>::id -> usize with 0"
+  ],
+  [
+   "packages/dioxus-native-dom/src/dioxus_document.rs:236:9",
+   "replace <impl Document for DioxusDocument>::id -> usize with 1"
+  ],
+  [
+   "packages/dioxus-native-dom/src/dioxus_document.rs:402:12",
+   "delete ! in <impl EventHandler for DioxusEventHandler<'_>>::handle_event"
+  ],
+  [
+   "packages/dioxus-native-dom/src/dioxus_document.rs:405:12",
+   "delete ! in <impl EventHandler for DioxusEventHandler<'_>>::handle_event"
+  ],
+  [
+   "packages/dioxus-native-dom/src/element_id.rs:212:43",
+   "replace && with || in place_children"
+  ]
+ ],
+ "not_measured": [],
+ "host": "x86_64-unknown-linux-gnu",
+ "missed_txt_rows": 7,
+ "total_mutants": 57,
+ "mutants_json_len": 57,
+ "baseline_outcome": "skipped (--baseline=skip; unmutated tree probed by hand)",
+ "union_verdict": "no project union verdict"
+}

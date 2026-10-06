@@ -1,0 +1,825 @@
+{
+ "dead": {
+  "unused_deps": [
+   [
+    "rdme",
+    "blitz-paint"
+   ],
+   [
+    "rdme",
+    "image"
+   ],
+   [
+    "rdme",
+    "reqwest"
+   ],
+   [
+    "counter",
+    "blitz-dom"
+   ],
+   [
+    "counter",
+    "blitz-paint"
+   ],
+   [
+    "counter",
+    "idna_adapter"
+   ],
+   [
+    "seven_guis",
+    "idna_adapter"
+   ],
+   [
+    "todomvc",
+    "idna_adapter"
+   ],
+   [
+    "transparent",
+    "blitz-dom"
+   ],
+   [
+    "transparent",
+    "blitz-paint"
+   ],
+   [
+    "transparent",
+    "idna_adapter"
+   ],
+   [
+    "wgpu_texture",
+    "blitz-paint"
+   ],
+   [
+    "wgpu_texture",
+    "pollster"
+   ],
+   [
+    "blitz-html",
+    "blitz-traits"
+   ],
+   [
+    "blitz-net",
+    "http-cache"
+   ],
+   [
+    "blitz-paint",
+    "euclid"
+   ],
+   [
+    "blitz-vibey-script",
+    "boa_gc"
+   ],
+   [
+    "dioxus-native",
+    "blitz-paint"
+   ],
+   [
+    "dioxus-native",
+    "futures-util"
+   ],
+   [
+    "dioxus-native",
+    "keyboard-types"
+   ],
+   [
+    "dioxus-native",
+    "rustc-hash"
+   ],
+   [
+    "wpt",
+    "markup5ever"
+   ],
+   [
+    "wpt",
+    "pollster"
+   ],
+   [
+    "wpt",
+    "style"
+   ],
+   [
+    "wpt",
+    "taffy"
+   ]
+  ],
+  "zero_ref_candidates": 107,
+  "top": [
+   [
+    "browser history/HistoryNav#current_url().",
+    "apps/browser/src/history.rs:67"
+   ],
+   [
+    "browser history/HistoryNav#has_back().",
+    "apps/browser/src/history.rs:68"
+   ],
+   [
+    "browser history/HistoryNav#has_forward().",
+    "apps/browser/src/history.rs:69"
+   ],
+   [
+    "browser history/HistoryNav#go_back().",
+    "apps/browser/src/history.rs:70"
+   ],
+   [
+    "browser history/HistoryNav#go_forward().",
+    "apps/browser/src/history.rs:71"
+   ],
+   [
+    "browser history/HistoryNav#navigate().",
+    "apps/browser/src/history.rs:72"
+   ],
+   [
+    "browser url_suggestions/impl#[Suggestion]row_key().",
+    "apps/browser/src/url_suggestions.rs:40"
+   ],
+   [
+    "accesskit_xplat impl#[Adapter]with_split_handlers().",
+    "packages/accesskit_xplat/src/lib.rs:197"
+   ],
+   [
+    "blitz-dom config/StyleThreading#Sequential#",
+    "packages/blitz-dom/src/config.rs:28"
+   ],
+   [
+    "blitz-dom document/impl#[BaseDocument]set_net_provider().",
+    "packages/blitz-dom/src/document.rs:544"
+   ]
+  ],
+  "fp_classes": {
+   "trait-impl (dispatch)": 561,
+   "derive/attr-invoked": 92,
+   "entry-point": 51,
+   "candidate": 107,
+   "test-only": 44,
+   "format-capture": 4,
+   "runtime-invoked (macro-generated binding)": 20
+  },
+  "zero_ref_rows": 1415,
+  "excluded_test_path": 536
+ },
+ "candidates_by_kind": {
+  "fn": 87,
+  "type": 16,
+  "term": 3,
+  "macro": 1
+ },
+ "candidates_by_crate": {
+  "blitz-dom": 52,
+  "blitz-test-harness": 13,
+  "blitz-traits": 11,
+  "browser": 7,
+  "blitz-paint": 6,
+  "dioxus-native": 6,
+  "blitz-vibey-script": 3,
+  "blitz-net": 2,
+  "blitz-shell": 2,
+  "debug_timer": 2,
+  "dioxus-native-dom": 2,
+  "accesskit_xplat": 1
+ },
+ "candidates": [
+  [
+   "browser history/HistoryNav#current_url().",
+   "apps/browser/src/history.rs:67",
+   "fn",
+   "browser"
+  ],
+  [
+   "browser history/HistoryNav#has_back().",
+   "apps/browser/src/history.rs:68",
+   "fn",
+   "browser"
+  ],
+  [
+   "browser history/HistoryNav#has_forward().",
+   "apps/browser/src/history.rs:69",
+   "fn",
+   "browser"
+  ],
+  [
+   "browser history/HistoryNav#go_back().",
+   "apps/browser/src/history.rs:70",
+   "fn",
+   "browser"
+  ],
+  [
+   "browser history/HistoryNav#go_forward().",
+   "apps/browser/src/history.rs:71",
+   "fn",
+   "browser"
+  ],
+  [
+   "browser history/HistoryNav#navigate().",
+   "apps/browser/src/history.rs:72",
+   "fn",
+   "browser"
+  ],
+  [
+   "browser url_suggestions/impl#[Suggestion]row_key().",
+   "apps/browser/src/url_suggestions.rs:40",
+   "fn",
+   "browser"
+  ],
+  [
+   "accesskit_xplat impl#[Adapter]with_split_handlers().",
+   "packages/accesskit_xplat/src/lib.rs:197",
+   "fn",
+   "accesskit_xplat"
+  ],
+  [
+   "blitz-dom config/StyleThreading#Sequential#",
+   "packages/blitz-dom/src/config.rs:28",
+   "type",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom document/impl#[BaseDocument]set_net_provider().",
+   "packages/blitz-dom/src/document.rs:544",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom document/impl#[BaseDocument]set_navigation_provider().",
+   "packages/blitz-dom/src/document.rs:549",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom document/impl#[BaseDocument]set_html_parser_provider().",
+   "packages/blitz-dom/src/document.rs:559",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom document/impl#[BaseDocument]set_base_url().",
+   "packages/blitz-dom/src/document.rs:564",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom document/impl#[BaseDocument]as_any_mut().",
+   "packages/blitz-dom/src/document.rs:633",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom document/impl#[BaseDocument]take_pending_resource_deallocations().",
+   "packages/blitz-dom/src/document.rs:810",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom document/impl#[BaseDocument]print_subtree().",
+   "packages/blitz-dom/src/document.rs:1091",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom document/impl#[BaseDocument]remove_user_agent_stylesheet().",
+   "packages/blitz-dom/src/document.rs:1136",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom document/impl#[BaseDocument]author_stylesheets().",
+   "packages/blitz-dom/src/document.rs:1149",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom document/impl#[BaseDocument]useragent_stylesheets().",
+   "packages/blitz-dom/src/document.rs:1154",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom document/impl#[BaseDocument]upsert_stylesheet_for_node().",
+   "packages/blitz-dom/src/document.rs:1187",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom document/impl#[BaseDocument]subdoc().",
+   "packages/blitz-dom/src/document.rs:2016",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom SelectorList#",
+   "packages/blitz-dom/src/lib.rs:121",
+   "type",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/custom_widget/impl#[BaseDocument]can_create_surfaces().",
+   "packages/blitz-dom/src/node/custom_widget.rs:15",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/custom_widget/impl#[BaseDocument]destroy_surfaces().",
+   "packages/blitz-dom/src/node/custom_widget.rs:34",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/custom_widget/Widget#connected().",
+   "packages/blitz-dom/src/node/custom_widget.rs:79",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/custom_widget/Widget#disconnected().",
+   "packages/blitz-dom/src/node/custom_widget.rs:81",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/custom_widget/CustomWidgetStatus#PendingRemoval#",
+   "packages/blitz-dom/src/node/custom_widget.rs:153",
+   "type",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/element/SpecialElementType#Stylesheet#",
+   "packages/blitz-dom/src/node/element.rs:329",
+   "type",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/element/SpecialElementType#Image#",
+   "packages/blitz-dom/src/node/element.rs:330",
+   "type",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/element/SpecialElementType#Canvas#",
+   "packages/blitz-dom/src/node/element.rs:331",
+   "type",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/element/SpecialElementType#TableRoot#",
+   "packages/blitz-dom/src/node/element.rs:332",
+   "type",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/element/SpecialElementType#TextInput#",
+   "packages/blitz-dom/src/node/element.rs:333",
+   "type",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/element/SpecialElementType#CheckboxInput#",
+   "packages/blitz-dom/src/node/element.rs:334",
+   "type",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/element/SpecialElementType#FileInput#",
+   "packages/blitz-dom/src/node/element.rs:336",
+   "type",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/element/SpecialElementType#None#",
+   "packages/blitz-dom/src/node/element.rs:338",
+   "type",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/element/impl#[ElementData]raster_image_data_mut().",
+   "packages/blitz-dom/src/node/element.rs:522",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/element/impl#[ElementData]canvas_data().",
+   "packages/blitz-dom/src/node/element.rs:529",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/element/impl#[ElementData]file_data_mut().",
+   "packages/blitz-dom/src/node/element.rs:621",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/element/Status#Error#",
+   "packages/blitz-dom/src/node/element.rs:850",
+   "type",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/node/DisplayOuter#",
+   "packages/blitz-dom/src/node/node.rs:43",
+   "type",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/node/DisplayOuter#Block#",
+   "packages/blitz-dom/src/node/node.rs:44",
+   "type",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/node/DisplayOuter#Inline#",
+   "packages/blitz-dom/src/node/node.rs:45",
+   "type",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/node/DisplayOuter#None#",
+   "packages/blitz-dom/src/node/node.rs:46",
+   "type",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/node/impl#[Node]element_state_mut().",
+   "packages/blitz-dom/src/node/node.rs:172",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/node/impl#[Node]snapshot_handled_mut().",
+   "packages/blitz-dom/src/node/node.rs:173",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/node/impl#[Node]selector_flags_mut().",
+   "packages/blitz-dom/src/node/node.rs:177",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/node/impl#[Node]cache().",
+   "packages/blitz-dom/src/node/node.rs:246",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/node/impl#[Node]pe_by_index().",
+   "packages/blitz-dom/src/node/node.rs:451",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/node/impl#[Node]flush_style_attribute().",
+   "packages/blitz-dom/src/node/node.rs:1173",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/node/impl#[Node]hit().",
+   "packages/blitz-dom/src/node/node.rs:1287",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/serialize/impl#[Node]outer_html_pretty().",
+   "packages/blitz-dom/src/node/serialize.rs:88",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/svg/impl#[SvgImageData]resolved_width().",
+   "packages/blitz-dom/src/node/svg.rs:143",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/svg/impl#[SvgImageData]resolved_height().",
+   "packages/blitz-dom/src/node/svg.rs:154",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom node/text/impl#[TextLayout]content_widths().",
+   "packages/blitz-dom/src/node/text.rs:39",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom query_selector/impl#[BaseDocument]query_selector_raw().",
+   "packages/blitz-dom/src/query_selector.rs:91",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom query_selector/impl#[BaseDocument]query_selector_all_raw().",
+   "packages/blitz-dom/src/query_selector.rs:149",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom query_selector/impl#[Node]query_selector_raw().",
+   "packages/blitz-dom/src/query_selector.rs:221",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom traversal/impl#[BaseDocument]non_anon_ancestor_if_anon().",
+   "packages/blitz-dom/src/traversal.rs:122",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom tree/impl#[NodeTree]is_empty().",
+   "packages/blitz-dom/src/tree.rs:80",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-dom util/ToColorColor#as_color_color().",
+   "packages/blitz-dom/src/util.rs:168",
+   "fn",
+   "blitz-dom"
+  ],
+  [
+   "blitz-net impl#[Provider]count().",
+   "packages/blitz-net/src/lib.rs:133",
+   "fn",
+   "blitz-net"
+  ],
+  [
+   "blitz-net ReqwestExt#apply_body().",
+   "packages/blitz-net/src/lib.rs:416",
+   "fn",
+   "blitz-net"
+  ],
+  [
+   "blitz-paint color/ToColorColor#as_srgb_color().",
+   "packages/blitz-paint/src/color.rs:8",
+   "fn",
+   "blitz-paint"
+  ],
+  [
+   "blitz-paint color/ToColorColor#as_dynamic_color().",
+   "packages/blitz-paint/src/color.rs:11",
+   "fn",
+   "blitz-paint"
+  ],
+  [
+   "blitz-paint kurbo_css/css_box/BuildBezpath#TOLERANCE.",
+   "packages/blitz-paint/src/kurbo_css/css_box.rs:587",
+   "term",
+   "blitz-paint"
+  ],
+  [
+   "blitz-paint kurbo_css/css_box/BuildBezpath#insert_arc().",
+   "packages/blitz-paint/src/kurbo_css/css_box.rs:588",
+   "fn",
+   "blitz-paint"
+  ],
+  [
+   "blitz-paint kurbo_css/css_box/BuildBezpath#insert_point().",
+   "packages/blitz-paint/src/kurbo_css/css_box.rs:589",
+   "fn",
+   "blitz-paint"
+  ],
+  [
+   "blitz-paint layers/LayerManager#layer_depth_used.",
+   "packages/blitz-paint/src/layers.rs:15",
+   "term",
+   "blitz-paint"
+  ],
+  [
+   "blitz-shell net/data_uri_net_provider/impl#[DataUriNetProvider]shared().",
+   "packages/blitz-shell/src/net.rs:44",
+   "fn",
+   "blitz-shell"
+  ],
+  [
+   "blitz-shell window/impl#[`View<Rend>`]theme_override().",
+   "packages/blitz-shell/src/window.rs:260",
+   "fn",
+   "blitz-shell"
+  ],
+  [
+   "blitz-test-harness harness/impl#[`Harness<D>`]into_inner().",
+   "packages/blitz-test-harness/src/harness.rs:103",
+   "fn",
+   "blitz-test-harness"
+  ],
+  [
+   "blitz-test-harness harness/impl#[`Harness<D>`]time().",
+   "packages/blitz-test-harness/src/harness.rs:118",
+   "fn",
+   "blitz-test-harness"
+  ],
+  [
+   "blitz-test-harness harness/impl#[`Harness<D>`]tick().",
+   "packages/blitz-test-harness/src/harness.rs:129",
+   "fn",
+   "blitz-test-harness"
+  ],
+  [
+   "blitz-test-harness harness/impl#[`Harness<D>`]set_viewport_size().",
+   "packages/blitz-test-harness/src/harness.rs:182",
+   "fn",
+   "blitz-test-harness"
+  ],
+  [
+   "blitz-test-harness input/impl#[`Harness<D>`]mouse_down_at().",
+   "packages/blitz-test-harness/src/input.rs:111",
+   "fn",
+   "blitz-test-harness"
+  ],
+  [
+   "blitz-test-harness input/impl#[`Harness<D>`]mouse_up_at().",
+   "packages/blitz-test-harness/src/input.rs:117",
+   "fn",
+   "blitz-test-harness"
+  ],
+  [
+   "blitz-test-harness input/impl#[`Harness<D>`]drag().",
+   "packages/blitz-test-harness/src/input.rs:138",
+   "fn",
+   "blitz-test-harness"
+  ],
+  [
+   "blitz-test-harness input/impl#[`Harness<D>`]tap().",
+   "packages/blitz-test-harness/src/input.rs:152",
+   "fn",
+   "blitz-test-harness"
+  ],
+  [
+   "blitz-test-harness input/impl#[`Harness<D>`]touch_down().",
+   "packages/blitz-test-harness/src/input.rs:166",
+   "fn",
+   "blitz-test-harness"
+  ],
+  [
+   "blitz-test-harness input/impl#[`Harness<D>`]touch_move().",
+   "packages/blitz-test-harness/src/input.rs:172",
+   "fn",
+   "blitz-test-harness"
+  ],
+  [
+   "blitz-test-harness input/impl#[`Harness<D>`]touch_up().",
+   "packages/blitz-test-harness/src/input.rs:178",
+   "fn",
+   "blitz-test-harness"
+  ],
+  [
+   "blitz-test-harness input/impl#[`Harness<D>`]ime().",
+   "packages/blitz-test-harness/src/input.rs:228",
+   "fn",
+   "blitz-test-harness"
+  ],
+  [
+   "blitz-test-harness inspect/impl#[`Harness<D>`]hovered().",
+   "packages/blitz-test-harness/src/inspect.rs:113",
+   "fn",
+   "blitz-test-harness"
+  ],
+  [
+   "blitz-traits devtools/DevtoolSettings#element_picker.",
+   "packages/blitz-traits/src/devtools.rs:21",
+   "term",
+   "blitz-traits"
+  ],
+  [
+   "blitz-traits events/impl#[EventState]propagation_is_stopped().",
+   "packages/blitz-traits/src/events.rs:41",
+   "fn",
+   "blitz-traits"
+  ],
+  [
+   "blitz-traits events/impl#[EventState]merge().",
+   "packages/blitz-traits/src/events.rs:51",
+   "fn",
+   "blitz-traits"
+  ],
+  [
+   "blitz-traits events/impl#[UiEvent]discriminant().",
+   "packages/blitz-traits/src/events.rs:74",
+   "fn",
+   "blitz-traits"
+  ],
+  [
+   "blitz-traits events/impl#[DomEventData]kind().",
+   "packages/blitz-traits/src/events.rs:312",
+   "fn",
+   "blitz-traits"
+  ],
+  [
+   "blitz-traits shell/ShellProvider#set_window_minimized().",
+   "packages/blitz-traits/src/shell.rs:48",
+   "fn",
+   "blitz-traits"
+  ],
+  [
+   "blitz-traits shell/ShellProvider#set_window_maximized().",
+   "packages/blitz-traits/src/shell.rs:51",
+   "fn",
+   "blitz-traits"
+  ],
+  [
+   "blitz-traits shell/ShellProvider#is_window_maximized().",
+   "packages/blitz-traits/src/shell.rs:54",
+   "fn",
+   "blitz-traits"
+  ],
+  [
+   "blitz-traits shell/ShellProvider#set_window_decorations().",
+   "packages/blitz-traits/src/shell.rs:57",
+   "fn",
+   "blitz-traits"
+  ],
+  [
+   "blitz-traits shell/ShellProvider#drag_window().",
+   "packages/blitz-traits/src/shell.rs:62",
+   "fn",
+   "blitz-traits"
+  ],
+  [
+   "blitz-traits shell/impl#[Viewport]zoom().",
+   "packages/blitz-traits/src/shell.rs:135",
+   "fn",
+   "blitz-traits"
+  ],
+  [
+   "blitz-vibey-script document/impl#[ScriptDocument]external_script_urls().",
+   "packages/blitz-vibey-script/src/document.rs:218",
+   "fn",
+   "blitz-vibey-script"
+  ],
+  [
+   "blitz-vibey-script dom/hyperlink/component_getter().",
+   "packages/blitz-vibey-script/src/dom/hyperlink.rs:106",
+   "fn",
+   "blitz-vibey-script"
+  ],
+  [
+   "blitz-vibey-script dom/hyperlink/component_setter().",
+   "packages/blitz-vibey-script/src/dom/hyperlink.rs:148",
+   "fn",
+   "blitz-vibey-script"
+  ],
+  [
+   "debug_timer dummy_debug_timer/impl#[DebugTimer]init().",
+   "packages/debug_timer/src/lib.rs:74",
+   "fn",
+   "debug_timer"
+  ],
+  [
+   "debug_timer debug_timer_type!",
+   "packages/debug_timer/src/lib.rs:119",
+   "macro",
+   "debug_timer"
+  ],
+  [
+   "dioxus-native-dom events/impl#[NodeHandle]doc().",
+   "packages/dioxus-native-dom/src/events.rs:150",
+   "fn",
+   "dioxus-native-dom"
+  ],
+  [
+   "dioxus-native-dom events/impl#[NodeHandle]node_mut().",
+   "packages/dioxus-native-dom/src/events.rs:171",
+   "fn",
+   "dioxus-native-dom"
+  ],
+  [
+   "dioxus-native assets/impl#[DioxusNativeNetProvider]shared().",
+   "packages/dioxus-native/src/assets.rs:12",
+   "fn",
+   "dioxus-native"
+  ],
+  [
+   "dioxus-native assets/impl#[DioxusNativeNetProvider]inner().",
+   "packages/dioxus-native/src/assets.rs:36",
+   "fn",
+   "dioxus-native"
+  ],
+  [
+   "dioxus-native config/impl#[Config]with_font_ctx().",
+   "packages/dioxus-native/src/config.rs:61",
+   "fn",
+   "dioxus-native"
+  ],
+  [
+   "dioxus-native dioxus_application/impl#[DioxusNativeApplication]add_window().",
+   "packages/dioxus-native/src/dioxus_application.rs:54",
+   "fn",
+   "dioxus-native"
+  ],
+  [
+   "dioxus-native dioxus_renderer/impl#[DioxusNativeWindowRenderer]with_features_and_limits().",
+   "packages/dioxus-native/src/dioxus_renderer.rs:66",
+   "fn",
+   "dioxus-native"
+  ],
+  [
+   "dioxus-native use_raw_window_handle().",
+   "packages/dioxus-native/src/lib.rs:85",
+   "fn",
+   "dioxus-native"
+  ]
+ ],
+ "fp_class_note": "counts are candidates, never dead: entry points, runtime-invoked surfaces, test-only helpers, trait-impl dispatch, derive/attr-invoked and format-string captures are classed out first"
+}

@@ -34,7 +34,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
 [2026-10-06-accessibility-tree-identity] Accessibility-tree identity — stable id on every accessibility node, stand controls carrying role and name (v010-03; per a11y-plan §2)
 
 ### Epoch 3 — Observation model
-Upstream sync ahead of the observation model — upstream/main merged, our changes kept additive; our tests and CI prove our logic survived (per intent §Principles)
+[2026-10-06-upstream-sync-observation-model] Upstream sync ahead of the observation model — upstream/main merged, our changes kept additive; our tests and CI prove our logic survived (per intent §Principles)
    ↓
 Snapshot model — screen as a tree of id, role, name, state, bounds (v010-04)  CARRY: upstream inline-geometry APIs (from 2026-10-06-upstream-sync-element-identity) — the `23354585` merge brought `Node::inline_fragment_boxes` (per-fragment `taffy::Rect<f32>` boxes of a non-atomic inline) and `BaseDocument::inline_fragment_rects` returning `Option<impl Iterator<Item = BoundingRect>>` (was a `Vec`); no escher code calls either yet — candidates for an inline element's snapshot bounds (that chunk's report, Changes → Symbols / APIs)
    ↓
