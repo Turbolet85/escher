@@ -1,0 +1,117 @@
+[
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "1f4f95b3",
+"ts": "2026-10-07T01:57:59Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-07-change-tracking-and-diff",
+"--run-dir",
+".andromeda/runs/2026-10-07T01-31-03-wrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"flip master-route.md:28 - 2026-10-07-change-tracking-and-diff pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "1f4f95b3",
+"ts": "2026-10-07T01:57:59Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-07-change-tracking-and-diff",
+"--date",
+"2026-10-07",
+"--run-dir",
+".andromeda/runs/2026-10-07T01-31-03-wrap",
+"--dry-run"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"pin :47 strip CARRY: 723ch \"CARRY: the snapshot's text form (from 20\"",
+"pin next markerless :50 holds no freight",
+"47 · 2026-10-07-change-tracking-and-diff · strip 1 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 47,
+"marker": "2026-10-07-change-tracking-and-diff",
+"blocks": 1,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "1f4f95b3",
+"ts": "2026-10-07T01:58:05Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-07-change-tracking-and-diff",
+"--date",
+"2026-10-07",
+"--run-dir",
+".andromeda/runs/2026-10-07T01-31-03-wrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"pin :47 strip CARRY: 723ch \"CARRY: the snapshot's text form (from 20\"",
+"pin next markerless :50 holds no freight",
+"47 · 2026-10-07-change-tracking-and-diff · strip 1 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.1.0/route-archive.md",
+"./escher-0.1.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 47,
+"marker": "2026-10-07-change-tracking-and-diff",
+"blocks": 1,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]

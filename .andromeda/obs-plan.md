@@ -29,7 +29,7 @@
 
 - Telemetry is the `tracing` crate's event macros, in the engine and upstream crates compiled in only with the `tracing` cargo feature (packages/blitz-dom/src/util.rs:26-27; packages/blitz-dom/src/events/ime.rs:27-28); escher-telemetry depends on `tracing` with no feature and always compiles its startup and panic events into `seven_guis_native`, whose engine `tracing` features stay off (packages/escher-telemetry/Cargo.toml:13-16; packages/escher-telemetry/src/lib.rs:132; packages/escher-telemetry/src/panic.rs:11-21)
 - Each feature-gated `tracing` call has a no-op path when the feature is off (packages/blitz-dom/src/layout/mod.rs:131-139; packages/blitz-dom/src/layout/construct.rs:480-488)
-- Each blitz-dom log site is compiled only with `#[cfg(feature = "tracing")]` (packages/blitz-dom/src/document.rs:1269; packages/blitz-dom/src/mutator.rs:1188)
+- Each blitz-dom log site is compiled only with `#[cfg(feature = "tracing")]` (packages/blitz-dom/src/document.rs:1276; packages/blitz-dom/src/mutator.rs:1233)
 - The blitz-dom crate root comment lists a `tracing` feature that "Enables tracing support", under a TODO to document features (packages/blitz-dom/src/lib.rs:26-29)
 - `tracing` is the only telemetry dependency in blitz-paint and blitz-shell, where it is optional (packages/blitz-paint/Cargo.toml:15; packages/blitz-paint/Cargo.toml:50; packages/blitz-shell/Cargo.toml:21; packages/blitz-shell/Cargo.toml:42)
 - `tracing` is an optional dependency of blitz-net and blitz-html, enabled only by the `tracing` feature (packages/blitz-net/Cargo.toml:18; packages/blitz-net/Cargo.toml:35; packages/blitz-html/Cargo.toml:15; packages/blitz-html/Cargo.toml:26)
@@ -172,12 +172,12 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
   - info at target `escher_telemetry`, message `telemetry installed`, once per successful init — no argv, path or URL (packages/escher-telemetry/src/lib.rs:132)
   - ERROR at target `escher_telemetry::panic`, message `panic`, fields `panic.file`, `panic.line`, `panic.column`, `panic.payload` (redacted), once per panic (packages/escher-telemetry/src/panic.rs:11-21)
 - **blitz-dom (document / resolve / mutator / net)**
-  - warn: no DOM on resolve (packages/blitz-dom/src/resolve.rs:44) and on hit test (packages/blitz-dom/src/document.rs:1810)
+  - warn: no DOM on resolve (packages/blitz-dom/src/resolve.rs:44) and on hit test (packages/blitz-dom/src/document.rs:1821)
   - warn: unimplemented form scheme/method (packages/blitz-dom/src/form.rs:152-157)
-  - info: image cache hit, pending queue and fetch (packages/blitz-dom/src/mutator.rs:1146-1166); image loaded and node count (packages/blitz-dom/src/document.rs:1379-1383)
-  - warn: iframe depth cap and unresolvable iframe URL (packages/blitz-dom/src/mutator.rs:1188-1192; packages/blitz-dom/src/mutator.rs:1215-1216)
-  - warn: resource load failed with and without URL (packages/blitz-dom/src/document.rs:1269-1280)
-  - info: focussed node (packages/blitz-dom/src/document.rs:1681-1682)
+  - info: image cache hit, pending queue and fetch (packages/blitz-dom/src/mutator.rs:1191-1211); image loaded and node count (packages/blitz-dom/src/document.rs:1386-1390)
+  - warn: iframe depth cap and unresolvable iframe URL (packages/blitz-dom/src/mutator.rs:1233-1237; packages/blitz-dom/src/mutator.rs:1260-1261)
+  - warn: resource load failed with and without URL (packages/blitz-dom/src/document.rs:1276-1287)
+  - info: focussed node (packages/blitz-dom/src/document.rs:1692-1693)
   - info/warn: WOFF decompression and skipped font sources (packages/blitz-dom/src/net.rs:340-365; packages/blitz-dom/src/net.rs:476-495)
   - `debug_log_node` prints layout, attributes, inline layout and children via `println!` and `tracing::info!` (packages/blitz-dom/src/debug.rs:17-153)
 - **blitz-dom (events / util)**
@@ -245,8 +245,8 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 **Error classes captured:**
 
 - Browser: JS errors are drained with `take_js_errors` and logged (apps/browser/src/document_loader.rs:241-244); load errors are shown to the user on an error page with the Debug-formatted error (apps/browser/src/document_loader.rs:154-166)
-- blitz-dom: resource load errors are logged as `tracing::warn!` with `error` field and not propagated further (packages/blitz-dom/src/document.rs:1266-1285)
-- blitz-dom: stylesheets are parsed with no error reporter (`None, // error_reporter`) (packages/blitz-dom/src/net.rs:166; packages/blitz-dom/src/net.rs:276; packages/blitz-dom/src/document.rs:1179)
+- blitz-dom: resource load errors are logged as `tracing::warn!` with `error` field and not propagated further (packages/blitz-dom/src/document.rs:1273-1292)
+- blitz-dom: stylesheets are parsed with no error reporter (`None, // error_reporter`) (packages/blitz-dom/src/net.rs:166; packages/blitz-dom/src/net.rs:276; packages/blitz-dom/src/document.rs:1186)
 - blitz-dom: recoverable failures are logged and a fallback is used, as with font decompression (packages/blitz-dom/src/util.rs:25-29)
 - blitz-dom layout: SVG parse errors are captured into the `error` field of a warn event and not propagated (packages/blitz-dom/src/layout/construct.rs:479-489)
 - blitz-net: fetch errors in `NetProvider::fetch` are logged and not propagated to the handler (packages/blitz-net/src/lib.rs:298-310); `ProviderError` implements `Display` with a message per variant (packages/blitz-net/src/lib.rs:369-382)
@@ -277,7 +277,7 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 **Values logged as-is (current truth):**
 
 - Visited URLs are logged at info and urlbar text at warn (apps/browser/src/document_loader.rs:121; apps/browser/src/toolbar.rs:130)
-- blitz-dom log lines include resource URLs (packages/blitz-dom/src/document.rs:1270-1275; packages/blitz-dom/src/mutator.rs:1147; packages/blitz-dom/src/mutator.rs:1166)
+- blitz-dom log lines include resource URLs (packages/blitz-dom/src/document.rs:1277-1282; packages/blitz-dom/src/mutator.rs:1192; packages/blitz-dom/src/mutator.rs:1211)
 - `debug_log_node` prints every attribute name and value of a node (packages/blitz-dom/src/debug.rs:28-32)
 - Log lines include the raw href, the document URL and element attributes unfiltered (packages/blitz-dom/src/events/pointer.rs:753; packages/blitz-dom/src/events/pointer.rs:758)
 - The SVG parse-failure event carries the element's full outer HTML in field `html` (packages/blitz-dom/src/layout/construct.rs:463; packages/blitz-dom/src/layout/construct.rs:481-486)

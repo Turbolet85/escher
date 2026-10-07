@@ -27,6 +27,11 @@ _Documented architectural traps from `.andromeda/architecture.md` and the specia
 **How to avoid:** hit-test results canonicalize to the element; removing a node retargets hover/active to the nearest surviving ancestor and resets focus to body.
 **References:** `tests/blitz-tests/tests/interaction_state_*.rs`
 
+## The changed set is not a diff
+**What breaks:** reading `has_changes()` / `take_changed_nodes()` as "what an agent sees changed". The set is engine-touched: an attribute re-written to itself marks and changes no reading, a further character in a masked password marks and changes no reading, and bounds-only movement (a re-wrap, a scroll) changes a reading and marks nothing. It holds `NodeId`s of text nodes too, and a drained id may name a dropped node.
+**How to avoid:** take what changed from `Snapshot::diff` over two snapshots; read a drained id through `get_node`; drain before a step you want to observe (after boot the set holds the initial build).
+**References:** arch §Cross-cutting Patterns (Invalidation and state integrity); `tests/blitz-tests/tests/stand_diff.rs`
+
 ## Mutations mask under-damage
 **What breaks:** a test that changes an attribute inserts `CONSTRUCT_BOX` everywhere and hides an under-damaging restyle bug.
 **How to avoid:** drive pure-restyle paths with `:hover`; run both layout modes against the incremental oracle.

@@ -24,7 +24,7 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 - `cargo test --workspace --locked` — the CI `test` leg (ubuntu, default features)
 - `cargo test --all --tests --locked` — the windows/macos matrix leg (linux is covered by the `test` leg)
 - `cargo test -p blitz-tests --test {name}` — one integration-test file
-- `cargo test -p blitz-tests --locked --test stand_boot --test stand_counter --test stand_flight_booker --test stand_timer --test stand_crud --test stand_element_ids --test stand_id_persistence --test stand_accessibility_ids --test stand_snapshot --test stand_snapshot_state --test stand_snapshot_text --test stand_id_edits --test stand_actionable_keys` — the headless-stand checks, package-alone (the bundled font must decode without workspace feature unification)
+- `cargo test -p blitz-tests --locked --test stand_boot --test stand_counter --test stand_flight_booker --test stand_timer --test stand_crud --test stand_element_ids --test stand_id_persistence --test stand_accessibility_ids --test stand_snapshot --test stand_snapshot_state --test stand_snapshot_text --test stand_diff --test stand_id_edits --test stand_actionable_keys` — the headless-stand checks, package-alone (the bundled font must decode without workspace feature unification)
 - `cargo test -p {crate}` — one crate's unit tests
 - `cargo test -p blitz-tests --release --test paint_tree_bench -- --ignored --nocapture` — ignored benchmarks (`PAINT_TREE_BENCH_HTML=<file>` for an external page)
 - `python3 -m unittest discover -s .github/scripts` — CI Python script tests (the `ci-scripts` leg; needs PyYAML) — `test_ci_workflows.py`, `test_agent_run.py` and `test_cold_agent.py` among them

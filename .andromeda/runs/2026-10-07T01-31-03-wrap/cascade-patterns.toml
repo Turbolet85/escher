@@ -1,0 +1,75 @@
+# Cascade step-2 sweep — 2026-10-07-change-tracking-and-diff. Derived from every amendment of the pass.
+
+[[pattern]]
+id = "has_changes"
+fixed = 'has_changes'
+
+[[pattern]]
+id = "changed_nodes"
+fixed = 'changed_nodes'
+
+[[pattern]]
+id = "on-poll"
+regex = '(refreshed|rebuilt|updated|refresh|rebuild)[a-z ]* on (a |every )?poll'
+ignore_case = true
+
+[[pattern]]
+id = "doc-changes"
+regex = 'when the document (has changes|changes|is mutated|has been mutated)'
+ignore_case = true
+
+[[pattern]]
+id = "initial-tree"
+fixed = 'InitialTreeRequested'
+
+[[pattern]]
+id = "update_tree"
+fixed = 'update_tree'
+
+[[pattern]]
+id = "to_text-readers"
+fixed = 'Snapshot::to_text'
+
+[[pattern]]
+id = "gated-modules"
+regex = '`snapshot`, `snapshot_text`'
+
+[[pattern]]
+id = "feature-list"
+fixed = 'its text form and'
+
+[[pattern]]
+id = "all-three"
+fixed = 'all three of which'
+
+[[pattern]]
+id = "file-list"
+fixed = 'snapshot_text.rs since'
+
+[[pattern]]
+id = "units-41"
+regex = '\b41 unit'
+
+[[pattern]]
+id = "six-files"
+fixed = 'six files'
+
+[[pattern]]
+id = "tests-25"
+regex = '\b25 `#\[test\]`'
+
+[[pattern]]
+id = "stand-54"
+regex = '\b54 `ok`|\b54 stand|`ok` 54\b'
+
+[[pattern]]
+id = "workspace-518"
+regex = '\b518 (passed|·)|\b130 result'
+
+[[pattern]]
+id = "stand-files"
+fixed = 'stand_snapshot_text'
+
+[[pattern]]
+id = "set-doc"
+fixed = 'set of changed nodes'
