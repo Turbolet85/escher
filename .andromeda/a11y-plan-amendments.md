@@ -159,3 +159,13 @@ One entry per amendment to `a11y-plan.md` (sidecar-contract.md §Entry form). Ap
 **Change:** the driver's `disabled` refusal is detected on the snapshot's presence reading and no other — `Session::run` refuses a `click` or a `type` when the node's `enabled` is `Some(false)`, the first of its three screen-level checks, with nothing dispatched and focus as it was; on the stand `crud-delete` and `flight-return-date` are refused and acted on once they read enabled (was "named and worded only, with nothing yet detecting it").
 **Why:** the chunk built the detection. Rule kept: `disabled` is read from the snapshot's `enabled`, never from the attribute's value, from focusability or from a role list of the driver's own.
 **Ref:** .andromeda/runs/2026-10-07T20-27-47-wrap/
+
+## 2026-10-07-driver-command-spans — the obs log format restated as two record classes; the driver's third dependency
+**Section:** §1 → Dioxus crates · §3 (the closing NOT YET MEASURED note) · §7 (one citation)
+**Change:**
+- §3: the sink's format reads as two record classes — one line per printed event and one per closed span of an admitted target — both behind the same allowlist; the second is PROVISIONAL in obs-plan §6, which owns the mark. No a11y violation schema is defined against it (unchanged).
+- §1: "the lockfile is byte-identical" now reads as the act-by-id chunk's measurement; the session library's third dependency, `tracing`, taken with no feature, adds one lockfile line and no package, and neither platform adapter joins either seven_guis graph.
+- Citations re-pointed (`Cargo.toml:13-15` → `:13-16`; `execute.rs:205-223` → `:289-307`).
+**Why:** the note restates obs-plan §6, which changed; the dependency line restates the driver's manifest.
+**Kept:** "no `[features]` table of its own" — still true.
+**Ref:** .andromeda/runs/2026-10-07T22-32-46-wrap/

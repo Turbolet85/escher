@@ -246,3 +246,23 @@ One entry per amendment to `security-plan.md` (sidecar-contract.md §Entry form)
 **Why:** the chunk built the detection. The sixth verb widens a validated surface: ratified by the founder (2026-10-07), his own choice relayed verbatim by the overseer and confirmed by the operator at this wrap's escalation. The record is the operator's decision at the plan's forks; the remedy's rewording is the founder's ruling, the meaning's the operator's directive. Still in process: no crossing is added, and the first command that carries a call or an outcome out of the process asks the crossing question.
 **Kept:** the unbounded id length is stated as built and owned on the route; the plan's "about 4 MiB" is not written — it is no property of the code.
 **Ref:** .andromeda/runs/2026-10-07T20-27-47-wrap/
+
+## 2026-10-07-driver-command-spans — what the driver logs: one span, eight fixed-word or count fields
+**Section:** §Input Validation (the Driver command schema row; the `id` row, three citations) · §Error Handling (the `Refusal` bullet) · §Secret Management (one citation)
+**Change:**
+- Driver command schema row: was "nothing in the crate prints, logs or fields any of them"; now the crate prints nothing, fields none of `Command`, `Call`, `ArgValue`, `Outcome`, and fields one `tracing` span per call handed to `Session::run` — target `escher_driver`, name `command`, INFO — with eight fields: `verb` (the table's word, never the caller's text), `cause`, `settled`, `busy`, `passes`, `added` · `removed` · `changed`. Never fielded: any argument, `Refusal` or `Fault`, the screen text or its length, the label, the record of ids, `in_view`, `advanced_ms`. No subscriber installed by the crate; no env var and no clock read.
+- `Refusal` bullet: was "nothing prints, logs or sends one yet"; now exactly one thing of a refusal reaches a log — its cause's fixed name, as the span's `cause` field, recorded at one site for every refusal `run` returns. No `Fault`, meaning, remedy or `Display` text is fielded.
+- Citations into `execute.rs` and the telemetry `lib.rs` re-pointed.
+**Why:** the chunk built the span the route entry owed. A cause name holds nothing a call supplied, so the logged value cannot.
+**Kept:** "reads no clock" — the timings on a printed line are the sink's. "Not yet an external-input surface" — no socket, CLI or MCP tool reaches `validate`.
+**Ref:** .andromeda/runs/2026-10-07T22-32-46-wrap/
+
+## 2026-10-07-driver-command-spans — the sink's second record class and the diff's lengths, PROVISIONAL; typed text read in process
+**Section:** §Logging & Monitoring (escher's own sink) · §Input Validation (the `id` row; the accessible-names row)
+**Change:**
+- escher's own sink prints a second record class, PROVISIONAL: one line per closed span of an admitted target, nothing before the span closes, every pair — `span` included — judged by the rule that judges an event's field (engine target: the seven safe fields; escher target: all but the eleven content-named fields); an outside target's span writes no byte; a content-named span field's value is never stored, every other span field's value is held in process memory until the span closes.
+- A named limit, read from the locked `tracing-subscriber 0.3.23` and not exercised: when a field formatter returns an error at span creation the layer `eprintln!`s the span's attributes with `Debug`, unscrubbed. The sink's field formatter returns no error.
+- The `id` row: beside the founder-ratified "a diff is returned to its caller only, no log, event, socket or file carries it", not reworded, the body states, PROVISIONAL, that the three list lengths of a diff the driver returns are recorded on the command span and printed by the sink at `info` or below.
+- Typed text: was "not measured … types into an instance held in process, where no sink is installed" (two sites); now measured in process only — a sink capture of the six verbs and a refused call per cause holds 0 occurrences of the three supplied texts, 0 of 36 id needles and 0 of 8 name needles, in both layout modes — and still not measured in a sink-installing host's log. The session host's by-level reading re-measured unchanged.
+**Why:** a new record class is a boundary widening on the operator's answer; the diff clause is the founder's ratified sentence. The operator kept both marks at this wrap; they wait for the founder's batch at the Epoch 4 boundary.
+**Ref:** .andromeda/runs/2026-10-07T22-32-46-wrap/

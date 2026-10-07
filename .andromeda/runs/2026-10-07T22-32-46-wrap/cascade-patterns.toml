@@ -1,0 +1,82 @@
+# Cascade step-2 sweep, 2026-10-07-driver-command-spans. One pattern per retired claim or
+# moved count, derived from every amendment of this pass before the first sweep.
+
+[[pattern]]
+id = "per-event"
+fixed = 'per printed event'
+
+[[pattern]]
+id = "one-line-per"
+regex = 'one (non-JSON text )?line per|[Ll]ine shape, one per'
+
+[[pattern]]
+id = "no-tracing-dep"
+fixed = 'no `tracing` dependency'
+
+[[pattern]]
+id = "two-deps-only"
+regex = 'dioxus-native-dom only|third dependency|depending on blitz-test-harness and on'
+
+[[pattern]]
+id = "prints-logs"
+regex = 'prints, logs or fields|print or log nothing|nothing prints, logs or sends|logs nothing'
+
+[[pattern]]
+id = "no-span"
+regex = '(carry|carries) no span|[Nn]o spans|observed absent — spans|Driver command spans|silent by|#\[instrument\]'
+
+[[pattern]]
+id = "no-sink"
+regex = 'no sink is installed|install(s)? no (subscriber|escher sink|log sink|sink)|install(s)? none'
+
+[[pattern]]
+id = "typed-text"
+regex = 'typed text( in a host.s log)? (is )?(not |un)measured'
+ignore_case = true
+
+[[pattern]]
+id = "nine-act"
+regex = 'nine driver-action|nine `stand_act|nine files `stand_act|six `stand_act|of the nine'
+
+[[pattern]]
+id = "fourteen"
+regex = 'fourteen (readers|of the fifteen)|14 readers|by 14 |14 of which|14 in all|14 stand checks'
+
+[[pattern]]
+id = "old-counts"
+regex = '27 inline|10 inline unit|9 in `format\.rs`|execute\.rs 1 |153 result|647 passed|passed 107|29 files|other 14|\(27\)|27 tests'
+
+[[pattern]]
+id = "reexec"
+regex = 'three blitz-tests integration binaries|re-execute'
+
+[[pattern]]
+id = "lock"
+fixed = 'byte-identical'
+
+[[pattern]]
+id = "ungated"
+regex = 'ungated|with no feature'
+
+[[pattern]]
+id = "features-off"
+fixed = 'features stay off'
+
+[[pattern]]
+id = "diff-clause"
+regex = 'no log, event, socket or file|through the returned value only'
+
+[[pattern]]
+id = "fmt-layer"
+regex = 'fmt layer using the escher formatter|the event formatter'
+
+[[pattern]]
+id = "in-process"
+regex = 'held in process( only)?, where'
+
+[[pattern]]
+id = "old-cites"
+regex = 'escher-driver/src/execute\.rs:(15-57|59-142|86-88|144-314|165-203|186-253|205-223|257-267|316-346)|escher-driver/src/lib\.rs:(41-65|43-65)|escher-driver/Cargo\.toml:13-15|escher-telemetry/src/format\.rs:(21-107|123-155|123-198|134-138|200-376)|escher-telemetry/src/lib\.rs:(1-18|22-23|34-140|38-60|90-91|96-140|105-140|119-138|142-150|119(?![\d-])|138(?![\d-]))'
+
+# `PROVISIONAL` is not swept here: the tool refused it (no pre-pass master holds the word, so its
+# control cannot fire). It is read by hand after the pass; the listing is in cascade-dispositions.md.

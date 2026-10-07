@@ -1,0 +1,10 @@
+
+## 2026-10-07-driver-command-spans — the closed span's line, PROVISIONAL; a span's fields under the scrub; typed text read in process
+**Section:** §3 → Logging stack (the layer) · §6 → Log format · §8 → Values logged as-is, Scrubbing
+**Change:**
+- §6 Log format owns the mark: one line per printed event and, PROVISIONAL, one per closed span whose target the allowlist admits; no line when a span is created, recorded to, entered or exited. Shape: `{time} {LEVEL} {target} service.name=… service.version=… span={the span's name}`, the span's own fields in the order recorded, then `message`, `time.busy`, `time.idle`; level and target the span's; the timings `tracing-subscriber`'s own; `span` a reserved field name; a string Debug-quoted, a number or bool bare. An event's line is unchanged, inside a span included.
+- §8 Scrubbing: a closed span's every pair is judged by the same rule as an event's field — escher target: every pair unless content-named; engine target: only the safe fields, `span` and the three close fields among the redacted; any other target: no byte at any point. A content-named span field's value is never stored; every other is held in process memory until the span closes. The five scrub sets and the rule are unchanged.
+- §3: the layer is stated once in `sink_layer` — `with_span_events(FmtSpan::CLOSE)`, field formatter `SpanFields`.
+- §8 Values logged as-is: was "Typed text is NOT measured … where no sink is installed"; now measured in process only — 0 of 36 id needles, 0 of 8 name needles, 0 occurrences of the three supplied texts in a sink capture at `info`, both layout modes — and still NOT measured in a host's log. The session host's by-level reading re-measured unchanged (0 · 1 · 1 · 1).
+**Why:** a new record class in the sink is a boundary widening answered by the operator at the plan forks, not by the founder. The operator kept the mark at this wrap's invocation; it waits for the founder's batch at the Epoch 4 boundary, and no later wrap discharges it on its own judgement.
+**Ref:** .andromeda/runs/2026-10-07T22-32-46-wrap/

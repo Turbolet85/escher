@@ -1,0 +1,10 @@
+
+## 2026-10-07-driver-command-spans — the sink's second record class and the diff's lengths, PROVISIONAL; typed text read in process
+**Section:** §Logging & Monitoring (escher's own sink) · §Input Validation (the `id` row; the accessible-names row)
+**Change:**
+- escher's own sink prints a second record class, PROVISIONAL: one line per closed span of an admitted target, nothing before the span closes, every pair — `span` included — judged by the rule that judges an event's field (engine target: the seven safe fields; escher target: all but the eleven content-named fields); an outside target's span writes no byte; a content-named span field's value is never stored, every other span field's value is held in process memory until the span closes.
+- A named limit, read from the locked `tracing-subscriber 0.3.23` and not exercised: when a field formatter returns an error at span creation the layer `eprintln!`s the span's attributes with `Debug`, unscrubbed. The sink's field formatter returns no error.
+- The `id` row: beside the founder-ratified "a diff is returned to its caller only, no log, event, socket or file carries it", not reworded, the body states, PROVISIONAL, that the three list lengths of a diff the driver returns are recorded on the command span and printed by the sink at `info` or below.
+- Typed text: was "not measured … types into an instance held in process, where no sink is installed" (two sites); now measured in process only — a sink capture of the six verbs and a refused call per cause holds 0 occurrences of the three supplied texts, 0 of 36 id needles and 0 of 8 name needles, in both layout modes — and still not measured in a sink-installing host's log. The session host's by-level reading re-measured unchanged.
+**Why:** a new record class is a boundary widening on the operator's answer; the diff clause is the founder's ratified sentence. The operator kept both marks at this wrap; they wait for the founder's batch at the Epoch 4 boundary.
+**Ref:** .andromeda/runs/2026-10-07T22-32-46-wrap/

@@ -1,0 +1,13 @@
+
+## 2026-10-07-driver-command-spans — the driver's command span; `tracing` its third dependency
+**Section:** §Established Decisions → [Driver session] · §Standard Contracts → Driver session · §Occupied Resources → Names, Process-wide state and threads, Environment variables (one citation) · §Conventions → Feature gating, Tests · §Inherited Defaults → Optional capabilities · §Existing Scopes (escher-driver, blitz-tests)
+**Change:**
+- escher-driver depends on three crates: blitz-test-harness, dioxus-native-dom and `tracing` (`{ workspace = true }`, no cargo feature, no `[features]` table). Was "blitz-test-harness and dioxus-native-dom only … no `tracing` dependency, span or event". `Cargo.lock` gained one line (`"tracing",` in the escher-driver entry) and no package; "`Cargo.lock` is byte-identical" now reads as the act-by-id chunk's measurement.
+- Every call handed to `Session::run` leaves one `tracing` span: target `escher_driver`, name `command`, level INFO, built with `tracing::info_span!` (no `#[instrument]`), entered before `validate` and held until `run` returns. Eight fields, each recorded only where it applies: `verb` · `cause` · `settled` · `busy` · `passes` · `added` · `removed` · `changed`. `snapshot` records `verb` alone; a refused call `verb` and `cause` only. Never fielded: `in_view`, `advanced_ms`, the screen text or its length, the label, the record of ids, any argument, any `Command`, `Call`, `ArgValue`, `Outcome`, `Refusal` or `Fault`. Was "nothing in the crate prints, logs or fields any of the four"; now the crate prints nothing, fields none of the four and fields those eight values. `run`'s signature is unchanged; its former body is the private `Session::execute`.
+- `escher_driver` is a registered log target. escher-driver joins escher-telemetry under the ungated form.
+- Four blitz-tests binaries re-execute themselves (was three): `stand_act_spans` runs two ignored children, `RUST_LOG=info` set on one and removed from the other, each installing the sink over an in-memory capture.
+- Counts: `stand_act_*` 10 files, 29 tests and two ignored children (was 9, 27); `session_common` 15 readers (was 14); `mod common;` 15 stand checks (was 14).
+- Citations into `execute.rs`, the driver's `lib.rs` and `Cargo.toml` and the telemetry `lib.rs` re-pointed.
+**Why:** the chunk built the span the route entry owed. The ungated dependency was the operator's answer at the plan forks and carries no mark.
+**Kept:** "the key types its `press` needs come through the harness's re-exports" — still true; the third dependency is `tracing`, not a key crate. The crate still installs no subscriber and reads no env var and no clock.
+**Ref:** .andromeda/runs/2026-10-07T22-32-46-wrap/

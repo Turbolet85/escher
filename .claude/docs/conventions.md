@@ -23,7 +23,7 @@ _Extracted from `.andromeda/architecture.md` §Conventions (citations live there
 
 ## Feature gating
 - Optional capabilities are Cargo features forwarded across crates (each dioxus-native feature forwards to the same-named blitz feature; `accessibility` also to dioxus-native-dom's, which gates its own `accessibility_tree` override and its `snapshot`, `snapshot_diff`, `snapshot_text` and `actionable` modules). The workspace takes both Dioxus crates with `default-features = false`, so a feature is on only where a crate names it or depends on a crate that names it — escher-driver names dioxus-native-dom's `accessibility`, which reaches both seven_guis binaries through that edge.
-- In the engine and upstream crates `tracing` is gated per call site with a `#[cfg(not(feature = "tracing"))] let _ = …;` fallback; escher-telemetry (no `[features]`) emits its startup and panic events ungated.
+- In the engine and upstream crates `tracing` is gated per call site with a `#[cfg(not(feature = "tracing"))] let _ = …;` fallback; escher-telemetry (no `[features]`) emits its startup and panic events ungated, and escher-driver takes `tracing` with no feature for its one command span, built by hand with `tracing::info_span!` (no `#[instrument]`).
 - Desktop-only code gated by the repeated cfg list windows / macos / linux / dragonfly / freebsd / netbsd / openbsd.
 
 ## Error handling

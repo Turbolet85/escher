@@ -8,6 +8,15 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-07 — `tracing-subscriber`'s fmt layer: what a span's close record carries, and the builder's order
+Read from the locked `tracing` 0.1 and `tracing-subscriber` 0.3 while building a sink that prints closed spans; each of these cost a rework before it was known.
+
+The builder's order is fixed by its types: `with_span_events` exists only while the layer still holds the stock event formatter, so it is called before `event_format`; and when the event formatter is implemented for one field formatter only, `fmt_fields` comes before `event_format` too. The layer's record of a span closing is an event that carries the span's own metadata (`is_span()` reads true) with the span as its explicit parent, and its own fields are `message`, `time.busy` and `time.idle`. A span's fields reach the field formatter without the span's target, so a formatter that judges a field by target has to store the fields and judge them when the close record arrives; the default `add_fields` also puts a space between two recordings, which a stored form has to override.
+
+Two spellings follow from how a value is recorded: a `&str` recorded on a span or an event prints Debug-quoted and a `format_args!` message prints bare, hence `message="close"` on a span's line beside a bare message on an event's. And the span macros take field names as literal tokens, so a `const` table cannot name them: a macro that takes the list once and emits both the span and the table is how the names are stated in one place.
+
+---
+
 ## 2026-10-07 — A fork CI run with one job still open is not green, and how to read and re-run a hung job
 A run is the witness of a gate only when its conclusion reads `verdict: green`. A run whose other jobs all read `success` while one is still open reads `in progress`, however long it has stood: fifteen of sixteen is not the acceptance, and it is never recorded as one.
 

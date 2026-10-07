@@ -286,3 +286,14 @@ One entry per amendment to `test-plan.md` (sidecar-contract.md §Entry form). Ap
 **Why:** the chunk's checks. Each figure is from the run's own listing; the reader counts are from the wrap's own grep.
 **Kept:** the dated re-counts of earlier chunks stand as history. `stand_act_scroll` reads the list's box from its `bounds` before the scroll, since a scrolled box's own `bounds` read shifted.
 **Ref:** .andromeda/runs/2026-10-07T20-27-47-wrap/
+
+## 2026-10-07-driver-command-spans — `stand_act_spans`, the span line in the stand log format, every re-count; engine features by runner
+**Section:** §1 (escher-telemetry, escher-driver, tests/blitz-tests) · §2 Directory pattern · §3 → Crate-local test helpers, Stand log format, Agent-run contract → Proof, Session lifecycle (key file: `session-start`, `session-proof`) · §4 (escher-driver) · §5 Session ↔ held instance, Session host ↔ what it writes · §9 Pipeline facts (new bullet), Local baseline
+**Change:**
+- Counts: escher-telemetry 15 unit tests, 14 in `format.rs` (was 10, 9; +5 on the closed span); escher-driver 29, `execute.rs` 3 (was 27, 1; +2 on the span's fields and busy words); `stand_act_*` 10 files (was 9), `stand_act_spans` 2 tests and 2 ignored children; `mod common;` 15 readers and `mod session_common;` 15 (was 14 each), four driver-action checks declare both (was three); `run stand` 109 passed · 0 failed · 5 ignored over 30 files (was 107 · 0 · 3 over 29); workspace 154 result lines, 656 passed · 0 failed · 10 ignored (was 153, 647, 8). Earlier re-counts stay as history.
+- Stand log format: two record classes; the closed span's line — the event prefix, `span={name}`, the span's fields, `message="close"`, `time.busy`, `time.idle` — is PROVISIONAL by pointer to obs-plan §6, which owns the mark. Neither seven_guis binary writes one today.
+- Typed text: measured in process only (`stand_act_spans`: 0 occurrences, 0 of 36 ids, 0 of 8 names per layout mode); still not measured on either binary's stderr.
+- §9, new bullet "Engine features by runner": `cargo test --workspace` builds blitz-dom with its `tracing` call sites compiled in (blitz's default `tracing` → blitz-shell and blitz-html → blitz-dom); `cargo test -p blitz-tests` and a `-p seven_guis` build do not. The seven_guis binaries' stderr by level under a workspace build is not measured.
+- Key file: the proof row names ten files (29) and the crate's other 16 unit tests; CI witness 37694873705 on `44ad3887` added. Citations re-pointed.
+**Why:** the same check file read green per package and red in the workspace leg. A check that reads a sink's capture counts lines by target, never in total; a green per-package run is not the workspace leg's green.
+**Ref:** .andromeda/runs/2026-10-07T22-32-46-wrap/
