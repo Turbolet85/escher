@@ -1,0 +1,101 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "0eeb593c",
+"ts": "2026-10-07T19:05:26Z",
+"argv": [
+"show",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-07-refusal-detection",
+"--run-dir",
+".andromeda/runs/2026-10-07T18-50-35-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-07-refusal-detection: 1",
+"v010-11 · integration · planned · ref null · chunk 2026-10-07-refusal-detection · On the stand, in both layout modes, through `Session::run`: a `click` na… (789 chars)",
+"pool: unclaimed 7 [v010-04 v010-07 v010-08 v010-12 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "0eeb593c",
+"ts": "2026-10-07T19:15:17Z",
+"argv": [
+"implement",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-07-refusal-detection",
+"--id",
+"v010-11",
+"--ref-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-07T18-50-35-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"implement v010-11 · status planned → implemented · ref tests/blitz-tests/tests/stand_act_refused.rs::a_refused_call_names_its_cause_and… (666 chars)",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-11",
+"chunk": "2026-10-07-refusal-detection",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, in both layout modes, through `Session::run`: a `click` naming an id no screen of the session read is refu… (789 chars)",
+"notes_chars": 2033
+},
+"after": {
+"id": "v010-11",
+"chunk": "2026-10-07-refusal-detection",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_act_refused.rs::a_refused_call_names_its_cause_and_leaves_the_instance_unchanged · ::one_i… (666 chars)",
+"acceptance": "On the stand, in both layout modes, through `Session::run`: a `click` naming an id no screen of the session read is refu… (789 chars)",
+"notes_chars": 2033
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "0eeb593c",
+"ts": "2026-10-07T19:15:17Z",
+"argv": [
+"show",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-07-refusal-detection",
+"--run-dir",
+".andromeda/runs/2026-10-07T18-50-35-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-07-refusal-detection: 1",
+"v010-11 · integration · implemented · ref 666 chars: tests/blitz-tests/tests/stand_act_refuse… (666 chars) · chunk 2026-10-07-refusal-detection · On the stand, in both layout modes, through `Session::run`: a `click` na… (789 chars)",
+"pool: unclaimed 7 [v010-04 v010-07 v010-08 v010-12 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

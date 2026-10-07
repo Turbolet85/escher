@@ -1,6 +1,6 @@
 //! What the session checks share. For a session held in process: each lean task's label, a
 //! session booted through the stand, one command that changes what a task shows, and the
-//! driver's calls with what an acting one returned. For a session held by a process of its own: a state directory under the test target's temp dir,
+//! driver's calls with what an acting one returned or why a refused one was. For a session held by a process of its own: a state directory under the test target's temp dir,
 //! the host command — this test binary re-run on one ignored child — and a guard over the host
 //! that bounds every wait and kills and reaps a host a failing check still holds. A check
 //! declares `mod session_common;` and reads what it needs. This module holds no test.
@@ -16,7 +16,7 @@ use std::time::{Duration, Instant};
 
 use blitz_dom::Document;
 use dioxus_native_dom::SnapshotDiff;
-use escher_driver::{ArgValue, Busy, Call, Outcome, Session};
+use escher_driver::{ArgValue, Busy, Call, Cause, Outcome, Session};
 use seven_guis::stand::{self, LeanTask};
 use seven_guis::tasks::timer::TimerTicks;
 
@@ -90,13 +90,21 @@ pub fn advance(ms: i64) -> Call {
     call("advance", &[("ms", ArgValue::Number(ms))])
 }
 
-/// What an acting call returned, whichever of the two acting shapes it has.
+/// The driver call that brings the element `id` names into view.
+pub fn scroll(id: &str) -> Call {
+    call("scroll", &[("id", ArgValue::Text(id.to_string()))])
+}
+
+/// What an acting call returned, whichever of the three acting shapes it has.
 pub struct Acted {
     pub settled: bool,
     pub busy: Option<Busy>,
     pub diff: SnapshotDiff,
-    /// What an `advance` reports it moved; `None` for `click`, `type` and `press`.
+    /// What an `advance` reports it moved; `None` for every other verb.
     pub advanced_ms: Option<u32>,
+    /// Whether a `scroll` reports its element in view after the step; `None` for every other
+    /// verb.
+    pub in_view: Option<bool>,
 }
 
 impl Acted {
@@ -151,6 +159,7 @@ pub fn act(session: &mut Session, call: &Call) -> Option<Acted> {
             busy,
             diff,
             advanced_ms: None,
+            in_view: None,
         }),
         Outcome::Advanced {
             settled,
@@ -162,8 +171,37 @@ pub fn act(session: &mut Session, call: &Call) -> Option<Acted> {
             busy,
             diff,
             advanced_ms: Some(advanced_ms),
+            in_view: None,
+        }),
+        Outcome::Scrolled {
+            settled,
+            busy,
+            diff,
+            in_view,
+        } => Some(Acted {
+            settled,
+            busy,
+            diff,
+            advanced_ms: None,
+            in_view: Some(in_view),
         }),
     }
+}
+
+/// Runs `call` on `session` through the driver and reads why it was refused: `None` for a
+/// call that ran.
+pub fn refused(session: &mut Session, call: &Call) -> Option<Cause> {
+    session.run(call).err().map(|refusal| refusal.cause())
+}
+
+/// Runs `call` on `session` and reads why it was refused, with whether the call left the
+/// instance as it was: the snapshot, the ids reading focused and the accessibility tree's focus
+/// equal before and after.
+pub fn refused_unchanged(session: &mut Session, call: &Call) -> (Option<Cause>, bool) {
+    let before = (session.harness().doc.snapshot(), focused(session));
+    let cause = refused(session, call);
+    let after = (session.harness().doc.snapshot(), focused(session));
+    (cause, before == after)
 }
 
 /// One command that changes what `task` shows: a click, or for the timer three delivered ticks.

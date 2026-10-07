@@ -127,6 +127,11 @@ pub enum Command {
         /// How far, in milliseconds.
         ms: u32,
     },
+    /// Bring the element `id` names into view.
+    Scroll {
+        /// The element's id.
+        id: String,
+    },
 }
 
 impl Command {
@@ -138,6 +143,7 @@ impl Command {
             Command::Type { .. } => &schema::TYPE,
             Command::Press { .. } => &schema::PRESS,
             Command::Advance { .. } => &schema::ADVANCE,
+            Command::Scroll { .. } => &schema::SCROLL,
         }
     }
 }
@@ -196,6 +202,9 @@ pub fn validate(call: &Call) -> Result<Command, Refusal> {
             shift: matches!(shift, Some(Admitted::Flag(true))),
         }),
         ("advance", [Some(Admitted::Milliseconds(ms))]) => Ok(Command::Advance { ms: *ms }),
+        ("scroll", [Some(Admitted::Id(id))]) => Ok(Command::Scroll {
+            id: (*id).to_owned(),
+        }),
         // A verb the table lists in a shape no command has is not one this function knows.
         _ => Err(Refusal::new(Cause::UnknownVerb)),
     }
@@ -345,6 +354,18 @@ mod tests {
                 call("advance", &[("ms", ArgValue::Number(60_000))]),
                 Command::Advance { ms: 60_000 },
             ),
+            (
+                call("scroll", &[("id", text("i"))]),
+                Command::Scroll {
+                    id: "i".to_string(),
+                },
+            ),
+            (
+                call("scroll", &[("id", text(&widest_id))]),
+                Command::Scroll {
+                    id: widest_id.clone(),
+                },
+            ),
         ];
         let keys = [
             ("tab", Key::Tab),
@@ -372,7 +393,7 @@ mod tests {
     #[test]
     fn an_admitted_call_becomes_its_command() {
         let rows = admitted_rows();
-        assert_eq!(rows.len(), 26);
+        assert_eq!(rows.len(), 28);
         for (row, (call, command)) in rows.iter().enumerate() {
             assert!(validate(call).as_ref() == Ok(command), "row {row}");
         }
@@ -419,6 +440,7 @@ mod tests {
                 Fault::Missing("key"),
             ),
             (call("advance", &[]), Fault::Missing("ms")),
+            (call("scroll", &[]), Fault::Missing("id")),
             (call("snapshot", &[id()]), Fault::Unnamed),
             (
                 call("click", &[id(), ("text", text("Ada"))]),
@@ -509,7 +531,7 @@ mod tests {
                 Fault::OutOfBound("key"),
             ),
         ];
-        assert_eq!(rows.len(), 34);
+        assert_eq!(rows.len(), 35);
         for (row, (call, fault)) in rows.into_iter().enumerate() {
             assert!(validate(&call) == malformed(fault), "row {row}");
         }
@@ -566,7 +588,7 @@ mod tests {
             }
         }
         let table: Vec<&str> = schema::VERBS.iter().map(|verb| verb.name).collect();
-        assert_eq!(table.len(), 5);
+        assert_eq!(table.len(), 6);
         assert_eq!(reached, table);
     }
 }

@@ -4,12 +4,13 @@
 //! complete interactions (click, tap, drag, typing) and dispatch them through the
 //! document's real event pipeline.
 
-use blitz_dom::Document;
+use blitz_dom::{Document, ScrollBehavior, ScrollLogicalPosition};
 use blitz_traits::events::{
     BlitzImeEvent, BlitzKeyEvent, BlitzPointerEvent, BlitzPointerId, BlitzWheelDelta,
     BlitzWheelEvent, KeyState, MouseEventButton, MouseEventButtons, Point, PointerCoords,
     PointerDetails, UiEvent,
 };
+use blitz_traits::node_id::NodeId;
 use keyboard_types::{Code, Key, Location, Modifiers};
 use smol_str::SmolStr;
 
@@ -228,6 +229,18 @@ impl<D: Document> Harness<D> {
     /// focused element, as a macOS window delivers it
     pub fn apple_keybinding(&mut self, command: &str) {
         self.dispatch(UiEvent::AppleStandardKeybinding(SmolStr::new(command)));
+        self.pump();
+    }
+
+    /// Scroll `node_id` into view at once — every scrolling box that holds it, then the
+    /// viewport — by the least movement on each axis
+    pub fn scroll_into_view(&mut self, node_id: NodeId) {
+        self.base_mut().scroll_into_view(
+            node_id,
+            ScrollBehavior::Instant,
+            ScrollLogicalPosition::Nearest,
+            ScrollLogicalPosition::Nearest,
+        );
         self.pump();
     }
 

@@ -1,0 +1,551 @@
+[
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'centre_of' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 2,
+"result": [
+{
+"caller_name": "run",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 65
+},
+{
+"caller_name": "run",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 69
+}
+],
+"db_state": "regenerated",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'run' AND callee_kind = 'fn' AND callee_file LIKE '%escher-driver/src/execute.rs' ORDER BY file, line",
+"rows": 8,
+"result": [
+{
+"caller_name": "act",
+"file": "tests/blitz-tests/tests/session_common/mod.rs",
+"line": 142
+},
+{
+"caller_name": "a_password_typed_by_the_driver_is_returned_only_as_its_mask",
+"file": "tests/blitz-tests/tests/stand_act_diff.rs",
+"line": 271
+},
+{
+"caller_name": "the_snapshot_the_accessibility_tree_and_the_driver_read_one_id",
+"file": "tests/blitz-tests/tests/stand_act_ids.rs",
+"line": 95
+},
+{
+"caller_name": "the_snapshot_the_accessibility_tree_and_the_driver_read_one_id",
+"file": "tests/blitz-tests/tests/stand_act_ids.rs",
+"line": 107
+},
+{
+"caller_name": "a_refused_call_names_its_cause_and_leaves_the_instance_unchanged",
+"file": "tests/blitz-tests/tests/stand_act_refused.rs",
+"line": 101
+},
+{
+"caller_name": "the_longest_admitted_id_is_looked_up_and_one_byte_more_is_malformed",
+"file": "tests/blitz-tests/tests/stand_act_refused.rs",
+"line": 141
+},
+{
+"caller_name": "the_longest_admitted_id_is_looked_up_and_one_byte_more_is_malformed",
+"file": "tests/blitz-tests/tests/stand_act_refused.rs",
+"line": 147
+},
+{
+"caller_name": "a_session_with_no_time_step_refuses_advance_and_changes_nothing",
+"file": "tests/blitz-tests/tests/stand_act_timer.rs",
+"line": 105
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, file, line FROM refs WHERE callee_name IN ('NotFound','Stale','Disabled','Covered','OffScreen') AND callee_file LIKE '%escher-driver/src/refusal.rs' ORDER BY callee_name, file, line",
+"rows": 25,
+"result": [
+{
+"callee_name": "Covered",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 34
+},
+{
+"callee_name": "Covered",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 48
+},
+{
+"callee_name": "Covered",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 67
+},
+{
+"callee_name": "Covered",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 89
+},
+{
+"callee_name": "Disabled",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 33
+},
+{
+"callee_name": "Disabled",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 47
+},
+{
+"callee_name": "Disabled",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 63
+},
+{
+"callee_name": "Disabled",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 86
+},
+{
+"callee_name": "NotFound",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 125
+},
+{
+"callee_name": "NotFound",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 31
+},
+{
+"callee_name": "NotFound",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 45
+},
+{
+"callee_name": "NotFound",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 59
+},
+{
+"callee_name": "NotFound",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 81
+},
+{
+"callee_name": "NotFound",
+"file": "tests/blitz-tests/tests/stand_act_ids.rs",
+"line": 108
+},
+{
+"callee_name": "NotFound",
+"file": "tests/blitz-tests/tests/stand_act_refused.rs",
+"line": 68
+},
+{
+"callee_name": "NotFound",
+"file": "tests/blitz-tests/tests/stand_act_refused.rs",
+"line": 75
+},
+{
+"callee_name": "NotFound",
+"file": "tests/blitz-tests/tests/stand_act_refused.rs",
+"line": 142
+},
+{
+"callee_name": "OffScreen",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 35
+},
+{
+"callee_name": "OffScreen",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 49
+},
+{
+"callee_name": "OffScreen",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 68
+},
+{
+"callee_name": "OffScreen",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 92
+},
+{
+"callee_name": "Stale",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 32
+},
+{
+"callee_name": "Stale",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 46
+},
+{
+"callee_name": "Stale",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 60
+},
+{
+"callee_name": "Stale",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 82
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, callee_kind, file, line FROM refs WHERE callee_name IN ('element_from_point','get_client_bounding_rect','scroll_into_view','viewport','hit') AND callee_file LIKE '%blitz-dom/src/document.rs' AND file NOT LIKE '%blitz-dom/src/%' ORDER BY callee_name, file, line",
+"rows": 36,
+"result": [
+{
+"callee_name": "element_from_point",
+"callee_kind": "fn",
+"file": "packages/blitz-vibey-script/src/dom/document.rs",
+"line": 322
+},
+{
+"callee_name": "get_client_bounding_rect",
+"callee_kind": "fn",
+"file": "packages/blitz-vibey-script/src/dom/element.rs",
+"line": 1319
+},
+{
+"callee_name": "get_client_bounding_rect",
+"callee_kind": "fn",
+"file": "packages/dioxus-native-dom/src/events.rs",
+"line": 211
+},
+{
+"callee_name": "get_client_bounding_rect",
+"callee_kind": "fn",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 126
+},
+{
+"callee_name": "get_client_bounding_rect",
+"callee_kind": "fn",
+"file": "tests/blitz-tests/tests/inline_fragment_rects.rs",
+"line": 67
+},
+{
+"callee_name": "get_client_bounding_rect",
+"callee_kind": "fn",
+"file": "tests/blitz-tests/tests/inline_fragment_rects.rs",
+"line": 86
+},
+{
+"callee_name": "get_client_bounding_rect",
+"callee_kind": "fn",
+"file": "tests/blitz-tests/tests/inline_fragment_rects.rs",
+"line": 116
+},
+{
+"callee_name": "get_client_bounding_rect",
+"callee_kind": "fn",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 199
+},
+{
+"callee_name": "get_client_bounding_rect",
+"callee_kind": "fn",
+"file": "tests/blitz-tests/tests/text_selection_anonymous_block.rs",
+"line": 92
+},
+{
+"callee_name": "hit",
+"callee_kind": "fn",
+"file": "packages/blitz-test-harness/src/inspect.rs",
+"line": 96
+},
+{
+"callee_name": "hit",
+"callee_kind": "fn",
+"file": "tests/blitz-tests/tests/details_element.rs",
+"line": 128
+},
+{
+"callee_name": "hit",
+"callee_kind": "fn",
+"file": "tests/blitz-tests/tests/interaction_state_canonicalization.rs",
+"line": 80
+},
+{
+"callee_name": "hit",
+"callee_kind": "fn",
+"file": "tests/blitz-tests/tests/paint_tree_bench.rs",
+"line": 152
+},
+{
+"callee_name": "hit",
+"callee_kind": "fn",
+"file": "tests/blitz-tests/tests/paint_tree_bench.rs",
+"line": 157
+},
+{
+"callee_name": "hit",
+"callee_kind": "fn",
+"file": "tests/blitz-tests/tests/paint_tree_bench.rs",
+"line": 283
+},
+{
+"callee_name": "hit",
+"callee_kind": "fn",
+"file": "tests/blitz-tests/tests/paint_tree_incremental.rs",
+"line": 54
+},
+{
+"callee_name": "hit",
+"callee_kind": "fn",
+"file": "tests/blitz-tests/tests/paint_tree_incremental.rs",
+"line": 297
+},
+{
+"callee_name": "hit",
+"callee_kind": "fn",
+"file": "tests/blitz-tests/tests/paint_tree_incremental.rs",
+"line": 300
+},
+{
+"callee_name": "hit",
+"callee_kind": "fn",
+"file": "tests/blitz-tests/tests/paint_tree_incremental.rs",
+"line": 307
+},
+{
+"callee_name": "hit",
+"callee_kind": "fn",
+"file": "tests/blitz-tests/tests/stale_interaction_state.rs",
+"line": 80
+},
+{
+"callee_name": "hit",
+"callee_kind": "fn",
+"file": "tests/blitz-tests/tests/text_selection_anonymous_block.rs",
+"line": 66
+},
+{
+"callee_name": "viewport",
+"callee_kind": "fn",
+"file": "apps/browser/src/capture.rs",
+"line": 27
+},
+{
+"callee_name": "viewport",
+"callee_kind": "fn",
+"file": "apps/browser/src/capture.rs",
+"line": 85
+},
+{
+"callee_name": "viewport",
+"callee_kind": "fn",
+"file": "packages/blitz-paint/src/render.rs",
+"line": 750
+},
+{
+"callee_name": "viewport",
+"callee_kind": "fn",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 240
+},
+{
+"callee_name": "viewport",
+"callee_kind": "fn",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 264
+},
+{
+"callee_name": "viewport",
+"callee_kind": "fn",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 302
+},
+{
+"callee_name": "viewport",
+"callee_kind": "fn",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 334
+},
+{
+"callee_name": "viewport",
+"callee_kind": "fn",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 335
+},
+{
+"callee_name": "viewport",
+"callee_kind": "fn",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 414
+},
+{
+"callee_name": "viewport",
+"callee_kind": "fn",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 415
+},
+{
+"callee_name": "viewport",
+"callee_kind": "fn",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 443
+},
+{
+"callee_name": "viewport",
+"callee_kind": "fn",
+"file": "packages/blitz-vibey-script/src/dom/element.rs",
+"line": 1019
+},
+{
+"callee_name": "viewport",
+"callee_kind": "fn",
+"file": "packages/blitz-vibey-script/src/runtime.rs",
+"line": 2118
+},
+{
+"callee_name": "viewport",
+"callee_kind": "fn",
+"file": "packages/blitz-vibey-script/src/runtime.rs",
+"line": 2127
+},
+{
+"callee_name": "viewport",
+"callee_kind": "fn",
+"file": "packages/blitz-vibey-script/src/runtime.rs",
+"line": 2135
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, file, line FROM refs WHERE callee_name IN ('VERBS','verb','spec','ADVANCE','PRESS') AND callee_file LIKE '%escher-driver/src/%' AND file NOT LIKE '%escher-driver/src/schema.rs' ORDER BY callee_name, file, line",
+"rows": 15,
+"result": [
+{
+"callee_name": "ADVANCE",
+"file": "packages/escher-driver/src/command.rs",
+"line": 139
+},
+{
+"callee_name": "PRESS",
+"file": "packages/escher-driver/src/command.rs",
+"line": 138
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/command.rs",
+"line": 567
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/lib.rs",
+"line": 54
+},
+{
+"callee_name": "spec",
+"file": "packages/escher-driver/src/command.rs",
+"line": 560
+},
+{
+"callee_name": "verb",
+"file": "packages/escher-driver/src/command.rs",
+"line": 161
+},
+{
+"callee_name": "verb",
+"file": "packages/escher-driver/src/command.rs",
+"line": 161
+},
+{
+"callee_name": "verb",
+"file": "packages/escher-driver/src/command.rs",
+"line": 243
+},
+{
+"callee_name": "verb",
+"file": "packages/escher-driver/src/command.rs",
+"line": 561
+},
+{
+"callee_name": "verb",
+"file": "packages/escher-driver/src/command.rs",
+"line": 562
+},
+{
+"callee_name": "verb",
+"file": "packages/escher-driver/src/command.rs",
+"line": 562
+},
+{
+"callee_name": "verb",
+"file": "packages/escher-driver/src/lib.rs",
+"line": 54
+},
+{
+"callee_name": "verb",
+"file": "tests/blitz-tests/tests/session_common/mod.rs",
+"line": 53
+},
+{
+"callee_name": "verb",
+"file": "tests/blitz-tests/tests/stand_act_refused.rs",
+"line": 48
+},
+{
+"callee_name": "verb",
+"file": "tests/blitz-tests/tests/stand_act_refused.rs",
+"line": 58
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, file, line FROM refs WHERE callee_name = 'Command' AND callee_file LIKE '%escher-driver/src/command.rs' AND file NOT LIKE '%escher-driver/src/command.rs' ORDER BY file, line",
+"rows": 7,
+"result": [
+{
+"callee_name": "Command",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 5
+},
+{
+"callee_name": "Command",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 61
+},
+{
+"callee_name": "Command",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 64
+},
+{
+"callee_name": "Command",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 68
+},
+{
+"callee_name": "Command",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 75
+},
+{
+"callee_name": "Command",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 78
+},
+{
+"callee_name": "Command",
+"file": "packages/escher-driver/src/lib.rs",
+"line": 47
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

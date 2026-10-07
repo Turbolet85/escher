@@ -19,7 +19,8 @@ pub enum Cause {
     Disabled,
     /// Another element is hit at the point the action would land.
     Covered,
-    /// The element lies outside the viewport.
+    /// The element lies outside the viewport, or outside the visible part of a scrolling box
+    /// that holds it.
     OffScreen,
     /// The app this session holds gives it no way to move its time.
     TimeUnavailable,
@@ -66,7 +67,10 @@ impl Cause {
                  enabled"
             }
             Cause::Covered => "another element is hit at the point the action would land",
-            Cause::OffScreen => "the element lies outside the viewport",
+            Cause::OffScreen => {
+                "the element lies outside the viewport, or outside the visible part of a \
+                 scrolling box that holds it"
+            }
             Cause::TimeUnavailable => "the app this session holds gives it no way to move its time",
         }
     }
@@ -91,7 +95,7 @@ impl Cause {
                 "another element covers this one: act on the covering element or dismiss it first"
             }
             Cause::OffScreen => {
-                "the element is outside the viewport: bring it into view, then act again"
+                "the element is out of view: bring it into view with `scroll`, then act again"
             }
             Cause::TimeUnavailable => {
                 "this session cannot move time: act without `advance`, or start a session whose \
@@ -245,8 +249,9 @@ mod tests {
             ),
             (
                 "off-screen",
-                "the element lies outside the viewport",
-                "the element is outside the viewport: bring it into view, then act again",
+                "the element lies outside the viewport, or outside the visible part of a \
+                 scrolling box that holds it",
+                "the element is out of view: bring it into view with `scroll`, then act again",
             ),
             (
                 "time-unavailable",

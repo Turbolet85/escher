@@ -1,0 +1,148 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "0eeb593c",
+"ts": "2026-10-07T18:48:38Z",
+"argv": [
+"coverage",
+"--dir",
+"./escher-0.1.0",
+"--run-dir",
+"./.andromeda/runs/2026-10-07T15-18-58-phase",
+"--marker",
+"2026-10-07-refusal-detection"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 8/16 · deferred 0 · planned 8 · implemented 0 · unclaimed 8",
+"unclaimed: v010-04 v010-07 v010-08 v010-11 v010-12 v010-13 v010-14 v010-15",
+"claimed-unfinished: none",
+"done-test: NO — 8 not verified|deferred · unclaimed 8",
+"chunks referenced: 5 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "0eeb593c",
+"ts": "2026-10-07T18:48:38Z",
+"argv": [
+"show",
+"--dir",
+"./escher-0.1.0",
+"--unclaimed",
+"--run-dir",
+"./.andromeda/runs/2026-10-07T15-18-58-phase",
+"--marker",
+"2026-10-07-refusal-detection"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unclaimed 8 of 16",
+"v010-04 · integration · planned · ref null · chunk — · One snapshot command returns each stand task's screen as a tree where ev… (173 chars)",
+"v010-07 · integration · planned · ref null · chunk — · With no display present, the driver returns an image of the whole stand … (135 chars)",
+"v010-08 · integration · planned · ref null · chunk — · Two screenshots of the same stand state taken in separate runs on the sa… (100 chars)",
+"v010-11 · integration · planned · ref null · chunk — · On the stand, an action aimed at a missing element, a stale id, a disabl… (191 chars)",
+"v010-12 · e2e · planned · ref null · chunk — · Every driver command runs from the command line with JSON output and a p… (187 chars)",
+"v010-13 · dynamic-external · planned · ref null · chunk — · Every command available on the command line is also offered as an MCP to… (143 chars)",
+"v010-14 · integration · planned · ref null · chunk — · The tool itself serves its verb list, help and schemas on both surfaces … (152 chars)",
+"v010-15 · dynamic-external · planned · ref null · chunk — · A fresh agent with no prior context, given only the tool, completes a st… (154 chars)",
+"pool: unclaimed 8 [v010-04 v010-07 v010-08 v010-11 v010-12 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "0eeb593c",
+"ts": "2026-10-07T18:48:58Z",
+"argv": [
+"claim",
+"--dir",
+"./escher-0.1.0",
+"--id",
+"v010-11",
+"--chunk",
+"2026-10-07-refusal-detection",
+"--acceptance-file",
+"./.andromeda/runs/2026-10-07T15-18-58-phase/acceptance-v010-11.md",
+"--method",
+"integration",
+"--note-file",
+"./.andromeda/runs/2026-10-07T15-18-58-phase/note-v010-11.md",
+"--run-dir",
+"./.andromeda/runs/2026-10-07T15-18-58-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v010-11 → chunk 2026-10-07-refusal-detection (was null; status planned kept)",
+"acceptance: On the stand, an action aimed at a missing element, a stale id, a disa… (191 chars)",
+"         → On the stand, in both layout modes, through `Session::run`: a `click` … (789 chars)",
+"method: integration → integration",
+"notes: +688 chars (total 2033)",
+"wrote ./escher-0.1.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 7 [v010-04 v010-07 v010-08 v010-12 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-11",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, an action aimed at a missing element, a stale id, a disabled control, an element covered by another, and a… (191 chars)",
+"notes_chars": 1343
+},
+"after": {
+"id": "v010-11",
+"chunk": "2026-10-07-refusal-detection",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, in both layout modes, through `Session::run`: a `click` naming an id no screen of the session read is refu… (789 chars)",
+"notes_chars": 2033
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "0eeb593c",
+"ts": "2026-10-07T18:48:58Z",
+"argv": [
+"audit",
+"--dir",
+"./escher-0.1.0",
+"--chunk",
+"2026-10-07-refusal-detection",
+"--plan",
+"./escher-0.1.0/chunks/2026-10-07-refusal-detection/plan.md",
+"--run-dir",
+"./.andromeda/runs/2026-10-07T15-18-58-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-07-refusal-detection: 1 · ## Acceptance Criteria: line 394, 20 lines",
+"v010-11: cited in ## Acceptance Criteria (line 395)",
+"pool: unclaimed 7 [v010-04 v010-07 v010-08 v010-12 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

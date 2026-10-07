@@ -6,8 +6,8 @@ use blitz_traits::node_id::NodeId;
 use style::values::computed::Overflow;
 use web_time::{SystemTime, UNIX_EPOCH};
 
-use crate::BaseDocument;
 use crate::util::Point;
+use crate::{BaseDocument, BoundingRect};
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub enum ScrollBehavior {
@@ -616,7 +616,53 @@ impl BaseDocument {
         }
     }
 
-    /// Scroll the viewport so that the given element has the requested alignment in each axis.
+    /// The boxes an element's position is computed along, innermost first: its containing
+    /// block, that box's containing block, and so on up to the root element, which is left
+    /// out because it scrolls as the viewport.
+    fn containing_block_chain(&self, node_id: NodeId) -> Vec<NodeId> {
+        let root_id = self.try_root_element().map(|root| root.id);
+        let mut chain = Vec::new();
+        let mut current = self
+            .nodes
+            .get(node_id)
+            .and_then(|node| node.containing_block());
+        while let Some(id) = current {
+            if Some(id) == root_id {
+                break;
+            }
+            let Some(node) = self.nodes.get(id) else {
+                break;
+            };
+            chain.push(id);
+            current = node.containing_block();
+        }
+        chain
+    }
+
+    /// Where an element's border box sits inside the border box of `ancestor`, a box on its
+    /// containing-block chain, were `ancestor` itself not scrolled.
+    fn offset_within(&self, node_id: NodeId, ancestor: NodeId) -> Option<Point<f32>> {
+        let node = self.nodes.get(node_id)?;
+        let location = node.final_layout().location;
+        let (mut x, mut y) = (location.x, location.y);
+        let mut current = node.containing_block()?;
+        while current != ancestor {
+            let holder = self.nodes.get(current)?;
+            let location = holder.final_layout().location;
+            x += location.x - holder.scroll_offset().x as f32;
+            y += location.y - holder.scroll_offset().y as f32;
+            current = holder.containing_block()?;
+        }
+        Some(Point { x, y })
+    }
+
+    /// Scroll every scrolling box that holds the given element, innermost first, and then the
+    /// viewport, so that the element has the requested alignment in each axis: the CSSOM View
+    /// "scroll an element into view" steps.
+    ///
+    /// A nested scrolling box is written at once whatever `behavior` asks: the document holds
+    /// one scroll animation at a time, and an outer offset is computed from where the inner
+    /// one ends. `behavior` applies to the viewport.
     pub fn scroll_into_view(
         &mut self,
         node_id: NodeId,
@@ -624,15 +670,54 @@ impl BaseDocument {
         vertical: ScrollLogicalPosition,
         horizontal: ScrollLogicalPosition,
     ) {
+        let Some(target_size) = self.nodes.get(node_id).map(|node| node.final_layout().size) else {
+            return;
+        };
+        let Some(root_id) = self.try_root_element().map(|root| root.id) else {
+            return;
+        };
+
+        for box_id in self.containing_block_chain(node_id) {
+            let (current, max) = self.scroll_state(ScrollTarget::Node(box_id), true);
+            if max == Point::ZERO {
+                continue;
+            }
+            let (Some(offset), Some(scroller)) =
+                (self.offset_within(node_id, box_id), self.nodes.get(box_id))
+            else {
+                continue;
+            };
+            let layout = scroller.final_layout();
+            let scrollport_width = layout.size.width
+                - layout.border.left
+                - layout.border.right
+                - layout.scrollbar_size.width;
+            let scrollport_height = layout.size.height
+                - layout.border.top
+                - layout.border.bottom
+                - layout.scrollbar_size.height;
+            let x = Self::aligned_scroll_offset(
+                current.x,
+                scrollport_width as f64,
+                (offset.x - layout.border.left) as f64,
+                target_size.width as f64,
+                horizontal,
+            );
+            let y = Self::aligned_scroll_offset(
+                current.y,
+                scrollport_height as f64,
+                (offset.y - layout.border.top) as f64,
+                target_size.height as f64,
+                vertical,
+            );
+            self.scroll_to(box_id, x, y, ScrollBehavior::Instant);
+        }
+
         let Some(node) = self.nodes.get(node_id) else {
             return;
         };
         let target =
             node.absolute_position(node.scroll_offset().x as f32, node.scroll_offset().y as f32);
-        let target_size = node.final_layout().size;
-        let Some(root_id) = self.try_root_element().map(|root| root.id) else {
-            return;
-        };
         let scale = self.viewport.scale() as f64;
         let viewport_width = self.viewport.window_size.0 as f64 / scale;
         let viewport_height = self.viewport.window_size.1 as f64 / scale;
@@ -651,6 +736,72 @@ impl BaseDocument {
             vertical,
         );
         self.scroll_to(root_id, x, y, behavior);
+    }
+
+    /// The part of the viewport an element can be seen through, in CSS pixels relative to the
+    /// viewport (the space of [`BaseDocument::get_client_bounding_rect`]): the viewport's rect
+    /// narrowed, on each axis a box clips, to the padding box of every box on the element's
+    /// containing-block chain whose `overflow` on that axis is not `visible`.
+    ///
+    /// `None` for a node that does not resolve, and when nothing is left. It reads layout and
+    /// scroll offsets and writes nothing. The element's own box is not consulted: a caller
+    /// tests a point or a rect of the element against the answer.
+    pub fn visible_region(&self, node_id: NodeId) -> Option<BoundingRect> {
+        self.nodes.get(node_id)?;
+        let scale = self.viewport.scale() as f64;
+        let viewport_scroll = self.viewport_scroll();
+        let (mut left, mut top) = (0.0_f64, 0.0_f64);
+        let mut right = self.viewport.window_size.0 as f64 / scale;
+        let mut bottom = self.viewport.window_size.1 as f64 / scale;
+        // The 1/64px grid the client bounding rect is snapped to.
+        let snap = |value: f64| (value * 64.0).round() / 64.0;
+
+        for box_id in self.containing_block_chain(node_id) {
+            let Some(holder) = self.nodes.get(box_id) else {
+                continue;
+            };
+            let Some((clips_x, clips_y)) = holder.primary_styles().map(|styles| {
+                (
+                    styles.clone_overflow_x() != Overflow::Visible,
+                    styles.clone_overflow_y() != Overflow::Visible,
+                )
+            }) else {
+                continue;
+            };
+            if !clips_x && !clips_y {
+                continue;
+            }
+            // A box's own scroll offset moves its content, not the box.
+            let own_scroll = *holder.scroll_offset();
+            let origin =
+                holder.unrounded_absolute_position(own_scroll.x as f32, own_scroll.y as f32);
+            let layout = holder.unrounded_layout();
+            if clips_x {
+                let start = origin.x as f64 - viewport_scroll.x;
+                left = left.max(snap(start + layout.border.left as f64));
+                right = right.min(snap(
+                    start
+                        + (layout.size.width - layout.border.right - layout.scrollbar_size.width)
+                            as f64,
+                ));
+            }
+            if clips_y {
+                let start = origin.y as f64 - viewport_scroll.y;
+                top = top.max(snap(start + layout.border.top as f64));
+                bottom = bottom.min(snap(
+                    start
+                        + (layout.size.height - layout.border.bottom - layout.scrollbar_size.height)
+                            as f64,
+                ));
+            }
+        }
+
+        (right > left && bottom > top).then_some(BoundingRect {
+            x: left,
+            y: top,
+            width: right - left,
+            height: bottom - top,
+        })
     }
 
     /// Resolve a URL fragment (the `#...` part of a URL) to a scroll target.

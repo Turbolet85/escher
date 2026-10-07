@@ -1,11 +1,11 @@
 //! A call run on a held instance: checked, run, settled, and answered with a typed outcome.
 
-use blitz_test_harness::{Busy, Harness, Key as KeyboardKey, Modifiers, Rect};
-use dioxus_native_dom::{DioxusDocument, SnapshotDiff};
+use blitz_test_harness::{Busy, Harness, Key as KeyboardKey, Modifiers};
+use dioxus_native_dom::{DioxusDocument, NodeId, Snapshot, SnapshotDiff};
 
 use crate::command::{Call, Command, Key, validate};
 use crate::refusal::{Cause, Refusal};
-use crate::session::Session;
+use crate::session::{SeenIds, Session};
 
 /// What a call that ran returns: one variant per result shape of the verb table.
 ///
@@ -40,48 +40,80 @@ pub enum Outcome {
         /// The time the app actually moved, in milliseconds: never more than was asked.
         advanced_ms: u32,
     },
+    /// What `scroll` returns.
+    Scrolled {
+        /// Whether the app went quiet after the step.
+        settled: bool,
+        /// The class of work still outstanding; `None` when `settled` is true.
+        busy: Option<Busy>,
+        /// What the screen reads differently after the step: the elements added, the ids
+        /// removed and the elements changed.
+        diff: SnapshotDiff,
+        /// Whether the element is in view after the step. False when scrolling could not
+        /// bring it there: a `click` or a `type` naming it would still be refused as
+        /// [`Cause::OffScreen`].
+        in_view: bool,
+    },
 }
 
 impl Session {
     /// Runs `call` on the held instance and returns what it did.
     ///
     /// The call is checked first ([`validate`]), and a refused call has run nothing. An id is
-    /// then looked up among the ids the screen reads now: one that names no element is refused
-    /// as [`Cause::NotFound`], with nothing run, and nothing of the lookup outlives the call.
-    /// An `advance` on a session with no time step ([`Session::with_time`]) is refused as
+    /// then looked up on the screen as it reads now. One that names no element there is
+    /// refused with nothing run: as [`Cause::Stale`] when an earlier screen of this session
+    /// read it, as [`Cause::NotFound`] when none did. A `click` or a `type` naming an element
+    /// that cannot take it is refused the same way, with the first of three causes that
+    /// holds, in this order: [`Cause::Disabled`] when the element reads not enabled,
+    /// [`Cause::OffScreen`] when the point the action would land at is outside the viewport
+    /// or outside the visible part of a scrolling box that holds the element, and
+    /// [`Cause::Covered`] when another element is hit at that point. An `advance` on a
+    /// session with no time step ([`Session::with_time`]) is refused as
     /// [`Cause::TimeUnavailable`].
     ///
     /// An acting verb takes the screen's snapshot, runs its step, settles the instance
     /// ([`Harness::settle`]) and takes the snapshot again; its outcome carries the diff of the
-    /// two. `click` clicks the centre of the element's border box; `type` clicks it the same
-    /// way, which focuses a text input, and types into what holds focus; `press` presses its
-    /// key on what holds focus; `advance` hands its milliseconds to the session's time step.
-    /// Settling moves no time and waits on no load.
+    /// two. `click` clicks the centre of the element's bounds; `type` clicks it the same way,
+    /// which focuses a text input, and types into what holds focus; `press` presses its key
+    /// on what holds focus; `advance` hands its milliseconds to the session's time step;
+    /// `scroll` scrolls every scrolling box that holds the element, and the viewport, until
+    /// the element is in view, whether or not it is enabled or covered, and says whether it
+    /// then is. Settling moves no time and waits on no load.
     pub fn run(&mut self, call: &Call) -> Result<Outcome, Refusal> {
-        match validate(call)? {
+        let command = validate(call)?;
+        let (harness, seen) = (&mut self.harness, &mut self.seen);
+        match command {
             Command::Snapshot => Ok(Outcome::Screen {
-                text: self.harness.doc.snapshot().to_text(),
+                text: read_screen(harness, seen).to_text(),
             }),
             Command::Click { id } => {
-                let (x, y) = centre_of(&self.harness, &id)?;
-                Ok(acted(&mut self.harness, |harness| harness.click_at(x, y)))
+                let (before, target) = resolve(harness, seen, &id)?;
+                let (x, y) = action_point(harness, &target)?;
+                Ok(acted(harness, seen, before, |harness| {
+                    harness.click_at(x, y)
+                }))
             }
             Command::Type { id, text } => {
-                let (x, y) = centre_of(&self.harness, &id)?;
-                Ok(acted(&mut self.harness, |harness| {
+                let (before, target) = resolve(harness, seen, &id)?;
+                let (x, y) = action_point(harness, &target)?;
+                Ok(acted(harness, seen, before, |harness| {
                     harness.click_at(x, y);
                     harness.type_text(&text);
                 }))
             }
-            Command::Press { key, shift } => Ok(acted(&mut self.harness, |harness| {
-                press(harness, key, shift)
-            })),
+            Command::Press { key, shift } => {
+                let before = read_screen(harness, seen);
+                Ok(acted(harness, seen, before, |harness| {
+                    press(harness, key, shift)
+                }))
+            }
             Command::Advance { ms } => {
                 let Some(step) = self.time.as_mut() else {
                     return Err(Refusal::new(Cause::TimeUnavailable));
                 };
+                let before = read_screen(harness, seen);
                 let mut advanced_ms = 0;
-                let (busy, diff) = settled_step(&mut self.harness, |harness| {
+                let (busy, diff, _) = settled_step(harness, seen, before, |harness| {
                     advanced_ms = step(harness, ms).min(ms);
                 });
                 Ok(Outcome::Advanced {
@@ -91,56 +123,161 @@ impl Session {
                     advanced_ms,
                 })
             }
+            Command::Scroll { id } => {
+                let (before, target) = resolve(harness, seen, &id)?;
+                let (busy, diff, after) = settled_step(harness, seen, before, |harness| {
+                    harness.scroll_into_view(target.node)
+                });
+                let in_view =
+                    locate(harness, &after, &id).is_some_and(|target| in_view(harness, &target));
+                Ok(Outcome::Scrolled {
+                    settled: busy.is_none(),
+                    busy,
+                    diff,
+                    in_view,
+                })
+            }
         }
     }
 }
 
-/// Runs `step` between two snapshots and settles the instance before the second: the class of
-/// work still outstanding, if any, and the diff of the two.
+/// An element a call names, as the screen reads it.
+struct Target {
+    node: NodeId,
+    enabled: Option<bool>,
+    /// The centre of the element's bounds, relative to the viewport.
+    centre: (f64, f64),
+}
+
+/// The screen of the held instance, its ids recorded.
+fn read_screen(harness: &Harness<DioxusDocument>, seen: &mut SeenIds) -> Snapshot {
+    let screen = harness.doc.snapshot();
+    record(seen, &screen);
+    screen
+}
+
+fn record(seen: &mut SeenIds, screen: &Snapshot) {
+    for node in screen.nodes() {
+        seen.record(&node.id);
+    }
+}
+
+/// The element `id` names on `screen`: the node the snapshot lists under the id, where the
+/// first element whose stable id is `id`, in document order, still resolves.
+fn locate(harness: &Harness<DioxusDocument>, screen: &Snapshot, id: &str) -> Option<Target> {
+    let listed = screen.get(id)?;
+    let (node, _) = harness
+        .doc
+        .element_ids()
+        .into_iter()
+        .find(|(_, read)| read == id)?;
+    harness.base().get_node(node)?;
+    let bounds = listed.bounds;
+    Some(Target {
+        node,
+        enabled: listed.state.enabled,
+        centre: (
+            bounds.x + bounds.width / 2.0,
+            bounds.y + bounds.height / 2.0,
+        ),
+    })
+}
+
+/// Reads the screen and finds the element `id` names on it, or refuses: as stale when an
+/// earlier screen of the session read the id, as not found when none did. The screen read
+/// here is recorded once that answer is decided.
+fn resolve(
+    harness: &Harness<DioxusDocument>,
+    seen: &mut SeenIds,
+    id: &str,
+) -> Result<(Snapshot, Target), Refusal> {
+    let screen = harness.doc.snapshot();
+    let read_earlier = seen.holds(id);
+    let target = locate(harness, &screen, id);
+    record(seen, &screen);
+    match target {
+        Some(target) => Ok((screen, target)),
+        None if read_earlier => Err(Refusal::new(Cause::Stale)),
+        None => Err(Refusal::new(Cause::NotFound)),
+    }
+}
+
+/// The page point a `click` or a `type` on `target` lands at, the centre of its bounds — or
+/// the first reason it cannot take the action: not enabled, then out of view, then covered.
+fn action_point(harness: &Harness<DioxusDocument>, target: &Target) -> Result<(f32, f32), Refusal> {
+    if target.enabled == Some(false) {
+        return Err(Refusal::new(Cause::Disabled));
+    }
+    if !in_view(harness, target) {
+        return Err(Refusal::new(Cause::OffScreen));
+    }
+    let scroll = harness.base().viewport_scroll();
+    let page = (
+        (target.centre.0 + scroll.x) as f32,
+        (target.centre.1 + scroll.y) as f32,
+    );
+    if covered(harness, target, page) {
+        return Err(Refusal::new(Cause::Covered));
+    }
+    Ok(page)
+}
+
+/// Whether the centre of `target` can be seen: inside the viewport and inside the visible
+/// part of every scrolling box that holds the element. Read from geometry, never from a hit:
+/// a hit reaches an element scrolled out of its box.
+fn in_view(harness: &Harness<DioxusDocument>, target: &Target) -> bool {
+    let (x, y) = target.centre;
+    harness
+        .base()
+        .visible_region(target.node)
+        .is_some_and(|seen| {
+            x >= seen.x && x <= seen.x + seen.width && y >= seen.y && y <= seen.y + seen.height
+        })
+}
+
+/// Whether the element hit at `page` is neither `target` nor inside it. A point over no box
+/// is over the root element.
+fn covered(harness: &Harness<DioxusDocument>, target: &Target, page: (f32, f32)) -> bool {
+    let doc = harness.base();
+    let mut hit = match harness.hit(page.0, page.1) {
+        Some(hit) => doc.nearest_non_anonymous_ancestor(hit.node_id),
+        None => doc.try_root_element().map(|root| root.id),
+    };
+    while let Some(node) = hit {
+        if node == target.node {
+            return false;
+        }
+        hit = doc.get_node(node).and_then(|node| node.parent);
+    }
+    true
+}
+
+/// Runs `step` after the snapshot `before` and settles the instance before the next one: the
+/// class of work still outstanding, if any, the diff of the two, and the snapshot after.
 fn settled_step(
     harness: &mut Harness<DioxusDocument>,
+    seen: &mut SeenIds,
+    before: Snapshot,
     step: impl FnOnce(&mut Harness<DioxusDocument>),
-) -> (Option<Busy>, SnapshotDiff) {
-    let before = harness.doc.snapshot();
+) -> (Option<Busy>, SnapshotDiff, Snapshot) {
     step(harness);
     let busy = harness.settle().err().map(|not_settled| not_settled.busy);
-    let after = harness.doc.snapshot();
-    (busy, before.diff(&after))
+    let after = read_screen(harness, seen);
+    (busy, before.diff(&after), after)
 }
 
 fn acted(
     harness: &mut Harness<DioxusDocument>,
+    seen: &mut SeenIds,
+    before: Snapshot,
     step: impl FnOnce(&mut Harness<DioxusDocument>),
 ) -> Outcome {
-    let (busy, diff) = settled_step(harness, step);
+    let (busy, diff, _) = settled_step(harness, seen, before, step);
     Outcome::Acted {
         settled: busy.is_none(),
         busy,
         diff,
     }
-}
-
-/// The centre of the border box of the element `id` names, in page coordinates: the first
-/// element whose stable id is `id`, in document order.
-fn centre_of(harness: &Harness<DioxusDocument>, id: &str) -> Result<(f32, f32), Refusal> {
-    let not_found = Refusal::new(Cause::NotFound);
-    let (node_id, _) = harness
-        .doc
-        .element_ids()
-        .into_iter()
-        .find(|(_, listed)| listed == id)
-        .ok_or(not_found)?;
-    let doc = harness.base();
-    let node = doc.get_node(node_id).ok_or(not_found)?;
-    let position = node.absolute_position(0.0, 0.0);
-    let size = node.final_layout().size;
-    let border_box = Rect {
-        x: position.x,
-        y: position.y,
-        width: size.width,
-        height: size.height,
-    };
-    Ok(border_box.center())
 }
 
 fn press(harness: &mut Harness<DioxusDocument>, key: Key, shift: bool) {

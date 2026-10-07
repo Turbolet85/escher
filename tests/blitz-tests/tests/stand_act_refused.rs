@@ -3,20 +3,25 @@
 //! admitted length that names nothing, and the id of a row the driver has just deleted — each
 //! returns its cause of the closed set, leaves the snapshot of the held instance equal to the
 //! one taken before the call, does not panic, and reads as a text that holds none of the bytes
-//! the call supplied. A failure message carries the layout mode and a row index, never an id,
-//! an argument or what a screen reads.
+//! the call supplied. An id no screen of the session read is `not-found`; the id of the deleted
+//! row, which an earlier screen read, is `stale` — and one id reads the first and then the
+//! second, by what the session read between the two calls. A failure message carries the layout
+//! mode and a row index, never an id, an argument or what a screen reads.
 
 use escher_driver::{ArgValue, CAUSES, Call, Cause, Fault, MAX_ID_BYTES, Session};
 use seven_guis::stand::LeanTask;
 
 mod session_common;
-use session_common::{act, click, hold};
+use session_common::{act, click, hold, refused_unchanged, type_into};
 
 /// A marker no cause's text holds, carried by every value a refused call supplies.
 const MARK: &str = "zq7~";
 
 /// The row the driver deletes before the last call names it.
 const DELETED: &str = "crud-person-0";
+
+/// The id the next row created on a fresh CRUD session reads.
+const NEXT_ROW: &str = "crud-person-3";
 
 /// One refused call: what the driver does on the session first, the call, the cause it is
 /// refused with, the rule a malformed one broke, and the texts the call supplied.
@@ -73,7 +78,7 @@ fn rows() -> Vec<Row> {
         Row {
             prepare: delete_the_first_row,
             call: click(DELETED),
-            cause: Cause::NotFound,
+            cause: Cause::Stale,
             fault: None,
             supplied: vec![DELETED.to_string()],
         },
@@ -150,6 +155,67 @@ fn the_longest_admitted_id_is_looked_up_and_one_byte_more_is_malformed() {
                     && refusal.fault() == Some(Fault::OutOfBound("id"))
             }),
             "{mode}: one byte more is refused before any lookup"
+        );
+    }
+}
+
+#[test]
+fn one_id_is_not_found_before_a_screen_read_it_and_stale_after() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let (mut session, _ticks) = hold(LeanTask::Crud, incremental);
+        assert!(
+            session.harness().doc.snapshot().get(NEXT_ROW).is_none(),
+            "{mode}: the row is not on the screen at boot"
+        );
+
+        let (cause, unchanged) = refused_unchanged(&mut session, &click(NEXT_ROW));
+        assert!(
+            cause == Some(Cause::NotFound) && unchanged,
+            "{mode}: an id no screen of the session read is refused not-found, the instance \
+             unchanged"
+        );
+        let (cause, unchanged) = refused_unchanged(&mut session, &type_into(NEXT_ROW, MARK));
+        assert!(
+            cause == Some(Cause::NotFound) && unchanged,
+            "{mode}: a type naming that id is refused not-found too, the instance unchanged"
+        );
+
+        assert!(
+            act(&mut session, &click("crud-create"))
+                .is_some_and(|created| created.added() == [NEXT_ROW]),
+            "{mode}: the driver creates the row"
+        );
+        assert!(
+            act(&mut session, &click(NEXT_ROW)).is_some(),
+            "{mode}: the driver selects the row"
+        );
+        assert!(
+            act(&mut session, &click("crud-delete"))
+                .is_some_and(|deleted| deleted.removed() == [NEXT_ROW]),
+            "{mode}: the driver deletes the row"
+        );
+
+        let before = session.harness().doc.snapshot();
+        let Err(refusal) = session.run(&click(NEXT_ROW)) else {
+            panic!("{mode}: the call naming the deleted row is refused");
+        };
+        assert!(
+            refusal.cause() == Cause::Stale && refusal.fault().is_none(),
+            "{mode}: the same id is refused stale once a screen has read it"
+        );
+        assert!(
+            before == session.harness().doc.snapshot(),
+            "{mode}: the snapshots before and after the refused call are equal"
+        );
+        assert!(
+            !refusal.to_string().contains(NEXT_ROW),
+            "{mode}: the refusal's text holds none of the bytes the call supplied"
+        );
+        let (cause, unchanged) = refused_unchanged(&mut session, &type_into(NEXT_ROW, MARK));
+        assert!(
+            cause == Some(Cause::Stale) && unchanged,
+            "{mode}: a type naming the deleted row is refused stale too, the instance unchanged"
         );
     }
 }

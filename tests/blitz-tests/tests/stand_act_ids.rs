@@ -1,10 +1,14 @@
 //! One string names an element to the driver. For every node of each lean stand task's
 //! snapshot, in both layout modes, the id the snapshot lists is the `author_id` of the element's
 //! accessibility node, the element that id resolves to is that node's, and a driver `click`
-//! naming it is accepted. And an id-addressed click lands on the element it names: for each of
-//! the stand's 15 controls the diff the driver returns is the diff a twin instance reads when
+//! naming it is accepted — but for the seven nodes that cannot take a click at boot, stated
+//! here from the measured stand, each refused with its cause: the three disabled controls, and
+//! the header's spacer, a box with no height, at whose centre the header is hit. And an
+//! id-addressed click lands on the element it names: for each of the stand's 15 controls a
+//! click is accepted on, the diff the driver returns is the diff a twin instance reads when
 //! the same control is clicked by selector and settled — not empty for the controls a click
-//! changes at boot, empty for the rest. The Timer has no such control at boot, so its Reset is
+//! changes at boot, empty for the rest; for a control a click is refused on, the twin's
+//! selector click changes nothing. The Timer has no changing control at boot, so its Reset is
 //! read after time has moved. The mount is still the stand's after every action. A failure
 //! message carries the layout mode, the task and a row index, never an id or what a screen
 //! reads.
@@ -18,7 +22,7 @@ use seven_guis::stand::{self, LeanTask};
 mod common;
 mod session_common;
 use common::{boot, controls};
-use session_common::{act, advance, click, hold};
+use session_common::{act, advance, click, hold, refused};
 
 /// The stand's mount: the shell under the app's root.
 const MOUNT: &str = "main#main > #task-shell";
@@ -38,10 +42,43 @@ fn changes_at_boot(task: LeanTask) -> &'static [&'static str] {
     }
 }
 
+/// The snapshot nodes of `task` a driver click is refused on at boot, each with its cause.
+fn refused_at_boot(task: LeanTask) -> &'static [(&'static str, Cause)] {
+    match task {
+        LeanTask::Counter => &[("task-header-spacer", Cause::Covered)],
+        LeanTask::FlightBooker => &[
+            ("task-header-spacer", Cause::Covered),
+            ("flight-return-date", Cause::Disabled),
+        ],
+        LeanTask::Timer => &[("task-header-spacer", Cause::Covered)],
+        LeanTask::Crud => &[
+            ("task-header-spacer", Cause::Covered),
+            ("crud-update", Cause::Disabled),
+            ("crud-delete", Cause::Disabled),
+        ],
+    }
+}
+
+/// The cause the table states for `id` on `task`: `None` for a node a click is accepted on.
+fn stated_refusal(task: LeanTask, id: &str) -> Option<Cause> {
+    refused_at_boot(task)
+        .iter()
+        .find(|(refused, _)| *refused == id)
+        .map(|(_, cause)| *cause)
+}
+
 #[test]
 fn the_snapshot_the_accessibility_tree_and_the_driver_read_one_id() {
+    assert_eq!(
+        LeanTask::ALL
+            .map(|task| refused_at_boot(task).len())
+            .iter()
+            .sum::<usize>(),
+        7
+    );
     for incremental in [false, true] {
         let mut named_controls = HashSet::new();
+        let (mut accepted, mut refusals) = (0, 0);
         for task in LeanTask::ALL {
             let mode = format!("incremental={incremental}: {task:?}");
             let (listing, _ticks) = hold(task, incremental);
@@ -92,10 +129,14 @@ fn the_snapshot_the_accessibility_tree_and_the_driver_read_one_id() {
                     );
                 }
 
+                let stated = stated_refusal(task, id);
                 assert!(
-                    session.run(&click(id)).is_ok(),
-                    "{mode}: node {row}: a driver click naming the id is accepted"
+                    refused(&mut session, &click(id)) == stated,
+                    "{mode}: node {row}: a driver click naming the id is accepted, or refused \
+                     with the cause the table states"
                 );
+                accepted += usize::from(stated.is_none());
+                refusals += usize::from(stated.is_some());
                 assert!(
                     session.harness().query(MOUNT).is_some(),
                     "{mode}: node {row}: the mount is the stand's after the click"
@@ -114,13 +155,18 @@ fn the_snapshot_the_accessibility_tree_and_the_driver_read_one_id() {
             named_controls.len() == 15,
             "incremental={incremental}: the stand's 15 controls"
         );
+        assert!(
+            (accepted, refusals) == (70, 7),
+            "incremental={incremental}: of the stand's 77 nodes a click is accepted on 70 and \
+             refused on the table's 7"
+        );
     }
 }
 
 #[test]
 fn an_id_addressed_click_has_the_effect_of_a_selector_click_on_a_twin() {
     for incremental in [false, true] {
-        let mut changing = 0;
+        let (mut changing, mut refused_controls) = (0, 0);
         let mut clicked = HashSet::new();
         for task in LeanTask::ALL {
             let mode = format!("incremental={incremental}: {task:?}");
@@ -142,6 +188,20 @@ fn an_id_addressed_click_has_the_effect_of_a_selector_click_on_a_twin() {
                 );
 
                 let (mut session, _ticks) = hold(task, incremental);
+                if let Some(cause) = stated_refusal(task, control) {
+                    assert!(
+                        by_selector.is_empty(),
+                        "{mode}: control {row}: a selector click on a control the driver \
+                         refuses changes nothing on the twin"
+                    );
+                    assert!(
+                        refused(&mut session, &click(control)) == Some(cause),
+                        "{mode}: control {row}: the driver click is refused with the stated cause"
+                    );
+                    clicked.insert(*control);
+                    refused_controls += 1;
+                    continue;
+                }
                 let Some(by_id) = act(&mut session, &click(control)) else {
                     panic!("{mode}: control {row}: the driver click runs");
                 };
@@ -168,6 +228,10 @@ fn an_id_addressed_click_has_the_effect_of_a_selector_click_on_a_twin() {
         assert!(
             changing == 8,
             "incremental={incremental}: eight controls change the screen at boot"
+        );
+        assert!(
+            refused_controls == 3,
+            "incremental={incremental}: three controls are refused at boot"
         );
 
         let mode = format!("incremental={incremental}: Timer");

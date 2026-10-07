@@ -1,0 +1,37 @@
+# obs extract
+
+## Relevance
+partial — the chunk adds no span, event, metric or log; obs binds it as a silence constraint on the executor and its checks, and as the owner of the refusal-cause value domain the chunk widens from four returned names toward eight.
+
+## Constraints
+- obs-plan §3 Observability Harness Contract (Logging stack) requires the session library `packages/escher-driver` to stay silent: no `tracing` dependency, no subscriber install, no env read, no print and no log, its private modules `command`, `refusal`, `schema` and `execute` named, `Session::run` and `Session::with_time` with them. The detection this chunk puts in front of the click falls inside that clause; whether the crate still reads so at HEAD is research's question.
+- obs-plan §3 Observability Harness Contract (Logging stack) requires those modules to read no clock. Decision 1's "how long the memory lives" is bound by it: a session memory of read ids, if the operator chooses one, may not be aged by wall-clock time without amending that clause.
+- obs-plan §3 Observability Harness Contract (Logging stack) records that `Command`, `Call`, `ArgValue` and `Outcome` derive `Debug` that prints ids, typed text, accessible names and control values, and requires that nothing in the crate prints, logs or fields any of the four. A new holder of ids (decision 1's memory) is a fifth such value the clause does not yet name: it takes the same rule, and its existence is an obs-plan §3 amendment at the wrap.
+- obs-plan §4 Span / Trace Coverage requires the refusal-cause field's value domain to be the eight names `Cause::name` returns, fixed class words holding nothing a call supplied. The chunk may raise how many of them code returns; it may not add a name, rename one, or let a detected cause carry an id, a coordinate, a bounds reading or the covering element's identity.
+- obs-plan §4 Span / Trace Coverage assigns the one span per driver command to the route entry "Driver command spans" and records the executor and the settle wait as carrying no span by their chunks' constraint. No span, `#[instrument]` or event is owed or allowed here.
+- obs-plan §8 PII Scrubbing & Compliance (Scrubbing) admits the target prefix `escher_` — `escher_driver` named — to escher's sink with only the content-named field set redacted, and obs-plan §4 Span / Trace Coverage records that of the schema's argument names only `text` is in that set. So an `id` field emitted from `escher_driver` would print in a sink-installing host: the detection emits no event rather than relying on the scrub.
+- obs-plan §9 CI Integration (Session state directory) requires the session's state directory to hold the socket file alone while a session is up, with no log, event or screen content written into it. A memory of read ids, if built, lives in the process and is never written there.
+
+## Patterns to follow
+- A refusal is a returned value, not a telemetry record: the executor answers through `Session::run`'s result and writes nothing (per obs-plan §3 Observability Harness Contract, Logging stack).
+- A cause is reported as a fixed class word and never beside the argument that provoked it — the same shape the cold-agent stub's call log keeps, `outcome` and `cause` with no argument value (per obs-plan §6 Log Coverage, the cold-agent pipe's log format).
+- Stand checks and their shared modules install no subscriber, read no env var and print nothing; what a check reads, it reads into its assertions only, and a failure reports a kind and a count rather than content (per obs-plan §3 Observability Harness Contract, Logging stack — the `stand_act_*` checks, `session_common/mod.rs` and `host_log`). New check files and in-file fixtures for the detected causes follow it.
+- Engine `tracing` call sites stay behind each crate's `tracing` feature with a no-op path when it is off (per obs-plan §2 Telemetry Strategy). The detection's readings (a hit test, bounds, the viewport) are taken through existing engine readers without editing or adding an engine log site; obs-plan §6 Log Coverage lists a warn on a hit test with no DOM in blitz-dom — whether the detection's hit test can reach that site, and whether the driver's dependency features leave blitz-dom's `tracing` off, is research's question.
+
+## Anti-patterns to avoid
+- Fielding an argument by its schema name, or a `Command` or an `Outcome` with `Debug`, in any event, print or panic message — it prints an id, typed text, an accessible name or a control's value (per obs-plan §4 Span / Trace Coverage).
+- Adding a `tracing` dependency, a debug `println!`/`eprintln!` or a diagnostic event to `escher-driver` to explain why a cause was chosen (per obs-plan §3 Observability Harness Contract, Logging stack).
+- Reading a zero from a check whose child installs no sink as proof about a sink-installing host's log (per obs-plan §3 Observability Harness Contract, Logging stack — the `stand_session_quiet` note); typed text in a host's log stays not measured (per obs-plan §8 PII Scrubbing & Compliance, Values logged as-is), and this chunk does not change that.
+
+## Contract bindings
+- obs ↔ route entry "Driver command spans": obs-plan §4 Span / Trace Coverage states how many cause names code returns ("four of them returned by code today … and four by nothing yet") and which code returns each. This chunk changes that count and its attribution; the sentence is owed an amendment at the wrap, and the later span reads the widened domain unchanged in shape.
+- obs ↔ tests: obs-plan §3 Observability Harness Contract (Logging stack) enumerates the silent checks by count and name (six `stand_act_*`, the share of them reading `session_common/mod.rs`). New check files for the detected causes join that set and stale the counts — an amendment at the wrap, bound to test-plan §3 and the keyed contract `session-lifecycle` the scope names.
+- obs ↔ security: the "nothing printed, logged or fielded" rule on `Refusal`, `Command` and `Outcome` (obs-plan §3; obs-plan §8 Scrubbing) is the obs side of the scope's security-plan §Error Handling `Refusal` bullet and §Input Validation `id` row; a session memory of ids touches both sides at once.
+- obs ↔ a11y: none from this side — the `disabled` cause reads the snapshot's `enabled`, which no obs section covers.
+- Keyed contract "Bootstrap phases" (labels `otel-sdk-install`, `pii-scrubbing-wire`): the chunk does not turn on it; not read.
+
+## Acceptance criteria contributions
+- (obs) After the chunk `packages/escher-driver` has no `tracing` dependency, no subscriber install, no env read, no clock read and no `print`/`log`/`tracing` call — the detection code and any session memory included (per obs-plan §3 Observability Harness Contract, Logging stack).
+- (obs) Every refusal the detection returns reads one of the eight fixed `Cause::name` words and nothing else; no new cause name exists and no call-supplied or screen-read value is held in it (per obs-plan §4 Span / Trace Coverage).
+- (obs) Every new or edited check file and in-file fixture installs no `escher_telemetry::init`, reads no env var and has no `println!`/`eprintln!` (per obs-plan §3 Observability Harness Contract, Logging stack).
+- (obs) If the session gains a memory of read ids, it is neither printed, logged nor fielded, and no file appears in the session state directory beside `session.sock` (per obs-plan §3 Observability Harness Contract, Logging stack; obs-plan §9 CI Integration, Session state directory).

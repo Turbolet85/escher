@@ -1,5 +1,7 @@
 //! The held instance.
 
+use std::collections::HashMap;
+
 use blitz_test_harness::{Harness, Settled};
 use dioxus_native_dom::DioxusDocument;
 
@@ -19,15 +21,68 @@ pub(crate) fn valid_label(label: &str) -> bool {
 /// it returns the milliseconds the app actually moved.
 pub(crate) type TimeStep = Box<dyn FnMut(&mut Harness<DioxusDocument>, u32) -> u32>;
 
+/// The most ids a session remembers.
+pub(crate) const MAX_SEEN_IDS: usize = 4096;
+
+/// The ids the session's screens have read, as text: what tells an id that named an element
+/// earlier from one that never did.
+///
+/// It holds at most its bound. Reading an id it already holds makes that id the most recently
+/// read; past the bound the id read longest ago is forgotten, and reads as one never read.
+pub(crate) struct SeenIds {
+    bound: usize,
+    reads: u64,
+    /// Each id with the count of reads at which it was last read.
+    last_read: HashMap<String, u64>,
+}
+
+impl SeenIds {
+    pub(crate) fn with_bound(bound: usize) -> SeenIds {
+        SeenIds {
+            bound,
+            reads: 0,
+            last_read: HashMap::new(),
+        }
+    }
+
+    pub(crate) fn record(&mut self, id: &str) {
+        self.reads += 1;
+        if let Some(read) = self.last_read.get_mut(id) {
+            *read = self.reads;
+            return;
+        }
+        self.last_read.insert(id.to_string(), self.reads);
+        if self.last_read.len() > self.bound {
+            let oldest = self
+                .last_read
+                .iter()
+                .min_by_key(|(_, read)| **read)
+                .map(|(id, _)| id.clone());
+            if let Some(oldest) = oldest {
+                self.last_read.remove(&oldest);
+            }
+        }
+    }
+
+    pub(crate) fn holds(&self, id: &str) -> bool {
+        self.last_read.contains_key(id)
+    }
+}
+
 /// One headless app instance, held for as long as the session lives.
 ///
 /// The caller boots the instance; the session owns it and hands it out between commands, so
 /// what one command leaves is what the next one reads. Dropping the session ends the instance.
 /// Anything else the app needs alive beside its instance stays the caller's to hold.
+///
+/// The session also remembers the ids of the screens it reads to answer a call, as text and up
+/// to a bound, for as long as it lives: that is how [`Session::run`] tells an id that named an
+/// element earlier from one that never did. Nothing reads that record out of the session.
 pub struct Session {
     label: String,
     pub(crate) harness: Harness<DioxusDocument>,
     pub(crate) time: Option<TimeStep>,
+    pub(crate) seen: SeenIds,
 }
 
 impl Session {
@@ -48,6 +103,7 @@ impl Session {
             label: label.to_string(),
             harness: boot(),
             time: None,
+            seen: SeenIds::with_bound(MAX_SEEN_IDS),
         })
     }
 
@@ -119,5 +175,29 @@ mod tests {
                 "{label:?}"
             );
         }
+    }
+
+    #[test]
+    fn the_record_holds_the_ids_read_and_forgets_the_one_read_longest_ago() {
+        // The ids read, in order, into a record bounded at three, and what it holds after.
+        let rows: [(&[&str], &[&str], &[&str]); 6] = [
+            (&[], &[], &["a"]),
+            (&["a"], &["a"], &["b"]),
+            (&["a", "b", "c"], &["a", "b", "c"], &["d"]),
+            (&["a", "b", "c", "d"], &["b", "c", "d"], &["a"]),
+            (&["a", "b", "c", "a", "d"], &["a", "c", "d"], &["b"]),
+            (&["a", "a", "a", "b", "c", "d"], &["b", "c", "d"], &["a"]),
+        ];
+        assert_eq!(rows.len(), 6);
+        for (row, (read, held, forgotten)) in rows.into_iter().enumerate() {
+            let mut seen = SeenIds::with_bound(3);
+            for id in read {
+                seen.record(id);
+            }
+            assert!(held.iter().all(|id| seen.holds(id)), "row {row}");
+            assert!(!forgotten.iter().any(|id| seen.holds(id)), "row {row}");
+            assert!(seen.last_read.len() == held.len(), "row {row}");
+        }
+        assert_eq!(MAX_SEEN_IDS, 4096);
     }
 }

@@ -35,3 +35,6 @@
 ## Deferred learnings
 - None deferred this session; three candidates fell below the threshold (`curation.md` in the run dir).
 - Carried, for review at the Epoch 4 boundary (the founder, 2026-10-07): "The project's Bash guards refuse a heredoc written to a file and a leading cd" (Tier 3, 2026-10-06) · "A chunk that moves cited source lines stales the masters' file:line citations" (Tier 3, 2026-10-05) · "A grep hit seen through a clipped view is not read" (Tier 3, 2026-10-06) · "Count from the listing you just read, never from the plan's forecast" (Tier 3, 2026-10-05) · and the recurrence record of "A per-crate `cargo clippy` is not the CI lint leg" (Tier 3, 2026-10-07; three recurrences, none this session).
+
+## Session End Status
+Completed normally at 2026-10-07 20:50:26

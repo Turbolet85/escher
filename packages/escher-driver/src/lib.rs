@@ -26,9 +26,17 @@
 //! A call runs through a session in process: [`Session::run`] checks it, runs its verb on the
 //! held instance, settles the instance and returns an [`Outcome`] — the screen's text for
 //! `snapshot`, and for an acting verb whether the instance went quiet and the diff of the
-//! screen before and after, named by stable element id. Time moves only by `advance`, through
-//! the step a session's caller hands it ([`Session::with_time`]). Nothing of the schema, of a
-//! call or of an outcome crosses the socket: they are passed and returned as values.
+//! screen before and after, named by stable element id. There are six verbs: `snapshot`,
+//! `click`, `type`, `press`, `advance` and `scroll`, which brings the element an id names
+//! into view and says whether it then is. Time moves only by `advance`, through the step a
+//! session's caller hands it ([`Session::with_time`]). Nothing of the schema, of a call or of
+//! an outcome crosses the socket: they are passed and returned as values.
+//!
+//! An action aimed at a target that cannot take it is refused before anything is dispatched,
+//! and the refusal names why: the id names nothing on the screen ([`Cause::NotFound`], or
+//! [`Cause::Stale`] when an earlier screen of the session read it), or the element is not
+//! enabled ([`Cause::Disabled`]), out of view ([`Cause::OffScreen`]) or under another element
+//! ([`Cause::Covered`]). A refused call leaves the held instance as it was.
 
 #![deny(missing_docs)]
 

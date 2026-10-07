@@ -189,6 +189,14 @@ const ADVANCED_MS: FieldSpec = FieldSpec {
     help: "the time the app actually moved, in milliseconds: never more than `ms`",
 };
 
+const IN_VIEW: FieldSpec = FieldSpec {
+    name: "in_view",
+    kind: FieldKind::Flag,
+    always: true,
+    help: "whether the element is in view after the step; false when scrolling could not bring \
+           it there, and an action on it would still be refused `off-screen`",
+};
+
 pub(crate) const SNAPSHOT: VerbSpec = VerbSpec {
     name: "snapshot",
     help: "reads the screen: every element with its id, role, name, state and bounds",
@@ -266,8 +274,20 @@ pub(crate) const ADVANCE: VerbSpec = VerbSpec {
     fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, ADVANCED_MS],
 };
 
+pub(crate) const SCROLL: VerbSpec = VerbSpec {
+    name: "scroll",
+    help: "brings the element an id names into view, then settles",
+    args: &[ArgSpec {
+        name: "id",
+        kind: ArgKind::Id,
+        required: true,
+        help: "the id of the element to bring into view, as a snapshot lists it",
+    }],
+    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, IN_VIEW],
+};
+
 /// The verb set, in the schema's order.
-pub const VERBS: &[VerbSpec] = &[SNAPSHOT, CLICK, TYPE, PRESS, ADVANCE];
+pub const VERBS: &[VerbSpec] = &[SNAPSHOT, CLICK, TYPE, PRESS, ADVANCE, SCROLL];
 
 /// The verb `name` names exactly, or `None`.
 pub fn verb(name: &str) -> Option<&'static VerbSpec> {
@@ -280,18 +300,18 @@ mod tests {
 
     use super::*;
 
-    const VERB_NAMES: [&str; 5] = ["snapshot", "click", "type", "press", "advance"];
+    const VERB_NAMES: [&str; 6] = ["snapshot", "click", "type", "press", "advance", "scroll"];
 
     #[test]
-    fn the_five_verbs_are_named_in_order() {
-        assert_eq!(VERBS.len(), 5);
+    fn the_six_verbs_are_named_in_order() {
+        assert_eq!(VERBS.len(), 6);
         let names: Vec<&str> = VERBS.iter().map(|verb| verb.name).collect();
         assert_eq!(names, VERB_NAMES);
     }
 
     #[test]
     fn every_verb_states_its_help_its_arguments_and_a_result() {
-        assert_eq!(VERBS.len(), 5);
+        assert_eq!(VERBS.len(), 6);
         for verb in VERBS {
             let name = verb.name;
             assert!(!verb.help.is_empty(), "{name}");
@@ -330,7 +350,7 @@ mod tests {
     fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         const ACTING: [&str; 5] = ["settled", "busy", "added", "removed", "changed"];
         type Args = &'static [(&'static str, ArgKind, bool)];
-        let rows: [(&str, Args, Vec<&str>); 5] = [
+        let rows: [(&str, Args, Vec<&str>); 6] = [
             ("snapshot", &[], vec!["text"]),
             ("click", &[("id", ArgKind::Id, true)], ACTING.to_vec()),
             (
@@ -347,6 +367,11 @@ mod tests {
                 "advance",
                 &[("ms", ArgKind::Milliseconds, true)],
                 [&ACTING[..], &["advanced_ms"]].concat(),
+            ),
+            (
+                "scroll",
+                &[("id", ArgKind::Id, true)],
+                [&ACTING[..], &["in_view"]].concat(),
             ),
         ];
         assert_eq!(VERBS.len(), rows.len());
@@ -373,6 +398,7 @@ mod tests {
             ("removed", FieldKind::Ids),
             ("changed", FieldKind::Nodes),
             ("advanced_ms", FieldKind::Milliseconds),
+            ("in_view", FieldKind::Flag),
         ];
         for verb in VERBS {
             for field in verb.fields {
