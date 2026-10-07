@@ -1,0 +1,982 @@
+[
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'has_changes' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 1,
+"result": [
+{
+"caller_name": "poll",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 377
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, file, line FROM refs WHERE callee_name IN ('changed_nodes','mutations_occurred') ORDER BY callee_name, file, line",
+"rows": 20,
+"result": [
+{
+"callee_name": "changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 490
+},
+{
+"callee_name": "changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 862
+},
+{
+"callee_name": "changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1009
+},
+{
+"callee_name": "mutations_occurred",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 71
+},
+{
+"callee_name": "mutations_occurred",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 86
+},
+{
+"callee_name": "mutations_occurred",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 209
+},
+{
+"callee_name": "mutations_occurred",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 241
+},
+{
+"callee_name": "mutations_occurred",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 315
+},
+{
+"callee_name": "mutations_occurred",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 433
+},
+{
+"callee_name": "mutations_occurred",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 496
+},
+{
+"callee_name": "mutations_occurred",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 502
+},
+{
+"callee_name": "mutations_occurred",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 508
+},
+{
+"callee_name": "mutations_occurred",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 514
+},
+{
+"callee_name": "mutations_occurred",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 521
+},
+{
+"callee_name": "mutations_occurred",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 528
+},
+{
+"callee_name": "mutations_occurred",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 543
+},
+{
+"callee_name": "mutations_occurred",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 568
+},
+{
+"callee_name": "mutations_occurred",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 612
+},
+{
+"callee_name": "mutations_occurred",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 663
+},
+{
+"callee_name": "mutations_occurred",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 673
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'snapshot' AND callee_kind = 'fn' AND callee_file LIKE '%dioxus-native-dom/src/snapshot.rs' ORDER BY file, line",
+"rows": 58,
+"result": [
+{
+"caller_name": "an_aria_labelled_button_reads_its_label",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 237
+},
+{
+"caller_name": "a_label_bound_input_reads_the_label_text",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 251
+},
+{
+"caller_name": "a_text_only_paragraph_reads_its_text",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 260
+},
+{
+"caller_name": "a_display_none_subtree_is_absent",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 276
+},
+{
+"caller_name": "a_disabled_button_reads_not_enabled",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 295
+},
+{
+"caller_name": "a_checkbox_reads_checked",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 309
+},
+{
+"caller_name": "a_text_input_reads_its_value",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 323
+},
+{
+"caller_name": "text_runs_are_never_nodes",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 335
+},
+{
+"caller_name": "every_id_is_the_element_id_of_its_element",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 352
+},
+{
+"caller_name": "a_password_input_reads_a_masked_value",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 414
+},
+{
+"caller_name": "a_file_input_reads_a_masked_value",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 477
+},
+{
+"caller_name": "a_present_disabled_attribute_reads_not_enabled_whatever_its_value",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 548
+},
+{
+"caller_name": "a_radio_reads_checked",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 567
+},
+{
+"caller_name": "a_range_input_reads_its_value_attribute",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 579
+},
+{
+"caller_name": "the_text_of_a_document_has_one_line_per_node",
+"file": "packages/dioxus-native-dom/src/snapshot_text.rs",
+"line": 328
+},
+{
+"caller_name": "the_text_of_a_document_has_one_line_per_node",
+"file": "packages/dioxus-native-dom/src/snapshot_text.rs",
+"line": 333
+},
+{
+"caller_name": "assert_displayed",
+"file": "tests/blitz-tests/tests/dioxus_falsy_boolean_attrs.rs",
+"line": 46
+},
+{
+"caller_name": "a_falsy_hidden_element_is_displayed",
+"file": "tests/blitz-tests/tests/dioxus_falsy_boolean_attrs.rs",
+"line": 68
+},
+{
+"caller_name": "every_node_carries_the_five_fields",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 159
+},
+{
+"caller_name": "ids_are_the_accessibility_tree_ids",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 184
+},
+{
+"caller_name": "role_and_name_match_the_accessibility_tree",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 220
+},
+{
+"caller_name": "tree_follows_the_task_shell",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 251
+},
+{
+"caller_name": "controls_lie_inside_the_viewport",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 306
+},
+{
+"caller_name": "state_reads_the_engine",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 340
+},
+{
+"caller_name": "state_reads_the_engine",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 354
+},
+{
+"caller_name": "state_reads_the_engine",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 371
+},
+{
+"caller_name": "snapshot_is_deterministic",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 397
+},
+{
+"caller_name": "snapshot_is_deterministic",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 402
+},
+{
+"caller_name": "snapshot_follows_a_rerender",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 413
+},
+{
+"caller_name": "snapshot_follows_a_rerender",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 415
+},
+{
+"caller_name": "snapshot_follows_a_rerender",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 423
+},
+{
+"caller_name": "snapshot_follows_a_rerender",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 426
+},
+{
+"caller_name": "enabled",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 39
+},
+{
+"caller_name": "checked",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 52
+},
+{
+"caller_name": "reads_value",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 58
+},
+{
+"caller_name": "focused",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 78
+},
+{
+"caller_name": "a_disabled_control_reads_disabled_until_the_app_enables_it",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 135
+},
+{
+"caller_name": "a_disabled_control_reads_disabled_until_the_app_enables_it",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 180
+},
+{
+"caller_name": "typed_text_reads_back_as_the_value",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 270
+},
+{
+"caller_name": "the_range_input_reads_the_apps_duration",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 291
+},
+{
+"caller_name": "focus_reads_on_exactly_the_focused_control",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 314
+},
+{
+"caller_name": "the_fixture_controls_are_keyed_named_and_typed",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 390
+},
+{
+"caller_name": "a_typed_password_never_appears_in_the_snapshot",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 510
+},
+{
+"caller_name": "every_node_is_one_line_with_its_five_fields",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 162
+},
+{
+"caller_name": "state_reads_as_the_model_holds_it",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 243
+},
+{
+"caller_name": "state_reads_as_the_model_holds_it",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 251
+},
+{
+"caller_name": "state_reads_as_the_model_holds_it",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 272
+},
+{
+"caller_name": "state_reads_as_the_model_holds_it",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 291
+},
+{
+"caller_name": "state_reads_as_the_model_holds_it",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 298
+},
+{
+"caller_name": "the_text_is_deterministic",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 314
+},
+{
+"caller_name": "the_text_is_deterministic",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 316
+},
+{
+"caller_name": "the_text_is_deterministic",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 318
+},
+{
+"caller_name": "every_screen_fits_the_budget",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 339
+},
+{
+"caller_name": "every_screen_fits_the_budget",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 352
+},
+{
+"caller_name": "every_screen_fits_the_budget",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 354
+},
+{
+"caller_name": "a_masked_password_stays_masked_in_the_text",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 400
+},
+{
+"caller_name": "a_masked_password_stays_masked_in_the_text",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 413
+},
+{
+"caller_name": "a_masked_file_input_stays_masked_in_the_text",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 435
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT symbol, crate, kind, file FROM symbol WHERE name IN ('diff','SnapshotDiff','snapshot_diff','take_changed_nodes','drain_changed_nodes','NodeChange','Change') AND kind <> 'meta'",
+"rows": 0,
+"result": [],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'create_node' AND callee_kind = 'fn' AND callee_file LIKE '%blitz-dom/src/document.rs' ORDER BY file, line",
+"rows": 14,
+"result": [
+{
+"caller_name": "new",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 513
+},
+{
+"caller_name": "create_text_node",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1015
+},
+{
+"caller_name": "deep_clone_node",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1037
+},
+{
+"caller_name": "create_anonymous_block",
+"file": "packages/blitz-dom/src/layout/construct.rs",
+"line": 141
+},
+{
+"caller_name": "flush_pseudo_elements",
+"file": "packages/blitz-dom/src/layout/construct.rs",
+"line": 711
+},
+{
+"caller_name": "create_comment_node",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 134
+},
+{
+"caller_name": "create_element",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 147
+},
+{
+"caller_name": "mutator_remove_disabled",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 1381
+},
+{
+"caller_name": "mutator_set_disabled",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 1417
+},
+{
+"caller_name": "mutator_set_disabled_invalid_node",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 1451
+},
+{
+"caller_name": "create_node_with_disabled_attr",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1890
+},
+{
+"caller_name": "ignore_disabled_attr_content",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1912
+},
+{
+"caller_name": "create_node_with_ignored_disable",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1934
+},
+{
+"caller_name": "create_empty_enabled_node",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1956
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, caller_name, file, line FROM calls WHERE callee_name IN ('snapshot_node','snapshot_node_and','snapshot_node_state_only','toggle_checkbox','toggle_radio','set_checkbox_input_checked','set_focus_to','clear_focus') AND callee_kind = 'fn' AND file NOT LIKE '%/tests/%' ORDER BY callee_name, file, line",
+"rows": 40,
+"result": [
+{
+"callee_name": "clear_focus",
+"caller_name": "Toolbar",
+"file": "apps/browser/src/toolbar.rs",
+"line": 59
+},
+{
+"callee_name": "clear_focus",
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 815
+},
+{
+"callee_name": "clear_focus",
+"caller_name": "blur",
+"file": "packages/blitz-vibey-script/src/dom/element.rs",
+"line": 948
+},
+{
+"callee_name": "clear_focus",
+"caller_name": "set_focus",
+"file": "packages/dioxus-native-dom/src/events.rs",
+"line": 290
+},
+{
+"callee_name": "set_checkbox_input_checked",
+"caller_name": "toggle_checkbox",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 680
+},
+{
+"callee_name": "set_checkbox_input_checked",
+"caller_name": "toggle_radio",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 701
+},
+{
+"callee_name": "set_checkbox_input_checked",
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 672
+},
+{
+"callee_name": "set_checkbox_input_checked",
+"caller_name": "create_checkbox_input",
+"file": "packages/blitz-dom/src/layout/construct.rs",
+"line": 924
+},
+{
+"callee_name": "set_checkbox_input_checked",
+"caller_name": "set_input_checked_state",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 1285
+},
+{
+"callee_name": "set_focus_to",
+"caller_name": "focus_next_node",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1646
+},
+{
+"callee_name": "set_focus_to",
+"caller_name": "focus_prev_node",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1654
+},
+{
+"callee_name": "set_focus_to",
+"caller_name": "handle_dom_event",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 135
+},
+{
+"callee_name": "set_focus_to",
+"caller_name": "handle_dom_event",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 165
+},
+{
+"callee_name": "set_focus_to",
+"caller_name": "handle_pointerdown",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 546
+},
+{
+"callee_name": "set_focus_to",
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 660
+},
+{
+"callee_name": "set_focus_to",
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 688
+},
+{
+"callee_name": "set_focus_to",
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 714
+},
+{
+"callee_name": "set_focus_to",
+"caller_name": "flush",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 892
+},
+{
+"callee_name": "set_focus_to",
+"caller_name": "focus",
+"file": "packages/blitz-vibey-script/src/dom/element.rs",
+"line": 941
+},
+{
+"callee_name": "set_focus_to",
+"caller_name": "set_focus",
+"file": "packages/dioxus-native-dom/src/events.rs",
+"line": 286
+},
+{
+"callee_name": "snapshot_node",
+"caller_name": "set_attribute",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 270
+},
+{
+"callee_name": "snapshot_node",
+"caller_name": "clear_attribute",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 398
+},
+{
+"callee_name": "snapshot_node_and",
+"caller_name": "toggle_radio",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 699
+},
+{
+"callee_name": "snapshot_node_and",
+"caller_name": "clear_focus",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1662
+},
+{
+"callee_name": "snapshot_node_and",
+"caller_name": "set_focus_to",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1687
+},
+{
+"callee_name": "snapshot_node_and",
+"caller_name": "set_focus_to",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1693
+},
+{
+"callee_name": "snapshot_node_and",
+"caller_name": "active_node",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1726
+},
+{
+"callee_name": "snapshot_node_and",
+"caller_name": "unactive_node",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1741
+},
+{
+"callee_name": "snapshot_node_and",
+"caller_name": "set_hover_to",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1881
+},
+{
+"callee_name": "snapshot_node_and",
+"caller_name": "set_hover_to",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1884
+},
+{
+"callee_name": "snapshot_node_and",
+"caller_name": "clear_hover",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1910
+},
+{
+"callee_name": "snapshot_node_and",
+"caller_name": "checkbox_toggle_updates_checked_styles",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3076
+},
+{
+"callee_name": "snapshot_node_and",
+"caller_name": "checkbox_toggle_updates_checked_styles",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3095
+},
+{
+"callee_name": "snapshot_node_and",
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 646
+},
+{
+"callee_name": "snapshot_node_and",
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 670
+},
+{
+"callee_name": "snapshot_node_state_only",
+"caller_name": "snapshot_node_and",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1546
+},
+{
+"callee_name": "toggle_checkbox",
+"caller_name": "checkbox_toggle_updates_checked_styles",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3078
+},
+{
+"callee_name": "toggle_checkbox",
+"caller_name": "checkbox_toggle_updates_checked_styles",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3097
+},
+{
+"callee_name": "toggle_checkbox",
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 648
+},
+{
+"callee_name": "toggle_radio",
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 668
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT from_crate, to_crate FROM crate_edges WHERE to_crate IN ('blitz-dom','dioxus-native-dom') ORDER BY to_crate, from_crate",
+"rows": 23,
+"result": [
+{
+"from_crate": "blitz",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "blitz-examples",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "blitz-html",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "blitz-paint",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "blitz-shell",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "blitz-tests",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "blitz-vibey-script",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "browser",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "dioxus-native",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "dioxus-native-dom",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "rdme",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "wasm_hello",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "wgpu_texture",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "wpt",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "blitz-examples",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "blitz-tests",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "browser",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "dioxus-native",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "wgpu_texture",
+"to_crate": "dioxus-native-dom"
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, caller_name, file, line FROM calls WHERE callee_name IN ('apply_generated_text_input_event','set_viewport_scroll','scroll_node_by','scroll_node_by_has_changed','scroll_viewport_by','scroll_viewport_by_has_changed','set_viewport','accessibility_tree','build_accessibility_tree','update_tree') AND callee_kind = 'fn' AND file NOT LIKE '%/tests/%' AND file NOT LIKE 'tests/%' ORDER BY callee_name, file, line",
+"rows": 20,
+"result": [
+{
+"callee_name": "accessibility_tree",
+"caller_name": "update_tree",
+"file": "packages/blitz-shell/src/accessibility.rs",
+"line": 44
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "unkeyed_actionable",
+"file": "packages/dioxus-native-dom/src/actionable.rs",
+"line": 56
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "snapshot",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 83
+},
+{
+"callee_name": "apply_generated_text_input_event",
+"caller_name": "handle_ime_event",
+"file": "packages/blitz-dom/src/events/ime.rs",
+"line": 23
+},
+{
+"callee_name": "apply_generated_text_input_event",
+"caller_name": "handle_key_or_input_event",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 96
+},
+{
+"callee_name": "build_accessibility_tree",
+"caller_name": "accessibility_tree",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 158
+},
+{
+"callee_name": "build_accessibility_tree",
+"caller_name": "handle_blitz_shell_event",
+"file": "packages/blitz-shell/src/application.rs",
+"line": 81
+},
+{
+"callee_name": "build_accessibility_tree",
+"caller_name": "accessibility_tree",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 300
+},
+{
+"callee_name": "scroll_node_by_has_changed",
+"caller_name": "scroll_node_by",
+"file": "packages/blitz-dom/src/scrolling.rs",
+"line": 360
+},
+{
+"callee_name": "scroll_viewport_by",
+"caller_name": "flush_pending_device_changes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2069
+},
+{
+"callee_name": "scroll_viewport_by_has_changed",
+"caller_name": "scroll_viewport_by",
+"file": "packages/blitz-dom/src/scrolling.rs",
+"line": 389
+},
+{
+"callee_name": "set_viewport",
+"caller_name": "init",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 196
+},
+{
+"callee_name": "set_viewport",
+"caller_name": "replace_document",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 247
+},
+{
+"callee_name": "set_viewport",
+"caller_name": "set_viewport_size",
+"file": "packages/blitz-test-harness/src/harness.rs",
+"line": 184
+},
+{
+"callee_name": "set_viewport",
+"caller_name": "parse_and_resolve_document",
+"file": "wpt/runner/src/test_runners/mod.rs",
+"line": 376
+},
+{
+"callee_name": "set_viewport_scroll",
+"caller_name": "set_viewport_scroll",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2216
+},
+{
+"callee_name": "set_viewport_scroll",
+"caller_name": "write_scroll_offset",
+"file": "packages/blitz-dom/src/scrolling.rs",
+"line": 295
+},
+{
+"callee_name": "set_viewport_scroll",
+"caller_name": "replace_document",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 255
+},
+{
+"callee_name": "update_tree",
+"caller_name": "poll",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 379
+},
+{
+"callee_name": "update_tree",
+"caller_name": "build_accessibility_tree",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 522
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

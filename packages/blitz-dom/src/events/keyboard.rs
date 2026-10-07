@@ -118,6 +118,7 @@ impl BaseDocument {
         match event {
             GeneratedTextInputEvent::Input => {
                 let value = input_data.editor.raw_text().to_string();
+                self.changed_nodes.insert(node_id);
                 dispatch_event(DomEvent::new(
                     node_id,
                     DomEventData::Input(BlitzInputEvent { value }),

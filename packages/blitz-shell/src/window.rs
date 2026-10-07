@@ -373,13 +373,13 @@ impl<Rend: WindowRenderer> View<Rend> {
         if let Some(waker) = &self.waker {
             let cx = std::task::Context::from_waker(waker);
             if self.doc.poll(Some(cx)) {
+                let changed_nodes = self.doc.inner_mut().take_changed_nodes();
                 #[cfg(feature = "accessibility")]
-                {
-                    let has_changes = self.doc.inner().has_changes();
-                    if has_changes {
-                        self.accessibility.update_tree(&*self.doc);
-                    }
+                if !changed_nodes.is_empty() {
+                    self.accessibility.update_tree(&*self.doc);
                 }
+                #[cfg(not(feature = "accessibility"))]
+                drop(changed_nodes);
 
                 self.request_redraw();
                 return true;

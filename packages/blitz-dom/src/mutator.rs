@@ -208,6 +208,9 @@ impl DocumentMutator<'_> {
         let changed = text.content != value;
         if changed {
             self.mutations_occurred |= node_is_in_document;
+            if node_is_in_document {
+                self.doc.changed_nodes.insert(node_id);
+            }
             text.content.clear();
             text.content.push_str(value);
             node.insert_damage(ALL_DAMAGE);
@@ -240,6 +243,9 @@ impl DocumentMutator<'_> {
             Some(data) => {
                 data.content += text;
                 self.mutations_occurred |= node_is_in_document;
+                if node_is_in_document {
+                    self.doc.changed_nodes.insert(node_id);
+                }
                 Ok(())
             }
             None => Err(AppendTextErr::NotTextNode),
@@ -314,6 +320,9 @@ impl DocumentMutator<'_> {
         };
 
         self.mutations_occurred |= node_is_in_document;
+        if node_is_in_document {
+            self.doc.changed_nodes.insert(node_id);
+        }
         // If element is a CustomWidget, then Ccall attribute_changed on it
         #[cfg(feature = "custom-widget")]
         if let SpecialElementData::CustomWidget(widget_data) = &mut element.special_data {
@@ -432,6 +441,9 @@ impl DocumentMutator<'_> {
             return;
         }
         self.mutations_occurred |= node_is_in_document;
+        if node_is_in_document {
+            self.doc.changed_nodes.insert(node_id);
+        }
 
         // If element is a CustomWidget, then call attribute_changed on it
         #[cfg(feature = "custom-widget")]
@@ -495,24 +507,36 @@ impl DocumentMutator<'_> {
         let node_is_in_document = self.doc.nodes[node_id].flags.is_in_document();
         self.doc.set_style_property(node_id, name, value);
         self.mutations_occurred |= node_is_in_document;
+        if node_is_in_document {
+            self.doc.changed_nodes.insert(node_id);
+        }
     }
 
     pub fn remove_style_property(&mut self, node_id: NodeId, name: &str) {
         let node_is_in_document = self.doc.nodes[node_id].flags.is_in_document();
         self.doc.remove_style_property(node_id, name);
         self.mutations_occurred |= node_is_in_document;
+        if node_is_in_document {
+            self.doc.changed_nodes.insert(node_id);
+        }
     }
 
     pub fn set_sub_document(&mut self, node_id: NodeId, sub_document: Box<dyn Document>) {
         let node_is_in_document = self.doc.nodes[node_id].flags.is_in_document();
         self.doc.set_sub_document(node_id, sub_document);
         self.mutations_occurred |= node_is_in_document;
+        if node_is_in_document {
+            self.doc.changed_nodes.insert(node_id);
+        }
     }
 
     pub fn remove_sub_document(&mut self, node_id: NodeId) {
         let node_is_in_document = self.doc.nodes[node_id].flags.is_in_document();
         self.doc.remove_sub_document(node_id);
         self.mutations_occurred |= node_is_in_document;
+        if node_is_in_document {
+            self.doc.changed_nodes.insert(node_id);
+        }
     }
 
     #[cfg(feature = "custom-widget")]
@@ -520,6 +544,9 @@ impl DocumentMutator<'_> {
         let node_is_in_document = self.doc.nodes[node_id].flags.is_in_document();
         self.doc.set_custom_widget(node_id, widget);
         self.mutations_occurred |= node_is_in_document;
+        if node_is_in_document {
+            self.doc.changed_nodes.insert(node_id);
+        }
     }
 
     #[cfg(feature = "custom-widget")]
@@ -527,6 +554,9 @@ impl DocumentMutator<'_> {
         let node_is_in_document = self.doc.nodes[node_id].flags.is_in_document();
         self.doc.remove_custom_widget(node_id);
         self.mutations_occurred |= node_is_in_document;
+        if node_is_in_document {
+            self.doc.changed_nodes.insert(node_id);
+        }
     }
 
     /// Remove the node from it's parent but don't drop it
@@ -542,6 +572,9 @@ impl DocumentMutator<'_> {
         // Update child_idx values
         if let Some(parent_id) = node.parent.take() {
             self.mutations_occurred |= node_is_in_document;
+            if node_is_in_document {
+                self.doc.changed_nodes.insert(node_id);
+            }
             let parent = &mut self.doc.nodes[parent_id];
             parent.insert_damage(ALL_DAMAGE);
             // Mark ancestors dirty so the style traversal visits this subtree.
@@ -567,6 +600,9 @@ impl DocumentMutator<'_> {
 
         let node = self.doc.drop_node_ignoring_parent_with(node_id, on_drop);
         self.mutations_occurred |= node_is_in_document;
+        if node_is_in_document {
+            self.doc.changed_nodes.insert(node_id);
+        }
 
         // Update child_idx values
         if let Some(parent_id) = node.as_ref().and_then(|node| node.parent) {
@@ -611,6 +647,9 @@ impl DocumentMutator<'_> {
 
         let children = mem::take(&mut parent.children);
         self.mutations_occurred |= parent_is_in_doc && !children.is_empty();
+        if parent_is_in_doc && !children.is_empty() {
+            self.doc.changed_nodes.insert(node_id);
+        }
         for child_id in children {
             self.process_removed_subtree(child_id);
             let _ = self.doc.drop_node_ignoring_parent(child_id);
@@ -662,6 +701,9 @@ impl DocumentMutator<'_> {
     ) {
         let new_parent_is_in_document = self.doc.nodes[parent_id].flags.is_in_document();
         self.mutations_occurred |= new_parent_is_in_document && !child_ids.is_empty();
+        if new_parent_is_in_document && !child_ids.is_empty() {
+            self.doc.changed_nodes.insert(parent_id);
+        }
         // Detach the children from their old parents *before* inserting them into
         // the new parent (matching DOM `insertBefore` semantics). If a child is
         // being moved within the same parent then detaching it after insertion
@@ -672,6 +714,9 @@ impl DocumentMutator<'_> {
             let child = &mut self.doc.nodes[child_id];
             let child_was_in_doc = child.flags.is_in_document();
             self.mutations_occurred |= child_was_in_doc;
+            if child_was_in_doc {
+                self.doc.changed_nodes.insert(child_id);
+            }
             let Some(old_parent_id) = child.parent.take() else {
                 continue;
             };

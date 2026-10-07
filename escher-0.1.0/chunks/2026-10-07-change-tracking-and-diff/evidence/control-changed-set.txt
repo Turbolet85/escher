@@ -1,0 +1,31 @@
+# Step 4's control — the changed-set tests against the engine with only `take_changed_nodes` added
+
+run: cargo test -p blitz-dom --locked --lib changed_set_   (2026-10-07, implement P1, before steps 1-3)
+tree: e616ec1c + the seven changed_set_ tests + `BaseDocument::take_changed_nodes`; `create_node` still marks, `has_changes` still returns `changed_nodes.is_empty()`, no other write site marks
+exit: 101
+
+test document::changed_set_tests::changed_set_fresh_document_reads_no_change ... FAILED
+test document::changed_set_tests::changed_set_drained_id_of_a_dropped_node_reads_none ... FAILED
+test document::changed_set_tests::changed_set_attribute_write_marks_its_node_until_drained ... FAILED
+test document::changed_set_tests::changed_set_idle_resolve_marks_nothing_in_either_layout_mode ... FAILED
+test document::changed_set_tests::changed_set_focus_move_marks_both_nodes_and_hover_marks_nothing ... FAILED
+test document::changed_set_tests::changed_set_write_outside_the_document_marks_nothing ... FAILED
+test document::changed_set_tests::changed_set_checked_change_marks_its_node ... FAILED
+test result: FAILED. 0 passed; 7 failed; 0 ignored; 0 measured; 57 filtered out; finished in 0.04s
+
+first diagnostic of each (file:line as the control tree had them, then the assertion's message):
+- changed_set_fresh_document_reads_no_change @ packages/blitz-dom/src/document.rs:3360:9 — a fresh document's changed set is empty
+- changed_set_drained_id_of_a_dropped_node_reads_none @ packages/blitz-dom/src/document.rs:3530:9 — the drained set holds the dropped node's id
+- changed_set_attribute_write_marks_its_node_until_drained @ packages/blitz-dom/src/document.rs:3377:9 — a tracked write reads as a change
+- changed_set_idle_resolve_marks_nothing_in_either_layout_mode @ packages/blitz-dom/src/document.rs:3511:13 — incremental=false: a resolve with nothing written marks no node
+- changed_set_focus_move_marks_both_nodes_and_hover_marks_nothing @ packages/blitz-dom/src/document.rs:3434:9 — assertion `left == right` failed: the node that lost focus and the node that gained it
+- changed_set_write_outside_the_document_marks_nothing @ packages/blitz-dom/src/document.rs:3417:9 — assertion failed: doc.take_changed_nodes().is_empty()
+- changed_set_checked_change_marks_its_node @ packages/blitz-dom/src/document.rs:3485:9 — assertion `left == right` failed
+
+what it measures:
+- attribute write: on a document nothing has drained, `has_changes()` answers false after an in-document attribute write — research's by-code-read claim that the flag is constant, now read from a run.
+- fresh document: the set is non-empty at construction (the root node, through `create_node`).
+- idle resolve, incremental=false: a second `resolve` with nothing written puts nodes into the drained set — layout re-creates the anonymous block through `create_node` (research had this as not measured).
+- focus, checked, dropped node: no write site marks them; outside-the-document: `create_node` marks a detached node.
+
+an earlier run of the same control (same exit, 0 passed; 7 failed) had the idle-resolve test fail on its own fixture assertion: elements built with `qual_name!("div")` are in no namespace, the default stylesheet's type selectors match only the HTML namespace, so `body` and `div` laid out inline and no anonymous block was built. The fixture now creates its elements with `qual_name!(.., html)`; the lines above are the run after that fix.

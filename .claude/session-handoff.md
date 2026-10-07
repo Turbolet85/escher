@@ -27,3 +27,6 @@
 - recurrence-despite-learning: "A grep hit seen through a clipped view is not read" (Tier 3, 2026-10-06). Recurred at this wrap: six hits of one phrase were written up as six statements of the retired claim; two were another subject's — the security-plan detector read them.
 - carried, still unreviewed, no recurrence this session: "The project's Bash guards refuse a heredoc written to a file and a leading cd, and read payload prose too" (Tier 3, 2026-10-06) · "Count from the listing you just read, never from the plan's forecast" (Tier 3, 2026-10-05) · "On this host `grep` is ugrep, and a long bounded repetition can print nothing" (Tier 3, 2026-10-06).
 Review with `/andromeda-wrap-session --review` if any should be applied.
+
+## Session End Status
+Completed normally at 2026-10-07 02:58:25
