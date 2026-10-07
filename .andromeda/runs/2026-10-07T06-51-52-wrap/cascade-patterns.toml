@@ -1,0 +1,47 @@
+# Cascade step-2 sweep — 2026-10-07-driver-session. One pattern per retired claim or wording of this pass.
+
+[[pattern]]
+id = "provisional"
+fixed = 'provisional'
+ignore_case = true
+
+[[pattern]]
+id = "pending-word"
+regex = 'pending the founder|founder.s word at the Epoch 3'
+
+[[pattern]]
+id = "no-listener"
+regex = 'listeners:\*\* none|no network listener|no listener|no socket or port|binds no (network )?port|no daemon|nothing is started, polled|No served API'
+ignore_case = true
+
+[[pattern]]
+id = "not-logged"
+regex = 'logged nowhere|written to no log|id.s only exit'
+
+[[pattern]]
+id = "one-installer"
+regex = '(in|today|except) `seven_guis_native`|`seven_guis_native`.s escher|`seven_guis_native` (installs|logs|writes|additionally)|into `seven_guis_native`'
+
+[[pattern]]
+id = "one-module"
+regex = 'one shared module|by six (`?stand|stand)|six of which|one statement of what the stand checks share'
+
+[[pattern]]
+id = "old-counts"
+regex = '548 · 0 · 5|131 result lines|63 `ok` stand|63 stand checks|63 passed'
+
+[[pattern]]
+id = "stand-manifest"
+regex = 'seven_guis/Cargo\.toml:29-34|blitz-test-harness and blitz-traits'
+
+[[pattern]]
+id = "tests-manifest"
+regex = 'blitz-tests/Cargo\.toml:(14-23|25-27|29-38|15-38|31\))'
+
+[[pattern]]
+id = "scrub-reach"
+regex = 'Past escher.s scrub|reach is that sink|discharged for escher.s own|scrubs by allowlist'
+
+[[pattern]]
+id = "no-app-tests"
+regex = 'no test launches a window|every hit sits inside a|examples, accesskit_xplat\):\*\* no tests'

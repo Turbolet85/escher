@@ -206,3 +206,15 @@ One entry per amendment to `test-plan.md` (sidecar-contract.md §Entry form). Ap
 - 4 of 20 citations into the edited files re-pointed by the measured line map; the `element_id.rs` test module is now `:284-604`.
 **Why:** the chunk added six unit tests that kill the seven mutants the Epoch 2 code audit left surviving, and moved the stand checks' restated tables and helpers into one module; it added no stand check and no test target. Trap for later chunks: a sed or grep address that ends at a function's name also selects every item whose name opens with it, and a control built with the same address cannot catch that.
 **Ref:** .andromeda/runs/2026-10-07T03-59-09-wrap/
+
+## 2026-10-07-driver-session — the driver session's coverage, a Session lifecycle key, the agent-run premise scoped, re-counts
+**Section:** §1 Coverage scope (apps · new escher-driver bullet · tests/blitz-tests) · §2 (Test levels: new Process-lifecycle checks · Directory pattern) · §3 (Crate-local test helpers · Stand log format · Agent-run contract → Invocation · State · Proof) · §3 → Session lifecycle (new key) · §4 (new escher-driver bullet) · §5 (three new boundaries · Observed absent · citation) · §6 Observed absent · §9 Local baseline
+**Change:**
+- New key `§3 → Session lifecycle` (labels `session-start` · `session-host` · `session-wire` · `session-state` · `session-binary` · `session-checks` · `session-proof`): the surface the session checks drive and what a process check owes.
+- Agent-run Invocation: was "The stand is an in-process library boot, so nothing is started, polled or listened on"; now the script itself starts and listens on nothing, and two checks of `run stand` start their own session host and socket. State names their two directories under `target/tmp/`.
+- Coverage: escher-driver's 13 unit tests (error 3 · session 2 · wire 8); `host_binary` (2), the stand crate's first integration test — the slice-s04 "no tests" readings kept as the reading at that search; five `stand_session_*` checks (3 · 2 · 2 · 1 · 1, two `#[ignore]` host children); two shared modules, `mod common;` readers six → eleven.
+- §5 states what `stand_session_quiet` proves (a host with no log sink writes nothing of the screen) and what it does not (a sink-installing host at `debug` / `trace`), owed by "Sink target allowlist".
+- Re-counts appended: `run stand` 63 → 72 ok (ignored 1 → 3); workspace 131 · 548 · 0 · 5 → 140 · 572 · 0 · 7.
+- Citations: root `Cargo.toml:23` → `:24`, `:199-200` → `:201-202`.
+**Why:** the chunk added the session library, its host binary and their checks. The quiet check's limit is recorded on the founder's ruling to record the host-log finding honestly (the founder, 2026-10-07, relayed verbatim). Traps: an `#[ignore]` host child blocks a bare `--ignored` run; a child's inherited libtest lines are counted by `agent-run.sh` as tests; a sink-installing host at `trace` overruns an undrained pipe.
+**Ref:** .andromeda/runs/2026-10-07T06-51-52-wrap/

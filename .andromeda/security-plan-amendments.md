@@ -166,3 +166,31 @@ One entry per amendment to `security-plan.md` (sidecar-contract.md §Entry form)
 **Why:** the Epoch 2 code audit found the key filter's `&&` could become `||` with no test failing; the chunk added a named witness for each of the filter's two conditions, so the row can now state the refusal on evidence. No input class, crossing or validation mechanism changed.
 **Kept:** the full segment grammar (a repeated key falling back to an index, the first-among-siblings rule) stays architecture's to state; this row names only the two refusals the witnesses prove.
 **Ref:** .andromeda/runs/2026-10-07T03-59-09-wrap/
+
+## 2026-10-07-driver-session — the driver session socket: threat vector, access, input rows
+**Section:** §Threat Model Summary → Attack surface (new vector: local IPC) · §Authentication & Authorization (new row) · §Input Validation (four new rows: session socket · state directory · label · `escher-session` argv) · §API Security (lead · new control row) · §Secret Management → Environment values read · §Dependency Security → Pinning (citations)
+**Change:**
+- API Security lead: was "No served API surface exists … listeners are observed absent"; now no served network API and no TCP or UDP port, with one local listener — the driver session's Unix-domain socket `session.sock`, lifecycle messages only.
+- Access: no handshake, token or peer-credential check; the state directory is created `0700`, one open to group or others is refused (`StateDirNotPrivate`), the socket is `0600` — the owning user only.
+- Validation: requests parsed against a closed grammar (`hello v1`, `stop v1`), bounded at 64 bytes, a 2 s read and write bound, refusals and broken connections changing nothing; replies carry a pid, the label and a count only; the label is 1-32 bytes of `a-z0-9-`, checked before the boot; the binary's argv is closed (two arguments, four tasks) and exits 2 before anything boots; `stop` removes the socket file and the directory, nothing else.
+- Environment: two build-time `env!` values in the session checks; the library and the binary read no env var beyond `RUST_LOG`.
+- Citations: root `Cargo.toml:104; :114` → `:106; :116`; the blitz-tests dev-dependency range → `:15-40`.
+**Why:** a new listener and a new input surface are a security-plan amendment first. A boundary widening, ratified by the founder's own choice (the founder, 2026-10-07, relayed verbatim). Standing: the wire carries nothing of the screen; a command that carries an id, a name, a value, snapshot text or a diff reopens the crossing question.
+**Kept:** no idle expiry and no pid check in `start` — recorded as built; a TCP or UDP port was ruled out (it needs an auth surface the version excludes).
+**Ref:** .andromeda/runs/2026-10-07T06-51-52-wrap/
+
+## 2026-10-07-driver-session — what a sink-installing host logs: the id and name rows and the scrub's reach scoped to the measurement
+**Section:** §Input Validation → Markup attributes (`id` · accessible names) · §Logging & Monitoring → Log format and backends (escher's own sink · Stdout output) · §Bootstrap phases → logging-redaction-wire
+**Change:**
+- Accessible names: was "the names are logged nowhere"; now escher's own code logs no name, a host that installs the sink writes none at the default level or at `info`, and at `trace` a name prints on its stderr through `dioxus_core::diff::node`.
+- `id`: was "computed on demand and written to no log, DOM or vdom"; now escher's own code writes it to none, while an author-key id — the element's HTML `id` — prints on such a host's stderr at `debug` and `trace` through Stylo's records; the three "the id's only exit" clauses now read "the only exit escher's own code gives the id".
+- The sink: both seven_guis binaries install it; the past-the-scrub list gains the class "a record from a target outside the engine allowlist prints as written" with the reading on `escher-session` (0 lines at `warn`; 1 line, no id, no name at `info`; ids at `debug`; ids and names at `trace`; stdout empty). Typed text and the windowed stand by level are stated as not measured.
+- logging-redaction-wire: was discharged for escher's own sink; now discharged for engine targets and content-named fields, open for third-party targets, owed by the route entry "Sink target allowlist".
+**Why:** the chunk measured the session host's stderr by level. The founder ruled to record it honestly and fix it in the chunk right after (the founder, 2026-10-07, relayed verbatim). Trap: a "nothing in the logs" check over a process that installs no sink passes vacuously — `stand_session_quiet`'s host is one.
+**Ref:** .andromeda/runs/2026-10-07T06-51-52-wrap/
+
+## 2026-10-07-driver-session — founder's rulings: the Epoch 3 PROVISIONAL items ratified
+**Section:** §Input Validation → Markup attributes (`id` · accessible names · password and file `input` value)
+**Change:** eight clauses in the three rows read PROVISIONAL (the operator's answer, pending the founder's word at the Epoch 3 boundary, or "as the `id` row records"); now "ratified by the founder, 2026-10-07" — the shell's refresh of the platform tree on change (its windowed witness still owed, and the row says so), and the snapshot, its text and its diff being returned to their caller only. No other text of those clauses changes.
+**Why:** the founder ruled on both items at the Epoch 3 boundary (the founder, 2026-10-07, in the overseer session, relayed verbatim by the overseer), superseding the operator's provisional answers by rule.
+**Ref:** .andromeda/runs/2026-10-07T06-51-52-wrap/

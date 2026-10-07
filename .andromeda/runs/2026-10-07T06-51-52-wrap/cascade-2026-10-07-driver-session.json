@@ -1,0 +1,333 @@
+[
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "b56ded6b",
+"ts": "2026-10-07T07:12:51Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-07T06-51-52-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-07T06-51-52-wrap",
+"--marker",
+"2026-10-07-driver-session"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"baseline 7d9f351d (pre-CI parent — the oldest of 1 pre-CI commit(s), 91484eb0)",
+"provisional · new 0 · standing 0 · leaf 7 · curation 0 · base 2 · control architecture.md:120 (prose)",
+"pending-word · new 0 · standing 0 · leaf 7 · curation 0 · base 0 · control architecture.md:120 (prose)",
+"no-listener · new 0 · standing 3 · leaf 6 · curation 0 · base 0 · control architecture.md:144 (prose)",
+"not-logged · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:107 (p…",
+"one-installer · new 1 · standing 2 · leaf 2 · curation 0 · base 0 · control architecture.md:148 (prose)",
+"one-module · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:259 (prose)",
+"old-counts · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control test-plan.md:112 (prose)",
+"stand-manifest · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:152 (prose)",
+"tests-manifest · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:64 …",
+"scrub-reach · new 0 · standing 4 · leaf 4 · curation 0 · base 0 · control security-plan.md:248 (prose)",
+"no-app-tests · new 0 · standing 3 · leaf 0 · curation 0 · base 0 · control test-plan.md:10 (prose)",
+".andromeda/playbook.md:40 provisional base ×2 - pattern: Provisional discharge — an amendment removes, or would leave s…",
+".andromeda/playbook.md:42 provisional base   note: PROVISIONAL items are discharged in one batch at each epoch boundary…",
+".claude/rules/a11y.md:26 provisional leaf …that poll was non-empty (provisional, pending the founder's word; before 202…",
+".claude/docs/a11y-summary.md:24 provisional leaf …:accessibility_tree` (provisional, pending the founder's word; before…",
+".claude/docs/security-summary.md:27 provisional leaf … to the caller only (provisional, pending the founder's word): no…",
+".claude/docs/services/blitz-dom.md:19 provisional leaf …and never reads it. Provisional, pending the founder's word (it…",
+".claude/docs/services/blitz-shell.md:18 provisional leaf … refresh never ran. Provisional, pending the founder's word; …",
+".claude/docs/services/dioxus-native-dom.md:18 provisional leaf …rint or write it (provisional, pending the founder's wo…",
+".claude/docs/services/dioxus-native-dom.md:19 provisional leaf …urned value only (provisional, pending the founder's wo…",
+".claude/rules/a11y.md:26 pending-word leaf …non-empty (provisional, pending the founder's word; before 2026-10-07 the p…",
+".claude/docs/a11y-summary.md:24 pending-word leaf …y_tree` (provisional, pending the founder's word; before 2026-10-07 …",
+".claude/docs/security-summary.md:27 pending-word leaf …r only (provisional, pending the founder's word): no log, event,…",
+".claude/docs/services/blitz-dom.md:19 pending-word leaf …ds it. Provisional, pending the founder's word (it changes beh…",
+".claude/docs/services/blitz-shell.md:18 pending-word leaf … ran. Provisional, pending the founder's word; no windowed r…",
+".claude/docs/services/dioxus-native-dom.md:18 pending-word leaf …it (provisional, pending the founder's word) (`stand_s…",
+".claude/docs/services/dioxus-native-dom.md:19 pending-word leaf …ly (provisional, pending the founder's word) (`stand_d…",
+".andromeda/architecture.md:150 no-listener standing edited @c2729/4182 … a fixed argv, no socket or port (tests/blitz-t…",
+".andromeda/test-plan.md:106 no-listener standing edited …listens on nothing: no daemon, PID file, status endpoint, port…",
+".andromeda/test-plan.md:119 no-listener standing …ld-agent.ps1:1-4). It binds no port or socket and reads no environmen…",
+"CLAUDE.md:43 no-listener leaf - The workspace binds no network port or socket — a new listener, port, env var or worksp…",
+".claude/rules/security.md:18 no-listener leaf - No served API, listener or auth exists. A new socket, port, IPC endpoin…",
+".claude/rules/verification-harness.md:20 no-listener leaf …, run.log}` only — no daemon, PID file, socket, port or env …",
+".claude/docs/security-summary.md:7 no-listener leaf ×2 …engine library with no served API, no listener and no authentic…",
+".claude/docs/security-summary.md:40 no-listener leaf …to the invoking user, no listener or auth surface → \"MCP surface\".",
+".claude/docs/tests-summary.md:15 no-listener leaf …nts.jsonl, run.log}`. No daemon, PID file, status endpoint, port or …",
+".andromeda/obs-plan.md:172 one-installer standing edited …aint_bench.rs:321), except `seven_guis_native` and `escher-se…",
+".andromeda/obs-plan.md:173 one-installer standing edited …**escher-telemetry (in `seven_guis_native` and `escher-sessio…",
+".andromeda/obs-plan.md:243 one-installer new …ok, installed by `init` in `seven_guis_native` and in `escher-session`, c…",
+".claude/rules/observability.md:18 one-installer leaf …ntity!())` at start (today `seven_guis_native`, before `launch`; …",
+".claude/docs/tests-summary.md:17 one-installer leaf …format (measured):** `seven_guis_native` writes stderr only, one `…",
+".andromeda/test-plan.md:99 one-module standing edited …ommon/mod.rs` is the one statement of what the stand checks shar…",
+".andromeda/test-plan.md:115 old-counts standing edited @c2141/2793 …ff: `run stand` 63 `ok` stand events (+9 `stand_dif…",
+".andromeda/test-plan.md:322 old-counts standing edited ×2 @c4300,4783/5764 …ing-and-diff: 131 result lines, 542 passed …",
+".claude/docs/tests-summary.md:28 old-counts leaf ×2 …go test --workspace` 548 · 0 · 5 over 131 result lines at 2026-10-…",
+".claude/docs/services/seven_guis.md:14 stand-manifest leaf …ative target only, blitz-test-harness and blitz-traits (the…",
+".andromeda/security-plan.md:376 scrub-reach standing edited @c876/2232 …rs:17-84). Its reach is that sink only: the ups…",
+".andromeda/obs-plan.md:290 scrub-reach standing edited - Past escher's scrub: the chained std panic hook prints the raw…",
+".andromeda/obs-plan.md:294 scrub-reach standing - escher's own sink scrubs by allowlist in its formatter (packages/esch…",
+".andromeda/obs-plan.md:295 scrub-reach standing edited - Its reach is that sink, installed by the two binaries of the s…",
+"CLAUDE.md:46 scrub-reach leaf - escher's sink scrubs by allowlist (engine targets print only safe fields; content-named…",
+".claude/rules/observability.md:32 scrub-reach leaf - escher's sink scrubs by allowlist in the formatter (obs-plan §8): …",
+".claude/docs/obs-summary.md:42 scrub-reach leaf - **escher's sink scrubs by allowlist:** a target starting `blitz` · `d…",
+".claude/docs/obs-summary.md:43 scrub-reach leaf …e contents unscrubbed. Past escher's scrub: std's panic hook prints th…",
+".andromeda/test-plan.md:10 no-app-tests standing edited …**apps (rdme, bump, examples, accesskit_xplat):** no tests — o…",
+".andromeda/test-plan.md:185 no-app-tests standing edited …files of slice s04; every hit sits inside a `#[cfg(test)] mod…",
+".andromeda/test-plan.md:208 no-app-tests standing edited mixed ×2 …es of slice s04; no test launches a window or docume…",
+"provisional · new 0 · standing 0 · leaf 7 · curation 0 · base 2 · control architecture.md:120 (prose)",
+"pending-word · new 0 · standing 0 · leaf 7 · curation 0 · base 0 · control architecture.md:120 (prose)",
+"no-listener · new 0 · standing 3 · leaf 6 · curation 0 · base 0 · control architecture.md:144 (prose)",
+"not-logged · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:107 (p…",
+"one-installer · new 1 · standing 2 · leaf 2 · curation 0 · base 0 · control architecture.md:148 (prose)",
+"one-module · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:259 (prose)",
+"old-counts · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control test-plan.md:112 (prose)",
+"stand-manifest · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:152 (prose)",
+"tests-manifest · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:64 …",
+"scrub-reach · new 0 · standing 4 · leaf 4 · curation 0 · base 0 · control security-plan.md:248 (prose)",
+"no-app-tests · new 0 · standing 3 · leaf 0 · curation 0 · base 0 · control test-plan.md:10 (prose)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "7d9f351d850c4415b04143e2909864f0f03f2666",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), 91484eb0",
+"counts": {
+"provisional": {
+"new": 0,
+"standing": 0,
+"leaf": 7,
+"curation": 0,
+"base": 2
+},
+"pending-word": {
+"new": 0,
+"standing": 0,
+"leaf": 7,
+"curation": 0,
+"base": 0
+},
+"no-listener": {
+"new": 0,
+"standing": 3,
+"leaf": 6,
+"curation": 0,
+"base": 0
+},
+"not-logged": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"one-installer": {
+"new": 1,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"one-module": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"old-counts": {
+"new": 0,
+"standing": 2,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"stand-manifest": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"tests-manifest": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"scrub-reach": {
+"new": 0,
+"standing": 4,
+"leaf": 4,
+"curation": 0,
+"base": 0
+},
+"no-app-tests": {
+"new": 0,
+"standing": 3,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+}
+}
+},
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "b56ded6b",
+"ts": "2026-10-07T07:16:03Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-07T06-51-52-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-07T06-51-52-wrap",
+"--marker",
+"2026-10-07-driver-session"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"baseline 7d9f351d (pre-CI parent — the oldest of 1 pre-CI commit(s), 91484eb0)",
+"provisional · new 0 · standing 0 · leaf 0 · curation 0 · base 2 · control architecture.md:120 (prose)",
+"pending-word · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:120 (…",
+"no-listener · new 0 · standing 3 · leaf 4 · curation 0 · base 0 · control architecture.md:144 (prose)",
+"not-logged · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:107 (p…",
+"one-installer · new 1 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:148 (prose)",
+"one-module · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:259 (pr…",
+"old-counts · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control test-plan.md:112 (prose)",
+"stand-manifest · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:152 (prose)",
+"tests-manifest · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:64 …",
+"scrub-reach · new 0 · standing 4 · leaf 4 · curation 0 · base 0 · control security-plan.md:248 (prose)",
+"no-app-tests · new 0 · standing 3 · leaf 0 · curation 0 · base 0 · control test-plan.md:10 (prose)",
+".andromeda/playbook.md:40 provisional base ×2 - pattern: Provisional discharge — an amendment removes, or would leave s…",
+".andromeda/playbook.md:42 provisional base   note: PROVISIONAL items are discharged in one batch at each epoch boundary…",
+".andromeda/architecture.md:150 no-listener standing edited @c2729/4182 … a fixed argv, no socket or port (tests/blitz-t…",
+".andromeda/test-plan.md:106 no-listener standing edited …listens on nothing: no daemon, PID file, status endpoint, port…",
+".andromeda/test-plan.md:119 no-listener standing …ld-agent.ps1:1-4). It binds no port or socket and reads no environmen…",
+"CLAUDE.md:44 no-listener leaf - The workspace binds no network port; its one listener is the driver session's local Uni…",
+".claude/rules/verification-harness.md:20 no-listener leaf …ript itself starts no daemon and has no PID file, socket, po…",
+".claude/docs/security-summary.md:41 no-listener leaf …to the invoking user, no listener or auth surface → \"MCP surface\".",
+".claude/docs/tests-summary.md:15 no-listener leaf …}`. The script starts no daemon and has no PID file, status endpoint…",
+".andromeda/obs-plan.md:172 one-installer standing edited …aint_bench.rs:321), except `seven_guis_native` and `escher-se…",
+".andromeda/obs-plan.md:173 one-installer standing edited …**escher-telemetry (in `seven_guis_native` and `escher-sessio…",
+".andromeda/obs-plan.md:243 one-installer new …ok, installed by `init` in `seven_guis_native` and in `escher-session`, c…",
+".andromeda/test-plan.md:115 old-counts standing edited @c2141/2793 …ff: `run stand` 63 `ok` stand events (+9 `stand_dif…",
+".andromeda/test-plan.md:322 old-counts standing edited ×2 @c4300,4783/5764 …ing-and-diff: 131 result lines, 542 passed …",
+".claude/docs/tests-summary.md:29 old-counts leaf …; `run stand` 72 ok); 548 · 0 · 5 over 131 at 2026-10-07-audit-correc…",
+".claude/docs/services/seven_guis.md:15 stand-manifest leaf … escher-telemetry, blitz-test-harness and blitz-traits (the…",
+".andromeda/security-plan.md:376 scrub-reach standing edited @c876/2232 …rs:17-84). Its reach is that sink only: the ups…",
+".andromeda/obs-plan.md:290 scrub-reach standing edited - Past escher's scrub: the chained std panic hook prints the raw…",
+".andromeda/obs-plan.md:294 scrub-reach standing - escher's own sink scrubs by allowlist in its formatter (packages/esch…",
+".andromeda/obs-plan.md:295 scrub-reach standing edited - Its reach is that sink, installed by the two binaries of the s…",
+"CLAUDE.md:47 scrub-reach leaf - escher's sink scrubs by allowlist (engine targets print only safe fields; content-named…",
+".claude/rules/observability.md:32 scrub-reach leaf - escher's sink scrubs by allowlist in the formatter (obs-plan §8): …",
+".claude/docs/obs-summary.md:42 scrub-reach leaf - **escher's sink scrubs by allowlist:** a target starting `blitz` · `d…",
+".claude/docs/obs-summary.md:43 scrub-reach leaf …e contents unscrubbed. Past escher's scrub: std's panic hook prints th…",
+".andromeda/test-plan.md:10 no-app-tests standing edited …**apps (rdme, bump, examples, accesskit_xplat):** no tests — o…",
+".andromeda/test-plan.md:185 no-app-tests standing edited …files of slice s04; every hit sits inside a `#[cfg(test)] mod…",
+".andromeda/test-plan.md:208 no-app-tests standing edited mixed ×2 …es of slice s04; no test launches a window or docume…",
+"provisional · new 0 · standing 0 · leaf 0 · curation 0 · base 2 · control architecture.md:120 (prose)",
+"pending-word · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:120 (…",
+"no-listener · new 0 · standing 3 · leaf 4 · curation 0 · base 0 · control architecture.md:144 (prose)",
+"not-logged · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:107 (p…",
+"one-installer · new 1 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:148 (prose)",
+"one-module · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:259 (pr…",
+"old-counts · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control test-plan.md:112 (prose)",
+"stand-manifest · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:152 (prose)",
+"tests-manifest · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:64 …",
+"scrub-reach · new 0 · standing 4 · leaf 4 · curation 0 · base 0 · control security-plan.md:248 (prose)",
+"no-app-tests · new 0 · standing 3 · leaf 0 · curation 0 · base 0 · control test-plan.md:10 (prose)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "7d9f351d850c4415b04143e2909864f0f03f2666",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), 91484eb0",
+"counts": {
+"provisional": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 2
+},
+"pending-word": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"no-listener": {
+"new": 0,
+"standing": 3,
+"leaf": 4,
+"curation": 0,
+"base": 0
+},
+"not-logged": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"one-installer": {
+"new": 1,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"one-module": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"old-counts": {
+"new": 0,
+"standing": 2,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"stand-manifest": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"tests-manifest": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"scrub-reach": {
+"new": 0,
+"standing": 4,
+"leaf": 4,
+"curation": 0,
+"base": 0
+},
+"no-app-tests": {
+"new": 0,
+"standing": 3,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+}
+}
+}
+]

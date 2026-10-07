@@ -1,0 +1,77 @@
+.andromeda/architecture.md:4@c114 Cargo.toml:250-252 -> Cargo.toml:252-254 [moved] description = "Top level crate for Blitz"
+.andromeda/architecture.md:12@c120 Cargo.toml:243-254 -> Cargo.toml:245-256 [moved] # This is a "virtual package"
+.andromeda/architecture.md:44@c112 Cargo.toml:32 -> Cargo.toml:33 [moved] resolver = "2"
+.andromeda/architecture.md:44@c127 Cargo.toml:40-41 -> Cargo.toml:41-42 [moved] edition = "2024"
+.andromeda/architecture.md:45@c91 Cargo.toml:34-39 -> Cargo.toml:35-40 [moved] [workspace.package]
+.andromeda/architecture.md:45@c353 Cargo.toml:44-60 -> Cargo.toml:45-61 [moved] # Blitz dependencies(in-repo)
+.andromeda/architecture.md:46@c142 Cargo.toml:63-70 -> Cargo.toml:65-72 [moved] # Servo dependencies
+.andromeda/architecture.md:47@c84 Cargo.toml:72-75 -> Cargo.toml:74-77 [moved] # HTML5ever dependencies
+.andromeda/architecture.md:48@c183 Cargo.toml:103-113 -> Cargo.toml:105-115 [moved] # Taffy + Parley + Fontations
+.andromeda/architecture.md:49@c106 Cargo.toml:114-117 -> Cargo.toml:116-119 [moved] parley = { git = "https://github.com/linebender/parley", rev
+.andromeda/architecture.md:50@c249 Cargo.toml:119-127 -> Cargo.toml:121-129 [moved] # AnyRender
+.andromeda/architecture.md:51@c103 Cargo.toml:129-136 -> Cargo.toml:131-138 [moved] # Linebender + Fontations + WGPU + SVG
+.andromeda/architecture.md:51@c158 Cargo.toml:77-82 -> Cargo.toml:79-84 [moved] # Other Servo dependencies
+.andromeda/architecture.md:52@c145 Cargo.toml:138-145 -> Cargo.toml:140-147 [moved] # Windowing & Input
+.andromeda/architecture.md:53@c36 Cargo.toml:138-145 -> Cargo.toml:140-147 [moved] # Windowing & Input
+.andromeda/architecture.md:54@c180 Cargo.toml:147-155 -> Cargo.toml:149-157 [moved] # IO & Networking
+.andromeda/architecture.md:55@c67 Cargo.toml:177-180 -> Cargo.toml:179-182 [moved] # JavaScript engine (Boa)
+.andromeda/architecture.md:56@c253 Cargo.toml:84-101 -> Cargo.toml:86-103 [moved] # DioxusLabs dependencies
+.andromeda/architecture.md:57@c109 Cargo.toml:157-163 -> Cargo.toml:159-165 [moved] # Media & Decoding
+.andromeda/architecture.md:58@c143 Cargo.toml:169-175 -> Cargo.toml:171-177 [moved] # WASM
+.andromeda/architecture.md:59@c288 Cargo.toml:182-197 -> Cargo.toml:184-199 [moved] # Other dependencies
+.andromeda/architecture.md:59@c308 Cargo.toml:77-82 -> Cargo.toml:79-84 [moved] # Other Servo dependencies
+.andromeda/architecture.md:64@c779 Cargo.toml:289-294 -> Cargo.toml:291-296 [moved] env_logger = "0.11"
+.andromeda/architecture.md:65@c567 Cargo.toml:41 -> Cargo.toml:42 [moved] rust-version = "1.91.0"
+.andromeda/architecture.md:73@c114 Cargo.toml:73-75 -> Cargo.toml:75-77 [moved] markup5ever = "0.40.0" # needs to match stylo web_atoms vers
+.andromeda/architecture.md:73@c225 Cargo.toml:115-117 -> Cargo.toml:117-119 [moved] skrifa = { version = "0.44", default-features = false, featu
+.andromeda/architecture.md:73@c245 Cargo.toml:136 -> Cargo.toml:138 [moved] svgtypes = "0.16.1" # Should match usvg's version
+.andromeda/architecture.md:73@c317 Cargo.toml:104 -> Cargo.toml:106 [moved] taffy = { git = "https://github.com/DioxusLabs/taffy", rev =
+.andromeda/architecture.md:73@c333 Cargo.toml:114 -> Cargo.toml:116 [moved] parley = { git = "https://github.com/linebender/parley", rev
+.andromeda/architecture.md:73@c403 Cargo.toml:140 -> Cargo.toml:142 [moved] winit = { version = "=0.31.0-beta.3" }
+.andromeda/architecture.md:73@c537 Cargo.toml:299-328 -> Cargo.toml:301-330 [moved] # [patch.crates-io]
+.andromeda/architecture.md:74@c143 Cargo.toml:199-200 -> Cargo.toml:201-202 [moved] [profile.dev]
+.andromeda/architecture.md:74@c732 Cargo.toml:202-241 -> Cargo.toml:204-243 [moved] [profile.profile]
+.andromeda/architecture.md:77@c269 Cargo.toml:245-246 -> Cargo.toml:247-248 [moved] [package]
+.andromeda/architecture.md:105@c114 Cargo.toml:43 -> Cargo.toml:44 [moved] [workspace.dependencies]
+.andromeda/architecture.md:105@c129 Cargo.toml:261-297 -> Cargo.toml:263-299 [moved] [dev-dependencies]
+.andromeda/architecture.md:105@c406 Cargo.toml:46-57 -> Cargo.toml:47-58 [moved] blitz-dom = { version = "=0.3.0-beta.2", path = "./packages/
+.andromeda/architecture.md:105@c577 Cargo.toml:61 -> Cargo.toml:63 [moved] seven_guis = { path = "./examples/seven_guis" }
+.andromeda/architecture.md:105@c691 Cargo.toml:63-182 -> Cargo.toml:65-184 [moved] # Servo dependencies
+.andromeda/architecture.md:139@c5086 Cargo.toml:256-259 -> Cargo.toml:258-261 [moved] [features]
+.andromeda/architecture.md:147@c911 Cargo.toml:31 -> Cargo.toml:32 [moved] exclude = ["sites"]
+.andromeda/architecture.md:152@c927 Cargo.toml:60 -> Cargo.toml:61 [moved] escher-telemetry = { path = "./packages/escher-telemetry" }
+.andromeda/architecture.md:152@c1023 Cargo.toml:61 -> Cargo.toml:63 [moved] seven_guis = { path = "./examples/seven_guis" }
+.andromeda/architecture.md:157@c76 Cargo.toml:43 -> Cargo.toml:44 [moved] [workspace.dependencies]
+.andromeda/architecture.md:157@c91 Cargo.toml:261-297 -> Cargo.toml:263-299 [moved] [dev-dependencies]
+.andromeda/architecture.md:158@c27 Cargo.toml:2-30 -> Cargo.toml:2-31 [moved] members = [
+.andromeda/architecture.md:158@c44 Cargo.toml:31 -> Cargo.toml:32 [moved] exclude = ["sites"]
+.andromeda/architecture.md:158@c59 Cargo.toml:243-254 -> Cargo.toml:245-256 [moved] # This is a "virtual package"
+.andromeda/architecture.md:190@c104 Cargo.toml:186-188 -> Cargo.toml:188-190 [moved] tracing = "0.1.40"
+.andromeda/architecture.md:190@c1699 Cargo.toml:256-259 -> Cargo.toml:258-261 [moved] [features]
+.andromeda/architecture.md:206@c525 Cargo.toml:37-38 -> Cargo.toml:38-39 [moved] homepage = "https://github.com/dioxuslabs/blitz"
+.andromeda/architecture.md:212@c116 Cargo.toml:2-30 -> Cargo.toml:2-31 [moved] members = [
+.andromeda/architecture.md:216@c88 Cargo.toml:32 -> Cargo.toml:33 [moved] resolver = "2"
+.andromeda/architecture.md:216@c103 Cargo.toml:40-41 -> Cargo.toml:41-42 [moved] edition = "2024"
+.andromeda/architecture.md:216@c160 Cargo.toml:44-60 -> Cargo.toml:45-61 [moved] # Blitz dependencies(in-repo)
+.andromeda/architecture.md:216@c195 Cargo.toml:63-70 -> Cargo.toml:65-72 [moved] # Servo dependencies
+.andromeda/architecture.md:216@c251 Cargo.toml:104 -> Cargo.toml:106 [moved] taffy = { git = "https://github.com/DioxusLabs/taffy", rev =
+.andromeda/architecture.md:216@c267 Cargo.toml:114 -> Cargo.toml:116 [moved] parley = { git = "https://github.com/linebender/parley", rev
+.andromeda/architecture.md:216@c304 Cargo.toml:119-127 -> Cargo.toml:121-129 [moved] # AnyRender
+.andromeda/architecture.md:216@c341 Cargo.toml:84-101 -> Cargo.toml:86-103 [moved] # DioxusLabs dependencies
+.andromeda/architecture.md:216@c385 Cargo.toml:140 -> Cargo.toml:142 [moved] winit = { version = "=0.31.0-beta.3" }
+.andromeda/architecture.md:221@c77 Cargo.toml:243-254 -> Cargo.toml:245-256 [moved] # This is a "virtual package"
+.andromeda/security-plan.md:217@c45 Cargo.toml:104 -> Cargo.toml:106 [moved] taffy = { git = "https://github.com/DioxusLabs/taffy", rev =
+.andromeda/security-plan.md:217@c61 Cargo.toml:114 -> Cargo.toml:116 [moved] parley = { git = "https://github.com/linebender/parley", rev
+.andromeda/test-plan.md:164@c51 Cargo.toml:23 -> Cargo.toml:24 [moved]     "tests/blitz-tests",
+.andromeda/test-plan.md:312@c129 Cargo.toml:199-200 -> Cargo.toml:201-202 [moved] [profile.dev]
+.andromeda/obs-plan.md:7@c166 Cargo.toml:172 -> Cargo.toml:174 [moved] tracing-wasm = "0.2.1"
+.andromeda/obs-plan.md:7@c182 Cargo.toml:175 -> Cargo.toml:177 [moved] console_error_panic_hook = "0.1"
+.andromeda/obs-plan.md:7@c198 Cargo.toml:186-188 -> Cargo.toml:188-190 [moved] tracing = "0.1.40"
+.andromeda/obs-plan.md:7@c218 Cargo.toml:289 -> Cargo.toml:291 [moved] env_logger = "0.11"
+.andromeda/obs-plan.md:8@c78 Cargo.toml:56 -> Cargo.toml:57 [moved] debug_timer = { version = "0.1.2", path = "./packages/debug_
+.andromeda/obs-plan.md:113@c128 Cargo.toml:256-259 -> Cargo.toml:258-261 [moved] [features]
+.andromeda/obs-plan.md:238@c56 Cargo.toml:175 -> Cargo.toml:177 [moved] console_error_panic_hook = "0.1"
+.andromeda/a11y-plan.md:6@c148 Cargo.toml:57 -> Cargo.toml:58 [moved] accesskit_xplat = { version = "0.2", path = "./packages/acce
+.andromeda/a11y-plan.md:6@c163 Cargo.toml:141 -> Cargo.toml:143 [moved] accesskit = "0.25"
+.andromeda/a11y-plan.md:14@c624 Cargo.toml:54-55 -> Cargo.toml:55-56 [moved] dioxus-native = { version = "0.7.0", path = "./packages/diox
+sites 82 · moved 76 · unverified 0 · unmoved 6 · APPLIED

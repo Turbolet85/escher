@@ -1,34 +1,34 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-07T04:46:29Z
+**Last Updated:** 2026-10-07T07:22:32Z
 **Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-07-upstream-sync-driver-core — upstream sync is a measured no-op — upstream/main still 23354585, 0 ahead
+**Last Commit:** 2026-10-07-driver-session — a driver session holds one headless stand instance across commands, hosted by one process over a local socket
 
 ## Position
-- Done: 2026-10-07-upstream-sync-driver-core (20 master records, all complete) — Epoch 4's boundary sync. It claimed no capability; coverage is unchanged.
-- Next: "Driver session" (working-route.md:54) — promote and plan it with /andromeda-phase.
+- Done: 2026-10-07-driver-session (21 master records, all complete) — the driver's first piece. It claimed no capability; coverage is unchanged.
+- Next: "Sink target allowlist" (working-route.md:56) — promote and plan it with /andromeda-phase. It sits ahead of Settle detection on the founder's ruling of 2026-10-07.
 
 ## Work done
-- `git ls-remote upstream refs/heads/main` read `23354585` at 2026-10-07T04:38:32Z, an ancestor of HEAD: 0 commits to merge, so no merge commit and no source, manifest, lockfile or workflow edit. `architecture.md:202`'s `Upstream sync:` line stays true unchanged.
-- Gates 9/9 green on the untouched tree `8d156de1`: `ci-leg.sh fast` and `doc` both ran (no deferral), 131 result lines · 548 passed · 0 failed · 5 ignored, `Ran 64 tests`, fork CI green 16/16 (CI#37571032838) with the audit and a11y jobs read by name. Record: `escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/evidence/sync.md`.
+- New crate `packages/escher-driver`: `Session` holds one headless instance its caller boots; `serve` hosts it for the life of a process; `start` · `attach` · `stop` drive the lifecycle from another process over a std Unix-domain socket in an owner-only state directory (`hello` and `stop` only, nothing of the screen; `Unsupported` off unix). The stand hosts its own through a second seven_guis binary, `escher-session <task> <state-dir>`.
+- Proof: 13 unit tests, `host_binary` 2, five `stand_session_*` checks (9, two `#[ignore]` host children). `run stand` 72 ok; workspace 572 passed · 0 failed · 7 ignored over 140 result lines; fork CI green 16/16 on `91484eb0` (CI#37580856074). Record: `escher-0.1.0/chunks/2026-10-07-driver-session/report.md`.
 
 ## Drift resolved
-none — 7 detectors, 0 proposals, 0 escalations; no master, key file or sidecar edited. Record: `.andromeda/runs/2026-10-07T04-40-45-wrap/fanout-results.md`.
+- 7 detectors, 75 proposals over five masters (architecture 17 · security-plan 20 · test-plan 19 · obs-plan 17 · layout-templates 2; design-system and a11y-plan none), all applied through the orchestrator with their coordinates re-measured; 10 sidecar entries; one new keyed contract, test-plan §3 → Session lifecycle. Three escalations, each resolved on a recorded word: the socket (a boundary widening — the founder's own choice), ids and names in a sink-installing host's log at debug and trace (the founder's ruling), and the plan's quiet criterion. Record: `.andromeda/runs/2026-10-07T06-51-52-wrap/fanout-results.md`, `cascade-dispositions.md`.
+- 82 root-`Cargo.toml` citations read, 76 re-pointed by measurement.
 
 ## Notes
-- Route: one `CARRY:` pinned on "Upstream sync ahead of agent surfaces" (working-route.md:67). It replaces the last handoff's "three lines at the tail" note, which understated the merge surface: against the merge base `23354585`, `packages/dioxus-native-dom/src/dioxus_document.rs` carries 4 hunks of ours, 58 lines added, 0 removed.
-- Left open on purpose: whether test functions belong in the code audit's `over_ceiling` scalar is the Epoch 3 audit's question to the founder. The three stand checks are under the ceiling either way.
-- Epoch 4's diagnosis and code audit are not due: six entries of the epoch remain.
-- **PROVISIONAL, awaiting the founder — unchanged, three items at the Epoch 3 boundary:** (1) the bridge's 27-name falsy clear; (2) the snapshot text and the snapshot diff leave the process through the returned value only; (3) the engine's changed-set contract, which changes behaviour for every Blitz document, and the shell's refresh of the platform tree on change, which no windowed run witnesses on this host. Each is recorded as provisional in the architecture, security-plan and a11y-plan bodies and sidecars.
-- The duplication detector reads 4 clone pairs among the stand checks, each inside one file (`stand_diff.rs`, `stand_element_ids.rs`, `stand_id_edits.rs`, `stand_snapshot.rs`); none lies across two files. No entry owns them.
+- **The founder's rulings of 2026-10-07, applied at this wrap** (relayed verbatim by the overseer; `.andromeda/runs/2026-10-07T06-51-52-wrap/directives.md`): the three PROVISIONAL items of the Epoch 3 boundary are ratified — the bridge's 27-name falsy clear, the snapshot text and diff leaving the process as a returned value only, and the changed-set contract with the shell's refresh on change. No PROVISIONAL mark stands in any master, key file or leaf. **Still owed: the windowed witness of the refresh** (the CARRY on "Stand a11y assertions").
+- **The host-log finding, recorded as measured:** the `escher-session` binary's stderr holds no id and no name at the default level and at `info`, stable ids at `debug`, ids and accessible names at `trace` — third-party log targets pass the sink unscrubbed. NOT measured: typed text (no command can type yet) and the windowed stand by level. `stand_session_quiet` is green against a host that installs no sink, so it does not cover this. The fix is the next entry.
+- Route: "Sink target allowlist" minted ahead of Settle detection, with no matrix capability (the ruling named a chunk, not a requirement — say so if it should carry one). Pinned: the typed-sentinel proof and the session library's accessibility-feature decision on "Act by id"; the orphaned-host answer (no idle expiry) on "Driver CLI". Epoch 4 now reads 9 entries, 6 of them markerless.
+- Playbook: a "Provisional discharge" rule appended on the operator's direction — PROVISIONAL items are discharged in one batch at each epoch boundary, on the founder's own word.
+- `CLAUDE.md`'s grep bullet corrected: inside a Bash tool call `grep` is Claude Code's embedded ugrep; the host's grep is GNU; use `command grep`.
+- Not checked by any local gate: the non-unix arms of `escher-driver`, the MSRV build, macOS's stale-socket behaviour — the fork's CI run is their one witness.
+- Left open on purpose: whether test functions belong in the code audit's `over_ceiling` scalar (the Epoch 3 audit's question to the founder). Epoch 4's diagnosis and code audit are not due.
 - No gated record, no PREREQ, no WATCH on the tail.
 - Last failed command: none.
 
 ## Deferred learnings
-- No new learning this session (no correction, new dependency, repeated command or convention in the conversation).
+- None deferred this session (2 Tier 3 entries and 1 correction applied; 3 candidates already carried by masters this wrap wrote).
 - carried, still unreviewed: "A chunk that moves cited source lines stales the masters' file:line citations" (Tier 3, 2026-10-05) · "A grep hit seen through a clipped view is not read" (Tier 3, 2026-10-06) · "Count from the listing you just read, never from the plan's forecast" (Tier 3, 2026-10-05).
 Review with `/andromeda-wrap-session --review` if any should be applied.
-
-## Session End Status
-Completed normally at 2026-10-07 07:31:51

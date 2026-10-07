@@ -8,6 +8,16 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-07 — `$TMPDIR` is unset in the Bash tool's shell on this host
+A redirect to `$TMPDIR/x.log` expands to `/x.log` and fails with "Permission denied", and the command before it in the pipeline still runs — its exit then reads as a failure of the thing being measured. Write scratch output to the session's scratchpad directory by its full path. The gate tool's printed `$TMPDIR/andromeda-gate/…` names the OS temp dir (`tempfile.gettempdir()`), not the shell variable.
+
+---
+
+## 2026-10-07 — A per-crate `cargo clippy --all-targets` is not the CI lint leg
+`cargo clippy -p {crate} --all-targets -- -D warnings` compiles test code the CI form never does — `cargo clippy --workspace --locked -- -D warnings`, no `--all-targets` — and fails on a `needless_return` in blitz-dom's own test module, an upstream lint that is nobody's red. To lint a chunk's new code the way CI will, run the leg itself (`bash .github/scripts/ci-leg.sh clippy`, or `fast`); a per-crate `--all-targets` run is a different, stricter check, and its failure says nothing about the gate.
+
+---
+
 ## 2026-10-07 — A sed or grep address that ends at an item's name also selects every item whose name opens with it
 A gate that lifts one function or constant out of a file by its opening line — `sed -n '/^fn controls/,/^}/p'` — lifts every item whose name starts the same way: the table `controls` and the test `controls_lie_inside_the_viewport` both match, and the comparison built on it reads red on a correct tree. Close the name with the character that follows it in the source (`fn controls(`, `const INPUT_NAMES:`), and sweep the file for other items opening with the same word before trusting the address. A control built with the same open address proves nothing here: it carries the extra item on both sides and compares equal, so plant the control's difference in the item the gate is for and check that the gate's line count is the item's own.
 
@@ -37,8 +47,8 @@ A gate that proves "no class / style / author-id change" by grepping those lines
 
 ---
 
-## 2026-10-06 — On this host `grep` is ugrep, and a long bounded repetition can print nothing
-The shell's `grep` here is ugrep. A pattern carrying a long bounded repetition — a context window like `.{0,200}` around the match — exceeds ugrep's complexity limit: the error goes to stderr, and in a call that pipes or alternates several patterns stdout stays empty, which reads exactly like zero hits. Two site sweeps over the masters returned nothing that way while the same patterns in Python found four sites. For a site sweep or an absence claim, use Python's `re` (print a window around `match.start()`), or keep ugrep patterns free of long `{m,n}` counts, and read stderr before trusting an empty result.
+## 2026-10-06 — Inside a Bash tool call `grep` is ugrep, and a long bounded repetition can print nothing
+Inside a Bash tool call `grep` is a shell function that runs Claude Code's embedded ugrep; the host's own `/usr/bin/grep` is GNU grep, and `command grep` reaches it [corrected 2026-10-07: this entry said the host's grep is ugrep — measured, `type grep` reads "grep is a function", bare `grep --version` reads ugrep 7.8.4, `command grep --version` and `/usr/bin/grep --version` read GNU grep 3.12]. A pattern carrying a long bounded repetition — a context window like `.{0,200}` around the match — exceeds ugrep's complexity limit: the error goes to stderr, and in a call that pipes or alternates several patterns stdout stays empty, which reads exactly like zero hits. Two site sweeps over the masters returned nothing that way while the same patterns in Python found four sites. For a site sweep or an absence claim, use Python's `re` (print a window around `match.start()`), or keep ugrep patterns free of long `{m,n}` counts, and read stderr before trusting an empty result.
 
 ---
 

@@ -1,0 +1,9 @@
+## 2026-10-07-driver-session — what a sink-installing host logs: the id and name rows and the scrub's reach scoped to the measurement
+**Section:** §Input Validation → Markup attributes (`id` · accessible names) · §Logging & Monitoring → Log format and backends (escher's own sink · Stdout output) · §Bootstrap phases → logging-redaction-wire
+**Change:**
+- Accessible names: was "the names are logged nowhere"; now escher's own code logs no name, a host that installs the sink writes none at the default level or at `info`, and at `trace` a name prints on its stderr through `dioxus_core::diff::node`.
+- `id`: was "computed on demand and written to no log, DOM or vdom"; now escher's own code writes it to none, while an author-key id — the element's HTML `id` — prints on such a host's stderr at `debug` and `trace` through Stylo's records; the three "the id's only exit" clauses now read "the only exit escher's own code gives the id".
+- The sink: both seven_guis binaries install it; the past-the-scrub list gains the class "a record from a target outside the engine allowlist prints as written" with the reading on `escher-session` (0 lines at `warn`; 1 line, no id, no name at `info`; ids at `debug`; ids and names at `trace`; stdout empty). Typed text and the windowed stand by level are stated as not measured.
+- logging-redaction-wire: was discharged for escher's own sink; now discharged for engine targets and content-named fields, open for third-party targets, owed by the route entry "Sink target allowlist".
+**Why:** the chunk measured the session host's stderr by level. The founder ruled to record it honestly and fix it in the chunk right after (the founder, 2026-10-07, relayed verbatim). Trap: a "nothing in the logs" check over a process that installs no sink passes vacuously — `stand_session_quiet`'s host is one.
+**Ref:** .andromeda/runs/2026-10-07T06-51-52-wrap/

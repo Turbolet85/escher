@@ -15,7 +15,8 @@ Source: `.andromeda/security-plan.md` (security tier 0; application threat model
 - HTML is parsed with scripting disabled; invalid CSS declarations are dropped, not errors — keep parse failures as typed `Result`s, never panics, on new input paths.
 
 ## Surfaces
-- No served API, listener or auth exists. A new socket, port, IPC endpoint or credential path is an arch §Occupied Resources + security-plan amendment first.
+- No served network API, port or auth exists. A new socket, port, IPC endpoint or credential path is an arch §Occupied Resources + security-plan amendment first.
+- The one listener is registered (the founder's choice, 2026-10-07): the driver session's Unix-domain socket `session.sock` in a caller-named state directory (`0700`, socket `0600`, a group- or other-open directory refused) — owner-only by file mode, no other authentication. Its wire is `hello` and `stop` only: no element id, accessible name, control value, snapshot text or diff crosses it, and the first command that carries one is a new crossing question. A request line over 64 bytes or outside the grammar is refused and changes nothing.
 - The cold-agent pipe's crossings are registered (ratified by the founder, 2026-10-06): a spawned `claude` client, its stdio-only MCP stub (no port), and the model provider reached on the live run only. The stub validates every tool argument and refuses with a named cause; a committed transcript is host-path-masked (`gate.py hygiene` P1).
 
 ## Dependencies

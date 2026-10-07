@@ -8,10 +8,11 @@ The 7GUIs benchmark app ("Seven benchmark tasks for GUI frameworks") in Dioxus �
 ## Key integrations
 
 ### Consumes from
+- escher-driver (native target only): the second binary, `escher-session <task> <state-dir>` (`src/session_host.rs`), is the one place a lean task, the stand's boot and the timer's tick handle meet a driver `Session` — it installs the telemetry sink first, boots `counter` · `flight-booker` · `timer` · `crud` through `stand` only, serves the session until stopped, and writes nothing to stdout (exit 0 · 1 · 2); `tests/host_binary.rs` is its smoke.
 - dioxus-native (native binary `seven_guis_native`) or a wasm32 cdylib (`--no-default-features --features hybrid`, `console_error_panic_hook`).
 - escher-telemetry (native target only): `main` calls `escher_telemetry::init(escher_telemetry::service_identity!())` before `launch` — stderr log lines carry `service.name=seven_guis`; an init `Err` is `eprintln!`ed and the stand still launches. The engine `tracing` features stay off.
 
-- On the native target only, blitz-test-harness and blitz-traits (the headless stand), with `dioxus-native` features `system-fonts` + `woff` — `woff` decodes the bundled DejaVu woff2 in every build that includes the stand. seven_guis is a `[workspace.dependencies]` path entry with default features (dioxus-native refuses to compile with no renderer); blitz-tests consumes it as a dev-dependency.
+- On the native target only, escher-telemetry, blitz-test-harness and blitz-traits (the headless stand) and escher-driver (the session its `escher-session` binary hosts), with `dioxus-native` features `system-fonts` + `woff` — `woff` decodes the bundled DejaVu woff2 in every build that includes the stand. seven_guis is a `[workspace.dependencies]` path entry with default features (dioxus-native refuses to compile with no renderer); blitz-tests consumes it as a dev-dependency.
 
 ### Publishes to
 - Screens: Home (centered 640px column of task cards with description and tag) and TaskShell (header with back button, title, spacer over a scrolling body).

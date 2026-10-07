@@ -16,7 +16,7 @@ escher's telemetry bootstrap (unpublished, no `[features]`): one process-global 
 - `ServiceIdentity { name, version }`, built by `service_identity!()` from the CALLER's `CARGO_PKG_NAME` / `CARGO_PKG_VERSION`; `InitOutcome::{Installed, AlreadyInstalled}`; `InitError::ForeignSubscriber` (`Display` + `Error`, never a panic).
 - Line shape, one per event, no ANSI: `{RFC 3339 UTC time} {LEVEL} {target} service.name={name} service.version={version} {field}={value}…` — newlines escaped, string values Debug-quoted, a bridged `log` record printed under its `log.target`.
 - Events of its own: `info` `telemetry installed` at target `escher_telemetry`, once per successful init; ERROR `panic` at target `escher_telemetry::panic` with `panic.file` · `panic.line` · `panic.column` · `panic.payload` (redacted), then the previous hook.
-- Consumed by `seven_guis_native` (`main`, before `dioxus_native::launch`; an `Err` is reported with `eprintln!` and the app continues) and, as a dev-dependency, by blitz-tests.
+- Consumed by seven_guis' two binaries — `seven_guis_native` (`main`, before `dioxus_native::launch`) and the session host `escher-session` (first thing in `main`); in both an `Err` is reported with `eprintln!` and the binary continues, and both stamp `service.name=seven_guis` — and, as a dev-dependency, by blitz-tests.
 
 ## Internal conventions
 - Its startup and panic events are ungated — the engine crates gate every `tracing` call site behind their `tracing` feature; this crate has no feature to gate on.
@@ -27,7 +27,8 @@ escher's telemetry bootstrap (unpublished, no `[features]`): one process-global 
 - Process-global: a second `init` changes nothing (`AlreadyInstalled`), and another global subscriber or `log` logger makes it `ForeignSubscriber`. The first install is recorded in a static `OnceLock<ServiceIdentity>` behind a static `Mutex<()>`; it spawns no thread.
 - The chained std panic hook still prints the raw panic message to stderr, and the allowlisted `log.file` carries a host path for bridged third-party records at `RUST_LOG=info`.
 - The scrub reaches this sink only: the upstream apps' `fmt::init()` (stdout) and the WPT runner's `env_logger` stay unscrubbed.
-- The headless stand (`seven_guis::stand`) installs no subscriber — a headless boot has no escher sink.
+- The headless stand (`seven_guis::stand`) and the session library (`escher-driver`) install no subscriber — a headless boot made in process has no escher sink; one made by the `escher-session` binary runs under that binary's sink.
+- The scrub is an allowlist of ENGINE targets: a record from any other target (Stylo's `style::*`, `selectors::matching`, `dioxus_core::*`) prints its message and fields as written — on `escher-session` that is element ids at `RUST_LOG=debug` and accessible names at `trace` (none at the default level or `info`). Owed by the route entry "Sink target allowlist".
 
 ## Entry points for modification
 - `src/lib.rs` (`init`, the identity, the filter) · `src/format.rs` (the formatter and the three scrub sets) · `src/panic.rs` (the chaining hook) · `Cargo.toml`

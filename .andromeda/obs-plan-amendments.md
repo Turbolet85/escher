@@ -113,3 +113,15 @@ One entry per amendment to `obs-plan.md` (sidecar-contract.md §Entry form). App
 **Why:** six stand checks now read their tables and helpers, `boot` among them, from a module that is not itself a `stand_*` check, so the census had to name it; it reads 0 there. The chunk added no log site, print, subscriber, env read or file write anywhere.
 **Kept:** the chunk's other new file, dioxus-native-dom's `dioxus_document_tests.rs`, is named in no obs-plan sentence — the plan has none about that crate's unit tests; its census of 0 is in the chunk's report.
 **Ref:** .andromeda/runs/2026-10-07T03-59-09-wrap/
+
+## 2026-10-07-driver-session — a second sink installer; the scrub's reach scoped to the measurement
+**Section:** §1 Instrumentation scope (examples · citations) · §2 Telemetry mechanism · §3 (Logging stack · Service identity) · §3 → Bootstrap phases (`pii-scrubbing-wire`) · §4 (new census line) · §5 (citation) · §6 Logged events (examples · escher-telemetry group) · §7 Panic hooks · §8 (Values logged as-is · Scrubbing) · §9 Telemetry artifact handling (new row)
+**Change:**
+- Installers: was `seven_guis_native` alone at eight sites; now the two binaries of the seven_guis package, `seven_guis_native` and the session host `escher-session`, both under `service.name=seven_guis` — the name no longer tells them apart; `escher-session`'s own three `eprintln!` lines recorded; its stdout empty.
+- Headless census: "a headless boot has no escher sink" scoped to a boot made in process — it now covers `packages/escher-driver`, the five `stand_session_*` checks and `session_common/mod.rs`; a boot made by the `escher-session` binary runs under its sink; the two spawning checks and `host_binary` described.
+- §8: the past-the-scrub list gains "a record from a target outside the engine allowlist prints as written", with the reading on `escher-session` — 0 lines at `warn`; 1 line, no id, no name at `info`; stable ids at `debug`; ids and an accessible name at `trace`; stdout 0 bytes. Typed text and the windowed stand by level stated as NOT measured. The reach bullet names both installers and the limit.
+- `pii-scrubbing-wire`: was discharged for escher's own sink; now discharged for engine targets and content-named fields, open for third-party targets, owed by the route entry "Sink target allowlist".
+- §4: escher-driver carries no span, event or `tracing` dependency; per-command spans owed by "Driver command spans". §9: the session state directory row (socket file only, local, uploaded by no CI leg).
+- Citations: seven root `Cargo.toml` sites re-pointed (+1 / +2).
+**Why:** the chunk added a second binary that installs the sink and measured its stderr by level. The founder ruled to record the finding honestly and fix it in the chunk right after (the founder, 2026-10-07, relayed verbatim). Trap: a zero read from a host that installs no sink says nothing about one that does.
+**Ref:** .andromeda/runs/2026-10-07T06-51-52-wrap/

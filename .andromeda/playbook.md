@@ -37,6 +37,10 @@ becomes a new rule here. Format owned by /andromeda-wrap-session (`references/am
   verdict: escalate
   note: always a human's call — never mint a routine rule for this class, however often it recurs: the recurrence is the reason it must keep reaching the operator (a routine verdict here silently widens a precedent). The escalation resolves on the operator's ratification, recorded in the sidecar.
 
+- pattern: Provisional discharge — an amendment removes, or would leave standing past its epoch, a PROVISIONAL mark: a body, key-file or sidecar clause recorded on a relayed rendering or a delegate's answer to a call the founder owns (a boundary widening, a trajectory call, a behaviour change for every document).
+  verdict: escalate
+  note: PROVISIONAL items are discharged in one batch at each epoch boundary, on the founder's own word — given at that wrap or relayed verbatim — never one at a time as chunks pass and never by a wrap on its own judgement. The wrap that closes an epoch (or the first wrap after it) lists every standing mark with its sites — bodies, key files, sidecars and leaves — for the operator; each one the founder rules on is ratified in the same pass (the mark replaced by `ratified by the founder ({date})`, the ratification recorded in the sidecar, any part still owed — a witness, a measurement — kept in the body beside it) or reworked; one with no ruling stays marked and is named in the handoff. Set by the founder at the Epoch 2 boundary (2026-10-06, `architecture-amendments.md`, the founder-rulings entry); written here on the operator's direction, 2026-10-07.
+
 _(more grow from escalations + resolved cases — the first five above were harvested from live projects that
 derived them separately, the sixth is the never-routine class; anything genuinely project-specific still starts
 here empty.)_
