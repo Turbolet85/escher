@@ -1,0 +1,1045 @@
+{
+ "epoch": "Epoch 3 — Observation model",
+ "weight": "1 + iterations + retries + reformulations + 2*dialogue_rounds + 3*halted + 3*soft_exit (summed per record)",
+ "sort": "n * weight_sum",
+ "threshold": "n >= 3, or n >= 2 where >= 2 cases carry halted/soft_exit",
+ "by_skill_step_type": [
+  {
+   "key": "wrap-session/reconcile/contract.in-pass-correction",
+   "n": 7,
+   "weight_sum": 17,
+   "sort_key": 119,
+   "impact": {
+    "iterations": 2,
+    "retries": 8
+   },
+   "step_runs": 6,
+   "rate": 1.167,
+   "chunks": [
+    "2026-10-06-compact-snapshot-serialization",
+    "2026-10-06-id-stability-across-code-edits",
+    "2026-10-06-snapshot-model",
+    "2026-10-06-snapshot-state-fidelity",
+    "2026-10-06-upstream-sync-observation-model",
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": true,
+   "records": [
+    "2026-10-06T18:12:29Z-b",
+    "2026-10-06T19:30:21Z-c",
+    "2026-10-06T21:14:20Z-b",
+    "2026-10-06T22:56:53Z-d",
+    "2026-10-07T00:15:43Z-e",
+    "2026-10-07T00:15:43Z-f",
+    "2026-10-07T01:52:31Z-c"
+   ],
+   "lines": [
+    322,
+    340,
+    366,
+    394,
+    422,
+    423,
+    452
+   ]
+  },
+  {
+   "key": "wrap-session/curation/recall.corpus-recurrence",
+   "n": 5,
+   "weight_sum": 9,
+   "sort_key": 45,
+   "impact": {
+    "retries": 4,
+    "extra_reads": 1
+   },
+   "step_runs": 6,
+   "rate": 0.833,
+   "chunks": [
+    "2026-10-06-compact-snapshot-serialization",
+    "2026-10-06-id-stability-across-code-edits",
+    "2026-10-06-snapshot-state-fidelity",
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": true,
+   "records": [
+    "2026-10-06T21:15:09Z-b",
+    "2026-10-06T22:58:16Z-c",
+    "2026-10-07T00:17:06Z-b",
+    "2026-10-07T00:17:06Z-c",
+    "2026-10-07T01:54:31Z-c"
+   ],
+   "lines": [
+    369,
+    397,
+    425,
+    426,
+    455
+   ]
+  },
+  {
+   "key": "wrap-session/route-resolve/contract.carry-no-owner",
+   "n": 4,
+   "weight_sum": 9,
+   "sort_key": 36,
+   "impact": {
+    "dialogue_rounds": 1,
+    "halted": 1,
+    "extra_reads": 4
+   },
+   "step_runs": 6,
+   "rate": 0.667,
+   "chunks": [
+    "2026-10-06-id-stability-across-code-edits",
+    "2026-10-06-snapshot-model",
+    "2026-10-06-snapshot-state-fidelity",
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "halt_or_soft_exit_cases": 1,
+   "above_threshold": true,
+   "records": [
+    "2026-10-06T19:33:46Z-b",
+    "2026-10-06T21:16:31Z-b",
+    "2026-10-06T22:59:50Z-b",
+    "2026-10-07T01:55:24Z-b"
+   ],
+   "lines": [
+    346,
+    371,
+    399,
+    457
+   ]
+  },
+  {
+   "key": "phase/distill/retry.distiller-respawn",
+   "n": 4,
+   "weight_sum": 8,
+   "sort_key": 32,
+   "impact": {
+    "retries": 4
+   },
+   "step_runs": 6,
+   "rate": 0.667,
+   "chunks": [
+    "2026-10-06-compact-snapshot-serialization",
+    "2026-10-06-id-stability-across-code-edits",
+    "2026-10-06-snapshot-state-fidelity",
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": true,
+   "records": [
+    "2026-10-06T20:04:28Z-b",
+    "2026-10-06T21:41:09Z-b",
+    "2026-10-06T23:14:08Z-b",
+    "2026-10-07T00:34:53Z-b"
+   ],
+   "lines": [
+    352,
+    378,
+    405,
+    434
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/input.report-insufficient",
+   "n": 4,
+   "weight_sum": 6,
+   "sort_key": 24,
+   "impact": {
+    "retries": 2,
+    "extra_reads": 9
+   },
+   "step_runs": 6,
+   "rate": 0.667,
+   "chunks": [
+    "2026-10-06-compact-snapshot-serialization",
+    "2026-10-06-snapshot-model",
+    "2026-10-06-snapshot-state-fidelity"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": true,
+   "records": [
+    "2026-10-06T19:30:21Z-b",
+    "2026-10-06T22:56:53Z-b",
+    "2026-10-07T00:15:43Z-b",
+    "2026-10-07T00:15:43Z-c"
+   ],
+   "lines": [
+    339,
+    392,
+    419,
+    420
+   ]
+  },
+  {
+   "key": "implement/code/input.plan-step-ambiguous",
+   "n": 4,
+   "weight_sum": 5,
+   "sort_key": 20,
+   "impact": {
+    "retries": 1,
+    "extra_reads": 2
+   },
+   "step_runs": 6,
+   "rate": 0.667,
+   "chunks": [
+    "2026-10-06-id-stability-across-code-edits",
+    "2026-10-06-snapshot-model",
+    "2026-10-06-snapshot-state-fidelity",
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": true,
+   "records": [
+    "2026-10-06T18:40:09Z-b",
+    "2026-10-06T20:38:28Z-b",
+    "2026-10-06T22:07:58Z-b",
+    "2026-10-07T01:09:59Z-c"
+   ],
+   "lines": [
+    334,
+    360,
+    384,
+    444
+   ]
+  },
+  {
+   "key": "phase/validate/contract.mechanical-check",
+   "n": 3,
+   "weight_sum": 6,
+   "sort_key": 18,
+   "impact": {
+    "iterations": 3
+   },
+   "step_runs": 6,
+   "rate": 0.5,
+   "chunks": [
+    "2026-10-06-id-stability-across-code-edits",
+    "2026-10-06-snapshot-model",
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": true,
+   "records": [
+    "2026-10-06T18:33:18Z-b",
+    "2026-10-06T20:30:34Z-c",
+    "2026-10-07T00:57:36Z-b"
+   ],
+   "lines": [
+    332,
+    358,
+    440
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.false-positive-proposal",
+   "n": 3,
+   "weight_sum": 6,
+   "sort_key": 18,
+   "impact": {
+    "reformulations": 3,
+    "extra_reads": 2
+   },
+   "step_runs": 6,
+   "rate": 0.5,
+   "chunks": [
+    "2026-10-06-compact-snapshot-serialization",
+    "2026-10-06-snapshot-state-fidelity",
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": true,
+   "records": [
+    "2026-10-06T22:56:53Z-c",
+    "2026-10-07T00:15:43Z-d",
+    "2026-10-07T01:52:31Z-b"
+   ],
+   "lines": [
+    393,
+    421,
+    451
+   ]
+  },
+  {
+   "key": "wrap-session/curation/ambiguity.filter-borderline",
+   "n": 3,
+   "weight_sum": 5,
+   "sort_key": 15,
+   "impact": {
+    "reformulations": 2
+   },
+   "step_runs": 6,
+   "rate": 0.5,
+   "chunks": [
+    "2026-10-06-snapshot-model",
+    "2026-10-06-snapshot-state-fidelity",
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": true,
+   "records": [
+    "2026-10-06T19:31:05Z-b",
+    "2026-10-06T22:58:16Z-b",
+    "2026-10-07T01:54:31Z-b"
+   ],
+   "lines": [
+    344,
+    396,
+    454
+   ]
+  },
+  {
+   "key": "phase/validate/contract.matrix-claim",
+   "n": 2,
+   "weight_sum": 7,
+   "sort_key": 14,
+   "impact": {
+    "iterations": 1,
+    "dialogue_rounds": 2
+   },
+   "step_runs": 6,
+   "rate": 0.333,
+   "chunks": [
+    "2026-10-06-compact-snapshot-serialization",
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T23:32:43Z-b",
+    "2026-10-07T00:57:36Z-c"
+   ],
+   "lines": [
+    410,
+    441
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/recall.corpus-recurrence",
+   "n": 2,
+   "weight_sum": 5,
+   "sort_key": 10,
+   "impact": {
+    "retries": 3
+   },
+   "step_runs": 6,
+   "rate": 0.333,
+   "chunks": [
+    "2026-10-06-id-stability-across-code-edits",
+    "2026-10-06-snapshot-model"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T19:30:21Z-e",
+    "2026-10-06T21:14:20Z-c"
+   ],
+   "lines": [
+    342,
+    367
+   ]
+  },
+  {
+   "key": "wrap-session/report/contract.narrow-basis-claim",
+   "n": 2,
+   "weight_sum": 4,
+   "sort_key": 8,
+   "impact": {
+    "retries": 2
+   },
+   "step_runs": 6,
+   "rate": 0.333,
+   "chunks": [
+    "2026-10-06-compact-snapshot-serialization",
+    "2026-10-06-id-stability-across-code-edits"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T21:00:32Z-b",
+    "2026-10-07T00:01:49Z-c"
+   ],
+   "lines": [
+    364,
+    417
+   ]
+  },
+  {
+   "key": "wrap-session/report/input.implement-outcome-unsettled",
+   "n": 2,
+   "weight_sum": 4,
+   "sort_key": 8,
+   "impact": {
+    "dialogue_rounds": 1
+   },
+   "step_runs": 6,
+   "rate": 0.333,
+   "chunks": [
+    "2026-10-06-compact-snapshot-serialization",
+    "2026-10-06-snapshot-state-fidelity"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T22:42:20Z-b",
+    "2026-10-07T00:01:49Z-b"
+   ],
+   "lines": [
+    390,
+    416
+   ]
+  },
+  {
+   "key": "wrap-session/route-resolve/contract.no-sanctioned-channel",
+   "n": 2,
+   "weight_sum": 4,
+   "sort_key": 8,
+   "impact": {
+    "dialogue_rounds": 1,
+    "extra_reads": 4
+   },
+   "step_runs": 6,
+   "rate": 0.333,
+   "chunks": [
+    "2026-10-06-snapshot-model",
+    "2026-10-06-snapshot-state-fidelity"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T19:33:46Z-c",
+    "2026-10-06T22:59:50Z-c"
+   ],
+   "lines": [
+    347,
+    400
+   ]
+  },
+  {
+   "key": "implement/fix-loop/contract.narrow-basis-claim",
+   "n": 1,
+   "weight_sum": 6,
+   "sort_key": 6,
+   "impact": {
+    "iterations": 1,
+    "retries": 2,
+    "dialogue_rounds": 1
+   },
+   "step_runs": 6,
+   "rate": 0.167,
+   "chunks": [
+    "2026-10-06-snapshot-state-fidelity"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T22:38:42Z-a"
+   ],
+   "lines": [
+    388
+   ]
+  },
+  {
+   "key": "phase/research/contract.narrow-basis-claim",
+   "n": 2,
+   "weight_sum": 3,
+   "sort_key": 6,
+   "impact": {
+    "iterations": 1,
+    "extra_reads": 1
+   },
+   "step_runs": 6,
+   "rate": 0.333,
+   "chunks": [
+    "2026-10-06-compact-snapshot-serialization",
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T23:19:49Z-b",
+    "2026-10-07T00:40:47Z-b"
+   ],
+   "lines": [
+    407,
+    436
+   ]
+  },
+  {
+   "key": "implement/code/input.conventions-gap",
+   "n": 1,
+   "weight_sum": 4,
+   "sort_key": 4,
+   "impact": {
+    "retries": 3,
+    "extra_reads": 4
+   },
+   "step_runs": 6,
+   "rate": 0.167,
+   "chunks": [
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-07T01:09:59Z-b"
+   ],
+   "lines": [
+    443
+   ]
+  },
+  {
+   "key": "new-session/orientation/input.handoff-git-mismatch",
+   "n": 2,
+   "weight_sum": 2,
+   "sort_key": 4,
+   "impact": {
+    "extra_reads": 4
+   },
+   "step_runs": 6,
+   "rate": 0.333,
+   "chunks": [
+    "(no chunk)"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T17:52:37Z-b",
+    "2026-10-06T21:31:18Z-b"
+   ],
+   "lines": [
+    309,
+    374
+   ]
+  },
+  {
+   "key": "phase/validate/ambiguity.review-cycles",
+   "n": 1,
+   "weight_sum": 4,
+   "sort_key": 4,
+   "impact": {
+    "iterations": 1,
+    "dialogue_rounds": 1
+   },
+   "step_runs": 6,
+   "rate": 0.167,
+   "chunks": [
+    "2026-10-06-id-stability-across-code-edits"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T20:30:34Z-b"
+   ],
+   "lines": [
+    357
+   ]
+  },
+  {
+   "key": "implement/fix-loop/retry.fix-iterations",
+   "n": 1,
+   "weight_sum": 3,
+   "sort_key": 3,
+   "impact": {
+    "iterations": 2
+   },
+   "step_runs": 6,
+   "rate": 0.167,
+   "chunks": [
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-07T01:16:23Z-b"
+   ],
+   "lines": [
+    446
+   ]
+  },
+  {
+   "key": "phase/take-up/contract.premise-falsified",
+   "n": 1,
+   "weight_sum": 3,
+   "sort_key": 3,
+   "impact": {
+    "dialogue_rounds": 1
+   },
+   "step_runs": 6,
+   "rate": 0.167,
+   "chunks": [
+    "2026-10-06-upstream-sync-observation-model"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T17:56:40Z-b"
+   ],
+   "lines": [
+    311
+   ]
+  },
+  {
+   "key": "implement/fix-loop/UNTYPED",
+   "n": 1,
+   "weight_sum": 2,
+   "sort_key": 2,
+   "impact": {
+    "retries": 1
+   },
+   "step_runs": 6,
+   "rate": 0.167,
+   "chunks": [
+    "2026-10-06-snapshot-state-fidelity"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T22:13:54Z-b"
+   ],
+   "lines": [
+    386
+   ]
+  },
+  {
+   "key": "phase/plan/contract.structural-blind-spot",
+   "n": 1,
+   "weight_sum": 2,
+   "sort_key": 2,
+   "impact": {
+    "retries": 1
+   },
+   "step_runs": 6,
+   "rate": 0.167,
+   "chunks": [
+    "2026-10-06-id-stability-across-code-edits"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T20:21:19Z-b"
+   ],
+   "lines": [
+    355
+   ]
+  },
+  {
+   "key": "phase/plan/retry.synthesis-rework",
+   "n": 1,
+   "weight_sum": 2,
+   "sort_key": 2,
+   "impact": {
+    "iterations": 1
+   },
+   "step_runs": 6,
+   "rate": 0.167,
+   "chunks": [
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-07T00:51:04Z-b"
+   ],
+   "lines": [
+    438
+   ]
+  },
+  {
+   "key": "phase/validate/tooling.host-shell",
+   "n": 1,
+   "weight_sum": 2,
+   "sort_key": 2,
+   "impact": {
+    "retries": 1
+   },
+   "step_runs": 6,
+   "rate": 0.167,
+   "chunks": [
+    "2026-10-06-snapshot-state-fidelity"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T21:59:01Z-b"
+   ],
+   "lines": [
+    382
+   ]
+  },
+  {
+   "key": "implement/code/UNTYPED",
+   "n": 1,
+   "weight_sum": 1,
+   "sort_key": 1,
+   "impact": {
+    "extra_reads": 1
+   },
+   "step_runs": 6,
+   "rate": 0.167,
+   "chunks": [
+    "2026-10-06-compact-snapshot-serialization"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T23:38:31Z-b"
+   ],
+   "lines": [
+    412
+   ]
+  },
+  {
+   "key": "implement/code/tooling.output-cap-overflow",
+   "n": 1,
+   "weight_sum": 1,
+   "sort_key": 1,
+   "impact": {
+    "extra_reads": 2
+   },
+   "step_runs": 6,
+   "rate": 0.167,
+   "chunks": [
+    "2026-10-06-upstream-sync-observation-model"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T18:08:16Z-b"
+   ],
+   "lines": [
+    317
+   ]
+  },
+  {
+   "key": "new-session/orientation/contract.skill-reference-drift",
+   "n": 1,
+   "weight_sum": 1,
+   "sort_key": 1,
+   "impact": {
+    "extra_reads": 1
+   },
+   "step_runs": 6,
+   "rate": 0.167,
+   "chunks": [
+    "(no chunk)"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-07T00:24:21Z-b"
+   ],
+   "lines": [
+    431
+   ]
+  },
+  {
+   "key": "phase/take-up/UNTYPED",
+   "n": 1,
+   "weight_sum": 1,
+   "sort_key": 1,
+   "impact": {},
+   "step_runs": 6,
+   "rate": 0.167,
+   "chunks": [
+    "2026-10-06-snapshot-state-fidelity"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T21:34:26Z-b"
+   ],
+   "lines": [
+    376
+   ]
+  },
+  {
+   "key": "wrap-session/gates/contract.skill-reference-drift",
+   "n": 1,
+   "weight_sum": 1,
+   "sort_key": 1,
+   "impact": {
+    "extra_reads": 2
+   },
+   "step_runs": 6,
+   "rate": 0.167,
+   "chunks": [
+    "2026-10-06-compact-snapshot-serialization"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-07T00:22:24Z-b"
+   ],
+   "lines": [
+    429
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.cascade-miss",
+   "n": 1,
+   "weight_sum": 1,
+   "sort_key": 1,
+   "impact": {
+    "extra_reads": 2
+   },
+   "step_runs": 6,
+   "rate": 0.167,
+   "chunks": [
+    "2026-10-06-snapshot-model"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T19:30:21Z-d"
+   ],
+   "lines": [
+    341
+   ]
+  },
+  {
+   "key": "wrap-session/report/UNTYPED",
+   "n": 1,
+   "weight_sum": 1,
+   "sort_key": 1,
+   "impact": {},
+   "step_runs": 6,
+   "rate": 0.167,
+   "chunks": [
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-07T01:36:58Z-b"
+   ],
+   "lines": [
+    449
+   ]
+  }
+ ],
+ "by_type_alone_universal_and_recall": [
+  {
+   "key": "*/recall.corpus-recurrence",
+   "n": 7,
+   "weight_sum": 14,
+   "sort_key": 98,
+   "impact": {
+    "retries": 7,
+    "extra_reads": 1
+   },
+   "step_runs": 84,
+   "rate": 0.083,
+   "chunks": [
+    "2026-10-06-compact-snapshot-serialization",
+    "2026-10-06-id-stability-across-code-edits",
+    "2026-10-06-snapshot-model",
+    "2026-10-06-snapshot-state-fidelity",
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": true,
+   "records": [
+    "2026-10-06T19:30:21Z-e",
+    "2026-10-06T21:14:20Z-c",
+    "2026-10-06T21:15:09Z-b",
+    "2026-10-06T22:58:16Z-c",
+    "2026-10-07T00:17:06Z-b",
+    "2026-10-07T00:17:06Z-c",
+    "2026-10-07T01:54:31Z-c"
+   ],
+   "lines": [
+    342,
+    367,
+    369,
+    397,
+    425,
+    426,
+    455
+   ],
+   "per_step": {
+    "wrap-session/reconcile": 2,
+    "wrap-session/curation": 5
+   },
+   "step_runs_note": "denominator = all step records in the epoch (a universal may fire at any step)"
+  },
+  {
+   "key": "*/contract.narrow-basis-claim",
+   "n": 5,
+   "weight_sum": 13,
+   "sort_key": 65,
+   "impact": {
+    "iterations": 2,
+    "retries": 4,
+    "dialogue_rounds": 1,
+    "extra_reads": 1
+   },
+   "step_runs": 84,
+   "rate": 0.06,
+   "chunks": [
+    "2026-10-06-compact-snapshot-serialization",
+    "2026-10-06-id-stability-across-code-edits",
+    "2026-10-06-snapshot-state-fidelity",
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": true,
+   "records": [
+    "2026-10-06T21:00:32Z-b",
+    "2026-10-06T22:38:42Z-a",
+    "2026-10-06T23:19:49Z-b",
+    "2026-10-07T00:01:49Z-c",
+    "2026-10-07T00:40:47Z-b"
+   ],
+   "lines": [
+    364,
+    388,
+    407,
+    417,
+    436
+   ],
+   "per_step": {
+    "wrap-session/report": 2,
+    "implement/fix-loop": 1,
+    "phase/research": 2
+   },
+   "step_runs_note": "denominator = all step records in the epoch (a universal may fire at any step)"
+  },
+  {
+   "key": "*/contract.skill-reference-drift",
+   "n": 2,
+   "weight_sum": 2,
+   "sort_key": 4,
+   "impact": {
+    "extra_reads": 3
+   },
+   "step_runs": 84,
+   "rate": 0.024,
+   "chunks": [
+    "(no chunk)",
+    "2026-10-06-compact-snapshot-serialization"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-07T00:22:24Z-b",
+    "2026-10-07T00:24:21Z-b"
+   ],
+   "lines": [
+    429,
+    431
+   ],
+   "per_step": {
+    "wrap-session/gates": 1,
+    "new-session/orientation": 1
+   },
+   "step_runs_note": "denominator = all step records in the epoch (a universal may fire at any step)"
+  },
+  {
+   "key": "*/contract.premise-falsified",
+   "n": 1,
+   "weight_sum": 3,
+   "sort_key": 3,
+   "impact": {
+    "dialogue_rounds": 1
+   },
+   "step_runs": 84,
+   "rate": 0.012,
+   "chunks": [
+    "2026-10-06-upstream-sync-observation-model"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T17:56:40Z-b"
+   ],
+   "lines": [
+    311
+   ],
+   "per_step": {
+    "phase/take-up": 1
+   },
+   "step_runs_note": "denominator = all step records in the epoch (a universal may fire at any step)"
+  },
+  {
+   "key": "*/contract.structural-blind-spot",
+   "n": 1,
+   "weight_sum": 2,
+   "sort_key": 2,
+   "impact": {
+    "retries": 1
+   },
+   "step_runs": 84,
+   "rate": 0.012,
+   "chunks": [
+    "2026-10-06-id-stability-across-code-edits"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T20:21:19Z-b"
+   ],
+   "lines": [
+    355
+   ],
+   "per_step": {
+    "phase/plan": 1
+   },
+   "step_runs_note": "denominator = all step records in the epoch (a universal may fire at any step)"
+  },
+  {
+   "key": "*/tooling.host-shell",
+   "n": 1,
+   "weight_sum": 2,
+   "sort_key": 2,
+   "impact": {
+    "retries": 1
+   },
+   "step_runs": 84,
+   "rate": 0.012,
+   "chunks": [
+    "2026-10-06-snapshot-state-fidelity"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T21:59:01Z-b"
+   ],
+   "lines": [
+    382
+   ],
+   "per_step": {
+    "phase/validate": 1
+   },
+   "step_runs_note": "denominator = all step records in the epoch (a universal may fire at any step)"
+  },
+  {
+   "key": "*/tooling.output-cap-overflow",
+   "n": 1,
+   "weight_sum": 1,
+   "sort_key": 1,
+   "impact": {
+    "extra_reads": 2
+   },
+   "step_runs": 84,
+   "rate": 0.012,
+   "chunks": [
+    "2026-10-06-upstream-sync-observation-model"
+   ],
+   "halt_or_soft_exit_cases": 0,
+   "above_threshold": false,
+   "records": [
+    "2026-10-06T18:08:16Z-b"
+   ],
+   "lines": [
+    317
+   ],
+   "per_step": {
+    "implement/code": 1
+   },
+   "step_runs_note": "denominator = all step records in the epoch (a universal may fire at any step)"
+  }
+ ]
+}

@@ -130,4 +130,5 @@ For complete Andromeda documentation: `/andromeda-help`
 _This section is curated by `/andromeda-wrap-session`. It accumulates universal (Tier 1) rules captured from work sessions — one sentence each, ≤600 B._
 
 - 2026-10-05: This checkout carries an `upstream` remote (DioxusLabs/blitz) and no `gh repo set-default`, so a bare `gh run` / `gh cache` / `gh api` call reads upstream — pass `-R Turbolet85/escher` on every read of the fork. (confidence 0.8)
+- 2026-10-07: On this host `grep` is ugrep, and a pattern with a long bounded repetition (a `.{0,200}` context window) exceeds its complexity limit and leaves stdout empty — never read an empty grep as an absence: sweep with Python's `re` or a pattern free of long `{m,n}` counts, and read stderr first (detail in `.claude/docs/session-learnings.md`). (confidence 0.7)
 <!-- USER:session-learnings end -->

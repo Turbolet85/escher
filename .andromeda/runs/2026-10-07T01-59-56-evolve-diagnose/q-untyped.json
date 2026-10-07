@@ -1,0 +1,350 @@
+{
+ "epoch": "Epoch 3 — Observation model",
+ "threshold": "F-4: n >= 3 in-epoch, or n >= 2 recurring from the previous epoch",
+ "untyped_in_epoch": [
+  {
+   "ref": "L376",
+   "id": "2026-10-06T21:34:26Z-b",
+   "epoch": "Epoch 3 - Observation model",
+   "chunk": "2026-10-06-snapshot-state-fidelity",
+   "step": "phase/take-up",
+   "type": "UNTYPED",
+   "what": "Re-verifying the CARRY's two architecture coordinates with a line-matching search printed two whole single-line entries of architecture.md (lines 91 and 134, the second several KB) into the window; the coordinates were confirmed from that one read, no redo",
+   "impact": {
+    "extra_reads": 0
+   },
+   "evidence": null
+  },
+  {
+   "ref": "L386",
+   "id": "2026-10-06T22:13:54Z-b",
+   "epoch": "Epoch 3 - Observation model",
+   "chunk": "2026-10-06-snapshot-state-fidelity",
+   "step": "implement/fix-loop",
+   "type": "UNTYPED",
+   "what": "a matrix acceptance clause (a disabled control reads Some(true) once the app enables it, flight-book named) had no assertion in the plan step that proves it; found at the ref write after a green block, cost one added assertion and one full block re-run",
+   "impact": {
+    "retries": 1
+   },
+   "evidence": ".andromeda/runs/2026-10-06T22-00-40-implement"
+  },
+  {
+   "ref": "L412",
+   "id": "2026-10-06T23:38:31Z-b",
+   "epoch": "Epoch 3 - Observation model",
+   "chunk": "2026-10-06-compact-snapshot-serialization",
+   "step": "implement/code",
+   "type": "UNTYPED",
+   "what": "plan step 1 and its mechanism note name str::escape_debug and list what it escapes (double quote, backslash, line breaks, tabs, controls); a scratch run measured that it also backslash-escapes an apostrophe and leaves a mid-string combining mark bare, where the Debug form research.md names does the opposite on both; the step was followed as written and the difference goes to the P4 report",
+   "impact": {
+    "extra_reads": 1
+   },
+   "evidence": null
+  },
+  {
+   "ref": "L449",
+   "id": "2026-10-07T01:36:58Z-b",
+   "epoch": "Epoch 3 - Observation model",
+   "chunk": "2026-10-07-change-tracking-and-diff",
+   "step": "wrap-session/report",
+   "type": "UNTYPED",
+   "what": "the six records this chunk's implement steps appended (ids 2026-10-07T01:09:59Z-a..c, 2026-10-07T01:16:23Z-a..b, 2026-10-07T01:17:11Z-a) carry skill 'implement'; report-template.md's evolve-records basis filters on skill == andromeda-implement, and no reference the implement skill reads states the envelope's skill spelling — a filter on the long form misses those six",
+   "impact": {
+    "extra_reads": 0
+   },
+   "evidence": null
+  }
+ ],
+ "clusters_by_hand": [
+  {
+   "cluster": "a plan step states a claim the implementation run falsifies or leaves uncovered",
+   "members": [
+    "L386",
+    "L412"
+   ],
+   "n": 2,
+   "recurs_from_previous_epoch": false,
+   "meets_F4": false,
+   "typed_neighbours": [
+    "L384 input.plan-step-ambiguous",
+    "L444 input.plan-step-ambiguous",
+    "L438 retry.synthesis-rework (second clause)"
+   ]
+  },
+  {
+   "cluster": "a line-matching search printed whole multi-KB single-line master entries into the window",
+   "members": [
+    "L376"
+   ],
+   "n": 1,
+   "recurs_from_previous_epoch": false,
+   "meets_F4": false,
+   "typed_neighbours": [
+    "tooling.output-cap-overflow is the nearest universal; no cap was exceeded"
+   ]
+  },
+  {
+   "cluster": "the evolve envelope skill spelling is stated by no reference; a filter on the long form misses bare-form records",
+   "members": [
+    "L449"
+   ],
+   "n": 1,
+   "recurs_from_previous_epoch": false,
+   "meets_F4": false,
+   "typed_neighbours": [
+    "contract.skill-reference-drift is the nearest universal"
+   ]
+  }
+ ],
+ "extension_candidates": [],
+ "lookback_untyped_prior_epochs": [
+  {
+   "ref": "L14",
+   "id": "2026-10-05T20:31:28Z-c",
+   "epoch": "Epoch 1 - Foundation",
+   "chunk": "2026-10-05-as-built-baseline",
+   "step": "implement/fix-loop",
+   "type": "UNTYPED",
+   "what": "gate.py run backgrounded (as P2 directs) block-buffers its per-entry lines off a tty: a 30-min Monitor on the output file saw 0 events while entries 1-3 had finished; progress recovered by listing the gate log dir",
+   "impact": {
+    "retries": 1
+   },
+   "evidence": ".andromeda/runs/2026-10-05T19-48-32-implement/"
+  },
+  {
+   "ref": "L23",
+   "id": "2026-10-05T20:52:30Z-b",
+   "epoch": "Epoch 1 - Foundation",
+   "chunk": "2026-10-05-fork-ci-reached",
+   "step": "phase/take-up",
+   "type": "UNTYPED",
+   "what": "inputs.py snap --message-file refused (exit 2) without --origin; promotion.md §External inputs names --message-file but not the required --origin flag; re-fired with --origin",
+   "impact": {
+    "retries": 1
+   },
+   "evidence": null
+  },
+  {
+   "ref": "L32",
+   "id": "2026-10-05T21:10:44Z-d",
+   "epoch": "Epoch 1 - Foundation",
+   "chunk": "2026-10-05-fork-ci-reached",
+   "step": "phase/validate",
+   "type": "UNTYPED",
+   "what": "P4 recorded the fork answers as delegate-provisional although the answer note named the founder's own words 'сам решай'; the operator corrected the authority at the review, superseding the record; the full mechanical set re-ran after the edits",
+   "impact": {
+    "iterations": 1,
+    "dialogue_rounds": 1
+   },
+   "evidence": null
+  },
+  {
+   "ref": "L37",
+   "id": "2026-10-05T22:02:28Z-b",
+   "epoch": "Epoch 1 - Foundation",
+   "chunk": "2026-10-05-fork-ci-reached",
+   "step": "wrap-session/report",
+   "type": "UNTYPED",
+   "what": "operator-pass evidence recorded 10 rust caches + 1 apt (mirroring the plan's 6+4 forecast) while gh cache list showed 11 + 1; caught at report authoring by re-counting the listing and corrected in evidence before the fan-out",
+   "impact": {
+    "retries": 1
+   },
+   "evidence": "gh cache list -R Turbolet85/escher; cache usage active_caches_count 12"
+  },
+  {
+   "ref": "L55",
+   "id": "2026-10-05T22:49:41Z-b",
+   "epoch": "Epoch 1 - Foundation",
+   "chunk": "2026-10-05-ci-gate-legs",
+   "step": "phase/validate",
+   "type": "UNTYPED",
+   "what": "the scripted baseline insert wrote a baseline string holding a bare apostrophe into a TOML literal (fence unparseable) and missed one entry; caught by a tomllib parse, fixed by two anchored Edits before the review",
+   "impact": {
+    "retries": 1,
+    "extra_reads": 2
+   },
+   "evidence": null
+  },
+  {
+   "ref": "L62",
+   "id": "2026-10-05T23:01:44Z-d",
+   "epoch": "Epoch 1 - Foundation",
+   "chunk": "2026-10-05-ci-gate-legs",
+   "step": "implement/fix-loop",
+   "type": "UNTYPED",
+   "what": "plan Test Commands prose numbers host gates 1-14 and operator entries 15-18 (acceptance cites 'entry 17' for ci.py conclusion) while the fence holds 19 entries; gate.py numbers the conclusion read 18",
+   "impact": {},
+   "evidence": null
+  },
+  {
+   "ref": "L91",
+   "id": "2026-10-06T00:40:59Z-c",
+   "epoch": "Epoch 1 - Foundation",
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "step": "implement/fix-loop",
+   "type": "UNTYPED",
+   "what": "the PostToolUse rustfmt hook left lib.rs unformatted: it was written before its mod format file existed, so the hook's rustfmt could not resolve the module; the fast leg's fmt stage went red once",
+   "impact": {
+    "iterations": 1
+   },
+   "evidence": null
+  },
+  {
+   "ref": "L138",
+   "id": "2026-10-06T03:22:08Z-c",
+   "epoch": "Epoch 1 - Foundation",
+   "chunk": "2026-10-06-stand-test-contract",
+   "step": "phase/validate",
+   "type": "UNTYPED",
+   "what": "the scripted baseline write emitted TOML literal strings ('…'); baseline 1's text held an apostrophe (implement's), so the fence went UNPARSED; caught by the re-run dry-run and rewritten as basic strings via json.dumps",
+   "impact": {
+    "iterations": 1
+   },
+   "evidence": null
+  },
+  {
+   "ref": "L156",
+   "id": "2026-10-06T04:02:06Z-b",
+   "epoch": "Epoch 1 - Foundation",
+   "chunk": "2026-10-06-cold-agent-run-pipe",
+   "step": "phase/distill",
+   "type": "UNTYPED",
+   "what": "a leading cd into the phase run dir was blocked by the project's PreToolUse Bash guard — the handoff's deferred learning on this guard recurred again",
+   "impact": {
+    "retries": 1
+   },
+   "evidence": ".claude/session-handoff.md Deferred learnings"
+  },
+  {
+   "ref": "L185",
+   "id": "2026-10-06T08:02:00Z-b",
+   "epoch": "Epoch 2 - Element identity",
+   "chunk": "2026-10-06-upstream-sync-element-identity",
+   "step": "phase/research",
+   "type": "UNTYPED",
+   "what": "Bash permission guard refused a chained export command containing rm -rf and a leading cd (the deferred-learning recurrence named in the handoff); recovered with guard-safe forms",
+   "impact": {
+    "retries": 1
+   },
+   "evidence": null
+  },
+  {
+   "ref": "L197",
+   "id": "2026-10-06T08:37:04Z-f",
+   "epoch": "Epoch 2 - Element identity",
+   "chunk": "2026-10-06-upstream-sync-element-identity",
+   "step": "wrap-session/report",
+   "type": "UNTYPED",
+   "what": "the report's Date field was written as an estimated time 8 min ahead of the clock; the stamp-ahead PostToolUse hook refused it and the clock was read and the field corrected",
+   "impact": {
+    "retries": 1
+   },
+   "evidence": null
+  },
+  {
+   "ref": "L211",
+   "id": "2026-10-06T08:58:03Z-b",
+   "epoch": "Epoch 2 - Element identity",
+   "chunk": "2026-10-06-stable-element-ids",
+   "step": "phase/distill",
+   "type": "UNTYPED",
+   "what": "leading cd into the run dir refused by the project's Bash guard during extract probing — the same guard the handoff carries as a deferred recurrence-despite-learning",
+   "impact": {
+    "retries": 1
+   },
+   "evidence": null
+  },
+  {
+   "ref": "L214",
+   "id": "2026-10-06T09:06:35Z-b",
+   "epoch": "Epoch 2 - Element identity",
+   "chunk": "2026-10-06-stable-element-ids",
+   "step": "phase/plan",
+   "type": "UNTYPED",
+   "what": "the hygiene entry's atom citation was copied from the prior plan as gate-contract.md:271; the contract has moved and the summary line is now :279 — caught by re-reading the line, plus an unescaped apostrophe in a literal note and a missing env = [] caught by the dry-run",
+   "impact": {
+    "iterations": 1
+   },
+   "evidence": null
+  },
+  {
+   "ref": "L222",
+   "id": "2026-10-06T09:24:50Z-b",
+   "epoch": "Epoch 2 - Element identity",
+   "chunk": "2026-10-06-stable-element-ids",
+   "step": "implement/fix-loop",
+   "type": "UNTYPED",
+   "what": "the fast leg's fmt check went red on element_id.rs: edits applied through a python script in Bash bypass the PostToolUse rustfmt hook that Write/Edit trigger; fixed by rustfmt and one re-run",
+   "impact": {
+    "iterations": 1
+   },
+   "evidence": ".andromeda/runs/2026-10-06T09-11-52-implement (gate entry 12)"
+  },
+  {
+   "ref": "L235",
+   "id": "2026-10-06T09:52:27Z-b",
+   "epoch": "Epoch 2 - Element identity",
+   "chunk": "2026-10-06-id-persistence",
+   "step": "phase/take-up",
+   "type": "UNTYPED",
+   "what": "working-route.md read by a guessed path .andromeda/working-route.md; it lives in the version dir escher-0.1.0/ — sed failed, re-read at the right path",
+   "impact": {
+    "retries": 1
+   },
+   "evidence": null
+  },
+  {
+   "ref": "L238",
+   "id": "2026-10-06T09:56:54Z-c",
+   "epoch": "Epoch 2 - Element identity",
+   "chunk": "2026-10-06-id-persistence",
+   "step": "phase/distill",
+   "type": "UNTYPED",
+   "what": "recurrence of the deferred learning on the leading-cd guard: a cd mid-command (after git diff-tree) moved the session cwd; the next call's leading cd back to the project root was refused, costing one retry",
+   "impact": {
+    "retries": 1
+   },
+   "evidence": null
+  },
+  {
+   "ref": "L268",
+   "id": "2026-10-06T11:26:17Z-c",
+   "epoch": "Epoch 2 - Element identity",
+   "chunk": "2026-10-06-project-readme",
+   "step": "phase/validate",
+   "type": "UNTYPED",
+   "what": "two time stamps were estimated instead of read from the clock (a P5 CI re-read at 11:27Z, a baseline at 11:25Z, both ahead of the 11:24Z clock); the stamp-ahead hook refused the first, the second was found and corrected from the gate trail's ts",
+   "impact": {
+    "retries": 2
+   },
+   "evidence": null
+  },
+  {
+   "ref": "L274",
+   "id": "2026-10-06T11:44:41Z-c",
+   "epoch": "Epoch 2 - Element identity",
+   "chunk": "2026-10-06-project-readme",
+   "step": "wrap-session/report",
+   "type": "UNTYPED",
+   "what": "report Date written as an estimated 11:50Z without reading the clock; the stamp-ahead PostToolUse hook refused it (+5 min) and it was corrected from date -u",
+   "impact": {
+    "retries": 1
+   },
+   "evidence": null
+  },
+  {
+   "ref": "L296",
+   "id": "2026-10-06T12:58:15Z-c",
+   "epoch": "Epoch 2 - Element identity",
+   "chunk": "2026-10-06-accessibility-tree-identity",
+   "step": "wrap-session/report",
+   "type": "UNTYPED",
+   "what": "the report's Date was written as an estimated 13:05Z; the stamp-ahead PostToolUse hook refused it (+7 min ahead of the clock) and it was corrected from date -u",
+   "impact": {
+    "retries": 1
+   },
+   "evidence": null
+  }
+ ],
+ "lookback_note": "prior-epoch untyped shapes (estimated stamp, leading-cd guard, fmt-hook bypass by a scripted edit) appear TYPED in the target epoch: L422/L364, L342/L367, L446/L455"
+}

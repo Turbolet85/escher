@@ -1,0 +1,149 @@
+{
+ "note": "read-only cross-epoch lookback, recurrence context only; proposals rest on the target epoch",
+ "friction_per_epoch": {
+  "Epoch 1": 80,
+  "Epoch 2": 58,
+  "Epoch 3": 67
+ },
+ "untyped_per_epoch": {
+  "Epoch 1": 9,
+  "Epoch 2": 10,
+  "Epoch 3": 4
+ },
+ "outcomes_per_epoch": {
+  "Epoch 1": {
+   "ok": 94,
+   "halted-resolved": 3,
+   "ok-degraded": 2
+  },
+  "Epoch 2": {
+   "ok": 59,
+   "halted-resolved": 8,
+   "ok-degraded": 3
+  },
+  "Epoch 3": {
+   "ok": 81,
+   "halted-resolved": 3
+  }
+ },
+ "tooling_types_per_epoch": {
+  "tooling.output-cap-overflow": {
+   "Epoch 1": 6,
+   "Epoch 2": 2,
+   "Epoch 3": 1
+  },
+  "tooling.hook-friction": {
+   "Epoch 1": 2,
+   "Epoch 2": 2
+  },
+  "tooling.result-not-run-stable": {
+   "Epoch 1": 1
+  },
+  "tooling.health-false-red": {
+   "Epoch 1": 1
+  },
+  "tooling.gate-deferral": {
+   "Epoch 1": 1
+  },
+  "tooling.host-shell": {
+   "Epoch 2": 1,
+   "Epoch 3": 1
+  },
+  "tooling.light-gate-red": {
+   "Epoch 2": 1
+  }
+ },
+ "groups_per_epoch": {
+  "wrap-session/reconcile/contract.in-pass-correction": {
+   "Epoch 1": 7,
+   "Epoch 2": 4,
+   "Epoch 3": 7
+  },
+  "wrap-session/curation/recall.corpus-recurrence": {
+   "Epoch 1": 3,
+   "Epoch 2": 6,
+   "Epoch 3": 5
+  },
+  "wrap-session/reconcile/recall.corpus-recurrence": {
+   "Epoch 1": 2,
+   "Epoch 2": 1,
+   "Epoch 3": 2
+  },
+  "wrap-session/route-resolve/contract.carry-no-owner": {
+   "Epoch 2": 2,
+   "Epoch 3": 4
+  },
+  "phase/distill/retry.distiller-respawn": {
+   "Epoch 3": 4
+  },
+  "wrap-session/reconcile/input.report-insufficient": {
+   "Epoch 1": 4,
+   "Epoch 2": 1,
+   "Epoch 3": 4
+  },
+  "implement/code/input.plan-step-ambiguous": {
+   "Epoch 1": 4,
+   "Epoch 2": 3,
+   "Epoch 3": 4
+  },
+  "phase/validate/contract.mechanical-check": {
+   "Epoch 1": 10,
+   "Epoch 2": 2,
+   "Epoch 3": 3
+  },
+  "wrap-session/reconcile/contract.false-positive-proposal": {
+   "Epoch 1": 2,
+   "Epoch 2": 2,
+   "Epoch 3": 3
+  },
+  "wrap-session/curation/ambiguity.filter-borderline": {
+   "Epoch 1": 2,
+   "Epoch 2": 2,
+   "Epoch 3": 3
+  },
+  "phase/validate/contract.matrix-claim": {
+   "Epoch 3": 2
+  },
+  "new-session/orientation/input.handoff-git-mismatch": {
+   "Epoch 3": 2
+  },
+  "wrap-session/report/input.implement-outcome-unsettled": {
+   "Epoch 2": 1,
+   "Epoch 3": 2
+  },
+  "wrap-session/route-resolve/contract.no-sanctioned-channel": {
+   "Epoch 3": 2
+  },
+  "*/recall.corpus-recurrence": {
+   "Epoch 1": 5,
+   "Epoch 2": 7,
+   "Epoch 3": 7
+  },
+  "*/contract.narrow-basis-claim": {
+   "Epoch 1": 4,
+   "Epoch 3": 5
+  },
+  "*/contract.skill-reference-drift": {
+   "Epoch 2": 1,
+   "Epoch 3": 2
+  },
+  "*/tooling.host-shell": {
+   "Epoch 2": 1,
+   "Epoch 3": 1
+  },
+  "*/contract.premise-falsified": {
+   "Epoch 2": 3,
+   "Epoch 3": 1
+  },
+  "*/contract.structural-blind-spot": {
+   "Epoch 1": 2,
+   "Epoch 2": 2,
+   "Epoch 3": 1
+  },
+  "*/tooling.output-cap-overflow": {
+   "Epoch 1": 6,
+   "Epoch 2": 2,
+   "Epoch 3": 1
+  }
+ }
+}

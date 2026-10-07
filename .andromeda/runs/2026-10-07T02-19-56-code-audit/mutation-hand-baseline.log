@@ -1,0 +1,147 @@
+   Compiling dioxus-native-dom v0.7.0 ({repo}/packages/dioxus-native-dom)
+   Compiling blitz-test-harness v0.3.0-beta.2 ({repo}/packages/blitz-test-harness)
+   Compiling dioxus-native v0.7.0 ({repo}/packages/dioxus-native)
+   Compiling seven_guis v0.1.0 ({repo}/examples/seven_guis)
+   Compiling blitz-tests v0.3.0-beta.2 ({repo}/tests/blitz-tests)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.83s
+     Running unittests lib.rs (target/debug/deps/blitz_tests-e433dd9a018b508d)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/accessibility_names.rs (target/debug/deps/accessibility_names-bdd348ea7d6a2278)
+
+running 5 tests
+test empty_aria_label_is_ignored ... ok
+test aria_label_names_a_control ... ok
+test nested_label_names_its_input ... ok
+test plain_html_tree_carries_no_author_id ... ok
+test label_for_names_its_input ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+     Running tests/stand_accessibility_ids.rs (target/debug/deps/stand_accessibility_ids-50c6c1983394fa5f)
+
+running 5 tests
+test ids_hold_after_a_rerender ... ok
+test non_elements_carry_no_id ... ok
+test tab_order_is_unchanged ... ok
+test controls_carry_role_and_name ... ok
+test element_nodes_carry_their_stable_id ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.46s
+
+     Running tests/stand_actionable_keys.rs (target/debug/deps/stand_actionable_keys-afbdad71079b66d8)
+
+running 3 tests
+test the_verdict_does_not_change_with_state ... ok
+test the_non_lean_tasks_are_measured ... ok
+test every_actionable_stand_element_reads_an_author_key ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.57s
+
+     Running tests/stand_element_ids.rs (target/debug/deps/stand_element_ids-9c2862df0e3e4398)
+
+running 4 tests
+test text_and_removed_nodes_read_no_id ... ok
+test every_element_reads_exactly_one_unique_id ... ok
+test author_keyed_elements_read_their_key ... ok
+test unkeyed_elements_read_their_component_path ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.70s
+
+     Running tests/stand_id_edits.rs (target/debug/deps/stand_id_edits-ac5b5a5c71b74984)
+
+running 5 tests
+test a_behaviour_edit_changes_no_id ... ok
+test anchored_elements_keep_their_ids_under_edits_outside_their_anchor ... ok
+test edits_inside_the_anchor_change_only_positional_ids ... ok
+test keyed_elements_keep_their_ids_under_every_edit ... ok
+test a_task_keeps_every_id_when_the_code_around_it_changes ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.28s
+
+     Running tests/stand_id_persistence.rs (target/debug/deps/stand_id_persistence-8fe4cf8ed08df15a)
+
+running 4 tests
+test ids_in_a_child_process ... ignored, spawned as a child process by ids_hold_across_a_fresh_process
+test ids_hold_across_rerenders ... ok
+test ids_hold_across_a_fresh_process ... ok
+test ids_hold_across_a_remount ... ok
+
+test result: ok. 3 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 1.15s
+
+     Running tests/stand_snapshot.rs (target/debug/deps/stand_snapshot-4c966f3bc8fb0f42)
+
+running 8 tests
+test snapshot_follows_a_rerender ... ok
+test snapshot_is_deterministic ... ok
+test ids_are_the_accessibility_tree_ids ... ok
+test every_node_carries_the_five_fields ... ok
+test controls_lie_inside_the_viewport ... ok
+test role_and_name_match_the_accessibility_tree ... ok
+test tree_follows_the_task_shell ... ok
+test state_reads_the_engine ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.59s
+
+     Running unittests src/lib.rs (target/debug/deps/dioxus_native_dom-2d0fe21a46c34ba6)
+
+running 49 tests
+test events::tests::touches_is_empty_when_no_pointers_are_active ... ok
+test events::tests::touches_reports_all_active_pointers ... ok
+test element_id::tests::a_key_spelled_like_a_component_stays_distinct ... ok
+test snapshot_diff::tests::a_changed_name_names_that_node_alone ... ok
+test element_id::tests::a_removed_element_reads_no_id ... ok
+test snapshot_diff::tests::a_changed_state_names_that_node_alone ... ok
+test snapshot_diff::tests::a_node_moved_under_another_parent_is_changed ... ok
+test snapshot_diff::tests::a_removed_subtree_names_every_id_in_the_before_order ... ok
+test snapshot_diff::tests::added_and_changed_follow_the_after_pre_order ... ok
+test snapshot_diff::tests::an_added_subtree_names_every_node_with_its_parent ... ok
+test snapshot_diff::tests::changed_bounds_name_that_node_alone ... ok
+test snapshot_diff::tests::two_equal_snapshots_give_an_empty_diff ... ok
+test element_id::tests::a_component_root_under_a_keyed_element_restarts_at_its_chain ... ok
+test snapshot_text::tests::a_node_writes_role_name_id_and_bounds ... ok
+test snapshot_text::tests::an_empty_snapshot_is_the_empty_text ... ok
+test snapshot_text::tests::bounds_print_the_shortest_decimal ... ok
+test snapshot_text::tests::children_are_indented_in_pre_order ... ok
+test snapshot_text::tests::state_tokens_follow_the_model ... ok
+test snapshot_text::tests::strings_are_quoted_and_escaped ... ok
+test element_id::tests::an_unusable_id_anchors_nothing ... ok
+test element_id::tests::an_empty_or_slashed_html_id_reads_a_path ... ok
+test element_id::tests::a_duplicate_html_id_reads_a_path ... ok
+test element_id::tests::a_dioxus_keyed_row_under_a_keyed_list_reads_its_key_segment ... ok
+test element_id::tests::a_repeated_dioxus_key_falls_back_to_an_index ... ok
+test element_id::tests::the_nearest_keyed_ancestor_anchors ... ok
+test element_id::tests::non_elements_read_no_id ... ok
+test element_id::tests::a_keyed_parent_anchors_its_unkeyed_children ... ok
+test element_id::tests::keyed_list_rows_read_their_key_segment ... ok
+test actionable::tests::a_keyed_or_inert_element_is_not_reported ... ok
+test actionable::tests::a_hidden_or_disabled_control_is_still_held ... ok
+test snapshot::tests::text_runs_are_never_nodes ... ok
+test snapshot::tests::a_display_none_subtree_is_absent ... ok
+test snapshot::tests::a_disabled_button_reads_not_enabled ... ok
+test snapshot::tests::a_radio_reads_checked ... ok
+test snapshot::tests::a_label_bound_input_reads_the_label_text ... ok
+test snapshot::tests::a_checkbox_reads_checked ... ok
+test snapshot::tests::a_password_input_reads_a_masked_value ... ok
+test snapshot::tests::a_text_input_reads_its_value ... ok
+test actionable::tests::an_unkeyed_actionable_element_is_reported_with_its_remedy ... ok
+test snapshot::tests::an_aria_labelled_button_reads_its_label ... ok
+test snapshot::tests::a_present_disabled_attribute_reads_not_enabled_whatever_its_value ... ok
+test snapshot::tests::a_file_input_reads_a_masked_value ... ok
+test dioxus_document::tests::keyed_nodes_do_not_crash ... ok
+test actionable::tests::the_report_names_structure_never_content ... ok
+test snapshot::tests::a_text_only_paragraph_reads_its_text ... ok
+test snapshot::tests::a_range_input_reads_its_value_attribute ... ok
+test snapshot::tests::every_id_is_the_element_id_of_its_element ... ok
+test snapshot_text::tests::the_text_of_a_document_has_one_line_per_node ... ok
+test element_id::tests::an_edit_outside_the_anchor_keeps_the_anchored_id ... ok
+
+test result: ok. 49 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.18s
+
+
+real	0m9.937s
+user	0m38.540s
+sys	0m13.582s

@@ -1,0 +1,1752 @@
+{
+ "epoch": "Epoch 3 — Observation model",
+ "pass_a": {
+  "pile": "every problem fact of the epoch with solution workaround | prohibition | removed-cause: 32 facts, each in exactly one theme (T4b re-cuts three T4 members by subject)",
+  "threshold": "n >= 3 in-epoch, or n >= 2 recurring from a prior epoch",
+  "themes": [
+   {
+    "key": "T1",
+    "theme": "the project's Bash guard refuses a leading cd and a heredoc written to a file",
+    "signature": "band-aid",
+    "in_epoch": [
+     {
+      "ref": "L312#0",
+      "id": "2026-10-06T18:00:28Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-upstream-sync-observation-model",
+      "step": "phase/distill",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "project Bash guard refused a leading cd into the run dir when reading the extracts; re-issued with absolute paths (deferred learning, sixth recurrence)"
+     },
+     {
+      "ref": "L338#0",
+      "id": "2026-10-06T19:30:21Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-model",
+      "step": "wrap-session/reconcile",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "the Bash guard refused a leading cd into the run dir for a python heredoc writing four raw twins; the twins were written with the Write tool instead"
+     },
+     {
+      "ref": "L356#0",
+      "id": "2026-10-06T20:30:34Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-id-stability-across-code-edits",
+      "step": "phase/validate",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "the project's Bash guard refused one call that wrote a scratch script through a cat heredoc with a file target; the script went through the Write tool and the plan edit was re-fired; the review directive was snapped under phase:P3 again, the inputs tool having no later phase step"
+     },
+     {
+      "ref": "L442#0",
+      "id": "2026-10-07T01:09:59Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-07-change-tracking-and-diff",
+      "step": "implement/code",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the project Bash guard refused a cat heredoc with a file target for an edit script; the script went through the Write tool into the scratchpad and ran by path"
+     }
+    ],
+    "prior": [
+     {
+      "ref": "L1#0",
+      "id": "2026-10-05T18:43:33Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": null,
+      "step": "new-session/orientation",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "PreToolUse hook blocked a leading cd into the skill references dir; re-ran with absolute paths"
+     },
+     {
+      "ref": "L5#0",
+      "id": "2026-10-05T18:50:12Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-05-as-built-baseline",
+      "step": "phase/distill",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "PreToolUse hook blocked a leading cd into the run dir; re-ran with absolute paths"
+     },
+     {
+      "ref": "L16#0",
+      "id": "2026-10-05T20:36:57Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-05-as-built-baseline",
+      "step": "wrap-session/report",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "project PreToolUse Bash guard blocked a leading cd into .andromeda/ for the master grep — re-run inside a subshell"
+     },
+     {
+      "ref": "L24#0",
+      "id": "2026-10-05T20:55:54Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-05-fork-ci-reached",
+      "step": "phase/distill",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "a PreToolUse hook blocked a leading cd into the run dir for the extract read; re-ran with absolute paths"
+     },
+     {
+      "ref": "L49#0",
+      "id": "2026-10-05T22:36:48Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-05-ci-gate-legs",
+      "step": "phase/distill",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "an earlier probe ran `cd {run_dir} && ...`, moving the session cwd; a later leading `cd` was blocked by the PreToolUse cwd hook; switched to subshell `( cd ... && ... )` and absolute paths"
+     },
+     {
+      "ref": "L64#0",
+      "id": "2026-10-05T23:53:00Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-05-ci-gate-legs",
+      "step": "wrap-session/report",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "the project PreToolUse guard blocked a leading cd into .andromeda for the per-master sweep; re-run as a scratch python script over absolute paths"
+     },
+     {
+      "ref": "L78#0",
+      "id": "2026-10-06T00:19:53Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-06-telemetry-bootstrap",
+      "step": "phase/distill",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "a bare cd into the run dir in an earlier call moved the session cwd; the PreToolUse hook blocked the next leading cd, re-run inside a subshell"
+     },
+     {
+      "ref": "L81#0",
+      "id": "2026-10-06T00:23:29Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-06-telemetry-bootstrap",
+      "step": "phase/research",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "session cwd still in the run dir from P2; first P3 read was blocked by the leading-cd hook and re-run in a subshell"
+     },
+     {
+      "ref": "L117#1",
+      "id": "2026-10-06T02:22:58Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-06-headless-stand",
+      "step": "implement/fix-loop",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "a cat heredoc into a throwaway probe test file was blocked by the project's Bash guard; wrote the probe with the Write tool and deleted it after the run"
+     },
+     {
+      "ref": "L155#0",
+      "id": "2026-10-06T04:02:06Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-06-cold-agent-run-pipe",
+      "step": "phase/distill",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "a leading cd into the run dir was blocked by the project's Bash guard; reran with absolute paths"
+     },
+     {
+      "ref": "L168#0",
+      "id": "2026-10-06T04:47:33Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-06-cold-agent-run-pipe",
+      "step": "wrap-session/reconcile",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "a cat-heredoc append to fanout-results.md was blocked by the project's Bash guard; the file was written whole with the Write tool"
+     },
+     {
+      "ref": "L184#0",
+      "id": "2026-10-06T08:02:00Z-a",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-upstream-sync-element-identity",
+      "step": "phase/research",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "permission guard refused a chained rm -rf + cd + git archive export; re-run as plain mkdir + git archive|tar and cargo --manifest-path"
+     },
+     {
+      "ref": "L210#0",
+      "id": "2026-10-06T08:58:03Z-a",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-stable-element-ids",
+      "step": "phase/distill",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "project Bash guard refused a leading cd into the run dir for the extract probe; re-ran with a path variable (recurrence of the carried deferred learning)"
+     },
+     {
+      "ref": "L236#0",
+      "id": "2026-10-06T09:56:54Z-a",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-id-persistence",
+      "step": "phase/distill",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "a non-leading cd inside the stage-1 path-check call moved the session cwd to the run dir; the Bash guard then refused a leading cd back; continued with absolute paths and --root instead of routing around the guard"
+     },
+     {
+      "ref": "L288#1",
+      "id": "2026-10-06T12:28:40Z-a",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-accessibility-tree-identity",
+      "step": "implement/code",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "PreToolUse guard refused a cat heredoc writing scope-record.md (the whole call, manifest edits included, did not run); wrote the record with the Write tool and re-ran the edits"
+     }
+    ],
+    "typed_correlates": [
+     {
+      "ref": "L342",
+      "id": "2026-10-06T19:30:21Z-e",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-model",
+      "step": "wrap-session/reconcile",
+      "type": "recall.corpus-recurrence",
+      "what": "two deferred Tier-3 learnings recurred in this wrap: a leading cd refused by the Bash guard (once), and ugrep rejecting a bounded repetition {0,130} with 'exceeds complexity limits' on five patterns (re-run through python re)",
+      "impact": {
+       "retries": 2
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L367",
+      "id": "2026-10-06T21:14:20Z-c",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-id-stability-across-code-edits",
+      "step": "wrap-session/reconcile",
+      "type": "recall.corpus-recurrence",
+      "what": "a cat heredoc with a file target was fired to write a helper script and the project's Bash guard refused it; the handoff already carries this as a deferred recurrence-despite-learning entry; the helper was dropped and the edits went through the Edit tool",
+      "impact": {
+       "retries": 1
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L455",
+      "id": "2026-10-07T01:54:31Z-c",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-07-change-tracking-and-diff",
+      "step": "wrap-session/curation",
+      "type": "recall.corpus-recurrence",
+      "what": "two Tier-3 entries that state their rule correctly recurred at this chunk's implement: a scripted Rust edit not followed by cargo fmt (one red fast leg), and a heredoc with a file target refused by the project's Bash guard (one retry); neither entry was consulted before the act — session-learnings.md is on-demand and no implement step reads it",
+      "impact": {
+       "retries": 2
+      },
+      "evidence": null
+     }
+    ],
+    "at_threshold": true,
+    "n_in_epoch": 4,
+    "n_prior": 15
+   },
+   {
+    "key": "T2",
+    "theme": "a pipeline tool call read through head / tail against the run-bare rule",
+    "signature": "band-aid",
+    "in_epoch": [
+     {
+      "ref": "L328#0",
+      "id": "2026-10-06T18:22:37Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-model",
+      "step": "phase/distill",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "sidecar.py summary piped through | head -3 against the bare-call rule; the verdict lines needed were within the first 3, trail holds the rest"
+     },
+     {
+      "ref": "L329#0",
+      "id": "2026-10-06T18:25:43Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-model",
+      "step": "phase/research",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "first code-graph query read through | tail -40 against the cookbook's never-clip rule; re-read whole from the trace file (45 rows)"
+     },
+     {
+      "ref": "L381#0",
+      "id": "2026-10-06T21:59:01Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-state-fidelity",
+      "step": "phase/validate",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "one re-run of the fence parse and planlint after the baseline writes was read through a tail-clipped view against the run-bare rule; the review card said so, and both were re-run bare after the review edits"
+     }
+    ],
+    "prior": [
+     {
+      "ref": "L18#0",
+      "id": "2026-10-05T20:43:00Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-05-as-built-baseline",
+      "step": "wrap-session/curation",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "health.py check output filtered through grep for the check 1 row instead of run bare with other rows unread"
+     },
+     {
+      "ref": "L108#0",
+      "id": "2026-10-06T01:59:52Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-06-headless-stand",
+      "step": "phase/distill",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "ran sidecar.py summary through | head -3 in a loop; the skill says every tool call runs bare — verdict lines read intact, nothing lost"
+     },
+     {
+      "ref": "L215#2",
+      "id": "2026-10-06T09:10:26Z-a",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-stable-element-ids",
+      "step": "phase/validate",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the P4 unclaimed-pool listing was read through head -5, against the tools' run-bare rule; re-listed whole at P5 step 4"
+     },
+     {
+      "ref": "L234#0",
+      "id": "2026-10-06T09:52:27Z-a",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-id-persistence",
+      "step": "phase/take-up",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "route.py pins (completeness check) was piped through head, against the bare-call rule; output was 3 lines under the cap, nothing cut"
+     },
+     {
+      "ref": "L236#1",
+      "id": "2026-10-06T09:56:54Z-a",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-id-persistence",
+      "step": "phase/distill",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "sidecar.py cites piped through tail -n +2 to drop the stamp line, against the bare-call rule; the verdict lines were all kept"
+     },
+     {
+      "ref": "L287#0",
+      "id": "2026-10-06T12:22:11Z-a",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-accessibility-tree-identity",
+      "step": "phase/validate",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "matrix.py show --unclaimed was piped through head -5 at step 4, against the run-bare rule; the full listing had been read at P4 and coverage ran bare"
+     }
+    ],
+    "typed_correlates": [],
+    "at_threshold": true,
+    "n_in_epoch": 3,
+    "n_prior": 6
+   },
+   {
+    "key": "T3",
+    "theme": "host grep is ugrep: a bounded-repetition context pattern is refused or prints nothing",
+    "signature": "band-aid + chronic-degrade",
+    "in_epoch": [
+     {
+      "ref": "L353#0",
+      "id": "2026-10-06T20:10:37Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-id-stability-across-code-edits",
+      "step": "phase/research",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "name sweeps were run as python regex passes over git ls-files instead of grep, since grep on this host is ugrep with a recorded bounded-repetition trap"
+     },
+     {
+      "ref": "L381#1",
+      "id": "2026-10-06T21:59:01Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-state-fidelity",
+      "step": "phase/validate",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "a bounded-repetition pattern over test-plan.md was refused by this host's grep (ugrep, exceeds complexity limits); the fact was read from a plain pattern instead"
+     }
+    ],
+    "prior": [
+     {
+      "ref": "L192#0",
+      "id": "2026-10-06T08:37:04Z-a",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-upstream-sync-element-identity",
+      "step": "wrap-session/report",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "host grep is ugrep; patterns with .{0,200} context exceed its complexity limit and an alternation sweep printed nothing (false zero) — switched site sweeps to python re"
+     },
+     {
+      "ref": "L250#0",
+      "id": "2026-10-06T10:57:29Z-a",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-id-persistence",
+      "step": "wrap-session/report",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "grep resolves to ugrep here; a -oE context pattern '.{0,80}' failed 'exceeds complexity limits'; used a python scan of the masters instead"
+     }
+    ],
+    "typed_correlates": [
+     {
+      "ref": "L382",
+      "id": "2026-10-06T21:59:01Z-b",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-state-fidelity",
+      "step": "phase/validate",
+      "type": "tooling.host-shell",
+      "what": "a context-window search with a bounded repetition of 160 and 200 characters around an alternation errored on this host, where grep is ugrep (error at position 134, exceeds complexity limits), printing no match; re-run as a plain case-insensitive word search, which returned 5 lines",
+      "impact": {
+       "retries": 1
+      },
+      "evidence": "the handoff's deferred learning of 2026-10-06 on ugrep and long bounded repetitions"
+     },
+     {
+      "ref": "L342",
+      "id": "2026-10-06T19:30:21Z-e",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-model",
+      "step": "wrap-session/reconcile",
+      "type": "recall.corpus-recurrence",
+      "what": "two deferred Tier-3 learnings recurred in this wrap: a leading cd refused by the Bash guard (once), and ugrep rejecting a bounded repetition {0,130} with 'exceeds complexity limits' on five patterns (re-run through python re)",
+      "impact": {
+       "retries": 2
+      },
+      "evidence": null
+     }
+    ],
+    "at_threshold": true,
+    "threshold_basis": "n = 2 in-epoch, recurring from Epoch 2",
+    "n_in_epoch": 2,
+    "n_prior": 2
+   },
+   {
+    "key": "T4",
+    "theme": "scripted replaces through Bash instead of the anchored Edit the letter's write rule names",
+    "signature": "band-aid",
+    "in_epoch": [
+     {
+      "ref": "L359#0",
+      "id": "2026-10-06T20:38:28Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-id-stability-across-code-edits",
+      "step": "implement/code",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "app.rs and the four stand re-pins were edited by a scripted python replace through Bash rather than the Edit tool, so the PostToolUse fmt hook did not fire on them; cargo fmt -p blitz-tests -p dioxus-native-dom was run once by hand afterwards"
+     },
+     {
+      "ref": "L383#2",
+      "id": "2026-10-06T22:07:58Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-state-fidelity",
+      "step": "implement/code",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "multi-site edits after a formatter hook rewrote the file were applied by a python replace script with count assertions instead of the Edit tool"
+     },
+     {
+      "ref": "L406#0",
+      "id": "2026-10-06T23:19:49Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-compact-snapshot-serialization",
+      "step": "phase/research",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "Three line citations in scope.md were corrected by one scripted string replace run through a python heredoc rather than three anchored Edit calls, against the letter's Write/Edit rule for documents; each replace asserted exactly one match before writing."
+     },
+     {
+      "ref": "L437#0",
+      "id": "2026-10-07T00:51:04Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-07-change-tracking-and-diff",
+      "step": "phase/plan",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "eight point corrections to plan.md (five line ranges, two grep spellings, the oracle's parent clause) were applied through one python heredoc script, where the letter requires an anchored Edit for a point change; each replacement printed a match count of 1"
+     },
+     {
+      "ref": "L450#0",
+      "id": "2026-10-07T01:52:31Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-07-change-tracking-and-diff",
+      "step": "wrap-session/reconcile",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the 119-citation line map and ten single-site leaf replacements were written by position- or uniqueness-asserted scripts rather than anchored Edits (the letter's write rule): the map holds prefix-colliding ranges an Edit replace_all would corrupt; recorded in cascade-dispositions.md"
+     }
+    ],
+    "prior": [
+     {
+      "ref": "L5#1",
+      "id": "2026-10-05T18:50:12Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-05-as-built-baseline",
+      "step": "phase/distill",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the six (none) history files were written with a printf redirect in one Bash call rather than six Write-tool calls"
+     },
+     {
+      "ref": "L38#0",
+      "id": "2026-10-05T22:17:51Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-05-fork-ci-reached",
+      "step": "wrap-session/reconcile",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "112 stale file:line citations re-pointed by a scratchpad python regex script writing the five masters directly (not Edit/splice); verified digits-only by comparing digit-stripped text against HEAD per master"
+     },
+     {
+      "ref": "L48#0",
+      "id": "2026-10-05T22:33:01Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-05-ci-gate-legs",
+      "step": "phase/take-up",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "master-record.txt (one line) written via shell printf in the promote Bash call instead of the Write tool; content correct, promote exit 0"
+     },
+     {
+      "ref": "L77#0",
+      "id": "2026-10-06T00:15:46Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-06-telemetry-bootstrap",
+      "step": "phase/take-up",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "wrote the one-line master-record.txt with shell printf instead of the Write tool the letter names for document payloads"
+     },
+     {
+      "ref": "L82#1",
+      "id": "2026-10-06T00:28:48Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-06-telemetry-bootstrap",
+      "step": "phase/plan",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "fixed an invalid TOML literal (doubled quote in a single-quoted note) and the stdout census regex with a python heredoc replace on plan.md instead of the Edit tool"
+     },
+     {
+      "ref": "L95#0",
+      "id": "2026-10-06T01:48:08Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-06-telemetry-bootstrap",
+      "step": "wrap-session/reconcile",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "80 masters file:line citations into files the chunk shifted (Cargo.toml, blitz-tests/seven_guis manifests, seven_guis main.rs) re-pointed by a scratchpad script with an old/new content check; no pipeline tool re-points citations after a chunk's line shifts"
+     },
+     {
+      "ref": "L103#0",
+      "id": "2026-10-06T01:50:26Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-06-telemetry-bootstrap",
+      "step": "wrap-session/route-resolve",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the CARRY was appended to line 52 by a python line-indexed rewrite with an exact-prior-text assert instead of the anchored Edit the line-write contract names; git diff -U0 confirmed only line 52 changed"
+     },
+     {
+      "ref": "L122#0",
+      "id": "2026-10-06T02:58:48Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-06-headless-stand",
+      "step": "wrap-session/reconcile",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the report and evidence corrections were applied with python heredoc replaces instead of the Edit tool the skill names for document writes; the masters, leaves and sidecars used Edit/Write/splice"
+     }
+    ],
+    "typed_correlates": [
+     {
+      "ref": "L446",
+      "id": "2026-10-07T01:16:23Z-b",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-07-change-tracking-and-diff",
+      "step": "implement/fix-loop",
+      "type": "retry.fix-iterations",
+      "what": "the fast leg (entry 20) read red twice, both lint, both in packages/blitz-dom/src/document.rs: rustfmt on the test module (the edit was applied by a scratchpad script, so the PostToolUse format hook never saw it), then clippy let_and_return in create_node once its mark line was removed; fixed by cargo fmt --all and by returning the insert directly; green on the third run of the entry and on the full block after it",
+      "impact": {
+       "iterations": 2
+      },
+      "evidence": ".andromeda/runs/2026-10-07T00-58-32-implement/gate-2026-10-07-change-tracking-and-diff.json"
+     },
+     {
+      "ref": "L455",
+      "id": "2026-10-07T01:54:31Z-c",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-07-change-tracking-and-diff",
+      "step": "wrap-session/curation",
+      "type": "recall.corpus-recurrence",
+      "what": "two Tier-3 entries that state their rule correctly recurred at this chunk's implement: a scripted Rust edit not followed by cargo fmt (one red fast leg), and a heredoc with a file target refused by the project's Bash guard (one retry); neither entry was consulted before the act — session-learnings.md is on-demand and no implement step reads it",
+      "impact": {
+       "retries": 2
+      },
+      "evidence": null
+     }
+    ],
+    "at_threshold": true,
+    "n_in_epoch": 5,
+    "n_prior": 8
+   },
+   {
+    "key": "T4b",
+    "theme": "file:line citation upkeep: citations typed or carried a line or two off, and re-pointed by a per-wrap script when a chunk shifts source lines",
+    "signature": "band-aid",
+    "in_epoch": [
+     {
+      "ref": "L406#0",
+      "id": "2026-10-06T23:19:49Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-compact-snapshot-serialization",
+      "step": "phase/research",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "Three line citations in scope.md were corrected by one scripted string replace run through a python heredoc rather than three anchored Edit calls, against the letter's Write/Edit rule for documents; each replace asserted exactly one match before writing."
+     },
+     {
+      "ref": "L437#0",
+      "id": "2026-10-07T00:51:04Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-07-change-tracking-and-diff",
+      "step": "phase/plan",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "eight point corrections to plan.md (five line ranges, two grep spellings, the oracle's parent clause) were applied through one python heredoc script, where the letter requires an anchored Edit for a point change; each replacement printed a match count of 1"
+     },
+     {
+      "ref": "L450#0",
+      "id": "2026-10-07T01:52:31Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-07-change-tracking-and-diff",
+      "step": "wrap-session/reconcile",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the 119-citation line map and ten single-site leaf replacements were written by position- or uniqueness-asserted scripts rather than anchored Edits (the letter's write rule): the map holds prefix-colliding ranges an Edit replace_all would corrupt; recorded in cascade-dispositions.md"
+     }
+    ],
+    "prior": [
+     {
+      "ref": "L38#0",
+      "id": "2026-10-05T22:17:51Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-05-fork-ci-reached",
+      "step": "wrap-session/reconcile",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "112 stale file:line citations re-pointed by a scratchpad python regex script writing the five masters directly (not Edit/splice); verified digits-only by comparing digit-stripped text against HEAD per master"
+     },
+     {
+      "ref": "L95#0",
+      "id": "2026-10-06T01:48:08Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-06-telemetry-bootstrap",
+      "step": "wrap-session/reconcile",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "80 masters file:line citations into files the chunk shifted (Cargo.toml, blitz-tests/seven_guis manifests, seven_guis main.rs) re-pointed by a scratchpad script with an old/new content check; no pipeline tool re-points citations after a chunk's line shifts"
+     },
+     {
+      "ref": "L198#0",
+      "id": "2026-10-06T08:46:30Z-a",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-upstream-sync-element-identity",
+      "step": "wrap-session/reconcile",
+      "nature": "process",
+      "solution": "overridden",
+      "note": "playbook 'Not this chunk's drift' routes pre-existing drift to CARRY/residuals; operator chose fix-now for 53 stale root-manifest citations at the escalation"
+     }
+    ],
+    "typed_correlates": [
+     {
+      "ref": "L339",
+      "id": "2026-10-06T19:30:21Z-b",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-model",
+      "step": "wrap-session/reconcile",
+      "type": "input.report-insufficient",
+      "what": "13 proposals from 3 docs (architecture 6, security-plan 2, test-plan 5); 4 docs returned proposals: []; 10 of the 13 cited source lines the report does not carry (snapshot.rs, stand_snapshot.rs, element_id.rs) or sat under such a primary, so each was rejected by the re-derivation tell and re-raised by the orchestrator from its own read; all 13 facts applied",
+      "impact": {
+       "extra_reads": 4
+      },
+      "evidence": ".andromeda/runs/2026-10-06T19-14-10-wrap/fanout-results.md"
+     },
+     {
+      "ref": "L340",
+      "id": "2026-10-06T19:30:21Z-c",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-model",
+      "step": "wrap-session/reconcile",
+      "type": "contract.in-pass-correction",
+      "what": "2 sites corrected before the commit: security-plan id row cited snapshot.rs:105-153, re-read gave 105-151; test-plan §3 helper clause first carried an unmeasured cause (styles exist only after a resolve), rewritten to the bare fact on re-read",
+      "impact": {
+       "iterations": 2
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L364",
+      "id": "2026-10-06T21:00:32Z-b",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-id-stability-across-code-edits",
+      "step": "wrap-session/report",
+      "type": "contract.narrow-basis-claim",
+      "what": "the first draft of report.md carried a citation tally typed without a count (88 found, 41 change, 47 unchanged) and a Date five minutes ahead of the clock; the stamp-ahead hook refused the date, and the tally, re-derived from the line-map script while fixing it, read 96, 61, 35",
+      "impact": {
+       "retries": 1
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L392",
+      "id": "2026-10-06T22:56:53Z-b",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-state-fidelity",
+      "step": "wrap-session/reconcile",
+      "type": "input.report-insufficient",
+      "what": "the report listed the masters citing mutation_writer.rs lines but not those citing snapshot.rs lines, and carried shift rules rather than new targets; five detectors measured new line numbers on the working tree, against the prompt ban on re-deriving from source; every applied target was re-measured by the orchestrator",
+      "impact": {
+       "extra_reads": 3
+      },
+      "evidence": ".andromeda/runs/2026-10-06T22-39-16-wrap/fanout-results.md"
+     },
+     {
+      "ref": "L393",
+      "id": "2026-10-06T22:56:53Z-c",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-state-fidelity",
+      "step": "wrap-session/reconcile",
+      "type": "contract.false-positive-proposal",
+      "what": "three proposals (architecture, security-plan, a11y-plan) wrote the provisional status and an unmeasured until-found example into the body; applied narrowed: the status went to the sidecar entries per the falsy-disabled precedent, the unmeasured example was dropped; one architecture citation range was off by one line",
+      "impact": {
+       "reformulations": 3
+      },
+      "evidence": ".andromeda/runs/2026-10-06T22-39-16-wrap/fanout-results.md"
+     },
+     {
+      "ref": "L394",
+      "id": "2026-10-06T22:56:53Z-d",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-state-fidelity",
+      "step": "wrap-session/reconcile",
+      "type": "contract.in-pass-correction",
+      "what": "two first writes corrected before the sidecar entries landed: an a11y-plan citation range written 309-346 and corrected to 308-344 by a line measurement; a test-plan citation written inline in the coverage sentence and moved to the sentence citation list on a re-read",
+      "impact": {
+       "retries": 2
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L397",
+      "id": "2026-10-06T22:58:16Z-c",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-state-fidelity",
+      "step": "wrap-session/curation",
+      "type": "recall.corpus-recurrence",
+      "what": "the Tier 3 entry on a chunk that moves cited source lines staling the masters citations was in the corpus; this wrap report still listed the citing sites of one shifted file and not of the other, found by the detectors",
+      "impact": {
+       "extra_reads": 1
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L407",
+      "id": "2026-10-06T23:19:49Z-b",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-compact-snapshot-serialization",
+      "step": "phase/research",
+      "type": "contract.narrow-basis-claim",
+      "what": "Four file:line citations (lib.rs re-export twice, inspect.rs dom_string, snapshot.rs visit) were first written from a hand count over listings printed without line numbers and read 1 to 2 lines off; a grep with line numbers re-derived them and they were corrected before research.md was checked",
+      "impact": {
+       "extra_reads": 1
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L419",
+      "id": "2026-10-07T00:15:43Z-b",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-compact-snapshot-serialization",
+      "step": "wrap-session/reconcile",
+      "type": "input.report-insufficient",
+      "what": "the report's citation search keyed on the basename snapshot.rs and so counted 5 citations of the unchanged stand_snapshot.rs as the edited file's, giving one a moved range (false positive direction); the truth came from reading the hit on a11y-plan line 314 while the detectors were still running; the a11y detector's flag had already repeated the wrong map",
+      "impact": {
+       "retries": 1,
+       "extra_reads": 1
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L421",
+      "id": "2026-10-07T00:15:43Z-d",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-compact-snapshot-serialization",
+      "step": "wrap-session/reconcile",
+      "type": "contract.false-positive-proposal",
+      "what": "2 of 24 proposals (architecture primary, test-plan primary) were rejected on the re-derivation tell: each cited a source line range the report did not carry; both facts were accurate and were applied through the expected-amendments check, the two coordinates measured by the orchestrator and added to the report; 3 detector returns (obs-plan, security-plan, test-plan) state outright that they re-read source files",
+      "impact": {
+       "retries": 0,
+       "extra_reads": 2
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L425",
+      "id": "2026-10-07T00:17:06Z-b",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-compact-snapshot-serialization",
+      "step": "wrap-session/curation",
+      "type": "recall.corpus-recurrence",
+      "what": "a Tier-3 entry already says to key a line-map search on full repository paths, never basenames; this wrap's report keyed its citation search on a basename that is the tail of another file's name and miscounted 5 citations; the entry was not consulted before the search was written",
+      "impact": {
+       "retries": 1
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L438",
+      "id": "2026-10-07T00:51:04Z-b",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-07-change-tracking-and-diff",
+      "step": "phase/plan",
+      "type": "retry.synthesis-rework",
+      "what": "Four line ranges in the plan's steps were first written from an approximate reading of the research window (keyboard.rs 118-126, window.rs 372-390, document.rs 1540-1551 and 854-866) and corrected to 119-126, 372-389, 1540-1550 and 854-865 by recounting the printed lines; the diff's parent clause was missing from the check's oracle and from the claimed acceptance and was added in the same pass.",
+      "impact": {
+       "iterations": 1
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L451",
+      "id": "2026-10-07T01:52:31Z-b",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-07-change-tracking-and-diff",
+      "step": "wrap-session/reconcile",
+      "type": "contract.false-positive-proposal",
+      "what": "5 of 29 proposals carried a basis or citation the report does not hold (D-arch-resources ×2: document.rs:1553-1559, snapshot_diff.rs:11-47; D-security-input ×3: snapshot_diff.rs:13/:34, :34-60, stand_diff.rs:615-633) — rejected as returned per the re-derivation tell and re-raised by the orchestrator under check 5 with the same substance; the test-plan and obs-plan detectors also stated they read the source to confirm computed line numbers",
+      "impact": {
+       "retries": 0
+      },
+      "evidence": null
+     }
+    ],
+    "at_threshold": true,
+    "overlap": "its three in-epoch facts are also members of T4; the theme is cut by SUBJECT (what was edited), T4 by MEANS (how)",
+    "n_in_epoch": 3,
+    "n_prior": 3
+   },
+   {
+    "key": "T5",
+    "theme": "a tool lacks the verb, or the letter names no mechanism, for an act the step needs",
+    "signature": "band-aid",
+    "in_epoch": [
+     {
+      "ref": "L345#0",
+      "id": "2026-10-06T19:33:46Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-model",
+      "step": "wrap-session/route-resolve",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the ledger tool has no verb that creates a capability; on the founder's answer v010-16 was appended to verification-matrix.json by a scripted edit that first proved a byte-exact re-dump, then read back through matrix.py show / coverage"
+     },
+     {
+      "ref": "L350#0",
+      "id": "2026-10-06T19:55:39Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-id-stability-across-code-edits",
+      "step": "phase/take-up",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the entry assigns its decisive question to promotion but P1 names no ask mechanism; the question was put at P1 in P4's marked-recommendation form, with the playbook's escalate patterns read there, before scope.md was written"
+     },
+     {
+      "ref": "L354#0",
+      "id": "2026-10-06T20:21:19Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-id-stability-across-code-edits",
+      "step": "phase/plan",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the founder's P4 answers are a directive the plan rests on, but inputs.py snap accepts only phase:P1, phase:P3 and implement as its step; the answers were snapped under phase:P3 with the P4 origin stated in the why line"
+     },
+     {
+      "ref": "L402#0",
+      "id": "2026-10-06T23:04:26Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": null,
+      "step": "new-session/orientation",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "The evolve nudge's condition that the ledger carries records for a completed epoch names no tool verb, so the per-epoch record count came from an inline python read of friction-log.ndjson, which evolve-system.md says the agent never reads; the diagnosis titles alone already decided the nudge (Epoch 1 and Epoch 2 both diagnosed)."
+     }
+    ],
+    "in_epoch_second_clause": [
+     {
+      "ref": "L356#0",
+      "id": "2026-10-06T20:30:34Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-id-stability-across-code-edits",
+      "step": "phase/validate",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "the project's Bash guard refused one call that wrote a scratch script through a cat heredoc with a file target; the script went through the Write tool and the plan edit was re-fired; the review directive was snapped under phase:P3 again, the inputs tool having no later phase step"
+     }
+    ],
+    "prior": [
+     {
+      "ref": "L95#0",
+      "id": "2026-10-06T01:48:08Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-06-telemetry-bootstrap",
+      "step": "wrap-session/reconcile",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "80 masters file:line citations into files the chunk shifted (Cargo.toml, blitz-tests/seven_guis manifests, seven_guis main.rs) re-pointed by a scratchpad script with an old/new content check; no pipeline tool re-points citations after a chunk's line shifts"
+     }
+    ],
+    "typed_correlates": [
+     {
+      "ref": "L347",
+      "id": "2026-10-06T19:33:46Z-c",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-model",
+      "step": "wrap-session/route-resolve",
+      "type": "contract.no-sanctioned-channel",
+      "what": "a mid-version requirement added by the operator has no sanctioned writer on the wrap path: requirements.md ids are route Phase A's, the matrix is created by route P6 and matrix.py (v1.3) has no create verb; done instead: the operator's word, a scripted append and a tool read-back recorded in the run dir",
+      "impact": {
+       "dialogue_rounds": 1,
+       "extra_reads": 3
+      },
+      "evidence": ".andromeda/runs/2026-10-06T19-14-10-wrap/adaptation-record.md"
+     },
+     {
+      "ref": "L400",
+      "id": "2026-10-06T22:59:50Z-c",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-state-fidelity",
+      "step": "wrap-session/route-resolve",
+      "type": "contract.no-sanctioned-channel",
+      "what": "the provisional bridge direction waits for the founder at the Epoch 3 boundary and the route grammar has no pin for a pending ratification; it is recorded in three sidecar entries and the handoff notes, with no route annotation",
+      "impact": {
+       "extra_reads": 1
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L355",
+      "id": "2026-10-06T20:21:19Z-b",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-id-stability-across-code-edits",
+      "step": "phase/plan",
+      "type": "contract.structural-blind-spot",
+      "what": "inputs.py snap refused --step phase:P4 (invalid choice), so a founder directive given at P4's fork round has no step of its own in the inputs channel; a dry-run with phase:P4 exited 2, the snap landed as I2 under phase:P3",
+      "impact": {
+       "retries": 1
+      },
+      "evidence": "escher-0.1.0/chunks/2026-10-06-id-stability-across-code-edits/inputs/andromeda-inputs.json entry I2"
+     }
+    ],
+    "at_threshold": true,
+    "n_in_epoch": 4,
+    "n_prior": 1
+   },
+   {
+    "key": "T6",
+    "theme": "a throwaway probe test written into the tests tree to print ids or diffs, then deleted",
+    "signature": "band-aid",
+    "in_epoch": [
+     {
+      "ref": "L361#0",
+      "id": "2026-10-06T20:42:13Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-id-stability-across-code-edits",
+      "step": "implement/fix-loop",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "plan step 11 asks the report for the anchored ids Home's card children read, but no listed entry or test prints Home's ids and the stand checks may not print; measured with a throwaway test file written under tests/blitz-tests/tests, run once with --nocapture and deleted, the tree read back as the 12 chunk files"
+     },
+     {
+      "ref": "L442#1",
+      "id": "2026-10-07T01:09:59Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-07-change-tracking-and-diff",
+      "step": "implement/code",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "wrote a throwaway probe test (tests/blitz-tests/tests/zz_probe_diff.rs) to print each planned step's diff in both layout modes before pinning stand_diff's literals, then deleted it before the gates; the plan lists no such file and none remains in the tree"
+     }
+    ],
+    "prior": [
+     {
+      "ref": "L117#1",
+      "id": "2026-10-06T02:22:58Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-06-headless-stand",
+      "step": "implement/fix-loop",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "a cat heredoc into a throwaway probe test file was blocked by the project's Bash guard; wrote the probe with the Write tool and deleted it after the run"
+     }
+    ],
+    "typed_correlates": [],
+    "at_threshold": true,
+    "threshold_basis": "n = 2 in-epoch, recurring from Epoch 1",
+    "n_in_epoch": 2,
+    "n_prior": 1
+   },
+   {
+    "key": "T7",
+    "theme": "plan step order changed so the red-before-green reading can compile or be taken",
+    "signature": null,
+    "in_epoch": [
+     {
+      "ref": "L383#1",
+      "id": "2026-10-06T22:07:58Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-state-fidelity",
+      "step": "implement/code",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "plan step 9 order: the MASKED_VALUE declaration and its export (parts of steps 1 and 3) landed before the tests so they compile; the two readers stayed untouched for the red run"
+     }
+    ],
+    "prior": [
+     {
+      "ref": "L33#0",
+      "id": "2026-10-05T21:14:33Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-05-fork-ci-reached",
+      "step": "implement/code",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "wrote step 8 (test_ci_workflows.py) before steps 3-7 so the plan-required red-before-green reading could be taken against the untouched workflows without stashing or copying them"
+     },
+     {
+      "ref": "L56#0",
+      "id": "2026-10-05T22:55:35Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-05-ci-gate-legs",
+      "step": "implement/code",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "plan steps 4 and 6 reordered (6 first) so the extended unittest could run red against the untouched ci-leg.sh as step 6 requires"
+     }
+    ],
+    "typed_correlates": [],
+    "at_threshold": false,
+    "n_in_epoch": 1,
+    "n_prior": 2
+   },
+   {
+    "key": "T8a",
+    "theme": "the smoke's `just seven_guis` recipe replaced by a dev-profile build under a timeout",
+    "signature": null,
+    "in_epoch": [
+     {
+      "ref": "L387#0",
+      "id": "2026-10-06T22:15:03Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-state-fidelity",
+      "step": "implement/smoke",
+      "nature": "resources",
+      "solution": "workaround",
+      "note": "the plan names just seven_guis (a release run); no release build exists on the host and a cold release build of the workspace is costly, so the same binary was built in the dev profile with the recipe feature set and booted under a timeout"
+     }
+    ],
+    "prior": [
+     {
+      "ref": "L292#0",
+      "id": "2026-10-06T12:40:26Z-a",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-accessibility-tree-identity",
+      "step": "implement/smoke",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "used cargo build --features dioxus-native/accessibility (dev profile) and the binary under timeout instead of the plan's just seven_guis, which builds the stand without accessibility"
+     }
+    ],
+    "typed_correlates": [],
+    "at_threshold": false,
+    "n_in_epoch": 1,
+    "n_prior": 1
+   },
+   {
+    "key": "T8b",
+    "theme": "the letter's hand-driven smoke replaced by the gate tool's listed smoke entry (or the reverse)",
+    "signature": null,
+    "in_epoch": [
+     {
+      "ref": "L447#0",
+      "id": "2026-10-07T01:17:11Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-07-change-tracking-and-diff",
+      "step": "implement/smoke",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "P3's letter drives the smoke by hand; the smoke here is a listed non-leg entry the gate tool had already fired twice at P2 (the second on the final tree), so P3 recorded that run rather than opening a third 10 s window on the operator's desktop"
+     }
+    ],
+    "prior": [
+     {
+      "ref": "L89#0",
+      "id": "2026-10-06T00:40:59Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-06-telemetry-bootstrap",
+      "step": "implement/fix-loop",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "gate 7 non-leg smoke entry read as timeout by gate.py because its expected exit 124 collides with the tool's own bound mapping; drove the entry once by hand and recorded exit + atoms in evidence/smoke-004017Z.txt"
+     }
+    ],
+    "typed_correlates": [],
+    "at_threshold": false,
+    "n_in_epoch": 1,
+    "n_prior": 1
+   },
+   {
+    "key": "T9",
+    "theme": "the friction ledger read against the never-read rule to copy the envelope spelling",
+    "signature": null,
+    "in_epoch": [
+     {
+      "ref": "L442#2",
+      "id": "2026-10-07T01:09:59Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-07-change-tracking-and-diff",
+      "step": "implement/code",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "at this checkpoint a tail of the friction ledger was attempted to copy the envelope spelling, against the never-read rule; the read failed to parse and nothing of it was used; the epoch text is copied from working-route.md by the script instead"
+     }
+    ],
+    "prior": [],
+    "typed_correlates": [
+     {
+      "ref": "L449",
+      "id": "2026-10-07T01:36:58Z-b",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-07-change-tracking-and-diff",
+      "step": "wrap-session/report",
+      "type": "UNTYPED",
+      "what": "the six records this chunk's implement steps appended (ids 2026-10-07T01:09:59Z-a..c, 2026-10-07T01:16:23Z-a..b, 2026-10-07T01:17:11Z-a) carry skill 'implement'; report-template.md's evolve-records basis filters on skill == andromeda-implement, and no reference the implement skill reads states the envelope's skill spelling — a filter on the long form misses those six",
+      "impact": {
+       "extra_reads": 0
+      },
+      "evidence": null
+     }
+    ],
+    "at_threshold": false,
+    "see_also": [
+     "402#0 also read the ledger (counted under T5)"
+    ],
+    "n_in_epoch": 1,
+    "n_prior": 0
+   },
+   {
+    "key": "T10",
+    "theme": "long single-line master entries read by inline windows instead of cascade.py window",
+    "signature": null,
+    "in_epoch": [
+     {
+      "ref": "L418#0",
+      "id": "2026-10-07T00:15:43Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-compact-snapshot-serialization",
+      "step": "wrap-session/reconcile",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "long master lines were read by offset with inline python windows instead of cascade.py window: the same bounded read, done before the sweep existed to supply offsets, and it left no tool trail"
+     }
+    ],
+    "prior": [],
+    "typed_correlates": [
+     {
+      "ref": "L376",
+      "id": "2026-10-06T21:34:26Z-b",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-state-fidelity",
+      "step": "phase/take-up",
+      "type": "UNTYPED",
+      "what": "Re-verifying the CARRY's two architecture coordinates with a line-matching search printed two whole single-line entries of architecture.md (lines 91 and 134, the second several KB) into the window; the coordinates were confirmed from that one read, no redo",
+      "impact": {
+       "extra_reads": 0
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L420",
+      "id": "2026-10-07T00:15:43Z-c",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-compact-snapshot-serialization",
+      "step": "wrap-session/reconcile",
+      "type": "input.report-insufficient",
+      "what": "the report read 6 hits of one fixed string as 6 statements of the retired claim; 2 of them, on the same two long lines, state it of a different subject the chunk did not touch (false positive direction); the security-plan detector read the hit and reported it, the architecture detector confirmed, and an offset read settled it before any disposition",
+      "impact": {
+       "retries": 1,
+       "extra_reads": 1
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L426",
+      "id": "2026-10-07T00:17:06Z-c",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-compact-snapshot-serialization",
+      "step": "wrap-session/curation",
+      "type": "recall.corpus-recurrence",
+      "what": "a Tier-3 entry already says a hit is read at its match offset before it is dispositioned; this wrap's report turned 6 hits into 6 statements of the retired claim from a per-line hit list without reading each, and 2 were another subject's; the entry was not consulted before the count was written",
+      "impact": {
+       "retries": 1
+      },
+      "evidence": null
+     }
+    ],
+    "at_threshold": false,
+    "n_in_epoch": 1,
+    "n_prior": 0
+   },
+   {
+    "key": "T11",
+    "theme": "a post-commit write would dirty the committed run dir, so the step was moved ahead of the commit",
+    "signature": null,
+    "in_epoch": [
+     {
+      "ref": "L428#0",
+      "id": "2026-10-07T00:22:24Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-compact-snapshot-serialization",
+      "step": "wrap-session/gates",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "health.py check, the source of the console report's CLAUDE.md size line, was run before the commit instead of at the report step, so its trail rides the chunk commit instead of dirtying the committed run dir afterwards"
+     }
+    ],
+    "prior": [],
+    "typed_correlates": [
+     {
+      "ref": "L374",
+      "id": "2026-10-06T21:31:18Z-b",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": null,
+      "step": "new-session/orientation",
+      "type": "input.handoff-git-mismatch",
+      "what": "Handoff Status reads clean while git shows 3 modified tracked files; two are the contract's named bookkeeping members (handoff, friction ledger), the third is a tracked wrap run-dir evolve trail with 40 added lines, which the session-state contract's expected-transient list does not name; classified as bookkeeping by reading the diffstat and the contract paragraph",
+      "impact": {
+       "extra_reads": 3
+      },
+      "evidence": "git diff --stat at session start, HEAD 52616c18"
+     },
+     {
+      "ref": "L431",
+      "id": "2026-10-07T00:24:21Z-b",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": null,
+      "step": "new-session/orientation",
+      "type": "contract.skill-reference-drift",
+      "what": "Handoff Status reads clean while git shows 3 modified files; the session-state contract's expected-transient list names the handoff, state.yaml, friction-log.ndjson and code-metrics.ndjson, and the third file is the wrap run dir's tracked evolve trail (+40 lines, the post-commit gates checkpoint stamped 2026-10-07T00:22:24Z), which the list does not name; classified as the same bookkeeping after reading the contract section and the diff.",
+      "impact": {
+       "extra_reads": 1
+      },
+      "evidence": "git diff --stat at session start: friction-log.ndjson +2, the wrap evolve trail +40, session-handoff.md +3"
+     }
+    ],
+    "at_threshold": false,
+    "n_in_epoch": 1,
+    "n_prior": 0
+   },
+   {
+    "key": "single",
+    "theme": "facts with no second member",
+    "signature": null,
+    "in_epoch": [
+     {
+      "ref": "L345#2",
+      "id": "2026-10-06T19:33:46Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-model",
+      "step": "wrap-session/route-resolve",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the P5 trajectory question (the new entry's slot) was put to the operator before P2's apply rather than at P5, in one card with the ledger question, since P2 raised no escalation of its own; every phase's writes kept their order"
+     },
+     {
+      "ref": "L365#0",
+      "id": "2026-10-06T21:14:20Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-id-stability-across-code-edits",
+      "step": "wrap-session/reconcile",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "fanout-results.md must hold each carrying doc's parsed list; the returns reach the orchestrator only as messages, so the lists were copied by a script from the sub-agent hand-back records on disk rather than re-typed, and the three hand-typed raw twins were compared byte-equal to those records"
+     },
+     {
+      "ref": "L433#0",
+      "id": "2026-10-07T00:34:53Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-07-change-tracking-and-diff",
+      "step": "phase/distill",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "fan-out.md gives the history prompt's sidecar path as the relative .andromeda/{sidecar}; substituted the absolute path instead, because the agent's Read tool takes absolute paths only"
+     },
+     {
+      "ref": "L383#0",
+      "id": "2026-10-06T22:07:58Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-state-fidelity",
+      "step": "implement/code",
+      "nature": "product-logic",
+      "solution": "workaround",
+      "note": "plan step 4 reader pin: dangerous_inner_html through the unit module build helper renders no button (DocumentConfig::default has the no-op HTML parser; the crate manifest is gate-guarded) - pin rebuilt by writing the attributes through DocumentMutator and renamed; the parsed-markup case added to the stand check, where the harness has the real parser"
+     }
+    ],
+    "prior": [],
+    "typed_correlates": [],
+    "at_threshold": false,
+    "n_in_epoch": 4,
+    "n_prior": 0
+   },
+   {
+    "key": "removed-cause",
+    "theme": "removed-cause facts (no recurring theme in-epoch)",
+    "signature": null,
+    "in_epoch": [
+     {
+      "ref": "L379#0",
+      "id": "2026-10-06T21:48:04Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-state-fidelity",
+      "step": "phase/research",
+      "nature": "process",
+      "solution": "removed-cause",
+      "note": "the first code-graph query found the rust DB absent or stale and regenerated it in 28 s before answering; no query failed"
+     },
+     {
+      "ref": "L385#0",
+      "id": "2026-10-06T22:13:54Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-state-fidelity",
+      "step": "implement/fix-loop",
+      "nature": "product-logic",
+      "solution": "removed-cause",
+      "note": "reading the matrix acceptance before the ref write: its clause that flight-book reads Some(true) once the app enables it was not exercised by the plan step 7 sequence (boot enabled, then disabled) - one Backspace step and assertion added to the listed stand check, then the whole block re-run green"
+     }
+    ],
+    "prior": [
+     {
+      "ref": "L117#0",
+      "id": "2026-10-06T02:22:58Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-06-headless-stand",
+      "step": "implement/fix-loop",
+      "nature": "product-logic",
+      "solution": "removed-cause",
+      "note": "dioxus-native-dom wrote a falsy disabled as disabled=\"false\" (only checked was cleared); fixed in mutation_writer.rs outside research's lists as a widening on the delegate overseer's word, pinned by a regression test"
+     },
+     {
+      "ref": "L128#0",
+      "id": "2026-10-06T03:02:59Z-a",
+      "epoch": "Epoch 1 - Foundation",
+      "chunk": "2026-10-06-headless-stand",
+      "step": "wrap-session/gates",
+      "nature": "process",
+      "solution": "removed-cause",
+      "note": "hygiene refused evidence/operator-16-ci.txt for a home-directory path in its run line (operator-14 carried the same, committed earlier, outside the read); both rewritten to ~/ form, hygiene re-run clean"
+     },
+     {
+      "ref": "L213#0",
+      "id": "2026-10-06T09:06:35Z-a",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-stable-element-ids",
+      "step": "phase/plan",
+      "nature": "process",
+      "solution": "removed-cause",
+      "note": "stamp-ahead hook refused the plan's Generated stamp written without reading the clock; re-read date -u and corrected it"
+     }
+    ],
+    "typed_correlates": [
+     {
+      "ref": "L388",
+      "id": "2026-10-06T22:38:42Z-a",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-snapshot-state-fidelity",
+      "step": "implement/fix-loop",
+      "type": "contract.narrow-basis-claim",
+      "what": "the Backspace step added at the fix-loop (step record 2026-10-06T22:13:54Z-a, its problem fact) was checked by a grep hit on the editor arm and a Linux run only; the arm is cfg(not(target_os = \"macos\")), so the pushed pre-CI commit read red on the macOS CI job; the host could not reproduce it; replaced by a click-and-type sequence on the operator direction, second CI run green",
+      "impact": {
+       "iterations": 1,
+       "retries": 2,
+       "dialogue_rounds": 1
+      },
+      "evidence": "escher-0.1.0/chunks/2026-10-06-snapshot-state-fidelity/evidence/operator-pass.md"
+     }
+    ],
+    "at_threshold": false,
+    "n_in_epoch": 2,
+    "n_prior": 3
+   }
+  ]
+ },
+ "pass_b": {
+  "band_aid": [
+   "T1",
+   "T2",
+   "T3",
+   "T4",
+   "T4b",
+   "T5",
+   "T6"
+  ],
+  "chronic_degrade": [
+   {
+    "subject": "tooling.host-shell (ugrep)",
+    "per_epoch": {
+     "Epoch 2": 1,
+     "Epoch 3": 1
+    },
+    "see_theme": "T3"
+   },
+   {
+    "subject": "tooling.output-cap-overflow",
+    "per_epoch": {
+     "Epoch 1": 6,
+     "Epoch 2": 2,
+     "Epoch 3": 1
+    },
+    "in_epoch": [
+     {
+      "ref": "L317",
+      "id": "2026-10-06T18:08:16Z-b",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-upstream-sync-observation-model",
+      "step": "implement/code",
+      "type": "tooling.output-cap-overflow",
+      "what": "Setup read of evolve-system.md + code-writing-discipline.md + fix-loop-protocol.md in one cat exceeded the tool-result cap (31.7KB); a sed re-read overflowed again (29.8KB); recovered with a Read at an offset on the persisted output",
+      "impact": {
+       "extra_reads": 2
+      },
+      "evidence": null
+     }
+    ],
+    "rendered": "below-threshold appendix (one in-epoch record)"
+   },
+   {
+    "signature": "chronic-degrade",
+    "subject": "a stamp written from an estimate instead of the clock, refused by the stamp-ahead hook",
+    "in_epoch": [
+     {
+      "ref": "L337",
+      "kind": "step signal",
+      "signals": [
+       "stamp-guard-fired"
+      ],
+      "note": "the stamp-ahead hook refused an estimated Date (+12 min); re-read from date -u"
+     },
+     {
+      "ref": "L364",
+      "id": "2026-10-06T21:00:32Z-b",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-id-stability-across-code-edits",
+      "step": "wrap-session/report",
+      "type": "contract.narrow-basis-claim",
+      "what": "the first draft of report.md carried a citation tally typed without a count (88 found, 41 change, 47 unchanged) and a Date five minutes ahead of the clock; the stamp-ahead hook refused the date, and the tally, re-derived from the line-map script while fixing it, read 96, 61, 35",
+      "impact": {
+       "retries": 1
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L422",
+      "id": "2026-10-07T00:15:43Z-e",
+      "epoch": "Epoch 3 - Observation model",
+      "chunk": "2026-10-06-compact-snapshot-serialization",
+      "step": "wrap-session/reconcile",
+      "type": "contract.in-pass-correction",
+      "what": "a correction note written into report.md carried an estimated time four minutes ahead of the clock; the host's stamp hook refused it on the write and the stamp was replaced by a clock reading",
+      "impact": {
+       "retries": 1
+      },
+      "evidence": null
+     }
+    ],
+    "prior": [
+     {
+      "ref": "L197",
+      "id": "2026-10-06T08:37:04Z-f",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-upstream-sync-element-identity",
+      "step": "wrap-session/report",
+      "type": "UNTYPED",
+      "what": "the report's Date field was written as an estimated time 8 min ahead of the clock; the stamp-ahead PostToolUse hook refused it and the clock was read and the field corrected",
+      "impact": {
+       "retries": 1
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L268",
+      "id": "2026-10-06T11:26:17Z-c",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-project-readme",
+      "step": "phase/validate",
+      "type": "UNTYPED",
+      "what": "two time stamps were estimated instead of read from the clock (a P5 CI re-read at 11:27Z, a baseline at 11:25Z, both ahead of the 11:24Z clock); the stamp-ahead hook refused the first, the second was found and corrected from the gate trail's ts",
+      "impact": {
+       "retries": 2
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L274",
+      "id": "2026-10-06T11:44:41Z-c",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-project-readme",
+      "step": "wrap-session/report",
+      "type": "UNTYPED",
+      "what": "report Date written as an estimated 11:50Z without reading the clock; the stamp-ahead PostToolUse hook refused it (+5 min) and it was corrected from date -u",
+      "impact": {
+       "retries": 1
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L296",
+      "id": "2026-10-06T12:58:15Z-c",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-accessibility-tree-identity",
+      "step": "wrap-session/report",
+      "type": "UNTYPED",
+      "what": "the report's Date was written as an estimated 13:05Z; the stamp-ahead PostToolUse hook refused it (+7 min ahead of the clock) and it was corrected from date -u",
+      "impact": {
+       "retries": 1
+      },
+      "evidence": null
+     },
+     {
+      "ref": "L213#0",
+      "id": "2026-10-06T09:06:35Z-a",
+      "epoch": "Epoch 2 - Element identity",
+      "chunk": "2026-10-06-stable-element-ids",
+      "step": "phase/plan",
+      "nature": "process",
+      "solution": "removed-cause",
+      "note": "stamp-ahead hook refused the plan's Generated stamp written without reading the clock; re-read date -u and corrected it"
+     }
+    ],
+    "halted": 0
+   },
+   {
+    "subject": "ok-degraded outcomes",
+    "per_epoch": {
+     "Epoch 1": 2,
+     "Epoch 2": 3,
+     "Epoch 3": 0
+    },
+    "rendered": "no in-epoch hit"
+   }
+  ],
+  "deferred_forever": {
+   "in_epoch_deferred_facts": [],
+   "in_epoch_deferral_signals": [
+    {
+     "ref": "L314",
+     "signals": [
+      "authority-resolved:extract gh-run-R CI read yielded to plan-template ci.py",
+      "authority-resolved:gate-contract zero-delta defer yielded to CLAUDE.md fast+doc done-rule"
+     ]
+    }
+   ],
+   "prior_deferred_facts": [
+    {
+     "ref": "L56#1",
+     "id": "2026-10-05T22:55:35Z-a",
+     "epoch": "Epoch 1 - Foundation",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "implement/code",
+     "nature": "environment",
+     "solution": "deferred",
+     "note": "cargo-deny 0.20.2 prunes http-cache and ravif from its graph even with all-features=true, so paste/memmap2 advisories never reach the audit leg; recorded in evidence/audit.md for the wrap, not fixed"
+    },
+    {
+     "ref": "L122#1",
+     "id": "2026-10-06T02:58:48Z-a",
+     "epoch": "Epoch 1 - Foundation",
+     "chunk": "2026-10-06-headless-stand",
+     "step": "wrap-session/reconcile",
+     "nature": "process",
+     "solution": "deferred",
+     "note": "tests/blitz-tests/tests/dioxus_falsy_disabled.rs:4-6 doc comment states the retired focus-order claim; wrap touches no source — routed to the next chunk (CARRY) and the handoff"
+    }
+   ],
+   "adjacent": [
+    {
+     "ref": "L400",
+     "id": "2026-10-06T22:59:50Z-c",
+     "epoch": "Epoch 3 - Observation model",
+     "chunk": "2026-10-06-snapshot-state-fidelity",
+     "step": "wrap-session/route-resolve",
+     "type": "contract.no-sanctioned-channel",
+     "what": "the provisional bridge direction waits for the founder at the Epoch 3 boundary and the route grammar has no pin for a pending ratification; it is recorded in three sidecar entries and the handoff notes, with no route annotation",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null
+    }
+   ],
+   "hits": 0
+  },
+  "override": {
+   "in_epoch_overridden_facts": [
+    {
+     "ref": "L310#0",
+     "id": "2026-10-06T17:56:40Z-a",
+     "epoch": "Epoch 3 - Observation model",
+     "chunk": "2026-10-06-upstream-sync-observation-model",
+     "step": "phase/take-up",
+     "nature": "process",
+     "solution": "overridden",
+     "note": "entry's stated work (merge upstream/main) has nothing to merge at take-up; operator ruled a measured no-op, no merge commit (inputs#I2)"
+    },
+    {
+     "ref": "L345#1",
+     "id": "2026-10-06T19:33:46Z-a",
+     "epoch": "Epoch 3 - Observation model",
+     "chunk": "2026-10-06-snapshot-model",
+     "step": "wrap-session/route-resolve",
+     "nature": "process",
+     "solution": "overridden",
+     "note": "the operator's wrap directive carried four intent rulings; intent.md and requirements.md, which no wrap step names as its write, were edited on that word and on the precedent of commit ab936a9e"
+    }
+   ],
+   "prior_overridden_facts": [
+    {
+     "ref": "L65#0",
+     "id": "2026-10-06T00:07:40Z-a",
+     "epoch": "Epoch 1 - Foundation",
+     "chunk": "2026-10-05-ci-gate-legs",
+     "step": "wrap-session/reconcile",
+     "nature": "process",
+     "solution": "overridden",
+     "note": "E1 boundary widening (coverage-report upload) applied on a delegate overseer ratification recorded PROVISIONAL — the contract ratifies a widening only on the founder's own word, who was unavailable; the record names the provisional authority"
+    },
+    {
+     "ref": "L82#0",
+     "id": "2026-10-06T00:28:48Z-a",
+     "epoch": "Epoch 1 - Foundation",
+     "chunk": "2026-10-06-telemetry-bootstrap",
+     "step": "phase/plan",
+     "nature": "process",
+     "solution": "overridden",
+     "note": "OTel export fork: operator (overseer delegate) chose Defer over the recommended http-only-now option, naming the boundary-widening escalation to the founder; scope/research/plan re-cut to drop the exporter and add a route CARRY to Driver command spans"
+    },
+    {
+     "ref": "L158#0",
+     "id": "2026-10-06T04:05:52Z-a",
+     "epoch": "Epoch 1 - Foundation",
+     "chunk": "2026-10-06-cold-agent-run-pipe",
+     "step": "phase/research",
+     "nature": "process",
+     "solution": "overridden",
+     "note": "a second live probe from a neutral mktemp /tmp cwd was denied at the operator's permission prompt; the neutral-cwd equality is left unmeasured and carried to the recorded run's context check"
+    },
+    {
+     "ref": "L198#0",
+     "id": "2026-10-06T08:46:30Z-a",
+     "epoch": "Epoch 2 - Element identity",
+     "chunk": "2026-10-06-upstream-sync-element-identity",
+     "step": "wrap-session/reconcile",
+     "nature": "process",
+     "solution": "overridden",
+     "note": "playbook 'Not this chunk's drift' routes pre-existing drift to CARRY/residuals; operator chose fix-now for 53 stale root-manifest citations at the escalation"
+    },
+    {
+     "ref": "L245#0",
+     "id": "2026-10-06T10:17:15Z-a",
+     "epoch": "Epoch 2 - Element identity",
+     "chunk": "2026-10-06-id-persistence",
+     "step": "implement/fix-loop",
+     "nature": "process",
+     "solution": "overridden",
+     "note": "entry 3 reds on 4 leading spaces after the row loop un-nested; operator chose keep fix + surface entry 3, plan.md entry to become whitespace-insensitive after implement"
+    },
+    {
+     "ref": "L280#0",
+     "id": "2026-10-06T11:52:55Z-a",
+     "epoch": "Epoch 2 - Element identity",
+     "chunk": "2026-10-06-project-readme",
+     "step": "wrap-session/gates",
+     "nature": "process",
+     "solution": "overridden",
+     "note": "light-gate entry 17 (diff guard) red only from the wrap's own P3 Tier-3 curation write to .claude/docs/session-learnings.md; the operator chose accept-record-commit over the red-means-no-commit course"
+    },
+    {
+     "ref": "L288#0",
+     "id": "2026-10-06T12:28:40Z-a",
+     "epoch": "Epoch 2 - Element identity",
+     "chunk": "2026-10-06-accessibility-tree-identity",
+     "step": "implement/code",
+     "nature": "product-logic",
+     "solution": "overridden",
+     "note": "dioxus-native-dom's accessibility feature resolved off in blitz-tests (workspace default-features=false), so the author_id override was compiled out; the operator chose to add features=[\"accessibility\"] to tests/blitz-tests/Cargo.toml, a diff-guarded path (widening recorded)"
+    }
+   ],
+   "same_rule_recurrence": "none: the two in-epoch facts sit on different rules",
+   "adjacent_friction": [
+    {
+     "ref": "L357",
+     "id": "2026-10-06T20:30:34Z-b",
+     "epoch": "Epoch 3 - Observation model",
+     "chunk": "2026-10-06-id-stability-across-code-edits",
+     "step": "phase/validate",
+     "type": "ambiguity.review-cycles",
+     "what": "the operator rejected two leans the plan had stated without asking (a test-local actionable check with no library entry point; the check reaching the four lean tasks only, Home cards and the non-lean tasks left); one return to P4 re-synthesized the plan around a public library function, keyed Home cards and a measured carry, then a second card took the word",
+     "impact": {
+      "dialogue_rounds": 1,
+      "iterations": 1
+     },
+     "evidence": "escher-0.1.0/chunks/2026-10-06-id-stability-across-code-edits/inputs entry I3"
+    },
+    {
+     "ref": "L410",
+     "id": "2026-10-06T23:32:43Z-b",
+     "epoch": "Epoch 3 - Observation model",
+     "chunk": "2026-10-06-compact-snapshot-serialization",
+     "step": "phase/validate",
+     "type": "contract.matrix-claim",
+     "what": "The P5 preview concretized v010-04's one snapshot command as an in-process call (flagged on the card as the one judgment in it); the operator declined the claim at the never-weaken checkpoint, so the cap stayed pooled with a note and the command leg went to the Driver CLI entry",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "evidence": null
+    },
+    {
+     "ref": "L441",
+     "id": "2026-10-07T00:57:36Z-c",
+     "epoch": "Epoch 3 - Observation model",
+     "chunk": "2026-10-07-change-tracking-and-diff",
+     "step": "phase/validate",
+     "type": "contract.matrix-claim",
+     "what": "P4 leaned to claim v010-06 on its acceptance wording and the v010-05 precedent without reading that the working route lists the cap on Act by id as well (working-route.md:58) and that requirements.md:12 names the driver; the operator's review rejected the claim, and the criterion, the provenance and the notes were re-synthesized with a dated ledger note in place of a claim.",
+     "impact": {
+      "dialogue_rounds": 1,
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-07T00-24-53-phase/note-v010-06.md"
+    }
+   ]
+  }
+ }
+}

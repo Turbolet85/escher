@@ -1,0 +1,248 @@
+{
+ "epoch": "Epoch 3 — Observation model",
+ "records": 151,
+ "step": 84,
+ "friction": 67,
+ "chunks": [
+  "2026-10-06-upstream-sync-observation-model",
+  "2026-10-06-snapshot-model",
+  "2026-10-06-id-stability-across-code-edits",
+  "2026-10-06-snapshot-state-fidelity",
+  "2026-10-06-compact-snapshot-serialization",
+  "2026-10-07-change-tracking-and-diff"
+ ],
+ "unparseable_whole_ledger": 0,
+ "malformed_ts_whole_ledger": [],
+ "coverage": [
+  {
+   "chunk": "(no chunk)",
+   "present": {
+    "new-session": 6
+   },
+   "expected": "new-session 1 per session start",
+   "gaps": []
+  },
+  {
+   "chunk": "2026-10-06-upstream-sync-observation-model",
+   "present": {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   "expected": {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   "gaps": []
+  },
+  {
+   "chunk": "2026-10-06-snapshot-model",
+   "present": {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   "expected": {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   "gaps": []
+  },
+  {
+   "chunk": "2026-10-06-id-stability-across-code-edits",
+   "present": {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   "expected": {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   "gaps": []
+  },
+  {
+   "chunk": "2026-10-06-snapshot-state-fidelity",
+   "present": {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   "expected": {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   "gaps": []
+  },
+  {
+   "chunk": "2026-10-06-compact-snapshot-serialization",
+   "present": {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   "expected": {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   "gaps": []
+  },
+  {
+   "chunk": "2026-10-07-change-tracking-and-diff",
+   "present": {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   "expected": {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   "gaps": []
+  }
+ ],
+ "session_starts_recorded": 6,
+ "untyped_rate_per_step": [
+  {
+   "step": "implement/code",
+   "step_runs": 6,
+   "friction": 7,
+   "untyped": 1
+  },
+  {
+   "step": "implement/fix-loop",
+   "step_runs": 6,
+   "friction": 3,
+   "untyped": 1
+  },
+  {
+   "step": "implement/smoke",
+   "step_runs": 6,
+   "friction": 0,
+   "untyped": 0
+  },
+  {
+   "step": "new-session/orientation",
+   "step_runs": 6,
+   "friction": 3,
+   "untyped": 0
+  },
+  {
+   "step": "phase/distill",
+   "step_runs": 6,
+   "friction": 4,
+   "untyped": 0
+  },
+  {
+   "step": "phase/plan",
+   "step_runs": 6,
+   "friction": 2,
+   "untyped": 0
+  },
+  {
+   "step": "phase/research",
+   "step_runs": 6,
+   "friction": 2,
+   "untyped": 0
+  },
+  {
+   "step": "phase/take-up",
+   "step_runs": 6,
+   "friction": 2,
+   "untyped": 1
+  },
+  {
+   "step": "phase/validate",
+   "step_runs": 6,
+   "friction": 7,
+   "untyped": 0
+  },
+  {
+   "step": "wrap-session/curation",
+   "step_runs": 6,
+   "friction": 8,
+   "untyped": 0
+  },
+  {
+   "step": "wrap-session/gates",
+   "step_runs": 6,
+   "friction": 1,
+   "untyped": 0
+  },
+  {
+   "step": "wrap-session/reconcile",
+   "step_runs": 6,
+   "friction": 17,
+   "untyped": 0
+  },
+  {
+   "step": "wrap-session/report",
+   "step_runs": 6,
+   "friction": 5,
+   "untyped": 1
+  },
+  {
+   "step": "wrap-session/route-resolve",
+   "step_runs": 6,
+   "friction": 6,
+   "untyped": 0
+  }
+ ],
+ "untyped_total": 4,
+ "untyped_flag_vs_null_type": {
+  "untyped_true": 4,
+  "type_null": 4
+ },
+ "problem_fact_fill": {
+  "step_records_with_facts": 27,
+  "step_records": 84,
+  "facts": 34
+ },
+ "id_fill": {
+  "with_id": 151,
+  "records": 151
+ },
+ "duplicate_ids": [],
+ "outcomes": {
+  "ok": 81,
+  "halted-resolved": 3
+ },
+ "skill_spellings_in_epoch": {
+  "andromeda-new-session": 5,
+  "andromeda-phase": 20,
+  "implement": 28,
+  "wrap-session": 56,
+  "new-session": 4,
+  "phase": 27,
+  "andromeda-wrap-session": 11
+ },
+ "epoch_spellings_in_epoch": {
+  "Epoch 3 — Observation model": 151
+ },
+ "evidence_pointer_fill": {
+  "with_evidence": 26,
+  "friction": 67
+ },
+ "ts_order_inversions": [],
+ "friction_step_without_step_record": [],
+ "retraction": {
+  "retracted": 0,
+  "unresolvable": 0,
+  "clause_retracted": 1,
+  "retraction_of_retraction": 0
+ },
+ "friction_recorded_after_a_later_step": [
+  {
+   "line": 388,
+   "friction_step": "implement/fix-loop",
+   "after_step_record": "implement/smoke",
+   "chunk": "2026-10-06-snapshot-state-fidelity"
+  }
+ ]
+}

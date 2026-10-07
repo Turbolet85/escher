@@ -1,0 +1,953 @@
+{
+ "epoch": "Epoch 3 — Observation model",
+ "input_type_artifact_map": {
+  "input.plan-step-ambiguous": "plan",
+  "input.conventions-gap": "research",
+  "input.report-insufficient": "report",
+  "input.implement-outcome-unsettled": "implement-outcome",
+  "input.handoff-git-mismatch": "handoff"
+ },
+ "method": "anchor = input.* friction or consumed.quality in thin|wrong|missing; join = an earlier step record of the same chunk whose produced[] carries the artifact; aggregate = (producer, artifact, consumer) over >= 2 chunks; no transitive chains, no scoring",
+ "anchors": [
+  {
+   "line": 308,
+   "id": "2026-10-06T17:52:37Z-a",
+   "chunk": null,
+   "consumer": "new-session/orientation",
+   "via": "consumed.quality=thin",
+   "artifact": "handoff",
+   "what": "Status clean and 'Epoch 2 evolve-diagnose still due' predate the post-wrap evolve-diagnose (16:42) and code-audit (16:58) runs left untracked",
+   "impact": null,
+   "producers": []
+  },
+  {
+   "line": 309,
+   "id": "2026-10-06T17:52:37Z-b",
+   "chunk": null,
+   "consumer": "new-session/orientation",
+   "via": "friction input.handoff-git-mismatch",
+   "artifact": "handoff",
+   "what": "handoff Status reads clean but the tree holds two untracked post-wrap run dirs (evolve-diagnose, code-audit) and a modified code-metrics.ndjson; the handoff's 'Epoch 2 diagnose still due' is superseded by the 16:42 diagnosis run",
+   "impact": {
+    "extra_reads": 1
+   },
+   "producers": []
+  },
+  {
+   "line": 310,
+   "id": "2026-10-06T17:56:40Z-a",
+   "chunk": "2026-10-06-upstream-sync-observation-model",
+   "consumer": "phase/take-up",
+   "via": "consumed.quality=wrong",
+   "artifact": "working-entry",
+   "what": "entry presumes an upstream delta to merge; upstream/main had not moved past the previous sync's pin 23354585",
+   "impact": null,
+   "producers": []
+  },
+  {
+   "line": 334,
+   "id": "2026-10-06T18:40:09Z-b",
+   "chunk": "2026-10-06-snapshot-model",
+   "consumer": "implement/code",
+   "via": "friction input.plan-step-ambiguous",
+   "artifact": "plan",
+   "what": "two plan points underdetermined: step 5 'omitted' unresolved node (subtree kept or dropped — chose descendants attach to nearest kept ancestor) and step 10 'no NodeId-derived token' (chose the NodeId Debug form); both surfaced in the P4 report",
+   "impact": {
+    "iterations": 0
+   },
+   "producers": [
+    {
+     "line": 330,
+     "id": "2026-10-06T18:30:07Z-a",
+     "producer": "phase/plan",
+     "outcome": "ok",
+     "signals": [
+      "designed-dialogue:snapshot-node-inclusion-rule",
+      "authority-resolved:layouts extract flight-id count yielded to live-source grep"
+     ],
+     "note": "17 gate entries parsed, planlint 0 hits; 1 wording rework on state_reads_the_engine after the focus read; 4 decisive leans (Role type, enabled presence reading, not-a-widening, a11y-leg placement)",
+     "producer_frictions": []
+    },
+    {
+     "line": 331,
+     "id": "2026-10-06T18:33:18Z-a",
+     "producer": "phase/validate",
+     "outcome": "ok",
+     "signals": [
+      "baselines-written"
+     ],
+     "note": "6 new entries baselined: 5 red, 1 green with a control exiting 1; census controls run in scratch; CI re-read green 16/16 on ee88e85e",
+     "producer_frictions": [
+      {
+       "line": 332,
+       "type": "contract.mechanical-check"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "line": 337,
+   "id": "2026-10-06T19:17:45Z-a",
+   "chunk": "2026-10-06-snapshot-model",
+   "consumer": "wrap-session/report",
+   "via": "consumed.quality=thin",
+   "artifact": "plan",
+   "what": "Expected amendments entry 5 names design-system and obs-plan as carrying lib.rs citations; grep reads 0 in both",
+   "impact": null,
+   "producers": [
+    {
+     "line": 330,
+     "id": "2026-10-06T18:30:07Z-a",
+     "producer": "phase/plan",
+     "outcome": "ok",
+     "signals": [
+      "designed-dialogue:snapshot-node-inclusion-rule",
+      "authority-resolved:layouts extract flight-id count yielded to live-source grep"
+     ],
+     "note": "17 gate entries parsed, planlint 0 hits; 1 wording rework on state_reads_the_engine after the focus read; 4 decisive leans (Role type, enabled presence reading, not-a-widening, a11y-leg placement)",
+     "producer_frictions": []
+    },
+    {
+     "line": 331,
+     "id": "2026-10-06T18:33:18Z-a",
+     "producer": "phase/validate",
+     "outcome": "ok",
+     "signals": [
+      "baselines-written"
+     ],
+     "note": "6 new entries baselined: 5 red, 1 green with a control exiting 1; census controls run in scratch; CI re-read green 16/16 on ee88e85e",
+     "producer_frictions": [
+      {
+       "line": 332,
+       "type": "contract.mechanical-check"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "line": 338,
+   "id": "2026-10-06T19:30:21Z-a",
+   "chunk": "2026-10-06-snapshot-model",
+   "consumer": "wrap-session/reconcile",
+   "via": "consumed.quality=thin",
+   "artifact": "report",
+   "what": "carried no file:line for the two new source files, which the masters' citation form needs",
+   "impact": null,
+   "producers": [
+    {
+     "line": 337,
+     "id": "2026-10-06T19:17:45Z-a",
+     "producer": "wrap-session/report",
+     "outcome": "ok",
+     "signals": [
+      "stamp-guard-fired"
+     ],
+     "note": "the stamp-ahead hook refused an estimated Date (+12 min); re-read from date -u",
+     "producer_frictions": []
+    }
+   ]
+  },
+  {
+   "line": 339,
+   "id": "2026-10-06T19:30:21Z-b",
+   "chunk": "2026-10-06-snapshot-model",
+   "consumer": "wrap-session/reconcile",
+   "via": "friction input.report-insufficient",
+   "artifact": "report",
+   "what": "13 proposals from 3 docs (architecture 6, security-plan 2, test-plan 5); 4 docs returned proposals: []; 10 of the 13 cited source lines the report does not carry (snapshot.rs, stand_snapshot.rs, element_id.rs) or sat under such a primary, so each was rejected by the re-derivation tell and re-raised by the orchestrator from its own read; all 13 facts applied",
+   "impact": {
+    "extra_reads": 4
+   },
+   "producers": [
+    {
+     "line": 337,
+     "id": "2026-10-06T19:17:45Z-a",
+     "producer": "wrap-session/report",
+     "outcome": "ok",
+     "signals": [
+      "stamp-guard-fired"
+     ],
+     "note": "the stamp-ahead hook refused an estimated Date (+12 min); re-read from date -u",
+     "producer_frictions": []
+    }
+   ]
+  },
+  {
+   "line": 356,
+   "id": "2026-10-06T20:30:34Z-a",
+   "chunk": "2026-10-06-id-stability-across-code-edits",
+   "consumer": "phase/validate",
+   "via": "consumed.quality=thin",
+   "artifact": "matrix",
+   "what": "v010-16 observed_gap held v010-01's text; no ledger verb edits that field, so the correction went in as a dated note before the claim, the alternative the founder named",
+   "impact": null,
+   "producers": []
+  },
+  {
+   "line": 360,
+   "id": "2026-10-06T20:38:28Z-b",
+   "chunk": "2026-10-06-id-stability-across-code-edits",
+   "consumer": "implement/code",
+   "via": "friction input.plan-step-ambiguous",
+   "artifact": "plan",
+   "what": "three plan steps left a shape to the implementer: step 4 says the entry carries which of the three readers matched without a type (settled as three bool fields, no extra public type); step 8 says the keyed test must count a row as keyed without a form (settled by adding the three row keys to task_keys); step 10 asks for a non-zero actionable count read from the same three readers without naming the role list a test may use (settled as the stand's three control roles); each goes into the P4 report",
+   "impact": {
+    "extra_reads": 0
+   },
+   "producers": [
+    {
+     "line": 354,
+     "id": "2026-10-06T20:21:19Z-a",
+     "producer": "phase/plan",
+     "outcome": "ok",
+     "signals": [
+      "designed-dialogue:anchor-composition",
+      "designed-dialogue:actionable-reader",
+      "designed-dialogue:anchored-spelling"
+     ],
+     "note": "one round, three forks; the founder took two recommendations and replaced both offered spellings with key//segment, on a shell-comment hazard of the recommended leading # that intent finding 7 implies and the recommendation had not weighed; the new spelling was collision-checked against the grammar and the rsx tag parser before synthesis; 20 gate entries, 11 criteria, 0 soft graph citations; gate dry-run parsed and planlint 0 hits at authoring",
+     "producer_frictions": [
+      {
+       "line": 355,
+       "type": "contract.structural-blind-spot"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "line": 363,
+   "id": "2026-10-06T21:00:32Z-a",
+   "chunk": "2026-10-06-id-stability-across-code-edits",
+   "consumer": "wrap-session/report",
+   "via": "consumed.quality=thin",
+   "artifact": "plan",
+   "what": "its Expected amendments list says app.rs holds 12 design citations; the sweep reads 7 on 6 design-system lines",
+   "impact": null,
+   "producers": [
+    {
+     "line": 354,
+     "id": "2026-10-06T20:21:19Z-a",
+     "producer": "phase/plan",
+     "outcome": "ok",
+     "signals": [
+      "designed-dialogue:anchor-composition",
+      "designed-dialogue:actionable-reader",
+      "designed-dialogue:anchored-spelling"
+     ],
+     "note": "one round, three forks; the founder took two recommendations and replaced both offered spellings with key//segment, on a shell-comment hazard of the recommended leading # that intent finding 7 implies and the recommendation had not weighed; the new spelling was collision-checked against the grammar and the rsx tag parser before synthesis; 20 gate entries, 11 criteria, 0 soft graph citations; gate dry-run parsed and planlint 0 hits at authoring",
+     "producer_frictions": [
+      {
+       "line": 355,
+       "type": "contract.structural-blind-spot"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "line": 374,
+   "id": "2026-10-06T21:31:18Z-b",
+   "chunk": null,
+   "consumer": "new-session/orientation",
+   "via": "friction input.handoff-git-mismatch",
+   "artifact": "handoff",
+   "what": "Handoff Status reads clean while git shows 3 modified tracked files; two are the contract's named bookkeeping members (handoff, friction ledger), the third is a tracked wrap run-dir evolve trail with 40 added lines, which the session-state contract's expected-transient list does not name; classified as bookkeeping by reading the diffstat and the contract paragraph",
+   "impact": {
+    "extra_reads": 3
+   },
+   "producers": []
+  },
+  {
+   "line": 383,
+   "id": "2026-10-06T22:07:58Z-a",
+   "chunk": "2026-10-06-snapshot-state-fidelity",
+   "consumer": "implement/code",
+   "via": "consumed.quality=wrong",
+   "artifact": "plan",
+   "what": "step 4 second test: the fixture it names cannot be built through the helper it names",
+   "impact": null,
+   "producers": [
+    {
+     "line": 380,
+     "id": "2026-10-06T21:54:31Z-a",
+     "producer": "phase/plan",
+     "outcome": "ok",
+     "signals": [
+      "designed-dialogue:password-mask-form",
+      "designed-dialogue:bridge-falsy-boolean-list",
+      "authority-resolved:layouts-declares-no-focus-order yielded to a11y-plan section 7 and the stand Tab-order pin",
+      "planlint-zero-hits-first-fire"
+     ],
+     "note": "285 prose lines, 19 gate entries, 12 acceptance criteria, 2 graph-impact citations both resolved; the fence parsed and planlint read 0 hits on the first fire; research lists re-fired after the fork, parsed 5 items",
+     "producer_frictions": []
+    },
+    {
+     "line": 381,
+     "id": "2026-10-06T21:59:01Z-a",
+     "producer": "phase/validate",
+     "outcome": "ok",
+     "signals": [
+      "review-prompt-as-text",
+      "mechanical-set-rerun-after-review-edit"
+     ],
+     "note": "the review was one yes carrying two directions: the bridge change recorded PROVISIONAL and the four found-not-fixed engine defects owned at the wrap; 3 plan edits, then the whole set re-run bare before the claim",
+     "producer_frictions": [
+      {
+       "line": 382,
+       "type": "tooling.host-shell"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "line": 384,
+   "id": "2026-10-06T22:07:58Z-b",
+   "chunk": "2026-10-06-snapshot-state-fidelity",
+   "consumer": "implement/code",
+   "via": "friction input.plan-step-ambiguous",
+   "artifact": "plan",
+   "what": "plan step 4 names a fixture (a div filled by dangerous_inner_html) and a builder (the snapshot unit module build helper) that conflict: the helper has no HTML parser, so the fixture condition failed on the first run; resolved in the impl and carried to the P4 report, no soft-exit",
+   "impact": {
+    "retries": 1,
+    "extra_reads": 2
+   },
+   "producers": [
+    {
+     "line": 380,
+     "id": "2026-10-06T21:54:31Z-a",
+     "producer": "phase/plan",
+     "outcome": "ok",
+     "signals": [
+      "designed-dialogue:password-mask-form",
+      "designed-dialogue:bridge-falsy-boolean-list",
+      "authority-resolved:layouts-declares-no-focus-order yielded to a11y-plan section 7 and the stand Tab-order pin",
+      "planlint-zero-hits-first-fire"
+     ],
+     "note": "285 prose lines, 19 gate entries, 12 acceptance criteria, 2 graph-impact citations both resolved; the fence parsed and planlint read 0 hits on the first fire; research lists re-fired after the fork, parsed 5 items",
+     "producer_frictions": []
+    },
+    {
+     "line": 381,
+     "id": "2026-10-06T21:59:01Z-a",
+     "producer": "phase/validate",
+     "outcome": "ok",
+     "signals": [
+      "review-prompt-as-text",
+      "mechanical-set-rerun-after-review-edit"
+     ],
+     "note": "the review was one yes carrying two directions: the bridge change recorded PROVISIONAL and the four found-not-fixed engine defects owned at the wrap; 3 plan edits, then the whole set re-run bare before the claim",
+     "producer_frictions": [
+      {
+       "line": 382,
+       "type": "tooling.host-shell"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "line": 389,
+   "id": "2026-10-06T22:42:20Z-a",
+   "chunk": "2026-10-06-snapshot-state-fidelity",
+   "consumer": "wrap-session/report",
+   "via": "consumed.quality=thin",
+   "artifact": "implement-outcome",
+   "what": "its green was superseded by the operator pass: the first CI read was red on a step implement added, fixed in a second commit",
+   "impact": null,
+   "producers": [
+    {
+     "line": 385,
+     "id": "2026-10-06T22:13:54Z-a",
+     "producer": "implement/fix-loop",
+     "outcome": "ok",
+     "signals": [
+      "green"
+     ],
+     "note": null,
+     "producer_frictions": [
+      {
+       "line": 386,
+       "type": "UNTYPED"
+      },
+      {
+       "line": 388,
+       "type": "contract.narrow-basis-claim"
+      }
+     ]
+    },
+    {
+     "line": 387,
+     "id": "2026-10-06T22:15:03Z-a",
+     "producer": "implement/smoke",
+     "outcome": "ok",
+     "signals": [
+      "green"
+     ],
+     "note": null,
+     "producer_frictions": []
+    }
+   ]
+  },
+  {
+   "line": 390,
+   "id": "2026-10-06T22:42:20Z-b",
+   "chunk": "2026-10-06-snapshot-state-fidelity",
+   "consumer": "wrap-session/report",
+   "via": "friction input.implement-outcome-unsettled",
+   "artifact": "implement-outcome",
+   "what": "implement reported green; a step ran after it (the operator pass) whose CI read was red on macOS for a test step implement had added; the report rests on the pass final state (the fix commit and its green CI run) recorded in the chunk evidence",
+   "impact": {
+    "dialogue_rounds": 1
+   },
+   "producers": [
+    {
+     "line": 385,
+     "id": "2026-10-06T22:13:54Z-a",
+     "producer": "implement/fix-loop",
+     "outcome": "ok",
+     "signals": [
+      "green"
+     ],
+     "note": null,
+     "producer_frictions": [
+      {
+       "line": 386,
+       "type": "UNTYPED"
+      },
+      {
+       "line": 388,
+       "type": "contract.narrow-basis-claim"
+      }
+     ]
+    },
+    {
+     "line": 387,
+     "id": "2026-10-06T22:15:03Z-a",
+     "producer": "implement/smoke",
+     "outcome": "ok",
+     "signals": [
+      "green"
+     ],
+     "note": null,
+     "producer_frictions": []
+    }
+   ]
+  },
+  {
+   "line": 391,
+   "id": "2026-10-06T22:56:53Z-a",
+   "chunk": "2026-10-06-snapshot-state-fidelity",
+   "consumer": "wrap-session/reconcile",
+   "via": "consumed.quality=thin",
+   "artifact": "report",
+   "what": "its moved-citation site list named the mutation_writer.rs sites only; ten snapshot.rs citations in four masters were found by the detectors sweeping their own docs",
+   "impact": null,
+   "producers": [
+    {
+     "line": 389,
+     "id": "2026-10-06T22:42:20Z-a",
+     "producer": "wrap-session/report",
+     "outcome": "ok",
+     "signals": [],
+     "note": "every Changes family filled from the session; the Counts family and the masters site list measured by greps over the masters and the test log",
+     "producer_frictions": [
+      {
+       "line": 390,
+       "type": "input.implement-outcome-unsettled"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "line": 392,
+   "id": "2026-10-06T22:56:53Z-b",
+   "chunk": "2026-10-06-snapshot-state-fidelity",
+   "consumer": "wrap-session/reconcile",
+   "via": "friction input.report-insufficient",
+   "artifact": "report",
+   "what": "the report listed the masters citing mutation_writer.rs lines but not those citing snapshot.rs lines, and carried shift rules rather than new targets; five detectors measured new line numbers on the working tree, against the prompt ban on re-deriving from source; every applied target was re-measured by the orchestrator",
+   "impact": {
+    "extra_reads": 3
+   },
+   "producers": [
+    {
+     "line": 389,
+     "id": "2026-10-06T22:42:20Z-a",
+     "producer": "wrap-session/report",
+     "outcome": "ok",
+     "signals": [],
+     "note": "every Changes family filled from the session; the Counts family and the masters site list measured by greps over the masters and the test log",
+     "producer_frictions": [
+      {
+       "line": 390,
+       "type": "input.implement-outcome-unsettled"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "line": 415,
+   "id": "2026-10-07T00:01:49Z-a",
+   "chunk": "2026-10-06-compact-snapshot-serialization",
+   "consumer": "wrap-session/report",
+   "via": "consumed.quality=thin",
+   "artifact": "implement-outcome",
+   "what": "its green outcome stood, but a step ran after it: the operator directed a quoting change (source edit, whole gate block re-run) and then the operator pass; the report's basis is the pass's final HEAD and its CI run",
+   "impact": null,
+   "producers": [
+    {
+     "line": 413,
+     "id": "2026-10-06T23:41:33Z-a",
+     "producer": "implement/fix-loop",
+     "outcome": "ok",
+     "signals": [
+      "green"
+     ],
+     "note": "one gate.py run call, no red, no targeted re-run",
+     "producer_frictions": []
+    },
+    {
+     "line": 414,
+     "id": "2026-10-06T23:41:50Z-a",
+     "producer": "implement/smoke",
+     "outcome": "ok",
+     "signals": [
+      "green"
+     ],
+     "note": null,
+     "producer_frictions": []
+    }
+   ]
+  },
+  {
+   "line": 416,
+   "id": "2026-10-07T00:01:49Z-b",
+   "chunk": "2026-10-06-compact-snapshot-serialization",
+   "consumer": "wrap-session/report",
+   "via": "friction input.implement-outcome-unsettled",
+   "artifact": "implement-outcome",
+   "what": "implement's P4 report was not the final word: after it the operator directed a source change (the quoting form) and the operator pass, so the report's outcome basis is the pre-CI commit and its CI run, with implement's report kept for the deviations and red-before-green readings",
+   "impact": {
+    "extra_reads": 0
+   },
+   "producers": [
+    {
+     "line": 413,
+     "id": "2026-10-06T23:41:33Z-a",
+     "producer": "implement/fix-loop",
+     "outcome": "ok",
+     "signals": [
+      "green"
+     ],
+     "note": "one gate.py run call, no red, no targeted re-run",
+     "producer_frictions": []
+    },
+    {
+     "line": 414,
+     "id": "2026-10-06T23:41:50Z-a",
+     "producer": "implement/smoke",
+     "outcome": "ok",
+     "signals": [
+      "green"
+     ],
+     "note": null,
+     "producer_frictions": []
+    }
+   ]
+  },
+  {
+   "line": 418,
+   "id": "2026-10-07T00:15:43Z-a",
+   "chunk": "2026-10-06-compact-snapshot-serialization",
+   "consumer": "wrap-session/reconcile",
+   "via": "consumed.quality=wrong",
+   "artifact": "report",
+   "what": "two Changes counts were false on first write and corrected during the pass: 5 stand_snapshot.rs citations counted as snapshot.rs ones (one given a moved range), and 6 no-wire-form hits read as 6 snapshot claims where 2 are the actionable-key check's",
+   "impact": null,
+   "producers": [
+    {
+     "line": 415,
+     "id": "2026-10-07T00:01:49Z-a",
+     "producer": "wrap-session/report",
+     "outcome": "ok",
+     "signals": [],
+     "note": "0 bullet families reconstructed by digging; both line maps derived from git diff -U0 hunks and verified on four coordinates; one Coverage flag stated as not asserted (the in-file fixtures' key and name)",
+     "producer_frictions": [
+      {
+       "line": 416,
+       "type": "input.implement-outcome-unsettled"
+      },
+      {
+       "line": 417,
+       "type": "contract.narrow-basis-claim"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "line": 419,
+   "id": "2026-10-07T00:15:43Z-b",
+   "chunk": "2026-10-06-compact-snapshot-serialization",
+   "consumer": "wrap-session/reconcile",
+   "via": "friction input.report-insufficient",
+   "artifact": "report",
+   "what": "the report's citation search keyed on the basename snapshot.rs and so counted 5 citations of the unchanged stand_snapshot.rs as the edited file's, giving one a moved range (false positive direction); the truth came from reading the hit on a11y-plan line 314 while the detectors were still running; the a11y detector's flag had already repeated the wrong map",
+   "impact": {
+    "retries": 1,
+    "extra_reads": 1
+   },
+   "producers": [
+    {
+     "line": 415,
+     "id": "2026-10-07T00:01:49Z-a",
+     "producer": "wrap-session/report",
+     "outcome": "ok",
+     "signals": [],
+     "note": "0 bullet families reconstructed by digging; both line maps derived from git diff -U0 hunks and verified on four coordinates; one Coverage flag stated as not asserted (the in-file fixtures' key and name)",
+     "producer_frictions": [
+      {
+       "line": 416,
+       "type": "input.implement-outcome-unsettled"
+      },
+      {
+       "line": 417,
+       "type": "contract.narrow-basis-claim"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "line": 420,
+   "id": "2026-10-07T00:15:43Z-c",
+   "chunk": "2026-10-06-compact-snapshot-serialization",
+   "consumer": "wrap-session/reconcile",
+   "via": "friction input.report-insufficient",
+   "artifact": "report",
+   "what": "the report read 6 hits of one fixed string as 6 statements of the retired claim; 2 of them, on the same two long lines, state it of a different subject the chunk did not touch (false positive direction); the security-plan detector read the hit and reported it, the architecture detector confirmed, and an offset read settled it before any disposition",
+   "impact": {
+    "retries": 1,
+    "extra_reads": 1
+   },
+   "producers": [
+    {
+     "line": 415,
+     "id": "2026-10-07T00:01:49Z-a",
+     "producer": "wrap-session/report",
+     "outcome": "ok",
+     "signals": [],
+     "note": "0 bullet families reconstructed by digging; both line maps derived from git diff -U0 hunks and verified on four coordinates; one Coverage flag stated as not asserted (the in-file fixtures' key and name)",
+     "producer_frictions": [
+      {
+       "line": 416,
+       "type": "input.implement-outcome-unsettled"
+      },
+      {
+       "line": 417,
+       "type": "contract.narrow-basis-claim"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "line": 443,
+   "id": "2026-10-07T01:09:59Z-b",
+   "chunk": "2026-10-07-change-tracking-and-diff",
+   "consumer": "implement/code",
+   "via": "friction input.conventions-gap",
+   "artifact": "research",
+   "what": "research's blitz-dom unit-test convention (hand-built nodes through document.mutate()) did not say that qual_name!(\"div\") creates an element in no namespace, which the default stylesheet's type selectors do not match: body and div laid out inline, so the planned fixture built no anonymous block until its elements were created with qual_name!(.., html)",
+   "impact": {
+    "retries": 3,
+    "extra_reads": 4
+   },
+   "producers": [
+    {
+     "line": 435,
+     "id": "2026-10-07T00:40:47Z-a",
+     "producer": "phase/research",
+     "outcome": "ok",
+     "signals": [
+      "unresolved-questions"
+     ],
+     "note": "3 plan-decision questions; lists parsed 9 items, the modify list written at the fork's widest branch",
+     "producer_frictions": [
+      {
+       "line": 436,
+       "type": "contract.narrow-basis-claim"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "line": 444,
+   "id": "2026-10-07T01:09:59Z-c",
+   "chunk": "2026-10-07-change-tracking-and-diff",
+   "consumer": "implement/code",
+   "via": "friction input.plan-step-ambiguous",
+   "artifact": "plan",
+   "what": "step 4's control says the attribute-write test reads red because the flag answers false after a write; with take_changed_nodes added that holds only on a document nothing has drained (after a drain the inverted flag reads true), so the test writes before its first drain to measure the claim; surfaced in the report",
+   "impact": {
+    "retries": 0
+   },
+   "producers": [
+    {
+     "line": 437,
+     "id": "2026-10-07T00:51:04Z-a",
+     "producer": "phase/plan",
+     "outcome": "ok",
+     "signals": [
+      "designed-dialogue:the changed set's reach",
+      "designed-dialogue:the diff entry's shape",
+      "designed-dialogue:the shell's refresh under the boundary-widening pattern",
+      "authority-resolved:the layouts extract's harness default viewport yielded to the tests extract's stand options per stand_snapshot_text.rs:387-389"
+     ],
+     "note": "360 lines, 15 criteria, 23 gate entries; dry-run parsed, planlint 0 hits; the shell answer recorded PROVISIONAL at the operator's direction",
+     "producer_frictions": [
+      {
+       "line": 438,
+       "type": "retry.synthesis-rework"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "line": 450,
+   "id": "2026-10-07T01:52:31Z-a",
+   "chunk": "2026-10-07-change-tracking-and-diff",
+   "consumer": "wrap-session/reconcile",
+   "via": "consumed.quality=thin",
+   "artifact": "drift-base",
+   "what": "a11y-plan's two detectors and obs-plan's three have no invariant that reaches a retired lifecycle claim or a moved citation: 4 expected a11y-plan amendments and the 119-citation line map were raised by the orchestrator under check 5",
+   "impact": null,
+   "producers": []
+  }
+ ],
+ "shapes": [
+  {
+   "producer": "phase/plan",
+   "artifact": "plan",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-06-id-stability-across-code-edits",
+    "2026-10-06-snapshot-model",
+    "2026-10-06-snapshot-state-fidelity",
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "n_chunks": 4,
+   "anchor_lines": [
+    334,
+    360,
+    383,
+    384,
+    444
+   ],
+   "producer_lines": [
+    330,
+    354,
+    380,
+    437
+   ],
+   "pattern_candidate": true
+  },
+  {
+   "producer": "wrap-session/report",
+   "artifact": "report",
+   "consumer": "wrap-session/reconcile",
+   "chunks": [
+    "2026-10-06-compact-snapshot-serialization",
+    "2026-10-06-snapshot-model",
+    "2026-10-06-snapshot-state-fidelity"
+   ],
+   "n_chunks": 3,
+   "anchor_lines": [
+    338,
+    339,
+    391,
+    392,
+    418,
+    419,
+    420
+   ],
+   "producer_lines": [
+    337,
+    389,
+    415
+   ],
+   "pattern_candidate": true
+  },
+  {
+   "producer": "phase/validate",
+   "artifact": "plan",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-06-snapshot-model",
+    "2026-10-06-snapshot-state-fidelity"
+   ],
+   "n_chunks": 2,
+   "anchor_lines": [
+    334,
+    383,
+    384
+   ],
+   "producer_lines": [
+    331,
+    381
+   ],
+   "pattern_candidate": true
+  },
+  {
+   "producer": "phase/plan",
+   "artifact": "plan",
+   "consumer": "wrap-session/report",
+   "chunks": [
+    "2026-10-06-id-stability-across-code-edits",
+    "2026-10-06-snapshot-model"
+   ],
+   "n_chunks": 2,
+   "anchor_lines": [
+    337,
+    363
+   ],
+   "producer_lines": [
+    330,
+    354
+   ],
+   "pattern_candidate": true
+  },
+  {
+   "producer": "implement/fix-loop",
+   "artifact": "implement-outcome",
+   "consumer": "wrap-session/report",
+   "chunks": [
+    "2026-10-06-compact-snapshot-serialization",
+    "2026-10-06-snapshot-state-fidelity"
+   ],
+   "n_chunks": 2,
+   "anchor_lines": [
+    389,
+    390,
+    415,
+    416
+   ],
+   "producer_lines": [
+    385,
+    413
+   ],
+   "pattern_candidate": true
+  },
+  {
+   "producer": "implement/smoke",
+   "artifact": "implement-outcome",
+   "consumer": "wrap-session/report",
+   "chunks": [
+    "2026-10-06-compact-snapshot-serialization",
+    "2026-10-06-snapshot-state-fidelity"
+   ],
+   "n_chunks": 2,
+   "anchor_lines": [
+    389,
+    390,
+    415,
+    416
+   ],
+   "producer_lines": [
+    387,
+    414
+   ],
+   "pattern_candidate": true
+  },
+  {
+   "producer": "phase/validate",
+   "artifact": "plan",
+   "consumer": "wrap-session/report",
+   "chunks": [
+    "2026-10-06-snapshot-model"
+   ],
+   "n_chunks": 1,
+   "anchor_lines": [
+    337
+   ],
+   "producer_lines": [
+    331
+   ],
+   "pattern_candidate": false
+  },
+  {
+   "producer": "phase/research",
+   "artifact": "research",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-07-change-tracking-and-diff"
+   ],
+   "n_chunks": 1,
+   "anchor_lines": [
+    443
+   ],
+   "producer_lines": [
+    435
+   ],
+   "pattern_candidate": false
+  }
+ ],
+ "anchors_without_in_chunk_producer": [
+  {
+   "line": 308,
+   "chunk": null,
+   "consumer": "new-session/orientation",
+   "via": "consumed.quality=thin",
+   "artifact": "handoff",
+   "what": "Status clean and 'Epoch 2 evolve-diagnose still due' predate the post-wrap evolve-diagnose (16:42) and code-audit (16:58) runs left untracked"
+  },
+  {
+   "line": 309,
+   "chunk": null,
+   "consumer": "new-session/orientation",
+   "via": "friction input.handoff-git-mismatch",
+   "artifact": "handoff",
+   "what": "handoff Status reads clean but the tree holds two untracked post-wrap run dirs (evolve-diagnose, code-audit) and a modified code-metrics.ndjson; the handoff's 'Epoch 2 diagnose still due' is superseded by the 16:42 diagnosis run"
+  },
+  {
+   "line": 310,
+   "chunk": "2026-10-06-upstream-sync-observation-model",
+   "consumer": "phase/take-up",
+   "via": "consumed.quality=wrong",
+   "artifact": "working-entry",
+   "what": "entry presumes an upstream delta to merge; upstream/main had not moved past the previous sync's pin 23354585"
+  },
+  {
+   "line": 356,
+   "chunk": "2026-10-06-id-stability-across-code-edits",
+   "consumer": "phase/validate",
+   "via": "consumed.quality=thin",
+   "artifact": "matrix",
+   "what": "v010-16 observed_gap held v010-01's text; no ledger verb edits that field, so the correction went in as a dated note before the claim, the alternative the founder named"
+  },
+  {
+   "line": 374,
+   "chunk": null,
+   "consumer": "new-session/orientation",
+   "via": "friction input.handoff-git-mismatch",
+   "artifact": "handoff",
+   "what": "Handoff Status reads clean while git shows 3 modified tracked files; two are the contract's named bookkeeping members (handoff, friction ledger), the third is a tracked wrap run-dir evolve trail with 40 added lines, which the session-state contract's expected-transient list does not name; classified as bookkeeping by reading the diffstat and the contract paragraph"
+  },
+  {
+   "line": 450,
+   "chunk": "2026-10-07-change-tracking-and-diff",
+   "consumer": "wrap-session/reconcile",
+   "via": "consumed.quality=thin",
+   "artifact": "drift-base",
+   "what": "a11y-plan's two detectors and obs-plan's three have no invariant that reaches a retired lifecycle claim or a moved citation: 4 expected a11y-plan amendments and the 119-citation line map were raised by the orchestrator under check 5"
+  }
+ ]
+}
