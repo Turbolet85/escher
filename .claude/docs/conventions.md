@@ -3,7 +3,7 @@
 _Extracted from `.andromeda/architecture.md` §Conventions (citations live there). Detail that does not fit CLAUDE.md's budget._
 
 ## File & directory naming
-- Crates under `packages/`, apps under `apps/`, example crates under `examples/{name}/`, root examples as `examples/*.rs`; integration tests one file per behaviour in `tests/blitz-tests/tests/`.
+- Crates under `packages/`, apps under `apps/`, example crates under `examples/{name}/`, root examples as `examples/*.rs`; integration tests one file per behaviour in `tests/blitz-tests/tests/`, with the stand checks' shared tables and helpers stated once in `tests/common/mod.rs` (no test target).
 - Modules and files open with a `//!` doc; examples open with a `//!` comment saying what they demonstrate.
 - Paint rendering is split one module per concern (`blitz-paint/src/render/*`).
 

@@ -11,8 +11,8 @@ paths:
 Path-scoped rules for test files. Source: `.andromeda/test-plan.md` §2 §4 §5 §7 §8 (test tier 0) and arch §Conventions.
 
 ## Framework
-- **Unit:** Rust built-in harness — `#[cfg(test)] mod tests` at the end of the source file; `#[tokio::test]` for async workers.
-- **Integration:** `tests/blitz-tests/tests/*.rs`, one file per behaviour, depending only on dev-dependencies.
+- **Unit:** Rust built-in harness — `#[cfg(test)] mod tests` at the end of the source file (one module sits in a file of its own: dioxus-native-dom's `bridge_tests`, a `#[path]` child of `dioxus_document`, so it reaches that module's private fields); `#[tokio::test]` for async workers.
+- **Integration:** `tests/blitz-tests/tests/*.rs`, one file per behaviour, depending only on dev-dependencies; the stand checks read the tables and helpers they share from `tests/common/mod.rs` (`mod common;`), which is no test target.
 - **Headless E2E:** `blitz_test_harness::Harness` over `HtmlDocument` / `DioxusDocument`; WPT via `cargo run -rp wpt css svg` (needs `WPT_DIR`).
 - **CI scripts:** `python3 -m unittest discover -s .github/scripts` (the `ci-scripts` leg; PyYAML for the workflow tests), one `TestCase` per function.
 - No mocking library, property-test or snapshot crate is used — stand-ins are hand-written fakes (`RecordingNetProvider`, `ManualNetProvider`, `RecordingShell`, `NoopEventHandler`, probe widgets).

@@ -1,0 +1,125 @@
+[
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "1f4f95b3",
+"ts": "2026-10-07T04:20:45Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-07-audit-corrections",
+"--desc-file",
+".andromeda/runs/2026-10-07T03-59-09-wrap/master-desc.txt",
+"--run-dir",
+".andromeda/runs/2026-10-07T03-59-09-wrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"flip master-route.md:29 - 2026-10-07-audit-corrections pending -> complete - desc REWRITTEN from --desc-file"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "1f4f95b3",
+"ts": "2026-10-07T04:20:45Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-07-audit-corrections",
+"--date",
+"2026-10-07",
+"--run-dir",
+".andromeda/runs/2026-10-07T03-59-09-wrap",
+"--dry-run"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"pin :50 strip CARRY: 1164ch \"CARRY: the seven survivors (directed by \"",
+"pin :50 strip CARRY: 566ch \"CARRY: the id walk (directed by the oper\"",
+"pin :50 strip CARRY: 542ch \"CARRY: stand control tables (directed by\"",
+"pin :50 strip CARRY: 595ch \"CARRY: three stand checks over the ceili\"",
+"pin next markerless :52 holds no freight",
+"50 · 2026-10-07-audit-corrections · strip 4 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 50,
+"marker": "2026-10-07-audit-corrections",
+"blocks": 4,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "1f4f95b3",
+"ts": "2026-10-07T04:20:49Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-07-audit-corrections",
+"--date",
+"2026-10-07",
+"--run-dir",
+".andromeda/runs/2026-10-07T03-59-09-wrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"pin :50 strip CARRY: 1164ch \"CARRY: the seven survivors (directed by \"",
+"pin :50 strip CARRY: 566ch \"CARRY: the id walk (directed by the oper\"",
+"pin :50 strip CARRY: 542ch \"CARRY: stand control tables (directed by\"",
+"pin :50 strip CARRY: 595ch \"CARRY: three stand checks over the ceili\"",
+"pin next markerless :52 holds no freight",
+"50 · 2026-10-07-audit-corrections · strip 4 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.1.0/route-archive.md",
+"./escher-0.1.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 50,
+"marker": "2026-10-07-audit-corrections",
+"blocks": 4,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]

@@ -1,0 +1,11 @@
+
+## 2026-10-07-audit-corrections — bridge tests, the shared stand module; counts re-measured
+**Section:** §1 Coverage scope → dioxus-native-dom · dioxus-native and stylo_taffy · tests/blitz-tests; §2 Directory pattern; §3 Crate-local test helpers → dioxus-native-dom · blitz-tests (stand checks) (new bullet); §4 Test file location; §9 Local baseline; `file:line` citations in §1 · §3
+**Change:**
+- dioxus-native-dom: 55 unit tests in eight files (was 49 in seven) — six on the bridge, in the `cfg(test)` child module `dioxus_document::bridge_tests`, under no feature gate: a refused Dioxus key (empty, or holding `/`) reading a positional segment, `create_head_element`, `mounted` delivery after the build and after a poll, `Document::id`, a handled event's cancel and stop. The list of the crate's test-holding files gains `dioxus_document_tests.rs`.
+- Layout conventions (§2, §4): unit tests sit inline, bar one `cfg(test)` module held in a file of its own through `#[path]` (`bridge_tests`); `tests/blitz-tests` holds one test-target file per behavior and one shared module that is no target, `tests/common/mod.rs` (was: one file per behavior, no exception).
+- Crate-local helpers: the bridge tests are a child of `dioxus_document` because `DioxusEventHandler`'s two fields are private to it and it has no constructor; they keep the `EventState` they pass, the one way to read `propagation_is_stopped()`. New bullet for the stand checks' shared module: three tables (`controls`, 18 rows naming 15 controls; `INPUT_NAMES`, six; `rendered`, 26 rows), six helpers, six reading checks; `stand_element_ids` keeps its own `boot`.
+- Local baseline: 131 result lines, 548 passed · 0 failed · 5 ignored (was 542 · 0 · 5 over 131); no result line added. `run stand` stays at 63.
+- 4 of 20 citations into the edited files re-pointed by the measured line map; the `element_id.rs` test module is now `:284-604`.
+**Why:** the chunk added six unit tests that kill the seven mutants the Epoch 2 code audit left surviving, and moved the stand checks' restated tables and helpers into one module; it added no stand check and no test target. Trap for later chunks: a sed or grep address that ends at a function's name also selects every item whose name opens with it, and a control built with the same address cannot catch that.
+**Ref:** .andromeda/runs/2026-10-07T03-59-09-wrap/

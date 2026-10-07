@@ -1,0 +1,46 @@
+# Cascade step-2 sweep — 2026-10-07-audit-corrections. Derived from every amendment of the pass.
+
+[[pattern]]
+id = "unit-census"
+regex = '(49|forty-nine) unit tests'
+
+[[pattern]]
+id = "seven-files"
+regex = '(in|other) seven files'
+
+[[pattern]]
+id = "one-file-per"
+regex = 'one file per behaviou?r'
+ignore_case = true
+
+[[pattern]]
+id = "baseline-542"
+fixed = '542 passed'
+
+[[pattern]]
+id = "cite-elemid"
+regex = 'element_id\.rs:(78-133|159-255|181-187|198-243|370-405|310-334|370-423|425-576|257-577|264-268)'
+
+[[pattern]]
+id = "cite-stand"
+regex = 'stand_(element_ids\.rs:(129-240|242-275)|actionable_keys\.rs:86-106|id_persistence\.rs:273-283|snapshot_state\.rs:(490-539|120-127|308-344)|accessibility_ids\.rs:(162-177|303-320)|snapshot\.rs:337-390)'
+
+[[pattern]]
+id = "obs-census"
+fixed = 'in it or its checks'
+
+[[pattern]]
+id = "per-file"
+regex = 'repeated per file|restat'
+
+[[pattern]]
+id = "dioxus-key"
+fixed = 'carries its Dioxus key'
+
+[[pattern]]
+id = "inline-tests"
+regex = 'at the end of the source file|inside the source file|inline `#\[cfg\(test\)\]` modules|next to the code under test'
+
+[[pattern]]
+id = "test-files"
+regex = 'snapshot_text\.rs and snapshot_diff\.rs'

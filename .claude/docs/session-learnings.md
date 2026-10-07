@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-07 — A sed or grep address that ends at an item's name also selects every item whose name opens with it
+A gate that lifts one function or constant out of a file by its opening line — `sed -n '/^fn controls/,/^}/p'` — lifts every item whose name starts the same way: the table `controls` and the test `controls_lie_inside_the_viewport` both match, and the comparison built on it reads red on a correct tree. Close the name with the character that follows it in the source (`fn controls(`, `const INPUT_NAMES:`), and sweep the file for other items opening with the same word before trusting the address. A control built with the same open address proves nothing here: it carries the extra item on both sides and compares equal, so plant the control's difference in the item the gate is for and check that the gate's line count is the item's own.
+
+---
+
 ## 2026-10-07 — `str::escape_debug` and `{:?}` on a `str` do not escape alike
 Both escape a `"`, a backslash, a line break and a tab, so they read as interchangeable — but `escape_debug` also backslash-escapes an apostrophe (`it's` becomes `it\'s`) and leaves a combining mark in mid-string bare, while the `Debug` form (`{:?}`) writes the apostrophe as it is and escapes the mark. Text that an agent or a person reads — the snapshot's text form, a diff, a CLI's output — wants the `Debug` form.
 

@@ -10,7 +10,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 
 **Key directories:**
 - `packages/` — the engine and integration crates (DOM, paint, shell, traits, Dioxus bridge, test harness) and escher's telemetry bootstrap
-- `tests/blitz-tests/` — integration tests, one file per behaviour
+- `tests/blitz-tests/` — integration tests, one file per behaviour; the stand checks share `tests/common/`
 - `examples/` — example crates and root examples; `examples/seven_guis/` is the 7GUIs stand
 - `apps/` — reference browser (`blitz`), markdown viewer (`rdme`), release `bump`
 - `wpt/runner/` — the Web Platform Tests conformance runner
@@ -76,7 +76,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 | Stable element ids · actionable-key check | `packages/dioxus-native-dom/src/{element_id,actionable}.rs` · checks `tests/blitz-tests/tests/stand_{element_ids,id_persistence,id_edits,actionable_keys}.rs` |
 | Snapshot model (id · role · name · state · bounds) · its text form and size budget · its diff | `packages/dioxus-native-dom/src/{snapshot,snapshot_text,snapshot_diff}.rs` · checks `tests/blitz-tests/tests/stand_{snapshot,snapshot_state,snapshot_text,diff}.rs` |
 | Change tracking (the changed set · its drain · the shell's refresh) | `packages/blitz-dom/src/document.rs` (`has_changes`, `take_changed_nodes`) · `.andromeda/architecture.md` §Cross-cutting Patterns (Invalidation and state integrity) · `packages/blitz-shell/src/window.rs` (`View::poll`) |
-| The 7GUIs stand | `examples/seven_guis/src/tasks/` · headless boot `examples/seven_guis/src/stand.rs` · checks `tests/blitz-tests/tests/stand_*.rs` |
+| The 7GUIs stand | `examples/seven_guis/src/tasks/` · headless boot `examples/seven_guis/src/stand.rs` · checks `tests/blitz-tests/tests/stand_*.rs` · their shared tables and helpers `tests/blitz-tests/tests/common/mod.rs` |
 | WPT runner | `wpt/runner/src/main.rs` · `wpt/runner/src/test_runners/` |
 | CI pipeline | `.github/workflows/ci.yml` · `wpt.yml` · `publish-browser.yml` (the last two upstream-only) · legs `.github/scripts/ci-leg.sh` · invariants `.github/scripts/test_ci_workflows.py` |
 | Drift detectors · amendment playbook | `.andromeda/drift-base.md` · `.andromeda/playbook.md` |

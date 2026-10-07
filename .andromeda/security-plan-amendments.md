@@ -157,3 +157,12 @@ One entry per amendment to `security-plan.md` (sidecar-contract.md §Entry form)
 - 11 of 17 citations into the two blitz-dom files re-pointed by the measured line map.
 **Why:** the chunk added the diff and made the shell's poll-time refresh run. The refresh on change is a boundary widening: PROVISIONAL, pending the founder at the Epoch 3 boundary (the operator, 2026-10-07, at the chunk's plan and again at this wrap's escalation: record as provisional). The diff adds no crossing; its returned-value-only exit carries the snapshot text's provisional answer. Standing rule: the first command that returns a diff asks the crossing question again.
 **Ref:** .andromeda/runs/2026-10-07T01-31-03-wrap/
+
+## 2026-10-07-audit-corrections — the refused Dioxus key and its two witnesses
+**Section:** §Input Validation → rows `id` (stable element id) · password and file input value (`file:line` citations)
+**Change:**
+- `id` row: a keyed list row's segment carries its Dioxus key (`{tag}[{key}]`), and a Dioxus key that is empty or holds `/` is refused — the row reads the positional `{tag}:{n}` segment instead. Each of the two cases is witnessed by a unit test in `dioxus_document_tests.rs` (was: the row said the segment carries the key and did not state the refusal).
+- 6 of 15 citations into the edited files re-pointed by the measured line map (five in the `id` row, one in the masked-value row); 9 keep their numbers.
+**Why:** the Epoch 2 code audit found the key filter's `&&` could become `||` with no test failing; the chunk added a named witness for each of the filter's two conditions, so the row can now state the refusal on evidence. No input class, crossing or validation mechanism changed.
+**Kept:** the full segment grammar (a repeated key falling back to an index, the first-among-siblings rule) stays architecture's to state; this row names only the two refusals the witnesses prove.
+**Ref:** .andromeda/runs/2026-10-07T03-59-09-wrap/
