@@ -17,18 +17,33 @@
 //!
 //! The socket is unix-only: on other platforms [`serve`], [`start`], [`attach`] and [`stop`]
 //! return [`SessionError::Unsupported`]. A [`Session`] held in process works everywhere.
+//!
+//! What can be asked of the driver, and how it says no, is stated once, as data held in
+//! process: [`VERBS`] lists each verb with its argument and result shapes, [`validate`] turns
+//! a [`Call`] into a typed [`Command`] or a [`Refusal`] before anything runs, and every
+//! refusal names a [`Cause`] with a fixed remedy. Nothing of the schema crosses the socket,
+//! and no command runs through a session yet.
 
 #![deny(missing_docs)]
 
 mod client;
+mod command;
 mod error;
 mod host;
+mod refusal;
+mod schema;
 mod session;
 #[cfg_attr(not(unix), allow(dead_code))]
 mod wire;
 
 pub use blitz_test_harness::{Busy, Settled};
 pub use client::{Hello, Started, attach, start, stop};
+pub use command::{ArgValue, Call, Command, Key, validate};
 pub use error::SessionError;
 pub use host::serve;
+pub use refusal::{CAUSES, Cause, Fault, Refusal};
+pub use schema::{
+    ArgKind, ArgSpec, BUSY_CLASSES, FieldKind, FieldSpec, KEY_NAMES, MAX_ID_BYTES,
+    MAX_MILLISECONDS, MAX_TEXT_BYTES, NODE_FIELDS, VERBS, VerbSpec, verb,
+};
 pub use session::Session;

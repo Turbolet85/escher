@@ -1,0 +1,267 @@
+[
+{
+"sql": "SELECT from_crate, to_crate FROM crate_edges WHERE to_crate = 'escher-driver' OR from_crate = 'escher-driver'",
+"rows": 4,
+"result": [
+{
+"from_crate": "escher-driver",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "escher-driver"
+},
+{
+"from_crate": "escher-driver",
+"to_crate": "blitz-test-harness"
+},
+{
+"from_crate": "blitz-tests",
+"to_crate": "escher-driver"
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, callee_kind, callee_file, COUNT(*) AS sites, COUNT(DISTINCT file) AS files FROM refs WHERE callee_crate = 'escher-driver' AND callee_file LIKE '%/src/%' AND file NOT LIKE regexp_replace(callee_file, '/src/.*$', '/src/%') AND callee_kind <> 'module' GROUP BY 1, 2, 3 ORDER BY sites DESC, callee_name",
+"rows": 19,
+"result": [
+{
+"callee_name": "Session",
+"callee_kind": "type",
+"callee_file": "packages/escher-driver/src/session.rs",
+"sites": 30,
+"files": 8
+},
+{
+"callee_name": "harness_mut",
+"callee_kind": "fn",
+"callee_file": "packages/escher-driver/src/session.rs",
+"sites": 26,
+"files": 6
+},
+{
+"callee_name": "harness",
+"callee_kind": "fn",
+"callee_file": "packages/escher-driver/src/session.rs",
+"sites": 25,
+"files": 5
+},
+{
+"callee_name": "stop",
+"callee_kind": "fn",
+"callee_file": "packages/escher-driver/src/client.rs",
+"sites": 12,
+"files": 4
+},
+{
+"callee_name": "attach",
+"callee_kind": "fn",
+"callee_file": "packages/escher-driver/src/client.rs",
+"sites": 11,
+"files": 4
+},
+{
+"callee_name": "pid",
+"callee_kind": "term",
+"callee_file": "packages/escher-driver/src/client.rs",
+"sites": 10,
+"files": 4
+},
+{
+"callee_name": "start",
+"callee_kind": "fn",
+"callee_file": "packages/escher-driver/src/session.rs",
+"sites": 10,
+"files": 6
+},
+{
+"callee_name": "SessionError",
+"callee_kind": "type",
+"callee_file": "packages/escher-driver/src/error.rs",
+"sites": 9,
+"files": 2
+},
+{
+"callee_name": "start",
+"callee_kind": "fn",
+"callee_file": "packages/escher-driver/src/client.rs",
+"sites": 9,
+"files": 3
+},
+{
+"callee_name": "act",
+"callee_kind": "fn",
+"callee_file": "packages/escher-driver/src/session.rs",
+"sites": 7,
+"files": 1
+},
+{
+"callee_name": "hello",
+"callee_kind": "term",
+"callee_file": "packages/escher-driver/src/client.rs",
+"sites": 6,
+"files": 3
+},
+{
+"callee_name": "serve",
+"callee_kind": "fn",
+"callee_file": "packages/escher-driver/src/host.rs",
+"sites": 6,
+"files": 3
+},
+{
+"callee_name": "child",
+"callee_kind": "term",
+"callee_file": "packages/escher-driver/src/client.rs",
+"sites": 5,
+"files": 3
+},
+{
+"callee_name": "label",
+"callee_kind": "term",
+"callee_file": "packages/escher-driver/src/client.rs",
+"sites": 5,
+"files": 4
+},
+{
+"callee_name": "NoSession",
+"callee_kind": "type",
+"callee_file": "packages/escher-driver/src/error.rs",
+"sites": 3,
+"files": 1
+},
+{
+"callee_name": "Dead",
+"callee_kind": "type",
+"callee_file": "packages/escher-driver/src/error.rs",
+"sites": 2,
+"files": 1
+},
+{
+"callee_name": "served",
+"callee_kind": "term",
+"callee_file": "packages/escher-driver/src/client.rs",
+"sites": 2,
+"files": 1
+},
+{
+"callee_name": "AlreadyRunning",
+"callee_kind": "type",
+"callee_file": "packages/escher-driver/src/error.rs",
+"sites": 1,
+"files": 1
+},
+{
+"callee_name": "NotSettled",
+"callee_kind": "type",
+"callee_file": "packages/escher-driver/src/error.rs",
+"sites": 1,
+"files": 1
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT symbol, crate, kind, file FROM symbol WHERE name IN ('Refusal','Cause','Verb','Command','Remedy','Schema','Shape','RefusalCause') AND kind <> 'meta'",
+"rows": 0,
+"result": [],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, file, line FROM refs WHERE callee_name IN ('SessionError','act','NotSettled') AND callee_crate = 'escher-driver' AND file NOT LIKE 'packages/escher-driver/src/%' ORDER BY file, line",
+"rows": 17,
+"result": [
+{
+"callee_name": "SessionError",
+"file": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"line": 13
+},
+{
+"callee_name": "SessionError",
+"file": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"line": 43
+},
+{
+"callee_name": "SessionError",
+"file": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"line": 44
+},
+{
+"callee_name": "SessionError",
+"file": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"line": 62
+},
+{
+"callee_name": "SessionError",
+"file": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"line": 75
+},
+{
+"callee_name": "SessionError",
+"file": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"line": 85
+},
+{
+"callee_name": "SessionError",
+"file": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"line": 86
+},
+{
+"callee_name": "SessionError",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 16
+},
+{
+"callee_name": "act",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 50
+},
+{
+"callee_name": "act",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 57
+},
+{
+"callee_name": "act",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 65
+},
+{
+"callee_name": "act",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 93
+},
+{
+"callee_name": "act",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 115
+},
+{
+"callee_name": "act",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 172
+},
+{
+"callee_name": "act",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 328
+},
+{
+"callee_name": "SessionError",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 330
+},
+{
+"callee_name": "NotSettled",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 330
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

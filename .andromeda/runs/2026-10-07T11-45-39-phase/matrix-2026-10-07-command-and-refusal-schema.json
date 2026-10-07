@@ -1,0 +1,151 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "8d842833",
+"ts": "2026-10-07T12:10:07Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.1.0",
+"--run-dir",
+".andromeda/runs/2026-10-07T11-45-39-phase",
+"--marker",
+"2026-10-07-command-and-refusal-schema"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"verified 4/16 · deferred 0 · planned 12 · implemented 0 · unclaimed 12",
+"unclaimed: v010-03 v010-04 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14 v010-15",
+"claimed-unfinished: none",
+"done-test: NO — 12 not verified|deferred · unclaimed 12",
+"chunks referenced: 4 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "8d842833",
+"ts": "2026-10-07T12:10:08Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-11",
+"--text-file",
+".andromeda/runs/2026-10-07T11-45-39-phase/note-v010-11.md",
+"--run-dir",
+".andromeda/runs/2026-10-07T11-45-39-phase",
+"--marker",
+"2026-10-07-command-and-refusal-schema"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"note v010-11: +830 chars (total 1343) · status planned · ref/acceptance untouched",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-11",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, an action aimed at a missing element, a stale id, a disabled control, an element covered by another, and a… (191 chars)",
+"notes_chars": 511
+},
+"after": {
+"id": "v010-11",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, an action aimed at a missing element, a stale id, a disabled control, an element covered by another, and a… (191 chars)",
+"notes_chars": 1343
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "8d842833",
+"ts": "2026-10-07T12:10:08Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-14",
+"--text-file",
+".andromeda/runs/2026-10-07T11-45-39-phase/note-v010-14.md",
+"--run-dir",
+".andromeda/runs/2026-10-07T11-45-39-phase",
+"--marker",
+"2026-10-07-command-and-refusal-schema"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"note v010-14: +744 chars (total 744) · status planned · ref/acceptance untouched",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-14",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "The tool itself serves its verb list, help and schemas on both surfaces from one verb set, and every refusal cause the s… (152 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v010-14",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "The tool itself serves its verb list, help and schemas on both surfaces from one verb set, and every refusal cause the s… (152 chars)",
+"notes_chars": 744
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "8d842833",
+"ts": "2026-10-07T12:10:08Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-07-command-and-refusal-schema",
+"--plan",
+"escher-0.1.0/chunks/2026-10-07-command-and-refusal-schema/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-07T11-45-39-phase"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-07-command-and-refusal-schema: 0 · ## Acceptance Criteria: line 244, 17 lines",
+"pool: unclaimed 12 [v010-03 v010-04 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]
