@@ -6,9 +6,13 @@
 //! - writes to **stderr**, never stdout (stdout belongs to the driver CLI's JSON and MCP's stdio);
 //! - stamps every line with the binary's [`ServiceIdentity`] as `service.name` / `service.version`;
 //! - redacts user content through an allowlist applied in the formatter: events from engine
-//!   targets ([`ENGINE_TARGET_PREFIXES`]) print only their [`SAFE_FIELDS`], and fields named in
-//!   [`CONTENT_FIELDS`] are redacted for every target;
-//! - bridges `log`-facade records into the same formatter;
+//!   targets ([`ENGINE_TARGET_PREFIXES`]) print only their [`SAFE_FIELDS`], and events from
+//!   escher's own targets ([`ESCHER_TARGET_PREFIXES`]) print every field not named in
+//!   [`CONTENT_FIELDS`];
+//! - drops every event from a target outside those two sets — nothing is written for it, at any
+//!   level and whatever `RUST_LOG` names: the sink prints no record it has no scrub rule for;
+//! - bridges `log`-facade records into the same formatter, each judged by the target it was
+//!   logged under;
 //! - logs every panic as an error event, then chains the previously installed panic hook.
 //!
 //! The level filter is read from `RUST_LOG` and defaults to `warn`.
@@ -27,7 +31,9 @@ use tracing_subscriber::EnvFilter;
 use tracing_subscriber::fmt::MakeWriter;
 use tracing_subscriber::layer::SubscriberExt;
 
-pub use format::{CONTENT_FIELDS, ENGINE_TARGET_PREFIXES, REDACTED, SAFE_FIELDS};
+pub use format::{
+    CONTENT_FIELDS, ENGINE_TARGET_PREFIXES, ESCHER_TARGET_PREFIXES, REDACTED, SAFE_FIELDS,
+};
 
 /// The identity of the binary that installs the subscriber, printed on every line.
 ///

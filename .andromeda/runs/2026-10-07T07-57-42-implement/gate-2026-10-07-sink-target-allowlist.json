@@ -1,0 +1,679 @@
+[
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T08:09:43Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-07-sink-target-allowlist/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-07T07-57-42-implement",
+"--marker",
+"2026-10-07-sink-target-allowlist"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-07-sink-target-allowlist · entries 20",
+"logs $TMPDIR/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42 · bound: GNU timeout",
+"delta docs 38 · python 1 · rust 6",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L124-132: No entry is a live leg: the host check starts and stops its own host, so there is no exter… (1000 chars)",
+"prose L134-142: `evidence/by-level.md` has no listed producer, by construction: it is implement's hand rec… (957 chars)",
+"  1 unit        green · exit 0 · 0.13s · 655 B → 1.log · cargo test -p escher-telemetry --locked --lib outside_targ… (60 chars)",
+"  2 unit        green · exit 0 · 0.23s · 1235 B → 2.log · cargo test -p escher-telemetry --locked",
+"  3 integration green · exit 0 · 1.21s · 756 B → 3.log · cargo test -p blitz-tests --locked --test telemetry_drop",
+"  4 integration green · exit 0 · 0.46s · 1341 B → 4.log · cargo test -p blitz-tests --locked --test telemetry_scrub … (149 chars)",
+"  5 integration green · exit 0 · 2.23s · 792 B → 5.log · cargo test -p seven_guis --locked --test host_log",
+"  6 smoke       green · exit 0 · 0.66s · 847 B → 6.log · cargo test -p seven_guis --locked --test host_binary",
+"  7 probe       green · exit 0 · 0.0s · 0 B → 7.log · git diff --quiet ebd7411f7c6d3908f9e1a7c68cf9a96ffa0b18d3 … (830 chars)",
+"  8 probe       green · exit 0 · 0.0s · 2 B → 8.log · cat packages/escher-telemetry/src/*.rs | grep -cE '^static… (106 chars)",
+"  9 probe       green · exit 1 · 0.0s · 2 B → 9.log · test -f examples/seven_guis/tests/host_log.rs && test -f t… (251 chars)",
+" 10 build       green · exit 0 · 0.21s · 461 B → 10.log · cargo build -p seven_guis --bins --locked",
+" 11 smoke       green · exit 0 · 10.14s · 62 B → 11.log · f=$(mktemp); RUST_LOG=trace timeout 10 target/debug/seven_… (517 chars)",
+" 12 build       green · exit 0 · 26.97s · 137 B → 12.log · bash scripts/agent-run.sh boot",
+" 13 integration green · exit 0 · 10.64s · 9243 B → 13.log · bash scripts/agent-run.sh run stand",
+" 14 integration green · exit 0 · 0.02s · 40 B → 14.log · bash scripts/agent-run.sh cleanup",
+" 15 lint        green · exit 0 · 67.06s · 63709 B → 15.log · bash .github/scripts/ci-leg.sh fast",
+" 16 lint        green · exit 0 · 7.28s · 658 B → 16.log · bash .github/scripts/ci-leg.sh doc",
+" 17 integration green · exit 0 · 2.64s · 1805 B → 17.log · bash .github/scripts/ci-leg.sh a11y",
+" 18 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 19 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 20 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 20 · green 17 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-07-sink-target-allowlist",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-07-sink-target-allowlist/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-07T06-51-52-wrap/evolve-2026-10-07-driver-session.json",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-07T06-51-52-wrap/health-2026-10-07-driver-session.json",
+".andromeda/runs/2026-10-07T07-28-08-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-07T07-28-08-phase/a11y-history.md",
+".andromeda/runs/2026-10-07T07-28-08-phase/a11y.md",
+".andromeda/runs/2026-10-07T07-28-08-phase/arch-history.md",
+".andromeda/runs/2026-10-07T07-28-08-phase/arch.md",
+".andromeda/runs/2026-10-07T07-28-08-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-07T07-28-08-phase/design.md",
+".andromeda/runs/2026-10-07T07-28-08-phase/evolve-2026-10-07-sink-target-allowlist.json",
+".andromeda/runs/2026-10-07T07-28-08-phase/gate-2026-10-07-sink-target-allowlist.json",
+".andromeda/runs/2026-10-07T07-28-08-phase/layouts-history.md",
+".andromeda/runs/2026-10-07T07-28-08-phase/layouts.md",
+".andromeda/runs/2026-10-07T07-28-08-phase/master-record.txt",
+".andromeda/runs/2026-10-07T07-28-08-phase/matrix-2026-10-07-sink-target-allowlist.json",
+".andromeda/runs/2026-10-07T07-28-08-phase/obs-contracts.md",
+".andromeda/runs/2026-10-07T07-28-08-phase/obs-history.md",
+".andromeda/runs/2026-10-07T07-28-08-phase/obs.md",
+".andromeda/runs/2026-10-07T07-28-08-phase/planlint-2026-10-07-sink-target-allowlist.json",
+".andromeda/runs/2026-10-07T07-28-08-phase/registry-2026-10-07-sink-target-allowlist.json",
+".andromeda/runs/2026-10-07T07-28-08-phase/route-2026-10-07-sink-target-allowlist.json",
+".andromeda/runs/2026-10-07T07-28-08-phase/route-no-marker.json",
+".andromeda/runs/2026-10-07T07-28-08-phase/security-history.md",
+".andromeda/runs/2026-10-07T07-28-08-phase/security.md",
+".andromeda/runs/2026-10-07T07-28-08-phase/sidecar-2026-10-07-sink-target-allowlist.json",
+".andromeda/runs/2026-10-07T07-28-08-phase/tests-contracts.md",
+".andromeda/runs/2026-10-07T07-28-08-phase/tests-history.md",
+".andromeda/runs/2026-10-07T07-28-08-phase/tests.md",
+".andromeda/runs/2026-10-07T07-28-08-phase/tree-query-2026-10-07-sink-target-allowlist.json",
+".andromeda/runs/2026-10-07T07-57-42-implement/evolve-2026-10-07-sink-target-allowlist.json",
+"escher-0.1.0/chunks/2026-10-07-sink-target-allowlist/evidence/by-level.md",
+"escher-0.1.0/chunks/2026-10-07-sink-target-allowlist/plan.md",
+"escher-0.1.0/chunks/2026-10-07-sink-target-allowlist/research.md",
+"escher-0.1.0/chunks/2026-10-07-sink-target-allowlist/scope.md"
+],
+"rust": [
+"examples/seven_guis/tests/host_binary.rs",
+"packages/escher-telemetry/src/format.rs",
+"packages/escher-telemetry/src/lib.rs",
+"examples/seven_guis/tests/common/mod.rs",
+"examples/seven_guis/tests/host_log.rs",
+"tests/blitz-tests/tests/telemetry_drop.rs"
+],
+"python": [
+"escher-0.1.0/chunks/2026-10-07-sink-target-allowlist/evidence/by-level.py"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 45,
+"problem": null
+},
+"prose": [
+{
+"from": 124,
+"to": 132,
+"text": "No entry is a live leg: the host check starts and stops its own host, so there is no external process the launch environment names, no liveness probe and no `stop` key. There is no headful self-verify harness on this project (the stand's checks are headless). Two boot paths are exercised: the `escher-session` binary, whose smoke is the standing `host_binary` entry, and the windowed stand, whose entry declares `WAYLAND_DISPLAY` — unset, it is not run and the report says so, and the windowed criteria then stand unproven. The audit leg is not listed: no manifest and no lockfile changes, which the preservation entry asserts. **Not run locally:** the MSRV build and the windows, macos, ios and android matrix legs — the fork's CI run is their one witness, and the macOS leg is the only witness of the new host check on that platform; the CI acceptance follows the operator pass (pre-CI commit, push, CI read). The preservation entry names its base as the commit this chunk starts from, `ebd7411f`."
+},
+{
+"from": 134,
+"to": 142,
+"text": "`evidence/by-level.md` has no listed producer, by construction: it is implement's hand record of what the instrument `evidence/by-level.py` prints at steps 1, 3 and 8, and its before-readings exist only before the fix, so no entry could re-produce them at the wrap's light gate. The entries that guard the same property on every re-run are the `host_log` entry and the windowed entry. The instrument's known-verdict controls: its `host` mode has read both sides on the unfixed host in one run — 15 of 15 ids at `debug` and `trace`, 0 of 15 with `RUST_LOG` unset and at `info` (research.md §Patterns detected, the by-level table); its `windowed` mode has not been run, and step 1's before-reading is its one-shot control — it must find Home ids at `trace`, where the windowed entry's baseline already read 146 id lines with the same needles, and none with `RUST_LOG` unset unless the reading shows otherwise, both readings recorded in `evidence/by-level.md`."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-telemetry --locked --lib outside_target",
+"run_sha8": "cf59d038",
+"expect": [
+"exit 0",
+"lacks ok. 0 passed",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/1.log",
+"bytes": 655,
+"log_sha8": "545b86cb",
+"exit": 0,
+"seconds": 0.13,
+"readings": [
+"exit 0 ✓",
+"lacks 'ok. 0 passed' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p escher-telemetry --locked",
+"run_sha8": "0c878b7b",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/2.log",
+"bytes": 1235,
+"log_sha8": "ff95e17b",
+"exit": 0,
+"seconds": 0.23,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test telemetry_drop",
+"run_sha8": "27e084cb",
+"expect": [
+"exit 0",
+"contains 1 passed; 0 failed; 1 ignored"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/3.log",
+"bytes": 756,
+"log_sha8": "a20591da",
+"exit": 0,
+"seconds": 1.21,
+"readings": [
+"exit 0 ✓",
+"contains '1 passed; 0 failed; 1 ignored' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test telemetry_scrub --test telemetry_stdout_silent --test telemetry_panic_hook --test telemetry_init_idempotent",
+"run_sha8": "c31aba5d",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"lacks ok. 0 passed"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/4.log",
+"bytes": 1341,
+"log_sha8": "cba100da",
+"exit": 0,
+"seconds": 0.46,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"lacks 'ok. 0 passed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test host_log",
+"run_sha8": "a495edfe",
+"expect": [
+"exit 0",
+"contains 1 passed; 0 failed"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/5.log",
+"bytes": 792,
+"log_sha8": "60545fbb",
+"exit": 0,
+"seconds": 2.23,
+"readings": [
+"exit 0 ✓",
+"contains '1 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "smoke",
+"run": "cargo test -p seven_guis --locked --test host_binary",
+"run_sha8": "c9c0e7e7",
+"expect": [
+"exit 0",
+"contains 2 passed; 0 failed"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/6.log",
+"bytes": 847,
+"log_sha8": "f6e5a399",
+"exit": 0,
+"seconds": 0.66,
+"readings": [
+"exit 0 ✓",
+"contains '2 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff --quiet ebd7411f7c6d3908f9e1a7c68cf9a96ffa0b18d3 -- Cargo.toml Cargo.lock deny.toml packages/escher-telemetry/Cargo.toml packages/escher-telemetry/src/panic.rs packages/escher-driver packages/blitz-dom packages/blitz-html packages/blitz-net packages/blitz-paint packages/blitz-shell packages/blitz-traits packages/blitz-test-harness packages/dioxus-native packages/dioxus-native-dom examples/seven_guis/Cargo.toml examples/seven_guis/src examples/seven_guis/assets tests/blitz-tests/Cargo.toml tests/blitz-tests/tests/common tests/blitz-tests/tests/session_common tests/blitz-tests/tests/telemetry_scrub.rs tests/blitz-tests/tests/telemetry_stdout_silent.rs tests/blitz-tests/tests/telemetry_panic_hook.rs tests/blitz-tests/tests/telemetry_init_idempotent.rs tests/blitz-tests/tests/stand_session_quiet.rs scripts .github",
+"run_sha8": "270e73cd",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/7.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "cat packages/escher-telemetry/src/*.rs | grep -cE '^static |env::var|set_var|thread::|Listener|UdpSocket' ",
+"run_sha8": "7a1e46f9",
+"expect": [
+"exit 0",
+"last line 2"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/8.log",
+"bytes": 2,
+"log_sha8": "53c234e5",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '2' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "test -f examples/seven_guis/tests/host_log.rs && test -f tests/blitz-tests/tests/telemetry_drop.rs && grep -rhoE '\\b(e?print(ln)?|dbg)!' packages/escher-telemetry/src examples/seven_guis/tests tests/blitz-tests/tests/telemetry_drop.rs | grep -vc '^e' ",
+"run_sha8": "b9790402",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/9.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "build",
+"run": "cargo build -p seven_guis --bins --locked",
+"run_sha8": "a322a87e",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/10.log",
+"bytes": 461,
+"log_sha8": "92ba89d5",
+"exit": 0,
+"seconds": 0.21,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "smoke",
+"run": "f=$(mktemp); RUST_LOG=trace timeout 10 target/debug/seven_guis_native >\"$f\" 2>&1; s=$?; sink=$(grep -c 'INFO escher_telemetry service.name=seven_guis' \"$f\"); ids=$(grep -c -E 'home-header|home-title|home-subtitle|task-grid|task-card-' \"$f\"); names=$(grep -c -E '7GUIs|Seven benchmark tasks|Temp Converter|Flight Booker|Circle Drawer' \"$f\"); rm -f \"$f\"; echo \"windowed trace: exit $s sink-lines $sink id-lines $ids name-lines $names\"; test \"$s\" -eq 124 && test \"$sink\" -ge 1 && test \"$ids\" -eq 0 && test \"$names\" -eq 0",
+"run_sha8": "592ab6d9",
+"expect": [
+"exit 0",
+"contains id-lines 0 name-lines 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/11.log",
+"bytes": 62,
+"log_sha8": "7d82ff01",
+"exit": 0,
+"seconds": 10.14,
+"readings": [
+"exit 0 ✓",
+"contains 'id-lines 0 name-lines 0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": [
+"exit 0",
+"contains \"ready\""
+],
+"log": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/12.log",
+"bytes": 137,
+"log_sha8": "f292a959",
+"exit": 0,
+"seconds": 26.97,
+"readings": [
+"exit 0 ✓",
+"contains '\"ready\"' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": [
+"exit 0",
+"contains \"passed\": 72, \"failed\": 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/13.log",
+"bytes": 9243,
+"log_sha8": "55f556c6",
+"exit": 0,
+"seconds": 10.64,
+"readings": [
+"exit 0 ✓",
+"contains '\"passed\": 72, \"failed\": 0' ✓",
+"artifact fresh (target/agent-run/events.jsonl)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "integration",
+"run": "bash scripts/agent-run.sh cleanup",
+"run_sha8": "d676b018",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/14.log",
+"bytes": 40,
+"log_sha8": "8b6274d8",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/15.log",
+"bytes": 63709,
+"log_sha8": "44c110f8",
+"exit": 0,
+"seconds": 67.06,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/16.log",
+"bytes": 658,
+"log_sha8": "c146dcb8",
+"exit": 0,
+"seconds": 7.28,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 17,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/17.log",
+"bytes": 1805,
+"log_sha8": "dd0418ec",
+"exit": 0,
+"seconds": 2.64,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 20,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "675d3a19",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T08:09:58Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-07T07-57-42-implement",
+"--marker",
+"2026-10-07-sink-target-allowlist",
+"--n",
+"1",
+"--tail",
+"6"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"1 unit green",
+"run (cf59d038): cargo test -p escher-telemetry --locked --lib outside_target",
+"  exit 0 ✓",
+"  lacks 'ok. 0 passed' ✓",
+"  lacks 'FAILED' ✓",
+"log $TMPDIR/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/1.log · 655 B · 545b86cb",
+"--- no anchored failure; last 6 non-empty lines ---",
+"test format::tests::outside_target_is_not_admitted_by_a_shared_prefix ... ok",
+"test format::tests::outside_target_is_dropped_whatever_the_field ... ok",
+"test format::tests::outside_target_drop_leaves_engine_and_escher_records_printing ... ok",
+"test format::tests::outside_target_bridged_record_writes_no_byte ... ok",
+"test format::tests::outside_target_native_record_writes_no_byte ... ok",
+"test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.00s"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T08:09:59Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-07T07-57-42-implement",
+"--marker",
+"2026-10-07-sink-target-allowlist",
+"--n",
+"11",
+"--tail",
+"6"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"11 smoke green",
+"run (592ab6d9): f=$(mktemp); RUST_LOG=trace timeout 10 target/debug/seven_guis_native >\"$f\" 2>&1; s=$?; sink=$(grep -c 'INFO escher_telemetry service.name=seven_guis' \"$f\"); ids=$(grep -c -E 'home-header|home-title|home-subtitle|task-grid|task-card-' \"$f\"); names=$(grep -c -E '7GUIs|Seven benchmark tasks|Temp Converter|Flight Booker|Circle Drawer' \"$f\"); rm -f \"$f\"; echo \"windowed trace: exit $s sink-lines $sink id-lines $ids name-lines $names\"; test \"$s\" -eq 124 && test \"$sink\" -ge 1 && test \"$ids\" -eq 0 && test \"$names\" -eq 0",
+"  exit 0 ✓",
+"  contains 'id-lines 0 name-lines 0' ✓",
+"log $TMPDIR/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/11.log · 62 B · 7d82ff01",
+"--- no anchored failure; last 6 non-empty lines ---",
+"windowed trace: exit 124 sink-lines 1 id-lines 0 name-lines 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T08:09:59Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-07T07-57-42-implement",
+"--marker",
+"2026-10-07-sink-target-allowlist",
+"--n",
+"13",
+"--tail",
+"6"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"13 integration green",
+"run (712f53cb): bash scripts/agent-run.sh run stand",
+"  exit 0 ✓",
+"  contains '\"passed\": 72, \"failed\": 0' ✓",
+"  artifact fresh (target/agent-run/events.jsonl)",
+"log $TMPDIR/andromeda-gate/2026-10-07-sink-target-allowlist/implement-2026-10-07T07-57-42/13.log · 9243 B · 55f556c6",
+"--- no anchored failure; last 6 non-empty lines ---",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_text\", \"test\": \"state_reads_as_the_model_holds_it\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_text\", \"test\": \"the_text_is_deterministic\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_timer\", \"test\": \"ticks_past_the_duration_stop_at_it\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_timer\", \"test\": \"reset_zeroes_elapsed\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_timer\", \"test\": \"delivered_ticks_advance_elapsed_and_progress\", \"outcome\": \"ok\"}",
+"{\"event\": \"run.end\", \"ts\": \"2026-10-07T08:08:26Z\", \"selection\": \"stand\", \"passed\": 72, \"failed\": 0, \"ignored\": 3, \"cargo_exit\": 0, \"outcome\": \"passed\"}"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T08:10:41Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-07-sink-target-allowlist",
+"--run-dir",
+".andromeda/runs/2026-10-07T07-57-42-implement",
+"--marker",
+"2026-10-07-sink-target-allowlist"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 3 · modify 3 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 6 · listed 6 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 41"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 6,
+"listed": 6,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 41,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

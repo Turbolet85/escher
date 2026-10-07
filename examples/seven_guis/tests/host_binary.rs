@@ -4,34 +4,15 @@
 
 #![cfg(not(target_arch = "wasm32"))]
 
-use std::fs;
-use std::path::{Path, PathBuf};
+mod common;
+
 use std::process::{Command, Stdio};
 
+#[cfg(unix)]
+use common::Host;
+use common::{clear, state_dir};
+
 const BINARY: &str = env!("CARGO_BIN_EXE_escher-session");
-
-/// A state directory of this file's own, its name short enough for a socket address.
-fn state_dir(name: &str) -> PathBuf {
-    Path::new(env!("CARGO_TARGET_TMPDIR")).join(name)
-}
-
-/// Removes what a killed earlier run may have left: the socket file and the empty directory.
-fn clear(state_dir: &Path) {
-    let _ = fs::remove_file(state_dir.join("session.sock"));
-    let _ = fs::remove_dir(state_dir);
-}
-
-/// Kills and reaps the host when a failing check still holds it.
-#[cfg(unix)]
-struct Host(std::process::Child);
-
-#[cfg(unix)]
-impl Drop for Host {
-    fn drop(&mut self) {
-        let _ = self.0.kill();
-        let _ = self.0.wait();
-    }
-}
 
 #[cfg(unix)]
 #[test]

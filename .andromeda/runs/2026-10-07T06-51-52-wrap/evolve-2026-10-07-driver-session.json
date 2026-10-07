@@ -198,5 +198,45 @@
 "lines": 540,
 "bytes": 517612
 }
+},
+{
+"tool": "evolve",
+"v": "1.0",
+"sha8": "d8c8c8b2",
+"ts": "2026-10-07T07:26:14Z",
+"argv": [
+"append",
+"--root",
+".",
+"--count",
+"1",
+"--records-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-07T06-51-52-wrap",
+"--marker",
+"2026-10-07-driver-session"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"appended 1 record(s) · friction-log.ndjson lines 540→541 · bytes 517612→519003 · term lf",
+"ts 2026-10-07T07:26:05Z · clock 2026-10-07T07:26:14Z · bound 2026-10-07T07:22:16Z (line 540)",
+"ids 2026-10-07T07:26:05Z-a"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/friction-log.ndjson"
+],
+"before": {
+"lines": 540,
+"bytes": 517612,
+"terminator": "LF",
+"bound": "2026-10-07T07:22:16Z"
+},
+"after": {
+"lines": 541,
+"bytes": 519003
+}
 }
 ]
