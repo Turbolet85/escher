@@ -35,3 +35,6 @@
 - recurrence-despite-learning: "A per-crate `cargo clippy` is not the CI lint leg" (Tier 3, 2026-10-07) — run again at implement, in the session that had just read this line; third recurrence.
 - carried, still unreviewed: "The project's Bash guards refuse a heredoc written to a file and a leading cd" (Tier 3, 2026-10-06) · "A chunk that moves cited source lines stales the masters' file:line citations" (Tier 3, 2026-10-05) · "A grep hit seen through a clipped view is not read" (Tier 3, 2026-10-06) · "Count from the listing you just read, never from the plan's forecast" (Tier 3, 2026-10-05).
 Review with `/andromeda-wrap-session --review` if any should be applied.
+
+## Session End Status
+Completed normally at 2026-10-07 15:40:44

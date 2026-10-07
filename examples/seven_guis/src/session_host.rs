@@ -31,7 +31,8 @@ fn main() -> std::process::ExitCode {
         return ExitCode::from(2);
     };
 
-    // The timer's tick handle lives as long as the session does.
+    // The timer's tick handle lives as long as the session does: its session holds it as the
+    // step that moves the timer's time.
     let mut ticks = None;
     let served = Session::start(slug, || match task {
         LeanTask::Timer => {
@@ -41,8 +42,11 @@ fn main() -> std::process::ExitCode {
         }
         task => stand::boot(task, stand::options(true)),
     })
+    .map(|session| match ticks {
+        Some(handle) => session.with_time(stand::timer_step(handle)),
+        None => session,
+    })
     .and_then(|session| serve(Path::new(state_dir), session));
-    drop(ticks);
 
     match served {
         Ok(()) => ExitCode::SUCCESS,

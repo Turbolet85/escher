@@ -224,6 +224,13 @@ impl<D: Document> Harness<D> {
         }
     }
 
+    /// Dispatch the Apple standard key binding `command` (e.g. `deleteBackward:`) to the
+    /// focused element, as a macOS window delivers it
+    pub fn apple_keybinding(&mut self, command: &str) {
+        self.dispatch(UiEvent::AppleStandardKeybinding(SmolStr::new(command)));
+        self.pump();
+    }
+
     /// Dispatch an IME event
     pub fn ime(&mut self, event: BlitzImeEvent) {
         self.dispatch(UiEvent::Ime(event));

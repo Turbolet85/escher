@@ -1,0 +1,1 @@
+For every element of the four lean stand tasks' snapshots, the 15 controls among them, the id in the snapshot, the `author_id` on its accessibility node and the id a driver `click` accepts are the same string, in both layout modes (`stand_act_ids`).

@@ -82,6 +82,21 @@ pub fn boot_timer(options: HarnessOptions) -> (Harness<DioxusDocument>, TimerTic
     (harness, ticks)
 }
 
+/// The app time one Timer tick stands for, in milliseconds.
+pub const TIMER_TICK_MS: u32 = 100;
+
+/// The Timer's time step for a driver session (`escher_driver::Session::with_time`): handed
+/// the milliseconds asked, it delivers the whole ticks they hold through `ticks` and returns
+/// the milliseconds those ticks stand for. The remainder below one tick is dropped, and the
+/// harness's animation clock stays where it was. The ticks apply on the harness's next pass.
+pub fn timer_step(ticks: TimerTicks) -> impl FnMut(&mut Harness<DioxusDocument>, u32) -> u32 {
+    move |_harness, ms| {
+        let whole = ms / TIMER_TICK_MS;
+        ticks.deliver(u64::from(whole));
+        whole * TIMER_TICK_MS
+    }
+}
+
 fn boot_with_ticks(
     task: LeanTask,
     ticks: TimerTicks,
@@ -100,4 +115,45 @@ struct StandRoot {
 fn stand_root(props: StandRoot) -> Element {
     use_hook(|| provide_context(props.ticks.clone()));
     task_in_shell(props.task.task(), EventHandler::new(|_| {}))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn the_timer_step_maps_milliseconds_onto_whole_ticks() {
+        // Milliseconds asked, milliseconds moved, and what the Timer reads after them.
+        let rows = [
+            (1, 0, Some("Elapsed: 0.0s")),
+            (99, 0, Some("Elapsed: 0.0s")),
+            (100, 100, Some("Elapsed: 0.1s")),
+            (250, 200, Some("Elapsed: 0.2s")),
+            (60_000, 60_000, None),
+        ];
+        assert_eq!(rows.len(), 5);
+        assert_eq!(TIMER_TICK_MS, 100);
+        for incremental in [false, true] {
+            for (row, (asked, moved, elapsed)) in rows.into_iter().enumerate() {
+                let (mut harness, ticks) = boot_timer(options(incremental));
+                let mut step = timer_step(ticks);
+                let clock = harness.time();
+                assert!(
+                    step(&mut harness, asked) == moved,
+                    "incremental={incremental}: row {row}"
+                );
+                assert!(
+                    harness.time() == clock,
+                    "incremental={incremental}: row {row} leaves the animation clock"
+                );
+                if let Some(elapsed) = elapsed {
+                    harness.pump();
+                    assert!(
+                        harness.text_content("#timer-elapsed") == elapsed,
+                        "incremental={incremental}: row {row} reads its elapsed time"
+                    );
+                }
+            }
+        }
+    }
 }

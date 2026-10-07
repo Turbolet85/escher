@@ -21,14 +21,21 @@
 //! What can be asked of the driver, and how it says no, is stated once, as data held in
 //! process: [`VERBS`] lists each verb with its argument and result shapes, [`validate`] turns
 //! a [`Call`] into a typed [`Command`] or a [`Refusal`] before anything runs, and every
-//! refusal names a [`Cause`] with a fixed remedy. Nothing of the schema crosses the socket,
-//! and no command runs through a session yet.
+//! refusal names a [`Cause`] with a fixed remedy.
+//!
+//! A call runs through a session in process: [`Session::run`] checks it, runs its verb on the
+//! held instance, settles the instance and returns an [`Outcome`] — the screen's text for
+//! `snapshot`, and for an acting verb whether the instance went quiet and the diff of the
+//! screen before and after, named by stable element id. Time moves only by `advance`, through
+//! the step a session's caller hands it ([`Session::with_time`]). Nothing of the schema, of a
+//! call or of an outcome crosses the socket: they are passed and returned as values.
 
 #![deny(missing_docs)]
 
 mod client;
 mod command;
 mod error;
+mod execute;
 mod host;
 mod refusal;
 mod schema;
@@ -40,6 +47,7 @@ pub use blitz_test_harness::{Busy, Settled};
 pub use client::{Hello, Started, attach, start, stop};
 pub use command::{ArgValue, Call, Command, Key, validate};
 pub use error::SessionError;
+pub use execute::Outcome;
 pub use host::serve;
 pub use refusal::{CAUSES, Cause, Fault, Refusal};
 pub use schema::{

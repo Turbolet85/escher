@@ -1,0 +1,767 @@
+[
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'act' AND callee_kind = 'fn' AND callee_file LIKE '%escher-driver/src/session.rs' ORDER BY file, line",
+"rows": 7,
+"result": [
+{
+"caller_name": "a_timer_step_returns_with_its_delayed_update_present",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 50
+},
+{
+"caller_name": "a_timer_step_returns_with_its_delayed_update_present",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 57
+},
+{
+"caller_name": "a_timer_step_returns_with_its_delayed_update_present",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 65
+},
+{
+"caller_name": "a_settle_on_an_idle_instance_changes_nothing",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 93
+},
+{
+"caller_name": "a_settle_on_an_idle_instance_changes_nothing",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 115
+},
+{
+"caller_name": "a_write_made_while_mounting_is_present_after_the_step",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 172
+},
+{
+"caller_name": "an_instance_that_never_goes_quiet_ends_at_the_bound",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 328
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, caller_name, file, line FROM calls WHERE callee_name IN ('harness_mut','harness') AND callee_kind = 'fn' AND callee_file LIKE '%escher-driver/src/session.rs' ORDER BY file, line",
+"rows": 51,
+"result": [
+{
+"callee_name": "harness_mut",
+"caller_name": "change",
+"file": "tests/blitz-tests/tests/session_common/mod.rs",
+"line": 46
+},
+{
+"callee_name": "harness",
+"caller_name": "mounted_in_task_shell",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"line": 27
+},
+{
+"callee_name": "harness",
+"caller_name": "a_held_instance_reads_as_a_fresh_boot",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"line": 44
+},
+{
+"callee_name": "harness",
+"caller_name": "the_mount_and_the_viewport_hold_after_commands",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"line": 93
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "the_mount_and_the_viewport_hold_after_commands",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"line": 96
+},
+{
+"callee_name": "harness",
+"caller_name": "the_mount_and_the_viewport_hold_after_commands",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"line": 100
+},
+{
+"callee_name": "harness",
+"caller_name": "the_mount_and_the_viewport_hold_after_commands",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"line": 103
+},
+{
+"callee_name": "harness",
+"caller_name": "each_names_one_element",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 18
+},
+{
+"callee_name": "harness",
+"caller_name": "control_ids",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 26
+},
+{
+"callee_name": "harness",
+"caller_name": "row",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 37
+},
+{
+"callee_name": "harness",
+"caller_name": "an_id_names_the_same_element_after_a_command",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 70
+},
+{
+"callee_name": "harness",
+"caller_name": "an_id_names_the_same_element_after_a_command",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 75
+},
+{
+"callee_name": "harness",
+"caller_name": "an_id_names_the_same_element_after_a_command",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 82
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "a_crud_row_keeps_its_id_across_commands",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 108
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "a_crud_row_keeps_its_id_across_commands",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 109
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "a_crud_row_keeps_its_id_across_commands",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 110
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "a_crud_row_keeps_its_id_across_commands",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 111
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "a_crud_row_keeps_its_id_across_commands",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 112
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "a_crud_row_keeps_its_id_across_commands",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 119
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "a_crud_row_keeps_its_id_across_commands",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 129
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "a_crud_row_keeps_its_id_across_commands",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 130
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "session_host_with_typed_text",
+"file": "tests/blitz-tests/tests/stand_session_quiet.rs",
+"line": 94
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "session_host_with_typed_text",
+"file": "tests/blitz-tests/tests/stand_session_quiet.rs",
+"line": 95
+},
+{
+"callee_name": "harness",
+"caller_name": "session_host_with_typed_text",
+"file": "tests/blitz-tests/tests/stand_session_quiet.rs",
+"line": 97
+},
+{
+"callee_name": "harness",
+"caller_name": "name_of",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 17
+},
+{
+"callee_name": "harness",
+"caller_name": "value_of",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 27
+},
+{
+"callee_name": "harness",
+"caller_name": "focused",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 37
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "a_later_command_reads_what_an_earlier_command_left",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 66
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "a_later_command_reads_what_an_earlier_command_left",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 71
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "a_later_command_reads_what_an_earlier_command_left",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 83
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "a_later_command_reads_what_an_earlier_command_left",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 84
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "a_later_command_reads_what_an_earlier_command_left",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 85
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "a_later_command_reads_what_an_earlier_command_left",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 86
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "a_later_command_reads_what_an_earlier_command_left",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 91
+},
+{
+"callee_name": "harness",
+"caller_name": "focus_left_by_one_command_is_read_by_the_next",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 107
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "focus_left_by_one_command_is_read_by_the_next",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 116
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "focus_left_by_one_command_is_read_by_the_next",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 117
+},
+{
+"callee_name": "harness",
+"caller_name": "timer_time_moves_only_with_delivered_ticks",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 137
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "timer_time_moves_only_with_delivered_ticks",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 143
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "timer_time_moves_only_with_delivered_ticks",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 150
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "timer_time_moves_only_with_delivered_ticks",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 155
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "timer_time_moves_only_with_delivered_ticks",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 162
+},
+{
+"callee_name": "harness",
+"caller_name": "focused",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 30
+},
+{
+"callee_name": "harness",
+"caller_name": "a_timer_step_returns_with_its_delayed_update_present",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 44
+},
+{
+"callee_name": "harness",
+"caller_name": "a_settle_on_an_idle_instance_changes_nothing",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 88
+},
+{
+"callee_name": "harness_mut",
+"caller_name": "a_settle_on_an_idle_instance_changes_nothing",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 91
+},
+{
+"callee_name": "harness",
+"caller_name": "a_settle_on_an_idle_instance_changes_nothing",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 101
+},
+{
+"callee_name": "harness",
+"caller_name": "a_settle_on_an_idle_instance_changes_nothing",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 107
+},
+{
+"callee_name": "harness",
+"caller_name": "a_write_made_while_mounting_is_present_after_the_step",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 175
+},
+{
+"callee_name": "harness",
+"caller_name": "an_instance_that_never_goes_quiet_ends_at_the_bound",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 334
+},
+{
+"callee_name": "harness",
+"caller_name": "an_instance_that_never_goes_quiet_ends_at_the_bound",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 335
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, caller_name, file, line FROM calls WHERE callee_name IN ('serve','start') AND callee_kind = 'fn' AND callee_crate = 'escher-driver' ORDER BY callee_name, file, line",
+"rows": 30,
+"result": [
+{
+"callee_name": "serve",
+"caller_name": "main",
+"file": "examples/seven_guis/src/session_host.rs",
+"line": 8
+},
+{
+"callee_name": "serve",
+"caller_name": "main",
+"file": "examples/seven_guis/src/session_host.rs",
+"line": 43
+},
+{
+"callee_name": "serve",
+"caller_name": "serve",
+"file": "packages/escher-driver/src/host.rs",
+"line": 20
+},
+{
+"callee_name": "serve",
+"caller_name": "crate",
+"file": "packages/escher-driver/src/lib.rs",
+"line": 42
+},
+{
+"callee_name": "serve",
+"caller_name": "crate",
+"file": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"line": 13
+},
+{
+"callee_name": "serve",
+"caller_name": "session_host",
+"file": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"line": 102
+},
+{
+"callee_name": "serve",
+"caller_name": "crate",
+"file": "tests/blitz-tests/tests/stand_session_quiet.rs",
+"line": 12
+},
+{
+"callee_name": "serve",
+"caller_name": "session_host_with_typed_text",
+"file": "tests/blitz-tests/tests/stand_session_quiet.rs",
+"line": 100
+},
+{
+"callee_name": "start",
+"caller_name": "main",
+"file": "examples/seven_guis/src/session_host.rs",
+"line": 35
+},
+{
+"callee_name": "start",
+"caller_name": "the_binary_serves_and_stops",
+"file": "examples/seven_guis/tests/host_binary.rs",
+"line": 23
+},
+{
+"callee_name": "start",
+"caller_name": "the_binary_serves_and_stops",
+"file": "examples/seven_guis/tests/host_binary.rs",
+"line": 36
+},
+{
+"callee_name": "start",
+"caller_name": "start",
+"file": "packages/escher-driver/src/client.rs",
+"line": 62
+},
+{
+"callee_name": "start",
+"caller_name": "crate",
+"file": "packages/escher-driver/src/lib.rs",
+"line": 39
+},
+{
+"callee_name": "start",
+"caller_name": "a_label_outside_the_closed_set_is_refused_before_the_boot_runs",
+"file": "packages/escher-driver/src/session.rs",
+"line": 95
+},
+{
+"callee_name": "start",
+"caller_name": "hold",
+"file": "tests/blitz-tests/tests/session_common/mod.rs",
+"line": 40
+},
+{
+"callee_name": "start",
+"caller_name": "crate",
+"file": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"line": 13
+},
+{
+"callee_name": "start",
+"caller_name": "start_attach_stop_and_each_edge",
+"file": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"line": 46
+},
+{
+"callee_name": "start",
+"caller_name": "start_attach_stop_and_each_edge",
+"file": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"line": 61
+},
+{
+"callee_name": "start",
+"caller_name": "start_attach_stop_and_each_edge",
+"file": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"line": 77
+},
+{
+"callee_name": "start",
+"caller_name": "start_attach_stop_and_each_edge",
+"file": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"line": 88
+},
+{
+"callee_name": "start",
+"caller_name": "session_host",
+"file": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"line": 100
+},
+{
+"callee_name": "start",
+"caller_name": "crate",
+"file": "tests/blitz-tests/tests/stand_session_quiet.rs",
+"line": 12
+},
+{
+"callee_name": "start",
+"caller_name": "nothing_of_the_screen_leaves_the_session_process",
+"file": "tests/blitz-tests/tests/stand_session_quiet.rs",
+"line": 48
+},
+{
+"callee_name": "start",
+"caller_name": "session_host_with_typed_text",
+"file": "tests/blitz-tests/tests/stand_session_quiet.rs",
+"line": 92
+},
+{
+"callee_name": "start",
+"caller_name": "a_later_command_reads_what_an_earlier_command_left",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 60
+},
+{
+"callee_name": "start",
+"caller_name": "a_later_command_reads_what_an_earlier_command_left",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 77
+},
+{
+"callee_name": "start",
+"caller_name": "focus_left_by_one_command_is_read_by_the_next",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 104
+},
+{
+"callee_name": "start",
+"caller_name": "timer_time_moves_only_with_delivered_ticks",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 136
+},
+{
+"callee_name": "start",
+"caller_name": "a_write_made_while_mounting_is_present_after_the_step",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 170
+},
+{
+"callee_name": "start",
+"caller_name": "an_instance_that_never_goes_quiet_ends_at_the_bound",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 325
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'validate' AND callee_kind = 'fn' AND callee_crate = 'escher-driver' ORDER BY file, line",
+"rows": 8,
+"result": [
+{
+"caller_name": "an_admitted_call_becomes_its_command",
+"file": "packages/escher-driver/src/command.rs",
+"line": 376
+},
+{
+"caller_name": "an_unknown_verb_is_refused_by_that_name",
+"file": "packages/escher-driver/src/command.rs",
+"line": 399
+},
+{
+"caller_name": "an_unknown_verb_is_refused_by_that_name",
+"file": "packages/escher-driver/src/command.rs",
+"line": 401
+},
+{
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"line": 513
+},
+{
+"caller_name": "a_call_that_breaks_two_rules_gets_the_first_in_order",
+"file": "packages/escher-driver/src/command.rs",
+"line": 547
+},
+{
+"caller_name": "a_call_that_breaks_two_rules_gets_the_first_in_order",
+"file": "packages/escher-driver/src/command.rs",
+"line": 550
+},
+{
+"caller_name": "every_verb_of_the_table_is_reached_and_names_its_own_spec",
+"file": "packages/escher-driver/src/command.rs",
+"line": 557
+},
+{
+"caller_name": "crate",
+"file": "packages/escher-driver/src/lib.rs",
+"line": 40
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT from_crate, to_crate FROM crate_edges WHERE to_crate = 'escher-driver' OR from_crate = 'escher-driver'",
+"rows": 4,
+"result": [
+{
+"from_crate": "escher-driver",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "escher-driver"
+},
+{
+"from_crate": "escher-driver",
+"to_crate": "blitz-test-harness"
+},
+{
+"from_crate": "blitz-tests",
+"to_crate": "escher-driver"
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, callee_kind, callee_file, COUNT(*) AS sites, COUNT(DISTINCT file) AS files FROM refs WHERE callee_crate = 'escher-driver' AND callee_file LIKE '%/src/%' AND file NOT LIKE regexp_replace(callee_file, '/src/.*$', '/src/%') AND callee_kind <> 'module' GROUP BY 1, 2, 3 ORDER BY sites DESC, callee_name",
+"rows": 19,
+"result": [
+{
+"callee_name": "Session",
+"callee_kind": "type",
+"callee_file": "packages/escher-driver/src/session.rs",
+"sites": 30,
+"files": 8
+},
+{
+"callee_name": "harness_mut",
+"callee_kind": "fn",
+"callee_file": "packages/escher-driver/src/session.rs",
+"sites": 26,
+"files": 6
+},
+{
+"callee_name": "harness",
+"callee_kind": "fn",
+"callee_file": "packages/escher-driver/src/session.rs",
+"sites": 25,
+"files": 5
+},
+{
+"callee_name": "stop",
+"callee_kind": "fn",
+"callee_file": "packages/escher-driver/src/client.rs",
+"sites": 12,
+"files": 4
+},
+{
+"callee_name": "attach",
+"callee_kind": "fn",
+"callee_file": "packages/escher-driver/src/client.rs",
+"sites": 11,
+"files": 4
+},
+{
+"callee_name": "pid",
+"callee_kind": "term",
+"callee_file": "packages/escher-driver/src/client.rs",
+"sites": 10,
+"files": 4
+},
+{
+"callee_name": "start",
+"callee_kind": "fn",
+"callee_file": "packages/escher-driver/src/session.rs",
+"sites": 10,
+"files": 6
+},
+{
+"callee_name": "SessionError",
+"callee_kind": "type",
+"callee_file": "packages/escher-driver/src/error.rs",
+"sites": 9,
+"files": 2
+},
+{
+"callee_name": "start",
+"callee_kind": "fn",
+"callee_file": "packages/escher-driver/src/client.rs",
+"sites": 9,
+"files": 3
+},
+{
+"callee_name": "act",
+"callee_kind": "fn",
+"callee_file": "packages/escher-driver/src/session.rs",
+"sites": 7,
+"files": 1
+},
+{
+"callee_name": "hello",
+"callee_kind": "term",
+"callee_file": "packages/escher-driver/src/client.rs",
+"sites": 6,
+"files": 3
+},
+{
+"callee_name": "serve",
+"callee_kind": "fn",
+"callee_file": "packages/escher-driver/src/host.rs",
+"sites": 6,
+"files": 3
+},
+{
+"callee_name": "child",
+"callee_kind": "term",
+"callee_file": "packages/escher-driver/src/client.rs",
+"sites": 5,
+"files": 3
+},
+{
+"callee_name": "label",
+"callee_kind": "term",
+"callee_file": "packages/escher-driver/src/client.rs",
+"sites": 5,
+"files": 4
+},
+{
+"callee_name": "NoSession",
+"callee_kind": "type",
+"callee_file": "packages/escher-driver/src/error.rs",
+"sites": 3,
+"files": 1
+},
+{
+"callee_name": "Dead",
+"callee_kind": "type",
+"callee_file": "packages/escher-driver/src/error.rs",
+"sites": 2,
+"files": 1
+},
+{
+"callee_name": "served",
+"callee_kind": "term",
+"callee_file": "packages/escher-driver/src/client.rs",
+"sites": 2,
+"files": 1
+},
+{
+"callee_name": "AlreadyRunning",
+"callee_kind": "type",
+"callee_file": "packages/escher-driver/src/error.rs",
+"sites": 1,
+"files": 1
+},
+{
+"callee_name": "NotSettled",
+"callee_kind": "type",
+"callee_file": "packages/escher-driver/src/error.rs",
+"sites": 1,
+"files": 1
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT name, crate, kind, file FROM symbol WHERE name IN ('Outcome','with_time','timer_step','apple_keybinding','TIMER_TICK_MS','execute') AND kind <> 'meta' AND crate IN ('escher-driver','seven_guis','blitz-test-harness')",
+"rows": 0,
+"result": [],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

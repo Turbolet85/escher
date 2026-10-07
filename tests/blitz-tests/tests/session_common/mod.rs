@@ -1,6 +1,6 @@
 //! What the session checks share. For a session held in process: each lean task's label, a
-//! session booted through the stand, and one command that changes what a task shows. For a
-//! session held by a process of its own: a state directory under the test target's temp dir,
+//! session booted through the stand, one command that changes what a task shows, and the
+//! driver's calls with what an acting one returned. For a session held by a process of its own: a state directory under the test target's temp dir,
 //! the host command — this test binary re-run on one ignored child — and a guard over the host
 //! that bounds every wait and kills and reaps a host a failing check still holds. A check
 //! declares `mod session_common;` and reads what it needs. This module holds no test.
@@ -14,7 +14,9 @@ use std::process::{Child, Command, ExitStatus, Stdio};
 use std::thread;
 use std::time::{Duration, Instant};
 
-use escher_driver::Session;
+use blitz_dom::Document;
+use dioxus_native_dom::SnapshotDiff;
+use escher_driver::{ArgValue, Busy, Call, Outcome, Session};
 use seven_guis::stand::{self, LeanTask};
 use seven_guis::tasks::timer::TimerTicks;
 
@@ -29,7 +31,8 @@ pub fn slug(task: LeanTask) -> &'static str {
 }
 
 /// A session on `task`, booted through the stand, with the handle that delivers the timer's
-/// ticks. For any other task nothing reads the handle.
+/// ticks. The timer's session carries the stand's time step over that handle; for any other
+/// task nothing reads the handle and the session has no step.
 pub fn hold(task: LeanTask, incremental: bool) -> (Session, TimerTicks) {
     let (harness, ticks) = match task {
         LeanTask::Timer => stand::boot_timer(stand::options(incremental)),
@@ -39,7 +42,128 @@ pub fn hold(task: LeanTask, incremental: bool) -> (Session, TimerTicks) {
         ),
     };
     let session = Session::start(slug(task), || harness).expect("a lean task's slug is a label");
+    let session = match task {
+        LeanTask::Timer => session.with_time(stand::timer_step(ticks.clone())),
+        _ => session,
+    };
     (session, ticks)
+}
+
+fn call(verb: &str, args: &[(&str, ArgValue)]) -> Call {
+    Call {
+        verb: verb.to_string(),
+        args: args
+            .iter()
+            .map(|(name, value)| (name.to_string(), value.clone()))
+            .collect(),
+    }
+}
+
+/// The driver call that clicks the element `id` names.
+pub fn click(id: &str) -> Call {
+    call("click", &[("id", ArgValue::Text(id.to_string()))])
+}
+
+/// The driver call that types `text` into the element `id` names.
+pub fn type_into(id: &str, text: &str) -> Call {
+    call(
+        "type",
+        &[
+            ("id", ArgValue::Text(id.to_string())),
+            ("text", ArgValue::Text(text.to_string())),
+        ],
+    )
+}
+
+/// The driver call that presses the key `key` names, with shift held when `shift` is true.
+pub fn press(key: &str, shift: bool) -> Call {
+    let key = ("key", ArgValue::Text(key.to_string()));
+    if shift {
+        call("press", &[key, ("shift", ArgValue::Flag(true))])
+    } else {
+        call("press", &[key])
+    }
+}
+
+/// The driver call that moves the app's time forward by `ms` milliseconds.
+pub fn advance(ms: i64) -> Call {
+    call("advance", &[("ms", ArgValue::Number(ms))])
+}
+
+/// What an acting call returned, whichever of the two acting shapes it has.
+pub struct Acted {
+    pub settled: bool,
+    pub busy: Option<Busy>,
+    pub diff: SnapshotDiff,
+    /// What an `advance` reports it moved; `None` for `click`, `type` and `press`.
+    pub advanced_ms: Option<u32>,
+}
+
+impl Acted {
+    /// The ids the diff names added, in its order.
+    pub fn added(&self) -> Vec<&str> {
+        self.diff.added.iter().map(|entry| &*entry.id).collect()
+    }
+
+    /// The ids the diff names removed, in its order.
+    pub fn removed(&self) -> Vec<&str> {
+        self.diff.removed.iter().map(String::as_str).collect()
+    }
+
+    /// The ids the diff names changed, in its order.
+    pub fn changed(&self) -> Vec<&str> {
+        self.diff.changed.iter().map(|entry| &*entry.id).collect()
+    }
+}
+
+/// The ids reading focused in a snapshot of the held instance, and the id the accessibility
+/// tree's focus carries: none when that is the `Window`.
+pub fn focused(session: &Session) -> (Vec<String>, Vec<String>) {
+    let doc = &session.harness().doc;
+    let in_snapshot = doc
+        .snapshot()
+        .nodes()
+        .filter(|node| node.state.focused)
+        .map(|node| node.id.clone())
+        .collect();
+    let tree = doc.accessibility_tree();
+    let in_tree = tree
+        .nodes
+        .iter()
+        .filter(|(id, _)| *id == tree.focus)
+        .filter_map(|(_, node)| node.author_id())
+        .map(str::to_string)
+        .collect();
+    (in_snapshot, in_tree)
+}
+
+/// Runs `call` on `session` through the driver and reads its outcome as an acting one: `None`
+/// for a refused call and for a `snapshot`.
+pub fn act(session: &mut Session, call: &Call) -> Option<Acted> {
+    match session.run(call).ok()? {
+        Outcome::Screen { .. } => None,
+        Outcome::Acted {
+            settled,
+            busy,
+            diff,
+        } => Some(Acted {
+            settled,
+            busy,
+            diff,
+            advanced_ms: None,
+        }),
+        Outcome::Advanced {
+            settled,
+            busy,
+            diff,
+            advanced_ms,
+        } => Some(Acted {
+            settled,
+            busy,
+            diff,
+            advanced_ms: Some(advanced_ms),
+        }),
+    }
 }
 
 /// One command that changes what `task` shows: a click, or for the timer three delivered ticks.

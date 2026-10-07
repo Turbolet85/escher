@@ -39,11 +39,11 @@
       "observed_gap": "a node's id is a slot index plus a version; a remount re-clones nodes into fresh ids, and no semantic id exists — an agent can aim only at coordinates or selectors.",
       "verification": {
         "method": "integration",
-        "acceptance": "For each stand element, the id in the snapshot, the id on its accessibility node, and the id the driver accepts to act on it are identical.",
-        "ref": null,
-        "status": "planned"
+        "acceptance": "For every element of the four lean stand tasks' snapshots, the 15 controls among them, the id in the snapshot, the `author_id` on its accessibility node and the id a driver `click` accepts are the same string, in both layout modes (`stand_act_ids`).",
+        "ref": "tests/blitz-tests/tests/stand_act_ids.rs::the_snapshot_the_accessibility_tree_and_the_driver_read_one_id",
+        "status": "implemented"
       },
-      "chunk": null,
+      "chunk": "2026-10-07-act-by-id",
       "notes": "2026-10-06 (2026-10-06-accessibility-tree-identity, phase P5): not claimed — this chunk delivers only the accessibility-tree leg (every stand element's AccessKit node carries its stable id as `author_id`, through `Document::accessibility_tree`, checked against `DioxusDocument::element_id`). The acceptance also requires the id in the snapshot (v010-04, Epoch 3) and the id the driver accepts (Epoch 4), and neither surface exists at HEAD, so no assertion this chunk can write proves the three-way identity. The cap stays pooled for the chunk that lands the last of the three legs.\n\n2026-10-06 (2026-10-06-snapshot-model, phase P5): not claimed — this chunk adds the snapshot leg (every snapshot node's id equals its element's `element_id` and its AccessKit `author_id`, checked by `stand_snapshot`), so two of the three legs now exist. The id the driver accepts (Epoch 4) does not exist at HEAD, so the three-way identity is still unprovable; the cap stays pooled for the chunk that lands the driver leg."
     },
     {
@@ -81,11 +81,11 @@
       "observed_gap": "no mutation stream exists, changed nodes are never drained, and has_changes() answers inverted.",
       "verification": {
         "method": "integration",
-        "acceptance": "After a stand action, the returned diff names exactly the nodes whose snapshot changed and no others; an action that changes nothing returns an empty diff.",
-        "ref": null,
-        "status": "planned"
+        "acceptance": "After a driver action on each lean stand task, the returned `added`, `removed` and `changed` equal `Snapshot::diff` of the snapshots taken before and after it, name exactly the nodes stated per step and no others, are equal across the two layout modes, and are empty for an action that changes nothing (`stand_act_diff`).",
+        "ref": "tests/blitz-tests/tests/stand_act_diff.rs::a_click_on_the_counter_returns_the_value_it_rewrote · ::a_choice_on_the_flight_booker_returns_the_control_it_enabled · ::an_advance_on_the_timer_returns_the_elapsed_time · ::create_returns_the_new_row_added_and_delete_returns_it_removed · ::a_click_on_an_element_that_reacts_to_nothing_returns_settled_with_an_empty_diff",
+        "status": "implemented"
       },
-      "chunk": null,
+      "chunk": "2026-10-07-act-by-id",
       "notes": "2026-10-07 (2026-10-07-change-tracking-and-diff, phase P5): not claimed, on the operator's word at the P5 review — the requirement says \"the driver returns exactly the nodes that changed\" (requirements.md:12) and the route lists v010-06 on \"Act by id\" as well (working-route.md:58), so the cap completes there. This chunk builds its legs and proves them at its wrap: the truthful change flag (`BaseDocument::has_changes` reading true while the changed set is non-empty), the drain (`BaseDocument::take_changed_nodes`), and the diff (`Snapshot::diff`, naming by stable element id exactly the nodes whose reading differs between two snapshots, empty for a step that changes nothing), on the four lean stand tasks and in-file fixtures in both layout modes (`stand_diff`). The cap stays pooled for the \"Act by id\" entry, whose driver act returns this diff unchanged and claims it."
     },
     {
@@ -121,11 +121,12 @@
       "observed_gap": "the test harness clicks at a box's centre, by selector or coordinates, and a check must pump or wait on its own.",
       "verification": {
         "method": "integration",
-        "acceptance": "Every driver action on the stand is addressed by an element's stable id alone, with no coordinates or selectors, and takes effect on that element.",
-        "ref": null,
-        "status": "planned"
+        "acceptance": "On the four lean stand tasks, every driver action that names an element (`click`, `type`) names it by its stable id alone, through `Session::run`, with no coordinate and no selector in the call, and takes effect on that element: for each control with an effect at boot the returned diff equals the diff a selector click yields on a twin instance and is not empty (`stand_act_ids`). `press` acts on the element an id-addressed action focused (`stand_act_keys`), and `advance` names no element.",
+        "ref": "tests/blitz-tests/tests/stand_act_ids.rs::an_id_addressed_click_has_the_effect_of_a_selector_click_on_a_twin · ::the_snapshot_the_accessibility_tree_and_the_driver_read_one_id · tests/blitz-tests/tests/stand_act_keys.rs::tab_and_shift_tab_return_exactly_the_controls_whose_focus_moved · ::backspace_deletes_one_character_of_what_the_driver_typed",
+        "status": "implemented"
       },
-      "chunk": null
+      "chunk": "2026-10-07-act-by-id",
+      "notes": "2026-10-07 (2026-10-07-act-by-id, phase P5): claimed, on the operator's word at the plan review. The concrete form reads \"every driver action that names an element\" where the outcome reads \"every driver action\": the verb table gives `press` a key and `advance` a duration and neither an id (schema.rs, the command-and-refusal-schema chunk), so `click` and `type` are the actions that address an element, and they do it by stable id alone. `press` acts on the element an id-addressed action focused; `advance` names none. Commands run in process through `Session::run` (the operator, 2026-10-07, at the P4 forks); the agent-facing surfaces are v010-12's and v010-13's."
     },
     {
       "id": "v010-10",
@@ -134,12 +135,12 @@
       "observed_gap": "the test harness clicks at a box's centre, by selector or coordinates, and a check must pump or wait on its own.",
       "verification": {
         "method": "e2e",
-        "acceptance": "A stand flow whose action triggers a delayed update (the timer task) passes with the post-action state already present when the action returns, and no sleep or wait appears anywhere in the check.",
-        "ref": null,
-        "status": "planned"
+        "acceptance": "On a held Timer session, a driver `click` on `timer-reset` followed by a driver `advance` of 300 ms returns `settled` with `timer-elapsed` already reading `Elapsed: 0.3s` in the returned diff, and the check holds no sleep, no clock read and no pass of its own (`stand_act_timer`); the check is red when the settle is removed from the step.",
+        "ref": "tests/blitz-tests/tests/stand_act_timer.rs::a_reset_then_an_advance_returns_settled_with_the_delayed_update_present",
+        "status": "implemented"
       },
-      "chunk": null,
-      "notes": "2026-10-07 (2026-10-07-settle-detection, phase P5): not claimed — the operator, 2026-10-07, at the plan review. The requirement says ACTING returns once settled and the method is e2e, while what the chunk builds, `Session::act`, takes an in-process closure: no action an agent can run (the ground v010-04 and v010-06 wait on). The chunk's Timer check (`stand_settle`, a step that clicks Reset and delivers three ticks) is predicted green before the fix, so it cannot show the capability arriving; it stays as a test of the in-process step. In `escher-session` nobody delivers the Timer's ticks, so an agent meets no delayed update yet. Carried for the route at the wrap: the driver leg — a driver action on the Timer returning settled with the delayed update present.\n\n2026-10-07 (2026-10-07-settle-detection, wrap): premise correction to the note above — its second reason, that the chunk's Timer check \"is predicted green before the fix, so it cannot show the capability arriving\", was measured false at implement. In the order the check uses (a click on Reset, then three delivered ticks, nothing after) the step reads `Elapsed: 0.0s` where the check asserts `0.3s`, in both layout modes: red without the settle `Session::act` makes; it is green only when the delivery precedes the click (escher-0.1.0/chunks/2026-10-07-settle-detection/evidence/red-first.md, readings 3, 3a, 3b). The red is the absence of any pass after the delivery — a hand pump also turns it green — not a case one pump fails to cover. The other two reasons stand as written: `Session::act` takes an in-process closure, no action an agent can run, and in `escher-session` nobody delivers the Timer's ticks. The cap stays unclaimed: the decision is the operator's and was not reopened at this wrap. Its in-process leg is built and proven (`Harness::settle`, `Session::act`, `stand_settle`); its driver leg is a CARRY on the route entry \"Act by id\", and the question it waits on — how an agent moves the Timer's time over the wire — a CARRY on \"Command and refusal schema\"."
+      "chunk": "2026-10-07-act-by-id",
+      "notes": "2026-10-07 (2026-10-07-settle-detection, phase P5): not claimed — the operator, 2026-10-07, at the plan review. The requirement says ACTING returns once settled and the method is e2e, while what the chunk builds, `Session::act`, takes an in-process closure: no action an agent can run (the ground v010-04 and v010-06 wait on). The chunk's Timer check (`stand_settle`, a step that clicks Reset and delivers three ticks) is predicted green before the fix, so it cannot show the capability arriving; it stays as a test of the in-process step. In `escher-session` nobody delivers the Timer's ticks, so an agent meets no delayed update yet. Carried for the route at the wrap: the driver leg — a driver action on the Timer returning settled with the delayed update present.\n\n2026-10-07 (2026-10-07-settle-detection, wrap): premise correction to the note above — its second reason, that the chunk's Timer check \"is predicted green before the fix, so it cannot show the capability arriving\", was measured false at implement. In the order the check uses (a click on Reset, then three delivered ticks, nothing after) the step reads `Elapsed: 0.0s` where the check asserts `0.3s`, in both layout modes: red without the settle `Session::act` makes; it is green only when the delivery precedes the click (escher-0.1.0/chunks/2026-10-07-settle-detection/evidence/red-first.md, readings 3, 3a, 3b). The red is the absence of any pass after the delivery — a hand pump also turns it green — not a case one pump fails to cover. The other two reasons stand as written: `Session::act` takes an in-process closure, no action an agent can run, and in `escher-session` nobody delivers the Timer's ticks. The cap stays unclaimed: the decision is the operator's and was not reopened at this wrap. Its in-process leg is built and proven (`Harness::settle`, `Session::act`, `stand_settle`); its driver leg is a CARRY on the route entry \"Act by id\", and the question it waits on — how an agent moves the Timer's time over the wire — a CARRY on \"Command and refusal schema\".\n\n2026-10-07 (2026-10-07-act-by-id, phase P5): claimed, on the operator's word at the plan review, where the claim was named as the contestable one of four. Both reasons the cap stood on are answered by this chunk's plan: the action is a typed driver command run through `Session::run`, no in-process closure, and time moves through the `advance` verb over a step the session's caller supplies, which the stand host hands its Timer session. The command still runs in process (the operator, 2026-10-07, at the P4 forks): no agent-facing surface reaches it yet, and the shell-scriptable flow is v010-12's. The method stays `e2e` as route classified it, unchanged here; what the check exercises is the driver's own input path — real pointer events through hit-testing and the engine's dispatch on the real Timer control — not a call into the handler."
     },
     {
       "id": "v010-11",

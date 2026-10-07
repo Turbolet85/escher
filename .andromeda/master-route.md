@@ -32,3 +32,4 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 2026-10-07-sink-target-allowlist · complete · Sink target allowlist — escher's log sink drops every record from a target outside its allowlist; session host and windowed stand print no id or name at trace · → escher-0.1.0/chunks/2026-10-07-sink-target-allowlist/
 2026-10-07-settle-detection · complete · Settle detection — UI quiescence across render, layout, timers and pending loads; delayed stand update passes with no sleep · → escher-0.1.0/chunks/2026-10-07-settle-detection/
 2026-10-07-command-and-refusal-schema · complete · Command and refusal schema — one verb set, argument and result shapes, malformed arguments refused, refusal causes each with a remedy · → escher-0.1.0/chunks/2026-10-07-command-and-refusal-schema/
+2026-10-07-act-by-id · pending · Act by id — driver actions addressed by stable id, returning after settle with the diff · → escher-0.1.0/chunks/2026-10-07-act-by-id/

@@ -1,0 +1,1 @@
+After a driver action on each lean stand task, the returned `added`, `removed` and `changed` equal `Snapshot::diff` of the snapshots taken before and after it, name exactly the nodes stated per step and no others, are equal across the two layout modes, and are empty for an action that changes nothing (`stand_act_diff`).

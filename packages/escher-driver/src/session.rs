@@ -15,6 +15,10 @@ pub(crate) fn valid_label(label: &str) -> bool {
             .all(|byte| byte.is_ascii_lowercase() || byte.is_ascii_digit() || byte == b'-')
 }
 
+/// A caller's way to move its app's time: handed the held instance and the milliseconds asked,
+/// it returns the milliseconds the app actually moved.
+pub(crate) type TimeStep = Box<dyn FnMut(&mut Harness<DioxusDocument>, u32) -> u32>;
+
 /// One headless app instance, held for as long as the session lives.
 ///
 /// The caller boots the instance; the session owns it and hands it out between commands, so
@@ -22,7 +26,8 @@ pub(crate) fn valid_label(label: &str) -> bool {
 /// Anything else the app needs alive beside its instance stays the caller's to hold.
 pub struct Session {
     label: String,
-    harness: Harness<DioxusDocument>,
+    pub(crate) harness: Harness<DioxusDocument>,
+    pub(crate) time: Option<TimeStep>,
 }
 
 impl Session {
@@ -42,7 +47,22 @@ impl Session {
         Ok(Session {
             label: label.to_string(),
             harness: boot(),
+            time: None,
         })
+    }
+
+    /// The session, carrying `step` as its way to move the app's time.
+    ///
+    /// An app moves time in its own units, so the step is the caller's: it is handed the held
+    /// instance and the milliseconds an `advance` asks for, moves the app by as much of that
+    /// as its units hold, and returns the milliseconds it actually moved. A session started
+    /// without one has no way to move time, and refuses `advance`.
+    pub fn with_time(
+        mut self,
+        step: impl FnMut(&mut Harness<DioxusDocument>, u32) -> u32 + 'static,
+    ) -> Session {
+        self.time = Some(Box::new(step));
+        self
     }
 
     /// The label the session was started with.

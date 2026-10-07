@@ -1,0 +1,1 @@
+On a held Timer session, a driver `click` on `timer-reset` followed by a driver `advance` of 300 ms returns `settled` with `timer-elapsed` already reading `Elapsed: 0.3s` in the returned diff, and the check holds no sleep, no clock read and no pass of its own (`stand_act_timer`); the check is red when the settle is removed from the step.

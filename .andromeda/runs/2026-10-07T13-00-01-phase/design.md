@@ -1,0 +1,35 @@
+# design extract
+
+## Relevance
+partial — the chunk renders nothing and touches no style value or markup (scope §Surfaces and contracts touched, the design-system line), so no colour, radius, spacing, depth or icon value binds it; what binds is design-system §Motion (Animation runtime: the animating set under settle, the controlled animation clock that `advance` may move) and §Typography (Loading: the stand's bundled font, which fixes the bounds a diff reports). §Brand Identity, §Anti-Patterns, §Self-Validation Protocol, §Design Decisions Log and §Motion's expression level read `NO RECORDED INTENT` and contribute nothing.
+
+## Constraints
+- design-system §Motion (Animation runtime) requires a settle to answer for every member of the animating set the same way — CSS animations and transitions, canvases, animating sub-documents, custom widgets, scroll animations, scrollbar fades: none holds it open, none is waited on or advanced, and it returns `Settled` with `animating` reading the document's flag. An acting verb that "returns after settle" keeps that: an animating document is not a `busy` class and delays no return. Whether the executor's mapping of settle onto the schema's `settled` · `busy` result preserves it is research's question.
+- design-system §Motion (Animation runtime) requires animation time to be read only through the harness's controlled clock, advanced by tick, and never advanced by settle. So `click`, `type` and `press` move no animation time; `advance` is the one verb that could, and the scope's CARRY 7 leaves open "whether the harness's own clock moves with it" — the plan states the answer, it is not left implicit.
+- design-system §Motion (This project's values) records the engine's own motion durations — smooth scroll 300 ms on a cubic ease-in-out curve, overlay scrollbar fade 500 ms delay then 200 ms linear. If `advance` moves the harness clock, those progress under it within the verb's 1 to 60000 ms range; whether a scroll animation in flight changes the bounds a snapshot reads, and so a diff, is research's question.
+- design-system §Motion (This project's values) records transitions and animations as observed absent in the seven_guis styles. The Timer's delayed update is therefore app time delivered by ticks, not a design-system motion value, and a stand proof here exercises no CSS motion; a claim about an action on an animating screen needs a minimal fixture beside the stand. Whether the stand's styles are still motion-free at HEAD is research's question.
+- design-system §Typography (Loading) requires the seven_guis headless stand to register the bundled DejaVu Sans for every generic with system fonts off, and records that without loaded fonts text measures 0x0 and font-dependent assertions pass vacuously. A diff carries bounds, so every new check that reads a diff boots through the stand's own font context and skips on no font condition.
+- design-system §Color Palette (Token sets) records colour tokens and CSS custom properties as observed absent in the engine and integration crates: there is no token for this chunk to cite, and the executor, the session and the host add no colour, size or style literal of their own.
+
+## Patterns to follow
+- Boot every proof through the stand's pinned font context (`build_single_font_ctx` through the harness options), as design-system §Typography (Loading) records for the headless stand — never a per-check font setup.
+- Move time only through the harness's controlled clock (the tick), as design-system §Motion (Animation runtime) records for the test harness — no wall clock and no sleep stands in for animation time.
+- Report "still animating" through settle's existing `animating` reading, as design-system §Motion (Animation runtime) records — the executor adds no second signal for motion.
+- Treat the stand's recorded values as fixed inputs: design-system §Color Palette (Core Colors, the seven_guis row), §Border Radius (the seven_guis row) and §Spacing (untokenized values, seven_guis) stay as recorded; an action's effect is read through the snapshot's fields, not through a painted value.
+
+## Anti-patterns to avoid
+- Waiting on, or advancing, an animation inside the settle of `click`, `type` or `press` — design-system §Motion (Animation runtime) requires that no animating member is waited on or advanced.
+- Asserting a diff's bounds in a build or boot where no font is loaded — design-system §Typography (Loading) records that such an assertion passes vacuously on 0x0 text.
+- Changing a stand style value or adding a custom property as a side effect of making an element actionable — design-system §Color Palette (Token sets) records no project token set to extend, and the scope touches no style value.
+
+## Contract bindings
+- design ↔ tests: design-system §Motion (Animation runtime) — the controlled clock and the settle answer — ties to test-plan §3 (settle, the stand checks) and the determinism rule the scope cites (no sleep); design-system §Typography (Loading) ties to the same rule's "no font skip".
+- design ↔ architecture: the animating set of design-system §Motion (Animation runtime) is the set architecture §Standard Contracts (Driver session, settle) answers for; a change to what `advance` does with the harness clock is recorded in both.
+- design ↔ a11y: a `click` or a `press` of Tab moves focus, and the focus colours recorded in design-system §Color Palette (Border Progression) are painted a11y surface (SC 1.4.3 · 2.4.3); the chunk changes no painted value, so the token-contrast binding is not triggered. The `accessibility` feature's reach to the windowed stand binary (scope CARRY 5) is a11y-plan's question, not a design one.
+- design ↔ wrap drift: design-system cites coordinates in files this scope lists as touched or possibly touched — `examples/seven_guis/src/stand.rs:52-54` (§Typography, Loading), `packages/blitz-dom/src/node/text.rs:82` (§Typography, the text-input editor row), `packages/blitz-test-harness/src/harness.rs:140-155` and `src/settle.rs:151-186`, `tests/blitz-tests/tests/stand_settle.rs:279-307` (§Motion, Animation runtime). An edit that moves those lines stales the citation; the wrap's design detector re-reads them.
+
+## Acceptance criteria contributions
+- The chunk's change set adds or alters no colour, radius, spacing, shadow or font value in the stand's styles or in any stylesheet (per design-system §Color Palette (Core Colors)).
+- An acting verb (`click`, `type`, `press`) run on a screen with a running animation returns without waiting on it and leaves animation time where it was (per design-system §Motion (Animation runtime)).
+- The plan states whether `advance` moves the harness's animation clock, and a check shows animation time moved by that verb only, by no more than the `advanced_ms` it reports (per design-system §Motion (Animation runtime)).
+- Every new check that reads bounds from a diff boots through the stand's bundled-font context and asserts on non-zero text bounds, in both layout modes (per design-system §Typography (Loading)).
