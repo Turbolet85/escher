@@ -1,15 +1,15 @@
 # escher-driver
 
-_Crate notes. Primary source: `.andromeda/architecture.md` §Standard Contracts Driver session, §Occupied Resources and [Driver session]; the checks' contract is test-plan §3 → Session lifecycle (`.andromeda/registries/contracts/test-plan/session-lifecycle.md`)._
+_Crate notes. Primary source: `.andromeda/architecture.md` §Standard Contracts Driver session, §Occupied Resources and [Driver session]; the lifecycle checks' contract is test-plan §3 → Session lifecycle (`.andromeda/registries/contracts/test-plan/session-lifecycle.md`); the schema's input rules are security-plan §Input Validation (the Driver command schema row)._
 
 ## Responsibility
-The driver's first piece (unpublished, no `[features]`, no binary): a **session** — one headless app instance held by one process while commands arrive. It is app-agnostic: the caller supplies the boot, and the crate names no app and no stand type. A step on the held instance settles in process (`Session::act`). No verb set, settle verb on the socket, act by id, CLI JSON or MCP tool is built yet — those are later route entries.
+The driver's first pieces (unpublished, no `[features]`, no binary): a **session** — one headless app instance held by one process while commands arrive — and the **command and refusal schema**, the one definition of what can be asked of the driver and of how it says no. It is app-agnostic: the caller supplies the boot, and the crate names no app and no stand type. A step on the held instance settles in process (`Session::act`). The schema is `'static` data held in process: it is stated and validated, and **executed nowhere** — nothing runs a `Command`, no `Session` method takes one and nothing of it crosses the socket. A verb or a settle verb on the socket, act by id, the detection of the screen-level refusal causes, CLI JSON and an MCP tool are later route entries.
 
 ## Key integrations
 
 ### Consumes from
 - `blitz-test-harness` (`Harness`) and `dioxus-native-dom` (`DioxusDocument`), with no feature named on either — it reads no snapshot, so it enables no accessibility code. The entry that first reads the snapshot through a session decides the feature.
-- `std` only for the socket (`std::os::unix::net`), the spawn and the file modes. No `tracing`, no env read, no default state location.
+- `std` only for the socket (`std::os::unix::net`), the spawn and the file modes. No `tracing`, no env read, no clock read, no default state location, and no serialization crate — the schema is Rust data; producing JSON from it is the serving surface's step.
 
 ### Publishes to
 - `Session::start(label, boot)` — the label is 1 to 32 bytes of `a-z`, `0-9`, `-`, checked BEFORE the boot runs (`InvalidLabel`, nothing booted); the boot runs once on the calling thread; `label()`, `harness()`, `harness_mut()`.
@@ -17,12 +17,17 @@ The driver's first piece (unpublished, no `[features]`, no binary): a **session*
 - `serve(state_dir, session)` — hosts one session until a `stop` request, on the calling thread (the instance is not `Send`): creates the state directory `0700` (a present one open to group or others is `StateDirNotPrivate`), binds `session.sock` and sets it `0600`, replaces a socket nothing answers on, reads `AlreadyRunning` when one answers, and on `stop` drops the session and removes the socket file and the directory — non-recursively, nothing else.
 - `start(state_dir, host, ready)` → `Started { child, hello }` · `attach(state_dir)` → `Hello { pid, label, served }` · `stop(state_dir)` (waits up to 5 s for the directory to go).
 - `SessionError`: `AlreadyRunning` · `NoSession` · `Dead` · `HostExited(code)` · `Timeout` · `Protocol` · `InvalidLabel` · `StateDirTooLong` · `StateDirNotPrivate` · `Unsupported` · `Io(kind)` · `NotSettled(Busy)` — fixed messages (the last two append a kind or class name), never a path, label, id or value.
-- Consumed by seven_guis (the `escher-session` host binary, native target only) and by blitz-tests (dev-dependency).
+- `VERBS` — the verb table, five verbs in order: `snapshot` (no argument; result `text`), `click` (`id`), `type` (`id`, `text`), `press` (`key`, optional `shift`), `advance` (`ms`); each a `VerbSpec { name, help, args, fields }`; `verb(name)` finds one by its exact name only. Argument kinds and bounds (`ArgKind`): `id` 1 to `MAX_ID_BYTES` (1024) bytes of text · `text` 0 to `MAX_TEXT_BYTES` (4096) bytes · `key` one of the twelve `KEY_NAMES` · `flag` · `milliseconds` 1 to `MAX_MILLISECONDS` (60000). The acting verbs' result: `settled`, `busy` (one of `BUSY_CLASSES`, only when not settled), `added`, `removed`, `changed` (nodes carry the `NODE_FIELDS`); `advance` adds `advanced_ms`. A step that ran and did not go quiet is a result (`settled: false`), not a refusal.
+- `validate(call: &Call) -> Result<Command, Refusal>` — a `Call` is a verb name and named `ArgValue`s (`Text` · `Number` · `Flag`); it receives no `Session`, so a refused call changes nothing. One answer per call, the first failure in this order: the verb by exact name (`unknown-verb`), then the call's arguments in the order passed (a name the verb lacks, a name passed twice), then the verb's arguments in the schema's order (missing, wrong kind, outside its bound) — the last five are `malformed` with a `Fault` naming the rule. `Command` is `Snapshot` · `Click` · `Type` · `Press` · `Advance`, and `Command::spec()` is its verb's row.
+- `Refusal` — a `Cause` and, only beside `malformed`, a `Fault`. `CAUSES` is closed at eight: `unknown-verb` · `malformed` · `not-found` · `stale` · `disabled` · `covered` · `off-screen` · `time-unavailable`, each with a fixed `name()`, `meaning()` and `remedy()`. None of `Cause`, `Fault`, `Refusal` has a `String` field: a refusal holds nothing a call supplied. `validate` returns the first two causes only; nothing detects the other six yet.
+- Consumed by seven_guis (the `escher-session` host binary, native target only) and by blitz-tests (dev-dependency); neither uses the schema yet.
 
 ## Internal conventions
 - The wire (`wire.rs`, crate-private, versioned `v1`) is one request line and one reply line per connection: `hello v1` → `ok v1 pid= label= served=`, `stop v1` → `ok v1 stopping`, another version of a known word → `refused version`, anything else → `refused malformed`. Requests are bounded at 64 bytes, replies at 128, each read and write at 2 s. **Nothing of the screen crosses it** — the first request that carries an id, a name, a value, snapshot text or a diff is a new crossing question for the operator.
 - `served` counts every request answered, refusals included; a refusal or a broken connection changes nothing; a `stop` takes effect once its reply is written.
-- Unix only: on other targets `serve`, `start`, `attach` and `stop` return `Unsupported`; a `Session` held in process works everywhere.
+- Unix only: on other targets `serve`, `start`, `attach` and `stop` return `Unsupported`; a `Session` held in process works everywhere, and the schema's three modules (`command`, `refusal`, `schema`) carry no `cfg` gate.
+- The schema is the one table every later surface reads — the actions, the span's cause field, the CLI, the MCP tools, the self-description: a later entry ADDS its verbs to `VERBS` at its own promotion, never states a second table. A cause's texts are fixed and reworded only with a recorded reason.
+- No panic path on anything a call supplies: no `unwrap`, `expect`, `panic!`, `unreachable!` or index in `validate`.
 
 ## Crate-specific gotchas
 - A Unix socket address leaves about a hundred bytes for the whole path (108 on Linux, 104 on macOS): keep a state directory's name short; an over-long one is `StateDirTooLong`.
@@ -30,7 +35,11 @@ The driver's first piece (unpublished, no `[features]`, no binary): a **session*
 - `start` does not check that the answering pid is the child it spawned.
 - The `Io` message is spelled "input or output" — "I/O" holds a `/`, and the messages are asserted to hold none.
 - A test's working directory is its package: build a check's state directory from `env!("CARGO_TARGET_TMPDIR")`, never from a relative path.
+- Two `Command`s meet at the crate root: the schema's `Command`, and the `std::process::Command` that `start` takes. A grep for `Command` over the crate reads both.
+- `Command`, `Call` and `ArgValue` derive `Debug`, which prints the id and the typed text they hold: never field one with `?` in a span or a log, and never field an argument by its schema name (of the names only `text` is in the sink's scrub set).
+- In `command.rs` an assertion over a call carries a row index only (`assert!(a == b, "row {row}")`), never `assert_eq!` on a call or a command — a failing leg's log is uploaded as a CI artifact.
+- `advance` is stated and not wired: the step that moves an app's time is the session's caller's to supply ("Act by id"), and `time-unavailable` is the cause for a session with none. No driver command waits on a load (the operator, 2026-10-07).
 
 ## Tests
-- 13 unit tests (`wire.rs` 8 · `session.rs` 2 · `error.rs` 3) — they need no app.
+- 25 unit tests (`wire.rs` 8 · `session.rs` 2 · `error.rs` 3 · `refusal.rs` 3 · `schema.rs` 4 · `command.rs` 5) — they need no app. The schema's twelve state every table in the test and assert its row count; four mutation controls are recorded in `escher-0.1.0/chunks/2026-10-07-command-and-refusal-schema/evidence/controls.md`.
 - Over the stand, in blitz-tests: `stand_session_state` · `_ids` · `_fresh` (a session held in process), `stand_settle` (`act`: a Timer step returning with its delayed update present, an idle step changing nothing, `NotSettled(Render)` at the bound) and `stand_session_lifecycle` · `_quiet` (a host process: the test binary re-run on an `#[ignore]` child); seven_guis' `host_binary` drives the real `escher-session` binary, and `host_log` reads its stderr at `RUST_LOG=trace`. `stand_session_quiet`'s host installs no log sink, so it proves nothing about a host that does — `host_log` is the check that does.

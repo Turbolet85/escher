@@ -1,0 +1,117 @@
+[
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "1f4f95b3",
+"ts": "2026-10-07T12:57:00Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-07-command-and-refusal-schema",
+"--run-dir",
+".andromeda/runs/2026-10-07T12-34-00-wrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"flip master-route.md:34 - 2026-10-07-command-and-refusal-schema pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "1f4f95b3",
+"ts": "2026-10-07T12:57:00Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-07-command-and-refusal-schema",
+"--date",
+"2026-10-07",
+"--run-dir",
+".andromeda/runs/2026-10-07T12-34-00-wrap",
+"--dry-run"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"pin :60 strip CARRY: 755ch \"CARRY: time and loads over the wire (fro\"",
+"pin next markerless :62 holds CARRY:×7",
+"60 · 2026-10-07-command-and-refusal-schema · strip 1 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 60,
+"marker": "2026-10-07-command-and-refusal-schema",
+"blocks": 1,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "1f4f95b3",
+"ts": "2026-10-07T12:57:06Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-07-command-and-refusal-schema",
+"--date",
+"2026-10-07",
+"--run-dir",
+".andromeda/runs/2026-10-07T12-34-00-wrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"pin :60 strip CARRY: 755ch \"CARRY: time and loads over the wire (fro\"",
+"pin next markerless :62 holds CARRY:×7",
+"60 · 2026-10-07-command-and-refusal-schema · strip 1 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.1.0/route-archive.md",
+"./escher-0.1.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 60,
+"marker": "2026-10-07-command-and-refusal-schema",
+"blocks": 1,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]

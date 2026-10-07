@@ -13,8 +13,8 @@ A redirect to `$TMPDIR/x.log` expands to `/x.log` and fails with "Permission den
 
 ---
 
-## 2026-10-07 — A per-crate `cargo clippy --all-targets` is not the CI lint leg
-`cargo clippy -p {crate} --all-targets -- -D warnings` compiles test code the CI form never does — `cargo clippy --workspace --locked -- -D warnings`, no `--all-targets` — and fails on a `needless_return` in blitz-dom's own test module, an upstream lint that is nobody's red. To lint a chunk's new code the way CI will, run the leg itself (`bash .github/scripts/ci-leg.sh clippy`, or `fast`); a per-crate `--all-targets` run is a different, stricter check, and its failure says nothing about the gate.
+## 2026-10-07 — A per-crate `cargo clippy` is not the CI lint leg
+`cargo clippy -p {crate} -- -D warnings`, with or without `--all-targets`, builds blitz-dom under that one crate's feature set, and a crate that does not turn on blitz-dom's `file-input` feature gets a `needless_return` in blitz-dom's library code: the `return` stands just before a block gated on that feature, so with the feature off it is the function's last statement. The CI form, `cargo clippy --workspace --locked -- -D warnings`, unifies features across the workspace, turns `file-input` on and is green — an upstream lint that is nobody's red. To lint a chunk's new code the way CI will, run the leg itself (`bash .github/scripts/ci-leg.sh clippy`, or `fast`); for a quick compile check of one crate use `cargo test -p {crate} --locked`. A per-crate clippy run is a different check, and its failure says nothing about the gate. [corrected 2026-10-07: the cause is the feature set, not `--all-targets` or test code — the same red reads without `--all-targets`, and blitz-dom alone lints clean with `file-input` on]
 
 ---
 

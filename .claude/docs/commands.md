@@ -55,7 +55,7 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 - `just seven_guis` — the 7GUIs stand (`cargo run --release --package seven_guis --bin seven_guis_native`)
 - `RUST_LOG=info just seven_guis` — the stand with escher-telemetry's stderr log lines visible (default filter `warn`)
 - `cargo run -p seven_guis --bin escher-session -- <counter|flight-booker|timer|crud> <state-dir>` — host one lean task headlessly as a driver session (unix only; exit 0 after it is stopped, 1 on an error, 2 on any other argv; stderr only); it answers `hello` and `stop` on `<state-dir>/session.sock` until stopped — no CLI drives it yet
-- `cargo test -p escher-driver --locked --lib` · `cargo test -p seven_guis --locked --test host_binary` · `cargo test -p seven_guis --locked --test host_log` — the session library's unit tests · the host binary's own smoke · the host's stderr at `RUST_LOG=trace` (no id, no name)
+- `cargo test -p escher-driver --locked --lib` · `cargo test -p seven_guis --locked --test host_binary` · `cargo test -p seven_guis --locked --test host_log` — the driver crate's unit tests (the session's and the command schema's; `--lib refusal::` · `schema::` · `command::` select one schema module) · the host binary's own smoke · the host's stderr at `RUST_LOG=trace` (no id, no name)
 - `just todomvc` · `just browser` · `just open {path}` (rdme) · `just screenshot {url}`
 - `cargo run --example {name}` — root examples (box_shadow, custom_widget, flex, form, gradient, html, inline, inner_html, mutations, outline, paint_bench, preact_script, restyle, screenshot, svg, svg_native, transforms, url)
 - `cargo run --release --example screenshot -- {url} [width]` — headless render to `examples/output/*.png`

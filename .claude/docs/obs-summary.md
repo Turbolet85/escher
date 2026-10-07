@@ -46,7 +46,7 @@ CI artifacts (§9): each ci.yml leg's merged output, `target/ci-logs/{leg}.log`,
 
 ## Bootstrap phases (owners on the working route)
 - `pii-scrubbing-wire` — discharged for escher's sink: engine targets scrubbed, the content-named fields of escher targets redacted, every other target's record dropped (delivered by "Sink target allowlist"); still open for the upstream sinks.
-- `otel-sdk-install` — not in escher 0.1.0 (the founder, 2026-10-06); a cross-version residual in `.andromeda/residuals.md`. The driver's spans stay with "Driver command spans": the settle wait exists (`Harness::settle`, `Session::act`) and carries no span, and the settle loop, the session step and `stand_settle` install no subscriber and print nothing.
+- `otel-sdk-install` — not in escher 0.1.0 (the founder, 2026-10-06); a cross-version residual in `.andromeda/residuals.md`. The driver's spans stay with "Driver command spans": the settle wait exists (`Harness::settle`, `Session::act`) and carries no span, and the settle loop, the session step and `stand_settle` install no subscriber and print nothing. The driver's command and refusal schema is silent too (no subscriber, no env or clock read, no print or log), and the value domain that span's refusal-cause field reads now exists: the eight names `escher_driver::Cause::name` returns. A `Command`, `Call` or `ArgValue` fielded with `Debug`, or an argument fielded by its schema name, would print an id and typed text — of the argument names only `text` is in the sink's scrub set.
 
 ## Universal anti-patterns
 > NO RECORDED INTENT.

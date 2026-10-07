@@ -1,0 +1,59 @@
+# Cascade step 2 — the pattern set of this pass, derived from every amendment before the first sweep.
+# Each pattern is the OLD wording or the retired claim's own phrasing, and fires on the pre-pass masters.
+
+[[pattern]]
+id = "count13"
+regex = '13 (inline )?unit tests|unit tests 13'
+
+[[pattern]]
+id = "threefiles"
+fixed = 'in three files'
+
+[[pattern]]
+id = "ws598"
+regex = '598 passed|598 · 0 · 8'
+
+[[pattern]]
+id = "libcite"
+regex = 'escher-driver/src/lib\.rs:2[13]-34'
+
+[[pattern]]
+id = "verbset"
+regex = 'a verb set|verb set|verb list'
+
+[[pattern]]
+id = "privmods"
+fixed = 'private modules'
+
+[[pattern]]
+id = "sessiononly"
+regex = "the session library|The driver's session —|driver's session:"
+
+[[pattern]]
+id = "actincluded"
+regex = '`Session::act` included'
+
+[[pattern]]
+id = "reexports"
+fixed = 're-exports `Session`'
+
+[[pattern]]
+id = "nocommand"
+regex = 'no driver, CLI or MCP command|no command can|no driver action|no command'
+
+[[pattern]]
+id = "notbuilt"
+fixed = 'Not built'
+
+[[pattern]]
+id = "cmdspans"
+fixed = 'Driver command spans'
+
+[[pattern]]
+id = "waitload"
+regex = 'Settle and loads|waits? on a load|never waits on one'
+
+[[pattern]]
+id = "refusalword"
+regex = 'refusal cause|refused with its cause|refusal model'
+ignore_case = true

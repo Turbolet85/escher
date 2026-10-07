@@ -139,3 +139,10 @@ One entry per amendment to `a11y-plan.md` (sidecar-contract.md §Entry form). Ap
 **Change:** the bullet now states that a harness settle (`Harness::settle`, the driver session's `act`) neither reads nor drains the changed set, so a step settled through it leaves the tree refresh, and a later diff, exactly what the step marked; and that the set is non-empty on a freshly booted harness document — the boot's own in-document mutations mark it and nothing has drained it — so a check that reads `has_changes()` as "this step changed something" drains first. The ratified refresh-on-change and the changed-set contract are unchanged.
 **Why:** a settle that drained the set would starve the shell's refresh and the later diff; the boot reading was measured when the chunk's idle check failed its plan's letter.
 **Ref:** .andromeda/runs/2026-10-07T11-06-31-wrap/
+
+## 2026-10-07-command-and-refusal-schema — the driver's `disabled` cause is stated on the presence reading
+**Section:** §7 Screen Reader Support → Accessibility tree output (the snapshot's `enabled` clause)
+**Change:** beside "`enabled` follows the presence of `disabled`", the clause now records that the driver's `disabled` refusal cause is stated on the same presence reading — its meaning reads "the element carries the `disabled` attribute, which the snapshot reads as not enabled" — named and worded only, with nothing yet detecting it; and that the driver's schema defines no role or name set of its own: `role` and `name` are field names of its result nodes.
+**Why:** the chunk worded the cause, and a cause worded on the attribute's value instead of its presence would disagree with what the snapshot reads for `disabled="false"`. Rule for later chunks: the entry that detects `disabled` reads the snapshot's `enabled`, never the attribute's value.
+**Kept:** no detector of this plan covers the addition; it was raised from the plan's reviewed list.
+**Ref:** .andromeda/runs/2026-10-07T12-34-00-wrap/

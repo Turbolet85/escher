@@ -1,0 +1,541 @@
+[
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T12:34:14Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-07-command-and-refusal-schema",
+"--run-dir",
+".andromeda/runs/2026-10-07T12-34-00-wrap",
+"--marker",
+"2026-10-07-command-and-refusal-schema"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base 294ff415 (the parent of the oldest pre-CI commit 772c770f) · lists new 3 · modify 1 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 4 · listed 4 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 43"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "294ff415209401ddc4dbebd98089e932677e0d6d",
+"base_why": "the parent of the oldest pre-CI commit 772c770f",
+"counts": {
+"changed": 4,
+"listed": 4,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 43,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T12:56:42Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-07-command-and-refusal-schema/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-07T12-34-00-wrap",
+"--marker",
+"2026-10-07-command-and-refusal-schema"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-07-command-and-refusal-schema · entries 14",
+"logs $TMPDIR/andromeda-gate/2026-10-07-command-and-refusal-schema/wrap-2026-10-07T12-34-00 · bound: GNU timeout",
+"delta docs 48",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L131-139: No entry is a live leg: nothing here drives a process the launch environment names, so the… (949 chars)",
+"prose L141-142: `evidence/controls.md` has no listed producer, by construction: it is implement's hand rec… (189 chars)",
+"  1 unit        green · exit 0 · 0.21s · 482 B → 1.log · cargo test -p escher-driver --locked --lib refusal::",
+"  2 unit        green · exit 0 · 0.16s · 573 B → 2.log · cargo test -p escher-driver --locked --lib schema::",
+"  3 unit        green · exit 0 · 0.16s · 651 B → 3.log · cargo test -p escher-driver --locked --lib command::",
+"  4 unit        green · exit 0 · 0.3s · 2182 B → 4.log · cargo test -p escher-driver --locked",
+"  5 integration green · exit 0 · 2.67s · 1013 B → 5.log · cargo test -p blitz-tests --locked --test stand_session_li… (92 chars)",
+"  6 probe       green · exit 0 · 0.01s · 0 B → 6.log · git diff --quiet 294ff415209401ddc4dbebd98089e932677e0d6d … (449 chars)",
+"  7 probe       green · exit 1 · 0.0s · 2 B → 7.log · test -f packages/escher-driver/src/schema.rs && test -f pa… (396 chars)",
+"  8 probe       green · exit 1 · 0.0s · 2 B → 8.log · test -f packages/escher-driver/src/command.rs && cat packa… (129 chars)",
+"  9 lint        green · exit 0 · 58.09s · 65901 B → 9.log · bash .github/scripts/ci-leg.sh fast",
+" 10 lint        green · exit 0 · 0.38s · 177 B → 10.log · bash .github/scripts/ci-leg.sh doc",
+" 11 integration green · exit 0 · 2.59s · 1597 B → 11.log · bash .github/scripts/ci-leg.sh a11y",
+" 12 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 13 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 14 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 14 · green 11 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-07-command-and-refusal-schema",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-07-command-and-refusal-schema/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-07-command-and-refusal-schema/wrap-2026-10-07T12-34-00",
+"delta": {
+"docs": [
+".andromeda/a11y-plan-amendments.md",
+".andromeda/a11y-plan.md",
+".andromeda/architecture-amendments.md",
+".andromeda/architecture.md",
+".andromeda/friction-log.ndjson",
+".andromeda/obs-plan-amendments.md",
+".andromeda/obs-plan.md",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md",
+".andromeda/residuals.md",
+".andromeda/security-plan-amendments.md",
+".andromeda/security-plan.md",
+".andromeda/state.yaml",
+".andromeda/test-plan-amendments.md",
+".andromeda/test-plan.md",
+".claude/docs/a11y-summary.md",
+".claude/docs/commands.md",
+".claude/docs/obs-summary.md",
+".claude/docs/security-summary.md",
+".claude/docs/services/escher-driver.md",
+".claude/docs/session-learnings.md",
+".claude/docs/tests-summary.md",
+".claude/rules/observability.md",
+".claude/rules/security.md",
+".claude/session-handoff.md",
+"CLAUDE.md",
+"escher-0.1.0/chunks/2026-10-07-command-and-refusal-schema/evidence/operator-pass.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-07T12-34-00-wrap/a11y-plan-contracts.md",
+".andromeda/runs/2026-10-07T12-34-00-wrap/a11y-plan-entry.md",
+".andromeda/runs/2026-10-07T12-34-00-wrap/architecture-entry.md",
+".andromeda/runs/2026-10-07T12-34-00-wrap/cascade-2026-10-07-command-and-refusal-schema.json",
+".andromeda/runs/2026-10-07T12-34-00-wrap/cascade-dispositions.md",
+".andromeda/runs/2026-10-07T12-34-00-wrap/cascade-patterns.toml",
+".andromeda/runs/2026-10-07T12-34-00-wrap/curation.md",
+".andromeda/runs/2026-10-07T12-34-00-wrap/evolve-2026-10-07-command-and-refusal-schema.json",
+".andromeda/runs/2026-10-07T12-34-00-wrap/fanout-results.md",
+".andromeda/runs/2026-10-07T12-34-00-wrap/gate-2026-10-07-command-and-refusal-schema.json",
+".andromeda/runs/2026-10-07T12-34-00-wrap/inputs-2026-10-07-command-and-refusal-schema.json",
+".andromeda/runs/2026-10-07T12-34-00-wrap/obs-plan-contracts.md",
+".andromeda/runs/2026-10-07T12-34-00-wrap/obs-plan-entry.md",
+".andromeda/runs/2026-10-07T12-34-00-wrap/registry-2026-10-07-command-and-refusal-schema.json",
+".andromeda/runs/2026-10-07T12-34-00-wrap/residual.txt",
+".andromeda/runs/2026-10-07T12-34-00-wrap/route-no-marker.json",
+".andromeda/runs/2026-10-07T12-34-00-wrap/security-plan-entry.md",
+".andromeda/runs/2026-10-07T12-34-00-wrap/splice-2026-10-07-command-and-refusal-schema.json",
+".andromeda/runs/2026-10-07T12-34-00-wrap/test-plan-contracts.md",
+".andromeda/runs/2026-10-07T12-34-00-wrap/test-plan-entry.md",
+"escher-0.1.0/chunks/2026-10-07-command-and-refusal-schema/report.md"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 48,
+"problem": null
+},
+"prose": [
+{
+"from": 131,
+"to": 139,
+"text": "No entry is a live leg: nothing here drives a process the launch environment names, so there is no liveness probe and no `stop` key. There is no headful self-verify harness on this project and this chunk changes no screen. No smoke entry: the chunk adds no boot path and edits none — the `escher-session` binary and its sources are byte-identical to the base, which the preservation entry asserts. The agent-run `stand` selection is not listed: the chunk adds no `stand_*` check, so its count stands at 80 (test-plan §3, as the last wrap recorded it). The audit leg is not listed: no manifest and no lockfile changes, which the preservation entry asserts. **Not run locally:** the MSRV build and the windows, macos, ios and android matrix legs — the fork's CI run is their one witness; the CI acceptance follows the operator pass (pre-CI commit, push, CI read). The preservation entry names its base as the commit this chunk starts from, `294ff415`."
+},
+{
+"from": 141,
+"to": 142,
+"text": "`evidence/controls.md` has no listed producer, by construction: it is implement's hand record of step 7's mutations, each reverted, which no entry could re-produce at the wrap's light gate."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked --lib refusal::",
+"run_sha8": "674d6ae4",
+"expect": [
+"exit 0",
+"lacks ok. 0 passed",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-command-and-refusal-schema/wrap-2026-10-07T12-34-00/1.log",
+"bytes": 482,
+"log_sha8": "74587f60",
+"exit": 0,
+"seconds": 0.21,
+"readings": [
+"exit 0 ✓",
+"lacks 'ok. 0 passed' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked --lib schema::",
+"run_sha8": "c9f7daec",
+"expect": [
+"exit 0",
+"lacks ok. 0 passed",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-command-and-refusal-schema/wrap-2026-10-07T12-34-00/2.log",
+"bytes": 573,
+"log_sha8": "db06999d",
+"exit": 0,
+"seconds": 0.16,
+"readings": [
+"exit 0 ✓",
+"lacks 'ok. 0 passed' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked --lib command::",
+"run_sha8": "98756b16",
+"expect": [
+"exit 0",
+"lacks ok. 0 passed",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-command-and-refusal-schema/wrap-2026-10-07T12-34-00/3.log",
+"bytes": 651,
+"log_sha8": "39c32d9c",
+"exit": 0,
+"seconds": 0.16,
+"readings": [
+"exit 0 ✓",
+"lacks 'ok. 0 passed' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked",
+"run_sha8": "5f0bb953",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-command-and-refusal-schema/wrap-2026-10-07T12-34-00/4.log",
+"bytes": 2182,
+"log_sha8": "ff6a0fba",
+"exit": 0,
+"seconds": 0.3,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_session_lifecycle --test stand_session_quiet",
+"run_sha8": "4632e844",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-command-and-refusal-schema/wrap-2026-10-07T12-34-00/5.log",
+"bytes": 1013,
+"log_sha8": "370d8390",
+"exit": 0,
+"seconds": 2.67,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "git diff --quiet 294ff415209401ddc4dbebd98089e932677e0d6d -- Cargo.toml Cargo.lock deny.toml packages/escher-driver/Cargo.toml packages/escher-driver/src/client.rs packages/escher-driver/src/error.rs packages/escher-driver/src/host.rs packages/escher-driver/src/session.rs packages/escher-driver/src/wire.rs packages/blitz-dom packages/blitz-test-harness packages/dioxus-native-dom packages/escher-telemetry examples/seven_guis tests scripts .github",
+"run_sha8": "29a8bca5",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-command-and-refusal-schema/wrap-2026-10-07T12-34-00/6.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "test -f packages/escher-driver/src/schema.rs && test -f packages/escher-driver/src/refusal.rs && test -f packages/escher-driver/src/command.rs && cat packages/escher-driver/src/schema.rs packages/escher-driver/src/refusal.rs packages/escher-driver/src/command.rs packages/escher-driver/src/lib.rs | grep -cE 'env::var|println!|eprintln!|print!|dbg!|tracing::|log::|thread::|Instant::|SystemTime' ",
+"run_sha8": "95a6619e",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-command-and-refusal-schema/wrap-2026-10-07T12-34-00/7.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "test -f packages/escher-driver/src/command.rs && cat packages/escher-driver/src/*.rs | grep -cE 'seven_guis|LeanTask|TimerTicks' ",
+"run_sha8": "3884d5b2",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-command-and-refusal-schema/wrap-2026-10-07T12-34-00/8.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-command-and-refusal-schema/wrap-2026-10-07T12-34-00/9.log",
+"bytes": 65901,
+"log_sha8": "15007930",
+"exit": 0,
+"seconds": 58.09,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-command-and-refusal-schema/wrap-2026-10-07T12-34-00/10.log",
+"bytes": 177,
+"log_sha8": "d6a92116",
+"exit": 0,
+"seconds": 0.38,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-command-and-refusal-schema/wrap-2026-10-07T12-34-00/11.log",
+"bytes": 1597,
+"log_sha8": "f123dc45",
+"exit": 0,
+"seconds": 2.59,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "675d3a19",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T12:56:55Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-10-07T12-34-00-wrap",
+"--marker",
+"2026-10-07-command-and-refusal-schema"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base 294ff415 (the parent of the oldest pre-CI commit 772c770f)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 56 (runs 54 · evidence 2 · inputs 0) · trails 21 not read · copies 0 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 54,
+"evidence": 2,
+"inputs": 0,
+"trails": 21,
+"copies": 0,
+"kept": 0,
+"binary": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T12:57:00Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-07-command-and-refusal-schema",
+"--run-dir",
+".andromeda/runs/2026-10-07T12-34-00-wrap",
+"--marker",
+"2026-10-07-command-and-refusal-schema"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base 294ff415 (the parent of the oldest pre-CI commit 772c770f) · lists new 3 · modify 1 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 4 · listed 4 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 88"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "294ff415209401ddc4dbebd98089e932677e0d6d",
+"base_why": "the parent of the oldest pre-CI commit 772c770f",
+"counts": {
+"changed": 4,
+"listed": 4,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 88,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

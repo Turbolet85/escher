@@ -1,0 +1,395 @@
+[
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "b56ded6b",
+"ts": "2026-10-07T12:45:37Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-07T12-34-00-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-07T12-34-00-wrap",
+"--marker",
+"2026-10-07-command-and-refusal-schema"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"baseline 294ff415 (pre-CI parent — the oldest of 1 pre-CI commit(s), 772c770f)",
+"count13 · new 0 · standing 1 · leaf 2 · curation 0 · base 0 · control test-plan.md:21 (prose)",
+"threefiles · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:21 (prose)",
+"ws598 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:324 (prose)",
+"libcite · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (prose)",
+"verbset · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"privmods · new 1 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"sessiononly · new 0 · standing 6 · leaf 4 · curation 0 · base 0 · case-variants +1 · control architecture.md:257 (prose)",
+"actincluded · 0 rows (control fired) — a statement about this pattern, not the masters · control obs-plan.md:69 (prose)",
+"reexports · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (pro…",
+"nocommand · new 0 · standing 7 · leaf 1 · curation 0 · base 0 · case-variants +1 · control architecture.md:136 (prose)",
+"notbuilt · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"cmdspans · new 0 · standing 1 · leaf 2 · curation 0 · base 0 · control obs-plan.md:105 (prose)",
+"waitload · new 0 · standing 2 · leaf 2 · curation 0 · base 0 · control architecture.md:130 (prose)",
+"refusalword · new 1 · standing 2 · leaf 1 · curation 0 · base 0 · control architecture.md:141 (prose)",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md:11 count13 standing edited …ifecycle unit tests 13 (erro…",
+".claude/docs/services/escher-driver.md:35 count13 leaf - 13 unit tests (`wire.rs` 8 · `session.rs` 2 · `error.rs` 3) — …",
+".claude/docs/tests-summary.md:24 count13 leaf - `escher-driver`: 13 inline unit tests (the lifecycle wire's closed gram…",
+".andromeda/test-plan.md:324 ws598 standing edited @c6294/7153 …143 result lines, 598 passed · 0 failed · 8 ignored (+11…",
+".claude/docs/tests-summary.md:30 ws598 leaf @c264/2043 …o test --workspace` 598 · 0 · 8 over 143 result lines at 2026-1…",
+".andromeda/architecture.md:133 verbset standing edited @c7837/8415 …`Command` — the verb set is stated and validated in…",
+".claude/docs/services/escher-driver.md:6 verbset leaf …(`Session::act`). No verb set, settle verb on the socket, act by…",
+".andromeda/architecture.md:133 privmods standing edited @c264/8415 …med below) from private modules, and `Busy` and `Se…",
+".andromeda/architecture.md:257 privmods standing edited …fuses a call: eight private modules — session (`Session`, the …",
+".andromeda/obs-plan.md:69 privmods new @c791/3132 … schema included (the private modules `command`, `refusal` and `sche…",
+".andromeda/test-plan.md:106 sessiononly standing … socket: a surface of the session library and of those checks (§3 → S…",
+".andromeda/test-plan.md:181 sessiononly standing …session_quiet` proves the session library and the harness path write …",
+".andromeda/obs-plan.md:69 sessiononly standing edited ×2 @c599,2760/3132 …ame holds for the session library `packages/e…",
+".andromeda/obs-plan.md:105 sessiononly standing edited …ges/escher-driver` (the session library — `Session::start`, `Se…",
+".andromeda/obs-plan.md:325 sessiononly standing … CI leg; it belongs to the session library and its checks, not to `age…",
+".andromeda/a11y-plan.md:14 sessiononly standing …ee-identity/report.md; the session library `escher-driver`, which seve…",
+"CLAUDE.md:37 sessiononly leaf - **`escher-driver`** — the driver's session: `Session` holds one headless instance its c…",
+".claude/rules/observability.md:18 sessiononly leaf … `seven_guis::stand`, the session library `escher-driver` and their…",
+".claude/docs/commands.md:58 sessiononly leaf …cked --test host_log` — the session library's unit tests · the host binar…",
+".claude/docs/services/escher-telemetry.md:31 sessiononly leaf …guis::stand`) and the session library (`escher-driver`) …",
+".andromeda/architecture.md:136 nocommand standing ×3 @c12554,17456,19896/20601 …lause), and no driver, CLI or MCP comma…",
+".andromeda/security-plan.md:116 nocommand standing ×3 @c3709,4745,5387/7639 …or its text, no driver, CLI or MCP command…",
+".andromeda/security-plan.md:117 nocommand standing @c1260/2909 …t measured, since no command can type yet (as measured …",
+".andromeda/security-plan.md:379 nocommand standing @c2587/2725 … is not measured (no command can type into the held ins…",
+".andromeda/test-plan.md:102 nocommand standing … text is not measured (no command can type into the host's instance yet…",
+".andromeda/test-plan.md:181 nocommand standing … text is not measured (no command can type into the binary's instance y…",
+".andromeda/obs-plan.md:290 nocommand standing …text is NOT measured — no command can type into the held instance yet (a…",
+"CLAUDE.md:103 nocommand leaf @c2579/2709 …modes — in process only, no driver action returns settled yet), and — still t…",
+".andromeda/architecture.md:133 notbuilt standing edited @c7789/8415 …/lib.rs:29-49). Not built: anything that runs a `C…",
+".andromeda/obs-plan.md:105 cmdspans standing edited … by the route entry \"Driver command spans\"; the value domain that …",
+".claude/rules/observability.md:36 cmdspans leaf …ize, refusal cause) → \"Driver command spans\" chunk. The settle wait ex…",
+".claude/docs/obs-summary.md:49 cmdspans leaf …iver's spans stay with \"Driver command spans\": the settle wait exists (`H…",
+".andromeda/architecture.md:130 waitload standing @c3100/4095 …oad in flight and never waits on one, and neither waits o…",
+".andromeda/security-plan.md:203 waitload standing edited mixed ×3 | Settle and loads in flight | A harness settle (`Har…",
+".claude/docs/security-summary.md:16 waitload leaf …he class `Loads`) and never waits on one, so the absent timeout cann…",
+".claude/docs/services/blitz-test-harness.md:20 waitload leaf …nimating`), never waits on a load, neither reads nor drai…",
+".andromeda/architecture.md:141 refusalword standing @c4594/5105 …d` · `press` and refusal causes `not-found` · `disable…",
+".andromeda/test-plan.md:146 refusalword standing …s disabled at 0; each refusal cause (`not-found`, also for an unknown…",
+".andromeda/a11y-plan.md:270 refusalword new @c1058/3835 …driver's `disabled` refusal cause is stated on this same prese…",
+".claude/rules/observability.md:36 refusalword leaf …ttle wait, diff size, refusal cause) → \"Driver command spans\" chunk…",
+"count13 · new 0 · standing 1 · leaf 2 · curation 0 · base 0 · control test-plan.md:21 (prose)",
+"threefiles · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:21 (prose)",
+"ws598 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:324 (prose)",
+"libcite · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (prose)",
+"verbset · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"privmods · new 1 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"sessiononly · new 0 · standing 6 · leaf 4 · curation 0 · base 0 · case-variants +1 · control architecture.md:257 (prose)",
+"actincluded · 0 rows (control fired) — a statement about this pattern, not the masters · control obs-plan.md:69 (prose)",
+"reexports · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (pro…",
+"nocommand · new 0 · standing 7 · leaf 1 · curation 0 · base 0 · case-variants +1 · control architecture.md:136 (prose)",
+"notbuilt · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"cmdspans · new 0 · standing 1 · leaf 2 · curation 0 · base 0 · control obs-plan.md:105 (prose)",
+"waitload · new 0 · standing 2 · leaf 2 · curation 0 · base 0 · control architecture.md:130 (prose)",
+"refusalword · new 1 · standing 2 · leaf 1 · curation 0 · base 0 · control architecture.md:141 (prose)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "294ff415209401ddc4dbebd98089e932677e0d6d",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), 772c770f",
+"counts": {
+"count13": {
+"new": 0,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"threefiles": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"ws598": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"libcite": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"verbset": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"privmods": {
+"new": 1,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"sessiononly": {
+"new": 0,
+"standing": 6,
+"leaf": 4,
+"curation": 0,
+"base": 0
+},
+"actincluded": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"reexports": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"nocommand": {
+"new": 0,
+"standing": 7,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"notbuilt": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cmdspans": {
+"new": 0,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"waitload": {
+"new": 0,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"refusalword": {
+"new": 1,
+"standing": 2,
+"leaf": 1,
+"curation": 0,
+"base": 0
+}
+}
+}
+},
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "b56ded6b",
+"ts": "2026-10-07T12:47:57Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-07T12-34-00-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-07T12-34-00-wrap",
+"--marker",
+"2026-10-07-command-and-refusal-schema"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"baseline 294ff415 (pre-CI parent — the oldest of 1 pre-CI commit(s), 772c770f)",
+"count13 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:21 (prose)",
+"threefiles · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:21 (prose)",
+"ws598 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:324 (prose)",
+"libcite · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (prose)",
+"verbset · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"privmods · new 1 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"sessiononly · new 0 · standing 6 · leaf 1 · curation 0 · base 0 · case-variants +1 · control architecture.md:257 (prose)",
+"actincluded · 0 rows (control fired) — a statement about this pattern, not the masters · control obs-plan.md:69 (prose)",
+"reexports · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (pro…",
+"nocommand · new 0 · standing 7 · leaf 1 · curation 0 · base 0 · case-variants +1 · control architecture.md:136 (prose)",
+"notbuilt · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"cmdspans · new 0 · standing 1 · leaf 2 · curation 0 · base 0 · control obs-plan.md:105 (prose)",
+"waitload · new 0 · standing 2 · leaf 5 · curation 0 · base 0 · control architecture.md:130 (prose)",
+"refusalword · new 1 · standing 2 · leaf 5 · curation 0 · base 0 · control architecture.md:141 (prose)",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md:11 count13 standing edited …ifecycle unit tests 13 (erro…",
+".andromeda/test-plan.md:324 ws598 standing edited @c6294/7153 …143 result lines, 598 passed · 0 failed · 8 ignored (+11…",
+".claude/docs/tests-summary.md:30 ws598 leaf @c393/2159 …o new result line); 598 · 0 · 8 over 143 at 2026-10-07-settle-d…",
+".andromeda/architecture.md:133 verbset standing edited @c7837/8415 …`Command` — the verb set is stated and validated in…",
+".andromeda/architecture.md:133 privmods standing edited @c264/8415 …med below) from private modules, and `Busy` and `Se…",
+".andromeda/architecture.md:257 privmods standing edited …fuses a call: eight private modules — session (`Session`, the …",
+".andromeda/obs-plan.md:69 privmods new @c791/3132 … schema included (the private modules `command`, `refusal` and `sche…",
+".andromeda/test-plan.md:106 sessiononly standing … socket: a surface of the session library and of those checks (§3 → S…",
+".andromeda/test-plan.md:181 sessiononly standing …session_quiet` proves the session library and the harness path write …",
+".andromeda/obs-plan.md:69 sessiononly standing edited ×2 @c599,2760/3132 …ame holds for the session library `packages/e…",
+".andromeda/obs-plan.md:105 sessiononly standing edited …ges/escher-driver` (the session library — `Session::start`, `Se…",
+".andromeda/obs-plan.md:325 sessiononly standing … CI leg; it belongs to the session library and its checks, not to `age…",
+".andromeda/a11y-plan.md:14 sessiononly standing …ee-identity/report.md; the session library `escher-driver`, which seve…",
+".claude/docs/services/escher-telemetry.md:31 sessiononly leaf …guis::stand`) and the session library (`escher-driver`) …",
+".andromeda/architecture.md:136 nocommand standing ×3 @c12554,17456,19896/20601 …lause), and no driver, CLI or MCP comma…",
+".andromeda/security-plan.md:116 nocommand standing ×3 @c3709,4745,5387/7639 …or its text, no driver, CLI or MCP command…",
+".andromeda/security-plan.md:117 nocommand standing @c1260/2909 …t measured, since no command can type yet (as measured …",
+".andromeda/security-plan.md:379 nocommand standing @c2587/2725 … is not measured (no command can type into the held ins…",
+".andromeda/test-plan.md:102 nocommand standing … text is not measured (no command can type into the host's instance yet…",
+".andromeda/test-plan.md:181 nocommand standing … text is not measured (no command can type into the binary's instance y…",
+".andromeda/obs-plan.md:290 nocommand standing …text is NOT measured — no command can type into the held instance yet (a…",
+"CLAUDE.md:104 nocommand leaf @c2579/3144 …modes — in process only, no driver action returns settled yet), the driver's …",
+".andromeda/architecture.md:133 notbuilt standing edited @c7789/8415 …/lib.rs:29-49). Not built: anything that runs a `C…",
+".andromeda/obs-plan.md:105 cmdspans standing edited … by the route entry \"Driver command spans\"; the value domain that …",
+".claude/rules/observability.md:36 cmdspans leaf …ize, refusal cause) → \"Driver command spans\" chunk. The settle wait ex…",
+".claude/docs/obs-summary.md:49 cmdspans leaf …iver's spans stay with \"Driver command spans\": the settle wait exists (`H…",
+".andromeda/architecture.md:130 waitload standing @c3100/4095 …oad in flight and never waits on one, and neither waits o…",
+".andromeda/security-plan.md:203 waitload standing edited mixed ×3 | Settle and loads in flight | A harness settle (`Har…",
+"CLAUDE.md:104 waitload leaf @c3035/3144 …s, and no driver command waits on a load), and — still to come — a driver (CLI…",
+".claude/rules/security.md:20 waitload leaf …ss: nothing of it crosses the socket, and no driver command waits on a load.",
+".claude/docs/security-summary.md:16 waitload leaf ×2 …e class `Loads`) and never waits on one, so the absent timeout ca…",
+".claude/docs/services/blitz-test-harness.md:20 waitload leaf …nimating`), never waits on a load, neither reads nor drai…",
+".claude/docs/services/escher-driver.md:41 waitload leaf …. No driver command waits on a load (the operator, 2026-10-07).",
+".andromeda/architecture.md:141 refusalword standing @c4594/5105 …d` · `press` and refusal causes `not-found` · `disable…",
+".andromeda/test-plan.md:146 refusalword standing …s disabled at 0; each refusal cause (`not-found`, also for an unknown…",
+".andromeda/a11y-plan.md:270 refusalword new @c1058/3835 …driver's `disabled` refusal cause is stated on this same prese…",
+"CLAUDE.md:37 refusalword leaf markup …s no `Session`, and eight refusal `Cause`s each with a fixed remedy — stated and …",
+"CLAUDE.md:104 refusalword leaf @c2875/3144 …nything runs, and eight refusal causes each with a fixed remedy; held in pr…",
+".claude/rules/observability.md:36 refusalword leaf …ttle wait, diff size, refusal cause) → \"Driver command spans\" chunk…",
+".claude/docs/a11y-summary.md:22 refusalword leaf …e driver's `disabled` refusal cause is stated on the same presence re…",
+".claude/docs/services/escher-driver.md:6 refusalword leaf …f the screen-level refusal causes, CLI JSON and an MCP tool …",
+"count13 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:21 (prose)",
+"threefiles · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:21 (prose)",
+"ws598 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:324 (prose)",
+"libcite · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (prose)",
+"verbset · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"privmods · new 1 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"sessiononly · new 0 · standing 6 · leaf 1 · curation 0 · base 0 · case-variants +1 · control architecture.md:257 (prose)",
+"actincluded · 0 rows (control fired) — a statement about this pattern, not the masters · control obs-plan.md:69 (prose)",
+"reexports · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (pro…",
+"nocommand · new 0 · standing 7 · leaf 1 · curation 0 · base 0 · case-variants +1 · control architecture.md:136 (prose)",
+"notbuilt · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"cmdspans · new 0 · standing 1 · leaf 2 · curation 0 · base 0 · control obs-plan.md:105 (prose)",
+"waitload · new 0 · standing 2 · leaf 5 · curation 0 · base 0 · control architecture.md:130 (prose)",
+"refusalword · new 1 · standing 2 · leaf 5 · curation 0 · base 0 · control architecture.md:141 (prose)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "294ff415209401ddc4dbebd98089e932677e0d6d",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), 772c770f",
+"counts": {
+"count13": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"threefiles": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"ws598": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"libcite": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"verbset": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"privmods": {
+"new": 1,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"sessiononly": {
+"new": 0,
+"standing": 6,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"actincluded": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"reexports": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"nocommand": {
+"new": 0,
+"standing": 7,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"notbuilt": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cmdspans": {
+"new": 0,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"waitload": {
+"new": 0,
+"standing": 2,
+"leaf": 5,
+"curation": 0,
+"base": 0
+},
+"refusalword": {
+"new": 1,
+"standing": 2,
+"leaf": 5,
+"curation": 0,
+"base": 0
+}
+}
+}
+}
+]
