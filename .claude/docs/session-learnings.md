@@ -8,6 +8,15 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-07 — `str::escape_debug` and `{:?}` on a `str` do not escape alike
+Both escape a `"`, a backslash, a line break and a tab, so they read as interchangeable — but `escape_debug` also backslash-escapes an apostrophe (`it's` becomes `it\'s`) and leaves a combining mark in mid-string bare, while the `Debug` form (`{:?}`) writes the apostrophe as it is and escapes the mark. Text that an agent or a person reads — the snapshot's text form, a diff, a CLI's output — wants the `Debug` form.
+
+When a plan names one of the two and its research names the other, nothing has been decided yet: run both on a string holding an apostrophe before writing the code, and say in the plan which one the design means.
+
+See: `.claude/docs/services/dioxus-native-dom.md` (the snapshot text bullet)
+
+---
+
 ## 2026-10-06 — A case-insensitive grep for an upper-case acronym matches inside ordinary words
 A licence or protocol acronym searched with `grep -i` matches inside common words: `-i 'MPL'` hits every "example", so a per-master site count reads dozens where the acronym itself occurs once or not at all. Sweep for an acronym case-sensitively with word boundaries (`grep -E '\bMPL\b'`), and when an `-i` count looks large, read a few hits before trusting it.
 

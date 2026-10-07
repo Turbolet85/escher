@@ -1,31 +1,29 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-06T23:00:11Z
+**Last Updated:** 2026-10-07T00:18:37Z
 **Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-06-snapshot-state-fidelity — feat(2026-10-06-snapshot-state-fidelity): the snapshot's state reads true per control; a password's value is masked
+**Last Commit:** 2026-10-06-compact-snapshot-serialization — feat(2026-10-06-compact-snapshot-serialization): the snapshot has a compact text form and a recorded size budget
 
 ## Position
-- Done: 2026-10-06-snapshot-state-fidelity — the snapshot's `enabled`, `checked`, `value` and `focused` are proven per control through real input (v010-05, verified); a password input's value reads the fixed mask `MASKED_VALUE`; the Dioxus bridge clears a falsy value of 27 boolean attributes, so a `hidden: false` element stays displayed. Workspace 504 · 0 · 5 (129 result lines), stand `ok` 48, `Ran 64 tests`, fork CI green 16/16 on `0f944800`.
-- Next: "Compact snapshot serialization — whole stand screen readable in one tool result, size budget recorded (v010-04)" (working-route.md:45) — promote and plan it with /andromeda-phase.
+- Done: 2026-10-06-compact-snapshot-serialization — `Snapshot::to_text` writes the snapshot as one text, a line per node nested by indent (role · quoted name · `id=` · state tokens · bounds, strings in `str`'s `Debug` form); `SNAPSHOT_TEXT_BUDGET` records the 10,000-byte ceiling; the four lean stand screens read 755 · 1269 · 1259 · 2034 bytes; a file input's value now reads `MASKED_VALUE` like a password's. v010-04 is advanced, not claimed. Workspace 518 · 0 · 5 (130 result lines), stand `ok` 54, `Ran 64 tests`, fork CI green 16/16 on `d13935da`.
+- Next: "Change tracking and diff — changed-node set drained per step, truthful change flag, empty diff for a no-op (v010-06)" (working-route.md:47) — promote and plan it with /andromeda-phase. It closes Epoch 3.
 
 ## Work done
-- `snapshot.rs` masks a password's value and exports `MASKED_VALUE`; `mutation_writer.rs` holds the 27-name `BOOLEAN_ATTRIBUTES` list. Two new test files: `stand_snapshot_state` (7) and `dioxus_falsy_boolean_attrs` (3); four new snapshot unit tests.
-- The operator pass read red once on the macOS CI leg (a `Key::Backspace` press does nothing there) and green after the fix commit `0f944800`.
+- New module `packages/dioxus-native-dom/src/snapshot_text.rs` (the serializer, the budget, 7 unit tests); `snapshot.rs` masks a file input (1 new unit test); new stand check `stand_snapshot_text` (6 tests, two in-file fixtures).
+- The quoting is the `{:?}` form, on the operator's direction in the implement session — the plan named `str::escape_debug`, which backslash-escapes an apostrophe. The operator pass was driven by the agent on the same direction: one pre-CI commit, one push, CI green first time.
 
 ## Drift resolved
-33 detector proposals (architecture 12 · security-plan 10 · test-plan 5 · a11y-plan 4 · obs-plan 2; design-system and layout-templates none), all applied as five amendments with five sidecar entries; most are line citations moved by the two edited files. The cascade re-derived CLAUDE.md, the dioxus-native-dom and seven_guis notes, the a11y and tests summaries, commands and the a11y rule. 0 escalations.
+24 detector proposals (architecture 11 · security-plan 7 · test-plan 6; design-system, layout-templates, obs-plan and a11y-plan none) plus two a11y-plan amendments the wrap raised from the plan's list; all applied as four amendments with four sidecar entries. One escalation: the four proposals retiring "the snapshot has no wire form" — the operator chose to record the returned-value-only answer as provisional. The cascade re-derived CLAUDE.md, the dioxus-native-dom and seven_guis notes, conventions, commands, the tests, a11y and security summaries and the a11y rule.
 
 ## Notes
-- **PROVISIONAL, awaiting the founder at the Epoch 3 boundary:** the bridge's 27-name falsy clear (answered at phase, recorded provisional at its P5 review). It is recorded in the architecture, security-plan and a11y-plan sidecars, not in the bodies and not on the route.
-- Three CARRYs pinned for the five engine defects found (the wrap's placement — move one if it reads wrong): "Act by id" owns typed deletion on macOS and the missing `select` / range interaction; "Headless screenshot" owns the password painted in the clear; "Stand keyboard harness" owns the bare-`disabled` control that stays focusable and the button click that clears focus ("Stand a11y assertions" was the other candidate). The next entry's CARRY now reads the password mask as measured and carries the file-input host-path hypothesis.
-- No gate deferral, so no PREREQ is pinned. One learning curated: `.claude/rules/testing.md` — no platform-bound keys in a stand check.
+- **PROVISIONAL, awaiting the founder at the Epoch 3 boundary — two items now:** (1) the bridge's 27-name falsy clear (from 2026-10-06-snapshot-state-fidelity; recorded in the architecture, security-plan and a11y-plan sidecars); (2) the snapshot text leaves the process through the returned value only (this chunk; recorded as provisional in the architecture and security-plan bodies and sidecars). Nothing exposes the text today — its only callers are tests.
+- Three CARRYs pinned: "Driver CLI" owns v010-04's command leg and asks the crossing question again when the text first leaves the process (the operator's direction at the plan's review); "Change tracking and diff" and "MCP surface" carry the same content rule (the wrap's placement — move one if it reads wrong).
+- No gate deferral, so no PREREQ is pinned. One learning curated: `.claude/docs/session-learnings.md` — `str::escape_debug` and `{:?}` do not escape alike.
 - Last failed command: none.
 
 ## Deferred learnings
-- recurrence-despite-learning: "A chunk that moves cited source lines stales the masters' file:line citations" (Tier 3, 2026-10-05). Partial recurrence at this wrap: the report listed the sites citing one shifted file and not the other's; the detectors found them.
+- recurrence-despite-learning: "A chunk that moves cited source lines stales the masters' file:line citations" (Tier 3, 2026-10-05; its extension says never key on a basename). Recurred at this wrap: the report's search for `snapshot.rs:` also counted `stand_snapshot.rs:` citations; caught and corrected before any amendment.
+- recurrence-despite-learning: "A grep hit seen through a clipped view is not read" (Tier 3, 2026-10-06). Recurred at this wrap: six hits of one phrase were written up as six statements of the retired claim; two were another subject's — the security-plan detector read them.
 - carried, still unreviewed, no recurrence this session: "The project's Bash guards refuse a heredoc written to a file and a leading cd, and read payload prose too" (Tier 3, 2026-10-06) · "Count from the listing you just read, never from the plan's forecast" (Tier 3, 2026-10-05) · "On this host `grep` is ugrep, and a long bounded repetition can print nothing" (Tier 3, 2026-10-06).
 Review with `/andromeda-wrap-session --review` if any should be applied.
-
-## Session End Status
-Completed normally at 2026-10-07 01:33:17

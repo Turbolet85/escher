@@ -1,0 +1,298 @@
+[
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "43eb863f",
+"ts": "2026-10-07T00:11:55Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-06T23-58-14-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-06T23-58-14-wrap",
+"--marker",
+"2026-10-06-compact-snapshot-serialization"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"baseline 97cc4842 (pre-CI parent — the oldest of 1 pre-CI commit(s), d13935da)",
+"wire-form · new 0 · standing 2 · leaf 2 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"pw-only · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:109 (pros…",
+"pw-input · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"pw-reads · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control a11y-plan.md:270 (prose)",
+"never-length · new 1 · standing 0 · leaf 0 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"file-input · new 5 · standing 3 · leaf 0 · curation 0 · base 0 · case-variants +1 · control architecture.md:92 (prose)",
+"gated-mods · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:189 (prose)",
+"model-and-check · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:13…",
+"both-doc · 0 rows (control fired) — a statement about this pattern, not the masters · control a11y-plan.md:55 (prose)",
+"snap-109-208 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 (…",
+"snap-184-208 · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:109 …",
+"snap-210-527 · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:23 (pros…",
+"snap-216-221 · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:96 (pros…",
+"snap-447-494 · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:104 …",
+"lib-28-29 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 (pro…",
+"lib-23-24 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 (pro…",
+"lib-14-22 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:251 (pro…",
+"lib-43-66 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:110 (pro…",
+"lib-57-60 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:110 (pro…",
+"lib-20-21 · 0 rows (control fired) — a statement about this pattern, not the masters · control a11y-plan.md:55 (prose)",
+"u33 · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control test-plan.md:23 (prose)",
+"five-files · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:23 (prose)",
+"thirteen-snap · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:23 (pro…",
+"snap-and-act · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:24 (pros…",
+"r129 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"p504 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"ok48 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:111 (prose)",
+".andromeda/architecture.md:134 wire-form standing edited @c17667/18387 …e check has no wire form, and no driver, CLI or…",
+".andromeda/security-plan.md:107 wire-form standing edited @c3453/4993 … crossing — no wire form, no log, event, socket …",
+".claude/docs/services/dioxus-native-dom.md:16 wire-form leaf … logs nothing; no wire form and no driver command yet. Th…",
+".claude/docs/services/dioxus-native-dom.md:17 wire-form leaf …nter; there is no wire form yet and no driver command exp…",
+".andromeda/architecture.md:134 pw-input standing edited @c11794/18387 … except that a password `input` or a file `input…",
+".claude/docs/services/dioxus-native-dom.md:17 pw-input leaf … attribute — and a password `input` reads the public const…",
+".andromeda/a11y-plan.md:270 pw-reads standing edited @c1141/2509 …attribute, and a password input reads the fixed marke…",
+".claude/docs/services/dioxus-native-dom.md:17 pw-reads leaf markup …tribute — and a password `input` reads the public c…",
+".andromeda/security-plan.md:109 never-length new …bute; never the text, never its length and never a file's host path. …",
+".andromeda/architecture.md:92 file-input standing …de/element.rs:79-80); file input, custom widgets, svg and scrollbar …",
+".andromeda/architecture.md:134 file-input new ×2 @c11959,12064/18387 … it is empty (a file input with no `value` attrib…",
+".andromeda/security-plan.md:109 file-input new ×3 … `value` attribute; a file input's `value` attribute — it holds no t…",
+".andromeda/security-plan.md:173 file-input standing edited …h is stored in the file input's `value` attribute (packages…",
+".andromeda/test-plan.md:23 file-input new @c1491/2410 …nd never its text, a file input reading the same mask and never …",
+".andromeda/test-plan.md:25 file-input new @c2943/5275 …typed password and a file input's authored path reading the quot…",
+".andromeda/a11y-plan.md:146 file-input standing - The file input's generated inner button gets `tabindex=\"-1\"` (package…",
+".andromeda/a11y-plan.md:270 file-input new @c1309/2509 … of the tree, and a file input reads the same marker where its …",
+".claude/docs/conventions.md:25 gated-mods leaf …tree` override and its `snapshot` and `actionable` modules). The worksp…",
+".claude/docs/services/dioxus-native-dom.md:39 u33 leaf …dioxus-native-dom` (33 unit tests: `keyed_nodes_do_not_crash`, …",
+".andromeda/test-plan.md:314 r129 standing edited @c3348/4247 …t-state-fidelity: 129 result lines, 504 passed · 0 failed…",
+".claude/docs/tests-summary.md:28 r129 leaf …space` 504 · 0 · 5 over 129 result lines at 2026-10-06-snapshot-state-fidel…",
+".andromeda/test-plan.md:314 p504 standing edited @c3366/4247 …129 result lines, 504 passed · 0 failed · 5 ignored (+4 `…",
+".andromeda/test-plan.md:111 ok48 standing edited @c1583/2076 …lity: `run stand` 48 `ok` stand events (+7 `stand_snapsho…",
+"wire-form · new 0 · standing 2 · leaf 2 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"pw-only · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:109 (pros…",
+"pw-input · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"pw-reads · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control a11y-plan.md:270 (prose)",
+"never-length · new 1 · standing 0 · leaf 0 · curation 0 · base 0 · control architecture.md:134 (prose)",
+"file-input · new 5 · standing 3 · leaf 0 · curation 0 · base 0 · case-variants +1 · control architecture.md:92 (prose)",
+"gated-mods · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:189 (prose)",
+"model-and-check · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:13…",
+"both-doc · 0 rows (control fired) — a statement about this pattern, not the masters · control a11y-plan.md:55 (prose)",
+"snap-109-208 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 (…",
+"snap-184-208 · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:109 …",
+"snap-210-527 · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:23 (pros…",
+"snap-216-221 · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:96 (pros…",
+"snap-447-494 · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:104 …",
+"lib-28-29 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 (pro…",
+"lib-23-24 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:134 (pro…",
+"lib-14-22 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:251 (pro…",
+"lib-43-66 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:110 (pro…",
+"lib-57-60 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:110 (pro…",
+"lib-20-21 · 0 rows (control fired) — a statement about this pattern, not the masters · control a11y-plan.md:55 (prose)",
+"u33 · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control test-plan.md:23 (prose)",
+"five-files · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:23 (prose)",
+"thirteen-snap · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:23 (pro…",
+"snap-and-act · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:24 (pros…",
+"r129 · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"p504 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:314 (prose)",
+"ok48 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:111 (prose)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "97cc484270a4014e7c59961a50fd1505635d6099",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), d13935da",
+"counts": {
+"wire-form": {
+"new": 0,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"pw-only": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"pw-input": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"pw-reads": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"never-length": {
+"new": 1,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"file-input": {
+"new": 5,
+"standing": 3,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"gated-mods": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"model-and-check": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"both-doc": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"snap-109-208": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"snap-184-208": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"snap-210-527": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"snap-216-221": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"snap-447-494": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"lib-28-29": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"lib-23-24": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"lib-14-22": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"lib-43-66": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"lib-57-60": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"lib-20-21": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"u33": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"five-files": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"thirteen-snap": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"snap-and-act": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"r129": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"p504": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"ok48": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+}
+}
+}
+]

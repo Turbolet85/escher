@@ -1,0 +1,9 @@
+CLAUDE.md ecosystem curated:
+  Tier 1 (CLAUDE.md USER:session-learnings):  none
+  Tier 2 (.claude/rules/*):                   none
+  Tier 3 (.claude/docs/session-learnings.md): + "`str::escape_debug` and `{:?}` on a `str` do not escape alike" (confidence 1.0)
+    Proof: an explicit operator correction (the direction to switch `to_text`'s quoting to the `{:?}` form so an apostrophe is not backslash-escaped, given in the implement session) + a measurement that changed the design (a scratch program on rustc 1.99.0 printing one string through both forms: `escape_debug` wrote the apostrophe backslash-escaped and a mid-string U+0301 bare; `{:?}` wrote the apostrophe bare and the mark escaped) + a specific technical detail. Report: Deviations 1, Spec claims disproved (first bullet).
+  Filters: 2 dup · 0 task-specific · 0 conflict · 0 deferred
+    - dup, and a RECURRENCE (the matched entry records the defect and its remedy): "anchor a file-citation search on the path, never the basename" — matched "A chunk that moves cited source lines stales the masters' file:line citations" (its 2026-10-06 extension says "key the line map on full repository paths, never basenames"). This wrap's report keyed its search on `snapshot.rs:` and counted 5 `stand_snapshot.rs` citations as the edited file's. Logged to the handoff as recurrence-despite-learning.
+    - dup, and a RECURRENCE: "a hit count is not a claim count — read each hit at its offset" — matched "A grep hit seen through a clipped view is not read". This wrap's report read 6 hits of `no wire form` as 6 snapshot claims; 2 state it of another subject. Logged to the handoff as recurrence-despite-learning.
+  Not candidates: the operator's direction that the agent run the operator pass (a one-time direction, given per chunk); the rule that the serialized text is never printed or logged (its home is the security-plan rows and the dioxus-native-dom note this wrap wrote).

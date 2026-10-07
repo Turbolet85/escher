@@ -11,3 +11,16 @@ Driven by the agent on the operator's direction (2026-10-06 UTC, given in the im
 - exit 0 · atom `contains hygiene: clean` ✓
 - First read (2026-10-06T23:46Z): `hygiene: clean — read 33 (runs 32 · evidence 1 · inputs 0) · trails 12 not read · copies 0 not read by P1 — 0 host paths kept · binary 0 not read by P1`.
 - It was re-fired after the lines above were written, over the evidence set the pre-CI commit carries. That run read `hygiene: clean — read 34 (runs 32 · evidence 2 · inputs 0) · trails 12 not read · copies 0 not read by P1 — 0 host paths kept · binary 0 not read by P1` at exit 0.
+
+## Pre-CI commit
+- `d13935da` `chore(2026-10-06-compact-snapshot-serialization): operator pre-CI commit, for the run this chunk's verdict reads` (`git add -A`, the whole tree: 46 files).
+
+## Entry 18 — fast · clean-tree guard · push
+- run: `bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0`
+- exit 0 (2026-10-06T23:47Z) · fast green (workspace 518 · 0 · 5 over 130 result lines from `target/ci-logs/test.log`; `Ran 64 tests`) · tree clean · push `97cc4842..d13935da  build/escher-0.1.0 -> build/escher-0.1.0` · after it, `HEAD` = `origin/build/escher-0.1.0` = `d13935da269b`.
+
+## Entry 19 — CI conclusion: green
+- run: `python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800`
+- exit 0 · atom `contains verdict: green` ✓ (read 2026-10-06T23:57Z)
+- `d13935da269b verdict: green · checks 16/16 · wall 566 s · runs CI#37548499153 completed/success` (repo Turbolet85/escher, polled 20× over 589 s)
+- The pre-CI commit section, entry 18 and this section were written after the push, so they ride the wrap's commit.
