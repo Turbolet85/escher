@@ -20,6 +20,9 @@ use dioxus_native_dom::{
 use keyboard_types::{Key, Modifiers};
 use seven_guis::stand::{self, LeanTask};
 
+mod common;
+use common::editor_text;
+
 /// The text typed into the fixture's password input: synthetic, and no part of any name.
 const SECRET: &str = "synthetic-pw-7Qz";
 
@@ -249,19 +252,6 @@ fn assert_modes_agree(runs: &[Vec<SnapshotDiff>]) {
         runs[0] == runs[1],
         "the steps' diffs differ between incremental false and true"
     );
-}
-
-/// The text the engine's editor holds for the text input `id`.
-#[track_caller]
-fn editor_text(harness: &Harness<DioxusDocument>, id: &str) -> String {
-    let element = harness.node(&format!("#{id}"));
-    harness
-        .base()
-        .get_node(element)
-        .and_then(|node| node.element_data())
-        .and_then(|element| element.text_input_data())
-        .map(|data| data.editor.text().to_string())
-        .unwrap_or_else(|| panic!("{id:?} is a text input"))
 }
 
 #[test]

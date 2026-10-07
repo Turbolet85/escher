@@ -464,3 +464,7 @@ mod tests {
         assert_eq!(main.children.len(), 100);
     }
 }
+
+#[cfg(test)]
+#[path = "dioxus_document_tests.rs"]
+mod bridge_tests;

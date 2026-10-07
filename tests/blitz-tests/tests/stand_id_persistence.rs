@@ -185,6 +185,72 @@ fn app_root() -> Element {
 /// The document skeleton `DioxusDocument` builds outside the VirtualDom; it outlives any remount.
 const SKELETON: [&str; 4] = ["/html:0", "/html:0/head:0", "/html:0/body:0", "main"];
 
+/// Mount `task` from the app root through its Home card, leave it and mount it again: it reads
+/// the stand's ids both times, on fresh nodes the second time.
+fn a_remounted_task_reads_the_same_ids(incremental: bool, task: LeanTask, nth: usize) {
+    let what = format!("{task:?} incremental={incremental}");
+    let card = format!("#task-grid > .task-card:nth-child({nth})");
+    let mut harness = Harness::from_vdom(VirtualDom::new(app_root), stand::options(incremental));
+
+    harness.click(&card);
+    assert!(harness.query("#task-shell").is_some(), "{what}: mounted");
+    let before = ids(&harness);
+    let stand_ids = id_strings(&ids(&stand::boot(task, stand::options(incremental))));
+    assert_eq!(id_strings(&before), stand_ids, "{what}: app root = stand");
+
+    harness.click("#back-btn");
+    assert!(harness.query("#task-shell").is_none(), "{what}: unmounted");
+    assert!(harness.query("#home").is_some(), "{what}: home");
+
+    harness.click(&card);
+    let after = ids(&harness);
+    assert_eq!(id_strings(&after), id_strings(&before), "{what}: same ids");
+
+    only_the_skeleton_outlives_the_remount(&harness, &before, &after, &what);
+}
+
+/// Of the nodes read `before` the remount only the skeleton is among those read `after` it:
+/// every other node is fresh, and a dropped node reads no id and holds no focus.
+fn only_the_skeleton_outlives_the_remount(
+    harness: &Harness<DioxusDocument>,
+    before: &[(NodeId, String)],
+    after: &[(NodeId, String)],
+    what: &str,
+) {
+    let before_nodes: HashSet<NodeId> = before.iter().map(|(n, _)| *n).collect();
+    let mut kept = Vec::new();
+    let mut fresh = 0;
+    for (node, id) in after {
+        if before_nodes.contains(node) {
+            kept.push(id.as_str());
+        } else {
+            fresh += 1;
+        }
+    }
+    assert_eq!(
+        kept, SKELETON,
+        "{what}: only the skeleton outlived the remount"
+    );
+    assert_eq!(fresh, after.len() - SKELETON.len());
+    assert!(fresh > 0, "{what}: the remount minted fresh nodes");
+
+    let dropped: Vec<NodeId> = before
+        .iter()
+        .map(|(n, _)| *n)
+        .filter(|n| !after.iter().any(|(m, _)| m == n))
+        .collect();
+    assert_eq!(dropped.len(), fresh);
+    for node in &dropped {
+        assert_eq!(harness.doc.element_id(*node), None, "{what}: stale node");
+    }
+    if let Some(focused) = harness.focused() {
+        assert!(
+            !dropped.contains(&focused),
+            "{what}: focus on a dropped node"
+        );
+    }
+}
+
 #[test]
 fn ids_hold_across_a_remount() {
     let cards = [
@@ -195,57 +261,7 @@ fn ids_hold_across_a_remount() {
     ];
     for incremental in [false, true] {
         for (task, nth) in cards {
-            let what = format!("{task:?} incremental={incremental}");
-            let card = format!("#task-grid > .task-card:nth-child({nth})");
-            let mut harness =
-                Harness::from_vdom(VirtualDom::new(app_root), stand::options(incremental));
-
-            harness.click(&card);
-            assert!(harness.query("#task-shell").is_some(), "{what}: mounted");
-            let before = ids(&harness);
-            let stand_ids = id_strings(&ids(&stand::boot(task, stand::options(incremental))));
-            assert_eq!(id_strings(&before), stand_ids, "{what}: app root = stand");
-
-            harness.click("#back-btn");
-            assert!(harness.query("#task-shell").is_none(), "{what}: unmounted");
-            assert!(harness.query("#home").is_some(), "{what}: home");
-
-            harness.click(&card);
-            let after = ids(&harness);
-            assert_eq!(id_strings(&after), id_strings(&before), "{what}: same ids");
-
-            let before_nodes: HashSet<NodeId> = before.iter().map(|(n, _)| *n).collect();
-            let mut kept = Vec::new();
-            let mut fresh = 0;
-            for (node, id) in &after {
-                if before_nodes.contains(node) {
-                    kept.push(id.as_str());
-                } else {
-                    fresh += 1;
-                }
-            }
-            assert_eq!(
-                kept, SKELETON,
-                "{what}: only the skeleton outlived the remount"
-            );
-            assert_eq!(fresh, after.len() - SKELETON.len());
-            assert!(fresh > 0, "{what}: the remount minted fresh nodes");
-
-            let dropped: Vec<NodeId> = before
-                .iter()
-                .map(|(n, _)| *n)
-                .filter(|n| !after.iter().any(|(m, _)| m == n))
-                .collect();
-            assert_eq!(dropped.len(), fresh);
-            for node in &dropped {
-                assert_eq!(harness.doc.element_id(*node), None, "{what}: stale node");
-            }
-            if let Some(focused) = harness.focused() {
-                assert!(
-                    !dropped.contains(&focused),
-                    "{what}: focus on a dropped node"
-                );
-            }
+            a_remounted_task_reads_the_same_ids(incremental, task, nth);
         }
     }
 }

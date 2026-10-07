@@ -4,110 +4,16 @@
 //! rect; the tree follows the TaskShell; and the snapshot is deterministic and follows a
 //! re-render.
 
-use std::collections::{HashMap, HashSet};
+use std::collections::HashSet;
 
-use accesskit::{Node, NodeId as TreeNodeId, Role, TreeUpdate};
+use accesskit::Role;
 use blitz_dom::Document;
-use blitz_test_harness::Harness;
 use blitz_traits::node_id::NodeId;
-use dioxus_native_dom::{DioxusDocument, Snapshot, SnapshotNode};
-use seven_guis::stand::{self, LeanTask, VIEWPORT_HEIGHT, VIEWPORT_WIDTH};
+use dioxus_native_dom::{Snapshot, SnapshotNode};
+use seven_guis::stand::{LeanTask, VIEWPORT_HEIGHT, VIEWPORT_WIDTH};
 
-/// Each task's interactive controls with their HTML-AAM role, the shell's `back-btn` first.
-fn controls(task: LeanTask) -> &'static [(&'static str, Role)] {
-    match task {
-        LeanTask::Counter => &[
-            ("back-btn", Role::Button),
-            ("counter-increment", Role::Button),
-        ],
-        LeanTask::FlightBooker => &[
-            ("back-btn", Role::Button),
-            ("flight-one-way", Role::Button),
-            ("flight-return", Role::Button),
-            ("flight-start", Role::TextInput),
-            ("flight-return-date", Role::TextInput),
-            ("flight-book", Role::Button),
-        ],
-        LeanTask::Timer => &[
-            ("back-btn", Role::Button),
-            ("timer-duration", Role::Slider),
-            ("timer-reset", Role::Button),
-        ],
-        LeanTask::Crud => &[
-            ("back-btn", Role::Button),
-            ("crud-filter", Role::TextInput),
-            ("crud-name", Role::TextInput),
-            ("crud-surname", Role::TextInput),
-            ("crud-create", Role::Button),
-            ("crud-update", Role::Button),
-            ("crud-delete", Role::Button),
-        ],
-    }
-}
-
-/// The accessible names the markup gives the stand's inputs, trimmed.
-const INPUT_NAMES: [(&str, &str); 6] = [
-    ("flight-start", "Departure date"),
-    ("flight-return-date", "Return date"),
-    ("timer-duration", "Duration:"),
-    ("crud-filter", "Filter prefix:"),
-    ("crud-name", "Name:"),
-    ("crud-surname", "Surname:"),
-];
-
-/// Each task's author-id controls and value displays rendered at boot with a box of their
-/// own. `flight-booked` renders only after a booking, and `timer-progress` is 0 wide until
-/// a tick is delivered.
-fn rendered(task: LeanTask) -> &'static [&'static str] {
-    match task {
-        LeanTask::Counter => &[
-            "back-btn",
-            "task-title",
-            "counter-value",
-            "counter-increment",
-        ],
-        LeanTask::FlightBooker => &[
-            "back-btn",
-            "task-title",
-            "flight-one-way",
-            "flight-return",
-            "flight-start",
-            "flight-return-date",
-            "flight-book",
-        ],
-        LeanTask::Timer => &[
-            "back-btn",
-            "task-title",
-            "timer-elapsed",
-            "timer-duration",
-            "timer-duration-value",
-            "timer-reset",
-        ],
-        LeanTask::Crud => &[
-            "back-btn",
-            "task-title",
-            "crud-filter",
-            "crud-list",
-            "crud-name",
-            "crud-surname",
-            "crud-create",
-            "crud-update",
-            "crud-delete",
-        ],
-    }
-}
-
-fn boot(task: LeanTask, incremental: bool) -> Harness<DioxusDocument> {
-    stand::boot(task, stand::options(incremental))
-}
-
-/// The node `id` names, asserted present.
-#[track_caller]
-fn node<'s>(snapshot: &'s Snapshot, id: &str) -> &'s SnapshotNode {
-    snapshot
-        .get(id)
-        .unwrap_or_else(|| panic!("{id:?} is a snapshot node"))
-}
+mod common;
+use common::{INPUT_NAMES, boot, by_id, controls, name, node, rendered, tree_node};
 
 /// `node`'s descendants in pre-order, `node` excluded.
 fn descendants(node: &SnapshotNode) -> Vec<&SnapshotNode> {
@@ -118,39 +24,6 @@ fn descendants(node: &SnapshotNode) -> Vec<&SnapshotNode> {
         stack.extend(next.children.iter().rev());
     }
     out
-}
-
-/// The tree's nodes by id.
-fn by_id(tree: &TreeUpdate) -> HashMap<TreeNodeId, &Node> {
-    tree.nodes.iter().map(|(id, node)| (*id, node)).collect()
-}
-
-/// The tree node carrying `author_id`.
-#[track_caller]
-fn tree_node<'t>(tree: &'t TreeUpdate, author_id: &str) -> (TreeNodeId, &'t Node) {
-    let found: Vec<_> = tree
-        .nodes
-        .iter()
-        .filter(|(_, node)| node.author_id() == Some(author_id))
-        .collect();
-    assert_eq!(found.len(), 1, "one tree node carries {author_id:?}");
-    (found[0].0, &found[0].1)
-}
-
-/// A node's accessible name: its `label`, else the joined names of the nodes labelling it,
-/// where a `TextRun`'s name is its value.
-fn name(nodes: &HashMap<TreeNodeId, &Node>, node: &Node) -> String {
-    if let Some(label) = node.label().filter(|label| !label.is_empty()) {
-        return label.to_string();
-    }
-    if node.role() == Role::TextRun {
-        return node.value().unwrap_or_default().to_string();
-    }
-    node.labelled_by()
-        .iter()
-        .filter_map(|id| nodes.get(id))
-        .map(|labelling| name(nodes, labelling))
-        .collect()
 }
 
 #[test]

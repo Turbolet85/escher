@@ -172,69 +172,84 @@ fn author_keyed_elements_read_their_key() {
     }
 }
 
+/// `task` in one layout mode: every unkeyed element reads a path, the pinned ones among them.
+fn unkeyed_elements_read_paths(task: LeanTask, incremental: bool) {
+    let harness = boot(task, incremental);
+    let mut read = Vec::new();
+    for (node, key) in author_keys(&harness) {
+        let id = harness
+            .doc
+            .element_id(node)
+            .expect("an element reads an id");
+        if key.is_none() {
+            assert!(id.contains('/'), "{task:?}: unkeyed element reads {id:?}");
+        }
+        read.push(id);
+    }
+
+    for path in PINNED_PATHS {
+        assert_contains(&read, path, task);
+    }
+    task_body_reads_component_paths(&harness, task);
+}
+
+/// Every element under `#task-body` reads one of `task`'s keys or a path under its component.
+fn task_body_reads_component_paths(harness: &Harness<DioxusDocument>, task: LeanTask) {
+    let prefix = format!("TaskShell/{}/", component(task));
+    let body = harness.node("#task-body");
+    let doc = harness.base();
+    let mut stack = doc.get_node(body).unwrap().children.clone();
+    let mut under_body = 0;
+    while let Some(id) = stack.pop() {
+        let node = doc.get_node(id).unwrap();
+        stack.extend(node.children.iter().copied());
+        if !node.is_element() {
+            continue;
+        }
+        under_body += 1;
+        let element_id = harness.doc.element_id(id).unwrap();
+        let keyed = task_keys(task).contains(&element_id.as_str());
+        assert!(
+            keyed || element_id.starts_with(&prefix),
+            "{task:?}: {element_id:?} under #task-body"
+        );
+    }
+    assert!(
+        under_body > 0,
+        "{task:?}: the task renders under #task-body"
+    );
+}
+
+/// The Counter's unkeyed wrappers read their component paths, and a CRUD row reads its key.
+fn counter_wrappers_and_a_crud_row(incremental: bool) {
+    let counter = boot(LeanTask::Counter, incremental);
+    let ids: Vec<String> = counter
+        .doc
+        .element_ids()
+        .into_iter()
+        .map(|(_, id)| id)
+        .collect();
+    assert_contains(&ids, "TaskShell/Counter/div:0", LeanTask::Counter);
+    assert_contains(&ids, "TaskShell/Counter/div:0/div:0", LeanTask::Counter);
+
+    let crud = boot(LeanTask::Crud, incremental);
+    let first_row = crud.query_all(".list > .list-item")[0];
+    assert_eq!(
+        crud.doc.element_id(first_row).as_deref(),
+        Some("crud-person-0")
+    );
+}
+
 #[test]
 fn unkeyed_elements_read_their_component_path() {
     for task in LeanTask::ALL {
         for incremental in [false, true] {
-            let harness = boot(task, incremental);
-            let mut read = Vec::new();
-            for (node, key) in author_keys(&harness) {
-                let id = harness
-                    .doc
-                    .element_id(node)
-                    .expect("an element reads an id");
-                if key.is_none() {
-                    assert!(id.contains('/'), "{task:?}: unkeyed element reads {id:?}");
-                }
-                read.push(id);
-            }
-
-            for path in PINNED_PATHS {
-                assert_contains(&read, path, task);
-            }
-            let prefix = format!("TaskShell/{}/", component(task));
-            let body = harness.node("#task-body");
-            let doc = harness.base();
-            let mut stack = doc.get_node(body).unwrap().children.clone();
-            let mut under_body = 0;
-            while let Some(id) = stack.pop() {
-                let node = doc.get_node(id).unwrap();
-                stack.extend(node.children.iter().copied());
-                if !node.is_element() {
-                    continue;
-                }
-                under_body += 1;
-                let element_id = harness.doc.element_id(id).unwrap();
-                let keyed = task_keys(task).contains(&element_id.as_str());
-                assert!(
-                    keyed || element_id.starts_with(&prefix),
-                    "{task:?}: {element_id:?} under #task-body"
-                );
-            }
-            assert!(
-                under_body > 0,
-                "{task:?}: the task renders under #task-body"
-            );
+            unkeyed_elements_read_paths(task, incremental);
         }
     }
 
     for incremental in [false, true] {
-        let counter = boot(LeanTask::Counter, incremental);
-        let ids: Vec<String> = counter
-            .doc
-            .element_ids()
-            .into_iter()
-            .map(|(_, id)| id)
-            .collect();
-        assert_contains(&ids, "TaskShell/Counter/div:0", LeanTask::Counter);
-        assert_contains(&ids, "TaskShell/Counter/div:0/div:0", LeanTask::Counter);
-
-        let crud = boot(LeanTask::Crud, incremental);
-        let first_row = crud.query_all(".list > .list-item")[0];
-        assert_eq!(
-            crud.doc.element_id(first_row).as_deref(),
-            Some("crud-person-0")
-        );
+        counter_wrappers_and_a_crud_row(incremental);
     }
 }
 

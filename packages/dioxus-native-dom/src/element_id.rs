@@ -23,7 +23,7 @@
 use crate::NodeId;
 use crate::mutation_writer::DioxusState;
 use blitz_dom::{BaseDocument, local_name};
-use dioxus_core::{DynamicNode, ScopeId, TemplateNode, VNode, VirtualDom};
+use dioxus_core::{DynamicNode, ScopeId, TemplateNode, VComponent, VNode, VirtualDom};
 use rustc_hash::{FxHashMap, FxHashSet};
 use std::rc::Rc;
 
@@ -76,6 +76,25 @@ impl VdomWalk<'_> {
 
     /// `seen` counts, per component name, the instances `owner` has rendered so far.
     fn walk(&mut self, vnode: &VNode, owner: &Owner, seen: &mut FxHashMap<&'static str, usize>) {
+        self.record_roots(vnode, owner);
+
+        for (idx, node) in vnode.dynamic_nodes.iter().enumerate() {
+            match node {
+                DynamicNode::Component(component) => {
+                    self.walk_component(component, idx, vnode, owner, seen);
+                }
+                DynamicNode::Fragment(items) => {
+                    for item in items {
+                        self.walk(item, owner, seen);
+                    }
+                }
+                DynamicNode::Text(_) | DynamicNode::Placeholder(_) => {}
+            }
+        }
+    }
+
+    /// Records each mounted element root of `vnode`'s template as rendered by `owner`.
+    fn record_roots(&mut self, vnode: &VNode, owner: &Owner) {
         for (idx, root) in vnode.template.roots.iter().enumerate() {
             if !matches!(root, TemplateNode::Element { .. }) {
                 continue;
@@ -93,43 +112,51 @@ impl VdomWalk<'_> {
                 );
             }
         }
+    }
 
-        for (idx, node) in vnode.dynamic_nodes.iter().enumerate() {
-            match node {
-                DynamicNode::Component(component) => {
-                    let Some(scope) = component.mounted_scope(idx, vnode, self.dom) else {
-                        continue;
-                    };
-                    let Some(child_root) = scope.try_root_node() else {
-                        continue;
-                    };
-                    let chain = if is_framework_scope(scope.id()) {
-                        Rc::clone(&owner.chain)
-                    } else {
-                        let name = component_name(component.name);
-                        let ordinal = seen.entry(name).or_default();
-                        let segment = match *ordinal {
-                            0 => name.to_string(),
-                            n => format!("{name}:{n}"),
-                        };
-                        *ordinal += 1;
-                        if owner.chain.is_empty() {
-                            Rc::from(segment)
-                        } else {
-                            Rc::from(format!("{}/{segment}", owner.chain))
-                        }
-                    };
-                    let child_owner = self.new_owner(chain);
-                    self.walk(child_root, &child_owner, &mut FxHashMap::default());
-                }
-                DynamicNode::Fragment(items) => {
-                    for item in items {
-                        self.walk(item, owner, seen);
-                    }
-                }
-                DynamicNode::Text(_) | DynamicNode::Placeholder(_) => {}
-            }
-        }
+    /// Walks what the component at dynamic node `idx` of `vnode` rendered, under an owner of its
+    /// own; a component that mounted no root is skipped and counts for no ordinal.
+    fn walk_component(
+        &mut self,
+        component: &VComponent,
+        idx: usize,
+        vnode: &VNode,
+        owner: &Owner,
+        seen: &mut FxHashMap<&'static str, usize>,
+    ) {
+        let Some(scope) = component.mounted_scope(idx, vnode, self.dom) else {
+            return;
+        };
+        let Some(child_root) = scope.try_root_node() else {
+            return;
+        };
+        let chain = if is_framework_scope(scope.id()) {
+            Rc::clone(&owner.chain)
+        } else {
+            child_chain(owner, component_name(component.name), seen)
+        };
+        let child_owner = self.new_owner(chain);
+        self.walk(child_root, &child_owner, &mut FxHashMap::default());
+    }
+}
+
+/// The chain of `owner`'s next instance of the component `name`: `owner`'s chain, then `name`
+/// for the first instance and `{name}:{k}` for a later one. Counts the instance in `seen`.
+fn child_chain(
+    owner: &Owner,
+    name: &'static str,
+    seen: &mut FxHashMap<&'static str, usize>,
+) -> Rc<str> {
+    let ordinal = seen.entry(name).or_default();
+    let segment = match *ordinal {
+        0 => name.to_string(),
+        n => format!("{name}:{n}"),
+    };
+    *ordinal += 1;
+    if owner.chain.is_empty() {
+        Rc::from(segment)
+    } else {
+        Rc::from(format!("{}/{segment}", owner.chain))
     }
 }
 

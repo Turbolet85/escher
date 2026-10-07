@@ -31,3 +31,6 @@ none — no chunk, no report, no fan-out.
 - carried, still unreviewed: "A chunk that moves cited source lines stales the masters' file:line citations" (Tier 3, 2026-10-05) · "A grep hit seen through a clipped view is not read" (Tier 3, 2026-10-06) · "Count from the listing you just read, never from the plan's forecast" (Tier 3, 2026-10-05).
 - applied at this wrap, no longer deferred: "On this host `grep` is ugrep, and a long bounded repetition can print nothing".
 Review with `/andromeda-wrap-session --review` if any should be applied.
+
+## Session End Status
+Completed normally at 2026-10-07 05:43:33

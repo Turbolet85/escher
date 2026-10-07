@@ -5,53 +5,14 @@
 
 use std::collections::{HashMap, HashSet};
 
-use accesskit::{Node, NodeId as TreeNodeId, Role, TreeUpdate};
+use accesskit::{NodeId as TreeNodeId, Role, TreeUpdate};
 use blitz_dom::Document;
 use blitz_test_harness::Harness;
 use dioxus_native_dom::DioxusDocument;
-use seven_guis::stand::{self, LeanTask};
+use seven_guis::stand::LeanTask;
 
-/// Each task's interactive controls with their HTML-AAM role, the shell's `back-btn` first.
-fn controls(task: LeanTask) -> &'static [(&'static str, Role)] {
-    match task {
-        LeanTask::Counter => &[
-            ("back-btn", Role::Button),
-            ("counter-increment", Role::Button),
-        ],
-        LeanTask::FlightBooker => &[
-            ("back-btn", Role::Button),
-            ("flight-one-way", Role::Button),
-            ("flight-return", Role::Button),
-            ("flight-start", Role::TextInput),
-            ("flight-return-date", Role::TextInput),
-            ("flight-book", Role::Button),
-        ],
-        LeanTask::Timer => &[
-            ("back-btn", Role::Button),
-            ("timer-duration", Role::Slider),
-            ("timer-reset", Role::Button),
-        ],
-        LeanTask::Crud => &[
-            ("back-btn", Role::Button),
-            ("crud-filter", Role::TextInput),
-            ("crud-name", Role::TextInput),
-            ("crud-surname", Role::TextInput),
-            ("crud-create", Role::Button),
-            ("crud-update", Role::Button),
-            ("crud-delete", Role::Button),
-        ],
-    }
-}
-
-/// The accessible names the markup gives the stand's inputs, trimmed.
-const INPUT_NAMES: [(&str, &str); 6] = [
-    ("flight-start", "Departure date"),
-    ("flight-return-date", "Return date"),
-    ("timer-duration", "Duration:"),
-    ("crud-filter", "Filter prefix:"),
-    ("crud-name", "Name:"),
-    ("crud-surname", "Surname:"),
-];
+mod common;
+use common::{INPUT_NAMES, boot, by_id, controls, name};
 
 /// Each task's focus sequence from the root element, measured on the markup before the
 /// accessible-name attributes were added.
@@ -74,43 +35,6 @@ fn tab_order(task: LeanTask) -> &'static [&'static str] {
             "crud-create",
         ],
     }
-}
-
-fn boot(task: LeanTask, incremental: bool) -> Harness<DioxusDocument> {
-    stand::boot(task, stand::options(incremental))
-}
-
-/// The tree's nodes by id.
-fn by_id(tree: &TreeUpdate) -> HashMap<TreeNodeId, &Node> {
-    tree.nodes.iter().map(|(id, node)| (*id, node)).collect()
-}
-
-/// The node carrying `author_id`.
-#[track_caller]
-fn find<'t>(tree: &'t TreeUpdate, author_id: &str) -> (TreeNodeId, &'t Node) {
-    let found: Vec<_> = tree
-        .nodes
-        .iter()
-        .filter(|(_, node)| node.author_id() == Some(author_id))
-        .collect();
-    assert_eq!(found.len(), 1, "one node carries {author_id:?}");
-    (found[0].0, &found[0].1)
-}
-
-/// A node's accessible name: its `label`, else the joined names of the nodes labelling it,
-/// where a `TextRun`'s name is its value.
-fn name(nodes: &HashMap<TreeNodeId, &Node>, node: &Node) -> String {
-    if let Some(label) = node.label().filter(|label| !label.is_empty()) {
-        return label.to_string();
-    }
-    if node.role() == Role::TextRun {
-        return node.value().unwrap_or_default().to_string();
-    }
-    node.labelled_by()
-        .iter()
-        .filter_map(|id| nodes.get(id))
-        .map(|labelling| name(nodes, labelling))
-        .collect()
 }
 
 /// Every node standing for an element carries that element's stable id, and every other node
@@ -234,7 +158,7 @@ fn controls_carry_role_and_name() {
             let tree = harness.doc.accessibility_tree();
             let nodes = by_id(&tree);
             for (control, role) in controls(task) {
-                let (_, node) = find(&tree, control);
+                let (_, node) = common::tree_node(&tree, control);
                 assert_eq!(node.role(), *role, "{task:?}: {control:?}");
                 let read = name(&nodes, node);
                 assert!(!read.trim().is_empty(), "{task:?}: {control:?} is named");
@@ -268,7 +192,7 @@ fn ids_hold_after_a_rerender() {
         assert_eq!(rows.len(), 4, "Create added a row");
         let tree = crud.doc.accessibility_tree();
         assert_carried(&crud, &tree, LeanTask::Crud);
-        let (created, _) = find(&tree, "crud-person-3");
+        let (created, _) = common::tree_node(&tree, "crud-person-3");
         assert_eq!(
             created.0,
             rows[3].as_u64(),

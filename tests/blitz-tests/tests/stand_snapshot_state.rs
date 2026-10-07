@@ -5,33 +5,22 @@
 //! lack are proven on a minimal fixture booted with the stand's options: a checkbox and a
 //! radio read checked after a click, and a password input reads a fixed mask, never its text.
 
-use std::collections::HashMap;
-
-use accesskit::{Node, NodeId as TreeNodeId, Role, TreeUpdate};
+use accesskit::{Node, Role};
 use blitz_dom::Document;
 use blitz_test_harness::Harness;
 use dioxus::prelude::*;
-use dioxus_native_dom::{DioxusDocument, MASKED_VALUE, Snapshot, SnapshotNode, UnkeyedActionable};
+use dioxus_native_dom::{DioxusDocument, MASKED_VALUE, UnkeyedActionable};
 use keyboard_types::{Key, Modifiers};
 use seven_guis::stand::{self, LeanTask};
+
+mod common;
+use common::{boot, by_id, editor_text, name, node};
 
 /// What [`focused`] reads when no control has focus.
 const NOTHING: [&str; 0] = [];
 
 /// The text typed into the fixture's password input: synthetic, and no part of any name.
 const SECRET: &str = "synthetic-pw-7Qz";
-
-fn boot(task: LeanTask, incremental: bool) -> Harness<DioxusDocument> {
-    stand::boot(task, stand::options(incremental))
-}
-
-/// The node `id` names, asserted present.
-#[track_caller]
-fn node<'s>(snapshot: &'s Snapshot, id: &str) -> &'s SnapshotNode {
-    snapshot
-        .get(id)
-        .unwrap_or_else(|| panic!("{id:?} is a snapshot node"))
-}
 
 /// What `id` reads as enabled, asserted to agree with the presence of its `disabled`
 /// attribute.
@@ -59,19 +48,6 @@ fn reads_value(harness: &Harness<DioxusDocument>, id: &str, expected: Option<&st
     node(&harness.doc.snapshot(), id).state.value.as_deref() == expected
 }
 
-/// The text the engine's editor holds for the text input `id`.
-#[track_caller]
-fn editor_text(harness: &Harness<DioxusDocument>, id: &str) -> String {
-    let element = harness.node(&format!("#{id}"));
-    harness
-        .base()
-        .get_node(element)
-        .and_then(|node| node.element_data())
-        .and_then(|element| element.text_input_data())
-        .map(|data| data.editor.text().to_string())
-        .unwrap_or_else(|| panic!("{id:?} is a text input"))
-}
-
 /// The ids of the snapshot nodes reading focused, asserted to be the element the
 /// accessibility tree reports as its focus: none when that is the `Window`.
 #[track_caller]
@@ -92,27 +68,6 @@ fn focused(harness: &Harness<DioxusDocument>) -> Vec<String> {
         .collect();
     assert_eq!(focused, tree_focus, "the accessibility tree's focus");
     focused
-}
-
-/// The tree's nodes by id.
-fn by_id(tree: &TreeUpdate) -> HashMap<TreeNodeId, &Node> {
-    tree.nodes.iter().map(|(id, node)| (*id, node)).collect()
-}
-
-/// A node's accessible name: its `label`, else the joined names of the nodes labelling it,
-/// where a `TextRun`'s name is its value.
-fn name(nodes: &HashMap<TreeNodeId, &Node>, node: &Node) -> String {
-    if let Some(label) = node.label().filter(|label| !label.is_empty()) {
-        return label.to_string();
-    }
-    if node.role() == Role::TextRun {
-        return node.value().unwrap_or_default().to_string();
-    }
-    node.labelled_by()
-        .iter()
-        .filter_map(|id| nodes.get(id))
-        .map(|labelling| name(nodes, labelling))
-        .collect()
 }
 
 /// Markup a Dioxus document holds without the bridge writing it: it is parsed, so a `disabled`

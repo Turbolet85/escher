@@ -14,6 +14,9 @@ use dioxus_native_dom::{
 use keyboard_types::Key;
 use seven_guis::stand::{self, LeanTask};
 
+mod common;
+use common::{boot, editor_text, rendered};
+
 /// The text typed into the fixture's password input: synthetic, and no part of any name.
 const SECRET: &str = "synthetic-pw-7Qz";
 
@@ -22,48 +25,6 @@ const UPLOAD_PATH: &str = "/synthetic/dir/chosen-report.txt";
 
 /// The file name of [`UPLOAD_PATH`].
 const UPLOAD_NAME: &str = "chosen-report";
-
-/// Each task's author-id controls and value displays rendered at boot with a box of their
-/// own. `flight-booked` renders only after a booking, and `timer-progress` is 0 wide until
-/// a tick is delivered.
-fn rendered(task: LeanTask) -> &'static [&'static str] {
-    match task {
-        LeanTask::Counter => &[
-            "back-btn",
-            "task-title",
-            "counter-value",
-            "counter-increment",
-        ],
-        LeanTask::FlightBooker => &[
-            "back-btn",
-            "task-title",
-            "flight-one-way",
-            "flight-return",
-            "flight-start",
-            "flight-return-date",
-            "flight-book",
-        ],
-        LeanTask::Timer => &[
-            "back-btn",
-            "task-title",
-            "timer-elapsed",
-            "timer-duration",
-            "timer-duration-value",
-            "timer-reset",
-        ],
-        LeanTask::Crud => &[
-            "back-btn",
-            "task-title",
-            "crud-filter",
-            "crud-list",
-            "crud-name",
-            "crud-surname",
-            "crud-create",
-            "crud-update",
-            "crud-delete",
-        ],
-    }
-}
 
 /// The ceiling each lean task's screen is held under, in bytes of its text: the larger of
 /// its two layout modes' measured lengths rounded down to a multiple of 256, plus 512.
@@ -74,10 +35,6 @@ fn ceiling(task: LeanTask) -> usize {
         LeanTask::Timer => 1536,
         LeanTask::Crud => 2304,
     }
-}
-
-fn boot(task: LeanTask, incremental: bool) -> Harness<DioxusDocument> {
-    stand::boot(task, stand::options(incremental))
 }
 
 /// The snapshot's nodes in pre-order, each with its depth below a root.
@@ -142,95 +99,103 @@ fn holds(text_line: &str, token: &str) -> bool {
     bare_tokens(text_line).iter().any(|bare| bare == token)
 }
 
-/// The text the engine's editor holds for the text input `id`.
-#[track_caller]
-fn editor_text(harness: &Harness<DioxusDocument>, id: &str) -> String {
-    let element = harness.node(&format!("#{id}"));
-    harness
-        .base()
-        .get_node(element)
-        .and_then(|node| node.element_data())
-        .and_then(|element| element.text_input_data())
-        .map(|data| data.editor.text().to_string())
-        .unwrap_or_else(|| panic!("{id:?} is a text input"))
+/// `task`'s screen in one layout mode: one line per snapshot node, in the order of `nodes()`,
+/// each carrying its node's fields, with the rendered ids among them.
+fn a_screen_is_one_line_per_node(task: LeanTask, incremental: bool) {
+    let mode = format!("{task:?} incremental={incremental}");
+    let snapshot = boot(task, incremental).doc.snapshot();
+    let nodes = with_depths(&snapshot);
+    assert!(!nodes.is_empty(), "{mode}: the snapshot has nodes");
+    assert!(
+        nodes.len() == snapshot.nodes().count()
+            && nodes
+                .iter()
+                .zip(snapshot.nodes())
+                .all(|((node, _), listed)| std::ptr::eq(*node, listed)),
+        "{mode}: the depth walk follows the order of nodes()"
+    );
+
+    let text = snapshot.to_text();
+    let text_lines: Vec<&str> = text.lines().collect();
+    assert!(text.ends_with('\n'), "{mode}: the last line is ended");
+    assert!(
+        text_lines.len() == nodes.len(),
+        "{mode}: {} lines for {} nodes",
+        text_lines.len(),
+        nodes.len()
+    );
+
+    each_line_carries_its_nodes_fields(&mode, &nodes, &text_lines);
+
+    for id in rendered(task) {
+        line_of(&text, id);
+    }
+    if task == LeanTask::Crud {
+        the_rows_nest_under_the_list(&mode, &text, &text_lines);
+    }
+}
+
+/// Each line is indented for its node's depth, opens with the node's role, name and id, ends
+/// with its bounds, and is the one line carrying that id.
+fn each_line_carries_its_nodes_fields(
+    mode: &str,
+    nodes: &[(&SnapshotNode, usize)],
+    text_lines: &[&str],
+) {
+    for (index, ((node, depth), text_line)) in nodes.iter().zip(text_lines).enumerate() {
+        assert!(
+            indent_of(text_line) == 2 * depth,
+            "{mode}: line {index} is indented {} for depth {depth}",
+            indent_of(text_line)
+        );
+        let head = format!("{:?} {:?}{}", node.role, node.name, id_field(&node.id));
+        assert!(
+            text_line.trim_start_matches(' ').starts_with(&head),
+            "{mode}: line {index} opens with its node's role, name and id"
+        );
+        let rect = node.bounds;
+        let bounds = format!(" @{},{} {}x{}", rect.x, rect.y, rect.width, rect.height);
+        assert!(
+            text_line.ends_with(&bounds),
+            "{mode}: line {index} ends with its node's bounds"
+        );
+        let field = id_field(&node.id);
+        let carriers = text_lines
+            .iter()
+            .filter(|text_other| text_other.contains(&field))
+            .count();
+        assert!(
+            carriers == 1,
+            "{mode}: the id of line {index} is on {carriers} lines"
+        );
+    }
+}
+
+/// The three CRUD rows come after `crud-list` in fixture order, each nested under it.
+fn the_rows_nest_under_the_list(mode: &str, text: &str, text_lines: &[&str]) {
+    let (list_at, text_list) = line_of(text, "crud-list");
+    let mut before = list_at;
+    for id in ["crud-person-0", "crud-person-1", "crud-person-2"] {
+        let (row_at, _) = line_of(text, id);
+        assert!(
+            row_at > before,
+            "{mode}: {id:?} comes after crud-list and the row before it"
+        );
+        assert!(
+            text_lines[list_at + 1..=row_at]
+                .iter()
+                .all(|text_under| indent_of(text_under) > indent_of(text_list)),
+            "{mode}: {id:?} is nested under crud-list"
+        );
+        before = row_at;
+    }
 }
 
 #[test]
 fn every_node_is_one_line_with_its_five_fields() {
     for task in LeanTask::ALL {
         for incremental in [false, true] {
-            let mode = format!("{task:?} incremental={incremental}");
-            let snapshot = boot(task, incremental).doc.snapshot();
-            let nodes = with_depths(&snapshot);
-            assert!(!nodes.is_empty(), "{mode}: the snapshot has nodes");
-            assert!(
-                nodes.len() == snapshot.nodes().count()
-                    && nodes
-                        .iter()
-                        .zip(snapshot.nodes())
-                        .all(|((node, _), listed)| std::ptr::eq(*node, listed)),
-                "{mode}: the depth walk follows the order of nodes()"
-            );
-
-            let text = snapshot.to_text();
-            let text_lines: Vec<&str> = text.lines().collect();
-            assert!(text.ends_with('\n'), "{mode}: the last line is ended");
-            assert!(
-                text_lines.len() == nodes.len(),
-                "{mode}: {} lines for {} nodes",
-                text_lines.len(),
-                nodes.len()
-            );
-
-            for (index, ((node, depth), text_line)) in nodes.iter().zip(&text_lines).enumerate() {
-                assert!(
-                    indent_of(text_line) == 2 * depth,
-                    "{mode}: line {index} is indented {} for depth {depth}",
-                    indent_of(text_line)
-                );
-                let head = format!("{:?} {:?}{}", node.role, node.name, id_field(&node.id));
-                assert!(
-                    text_line.trim_start_matches(' ').starts_with(&head),
-                    "{mode}: line {index} opens with its node's role, name and id"
-                );
-                let rect = node.bounds;
-                let bounds = format!(" @{},{} {}x{}", rect.x, rect.y, rect.width, rect.height);
-                assert!(
-                    text_line.ends_with(&bounds),
-                    "{mode}: line {index} ends with its node's bounds"
-                );
-                let field = id_field(&node.id);
-                let carriers = text_lines
-                    .iter()
-                    .filter(|text_other| text_other.contains(&field))
-                    .count();
-                assert!(
-                    carriers == 1,
-                    "{mode}: the id of line {index} is on {carriers} lines"
-                );
-            }
-
-            for id in rendered(task) {
-                line_of(&text, id);
-            }
-            if task == LeanTask::Crud {
-                let (list_at, text_list) = line_of(&text, "crud-list");
-                let mut before = list_at;
-                for id in ["crud-person-0", "crud-person-1", "crud-person-2"] {
-                    let (row_at, _) = line_of(&text, id);
-                    assert!(
-                        row_at > before,
-                        "{mode}: {id:?} comes after crud-list and the row before it"
-                    );
-                    assert!(
-                        text_lines[list_at + 1..=row_at]
-                            .iter()
-                            .all(|text_under| indent_of(text_under) > indent_of(text_list)),
-                        "{mode}: {id:?} is nested under crud-list"
-                    );
-                    before = row_at;
-                }
-            }
+            a_screen_is_one_line_per_node(task, incremental);
         }
     }
 }

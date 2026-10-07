@@ -13,6 +13,9 @@ use dioxus_native_dom::{DioxusDocument, UnkeyedActionable};
 use seven_guis::stand::{self, LeanTask};
 use seven_guis::tasks::timer::TimerTicks;
 
+mod common;
+use common::boot;
+
 const CARDS: [&str; 7] = [
     "task-card-counter",
     "task-card-temp-converter",
@@ -26,10 +29,6 @@ const CARDS: [&str; 7] = [
 fn app_root() -> Element {
     use_hook(|| provide_context(TimerTicks::default()));
     seven_guis::app::app()
-}
-
-fn boot(task: LeanTask, incremental: bool) -> Harness<DioxusDocument> {
-    stand::boot(task, stand::options(incremental))
 }
 
 fn boot_home(incremental: bool) -> Harness<DioxusDocument> {

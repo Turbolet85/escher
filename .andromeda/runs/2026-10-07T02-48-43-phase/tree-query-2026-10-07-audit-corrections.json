@@ -1,0 +1,398 @@
+[
+{
+"sql": "SELECT caller_name, callee_name, file, line FROM calls WHERE callee_name IN ('walk','place_children','template_roots','element_ids','element_id','new_owner','component_name','is_framework_scope') AND callee_kind = 'fn' AND callee_file LIKE '%dioxus-native-dom/src/%' ORDER BY callee_name, file, line",
+"rows": 50,
+"result": [
+{
+"caller_name": "walk",
+"callee_name": "component_name",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 108
+},
+{
+"caller_name": "an_unkeyed_actionable_element_is_reported_with_its_remedy",
+"callee_name": "element_id",
+"file": "packages/dioxus-native-dom/src/actionable.rs",
+"line": 183
+},
+{
+"caller_name": "element_id",
+"callee_name": "element_id",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 209
+},
+{
+"caller_name": "a_removed_element_reads_no_id",
+"callee_name": "element_id",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 395
+},
+{
+"caller_name": "a_removed_element_reads_no_id",
+"callee_name": "element_id",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 402
+},
+{
+"caller_name": "non_elements_read_no_id",
+"callee_name": "element_id",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 419
+},
+{
+"caller_name": "non_elements_read_no_id",
+"callee_name": "element_id",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 420
+},
+{
+"caller_name": "non_elements_read_no_id",
+"callee_name": "element_id",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 421
+},
+{
+"caller_name": "focus_sequence",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_accessibility_ids.rs",
+"line": 168
+},
+{
+"caller_name": "every_actionable_stand_element_reads_an_author_key",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_actionable_keys.rs",
+"line": 97
+},
+{
+"caller_name": "every_element_reads_exactly_one_unique_id",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 142
+},
+{
+"caller_name": "author_keyed_elements_read_their_key",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 160
+},
+{
+"caller_name": "unkeyed_elements_read_their_component_path",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 183
+},
+{
+"caller_name": "unkeyed_elements_read_their_component_path",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 206
+},
+{
+"caller_name": "unkeyed_elements_read_their_component_path",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 234
+},
+{
+"caller_name": "text_and_removed_nodes_read_no_id",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 249
+},
+{
+"caller_name": "text_and_removed_nodes_read_no_id",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 266
+},
+{
+"caller_name": "id_of",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_id_edits.rs",
+"line": 115
+},
+{
+"caller_name": "row_ids",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_id_persistence.rs",
+"line": 51
+},
+{
+"caller_name": "ids_hold_across_rerenders",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_id_persistence.rs",
+"line": 101
+},
+{
+"caller_name": "ids_hold_across_a_remount",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_id_persistence.rs",
+"line": 240
+},
+{
+"caller_name": "ids_are_the_accessibility_tree_ids",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 201
+},
+{
+"caller_name": "state_reads_the_engine",
+"callee_name": "element_id",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 362
+},
+{
+"caller_name": "unkeyed_actionable",
+"callee_name": "element_ids",
+"file": "packages/dioxus-native-dom/src/actionable.rs",
+"line": 61
+},
+{
+"caller_name": "a_keyed_or_inert_element_is_not_reported",
+"callee_name": "element_ids",
+"file": "packages/dioxus-native-dom/src/actionable.rs",
+"line": 205
+},
+{
+"caller_name": "element_ids",
+"callee_name": "element_ids",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 215
+},
+{
+"caller_name": "accessibility_tree",
+"callee_name": "element_ids",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 302
+},
+{
+"caller_name": "element_id",
+"callee_name": "element_ids",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 251
+},
+{
+"caller_name": "ids",
+"callee_name": "element_ids",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 270
+},
+{
+"caller_name": "a_removed_element_reads_no_id",
+"callee_name": "element_ids",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 381
+},
+{
+"caller_name": "a_removed_element_reads_no_id",
+"callee_name": "element_ids",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 403
+},
+{
+"caller_name": "non_elements_read_no_id",
+"callee_name": "element_ids",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 414
+},
+{
+"caller_name": "every_id_is_the_element_id_of_its_element",
+"callee_name": "element_ids",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 355
+},
+{
+"caller_name": "assert_carried",
+"callee_name": "element_ids",
+"file": "tests/blitz-tests/tests/stand_accessibility_ids.rs",
+"line": 125
+},
+{
+"caller_name": "actionable_count",
+"callee_name": "element_ids",
+"file": "tests/blitz-tests/tests/stand_actionable_keys.rs",
+"line": 54
+},
+{
+"caller_name": "every_element_reads_exactly_one_unique_id",
+"callee_name": "element_ids",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 136
+},
+{
+"caller_name": "unkeyed_elements_read_their_component_path",
+"callee_name": "element_ids",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 224
+},
+{
+"caller_name": "text_and_removed_nodes_read_no_id",
+"callee_name": "element_ids",
+"file": "tests/blitz-tests/tests/stand_element_ids.rs",
+"line": 270
+},
+{
+"caller_name": "all_ids",
+"callee_name": "element_ids",
+"file": "tests/blitz-tests/tests/stand_id_edits.rs",
+"line": 87
+},
+{
+"caller_name": "subtree_ids",
+"callee_name": "element_ids",
+"file": "tests/blitz-tests/tests/stand_id_edits.rs",
+"line": 104
+},
+{
+"caller_name": "ids",
+"callee_name": "element_ids",
+"file": "tests/blitz-tests/tests/stand_id_persistence.rs",
+"line": 18
+},
+{
+"caller_name": "walk",
+"callee_name": "is_framework_scope",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 105
+},
+{
+"caller_name": "walk",
+"callee_name": "new_owner",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 121
+},
+{
+"caller_name": "template_roots",
+"callee_name": "new_owner",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 143
+},
+{
+"caller_name": "element_ids",
+"callee_name": "place_children",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 168
+},
+{
+"caller_name": "element_ids",
+"callee_name": "place_children",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 186
+},
+{
+"caller_name": "element_ids",
+"callee_name": "template_roots",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 163
+},
+{
+"caller_name": "walk",
+"callee_name": "walk",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 122
+},
+{
+"caller_name": "walk",
+"callee_name": "walk",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 126
+},
+{
+"caller_name": "template_roots",
+"callee_name": "walk",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 144
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller_name, callee_name, file, line FROM calls WHERE callee_name IN ('create_head_element','flush_queued_mounted_events','handle_event','id') AND callee_kind = 'fn' AND callee_file LIKE '%dioxus-native-dom/src/dioxus_document.rs' ORDER BY callee_name, file, line",
+"rows": 3,
+"result": [
+{
+"caller_name": "handle_dioxus_native_event",
+"callee_name": "create_head_element",
+"file": "packages/dioxus-native/src/dioxus_application.rs",
+"line": 97
+},
+{
+"caller_name": "initial_build",
+"callee_name": "flush_queued_mounted_events",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 153
+},
+{
+"caller_name": "poll",
+"callee_name": "flush_queued_mounted_events",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 282
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, callee_kind, file, line FROM refs WHERE callee_name IN ('DioxusEventHandler','propagation_is_stopped','stop_propagation','prevent_default','is_cancelled') AND (callee_file LIKE '%dioxus-native-dom/src/%' OR callee_file LIKE '%blitz-traits/src/events.rs') ORDER BY callee_name, file, line",
+"rows": 9,
+"result": [
+{
+"callee_name": "DioxusEventHandler",
+"callee_kind": "type",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 288
+},
+{
+"callee_name": "DioxusEventHandler",
+"callee_kind": "type",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 320
+},
+{
+"callee_name": "is_cancelled",
+"callee_kind": "fn",
+"file": "packages/blitz-dom/src/events/driver.rs",
+"line": 294
+},
+{
+"callee_name": "is_cancelled",
+"callee_kind": "fn",
+"file": "packages/blitz-dom/src/events/driver.rs",
+"line": 306
+},
+{
+"callee_name": "is_cancelled",
+"callee_kind": "fn",
+"file": "packages/blitz-dom/src/events/driver.rs",
+"line": 315
+},
+{
+"callee_name": "prevent_default",
+"callee_kind": "fn",
+"file": "packages/blitz-vibey-script/src/runtime.rs",
+"line": 1842
+},
+{
+"callee_name": "prevent_default",
+"callee_kind": "fn",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 411
+},
+{
+"callee_name": "stop_propagation",
+"callee_kind": "fn",
+"file": "packages/blitz-vibey-script/src/runtime.rs",
+"line": 1845
+},
+{
+"callee_name": "stop_propagation",
+"callee_kind": "fn",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 414
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]
