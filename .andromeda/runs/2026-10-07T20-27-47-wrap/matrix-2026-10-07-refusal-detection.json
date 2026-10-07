@@ -1,0 +1,99 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "0eeb593c",
+"ts": "2026-10-07T21:09:54Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-07-refusal-detection",
+"--run-dir",
+".andromeda/runs/2026-10-07T20-27-47-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-07-refusal-detection: 1 · to flip 1 · already verified 0 · below 0",
+"flipped v010-11 → verified — On the stand, in both layout modes, through `Session::run`: a `click` naming an … (789 chars)",
+"dry-run: nothing written",
+"version: verified 9/16"
+],
+"stderr": null,
+"wrote": [],
+"before": [
+{
+"id": "v010-11",
+"chunk": "2026-10-07-refusal-detection",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_act_refused.rs::a_refused_call_names_its_cause_and_leaves_the_instance_unchanged · ::one_i… (666 chars)",
+"acceptance": "On the stand, in both layout modes, through `Session::run`: a `click` naming an id no screen of the session read is refu… (789 chars)",
+"notes_chars": 2033
+}
+],
+"after": [
+{
+"id": "v010-11",
+"chunk": "2026-10-07-refusal-detection",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_act_refused.rs::a_refused_call_names_its_cause_and_leaves_the_instance_unchanged · ::one_i… (666 chars)",
+"acceptance": "On the stand, in both layout modes, through `Session::run`: a `click` naming an id no screen of the session read is refu… (789 chars)",
+"notes_chars": 2033
+}
+]
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "0eeb593c",
+"ts": "2026-10-07T21:12:29Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-07-refusal-detection",
+"--run-dir",
+".andromeda/runs/2026-10-07T20-27-47-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-07-refusal-detection: 1 · to flip 1 · already verified 0 · below 0",
+"flipped v010-11 → verified — On the stand, in both layout modes, through `Session::run`: a `click` naming an … (789 chars)",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed",
+"version: verified 9/16"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": [
+{
+"id": "v010-11",
+"chunk": "2026-10-07-refusal-detection",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_act_refused.rs::a_refused_call_names_its_cause_and_leaves_the_instance_unchanged · ::one_i… (666 chars)",
+"acceptance": "On the stand, in both layout modes, through `Session::run`: a `click` naming an id no screen of the session read is refu… (789 chars)",
+"notes_chars": 2033
+}
+],
+"after": [
+{
+"id": "v010-11",
+"chunk": "2026-10-07-refusal-detection",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_act_refused.rs::a_refused_call_names_its_cause_and_leaves_the_instance_unchanged · ::one_i… (666 chars)",
+"acceptance": "On the stand, in both layout modes, through `Session::run`: a `click` naming an id no screen of the session read is refu… (789 chars)",
+"notes_chars": 2033
+}
+]
+}
+]

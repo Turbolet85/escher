@@ -1,0 +1,494 @@
+[
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "deb39417",
+"ts": "2026-10-07T20:56:33Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-07T20-27-47-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-07T20-27-47-wrap",
+"--marker",
+"2026-10-07-refusal-detection"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 9b758f6c (pre-CI parent — the oldest of 1 pre-CI commit(s), 983d8973)",
+"five-verbs · new 0 · standing 0 · leaf 4 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"verb-list · new 2 · standing 2 · leaf 3 · curation 0 · base 0 · case-variants +1 · control security-plan.md:76 (prose)",
+"four-acting · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (p…",
+"yet-returns · new 0 · standing 0 · leaf 2 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"keeps-no-id · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"not-found-only · new 0 · standing 2 · leaf 2 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"click-runs · 0 rows (control fired) — a statement about this pattern, not the masters · case-variants +2 · control arch…",
+"named-only · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control a11y-plan.md:270 (prose)",
+"six-act · new 0 · standing 4 · leaf 5 · curation 0 · base 0 · control architecture.md:115 (prose)",
+"readers · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:65 (prose)",
+"counts · new 0 · standing 1 · leaf 2 · curation 0 · base 0 · control architecture.md:263 (prose)",
+"one-scroller · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:87 (p…",
+"outcome-list · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:136 (prose)",
+"bounds-claim · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:136 (prose)",
+"cite-scroll · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:87 (pr…",
+"cite-execute · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (…",
+"cite-session · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (…",
+"cite-schema · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (p…",
+"cite-harness · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:130 (…",
+"cite-common · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:149 (p…",
+"cite-checks · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:263 (p…",
+".claude/docs/security-summary.md:20 five-verbs leaf …st a closed table of five verbs and five argument kinds with bound…",
+".claude/docs/services/escher-driver.md:23 five-verbs leaf … — the verb table, five verbs in order: `snapshot` (no argum…",
+".claude/docs/services/escher-driver.md:48 five-verbs leaf …value: through the five verbs a range input cannot be change…",
+".claude/docs/tests-summary.md:24 five-verbs leaf …m; `schema.rs` 4: the five verbs, their shapes, the lookup, the kinds…",
+".andromeda/architecture.md:133 verb-list new @c11943/16124 … the root element. `press` and `advance` are refused for no…",
+".andromeda/security-plan.md:76 verb-list new @c2361/4033 …nstead of refusing; `press` and `advance` are refused for no …",
+".andromeda/test-plan.md:179 verb-list standing edited @c891/2340 …lick` · `type` · `press` · `advance` · `scroll`, the …",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md:5 verb-list standing edited @c1420/2127 …` · `press` · `…",
+"CLAUDE.md:37 verb-list leaf …apshot` · `click` · `type` · `press` · `advance`, each with its argument and result shapes…",
+"CLAUDE.md:105 verb-list leaf @c2738/3732 …ot` · `click` · `type` · `press` · `advance`, each with its argument and resu…",
+".claude/rules/testing.md:15 verb-list leaf …`click` · `type_into` · `press` · `advance`, the outcome reader `act`); nei…",
+"CLAUDE.md:105 yet-returns leaf @c2939/3732 …ch with a fixed remedy, four of them returned today; time on a held instanc…",
+".claude/docs/obs-summary.md:49 yet-returns leaf …:Cause::name` returns, four of them returned by code today. A `Command…",
+".andromeda/security-plan.md:116 keeps-no-id standing edited @c7656/10499 …ookup is made anew on every call and the sess…",
+".claude/docs/services/escher-driver.md:34 keeps-no-id leaf … call: the session keeps no id and no `NodeId`, and no fiel…",
+".andromeda/architecture.md:133 not-found-only standing edited @c9837/16124 … and `scroll` resolve their id first, on th…",
+".andromeda/test-plan.md:26 not-found-only standing edited mixed ×2 @c9958,13701/15014 …arries is refused `not-found`; f…",
+"CLAUDE.md:105 not-found-only leaf @c3455/3732 … that names nothing is refused `not-found` with nothing run; proven on t…",
+".claude/rules/security.md:20 not-found-only leaf …t names no element is refused `not-found` with nothing run, and no dr…",
+".claude/docs/a11y-summary.md:22 named-only leaf …reads as not enabled\"; named and worded only, not yet detected), and t…",
+".andromeda/test-plan.md:115 six-act standing edited @c3196/3779 … 3 (+17 over the six `stand_act_*` files, picked up by…",
+".andromeda/test-plan.md:324 six-act standing edited @c7255/8327 …ored (+17 in the six `stand_act_*` files, six new resu…",
+".andromeda/obs-plan.md:69 six-act standing edited @c3945/4208 … executor and the six `stand_act_*` checks at escher-0.1…",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md:11 six-act standing edited ×2 @c1310/2543 …the six drive…",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md:11 six-act @c+1933/2543",
+".claude/rules/testing.md:15 six-act leaf …, `stand_settle` and the six driver-action checks `stand_act_*` — what they s…",
+".claude/docs/obs-summary.md:49 six-act leaf … `stand_settle` and the six `stand_act_*` checks install no subscriber and…",
+".claude/docs/services/escher-driver.md:26 six-act leaf …-dependency), whose six `stand_act_*` checks drive the schema t…",
+".claude/docs/tests-summary.md:24 six-act leaf …er the socket, and the six `stand_act_*` files (17 tests) drive it throu…",
+".claude/docs/tests-summary.md:30 six-act leaf @c336/2365 …by-id (+17 over the six `stand_act_*` files, six new result l…",
+".andromeda/test-plan.md:99 counts standing edited …ds rendered per task, 26 rows), and the helpers `boot`, `node`, `by_…",
+".claude/docs/services/escher-driver.md:53 counts leaf …itz-tests — six files, 17 tests, both layout modes: `stand_act_i…",
+".claude/docs/tests-summary.md:24 counts leaf - `escher-driver`: 26 inline unit tests in seven files — 13 on the lifecyc…",
+".claude/docs/services/escher-driver.md:19 outcome-list leaf …d { settled, busy, diff, advanced_ms }`; `diff` is dioxus-…",
+".andromeda/architecture.md:136 bounds-claim standing edited @c11582/22386 …unding_rect` (viewport-relative, unclamped —…",
+"five-verbs · new 0 · standing 0 · leaf 4 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"verb-list · new 2 · standing 2 · leaf 3 · curation 0 · base 0 · case-variants +1 · control security-plan.md:76 (prose)",
+"four-acting · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (p…",
+"yet-returns · new 0 · standing 0 · leaf 2 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"keeps-no-id · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"not-found-only · new 0 · standing 2 · leaf 2 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"click-runs · 0 rows (control fired) — a statement about this pattern, not the masters · case-variants +2 · control arch…",
+"named-only · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control a11y-plan.md:270 (prose)",
+"six-act · new 0 · standing 4 · leaf 5 · curation 0 · base 0 · control architecture.md:115 (prose)",
+"readers · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:65 (prose)",
+"counts · new 0 · standing 1 · leaf 2 · curation 0 · base 0 · control architecture.md:263 (prose)",
+"one-scroller · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:87 (p…",
+"outcome-list · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:136 (prose)",
+"bounds-claim · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:136 (prose)",
+"cite-scroll · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:87 (pr…",
+"cite-execute · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (…",
+"cite-session · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (…",
+"cite-schema · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (p…",
+"cite-harness · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:130 (…",
+"cite-common · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:149 (p…",
+"cite-checks · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:263 (p…"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "9b758f6ca206d4d6f6cbe638a02579998566703b",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), 983d8973",
+"counts": {
+"five-verbs": {
+"new": 0,
+"standing": 0,
+"leaf": 4,
+"curation": 0,
+"base": 0
+},
+"verb-list": {
+"new": 2,
+"standing": 2,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"four-acting": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"yet-returns": {
+"new": 0,
+"standing": 0,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"keeps-no-id": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"not-found-only": {
+"new": 0,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"click-runs": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"named-only": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"six-act": {
+"new": 0,
+"standing": 4,
+"leaf": 5,
+"curation": 0,
+"base": 0
+},
+"readers": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"counts": {
+"new": 0,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"one-scroller": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"outcome-list": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"bounds-claim": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-scroll": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-execute": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-session": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-schema": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-harness": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-common": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-checks": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+}
+}
+},
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "deb39417",
+"ts": "2026-10-07T21:00:41Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-07T20-27-47-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-07T20-27-47-wrap",
+"--marker",
+"2026-10-07-refusal-detection"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 9b758f6c (pre-CI parent — the oldest of 1 pre-CI commit(s), 983d8973)",
+"five-verbs · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (pr…",
+"verb-list · new 2 · standing 2 · leaf 3 · curation 0 · base 0 · case-variants +1 · control security-plan.md:76 (prose)",
+"four-acting · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (p…",
+"yet-returns · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (p…",
+"keeps-no-id · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"not-found-only · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"click-runs · 0 rows (control fired) — a statement about this pattern, not the masters · case-variants +1 · control arch…",
+"named-only · 0 rows (control fired) — a statement about this pattern, not the masters · control a11y-plan.md:270 (prose)",
+"six-act · new 0 · standing 4 · leaf 1 · curation 0 · base 0 · control architecture.md:115 (prose)",
+"readers · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:65 (prose)",
+"counts · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:263 (prose)",
+"one-scroller · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:87 (p…",
+"outcome-list · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:136 (prose)",
+"bounds-claim · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:136 (prose)",
+"cite-scroll · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:87 (pr…",
+"cite-execute · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (…",
+"cite-session · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (…",
+"cite-schema · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (p…",
+"cite-harness · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:130 (…",
+"cite-common · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:149 (p…",
+"cite-checks · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:263 (p…",
+".andromeda/architecture.md:133 verb-list new @c11943/16124 … the root element. `press` and `advance` are refused for no…",
+".andromeda/security-plan.md:76 verb-list new @c2361/4033 …nstead of refusing; `press` and `advance` are refused for no …",
+".andromeda/test-plan.md:179 verb-list standing edited @c891/2340 …lick` · `type` · `press` · `advance` · `scroll`, the …",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md:5 verb-list standing edited @c1420/2127 …` · `press` · `…",
+"CLAUDE.md:37 verb-list leaf …apshot` · `click` · `type` · `press` · `advance` · `scroll`, each with its argument and re…",
+"CLAUDE.md:105 verb-list leaf @c2738/4354 …ot` · `click` · `type` · `press` · `advance` · `scroll`, each with its argume…",
+".claude/rules/testing.md:15 verb-list leaf …`click` · `type_into` · `press` · `advance` · `scroll`, the outcome reader …",
+".andromeda/security-plan.md:116 keeps-no-id standing edited @c7656/10499 …ookup is made anew on every call and the sess…",
+".andromeda/architecture.md:133 not-found-only standing edited @c9837/16124 … and `scroll` resolve their id first, on th…",
+".andromeda/test-plan.md:26 not-found-only standing edited mixed ×2 @c9958,13701/15014 …arries is refused `not-found`; f…",
+".andromeda/test-plan.md:115 six-act standing edited @c3196/3779 … 3 (+17 over the six `stand_act_*` files, picked up by…",
+".andromeda/test-plan.md:324 six-act standing edited @c7255/8327 …ored (+17 in the six `stand_act_*` files, six new resu…",
+".andromeda/obs-plan.md:69 six-act standing edited @c3945/4208 … executor and the six `stand_act_*` checks at escher-0.1…",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md:11 six-act standing edited ×2 @c1310/2543 …the six drive…",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md:11 six-act @c+1933/2543",
+".claude/docs/tests-summary.md:30 six-act leaf @c591/2620 …by-id (+17 over the six `stand_act_*` files, six new result l…",
+".andromeda/test-plan.md:99 counts standing edited …ds rendered per task, 26 rows), and the helpers `boot`, `node`, `by_…",
+".claude/docs/services/escher-driver.md:19 outcome-list leaf …d { settled, busy, diff, advanced_ms }` · `Scrolled { sett…",
+".andromeda/architecture.md:136 bounds-claim standing edited @c11582/22386 …unding_rect` (viewport-relative, unclamped —…",
+"five-verbs · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (pr…",
+"verb-list · new 2 · standing 2 · leaf 3 · curation 0 · base 0 · case-variants +1 · control security-plan.md:76 (prose)",
+"four-acting · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (p…",
+"yet-returns · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (p…",
+"keeps-no-id · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"not-found-only · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"click-runs · 0 rows (control fired) — a statement about this pattern, not the masters · case-variants +1 · control arch…",
+"named-only · 0 rows (control fired) — a statement about this pattern, not the masters · control a11y-plan.md:270 (prose)",
+"six-act · new 0 · standing 4 · leaf 1 · curation 0 · base 0 · control architecture.md:115 (prose)",
+"readers · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:65 (prose)",
+"counts · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:263 (prose)",
+"one-scroller · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:87 (p…",
+"outcome-list · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:136 (prose)",
+"bounds-claim · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:136 (prose)",
+"cite-scroll · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:87 (pr…",
+"cite-execute · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (…",
+"cite-session · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (…",
+"cite-schema · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (p…",
+"cite-harness · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:130 (…",
+"cite-common · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:149 (p…",
+"cite-checks · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:263 (p…"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "9b758f6ca206d4d6f6cbe638a02579998566703b",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), 983d8973",
+"counts": {
+"five-verbs": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"verb-list": {
+"new": 2,
+"standing": 2,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"four-acting": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"yet-returns": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"keeps-no-id": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"not-found-only": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"click-runs": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"named-only": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"six-act": {
+"new": 0,
+"standing": 4,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"readers": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"counts": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"one-scroller": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"outcome-list": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"bounds-claim": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-scroll": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-execute": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-session": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-schema": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-harness": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-common": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-checks": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+}
+}
+}
+]

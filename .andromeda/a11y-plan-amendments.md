@@ -153,3 +153,9 @@ One entry per amendment to `a11y-plan.md` (sidecar-contract.md §Entry form). Ap
 **Why:** the entry the row deferred the decision to has run: a driver action returns a diff, and the diff does not exist without the snapshot model. The reach was measured on the dev host's target by five dependency-graph reads before and after the one manifest line. Standing consequence: the stand binary still hands no assistive technology a tree, so a windowed run still proves the boot only; the windowed witness of the tree refresh stays owed where the route carries it.
 **Kept:** "the seven_guis stand binary names none … and builds no platform adapter" — true of its own manifest and of both graphs; the statement that the stand's windowed binary builds blitz-shell without `accessibility`.
 **Ref:** .andromeda/runs/2026-10-07T14-22-35-wrap/
+
+## 2026-10-07-refusal-detection — the `disabled` cause is detected
+**Section:** §7 Screen Reader Support → Accessibility tree output
+**Change:** the driver's `disabled` refusal is detected on the snapshot's presence reading and no other — `Session::run` refuses a `click` or a `type` when the node's `enabled` is `Some(false)`, the first of its three screen-level checks, with nothing dispatched and focus as it was; on the stand `crud-delete` and `flight-return-date` are refused and acted on once they read enabled (was "named and worded only, with nothing yet detecting it").
+**Why:** the chunk built the detection. Rule kept: `disabled` is read from the snapshot's `enabled`, never from the attribute's value, from focusability or from a role list of the driver's own.
+**Ref:** .andromeda/runs/2026-10-07T20-27-47-wrap/

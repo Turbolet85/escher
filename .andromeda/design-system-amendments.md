@@ -67,3 +67,9 @@ One entry per amendment to `design-system.md` (sidecar-contract.md §Entry form)
 **Change:** the harness-clock bullet gains one clause: the driver's `advance` moves an app's own time — through the step a session's caller hands it, on the stand whole Timer ticks — and leaves the harness's animation clock where it was, as do `click`, `type` and `press`; a driver click beside a running CSS animation returns settled without waiting on it. No style value, token or markup changes, and no cited line of this document moved.
 **Why:** the chunk wired `advance`, and the two clocks must not be read as one: the app's time is the caller's to move, the animation clock is the harness's and moves only by `tick`. Measured on the stand's Timer (the clock reads the same before and after every call) and on a fixture with a running animation.
 **Ref:** .andromeda/runs/2026-10-07T14-22-35-wrap/
+
+## 2026-10-07-refusal-detection — an into-view scroll never animates a nested box
+**Section:** §Motion
+**Change:** a new bullet: `BaseDocument::scroll_into_view` writes every scrolling box that holds its target at once, innermost first, whatever behaviour was asked, and the requested behaviour — `Smooth` included — applies to the viewport alone; the driver's `scroll` is instant in every box and in the viewport, inside one settled step. The touch-fling citation is re-pointed (`scrolling.rs:724-747` → `:875-898`).
+**Why:** the engine method was widened for every document, ratified by the founder (2026-10-07), his own choice relayed verbatim by the overseer and confirmed by the operator at this wrap's escalation. The document holds one scroll animation at a time, so smooth travel of a nested box was not built.
+**Ref:** .andromeda/runs/2026-10-07T20-27-47-wrap/

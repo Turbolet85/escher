@@ -8,6 +8,15 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-07 — A fork CI run with one job still open is not green, and how to read and re-run a hung job
+A run is the witness of a gate only when its conclusion reads `verdict: green`. A run whose other jobs all read `success` while one is still open reads `in progress`, however long it has stood: fifteen of sixteen is not the acceptance, and it is never recorded as one.
+
+`ci.py conclusion --wait` names the oldest running job and its age, not the step that job is in, so a hang looks the same as a slow build until the bound fires. When a wait returns `in progress` with no failed job, read the open job's steps (`gh run view {run} -R {fork} --json jobs`) before waiting again: a step that normally takes seconds and has stood for minutes is the hang. `gh run cancel {run}` on a run whose only open job is the hung one keeps every concluded job's result, and `gh run rerun {run} --job {databaseId}` then re-runs that job alone as a new attempt of the same run, which the conclusion read counts as one run on the same commit. Bound the re-runs before starting: stop after a second hang in the same step.
+
+A job log fetched with `gh run view --log` carries its colour codes as literal text — `^[[1m` between `Running` and the test target's path — not as escape bytes, so a parser that strips ANSI escapes leaves them in and a pattern anchored on `Running tests/` finds nothing.
+
+---
+
 ## 2026-10-07 — `$TMPDIR` is unset in the Bash tool's shell on this host
 A redirect to `$TMPDIR/x.log` expands to `/x.log` and fails with "Permission denied", and the command before it in the pipeline still runs — its exit then reads as a failure of the thing being measured. Write scratch output to the session's scratchpad directory by its full path. The gate tool's printed `$TMPDIR/andromeda-gate/…` names the OS temp dir (`tempfile.gettempdir()`), not the shell variable.
 

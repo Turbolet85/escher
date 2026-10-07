@@ -1,40 +1,42 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-07T15:02:28Z
+**Last Updated:** 2026-10-07T21:08:56Z
 **Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-07-act-by-id — a call runs on a held instance: `Session::run` executes the driver's verbs in process, by stable id, and returns after settle with the diff
+**Last Commit:** 2026-10-07-refusal-detection — the driver names why it refuses: stale, disabled, covered and off-screen are detected before anything runs, and a sixth verb, `scroll`, brings a target into view
 
 ## Position
-- Done: 2026-10-07-act-by-id (25 master records, all complete). Verified with it: v010-03 · v010-06 · v010-09 · v010-10.
-- Next: "Refusal detection" (working-route.md:64, v010-11) — promote and plan it with /andromeda-phase. It carries three CARRYs; the newest says what a click does today to a target that cannot take it.
+- Done: 2026-10-07-refusal-detection (26 master records, all complete). Verified with it: v010-11.
+- Next: "Driver command spans" (working-route.md:66) — promote and plan it with /andromeda-phase. It is the last markerless entry of Epoch 4: its wrap closes the epoch (the sidecar consolidation, and the Tier 3 review the founder set for that boundary).
 
 ## Work done
-- `escher-driver` gains the executor (`execute.rs`): `Session::run(&Call)` validates, runs the verb, settles and returns an `Outcome` — the screen's text, or whether the instance went quiet and the diff. `click` and `type` take a stable id (`not-found` otherwise); `advance` moves time through `Session::with_time` (`time-unavailable` without). In process only: the socket is unchanged. The crate names `accessibility` on dioxus-native-dom. The harness re-exports `Key` · `Modifiers` and gains `apple_keybinding`; the stand gains `timer_step`; the Timer host carries it. Source landed in the operator pre-CI commit `f8eb42c8`.
-- Proof: six `stand_act_*` files (17 tests), five mutation controls. Workspace 629 passed · 0 failed · 8 ignored over 149 result lines; fork CI green 16/16 on `f8eb42c8` (CI#37633611745) — the macOS and windows job logs were read: all six files ran, the deleting-key test `ok`. Record: `escher-0.1.0/chunks/2026-10-07-act-by-id/report.md`, readings in its `evidence/`.
+- `escher-driver`'s executor detects the five screen-level refusals in front of a call: an id the screen does not read is `stale` when the session's record of ids read holds it and `not-found` when not; a `click` or a `type` on a target that cannot take it is refused `disabled`, then `off-screen`, then `covered`, with nothing run. A sixth verb, `scroll`, brings its target into view and says in its result (`in_view`) whether it then is. The click point is now the centre of the snapshot's bounds. In the engine, `BaseDocument::scroll_into_view` scrolls every nested scrolling box and then the viewport, for every document, and `visible_region` is the new read-only reader. Source landed in the operator pre-CI commit `983d8973`.
+- Proof: nine `stand_act_*` files (27 tests) and `scroll_into_view_nested` (7), nine mutation controls. Workspace 647 passed · 0 failed · 8 ignored over 153 result lines; fork CI green 16/16 on `983d8973` (CI#37673662374, at its third attempt — see Notes). Record: `escher-0.1.0/chunks/2026-10-07-refusal-detection/report.md`, readings in its `evidence/`.
 
 ## Drift resolved
-- 7 detectors, 61 proposals over four masters (architecture 22 · security-plan 13 · test-plan 16 · obs-plan 10); 60 applied, 1 rejected as proposed and re-raised from the wrap's own measurement, 8 more raised (a11y-plan, design-system, layout-templates and five citation moves). 68 amendments over all seven masters and the keyed contract `session-lifecycle`; seven sidecar entries. No escalation. Record: `.andromeda/runs/2026-10-07T14-22-35-wrap/fanout-results.md`, `cascade-dispositions.md`.
-- 14 leaf files re-derived; the second sweep left no stale row. One Session Addition in `testing.md` corrected in place (the harness now synthesizes the Apple delete binding).
+- 7 detectors, 59 proposals over six masters (architecture 27 · security-plan 8 · test-plan 14 · obs-plan 8 · layout-templates 1 · a11y-plan 1); 58 applied, 1 rejected as proposed and re-raised from the wrap's own measurement, 5 more raised (the `Refusal` bullet, design-system §Motion, the reader counts, `lib.rs` and three bare citations). 63 amendments over all seven masters and the keyed contract `session-lifecycle`; seven sidecar entries. Record: `.andromeda/runs/2026-10-07T20-27-47-wrap/fanout-results.md`, `cascade-dispositions.md`.
+- 2 escalations, both resolved at this wrap (`operator-rulings.md` in the run dir): the sixth verb and the engine scroll for every document are each recorded as ratified by the founder (2026-10-07), his own choice relayed verbatim by the overseer, the option wording the overseer's.
+- 15 leaf files re-derived; the second sweep left no stale row.
 
-## Rulings applied at this wrap (`operator-rulings.md` in the run dir)
-- The founder (relayed verbatim): a new route entry, "Range input interaction" (working-route.md:84) — a boundary widening by his word; no placement was given, so it sits ahead of "Stand keyboard harness", its first dependent. Say so if it belongs earlier. No capability was added to the ledger with it.
-- The founder: the playbook rule proposed at the 12-34 wrap is appended. The founder: test functions stay in the code audit's `over_ceiling` scalar — that question is closed. The founder: the Tier 3 learnings below are reviewed at the Epoch 4 boundary.
-- The overseer's technical answer: `advanced_ms` is the time delivered to the app; 60000 past the Timer's cap is right as built — stated so in architecture and test-plan.
+## Route owners written at this wrap (the operator's direction; the wrap's placement — move any that reads wrong)
+- On "Driver CLI" (working-route.md:71): a scrolled box's own `bounds` read shifted by its scroll offset · the hit walk reaches a row scrolled out of its box · the session's record has no bound on an id's length.
+- On "Quality gates" (:92): the CI package-install step has no timeout and no retry. It can recur at any chunk's CI run before that entry — say so if it should move earlier.
+- Two more the direction did not name: on "Upstream sync ahead of agent surfaces" (:69), our merge surface in the inherited `scrolling.rs`; on "Cold-agent test" (:94), whether `covered` is the right word for a box with no height (`task-header-spacer`).
+
+## Upstreamable (flags kept, as directed)
+- **The nested `scroll_into_view`** — the widened method and the `visible_region` reader (the founder, 2026-10-07, relayed verbatim by the overseer). No issue or PR is open; nothing was read from upstream.
+- **The bounds misreading** — `get_client_bounding_rect` subtracts a node's own scroll offset, so a scrolled box's own bounds read shifted (the operator, 2026-10-07, at this wrap). Predates this chunk; unfixed; in upstream-owned code.
 
 ## Notes
-- **One judgment to check.** Three clauses carrying "ratified by the founder" (a snapshot's text and a diff are returned to their caller only) had a status clause beside them — "no driver, CLI or MCP command exposes it yet" — which the executor made false. The ratified rule is kept word for word; the status clause now says a driver command returns it in process, under the operator's "in process" answer at the plan's forks. Applied without a halt as not a boundary widening (fanout-results.md, check 1).
-- The `select` half of the old carry ("no `select` or range interaction model") is in no ruling and has no owner; no stand task holds a `select`. It is written into the new entry's carry.
-- No standing check boots `escher-session timer`; booted by hand once. Owner: a CARRY on "Driver CLI", beside the typed-sentinel proof, which moved there.
-- Still not measured: typed text in a sink-installing host's log; the ios and android CI job logs (their jobs read `success`); `log.file` occurrences. Still owed: the windowed witness of the accessibility-tree refresh.
-- Not checked by any local gate: the MSRV build and the windows, macOS, iOS and android legs — CI#37633611745 on `f8eb42c8` is their witness; this wrap's commit adds records and spec text, no source.
-- `session_common/mod.rs:3` is a 147-character doc line (rustfmt leaves comments alone); cosmetic, left for a source-touching chunk.
-- Epoch 4 reads 9 entries, 2 markerless; Epoch 6 reads 8. No split was asked for.
-- No gated record, no PREREQ, no WATCH on the tail. Last failed command: none.
+- **A rule to rule on.** One amendment had no playbook rule and was applied on the operator's direction: a body clause stating a measured limit of code the chunk did not edit (the bounds misreading), with its owner pinned on the route. Proposed rule, not appended: "A spec claim this chunk's measurement disproves, about code the chunk did not edit, is amended to state the measured limit — `as measured at` its evidence — and its fix is pinned as a CARRY on a route entry; routine." It needs the founder's word.
+- This wrap ran in two windows: the first wrote the report and stopped on the operator's word; the second resumed from it. Curation read the report's Decisions & corrections and the second window only.
+- The CI run needed two cancels and two re-runs after the install step hung twice; the method is in `.claude/docs/session-learnings.md` (top entry).
+- Still not measured: typed text in a sink-installing host's log; the ios and android CI job logs (their jobs read `success`); the WPT `scrollIntoView` tests under the widened engine scroll (the runner's workflow is upstream-only). Still owed: the windowed witness of the accessibility-tree refresh.
+- `Harness::scroll_into_view` has no check of its own: the driver's `scroll` is its one caller.
+- `session_common/mod.rs:3` is still an over-long doc line (rustfmt leaves comments alone); cosmetic.
+- Epoch 4 reads 9 entries, 1 markerless. No gated record, no PREREQ, no WATCH on the tail. Last failed command: none.
 
 ## Deferred learnings
-- None deferred this session; three candidates fell below the threshold (`curation.md` in the run dir).
+- None deferred this session. One applied (Tier 3); the filtered ones are in `curation.md` in the run dir.
+- recurrence-despite-learning: `.claude/rules/host-linux.md`, "The transport collapses a BACKSLASH PAIR" — a regex with a backslash pair sent in an inline heredoc was collapsed again at this chunk's operator pass.
 - Carried, for review at the Epoch 4 boundary (the founder, 2026-10-07): "The project's Bash guards refuse a heredoc written to a file and a leading cd" (Tier 3, 2026-10-06) · "A chunk that moves cited source lines stales the masters' file:line citations" (Tier 3, 2026-10-05) · "A grep hit seen through a clipped view is not read" (Tier 3, 2026-10-06) · "Count from the listing you just read, never from the plan's forecast" (Tier 3, 2026-10-05) · and the recurrence record of "A per-crate `cargo clippy` is not the CI lint leg" (Tier 3, 2026-10-07; three recurrences, none this session).
-
-## Session End Status
-Completed normally at 2026-10-07 20:50:26

@@ -1,0 +1,727 @@
+[
+{
+"tool": "gate",
+"v": "1.12",
+"sha8": "8357110d",
+"ts": "2026-10-07T20:27:56Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-07-refusal-detection",
+"--run-dir",
+".andromeda/runs/2026-10-07T20-27-47-wrap",
+"--marker",
+"2026-10-07-refusal-detection"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 9b758f6c (the parent of the oldest pre-CI commit 983d8973) · lists new 4 · modify 11 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 15 · listed 15 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 58"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "9b758f6ca206d4d6f6cbe638a02579998566703b",
+"base_why": "the parent of the oldest pre-CI commit 983d8973",
+"counts": {
+"changed": 15,
+"listed": 15,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 58,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.12",
+"sha8": "8357110d",
+"ts": "2026-10-07T20:35:17Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-07-refusal-detection",
+"--run-dir",
+".andromeda/runs/2026-10-07T20-27-47-wrap",
+"--marker",
+"2026-10-07-refusal-detection"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 9b758f6c (the parent of the oldest pre-CI commit 983d8973) · lists new 4 · modify 11 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 15 · listed 15 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 62"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "9b758f6ca206d4d6f6cbe638a02579998566703b",
+"base_why": "the parent of the oldest pre-CI commit 983d8973",
+"counts": {
+"changed": 15,
+"listed": 15,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 62,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.12",
+"sha8": "8357110d",
+"ts": "2026-10-07T21:12:13Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-07-refusal-detection/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-07T20-27-47-wrap",
+"--marker",
+"2026-10-07-refusal-detection"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-07-refusal-detection · entries 18",
+"logs $TMPDIR/andromeda-gate/2026-10-07-refusal-detection/wrap-2026-10-07T20-27-47 · bound: GNU timeout",
+"delta docs 60",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L259-267: No entry is a live leg: nothing here drives a process the launch environment names, so the… (889 chars)",
+"prose L269-272: `evidence/stand-census.md` and `evidence/controls.md` have no listed producer, by construc… (349 chars)",
+"  1 unit        green · exit 0 · 0.42s · 2348 B → 1.log · cargo test -p escher-driver --locked",
+"  2 integration green · exit 0 · 3.3s · 1523 B → 2.log · cargo test -p blitz-tests --locked --test stand_act_disabl… (112 chars)",
+"  3 integration green · exit 0 · 0.76s · 805 B → 3.log · cargo test -p blitz-tests --locked --test scroll_into_view… (65 chars)",
+"  4 integration green · exit 0 · 14.6s · 2722 B → 4.log · cargo test -p blitz-tests --locked --test stand_act_ids --… (170 chars)",
+"  5 integration green · exit 0 · 1.5s · 890 B → 5.log · cargo test -p blitz-tests --locked --test stand_settle",
+"  6 integration green · exit 0 · 1.77s · 1415 B → 6.log · cargo test -p blitz-tests --locked --test fragment_navigat… (61 chars)",
+"  7 probe       green · exit 0 · 0.01s · 0 B → 7.log · git diff --quiet 9b758f6ca206d4d6f6cbe638a02579998566703b … (706 chars)",
+"  8 probe       green · exit 1 · 0.0s · 2 B → 8.log · test -f packages/escher-driver/src/execute.rs && cat packa… (262 chars)",
+"  9 probe       green · exit 1 · 0.0s · 2 B → 9.log · test -f packages/escher-driver/src/command.rs && cat packa… (129 chars)",
+" 10 probe       green · exit 1 · 0.0s · 2 B → 10.log · test -f packages/escher-driver/src/session.rs && cat packa… (148 chars)",
+" 11 build       green · exit 0 · 40.57s · 137 B → 11.log · bash scripts/agent-run.sh boot",
+" 12 integration green · exit 0 · 23.44s · 14066 B → 12.log · bash scripts/agent-run.sh run stand",
+" 13 lint        green · exit 0 · 74.54s · 70603 B → 13.log · bash .github/scripts/ci-leg.sh fast",
+" 14 lint        green · exit 0 · 0.56s · 177 B → 14.log · bash .github/scripts/ci-leg.sh doc",
+" 15 integration green · exit 0 · 2.49s · 1597 B → 15.log · bash .github/scripts/ci-leg.sh a11y",
+" 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 17 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 18 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 18 · green 15 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-07-refusal-detection",
+"plan": "./escher-0.1.0/chunks/2026-10-07-refusal-detection/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-07-refusal-detection/wrap-2026-10-07T20-27-47",
+"delta": {
+"docs": [
+".andromeda/a11y-plan-amendments.md",
+".andromeda/a11y-plan.md",
+".andromeda/architecture-amendments.md",
+".andromeda/architecture.md",
+".andromeda/design-system-amendments.md",
+".andromeda/design-system.md",
+".andromeda/friction-log.ndjson",
+".andromeda/layout-templates-amendments.md",
+".andromeda/layout-templates.md",
+".andromeda/obs-plan-amendments.md",
+".andromeda/obs-plan.md",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md",
+".andromeda/security-plan-amendments.md",
+".andromeda/security-plan.md",
+".andromeda/state.yaml",
+".andromeda/test-plan-amendments.md",
+".andromeda/test-plan.md",
+".claude/docs/a11y-summary.md",
+".claude/docs/commands.md",
+".claude/docs/design-summary.md",
+".claude/docs/obs-summary.md",
+".claude/docs/security-summary.md",
+".claude/docs/services/blitz-dom.md",
+".claude/docs/services/blitz-test-harness.md",
+".claude/docs/services/dioxus-native-dom.md",
+".claude/docs/services/escher-driver.md",
+".claude/docs/session-learnings.md",
+".claude/docs/tests-summary.md",
+".claude/rules/observability.md",
+".claude/rules/security.md",
+".claude/rules/testing.md",
+".claude/rules/verification-harness.md",
+".claude/session-handoff.md",
+"CLAUDE.md",
+"escher-0.1.0/chunks/2026-10-07-refusal-detection/evidence/operator-pass.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-07T20-27-47-wrap/.raw-fanout-design-system.md",
+".andromeda/runs/2026-10-07T20-27-47-wrap/a11y-plan-contracts.md",
+".andromeda/runs/2026-10-07T20-27-47-wrap/a11y-plan-entry.md",
+".andromeda/runs/2026-10-07T20-27-47-wrap/architecture-entry.md",
+".andromeda/runs/2026-10-07T20-27-47-wrap/cascade-2026-10-07-refusal-detection.json",
+".andromeda/runs/2026-10-07T20-27-47-wrap/cascade-dispositions.md",
+".andromeda/runs/2026-10-07T20-27-47-wrap/cascade-patterns.toml",
+".andromeda/runs/2026-10-07T20-27-47-wrap/curation.md",
+".andromeda/runs/2026-10-07T20-27-47-wrap/design-system-entry.md",
+".andromeda/runs/2026-10-07T20-27-47-wrap/evolve-2026-10-07-refusal-detection.json",
+".andromeda/runs/2026-10-07T20-27-47-wrap/fanout-results.md",
+".andromeda/runs/2026-10-07T20-27-47-wrap/gate-2026-10-07-refusal-detection.json",
+".andromeda/runs/2026-10-07T20-27-47-wrap/inputs-2026-10-07-refusal-detection.json",
+".andromeda/runs/2026-10-07T20-27-47-wrap/layout-templates-entry.md",
+".andromeda/runs/2026-10-07T20-27-47-wrap/obs-plan-contracts.md",
+".andromeda/runs/2026-10-07T20-27-47-wrap/obs-plan-entry.md",
+".andromeda/runs/2026-10-07T20-27-47-wrap/operator-rulings.md",
+".andromeda/runs/2026-10-07T20-27-47-wrap/registry-2026-10-07-refusal-detection.json",
+".andromeda/runs/2026-10-07T20-27-47-wrap/route-no-marker.json",
+".andromeda/runs/2026-10-07T20-27-47-wrap/security-plan-entry.md",
+".andromeda/runs/2026-10-07T20-27-47-wrap/splice-2026-10-07-refusal-detection.json",
+".andromeda/runs/2026-10-07T20-27-47-wrap/test-plan-contracts.md",
+".andromeda/runs/2026-10-07T20-27-47-wrap/test-plan-entry.md",
+"escher-0.1.0/chunks/2026-10-07-refusal-detection/report.md"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 60,
+"problem": null
+},
+"prose": [
+{
+"from": 259,
+"to": 267,
+"text": "No entry is a live leg: nothing here drives a process the launch environment names, so there is no liveness probe and no `stop` key. There is no headful self-verify harness on this project and this chunk changes no screen; it edits no boot path of either seven_guis binary, so there is no smoke entry — the stand checks boot in process. **Not run locally:** the MSRV build and the windows, macos, ios and android matrix legs — the fork's CI run is their one witness; the CI acceptance follows the operator pass (pre-CI commit, push, CI read). **Not run at all:** the WPT conformance runner, whose workflow is upstream-only — no reading of the cssom-view `scrollIntoView` tests under the widened engine scroll is made by this chunk. The preservation entry names its base as the commit this chunk starts from, `9b758f6c`, and lets one engine file move, `packages/blitz-dom/src/scrolling.rs`."
+},
+{
+"from": 269,
+"to": 272,
+"text": "`evidence/stand-census.md` and `evidence/controls.md` have no listed producer, by construction: they are implement's hand records of step 9's listing and step 11's mutations, neither of which an entry could re-produce at the wrap's light gate; what each records is asserted by a listed entry (`stand_act_ids`, and the checks the mutations turn red)."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked",
+"run_sha8": "5f0bb953",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-07-refusal-detection/wrap-2026-10-07T20-27-47/1.log",
+"bytes": 2348,
+"log_sha8": "3ae55cc9",
+"exit": 0,
+"seconds": 0.42,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_act_disabled --test stand_act_obstructed --test stand_act_scroll",
+"run_sha8": "f28f01a4",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-07-refusal-detection/wrap-2026-10-07T20-27-47/2.log",
+"bytes": 1523,
+"log_sha8": "41f11809",
+"exit": 0,
+"seconds": 3.3,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test scroll_into_view_nested",
+"run_sha8": "a09e11cd",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-07-refusal-detection/wrap-2026-10-07T20-27-47/3.log",
+"bytes": 805,
+"log_sha8": "d4ccab2b",
+"exit": 0,
+"seconds": 0.76,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_act_ids --test stand_act_diff --test stand_act_timer --test stand_act_refused --test stand_act_keys --test stand_act_range",
+"run_sha8": "3661a468",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-07-refusal-detection/wrap-2026-10-07T20-27-47/4.log",
+"bytes": 2722,
+"log_sha8": "f4254357",
+"exit": 0,
+"seconds": 14.6,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_settle",
+"run_sha8": "9b8327ac",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-07-refusal-detection/wrap-2026-10-07T20-27-47/5.log",
+"bytes": 890,
+"log_sha8": "05bb828f",
+"exit": 0,
+"seconds": 1.5,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test fragment_navigation",
+"run_sha8": "df9f6f94",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-07-refusal-detection/wrap-2026-10-07T20-27-47/6.log",
+"bytes": 1415,
+"log_sha8": "93bbd9a6",
+"exit": 0,
+"seconds": 1.77,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff --quiet 9b758f6ca206d4d6f6cbe638a02579998566703b -- Cargo.toml Cargo.lock deny.toml packages/escher-driver/Cargo.toml packages/escher-driver/src/wire.rs packages/escher-driver/src/host.rs packages/escher-driver/src/client.rs packages/escher-driver/src/error.rs packages/blitz-dom \":(exclude)packages/blitz-dom/src/scrolling.rs\" packages/blitz-vibey-script packages/dioxus-native-dom packages/escher-telemetry packages/blitz-test-harness/Cargo.toml packages/blitz-test-harness/src/harness.rs packages/blitz-test-harness/src/inspect.rs packages/blitz-test-harness/src/settle.rs packages/blitz-test-harness/src/lib.rs tests/blitz-tests/tests/fragment_navigation.rs examples/seven_guis scripts .github",
+"run_sha8": "22d2a3a0",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-07-refusal-detection/wrap-2026-10-07T20-27-47/7.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "test -f packages/escher-driver/src/execute.rs && cat packages/escher-driver/src/execute.rs packages/escher-driver/src/session.rs packages/escher-driver/src/lib.rs | grep -cE 'env::var|println!|eprintln!|print!|dbg!|tracing::|log::|thread::|Instant::|SystemTime' ",
+"run_sha8": "5708a0b5",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-07-refusal-detection/wrap-2026-10-07T20-27-47/8.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "test -f packages/escher-driver/src/command.rs && cat packages/escher-driver/src/*.rs | grep -cE 'seven_guis|LeanTask|TimerTicks' ",
+"run_sha8": "3884d5b2",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-07-refusal-detection/wrap-2026-10-07T20-27-47/9.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "test -f packages/escher-driver/src/session.rs && cat packages/escher-driver/src/session.rs packages/escher-driver/src/refusal.rs | grep -c 'NodeId' ",
+"run_sha8": "1977b4f1",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-07-refusal-detection/wrap-2026-10-07T20-27-47/10.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-07-refusal-detection/wrap-2026-10-07T20-27-47/11.log",
+"bytes": 137,
+"log_sha8": "d86d5a1c",
+"exit": 0,
+"seconds": 40.57,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-07-refusal-detection/wrap-2026-10-07T20-27-47/12.log",
+"bytes": 14066,
+"log_sha8": "e7eb9012",
+"exit": 0,
+"seconds": 23.44,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-07-refusal-detection/wrap-2026-10-07T20-27-47/13.log",
+"bytes": 70603,
+"log_sha8": "f505bb69",
+"exit": 0,
+"seconds": 74.54,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-07-refusal-detection/wrap-2026-10-07T20-27-47/14.log",
+"bytes": 177,
+"log_sha8": "3ba70095",
+"exit": 0,
+"seconds": 0.56,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-07-refusal-detection/wrap-2026-10-07T20-27-47/15.log",
+"bytes": 1597,
+"log_sha8": "61be2894",
+"exit": 0,
+"seconds": 2.49,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.12",
+"sha8": "8357110d",
+"ts": "2026-10-07T21:12:30Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-10-07T20-27-47-wrap",
+"--marker",
+"2026-10-07-refusal-detection"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base 9b758f6c (the parent of the oldest pre-CI commit 983d8973)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 74 (runs 65 · evidence 3 · inputs 6) · trails 22 not read · copies 4 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 65,
+"evidence": 3,
+"inputs": 6,
+"trails": 22,
+"copies": 4,
+"kept": 0,
+"binary": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.12",
+"sha8": "8357110d",
+"ts": "2026-10-07T21:13:02Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-10-07T20-27-47-wrap",
+"--marker",
+"2026-10-07-refusal-detection"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base 9b758f6c (the parent of the oldest pre-CI commit 983d8973)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 74 (runs 65 · evidence 3 · inputs 6) · trails 22 not read · copies 4 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 65,
+"evidence": 3,
+"inputs": 6,
+"trails": 22,
+"copies": 4,
+"kept": 0,
+"binary": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.12",
+"sha8": "8357110d",
+"ts": "2026-10-07T21:13:09Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-07-refusal-detection",
+"--run-dir",
+".andromeda/runs/2026-10-07T20-27-47-wrap",
+"--marker",
+"2026-10-07-refusal-detection"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 9b758f6c (the parent of the oldest pre-CI commit 983d8973) · lists new 4 · modify 11 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 15 · listed 15 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 115"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "9b758f6ca206d4d6f6cbe638a02579998566703b",
+"base_why": "the parent of the oldest pre-CI commit 983d8973",
+"counts": {
+"changed": 15,
+"listed": 15,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 115,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

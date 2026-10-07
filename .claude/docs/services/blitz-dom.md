@@ -12,7 +12,7 @@ The headless DOM (`BaseDocument`): node tree, CSS parsing and resolution through
 - Stylo 0.22, Taffy (git rev) via `stylo_taffy`, Parley (git rev), accesskit (feature `accessibility`).
 
 ### Publishes to
-- `Document` trait (`inner`, `inner_mut`, `handle_ui_event`, `poll`, `id`, and under `accessibility` a default `accessibility_tree` a wrapper may override), `BaseDocument`, `DocumentMutator`, `EventDriver`/`EventHandler`, query-selector API, CSSOM, scroll API, `build_accessibility_tree` (names from text children, a trimmed-non-empty `aria-label` and `<label>` association), `BoundingRect`, CSSOM View accessors, `Widget` trait.
+- `Document` trait (`inner`, `inner_mut`, `handle_ui_event`, `poll`, `id`, and under `accessibility` a default `accessibility_tree` a wrapper may override), `BaseDocument`, `DocumentMutator`, `EventDriver`/`EventHandler`, query-selector API, CSSOM, scroll API (`scroll_into_view` scrolls every scrolling box that holds its target, innermost first, then the viewport — a nested box at once, the requested behaviour for the viewport alone; `visible_region` reads the part of the viewport an element can be seen through — never a hit, which reaches a row scrolled out of its box), `build_accessibility_tree` (names from text children, a trimmed-non-empty `aria-label` and `<label>` association), `BoundingRect`, CSSOM View accessors, `Widget` trait.
 
 ## Internal conventions
 - `resolve` order: messages → critical-resource gate → scroll animation → device changes → stylist → damage → layout-children construction → deferred tasks → style images → layout → transforms → paint tree → clear damage → hover refresh → sub-documents.

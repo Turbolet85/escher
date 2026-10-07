@@ -1,0 +1,121 @@
+[
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "1b5a5c62",
+"ts": "2026-10-07T21:13:13Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-07-refusal-detection",
+"--run-dir",
+".andromeda/runs/2026-10-07T20-27-47-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"flip master-route.md:36 - 2026-10-07-refusal-detection pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "1b5a5c62",
+"ts": "2026-10-07T21:13:13Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-07-refusal-detection",
+"--date",
+"2026-10-07",
+"--run-dir",
+".andromeda/runs/2026-10-07T20-27-47-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :64 strip CARRY: 433ch \"CARRY: minimal fixture for the covered c\"",
+"pin :64 strip CARRY: 1118ch \"CARRY: the causes are named and worded, \"",
+"pin :64 strip CARRY: 628ch \"CARRY: what a click does to a target tha\"",
+"pin next markerless :66 holds CARRY:×3",
+"64 · 2026-10-07-refusal-detection · strip 3 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 64,
+"marker": "2026-10-07-refusal-detection",
+"blocks": 3,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "1b5a5c62",
+"ts": "2026-10-07T21:13:20Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-07-refusal-detection",
+"--date",
+"2026-10-07",
+"--run-dir",
+".andromeda/runs/2026-10-07T20-27-47-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :64 strip CARRY: 433ch \"CARRY: minimal fixture for the covered c\"",
+"pin :64 strip CARRY: 1118ch \"CARRY: the causes are named and worded, \"",
+"pin :64 strip CARRY: 628ch \"CARRY: what a click does to a target tha\"",
+"pin next markerless :66 holds CARRY:×3",
+"64 · 2026-10-07-refusal-detection · strip 3 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.1.0/route-archive.md",
+"./escher-0.1.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 64,
+"marker": "2026-10-07-refusal-detection",
+"blocks": 3,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]
