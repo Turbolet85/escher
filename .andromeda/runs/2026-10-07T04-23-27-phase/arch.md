@@ -1,0 +1,35 @@
+# arch extract
+
+## Relevance
+partial — the chunk lands no code in any workspace crate; arch applies through its recorded upstream pin, its unchanged resource registry and dependency pins, and the gate contracts the "our logic survived" proof runs through.
+
+## Constraints
+- The recorded sync point is the reference the measurement is read against: architecture §Project Intent (the `Upstream sync:` line) names the upstream sha last merged, its merge commit, and calls it "the next sync's merge base". The chunk's 0-ahead reading requires `upstream/main` to resolve to that same sha and to be an ancestor of HEAD. Whether that still holds when the chunk is implemented is /implement's measurement (git state — not attestable from the plan).
+- No resource is added: architecture §Occupied Resources → Network ports and listeners (none), → Environment variables and → Names (crates, binaries, features, scripts) must read the same after the chunk as before it. A new crate, env var, port or listener would be a registry amendment, which this chunk's shape excludes.
+- Coupled dependency pins stay untouched as a set: architecture §Established Decisions → [Dependency pinning] requires the html5ever family ↔ stylo web_atoms, skrifa ↔ parley/vello, svgtypes ↔ usvg matches, the taffy/parley git `rev` pins and the exact winit beta to move together or not at all. With nothing merged, `Cargo.toml` and `Cargo.lock` must not change.
+- The gates run through the one leg script: architecture §Standard Contracts → CI contracts requires each leg to be invoked as `.github/scripts/ci-leg.sh {leg}` (the same command CI runs), `--locked` on the cargo legs, exiting with the leg command's status and teeing its output under `target/ci-logs/`. The chunk's `fast` and `doc` runs are bound to that grammar — a bare `cargo` invocation is not the gate.
+- The formatting, lint and rustdoc bars are workspace-wide: architecture §Conventions → Formatting and lints and §Inherited Defaults → Code quality require fmt `--check`, clippy `-D warnings` and rustdoc `-D warnings` over every workspace crate; the `doc` leg is a gate of its own, not covered by `fast`.
+- The fork-CI verdict must be read from a completed run on the sha it names: architecture §Infrastructure Patterns → CI/CD records that pushes to `build/**` trigger the workflow under per-ref concurrency with cancel-in-progress, and that the slow jobs `needs` the four fast ones. A push to the build ref while a run is in progress supersedes that run, so an in-progress or cancelled run is not a green.
+- Upstream-only jobs stay unreachable from the fork: architecture §Occupied Resources → CI infrastructure and §Infrastructure Patterns → CI/CD require the WPT, post-results and publish jobs to carry the `DioxusLabs/blitz` repository guard; "fork CI green" therefore means `ci.yml` only, and the chunk must not read those workflows as part of its verdict.
+
+## Patterns to follow
+- Measured, sha-pinned records: architecture §Project Intent states the sync point as full shas plus a date. The chunk's evidence should name the upstream sha, the merge-base read and the ahead count the same way, so the next sync can read its merge base from one line.
+- One command on the dev host and in CI: architecture §Standard Contracts → CI contracts and §Infrastructure Patterns → CI/CD describe each linux job as running its leg through `ci-leg.sh`; local proof and CI proof are the same legs, so the local `fast` + `doc` runs and the fork run are comparable evidence.
+- Leg logs as the evidence path: architecture §Occupied Resources → Filesystem registers `target/ci-logs/{leg}.log` as the leg output path (local, truncated at each leg's start). Evidence for the gate verdict cites the leg's exit status and reads that registered log, with no new evidence path under `target/`.
+- No wrap-time arch amendment on a 0-ahead sync: with no merge commit, the `Upstream sync:` line in architecture §Project Intent already describes the state the chunk measures. Inference from the line's wording ("the next sync's merge base"), not a plan mandate — the wrap's drift pass decides.
+
+## Anti-patterns to avoid
+- A silent merge or a silent add: bringing in a later upstream sha, or any crate / port / env var / listener, without the registry change architecture §Occupied Resources requires and without the operator halt the scope names.
+- Moving one side of a coupled pin, or re-keying the lockfile for no source change: architecture §Established Decisions → [Dependency pinning] bans the first; architecture §Occupied Resources → CI infrastructure records that a `Cargo.lock` change re-mints every cache key against a budget already measured as exceeded.
+- Treating the plan as proof: architecture.md records target state and past measurements (its green CI and gate readings are dated evidence of earlier chunks). None of them stands in for this chunk's own `fast`, `doc` and fork-CI results.
+
+## Contract bindings
+- arch ↔ tests: the leg script and the fork workflow (architecture §Standard Contracts → CI contracts; §Infrastructure Patterns → CI/CD) are the vehicle of the test domain's gate — the tests extract owns which results count as "our tests prove our logic survived"; arch owns the command grammar and the registered log path.
+- arch ↔ security: the committed lockfile, `--locked` builds and `rev`-pinned git dependencies (architecture §Established Decisions → [Dependency pinning]; §Standard Contracts → CI contracts) and the repository guard on upstream-only jobs (architecture §Occupied Resources → CI infrastructure) are the same facts the security rules bind; an unchanged tree keeps all of them.
+- arch ↔ all domains: workspace crate names (architecture §Occupied Resources → Names; §Existing Scopes) are unchanged, so no other domain's crate-scoped content moves.
+
+## Acceptance criteria contributions
+- (arch) At /implement, `upstream/main` resolves to the sha the plan records as last merged and `git merge-base HEAD upstream/main` equals it (0 commits ahead); any other reading halts for the operator rather than merging (per architecture §Project Intent, `Upstream sync:` line).
+- (arch) The chunk's diff touches no `Cargo.toml`, no `Cargo.lock` and no file under `packages/`, `apps/`, `examples/`, `tests/`, `wpt/`, `scripts/` or `.github/` — no new crate, env var, port or listener, and no pin moved (per architecture §Occupied Resources → Names / Environment variables / Network ports and listeners; §Established Decisions → [Dependency pinning]).
+- (arch) `bash .github/scripts/ci-leg.sh fast` and `bash .github/scripts/ci-leg.sh doc` are each run on the unchanged tree and each exits 0, with the leg log under `target/ci-logs/` as the evidence read (per architecture §Standard Contracts → CI contracts; §Conventions → Formatting and lints).
+- (arch) The fork's `ci.yml` run on the HEAD sha the chunk names has completed with every job green — not in progress, not cancelled by a later push to the build ref, and not counting the upstream-only workflows (per architecture §Infrastructure Patterns → CI/CD).

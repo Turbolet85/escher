@@ -1,0 +1,778 @@
+[
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T04:38:27Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-07T04-38-06-implement",
+"--marker",
+"2026-10-07-upstream-sync-driver-core",
+"--entry",
+"1"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-07-upstream-sync-driver-core · entries 9",
+"logs $TMPDIR/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06 · bound: GNU timeout",
+"delta docs 36 · unmapped 3",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L40-46: The gates below run in /implement P2 and in the wrap's light gate. - **No boot smoke, no l… (1774 chars)",
+"  1 probe       green · exit 0 · 0.51s · 9 B → 1.log · test \"$(git ls-remote upstream refs/heads/main | cut -f1)\"… (196 chars)",
+"  2 probe       not run — excluded · { git diff --name-only 8d156de1fcced9157289286909a2cdb3b5b… (189 chars)",
+"  3 unit        not run — excluded · bash .github/scripts/ci-leg.sh fast",
+"  4 probe       not run — excluded · grep -E '^test result:' target/ci-logs/test.log | awk '{p+… (146 chars)",
+"  5 probe       not run — excluded · grep -c '^Ran 64 tests' target/ci-logs/ci-scripts.log",
+"  6 probe       not run — excluded · grep -c -E 'Running tests/(accessibility_hidden|accessibil… (162 chars)",
+"  7 lint        not run — excluded · bash .github/scripts/ci-leg.sh doc",
+"  8 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (119 chars)",
+"  9 probe       not run — excluded · gh api 'repos/Turbolet85/escher/commits/8d156de1fcced91572… (256 chars)",
+"entries 9 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 8"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-07-upstream-sync-driver-core",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-07T03-59-09-wrap/evolve-2026-10-07-audit-corrections.json",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/.raw-tests.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/a11y-history.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/a11y.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/arch-history.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/arch.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/design.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/evolve-2026-10-07-upstream-sync-driver-core.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/gate-2026-10-07-upstream-sync-driver-core.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/inputs-2026-10-07-upstream-sync-driver-core.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/layouts.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/master-record.txt",
+".andromeda/runs/2026-10-07T04-23-27-phase/matrix-2026-10-07-upstream-sync-driver-core.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/obs-contracts.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/obs-history.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/obs.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/planlint-2026-10-07-upstream-sync-driver-core.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/registry-2026-10-07-upstream-sync-driver-core.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/relay-1.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/route-2026-10-07-upstream-sync-driver-core.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/route-no-marker.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/security-history.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/security.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/sidecar-2026-10-07-upstream-sync-driver-core.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/tests-contracts.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/tests-history.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/tests.md",
+"escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/plan.md",
+"escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/research.md",
+"escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/scope.md"
+]
+},
+"unmapped": [
+"escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/inputs/.gitattributes",
+"escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/inputs/I1-relay-1.md.txt",
+"escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/inputs/andromeda-inputs.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 39,
+"problem": null
+},
+"prose": [
+{
+"from": 40,
+"to": 46,
+"text": "The gates below run in /implement P2 and in the wrap's light gate. - **No boot smoke, no live leg, no agent-run leg.** The chunk changes no code path, so it drives no external process. - **The Rust legs run, not deferred.** The project's done-rule (CLAUDE.md Critical Warnings: \"Work is not done until `bash .github/scripts/ci-leg.sh fast` … and `bash .github/scripts/ci-leg.sh doc` … pass\") outranks the zero-delta `defer` the gate contract would allow. Running them leaves no PREREQ for the next chunk. - **`fast` leaves one log per sub-leg and no `fast.log`.** The script loops over fmt, clippy, test and ci-scripts and stops at the first red (`.github/scripts/ci-leg.sh:54-59`, `set -euo pipefail` at line 6). The three entries that read `test.log` and `ci-scripts.log` follow the `fast` entry, so they read this run's logs, each truncated at its leg's start (obs-plan §9 Per-leg CI log). - **`a11y`, `audit`, `coverage`, `msrv` and the matrix legs are not listed locally.** They ran green in CI#37571032838 on `8d156de1`, whose code tree the guard entry pins as this chunk's. The workspace `test` leg inside `fast` already runs the `a11y` leg's three files (research.md §Files inspected), which the accessibility-files entry asserts. The two CI entries assert that run's verdict and its audit and a11y jobs by name. - **No operator push or fresh CI run.** No commit is owed before the wrap, and the wrap's own push runs CI on the bookkeeping commit. - **`evidence/sync.md` has no listed producer, by construction.** Implementation step 3 writes it from the printed lines of the pin, count, CI-scripts, accessibility-files and CI entries. It is a record of their readings, not a runtime artifact any command emits. The entries themselves are what the light gate re-runs."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "probe",
+"run": "test \"$(git ls-remote upstream refs/heads/main | cut -f1)\" = 2335458530518cdf167c55ce635fae99323e0789 && git merge-base --is-ancestor 2335458530518cdf167c55ce635fae99323e0789 HEAD && echo pin-held",
+"run_sha8": "b0df7ce0",
+"expect": [
+"exit 0",
+"last line pin-held"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06/1.log",
+"bytes": 9,
+"log_sha8": "7d7c8ab7",
+"exit": 0,
+"seconds": 0.51,
+"readings": [
+"exit 0 ✓",
+"last line 'pin-held' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "probe",
+"run": "{ git diff --name-only 8d156de1fcced9157289286909a2cdb3b5be5558; git ls-files --others --exclude-standard; } | grep -c -v -E '^(\\.andromeda/|escher-0\\.1\\.0/|\\.claude/session-handoff\\.md$)' ",
+"run_sha8": "a36be28a",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "unit",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "grep -E '^test result:' target/ci-logs/test.log | awk '{p+=$4; f+=$6; i+=$8; n++} END {print \"lines \" n \" passed \" p \" failed \" f \" ignored \" i}' ",
+"run_sha8": "2ec38d01",
+"expect": [
+"exit 0",
+"last line lines 131 passed 548 failed 0 ignored 5"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "grep -c '^Ran 64 tests' target/ci-logs/ci-scripts.log",
+"run_sha8": "1f7f4274",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "grep -c -E 'Running tests/(accessibility_hidden|accessibility_roles|focusability_updates|accessibility_names|stand_accessibility_ids)\\.rs' target/ci-logs/test.log",
+"run_sha8": "d524a212",
+"expect": [
+"exit 0",
+"last line 5"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 7,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha 8d156de1fcced9157289286909a2cdb3b5be5558",
+"run_sha8": "64927fa2",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "gh api 'repos/Turbolet85/escher/commits/8d156de1fcced9157289286909a2cdb3b5be5558/check-runs?per_page=100' --jq '[.check_runs[] | select(.name == \"Dependency audit\" or .name == \"Accessibility (a11y) tests\") | .name + \"=\" + .conclusion] | sort | join(\", \")' ",
+"run_sha8": "e6ed5242",
+"expect": [
+"exit 0",
+"last line Accessibility (a11y) tests=success, Dependency audit=success"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T04:39:21Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-07T04-38-06-implement",
+"--marker",
+"2026-10-07-upstream-sync-driver-core"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-07-upstream-sync-driver-core · entries 9",
+"logs $TMPDIR/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06 · bound: GNU timeout",
+"delta docs 37 · unmapped 3",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L40-46: The gates below run in /implement P2 and in the wrap's light gate. - **No boot smoke, no l… (1774 chars)",
+"  1 probe       green · exit 0 · 0.44s · 9 B → 1.log · test \"$(git ls-remote upstream refs/heads/main | cut -f1)\"… (196 chars)",
+"  2 probe       green · exit 1 · 0.01s · 2 B → 2.log · { git diff --name-only 8d156de1fcced9157289286909a2cdb3b5b… (189 chars)",
+"  3 unit        green · exit 0 · 45.97s · 58884 B → 3.log · bash .github/scripts/ci-leg.sh fast",
+"  4 probe       green · exit 0 · 0.01s · 40 B → 4.log · grep -E '^test result:' target/ci-logs/test.log | awk '{p+… (146 chars)",
+"  5 probe       green · exit 0 · 0.0s · 2 B → 5.log · grep -c '^Ran 64 tests' target/ci-logs/ci-scripts.log",
+"  6 probe       green · exit 0 · 0.0s · 2 B → 6.log · grep -c -E 'Running tests/(accessibility_hidden|accessibil… (162 chars)",
+"  7 lint        green · exit 0 · 0.32s · 177 B → 7.log · bash .github/scripts/ci-leg.sh doc",
+"  8 probe       green · exit 0 · 1.64s · 213 B → 8.log · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (119 chars)",
+"  9 probe       green · exit 0 · 0.48s · 61 B → 9.log · gh api 'repos/Turbolet85/escher/commits/8d156de1fcced91572… (256 chars)",
+"entries 9 · green 9 · red 0 · recorded 0 · timeout 0 · not-run 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-07-upstream-sync-driver-core",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-07T03-59-09-wrap/evolve-2026-10-07-audit-corrections.json",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/.raw-tests.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/a11y-history.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/a11y.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/arch-history.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/arch.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/design.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/evolve-2026-10-07-upstream-sync-driver-core.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/gate-2026-10-07-upstream-sync-driver-core.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/inputs-2026-10-07-upstream-sync-driver-core.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/layouts.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/master-record.txt",
+".andromeda/runs/2026-10-07T04-23-27-phase/matrix-2026-10-07-upstream-sync-driver-core.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/obs-contracts.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/obs-history.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/obs.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/planlint-2026-10-07-upstream-sync-driver-core.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/registry-2026-10-07-upstream-sync-driver-core.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/relay-1.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/route-2026-10-07-upstream-sync-driver-core.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/route-no-marker.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/security-history.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/security.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/sidecar-2026-10-07-upstream-sync-driver-core.json",
+".andromeda/runs/2026-10-07T04-23-27-phase/tests-contracts.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/tests-history.md",
+".andromeda/runs/2026-10-07T04-23-27-phase/tests.md",
+".andromeda/runs/2026-10-07T04-38-06-implement/gate-2026-10-07-upstream-sync-driver-core.json",
+"escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/plan.md",
+"escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/research.md",
+"escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/scope.md"
+]
+},
+"unmapped": [
+"escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/inputs/.gitattributes",
+"escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/inputs/I1-relay-1.md.txt",
+"escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/inputs/andromeda-inputs.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 40,
+"problem": null
+},
+"prose": [
+{
+"from": 40,
+"to": 46,
+"text": "The gates below run in /implement P2 and in the wrap's light gate. - **No boot smoke, no live leg, no agent-run leg.** The chunk changes no code path, so it drives no external process. - **The Rust legs run, not deferred.** The project's done-rule (CLAUDE.md Critical Warnings: \"Work is not done until `bash .github/scripts/ci-leg.sh fast` … and `bash .github/scripts/ci-leg.sh doc` … pass\") outranks the zero-delta `defer` the gate contract would allow. Running them leaves no PREREQ for the next chunk. - **`fast` leaves one log per sub-leg and no `fast.log`.** The script loops over fmt, clippy, test and ci-scripts and stops at the first red (`.github/scripts/ci-leg.sh:54-59`, `set -euo pipefail` at line 6). The three entries that read `test.log` and `ci-scripts.log` follow the `fast` entry, so they read this run's logs, each truncated at its leg's start (obs-plan §9 Per-leg CI log). - **`a11y`, `audit`, `coverage`, `msrv` and the matrix legs are not listed locally.** They ran green in CI#37571032838 on `8d156de1`, whose code tree the guard entry pins as this chunk's. The workspace `test` leg inside `fast` already runs the `a11y` leg's three files (research.md §Files inspected), which the accessibility-files entry asserts. The two CI entries assert that run's verdict and its audit and a11y jobs by name. - **No operator push or fresh CI run.** No commit is owed before the wrap, and the wrap's own push runs CI on the bookkeeping commit. - **`evidence/sync.md` has no listed producer, by construction.** Implementation step 3 writes it from the printed lines of the pin, count, CI-scripts, accessibility-files and CI entries. It is a record of their readings, not a runtime artifact any command emits. The entries themselves are what the light gate re-runs."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "probe",
+"run": "test \"$(git ls-remote upstream refs/heads/main | cut -f1)\" = 2335458530518cdf167c55ce635fae99323e0789 && git merge-base --is-ancestor 2335458530518cdf167c55ce635fae99323e0789 HEAD && echo pin-held",
+"run_sha8": "b0df7ce0",
+"expect": [
+"exit 0",
+"last line pin-held"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06/1.log",
+"bytes": 9,
+"log_sha8": "7d7c8ab7",
+"exit": 0,
+"seconds": 0.44,
+"readings": [
+"exit 0 ✓",
+"last line 'pin-held' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "probe",
+"run": "{ git diff --name-only 8d156de1fcced9157289286909a2cdb3b5be5558; git ls-files --others --exclude-standard; } | grep -c -v -E '^(\\.andromeda/|escher-0\\.1\\.0/|\\.claude/session-handoff\\.md$)' ",
+"run_sha8": "a36be28a",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06/2.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "unit",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06/3.log",
+"bytes": 58884,
+"log_sha8": "048da76e",
+"exit": 0,
+"seconds": 45.97,
+"readings": [
+"exit 0 ✓",
+"artifact fresh (target/ci-logs/test.log)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "grep -E '^test result:' target/ci-logs/test.log | awk '{p+=$4; f+=$6; i+=$8; n++} END {print \"lines \" n \" passed \" p \" failed \" f \" ignored \" i}' ",
+"run_sha8": "2ec38d01",
+"expect": [
+"exit 0",
+"last line lines 131 passed 548 failed 0 ignored 5"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06/4.log",
+"bytes": 40,
+"log_sha8": "43527d07",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line 'lines 131 passed 548 failed 0 ignored 5' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "grep -c '^Ran 64 tests' target/ci-logs/ci-scripts.log",
+"run_sha8": "1f7f4274",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06/5.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "grep -c -E 'Running tests/(accessibility_hidden|accessibility_roles|focusability_updates|accessibility_names|stand_accessibility_ids)\\.rs' target/ci-logs/test.log",
+"run_sha8": "d524a212",
+"expect": [
+"exit 0",
+"last line 5"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06/6.log",
+"bytes": 2,
+"log_sha8": "f0b5c2c2",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '5' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06/7.log",
+"bytes": 177,
+"log_sha8": "742b654b",
+"exit": 0,
+"seconds": 0.32,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha 8d156de1fcced9157289286909a2cdb3b5be5558",
+"run_sha8": "64927fa2",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06/8.log",
+"bytes": 213,
+"log_sha8": "709c1ff3",
+"exit": 0,
+"seconds": 1.64,
+"readings": [
+"exit 0 ✓",
+"contains 'verdict: green' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "gh api 'repos/Turbolet85/escher/commits/8d156de1fcced9157289286909a2cdb3b5be5558/check-runs?per_page=100' --jq '[.check_runs[] | select(.name == \"Dependency audit\" or .name == \"Accessibility (a11y) tests\") | .name + \"=\" + .conclusion] | sort | join(\", \")' ",
+"run_sha8": "e6ed5242",
+"expect": [
+"exit 0",
+"last line Accessibility (a11y) tests=success, Dependency audit=success"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06/9.log",
+"bytes": 61,
+"log_sha8": "7fc7d651",
+"exit": 0,
+"seconds": 0.48,
+"readings": [
+"exit 0 ✓",
+"last line 'Accessibility (a11y) tests=success, Dependency audit=success' ✓"
+],
+"survivors": [],
+"outcome": "green"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T04:39:29Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-07T04-38-06-implement",
+"--marker",
+"2026-10-07-upstream-sync-driver-core",
+"--n",
+"3"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"3 unit green",
+"run (b93c6d21): bash .github/scripts/ci-leg.sh fast",
+"  exit 0 ✓",
+"  artifact fresh (target/ci-logs/test.log)",
+"log $TMPDIR/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06/3.log · 58884 B · 048da76e",
+"--- no anchored failure; last 20 non-empty lines ---",
+"running 0 tests",
+"test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+"   Doc-tests dioxus_native_dom",
+"running 1 test",
+"test packages/dioxus-native-dom/src/dioxus_document.rs - dioxus_document::DioxusDocument (line 45) ... ok",
+"test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s",
+"all doctests ran in 0.58s; merged doctests compilation took 0.53s",
+"   Doc-tests escher_telemetry",
+"running 0 tests",
+"test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+"   Doc-tests seven_guis",
+"running 0 tests",
+"test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+"   Doc-tests stylo_taffy",
+"running 0 tests",
+"test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+"................................................................",
+"----------------------------------------------------------------------",
+"Ran 64 tests in 3.375s",
+"OK"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T04:39:29Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-07T04-38-06-implement",
+"--marker",
+"2026-10-07-upstream-sync-driver-core",
+"--n",
+"4"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"4 probe green",
+"run (2ec38d01): grep -E '^test result:' target/ci-logs/test.log | awk '{p+=$4; f+=$6; i+=$8; n++} END {print \"lines \" n \" passed \" p \" failed \" f \" ignored \" i}' ",
+"  exit 0 ✓",
+"  last line 'lines 131 passed 548 failed 0 ignored 5' ✓",
+"log $TMPDIR/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06/4.log · 40 B · 43527d07",
+"--- no anchored failure; last 20 non-empty lines ---",
+"lines 131 passed 548 failed 0 ignored 5"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T04:39:29Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-07T04-38-06-implement",
+"--marker",
+"2026-10-07-upstream-sync-driver-core",
+"--n",
+"6"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"6 probe green",
+"run (d524a212): grep -c -E 'Running tests/(accessibility_hidden|accessibility_roles|focusability_updates|accessibility_names|stand_accessibility_ids)\\.rs' target/ci-logs/test.log",
+"  exit 0 ✓",
+"  last line '5' ✓",
+"log $TMPDIR/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06/6.log · 2 B · f0b5c2c2",
+"--- no anchored failure; last 20 non-empty lines ---",
+"5"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T04:39:29Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-07T04-38-06-implement",
+"--marker",
+"2026-10-07-upstream-sync-driver-core",
+"--n",
+"8"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"8 probe green",
+"run (64927fa2): python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha 8d156de1fcced9157289286909a2cdb3b5be5558",
+"  exit 0 ✓",
+"  contains 'verdict: green' ✓",
+"log $TMPDIR/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06/8.log · 213 B · 709c1ff3",
+"--- no anchored failure; last 20 non-empty lines ---",
+"ci v1.0 · bce1ea9a",
+"repo Turbolet85/escher (the push remote `origin`)",
+"8d156de1fcce verdict: green · checks 16/16 · wall 414 s · runs CI#37571032838 completed/success",
+"runs: CI#37571032838 push completed/success"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T04:39:29Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-07T04-38-06-implement",
+"--marker",
+"2026-10-07-upstream-sync-driver-core",
+"--n",
+"9"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"9 probe green",
+"run (e6ed5242): gh api 'repos/Turbolet85/escher/commits/8d156de1fcced9157289286909a2cdb3b5be5558/check-runs?per_page=100' --jq '[.check_runs[] | select(.name == \"Dependency audit\" or .name == \"Accessibility (a11y) tests\") | .name + \"=\" + .conclusion] | sort | join(\", \")' ",
+"  exit 0 ✓",
+"  last line 'Accessibility (a11y) tests=success, Dependency audit=success' ✓",
+"log $TMPDIR/andromeda-gate/2026-10-07-upstream-sync-driver-core/implement-2026-10-07T04-38-06/9.log · 61 B · 7fc7d651",
+"--- no anchored failure; last 20 non-empty lines ---",
+"Accessibility (a11y) tests=success, Dependency audit=success"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T04:40:09Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core",
+"--run-dir",
+".andromeda/runs/2026-10-07T04-38-06-implement",
+"--marker",
+"2026-10-07-upstream-sync-driver-core"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 1 · modify 0 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list escher-0.1.0/chunks/2026-10-07-upstream-sync-driver-core/evidence/ (dir) ×0",
+"scope: clean — changed 0 · listed 0 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 43"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 0,
+"listed": 0,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 43,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]
