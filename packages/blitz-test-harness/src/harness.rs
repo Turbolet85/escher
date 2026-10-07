@@ -8,6 +8,8 @@ use blitz_traits::shell::{ColorScheme, Viewport};
 use dioxus_core::{Element, VirtualDom};
 use dioxus_native_dom::DioxusDocument;
 
+use crate::settle::LoadCounter;
+
 /// Options controlling document construction for a [`Harness`].
 pub struct HarnessOptions {
     pub width: u32,
@@ -41,8 +43,17 @@ impl Default for HarnessOptions {
 }
 
 impl HarnessOptions {
-    fn into_config(self) -> DocumentConfig {
-        DocumentConfig {
+    /// The document's config, and the counter wrapped around the net provider when one that
+    /// fetches was supplied.
+    fn into_config(self) -> (DocumentConfig, Option<Arc<LoadCounter>>) {
+        let (net_provider, loads) = match self.net_provider {
+            Some(provider) if !provider.is_noop() => {
+                let loads = Arc::new(LoadCounter::new(provider));
+                (Some(Arc::clone(&loads) as _), Some(loads))
+            }
+            provider => (provider, None),
+        };
+        let config = DocumentConfig {
             viewport: Some(Viewport::new(
                 self.width,
                 self.height,
@@ -50,12 +61,13 @@ impl HarnessOptions {
                 self.color_scheme,
             )),
             base_url: self.base_url,
-            net_provider: self.net_provider,
+            net_provider,
             html_parser_provider: Some(Arc::new(HtmlProvider) as _),
             font_ctx: self.font_ctx,
             incremental: self.incremental,
             ..Default::default()
-        }
+        };
+        (config, loads)
     }
 }
 
@@ -63,6 +75,9 @@ impl HarnessOptions {
 pub struct Harness<D: Document = HtmlDocument> {
     pub doc: D,
     time: f64,
+    /// Counts the requests the document issues. `None` for an offline document and for one
+    /// passed to [`wrap`](Self::wrap).
+    pub(crate) loads: Option<Arc<LoadCounter>>,
 }
 
 impl Harness<HtmlDocument> {
@@ -72,8 +87,10 @@ impl Harness<HtmlDocument> {
     }
 
     pub fn from_html_with(html: &str, options: HarnessOptions) -> Self {
-        let doc = HtmlDocument::from_html(html, options.into_config());
+        let (config, loads) = options.into_config();
+        let doc = HtmlDocument::from_html(html, config);
         let mut harness = Self::wrap(doc);
+        harness.loads = loads;
         harness.pump();
         harness
     }
@@ -86,9 +103,11 @@ impl Harness<DioxusDocument> {
     }
 
     pub fn from_vdom(vdom: VirtualDom, options: HarnessOptions) -> Self {
-        let mut doc = DioxusDocument::new(vdom, options.into_config());
+        let (config, loads) = options.into_config();
+        let mut doc = DioxusDocument::new(vdom, config);
         doc.initial_build();
         let mut harness = Self::wrap(doc);
+        harness.loads = loads;
         harness.pump();
         harness
     }
@@ -97,7 +116,11 @@ impl Harness<DioxusDocument> {
 impl<D: Document> Harness<D> {
     /// Wrap an already-constructed document. Does not [`pump`](Self::pump).
     pub fn wrap(doc: D) -> Self {
-        Self { doc, time: 0.0 }
+        Self {
+            doc,
+            time: 0.0,
+            loads: None,
+        }
     }
 
     pub fn into_inner(self) -> D {

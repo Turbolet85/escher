@@ -1,0 +1,104 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "8d842833",
+"ts": "2026-10-07T10:39:07Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.1.0",
+"--run-dir",
+".andromeda/runs/2026-10-07T10-08-23-phase",
+"--marker",
+"2026-10-07-settle-detection"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"verified 4/16 · deferred 0 · planned 12 · implemented 0 · unclaimed 12",
+"unclaimed: v010-03 v010-04 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14 v010-15",
+"claimed-unfinished: none",
+"done-test: NO — 12 not verified|deferred · unclaimed 12",
+"chunks referenced: 4 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "8d842833",
+"ts": "2026-10-07T10:39:07Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-10",
+"--text-file",
+".andromeda/runs/2026-10-07T10-08-23-phase/note-v010-10.md",
+"--run-dir",
+".andromeda/runs/2026-10-07T10-08-23-phase",
+"--marker",
+"2026-10-07-settle-detection"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"note v010-10: +767 chars (total 767) · status planned · ref/acceptance untouched",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-10",
+"chunk": null,
+"status": "planned",
+"method": "e2e",
+"ref": "null",
+"acceptance": "A stand flow whose action triggers a delayed update (the timer task) passes with the post-action state already present w… (195 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v010-10",
+"chunk": null,
+"status": "planned",
+"method": "e2e",
+"ref": "null",
+"acceptance": "A stand flow whose action triggers a delayed update (the timer task) passes with the post-action state already present w… (195 chars)",
+"notes_chars": 767
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "8d842833",
+"ts": "2026-10-07T10:39:07Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-07-settle-detection",
+"--plan",
+"escher-0.1.0/chunks/2026-10-07-settle-detection/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-07T10-08-23-phase"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-07-settle-detection: 0 · ## Acceptance Criteria: line 288, 19 lines",
+"pool: unclaimed 12 [v010-03 v010-04 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

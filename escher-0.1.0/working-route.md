@@ -55,7 +55,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
    ↓
 [2026-10-07-sink-target-allowlist] Sink target allowlist — escher's log sink drops every record from a target outside its allowlist; session host and windowed stand print no id or name at trace
    ↓
-Settle detection — UI quiescence across render, layout, timers and pending loads; delayed stand update passes with no sleep (v010-10)
+[2026-10-07-settle-detection] Settle detection — UI quiescence across render, layout, timers and pending loads; delayed stand update passes with no sleep (v010-10)
    ↓
 Command and refusal schema — one verb set, argument and result shapes, malformed arguments refused, refusal causes each with a remedy (v010-11, v010-14)
    ↓

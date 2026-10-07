@@ -1,0 +1,846 @@
+[
+{
+"sql": "SELECT regexp_extract(file, '^(.*/(src|tests|benches|examples))/', 1) AS from_dir, COUNT(*) AS sites, COUNT(DISTINCT file) AS files FROM calls WHERE callee_name = 'pump' AND callee_kind = 'fn' AND callee_file LIKE '%blitz-test-harness/src/harness.rs' GROUP BY 1 ORDER BY 2 DESC",
+"rows": 2,
+"result": [
+{
+"from_dir": "tests/blitz-tests/tests",
+"sites": 28,
+"files": 12
+},
+{
+"from_dir": "packages/blitz-test-harness/src",
+"sites": 16,
+"files": 2
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'pump' AND callee_kind = 'fn' AND callee_file LIKE '%blitz-test-harness/src/harness.rs' AND file LIKE '%blitz-test-harness/src/%' ORDER BY file, line",
+"rows": 16,
+"result": [
+{
+"caller_name": "from_html_with",
+"file": "packages/blitz-test-harness/src/harness.rs",
+"line": 76
+},
+{
+"caller_name": "from_vdom",
+"file": "packages/blitz-test-harness/src/harness.rs",
+"line": 91
+},
+{
+"caller_name": "tick",
+"file": "packages/blitz-test-harness/src/harness.rs",
+"line": 130
+},
+{
+"caller_name": "set_viewport_size",
+"file": "packages/blitz-test-harness/src/harness.rs",
+"line": 191
+},
+{
+"caller_name": "click_at",
+"file": "packages/blitz-test-harness/src/input.rs",
+"line": 106
+},
+{
+"caller_name": "mouse_down_at",
+"file": "packages/blitz-test-harness/src/input.rs",
+"line": 112
+},
+{
+"caller_name": "mouse_up_at",
+"file": "packages/blitz-test-harness/src/input.rs",
+"line": 118
+},
+{
+"caller_name": "move_mouse_to",
+"file": "packages/blitz-test-harness/src/input.rs",
+"line": 132
+},
+{
+"caller_name": "drag",
+"file": "packages/blitz-test-harness/src/input.rs",
+"line": 147
+},
+{
+"caller_name": "tap_at",
+"file": "packages/blitz-test-harness/src/input.rs",
+"line": 161
+},
+{
+"caller_name": "touch_down",
+"file": "packages/blitz-test-harness/src/input.rs",
+"line": 167
+},
+{
+"caller_name": "touch_move",
+"file": "packages/blitz-test-harness/src/input.rs",
+"line": 173
+},
+{
+"caller_name": "touch_up",
+"file": "packages/blitz-test-harness/src/input.rs",
+"line": 179
+},
+{
+"caller_name": "wheel_at",
+"file": "packages/blitz-test-harness/src/input.rs",
+"line": 196
+},
+{
+"caller_name": "press_with",
+"file": "packages/blitz-test-harness/src/input.rs",
+"line": 216
+},
+{
+"caller_name": "ime",
+"file": "packages/blitz-test-harness/src/input.rs",
+"line": 229
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT symbol, crate, kind, file, def_line FROM symbol WHERE name = 'poll' AND kind = 'fn'",
+"rows": 5,
+"result": [
+{
+"symbol": "rust-analyzer cargo dioxus-native-dom 0.7.0 dioxus_document/impl#[DioxusDocument][Document]poll().",
+"crate": "dioxus-native-dom",
+"kind": "fn",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"def_line": 255
+},
+{
+"symbol": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.2 document/impl#[ScriptDocument][Document]poll().",
+"crate": "blitz-vibey-script",
+"kind": "fn",
+"file": "packages/blitz-vibey-script/src/document.rs",
+"def_line": 422
+},
+{
+"symbol": "rust-analyzer cargo blitz-shell 0.3.0-beta.2 window/impl#[`View<Rend>`]poll().",
+"crate": "blitz-shell",
+"kind": "fn",
+"file": "packages/blitz-shell/src/window.rs",
+"def_line": 371
+},
+{
+"symbol": "rust-analyzer cargo blitz-net 0.3.0-beta.2 impl#[`AbortFetch<F, T>`][Future]poll().",
+"crate": "blitz-net",
+"kind": "fn",
+"file": "packages/blitz-net/src/lib.rs",
+"def_line": 338
+},
+{
+"symbol": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/Document#poll().",
+"crate": "blitz-dom",
+"kind": "fn",
+"file": "packages/blitz-dom/src/document.rs",
+"def_line": 140
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller_name, callee_file, file, line FROM calls WHERE callee_name = 'poll' AND callee_kind = 'fn' AND (callee_file LIKE '%blitz-dom/%' OR callee_file LIKE '%dioxus-native-dom/%' OR callee_file LIKE '%blitz-html/%' OR callee_file LIKE '%vibey%') ORDER BY file, line",
+"rows": 9,
+"result": [
+{
+"caller_name": "poll_subdocuments",
+"callee_file": "packages/blitz-dom/src/document.rs",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 800
+},
+{
+"caller_name": "poll",
+"callee_file": "packages/blitz-dom/src/document.rs",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 374
+},
+{
+"caller_name": "pump",
+"callee_file": "packages/blitz-dom/src/document.rs",
+"file": "packages/blitz-test-harness/src/harness.rs",
+"line": 123
+},
+{
+"caller_name": "timers_run_on_poll",
+"callee_file": "packages/blitz-vibey-script/src/document.rs",
+"file": "packages/blitz-vibey-script/tests/dom.rs",
+"line": 278
+},
+{
+"caller_name": "request_animation_frame_runs_on_poll",
+"callee_file": "packages/blitz-vibey-script/src/document.rs",
+"file": "packages/blitz-vibey-script/tests/dom.rs",
+"line": 299
+},
+{
+"caller_name": "keyed_nodes_do_not_crash",
+"callee_file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 456
+},
+{
+"caller_name": "mounted_listeners_fire_after_the_build_and_after_a_poll",
+"callee_file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"file": "packages/dioxus-native-dom/src/dioxus_document_tests.rs",
+"line": 141
+},
+{
+"caller_name": "render",
+"callee_file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 414
+},
+{
+"caller_name": "pump_timers",
+"callee_file": "packages/blitz-vibey-script/src/document.rs",
+"file": "wpt/runner/src/test_runners/mod.rs",
+"line": 157
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller_name, callee_name, file, line FROM calls WHERE callee_name IN ('has_pending_critical_resources','is_animating','has_changes','take_changed_nodes','poll_subdocuments','harness_mut','harness') AND callee_kind = 'fn' ORDER BY callee_name, file, line",
+"rows": 95,
+"result": [
+{
+"caller_name": "overlay_with_pointer_events_none_passes_through_to_button",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/pointer_events.rs",
+"line": 33
+},
+{
+"caller_name": "element_with_pointer_events_none_is_not_a_target",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/pointer_events.rs",
+"line": 59
+},
+{
+"caller_name": "descendant_restoring_pointer_events_auto_is_targetable",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/pointer_events.rs",
+"line": 76
+},
+{
+"caller_name": "text_inside_pointer_events_none_overlay_is_not_a_target",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/pointer_events.rs",
+"line": 90
+},
+{
+"caller_name": "clicking_radio_without_name_does_not_panic",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/pointer_events.rs",
+"line": 112
+},
+{
+"caller_name": "mounted_in_task_shell",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"line": 27
+},
+{
+"caller_name": "a_held_instance_reads_as_a_fresh_boot",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"line": 44
+},
+{
+"caller_name": "the_mount_and_the_viewport_hold_after_commands",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"line": 93
+},
+{
+"caller_name": "the_mount_and_the_viewport_hold_after_commands",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"line": 100
+},
+{
+"caller_name": "the_mount_and_the_viewport_hold_after_commands",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"line": 103
+},
+{
+"caller_name": "each_names_one_element",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 18
+},
+{
+"caller_name": "control_ids",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 26
+},
+{
+"caller_name": "row",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 37
+},
+{
+"caller_name": "an_id_names_the_same_element_after_a_command",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 70
+},
+{
+"caller_name": "an_id_names_the_same_element_after_a_command",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 75
+},
+{
+"caller_name": "an_id_names_the_same_element_after_a_command",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 82
+},
+{
+"caller_name": "session_host_with_typed_text",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/stand_session_quiet.rs",
+"line": 97
+},
+{
+"caller_name": "name_of",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 17
+},
+{
+"caller_name": "value_of",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 27
+},
+{
+"caller_name": "focused",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 37
+},
+{
+"caller_name": "focus_left_by_one_command_is_read_by_the_next",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 107
+},
+{
+"caller_name": "timer_time_moves_only_with_delivered_ticks",
+"callee_name": "harness",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 137
+},
+{
+"caller_name": "change",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/session_common/mod.rs",
+"line": 46
+},
+{
+"caller_name": "the_mount_and_the_viewport_hold_after_commands",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"line": 96
+},
+{
+"caller_name": "a_crud_row_keeps_its_id_across_commands",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 108
+},
+{
+"caller_name": "a_crud_row_keeps_its_id_across_commands",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 109
+},
+{
+"caller_name": "a_crud_row_keeps_its_id_across_commands",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 110
+},
+{
+"caller_name": "a_crud_row_keeps_its_id_across_commands",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 111
+},
+{
+"caller_name": "a_crud_row_keeps_its_id_across_commands",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 112
+},
+{
+"caller_name": "a_crud_row_keeps_its_id_across_commands",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 119
+},
+{
+"caller_name": "a_crud_row_keeps_its_id_across_commands",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 129
+},
+{
+"caller_name": "a_crud_row_keeps_its_id_across_commands",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 130
+},
+{
+"caller_name": "session_host_with_typed_text",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_quiet.rs",
+"line": 94
+},
+{
+"caller_name": "session_host_with_typed_text",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_quiet.rs",
+"line": 95
+},
+{
+"caller_name": "a_later_command_reads_what_an_earlier_command_left",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 66
+},
+{
+"caller_name": "a_later_command_reads_what_an_earlier_command_left",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 71
+},
+{
+"caller_name": "a_later_command_reads_what_an_earlier_command_left",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 83
+},
+{
+"caller_name": "a_later_command_reads_what_an_earlier_command_left",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 84
+},
+{
+"caller_name": "a_later_command_reads_what_an_earlier_command_left",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 85
+},
+{
+"caller_name": "a_later_command_reads_what_an_earlier_command_left",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 86
+},
+{
+"caller_name": "a_later_command_reads_what_an_earlier_command_left",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 91
+},
+{
+"caller_name": "focus_left_by_one_command_is_read_by_the_next",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 116
+},
+{
+"caller_name": "focus_left_by_one_command_is_read_by_the_next",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 117
+},
+{
+"caller_name": "timer_time_moves_only_with_delivered_ticks",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 143
+},
+{
+"caller_name": "timer_time_moves_only_with_delivered_ticks",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 150
+},
+{
+"caller_name": "timer_time_moves_only_with_delivered_ticks",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 155
+},
+{
+"caller_name": "timer_time_moves_only_with_delivered_ticks",
+"callee_name": "harness_mut",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 162
+},
+{
+"caller_name": "changed_set_fresh_document_reads_no_change",
+"callee_name": "has_changes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3362
+},
+{
+"caller_name": "changed_set_attribute_write_marks_its_node_until_drained",
+"callee_name": "has_changes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3380
+},
+{
+"caller_name": "changed_set_attribute_write_marks_its_node_until_drained",
+"callee_name": "has_changes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3385
+},
+{
+"caller_name": "changed_set_attribute_write_marks_its_node_until_drained",
+"callee_name": "has_changes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3393
+},
+{
+"caller_name": "changed_set_write_outside_the_document_marks_nothing",
+"callee_name": "has_changes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3420
+},
+{
+"caller_name": "changed_set_focus_move_marks_both_nodes_and_hover_marks_nothing",
+"callee_name": "has_changes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3442
+},
+{
+"caller_name": "changed_set_focus_move_marks_both_nodes_and_hover_marks_nothing",
+"callee_name": "has_changes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3455
+},
+{
+"caller_name": "changed_set_checked_change_marks_its_node",
+"callee_name": "has_changes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3493
+},
+{
+"caller_name": "changed_set_idle_resolve_marks_nothing_in_either_layout_mode",
+"callee_name": "has_changes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3517
+},
+{
+"caller_name": "step",
+"callee_name": "has_changes",
+"file": "tests/blitz-tests/tests/stand_diff.rs",
+"line": 102
+},
+{
+"caller_name": "resolve",
+"callee_name": "has_pending_critical_resources",
+"file": "packages/blitz-dom/src/resolve.rs",
+"line": 59
+},
+{
+"caller_name": "paint_scene",
+"callee_name": "has_pending_critical_resources",
+"file": "packages/blitz-paint/src/render.rs",
+"line": 175
+},
+{
+"caller_name": "redraw",
+"callee_name": "has_pending_critical_resources",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 417
+},
+{
+"caller_name": "transition_does_not_start_from_pre_stylesheet_styles",
+"callee_name": "has_pending_critical_resources",
+"file": "tests/blitz-tests/tests/render_blocking_stylesheet.rs",
+"line": 54
+},
+{
+"caller_name": "transition_does_not_start_from_pre_stylesheet_styles",
+"callee_name": "has_pending_critical_resources",
+"file": "tests/blitz-tests/tests/render_blocking_stylesheet.rs",
+"line": 66
+},
+{
+"caller_name": "resolve",
+"callee_name": "is_animating",
+"file": "packages/blitz-dom/src/resolve.rs",
+"line": 160
+},
+{
+"caller_name": "redraw",
+"callee_name": "is_animating",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 416
+},
+{
+"caller_name": "drive_until_settled",
+"callee_name": "is_animating",
+"file": "tests/blitz-tests/tests/fragment_navigation.rs",
+"line": 34
+},
+{
+"caller_name": "scroll_to_fragment_smooth_animates_to_element",
+"callee_name": "is_animating",
+"file": "tests/blitz-tests/tests/fragment_navigation.rs",
+"line": 157
+},
+{
+"caller_name": "scroll_to_fragment_smooth_animates_to_element",
+"callee_name": "is_animating",
+"file": "tests/blitz-tests/tests/fragment_navigation.rs",
+"line": 166
+},
+{
+"caller_name": "scroll_to_fragment_smooth_top_animates_to_top",
+"callee_name": "is_animating",
+"file": "tests/blitz-tests/tests/fragment_navigation.rs",
+"line": 181
+},
+{
+"caller_name": "scroll_to_fragment_smooth_unknown_returns_false",
+"callee_name": "is_animating",
+"file": "tests/blitz-tests/tests/fragment_navigation.rs",
+"line": 191
+},
+{
+"caller_name": "scroll_into_view_smooth_animates",
+"callee_name": "is_animating",
+"file": "tests/blitz-tests/tests/fragment_navigation.rs",
+"line": 208
+},
+{
+"caller_name": "fragment_link_uses_smooth_scroll_behavior_from_root_style",
+"callee_name": "is_animating",
+"file": "tests/blitz-tests/tests/fragment_navigation.rs",
+"line": 274
+},
+{
+"caller_name": "fragment_link_uses_auto_scroll_behavior_from_root_style",
+"callee_name": "is_animating",
+"file": "tests/blitz-tests/tests/fragment_navigation.rs",
+"line": 290
+},
+{
+"caller_name": "scroll_to_smooth_animates_element_offset",
+"callee_name": "is_animating",
+"file": "tests/blitz-tests/tests/fragment_navigation.rs",
+"line": 331
+},
+{
+"caller_name": "scroll_to_smooth_animates_element_offset",
+"callee_name": "is_animating",
+"file": "tests/blitz-tests/tests/fragment_navigation.rs",
+"line": 338
+},
+{
+"caller_name": "wheel_scroll_cancels_smooth_scroll",
+"callee_name": "is_animating",
+"file": "tests/blitz-tests/tests/fragment_navigation.rs",
+"line": 361
+},
+{
+"caller_name": "auto_behavior_uses_scroll_behavior_style",
+"callee_name": "is_animating",
+"file": "tests/blitz-tests/tests/fragment_navigation.rs",
+"line": 379
+},
+{
+"caller_name": "transition_does_not_start_from_pre_stylesheet_styles",
+"callee_name": "is_animating",
+"file": "tests/blitz-tests/tests/render_blocking_stylesheet.rs",
+"line": 80
+},
+{
+"caller_name": "poll",
+"callee_name": "poll_subdocuments",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 264
+},
+{
+"caller_name": "changed_set_fresh_document_reads_no_change",
+"callee_name": "take_changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3364
+},
+{
+"caller_name": "changed_set_attribute_write_marks_its_node_until_drained",
+"callee_name": "take_changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3382
+},
+{
+"caller_name": "changed_set_attribute_write_marks_its_node_until_drained",
+"callee_name": "take_changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3387
+},
+{
+"caller_name": "changed_set_attribute_write_marks_its_node_until_drained",
+"callee_name": "take_changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3395
+},
+{
+"caller_name": "changed_set_write_outside_the_document_marks_nothing",
+"callee_name": "take_changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3404
+},
+{
+"caller_name": "changed_set_write_outside_the_document_marks_nothing",
+"callee_name": "take_changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3423
+},
+{
+"caller_name": "changed_set_focus_move_marks_both_nodes_and_hover_marks_nothing",
+"callee_name": "take_changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3439
+},
+{
+"caller_name": "changed_set_focus_move_marks_both_nodes_and_hover_marks_nothing",
+"callee_name": "take_changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3444
+},
+{
+"caller_name": "changed_set_focus_move_marks_both_nodes_and_hover_marks_nothing",
+"callee_name": "take_changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3459
+},
+{
+"caller_name": "changed_set_checked_change_marks_its_node",
+"callee_name": "take_changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3485
+},
+{
+"caller_name": "changed_set_checked_change_marks_its_node",
+"callee_name": "take_changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3494
+},
+{
+"caller_name": "changed_set_idle_resolve_marks_nothing_in_either_layout_mode",
+"callee_name": "take_changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3513
+},
+{
+"caller_name": "changed_set_idle_resolve_marks_nothing_in_either_layout_mode",
+"callee_name": "take_changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3521
+},
+{
+"caller_name": "changed_set_drained_id_of_a_dropped_node_reads_none",
+"callee_name": "take_changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3531
+},
+{
+"caller_name": "changed_set_drained_id_of_a_dropped_node_reads_none",
+"callee_name": "take_changed_nodes",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3538
+},
+{
+"caller_name": "poll",
+"callee_name": "take_changed_nodes",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 375
+},
+{
+"caller_name": "step",
+"callee_name": "take_changed_nodes",
+"file": "tests/blitz-tests/tests/stand_diff.rs",
+"line": 100
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT symbol, crate, kind, file FROM symbol WHERE name IN ('settle','Settled','NotSettled','Settle','is_settled','SettleError','Busy','is_quiet','pending_work') AND kind <> 'meta'",
+"rows": 0,
+"result": [],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT from_crate, to_crate FROM crate_edges WHERE to_crate IN ('blitz-test-harness','escher-driver') OR from_crate IN ('blitz-test-harness','escher-driver')",
+"rows": 10,
+"result": [
+{
+"from_crate": "escher-driver",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "blitz-tests",
+"to_crate": "blitz-test-harness"
+},
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "blitz-html"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "escher-driver"
+},
+{
+"from_crate": "escher-driver",
+"to_crate": "blitz-test-harness"
+},
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "blitz-traits"
+},
+{
+"from_crate": "blitz-tests",
+"to_crate": "escher-driver"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "blitz-test-harness"
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

@@ -3,6 +3,8 @@
 use std::fmt;
 use std::io;
 
+use blitz_test_harness::Busy;
+
 /// Why a session lifecycle step did not do what was asked.
 ///
 /// Every message is a fixed string: none carries a path, a label, an id or a value.
@@ -30,6 +32,8 @@ pub enum SessionError {
     Unsupported,
     /// An I/O step failed with this kind.
     Io(io::ErrorKind),
+    /// The instance did not go quiet after a step: work of this class was still outstanding.
+    NotSettled(Busy),
 }
 
 impl fmt::Display for SessionError {
@@ -56,6 +60,9 @@ impl fmt::Display for SessionError {
                 f.write_str("the session lifecycle is not supported on this platform")
             }
             SessionError::Io(kind) => write!(f, "a session input or output step failed: {kind:?}"),
+            SessionError::NotSettled(busy) => {
+                write!(f, "the instance did not go quiet after a step: {busy:?}")
+            }
         }
     }
 }
@@ -83,6 +90,9 @@ mod tests {
             SessionError::Io(io::ErrorKind::NotFound),
             SessionError::Io(io::ErrorKind::PermissionDenied),
             SessionError::Io(io::ErrorKind::Other),
+            SessionError::NotSettled(Busy::Render),
+            SessionError::NotSettled(Busy::Layout),
+            SessionError::NotSettled(Busy::Loads),
         ];
         for variant in variants {
             let message = variant.to_string();

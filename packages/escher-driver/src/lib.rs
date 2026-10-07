@@ -3,7 +3,8 @@
 //!
 //! A [`Session`] owns the instance its caller boots — this crate names no app, so the boot is
 //! a closure the caller supplies — and keeps it alive between commands: what one command
-//! leaves is what the next one reads.
+//! leaves is what the next one reads. [`Session::act`] runs one step on the instance and
+//! returns once it has settled, so a step's consequences are on the screen when it returns.
 //!
 //! [`serve`] hosts one session for the life of a process, on the thread that owns the
 //! instance. Another process drives the lifecycle with [`start`], [`attach`] and [`stop`];
@@ -26,6 +27,7 @@ mod session;
 #[cfg_attr(not(unix), allow(dead_code))]
 mod wire;
 
+pub use blitz_test_harness::{Busy, Settled};
 pub use client::{Hello, Started, attach, start, stop};
 pub use error::SessionError;
 pub use host::serve;

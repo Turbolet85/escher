@@ -138,7 +138,8 @@
         "ref": null,
         "status": "planned"
       },
-      "chunk": null
+      "chunk": null,
+      "notes": "2026-10-07 (2026-10-07-settle-detection, phase P5): not claimed — the operator, 2026-10-07, at the plan review. The requirement says ACTING returns once settled and the method is e2e, while what the chunk builds, `Session::act`, takes an in-process closure: no action an agent can run (the ground v010-04 and v010-06 wait on). The chunk's Timer check (`stand_settle`, a step that clicks Reset and delivers three ticks) is predicted green before the fix, so it cannot show the capability arriving; it stays as a test of the in-process step. In `escher-session` nobody delivers the Timer's ticks, so an agent meets no delayed update yet. Carried for the route at the wrap: the driver leg — a driver action on the Timer returning settled with the delayed update present."
     },
     {
       "id": "v010-11",

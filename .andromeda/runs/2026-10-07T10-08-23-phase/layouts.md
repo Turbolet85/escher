@@ -1,0 +1,34 @@
+# layouts extract
+
+## Relevance
+partial — the chunk draws no screen and adds no component (scope §Surfaces and contracts touched expects none here); the plan binds it only as a set of hold-still mandates on the stand's TaskShell mount, the pinned viewport, the Timer task's ids and the `escher-session` CLI surface. Nothing is extracted from the facets the surface headers mark `NOT YET MEASURED` (tooling context, expression level, signature placement, hero/signature) or from §Decisions Log (`NO RECORDED INTENT`).
+
+## Constraints
+- layout-templates §Surface: desktop-native → Primary screens (seven_guis Home and TaskShell) requires the headless stand to skip Home and mount one lean task in TaskShell through `task_in_shell`, in the hierarchy that bullet names (`main#main` → `#task-shell` → `#task-header` with `#back-btn` and `#task-title`, above `#task-body`). Settle is a reader and driver over that mount: it may add no region, wrapper or sibling to it.
+- layout-templates §Surface: desktop-native → Primary screens (seven_guis Home and TaskShell) requires the stand's viewport to stay pinned at the size, scale, colour scheme and bundled font that bullet records. A settle loop that polls and resolves repeatedly must leave all four as booted; whether any resolve path the loop newly exercises (the scope's `pending_device_changes` question) can move the viewport is research's question.
+- layout-templates §Surface: desktop-native → Primary screens (seven_guis Home and TaskShell) requires the `escher-session` host to remain a consumer of that same mount that adds no markup, id, class, style, wrapper or order, with a held instance reading as a fresh boot and the mount and viewport holding after commands in both layout modes. Settle reached on the held instance falls under "after commands": the mandate extends to the settled state. Whether the code already holds this after a bounded poll/resolve loop is research's question.
+- layout-templates §Surface: desktop-native → Primary screens (seven_guis Home and TaskShell) requires the Timer task's controls and value displays to carry the five author `id`s that bullet lists as their stable element ids, adding no class, style, wrapper or order. The v010-10 proof flow reads the Timer through those ids; it may not rename, add to or reorder them to make a delayed update observable.
+- layout-templates §Surface: cli → Primary screens (`escher-session`) requires a closed argv of exactly two arguments, the one usage line on any other argv, nothing on stdout on any path, and the exit codes that bullet records. Settle is an in-process call (scope §Boundaries): it may add no argument, verb, flag or output line to this surface.
+- layout-templates §Surface: desktop-native → IA notes requires every Dioxus document to start from the fixed skeleton with the app mounted into `main`, and records the test harness's default viewport. The loads-leg fixture beside the stand, if it is a Dioxus document, mounts the same way and at that default; if it is a plain HTML document the skeleton note does not reach it — which form the fixture takes is the plan's question.
+
+## Patterns to follow
+- Reuse the one mount rather than authoring a second: the stand, the stand checks and the session host all boot through `seven_guis::stand` (per layout-templates §Surface: desktop-native → Primary screens, seven_guis Home and TaskShell). A settle proof boots the Timer the same way.
+- Make a thing addressable by attributes alone — an author `id`, a `for` on an existing label, an `aria-label` — never by a new element (per layout-templates §Surface: desktop-native → Primary screens, seven_guis Home and TaskShell). Applies only if the fixture or a proof needs a readable target the stand lacks.
+- State layout facts of the stand in both layout modes, as the held-instance mandate does (per layout-templates §Surface: desktop-native → Primary screens, seven_guis Home and TaskShell).
+- Keep an agent-facing CLI surface's channels fixed — usage to stderr with exit 2, stdout reserved or empty (per layout-templates §Surface: cli → Primary screens, `scripts/agent-run.sh` · `scripts/cold-agent.sh` · `escher-session`). Applies only if the chunk prints anything at all.
+
+## Anti-patterns to avoid
+- A marker element, wrapper, class or style added to the stand or to TaskShell so that "settled" or "busy" becomes visible on the screen — the plan's mandate is that ids and the session host add no markup, class, style, wrapper or order (per layout-templates §Surface: desktop-native → Primary screens, seven_guis Home and TaskShell).
+- Task CSS that selects by the stable-id attributes (per layout-templates §Surface: desktop-native → Primary screens, seven_guis Home and TaskShell).
+- A settle outcome or busy-source report written to `escher-session`'s stdout, or a new argv form to request it (per layout-templates §Surface: cli → Primary screens, `escher-session`).
+
+## Contract bindings
+- layouts ↔ tests: the plan defers `escher-session`'s session contract to test-plan §3 → Session lifecycle, and the agent-run exit grammar and event schema to test-plan §3 (per layout-templates §Surface: cli → Primary screens). The mount, viewport and fresh-boot mandates are layout facts the stand checks carry; a settle proof that asserts them lands in that harness.
+- layouts ↔ a11y: no binding activated. The chunk adds no focusable element, so the focus-order tie to a11y §Focus Order (SC 2.4.3) has nothing to bind; the label-by-attribute naming of `timer-duration` (per layout-templates §Surface: desktop-native → Primary screens, seven_guis Home and TaskShell) stays as it is and is the a11y extractor's to confirm.
+- layouts ↔ design: (none) — no token, breakpoint or spacing is in play.
+
+## Acceptance criteria contributions
+- (layouts) After a settle on the stand's Timer task, in both layout modes, the instance still reads the TaskShell hierarchy and the pinned viewport the plan records — same regions, same order, same size, scale and scheme (per layout-templates §Surface: desktop-native → Primary screens, seven_guis Home and TaskShell).
+- (layouts) The Timer task's set of author ids is the plan's five, unchanged in name and order, with no element, class, style or wrapper added by this chunk's diff to `examples/seven_guis/src/tasks/timer.rs` or the shell (per layout-templates §Surface: desktop-native → Primary screens, seven_guis Home and TaskShell).
+- (layouts) A held session instance that is settled with no step taken reads as a fresh boot, in both layout modes (per layout-templates §Surface: desktop-native → Primary screens, seven_guis Home and TaskShell).
+- (layouts) `escher-session`'s usage line, two-argument closed argv, empty stdout and exit codes are unchanged by this chunk (per layout-templates §Surface: cli → Primary screens, `escher-session`).

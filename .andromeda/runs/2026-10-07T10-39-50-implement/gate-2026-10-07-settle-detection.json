@@ -1,0 +1,604 @@
+[
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T10:48:49Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-07-settle-detection",
+"--run-dir",
+".andromeda/runs/2026-10-07T10-39-50-implement",
+"--marker",
+"2026-10-07-settle-detection"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 2 · modify 5 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 7 · listed 7 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 42"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 7,
+"listed": 7,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 42,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T10:50:49Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-07-settle-detection/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-07T10-39-50-implement",
+"--marker",
+"2026-10-07-settle-detection"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-07-settle-detection · entries 19",
+"logs $TMPDIR/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50 · bound: GNU timeout",
+"delta docs 40 · rust 7 · unmapped 1",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L146-152: No entry is a live leg: nothing here drives a process the launch environment names, so the… (770 chars)",
+"prose L154-156: `evidence/red-first.md` has no listed producer, by construction: it is implement's hand re… (313 chars)",
+"  1 unit        green · exit 0 · 0.74s · 1268 B → 1.log · cargo test -p blitz-test-harness --locked --lib settle",
+"  2 unit        green · exit 0 · 0.97s · 1504 B → 2.log · cargo test -p escher-driver --locked",
+"  3 integration green · exit 0 · 2.47s · 1190 B → 3.log · cargo test -p blitz-tests --locked --test stand_settle",
+"  4 integration green · exit 0 · 5.41s · 3024 B → 4.log · cargo test -p blitz-tests --locked --test stand_timer --te… (184 chars)",
+"  5 integration green · exit 0 · 1.72s · 925 B → 5.log · cargo test -p blitz-tests --locked --test stand_session_li… (92 chars)",
+"  6 integration green · exit 0 · 3.4s · 1004 B → 6.log · cargo test -p seven_guis --locked --test host_log",
+"  7 smoke       green · exit 0 · 0.72s · 847 B → 7.log · cargo test -p seven_guis --locked --test host_binary",
+"  8 probe       green · exit 0 · 0.01s · 0 B → 8.log · git diff --quiet 4ed27b535c6c1a2dd8490fe838c3fd149f49ac26 … (803 chars)",
+"  9 probe       green · exit 1 · 0.0s · 2 B → 9.log · test -f tests/blitz-tests/tests/stand_settle.rs && grep -c… (180 chars)",
+" 10 probe       green · exit 1 · 0.0s · 2 B → 10.log · test -f packages/blitz-test-harness/src/settle.rs && cat p… (266 chars)",
+" 11 build       green · exit 0 · 34.79s · 137 B → 11.log · bash scripts/agent-run.sh boot",
+" 12 integration green · exit 0 · 11.47s · 10248 B → 12.log · bash scripts/agent-run.sh run stand",
+" 13 integration green · exit 0 · 0.02s · 40 B → 13.log · bash scripts/agent-run.sh cleanup",
+" 14 lint        green · exit 0 · 61.08s · 65523 B → 14.log · bash .github/scripts/ci-leg.sh fast",
+" 15 lint        green · exit 0 · 6.97s · 659 B → 15.log · bash .github/scripts/ci-leg.sh doc",
+" 16 integration green · exit 0 · 2.91s · 1597 B → 16.log · bash .github/scripts/ci-leg.sh a11y",
+" 17 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 18 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 19 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 19 · green 16 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-07-settle-detection",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-07-settle-detection/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-07T08-23-43-wrap/evolve-2026-10-07-sink-target-allowlist.json",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/a11y-history.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/a11y.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/arch-history.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/arch.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-07T10-08-23-phase/design-history.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/design.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/evolve-2026-10-07-settle-detection.json",
+".andromeda/runs/2026-10-07T10-08-23-phase/gate-2026-10-07-settle-detection.json",
+".andromeda/runs/2026-10-07T10-08-23-phase/layouts-history.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/layouts.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/master-record.txt",
+".andromeda/runs/2026-10-07T10-08-23-phase/matrix-2026-10-07-settle-detection.json",
+".andromeda/runs/2026-10-07T10-08-23-phase/note-v010-10.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/obs-contracts.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/obs-history.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/obs.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/planlint-2026-10-07-settle-detection.json",
+".andromeda/runs/2026-10-07T10-08-23-phase/registry-2026-10-07-settle-detection.json",
+".andromeda/runs/2026-10-07T10-08-23-phase/route-2026-10-07-settle-detection.json",
+".andromeda/runs/2026-10-07T10-08-23-phase/route-no-marker.json",
+".andromeda/runs/2026-10-07T10-08-23-phase/security-history.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/security.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/sidecar-2026-10-07-settle-detection.json",
+".andromeda/runs/2026-10-07T10-08-23-phase/tests-contracts.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/tests-history.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/tests.md",
+".andromeda/runs/2026-10-07T10-08-23-phase/tree-query-2026-10-07-settle-detection.json",
+".andromeda/runs/2026-10-07T10-39-50-implement/evolve-2026-10-07-settle-detection.json",
+"escher-0.1.0/chunks/2026-10-07-settle-detection/evidence/mutation-controls.md",
+"escher-0.1.0/chunks/2026-10-07-settle-detection/evidence/red-first.md",
+"escher-0.1.0/chunks/2026-10-07-settle-detection/plan.md",
+"escher-0.1.0/chunks/2026-10-07-settle-detection/research.md",
+"escher-0.1.0/chunks/2026-10-07-settle-detection/scope.md"
+],
+"rust": [
+"packages/blitz-test-harness/src/harness.rs",
+"packages/blitz-test-harness/src/lib.rs",
+"packages/escher-driver/src/error.rs",
+"packages/escher-driver/src/lib.rs",
+"packages/escher-driver/src/session.rs",
+"packages/blitz-test-harness/src/settle.rs",
+"tests/blitz-tests/tests/stand_settle.rs"
+]
+},
+"unmapped": [
+"escher-0.1.0/verification-matrix.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 48,
+"problem": null
+},
+"prose": [
+{
+"from": 146,
+"to": 152,
+"text": "No entry is a live leg: nothing here drives a process the launch environment names, so there is no liveness probe and no `stop` key. There is no headful self-verify harness on this project (the stand's checks are headless), and this chunk changes no screen. The one boot path near the change is the `escher-session` binary, whose smoke is the standing `host_binary` entry. The audit leg is not listed: no manifest and no lockfile changes, which the preservation entry asserts. **Not run locally:** the MSRV build and the windows, macos, ios and android matrix legs — the fork's CI run is their one witness; the CI acceptance follows the operator pass (pre-CI commit, push, CI read). The preservation entry names its base as the commit this chunk starts from, `4ed27b53`."
+},
+{
+"from": 154,
+"to": 156,
+"text": "`evidence/red-first.md` has no listed producer, by construction: it is implement's hand record of step 10's readings on the tree before the loop exists, which no entry could re-produce at the wrap's light gate. The conditions it records are asserted on every re-run by the control assertions inside tests 3 and 7."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-test-harness --locked --lib settle",
+"run_sha8": "1e5038fc",
+"expect": [
+"exit 0",
+"lacks ok. 0 passed",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50/1.log",
+"bytes": 1268,
+"log_sha8": "1588cb25",
+"exit": 0,
+"seconds": 0.74,
+"readings": [
+"exit 0 ✓",
+"lacks 'ok. 0 passed' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked",
+"run_sha8": "5f0bb953",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50/2.log",
+"bytes": 1504,
+"log_sha8": "5a029746",
+"exit": 0,
+"seconds": 0.97,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_settle",
+"run_sha8": "9b8327ac",
+"expect": [
+"exit 0",
+"contains 8 passed; 0 failed"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50/3.log",
+"bytes": 1190,
+"log_sha8": "fd2b0f19",
+"exit": 0,
+"seconds": 2.47,
+"readings": [
+"exit 0 ✓",
+"contains '8 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_timer --test stand_session_state --test stand_session_fresh --test stand_diff --test stand_snapshot_state --test stand_accessibility_ids",
+"run_sha8": "ec16d4c0",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"lacks ok. 0 passed"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50/4.log",
+"bytes": 3024,
+"log_sha8": "8e733f6b",
+"exit": 0,
+"seconds": 5.41,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"lacks 'ok. 0 passed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_session_lifecycle --test stand_session_quiet",
+"run_sha8": "4632e844",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50/5.log",
+"bytes": 925,
+"log_sha8": "f97d8fa5",
+"exit": 0,
+"seconds": 1.72,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test host_log",
+"run_sha8": "a495edfe",
+"expect": [
+"exit 0",
+"contains 1 passed; 0 failed"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50/6.log",
+"bytes": 1004,
+"log_sha8": "bfdc62a8",
+"exit": 0,
+"seconds": 3.4,
+"readings": [
+"exit 0 ✓",
+"contains '1 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "smoke",
+"run": "cargo test -p seven_guis --locked --test host_binary",
+"run_sha8": "c9c0e7e7",
+"expect": [
+"exit 0",
+"contains 2 passed; 0 failed"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50/7.log",
+"bytes": 847,
+"log_sha8": "cafa4f0a",
+"exit": 0,
+"seconds": 0.72,
+"readings": [
+"exit 0 ✓",
+"contains '2 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "git diff --quiet 4ed27b535c6c1a2dd8490fe838c3fd149f49ac26 -- Cargo.toml Cargo.lock deny.toml packages/blitz-dom packages/blitz-html packages/blitz-net packages/blitz-paint packages/blitz-shell packages/blitz-traits packages/blitz-vibey-script packages/dioxus-native packages/dioxus-native-dom packages/escher-telemetry packages/escher-driver/Cargo.toml packages/escher-driver/src/client.rs packages/escher-driver/src/host.rs packages/escher-driver/src/wire.rs packages/blitz-test-harness/Cargo.toml packages/blitz-test-harness/src/input.rs packages/blitz-test-harness/src/inspect.rs examples/seven_guis tests/blitz-tests/Cargo.toml tests/blitz-tests/tests/common tests/blitz-tests/tests/session_common tests/blitz-tests/tests/stand_timer.rs tests/blitz-tests/tests/stand_session_state.rs scripts .github",
+"run_sha8": "06ae2276",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50/8.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "test -f tests/blitz-tests/tests/stand_settle.rs && grep -cE 'thread::sleep|\\.pump\\(\\)|\\.tick\\(|Instant::|Duration::|SystemTime|recv_timeout' tests/blitz-tests/tests/stand_settle.rs",
+"run_sha8": "99c5ac4e",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50/9.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "test -f packages/blitz-test-harness/src/settle.rs && cat packages/blitz-test-harness/src/settle.rs packages/escher-driver/src/session.rs packages/escher-driver/src/error.rs | grep -cE 'env::var|println!|eprintln!|print!|dbg!|tracing::|thread::|Instant::|SystemTime' ",
+"run_sha8": "ed03d59b",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50/10.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": [
+"exit 0",
+"contains \"ready\""
+],
+"log": "/tmp/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50/11.log",
+"bytes": 137,
+"log_sha8": "fa733ff7",
+"exit": 0,
+"seconds": 34.79,
+"readings": [
+"exit 0 ✓",
+"contains '\"ready\"' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": [
+"exit 0",
+"contains \"failed\": 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50/12.log",
+"bytes": 10248,
+"log_sha8": "2655eed2",
+"exit": 0,
+"seconds": 11.47,
+"readings": [
+"exit 0 ✓",
+"contains '\"failed\": 0' ✓",
+"artifact fresh (target/agent-run/events.jsonl)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "integration",
+"run": "bash scripts/agent-run.sh cleanup",
+"run_sha8": "d676b018",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50/13.log",
+"bytes": 40,
+"log_sha8": "8b6274d8",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50/14.log",
+"bytes": 65523,
+"log_sha8": "591ee680",
+"exit": 0,
+"seconds": 61.08,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50/15.log",
+"bytes": 659,
+"log_sha8": "9214462c",
+"exit": 0,
+"seconds": 6.97,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-settle-detection/implement-2026-10-07T10-39-50/16.log",
+"bytes": 1597,
+"log_sha8": "773a1949",
+"exit": 0,
+"seconds": 2.91,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "675d3a19",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T10:53:17Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-07-settle-detection",
+"--run-dir",
+".andromeda/runs/2026-10-07T10-39-50-implement",
+"--marker",
+"2026-10-07-settle-detection"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 2 · modify 5 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 7 · listed 7 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 43"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 7,
+"listed": 7,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 43,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

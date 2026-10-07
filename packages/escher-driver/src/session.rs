@@ -1,6 +1,6 @@
 //! The held instance.
 
-use blitz_test_harness::Harness;
+use blitz_test_harness::{Harness, Settled};
 use dioxus_native_dom::DioxusDocument;
 
 use crate::SessionError;
@@ -58,6 +58,23 @@ impl Session {
     /// The held instance, to drive.
     pub fn harness_mut(&mut self) -> &mut Harness<DioxusDocument> {
         &mut self.harness
+    }
+
+    /// Runs `step` on the held instance, then settles it ([`Harness::settle`]): when this
+    /// returns `Ok`, everything the step made due is on the screen.
+    ///
+    /// An instance that does not go quiet returns [`SessionError::NotSettled`] with the class
+    /// of work still outstanding. The step is not rolled back: the instance keeps what it did.
+    /// Settling moves no time — a timer or an animation advances only when the caller
+    /// advances it.
+    pub fn act(
+        &mut self,
+        step: impl FnOnce(&mut Harness<DioxusDocument>),
+    ) -> Result<Settled, SessionError> {
+        step(&mut self.harness);
+        self.harness
+            .settle()
+            .map_err(|not_settled| SessionError::NotSettled(not_settled.busy))
     }
 }
 
