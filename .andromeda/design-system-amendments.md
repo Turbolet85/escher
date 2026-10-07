@@ -55,3 +55,9 @@ One entry per amendment to `design-system.md` (sidecar-contract.md §Entry form)
 **Change:** coordinates only. 7 of 12 citations re-pointed by the chunk's measured line map — `:398-400` → `:400-402`, `:591-606` → `:593-608`, `:1761-1778` → `:1772-1789`, `:2028-2045` → `:2039-2056`, `:2078-2085` → `:2089-2096`, `:2088-2109` → `:2099-2120`, `:2156-2210` → `:2167-2221`; the 5 into blitz-shell `window.rs` keep their numbers. No token, value or claim changed.
 **Why:** the chunk added the changed set's doc lines, its drain and its mark to `document.rs` and renders no UI.
 **Ref:** .andromeda/runs/2026-10-07T01-31-03-wrap/
+
+## 2026-10-07-settle-detection — the settle rule's one answer for the keeps-animating set
+**Section:** §Motion → Animation runtime (the keeps-animating bullet and the animation-clock bullet)
+**Change:** a harness settle answers for every member of the keeps-animating set the same way — none holds it open and none is waited on or advanced: it returns `Settled` with `animating` reading the document's animating flag; one member, a CSS animation, is exercised by a check, the others are answered by the same reading and not each exercised. Settle reads animation time only through the harness's controlled clock and never advances it. The harness-clock citation is re-pointed to the lines measured after the chunk (it was stale before it).
+**Why:** the set's scrollbar-fade member reads the wall clock and a canvas reads animating for as long as it exists, so waiting on the flag would need a sleep; the caller holds the clock.
+**Ref:** .andromeda/runs/2026-10-07T11-06-31-wrap/

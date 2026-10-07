@@ -137,3 +137,11 @@ One entry per amendment to `obs-plan.md` (sidecar-contract.md §Entry form). App
 - Seven citations into the sink's two source files and one into `host_binary.rs` re-pointed.
 **Why:** the chunk delivered the fix the founder ruled should follow the host-log finding (the founder, 2026-10-07, relayed verbatim by the overseer, as the earlier entry records); the drop's place in the formatter and its reach to every level were approved by the operator at the plan review (the operator, 2026-10-07). Rule for later chunks: a target is admitted only together with a scrub rule for it.
 **Ref:** .andromeda/runs/2026-10-07T08-23-43-wrap/
+
+## 2026-10-07-settle-detection — the settle wait exists and is silent
+**Section:** §3 Observability Harness Contract → Logging stack (the no-subscriber census) · §4 Span / Trace Coverage (the escher-driver bullet)
+**Change:**
+- §3: the census of what installs no subscriber, reads no env var and prints nothing now names the session step `Session::act`, the harness's settle loop (`Harness::settle`; no `tracing` dependency in the crate) and the check `stand_settle`; was "the five `stand_session_*` checks and … their module"; now the shared session module is read by four of those five and by `stand_settle`.
+- §4: the driver bullet names `Session::act` and the settle wait it runs, `Harness::settle`, as observed absent of spans, events and a `tracing` dependency; the settle wait exists and carries no span — one span per driver command, covering it, stays owed by the route entry "Driver command spans".
+**Why:** the chunk built the wait the owed span is for and kept both crates silent by its constraint. Rule for later chunks: add no span, event or log line to the settle loop or the session step before "Driver command spans".
+**Ref:** .andromeda/runs/2026-10-07T11-06-31-wrap/

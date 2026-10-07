@@ -1,0 +1,93 @@
+# Cascade step 2 — the pattern set of this pass, derived from every amendment applied
+# (architecture 14 edits · test-plan 24 · the key file session-lifecycle 3 · obs-plan 3 ·
+# security-plan 1 · design-system 2 · a11y-plan 1 · layout-templates 1).
+
+# The retired "Not built: a verb set, settle, act by id" clause, in its master and leaf wordings.
+[[pattern]]
+id = "notbuilt"
+regex = 'verb set, settle'
+
+# Every mention of settle: the still-to-come statements in leaves, and any standing claim about it.
+[[pattern]]
+id = "settle"
+regex = '[Ss]ettl'
+
+# The four-reader claim about `mod session_common;` and its two other wordings.
+[[pattern]]
+id = "readers4"
+regex = 'by four (of them|`stand_session)'
+
+[[pattern]]
+id = "onlyshare"
+regex = 'only (they|the session checks) share'
+
+[[pattern]]
+id = "theirmod"
+fixed = 'for their module'
+
+# The old coordinates of every citation into the five edited files.
+[[pattern]]
+id = "cite-harness"
+regex = 'harness\.rs:(12-26|44-59|108-123|23-34|60\)|68-101|103-193|122-147|132-170|11-41|43-60|153-178)'
+
+[[pattern]]
+id = "cite-hlib"
+regex = 'blitz-test-harness/src/lib\.rs:(1-14|20-22|16-18|11-12)'
+
+[[pattern]]
+id = "cite-driver"
+regex = 'escher-driver/src/(lib\.rs:(12-18|20-32|22-32)|session\.rs:(11-62|64-86|35-61)|error\.rs:(10-63|65-110|10-33))'
+
+# The two count chains' last links.
+[[pattern]]
+id = "ws-count"
+regex = '579'
+
+[[pattern]]
+id = "stand72"
+regex = '72 (`ok`|ok)|passed 72'
+
+# The timer's "applied on the next pump".
+[[pattern]]
+id = "nextpump"
+fixed = 'next pump'
+
+# The harness's export list, module list and capability sentence, as masters and leaves restate them.
+[[pattern]]
+id = "exports"
+fixed = '`touch_pointer_event`, `Rect`'
+
+[[pattern]]
+id = "modules"
+fixed = 'harness, input, inspect'
+
+[[pattern]]
+id = "pumptick"
+fixed = 'pump/tick'
+
+# The session's method list and the SessionError variant list.
+[[pattern]]
+id = "hmut"
+fixed = 'harness_mut()'
+
+[[pattern]]
+id = "errlist"
+regex = '`Unsupported`( ·|,| and) `Io'
+
+# The manual net provider, the request-timeout row, the keeps-animating set and the harness clock.
+[[pattern]]
+id = "manualnet"
+fixed = 'ManualNetProvider'
+
+[[pattern]]
+id = "reqtimeout"
+regex = '[Rr]equest timeout'
+
+[[pattern]]
+id = "animset"
+regex = 'keep the document animating|controlled clock'
+
+# Claims about the changed set on a fresh document.
+[[pattern]]
+id = "freshdoc"
+regex = '(fresh|freshly booted)( blitz-dom| harness)? document'

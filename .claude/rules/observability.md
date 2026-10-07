@@ -33,7 +33,7 @@ Path-scoped rules for telemetry, logging and timing code. Source: `.andromeda/ob
 - The upstream apps' `fmt::init()` and the WPT runner's `env_logger` still log URLs, attribute values, text-node contents and outer HTML as-is.
 
 ## Not yet measured — owned by the working route
-- One span per driver command (settle wait, diff size, refusal cause) → "Driver command spans" chunk.
+- One span per driver command (settle wait, diff size, refusal cause) → "Driver command spans" chunk. The settle wait exists (`Harness::settle`, `Session::act`) and carries no span, event or log line — add none before that chunk.
 - Opt-in OTel export (`otel-sdk-install`) is out of escher 0.1.0 (the founder, 2026-10-06): add no OTel crate, egress or `OTEL_EXPORTER_OTLP_HEADERS` credential path; the transport and credential path are undecided — `.andromeda/residuals.md`.
 
 ## Session Additions

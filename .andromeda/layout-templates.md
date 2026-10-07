@@ -41,7 +41,7 @@
 - The document element is the scrolling element; `window.scrollTo`/`scrollBy` scroll the root element (packages/blitz-vibey-script/src/dom/document.rs:122-126; packages/blitz-vibey-script/src/runtime.rs:2152-2187)
 - The root element's `clientWidth`/`clientHeight` are viewport size minus scrollbar size (packages/blitz-vibey-script/src/dom/element.rs:1004-1049)
 - Fixed-position children of the root element are not scrolled with the viewport (packages/blitz-paint/src/render.rs:1039-1054)
-- The test harness defaults to an 800x600 viewport at scale 1 in light mode (packages/blitz-test-harness/src/harness.rs:23-34; packages/blitz-test-harness/src/harness.rs:60)
+- The test harness defaults to an 800x600 viewport at scale 1 in light mode (packages/blitz-test-harness/src/harness.rs:30-43; packages/blitz-test-harness/src/harness.rs:57-62)
 
 ---
 

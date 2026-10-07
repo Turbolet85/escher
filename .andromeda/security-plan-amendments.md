@@ -208,3 +208,9 @@ One entry per amendment to `security-plan.md` (sidecar-contract.md §Entry form)
 - Data Protection names the sink as redacting and dropping. Two citations re-pointed; the session checks' build-time env citation names both host-spawning files and their shared module.
 **Why:** the chunk delivered the fix the founder ruled should follow the host-log finding (the founder, 2026-10-07, relayed verbatim by the overseer, as the earlier entry records); dropping every level was approved by the operator at the plan review (the operator, 2026-10-07). Cost recorded in the body: a third-party WARN or ERROR no longer prints. Trap: a "nothing in the logs" check still has to run against a host that installs the sink; `host_log` is that check.
 **Ref:** .andromeda/runs/2026-10-07T08-23-43-wrap/
+
+## 2026-10-07-settle-detection — a settle reports a load in flight and never waits on one
+**Section:** §API Security (a new row, "Settle and loads in flight", beside "Request timeout")
+**Change:** a harness settle (`Harness::settle`, and the driver session's `act` over it) reports a load in flight at once — `NotSettled` naming the class `Loads` — and never waits on one; it reads no clock, so the absent request timeout cannot hang it, and its pass loop is bounded at 64 passes; the outcome is a returned value naming a class only — no URL, request, node, id, name or value — and the counter it reads stores counts only. The "Request timeout" row is unchanged: a request still has no timeout.
+**Why:** the chunk added a wait over a document that can issue requests with no timeout, and the bound and the no-clock rule are what end it. Rule for later chunks: a driver command that would wait on a load with a clock is a new decision for this plan, not an extension of settle; and the session socket's wire is untouched — a settle verb or a busy-source reply on it is a new crossing question.
+**Ref:** .andromeda/runs/2026-10-07T11-06-31-wrap/

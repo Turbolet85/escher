@@ -1,0 +1,100 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "8d842833",
+"ts": "2026-10-07T11:33:28Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-07-settle-detection",
+"--run-dir",
+".andromeda/runs/2026-10-07T11-06-31-wrap",
+"--dry-run"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"claimed 0 — gate no-op (no entry carries chunk 2026-10-07-settle-detection)",
+"pool: unclaimed 12 [v010-03 v010-04 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "8d842833",
+"ts": "2026-10-07T11:33:28Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-07-settle-detection",
+"--run-dir",
+".andromeda/runs/2026-10-07T11-06-31-wrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"claimed 0 — gate no-op (no entry carries chunk 2026-10-07-settle-detection)",
+"pool: unclaimed 12 [v010-03 v010-04 v010-06 v010-07 v010-08 v010-09 v010-10 v010-11 v010-12 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "8d842833",
+"ts": "2026-10-07T11:33:28Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-10",
+"--text-file",
+".andromeda/runs/2026-10-07T11-06-31-wrap/note-v010-10.md",
+"--run-dir",
+".andromeda/runs/2026-10-07T11-06-31-wrap",
+"--marker",
+"2026-10-07-settle-detection"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"note v010-10: +1276 chars (total 2045) · status planned · ref/acceptance untouched",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-10",
+"chunk": null,
+"status": "planned",
+"method": "e2e",
+"ref": "null",
+"acceptance": "A stand flow whose action triggers a delayed update (the timer task) passes with the post-action state already present w… (195 chars)",
+"notes_chars": 767
+},
+"after": {
+"id": "v010-10",
+"chunk": null,
+"status": "planned",
+"method": "e2e",
+"ref": "null",
+"acceptance": "A stand flow whose action triggers a delayed update (the timer task) passes with the post-action state already present w… (195 chars)",
+"notes_chars": 2045
+}
+}
+]

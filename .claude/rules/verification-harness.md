@@ -30,10 +30,11 @@ Development Style is agent-driven — escher's own driver is meant to become the
 ## In-process `Harness` (measured — `packages/blitz-test-harness`)
 - Constructors `from_html`, `from_html_with(html, HarnessOptions)`, `from_component`, `from_vdom` pump once; `wrap` does not.
 - `pump` polls with no waker and resolves at harness time; `dispatch` / `dispatch_recorded` do NOT pump. Input helpers (`click`, `type_text`, `press`, `tap`, `wheel_at`, `drag`, `ime`, …) pump after dispatch.
+- `settle` repeats that pass until no work is due and returns `Settled { passes, animating }`, or `NotSettled { busy }` — `Render` or `Layout` when still busy after 64 passes (`SETTLE_PASS_LIMIT`), `Loads` at once for a load in flight; it reads no clock, advances no time, waits on no load and neither reads nor drains the changed set. `escher_driver::Session::act(step)` runs a step on a held instance and settles it. No input helper settles.
 - `dispatch_recorded` drives the underlying `BaseDocument` and bypasses Dioxus VirtualDom forwarding — use input helpers for Dioxus behaviour.
 - Synthesized pointer events set page, screen and client coordinates equal; `key_event` uses `Code::Unidentified` and fills text only for pressed character keys.
 - `HarnessOptions` defaults: 800×600, scale 1, light scheme, no `font_ctx` (system fonts) and no `incremental` override; harness documents always use `HtmlProvider`.
-- The headless stand boots through `seven_guis::stand::{boot, boot_timer}` over `from_vdom` with `stand::options(incremental)` (bundled DejaVu Sans, system fonts off, offline); the timer advances only via its `TimerTicks` handle — `deliver(n)`, then `pump`.
+- The headless stand boots through `seven_guis::stand::{boot, boot_timer}` over `from_vdom` with `stand::options(incremental)` (bundled DejaVu Sans, system fonts off, offline); the timer advances only via its `TimerTicks` handle — `deliver(n)`, applied on the next pass (a `pump`, an input helper's own pump, or a settle).
 - `dom_string()` is a stable one-node-per-line serialization with geometry (`<div #box .a .b> @ (20,10) 100x50`) — the snapshot-style assertion surface.
 
 ## Session Additions
