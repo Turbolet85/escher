@@ -1,0 +1,15 @@
+[package]
+name = "escher-driver"
+description = "The escher driver's session: one headless app instance held by one process, with a start, attach and stop lifecycle"
+publish = false
+version.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+categories.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+blitz-test-harness = { workspace = true }
+dioxus-native-dom = { workspace = true }

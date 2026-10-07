@@ -32,6 +32,7 @@ dioxus-native = { workspace = true, features = ["system-fonts", "woff"] }
 escher-telemetry = { workspace = true }
 blitz-test-harness = { workspace = true }
 blitz-traits = { workspace = true }
+escher-driver = { workspace = true }
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 # WASM-only: additive wasm-bindgen feature on futures-timer
@@ -40,3 +41,7 @@ anyrender_vello_hybrid = { workspace = true, features = ["webgl"] }
 dioxus-native = { workspace = true, features = ["woff"] }
 wasm-bindgen = { workspace = true }
 console_error_panic_hook = { workspace = true }
+
+[[bin]]
+name = "escher-session"
+path = "src/session_host.rs"

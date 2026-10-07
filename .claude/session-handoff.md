@@ -29,3 +29,6 @@ none — 7 detectors, 0 proposals, 0 escalations; no master, key file or sidecar
 - No new learning this session (no correction, new dependency, repeated command or convention in the conversation).
 - carried, still unreviewed: "A chunk that moves cited source lines stales the masters' file:line citations" (Tier 3, 2026-10-05) · "A grep hit seen through a clipped view is not read" (Tier 3, 2026-10-06) · "Count from the listing you just read, never from the plan's forecast" (Tier 3, 2026-10-05).
 Review with `/andromeda-wrap-session --review` if any should be applied.
+
+## Session End Status
+Completed normally at 2026-10-07 07:31:51

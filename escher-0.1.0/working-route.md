@@ -51,7 +51,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
    ↓
 [2026-10-07-upstream-sync-driver-core] Upstream sync ahead of the driver core — upstream/main merged, our changes kept mostly additive; our tests and CI prove our logic survived (per intent §Principles)
    ↓
-Driver session — one headless stand instance held across commands, own lifecycle (start, attach, stop); the one process both CLI and MCP drive
+[2026-10-07-driver-session] Driver session — one headless stand instance held across commands, own lifecycle (start, attach, stop); the one process both CLI and MCP drive
    ↓
 Settle detection — UI quiescence across render, layout, timers and pending loads; delayed stand update passes with no sleep (v010-10)
    ↓

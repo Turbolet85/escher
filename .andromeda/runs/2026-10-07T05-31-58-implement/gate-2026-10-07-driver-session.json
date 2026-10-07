@@ -1,0 +1,1001 @@
+[
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T05:48:04Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-07-driver-session/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-07T05-31-58-implement",
+"--marker",
+"2026-10-07-driver-session"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-07-driver-session · entries 27",
+"logs $TMPDIR/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58 · bound: GNU timeout",
+"delta docs 43 · rust 19 · unmapped 4",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L179-187: The session process is started and stopped by the checks themselves, so no entry is a live… (1049 chars)",
+"  1 unit        green · exit 0 · 0.19s · 1152 B → 1.log · cargo test -p escher-driver --locked --lib",
+"  2 smoke       green · exit 0 · 2.04s · 847 B → 2.log · cargo test -p seven_guis --locked --test host_binary",
+"  3 integration green · exit 0 · 2.05s · 643 B → 3.log · cargo test -p blitz-tests --locked --test stand_session_st… (61 chars)",
+"  4 integration green · exit 0 · 1.42s · 484 B → 4.log · cargo test -p blitz-tests --locked --test stand_session_id… (59 chars)",
+"  5 integration green · exit 0 · 1.82s · 488 B → 5.log · cargo test -p blitz-tests --locked --test stand_session_fr… (61 chars)",
+"  6 integration green · exit 0 · 1.19s · 525 B → 6.log · cargo test -p blitz-tests --locked --test stand_session_li… (65 chars)",
+"  7 integration green · exit 0 · 1.13s · 567 B → 7.log · cargo test -p blitz-tests --locked --test stand_session_qu… (61 chars)",
+"  8 probe       green · exit 1 · 0.0s · 0 B → 8.log · grep -rl seven_guis --include=Cargo.toml packages",
+"  9 probe       green · exit 1 · 0.0s · 2 B → 9.log · test -f packages/escher-driver/Cargo.toml && cat packages/… (295 chars)",
+" 10 probe       green · exit 0 · 0.01s · 35 B → 10.log · grep -rlE 'UnixListener|TcpListener|UdpSocket' --include=*… (109 chars)",
+" 11 probe       green · exit 1 · 0.0s · 2 B → 11.log · test -d packages/escher-driver/src && test -f examples/sev… (207 chars)",
+" 12 probe       green · exit 0 · 0.01s · 0 B → 12.log · test \"$(sed -n 1,34p examples/seven_guis/Cargo.toml | git … (208 chars)",
+" 13 probe       green · exit 0 · 0.01s · 0 B → 13.log · git diff --quiet 7d9f351d850c4415b04143e2909864f0f03f2666 … (1274 chars)",
+" 14 build       green · exit 0 · 1.79s · 549 B → 14.log · cargo build -p seven_guis --bin seven_guis_native --locked",
+" 15 smoke       green · exit 0 · 10.06s · 636 B → 15.log · RUST_LOG=info timeout 10 target/debug/seven_guis_native; t… (72 chars)",
+" 16 build       green · exit 0 · 37.59s · 137 B → 16.log · bash scripts/agent-run.sh boot",
+" 17 integration green · exit 0 · 11.04s · 9243 B → 17.log · bash scripts/agent-run.sh run stand",
+" 18 integration green · exit 0 · 0.02s · 3 B → 18.log · bash scripts/agent-run.sh logs | python3 -c 'import json,s… (223 chars)",
+" 19 probe       green · exit 0 · 0.02s · 2 B → 19.log · bash scripts/agent-run.sh logs | python3 -c 'import json,s… (319 chars)",
+" 20 integration green · exit 0 · 0.03s · 40 B → 20.log · bash scripts/agent-run.sh cleanup",
+" 21 lint        green · exit 0 · 62.75s · 64987 B → 21.log · bash .github/scripts/ci-leg.sh fast",
+" 22 lint        green · exit 0 · 5.95s · 548 B → 22.log · bash .github/scripts/ci-leg.sh doc",
+" 23 integration green · exit 0 · 3.16s · 1597 B → 23.log · bash .github/scripts/ci-leg.sh a11y",
+" 24 probe       green · exit 0 · 1.19s · 14 B → 24.log · bash .github/scripts/ci-leg.sh audit",
+" 25 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 26 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 27 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 27 · green 24 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-07-driver-session",
+"plan": "/home/turbolet/dev/projects/escher/escher-0.1.0/chunks/2026-10-07-driver-session/plan.md",
+"root": "/home/turbolet/dev/projects/escher",
+"shell": "/usr/bin/bash",
+"out_dir": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-07T04-40-45-wrap/evolve-2026-10-07-upstream-sync-driver-core.json",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-07T04-40-45-wrap/health-2026-10-07-upstream-sync-driver-core.json",
+".andromeda/runs/2026-10-07T04-50-09-phase/.raw-layouts.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/a11y-history.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/a11y.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/arch-history.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/arch.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-07T04-50-09-phase/design-history.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/design.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/evolve-2026-10-07-driver-session.json",
+".andromeda/runs/2026-10-07T04-50-09-phase/gate-2026-10-07-driver-session.json",
+".andromeda/runs/2026-10-07T04-50-09-phase/inputs-2026-10-07-driver-session.json",
+".andromeda/runs/2026-10-07T04-50-09-phase/layouts-history.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/layouts.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/master-record.txt",
+".andromeda/runs/2026-10-07T04-50-09-phase/matrix-2026-10-07-driver-session.json",
+".andromeda/runs/2026-10-07T04-50-09-phase/obs-contracts.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/obs-history.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/obs.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/planlint-2026-10-07-driver-session.json",
+".andromeda/runs/2026-10-07T04-50-09-phase/registry-2026-10-07-driver-session.json",
+".andromeda/runs/2026-10-07T04-50-09-phase/relay-1.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/relay-2.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/route-2026-10-07-driver-session.json",
+".andromeda/runs/2026-10-07T04-50-09-phase/route-no-marker.json",
+".andromeda/runs/2026-10-07T04-50-09-phase/security-history.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/security.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/sidecar-2026-10-07-driver-session.json",
+".andromeda/runs/2026-10-07T04-50-09-phase/tests-contracts.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/tests-history.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/tests.md",
+".andromeda/runs/2026-10-07T04-50-09-phase/tree-query-2026-10-07-driver-session.json",
+".andromeda/runs/2026-10-07T05-31-58-implement/evolve-2026-10-07-driver-session.json",
+"escher-0.1.0/chunks/2026-10-07-driver-session/plan.md",
+"escher-0.1.0/chunks/2026-10-07-driver-session/research.md",
+"escher-0.1.0/chunks/2026-10-07-driver-session/scope-record.md",
+"escher-0.1.0/chunks/2026-10-07-driver-session/scope.md"
+],
+"rust": [
+"Cargo.lock",
+"Cargo.toml",
+"examples/seven_guis/Cargo.toml",
+"tests/blitz-tests/Cargo.toml",
+"examples/seven_guis/src/session_host.rs",
+"examples/seven_guis/tests/host_binary.rs",
+"packages/escher-driver/Cargo.toml",
+"packages/escher-driver/src/client.rs",
+"packages/escher-driver/src/error.rs",
+"packages/escher-driver/src/host.rs",
+"packages/escher-driver/src/lib.rs",
+"packages/escher-driver/src/session.rs",
+"packages/escher-driver/src/wire.rs",
+"tests/blitz-tests/tests/session_common/mod.rs",
+"tests/blitz-tests/tests/stand_session_fresh.rs",
+"tests/blitz-tests/tests/stand_session_ids.rs",
+"tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"tests/blitz-tests/tests/stand_session_quiet.rs",
+"tests/blitz-tests/tests/stand_session_state.rs"
+]
+},
+"unmapped": [
+"escher-0.1.0/chunks/2026-10-07-driver-session/inputs/.gitattributes",
+"escher-0.1.0/chunks/2026-10-07-driver-session/inputs/I1-relay-1.md.txt",
+"escher-0.1.0/chunks/2026-10-07-driver-session/inputs/I2-relay-2.md.txt",
+"escher-0.1.0/chunks/2026-10-07-driver-session/inputs/andromeda-inputs.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 66,
+"problem": null
+},
+"prose": [
+{
+"from": 179,
+"to": 187,
+"text": "The session process is started and stopped by the checks themselves, so no entry is a live leg: there is no external process the launch environment names, no liveness probe and no `stop` key. There is no headful self-verify — the stand is headless (`.claude/rules/verification-harness.md`). Two boot paths are touched and each has its smoke: the new `escher-session` binary, whose boot and health check is the `host_binary` entry (it starts the binary, reads its answer, stops it and reads what it left); and the windowed stand binary, rebuilt because its package's manifest gains a dependency — its 10 s boot smoke declares `WAYLAND_DISPLAY` and, unset, is not run and the report says so. **Not run locally:** the MSRV build (`ci-leg.sh msrv` needs a 1.91 toolchain; `rustup toolchain list` on this host shows stable, 1.95, 1.96, 1.98.1 and a nightly) and the windows, macos, ios and android matrix legs — the fork's CI run witnesses them, read by the operator's CI entry. The CI acceptance follows the operator pass (pre-CI commit, push, CI read)."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked --lib",
+"run_sha8": "62729176",
+"expect": [
+"exit 0",
+"lacks ok. 0 passed",
+"lacks FAILED"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/1.log",
+"bytes": 1152,
+"log_sha8": "fbc06283",
+"exit": 0,
+"seconds": 0.19,
+"readings": [
+"exit 0 ✓",
+"lacks 'ok. 0 passed' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "smoke",
+"run": "cargo test -p seven_guis --locked --test host_binary",
+"run_sha8": "c9c0e7e7",
+"expect": [
+"exit 0",
+"contains 2 passed; 0 failed"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/2.log",
+"bytes": 847,
+"log_sha8": "81aaf185",
+"exit": 0,
+"seconds": 2.04,
+"readings": [
+"exit 0 ✓",
+"contains '2 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_session_state",
+"run_sha8": "853712c5",
+"expect": [
+"exit 0",
+"contains 3 passed; 0 failed"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/3.log",
+"bytes": 643,
+"log_sha8": "f8beb6aa",
+"exit": 0,
+"seconds": 2.05,
+"readings": [
+"exit 0 ✓",
+"contains '3 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_session_ids",
+"run_sha8": "6e5f5279",
+"expect": [
+"exit 0",
+"contains 2 passed; 0 failed"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/4.log",
+"bytes": 484,
+"log_sha8": "db0bd88f",
+"exit": 0,
+"seconds": 1.42,
+"readings": [
+"exit 0 ✓",
+"contains '2 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_session_fresh",
+"run_sha8": "3644c587",
+"expect": [
+"exit 0",
+"contains 2 passed; 0 failed"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/5.log",
+"bytes": 488,
+"log_sha8": "5a7af52d",
+"exit": 0,
+"seconds": 1.82,
+"readings": [
+"exit 0 ✓",
+"contains '2 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_session_lifecycle",
+"run_sha8": "c00c25ed",
+"expect": [
+"exit 0",
+"contains 1 passed; 0 failed; 1 ignored"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/6.log",
+"bytes": 525,
+"log_sha8": "b80400bd",
+"exit": 0,
+"seconds": 1.19,
+"readings": [
+"exit 0 ✓",
+"contains '1 passed; 0 failed; 1 ignored' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_session_quiet",
+"run_sha8": "9cbe8dcc",
+"expect": [
+"exit 0",
+"contains 1 passed; 0 failed; 1 ignored"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/7.log",
+"bytes": 567,
+"log_sha8": "0df711ce",
+"exit": 0,
+"seconds": 1.13,
+"readings": [
+"exit 0 ✓",
+"contains '1 passed; 0 failed; 1 ignored' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "grep -rl seven_guis --include=Cargo.toml packages",
+"run_sha8": "75557d9c",
+"expect": [
+"exit 1",
+"no output"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/8.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"no output ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "test -f packages/escher-driver/Cargo.toml && cat packages/escher-driver/Cargo.toml packages/escher-driver/src/*.rs | grep -c -E 'seven_guis|LeanTask|TimerTicks|features|tracing::|tracing =|opentelemetry|#\\[instrument|env::var|set_var|TcpListener|UdpSocket|has_changes|take_changed_nodes|NodeId' ",
+"run_sha8": "b655ad00",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/9.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "grep -rlE 'UnixListener|TcpListener|UdpSocket' --include=*.rs packages apps examples tests wpt | paste -sd, -",
+"run_sha8": "f1c62d7b",
+"expect": [
+"exit 0",
+"last line packages/escher-driver/src/host.rs"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/10.log",
+"bytes": 35,
+"log_sha8": "8318e868",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line 'packages/escher-driver/src/host.rs' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "test -d packages/escher-driver/src && test -f examples/seven_guis/src/session_host.rs && grep -rhoE '\\b(e?print(ln)?|dbg)!' packages/escher-driver/src examples/seven_guis/src/session_host.rs | grep -vc '^e' ",
+"run_sha8": "8c890697",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/11.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "test \"$(sed -n 1,34p examples/seven_guis/Cargo.toml | git hash-object --stdin)\" = \"$(git show 7d9f351d850c4415b04143e2909864f0f03f2666:examples/seven_guis/Cargo.toml | sed -n 1,34p | git hash-object --stdin)\"",
+"run_sha8": "615008b7",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/12.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "git diff --quiet 7d9f351d850c4415b04143e2909864f0f03f2666 -- examples/seven_guis/src/app.rs examples/seven_guis/src/lib.rs examples/seven_guis/src/main.rs examples/seven_guis/src/stand.rs examples/seven_guis/src/tasks examples/seven_guis/assets examples/seven_guis/index.html examples/counter examples/todomvc examples/transparent examples/wgpu_texture examples/wasm_hello packages/blitz-test-harness packages/blitz-dom packages/blitz-shell packages/blitz-traits packages/blitz-html packages/blitz-paint packages/dioxus-native packages/dioxus-native-dom packages/escher-telemetry scripts .github deny.toml tests/blitz-tests/lib.rs tests/blitz-tests/tests/common tests/blitz-tests/tests/stand_accessibility_ids.rs tests/blitz-tests/tests/stand_actionable_keys.rs tests/blitz-tests/tests/stand_boot.rs tests/blitz-tests/tests/stand_counter.rs tests/blitz-tests/tests/stand_crud.rs tests/blitz-tests/tests/stand_diff.rs tests/blitz-tests/tests/stand_element_ids.rs tests/blitz-tests/tests/stand_flight_booker.rs tests/blitz-tests/tests/stand_id_edits.rs tests/blitz-tests/tests/stand_id_persistence.rs tests/blitz-tests/tests/stand_snapshot.rs tests/blitz-tests/tests/stand_snapshot_state.rs tests/blitz-tests/tests/stand_snapshot_text.rs tests/blitz-tests/tests/stand_timer.rs",
+"run_sha8": "f9ba5d36",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/13.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "build",
+"run": "cargo build -p seven_guis --bin seven_guis_native --locked",
+"run_sha8": "094a3644",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/14.log",
+"bytes": 549,
+"log_sha8": "ce1e4924",
+"exit": 0,
+"seconds": 1.79,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "smoke",
+"run": "RUST_LOG=info timeout 10 target/debug/seven_guis_native; test $? -eq 124",
+"run_sha8": "e0f15baf",
+"expect": [
+"exit 0",
+"contains service.name=seven_guis"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/15.log",
+"bytes": 636,
+"log_sha8": "6ac36409",
+"exit": 0,
+"seconds": 10.06,
+"readings": [
+"exit 0 ✓",
+"contains 'service.name=seven_guis' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": [
+"exit 0",
+"contains \"ready\""
+],
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/16.log",
+"bytes": 137,
+"log_sha8": "4163a8f0",
+"exit": 0,
+"seconds": 37.59,
+"readings": [
+"exit 0 ✓",
+"contains '\"ready\"' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 17,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": [
+"exit 0",
+"contains \"run.end\""
+],
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/17.log",
+"bytes": 9243,
+"log_sha8": "2d57ed02",
+"exit": 0,
+"seconds": 11.04,
+"readings": [
+"exit 0 ✓",
+"contains '\"run.end\"' ✓",
+"artifact fresh (target/agent-run/events.jsonl)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 18,
+"role": "integration",
+"run": "bash scripts/agent-run.sh logs | python3 -c 'import json,sys; ev=[json.loads(l) for l in sys.stdin]; print(sum(1 for e in ev if e.get(\"event\")==\"test\" and e.get(\"outcome\")==\"ok\" and e.get(\"file\",\"\").startswith(\"stand_\")))' ",
+"run_sha8": "cb721ae0",
+"expect": [
+"exit 0",
+"last line 72"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/18.log",
+"bytes": 3,
+"log_sha8": "bd5fa6e7",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"last line '72' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "bash scripts/agent-run.sh logs | python3 -c 'import json,sys; bad={\"url\",\"href\",\"src\",\"html\",\"text\",\"value\",\"attrs\",\"path\",\"request\",\"error\"}; ev=[json.loads(l) for l in sys.stdin]; print(sum(1 for e in ev if bad & set(e)) if any(e.get(\"file\")==\"stand_session_quiet\" for e in ev) else \"no-stand_session_quiet-events\")' ",
+"run_sha8": "c641689d",
+"expect": [
+"exit 0",
+"last line 0"
+],
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/19.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 20,
+"role": "integration",
+"run": "bash scripts/agent-run.sh cleanup",
+"run_sha8": "d676b018",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/20.log",
+"bytes": 40,
+"log_sha8": "8b6274d8",
+"exit": 0,
+"seconds": 0.03,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 21,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/21.log",
+"bytes": 64987,
+"log_sha8": "37d3f797",
+"exit": 0,
+"seconds": 62.75,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 22,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/22.log",
+"bytes": 548,
+"log_sha8": "bfb0a019",
+"exit": 0,
+"seconds": 5.95,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 23,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/23.log",
+"bytes": 1597,
+"log_sha8": "8f91226e",
+"exit": 0,
+"seconds": 3.16,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 24,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": null,
+"log": "/tmp/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/24.log",
+"bytes": 14,
+"log_sha8": "799fc05e",
+"exit": 0,
+"seconds": 1.19,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 25,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "c6e5fd28",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 26,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 27,
+"role": "probe",
+"run": "python -X utf8 /home/turbolet/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "675d3a19",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T05:48:18Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-07T05-31-58-implement",
+"--marker",
+"2026-10-07-driver-session",
+"--n",
+"1",
+"--tail",
+"6"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"1 unit green",
+"run (62729176): cargo test -p escher-driver --locked --lib",
+"  exit 0 ✓",
+"  lacks 'ok. 0 passed' ✓",
+"  lacks 'FAILED' ✓",
+"log $TMPDIR/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/1.log · 1152 B · fbc06283",
+"--- no anchored failure; last 6 non-empty lines ---",
+"test wire::tests::an_over_long_line_and_an_unterminated_one_are_named ... ok",
+"test wire::tests::anything_else_is_refused_as_malformed ... ok",
+"test wire::tests::bytes_that_are_not_text_are_refused_as_malformed ... ok",
+"test wire::tests::each_reply_round_trips ... ok",
+"test wire::tests::each_request_round_trips ... ok",
+"test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T05:48:18Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-07T05-31-58-implement",
+"--marker",
+"2026-10-07-driver-session",
+"--n",
+"9",
+"--tail",
+"6"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"9 probe green",
+"run (b655ad00): test -f packages/escher-driver/Cargo.toml && cat packages/escher-driver/Cargo.toml packages/escher-driver/src/*.rs | grep -c -E 'seven_guis|LeanTask|TimerTicks|features|tracing::|tracing =|opentelemetry|#\\[instrument|env::var|set_var|TcpListener|UdpSocket|has_changes|take_changed_nodes|NodeId' ",
+"  exit 1 ✓",
+"  last line '0' ✓",
+"log $TMPDIR/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/9.log · 2 B · 9a271f2a",
+"--- no anchored failure; last 6 non-empty lines ---",
+"0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T05:48:18Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-07T05-31-58-implement",
+"--marker",
+"2026-10-07-driver-session",
+"--n",
+"10",
+"--tail",
+"6"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"10 probe green",
+"run (f1c62d7b): grep -rlE 'UnixListener|TcpListener|UdpSocket' --include=*.rs packages apps examples tests wpt | paste -sd, -",
+"  exit 0 ✓",
+"  last line 'packages/escher-driver/src/host.rs' ✓",
+"log $TMPDIR/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/10.log · 35 B · 8318e868",
+"--- no anchored failure; last 6 non-empty lines ---",
+"packages/escher-driver/src/host.rs"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T05:48:19Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-07T05-31-58-implement",
+"--marker",
+"2026-10-07-driver-session",
+"--n",
+"11",
+"--tail",
+"6"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"11 probe green",
+"run (8c890697): test -d packages/escher-driver/src && test -f examples/seven_guis/src/session_host.rs && grep -rhoE '\\b(e?print(ln)?|dbg)!' packages/escher-driver/src examples/seven_guis/src/session_host.rs | grep -vc '^e' ",
+"  exit 1 ✓",
+"  last line '0' ✓",
+"log $TMPDIR/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/11.log · 2 B · 9a271f2a",
+"--- no anchored failure; last 6 non-empty lines ---",
+"0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T05:48:19Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-07T05-31-58-implement",
+"--marker",
+"2026-10-07-driver-session",
+"--n",
+"15",
+"--tail",
+"6"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"15 smoke green",
+"run (e0f15baf): RUST_LOG=info timeout 10 target/debug/seven_guis_native; test $? -eq 124",
+"  exit 0 ✓",
+"  contains 'service.name=seven_guis' ✓",
+"log $TMPDIR/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/15.log · 636 B · 6ac36409",
+"--- no anchored failure; last 6 non-empty lines ---",
+"2026-10-07T05:45:52.517096Z INFO escher_telemetry service.name=seven_guis service.version=0.1.0 message=telemetry installed",
+"2026-10-07T05:45:52.724278Z WARN winit_wayland::window::state service.name=seven_guis service.version=0.1.0 message=`xdg_toplevel_icon_manager_v1` is not supported",
+"2026-10-07T05:45:52.762589Z INFO wgpu_hal::vulkan::adapter service.name=seven_guis service.version=0.1.0 message=Found 6 cooperative matrix configurations supported by wgpu log.module_path=\"wgpu_hal::vulkan::adapter\" log.file=\"~/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wgpu-hal-30.0.1/src/vulkan/adapter.rs\" log.line=3546"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T05:48:19Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-07T05-31-58-implement",
+"--marker",
+"2026-10-07-driver-session",
+"--n",
+"17",
+"--tail",
+"6"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"17 integration green",
+"run (712f53cb): bash scripts/agent-run.sh run stand",
+"  exit 0 ✓",
+"  contains '\"run.end\"' ✓",
+"  artifact fresh (target/agent-run/events.jsonl)",
+"log $TMPDIR/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/17.log · 9243 B · 2d57ed02",
+"--- no anchored failure; last 6 non-empty lines ---",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_text\", \"test\": \"state_reads_as_the_model_holds_it\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_text\", \"test\": \"the_text_is_deterministic\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_timer\", \"test\": \"ticks_past_the_duration_stop_at_it\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_timer\", \"test\": \"reset_zeroes_elapsed\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_timer\", \"test\": \"delivered_ticks_advance_elapsed_and_progress\", \"outcome\": \"ok\"}",
+"{\"event\": \"run.end\", \"ts\": \"2026-10-07T05:46:51Z\", \"selection\": \"stand\", \"passed\": 72, \"failed\": 0, \"ignored\": 3, \"cargo_exit\": 0, \"outcome\": \"passed\"}"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T05:48:19Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-07T05-31-58-implement",
+"--marker",
+"2026-10-07-driver-session",
+"--n",
+"18",
+"--tail",
+"6"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"18 integration green",
+"run (cb721ae0): bash scripts/agent-run.sh logs | python3 -c 'import json,sys; ev=[json.loads(l) for l in sys.stdin]; print(sum(1 for e in ev if e.get(\"event\")==\"test\" and e.get(\"outcome\")==\"ok\" and e.get(\"file\",\"\").startswith(\"stand_\")))' ",
+"  exit 0 ✓",
+"  last line '72' ✓",
+"log $TMPDIR/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/18.log · 3 B · bd5fa6e7",
+"--- no anchored failure; last 6 non-empty lines ---",
+"72"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T05:48:19Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-07T05-31-58-implement",
+"--marker",
+"2026-10-07-driver-session",
+"--n",
+"19",
+"--tail",
+"6"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"19 probe green",
+"run (c641689d): bash scripts/agent-run.sh logs | python3 -c 'import json,sys; bad={\"url\",\"href\",\"src\",\"html\",\"text\",\"value\",\"attrs\",\"path\",\"request\",\"error\"}; ev=[json.loads(l) for l in sys.stdin]; print(sum(1 for e in ev if bad & set(e)) if any(e.get(\"file\")==\"stand_session_quiet\" for e in ev) else \"no-stand_session_quiet-events\")' ",
+"  exit 0 ✓",
+"  last line '0' ✓",
+"log $TMPDIR/andromeda-gate/2026-10-07-driver-session/implement-2026-10-07T05-31-58/19.log · 2 B · 9a271f2a",
+"--- no anchored failure; last 6 non-empty lines ---",
+"0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.11",
+"sha8": "1e911c8f",
+"ts": "2026-10-07T05:51:31Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-07-driver-session",
+"--run-dir",
+".andromeda/runs/2026-10-07T05-31-58-implement",
+"--marker",
+"2026-10-07-driver-session"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 4 · modify 4 · derived 0 · record 1",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"recorded in-intent tests/blitz-tests/tests/session_common/mod.rs",
+"list packages/escher-driver/ (dir) ×7",
+"list tests/blitz-tests/tests/stand_session*.rs (glob) ×5",
+"scope: clean — changed 19 · listed 18 · recorded 1 (companion 0 · mechanical 0 · in-intent 1 · widening 0) · absorbed 12 · excluded 51"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": "/home/turbolet/dev/projects/escher",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 19,
+"listed": 18,
+"recorded": 1,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 12
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 1,
+"widening": 0
+},
+"excluded": 51,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

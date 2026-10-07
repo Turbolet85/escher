@@ -1,0 +1,104 @@
+[
+{
+"sql": "SELECT callee_name, COUNT(*) AS sites, COUNT(DISTINCT file) AS files FROM calls WHERE callee_name IN ('boot','boot_timer','options','font_ctx') AND callee_kind = 'fn' AND callee_file LIKE '%seven_guis/src/stand.rs' GROUP BY 1 ORDER BY 1",
+"rows": 4,
+"result": [
+{
+"callee_name": "boot",
+"sites": 21,
+"files": 9
+},
+{
+"callee_name": "boot_timer",
+"sites": 6,
+"files": 3
+},
+{
+"callee_name": "font_ctx",
+"sites": 1,
+"files": 1
+},
+{
+"callee_name": "options",
+"sites": 35,
+"files": 13
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT from_crate, to_crate FROM crate_edges WHERE to_crate IN ('seven_guis','blitz-test-harness','escher-telemetry') OR from_crate IN ('seven_guis','blitz-test-harness','escher-telemetry') ORDER BY 1, 2",
+"rows": 13,
+"result": [
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "blitz-html"
+},
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "blitz-traits"
+},
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "blitz-tests",
+"to_crate": "blitz-test-harness"
+},
+{
+"from_crate": "blitz-tests",
+"to_crate": "escher-telemetry"
+},
+{
+"from_crate": "blitz-tests",
+"to_crate": "seven_guis"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "blitz-test-harness"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "blitz-traits"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "dioxus-native"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "escher-telemetry"
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT name, crate, kind, file FROM symbol WHERE (lower(name) LIKE '%session%' OR lower(name) LIKE 'driver%' OR lower(name) LIKE 'escher_driver%') AND kind <> 'meta' ORDER BY crate, name",
+"rows": 1,
+"result": [
+{
+"name": "driver",
+"crate": "blitz-dom",
+"kind": "module",
+"file": "packages/blitz-dom/src/events/driver.rs"
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]
