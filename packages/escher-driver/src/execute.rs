@@ -2,9 +2,12 @@
 
 use blitz_test_harness::{Busy, Harness, Key as KeyboardKey, Modifiers};
 use dioxus_native_dom::{DioxusDocument, NodeId, Snapshot, SnapshotDiff};
+use tracing::Span;
+use tracing::field::Empty;
 
 use crate::command::{Call, Command, Key, validate};
 use crate::refusal::{Cause, Refusal};
+use crate::schema::{self, BUSY_CLASSES};
 use crate::session::{SeenIds, Session};
 
 /// What a call that ran returns: one variant per result shape of the verb table.
@@ -56,6 +59,25 @@ pub enum Outcome {
     },
 }
 
+/// States the fields of a command's span once: the span that carries them, and the table of
+/// their names the unit test reads.
+macro_rules! command_span {
+    ($($field:ident),+ $(,)?) => {
+        /// The fields of a command's span. Each holds a fixed word of the schema or a count:
+        /// none is an argument's name, and none holds what a call supplied or a screen reads.
+        #[cfg(test)]
+        const SPAN_FIELDS: &[&str] = &[$(stringify!($field)),+];
+
+        /// The span of one call, every field unrecorded: one that does not apply to the call
+        /// stays so.
+        fn command_span() -> Span {
+            tracing::info_span!(target: "escher_driver", "command", $($field = Empty),+)
+        }
+    };
+}
+
+command_span!(verb, cause, settled, busy, passes, added, removed, changed);
+
 impl Session {
     /// Runs `call` on the held instance and returns what it did.
     ///
@@ -79,7 +101,22 @@ impl Session {
     /// `scroll` scrolls every scrolling box that holds the element, and the viewport, until
     /// the element is in view, whether or not it is enabled or covered, and says whether it
     /// then is. Settling moves no time and waits on no load.
+    ///
+    /// The call leaves one `tracing` span, `command`, under the target `escher_driver`: the
+    /// table's word for its verb, the name of the cause it was refused with, or how its settle
+    /// went and how many nodes its diff adds, removes and changes.
     pub fn run(&mut self, call: &Call) -> Result<Outcome, Refusal> {
+        let span = command_span();
+        let _entered = span.enter();
+        if let Some(row) = schema::verb(&call.verb) {
+            span.record("verb", row.name);
+        }
+        let result = self.execute(call, &span);
+        record_result(&span, &result);
+        result
+    }
+
+    fn execute(&mut self, call: &Call, span: &Span) -> Result<Outcome, Refusal> {
         let command = validate(call)?;
         let (harness, seen) = (&mut self.harness, &mut self.seen);
         match command {
@@ -89,21 +126,21 @@ impl Session {
             Command::Click { id } => {
                 let (before, target) = resolve(harness, seen, &id)?;
                 let (x, y) = action_point(harness, &target)?;
-                Ok(acted(harness, seen, before, |harness| {
+                Ok(acted(harness, seen, span, before, |harness| {
                     harness.click_at(x, y)
                 }))
             }
             Command::Type { id, text } => {
                 let (before, target) = resolve(harness, seen, &id)?;
                 let (x, y) = action_point(harness, &target)?;
-                Ok(acted(harness, seen, before, |harness| {
+                Ok(acted(harness, seen, span, before, |harness| {
                     harness.click_at(x, y);
                     harness.type_text(&text);
                 }))
             }
             Command::Press { key, shift } => {
                 let before = read_screen(harness, seen);
-                Ok(acted(harness, seen, before, |harness| {
+                Ok(acted(harness, seen, span, before, |harness| {
                     press(harness, key, shift)
                 }))
             }
@@ -113,7 +150,7 @@ impl Session {
                 };
                 let before = read_screen(harness, seen);
                 let mut advanced_ms = 0;
-                let (busy, diff, _) = settled_step(harness, seen, before, |harness| {
+                let (busy, diff, _) = settled_step(harness, seen, span, before, |harness| {
                     advanced_ms = step(harness, ms).min(ms);
                 });
                 Ok(Outcome::Advanced {
@@ -125,7 +162,7 @@ impl Session {
             }
             Command::Scroll { id } => {
                 let (before, target) = resolve(harness, seen, &id)?;
-                let (busy, diff, after) = settled_step(harness, seen, before, |harness| {
+                let (busy, diff, after) = settled_step(harness, seen, span, before, |harness| {
                     harness.scroll_into_view(target.node)
                 });
                 let in_view =
@@ -138,6 +175,53 @@ impl Session {
                 })
             }
         }
+    }
+}
+
+/// Records on a call's span what the call returned: the cause of a refusal, or an acting
+/// verb's settle reading and the size of its diff.
+fn record_result(span: &Span, result: &Result<Outcome, Refusal>) {
+    let (settled, busy, diff) = match result {
+        Err(refusal) => {
+            span.record("cause", refusal.cause().name());
+            return;
+        }
+        Ok(Outcome::Screen { .. }) => return,
+        Ok(
+            Outcome::Acted {
+                settled,
+                busy,
+                diff,
+            }
+            | Outcome::Advanced {
+                settled,
+                busy,
+                diff,
+                ..
+            }
+            | Outcome::Scrolled {
+                settled,
+                busy,
+                diff,
+                ..
+            },
+        ) => (*settled, *busy, diff),
+    };
+    span.record("settled", settled);
+    if let Some(busy) = busy {
+        span.record("busy", busy_word(busy));
+    }
+    span.record("added", diff.added.len());
+    span.record("removed", diff.removed.len());
+    span.record("changed", diff.changed.len());
+}
+
+/// The schema's word for a class of outstanding work.
+fn busy_word(busy: Busy) -> &'static str {
+    match busy {
+        Busy::Render => BUSY_CLASSES[0],
+        Busy::Layout => BUSY_CLASSES[1],
+        Busy::Loads => BUSY_CLASSES[2],
     }
 }
 
@@ -253,15 +337,23 @@ fn covered(harness: &Harness<DioxusDocument>, target: &Target, page: (f32, f32))
 }
 
 /// Runs `step` after the snapshot `before` and settles the instance before the next one: the
-/// class of work still outstanding, if any, the diff of the two, and the snapshot after.
+/// class of work still outstanding, if any, the diff of the two, and the snapshot after. The
+/// passes a settle that went quiet took are recorded on `span`.
 fn settled_step(
     harness: &mut Harness<DioxusDocument>,
     seen: &mut SeenIds,
+    span: &Span,
     before: Snapshot,
     step: impl FnOnce(&mut Harness<DioxusDocument>),
 ) -> (Option<Busy>, SnapshotDiff, Snapshot) {
     step(harness);
-    let busy = harness.settle().err().map(|not_settled| not_settled.busy);
+    let busy = match harness.settle() {
+        Ok(settled) => {
+            span.record("passes", settled.passes);
+            None
+        }
+        Err(not_settled) => Some(not_settled.busy),
+    };
     let after = read_screen(harness, seen);
     (busy, before.diff(&after), after)
 }
@@ -269,10 +361,11 @@ fn settled_step(
 fn acted(
     harness: &mut Harness<DioxusDocument>,
     seen: &mut SeenIds,
+    span: &Span,
     before: Snapshot,
     step: impl FnOnce(&mut Harness<DioxusDocument>),
 ) -> Outcome {
-    let (busy, diff, _) = settled_step(harness, seen, before, step);
+    let (busy, diff, _) = settled_step(harness, seen, span, before, step);
     Outcome::Acted {
         settled: busy.is_none(),
         busy,
@@ -316,6 +409,39 @@ fn keyboard_key(key: Key) -> KeyboardKey {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::schema::VERBS;
+
+    #[test]
+    fn the_span_has_eight_fields_and_none_is_an_argument_name() {
+        let rows = [
+            "verb", "cause", "settled", "busy", "passes", "added", "removed", "changed",
+        ];
+        assert_eq!(rows.len(), 8);
+        assert_eq!(SPAN_FIELDS, rows);
+        let arguments: Vec<&str> = VERBS
+            .iter()
+            .flat_map(|verb| verb.args)
+            .map(|argument| argument.name)
+            .collect();
+        assert_eq!(arguments.len(), 7);
+        for (row, field) in SPAN_FIELDS.iter().enumerate() {
+            assert!(!arguments.contains(field), "row {row}");
+        }
+    }
+
+    #[test]
+    fn each_busy_class_reads_as_its_schema_word() {
+        let rows = [
+            (Busy::Render, "render"),
+            (Busy::Layout, "layout"),
+            (Busy::Loads, "loads"),
+        ];
+        assert_eq!(rows.len(), 3);
+        assert_eq!(rows.map(|(_, word)| word), BUSY_CLASSES);
+        for (row, (busy, word)) in rows.iter().enumerate() {
+            assert!(busy_word(*busy) == *word, "row {row}");
+        }
+    }
 
     #[test]
     fn each_schema_key_stands_for_one_keyboard_key() {

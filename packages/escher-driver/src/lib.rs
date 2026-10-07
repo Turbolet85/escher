@@ -37,6 +37,15 @@
 //! [`Cause::Stale`] when an earlier screen of the session read it), or the element is not
 //! enabled ([`Cause::Disabled`]), out of view ([`Cause::OffScreen`]) or under another element
 //! ([`Cause::Covered`]). A refused call leaves the held instance as it was.
+//!
+//! A call run through [`Session::run`] leaves one `tracing` span, `command`, at INFO under the
+//! target `escher_driver`. Its fields say which verb ran (`verb`), why a refused call was
+//! refused (`cause`, the name of a [`Cause`]), how an acting verb's settle went (`settled`;
+//! `passes` when the instance went quiet; `busy`, one of [`BUSY_CLASSES`], when it did not) and
+//! how many nodes the returned diff names (`added`, `removed`, `changed`). Each holds a fixed
+//! word of the schema or a count — nothing a call supplied and nothing a screen reads — and a
+//! field that does not apply to a call is absent. This crate installs no subscriber: a caller
+//! that wants the record installs one.
 
 #![deny(missing_docs)]
 

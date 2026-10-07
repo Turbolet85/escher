@@ -1,11 +1,12 @@
 use std::fmt;
 
 use tracing::field::{Field, Visit};
-use tracing::{Event, Subscriber};
+use tracing::{Event, Subscriber, span};
 use tracing_log::NormalizeEvent;
+use tracing_subscriber::field::RecordFields;
 use tracing_subscriber::fmt::format::Writer;
 use tracing_subscriber::fmt::time::{FormatTime, SystemTime};
-use tracing_subscriber::fmt::{FmtContext, FormatEvent, FormatFields};
+use tracing_subscriber::fmt::{FmtContext, FormatEvent, FormatFields, FormattedFields};
 use tracing_subscriber::registry::LookupSpan;
 
 use crate::ServiceIdentity;
@@ -66,6 +67,9 @@ pub const REDACTED: &str = "[redacted]";
 /// resolved target in the target column instead.
 const LOG_TARGET_FIELD: &str = "log.target";
 
+/// The field a closed span's line prints the span's name under.
+const SPAN_FIELD: &str = "span";
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum Verdict {
     Print,
@@ -106,10 +110,17 @@ fn decide(target: &str, field: &str) -> Verdict {
     }
 }
 
-/// One line per event: `{time} {LEVEL} {target} service.name=… service.version=… {fields}` —
-/// and nothing at all, not an empty line, for an event whose target is outside
-/// [`ENGINE_TARGET_PREFIXES`] and [`ESCHER_TARGET_PREFIXES`]. A bridged `log` record is judged by
-/// the target it was logged under.
+/// One line per printed event and one per closed span:
+/// `{time} {LEVEL} {target} service.name=… service.version=… {fields}` — and nothing at all, not
+/// an empty line, for a record whose target is outside [`ENGINE_TARGET_PREFIXES`] and
+/// [`ESCHER_TARGET_PREFIXES`]. A bridged `log` record is judged by the target it was logged
+/// under.
+///
+/// A closed span's fields are `span`, holding the span's name, then the fields the span itself
+/// carries, then the layer's own `message`, `time.busy` and `time.idle`; each is printed or
+/// redacted by the rule that judges an event's field of that name under the span's target. A
+/// span writes nothing before it closes, and an event inside a span reads as it does outside
+/// one.
 pub(crate) struct EscherFormat {
     identity: ServiceIdentity,
 }
@@ -120,14 +131,13 @@ impl EscherFormat {
     }
 }
 
-impl<S, N> FormatEvent<S, N> for EscherFormat
+impl<S> FormatEvent<S, SpanFields> for EscherFormat
 where
     S: Subscriber + for<'a> LookupSpan<'a>,
-    N: for<'a> FormatFields<'a> + 'static,
 {
     fn format_event(
         &self,
-        _ctx: &FmtContext<'_, S, N>,
+        ctx: &FmtContext<'_, S, SpanFields>,
         mut writer: Writer<'_>,
         event: &Event<'_>,
     ) -> fmt::Result {
@@ -149,9 +159,93 @@ where
             target: metadata.target(),
             out: String::new(),
         };
+        // The layer's record of a span closing carries the span's own metadata, and the span is
+        // its parent.
+        if event.metadata().is_span()
+            && let Some(span) = ctx.parent_span()
+        {
+            visitor.push(SPAN_FIELD, format_args!("{:?}", span.name()));
+            if let Some(stored) = span.extensions().get::<FormattedFields<SpanFields>>() {
+                for (name, value) in stored_pairs(&stored.fields) {
+                    visitor.push(name, format_args!("{value}"));
+                }
+            }
+        }
         event.record(&mut visitor);
         writer.write_str(&visitor.out)?;
         writeln!(writer)
+    }
+}
+
+/// Appends `value` to `out` as a line spells it: a line break is written as its escape, so one
+/// record stays one line.
+fn spell(out: &mut String, value: fmt::Arguments<'_>) {
+    for c in value.to_string().chars() {
+        match c {
+            '\n' => out.push_str("\\n"),
+            '\r' => out.push_str("\\r"),
+            c => out.push(c),
+        }
+    }
+}
+
+/// The sink's field formatter: what a span's fields are stored as until the span closes.
+///
+/// The layer hands a span's fields over without the span's target, so they cannot be judged
+/// here. Each is stored as its name and its spelled value, one line each — a spelled value holds
+/// no line break, so a name stays apart from its value whatever the value holds — and
+/// [`EscherFormat`] judges every one by the span's target when it prints the closed span. The
+/// value of a field named in [`CONTENT_FIELDS`] is redacted under every target, so it is not
+/// stored at all.
+pub(crate) struct SpanFields;
+
+impl<'writer> FormatFields<'writer> for SpanFields {
+    fn format_fields<R: RecordFields>(
+        &self,
+        mut writer: Writer<'writer>,
+        fields: R,
+    ) -> fmt::Result {
+        let mut visitor = StoreVisitor(String::new());
+        fields.record(&mut visitor);
+        writer.write_str(&visitor.0)
+    }
+
+    // The default puts a space between two recordings, which the stored form has no place for.
+    fn add_fields(
+        &self,
+        current: &'writer mut FormattedFields<Self>,
+        fields: &span::Record<'_>,
+    ) -> fmt::Result {
+        self.format_fields(current.as_writer(), fields)
+    }
+}
+
+/// The name and the spelled value of each field [`SpanFields`] stored, in the order recorded.
+fn stored_pairs(stored: &str) -> impl Iterator<Item = (&str, &str)> {
+    let mut lines = stored.split('\n');
+    std::iter::from_fn(move || Some((lines.next()?, lines.next()?)))
+}
+
+struct StoreVisitor(String);
+
+impl StoreVisitor {
+    fn push(&mut self, name: &str, value: fmt::Arguments<'_>) {
+        spell(&mut self.0, format_args!("{name}"));
+        self.0.push('\n');
+        if !CONTENT_FIELDS.contains(&name) {
+            spell(&mut self.0, value);
+        }
+        self.0.push('\n');
+    }
+}
+
+impl Visit for StoreVisitor {
+    fn record_str(&mut self, field: &Field, value: &str) {
+        self.push(field.name(), format_args!("{value:?}"));
+    }
+
+    fn record_debug(&mut self, field: &Field, value: &dyn fmt::Debug) {
+        self.push(field.name(), format_args!("{value:?}"));
     }
 }
 
@@ -177,13 +271,7 @@ impl ScrubVisitor<'_> {
             self.out.push_str(REDACTED);
             return;
         }
-        for c in value.to_string().chars() {
-            match c {
-                '\n' => self.out.push_str("\\n"),
-                '\r' => self.out.push_str("\\r"),
-                c => self.out.push(c),
-            }
-        }
+        spell(&mut self.out, value);
     }
 }
 
@@ -281,18 +369,24 @@ mod tests {
         }
     }
 
-    /// What the formatter writes for the records `emit` sends through a subscriber of its own.
-    fn captured(emit: impl FnOnce()) -> String {
+    /// What the sink's layer writes for the records `emit` sends through a subscriber of its
+    /// own. `emit` is handed a reader of what has been written so far.
+    fn capturing(emit: impl FnOnce(&dyn Fn() -> String)) -> String {
         let capture = Capture::default();
         let sink = capture.clone();
-        let subscriber = tracing_subscriber::registry().with(
-            tracing_subscriber::fmt::layer()
-                .event_format(EscherFormat::new(crate::service_identity!()))
-                .with_ansi(false)
-                .with_writer(move || sink.clone()),
-        );
-        tracing::subscriber::with_default(subscriber, emit);
-        String::from_utf8(capture.0.lock().unwrap().clone()).unwrap()
+        let subscriber = tracing_subscriber::registry()
+            .with(crate::sink_layer(crate::service_identity!(), move || {
+                sink.clone()
+            }));
+        let written = || String::from_utf8(capture.0.lock().unwrap().clone()).unwrap();
+        tracing::subscriber::with_default(subscriber, || emit(&written));
+        written()
+    }
+
+    /// What the sink's layer writes for the records `emit` sends through a subscriber of its
+    /// own.
+    fn captured(emit: impl FnOnce()) -> String {
+        capturing(|_| emit())
     }
 
     /// Sends one `log` record, logged under `target`, over the bridge.
@@ -372,5 +466,133 @@ mod tests {
         assert!(lines[1].contains("message=snapshot taken"), "{output}");
         assert!(lines[1].contains("html=[redacted]"), "{output}");
         assert!(!output.contains(SENTINEL), "{output}");
+    }
+
+    #[test]
+    fn escher_span_closes_into_one_line_and_writes_nothing_before() {
+        let output = capturing(|written| {
+            let span = tracing::info_span!(
+                target: "escher_driver",
+                "command",
+                verb = "click",
+                passes = tracing::field::Empty,
+            );
+            assert!(written().is_empty(), "written at creation");
+            span.record("passes", 2u32);
+            assert!(written().is_empty(), "written on a recorded value");
+            {
+                let _entered = span.enter();
+                assert!(written().is_empty(), "written on enter");
+            }
+            assert!(written().is_empty(), "written on exit");
+        });
+        let lines: Vec<&str> = output.lines().collect();
+        assert_eq!(lines.len(), 1, "{output}");
+        assert!(
+            lines[0].contains(" INFO escher_driver service.name=escher-telemetry "),
+            "{output}"
+        );
+        for pair in [
+            " span=\"command\"",
+            " verb=\"click\"",
+            " passes=2",
+            " message=\"close\"",
+            " time.busy=",
+            " time.idle=",
+        ] {
+            assert_eq!(lines[0].matches(pair).count(), 1, "{pair}: {output}");
+        }
+        assert!(!output.contains(REDACTED), "{output}");
+    }
+
+    #[test]
+    fn content_named_span_field_is_redacted_and_a_value_stays_one_pair() {
+        let output = captured(|| {
+            let span = tracing::info_span!(
+                target: "escher_driver",
+                "command",
+                html = SENTINEL,
+                text = tracing::field::Empty,
+                note = tracing::field::display("a b=c\nd\re"),
+            );
+            span.record("text", SENTINEL);
+        });
+        let lines: Vec<&str> = output.lines().collect();
+        assert_eq!(lines.len(), 1, "{output:?}");
+        assert!(lines[0].contains(" html=[redacted] "), "{output}");
+        assert!(lines[0].contains(" text=[redacted] "), "{output}");
+        assert!(lines[0].contains(" note=a b=c\\nd\\re "), "{output}");
+        assert!(!output.contains(SENTINEL), "{output}");
+    }
+
+    #[test]
+    fn outside_target_span_writes_no_byte() {
+        let output = captured(|| {
+            let span = tracing::error_span!(
+                target: "winit::platform",
+                "surface",
+                node_id = 7,
+                text = SENTINEL,
+                late = tracing::field::Empty,
+            );
+            span.record("late", SENTINEL);
+            let _entered = span.enter();
+        });
+        assert!(output.is_empty(), "{output:?}");
+    }
+
+    #[test]
+    fn engine_target_span_prints_only_safe_fields() {
+        let output = captured(|| {
+            let span = tracing::warn_span!(
+                target: "blitz_dom::mutator",
+                "escher-span-77aa",
+                node_id = 7,
+                attribute = SENTINEL,
+                url = SENTINEL,
+                late = tracing::field::Empty,
+            );
+            span.record("late", SENTINEL);
+        });
+        let lines: Vec<&str> = output.lines().collect();
+        assert_eq!(lines.len(), 1, "{output}");
+        assert!(lines[0].contains(" WARN blitz_dom::mutator "), "{output}");
+        for pair in [
+            " span=[redacted]",
+            " node_id=7",
+            " attribute=[redacted]",
+            " url=[redacted]",
+            " late=[redacted]",
+            " message=[redacted]",
+            " time.busy=[redacted]",
+            " time.idle=[redacted]",
+        ] {
+            assert_eq!(lines[0].matches(pair).count(), 1, "{pair}: {output}");
+        }
+        assert!(!output.contains(SENTINEL), "{output}");
+        assert!(!output.contains("escher-span-77aa"), "{output}");
+    }
+
+    #[test]
+    fn event_inside_a_span_reads_as_it_does_outside_one() {
+        let output = captured(|| {
+            tracing::warn!(target: "escher_driver", count = 3, "step done");
+            let span = tracing::info_span!(target: "escher_driver", "command", verb = "click");
+            let _entered = span.enter();
+            tracing::warn!(target: "escher_driver", count = 3, "step done");
+        });
+        let lines: Vec<&str> = output.lines().collect();
+        assert_eq!(lines.len(), 3, "{output}");
+        // A line opens with its time, which the two events do not share.
+        let after_time = |line: &str| line.split_once(' ').map(|(_, rest)| rest.to_string());
+        let outside = after_time(lines[0]);
+        let expected = format!(
+            "WARN escher_driver service.name=escher-telemetry service.version={} \
+             message=step done count=3",
+            env!("CARGO_PKG_VERSION")
+        );
+        assert_eq!(outside, Some(expected), "{output}");
+        assert_eq!(after_time(lines[1]), outside, "{output}");
+        assert!(lines[2].contains(" span=\"command\""), "{output}");
     }
 }
