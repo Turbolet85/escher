@@ -1,40 +1,37 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-07T12:55:00Z
+**Last Updated:** 2026-10-07T15:02:28Z
 **Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-07-command-and-refusal-schema — the driver's command and refusal schema: one verb table, a validation that refuses a malformed call before anything runs, eight causes each with a fixed remedy
+**Last Commit:** 2026-10-07-act-by-id — a call runs on a held instance: `Session::run` executes the driver's verbs in process, by stable id, and returns after settle with the diff
 
 ## Position
-- Done: 2026-10-07-command-and-refusal-schema (24 master records, all complete). It claimed no capability; coverage is unchanged, and v010-11 and v010-14 stay pooled.
-- Next: "Act by id" (working-route.md:62, v010-09 · v010-06) — promote and plan it with /andromeda-phase. It carries seven CARRYs, the newest the wiring of `advance`.
+- Done: 2026-10-07-act-by-id (25 master records, all complete). Verified with it: v010-03 · v010-06 · v010-09 · v010-10.
+- Next: "Refusal detection" (working-route.md:64, v010-11) — promote and plan it with /andromeda-phase. It carries three CARRYs; the newest says what a click does today to a target that cannot take it.
 
 ## Work done
-- `escher-driver` gains three private modules, held in process: `schema` (the verb table `VERBS` — `snapshot` · `click` · `type` · `press` · `advance` — with each verb's argument and result shapes, five argument kinds with bounds, twelve key names), `refusal` (eight `Cause`s each with a fixed name, meaning and remedy; `Fault`; `Refusal`, which holds nothing of a call) and `command` (`Call`, `Command`, `Key`, and `validate`, which receives no `Session`). Nothing runs a command, reaches the socket or serves the schema. Source landed in the operator pre-CI commit `772c770f`.
-- Proof: 12 unit tests (crate 13 → 25), four mutation controls. Workspace 610 passed · 0 failed · 8 ignored over 143 result lines; fork CI green 16/16 on `772c770f` (CI#37620696026). Record: `escher-0.1.0/chunks/2026-10-07-command-and-refusal-schema/report.md`, readings in its `evidence/`.
-- The operator's three answers, as built: time on a held instance moves by `advance`, in milliseconds, through a step the session's caller supplies (stated, not wired); no driver command waits on a load; the table holds the core five verbs and later entries add theirs.
+- `escher-driver` gains the executor (`execute.rs`): `Session::run(&Call)` validates, runs the verb, settles and returns an `Outcome` — the screen's text, or whether the instance went quiet and the diff. `click` and `type` take a stable id (`not-found` otherwise); `advance` moves time through `Session::with_time` (`time-unavailable` without). In process only: the socket is unchanged. The crate names `accessibility` on dioxus-native-dom. The harness re-exports `Key` · `Modifiers` and gains `apple_keybinding`; the stand gains `timer_step`; the Timer host carries it. Source landed in the operator pre-CI commit `f8eb42c8`.
+- Proof: six `stand_act_*` files (17 tests), five mutation controls. Workspace 629 passed · 0 failed · 8 ignored over 149 result lines; fork CI green 16/16 on `f8eb42c8` (CI#37633611745) — the macOS and windows job logs were read: all six files ran, the deleting-key test `ok`. Record: `escher-0.1.0/chunks/2026-10-07-act-by-id/report.md`, readings in its `evidence/`.
 
 ## Drift resolved
-- 7 detectors, 13 proposals over four masters (architecture 4 · security-plan 3 · test-plan 4 · obs-plan 2); 10 applied as proposed, 3 rejected as proposed and re-raised from the orchestrator's own measurement, 1 raised for a11y-plan (the `disabled` cause). 14 edits over five masters and one keyed contract (tests `session-lifecycle`), five sidecar entries. No escalation. Record: `.andromeda/runs/2026-10-07T12-34-00-wrap/fanout-results.md`, `cascade-dispositions.md`.
-- The sweep left no stale claim; 10 leaf files re-derived. The three "no driver, CLI or MCP command exposes … yet" clauses and every "no command can type yet" stand: nothing executes a verb.
+- 7 detectors, 61 proposals over four masters (architecture 22 · security-plan 13 · test-plan 16 · obs-plan 10); 60 applied, 1 rejected as proposed and re-raised from the wrap's own measurement, 8 more raised (a11y-plan, design-system, layout-templates and five citation moves). 68 amendments over all seven masters and the keyed contract `session-lifecycle`; seven sidecar entries. No escalation. Record: `.andromeda/runs/2026-10-07T14-22-35-wrap/fanout-results.md`, `cascade-dispositions.md`.
+- 14 leaf files re-derived; the second sweep left no stale row. One Session Addition in `testing.md` corrected in place (the harness now synthesizes the Apple delete binding).
+
+## Rulings applied at this wrap (`operator-rulings.md` in the run dir)
+- The founder (relayed verbatim): a new route entry, "Range input interaction" (working-route.md:84) — a boundary widening by his word; no placement was given, so it sits ahead of "Stand keyboard harness", its first dependent. Say so if it belongs earlier. No capability was added to the ledger with it.
+- The founder: the playbook rule proposed at the 12-34 wrap is appended. The founder: test functions stay in the code audit's `over_ceiling` scalar — that question is closed. The founder: the Tier 3 learnings below are reviewed at the Epoch 4 boundary.
+- The overseer's technical answer: `advanced_ms` is the time delivered to the app; 60000 past the Timer's cap is right as built — stated so in architecture and test-plan.
 
 ## Notes
-- **A rule is proposed for the playbook and waits on the operator's word:** a proposal graded `escalate` by a detector's own severity, where that detector reports its invariant holding and the plan's reviewed list names the change, is applied without a halt. Third wrap of the class (06-51 escalated it, 08-23 and this one applied it). Not appended.
-- Two of the 13 proposals carried coordinates read from the tree — the report gave none for the new test modules, the class the previous handoff recorded. Handled the same way. Say so if that class should halt instead, or if the report should always carry a new test module's line range.
-- The report's own count-site search missed one site (the keyed contract states "unit tests 13"); the test-plan detector found it, and the report carries a marked correction.
-- Route: seven CARRYs pinned from this chunk — `advance`'s wiring on "Act by id"; detection and two open decisions (`stale` against `not-found`; `off-screen` with no verb that scrolls) on "Refusal detection"; the cause field's domain on "Driver command spans"; "one verb table" on "Driver CLI", "MCP surface", "Self-description" and "Headless screenshot". One residual: the cost of no wait on a load. Epoch 4 reads 9 entries, 3 markerless; no split was asked for.
-- `Command`, `Call` and `ArgValue` print an id and typed text under `Debug`: no span or log fields them (obs-plan §4, carried on "Driver command spans").
-- Not checked by any local gate: the MSRV build and the windows, macOS, iOS and android legs — the fork's CI run on `772c770f` is their one witness; this wrap's commit adds records and spec text, no source.
-- Still not measured: typed text in a sink-installing host's log (the CARRY on "Act by id"); `log.file` occurrences. Still owed: the windowed witness of the accessibility-tree refresh (the CARRY on "Stand a11y assertions").
-- Left open on purpose: whether test functions belong in the code audit's `over_ceiling` scalar (the Epoch 3 audit's question to the founder).
-- No gated record, no PREREQ, no WATCH on the tail.
-- Last failed command: none.
+- **One judgment to check.** Three clauses carrying "ratified by the founder" (a snapshot's text and a diff are returned to their caller only) had a status clause beside them — "no driver, CLI or MCP command exposes it yet" — which the executor made false. The ratified rule is kept word for word; the status clause now says a driver command returns it in process, under the operator's "in process" answer at the plan's forks. Applied without a halt as not a boundary widening (fanout-results.md, check 1).
+- The `select` half of the old carry ("no `select` or range interaction model") is in no ruling and has no owner; no stand task holds a `select`. It is written into the new entry's carry.
+- No standing check boots `escher-session timer`; booted by hand once. Owner: a CARRY on "Driver CLI", beside the typed-sentinel proof, which moved there.
+- Still not measured: typed text in a sink-installing host's log; the ios and android CI job logs (their jobs read `success`); `log.file` occurrences. Still owed: the windowed witness of the accessibility-tree refresh.
+- Not checked by any local gate: the MSRV build and the windows, macOS, iOS and android legs — CI#37633611745 on `f8eb42c8` is their witness; this wrap's commit adds records and spec text, no source.
+- `session_common/mod.rs:3` is a 147-character doc line (rustfmt leaves comments alone); cosmetic, left for a source-touching chunk.
+- Epoch 4 reads 9 entries, 2 markerless; Epoch 6 reads 8. No split was asked for.
+- No gated record, no PREREQ, no WATCH on the tail. Last failed command: none.
 
 ## Deferred learnings
-- None deferred this session. One Tier 3 entry was corrected in place: the per-crate clippy learning stated the wrong cause (it is blitz-dom's `file-input` feature being off in a per-crate build, not `--all-targets` or test code).
-- recurrence-despite-learning: "A per-crate `cargo clippy` is not the CI lint leg" (Tier 3, 2026-10-07) — run again at implement, in the session that had just read this line; third recurrence.
-- carried, still unreviewed: "The project's Bash guards refuse a heredoc written to a file and a leading cd" (Tier 3, 2026-10-06) · "A chunk that moves cited source lines stales the masters' file:line citations" (Tier 3, 2026-10-05) · "A grep hit seen through a clipped view is not read" (Tier 3, 2026-10-06) · "Count from the listing you just read, never from the plan's forecast" (Tier 3, 2026-10-05).
-Review with `/andromeda-wrap-session --review` if any should be applied.
-
-## Session End Status
-Completed normally at 2026-10-07 15:40:44
+- None deferred this session; three candidates fell below the threshold (`curation.md` in the run dir).
+- Carried, for review at the Epoch 4 boundary (the founder, 2026-10-07): "The project's Bash guards refuse a heredoc written to a file and a leading cd" (Tier 3, 2026-10-06) · "A chunk that moves cited source lines stales the masters' file:line citations" (Tier 3, 2026-10-05) · "A grep hit seen through a clipped view is not read" (Tier 3, 2026-10-06) · "Count from the listing you just read, never from the plan's forecast" (Tier 3, 2026-10-05) · and the recurrence record of "A per-crate `cargo clippy` is not the CI lint leg" (Tier 3, 2026-10-07; three recurrences, none this session).

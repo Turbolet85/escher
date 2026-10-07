@@ -260,3 +260,17 @@ One entry per amendment to `test-plan.md` (sidecar-contract.md §Entry form). Ap
 **Why:** the chunk added twelve unit tests and no other check. Trap for later chunks: the crate's count is stated in two word orders ("13 unit tests", "unit tests 13") — a count site is found by both.
 **Kept:** `run stand` is unmoved (no `stand_*` check added) and takes no link.
 **Ref:** .andromeda/runs/2026-10-07T12-34-00-wrap/
+
+## 2026-10-07-act-by-id — the driver's calls are covered: six `stand_act_*` files, the stand's time step, one recorded gap
+**Section:** §1 Coverage scope (the apps, escher-driver and tests/blitz-tests rows) · §2 Directory pattern · Process-lifecycle checks · §3 Harness (Construction, Core, Input helpers) · Crate-local test helpers · Agent-run contract → Proof · §3 → Session lifecycle (`session-start`, `session-state`, `session-binary`, `session-proof`) · §4 escher-driver · §5 Session ↔ held instance · §8 Time (seven_guis timer) · §9 Local baseline
+**Change:**
+- Coverage: `stand_act_ids` 2 · `stand_act_diff` 6 · `stand_act_timer` 4 · `stand_act_refused` 2 · `stand_act_keys` 2 · `stand_act_range` 1 — 17 tests, `Session::run` in each, both layout modes; what each proves is stated in §1 and §5. escher-driver holds 26 unit tests in seven files (was 25 in six; `execute.rs` 1). seven_guis' library holds its first unit test, the five-row tick table.
+- Recorded gap: no standing check boots `escher-session` on `timer`, the one task whose session carries a time step (`host_binary` boots `counter`, `host_log` `crud`); that branch is booted by hand only. `apple_keybinding` has one standing check, on the macOS CI leg only.
+- §4: was "the schema is held in process, so no test drives it … through a `Session`"; now `Session::run` executes it and the six files drive it through a `Session`; five mutation controls are recorded.
+- Session lifecycle: `session-start` states `run` and `with_time`; `session-binary` the timer's step and the gap; `session-proof` the six files, the crate's 26 and CI run 37633611745 on `f8eb42c8`. No label added or renamed.
+- §8 Time: the driver moves the Timer by `advance` through `stand::timer_step` — whole ticks of 100 ms, the remainder dropped per call, `advanced_ms` the time delivered to the app and never more than asked, the harness clock untouched.
+- Counts: `run stand` 97 · 0 · 3 over 26 files (was 80 · 0 · 3 over 20); workspace 149 result lines, 629 · 0 · 8 (was 143, 610); `mod common;` read by 14 stand checks (was eleven), `mod session_common;` by eleven (was five).
+- Harness: `Key` and `Modifiers` re-exported; `apple_keybinding` listed. Ten citations into six edited files re-pointed.
+**Why:** the chunk built the executor and its checks. Rules it sets: a driver check's failure message names a layout mode, a task and an index, never an id or what a screen reads; no deleting key in any check but `stand_act_keys`' one; `stand_act_range` pins a measured reading, so a range interaction model turns it red by design. The meaning of `advanced_ms` is the overseer's technical answer (2026-10-07).
+**Kept:** "no command can type into the host's instance yet" in §3 and §5 — true as worded; the agent-run contract.
+**Ref:** .andromeda/runs/2026-10-07T14-22-35-wrap/

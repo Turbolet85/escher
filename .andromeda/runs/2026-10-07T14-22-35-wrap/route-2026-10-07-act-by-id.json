@@ -1,0 +1,129 @@
+[
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "1f4f95b3",
+"ts": "2026-10-07T15:06:06Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-07-act-by-id",
+"--run-dir",
+".andromeda/runs/2026-10-07T14-22-35-wrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"flip master-route.md:35 - 2026-10-07-act-by-id pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "1f4f95b3",
+"ts": "2026-10-07T15:06:06Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-07-act-by-id",
+"--date",
+"2026-10-07",
+"--run-dir",
+".andromeda/runs/2026-10-07T14-22-35-wrap",
+"--dry-run"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"pin :62 strip CARRY: 465ch \"CARRY: v010-03's driver leg (from 2026-1\"",
+"pin :62 strip CARRY: 913ch \"CARRY: input the engine cannot take head\"",
+"pin :62 strip CARRY: 1062ch \"CARRY: v010-06's driver leg (from 2026-1\"",
+"pin :62 strip CARRY: 922ch \"CARRY: typed text in a sink-installing h\"",
+"pin :62 strip CARRY: 504ch \"CARRY: the session library's accessibili\"",
+"pin :62 strip CARRY: 1240ch \"CARRY: v010-10's driver leg (from 2026-1\"",
+"pin :62 strip CARRY: 1293ch \"CARRY: the wiring of `advance` (from 202\"",
+"pin next markerless :64 holds CARRY:×3",
+"62 · 2026-10-07-act-by-id · strip 7 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 62,
+"marker": "2026-10-07-act-by-id",
+"blocks": 7,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.6",
+"sha8": "1f4f95b3",
+"ts": "2026-10-07T15:06:12Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-07-act-by-id",
+"--date",
+"2026-10-07",
+"--run-dir",
+".andromeda/runs/2026-10-07T14-22-35-wrap"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"pin :62 strip CARRY: 465ch \"CARRY: v010-03's driver leg (from 2026-1\"",
+"pin :62 strip CARRY: 913ch \"CARRY: input the engine cannot take head\"",
+"pin :62 strip CARRY: 1062ch \"CARRY: v010-06's driver leg (from 2026-1\"",
+"pin :62 strip CARRY: 922ch \"CARRY: typed text in a sink-installing h\"",
+"pin :62 strip CARRY: 504ch \"CARRY: the session library's accessibili\"",
+"pin :62 strip CARRY: 1240ch \"CARRY: v010-10's driver leg (from 2026-1\"",
+"pin :62 strip CARRY: 1293ch \"CARRY: the wiring of `advance` (from 202\"",
+"pin next markerless :64 holds CARRY:×3",
+"62 · 2026-10-07-act-by-id · strip 7 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.1.0/route-archive.md",
+"./escher-0.1.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 62,
+"marker": "2026-10-07-act-by-id",
+"blocks": 7,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]

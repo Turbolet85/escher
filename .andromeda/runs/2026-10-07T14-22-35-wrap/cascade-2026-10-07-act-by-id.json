@@ -1,0 +1,480 @@
+[
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "b56ded6b",
+"ts": "2026-10-07T14:48:15Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-07T14-22-35-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-07T14-22-35-wrap",
+"--marker",
+"2026-10-07-act-by-id"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"baseline 3c58ce5c (pre-CI parent — the oldest of 1 pre-CI commit(s), f8eb42c8)",
+"exec-nowhere · new 1 · standing 1 · leaf 3 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"no-drv-command · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:136 (prose)",
+"callers-tests · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:136 …",
+"or-command · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:136 (prose)",
+"cannot-type · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control security-plan.md:117 (prose)",
+"no-feature · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control architecture.md:101 (prose)",
+"decides-feature · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:101 (prose)",
+"not-wired · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"count-reexport · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133…",
+"count-readers · new 3 · standing 0 · leaf 0 · curation 0 · base 0 · control architecture.md:263 (prose)",
+"held-in-process · new 1 · standing 4 · leaf 2 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"count-unit · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:21 (prose)",
+"count-stand · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control test-plan.md:115 (prose)",
+"tick-handle · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:138 (p…",
+"act-by-id · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · case-variants +1 · control architecture.md:133 (prose)",
+"cite-host · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:138 (pro…",
+"cite-common · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:149 (p…",
+"cite-driver · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (p…",
+"cite-harness · new 1 · standing 0 · leaf 0 · curation 0 · base 0 · control architecture.md:130 (prose)",
+"cite-stand · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:131 (pr…",
+".andromeda/architecture.md:133 exec-nowhere standing edited @c8827/11704 …othing public runs a `Command` that did not c…",
+".andromeda/security-plan.md:76 exec-nowhere new @c1303/2617 …and nothing public runs a `Command` that did not come from…",
+"CLAUDE.md:37 exec-nowhere leaf ×2 …ht refusal `Cause`s each with a fixed remedy — stated and validated, executed nowhere",
+"CLAUDE.md:104 exec-nowhere leaf @c2933/3144 …emedy; held in process, executed nowhere — time on a held instance moves b…",
+".claude/docs/services/escher-driver.md:6 exec-nowhere leaf ×3 …in process: it is stated and validated, and **executed n…",
+".andromeda/architecture.md:136 no-drv-command standing edited @c20851/21556 …re form, and no driver, CLI or MCP command…",
+".andromeda/security-plan.md:116 no-drv-command standing edited @c4969/9202 … or file, and no driver, CLI or MCP command…",
+".claude/docs/security-summary.md:29 or-command leaf …-07): no log, event, socket, file or command of escher's carries a…",
+".andromeda/test-plan.md:102 cannot-type standing …text is not measured (no command can type into the host's instance ye…",
+".andromeda/test-plan.md:181 cannot-type standing …text is not measured (no command can type into the binary's instance …",
+".andromeda/architecture.md:136 no-feature standing edited @c9801/21556 …om; seven_guis names none in its own manifest a…",
+".andromeda/a11y-plan.md:14 no-feature standing edited mixed ×2 @c581,1187/2011 …tand binary names none and builds no pl…",
+".claude/docs/services/escher-driver.md:11 no-feature leaf ×2 …sDocument`), with no feature named on either — it reads n…",
+".andromeda/architecture.md:101 decides-feature standing edited …d, the entry that first reads the snapshot through a se…",
+".claude/docs/services/escher-driver.md:11 decides-feature leaf …e. The entry that first reads the snapshot through a se…",
+".claude/docs/services/escher-driver.md:41 not-wired leaf …ance` is stated and not wired: the step that moves an app's t…",
+".andromeda/test-plan.md:26 count-readers new @c11533/11970 …alue after each of eleven driver calls, reached by click an…",
+".andromeda/test-plan.md:100 count-readers new …driver's calls and the eleven readers at escher-0.1.0/chunks/2026-10-07-…",
+".andromeda/obs-plan.md:69 count-readers new @c1607/3593 … and for the module eleven of those twelve read — four of the …",
+".andromeda/architecture.md:133 held-in-process standing edited @c11239/11704 … a call runs in process only, through `ac…",
+".andromeda/architecture.md:257 held-in-process standing edited …ssionError`) and, held in process only and under no `cf…",
+".andromeda/security-plan.md:333 held-in-process standing …std::error::Error`; held in process only — nothing prints, lo…",
+".andromeda/test-plan.md:142 held-in-process standing edited @c2336/3001 …files drive it through a `Session` (§5), where…",
+".andromeda/obs-plan.md:290 held-in-process new …types into an instance held in process only, where no sink is installed…",
+".claude/docs/services/escher-driver.md:6 held-in-process leaf …runs a `Command`, no `Session` method takes one and noth…",
+".claude/docs/tests-summary.md:24 held-in-process leaf …t over the socket or through a `Session`; `Session::act` is cove…",
+".andromeda/test-plan.md:21 count-unit standing edited @c2573/2741 …ma files and the count of 25 at escher-0.1.0/chunks/…",
+".claude/docs/tests-summary.md:24 count-unit leaf ×2 - `escher-driver`: 25 inline unit tests in six files — 13 on the li…",
+".andromeda/test-plan.md:115 count-stand standing edited @c2991/3376 …; the selection lists 20 files) — as measured at e…",
+".andromeda/test-plan.md:324 count-stand standing edited @c6737/7701 …refusal-schema: 143 result lines, 610 passed · 0 f…",
+".claude/docs/services/escher-driver.md:6 act-by-id leaf …verb on the socket, act by id, the detection of the screen-lev…",
+".andromeda/test-plan.md:87 cite-harness new …y with no dependency of its own (packages/blitz-test-harness/src/lib.rs:26)",
+"exec-nowhere · new 1 · standing 1 · leaf 3 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"no-drv-command · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:136 (prose)",
+"callers-tests · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:136 …",
+"or-command · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:136 (prose)",
+"cannot-type · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control security-plan.md:117 (prose)",
+"no-feature · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control architecture.md:101 (prose)",
+"decides-feature · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:101 (prose)",
+"not-wired · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"count-reexport · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133…",
+"count-readers · new 3 · standing 0 · leaf 0 · curation 0 · base 0 · control architecture.md:263 (prose)",
+"held-in-process · new 1 · standing 4 · leaf 2 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"count-unit · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:21 (prose)",
+"count-stand · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control test-plan.md:115 (prose)",
+"tick-handle · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:138 (p…",
+"act-by-id · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · case-variants +1 · control architecture.md:133 (prose)",
+"cite-host · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:138 (pro…",
+"cite-common · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:149 (p…",
+"cite-driver · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (p…",
+"cite-harness · new 1 · standing 0 · leaf 0 · curation 0 · base 0 · control architecture.md:130 (prose)",
+"cite-stand · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:131 (pr…"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "3c58ce5cc087750f64497be92206790a04f1575a",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), f8eb42c8",
+"counts": {
+"exec-nowhere": {
+"new": 1,
+"standing": 1,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"no-drv-command": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"callers-tests": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"or-command": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"cannot-type": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"no-feature": {
+"new": 0,
+"standing": 2,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"decides-feature": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"not-wired": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"count-reexport": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"count-readers": {
+"new": 3,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"held-in-process": {
+"new": 1,
+"standing": 4,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"count-unit": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"count-stand": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"tick-handle": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"act-by-id": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"cite-host": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-common": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-driver": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-harness": {
+"new": 1,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-stand": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+}
+}
+},
+{
+"tool": "cascade",
+"v": "1.1",
+"sha8": "b56ded6b",
+"ts": "2026-10-07T14:52:50Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-07T14-22-35-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-07T14-22-35-wrap",
+"--marker",
+"2026-10-07-act-by-id"
+],
+"cwd": "/home/turbolet/dev/projects/escher",
+"exit": 0,
+"stdout": [
+"baseline 3c58ce5c (pre-CI parent — the oldest of 1 pre-CI commit(s), f8eb42c8)",
+"exec-nowhere · new 1 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"no-drv-command · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:136 (prose)",
+"callers-tests · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:136 …",
+"or-command · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:136 (pr…",
+"cannot-type · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control security-plan.md:117 (prose)",
+"no-feature · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control architecture.md:101 (prose)",
+"decides-feature · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:101 (prose)",
+"not-wired · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (pro…",
+"count-reexport · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133…",
+"count-readers · new 3 · standing 0 · leaf 0 · curation 0 · base 0 · control architecture.md:263 (prose)",
+"held-in-process · new 1 · standing 4 · leaf 2 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"count-unit · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:21 (prose)",
+"count-stand · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control test-plan.md:115 (prose)",
+"tick-handle · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:138 (p…",
+"act-by-id · new 0 · standing 0 · leaf 2 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"cite-host · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:138 (pro…",
+"cite-common · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:149 (p…",
+"cite-driver · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (p…",
+"cite-harness · new 1 · standing 0 · leaf 0 · curation 0 · base 0 · control architecture.md:130 (prose)",
+"cite-stand · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:131 (pr…",
+".andromeda/architecture.md:133 exec-nowhere standing edited @c8827/11704 …othing public runs a `Command` that did not c…",
+".andromeda/security-plan.md:76 exec-nowhere new @c1303/2617 …and nothing public runs a `Command` that did not come from…",
+".andromeda/architecture.md:136 no-drv-command standing edited @c20851/21556 …re form, and no driver, CLI or MCP command…",
+".andromeda/security-plan.md:116 no-drv-command standing edited @c4969/9202 … or file, and no driver, CLI or MCP command…",
+".andromeda/test-plan.md:102 cannot-type standing …text is not measured (no command can type into the host's instance ye…",
+".andromeda/test-plan.md:181 cannot-type standing …text is not measured (no command can type into the binary's instance …",
+".andromeda/architecture.md:136 no-feature standing edited @c9801/21556 …om; seven_guis names none in its own manifest a…",
+".andromeda/a11y-plan.md:14 no-feature standing edited mixed ×2 @c622,1248/2072 …tand binary names none in its own manif…",
+".claude/rules/a11y.md:26 no-feature leaf …iver name it; seven_guis names none and gets it through escher-driver, so bot…",
+".andromeda/architecture.md:101 decides-feature standing edited …d, the entry that first reads the snapshot through a se…",
+".andromeda/test-plan.md:26 count-readers new @c11533/11970 …alue after each of eleven driver calls, reached by click an…",
+".andromeda/test-plan.md:100 count-readers new …driver's calls and the eleven readers at escher-0.1.0/chunks/2026-10-07-…",
+".andromeda/obs-plan.md:69 count-readers new @c1607/3593 … and for the module eleven of those twelve read — four of the …",
+".andromeda/architecture.md:133 held-in-process standing edited @c11239/11704 … a call runs in process only, through `ac…",
+".andromeda/architecture.md:257 held-in-process standing edited …ssionError`) and, held in process only and under no `cf…",
+".andromeda/security-plan.md:333 held-in-process standing …std::error::Error`; held in process only — nothing prints, lo…",
+".andromeda/test-plan.md:142 held-in-process standing edited @c2336/3001 …files drive it through a `Session` (§5), where…",
+".andromeda/obs-plan.md:290 held-in-process new …types into an instance held in process only, where no sink is installed…",
+".claude/docs/obs-summary.md:49 held-in-process leaf …d: the driver's `type` types into an instance held in process only.",
+".claude/docs/tests-summary.md:24 held-in-process leaf … (17 tests) drive it through a `Session` over the stand — one id…",
+".andromeda/test-plan.md:21 count-unit standing edited @c2573/2741 …ma files and the count of 25 at escher-0.1.0/chunks/…",
+".andromeda/test-plan.md:115 count-stand standing edited @c2991/3376 …; the selection lists 20 files) — as measured at e…",
+".andromeda/test-plan.md:324 count-stand standing edited @c6737/7701 …refusal-schema: 143 result lines, 610 passed · 0 f…",
+"CLAUDE.md:81 act-by-id leaf …tor (a call run in process · act by id · the returned diff · `advance` and the time step) …",
+"CLAUDE.md:105 act-by-id leaf @c3069/3732 …ommand waits on a load), act by id (built — `Session::run` runs a call on the…",
+".andromeda/test-plan.md:87 cite-harness new …y with no dependency of its own (packages/blitz-test-harness/src/lib.rs:26)",
+"exec-nowhere · new 1 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"no-drv-command · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:136 (prose)",
+"callers-tests · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:136 …",
+"or-command · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:136 (pr…",
+"cannot-type · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control security-plan.md:117 (prose)",
+"no-feature · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control architecture.md:101 (prose)",
+"decides-feature · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:101 (prose)",
+"not-wired · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (pro…",
+"count-reexport · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133…",
+"count-readers · new 3 · standing 0 · leaf 0 · curation 0 · base 0 · control architecture.md:263 (prose)",
+"held-in-process · new 1 · standing 4 · leaf 2 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"count-unit · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:21 (prose)",
+"count-stand · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control test-plan.md:115 (prose)",
+"tick-handle · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:138 (p…",
+"act-by-id · new 0 · standing 0 · leaf 2 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"cite-host · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:138 (pro…",
+"cite-common · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:149 (p…",
+"cite-driver · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 (p…",
+"cite-harness · new 1 · standing 0 · leaf 0 · curation 0 · base 0 · control architecture.md:130 (prose)",
+"cite-stand · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:131 (pr…"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "3c58ce5cc087750f64497be92206790a04f1575a",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), f8eb42c8",
+"counts": {
+"exec-nowhere": {
+"new": 1,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"no-drv-command": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"callers-tests": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"or-command": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cannot-type": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"no-feature": {
+"new": 0,
+"standing": 2,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"decides-feature": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"not-wired": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"count-reexport": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"count-readers": {
+"new": 3,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"held-in-process": {
+"new": 1,
+"standing": 4,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"count-unit": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"count-stand": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"tick-handle": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"act-by-id": {
+"new": 0,
+"standing": 0,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"cite-host": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-common": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-driver": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-harness": {
+"new": 1,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cite-stand": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+}
+}
+}
+]

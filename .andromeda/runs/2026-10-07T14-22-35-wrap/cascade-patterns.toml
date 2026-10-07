@@ -1,0 +1,82 @@
+# The retired claims of this pass, by wording and by mechanism, and the old coordinates of
+# every citation the chunk's edits moved. Derived from all 68 amendments before the first sweep.
+
+[[pattern]]
+id = "exec-nowhere"
+regex = 'executed nowhere|runs a `Command`|stated and validated'
+
+[[pattern]]
+id = "no-drv-command"
+fixed = 'no driver, CLI or MCP command'
+
+[[pattern]]
+id = "callers-tests"
+regex = 'callers are tests|callers of `[a-z_]+` are tests'
+
+[[pattern]]
+id = "or-command"
+regex = 'socket, file or command'
+
+[[pattern]]
+id = "cannot-type"
+regex = 'no command can type'
+
+[[pattern]]
+id = "no-feature"
+regex = 'names no .{0,40}feature|no feature named|names none|builds no accessibility code|reads no snapshot'
+
+[[pattern]]
+id = "decides-feature"
+regex = 'first reads the snapshot through a session'
+
+[[pattern]]
+id = "not-wired"
+regex = 'not wired|other six causes'
+
+[[pattern]]
+id = "count-reexport"
+regex = '32 names|eight private modules'
+
+[[pattern]]
+id = "count-readers"
+regex = '\beleven\b|by five checks|four of them and by|of those five'
+
+[[pattern]]
+id = "held-in-process"
+regex = 'held in process only|no `Session` method|through a `Session`|in process only, through `act`'
+
+[[pattern]]
+id = "count-unit"
+regex = '25 inline unit tests|count of 25|in six files|other 12 pin'
+
+[[pattern]]
+id = "count-stand"
+regex = 'lists 20 files|143 result lines, 610'
+
+[[pattern]]
+id = "tick-handle"
+regex = 'tick handle held|held until `serve` returns'
+
+[[pattern]]
+id = "act-by-id"
+fixed = 'act by id'
+
+[[pattern]]
+id = "cite-host"
+regex = 'session_host\.rs:(36-44|36-43|47-53|21-51|5-57|5-55|50)\b'
+
+[[pattern]]
+id = "cite-common"
+regex = 'session_common/mod\.rs:(70-78|81-145|71|60-145|1-145|66-78)\b'
+
+[[pattern]]
+id = "cite-driver"
+regex = 'escher-driver/src/lib\.rs:(27-49|29-49)|escher-driver/src/session\.rs:(11-79|11-46|81-103|35-78)\b'
+
+[[pattern]]
+id = "cite-harness"
+regex = 'blitz-test-harness/src/lib\.rs:(23-26|26)\b|input\.rs:95-232'
+
+[[pattern]]
+id = "cite-stand"
+regex = 'seven_guis/src/stand\.rs:(14-103|58-92|1-103)\b'
