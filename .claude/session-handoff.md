@@ -1,37 +1,36 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-07T07:22:32Z
+**Last Updated:** 2026-10-07T08:50:25Z
 **Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-07-driver-session — a driver session holds one headless stand instance across commands, hosted by one process over a local socket
+**Last Commit:** 2026-10-07-sink-target-allowlist — escher's log sink drops every record from a target outside its allowlist; neither sink-installing binary prints an id or a name at any level
 
 ## Position
-- Done: 2026-10-07-driver-session (21 master records, all complete) — the driver's first piece. It claimed no capability; coverage is unchanged.
-- Next: "Sink target allowlist" (working-route.md:56) — promote and plan it with /andromeda-phase. It sits ahead of Settle detection on the founder's ruling of 2026-10-07.
+- Done: 2026-10-07-sink-target-allowlist (22 master records, all complete) — the fix the founder ruled should follow the host-log finding. It claimed no capability; coverage is unchanged.
+- Next: "Settle detection" (working-route.md:58, v010-10) — promote and plan it with /andromeda-phase.
 
 ## Work done
-- New crate `packages/escher-driver`: `Session` holds one headless instance its caller boots; `serve` hosts it for the life of a process; `start` · `attach` · `stop` drive the lifecycle from another process over a std Unix-domain socket in an owner-only state directory (`hello` and `stop` only, nothing of the screen; `Unsupported` off unix). The stand hosts its own through a second seven_guis binary, `escher-session <task> <state-dir>`.
-- Proof: 13 unit tests, `host_binary` 2, five `stand_session_*` checks (9, two `#[ignore]` host children). `run stand` 72 ok; workspace 572 passed · 0 failed · 7 ignored over 140 result lines; fork CI green 16/16 on `91484eb0` (CI#37580856074). Record: `escher-0.1.0/chunks/2026-10-07-driver-session/report.md`.
+- `escher-telemetry`'s formatter admits two target families — the engine prefixes, scrubbed to safe fields, and the new public `ESCHER_TARGET_PREFIXES` (`escher_`), content-named fields redacted — and drops every other target's record whole: zero bytes, every level, whatever `RUST_LOG` names. Source and tests landed in the operator pre-CI commit `25d9b72d`.
+- Proof: 5 new unit tests (10 in the crate), `telemetry_drop` (blitz-tests, one ignored child), `host_log` (seven_guis, the real `escher-session` binary at `trace`), each seen red on the unfixed sink first. Workspace 579 passed · 0 failed · 8 ignored over 142 result lines; `run stand` 72 ok; fork CI green 16/16 on `25d9b72d` (CI#37592418443). Record: `escher-0.1.0/chunks/2026-10-07-sink-target-allowlist/report.md`, readings in its `evidence/by-level.md`.
+- Measured, both binaries, four `RUST_LOG` settings, before → after: `escher-session` 0 · 1 · 1165 · 1501 → 0 · 1 · 1 · 1 stderr lines; the windowed stand (its first reading by level) 1 · 3 · 12,413 · 47,482 → 0 · 1 · 1 · 1. No id and no name at any level.
 
 ## Drift resolved
-- 7 detectors, 75 proposals over five masters (architecture 17 · security-plan 20 · test-plan 19 · obs-plan 17 · layout-templates 2; design-system and a11y-plan none), all applied through the orchestrator with their coordinates re-measured; 10 sidecar entries; one new keyed contract, test-plan §3 → Session lifecycle. Three escalations, each resolved on a recorded word: the socket (a boundary widening — the founder's own choice), ids and names in a sink-installing host's log at debug and trace (the founder's ruling), and the plan's quiet criterion. Record: `.andromeda/runs/2026-10-07T06-51-52-wrap/fanout-results.md`, `cascade-dispositions.md`.
-- 82 root-`Cargo.toml` citations read, 76 re-pointed by measurement.
+- 7 detectors, 40 proposals over five masters (architecture 8 · security-plan 8 · test-plan 10 · obs-plan 13 · a11y-plan 1; design-system and layout-templates none), all applied, plus 3 same-claim sites the cascade sweep found; 5 sidecar entries; two keyed contracts edited (obs `pii-scrubbing-wire`, tests `session-proof`). No escalation. Record: `.andromeda/runs/2026-10-07T08-23-43-wrap/fanout-results.md`, `cascade-dispositions.md`.
+- The two bootstrap marks are discharged for escher's own sink; they stay open for the upstream apps' `fmt::init()` and the WPT runner's `env_logger`.
+- 31 citations into the three moved files re-pointed; all 56 citations into the chunk's files resolve.
 
 ## Notes
-- **The founder's rulings of 2026-10-07, applied at this wrap** (relayed verbatim by the overseer; `.andromeda/runs/2026-10-07T06-51-52-wrap/directives.md`): the three PROVISIONAL items of the Epoch 3 boundary are ratified — the bridge's 27-name falsy clear, the snapshot text and diff leaving the process as a returned value only, and the changed-set contract with the shell's refresh on change. No PROVISIONAL mark stands in any master, key file or leaf. **Still owed: the windowed witness of the refresh** (the CARRY on "Stand a11y assertions").
-- **The host-log finding, recorded as measured:** the `escher-session` binary's stderr holds no id and no name at the default level and at `info`, stable ids at `debug`, ids and accessible names at `trace` — third-party log targets pass the sink unscrubbed. NOT measured: typed text (no command can type yet) and the windowed stand by level. `stand_session_quiet` is green against a host that installs no sink, so it does not cover this. The fix is the next entry.
-- Route: "Sink target allowlist" minted ahead of Settle detection, with no matrix capability (the ruling named a chunk, not a requirement — say so if it should carry one). Pinned: the typed-sentinel proof and the session library's accessibility-feature decision on "Act by id"; the orphaned-host answer (no idle expiry) on "Driver CLI". Epoch 4 now reads 9 entries, 6 of them markerless.
-- Playbook: a "Provisional discharge" rule appended on the operator's direction — PROVISIONAL items are discharged in one batch at each epoch boundary, on the founder's own word.
-- `CLAUDE.md`'s grep bullet corrected: inside a Bash tool call `grep` is Claude Code's embedded ugrep; the host's grep is GNU; use `command grep`.
-- Not checked by any local gate: the non-unix arms of `escher-driver`, the MSRV build, macOS's stale-socket behaviour — the fork's CI run is their one witness.
-- Left open on purpose: whether test functions belong in the code audit's `over_ceiling` scalar (the Epoch 3 audit's question to the founder). Epoch 4's diagnosis and code audit are not due.
+- **The cost of dropping every level** (the lean the operator approved at the plan review): a third-party WARN or ERROR no longer reaches a sink-installing binary's stderr. The one instance measured: the windowed stand's default-level line `WARN winit_wayland::window::state` is gone. The full loss listing, WARN and ERROR under their own headings, is in the report.
+- **Still not measured:** typed text in a sink-installing host's log (the CARRY on "Act by id", now pointing at `host_log` as the check to extend); `log.file` occurrences (the bodies say "by construction, not measured"). **Still owed:** the windowed witness of the accessibility-tree refresh (the CARRY on "Stand a11y assertions").
+- Route: one CARRY pinned on "Driver command spans" — a span reaches stderr only under an engine or `escher_*` target. Epoch 4 reads 9 entries, 5 of them markerless; no split was asked for.
+- The operator pass (hygiene, pre-CI commit, push, CI read) was driven by the agent on the operator's direction; its record is `evidence/operator-pass.md`. CI jobs were read by conclusion only — no job log was opened.
+- Six obs-plan proposals arrived graded `escalate` by their detector's own severity while the detector reported its invariant holding; they were applied as routine on the playbook and the plan's approved expected amendments. Say so if that class should halt.
+- Not checked by any local gate: the non-unix arms, the MSRV build, `host_log` on macOS — the fork's CI run is their one witness.
+- Left open on purpose: whether test functions belong in the code audit's `over_ceiling` scalar (the Epoch 3 audit's question to the founder).
 - No gated record, no PREREQ, no WATCH on the tail.
 - Last failed command: none.
 
 ## Deferred learnings
-- None deferred this session (2 Tier 3 entries and 1 correction applied; 3 candidates already carried by masters this wrap wrote).
+- None deferred this session (no candidate survived the filters; nothing written to any tier).
 - carried, still unreviewed: "A chunk that moves cited source lines stales the masters' file:line citations" (Tier 3, 2026-10-05) · "A grep hit seen through a clipped view is not read" (Tier 3, 2026-10-06) · "Count from the listing you just read, never from the plan's forecast" (Tier 3, 2026-10-05).
 Review with `/andromeda-wrap-session --review` if any should be applied.
-
-## Session End Status
-Completed normally at 2026-10-07 09:57:34

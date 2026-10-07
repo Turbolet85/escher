@@ -194,3 +194,17 @@ One entry per amendment to `security-plan.md` (sidecar-contract.md §Entry form)
 **Change:** eight clauses in the three rows read PROVISIONAL (the operator's answer, pending the founder's word at the Epoch 3 boundary, or "as the `id` row records"); now "ratified by the founder, 2026-10-07" — the shell's refresh of the platform tree on change (its windowed witness still owed, and the row says so), and the snapshot, its text and its diff being returned to their caller only. No other text of those clauses changes.
 **Why:** the founder ruled on both items at the Epoch 3 boundary (the founder, 2026-10-07, in the overseer session, relayed verbatim by the overseer), superseding the operator's provisional answers by rule.
 **Ref:** .andromeda/runs/2026-10-07T06-51-52-wrap/
+
+## 2026-10-07-sink-target-allowlist — a sink-installing host logs no id and no name at any level: outside-target records dropped
+**Section:** §Input Validation → Markup attributes (`id` · accessible names) · §Logging & Monitoring → Log format and backends (escher's own sink) · §Bootstrap phases → logging-redaction-wire · §Data Protection · §Secret Management → Environment values read
+**Change:**
+- The sink: was a two-outcome scrub in which "a record from a target outside the engine allowlist prints its message and fields as written" (per "2026-10-07-driver-session — what a sink-installing host logs: the id and name rows and the scrub's reach scoped to the measurement", whose other claims stand); now three outcomes — engine targets print only the safe fields, `escher_` targets print with the eleven content-named fields redacted, any other target's record is dropped whole, zero bytes, at every level, WARN and ERROR included, whatever `RUST_LOG` names, a bridged record judged by the target it was logged under.
+- Readings, stderr lines before → after the drop: `escher-session` (CRUD, one `hello`, then `stop`) 0 → 0 at the default level, 1 → 1 at `info`, 1165 → 1 at `debug`, 1501 → 1 at `trace`; the windowed `seven_guis_native` (Home, 10 s) 1 → 0, 3 → 1, 12,413 → 1, 47,482 → 1; the line left is the install line; stdout empty in all 16 readings.
+- `id` row: an author-key id prints at no level — id needles found 15 of 15 → 0 (host) and 11 of 11 → 0 (windowed) at `debug` and `trace`; the ×12 / ×20 figures for one id are retired.
+- Accessible-names row: no name at any level — name needles at `trace` 6 of 6 → 0 (host), 5 of 5 → 0 (windowed).
+- "the windowed stand not measured by level" is retired at its three sites; typed text stays not measured.
+- `log.file`: a host path can ride only a bridged record under an engine target — recorded by construction, not measured.
+- logging-redaction-wire: discharged for escher's own sink, the third-party-target clause included; still open for the upstream apps' subscribers and the WPT runner's logger.
+- Data Protection names the sink as redacting and dropping. Two citations re-pointed; the session checks' build-time env citation names both host-spawning files and their shared module.
+**Why:** the chunk delivered the fix the founder ruled should follow the host-log finding (the founder, 2026-10-07, relayed verbatim by the overseer, as the earlier entry records); dropping every level was approved by the operator at the plan review (the operator, 2026-10-07). Cost recorded in the body: a third-party WARN or ERROR no longer prints. Trap: a "nothing in the logs" check still has to run against a host that installs the sink; `host_log` is that check.
+**Ref:** .andromeda/runs/2026-10-07T08-23-43-wrap/

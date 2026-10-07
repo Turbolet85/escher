@@ -32,4 +32,4 @@ The driver's first piece (unpublished, no `[features]`, no binary): a **session*
 
 ## Tests
 - 13 unit tests (`wire.rs` 8 · `session.rs` 2 · `error.rs` 3) — they need no app.
-- Over the stand, in blitz-tests: `stand_session_state` · `_ids` · `_fresh` (a session held in process) and `stand_session_lifecycle` · `_quiet` (a host process: the test binary re-run on an `#[ignore]` child); seven_guis' `host_binary` drives the real `escher-session` binary. `stand_session_quiet`'s host installs no log sink, so it proves nothing about a host that does.
+- Over the stand, in blitz-tests: `stand_session_state` · `_ids` · `_fresh` (a session held in process) and `stand_session_lifecycle` · `_quiet` (a host process: the test binary re-run on an `#[ignore]` child); seven_guis' `host_binary` drives the real `escher-session` binary, and `host_log` reads its stderr at `RUST_LOG=trace`. `stand_session_quiet`'s host installs no log sink, so it proves nothing about a host that does — `host_log` is the check that does.

@@ -1,0 +1,92 @@
+# Cascade step-2 patterns — 2026-10-07-sink-target-allowlist.
+# Derived from every amendment of this pass: the retired claim's wording, its mechanism, its figures,
+# the moved citations and the moved counts.
+
+[[pattern]]
+id = "as-written"
+fixed = 'as written'
+
+[[pattern]]
+id = "unredacted"
+fixed = 'unredacted'
+
+[[pattern]]
+id = "engine-allowl"
+fixed = 'engine allowlist'
+
+[[pattern]]
+id = "any-target"
+fixed = 'at any target'
+
+[[pattern]]
+id = "allowl-scrub"
+regex = 'allowlist scrub|scrubs by allowlist'
+
+[[pattern]]
+id = "by-level"
+regex = 'not measured by level|by level are not measured|by level unmeasured'
+ignore_case = true
+
+[[pattern]]
+id = "route-entry"
+fixed = 'Sink target allowlist'
+
+[[pattern]]
+id = "leak-levels"
+regex = '(ids?|names?) at `?(RUST_LOG=)?(debug|trace)'
+
+[[pattern]]
+id = "old-evidence"
+fixed = 'host-stderr-by-level.md'
+
+[[pattern]]
+id = "old-figures"
+regex = '×12|×20|1165|1501|1\.1 MB'
+
+[[pattern]]
+id = "third-party"
+fixed = 'third-party'
+
+[[pattern]]
+id = "per-event"
+regex = '[Oo]ne (non-JSON text )?line per event|one per event'
+
+[[pattern]]
+id = "cite-format"
+fixed = 'escher-telemetry/src/format.rs:'
+
+[[pattern]]
+id = "cite-lib"
+fixed = 'escher-telemetry/src/lib.rs:'
+
+[[pattern]]
+id = "cite-hostbin"
+fixed = 'tests/host_binary.rs:'
+
+[[pattern]]
+id = "count-chain"
+regex = '572|140 result|7 ignored'
+
+[[pattern]]
+id = "unit-count"
+regex = '5 inline unit tests|5 unit'
+
+[[pattern]]
+id = "four-files"
+regex = 'four `telemetry_\*`|four telemetry'
+
+[[pattern]]
+id = "one-target"
+fixed = 'one integration-test target'
+
+[[pattern]]
+id = "state-dirs"
+fixed = 'hb-refuse'
+
+[[pattern]]
+id = "re-exec"
+regex = 'two blitz-tests integration binaries|re-execute'
+
+[[pattern]]
+id = "host-spawn"
+fixed = 'host_binary'

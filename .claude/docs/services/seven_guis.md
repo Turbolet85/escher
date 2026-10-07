@@ -8,7 +8,7 @@ The 7GUIs benchmark app ("Seven benchmark tasks for GUI frameworks") in Dioxus �
 ## Key integrations
 
 ### Consumes from
-- escher-driver (native target only): the second binary, `escher-session <task> <state-dir>` (`src/session_host.rs`), is the one place a lean task, the stand's boot and the timer's tick handle meet a driver `Session` — it installs the telemetry sink first, boots `counter` · `flight-booker` · `timer` · `crud` through `stand` only, serves the session until stopped, and writes nothing to stdout (exit 0 · 1 · 2); `tests/host_binary.rs` is its smoke.
+- escher-driver (native target only): the second binary, `escher-session <task> <state-dir>` (`src/session_host.rs`), is the one place a lean task, the stand's boot and the timer's tick handle meet a driver `Session` — it installs the telemetry sink first, boots `counter` · `flight-booker` · `timer` · `crud` through `stand` only, serves the session until stopped, and writes nothing to stdout (exit 0 · 1 · 2); `tests/host_binary.rs` is its smoke, and `tests/host_log.rs` checks that at `RUST_LOG=trace` it writes no stable id and no accessible name to stderr (the two share `tests/common/mod.rs`).
 - dioxus-native (native binary `seven_guis_native`) or a wasm32 cdylib (`--no-default-features --features hybrid`, `console_error_panic_hook`).
 - escher-telemetry (native target only): `main` calls `escher_telemetry::init(escher_telemetry::service_identity!())` before `launch` — stderr log lines carry `service.name=seven_guis`; an init `Err` is `eprintln!`ed and the stand still launches. The engine `tracing` features stay off.
 
