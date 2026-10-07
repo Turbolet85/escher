@@ -122,7 +122,7 @@ On-demand references in `.claude/docs/` (Claude reads when relevant):
 - `session-learnings.md` — curated by /andromeda-wrap-session
 
 Path-scoped rules in `.claude/rules/` (auto-load when matching files touched):
-- `security.md` (always loaded) · `testing.md` · `observability.md` · `a11y.md` · `verification-harness.md`
+- `security.md` · `host-linux.md` (both always loaded) · `testing.md` · `observability.md` · `a11y.md` · `verification-harness.md`
 
 For complete Andromeda documentation: `/andromeda-help`
 <!-- GENERATED:setup:deeper-topics end -->
