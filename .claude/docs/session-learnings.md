@@ -8,6 +8,13 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-09 — In the jobs API a step's seconds and conclusion do not say whether a guarded command ran
+A workflow step written `a || b` reads `success` whether `b` ran or not, and where `a` succeeds it reads 0 s. So a count of "the steps that call the script" is not a count of the jobs that ran it: the ci-scripts job's PyYAML guard calls the install script only where `import yaml` fails, and on a runner image that already carries PyYAML the script is never reached. What says whether a command ran is the job log — the command's own output is there or it is not.
+
+Finding the step in the jobs listing has its own trap: a `run:` step has no name of its own, so the API names it `Run {the command}` — select it by a word of its command, and an action step by its `name`. Where a plan or a record states how many jobs ran something, take the number from the logs, and name a guarded call separately.
+
+---
+
 ## 2026-10-07 — `tracing-subscriber`'s fmt layer: what a span's close record carries, and the builder's order
 Read from the locked `tracing` 0.1 and `tracing-subscriber` 0.3 while building a sink that prints closed spans; each of these cost a rework before it was known.
 

@@ -6,7 +6,7 @@
 
 - **Workspace** — dependencies include tracing, tracing-subscriber, tracing-log, tracing-wasm and console_error_panic_hook; the root dev-dependencies add env_logger (Cargo.toml:174; Cargo.toml:177; Cargo.toml:188-190; Cargo.toml:291)
 - **Workspace** — `packages/debug_timer` is a workspace member (Cargo.toml:4; Cargo.toml:57)
-- **apps/browser** — observability is `tracing` logging, optional frame/phase timing features, and an in-app FPS overlay (apps/browser/Cargo.toml:27-29; apps/browser/Cargo.toml:36; apps/browser/src/fps_overlay.rs:94-124)
+- **apps/browser** — observability is `tracing` logging, optional frame/phase timing features, and an in-app FPS overlay (apps/browser/Cargo.toml:28-30; apps/browser/Cargo.toml:37; apps/browser/src/fps_overlay.rs:94-124)
 - **examples** — console printing of timings (examples/screenshot.rs:200-214), and the escher-telemetry events of seven_guis' two binaries, `seven_guis_native` and `escher-session`, on stderr (examples/seven_guis/src/main.rs:6-9; examples/seven_guis/src/session_host.rs:20-22)
 - **escher-telemetry** — escher's telemetry bootstrap crate: the stderr subscriber with service identity, the allowlist formatter — a scrub for engine and escher targets, a drop for every other target, printing one line per event and one per closed span — and the chaining panic hook (packages/escher-telemetry/src/lib.rs:1-22; Cargo.toml:17)
 - **blitz-dom** — optional `tracing` logging, `println!` debug dumps and `debug_timer` phase timings (packages/blitz-dom/src/lib.rs:26-29; packages/blitz-dom/src/debug.rs:6-153; packages/blitz-dom/src/resolve.rs:75)
@@ -36,13 +36,13 @@
 
 **Feature wiring:**
 
-- The browser `tracing` feature enables tracing in dioxus-native, blitz-html, blitz-net, blitz-paint and pulls in tracing-subscriber (apps/browser/Cargo.toml:36)
+- The browser `tracing` feature enables tracing in dioxus-native, blitz-html, blitz-net, blitz-paint and pulls in tracing-subscriber (apps/browser/Cargo.toml:37)
 - rdme's `tracing` feature enables it in blitz-shell, blitz-net, blitz-html (apps/readme/Cargo.toml:42)
 - `tracing` is a default feature of blitz and forwards to blitz-shell, blitz-html and blitz-net (packages/blitz/Cargo.toml:14; packages/blitz/Cargo.toml:17)
 - By invocation: a build that resolves the whole workspace (`cargo test --workspace`, `ci-leg.sh fast`, CI's test leg) turns `blitz-dom/tracing` on — blitz's default `tracing` reaches blitz-shell and blitz-html, and each of those forwards to blitz-dom — while `cargo test -p blitz-tests` and a `-p seven_guis` build leave it off; so under the workspace build a test child that installs escher's sink at `info` also receives engine events: one `INFO blitz_dom::document … message=[redacted]` beside a driver `type` (packages/blitz-shell/Cargo.toml:21; packages/blitz-html/Cargo.toml:15; packages/blitz-dom/src/document.rs:1693; as measured at escher-0.1.0/chunks/2026-10-07-driver-command-spans/evidence/feature-unification.md, from cargo's resolved feature graph, the event at escher-0.1.0/chunks/2026-10-07-driver-command-spans/report.md; test-plan §9 → Engine features by runner). Not measured: the two seven_guis binaries' stderr by level as a workspace build makes them
 - blitz-vibey-script's `tracing` feature is off by default and also enables `blitz-dom/tracing` (packages/blitz-vibey-script/Cargo.toml:14-15)
 - dioxus-native's `tracing` feature turns on tracing across dioxus-native-dom and the blitz crates (packages/dioxus-native/Cargo.toml:67)
-- `log-frame-times` and `log-phase-times` features forward to renderer and DOM crates (apps/browser/Cargo.toml:27-29; apps/readme/Cargo.toml:34-41; examples/todomvc/Cargo.toml:23-25; examples/counter/Cargo.toml:21-22)
+- `log-frame-times` and `log-phase-times` features forward to renderer and DOM crates (apps/browser/Cargo.toml:28-30; apps/readme/Cargo.toml:34-41; examples/todomvc/Cargo.toml:23-25; examples/counter/Cargo.toml:21-22)
 - In dioxus-native, `log-frame-times` turns on `log_frame_times` in whichever anyrender backend is enabled; `log-phase-times` forwards to blitz-dom (packages/dioxus-native/Cargo.toml:59-66)
 - blitz-dom's `log-phase-times` enables `debug_timer/enable` (packages/blitz-dom/Cargo.toml:38)
 
@@ -242,7 +242,7 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 **Panic hooks:**
 
 - `console_error_panic_hook` is a workspace dependency (Cargo.toml:177)
-- WASM builds install `console_error_panic_hook` (examples/seven_guis/src/lib.rs:13; examples/todomvc/src/wasm.rs:8; examples/wasm_hello/src/lib.rs:104)
+- WASM builds install `console_error_panic_hook` (examples/seven_guis/src/lib.rs:16; examples/todomvc/src/wasm.rs:8; examples/wasm_hello/src/lib.rs:104)
 - The wpt runner's panic hook captures message, file, line, column and a forced backtrace (wpt/runner/src/panic_backtrace.rs:12-38)
 - escher-telemetry's hook, installed by `init` in `seven_guis_native` and in `escher-session`, chains: it takes the previous hook, logs one ERROR event at target `escher_telemetry::panic` with `panic.file`, `panic.line`, `panic.column` and `panic.payload` (redacted, §8), then runs the previous hook — std's default still prints the raw message to stderr and the exit code is unchanged (packages/escher-telemetry/src/panic.rs:4-24)
 - A crashed WPT test's panic message is carried into the report's `message` field (wpt/runner/src/report.rs:95)
@@ -323,13 +323,14 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 |----------|---------|--------|
 | WPT report and scores | archived to GitHub Pages and dispatched to `DioxusLabs/blitz-wpt-results` on main, on upstream `DioxusLabs/blitz` only (`wpt` and `trigger-archive` are repository-guarded; neither runs on the fork) | (.github/workflows/wpt.yml:26; .github/workflows/wpt.yml:95-119) |
 | `wptscores.json` | computed from the WPT run and published to Pages, upstream only | (.github/workflows/wpt.yml:26; .github/workflows/wpt.yml:72-75) |
-| Per-leg CI log | each ci.yml leg's merged stdout+stderr, written by `ci-leg.sh` to `target/ci-logs/{leg}.log` (matrix: `target/ci-logs/matrix-{platform}.log`), truncated at the leg's start; uploaded only on failure as artifact `ci-log-{job id}` (`if-no-files-found: ignore`), kept 7 days, from `target/ci-logs/` alone; unscrubbed build output (no user data — §8) | (.github/scripts/ci-leg.sh:62-63; .github/workflows/ci.yml:48-54; .github/workflows/ci.yml:391-400) |
+| Per-leg CI log | each ci.yml leg's merged stdout+stderr, written by `ci-leg.sh` to `target/ci-logs/{leg}.log` (matrix: `target/ci-logs/matrix-{platform}.log`), truncated at the leg's start; uploaded only on failure as artifact `ci-log-{job id}` (`if-no-files-found: ignore`), kept 7 days, from `target/ci-logs/` alone; unscrubbed build output (no user data — §8) | (.github/scripts/ci-leg.sh:62-63; .github/workflows/ci.yml:48-54; .github/workflows/ci.yml:392-401) |
 | Coverage report | the `coverage` leg's lcov file `target/coverage/lcov.info` — line counts of the workspace's public source, no user data (§8); uploaded only on success as artifact `coverage-report` from `target/coverage/`, kept 7 days — the one fork-CI artifact outside `target/ci-logs/` | (.github/scripts/ci-leg.sh:35-39; .github/workflows/ci.yml:286-291) |
 | Agent-run harness state | `target/agent-run/{status.json, events.jsonl, run.log}` — the test contract's status, its JSON-line events (§6) and the raw merged cargo/libtest output (unscrubbed, no user data — §8); local only, gitignored under `target/`, uploaded by no CI leg, removed by `agent-run.sh cleanup`, which touches nothing else under `target/` | (scripts/agent-run.sh:9; scripts/agent-run.sh:165-174; scripts/agent-run.sh:215-218) |
 | Session state directory | the directory a session's caller names — in the checks `ss-life` and `ss-quiet` (blitz-tests) and `hb-serve`, `hb-refuse` and `hl-trace` (seven_guis) under `target/tmp/` — created `0700` by the host, holding the socket file `session.sock` alone while a session is up and nothing after `stop`; no log, event or screen content is written into it; local only, uploaded by no CI leg; it belongs to the session library and its checks, not to `agent-run.sh` | (packages/escher-driver/src/host.rs:35-73; tests/blitz-tests/tests/session_common/mod.rs:232-240; examples/seven_guis/tests/common/mod.rs:12-20; examples/seven_guis/tests/host_log.rs:73) |
 | Cold-agent pipe state | `target/cold-agent/{verdict.json, events.jsonl, transcript.jsonl, client.log, calls.jsonl, stub-state.json}` — the run's verdict, its JSON-line events (§6), the stub's call log and state, and the client's raw transcript and stderr (raw by design — §8); local only, gitignored under `target/`, uploaded by no CI leg (CI runs only the shim contract tests), removed by `cold-agent.sh cleanup`, which touches nothing else under `target/`; the per-run `mktemp -d` session directory is removed when the run exits | (scripts/cold-agent.sh:13; scripts/cold-agent.sh:244-266; scripts/cold-agent.sh:272-275) |
 
 - Publish builds log at `CARGO_LOG: info` with `--verbose --trace`, on upstream `DioxusLabs/blitz` only (.github/workflows/publish-browser.yml:33; .github/workflows/publish-browser.yml:37; .github/workflows/publish-browser.yml:155)
+- The package install's output stays in the job's step log: ci.yml's install steps call `.github/scripts/apt-install.sh`, which no `ci-leg.sh` leg runs, so no `target/ci-logs/` file holds its output and no artifact uploads it; the script's own diagnostic is one stderr line per failed attempt — the attempt number, the phase (`update` or `install`) and the exit status, nothing of a user's (.github/scripts/apt-install.sh:57-63) — as measured at escher-0.1.0/chunks/2026-10-09-audit-corrections-agent-surfaces/report.md
 
 > NOT YET MEASURED — snapshot artifact upload and CI resource attributes: the reading recorded none
 

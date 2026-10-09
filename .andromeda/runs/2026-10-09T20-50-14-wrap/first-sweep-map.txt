@@ -1,0 +1,65 @@
+cites v1.3 · 3f3a888b
+base: blame — no earlier sweep; each citing line's own last commit
+sites 4663 (bare ":digits" 4689) over 39 file(s) · unmoved 4603 · moved 36 · stretched 15 · changed 6
+out-of-range 3 · unresolved 0 · new 0 · repointed 0 · hand 0 · held 0 · INDETERMINATE 0 · listed, not written 0
+the write, by blame: 40 citation(s) — the next 40 row(s), each with the line its new number names
+moved .andromeda/architecture.md:61 apps/browser/Cargo.toml:45-52 → 46-53 «dioxus-native = { workspace = true, feature…»
+moved .andromeda/architecture.md:61 apps/browser/Cargo.toml:66 → 67 «nucleo = "0.5"»
+moved .andromeda/architecture.md:61 apps/browser/Cargo.toml:74 → 75 «tokio = { workspace = true, features = ["time", "…»
+moved .andromeda/architecture.md:61 apps/browser/Cargo.toml:77 → 78 «mimalloc = { version = "0.1.48", optional = true }»
+moved .andromeda/architecture.md:61 apps/browser/Cargo.toml:79-80 → 80-81 «[target.'cfg(not(any(target_os = "android",…»
+moved .andromeda/architecture.md:61 apps/browser/Cargo.toml:82-83 → 83-84 «[target.'cfg(target_os = "android")'.depend…»
+stretched .andromeda/architecture.md:66 .github/workflows/ci.yml:34-400 → 34-401 — changed inside «build-msrv:»
+moved .andromeda/architecture.md:66 .github/scripts/test_ci_workflows.py:12 → 15 «import yaml»
+moved .andromeda/architecture.md:66 .github/workflows/ci.yml:394 → 395 «- uses: actions/upload-artifact@043fb46d1a93c7…»
+moved .andromeda/architecture.md:66 .github/scripts/test_ci_workflows.py:163-176 → 184-197 «def test_j_every_action_is…»
+moved .andromeda/architecture.md:80 apps/browser/Cargo.toml:13 → 14 «default = ["hybrid", "cookies", "cache", "screens…»
+moved .andromeda/architecture.md:80 apps/browser/Cargo.toml:18-26 → 19-27 «vello = ["dioxus-native/vello"]»
+moved .andromeda/architecture.md:141@c2346 .github/workflows/ci.yml:394-400 → 395-401 «- uses: actions/upload-artifact…»
+stretched .andromeda/architecture.md:141@c2635 .github/scripts/test_ci_workflows.py:80-264 → 101-392 — changed inside «class CiWor…»
+moved .andromeda/architecture.md:149@c1234 .github/workflows/ci.yml:391-392 → 392-393 «mkdir -p target/ci-logs»
+stretched .andromeda/architecture.md:180@c384 .github/workflows/ci.yml:34-400 → 34-401 — changed inside «build-msrv:»
+moved .andromeda/architecture.md:180@c1748 .github/workflows/ci.yml:388-392 → 389-393 «- name: test»
+moved .andromeda/architecture.md:180@c2257 .github/scripts/test_ci_workflows.py:163-176 → 184-197 «def test_j_every_ac…»
+moved .andromeda/security-plan.md:52 .github/scripts/test_ci_workflows.py:178-182 → 199-203 «def test_l_token_is_read_…»
+moved .andromeda/security-plan.md:118@c2523 tests/blitz-tests/tests/stand_snapshot_state.rs:445-494 → 458-507 «#[test]»
+moved .andromeda/security-plan.md:175 apps/browser/Cargo.toml:13 → 14 «default = ["hybrid", "cookies", "cache", "scree…»
+moved .andromeda/security-plan.md:175 apps/browser/Cargo.toml:30-31 → 31-32 «cache = ["blitz-net/cache"]»
+moved .andromeda/security-plan.md:215 apps/browser/Cargo.toml:55 → 56 «blitz-net = { workspace = true, features = ["ht…»
+moved .andromeda/security-plan.md:229 .github/workflows/ci.yml:392 → 393 «${{ env.RUST_CARGO_COMMAND }} ${{ matrix.pla…»
+moved .andromeda/security-plan.md:233 .github/scripts/test_ci_workflows.py:163-169 → 184-190 «def test_j_every_action_…»
+moved .andromeda/security-plan.md:233 .github/workflows/ci.yml:379 → 380 «uses: awalsh128/cache-apt-pkgs-action@553a35…»
+moved .andromeda/security-plan.md:248 .github/workflows/ci.yml:392 → 393 «${{ env.RUST_CARGO_COMMAND }} ${{ matrix.pla…»
+moved .andromeda/test-plan.md:33 .github/workflows/ci.yml:388-392 → 389-393 «- name: test»
+moved .andromeda/test-plan.md:98@c1390 tests/blitz-tests/tests/stand_snapshot_state.rs:75-82 → 79-86 «fn parsed_markup…»
+stretched .andromeda/test-plan.md:144 .github/scripts/test_ci_workflows.py:80-264 → 101-392 — changed inside «class CiWor…»
+moved .andromeda/obs-plan.md:9 apps/browser/Cargo.toml:27-29 → 28-30 «log-times = ["log-frame-times", "log-phase-times…»
+moved .andromeda/obs-plan.md:9 apps/browser/Cargo.toml:36 → 37 «tracing = ["dioxus-native/tracing", "blitz-html/tracin…»
+moved .andromeda/obs-plan.md:39 apps/browser/Cargo.toml:36 → 37 «tracing = ["dioxus-native/tracing", "blitz-html/traci…»
+moved .andromeda/obs-plan.md:45 apps/browser/Cargo.toml:27-29 → 28-30 «log-times = ["log-frame-times", "log-phase-time…»
+moved .andromeda/obs-plan.md:245 examples/seven_guis/src/lib.rs:13 → 16 «console_error_panic_hook::set_once();»
+moved .andromeda/obs-plan.md:326 .github/workflows/ci.yml:391-400 → 392-401 «mkdir -p target/ci-logs»
+moved .andromeda/a11y-plan.md:15 apps/browser/Cargo.toml:13 → 14 «default = ["hybrid", "cookies", "cache", "screenshot…»
+moved .andromeda/a11y-plan.md:15 apps/browser/Cargo.toml:38 → 39 «accessibility = ["dioxus-native/accessibility"]»
+moved .andromeda/a11y-plan.md:73 tests/blitz-tests/tests/stand_snapshot_state.rs:263-299 → 267-303 «#[test]»
+moved .andromeda/a11y-plan.md:204 tests/blitz-tests/tests/stand_snapshot_state.rs:263-299 → 267-303 «#[test]»
+stretched .andromeda/architecture.md:11 examples/transparent/src/main.rs:4-13 → 4-13 — changed inside
+changed .andromeda/architecture.md:66 .github/workflows/ci.yml:191 → ? — rewritten «- run: python3 -c 'import yaml' ||…»
+stretched .andromeda/architecture.md:105 .github/workflows/ci.yml:164-184 → 164-184 — changed inside
+changed .andromeda/architecture.md:136@c14030 tests/blitz-tests/tests/stand_snapshot_state.rs:1-6 → ? — the end rewritten
+stretched .andromeda/architecture.md:159 .github/workflows/ci.yml:164-184 → 164-184 — changed inside
+changed .andromeda/architecture.md:180@c1424 .github/workflows/ci.yml:46 → ? — rewritten «- run: sudo apt-get update &…»
+stretched .andromeda/architecture.md:225 .github/workflows/ci.yml:164-184 → 164-184 — changed inside
+stretched .andromeda/architecture.md:243 packages/blitz-dom/src/traversal.rs:46-48 → 46-48 — changed inside
+changed .andromeda/architecture.md:263@c3156 tests/blitz-tests/tests/stand_snapshot_state.rs:1-6 → ? — the end rewritten
+changed .andromeda/security-plan.md:113 tests/blitz-tests/tests/stand_snapshot_state.rs:1-6 → ? — the end rewritten
+stretched .andromeda/test-plan.md:7 .github/workflows/ci.yml:78-98 → 78-98 — changed inside
+stretched .andromeda/test-plan.md:8 .github/workflows/ci.yml:186-199 → 186-199 — changed inside
+stretched .andromeda/test-plan.md:97 packages/blitz-vibey-script/src/document.rs:108-133 → 108-133 — changed inside
+stretched .andromeda/test-plan.md:329 .github/workflows/ci.yml:271-298 → 271-298 — changed inside
+stretched .andromeda/obs-plan.md:80 packages/blitz-vibey-script/src/document.rs:242-261 → 242-261 — changed inside
+changed .andromeda/a11y-plan.md:270@c2801 tests/blitz-tests/tests/stand_snapshot_state.rs:1-6 → ? — the end rewritten
+stretched .andromeda/a11y-plan.md:328 .github/workflows/ci.yml:247-268 → 247-268 — changed inside
+out-of-range escher-0.1.0/working-route.md:69@c2099 tests/blitz-tests/tests/accessibility_roles.rs:213 — the file held 198 lines at the base
+out-of-range escher-0.1.0/working-route.md:69@c2107 tests/blitz-tests/tests/accessibility_roles.rs:260 — the file held 198 lines at the base
+out-of-range escher-0.1.0/working-route.md:69@c2115 tests/blitz-tests/tests/accessibility_roles.rs:284 — the file held 198 lines at the base

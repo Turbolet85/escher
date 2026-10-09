@@ -1,0 +1,77 @@
+# Cascade step 2 — the pattern set of the 2026-10-09-audit-corrections-agent-surfaces wrap.
+# Derived from its thirteen body amendments (architecture 3 · security-plan 1 · test-plan 7 · a11y-plan 1 ·
+# obs-plan 1) after the last one was applied. Each pattern is a retired count, the old wording of an amended
+# passage, or the mechanism that passage stated; every one has a known positive in the pre-pass masters.
+
+# — the counts this chunk moved —
+[[pattern]]
+id = "ran-64"
+regex = '64 tests|Ran 64'
+
+[[pattern]]
+id = "the-23"
+fixed = 'the 23 of the files above'
+
+[[pattern]]
+id = "passed-109"
+regex = 'passed 109|109 passed'
+
+[[pattern]]
+id = "passed-656"
+regex = '656 passed|passed 656'
+
+# — the package install: how the masters said CI installs a package —
+[[pattern]]
+id = "ubuntu-install"
+regex = 'Ubuntu jobs install|jobs install'
+
+[[pattern]]
+id = "fontconfig"
+fixed = 'libfontconfig1-dev'
+
+[[pattern]]
+id = "pyyaml"
+regex = 'python3-yaml|ensuring PyYAML|ensures as Ubuntu|PyYAML'
+
+[[pattern]]
+id = "pkg-install"
+regex = '[Pp]ackage[- ]install'
+
+[[pattern]]
+id = "apt"
+regex = '\bapt\b|apt-pkgs|apt deps'
+
+# — the CI-script tests: what the masters say that file pins —
+[[pattern]]
+id = "ci-tests"
+regex = 'test_ci_workflows|LegScriptTest|CiWorkflowTest'
+
+[[pattern]]
+id = "ci-bullet"
+fixed = 'CI workflows and leg script'
+
+[[pattern]]
+id = "contract-pinned"
+fixed = 'the contract is pinned by'
+
+# — the artifact claim obs-plan's new sentence rests on —
+[[pattern]]
+id = "one-artifact"
+regex = 'one fork-CI artifact|`target/ci-logs/` alone'
+
+# — the fixture and the value reading —
+[[pattern]]
+id = "state-file"
+fixed = 'stand_snapshot_state'
+
+[[pattern]]
+id = "fixture-reads"
+regex = 'checkbox and a radio|password mask on an in-file fixture'
+
+[[pattern]]
+id = "editor-text"
+regex = '''the editor's text|typed text read(s|ing)? back'''
+
+[[pattern]]
+id = "textarea"
+fixed = 'textarea'

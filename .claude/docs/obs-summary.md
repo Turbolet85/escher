@@ -29,7 +29,7 @@ _Distilled from `.andromeda/obs-plan.md` (adopted reading). wrap-session's casca
 
 No counters, histograms or exporters exist.
 
-CI artifacts (§9): each ci.yml leg's merged output, `target/ci-logs/{leg}.log`, is uploaded only when the leg fails (`ci-log-{job id}`, kept 7 days, unscrubbed build output); the `coverage` job also uploads `coverage-report` (`target/coverage/`, line counts, no user data) on success, kept 7 days. The agent-run state area `target/agent-run/` and the cold-agent pipe's `target/cold-agent/` are local only — no CI job uploads either.
+CI artifacts (§9): each ci.yml leg's merged output, `target/ci-logs/{leg}.log`, is uploaded only when the leg fails (`ci-log-{job id}`, kept 7 days, unscrubbed build output); the `coverage` job also uploads `coverage-report` (`target/coverage/`, line counts, no user data) on success, kept 7 days. The package install's output (`.github/scripts/apt-install.sh`; one stderr line per failed attempt) stays in the job's step log — no leg log holds it and no artifact uploads it. The agent-run state area `target/agent-run/` and the cold-agent pipe's `target/cold-agent/` are local only — no CI job uploads either.
 
 ## Events and panics (§6, §7)
 - escher-telemetry: `info` `telemetry installed` at target `escher_telemetry` (no argv / path / URL); ERROR `panic` at target `escher_telemetry::panic` with `panic.file` · `panic.line` · `panic.column` · `panic.payload` (redacted).

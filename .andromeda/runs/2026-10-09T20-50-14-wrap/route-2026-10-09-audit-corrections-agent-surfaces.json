@@ -1,0 +1,121 @@
+[
+{
+"tool": "route",
+"v": "1.7",
+"sha8": "470db3a8",
+"ts": "2026-10-09T21:26:33Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-09-audit-corrections-agent-surfaces",
+"--run-dir",
+".andromeda/runs/2026-10-09T20-50-14-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"flip master-route.md:38 - 2026-10-09-audit-corrections-agent-surfaces pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.7",
+"sha8": "470db3a8",
+"ts": "2026-10-09T21:26:33Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-09-audit-corrections-agent-surfaces",
+"--date",
+"2026-10-09",
+"--run-dir",
+".andromeda/runs/2026-10-09T20-50-14-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :69 strip CARRY: 529ch \"CARRY: the founder's ruling and where it\"",
+"pin :69 strip CARRY: 980ch \"CARRY: the surviving mutant (from the Ep\"",
+"pin :69 strip CARRY: 1269ch \"CARRY: the CI package-install step has n\"",
+"pin next markerless :71 holds CARRY:×2 · WATCH:×1",
+"69 · 2026-10-09-audit-corrections-agent-surfaces · strip 3 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 69,
+"marker": "2026-10-09-audit-corrections-agent-surfaces",
+"blocks": 3,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.7",
+"sha8": "470db3a8",
+"ts": "2026-10-09T21:26:38Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-09-audit-corrections-agent-surfaces",
+"--date",
+"2026-10-09",
+"--run-dir",
+".andromeda/runs/2026-10-09T20-50-14-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :69 strip CARRY: 529ch \"CARRY: the founder's ruling and where it\"",
+"pin :69 strip CARRY: 980ch \"CARRY: the surviving mutant (from the Ep\"",
+"pin :69 strip CARRY: 1269ch \"CARRY: the CI package-install step has n\"",
+"pin next markerless :71 holds CARRY:×2 · WATCH:×1",
+"69 · 2026-10-09-audit-corrections-agent-surfaces · strip 3 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.1.0/route-archive.md",
+"./escher-0.1.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 69,
+"marker": "2026-10-09-audit-corrections-agent-surfaces",
+"blocks": 3,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]

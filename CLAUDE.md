@@ -82,7 +82,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 | Driver session (held instance · settled step · lifecycle socket · host binary) | `packages/escher-driver/src/{session,host,client,wire,error}.rs` · host `examples/seven_guis/src/session_host.rs` · checks `tests/blitz-tests/tests/stand_session_*.rs` and `stand_settle.rs` (shared `tests/session_common/mod.rs`) and `examples/seven_guis/tests/host_{binary,log}.rs` (shared `tests/common/mod.rs`) · contract `.andromeda/registries/contracts/test-plan/session-lifecycle.md` |
 | The 7GUIs stand | `examples/seven_guis/src/tasks/` · headless boot `examples/seven_guis/src/stand.rs` · checks `tests/blitz-tests/tests/stand_*.rs` · their shared tables and helpers `tests/blitz-tests/tests/common/mod.rs` |
 | WPT runner | `wpt/runner/src/main.rs` · `wpt/runner/src/test_runners/` |
-| CI pipeline | `.github/workflows/ci.yml` · `wpt.yml` · `publish-browser.yml` (the last two upstream-only) · legs `.github/scripts/ci-leg.sh` · invariants `.github/scripts/test_ci_workflows.py` |
+| CI pipeline | `.github/workflows/ci.yml` · `wpt.yml` · `publish-browser.yml` (the last two upstream-only) · legs `.github/scripts/ci-leg.sh` · package install `.github/scripts/apt-install.sh` · invariants `.github/scripts/test_ci_workflows.py` |
 | Drift detectors · amendment playbook | `.andromeda/drift-base.md` · `.andromeda/playbook.md` |
 <!-- GENERATED:setup:pointer-table end -->
 

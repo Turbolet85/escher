@@ -45,6 +45,10 @@ becomes a new rule here. Format owned by /andromeda-wrap-session (`references/am
   verdict: routine
   note: the grade is the detector's severity for a VIOLATION of its invariant; a return that reports the invariant holding and proposes only the doc's stale wording has found none, and the change was already in front of the operator in the plan's reviewed `Expected amendments (wrap)` list. A `dependent-of` proposal — another wording of the claim the named change retires — is validated with its primary. It never covers a boundary widening, which is judged by its subject and escalates whatever a plan or a direction says, and it never discharges a PROVISIONAL mark. The class reached four wraps, all on 2026-10-07 (the 06-51 wrap escalated it; the 08-23, 12-34 and 14-22 wraps applied it). Appended on the founder's word (2026-10-07, relayed verbatim by the overseer); the pattern is the sentence the 2026-10-07T12-34-00 wrap proposed it in.
 
+- pattern: A spec claim a chunk's measurement disproves, about code the chunk did not edit, is amended to the measured limit and its fix pinned as a CARRY; routine.
+  verdict: routine
+  note: both halves are the rule — the body states the measured limit, and the fix is owned by a `CARRY:` on a route entry. Appended on the founder's ruling (word: "Добавить" — the founder, 2026-10-09, given by question dialog in the overseer session and relayed verbatim by the overseer); the pattern is the overseer's rendering of the option he chose, in the directive for the 2026-10-09T19-17-00 0-pending wrap (`relay-1.md` in that run dir, item 3). That wrap could not write it — the 0-pending path's one playbook door is the seed-rule supersession — and carried it in the handoff to the 2026-10-09-audit-corrections-agent-surfaces wrap, which appended it on the operator's resume line.
+
 _(more grow from escalations + resolved cases — the first five above were harvested from live projects that
 derived them separately, the sixth is the never-routine class; anything genuinely project-specific still starts
 here empty.)_

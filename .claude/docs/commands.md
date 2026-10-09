@@ -3,7 +3,7 @@
 _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml`. The 5 most common commands live in CLAUDE.md's Workflow section._
 
 ## Installation
-- Linux system deps (as CI): `sudo apt-get install -y libfontconfig1-dev`
+- Linux system deps (the package CI installs, there through `.github/scripts/apt-install.sh`): `sudo apt-get install -y libfontconfig1-dev`
 - Arch dev host: `fontconfig`, `pkgconf`, `openssl`, `python` (the measured stand-ins)
 - Nix: `nix develop` — the `blitz-dev` dev shell (toolchain, fontconfig, openssl, python3)
 - `pip install -r scripts/requirements.txt` — code-graph Python deps (duckdb + protobuf)
@@ -12,6 +12,7 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 ## CI legs (one script for CI and the host)
 - `bash .github/scripts/ci-leg.sh fast` — the local pre-push gate: fmt → clippy → test → ci-scripts, stops at the first red
 - `bash .github/scripts/ci-leg.sh {leg}` — one CI leg exactly as CI runs it: `fmt` · `clippy` · `test` · `ci-scripts` · `build` · `msrv` (needs toolchain 1.91) · `counter` · `wasm` · `doc`; its merged output lands in `target/ci-logs/{leg}.log`; unknown leg → exit 2
+- `bash .github/scripts/apt-install.sh <package>...` — fork CI's package install, called by ci.yml's install steps only (no leg calls it; never run on the dev host): up to 3 attempts, `apt-get update` then `install`, each call under a 120 s bound; exit 0 installed · 1 every attempt failed · 2 usage
 
 ## Build
 - `cargo build --workspace --locked` — every crate (dev profile, `debug = "line-tables-only"`); the `build` leg
