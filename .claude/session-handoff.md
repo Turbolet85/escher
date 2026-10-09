@@ -34,3 +34,6 @@
 - None raised at this wrap (curation not run: the conversation carried no correction of project knowledge).
 - Curation conflict, for the operator, unchanged: `.claude/rules/host-linux.md` says "The transport collapses a BACKSLASH PAIR `\\` to `\` before bash sees it, inside a quoted heredoc too"; the 2026-10-07-driver-command-spans report records two payloads holding backslash pairs, sent in quoted python heredocs, that "landed as written". One counter-reading; the rule stands unedited.
 - Carried, for the founder's review (set by him, 2026-10-07; not held at this wrap): "The project's Bash guards refuse a heredoc written to a file and a leading cd" (Tier 3, 2026-10-06) · "A chunk that moves cited source lines stales the masters' file:line citations" (Tier 3, 2026-10-05) · "A grep hit seen through a clipped view is not read" (Tier 3, 2026-10-06) · "Count from the listing you just read, never from the plan's forecast" (Tier 3, 2026-10-05) · recurrence-despite-learning: "A per-crate `cargo clippy` is not the CI lint leg" (Tier 3, 2026-10-07) — its fourth recurrence was at the 2026-10-07-driver-command-spans implement.
+
+## Session End Status
+Completed normally at 2026-10-09 22:01:51

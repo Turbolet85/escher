@@ -1,0 +1,544 @@
+[
+{
+"tool": "gate",
+"v": "1.13",
+"sha8": "3718c868",
+"ts": "2026-10-09T20:11:01Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-09-audit-corrections-agent-surfaces/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-09T20-01-58-implement",
+"--marker",
+"2026-10-09-audit-corrections-agent-surfaces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-09-audit-corrections-agent-surfaces · entries 19",
+"logs $TMPDIR/andromeda-gate/2026-10-09-audit-corrections-agent-surfaces/implement-2026-10-09T20-01-58 · bound: GNU timeout",
+"delta docs 40 · python 1 · rust 1 · unmapped 6",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L178-184: No entry is a live leg: nothing here drives a process the launch environment names, so the… (719 chars)",
+"prose L186-191: `evidence/controls.md` has no listed producer, by construction: it is implement's hand rec… (679 chars)",
+"  1 integration green · exit 0 · 2.97s · 1327 B → 1.log · cargo test -p blitz-tests --locked --test stand_snapshot_s… (62 chars)",
+"  2 integration green · exit 0 · 7.43s · 8175 B → 2.log · cargo test --locked -p dioxus-native-dom -p blitz-tests --… (207 chars)",
+"  3 probe       green · exit 1 · 0.0s · 2 B → 3.log · grep -cE 'env::var|println!|eprintln!|print!|dbg!|escher_t… (144 chars)",
+"  4 probe       green · exit 0 · 0.01s · 0 B → 4.log · git diff --quiet 6d62677517b172e01764ab92b826d03ff75a7a11 … (402 chars)",
+"  5 lint        green · exit 0 · 0.0s · 0 B → 5.log · test -x .github/scripts/apt-install.sh && bash -n .github/… (80 chars)",
+"  6 probe       green · exit 1 · 0.0s · 2 B → 6.log · test -f .github/scripts/apt-install.sh && grep -cE 'secret… (107 chars)",
+"  7 unit        green · exit 0 · 2.17s · 961 B → 7.log · python3 -m unittest discover -s .github/scripts -v -k Inst… (110 chars)",
+"  8 probe       green · exit 1 · 0.0s · 2 B → 8.log · grep -c 'apt-get' .github/workflows/ci.yml",
+"  9 probe       green · exit 0 · 0.0s · 2 B → 9.log · grep -c 'bash .github/scripts/apt-install.sh' .github/work… (70 chars)",
+" 10 probe       green · exit 0 · 0.0s · 2 B → 10.log · grep -c 'timeout-minutes' .github/workflows/ci.yml",
+" 11 build       green · exit 0 · 35.96s · 137 B → 11.log · bash scripts/agent-run.sh boot",
+" 12 integration green · exit 0 · 27.05s · 14683 B → 12.log · bash scripts/agent-run.sh run stand",
+" 13 lint        green · exit 0 · 103.33s · 73640 B → 13.log · bash .github/scripts/ci-leg.sh fast",
+" 14 lint        green · exit 0 · 15.61s · 1296 B → 14.log · bash .github/scripts/ci-leg.sh doc",
+" 15 integration green · exit 0 · 2.9s · 1597 B → 15.log · bash .github/scripts/ci-leg.sh a11y",
+" 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 17 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 18 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+" 19 probe       not run — leg operator (the letter drives it) · gh api \"repos/Turbolet85/escher/actions/runs/<id>/jobs?per… (213 chars)",
+"entries 19 · green 15 · red 0 · recorded 0 · timeout 0 · not-run 4"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-09-audit-corrections-agent-surfaces",
+"plan": "./escher-0.1.0/chunks/2026-10-09-audit-corrections-agent-surfaces/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-09-audit-corrections-agent-surfaces/implement-2026-10-09T20-01-58",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/a11y-history.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/a11y.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/arch-history.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/arch.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/ci-37673662374-install-hang.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-09T19-31-04-phase/design.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/evolve-2026-10-09-audit-corrections-agent-surfaces.json",
+".andromeda/runs/2026-10-09T19-31-04-phase/gate-2026-10-09-audit-corrections-agent-surfaces.json",
+".andromeda/runs/2026-10-09T19-31-04-phase/inputs-2026-10-09-audit-corrections-agent-surfaces.json",
+".andromeda/runs/2026-10-09T19-31-04-phase/layouts-history.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/layouts.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/master-record.txt",
+".andromeda/runs/2026-10-09T19-31-04-phase/matrix-2026-10-09-audit-corrections-agent-surfaces.json",
+".andromeda/runs/2026-10-09T19-31-04-phase/obs-contracts.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/obs-history.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/obs.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/planlint-2026-10-09-audit-corrections-agent-surfaces.json",
+".andromeda/runs/2026-10-09T19-31-04-phase/registry-2026-10-09-audit-corrections-agent-surfaces.json",
+".andromeda/runs/2026-10-09T19-31-04-phase/relay-1.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/relay-2.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/route-2026-10-09-audit-corrections-agent-surfaces.json",
+".andromeda/runs/2026-10-09T19-31-04-phase/route-no-marker.json",
+".andromeda/runs/2026-10-09T19-31-04-phase/security-history.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/security.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/sidecar-2026-10-09-audit-corrections-agent-surfaces.json",
+".andromeda/runs/2026-10-09T19-31-04-phase/tests-contracts.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/tests-history.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/tests.md",
+".andromeda/runs/2026-10-09T19-31-04-phase/tree-query-2026-10-09-audit-corrections-agent-surfaces.json",
+".andromeda/runs/2026-10-09T20-01-58-implement/evolve-2026-10-09-audit-corrections-agent-surfaces.json",
+"escher-0.1.0/chunks/2026-10-09-audit-corrections-agent-surfaces/evidence/controls.md",
+"escher-0.1.0/chunks/2026-10-09-audit-corrections-agent-surfaces/plan.md",
+"escher-0.1.0/chunks/2026-10-09-audit-corrections-agent-surfaces/research.md",
+"escher-0.1.0/chunks/2026-10-09-audit-corrections-agent-surfaces/scope.md"
+],
+"python": [
+".github/scripts/test_ci_workflows.py"
+],
+"rust": [
+"tests/blitz-tests/tests/stand_snapshot_state.rs"
+]
+},
+"unmapped": [
+".github/workflows/ci.yml",
+".github/scripts/apt-install.sh",
+"escher-0.1.0/chunks/2026-10-09-audit-corrections-agent-surfaces/inputs/.gitattributes",
+"escher-0.1.0/chunks/2026-10-09-audit-corrections-agent-surfaces/inputs/I1-relay-1.md.txt",
+"escher-0.1.0/chunks/2026-10-09-audit-corrections-agent-surfaces/inputs/I2-relay-2.md.txt",
+"escher-0.1.0/chunks/2026-10-09-audit-corrections-agent-surfaces/inputs/andromeda-inputs.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 48,
+"problem": null
+},
+"prose": [
+{
+"from": 178,
+"to": 184,
+"text": "No entry is a live leg: nothing here drives a process the launch environment names, so there is no liveness probe and no `stop` key. No touchpoint is a boot path — a test file, a workflow, a Python test file and a CI script — so there is no smoke entry, and the project has no headful self-verify harness. `bash .github/scripts/ci-leg.sh audit` is not listed: no manifest or lockfile changes, which the preservation entry holds. **Not run locally:** the script against a real package manager (the dev host has none), the matrix job's android step, the MSRV build and the windows, macos and ios legs — the fork's CI run on the pushed sha is their one witness, read after the operator pass (pre-CI commit, push, CI read)."
+},
+{
+"from": 186,
+"to": 191,
+"text": "`evidence/controls.md` has no listed producer, by construction: it is implement's hand record of the mutations of steps 2, 4 and 6, which mutate source and revert and so are one-shot runs no entry could re-produce at the wrap's light gate. What those controls establish is guarded on re-run by listed, non-mutating entries: the check-file entry and the audit-unit entry (the new test passes on the restored tree), the preservation entry (the arm is back), the focused CI-script entry and the three counts over `ci.yml`. No gate entry returns or asserts a `timeout` exit: the gate tool reads 124 and 137 as its own bound, so the script's bound is asserted inside the Python tests."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_snapshot_state",
+"run_sha8": "b8426126",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test a_textarea_reads_back_typed_text ... ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-09-audit-corrections-agent-surfaces/implement-2026-10-09T20-01-58/1.log",
+"bytes": 1327,
+"log_sha8": "1ab020e6",
+"exit": 0,
+"seconds": 2.97,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"contains 'test a_textarea_reads_back_typed_text ... ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test --locked -p dioxus-native-dom -p blitz-tests --lib --test=stand_snapshot --test=stand_snapshot_state --test=stand_snapshot_text --test=stand_diff --test=stand_actionable_keys --test=stand_act_diff",
+"run_sha8": "05735c5b",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-09-audit-corrections-agent-surfaces/implement-2026-10-09T20-01-58/2.log",
+"bytes": 8175,
+"log_sha8": "074ff04a",
+"exit": 0,
+"seconds": 7.43,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "probe",
+"run": "grep -cE 'env::var|println!|eprintln!|print!|dbg!|escher_telemetry|tracing::|set_global_default' tests/blitz-tests/tests/stand_snapshot_state.rs",
+"run_sha8": "59da485a",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-09-audit-corrections-agent-surfaces/implement-2026-10-09T20-01-58/3.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "git diff --quiet 6d62677517b172e01764ab92b826d03ff75a7a11 -- packages examples apps wpt scripts Cargo.toml Cargo.lock deny.toml tests/blitz-tests/Cargo.toml tests/blitz-tests/tests/common tests/blitz-tests/tests/session_common tests/blitz-tests/tests/accessibility_roles.rs .github/scripts/ci-leg.sh .github/workflows/wpt.yml .github/workflows/wpt-post-results.yml .github/workflows/publish-browser.yml",
+"run_sha8": "b49ba8dd",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-09-audit-corrections-agent-surfaces/implement-2026-10-09T20-01-58/4.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "lint",
+"run": "test -x .github/scripts/apt-install.sh && bash -n .github/scripts/apt-install.sh",
+"run_sha8": "448ce7c2",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-09-audit-corrections-agent-surfaces/implement-2026-10-09T20-01-58/5.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "test -f .github/scripts/apt-install.sh && grep -cE 'secrets\\.|GITHUB_|TOKEN' .github/scripts/apt-install.sh",
+"run_sha8": "de851be2",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-09-audit-corrections-agent-surfaces/implement-2026-10-09T20-01-58/6.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "unit",
+"run": "python3 -m unittest discover -s .github/scripts -v -k InstallScriptTest -k test_o_package_installs_are_bounded",
+"run_sha8": "deffec38",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains InstallScriptTest",
+"contains test_o_package_installs_are_bounded"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-09-audit-corrections-agent-surfaces/implement-2026-10-09T20-01-58/7.log",
+"bytes": 961,
+"log_sha8": "5e3bd351",
+"exit": 0,
+"seconds": 2.17,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"contains 'InstallScriptTest' ✓",
+"contains 'test_o_package_installs_are_bounded' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "grep -c 'apt-get' .github/workflows/ci.yml",
+"run_sha8": "5a05ce8e",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-09-audit-corrections-agent-surfaces/implement-2026-10-09T20-01-58/8.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "grep -c 'bash .github/scripts/apt-install.sh' .github/workflows/ci.yml",
+"run_sha8": "e03d8ee4",
+"expect": [
+"exit 0",
+"last line 9"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-09-audit-corrections-agent-surfaces/implement-2026-10-09T20-01-58/9.log",
+"bytes": 2,
+"log_sha8": "2e6d31a5",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '9' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "grep -c 'timeout-minutes' .github/workflows/ci.yml",
+"run_sha8": "dc63159f",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-09-audit-corrections-agent-surfaces/implement-2026-10-09T20-01-58/10.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-09-audit-corrections-agent-surfaces/implement-2026-10-09T20-01-58/11.log",
+"bytes": 137,
+"log_sha8": "e1f64623",
+"exit": 0,
+"seconds": 35.96,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-09-audit-corrections-agent-surfaces/implement-2026-10-09T20-01-58/12.log",
+"bytes": 14683,
+"log_sha8": "5c71a87b",
+"exit": 0,
+"seconds": 27.05,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-09-audit-corrections-agent-surfaces/implement-2026-10-09T20-01-58/13.log",
+"bytes": 73640,
+"log_sha8": "a4b1273e",
+"exit": 0,
+"seconds": 103.33,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-09-audit-corrections-agent-surfaces/implement-2026-10-09T20-01-58/14.log",
+"bytes": 1296,
+"log_sha8": "58fd3f1a",
+"exit": 0,
+"seconds": 15.61,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-09-audit-corrections-agent-surfaces/implement-2026-10-09T20-01-58/15.log",
+"bytes": 1597,
+"log_sha8": "d6759247",
+"exit": 0,
+"seconds": 2.9,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "gh api \"repos/Turbolet85/escher/actions/runs/<id>/jobs?per_page=100\" --jq '.jobs[] | .name as $j | .steps[] | select(.name | test(\"apt-install|Install apt deps\")) | [$j, .name, .started_at, .completed_at] | @tsv' ",
+"run_sha8": "4285ea58",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.13",
+"sha8": "3718c868",
+"ts": "2026-10-09T20:11:37Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-09-audit-corrections-agent-surfaces",
+"--run-dir",
+".andromeda/runs/2026-10-09T20-01-58-implement",
+"--marker",
+"2026-10-09-audit-corrections-agent-surfaces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 1 · modify 3 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 4 · listed 4 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 46"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 4,
+"listed": 4,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 46,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

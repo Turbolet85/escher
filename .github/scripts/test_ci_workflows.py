@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""Invariants of the fork's workflows and of ci-leg.sh. Run with `python3 -m unittest discover -s .github/scripts`."""
+"""Invariants of the fork's workflows, of ci-leg.sh and of apt-install.sh. Run with `python3 -m unittest discover -s .github/scripts`."""
 
 import os
 import re
+import shlex
+import signal
 import stat
 import subprocess
 import tempfile
+import time
 import unittest
 from pathlib import Path
 
@@ -14,6 +17,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 WORKFLOWS = ROOT / ".github" / "workflows"
 LEG_SCRIPT = ROOT / ".github" / "scripts" / "ci-leg.sh"
+INSTALL_SCRIPT = ROOT / ".github" / "scripts" / "apt-install.sh"
 
 UPSTREAM_GUARD = "github.repository == 'DioxusLabs/blitz'"
 FAST_JOBS = {"fmt", "clippy", "test-features-default", "ci-scripts"}
@@ -41,6 +45,23 @@ RESTORE_ONLY_JOBS = {"a11y"}
 CACHE_ACTION = "Swatinem/rust-cache@"
 PINNED_USES = re.compile(r"^[^/@\s]+/[^@\s]+@[0-9a-f]{40}$")
 LEG_STEP = re.compile(r"^bash \.github/scripts/ci-leg\.sh (\S+)$")
+# A package install: the script and package names, no option, optionally behind the PyYAML guard.
+INSTALL_STEP = re.compile(
+    r"^(?:python3 -c 'import yaml' \|\| )?bash \.github/scripts/apt-install\.sh( [a-z0-9][a-z0-9+.-]+)+$"
+)
+INSTALL_JOBS = {
+    "build-msrv",
+    "build-features-default",
+    "test-features-default",
+    "build-counter",
+    "clippy",
+    "ci-scripts",
+    "doc",
+    "a11y",
+    "coverage",
+}
+# An action step cannot be looped: its install is bounded by a step timeout alone.
+APT_ACTION_JOBS = ["matrix_test"]
 
 
 def load(name):
@@ -192,6 +213,25 @@ class CiWorkflowTest(unittest.TestCase):
         self.assertEqual(inputs["path"], "target/coverage/")
         self.assertEqual(inputs["retention-days"], 7)
 
+    def test_o_package_installs_are_bounded(self):
+        script_jobs = set()
+        action_jobs = []
+        for job_id, job in self.jobs.items():
+            for step in job.get("steps", []):
+                run = str(step.get("run", "")).strip()
+                with self.subTest(job=job_id, step=step.get("name") or step.get("run") or step.get("uses")):
+                    self.assertNotIn("apt-get", run)
+                    if "apt-install.sh" in run:
+                        script_jobs.add(job_id)
+                        self.assertRegex(run, INSTALL_STEP)
+                    if "apt" in str(step.get("uses", "")):
+                        action_jobs.append(job_id)
+                        timeout = step.get("timeout-minutes")
+                        self.assertIs(type(timeout), int)
+                        self.assertGreater(timeout, 0)
+        self.assertEqual(script_jobs, INSTALL_JOBS)
+        self.assertEqual(action_jobs, APT_ACTION_JOBS)
+
 
 class UpstreamGuardTest(unittest.TestCase):
     def test_f_every_upstream_job_is_repository_guarded(self):
@@ -258,6 +298,94 @@ class LegScriptTest(unittest.TestCase):
     def test_unknown_leg_exits_2(self):
         with tempfile.TemporaryDirectory() as tmp:
             self.assertEqual(self.run_leg(tmp, "no-such-leg", 0).returncode, 2)
+
+
+class InstallScriptTest(unittest.TestCase):
+    STALL_SECONDS = 300
+    WAIT_SECONDS = 30
+
+    def run_install(self, cwd, behaviour, *args):
+        """Runs the script against a stand-in `sudo` and `apt-get`; returns its exit, stderr and the apt-get calls."""
+        bin_dir = Path(cwd) / "bin"
+        bin_dir.mkdir()
+        calls = Path(cwd) / "calls"
+        shims = {
+            "sudo": 'exec "$@"',
+            "apt-get": f'echo "$*" >> {shlex.quote(str(calls))}\n{behaviour}',
+        }
+        for name, body in shims.items():
+            shim = bin_dir / name
+            shim.write_text(f"#!/bin/sh\n{body}\n", encoding="utf-8")
+            shim.chmod(shim.stat().st_mode | stat.S_IXUSR)
+        env = dict(os.environ, PATH=f"{bin_dir}{os.pathsep}{os.environ['PATH']}")
+        proc = subprocess.Popen(
+            ["bash", str(INSTALL_SCRIPT), "--pause", "0", *args],
+            cwd=cwd,
+            env=env,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            start_new_session=True,
+        )
+        try:
+            _, stderr = proc.communicate(timeout=self.WAIT_SECONDS)
+        except subprocess.TimeoutExpired:
+            os.killpg(proc.pid, signal.SIGKILL)
+            proc.communicate()
+            self.fail(f"the script was still running after {self.WAIT_SECONDS} s")
+        recorded = calls.read_text(encoding="utf-8").splitlines() if calls.exists() else []
+        return proc.returncode, stderr, recorded
+
+    def test_a_healthy_install_runs_one_update_and_one_install(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            code, _, calls = self.run_install(tmp, "exit 0", "libfontconfig1-dev", "python3-yaml")
+            self.assertEqual(code, 0)
+            self.assertEqual(calls, ["update", "install -y libfontconfig1-dev python3-yaml"])
+
+    def test_a_failed_attempt_is_tried_again_from_update(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            calls_file = shlex.quote(str(Path(tmp) / "calls"))
+            fail_first = f'[ "$(wc -l < {calls_file})" -gt 1 ] || exit 100\nexit 0'
+            code, stderr, calls = self.run_install(tmp, fail_first, "libfontconfig1-dev")
+            self.assertEqual(code, 0)
+            self.assertEqual(calls, ["update", "update", "install -y libfontconfig1-dev"])
+            self.assertIn("attempt 1 of 3 failed in update (exit 100)", stderr)
+
+    def test_every_attempt_failing_exits_1_after_three_attempts(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            code, stderr, calls = self.run_install(tmp, "exit 100", "libfontconfig1-dev")
+            self.assertEqual(code, 1)
+            self.assertEqual(calls, ["update"] * 3)
+            self.assertIn("attempt 3 of 3 failed in update (exit 100)", stderr)
+
+    def test_a_stalled_call_ends_at_its_bound_and_is_tried_again(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            started = time.monotonic()
+            code, stderr, calls = self.run_install(
+                tmp, f"exec sleep {self.STALL_SECONDS}", "--bound", "1", "--attempts", "2", "libfontconfig1-dev"
+            )
+            self.assertEqual(code, 1)
+            self.assertEqual(calls, ["update", "update"])
+            self.assertIn("attempt 2 of 2 failed in update (exit 124)", stderr)
+            self.assertLess(time.monotonic() - started, self.WAIT_SECONDS)
+
+    def test_a_bad_call_exits_2_before_anything_runs(self):
+        for name, args in (
+            ("no package", ()),
+            ("options alone", ("--attempts", "2")),
+            ("a name outside the form", ("libfontconfig1-dev", "Not_A_Package")),
+            ("a shell word as a name", ("libfontconfig1-dev;id",)),
+            ("an unknown option", ("--retries", "2", "libfontconfig1-dev")),
+            ("a malformed option value", ("--bound", "soon", "libfontconfig1-dev")),
+            ("an option with no value", ("libfontconfig1-dev", "--bound")),
+            ("no attempt", ("--attempts", "0", "libfontconfig1-dev")),
+            ("no bound", ("--bound", "0", "libfontconfig1-dev")),
+        ):
+            with self.subTest(call=name), tempfile.TemporaryDirectory() as tmp:
+                code, stderr, calls = self.run_install(tmp, "exit 0", *args)
+                self.assertEqual(code, 2)
+                self.assertIn("usage:", stderr)
+                self.assertEqual(calls, [])
 
 
 if __name__ == "__main__":

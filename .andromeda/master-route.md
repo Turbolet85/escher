@@ -35,3 +35,4 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 2026-10-07-act-by-id · complete · Act by id — driver actions addressed by stable id, returning after settle with the diff · → escher-0.1.0/chunks/2026-10-07-act-by-id/
 2026-10-07-refusal-detection · complete · Refusal detection — not found, stale, disabled, covered by another element, off-screen named per action · → escher-0.1.0/chunks/2026-10-07-refusal-detection/
 2026-10-07-driver-command-spans · complete · Driver command spans — one span per driver command covering settle wait, diff size and refusal cause, through the scrub layer · → escher-0.1.0/chunks/2026-10-07-driver-command-spans/
+2026-10-09-audit-corrections-agent-surfaces · pending · audit corrections ahead of agent surfaces — the surviving snapshot mutant killed on a textarea fixture, fork CI's package install bounded and retried · → escher-0.1.0/chunks/2026-10-09-audit-corrections-agent-surfaces/

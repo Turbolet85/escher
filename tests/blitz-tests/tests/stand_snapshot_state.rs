@@ -3,7 +3,8 @@
 //! until the app enables it, typed text reads back as the value, and exactly the focused
 //! control reads focused after a click, a Tab press and Shift+Tab. The cases the lean tasks
 //! lack are proven on a minimal fixture booted with the stand's options: a checkbox and a
-//! radio read checked after a click, and a password input reads a fixed mask, never its text.
+//! radio read checked after a click, a password input reads a fixed mask, never its text, and
+//! a textarea reads back the text typed into it.
 
 use accesskit::{Node, Role};
 use blitz_dom::Document;
@@ -21,6 +22,9 @@ const NOTHING: [&str; 0] = [];
 
 /// The text typed into the fixture's password input: synthetic, and no part of any name.
 const SECRET: &str = "synthetic-pw-7Qz";
+
+/// The text typed into the fixture's textarea: synthetic, one line, and no part of [`SECRET`].
+const NOTES: &str = "plain notes 42";
 
 /// What `id` reads as enabled, asserted to agree with the presence of its `disabled`
 /// attribute.
@@ -298,8 +302,8 @@ fn focus_reads_on_exactly_the_focused_control() {
     }
 }
 
-/// The controls the lean tasks lack: a checkbox, two radios sharing a name and a password
-/// input, each with an author id and an accessible name.
+/// The controls the lean tasks lack: a checkbox, two radios sharing a name, a password input
+/// and a textarea, each with an author id and an accessible name.
 fn fixture() -> Element {
     rsx! {
         div {
@@ -324,14 +328,23 @@ fn fixture() -> Element {
             label { r#for: "fx-secret", "Passphrase" }
             input { id: "fx-secret", r#type: "password" }
         }
+        div {
+            textarea {
+                id: "fx-notes",
+                "aria-label": "Notes",
+                rows: "2",
+                cols: "20",
+            }
+        }
     }
 }
 
-const FIXTURE_CONTROLS: [(&str, Role); 4] = [
+const FIXTURE_CONTROLS: [(&str, Role); 5] = [
     ("fx-agree", Role::CheckBox),
     ("fx-plan-a", Role::RadioButton),
     ("fx-plan-b", Role::RadioButton),
     ("fx-secret", Role::PasswordInput),
+    ("fx-notes", Role::MultilineTextInput),
 ];
 
 fn boot_fixture(incremental: bool) -> Harness<DioxusDocument> {
@@ -490,5 +503,34 @@ fn a_typed_password_never_appears_in_the_snapshot() {
                 "{mode}: a label or value of an accessibility node holds the typed text"
             );
         }
+    }
+}
+
+#[test]
+fn a_textarea_reads_back_typed_text() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut harness = boot_fixture(incremental);
+        assert!(
+            reads_value(&harness, "fx-notes", Some("")),
+            "{mode}: an empty textarea reads empty"
+        );
+        assert_eq!(focused(&harness), NOTHING, "{mode}: nothing is focused");
+
+        harness.click("#fx-notes");
+        assert_eq!(
+            focused(&harness),
+            ["fx-notes"],
+            "{mode}: a click focuses the textarea"
+        );
+        harness.type_text(NOTES);
+        assert!(
+            editor_text(&harness, "fx-notes") == NOTES,
+            "{mode}: the textarea's editor holds what was typed"
+        );
+        assert!(
+            reads_value(&harness, "fx-notes", Some(NOTES)),
+            "{mode}: the textarea reads back what was typed"
+        );
     }
 }

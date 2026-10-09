@@ -43,7 +43,7 @@ jobs:
       - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2
         with:
           save-if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/build/') }}
-      - run: sudo apt-get update && sudo apt-get install -y libfontconfig1-dev
+      - run: bash .github/scripts/apt-install.sh libfontconfig1-dev
       - run: bash .github/scripts/ci-leg.sh msrv
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: failure()
@@ -65,7 +65,7 @@ jobs:
       - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2
         with:
           save-if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/build/') }}
-      - run: sudo apt-get update && sudo apt-get install -y libfontconfig1-dev
+      - run: bash .github/scripts/apt-install.sh libfontconfig1-dev
       - run: bash .github/scripts/ci-leg.sh build
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: failure()
@@ -87,7 +87,7 @@ jobs:
         with:
           shared-key: workspace-test
           save-if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/build/') }}
-      - run: sudo apt-get update && sudo apt-get install -y libfontconfig1-dev
+      - run: bash .github/scripts/apt-install.sh libfontconfig1-dev
       - run: bash .github/scripts/ci-leg.sh test
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: failure()
@@ -109,7 +109,7 @@ jobs:
       - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2
         with:
           save-if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/build/') }}
-      - run: sudo apt-get update && sudo apt-get install -y libfontconfig1-dev
+      - run: bash .github/scripts/apt-install.sh libfontconfig1-dev
       - run: bash .github/scripts/ci-leg.sh counter
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: failure()
@@ -173,7 +173,7 @@ jobs:
       - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2
         with:
           save-if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/build/') }}
-      - run: sudo apt-get update && sudo apt-get install -y libfontconfig1-dev
+      - run: bash .github/scripts/apt-install.sh libfontconfig1-dev
       - run: bash .github/scripts/ci-leg.sh clippy
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: failure()
@@ -188,7 +188,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-      - run: python3 -c 'import yaml' || (sudo apt-get update && sudo apt-get install -y python3-yaml)
+      - run: python3 -c 'import yaml' || bash .github/scripts/apt-install.sh python3-yaml
       - run: bash .github/scripts/ci-leg.sh ci-scripts
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: failure()
@@ -210,7 +210,7 @@ jobs:
       - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2
         with:
           save-if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/build/') }}
-      - run: sudo apt-get update && sudo apt-get install -y libfontconfig1-dev
+      - run: bash .github/scripts/apt-install.sh libfontconfig1-dev
       - run: bash .github/scripts/ci-leg.sh doc
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: failure()
@@ -257,7 +257,7 @@ jobs:
         with:
           shared-key: workspace-test
           save-if: false
-      - run: sudo apt-get update && sudo apt-get install -y libfontconfig1-dev
+      - run: bash .github/scripts/apt-install.sh libfontconfig1-dev
       - run: bash .github/scripts/ci-leg.sh a11y
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: failure()
@@ -281,7 +281,7 @@ jobs:
       - uses: taiki-e/install-action@183e4297cca2404691e9380e1307288dced5c82a # v2
         with:
           tool: cargo-llvm-cov@0.9.1
-      - run: sudo apt-get update && sudo apt-get install -y libfontconfig1-dev
+      - run: bash .github/scripts/apt-install.sh libfontconfig1-dev
       - run: bash .github/scripts/ci-leg.sh coverage
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: success()
@@ -376,6 +376,7 @@ jobs:
 
       - name: Install apt deps
         if: ${{ matrix.platform.os == 'ubuntu-latest' }}
+        timeout-minutes: 10
         uses: awalsh128/cache-apt-pkgs-action@553a35bb8ebd9fcabcb1c9451aa4c98e1b4ca8a9 # latest
         with:
           packages: libfontconfig1-dev
