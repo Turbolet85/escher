@@ -1,0 +1,83 @@
+{
+ "source": "the Epoch 2 record mutation.survivors (ledger), matched on (file, mutation text) against this run outcomes; a site line may have moved",
+ "rows": [
+  {
+   "epoch2_site": "packages/dioxus-native-dom/src/dioxus_document.rs:166:9",
+   "mutation": "replace DioxusDocument::create_head_element with ()",
+   "now": [
+    [
+     "packages/dioxus-native-dom/src/dioxus_document.rs:166:9",
+     "CaughtMutant"
+    ]
+   ]
+  },
+  {
+   "epoch2_site": "packages/dioxus-native-dom/src/dioxus_document.rs:211:9",
+   "mutation": "replace DioxusDocument::flush_queued_mounted_events with ()",
+   "now": [
+    [
+     "packages/dioxus-native-dom/src/dioxus_document.rs:220:9",
+     "CaughtMutant"
+    ]
+   ]
+  },
+  {
+   "epoch2_site": "packages/dioxus-native-dom/src/dioxus_document.rs:236:9",
+   "mutation": "replace <impl Document for DioxusDocument>::id -> usize with 0",
+   "now": [
+    [
+     "packages/dioxus-native-dom/src/dioxus_document.rs:245:9",
+     "CaughtMutant"
+    ]
+   ]
+  },
+  {
+   "epoch2_site": "packages/dioxus-native-dom/src/dioxus_document.rs:236:9",
+   "mutation": "replace <impl Document for DioxusDocument>::id -> usize with 1",
+   "now": [
+    [
+     "packages/dioxus-native-dom/src/dioxus_document.rs:245:9",
+     "CaughtMutant"
+    ]
+   ]
+  },
+  {
+   "epoch2_site": "packages/dioxus-native-dom/src/dioxus_document.rs:402:12",
+   "mutation": "delete ! in <impl EventHandler for DioxusEventHandler<'_>>::handle_event",
+   "now": [
+    [
+     "packages/dioxus-native-dom/src/dioxus_document.rs:411:12",
+     "CaughtMutant"
+    ],
+    [
+     "packages/dioxus-native-dom/src/dioxus_document.rs:414:12",
+     "CaughtMutant"
+    ]
+   ]
+  },
+  {
+   "epoch2_site": "packages/dioxus-native-dom/src/dioxus_document.rs:405:12",
+   "mutation": "delete ! in <impl EventHandler for DioxusEventHandler<'_>>::handle_event",
+   "now": [
+    [
+     "packages/dioxus-native-dom/src/dioxus_document.rs:411:12",
+     "CaughtMutant"
+    ],
+    [
+     "packages/dioxus-native-dom/src/dioxus_document.rs:414:12",
+     "CaughtMutant"
+    ]
+   ]
+  },
+  {
+   "epoch2_site": "packages/dioxus-native-dom/src/element_id.rs:212:43",
+   "mutation": "replace && with || in place_children",
+   "now": [
+    [
+     "packages/dioxus-native-dom/src/element_id.rs:253:43",
+     "CaughtMutant"
+    ]
+   ]
+  }
+ ]
+}

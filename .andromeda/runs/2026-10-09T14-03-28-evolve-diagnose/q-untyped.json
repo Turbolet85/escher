@@ -1,0 +1,344 @@
+{
+ "epoch": "Epoch 4 — Driver core",
+ "threshold": "n >= 3 in-epoch, or n >= 2 recurring from the previous epoch",
+ "clusters": [
+  {
+   "id": "U1",
+   "name": "line-oriented reads over the masters' multi-KB single-line bullets",
+   "lines": [
+    554,
+    583
+   ],
+   "prior": [
+    376
+   ],
+   "threshold": "n = 2 in-epoch, recurring from the previous epoch (L376)",
+   "candidate": true,
+   "records": [
+    {
+     "line": 554,
+     "id": "2026-10-07T08:27:21Z-b",
+     "chunk": "2026-10-07-sink-target-allowlist",
+     "step": "wrap-session/report",
+     "what": "the first site sweep for the expected amendments used grep -c per master: it counts lines, the masters hold multi-KB single-line bullets, so it read 2 where there were 3 citations and 6 where there were 8; the call also exited 1 on a filter with no match; the sweep was re-run occurrence-level before any count was written",
+     "impact": {
+      "retries": 1
+     }
+    },
+    {
+     "line": 583,
+     "id": "2026-10-07T11:08:36Z-b",
+     "chunk": "2026-10-07-settle-detection",
+     "step": "wrap-session/report",
+     "what": "report-template asks for occurrence-level site counts with a disposition per hit and an old-to-new coordinate map for every moved citation; no shipped tool serves either at P1 (cascade.py sweep runs after the apply, from a patterns file), so two scratch scripts were written - a site counter and a line mapper - as the previous wrap's report also cites a hand-made sites.py",
+     "impact": {
+      "extra_reads": 0
+     }
+    }
+   ],
+   "prior_records": [
+    {
+     "line": 376,
+     "id": "2026-10-06T21:34:26Z-b",
+     "epoch": "Epoch 3 — Observation model",
+     "what": "Re-verifying the CARRY's two architecture coordinates with a line-matching search printed two whole single-line entries of architecture.md (lines 91 and 134, the second several KB) into the window; the coordinates were confirmed from that one read, no redo"
+    }
+   ]
+  },
+  {
+   "id": "u-a",
+   "name": "a recorded learning recurred at the acting step (per-crate clippy)",
+   "lines": [
+    603,
+    690
+   ],
+   "prior": [],
+   "threshold": "n = 2 in-epoch; no untyped member in the previous epoch (Epochs 1-2 hold four untyped recurrences of the Bash-guard learning: L156, L185, L211, L238)",
+   "candidate": false,
+   "records": [
+    {
+     "line": 603,
+     "id": "2026-10-07T12:16:04Z-c",
+     "chunk": "2026-10-07-command-and-refusal-schema",
+     "step": "implement/code",
+     "what": "a per-crate cargo clippy --all-targets -D warnings was run once more as a pre-gate check and read red on packages/blitz-dom/src/mutator.rs:1298 (needless_return) under the per-crate feature set; the handoff lists this exact trap as a Tier-3 learning recurring despite being recorded (2026-10-07), and it recurred again in the session that had just read that line",
+     "impact": {
+      "retries": 1
+     }
+    },
+    {
+     "line": 690,
+     "id": "2026-10-07T21:59:30Z-c",
+     "chunk": "2026-10-07-driver-command-spans",
+     "step": "implement/code",
+     "what": "a per-crate cargo clippy --all-targets -D warnings was run over the two edited crates as a quick check and went red on blitz-dom's needless_return, the trap the project memory and session learnings already record; the result was discarded and the lint left to ci-leg.sh",
+     "impact": {
+      "retries": 0
+     }
+    }
+   ],
+   "prior_records": []
+  },
+  {
+   "id": "u-b",
+   "name": "a time stamp estimated ahead of the clock, refused by the stamp hook",
+   "lines": [
+    651
+   ],
+   "prior": [
+    197,
+    268,
+    274,
+    296
+   ],
+   "threshold": "n = 1 in-epoch (Epoch 2 holds four); see level candidate L9",
+   "candidate": false,
+   "records": [
+    {
+     "line": 651,
+     "id": "2026-10-07T16:46:22Z-c",
+     "chunk": "2026-10-07-refusal-detection",
+     "step": "phase/plan",
+     "what": "three gate baseline strings were authored with a time estimated ahead of the clock, before the baseline commands had been run; a PostToolUse hook refused each edit, the baselines were run and the stamps rewritten from date -u",
+     "impact": {
+      "retries": 1
+     }
+    }
+   ],
+   "prior_records": [
+    {
+     "line": 197,
+     "id": "2026-10-06T08:37:04Z-f",
+     "epoch": "Epoch 2 — Element identity",
+     "what": "the report's Date field was written as an estimated time 8 min ahead of the clock; the stamp-ahead PostToolUse hook refused it and the clock was read and the field corrected"
+    },
+    {
+     "line": 268,
+     "id": "2026-10-06T11:26:17Z-c",
+     "epoch": "Epoch 2 — Element identity",
+     "what": "two time stamps were estimated instead of read from the clock (a P5 CI re-read at 11:27Z, a baseline at 11:25Z, both ahead of the 11:24Z clock); the stamp-ahead hook refused the first, the second was found and corrected from the gate trail's ts"
+    },
+    {
+     "line": 274,
+     "id": "2026-10-06T11:44:41Z-c",
+     "epoch": "Epoch 2 — Element identity",
+     "what": "report Date written as an estimated 11:50Z without reading the clock; the stamp-ahead PostToolUse hook refused it (+5 min) and it was corrected from date -u"
+    },
+    {
+     "line": 296,
+     "id": "2026-10-06T12:58:15Z-c",
+     "epoch": "Epoch 2 — Element identity",
+     "what": "the report's Date was written as an estimated 13:05Z; the stamp-ahead PostToolUse hook refused it (+7 min ahead of the clock) and it was corrected from date -u"
+    }
+   ]
+  },
+  {
+   "id": "u-c",
+   "name": "tracked evolve trail outside the session-state contract's list",
+   "lines": [
+    495
+   ],
+   "prior": [],
+   "threshold": "n = 1 untyped; the same event is typed contract.skill-reference-drift three times later in the epoch (P12)",
+   "candidate": false,
+   "records": [
+    {
+     "line": 495,
+     "id": "2026-10-07T04:22:51Z-b",
+     "chunk": null,
+     "step": "new-session/orientation",
+     "what": "handoff Status reads clean while git shows 3 tracked files modified; two are the contract's named bookkeeping (handoff second writer, friction-log), the third is the wrap run dir's tracked evolve trail (evolve-2026-10-07-audit-corrections.json, +80 lines after the wrap commit), which session-state-contract.md's expected-transient list does not name; classified as bookkeeping by reading the contract",
+     "impact": {
+      "extra_reads": 2
+     }
+    }
+   ],
+   "prior_records": []
+  },
+  {
+   "id": "u-d",
+   "name": "detectors read the tree against the prompt's ban",
+   "lines": [
+    534
+   ],
+   "prior": [],
+   "threshold": "n = 1 untyped; era — the reconcile record's rejected-for-source count deploys 2026-10-08 (see P10)",
+   "candidate": false,
+   "records": [
+    {
+     "line": 534,
+     "id": "2026-10-07T07:18:59Z-b",
+     "chunk": "2026-10-07-driver-session",
+     "step": "wrap-session/reconcile",
+     "what": "all five proposal-carrying doc-agents read the source tree and cited source or manifest lines the report does not carry (host.rs:81, session_host.rs:30, Cargo.toml:174, a mod-common reader count), against the prompt's own ban; every one of the 75 facts was in the report, so each was re-entered through the orchestrator with its coordinates re-measured",
+     "impact": {
+      "extra_reads": 6
+     }
+    }
+   ],
+   "prior_records": []
+  },
+  {
+   "id": "u-e",
+   "name": "sidecar entry cap of 3000 B against a many-edit entry",
+   "lines": [
+    587
+   ],
+   "prior": [],
+   "threshold": "n = 1 untyped; the same cap is hit twice more inside contract.in-pass-correction (P1: 637, 670)",
+   "candidate": false,
+   "records": [
+    {
+     "line": 587,
+     "id": "2026-10-07T11:28:53Z-d",
+     "chunk": "2026-10-07-settle-detection",
+     "step": "wrap-session/reconcile",
+     "what": "the sidecar entry form caps an entry at 3000 B while one entry per doc had to carry 14 architecture edits and 24 test-plan edits; both payloads read OFF-FORM twice (3082 then 3010 B; 3330 then 3059 B) and were trimmed by dropping section labels and one kept-clause before sidecar.py check read them on-form",
+     "impact": {
+      "retries": 2
+     }
+    }
+   ],
+   "prior_records": []
+  },
+  {
+   "id": "u-f",
+   "name": "a detector copies its drift-base severity onto every proposal",
+   "lines": [
+    559
+   ],
+   "prior": [],
+   "threshold": "n = 1; zero-cost record; see level candidate L11 (Epoch 1 L99 records the same detector and severity)",
+   "candidate": false,
+   "records": [
+    {
+     "line": 559,
+     "id": "2026-10-07T08:48:45Z-e",
+     "chunk": "2026-10-07-sink-target-allowlist",
+     "step": "wrap-session/reconcile",
+     "what": "six obs-plan proposals arrived at severity escalate because the detector copies its drift-base severity onto every proposal it files, while the same return states the D-obs-pii invariant holds and the chunk narrows what prints; validation applied them as routine on the playbook rule and the P5-approved expected-amendments entries, with no halt",
+     "impact": {
+      "halted": 0
+     }
+    }
+   ],
+   "prior_records": []
+  },
+  {
+   "id": "u-g",
+   "name": "route-resolve has no delegated-disposition form",
+   "lines": [
+    464
+   ],
+   "prior": [],
+   "threshold": "n = 1 untyped; see P14",
+   "candidate": false,
+   "records": [
+    {
+     "line": 464,
+     "id": "2026-10-07T02:45:21Z-b",
+     "chunk": null,
+     "step": "wrap-session/route-resolve",
+     "what": "the operator's direction named the entry and its slot and handed the four items over for the wrap's disposition; the letter's trajectory gate names a direction stating the disposition, or a HALT, and no delegated form; all four were placed in the entry as CARRY blocks with no dialogue round",
+     "impact": {
+      "dialogue_rounds": 0,
+      "extra_reads": 3
+     }
+    }
+   ],
+   "prior_records": []
+  },
+  {
+   "id": "u-h",
+   "name": "a duplication detector's result depends on its scan roots",
+   "lines": [
+    471
+   ],
+   "prior": [],
+   "threshold": "n = 1",
+   "candidate": false,
+   "records": [
+    {
+     "line": 471,
+     "id": "2026-10-07T03:10:15Z-c",
+     "chunk": "2026-10-07-audit-corrections",
+     "step": "phase/research",
+     "what": "jscpd run over tests/blitz-tests/tests alone read 12 stand pairs of 206 lines against the audit's 13 of 220; the same detector over the audit's five roots read 13 of 220, so a pair's detection depends on the scan roots and a re-derivation must use the recorded command whole",
+     "impact": {
+      "retries": 1
+     }
+    }
+   ],
+   "prior_records": []
+  },
+  {
+   "id": "u-i",
+   "name": "a Tier-1 learning's wording gives `gh api` a flag it does not take",
+   "lines": [
+    645
+   ],
+   "prior": [],
+   "threshold": "n = 1 (the learning is CLAUDE.md:136 by the record's own citation)",
+   "candidate": false,
+   "records": [
+    {
+     "line": 645,
+     "id": "2026-10-07T15:23:37Z-c",
+     "chunk": "2026-10-07-refusal-detection",
+     "step": "phase/take-up",
+     "what": "a gh api read was given -R as the project's Tier-1 learning words it for every read of the fork; gh api takes no -R (exit 1, usage printed) and names its repository in the endpoint path",
+     "impact": {
+      "retries": 1
+     }
+    }
+   ],
+   "prior_records": []
+  },
+  {
+   "id": "u-j",
+   "name": "cargo's stdout and stderr read as two streams; a nine-mutation run repeated",
+   "lines": [
+    657
+   ],
+   "prior": [],
+   "threshold": "n = 1",
+   "candidate": false,
+   "records": [
+    {
+     "line": 657,
+     "id": "2026-10-07T19:11:24Z-c",
+     "chunk": "2026-10-07-refusal-detection",
+     "step": "implement/code",
+     "what": "the mutation-control script read cargo's stdout and stderr as two streams, attributed no failure to a test target, and the whole nine-mutation run was repeated with the streams merged",
+     "impact": {
+      "retries": 1
+     }
+    }
+   ],
+   "prior_records": []
+  },
+  {
+   "id": "u-k",
+   "name": "`gate.py hygiene` read clean over a run dir holding two host-root paths",
+   "lines": [
+    678
+   ],
+   "prior": [],
+   "threshold": "n = 1 (deviation fact L677 #0 records the grep that found them); cause not established by the record",
+   "candidate": false,
+   "records": [
+    {
+     "line": 678,
+     "id": "2026-10-07T21:13:55Z-b",
+     "chunk": "2026-10-07-refusal-detection",
+     "step": "wrap-session/gates",
+     "what": "gate.py hygiene read `clean — 0 host paths kept` twice, before and after, over a run dir in which fanout-results.md first held two host-root paths under the repository root; why its P1 read did not list them was not established",
+     "impact": {
+      "extra_reads": 2
+     }
+    }
+   ],
+   "prior_records": []
+  }
+ ]
+}

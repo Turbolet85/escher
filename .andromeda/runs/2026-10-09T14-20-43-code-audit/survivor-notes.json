@@ -1,0 +1,33 @@
+{
+ "survivors": {
+  "packages/dioxus-native-dom/src/snapshot.rs:187:9: delete match arm \"textarea\" in value": "The mutation removes the `textarea` arm of the match in `value`, the snapshot's reader of a text-entry control's value, so a textarea takes the match's fallback. The unit's test set ran green with it in place (94 tests unmutated: the crate's lib tests and six stand checks). No test that reads a snapshot names a textarea: the one test file that names one, `tests/blitz-tests/tests/accessibility_roles.rs:134`, asserts its role and reads no snapshot, and `examples/seven_guis` holds none (0 occurrences). A direction, if the founder wants it closed: a minimal-fixture check that types into a textarea and reads its value from the snapshot."
+ },
+ "riders": {},
+ "tier": [
+  "Totals: 7 invocations, 607 mutants tested, 0 timeouts, 215 min of mutation wall time summed over the units. Each unit's unmutated pass was run by hand first under the unit's own environment and exited 0; every invocation then ran with `--baseline=skip`.",
+  "Footprint, and why it changed. The first launch (`escher-driver` at `-j 4` with cargo's default build jobs) contended the host: the operator measured load 209 on 32 cores, IO stalled 465 s and 35 linkers at once at 14:39Z, with another builder on the host. It was stopped on his direction. Every unit after that ran at `-j 2`, `CARGO_BUILD_JOBS=4` per cargo, `--jobserver-tasks 6`, `RUST_TEST_THREADS=4` and `--timeout 600` (the earlier records used 120).",
+  "Priority. The two `blitz-dom` units ran with the whole invocation under `nice -n 19 ionice -c 3`, on the founder's word relayed by the operator, because the host was in interactive use. The disk's IO scheduler is `none`, which does not act on the idle IO class, so only the CPU priority is known to have had effect.",
+  "CPU pin. At 17:28Z the operator pinned the running `blitz-dom/scrolling` process tree to CPUs 12-15,28-31 with taskset, at 58 of its 97 mutants tested; the unit was not restarted. Its cap reads the rate measured after the pin (35.3 s per mutant, cap 5136 s). `blitz-dom/changed-set` and its unmutated pass were launched under the same pin from the start.",
+  "Caps. No earlier record holds a per-mutant time, so every unit started under the 1800 s floor and was re-sized once at the floor from its own rate × 1.5. Three were re-sized: `escher-driver` 5277 s (16.52 s per mutant), `blitz-dom/scrolling` 5136 s, `blitz-dom/changed-set` 5211 s (31.58 s per mutant). None passed 2 h and none ran out its cap.",
+  "Stopped launches: 5, all discarded, none read as a result. `escher-driver` twice (the `-j 4` launch at 26 tested; a 30-second launch at 8 jobserver tasks, 0 tested). `blitz-dom/scrolling` three times (33 of 97 tested when the hosting sessions were killed at about 16:54Z; 0 tested at the founder's HOLD; 0 tested at a one-mutant launch that his correction replaced with two). Kept in the run dir under `stopped` names: their status and restart records and their stdout logs. The raw output directories of the three stopped `blitz-dom/scrolling` launches (19 MB together) were moved out of the run dir to the session's scratchpad on the operator's word after the report was first rendered. The raw output of the seven completed invocations was summarized and removed.",
+  "Left on disk outside the run dir: two build copies of the invocation that died at 16:54Z, `target/mutants-tmp/cargo-mutants-escher-cJVhWs.tmp` (13 GB) and `target/mutants-tmp/cargo-mutants-escher-LMO3y5.tmp` (9.1 GB). No process held them when read from /proc at 17:01Z, and no cargo-mutants process was alive after the last unit. They are gitignored and were not deleted, on the operator's word. Every completed invocation removed its own copies.",
+  "CPU share at the reduced footprint, sampled at 16:47Z before the priority and the pin: this run kept 6.5 cores busy on average (peak 13.5) of 32, while the whole host averaged 22.7.",
+  "`dioxus-native-dom` (element_id.rs + dioxus_document.rs): 61 mutants at this run against 57 at Epoch 2, and its test set is three test files wider than the Epoch 2 score's (`stand_id_edits`, `stand_actionable_keys`, `stand_snapshot`). All 7 mutations the Epoch 2 record lists as survivors are caught at this run. Commit `8d156de1` in this epoch's range is titled \"seven surviving mutants killed\".",
+  "Build cache: the hand passes added per-package test builds to the main `target/`, so the next build there may pay a partial rebuild."
+ ],
+ "measurement": [
+  "Summarizer check. Before the HEAD numbers were read, this run's summarizers were replayed on the baseline commit's tree. They reproduced the Epoch 3 record exactly for sizes, duplication (ratio, lines, clones, top list and split), complexity (scalars and top list), churn and hotspots.",
+  "The dead-code recipe was not replayed on the baseline tree: it reads the code-graph cache, which is built for HEAD, so the replay ran without it. At HEAD it is applied from the baseline record's `recipes.dead`, carried verbatim into this record.",
+  "Code graph: all 7 queries read `db_state: fresh` at HEAD.",
+  "Duplication split rule: a file under a `tests` directory segment is test; a `*_tests.rs` file under `src/` reads src. This is the rule that reproduces the Epoch 3 record's split (160/1666 · 119/1508 · 8/110) from its own tree.",
+  "Hotspot order: score descending, then path. The last four rows of the top 10 tie at 13 and stand in path order.",
+  "Coverage: the coverage leg exited 0 with 135 test result lines, none with a failure."
+ ],
+ "skips": [
+  "`seven_guis` was declined at the first confirm: 23 mutants in its two touched files (`stand.rs`, `session_host.rs`), 238 in the whole unit.",
+  "`blitz-test-harness` was scored on `settle.rs` only (22 mutants), the file this epoch added; `harness.rs` (32) and `input.rs` (38) were declined.",
+  "`blitz-dom` lists 4862 mutants as a whole unit and 378 in `scrolling.rs`, its one touched file. The operator scoped it to the code that is escher's own: the four scrolling functions this epoch changed (91) and the changed-set functions built in Epoch 3 (106). The rest of `scrolling.rs` is inherited upstream code and was declined.",
+  "Two touched units list 0 mutants and are not skips: `blitz-tests` and `blitz-examples`.",
+  "No collector was missing; all eight Tier A/B collectors ran."
+ ]
+}

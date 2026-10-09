@@ -1,0 +1,35 @@
+{
+ "scope_note": "Scope set by the operator at this run's two confirms (2026-10-09). First confirm: escher-driver and escher-telemetry whole; dioxus-native-dom as two units of their own — `dioxus-native-dom` = element_id.rs + dioxus_document.rs (the Epoch 2 score's two files, 61 of the unit's 390 listed mutants) and `dioxus-native-dom/snapshot` = snapshot.rs + snapshot_text.rs + snapshot_diff.rs + actionable.rs (71; built in Epoch 3, unscored since, not in this epoch's diff); `blitz-test-harness` = settle.rs (22 of the unit's 92 touched-file mutants); seven_guis declined. Second confirm, blitz-dom alone, as two function-filtered units, scope `filter` — a scope kind beside the schema's three, compared with nothing unless a later run repeats the rule: `blitz-dom/scrolling` = every listed mutant whose enclosing function holds a line added in b7e3a43b..HEAD (BaseDocument::containing_block_chain, BaseDocument::offset_within, BaseDocument::scroll_into_view, BaseDocument::visible_region: 91 of scrolling.rs's 378 mutants) and `blitz-dom/changed-set` = every listed mutant whose enclosing function holds a `changed_nodes` read or write (106 mutants in 18 functions of document.rs, mutator.rs and events/keyboard.rs, of the three files' 650; built in Epoch 3). Each filtered unit's `timing` carries its rule, its function list and the exact `-F` regexes at this sha; the regexes are anchored on `file:line:col`, so a later boundary repeats the RULE and rebuilds them from the tool's listing (build_filter.py's method: the listing under the filter must equal the rule's set). cargo-mutants 27.1.0 applies no `-F`/`-E` regex to its `delete field … from struct … expression` mutants (measured: `-F '^nomatch$'` lists them all), so the named files' field deletions ride each filtered invocation (6 and 4): tallied apart under `mutation.riders`, outside the unit's counts, score and survivors. Touched units listing 0 mutants: blitz-tests, blitz-examples. Footprint. The first launch (escher-driver, -j 4, cargo's default build jobs) contended the host — measured by the operator at 14:39Z: load 209 on 32 cores, IO stalled 465 s, 35 linkers at once, another builder having priority — and was stopped on his direction; from there every unit ran at `-j 2`, `CARGO_BUILD_JOBS=4` per cargo, `--jobserver-tasks 6` (measured: at most 8 rustc at once; 8 tasks had measured 10), `RUST_TEST_THREADS=4`, and `--timeout 600` in place of the earlier records' 120 (a timeout taken under contention would misread a mutant; 0 timeouts occurred in any unit), each unmutated pass by hand under the same environment, exit 0. The two blitz-dom units ran, on the founder's word relayed by the operator (the host in interactive use), with the whole invocation under `nice -n 19 ionice -c 3` (the disk's scheduler is `none`, which does not act on the idle IO class). The operator pinned the running scrolling tree to CPUs 12-15,28-31 with taskset at 2026-10-09T17:28Z (at 58 of 97 tested; not in its firing form), and the changed-set unit and its unmutated pass were launched under the same pin. Stopped launches, 5, all discarded and none read as a result: escher-driver twice (the -j 4 launch at 26 tested; a 30-second launch at 8 jobserver tasks, 0 tested) and blitz-dom/scrolling three times (33 tested when the hosting sessions were killed at about 16:54Z; 0 tested at the founder's HOLD; 0 tested at a one-mutant economy launch his correction replaced). Caps: the 1800 s floor for every unit (no prior record holds a per-mutant time), re-sized once at the floor from the unit's own rate × 1.5 — escher-driver 5277 s (re-sized at the floor from 16.52 s per mutant), escher-telemetry 1800 s, dioxus-native-dom 1800 s, blitz-test-harness 1800 s, dioxus-native-dom-snapshot 1800 s, blitz-dom-scrolling 5136 s (re-sized at the floor from 35.3 s per mutant), blitz-dom-changed-set 5211 s (re-sized at the floor from 31.58 s per mutant); blitz-dom/scrolling's re-size reads the rate since the pin, on the operator's word. A unit re-sized past 2 h would have run whole on his word; none was. Test sets: each unit's `commands` entry names its own; the two blitz-dom units run every test target of blitz-dom, blitz-tests and dioxus-native-dom (`--tests`: 504 tests unmutated). dioxus-native-dom's set is the Epoch 3 record's, three tests wider than the Epoch 2 score's (stand_id_edits, stand_actionable_keys, stand_snapshot).",
+ "skips": [
+  {
+   "metric": "mutation:seven_guis",
+   "reason": "declined"
+  },
+  {
+   "metric": "mutation:blitz-test-harness (harness.rs, input.rs — the unit's other touched files, 70 of its 92 touched-file mutants)",
+   "reason": "declined"
+  },
+  {
+   "metric": "mutation:blitz-dom (scrolling.rs outside the four functions this epoch changed — 287 of the file's 378 mutants, 6 of them tested apart as field deletions)",
+   "reason": "declined"
+  }
+ ],
+ "corrections": [
+  {
+   "target_sha": "42b80ad94e1c96014c0325e2a3f4a7135ff1f9ca",
+   "field": "mutation.timing.dioxus-native-dom",
+   "was": null,
+   "now": {
+    "scope": "files",
+    "files": [
+     "packages/dioxus-native-dom/src/dioxus_document.rs",
+     "packages/dioxus-native-dom/src/element_id.rs"
+    ],
+    "planned": 57,
+    "tested": 57,
+    "jobs": 2
+   },
+   "note": "schema-gap fill: the record scores dioxus-native-dom with no `mutation.timing` entry, so the score's scope is read from that record's own `commands.mutation`, whose two `--file` flags name these paths (`{unit}` = dioxus-native-dom) and whose `-j 2` is the jobs; planned and tested are its `counts.mutants` (its unit state reads complete 57/57); wall and cap are not recorded there and stay unknown"
+  }
+ ]
+}

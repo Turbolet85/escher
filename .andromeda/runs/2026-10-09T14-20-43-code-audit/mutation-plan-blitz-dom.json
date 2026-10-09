@@ -1,0 +1,338 @@
+{
+ "files": {
+  "packages/blitz-dom/src/document.rs": 451,
+  "packages/blitz-dom/src/mutator.rs": 187,
+  "packages/blitz-dom/src/scrolling.rs": 378,
+  "packages/blitz-dom/src/events/keyboard.rs": 12
+ },
+ "functions": [
+  {
+   "file": "packages/blitz-dom/src/document.rs",
+   "function": "BaseDocument::has_changes",
+   "lines": [
+    1005,
+    1011
+   ],
+   "changed_nodes_lines": [
+    1006,
+    1010
+   ],
+   "mutants": 3
+  },
+  {
+   "file": "packages/blitz-dom/src/document.rs",
+   "function": "BaseDocument::snapshot_node_and",
+   "lines": [
+    1544,
+    1561
+   ],
+   "changed_nodes_lines": [
+    1558
+   ],
+   "mutants": 3
+  },
+  {
+   "file": "packages/blitz-dom/src/document.rs",
+   "function": "BaseDocument::take_changed_nodes",
+   "lines": [
+    1013,
+    1018
+   ],
+   "changed_nodes_lines": [
+    1016,
+    1017
+   ],
+   "mutants": 2
+  },
+  {
+   "file": "packages/blitz-dom/src/events/keyboard.rs",
+   "function": "BaseDocument::apply_generated_text_input_event",
+   "lines": [
+    104,
+    136
+   ],
+   "changed_nodes_lines": [
+    121
+   ],
+   "mutants": 1
+  },
+  {
+   "file": "packages/blitz-dom/src/mutator.rs",
+   "function": "DocumentMutator<'_>::add_children_to_parent",
+   "lines": [
+    696,
+    773
+   ],
+   "changed_nodes_lines": [
+    705,
+    718
+   ],
+   "mutants": 14
+  },
+  {
+   "file": "packages/blitz-dom/src/mutator.rs",
+   "function": "DocumentMutator<'_>::append_text_to_node",
+   "lines": [
+    233,
+    253
+   ],
+   "changed_nodes_lines": [
+    247
+   ],
+   "mutants": 4
+  },
+  {
+   "file": "packages/blitz-dom/src/mutator.rs",
+   "function": "DocumentMutator<'_>::clear_attribute",
+   "lines": [
+    405,
+    504
+   ],
+   "changed_nodes_lines": [
+    445
+   ],
+   "mutants": 21
+  },
+  {
+   "file": "packages/blitz-dom/src/mutator.rs",
+   "function": "DocumentMutator<'_>::remove_and_drop_all_children",
+   "lines": [
+    632,
+    658
+   ],
+   "changed_nodes_lines": [
+    651
+   ],
+   "mutants": 7
+  },
+  {
+   "file": "packages/blitz-dom/src/mutator.rs",
+   "function": "DocumentMutator<'_>::remove_and_drop_node_with",
+   "lines": [
+    591,
+    630
+   ],
+   "changed_nodes_lines": [
+    604
+   ],
+   "mutants": 5
+  },
+  {
+   "file": "packages/blitz-dom/src/mutator.rs",
+   "function": "DocumentMutator<'_>::remove_custom_widget",
+   "lines": [
+    552,
+    560
+   ],
+   "changed_nodes_lines": [
+    558
+   ],
+   "mutants": 2
+  },
+  {
+   "file": "packages/blitz-dom/src/mutator.rs",
+   "function": "DocumentMutator<'_>::remove_node",
+   "lines": [
+    562,
+    585
+   ],
+   "changed_nodes_lines": [
+    576
+   ],
+   "mutants": 3
+  },
+  {
+   "file": "packages/blitz-dom/src/mutator.rs",
+   "function": "DocumentMutator<'_>::remove_style_property",
+   "lines": [
+    515,
+    522
+   ],
+   "changed_nodes_lines": [
+    520
+   ],
+   "mutants": 2
+  },
+  {
+   "file": "packages/blitz-dom/src/mutator.rs",
+   "function": "DocumentMutator<'_>::remove_sub_document",
+   "lines": [
+    533,
+    540
+   ],
+   "changed_nodes_lines": [
+    538
+   ],
+   "mutants": 2
+  },
+  {
+   "file": "packages/blitz-dom/src/mutator.rs",
+   "function": "DocumentMutator<'_>::set_attribute",
+   "lines": [
+    274,
+    403
+   ],
+   "changed_nodes_lines": [
+    324
+   ],
+   "mutants": 27
+  },
+  {
+   "file": "packages/blitz-dom/src/mutator.rs",
+   "function": "DocumentMutator<'_>::set_custom_widget",
+   "lines": [
+    542,
+    550
+   ],
+   "changed_nodes_lines": [
+    548
+   ],
+   "mutants": 2
+  },
+  {
+   "file": "packages/blitz-dom/src/mutator.rs",
+   "function": "DocumentMutator<'_>::set_node_text",
+   "lines": [
+    198,
+    231
+   ],
+   "changed_nodes_lines": [
+    212
+   ],
+   "mutants": 4
+  },
+  {
+   "file": "packages/blitz-dom/src/mutator.rs",
+   "function": "DocumentMutator<'_>::set_style_property",
+   "lines": [
+    506,
+    513
+   ],
+   "changed_nodes_lines": [
+    511
+   ],
+   "mutants": 2
+  },
+  {
+   "file": "packages/blitz-dom/src/mutator.rs",
+   "function": "DocumentMutator<'_>::set_sub_document",
+   "lines": [
+    524,
+    531
+   ],
+   "changed_nodes_lines": [
+    529
+   ],
+   "mutants": 2
+  }
+ ],
+ "mutants": [
+  "packages/blitz-dom/src/document.rs:1010:9: replace BaseDocument::has_changes -> bool with true",
+  "packages/blitz-dom/src/document.rs:1010:9: replace BaseDocument::has_changes -> bool with false",
+  "packages/blitz-dom/src/document.rs:1010:9: delete ! in BaseDocument::has_changes",
+  "packages/blitz-dom/src/document.rs:1017:9: replace BaseDocument::take_changed_nodes -> HashSet<NodeId> with HashSet::new()",
+  "packages/blitz-dom/src/document.rs:1017:9: replace BaseDocument::take_changed_nodes -> HashSet<NodeId> with HashSet::from_iter([Default::default()])",
+  "packages/blitz-dom/src/document.rs:1553:9: replace BaseDocument::snapshot_node_and with ()",
+  "packages/blitz-dom/src/document.rs:1557:49: replace | with & in BaseDocument::snapshot_node_and",
+  "packages/blitz-dom/src/document.rs:1557:49: replace | with ^ in BaseDocument::snapshot_node_and",
+  "packages/blitz-dom/src/mutator.rs:199:9: replace DocumentMutator<'_>::set_node_text with ()",
+  "packages/blitz-dom/src/mutator.rs:203:13: delete match arm NodeData::Text(ref mut text) in DocumentMutator<'_>::set_node_text",
+  "packages/blitz-dom/src/mutator.rs:208:36: replace != with == in DocumentMutator<'_>::set_node_text",
+  "packages/blitz-dom/src/mutator.rs:210:37: replace |= with &= in DocumentMutator<'_>::set_node_text",
+  "packages/blitz-dom/src/mutator.rs:238:9: replace DocumentMutator<'_>::append_text_to_node -> Result<(), AppendTextErr> with Ok(())",
+  "packages/blitz-dom/src/mutator.rs:244:30: replace += with -= in DocumentMutator<'_>::append_text_to_node",
+  "packages/blitz-dom/src/mutator.rs:244:30: replace += with *= in DocumentMutator<'_>::append_text_to_node",
+  "packages/blitz-dom/src/mutator.rs:245:41: replace |= with &= in DocumentMutator<'_>::append_text_to_node",
+  "packages/blitz-dom/src/mutator.rs:275:9: replace DocumentMutator<'_>::set_attribute with ()",
+  "packages/blitz-dom/src/mutator.rs:281:27: replace |= with &= in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:294:31: replace |= with &= in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:304:44: replace && with || in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:304:23: replace == with != in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:322:33: replace |= with &= in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:343:13: replace || with && in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:342:13: replace || with && in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:341:23: replace == with != in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:342:27: replace == with != in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:343:27: replace == with != in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:348:23: replace == with != in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:355:18: replace == with != in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:359:18: replace == with != in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:371:18: replace == with != in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:377:45: replace && with || in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:377:18: replace == with != in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:384:12: delete ! in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:388:24: replace == with != in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:390:31: replace == with != in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:392:31: replace == with != in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:395:13: replace || with && in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:394:31: replace == with != in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:395:28: replace == with != in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:399:13: replace || with && in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:398:31: replace == with != in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:399:28: replace == with != in DocumentMutator<'_>::set_attribute",
+  "packages/blitz-dom/src/mutator.rs:406:9: replace DocumentMutator<'_>::clear_attribute with ()",
+  "packages/blitz-dom/src/mutator.rs:413:27: replace |= with &= in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:423:44: replace && with || in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:423:23: replace == with != in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:440:12: delete ! in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:443:33: replace |= with &= in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:457:23: replace == with != in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:465:13: replace || with && in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:464:13: replace || with && in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:463:23: replace == with != in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:464:27: replace == with != in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:465:27: replace == with != in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:470:23: replace == with != in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:475:23: replace == with != in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:488:45: replace && with || in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:488:18: replace == with != in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:493:18: replace == with != in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:496:31: replace == with != in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:498:31: replace == with != in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:500:68: replace && with || in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:500:31: replace == with != in DocumentMutator<'_>::clear_attribute",
+  "packages/blitz-dom/src/mutator.rs:507:9: replace DocumentMutator<'_>::set_style_property with ()",
+  "packages/blitz-dom/src/mutator.rs:509:33: replace |= with &= in DocumentMutator<'_>::set_style_property",
+  "packages/blitz-dom/src/mutator.rs:516:9: replace DocumentMutator<'_>::remove_style_property with ()",
+  "packages/blitz-dom/src/mutator.rs:518:33: replace |= with &= in DocumentMutator<'_>::remove_style_property",
+  "packages/blitz-dom/src/mutator.rs:525:9: replace DocumentMutator<'_>::set_sub_document with ()",
+  "packages/blitz-dom/src/mutator.rs:527:33: replace |= with &= in DocumentMutator<'_>::set_sub_document",
+  "packages/blitz-dom/src/mutator.rs:534:9: replace DocumentMutator<'_>::remove_sub_document with ()",
+  "packages/blitz-dom/src/mutator.rs:536:33: replace |= with &= in DocumentMutator<'_>::remove_sub_document",
+  "packages/blitz-dom/src/mutator.rs:544:9: replace DocumentMutator<'_>::set_custom_widget with ()",
+  "packages/blitz-dom/src/mutator.rs:546:33: replace |= with &= in DocumentMutator<'_>::set_custom_widget",
+  "packages/blitz-dom/src/mutator.rs:554:9: replace DocumentMutator<'_>::remove_custom_widget with ()",
+  "packages/blitz-dom/src/mutator.rs:556:33: replace |= with &= in DocumentMutator<'_>::remove_custom_widget",
+  "packages/blitz-dom/src/mutator.rs:564:9: replace DocumentMutator<'_>::remove_node with ()",
+  "packages/blitz-dom/src/mutator.rs:574:37: replace |= with &= in DocumentMutator<'_>::remove_node",
+  "packages/blitz-dom/src/mutator.rs:582:45: replace != with == in DocumentMutator<'_>::remove_node",
+  "packages/blitz-dom/src/mutator.rs:598:9: replace DocumentMutator<'_>::remove_and_drop_node_with -> Option<Node> with None",
+  "packages/blitz-dom/src/mutator.rs:598:9: replace DocumentMutator<'_>::remove_and_drop_node_with -> Option<Node> with Some(Default::default())",
+  "packages/blitz-dom/src/mutator.rs:602:33: replace |= with &= in DocumentMutator<'_>::remove_and_drop_node_with",
+  "packages/blitz-dom/src/mutator.rs:619:31: replace |= with &= in DocumentMutator<'_>::remove_and_drop_node_with",
+  "packages/blitz-dom/src/mutator.rs:625:45: replace != with == in DocumentMutator<'_>::remove_and_drop_node_with",
+  "packages/blitz-dom/src/mutator.rs:633:9: replace DocumentMutator<'_>::remove_and_drop_all_children with ()",
+  "packages/blitz-dom/src/mutator.rs:642:27: replace |= with &= in DocumentMutator<'_>::remove_and_drop_all_children",
+  "packages/blitz-dom/src/mutator.rs:649:33: replace |= with &= in DocumentMutator<'_>::remove_and_drop_all_children",
+  "packages/blitz-dom/src/mutator.rs:649:53: replace && with || in DocumentMutator<'_>::remove_and_drop_all_children",
+  "packages/blitz-dom/src/mutator.rs:649:56: delete ! in DocumentMutator<'_>::remove_and_drop_all_children",
+  "packages/blitz-dom/src/mutator.rs:650:29: replace && with || in DocumentMutator<'_>::remove_and_drop_all_children",
+  "packages/blitz-dom/src/mutator.rs:650:32: delete ! in DocumentMutator<'_>::remove_and_drop_all_children",
+  "packages/blitz-dom/src/mutator.rs:702:9: replace DocumentMutator<'_>::add_children_to_parent with ()",
+  "packages/blitz-dom/src/mutator.rs:703:33: replace |= with &= in DocumentMutator<'_>::add_children_to_parent",
+  "packages/blitz-dom/src/mutator.rs:703:62: replace && with || in DocumentMutator<'_>::add_children_to_parent",
+  "packages/blitz-dom/src/mutator.rs:703:65: delete ! in DocumentMutator<'_>::add_children_to_parent",
+  "packages/blitz-dom/src/mutator.rs:704:38: replace && with || in DocumentMutator<'_>::add_children_to_parent",
+  "packages/blitz-dom/src/mutator.rs:704:41: delete ! in DocumentMutator<'_>::add_children_to_parent",
+  "packages/blitz-dom/src/mutator.rs:716:37: replace |= with &= in DocumentMutator<'_>::add_children_to_parent",
+  "packages/blitz-dom/src/mutator.rs:733:31: replace |= with &= in DocumentMutator<'_>::add_children_to_parent",
+  "packages/blitz-dom/src/mutator.rs:739:49: replace != with == in DocumentMutator<'_>::add_children_to_parent",
+  "packages/blitz-dom/src/mutator.rs:752:27: replace |= with &= in DocumentMutator<'_>::add_children_to_parent",
+  "packages/blitz-dom/src/mutator.rs:765:42: replace && with || in DocumentMutator<'_>::add_children_to_parent",
+  "packages/blitz-dom/src/mutator.rs:765:45: delete ! in DocumentMutator<'_>::add_children_to_parent",
+  "packages/blitz-dom/src/mutator.rs:767:50: replace && with || in DocumentMutator<'_>::add_children_to_parent",
+  "packages/blitz-dom/src/mutator.rs:767:23: delete ! in DocumentMutator<'_>::add_children_to_parent",
+  "packages/blitz-dom/src/events/keyboard.rs:110:9: replace BaseDocument::apply_generated_text_input_event with ()"
+ ],
+ "changed_set_planned": 106
+}

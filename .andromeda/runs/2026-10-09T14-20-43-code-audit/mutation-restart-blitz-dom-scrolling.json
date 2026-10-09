@@ -1,0 +1,26 @@
+{
+ "died_at": "about 2026-10-09T16:54Z, with the sessions that were killed (the operator, 2026-10-09)",
+ "tool_start_time": "2026-10-09T16:43:25.506006536Z",
+ "tool_end_time": null,
+ "live_at_death": {
+  "total_mutants": 33,
+  "caught": 23,
+  "missed": 0,
+  "timeout": 0,
+  "unviable": 10
+ },
+ "planned": 97,
+ "jobs": 2,
+ "footprint": {
+  "CARGO_BUILD_JOBS": "4",
+  "RUST_TEST_THREADS": "4",
+  "jobs": 2,
+  "jobserver_tasks": 6
+ },
+ "reason": "the session hosting the driver and the tool was killed; the invocation never wrote its end_time. The partial tally is discarded, never read as a result; the unit is relaunched from zero at the same footprint.",
+ "left_behind": {
+  "target/mutants-tmp/cargo-mutants-escher-cJVhWs.tmp": "13G",
+  "target/mutants-tmp/cargo-mutants-escher-LMO3y5.tmp": "9.1G",
+  "note": "two build copies of the dead invocation; no process holds them (cwd, exe, open files, arguments read from /proc at 17:01Z); gitignored, outside the run dir, not deleted - the operator word"
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "key": "blitz-dom-scrolling",
+ "unit": "blitz-dom",
+ "pid": 2699947,
+ "start_epoch": 1791565787.960131,
+ "cap_s": 5136,
+ "resized": true,
+ "jobs": 2,
+ "timeout_s": 600,
+ "footprint": {
+  "CARGO_BUILD_JOBS": "4",
+  "RUST_TEST_THREADS": "4",
+  "jobs": 2,
+  "jobserver_tasks": 6,
+  "priority": "nice -n 19 ionice -c 3"
+ },
+ "command": "mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 nice -n 19 ionice -c 3 cargo mutants --workspace --file packages/blitz-dom/src/scrolling.rs -F '^packages/blitz\\-dom/src/scrolling\\.rs:(623:9|630:25|645:9|649:23|652:15|652:29|653:15|653:29|673:9|682:20|692:17|693:17|694:17|696:17|697:17|698:17|702:27|709:27|722:65|723:66|750:9|754:60|755:61|757:40|757:56|765:47|766:47|771:16|771:25|771:28|780:45|781:44|784:25|784:46|784:68|789:45|790:42|793:25|793:47|793:70|799:16|799:23|799:33|802:26|803:28): ' --test-package=blitz-dom,blitz-tests,dioxus-native-dom --cargo-test-arg=--tests --baseline=skip --timeout 600 -j 2 --jobserver-tasks 6 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-blitz-dom-scrolling",
+ "state": "exited",
+ "pin": {
+  "cpus": "12-15,28-31",
+  "by": "the operator, taskset on the running tree (root pid 2699947, descendants inherit)",
+  "at": "2026-10-09T17:28Z",
+  "marker": {
+   "elapsed_s": 1220,
+   "live_tested": 58
+  }
+ },
+ "rate_s_per_mutant": 35.3,
+ "planned": 97,
+ "resized_cap_s": 5136,
+ "rate_at": {
+  "elapsed_s": 1820,
+  "live_tested": 75,
+  "since_elapsed_s": 1220,
+  "since_live_tested": 58
+ },
+ "returncode": null,
+ "elapsed_s": 2510,
+ "live_tested": 97,
+ "end_time": "2026-10-09T17:51:27.410311286Z"
+}

@@ -1,0 +1,1418 @@
+{
+ "epoch": "Epoch 4 — Driver core",
+ "pass_a": {
+  "facts_total": 69,
+  "threshold": "n >= 3 in-epoch, or n >= 2 recurring from a prior epoch",
+  "themes_at_threshold": [
+   {
+    "id": "L1",
+    "signature": "band-aid",
+    "theme": "detector returns reach the orchestrator only as conversation text and are pulled from the agents' transcripts by a scratch script",
+    "n": 7,
+    "facts": [
+     {
+      "line": 487,
+      "id": "2026-10-07T04:15:42Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-audit-corrections",
+      "step": "wrap-session/reconcile",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "a proposal-carrying return reaches the orchestrator only as conversation text, so fanout-results.md's parsed lists were extracted from the seven agent transcripts by a scratchpad script rather than retyped"
+     },
+     {
+      "line": 555,
+      "id": "2026-10-07T08:48:45Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-sink-target-allowlist",
+      "step": "wrap-session/reconcile",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "offset reads and occurrence counts over the multi-KB master lines were taken with scratchpad readers (sites.py, lines.py) rather than cascade.py window and splice.py index; the detector returns were pulled from the agent transcripts by a scratchpad script and the parsed lists copied into fanout-results.md by script instead of being retyped"
+     },
+     {
+      "line": 607,
+      "id": "2026-10-07T12:50:42Z-a",
+      "index": 1,
+      "chunk": "2026-10-07-command-and-refusal-schema",
+      "step": "wrap-session/reconcile",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the parsed lists of fanout-results.md were assembled by a script from each agent's own final message in its transcript file, never read into context, instead of being transcribed by hand from the messages"
+     },
+     {
+      "line": 633,
+      "id": "2026-10-07T14:57:13Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-act-by-id",
+      "step": "wrap-session/reconcile",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the detector returns arrive as messages and the contract forbids a hand-transcribed list, so the seven returns were pulled from the agents' transcripts by a scratch script (entity-decode, probe, parse) into fanout-results.md"
+     },
+     {
+      "line": 664,
+      "id": "2026-10-07T21:03:54Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-refusal-detection",
+      "step": "wrap-session/reconcile",
+      "outcome": "halted-resolved",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the returns were collected from the subagent transcripts by a script, not from the hand-back text in the window, so the record holds the returns and not a retyped copy"
+     },
+     {
+      "line": 695,
+      "id": "2026-10-07T23:06:24Z-a",
+      "index": 1,
+      "chunk": "2026-10-07-driver-command-spans",
+      "step": "wrap-session/reconcile",
+      "outcome": "halted-resolved",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the five proposal-carrying returns were extracted from the detectors' task output by script into fanout-results.md rather than transcribed from the hand-back messages; 56 proposals would otherwise be a hand copy"
+     },
+     {
+      "line": 533,
+      "id": "2026-10-07T07:18:59Z-a",
+      "index": 2,
+      "chunk": "2026-10-07-driver-session",
+      "step": "wrap-session/reconcile",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the ten sidecar payloads and the fan-out record were assembled by python from the session rather than through the Write tool; each payload passed sidecar.py check and the splice read-back"
+     }
+    ]
+   },
+   {
+    "id": "L2",
+    "signature": "band-aid",
+    "theme": "point changes applied by a scripted, count-asserted replace instead of the anchored Edit the letter names",
+    "n": 10,
+    "facts": [
+     {
+      "line": 502,
+      "id": "2026-10-07T04:35:57Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-upstream-sync-driver-core",
+      "step": "phase/plan",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "two point changes to the freshly written plan.md (the jq separator made ASCII in the run and in two atoms' text; one a11y anchor extended) were applied by a scripted python replace inside a Bash call, not by anchored Edit calls as the letter prescribes for point changes"
+     },
+     {
+      "line": 571,
+      "id": "2026-10-07T10:33:50Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-settle-detection",
+      "step": "phase/plan",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "six point corrections to plan.md were applied through one exact-match python script fed by a heredoc instead of six anchored Edit calls; the phase letter reserves point changes for the Edit tool and bars a shell heredoc for a document payload; each replacement asserted exactly one match"
+     },
+     {
+      "line": 607,
+      "id": "2026-10-07T12:50:42Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-command-and-refusal-schema",
+      "step": "wrap-session/reconcile",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the leaf .claude/docs/services/escher-driver.md was re-derived through a python script of asserted single-match substitutions run from a heredoc, where the skill names the Write and Edit tools for a document; every other body and leaf edit used Edit"
+     },
+     {
+      "line": 647,
+      "id": "2026-10-07T15:37:39Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-refusal-detection",
+      "step": "phase/research",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the premise closure's 13 point changes to scope.md were applied by one scripted replace with a count assertion per anchor, not by anchored Edit calls"
+     },
+     {
+      "line": 648,
+      "id": "2026-10-07T16:28:58Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-refusal-detection",
+      "step": "phase/plan",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the decided forks were written into scope.md and two line citations into research.md and plan.md by scripted replaces with a count assertion per anchor, not by anchored Edit calls"
+     },
+     {
+      "line": 533,
+      "id": "2026-10-07T07:18:59Z-a",
+      "index": 1,
+      "chunk": "2026-10-07-driver-session",
+      "step": "wrap-session/reconcile",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the 76 moved root-manifest citations were rewritten by a scratchpad script that verifies each site against the base file, not by 76 anchored Edits; the listing is in the run dir"
+     },
+     {
+      "line": 553,
+      "id": "2026-10-07T08:27:21Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-sink-target-allowlist",
+      "step": "wrap-session/report",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the 70-row loss listing was spliced into report.md by a scratchpad script from evidence/by-level.md instead of being typed into the Write payload, to keep 70 measured rows free of transcription"
+     },
+     {
+      "line": 475,
+      "id": "2026-10-07T03:33:38Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-audit-corrections",
+      "step": "implement/code",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "step 4's block deletions and the unused-import removals in six stand checks were made by a scratchpad python script and sed rather than the Edit tool, so the rustfmt write hook did not fire on them; cargo fmt --all was run after each scripted pass and fmt --check read clean"
+     },
+     {
+      "line": 655,
+      "id": "2026-10-07T19:11:24Z-a",
+      "index": 1,
+      "chunk": "2026-10-07-refusal-detection",
+      "step": "implement/code",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "multi-site source edits were made by inline python heredocs rather than scratchpad files run by path (host rule); each landed and was read back by grep, continuation backslashes included"
+     },
+     {
+      "line": 688,
+      "id": "2026-10-07T21:59:30Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-driver-command-spans",
+      "step": "implement/code",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "multi-site source edits were applied through quoted python heredocs in the Bash call instead of per-site Edit calls or a scratchpad script file; the backslash-pair collapse host-linux.md records for a quoted heredoc did not occur on these payloads (the escapes landed as written, read back from the file)"
+     }
+    ]
+   },
+   {
+    "id": "L3",
+    "signature": "band-aid + chronic-degrade",
+    "theme": "the project's Bash guards and the permission layer refuse a call, which is re-sent in another form",
+    "n": 6,
+    "facts": [
+     {
+      "line": 494,
+      "id": "2026-10-07T04:22:51Z-a",
+      "index": 0,
+      "chunk": null,
+      "step": "new-session/orientation",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the Bash cd guard refused a `cd` into the skill's references dir (outside the project root) on a grep of session-state-contract.md; the same grep was re-run by absolute path with no cd"
+     },
+     {
+      "line": 499,
+      "id": "2026-10-07T04:31:21Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-upstream-sync-driver-core",
+      "step": "phase/distill",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the Bash cd guard refused a second `cd`, into the phase run dir, on the entity probe of the seven extracts; the probe was re-run with absolute paths and no cd (the first refusal was at new-session orientation in this window)"
+     },
+     {
+      "line": 516,
+      "id": "2026-10-07T05:00:44Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-driver-session",
+      "step": "phase/distill",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the stage-1 probe command used cd into the run dir; the session's cd guard refused the whole call before anything ran; re-run with absolute paths"
+     },
+     {
+      "line": 683,
+      "id": "2026-10-07T21:27:00Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-driver-command-spans",
+      "step": "phase/distill",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the validation probe was first sent with a leading cd into the run dir and the project's Bash guard refused it; re-sent in a subshell, nothing was written between the snapshots by it"
+     },
+     {
+      "line": 523,
+      "id": "2026-10-07T05:31:15Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-driver-session",
+      "step": "phase/validate",
+      "outcome": "ok",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "the first baseline run, one long command with a shell function and a recursive remove, was declined by the session's permission layer; the baselines ran as a script file in the scratchpad with fixtures written by the Write tool and nothing removed"
+     },
+     {
+      "line": 526,
+      "id": "2026-10-07T05:45:20Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-driver-session",
+      "step": "implement/code",
+      "outcome": "ok",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "a compound Bash hand-probe of the new binary (background host + rm -rf + heredoc) was declined by the permission mode; the probe was rewritten as a scratchpad python script run by path"
+     }
+    ]
+   },
+   {
+    "id": "L4",
+    "signature": "band-aid",
+    "theme": "reads taken ahead of their slot while the P2 distiller batches run",
+    "n": 6,
+    "facts": [
+     {
+      "line": 469,
+      "id": "2026-10-07T03:10:15Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-audit-corrections",
+      "step": "phase/research",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "read-only research reads (the two source files, the stand checks, the audit dirs, tool availability) were taken while the P2 batches ran, because nothing may be written between a batch's snapshots; no query that writes a trace ran before P2 closed"
+     },
+     {
+      "line": 518,
+      "id": "2026-10-07T05:06:40Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-driver-session",
+      "step": "phase/research",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "codebase-research.md and the code-graph cookbook were read during P2's wait for the distillers, ahead of P3's before-starting slot; no P3 read of the tree or query ran before P2 closed"
+     },
+     {
+      "line": 595,
+      "id": "2026-10-07T11:54:44Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-command-and-refusal-schema",
+      "step": "phase/distill",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the wait on the two background batches was used for P3's targeted reads (driver sources, harness input, the stub, manifests, the playbook) before this checkpoint; nothing was written between a snapshot pair and no code-graph query fired"
+     },
+     {
+      "line": 647,
+      "id": "2026-10-07T15:37:39Z-a",
+      "index": 1,
+      "chunk": "2026-10-07-refusal-detection",
+      "step": "phase/research",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "six source files (execute.rs, refusal.rs, the two stand_act checks, the harness inspect and blitz-dom hit readers) were read while the P2 batches ran, before the extracts existed, so those reads were not extract-directed"
+     },
+     {
+      "line": 502,
+      "id": "2026-10-07T04:35:57Z-a",
+      "index": 1,
+      "chunk": "2026-10-07-upstream-sync-driver-core",
+      "step": "phase/plan",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "validation.md was read during P4 authoring, ahead of its Before-starting slot at P5, to decide which gate entries count as new and how check 9 reads the Platform issues slot"
+     },
+     {
+      "line": 516,
+      "id": "2026-10-07T05:00:44Z-a",
+      "index": 1,
+      "chunk": "2026-10-07-driver-session",
+      "step": "phase/distill",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the seven sidecar.py summary calls of stage 2 ran in the same call that moved the failed layouts extract aside, before the layouts re-spawn returned and stage 1 closed; they ran ahead of that pair's before-snapshot"
+     }
+    ]
+   },
+   {
+    "id": "L5",
+    "signature": "band-aid",
+    "theme": "the inputs tool's step set has no value for a word given at P4, P5 or the wrap",
+    "n": 4,
+    "facts": [
+     {
+      "line": 519,
+      "id": "2026-10-07T05:17:31Z-a",
+      "index": 1,
+      "chunk": "2026-10-07-driver-session",
+      "step": "phase/plan",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the founder's P4 answer was snapshotted as a relay with --step phase:P3, the nearest value: inputs.py's step set is phase:P1, phase:P3 and implement"
+     },
+     {
+      "line": 652,
+      "id": "2026-10-07T18:49:37Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-refusal-detection",
+      "step": "phase/validate",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "inputs.py snap takes --step from phase:P1, phase:P3 and implement only; the approving word, given at P5, was first sent with phase:P5 (exit 2) and then snapped as phase:P3, like the review directive before it"
+     },
+     {
+      "line": 685,
+      "id": "2026-10-07T21:42:43Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-driver-command-spans",
+      "step": "phase/plan",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the fork answers were snapshotted with the step value phase:P3 because the inputs tool takes no P4 step; the same form the previous chunk used for its fork answers"
+     },
+     {
+      "line": 631,
+      "id": "2026-10-07T14:28:27Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-act-by-id",
+      "step": "wrap-session/report",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "five rulings reached the wrap by relay and inputs.py has no wrap-side snap (verify only), so they were copied whole by hand to the run dir's operator-rulings.md for the report and sidecars to cite"
+     }
+    ]
+   },
+   {
+    "id": "L6",
+    "signature": "band-aid",
+    "theme": "pipeline tool calls read through a filter or a clipped view, against the run-bare rule",
+    "n": 3,
+    "facts": [
+     {
+      "line": 514,
+      "id": "2026-10-07T04:52:40Z-a",
+      "index": 1,
+      "chunk": "2026-10-07-driver-session",
+      "step": "phase/take-up",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the P1 route.py pins call was piped through grep -v to drop the other entries' CARRY rows, against the run-bare rule; the unfiltered listing of the same file had been read 4 minutes earlier and the trail in the run dir holds the whole"
+     },
+     {
+      "line": 523,
+      "id": "2026-10-07T05:31:15Z-a",
+      "index": 1,
+      "chunk": "2026-10-07-driver-session",
+      "step": "phase/validate",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "one re-run of gate.py --dry-run was piped through grep -v, against the run-bare rule; the same plan had been read bare before it and was read bare twice after"
+     },
+     {
+      "line": 641,
+      "id": "2026-10-07T15:06:33Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-act-by-id",
+      "step": "wrap-session/gates",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the light gate, the flip, hygiene and scope calls were read through a width-clipping or tail pipe to hold a context window at 85 percent, against the letter's run-bare rule; each verdict was read from its printed summary line and the full listings are in the run dir's trails"
+     }
+    ]
+   },
+   {
+    "id": "L7",
+    "signature": "band-aid",
+    "theme": "the CI verdict row carries too little, and the read-once rule is routed around",
+    "n": 3,
+    "facts": [
+     {
+      "line": 501,
+      "id": "2026-10-07T04:33:22Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-upstream-sync-driver-core",
+      "step": "phase/research",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "ci.py conclusion prints no check names on a green row, and two extracts require the audit and a11y jobs read as their own jobs; the 16 check names were read once through gh api .../commits/{sha}/check-runs with the fork named in the path, beside the tool's row"
+     },
+     {
+      "line": 545,
+      "id": "2026-10-07T07:46:01Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-sink-target-allowlist",
+      "step": "phase/research",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "Setup 5a reads the CI verdict once and it read in progress; the run was read a second time at the P3 closure so the scope bullet could close on the run's own verdict (green 16/16) instead of standing unresolved into the plan"
+     },
+     {
+      "line": 643,
+      "id": "2026-10-07T15:23:37Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-refusal-detection",
+      "step": "phase/take-up",
+      "outcome": "halted-resolved",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "ci.py's red row named no failed check, so the run's jobs and annotations were read through gh by run id, and ci.py was read a second time for HEAD before the ask (the letter says once)"
+     }
+    ]
+   },
+   {
+    "id": "L8",
+    "signature": "band-aid",
+    "theme": "scratch readers written each wrap to count and locate sites inside the masters' multi-KB single-line bullets",
+    "n": 2,
+    "facts": [
+     {
+      "line": 553,
+      "id": "2026-10-07T08:27:21Z-a",
+      "index": 1,
+      "chunk": "2026-10-07-sink-target-allowlist",
+      "step": "wrap-session/report",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "site counts for the report were taken with a scratchpad occurrence-level reader (sites.py) rather than grep -c, because the masters' bullets are single multi-KB lines and a line count under-reads occurrences"
+     },
+     {
+      "line": 555,
+      "id": "2026-10-07T08:48:45Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-sink-target-allowlist",
+      "step": "wrap-session/reconcile",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "offset reads and occurrence counts over the multi-KB master lines were taken with scratchpad readers (sites.py, lines.py) rather than cascade.py window and splice.py index; the detector returns were pulled from the agent transcripts by a scratchpad script and the parsed lists copied into fanout-results.md by script instead of being retyped"
+     }
+    ]
+   },
+   {
+    "id": "L9",
+    "signature": "removed-cause (observation)",
+    "theme": "a time stamp typed from an estimate, refused by the stamp hook and rewritten from the clock",
+    "n": 2,
+    "facts": [
+     {
+      "line": 649,
+      "id": "2026-10-07T16:46:22Z-a",
+      "index": 1,
+      "chunk": "2026-10-07-refusal-detection",
+      "step": "phase/plan",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "removed-cause",
+      "note": "three baseline strings were written with an estimated time before their baselines had run; the stamp-ahead hook refused the edits; the baselines were then run and the stamps written from the clock"
+     },
+     {
+      "line": 699,
+      "id": "2026-10-07T23:08:04Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-driver-command-spans",
+      "step": "wrap-session/curation",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "prohibition",
+      "note": "a frontmatter time stamp in the operator's auto-memory file was typed from an estimate two minutes ahead of the clock; the host's stamp hook refused it and the harness's own stamp stood"
+     }
+    ]
+   },
+   {
+    "id": "L10",
+    "signature": "override",
+    "theme": "the operator bounds the wrap to P1 and runs the rest in a fresh window",
+    "n": 2,
+    "facts": [
+     {
+      "line": 660,
+      "id": "2026-10-07T20:34:14Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-refusal-detection",
+      "step": "wrap-session/report",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "overridden",
+      "note": "the operator bounded this wrap to P1 for window size (43.8 percent at invocation, the last wrap grew its window by 46 points); P2 to P7 run in a fresh window from report.md, so the report's Decisions and corrections section was written as the only carrier of this window's corrections"
+     },
+     {
+      "line": 694,
+      "id": "2026-10-07T22:39:30Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-driver-command-spans",
+      "step": "wrap-session/report",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "overridden",
+      "note": "the operator directed this wrap to run P1 only and stop, the remaining phases to run in a fresh window from report.md; Setup's background code-graph refresh was still fired here and finished, though this window reaches no P4"
+     }
+    ]
+   },
+   {
+    "id": "L11",
+    "signature": "override",
+    "theme": "an escalation-graded proposal is resolved on a word recorded beforehand, without the halt",
+    "n": 2,
+    "facts": [
+     {
+      "line": 533,
+      "id": "2026-10-07T07:18:59Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-driver-session",
+      "step": "wrap-session/reconcile",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "overridden",
+      "note": "three escalations (the socket as a boundary widening; ids and names at debug and trace under two escalate-severity detectors; the unmet quiet criterion) took no HALT: each was resolved on a word recorded before or at the wrap (inputs#I1, the wrap argument's item 5) and recorded as escalated-and-resolved"
+     },
+     {
+      "line": 695,
+      "id": "2026-10-07T23:06:24Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-driver-command-spans",
+      "step": "wrap-session/reconcile",
+      "outcome": "halted-resolved",
+      "nature": "process",
+      "solution": "overridden",
+      "note": "the boundary-widening escalation for the sink's closed-span line was resolved by the operator's direction at the wrap's invocation (keep PROVISIONAL), so no halt was raised for it; one halt was raised for a second founder-ratified clause the direction did not name"
+     }
+    ]
+   },
+   {
+    "id": "L12",
+    "signature": "override",
+    "theme": "a lean P4 took on its own is overridden at the P5 review",
+    "n": 3,
+    "facts": [
+     {
+      "line": 573,
+      "id": "2026-10-07T10:39:07Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-settle-detection",
+      "step": "phase/validate",
+      "outcome": "ok",
+      "nature": "product-logic",
+      "solution": "overridden",
+      "note": "the plan proposed claiming v010-10 on an in-process Session::act step; the operator review overrode it: no claim, test 1 kept as a tests criterion, a ledger note written, the driver leg carried for route-resolve; the review prompt was issued as text both times"
+     },
+     {
+      "line": 598,
+      "id": "2026-10-07T12:06:38Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-command-and-refusal-schema",
+      "step": "phase/plan",
+      "outcome": "ok",
+      "nature": "product-logic",
+      "solution": "overridden",
+      "note": "the recommended time option was offered with a bare step count; the operator took the option and directed the unit to be weighed against milliseconds so the schema itself states it, and added a refusal cause for an app with no time seam — the plan takes milliseconds, an advanced_ms result field and an eighth cause"
+     },
+     {
+      "line": 649,
+      "id": "2026-10-07T16:46:22Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-refusal-detection",
+      "step": "phase/plan",
+      "outcome": "ok",
+      "nature": "product-logic",
+      "solution": "overridden",
+      "note": "the operator rejected the first plan's lean at the P5 review — scroll moved the viewport only and the nested case was a stated limit with no owner — and directed the nested scroll, the stand proof and a result that says when scroll could not; P4 was re-run on it"
+     }
+    ]
+   },
+   {
+    "id": "L13",
+    "signature": "chronic-degrade",
+    "theme": "`tooling.host-shell` recurs once per epoch and never halts",
+    "n": 1,
+    "facts": [
+     {
+      "line": 660,
+      "id": "2026-10-07T20:34:14Z-a",
+      "index": 1,
+      "chunk": "2026-10-07-refusal-detection",
+      "step": "wrap-session/report",
+      "outcome": "ok",
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "a CI job-log parser sent as an inline heredoc lost its backslash pair to the Bash transport and read every target as not found; it was moved to a script file written by the Write tool"
+     }
+    ]
+   }
+  ],
+  "themes_below": [
+   {
+    "theme": "the friction ledger read against the never-read rule (to copy the envelope's version form; to classify a dirty tree)",
+    "n": 1,
+    "facts": [
+     {
+      "line": 564,
+      "id": "2026-10-07T10:07:43Z-a",
+      "index": 0,
+      "chunk": null,
+      "step": "new-session/orientation",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "to classify the dirty tree and to match the envelope version format, read the envelope keys (ts, kind, skill, step, chunk, epoch, outcome, version) of the one uncommitted ledger line via git diff - evolve-system says the ledger is never read"
+     }
+    ],
+    "note": "1 workaround fact + the `unresolved` L513 #0 + `contract.jointly-contradictory-instructions` L496; Epoch 3 holds L402 #0 and L442 #2 — see Mechanism health (version spellings)"
+   },
+   {
+    "theme": "a temporary print added to a check that prints nothing by rule, then restored by checksum",
+    "n": 2,
+    "facts": [
+     {
+      "line": 688,
+      "id": "2026-10-07T21:59:30Z-a",
+      "index": 1,
+      "chunk": "2026-10-07-driver-command-spans",
+      "step": "implement/code",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "to read real captured lines once, a temporary print of the capture was added to the new check's child and the file restored from a scratchpad copy — the check prints no captured line by its own rule, so it offers no way to look at one"
+     },
+     {
+      "line": 691,
+      "id": "2026-10-07T22:10:18Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-driver-command-spans",
+      "step": "implement/fix-loop",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "to see which extra line the workspace build put in the capture, a temporary print was added to the new check's child, run once under cargo test --workspace, and the file restored from a scratchpad copy by checksum — gate.py show names the failing assertion but the check prints no captured line by rule"
+     }
+    ],
+    "note": "2 facts, one chunk, no prior epoch"
+   },
+   {
+    "theme": "the per-crate clippy form run instead of the documented lint leg",
+    "n": 2,
+    "facts": [
+     {
+      "line": 526,
+      "id": "2026-10-07T05:45:20Z-a",
+      "index": 1,
+      "chunk": "2026-10-07-driver-session",
+      "step": "implement/code",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "cargo clippy -p ... --all-targets hit a needless_return in blitz-dom the CI form never compiles; the per-crate lint was left to the plan's ci-leg fast entry"
+     },
+     {
+      "line": 601,
+      "id": "2026-10-07T12:16:04Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-command-and-refusal-schema",
+      "step": "implement/code",
+      "outcome": "ok",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "ran a per-crate cargo clippy --all-targets -D warnings as a compile check instead of the documented forms; it went red on a blitz-dom line outside the chunk under the per-crate feature set; dropped it and compiled through cargo test -p escher-driver --locked, the plan's own entry"
+     }
+    ],
+    "note": "2 facts, first seen this epoch — carried by P8"
+   },
+   {
+    "theme": "a gate entry that cannot read green on a correct tree, run by hand",
+    "n": 1,
+    "facts": [
+     {
+      "line": 476,
+      "id": "2026-10-07T03:37:41Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-audit-corrections",
+      "step": "implement/fix-loop",
+      "outcome": "ok-degraded",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "entry 8 cannot read green on a correct tree, so the comparison it is for was run by hand with each function name closed by its parenthesis (sorted and in file order, plus a dropped-row control) and recorded in the chunk evidence; the plan was not edited and the entry stays red in the trail"
+     }
+    ],
+    "note": "1 fact (`ok-degraded` fix-loop; `contract.test-expectation` L477); Epoch 1 L89 has the same form from a different cause"
+   },
+   {
+    "theme": "a wrap resumed in a fresh window takes its curation candidates from the report",
+    "n": 1,
+    "facts": [
+     {
+      "line": 671,
+      "id": "2026-10-07T21:06:01Z-a",
+      "index": 0,
+      "chunk": "2026-10-07-refusal-detection",
+      "step": "wrap-session/curation",
+      "outcome": "ok-degraded",
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the conversation the corrections happened in was unavailable (the wrap resumed in a fresh window), so candidates were taken from the report's Decisions & corrections section and this window"
+     }
+    ],
+    "note": "1 fact — carried by L10"
+   }
+  ],
+  "singletons": [
+   {
+    "line": 467,
+    "id": "2026-10-07T03:02:42Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-audit-corrections",
+    "step": "phase/distill",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "workaround",
+    "note": "the three check-3 retries were delivered by resuming each distiller with SendMessage instead of a fresh spawn; the file was moved aside to its raw twin first and each retry ran inside its own snapshot pair, as the re-spawn rule states"
+   },
+   {
+    "line": 480,
+    "id": "2026-10-07T03:42:24Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-audit-corrections",
+    "step": "phase/plan",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "workaround",
+    "note": "P4's read of the 7 extracts and their history files was not made in this run: the revision changes one entry's addresses and reaches no master section, so the approved plan's synthesis was carried and the plan's Provenance says the take-up's extracts were not re-read"
+   },
+   {
+    "line": 503,
+    "id": "2026-10-07T04:37:22Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-upstream-sync-driver-core",
+    "step": "phase/validate",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "removed-cause",
+    "note": "the control for the accessibility-files entry was minted in the run dir as a scratch copy of raw cargo Running lines; it was deleted after its reading, since raw gate output is not committable evidence, and only its verdict is recorded in the entry's baseline"
+   },
+   {
+    "line": 504,
+    "id": "2026-10-07T04:39:53Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-upstream-sync-driver-core",
+    "step": "implement/code",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "workaround",
+    "note": "the plan orders its only write (step 3, evidence/sync.md) after the gate block (steps 1-2), while the skill body orders P1 write then P2 gates; the plan's order was followed, so this code checkpoint ran after the gate block instead of before it"
+   },
+   {
+    "line": 510,
+    "id": "2026-10-07T04:46:13Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-upstream-sync-driver-core",
+    "step": "wrap-session/route-resolve",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "workaround",
+    "note": "the measurement behind the CARRY arrived at P5, after the fan-out had read the report; one dated line was appended to the report's Decisions and corrections at P5 so the chunk's record carries it, after a 0-hit search showed no master states the corrected claim"
+   },
+   {
+    "line": 514,
+    "id": "2026-10-07T04:52:40Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-driver-session",
+    "step": "phase/take-up",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "workaround",
+    "note": "Setup's read of evolve-system.md was replaced by a cmp against the byte-synced new-session copy read earlier in this window; cmp read identical"
+   },
+   {
+    "line": 519,
+    "id": "2026-10-07T05:17:31Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-driver-session",
+    "step": "phase/plan",
+    "outcome": "ok",
+    "nature": "environment",
+    "solution": "workaround",
+    "note": "the socket control's first run failed in the session scratchpad: its path exceeds the AF_UNIX bound; re-run in a short directory under target/tmp, removed afterwards"
+   },
+   {
+    "line": 523,
+    "id": "2026-10-07T05:31:15Z-a",
+    "index": 2,
+    "chunk": "2026-10-07-driver-session",
+    "step": "phase/validate",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "workaround",
+    "note": "after the re-synthesis the seven entries whose run text did not change kept their first-pass baselines; only the six added or changed entries were baseline-run again"
+   },
+   {
+    "line": 523,
+    "id": "2026-10-07T05:31:15Z-a",
+    "index": 3,
+    "chunk": "2026-10-07-driver-session",
+    "step": "phase/validate",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "workaround",
+    "note": "the approval word arrived with a direction to reword the review's authority line; the edit was made after the word and the whole mechanical set re-run before the ledger call, not before the word"
+   },
+   {
+    "line": 546,
+    "id": "2026-10-07T07:52:54Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-sink-target-allowlist",
+    "step": "phase/plan",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "workaround",
+    "note": "the by-level probe research ran from the session scratchpad was rewritten as chunks/{marker}/evidence/by-level.py so implement can take the after-readings with the same instrument; the phase letter names scope.md, research.md and plan.md as its chunk writes, not an evidence file; the script windowed mode is untested and the plan says so"
+   },
+   {
+    "line": 548,
+    "id": "2026-10-07T08:06:55Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-sink-target-allowlist",
+    "step": "implement/code",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "workaround",
+    "note": "the five outside_target unit tests are step 6, after the fix of step 5, so they could not be seen red in plan order; their control was taken by temporarily making is_outside_target return false (5 of 5 failed), then restoring format.rs byte-identical (cmp) and re-running green"
+   },
+   {
+    "line": 626,
+    "id": "2026-10-07T13:54:47Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-act-by-id",
+    "step": "implement/code",
+    "outcome": "ok",
+    "nature": "product-logic",
+    "solution": "removed-cause",
+    "note": "plan mutation 4 (advanced_ms returned as asked) does not isolate the .min(ms) clamp and no listed check drove a step that over-reports; added stand_act_timer's an_advance_reports_no_more_than_it_was_asked and a fifth mutation control"
+   },
+   {
+    "line": 629,
+    "id": "2026-10-07T14:00:27Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-act-by-id",
+    "step": "implement/smoke",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "workaround",
+    "note": "no listed smoke boots escher-session on the timer task (host_binary boots counter, host_log boots crud), so the edited branch had no real boot; drove one by hand with a scratch script speaking the socket's hello and stop lines"
+   },
+   {
+    "line": 639,
+    "id": "2026-10-07T14:58:48Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-act-by-id",
+    "step": "wrap-session/route-resolve",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "workaround",
+    "note": "the ruling that mints the entry gave no placement and said to place it at route-resolve; the entry was placed by dependency, ahead of the first work that needs it, without a halt, and the placement and its reason are written in the entry's own carry"
+   },
+   {
+    "line": 652,
+    "id": "2026-10-07T18:49:37Z-a",
+    "index": 1,
+    "chunk": "2026-10-07-refusal-detection",
+    "step": "phase/validate",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "workaround",
+    "note": "the approving word carried an instruction for the chunk's report (flag the engine fix as upstreamable); plan.md was not edited after the word, so the instruction is held verbatim in inputs#I4 and stated in this run's report"
+   },
+   {
+    "line": 655,
+    "id": "2026-10-07T19:11:24Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-refusal-detection",
+    "step": "implement/code",
+    "outcome": "ok",
+    "nature": "product-logic",
+    "solution": "workaround",
+    "note": "a scrolled box's own snapshot bounds read shifted by its own scroll offset (get_client_bounding_rect, a file the chunk may not edit) - the stand check reads the list's box from bounds taken before the scroll and from the engine reader, instead of the plan's bounds-after wording; recorded in evidence/stand-census.md"
+   },
+   {
+    "line": 655,
+    "id": "2026-10-07T19:11:24Z-a",
+    "index": 2,
+    "chunk": "2026-10-07-refusal-detection",
+    "step": "implement/code",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "workaround",
+    "note": "a splice command for execute.rs was fired before its input file was written and failed before any write; the file was then written whole with the Write tool"
+   },
+   {
+    "line": 677,
+    "id": "2026-10-07T21:13:55Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-refusal-detection",
+    "step": "wrap-session/gates",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "workaround",
+    "note": "the hygiene read printed clean over a run dir whose fanout-results.md held two lines spelling the host's root path (two detector returns' basis fields); a grep run beside the tool found them and the record was reassembled with the repository root prefix dropped"
+   },
+   {
+    "line": 704,
+    "id": "2026-10-07T23:14:27Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-driver-command-spans",
+    "step": "wrap-session/gates",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "workaround",
+    "note": "health.py ran after the commit for the console's size line and left its trail untracked in the committed run dir; left for the next wrap's sweep with the trailing friction append"
+   }
+  ],
+  "double_counted": [
+   [
+    555,
+    0,
+    "L1 and L8"
+   ]
+  ]
+ },
+ "pass_b": {
+  "override_facts": [
+   {
+    "line": 473,
+    "id": "2026-10-07T03:27:14Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-audit-corrections",
+    "step": "phase/validate",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "overridden",
+    "note": "a compound call that ended by removing the baseline mutation run's output directory under target/mutants-out was denied by the permission layer; the checks were re-fired without the removal and the 812K gitignored directory was left in place and named at the review"
+   },
+   {
+    "line": 533,
+    "id": "2026-10-07T07:18:59Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-driver-session",
+    "step": "wrap-session/reconcile",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "overridden",
+    "note": "three escalations (the socket as a boundary widening; ids and names at debug and trace under two escalate-severity detectors; the unmet quiet criterion) took no HALT: each was resolved on a word recorded before or at the wrap (inputs#I1, the wrap argument's item 5) and recorded as escalated-and-resolved"
+   },
+   {
+    "line": 573,
+    "id": "2026-10-07T10:39:07Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-settle-detection",
+    "step": "phase/validate",
+    "outcome": "ok",
+    "nature": "product-logic",
+    "solution": "overridden",
+    "note": "the plan proposed claiming v010-10 on an in-process Session::act step; the operator review overrode it: no claim, test 1 kept as a tests criterion, a ledger note written, the driver leg carried for route-resolve; the review prompt was issued as text both times"
+   },
+   {
+    "line": 598,
+    "id": "2026-10-07T12:06:38Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-command-and-refusal-schema",
+    "step": "phase/plan",
+    "outcome": "ok",
+    "nature": "product-logic",
+    "solution": "overridden",
+    "note": "the recommended time option was offered with a bare step count; the operator took the option and directed the unit to be weighed against milliseconds so the schema itself states it, and added a refusal cause for an app with no time seam — the plan takes milliseconds, an advanced_ms result field and an eighth cause"
+   },
+   {
+    "line": 649,
+    "id": "2026-10-07T16:46:22Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-refusal-detection",
+    "step": "phase/plan",
+    "outcome": "ok",
+    "nature": "product-logic",
+    "solution": "overridden",
+    "note": "the operator rejected the first plan's lean at the P5 review — scroll moved the viewport only and the nested case was a stated limit with no owner — and directed the nested scroll, the stand proof and a result that says when scroll could not; P4 was re-run on it"
+   },
+   {
+    "line": 660,
+    "id": "2026-10-07T20:34:14Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-refusal-detection",
+    "step": "wrap-session/report",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "overridden",
+    "note": "the operator bounded this wrap to P1 for window size (43.8 percent at invocation, the last wrap grew its window by 46 points); P2 to P7 run in a fresh window from report.md, so the report's Decisions and corrections section was written as the only carrier of this window's corrections"
+   },
+   {
+    "line": 694,
+    "id": "2026-10-07T22:39:30Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-driver-command-spans",
+    "step": "wrap-session/report",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "overridden",
+    "note": "the operator directed this wrap to run P1 only and stop, the remaining phases to run in a fresh window from report.md; Setup's background code-graph refresh was still fired here and finished, though this window reaches no P4"
+   },
+   {
+    "line": 695,
+    "id": "2026-10-07T23:06:24Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-driver-command-spans",
+    "step": "wrap-session/reconcile",
+    "outcome": "halted-resolved",
+    "nature": "process",
+    "solution": "overridden",
+    "note": "the boundary-widening escalation for the sink's closed-span line was resolved by the operator's direction at the wrap's invocation (keep PROVISIONAL), so no halt was raised for it; one halt was raised for a second founder-ratified clause the direction did not name"
+   }
+  ],
+  "deferred_facts": [
+   {
+    "line": 664,
+    "id": "2026-10-07T21:03:54Z-a",
+    "index": 1,
+    "chunk": "2026-10-07-refusal-detection",
+    "step": "wrap-session/reconcile",
+    "outcome": "halted-resolved",
+    "nature": "process",
+    "solution": "deferred",
+    "note": "four body clauses read 'owned by a route entry' while the owning CARRYs are written only at P5 of the same wrap"
+   },
+   {
+    "line": 695,
+    "id": "2026-10-07T23:06:24Z-a",
+    "index": 2,
+    "chunk": "2026-10-07-driver-command-spans",
+    "step": "wrap-session/reconcile",
+    "outcome": "halted-resolved",
+    "nature": "product-logic",
+    "solution": "deferred",
+    "note": "the seven_guis binaries' stderr by level under a workspace-wide build is unmeasured; stated as not measured in two masters, to be pinned on a route entry at P5"
+   }
+  ],
+  "unresolved_facts": [
+   {
+    "line": 478,
+    "id": "2026-10-07T03:37:57Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-audit-corrections",
+    "step": "implement/smoke",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "unresolved",
+    "note": "this playbook was read in the same call as the fix-loop playbook, before the P3 skip was stated; the skip rests on the plan's block and the touchpoint list, both fixed before that read"
+   },
+   {
+    "line": 513,
+    "id": "2026-10-07T04:49:16Z-a",
+    "index": 0,
+    "chunk": null,
+    "step": "new-session/orientation",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "unresolved",
+    "note": "tailed the friction ledger's last line to see the envelope's version form, against evolve-system.md's never-read rule; the clipped tail parsed nothing, the read was not retried, and the version value was written from the contract's wording unverified"
+   },
+   {
+    "line": 614,
+    "id": "2026-10-07T12:57:35Z-a",
+    "index": 0,
+    "chunk": "2026-10-07-command-and-refusal-schema",
+    "step": "wrap-session/gates",
+    "outcome": "ok",
+    "nature": "process",
+    "solution": "unresolved",
+    "note": "this checkpoint's playbook was opened while the light gate was still running, before the step it observes had completed — against the evolve reading-order rule; the remaining P7 acts (coverage, hygiene, flip, commit, push) were then done by a reader who had seen its criteria"
+   }
+  ],
+  "deferred_forever": [],
+  "deferred_closures": {
+   "L664#1": "route-resolve of the same wrap (L676)",
+   "L695#2": "route-resolve of the same wrap (L703)"
+  },
+  "tooling_types_per_epoch": {
+   "tooling.gate-deferral": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "tooling.health-false-red": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "tooling.hook-friction": [
+    2,
+    2,
+    0,
+    2
+   ],
+   "tooling.host-shell": [
+    0,
+    1,
+    1,
+    1
+   ],
+   "tooling.light-gate-red": [
+    0,
+    1,
+    0,
+    0
+   ],
+   "tooling.output-cap-overflow": [
+    6,
+    2,
+    1,
+    0
+   ],
+   "tooling.result-not-run-stable": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  "ok_degraded_per_epoch": {
+   "Epoch 1": 2,
+   "Epoch 2": 3,
+   "Epoch 3": 0,
+   "Epoch 4": 2
+  }
+ },
+ "lookback_type_counts_per_epoch": {
+  "UNTYPED": [
+   9,
+   10,
+   4,
+   14
+  ],
+  "ambiguity.filter-borderline": [
+   2,
+   2,
+   3,
+   6
+  ],
+  "ambiguity.playbook-no-match": [
+   1,
+   1,
+   0,
+   1
+  ],
+  "ambiguity.review-cycles": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "ambiguity.tier-routing": [
+   1,
+   0,
+   0,
+   3
+  ],
+  "contract.carry-no-owner": [
+   0,
+   2,
+   4,
+   4
+  ],
+  "contract.cascade-miss": [
+   1,
+   0,
+   1,
+   4
+  ],
+  "contract.detector-fact-gap": [
+   0,
+   0,
+   0,
+   2
+  ],
+  "contract.extract-format": [
+   2,
+   0,
+   0,
+   3
+  ],
+  "contract.false-positive-proposal": [
+   2,
+   2,
+   3,
+   3
+  ],
+  "contract.in-pass-correction": [
+   7,
+   4,
+   7,
+   9
+  ],
+  "contract.instrument-validity": [
+   3,
+   1,
+   0,
+   1
+  ],
+  "contract.jointly-contradictory-instructions": [
+   0,
+   0,
+   0,
+   1
+  ],
+  "contract.matrix-claim": [
+   0,
+   0,
+   2,
+   1
+  ],
+  "contract.mechanical-check": [
+   10,
+   2,
+   3,
+   6
+  ],
+  "contract.narrow-basis-claim": [
+   4,
+   0,
+   5,
+   5
+  ],
+  "contract.no-sanctioned-channel": [
+   0,
+   0,
+   2,
+   1
+  ],
+  "contract.premise-falsified": [
+   0,
+   3,
+   1,
+   4
+  ],
+  "contract.skill-reference-drift": [
+   0,
+   1,
+   2,
+   4
+  ],
+  "contract.spec-reality-gap": [
+   1,
+   2,
+   0,
+   1
+  ],
+  "contract.test-expectation": [
+   0,
+   0,
+   0,
+   2
+  ],
+  "contract.vacuous-check-found": [
+   1,
+   0,
+   0,
+   1
+  ],
+  "input.carry-context-gap": [
+   0,
+   0,
+   0,
+   2
+  ],
+  "input.implement-outcome-unsettled": [
+   0,
+   1,
+   2,
+   1
+  ],
+  "input.plan-step-ambiguous": [
+   4,
+   3,
+   4,
+   6
+  ],
+  "input.report-insufficient": [
+   4,
+   1,
+   4,
+   6
+  ],
+  "input.research-thin": [
+   0,
+   0,
+   0,
+   2
+  ],
+  "input.working-entry-thin": [
+   2,
+   1,
+   0,
+   2
+  ],
+  "recall.change-reconstruction": [
+   0,
+   1,
+   0,
+   1
+  ],
+  "recall.corpus-recurrence": [
+   5,
+   7,
+   7,
+   4
+  ],
+  "retry.distiller-respawn": [
+   0,
+   0,
+   4,
+   3
+  ],
+  "retry.synthesis-rework": [
+   2,
+   0,
+   1,
+   2
+  ],
+  "tooling.hook-friction": [
+   2,
+   2,
+   0,
+   2
+  ],
+  "tooling.host-shell": [
+   0,
+   1,
+   1,
+   1
+  ]
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "key": "escher-telemetry",
+ "unit": "escher-telemetry",
+ "pid": 317098,
+ "start_epoch": 1791560482.1833658,
+ "cap_s": 1800,
+ "resized": false,
+ "jobs": 2,
+ "timeout_s": 600,
+ "footprint": {
+  "CARGO_BUILD_JOBS": "4",
+  "RUST_TEST_THREADS": "4",
+  "jobs": 2,
+  "jobserver_tasks": 6
+ },
+ "command": "mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo mutants -p escher-telemetry --test-package=escher-telemetry,blitz-tests,seven_guis --cargo-test-arg=--lib --cargo-test-arg=--test=stand_act_spans --cargo-test-arg=--test=telemetry_drop --cargo-test-arg=--test=telemetry_init_idempotent --cargo-test-arg=--test=telemetry_panic_hook --cargo-test-arg=--test=telemetry_scrub --cargo-test-arg=--test=telemetry_stdout_silent --cargo-test-arg=--test=host_binary --cargo-test-arg=--test=host_log --baseline=skip --timeout 600 -j 2 --jobserver-tasks 6 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-escher-telemetry",
+ "state": "exited",
+ "returncode": 0,
+ "elapsed_s": 615,
+ "live_tested": 33,
+ "end_time": "2026-10-09T15:51:22.459809554Z",
+ "planned": 33
+}

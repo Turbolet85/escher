@@ -1,0 +1,950 @@
+{
+ "ts": "2026-10-09T18:54:10Z",
+ "epoch": "Epoch 4 — Driver core",
+ "mode": "trend",
+ "sha": "72149121de1fa9e58f74099a1c5bdf9d9d8216da",
+ "baseline_sha": "b7e3a43b8540343b8e655dfc700640511ef2b707",
+ "span": 1,
+ "ancestry_broken": false,
+ "head_overshoot": {
+  "boundary_sha": "72149121de1fa9e58f74099a1c5bdf9d9d8216da",
+  "commits": 0,
+  "files": [],
+  "note": "at the boundary: HEAD is the 2026-10-07-driver-command-spans complete flip"
+ },
+ "tool_versions": {
+  "jscpd": "5.4.0",
+  "tokei": "14.0.0",
+  "rust-code-analysis": "0.0.25",
+  "code-graph.py": "d0425fb1",
+  "cargo-machete": "0.9.2",
+  "cargo-llvm-cov": "0.9.1",
+  "cargo-mutants": "27.1.0",
+  "rustc": "1.99.0"
+ },
+ "totals": {
+  "loc": 72623,
+  "files": 338,
+  "units": 29
+ },
+ "duplication": {
+  "pct": 3.724,
+  "duplicated_lines": 3355,
+  "total_lines": 90088,
+  "clones": 302,
+  "top": [
+   [
+    "tests/blitz-tests/tests/device_coalescing.rs",
+    "tests/blitz-tests/tests/resize_restyle.rs",
+    43
+   ],
+   [
+    "packages/blitz-traits/src/events.rs",
+    "packages/blitz-traits/src/events.rs",
+    37
+   ],
+   [
+    "examples/counter/src/app.rs",
+    "examples/transparent/src/app.rs",
+    35
+   ],
+   [
+    "tests/blitz-tests/tests/inline_svg_restyle.rs",
+    "tests/blitz-tests/tests/inline_svg_serialize.rs",
+    32
+   ],
+   [
+    "packages/blitz-dom/src/layout/inline.rs",
+    "packages/blitz-dom/src/layout/inline.rs",
+    29
+   ],
+   [
+    "packages/dioxus-native-dom/src/mutation_writer.rs",
+    "tests/blitz-tests/tests/dioxus_falsy_boolean_attrs.rs",
+    29
+   ],
+   [
+    "tests/blitz-tests/tests/interaction_state_canonicalization.rs",
+    "tests/blitz-tests/tests/interaction_state_teardown.rs",
+    28
+   ],
+   [
+    "tests/blitz-tests/tests/details_element.rs",
+    "tests/blitz-tests/tests/fragment_navigation.rs",
+    27
+   ],
+   [
+    "examples/custom_widget.rs",
+    "examples/wgpu_texture/src/dioxus_native.rs",
+    25
+   ],
+   [
+    "tests/blitz-tests/tests/scrollbar_drag.rs",
+    "tests/blitz-tests/tests/stale_interaction_state.rs",
+    24
+   ]
+  ],
+  "split": {
+   "src": {
+    "pairs": 164,
+    "lines": 1702
+   },
+   "test": {
+    "pairs": 131,
+    "lines": 1553
+   },
+   "mixed": {
+    "pairs": 7,
+    "lines": 100
+   }
+  }
+ },
+ "complexity": {
+  "cyclomatic_p50": 1.0,
+  "cyclomatic_p90": 5.0,
+  "cognitive_p50": 0.0,
+  "cognitive_p90": 3.0,
+  "over_ceiling": 74,
+  "max": {
+   "fn": "synthesize_presentational_hints_for_legacy_attributes",
+   "file": "packages/blitz-dom/src/stylo.rs",
+   "val": 135.0
+  },
+  "top": [
+   [
+    "synthesize_presentational_hints_for_legacy_attributes",
+    "packages/blitz-dom/src/stylo.rs:870",
+    135.0
+   ],
+   [
+    "compute_inline_layout_inner",
+    "packages/blitz-dom/src/layout/inline.rs:195",
+    129.0
+   ],
+   [
+    "resolved_style_value",
+    "packages/blitz-dom/src/resolved_style.rs:341",
+    104.0
+   ],
+   [
+    "handle_pointermove",
+    "packages/blitz-dom/src/events/pointer.rs:206",
+    77.0
+   ],
+   [
+    "handle_click",
+    "packages/blitz-dom/src/events/pointer.rs:614",
+    69.0
+   ],
+   [
+    "apply_keypress_event",
+    "packages/blitz-dom/src/node/text.rs:198",
+    66.0
+   ],
+   [
+    "dispatch_child_layout",
+    "packages/blitz-dom/src/layout/mod.rs:104",
+    64.0
+   ],
+   [
+    "hit_inner",
+    "packages/blitz-dom/src/node/node.rs:1295",
+    63.0
+   ],
+   [
+    "compute_replaced_layout",
+    "packages/blitz-dom/src/layout/replaced.rs:52",
+    57.0
+   ],
+   [
+    "resolve_color_stops",
+    "packages/blitz-paint/src/gradient.rs:325",
+    56.0
+   ]
+  ]
+ },
+ "sizes": {
+  "file_p50": 119,
+  "file_p90": 537,
+  "file_max": 2659,
+  "over_800": 12,
+  "top": [
+   [
+    "packages/blitz-dom/src/document.rs",
+    2659
+   ],
+   [
+    "packages/blitz-vibey-script/src/runtime.rs",
+    2203
+   ],
+   [
+    "packages/blitz-dom/src/mutator.rs",
+    1491
+   ],
+   [
+    "packages/blitz-dom/src/node/node.rs",
+    1476
+   ],
+   [
+    "packages/blitz-vibey-script/src/dom/element.rs",
+    1251
+   ],
+   [
+    "packages/blitz-dom/src/stylo.rs",
+    1126
+   ],
+   [
+    "packages/blitz-dom/src/layout/construct.rs",
+    1027
+   ],
+   [
+    "packages/blitz-paint/src/render.rs",
+    998
+   ],
+   [
+    "packages/stylo_taffy/src/convert.rs",
+    873
+   ],
+   [
+    "packages/blitz-dom/src/layout/inline.rs",
+    862
+   ]
+  ]
+ },
+ "graph": {
+  "cycles": 0,
+  "cycle_paths": [],
+  "fan_in_top": [
+   [
+    "blitz-traits node_id/NodeId#",
+    586
+   ],
+   [
+    "blitz-dom crate/",
+    460
+   ],
+   [
+    "blitz-dom document/impl#[BaseDocument]get_node().",
+    252
+   ],
+   [
+    "blitz-dom document/BaseDocument#",
+    209
+   ],
+   [
+    "blitz-dom document/BaseDocument#nodes.",
+    179
+   ],
+   [
+    "blitz-vibey-script dom/dom_ctx().",
+    155
+   ],
+   [
+    "blitz-vibey-script state/DomCtx#doc.",
+    133
+   ],
+   [
+    "blitz-html html_document/HtmlDocument#",
+    131
+   ],
+   [
+    "blitz-dom resolve/impl#[BaseDocument]resolve().",
+    126
+   ],
+   [
+    "seven_guis stand/LeanTask#",
+    123
+   ],
+   [
+    "blitz-dom config/DocumentConfig#",
+    123
+   ],
+   [
+    "blitz-vibey-script dom/this_node_id().",
+    122
+   ],
+   [
+    "blitz-test-harness harness/Harness#",
+    116
+   ],
+   [
+    "blitz-test-harness harness/Harness#doc.",
+    108
+   ],
+   [
+    "blitz-dom node/node/Node#id.",
+    104
+   ],
+   [
+    "blitz-traits crate/",
+    103
+   ],
+   [
+    "blitz-vibey-script crate/",
+    97
+   ],
+   [
+    "blitz-dom node/node/impl#[Node]element_data().",
+    95
+   ],
+   [
+    "blitz-dom node/node/Node#data.",
+    94
+   ],
+   [
+    "blitz-dom node/node/Node#",
+    93
+   ]
+  ],
+  "fan_out": [
+   [
+    "blitz-examples",
+    10
+   ],
+   [
+    "blitz-tests",
+    9
+   ],
+   [
+    "browser",
+    8
+   ],
+   [
+    "seven_guis",
+    7
+   ],
+   [
+    "blitz",
+    6
+   ],
+   [
+    "dioxus-native",
+    6
+   ],
+   [
+    "wgpu_texture",
+    6
+   ],
+   [
+    "rdme",
+    5
+   ],
+   [
+    "wpt",
+    5
+   ],
+   [
+    "blitz-shell",
+    4
+   ],
+   [
+    "blitz-test-harness",
+    4
+   ],
+   [
+    "escher-driver",
+    4
+   ],
+   [
+    "blitz-dom",
+    3
+   ],
+   [
+    "blitz-vibey-script",
+    3
+   ],
+   [
+    "wasm_hello",
+    3
+   ],
+   [
+    "blitz-html",
+    2
+   ],
+   [
+    "blitz-paint",
+    2
+   ],
+   [
+    "dioxus-native-dom",
+    2
+   ],
+   [
+    "transparent",
+    2
+   ],
+   [
+    "blitz-net",
+    1
+   ],
+   [
+    "counter",
+    1
+   ],
+   [
+    "todomvc",
+    1
+   ]
+  ],
+  "cross_unit_edges": 94
+ },
+ "dead": {
+  "unused_deps": [
+   [
+    "rdme",
+    "blitz-paint"
+   ],
+   [
+    "rdme",
+    "image"
+   ],
+   [
+    "rdme",
+    "reqwest"
+   ],
+   [
+    "counter",
+    "blitz-dom"
+   ],
+   [
+    "counter",
+    "blitz-paint"
+   ],
+   [
+    "counter",
+    "idna_adapter"
+   ],
+   [
+    "seven_guis",
+    "idna_adapter"
+   ],
+   [
+    "todomvc",
+    "idna_adapter"
+   ],
+   [
+    "transparent",
+    "blitz-dom"
+   ],
+   [
+    "transparent",
+    "blitz-paint"
+   ],
+   [
+    "transparent",
+    "idna_adapter"
+   ],
+   [
+    "wgpu_texture",
+    "blitz-paint"
+   ],
+   [
+    "wgpu_texture",
+    "pollster"
+   ],
+   [
+    "blitz-html",
+    "blitz-traits"
+   ],
+   [
+    "blitz-net",
+    "http-cache"
+   ],
+   [
+    "blitz-paint",
+    "euclid"
+   ],
+   [
+    "blitz-vibey-script",
+    "boa_gc"
+   ],
+   [
+    "dioxus-native",
+    "blitz-paint"
+   ],
+   [
+    "dioxus-native",
+    "futures-util"
+   ],
+   [
+    "dioxus-native",
+    "keyboard-types"
+   ],
+   [
+    "dioxus-native",
+    "rustc-hash"
+   ],
+   [
+    "wpt",
+    "markup5ever"
+   ],
+   [
+    "wpt",
+    "pollster"
+   ],
+   [
+    "wpt",
+    "style"
+   ],
+   [
+    "wpt",
+    "taffy"
+   ]
+  ],
+  "zero_ref_candidates": 105,
+  "top": [
+   [
+    "browser history/HistoryNav#current_url().",
+    "apps/browser/src/history.rs:67"
+   ],
+   [
+    "browser history/HistoryNav#has_back().",
+    "apps/browser/src/history.rs:68"
+   ],
+   [
+    "browser history/HistoryNav#has_forward().",
+    "apps/browser/src/history.rs:69"
+   ],
+   [
+    "browser history/HistoryNav#go_back().",
+    "apps/browser/src/history.rs:70"
+   ],
+   [
+    "browser history/HistoryNav#go_forward().",
+    "apps/browser/src/history.rs:71"
+   ],
+   [
+    "browser history/HistoryNav#navigate().",
+    "apps/browser/src/history.rs:72"
+   ],
+   [
+    "browser url_suggestions/impl#[Suggestion]row_key().",
+    "apps/browser/src/url_suggestions.rs:40"
+   ],
+   [
+    "accesskit_xplat impl#[Adapter]with_split_handlers().",
+    "packages/accesskit_xplat/src/lib.rs:197"
+   ],
+   [
+    "blitz-dom config/StyleThreading#Sequential#",
+    "packages/blitz-dom/src/config.rs:28"
+   ],
+   [
+    "blitz-dom document/impl#[BaseDocument]set_net_provider().",
+    "packages/blitz-dom/src/document.rs:546"
+   ]
+  ],
+  "fp_classes": {
+   "candidate": 105,
+   "derive/attr-invoked": 92,
+   "entry-point": 52,
+   "format-capture": 4,
+   "runtime-invoked (macro-generated binding)": 20,
+   "test-only": 58,
+   "trait-impl (dispatch)": 567
+  },
+  "zero_ref_rows": 1679,
+  "excluded_test_path": 781
+ },
+ "coverage": {
+  "line": 59.21,
+  "branch": null
+ },
+ "churn": {
+  "pct": 12.13,
+  "files_churned": 16
+ },
+ "hotspots": [
+  [
+   "tests/blitz-tests/tests/stand_act_ids.rs",
+   24
+  ],
+  [
+   "packages/escher-driver/src/schema.rs",
+   22
+  ],
+  [
+   "examples/seven_guis/src/session_host.rs",
+   16
+  ],
+  [
+   "packages/escher-driver/src/command.rs",
+   16
+  ],
+  [
+   "packages/escher-driver/src/session.rs",
+   16
+  ],
+  [
+   "packages/escher-telemetry/src/format.rs",
+   14
+  ],
+  [
+   "packages/blitz-dom/src/scrolling.rs",
+   13
+  ],
+  [
+   "packages/blitz-test-harness/src/settle.rs",
+   13
+  ],
+  [
+   "tests/blitz-tests/tests/stand_element_ids.rs",
+   13
+  ],
+  [
+   "tests/blitz-tests/tests/stand_snapshot.rs",
+   13
+  ]
+ ],
+ "mutation": {
+  "scoped_units": [
+   "escher-driver",
+   "escher-telemetry",
+   "dioxus-native-dom",
+   "blitz-test-harness",
+   "dioxus-native-dom/snapshot",
+   "blitz-dom/scrolling",
+   "blitz-dom/changed-set"
+  ],
+  "unit_states": {
+   "escher-driver": "complete 213/213",
+   "escher-telemetry": "complete 33/33",
+   "dioxus-native-dom": "complete 61/61",
+   "blitz-test-harness": "complete 22/22",
+   "dioxus-native-dom/snapshot": "complete 71/71",
+   "blitz-dom/scrolling": "complete 97/97",
+   "blitz-dom/changed-set": "complete 110/110"
+  },
+  "scores": {
+   "escher-driver": 100.0,
+   "escher-telemetry": 100.0,
+   "dioxus-native-dom": 100.0,
+   "blitz-test-harness": 100.0,
+   "dioxus-native-dom/snapshot": 98.36,
+   "blitz-dom/scrolling": 100.0,
+   "blitz-dom/changed-set": 100.0
+  },
+  "counts": {
+   "escher-driver": {
+    "mutants": 213,
+    "caught": 170,
+    "missed": 0,
+    "not_measured": 0,
+    "timeout": 0,
+    "unviable": 43
+   },
+   "escher-telemetry": {
+    "mutants": 33,
+    "caught": 28,
+    "missed": 0,
+    "not_measured": 0,
+    "timeout": 0,
+    "unviable": 5
+   },
+   "dioxus-native-dom": {
+    "mutants": 61,
+    "caught": 53,
+    "missed": 0,
+    "not_measured": 0,
+    "timeout": 0,
+    "unviable": 8
+   },
+   "blitz-test-harness": {
+    "mutants": 22,
+    "caught": 21,
+    "missed": 0,
+    "not_measured": 0,
+    "timeout": 0,
+    "unviable": 1
+   },
+   "dioxus-native-dom/snapshot": {
+    "mutants": 71,
+    "caught": 60,
+    "missed": 1,
+    "not_measured": 0,
+    "timeout": 0,
+    "unviable": 10
+   },
+   "blitz-dom/scrolling": {
+    "mutants": 91,
+    "caught": 80,
+    "missed": 0,
+    "not_measured": 0,
+    "timeout": 0,
+    "unviable": 11
+   },
+   "blitz-dom/changed-set": {
+    "mutants": 106,
+    "caught": 102,
+    "missed": 0,
+    "not_measured": 0,
+    "timeout": 0,
+    "unviable": 4
+   }
+  },
+  "timing": {
+   "escher-driver": {
+    "scope": "unit",
+    "planned": 213,
+    "tested": 213,
+    "wall_s": 3541,
+    "jobs": 2,
+    "cap_s": 5277
+   },
+   "escher-telemetry": {
+    "scope": "unit",
+    "planned": 33,
+    "tested": 33,
+    "wall_s": 600,
+    "jobs": 2,
+    "cap_s": 1800
+   },
+   "dioxus-native-dom": {
+    "scope": "files",
+    "planned": 61,
+    "tested": 61,
+    "wall_s": 1055,
+    "jobs": 2,
+    "cap_s": 1800,
+    "files": [
+     "packages/dioxus-native-dom/src/dioxus_document.rs",
+     "packages/dioxus-native-dom/src/element_id.rs"
+    ]
+   },
+   "blitz-test-harness": {
+    "scope": "files",
+    "planned": 22,
+    "tested": 22,
+    "wall_s": 463,
+    "jobs": 2,
+    "cap_s": 1800,
+    "files": [
+     "packages/blitz-test-harness/src/settle.rs"
+    ]
+   },
+   "dioxus-native-dom/snapshot": {
+    "scope": "files",
+    "planned": 71,
+    "tested": 71,
+    "wall_s": 1182,
+    "jobs": 2,
+    "cap_s": 1800,
+    "files": [
+     "packages/dioxus-native-dom/src/actionable.rs",
+     "packages/dioxus-native-dom/src/snapshot.rs",
+     "packages/dioxus-native-dom/src/snapshot_diff.rs",
+     "packages/dioxus-native-dom/src/snapshot_text.rs"
+    ]
+   },
+   "blitz-dom/scrolling": {
+    "scope": "filter",
+    "planned": 97,
+    "tested": 97,
+    "wall_s": 2499,
+    "jobs": 2,
+    "cap_s": 5136,
+    "files": [
+     "packages/blitz-dom/src/scrolling.rs"
+    ],
+    "rule": "every listed mutant whose enclosing function holds a line added in b7e3a43b..HEAD",
+    "filter": [
+     "^packages/blitz\\-dom/src/scrolling\\.rs:(623:9|630:25|645:9|649:23|652:15|652:29|653:15|653:29|673:9|682:20|692:17|693:17|694:17|696:17|697:17|698:17|702:27|709:27|722:65|723:66|750:9|754:60|755:61|757:40|757:56|765:47|766:47|771:16|771:25|771:28|780:45|781:44|784:25|784:46|784:68|789:45|790:42|793:25|793:47|793:70|799:16|799:23|799:33|802:26|803:28): "
+    ],
+    "functions": [
+     "packages/blitz-dom/src/scrolling.rs: BaseDocument::containing_block_chain",
+     "packages/blitz-dom/src/scrolling.rs: BaseDocument::offset_within",
+     "packages/blitz-dom/src/scrolling.rs: BaseDocument::scroll_into_view",
+     "packages/blitz-dom/src/scrolling.rs: BaseDocument::visible_region"
+    ],
+    "in_rule": 91,
+    "riders": 6
+   },
+   "blitz-dom/changed-set": {
+    "scope": "filter",
+    "planned": 110,
+    "tested": 110,
+    "wall_s": 3556,
+    "jobs": 2,
+    "cap_s": 5211,
+    "files": [
+     "packages/blitz-dom/src/document.rs",
+     "packages/blitz-dom/src/events/keyboard.rs",
+     "packages/blitz-dom/src/mutator.rs"
+    ],
+    "rule": "every listed mutant whose enclosing function holds a `changed_nodes` read or write",
+    "filter": [
+     "^packages/blitz\\-dom/src/document\\.rs:(1010:9|1017:9|1553:9|1557:49): ",
+     "^packages/blitz\\-dom/src/events/keyboard\\.rs:(110:9): ",
+     "^packages/blitz\\-dom/src/mutator\\.rs:(199:9|203:13|208:36|210:37|238:9|244:30|245:41|275:9|281:27|294:31|304:23|304:44|322:33|341:23|342:13|342:27|343:13|343:27|348:23|355:18|359:18|371:18|377:18|377:45|384:12|388:24|390:31|392:31|394:31|395:13|395:28|398:31|399:13|399:28|406:9|413:27|423:23|423:44|440:12|443:33|457:23|463:23|464:13|464:27|465:13|465:27|470:23|475:23|488:18|488:45|493:18|496:31|498:31|500:31|500:68|507:9|509:33|516:9|518:33|525:9|527:33|534:9|536:33|544:9|546:33|554:9|556:33|564:9|574:37|582:45|598:9|602:33|619:31|625:45|633:9|642:27|649:33|649:53|649:56|650:29|650:32|702:9|703:33|703:62|703:65|704:38|704:41|716:37|733:31|739:49|752:27|765:42|765:45|767:23|767:50): "
+    ],
+    "functions": [
+     "packages/blitz-dom/src/document.rs: BaseDocument::has_changes",
+     "packages/blitz-dom/src/document.rs: BaseDocument::snapshot_node_and",
+     "packages/blitz-dom/src/document.rs: BaseDocument::take_changed_nodes",
+     "packages/blitz-dom/src/events/keyboard.rs: BaseDocument::apply_generated_text_input_event",
+     "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::add_children_to_parent",
+     "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::append_text_to_node",
+     "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::clear_attribute",
+     "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::remove_and_drop_all_children",
+     "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::remove_and_drop_node_with",
+     "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::remove_custom_widget",
+     "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::remove_node",
+     "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::remove_style_property",
+     "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::remove_sub_document",
+     "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::set_attribute",
+     "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::set_custom_widget",
+     "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::set_node_text",
+     "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::set_style_property",
+     "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::set_sub_document"
+    ],
+    "in_rule": 106,
+    "riders": 4
+   }
+  },
+  "score_formula": "caught/(caught+missed)",
+  "survivors": [
+   [
+    "packages/dioxus-native-dom/src/snapshot.rs:187:9",
+    "delete match arm \"textarea\" in value"
+   ]
+  ],
+  "host": "x86_64-unknown-linux-gnu",
+  "not_measured": [],
+  "timeouts": [],
+  "riders": {
+   "blitz-dom/scrolling": {
+    "counts": {
+     "mutants": 6,
+     "caught": 6,
+     "missed": 0,
+     "not_measured": 0,
+     "timeout": 0,
+     "unviable": 0
+    },
+    "sites": [
+     [
+      "packages/blitz-dom/src/scrolling.rs:186:25",
+      "delete field target from struct ScrollRequest expression in BaseDocument::scroll",
+      "CaughtMutant"
+     ],
+     [
+      "packages/blitz-dom/src/scrolling.rs:187:25",
+      "delete field amount from struct ScrollRequest expression in BaseDocument::scroll",
+      "CaughtMutant"
+     ],
+     [
+      "packages/blitz-dom/src/scrolling.rs:215:17",
+      "delete field target from struct ScrollRequest expression in BaseDocument::scroll_inner_content_by",
+      "CaughtMutant"
+     ],
+     [
+      "packages/blitz-dom/src/scrolling.rs:216:17",
+      "delete field amount from struct ScrollRequest expression in BaseDocument::scroll_inner_content_by",
+      "CaughtMutant"
+     ],
+     [
+      "packages/blitz-dom/src/scrolling.rs:247:21",
+      "delete field target from struct ScrollRequest expression in BaseDocument::scroll_inner_content_by",
+      "CaughtMutant"
+     ],
+     [
+      "packages/blitz-dom/src/scrolling.rs:248:21",
+      "delete field amount from struct ScrollRequest expression in BaseDocument::scroll_inner_content_by",
+      "CaughtMutant"
+     ]
+    ],
+    "survivors": [],
+    "not_measured": []
+   },
+   "blitz-dom/changed-set": {
+    "counts": {
+     "mutants": 4,
+     "caught": 4,
+     "missed": 0,
+     "not_measured": 0,
+     "timeout": 0,
+     "unviable": 0
+    },
+    "sites": [
+     [
+      "packages/blitz-dom/src/document.rs:1345:21",
+      "delete field family_name from struct parley::fontique::FontInfoOverride expression in BaseDocument::load_resource",
+      "CaughtMutant"
+     ],
+     [
+      "packages/blitz-dom/src/document.rs:1346:21",
+      "delete field weight from struct parley::fontique::FontInfoOverride expression in BaseDocument::load_resource",
+      "CaughtMutant"
+     ],
+     [
+      "packages/blitz-dom/src/document.rs:1347:21",
+      "delete field style from struct parley::fontique::FontInfoOverride expression in BaseDocument::load_resource",
+      "CaughtMutant"
+     ],
+     [
+      "packages/blitz-dom/src/mutator.rs:153:13",
+      "delete field damage from struct style::data::ElementData expression in DocumentMutator<'_>::create_element",
+      "CaughtMutant"
+     ]
+    ],
+    "survivors": [],
+    "not_measured": []
+   }
+  },
+  "scope_note": "Scope set by the operator at this run's two confirms (2026-10-09). First confirm: escher-driver and escher-telemetry whole; dioxus-native-dom as two units of their own — `dioxus-native-dom` = element_id.rs + dioxus_document.rs (the Epoch 2 score's two files, 61 of the unit's 390 listed mutants) and `dioxus-native-dom/snapshot` = snapshot.rs + snapshot_text.rs + snapshot_diff.rs + actionable.rs (71; built in Epoch 3, unscored since, not in this epoch's diff); `blitz-test-harness` = settle.rs (22 of the unit's 92 touched-file mutants); seven_guis declined. Second confirm, blitz-dom alone, as two function-filtered units, scope `filter` — a scope kind beside the schema's three, compared with nothing unless a later run repeats the rule: `blitz-dom/scrolling` = every listed mutant whose enclosing function holds a line added in b7e3a43b..HEAD (BaseDocument::containing_block_chain, BaseDocument::offset_within, BaseDocument::scroll_into_view, BaseDocument::visible_region: 91 of scrolling.rs's 378 mutants) and `blitz-dom/changed-set` = every listed mutant whose enclosing function holds a `changed_nodes` read or write (106 mutants in 18 functions of document.rs, mutator.rs and events/keyboard.rs, of the three files' 650; built in Epoch 3). Each filtered unit's `timing` carries its rule, its function list and the exact `-F` regexes at this sha; the regexes are anchored on `file:line:col`, so a later boundary repeats the RULE and rebuilds them from the tool's listing (build_filter.py's method: the listing under the filter must equal the rule's set). cargo-mutants 27.1.0 applies no `-F`/`-E` regex to its `delete field … from struct … expression` mutants (measured: `-F '^nomatch$'` lists them all), so the named files' field deletions ride each filtered invocation (6 and 4): tallied apart under `mutation.riders`, outside the unit's counts, score and survivors. Touched units listing 0 mutants: blitz-tests, blitz-examples. Footprint. The first launch (escher-driver, -j 4, cargo's default build jobs) contended the host — measured by the operator at 14:39Z: load 209 on 32 cores, IO stalled 465 s, 35 linkers at once, another builder having priority — and was stopped on his direction; from there every unit ran at `-j 2`, `CARGO_BUILD_JOBS=4` per cargo, `--jobserver-tasks 6` (measured: at most 8 rustc at once; 8 tasks had measured 10), `RUST_TEST_THREADS=4`, and `--timeout 600` in place of the earlier records' 120 (a timeout taken under contention would misread a mutant; 0 timeouts occurred in any unit), each unmutated pass by hand under the same environment, exit 0. The two blitz-dom units ran, on the founder's word relayed by the operator (the host in interactive use), with the whole invocation under `nice -n 19 ionice -c 3` (the disk's scheduler is `none`, which does not act on the idle IO class). The operator pinned the running scrolling tree to CPUs 12-15,28-31 with taskset at 2026-10-09T17:28Z (at 58 of 97 tested; not in its firing form), and the changed-set unit and its unmutated pass were launched under the same pin. Stopped launches, 5, all discarded and none read as a result: escher-driver twice (the -j 4 launch at 26 tested; a 30-second launch at 8 jobserver tasks, 0 tested) and blitz-dom/scrolling three times (33 tested when the hosting sessions were killed at about 16:54Z; 0 tested at the founder's HOLD; 0 tested at a one-mutant economy launch his correction replaced). Caps: the 1800 s floor for every unit (no prior record holds a per-mutant time), re-sized once at the floor from the unit's own rate × 1.5 — escher-driver 5277 s (re-sized at the floor from 16.52 s per mutant), escher-telemetry 1800 s, dioxus-native-dom 1800 s, blitz-test-harness 1800 s, dioxus-native-dom-snapshot 1800 s, blitz-dom-scrolling 5136 s (re-sized at the floor from 35.3 s per mutant), blitz-dom-changed-set 5211 s (re-sized at the floor from 31.58 s per mutant); blitz-dom/scrolling's re-size reads the rate since the pin, on the operator's word. A unit re-sized past 2 h would have run whole on his word; none was. Test sets: each unit's `commands` entry names its own; the two blitz-dom units run every test target of blitz-dom, blitz-tests and dioxus-native-dom (`--tests`: 504 tests unmutated). dioxus-native-dom's set is the Epoch 3 record's, three tests wider than the Epoch 2 score's (stand_id_edits, stand_actionable_keys, stand_snapshot)."
+ },
+ "commands": {
+  "sizes": "git ls-files '*.rs' ':!:.andromeda/**' ':!:.claude/**' ':!:scripts/**' ':!:docs/**' ':!:refs/**' > .andromeda/runs/2026-10-09T14-20-43-code-audit/srcfiles.txt && tokei --output json $(cat .andromeda/runs/2026-10-09T14-20-43-code-audit/srcfiles.txt) > .andromeda/runs/2026-10-09T14-20-43-code-audit/tokei.json (Rust code lines per file; population = srcfiles.txt, 338 files; totals.units = cargo metadata --no-deps --format-version 1 --locked workspace packages, equal to the graph's distinct crates)",
+  "duplication": "jscpd --format rust --absolute --reporters json --output .andromeda/runs/2026-10-09T14-20-43-code-audit/jscpd-abs packages apps tests examples wpt/runner (paths made repo-relative by summarize.py; default min-tokens 50, .gitignore respected; split: a file under a `tests` directory segment is test, a pair of two is test, of none is src, else mixed)",
+  "complexity": "mkdir -p .andromeda/runs/2026-10-09T14-20-43-code-audit/rca && rust-code-analysis-cli -m -O json -o .andromeda/runs/2026-10-09T14-20-43-code-audit/rca $(sed 's/^/-p /' .andromeda/runs/2026-10-09T14-20-43-code-audit/srcfiles.txt) (every space of kind function, closures included: cognitive.sum / cyclomatic.sum)",
+  "graph": "python3 scripts/code-graph.py query .andromeda/runs/2026-10-09T14-20-43-code-audit code-audit \"<audit-pass.md canonical cycle / fan-in / fan-out / edge-count SQL, verbatim>\" (fired one at a time by graph_queries.py; the SQL as fired is in .andromeda/runs/2026-10-09T14-20-43-code-audit/tree-query-code-audit.json)",
+  "dead": "cargo machete (unused deps) + python3 scripts/code-graph.py query .andromeda/runs/2026-10-09T14-20-43-code-audit code-audit \"SELECT s.symbol, s.crate, s.name, s.kind, s.file, s.def_line FROM symbol s LEFT JOIN refs r ON r.callee = s.symbol WHERE r.callee IS NULL\" + python3 .andromeda/runs/2026-10-09T14-20-43-code-audit/summarize.py (recipes.dead)",
+  "coverage": "bash .github/scripts/ci-leg.sh coverage (cargo llvm-cov --workspace --locked --lcov --output-path target/coverage/lcov.info && cargo llvm-cov report --workspace --locked; TOTAL row, Lines cover column)",
+  "churn": "git log --reverse --numstat --format=@%H b7e3a43b8540343b8e655dfc700640511ef2b707..HEAD -- '*.rs' ':!:.andromeda/**' ':!:.claude/**' ':!:scripts/**' ':!:docs/**' ':!:refs/**' (file-level: adds in a file's 2nd..nth touching commit are churn)",
+  "hotspots": "churn per-file commit counts (b7e3a43b8540343b8e655dfc700640511ef2b707..HEAD) x max cognitive per file from complexity (a measured 0 scores 0)",
+  "mutation": "per scoped unit: its `mutation:{unit}` entry (the unmutated pass by hand, then cargo mutants with --baseline=skip)",
+  "mutation:escher-driver": "CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo test --locked -p escher-driver -p blitz-tests -p seven_guis --lib --test=stand_act_diff --test=stand_act_disabled --test=stand_act_ids --test=stand_act_keys --test=stand_act_obstructed --test=stand_act_range --test=stand_act_refused --test=stand_act_scroll --test=stand_act_spans --test=stand_act_timer --test=stand_session_fresh --test=stand_session_ids --test=stand_session_lifecycle --test=stand_session_quiet --test=stand_session_state --test=stand_settle --test=telemetry_scrub --test=host_binary --test=host_log (the unmutated pass, by hand, exit 0) · mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo mutants -p escher-driver --test-package=escher-driver,blitz-tests,seven_guis --cargo-test-arg=--lib --cargo-test-arg=--test=stand_act_diff --cargo-test-arg=--test=stand_act_disabled --cargo-test-arg=--test=stand_act_ids --cargo-test-arg=--test=stand_act_keys --cargo-test-arg=--test=stand_act_obstructed --cargo-test-arg=--test=stand_act_range --cargo-test-arg=--test=stand_act_refused --cargo-test-arg=--test=stand_act_scroll --cargo-test-arg=--test=stand_act_spans --cargo-test-arg=--test=stand_act_timer --cargo-test-arg=--test=stand_session_fresh --cargo-test-arg=--test=stand_session_ids --cargo-test-arg=--test=stand_session_lifecycle --cargo-test-arg=--test=stand_session_quiet --cargo-test-arg=--test=stand_session_state --cargo-test-arg=--test=stand_settle --cargo-test-arg=--test=telemetry_scrub --cargo-test-arg=--test=host_binary --cargo-test-arg=--test=host_log --baseline=skip --timeout 600 -j 2 --jobserver-tasks 6 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-escher-driver",
+  "mutation:escher-telemetry": "CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo test --locked -p escher-telemetry -p blitz-tests -p seven_guis --lib --test=stand_act_spans --test=telemetry_drop --test=telemetry_init_idempotent --test=telemetry_panic_hook --test=telemetry_scrub --test=telemetry_stdout_silent --test=host_binary --test=host_log (the unmutated pass, by hand, exit 0) · mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo mutants -p escher-telemetry --test-package=escher-telemetry,blitz-tests,seven_guis --cargo-test-arg=--lib --cargo-test-arg=--test=stand_act_spans --cargo-test-arg=--test=telemetry_drop --cargo-test-arg=--test=telemetry_init_idempotent --cargo-test-arg=--test=telemetry_panic_hook --cargo-test-arg=--test=telemetry_scrub --cargo-test-arg=--test=telemetry_stdout_silent --cargo-test-arg=--test=host_binary --cargo-test-arg=--test=host_log --baseline=skip --timeout 600 -j 2 --jobserver-tasks 6 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-escher-telemetry",
+  "mutation:dioxus-native-dom": "CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo test --locked -p dioxus-native-dom -p blitz-tests --lib --test=stand_element_ids --test=stand_id_persistence --test=stand_accessibility_ids --test=accessibility_names --test=stand_id_edits --test=stand_actionable_keys --test=stand_snapshot (the unmutated pass, by hand, exit 0) · mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo mutants --workspace --file packages/dioxus-native-dom/src/element_id.rs --file packages/dioxus-native-dom/src/dioxus_document.rs --test-package=dioxus-native-dom,blitz-tests --cargo-test-arg=--lib --cargo-test-arg=--test=stand_element_ids --cargo-test-arg=--test=stand_id_persistence --cargo-test-arg=--test=stand_accessibility_ids --cargo-test-arg=--test=accessibility_names --cargo-test-arg=--test=stand_id_edits --cargo-test-arg=--test=stand_actionable_keys --cargo-test-arg=--test=stand_snapshot --baseline=skip --timeout 600 -j 2 --jobserver-tasks 6 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-dioxus-native-dom",
+  "mutation:blitz-test-harness": "CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo test --locked -p blitz-test-harness -p blitz-tests -p escher-driver --lib --test=stand_act_diff --test=stand_act_disabled --test=stand_act_ids --test=stand_act_keys --test=stand_act_obstructed --test=stand_act_range --test=stand_act_refused --test=stand_act_scroll --test=stand_act_spans --test=stand_act_timer --test=stand_session_fresh --test=stand_session_ids --test=stand_session_lifecycle --test=stand_session_quiet --test=stand_session_state --test=stand_settle (the unmutated pass, by hand, exit 0) · mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo mutants --workspace --file packages/blitz-test-harness/src/settle.rs --test-package=blitz-test-harness,blitz-tests,escher-driver --cargo-test-arg=--lib --cargo-test-arg=--test=stand_act_diff --cargo-test-arg=--test=stand_act_disabled --cargo-test-arg=--test=stand_act_ids --cargo-test-arg=--test=stand_act_keys --cargo-test-arg=--test=stand_act_obstructed --cargo-test-arg=--test=stand_act_range --cargo-test-arg=--test=stand_act_refused --cargo-test-arg=--test=stand_act_scroll --cargo-test-arg=--test=stand_act_spans --cargo-test-arg=--test=stand_act_timer --cargo-test-arg=--test=stand_session_fresh --cargo-test-arg=--test=stand_session_ids --cargo-test-arg=--test=stand_session_lifecycle --cargo-test-arg=--test=stand_session_quiet --cargo-test-arg=--test=stand_session_state --cargo-test-arg=--test=stand_settle --baseline=skip --timeout 600 -j 2 --jobserver-tasks 6 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-blitz-test-harness",
+  "mutation:dioxus-native-dom/snapshot": "CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo test --locked -p dioxus-native-dom -p blitz-tests --lib --test=stand_snapshot --test=stand_snapshot_state --test=stand_snapshot_text --test=stand_diff --test=stand_actionable_keys --test=stand_act_diff (the unmutated pass, by hand, exit 0) · mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo mutants --workspace --file packages/dioxus-native-dom/src/snapshot.rs --file packages/dioxus-native-dom/src/snapshot_text.rs --file packages/dioxus-native-dom/src/snapshot_diff.rs --file packages/dioxus-native-dom/src/actionable.rs --test-package=dioxus-native-dom,blitz-tests --cargo-test-arg=--lib --cargo-test-arg=--test=stand_snapshot --cargo-test-arg=--test=stand_snapshot_state --cargo-test-arg=--test=stand_snapshot_text --cargo-test-arg=--test=stand_diff --cargo-test-arg=--test=stand_actionable_keys --cargo-test-arg=--test=stand_act_diff --baseline=skip --timeout 600 -j 2 --jobserver-tasks 6 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-dioxus-native-dom-snapshot",
+  "mutation:blitz-dom/scrolling": "CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 nice -n 19 ionice -c 3 cargo test --locked -p blitz-dom -p blitz-tests -p dioxus-native-dom --tests (the unmutated pass, by hand, exit 0) · mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 nice -n 19 ionice -c 3 cargo mutants --workspace --file packages/blitz-dom/src/scrolling.rs -F '^packages/blitz\\-dom/src/scrolling\\.rs:(623:9|630:25|645:9|649:23|652:15|652:29|653:15|653:29|673:9|682:20|692:17|693:17|694:17|696:17|697:17|698:17|702:27|709:27|722:65|723:66|750:9|754:60|755:61|757:40|757:56|765:47|766:47|771:16|771:25|771:28|780:45|781:44|784:25|784:46|784:68|789:45|790:42|793:25|793:47|793:70|799:16|799:23|799:33|802:26|803:28): ' --test-package=blitz-dom,blitz-tests,dioxus-native-dom --cargo-test-arg=--tests --baseline=skip --timeout 600 -j 2 --jobserver-tasks 6 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-blitz-dom-scrolling · pinned while running, from 2026-10-09T17:28Z: taskset -c 12-15,28-31 on the tool's process tree, by the operator (at 58 of 97 tested)",
+  "mutation:blitz-dom/changed-set": "CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 taskset -c 12-15,28-31 nice -n 19 ionice -c 3 cargo test --locked -p blitz-dom -p blitz-tests -p dioxus-native-dom --tests (the unmutated pass, by hand, exit 0) · mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 taskset -c 12-15,28-31 nice -n 19 ionice -c 3 cargo mutants --workspace --file packages/blitz-dom/src/document.rs --file packages/blitz-dom/src/mutator.rs --file packages/blitz-dom/src/events/keyboard.rs -F '^packages/blitz\\-dom/src/document\\.rs:(1010:9|1017:9|1553:9|1557:49): ' -F '^packages/blitz\\-dom/src/events/keyboard\\.rs:(110:9): ' -F '^packages/blitz\\-dom/src/mutator\\.rs:(199:9|203:13|208:36|210:37|238:9|244:30|245:41|275:9|281:27|294:31|304:23|304:44|322:33|341:23|342:13|342:27|343:13|343:27|348:23|355:18|359:18|371:18|377:18|377:45|384:12|388:24|390:31|392:31|394:31|395:13|395:28|398:31|399:13|399:28|406:9|413:27|423:23|423:44|440:12|443:33|457:23|463:23|464:13|464:27|465:13|465:27|470:23|475:23|488:18|488:45|493:18|496:31|498:31|500:31|500:68|507:9|509:33|516:9|518:33|525:9|527:33|534:9|536:33|544:9|546:33|554:9|556:33|564:9|574:37|582:45|598:9|602:33|619:31|625:45|633:9|642:27|649:33|649:53|649:56|650:29|650:32|702:9|703:33|703:62|703:65|704:38|704:41|716:37|733:31|739:49|752:27|765:42|765:45|767:23|767:50): ' --test-package=blitz-dom,blitz-tests,dioxus-native-dom --cargo-test-arg=--tests --baseline=skip --timeout 600 -j 2 --jobserver-tasks 6 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-blitz-dom-changed-set",
+  "head_overshoot": "git log --format=%H -1 -S'2026-10-07-driver-command-spans · complete' -- .andromeda/master-route.md · git rev-list --count 72149121de1fa9e58f74099a1c5bdf9d9d8216da..HEAD · git diff --numstat 72149121de1fa9e58f74099a1c5bdf9d9d8216da..HEAD -- '*.rs' ':!:.andromeda/**' ':!:.claude/**' ':!:scripts/**' ':!:docs/**' ':!:refs/**'"
+ },
+ "recipes": {
+  "dead": "zero-ref rows = canonical audit-pass SQL without LIMIT (symbol LEFT JOIN refs, refs.callee NULL; rows of `symbol`, not distinct strings). 1) exclude test: '/'||stripped-symbol-path OR '/'||file LIKE '%/tests/%' (stripped = regexp_replace(symbol,'^rust-analyzer cargo \\S+ \\S+ ','')). 2) trait-impl: stripped path matches 'impl#\\[[^\\]]*\\]\\[[^\\]]*\\]'. 3) residual classed first-match: entry-point (fn main() at crate root | module crate/) · test-only (path segment test|tests|*_test|*_tests, or #[test]/#[cfg(test)] within the 4 lines above the def) · derive/attr-invoked (__bitflags_flag_names/ | Props# | StoreImplExt#) · runtime-invoked (>1 residual symbol on one def line = macro-generated binding) · format-capture ({name} or {name: in the def file) · else candidate. Candidates are 'candidates', never 'dead'."
+ },
+ "corrections": [
+  {
+   "target_sha": "42b80ad94e1c96014c0325e2a3f4a7135ff1f9ca",
+   "field": "mutation.timing.dioxus-native-dom",
+   "was": null,
+   "now": {
+    "scope": "files",
+    "files": [
+     "packages/dioxus-native-dom/src/dioxus_document.rs",
+     "packages/dioxus-native-dom/src/element_id.rs"
+    ],
+    "planned": 57,
+    "tested": 57,
+    "jobs": 2
+   },
+   "note": "schema-gap fill: the record scores dioxus-native-dom with no `mutation.timing` entry, so the score's scope is read from that record's own `commands.mutation`, whose two `--file` flags name these paths (`{unit}` = dioxus-native-dom) and whose `-j 2` is the jobs; planned and tested are its `counts.mutants` (its unit state reads complete 57/57); wall and cap are not recorded there and stay unknown"
+  }
+ ],
+ "skips": [
+  {
+   "metric": "mutation:seven_guis",
+   "reason": "declined"
+  },
+  {
+   "metric": "mutation:blitz-test-harness (harness.rs, input.rs — the unit's other touched files, 70 of its 92 touched-file mutants)",
+   "reason": "declined"
+  },
+  {
+   "metric": "mutation:blitz-dom (scrolling.rs outside the four functions this epoch changed — 287 of the file's 378 mutants, 6 of them tested apart as field deletions)",
+   "reason": "declined"
+  }
+ ]
+}

@@ -1,0 +1,90 @@
+{
+ "key": "escher-telemetry",
+ "unit": "escher-telemetry",
+ "unit_state": "complete 33/33",
+ "counts": {
+  "mutants": 33,
+  "caught": 28,
+  "missed": 0,
+  "not_measured": 0,
+  "timeout": 0,
+  "unviable": 5
+ },
+ "score": 100.0,
+ "score_formula": "caught/(caught+missed)",
+ "survivors": [],
+ "not_measured": [],
+ "host": "x86_64-unknown-linux-gnu",
+ "timeouts": [],
+ "unviable_sites": [
+  [
+   "packages/escher-telemetry/src/format.rs:165:13",
+   "replace && with || in <impl FormatEvent<S, SpanFields> for EscherFormat>::format_event"
+  ],
+  [
+   "packages/escher-telemetry/src/format.rs:98:5",
+   "replace decide -> Verdict with Default::default()"
+  ],
+  [
+   "packages/escher-telemetry/src/lib.rs:110:5",
+   "replace sink_layer -> tracing_subscriber::fmt::Layer<S, format::SpanFields, format::EscherFormat, W> with Default::default()"
+  ],
+  [
+   "packages/escher-telemetry/src/lib.rs:122:5",
+   "replace init -> Result<InitOutcome, InitError> with Ok(Default::default())"
+  ],
+  [
+   "packages/escher-telemetry/src/lib.rs:134:5",
+   "replace init_with_writer -> Result<InitOutcome, InitError> with Ok(Default::default())"
+  ]
+ ],
+ "per_file": {
+  "packages/escher-telemetry/src/format.rs": {
+   "Unviable": 2,
+   "CaughtMutant": 26
+  },
+  "packages/escher-telemetry/src/lib.rs": {
+   "Unviable": 3,
+   "CaughtMutant": 1
+  },
+  "packages/escher-telemetry/src/panic.rs": {
+   "CaughtMutant": 1
+  }
+ },
+ "riders": null,
+ "timing": {
+  "scope": "unit",
+  "planned": 33,
+  "tested": 33,
+  "wall_s": 600,
+  "jobs": 2,
+  "cap_s": 1800
+ },
+ "per_mutant_s": 18.18,
+ "tool": {
+  "cargo_mutants_version": "27.1.0",
+  "start_time": "2026-10-09T15:41:22.236050804Z",
+  "end_time": "2026-10-09T15:51:22.459809554Z",
+  "exit": 0,
+  "non_mutant_scenarios": [],
+  "test_timeout_s": 600
+ },
+ "command": "mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo mutants -p escher-telemetry --test-package=escher-telemetry,blitz-tests,seven_guis --cargo-test-arg=--lib --cargo-test-arg=--test=stand_act_spans --cargo-test-arg=--test=telemetry_drop --cargo-test-arg=--test=telemetry_init_idempotent --cargo-test-arg=--test=telemetry_panic_hook --cargo-test-arg=--test=telemetry_scrub --cargo-test-arg=--test=telemetry_stdout_silent --cargo-test-arg=--test=host_binary --cargo-test-arg=--test=host_log --baseline=skip --timeout 600 -j 2 --jobserver-tasks 6 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-escher-telemetry",
+ "hand_pass": {
+  "command": "CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo test --locked -p escher-telemetry -p blitz-tests -p seven_guis --lib --test=stand_act_spans --test=telemetry_drop --test=telemetry_init_idempotent --test=telemetry_panic_hook --test=telemetry_scrub --test=telemetry_stdout_silent --test=host_binary --test=host_log",
+  "exit": 0,
+  "wall_s": 2.9,
+  "result_lines": 11,
+  "passed": 26,
+  "failed": 0,
+  "ignored": 4,
+  "summed_test_time_s": 1.73
+ },
+ "cap": {
+  "resized": false,
+  "rate_s_per_mutant": null,
+  "rate_at": null,
+  "resized_cap_s": null,
+  "cap_s": 1800
+ }
+}

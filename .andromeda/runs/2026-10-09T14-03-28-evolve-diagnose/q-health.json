@@ -1,0 +1,586 @@
+{
+ "epoch": "Epoch 4 — Driver core",
+ "records": 246,
+ "step": 137,
+ "friction": 109,
+ "ledger_records": 704,
+ "unparseable": 0,
+ "malformed_ts": [],
+ "coverage": {
+  "2026-10-07-audit-corrections": {
+   "records": 28,
+   "step": 19,
+   "friction": 9,
+   "per_step": {
+    "phase/take-up": 1,
+    "phase/research": 2,
+    "phase/distill": 1,
+    "phase/plan": 2,
+    "phase/validate": 2,
+    "implement/code": 2,
+    "implement/fix-loop": 2,
+    "implement/smoke": 2,
+    "wrap-session/curation": 1,
+    "wrap-session/gates": 1,
+    "wrap-session/reconcile": 1,
+    "wrap-session/report": 1,
+    "wrap-session/route-resolve": 1
+   },
+   "gaps": [],
+   "repeats": [
+    [
+     "phase/research",
+     2
+    ],
+    [
+     "phase/plan",
+     2
+    ],
+    [
+     "phase/validate",
+     2
+    ],
+    [
+     "implement/code",
+     2
+    ],
+    [
+     "implement/fix-loop",
+     2
+    ],
+    [
+     "implement/smoke",
+     2
+    ]
+   ],
+   "unexpected_steps": []
+  },
+  "2026-10-07-upstream-sync-driver-core": {
+   "records": 16,
+   "step": 13,
+   "friction": 3,
+   "per_step": {
+    "phase/take-up": 1,
+    "phase/research": 1,
+    "phase/distill": 1,
+    "phase/plan": 1,
+    "phase/validate": 1,
+    "implement/code": 1,
+    "implement/fix-loop": 1,
+    "implement/smoke": 1,
+    "wrap-session/curation": 1,
+    "wrap-session/gates": 1,
+    "wrap-session/reconcile": 1,
+    "wrap-session/report": 1,
+    "wrap-session/route-resolve": 1
+   },
+   "gaps": [],
+   "repeats": [],
+   "unexpected_steps": []
+  },
+  "2026-10-07-driver-session": {
+   "records": 28,
+   "step": 14,
+   "friction": 14,
+   "per_step": {
+    "phase/take-up": 1,
+    "phase/research": 1,
+    "phase/distill": 1,
+    "phase/plan": 2,
+    "phase/validate": 1,
+    "implement/code": 1,
+    "implement/fix-loop": 1,
+    "implement/smoke": 1,
+    "wrap-session/curation": 1,
+    "wrap-session/gates": 1,
+    "wrap-session/reconcile": 1,
+    "wrap-session/report": 1,
+    "wrap-session/route-resolve": 1
+   },
+   "gaps": [],
+   "repeats": [
+    [
+     "phase/plan",
+     2
+    ]
+   ],
+   "unexpected_steps": []
+  },
+  "2026-10-07-sink-target-allowlist": {
+   "records": 21,
+   "step": 13,
+   "friction": 8,
+   "per_step": {
+    "phase/take-up": 1,
+    "phase/research": 1,
+    "phase/distill": 1,
+    "phase/plan": 1,
+    "phase/validate": 1,
+    "implement/code": 1,
+    "implement/fix-loop": 1,
+    "implement/smoke": 1,
+    "wrap-session/curation": 1,
+    "wrap-session/gates": 1,
+    "wrap-session/reconcile": 1,
+    "wrap-session/report": 1,
+    "wrap-session/route-resolve": 1
+   },
+   "gaps": [],
+   "repeats": [],
+   "unexpected_steps": []
+  },
+  "2026-10-07-settle-detection": {
+   "records": 27,
+   "step": 13,
+   "friction": 14,
+   "per_step": {
+    "phase/take-up": 1,
+    "phase/research": 1,
+    "phase/distill": 1,
+    "phase/plan": 1,
+    "phase/validate": 1,
+    "implement/code": 1,
+    "implement/fix-loop": 1,
+    "implement/smoke": 1,
+    "wrap-session/curation": 1,
+    "wrap-session/gates": 1,
+    "wrap-session/reconcile": 1,
+    "wrap-session/report": 1,
+    "wrap-session/route-resolve": 1
+   },
+   "gaps": [],
+   "repeats": [],
+   "unexpected_steps": []
+  },
+  "2026-10-07-command-and-refusal-schema": {
+   "records": 21,
+   "step": 13,
+   "friction": 8,
+   "per_step": {
+    "phase/take-up": 1,
+    "phase/research": 1,
+    "phase/distill": 1,
+    "phase/plan": 1,
+    "phase/validate": 1,
+    "implement/code": 1,
+    "implement/fix-loop": 1,
+    "implement/smoke": 1,
+    "wrap-session/curation": 1,
+    "wrap-session/gates": 1,
+    "wrap-session/reconcile": 1,
+    "wrap-session/report": 1,
+    "wrap-session/route-resolve": 1
+   },
+   "gaps": [],
+   "repeats": [],
+   "unexpected_steps": []
+  },
+  "2026-10-07-act-by-id": {
+   "records": 25,
+   "step": 13,
+   "friction": 12,
+   "per_step": {
+    "phase/take-up": 1,
+    "phase/research": 1,
+    "phase/distill": 1,
+    "phase/plan": 1,
+    "phase/validate": 1,
+    "implement/code": 1,
+    "implement/fix-loop": 1,
+    "implement/smoke": 1,
+    "wrap-session/curation": 1,
+    "wrap-session/gates": 1,
+    "wrap-session/reconcile": 1,
+    "wrap-session/report": 1,
+    "wrap-session/route-resolve": 1
+   },
+   "gaps": [],
+   "repeats": [],
+   "unexpected_steps": []
+  },
+  "2026-10-07-refusal-detection": {
+   "records": 36,
+   "step": 14,
+   "friction": 22,
+   "per_step": {
+    "phase/take-up": 1,
+    "phase/research": 1,
+    "phase/distill": 1,
+    "phase/plan": 2,
+    "phase/validate": 1,
+    "implement/code": 1,
+    "implement/fix-loop": 1,
+    "implement/smoke": 1,
+    "wrap-session/curation": 1,
+    "wrap-session/gates": 1,
+    "wrap-session/reconcile": 1,
+    "wrap-session/report": 1,
+    "wrap-session/route-resolve": 1
+   },
+   "gaps": [],
+   "repeats": [
+    [
+     "phase/plan",
+     2
+    ]
+   ],
+   "unexpected_steps": []
+  },
+  "2026-10-07-driver-command-spans": {
+   "records": 24,
+   "step": 13,
+   "friction": 11,
+   "per_step": {
+    "phase/take-up": 1,
+    "phase/research": 1,
+    "phase/distill": 1,
+    "phase/plan": 1,
+    "phase/validate": 1,
+    "implement/code": 1,
+    "implement/fix-loop": 1,
+    "implement/smoke": 1,
+    "wrap-session/curation": 1,
+    "wrap-session/gates": 1,
+    "wrap-session/reconcile": 1,
+    "wrap-session/report": 1,
+    "wrap-session/route-resolve": 1
+   },
+   "gaps": [],
+   "repeats": [],
+   "unexpected_steps": []
+  }
+ },
+ "no_chunk_records": [
+  [
+   459,
+   "2026-10-07T02:41:23Z",
+   "step",
+   "new-session",
+   "orientation",
+   "ok"
+  ],
+  [
+   460,
+   "2026-10-07T02:44:20Z",
+   "step",
+   "wrap-session",
+   "curation",
+   "ok"
+  ],
+  [
+   461,
+   "2026-10-07T02:44:20Z",
+   "friction",
+   "wrap-session",
+   "curation",
+   "ambiguity.filter-borderline"
+  ],
+  [
+   462,
+   "2026-10-07T02:44:20Z",
+   "friction",
+   "wrap-session",
+   "curation",
+   "ambiguity.tier-routing"
+  ],
+  [
+   463,
+   "2026-10-07T02:45:21Z",
+   "step",
+   "wrap-session",
+   "route-resolve",
+   "ok"
+  ],
+  [
+   464,
+   "2026-10-07T02:45:21Z",
+   "friction",
+   "wrap-session",
+   "route-resolve",
+   null
+  ],
+  [
+   465,
+   "2026-10-07T02:47:46Z",
+   "step",
+   "new-session",
+   "orientation",
+   "ok"
+  ],
+  [
+   494,
+   "2026-10-07T04:22:51Z",
+   "step",
+   "new-session",
+   "orientation",
+   "ok"
+  ],
+  [
+   495,
+   "2026-10-07T04:22:51Z",
+   "friction",
+   "new-session",
+   "orientation",
+   null
+  ],
+  [
+   496,
+   "2026-10-07T04:22:51Z",
+   "friction",
+   "new-session",
+   "orientation",
+   "contract.jointly-contradictory-instructions"
+  ],
+  [
+   513,
+   "2026-10-07T04:49:16Z",
+   "step",
+   "new-session",
+   "orientation",
+   "ok"
+  ],
+  [
+   542,
+   "2026-10-07T07:27:38Z",
+   "step",
+   "new-session",
+   "orientation",
+   "ok"
+  ],
+  [
+   564,
+   "2026-10-07T10:07:43Z",
+   "step",
+   "new-session",
+   "orientation",
+   "ok"
+  ],
+  [
+   565,
+   "2026-10-07T10:07:43Z",
+   "friction",
+   "new-session",
+   "orientation",
+   "contract.skill-reference-drift"
+  ],
+  [
+   593,
+   "2026-10-07T11:45:00Z",
+   "step",
+   "new-session",
+   "orientation",
+   "ok"
+  ],
+  [
+   615,
+   "2026-10-07T12:59:24Z",
+   "step",
+   "new-session",
+   "orientation",
+   "ok"
+  ],
+  [
+   616,
+   "2026-10-07T12:59:24Z",
+   "friction",
+   "new-session",
+   "orientation",
+   "contract.skill-reference-drift"
+  ],
+  [
+   642,
+   "2026-10-07T15:09:57Z",
+   "step",
+   "new-session",
+   "orientation",
+   "ok"
+  ],
+  [
+   679,
+   "2026-10-07T21:15:25Z",
+   "step",
+   "new-session",
+   "orientation",
+   "ok"
+  ],
+  [
+   680,
+   "2026-10-07T21:15:25Z",
+   "friction",
+   "new-session",
+   "orientation",
+   "contract.skill-reference-drift"
+  ]
+ ],
+ "orientation_records": 10,
+ "step_runs": {
+  "implement/code": 10,
+  "implement/fix-loop": 10,
+  "implement/smoke": 10,
+  "new-session/orientation": 10,
+  "phase/distill": 9,
+  "phase/plan": 12,
+  "phase/research": 10,
+  "phase/take-up": 9,
+  "phase/validate": 10,
+  "wrap-session/curation": 10,
+  "wrap-session/gates": 9,
+  "wrap-session/reconcile": 9,
+  "wrap-session/report": 9,
+  "wrap-session/route-resolve": 10
+ },
+ "untyped_rate_per_step": {
+  "implement/code": {
+   "friction": 15,
+   "untyped": 3,
+   "rate": 0.2
+  },
+  "implement/fix-loop": {
+   "friction": 3,
+   "untyped": 0,
+   "rate": 0.0
+  },
+  "implement/smoke": {
+   "friction": 1,
+   "untyped": 0,
+   "rate": 0.0
+  },
+  "new-session/orientation": {
+   "friction": 5,
+   "untyped": 1,
+   "rate": 0.2
+  },
+  "phase/distill": {
+   "friction": 6,
+   "untyped": 0,
+   "rate": 0.0
+  },
+  "phase/plan": {
+   "friction": 6,
+   "untyped": 1,
+   "rate": 0.167
+  },
+  "phase/research": {
+   "friction": 4,
+   "untyped": 1,
+   "rate": 0.25
+  },
+  "phase/take-up": {
+   "friction": 6,
+   "untyped": 1,
+   "rate": 0.167
+  },
+  "phase/validate": {
+   "friction": 8,
+   "untyped": 0,
+   "rate": 0.0
+  },
+  "wrap-session/curation": {
+   "friction": 13,
+   "untyped": 0,
+   "rate": 0.0
+  },
+  "wrap-session/gates": {
+   "friction": 2,
+   "untyped": 1,
+   "rate": 0.5
+  },
+  "wrap-session/reconcile": {
+   "friction": 26,
+   "untyped": 3,
+   "rate": 0.115
+  },
+  "wrap-session/report": {
+   "friction": 7,
+   "untyped": 2,
+   "rate": 0.286
+  },
+  "wrap-session/route-resolve": {
+   "friction": 7,
+   "untyped": 1,
+   "rate": 0.143
+  }
+ },
+ "untyped_total": 14,
+ "problem_fact_fill": {
+  "populated": 60,
+  "step_records": 137,
+  "facts": 82
+ },
+ "id_fill": {
+  "with_id": 246,
+  "records": 246
+ },
+ "id_ts_mismatch": [],
+ "duplicate_ids": [],
+ "skill_spellings": {
+  "new-session": 4,
+  "wrap-session": 32,
+  "andromeda-new-session": 11,
+  "andromeda-phase": 59,
+  "andromeda-implement": 32,
+  "implement": 17,
+  "andromeda-wrap-session": 70,
+  "phase": 21
+ },
+ "version_spellings": {
+  "escher-0.1.0": 233,
+  "0.1.0": 13
+ },
+ "epoch_spellings": {
+  "Epoch 4 — Driver core": 246
+ },
+ "outcomes": {
+  "ok": 132,
+  "ok-degraded": 2,
+  "halted-resolved": 3
+ },
+ "outcome_non_ok": [
+  [
+   476,
+   "2026-10-07-audit-corrections",
+   "implement",
+   "fix-loop",
+   "ok-degraded"
+  ],
+  [
+   643,
+   "2026-10-07-refusal-detection",
+   "phase",
+   "take-up",
+   "halted-resolved"
+  ],
+  [
+   664,
+   "2026-10-07-refusal-detection",
+   "wrap-session",
+   "reconcile",
+   "halted-resolved"
+  ],
+  [
+   671,
+   "2026-10-07-refusal-detection",
+   "wrap-session",
+   "curation",
+   "ok-degraded"
+  ],
+  [
+   695,
+   "2026-10-07-driver-command-spans",
+   "wrap-session",
+   "reconcile",
+   "halted-resolved"
+  ]
+ ],
+ "evidence_fill": {
+  "friction_with_evidence": 55,
+  "friction": 109
+ },
+ "retractions": {
+  "retracted": 0,
+  "unresolvable": 1,
+  "clause_retracted": 1,
+  "retraction_of_retraction": []
+ },
+ "ts_out_of_order": 0
+}

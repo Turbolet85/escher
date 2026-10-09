@@ -1,0 +1,23 @@
+{
+ "key": "escher-driver",
+ "unit": "escher-driver",
+ "pid": 2866398,
+ "start_epoch": 1791556860.0405946,
+ "cap_s": 1800,
+ "resized": false,
+ "jobs": 2,
+ "timeout_s": 600,
+ "footprint": {
+  "CARGO_BUILD_JOBS": "4",
+  "RUST_TEST_THREADS": "4",
+  "jobs": 2,
+  "jobserver_tasks": 8
+ },
+ "command": "mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo mutants -p escher-driver --test-package=escher-driver,blitz-tests,seven_guis --cargo-test-arg=--lib --cargo-test-arg=--test=stand_act_diff --cargo-test-arg=--test=stand_act_disabled --cargo-test-arg=--test=stand_act_ids --cargo-test-arg=--test=stand_act_keys --cargo-test-arg=--test=stand_act_obstructed --cargo-test-arg=--test=stand_act_range --cargo-test-arg=--test=stand_act_refused --cargo-test-arg=--test=stand_act_scroll --cargo-test-arg=--test=stand_act_spans --cargo-test-arg=--test=stand_act_timer --cargo-test-arg=--test=stand_session_fresh --cargo-test-arg=--test=stand_session_ids --cargo-test-arg=--test=stand_session_lifecycle --cargo-test-arg=--test=stand_session_quiet --cargo-test-arg=--test=stand_session_state --cargo-test-arg=--test=stand_settle --cargo-test-arg=--test=telemetry_scrub --cargo-test-arg=--test=host_binary --cargo-test-arg=--test=host_log --baseline=skip --timeout 600 -j 2 --jobserver-tasks 8 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-escher-driver",
+ "state": "exited",
+ "returncode": 1,
+ "elapsed_s": 30,
+ "live_tested": 0,
+ "end_time": null,
+ "planned": 213
+}

@@ -1,0 +1,187 @@
+{
+ "key": "blitz-dom-scrolling",
+ "unit": "blitz-dom",
+ "unit_state": "complete 97/97",
+ "counts": {
+  "mutants": 91,
+  "caught": 80,
+  "missed": 0,
+  "not_measured": 0,
+  "timeout": 0,
+  "unviable": 11
+ },
+ "score": 100.0,
+ "score_formula": "caught/(caught+missed)",
+ "survivors": [],
+ "not_measured": [],
+ "host": "x86_64-unknown-linux-gnu",
+ "timeouts": [],
+ "unviable_sites": [
+  [
+   "packages/blitz-dom/src/scrolling.rs:645:9",
+   "replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::from(-1.0))"
+  ],
+  [
+   "packages/blitz-dom/src/scrolling.rs:645:9",
+   "replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::from(0.0))"
+  ],
+  [
+   "packages/blitz-dom/src/scrolling.rs:645:9",
+   "replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::from(1.0))"
+  ],
+  [
+   "packages/blitz-dom/src/scrolling.rs:645:9",
+   "replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::from_iter([-1.0]))"
+  ],
+  [
+   "packages/blitz-dom/src/scrolling.rs:645:9",
+   "replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::from_iter([0.0]))"
+  ],
+  [
+   "packages/blitz-dom/src/scrolling.rs:645:9",
+   "replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::from_iter([1.0]))"
+  ],
+  [
+   "packages/blitz-dom/src/scrolling.rs:645:9",
+   "replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::new())"
+  ],
+  [
+   "packages/blitz-dom/src/scrolling.rs:645:9",
+   "replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::new(-1.0))"
+  ],
+  [
+   "packages/blitz-dom/src/scrolling.rs:645:9",
+   "replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::new(0.0))"
+  ],
+  [
+   "packages/blitz-dom/src/scrolling.rs:645:9",
+   "replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::new(1.0))"
+  ],
+  [
+   "packages/blitz-dom/src/scrolling.rs:750:9",
+   "replace BaseDocument::visible_region -> Option<BoundingRect> with Some(Default::default())"
+  ]
+ ],
+ "per_file": {
+  "packages/blitz-dom/src/scrolling.rs": {
+   "CaughtMutant": 80,
+   "Unviable": 11
+  }
+ },
+ "riders": {
+  "counts": {
+   "mutants": 6,
+   "caught": 6,
+   "missed": 0,
+   "not_measured": 0,
+   "timeout": 0,
+   "unviable": 0
+  },
+  "sites": [
+   [
+    "packages/blitz-dom/src/scrolling.rs:186:25",
+    "delete field target from struct ScrollRequest expression in BaseDocument::scroll",
+    "CaughtMutant"
+   ],
+   [
+    "packages/blitz-dom/src/scrolling.rs:187:25",
+    "delete field amount from struct ScrollRequest expression in BaseDocument::scroll",
+    "CaughtMutant"
+   ],
+   [
+    "packages/blitz-dom/src/scrolling.rs:215:17",
+    "delete field target from struct ScrollRequest expression in BaseDocument::scroll_inner_content_by",
+    "CaughtMutant"
+   ],
+   [
+    "packages/blitz-dom/src/scrolling.rs:216:17",
+    "delete field amount from struct ScrollRequest expression in BaseDocument::scroll_inner_content_by",
+    "CaughtMutant"
+   ],
+   [
+    "packages/blitz-dom/src/scrolling.rs:247:21",
+    "delete field target from struct ScrollRequest expression in BaseDocument::scroll_inner_content_by",
+    "CaughtMutant"
+   ],
+   [
+    "packages/blitz-dom/src/scrolling.rs:248:21",
+    "delete field amount from struct ScrollRequest expression in BaseDocument::scroll_inner_content_by",
+    "CaughtMutant"
+   ]
+  ],
+  "survivors": [],
+  "not_measured": [],
+  "note": "field-deletion mutants of the named files outside the rule: cargo-mutants 27.1.0 applies no name filter to them (measured), so the invocation tests them too"
+ },
+ "timing": {
+  "scope": "filter",
+  "planned": 97,
+  "tested": 97,
+  "wall_s": 2499,
+  "jobs": 2,
+  "cap_s": 5136,
+  "files": [
+   "packages/blitz-dom/src/scrolling.rs"
+  ],
+  "rule": "every listed mutant whose enclosing function holds a line added in b7e3a43b..HEAD",
+  "filter": [
+   "^packages/blitz\\-dom/src/scrolling\\.rs:(623:9|630:25|645:9|649:23|652:15|652:29|653:15|653:29|673:9|682:20|692:17|693:17|694:17|696:17|697:17|698:17|702:27|709:27|722:65|723:66|750:9|754:60|755:61|757:40|757:56|765:47|766:47|771:16|771:25|771:28|780:45|781:44|784:25|784:46|784:68|789:45|790:42|793:25|793:47|793:70|799:16|799:23|799:33|802:26|803:28): "
+  ],
+  "functions": [
+   "packages/blitz-dom/src/scrolling.rs: BaseDocument::containing_block_chain",
+   "packages/blitz-dom/src/scrolling.rs: BaseDocument::offset_within",
+   "packages/blitz-dom/src/scrolling.rs: BaseDocument::scroll_into_view",
+   "packages/blitz-dom/src/scrolling.rs: BaseDocument::visible_region"
+  ],
+  "in_rule": 91,
+  "riders": 6
+ },
+ "per_mutant_s": 25.76,
+ "tool": {
+  "cargo_mutants_version": "27.1.0",
+  "start_time": "2026-10-09T17:09:48.76958647Z",
+  "end_time": "2026-10-09T17:51:27.410311286Z",
+  "exit": null,
+  "non_mutant_scenarios": [],
+  "test_timeout_s": 600
+ },
+ "command": "mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 nice -n 19 ionice -c 3 cargo mutants --workspace --file packages/blitz-dom/src/scrolling.rs -F '^packages/blitz\\-dom/src/scrolling\\.rs:(623:9|630:25|645:9|649:23|652:15|652:29|653:15|653:29|673:9|682:20|692:17|693:17|694:17|696:17|697:17|698:17|702:27|709:27|722:65|723:66|750:9|754:60|755:61|757:40|757:56|765:47|766:47|771:16|771:25|771:28|780:45|781:44|784:25|784:46|784:68|789:45|790:42|793:25|793:47|793:70|799:16|799:23|799:33|802:26|803:28): ' --test-package=blitz-dom,blitz-tests,dioxus-native-dom --cargo-test-arg=--tests --baseline=skip --timeout 600 -j 2 --jobserver-tasks 6 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-blitz-dom-scrolling",
+ "hand_pass": {
+  "command": "CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 nice -n 19 ionice -c 3 cargo test --locked -p blitz-dom -p blitz-tests -p dioxus-native-dom --tests",
+  "exit": 0,
+  "wall_s": 36.3,
+  "result_lines": 101,
+  "passed": 504,
+  "failed": 0,
+  "ignored": 10,
+  "summed_test_time_s": 34.61
+ },
+ "footprint": {
+  "CARGO_BUILD_JOBS": "4",
+  "RUST_TEST_THREADS": "4",
+  "jobs": 2,
+  "jobserver_tasks": 6,
+  "priority": "nice -n 19 ionice -c 3"
+ },
+ "pin": {
+  "cpus": "12-15,28-31",
+  "by": "the operator, taskset on the running tree (root pid 2699947, descendants inherit)",
+  "at": "2026-10-09T17:28Z",
+  "marker": {
+   "elapsed_s": 1220,
+   "live_tested": 58
+  }
+ },
+ "cap": {
+  "resized": true,
+  "rate_s_per_mutant": 35.3,
+  "rate_at": {
+   "elapsed_s": 1820,
+   "live_tested": 75,
+   "since_elapsed_s": 1220,
+   "since_live_tested": 58
+  },
+  "resized_cap_s": 5136,
+  "cap_s": 5136
+ }
+}

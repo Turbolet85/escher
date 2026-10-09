@@ -1,0 +1,10 @@
+{
+ "command": "CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 taskset -c 12-15,28-31 nice -n 19 ionice -c 3 cargo test --locked -p blitz-dom -p blitz-tests -p dioxus-native-dom --tests",
+ "exit": 0,
+ "wall_s": 38.1,
+ "result_lines": 101,
+ "passed": 504,
+ "failed": 0,
+ "ignored": 10,
+ "summed_test_time_s": 36.1
+}

@@ -1,0 +1,544 @@
+[
+{
+"tool": "cites",
+"v": "1.3",
+"sha8": "3f3a888b",
+"ts": "2026-10-09T19:18:56Z",
+"argv": [
+"apply",
+"--dry-run",
+"--run-dir",
+".andromeda/runs/2026-10-09T19-17-00-wrap",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"base: blame — no earlier sweep; each citing line's own last commit"
+],
+"stderr": "no earlier sweep — a blame-based apply is the FIRST sweep's: run `map`, show the operator its rows, and write on the operator's word with `apply --first`",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cites",
+"v": "1.3",
+"sha8": "3f3a888b",
+"ts": "2026-10-09T19:19:03Z",
+"argv": [
+"map",
+"--run-dir",
+".andromeda/runs/2026-10-09T19-17-00-wrap",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: blame — no earlier sweep; each citing line's own last commit",
+"sites 4653 (bare \":digits\" 4686) over 39 file(s) · unmoved 4631 · moved 18 · stretched 4 · changed 0",
+"out-of-range 0 · unresolved 0 · new 0 · repointed 0 · hand 0 · held 0 · INDETERMINATE 0 · listed, not written 0",
+"the write, by blame: 18 citation(s) — the next 18 row(s), each with the line its new number names",
+"moved .andromeda/architecture.md:61 apps/browser/Cargo.toml:45-52 → 46-53 «dioxus-native = { workspace = true, feature…»",
+"moved .andromeda/architecture.md:61 apps/browser/Cargo.toml:66 → 67 «nucleo = \"0.5\"»",
+"moved .andromeda/architecture.md:61 apps/browser/Cargo.toml:74 → 75 «tokio = { workspace = true, features = [\"time\", \"…»",
+"moved .andromeda/architecture.md:61 apps/browser/Cargo.toml:77 → 78 «mimalloc = { version = \"0.1.48\", optional = true }»",
+"moved .andromeda/architecture.md:61 apps/browser/Cargo.toml:79-80 → 80-81 «[target.'cfg(not(any(target_os = \"android\",…»",
+"moved .andromeda/architecture.md:61 apps/browser/Cargo.toml:82-83 → 83-84 «[target.'cfg(target_os = \"android\")'.depend…»",
+"moved .andromeda/architecture.md:80 apps/browser/Cargo.toml:13 → 14 «default = [\"hybrid\", \"cookies\", \"cache\", \"screens…»",
+"moved .andromeda/architecture.md:80 apps/browser/Cargo.toml:18-26 → 19-27 «vello = [\"dioxus-native/vello\"]»",
+"moved .andromeda/security-plan.md:175 apps/browser/Cargo.toml:13 → 14 «default = [\"hybrid\", \"cookies\", \"cache\", \"scree…»",
+"moved .andromeda/security-plan.md:175 apps/browser/Cargo.toml:30-31 → 31-32 «cache = [\"blitz-net/cache\"]»",
+"moved .andromeda/security-plan.md:215 apps/browser/Cargo.toml:55 → 56 «blitz-net = { workspace = true, features = [\"ht…»",
+"moved .andromeda/obs-plan.md:9 apps/browser/Cargo.toml:27-29 → 28-30 «log-times = [\"log-frame-times\", \"log-phase-times…»",
+"moved .andromeda/obs-plan.md:9 apps/browser/Cargo.toml:36 → 37 «tracing = [\"dioxus-native/tracing\", \"blitz-html/tracin…»",
+"moved .andromeda/obs-plan.md:39 apps/browser/Cargo.toml:36 → 37 «tracing = [\"dioxus-native/tracing\", \"blitz-html/traci…»",
+"moved .andromeda/obs-plan.md:45 apps/browser/Cargo.toml:27-29 → 28-30 «log-times = [\"log-frame-times\", \"log-phase-time…»",
+"moved .andromeda/obs-plan.md:245 examples/seven_guis/src/lib.rs:13 → 16 «console_error_panic_hook::set_once();»",
+"moved .andromeda/a11y-plan.md:15 apps/browser/Cargo.toml:13 → 14 «default = [\"hybrid\", \"cookies\", \"cache\", \"screenshot…»",
+"moved .andromeda/a11y-plan.md:15 apps/browser/Cargo.toml:38 → 39 «accessibility = [\"dioxus-native/accessibility\"]»",
+"stretched .andromeda/architecture.md:11 examples/transparent/src/main.rs:4-13 → 4-13 — changed inside",
+"stretched .andromeda/architecture.md:243 packages/blitz-dom/src/traversal.rs:46-48 → 46-48 — changed inside",
+"stretched .andromeda/test-plan.md:97 packages/blitz-vibey-script/src/document.rs:108-133 → 108-133 — changed inside",
+"stretched .andromeda/obs-plan.md:80 packages/blitz-vibey-script/src/document.rs:242-261 → 242-261 — changed inside"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"mode": "blame",
+"base": null,
+"counts": {
+"unmoved": 4631,
+"moved": 18,
+"stretched": 4,
+"changed": 0,
+"out-of-range": 0,
+"unresolved": 0,
+"new": 0,
+"repointed": 0,
+"hand": 0,
+"INDETERMINATE": 0,
+"held": 0,
+"listed": 0
+},
+"rows": [
+{
+"class": "stretched",
+"file": ".andromeda/architecture.md",
+"line": 11,
+"col": 516,
+"path": "examples/transparent/src/main.rs",
+"now": "4-13",
+"base": "4-13",
+"to": "4-13",
+"write": false,
+"listed": null,
+"detail": "changed inside",
+"text": "//! An example of a Dioxus Native app with a transparent window background.",
+"sha": [
+"d4d192f3b78d",
+"f7af578b5762"
+],
+"citing": "6bc4823d7094",
+"nth": 3,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/architecture.md",
+"line": 61,
+"col": 100,
+"path": "apps/browser/Cargo.toml",
+"now": "45-52",
+"base": "45-52",
+"to": "46-53",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "dioxus-native = { workspace = true, features = [",
+"sha": [
+"b66674abc597",
+"ec8fd0446819"
+],
+"citing": "32c43fa39902",
+"nth": 0,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/architecture.md",
+"line": 61,
+"col": 148,
+"path": "apps/browser/Cargo.toml",
+"now": "66",
+"base": "66",
+"to": "67",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "nucleo = \"0.5\"",
+"sha": [
+"7a48a8fc9e3d"
+],
+"citing": "32c43fa39902",
+"nth": 1,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/architecture.md",
+"line": 61,
+"col": 248,
+"path": "apps/browser/Cargo.toml",
+"now": "74",
+"base": "74",
+"to": "75",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "tokio = { workspace = true, features = [\"time\", \"rt\", \"sync\", \"macros\"] }",
+"sha": [
+"d2981de67a3f"
+],
+"citing": "32c43fa39902",
+"nth": 3,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/architecture.md",
+"line": 61,
+"col": 305,
+"path": "apps/browser/Cargo.toml",
+"now": "77",
+"base": "77",
+"to": "78",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "mimalloc = { version = \"0.1.48\", optional = true }",
+"sha": [
+"46e7de91bb07"
+],
+"citing": "32c43fa39902",
+"nth": 4,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/architecture.md",
+"line": 61,
+"col": 382,
+"path": "apps/browser/Cargo.toml",
+"now": "79-80",
+"base": "79-80",
+"to": "80-81",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "[target.'cfg(not(any(target_os = \"android\", target_os = \"ios\")))'.dependencies]",
+"sha": [
+"15468f420d16",
+"1095306e322e"
+],
+"citing": "32c43fa39902",
+"nth": 6,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/architecture.md",
+"line": 61,
+"col": 477,
+"path": "apps/browser/Cargo.toml",
+"now": "82-83",
+"base": "82-83",
+"to": "83-84",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "[target.'cfg(target_os = \"android\")'.dependencies]",
+"sha": [
+"9f2210ada03a",
+"2b242825a2b0"
+],
+"citing": "32c43fa39902",
+"nth": 8,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/architecture.md",
+"line": 80,
+"col": 1034,
+"path": "apps/browser/Cargo.toml",
+"now": "13",
+"base": "13",
+"to": "14",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "default = [\"hybrid\", \"cookies\", \"cache\", \"screenshot\", \"apple-font-embolden\", \"…",
+"sha": [
+"9b5ed29a16a8"
+],
+"citing": "260c3240e67f",
+"nth": 8,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/architecture.md",
+"line": 80,
+"col": 1062,
+"path": "apps/browser/Cargo.toml",
+"now": "18-26",
+"base": "18-26",
+"to": "19-27",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "vello = [\"dioxus-native/vello\"]",
+"sha": [
+"1be8cd429d80",
+"db2cfce1fddf"
+],
+"citing": "260c3240e67f",
+"nth": 9,
+"since": null
+},
+{
+"class": "stretched",
+"file": ".andromeda/architecture.md",
+"line": 243,
+"col": 142,
+"path": "packages/blitz-dom/src/traversal.rs",
+"now": "46-48",
+"base": "46-48",
+"to": "46-48",
+"write": false,
+"listed": null,
+"detail": "changed inside",
+"text": "#[derive(Clone)]",
+"sha": [
+"7c6e0d8c1f1b",
+"24f93b551ddb"
+],
+"citing": "120bacb1d060",
+"nth": 1,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/security-plan.md",
+"line": 175,
+"col": 393,
+"path": "apps/browser/Cargo.toml",
+"now": "13",
+"base": "13",
+"to": "14",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "default = [\"hybrid\", \"cookies\", \"cache\", \"screenshot\", \"apple-font-embolden\", \"…",
+"sha": [
+"9b5ed29a16a8"
+],
+"citing": "e55afd81ef1e",
+"nth": 3,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/security-plan.md",
+"line": 175,
+"col": 421,
+"path": "apps/browser/Cargo.toml",
+"now": "30-31",
+"base": "30-31",
+"to": "31-32",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "cache = [\"blitz-net/cache\"]",
+"sha": [
+"1e0760fed305",
+"e6795187eff1"
+],
+"citing": "e55afd81ef1e",
+"nth": 4,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/security-plan.md",
+"line": 215,
+"col": 96,
+"path": "apps/browser/Cargo.toml",
+"now": "55",
+"base": "55",
+"to": "56",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "blitz-net = { workspace = true, features = [\"http2\"] }",
+"sha": [
+"723a1e7acea6"
+],
+"citing": "b9126a78de73",
+"nth": 0,
+"since": null
+},
+{
+"class": "stretched",
+"file": ".andromeda/test-plan.md",
+"line": 97,
+"col": 509,
+"path": "packages/blitz-vibey-script/src/document.rs",
+"now": "108-133",
+"base": "108-133",
+"to": "108-133",
+"write": false,
+"listed": null,
+"detail": "changed inside",
+"text": "/// Disable the background timer thread which wakes the event loop (via the",
+"sha": [
+"a43935a28bef",
+"28d86778615f"
+],
+"citing": "19491cd7bfea",
+"nth": 3,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/obs-plan.md",
+"line": 9,
+"col": 122,
+"path": "apps/browser/Cargo.toml",
+"now": "27-29",
+"base": "27-29",
+"to": "28-30",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "log-times = [\"log-frame-times\", \"log-phase-times\"]",
+"sha": [
+"c0dbacb3d3ce",
+"e00fac242f4c"
+],
+"citing": "daa9f52e221e",
+"nth": 0,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/obs-plan.md",
+"line": 9,
+"col": 153,
+"path": "apps/browser/Cargo.toml",
+"now": "36",
+"base": "36",
+"to": "37",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "tracing = [\"dioxus-native/tracing\", \"blitz-html/tracing\", \"blitz-net/tracing\", …",
+"sha": [
+"1f9ef5255dd4"
+],
+"citing": "daa9f52e221e",
+"nth": 1,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/obs-plan.md",
+"line": 39,
+"col": 134,
+"path": "apps/browser/Cargo.toml",
+"now": "36",
+"base": "36",
+"to": "37",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "tracing = [\"dioxus-native/tracing\", \"blitz-html/tracing\", \"blitz-net/tracing\", …",
+"sha": [
+"1f9ef5255dd4"
+],
+"citing": "e2909a890607",
+"nth": 0,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/obs-plan.md",
+"line": 45,
+"col": 87,
+"path": "apps/browser/Cargo.toml",
+"now": "27-29",
+"base": "27-29",
+"to": "28-30",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "log-times = [\"log-frame-times\", \"log-phase-times\"]",
+"sha": [
+"c0dbacb3d3ce",
+"e00fac242f4c"
+],
+"citing": "cd3572e00999",
+"nth": 0,
+"since": null
+},
+{
+"class": "stretched",
+"file": ".andromeda/obs-plan.md",
+"line": 80,
+"col": 88,
+"path": "packages/blitz-vibey-script/src/document.rs",
+"now": "242-261",
+"base": "242-261",
+"to": "242-261",
+"write": false,
+"listed": null,
+"detail": "changed inside",
+"text": "/// Drain messages sent from JavaScript via the global",
+"sha": [
+"affa3b7340a4",
+"28d86778615f"
+],
+"citing": "5483c7705874",
+"nth": 0,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/obs-plan.md",
+"line": 245,
+"col": 50,
+"path": "examples/seven_guis/src/lib.rs",
+"now": "13",
+"base": "13",
+"to": "16",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "console_error_panic_hook::set_once();",
+"sha": [
+"bee117d2f789"
+],
+"citing": "a25d49d8942d",
+"nth": 0,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/a11y-plan.md",
+"line": 15,
+"col": 115,
+"path": "apps/browser/Cargo.toml",
+"now": "13",
+"base": "13",
+"to": "14",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "default = [\"hybrid\", \"cookies\", \"cache\", \"screenshot\", \"apple-font-embolden\", \"…",
+"sha": [
+"9b5ed29a16a8"
+],
+"citing": "651910bd88e8",
+"nth": 0,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/a11y-plan.md",
+"line": 15,
+"col": 143,
+"path": "apps/browser/Cargo.toml",
+"now": "38",
+"base": "38",
+"to": "39",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "accessibility = [\"dioxus-native/accessibility\"]",
+"sha": [
+"c26fa2374563"
+],
+"citing": "651910bd88e8",
+"nth": 1,
+"since": null
+}
+],
+"applied": false
+}
+}
+]

@@ -1,0 +1,152 @@
+{
+ "rule": "every listed mutant whose enclosing function holds a line added in b7e3a43b..HEAD",
+ "files": [
+  "packages/blitz-dom/src/scrolling.rs"
+ ],
+ "regexes": [
+  "^packages/blitz\\-dom/src/scrolling\\.rs:(623:9|630:25|645:9|649:23|652:15|652:29|653:15|653:29|673:9|682:20|692:17|693:17|694:17|696:17|697:17|698:17|702:27|709:27|722:65|723:66|750:9|754:60|755:61|757:40|757:56|765:47|766:47|771:16|771:25|771:28|780:45|781:44|784:25|784:46|784:68|789:45|790:42|793:25|793:47|793:70|799:16|799:23|799:33|802:26|803:28): "
+ ],
+ "planned": 97,
+ "in_rule": 91,
+ "riders": [
+  "packages/blitz-dom/src/scrolling.rs:186:25: delete field target from struct ScrollRequest expression in BaseDocument::scroll",
+  "packages/blitz-dom/src/scrolling.rs:187:25: delete field amount from struct ScrollRequest expression in BaseDocument::scroll",
+  "packages/blitz-dom/src/scrolling.rs:215:17: delete field target from struct ScrollRequest expression in BaseDocument::scroll_inner_content_by",
+  "packages/blitz-dom/src/scrolling.rs:216:17: delete field amount from struct ScrollRequest expression in BaseDocument::scroll_inner_content_by",
+  "packages/blitz-dom/src/scrolling.rs:247:21: delete field target from struct ScrollRequest expression in BaseDocument::scroll_inner_content_by",
+  "packages/blitz-dom/src/scrolling.rs:248:21: delete field amount from struct ScrollRequest expression in BaseDocument::scroll_inner_content_by"
+ ],
+ "riders_note": "field-deletion mutants of the named files outside the rule: cargo-mutants 27.1.0 applies no name filter to them (measured), so the invocation tests them too",
+ "listed_in_files": 378,
+ "functions": [
+  {
+   "file": "packages/blitz-dom/src/scrolling.rs",
+   "function": "BaseDocument::containing_block_chain",
+   "lines": [
+    619,
+    640
+   ],
+   "mutants": 3
+  },
+  {
+   "file": "packages/blitz-dom/src/scrolling.rs",
+   "function": "BaseDocument::offset_within",
+   "lines": [
+    642,
+    657
+   ],
+   "mutants": 20
+  },
+  {
+   "file": "packages/blitz-dom/src/scrolling.rs",
+   "function": "BaseDocument::scroll_into_view",
+   "lines": [
+    659,
+    739
+   ],
+   "mutants": 22
+  },
+  {
+   "file": "packages/blitz-dom/src/scrolling.rs",
+   "function": "BaseDocument::visible_region",
+   "lines": [
+    741,
+    805
+   ],
+   "mutants": 46
+  }
+ ],
+ "names": [
+  "packages/blitz-dom/src/scrolling.rs:623:9: replace BaseDocument::containing_block_chain -> Vec<NodeId> with vec![Default::default()]",
+  "packages/blitz-dom/src/scrolling.rs:623:9: replace BaseDocument::containing_block_chain -> Vec<NodeId> with vec![]",
+  "packages/blitz-dom/src/scrolling.rs:630:25: replace == with != in BaseDocument::containing_block_chain",
+  "packages/blitz-dom/src/scrolling.rs:645:9: replace BaseDocument::offset_within -> Option<Point<f32>> with None",
+  "packages/blitz-dom/src/scrolling.rs:645:9: replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::from(-1.0))",
+  "packages/blitz-dom/src/scrolling.rs:645:9: replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::from(0.0))",
+  "packages/blitz-dom/src/scrolling.rs:645:9: replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::from(1.0))",
+  "packages/blitz-dom/src/scrolling.rs:645:9: replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::from_iter([-1.0]))",
+  "packages/blitz-dom/src/scrolling.rs:645:9: replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::from_iter([0.0]))",
+  "packages/blitz-dom/src/scrolling.rs:645:9: replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::from_iter([1.0]))",
+  "packages/blitz-dom/src/scrolling.rs:645:9: replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::new())",
+  "packages/blitz-dom/src/scrolling.rs:645:9: replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::new(-1.0))",
+  "packages/blitz-dom/src/scrolling.rs:645:9: replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::new(0.0))",
+  "packages/blitz-dom/src/scrolling.rs:645:9: replace BaseDocument::offset_within -> Option<Point<f32>> with Some(Point::new(1.0))",
+  "packages/blitz-dom/src/scrolling.rs:649:23: replace != with == in BaseDocument::offset_within",
+  "packages/blitz-dom/src/scrolling.rs:652:15: replace += with *= in BaseDocument::offset_within",
+  "packages/blitz-dom/src/scrolling.rs:652:15: replace += with -= in BaseDocument::offset_within",
+  "packages/blitz-dom/src/scrolling.rs:652:29: replace - with + in BaseDocument::offset_within",
+  "packages/blitz-dom/src/scrolling.rs:652:29: replace - with / in BaseDocument::offset_within",
+  "packages/blitz-dom/src/scrolling.rs:653:15: replace += with *= in BaseDocument::offset_within",
+  "packages/blitz-dom/src/scrolling.rs:653:15: replace += with -= in BaseDocument::offset_within",
+  "packages/blitz-dom/src/scrolling.rs:653:29: replace - with + in BaseDocument::offset_within",
+  "packages/blitz-dom/src/scrolling.rs:653:29: replace - with / in BaseDocument::offset_within",
+  "packages/blitz-dom/src/scrolling.rs:673:9: replace BaseDocument::scroll_into_view with ()",
+  "packages/blitz-dom/src/scrolling.rs:682:20: replace == with != in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:692:17: replace - with + in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:692:17: replace - with / in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:693:17: replace - with + in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:693:17: replace - with / in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:694:17: replace - with + in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:694:17: replace - with / in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:696:17: replace - with + in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:696:17: replace - with / in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:697:17: replace - with + in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:697:17: replace - with / in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:698:17: replace - with + in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:698:17: replace - with / in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:702:27: replace - with + in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:702:27: replace - with / in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:709:27: replace - with + in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:709:27: replace - with / in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:722:65: replace / with % in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:722:65: replace / with * in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:723:66: replace / with % in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:723:66: replace / with * in BaseDocument::scroll_into_view",
+  "packages/blitz-dom/src/scrolling.rs:750:9: replace BaseDocument::visible_region -> Option<BoundingRect> with None",
+  "packages/blitz-dom/src/scrolling.rs:750:9: replace BaseDocument::visible_region -> Option<BoundingRect> with Some(Default::default())",
+  "packages/blitz-dom/src/scrolling.rs:754:60: replace / with % in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:754:60: replace / with * in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:755:61: replace / with % in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:755:61: replace / with * in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:757:40: replace * with + in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:757:40: replace * with / in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:757:56: replace / with % in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:757:56: replace / with * in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:765:47: replace != with == in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:766:47: replace != with == in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:771:16: delete ! in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:771:25: replace && with || in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:771:28: delete ! in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:780:45: replace - with + in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:780:45: replace - with / in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:781:44: replace + with * in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:781:44: replace + with - in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:784:25: replace + with * in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:784:25: replace + with - in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:784:46: replace - with + in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:784:46: replace - with / in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:784:68: replace - with + in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:784:68: replace - with / in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:789:45: replace - with + in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:789:45: replace - with / in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:790:42: replace + with * in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:790:42: replace + with - in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:793:25: replace + with * in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:793:25: replace + with - in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:793:47: replace - with + in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:793:47: replace - with / in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:793:70: replace - with + in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:793:70: replace - with / in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:799:16: replace > with < in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:799:16: replace > with == in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:799:16: replace > with >= in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:799:23: replace && with || in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:799:33: replace > with < in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:799:33: replace > with == in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:799:33: replace > with >= in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:802:26: replace - with + in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:802:26: replace - with / in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:803:28: replace - with + in BaseDocument::visible_region",
+  "packages/blitz-dom/src/scrolling.rs:803:28: replace - with / in BaseDocument::visible_region"
+ ]
+}

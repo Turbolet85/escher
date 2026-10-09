@@ -359,3 +359,13 @@ One entry per amendment to `architecture.md` (sidecar-contract.md §Entry form).
 - Citations into `format.rs` and the telemetry `lib.rs` re-pointed.
 **Why:** a new record class in the sink is a boundary widening answered by the operator at the plan forks, not by the founder. Both marks were kept by the operator at this wrap — the first at its invocation, the second at its escalation halt — and wait for the founder's batch at the Epoch 4 boundary. Neither is discharged by a later chunk's wrap on its own judgement.
 **Ref:** .andromeda/runs/2026-10-07T22-32-46-wrap/
+
+## 2026-10-09-founder-rulings — the driver-command-spans PROVISIONAL records ratified: the sink's closed-span line, the diff's sizes in a log
+**Section:** §Standard Contracts → Telemetry bootstrap, Dioxus DOM bridge · §Cross-cutting Patterns → Logging and timing
+**Change:**
+- Telemetry bootstrap: the sink's second record class — one line per closed span of an admitted target — was "PROVISIONAL: a boundary widening on the operator's answer … not yet the founder's word", per the entry `2026-10-07-driver-command-spans — the sink prints a closed span; the diff's lengths reach a log — both PROVISIONAL`; now "a boundary widening, ratified by the founder (2026-10-09) as built". The line's shape and the rule that judges its fields are unchanged.
+- Logging and timing: the `sink_layer` clause read "(PROVISIONAL, §Standard Contracts → Telemetry bootstrap)"; now "(ratified by the founder, 2026-10-09 — §Standard Contracts → Telemetry bootstrap)".
+- Dioxus DOM bridge: the clause beside "a diff leaves the process through the returned value only — no log, event, socket or file carries it" was "PROVISIONAL: stated beside the ratified sentence, which is not reworded"; now "ratified by the founder, 2026-10-09": the sentence stands and gains the clarification that a diff's content never reaches a log while its three sizes — the counts of added, removed and changed — may.
+**Why:** the founder ruled on both records at the Epoch 4 boundary (the founder, 2026-10-09, relayed verbatim by the overseer as his chosen option labels; the English wording of each ruling is the overseer's), which supersedes the operator's provisional answers by rule. Standing rule for later chunks: a count of a diff's nodes may reach a log, nothing of its content may.
+**Kept:** the same day the founder ruled that an in-process driver call returning the snapshot text and the diff is not a boundary widening — it is the returned value his rule allows. No mark waited on that answer, so no clause is reworded for it.
+**Ref:** .andromeda/runs/2026-10-09T19-17-00-wrap/

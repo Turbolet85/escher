@@ -1,0 +1,21 @@
+{
+ "stopped_at_elapsed_s": 78,
+ "stopped_by": "SIGINT to the tool process group, sent by this session",
+ "live_at_stop": {
+  "total_mutants": null,
+  "caught": null,
+  "missed": null,
+  "timeout": null,
+  "unviable": null
+ },
+ "planned": 97,
+ "jobs": 1,
+ "footprint": {
+  "CARGO_BUILD_JOBS": "4",
+  "RUST_TEST_THREADS": "4",
+  "jobs": 1,
+  "jobserver_tasks": 3,
+  "priority": "nice -n 19 ionice -c 3"
+ },
+ "reason": "the founder's correction, relayed by the operator 2026-10-09: two mutants at a time is fine, restart now with two at the earlier reduced footprint and keep the low CPU and IO priority. The partial tally is discarded, never read as a result."
+}

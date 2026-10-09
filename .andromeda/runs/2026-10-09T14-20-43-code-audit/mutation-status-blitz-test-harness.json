@@ -1,0 +1,23 @@
+{
+ "key": "blitz-test-harness",
+ "unit": "blitz-test-harness",
+ "pid": 1265560,
+ "start_epoch": 1791562225.4317439,
+ "cap_s": 1800,
+ "resized": false,
+ "jobs": 2,
+ "timeout_s": 600,
+ "footprint": {
+  "CARGO_BUILD_JOBS": "4",
+  "RUST_TEST_THREADS": "4",
+  "jobs": 2,
+  "jobserver_tasks": 6
+ },
+ "command": "mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo mutants --workspace --file packages/blitz-test-harness/src/settle.rs --test-package=blitz-test-harness,blitz-tests,escher-driver --cargo-test-arg=--lib --cargo-test-arg=--test=stand_act_diff --cargo-test-arg=--test=stand_act_disabled --cargo-test-arg=--test=stand_act_ids --cargo-test-arg=--test=stand_act_keys --cargo-test-arg=--test=stand_act_obstructed --cargo-test-arg=--test=stand_act_range --cargo-test-arg=--test=stand_act_refused --cargo-test-arg=--test=stand_act_scroll --cargo-test-arg=--test=stand_act_spans --cargo-test-arg=--test=stand_act_timer --cargo-test-arg=--test=stand_session_fresh --cargo-test-arg=--test=stand_session_ids --cargo-test-arg=--test=stand_session_lifecycle --cargo-test-arg=--test=stand_session_quiet --cargo-test-arg=--test=stand_session_state --cargo-test-arg=--test=stand_settle --baseline=skip --timeout 600 -j 2 --jobserver-tasks 6 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-blitz-test-harness",
+ "state": "exited",
+ "returncode": 0,
+ "elapsed_s": 465,
+ "live_tested": 22,
+ "end_time": "2026-10-09T16:18:09.517987119Z",
+ "planned": 22
+}

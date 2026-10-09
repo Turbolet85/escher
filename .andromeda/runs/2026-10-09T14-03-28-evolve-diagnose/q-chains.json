@@ -1,0 +1,1199 @@
+{
+ "epoch": "Epoch 4 — Driver core",
+ "method": "anchors = input.* friction or consumed quality thin|wrong|missing; join = nearest earlier step record of the same chunk producing the artifact; no transitive chains, no scoring",
+ "shapes": [
+  {
+   "shape": "wrap-session/report ->report-> wrap-session/reconcile",
+   "chunks": [
+    "2026-10-07-act-by-id",
+    "2026-10-07-command-and-refusal-schema",
+    "2026-10-07-driver-command-spans",
+    "2026-10-07-refusal-detection",
+    "2026-10-07-settle-detection",
+    "2026-10-07-sink-target-allowlist"
+   ],
+   "n_chunks": 6,
+   "anchors": 6,
+   "candidate": true
+  },
+  {
+   "shape": "phase/plan ->plan-> implement/code",
+   "chunks": [
+    "2026-10-07-act-by-id",
+    "2026-10-07-command-and-refusal-schema",
+    "2026-10-07-driver-command-spans",
+    "2026-10-07-driver-session",
+    "2026-10-07-settle-detection"
+   ],
+   "n_chunks": 5,
+   "anchors": 5,
+   "candidate": true
+  },
+  {
+   "shape": "phase/research ->research-> phase/plan",
+   "chunks": [
+    "2026-10-07-driver-session",
+    "2026-10-07-refusal-detection"
+   ],
+   "n_chunks": 2,
+   "anchors": 4,
+   "candidate": true
+  },
+  {
+   "shape": "implement/smoke ->conversation-> wrap-session/curation",
+   "chunks": [
+    "2026-10-07-driver-command-spans",
+    "2026-10-07-refusal-detection"
+   ],
+   "n_chunks": 2,
+   "anchors": 2,
+   "candidate": true
+  },
+  {
+   "shape": "phase/validate ->plan-> implement/code",
+   "chunks": [
+    "2026-10-07-sink-target-allowlist"
+   ],
+   "n_chunks": 1,
+   "anchors": 1,
+   "candidate": false
+  },
+  {
+   "shape": "implement/smoke ->implement-outcome-> wrap-session/report",
+   "chunks": [
+    "2026-10-07-refusal-detection"
+   ],
+   "n_chunks": 1,
+   "anchors": 1,
+   "candidate": false
+  },
+  {
+   "shape": "phase/validate ->plan-> implement/fix-loop",
+   "chunks": [
+    "2026-10-07-audit-corrections"
+   ],
+   "n_chunks": 1,
+   "anchors": 1,
+   "candidate": false
+  },
+  {
+   "shape": "implement/smoke ->conversation-> wrap-session/report",
+   "chunks": [
+    "2026-10-07-audit-corrections"
+   ],
+   "n_chunks": 1,
+   "anchors": 1,
+   "candidate": false
+  },
+  {
+   "shape": "phase/plan ->plan-> implement/smoke",
+   "chunks": [
+    "2026-10-07-act-by-id"
+   ],
+   "n_chunks": 1,
+   "anchors": 1,
+   "candidate": false
+  }
+ ],
+ "chains": [
+  {
+   "chunk": "2026-10-07-driver-session",
+   "consumer": "phase/plan",
+   "consumer_step_id": "2026-10-07T05:17:31Z-a",
+   "consumer_line": 519,
+   "artifact": "research",
+   "via": [
+    {
+     "friction": "2026-10-07T05:17:31Z-b",
+     "type": "input.research-thin",
+     "what": "research.md did not carry the engine's default layout mode or the stand's task slugs, both of which the host binary step names; each was read from source during synthesis",
+     "impact": {
+      "extra_reads": 1
+     }
+    },
+    {
+     "consumed_quality": "thin",
+     "note": "two facts the steps needed were read at synthesis: the engine's default layout mode and the stand's task slugs"
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null,
+   "producer": {
+    "step": "phase/research",
+    "id": "2026-10-07T05:06:40Z-a",
+    "line": 518,
+    "outcome": "ok",
+    "signals": [
+     "unresolved-questions"
+    ],
+    "note": "2 open questions, both plan-decision and both the attach crossing fork; new-files list is one directory item and one glob because the fork decides the files inside the crate; gate.py scope lists parsed 5 items first fire",
+    "frictions": [],
+    "problems": [
+     {
+      "nature": "process",
+      "solution": "workaround",
+      "note": "codebase-research.md and the code-graph cookbook were read during P2's wait for the distillers, ahead of P3's before-starting slot; no P3 read of the tree or query ran before P2 closed"
+     }
+    ],
+    "counts": {
+     "reformulations": 0,
+     "extra_reads": 0
+    }
+   },
+   "shape": "phase/research ->research-> phase/plan"
+  },
+  {
+   "chunk": "2026-10-07-driver-session",
+   "consumer": "implement/code",
+   "consumer_step_id": "2026-10-07T05:45:20Z-a",
+   "consumer_line": 526,
+   "artifact": "plan",
+   "via": [
+    {
+     "friction": "2026-10-07T05:45:20Z-b",
+     "type": "input.plan-step-ambiguous",
+     "what": "step 4 bounds a line at 64 bytes while its own hello reply is 87 bytes at its widest (pid, a 32-byte label, a u64 count); settled as 64 for a request line and 128 for a reply line",
+     "impact": {
+      "extra_reads": 0
+     }
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null,
+   "producer": {
+    "step": "phase/plan",
+    "id": "2026-10-07T05:29:56Z-a",
+    "line": 522,
+    "outcome": "ok",
+    "signals": [
+     "authority-resolved:the first plan's lean (library depends on the example) yielded to the P5 review"
+    ],
+    "note": "second synthesis after the review rejected one lean: the library takes the caller's boot, the host binary moved into the stand crate; 571 lines, 377 of prose, 27 gate entries, 13 criteria; fence parsed and planlint read 0 hits on the first fire; the review was snapshotted as inputs I2",
+    "frictions": [],
+    "problems": [],
+    "counts": {
+     "dialogue_rounds": 0,
+     "iterations": 1
+    }
+   },
+   "shape": "phase/plan ->plan-> implement/code"
+  },
+  {
+   "chunk": "2026-10-07-sink-target-allowlist",
+   "consumer": "implement/code",
+   "consumer_step_id": "2026-10-07T08:06:55Z-a",
+   "consumer_line": 548,
+   "artifact": "plan",
+   "via": [
+    {
+     "friction": "2026-10-07T08:06:55Z-b",
+     "type": "input.plan-step-ambiguous",
+     "what": "2 plan points underdetermined, settled in-intent and carried to the P4 report: step 4 names the three third-party records but not their levels (chosen WARN native, TRACE native, DEBUG bridged, so the directive's re-admission and the WARN drop are both exercised); step 5 has format_event ask decide's third verdict of the target while decide takes a field (settled with one target-only predicate that both decide and format_event read)",
+     "impact": {
+      "extra_reads": 0
+     }
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null,
+   "producer": {
+    "step": "phase/validate",
+    "id": "2026-10-07T07:57:08Z-a",
+    "line": 547,
+    "outcome": "ok",
+    "signals": [
+     "baseline-red-for-the-right-reason"
+    ],
+    "note": "the windowed entry's baseline read exit 124 sink-lines 1 id-lines 146 name-lines 7 at trace: the first reading of the windowed stand below info, and the leak the entry asked to be measured",
+    "frictions": [],
+    "problems": [],
+    "counts": {
+     "dialogue_rounds": 1,
+     "iterations": 0,
+     "halted": 0
+    }
+   },
+   "shape": "phase/validate ->plan-> implement/code"
+  },
+  {
+   "chunk": "2026-10-07-sink-target-allowlist",
+   "consumer": "wrap-session/reconcile",
+   "consumer_step_id": "2026-10-07T08:48:45Z-a",
+   "consumer_line": 555,
+   "artifact": "report",
+   "via": [
+    {
+     "friction": "2026-10-07T08:48:45Z-b",
+     "type": "input.report-insufficient",
+     "what": "two report gaps exposed by detectors: its site list gave architecture 2 hits of the superseded phrase that were counted and not read (both another sense), and its old-to-new coordinate table listed symbols but not the composite ranges the masters cite, so the architecture, test-plan and obs-plan agents opened source to derive ranges against their prompt",
+     "impact": {
+      "extra_reads": 3
+     }
+    },
+    {
+     "consumed_quality": "thin",
+     "note": "carried every changed fact; two gaps a consumer exposed (friction b)"
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null,
+   "producer": {
+    "step": "wrap-session/report",
+    "id": "2026-10-07T08:27:21Z-a",
+    "line": 553,
+    "outcome": "ok",
+    "signals": [
+     "reconstructed",
+     "bullets-extended",
+     "scope-clean",
+     "inputs-absent"
+    ],
+    "note": "1 family reconstructed by re-reading source (the old-to-new citation coordinates of three files); 3 bullets added beyond the stock list (the by-level readings table, what each of the two new checks reads) because the expected amendments turn on them; the loss listing (70 target rows) is the evidence section copied by script, not retyped",
+    "frictions": [
+     {
+      "id": "2026-10-07T08:27:21Z-b",
+      "type": "UNTYPED",
+      "what": "the first site sweep for the expected amendments used grep -c per master: it counts lines, the masters hold multi-KB single-line bullets, so it read 2 where there were 3 citations and 6 where there were 8; the call also exited 1 on a filter with no match; the sweep was re-run occurrence-level before any count was written"
+     }
+    ],
+    "problems": [
+     {
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the 70-row loss listing was spliced into report.md by a scratchpad script from evidence/by-level.md instead of being typed into the Write payload, to keep 70 measured rows free of transcription"
+     },
+     {
+      "nature": "process",
+      "solution": "workaround",
+      "note": "site counts for the report were taken with a scratchpad occurrence-level reader (sites.py) rather than grep -c, because the masters' bullets are single multi-KB lines and a line count under-reads occurrences"
+     }
+    ],
+    "counts": {
+     "extra_reads": 6
+    }
+   },
+   "shape": "wrap-session/report ->report-> wrap-session/reconcile"
+  },
+  {
+   "chunk": "2026-10-07-settle-detection",
+   "consumer": "implement/code",
+   "consumer_step_id": "2026-10-07T10:47:59Z-a",
+   "consumer_line": 575,
+   "artifact": "plan",
+   "via": [
+    {
+     "friction": "2026-10-07T10:47:59Z-d",
+     "type": "input.plan-step-ambiguous",
+     "what": "plan step 3 names 'one private field' on Harness while steps 4 and 6 put its readers (settle and the unit tests) in the sibling module settle.rs, which a module-private field of harness.rs cannot reach; settled as pub(crate), to be named in the report",
+     "impact": {
+      "extra_reads": 0
+     }
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null,
+   "producer": {
+    "step": "phase/plan",
+    "id": "2026-10-07T10:33:50Z-a",
+    "line": 571,
+    "outcome": "ok",
+    "signals": [
+     "authority-resolved:the driver-session forward note that settle advances the timer yielded to the pinned check that time moves only with delivered ticks"
+    ],
+    "note": "338 lines, 10 steps, 19 gate entries, 18 acceptance criteria; 5 leans stated as decisive on named artifacts, 0 questions asked; both authoring self-checks clean on the first fire (gate dry-run exit 0, planlint 0 hits); one graph-impact citation in symbol @ file:line form, 0 soft",
+    "frictions": [
+     {
+      "id": "2026-10-07T10:33:50Z-b",
+      "type": "retry.synthesis-rework",
+      "what": "a self-read of the fresh plan found a fixture that could not show what its step claimed (a rule in an imported sheet loses to the importing sheet), a hover fixture resting on an unverified label-checkbox mechanism, a loop rule with no witness, a test count with the wrong basis and one line coordinate; steps 6 and 9 and two gate notes were rewritten before the self-checks ran"
+     }
+    ],
+    "problems": [
+     {
+      "nature": "process",
+      "solution": "workaround",
+      "note": "six point corrections to plan.md were applied through one exact-match python script fed by a heredoc instead of six anchored Edit calls; the phase letter reserves point changes for the Edit tool and bars a shell heredoc for a document payload; each replacement asserted exactly one match"
+     }
+    ],
+    "counts": {
+     "dialogue_rounds": 0,
+     "iterations": 1
+    }
+   },
+   "shape": "phase/plan ->plan-> implement/code"
+  },
+  {
+   "chunk": "2026-10-07-settle-detection",
+   "consumer": "wrap-session/reconcile",
+   "consumer_step_id": "2026-10-07T11:28:53Z-a",
+   "consumer_line": 584,
+   "artifact": "report",
+   "via": [
+    {
+     "friction": "2026-10-07T11:28:53Z-b",
+     "type": "input.report-insufficient",
+     "what": "8 of 25 proposals from the obs-plan and test-plan detectors carried a basis or coordinate read from the tree (test line ranges in the new files, greps over source) because the report gave line ranges for the new public symbols but none for the new tests; each was rejected as proposed under the re-derivation rule and re-raised by the orchestrator with its own measurement",
+     "impact": {
+      "retries": 0
+     }
+    },
+    {
+     "consumed_quality": "thin",
+     "note": "every detector ran from it and no proposal was simply wrong; it carried no line coordinates for the new test file's tests or the new unit-test module, so two detectors read them from the tree (friction b); its own sweep missed two restatements the detectors found (architecture Conventions, test-plan helpers bullet)"
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null,
+   "producer": {
+    "step": "wrap-session/report",
+    "id": "2026-10-07T11:08:36Z-a",
+    "line": 582,
+    "outcome": "ok",
+    "signals": [],
+    "note": "scope read clean (7 changed, 7 listed) and inputs absent on the first call; five files' citation moves derived by a line diff against the pre-CI commit's parent",
+    "frictions": [
+     {
+      "id": "2026-10-07T11:08:36Z-b",
+      "type": "UNTYPED",
+      "what": "report-template asks for occurrence-level site counts with a disposition per hit and an old-to-new coordinate map for every moved citation; no shipped tool serves either at P1 (cascade.py sweep runs after the apply, from a patterns file), so two scratch scripts were written - a site counter and a line mapper - as the previous wrap's report also cites a hand-made sites.py"
+     }
+    ],
+    "problems": [],
+    "counts": {
+     "extra_reads": 0
+    }
+   },
+   "shape": "wrap-session/report ->report-> wrap-session/reconcile"
+  },
+  {
+   "chunk": "2026-10-07-command-and-refusal-schema",
+   "consumer": "implement/code",
+   "consumer_step_id": "2026-10-07T12:16:04Z-a",
+   "consumer_line": 601,
+   "artifact": "plan",
+   "via": [
+    {
+     "friction": "2026-10-07T12:16:04Z-b",
+     "type": "input.plan-step-ambiguous",
+     "what": "plan step 4 bans unwrap, expect, panic and unreachable and fixes a three-part refusal order, but does not say what the validation returns for a verb the table lists in a shape no Command variant has; implemented as unknown-verb with T12 as its pin, to be surfaced in the P4 report as a deviation",
+     "impact": {
+      "extra_reads": 0
+     }
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null,
+   "producer": {
+    "step": "phase/plan",
+    "id": "2026-10-07T12:06:38Z-a",
+    "line": 598,
+    "outcome": "ok",
+    "signals": [
+     "designed-dialogue:timer-time",
+     "designed-dialogue:load-wait",
+     "designed-dialogue:verb-set-breadth",
+     "authority-resolved:the actionable-key remedy precedent yielded to security-plan's fixed-text rule",
+     "gate-fence-parsed-first-firing",
+     "planlint-0-hits"
+    ],
+    "note": "306 lines, 7 steps, 14 gate entries, 16 acceptance criteria; 3 questions in 1 round, each the operator's call (two carried onto the entry as the operator's, one a trade no spec adjudicates); no capability claimed; 0 graph citations left soft (the plan changes no existing symbol)",
+    "frictions": [
+     {
+      "id": "2026-10-07T12:06:38Z-b",
+      "type": "retry.synthesis-rework",
+      "what": "step 7's third control was written with two readings (a swapped remedy must turn some test red, else add a table); re-read after the write, step 6's T2 was given the stated remedy table and the control named T2 alone — two point edits before the fence was dry-run"
+     }
+    ],
+    "problems": [
+     {
+      "nature": "product-logic",
+      "solution": "overridden",
+      "note": "the recommended time option was offered with a bare step count; the operator took the option and directed the unit to be weighed against milliseconds so the schema itself states it, and added a refusal cause for an app with no time seam — the plan takes milliseconds, an advanced_ms result field and an eighth cause"
+     }
+    ],
+    "counts": {
+     "dialogue_rounds": 1,
+     "iterations": 1
+    }
+   },
+   "shape": "phase/plan ->plan-> implement/code"
+  },
+  {
+   "chunk": "2026-10-07-command-and-refusal-schema",
+   "consumer": "wrap-session/reconcile",
+   "consumer_step_id": "2026-10-07T12:50:42Z-a",
+   "consumer_line": 607,
+   "artifact": "report",
+   "via": [
+    {
+     "friction": "2026-10-07T12:50:42Z-b",
+     "type": "input.report-insufficient",
+     "what": "the report's count-site search used a pattern that matches one word order only, so it read the keyed contract session-lifecycle.md as no-change while its session-proof label stated the crate's retired unit-test count in the other order; the test-plan detector found the site. The report also gave no coordinates for the three new test modules, so two test-plan proposals carried coordinates read from the tree and were rejected as proposed and re-raised — the class the previous wrap's handoff note records for its own report",
+     "impact": {
+      "extra_reads": 2,
+      "reformulations": 3
+     }
+    },
+    {
+     "consumed_quality": "thin",
+     "note": "carried every fact the 13 proposals rest on, but called one key file no-change on a count pattern too narrow for its wording, and gave no coordinates for the three new test modules"
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null,
+   "producer": {
+    "step": "wrap-session/report",
+    "id": "2026-10-07T12:37:21Z-a",
+    "line": 606,
+    "outcome": "ok",
+    "signals": [
+     "count-corrected-before-fanout",
+     "foreign-process-in-census"
+    ],
+    "note": "the re-derive pass caught one count typed without a count (re-exports 34, counted 32) before any detector read it; the census pattern matched one nextest run whose working directory is a sibling project, recorded as not this chunk's",
+    "frictions": [],
+    "problems": [],
+    "counts": {
+     "extra_reads": 4
+    }
+   },
+   "shape": "wrap-session/report ->report-> wrap-session/reconcile"
+  },
+  {
+   "chunk": "2026-10-07-act-by-id",
+   "consumer": "implement/code",
+   "consumer_step_id": "2026-10-07T13:54:47Z-a",
+   "consumer_line": 626,
+   "artifact": "plan",
+   "via": [
+    {
+     "friction": "2026-10-07T13:54:47Z-b",
+     "type": "input.plan-step-ambiguous",
+     "what": "three plan steps rested on a screen fact the plan did not hold and a probe run measured: step 10 asks stand_act_ids for 'the controls with an effect at boot' and the Timer has none (Reset read after an advance instead); step 11's click-then-keys sequence leaves the slider unfocused, so its keys reach no control (a Tab-focused sequence B added); step 12's fourth mutation does not isolate the clamp (fifth control added). Each is recorded in evidence and goes to the report as a deviation",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 0
+     }
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null,
+   "producer": {
+    "step": "phase/plan",
+    "id": "2026-10-07T13:23:08Z-a",
+    "line": 623,
+    "outcome": "ok",
+    "signals": [
+     "designed-dialogue:command-path",
+     "designed-dialogue:range-input",
+     "authority-resolved:arch-executor-takes-a-command yielded to security-validate-before-anything-runs",
+     "authority-resolved:scope-unresolved-id-left-to-plan yielded to refusal.rs-not-found-meaning",
+     "fence-parsed-first-time",
+     "planlint-0-hits"
+    ],
+    "note": "357 lines, 12 steps, 20 gate entries (6 marked new), 22 acceptance criteria, 4 cap citations; 2 graph-impact citations written from the query; one round of 2 questions, both the operator's calls (a boundary crossing; the scope of a carried engine defect)",
+    "frictions": [],
+    "problems": [],
+    "counts": {
+     "dialogue_rounds": 1,
+     "iterations": 0
+    }
+   },
+   "shape": "phase/plan ->plan-> implement/code"
+  },
+  {
+   "chunk": "2026-10-07-act-by-id",
+   "consumer": "wrap-session/reconcile",
+   "consumer_step_id": "2026-10-07T14:57:13Z-a",
+   "consumer_line": 633,
+   "artifact": "report",
+   "via": [
+    {
+     "friction": "2026-10-07T14:57:13Z-b",
+     "type": "input.report-insufficient",
+     "what": "the report located each moved claim by a token search (e.g. 'names no .{0,40}feature', '25 unit', 'callers are tests') and listed the hits as the claim's sites; the detectors found nine more sites worded otherwise (architecture.md:154, :136 twice, :138, :263, :115; security-plan.md:117, :118; obs-plan.md:69; test-plan.md:21, :99). All applied; the report carries a marked correction",
+     "impact": {
+      "extra_reads": 3,
+      "iterations": 1
+     }
+    },
+    {
+     "consumed_quality": "thin",
+     "note": "its facts and counts stood; its SITE lists, built from token searches, under-ran by nine sites the detectors then found (see friction b)"
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null,
+   "producer": {
+    "step": "wrap-session/report",
+    "id": "2026-10-07T14:28:27Z-a",
+    "line": 631,
+    "outcome": "ok",
+    "signals": [
+     "citation-map-carried",
+     "sweep-hits-read-by-offset"
+    ],
+    "note": "0 bullet families reconstructed; every count carries its basis; 26 of architecture.md's lines exceed 2000 chars, so each master hit was read through an offset window",
+    "frictions": [
+     {
+      "id": "2026-10-07T14:28:27Z-b",
+      "type": "contract.detector-fact-gap",
+      "what": "the chunk moved cited source lines in 8 files and the masters hold 69 file:line citations of them (30 need a new coordinate, 11 keep theirs over an edited line); the report template has no bullet for a moved-citation map and no tool builds one, so it was built from git diff -U0 hunks by a scratch script and filed under Counts / qualifiers moved"
+     }
+    ],
+    "problems": [
+     {
+      "nature": "process",
+      "solution": "workaround",
+      "note": "five rulings reached the wrap by relay and inputs.py has no wrap-side snap (verify only), so they were copied whole by hand to the run dir's operator-rulings.md for the report and sidecars to cite"
+     }
+    ],
+    "counts": {
+     "extra_reads": 6
+    }
+   },
+   "shape": "wrap-session/report ->report-> wrap-session/reconcile"
+  },
+  {
+   "chunk": "2026-10-07-refusal-detection",
+   "consumer": "phase/plan",
+   "consumer_step_id": "2026-10-07T16:46:22Z-a",
+   "consumer_line": 649,
+   "artifact": "research",
+   "via": [
+    {
+     "friction": "2026-10-07T16:46:22Z-b",
+     "type": "input.research-thin",
+     "what": "research held both facts — the engine scroll moves the viewport only, the stand's scrollers are nested — and the first plan shipped them as a limit with no owner; the review found the off-screen remedy could not be followed on the stand, and the re-plan needed the scroll primitive, the hit walk's clip tests, the three callers and the CRUD list read",
+     "impact": {
+      "iterations": 1,
+      "dialogue_rounds": 1,
+      "extra_reads": 14
+     }
+    },
+    {
+     "consumed_quality": "thin",
+     "note": "it recorded that scroll_into_view moves the viewport only and that the stand scrollers are nested, and left what a click on a clipped row reads unmeasured; the consequence for the verb the founder chose was not drawn"
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null,
+   "producer": {
+    "step": "phase/research",
+    "id": "2026-10-07T15:37:39Z-a",
+    "line": 647,
+    "outcome": "ok",
+    "signals": [
+     "unresolved-questions"
+    ],
+    "note": "3 open questions: 2 plan-decision (the entry's two reserved decisions), 1 implementation-scope; both fork branches' files listed; scope lists parsed 11 items at first fire",
+    "frictions": [],
+    "problems": [
+     {
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the premise closure's 13 point changes to scope.md were applied by one scripted replace with a count assertion per anchor, not by anchored Edit calls"
+     },
+     {
+      "nature": "process",
+      "solution": "workaround",
+      "note": "six source files (execute.rs, refusal.rs, the two stand_act checks, the harness inspect and blitz-dom hit readers) were read while the P2 batches ran, before the extracts existed, so those reads were not extract-directed"
+     }
+    ],
+    "counts": {
+     "reformulations": 0,
+     "extra_reads": 3
+    }
+   },
+   "shape": "phase/research ->research-> phase/plan"
+  },
+  {
+   "chunk": "2026-10-07-refusal-detection",
+   "consumer": "wrap-session/report",
+   "consumer_step_id": "2026-10-07T20:34:14Z-a",
+   "consumer_line": 660,
+   "artifact": "implement-outcome",
+   "via": [
+    {
+     "friction": "2026-10-07T20:34:14Z-b",
+     "type": "input.implement-outcome-unsettled",
+     "what": "the operator pass after implement ended fixed: entry 18 was fired three times around two cancels and two re-runs of the CI run before it read green; the report's outcome basis is the pass's evidence, not implement's green alone",
+     "impact": {
+      "extra_reads": 2
+     }
+    },
+    {
+     "consumed_quality": "thin",
+     "note": "its green stood, but the pass ended fixed, and it did not carry one deviation found while authoring: the record's bound is a count of ids, the plan's byte figure is not a property of the code"
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": {
+    "quality": "ok",
+    "signals": [
+     "fixed",
+     "commits:1",
+     "red:2"
+    ],
+    "note": "the two not-green results are entry 18's first two firings, verdict in progress with no failed job; evidence/operator-pass.md carried every result"
+   },
+   "producer": {
+    "step": "implement/smoke",
+    "id": "2026-10-07T19:16:15Z-a",
+    "line": 659,
+    "outcome": "ok",
+    "signals": [
+     "green"
+    ],
+    "note": null,
+    "frictions": [],
+    "problems": [],
+    "counts": {
+     "retries": 0,
+     "deferred": 0
+    }
+   },
+   "shape": "implement/smoke ->implement-outcome-> wrap-session/report"
+  },
+  {
+   "chunk": "2026-10-07-refusal-detection",
+   "consumer": "wrap-session/reconcile",
+   "consumer_step_id": "2026-10-07T21:03:54Z-a",
+   "consumer_line": 664,
+   "artifact": "report",
+   "via": [
+    {
+     "friction": "2026-10-07T21:03:54Z-b",
+     "type": "input.report-insufficient",
+     "what": "the report's site lists were wrong or short in 13 places: lib.rs citation moves omitted (3 citations), design-system.md:283 read as unmoved, Outcome:: cited at architecture :132, and ten restatements of retired claims its fixed-string counts did not reach",
+     "impact": {
+      "extra_reads": 13
+     }
+    },
+    {
+     "consumed_quality": "thin",
+     "note": "three site statements wrong or missing (lib.rs citation move omitted; design-system:283 read as unmoved; Outcome:: cited at :132), reader counts not carried, ten restatement sites not listed"
+    }
+   ],
+   "consumer_outcome": "halted-resolved",
+   "operator_pass": null,
+   "producer": {
+    "step": "wrap-session/report",
+    "id": "2026-10-07T20:34:14Z-a",
+    "line": 660,
+    "outcome": "ok",
+    "signals": [
+     "scope-read-clean",
+     "inputs-one-uncited",
+     "ci-platform-logs-read"
+    ],
+    "note": "gate.py scope clean against the pre-CI parent; inputs.py verify read I4 uncited and the report names it; the windows and macOS job logs were read here, 8 targets each, because the pass had left them unread",
+    "frictions": [
+     {
+      "id": "2026-10-07T20:34:14Z-b",
+      "type": "input.implement-outcome-unsettled",
+      "what": "the operator pass after implement ended fixed: entry 18 was fired three times around two cancels and two re-runs of the CI run before it read green; the report's outcome basis is the pass's evidence, not implement's green alone"
+     },
+     {
+      "id": "2026-10-07T20:34:14Z-c",
+      "type": "contract.detector-fact-gap",
+      "what": "the masters cite line numbers into eight files this chunk moved (scrolling.rs alone 35 citations over three masters); the template has no bullet for moved citation targets, so the old-to-new line map was placed under Expected amendments"
+     },
+     {
+      "id": "2026-10-07T20:34:14Z-d",
+      "type": "tooling.host-shell",
+      "what": "two parses of the CI job logs read not found for targets that had run: first a regex backslash pair collapsed in an inline heredoc, then the log carried its colour codes as literal caret-bracket text between Running and the target path"
+     }
+    ],
+    "problems": [
+     {
+      "nature": "process",
+      "solution": "overridden",
+      "note": "the operator bounded this wrap to P1 for window size (43.8 percent at invocation, the last wrap grew its window by 46 points); P2 to P7 run in a fresh window from report.md, so the report's Decisions and corrections section was written as the only carrier of this window's corrections"
+     },
+     {
+      "nature": "environment",
+      "solution": "workaround",
+      "note": "a CI job-log parser sent as an inline heredoc lost its backslash pair to the Bash transport and read every target as not found; it was moved to a script file written by the Write tool"
+     }
+    ],
+    "counts": {
+     "extra_reads": 5,
+     "retries": 2
+    }
+   },
+   "shape": "wrap-session/report ->report-> wrap-session/reconcile"
+  },
+  {
+   "chunk": "2026-10-07-driver-command-spans",
+   "consumer": "implement/code",
+   "consumer_step_id": "2026-10-07T21:59:30Z-a",
+   "consumer_line": 688,
+   "artifact": "plan",
+   "via": [
+    {
+     "friction": "2026-10-07T21:59:30Z-b",
+     "type": "input.plan-step-ambiguous",
+     "what": "plan step 2 asks for the span's eight field names 'stated once in the module as a private table', but tracing's span macro takes its field names as literal tokens, so a const table cannot feed it; settled by a macro_rules that takes the list once and emits the span and a table, and the table became test-only after a dead-code warning (nothing outside the unit test reads it)",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 1
+     }
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null,
+   "producer": {
+    "step": "phase/plan",
+    "id": "2026-10-07T21:42:43Z-a",
+    "line": 685,
+    "outcome": "ok",
+    "signals": [
+     "designed-dialogue:span-record-path",
+     "designed-dialogue:call-site-gating",
+     "authoring-self-check-clean"
+    ],
+    "note": "one round of two forks, both the operator's call: the first is a boundary widening no spec adjudicates and was answered PROVISIONAL, the second is recorded open by the architecture extract; the fence parsed and the lint read 0 hits on the first fire; one in-place pass after writing (the mutation list, the census tokens, the call order)",
+    "frictions": [],
+    "problems": [
+     {
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the fork answers were snapshotted with the step value phase:P3 because the inputs tool takes no P4 step; the same form the previous chunk used for its fork answers"
+     }
+    ],
+    "counts": {
+     "dialogue_rounds": 1,
+     "iterations": 1
+    }
+   },
+   "shape": "phase/plan ->plan-> implement/code"
+  },
+  {
+   "chunk": "2026-10-07-driver-command-spans",
+   "consumer": "wrap-session/reconcile",
+   "consumer_step_id": "2026-10-07T23:06:24Z-a",
+   "consumer_line": 695,
+   "artifact": "report",
+   "via": [
+    {
+     "friction": "2026-10-07T23:06:24Z-b",
+     "type": "input.report-insufficient",
+     "what": "19 of 56 proposals cited source locations the report does not carry; three detectors said they read line numbers from the working tree, against the prompt's ban; each was rejected as proposed and raised again by the orchestrator, all 19 applied",
+     "impact": {
+      "reformulations": 19
+     }
+    },
+    {
+     "consumed_quality": "thin",
+     "note": "complete on facts and counts; its Citation moves give a moved symbol's new start line, not the new range"
+    }
+   ],
+   "consumer_outcome": "halted-resolved",
+   "operator_pass": null,
+   "producer": {
+    "step": "wrap-session/report",
+    "id": "2026-10-07T22:39:30Z-a",
+    "line": 694,
+    "outcome": "ok",
+    "signals": [
+     "scope-clean",
+     "inputs-no-drift",
+     "p1-only-window"
+    ],
+    "note": "gate.py scope clean (changed 7, listed 7) and inputs.py verify 1 entry n/a at P1; the report is 230 lines, written for a fan-out in a fresh window",
+    "frictions": [],
+    "problems": [
+     {
+      "nature": "process",
+      "solution": "overridden",
+      "note": "the operator directed this wrap to run P1 only and stop, the remaining phases to run in a fresh window from report.md; Setup's background code-graph refresh was still fired here and finished, though this window reaches no P4"
+     }
+    ],
+    "counts": {
+     "extra_reads": 9
+    }
+   },
+   "shape": "wrap-session/report ->report-> wrap-session/reconcile"
+  },
+  {
+   "chunk": "2026-10-07-audit-corrections",
+   "consumer": "implement/fix-loop",
+   "consumer_step_id": "2026-10-07T03:37:41Z-a",
+   "consumer_line": 476,
+   "artifact": "plan",
+   "via": [
+    {
+     "consumed_quality": "wrong",
+     "note": "25 of 26 Test Commands entries ran as written (21 green, 1 recorded, 3 operator legs not run); entry 8's base-side sed address has no closing character after the function name and selects a second function"
+    }
+   ],
+   "consumer_outcome": "ok-degraded",
+   "operator_pass": null,
+   "producer": {
+    "step": "phase/validate",
+    "id": "2026-10-07T03:27:14Z-a",
+    "line": 473,
+    "outcome": "ok",
+    "signals": [
+     "baseline-red-before-green:7 missed",
+     "controls-run-x11",
+     "stand-atoms-confirmed-on-untouched-tree"
+    ],
+    "note": "15 baselines: 9 red on properties the chunk builds, 4 green guards each with a failing control, 1 green list probe with a control, 1 report-only; entries 2 and 18-20, not new, were also run to confirm their atoms (49 passed; passed 63, failed 0, ignored 1)",
+    "frictions": [
+     {
+      "id": "2026-10-07T03:27:14Z-b",
+      "type": "contract.mechanical-check",
+      "what": "check 4 (9): the baseline run of the new mutation entry exited 1 in 0.8 s — cargo mutants refuses an --output whose parent directory does not exist — where a red at exit 2 was expected; the entry gained mkdir -p target/mutants-out and its re-run read exit 2, 7 mutants tested in 40s: 7 missed"
+     }
+    ],
+    "problems": [
+     {
+      "nature": "process",
+      "solution": "overridden",
+      "note": "a compound call that ended by removing the baseline mutation run's output directory under target/mutants-out was denied by the permission layer; the checks were re-fired without the removal and the 812K gitignored directory was left in place and named at the review"
+     }
+    ],
+    "counts": {
+     "dialogue_rounds": 1,
+     "iterations": 0,
+     "halted": 0
+    }
+   },
+   "shape": "phase/validate ->plan-> implement/fix-loop"
+  },
+  {
+   "chunk": "2026-10-07-audit-corrections",
+   "consumer": "wrap-session/report",
+   "consumer_step_id": "2026-10-07T04:04:13Z-a",
+   "consumer_line": 485,
+   "artifact": "conversation",
+   "via": [
+    {
+     "consumed_quality": "thin",
+     "note": "holds the re-entry implement run and the operator pass; the run that wrote the code ended before a /clear"
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null,
+   "producer": {
+    "step": "implement/smoke",
+    "id": "2026-10-07T03:47:42Z-a",
+    "line": 484,
+    "outcome": "ok",
+    "signals": [
+     "skipped"
+    ],
+    "note": "no boot-path / UI-surface change; the agent-run boot, run stand and cleanup entries ran as P2 gates and were not re-driven",
+    "frictions": [],
+    "problems": [],
+    "counts": {
+     "retries": 0,
+     "deferred": 0
+    }
+   },
+   "shape": "implement/smoke ->conversation-> wrap-session/report"
+  },
+  {
+   "chunk": "2026-10-07-driver-session",
+   "consumer": "phase/plan",
+   "consumer_step_id": "2026-10-07T05:29:56Z-a",
+   "consumer_line": 522,
+   "artifact": "research",
+   "via": [
+    {
+     "consumed_quality": "thin",
+     "note": "amended for the re-synthesis: where the masters cite the stand manifest, and that no packages manifest names the example, were measured only after the review"
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null,
+   "producer": {
+    "step": "phase/research",
+    "id": "2026-10-07T05:06:40Z-a",
+    "line": 518,
+    "outcome": "ok",
+    "signals": [
+     "unresolved-questions"
+    ],
+    "note": "2 open questions, both plan-decision and both the attach crossing fork; new-files list is one directory item and one glob because the fork decides the files inside the crate; gate.py scope lists parsed 5 items first fire",
+    "frictions": [],
+    "problems": [
+     {
+      "nature": "process",
+      "solution": "workaround",
+      "note": "codebase-research.md and the code-graph cookbook were read during P2's wait for the distillers, ahead of P3's before-starting slot; no P3 read of the tree or query ran before P2 closed"
+     }
+    ],
+    "counts": {
+     "reformulations": 0,
+     "extra_reads": 0
+    }
+   },
+   "shape": "phase/research ->research-> phase/plan"
+  },
+  {
+   "chunk": "2026-10-07-act-by-id",
+   "consumer": "implement/smoke",
+   "consumer_step_id": "2026-10-07T14:00:27Z-a",
+   "consumer_line": 629,
+   "artifact": "plan",
+   "via": [
+    {
+     "consumed_quality": "thin",
+     "note": "its two smoke entries boot the counter host and the windowed stand; neither boots the timer host, the one branch session_host.rs gained"
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null,
+   "producer": {
+    "step": "phase/plan",
+    "id": "2026-10-07T13:23:08Z-a",
+    "line": 623,
+    "outcome": "ok",
+    "signals": [
+     "designed-dialogue:command-path",
+     "designed-dialogue:range-input",
+     "authority-resolved:arch-executor-takes-a-command yielded to security-validate-before-anything-runs",
+     "authority-resolved:scope-unresolved-id-left-to-plan yielded to refusal.rs-not-found-meaning",
+     "fence-parsed-first-time",
+     "planlint-0-hits"
+    ],
+    "note": "357 lines, 12 steps, 20 gate entries (6 marked new), 22 acceptance criteria, 4 cap citations; 2 graph-impact citations written from the query; one round of 2 questions, both the operator's calls (a boundary crossing; the scope of a carried engine defect)",
+    "frictions": [],
+    "problems": [],
+    "counts": {
+     "dialogue_rounds": 1,
+     "iterations": 0
+    }
+   },
+   "shape": "phase/plan ->plan-> implement/smoke"
+  },
+  {
+   "chunk": "2026-10-07-refusal-detection",
+   "consumer": "phase/plan",
+   "consumer_step_id": "2026-10-07T16:28:58Z-a",
+   "consumer_line": 648,
+   "artifact": "research",
+   "via": [
+    {
+     "consumed_quality": "thin",
+     "note": "written before the forks were answered: it had read scroll_into_view by signature only, and the sixth-verb answer needed six more reads (the viewport-only scroll, the page-coordinate hit, what the driver's dependencies re-export, the verb, command and refusal pins) and a whole rewrite of research.md"
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null,
+   "producer": {
+    "step": "phase/research",
+    "id": "2026-10-07T15:37:39Z-a",
+    "line": 647,
+    "outcome": "ok",
+    "signals": [
+     "unresolved-questions"
+    ],
+    "note": "3 open questions: 2 plan-decision (the entry's two reserved decisions), 1 implementation-scope; both fork branches' files listed; scope lists parsed 11 items at first fire",
+    "frictions": [],
+    "problems": [
+     {
+      "nature": "process",
+      "solution": "workaround",
+      "note": "the premise closure's 13 point changes to scope.md were applied by one scripted replace with a count assertion per anchor, not by anchored Edit calls"
+     },
+     {
+      "nature": "process",
+      "solution": "workaround",
+      "note": "six source files (execute.rs, refusal.rs, the two stand_act checks, the harness inspect and blitz-dom hit readers) were read while the P2 batches ran, before the extracts existed, so those reads were not extract-directed"
+     }
+    ],
+    "counts": {
+     "reformulations": 0,
+     "extra_reads": 3
+    }
+   },
+   "shape": "phase/research ->research-> phase/plan"
+  },
+  {
+   "chunk": "2026-10-07-refusal-detection",
+   "consumer": "wrap-session/curation",
+   "consumer_step_id": "2026-10-07T21:06:01Z-a",
+   "consumer_line": 671,
+   "artifact": "conversation",
+   "via": [
+    {
+     "consumed_quality": "thin",
+     "note": "the resuming window holds the wrap's own turns only; the implement window's and the first wrap window's conversations are not in it"
+    }
+   ],
+   "consumer_outcome": "ok-degraded",
+   "operator_pass": null,
+   "producer": {
+    "step": "implement/smoke",
+    "id": "2026-10-07T19:16:15Z-a",
+    "line": 659,
+    "outcome": "ok",
+    "signals": [
+     "skipped"
+    ],
+    "note": "no-boot-path skip; the session host binary, whose start constructs the edited Session, was booted by the_binary_serves_and_stops inside the workspace leg at P2",
+    "frictions": [],
+    "problems": [],
+    "counts": {
+     "retries": 0,
+     "deferred": 0
+    }
+   },
+   "shape": "implement/smoke ->conversation-> wrap-session/curation"
+  },
+  {
+   "chunk": "2026-10-07-driver-command-spans",
+   "consumer": "wrap-session/curation",
+   "consumer_step_id": "2026-10-07T23:08:04Z-a",
+   "consumer_line": 699,
+   "artifact": "conversation",
+   "via": [
+    {
+     "consumed_quality": "thin",
+     "note": "a resumed wrap: this window holds the reconcile only; the implement window and the first wrap window are gone"
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null,
+   "producer": {
+    "step": "implement/smoke",
+    "id": "2026-10-07T22:10:34Z-a",
+    "line": 693,
+    "outcome": "ok",
+    "signals": [
+     "recorded-not-rerun"
+    ],
+    "note": "the windowed stand booted with the changed sink and stamped its one line with the service name; the session host was booted by host_log, host_binary and the by-level instrument; census after the block: no survivor",
+    "frictions": [],
+    "problems": [],
+    "counts": {
+     "retries": 0,
+     "deferred": 0
+    }
+   },
+   "shape": "implement/smoke ->conversation-> wrap-session/curation"
+  }
+ ],
+ "unjoined_anchors": [
+  {
+   "chunk": "2026-10-07-upstream-sync-driver-core",
+   "consumer": "phase/take-up",
+   "consumer_step_id": "2026-10-07T04:24:59Z-a",
+   "consumer_line": 497,
+   "artifact": "working-entry",
+   "via": [
+    {
+     "friction": "2026-10-07T04:24:59Z-b",
+     "type": "input.working-entry-thin",
+     "what": "the entry says upstream/main merged while ls-remote reads the pin 23354585 already merged (0 ahead) - the second sync entry in a row whose shape (measured no-op vs merge) was derived at take-up from a git measurement plus the previous sync's scope and inputs, not from the entry",
+     "impact": {
+      "extra_reads": 3,
+      "dialogue_rounds": 0
+     }
+    },
+    {
+     "consumed_quality": "thin",
+     "note": "states upstream/main merged; upstream measured 0 commits past the merge base, so the entry's verb has no object"
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-07-driver-session",
+   "consumer": "phase/take-up",
+   "consumer_step_id": "2026-10-07T04:52:40Z-a",
+   "consumer_line": 514,
+   "artifact": "working-entry",
+   "via": [
+    {
+     "friction": "2026-10-07T04:52:40Z-b",
+     "type": "input.working-entry-thin",
+     "what": "the entry names a lifecycle with attach and one process both surfaces drive, but neither the entry nor any master states the process model or what attach crosses; scope carries it as an [inferred] bullet and a P4 fork under the playbook's Boundary widening pattern",
+     "impact": {
+      "extra_reads": 4,
+      "dialogue_rounds": 0
+     }
+    },
+    {
+     "consumed_quality": "thin",
+     "note": "one line, no freight; names start, attach, stop and one process but not what attach crosses"
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-07-act-by-id",
+   "consumer": "phase/take-up",
+   "consumer_step_id": "2026-10-07T13:03:09Z-a",
+   "consumer_line": 617,
+   "artifact": "working-route",
+   "via": [
+    {
+     "friction": "2026-10-07T13:03:09Z-b",
+     "type": "input.carry-context-gap",
+     "what": "two CARRYs on the taken-up entry (the diff's crossing question; the typed sentinel in the escher-session binary's stderr) presuppose a command that reaches the host's instance, while two CARRYs on the Driver CLI entry place the first crossing of validate and of the snapshot text there; the fold could not place the crossing from the freight and left it in scope as an open fork for P4",
+     "impact": {
+      "extra_reads": 1
+     }
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-07-driver-command-spans",
+   "consumer": "phase/take-up",
+   "consumer_step_id": "2026-10-07T21:19:29Z-a",
+   "consumer_line": 681,
+   "artifact": "working-route",
+   "via": [
+    {
+     "friction": "2026-10-07T21:19:29Z-b",
+     "type": "input.carry-context-gap",
+     "what": "the entry asks for a span through the scrub layer and its first CARRY speaks of a span or event reaching stderr, while the sink as built formats events only (an event formatter, no span-event setting, span fields outside the scrub visitor); neither the entry nor the freight states it, and it was found by reading the telemetry crate at the take-up and entered scope as an inferred bullet",
+     "impact": {
+      "extra_reads": 2
+     }
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-07-act-by-id",
+   "consumer": "phase/take-up",
+   "consumer_step_id": "2026-10-07T13:03:09Z-a",
+   "consumer_line": 617,
+   "artifact": "ci-verdict",
+   "via": [
+    {
+     "consumed_quality": "thin",
+     "note": "one sha (the flip = HEAD), run in progress at the read, 4 checks done"
+    }
+   ],
+   "consumer_outcome": "ok",
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-07-refusal-detection",
+   "consumer": "phase/take-up",
+   "consumer_step_id": "2026-10-07T15:23:37Z-a",
+   "consumer_line": 643,
+   "artifact": "ci-verdict",
+   "via": [
+    {
+     "consumed_quality": "thin",
+     "note": "the red row on the wrap commit named no failed check and printed no wall-clock; the run had no failed job, six queued and six never created"
+    }
+   ],
+   "consumer_outcome": "halted-resolved",
+   "operator_pass": null
+  }
+ ]
+}

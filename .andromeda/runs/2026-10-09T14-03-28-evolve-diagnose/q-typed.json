@@ -1,0 +1,1195 @@
+{
+ "epoch": "Epoch 4 — Driver core",
+ "weight_formula": "1 + iterations + retries + reformulations + 2*dialogue_rounds + 3*halted + 3*soft_exit (over the group's summed impact); sort = n * weight",
+ "threshold": "n >= 3, or n >= 2 with a halt/soft-exit occurrence",
+ "groups": [
+  {
+   "key": "wrap-session/reconcile/contract.in-pass-correction",
+   "n": 9,
+   "impact": {
+    "iterations": 10,
+    "retries": 13
+   },
+   "weight": 24,
+   "sort": 216,
+   "step_runs": 9,
+   "rate": 1.0,
+   "chunks": [
+    "2026-10-07-act-by-id",
+    "2026-10-07-command-and-refusal-schema",
+    "2026-10-07-driver-command-spans",
+    "2026-10-07-driver-session",
+    "2026-10-07-refusal-detection",
+    "2026-10-07-settle-detection",
+    "2026-10-07-sink-target-allowlist"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T07:18:59Z-c",
+    "2026-10-07T08:48:45Z-d",
+    "2026-10-07T11:28:53Z-c",
+    "2026-10-07T12:50:42Z-c",
+    "2026-10-07T14:57:13Z-e",
+    "2026-10-07T21:03:54Z-e",
+    "2026-10-07T21:03:54Z-f",
+    "2026-10-07T21:03:54Z-g",
+    "2026-10-07T23:06:24Z-d"
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/input.report-insufficient",
+   "n": 6,
+   "impact": {
+    "iterations": 1,
+    "reformulations": 22,
+    "extra_reads": 21
+   },
+   "weight": 24,
+   "sort": 144,
+   "step_runs": 9,
+   "rate": 0.667,
+   "chunks": [
+    "2026-10-07-act-by-id",
+    "2026-10-07-command-and-refusal-schema",
+    "2026-10-07-driver-command-spans",
+    "2026-10-07-refusal-detection",
+    "2026-10-07-settle-detection",
+    "2026-10-07-sink-target-allowlist"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T08:48:45Z-b",
+    "2026-10-07T11:28:53Z-b",
+    "2026-10-07T12:50:42Z-b",
+    "2026-10-07T14:57:13Z-b",
+    "2026-10-07T21:03:54Z-b",
+    "2026-10-07T23:06:24Z-b"
+   ]
+  },
+  {
+   "key": "phase/validate/contract.mechanical-check",
+   "n": 6,
+   "impact": {
+    "iterations": 4,
+    "retries": 1,
+    "dialogue_rounds": 1,
+    "extra_reads": 5
+   },
+   "weight": 8,
+   "sort": 48,
+   "step_runs": 10,
+   "rate": 0.6,
+   "chunks": [
+    "2026-10-07-act-by-id",
+    "2026-10-07-audit-corrections",
+    "2026-10-07-driver-command-spans",
+    "2026-10-07-driver-session",
+    "2026-10-07-refusal-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T03:27:14Z-b",
+    "2026-10-07T05:31:15Z-b",
+    "2026-10-07T05:31:15Z-c",
+    "2026-10-07T13:28:25Z-b",
+    "2026-10-07T18:49:37Z-b",
+    "2026-10-07T21:46:37Z-b"
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.cascade-miss",
+   "n": 4,
+   "impact": {
+    "iterations": 3,
+    "retries": 1,
+    "extra_reads": 4
+   },
+   "weight": 5,
+   "sort": 20,
+   "step_runs": 9,
+   "rate": 0.444,
+   "chunks": [
+    "2026-10-07-act-by-id",
+    "2026-10-07-driver-command-spans",
+    "2026-10-07-driver-session",
+    "2026-10-07-sink-target-allowlist"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T07:18:59Z-d",
+    "2026-10-07T08:48:45Z-c",
+    "2026-10-07T14:57:13Z-d",
+    "2026-10-07T23:06:24Z-c"
+   ]
+  },
+  {
+   "key": "implement/code/input.plan-step-ambiguous",
+   "n": 6,
+   "impact": {
+    "iterations": 2,
+    "extra_reads": 1
+   },
+   "weight": 3,
+   "sort": 18,
+   "step_runs": 10,
+   "rate": 0.6,
+   "chunks": [
+    "2026-10-07-act-by-id",
+    "2026-10-07-command-and-refusal-schema",
+    "2026-10-07-driver-command-spans",
+    "2026-10-07-driver-session",
+    "2026-10-07-settle-detection",
+    "2026-10-07-sink-target-allowlist"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T05:45:20Z-b",
+    "2026-10-07T08:06:55Z-b",
+    "2026-10-07T10:47:59Z-d",
+    "2026-10-07T12:16:04Z-b",
+    "2026-10-07T13:54:47Z-b",
+    "2026-10-07T21:59:30Z-b"
+   ]
+  },
+  {
+   "key": "phase/distill/retry.distiller-respawn",
+   "n": 3,
+   "impact": {
+    "retries": 5
+   },
+   "weight": 6,
+   "sort": 18,
+   "step_runs": 9,
+   "rate": 0.333,
+   "chunks": [
+    "2026-10-07-audit-corrections",
+    "2026-10-07-driver-session",
+    "2026-10-07-upstream-sync-driver-core"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T03:02:42Z-b",
+    "2026-10-07T04:31:21Z-b",
+    "2026-10-07T05:00:44Z-b"
+   ]
+  },
+  {
+   "key": "wrap-session/curation/recall.corpus-recurrence",
+   "n": 4,
+   "impact": {
+    "retries": 3
+   },
+   "weight": 4,
+   "sort": 16,
+   "step_runs": 10,
+   "rate": 0.4,
+   "chunks": [
+    "2026-10-07-command-and-refusal-schema",
+    "2026-10-07-driver-command-spans",
+    "2026-10-07-refusal-detection",
+    "2026-10-07-settle-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T11:29:30Z-b",
+    "2026-10-07T12:52:59Z-b",
+    "2026-10-07T21:06:01Z-d",
+    "2026-10-07T23:08:04Z-c"
+   ]
+  },
+  {
+   "key": "wrap-session/curation/ambiguity.filter-borderline",
+   "n": 6,
+   "impact": {
+    "iterations": 1,
+    "extra_reads": 2
+   },
+   "weight": 2,
+   "sort": 12,
+   "step_runs": 10,
+   "rate": 0.6,
+   "chunks": [
+    "(no chunk)",
+    "2026-10-07-audit-corrections",
+    "2026-10-07-driver-command-spans",
+    "2026-10-07-refusal-detection",
+    "2026-10-07-settle-detection",
+    "2026-10-07-sink-target-allowlist"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T02:44:20Z-b",
+    "2026-10-07T04:16:57Z-b",
+    "2026-10-07T08:50:06Z-b",
+    "2026-10-07T11:29:30Z-c",
+    "2026-10-07T21:06:01Z-c",
+    "2026-10-07T23:08:04Z-b"
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.false-positive-proposal",
+   "n": 3,
+   "impact": {
+    "reformulations": 3,
+    "extra_reads": 2
+   },
+   "weight": 4,
+   "sort": 12,
+   "step_runs": 9,
+   "rate": 0.333,
+   "chunks": [
+    "2026-10-07-act-by-id",
+    "2026-10-07-audit-corrections",
+    "2026-10-07-refusal-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T04:15:42Z-b",
+    "2026-10-07T14:57:13Z-c",
+    "2026-10-07T21:03:54Z-c"
+   ]
+  },
+  {
+   "key": "implement/code/UNTYPED",
+   "n": 3,
+   "impact": {
+    "retries": 2
+   },
+   "weight": 3,
+   "sort": 9,
+   "step_runs": 10,
+   "rate": 0.3,
+   "chunks": [
+    "2026-10-07-command-and-refusal-schema",
+    "2026-10-07-driver-command-spans",
+    "2026-10-07-refusal-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T12:16:04Z-c",
+    "2026-10-07T19:11:24Z-c",
+    "2026-10-07T21:59:30Z-c"
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/UNTYPED",
+   "n": 3,
+   "impact": {
+    "retries": 2,
+    "extra_reads": 6
+   },
+   "weight": 3,
+   "sort": 9,
+   "step_runs": 9,
+   "rate": 0.333,
+   "chunks": [
+    "2026-10-07-driver-session",
+    "2026-10-07-settle-detection",
+    "2026-10-07-sink-target-allowlist"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T07:18:59Z-b",
+    "2026-10-07T08:48:45Z-e",
+    "2026-10-07T11:28:53Z-d"
+   ]
+  },
+  {
+   "key": "phase/plan/input.research-thin",
+   "n": 2,
+   "impact": {
+    "iterations": 1,
+    "dialogue_rounds": 1,
+    "extra_reads": 15
+   },
+   "weight": 4,
+   "sort": 8,
+   "step_runs": 12,
+   "rate": 0.167,
+   "chunks": [
+    "2026-10-07-driver-session",
+    "2026-10-07-refusal-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T05:17:31Z-b",
+    "2026-10-07T16:46:22Z-b"
+   ]
+  },
+  {
+   "key": "wrap-session/curation/ambiguity.tier-routing",
+   "n": 3,
+   "impact": {
+    "reformulations": 1,
+    "extra_reads": 1
+   },
+   "weight": 2,
+   "sort": 6,
+   "step_runs": 10,
+   "rate": 0.3,
+   "chunks": [
+    "(no chunk)",
+    "2026-10-07-driver-session",
+    "2026-10-07-refusal-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T02:44:20Z-c",
+    "2026-10-07T07:20:44Z-b",
+    "2026-10-07T21:06:01Z-b"
+   ]
+  },
+  {
+   "key": "implement/code/tooling.hook-friction",
+   "n": 2,
+   "impact": {
+    "retries": 2
+   },
+   "weight": 3,
+   "sort": 6,
+   "step_runs": 10,
+   "rate": 0.2,
+   "chunks": [
+    "2026-10-07-settle-detection",
+    "2026-10-07-sink-target-allowlist"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T08:06:55Z-c",
+    "2026-10-07T10:47:59Z-e"
+   ]
+  },
+  {
+   "key": "implement/fix-loop/contract.test-expectation",
+   "n": 2,
+   "impact": {
+    "iterations": 1,
+    "retries": 1,
+    "extra_reads": 1
+   },
+   "weight": 3,
+   "sort": 6,
+   "step_runs": 10,
+   "rate": 0.2,
+   "chunks": [
+    "2026-10-07-audit-corrections",
+    "2026-10-07-driver-command-spans"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T03:37:41Z-b",
+    "2026-10-07T22:10:18Z-b"
+   ]
+  },
+  {
+   "key": "phase/plan/retry.synthesis-rework",
+   "n": 2,
+   "impact": {
+    "iterations": 2
+   },
+   "weight": 3,
+   "sort": 6,
+   "step_runs": 12,
+   "rate": 0.167,
+   "chunks": [
+    "2026-10-07-command-and-refusal-schema",
+    "2026-10-07-settle-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T10:33:50Z-b",
+    "2026-10-07T12:06:38Z-b"
+   ]
+  },
+  {
+   "key": "phase/validate/ambiguity.review-cycles",
+   "n": 1,
+   "impact": {
+    "dialogue_rounds": 2
+   },
+   "weight": 5,
+   "sort": 5,
+   "step_runs": 10,
+   "rate": 0.1,
+   "chunks": [
+    "2026-10-07-refusal-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T18:49:37Z-c"
+   ]
+  },
+  {
+   "key": "implement/code/contract.premise-falsified",
+   "n": 4,
+   "impact": {
+    "extra_reads": 3
+   },
+   "weight": 1,
+   "sort": 4,
+   "step_runs": 10,
+   "rate": 0.4,
+   "chunks": [
+    "2026-10-07-driver-session",
+    "2026-10-07-refusal-detection",
+    "2026-10-07-settle-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T05:45:20Z-c",
+    "2026-10-07T10:47:59Z-b",
+    "2026-10-07T10:47:59Z-c",
+    "2026-10-07T19:11:24Z-b"
+   ]
+  },
+  {
+   "key": "wrap-session/route-resolve/contract.carry-no-owner",
+   "n": 4,
+   "impact": {
+    "extra_reads": 8
+   },
+   "weight": 1,
+   "sort": 4,
+   "step_runs": 10,
+   "rate": 0.4,
+   "chunks": [
+    "2026-10-07-act-by-id",
+    "2026-10-07-driver-command-spans",
+    "2026-10-07-driver-session",
+    "2026-10-07-refusal-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T07:22:16Z-b",
+    "2026-10-07T14:58:48Z-b",
+    "2026-10-07T21:08:16Z-b",
+    "2026-10-07T23:09:17Z-b"
+   ]
+  },
+  {
+   "key": "phase/research/contract.narrow-basis-claim",
+   "n": 2,
+   "impact": {
+    "retries": 1,
+    "extra_reads": 1
+   },
+   "weight": 2,
+   "sort": 4,
+   "step_runs": 10,
+   "rate": 0.2,
+   "chunks": [
+    "2026-10-07-act-by-id",
+    "2026-10-07-settle-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T10:25:51Z-b",
+    "2026-10-07T13:16:02Z-b"
+   ]
+  },
+  {
+   "key": "wrap-session/report/UNTYPED",
+   "n": 2,
+   "impact": {
+    "retries": 1
+   },
+   "weight": 2,
+   "sort": 4,
+   "step_runs": 9,
+   "rate": 0.222,
+   "chunks": [
+    "2026-10-07-settle-detection",
+    "2026-10-07-sink-target-allowlist"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T08:27:21Z-b",
+    "2026-10-07T11:08:36Z-b"
+   ]
+  },
+  {
+   "key": "wrap-session/report/contract.detector-fact-gap",
+   "n": 2,
+   "impact": {
+    "iterations": 1,
+    "extra_reads": 4
+   },
+   "weight": 2,
+   "sort": 4,
+   "step_runs": 9,
+   "rate": 0.222,
+   "chunks": [
+    "2026-10-07-act-by-id",
+    "2026-10-07-refusal-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T14:28:27Z-b",
+    "2026-10-07T20:34:14Z-c"
+   ]
+  },
+  {
+   "key": "new-session/orientation/contract.skill-reference-drift",
+   "n": 3,
+   "impact": {
+    "extra_reads": 6
+   },
+   "weight": 1,
+   "sort": 3,
+   "step_runs": 10,
+   "rate": 0.3,
+   "chunks": [
+    "(no chunk)"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T10:07:43Z-b",
+    "2026-10-07T12:59:24Z-b",
+    "2026-10-07T21:15:25Z-b"
+   ]
+  },
+  {
+   "key": "phase/distill/contract.extract-format",
+   "n": 3,
+   "impact": {},
+   "weight": 1,
+   "sort": 3,
+   "step_runs": 9,
+   "rate": 0.333,
+   "chunks": [
+    "2026-10-07-act-by-id",
+    "2026-10-07-command-and-refusal-schema",
+    "2026-10-07-settle-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T10:18:38Z-b",
+    "2026-10-07T11:54:44Z-b",
+    "2026-10-07T13:10:38Z-b"
+   ]
+  },
+  {
+   "key": "phase/take-up/contract.narrow-basis-claim",
+   "n": 1,
+   "impact": {
+    "dialogue_rounds": 1,
+    "extra_reads": 3
+   },
+   "weight": 3,
+   "sort": 3,
+   "step_runs": 9,
+   "rate": 0.111,
+   "chunks": [
+    "2026-10-07-refusal-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T15:23:37Z-b"
+   ]
+  },
+  {
+   "key": "phase/validate/contract.matrix-claim",
+   "n": 1,
+   "impact": {
+    "dialogue_rounds": 1
+   },
+   "weight": 3,
+   "sort": 3,
+   "step_runs": 10,
+   "rate": 0.1,
+   "chunks": [
+    "2026-10-07-settle-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T10:39:07Z-b"
+   ]
+  },
+  {
+   "key": "wrap-session/report/tooling.host-shell",
+   "n": 1,
+   "impact": {
+    "retries": 2
+   },
+   "weight": 3,
+   "sort": 3,
+   "step_runs": 9,
+   "rate": 0.111,
+   "chunks": [
+    "2026-10-07-refusal-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T20:34:14Z-d"
+   ]
+  },
+  {
+   "key": "phase/take-up/input.carry-context-gap",
+   "n": 2,
+   "impact": {
+    "extra_reads": 3
+   },
+   "weight": 1,
+   "sort": 2,
+   "step_runs": 9,
+   "rate": 0.222,
+   "chunks": [
+    "2026-10-07-act-by-id",
+    "2026-10-07-driver-command-spans"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T13:03:09Z-b",
+    "2026-10-07T21:19:29Z-b"
+   ]
+  },
+  {
+   "key": "phase/take-up/input.working-entry-thin",
+   "n": 2,
+   "impact": {
+    "extra_reads": 7
+   },
+   "weight": 1,
+   "sort": 2,
+   "step_runs": 9,
+   "rate": 0.222,
+   "chunks": [
+    "2026-10-07-driver-session",
+    "2026-10-07-upstream-sync-driver-core"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T04:24:59Z-b",
+    "2026-10-07T04:52:40Z-b"
+   ]
+  },
+  {
+   "key": "implement/smoke/contract.vacuous-check-found",
+   "n": 1,
+   "impact": {
+    "iterations": 1,
+    "extra_reads": 2
+   },
+   "weight": 2,
+   "sort": 2,
+   "step_runs": 10,
+   "rate": 0.1,
+   "chunks": [
+    "2026-10-07-act-by-id"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T14:00:27Z-b"
+   ]
+  },
+  {
+   "key": "phase/plan/UNTYPED",
+   "n": 1,
+   "impact": {
+    "retries": 1
+   },
+   "weight": 2,
+   "sort": 2,
+   "step_runs": 12,
+   "rate": 0.083,
+   "chunks": [
+    "2026-10-07-refusal-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T16:46:22Z-c"
+   ]
+  },
+  {
+   "key": "phase/research/UNTYPED",
+   "n": 1,
+   "impact": {
+    "retries": 1
+   },
+   "weight": 2,
+   "sort": 2,
+   "step_runs": 10,
+   "rate": 0.1,
+   "chunks": [
+    "2026-10-07-audit-corrections"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T03:10:15Z-c"
+   ]
+  },
+  {
+   "key": "phase/research/contract.instrument-validity",
+   "n": 1,
+   "impact": {
+    "retries": 1
+   },
+   "weight": 2,
+   "sort": 2,
+   "step_runs": 10,
+   "rate": 0.1,
+   "chunks": [
+    "2026-10-07-audit-corrections"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T03:10:15Z-b"
+   ]
+  },
+  {
+   "key": "phase/take-up/UNTYPED",
+   "n": 1,
+   "impact": {
+    "retries": 1
+   },
+   "weight": 2,
+   "sort": 2,
+   "step_runs": 9,
+   "rate": 0.111,
+   "chunks": [
+    "2026-10-07-refusal-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T15:23:37Z-c"
+   ]
+  },
+  {
+   "key": "implement/fix-loop/contract.spec-reality-gap",
+   "n": 1,
+   "impact": {},
+   "weight": 1,
+   "sort": 1,
+   "step_runs": 10,
+   "rate": 0.1,
+   "chunks": [
+    "2026-10-07-driver-session"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T05:51:09Z-b"
+   ]
+  },
+  {
+   "key": "new-session/orientation/UNTYPED",
+   "n": 1,
+   "impact": {
+    "extra_reads": 2
+   },
+   "weight": 1,
+   "sort": 1,
+   "step_runs": 10,
+   "rate": 0.1,
+   "chunks": [
+    "(no chunk)"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T04:22:51Z-b"
+   ]
+  },
+  {
+   "key": "new-session/orientation/contract.jointly-contradictory-instructions",
+   "n": 1,
+   "impact": {},
+   "weight": 1,
+   "sort": 1,
+   "step_runs": 10,
+   "rate": 0.1,
+   "chunks": [
+    "(no chunk)"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T04:22:51Z-c"
+   ]
+  },
+  {
+   "key": "phase/plan/contract.skill-reference-drift",
+   "n": 1,
+   "impact": {
+    "extra_reads": 1
+   },
+   "weight": 1,
+   "sort": 1,
+   "step_runs": 12,
+   "rate": 0.083,
+   "chunks": [
+    "2026-10-07-driver-session"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T05:17:31Z-c"
+   ]
+  },
+  {
+   "key": "wrap-session/gates/UNTYPED",
+   "n": 1,
+   "impact": {
+    "extra_reads": 2
+   },
+   "weight": 1,
+   "sort": 1,
+   "step_runs": 9,
+   "rate": 0.111,
+   "chunks": [
+    "2026-10-07-refusal-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T21:13:55Z-b"
+   ]
+  },
+  {
+   "key": "wrap-session/gates/contract.narrow-basis-claim",
+   "n": 1,
+   "impact": {
+    "extra_reads": 1
+   },
+   "weight": 1,
+   "sort": 1,
+   "step_runs": 9,
+   "rate": 0.111,
+   "chunks": [
+    "2026-10-07-audit-corrections"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T04:21:25Z-a"
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/ambiguity.playbook-no-match",
+   "n": 1,
+   "impact": {},
+   "weight": 1,
+   "sort": 1,
+   "step_runs": 9,
+   "rate": 0.111,
+   "chunks": [
+    "2026-10-07-refusal-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T21:03:54Z-d"
+   ]
+  },
+  {
+   "key": "wrap-session/report/input.implement-outcome-unsettled",
+   "n": 1,
+   "impact": {
+    "extra_reads": 2
+   },
+   "weight": 1,
+   "sort": 1,
+   "step_runs": 9,
+   "rate": 0.111,
+   "chunks": [
+    "2026-10-07-refusal-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T20:34:14Z-b"
+   ]
+  },
+  {
+   "key": "wrap-session/report/recall.change-reconstruction",
+   "n": 1,
+   "impact": {
+    "extra_reads": 7
+   },
+   "weight": 1,
+   "sort": 1,
+   "step_runs": 9,
+   "rate": 0.111,
+   "chunks": [
+    "2026-10-07-audit-corrections"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T04:04:13Z-b"
+   ]
+  },
+  {
+   "key": "wrap-session/route-resolve/UNTYPED",
+   "n": 1,
+   "impact": {
+    "extra_reads": 3
+   },
+   "weight": 1,
+   "sort": 1,
+   "step_runs": 10,
+   "rate": 0.1,
+   "chunks": [
+    "(no chunk)"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T02:45:21Z-b"
+   ]
+  },
+  {
+   "key": "wrap-session/route-resolve/contract.narrow-basis-claim",
+   "n": 1,
+   "impact": {
+    "extra_reads": 3
+   },
+   "weight": 1,
+   "sort": 1,
+   "step_runs": 10,
+   "rate": 0.1,
+   "chunks": [
+    "2026-10-07-upstream-sync-driver-core"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T04:46:13Z-b"
+   ]
+  },
+  {
+   "key": "wrap-session/route-resolve/contract.no-sanctioned-channel",
+   "n": 1,
+   "impact": {},
+   "weight": 1,
+   "sort": 1,
+   "step_runs": 10,
+   "rate": 0.1,
+   "chunks": [
+    "2026-10-07-command-and-refusal-schema"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T12:55:00Z-b"
+   ]
+  }
+ ],
+ "cross_step_groups": [
+  {
+   "key": "*/contract.narrow-basis-claim",
+   "n": 5,
+   "impact": {
+    "retries": 1,
+    "dialogue_rounds": 1,
+    "extra_reads": 8
+   },
+   "weight": 4,
+   "sort": 20,
+   "step_runs": 137,
+   "rate": 0.036,
+   "chunks": [
+    "2026-10-07-act-by-id",
+    "2026-10-07-audit-corrections",
+    "2026-10-07-refusal-detection",
+    "2026-10-07-settle-detection",
+    "2026-10-07-upstream-sync-driver-core"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T04:21:25Z-a",
+    "2026-10-07T04:46:13Z-b",
+    "2026-10-07T10:25:51Z-b",
+    "2026-10-07T13:16:02Z-b",
+    "2026-10-07T15:23:37Z-b"
+   ],
+   "per_step": {
+    "wrap-session/gates": 1,
+    "wrap-session/route-resolve": 1,
+    "phase/research": 2,
+    "phase/take-up": 1
+   }
+  },
+  {
+   "key": "*/recall.corpus-recurrence",
+   "n": 4,
+   "impact": {
+    "retries": 3
+   },
+   "weight": 4,
+   "sort": 16,
+   "step_runs": 137,
+   "rate": 0.029,
+   "chunks": [
+    "2026-10-07-command-and-refusal-schema",
+    "2026-10-07-driver-command-spans",
+    "2026-10-07-refusal-detection",
+    "2026-10-07-settle-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T11:29:30Z-b",
+    "2026-10-07T12:52:59Z-b",
+    "2026-10-07T21:06:01Z-d",
+    "2026-10-07T23:08:04Z-c"
+   ],
+   "per_step": {
+    "wrap-session/curation": 4
+   }
+  },
+  {
+   "key": "*/contract.premise-falsified",
+   "n": 4,
+   "impact": {
+    "extra_reads": 3
+   },
+   "weight": 1,
+   "sort": 4,
+   "step_runs": 137,
+   "rate": 0.029,
+   "chunks": [
+    "2026-10-07-driver-session",
+    "2026-10-07-refusal-detection",
+    "2026-10-07-settle-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T05:45:20Z-c",
+    "2026-10-07T10:47:59Z-b",
+    "2026-10-07T10:47:59Z-c",
+    "2026-10-07T19:11:24Z-b"
+   ],
+   "per_step": {
+    "implement/code": 4
+   }
+  },
+  {
+   "key": "*/contract.skill-reference-drift",
+   "n": 4,
+   "impact": {
+    "extra_reads": 7
+   },
+   "weight": 1,
+   "sort": 4,
+   "step_runs": 137,
+   "rate": 0.029,
+   "chunks": [
+    "(no chunk)",
+    "2026-10-07-driver-session"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "ids": [
+    "2026-10-07T05:17:31Z-c",
+    "2026-10-07T10:07:43Z-b",
+    "2026-10-07T12:59:24Z-b",
+    "2026-10-07T21:15:25Z-b"
+   ],
+   "per_step": {
+    "phase/plan": 1,
+    "new-session/orientation": 3
+   }
+  },
+  {
+   "key": "*/tooling.host-shell",
+   "n": 1,
+   "impact": {
+    "retries": 2
+   },
+   "weight": 3,
+   "sort": 3,
+   "step_runs": 137,
+   "rate": 0.007,
+   "chunks": [
+    "2026-10-07-refusal-detection"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T20:34:14Z-d"
+   ],
+   "per_step": {
+    "wrap-session/report": 1
+   }
+  },
+  {
+   "key": "*/contract.jointly-contradictory-instructions",
+   "n": 1,
+   "impact": {},
+   "weight": 1,
+   "sort": 1,
+   "step_runs": 137,
+   "rate": 0.007,
+   "chunks": [
+    "(no chunk)"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T04:22:51Z-c"
+   ],
+   "per_step": {
+    "new-session/orientation": 1
+   }
+  },
+  {
+   "key": "*/recall.change-reconstruction",
+   "n": 1,
+   "impact": {
+    "extra_reads": 7
+   },
+   "weight": 1,
+   "sort": 1,
+   "step_runs": 137,
+   "rate": 0.007,
+   "chunks": [
+    "2026-10-07-audit-corrections"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "ids": [
+    "2026-10-07T04:04:13Z-b"
+   ],
+   "per_step": {
+    "wrap-session/report": 1
+   }
+  }
+ ]
+}

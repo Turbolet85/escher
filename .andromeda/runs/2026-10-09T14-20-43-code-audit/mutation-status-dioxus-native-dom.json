@@ -1,0 +1,23 @@
+{
+ "key": "dioxus-native-dom",
+ "unit": "dioxus-native-dom",
+ "pid": 645337,
+ "start_epoch": 1791561104.0952845,
+ "cap_s": 1800,
+ "resized": false,
+ "jobs": 2,
+ "timeout_s": 600,
+ "footprint": {
+  "CARGO_BUILD_JOBS": "4",
+  "RUST_TEST_THREADS": "4",
+  "jobs": 2,
+  "jobserver_tasks": 6
+ },
+ "command": "mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo mutants --workspace --file packages/dioxus-native-dom/src/element_id.rs --file packages/dioxus-native-dom/src/dioxus_document.rs --test-package=dioxus-native-dom,blitz-tests --cargo-test-arg=--lib --cargo-test-arg=--test=stand_element_ids --cargo-test-arg=--test=stand_id_persistence --cargo-test-arg=--test=stand_accessibility_ids --cargo-test-arg=--test=accessibility_names --cargo-test-arg=--test=stand_id_edits --cargo-test-arg=--test=stand_actionable_keys --cargo-test-arg=--test=stand_snapshot --baseline=skip --timeout 600 -j 2 --jobserver-tasks 6 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-dioxus-native-dom",
+ "state": "exited",
+ "returncode": 0,
+ "elapsed_s": 1065,
+ "live_tested": 61,
+ "end_time": "2026-10-09T16:09:20.118588107Z",
+ "planned": 61
+}

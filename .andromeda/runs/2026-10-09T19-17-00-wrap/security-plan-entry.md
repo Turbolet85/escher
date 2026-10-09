@@ -1,0 +1,9 @@
+
+## 2026-10-09-founder-rulings — the sink's second record class and the diff's sizes in a log, ratified
+**Section:** §Logging & Monitoring (escher's own sink) · §Input Validation (the `id` row)
+**Change:**
+- escher's own sink: the second record class — one line per closed span of an admitted target — was "PROVISIONAL: a boundary widening on the operator's answer … not yet the founder's word", per the entry `2026-10-07-driver-command-spans — the sink's second record class and the diff's lengths, PROVISIONAL; typed text read in process`; now "a boundary widening, ratified by the founder (2026-10-09) as built". What the line prints, and the named limit of `tracing-subscriber 0.3.23`, are unchanged.
+- The `id` row: the clause beside "a diff is returned to its caller only, no log, event, socket or file carries it" was "PROVISIONAL: stated beside the ratified sentence, which is not reworded"; now "ratified by the founder, 2026-10-09": the sentence stands and gains the clarification that a diff's content never reaches a log while its three sizes — the counts of added, removed and changed — may.
+**Why:** the founder ruled on both at the Epoch 4 boundary (the founder, 2026-10-09, relayed verbatim by the overseer as his chosen option labels; the English wording of each ruling is the overseer's); a boundary widening is ratified by his own word only, and this is it. Standing rule for later chunks: a count of a diff's nodes may reach a log, no node, id, name or value of it may — a field that holds any of those is a new crossing question.
+**Kept:** the same day the founder ruled that an in-process driver call returning the snapshot text and the diff is not a boundary widening — it is the returned value his rule allows. No mark waited on that answer; the clauses that state the in-process return stand as written.
+**Ref:** .andromeda/runs/2026-10-09T19-17-00-wrap/

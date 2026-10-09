@@ -1,0 +1,163 @@
+{
+ "key": "blitz-dom-changed-set",
+ "unit": "blitz-dom",
+ "unit_state": "complete 110/110",
+ "counts": {
+  "mutants": 106,
+  "caught": 102,
+  "missed": 0,
+  "not_measured": 0,
+  "timeout": 0,
+  "unviable": 4
+ },
+ "score": 100.0,
+ "score_formula": "caught/(caught+missed)",
+ "survivors": [],
+ "not_measured": [],
+ "host": "x86_64-unknown-linux-gnu",
+ "timeouts": [],
+ "unviable_sites": [
+  [
+   "packages/blitz-dom/src/mutator.rs:203:13",
+   "delete match arm NodeData::Text(ref mut text) in DocumentMutator<'_>::set_node_text"
+  ],
+  [
+   "packages/blitz-dom/src/mutator.rs:244:30",
+   "replace += with *= in DocumentMutator<'_>::append_text_to_node"
+  ],
+  [
+   "packages/blitz-dom/src/mutator.rs:244:30",
+   "replace += with -= in DocumentMutator<'_>::append_text_to_node"
+  ],
+  [
+   "packages/blitz-dom/src/mutator.rs:598:9",
+   "replace DocumentMutator<'_>::remove_and_drop_node_with -> Option<Node> with Some(Default::default())"
+  ]
+ ],
+ "per_file": {
+  "packages/blitz-dom/src/document.rs": {
+   "CaughtMutant": 8
+  },
+  "packages/blitz-dom/src/events/keyboard.rs": {
+   "CaughtMutant": 1
+  },
+  "packages/blitz-dom/src/mutator.rs": {
+   "CaughtMutant": 93,
+   "Unviable": 4
+  }
+ },
+ "riders": {
+  "counts": {
+   "mutants": 4,
+   "caught": 4,
+   "missed": 0,
+   "not_measured": 0,
+   "timeout": 0,
+   "unviable": 0
+  },
+  "sites": [
+   [
+    "packages/blitz-dom/src/document.rs:1345:21",
+    "delete field family_name from struct parley::fontique::FontInfoOverride expression in BaseDocument::load_resource",
+    "CaughtMutant"
+   ],
+   [
+    "packages/blitz-dom/src/document.rs:1346:21",
+    "delete field weight from struct parley::fontique::FontInfoOverride expression in BaseDocument::load_resource",
+    "CaughtMutant"
+   ],
+   [
+    "packages/blitz-dom/src/document.rs:1347:21",
+    "delete field style from struct parley::fontique::FontInfoOverride expression in BaseDocument::load_resource",
+    "CaughtMutant"
+   ],
+   [
+    "packages/blitz-dom/src/mutator.rs:153:13",
+    "delete field damage from struct style::data::ElementData expression in DocumentMutator<'_>::create_element",
+    "CaughtMutant"
+   ]
+  ],
+  "survivors": [],
+  "not_measured": [],
+  "note": "field-deletion mutants of the named files outside the rule: cargo-mutants 27.1.0 applies no name filter to them (measured), so the invocation tests them too"
+ },
+ "timing": {
+  "scope": "filter",
+  "planned": 110,
+  "tested": 110,
+  "wall_s": 3556,
+  "jobs": 2,
+  "cap_s": 5211,
+  "files": [
+   "packages/blitz-dom/src/document.rs",
+   "packages/blitz-dom/src/events/keyboard.rs",
+   "packages/blitz-dom/src/mutator.rs"
+  ],
+  "rule": "every listed mutant whose enclosing function holds a `changed_nodes` read or write",
+  "filter": [
+   "^packages/blitz\\-dom/src/document\\.rs:(1010:9|1017:9|1553:9|1557:49): ",
+   "^packages/blitz\\-dom/src/events/keyboard\\.rs:(110:9): ",
+   "^packages/blitz\\-dom/src/mutator\\.rs:(199:9|203:13|208:36|210:37|238:9|244:30|245:41|275:9|281:27|294:31|304:23|304:44|322:33|341:23|342:13|342:27|343:13|343:27|348:23|355:18|359:18|371:18|377:18|377:45|384:12|388:24|390:31|392:31|394:31|395:13|395:28|398:31|399:13|399:28|406:9|413:27|423:23|423:44|440:12|443:33|457:23|463:23|464:13|464:27|465:13|465:27|470:23|475:23|488:18|488:45|493:18|496:31|498:31|500:31|500:68|507:9|509:33|516:9|518:33|525:9|527:33|534:9|536:33|544:9|546:33|554:9|556:33|564:9|574:37|582:45|598:9|602:33|619:31|625:45|633:9|642:27|649:33|649:53|649:56|650:29|650:32|702:9|703:33|703:62|703:65|704:38|704:41|716:37|733:31|739:49|752:27|765:42|765:45|767:23|767:50): "
+  ],
+  "functions": [
+   "packages/blitz-dom/src/document.rs: BaseDocument::has_changes",
+   "packages/blitz-dom/src/document.rs: BaseDocument::snapshot_node_and",
+   "packages/blitz-dom/src/document.rs: BaseDocument::take_changed_nodes",
+   "packages/blitz-dom/src/events/keyboard.rs: BaseDocument::apply_generated_text_input_event",
+   "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::add_children_to_parent",
+   "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::append_text_to_node",
+   "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::clear_attribute",
+   "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::remove_and_drop_all_children",
+   "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::remove_and_drop_node_with",
+   "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::remove_custom_widget",
+   "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::remove_node",
+   "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::remove_style_property",
+   "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::remove_sub_document",
+   "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::set_attribute",
+   "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::set_custom_widget",
+   "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::set_node_text",
+   "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::set_style_property",
+   "packages/blitz-dom/src/mutator.rs: DocumentMutator<'_>::set_sub_document"
+  ],
+  "in_rule": 106,
+  "riders": 4
+ },
+ "per_mutant_s": 32.33,
+ "tool": {
+  "cargo_mutants_version": "27.1.0",
+  "start_time": "2026-10-09T17:52:32.115659648Z",
+  "end_time": "2026-10-09T18:51:47.933320793Z",
+  "exit": 0,
+  "non_mutant_scenarios": [],
+  "test_timeout_s": 600
+ },
+ "command": "mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 taskset -c 12-15,28-31 nice -n 19 ionice -c 3 cargo mutants --workspace --file packages/blitz-dom/src/document.rs --file packages/blitz-dom/src/mutator.rs --file packages/blitz-dom/src/events/keyboard.rs -F '^packages/blitz\\-dom/src/document\\.rs:(1010:9|1017:9|1553:9|1557:49): ' -F '^packages/blitz\\-dom/src/events/keyboard\\.rs:(110:9): ' -F '^packages/blitz\\-dom/src/mutator\\.rs:(199:9|203:13|208:36|210:37|238:9|244:30|245:41|275:9|281:27|294:31|304:23|304:44|322:33|341:23|342:13|342:27|343:13|343:27|348:23|355:18|359:18|371:18|377:18|377:45|384:12|388:24|390:31|392:31|394:31|395:13|395:28|398:31|399:13|399:28|406:9|413:27|423:23|423:44|440:12|443:33|457:23|463:23|464:13|464:27|465:13|465:27|470:23|475:23|488:18|488:45|493:18|496:31|498:31|500:31|500:68|507:9|509:33|516:9|518:33|525:9|527:33|534:9|536:33|544:9|546:33|554:9|556:33|564:9|574:37|582:45|598:9|602:33|619:31|625:45|633:9|642:27|649:33|649:53|649:56|650:29|650:32|702:9|703:33|703:62|703:65|704:38|704:41|716:37|733:31|739:49|752:27|765:42|765:45|767:23|767:50): ' --test-package=blitz-dom,blitz-tests,dioxus-native-dom --cargo-test-arg=--tests --baseline=skip --timeout 600 -j 2 --jobserver-tasks 6 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-blitz-dom-changed-set",
+ "hand_pass": {
+  "command": "CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 taskset -c 12-15,28-31 nice -n 19 ionice -c 3 cargo test --locked -p blitz-dom -p blitz-tests -p dioxus-native-dom --tests",
+  "exit": 0,
+  "wall_s": 38.1,
+  "result_lines": 101,
+  "passed": 504,
+  "failed": 0,
+  "ignored": 10,
+  "summed_test_time_s": 36.1
+ },
+ "footprint": {
+  "CARGO_BUILD_JOBS": "4",
+  "RUST_TEST_THREADS": "4",
+  "jobs": 2,
+  "jobserver_tasks": 6,
+  "priority": "taskset -c 12-15,28-31 nice -n 19 ionice -c 3"
+ },
+ "pin": null,
+ "cap": {
+  "resized": true,
+  "rate_s_per_mutant": 31.58,
+  "rate_at": {
+   "elapsed_s": 1800,
+   "live_tested": 57
+  },
+  "resized_cap_s": 5211,
+  "cap_s": 5211
+ }
+}

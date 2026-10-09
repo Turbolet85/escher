@@ -1,0 +1,269 @@
+{
+ "key": "escher-driver",
+ "unit": "escher-driver",
+ "unit_state": "complete 213/213",
+ "counts": {
+  "mutants": 213,
+  "caught": 170,
+  "missed": 0,
+  "not_measured": 0,
+  "timeout": 0,
+  "unviable": 43
+ },
+ "score": 100.0,
+ "score_formula": "caught/(caught+missed)",
+ "survivors": [],
+ "not_measured": [],
+ "host": "x86_64-unknown-linux-gnu",
+ "timeouts": [],
+ "unviable_sites": [
+  [
+   "packages/escher-driver/src/client.rs:108:9",
+   "replace imp::start -> Result<Started, SessionError> with Ok(Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/client.rs:114:39",
+   "replace + with * in imp::start"
+  ],
+  [
+   "packages/escher-driver/src/client.rs:147:9",
+   "replace imp::io_error -> SessionError with Default::default()"
+  ],
+  [
+   "packages/escher-driver/src/client.rs:154:9",
+   "replace imp::exchange -> Result<Reply, SessionError> with Ok(Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/client.rs:38:5",
+   "replace attach -> Result<Hello, SessionError> with Ok(Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/client.rs:63:5",
+   "replace start -> Result<Started, SessionError> with Ok(Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/client.rs:83:9",
+   "replace imp::attach -> Result<Hello, SessionError> with Ok(Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/client.rs:93:39",
+   "replace + with * in imp::stop"
+  ],
+  [
+   "packages/escher-driver/src/command.rs:140:9",
+   "replace Command::spec -> &'static VerbSpec with Box::leak(Box::new(Default::default()))"
+  ],
+  [
+   "packages/escher-driver/src/command.rs:168:5",
+   "replace validate -> Result<Command, Refusal> with Ok(Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/command.rs:214:5",
+   "replace admit -> Result<Admitted<'a>, Refusal> with Ok(Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/command.rs:94:9",
+   "replace Key::from_name -> Option<Key> with Some(Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/execute.rs:109:9",
+   "replace Session::run -> Result<Outcome, Refusal> with Ok(Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/execute.rs:120:9",
+   "replace Session::execute -> Result<Outcome, Refusal> with Ok(Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/execute.rs:238:5",
+   "replace read_screen -> Snapshot with Default::default()"
+  ],
+  [
+   "packages/escher-driver/src/execute.rs:252:5",
+   "replace locate -> Option<Target> with Some(Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/execute.rs:278:5",
+   "replace resolve -> Result<(Snapshot, Target), Refusal> with Ok((Default::default(), Default::default()))"
+  ],
+  [
+   "packages/escher-driver/src/execute.rs:349:5",
+   "replace settled_step -> (Option<Busy>, SnapshotDiff, Snapshot) with (None, Default::default(), Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/execute.rs:349:5",
+   "replace settled_step -> (Option<Busy>, SnapshotDiff, Snapshot) with (Some(Default::default()), Default::default(), Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/execute.rs:368:5",
+   "replace acted -> Outcome with Default::default()"
+  ],
+  [
+   "packages/escher-driver/src/host.rs:101:9",
+   "replace imp::bind_error -> SessionError with Default::default()"
+  ],
+  [
+   "packages/escher-driver/src/host.rs:128:9",
+   "replace imp::answer -> io::Result<Option<Request>> with Ok(Some(Default::default()))"
+  ],
+  [
+   "packages/escher-driver/src/host.rs:58:9",
+   "replace imp::io_error -> SessionError with Default::default()"
+  ],
+  [
+   "packages/escher-driver/src/host.rs:81:9",
+   "replace imp::bind -> Result<UnixListener, SessionError> with Ok(Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/refusal.rs:161:9",
+   "replace Refusal::malformed -> Refusal with Default::default()"
+  ],
+  [
+   "packages/escher-driver/src/refusal.rs:169:9",
+   "replace Refusal::cause -> Cause with Default::default()"
+  ],
+  [
+   "packages/escher-driver/src/refusal.rs:174:9",
+   "replace Refusal::fault -> Option<Fault> with Some(Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/schema.rs:294:5",
+   "replace verb -> Option<&'static VerbSpec> with Some(Box::leak(Box::new(Default::default())))"
+  ],
+  [
+   "packages/escher-driver/src/session.rs:120:9",
+   "replace Session::with_time -> Session with Default::default()"
+  ],
+  [
+   "packages/escher-driver/src/session.rs:131:9",
+   "replace Session::harness -> &Harness<DioxusDocument> with Box::leak(Box::new(Harness::from(Default::default())))"
+  ],
+  [
+   "packages/escher-driver/src/session.rs:131:9",
+   "replace Session::harness -> &Harness<DioxusDocument> with Box::leak(Box::new(Harness::from_iter([Default::default()])))"
+  ],
+  [
+   "packages/escher-driver/src/session.rs:131:9",
+   "replace Session::harness -> &Harness<DioxusDocument> with Box::leak(Box::new(Harness::new()))"
+  ],
+  [
+   "packages/escher-driver/src/session.rs:131:9",
+   "replace Session::harness -> &Harness<DioxusDocument> with Box::leak(Box::new(Harness::new(Default::default())))"
+  ],
+  [
+   "packages/escher-driver/src/session.rs:136:9",
+   "replace Session::harness_mut -> &mut Harness<DioxusDocument> with Box::leak(Box::new(Harness::from(Default::default())))"
+  ],
+  [
+   "packages/escher-driver/src/session.rs:136:9",
+   "replace Session::harness_mut -> &mut Harness<DioxusDocument> with Box::leak(Box::new(Harness::from_iter([Default::default()])))"
+  ],
+  [
+   "packages/escher-driver/src/session.rs:136:9",
+   "replace Session::harness_mut -> &mut Harness<DioxusDocument> with Box::leak(Box::new(Harness::new()))"
+  ],
+  [
+   "packages/escher-driver/src/session.rs:136:9",
+   "replace Session::harness_mut -> &mut Harness<DioxusDocument> with Box::leak(Box::new(Harness::new(Default::default())))"
+  ],
+  [
+   "packages/escher-driver/src/session.rs:150:9",
+   "replace Session::act -> Result<Settled, SessionError> with Ok(Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/session.rs:41:9",
+   "replace SeenIds::with_bound -> SeenIds with Default::default()"
+  ],
+  [
+   "packages/escher-driver/src/session.rs:99:9",
+   "replace Session::start -> Result<Session, SessionError> with Ok(Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/wire.rs:102:9",
+   "replace Reply::parse -> Option<Reply> with Some(Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/wire.rs:130:5",
+   "replace read_line -> io::Result<Line> with Ok(Default::default())"
+  ],
+  [
+   "packages/escher-driver/src/wire.rs:62:9",
+   "replace Request::parse -> Result<Request, Reply> with Ok(Default::default())"
+  ]
+ ],
+ "per_file": {
+  "packages/escher-driver/src/client.rs": {
+   "Unviable": 8,
+   "CaughtMutant": 12
+  },
+  "packages/escher-driver/src/command.rs": {
+   "Unviable": 4,
+   "CaughtMutant": 22
+  },
+  "packages/escher-driver/src/error.rs": {
+   "CaughtMutant": 1
+  },
+  "packages/escher-driver/src/execute.rs": {
+   "Unviable": 8,
+   "CaughtMutant": 50
+  },
+  "packages/escher-driver/src/host.rs": {
+   "Unviable": 4,
+   "CaughtMutant": 24
+  },
+  "packages/escher-driver/src/refusal.rs": {
+   "Unviable": 3,
+   "CaughtMutant": 10
+  },
+  "packages/escher-driver/src/schema.rs": {
+   "Unviable": 1,
+   "CaughtMutant": 8
+  },
+  "packages/escher-driver/src/session.rs": {
+   "Unviable": 12,
+   "CaughtMutant": 17
+  },
+  "packages/escher-driver/src/wire.rs": {
+   "Unviable": 3,
+   "CaughtMutant": 26
+  }
+ },
+ "riders": null,
+ "timing": {
+  "scope": "unit",
+  "planned": 213,
+  "tested": 213,
+  "wall_s": 3541,
+  "jobs": 2,
+  "cap_s": 5277
+ },
+ "per_mutant_s": 16.62,
+ "tool": {
+  "cargo_mutants_version": "27.1.0",
+  "start_time": "2026-10-09T14:41:33.423605198Z",
+  "end_time": "2026-10-09T15:40:34.829686321Z",
+  "exit": 0,
+  "non_mutant_scenarios": [],
+  "test_timeout_s": 600
+ },
+ "command": "mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo mutants -p escher-driver --test-package=escher-driver,blitz-tests,seven_guis --cargo-test-arg=--lib --cargo-test-arg=--test=stand_act_diff --cargo-test-arg=--test=stand_act_disabled --cargo-test-arg=--test=stand_act_ids --cargo-test-arg=--test=stand_act_keys --cargo-test-arg=--test=stand_act_obstructed --cargo-test-arg=--test=stand_act_range --cargo-test-arg=--test=stand_act_refused --cargo-test-arg=--test=stand_act_scroll --cargo-test-arg=--test=stand_act_spans --cargo-test-arg=--test=stand_act_timer --cargo-test-arg=--test=stand_session_fresh --cargo-test-arg=--test=stand_session_ids --cargo-test-arg=--test=stand_session_lifecycle --cargo-test-arg=--test=stand_session_quiet --cargo-test-arg=--test=stand_session_state --cargo-test-arg=--test=stand_settle --cargo-test-arg=--test=telemetry_scrub --cargo-test-arg=--test=host_binary --cargo-test-arg=--test=host_log --baseline=skip --timeout 600 -j 2 --jobserver-tasks 6 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-escher-driver",
+ "hand_pass": {
+  "command": "CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo test --locked -p escher-driver -p blitz-tests -p seven_guis --lib --test=stand_act_diff --test=stand_act_disabled --test=stand_act_ids --test=stand_act_keys --test=stand_act_obstructed --test=stand_act_range --test=stand_act_refused --test=stand_act_scroll --test=stand_act_spans --test=stand_act_timer --test=stand_session_fresh --test=stand_session_ids --test=stand_session_lifecycle --test=stand_session_quiet --test=stand_session_state --test=stand_settle --test=telemetry_scrub --test=host_binary --test=host_log",
+  "exit": 0,
+  "wall_s": 18.2,
+  "result_lines": 22,
+  "passed": 80,
+  "failed": 0,
+  "ignored": 4,
+  "summed_test_time_s": 17.42
+ },
+ "cap": {
+  "resized": true,
+  "rate_s_per_mutant": 16.52,
+  "rate_at": {
+   "elapsed_s": 1800,
+   "live_tested": 109
+  },
+  "resized_cap_s": 5277,
+  "cap_s": 5277
+ }
+}

@@ -1,0 +1,103 @@
+{
+ "key": "dioxus-native-dom",
+ "unit": "dioxus-native-dom",
+ "unit_state": "complete 61/61",
+ "counts": {
+  "mutants": 61,
+  "caught": 53,
+  "missed": 0,
+  "not_measured": 0,
+  "timeout": 0,
+  "unviable": 8
+ },
+ "score": 100.0,
+ "score_formula": "caught/(caught+missed)",
+ "survivors": [],
+ "not_measured": [],
+ "host": "x86_64-unknown-linux-gnu",
+ "timeouts": [],
+ "unviable_sites": [
+  [
+   "packages/dioxus-native-dom/src/dioxus_document.rs:249:9",
+   "replace <impl Document for DioxusDocument>::inner -> DocGuard<'_> with Default::default()"
+  ],
+  [
+   "packages/dioxus-native-dom/src/dioxus_document.rs:253:9",
+   "replace <impl Document for DioxusDocument>::inner_mut -> DocGuardMut<'_> with Default::default()"
+  ],
+  [
+   "packages/dioxus-native-dom/src/dioxus_document.rs:28:5",
+   "replace wrap_event_data -> Rc<dyn Any> with Rc::new(Default::default())"
+  ],
+  [
+   "packages/dioxus-native-dom/src/dioxus_document.rs:301:9",
+   "replace <impl Document for DioxusDocument>::accessibility_tree -> accesskit::TreeUpdate with Default::default()"
+  ],
+  [
+   "packages/dioxus-native-dom/src/element_id.rs:150:5",
+   "replace child_chain -> Rc<str> with Rc::new(\"\")"
+  ],
+  [
+   "packages/dioxus-native-dom/src/element_id.rs:150:5",
+   "replace child_chain -> Rc<str> with Rc::new(\"xyzzy\")"
+  ],
+  [
+   "packages/dioxus-native-dom/src/element_id.rs:232:5",
+   "replace place_children -> Vec<Placed> with vec![Default::default()]"
+  ],
+  [
+   "packages/dioxus-native-dom/src/element_id.rs:70:9",
+   "replace VdomWalk<'_>::new_owner -> Owner with Default::default()"
+  ]
+ ],
+ "per_file": {
+  "packages/dioxus-native-dom/src/dioxus_document.rs": {
+   "Unviable": 4,
+   "CaughtMutant": 21
+  },
+  "packages/dioxus-native-dom/src/element_id.rs": {
+   "Unviable": 4,
+   "CaughtMutant": 32
+  }
+ },
+ "riders": null,
+ "timing": {
+  "scope": "files",
+  "planned": 61,
+  "tested": 61,
+  "wall_s": 1055,
+  "jobs": 2,
+  "cap_s": 1800,
+  "files": [
+   "packages/dioxus-native-dom/src/dioxus_document.rs",
+   "packages/dioxus-native-dom/src/element_id.rs"
+  ]
+ },
+ "per_mutant_s": 17.3,
+ "tool": {
+  "cargo_mutants_version": "27.1.0",
+  "start_time": "2026-10-09T15:51:44.808439387Z",
+  "end_time": "2026-10-09T16:09:20.118588107Z",
+  "exit": 0,
+  "non_mutant_scenarios": [],
+  "test_timeout_s": 600
+ },
+ "command": "mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo mutants --workspace --file packages/dioxus-native-dom/src/element_id.rs --file packages/dioxus-native-dom/src/dioxus_document.rs --test-package=dioxus-native-dom,blitz-tests --cargo-test-arg=--lib --cargo-test-arg=--test=stand_element_ids --cargo-test-arg=--test=stand_id_persistence --cargo-test-arg=--test=stand_accessibility_ids --cargo-test-arg=--test=accessibility_names --cargo-test-arg=--test=stand_id_edits --cargo-test-arg=--test=stand_actionable_keys --cargo-test-arg=--test=stand_snapshot --baseline=skip --timeout 600 -j 2 --jobserver-tasks 6 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-dioxus-native-dom",
+ "hand_pass": {
+  "command": "CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo test --locked -p dioxus-native-dom -p blitz-tests --lib --test=stand_element_ids --test=stand_id_persistence --test=stand_accessibility_ids --test=accessibility_names --test=stand_id_edits --test=stand_actionable_keys --test=stand_snapshot",
+  "exit": 0,
+  "wall_s": 12.4,
+  "result_lines": 9,
+  "passed": 88,
+  "failed": 0,
+  "ignored": 1,
+  "summed_test_time_s": 6.11
+ },
+ "cap": {
+  "resized": false,
+  "rate_s_per_mutant": null,
+  "rate_at": null,
+  "resized_cap_s": null,
+  "cap_s": 1800
+ }
+}

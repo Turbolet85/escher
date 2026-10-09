@@ -1,0 +1,126 @@
+{
+ "key": "dioxus-native-dom-snapshot",
+ "unit": "dioxus-native-dom",
+ "unit_state": "complete 71/71",
+ "counts": {
+  "mutants": 71,
+  "caught": 60,
+  "missed": 1,
+  "not_measured": 0,
+  "timeout": 0,
+  "unviable": 10
+ },
+ "score": 98.36,
+ "score_formula": "caught/(caught+missed)",
+ "survivors": [
+  [
+   "packages/dioxus-native-dom/src/snapshot.rs:187:9",
+   "delete match arm \"textarea\" in value"
+  ]
+ ],
+ "not_measured": [],
+ "host": "x86_64-unknown-linux-gnu",
+ "timeouts": [],
+ "unviable_sites": [
+  [
+   "packages/dioxus-native-dom/src/actionable.rs:56:9",
+   "replace DioxusDocument::unkeyed_actionable -> Vec<UnkeyedActionable> with vec![Default::default()]"
+  ],
+  [
+   "packages/dioxus-native-dom/src/snapshot.rs:100:5",
+   "replace tree_root -> Option<TreeNodeId> with Some(Default::default())"
+  ],
+  [
+   "packages/dioxus-native-dom/src/snapshot.rs:65:9",
+   "replace Snapshot::nodes -> impl Iterator<Item =&SnapshotNode>+'_ with ::std::iter::once(Box::leak(Box::new(Default::default())))"
+  ],
+  [
+   "packages/dioxus-native-dom/src/snapshot.rs:75:9",
+   "replace Snapshot::get -> Option<&SnapshotNode> with Some(Box::leak(Box::new(Default::default())))"
+  ],
+  [
+   "packages/dioxus-native-dom/src/snapshot.rs:84:9",
+   "replace DioxusDocument::snapshot -> Snapshot with Default::default()"
+  ],
+  [
+   "packages/dioxus-native-dom/src/snapshot_diff.rs:106:5",
+   "replace with_parents -> Vec<(&SnapshotNode, Option<&str>)> with vec![(Box::leak(Box::new(Default::default())), None)]"
+  ],
+  [
+   "packages/dioxus-native-dom/src/snapshot_diff.rs:106:5",
+   "replace with_parents -> Vec<(&SnapshotNode, Option<&str>)> with vec![(Box::leak(Box::new(Default::default())), Some(\"\"))]"
+  ],
+  [
+   "packages/dioxus-native-dom/src/snapshot_diff.rs:106:5",
+   "replace with_parents -> Vec<(&SnapshotNode, Option<&str>)> with vec![(Box::leak(Box::new(Default::default())), Some(\"xyzzy\"))]"
+  ],
+  [
+   "packages/dioxus-native-dom/src/snapshot_diff.rs:131:5",
+   "replace reading -> DiffNode with Default::default()"
+  ],
+  [
+   "packages/dioxus-native-dom/src/snapshot_diff.rs:61:9",
+   "replace Snapshot::diff -> SnapshotDiff with Default::default()"
+  ]
+ ],
+ "per_file": {
+  "packages/dioxus-native-dom/src/actionable.rs": {
+   "CaughtMutant": 8,
+   "Unviable": 1
+  },
+  "packages/dioxus-native-dom/src/snapshot.rs": {
+   "CaughtMutant": 24,
+   "Unviable": 4,
+   "MissedMutant": 1
+  },
+  "packages/dioxus-native-dom/src/snapshot_diff.rs": {
+   "CaughtMutant": 23,
+   "Unviable": 5
+  },
+  "packages/dioxus-native-dom/src/snapshot_text.rs": {
+   "CaughtMutant": 5
+  }
+ },
+ "riders": null,
+ "timing": {
+  "scope": "files",
+  "planned": 71,
+  "tested": 71,
+  "wall_s": 1182,
+  "jobs": 2,
+  "cap_s": 1800,
+  "files": [
+   "packages/dioxus-native-dom/src/actionable.rs",
+   "packages/dioxus-native-dom/src/snapshot.rs",
+   "packages/dioxus-native-dom/src/snapshot_diff.rs",
+   "packages/dioxus-native-dom/src/snapshot_text.rs"
+  ]
+ },
+ "per_mutant_s": 16.65,
+ "tool": {
+  "cargo_mutants_version": "27.1.0",
+  "start_time": "2026-10-09T16:18:26.158597727Z",
+  "end_time": "2026-10-09T16:38:08.299332369Z",
+  "exit": 2,
+  "non_mutant_scenarios": [],
+  "test_timeout_s": 600
+ },
+ "command": "mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo mutants --workspace --file packages/dioxus-native-dom/src/snapshot.rs --file packages/dioxus-native-dom/src/snapshot_text.rs --file packages/dioxus-native-dom/src/snapshot_diff.rs --file packages/dioxus-native-dom/src/actionable.rs --test-package=dioxus-native-dom,blitz-tests --cargo-test-arg=--lib --cargo-test-arg=--test=stand_snapshot --cargo-test-arg=--test=stand_snapshot_state --cargo-test-arg=--test=stand_snapshot_text --cargo-test-arg=--test=stand_diff --cargo-test-arg=--test=stand_actionable_keys --cargo-test-arg=--test=stand_act_diff --baseline=skip --timeout 600 -j 2 --jobserver-tasks 6 --output .andromeda/runs/2026-10-09T14-20-43-code-audit/mutants-dioxus-native-dom-snapshot",
+ "hand_pass": {
+  "command": "CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo test --locked -p dioxus-native-dom -p blitz-tests --lib --test=stand_snapshot --test=stand_snapshot_state --test=stand_snapshot_text --test=stand_diff --test=stand_actionable_keys --test=stand_act_diff",
+  "exit": 0,
+  "wall_s": 8.5,
+  "result_lines": 8,
+  "passed": 94,
+  "failed": 0,
+  "ignored": 0,
+  "summed_test_time_s": 4.87
+ },
+ "cap": {
+  "resized": false,
+  "rate_s_per_mutant": null,
+  "rate_at": null,
+  "resized_cap_s": null,
+  "cap_s": 1800
+ }
+}
