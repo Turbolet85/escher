@@ -282,3 +282,34 @@ One entry per amendment to `security-plan.md` (sidecar-contract.md §Entry form)
 **Why:** the chunk added a script that takes arguments and runs `sudo`, and §Input Validation lists script argument boundaries row by row. The detector's grade was `escalate` by its own severity while it reported the validation present, and the plan's reviewed list named the row, so it was applied without a halt under the playbook's rule for that class. It is a new script the repository's own workflow steps call — no already-hardened boundary gained a crossing or an input class.
 **Kept:** §Dependency Security is unchanged: no dependency or action was added, and the apt-cache action keeps its pinned SHA.
 **Ref:** .andromeda/runs/2026-10-09T20-50-14-wrap/
+
+## 2026-10-10-upstream-sync-agent-surfaces — a hint-less `@font-face` source is fetched and sniffed: a boundary widening by upstream merge, PROVISIONAL
+**Section:** §Input Validation → the `@font-face` source | URL row
+**Change:** the row keeps its claim (a source whose URL cannot be resolved is skipped instead of panicking) and gains a PROVISIONAL clause: a source with no format hint whose URL has no extension — a `data:` URL — was skipped and is now fetched, its format sniffed from its bytes as the Fetched fonts row states; no test of ours and none in the merged delta covers it; escher routes no agent- or user-supplied URL through this path today — no driver verb takes a URL, and the stand boots offline on its bundled font.
+**Why:** upstream #1109 arrived with the merge and widens which document-supplied font sources reach the fetch and the font decode. A boundary widening is the playbook's never-routine class whatever brings it: the operator, 2026-10-10, through the question dialog of this wrap, had it recorded as PROVISIONAL — the call is the founder's own word, also when the widening arrives by an upstream merge. The mark is discharged in the batch at the Epoch 5 boundary, on the founder's ruling; until then it stands in the body, in the security rule file and summary, and in the handoff.
+**Kept:** the Fetched fonts | Format row is unchanged — sniffing "when no format hint is given" was already its claim. No code was changed for this: the merged behaviour stands as upstream wrote it.
+**Ref:** .andromeda/runs/2026-10-10T01-56-50-wrap/
+
+## 2026-10-10-upstream-sync-agent-surfaces — input rows re-read on the merged engine: the `file:` read, `autofocus`, the script Selection API; one compile-time env read
+**Section:** §Input Validation → `file:` URLs (net provider), Markup attributes, JS API arguments · §Secret Management → Environment values read
+**Change:**
+- `file:` URLs: was "Read with `std::fs::read(request.url.path())`"; now read through `Url::to_file_path` off wasm — a `file:` URL that is no file path is a typed `InvalidInput` error, no panic — and through `request.url.path()` on wasm only. No path restriction, as before.
+- Markup attributes, new row `autofocus`: on a focusable element, under blitz-dom's `autofocus` feature, the attribute enables autofocus when present with any value but `"false"` — bare, empty and `"true"` each focus the element.
+- JS API arguments, new row Selection: `setBaseAndExtent` checks its argument count and offsets and throws a JS error on a bad call, leaving the selection unchanged; the API writes the document's text selection; the `innerText` / `outerText` getters only read; escher uses none.
+- Environment values: the `env!("CARGO_MANIFEST_DIR")` bullet also names upstream's `tests/all.rs` of blitz-tests, a target held at `test = false` and never built. No runtime env read was added.
+**Why:** each row states a reading of code the merge changed. The `file:` change narrows — an error where there was none — and leaves the standing gap, no path restriction, as it was. The Selection API is a realization on the script-to-DOM crossing scripts already write through, so it is an inventory row, not a widening.
+**Kept:** the Dioxus boolean-attributes row stands: the bridge still removes a falsy `autofocus`, so a Dioxus `autofocus: false` never reaches the engine's presence reading.
+**Ref:** .andromeda/runs/2026-10-10T01-56-50-wrap/
+
+## 2026-10-10-upstream-sync-agent-surfaces — dependency security after the sync: Parley's pin form, the entering crates, an ungated licence table, the apt action gone upstream, a second `unsafe`
+**Section:** §Dependency Security → Audit tool, Pinning, Unsafe code, Supply chain integrity
+**Change:**
+- Pinning: was "Git dependencies are pinned by commit rev", citing taffy and parley; now the one git dependency, taffy, is pinned by commit rev and parley is a registry version, "0.12".
+- Pinning, new bullet: the sync took upstream's dependency set whole, no `cargo update`; the root manifest gains icu_casemap, icu_locale_core, icu_properties and icu_segmenter "2.3" and writeable "0.6"; six names enter the lock (core_detect, multiversion_no_op, icu_casemap, icu_casemap_data, memchr-n, fearless_simd_macros), each from crates.io with a checksum and reviewed by hand for licence, repository, build script, proc-macro flag and direct dependent, its source beyond the manifest not read; jetscii and tinyvec_macros leave; `advisories ok`, no ignore added or dropped.
+- CI tooling: was "the upstream-only publish-browser and wpt workflows still reference [the apt-cache action] at `@latest`"; now they no longer use it — each installs with a bare `apt-get` line behind its repository guard.
+- Unsafe code: was "one `unsafe` block" in stylo_taffy; now two — the second in its public `resolve_calc_value`, which reads a calc value back through a raw pointer.
+- Audit tool: `deny.toml` also holds a `[licenses]` table the audit leg does not read.
+- Supply chain integrity: the NOT YET MEASURED note narrows to SBOM generation and base image scanning; a new Licence compliance bullet — upstream's table (13 allowed expressions) byte-identical in `deny.toml`, no CI leg runs it, one reading `licenses ok` over the six-target graph with two unmatched allowances.
+**Why:** all of it arrived by the merge. Upstream's `licenses` CI job was taken by the merge and reverted — the operator's decision of 2026-10-10 at the plan: no licence gate yet, one reading into evidence. Whether the fork gates on licences is left open on purpose: the operator, 2026-10-10, as the arguments of this wrap, pinned the question for the founder on the route entry "Quality gates".
+**Kept:** `[graph]` and `[advisories]` are the chunk start's; the audit's reach is still cargo-deny's resolved graph.
+**Ref:** .andromeda/runs/2026-10-10T01-56-50-wrap/

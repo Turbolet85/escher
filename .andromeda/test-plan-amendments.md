@@ -322,3 +322,37 @@ One entry per amendment to `test-plan.md` (sidecar-contract.md §Entry form). Ap
 **Why:** the Epoch 4 code audit left one mutant alive — no test read a textarea's value from a snapshot. The check sits in `stand_snapshot_state` because the audit runs the snapshot unit against a fixed test set that holds that file; a new stand file would sit outside the set the next audit runs.
 **Kept:** the earlier re-count clauses, "+7 `stand_snapshot_state`" included, stand as their chunks' readings. The stand's tables in `tests/common/mod.rs` do not gain the textarea — they hold stand controls, and no stand task holds one.
 **Ref:** .andromeda/runs/2026-10-09T20-50-14-wrap/
+
+## 2026-10-10-upstream-sync-agent-surfaces — the CI-scripts leg runs 78 tests over six files; `tests/all.rs` is declared and never built, pinned by `BlitzTestsTargetsTest`
+**Section:** §1 Test Scope Summary → CI Python scripts, tests/blitz-tests (the opening clause) · §2 Test Strategy → Directory pattern · §4 Unit Test Strategy → CI Python script, CI workflows and leg script (the count clause), blitz-tests targets (new bullet)
+**Change:**
+- The leg's count: was 70 tests over four files (test_ci_workflows.py 25, test_wpt_diff_to_pr.py 4, test_agent_run.py 14, test_cold_agent.py 27); now 78 over six — 25, 7, 14, 27, upstream's new test_wpt_area_changes.py 4 and our test_blitz_tests_targets.py 1 — on the dev host and at CI#38013740580. §1 states "78 tests in six test files" and names `BlitzTestsTargetsTest`.
+- §4 CI Python script: test_wpt_diff_to_pr.py is stated at 7 tests with what the three new ones cover, and test_wpt_area_changes.py's `CompareTest` (4) is named with its four cases.
+- §4, new bullet "blitz-tests targets": `BlitzTestsTargetsTest`, one test, asserts `[package]` does not set `autotests` to false and that the manifest holds exactly one `[[test]]` table, `all` at `tests/all.rs` with `test = false`; controlled red on three scratch manifests; it reads the manifest with `tomllib`, so the leg needs Python 3.11 or later — the CI runner's version was not read.
+- §2 Directory pattern and §1 tests/blitz-tests: the list of what under `tests/` is no built target was the two shared modules; it gains `tests/all.rs`, upstream's single-binary target, held at `test = false`. 102 `.rs` files, 101 test targets; read at each run as 0 `Running tests/all.rs` lines and no `all` executable among 107.
+**Why:** the fork keeps one target per file by the operator's decision of 2026-10-10, by question dialog at the plan, and carries upstream's table switched off so the difference from upstream stays two lines; the check is what turns a later sync red if it takes upstream's two lines. The leg's count moved by upstream's tests and one of ours.
+**Kept:** test_ci_workflows.py, test_agent_run.py and test_cold_agent.py are unedited and their counts unmoved.
+**Ref:** .andromeda/runs/2026-10-10T01-56-50-wrap/
+
+## 2026-10-10-upstream-sync-agent-surfaces — the test inventory gains upstream's tests: Selection, text-transform, autofocus, WPT variants; two arrivals with no test
+**Section:** §1 Test Scope Summary → tests/blitz-tests (the coverage list), blitz-vibey-script, blitz-dom (layout), wpt/runner, blitz-net · §4 Unit Test Strategy → blitz-dom (layout), wpt/runner · §5 Integration Test Strategy → Script ↔ DOM
+**Change:**
+- tests/blitz-tests coverage gains four upstream checks: `autofocus_attribute` 5, `text_transform` 3, `anonymous_block_percentage_height` 1 and one test of `inline_fragment_rects` over three writing modes; the package's blitz-dom dev-dependency gains the `autofocus` and `text-transform-icu` features.
+- blitz-vibey-script: tests/dom.rs was 26 `#[test]` functions, now 27; a third file, tests/selection.rs, holds 15 tests of the script Selection API; §5 names it as the crossing's coverage. Observed absent: a test of the `innerText` / `outerText` getters in the crate (whether a WPT case covers them was not read).
+- blitz-dom (layout): was "one inline unit-test module, in list.rs"; now two — list.rs and upstream's `layout/text_transform.rs`, 22 tests; `layout/writing_mode.rs` holds none. §4 states what the 22 check.
+- wpt/runner: the unit-test list (8, 3, 2, 1, 1) gains 10 in test_variants.rs, 2 in ref_test.rs and 1 in main.rs; §4 states what they check.
+- blitz-net: the "no test" row adds that its `file:` read through `Url::to_file_path` has no test named for it either.
+**Why:** every one of these arrived by the merge; none is a cargo test of ours added, removed or edited. The plan is tier 0 with no critical-path list, so the two untested arrivals are recorded as absences, not as failed gates.
+**Kept:** upstream's default link rule on `a[href]` has no test named and no test-plan row states it; it is design-system's.
+**Ref:** .andromeda/runs/2026-10-10T01-56-50-wrap/
+
+## 2026-10-10-upstream-sync-agent-surfaces — readings on the merged tree: 158 result lines and 719 passed, `run all` 396, a second engine feature split by runner, a 1100 s cold CI run
+**Section:** §3 Test Harness Contract → Agent-run contract → Proof · §9 CI Integration → Local baseline, Engine features by runner, Cache
+**Change:**
+- Local baseline: a re-count clause — `cargo test --workspace --locked` was 154 result lines, 657 passed · 0 failed · 10 ignored; on the merge it reads 158 lines, 719 · 0 · 10: +62 passed and +4 lines, every one upstream's, the workspace's integration-test executables 103 → 107, eight differing rows each attributed to a named upstream file and PR.
+- Agent-run Proof: a re-read clause — `run stand` unmoved at passed 110 · failed 0 · ignored 5 over the same 30 files with the script byte-identical; `run all` reads 396 · 0 · 10, the whole package's first stated total.
+- Engine features by runner: the workspace build resolves blitz-dom with 16 features and the per-package build with 10, `writing-mode` on in the first only; it selects which of two bodies of the bounds reader `BaseDocument::physical_unrounded_geometry` is compiled, so the same stand check runs over a different reader under each runner; `scroll_into_view_nested` 7, `stand_act_scroll` 4 and `stand_act_obstructed` 3 pass under both.
+- Cache: the merge's run, CI#38013740580, 16 of 16 green at its first attempt, took 1100 s wall, a cold run, against 641 s on the chunk start.
+**Why:** the merge moved every one of these numbers, and a moved number is restated where the plan states it. The feature split is the standing rule of that bullet made sharper: a green per-package run is not the workspace leg's green, and now the two also differ in the code that reads every snapshot `bounds`.
+**Kept:** the earlier re-count clauses stay as their chunks' readings. The per-OS tallies of that CI run — 139 result lines on three jobs, 712 passed and 8 ignored on Windows — are not attributed and are stated in no section: a route entry owns them.
+**Ref:** .andromeda/runs/2026-10-10T01-56-50-wrap/

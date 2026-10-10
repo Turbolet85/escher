@@ -11,6 +11,7 @@ Source: `.andromeda/security-plan.md` (security tier 0; application threat model
 ## Untrusted input (remote content, scripts, CLI)
 - Remote HTML/CSS/images/fonts/sub-documents are untrusted: keep the recursion caps (`MAX_SUBDOCUMENT_DEPTH = 10`, `MAX_IMPORT_DEPTH = 16`) and the stale-iframe-response discard by request id.
 - `blitz-net` reads `file:` URLs from disk with no path restriction and has no response-size cap or request timeout — do not route agent- or user-supplied URLs through it without a decision recorded in the security plan.
+- PROVISIONAL — a boundary widening that arrived with the 2026-10-10 upstream merge, awaiting the founder's ruling: an `@font-face` source with no format hint and no URL extension (a `data:` URL) is fetched and its format sniffed from its bytes, where it was skipped; no test covers it. escher routes no agent- or user-supplied URL through this path today — keep it so until the ruling.
 - The default `ScriptFetcher` accepts only `file:` and `data:`; same-origin/CORS checks are absent and every runtime event has `isTrusted = true`.
 - HTML is parsed with scripting disabled; invalid CSS declarations are dropped, not errors — keep parse failures as typed `Result`s, never panics, on new input paths.
 
@@ -22,6 +23,7 @@ Source: `.andromeda/security-plan.md` (security tier 0; application threat model
 
 ## Dependencies
 - The dependency audit is cargo-deny (`bash .github/scripts/ci-leg.sh audit`, config `deny.toml`): an advisory it fires on is fixed by a semver-compatible update, or ignored by ID with a written reason — never a blanket allow, never `unmaintained`/`unsound` set to none. Its reach is cargo-deny's resolved graph, which misses the paste and memmap2 advisories in optional chains — still review new crates by hand.
+- `deny.toml` also holds upstream's `[licenses]` table, which no leg runs — one reading, `licenses ok`; whether the fork gates on it is an open question on the route entry "Quality gates".
 - `Cargo.lock` is committed; git deps are pinned by `rev`; builds pass `--locked` — keep all three.
 
 ## Session Additions

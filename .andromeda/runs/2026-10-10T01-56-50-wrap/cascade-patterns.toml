@@ -1,0 +1,138 @@
+# The old wording and the retired mechanism of every amendment of this pass
+# (2026-10-10-upstream-sync-agent-surfaces), one pattern per claim.
+
+[[pattern]]
+id = "parley-git"
+regex = 'parley from git|taffy and parley|taffy/parley'
+
+[[pattern]]
+id = "git-rev"
+regex = 'pinned by commit rev|pinned git revs|pinned by `rev`'
+
+[[pattern]]
+id = "accesskit-ver"
+regex = 'accesskit_unix 0\.23|accesskit_android 0\.8'
+
+[[pattern]]
+id = "comrak"
+regex = 'comrak 0\.55'
+
+[[pattern]]
+id = "dom-defaults"
+fixed = 'file-input, custom-widget'
+
+[[pattern]]
+id = "blitz-defaults"
+fixed = '`net`, `accessibility`, `tracing`'
+
+[[pattern]]
+id = "dioxus-defaults"
+regex = 'woff, apple-font-embolden|accessibility, svg, system-fonts'
+
+[[pattern]]
+id = "stylo-prefs"
+fixed = 'Stylo prefs enabled'
+
+[[pattern]]
+id = "text-indent"
+fixed = 'text-indent'
+
+[[pattern]]
+id = "wasm-licence"
+fixed = 'no license field'
+
+[[pattern]]
+id = "taffy-traits"
+regex = 'implements Taffy|TraversePartialTree'
+
+[[pattern]]
+id = "st-exports"
+fixed = '`stylo_taffy` exports'
+
+[[pattern]]
+id = "bounds-reader"
+fixed = 'unrounded_absolute_position'
+
+[[pattern]]
+id = "wpt-cli"
+fixed = '`--run-url`, `--dry-run`'
+
+[[pattern]]
+id = "sync-line"
+regex = '2335458530518cdf|f00b021610bb'
+
+[[pattern]]
+id = "vibey-mods"
+regex = 'event_handler, fetch, runtime|hyperlink, node, style|tests/dom\.rs and tests/preact\.rs'
+
+[[pattern]]
+id = "st-mods"
+fixed = 'Modules wrapper and convert'
+
+[[pattern]]
+id = "wpt-mods"
+fixed = '`panic_backtrace`, `report`'
+
+[[pattern]]
+id = "file-read"
+regex = 'request\.url\.path\(\)'
+
+[[pattern]]
+id = "font-source"
+regex = 'cannot be resolved is skipped|no format hint'
+
+[[pattern]]
+id = "apt-latest"
+fixed = '@latest'
+
+[[pattern]]
+id = "unsafe-one"
+fixed = 'one `unsafe` block'
+
+[[pattern]]
+id = "licence"
+regex = 'licen[cs]e compliance|licen[cs]e gate'
+
+[[pattern]]
+id = "ci-70"
+regex = 'Ran 70|70 tests'
+
+[[pattern]]
+id = "dom-26"
+fixed = 'holds 26'
+
+[[pattern]]
+id = "one-module"
+fixed = 'one inline unit-test module'
+
+[[pattern]]
+id = "wpt-units"
+fixed = '1 in mod.rs'
+
+[[pattern]]
+id = "baseline"
+regex = '657 passed|154 result lines'
+
+[[pattern]]
+id = "no-target"
+fixed = 'two shared modules that are no target'
+
+[[pattern]]
+id = "autofocus-true"
+regex = 'autofocus="true"|autofocus handling expects'
+
+[[pattern]]
+id = "default-link"
+fixed = 'Default stylesheet link'
+
+[[pattern]]
+id = "py-scripts"
+fixed = 'Python 3 helper scripts'
+
+[[pattern]]
+id = "names-feat"
+fixed = '`tracing`, `scrollbars`'
+
+[[pattern]]
+id = "by-runner"
+fixed = 'Engine features by runner'

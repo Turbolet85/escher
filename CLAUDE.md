@@ -10,7 +10,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 
 **Key directories:**
 - `packages/` — the engine and integration crates (DOM, paint, shell, traits, Dioxus bridge, test harness) and escher's own crates: the telemetry bootstrap and the driver's session and command schema
-- `tests/blitz-tests/` — integration tests, one file per behaviour; the stand checks share `tests/common/`
+- `tests/blitz-tests/` — integration tests, one file and one test target per behaviour (upstream's `tests/all.rs` is declared and never built); the stand checks share `tests/common/`
 - `examples/` — example crates and root examples; `examples/seven_guis/` is the 7GUIs stand
 - `apps/` — reference browser (`blitz`), markdown viewer (`rdme`), release `bump`
 - `wpt/runner/` — the Web Platform Tests conformance runner
@@ -48,7 +48,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 - Incremental and non-incremental layout must stay identical (incremental_oracle); pipeline tests run `for incremental in [false, true]`.
 - DOM mutations go through `DocumentMutator` (`doc.mutate()`), which flushes on Drop — extend the mutator rather than reaching through `DocumentMutator::doc`.
 - `NodeId` is a versioned slot id: a dropped node's id stops resolving and indexing a stale id panics — use `get`/`contains_key` for ids that may be stale.
-- Dependency pins are coupled (html5ever family ↔ stylo web_atoms, skrifa ↔ parley/vello, svgtypes ↔ usvg, taffy/parley git revs, winit exact beta) — never bump one side alone.
+- Dependency pins are coupled (html5ever family ↔ stylo web_atoms, skrifa ↔ parley/vello, svgtypes ↔ usvg, the taffy git rev, winit exact beta) — never bump one side alone.
 - Work is not done until `bash .github/scripts/ci-leg.sh fast` (fmt · clippy `--locked -D warnings` · workspace tests · CI scripts — the same legs CI runs) and `bash .github/scripts/ci-leg.sh doc` (rustdoc `-D warnings` over every workspace crate — `cargo doc --workspace --no-deps --locked`) pass.
 <!-- GENERATED:setup:warnings end -->
 
@@ -82,7 +82,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 | Driver session (held instance · settled step · lifecycle socket · host binary) | `packages/escher-driver/src/{session,host,client,wire,error}.rs` · host `examples/seven_guis/src/session_host.rs` · checks `tests/blitz-tests/tests/stand_session_*.rs` and `stand_settle.rs` (shared `tests/session_common/mod.rs`) and `examples/seven_guis/tests/host_{binary,log}.rs` (shared `tests/common/mod.rs`) · contract `.andromeda/registries/contracts/test-plan/session-lifecycle.md` |
 | The 7GUIs stand | `examples/seven_guis/src/tasks/` · headless boot `examples/seven_guis/src/stand.rs` · checks `tests/blitz-tests/tests/stand_*.rs` · their shared tables and helpers `tests/blitz-tests/tests/common/mod.rs` |
 | WPT runner | `wpt/runner/src/main.rs` · `wpt/runner/src/test_runners/` |
-| CI pipeline | `.github/workflows/ci.yml` · `wpt.yml` · `publish-browser.yml` (the last two upstream-only) · legs `.github/scripts/ci-leg.sh` · package install `.github/scripts/apt-install.sh` · invariants `.github/scripts/test_ci_workflows.py` |
+| CI pipeline | `.github/workflows/ci.yml` · `wpt.yml` · `publish-browser.yml` (the last two upstream-only) · legs `.github/scripts/ci-leg.sh` · package install `.github/scripts/apt-install.sh` · invariants `.github/scripts/test_ci_workflows.py` · the blitz-tests target pin `.github/scripts/test_blitz_tests_targets.py` |
 | Drift detectors · amendment playbook | `.andromeda/drift-base.md` · `.andromeda/playbook.md` |
 <!-- GENERATED:setup:pointer-table end -->
 

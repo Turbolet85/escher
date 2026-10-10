@@ -1,0 +1,121 @@
+[
+{
+"tool": "route",
+"v": "1.7",
+"sha8": "470db3a8",
+"ts": "2026-10-10T02:46:45Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-10-upstream-sync-agent-surfaces",
+"--run-dir",
+".andromeda/runs/2026-10-10T01-56-50-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"flip master-route.md:39 - 2026-10-10-upstream-sync-agent-surfaces pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.7",
+"sha8": "470db3a8",
+"ts": "2026-10-10T02:46:45Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-10-upstream-sync-agent-surfaces",
+"--date",
+"2026-10-10",
+"--run-dir",
+".andromeda/runs/2026-10-10T01-56-50-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :71 strip CARRY: 667ch \"CARRY: our merge surface in the inherite\"",
+"pin :71 strip CARRY: 856ch \"CARRY: our merge surface in the inherite\"",
+"pin :71 strip WATCH: 928ch 0/3 since 2026-10-09-audit-corrections-agent-surfaces \"WATCH: a fork CI job hanging in its p…",
+"pin next markerless :73 holds CARRY:×12 · WATCH:×1",
+"71 · 2026-10-10-upstream-sync-agent-surfaces · strip 3 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 71,
+"marker": "2026-10-10-upstream-sync-agent-surfaces",
+"blocks": 3,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.7",
+"sha8": "470db3a8",
+"ts": "2026-10-10T02:46:50Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-10-upstream-sync-agent-surfaces",
+"--date",
+"2026-10-10",
+"--run-dir",
+".andromeda/runs/2026-10-10T01-56-50-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :71 strip CARRY: 667ch \"CARRY: our merge surface in the inherite\"",
+"pin :71 strip CARRY: 856ch \"CARRY: our merge surface in the inherite\"",
+"pin :71 strip WATCH: 928ch 0/3 since 2026-10-09-audit-corrections-agent-surfaces \"WATCH: a fork CI job hanging in its p…",
+"pin next markerless :73 holds CARRY:×12 · WATCH:×1",
+"71 · 2026-10-10-upstream-sync-agent-surfaces · strip 3 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.1.0/route-archive.md",
+"./escher-0.1.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 71,
+"marker": "2026-10-10-upstream-sync-agent-surfaces",
+"blocks": 3,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]

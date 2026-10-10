@@ -1,0 +1,1 @@
+run P1 only and stop. Entry 38 as you recorded it is accepted: the count of 12 from the cleaned log is the reading, the 0 is the pattern defect. The per-OS differences you could not attribute (139 against 158 result lines; Windows 712 passed and 8 ignored) go into the report as an open finding for route-resolve.

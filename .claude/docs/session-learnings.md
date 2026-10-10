@@ -29,7 +29,7 @@ A run is the witness of a gate only when its conclusion reads `verdict: green`. 
 
 `ci.py conclusion --wait` names the oldest running job and its age, not the step that job is in, so a hang looks the same as a slow build until the bound fires. When a wait returns `in progress` with no failed job, read the open job's steps (`gh run view {run} -R {fork} --json jobs`) before waiting again: a step that normally takes seconds and has stood for minutes is the hang. `gh run cancel {run}` on a run whose only open job is the hung one keeps every concluded job's result, and `gh run rerun {run} --job {databaseId}` then re-runs that job alone as a new attempt of the same run, which the conclusion read counts as one run on the same commit. Bound the re-runs before starting: stop after a second hang in the same step.
 
-A job log fetched with `gh run view --log` carries its colour codes as literal text — `^[[1m` between `Running` and the test target's path — not as escape bytes, so a parser that strips ANSI escapes leaves them in and a pattern anchored on `Running tests/` finds nothing.
+A job log fetched with `gh run view --log` carries its colour codes as literal text — `^[[1m` between `Running` and the test target's path — not as escape bytes, so a parser that strips ANSI escapes leaves them in and a pattern anchored on `Running tests/` finds nothing. Extended 2026-10-10: the Windows job prints the path with a backslash, `tests\{name}.rs`, so a `/`-only pattern misses that job even with the colour codes handled — count cargo lines in a CI log only with a pattern that has first matched a known positive from that same log, such as the bare target name.
 
 ---
 

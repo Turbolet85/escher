@@ -1,38 +1,41 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-10T00:34:22Z
+**Last Updated:** 2026-10-10T02:42:17Z
 **Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-09-audit-corrections-agent-surfaces — the surviving snapshot mutant killed on a textarea fixture; fork CI's package install bounded and retried
+**Last Commit:** 2026-10-10-upstream-sync-agent-surfaces — upstream/main 7832c177 merged (61 commits); the masters reconciled to the merged engine
 
 ## Position
-- Done: 2026-10-09-audit-corrections-agent-surfaces (28 master records, all complete). This wrap wrapped no chunk: 0 pending, no gated record.
-- Next: /andromeda-phase on "Upstream sync ahead of agent surfaces" (working-route.md:71). It carries two merge-surface CARRYs and one WATCH (below).
+- Done: 2026-10-10-upstream-sync-agent-surfaces — upstream's 61 commits merged at `9462a7e4`, one edit of ours to upstream-owned code (`visible_region`'s reader call), fork CI green 16/16 on the merge (CI#38013740580).
+- Next: /andromeda-phase on "Driver CLI" (working-route.md:73). It carries one new CARRY (a count over a fork CI log) and the WATCH below.
 
 ## Work done
-- The Epoch 4 boundary review of the carried learnings, held in review mode: the founder's word on the five Tier 3 items (given 2026-10-10 in the overseer session, relayed by the operator — `relay-1.md` in the run dir `.andromeda/runs/2026-10-09T21-37-22-wrap/`), the operator's word on the nine auto-memory notes. Everything is in that run dir's `curation.md`.
-- Written: two Tier 1 sentences in CLAUDE.md (a per-crate `cargo clippy` is not the lint leg; every unowned finding of a chunk report gets a route owner at route-resolve) · one line in `.claude/rules/host-linux.md` (`pgrep -x` and a name over 15 characters) · two Tier 3 entries corrected in place (the Bash-guard entry trimmed to the payload-prose fact; the citations entry now a pointer at the wrap's citation sweep). Two Tier 3 entries kept unedited (the clipped grep view; the count from the listing).
-- The project's auto-memory store is drained: all nine notes deleted, the index empty. It is not a durable home — a learning goes to a project home at a wrap, or is named for the operator to relay.
+- The wrap ran in two windows: P1 in the first (stopped there on the operator's word), P2–P7 in this one, resumed from `report.md`. Run dir `.andromeda/runs/2026-10-10T01-56-50-wrap/`.
+- The citation sweep after the merge: 780 numbers re-pointed by the tool across the seven masters, 123 master rows read by hand (`citation-dispositions.md`): 22 re-pointed by hand, 26 claims read false and amended.
+- 57 amendments in five masters (architecture 24, security-plan 11, test-plan 18, a11y-plan 3, design-system 1), 12 sidecar entries, 14 leaves re-derived (`fanout-results.md`, `cascade-dispositions.md`, `leaf-read.md`).
 
 ## Drift resolved
-- None read: this path runs no report and no fan-out. The last chunk wrap's standing fact: escher's first citation sweep is written, so later wraps sweep from commit `b03a5fc7` and never ask.
+- Everything the merge made false or incomplete is restated: Parley a registry version (0.12), the merged dependency set and ICU4X, `text-transform-icu` in four default lists and `writing-mode` opt-in, Taffy's tree traits on `LayoutPassState`, the bounds reader renamed `physical_unrounded_geometry`, `autofocus` read by presence, the default link rule on `a[href]`, the CI-scripts leg at 78 tests over six files, the workspace baseline at 158 result lines · 719 passed, one test target per blitz-tests file with upstream's `all` target unbuilt.
+- Two escalations, both answered by the operator through this wrap's question dialog (`escalations.md`): the font-source widening recorded as PROVISIONAL; the `text-indent` hanging/each-line sentence kept and marked `recorded, not established`.
 
-## Route owners placed at the last chunk wrap (the wrap's placement — move either if it reads wrong)
-- `WATCH:` on "Upstream sync ahead of agent surfaces" (:71): a fork CI job hanging in its package-install step, 0 of 3 green runs. No run has shown the bound or the android step's timeout fire; the stand-in tests are the bound's one witness.
-- `CARRY:` on "Quality gates" (:94): a bound that fires inside `apt-get install` can leave dpkg interrupted (unhandled, not seen); and the script ran on real runners in eight jobs, not nine — the guarded `python3-yaml` call is not reached where PyYAML is on the image.
+## PROVISIONAL — one mark stands, for the founder's ruling at the Epoch 5 boundary
+- Upstream #1109, arrived by the merge: an `@font-face` source with no format hint and no URL extension (a `data:` URL) is now fetched and byte-sniffed where it was skipped. No test of ours or of the delta covers it; escher routes no agent- or user-supplied URL through that path today.
+- Sites: `security-plan.md` §Input Validation, the `@font-face` source row · `security-plan-amendments.md`, the entry "a hint-less `@font-face` source is fetched and sniffed…" · `.claude/rules/security.md`, Untrusted input · `.claude/docs/security-summary.md`, Font sources.
+
+## Route owners placed at this wrap (the wrap's placement where the report named none — move any that reads wrong)
+- "Driver CLI" (:73): `CARRY:` a plan entry that counts cargo lines in a fork CI log uses a pattern proven on a known positive · `WATCH:` a fork CI job hanging in its package-install step, 1 of 3 green runs (CI#38013740580; neither bound seen firing) · its scrolled-box CARRY now names the renamed reader.
+- "Upstream sync ahead of polish and ship" (:82): three `CARRY:`s — our merge surface in `dioxus_document.rs` (58 / 0, 4 hunks) · in `scrolling.rs` (159 / 6, 6 hunks; `visible_region` calls an upstream crate-private function with two cfg bodies) with `input.rs` (+21 −1) · our standing two-line difference in `tests/blitz-tests/Cargo.toml`.
+- "Quality gates" (:94): three `CARRY:`s — the licence-gate question, for the founder, undecided (the operator's word in this wrap's arguments) · upstream's blitz-dom clippy feature-set line the fork does not run · the per-OS test tallies of CI#38013740580, unattributed (139 result lines on three jobs; Windows 712 passed · 8 ignored).
 
 ## Notes
-- **Named for the operator to relay to the pipeline owner** (each whole in `curation.md`): the Bash guard's heredoc arm refuses a piped heredoc whose payload prose quotes the guarded form (pipeline; the founder's word) · `pgrep -x` and a process name over 15 characters, for the host template (host) · the stamp-ahead hook reads a bare time-of-day as today's and its message does not say to date it (host) · `route.py` anchors a WATCH's clause at the block's end and neither the route-resolve letter nor the `UNPARSED` row says so (pipeline) · the wrap letter's 0-pending step does not say what becomes of a directive item outside its doors (pipeline). Not relayed, on the operator's word: the route-owners gap in route-resolve, already with the pipeline owner.
-- A pipeline-tool finding from the last chunk wrap, no route owner (it is not escher's): the new-text listing's row for the install script's `while` loop ends one line early (`25-41`; the loop's `done` is `:42`); and the citation tool reads a backticked list of bare `:N` numbers after an uncited file name against the path cited before it (working-route.md:69) — in the friction ledger.
-- Not shown by anything in the last chunk: the install bound firing on a real mirror stall; the android step's timeout firing. Not read: the ios and android job logs beyond their install step; the MSRV job's log.
-- Still owed from earlier chunks, unchanged: `Harness::scroll_into_view` has no check of its own; `session_common/mod.rs:3` is an over-long doc line (cosmetic). The windowed witness of the accessibility-tree refresh is a CARRY on "Stand a11y assertions".
-- Not measured, stated so in the masters, unchanged: the two seven_guis binaries' stderr by level in a workspace-wide build · typed text in a sink-installing host's log · the windowed stand by level.
-- On disk outside git, unchanged: two build copies under `target/mutants-tmp/` (13 GB and 9.1 GB), not deleted on the operator's word.
-- No gated record, no PREREQ; one WATCH on the tail (above). Last failed command: none. In this wrap two question dialogs expired unanswered after 58 minutes; the answers came by relay and nothing was written before them.
+- **Proposed, not written — needs the operator's word:** a facet for the playbook's Boundary-widening rule, from the operator's note at this wrap's escalation: a widening that arrives by an upstream merge is recorded PROVISIONAL for the founder like any other. The playbook grows by approved appends only.
+- **Named for the operator to relay to the pipeline owner:** the plan's fork-CI count entry was authored with a pattern the project's own learning (session-learnings, 2026-10-07) already said finds nothing — the check belongs to the step that authors a plan's CI-log entry (`curation.md`, the recurrence) · the citation sweep after a large merge leaves a hand read per row with no reading aid (129 rows here), and a `changed` row that holds at its old number prints `held` at the next sweep unless its citing line was touched.
+- Carried from the last handoff, not confirmed relayed here: the five pipeline and host items of the Epoch 4 review (`.andromeda/runs/2026-10-09T21-37-22-wrap/curation.md`).
+- Not measured, stated so in the masters: whether `text-indent`'s `hanging` / `each-line` work on the merged engine · the hint-less font-source path · what the ios and android CI `test` steps ran · unchanged from before: the two seven_guis binaries' stderr by level in a workspace-wide build, typed text in a sink-installing host's log, the windowed stand by level.
+- Still owed from earlier chunks, unchanged: `Harness::scroll_into_view` has no check of its own; `session_common/mod.rs:3` is an over-long doc line (cosmetic). On disk outside git, unchanged: two build copies under `target/mutants-tmp/` (13 GB and 9.1 GB), not deleted on the operator's word.
+- Next citation sweep: about six master citations that hold at an unmoved number on an untouched citing line (e.g. `examples/screenshot.rs:41-51`, `wpt-post-results.yml:29-49`) will print `held`; each is dispositioned `holds — stands`.
+- No gated record, no PREREQ; one WATCH on the tail (above). Last failed command: none.
 
 ## Deferred learnings
-- 1 learning approved but not applied (the cap of three new entries per wrap; the operator: "The letter holds"), for `.claude/rules/testing.md` `## Session Additions`: "A script that attributes `cargo test` results to a test target runs cargo with stderr merged into stdout and parses the one stream — `Running tests/{name}.rs` is stderr and the `test … ok|FAILED` lines stdout, so two captured streams attribute nothing; print one mutation's per-target table before the full batch." Its memory note is deleted; this line is the text. Apply it at the next wrap.
-- Nothing else is carried: the founder's review is held, the two recurrence records are closed (the guard's refusal costs one re-issue and is the guard working; the clippy fact is now loaded on every turn), and the curation conflict that quoted the host rule file's backslash-pair bullet is dropped — the setup upgrade U02 removed that bullet.
-
-## Session End Status
-Completed normally at 2026-10-10 03:18:41
+- The cargo-test streams line deferred at the last wrap is applied (`.claude/rules/testing.md`, Session Additions). Nothing is deferred by the cap.
+- `recurrence-despite-learning: "A fork CI run with one job still open is not green, and how to read and re-run a hung job"` (session-learnings, 2026-10-07) — its third paragraph already said a pattern anchored on `Running tests/` finds nothing in a `gh run view --log` log; this chunk's plan wrote exactly that pattern. The entry is extended with the Windows separator and the known-positive rule; the remedy is a check in the step that authors the plan entry, not a third entry.

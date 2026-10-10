@@ -1,0 +1,145 @@
+[
+{
+"tool": "inputs",
+"v": "1.1",
+"sha8": "d45f2ad1",
+"ts": "2026-10-10T01:57:14Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces",
+"--message-file",
+".andromeda/runs/2026-10-10T01-56-50-wrap/relay-1.md",
+"--origin",
+"the operator, as the arguments of /andromeda-wrap-session, 2026-10-10",
+"--kind",
+"relay",
+"--why",
+"the operator: this wrap runs P1 only; entry 38 is accepted as recorded, 12 from the cleaned log the reading and the 0 the pattern defect; the unattributed per-OS differences go into the report as an open finding for route-resolve",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-10-10T01-56-50-wrap",
+"--marker",
+"2026-10-10-upstream-sync-agent-surfaces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I3 · copy message · message: the operator, as the arguments of /andromeda-wrap-session, 2026-10-10",
+"cite: inputs#I3"
+],
+"stderr": null,
+"wrote": [
+"inputs/I3-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I3",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, as the arguments of /andromeda-wrap-session, 2026-10-10",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "fec5008f52326bb411c7e212a126a71d7be2bd276fa30ebd91b93631a7b6daa3",
+"copy": "I3-relay-1.md.txt",
+"link": false,
+"read_at": "2026-10-10T01:57:14Z",
+"step": "wrap",
+"why": "the operator: this wrap runs P1 only; entry 38 is accepted as recorded, 12 from the cleaned log the reading and the 0 the pattern defect; the unattributed per-OS differences go into the report as an open finding for route-resolve"
+}
+},
+{
+"tool": "inputs",
+"v": "1.1",
+"sha8": "d45f2ad1",
+"ts": "2026-10-10T01:57:14Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces",
+"--run-dir",
+".andromeda/runs/2026-10-10T01-56-50-wrap",
+"--marker",
+"2026-10-10-upstream-sync-agent-surfaces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: orchestrator git measurement, /andromeda-phase take-up, 2026-10-10T00:43:34Z",
+"I1 cited scope.md:8 · scope.md:11 · scope.md:14 · scope.md:17 · scope.md:24 · scope.md:30 · scope.md:41 · scope.md:42 · research.md:7 · plan.md:9 · plan.md:393",
+"I2 n/a — a message has no live source · copy message · message: the operator, in the implement session, 2026-10-10",
+"I2 UNCITED",
+"I3 n/a — a message has no live source · copy message · message: the operator, as the arguments of /andromeda-wrap-session, 2026-10-10",
+"I3 UNCITED",
+"inputs: 3 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 3 · uncited 2 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 3,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 3
+},
+"uncited": 2,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.1",
+"sha8": "d45f2ad1",
+"ts": "2026-10-10T02:03:30Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces",
+"--run-dir",
+".andromeda/runs/2026-10-10T01-56-50-wrap",
+"--marker",
+"2026-10-10-upstream-sync-agent-surfaces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: orchestrator git measurement, /andromeda-phase take-up, 2026-10-10T00:43:34Z",
+"I1 cited scope.md:8 · scope.md:11 · scope.md:14 · scope.md:17 · scope.md:24 · scope.md:30 · scope.md:41 · scope.md:42 · research.md:7 · plan.md:9 · plan.md:393",
+"I2 n/a — a message has no live source · copy message · message: the operator, in the implement session, 2026-10-10",
+"I2 cited report.md:61 · report.md:99 · report.md:108 · report.md:191",
+"I3 n/a — a message has no live source · copy message · message: the operator, as the arguments of /andromeda-wrap-session, 2026-10-10",
+"I3 cited report.md:5 · report.md:61 · report.md:71 · report.md:100 · report.md:109 · report.md:136 · report.md:177 · report.md:180 · report.md:191",
+"inputs: 3 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 3 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 3,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 3
+},
+"uncited": 0,
+"unparsed": 0
+}
+}
+]

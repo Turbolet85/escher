@@ -1,0 +1,369 @@
+[
+{
+"tool": "cascade",
+"v": "1.2",
+"sha8": "89172b3d",
+"ts": "2026-10-10T02:31:13Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-10T01-56-50-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-10T01-56-50-wrap",
+"--marker",
+"2026-10-10-upstream-sync-agent-surfaces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 09f479b8 (pre-CI parent — the oldest of 1 pre-CI commit(s), 9462a7e4)",
+"parley-git · new 0 · standing 1 · leaf 2 · curation 0 · base 0 · case-variants +1 · control architecture.md:49 (prose)",
+"git-rev · new 0 · standing 2 · leaf 2 · curation 0 · base 0 · control architecture.md:73 (prose)",
+"accesskit-ver · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:53 (…",
+"comrak · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:62 (prose)",
+"dom-defaults · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:80 (prose)",
+"blitz-defaults · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:80 …",
+"dioxus-defaults · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:80 (prose)",
+"stylo-prefs · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:82 (prose)",
+"text-indent · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:86 (prose)",
+"wasm-licence · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:107 (…",
+"taffy-traits · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:125 (prose)",
+"st-exports · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:125 (prose)",
+"bounds-reader · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:136 …",
+"wpt-cli · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:141 (prose)",
+"sync-line · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:205 (pro…",
+"vibey-mods · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:249 (pr…",
+"st-mods · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:252 (prose)",
+"wpt-mods · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:262 (prose)",
+"file-read · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control security-plan.md:84 (prose)",
+"font-source · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control security-plan.md:94 (prose)",
+"apt-latest · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:234 (p…",
+"unsafe-one · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:242 (p…",
+"licence · 0 rows (control fired) — a statement about this pattern, not the masters · case-variants +1 · control securit…",
+"ci-70 · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:8 (prose)",
+"dom-26 · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:22 (prose)",
+"one-module · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:14 (prose)",
+"wpt-units · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:28 (prose)",
+"baseline · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:326 (prose)",
+"no-target · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control test-plan.md:26 (prose)",
+"autofocus-true · 0 rows (control fired) — a statement about this pattern, not the masters · control a11y-plan.md:147 (p…",
+"default-link · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control design-system.md:25 (prose)",
+"py-scripts · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:66 (prose)",
+"names-feat · new 1 · standing 0 · leaf 0 · curation 0 · base 0 · control architecture.md:154 (prose)",
+"by-runner · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control test-plan.md:320 (prose)",
+".andromeda/architecture.md:73 parley-git standing edited …nder, vello, stylo, taffy and parley at sibling local checkou…",
+"CLAUDE.md:51 parley-git leaf …rley/vello, svgtypes ↔ usvg, taffy/parley git revs, winit exact beta) — never bump one si…",
+".claude/docs/gotchas.md:7 parley-git leaf …vgtypes must match usvg; taffy and parley are git deps pinned by `rev`; wini…",
+".andromeda/architecture.md:73 git-rev standing edited … is a git dependency pinned by `rev` (Cargo.toml:106) and parley…",
+".andromeda/security-plan.md:231 git-rev standing edited …pendency, taffy, is pinned by commit rev (Cargo.toml:106); par…",
+".claude/rules/security.md:25 git-rev leaf … committed; git deps are pinned by `rev`; builds pass `--locked` — keep all …",
+".claude/docs/gotchas.md:7 git-rev leaf …y and parley are git deps pinned by `rev`; winit is exact `=0.31.0-beta.3`. Bum…",
+".andromeda/architecture.md:80 dom-defaults standing edited @c76/2235 …, system-fonts, file-input, custom-widget, text-t…",
+".claude/docs/services/blitz-dom.md:20 dom-defaults leaf …, woff, accessibility, system-fonts, file-input, custom-widget.",
+".andromeda/architecture.md:80 dioxus-defaults standing edited @c844/2235 …-native-dom`: accessibility, svg, system-font…",
+".andromeda/architecture.md:82 stylo-prefs standing edited …ent.rs:1017-1018); Stylo prefs enabled: grid, flexbox balanc…",
+".andromeda/architecture.md:86 text-indent standing edited …vert.rs:802-804); `text-indent`'s `hanging` and `each-line` …",
+".andromeda/architecture.md:125 taffy-traits standing edited ×2 @c132,152/2315 …seDocument`, implements Taffy's `Travers…",
+".andromeda/architecture.md:125 st-exports standing edited @c1521/2315 …mod.rs:76-80); `stylo_taffy` exports `to_taffy_s…",
+".andromeda/architecture.md:262 wpt-mods standing edited …s`, `net_provider`, `panic_backtrace`, `report`, `test_variant…",
+".andromeda/security-plan.md:84 file-read standing edited …anic — and through `request.url.path()` on wasm; no path rest…",
+".andromeda/security-plan.md:94 font-source standing …10000`, `true`) when no format hint is given (packages/blitz-dom/s…",
+".andromeda/security-plan.md:96 font-source standing edited mixed ×2 …ource whose URL cannot be resolved is skipped inst…",
+".andromeda/test-plan.md:28 wpt-units standing edited …, 1 in attr_test.rs, 1 in mod.rs, and — arrived with the 2026-10-…",
+".andromeda/test-plan.md:327 baseline standing edited ×3 @c8376,8903,8921/10358 …mand-spans: 154 result lines, 656 passe…",
+".claude/docs/tests-summary.md:30 baseline leaf @c282/3303 … 657 · 0 · 10 over 154 result lines at 2026-10-09-audit-corr…",
+".andromeda/test-plan.md:26 no-target standing edited @c112/17645 …er `tests/`, and two shared modules that are no targe…",
+".andromeda/test-plan.md:65 no-target standing edited @c348/2112 …er `tests/`, and two shared modules that are no target…",
+".andromeda/design-system.md:25 default-link standing edited …`rgb(0, 0, 238)` | Default stylesheet link, its rule selec…",
+".andromeda/architecture.md:66 py-scripts standing edited @c70/2988 …ci.yml:34-400); Python 3 helper scripts (.github/sc…",
+".andromeda/architecture.md:154 names-feat new @c2307/2795 …xt-transform-icu`, `tracing`, `scrollbars`, `writing-mode`, …",
+".andromeda/test-plan.md:321 by-runner standing edited @c4/2425 - **Engine features by runner:** the two runners build t…",
+".andromeda/obs-plan.md:42 by-runner standing edited …t.md; test-plan §9 → Engine features by runner). Not measured: the…",
+".claude/docs/services/seven_guis.md:13 by-runner leaf … turns blitz-dom's on (test-plan §9 → Engine features by runner).",
+"parley-git · new 0 · standing 1 · leaf 2 · curation 0 · base 0 · case-variants +1 · control architecture.md:49 (prose)",
+"git-rev · new 0 · standing 2 · leaf 2 · curation 0 · base 0 · control architecture.md:73 (prose)",
+"accesskit-ver · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:53 (…",
+"comrak · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:62 (prose)",
+"dom-defaults · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:80 (prose)",
+"blitz-defaults · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:80 …",
+"dioxus-defaults · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:80 (prose)",
+"stylo-prefs · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:82 (prose)",
+"text-indent · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:86 (prose)",
+"wasm-licence · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:107 (…",
+"taffy-traits · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:125 (prose)",
+"st-exports · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:125 (prose)",
+"bounds-reader · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:136 …",
+"wpt-cli · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:141 (prose)",
+"sync-line · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:205 (pro…",
+"vibey-mods · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:249 (pr…",
+"st-mods · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:252 (prose)",
+"wpt-mods · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:262 (prose)",
+"file-read · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control security-plan.md:84 (prose)",
+"font-source · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control security-plan.md:94 (prose)",
+"apt-latest · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:234 (p…",
+"unsafe-one · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:242 (p…",
+"licence · 0 rows (control fired) — a statement about this pattern, not the masters · case-variants +1 · control securit…",
+"ci-70 · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:8 (prose)",
+"dom-26 · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:22 (prose)",
+"one-module · 0 rows (control fired) — a statement about this pattern, not the masters · control test-plan.md:14 (prose)",
+"wpt-units · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:28 (prose)",
+"baseline · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control test-plan.md:326 (prose)",
+"no-target · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control test-plan.md:26 (prose)",
+"autofocus-true · 0 rows (control fired) — a statement about this pattern, not the masters · control a11y-plan.md:147 (p…",
+"default-link · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control design-system.md:25 (prose)",
+"py-scripts · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:66 (prose)",
+"names-feat · new 1 · standing 0 · leaf 0 · curation 0 · base 0 · control architecture.md:154 (prose)",
+"by-runner · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control test-plan.md:320 (prose)",
+"total (34 patterns) · 29 rows over 11 files",
+"per class · new 1/1 · standing 21/5 · leaf 7/6 · curation 0/0 · base 0/0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "09f479b8b2e61d997a84f115ec8c8802c47769fb",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), 9462a7e4",
+"counts": {
+"parley-git": {
+"new": 0,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"git-rev": {
+"new": 0,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"accesskit-ver": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"comrak": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"dom-defaults": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"blitz-defaults": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"dioxus-defaults": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"stylo-prefs": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"text-indent": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"wasm-licence": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"taffy-traits": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"st-exports": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"bounds-reader": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"wpt-cli": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"sync-line": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"vibey-mods": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"st-mods": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"wpt-mods": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"file-read": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"font-source": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"apt-latest": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"unsafe-one": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"licence": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"ci-70": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"dom-26": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"one-module": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"wpt-units": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"baseline": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"no-target": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"autofocus-true": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"default-link": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"py-scripts": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"names-feat": {
+"new": 1,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"by-runner": {
+"new": 0,
+"standing": 2,
+"leaf": 1,
+"curation": 0,
+"base": 0
+}
+}
+}
+}
+]

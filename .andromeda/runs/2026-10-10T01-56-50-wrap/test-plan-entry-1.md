@@ -1,0 +1,11 @@
+
+## 2026-10-10-upstream-sync-agent-surfaces — the CI-scripts leg runs 78 tests over six files; `tests/all.rs` is declared and never built, pinned by `BlitzTestsTargetsTest`
+**Section:** §1 Test Scope Summary → CI Python scripts, tests/blitz-tests (the opening clause) · §2 Test Strategy → Directory pattern · §4 Unit Test Strategy → CI Python script, CI workflows and leg script (the count clause), blitz-tests targets (new bullet)
+**Change:**
+- The leg's count: was 70 tests over four files (test_ci_workflows.py 25, test_wpt_diff_to_pr.py 4, test_agent_run.py 14, test_cold_agent.py 27); now 78 over six — 25, 7, 14, 27, upstream's new test_wpt_area_changes.py 4 and our test_blitz_tests_targets.py 1 — on the dev host and at CI#38013740580. §1 states "78 tests in six test files" and names `BlitzTestsTargetsTest`.
+- §4 CI Python script: test_wpt_diff_to_pr.py is stated at 7 tests with what the three new ones cover, and test_wpt_area_changes.py's `CompareTest` (4) is named with its four cases.
+- §4, new bullet "blitz-tests targets": `BlitzTestsTargetsTest`, one test, asserts `[package]` does not set `autotests` to false and that the manifest holds exactly one `[[test]]` table, `all` at `tests/all.rs` with `test = false`; controlled red on three scratch manifests; it reads the manifest with `tomllib`, so the leg needs Python 3.11 or later — the CI runner's version was not read.
+- §2 Directory pattern and §1 tests/blitz-tests: the list of what under `tests/` is no built target was the two shared modules; it gains `tests/all.rs`, upstream's single-binary target, held at `test = false`. 102 `.rs` files, 101 test targets; read at each run as 0 `Running tests/all.rs` lines and no `all` executable among 107.
+**Why:** the fork keeps one target per file by the operator's decision of 2026-10-10, by question dialog at the plan, and carries upstream's table switched off so the difference from upstream stays two lines; the check is what turns a later sync red if it takes upstream's two lines. The leg's count moved by upstream's tests and one of ours.
+**Kept:** test_ci_workflows.py, test_agent_run.py and test_cold_agent.py are unedited and their counts unmoved.
+**Ref:** .andromeda/runs/2026-10-10T01-56-50-wrap/

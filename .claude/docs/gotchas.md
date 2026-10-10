@@ -4,7 +4,7 @@ _Documented architectural traps from `.andromeda/architecture.md` and the specia
 
 ## Coupled dependency pins
 **What breaks:** bumping one side of a coupled pin fails to build or mis-renders.
-**How to avoid:** markup5ever/html5ever/xml5ever must match stylo's `web_atoms`; skrifa must match parley and vello; svgtypes must match usvg; taffy and parley are git deps pinned by `rev`; winit is exact `=0.31.0-beta.3`. Bump the set together.
+**How to avoid:** markup5ever/html5ever/xml5ever must match stylo's `web_atoms`; skrifa must match parley and vello; svgtypes must match usvg; taffy is a git dep pinned by `rev` and parley a registry version (0.12); winit is exact `=0.31.0-beta.3`. Bump the set together.
 **References:** arch §Established Decisions [Dependency pinning]
 
 ## `StyleThreading::Parallel` with two documents

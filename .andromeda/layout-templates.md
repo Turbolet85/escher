@@ -38,11 +38,11 @@
 - Launch config carries `stylesheets` and `base_url` (packages/blitz/src/lib.rs:72-75; packages/blitz/src/lib.rs:113-121)
 - The viewport is the window surface minus safe-area insets, while the render surface covers the whole window including the safe area (packages/blitz-shell/src/window.rs:183-190; packages/blitz-shell/src/window.rs:306-309)
 - Pointer client coordinates subtract the safe-area left/top insets and page coordinates add viewport scroll (packages/blitz-shell/src/window.rs:442-463)
-- The document element is the scrolling element; `window.scrollTo`/`scrollBy` scroll the root element (packages/blitz-vibey-script/src/dom/document.rs:122-126; packages/blitz-vibey-script/src/runtime.rs:2152-2187)
-- The root element's `clientWidth`/`clientHeight` are viewport size minus scrollbar size (packages/blitz-vibey-script/src/dom/element.rs:1004-1049)
+- The document element is the scrolling element; `window.scrollTo`/`scrollBy` scroll the root element (packages/blitz-vibey-script/src/dom/document.rs:129-133; packages/blitz-vibey-script/src/runtime.rs:2158-2193)
+- The root element's `clientWidth`/`clientHeight` are viewport size minus scrollbar size (packages/blitz-vibey-script/src/dom/element.rs:1017-1062)
 - Fixed-position children of the root element are not scrolled with the viewport (packages/blitz-paint/src/render.rs:1039-1054)
 - The test harness defaults to an 800x600 viewport at scale 1 in light mode (packages/blitz-test-harness/src/harness.rs:30-43; packages/blitz-test-harness/src/harness.rs:57-62)
-- A screen can hold scrolling boxes inside the viewport, and an into-view scroll moves each of them: `BaseDocument::scroll_into_view` scrolls every scrolling box that holds its target, innermost first, and then the viewport, and `BaseDocument::visible_region` reads the part of the viewport an element can be seen through — the viewport narrowed to the padding box of every clipping box that holds it (ratified by the founder, 2026-10-07, for every document); on the headless stand the nested scroller is the CRUD list: `crud-list` reads (24, 112.796875, 369 × 419.203125) at boot and is the box that clips its rows — after twelve Creates the last row's centre lies below the list's box with the viewport unscrolled, a driver `click` on it is refused `off-screen` and a driver `scroll` brings it inside the list — while `task-body` reads (0, 46, 800 × 554) and is not the box that clips that row; the pinned viewport itself is scrolled by a driver `scroll` only on an in-file fixture taller than it; no stand markup, id, class or style moved (packages/blitz-dom/src/scrolling.rs:659-805; tests/blitz-tests/tests/stand_act_scroll.rs:1-12; as measured at escher-0.1.0/chunks/2026-10-07-refusal-detection/evidence/stand-census.md)
+- A screen can hold scrolling boxes inside the viewport, and an into-view scroll moves each of them: `BaseDocument::scroll_into_view` scrolls every scrolling box that holds its target, innermost first, and then the viewport, and `BaseDocument::visible_region` reads the part of the viewport an element can be seen through — the viewport narrowed to the padding box of every clipping box that holds it (ratified by the founder, 2026-10-07, for every document); on the headless stand the nested scroller is the CRUD list: `crud-list` reads (24, 112.796875, 369 × 419.203125) at boot and is the box that clips its rows — after twelve Creates the last row's centre lies below the list's box with the viewport unscrolled, a driver `click` on it is refused `off-screen` and a driver `scroll` brings it inside the list — while `task-body` reads (0, 46, 800 × 554) and is not the box that clips that row; the pinned viewport itself is scrolled by a driver `scroll` only on an in-file fixture taller than it; no stand markup, id, class or style moved (packages/blitz-dom/src/scrolling.rs:659-807; tests/blitz-tests/tests/stand_act_scroll.rs:1-12; as measured at escher-0.1.0/chunks/2026-10-07-refusal-detection/evidence/stand-census.md)
 
 ---
 
@@ -75,12 +75,12 @@
 
 ### Output structure — wpt runner
 
-- Non-verbose terminal mode reserves one line per rayon thread and rewrites each thread's line in place with ANSI cursor escapes as `[done/count] thread N: STATUS name` (wpt/runner/src/main.rs:521-527; wpt/runner/src/main.rs:705-718)
-- Non-terminal non-verbose mode prints `[done/count] ...` every 1000 tests and at the end (wpt/runner/src/main.rs:719-721)
-- Verbose mode prints `[num/count] ` and the full result line per test (wpt/runner/src/main.rs:699-703)
-- A panicking test's line is followed by the panic message, `Panicked at file:line:column` and a trimmed backtrace (wpt/runner/src/main.rs:438-453)
-- After the run, an "Ordered Results" heading precedes alphabetically sorted result lines numbered `[NNNN/count]` (wpt/runner/src/main.rs:730-739)
-- Summary block: duration, then FOUND/SKIPPED/RUN, subtest counts, CRASHED/PASSED/FAILED/TIMED OUT with percentages of run and found, partial-pass count, and failure buckets by feature, with counts right-aligned to width 4 (wpt/runner/src/main.rs:784-830)
+- Non-verbose terminal mode reserves one line per rayon thread and rewrites each thread's line in place with ANSI cursor escapes as `[done/count] thread N: STATUS name` (wpt/runner/src/main.rs:531-537; wpt/runner/src/main.rs:704-717)
+- Non-terminal non-verbose mode prints `[done/count] ...` every 1000 tests and at the end (wpt/runner/src/main.rs:718-720)
+- Verbose mode prints `[num/count] ` and the full result line per test (wpt/runner/src/main.rs:698-702)
+- A panicking test's line is followed by the panic message, `Panicked at file:line:column` and a trimmed backtrace (wpt/runner/src/main.rs:444-459)
+- After the run, an "Ordered Results" heading precedes alphabetically sorted result lines numbered `[NNNN/count]` (wpt/runner/src/main.rs:729-738)
+- Summary block: duration, then FOUND/SKIPPED/RUN, subtest counts, CRASHED/PASSED/FAILED/TIMED OUT with percentages of run and found, partial-pass count, and failure buckets by feature, with counts right-aligned to width 4 (wpt/runner/src/main.rs:783-829)
 
 ---
 

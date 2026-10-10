@@ -1,0 +1,1112 @@
+[
+{
+"tool": "gate",
+"v": "1.13",
+"sha8": "3718c868",
+"ts": "2026-10-10T01:57:14Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces",
+"--run-dir",
+".andromeda/runs/2026-10-10T01-56-50-wrap",
+"--marker",
+"2026-10-10-upstream-sync-agent-surfaces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 09f479b8 (the parent of the oldest pre-CI commit 9462a7e4) · lists new 16 · modify 60 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/evidence/ (dir) ×0",
+"scope: clean — changed 74 · listed 74 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 56"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "09f479b8b2e61d997a84f115ec8c8802c47769fb",
+"base_why": "the parent of the oldest pre-CI commit 9462a7e4",
+"counts": {
+"changed": 74,
+"listed": 74,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 56,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.13",
+"sha8": "3718c868",
+"ts": "2026-10-10T02:05:02Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces",
+"--run-dir",
+".andromeda/runs/2026-10-10T01-56-50-wrap",
+"--marker",
+"2026-10-10-upstream-sync-agent-surfaces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 09f479b8 (the parent of the oldest pre-CI commit 9462a7e4) · lists new 16 · modify 60 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/evidence/ (dir) ×0",
+"scope: clean — changed 74 · listed 74 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 64"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "09f479b8b2e61d997a84f115ec8c8802c47769fb",
+"base_why": "the parent of the oldest pre-CI commit 9462a7e4",
+"counts": {
+"changed": 74,
+"listed": 74,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 64,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.13",
+"sha8": "3718c868",
+"ts": "2026-10-10T02:46:25Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-10T01-56-50-wrap",
+"--marker",
+"2026-10-10-upstream-sync-agent-surfaces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-10-upstream-sync-agent-surfaces · entries 38",
+"logs $TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50 · bound: GNU timeout",
+"delta docs 69 · unmapped 2",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L70-70: The gates below run in /implement P2 on the merged, uncommitted tree and again in the wrap… (271 chars)",
+"prose L72-79: - **Merge witness and guards** — the witness is green when the pin is `MERGE_HEAD` (before… (3494 chars)",
+"  1 probe       green · exit 0 · 0.0s · 0 B → 1.log · git merge-base --is-ancestor 7832c177ff272128154bac58afe56… (167 chars)",
+"  2 probe       green · exit 1 · 0.01s · 0 B → 2.log · git grep -n -I -E '^(<<<<<<< |>>>>>>> )' -- . ':(exclude)e… (136 chars)",
+"  3 probe       green · exit 0 · 0.0s · 2 B → 3.log · grep -c -E '^    \"packages/escher-(telemetry|driver)\",$|^e… (171 chars)",
+"  4 probe       green · exit 0 · 0.0s · 2 B → 4.log · grep -c -E 'rev = \"7d33901cc383489d9945ae796a1ceed0a935ef6… (119 chars)",
+"  5 probe       green · exit 0 · 0.0s · 2 B → 5.log · grep -c '^name = \"skrifa\"$' Cargo.lock",
+"  6 probe       green · exit 0 · 0.37s · 0 B → 6.log · cargo metadata --locked --format-version 1 > /dev/null",
+"  7 probe       green · exit 0 · 0.01s · 2 B → 7.log · git diff -U0 09f479b8b2e61d997a84f115ec8c8802c47769fb -- .… (107 chars)",
+"  8 probe       green · exit 0 · 0.0s · 0 B → 8.log · git diff --quiet 09f479b8b2e61d997a84f115ec8c8802c47769fb … (366 chars)",
+"  9 probe       green · exit 0 · 0.0s · 2 B → 9.log · grep -c -E '^\\[graph\\]$|^\\[advisories\\]$|^\\[licenses\\]$|RU… (110 chars)",
+" 10 probe       green · exit 0 · 0.0s · 3 B → 10.log · grep -c 'changed_nodes.insert' packages/blitz-dom/src/muta… (64 chars)",
+" 11 probe       green · exit 1 · 0.01s · 0 B → 11.log · git grep -c unrounded_absolute_position -- packages",
+" 12 probe       green · exit 1 · 0.01s · 2 B → 12.log · git diff 2335458530518cdf167c55ce635fae99323e0789 7832c177… (216 chars)",
+" 13 unit        green · exit 0 · 0.07s · 247 B → 13.log · python3 -m unittest discover -s .github/scripts -v -k Blit… (75 chars)",
+" 14 unit        green · exit 0 · 49.77s · 76597 B → 14.log · bash .github/scripts/ci-leg.sh fast",
+" 15 probe       green · exit 0 · 0.0s · 41 B → 15.log · grep -E '^test result:' target/ci-logs/test.log | awk '{p+… (146 chars)",
+" 16 probe       green · exit 1 · 0.17s · 2 B → 16.log · for f in tests/blitz-tests/tests/*.rs; do n=$(basename \"$f… (184 chars)",
+" 17 probe       green · exit 1 · 0.0s · 2 B → 17.log · grep -c -E 'Running tests/all\\.rs' target/ci-logs/test.log",
+" 18 probe       green · exit 0 · 0.64s · 29 B → 18.log · cargo test --workspace --locked --no-run 2>&1 | awk '/Exec… (168 chars)",
+" 19 probe       recorded · exit 0 · 0.0s · 26 B → 19.log · grep -E '^Ran [0-9]+ tests|^OK$|^FAILED' target/ci-logs/ci… (70 chars)",
+" 20 lint        green · exit 0 · 0.4s · 177 B → 20.log · bash .github/scripts/ci-leg.sh doc",
+" 21 probe       green · exit 0 · 1.11s · 14 B → 21.log · bash .github/scripts/ci-leg.sh audit",
+" 22 integration green · exit 0 · 2.7s · 1597 B → 22.log · bash .github/scripts/ci-leg.sh a11y",
+" 23 probe       green · exit 0 · 0.01s · 27 B → 23.log · grep -E '^test result:' target/ci-logs/a11y.log | awk '{p+… (125 chars)",
+" 24 probe       green · exit 1 · 0.0s · 2 B → 24.log · grep -c -E 'Running tests/all\\.rs' target/ci-logs/a11y.log",
+" 25 build       green · exit 0 · 49.52s · 137 B → 25.log · bash scripts/agent-run.sh boot",
+" 26 integration green · exit 0 · 25.33s · 14683 B → 26.log · bash scripts/agent-run.sh run stand",
+" 27 probe       green · exit 0 · 0.0s · 3 B → 27.log · ls tests/blitz-tests/tests/stand_*.rs | wc -l",
+" 28 integration green · exit 0 · 32.08s · 48613 B → 28.log · bash scripts/agent-run.sh run all",
+" 29 probe       green · exit 1 · 0.2s · 2 B → 29.log · cargo tree --locked -p seven_guis -e normal --prefix none … (99 chars)",
+" 30 probe       recorded · exit 0 · 0.29s · 1510 B → 30.log · cargo tree --locked --workspace -e features -i blitz-dom -… (66 chars)",
+" 31 probe       recorded · exit 0 · 0.2s · 917 B → 31.log · cargo tree --locked -p blitz-tests -e features -i blitz-do… (69 chars)",
+" 32 probe       recorded · exit 0 · 1.04s · 464 B → 32.log · cargo deny --locked check licenses",
+" 33 build       green · exit 0 · 1.94s · 549 B → 33.log · cargo build -p seven_guis --bin seven_guis_native --locked",
+" 34 smoke       green · exit 0 · 10.16s · 124 B → 34.log · RUST_LOG=info timeout 10 target/debug/seven_guis_native; t… (72 chars)",
+" 35 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 36 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 37 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+" 38 probe       not run — leg operator (the letter drives it) · gh run view <id> -R Turbolet85/escher --log | grep -c -E '… (142 chars)",
+"entries 38 · green 30 · red 0 · recorded 4 · timeout 0 · not-run 4"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-10-upstream-sync-agent-surfaces",
+"plan": "./escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50",
+"delta": {
+"docs": [
+".andromeda/a11y-plan-amendments.md",
+".andromeda/a11y-plan.md",
+".andromeda/architecture-amendments.md",
+".andromeda/architecture.md",
+".andromeda/design-system-amendments.md",
+".andromeda/design-system.md",
+".andromeda/friction-log.ndjson",
+".andromeda/layout-templates.md",
+".andromeda/obs-plan.md",
+".andromeda/runs/2026-10-10T01-18-48-implement/evolve-2026-10-10-upstream-sync-agent-surfaces.json",
+".andromeda/security-plan-amendments.md",
+".andromeda/security-plan.md",
+".andromeda/state.yaml",
+".andromeda/test-plan-amendments.md",
+".andromeda/test-plan.md",
+".claude/docs/conventions.md",
+".claude/docs/design-summary.md",
+".claude/docs/gotchas.md",
+".claude/docs/security-summary.md",
+".claude/docs/services/blitz-dom.md",
+".claude/docs/services/seven_guis.md",
+".claude/docs/session-learnings.md",
+".claude/docs/stack.md",
+".claude/docs/tests-summary.md",
+".claude/docs/workflow.md",
+".claude/rules/security.md",
+".claude/rules/testing.md",
+".claude/session-handoff.md",
+"CLAUDE.md",
+"escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/evidence/operator-pass.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/.raw-fanout-design-system.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/.raw-fanout-layout-templates.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/.raw-fanout-obs-plan.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/a11y-plan-contracts.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/a11y-plan-entry-1.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/architecture-entry-1.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/architecture-entry-2.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/architecture-entry-3.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/architecture-entry-4.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/cascade-2026-10-10-upstream-sync-agent-surfaces.json",
+".andromeda/runs/2026-10-10T01-56-50-wrap/cascade-dispositions.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/cascade-patterns.toml",
+".andromeda/runs/2026-10-10T01-56-50-wrap/citation-dispositions.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/cites-2026-10-10-upstream-sync-agent-surfaces.json",
+".andromeda/runs/2026-10-10T01-56-50-wrap/curation.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/design-system-entry-1.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/escalations.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/evolve-2026-10-10-upstream-sync-agent-surfaces.json",
+".andromeda/runs/2026-10-10T01-56-50-wrap/fanout-results.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/gate-2026-10-10-upstream-sync-agent-surfaces.json",
+".andromeda/runs/2026-10-10T01-56-50-wrap/inputs-2026-10-10-upstream-sync-agent-surfaces.json",
+".andromeda/runs/2026-10-10T01-56-50-wrap/leaf-read.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/new-text.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/obs-plan-contracts.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/registry-2026-10-10-upstream-sync-agent-surfaces.json",
+".andromeda/runs/2026-10-10T01-56-50-wrap/relay-1.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/route-no-marker.json",
+".andromeda/runs/2026-10-10T01-56-50-wrap/route-resolve.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/security-plan-entry-1.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/security-plan-entry-2.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/security-plan-entry-3.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/splice-2026-10-10-upstream-sync-agent-surfaces.json",
+".andromeda/runs/2026-10-10T01-56-50-wrap/test-plan-contracts.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/test-plan-entry-1.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/test-plan-entry-2.md",
+".andromeda/runs/2026-10-10T01-56-50-wrap/test-plan-entry-3.md",
+"escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/evidence/ci.md",
+"escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/report.md"
+]
+},
+"unmapped": [
+"escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/inputs/andromeda-inputs.json",
+"escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/inputs/I3-relay-1.md.txt"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 71,
+"problem": null
+},
+"prose": [
+{
+"from": 70,
+"to": 70,
+"text": "The gates below run in /implement P2 on the merged, uncommitted tree and again in the wrap's light gate on the committed merge. Their git bases are the chunk start commit `09f479b8` or the two fixed upstream shas, so they read the same after the operator's pre-CI commit."
+},
+{
+"from": 72,
+"to": 79,
+"text": "- **Merge witness and guards** — the witness is green when the pin is `MERGE_HEAD` (before the operator's commit) or an ancestor of HEAD (after it). The probes after it read: no conflict marker left; our root-manifest entries kept; upstream's pin set taken; the lock resolving as committed with one skrifa; the workflow one line from its chunk-start text; the fork's own scripts, stand, driver, telemetry and bridge sources untouched; `deny.toml` holding both sides; the 15 changed-set marks; no caller of the removed method; and a fixed-sha census of upstream's delta. - **The `test = false` reading is three entries, not a note** (the operator's direction): the workspace build set lists no `tests/all.rs` executable, the workspace test log runs none, and the a11y leg's log runs none. The `coverage` leg selects the same default targets as the `test` leg and is not run locally; its witness is fork CI's \"Coverage report\" job, where a built `all` target would run upstream's guard test, fail on our unlisted files and redden the job. - **By-name presence** — one entry walks `tests/blitz-tests/tests/*.rs` and counts the files, `all.rs` aside, whose `Running tests/{name}.rs` line is absent from the workspace test log. Named limit: a stem another package's test target shares would satisfy it from that package; none does today (the other packages' targets are `host_binary`, `host_log`, `dom`, `selection`). - **Counts** — the workspace tally is asserted on `failed 0` and recorded; the CI-scripts tally is report-only because its number is a forecast (70 today; predicted 78 — four tests of upstream's new file, three more in `test_wpt_diff_to_pr.py`, one of ours); the a11y leg's 3 result lines and 15 passed are asserted, since the merge changes none of its three files. - **Not run locally:** `msrv` (`cargo +1.91`) and the wasm leg — no 1.91 toolchain or wasm32 target on this host — and the windows, macos, ios and android legs. The operator entries push the merge and read the run that covers them; the last entry reads that our checks ran in the macOS and Windows jobs, which a conclusion alone does not show. - **Windowed boot smoke** — listed because the merge changes layout, text shaping and paint under `seven_guis_native`. It declares `WAYLAND_DISPLAY`, turns `timeout`'s 124 into its own exit 0 (`.claude/rules/verification-harness.md` Session Additions) and reads `not run — env unset` without a display. - **No live leg**: nothing here drives a process the launch environment names. **The evidence records have no listed producer, by construction**: `merge.md`, `counts.md`, `lock.md`, `features.md`, `licenses.md`, `moved-readings.md` and `ci.md` are /implement's and the operator pass's hand records of what the entries read, and `counts.md`'s pre-merge half is step 1's one-shot reading on `09f479b8`, which no entry can re-run on the merged tree. No entry carries one of them as `artifact`. - **The mechanism the test-shape decision rests on is measured, not assumed**: on cargo 1.99.0, in a scratch crate, a `[[test]]` table with `test = false` beside auto-discovered files left `cargo test` and `cargo test --no-run` building and running the other files only, `--test {name}` still selected each of them, and naming the switched-off target explicitly still built and ran it; under upstream's shape (`autotests = false`) the same crate listed `tests/all.rs` alone and `--test {name}` failed with `no test target named`. The three entries re-read it on the real crate."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "probe",
+"run": "git merge-base --is-ancestor 7832c177ff272128154bac58afe56c2b9164b417 HEAD || test \"$(git rev-parse -q --verify MERGE_HEAD)\" = 7832c177ff272128154bac58afe56c2b9164b417",
+"run_sha8": "65d24d2c",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/1.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "probe",
+"run": "git grep -n -I -E '^(<<<<<<< |>>>>>>> )' -- . ':(exclude)escher-0.1.0' ':(exclude).andromeda' ':(exclude).claude' ':(exclude)CLAUDE.md' ",
+"run_sha8": "e097e106",
+"expect": [
+"exit 1",
+"no output"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/2.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"no output ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "probe",
+"run": "grep -c -E '^    \"packages/escher-(telemetry|driver)\",$|^escher-(telemetry|driver) = \\{ path|^seven_guis = \\{ path|^tracing-log = |^debug = \"line-tables-only\"$' Cargo.toml",
+"run_sha8": "ee0a7648",
+"expect": [
+"exit 0",
+"last line 7"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/3.log",
+"bytes": 2,
+"log_sha8": "10159baf",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '7' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "grep -c -E 'rev = \"7d33901cc383489d9945ae796a1ceed0a935ef66\"|^parley = \\{ version = \"0\\.12\"|^icu_casemap = ' Cargo.toml",
+"run_sha8": "35e791c6",
+"expect": [
+"exit 0",
+"last line 3"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/4.log",
+"bytes": 2,
+"log_sha8": "1121cfcc",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '3' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "grep -c '^name = \"skrifa\"$' Cargo.lock",
+"run_sha8": "84382880",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/5.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "cargo metadata --locked --format-version 1 > /dev/null",
+"run_sha8": "79e78c79",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/6.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.37,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff -U0 09f479b8b2e61d997a84f115ec8c8802c47769fb -- .github/workflows/ci.yml | grep -c -E \"^[-+][^-+]\"",
+"run_sha8": "16378216",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/7.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "git diff --quiet 09f479b8b2e61d997a84f115ec8c8802c47769fb -- .github/scripts/ci-leg.sh .github/scripts/apt-install.sh .github/scripts/test_ci_workflows.py .github/scripts/test_agent_run.py .github/scripts/test_cold_agent.py scripts/agent-run.sh scripts/cold-agent.sh examples/seven_guis packages/escher-driver packages/escher-telemetry packages/dioxus-native-dom/src",
+"run_sha8": "6c248d79",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/8.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "grep -c -E '^\\[graph\\]$|^\\[advisories\\]$|^\\[licenses\\]$|RUSTSEC-2026-0192|\"wasm32-unknown-unknown\",' deny.toml",
+"run_sha8": "4b244849",
+"expect": [
+"exit 0",
+"last line 5"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/9.log",
+"bytes": 2,
+"log_sha8": "f0b5c2c2",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '5' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "grep -c 'changed_nodes.insert' packages/blitz-dom/src/mutator.rs",
+"run_sha8": "27896970",
+"expect": [
+"exit 0",
+"last line 15"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/10.log",
+"bytes": 3,
+"log_sha8": "23890318",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '15' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "git grep -c unrounded_absolute_position -- packages",
+"run_sha8": "9f6457a9",
+"expect": [
+"exit 1",
+"no output"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/11.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"no output ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "git diff 2335458530518cdf167c55ce635fae99323e0789 7832c177ff272128154bac58afe56c2b9164b417 -- packages apps examples wpt tests | grep -c -E '^\\+[^+].*(TcpListener|UnixListener|UdpSocket|\\.bind\\(|env::var|tracing::)' ",
+"run_sha8": "589eb429",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/12.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "unit",
+"run": "python3 -m unittest discover -s .github/scripts -v -k BlitzTestsTargetsTest",
+"run_sha8": "2ab7ae29",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains BlitzTestsTargetsTest"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/13.log",
+"bytes": 247,
+"log_sha8": "19aeeca6",
+"exit": 0,
+"seconds": 0.07,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"contains 'BlitzTestsTargetsTest' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "unit",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/14.log",
+"bytes": 76597,
+"log_sha8": "4f9ffd8a",
+"exit": 0,
+"seconds": 49.77,
+"readings": [
+"exit 0 ✓",
+"artifact fresh (target/ci-logs/test.log)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "grep -E '^test result:' target/ci-logs/test.log | awk '{p+=$4; f+=$6; i+=$8; n++} END {print \"lines \" n \" passed \" p \" failed \" f \" ignored \" i}' ",
+"run_sha8": "2ec38d01",
+"expect": [
+"exit 0",
+"contains failed 0 ignored"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/15.log",
+"bytes": 41,
+"log_sha8": "e6a70f14",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"contains 'failed 0 ignored' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "for f in tests/blitz-tests/tests/*.rs; do n=$(basename \"$f\" .rs); test \"$n\" = all || grep -q -F \"Running tests/$n.rs\" target/ci-logs/test.log || echo \"absent $n\"; done | grep -c absent",
+"run_sha8": "665fd186",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/16.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.17,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "grep -c -E 'Running tests/all\\.rs' target/ci-logs/test.log",
+"run_sha8": "b66b9b37",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/17.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "cargo test --workspace --locked --no-run 2>&1 | awk '/Executable tests\\/all\\.rs/{a++} /Executable tests\\//{n++} END{print \"executables \" n+0; print \"all-target \" a+0}' ",
+"run_sha8": "5772ea22",
+"expect": [
+"exit 0",
+"last line all-target 0",
+"lacks executables 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/18.log",
+"bytes": 29,
+"log_sha8": "7b4c4a54",
+"exit": 0,
+"seconds": 0.64,
+"readings": [
+"exit 0 ✓",
+"last line 'all-target 0' ✓",
+"lacks 'executables 0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "grep -E '^Ran [0-9]+ tests|^OK$|^FAILED' target/ci-logs/ci-scripts.log",
+"run_sha8": "3c080385",
+"expect": [],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/19.log",
+"bytes": 26,
+"log_sha8": "1371b41d",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"report-only (expect = [])"
+],
+"survivors": [],
+"outcome": "recorded"
+},
+{
+"n": 20,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/20.log",
+"bytes": 177,
+"log_sha8": "658608bf",
+"exit": 0,
+"seconds": 0.4,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 21,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": [
+"exit 0",
+"contains advisories ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/21.log",
+"bytes": 14,
+"log_sha8": "799fc05e",
+"exit": 0,
+"seconds": 1.11,
+"readings": [
+"exit 0 ✓",
+"contains 'advisories ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 22,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/22.log",
+"bytes": 1597,
+"log_sha8": "b59652f3",
+"exit": 0,
+"seconds": 2.7,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"artifact fresh (target/ci-logs/a11y.log)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 23,
+"role": "probe",
+"run": "grep -E '^test result:' target/ci-logs/a11y.log | awk '{p+=$4; f+=$6; n++} END {print \"lines \" n \" passed \" p \" failed \" f}' ",
+"run_sha8": "effc4633",
+"expect": [
+"exit 0",
+"last line lines 3 passed 15 failed 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/23.log",
+"bytes": 27,
+"log_sha8": "1f194f60",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line 'lines 3 passed 15 failed 0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 24,
+"role": "probe",
+"run": "grep -c -E 'Running tests/all\\.rs' target/ci-logs/a11y.log",
+"run_sha8": "0c82cbf5",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/24.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 25,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/25.log",
+"bytes": 137,
+"log_sha8": "cf565e53",
+"exit": 0,
+"seconds": 49.52,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 26,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": [
+"exit 0",
+"contains \"outcome\": \"passed\""
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/26.log",
+"bytes": 14683,
+"log_sha8": "319a5f9e",
+"exit": 0,
+"seconds": 25.33,
+"readings": [
+"exit 0 ✓",
+"contains '\"outcome\": \"passed\"' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 27,
+"role": "probe",
+"run": "ls tests/blitz-tests/tests/stand_*.rs | wc -l",
+"run_sha8": "c5ff640f",
+"expect": [
+"exit 0",
+"last line 30"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/27.log",
+"bytes": 3,
+"log_sha8": "f4ccd05b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '30' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 28,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run all",
+"run_sha8": "f826ef2a",
+"expect": [
+"exit 0",
+"contains \"outcome\": \"passed\""
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/28.log",
+"bytes": 48613,
+"log_sha8": "55b35ed6",
+"exit": 0,
+"seconds": 32.08,
+"readings": [
+"exit 0 ✓",
+"contains '\"outcome\": \"passed\"' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 29,
+"role": "probe",
+"run": "cargo tree --locked -p seven_guis -e normal --prefix none | grep -c -E '^accesskit_(xplat|winit) ' ",
+"run_sha8": "a4f95de6",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/29.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.2,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 30,
+"role": "probe",
+"run": "cargo tree --locked --workspace -e features -i blitz-dom --depth 1",
+"run_sha8": "7012a5c4",
+"expect": [],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/30.log",
+"bytes": 1510,
+"log_sha8": "d3551c10",
+"exit": 0,
+"seconds": 0.29,
+"readings": [
+"report-only (expect = [])"
+],
+"survivors": [],
+"outcome": "recorded"
+},
+{
+"n": 31,
+"role": "probe",
+"run": "cargo tree --locked -p blitz-tests -e features -i blitz-dom --depth 1",
+"run_sha8": "878fd2c8",
+"expect": [],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/31.log",
+"bytes": 917,
+"log_sha8": "97b04d7b",
+"exit": 0,
+"seconds": 0.2,
+"readings": [
+"report-only (expect = [])"
+],
+"survivors": [],
+"outcome": "recorded"
+},
+{
+"n": 32,
+"role": "probe",
+"run": "cargo deny --locked check licenses",
+"run_sha8": "4f4e80fe",
+"expect": [],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/32.log",
+"bytes": 464,
+"log_sha8": "4f6baf1e",
+"exit": 0,
+"seconds": 1.04,
+"readings": [
+"report-only (expect = [])"
+],
+"survivors": [],
+"outcome": "recorded"
+},
+{
+"n": 33,
+"role": "build",
+"run": "cargo build -p seven_guis --bin seven_guis_native --locked",
+"run_sha8": "094a3644",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/33.log",
+"bytes": 549,
+"log_sha8": "ccf2b576",
+"exit": 0,
+"seconds": 1.94,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 34,
+"role": "smoke",
+"run": "RUST_LOG=info timeout 10 target/debug/seven_guis_native; test $? -eq 124",
+"run_sha8": "e0f15baf",
+"expect": [
+"exit 0",
+"contains service.name=seven_guis"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-upstream-sync-agent-surfaces/wrap-2026-10-10T01-56-50/34.log",
+"bytes": 124,
+"log_sha8": "93eea81c",
+"exit": 0,
+"seconds": 10.16,
+"readings": [
+"exit 0 ✓",
+"contains 'service.name=seven_guis' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 35,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 36,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 37,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 3600",
+"run_sha8": "7554a2d9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 38,
+"role": "probe",
+"run": "gh run view <id> -R Turbolet85/escher --log | grep -c -E 'Running tests/(stand_act_keys|stand_session_lifecycle|scroll_into_view_nested)\\.rs' ",
+"run_sha8": "43d79a24",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.13",
+"sha8": "3718c868",
+"ts": "2026-10-10T02:46:38Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-10-10T01-56-50-wrap",
+"--marker",
+"2026-10-10-upstream-sync-agent-surfaces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base 09f479b8 (the parent of the oldest pre-CI commit 9462a7e4)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 86 (runs 73 · evidence 8 · inputs 5) · trails 24 not read · copies 3 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 73,
+"evidence": 8,
+"inputs": 5,
+"trails": 24,
+"copies": 3,
+"kept": 0,
+"binary": 0,
+"in_root": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.13",
+"sha8": "3718c868",
+"ts": "2026-10-10T02:46:45Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces",
+"--run-dir",
+".andromeda/runs/2026-10-10T01-56-50-wrap",
+"--marker",
+"2026-10-10-upstream-sync-agent-surfaces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 09f479b8 (the parent of the oldest pre-CI commit 9462a7e4) · lists new 16 · modify 60 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/evidence/ (dir) ×0",
+"scope: clean — changed 74 · listed 74 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 120"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "09f479b8b2e61d997a84f115ec8c8802c47769fb",
+"base_why": "the parent of the oldest pre-CI commit 9462a7e4",
+"counts": {
+"changed": 74,
+"listed": 74,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 120,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

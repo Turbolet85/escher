@@ -1,0 +1,7 @@
+
+## 2026-10-10-upstream-sync-agent-surfaces — a hint-less `@font-face` source is fetched and sniffed: a boundary widening by upstream merge, PROVISIONAL
+**Section:** §Input Validation → the `@font-face` source | URL row
+**Change:** the row keeps its claim (a source whose URL cannot be resolved is skipped instead of panicking) and gains a PROVISIONAL clause: a source with no format hint whose URL has no extension — a `data:` URL — was skipped and is now fetched, its format sniffed from its bytes as the Fetched fonts row states; no test of ours and none in the merged delta covers it; escher routes no agent- or user-supplied URL through this path today — no driver verb takes a URL, and the stand boots offline on its bundled font.
+**Why:** upstream #1109 arrived with the merge and widens which document-supplied font sources reach the fetch and the font decode. A boundary widening is the playbook's never-routine class whatever brings it: the operator, 2026-10-10, through the question dialog of this wrap, had it recorded as PROVISIONAL — the call is the founder's own word, also when the widening arrives by an upstream merge. The mark is discharged in the batch at the Epoch 5 boundary, on the founder's ruling; until then it stands in the body, in the security rule file and summary, and in the handoff.
+**Kept:** the Fetched fonts | Format row is unchanged — sniffing "when no format hint is given" was already its claim. No code was changed for this: the merged behaviour stands as upstream wrote it.
+**Ref:** .andromeda/runs/2026-10-10T01-56-50-wrap/
