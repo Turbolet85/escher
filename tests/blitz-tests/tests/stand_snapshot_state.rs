@@ -1,21 +1,24 @@
 //! The state a snapshot node reads is the state of its control, proven through real input on
 //! the stand, booted headlessly in both layout modes: a disabled control reads not enabled
 //! until the app enables it, typed text reads back as the value, and exactly the focused
-//! control reads focused after a click, a Tab press and Shift+Tab. The cases the lean tasks
+//! control reads focused after a click, a Tab press and Shift+Tab. What a control states of
+//! itself in its markup reads the same way, each reading equal to its accessibility node's:
+//! exactly the active flight mode reads pressed, exactly the selected row reads selected, and a
+//! date field reads invalid while what it holds is no date. The cases the lean tasks
 //! lack are proven on a minimal fixture booted with the stand's options: a checkbox and a
 //! radio read checked after a click, a password input reads a fixed mask, never its text, and
 //! a textarea reads back the text typed into it.
 
-use accesskit::{Node, Role};
+use accesskit::{Node, Role, Toggled};
 use blitz_dom::Document;
 use blitz_test_harness::Harness;
 use dioxus::prelude::*;
-use dioxus_native_dom::{DioxusDocument, MASKED_VALUE, UnkeyedActionable};
+use dioxus_native_dom::{DioxusDocument, MASKED_VALUE, Snapshot, UnkeyedActionable};
 use keyboard_types::{Key, Modifiers};
 use seven_guis::stand::{self, LeanTask};
 
 mod common;
-use common::{boot, by_id, editor_text, name, node};
+use common::{boot, by_id, editor_text, name, node, tree_node};
 
 /// What [`focused`] reads when no control has focus.
 const NOTHING: [&str; 0] = [];
@@ -72,6 +75,75 @@ fn focused(harness: &Harness<DioxusDocument>) -> Vec<String> {
         .collect();
     assert_eq!(focused, tree_focus, "the accessibility tree's focus");
     focused
+}
+
+/// A snapshot of the screen, every node's selected, pressed and invalid reading asserted to
+/// be its accessibility node's: `selected` as it stands, `toggled` read as pressed only when
+/// true, and whether the node carries an `invalid`.
+#[track_caller]
+fn stated(harness: &Harness<DioxusDocument>) -> Snapshot {
+    let snapshot = harness.doc.snapshot();
+    let tree = harness.doc.accessibility_tree();
+    for read in snapshot.nodes() {
+        let id = &read.id;
+        let (_, accessible) = tree_node(&tree, id);
+        assert_eq!(
+            read.state.selected,
+            accessible.is_selected(),
+            "{id:?} reads its accessibility node's selected"
+        );
+        assert_eq!(
+            read.state.pressed,
+            accessible.toggled().map(|toggled| toggled == Toggled::True),
+            "{id:?} reads its accessibility node's toggled"
+        );
+        assert_eq!(
+            read.state.invalid,
+            accessible.invalid().is_some(),
+            "{id:?} reads its accessibility node's invalid"
+        );
+    }
+    snapshot
+}
+
+/// Every snapshot node that reads a pressed, with its reading, in document order.
+#[track_caller]
+fn pressed(harness: &Harness<DioxusDocument>) -> Vec<(String, bool)> {
+    stated(harness)
+        .nodes()
+        .filter_map(|node| node.state.pressed.map(|pressed| (node.id.clone(), pressed)))
+        .collect()
+}
+
+/// Every snapshot node that reads a selected, with its reading, in document order.
+#[track_caller]
+fn selected(harness: &Harness<DioxusDocument>) -> Vec<(String, bool)> {
+    stated(harness)
+        .nodes()
+        .filter_map(|node| {
+            node.state
+                .selected
+                .map(|selected| (node.id.clone(), selected))
+        })
+        .collect()
+}
+
+/// The ids of the snapshot nodes reading invalid, in document order.
+#[track_caller]
+fn invalid(harness: &Harness<DioxusDocument>) -> Vec<String> {
+    stated(harness)
+        .nodes()
+        .filter(|node| node.state.invalid)
+        .map(|node| node.id.clone())
+        .collect()
+}
+
+/// The readings [`pressed`] and [`selected`] return, stated by id.
+fn readings(stated: &[(&str, bool)]) -> Vec<(String, bool)> {
+    stated
+        .iter()
+        .map(|(id, reading)| (id.to_string(), *reading))
+        .collect()
 }
 
 /// Markup a Dioxus document holds without the bridge writing it: it is parsed, so a `disabled`
@@ -298,6 +370,117 @@ fn focus_reads_on_exactly_the_focused_control() {
             focused(&fresh),
             ["back-btn"],
             "{mode}: the first Tab on a fresh boot"
+        );
+    }
+}
+
+#[test]
+fn exactly_the_active_flight_mode_reads_pressed() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut flight = boot(LeanTask::FlightBooker, incremental);
+        let one_way = readings(&[("flight-one-way", true), ("flight-return", false)]);
+        let returning = readings(&[("flight-one-way", false), ("flight-return", true)]);
+
+        assert_eq!(pressed(&flight), one_way, "{mode}: at boot");
+        flight.click("#flight-return");
+        assert_eq!(pressed(&flight), returning, "{mode}: a return flight");
+        flight.click("#flight-one-way");
+        assert_eq!(pressed(&flight), one_way, "{mode}: one-way again");
+        flight.click("#flight-one-way");
+        assert_eq!(
+            pressed(&flight),
+            one_way,
+            "{mode}: a click on the active mode"
+        );
+    }
+}
+
+#[test]
+fn exactly_the_selected_row_reads_selected() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut crud = boot(LeanTask::Crud, incremental);
+        let rows = |picked: Option<usize>| {
+            let ids = ["crud-person-0", "crud-person-1", "crud-person-2"];
+            let stated: Vec<(&str, bool)> = ids
+                .into_iter()
+                .enumerate()
+                .map(|(row, id)| (id, picked == Some(row)))
+                .collect();
+            readings(&stated)
+        };
+
+        assert_eq!(selected(&crud), rows(None), "{mode}: no row at boot");
+        crud.click("#crud-person-1");
+        assert_eq!(selected(&crud), rows(Some(1)), "{mode}: a clicked row");
+        crud.click("#crud-person-2");
+        assert_eq!(selected(&crud), rows(Some(2)), "{mode}: another row");
+
+        crud.click("#crud-create");
+        let mut created = rows(Some(2));
+        created.push(("crud-person-3".to_string(), false));
+        assert_eq!(
+            selected(&crud),
+            created,
+            "{mode}: a created row is not selected"
+        );
+        crud.click("#crud-person-3");
+        let mut picked = rows(None);
+        picked.push(("crud-person-3".to_string(), true));
+        assert_eq!(selected(&crud), picked, "{mode}: the created row, clicked");
+        crud.click("#crud-delete");
+        assert_eq!(
+            selected(&crud),
+            rows(None),
+            "{mode}: Delete leaves no row selected"
+        );
+
+        crud.click("#crud-person-0");
+        assert_eq!(selected(&crud), rows(Some(0)), "{mode}: the first row");
+        crud.click("#crud-filter");
+        crud.type_text("E");
+        assert_eq!(
+            selected(&crud),
+            readings(&[("crud-person-0", false)]),
+            "{mode}: a filter edit that keeps the row listed leaves it not selected"
+        );
+    }
+}
+
+#[test]
+fn a_date_that_is_no_date_reads_invalid() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut flight = boot(LeanTask::FlightBooker, incremental);
+
+        assert_eq!(invalid(&flight), NOTHING, "{mode}: at boot");
+        flight.click("#flight-start");
+        flight.type_text("x");
+        assert_eq!(
+            invalid(&flight),
+            ["flight-start"],
+            "{mode}: a start date that is no date"
+        );
+
+        flight.click("#flight-return");
+        assert_eq!(
+            invalid(&flight),
+            ["flight-start"],
+            "{mode}: a return flight with its date as booted"
+        );
+        flight.click("#flight-return-date");
+        flight.type_text("x");
+        assert_eq!(
+            invalid(&flight),
+            ["flight-start", "flight-return-date"],
+            "{mode}: a return date that is no date"
+        );
+        flight.click("#flight-one-way");
+        assert_eq!(
+            invalid(&flight),
+            ["flight-start"],
+            "{mode}: a one-way flight reads its return date not invalid"
         );
     }
 }

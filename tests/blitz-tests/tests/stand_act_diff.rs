@@ -1,9 +1,10 @@
 //! What a driver action returns is the diff of the screen before and after it. On each lean
 //! stand task, in both layout modes, the diff an acting call returns equals `Snapshot::diff`
 //! over this file's own snapshots taken either side of the call, and names exactly the nodes
-//! stated per step: a click names the value it rewrote, a typed text its input and the control
-//! that lost focus, Create the new row added and Delete that row removed, an advance the
-//! elapsed time. A click on an element that reacts to nothing returns settled with an empty
+//! stated per step: a click names the value it rewrote, a flight mode click the two mode
+//! buttons with the control it enabled, a row click that row, a typed text its input and the
+//! control that lost focus, Create the new row added and Delete that row removed, an advance
+//! the elapsed time. A click on an element that reacts to nothing returns settled with an empty
 //! diff, and the two layout modes return equal diffs. The case the lean tasks lack is proven on
 //! a fixture booted with the stand's options: a text typed by the driver into a password input
 //! is nowhere in what the call returns, and the entry reads the mask. A diff is content: this
@@ -121,21 +122,37 @@ fn a_choice_on_the_flight_booker_returns_the_control_it_enabled() {
     let mut runs = Vec::new();
     for incremental in [false, true] {
         let mut flight = Held::task(LeanTask::FlightBooker, incremental);
-        let chosen = flight.step(&click("flight-return"), [&[], &[], &["flight-return-date"]]);
+        const MODE_STEP: Named = [
+            &[],
+            &[],
+            &["flight-one-way", "flight-return", "flight-return-date"],
+        ];
+        let chosen = flight.step(&click("flight-return"), MODE_STEP);
         assert!(
             entry(&chosen, "flight-return-date")
                 .is_some_and(|date| date.state.enabled == Some(true)),
             "{}: a return flight returns the return date enabled",
             flight.mode
         );
-        let back = flight.step(
-            &click("flight-one-way"),
-            [&[], &[], &["flight-return-date"]],
+        assert!(
+            entry(&chosen, "flight-one-way").is_some_and(|mode| mode.state.pressed == Some(false))
+                && entry(&chosen, "flight-return")
+                    .is_some_and(|mode| mode.state.pressed == Some(true)),
+            "{}: a return flight returns the mode chosen pressed and the other not",
+            flight.mode
         );
+        let back = flight.step(&click("flight-one-way"), MODE_STEP);
         assert!(
             entry(&back, "flight-return-date")
                 .is_some_and(|date| date.state.enabled == Some(false)),
             "{}: a one-way flight returns the return date disabled",
+            flight.mode
+        );
+        assert!(
+            entry(&back, "flight-one-way").is_some_and(|mode| mode.state.pressed == Some(true))
+                && entry(&back, "flight-return")
+                    .is_some_and(|mode| mode.state.pressed == Some(false)),
+            "{}: a one-way flight returns the two modes' readings swapped back",
             flight.mode
         );
         runs.push(flight.diffs);
@@ -196,11 +213,15 @@ fn create_returns_the_new_row_added_and_delete_returns_it_removed() {
 
         let select = crud.step(
             &click("crud-person-3"),
-            [&[], &[], &["crud-update", "crud-delete"]],
+            [&[], &[], &["crud-person-3", "crud-update", "crud-delete"]],
         );
         assert!(
             entry(&select, "crud-delete").is_some_and(|delete| delete.state.enabled == Some(true)),
             "{mode}: the selection returns Delete enabled"
+        );
+        assert!(
+            entry(&select, "crud-person-3").is_some_and(|row| row.state.selected == Some(true)),
+            "{mode}: the selection returns the row selected"
         );
 
         crud.step(

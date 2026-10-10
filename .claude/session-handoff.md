@@ -38,3 +38,6 @@
 ## Deferred learnings
 - `recurrence-despite-learning: "Committed run-dir and evidence text must not spell a host temp path, even as prose"` (session-learnings, 2026-10-06) — a second operator pass in two chunks was stopped by a host path in a committed run-dir text, this time a home path in the phase's copy of the operator's own review message. The remedy is a check in the step that writes such a copy, not a third entry.
 - Curation applied nothing: it is session-local, and the window that held implement's report and the report's authoring is gone — the report's Decisions & corrections stood in for it. Nothing is deferred by the cap.
+
+## Session End Status
+Completed normally at 2026-10-10 18:48:17

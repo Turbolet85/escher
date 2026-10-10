@@ -50,7 +50,10 @@
 //!
 //! An element's `bounds` are where it stands on the screen — a box reads the same bounds
 //! however far its content is scrolled — and a hit stops where a box clips by `overflow`, so
-//! content scrolled out of a box covers nothing. One reading is known to be off, measured on
+//! content scrolled out of a box covers nothing. An element that states itself selected,
+//! pressed or invalid in its markup (`aria-selected`, `aria-pressed`, `aria-invalid`) reads so
+//! as true or false, with two limits: a mixed toggle reads not pressed, and a grammar or
+//! spelling error reads invalid. One reading is known to be off, measured on
 //! the engine as built and stated where the schema describes it: a hit reaches content clipped
 //! by `contain: paint`, so an element lying where such content extends can read
 //! [`Cause::Covered`] though nothing shows over it.

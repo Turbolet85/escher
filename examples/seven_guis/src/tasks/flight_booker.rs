@@ -66,12 +66,14 @@ pub fn FlightBooker() -> Element {
                 div { class: "flight-type-row",
                     button {
                         id: "flight-one-way",
+                        aria_pressed: if !is_return { "true" } else { "false" },
                         class: if !is_return { "type-btn type-btn-active" } else { "type-btn" },
                         onclick: move |_| flight_type.set("one-way".into()),
                         "one-way flight"
                     }
                     button {
                         id: "flight-return",
+                        aria_pressed: if is_return { "true" } else { "false" },
                         class: if is_return { "type-btn type-btn-active" } else { "type-btn" },
                         onclick: move |_| flight_type.set("return".into()),
                         "return flight"
@@ -80,6 +82,7 @@ pub fn FlightBooker() -> Element {
                 input {
                     id: "flight-start",
                     aria_label: "Departure date",
+                    aria_invalid: if start_valid { "false" } else { "true" },
                     class: if start_valid { "date-input" } else { "date-input invalid" },
                     value: "{start_str}",
                     oninput: move |evt| start_str.set(evt.value()),
@@ -87,6 +90,7 @@ pub fn FlightBooker() -> Element {
                 input {
                     id: "flight-return-date",
                     aria_label: "Return date",
+                    aria_invalid: if return_valid { "false" } else { "true" },
                     class: if return_valid { "date-input" } else { "date-input invalid" },
                     disabled: !is_return,
                     value: "{return_str}",

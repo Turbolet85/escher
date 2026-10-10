@@ -254,6 +254,30 @@ mod tests {
     }
 
     #[test]
+    fn a_selected_pressed_or_invalid_reading_alone_names_that_node() {
+        let readings: [fn(&mut NodeState); 3] = [
+            |state| state.selected = Some(true),
+            |state| state.pressed = Some(false),
+            |state| state.invalid = true,
+        ];
+        for (row, set) in readings.into_iter().enumerate() {
+            let mut after = base();
+            set(&mut edit(&mut after, "second").state);
+            let mut stated = NodeState::default();
+            set(&mut stated);
+            assert_ne!(stated, NodeState::default(), "row {row}: the reading moved");
+
+            let diff = base().diff(&after);
+            assert_eq!(ids(&diff.changed), ["second"], "row {row}");
+            assert_eq!(diff.changed[0].state, stated, "row {row}");
+            assert!(
+                diff.added.is_empty() && diff.removed.is_empty(),
+                "row {row}"
+            );
+        }
+    }
+
+    #[test]
     fn changed_bounds_name_that_node_alone() {
         let moved = BoundingRect { y: 24.0, ..BOX };
         let mut after = base();

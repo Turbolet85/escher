@@ -1,5 +1,7 @@
 use crate::{BaseDocument, ElementData, Node as BlitzDomNode, local_name};
-use accesskit::{Node as AccessKitNode, NodeId, Role, TreeId, TreeInfo, TreeUpdate};
+use accesskit::{
+    Invalid, Node as AccessKitNode, NodeId, Role, Toggled, TreeId, TreeInfo, TreeUpdate,
+};
 use style::properties::longhands::visibility;
 
 impl BaseDocument {
@@ -96,6 +98,34 @@ impl BaseDocument {
             // https://www.w3.org/TR/wai-aria-1.2/#tree_exclusion
             if element_data.attr(local_name!("aria-hidden")) == Some("true") {
                 builder.set_hidden();
+            }
+
+            // https://www.w3.org/TR/wai-aria-1.2/#aria-selected
+            let selected = element_data.attr(local_name!("aria-selected"));
+            match selected.map(str::trim_ascii) {
+                Some("true") => builder.set_selected(true),
+                Some("false") => builder.set_selected(false),
+                _ => {}
+            }
+
+            // https://www.w3.org/TR/wai-aria-1.2/#aria-pressed
+            let pressed = element_data.attr(local_name!("aria-pressed"));
+            match pressed.map(str::trim_ascii) {
+                Some("true") => builder.set_toggled(Toggled::True),
+                Some("false") => builder.set_toggled(Toggled::False),
+                Some("mixed") => builder.set_toggled(Toggled::Mixed),
+                _ => {}
+            }
+
+            // https://www.w3.org/TR/wai-aria-1.2/#aria-invalid
+            // "Any value not recognized in the list of allowed values MUST be treated by user
+            // agents as if the value true had been provided."
+            let invalid = element_data.attr(local_name!("aria-invalid"));
+            match invalid.map(str::trim_ascii) {
+                None | Some("" | "false") => {}
+                Some("grammar") => builder.set_invalid(Invalid::Grammar),
+                Some("spelling") => builder.set_invalid(Invalid::Spelling),
+                Some(_) => builder.set_invalid(Invalid::True),
             }
         } else if node.is_text_node() {
             builder.set_role(Role::TextRun);

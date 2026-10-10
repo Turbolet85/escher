@@ -1,0 +1,1 @@
+Technical forks of this entry are the operator own: ask them in your dialog and I answer — how the engine reads the three ARIA states, which roles the stand rows and mode buttons take, where a snapshot and its text form carry the states. The founder decision is only a boundary widening or a fork that changes what v010-17 says; put such forks whole in one file.

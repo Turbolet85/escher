@@ -29,9 +29,12 @@ pub const KEY_NAMES: [&str; 12] = [
 /// The classes of work a `busy` result field names.
 pub const BUSY_CLASSES: [&str; 3] = ["render", "layout", "loads"];
 
-/// The fields of each node in a `nodes` result field.
-pub const NODE_FIELDS: [&str; 9] = [
-    "id", "parent", "role", "name", "enabled", "checked", "value", "focused", "bounds",
+/// The fields of each node in a `nodes` result field, in the order a node is written with
+/// them. `parent`, `enabled`, `checked`, `value`, `selected` and `pressed` are left out where
+/// the node has no reading for them.
+pub const NODE_FIELDS: [&str; 12] = [
+    "id", "parent", "role", "name", "enabled", "checked", "value", "selected", "pressed",
+    "invalid", "focused", "bounds",
 ];
 
 /// The kind of an argument's value, each with the bound it states.
@@ -197,7 +200,9 @@ const CHANGED: FieldSpec = FieldSpec {
     kind: FieldKind::Nodes,
     always: true,
     help: "the elements on the screen before and after the step whose role, name, state, bounds \
-           or parent differ, as they read after it",
+           or parent differ, as they read after it; `selected` and `pressed` are left out where \
+           the element states neither, `pressed` is false for a mixed toggle, and `invalid` is \
+           true for a grammar or spelling error",
 };
 
 const ADVANCED_MS: FieldSpec = FieldSpec {
@@ -224,7 +229,11 @@ pub(crate) const SNAPSHOT: VerbSpec = VerbSpec {
         name: "text",
         kind: FieldKind::Text,
         always: true,
-        help: "the screen as one text: one line per element, nested by indent",
+        help: "the screen as one text: one line per element, nested by indent; a line's state \
+               words, each written only where the element states it, are enabled or disabled, \
+               checked or unchecked, value=, selected or unselected, pressed or unpressed, \
+               invalid and focused; a mixed toggle reads unpressed, and a grammar or spelling \
+               error reads invalid",
     }],
 };
 
@@ -418,12 +427,18 @@ mod tests {
         let amended = [
             (
                 field_help(&SNAPSHOT, "text"),
-                "the screen as one text: one line per element, nested by indent",
+                "the screen as one text: one line per element, nested by indent; a line's state \
+                 words, each written only where the element states it, are enabled or disabled, \
+                 checked or unchecked, value=, selected or unselected, pressed or unpressed, \
+                 invalid and focused; a mixed toggle reads unpressed, and a grammar or spelling \
+                 error reads invalid",
             ),
             (
                 field_help(&CLICK, "changed"),
                 "the elements on the screen before and after the step whose role, name, state, \
-                 bounds or parent differ, as they read after it",
+                 bounds or parent differ, as they read after it; `selected` and `pressed` are \
+                 left out where the element states neither, `pressed` is false for a mixed \
+                 toggle, and `invalid` is true for a grammar or spelling error",
             ),
             (
                 Some(TYPE.help),
@@ -567,10 +582,12 @@ mod tests {
                 "end",
             ]
         );
+        assert_eq!(NODE_FIELDS.len(), 12);
         assert_eq!(
             NODE_FIELDS,
             [
-                "id", "parent", "role", "name", "enabled", "checked", "value", "focused", "bounds",
+                "id", "parent", "role", "name", "enabled", "checked", "value", "selected",
+                "pressed", "invalid", "focused", "bounds",
             ]
         );
         assert_eq!(BUSY_CLASSES, ["render", "layout", "loads"]);

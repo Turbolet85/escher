@@ -1,0 +1,292 @@
+[
+{
+"sql": "SELECT callee_name, caller_name, file, line FROM calls WHERE callee_name IN ('build_accessibility_tree','build_accessibility_node','accessibility_tree') AND callee_kind = 'fn' ORDER BY callee_name, file, line",
+"rows": 34,
+"result": [
+{
+"callee_name": "accessibility_tree",
+"caller_name": "update_tree",
+"file": "packages/blitz-shell/src/accessibility.rs",
+"line": 44
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "unkeyed_actionable",
+"file": "packages/dioxus-native-dom/src/actionable.rs",
+"line": 56
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "snapshot",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 83
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "tree",
+"file": "tests/blitz-tests/tests/accessibility_names.rs",
+"line": 19
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "plain_html_tree_carries_no_author_id",
+"file": "tests/blitz-tests/tests/accessibility_names.rs",
+"line": 99
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "focused",
+"file": "tests/blitz-tests/tests/session_common/mod.rs",
+"line": 142
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "element_nodes_carry_their_stable_id",
+"file": "tests/blitz-tests/tests/stand_accessibility_ids.rs",
+"line": 107
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "non_elements_carry_no_id",
+"file": "tests/blitz-tests/tests/stand_accessibility_ids.rs",
+"line": 124
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "controls_carry_role_and_name",
+"file": "tests/blitz-tests/tests/stand_accessibility_ids.rs",
+"line": 157
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "ids_hold_after_a_rerender",
+"file": "tests/blitz-tests/tests/stand_accessibility_ids.rs",
+"line": 185
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "ids_hold_after_a_rerender",
+"file": "tests/blitz-tests/tests/stand_accessibility_ids.rs",
+"line": 192
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "ids_hold_after_a_rerender",
+"file": "tests/blitz-tests/tests/stand_accessibility_ids.rs",
+"line": 216
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "the_snapshot_the_accessibility_tree_and_the_driver_read_one_id",
+"file": "tests/blitz-tests/tests/stand_act_ids.rs",
+"line": 108
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "actionable_count",
+"file": "tests/blitz-tests/tests/stand_actionable_keys.rs",
+"line": 45
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "an_id_names_the_same_element_after_a_command",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 82
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "focused",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 44
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "ids_are_the_accessibility_tree_ids",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 58
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "role_and_name_match_the_accessibility_tree",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 94
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "focused",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 64
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "the_fixture_controls_are_keyed_named_and_typed",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 359
+},
+{
+"callee_name": "accessibility_tree",
+"caller_name": "a_typed_password_never_appears_in_the_snapshot",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 493
+},
+{
+"callee_name": "build_accessibility_node",
+"caller_name": "build_accessibility_tree",
+"file": "packages/blitz-dom/src/accessibility.rs",
+"line": 26
+},
+{
+"callee_name": "build_accessibility_tree",
+"caller_name": "accessibility_tree",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 158
+},
+{
+"callee_name": "build_accessibility_tree",
+"caller_name": "handle_blitz_shell_event",
+"file": "packages/blitz-shell/src/application.rs",
+"line": 81
+},
+{
+"callee_name": "build_accessibility_tree",
+"caller_name": "accessibility_tree",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 300
+},
+{
+"callee_name": "build_accessibility_tree",
+"caller_name": "includes_ordinary_div_as_node",
+"file": "tests/blitz-tests/tests/accessibility_hidden.rs",
+"line": 13
+},
+{
+"callee_name": "build_accessibility_tree",
+"caller_name": "excludes_div_with_hidden_attribute",
+"file": "tests/blitz-tests/tests/accessibility_hidden.rs",
+"line": 33
+},
+{
+"callee_name": "build_accessibility_tree",
+"caller_name": "excludes_div_with_display_none",
+"file": "tests/blitz-tests/tests/accessibility_hidden.rs",
+"line": 54
+},
+{
+"callee_name": "build_accessibility_tree",
+"caller_name": "excludes_div_with_visibility_hidden",
+"file": "tests/blitz-tests/tests/accessibility_hidden.rs",
+"line": 75
+},
+{
+"callee_name": "build_accessibility_tree",
+"caller_name": "sets_hidden_flag_on_element_with_aria_hidden_attribute",
+"file": "tests/blitz-tests/tests/accessibility_hidden.rs",
+"line": 96
+},
+{
+"callee_name": "build_accessibility_tree",
+"caller_name": "excludes_child_element_of_hidden_element",
+"file": "tests/blitz-tests/tests/accessibility_hidden.rs",
+"line": 125
+},
+{
+"callee_name": "build_accessibility_tree",
+"caller_name": "plain_html_tree_carries_no_author_id",
+"file": "tests/blitz-tests/tests/accessibility_names.rs",
+"line": 100
+},
+{
+"callee_name": "build_accessibility_tree",
+"caller_name": "unknown_tags",
+"file": "tests/blitz-tests/tests/accessibility_roles.rs",
+"line": 28
+},
+{
+"callee_name": "build_accessibility_tree",
+"caller_name": "assert_role",
+"file": "tests/blitz-tests/tests/accessibility_roles.rs",
+"line": 56
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, file, COUNT(*) AS sites FROM refs WHERE callee_name IN ('NodeState','NODE_FIELDS','DiffNode','NodeParts') GROUP BY 1, 2 ORDER BY 1, 2",
+"rows": 14,
+"result": [
+{
+"callee_name": "DiffNode",
+"file": "packages/dioxus-native-dom/src/lib.rs",
+"sites": 1
+},
+{
+"callee_name": "DiffNode",
+"file": "packages/dioxus-native-dom/src/snapshot_diff.rs",
+"sites": 7
+},
+{
+"callee_name": "DiffNode",
+"file": "packages/escher-driver/src/json.rs",
+"sites": 2
+},
+{
+"callee_name": "DiffNode",
+"file": "tests/blitz-tests/tests/stand_act_diff.rs",
+"sites": 2
+},
+{
+"callee_name": "DiffNode",
+"file": "tests/blitz-tests/tests/stand_act_timer.rs",
+"sites": 2
+},
+{
+"callee_name": "DiffNode",
+"file": "tests/blitz-tests/tests/stand_diff.rs",
+"sites": 2
+},
+{
+"callee_name": "NODE_FIELDS",
+"file": "packages/escher-driver/src/json.rs",
+"sites": 2
+},
+{
+"callee_name": "NODE_FIELDS",
+"file": "packages/escher-driver/src/lib.rs",
+"sites": 1
+},
+{
+"callee_name": "NODE_FIELDS",
+"file": "packages/escher-driver/src/schema.rs",
+"sites": 1
+},
+{
+"callee_name": "NodeParts",
+"file": "packages/escher-driver/src/json.rs",
+"sites": 5
+},
+{
+"callee_name": "NodeState",
+"file": "packages/dioxus-native-dom/src/lib.rs",
+"sites": 1
+},
+{
+"callee_name": "NodeState",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"sites": 2
+},
+{
+"callee_name": "NodeState",
+"file": "packages/dioxus-native-dom/src/snapshot_diff.rs",
+"sites": 4
+},
+{
+"callee_name": "NodeState",
+"file": "packages/dioxus-native-dom/src/snapshot_text.rs",
+"sites": 19
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

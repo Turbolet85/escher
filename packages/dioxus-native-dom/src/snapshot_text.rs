@@ -23,15 +23,20 @@ impl Snapshot {
     /// A line reads, left to right: the role in its `Debug` spelling; the name as a quoted
     /// string; `id=` and the id quoted; the state tokens the node holds, in this order —
     /// `enabled` or `disabled`, `checked` or `unchecked`, `value=` and the value quoted,
-    /// `focused`; then `@x,y widthxheight`, each number the shortest decimal that reads back
-    /// as the same bound. A quoted string is written in `str`'s `Debug` form, so it never
-    /// holds a line break or a bare `"`, and an apostrophe stays as it is.
+    /// `selected` or `unselected`, `pressed` or `unpressed`, `invalid`, `focused`; then
+    /// `@x,y widthxheight`, each number the shortest decimal that reads back as the same
+    /// bound. A mixed toggle is written `unpressed`, and a grammar or a spelling error
+    /// `invalid`, as [`NodeState`](crate::NodeState) reads them. A quoted string is written
+    /// in `str`'s `Debug` form, so it never holds a line break or a bare `"`, and an
+    /// apostrophe stays as it is.
     ///
     /// ```text
-    /// GenericContainer "" id="form" @0,0 800x64.5
+    /// GenericContainer "" id="form" @0,0 800x96.5
     ///   TextInput "Name:" id="who" enabled value="Ada" focused @8,8 200x24
     ///   CheckBox "Agree" id="agree" enabled unchecked @8,40 16x16
     ///   Button "Save" id="save" disabled @216,8 64x24
+    ///   TextInput "Due" id="due" enabled value="soon" invalid @8,64 200x24
+    ///   Button "Bold" id="bold" enabled pressed @216,64 64x24
     /// ```
     pub fn to_text(&self) -> String {
         let mut text = String::new();
@@ -62,6 +67,19 @@ fn write_line(text: &mut String, node: &SnapshotNode, depth: usize) {
     }
     if let Some(value) = &node.state.value {
         write!(text, " value={value:?}").unwrap();
+    }
+    match node.state.selected {
+        Some(true) => text.push_str(" selected"),
+        Some(false) => text.push_str(" unselected"),
+        None => {}
+    }
+    match node.state.pressed {
+        Some(true) => text.push_str(" pressed"),
+        Some(false) => text.push_str(" unpressed"),
+        None => {}
+    }
+    if node.state.invalid {
+        text.push_str(" invalid");
     }
     if node.state.focused {
         text.push_str(" focused");
@@ -181,6 +199,41 @@ mod tests {
         );
         assert_eq!(
             line(NodeState {
+                selected: Some(true),
+                ..state()
+            }),
+            "Unknown \"\" id=\"n\" selected @0,0 10x10\n"
+        );
+        assert_eq!(
+            line(NodeState {
+                selected: Some(false),
+                ..state()
+            }),
+            "Unknown \"\" id=\"n\" unselected @0,0 10x10\n"
+        );
+        assert_eq!(
+            line(NodeState {
+                pressed: Some(true),
+                ..state()
+            }),
+            "Unknown \"\" id=\"n\" pressed @0,0 10x10\n"
+        );
+        assert_eq!(
+            line(NodeState {
+                pressed: Some(false),
+                ..state()
+            }),
+            "Unknown \"\" id=\"n\" unpressed @0,0 10x10\n"
+        );
+        assert_eq!(
+            line(NodeState {
+                invalid: true,
+                ..state()
+            }),
+            "Unknown \"\" id=\"n\" invalid @0,0 10x10\n"
+        );
+        assert_eq!(
+            line(NodeState {
                 focused: true,
                 ..state()
             }),
@@ -199,9 +252,53 @@ mod tests {
                 enabled: Some(true),
                 checked: Some(false),
                 value: Some("on".to_string()),
+                selected: Some(false),
+                pressed: Some(true),
+                invalid: true,
                 focused: true,
             }),
-            "Unknown \"\" id=\"n\" enabled unchecked value=\"on\" focused @0,0 10x10\n"
+            concat!(
+                "Unknown \"\" id=\"n\" enabled unchecked value=\"on\" unselected pressed invalid",
+                " focused @0,0 10x10\n"
+            )
+        );
+    }
+
+    #[test]
+    fn a_mixed_toggle_is_written_unpressed_and_an_error_kind_invalid() {
+        fn app() -> Element {
+            rsx! {
+                button { id: "mixed", "aria-pressed": "mixed", "Bold" }
+                input { id: "grammar", "aria-invalid": "grammar" }
+                input { id: "spelling", "aria-invalid": "spelling" }
+                div { id: "row", role: "option", "aria-selected": "true", "One" }
+            }
+        }
+        let text = build(app).snapshot().to_text();
+        let line = |id: &str| {
+            text.lines()
+                .map(str::trim_start)
+                .find(|line| line.contains(&format!("id={id:?}")))
+                .unwrap_or_else(|| panic!("{id:?} has a line"))
+        };
+        assert!(
+            line("mixed").starts_with("Button \"Bold\" id=\"mixed\" enabled unpressed @"),
+            "{:?}",
+            line("mixed")
+        );
+        for id in ["grammar", "spelling"] {
+            assert!(
+                line(id).starts_with(&format!(
+                    "TextInput \"\" id={id:?} enabled value=\"\" invalid @"
+                )),
+                "{:?}",
+                line(id)
+            );
+        }
+        assert!(
+            line("row").starts_with("ListBoxOption \"One\" id=\"row\" selected @"),
+            "{:?}",
+            line("row")
         );
     }
 

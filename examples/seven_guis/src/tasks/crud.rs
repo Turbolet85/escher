@@ -55,6 +55,7 @@ pub fn Crud() -> Element {
             div { class: "crud-body",
                 // List
                 div { id: "crud-list", class: "list",
+                    role: "listbox",
                     {
                         let filter_lower = filter().to_lowercase();
                         let people_snap = people();
@@ -67,6 +68,8 @@ pub fn Crud() -> Element {
                                 div {
                                     key: "{person.id}",
                                     id: "crud-person-{person.id}",
+                                    role: "option",
+                                    aria_selected: if selected() == Some(i) { "true" } else { "false" },
                                     class: if selected() == Some(i) { "list-item selected" } else { "list-item" },
                                     onclick: move |_| {
                                         if let Some(p) = people.read().get(i).cloned() {

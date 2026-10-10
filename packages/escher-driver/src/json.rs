@@ -99,6 +99,9 @@ struct NodeParts<'a> {
     enabled: Option<bool>,
     checked: Option<bool>,
     value: Option<&'a str>,
+    selected: Option<bool>,
+    pressed: Option<bool>,
+    invalid: bool,
     focused: bool,
     /// x, y, width and height.
     bounds: [f64; 4],
@@ -123,6 +126,13 @@ fn node(parts: &NodeParts<'_>) -> String {
     if let Some(value) = parts.value {
         object.text("value", value);
     }
+    if let Some(selected) = parts.selected {
+        object.flag("selected", selected);
+    }
+    if let Some(pressed) = parts.pressed {
+        object.flag("pressed", pressed);
+    }
+    object.flag("invalid", parts.invalid);
     object.flag("focused", parts.focused);
     let bounds = object.member("bounds");
     bounds.push('[');
@@ -161,6 +171,9 @@ fn nodes(nodes: &[DiffNode]) -> String {
             enabled: read.state.enabled,
             checked: read.state.checked,
             value: read.state.value.as_deref(),
+            selected: read.state.selected,
+            pressed: read.state.pressed,
+            invalid: read.state.invalid,
             focused: read.state.focused,
             bounds: [
                 read.bounds.x,
@@ -419,12 +432,15 @@ mod tests {
             enabled: Some(true),
             checked: Some(false),
             value: Some("Ada"),
+            selected: Some(false),
+            pressed: Some(true),
+            invalid: true,
             focused: true,
             bounds: [8.0, 8.5, 200.0, 24.0],
         });
         assert_eq!(
             full,
-            r#"{"id":"who","parent":"form","role":"TextInput","name":"Name:","enabled":true,"checked":false,"value":"Ada","focused":true,"bounds":[8,8.5,200,24]}"#
+            r#"{"id":"who","parent":"form","role":"TextInput","name":"Name:","enabled":true,"checked":false,"value":"Ada","selected":false,"pressed":true,"invalid":true,"focused":true,"bounds":[8,8.5,200,24]}"#
         );
         assert_eq!(keys(&full), NODE_FIELDS);
 
@@ -436,14 +452,20 @@ mod tests {
             enabled: None,
             checked: None,
             value: None,
+            selected: None,
+            pressed: None,
+            invalid: false,
             focused: false,
             bounds: [0.0, 0.0, f64::NAN, 600.0],
         });
         assert_eq!(
             bare,
-            r#"{"id":"root","role":"GenericContainer","name":"","focused":false,"bounds":[0,0,null,600]}"#
+            r#"{"id":"root","role":"GenericContainer","name":"","invalid":false,"focused":false,"bounds":[0,0,null,600]}"#
         );
-        assert_eq!(keys(&bare), ["id", "role", "name", "focused", "bounds"]);
+        assert_eq!(
+            keys(&bare),
+            ["id", "role", "name", "invalid", "focused", "bounds"]
+        );
 
         // A masked control's value is the mask: the writer writes what the snapshot reads.
         let masked = node(&NodeParts {
@@ -454,6 +476,9 @@ mod tests {
             enabled: Some(true),
             checked: None,
             value: Some(MASKED_VALUE),
+            selected: None,
+            pressed: None,
+            invalid: false,
             focused: true,
             bounds: [0.0, 0.0, 1.0, 1.0],
         });

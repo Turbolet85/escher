@@ -3,7 +3,7 @@
 
 use std::collections::{HashMap, HashSet};
 
-use accesskit::{Node as TreeNode, NodeId as TreeNodeId, Role, TreeUpdate};
+use accesskit::{Node as TreeNode, NodeId as TreeNodeId, Role, Toggled, TreeUpdate};
 use blitz_dom::{BaseDocument, BoundingRect, Document, ElementData, NodeId, local_name};
 
 use crate::DioxusDocument;
@@ -31,7 +31,8 @@ pub struct SnapshotNode {
     /// The accessible name of the element's accessibility node, trimmed: its label, else the
     /// joined names of the nodes labelling it. `""` when it has no name source.
     pub name: String,
-    /// What the element reads as: enabled, checked, its value and whether it has focus.
+    /// What the element reads as: enabled, checked, its value, whether it states itself
+    /// selected, pressed or invalid, and whether it has focus.
     pub state: NodeState,
     /// The element's bounding client rect in CSS px, relative to the viewport (see
     /// [`BaseDocument::get_client_bounding_rect`]).
@@ -55,6 +56,17 @@ pub struct NodeState {
     /// `None` for every other element. A password or file `input` whose value is not empty reads
     /// [`MASKED_VALUE`], never the text or the path; an empty one reads as any other `input`.
     pub value: Option<String>,
+    /// Whether the element states itself selected, as its accessibility node reads its
+    /// `aria-selected`: `None` where the element states neither.
+    pub selected: Option<bool>,
+    /// Whether the element states itself pressed, as its accessibility node reads its
+    /// `aria-pressed`: `None` where the element states neither. A mixed toggle reads
+    /// `Some(false)`, not pressed; the accessibility node keeps which of the three it is.
+    pub pressed: Option<bool>,
+    /// Whether the element states itself invalid, as its accessibility node reads its
+    /// `aria-invalid`. A grammar or a spelling error reads `true`; the accessibility node keeps
+    /// which kind it is.
+    pub invalid: bool,
     /// Whether the element is the document's focused node.
     pub focused: bool,
 }
@@ -79,7 +91,8 @@ impl Snapshot {
 impl DioxusDocument {
     /// The screen as a [`Snapshot`]: one node per element the accessibility tree keeps, with
     /// its id and role from that tree, its name resolved over that tree, its bounds from
-    /// [`BaseDocument::get_client_bounding_rect`] and its state from the element.
+    /// [`BaseDocument::get_client_bounding_rect`] and its state from the element — but for
+    /// selected, pressed and invalid, which that tree's node holds.
     pub fn snapshot(&self) -> Snapshot {
         let tree = self.accessibility_tree();
         let doc = self.inner();
@@ -143,6 +156,9 @@ impl Builder<'_> {
                             .then(|| !element.has_attr(local_name!("disabled"))),
                         checked: element.checkbox_input_checked(),
                         value: value(element),
+                        selected: tree_node.is_selected(),
+                        pressed: tree_node.toggled().map(|toggled| toggled == Toggled::True),
+                        invalid: tree_node.invalid().is_some(),
                         focused: id == self.focus,
                     },
                     bounds,
@@ -587,5 +603,137 @@ mod tests {
             value_of(&snapshot, "level") == Some("15"),
             "a range input reads its value attribute"
         );
+    }
+
+    /// What `id`'s element holds as the attribute `name`.
+    fn attribute(doc: &DioxusDocument, id: &str, name: blitz_dom::LocalName) -> Option<String> {
+        let base = doc.inner();
+        let node_id = base.query_selector(&format!("#{id}")).ok().flatten()?;
+        base.get_node(node_id)?.attr(name).map(str::to_string)
+    }
+
+    /// Each value an `aria-selected` is written with — `None` writes no attribute — and what
+    /// its element reads as selected.
+    const SELECTED: [(Option<&str>, Option<bool>); 7] = [
+        (Some("true"), Some(true)),
+        (Some("false"), Some(false)),
+        (None, None),
+        (Some(""), None),
+        (Some("undefined"), None),
+        (Some("TRUE"), None),
+        (Some("no-such-value"), None),
+    ];
+
+    #[test]
+    fn an_aria_selected_value_reads_selected() {
+        fn app() -> Element {
+            rsx! {
+                for (row, (value, _)) in SELECTED.into_iter().enumerate() {
+                    div { id: "row-{row}", role: "option", "aria-selected": value }
+                }
+            }
+        }
+        let snapshot = build(app).snapshot();
+        assert_eq!(SELECTED.len(), 7);
+        for (row, (_, stated)) in SELECTED.into_iter().enumerate() {
+            let read = node(&snapshot, &format!("row-{row}"));
+            assert_eq!(read.role, Role::ListBoxOption, "row {row}");
+            assert_eq!(read.state.selected, stated, "row {row}");
+            assert_eq!(
+                (read.state.pressed, read.state.invalid),
+                (None, false),
+                "row {row}"
+            );
+        }
+    }
+
+    /// Each value an `aria-pressed` is written with and what its element reads as pressed: a
+    /// mixed toggle reads not pressed.
+    const PRESSED: [(Option<&str>, Option<bool>); 7] = [
+        (Some("true"), Some(true)),
+        (Some("false"), Some(false)),
+        (Some("mixed"), Some(false)),
+        (None, None),
+        (Some(""), None),
+        (Some("undefined"), None),
+        (Some("no-such-value"), None),
+    ];
+
+    #[test]
+    fn an_aria_pressed_value_reads_pressed_and_a_checked_one_does_not() {
+        fn app() -> Element {
+            rsx! {
+                for (row, (value, _)) in PRESSED.into_iter().enumerate() {
+                    button { id: "row-{row}", "aria-pressed": value }
+                }
+                button { id: "bridged", aria_pressed: false }
+                input { id: "native", r#type: "checkbox", checked: true }
+                input { id: "aria-box", r#type: "checkbox", "aria-checked": "true" }
+                div { id: "aria-plain", "aria-checked": "true" }
+            }
+        }
+        let doc = build(app);
+        let snapshot = doc.snapshot();
+        assert_eq!(PRESSED.len(), 7);
+        for (row, (_, stated)) in PRESSED.into_iter().enumerate() {
+            let state = &node(&snapshot, &format!("row-{row}")).state;
+            assert_eq!(state.pressed, stated, "row {row}");
+            assert_eq!(
+                (state.selected, state.invalid, state.checked),
+                (None, false, None),
+                "row {row}"
+            );
+        }
+
+        assert_eq!(
+            attribute(&doc, "bridged", local_name!("aria-pressed")).as_deref(),
+            Some("false"),
+            "the bridge writes a false `bool` of this attribute as its text"
+        );
+        assert_eq!(node(&snapshot, "bridged").state.pressed, Some(false));
+
+        let native = &node(&snapshot, "native").state;
+        assert_eq!((native.checked, native.pressed), (Some(true), None));
+        for id in ["aria-box", "aria-plain"] {
+            assert_eq!(
+                attribute(&doc, id, local_name!("aria-checked")).as_deref(),
+                Some("true"),
+                "{id:?} carries the attribute"
+            );
+        }
+        let aria_box = &node(&snapshot, "aria-box").state;
+        assert_eq!((aria_box.checked, aria_box.pressed), (Some(false), None));
+        let aria_plain = &node(&snapshot, "aria-plain").state;
+        assert_eq!((aria_plain.checked, aria_plain.pressed), (None, None));
+    }
+
+    /// Each value an `aria-invalid` is written with and whether its element reads invalid: a
+    /// grammar or a spelling error does, and so does a value outside the attribute's list.
+    const INVALID: [(Option<&str>, bool); 7] = [
+        (Some("true"), true),
+        (Some("grammar"), true),
+        (Some("spelling"), true),
+        (Some("no-such-value"), true),
+        (None, false),
+        (Some(""), false),
+        (Some("false"), false),
+    ];
+
+    #[test]
+    fn an_aria_invalid_value_reads_invalid() {
+        fn app() -> Element {
+            rsx! {
+                for (row, (value, _)) in INVALID.into_iter().enumerate() {
+                    input { id: "row-{row}", "aria-invalid": value }
+                }
+            }
+        }
+        let snapshot = build(app).snapshot();
+        assert_eq!(INVALID.len(), 7);
+        for (row, (_, stated)) in INVALID.into_iter().enumerate() {
+            let state = &node(&snapshot, &format!("row-{row}")).state;
+            assert_eq!(state.invalid, stated, "row {row}");
+            assert_eq!((state.selected, state.pressed), (None, None), "row {row}");
+        }
     }
 }
