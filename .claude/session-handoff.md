@@ -39,3 +39,6 @@
 ## Deferred learnings
 - The cargo-test streams line deferred at the last wrap is applied (`.claude/rules/testing.md`, Session Additions). Nothing is deferred by the cap.
 - `recurrence-despite-learning: "A fork CI run with one job still open is not green, and how to read and re-run a hung job"` (session-learnings, 2026-10-07) — its third paragraph already said a pattern anchored on `Running tests/` finds nothing in a `gh run view --log` log; this chunk's plan wrote exactly that pattern. The entry is extended with the Windows separator and the known-positive rule; the remedy is a check in the step that authors the plan entry, not a third entry.
+
+## Session End Status
+Completed normally at 2026-10-10 10:55:46

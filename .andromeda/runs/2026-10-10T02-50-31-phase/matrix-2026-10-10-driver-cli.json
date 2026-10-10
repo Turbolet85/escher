@@ -1,0 +1,163 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bd649850",
+"ts": "2026-10-10T08:33:08Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.1.0",
+"--run-dir",
+".andromeda/runs/2026-10-10T02-50-31-phase",
+"--marker",
+"2026-10-10-driver-cli"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 9/16 · deferred 0 · planned 7 · implemented 0 · unclaimed 7",
+"unclaimed: v010-04 v010-07 v010-08 v010-12 v010-13 v010-14 v010-15",
+"claimed-unfinished: none",
+"done-test: NO — 7 not verified|deferred · unclaimed 7",
+"chunks referenced: 6 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bd649850",
+"ts": "2026-10-10T08:33:08Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-12",
+"--chunk",
+"2026-10-10-driver-cli",
+"--acceptance-file",
+".andromeda/runs/2026-10-10T02-50-31-phase/acceptance-v010-12.md",
+"--run-dir",
+".andromeda/runs/2026-10-10T02-50-31-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v010-12 → chunk 2026-10-10-driver-cli (was null; status planned kept)",
+"acceptance: Every driver command runs from the command line with JSON output and a… (187 chars)",
+"         → Every driver command runs from the command line through the real `esch… (692 chars)",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 6 [v010-04 v010-07 v010-08 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-12",
+"chunk": null,
+"status": "planned",
+"method": "e2e",
+"ref": "null",
+"acceptance": "Every driver command runs from the command line with JSON output and a process status that tells accepted from refused, … (187 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v010-12",
+"chunk": "2026-10-10-driver-cli",
+"status": "planned",
+"method": "e2e",
+"ref": "null",
+"acceptance": "Every driver command runs from the command line through the real `escher-session` binary against a hosted stand task: `s… (692 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bd649850",
+"ts": "2026-10-10T08:33:08Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-04",
+"--chunk",
+"2026-10-10-driver-cli",
+"--acceptance-file",
+".andromeda/runs/2026-10-10T02-50-31-phase/acceptance-v010-04.md",
+"--note-file",
+".andromeda/runs/2026-10-10T02-50-31-phase/note-v010-04.md",
+"--run-dir",
+".andromeda/runs/2026-10-10T02-50-31-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v010-04 → chunk 2026-10-10-driver-cli (was null; status planned kept)",
+"acceptance: One snapshot command returns each stand task's screen as a tree where … (173 chars)",
+"         → One snapshot command, `escher-session snapshot --session <dir>`, run t… (629 chars)",
+"notes: +610 chars (total 1779)",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 5 [v010-07 v010-08 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-04",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "One snapshot command returns each stand task's screen as a tree where every node carries id, role, name, state and bound… (173 chars)",
+"notes_chars": 1167
+},
+"after": {
+"id": "v010-04",
+"chunk": "2026-10-10-driver-cli",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "One snapshot command, `escher-session snapshot --session <dir>`, run through the real binary against each of the four ho… (629 chars)",
+"notes_chars": 1779
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bd649850",
+"ts": "2026-10-10T08:33:08Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-10-driver-cli",
+"--plan",
+"escher-0.1.0/chunks/2026-10-10-driver-cli/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-10T02-50-31-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-10-driver-cli: 2 · ## Acceptance Criteria: line 516, 20 lines",
+"v010-04: cited in ## Acceptance Criteria (line 518)",
+"v010-12: cited in ## Acceptance Criteria (line 517)",
+"  shape v010-12: method e2e · interaction verbs ['click', 'press', 'scroll', 'type']",
+"pool: unclaimed 5 [v010-07 v010-08 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

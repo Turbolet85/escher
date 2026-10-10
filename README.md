@@ -33,7 +33,19 @@ bash scripts/agent-run.sh boot
 bash scripts/agent-run.sh run stand
 ```
 
-These run the demo stand (the 7GUIs tasks) and its headless checks, not the agent driver, which is planned.
+These run the demo stand (the 7GUIs tasks) and its headless checks.
+
+The agent driver has a command line. The `escher-session` binary starts a session on a stand task and runs one driver command per call against it; each call answers one line of JSON on stdout and exits `0` when it ran, `1` when it was refused, `2` on a usage error and `3` on a session error:
+
+```sh
+cargo build -p seven_guis --bin escher-session
+target/debug/escher-session start counter --session demo-session
+target/debug/escher-session snapshot --session demo-session
+target/debug/escher-session click --id counter-increment --session demo-session
+target/debug/escher-session stop --session demo-session
+```
+
+The driver's MCP surface, the help it serves about itself and its screenshot are still to come.
 
 ## Plans
 

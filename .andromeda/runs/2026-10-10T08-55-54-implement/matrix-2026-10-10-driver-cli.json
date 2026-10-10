@@ -1,0 +1,150 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "a0f3749c",
+"ts": "2026-10-10T09:25:17Z",
+"argv": [
+"show",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-10-driver-cli",
+"--run-dir",
+".andromeda/runs/2026-10-10T08-55-54-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-10-driver-cli: 2",
+"v010-04 · integration · planned · ref null · chunk 2026-10-10-driver-cli · One snapshot command, `escher-session snapshot --session <dir>`, run thr… (629 chars)",
+"v010-12 · e2e · planned · ref null · chunk 2026-10-10-driver-cli · Every driver command runs from the command line through the real `escher… (692 chars)",
+"pool: unclaimed 5 [v010-07 v010-08 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "a0f3749c",
+"ts": "2026-10-10T09:36:08Z",
+"argv": [
+"implement",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-10-driver-cli",
+"--id",
+"v010-12",
+"--ref-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-10T08-55-54-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"implement v010-12 · status planned → implemented · ref examples/seven_guis/tests/cli_commands.rs::each_task_starts_answers_and_stops · … (486 chars)",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-12",
+"chunk": "2026-10-10-driver-cli",
+"status": "planned",
+"method": "e2e",
+"ref": "null",
+"acceptance": "Every driver command runs from the command line through the real `escher-session` binary against a hosted stand task: `s… (692 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v010-12",
+"chunk": "2026-10-10-driver-cli",
+"status": "implemented",
+"method": "e2e",
+"ref": "examples/seven_guis/tests/cli_commands.rs::each_task_starts_answers_and_stops · ::each_verb_is_accepted_and_answers_its_… (486 chars)",
+"acceptance": "Every driver command runs from the command line through the real `escher-session` binary against a hosted stand task: `s… (692 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "a0f3749c",
+"ts": "2026-10-10T09:36:08Z",
+"argv": [
+"implement",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-10-driver-cli",
+"--id",
+"v010-04",
+"--ref-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-10T08-55-54-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"implement v010-04 · status planned → implemented · ref examples/seven_guis/tests/cli_commands.rs::a_snapshot_is_the_in_process_text_as_… (210 chars)",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-04",
+"chunk": "2026-10-10-driver-cli",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "One snapshot command, `escher-session snapshot --session <dir>`, run through the real binary against each of the four ho… (629 chars)",
+"notes_chars": 1779
+},
+"after": {
+"id": "v010-04",
+"chunk": "2026-10-10-driver-cli",
+"status": "implemented",
+"method": "integration",
+"ref": "examples/seven_guis/tests/cli_commands.rs::a_snapshot_is_the_in_process_text_as_one_line_inside_its_budget (beside tests… (210 chars)",
+"acceptance": "One snapshot command, `escher-session snapshot --session <dir>`, run through the real binary against each of the four ho… (629 chars)",
+"notes_chars": 1779
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "a0f3749c",
+"ts": "2026-10-10T09:36:08Z",
+"argv": [
+"show",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-10-driver-cli",
+"--run-dir",
+".andromeda/runs/2026-10-10T08-55-54-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-10-driver-cli: 2",
+"v010-04 · integration · implemented · ref 210 chars: examples/seven_guis/tests/cli_commands.r… (210 chars) · chunk 2026-10-10-driver-cli · One snapshot command, `escher-session snapshot --session <dir>`, run thr… (629 chars)",
+"v010-12 · e2e · implemented · ref 486 chars: examples/seven_guis/tests/cli_commands.r… (486 chars) · chunk 2026-10-10-driver-cli · Every driver command runs from the command line through the real `escher… (692 chars)",
+"pool: unclaimed 5 [v010-07 v010-08 v010-13 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

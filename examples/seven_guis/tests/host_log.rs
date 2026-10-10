@@ -1,7 +1,11 @@
-//! The `escher-session` binary, its telemetry sink installed, writes no stable element id and no
-//! accessible name to stderr at `RUST_LOG=trace`. Guards a measured leak: the sink printed
-//! records from third-party targets as written, which put every author key of the screen on
-//! stderr at `debug` and each row's name and each label's text at `trace`.
+//! The `escher-session` host, its telemetry sink installed, writes nothing a command handled to
+//! stderr at `RUST_LOG=trace`: no stable element id, no accessible name and no typed text —
+//! while a hosted `snapshot`, `click` and `type` run on it — and each call it runs leaves
+//! exactly one command-span line there. Guards a measured leak: the sink printed records from
+//! third-party targets as written, which put every author key of the screen on stderr at
+//! `debug` and each row's name and each label's text at `trace`. The check reads the host as
+//! its own build makes it; the workspace build compiles the engine's tracing call sites in, and
+//! the same check is run on that host too.
 
 #![cfg(not(target_arch = "wasm32"))]
 
@@ -10,27 +14,19 @@ mod common;
 #[cfg(unix)]
 const BINARY: &str = env!("CARGO_BIN_EXE_escher-session");
 
-/// Reads a host's stream to its end on a thread of its own, from the spawn on: a host that
-/// writes more than a pipe holds would otherwise block before it answers.
+/// The text a hosted `type` types: synthetic, and no part of any id or name.
 #[cfg(unix)]
-fn drain(
-    mut pipe: impl std::io::Read + Send + 'static,
-) -> std::thread::JoinHandle<std::io::Result<Vec<u8>>> {
-    std::thread::spawn(move || {
-        let mut bytes = Vec::new();
-        pipe.read_to_end(&mut bytes).map(|_| bytes)
-    })
-}
+const SENTINEL: &str = "Typed-Sentinel-71kWzq";
 
 #[cfg(unix)]
 #[test]
-fn the_host_logs_no_id_and_no_name_at_trace() {
+fn the_host_logs_no_id_no_name_and_no_typed_text_at_trace() {
     use std::process::{Command, Stdio};
     use std::thread;
     use std::time::{Duration, Instant};
 
-    use common::{Host, clear, state_dir};
-    use escher_driver::{attach, stop};
+    use common::{Host, clear, drain, state_dir};
+    use escher_driver::{ArgValue, Call, attach, call, stop};
     use seven_guis::stand::{self, LeanTask};
 
     const READY: Duration = Duration::from_secs(60);
@@ -69,12 +65,18 @@ fn the_host_logs_no_id_and_no_name_at_trace() {
         ids.iter().chain(&names).all(|needle| !needle.is_empty()),
         "no needle is empty"
     );
+    assert!(
+        ids.iter()
+            .chain(&names)
+            .all(|needle| !needle.contains(SENTINEL) && !SENTINEL.contains(needle.as_str())),
+        "the sentinel is no part of a needle"
+    );
 
     let dir = state_dir("hl-trace");
     clear(&dir);
     let mut host = Host(
         Command::new(BINARY)
-            .arg("crud")
+            .args(["serve", "crud", "--session"])
             .arg(&dir)
             .env("RUST_LOG", "trace")
             .stdin(Stdio::null())
@@ -101,6 +103,49 @@ fn the_host_logs_no_id_and_no_name_at_trace() {
     };
     assert_eq!(hello.pid, host.0.id(), "the binary itself answers");
     assert_eq!(hello.label, "crud");
+
+    // Three calls run on the host's own instance. Each answer is checked for what it must
+    // hold, so the absences read below are of things the host did handle.
+    let text = |value: &str| ArgValue::Text(value.to_string());
+    let calls = [
+        Call {
+            verb: "snapshot".to_string(),
+            args: Vec::new(),
+        },
+        Call {
+            verb: "click".to_string(),
+            args: vec![("id".to_string(), text("crud-create"))],
+        },
+        Call {
+            verb: "type".to_string(),
+            args: vec![
+                ("id".to_string(), text("crud-name")),
+                ("text".to_string(), text(SENTINEL)),
+            ],
+        },
+    ];
+    let answers: Vec<String> = calls
+        .iter()
+        .enumerate()
+        .map(|(sent, call_sent)| {
+            let answer = call(&dir, call_sent).expect("the host answers the call");
+            assert!(answer.accepted, "call {sent} ran");
+            answer.json
+        })
+        .collect();
+    let ids_answered = ids
+        .iter()
+        .filter(|id| answers[0].contains(id.as_str()))
+        .count();
+    assert!(
+        ids_answered == ids.len(),
+        "the snapshot's answer holds {ids_answered} of {} id needles",
+        ids.len()
+    );
+    assert!(
+        answers[2].contains(SENTINEL),
+        "the answer to the type holds the typed text as the control's value"
+    );
 
     stop(&dir).expect("the session stops");
 
@@ -143,6 +188,18 @@ fn the_host_logs_no_id_and_no_name_at_trace() {
         "{unstamped} of {lines} stderr lines carry no service name"
     );
 
+    // One line per call the host ran: the command span, closed, under the driver's target.
+    let command_spans = stderr
+        .lines()
+        .filter(|line| line.contains(" escher_driver ") && line.contains(" span=\"command\""))
+        .count();
+    assert_eq!(
+        command_spans,
+        calls.len(),
+        "{command_spans} command-span lines for {} calls sent",
+        calls.len()
+    );
+
     let found = |needles: &[String]| {
         needles
             .iter()
@@ -150,9 +207,11 @@ fn the_host_logs_no_id_and_no_name_at_trace() {
             .count()
     };
     let (ids_found, names_found) = (found(&ids), found(&names));
+    let sentinels = stderr.matches(SENTINEL).count();
     assert!(
-        ids_found == 0 && names_found == 0,
-        "{ids_found} of {} id needles and {names_found} of {} name needles found in {lines} stderr lines",
+        ids_found == 0 && names_found == 0 && sentinels == 0,
+        "{ids_found} of {} id needles, {names_found} of {} name needles and {sentinels} \
+         occurrences of the typed text found in {lines} stderr lines",
         ids.len(),
         names.len()
     );

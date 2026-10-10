@@ -6,6 +6,7 @@ use blitz_test_harness::{Harness, Settled};
 use dioxus_native_dom::DioxusDocument;
 
 use crate::SessionError;
+use crate::schema::MAX_ID_BYTES;
 
 const MAX_LABEL_BYTES: usize = 32;
 
@@ -28,7 +29,9 @@ pub(crate) const MAX_SEEN_IDS: usize = 4096;
 /// earlier from one that never did.
 ///
 /// It holds at most its bound. Reading an id it already holds makes that id the most recently
-/// read; past the bound the id read longest ago is forgotten, and reads as one never read.
+/// read; past the bound the id read longest ago is forgotten, and reads as one never read. An
+/// id longer than [`MAX_ID_BYTES`] is never held: no call can name it, so nothing asks whether
+/// it was read.
 pub(crate) struct SeenIds {
     bound: usize,
     reads: u64,
@@ -46,6 +49,9 @@ impl SeenIds {
     }
 
     pub(crate) fn record(&mut self, id: &str) {
+        if id.len() > MAX_ID_BYTES {
+            return;
+        }
         self.reads += 1;
         if let Some(read) = self.last_read.get_mut(id) {
             *read = self.reads;
@@ -199,5 +205,19 @@ mod tests {
             assert!(seen.last_read.len() == held.len(), "row {row}");
         }
         assert_eq!(MAX_SEEN_IDS, 4096);
+    }
+
+    #[test]
+    fn the_record_holds_no_id_longer_than_a_call_can_name() {
+        let at_the_bound = "i".repeat(MAX_ID_BYTES);
+        let over_long = "i".repeat(MAX_ID_BYTES + 1);
+        let mut seen = SeenIds::with_bound(MAX_SEEN_IDS);
+        seen.record(&over_long);
+        assert!(!seen.holds(&over_long) && seen.last_read.is_empty());
+        seen.record(&at_the_bound);
+        seen.record(&over_long);
+        assert!(seen.holds(&at_the_bound) && !seen.holds(&over_long));
+        assert_eq!(seen.last_read.len(), 1);
+        assert_eq!(MAX_ID_BYTES, 1024);
     }
 }

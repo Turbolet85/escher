@@ -7,36 +7,58 @@
 //! returns once it has settled, so a step's consequences are on the screen when it returns.
 //!
 //! [`serve`] hosts one session for the life of a process, on the thread that owns the
-//! instance. Another process drives the lifecycle with [`start`], [`attach`] and [`stop`];
-//! each edge of it has one named outcome, a [`SessionError`].
+//! instance, until it is stopped or has had no request for its idle expiry. Another process
+//! drives the lifecycle with [`start`], [`attach`] and [`stop`] and sends the session a call
+//! with [`call`]; each edge of that has one named outcome, a [`SessionError`].
 //!
 //! The two processes meet on a Unix-domain socket in an owner-only state directory the caller
-//! names. Two requests cross it, `hello` and `stop`, answered with the host's process id, the
-//! session's label and a count of the requests answered so far. Nothing of the screen crosses
-//! it: no element id, no accessible name and no control value.
+//! names. Three requests cross it: `hello` and `stop`, answered with the host's process id,
+//! the session's label, a count of the requests answered so far and the idle expiry; and a
+//! call, answered with its outcome or its refusal as one line of JSON. A call carries the
+//! element id and the text it names, and its answer holds what the screen reads — ids,
+//! accessible names, control values (a password's or a file input's as a fixed mask), the
+//! snapshot's text and the diff. Access is the directory's and the socket's owner-only modes;
+//! a request is at most 16,384 bytes and an answer at most 1,048,576.
 //!
-//! The socket is unix-only: on other platforms [`serve`], [`start`], [`attach`] and [`stop`]
-//! return [`SessionError::Unsupported`]. A [`Session`] held in process works everywhere.
+//! The socket is unix-only: on other platforms [`serve`], [`start`], [`attach`], [`stop`] and
+//! [`call`] return [`SessionError::Unsupported`]. A [`Session`] held in process works
+//! everywhere.
 //!
 //! What can be asked of the driver, and how it says no, is stated once, as data held in
-//! process: [`VERBS`] lists each verb with its argument and result shapes, [`validate`] turns
-//! a [`Call`] into a typed [`Command`] or a [`Refusal`] before anything runs, and every
-//! refusal names a [`Cause`] with a fixed remedy.
+//! process: [`VERBS`] lists each verb with its level, its argument shapes and its result
+//! shape, [`validate`] turns a [`Call`] into a typed [`Command`] or a [`Refusal`] before
+//! anything runs, and every refusal names a [`Cause`] with a fixed remedy. Six verbs are asked
+//! of the held instance: `snapshot`, `click`, `type`, `press`, `advance` and `scroll`. Three
+//! are asked of the session itself — `start`, `status` and `stop` — and are checked by
+//! [`validate_session`]; a session runs none of them.
 //!
-//! A call runs through a session in process: [`Session::run`] checks it, runs its verb on the
-//! held instance, settles the instance and returns an [`Outcome`] — the screen's text for
+//! A call runs through a session: [`Session::run`] checks it, runs its verb on the held
+//! instance, settles the instance and returns an [`Outcome`] — the screen's text for
 //! `snapshot`, and for an acting verb whether the instance went quiet and the diff of the
-//! screen before and after, named by stable element id. There are six verbs: `snapshot`,
-//! `click`, `type`, `press`, `advance` and `scroll`, which brings the element an id names
-//! into view and says whether it then is. Time moves only by `advance`, through the step a
-//! session's caller hands it ([`Session::with_time`]). Nothing of the schema, of a call or of
-//! an outcome crosses the socket: they are passed and returned as values.
+//! screen before and after, named by stable element id. `type` replaces what the element
+//! holds, and an empty text clears it; `scroll` brings the element an id names into view and
+//! says whether it then is. Time moves only by `advance`, through the step a session's caller
+//! hands it ([`Session::with_time`]). An outcome, a refusal and a session error each have one
+//! written form, a line of JSON keyed by the schema's own words ([`Outcome::to_json`],
+//! [`Refusal::to_json`], [`SessionError::to_json`]).
 //!
 //! An action aimed at a target that cannot take it is refused before anything is dispatched,
 //! and the refusal names why: the id names nothing on the screen ([`Cause::NotFound`], or
 //! [`Cause::Stale`] when an earlier screen of the session read it), or the element is not
 //! enabled ([`Cause::Disabled`]), out of view ([`Cause::OffScreen`]) or under another element
 //! ([`Cause::Covered`]). A refused call leaves the held instance as it was.
+//!
+//! Two readings are known to be off, measured on the engine as built and stated where the
+//! schema describes them. A box that is itself scrolled reads its `bounds` shifted by its own
+//! scroll offset: a step that scrolls it names it among the changed nodes though it has not
+//! moved, and a `click` or a `type` naming the box lands that far from its centre, or is
+//! refused [`Cause::OffScreen`] while the box is in view; the elements inside it read true
+//! bounds. And a hit reaches content scrolled out of a scrolling box, so an element lying
+//! where such content extends can read [`Cause::Covered`] though nothing shows over it.
+//!
+//! [`command_line`] is the whole command line of a binary that boots apps: every verb as one
+//! run, answered with one line of JSON on stdout and a status that tells accepted from
+//! refused, from a usage error and from a session error.
 //!
 //! A call run through [`Session::run`] leaves one `tracing` span, `command`, at INFO under the
 //! target `escher_driver`. Its fields say which verb ran (`verb`), why a refused call was
@@ -49,11 +71,13 @@
 
 #![deny(missing_docs)]
 
+mod cli;
 mod client;
 mod command;
 mod error;
 mod execute;
 mod host;
+mod json;
 mod refusal;
 mod schema;
 mod session;
@@ -61,14 +85,15 @@ mod session;
 mod wire;
 
 pub use blitz_test_harness::{Busy, Settled};
-pub use client::{Hello, Started, attach, start, stop};
-pub use command::{ArgValue, Call, Command, Key, validate};
+pub use cli::command_line;
+pub use client::{Answer, Hello, Started, attach, call, start, stop};
+pub use command::{ArgValue, Call, Command, Key, SessionCommand, validate, validate_session};
 pub use error::SessionError;
 pub use execute::Outcome;
-pub use host::serve;
+pub use host::{IDLE_EXPIRY, serve};
 pub use refusal::{CAUSES, Cause, Fault, Refusal};
 pub use schema::{
-    ArgKind, ArgSpec, BUSY_CLASSES, FieldKind, FieldSpec, KEY_NAMES, MAX_ID_BYTES,
+    ArgKind, ArgSpec, BUSY_CLASSES, FieldKind, FieldSpec, KEY_NAMES, Level, MAX_ID_BYTES,
     MAX_MILLISECONDS, MAX_TEXT_BYTES, NODE_FIELDS, VERBS, VerbSpec, verb,
 };
 pub use session::Session;

@@ -96,7 +96,9 @@ impl Session {
     /// An acting verb takes the screen's snapshot, runs its step, settles the instance
     /// ([`Harness::settle`]) and takes the snapshot again; its outcome carries the diff of the
     /// two. `click` clicks the centre of the element's bounds; `type` clicks it the same way,
-    /// which focuses a text input, and types into what holds focus; `press` presses its key
+    /// which focuses a text input, and types into what holds focus — where the element reads
+    /// a value, everything it holds is selected first, so the text replaces it, and an empty
+    /// text clears it; `press` presses its key
     /// on what holds focus; `advance` hands its milliseconds to the session's time step;
     /// `scroll` scrolls every scrolling box that holds the element, and the viewport, until
     /// the element is in view, whether or not it is enabled or covered, and says whether it
@@ -133,8 +135,15 @@ impl Session {
             Command::Type { id, text } => {
                 let (before, target) = resolve(harness, seen, &id)?;
                 let (x, y) = action_point(harness, &target)?;
+                let holds_value = target.holds_value;
                 Ok(acted(harness, seen, span, before, |harness| {
                     harness.click_at(x, y);
+                    if holds_value {
+                        select_all(harness);
+                        if text.is_empty() {
+                            press(harness, Key::Backspace, false);
+                        }
+                    }
                     harness.type_text(&text);
                 }))
             }
@@ -217,7 +226,7 @@ fn record_result(span: &Span, result: &Result<Outcome, Refusal>) {
 }
 
 /// The schema's word for a class of outstanding work.
-fn busy_word(busy: Busy) -> &'static str {
+pub(crate) fn busy_word(busy: Busy) -> &'static str {
     match busy {
         Busy::Render => BUSY_CLASSES[0],
         Busy::Layout => BUSY_CLASSES[1],
@@ -229,6 +238,8 @@ fn busy_word(busy: Busy) -> &'static str {
 struct Target {
     node: NodeId,
     enabled: Option<bool>,
+    /// Whether the snapshot reads a value for the element: a control that holds one.
+    holds_value: bool,
     /// The centre of the element's bounds, relative to the viewport.
     centre: (f64, f64),
 }
@@ -260,6 +271,7 @@ fn locate(harness: &Harness<DioxusDocument>, screen: &Snapshot, id: &str) -> Opt
     Some(Target {
         node,
         enabled: listed.state.enabled,
+        holds_value: listed.state.value.is_some(),
         centre: (
             bounds.x + bounds.width / 2.0,
             bounds.y + bounds.height / 2.0,
@@ -373,6 +385,19 @@ fn acted(
     }
 }
 
+/// The modifier the engine's editor reads as its action modifier: Super on macOS, Control
+/// elsewhere.
+#[cfg(target_os = "macos")]
+const ACTION_MODIFIER: Modifiers = Modifiers::SUPER;
+#[cfg(not(target_os = "macos"))]
+const ACTION_MODIFIER: Modifiers = Modifiers::CONTROL;
+
+/// Selects everything the focused control holds, through the editor's own select-all key:
+/// what is typed next replaces the selection.
+fn select_all(harness: &mut Harness<DioxusDocument>) {
+    harness.press_with(KeyboardKey::Character("a".to_string()), ACTION_MODIFIER);
+}
+
 fn press(harness: &mut Harness<DioxusDocument>, key: Key, shift: bool) {
     let modifiers = if shift {
         Modifiers::SHIFT
@@ -423,7 +448,7 @@ mod tests {
             .flat_map(|verb| verb.args)
             .map(|argument| argument.name)
             .collect();
-        assert_eq!(arguments.len(), 7);
+        assert_eq!(arguments.len(), 8);
         for (row, field) in SPAN_FIELDS.iter().enumerate() {
             assert!(!arguments.contains(field), "row {row}");
         }

@@ -17,7 +17,9 @@ pub enum Cause {
     Stale,
     /// The element carries the `disabled` attribute, which the snapshot reads as not enabled.
     Disabled,
-    /// Another element is hit at the point the action would land.
+    /// Another element is hit at the point the action would land. A hit reaches content scrolled
+    /// out of a scrolling box, so an element lying where such content extends can read covered
+    /// though nothing shows over it.
     Covered,
     /// The element lies outside the viewport, or outside the visible part of a scrolling box
     /// that holds it.
@@ -66,7 +68,11 @@ impl Cause {
                 "the element carries the `disabled` attribute, which the snapshot reads as not \
                  enabled"
             }
-            Cause::Covered => "another element is hit at the point the action would land",
+            Cause::Covered => {
+                "another element is hit at the point the action would land; a hit reaches content \
+                 scrolled out of a scrolling box, so an element lying where such content extends \
+                 can read `covered` though nothing shows over it"
+            }
             Cause::OffScreen => {
                 "the element lies outside the viewport, or outside the visible part of a \
                  scrolling box that holds it"
@@ -244,7 +250,9 @@ mod tests {
             ),
             (
                 "covered",
-                "another element is hit at the point the action would land",
+                "another element is hit at the point the action would land; a hit reaches content \
+                 scrolled out of a scrolling box, so an element lying where such content extends \
+                 can read `covered` though nothing shows over it",
                 "another element covers this one: act on the covering element or dismiss it first",
             ),
             (

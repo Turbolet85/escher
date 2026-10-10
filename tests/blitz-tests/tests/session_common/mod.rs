@@ -1,9 +1,10 @@
 //! What the session checks share. For a session held in process: each lean task's label, a
 //! session booted through the stand, one command that changes what a task shows, and the
-//! driver's calls with what an acting one returned or why a refused one was. For a session held by a process of its own: a state directory under the test target's temp dir,
-//! the host command — this test binary re-run on one ignored child — and a guard over the host
-//! that bounds every wait and kills and reaps a host a failing check still holds. A check
-//! declares `mod session_common;` and reads what it needs. This module holds no test.
+//! driver's calls with what an acting one returned or why a refused one was. For a session
+//! held by a process of its own: a state directory under the test target's temp dir, the host
+//! command — this test binary re-run on one ignored child — and a guard over the host that
+//! bounds every wait and kills and reaps a host a failing check still holds. A check declares
+//! `mod session_common;` and reads what it needs. This module holds no test.
 
 #![allow(dead_code)]
 
@@ -57,6 +58,11 @@ fn call(verb: &str, args: &[(&str, ArgValue)]) -> Call {
             .map(|(name, value)| (name.to_string(), value.clone()))
             .collect(),
     }
+}
+
+/// The driver call that reads the screen.
+pub fn snapshot() -> Call {
+    call("snapshot", &[])
 }
 
 /// The driver call that clicks the element `id` names.

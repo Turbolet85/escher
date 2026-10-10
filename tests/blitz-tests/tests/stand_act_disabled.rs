@@ -2,7 +2,7 @@
 //! same control is acted on once the app enables it. On the stand, in both layout modes: on the
 //! Flight Booker a `type` into the return date and a `click` on it are refused while the flight
 //! is one-way, and after the driver chooses the return flight the same `type` is accepted and
-//! the control holds the typed text; on CRUD a `click` on Delete is refused with no row
+//! the control holds the typed text in place of its date; on CRUD a `click` on Delete is refused with no row
 //! selected, and after the driver selects a row it is accepted and removes that row. A refused
 //! call leaves the snapshot and both focus readings as they were. A failure message carries the
 //! layout mode and the task, never an id or what a screen reads.
@@ -79,14 +79,10 @@ fn a_disabled_date_input_refuses_typing_until_the_app_enables_it() {
             panic!("{mode}: the same type is accepted once the control is enabled");
         };
         assert!(typed.settled, "{mode}: the accepted type returns settled");
-        let after = value(&session, "flight-return-date");
+        // A type replaces what the control holds: the date it held at boot is gone.
         assert!(
-            after.as_deref().is_some_and(|held| held.contains(TYPED)),
-            "{mode}: the control's value reads the typed text"
-        );
-        assert!(
-            after.map(|held| held.len()) == at_boot.map(|held| held.len() + TYPED.len()),
-            "{mode}: the typed text is all that the value gained"
+            value(&session, "flight-return-date").as_deref() == Some(TYPED),
+            "{mode}: the control's value reads the typed text, and nothing else"
         );
     }
 }

@@ -25,7 +25,7 @@ use std::sync::{Arc, Mutex};
 use blitz_test_harness::Harness;
 use dioxus::prelude::*;
 use dioxus_native_dom::SnapshotDiff;
-use escher_driver::{ArgValue, Busy, CAUSES, Call, Cause, Outcome, Refusal, Session, VERBS};
+use escher_driver::{ArgValue, Busy, CAUSES, Call, Cause, Level, Outcome, Refusal, Session, VERBS};
 use seven_guis::stand::{self, LeanTask};
 
 mod common;
@@ -387,8 +387,14 @@ impl<'c> Run<'c> {
                 .iter()
                 .all(|word| words.iter().any(|read| read == word))
         };
+        // The verbs a session runs: the table's instance-level rows.
+        let run_by_a_session: Vec<&str> = VERBS
+            .iter()
+            .filter(|verb| verb.level == Level::Instance)
+            .map(|verb| verb.name)
+            .collect();
         assert!(
-            read_back(&self.verbs, VERBS.iter().map(|verb| verb.name).collect()),
+            run_by_a_session.len() == 6 && read_back(&self.verbs, run_by_a_session),
             "{mode}: each of the six verbs ran and was read back from its line"
         );
         assert!(

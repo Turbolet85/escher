@@ -9,17 +9,22 @@
 //! button scrolled out of a scrolling box that sits inside the viewport is refused
 //! `off-screen`, never `covered`. *Order:* disabled and covered reads `disabled`, disabled and
 //! out of view reads `disabled`, out of view and covered reads `off-screen`. Every refused call
-//! leaves the snapshot and both focus readings as they were. A failure message carries the
-//! layout mode and the fixture, never an id, a coordinate or what a screen reads.
+//! leaves the snapshot and both focus readings as they were. *A measured limit, pinned as it
+//! reads:* the engine's hit reaches content scrolled out of a scrolling box, so a button lying
+//! before such a box, where its scrolled-out rows extend, is refused `covered` though nothing
+//! shows over it; a button after the box is not, and no control of the stand's CRUD is. A
+//! failure message carries the layout mode and the fixture, never an id, a coordinate or what a
+//! screen reads.
 
 use blitz_test_harness::Harness;
 use blitz_traits::node_id::NodeId;
 use dioxus::prelude::*;
 use escher_driver::{Cause, Session};
-use seven_guis::stand;
+use seven_guis::stand::{self, LeanTask};
 
+mod common;
 mod session_common;
-use session_common::{act, click, refused_unchanged, type_into};
+use session_common::{act, click, hold as hold_task, refused_unchanged, scroll, type_into};
 
 /// Two buttons under one opaque overlay — the second of them disabled — a third under an
 /// overlay transparent to hits, and a control that removes the opaque overlay.
@@ -102,6 +107,32 @@ fn tall_fixture() -> Element {
     }
 }
 
+/// A scrolling box a hundred high holding ten rows forty high, a button before it and a
+/// button after it; a click on a button rewrites one count and a click on a row the other.
+fn boxed_rows_fixture() -> Element {
+    let mut presses = use_signal(|| 0u32);
+    let mut rows = use_signal(|| 0u32);
+    rsx! {
+        div { id: "fx-root",
+            button { id: "fx-before", onclick: move |_| presses += 1, "Before" }
+            div { id: "fx-box", style: "height: 100px; overflow-y: auto;",
+                for index in 0..10 {
+                    div {
+                        key: "{index}",
+                        id: "fx-row-{index}",
+                        style: "height: 40px;",
+                        onclick: move |_| rows += 1,
+                        "Row {index}"
+                    }
+                }
+            }
+            button { id: "fx-after", onclick: move |_| presses += 1, "After" }
+            p { id: "fx-presses", "{presses}" }
+            p { id: "fx-rows", "{rows}" }
+        }
+    }
+}
+
 fn hold(fixture: fn() -> Element, incremental: bool) -> Session {
     Session::start("obstructed", || {
         Harness::from_vdom(VirtualDom::new(fixture), stand::options(incremental))
@@ -156,6 +187,26 @@ fn hit_at_centre(session: &Session, id: &str) -> Option<NodeId> {
         .harness()
         .hit(x as f32, y as f32)
         .map(|hit| hit.node_id)
+}
+
+/// Whether `node` is `ancestor` or lies inside it.
+fn within(session: &Session, node: Option<NodeId>, ancestor: NodeId) -> bool {
+    let doc = session.harness().base();
+    let mut at = node;
+    while let Some(node) = at {
+        if node == ancestor {
+            return true;
+        }
+        at = doc.get_node(node).and_then(|node| node.parent);
+    }
+    false
+}
+
+/// Whether the harness's own hit at the centre of `id`'s bounds answers the element `id` names
+/// or one inside it, on a viewport that is not scrolled.
+fn hit_answers(session: &Session, id: &str) -> bool {
+    let target = session.harness().node(&format!("#{id}"));
+    within(session, hit_at_centre(session, id), target)
 }
 
 fn enabled(session: &Session, id: &str) -> Option<bool> {
@@ -300,6 +351,136 @@ fn a_target_out_of_view_is_refused_off_screen() {
                 .is_some_and(|clicked| clicked.settled && clicked.changed() == ["fx-presses"]),
             "{mode}: a click on the button inside the viewport is accepted and lands"
         );
+    }
+}
+
+/// The engine's hit walk passes a point outside a scrolling box to the box's scrolled-out
+/// content. The readings are pinned as measured on the engine as built (2026-10-10): this
+/// check turns red by design when the walk is clipped at a scrolling box, and is then restated
+/// — the button before the box is clicked.
+#[test]
+fn a_button_where_scrolled_out_rows_extend_reads_covered_only_before_its_box() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}: boxed rows fixture");
+        let mut session = hold(boxed_rows_fixture, incremental);
+        assert_fixture_is_keyed_and_unscrolled(&session, &mode);
+        let scrolling_box = edges(&session, "fx-box");
+        let box_node = session.harness().node("#fx-box");
+        for id in ["fx-before", "fx-box", "fx-after"] {
+            assert!(
+                has_area(&session, id),
+                "{mode}: each target reads non-zero bounds"
+            );
+        }
+
+        // The box is not scrolled: its rows overflow below it, across the button after it.
+        let after = centre(&session, "fx-after");
+        assert!(
+            !inside(after, scrolling_box) && inside(after, edges(&session, "fx-row-2")),
+            "{mode}: a row scrolled out below the box extends across the later button's centre"
+        );
+        assert!(
+            hit_answers(&session, "fx-after"),
+            "{mode}: the hit at the later button's centre answers the button"
+        );
+        assert!(
+            act(&mut session, &click("fx-after"))
+                .is_some_and(|clicked| clicked.settled && clicked.changed() == ["fx-presses"]),
+            "{mode}: a click on the later button is accepted and lands on it"
+        );
+
+        // The box scrolled to its end: its rows overflow above it, across the button before
+        // it. The rows' bounds are read true; the box's own are not, so it is not read here.
+        assert!(
+            act(&mut session, &scroll("fx-row-9"))
+                .is_some_and(|scrolled| scrolled.settled && scrolled.in_view == Some(true)),
+            "{mode}: the scroll brings the last row into view"
+        );
+        let before = centre(&session, "fx-before");
+        assert!(
+            !inside(before, scrolling_box) && inside(before, edges(&session, "fx-row-7")),
+            "{mode}: a row scrolled out above the box extends across the earlier button's centre"
+        );
+        assert!(
+            inside(before, viewport()),
+            "{mode}: the earlier button lies inside the viewport"
+        );
+        let hit = hit_at_centre(&session, "fx-before");
+        assert!(
+            !hit_answers(&session, "fx-before") && within(&session, hit, box_node),
+            "{mode}: the hit at the earlier button's centre answers content of the box"
+        );
+
+        let (cause, unchanged) = refused_unchanged(&mut session, &click("fx-before"));
+        assert!(
+            cause == Some(Cause::Covered),
+            "{mode}: a click on the earlier button is refused covered"
+        );
+        assert!(
+            unchanged,
+            "{mode}: the refused click leaves the snapshot and the focus as they were"
+        );
+    }
+}
+
+/// On the stand's CRUD no control reads `covered` this way, in any state measured
+/// (2026-10-10) — one a scrolled-out row extends across included.
+#[test]
+fn no_stand_control_is_hit_through_by_a_row_scrolled_out_of_the_list() {
+    let controls = common::controls(LeanTask::Crud);
+    assert_eq!(controls.len(), 7);
+    for incremental in [false, true] {
+        for creates in [12, 14] {
+            let mode = format!("incremental={incremental}: Crud, {creates} rows created");
+            let (mut session, _ticks) = hold_task(LeanTask::Crud, incremental);
+            for _ in 0..creates {
+                assert!(
+                    act(&mut session, &click("crud-create")).is_some_and(|created| created.settled),
+                    "{mode}: the driver creates a row"
+                );
+            }
+            let answered = |session: &Session| {
+                controls
+                    .iter()
+                    .filter(|(id, _)| hit_answers(session, id))
+                    .count()
+            };
+            assert!(
+                answered(&session) == controls.len(),
+                "{mode}: with the list not scrolled the hit at each control's centre answers \
+                 the control ({} of {})",
+                answered(&session),
+                controls.len()
+            );
+
+            let last_row = format!("crud-person-{}", creates + 2);
+            assert!(
+                act(&mut session, &scroll(&last_row))
+                    .is_some_and(|scrolled| scrolled.settled && scrolled.in_view == Some(true)),
+                "{mode}: the scroll brings the last row into view"
+            );
+            assert!(
+                answered(&session) == controls.len(),
+                "{mode}: with the list scrolled the hit at each control's centre answers the \
+                 control ({} of {})",
+                answered(&session),
+                controls.len()
+            );
+
+            if creates == 14 {
+                assert!(
+                    inside(
+                        centre(&session, "crud-filter"),
+                        edges(&session, "crud-person-1")
+                    ),
+                    "{mode}: a row scrolled out above the list extends across the filter's centre"
+                );
+                assert!(
+                    act(&mut session, &click("crud-filter")).is_some_and(|clicked| clicked.settled),
+                    "{mode}: a click on the filter is accepted"
+                );
+            }
+        }
     }
 }
 

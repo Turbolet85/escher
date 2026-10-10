@@ -1,10 +1,12 @@
-//! The client side: the lifecycle another process drives.
+//! The client side: the lifecycle another process drives, and the calls it sends.
 
 use std::path::Path;
 use std::process::{Child, Command};
 use std::time::Duration;
 
 use crate::SessionError;
+use crate::command::{Call, validate};
+use crate::wire::Reply;
 
 /// What a session answers to `attach`.
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -15,6 +17,20 @@ pub struct Hello {
     pub label: String,
     /// How many requests the host had answered before this one.
     pub served: u64,
+    /// The seconds without a request after which the host stops the session by itself.
+    pub idle_expiry_s: u64,
+}
+
+/// What a session answers to a call.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Answer {
+    /// Whether the call ran: false when it was refused.
+    pub accepted: bool,
+    /// The outcome of a call that ran, or the refusal of one that did not, as one line of
+    /// JSON: the form [`Outcome::to_json`](crate::Outcome::to_json) and
+    /// [`Refusal::to_json`](crate::Refusal::to_json) write. It holds what the screen reads —
+    /// ids, names and values — and is an answer to the caller: never a log line.
+    pub json: String,
 }
 
 /// A session [`start`] brought up.
@@ -49,6 +65,47 @@ pub fn stop(state_dir: &Path) -> Result<(), SessionError> {
     imp::stop(state_dir)
 }
 
+/// Sends `call` to the session in `state_dir` and returns its answer.
+///
+/// The call is checked first ([`validate`]): one the schema refuses is answered here with its
+/// refusal and reaches no session, so a refused call changes nothing and every call that is
+/// sent fits the socket's request bound. A call the schema admits is run by the session's host
+/// through [`Session::run`](crate::Session::run), which may still refuse it — the id names
+/// nothing on the screen, or the element cannot take the action.
+///
+/// The answer is waited for under a 30 s bound on each read ([`SessionError::Timeout`] past
+/// it). An answer longer than the socket carries is [`SessionError::AnswerTooLarge`]: the call
+/// ran, and what it did is not rolled back. With no session to reach this reads as [`attach`]
+/// does.
+///
+/// Unix only: elsewhere a call the schema admits returns [`SessionError::Unsupported`].
+pub fn call(state_dir: &Path, call: &Call) -> Result<Answer, SessionError> {
+    if let Err(refusal) = validate(call) {
+        return Ok(Answer {
+            accepted: false,
+            json: refusal.to_json(),
+        });
+    }
+    imp::call(state_dir, call)
+}
+
+/// What a call's reply reads as to the caller.
+#[cfg_attr(not(unix), allow(dead_code))]
+fn read_answer(reply: Reply) -> Result<Answer, SessionError> {
+    match reply {
+        Reply::Accepted(json) => Ok(Answer {
+            accepted: true,
+            json,
+        }),
+        Reply::Refused(json) => Ok(Answer {
+            accepted: false,
+            json,
+        }),
+        Reply::Oversize => Err(SessionError::AnswerTooLarge),
+        _ => Err(SessionError::Protocol),
+    }
+}
+
 /// Starts a session in `state_dir` by spawning `host`, and waits until it answers.
 ///
 /// `host` is a command that serves a session in `state_dir`; it is spawned exactly as the
@@ -72,22 +129,43 @@ mod imp {
     use std::thread;
     use std::time::{Duration, Instant};
 
-    use super::{Hello, Started};
+    use super::{Answer, Hello, Started, read_answer};
     use crate::SessionError;
+    use crate::command::Call;
     use crate::wire::{self, Line, Reply, Request};
 
     const POLL: Duration = Duration::from_millis(25);
     const STOP_BOUND: Duration = Duration::from_secs(5);
 
+    /// What a reply is read under: the bound on each read, and the longest line.
+    type ReplyBounds = (Duration, usize);
+
+    const LIFECYCLE: ReplyBounds = (wire::IO_BOUND, wire::MAX_REPLY_BYTES);
+    const ANSWER: ReplyBounds = (wire::ANSWER_BOUND, wire::MAX_CALL_REPLY_BYTES);
+
     pub(super) fn attach(state_dir: &Path) -> Result<Hello, SessionError> {
-        match exchange(state_dir, Request::Hello)? {
-            Reply::Hello { pid, label, served } => Ok(Hello { pid, label, served }),
+        match exchange(state_dir, &Request::Hello, LIFECYCLE)? {
+            Reply::Hello {
+                pid,
+                label,
+                served,
+                idle_expiry_s,
+            } => Ok(Hello {
+                pid,
+                label,
+                served,
+                idle_expiry_s,
+            }),
             _ => Err(SessionError::Protocol),
         }
     }
 
+    pub(super) fn call(state_dir: &Path, call: &Call) -> Result<Answer, SessionError> {
+        read_answer(exchange(state_dir, &Request::Call(call.clone()), ANSWER)?)
+    }
+
     pub(super) fn stop(state_dir: &Path) -> Result<(), SessionError> {
-        if exchange(state_dir, Request::Stop)? != Reply::Stopping {
+        if exchange(state_dir, &Request::Stop, LIFECYCLE)? != Reply::Stopping {
             return Err(SessionError::Protocol);
         }
         let deadline = Instant::now() + STOP_BOUND;
@@ -150,7 +228,11 @@ mod imp {
         }
     }
 
-    fn exchange(state_dir: &Path, request: Request) -> Result<Reply, SessionError> {
+    fn exchange(
+        state_dir: &Path,
+        request: &Request,
+        (read_bound, longest): ReplyBounds,
+    ) -> Result<Reply, SessionError> {
         let mut stream =
             UnixStream::connect(state_dir.join(wire::SOCKET_FILE)).map_err(|error| match error
                 .kind()
@@ -162,7 +244,7 @@ mod imp {
                 kind => SessionError::Io(kind),
             })?;
         stream
-            .set_read_timeout(Some(wire::IO_BOUND))
+            .set_read_timeout(Some(read_bound))
             .map_err(io_error)?;
         stream
             .set_write_timeout(Some(wire::IO_BOUND))
@@ -170,7 +252,7 @@ mod imp {
         stream
             .write_all(request.encode().as_bytes())
             .map_err(io_error)?;
-        match wire::read_line(&stream, wire::MAX_REPLY_BYTES).map_err(io_error)? {
+        match wire::read_line(&stream, longest).map_err(io_error)? {
             Line::Text(line) => Reply::parse(&line).ok_or(SessionError::Protocol),
             Line::TooLong | Line::Unterminated => Err(SessionError::Protocol),
         }
@@ -183,10 +265,15 @@ mod imp {
     use std::process::Command;
     use std::time::Duration;
 
-    use super::{Hello, Started};
+    use super::{Answer, Hello, Started};
     use crate::SessionError;
+    use crate::command::Call;
 
     pub(super) fn attach(_state_dir: &Path) -> Result<Hello, SessionError> {
+        Err(SessionError::Unsupported)
+    }
+
+    pub(super) fn call(_state_dir: &Path, _call: &Call) -> Result<Answer, SessionError> {
         Err(SessionError::Unsupported)
     }
 
@@ -200,5 +287,90 @@ mod imp {
         _ready: Duration,
     ) -> Result<Started, SessionError> {
         Err(SessionError::Unsupported)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::command::ArgValue;
+    use crate::refusal::{Cause, Fault, Refusal};
+    use crate::wire::{self, MAX_ANSWER_BYTES};
+
+    #[test]
+    fn a_calls_reply_reads_as_its_answer_or_as_a_session_error() {
+        let answer = |accepted: bool, json: &str| {
+            Ok(Answer {
+                accepted,
+                json: json.to_string(),
+            })
+        };
+        let hello = Reply::Hello {
+            pid: 1,
+            label: "counter".to_string(),
+            served: 0,
+            idle_expiry_s: 1800,
+        };
+        let rows = [
+            (Reply::Accepted("{}".to_string()), answer(true, "{}")),
+            (Reply::Refused("{}".to_string()), answer(false, "{}")),
+            (Reply::Oversize, Err(SessionError::AnswerTooLarge)),
+            (hello, Err(SessionError::Protocol)),
+            (Reply::Stopping, Err(SessionError::Protocol)),
+            (Reply::RefusedVersion, Err(SessionError::Protocol)),
+            (Reply::RefusedMalformed, Err(SessionError::Protocol)),
+        ];
+        assert_eq!(rows.len(), 7);
+        for (row, (reply, read)) in rows.into_iter().enumerate() {
+            assert!(read_answer(reply) == read, "row {row}");
+        }
+        // The answer bound, end to end on a made value: one byte over it is framed as the
+        // oversize reply, which reads as the error that names it.
+        let one_over = "x".repeat(MAX_ANSWER_BYTES + 1);
+        assert!(read_answer(wire::frame(true, one_over)) == Err(SessionError::AnswerTooLarge));
+    }
+
+    #[test]
+    fn a_call_the_schema_refuses_is_answered_without_a_session() {
+        let no_session = Path::new("a-state-directory-that-does-not-exist");
+        let rows = [
+            (
+                Call {
+                    verb: "screenshot".to_string(),
+                    args: Vec::new(),
+                },
+                Refusal::new(Cause::UnknownVerb),
+            ),
+            (
+                Call {
+                    verb: "stop".to_string(),
+                    args: Vec::new(),
+                },
+                Refusal::new(Cause::UnknownVerb),
+            ),
+            (
+                Call {
+                    verb: "click".to_string(),
+                    args: Vec::new(),
+                },
+                Refusal::malformed(Fault::Missing("id")),
+            ),
+            (
+                Call {
+                    verb: "advance".to_string(),
+                    args: vec![("ms".to_string(), ArgValue::Number(0))],
+                },
+                Refusal::malformed(Fault::OutOfBound("ms")),
+            ),
+        ];
+        assert_eq!(rows.len(), 4);
+        for (row, (refused, refusal)) in rows.into_iter().enumerate() {
+            let read = call(no_session, &refused);
+            let expected = Ok(Answer {
+                accepted: false,
+                json: refusal.to_json(),
+            });
+            assert!(read == expected, "row {row}");
+        }
     }
 }

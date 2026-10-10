@@ -1,0 +1,36 @@
+[
+{
+"tool": "route",
+"v": "1.7",
+"sha8": "470db3a8",
+"ts": "2026-10-10T02:54:38Z",
+"argv": [
+"route.py",
+"promote",
+"--root",
+".",
+"--chunk",
+"2026-10-10-driver-cli",
+"--expect-prefix",
+"Driver CLI — every command with uncoloured JSON on stdout",
+"--record-file",
+".andromeda/runs/2026-10-10T02-50-31-phase/master-record.txt",
+"--run-dir",
+".andromeda/runs/2026-10-10T02-50-31-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"stamp working-route.md:73 - [2026-10-10-driver-cli]",
+"record master-route.md:40 - appended under `## escher-0.1.0`",
+"promoted 2026-10-10-driver-cli - working-route:73 frozen - master record appended"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.1.0/working-route.md",
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+}
+]

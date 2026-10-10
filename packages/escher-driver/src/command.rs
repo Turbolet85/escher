@@ -2,8 +2,10 @@
 
 use crate::refusal::{Cause, Fault, Refusal};
 use crate::schema::{
-    self, ArgKind, ArgSpec, KEY_NAMES, MAX_ID_BYTES, MAX_MILLISECONDS, MAX_TEXT_BYTES, VerbSpec,
+    self, ArgKind, ArgSpec, KEY_NAMES, Level, MAX_ID_BYTES, MAX_MILLISECONDS, MAX_TEXT_BYTES,
+    VerbSpec,
 };
+use crate::session::valid_label;
 
 /// The value a call passes for one argument.
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -98,7 +100,8 @@ impl Key {
     }
 }
 
-/// A call the schema admits: one variant per verb, holding its checked arguments.
+/// A call the schema admits, asked of the held instance: one variant per instance-level verb,
+/// holding its checked arguments.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Command {
     /// Read the screen.
@@ -148,46 +151,54 @@ impl Command {
     }
 }
 
+/// A call the schema admits, asked of the session itself: one variant per session-level verb,
+/// holding its checked arguments.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum SessionCommand {
+    /// Start a session on the app `app` names.
+    Start {
+        /// The app's name.
+        app: String,
+    },
+    /// Reach the session.
+    Status,
+    /// Stop the session.
+    Stop,
+}
+
+impl SessionCommand {
+    /// The schema of the command's verb.
+    pub const fn spec(&self) -> &'static VerbSpec {
+        match self {
+            SessionCommand::Start { .. } => &schema::START,
+            SessionCommand::Status => &schema::STATUS,
+            SessionCommand::Stop => &schema::STOP,
+        }
+    }
+}
+
 enum Admitted<'a> {
     Id(&'a str),
     Text(&'a str),
     Key(Key),
     Flag(bool),
     Milliseconds(u32),
+    Name(&'a str),
 }
 
-/// Checks `call` against the schema: the [`Command`] it asks for, or why it is refused.
+/// Checks `call` against the schema: the [`Command`] it asks of the held instance, or why it is
+/// refused.
 ///
 /// It reads the call and the schema and nothing else, so a refused call has changed nothing.
 /// Every call has one answer, the first failure in this order: the verb is looked up by its
-/// exact name; then the call's arguments, in the order passed, each for a name the verb does
-/// not have and for a name passed before; then the verb's arguments, in the schema's order,
-/// each for being required and absent, for a value of another kind and for a value outside
-/// its bound.
+/// exact name among the instance-level verbs — a session-level verb is not one a session runs,
+/// and is refused as an unknown verb whatever its arguments; then the call's arguments, in the
+/// order passed, each for a name the verb does not have and for a name passed before; then the
+/// verb's arguments, in the schema's order, each for being required and absent, for a value of
+/// another kind and for a value outside its bound.
 pub fn validate(call: &Call) -> Result<Command, Refusal> {
-    let spec = schema::verb(&call.verb).ok_or(Refusal::new(Cause::UnknownVerb))?;
-
-    let mut passed: Vec<(&'static ArgSpec, Option<&ArgValue>)> =
-        spec.args.iter().map(|arg| (arg, None)).collect();
-    for (name, value) in &call.args {
-        let Some((arg, slot)) = passed.iter_mut().find(|(arg, _)| arg.name == name) else {
-            return Err(Refusal::malformed(Fault::Unnamed));
-        };
-        if slot.is_some() {
-            return Err(Refusal::malformed(Fault::Repeated(arg.name)));
-        }
-        *slot = Some(value);
-    }
-
-    let mut admitted = Vec::with_capacity(passed.len());
-    for (arg, value) in passed {
-        admitted.push(match value {
-            Some(value) => Some(admit(arg, value)?),
-            None if arg.required => return Err(Refusal::malformed(Fault::Missing(arg.name))),
-            None => None,
-        });
-    }
-
+    let spec = verb_at(call, Level::Instance)?;
+    let admitted = admitted(spec, call)?;
     match (spec.name, admitted.as_slice()) {
         ("snapshot", []) => Ok(Command::Snapshot),
         ("click", [Some(Admitted::Id(id))]) => Ok(Command::Click {
@@ -208,6 +219,61 @@ pub fn validate(call: &Call) -> Result<Command, Refusal> {
         // A verb the table lists in a shape no command has is not one this function knows.
         _ => Err(Refusal::new(Cause::UnknownVerb)),
     }
+}
+
+/// Checks `call` against the schema: the [`SessionCommand`] it asks of the session, or why it
+/// is refused.
+///
+/// The rules and their order are [`validate`]'s, over the session-level verbs: an
+/// instance-level verb handed to it is refused as an unknown verb.
+pub fn validate_session(call: &Call) -> Result<SessionCommand, Refusal> {
+    let spec = verb_at(call, Level::Session)?;
+    let admitted = admitted(spec, call)?;
+    match (spec.name, admitted.as_slice()) {
+        ("start", [Some(Admitted::Name(app))]) => Ok(SessionCommand::Start {
+            app: (*app).to_owned(),
+        }),
+        ("status", []) => Ok(SessionCommand::Status),
+        ("stop", []) => Ok(SessionCommand::Stop),
+        // A verb the table lists in a shape no command has is not one this function knows.
+        _ => Err(Refusal::new(Cause::UnknownVerb)),
+    }
+}
+
+/// The row of the verb `call` names, when the table lists it at `level`.
+fn verb_at(call: &Call, level: Level) -> Result<&'static VerbSpec, Refusal> {
+    schema::verb(&call.verb)
+        .filter(|spec| spec.level == level)
+        .ok_or(Refusal::new(Cause::UnknownVerb))
+}
+
+/// The call's arguments checked against the row's, in the schema's order: `None` for an
+/// optional argument the call does not pass.
+fn admitted<'a>(
+    spec: &'static VerbSpec,
+    call: &'a Call,
+) -> Result<Vec<Option<Admitted<'a>>>, Refusal> {
+    let mut passed: Vec<(&'static ArgSpec, Option<&ArgValue>)> =
+        spec.args.iter().map(|arg| (arg, None)).collect();
+    for (name, value) in &call.args {
+        let Some((arg, slot)) = passed.iter_mut().find(|(arg, _)| arg.name == name) else {
+            return Err(Refusal::malformed(Fault::Unnamed));
+        };
+        if slot.is_some() {
+            return Err(Refusal::malformed(Fault::Repeated(arg.name)));
+        }
+        *slot = Some(value);
+    }
+
+    let mut admitted = Vec::with_capacity(passed.len());
+    for (arg, value) in passed {
+        admitted.push(match value {
+            Some(value) => Some(admit(arg, value)?),
+            None if arg.required => return Err(Refusal::malformed(Fault::Missing(arg.name))),
+            None => None,
+        });
+    }
+    Ok(admitted)
 }
 
 fn admit<'a>(arg: &'static ArgSpec, value: &'a ArgValue) -> Result<Admitted<'a>, Refusal> {
@@ -236,6 +302,13 @@ fn admit<'a>(arg: &'static ArgSpec, value: &'a ArgValue) -> Result<Admitted<'a>,
             .filter(|ms| (1..=MAX_MILLISECONDS).contains(ms))
             .map(Admitted::Milliseconds)
             .ok_or(out_of_bound),
+        (ArgKind::Name, ArgValue::Text(name)) => {
+            if valid_label(name) {
+                Ok(Admitted::Name(name))
+            } else {
+                Err(out_of_bound)
+            }
+        }
         _ => Err(Refusal::malformed(Fault::WrongKind(arg.name))),
     }
 }
@@ -412,15 +485,129 @@ mod tests {
             "Snapshot",
             " click",
             "click ",
-            "stop",
             "hello",
             "screenshot",
+            "serve",
         ];
+        assert_eq!(verbs.len(), 8);
         let unknown = Err(Refusal::new(Cause::UnknownVerb));
+        let unknown_to_the_session = Err(Refusal::new(Cause::UnknownVerb));
         for (row, verb) in verbs.into_iter().enumerate() {
             assert!(validate(&call(verb, &[])) == unknown, "row {row}");
+            assert!(
+                validate_session(&call(verb, &[])) == unknown_to_the_session,
+                "row {row}"
+            );
             let with_an_argument = call(verb, &[("id", text("save"))]);
             assert!(validate(&with_an_argument) == unknown, "row {row}");
+            assert!(
+                validate_session(&with_an_argument) == unknown_to_the_session,
+                "row {row}"
+            );
+        }
+    }
+
+    fn session_rows() -> Vec<(Call, SessionCommand)> {
+        let widest_app = "a".repeat(32);
+        vec![
+            (
+                call("start", &[("app", text("counter"))]),
+                SessionCommand::Start {
+                    app: "counter".to_string(),
+                },
+            ),
+            (
+                call("start", &[("app", text("flight-booker"))]),
+                SessionCommand::Start {
+                    app: "flight-booker".to_string(),
+                },
+            ),
+            (
+                call("start", &[("app", text("7"))]),
+                SessionCommand::Start {
+                    app: "7".to_string(),
+                },
+            ),
+            (
+                call("start", &[("app", text(&widest_app))]),
+                SessionCommand::Start {
+                    app: widest_app.clone(),
+                },
+            ),
+            (call("status", &[]), SessionCommand::Status),
+            (call("stop", &[]), SessionCommand::Stop),
+        ]
+    }
+
+    #[test]
+    fn a_verb_is_checked_at_its_own_level_only() {
+        let unknown = Refusal::new(Cause::UnknownVerb);
+
+        let session = session_rows();
+        assert_eq!(session.len(), 6);
+        for (row, (call, command)) in session.iter().enumerate() {
+            assert!(validate_session(call).as_ref() == Ok(command), "row {row}");
+            assert!(validate(call) == Err(unknown), "row {row}");
+        }
+        // A session-level verb is refused by `validate` before its arguments are read: the
+        // answer is the same whatever they are.
+        let whatever = [
+            call("start", &[]),
+            call("start", &[("app", text("Counter"))]),
+            call(
+                "start",
+                &[("app", text("counter")), ("app", text("counter"))],
+            ),
+            call("status", &[("id", text("save"))]),
+            call("stop", &[("ms", ArgValue::Number(0))]),
+        ];
+        assert_eq!(whatever.len(), 5);
+        for (row, call) in whatever.iter().enumerate() {
+            assert!(validate(call) == Err(unknown), "row {row}");
+        }
+
+        let instance = admitted_rows();
+        assert_eq!(instance.len(), 28);
+        for (row, (call, command)) in instance.iter().enumerate() {
+            assert!(validate(call).as_ref() == Ok(command), "row {row}");
+            assert!(validate_session(call) == Err(unknown), "row {row}");
+        }
+    }
+
+    #[test]
+    fn a_malformed_session_call_is_refused_with_the_rule_it_broke() {
+        let app = |value: &str| call("start", &[("app", text(value))]);
+        let over_long = "a".repeat(33);
+        let rows = [
+            (call("start", &[]), Fault::Missing("app")),
+            (call("start", &[("id", text("save"))]), Fault::Unnamed),
+            (call("status", &[("app", text("counter"))]), Fault::Unnamed),
+            (call("stop", &[("id", text("save"))]), Fault::Unnamed),
+            (
+                call("start", &[("app", text("counter")), ("app", text("timer"))]),
+                Fault::Repeated("app"),
+            ),
+            (
+                call("start", &[("app", ArgValue::Number(7))]),
+                Fault::WrongKind("app"),
+            ),
+            (
+                call("start", &[("app", ArgValue::Flag(true))]),
+                Fault::WrongKind("app"),
+            ),
+            (app(""), Fault::OutOfBound("app")),
+            (app(&over_long), Fault::OutOfBound("app")),
+            (app("Counter"), Fault::OutOfBound("app")),
+            (app("flight booker"), Fault::OutOfBound("app")),
+            (app("a/b"), Fault::OutOfBound("app")),
+            (app("é"), Fault::OutOfBound("app")),
+        ];
+        assert_eq!(rows.len(), 13);
+        for (row, (call, fault)) in rows.into_iter().enumerate() {
+            assert!(
+                validate_session(&call) == Err(Refusal::malformed(fault)),
+                "row {row}"
+            );
         }
     }
 
@@ -587,8 +774,25 @@ mod tests {
                 reached.push(spec.name);
             }
         }
+        for (row, (call, _)) in session_rows().iter().enumerate() {
+            let Ok(command) = validate_session(call) else {
+                panic!("session row {row} is admitted");
+            };
+            let spec = command.spec();
+            assert!(spec.name == call.verb, "session row {row}");
+            assert!(schema::verb(&call.verb) == Some(spec), "session row {row}");
+            assert!(spec.level == Level::Session, "session row {row}");
+            if !reached.contains(&spec.name) {
+                reached.push(spec.name);
+            }
+        }
         let table: Vec<&str> = schema::VERBS.iter().map(|verb| verb.name).collect();
-        assert_eq!(table.len(), 6);
+        assert_eq!(table.len(), 9);
         assert_eq!(reached, table);
+        let instance = schema::VERBS
+            .iter()
+            .filter(|verb| verb.level == Level::Instance)
+            .count();
+        assert_eq!(instance, 6);
     }
 }

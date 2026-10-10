@@ -1,11 +1,11 @@
-//! The one outcome type of the session lifecycle.
+//! The one outcome type of the session's edges: its lifecycle, and a call's way to it and back.
 
 use std::fmt;
 use std::io;
 
 use blitz_test_harness::Busy;
 
-/// Why a session lifecycle step did not do what was asked.
+/// Why a session step did not do what was asked.
 ///
 /// Every message is a fixed string: none carries a path, a label, an id or a value.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -34,6 +34,30 @@ pub enum SessionError {
     Io(io::ErrorKind),
     /// The instance did not go quiet after a step: work of this class was still outstanding.
     NotSettled(Busy),
+    /// A call's answer is longer than the session's socket carries. The call ran, and what it
+    /// did is not rolled back.
+    AnswerTooLarge,
+}
+
+impl SessionError {
+    /// The error's kind: lowercase words joined by hyphens, one per variant.
+    pub const fn kind(&self) -> &'static str {
+        match self {
+            SessionError::AlreadyRunning => "already-running",
+            SessionError::NoSession => "no-session",
+            SessionError::Dead => "dead",
+            SessionError::HostExited(_) => "host-exited",
+            SessionError::Timeout => "timeout",
+            SessionError::Protocol => "protocol",
+            SessionError::InvalidLabel => "invalid-label",
+            SessionError::StateDirTooLong => "state-dir-too-long",
+            SessionError::StateDirNotPrivate => "state-dir-not-private",
+            SessionError::Unsupported => "unsupported",
+            SessionError::Io(_) => "io",
+            SessionError::NotSettled(_) => "not-settled",
+            SessionError::AnswerTooLarge => "answer-too-large",
+        }
+    }
 }
 
 impl fmt::Display for SessionError {
@@ -63,6 +87,9 @@ impl fmt::Display for SessionError {
             SessionError::NotSettled(busy) => {
                 write!(f, "the instance did not go quiet after a step: {busy:?}")
             }
+            SessionError::AnswerTooLarge => f.write_str(
+                "the answer is larger than the session carries; the call ran and is not rolled back",
+            ),
         }
     }
 }
@@ -93,11 +120,20 @@ mod tests {
             SessionError::NotSettled(Busy::Render),
             SessionError::NotSettled(Busy::Layout),
             SessionError::NotSettled(Busy::Loads),
+            SessionError::AnswerTooLarge,
         ];
+        assert_eq!(variants.len(), 18);
         for variant in variants {
             let message = variant.to_string();
             assert!(!message.is_empty(), "{variant:?}");
             assert!(!message.contains('/'), "{variant:?}");
+            let kind = variant.kind();
+            assert!(!kind.is_empty(), "{variant:?}");
+            assert!(
+                kind.bytes()
+                    .all(|byte| byte.is_ascii_lowercase() || byte == b'-'),
+                "{variant:?}"
+            );
         }
     }
 
