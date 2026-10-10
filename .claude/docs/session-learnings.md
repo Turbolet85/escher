@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-10 — An Edit that cuts the tail off a line takes the line's terminator with it
+On a one-entry-per-line file — the working route, a master record — an Edit whose replacement is empty and whose matched text runs to the end of its line also removes the newline after it, so the next line is joined onto the entry: on the route that is the `↓` separator, and the file still reads plausibly by eye. The route tool says it (`UNPARSED: … entry line carrying ↓ inside it`) and the file is one line short of the count the edit should leave. When cutting freight off the end of a line, carry the newline and the head of the next line in both strings of the Edit, and after any such cut re-run `route.py markerless` and compare the line count before going on.
+
+---
+
 ## 2026-10-10 — A hand re-point of a citation can match a longer citation that starts the same
 At a wrap's citation sweep a master citation is re-pointed by an anchored replace of its own text, and a citation such as `tests/common/mod.rs:1-4` is also the head of `tests/common/mod.rs:1-40`: a replace keyed on the bare citation matches both, and under replace-all it would write the longer one's digits into a range nobody read. Anchor the replace on the citation plus the character that closes it — `)` or `;` — and after any replace-all search the file for the new text followed by a digit before moving on. The same holds for a single number: `host.rs:35` heads `host.rs:350`.
 
