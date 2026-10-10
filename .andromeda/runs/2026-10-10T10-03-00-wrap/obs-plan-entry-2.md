@@ -1,0 +1,9 @@
+
+## 2026-10-10-driver-cli — typed text measured in a host's log; the session host by level under both builds
+**Section:** §8 PII Scrubbing & Compliance → Values logged as-is (the "Past escher's scrub" bullet) · §9 CI Integration → Telemetry artifact handling (the Session state directory row)
+**Change:**
+- §8: was "Typed text is measured in process only" and "Typed text in a HOST's log is still NOT measured: no command reaches the instance of a sink-installing host"; now measured — a hosted `type` reaches the `escher-session` host's instance, and its stderr at `RUST_LOG=trace` holds 0 occurrences of the typed sentinel, 0 id needles and 0 name needles under both builds. By level, three commands on CRUD: the host built alone writes 0 lines unset and 4 at `info`, `debug` and `trace` (three command spans and the install line, 742 B); the workspace-built host 5, one `blitz_dom::document` INFO line more (860 B); 0 of 15 ids, 0 of 6 names and 0 sentinel occurrences at every level; stdout 0 B in all eight runs. Not measured there: a client's own stderr by level, the windowed binary, any other flow.
+- §8: "the six verbs" of the in-process capture reads the six instance-level verbs.
+- §9: the checks' session state directories are `ss-life`, `ss-idle`, `ss-quiet`, `hb-*`, `hl-trace`, `cc-*`, `cf-*`, `ht-timer`, and one is empty after `stop` or after the host's idle expiry.
+**Why:** the proof the sink fix has owed since 2026-10-07 — a typed sentinel read absent from a sink-installing host's log — became possible when a command first typed into that host's instance. The earlier in-process reading and the host's no-call reading stand as history beside it. The hypothesis that the workspace-built host prints engine lines at `trace` reads false as stated: one engine line, at INFO.
+**Ref:** .andromeda/runs/2026-10-10T10-03-00-wrap/

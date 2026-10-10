@@ -49,6 +49,10 @@ becomes a new rule here. Format owned by /andromeda-wrap-session (`references/am
   verdict: routine
   note: both halves are the rule — the body states the measured limit, and the fix is owned by a `CARRY:` on a route entry. Appended on the founder's ruling (word: "Добавить" — the founder, 2026-10-09, given by question dialog in the overseer session and relayed verbatim by the overseer); the pattern is the overseer's rendering of the option he chose, in the directive for the 2026-10-09T19-17-00 0-pending wrap (`relay-1.md` in that run dir, item 3). That wrap could not write it — the 0-pending path's one playbook door is the seed-rule supersession — and carried it in the handoff to the 2026-10-09-audit-corrections-agent-surfaces wrap, which appended it on the operator's resume line.
 
+- pattern: Boundary widening by upstream merge — a boundary widening that arrives with an upstream merge (upstream changed what crosses an already-hardened boundary, and the sync brought it in with no code of ours) and the proposal records it.
+  verdict: escalate
+  note: a facet of the Boundary widening rule above — a widening that arrives by an upstream merge is recorded PROVISIONAL for the founder like any other: the founder's own word decides it also when the change is upstream's. The record states what widened, whether a test of ours or of the merged delta covers it, and whether escher routes agent- or user-supplied input through the path today; the mark is discharged by the Provisional discharge rule. Appended on the founder's word (word: "Добавить" — the founder, 2026-10-10, given by question dialog in the overseer session and relayed by the overseer); proposed at the 2026-10-10-upstream-sync-agent-surfaces wrap from the operator's note at its escalation, and appended by the 2026-10-10-driver-cli wrap on the operator's resume line.
+
 _(more grow from escalations + resolved cases — the first five above were harvested from live projects that
 derived them separately, the sixth is the never-routine class; anything genuinely project-specific still starts
 here empty.)_

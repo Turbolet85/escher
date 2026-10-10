@@ -1,0 +1,190 @@
+# Cascade dispositions — 2026-10-10-driver-cli wrap, Phase 2, step 2
+
+**The search.** `cascade.py sweep` over `cascade-patterns.toml`: 36 patterns, each the old wording of a passage this pass amended or the retired mechanism's own phrasing — the wire's version and bounds, the lifecycle-only and in-process-only claims in their several wordings (`crosses the socket`, `goes on the socket`, `returned to its caller only`, `returned value only`, `only exit`, `adds no crossing`, `no CLI or MCP`), the verb, kind, file, reader, variant, module and test counts, the two-argument argv and its exit codes, the empty-stdout claim, the no-idle-expiry claim, every `not measured`, the PROVISIONAL mark, the checks' state directories, the append reading of `type`, and the binary named as a host. Each pattern's control fired on the pre-pass masters (baseline 0493d26a). It read the seven masters, the registry files, the three curation homes, the two judgment bases and the leaf bodies. It was run twice: the first listing (157 rows) turned up four standing sites that were then amended — security-plan §Input Validation `id` row (`adds no crossing`), the `escher-session` naming in security-plan §Logging & Monitoring and architecture §Occupied Resources, and test-plan §5's bullet name `Session host ↔ lifecycle socket` — and this is the second, final listing.
+
+**Not looked for:** wording of claims this pass did not amend; the sidecars, the chunk folders and the run dirs, which the sweep never opens; a claim restated with none of the swept tokens — the detectors' own per-doc sweeps (fanout-results.md) are the read for those.
+
+**The listing's counts, copied:**
+
+    total (36 patterns) · 156 rows over 22 files
+    per class · new 29/6 · standing 47/7 · leaf 76/14 · curation 0/0 · base 4/1
+
+Eight patterns returned 0 rows with their control fired (`readers`, `count-33`, `nine-mods`, `one-cfg`, `check-dirs`, `variants-12`, `eprintln3`, `shifted-click`): a statement about those patterns — the amended sites no longer hold the wording — not an absence proof.
+
+## Rows
+
+- .claude/docs/security-summary.md:20 wire-v1 leaf …closed line grammar (`hello v1`, `stop v1`, a 64-byte request bound, … → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/escher-driver.md:29 wire-v1 leaf …ne per connection: `hello v1` → `ok v1 pid= label= served=`, `s… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/rules/security.md:20 req-64 leaf …ion. A request line over 64 bytes or outside the grammar is refused and chang… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/escher-driver.md:29 req-64 leaf …uests are bounded at 64 bytes, replies at 128, each read and wri… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/architecture.md:101 life-only new @c612/3318 …til then it carried lifecycle messages only and nothing of the… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/architecture.md:146 life-only new @c1082/2649 … widened again from lifecycle messages only to calls and thei… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/security-plan.md:25 life-only new …— until then it was the lifecycle only and carried none of them; what is … → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- CLAUDE.md:44 life-only leaf …x-domain socket (owner-only, lifecycle messages only, ratified by the founder) — a new lis… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- CLAUDE.md:82 life-only leaf …ld instance · settled step · lifecycle socket · host binary) | `packages/escher-driver/src… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/security-summary.md:7 life-only leaf …socket, which carries lifecycle messages only. Its risk is in what i… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- CLAUDE.md:37 hello-stop leaf …wner-only state directory — `hello` and `stop` only, nothing of the screen; every edge is… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/rules/security.md:20 hello-stop leaf …ntication. Its wire is `hello` and `stop` only: no element id, accessible… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/commands.md:58 hello-stop leaf …derr only); it answers `hello` and `stop` on `<state-dir>/session.sock` un… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/architecture.md:133 in-process new @c17699/28479 …session — one made in process, and one a host decoded from… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/architecture.md:136 in-process new @c16881/24245 …f `Session::run` — in process, or a host that frames it as… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/architecture.md:257 in-process new @c343/2080 …tance — a call made in process, or one a host decoded from it… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/security-plan.md:118 in-process standing edited mixed ×2 @c5245,10138/12322 …eaningful in process only; it a… → a `NodeId` is `meaningful in process only`, and this pass's restated sentence — both true; no change
+- .andromeda/security-plan.md:339 in-process standing edited @c2062/2958 …fusal was held in process only); and since 2026… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/security-plan.md:385 in-process new @c4129/5959 …was first measured in process: `stand_act_spans` re-runs it… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/test-plan.md:101 in-process standing edited @c186/2609 …r a session held in process, `slug(task)` (the stand… → `a session held in process` — true; no change
+- .andromeda/test-plan.md:183 in-process standing edited @c2077/2632 … first measured in process, where `stand_act_spans`… → amended this pass: typed text `was first measured in process`
+- .andromeda/obs-plan.md:70 in-process standing edited @c679/6271 …river's commands in process, the capture read into ass… → `stand_act_spans` drives the driver's commands in process — true; no change
+- .andromeda/obs-plan.md:179 in-process new …en of `stand_act_spans`, in process, and since 2026-10-10-driver-cli the `es… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/obs-plan.md:294 in-process new @c1498/3463 …t was first measured in process: since 2026-10-07-act-by-id a ty… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/registries/contracts/test-plan/session-lifecycle.md:5 in-process standing edited @c592/2685 … is in process:… → `act` is in process — true and kept on purpose; `run`'s sentence beside it was amended
+- CLAUDE.md:37 in-process leaf …chema is `'static` data held in process: `VERBS` (`snapshot` · `click` · `type` · `press`… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- CLAUDE.md:105 in-process leaf ×2 @c2550,3144/4861 …n both layout modes — in process only, and every acting driver verb … → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/rules/observability.md:32 in-process leaf …; typed text measured in process only — 0 occurrences in a sink capt… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/rules/observability.md:36 in-process leaf … driver's `type` runs in process only; driven there with the sink ov… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/rules/security.md:21 in-process leaf … The schema is executed in process only, by `escher_driver::Session::run`… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/rules/verification-harness.md:20 in-process leaf …e stand checks boot in process, bar `stand_session_lifecycle`… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/obs-summary.md:43 in-process leaf …Typed text is measured in process only — `stand_act_spans` drives the d… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/obs-summary.md:49 in-process leaf @c1754/2092 …o an instance held in process only, where a sink capture of… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/security-summary.md:21 in-process leaf …iver command schema (in process, not yet an external-input surface… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/security-summary.md:30 in-process leaf …g commands the diff, in process, with no CLI or MCP command and no… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/escher-driver.md:6 in-process leaf markup …e. A call runs **in process**: `Session::run` validate… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/escher-telemetry.md:33 in-process leaf … text is measured in process only — 0 occurrences in a si… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/tests-summary.md:15 in-process leaf …the stand checks boot in process, bar the two session process checks,… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/architecture.md:133 socket-none standing edited @c1158/28479 …ads or returns crosses the socket; `with_time(… → nothing `act` reads or returns crosses the socket — true: `act` has no wire form; no change
+- .andromeda/architecture.md:136 socket-none standing edited @c17046/24245 …nothing of it goes on the socket, is supersed… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/security-plan.md:118 socket-none standing edited @c4339/12322 …nothing of it goes on the socket is supersede… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/registries/contracts/test-plan/session-lifecycle.md:5 socket-none standing edited @c632/2685 …rns crosses th… → `act`'s sentence — true; no change
+- CLAUDE.md:37 socket-none leaf …d`); the crate installs no subscriber. Nothing of a call or an outcome crosses the socket → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/rules/security.md:20 socket-none leaf … snapshot text or diff crosses it, and the first command that carries on… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/rules/security.md:21 socket-none leaf …ues, nothing of either crosses the socket, and no driver command waits o… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/escher-driver.md:6 socket-none leaf …l or of an outcome crosses the socket. A verb or a settle ve… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/escher-driver.md:29 socket-none leaf …hing of the screen crosses it** — the first request that ca… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/architecture.md:136 caller-only standing edited mixed ×2 @c16596,20004/24245 … was its only exit, ratified b… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/security-plan.md:118 caller-only standing edited ×4 @c3330,3627,5265/12322 …lve — and adds no crossing of it… → amended after the first listing — the snapshot reader `adds no crossing of its own` — and this pass's own text beside it
+- .andromeda/security-plan.md:118 caller-only @c+6000/12322 → the row above's further offsets on the same line — its disposition
+- CLAUDE.md:105 caller-only leaf @c1335/4861 …`SNAPSHOT_TEXT_BUDGET`, returned to its caller only; its diff built — `Snap… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/dioxus-native-dom.md:18 caller-only leaf …ocess through the returned value only — never log, prin… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/dioxus-native-dom.md:19 caller-only leaf …ocess through the returned value only (ratified by the … → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/architecture.md:133 no-cli new @c27810/28479 …verb on the socket, CLI JSON and an idle expiry — as measured … → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/security-plan.md:77 no-cli standing edited @c4223/6585 … then no socket, CLI or MCP tool reached it); `Comma… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .claude/docs/security-summary.md:21 no-cli leaf …ute entry). No socket, CLI or MCP tool reaches it yet — the first surf… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/security-summary.md:30 no-cli leaf …diff, in process, with no CLI or MCP command and nothing on the socket… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/escher-driver.md:6 no-cli leaf … verb on the socket, CLI JSON and an MCP tool are later route ent… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/security-summary.md:21 six-verbs leaf …nst a closed table of six verbs — `scroll` the sixth, a widening ra… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/escher-driver.md:23 six-verbs leaf …` — the verb table, six verbs in order: `snapshot` (no argume… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/escher-driver.md:49 six-verbs leaf … its value: through the six verbs a range input cannot be cha… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/tests-summary.md:24 six-verbs leaf @c695/2653 …rm; `schema.rs` 4: the six verbs, their shapes, the lookup,… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/rules/security.md:21 five-kinds leaf …s: a closed verb table, five argument kinds with bounds, one fixed refusa… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/security-summary.md:21 five-kinds leaf …r (2026-10-07) — and five argument kinds with bounds (`id` 1 to 10… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/test-plan.md:21 ten-act new @c45/5141 … inline unit tests in ten files (29 in seven until 2026-10-10-driver-… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/test-plan.md:26 ten-act standing edited @c16698/19148 …rd fixture) and, the tenth, `stand_act_spans` 2 (and … → `the tenth, stand_act_spans` — its ordinal among eleven; true; no change
+- .andromeda/registries/contracts/test-plan/session-lifecycle.md:11 ten-act standing edited mixed ×3 @c920/3599 …r ten fi… → this pass's `29 over ten files until` and earlier chunks' `the tenth driver-action file` readings; no change
+- .andromeda/registries/contracts/test-plan/session-lifecycle.md:11 ten-act @c+1863,3260/3599 → the row above's further offsets on the same line — its disposition
+- .claude/rules/testing.md:15 ten-act leaf …, `stand_settle` and the ten driver-action checks `stand_act_*` — what they s… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/obs-summary.md:49 ten-act leaf @c908/2092 …`stand_settle`, the ten `stand_act_*` checks (the two re-run ch… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/security-summary.md:28 ten-act leaf …EN` | GitHub secrets/vars; written files removed in `always()` steps | → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/escher-driver.md:26 ten-act leaf …-dependency), whose ten `stand_act_*` checks drive the schema t… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/escher-driver.md:54 ten-act leaf …d, in blitz-tests — ten files, 29 tests and two ignored childre… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/tests-summary.md:24 ten-act leaf @c1079/2653 …he socket, and the ten `stand_act_*` files (29 tests, 2 igno… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/architecture.md:138 argv-two new @c3331/3482 … two-argument form `<task> <state-dir>` is gone — its first wo… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/security-plan.md:78 argv-two new @c564/2703 … two-argument form `<task> <state-dir>` reads so); the call the… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/layout-templates.md:74 argv-two new @c832/2017 …verb`, the former `<task> <state-dir>` form included); usage… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/obs-plan.md:174 argv-two new …; the two-argument form `<task> <state-dir>` is gone (it reads as an unknown v… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/registries/contracts/test-plan/session-lifecycle.md:9 argv-two new …gument form `<task> <state-dir>` now rea… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- CLAUDE.md:38 argv-two leaf …second binary `escher-session <task> <state-dir>` hosts one of the four as a driver session… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/commands.md:58 argv-two leaf ×2 …ight-booker|timer|crud> <state-dir>` — host one lean task headlessly as a… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/design-summary.md:28 argv-two leaf …), and `escher-session <task> <state-dir>` (the session host: a closed… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/security-summary.md:20 argv-two leaf …reen; `escher-session <task> <state-dir>` takes a closed argv and ex… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/seven_guis.md:11 argv-two leaf …ary, `escher-session <task> <state-dir>` (`src/session_host.rs`),… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/security-plan.md:71 stdout-none standing …usage to stderr with empty stdout and exits 2 before any precondit… → a true claim sharing the token — another subject; no change (the cold-agent pipe's usage path)
+- .andromeda/layout-templates.md:73 stdout-none standing …nted to stderr with empty stdout on a usage error (exit 2, chec… → a true claim sharing the token — another subject; no change (the cold-agent pipe's usage path)
+- .andromeda/test-plan.md:10 stdout-none standing edited ×2 @c947,1488/3594 … exits 0 with nothing on stdout, its stderr … → the host role's stdout in `host_binary` and `host_log` — true; no change
+- .andromeda/test-plan.md:103 stdout-none standing edited @c2965/4192 …its host role's empty stdout, are exercised by sev… → amended this pass: `its host role's empty stdout`
+- .andromeda/test-plan.md:148 stdout-none standing …`); usage exit 2 with empty stdout; a missing client exit 3 before an… → a true claim sharing the token — another subject; no change (the cold-agent pipe's contract tests)
+- .andromeda/test-plan.md:183 stdout-none standing edited @c1062/2632 …`stop`: exit 0, empty stdout, no state directory, … → `host_log`'s host: empty stdout — true; no change
+- .claude/docs/design-summary.md:28 stdout-none leaf …and errors on stderr, nothing on stdout, exit 0 · 1 · 2); escher's … → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/seven_guis.md:11 stdout-none leaf …stopped, and writes nothing to stdout (exit 0 · 1 · 2); `tests… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/architecture.md:101 no-expiry standing edited @c3029/3318 …i a session had no idle expiry) — as measured at … → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/architecture.md:150 no-expiry standing edited @c5233/7500 …r `target/tmp/` until it is stopped or idle for i… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/test-plan.md:49 no-expiry new @c795/2466 …hort_expiry` — serve until stopped or until idle for their expiry,… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .claude/docs/commands.md:58 no-expiry leaf …nd `stop` on `<state-dir>/session.sock` until stopped — no CLI drives it yet → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/security-summary.md:20 no-expiry leaf …s 2 before booting anything on any other; unix only; no idle expiry. → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/escher-driver.md:39 no-expiry leaf ×2 - There is no idle expiry: a host whose client died without… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/seven_guis.md:11 no-expiry leaf …, serves the session until stopped, and writes nothing to stdout… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/security-plan.md:385 not-measured standing edited @c3257/5959 …construction, not measured: a dropped record … → a true claim sharing the token — another subject; no change (a dropped record's `log.file`, recorded by construction)
+- .andromeda/test-plan.md:323 not-measured standing edited @c1861/2864 …e/by-level.md). Not measured: `seven_guis_native`… → this pass's text — what stays unmeasured, the windowed binary under a workspace build
+- .andromeda/obs-plan.md:42 not-measured standing edited …dence/by-level.md). Not measured: the windowed `seven_guis_nati… → this pass's text — what stays unmeasured, the windowed binary under a workspace build
+- .andromeda/obs-plan.md:294 not-measured standing edited mixed ×2 @c456,2776/3463 …nstruction, not measured: a dropped r… → the dropped-record clause, another subject, and this pass's `not measured there` — what the by-level instrument left out
+- CLAUDE.md:47 not-measured leaf …RUST_LOG` level (typed text not measured in a host's log; 0 occurrences in an in-proces… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/obs-summary.md:43 not-measured leaf …rded by construction, not measured). No record from a target outside … → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/obs-summary.md:49 not-measured leaf ×2 @c1692,2079/2092 …'s log is still not measured: the driver's `type`… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/security-summary.md:30 not-measured leaf …G` level (typed text not measured in a host's log; 0 occurrences… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/escher-telemetry.md:30 not-measured leaf …(by construction, not measured — a bridged third-party … → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/services/escher-telemetry.md:33 not-measured leaf ×2 …ct_spans`) — and not measured in a host's log. The r… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/playbook.md:40 provisional base …nding past its epoch, a PROVISIONAL mark: a body, key-file or sidecar claus… → no change — the playbook's own rules naming the mark as a class; a rule's text is never reworded, and the fourth row is the facet this wrap appended
+- .andromeda/playbook.md:42 provisional base   note: PROVISIONAL items are discharged in one batch at each epoch boundary… → no change — the playbook's own rules naming the mark as a class; a rule's text is never reworded, and the fourth row is the facet this wrap appended
+- .andromeda/playbook.md:46 provisional base …d it never discharges a PROVISIONAL mark. The class reached four wraps, all… → no change — the playbook's own rules naming the mark as a class; a rule's text is never reworded, and the fourth row is the facet this wrap appended
+- .andromeda/playbook.md:54 provisional base …tream merge is recorded PROVISIONAL for the founder like any other: the fou… → no change — the playbook's own rules naming the mark as a class; a rule's text is never reworded, and the fourth row is the facet this wrap appended
+- .claude/rules/security.md:14 provisional leaf - PROVISIONAL — a boundary widening that arrived with the 2026-10-10 upst… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/security-summary.md:16 provisional leaf - **Font sources (PROVISIONAL)** → since the 2026-10-10 upstream m… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/a11y-plan.md:36 two-targets standing …_set_` unit tests) and by both feature builds of blitz-shell, and its … → a true claim sharing the token — another subject; no change (`by both feature builds`)
+- .claude/docs/services/escher-driver.md:54 count-29 leaf …-tests — ten files, 29 tests and two ignored children, both la… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/tests-summary.md:24 count-29 leaf ×2 @c19,1104/2653 …`escher-driver`: 29 inline unit tests in seven files … → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/test-plan.md:329 ws-count standing edited ×2 @c9442,9460/10967 … 61 commits): 158 result lines, 719 passed ·… → an earlier chunk's dated reading, kept as history beside this pass's recount; no change
+- .claude/docs/tests-summary.md:30 ws-count leaf @c282/3596 … 719 · 0 · 10 over 158 result lines at 2026-10-10-upstream-s… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/test-plan.md:116 files-30 standing edited ×3 @c4025,4363,4678/5380 …ection lists 30 files) — as measured at … → an earlier chunk's dated reading, kept as history beside this pass's recount; no change
+- .claude/docs/tests-summary.md:30 files-30 leaf ×3 @c480,778,1010/3596 …5 ignored over 30 files, `run all` 396 passed · … → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/test-plan.md:10 timer-hand standing edited @c3117/3594 … of the host was booted by hand only (escher-0.1.0/c… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/registries/contracts/test-plan/session-lifecycle.md:9 timer-hand standing edited …nch was booted by hand onl… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .claude/docs/services/seven_guis.md:11 timer-hand leaf …e `tests/common/mod.rs`); no standing check boots it on `timer`. → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/architecture.md:136 prints standing edited ×2 @c14920,18101/24245 …ath, no log, no print): one line per node… → `no log, no print` of dioxus-native-dom's snapshot and diff functions — true, the crate unchanged; no change
+- .andromeda/security-plan.md:118 prints standing edited @c5731/12322 …e path, no log, no print) that copies ids into `Di… → `no log, no print` of dioxus-native-dom's diff — true, the crate unchanged; no change
+- .andromeda/obs-plan.md:70 prints standing edited ×2 @c1275,3131/6271 …nd no env read; no print but, since 2026-10-10-dr… → this pass's text, and the harness settle loop's `no print` — true; no change
+- .andromeda/obs-plan.md:146 prints standing …owlist (§8 → Scrubbing) prints nothing at all — not an empty line — a bridg… → a true claim sharing the token — another subject; no change (the sink printing nothing for an outside target)
+- .claude/docs/services/escher-telemetry.md:18 prints leaf …utside the allowlist prints nothing at all, not an empty line. → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/architecture.md:133 type-append standing edited @c20819/28479 …the same way, which focuses a text input, and… → this pass's restated sentence — the click focuses a text input, then `type` replaces
+- .andromeda/obs-plan.md:294 type-append standing edited @c1613/3463 …ion::run` — and types into an instance held in proc… → the act-by-id chunk's dated reading — the typing command typed into an instance held in process; history, stands
+- .claude/docs/obs-summary.md:49 type-append leaf @c1726/2092 …he driver's `type` types into an instance held in process … → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/architecture.md:150 host-binary standing edited @c6810/7500 …st/report.md); the `escher-session` host itself… → `the escher-session host itself is one process` — the host role, which this pass's text beside it now names; no change
+- .andromeda/architecture.md:264 host-binary new …and, in its host role, the headless session host: the one place a lean … → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/security-plan.md:119 host-binary new @c1318/3976 …ted `type` reaches the `escher-session` host's instance th… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/security-plan.md:385 host-binary new @c4667/5959 …10-10-driver-cli — the `escher-session` host runs the call… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/test-plan.md:103 host-binary new @c2208/4192 …text is measured on the `escher-session` host since 2026-10-10… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/obs-plan.md:69 host-binary standing edited …d, in its host role, the headless session host; the second binar… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/obs-plan.md:106 host-binary new @c2333/4226 …n by a hosted call: the `escher-session` host role decodes a wi… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/obs-plan.md:179 host-binary new …e 2026-10-10-driver-cli the `escher-session` host — its wire (`v2`) carries… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/obs-plan.md:294 host-binary new @c2139/3463 …sted `type` reaches the `escher-session` host's instance, and t… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/a11y-plan.md:14 host-binary standing @c1320/2764 …n_guis_native` and the `escher-session` host, now compile … → the binary named by its host role in a sentence about what it compiles; the chunk changed no dependency — a true claim sharing the token; no change
+- .andromeda/registries/contracts/test-plan/session-lifecycle.md:11 host-binary new @c258/3599 …log` 1 (the `escher-sessi… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .claude/docs/services/escher-driver.md:26 host-binary leaf …med by seven_guis (the `escher-session` host binary, native… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/test-plan.md:145 exit-one standing @c2328/3799 …ry attempt failing exits 1 after three attempts and never 12… → a true claim sharing the token — another subject; no change (the package-install script)
+- .andromeda/test-plan.md:147 exit-one standing ×2 …`, and a failing boot exits 1 and leaves status not-ready; `run stand… → a true claim sharing the token — another subject; no change (the agent-run boot)
+- .claude/docs/services/escher-driver.md:34 record-len leaf …. Nothing bounds a recorded id's length (owned by a route en… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .claude/docs/tests-summary.md:24 record-len leaf @c334/2653 … the count of ids, no test of an id's length), 3 on the ex… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/architecture.md:150 span-none new @c2141/7500 …stalls the sink and runs no command (packages/escher-driver/s… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/security-plan.md:385 span-none new @c5468/5959 …guis_native` still runs no command; the session host's by-le… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/obs-plan.md:179 span-none standing edited … `seven_guis_native` runs none (packages/escher-driver/src/execut… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .claude/docs/tests-summary.md:17 span-none leaf …e.busy` · `time.idle`; neither binary runs a driver command, so neithe… → leaf — re-derived at cascade step 3 (leaf-read.md)
+- .andromeda/architecture.md:133 widest-87 standing edited @c6024/28479 …ead included), at most 128 bytes — the widest `h… → this pass's text — the 128-byte lifecycle reply bound, kept
+- .andromeda/security-plan.md:74 widest-87 standing edited @c1252/2357 …y is bounded at 128 bytes and carries a pid, the … → this pass's text — the 128-byte lifecycle reply bound, kept
+- .andromeda/security-plan.md:220 widest-87 standing edited …lifecycle reply of at most 128 and an answer of at most 1,04… → this pass's text — the 128-byte lifecycle reply bound, kept
+- .andromeda/test-plan.md:143 widest-87 new @c1048/6955 … reply is bounded at 128 bytes, the widest `hello` measuring 122… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+- .andromeda/registries/contracts/test-plan/session-lifecycle.md:7 widest-87 new …cycle reply at most 128, an answer at m… → this pass's own text — it names the retired wording as what stood before, or restates the claim true; no change
+
+## Leaves the listing adds to step 3's set
+
+- .claude/docs/commands.md
+- .claude/docs/design-summary.md
+- .claude/docs/obs-summary.md
+- .claude/docs/security-summary.md
+- .claude/docs/services/dioxus-native-dom.md
+- .claude/docs/services/escher-driver.md
+- .claude/docs/services/escher-telemetry.md
+- .claude/docs/services/seven_guis.md
+- .claude/docs/tests-summary.md
+- .claude/rules/observability.md
+- .claude/rules/security.md
+- .claude/rules/testing.md
+- .claude/rules/verification-harness.md
+- CLAUDE.md

@@ -1,0 +1,12 @@
+
+## 2026-10-10-driver-cli — the session socket carries calls and answers: the trust boundary, the socket row and the API rows restated
+**Section:** §Threat Model Summary → the local IPC vector (Entry point · Trust boundary) · §Input Validation → Driver session socket · Driver session state directory · §API Security (opening paragraph · Local session socket · Settle and loads in flight)
+**Change:**
+- Trust boundary: was "the wire is the lifecycle only … carries no element id, accessible name, control value, snapshot text or diff"; now it carries calls in and answers out — an id and typed text in; ids, names, control values (a password's or a file input's as the fixed mask), the snapshot's text and the diff out; no `NodeId`. The boundary is still the owning user, by file mode alone.
+- Entry point: the host role is `serve <task> --session <dir>`, run by hand or spawned by the binary's own `start` command through `std::env::current_exe()`; the two-argument form is gone.
+- Driver session socket: was `hello v1` and `stop v1`, a 64-byte request, a reply carrying a pid, label and count only; now wire `v2` with `call v2 <verb> [<name>=<kind>:<value>]…` decoded strictly, a 16,384-byte request bound, a decoded call run through `Session::run` and nothing else, answers `accepted` · `refused` · `oversize` bounded at 1,048,576 bytes, a 30 s read of an answer. A request outside the grammar or over the bound still runs nothing.
+- State directory: removed at `stop` or at the host's idle expiry.
+- API Security: the listener serves the lifecycle and driver calls; the Local session socket row states the new bounds and the idle expiry — was "there is no idle expiry", now a host ends as on `stop` after 1,800 s with no answered request, an `attach` or a `status` restarting the count; the Settle row reads over the six instance-level verbs and names the three session-level ones' fields.
+**Why:** a second widening of the 2026-10-07 boundary, ratified by the founder (2026-10-10), by question dialog in the overseer session, relayed by the overseer, and confirmed not PROVISIONAL by the operator at the plan's review. The bounds were proposed by the builder and stand unchanged by that answer. Trap for later chunks: a watcher that polls `attach` or `status` keeps a host alive.
+**Kept:** no handshake secret, token or peer-credential check; one connection at a time.
+**Ref:** .andromeda/runs/2026-10-10T10-03-00-wrap/

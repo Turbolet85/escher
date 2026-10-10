@@ -423,3 +423,71 @@ One entry per amendment to `architecture.md` (sidecar-contract.md §Entry form).
 **Why:** upstream moved to one test binary (`autotests = false` with a single `all` target); the operator, 2026-10-10, by question dialog at the plan, kept every file its own target: under upstream's shape `--test {name}` names no target, `mod common;` and `mod session_common;` do not resolve from a module, the re-executing checks select a child by a bare `--exact` name that would match nothing and still exit 0, and the telemetry checks need a process each. Taking upstream's table whole and switching it off keeps the difference at two lines for the next sync. A sync that drops the `test = false` line, or takes `autotests = false`, turns the pin red.
 **Kept:** `wpt_area_changes.py`'s function names are not registered — the contract lists scripts and their CLI.
 **Ref:** .andromeda/runs/2026-10-10T01-56-50-wrap/
+
+## 2026-10-10-driver-cli — the session socket carries a call and its answer; a hosted session expires
+**Section:** §Established Decisions → [Driver session] · §Occupied Resources → Network ports and listeners · Filesystem · Process-wide state and threads · §Inherited Defaults → API style
+**Change:**
+- [Driver session]: was "lifecycle messages only … nothing of the screen on the wire"; now the socket carries the lifecycle and a driver call with its answer — an element id and typed text in; ids, accessible names, control values (a password's or a file input's as the fixed mask), the snapshot's text and the diff out; no `NodeId`. The `std`-only socket, no third-party IPC, no port and the three-crate dependency set stand.
+- [Driver session]: was "a session has no idle expiry"; now `serve` takes one — `IDLE_EXPIRY`, 1,800 s, for a host a command line starts — and a host with no request answered for that long ends exactly as on `stop`, every answered request starting the count again.
+- Network ports and listeners: the one listener serves three requests at wire `v2` — `hello`, `stop`, `call`; a request line at most 16,384 bytes, an answer at most 1,048,576. Still no second listener and no port.
+- Filesystem: a state directory is named by `--session <dir>` and removed at `stop` or at the idle expiry; the checks' own directories are `ss-life`, `ss-idle`, `ss-quiet`, `hb-*`, `hl-trace`, `cc-*`, `cf-*`, `ht-timer`.
+- Process-wide: the `escher_driver` span is now also written by an `escher-session` host, one closed-span line per hosted call; the host is started by hand or by the binary's own `start` command, which spawns the running binary again through `std::env::current_exe()` with its three streams closed and neither kills nor reaps it, and it ends on `stop` or its expiry; `stand_session_lifecycle` re-runs two ignored host children; five seven_guis targets spawn the binary.
+- API style: the socket is no longer named a lifecycle socket.
+**Why:** the chunk built the command line, and a command leaves the process only by crossing the socket. The crossing is a second widening of the 2026-10-07 boundary, ratified by the founder (2026-10-10), by question dialog in the overseer session, relayed by the overseer, and confirmed not PROVISIONAL by the operator at the plan's review; the idle expiry is the founder's answer, the same day, to the orphaned-host question. From here an id, a name and a value leave the process by design: the next surface that carries them, MCP, asks again.
+**Kept:** no log carries any of it — a diff's three sizes may, its content never.
+**Ref:** .andromeda/runs/2026-10-10T10-03-00-wrap/
+
+## 2026-10-10-driver-cli — Driver session contract: wire `v2`, `serve` with an idle expiry, the client's `call`, thirteen errors, 40 re-exports
+**Section:** §Standard Contracts → Driver session (the re-exports, `serve`, the lifecycle, `SessionError`, the wire, the non-unix arm, the Not built list)
+**Change:**
+- Re-exports: was 33 names; now 40 — the session's eleven (`IDLE_EXPIRY`, `call` and `Answer` joined), the schema's 25 (`SessionCommand`, `validate_session`, `Level` joined), `Outcome`, `command_line`, and the harness's two.
+- `serve(state_dir, session, idle_expiry)`: a third parameter; a non-blocking accept loop polled every 25 ms; a `call` request is run through `Session::run` and nothing else; every answered request — a refused or malformed one included — counts toward `served` and starts the idle count again, a connection that breaks before its request is whole does neither.
+- The lifecycle: `Hello` gains `idle_expiry_s`; `call(state_dir, &Call) -> Result<Answer, SessionError>` with `Answer { accepted, json }` validates first, so a call the schema refuses reaches no session and every call sent fits the request bound; an answer is read under 30 s per read.
+- `SessionError`: was twelve variants; now thirteen — `AnswerTooLarge`, read from an `oversize` reply, the call having run — with `kind()`, one fixed kebab-case word per variant, and `to_json()`.
+- The wire: was `v1`, `hello` and `stop`, 64-byte requests; now `v2` with `call v2 <verb> [<name>=<kind>:<value>]…` (kinds `t` · `n` · `f`, strict percent-escapes), requests at most 16,384 bytes, lifecycle replies at most 128 (the widest `hello` measures 122, was 87), answers `ok v2 accepted` · `refused` · `oversize` bounded at 1,048,576 bytes on the JSON line.
+- Non-unix: `call` joins the functions that return `Unsupported`.
+- Not built: now a settle verb or busy-source reply of its own on the socket, and an MCP tool; a verb on the socket, CLI JSON and an idle expiry left the list.
+**Why:** the contract is the crate's public surface, and the chunk changed each of these. `client::call` validating first was decided at implement: the plan did not say what a call over the request bound does, and checking first means none is ever sent.
+**Kept:** `Session::start`, `act`, `with_time`, `attach`, `stop` and `start` read as they did; `start` still does not check that the answering pid is its child.
+**Ref:** .andromeda/runs/2026-10-10T10-03-00-wrap/
+
+## 2026-10-10-driver-cli — Driver session contract: nine verbs in two levels, the written forms, `command_line`; the `escher-session` CLI
+**Section:** §Standard Contracts → Driver session (the schema, `validate`, the written forms, the command line) · §Standard Contracts → CLIs
+**Change:**
+- The schema: was "held in process — no item of it is reachable from the socket"; now a call reaches it from outside the process too — a host decodes a `call` request and hands it to `run`; the client and the command line validate before anything is sent.
+- `VERBS`: was six verbs; now nine in two levels (`Level::Instance` · `Level::Session`) — the six, then `start` (`app`; answers `label`, `pid`, `idle_expiry_s`), `status` (adds `served`), `stop` (answers `stopped`); `VerbSpec` carries `level`. `ArgKind` gains `Name` (1 to 32 bytes of `a-z`, `0-9`, `-`), the sixth; `FieldKind` gains `Count`, the seventh.
+- `validate` refuses a session-level verb as `unknown-verb` before its arguments are read; `validate_session(&Call) -> Result<SessionCommand, Refusal>` checks the three session-level rows by the same rules; `SessionCommand` is `Start { app }` · `Status` · `Stop`. `Command` stays six variants.
+- Written forms, new: `Outcome::to_json`, `Refusal::to_json`, `SessionError::to_json` — one line of JSON each, keyed by the schema's own words, hand-written, output only; the node, refusal and error shapes are stated.
+- `command_line(args, apps, boot) -> ExitCode`, new: the reader's rules in their fixed order, the flag spelling, four endings (status `0` accepted · `1` refused · `2` usage · `3` session error) and the host role's quiet end, no ending writing back caller input, and `start` spawning the running binary as `serve <app> --session <dir>`.
+- "The crate prints nothing" narrowed: it writes a command's answer on its command line; the executor, session, schema, validation and JSON writer print nothing and read no clock or environment.
+- CLIs: was `escher-session <task> <state-dir>`, exits 0 · 1 · 2, nothing on stdout; now `escher-session <verb> [arguments] --session <dir>` over the nine verbs, the host role `serve <task> --session <dir>`, one line of JSON on stdout, exits 0 · 1 · 2 · 3; the two-argument form reads refused, `unknown-verb`.
+**Why:** v010-12 — every driver command from the command line. The three session-level verbs and the sixth kind widen the validated verb set, ratified by the founder (2026-10-10) with the crossing; the JSON is written by hand on the operator's answer at the plan's forks (2026-10-10), the question re-opened at the MCP surface.
+**Kept:** one verb table: the usage line and the argv reader read `VERBS`, and no second list exists.
+**Ref:** .andromeda/runs/2026-10-10T10-03-00-wrap/
+
+## 2026-10-10-driver-cli — `type` replaces; the record refuses a long id; two engine limits measured and said by the tool; the snapshot text and the diff leave in an answer
+**Section:** §Standard Contracts → Driver session (the executor, the record of ids, the cause texts, the span) · §Standard Contracts → Dioxus DOM bridge (the snapshot text, the diff)
+**Change:**
+- `type`: was "clicks … and types"; now it replaces — where the snapshot reads a `value` for the target (an empty text input reads one) the driver presses the engine's select-all, `a` with Control, Super on macOS, then types, and with an empty text deletes the selection, so an empty text clears. Until this chunk the text was appended after the old value (measured), not inserted inside it.
+- The executor's `cfg` gates: was one, the macOS backward-delete arm; now two, the second choosing the select-all's modifier.
+- The record of ids: was "nothing bounds a recorded id's length … not measured"; now an id longer than `MAX_ID_BYTES` is not recorded, held by a unit test.
+- A click naming a scrolled box: was a hypothesis "read from the code, not measured on a click"; now measured in both layout modes — it lands off the box's centre by the scroll offset (shift 76 on the stand at 14 Creates) or is refused `off-screen` while the box is in view.
+- `covered`: a control before a scrolling box in the document, lying where a scrolled-out row extends, is refused `covered`; one after the box is not; no control of the stand's CRUD reads it.
+- Four fixed texts amended so the tool says both limits and what `type` does: `covered`'s meaning, the help of `changed`, of `snapshot`'s `text` and of `type`. The cause set stays eight.
+- The span: a session-level verb handed to `run` records its table word beside `unknown-verb`.
+- Dioxus DOM bridge: was "no CLI or MCP command exists and nothing of it crosses the socket", the text and a diff leaving "through the returned value only"; now a hosted answer carries the text and a diff — which the driver, not dioxus-native-dom, writes as JSON — over the socket to stdout; the hosted snapshot line measures 832 to 2,187 bytes on the four tasks. No log, event or file carries either.
+**Why:** `type` replacing is the founder's answer (2026-10-10, relayed by the overseer); the record's rule is the operator's at the plan's forks. Both engine limits were measured and left unfixed on the founder's answer — measure and state — and the operator's review added that the tool itself must say them, since an agent learns the tool from the tool. The operator's 2026-10-07 answer that a call runs in process is superseded by the ratified crossing.
+**Kept:** both engine defects stand in the engine, pinned by `stand_act_scroll` and `stand_act_obstructed`; each fix keeps a route owner.
+**Ref:** .andromeda/runs/2026-10-10T10-03-00-wrap/
+
+## 2026-10-10-driver-cli — scope rows after the command line: eleven driver modules, five seven_guis targets, eleven driver-action checks; a shell in one test target; the front page
+**Section:** §Existing Scopes → escher-driver · seven_guis · blitz-tests · §Conventions → Tests · §Stack and Technologies → Testing · §Project Intent → Front page
+**Change:**
+- escher-driver: was nine private modules, an in-process definition and executor, a lifecycle line protocol; now eleven — `json` (the written forms) and `cli` (`command_line`) joined — `client` gains `call`, `host` runs hosted calls and ends on a stop or its idle expiry, `wire` is the line protocol of the lifecycle and of a call and its answer, `command` gains `SessionCommand` and `validate_session`, and `execute` carries two macOS `cfg` gates. Dependencies and the one named feature unchanged.
+- seven_guis: `escher-session` is the driver's command line and, in its host role, the session host; was two integration-test targets, now five — `cli_commands`, `cli_flow` and `host_timer` joined — with `tests/flows/`, two POSIX `sh` scripts that are no target.
+- blitz-tests: was ten `stand_act_*` files, 29 tests, fifteen readers of `session_common`, 15 readers of `common`; now eleven files (`stand_act_filled`), 37 tests, sixteen and 17 readers; the row names what the new tests cover and the `snapshot` call builder.
+- Conventions → Tests: ten driver-action checks becomes eleven.
+- Testing: seven_guis' unix-gated `cli_flow` runs two `sh` scripts under plain `sh` against the built binary — a shell is that one target's requirement; no dependency, manifest line or test framework was added.
+- Front page: the README now also says how the command line is run and names the MCP surface, the driver's self-description and the screenshot as still to come.
+**Why:** each row restated a count or a name the chunk moved. The reader counts were measured at this wrap, since the report gives the new file but not which shared modules it declares.
+**Ref:** .andromeda/runs/2026-10-10T10-03-00-wrap/

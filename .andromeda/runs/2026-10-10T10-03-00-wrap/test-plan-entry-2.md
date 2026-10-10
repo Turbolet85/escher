@@ -1,0 +1,13 @@
+
+## 2026-10-10-driver-cli — test strategy and harness contract: a command-line test level, three host children, the session-lifecycle keys restated
+**Section:** §2 Test Strategy → Test levels observed (Process-lifecycle checks · a new bullet) · Test directory + naming conventions → Directory pattern · §3 Test Harness Contract → blitz-test-harness → Input helpers · Crate-local test helpers (stand checks · session checks) · Stand log format · Agent-run contract → State · Proof · §3 → Session lifecycle (session-start · session-host · session-wire · session-state · session-binary · session-proof)
+**Change:**
+- Process-lifecycle checks: was two ignored host children serving until stopped; now three — `session_host_with_a_short_expiry` joined — each serving until stopped or idle for its expiry, so a bare `--ignored` run waits out an expiry; a check that waits for an expiry watches the state directory, because an `attach` or a `status` is an answered request and restarts the count; a host the `start` command spawns is neither killed nor reaped by it. The stream-drain citation moved to the shared module.
+- A new level: command-line checks and shell flows — the binary run once per command as a client, its streams and exit status read; two `sh` scripts run by the Rust target `cli_flow`, assets of a cargo target, no framework added.
+- Directory pattern: `mod common;` read by 17 checks (was 15), `mod session_common;` by 16 (was 15), six of eleven `stand_act_*` declaring both; 103 `.rs` files and 102 targets (was 102 and 101); seven_guis holds five targets and `tests/flows/`.
+- Input helpers: an empty-text `type` is a second check on the macOS backward-delete path — read from the code, not from the macOS job's log.
+- Stand log format: the session host writes one command-span line per hosted call; typed text is measured on that host; a command's stdout is its answer and nothing else.
+- Agent-run: `ss-idle` joins the state directories; `run stand` re-counted at 119 passed · 0 failed · 6 ignored over 31 files.
+- Session lifecycle key file: session-wire is `v2` with `call` and the three bounds and states what crosses; session-host states `serve`'s idle expiry, `Hello`'s fourth field, `call` and `AnswerTooLarge`; session-binary is the nine-verb command line with four endings; session-start adds the session-level refusal, `type` replacing and the record's length rule; session-proof carries the new counts and the fork's CI run 38042555355.
+**Why:** the harness contract is what an agent drives. session-wire's crossing is ratified by the founder (2026-10-10, relayed by the overseer).
+**Ref:** .andromeda/runs/2026-10-10T10-03-00-wrap/

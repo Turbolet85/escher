@@ -313,3 +313,47 @@ One entry per amendment to `security-plan.md` (sidecar-contract.md §Entry form)
 **Why:** all of it arrived by the merge. Upstream's `licenses` CI job was taken by the merge and reverted — the operator's decision of 2026-10-10 at the plan: no licence gate yet, one reading into evidence. Whether the fork gates on licences is left open on purpose: the operator, 2026-10-10, as the arguments of this wrap, pinned the question for the founder on the route entry "Quality gates".
 **Kept:** `[graph]` and `[advisories]` are the chunk start's; the audit's reach is still cargo-deny's resolved graph.
 **Ref:** .andromeda/runs/2026-10-10T01-56-50-wrap/
+
+## 2026-10-10-driver-cli — the session socket carries calls and answers: the trust boundary, the socket row and the API rows restated
+**Section:** §Threat Model Summary → the local IPC vector (Entry point · Trust boundary) · §Input Validation → Driver session socket · Driver session state directory · §API Security (opening paragraph · Local session socket · Settle and loads in flight)
+**Change:**
+- Trust boundary: was "the wire is the lifecycle only … carries no element id, accessible name, control value, snapshot text or diff"; now it carries calls in and answers out — an id and typed text in; ids, names, control values (a password's or a file input's as the fixed mask), the snapshot's text and the diff out; no `NodeId`. The boundary is still the owning user, by file mode alone.
+- Entry point: the host role is `serve <task> --session <dir>`, run by hand or spawned by the binary's own `start` command through `std::env::current_exe()`; the two-argument form is gone.
+- Driver session socket: was `hello v1` and `stop v1`, a 64-byte request, a reply carrying a pid, label and count only; now wire `v2` with `call v2 <verb> [<name>=<kind>:<value>]…` decoded strictly, a 16,384-byte request bound, a decoded call run through `Session::run` and nothing else, answers `accepted` · `refused` · `oversize` bounded at 1,048,576 bytes, a 30 s read of an answer. A request outside the grammar or over the bound still runs nothing.
+- State directory: removed at `stop` or at the host's idle expiry.
+- API Security: the listener serves the lifecycle and driver calls; the Local session socket row states the new bounds and the idle expiry — was "there is no idle expiry", now a host ends as on `stop` after 1,800 s with no answered request, an `attach` or a `status` restarting the count; the Settle row reads over the six instance-level verbs and names the three session-level ones' fields.
+**Why:** a second widening of the 2026-10-07 boundary, ratified by the founder (2026-10-10), by question dialog in the overseer session, relayed by the overseer, and confirmed not PROVISIONAL by the operator at the plan's review. The bounds were proposed by the builder and stand unchanged by that answer. Trap for later chunks: a watcher that polls `attach` or `status` keeps a host alive.
+**Kept:** no handshake secret, token or peer-credential check; one connection at a time.
+**Ref:** .andromeda/runs/2026-10-10T10-03-00-wrap/
+
+## 2026-10-10-driver-cli — the command line is an external input surface; the command schema is reached from outside the process
+**Section:** §Input Validation → CLI arguments (escher-session) · Driver command schema (escher-driver)
+**Change:**
+- CLI arguments: was a closed argv of exactly two arguments, usage exit 2, an error exit 1, nothing on stdout; now the argv is read by `escher_driver::command_line` — a closed reader with its rules in a fixed order, the call checked by `validate` or `validate_session` before the session address is asked for, `--session <dir>` exactly once, an argument that is not text a usage error, no panic path on argv; four endings with statuses 0 · 1 · 2 · 3 and the host role's quiet end; no ending writes back anything the caller typed; an answer on stdout holds ids, names and values by the ratified crossing; `start` re-runs the binary with its streams closed and neither kills nor reaps the host. The row's two citations of the old `main` are replaced by the reader's.
+- Driver command schema: was six verbs and five argument kinds; now nine verbs in two levels — `start`, `status`, `stop` session-level, refused by `validate` as `unknown-verb` and checked by `validate_session` — and six kinds, `name` the sixth (1 to 32 bytes of `a-z`, `0-9`, `-`).
+- Driver command schema: was "still no socket, CLI or MCP tool reaches it … not yet an external-input surface"; now two external surfaces reach it, each through `validate` first — the socket's `call` request and the command line — and no MCP tool yet.
+- Driver command schema: "the crate prints nothing … reads no env var and no clock" narrowed to the executor, session, schema, validation and JSON writer; the one writer is the command line, the one clock the host's, for the idle expiry. No span field was added.
+**Why:** the chunk put the schema behind two inputs that come from outside the process. Both are the founder's ratified answers of 2026-10-10 (what the agent runs, named flags, four exit classes), relayed by the overseer; the three session-level verbs and the sixth kind widen the validated verb set under the same ratification. Standing rule: every later surface's input still passes `validate` before anything runs, and a `Refusal`, a usage line and a session error hold nothing a caller supplied.
+**Ref:** .andromeda/runs/2026-10-10T10-03-00-wrap/
+
+## 2026-10-10-driver-cli — ids, names and values leave in an answer; typed text measured in a host's log; a refusal has a written form
+**Section:** §Input Validation → Markup attributes · `id` · `aria-label` · `<label for>` · password and file `input` value · §Error Handling → Error format (the `Refusal` bullet) · §Logging & Monitoring → Log format and backends (escher's own sink · Stdout output)
+**Change:**
+- `id`: was "returned to its caller only … nothing of it goes on the socket … the platform adapter stays the only exit", for the snapshot text and for the diff; now a hosted answer carries both over the session socket and onto the client's stdout, the driver writing a diff as JSON, and the id has two exits, the platform adapter and the driver's answers. `unkeyed_actionable` still has no command and adds no crossing of its own.
+- `id`, taken in: the id a call names now comes from argv (`--id`) and from the socket's `call`, bounded 1 to 1024 bytes by `validate` on each side.
+- `id`, the record: was "one longer than 1024 bytes … is still recorded whole … not measured"; now such an id is not recorded, with a unit test.
+- Accessible names: now leave the process in an answer; still reach no log.
+- Password and file value: values cross in an answer, a password's or a file input's as `MASKED_VALUE` — measured for a password, 0 occurrences of the typed text; a file input's by construction, not separately run.
+- Typed text in a host's log: was "not measured", in three rows; now measured — 0 occurrences of a typed sentinel, 0 id and 0 name needles on the `escher-session` host's stderr at `trace`, under both builds, with one command-span line per hosted call; the by-level reading is stated.
+- `Refusal`: was "held in process only — nothing prints or sends one"; now written by `Refusal::to_json` from its cause's fixed strings, sent on the socket and printed on stdout with status 1; a `SessionError` likewise, with a fixed `kind` word; four fixed texts amended, the cause set still eight.
+- Stdout output: was "`escher-session` writes nothing to stdout on any path"; now one line of JSON per command, usage and a session error's message on stderr.
+**Why:** each sentence said the opposite of the ratified crossing (the founder, 2026-10-10, relayed by the overseer). The typed-text proof was owed since the sink fix, due at the first command that types into a sink-installing host.
+**Kept:** no log, event or file carries an id, a name, a value, the snapshot's text or a diff's content.
+**Ref:** .andromeda/runs/2026-10-10T10-03-00-wrap/
+
+## 2026-10-10-driver-cli — the hint-less `@font-face` source: the PROVISIONAL mark comes off, ratified
+**Section:** §Input Validation → `@font-face` source
+**Change:** was "PROVISIONAL — a boundary widening that arrived with the 2026-10-10 upstream merge (upstream #1109), awaiting the founder's ruling", per the entry "2026-10-10-upstream-sync-agent-surfaces — a hint-less `@font-face` source is fetched and sniffed: a boundary widening by upstream merge, PROVISIONAL"; now the widening is ratified by the founder (2026-10-10) as upstream's behaviour — a source with no format hint whose URL has no extension, a `data:` URL, is fetched and its format sniffed from its bytes. The row keeps what is still owed: no test of ours and none in the merged delta covers the path, and a check of ours is owed before 0.1.0 ships, owned by the route entry "Quality gates". The routing sentence stands: no driver verb takes a URL, and the stand boots offline. Only the mark is retired; every fact of that earlier entry stands.
+**Why:** the founder's own ruling, given by question dialog in the overseer session on 2026-10-10 and relayed by the overseer — ratify, with a check — and named by the operator as this wrap's arguments. It was the one standing PROVISIONAL mark, ruled on ahead of the Epoch 5 boundary. No code of this chunk touched the path.
+**Kept:** escher still routes no agent- or user-supplied URL through `blitz-net`; that rule is unchanged by the ratification.
+**Ref:** .andromeda/runs/2026-10-10T10-03-00-wrap/

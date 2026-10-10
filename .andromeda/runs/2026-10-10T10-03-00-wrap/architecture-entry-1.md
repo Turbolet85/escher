@@ -1,0 +1,13 @@
+
+## 2026-10-10-driver-cli — the session socket carries a call and its answer; a hosted session expires
+**Section:** §Established Decisions → [Driver session] · §Occupied Resources → Network ports and listeners · Filesystem · Process-wide state and threads · §Inherited Defaults → API style
+**Change:**
+- [Driver session]: was "lifecycle messages only … nothing of the screen on the wire"; now the socket carries the lifecycle and a driver call with its answer — an element id and typed text in; ids, accessible names, control values (a password's or a file input's as the fixed mask), the snapshot's text and the diff out; no `NodeId`. The `std`-only socket, no third-party IPC, no port and the three-crate dependency set stand.
+- [Driver session]: was "a session has no idle expiry"; now `serve` takes one — `IDLE_EXPIRY`, 1,800 s, for a host a command line starts — and a host with no request answered for that long ends exactly as on `stop`, every answered request starting the count again.
+- Network ports and listeners: the one listener serves three requests at wire `v2` — `hello`, `stop`, `call`; a request line at most 16,384 bytes, an answer at most 1,048,576. Still no second listener and no port.
+- Filesystem: a state directory is named by `--session <dir>` and removed at `stop` or at the idle expiry; the checks' own directories are `ss-life`, `ss-idle`, `ss-quiet`, `hb-*`, `hl-trace`, `cc-*`, `cf-*`, `ht-timer`.
+- Process-wide: the `escher_driver` span is now also written by an `escher-session` host, one closed-span line per hosted call; the host is started by hand or by the binary's own `start` command, which spawns the running binary again through `std::env::current_exe()` with its three streams closed and neither kills nor reaps it, and it ends on `stop` or its expiry; `stand_session_lifecycle` re-runs two ignored host children; five seven_guis targets spawn the binary.
+- API style: the socket is no longer named a lifecycle socket.
+**Why:** the chunk built the command line, and a command leaves the process only by crossing the socket. The crossing is a second widening of the 2026-10-07 boundary, ratified by the founder (2026-10-10), by question dialog in the overseer session, relayed by the overseer, and confirmed not PROVISIONAL by the operator at the plan's review; the idle expiry is the founder's answer, the same day, to the orphaned-host question. From here an id, a name and a value leave the process by design: the next surface that carries them, MCP, asks again.
+**Kept:** no log carries any of it — a diff's three sizes may, its content never.
+**Ref:** .andromeda/runs/2026-10-10T10-03-00-wrap/

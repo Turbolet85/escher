@@ -1,0 +1,7 @@
+
+## 2026-10-10-driver-cli — the hint-less `@font-face` source: the PROVISIONAL mark comes off, ratified
+**Section:** §Input Validation → `@font-face` source
+**Change:** was "PROVISIONAL — a boundary widening that arrived with the 2026-10-10 upstream merge (upstream #1109), awaiting the founder's ruling", per the entry "2026-10-10-upstream-sync-agent-surfaces — a hint-less `@font-face` source is fetched and sniffed: a boundary widening by upstream merge, PROVISIONAL"; now the widening is ratified by the founder (2026-10-10) as upstream's behaviour — a source with no format hint whose URL has no extension, a `data:` URL, is fetched and its format sniffed from its bytes. The row keeps what is still owed: no test of ours and none in the merged delta covers the path, and a check of ours is owed before 0.1.0 ships, owned by the route entry "Quality gates". The routing sentence stands: no driver verb takes a URL, and the stand boots offline. Only the mark is retired; every fact of that earlier entry stands.
+**Why:** the founder's own ruling, given by question dialog in the overseer session on 2026-10-10 and relayed by the overseer — ratify, with a check — and named by the operator as this wrap's arguments. It was the one standing PROVISIONAL mark, ruled on ahead of the Epoch 5 boundary. No code of this chunk touched the path.
+**Kept:** escher still routes no agent- or user-supplied URL through `blitz-net`; that rule is unchanged by the ratification.
+**Ref:** .andromeda/runs/2026-10-10T10-03-00-wrap/

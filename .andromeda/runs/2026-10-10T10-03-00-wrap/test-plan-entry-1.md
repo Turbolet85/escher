@@ -1,0 +1,11 @@
+
+## 2026-10-10-driver-cli — coverage scope after the command line: five seven_guis targets, 50 driver unit tests, eleven driver-action files
+**Section:** §1 Test Scope Summary → Coverage scope (apps · escher-driver · tests/blitz-tests)
+**Change:**
+- apps: was two seven_guis integration-test targets and a shared module read "by both"; now five — `cli_commands` (8 tests), `cli_flow` (2) and `host_timer` (1) joined, all unix only — with `tests/flows/`, a script directory that is no target, and the shared module holding the stream drain, the client runner (`Ran`, `run`, `client`), the answer readers (`keys`, `number`, `cause`) and the `Started` guard. `host_binary` (2) names the host role `serve <task> --session <dir>`, a host that cannot serve ending as a session error (exit 3) and nine argv rows ending as usage errors. `host_log` (1) reads three hosted calls: three command-span lines, 0 occurrences of the typed sentinel beside 0 ids and 0 names, per package and under the workspace build.
+- apps: was "no standing check boots `escher-session` on `timer` … booted by hand only"; now `host_timer` boots it and moves it by a hosted `advance` with no sleep (250 ms asked reads 200, 99 reads 0), and `cli_commands` starts all four tasks.
+- escher-driver: was 29 inline unit tests in seven files; now 50 in ten — error 3, session 4, wire 12, refusal 3, schema 4, command 7, execute 3, json 7, cli 5, client 2; host.rs holds none. The wire's rows are the `v2` grammar's; the schema's are nine verbs at their levels; `SessionError` is thirteen variants. The driver-action files are eleven.
+- tests/blitz-tests: `stand_session_lifecycle` 2 tests and two ignored host children (was 1 and one); `stand_act_obstructed` 5 (was 3), `stand_act_scroll` 6 (was 4), a new `stand_act_filled` 4; the Backspace check is no longer the only deleting path; `stand_act_spans` drives the six instance-level verbs.
+**Why:** each count and file list is the chunk's. The per-file unit-test counts were measured at this wrap — the report states the total, 50, and the new modules, not the split.
+**Kept:** the per-row figures of command.rs's tests (rows per test) left the body: the chunk changed them and neither the report nor this wrap measured the new ones.
+**Ref:** .andromeda/runs/2026-10-10T10-03-00-wrap/

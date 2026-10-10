@@ -1,0 +1,137 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "a0f3749c",
+"ts": "2026-10-10T11:01:36Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-10-driver-cli",
+"--run-dir",
+".andromeda/runs/2026-10-10T10-03-00-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-10-driver-cli: 2 · to flip 2 · already verified 0 · below 0",
+"flipped v010-04 → verified — One snapshot command, `escher-session snapshot --session <dir>`, run through the… (629 chars)",
+"flipped v010-12 → verified — Every driver command runs from the command line through the real `escher-session… (692 chars)",
+"dry-run: nothing written",
+"version: verified 11/16"
+],
+"stderr": null,
+"wrote": [],
+"before": [
+{
+"id": "v010-04",
+"chunk": "2026-10-10-driver-cli",
+"status": "implemented",
+"method": "integration",
+"ref": "examples/seven_guis/tests/cli_commands.rs::a_snapshot_is_the_in_process_text_as_one_line_inside_its_budget (beside tests… (210 chars)",
+"acceptance": "One snapshot command, `escher-session snapshot --session <dir>`, run through the real binary against each of the four ho… (629 chars)",
+"notes_chars": 1779
+},
+{
+"id": "v010-12",
+"chunk": "2026-10-10-driver-cli",
+"status": "implemented",
+"method": "e2e",
+"ref": "examples/seven_guis/tests/cli_commands.rs::each_task_starts_answers_and_stops · ::each_verb_is_accepted_and_answers_its_… (486 chars)",
+"acceptance": "Every driver command runs from the command line through the real `escher-session` binary against a hosted stand task: `s… (692 chars)",
+"notes_chars": 0
+}
+],
+"after": [
+{
+"id": "v010-04",
+"chunk": "2026-10-10-driver-cli",
+"status": "verified",
+"method": "integration",
+"ref": "examples/seven_guis/tests/cli_commands.rs::a_snapshot_is_the_in_process_text_as_one_line_inside_its_budget (beside tests… (210 chars)",
+"acceptance": "One snapshot command, `escher-session snapshot --session <dir>`, run through the real binary against each of the four ho… (629 chars)",
+"notes_chars": 1779
+},
+{
+"id": "v010-12",
+"chunk": "2026-10-10-driver-cli",
+"status": "verified",
+"method": "e2e",
+"ref": "examples/seven_guis/tests/cli_commands.rs::each_task_starts_answers_and_stops · ::each_verb_is_accepted_and_answers_its_… (486 chars)",
+"acceptance": "Every driver command runs from the command line through the real `escher-session` binary against a hosted stand task: `s… (692 chars)",
+"notes_chars": 0
+}
+]
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "a0f3749c",
+"ts": "2026-10-10T11:05:45Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-10-driver-cli",
+"--run-dir",
+".andromeda/runs/2026-10-10T10-03-00-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-10-driver-cli: 2 · to flip 2 · already verified 0 · below 0",
+"flipped v010-04 → verified — One snapshot command, `escher-session snapshot --session <dir>`, run through the… (629 chars)",
+"flipped v010-12 → verified — Every driver command runs from the command line through the real `escher-session… (692 chars)",
+"wrote escher-0.1.0/verification-matrix.json · 2 entries changed",
+"version: verified 11/16"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": [
+{
+"id": "v010-04",
+"chunk": "2026-10-10-driver-cli",
+"status": "implemented",
+"method": "integration",
+"ref": "examples/seven_guis/tests/cli_commands.rs::a_snapshot_is_the_in_process_text_as_one_line_inside_its_budget (beside tests… (210 chars)",
+"acceptance": "One snapshot command, `escher-session snapshot --session <dir>`, run through the real binary against each of the four ho… (629 chars)",
+"notes_chars": 1779
+},
+{
+"id": "v010-12",
+"chunk": "2026-10-10-driver-cli",
+"status": "implemented",
+"method": "e2e",
+"ref": "examples/seven_guis/tests/cli_commands.rs::each_task_starts_answers_and_stops · ::each_verb_is_accepted_and_answers_its_… (486 chars)",
+"acceptance": "Every driver command runs from the command line through the real `escher-session` binary against a hosted stand task: `s… (692 chars)",
+"notes_chars": 0
+}
+],
+"after": [
+{
+"id": "v010-04",
+"chunk": "2026-10-10-driver-cli",
+"status": "verified",
+"method": "integration",
+"ref": "examples/seven_guis/tests/cli_commands.rs::a_snapshot_is_the_in_process_text_as_one_line_inside_its_budget (beside tests… (210 chars)",
+"acceptance": "One snapshot command, `escher-session snapshot --session <dir>`, run through the real binary against each of the four ho… (629 chars)",
+"notes_chars": 1779
+},
+{
+"id": "v010-12",
+"chunk": "2026-10-10-driver-cli",
+"status": "verified",
+"method": "e2e",
+"ref": "examples/seven_guis/tests/cli_commands.rs::each_task_starts_answers_and_stops · ::each_verb_is_accepted_and_answers_its_… (486 chars)",
+"acceptance": "Every driver command runs from the command line through the real `escher-session` binary against a hosted stand task: `s… (692 chars)",
+"notes_chars": 0
+}
+]
+}
+]

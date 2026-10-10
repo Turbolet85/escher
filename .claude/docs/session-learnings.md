@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-10 — A hand re-point of a citation can match a longer citation that starts the same
+At a wrap's citation sweep a master citation is re-pointed by an anchored replace of its own text, and a citation such as `tests/common/mod.rs:1-4` is also the head of `tests/common/mod.rs:1-40`: a replace keyed on the bare citation matches both, and under replace-all it would write the longer one's digits into a range nobody read. Anchor the replace on the citation plus the character that closes it — `)` or `;` — and after any replace-all search the file for the new text followed by a digit before moving on. The same holds for a single number: `host.rs:35` heads `host.rs:350`.
+
+---
+
 ## 2026-10-09 — In the jobs API a step's seconds and conclusion do not say whether a guarded command ran
 A workflow step written `a || b` reads `success` whether `b` ran or not, and where `a` succeeds it reads 0 s. So a count of "the steps that call the script" is not a count of the jobs that ran it: the ci-scripts job's PyYAML guard calls the install script only where `import yaml` fails, and on a runner image that already carries PyYAML the script is never reached. What says whether a command ran is the job log — the command's own output is there or it is not.
 
