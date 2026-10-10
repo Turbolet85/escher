@@ -33,3 +33,6 @@
 ## Deferred learnings
 - 1 learning approved but not applied (the cap of three new entries per wrap; the operator: "The letter holds"), for `.claude/rules/testing.md` `## Session Additions`: "A script that attributes `cargo test` results to a test target runs cargo with stderr merged into stdout and parses the one stream — `Running tests/{name}.rs` is stderr and the `test … ok|FAILED` lines stdout, so two captured streams attribute nothing; print one mutation's per-target table before the full batch." Its memory note is deleted; this line is the text. Apply it at the next wrap.
 - Nothing else is carried: the founder's review is held, the two recurrence records are closed (the guard's refusal costs one re-issue and is the guard working; the clippy fact is now loaded on every turn), and the curation conflict that quoted the host rule file's backslash-pair bullet is dropped — the setup upgrade U02 removed that bullet.
+
+## Session End Status
+Completed normally at 2026-10-10 03:18:41

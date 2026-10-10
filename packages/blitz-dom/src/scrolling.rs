@@ -773,9 +773,11 @@ impl BaseDocument {
             }
             // A box's own scroll offset moves its content, not the box.
             let own_scroll = *holder.scroll_offset();
-            let origin =
-                holder.unrounded_absolute_position(own_scroll.x as f32, own_scroll.y as f32);
-            let layout = holder.unrounded_layout();
+            let (position, layout) = self.physical_unrounded_geometry(box_id);
+            let origin = Point {
+                x: position.x + own_scroll.x as f32,
+                y: position.y + own_scroll.y as f32,
+            };
             if clips_x {
                 let start = origin.x as f64 - viewport_scroll.x;
                 left = left.max(snap(start + layout.border.left as f64));

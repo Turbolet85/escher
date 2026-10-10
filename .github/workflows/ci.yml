@@ -351,7 +351,6 @@ jobs:
         with:
           toolchain: stable
           targets: ${{ matrix.platform.target }}
-          components: rustfmt
 
       # Install cross from source. Because latest release doesn't work with recent Rust
       # when targeting Android. See https://github.com/cross-rs/cross/issues/1222

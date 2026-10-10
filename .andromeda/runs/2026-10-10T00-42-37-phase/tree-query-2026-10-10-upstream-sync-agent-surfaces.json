@@ -1,0 +1,121 @@
+[
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'unrounded_absolute_position' AND callee_kind = 'fn' ORDER BY file, line;",
+"rows": 5,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/impl#[BaseDocument]get_client_bounding_rect().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2256
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/impl#[BaseDocument]offset_rect().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2306
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/impl#[BaseDocument]inline_fragment_rects().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2346
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 node/node/impl#[Node]unrounded_absolute_position().",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1587
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 scrolling/impl#[BaseDocument]visible_region().",
+"file": "packages/blitz-dom/src/scrolling.rs",
+"line": 776
+}
+],
+"db_state": "regenerated",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'visible_region' AND callee_kind = 'fn' ORDER BY file, line;",
+"rows": 2,
+"result": [
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.2 execute/in_view().",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 315
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 reader_holds_the_target().",
+"file": "tests/blitz-tests/tests/scroll_into_view_nested.rs",
+"line": 119
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'get_client_bounding_rect' AND callee_kind = 'fn' ORDER BY file, line;",
+"rows": 12,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/impl#[BaseDocument]node_client_rects().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2327
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 events/driver/impl#[`EventDriver<'doc, Handler>`]adjust_element_coords().",
+"file": "packages/blitz-dom/src/events/driver.rs",
+"line": 327
+},
+{
+"caller": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.2 dom/element/get_bounding_client_rect().",
+"file": "packages/blitz-vibey-script/src/dom/element.rs",
+"line": 1319
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 events/impl#[NodeHandle][RenderedElementBacking]get_client_rect().",
+"file": "packages/dioxus-native-dom/src/events.rs",
+"line": 211
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 snapshot/impl#[`Builder<'_>`]visit().",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 126
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 bounding_rect_is_union_of_fragments().",
+"file": "tests/blitz-tests/tests/inline_fragment_rects.rs",
+"line": 67
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 fragments_include_nested_inline_and_atomic_children().",
+"file": "tests/blitz-tests/tests/inline_fragment_rects.rs",
+"line": 86
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 block_elements_return_single_rect().",
+"file": "tests/blitz-tests/tests/inline_fragment_rects.rs",
+"line": 116
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 target_edges().",
+"file": "tests/blitz-tests/tests/scroll_into_view_nested.rs",
+"line": 107
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 reader_holds_the_target().",
+"file": "tests/blitz-tests/tests/scroll_into_view_nested.rs",
+"line": 116
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 controls_lie_inside_the_viewport().",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 199
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 node_center().",
+"file": "tests/blitz-tests/tests/text_selection_anonymous_block.rs",
+"line": 92
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

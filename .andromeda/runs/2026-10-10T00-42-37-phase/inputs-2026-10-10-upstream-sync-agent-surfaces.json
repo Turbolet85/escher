@@ -1,0 +1,58 @@
+[
+{
+"tool": "inputs",
+"v": "1.1",
+"sha8": "d45f2ad1",
+"ts": "2026-10-10T00:45:05Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces",
+"--message-file",
+".andromeda/runs/2026-10-10T00-42-37-phase/relay-1.md",
+"--origin",
+"orchestrator git measurement, /andromeda-phase take-up, 2026-10-10T00:43:34Z",
+"--kind",
+"relay",
+"--why",
+"upstream/main measured at 7832c177 (ls-remote, then fetch): 61 commits past the merge base 23354585, ours 65 past; trial merge conflicts in 4 files",
+"--step",
+"phase:P1",
+"--run-dir",
+".andromeda/runs/2026-10-10T00-42-37-phase",
+"--marker",
+"2026-10-10-upstream-sync-agent-surfaces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I1 · copy message · message: orchestrator git measurement, /andromeda-phase take-up, 2026-10-10T00:43:34Z",
+"cite: inputs#I1"
+],
+"stderr": null,
+"wrote": [
+"inputs/.gitattributes",
+"inputs/I1-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I1",
+"kind": "relay",
+"repo": null,
+"path": "message: orchestrator git measurement, /andromeda-phase take-up, 2026-10-10T00:43:34Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "bc3eddcd319dac65c9c44f18a707eddf17896de07c1c71d06c3cc6cfe113c8e9",
+"copy": "I1-relay-1.md.txt",
+"link": false,
+"read_at": "2026-10-10T00:45:05Z",
+"step": "phase:P1",
+"why": "upstream/main measured at 7832c177 (ls-remote, then fetch): 61 commits past the merge base 23354585, ours 65 past; trial merge conflicts in 4 files"
+}
+}
+]

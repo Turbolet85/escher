@@ -1,0 +1,274 @@
+[
+{
+"tool": "planlint",
+"v": "1.8",
+"sha8": "d8f55cea",
+"ts": "2026-10-10T01:10:49Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-10T00-42-37-phase",
+"--marker",
+"2026-10-10-upstream-sync-agent-surfaces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 38 entries · plan: escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/plan.md · research: escher-0.1.0/…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — the two runner-only…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` (fu…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 38 · leg operator · gh run view <id> -R Turbolet85/escher --log | grep -c -E 'Running tests/(stand_act_keys|stan…",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 30 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"hits: 1 — each resolved by its check's resolution (validation.md 2 · 5 · 9 · 4 (5) · 4 (13)–(16)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+38
+]
+},
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 30,
+"listed": []
+},
+"check2": {
+"entries": 13,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.8",
+"sha8": "d8f55cea",
+"ts": "2026-10-10T01:15:49Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-10T00-42-37-phase",
+"--marker",
+"2026-10-10-upstream-sync-agent-surfaces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 38 entries · plan: escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/plan.md · research: escher-0.1.0/…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: filled · `the signature of the two…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` (fu…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 38 · leg operator · gh run view <id> -R Turbolet85/escher --log | grep -c -E 'Running tests/(stand_act_keys|stan…",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 1 of 30 asserting — listed, P5's read",
+"  gate 2 · git grep -n -I -E '^(<<<<<<< |>>>>>>> )' -- . ':(exclude)escher-0.1.0' ':(exclude).andromeda' ':(exclude).cl…",
+"    names CLAUDE.md — the wrap's P2 · P3, before the light gate",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"hits: 1 — each resolved by its check's resolution (validation.md 2 · 5 · 9 · 4 (5) · 4 (13)–(16)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "filled",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+38
+]
+},
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 30,
+"listed": [
+2
+]
+},
+"check2": {
+"entries": 13,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.8",
+"sha8": "d8f55cea",
+"ts": "2026-10-10T01:17:30Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-10T00-42-37-phase",
+"--marker",
+"2026-10-10-upstream-sync-agent-surfaces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 38 entries · plan: escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/plan.md · research: escher-0.1.0/…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: filled · `the signature of the two…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` (fu…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 38 · leg operator · gh run view <id> -R Turbolet85/escher --log | grep -c -E 'Running tests/(stand_act_keys|stan…",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 1 of 30 asserting — listed, P5's read",
+"  gate 2 · git grep -n -I -E '^(<<<<<<< |>>>>>>> )' -- . ':(exclude)escher-0.1.0' ':(exclude).andromeda' ':(exclude).cl…",
+"    names CLAUDE.md — the wrap's P2 · P3, before the light gate",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"hits: 1 — each resolved by its check's resolution (validation.md 2 · 5 · 9 · 4 (5) · 4 (13)–(16)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "filled",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+38
+]
+},
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 30,
+"listed": [
+2
+]
+},
+"check2": {
+"entries": 13,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"hits": 1
+}
+}
+]

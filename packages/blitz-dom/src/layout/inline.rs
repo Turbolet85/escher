@@ -18,8 +18,10 @@ use parley::YieldData;
 #[cfg(feature = "floats")]
 use taffy::{BlockItemStyle as _, Clear, Float, prelude::TaffyMaxContent};
 
+use stylo_taffy::StyleFlags;
+
 use super::resolve_calc_value;
-use crate::BaseDocument;
+use crate::layout::LayoutPassState;
 use crate::stylo_to_parley;
 
 /// Subtract a child's margins from the definite axes of the available space it is laid out in.
@@ -79,7 +81,7 @@ fn inline_box_inputs(
     inputs
 }
 
-impl BaseDocument {
+impl LayoutPassState<'_> {
     pub(crate) fn compute_inline_layout(
         &mut self,
         node_id: NodeId,
@@ -190,6 +192,39 @@ impl BaseDocument {
                 )
             }
         }
+    }
+
+    /// The out-of-flow positions for which an inline span between the inline box `box_id` and its
+    /// inline root `root_id` is a containing block (as `SPAN_*_CB` flags)
+    fn inline_span_cb_flags(&self, root_id: NodeId, box_id: NodeId) -> StyleFlags {
+        let root = &self.nodes[root_id];
+        // The spans of an anonymous inline root are descendants of its parent
+        let root_parent = root.is_anonymous().then_some(root.parent).flatten();
+
+        let mut flags = StyleFlags::empty();
+        let mut current = self.nodes[box_id].parent;
+        while let Some(id) = current {
+            if id == root_id || Some(id) == root_parent {
+                return flags;
+            }
+            let ancestor = &self.nodes[id];
+            if let Some(style) = ancestor.primary_styles() {
+                let display = style.clone_display();
+                if display.outside() == DisplayOutside::Inline
+                    && display.inside() == DisplayInside::Flow
+                {
+                    let claims = stylo_taffy::convert::inline_containing_block_claims(&style);
+                    if claims.absolute {
+                        flags |= StyleFlags::SPAN_ABSOLUTE_CB;
+                    }
+                    if claims.fixed {
+                        flags |= StyleFlags::SPAN_FIXED_CB;
+                    }
+                }
+            }
+            current = ancestor.parent;
+        }
+        StyleFlags::empty()
     }
 
     fn compute_inline_layout_inner(
@@ -339,7 +374,15 @@ impl BaseDocument {
             known_dimensions: Size::NONE,
             available_space,
             sizing_mode: SizingMode::InherentSize,
-            parent_size: available_space.into_options(),
+            parent_size: Size {
+                width: available_space.width.into_option(),
+                // Anonymous blocks do not establish the containing block for percentages.
+                height: if self.nodes[node_id].is_anonymous() {
+                    parent_size.height
+                } else {
+                    available_space.height.into_option()
+                },
+            },
             // Atomic inlines (e.g. inline-block) establish independent formatting
             // contexts: their margins never collapse with their children's margins.
             vertical_margins_are_collapsible: taffy::Line::FALSE,
@@ -353,7 +396,7 @@ impl BaseDocument {
 
         // Update inline boxes
         for ibox in inline_layout.layout.inline_boxes_mut() {
-            let style = self.nodes[NodeId::from_u64(ibox.id)].layout_style();
+            let style = self.child_layout_style(&self.nodes[NodeId::from_u64(ibox.id)]);
             let margin = style
                 .margin()
                 .resolve_or_zero(inputs.parent_size, resolve_calc_value);
@@ -423,24 +466,18 @@ impl BaseDocument {
             }
         }
 
-        // TODO: Resolve against style widths as well as known dimensions
         let text_indent = self.nodes[node_id]
             .primary_styles()
             .map(|s| s.clone_text_indent())
             .unwrap_or_else(GenericTextIndent::zero);
-        let resolved_text_indent = text_indent
-            .length
-            .resolve(CSSPixelLength::new(known_dimensions.width.unwrap_or(0.0)))
-            .px();
+        let indent_options = IndentOptions {
+            each_line: text_indent.each_line,
+            hanging: text_indent.hanging,
+        };
+        // Percentage indents do not contribute to intrinsic widths.
         inline_layout.layout.set_text_indent(
-            resolved_text_indent,
-            // NOTE: hanging and each_line don't current work because parsing them is cfg'd out in Stylo
-            // due to Servo not yet supporting those features. They should start to "just work" in Blitz
-            // once support is enabled in Stylo.
-            IndentOptions {
-                each_line: text_indent.each_line,
-                hanging: text_indent.hanging,
-            },
+            text_indent.length.resolve(CSSPixelLength::new(0.0)).px() * scale,
+            indent_options,
         );
 
         let pbw = container_pb.horizontal_components().sum() * scale;
@@ -464,7 +501,8 @@ impl BaseDocument {
                         let mut width: f32 = 0.0;
                         for ibox in inline_layout.layout.inline_boxes_mut() {
                             let (is_floated, margin) = {
-                                let style = self.nodes[NodeId::from_u64(ibox.id)].layout_style();
+                                let style =
+                                    self.child_layout_style(&self.nodes[NodeId::from_u64(ibox.id)]);
                                 (
                                     style.float().is_floated(),
                                     style
@@ -498,7 +536,8 @@ impl BaseDocument {
                         let mut width: f32 = 0.0;
                         for ibox in inline_layout.layout.inline_boxes_mut() {
                             let (float, clear, margin) = {
-                                let style = self.nodes[NodeId::from_u64(ibox.id)].layout_style();
+                                let style =
+                                    self.child_layout_style(&self.nodes[NodeId::from_u64(ibox.id)]);
                                 (
                                     style.float(),
                                     style.clear(),
@@ -603,6 +642,14 @@ impl BaseDocument {
             return LayoutOutput::from_outer_size(clamped_size);
         }
 
+        let resolved_text_indent = text_indent
+            .length
+            .resolve(CSSPixelLength::new((width / scale).max(0.0)))
+            .px();
+        inline_layout
+            .layout
+            .set_text_indent(resolved_text_indent * scale, indent_options);
+
         #[cfg(not(feature = "floats"))]
         {
             inline_layout.layout.break_all_lines(Some(width));
@@ -664,7 +711,7 @@ impl BaseDocument {
                         let node_id = NodeId::from_u64(box_break_data.inline_box_id);
 
                         let (direction, clear, margin) = {
-                            let style = self.nodes[node_id].layout_style();
+                            let style = self.child_layout_style(&self.nodes[node_id]);
                             // We can assume that the box is a float because we only set `break_on_box: true` for floats
                             let direction = match style.float() {
                                 Float::Left => taffy::FloatDirection::Left,
@@ -713,6 +760,7 @@ impl BaseDocument {
                         let layout = self.nodes[node_id].unrounded_layout_mut();
                         layout.size = output.size;
                         layout.location = location;
+                        layout.margin = margin;
 
                         // Translate anchors from item-relative to container-relative
                         // coordinates and collect candidates bubbled from the float's subtree
@@ -857,13 +905,18 @@ impl BaseDocument {
 
         // Store sizes and positions of inline boxes
         let mut ibox_order: u32 = 0;
+        let mut span_cb_flags = StyleFlags::empty();
         for line in inline_layout.layout.lines() {
             for item in line.items() {
                 if let parley::layout::PositionedLayoutItem::InlineBox(ibox) = item {
                     let order = ibox_order;
                     ibox_order += 1;
+                    if inputs.run_mode == RunMode::PerformLayout {
+                        span_cb_flags |=
+                            self.inline_span_cb_flags(node_id, NodeId::from_u64(ibox.id));
+                    }
                     let node = &self.nodes[NodeId::from_u64(ibox.id)];
-                    let style = node.layout_style();
+                    let style = self.child_layout_style(node);
                     let padding = style
                         .padding()
                         .resolve_or_zero(child_inputs.parent_size, resolve_calc_value);
@@ -980,6 +1033,7 @@ impl BaseDocument {
                         let layout = self.nodes[NodeId::from_u64(ibox.id)].unrounded_layout_mut();
                         layout.padding = padding; //.map(|p| p / scale);
                         layout.border = border; //.map(|p| p / scale);
+                        layout.margin = margin;
                     } else {
                         // Re-measure the box to get its border-box size (this hits the layout
                         // cache). The size cannot be recovered from `ibox` dimensions as the
@@ -1008,20 +1062,13 @@ impl BaseDocument {
                         layout.scrollable_overflow_rect = output.scrollable_overflow_rect;
                         layout.location.x =
                             (ibox.x / scale) + margin.left + container_pb.left + inset_offset.x;
-                        // A box with a baseline is positioned by it, so its border box always
-                        // sits `margin.top` below the margin box (`ibox.y`). Without a baseline
-                        // a negative `margin-top` shrinks the space the box reserves in the
-                        // line but does not move the box itself, which stays anchored to the
-                        // bottom of the reserved space.
-                        let margin_top = if ibox.baseline.is_some() {
-                            margin.top
-                        } else {
-                            margin.top.max(0.0)
-                        };
+                        // Parley positions the margin box; offset to the border box even
+                        // when a negative top margin makes it extend above the margin box.
                         layout.location.y =
-                            (ibox.y / scale) + margin_top + line_box_top + inset_offset.y;
+                            (ibox.y / scale) + margin.top + line_box_top + inset_offset.y;
                         layout.padding = padding; //.map(|p| p / scale);
                         layout.border = border; //.map(|p| p / scale);
+                        layout.margin = margin;
 
                         // Translate anchors from item-relative to container-relative
                         // coordinates and collect candidates bubbled from the box's subtree
@@ -1051,6 +1098,10 @@ impl BaseDocument {
             .then(|| last_line_index.and_then(|i| inline_layout.layout.get(i)))
             .flatten()
             .map(line_baseline);
+
+        if inputs.run_mode == RunMode::PerformLayout {
+            inline_layout.span_cb_flags = span_cb_flags;
+        }
 
         // Put layout back
         self.nodes[node_id]
