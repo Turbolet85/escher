@@ -1,0 +1,11 @@
+
+## 2026-10-10-snapshot-states — the tree states selected, toggled and invalid, and the snapshot takes them from it
+**Section:** §2 A11y Strategy → Role derivation · §3 → A11y testing tool pick · §4 → Per-component pattern catalog · §7 → Accessibility tree output (the snapshot-model bullet)
+**Change:**
+- §2: gains the builder's three state reads, on every element whatever its role, each value trimmed and compared exactly in lower case — `aria-selected` `true` / `false` → `selected`; `aria-pressed` `true` / `false` / `mixed` → `toggled`; `aria-invalid` `true` / `grammar` / `spelling` → `invalid`, an absent, empty or `false` value nothing, any other value `Invalid::True`. `TRUE` reads unrecognized. `aria-checked` is not read, so a node's `toggled` is exactly its `aria-pressed` reading. A role that does not support an attribute reads it as one that does.
+- §3: gains the state check — one stated table per attribute, its row count asserted, both layout modes — run by the workspace test leg and per package; the `a11y` leg stays three files.
+- §4: the catalog gains "ARIA state attributes"; `aria-checked` sets none of the three, so an ARIA checkbox or switch states no checked reading through it.
+- §7: was "the tree gives an element node no value, checked or disabled property, so the snapshot reads those three from the element"; that stands, and beside it the tree now gives `selected`, `toggled` and `invalid`, which the snapshot takes from the tree and never from the element — `NodeState` at seven fields, a mixed toggle reading `pressed` false and a grammar or spelling error reading invalid, three text tokens after `value=` and before `focused`, each stand reading equal to its accessibility node's.
+**Why:** ratified by the founder (2026-10-10, by question dialog in the overseer session, relayed by the overseer; confirmed by him at this wrap's card, relayed the same way): the builder writes the three states on the node. State is what the tree exists to carry, and one parser of each attribute keeps the snapshot and the tree from disagreeing.
+**Kept:** what an assistive technology reads of the three is not measured; the windowed witness and the ARIA checkbox reading are each owned by a route entry.
+**Ref:** .andromeda/runs/2026-10-10T17-47-57-wrap/

@@ -100,3 +100,9 @@ One entry per amendment to `layout-templates.md` (sidecar-contract.md §Entry fo
 - Primary screens: "Home is a centered 640px column of task cards" now says the column stands inside a box that scrolls — at the stand's 800 × 600 viewport, Home unscrolled, `#home` is 600 high and holds six of the seven cards; the seventh, Cells, lies at 615 to 684, below the box, and shows and is hit only once scrolled into view. The windowed stand is not measured.
 **Why:** the bounds reader and the hit were fixed in the engine, so the list's own readings became true ones. The Home reading was found when a standing check that clicked the Cells card without scrolling went red on the fixed hit: the master had not said that the cards do not all show. No stand markup, id, class or style moved.
 **Ref:** .andromeda/runs/2026-10-10T15-29-49-wrap/
+
+## 2026-10-10-snapshot-states — two lean tasks state a role and a state by attributes alone
+**Section:** §Surface: desktop-native → Primary screens (the seven_guis Home and TaskShell bullet)
+**Change:** beside the six inputs named by attributes alone, the bullet now states that the flight booker's mode buttons `flight-one-way` and `flight-return` are toggle buttons stating `aria-pressed` `"true"` or `"false"`, its date inputs `flight-start` and `flight-return-date` state `aria-invalid`, `crud-list` takes `role="listbox"` and each CRUD row `role="option"` with `aria-selected` — adding no element, class, style, key, id or order; the three classes that style those states stay. The windowed stand was not booted.
+**Why:** the stand's tasks state the three states a snapshot reads; the two task files differ from the chunk's base by added attribute lines only.
+**Ref:** .andromeda/runs/2026-10-10T17-47-57-wrap/

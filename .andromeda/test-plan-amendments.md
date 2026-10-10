@@ -415,3 +415,26 @@ One entry per amendment to `test-plan.md` (sidecar-contract.md §Entry form). Ap
 - §2 WPT conformance: the first conformance reading taken on the fork's dev host — `css/cssom-view` at the pinned WPT commit, 966 → 967 subtests passed of 2292 run, one moved fail to pass, none pass to fail; report-only.
 **Why:** the two engine fixes each needed a regression check under both builds, because the workspace build and the per-package build compile different bodies of the reader, and a fix in one body alone reads green under the other build. The vertical-writing-mode gap was measured at the wrap, not by the chunk. Not re-measured: "no `all` executable among 107" in §2, a 2026-10-10-upstream-sync-agent-surfaces reading.
 **Ref:** .andromeda/runs/2026-10-10T15-29-49-wrap/
+
+## 2026-10-10-snapshot-states — the driver-action census at twelve; counts re-read
+**Section:** §1 → Coverage scope (escher-driver · dioxus-native-dom · tests/blitz-tests) · §2 → Directory pattern · §3 → Crate-local test helpers · §3 → Agent-run contract → Proof · §3 → Session lifecycle (`session-proof`) · §4 → What unit tests cover (escher-driver) · §5 → Session ↔ held instance · §6 → Command line · §9 → Local baseline
+**Change:**
+- Was "the eleven `stand_act_*` files" at seven sites (§1 escher-driver, §2, §3 twice, §4, §5 and the key file); now twelve, `stand_act_states` the twelfth with 3 tests. The key file's total was 37 over eleven files, now 40 over twelve, and its CI witnesses gain run 38072258834 on `2fc32829` (16 of 16 checks green).
+- `mod session_common;` was read by 16 checks, now 17; `mod common;` stays at 17, six driver-action checks declaring both.
+- §2: was 106 `.rs` files and 105 test targets; now 108 and 107 — `accessibility_states.rs` and `stand_act_states.rs`, auto-discovered with no manifest line. "No `all` executable among 107" is left as it reads, not re-measured.
+- §1 dioxus-native-dom: was 55 unit tests — fourteen on the snapshot builder, seven on the text form, eight on the diff; now 60 — seventeen, eight and nine. The two limits of the boolean model are pinned there and at the engine only; no stand screen shows either.
+- §1: the largest boot text, Crud, was 2034 bytes, now 2049. §6: the hosted `snapshot` line was 832 · 1,375 · 1,368 · 2,187 bytes, now 832 · 1,393 · 1,368 · 2,202.
+- §3 Proof: `run stand` was 119 passed · 6 ignored over 31 files, now 125 · 6 over 32; `run all` not re-read. §9: the workspace leg was 165 result lines and 776 passed, now 167 and 791, 0 failed and 11 ignored both.
+- "The file's eighth test" of `stand_snapshot_state` reads "the eighth test the file gained, of eleven".
+**Why:** each figure is a measured reading at the chunk's gates or its operator pass.
+**Ref:** .andromeda/runs/2026-10-10T17-47-57-wrap/
+
+## 2026-10-10-snapshot-states — what the new and extended checks assert; the adapter reading untested
+**Section:** §1 → Coverage scope → tests/blitz-tests · §5 → Session ↔ held instance
+**Change:**
+- §1 gains `accessibility_states` (4): on a parsed page, in both layout modes, `aria-selected` reads `true` and `false` and nothing else (9 rows), `aria-pressed` its three values and nothing else (10), `aria-invalid` its values and an unrecognized one as true (11), each on a role that supports the attribute and one that does not, row counts asserted; `aria-checked` sets none of the three. It runs in the workspace `test` leg and per package, not in the `a11y` leg.
+- §1 states two absences: blitz-dom holds no unit test of the builder's reads, and no check reads the three states as the platform adapter hands them to an assistive technology — no stand binary builds an adapter and the dev host's AT-SPI bus reads inactive. The gap is owned by a route entry.
+- §1, `stand_snapshot_state` (8 → 11 tests): exactly the active flight mode reads pressed and the reading swaps with the mode; exactly the selected CRUD row reads selected across a move, a Delete and a filter edit; a date that is no date reads invalid on both date inputs; no other node reads any of the three, and every node's three readings equal its accessibility node's.
+- §1 and §5, `stand_act_states` (3): through `Session::run` a flight-mode click returns both mode buttons with their pressed reading, a row click the row selected and the row it leaves not selected, a typed start date the field invalid or not — each returned diff equal to the file's own and equal across the two layout modes.
+**Why:** the chunk's acceptance, v010-17, is proved by these files under the per-package and the workspace build.
+**Ref:** .andromeda/runs/2026-10-10T17-47-57-wrap/

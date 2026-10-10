@@ -1,0 +1,99 @@
+# The claims this pass retired, by wording and by mechanism. Every pattern is controlled on the pre-pass masters.
+
+# the driver-action census: eleven files, sixteen readers
+[[pattern]]
+id = "eleven"
+regex = '\beleven\b'
+ignore_case = true
+
+[[pattern]]
+id = "sixteen"
+regex = '\bsixteen\b|\b16 (readers|checks)\b'
+ignore_case = true
+
+[[pattern]]
+id = "common-15"
+regex = '15 of which'
+
+# the model's state: four readings, nine node keys, four optional keys
+[[pattern]]
+id = "node-state"
+fixed = 'NodeState'
+
+[[pattern]]
+id = "node-fields"
+regex = 'NODE_FIELDS|\bnine (keys|fields|words)\b'
+
+[[pattern]]
+id = "state-list"
+regex = 'enabled.{0,40}checked.{0,40}value.{0,40}focused'
+ignore_case = true
+
+[[pattern]]
+id = "absent-keys"
+fixed = 'left out when absent'
+
+[[pattern]]
+id = "from-element"
+regex = 'no value, checked or disabled|reads those three from the element'
+
+# the two served help texts as they stood
+[[pattern]]
+id = "help-old"
+regex = 'nested by indent|state no limit|read as they did before|words that stood before'
+
+# measured figures
+[[pattern]]
+id = "sizes"
+regex = '\b1269\b|\b2034\b|1,375|2,187'
+
+[[pattern]]
+id = "stand-run"
+regex = 'passed 119|119 passed|\b31 files\b'
+
+[[pattern]]
+id = "workspace"
+regex = '165 result|776 passed'
+
+[[pattern]]
+id = "unit-counts"
+regex = '55 unit|fourteen on the snapshot|seven on the snapshot|eight on the snapshot'
+
+[[pattern]]
+id = "file-counts"
+regex = '106 `\.rs`|105 test targets'
+
+[[pattern]]
+id = "eighth"
+regex = '''file's eighth test'''
+
+# what crosses: the content lists of the socket, the command line and the adapter
+[[pattern]]
+id = "crossing-list"
+regex = 'accessible names(,| and) (control )?values|ids, names(,| and) values|names and control values'
+
+[[pattern]]
+id = "adapter-class"
+fixed = 'content classes'
+
+# the direct engine changes, counted as two
+[[pattern]]
+id = "engine-two"
+regex = 'both (are )?flagged upstreamable|both fixed in the engine|two (direct )?engine (changes|fixes)'
+
+# the stand's rows and controls as they read before the attributes
+[[pattern]]
+id = "no-role"
+fixed = 'role, focusability'
+
+[[pattern]]
+id = "fifteen"
+regex = '15 interactive controls|the 15 controls'
+
+[[pattern]]
+id = "acc-tests"
+regex = 'accessibility (integration )?tests'
+ignore_case = true
+
+# Dropped after the first call refused it (its control never fired on the pre-pass masters, so no master
+# stated the stand's class cues): 'type-btn-active|selected (row|person)|row-selected|`selected` class'.

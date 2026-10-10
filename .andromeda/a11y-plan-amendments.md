@@ -198,3 +198,26 @@ One entry per amendment to `a11y-plan.md` (sidecar-contract.md §Entry form). Ap
 **Change:** gains one line: after an accepted pointer click on a plain `button` no node reads `focused` in the snapshot and the accessibility tree's focus carries no author id, in both layout modes and under both builds. The section held one click line before — a click on a non-interactive area clears focus — and no statement on a button.
 **Why:** the chunk's plan took this reading to be recorded here already, as read from code; this section held no such line, and the chunk measured it on a restated stand check. Whether a click should focus the button is not decided here: it is owned by the route entry that works keyboard focus.
 **Ref:** .andromeda/runs/2026-10-10T15-29-49-wrap/
+
+## 2026-10-10-snapshot-states — the tree states selected, toggled and invalid, and the snapshot takes them from it
+**Section:** §2 A11y Strategy → Role derivation · §3 → A11y testing tool pick · §4 → Per-component pattern catalog · §7 → Accessibility tree output (the snapshot-model bullet)
+**Change:**
+- §2: gains the builder's three state reads, on every element whatever its role, each value trimmed and compared exactly in lower case — `aria-selected` `true` / `false` → `selected`; `aria-pressed` `true` / `false` / `mixed` → `toggled`; `aria-invalid` `true` / `grammar` / `spelling` → `invalid`, an absent, empty or `false` value nothing, any other value `Invalid::True`. `TRUE` reads unrecognized. `aria-checked` is not read, so a node's `toggled` is exactly its `aria-pressed` reading. A role that does not support an attribute reads it as one that does.
+- §3: gains the state check — one stated table per attribute, its row count asserted, both layout modes — run by the workspace test leg and per package; the `a11y` leg stays three files.
+- §4: the catalog gains "ARIA state attributes"; `aria-checked` sets none of the three, so an ARIA checkbox or switch states no checked reading through it.
+- §7: was "the tree gives an element node no value, checked or disabled property, so the snapshot reads those three from the element"; that stands, and beside it the tree now gives `selected`, `toggled` and `invalid`, which the snapshot takes from the tree and never from the element — `NodeState` at seven fields, a mixed toggle reading `pressed` false and a grammar or spelling error reading invalid, three text tokens after `value=` and before `focused`, each stand reading equal to its accessibility node's.
+**Why:** ratified by the founder (2026-10-10, by question dialog in the overseer session, relayed by the overseer; confirmed by him at this wrap's card, relayed the same way): the builder writes the three states on the node. State is what the tree exists to carry, and one parser of each attribute keeps the snapshot and the tree from disagreeing.
+**Kept:** what an assistive technology reads of the three is not measured; the windowed witness and the ARIA checkbox reading are each owned by a route entry.
+**Ref:** .andromeda/runs/2026-10-10T17-47-57-wrap/
+
+## 2026-10-10-snapshot-states — the stand states a listbox, two toggle buttons and two invalid inputs; two gaps recorded
+**Section:** §5 → Per-surface keyboard shortcuts · §7 → Accessibility tree output (the stable-id bullet, the actionable-key bullet, a new stand bullet) · §8 → Error recovery
+**Change:**
+- §7, new bullet: by attribute alone, with no element, class, style, key, id or order moving, the CRUD list states `role="listbox"` and each row `role="option"` with `aria-selected` (reading `ListBox` / `ListBoxOption`), the flight booker's two mode buttons state `aria-pressed` (role Button and the focus order unchanged) and its two date inputs state `aria-invalid`. The actionable-key check still returns nothing.
+- §7, the stable-id bullet: "the 15 interactive controls carry … a non-empty accessible name" stands for those 15; an element outside them now carries an interactive role — the list reads `ListBox` with the accessible name `""` — so not every interactive-role element on the stand is named.
+- §7, the actionable-key bullet: was "keyed by an `id` attribute alone with no `tabindex`, role, focusability or Tab-order change"; that holds of the keying chunk, and each CRUD row now also reads `ListBoxOption`, still with no `tabindex`, no focusability and no Tab-order change.
+- §5: gains the CRUD rows as options of a listbox that are not focusable — no keyboard reaches an option; recorded, not closed.
+- §8: the invalid-date bullet gains `aria-invalid` on `flight-start` and `flight-return-date`, so the invalid state is in the tree and the snapshot and not carried by the class alone; the class and its styling stay.
+**Why:** the stand's tasks state the three states so a snapshot can read them; the roles and attributes are the operator's answers at the chunk's plan forks.
+**Kept:** no `tabindex` on a row and no name on the list in this chunk — a focusability change would move the pinned Tab order. Each gap is owned by a route entry.
+**Ref:** .andromeda/runs/2026-10-10T17-47-57-wrap/

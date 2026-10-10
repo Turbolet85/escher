@@ -27,6 +27,7 @@ The 7GUIs benchmark app ("Seven benchmark tasks for GUI frameworks") in Dioxus �
 
 ## Stand-relevant behaviour
 - Flight booker validates `dd.mm.yyyy` with month range and leap years; return not before start; invalid dates get an `invalid` class and disable Book.
+- Three states are stated in markup, by attribute alone (2026-10-10-snapshot-states; no element, class, style, key, id or order moved): the flight booker's mode buttons `flight-one-way` / `flight-return` state `aria-pressed`, its date inputs `flight-start` / `flight-return-date` state `aria-invalid`, `crud-list` is a `listbox` and each CRUD row an `option` with `aria-selected` — always the literal texts `"true"` and `"false"`. A snapshot reads them as `pressed`, `invalid` and `selected`. Open: a row is not focusable, so no keyboard reaches an option, and the list reads no accessible name — each owned by a route entry. Cells was not touched; whether it states its selected cell is owned by a route entry too.
 - Cells: tokenizer rejects unknown characters, reference cycles read `#CYCLE`, division by zero is an error; commits on Enter or blur.
 - Circle drawer clamps diameter 5–100.
 

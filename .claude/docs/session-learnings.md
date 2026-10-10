@@ -8,6 +8,20 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-10 — A grep for a struct literal cannot tell a spread from a full literal
+`grep 'TypeName {'` lists every site that opens a literal of a struct and says nothing about how each one closes. A literal that ends with `..base()` or `..Default::default()` compiles unchanged when the struct gains a field; a full literal does not. A sweep that counts the hits and reads them as "closes with a spread, no change needed" is a forecast: before a plan says a set of literals compiles unchanged after a field is added, each hit is read to its closing brace, or the claim is left to the compiler and said so.
+
+Where it applies: any research or plan step that sizes the fallout of a new struct field from a grep — the snapshot model's state struct is the measured case.
+
+---
+
+## 2026-10-10 — A green test run prints no figure the test only formats into its failure message
+A size, a count or a list that a test computes and puts only inside an assertion's message never reaches the log of a passing run: the entry's log holds the test's `ok` line and nothing else. A plan that says a reading "is taken from the listed entries' logs" needs an entry that prints the figure on success — or names the instrument that does (a kept measurement script, a one-shot restored mutation that makes the assertion fail and show its message, a run of the binary by hand).
+
+Where it applies: authoring a plan's readings and its Test Commands block — name the producer of every figure the report must state before the gates run.
+
+---
+
 ## 2026-10-10 — An Edit that cuts the tail off a line takes the line's terminator with it
 On a one-entry-per-line file — the working route, a master record — an Edit whose replacement is empty and whose matched text runs to the end of its line also removes the newline after it, so the next line is joined onto the entry: on the route that is the `↓` separator, and the file still reads plausibly by eye. The route tool says it (`UNPARSED: … entry line carrying ↓ inside it`) and the file is one line short of the count the edit should leave. When cutting freight off the end of a line, carry the newline and the head of the next line in both strings of the Edit, and after any such cut re-run `route.py markerless` and compare the line count before going on.
 

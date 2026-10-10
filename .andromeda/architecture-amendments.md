@@ -512,3 +512,34 @@ One entry per amendment to `architecture.md` (sidecar-contract.md §Entry form).
 - blitz-tests: was "the two measured engine limits pinned as they read"; now the two fixed readings, and the row names `scrolled_box_client_rect` (6 tests), `hit_clipped_at_scrolling_box` (9) and `scrolled_box_absolute_position` (1).
 **Why:** the four texts were amended at 2026-10-10-driver-cli so that the tool said two measured limits where an agent reads it; both limits are now fixed in the engine, so three texts say what is true again and one limit, the `contain: paint` one, is still said by `covered`'s meaning. The second caller of the helper was found by the cascade sweep, not by a detector.
 **Ref:** .andromeda/runs/2026-10-10T15-29-49-wrap/
+
+## 2026-10-10-snapshot-states — the snapshot model reads selected, pressed and invalid; the driver's node carries them
+**Section:** §Standard Contracts → Dioxus DOM bridge · §Standard Contracts → Driver session
+**Change:**
+- Dioxus DOM bridge: was "`NodeState` carries `enabled`, `checked`, `value` and `focused`"; now seven fields in the order `enabled` · `checked` · `value` · `selected: Option<bool>` · `pressed: Option<bool>` · `invalid: bool` · `focused`, no new public type. The three are the accessibility node's own, read at the one construction site and never parsed from the element: `is_selected()`; `toggled()` with only `Toggled::True` reading `Some(true)`; `invalid().is_some()` — a boolean model with two limits, a mixed toggle reading not pressed and a grammar or spelling error reading invalid, the node keeping the full value. On the stand each reading equals its accessibility node's.
+- `Snapshot::to_text`: the fixed token order gains `selected` / `unselected` · `pressed` / `unpressed` · `invalid` (only when true) after `value=` and before `focused`.
+- Measured sizes: the boot text was Counter 755 · FlightBooker 1269 · Timer 1259 · Crud 2034 bytes, now 755 · 1287 · 1259 · 2049; the hosted `snapshot` line was 832 · 1,375 · 1,368 · 2,187, now 832 · 1,393 · 1,368 · 2,202.
+- Driver session: `NODE_FIELDS` was nine words (`[&str; 9]`), now twelve — `selected` · `pressed` · `invalid` between `value` and `focused`. In JSON, `parent`, `enabled`, `checked`, `value`, `selected` and `pressed` are left out when absent (was the first four); `invalid` is always written.
+- The help of `changed` and of `snapshot`'s `text` were quoted as the words that stood before 2026-10-10-driver-cli; both are restated and quoted as they now read — each names the state words and says the two limits. The crate docs gain one sentence saying the same.
+**Why:** the founder brought the three states into 0.1.0 as their own chunk (2026-10-10): a snapshot reads which control is selected, pressed or invalid from what the app states in its markup, and an agent learns the words and the limits from the tool.
+**Kept:** a boolean model, not a tri-state `pressed` or a kind on `invalid`, and no help per node key — the operator's answers at the chunk's plan forks; the per-key help is owned on the route.
+**Ref:** .andromeda/runs/2026-10-10T17-47-57-wrap/
+
+## 2026-10-10-snapshot-states — the accessibility builder reads three state attributes; the adapter's third class; a third direct engine change
+**Section:** §Standard Contracts → Mutation, query and CSSOM · §Established Decisions → Scrolling and input
+**Change:**
+- Mutation, query and CSSOM: the builder's contract named its three name sources only; it now also states three state reads on every element, whatever its role and with no role consulted, each value trimmed of ASCII whitespace and compared exactly in lower case — `aria-selected` `true` / `false` → `selected`; `aria-pressed` `true` · `false` · `mixed` → `toggled` `True` · `False` · `Mixed`; `aria-invalid` `true` · `grammar` · `spelling` → `invalid`, an absent, empty or `false` value nothing, any other value `Invalid::True`. The lower-case match is a choice: `TRUE` reads unrecognized. `aria-checked` is not read; nothing else writes `toggled`. No log site, no panic path.
+- Same contract, the shell clause: the platform adapter received "the same content classes (ids as `author_id`, accessible names)"; it now also receives a third class, states — `selected`, `toggled`, `invalid`, closed enums and booleans, never an attribute's value as typed. What an assistive technology reads of them is unmeasured; the windowed witness is owned by a route entry.
+- Established Decisions: was two direct engine changes for every document, "both flagged upstreamable"; a third stands beside them, in the builder's own file, flagged upstreamable against the same upstream `main` at 7832c177 (`accessibility.rs` +57 −1 against it, +26 −0 before), no upstream pull request open.
+**Why:** ratified by the founder (2026-10-10, by question dialog in the overseer session, relayed by the overseer; confirmed by him at this wrap's card, relayed the same way): the builder writes the three states on the node — a widening of the adapter crossing by a new author-derived class. A later attribute read keeps this shape: a closed set, no text carried out.
+**Kept:** `aria-checked` unread and no role table in the engine — the operator's answers at the chunk's plan forks; an ARIA checkbox's reading is owned on the route.
+**Ref:** .andromeda/runs/2026-10-10T17-47-57-wrap/
+
+## 2026-10-10-snapshot-states — scope rows: twelve driver-action checks, seventeen readers, a third accessibility check
+**Section:** §Conventions → Tests · §Existing Scopes → blitz-tests
+**Change:**
+- Conventions → Tests: was "the eleven driver-action checks `stand_act_*`"; now twelve.
+- blitz-tests: was "the eleven files … 37 tests and two ignored children"; now twelve files, `stand_act_states` the twelfth, 40 tests and two ignored children, the covered behaviours gaining a step that returns the node whose pressed, selected or invalid reading it changed. `mod session_common;` was read by sixteen checks, now seventeen; `mod common;` stays at 17.
+- blitz-tests, accessibility coverage: gains `accessibility_states` — the builder's three state attributes on a parsed page, every value of each grammar, on a role that supports the attribute and one that does not, `aria-checked` setting none, 4 tests in both layout modes. It runs in the workspace test leg and per package; the `a11y` CI leg stays its three named files.
+**Why:** the chunk added two check files and no manifest line; each count is a measured reading of the tree.
+**Ref:** .andromeda/runs/2026-10-10T17-47-57-wrap/

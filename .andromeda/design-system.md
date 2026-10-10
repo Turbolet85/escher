@@ -50,8 +50,8 @@
 ### Semantic Colors
 | State | Values (as declared) | Usage |
 |-------|----------------------|-------|
-| seven_guis invalid | `#e53e3e` / `#fff5f5` / `#c53030` | Invalid state (examples/seven_guis/src/tasks/flight_booker.rs:193-197; examples/seven_guis/src/tasks/flight_booker.rs:228-236) |
-| seven_guis success | `#ebf8ee` / `#68d391` / `#276749` | Success message (examples/seven_guis/src/tasks/flight_booker.rs:193-197; examples/seven_guis/src/tasks/flight_booker.rs:228-236) |
+| seven_guis invalid | `#e53e3e` / `#fff5f5` / `#c53030` | Invalid state (examples/seven_guis/src/tasks/flight_booker.rs:197-201; examples/seven_guis/src/tasks/flight_booker.rs:232-240) |
+| seven_guis success | `#ebf8ee` / `#68d391` / `#276749` | Success message (examples/seven_guis/src/tasks/flight_booker.rs:197-201; examples/seven_guis/src/tasks/flight_booker.rs:232-240) |
 | Disabled checkbox/radio | rgba 209, 209, 209, 255 | Disabled accent; otherwise the element's color stands in for accent-color per a TODO (packages/blitz-paint/src/render/form_controls.rs:21-26) |
 
 **Domain status colors** — WPT runner terminal result colors:
@@ -204,7 +204,7 @@
 **Observed values in the apps and examples:**
 - Browser z-index: tooltip, menu and suggestions 100; FPS overlay 50; status bar 10 (apps/browser/assets/browser.css:69; apps/browser/assets/browser.css:218; apps/browser/assets/browser.css:274; apps/browser/assets/browser.css:304; apps/browser/assets/browser.css:324)
 - Browser menu and suggestions share `box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15)` (apps/browser/assets/browser.css:217; apps/browser/assets/browser.css:323)
-- seven_guis cards use `0 2px 8px rgba(0, 0, 0, 0.08)`; the circle dialog uses 0.10 (examples/seven_guis/src/tasks/counter.rs:43; examples/seven_guis/src/tasks/timer.rs:76; examples/seven_guis/src/tasks/flight_booker.rs:136; examples/seven_guis/src/tasks/circle_drawer.rs:205)
+- seven_guis cards use `0 2px 8px rgba(0, 0, 0, 0.08)`; the circle dialog uses 0.10 (examples/seven_guis/src/tasks/counter.rs:43; examples/seven_guis/src/tasks/timer.rs:76; examples/seven_guis/src/tasks/flight_booker.rs:140; examples/seven_guis/src/tasks/circle_drawer.rs:205)
 - todomvc uses layered shadows on the app and footer (examples/todomvc/src/todomvc.css:48; examples/todomvc/src/todomvc.css:279)
 - wgpu_texture layers overlay z-index 10, underlay -10, header 100 (examples/wgpu_texture/src/styles.css:26; examples/wgpu_texture/src/styles.css:34; examples/wgpu_texture/src/styles.css:45); the custom-widget example stacks header 100, overlay 10, underlay -10 (examples/custom_widget.rs:195-198; examples/custom_widget.rs:201-206; examples/custom_widget.rs:213-217); the transforms example's `.overlay` uses z-index 99 (examples/transforms.rs:277-282)
 - blitz-dom default dialog backdrop `rgba(0, 0, 0, 0.1)` (packages/blitz-dom/assets/default.css:990-993)
@@ -393,7 +393,7 @@
 - `paint_bench` prints `Loaded {url} at {w}x{h}@{scale}x; running {iters} paint iterations ({backend} backend)` then one stats line per phase (examples/paint_bench.rs:113-115; examples/paint_bench.rs:34)
 - `screenshot` prints the URL, per-phase `... in {n}ms` lines, `Screenshot is ({w}x{h})` and `Written to {path}` (examples/screenshot.rs:31; examples/screenshot.rs:203; examples/screenshot.rs:146-148)
 - bump prints "Bumped anyrender versions" or "Bumped blitz versions" on success and errors to stderr (apps/bump/src/main.rs:25-31; apps/bump/src/main.rs:100; apps/bump/src/main.rs:109)
-- `escher-session`, the driver's command line (since 2026-10-10-driver-cli), is a surface an agent reads, not a person: a command prints one line of JSON on stdout — the answer, the refusal or a session error's object, keyed by the driver schema's own words — and nothing else there; a usage error prints one fixed line on stderr with stdout empty, and a session error its fixed message on stderr; it uses no colour and no colour dependency, writes no ESC byte on any answer line, and no code asks whether a stream is a terminal, so its output is the same piped or not; the exit status carries the class — `0` accepted · `1` refused · `2` usage · `3` session error (packages/escher-driver/src/cli.rs:225-253; packages/escher-driver/src/cli.rs:256-279; packages/escher-driver/src/json.rs:196-235; as measured at escher-0.1.0/chunks/2026-10-10-driver-cli/report.md — the no-ESC reading asserted on every answer line by the seven_guis checks' shared reader, the no-terminal-test reading by a search of the crate)
+- `escher-session`, the driver's command line (since 2026-10-10-driver-cli), is a surface an agent reads, not a person: a command prints one line of JSON on stdout — the answer, the refusal or a session error's object, keyed by the driver schema's own words — and nothing else there; a usage error prints one fixed line on stderr with stdout empty, and a session error its fixed message on stderr; it uses no colour and no colour dependency, writes no ESC byte on any answer line, and no code asks whether a stream is a terminal, so its output is the same piped or not; the exit status carries the class — `0` accepted · `1` refused · `2` usage · `3` session error (packages/escher-driver/src/cli.rs:225-253; packages/escher-driver/src/cli.rs:256-279; packages/escher-driver/src/json.rs:209-248; as measured at escher-0.1.0/chunks/2026-10-10-driver-cli/report.md — the no-ESC reading asserted on every answer line by the seven_guis checks' shared reader, the no-terminal-test reading by a search of the crate)
 
 ### Navigation Pattern
 > NOT YET MEASURED — no slice recorded argument parsing or command structure for the CLI binaries.

@@ -237,3 +237,14 @@ One entry per amendment to `obs-plan.md` (sidecar-contract.md §Entry form). App
 **Change:** the census of checks that install no subscriber gains the engine's three scrolled-box checks — `scrolled_box_client_rect`, `hit_clipped_at_scrolling_box` and `scrolled_box_absolute_position` — none of which reads an env var or declares a shared module. No count in the bullet moves: 15 readers of `common/mod.rs`, five `stand_session_*`, eleven `stand_act_*`, sixteen of the seventeen session-holding checks.
 **Why:** three new check files landed and the bullet names its members. The chunk added no log site: the engine's added lines hold no `tracing` call, print or panic, and the command span keeps its eight fields.
 **Ref:** .andromeda/runs/2026-10-10T15-29-49-wrap/
+
+## 2026-10-10-snapshot-states — the no-subscriber census: twelve driver-action checks, one more engine check, 17 readers
+**Section:** §3 Observability Harness Contract → Logging stack (the headless-stand bullet)
+**Change:**
+- Was "the eleven driver-action checks `stand_act_*`"; now twelve, `stand_act_states` the twelfth.
+- The census gains the engine's state check `accessibility_states`: no env read, no print, no shared module.
+- Was "the module sixteen of the seventeen checks that hold a session read"; now seventeen of the eighteen.
+- Was "15 of which read the shared module `tests/blitz-tests/tests/common/mod.rs`"; now 17 — the count was wrong before this chunk, which added no reader of it.
+- The two restatements of what an answer and an `Outcome`'s `Debug` hold gain the three state readings, as closed words and booleans; neither is a log line and nothing logs or fields one.
+**Why:** two check files were added, neither installing a subscriber; the 15 was disproved by a count at the chunk's base and now. No log site was added, the command span keeps its eight fields, and the host-log figures did not move.
+**Ref:** .andromeda/runs/2026-10-10T17-47-57-wrap/
