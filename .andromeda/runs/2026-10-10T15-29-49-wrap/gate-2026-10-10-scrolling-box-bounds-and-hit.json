@@ -1,0 +1,847 @@
+[
+{
+"tool": "gate",
+"v": "1.14",
+"sha8": "e8e4a72c",
+"ts": "2026-10-10T15:30:03Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit",
+"--run-dir",
+".andromeda/runs/2026-10-10T15-29-49-wrap",
+"--marker",
+"2026-10-10-scrolling-box-bounds-and-hit"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 1b195c9a (the parent of the oldest pre-CI commit 5cc38cba) · lists new 4 · modify 11 · derived 0 · record 1",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"recorded companion tests/blitz-tests/tests/stand_actionable_keys.rs",
+"list escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/evidence/ (dir) ×0",
+"scope: clean — changed 15 · listed 14 · recorded 1 (companion 1 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 56"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "1b195c9a94723fa6a24ec32c105aec0157583608",
+"base_why": "the parent of the oldest pre-CI commit 5cc38cba",
+"counts": {
+"changed": 15,
+"listed": 14,
+"recorded": 1,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 1,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 56,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.14",
+"sha8": "e8e4a72c",
+"ts": "2026-10-10T15:37:31Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit",
+"--run-dir",
+".andromeda/runs/2026-10-10T15-29-49-wrap",
+"--marker",
+"2026-10-10-scrolling-box-bounds-and-hit"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 1b195c9a (the parent of the oldest pre-CI commit 5cc38cba) · lists new 4 · modify 11 · derived 0 · record 1",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"recorded companion tests/blitz-tests/tests/stand_actionable_keys.rs",
+"list escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/evidence/ (dir) ×0",
+"scope: clean — changed 15 · listed 14 · recorded 1 (companion 1 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 64"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "1b195c9a94723fa6a24ec32c105aec0157583608",
+"base_why": "the parent of the oldest pre-CI commit 5cc38cba",
+"counts": {
+"changed": 15,
+"listed": 14,
+"recorded": 1,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 1,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 64,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.14",
+"sha8": "e8e4a72c",
+"ts": "2026-10-10T16:08:36Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-10T15-29-49-wrap",
+"--marker",
+"2026-10-10-scrolling-box-bounds-and-hit"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-10-scrolling-box-bounds-and-hit · entries 24",
+"logs $TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49 · bound: GNU timeout",
+"delta docs 61 · python 1 · unmapped 4",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L253-259: No entry is a live leg: every check boots what it reads in process, so there is no livenes… (785 chars)",
+"prose L261-270: **The conformance reading has no listed entry, by construction** (steps 4 and 10; `inputs#… (1121 chars)",
+"prose L272-275: `evidence/controls.md` has no listed producer either, by construction: it is implement's r… (366 chars)",
+"  1 unit        green · exit 0 · 0.46s · 4140 B → 1.log · cargo test -p escher-driver --locked",
+"  2 integration green · exit 0 · 2.5s · 2116 B → 2.log · cargo test -p blitz-tests --locked --test scrolled_box_cli… (140 chars)",
+"  3 integration green · exit 0 · 4.77s · 3360 B → 3.log · cargo test --workspace --locked --test scrolled_box_client… (189 chars)",
+"  4 integration green · exit 0 · 3.91s · 1853 B → 4.log · cargo test -p blitz-tests --locked --test stand_act_disabl… (112 chars)",
+"  5 integration green · exit 0 · 14.51s · 2721 B → 5.log · cargo test -p blitz-tests --locked --test stand_act_ids --… (170 chars)",
+"  6 integration green · exit 0 · 1.83s · 792 B → 6.log · cargo test -p blitz-tests --locked --test stand_act_spans",
+"  7 integration green · exit 0 · 7.11s · 7112 B → 7.log · cargo test -p blitz-tests --locked --test scroll_into_view… (350 chars)",
+"  8 integration green · exit 0 · 2.68s · 3169 B → 8.log · cargo test -p blitz-vibey-script --locked",
+"  9 integration green · exit 0 · 3.24s · 1232 B → 9.log · cargo test -p seven_guis --locked --test cli_commands",
+" 10 integration green · exit 0 · 1.18s · 889 B → 10.log · cargo test -p seven_guis --locked --test cli_flow",
+" 11 integration green · exit 0 · 1.2s · 806 B → 11.log · cargo test -p seven_guis --locked --test host_log",
+" 12 integration green · exit 0 · 3.34s · 417 B → 12.log · cargo test --workspace --locked --test host_log",
+" 13 probe       green · exit 1 · 0.0s · 0 B → 13.log · grep -r -n -E \"scrolled out of a scrolling box|shifted by … (107 chars)",
+" 14 probe       green · exit 1 · 0.01s · 2 B → 14.log · git diff -U0 1b195c9a94723fa6a24ec32c105aec0157583608 -- p… (181 chars)",
+" 15 probe       green · exit 1 · 0.01s · 2 B → 15.log · git diff 1b195c9a94723fa6a24ec32c105aec0157583608 -- packa… (241 chars)",
+" 16 probe       green · exit 0 · 0.01s · 0 B → 16.log · git diff --quiet 1b195c9a94723fa6a24ec32c105aec0157583608 … (770 chars)",
+" 17 build       green · exit 0 · 37.33s · 137 B → 17.log · bash scripts/agent-run.sh boot",
+" 18 integration green · exit 0 · 26.7s · 16078 B → 18.log · bash scripts/agent-run.sh run stand",
+" 19 lint        green · exit 0 · 98.86s · 82631 B → 19.log · bash .github/scripts/ci-leg.sh fast",
+" 20 lint        green · exit 0 · 0.42s · 177 B → 20.log · bash .github/scripts/ci-leg.sh doc",
+" 21 integration green · exit 0 · 2.55s · 1597 B → 21.log · bash .github/scripts/ci-leg.sh a11y",
+" 22 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 23 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 24 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 24 · green 21 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-10-scrolling-box-bounds-and-hit",
+"plan": "./escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49",
+"delta": {
+"docs": [
+".andromeda/a11y-plan-amendments.md",
+".andromeda/a11y-plan.md",
+".andromeda/architecture-amendments.md",
+".andromeda/architecture.md",
+".andromeda/design-system-amendments.md",
+".andromeda/design-system.md",
+".andromeda/friction-log.ndjson",
+".andromeda/layout-templates-amendments.md",
+".andromeda/layout-templates.md",
+".andromeda/obs-plan-amendments.md",
+".andromeda/obs-plan.md",
+".andromeda/security-plan-amendments.md",
+".andromeda/security-plan.md",
+".andromeda/state.yaml",
+".andromeda/test-plan-amendments.md",
+".andromeda/test-plan.md",
+".claude/docs/commands.md",
+".claude/docs/obs-summary.md",
+".claude/docs/services/blitz-dom.md",
+".claude/docs/services/blitz-test-harness.md",
+".claude/docs/services/dioxus-native-dom.md",
+".claude/docs/services/escher-driver.md",
+".claude/docs/services/seven_guis.md",
+".claude/docs/tests-summary.md",
+".claude/session-handoff.md",
+"CLAUDE.md",
+"escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/evidence/operator-pass.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/.raw-fanout-a11y-plan.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/.raw-fanout-design-system.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/a11y-plan-contracts.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/a11y-plan-entry.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/adaptation-record.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/add-snapshot-states.json",
+".andromeda/runs/2026-10-10T15-29-49-wrap/architecture-entry-1.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/architecture-entry-2.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/cascade-2026-10-10-scrolling-box-bounds-and-hit.json",
+".andromeda/runs/2026-10-10T15-29-49-wrap/cascade-dispositions.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/cascade-patterns.toml",
+".andromeda/runs/2026-10-10T15-29-49-wrap/citation-dispositions.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/cites-2026-10-10-scrolling-box-bounds-and-hit.json",
+".andromeda/runs/2026-10-10T15-29-49-wrap/design-system-entry.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/evolve-2026-10-10-scrolling-box-bounds-and-hit.json",
+".andromeda/runs/2026-10-10T15-29-49-wrap/fanout-results.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/gate-2026-10-10-scrolling-box-bounds-and-hit.json",
+".andromeda/runs/2026-10-10T15-29-49-wrap/inputs-2026-10-10-scrolling-box-bounds-and-hit.json",
+".andromeda/runs/2026-10-10T15-29-49-wrap/layout-templates-entry.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/matrix-2026-10-10-scrolling-box-bounds-and-hit.json",
+".andromeda/runs/2026-10-10T15-29-49-wrap/new-text.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/note-v010-17.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/obs-plan-contracts.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/obs-plan-entry.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/registry-2026-10-10-scrolling-box-bounds-and-hit.json",
+".andromeda/runs/2026-10-10T15-29-49-wrap/relay-1.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/route-no-marker.json",
+".andromeda/runs/2026-10-10T15-29-49-wrap/security-plan-entry.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/splice-2026-10-10-scrolling-box-bounds-and-hit.json",
+".andromeda/runs/2026-10-10T15-29-49-wrap/test-plan-contracts.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/test-plan-entry-1.md",
+".andromeda/runs/2026-10-10T15-29-49-wrap/test-plan-entry-2.md",
+"escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/report.md"
+],
+"python": [
+"escher-0.1.0/requirements.md"
+]
+},
+"unmapped": [
+"escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/inputs/andromeda-inputs.json",
+"escher-0.1.0/verification-matrix.json",
+"escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/inputs/I6-snapshot-states-route-adaptation.md.txt",
+"escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/inputs/I7-relay-1.md.txt"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 66,
+"problem": null
+},
+"prose": [
+{
+"from": 253,
+"to": 259,
+"text": "No entry is a live leg: every check boots what it reads in process, so there is no liveness probe and no `stop` key. No boot path is edited — the `escher-session` binary's `main`, the windowed stand's `main` and the sink are untouched — so no boot smoke is listed beyond the standing hosted checks, which read what a call answers. The project has no headful self-verify harness and this chunk changes no screen. No dependency enters and no manifest changes, which the preservation entry holds; the audit leg is therefore not listed. **Not run locally:** the MSRV build and the windows, macos, ios and android matrix legs — the fork's CI run is their one witness, read after the operator pass; the three new check files carry no `cfg(unix)` gate, so the windows and macos jobs run them."
+},
+{
+"from": 261,
+"to": 270,
+"text": "**The conformance reading has no listed entry, by construction** (steps 4 and 10; `inputs#I4`). It is report-only and grades no criterion; it is a before and an after around steps 5 and 6, and the wrap's light gate re-runs entries verbatim against a tree that no longer has a \"before\"; and it is bounded, so it may end as \"not taken, cost measured\". Its readings are `evidence/conformance.md`, written by implement. The fact it rests on, read at P4 with no clone and no build: the runner has no mode without a script engine — `blitz-vibey-script` is an unconditional dependency of it (`wpt/runner/Cargo.toml:17`) and a test that loads `/resources/testharness.js` is run by executing its JavaScript through that crate (`wpt/runner/src/test_runners/harness_test.rs:1-3`; classified at `test_runners/mod.rs:325-327`) — and a suite is any path under the checkout (`wpt/runner/src/main.rs:239-244`). This host held no checkout at P3 (`WPT_DIR` unset; none at `$HOME/dev/*/wpt`, `$HOME/dev/projects/wpt`, `$HOME/wpt`) and the fork's CI runs no WPT job, so the cost of the fetch and of the release build is what step 4 measures."
+},
+{
+"from": 272,
+"to": 275,
+"text": "`evidence/controls.md` has no listed producer either, by construction: it is implement's record of step 9's one-shot readings — the red readings on the engine as built, which no entry can re-produce once the tree has moved, and the mutation controls; what it records is asserted by listed entries (the three new check files and the restated pair, under both builds)."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked",
+"run_sha8": "5f0bb953",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/1.log",
+"bytes": 4140,
+"log_sha8": "efe3561c",
+"exit": 0,
+"seconds": 0.46,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test scrolled_box_client_rect --test hit_clipped_at_scrolling_box --test scrolled_box_absolute_position",
+"run_sha8": "551f66c7",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/2.log",
+"bytes": 2116,
+"log_sha8": "e282fcbf",
+"exit": 0,
+"seconds": 2.5,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test --workspace --locked --test scrolled_box_client_rect --test hit_clipped_at_scrolling_box --test scrolled_box_absolute_position --test stand_act_scroll --test stand_act_obstructed",
+"run_sha8": "12721509",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/3.log",
+"bytes": 3360,
+"log_sha8": "b1af47e3",
+"exit": 0,
+"seconds": 4.77,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_act_disabled --test stand_act_obstructed --test stand_act_scroll",
+"run_sha8": "f28f01a4",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/4.log",
+"bytes": 1853,
+"log_sha8": "692764ce",
+"exit": 0,
+"seconds": 3.91,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_act_ids --test stand_act_diff --test stand_act_timer --test stand_act_refused --test stand_act_keys --test stand_act_range",
+"run_sha8": "3661a468",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/5.log",
+"bytes": 2721,
+"log_sha8": "f40d9792",
+"exit": 0,
+"seconds": 14.51,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_act_spans",
+"run_sha8": "d7cc0359",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/6.log",
+"bytes": 792,
+"log_sha8": "b6df5d4d",
+"exit": 0,
+"seconds": 1.83,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test scroll_into_view_nested --test inline_fragment_rects --test scrollbars --test scrollbar_drag --test fragment_navigation --test paint_order --test touch_action --test text_selection_anonymous_block --test stale_dirty_descendants --test stand_snapshot --test stand_snapshot_state --test stand_accessibility_ids",
+"run_sha8": "c656fdf4",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/7.log",
+"bytes": 7112,
+"log_sha8": "f3813397",
+"exit": 0,
+"seconds": 7.11,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "cargo test -p blitz-vibey-script --locked",
+"run_sha8": "e9fdbef1",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/8.log",
+"bytes": 3169,
+"log_sha8": "0359569e",
+"exit": 0,
+"seconds": 2.68,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test cli_commands",
+"run_sha8": "029abbd6",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/9.log",
+"bytes": 1232,
+"log_sha8": "e7f15e58",
+"exit": 0,
+"seconds": 3.24,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test cli_flow",
+"run_sha8": "7d9e9f1b",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/10.log",
+"bytes": 889,
+"log_sha8": "9359c3ab",
+"exit": 0,
+"seconds": 1.18,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test host_log",
+"run_sha8": "a495edfe",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/11.log",
+"bytes": 806,
+"log_sha8": "126fdbd0",
+"exit": 0,
+"seconds": 1.2,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "cargo test --workspace --locked --test host_log",
+"run_sha8": "b377d1ff",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/12.log",
+"bytes": 417,
+"log_sha8": "2f038a86",
+"exit": 0,
+"seconds": 3.34,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "grep -r -n -E \"scrolled out of a scrolling box|shifted by its own scroll offset\" packages/escher-driver/src",
+"run_sha8": "1bda080f",
+"expect": [
+"exit 1",
+"no output"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/13.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"no output ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "git diff -U0 1b195c9a94723fa6a24ec32c105aec0157583608 -- packages/escher-driver/src/execute.rs | grep -E '^[-+]' | grep -v -E '^(---|\\+\\+\\+)' | grep -c -v -E '^[-+][[:space:]]*///' ",
+"run_sha8": "697f6e55",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/14.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "git diff 1b195c9a94723fa6a24ec32c105aec0157583608 -- packages/blitz-dom/src | grep -E '^\\+' | grep -v -E '^\\+\\+\\+' | grep -c -E 'println!|eprintln!|dbg!|tracing::|\\.unwrap\\(\\)|\\.expect\\(|panic!|unreachable!|layout_data\\(\\)|layout_style\\(\\)' ",
+"run_sha8": "e8333bca",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/15.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "git diff --quiet 1b195c9a94723fa6a24ec32c105aec0157583608 -- Cargo.toml Cargo.lock deny.toml packages/blitz-dom/Cargo.toml packages/escher-driver/Cargo.toml tests/blitz-tests/Cargo.toml examples/seven_guis packages/dioxus-native-dom packages/blitz-test-harness packages/blitz-paint packages/blitz-vibey-script packages/escher-telemetry packages/escher-driver/src/session.rs packages/escher-driver/src/command.rs packages/escher-driver/src/cli.rs packages/escher-driver/src/host.rs packages/escher-driver/src/client.rs packages/escher-driver/src/wire.rs packages/escher-driver/src/error.rs packages/blitz-dom/src/accessibility.rs packages/blitz-dom/src/events tests/blitz-tests/tests/common tests/blitz-tests/tests/session_common wpt/runner wpt/WPT_COMMIT scripts .github",
+"run_sha8": "dfe8edc4",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/16.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 17,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/17.log",
+"bytes": 137,
+"log_sha8": "62ec26cf",
+"exit": 0,
+"seconds": 37.33,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 18,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/18.log",
+"bytes": 16078,
+"log_sha8": "e193f65d",
+"exit": 0,
+"seconds": 26.7,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 19,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/19.log",
+"bytes": 82631,
+"log_sha8": "14e7c73e",
+"exit": 0,
+"seconds": 98.86,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 20,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/20.log",
+"bytes": 177,
+"log_sha8": "6765d251",
+"exit": 0,
+"seconds": 0.42,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 21,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-10-scrolling-box-bounds-and-hit/wrap-2026-10-10T15-29-49/21.log",
+"bytes": 1597,
+"log_sha8": "02314c91",
+"exit": 0,
+"seconds": 2.55,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 22,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 23,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 24,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.14",
+"sha8": "e8e4a72c",
+"ts": "2026-10-10T16:08:48Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-10-10T15-29-49-wrap",
+"--marker",
+"2026-10-10-scrolling-box-bounds-and-hit"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base 1b195c9a (the parent of the oldest pre-CI commit 5cc38cba)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 82 (runs 69 · evidence 4 · inputs 9) · trails 22 not read · copies 7 not read by P1 — 1 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 69,
+"evidence": 4,
+"inputs": 9,
+"trails": 22,
+"copies": 7,
+"kept": 1,
+"binary": 0,
+"in_root": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.14",
+"sha8": "e8e4a72c",
+"ts": "2026-10-10T16:08:53Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit",
+"--run-dir",
+".andromeda/runs/2026-10-10T15-29-49-wrap",
+"--marker",
+"2026-10-10-scrolling-box-bounds-and-hit"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 1b195c9a (the parent of the oldest pre-CI commit 5cc38cba) · lists new 4 · modify 11 · derived 0 · record 1",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"recorded companion tests/blitz-tests/tests/stand_actionable_keys.rs",
+"list escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/evidence/ (dir) ×0",
+"scope: clean — changed 15 · listed 14 · recorded 1 (companion 1 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 117"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "1b195c9a94723fa6a24ec32c105aec0157583608",
+"base_why": "the parent of the oldest pre-CI commit 5cc38cba",
+"counts": {
+"changed": 15,
+"listed": 14,
+"recorded": 1,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 1,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 117,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

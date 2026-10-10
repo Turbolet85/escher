@@ -86,3 +86,9 @@ One entry per amendment to `design-system.md` (sidecar-contract.md §Entry form)
 **Why:** the surface's reader is an agent, so its form is the schema's words, uncoloured (the founder's answers on the shape of stdout and on exit codes, 2026-10-10, relayed by the overseer). No detector covers an output form; the amendment was raised from the plan's reviewed list.
 **Kept:** the WPT runner's colours and the surface's two NOT YET MEASURED sections stand as they were.
 **Ref:** .andromeda/runs/2026-10-10T10-03-00-wrap/
+
+## 2026-10-10-scrolling-box-bounds-and-hit — the hit walk's edge rule
+**Section:** §Depth Strategy → Engine depth behavior
+**Change:** the hit-testing sentence, which stated the walk's order only (positive-z hoisted children, paint children in reverse, negative-z hoisted children), now also says where the walk stops: at the padding box of a node that clips by `overflow`, the root element excepted — a point outside that box reaches none of the node's hoisted children, paint children or inline content, as paint clips them, and the node itself is still answered inside its border box.
+**Why:** the engine's hit was fixed to stop where paint clips by `overflow`; until then a hit reached content scrolled out of its box. The order inside the box is unchanged.
+**Ref:** .andromeda/runs/2026-10-10T15-29-49-wrap/

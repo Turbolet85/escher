@@ -231,3 +231,9 @@ One entry per amendment to `obs-plan.md` (sidecar-contract.md §Entry form). App
 - §9: the checks' session state directories are `ss-life`, `ss-idle`, `ss-quiet`, `hb-*`, `hl-trace`, `cc-*`, `cf-*`, `ht-timer`, and one is empty after `stop` or after the host's idle expiry.
 **Why:** the proof the sink fix has owed since 2026-10-07 — a typed sentinel read absent from a sink-installing host's log — became possible when a command first typed into that host's instance. The earlier in-process reading and the host's no-call reading stand as history beside it. The hypothesis that the workspace-built host prints engine lines at `trace` reads false as stated: one engine line, at INFO.
 **Ref:** .andromeda/runs/2026-10-10T10-03-00-wrap/
+
+## 2026-10-10-scrolling-box-bounds-and-hit — three engine checks join the no-subscriber census
+**Section:** §3 Observability Harness Contract → Logging stack (the headless-stand bullet)
+**Change:** the census of checks that install no subscriber gains the engine's three scrolled-box checks — `scrolled_box_client_rect`, `hit_clipped_at_scrolling_box` and `scrolled_box_absolute_position` — none of which reads an env var or declares a shared module. No count in the bullet moves: 15 readers of `common/mod.rs`, five `stand_session_*`, eleven `stand_act_*`, sixteen of the seventeen session-holding checks.
+**Why:** three new check files landed and the bullet names its members. The chunk added no log site: the engine's added lines hold no `tracing` call, print or panic, and the command span keeps its eight fields.
+**Ref:** .andromeda/runs/2026-10-10T15-29-49-wrap/

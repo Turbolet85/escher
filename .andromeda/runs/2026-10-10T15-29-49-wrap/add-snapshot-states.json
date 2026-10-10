@@ -1,0 +1,7 @@
+{
+  "title": "Snapshot selection, toggle and validity states",
+  "requirement": "snapshot state also reflects selected, pressed and invalid; the active flight mode, the selected row and an invalid date each read so on the stand",
+  "observed_gap": "a fresh agent could not read which flight mode is active, which CRUD row is selected or that a date is invalid, and inferred each from a side effect, in 2 of 3 tasks of the first live trial",
+  "method": "integration",
+  "acceptance": "On the stand, in both layout modes and through real input, a snapshot names the active flight mode as pressed and the other as not, the selected CRUD row as selected and no other row, and an invalid date as invalid and a valid one as not; each reading follows the app's state when it changes, and the step that changes it returns that node in its diff."
+}

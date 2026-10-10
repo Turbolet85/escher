@@ -20,3 +20,4 @@ beside it where the tasks lack the case (intent §Principles).*
 - v010-14 · Self-describing API — one consistent verb set, with help and schemas served by the tool itself, and every refusal naming its remedy (per intent §9)
 - v010-15 · Cold-agent test — a fresh agent given only the tool completes a stand task and writes a passing check, with its wrong calls counted (per intent §9; covers v010-01…v010-14 end to end; the count is 0.1.0's baseline, a bar on it starts in 0.2.0)
 - v010-16 · Id stability across code edits — an element's id stays the same when the app's code is edited around it, not only across a re-render, a remount and a fresh process (per intent §1)
+- v010-17 · Snapshot selection, toggle and validity states — snapshot state also reflects selected, pressed and invalid; the active flight mode, the selected row and an invalid date each read so on the stand (per the founder's ruling 2026-10-10)

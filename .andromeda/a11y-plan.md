@@ -152,6 +152,7 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 **Focus restoration:**
 - Removing the focused node resets focus to the body (encoded as `None`) and runs blur side effects (packages/blitz-dom/src/document.rs:907-909; packages/blitz-dom/src/document.rs:925-929); removing a focused text input runs blur side-effects and disables IME (tests/blitz-tests/tests/interaction_state_teardown.rs:189-217)
 - Clicking a non-interactive area clears focus (packages/blitz-dom/src/events/pointer.rs:814-817)
+- A pointer click on a plain `button` leaves no element focused: after an accepted driver `click` on one, no node reads `focused` in the snapshot and the accessibility tree's focus carries no author id, in both layout modes and under both builds (as measured at escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/report.md, the restated `stand_act_obstructed`); whether a click should focus the button is owned by a route entry
 - Activating the first `summary` of a `details` toggles it open and focuses the summary (packages/blitz-dom/src/events/pointer.rs:696-722)
 - Checkbox and radio clicks toggle state, dispatch `input` and move focus to the control (packages/blitz-dom/src/events/pointer.rs:645-695); clicking a checkbox focuses it (tests/blitz-tests/tests/harness_smoke.rs:33-44)
 
@@ -161,7 +162,7 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 - The action modifier plus C copies selected text when no text input is focused (packages/blitz-dom/src/events/keyboard.rs:43-61)
 - A text input's generated submit triggers implicit form submission unless the form has more than one blocking field type (packages/blitz-dom/src/events/keyboard.rs:131-134; packages/blitz-dom/src/events/keyboard.rs:139-175)
 - Clicking a label runs the default click of its bound input (packages/blitz-dom/src/events/pointer.rs:723-734)
-- `synthetic_click_event` builds a primary mouse click at the node's center (packages/blitz-dom/src/node/node.rs:1866-1896)
+- `synthetic_click_event` builds a primary mouse click at the node's center (packages/blitz-dom/src/node/node.rs:1899-1929)
 - winit key events are converted to keyboard-types Key, Code, Location and Modifiers, with is_composing always false (packages/blitz-shell/src/convert_events.rs:52-69; packages/blitz-shell/src/convert_events.rs:151-175)
 - Every key press and release is dispatched as KeyDown or KeyUp after shell shortcuts are checked (packages/blitz-shell/src/window.rs:689-697)
 - macOS standard key bindings are forwarded as `AppleStandardKeybinding` UI events (packages/blitz-shell/src/application.rs:189-202; packages/blitz-shell/src/window.rs:577-582; packages/blitz-traits/src/events.rs:71; packages/blitz-traits/src/events.rs:155)
@@ -251,8 +252,8 @@ Contracts: .andromeda/registries/a11y-plan-contracts.toml — ask registry.py co
 
 **Visibility and hit-testing:**
 - Nodes with `display: none` or `visibility: hidden`, and their descendants, are excluded from the accessibility tree (packages/blitz-dom/src/accessibility.rs:12-21; packages/blitz-dom/src/accessibility.rs:112-124)
-- Elements with `visibility: hidden` or `collapse` are never hit-test targets (packages/blitz-dom/src/node/node.rs:1360-1368)
-- `pointer-events: none` makes an element transparent to hits while its descendants are still tested (packages/blitz-dom/src/node/node.rs:1370-1374; packages/blitz-dom/src/node/node.rs:1532-1540)
+- Elements with `visibility: hidden` or `collapse` are never hit-test targets (packages/blitz-dom/src/node/node.rs:1361-1369)
+- `pointer-events: none` makes an element transparent to hits while its descendants are still tested (packages/blitz-dom/src/node/node.rs:1371-1375; packages/blitz-dom/src/node/node.rs:1565-1573)
 - `scrollbar-width: none` suppresses overlay scrollbars (packages/blitz-dom/src/node/scrollbar.rs:76-87); a test asserts it paints no scrollbar (tests/blitz-tests/tests/scrollbars.rs:162-175)
 - Devtools layout outlines and hover/node highlight overlays exist as settings (packages/blitz-traits/src/devtools.rs:5-34)
 

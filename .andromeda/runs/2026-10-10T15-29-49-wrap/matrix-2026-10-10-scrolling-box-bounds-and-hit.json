@@ -1,0 +1,189 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "a0f3749c",
+"ts": "2026-10-10T15:59:46Z",
+"argv": [
+"add",
+"--dir",
+"escher-0.1.0",
+"--payload-file",
+".andromeda/runs/2026-10-10T15-29-49-wrap/add-snapshot-states.json",
+"--dry-run",
+"--marker",
+"2026-10-10-scrolling-box-bounds-and-hit",
+"--run-dir",
+".andromeda/runs/2026-10-10T15-29-49-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"add v010-17 · planned · chunk null · ref null · method integration",
+"title: Snapshot selection, toggle and validity states",
+"requirement: snapshot state also reflects selected, pressed and invalid; the active flight mode, the se… (146 chars)",
+"observed_gap: a fresh agent could not read which flight mode is active, which CRUD row is selected or th… (189 chars)",
+"acceptance: On the stand, in both layout modes and through real input, a snapshot names the active fli… (352 chars)",
+"requirements.md: 16 capability lines · `- **id** · ` 0 · `- id · ` 16",
+"(dry-run) requirements.md carries no line for v010-17 — the id is assigned there first (contract §ID scheme) — the write refuses until one line stands",
+"dry-run: nothing written",
+"pool: unclaimed 6 [v010-07 v010-08 v010-13 v010-14 v010-15 v010-17]",
+"version: verified 11/17"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": {
+"id": "v010-17",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, in both layout modes and through real input, a snapshot names the active flight mode as pressed and the ot… (352 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "a0f3749c",
+"ts": "2026-10-10T16:02:30Z",
+"argv": [
+"add",
+"--dir",
+"escher-0.1.0",
+"--payload-file",
+".andromeda/runs/2026-10-10T15-29-49-wrap/add-snapshot-states.json",
+"--marker",
+"2026-10-10-scrolling-box-bounds-and-hit",
+"--run-dir",
+".andromeda/runs/2026-10-10T15-29-49-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"add v010-17 · planned · chunk null · ref null · method integration",
+"title: Snapshot selection, toggle and validity states",
+"requirement: snapshot state also reflects selected, pressed and invalid; the active flight mode, the se… (146 chars)",
+"observed_gap: a fresh agent could not read which flight mode is active, which CRUD row is selected or th… (189 chars)",
+"acceptance: On the stand, in both layout modes and through real input, a snapshot names the active fli… (352 chars)",
+"requirements.md: 17 capability lines · `- **id** · ` 0 · `- id · ` 17",
+"requirements.md: line 23 carries v010-17",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 6 [v010-07 v010-08 v010-13 v010-14 v010-15 v010-17]",
+"version: verified 11/17"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": null,
+"after": {
+"id": "v010-17",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, in both layout modes and through real input, a snapshot names the active flight mode as pressed and the ot… (352 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "a0f3749c",
+"ts": "2026-10-10T16:02:30Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-17",
+"--text-file",
+".andromeda/runs/2026-10-10T15-29-49-wrap/note-v010-17.md",
+"--run-dir",
+".andromeda/runs/2026-10-10T15-29-49-wrap",
+"--marker",
+"2026-10-10-scrolling-box-bounds-and-hit"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v010-17: +815 chars (total 815) · status planned · ref/acceptance untouched",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-17",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, in both layout modes and through real input, a snapshot names the active flight mode as pressed and the ot… (352 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v010-17",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, in both layout modes and through real input, a snapshot names the active flight mode as pressed and the ot… (352 chars)",
+"notes_chars": 815
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "a0f3749c",
+"ts": "2026-10-10T16:08:48Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-10-scrolling-box-bounds-and-hit",
+"--run-dir",
+".andromeda/runs/2026-10-10T15-29-49-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed 0 — gate no-op (no entry carries chunk 2026-10-10-scrolling-box-bounds-and-hit)",
+"pool: unclaimed 6 [v010-07 v010-08 v010-13 v010-14 v010-15 v010-17]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "a0f3749c",
+"ts": "2026-10-10T16:08:48Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-10-scrolling-box-bounds-and-hit",
+"--run-dir",
+".andromeda/runs/2026-10-10T15-29-49-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed 0 — gate no-op (no entry carries chunk 2026-10-10-scrolling-box-bounds-and-hit)",
+"pool: unclaimed 6 [v010-07 v010-08 v010-13 v010-14 v010-15 v010-17]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

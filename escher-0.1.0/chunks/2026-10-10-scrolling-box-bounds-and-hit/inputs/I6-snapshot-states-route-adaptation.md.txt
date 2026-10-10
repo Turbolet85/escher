@@ -1,0 +1,47 @@
+# Route adaptation — the states a snapshot does not read come into 0.1.0 as their own entry (2026-10-10)
+
+For the route-resolve of the wrap that closes `2026-10-10-scrolling-box-bounds-and-hit`.
+
+## Context correction
+
+The second 0-pending wrap of 2026-10-10 (`1b195c9a`) pinned a CARRY on "Stand requirement sweep": the states a
+snapshot does not read — selected, pressed, invalid, clickable rows — measured there first, "and the choice is then
+put to the founder". The choice has been put to him and he has made it; that CARRY's last clause is overtaken.
+
+## The founder's ruling
+
+Asked on 2026-10-10, by question dialog in the overseer session, whether those states belong in 0.1.0 — three
+options put to him whole: in 0.1.0 as their own chunk · measured at "Stand requirement sweep" and decided then · a
+residual for 0.2.0 — the founder chose «В 0.1.0, отдельным чанком». That label is the overseer's Russian wording for
+"in 0.1.0, as a separate chunk"; the ruling is his, relayed by the overseer. It widens the version's scope by his
+own word.
+
+The option as it was read to him: a new route entry in Epoch 5, after "Scrolling-box bounds and hit" and before "MCP
+surface"; the engine reads `aria-selected`, `aria-pressed` (or `aria-checked` for toggles) and `aria-invalid`; a
+snapshot carries the three states; the stand's tasks state them; checks in both layout modes; v010-05's wording
+widens or a new requirement appears.
+
+What was put to him as measured: the first agent trial inferred the active flight mode, the selected CRUD row and
+an invalid date from side effects, in 2 of 3 tasks; the engine's accessibility builder reads only `aria-label` and
+`aria-hidden` (`packages/blitz-dom/src/accessibility.rs:90`, `:97`, read by the operator); the stand marks the three
+by CSS class only (`flight_booker.rs:69`, `:75`, `crud.rs:70`). Read from the code, not measured on a running
+snapshot. The reasoning put to him: his own frontends are escher's first real users, and selection, toggles and
+validation are in any real interface; MCP's tools and the served help then describe the full state set from the start.
+
+## Adaptation items — for your route-resolve dialogue
+
+1. A new markerless entry that brings the three states to a snapshot. Its name and its one line are the dialogue's.
+2. How the requirement side carries it — v010-05's wording widened, or a new requirement — is the dialogue's to
+   propose from how this project's requirements and matrix are amended; say which, and what it needs from the operator.
+3. The "Stand requirement sweep" CARRY for these states: what of it moves to the new entry, and what stays (the
+   "clickable rows" question is the same missing-state question as the selected row — or it is not; say which).
+4. The diff-noise CARRY on "Self-description" is untouched by this ruling; it is listed only so it is not moved by
+   accident.
+
+## Anchors — what stays
+
+- The new entry sits directly ahead of "MCP surface". If the wrap's own route-resolve places the second reader's fix
+  (`Node::absolute_position`) as an entry too, the order between those two is the dialogue's, both ahead of "MCP surface".
+- "MCP surface", "Self-description" and "Headless screenshot" keep their order after them; Epoch 6 keeps its order.
+- The engine change is direct, in the accessibility builder's own file; both are flagged upstreamable, and no
+  upstream pull request is opened until DioxusLabs/blitz#1083 gets a reaction.

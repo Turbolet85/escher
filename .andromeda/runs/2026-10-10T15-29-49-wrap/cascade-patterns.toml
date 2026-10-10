@@ -1,0 +1,65 @@
+# The claims this pass retired, by wording and by mechanism. Every pattern is controlled on the pre-pass masters.
+
+[[pattern]]
+id = "shifted"
+regex = 'shifted'
+ignore_case = true
+
+[[pattern]]
+id = "own-offset"
+regex = 'own (scroll )?offset'
+ignore_case = true
+
+[[pattern]]
+id = "scrolled-out"
+regex = 'scrolled[- ]out'
+ignore_case = true
+
+[[pattern]]
+id = "pinned-as"
+regex = 'pinned as (it|they) read'
+ignore_case = true
+
+[[pattern]]
+id = "unfixed"
+regex = 'unfixed|not fixed|is not edited|engine is unchanged'
+ignore_case = true
+
+[[pattern]]
+id = "cancelled"
+regex = 'cancelled where|cancels? (a|the) clipping'
+ignore_case = true
+
+[[pattern]]
+id = "off-centre"
+regex = 'off its centre|off-centre'
+ignore_case = true
+
+[[pattern]]
+id = "limits"
+regex = 'two (measured )?(engine )?(limits|readings)|measured limits?|bounds limit|readings are measured off|say the limit'
+ignore_case = true
+
+[[pattern]]
+id = "hit-reaches"
+regex = 'hit (walk )?(passes|reaches)|before (a|that|its|the) (scrolling )?box'
+ignore_case = true
+
+[[pattern]]
+id = "counts"
+regex = '162 result lines|760 passed|10[123] test targets|10[23] `\.rs`'
+
+[[pattern]]
+id = "scroll-only"
+regex = 'driver.s `scroll` only|no check of its own'
+ignore_case = true
+
+[[pattern]]
+id = "one-caller"
+regex = 'its one caller'
+ignore_case = true
+
+[[pattern]]
+id = "plain-button"
+regex = 'plain `?button`?|clears? focus'
+ignore_case = true
