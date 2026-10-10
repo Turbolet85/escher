@@ -1,0 +1,46 @@
+# Scrolling-box bounds and hit — the answers to the two forks of `p4-founder-forks.md` (2026-10-10)
+
+**Whose answers these are.** The operator's, not the founder's. Both forks were read whole. Neither widens a boundary
+and neither changes what the project is for: each decides how far a fix the founder already ruled reaches, inside the
+principle he set on 2026-10-07 (an engine function is fixed itself, for every document) and on 2026-10-10 (a direct
+change, additivity a preference). They are technical forks under his standing delegation of technical decisions to
+the operator, and they are recorded as the operator's. I told you in the dialog I would bring them to him: I did
+not, and this file replaces that line.
+
+| Fork | Answer | Why |
+|---|---|---|
+| 1 — which boxes stop a hit at their edge | **1B — every box that clips by `overflow`** | The hit then stops at the same set of boxes the driver already reads `off-screen` by, and follows paint's overflow rule exactly; two refusals that disagree about what hides content is the worse reading for an agent. The change is the same lines as 1A. 1C goes into paths this chunk has not measured (a text input's padding, a sub-document), where a regression lands on `type`. |
+| 2 — the second reader, `Node::absolute_position` | **2B — measure it here and pin it as it reads; the fix owned on the route** | A hypothesis read from code becomes a measurement for the price of one check, in both layout modes, red by design when the fix lands. The fix itself is a third every-document change with its own check surface (keyboard activation, IME placement, typing into a scrolled text input): that is a chunk, not a rider on this one. |
+
+**For the plan.** It was started on 1A and 2A; revise it to 1B and 2B. Under 1B the restated `covered` sentence says
+what remainder stands (content clipped by `contain: paint`, or outside an image, a sub-document or a text input's
+own box) — state it only as far as this chunk measures it. Under 2B the harness helper built on the second reader
+(`layout_rect`, `center_of`) is named in the plan as not to be used for a scrolled box in this chunk's own checks.
+
+**1B, one precision.** "Clips by `overflow`" is paint's own predicate as paint has it today — either axis not
+`visible`, the root excepted (`packages/blitz-paint/src/render.rs:352-358`, read by the operator; its `:324` carries
+upstream's own TODO about telling the two axes apart). The hit takes that predicate's overflow half and nothing of
+its own: what paint clips by `overflow`, the hit stops at. A box clipped on one axis only is therefore stopped at its
+whole padding box, as paint clips it; pin that case as it reads and name it in the report beside `visible_region`,
+which narrows per axis.
+
+**For the wrap.** The fix of the second reader gets a route owner carrying 2B's measured figures.
+
+## The conformance reading — revisited on the fact you found (the operator, P5)
+
+You read that the runner can run the CSSOM View tests (`cargo run -rp wpt css/cssom-view`) and that only the
+checkout is missing. That changes my answer: two every-document changes to `getBoundingClientRect` and to the hit
+deserve one reading on documents we do not own, and its cost is unmeasured rather than known to be high. Add it as a
+REPORT-ONLY reading that grades no criterion:
+
+- before step 3, on the engine as built: fetch web-platform-tests at the commit `wpt/WPT_COMMIT` pins, at depth 1,
+  into a directory git ignores; build the runner once; run `css/cssom-view`; keep the per-test results;
+- after steps 3 and 4: the same run; the evidence is the two counts and the list of tests whose result moved, each
+  way. A test that moves from pass to fail is explained in the report before the wrap, never left as a number;
+- footprint: the release build and both runs under `taskset -c 12-15,28-31` (four physical cores — the host is
+  shared with three other builders);
+- a bound, so the cost becomes a measurement either way: if the fetch and the build together have not finished
+  30 minutes after they start, stop, record the measured figures in the evidence, and the reading is "not taken, cost
+  measured" — the chunk does not wait on it;
+- no file of the checkout, no build output and no raw runner log enters the repository or a run dir: the evidence is
+  figures and test names written by you.

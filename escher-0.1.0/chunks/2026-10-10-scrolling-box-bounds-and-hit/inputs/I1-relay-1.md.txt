@@ -1,0 +1,1 @@
+Technical forks of this entry are the operator own: ask them in your dialog and I answer. A fork that changes what an agent meets beyond restating the three limit sentences, or that widens a boundary, is the founder decision: put all such forks whole in one file with their dependences, as at the Driver CLI.

@@ -1,0 +1,3 @@
+The operator's review of the plan at P5, given as text in answer to "Apply? (yes / review / cancel)", 2026-10-10, verbatim:
+
+review — read <overseer>/relays/scrolling-box-fork-answers.md and revise the plan by it: the two forks are answered there by the operator as technical (1B and 2B, not the founder — that file says why and replaces my dialog line), and the conformance reading is taken after all, report-only and bounded. The rest of the plan stands: the shared reader, the three sentences back to their pre-limit words, your three leans. Re-run the P5 checks and ask again.

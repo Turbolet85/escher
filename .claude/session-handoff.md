@@ -39,3 +39,6 @@
 ## Deferred learnings
 - `recurrence-despite-learning: "Committed run-dir and evidence text must not spell a host temp path, even as prose"` (session-learnings, 2026-10-06) — carried from the Driver CLI wrap: the remedy is a check in the step that writes an operator-pass record, not a third entry.
 - Nothing is deferred by the cap.
+
+## Session End Status
+Completed normally at 2026-10-10 16:33:31

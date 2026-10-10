@@ -571,8 +571,8 @@ mod tests {
         // The limit measured for `covered` is in every `covered` refusal an agent is handed.
         let covered = Refusal::new(Cause::Covered).to_json();
         assert!(covered.contains(
-            "a hit reaches content scrolled out of a scrolling box, so an element lying where \
-             such content extends can read `covered` though nothing shows over it"
+            "a hit reaches content clipped by `contain: paint`, so an element lying where such \
+             content extends can read `covered` though nothing shows over it"
         ));
     }
 

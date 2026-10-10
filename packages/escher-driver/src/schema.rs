@@ -197,9 +197,7 @@ const CHANGED: FieldSpec = FieldSpec {
     kind: FieldKind::Nodes,
     always: true,
     help: "the elements on the screen before and after the step whose role, name, state, bounds \
-           or parent differ, as they read after it; a box that is itself scrolled reads its bounds \
-           shifted by its own scroll offset, so a step that scrolls it names it here though it has \
-           not moved",
+           or parent differ, as they read after it",
 };
 
 const ADVANCED_MS: FieldSpec = FieldSpec {
@@ -226,10 +224,7 @@ pub(crate) const SNAPSHOT: VerbSpec = VerbSpec {
         name: "text",
         kind: FieldKind::Text,
         always: true,
-        help: "the screen as one text: one line per element, nested by indent; a box that is \
-               itself scrolled reads its bounds shifted by its own scroll offset, and a `click` or \
-               a `type` naming it lands that far from its centre, or is refused `off-screen` while \
-               it is in view",
+        help: "the screen as one text: one line per element, nested by indent",
     }],
 };
 
@@ -423,17 +418,12 @@ mod tests {
         let amended = [
             (
                 field_help(&SNAPSHOT, "text"),
-                "the screen as one text: one line per element, nested by indent; a box that is \
-                 itself scrolled reads its bounds shifted by its own scroll offset, and a `click` \
-                 or a `type` naming it lands that far from its centre, or is refused `off-screen` \
-                 while it is in view",
+                "the screen as one text: one line per element, nested by indent",
             ),
             (
                 field_help(&CLICK, "changed"),
                 "the elements on the screen before and after the step whose role, name, state, \
-                 bounds or parent differ, as they read after it; a box that is itself scrolled \
-                 reads its bounds shifted by its own scroll offset, so a step that scrolls it \
-                 names it here though it has not moved",
+                 bounds or parent differ, as they read after it",
             ),
             (
                 Some(TYPE.help),

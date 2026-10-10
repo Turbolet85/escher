@@ -70,8 +70,8 @@ impl Cause {
             }
             Cause::Covered => {
                 "another element is hit at the point the action would land; a hit reaches content \
-                 scrolled out of a scrolling box, so an element lying where such content extends \
-                 can read `covered` though nothing shows over it"
+                 clipped by `contain: paint`, so an element lying where such content extends can \
+                 read `covered` though nothing shows over it"
             }
             Cause::OffScreen => {
                 "the element lies outside the viewport, or outside the visible part of a \
@@ -251,8 +251,8 @@ mod tests {
             (
                 "covered",
                 "another element is hit at the point the action would land; a hit reaches content \
-                 scrolled out of a scrolling box, so an element lying where such content extends \
-                 can read `covered` though nothing shows over it",
+                 clipped by `contain: paint`, so an element lying where such content extends can \
+                 read `covered` though nothing shows over it",
                 "another element covers this one: act on the covering element or dismiss it first",
             ),
             (

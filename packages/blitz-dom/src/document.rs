@@ -2253,6 +2253,12 @@ impl BaseDocument {
 
     /// `node_id`'s document-relative position and unrounded (sub-pixel) layout in physical
     /// coordinates, for CSSOM geometry APIs such as `getBoundingClientRect`.
+    ///
+    /// The position is the box's own — where its border box stands — and not the origin of its
+    /// content: the scroll offset of every box that holds it is counted and its own is not,
+    /// since scrolling a box moves what it holds and never the box (CSSOM View,
+    /// `getBoundingClientRect`: <https://drafts.csswg.org/cssom-view/#dom-element-getboundingclientrect>).
+    /// A caller that places the box's content applies the box's own scroll offset itself.
     #[cfg(not(feature = "writing-mode"))]
     pub(crate) fn physical_unrounded_geometry(
         &self,
@@ -2262,8 +2268,13 @@ impl BaseDocument {
         let mut current = Some(node_id);
         while let Some(id) = current {
             let node = &self.nodes[id];
-            pos.x += node.unrounded_layout().location.x - node.scroll_offset().x as f32;
-            pos.y += node.unrounded_layout().location.y - node.scroll_offset().y as f32;
+            let scroll = if id == node_id {
+                crate::Point::ZERO
+            } else {
+                *node.scroll_offset()
+            };
+            pos.x += node.unrounded_layout().location.x - scroll.x as f32;
+            pos.y += node.unrounded_layout().location.y - scroll.y as f32;
             current = node.containing_block();
         }
         (pos, *self.nodes[node_id].unrounded_layout())
@@ -2334,12 +2345,15 @@ impl BaseDocument {
         } else {
             inline_root.offset_parent()
         };
-        // Make the position relative to the offsetParent's padding edge
+        // Make the position relative to the offsetParent's padding edge. The fragments moved
+        // with the offsetParent's own scroll offset and its position did not, so the offset is
+        // taken out with the position.
         if let Some(parent) = offset_parent.filter(|parent| !parent.is_static_body()) {
             let (parent_pos, parent_layout) = self.physical_unrounded_geometry(parent.id);
             let border = parent_layout.border;
-            x -= (parent_pos.x + border.left) as f64;
-            y -= (parent_pos.y + border.top) as f64;
+            let parent_scroll = parent.scroll_offset();
+            x -= (parent_pos.x + border.left) as f64 - parent_scroll.x;
+            y -= (parent_pos.y + border.top) as f64 - parent_scroll.y;
         }
 
         Some(BoundingRect {
@@ -2375,10 +2389,12 @@ impl BaseDocument {
         let fragments = node.inline_fragment_boxes()?;
         let inline_root = node.inline_root_ancestor()?;
 
-        // Fragment boxes are relative to the inline root's border box.
+        // Fragment boxes are relative to the inline root's border box, and move with the
+        // root's own scroll offset.
         let (root_pos, _) = self.physical_unrounded_geometry(inline_root.id);
-        let origin_x = root_pos.x as f64 - self.viewport_scroll().x;
-        let origin_y = root_pos.y as f64 - self.viewport_scroll().y;
+        let root_scroll = inline_root.scroll_offset();
+        let origin_x = root_pos.x as f64 - root_scroll.x - self.viewport_scroll().x;
+        let origin_y = root_pos.y as f64 - root_scroll.y - self.viewport_scroll().y;
 
         Some(fragments.map(move |rect| BoundingRect {
             x: snap_to_layout_unit(origin_x + rect.left as f64),

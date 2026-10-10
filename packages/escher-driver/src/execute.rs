@@ -320,7 +320,7 @@ fn action_point(harness: &Harness<DioxusDocument>, target: &Target) -> Result<(f
 
 /// Whether the centre of `target` can be seen: inside the viewport and inside the visible
 /// part of every scrolling box that holds the element. Read from geometry, never from a hit:
-/// a hit reaches an element scrolled out of its box.
+/// a hit at a point scrolled out of view answers what shows there, which reads as covered.
 fn in_view(harness: &Harness<DioxusDocument>, target: &Target) -> bool {
     let (x, y) = target.centre;
     harness

@@ -1356,6 +1356,7 @@ impl Node {
     ) -> Option<HitResult> {
         use style::computed_values::pointer_events::T as PointerEvents;
         use style::computed_values::visibility::T as Visibility;
+        use style::values::computed::Overflow;
 
         // Don't hit on visbility:hidden elements
         if let Some(style) = self.primary_styles() {
@@ -1373,20 +1374,26 @@ impl Node {
             .primary_styles()
             .is_some_and(|style| style.clone_pointer_events() == PointerEvents::None);
 
-        let mut x = x - self.final_layout().location.x + self.scroll_offset().x as f32;
-        let mut y = y - self.final_layout().location.y + self.scroll_offset().y as f32;
+        // The point in this node's border box as the box stands, and the same point in the
+        // node's scrolled content: scrolling a box moves what it holds and never the box.
+        let mut own_x = x - self.final_layout().location.x;
+        let mut own_y = y - self.final_layout().location.y;
+        let mut x = own_x + self.scroll_offset().x as f32;
+        let mut y = own_y + self.scroll_offset().y as f32;
 
         if let Some(t) = self.transform().as_deref() {
-            let p = t.inverse() * kurbo::Point::new(x as f64 * scale, y as f64 * scale);
+            let inverse = t.inverse();
+            let p = inverse * kurbo::Point::new(x as f64 * scale, y as f64 * scale);
             x = (p.x / scale) as f32;
             y = (p.y / scale) as f32;
+            let own = inverse * kurbo::Point::new(own_x as f64 * scale, own_y as f64 * scale);
+            own_x = (own.x / scale) as f32;
+            own_y = (own.y / scale) as f32;
         }
 
         let size = self.final_layout().size;
-        let matches_self = !(x < 0.0
-            || x > size.width + self.scroll_offset().x as f32
-            || y < 0.0
-            || y > size.height + self.scroll_offset().y as f32);
+        let matches_self =
+            !(own_x < 0.0 || own_x > size.width || own_y < 0.0 || own_y > size.height);
 
         let overflow_rect = self.final_layout().scrollable_overflow_rect;
         let matches_content = !(x < 0.0
@@ -1435,6 +1442,32 @@ impl Node {
         if self.flags.is_inline_root() {
             x -= content_box_offset.x;
             y -= content_box_offset.y;
+        }
+
+        // CSS Overflow: a box whose `overflow` is not `visible` clips what it holds to its
+        // padding box (<https://drafts.csswg.org/css-overflow-3/#overflow-properties>), so
+        // outside that box nothing it holds is there to be hit — only the box itself, on its
+        // border. The boxes are the ones paint clips by `overflow`: either axis not `visible`,
+        // the root element excepted, the two axes not told apart.
+        let clips_by_overflow = self.containing_block().is_some()
+            && self.primary_styles().is_some_and(|style| {
+                style.clone_overflow_x() != Overflow::Visible
+                    || style.clone_overflow_y() != Overflow::Visible
+            });
+        if clips_by_overflow {
+            let border = self.final_layout().border;
+            let in_padding_box = own_x >= border.left
+                && own_x <= size.width - border.right
+                && own_y >= border.top
+                && own_y <= size.height - border.bottom;
+            if !in_padding_box {
+                return (matches_self && !pointer_events_none).then_some(HitResult {
+                    node_id: self.id,
+                    x,
+                    y,
+                    is_text: false,
+                });
+            }
         }
 
         // Positive z_index hoisted children

@@ -158,6 +158,10 @@ fn the_non_lean_tasks_are_measured() {
         let mut measured = Vec::new();
         for (card, title) in CARDS_AND_TITLES {
             let mut harness = boot_home(incremental);
+            // Home scrolls, and its last card lies below its box: a click lands only on a
+            // card that is in view.
+            let card_node = harness.node(&format!("#{card}"));
+            harness.scroll_into_view(card_node);
             harness.click(&format!("#{card}"));
             assert_eq!(harness.text_content("#task-title"), title, "{card} opened");
             assert!(actionable_count(&harness) > 0, "{title}: has controls");

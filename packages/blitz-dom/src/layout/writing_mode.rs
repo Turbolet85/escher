@@ -372,6 +372,12 @@ impl BaseDocument {
     /// CSSOM geometry. `unrounded_layout` itself is left in the placing algorithm's writing mode (see
     /// [`LayoutPassState::physicalise_and_round_layout`]), so the containing-block chain is
     /// physicalised root-down in a single descent, each box in its placer's writing mode and size.
+    ///
+    /// The position is the box's own — where its border box stands — and not the origin of its
+    /// content: the scroll offset of every box that holds it is counted and its own is not,
+    /// since scrolling a box moves what it holds and never the box (CSSOM View,
+    /// `getBoundingClientRect`: <https://drafts.csswg.org/cssom-view/#dom-element-getboundingclientrect>).
+    /// A caller that places the box's content applies the box's own scroll offset itself.
     pub(crate) fn physical_unrounded_geometry(
         &self,
         node_id: crate::NodeId,
@@ -382,8 +388,13 @@ impl BaseDocument {
         let mut current = Some(node_id);
         while let Some(id) = current {
             let node = &self.nodes[id];
-            pos.x += node.unrounded_layout().location.x - node.scroll_offset().x as f32;
-            pos.y += node.unrounded_layout().location.y - node.scroll_offset().y as f32;
+            let scroll = if id == node_id {
+                crate::Point::ZERO
+            } else {
+                *node.scroll_offset()
+            };
+            pos.x += node.unrounded_layout().location.x - scroll.x as f32;
+            pos.y += node.unrounded_layout().location.y - scroll.y as f32;
             has_vertical |= node.layout_data().writing_mode.is_vertical();
             current = node.containing_block();
         }
@@ -395,8 +406,8 @@ impl BaseDocument {
         let node = &self.nodes[node_id];
         let (mut pos, placer_wm, placer_size) = self.placer_geometry(node, node_id, root_id);
         let layout = physical_layout(*node.unrounded_layout(), placer_wm, placer_size);
-        pos.x += layout.location.x - node.scroll_offset().x as f32;
-        pos.y += layout.location.y - node.scroll_offset().y as f32;
+        pos.x += layout.location.x;
+        pos.y += layout.location.y;
         (pos, layout)
     }
 

@@ -8,11 +8,10 @@
 //! fixture no scroll can reach* — a button above the document's origin — `scroll` runs, says
 //! the button is not in view, and a `click` on it is still refused. A `scroll` naming a target
 //! already in view changes nothing, one naming no element is refused `not-found`, and one
-//! naming a disabled control is accepted. *A measured limit, pinned as it reads:* a box that is
-//! itself scrolled reads its own bounds shifted by its scroll offset, so a `click` naming the
-//! box lands that far from its centre, or is refused `off-screen` while the box is in view. A
-//! failure message carries the layout mode and the task or fixture, never an id, a coordinate
-//! or what a screen reads.
+//! naming a disabled control is accepted. *A box that is itself scrolled* reads its own bounds
+//! where it stands: a scroll of its content leaves it out of the diff, and a `click` naming the
+//! box lands at its centre, however far its content is scrolled. A failure message carries the
+//! layout mode and the task or fixture, never an id, a coordinate or what a screen reads.
 
 use blitz_test_harness::Harness;
 use dioxus::prelude::*;
@@ -172,9 +171,8 @@ fn a_row_past_the_list_is_refused_scrolled_into_view_and_then_clicked() {
                 "{mode}: the driver creates a row"
             );
         }
-        // The list has not been scrolled yet, so its bounds are the box it occupies. A box's
-        // bounds read after it is scrolled are shifted by its own scroll offset, so the box is
-        // read here, once, for every comparison below.
+        // The list's box is read here, once, for every comparison below: a scroll of its
+        // content does not move it.
         let list = edges(&session, "crud-list");
         assert!(
             viewport_scroll(&session) == (0.0, 0.0),
@@ -355,20 +353,17 @@ fn a_target_no_scroll_can_reach_is_told_in_the_result() {
     }
 }
 
-/// The engine's bounds reader subtracts a box's own scroll offset from the box itself. The
-/// readings are pinned as measured on the engine as built (2026-10-10): this check turns red by
-/// design when that reading is fixed, and is then restated to the box's true bounds.
+/// The engine's bounds reader gives a scrolled box the bounds it stands at — a box's own scroll
+/// offset moves its content, not the box — so a scroll of the list's content leaves the list
+/// out of the diff, and a `click` naming the list lands at the centre of its box.
 #[test]
-fn a_scrolled_box_reads_its_bounds_shifted_and_a_click_naming_it_lands_off_its_centre() {
-    // The Creates, the row lying at the centre of the list's box once the last row is scrolled
-    // into view, and the row a click naming the list selects.
-    let rows = [
-        (12, "crud-person-7", "crud-person-7"),
-        (14, "crud-person-9", "crud-person-7"),
-    ];
+fn a_scrolled_box_reads_its_own_bounds_and_a_click_naming_it_lands_at_its_centre() {
+    // The Creates, and the row lying at the centre of the list's box once the last row is
+    // scrolled into view.
+    let rows = [(12, "crud-person-7"), (14, "crud-person-9")];
     assert_eq!(rows.len(), 2);
     for incremental in [false, true] {
-        for (row, (creates, at_the_centre, clicked)) in rows.into_iter().enumerate() {
+        for (row, (creates, at_the_centre)) in rows.into_iter().enumerate() {
             let mode = format!("incremental={incremental}: Crud, row {row}");
             let (mut session, _ticks) = hold(LeanTask::Crud, incremental);
             for _ in 0..creates {
@@ -398,56 +393,44 @@ fn a_scrolled_box_reads_its_bounds_shifted_and_a_click_naming_it_lands_off_its_c
                 "{mode}: the list was scrolled, not the viewport"
             );
 
-            // The reading: the list's own bounds, shifted up by the list's own scroll offset.
-            let read = edges(&session, "crud-list");
+            // The list has not moved, and reads so: its bounds are the ones read before the
+            // scroll, and the scroll's diff leaves it out.
             assert!(
-                read == (list.0, list.1 - offset, list.2, list.3 - offset),
-                "{mode}: the list's bounds read shifted up by its own scroll offset"
+                edges(&session, "crud-list") == list,
+                "{mode}: the scrolled list reads the bounds it read before the scroll"
             );
             assert!(
-                scrolled.changed().contains(&"crud-list"),
-                "{mode}: the scroll's diff names the list among the changed"
+                !scrolled.changed().contains(&"crud-list"),
+                "{mode}: the scroll's diff does not name the list among the changed"
             );
-            // The list has not moved: the row scrolled into view lies inside the box the
-            // unscrolled bounds give, and its rows read their true bounds.
             assert!(
                 inside(centre(&session, &last_row), list),
-                "{mode}: the last row lies inside the list's box as it stood before the scroll"
+                "{mode}: the last row lies inside the list's box"
             );
             assert!(
                 rows_at(&session, list_centre) == [at_the_centre],
                 "{mode}: the row lying at the centre of the list's box"
             );
 
-            // A click naming the list lands at the centre of the bounds as read: above the
-            // box's centre by the scroll offset.
-            let read_centre = centre(&session, "crud-list");
-            assert!(
-                read_centre == (list_centre.0, list_centre.1 - offset),
-                "{mode}: the centre of the bounds as read lies above the box's centre"
-            );
-            assert!(
-                rows_at(&session, read_centre) == [clicked],
-                "{mode}: the row lying at the centre of the bounds as read"
-            );
+            // A click naming the list lands at the centre of its box.
             assert!(
                 act(&mut session, &click("crud-list")).is_some_and(|clicked| clicked.settled),
                 "{mode}: a click naming the list is accepted"
             );
             assert!(
                 act(&mut session, &click("crud-delete"))
-                    .is_some_and(|deleted| deleted.removed() == [clicked]),
-                "{mode}: the row the click selected is the one at the centre of the bounds as \
-                 read"
+                    .is_some_and(|deleted| deleted.removed() == [at_the_centre]),
+                "{mode}: the row the click selected is the one at the centre of the list's box"
             );
         }
     }
 }
 
-/// The same reading where the shift takes the centre of the bounds as read out of view: pinned
-/// as measured (2026-10-10), red by design when the bounds reading is fixed.
+/// The same reading where the box is scrolled by more than its distance from the viewport's
+/// top: the box still reads the bounds it stands at, inside the viewport, and a `click` naming
+/// it is accepted.
 #[test]
-fn a_click_naming_a_scrolled_box_is_refused_off_screen_while_the_box_is_in_view() {
+fn a_click_naming_a_scrolled_box_in_view_lands_on_the_row_at_its_centre() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: box fixture");
         let mut session = hold_fixture(box_fixture, incremental);
@@ -473,36 +456,46 @@ fn a_click_naming_a_scrolled_box_is_refused_off_screen_while_the_box_is_in_view(
             "{mode}: the scroll brings the last row into view"
         );
         let offset = scroll_offset(&session, "fx-box");
-        let read = edges(&session, "fx-box");
         assert!(
             offset > unscrolled.3 && viewport_scroll(&session) == (0.0, 0.0),
             "{mode}: the box is scrolled by more than its distance from the viewport's top"
         );
         assert!(
-            read == (
-                unscrolled.0,
-                unscrolled.1 - offset,
-                unscrolled.2,
-                unscrolled.3 - offset
-            ) && read.3 < 0.0,
-            "{mode}: the box's bounds read shifted up by its own scroll offset, out of the \
-             viewport"
+            edges(&session, "fx-box") == unscrolled,
+            "{mode}: the scrolled box reads the bounds it read unscrolled"
         );
         assert!(
             inside(centre(&session, "fx-row-9"), unscrolled),
-            "{mode}: the box has not moved — the row scrolled into view lies inside it"
+            "{mode}: the row scrolled into view lies inside the box"
         );
 
-        let (cause, unchanged) = refused_unchanged(&mut session, &click("fx-box"));
+        // The row lying at the box's centre is the one a hit there answers.
+        let box_centre = centre(&session, "fx-box");
+        let row_at_the_centre = session.harness().node("#fx-row-8");
+        let mut hit = session
+            .harness()
+            .hit(box_centre.0 as f32, box_centre.1 as f32)
+            .map(|hit| hit.node_id);
+        while let Some(node) = hit.filter(|node| *node != row_at_the_centre) {
+            hit = session
+                .harness()
+                .base()
+                .get_node(node)
+                .and_then(|node| node.parent);
+        }
         assert!(
-            cause == Some(Cause::OffScreen) && unchanged,
-            "{mode}: a click naming the box is refused off-screen, the instance unchanged"
+            inside(box_centre, edges(&session, "fx-row-8")) && hit == Some(row_at_the_centre),
+            "{mode}: one row lies at the box's centre and the hit there answers it"
+        );
+        assert!(
+            act(&mut session, &click("fx-box"))
+                .is_some_and(|clicked| clicked.settled && clicked.changed() == ["fx-rows"]),
+            "{mode}: a click naming the scrolled box is accepted and lands on a row"
         );
         assert!(
             act(&mut session, &click("fx-row-9"))
                 .is_some_and(|clicked| clicked.settled && clicked.changed() == ["fx-rows"]),
-            "{mode}: a click naming the row in view is accepted — an element inside the box \
-             reads true bounds"
+            "{mode}: a click naming the row in view is accepted"
         );
     }
 }

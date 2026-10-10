@@ -48,13 +48,12 @@
 //! enabled ([`Cause::Disabled`]), out of view ([`Cause::OffScreen`]) or under another element
 //! ([`Cause::Covered`]). A refused call leaves the held instance as it was.
 //!
-//! Two readings are known to be off, measured on the engine as built and stated where the
-//! schema describes them. A box that is itself scrolled reads its `bounds` shifted by its own
-//! scroll offset: a step that scrolls it names it among the changed nodes though it has not
-//! moved, and a `click` or a `type` naming the box lands that far from its centre, or is
-//! refused [`Cause::OffScreen`] while the box is in view; the elements inside it read true
-//! bounds. And a hit reaches content scrolled out of a scrolling box, so an element lying
-//! where such content extends can read [`Cause::Covered`] though nothing shows over it.
+//! An element's `bounds` are where it stands on the screen — a box reads the same bounds
+//! however far its content is scrolled — and a hit stops where a box clips by `overflow`, so
+//! content scrolled out of a box covers nothing. One reading is known to be off, measured on
+//! the engine as built and stated where the schema describes it: a hit reaches content clipped
+//! by `contain: paint`, so an element lying where such content extends can read
+//! [`Cause::Covered`] though nothing shows over it.
 //!
 //! [`command_line`] is the whole command line of a binary that boots apps: every verb as one
 //! run, answered with one line of JSON on stdout and a status that tells accepted from

@@ -9,10 +9,10 @@
 //! button scrolled out of a scrolling box that sits inside the viewport is refused
 //! `off-screen`, never `covered`. *Order:* disabled and covered reads `disabled`, disabled and
 //! out of view reads `disabled`, out of view and covered reads `off-screen`. Every refused call
-//! leaves the snapshot and both focus readings as they were. *A measured limit, pinned as it
-//! reads:* the engine's hit reaches content scrolled out of a scrolling box, so a button lying
-//! before such a box, where its scrolled-out rows extend, is refused `covered` though nothing
-//! shows over it; a button after the box is not, and no control of the stand's CRUD is. A
+//! leaves the snapshot and both focus readings as they were. *Content scrolled out of a box
+//! covers nothing:* the engine's hit stops where a box clips by `overflow`, so a button lying
+//! before a scrolling box, where its scrolled-out rows extend, is hit and clicked as itself, as
+//! is a button after the box, and no control of the stand's CRUD reads `covered` that way. A
 //! failure message carries the layout mode and the fixture, never an id, a coordinate or what a
 //! screen reads.
 
@@ -24,7 +24,9 @@ use seven_guis::stand::{self, LeanTask};
 
 mod common;
 mod session_common;
-use session_common::{act, click, hold as hold_task, refused_unchanged, scroll, type_into};
+use session_common::{
+    act, click, focused, hold as hold_task, refused_unchanged, scroll, type_into,
+};
 
 /// Two buttons under one opaque overlay — the second of them disabled — a third under an
 /// overlay transparent to hits, and a control that removes the opaque overlay.
@@ -354,18 +356,16 @@ fn a_target_out_of_view_is_refused_off_screen() {
     }
 }
 
-/// The engine's hit walk passes a point outside a scrolling box to the box's scrolled-out
-/// content. The readings are pinned as measured on the engine as built (2026-10-10): this
-/// check turns red by design when the walk is clipped at a scrolling box, and is then restated
-/// — the button before the box is clicked.
+/// The engine's hit walk stops at the padding box of a box that clips by `overflow`, so a point
+/// outside a scrolling box never answers the box's scrolled-out content: a button lying where
+/// such content extends, after the box or before it, is hit and clicked as itself.
 #[test]
-fn a_button_where_scrolled_out_rows_extend_reads_covered_only_before_its_box() {
+fn a_button_where_scrolled_out_rows_extend_is_hit_and_clicked_as_itself() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: boxed rows fixture");
         let mut session = hold(boxed_rows_fixture, incremental);
         assert_fixture_is_keyed_and_unscrolled(&session, &mode);
         let scrolling_box = edges(&session, "fx-box");
-        let box_node = session.harness().node("#fx-box");
         for id in ["fx-before", "fx-box", "fx-after"] {
             assert!(
                 has_area(&session, id),
@@ -390,11 +390,15 @@ fn a_button_where_scrolled_out_rows_extend_reads_covered_only_before_its_box() {
         );
 
         // The box scrolled to its end: its rows overflow above it, across the button before
-        // it. The rows' bounds are read true; the box's own are not, so it is not read here.
+        // it. The box has not moved, and reads so.
         assert!(
             act(&mut session, &scroll("fx-row-9"))
                 .is_some_and(|scrolled| scrolled.settled && scrolled.in_view == Some(true)),
             "{mode}: the scroll brings the last row into view"
+        );
+        assert!(
+            edges(&session, "fx-box") == scrolling_box,
+            "{mode}: the scrolled box reads the bounds it read unscrolled"
         );
         let before = centre(&session, "fx-before");
         assert!(
@@ -405,20 +409,29 @@ fn a_button_where_scrolled_out_rows_extend_reads_covered_only_before_its_box() {
             inside(before, viewport()),
             "{mode}: the earlier button lies inside the viewport"
         );
-        let hit = hit_at_centre(&session, "fx-before");
         assert!(
-            !hit_answers(&session, "fx-before") && within(&session, hit, box_node),
-            "{mode}: the hit at the earlier button's centre answers content of the box"
+            hit_answers(&session, "fx-before"),
+            "{mode}: the hit at the earlier button's centre answers the button"
         );
 
-        let (cause, unchanged) = refused_unchanged(&mut session, &click("fx-before"));
         assert!(
-            cause == Some(Cause::Covered),
-            "{mode}: a click on the earlier button is refused covered"
+            act(&mut session, &click("fx-before"))
+                .is_some_and(|clicked| clicked.settled && clicked.changed() == ["fx-presses"]),
+            "{mode}: a click on the earlier button is accepted and runs its handler and no row's"
         );
+        let (in_snapshot, in_tree) = focused(&session);
         assert!(
-            unchanged,
-            "{mode}: the refused click leaves the snapshot and the focus as they were"
+            !in_snapshot
+                .iter()
+                .chain(&in_tree)
+                .any(|id| id.starts_with("fx-row-")),
+            "{mode}: after the click no row of the box reads focused or holds the \
+             accessibility tree's focus"
+        );
+        // A plain button's own focus after a pointer click, as measured (2026-10-10).
+        assert!(
+            in_snapshot.is_empty() && in_tree.is_empty(),
+            "{mode}: after the click nothing reads focused"
         );
     }
 }
