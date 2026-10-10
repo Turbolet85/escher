@@ -97,17 +97,15 @@ The PostToolUse hook formats each file as it is written, but rustfmt resolves `m
 
 ---
 
-## 2026-10-06 — The project's Bash guards refuse a heredoc written to a file and a leading cd, and read payload prose too
-escher's PreToolUse Bash hook blocks a `cat`/`tee` heredoc that writes a file, and a leading `cd` into a subdirectory (it would move the session's working directory for every later call). The heredoc match is a token match over the whole command text, so a heredoc PIPED into a tool — an evolve append, an inline python script — is also refused when its payload's prose quotes the guarded shell form: the record's text tripped it, not the command.
-
-Write documents and scripts with the Write tool — a script into the session scratchpad and run by path, never into a committed run dir, which the hygiene read inspects — reach subdirectories by absolute path or a subshell, and when a payload must mention the guarded form, describe it in words instead of quoting it.
+## 2026-10-06 — The Bash guard's heredoc arm reads a payload's prose too
+The guard's `cat`/`tee`-heredoc match is a token match over the whole command text, so a heredoc PIPED into a tool — an evolve append, an inline python script — is refused when its payload's prose quotes the guarded shell form: the record's text trips it, not the command. When a payload must mention the guarded form, describe it in words instead of quoting it. The two guard rules themselves — a heredoc with a file target, a `cd` that moves the working directory — are in `.claude/rules/host-linux.md`. [corrected 2026-10-10: trimmed to the one fact the host rule file lacks — that file has carried both rules on every turn since 2026-10-07, and the match over payload prose read true in the guard's source on 2026-10-09]
 
 ---
 
 ## 2026-10-05 — A chunk that moves cited source lines stales the masters' file:line citations
 The spec masters cite code as `file:line` throughout. A chunk that inserts or removes lines in a cited file — a profile stanza in `Cargo.toml`, a guard in a workflow, a rewritten `ci.yml` — leaves every citation past the edit pointing at the wrong line, and no drift detector sees it: the detectors read the chunk report alone, and the report carries no map of moved lines. The first such chunk on escher left 114 stale citations across five masters.
 
-At wrap, for every source file the chunk changed, grep the seven masters and the registry key files for `{file}:{N}` citations past the first changed line and re-point them — a fixed offset for a pure insert, a range map for a rewrite — then verify the re-point touched only digits (the masters' text with digits stripped equals the pre-pass text). Do it before the semantic amendments, so their freshly written citations are never shifted twice. Extended 2026-10-06: key the line map on full repository paths, never basenames (several unchanged files share `document.rs`, `node.rs`, `element.rs`, `text.rs`), and read every citation that lands inside a rewritten hunk against the new code — there the claim may have moved, not only its number. Extended 2026-10-07: prove each computed move by content — the cited lines at the base commit equal the lines at the new range — and read by hand only the citations that differ, which are the hunk-touched ones, a hunk whose net line change is zero included.
+The wrap's citation sweep owns the repair: it opens the wrap's reconcile phase, re-points the digits of every citation whose cited line moved, and lists each row it leaves to a read — which is read at the cited lines and dispositioned before the drift fan-out. Re-point no citation by hand outside a row the sweep lists. [corrected 2026-10-10: this entry told a wrap to grep the masters and re-point by hand — the sweep, first written on escher at the 2026-10-09-audit-corrections-agent-surfaces wrap, does it at every chunk wrap]
 
 ---
 

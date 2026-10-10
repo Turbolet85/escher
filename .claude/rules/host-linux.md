@@ -45,3 +45,4 @@ work, not hypothetical.
   terminator-agnostic script.
 
 ## Session Additions
+- 2026-10-10: `pgrep -x` matches nothing for a process name over 15 characters and says so on stderr only — take a census by `ps -eo comm=` and the name's first 15 characters (`seven_guis_nati`).
