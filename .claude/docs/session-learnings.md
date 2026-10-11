@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-11 — `gh api` refuses a job's log that holds terminal escapes
+A CI job log read through `gh api repos/{owner}/{repo}/actions/jobs/{id}/logs` is refused when its text carries terminal escape sequences — and a runner's log usually does (coloured cargo and rustup output) — unless the call passes `--allow-escape-sequences`. Read a failed job's log with that flag (still with `-R` on the fork, per the Tier 1 note), and read the step's failure from the text, never from the refusal: the refusal says nothing about the job.
+
+---
+
 ## 2026-10-10 — A grep for a struct literal cannot tell a spread from a full literal
 `grep 'TypeName {'` lists every site that opens a literal of a struct and says nothing about how each one closes. A literal that ends with `..base()` or `..Default::default()` compiles unchanged when the struct gains a field; a full literal does not. A sweep that counts the hits and reads them as "closes with a spread, no change needed" is a forecast: before a plan says a set of literals compiles unchanged after a field is added, each hit is read to its closing brace, or the claim is left to the compiler and said so.
 

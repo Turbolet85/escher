@@ -92,3 +92,9 @@ One entry per amendment to `design-system.md` (sidecar-contract.md §Entry form)
 **Change:** the hit-testing sentence, which stated the walk's order only (positive-z hoisted children, paint children in reverse, negative-z hoisted children), now also says where the walk stops: at the padding box of a node that clips by `overflow`, the root element excepted — a point outside that box reaches none of the node's hoisted children, paint children or inline content, as paint clips them, and the node itself is still answered inside its border box.
 **Why:** the engine's hit was fixed to stop where paint clips by `overflow`; until then a hit reached content scrolled out of its box. The order inside the box is unchanged.
 **Ref:** .andromeda/runs/2026-10-10T15-29-49-wrap/
+
+## 2026-10-10-mcp-surface — the `mcp` role's stdout on the cli surface
+**Section:** §Surface: cli → Component Patterns (the `escher-session` bullet)
+**Change:** the `escher-session` bullet gains its `mcp` role — a surface an agent's client reads: newline-delimited JSON-RPC 2.0 protocol lines only on stdout (a reply per request that is not a notification; a tool result's text the screen text for `snapshot`, the JSON line otherwise), uncoloured, no ESC byte in any reply and still no terminal test; its end writes nothing there, an `Err` ending's fixed message on stderr with status `3`.
+**Why:** a new mode of the same cli surface; the no-ESC reading is asserted on every reply by the shared `Speaker` and the no-terminal-test search counts 0. No token, colour or layout entered.
+**Ref:** .andromeda/runs/2026-10-11T08-35-17-wrap/

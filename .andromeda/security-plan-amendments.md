@@ -385,3 +385,23 @@ One entry per amendment to `security-plan.md` (sidecar-contract.md §Entry form)
 **Why:** ratified by the founder (2026-10-10, by question dialog in the overseer session, relayed by the overseer; confirmed by him at this wrap's card, relayed the same way): the builder writes the three states on the node — a widening of the adapter crossing by a new author-derived class. The plan had recorded it PROVISIONAL on the operator's reading; his word supersedes it and no PROVISIONAL mark was written.
 **Kept:** what an assistive technology reads stays unmeasured until a windowed check; the witness is owned by a route entry.
 **Ref:** .andromeda/runs/2026-10-10T17-47-57-wrap/
+
+## 2026-10-10-mcp-surface — the MCP server's input and its crossing, ratified
+**Section:** §Threat Model Summary → Attack surface · §Authentication & Authorization (table) · §Input Validation (a new MCP server row · Driver command schema · CLI arguments (escher-session) · the `id`, accessible-names, control-states and password / file rows) · §API Security · §Error Handling → Error format
+**Change:**
+- A new vector, "local stdio — the driver's MCP server": `serve_mcp` run by `escher-session mcp` as a child an MCP client spawns, the trust boundary the process holding its stdio; its results reached the model provider through the client in the one live trial. A new auth row: no handshake, token or peer check, no file modes — it binds nothing.
+- A new Input Validation row: a request line ≤ 65,536 bytes (longer read, dropped, `-32700`), non-JSON `-32700`, a bad envelope `-32600`, the `id` echoed only as an i64 or a string ≤ 128 bytes (else `-32600`, `id: null`), fixed protocol errors with no `data`, four methods answered (else `-32601`), notifications run nothing, a tool argument of the wrong kind refused `malformed` before anything runs, then `validate`; keys in key order, so `Repeated` cannot arise over MCP; a result ≤ 1,048,576 bytes; replies hand-written, `serde_json` reading only.
+- The schema row: was "two external surfaces … no MCP tool does yet", now three — the MCP `tools/call` the third; outcomes written in two places; two clocks and two writers; a second span.
+- The `id` row: was "two exits … still no MCP command" and "no MCP command exists", now three exits; names, control states and masked values each gain the MCP results as an exit (the mask holds by construction; a password typed over MCP not separately run).
+- CLI row: `mcp` alone the role, `mcp x` usage; the role's end; `FnMut` boot. API Security: still one listener. Error format: refusals and session errors as `isError` results.
+**Why:** a boundary widening — the MCP crossing with its three bounds and its `id` echo — ratified by the founder (2026-10-10, by question dialog in the overseer session, relayed by the overseer; his confirm at this wrap's Validate, relayed by the overseer, as the operator's answer). Recorded ratified, no PROVISIONAL mark; the next carrier is a new question.
+**Ref:** .andromeda/runs/2026-10-11T08-35-17-wrap/
+
+## 2026-10-10-mcp-surface — `serde_json` reviewed; the `tool_call` span; the live trial's login
+**Section:** §Dependency Security → Pinning · §Logging & Monitoring (escher's sink · Stdout output) · §Secret Management → Storage (Development) · What counts as secret
+**Change:**
+- Pinning: `serde_json = "1"` (workspace, no `[features]`, so no `preserve_order`), the reader of the MCP server's untrusted stdin, writing nothing — reviewed by hand: no package enters or moves, one lock line, already in both graphs, no adapter, audit green, no ignore.
+- The sink prints a second `escher_driver` span, `tool_call` (`tool`, `ending`, neither in `CONTENT_FIELDS`), the parent of `command`; the `mcp` role reads 9 lines built alone and 10 with the workspace over one CRUD flow at `info`, 0 typed sentinels, 0 ids, 0 names at `trace` under both builds. Stdout: the role writes protocol lines only, no ESC byte, the admitted `id` its one echo.
+- Development: was "the cold-agent live run only", now also the 2026-10-10-mcp-surface live trial — the same login, no new secret source; What counts as secret names both.
+**Why:** `serde_json` as a reader only is the founder's answer (2026-10-10, relayed by the overseer). The span is a boundary widening (a new log field) ratified by him with the same confirm at this wrap's Validate. The trial's use of the login rests on his word for the one live trial, recorded at this wrap on his answer relayed by the overseer as the operator's.
+**Ref:** .andromeda/runs/2026-10-11T08-35-17-wrap/

@@ -1,0 +1,99 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "a0f3749c",
+"ts": "2026-10-11T09:58:24Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-10-mcp-surface",
+"--run-dir",
+".andromeda/runs/2026-10-11T08-35-17-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-10-mcp-surface: 1 · to flip 1 · already verified 0 · below 0",
+"flipped v010-13 → verified — `tools/list` of `escher-session mcp` offers exactly the nine verbs of `escher_dr… (885 chars)",
+"dry-run: nothing written",
+"version: verified 13/17"
+],
+"stderr": null,
+"wrote": [],
+"before": [
+{
+"id": "v010-13",
+"chunk": "2026-10-10-mcp-surface",
+"status": "implemented",
+"method": "dynamic-external",
+"ref": "tests/blitz-tests/tests/stand_mcp_tools.rs::a_scripted_mcp_session_completes_the_counter_flow_and_parents_each_command ·… (427 chars)",
+"acceptance": "`tools/list` of `escher-session mcp` offers exactly the nine verbs of `escher_driver::VERBS` — every command the command… (885 chars)",
+"notes_chars": 419
+}
+],
+"after": [
+{
+"id": "v010-13",
+"chunk": "2026-10-10-mcp-surface",
+"status": "verified",
+"method": "dynamic-external",
+"ref": "tests/blitz-tests/tests/stand_mcp_tools.rs::a_scripted_mcp_session_completes_the_counter_flow_and_parents_each_command ·… (427 chars)",
+"acceptance": "`tools/list` of `escher-session mcp` offers exactly the nine verbs of `escher_driver::VERBS` — every command the command… (885 chars)",
+"notes_chars": 419
+}
+]
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "a0f3749c",
+"ts": "2026-10-11T10:01:51Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-10-mcp-surface",
+"--run-dir",
+".andromeda/runs/2026-10-11T08-35-17-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-10-mcp-surface: 1 · to flip 1 · already verified 0 · below 0",
+"flipped v010-13 → verified — `tools/list` of `escher-session mcp` offers exactly the nine verbs of `escher_dr… (885 chars)",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed",
+"version: verified 13/17"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": [
+{
+"id": "v010-13",
+"chunk": "2026-10-10-mcp-surface",
+"status": "implemented",
+"method": "dynamic-external",
+"ref": "tests/blitz-tests/tests/stand_mcp_tools.rs::a_scripted_mcp_session_completes_the_counter_flow_and_parents_each_command ·… (427 chars)",
+"acceptance": "`tools/list` of `escher-session mcp` offers exactly the nine verbs of `escher_driver::VERBS` — every command the command… (885 chars)",
+"notes_chars": 419
+}
+],
+"after": [
+{
+"id": "v010-13",
+"chunk": "2026-10-10-mcp-surface",
+"status": "verified",
+"method": "dynamic-external",
+"ref": "tests/blitz-tests/tests/stand_mcp_tools.rs::a_scripted_mcp_session_completes_the_counter_flow_and_parents_each_command ·… (427 chars)",
+"acceptance": "`tools/list` of `escher-session mcp` offers exactly the nine verbs of `escher_driver::VERBS` — every command the command… (885 chars)",
+"notes_chars": 419
+}
+]
+}
+]

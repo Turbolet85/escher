@@ -106,3 +106,11 @@ One entry per amendment to `layout-templates.md` (sidecar-contract.md §Entry fo
 **Change:** beside the six inputs named by attributes alone, the bullet now states that the flight booker's mode buttons `flight-one-way` and `flight-return` are toggle buttons stating `aria-pressed` `"true"` or `"false"`, its date inputs `flight-start` and `flight-return-date` state `aria-invalid`, `crud-list` takes `role="listbox"` and each CRUD row `role="option"` with `aria-selected` — adding no element, class, style, key, id or order; the three classes that style those states stay. The windowed stand was not booted.
 **Why:** the stand's tasks state the three states a snapshot reads; the two task files differ from the chunk's base by added attribute lines only.
 **Ref:** .andromeda/runs/2026-10-10T17-47-57-wrap/
+
+## 2026-10-10-mcp-surface — `escher-session`'s third role, `mcp`
+**Section:** §Surface: cli (the `escher-session` entry) · §Surface: desktop-native (seven_guis Home and TaskShell)
+**Change:**
+- cli: the binary's third role, `escher-session mcp` — `mcp` alone, any other shape after it usage, the usage line naming it — an MCP server over stdio, local to the invoking user, no listener or auth surface: JSON-RPC 2.0 requests on stdin, protocol lines only on stdout, the handshake revisions `2025-06-18` · `2025-03-26` · `2024-11-05` (`2025-06-18` to any other), the nine verbs as its tools, a tool call run on the one instance it holds in process; it echoes a request's admitted `id`; its end writes nothing on stdout, 0 on `Ok`, 3 with a fixed message on stderr on `Err`. Was "no ending writes back anything the caller typed", now scoped to the commands.
+- desktop-native: the `mcp` role is a further consumer of the TaskShell mount, booting one lean task in process on a `start` tool call through the same boot, adding no markup.
+**Why:** a new mode of an existing surface; the crossing it carries is the founder's ratified one (2026-10-10), recorded in the security plan.
+**Ref:** .andromeda/runs/2026-10-11T08-35-17-wrap/

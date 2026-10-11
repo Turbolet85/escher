@@ -1,0 +1,9 @@
+
+## 2026-10-10-mcp-surface — `serde_json` a reader only; the `tool_call` span; twelve modules, four crates
+**Section:** §Stack and Technologies (Media) · §Established Decisions → [Driver session] · §Conventions (Feature wiring) · §Standard Contracts → Driver session (the written forms, the span) · §Occupied Resources → Names (escher-driver) · Logging · §Cross-cutting Patterns (Logging) · §Inherited Defaults (Optional capabilities) · §Existing Scopes (escher-driver · seven_guis · blitz-tests)
+**Change:**
+- `serde_json "1"` a root workspace entry (1.0.151, already in the graph through dioxus-html), escher-driver's fourth crate: was "three crates", now four; it reads MCP requests and writes nothing — was "no serialization crate entered … re-opened at the MCP surface", now the written forms stay hand-written, `json`'s `string` / `Object` `pub(crate)`; the lock gained one line and no package.
+- A second span, `tool_call` (target `escher_driver`, INFO, `tool` and `ending` only), one per MCP `tools/call`, the parent of `command` by nesting; was "its one command span" in Conventions, Inherited Defaults, the Logging bullet and Cross-cutting, now two spans; the `mcp` role's stderr reads 5 `tool_call` + 3 `command` lines over one CRUD flow at `info`, 0 needles at `trace`.
+- Existing Scopes: eleven → twelve private modules (`mcp`); the dependency list gains `serde_json`; seven_guis' `escher-session` gains the `mcp` role and its targets five → seven; blitz-tests gains `stand_mcp_tools`.
+**Why:** the founder chose `serde_json` as a reader only (2026-10-10, by question dialog in the overseer session, relayed by the overseer) and the `tool_call` span with `tool` and `ending` — a boundary widening (a new log field), ratified by him and confirmed at this wrap's Validate, relayed by the overseer, as the operator's answer. Standing rule: no span field holds what a call supplied or a screen reads.
+**Ref:** .andromeda/runs/2026-10-11T08-35-17-wrap/

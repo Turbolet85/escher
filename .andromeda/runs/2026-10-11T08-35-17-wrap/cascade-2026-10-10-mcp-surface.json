@@ -1,0 +1,235 @@
+[
+{
+"tool": "cascade",
+"v": "1.2",
+"sha8": "fe426974",
+"ts": "2026-10-11T09:47:31Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-11T08-35-17-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-11T08-35-17-wrap",
+"--marker",
+"2026-10-10-mcp-surface"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline 69a399da (pre-CI parent — the oldest of 1 pre-CI commit(s), 36877a23)",
+"host-log-one · control UNFIRED over the seven masters at 69a399da"
+],
+"stderr": "control: host-log-one never fired over the seven masters' pre-pass text (69a399da) — a sweep runs a positive control or refuses; drop the pattern or control it by hand",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.2",
+"sha8": "fe426974",
+"ts": "2026-10-11T09:48:06Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-11T08-35-17-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-11T08-35-17-wrap",
+"--marker",
+"2026-10-10-mcp-surface"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 69a399da (pre-CI parent — the oldest of 1 pre-CI commit(s), 36877a23)",
+"one-cmd-span · new 0 · standing 2 · leaf 3 · curation 0 · base 0 · control architecture.md:111 (prose)",
+"no-mcp · new 0 · standing 0 · leaf 2 · curation 0 · base 0 · control architecture.md:136 (prose)",
+"re-exports-40 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 …",
+"eleven-modules · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:257…",
+"three-crates · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:101 (prose)",
+"five-targets · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:150 (prose)",
+"unit-50 · new 0 · standing 0 · leaf 2 · curation 0 · base 0 · control test-plan.md:21 (prose)",
+"two-exits · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control security-plan.md:118 (prose)",
+"one-writer · new 0 · standing 0 · leaf 2 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"no-serde · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"cold-agent-only · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:2…",
+"span-is-run · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control obs-plan.md:106 (prose)",
+"one-span-macro · 0 rows (control fired) — a statement about this pattern, not the masters · control obs-plan.md:30 (pro…",
+"mcp-to-come · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:210 (prose)",
+"one-exception · 0 rows (control fired) — a statement about this pattern, not the masters · control obs-plan.md:70 (pros…",
+"host-log-one · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control obs-plan.md:70 (prose)",
+"one-listener-mcp · new 0 · standing 1 · leaf 2 · curation 0 · base 0 · control architecture.md:87 (prose)",
+".andromeda/architecture.md:263 one-cmd-span standing edited @c7396/9393 …s itself — and the one command span a call lea…",
+".andromeda/obs-plan.md:70 one-cmd-span standing edited @c2865/8617 …`execute` opens the one span of a command (§4), whi…",
+".claude/docs/conventions.md:26 one-cmd-span leaf …` with no feature for its one command span, built by hand with `traci…",
+".claude/docs/services/escher-driver.md:11 one-cmd-span leaf …ures]` table), for the one command span. Through `seven_gu…",
+".claude/docs/services/escher-telemetry.md:32 one-cmd-span leaf …session library emits one span per command under the ta…",
+".claude/docs/security-summary.md:22 no-mcp leaf @c1631/2249 …ion` command line; no MCP tool yet, and that surface is it…",
+".claude/docs/security-summary.md:31 no-mcp leaf …the command line, with no MCP command — and since the sink drops every…",
+".andromeda/a11y-plan.md:14 three-crates standing edited @c1827/3223 …; the library's third dependency, `tracing`, taken…",
+".claude/docs/services/escher-driver.md:11 three-crates leaf …feature — and, the third dependency, `tracing` (the worksp…",
+".andromeda/obs-plan.md:70 five-targets standing edited @c5969/8617 …ince that chunk three more seven_guis targets spawn…",
+".claude/docs/services/escher-driver.md:58 unit-50 leaf - 50 unit tests (`wire.rs` 12 · `session.rs` 4 · `error.rs` 3 · …",
+".claude/docs/tests-summary.md:24 unit-50 leaf @c19/5014 - `escher-driver`: 50 inline unit tests in ten files (29 in sev…",
+".andromeda/security-plan.md:125 two-exits standing edited @c1409/3269 … readings have two exits, both closed enums or b…",
+".claude/rules/security.md:22 one-writer leaf @c1762/2080 … is written as JSON in one place only, as a command's answer …",
+".claude/docs/obs-summary.md:49 one-writer leaf @c2123/2933 …field; the crate's one writer is its command line, which pr…",
+".andromeda/architecture.md:133 no-serde standing edited ×2 @c16766,17192/36186 …ate and use no serialization crate (pac…",
+".claude/docs/services/escher-driver.md:12 no-serde leaf …state location, and no serialization crate — the schema is Rus…",
+".andromeda/obs-plan.md:106 span-is-run standing edited @c3567/4462 …ord either: the span is `run`'s, beside the MCP ser…",
+"CLAUDE.md:108 mcp-to-come leaf @c6368/6459 …y a route entry), and — still to come — the MCP surface, the driver's self-…",
+".andromeda/obs-plan.md:70 host-log-one standing edited @c5747/8617 …ns only — it is the check that reads a sink-install…",
+".andromeda/architecture.md:87 one-listener-mcp standing @c1985/4388 …ument, ahead of the MCP surface; how far each reac…",
+"CLAUDE.md:108 one-listener-mcp leaf @c6384/6459 … and — still to come — the MCP surface, the driver's self-description …",
+".claude/docs/services/escher-driver.md:12 one-listener-mcp leaf …tion re-opens at the MCP surface). The executor, the s…",
+"one-cmd-span · new 0 · standing 2 · leaf 3 · curation 0 · base 0 · control architecture.md:111 (prose)",
+"no-mcp · new 0 · standing 0 · leaf 2 · curation 0 · base 0 · control architecture.md:136 (prose)",
+"re-exports-40 · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:133 …",
+"eleven-modules · 0 rows (control fired) — a statement about this pattern, not the masters · control architecture.md:257…",
+"three-crates · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:101 (prose)",
+"five-targets · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:150 (prose)",
+"unit-50 · new 0 · standing 0 · leaf 2 · curation 0 · base 0 · control test-plan.md:21 (prose)",
+"two-exits · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control security-plan.md:118 (prose)",
+"one-writer · new 0 · standing 0 · leaf 2 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"no-serde · new 0 · standing 1 · leaf 1 · curation 0 · base 0 · control architecture.md:133 (prose)",
+"cold-agent-only · 0 rows (control fired) — a statement about this pattern, not the masters · control security-plan.md:2…",
+"span-is-run · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control obs-plan.md:106 (prose)",
+"one-span-macro · 0 rows (control fired) — a statement about this pattern, not the masters · control obs-plan.md:30 (pro…",
+"mcp-to-come · new 0 · standing 0 · leaf 1 · curation 0 · base 0 · control architecture.md:210 (prose)",
+"one-exception · 0 rows (control fired) — a statement about this pattern, not the masters · control obs-plan.md:70 (pros…",
+"host-log-one · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control obs-plan.md:70 (prose)",
+"one-listener-mcp · new 0 · standing 1 · leaf 2 · curation 0 · base 0 · control architecture.md:87 (prose)",
+"total (17 patterns) · 23 rows over 12 files",
+"per class · new 0/0 · standing 9/4 · leaf 14/8 · curation 0/0 · base 0/0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "69a399da2cef38dc740e4a143778b3c040c7b81e",
+"how": "pre-CI parent — the oldest of 1 pre-CI commit(s), 36877a23",
+"counts": {
+"one-cmd-span": {
+"new": 0,
+"standing": 2,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"no-mcp": {
+"new": 0,
+"standing": 0,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"re-exports-40": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"eleven-modules": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"three-crates": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"five-targets": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"unit-50": {
+"new": 0,
+"standing": 0,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"two-exits": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"one-writer": {
+"new": 0,
+"standing": 0,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"no-serde": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"cold-agent-only": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"span-is-run": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"one-span-macro": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"mcp-to-come": {
+"new": 0,
+"standing": 0,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"one-exception": {
+"new": 0,
+"standing": 0,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"host-log-one": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"one-listener-mcp": {
+"new": 0,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+}
+}
+}
+}
+]

@@ -23,7 +23,7 @@ _Mirrors `.andromeda/architecture.md` §Stack and Technologies (citations live t
 | Networking & async | url 2.5, http 1.1, data-url 0.3.1, tokio 1.42, reqwest 0.13 (native-tls), reqwest-middleware 0.5.1, http-cache =1.0.0-alpha.6 |
 | JavaScript | Boa 0.22 (boa_engine with annex-b, boa_runtime, boa_gc) |
 | UI framework | Dioxus 0.7.3 crates |
-| Media | image 0.25.6, png 0.18, html-escape, percent-encoding, serde 1 |
+| Media | image 0.25.6, png 0.18, html-escape, percent-encoding, serde 1, serde_json 1 (1.0.151; since 2026-10-10-mcp-surface escher-driver's reader of MCP requests, writing nothing) |
 | Parallelism & misc | rayon 1, slotmap, rustc-hash, bytes, smallvec, thin-vec, atomic_refcell, bitflags, bytemuck, pollster, smol_str, thread_local |
 
 ## Data Storage
@@ -33,7 +33,7 @@ _Mirrors `.andromeda/architecture.md` §Stack and Technologies (citations live t
 - No broker. In-process: per-document mpsc channel drained at `resolve`; shell events over an mpsc channel + winit proxy.
 
 ## Observability
-- `tracing` 0.1 + `tracing-subscriber` 0.3 behind per-crate `tracing` features in the engine; `tracing-log` 0.2 + `tracing-subscriber` (env-filter · fmt · registry · std · tracing-log) in escher-telemetry, escher's ungated stderr bootstrap; `tracing` alone, ungated, in escher-driver for its command span; `log` + `env_logger` in the WPT runner; `debug_timer` phase timing behind `log-phase-times`. No OTel, metrics or error-reporting service.
+- `tracing` 0.1 + `tracing-subscriber` 0.3 behind per-crate `tracing` features in the engine; `tracing-log` 0.2 + `tracing-subscriber` (env-filter · fmt · registry · std · tracing-log) in escher-telemetry, escher's ungated stderr bootstrap; `tracing` alone, ungated, in escher-driver for its `command` span and, since 2026-10-10-mcp-surface, its `tool_call` span; `log` + `env_logger` in the WPT runner; `debug_timer` phase timing behind `log-phase-times`. No OTel, metrics or error-reporting service.
 
 ## Development & CI
 - `cargo fmt --all --check`, `cargo clippy --workspace --locked -- -D warnings`, run as legs of `.github/scripts/ci-leg.sh` (the same script on the dev host; `ci-leg.sh fast` is the local pre-push gate); `RUSTDOCFLAGS=-D warnings` is set workflow-wide and the docs job's `cargo doc --workspace --no-deps --locked` holds every workspace library crate to it; a cargo-deny advisory audit (`deny.toml`) and a cargo-llvm-cov coverage report with no threshold run as the `audit` and `coverage` legs.
