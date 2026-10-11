@@ -1,0 +1,1073 @@
+[
+{
+"sql": "SELECT callee_name, caller_name, file, line+1 AS ln FROM calls WHERE callee_crate = 'escher-driver' AND callee_kind = 'fn' AND callee_name IN ('command_line','run','call','attach','stop','start','serve','to_json','validate','validate_session','verb') AND file NOT LIKE '%/tests/%' ORDER BY callee_name, file, line",
+"rows": 176,
+"result": [
+{
+"callee_name": "attach",
+"caller_name": "run",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 312
+},
+{
+"callee_name": "attach",
+"caller_name": "attach",
+"file": "packages/escher-driver/src/client.rs",
+"ln": 54
+},
+{
+"callee_name": "attach",
+"caller_name": "start",
+"file": "packages/escher-driver/src/client.rs",
+"ln": 186
+},
+{
+"callee_name": "attach",
+"caller_name": "start",
+"file": "packages/escher-driver/src/client.rs",
+"ln": 194
+},
+{
+"callee_name": "attach",
+"caller_name": "crate",
+"file": "packages/escher-driver/src/lib.rs",
+"ln": 91
+},
+{
+"callee_name": "call",
+"caller_name": "run",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 315
+},
+{
+"callee_name": "call",
+"caller_name": "call",
+"file": "packages/escher-driver/src/client.rs",
+"ln": 89
+},
+{
+"callee_name": "call",
+"caller_name": "a_call_the_schema_refuses_is_answered_without_a_session",
+"file": "packages/escher-driver/src/client.rs",
+"ln": 368
+},
+{
+"callee_name": "call",
+"caller_name": "admitted_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 342
+},
+{
+"callee_name": "call",
+"caller_name": "admitted_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 344
+},
+{
+"callee_name": "call",
+"caller_name": "admitted_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 350
+},
+{
+"callee_name": "call",
+"caller_name": "admitted_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 356
+},
+{
+"callee_name": "call",
+"caller_name": "admitted_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 362
+},
+{
+"callee_name": "call",
+"caller_name": "admitted_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 368
+},
+{
+"callee_name": "call",
+"caller_name": "admitted_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 375
+},
+{
+"callee_name": "call",
+"caller_name": "admitted_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 382
+},
+{
+"callee_name": "call",
+"caller_name": "admitted_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 389
+},
+{
+"callee_name": "call",
+"caller_name": "admitted_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 399
+},
+{
+"callee_name": "call",
+"caller_name": "admitted_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 409
+},
+{
+"callee_name": "call",
+"caller_name": "admitted_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 419
+},
+{
+"callee_name": "call",
+"caller_name": "admitted_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 423
+},
+{
+"callee_name": "call",
+"caller_name": "admitted_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 427
+},
+{
+"callee_name": "call",
+"caller_name": "admitted_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 431
+},
+{
+"callee_name": "call",
+"caller_name": "admitted_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 437
+},
+{
+"callee_name": "call",
+"caller_name": "admitted_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 459
+},
+{
+"callee_name": "call",
+"caller_name": "an_unknown_verb_is_refused_by_that_name",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 496
+},
+{
+"callee_name": "call",
+"caller_name": "an_unknown_verb_is_refused_by_that_name",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 498
+},
+{
+"callee_name": "call",
+"caller_name": "an_unknown_verb_is_refused_by_that_name",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 501
+},
+{
+"callee_name": "call",
+"caller_name": "session_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 514
+},
+{
+"callee_name": "call",
+"caller_name": "session_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 520
+},
+{
+"callee_name": "call",
+"caller_name": "session_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 526
+},
+{
+"callee_name": "call",
+"caller_name": "session_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 532
+},
+{
+"callee_name": "call",
+"caller_name": "session_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 537
+},
+{
+"callee_name": "call",
+"caller_name": "session_rows",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 538
+},
+{
+"callee_name": "call",
+"caller_name": "a_verb_is_checked_at_its_own_level_only",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 555
+},
+{
+"callee_name": "call",
+"caller_name": "a_verb_is_checked_at_its_own_level_only",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 556
+},
+{
+"callee_name": "call",
+"caller_name": "a_verb_is_checked_at_its_own_level_only",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 557
+},
+{
+"callee_name": "call",
+"caller_name": "a_verb_is_checked_at_its_own_level_only",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 561
+},
+{
+"callee_name": "call",
+"caller_name": "a_verb_is_checked_at_its_own_level_only",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 562
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_session_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 579
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_session_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 582
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_session_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 583
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_session_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 584
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_session_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 585
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_session_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 587
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_session_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 591
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_session_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 595
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 619
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 621
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 622
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 623
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 624
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 626
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 629
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 630
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 631
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 633
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 636
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 637
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 638
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 639
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 641
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 652
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 656
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 660
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 664
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 668
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 672
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 676
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 680
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 684
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 688
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 691
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 693
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 697
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 709
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 713
+},
+{
+"callee_name": "call",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 717
+},
+{
+"callee_name": "call",
+"caller_name": "a_call_that_breaks_two_rules_gets_the_first_in_order",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 731
+},
+{
+"callee_name": "call",
+"caller_name": "a_call_that_breaks_two_rules_gets_the_first_in_order",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 734
+},
+{
+"callee_name": "call",
+"caller_name": "a_call_that_breaks_two_rules_gets_the_first_in_order",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 739
+},
+{
+"callee_name": "call",
+"caller_name": "a_call_that_breaks_two_rules_gets_the_first_in_order",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 744
+},
+{
+"callee_name": "call",
+"caller_name": "a_call_that_breaks_two_rules_gets_the_first_in_order",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 759
+},
+{
+"callee_name": "call",
+"caller_name": "crate",
+"file": "packages/escher-driver/src/lib.rs",
+"ln": 91
+},
+{
+"callee_name": "call",
+"caller_name": "each_request_round_trips",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 336
+},
+{
+"callee_name": "call",
+"caller_name": "each_request_round_trips",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 337
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 632
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 633
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 634
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 635
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 639
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 640
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 644
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 648
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 652
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 653
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 654
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 655
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 656
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 657
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 659
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 660
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 661
+},
+{
+"callee_name": "call",
+"caller_name": "a_decoded_call_is_the_call_that_was_encoded",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 662
+},
+{
+"callee_name": "call",
+"caller_name": "the_widest_call_the_schema_admits_fits_the_request_bound",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 682
+},
+{
+"callee_name": "command_line",
+"caller_name": "main",
+"file": "examples/seven_guis/src/session_host.rs",
+"ln": 8
+},
+{
+"callee_name": "command_line",
+"caller_name": "main",
+"file": "examples/seven_guis/src/session_host.rs",
+"ln": 24
+},
+{
+"callee_name": "command_line",
+"caller_name": "crate",
+"file": "packages/escher-driver/src/lib.rs",
+"ln": 90
+},
+{
+"callee_name": "run",
+"caller_name": "command_line",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 73
+},
+{
+"callee_name": "run",
+"caller_name": "a_line_that_is_no_command_or_is_refused_runs_nothing",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 718
+},
+{
+"callee_name": "run",
+"caller_name": "a_line_that_is_no_command_or_is_refused_runs_nothing",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 721
+},
+{
+"callee_name": "run",
+"caller_name": "a_line_that_is_no_command_or_is_refused_runs_nothing",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 730
+},
+{
+"callee_name": "run",
+"caller_name": "answer",
+"file": "packages/escher-driver/src/host.rs",
+"ln": 198
+},
+{
+"callee_name": "serve",
+"caller_name": "cli",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 13
+},
+{
+"callee_name": "serve",
+"caller_name": "run",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 305
+},
+{
+"callee_name": "serve",
+"caller_name": "serve",
+"file": "packages/escher-driver/src/host.rs",
+"ln": 40
+},
+{
+"callee_name": "serve",
+"caller_name": "crate",
+"file": "packages/escher-driver/src/lib.rs",
+"ln": 95
+},
+{
+"callee_name": "start",
+"caller_name": "main",
+"file": "examples/seven_guis/src/session_host.rs",
+"ln": 31
+},
+{
+"callee_name": "start",
+"caller_name": "run",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 311
+},
+{
+"callee_name": "start",
+"caller_name": "start",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 338
+},
+{
+"callee_name": "start",
+"caller_name": "start",
+"file": "packages/escher-driver/src/client.rs",
+"ln": 120
+},
+{
+"callee_name": "start",
+"caller_name": "crate",
+"file": "packages/escher-driver/src/lib.rs",
+"ln": 91
+},
+{
+"callee_name": "start",
+"caller_name": "a_label_outside_the_closed_set_is_refused_before_the_boot_runs",
+"file": "packages/escher-driver/src/session.rs",
+"ln": 178
+},
+{
+"callee_name": "stop",
+"caller_name": "run",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 313
+},
+{
+"callee_name": "stop",
+"caller_name": "stop",
+"file": "packages/escher-driver/src/client.rs",
+"ln": 65
+},
+{
+"callee_name": "stop",
+"caller_name": "crate",
+"file": "packages/escher-driver/src/lib.rs",
+"ln": 91
+},
+{
+"callee_name": "to_json",
+"caller_name": "written",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 243
+},
+{
+"callee_name": "to_json",
+"caller_name": "run",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 303
+},
+{
+"callee_name": "to_json",
+"caller_name": "each_ending_writes_its_streams_and_returns_its_status",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 636
+},
+{
+"callee_name": "to_json",
+"caller_name": "each_ending_writes_its_streams_and_returns_its_status",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 649
+},
+{
+"callee_name": "to_json",
+"caller_name": "each_ending_writes_its_streams_and_returns_its_status",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 650
+},
+{
+"callee_name": "to_json",
+"caller_name": "a_line_that_is_no_command_or_is_refused_runs_nothing",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 722
+},
+{
+"callee_name": "to_json",
+"caller_name": "call",
+"file": "packages/escher-driver/src/client.rs",
+"ln": 86
+},
+{
+"callee_name": "to_json",
+"caller_name": "a_call_the_schema_refuses_is_answered_without_a_session",
+"file": "packages/escher-driver/src/client.rs",
+"ln": 371
+},
+{
+"callee_name": "to_json",
+"caller_name": "answer",
+"file": "packages/escher-driver/src/host.rs",
+"ln": 199
+},
+{
+"callee_name": "to_json",
+"caller_name": "answer",
+"file": "packages/escher-driver/src/host.rs",
+"ln": 200
+},
+{
+"callee_name": "to_json",
+"caller_name": "each_outcome_is_written_with_its_verbs_fields_in_order",
+"file": "packages/escher-driver/src/json.rs",
+"ln": 553
+},
+{
+"callee_name": "to_json",
+"caller_name": "each_refusal_is_written_from_its_causes_fixed_strings",
+"file": "packages/escher-driver/src/json.rs",
+"ln": 591
+},
+{
+"callee_name": "to_json",
+"caller_name": "each_refusal_is_written_from_its_causes_fixed_strings",
+"file": "packages/escher-driver/src/json.rs",
+"ln": 597
+},
+{
+"callee_name": "to_json",
+"caller_name": "each_session_error_is_written_with_its_kind_and_its_message",
+"file": "packages/escher-driver/src/json.rs",
+"ln": 623
+},
+{
+"callee_name": "validate",
+"caller_name": "cli",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 11
+},
+{
+"callee_name": "validate",
+"caller_name": "read",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 130
+},
+{
+"callee_name": "validate",
+"caller_name": "client",
+"file": "packages/escher-driver/src/client.rs",
+"ln": 8
+},
+{
+"callee_name": "validate",
+"caller_name": "call",
+"file": "packages/escher-driver/src/client.rs",
+"ln": 83
+},
+{
+"callee_name": "validate",
+"caller_name": "an_admitted_call_becomes_its_command",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 471
+},
+{
+"callee_name": "validate",
+"caller_name": "an_unknown_verb_is_refused_by_that_name",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 496
+},
+{
+"callee_name": "validate",
+"caller_name": "an_unknown_verb_is_refused_by_that_name",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 502
+},
+{
+"callee_name": "validate",
+"caller_name": "a_verb_is_checked_at_its_own_level_only",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 550
+},
+{
+"callee_name": "validate",
+"caller_name": "a_verb_is_checked_at_its_own_level_only",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 566
+},
+{
+"callee_name": "validate",
+"caller_name": "a_verb_is_checked_at_its_own_level_only",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 572
+},
+{
+"callee_name": "validate",
+"caller_name": "a_malformed_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 723
+},
+{
+"callee_name": "validate",
+"caller_name": "a_call_that_breaks_two_rules_gets_the_first_in_order",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 757
+},
+{
+"callee_name": "validate",
+"caller_name": "a_call_that_breaks_two_rules_gets_the_first_in_order",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 760
+},
+{
+"callee_name": "validate",
+"caller_name": "every_verb_of_the_table_is_reached_and_names_its_own_spec",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 767
+},
+{
+"callee_name": "validate",
+"caller_name": "execute",
+"file": "packages/escher-driver/src/execute.rs",
+"ln": 8
+},
+{
+"callee_name": "validate",
+"caller_name": "execute",
+"file": "packages/escher-driver/src/execute.rs",
+"ln": 122
+},
+{
+"callee_name": "validate",
+"caller_name": "crate",
+"file": "packages/escher-driver/src/lib.rs",
+"ln": 92
+},
+{
+"callee_name": "validate",
+"caller_name": "tests",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 304
+},
+{
+"callee_name": "validate",
+"caller_name": "the_widest_call_the_schema_admits_fits_the_request_bound",
+"file": "packages/escher-driver/src/wire.rs",
+"ln": 689
+},
+{
+"callee_name": "validate_session",
+"caller_name": "cli",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 11
+},
+{
+"callee_name": "validate_session",
+"caller_name": "read",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 131
+},
+{
+"callee_name": "validate_session",
+"caller_name": "an_unknown_verb_is_refused_by_that_name",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 498
+},
+{
+"callee_name": "validate_session",
+"caller_name": "an_unknown_verb_is_refused_by_that_name",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 504
+},
+{
+"callee_name": "validate_session",
+"caller_name": "a_verb_is_checked_at_its_own_level_only",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 549
+},
+{
+"callee_name": "validate_session",
+"caller_name": "a_verb_is_checked_at_its_own_level_only",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 573
+},
+{
+"callee_name": "validate_session",
+"caller_name": "a_malformed_session_call_is_refused_with_the_rule_it_broke",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 608
+},
+{
+"callee_name": "validate_session",
+"caller_name": "every_verb_of_the_table_is_reached_and_names_its_own_spec",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 778
+},
+{
+"callee_name": "validate_session",
+"caller_name": "crate",
+"file": "packages/escher-driver/src/lib.rs",
+"ln": 92
+},
+{
+"callee_name": "verb",
+"caller_name": "read",
+"file": "packages/escher-driver/src/cli.rs",
+"ln": 125
+},
+{
+"callee_name": "verb",
+"caller_name": "verb_at",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 245
+},
+{
+"callee_name": "verb",
+"caller_name": "every_verb_of_the_table_is_reached_and_names_its_own_spec",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 772
+},
+{
+"callee_name": "verb",
+"caller_name": "every_verb_of_the_table_is_reached_and_names_its_own_spec",
+"file": "packages/escher-driver/src/command.rs",
+"ln": 783
+},
+{
+"callee_name": "verb",
+"caller_name": "run",
+"file": "packages/escher-driver/src/execute.rs",
+"ln": 113
+},
+{
+"callee_name": "verb",
+"caller_name": "crate",
+"file": "packages/escher-driver/src/lib.rs",
+"ln": 99
+},
+{
+"callee_name": "verb",
+"caller_name": "a_verb_is_found_by_its_exact_name_only",
+"file": "packages/escher-driver/src/schema.rs",
+"ln": 480
+},
+{
+"callee_name": "verb",
+"caller_name": "a_verb_is_found_by_its_exact_name_only",
+"file": "packages/escher-driver/src/schema.rs",
+"ln": 486
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT name, crate, kind, file FROM symbol WHERE lower(name) LIKE '%mcp%' AND kind <> 'meta'",
+"rows": 0,
+"result": [],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

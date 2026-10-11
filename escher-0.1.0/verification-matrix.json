@@ -176,11 +176,12 @@
       "observed_gap": "none.",
       "verification": {
         "method": "dynamic-external",
-        "acceptance": "Every command available on the command line is also offered as an MCP tool, and an agent session completes a stand flow using only those tools.",
-        "ref": null,
-        "status": "planned"
+        "acceptance": "`tools/list` of `escher-session mcp` offers exactly the nine verbs of `escher_driver::VERBS` — every command the command line runs — in the table's order, each with the table's arguments, required set and help; a scripted MCP session completes the Counter flow by tool calls alone (`start counter`, a `snapshot`, three clicks on `counter-increment`, a `snapshot` reading ` \"3\" id=\"counter-value\" `, `stop`), in process in both layout modes (`tests/blitz-tests/tests/stand_mcp_tools.rs`) and through the binary as a child process (`examples/seven_guis/tests/mcp_server.rs`), under the per-package and the workspace build; and one live agent session on the dev host, whose only tools are this server's, completes the same flow — the operator pass's trial line reads `isolated true` and `end_state reached`, recorded in `escher-0.1.0/chunks/2026-10-10-mcp-surface/evidence/live-trial.md`.",
+        "ref": "tests/blitz-tests/tests/stand_mcp_tools.rs::a_scripted_mcp_session_completes_the_counter_flow_and_parents_each_command · examples/seven_guis/tests/mcp_server.rs::the_mcp_role_completes_the_counter_flow_by_tool_calls_alone · packages/escher-driver/src/mcp.rs::tests::the_listing_is_the_nine_verbs_of_the_table — per-package and workspace builds (gate entries 3, 4, 5); live half: evidence/live-trial.md (operator pass, entry 18)",
+        "status": "implemented"
       },
-      "chunk": null
+      "chunk": "2026-10-10-mcp-surface",
+      "notes": "2026-10-11 (2026-10-10-mcp-surface, phase P5): concretized at the claim — the agent-session half is one small live trial in the operator pass on the founder's word (fork 3A, «Малое живое испытание сейчас», relayed by the overseer, the chunk's inputs#I3), beside a scripted MCP session in CI; `ref` is written by implement from the scripted checks, the live half read by the wrap from the chunk's evidence/live-trial.md."
     },
     {
       "id": "v010-14",

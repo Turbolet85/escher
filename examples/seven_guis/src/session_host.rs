@@ -1,7 +1,8 @@
 //! The `escher-session` binary: the driver's command line over the four lean stand tasks. As a
 //! client it runs one driver command against a session in a state directory; in its host role
 //! (`serve <task> --session <dir>`) it boots one task headlessly and serves it as that session
-//! until it is stopped or idle.
+//! until it is stopped or idle; in its `mcp` role it speaks MCP on its standard streams,
+//! holding the apps it starts in its own process.
 
 #[cfg(not(target_arch = "wasm32"))]
 fn main() -> std::process::ExitCode {

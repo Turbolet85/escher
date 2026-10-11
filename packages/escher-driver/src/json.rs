@@ -13,7 +13,7 @@ use crate::refusal::Refusal;
 
 /// Writes `text` as a JSON string: `"` and `\` escaped, a control character as `\n`, `\r`,
 /// `\t` or `\u00XX`, everything else as it is.
-fn string(out: &mut String, text: &str) {
+pub(crate) fn string(out: &mut String, text: &str) {
     out.push('"');
     for character in text.chars() {
         match character {
@@ -42,13 +42,13 @@ fn number(out: &mut String, value: f64) {
 }
 
 /// A JSON object being written, its members in the order they are added.
-struct Object {
+pub(crate) struct Object {
     text: String,
     members: usize,
 }
 
 impl Object {
-    fn new() -> Object {
+    pub(crate) fn new() -> Object {
         Object {
             text: String::from("{"),
             members: 0,
@@ -66,25 +66,25 @@ impl Object {
         &mut self.text
     }
 
-    fn text(&mut self, key: &str, value: &str) {
+    pub(crate) fn text(&mut self, key: &str, value: &str) {
         string(self.member(key), value);
     }
 
-    fn flag(&mut self, key: &str, value: bool) {
+    pub(crate) fn flag(&mut self, key: &str, value: bool) {
         self.member(key)
             .push_str(if value { "true" } else { "false" });
     }
 
-    fn count(&mut self, key: &str, value: u64) {
+    pub(crate) fn count(&mut self, key: &str, value: u64) {
         let _ = write!(self.member(key), "{value}");
     }
 
     /// A member whose value is already JSON.
-    fn json(&mut self, key: &str, value: &str) {
+    pub(crate) fn json(&mut self, key: &str, value: &str) {
         self.member(key).push_str(value);
     }
 
-    fn end(mut self) -> String {
+    pub(crate) fn end(mut self) -> String {
         self.text.push('}');
         self.text
     }

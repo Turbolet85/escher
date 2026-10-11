@@ -40,7 +40,8 @@
 //! says whether it then is. Time moves only by `advance`, through the step a session's caller
 //! hands it ([`Session::with_time`]). An outcome, a refusal and a session error each have one
 //! written form, a line of JSON keyed by the schema's own words ([`Outcome::to_json`],
-//! [`Refusal::to_json`], [`SessionError::to_json`]).
+//! [`Refusal::to_json`], [`SessionError::to_json`]), and three surfaces read it: the session's
+//! socket, the command line and the MCP server.
 //!
 //! An action aimed at a target that cannot take it is refused before anything is dispatched,
 //! and the refusal names why: the id names nothing on the screen ([`Cause::NotFound`], or
@@ -62,6 +63,13 @@
 //! run, answered with one line of JSON on stdout and a status that tells accepted from
 //! refused, from a usage error and from a session error.
 //!
+//! [`serve_mcp`] serves the verbs as MCP tools over a reader and a writer — newline-delimited
+//! JSON-RPC 2.0 in the protocol's handshake revisions — and holds the session it starts in its
+//! own process. A `snapshot` tool result is the screen's text, and every other result the
+//! command's line of JSON. Each tool call leaves one `tracing` span, `tool_call`, under the
+//! target `escher_driver`, with two fields — `tool`, the table's word for its verb, and
+//! `ending`, `accepted`, `refused` or `error` — and the call's `command` span is its child.
+//!
 //! A call run through [`Session::run`] leaves one `tracing` span, `command`, at INFO under the
 //! target `escher_driver`. Its fields say which verb ran (`verb`), why a refused call was
 //! refused (`cause`, the name of a [`Cause`]), how an acting verb's settle went (`settled`;
@@ -80,6 +88,7 @@ mod error;
 mod execute;
 mod host;
 mod json;
+mod mcp;
 mod refusal;
 mod schema;
 mod session;
@@ -93,6 +102,7 @@ pub use command::{ArgValue, Call, Command, Key, SessionCommand, validate, valida
 pub use error::SessionError;
 pub use execute::Outcome;
 pub use host::{IDLE_EXPIRY, serve};
+pub use mcp::serve_mcp;
 pub use refusal::{CAUSES, Cause, Fault, Refusal};
 pub use schema::{
     ArgKind, ArgSpec, BUSY_CLASSES, FieldKind, FieldSpec, KEY_NAMES, Level, MAX_ID_BYTES,

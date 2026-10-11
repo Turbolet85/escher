@@ -39,3 +39,6 @@
 ## Deferred learnings
 - Curation applied three (one Tier 1, two Tier 3); nothing is deferred by the cap. It is session-local: the window that held implement's conversation is gone, and the report's Decisions & corrections stood in for it.
 - Carried from the previous wrap, still open: `recurrence-despite-learning: "Committed run-dir and evidence text must not spell a host temp path, even as prose"` — the remedy is a check in the step that writes such a copy.
+
+## Session End Status
+Completed normally at 2026-10-11 09:48:07

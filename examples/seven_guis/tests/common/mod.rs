@@ -1,8 +1,9 @@
 //! What the checks of the `escher-session` binary share: a state directory under the test
 //! target's temp dir, the clear of what a killed earlier run left there, a guard that kills
 //! and reaps a host a failing check still holds, one bounded run of the binary as a client with
-//! both its streams drained, and the readers of an answer's one line. A check declares
-//! `mod common;` and reads what it needs. This module holds no test.
+//! both its streams drained, a child held with a piped stdin that is spoken to one line at a
+//! time and answers one line at a time, and the readers of an answer's one line. A check
+//! declares `mod common;` and reads what it needs. This module holds no test.
 
 #![allow(dead_code)]
 
@@ -160,6 +161,176 @@ pub fn number(json: &str, key: &str) -> Option<u64> {
     let (_, rest) = json.split_once(&format!("\"{key}\":"))?;
     let digits: String = rest.chars().take_while(char::is_ascii_digit).collect();
     digits.parse().ok()
+}
+
+/// The first string a written JSON object holds under `key`, unescaped over exactly the escapes
+/// the driver's writer writes — `\"`, `\\`, `\n`, `\r`, `\t` and `\u00XX` — and `None` for
+/// any other. Read off the outer layer only: a JSON line held as a string comes back as that
+/// line.
+pub fn string_at(json: &str, key: &str) -> Option<String> {
+    let (_, rest) = json.split_once(&format!("\"{key}\":\""))?;
+    let mut text = String::new();
+    let mut chars = rest.chars();
+    loop {
+        match chars.next()? {
+            '"' => return Some(text),
+            '\\' => match chars.next()? {
+                '"' => text.push('"'),
+                '\\' => text.push('\\'),
+                'n' => text.push('\n'),
+                'r' => text.push('\r'),
+                't' => text.push('\t'),
+                'u' => {
+                    let hex: String = chars.by_ref().take(4).collect();
+                    let code = hex
+                        .strip_prefix("00")
+                        .and_then(|low| u32::from_str_radix(low, 16).ok())?;
+                    text.push(char::from_u32(code)?);
+                }
+                _ => return None,
+            },
+            other => text.push(other),
+        }
+    }
+}
+
+/// How long a [`Speaker`] waits for one reply, and for its child to end once its stdin closes.
+pub const REPLY_BOUND: std::time::Duration = std::time::Duration::from_secs(30);
+
+/// A spawned child spoken to over a piped stdin, one line at a time: its stdout read line by
+/// line on a thread of its own into a channel, its stderr drained from the spawn on, and the
+/// child killed and reaped when a failing check drops it.
+pub struct Speaker {
+    child: std::process::Child,
+    stdin: Option<std::process::ChildStdin>,
+    lines: std::sync::mpsc::Receiver<Vec<u8>>,
+    stderr: Option<std::thread::JoinHandle<std::io::Result<Vec<u8>>>>,
+}
+
+/// How a [`Speaker`]'s child ended: `status` is `None` when it was still going at the bound and
+/// was killed, or was ended by a signal; `stdout` holds the lines it wrote that no
+/// [`Speaker::reply`] took.
+pub struct Spoke {
+    pub status: Option<i32>,
+    pub stdout: Vec<Vec<u8>>,
+    pub stderr: Vec<u8>,
+}
+
+impl Speaker {
+    /// Spawns `command` with its three streams piped.
+    pub fn spawn(mut command: std::process::Command) -> Speaker {
+        use std::io::BufRead;
+        use std::process::Stdio;
+
+        let mut child = command
+            .stdin(Stdio::piped())
+            .stdout(Stdio::piped())
+            .stderr(Stdio::piped())
+            .spawn()
+            .expect("the command spawns");
+        let stdin = child.stdin.take();
+        let stderr = drain(child.stderr.take().expect("stderr is piped"));
+        let stdout = child.stdout.take().expect("stdout is piped");
+        let (sender, lines) = std::sync::mpsc::channel();
+        std::thread::spawn(move || {
+            let mut stdout = std::io::BufReader::new(stdout);
+            loop {
+                let mut line = Vec::new();
+                match stdout.read_until(b'\n', &mut line) {
+                    Ok(0) | Err(_) => break,
+                    Ok(_) => {
+                        if sender.send(line).is_err() {
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+        Speaker {
+            child,
+            stdin,
+            lines,
+            stderr: Some(stderr),
+        }
+    }
+
+    /// Writes `line` and a line break to the child's stdin, and flushes.
+    pub fn send(&mut self, line: &[u8]) {
+        use std::io::Write;
+
+        let stdin = self.stdin.as_mut().expect("stdin is open");
+        stdin
+            .write_all(line)
+            .and_then(|()| stdin.write_all(b"\n"))
+            .and_then(|()| stdin.flush())
+            .expect("the child reads its stdin");
+    }
+
+    /// The next line the child writes to stdout, as it wrote it, its line break included,
+    /// waited for under [`REPLY_BOUND`]. A failure names a count only: a reply holds ids, names
+    /// and values.
+    #[track_caller]
+    pub fn reply_bytes(&self) -> Vec<u8> {
+        match self.lines.recv_timeout(REPLY_BOUND) {
+            Ok(line) => line,
+            Err(_) => panic!("no reply line within {} s", REPLY_BOUND.as_secs()),
+        }
+    }
+
+    /// The next line the child writes to stdout, without its line break: one line of text
+    /// with no ESC byte.
+    #[track_caller]
+    pub fn reply(&self) -> String {
+        let line = self.reply_bytes();
+        let escapes = line.iter().filter(|byte| **byte == 0x1b).count();
+        assert!(
+            line.last() == Some(&b'\n') && escapes == 0,
+            "a reply of {} bytes holds {escapes} ESC bytes",
+            line.len()
+        );
+        String::from_utf8(line[..line.len() - 1].to_vec()).expect("a reply is text")
+    }
+
+    /// Closes the child's stdin and waits for it to end, for at most [`REPLY_BOUND`]: a child
+    /// still going then is killed and reaped.
+    pub fn close(mut self) -> Spoke {
+        use std::time::{Duration, Instant};
+
+        drop(self.stdin.take());
+        let deadline = Instant::now() + REPLY_BOUND;
+        let status = loop {
+            if let Some(status) = self.child.try_wait().expect("the child can be waited on") {
+                break status.code();
+            }
+            if Instant::now() >= deadline {
+                let _ = self.child.kill();
+                let _ = self.child.wait();
+                break None;
+            }
+            std::thread::sleep(Duration::from_millis(5));
+        };
+        let stderr = self
+            .stderr
+            .take()
+            .expect("stderr is drained once")
+            .join()
+            .expect("the stderr reader ends")
+            .expect("stderr is read to its end");
+        let stdout =
+            std::iter::from_fn(|| self.lines.recv_timeout(Duration::from_secs(1)).ok()).collect();
+        Spoke {
+            status,
+            stdout,
+            stderr,
+        }
+    }
+}
+
+impl Drop for Speaker {
+    fn drop(&mut self) {
+        let _ = self.child.kill();
+        let _ = self.child.wait();
+    }
 }
 
 /// The cause a refusal's line names.

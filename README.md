@@ -45,7 +45,7 @@ target/debug/escher-session click --id counter-increment --session demo-session
 target/debug/escher-session stop --session demo-session
 ```
 
-The driver's MCP surface, the help it serves about itself and its screenshot are still to come.
+An MCP client can drive the same apps: it spawns `target/debug/escher-session mcp` as its own child and gets the nine driver commands as tools. The help the driver serves about itself and its screenshot are still to come.
 
 ## Plans
 

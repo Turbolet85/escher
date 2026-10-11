@@ -1,0 +1,49 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "a0f3749c",
+"ts": "2026-10-11T08:08:16Z",
+"argv": [
+"implement",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-10-mcp-surface",
+"--id",
+"v010-13",
+"--ref-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-11T07-48-16-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"implement v010-13 · status planned → implemented · ref tests/blitz-tests/tests/stand_mcp_tools.rs::a_scripted_mcp_session_completes_the… (427 chars)",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-13",
+"chunk": "2026-10-10-mcp-surface",
+"status": "planned",
+"method": "dynamic-external",
+"ref": "null",
+"acceptance": "`tools/list` of `escher-session mcp` offers exactly the nine verbs of `escher_driver::VERBS` — every command the command… (885 chars)",
+"notes_chars": 419
+},
+"after": {
+"id": "v010-13",
+"chunk": "2026-10-10-mcp-surface",
+"status": "implemented",
+"method": "dynamic-external",
+"ref": "tests/blitz-tests/tests/stand_mcp_tools.rs::a_scripted_mcp_session_completes_the_counter_flow_and_parents_each_command ·… (427 chars)",
+"acceptance": "`tools/list` of `escher-session mcp` offers exactly the nine verbs of `escher_driver::VERBS` — every command the command… (885 chars)",
+"notes_chars": 419
+}
+}
+]

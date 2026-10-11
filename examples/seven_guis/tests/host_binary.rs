@@ -142,11 +142,12 @@ fn a_line_that_is_no_command_is_refused_before_anything_boots() {
                     "timer",
                     "crud",
                     "snapshot",
-                    "serve"
+                    "serve",
+                    "mcp"
                 ]
                 .iter()
                 .all(|word| stderr.contains(word)),
-                "row {row}: the usage line names the commands and the tasks"
+                "row {row}: the usage line names the commands, the roles and the tasks"
             );
             assert!(
                 !stderr.contains("no-such-task") && !stderr.contains(at),

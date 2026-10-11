@@ -1,0 +1,111 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "a0f3749c",
+"ts": "2026-10-11T07:47:32Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.1.0",
+"--run-dir",
+".andromeda/runs/2026-10-10T19-14-13-phase",
+"--marker",
+"2026-10-10-mcp-surface"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 12/17 · deferred 0 · planned 5 · implemented 0 · unclaimed 5",
+"unclaimed: v010-07 v010-08 v010-13 v010-14 v010-15",
+"claimed-unfinished: none",
+"done-test: NO — 5 not verified|deferred · unclaimed 5",
+"chunks referenced: 8 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "a0f3749c",
+"ts": "2026-10-11T07:47:43Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-13",
+"--chunk",
+"2026-10-10-mcp-surface",
+"--acceptance-file",
+".andromeda/runs/2026-10-10T19-14-13-phase/acceptance-v010-13.md",
+"--note-file",
+".andromeda/runs/2026-10-10T19-14-13-phase/note-v010-13.md",
+"--run-dir",
+".andromeda/runs/2026-10-10T19-14-13-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v010-13 → chunk 2026-10-10-mcp-surface (was null; status planned kept)",
+"acceptance: Every command available on the command line is also offered as an MCP … (143 chars)",
+"         → `tools/list` of `escher-session mcp` offers exactly the nine verbs of … (885 chars)",
+"notes: +419 chars (total 419)",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 4 [v010-07 v010-08 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-13",
+"chunk": null,
+"status": "planned",
+"method": "dynamic-external",
+"ref": "null",
+"acceptance": "Every command available on the command line is also offered as an MCP tool, and an agent session completes a stand flow … (143 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v010-13",
+"chunk": "2026-10-10-mcp-surface",
+"status": "planned",
+"method": "dynamic-external",
+"ref": "null",
+"acceptance": "`tools/list` of `escher-session mcp` offers exactly the nine verbs of `escher_driver::VERBS` — every command the command… (885 chars)",
+"notes_chars": 419
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "a0f3749c",
+"ts": "2026-10-11T07:47:43Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-10-mcp-surface",
+"--plan",
+"escher-0.1.0/chunks/2026-10-10-mcp-surface/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-10T19-14-13-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-10-mcp-surface: 1 · ## Acceptance Criteria: line 477, 44 lines",
+"v010-13: cited in ## Acceptance Criteria (line 478)",
+"pool: unclaimed 4 [v010-07 v010-08 v010-14 v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

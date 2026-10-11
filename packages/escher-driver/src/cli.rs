@@ -12,6 +12,7 @@ use crate::command::{ArgValue, Call, SessionCommand, validate, validate_session}
 use crate::error::SessionError;
 use crate::host::{IDLE_EXPIRY, serve};
 use crate::json;
+use crate::mcp::serve_mcp;
 use crate::refusal::{Cause, Refusal};
 use crate::schema::{self, ArgKind, ArgSpec, Level, VERBS, VerbSpec};
 use crate::session::Session;
@@ -31,6 +32,9 @@ const SESSION_OPTION: &str = "--session";
 /// The first word of the host role.
 const HOST_ROLE: &str = "serve";
 
+/// The word of the MCP role.
+const MCP_ROLE: &str = "mcp";
+
 /// How long `start` waits for the host it spawns to answer.
 const START_BOUND: Duration = Duration::from_secs(30);
 
@@ -40,7 +44,7 @@ const START_BOUND: Duration = Duration::from_secs(30);
 /// boots, and `boot` builds the session of the app a name names: the binary's own boot, as
 /// this crate names no app.
 ///
-/// The first word is a verb of [`VERBS`] or `serve`. A verb's arguments are flags spelt as
+/// The first word is a verb of [`VERBS`], `serve` or `mcp`. A verb's arguments are flags spelt as
 /// the schema spells them — `--id`, `--text`, `--key`, `--ms`, each followed by its value, and
 /// a bare `--shift` — except that `start` takes its app as one plain word; `--session <dir>`
 /// names the session's state directory on every command. `start` spawns the running binary
@@ -48,6 +52,10 @@ const START_BOUND: Duration = Duration::from_secs(30);
 /// does; `status` reaches the session and `stop` ends it; every other verb is sent to the
 /// session as a call ([`call`](crate::call)). `serve` is the host role: it boots the app and
 /// serves it in the foreground until it is stopped or has been idle for [`IDLE_EXPIRY`].
+/// `mcp`, alone on its line, is the MCP role: it speaks MCP on stdin and stdout
+/// ([`serve_mcp`](crate::serve_mcp)), holding the apps it starts in its own process, until stdin
+/// ends. Stdout is the protocol's: the role writes nothing else there, ends `0` when stdin
+/// ends, and `3` with the error's fixed message on stderr when a read or a write fails.
 ///
 /// A command ends one of four ways, and its status says which:
 ///
@@ -58,7 +66,7 @@ const START_BOUND: Duration = Duration::from_secs(30);
 ///   session is asked for, so a refused call reaches no session.
 /// - `2`, usage: one fixed line on stderr and nothing on stdout — no command, an argument
 ///   that is not text, a `--session` that is absent or given twice, an app the binary does
-///   not boot, a `serve` line of another shape.
+///   not boot, a `serve` or an `mcp` line of another shape.
 /// - `3`, session error: the error on stdout as one line of JSON, and its fixed message on
 ///   stderr.
 ///
@@ -67,10 +75,10 @@ const START_BOUND: Duration = Duration::from_secs(30);
 pub fn command_line(
     args: impl IntoIterator<Item = OsString>,
     apps: &[&str],
-    boot: impl FnOnce(&str) -> Result<Session, SessionError>,
+    boot: impl FnMut(&str) -> Result<Session, SessionError>,
 ) -> ExitCode {
     let ending = match text_arguments(args) {
-        Some(args) => run(read(&args, apps), boot),
+        Some(args) => run(read(&args, apps), apps, boot),
         None => Ending::Usage,
     };
     let written = ending.written(apps);
@@ -94,6 +102,8 @@ enum Line {
     Refused(Refusal),
     /// The host role.
     Serve { app: String, state_dir: PathBuf },
+    /// The MCP role.
+    Mcp,
     /// A session-level command.
     Session {
         command: SessionCommand,
@@ -120,6 +130,13 @@ fn read(args: &[String], apps: &[&str]) -> Line {
                 }
             }
             _ => Line::Usage,
+        };
+    }
+    if word == MCP_ROLE {
+        return if rest.is_empty() {
+            Line::Mcp
+        } else {
+            Line::Usage
         };
     }
     let Some(spec) = schema::verb(word) else {
@@ -211,6 +228,8 @@ enum Ending {
     Failed(SessionError),
     /// The host role ended, after a stop or an expiry.
     Served,
+    /// The MCP role ended: its input ended, or a read or a write failed.
+    Spoken(Result<(), SessionError>),
 }
 
 /// What an ending writes and returns.
@@ -244,17 +263,23 @@ impl Ending {
                 stderr: Some(error.to_string()),
                 status: SESSION_ERROR,
             },
-            Ending::Served => Written {
+            Ending::Served | Ending::Spoken(Ok(())) => Written {
                 stdout: None,
                 stderr: None,
                 status: ACCEPTED,
+            },
+            // Stdout belongs to the protocol.
+            Ending::Spoken(Err(error)) => Written {
+                stdout: None,
+                stderr: Some(error.to_string()),
+                status: SESSION_ERROR,
             },
         }
     }
 }
 
-/// The usage line: every verb with its arguments as the table states them, the host role and
-/// the apps.
+/// The usage line: every verb with its arguments as the table states them, the host role, the
+/// MCP role and the apps.
 fn usage(apps: &[&str]) -> String {
     let mut line = format!("usage: <command> {SESSION_OPTION} <dir>; commands:");
     for (index, verb) in VERBS.iter().enumerate() {
@@ -272,7 +297,7 @@ fn usage(apps: &[&str]) -> String {
         }
     }
     line.push_str(&format!(
-        "; host role: {HOST_ROLE} <app> {SESSION_OPTION} <dir>; apps: {}",
+        "; host role: {HOST_ROLE} <app> {SESSION_OPTION} <dir>; mcp role: {MCP_ROLE}; apps: {}",
         apps.join(" | ")
     ));
     line
@@ -293,7 +318,11 @@ fn write(written: &Written) {
     }
 }
 
-fn run(line: Line, boot: impl FnOnce(&str) -> Result<Session, SessionError>) -> Ending {
+fn run(
+    line: Line,
+    apps: &[&str],
+    mut boot: impl FnMut(&str) -> Result<Session, SessionError>,
+) -> Ending {
     let answered = |answer: Result<String, SessionError>| match answer {
         Ok(answer) => Ending::Accepted(answer),
         Err(error) => Ending::Failed(error),
@@ -307,6 +336,13 @@ fn run(line: Line, boot: impl FnOnce(&str) -> Result<Session, SessionError>) -> 
                 Err(error) => Ending::Failed(error),
             }
         }
+        Line::Mcp => Ending::Spoken(serve_mcp(
+            io::stdin().lock(),
+            io::stdout().lock(),
+            apps,
+            boot,
+            IDLE_EXPIRY,
+        )),
         Line::Session { command, state_dir } => answered(match command {
             SessionCommand::Start { app } => start(&app, &state_dir),
             SessionCommand::Status => client::attach(&state_dir).map(|hello| json::status(&hello)),
@@ -403,6 +439,10 @@ mod tests {
             (&["serve", "--session", DIR, "counter"], Line::Usage),
             (&["serve", "counter", "--session", DIR, "more"], Line::Usage),
             (&["serve", "timer", "--session", DIR], Line::Usage),
+            // The MCP role, alone on its line.
+            (&["mcp"], Line::Mcp),
+            (&["mcp", "x"], Line::Usage),
+            (&["mcp", "--session", DIR], Line::Usage),
             // A first word the table does not hold.
             (&["screenshot", "--session", DIR], unknown()),
             (&["Click", "--id", "save", "--session", DIR], unknown()),
@@ -601,7 +641,7 @@ mod tests {
             // `start` on an app the binary does not boot.
             (&["start", "timer", "--session", DIR], Line::Usage),
         ];
-        assert_eq!(rows.len(), 61);
+        assert_eq!(rows.len(), 64);
         for (row, (words, read)) in rows.into_iter().enumerate() {
             assert!(line(words) == read, "row {row}");
         }
@@ -653,6 +693,13 @@ mod tests {
             ),
             (Ending::Usage, None, Some(usage_line.clone()), 2),
             (Ending::Served, None, None, 0),
+            (Ending::Spoken(Ok(())), None, None, 0),
+            (
+                Ending::Spoken(Err(SessionError::Io(io::ErrorKind::BrokenPipe))),
+                None,
+                Some(SessionError::Io(io::ErrorKind::BrokenPipe).to_string()),
+                3,
+            ),
             failed(SessionError::AlreadyRunning),
             failed(SessionError::NoSession),
             failed(SessionError::Dead),
@@ -667,7 +714,7 @@ mod tests {
             failed(SessionError::NotSettled(Busy::Render)),
             failed(SessionError::AnswerTooLarge),
         ];
-        assert_eq!(rows.len(), 17);
+        assert_eq!(rows.len(), 19);
         for (row, (ending, stdout, stderr, status)) in rows.into_iter().enumerate() {
             let written = ending.written(&APPS);
             let expected = Written {
@@ -703,7 +750,7 @@ mod tests {
             "usage: <command> --session <dir>; commands: snapshot | click --id <id> | type --id \
              <id> --text <text> | press --key <key> [--shift] | advance --ms <milliseconds> | \
              scroll --id <id> | start <app> | status | stop; host role: serve <app> --session \
-             <dir>; apps: counter | flight-booker"
+             <dir>; mcp role: mcp; apps: counter | flight-booker"
         );
         for verb in VERBS {
             assert!(usage(&[]).contains(verb.name));
@@ -715,10 +762,10 @@ mod tests {
         let never = |_: &str| -> Result<Session, SessionError> {
             panic!("the boot ran for a line that reaches no session")
         };
-        assert_eq!(run(Line::Usage, never), Ending::Usage);
+        assert_eq!(run(Line::Usage, &APPS, never), Ending::Usage);
         let refusal = Refusal::malformed(Fault::Missing("id"));
         assert_eq!(
-            run(Line::Refused(refusal), never),
+            run(Line::Refused(refusal), &APPS, never),
             Ending::Refused(refusal.to_json())
         );
         // The host role ends as a session error when its boot does.
@@ -727,7 +774,7 @@ mod tests {
             state_dir: PathBuf::from(DIR),
         };
         assert_eq!(
-            run(serve, |_| Err(SessionError::InvalidLabel)),
+            run(serve, &APPS, |_| Err(SessionError::InvalidLabel)),
             Ending::Failed(SessionError::InvalidLabel)
         );
     }
