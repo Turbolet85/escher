@@ -1,0 +1,115 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-12T08:15:52Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.1.0",
+"--run-dir",
+".andromeda/runs/2026-10-12T06-49-46-phase",
+"--marker",
+"2026-10-12-self-description"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 13/17 · deferred 0 · planned 4 · implemented 0 · unclaimed 4",
+"unclaimed: v010-07 v010-08 v010-14 v010-15",
+"claimed-unfinished: none",
+"done-test: NO — 4 not verified|deferred · unclaimed 4",
+"chunks referenced: 9 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-12T08:16:03Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-14",
+"--chunk",
+"2026-10-12-self-description",
+"--acceptance-file",
+".andromeda/runs/2026-10-12T06-49-46-phase/acceptance-v010-14.md",
+"--method",
+"integration",
+"--note-file",
+".andromeda/runs/2026-10-12T06-49-46-phase/note-v010-14.md",
+"--run-dir",
+".andromeda/runs/2026-10-12T06-49-46-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v010-14 → chunk 2026-10-12-self-description (was null; status planned kept)",
+"acceptance: The tool itself serves its verb list, help and schemas on both surface… (152 chars)",
+"         → The tool itself serves its verb list, help and schemas on both surface… (1307 chars)",
+"method: integration → integration",
+"notes: +308 chars (total 1054)",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 3 [v010-07 v010-08 v010-15]"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-14",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "The tool itself serves its verb list, help and schemas on both surfaces from one verb set, and every refusal cause the s… (152 chars)",
+"notes_chars": 744
+},
+"after": {
+"id": "v010-14",
+"chunk": "2026-10-12-self-description",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "The tool itself serves its verb list, help and schemas on both surfaces from one verb set, and every refusal cause the s… (1307 chars)",
+"notes_chars": 1054
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-12T08:16:03Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-12-self-description",
+"--plan",
+"escher-0.1.0/chunks/2026-10-12-self-description/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-12T06-49-46-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-12-self-description: 1 · ## Acceptance Criteria: line 416, 45 lines",
+"v010-14: cited in ## Acceptance Criteria (line 417)",
+"ledger-note entries (P7.3's input, not claim citations): v010-13 (line 538)",
+"pool: unclaimed 3 [v010-07 v010-08 v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

@@ -33,7 +33,7 @@ pub use events::{NodeHandle, synthetic_click_event};
 #[cfg(feature = "accessibility")]
 pub use snapshot::{MASKED_VALUE, NodeState, Snapshot, SnapshotNode};
 #[cfg(feature = "accessibility")]
-pub use snapshot_diff::{DiffNode, SnapshotDiff};
+pub use snapshot_diff::{DiffNode, Reading, SnapshotDiff};
 #[cfg(feature = "accessibility")]
 pub use snapshot_text::SNAPSHOT_TEXT_BUDGET;
 pub use write_once_attr::{CustomWidgetAttr, SubDocumentAttr};

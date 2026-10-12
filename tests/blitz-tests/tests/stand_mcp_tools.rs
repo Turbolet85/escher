@@ -9,14 +9,22 @@
 //! keeps the stack of entered spans, reads every `command` span's parent as a `tool_call` span,
 //! one `tool_call` per tool call sent, none under a session-level call or an unknown tool, and
 //! each `tool_call` holding the table's word for its verb as `tool` and its ending as `ending`,
-//! and no other field. No check here sleeps or reads a clock. A failure message carries a layout
-//! mode and a call index or a count — never an id, a name or a captured line.
+//! and no other field. Every refusal cause a tool call can reach is read on its served form
+//! with the remedy its cause states: `malformed`, `not-found`, `stale`, `disabled`, `off-screen`
+//! and `time-unavailable` on the lean tasks, and `covered` on an overlay fixture beside them
+//! (an unknown tool is a protocol error, so `unknown-verb` is read through the binary). A `help`
+//! tool call is answered by the server, with or without a held session: its text is the tool's
+//! description of itself, and its `tool_call` span holds `help` and `accepted` and parents no
+//! command. No check here sleeps or reads a clock. A failure message carries a layout mode and
+//! a call index or a count — never an id, a name or a captured line.
 
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
-use escher_driver::{Outcome, Session, SessionError, serve_mcp};
-use seven_guis::stand::LeanTask;
+use blitz_test_harness::Harness;
+use dioxus::prelude::*;
+use escher_driver::{CAUSES, Cause, Outcome, Session, SessionError, describe, serve_mcp};
+use seven_guis::stand::{self, LeanTask};
 use tracing::field::{Field, Visit};
 use tracing::span::{Attributes, Id, Record};
 use tracing::{Event, Metadata, Subscriber};
@@ -378,6 +386,193 @@ fn a_scripted_mcp_session_completes_the_counter_flow_and_parents_each_command() 
         clicks_by_mode[0] == clicks_by_mode[1],
         "the clicks' diffs read the same in the two layout modes"
     );
+}
+
+/// A button under an opaque overlay with a `z-index` above it.
+fn covered_fixture() -> Element {
+    rsx! {
+        div { id: "fx-root", style: "position: relative; width: 600px; height: 400px;",
+            button {
+                id: "fx-under",
+                style: "position: absolute; left: 20px; top: 20px; width: 120px; height: 40px;",
+                "Under"
+            }
+            div {
+                id: "fx-cover",
+                style: "position: absolute; left: 0; top: 0; width: 200px; height: 140px; z-index: 5; background: #cccccc;",
+            }
+        }
+    }
+}
+
+/// The cause a refusal's text names, when its remedy is the one the cause states.
+fn remedied(text: &str) -> Option<Cause> {
+    let cause = CAUSES
+        .into_iter()
+        .find(|cause| text.starts_with(&format!(r#"{{"refused":{{"cause":"{}","#, cause.name())))?;
+    text.contains(&format!(r#""remedy":"{}""#, cause.remedy()))
+        .then_some(cause)
+}
+
+#[test]
+fn every_cause_a_tool_call_reaches_is_served_with_its_remedy() {
+    for incremental in [false, true] {
+        let mode = if incremental { "incremental" } else { "full" };
+        let nobody = format!(r#"{{"id":"{NOBODY}"}}"#);
+        let create = r#"{"id":"crud-create"}"#;
+        let last_row = r#"{"id":"crud-person-14"}"#;
+        // Each call, with the cause it is refused with, or none where it runs.
+        let mut calls: Vec<(&str, &str, Option<Cause>)> = vec![
+            ("start", r#"{"app":"counter"}"#, None),
+            ("click", "{}", Some(Cause::Malformed)),
+            ("click", &nobody, Some(Cause::NotFound)),
+            ("advance", r#"{"ms":100}"#, Some(Cause::TimeUnavailable)),
+            ("stop", "{}", None),
+            ("start", r#"{"app":"flight-booker"}"#, None),
+            (
+                "click",
+                r#"{"id":"flight-return-date"}"#,
+                Some(Cause::Disabled),
+            ),
+            ("stop", "{}", None),
+            ("start", r#"{"app":"crud"}"#, None),
+        ];
+        // Twelve rows more put the last one past the list's box.
+        calls.extend(std::iter::repeat_n(("click", create, None), 12));
+        calls.extend([
+            ("click", last_row, Some(Cause::OffScreen)),
+            ("scroll", last_row, None),
+            ("click", last_row, None),
+            ("click", r#"{"id":"crud-delete"}"#, None),
+            ("click", last_row, Some(Cause::Stale)),
+            ("stop", "{}", None),
+        ]);
+        let requests: Vec<String> = calls
+            .iter()
+            .enumerate()
+            .map(|(index, (name, arguments, _))| tool_call(index + 1, name, arguments))
+            .collect();
+        let replies = tracing::subscriber::with_default(Recorder::default(), || {
+            serve(&requests, incremental)
+        });
+        assert_eq!(replies.len(), calls.len(), "{mode}: one reply per call");
+        let mut served = Vec::new();
+        for (index, (reply, (_, _, cause))) in replies.iter().zip(&calls).enumerate() {
+            let (is_error, text) = result(reply);
+            assert!(
+                is_error == cause.is_some(),
+                "{mode}: call {index} ends as stated"
+            );
+            if let Some(cause) = cause {
+                assert!(
+                    remedied(&text) == Some(*cause),
+                    "{mode}: call {index} is refused with its cause and that cause's remedy"
+                );
+                served.push(*cause);
+            }
+        }
+
+        // The covered cause, on a fixture beside the stand.
+        let requests = [
+            tool_call(1, "start", r#"{"app":"covered"}"#),
+            tool_call(2, "click", r#"{"id":"fx-under"}"#),
+            tool_call(3, "stop", "{}"),
+        ];
+        let mut input = requests.join("\n");
+        input.push('\n');
+        let mut output = Vec::new();
+        let boot_fixture = |app: &str| {
+            Session::start(app, || {
+                Harness::from_vdom(
+                    VirtualDom::new(covered_fixture),
+                    stand::options(incremental),
+                )
+            })
+        };
+        tracing::subscriber::with_default(Recorder::default(), || {
+            serve_mcp(
+                input.as_bytes(),
+                &mut output,
+                &["covered"],
+                boot_fixture,
+                Duration::from_secs(1800),
+            )
+        })
+        .expect("the exchange ends");
+        let output = String::from_utf8(output).expect("replies are text");
+        let replies: Vec<&str> = output.lines().collect();
+        assert_eq!(replies.len(), 3, "{mode}: one reply per fixture call");
+        let (is_error, text) = result(replies[1]);
+        assert!(
+            is_error && remedied(&text) == Some(Cause::Covered),
+            "{mode}: the covered button is refused with its cause and that cause's remedy"
+        );
+        served.push(Cause::Covered);
+
+        let reached: Vec<Cause> = CAUSES
+            .into_iter()
+            .filter(|cause| served.contains(cause))
+            .collect();
+        assert!(
+            reached.len() == 7 && !reached.contains(&Cause::UnknownVerb),
+            "{mode}: {} causes are served through MCP",
+            reached.len()
+        );
+    }
+}
+
+#[test]
+fn help_is_answered_by_the_server_and_parents_no_command() {
+    let requests = [
+        request(0, "initialize", r#"{"protocolVersion":"2025-11-25"}"#),
+        tool_call(1, "help", "{}"),
+        tool_call(2, "start", r#"{"app":"counter"}"#),
+        tool_call(3, "help", "{}"),
+        tool_call(4, "stop", "{}"),
+    ];
+    let recorder = Recorder::default();
+    let replies = tracing::subscriber::with_default(recorder.clone(), || serve(&requests, true));
+    assert_eq!(replies.len(), requests.len(), "one reply per request");
+    assert!(
+        replies[0].contains(r#""protocolVersion":"2025-11-25""#),
+        "initialize answers the revision asked for"
+    );
+    for index in [1, 3] {
+        assert!(
+            result(&replies[index]) == (false, describe()),
+            "call {index}: help answers the tool's description of itself"
+        );
+    }
+
+    let recorded = recorder.0.lock().unwrap();
+    let driver: Vec<&Seen> = recorded
+        .spans
+        .iter()
+        .filter(|seen| seen.target == "escher_driver")
+        .collect();
+    assert!(
+        driver.iter().all(|seen| seen.name == "tool_call"),
+        "no call here runs a command"
+    );
+    let helps: Vec<&&Seen> = driver
+        .iter()
+        .filter(|seen| {
+            seen.fields
+                .iter()
+                .any(|(field, value)| *field == "tool" && value == "help")
+        })
+        .collect();
+    assert_eq!(helps.len(), 2, "one tool_call per help call");
+    for (index, seen) in helps.iter().enumerate() {
+        assert!(
+            seen.fields.len() == 2
+                && seen
+                    .fields
+                    .iter()
+                    .any(|(field, value)| *field == "ending" && value == "accepted"),
+            "help {index}: the span holds its tool and an accepted ending, and nothing else"
+        );
+    }
 }
 
 #[test]

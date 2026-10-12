@@ -1,0 +1,655 @@
+[
+{
+"sql": "SELECT callee_name, file, line FROM refs WHERE callee_name IN ('VERBS','NODE_FIELDS','CAUSES','KEY_NAMES','BUSY_CLASSES','usage','tool_list','tool','initialized','remedy','meaning','kind') AND callee_crate = 'escher-driver' ORDER BY callee_name, file, line",
+"rows": 129,
+"result": [
+{
+"callee_name": "BUSY_CLASSES",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 9
+},
+{
+"callee_name": "BUSY_CLASSES",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 230
+},
+{
+"callee_name": "BUSY_CLASSES",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 231
+},
+{
+"callee_name": "BUSY_CLASSES",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 232
+},
+{
+"callee_name": "BUSY_CLASSES",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 464
+},
+{
+"callee_name": "BUSY_CLASSES",
+"file": "packages/escher-driver/src/lib.rs",
+"line": 107
+},
+{
+"callee_name": "BUSY_CLASSES",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 592
+},
+{
+"callee_name": "BUSY_CLASSES",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 596
+},
+{
+"callee_name": "CAUSES",
+"file": "packages/escher-driver/src/json.rs",
+"line": 314
+},
+{
+"callee_name": "CAUSES",
+"file": "packages/escher-driver/src/json.rs",
+"line": 572
+},
+{
+"callee_name": "CAUSES",
+"file": "packages/escher-driver/src/lib.rs",
+"line": 105
+},
+{
+"callee_name": "CAUSES",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 212
+},
+{
+"callee_name": "CAUSES",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 213
+},
+{
+"callee_name": "CAUSES",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 214
+},
+{
+"callee_name": "CAUSES",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 271
+},
+{
+"callee_name": "CAUSES",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 272
+},
+{
+"callee_name": "CAUSES",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 277
+},
+{
+"callee_name": "CAUSES",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 284
+},
+{
+"callee_name": "CAUSES",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 300
+},
+{
+"callee_name": "CAUSES",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 315
+},
+{
+"callee_name": "CAUSES",
+"file": "tests/blitz-tests/tests/stand_act_refused.rs",
+"line": 10
+},
+{
+"callee_name": "CAUSES",
+"file": "tests/blitz-tests/tests/stand_act_refused.rs",
+"line": 110
+},
+{
+"callee_name": "CAUSES",
+"file": "tests/blitz-tests/tests/stand_act_spans.rs",
+"line": 27
+},
+{
+"callee_name": "CAUSES",
+"file": "tests/blitz-tests/tests/stand_act_spans.rs",
+"line": 400
+},
+{
+"callee_name": "KEY_NAMES",
+"file": "packages/escher-driver/src/command.rs",
+"line": 4
+},
+{
+"callee_name": "KEY_NAMES",
+"file": "packages/escher-driver/src/command.rs",
+"line": 95
+},
+{
+"callee_name": "KEY_NAMES",
+"file": "packages/escher-driver/src/command.rs",
+"line": 473
+},
+{
+"callee_name": "KEY_NAMES",
+"file": "packages/escher-driver/src/lib.rs",
+"line": 107
+},
+{
+"callee_name": "KEY_NAMES",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 22
+},
+{
+"callee_name": "KEY_NAMES",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 356
+},
+{
+"callee_name": "KEY_NAMES",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 1059
+},
+{
+"callee_name": "KEY_NAMES",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 568
+},
+{
+"callee_name": "NODE_FIELDS",
+"file": "packages/escher-driver/src/json.rs",
+"line": 315
+},
+{
+"callee_name": "NODE_FIELDS",
+"file": "packages/escher-driver/src/json.rs",
+"line": 444
+},
+{
+"callee_name": "NODE_FIELDS",
+"file": "packages/escher-driver/src/lib.rs",
+"line": 108
+},
+{
+"callee_name": "NODE_FIELDS",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 584
+},
+{
+"callee_name": "NODE_FIELDS",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 586
+},
+{
+"callee_name": "VERBS",
+"file": "examples/seven_guis/tests/cli_commands.rs",
+"line": 12
+},
+{
+"callee_name": "VERBS",
+"file": "examples/seven_guis/tests/cli_commands.rs",
+"line": 99
+},
+{
+"callee_name": "VERBS",
+"file": "examples/seven_guis/tests/mcp_server.rs",
+"line": 17
+},
+{
+"callee_name": "VERBS",
+"file": "examples/seven_guis/tests/mcp_server.rs",
+"line": 119
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 16
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 284
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 754
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/command.rs",
+"line": 788
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/command.rs",
+"line": 791
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 436
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 445
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/lib.rs",
+"line": 108
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 22
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 394
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 1020
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 1021
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 1022
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 393
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 408
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 409
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 411
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 418
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 455
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 528
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 529
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 560
+},
+{
+"callee_name": "VERBS",
+"file": "tests/blitz-tests/tests/stand_act_scroll.rs",
+"line": 17
+},
+{
+"callee_name": "VERBS",
+"file": "tests/blitz-tests/tests/stand_act_scroll.rs",
+"line": 504
+},
+{
+"callee_name": "VERBS",
+"file": "tests/blitz-tests/tests/stand_act_scroll.rs",
+"line": 505
+},
+{
+"callee_name": "VERBS",
+"file": "tests/blitz-tests/tests/stand_act_spans.rs",
+"line": 27
+},
+{
+"callee_name": "VERBS",
+"file": "tests/blitz-tests/tests/stand_act_spans.rs",
+"line": 390
+},
+{
+"callee_name": "initialized",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 530
+},
+{
+"callee_name": "initialized",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 876
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 189
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 194
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 288
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 289
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/command.rs",
+"line": 280
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/error.rs",
+"line": 129
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/json.rs",
+"line": 273
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 346
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 367
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 1002
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 1055
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 1058
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 1067
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 169
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 176
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 184
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 191
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 199
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 209
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 216
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 229
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 245
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 260
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 266
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 281
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 287
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 302
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 315
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 324
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 331
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 338
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 345
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 357
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 379
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 534
+},
+{
+"callee_name": "kind",
+"file": "packages/escher-driver/src/schema.rs",
+"line": 563
+},
+{
+"callee_name": "meaning",
+"file": "packages/escher-driver/src/json.rs",
+"line": 258
+},
+{
+"callee_name": "meaning",
+"file": "packages/escher-driver/src/json.rs",
+"line": 583
+},
+{
+"callee_name": "meaning",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 274
+},
+{
+"callee_name": "meaning",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 279
+},
+{
+"callee_name": "meaning",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 281
+},
+{
+"callee_name": "remedy",
+"file": "packages/escher-driver/src/json.rs",
+"line": 259
+},
+{
+"callee_name": "remedy",
+"file": "packages/escher-driver/src/json.rs",
+"line": 584
+},
+{
+"callee_name": "remedy",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 186
+},
+{
+"callee_name": "remedy",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 275
+},
+{
+"callee_name": "remedy",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 280
+},
+{
+"callee_name": "remedy",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 281
+},
+{
+"callee_name": "remedy",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 286
+},
+{
+"callee_name": "remedy",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 311
+},
+{
+"callee_name": "remedy",
+"file": "tests/blitz-tests/tests/stand_act_scroll.rs",
+"line": 507
+},
+{
+"callee_name": "tool",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 394
+},
+{
+"callee_name": "tool",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 1040
+},
+{
+"callee_name": "tool_list",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 532
+},
+{
+"callee_name": "tool_list",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 884
+},
+{
+"callee_name": "tool_list",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 1013
+},
+{
+"callee_name": "usage",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 257
+},
+{
+"callee_name": "usage",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 671
+},
+{
+"callee_name": "usage",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 748
+},
+{
+"callee_name": "usage",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 755
+}
+],
+"db_state": "regenerated",
+"plane": "rust"
+}
+]

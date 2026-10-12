@@ -16,6 +16,7 @@ use tracing::field::Empty;
 
 use crate::client::Hello;
 use crate::command::{ArgValue, Call, SessionCommand, validate, validate_session};
+use crate::describe::describe;
 use crate::error::SessionError;
 use crate::execute::Outcome;
 use crate::json::{self, Object};
@@ -31,10 +32,10 @@ const MAX_MCP_REQUEST_BYTES: usize = 65_536;
 const MAX_ID_BYTES: usize = 128;
 
 /// The protocol revision answered when a client asks for one this server does not speak.
-const LATEST_VERSION: &str = "2025-06-18";
+const LATEST_VERSION: &str = "2025-11-25";
 
 /// The handshake revisions this server speaks.
-const PROTOCOL_VERSIONS: [&str; 3] = [LATEST_VERSION, "2025-03-26", "2024-11-05"];
+const PROTOCOL_VERSIONS: [&str; 4] = [LATEST_VERSION, "2025-06-18", "2025-03-26", "2024-11-05"];
 
 /// The name the server gives itself in its `initialize` answer.
 const SERVER_NAME: &str = "escher";
@@ -49,21 +50,22 @@ const START_APP: &str = match schema::START.args {
 /// Serves the driver's verbs as MCP tools: reads one request per line from `input` and writes
 /// one reply per line to `output`, until `input` ends.
 ///
-/// The protocol is JSON-RPC 2.0 in the handshake revisions `2025-06-18`, `2025-03-26` and
-/// `2024-11-05`. `initialize` answers the revision the client asks for when it is one of
-/// these, and `2025-06-18` otherwise; `ping`, `tools/list` and `tools/call` are answered as
+/// The protocol is JSON-RPC 2.0 in the handshake revisions `2025-11-25`, `2025-06-18`,
+/// `2025-03-26` and `2024-11-05`. `initialize` answers the revision the client asks for when it
+/// is one of these, and `2025-11-25` otherwise; `ping`, `tools/list` and `tools/call` are answered as
 /// the revisions state, and every other method, `server/discover` included, as one not found.
 /// A request with no `id` is a notification and is not answered.
 ///
 /// The tools are the verbs of [`VERBS`], in the table's order, each described by its help and
-/// its arguments, and `start`'s app limited to `apps`. A tool call runs as the command line
-/// runs its verb, except that the session lives in this process: `start` boots the app `boot`
-/// builds and holds it, `status` reaches it, `stop` drops it, and the six instance verbs run on
-/// it through [`Session::run`]. A held session that has had no tool call for `idle_expiry` is
+/// its result fields and given an input schema of its arguments, and `start`'s app limited to
+/// `apps`. A tool call runs as the command line runs its verb, except that the session lives in
+/// this process: `start` boots the app `boot` builds and holds it, `status` reaches it, `stop`
+/// drops it, `help` answers the tool's description of itself ([`describe`]) whether or not a
+/// session is held, and the six instance verbs run on the held session through [`Session::run`]. A held session that has had no tool call for `idle_expiry` is
 /// dropped when the next request arrives.
 ///
-/// A tool result holds one text block: the screen's text for `snapshot`, the command's line of
-/// JSON for every other call that ran, and its refusal or its session error, marked as an
+/// A tool result holds one text block: the screen's text for `snapshot`, the document for
+/// `help`, the command's line of JSON for every other call that ran, and its refusal or its session error, marked as an
 /// error, for one that did not. A text over 1,048,576 bytes is replaced by
 /// [`SessionError::AnswerTooLarge`]'s: the call ran and is not rolled back.
 ///
@@ -76,7 +78,8 @@ const START_APP: &str = match schema::START.args {
 /// Each `tools/call` leaves one `tracing` span, `tool_call`, at INFO under the target
 /// `escher_driver`: `tool`, the table's word for the verb the call names (absent when it names
 /// none), and `ending`, one of `accepted`, `refused` and `error`. The call's own `command`
-/// span, when it runs on the held session, is its child.
+/// span, when it runs on the held session, is its child; a session verb and `help`, answered by
+/// the server, leave none.
 ///
 /// It returns once `input` ends; a failed read or write is [`SessionError::Io`]. It installs no
 /// log subscriber, reads no environment variable and writes nothing to `output` but replies.
@@ -338,8 +341,19 @@ fn initialized(params: Option<&Value>) -> String {
     result.end()
 }
 
-/// One tool: a verb of the table, with its help as description and an input schema built from
-/// its arguments.
+/// A tool's description: the verb's help, then each of its result fields with its kind and its
+/// help, all read from the table.
+fn description(verb: &VerbSpec) -> String {
+    let fields: Vec<String> = verb
+        .fields
+        .iter()
+        .map(|field| format!("{} ({}): {}", field.name, field.kind.name(), field.help))
+        .collect();
+    format!("{}. Returns: {}", verb.help, fields.join("; "))
+}
+
+/// One tool: a verb of the table, described by its help and its result fields, with an input
+/// schema built from its arguments.
 fn tool(verb: &VerbSpec, apps: &[&str]) -> String {
     let mut properties = Object::new();
     for arg in verb.args {
@@ -384,7 +398,7 @@ fn tool(verb: &VerbSpec, apps: &[&str]) -> String {
     input_schema.flag("additionalProperties", false);
     let mut object = Object::new();
     object.text("name", verb.name);
-    object.text("description", verb.help);
+    object.text("description", &description(verb));
     object.json("inputSchema", &input_schema.end());
     object.end()
 }
@@ -603,6 +617,10 @@ impl<B: FnMut(&str) -> Result<Session, SessionError>> Server<'_, B> {
                     Err(refusal) => ToolResult::refused(refusal),
                 }
             }
+            Level::Tool => match validate_session(call) {
+                Ok(_) => ToolResult::accepted(describe()),
+                Err(refusal) => ToolResult::refused(refusal),
+            },
             Level::Session => match validate_session(call) {
                 Err(refusal) => ToolResult::refused(refusal),
                 Ok(SessionCommand::Start { app }) => self.start(app),
@@ -614,6 +632,7 @@ impl<B: FnMut(&str) -> Result<Session, SessionError>> Server<'_, B> {
                     Some(_) => ToolResult::accepted(json::stopped()),
                     None => ToolResult::failed(SessionError::NoSession),
                 },
+                Ok(SessionCommand::Help) => ToolResult::accepted(describe()),
             },
         }
     }
@@ -867,11 +886,12 @@ mod tests {
         let not_found = error("1", -32601, "method not found");
         let invalid_params = error("1", -32602, "invalid params");
         let rows: Vec<(String, String)> = vec![
+            version("2025-11-25", "2025-11-25"),
             version("2025-06-18", "2025-06-18"),
             version("2025-03-26", "2025-03-26"),
             version("2024-11-05", "2024-11-05"),
-            version("2026-07-28", "2025-06-18"),
-            version("2099-01-01", "2025-06-18"),
+            version("2026-07-28", "2025-11-25"),
+            version("2099-01-01", "2025-11-25"),
             (
                 r#"{"jsonrpc":"2.0","id":1,"method":"initialize"}"#.to_string(),
                 result_reply(&Id::Number(1), &initialized(None)),
@@ -914,7 +934,7 @@ mod tests {
                 error("1", -32602, "unknown tool"),
             ),
         ];
-        assert_eq!(rows.len(), 19);
+        assert_eq!(rows.len(), 20);
         for (row, (sent, answered)) in rows.into_iter().enumerate() {
             let read = exchange(&lines(&[sent]), never, Duration::MAX);
             assert!(read == [answered], "row {row}");
@@ -1010,7 +1030,7 @@ mod tests {
     }
 
     #[test]
-    fn the_listing_is_the_nine_verbs_of_the_table() {
+    fn the_listing_is_the_ten_verbs_of_the_table() {
         let Ok(Value::Object(result)) = serde_json::from_str::<Value>(&tool_list(&APPS)) else {
             panic!("the listing is an object");
         };
@@ -1019,10 +1039,22 @@ mod tests {
         };
         assert_eq!(result.len(), 1, "no member beside the tools, no cursor");
         assert_eq!(tools.len(), VERBS.len());
-        assert_eq!(VERBS.len(), 9);
+        assert_eq!(VERBS.len(), 10);
+        assert_eq!(
+            tools.last().map(|tool| &tool["name"]),
+            Some(&Value::from("help"))
+        );
         for (row, (listed_tool, verb)) in tools.iter().zip(VERBS).enumerate() {
             assert!(listed_tool["name"] == verb.name, "row {row}");
-            assert!(listed_tool["description"] == verb.help, "row {row}");
+            let Some(Value::String(described)) = listed_tool.get("description") else {
+                panic!("row {row}: each tool is described");
+            };
+            assert!(described == &description(verb), "row {row}");
+            assert!(described.starts_with(verb.help), "row {row}");
+            for field in verb.fields {
+                let named = format!("{} ({}): {}", field.name, field.kind.name(), field.help);
+                assert!(described.contains(&named), "row {row}");
+            }
             let schema = &listed_tool["inputSchema"];
             assert!(schema["type"] == "object", "row {row}");
             assert!(schema["additionalProperties"] == false, "row {row}");
@@ -1162,6 +1194,29 @@ mod tests {
                 "call {index}"
             );
         }
+    }
+
+    #[test]
+    fn help_is_answered_by_the_server_with_or_without_a_session() {
+        let help = ToolResult::accepted(describe());
+        let sent = [
+            tool_call(1, "help", "{}"),
+            tool_call(2, "help", r#"{"verb":"click"}"#),
+            tool_call(3, "start", r#"{"app":"counter"}"#),
+            tool_call(4, "help", "{}"),
+        ];
+        let read = exchange(&lines(&sent), empty, Duration::from_secs(1800));
+        assert_eq!(read.len(), 4);
+        assert_eq!(read[0], tool_reply(1, &help));
+        assert!(read[0].contains(r#""isError":false"#));
+        assert_eq!(
+            read[1],
+            tool_reply(2, &ToolResult::refused(Refusal::malformed(Fault::Unnamed)))
+        );
+        assert_eq!(read[3], tool_reply(4, &help));
+        // With nothing to boot, `help` still answers.
+        let read = exchange(&lines(&sent[..1]), never, Duration::MAX);
+        assert_eq!(read, [tool_reply(1, &help)]);
     }
 
     #[test]

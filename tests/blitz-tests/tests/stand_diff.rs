@@ -6,7 +6,9 @@
 //! change flag. The cases the lean tasks lack are proven on three minimal fixtures booted with
 //! the stand's options: an element hidden and shown by attribute, a password input and a
 //! label whose text is rewritten. Every step is also checked against this file's own reading
-//! of the two snapshots. A diff is content: this file formats none into a message and prints
+//! of the two snapshots, a changed node's `differs` included: it names exactly the readings
+//! that differ, so the flight booker's Book, which moves eight nodes and changes nothing else
+//! of them, names bounds alone on each. A diff is content: this file formats none into a message and prints
 //! nothing; a message carries the layout mode and ids this file names.
 
 use std::collections::{BTreeSet, HashMap};
@@ -15,7 +17,7 @@ use accesskit::Role;
 use blitz_test_harness::Harness;
 use dioxus::prelude::*;
 use dioxus_native_dom::{
-    DiffNode, DioxusDocument, MASKED_VALUE, Snapshot, SnapshotDiff, SnapshotNode,
+    DiffNode, DioxusDocument, MASKED_VALUE, Reading, Snapshot, SnapshotDiff, SnapshotNode,
 };
 use keyboard_types::{Key, Modifiers};
 use seven_guis::stand::{self, LeanTask};
@@ -213,6 +215,47 @@ fn assert_exact(mode: &str, before: &Snapshot, after: &Snapshot, diff: &Snapshot
     assert!(
         entries == expected_entries,
         "{mode}: the diff holds {entries} entries, the two snapshots read {expected_entries}"
+    );
+
+    // What differs, as this file reads it, in the order of `Reading::ALL`.
+    let misread = diff
+        .changed
+        .iter()
+        .filter(|entry| {
+            let (Some(was), Some(now)) = (before.get(&entry.id), after.get(&entry.id)) else {
+                return true;
+            };
+            let id = entry.id.as_str();
+            let (b, a) = (&was.state, &now.state);
+            let read = [
+                parents_before[id] != parents_after[id],
+                was.role != now.role,
+                was.name != now.name,
+                b.enabled != a.enabled,
+                b.checked != a.checked,
+                b.value != a.value,
+                b.selected != a.selected,
+                b.pressed != a.pressed,
+                b.invalid != a.invalid,
+                b.focused != a.focused,
+                was.bounds != now.bounds,
+            ];
+            let differs: Vec<Reading> = Reading::ALL
+                .into_iter()
+                .zip(read)
+                .filter_map(|(reading, differs)| differs.then_some(reading))
+                .collect();
+            entry.differs != differs
+        })
+        .count()
+        + diff
+            .added
+            .iter()
+            .filter(|entry| !entry.differs.is_empty())
+            .count();
+    assert!(
+        misread == 0,
+        "{mode}: {misread} entries name other readings than the two snapshots read"
     );
 
     let stale = diff
@@ -432,9 +475,53 @@ fn a_typed_character_names_its_text_input() {
             typed.entry("crud-name").state.value.as_deref() == Some("A"),
             "{mode}: crud-name reads the character as its value"
         );
+        assert!(
+            typed.entry("crud-name").differs == [Reading::Value],
+            "{mode}: crud-name names its value alone as what differs"
+        );
         assert!(typed.keeps_every_node(), "{mode}: no node comes or goes");
 
         runs.push(crud.diffs);
+    }
+    assert_modes_agree(&runs);
+}
+
+#[test]
+fn the_flight_bookers_book_names_eight_nodes_that_only_moved() {
+    let mut runs = Vec::new();
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut flight = Screen::boot(LeanTask::FlightBooker, incremental);
+        assert!(
+            flight.node("flight-book").state.enabled == Some(true),
+            "{mode}: Book is enabled at boot"
+        );
+
+        let book = flight.step(&mode, |harness| harness.click("#flight-book"));
+        assert!(book.flag, "{mode}: Book reads as a change");
+        assert!(
+            book.diff.added.len() == 1 && book.diff.removed.is_empty(),
+            "{mode}: Book adds {} nodes and removes {}",
+            book.diff.added.len(),
+            book.diff.removed.len()
+        );
+        assert!(
+            book.diff.changed.len() == 8,
+            "{mode}: Book changes {} nodes",
+            book.diff.changed.len()
+        );
+        let moved = book
+            .diff
+            .changed
+            .iter()
+            .filter(|entry| entry.differs == [Reading::Bounds])
+            .count();
+        assert!(
+            moved == 8,
+            "{mode}: {moved} of the 8 changed nodes name bounds alone"
+        );
+
+        runs.push(flight.diffs);
     }
     assert_modes_agree(&runs);
 }

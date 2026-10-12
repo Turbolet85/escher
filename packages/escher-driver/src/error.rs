@@ -39,57 +39,163 @@ pub enum SessionError {
     AnswerTooLarge,
 }
 
+/// One row of the session errors' table: an error's kind, what it means and what the caller
+/// does next.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub(crate) struct ErrorSpec {
+    /// The error's kind.
+    pub(crate) kind: &'static str,
+    /// What it means: the error's fixed message, without the detail a variant adds.
+    pub(crate) meaning: &'static str,
+    /// What the caller does next.
+    pub(crate) remedy: &'static str,
+    /// The earlier kind whose remedy this row repeats word for word; not served.
+    pub(crate) repeats: Option<&'static str>,
+}
+
+/// The state directory's bound, as the message of [`SessionError::StateDirTooLong`] states it:
+/// a socket address holds a path shorter than 108 bytes on Linux and 104 elsewhere, and the
+/// session's socket adds 13 bytes after the directory.
+#[cfg(target_os = "linux")]
+const STATE_DIR_TOO_LONG: &str =
+    "the session state directory's path is too long for a socket: as given, it is at most 94 bytes";
+#[cfg(not(target_os = "linux"))]
+const STATE_DIR_TOO_LONG: &str =
+    "the session state directory's path is too long for a socket: as given, it is at most 90 bytes";
+
+/// The remedy two kinds share where the session's other end is missing.
+const START_HERE: &str =
+    "start a session in this state directory, or name the directory a running session uses";
+
+/// The remedy two kinds share where a call ran and its answer does not say how the screen stands.
+const READ_THE_SCREEN: &str =
+    "the call ran and is not rolled back: take a snapshot to read the screen as it stands";
+
+/// Every session error's row, in the variants' order.
+pub(crate) const SESSION_ERRORS: [ErrorSpec; 13] = [
+    ErrorSpec {
+        kind: "already-running",
+        meaning: "a session is already running",
+        remedy: "stop the running session, or name another state directory",
+        repeats: None,
+    },
+    ErrorSpec {
+        kind: "no-session",
+        meaning: "no session is running",
+        remedy: START_HERE,
+        repeats: None,
+    },
+    ErrorSpec {
+        kind: "dead",
+        meaning: "the session's process is gone",
+        remedy: START_HERE,
+        repeats: Some("no-session"),
+    },
+    ErrorSpec {
+        kind: "host-exited",
+        meaning: "the session host exited before it answered",
+        remedy: "start the session again, and if its host exits again, name another state \
+                 directory",
+        repeats: None,
+    },
+    ErrorSpec {
+        kind: "timeout",
+        meaning: "the session did not answer in time",
+        remedy: "the command may have run: ask `status`, then take a snapshot before acting again",
+        repeats: None,
+    },
+    ErrorSpec {
+        kind: "protocol",
+        meaning: "the session answered outside its protocol",
+        remedy: "stop the session with the binary that started it, or name another state \
+                 directory",
+        repeats: None,
+    },
+    ErrorSpec {
+        kind: "invalid-label",
+        meaning: "a session label is 1 to 32 bytes of a-z, 0-9 and -",
+        remedy: "name an app of 1 to 32 bytes of a-z, 0-9 and -, as the apps list names it",
+        repeats: None,
+    },
+    ErrorSpec {
+        kind: "state-dir-too-long",
+        meaning: STATE_DIR_TOO_LONG,
+        remedy: "name a shorter path for the state directory, or a relative one, which counts \
+                 only its own bytes",
+        repeats: None,
+    },
+    ErrorSpec {
+        kind: "state-dir-not-private",
+        meaning: "the session state directory is open to its group or to others",
+        remedy: "name a new state directory, or make this one open to its owner only",
+        repeats: None,
+    },
+    ErrorSpec {
+        kind: "unsupported",
+        meaning: "the session lifecycle is not supported on this platform",
+        remedy: "hold the session in process instead: the `mcp` role holds it in its own process",
+        repeats: None,
+    },
+    ErrorSpec {
+        kind: "io",
+        meaning: "a session input or output step failed",
+        remedy: "check that the state directory exists and its owner can write it, then retry",
+        repeats: None,
+    },
+    ErrorSpec {
+        kind: "not-settled",
+        meaning: "the instance did not go quiet after a step",
+        remedy: READ_THE_SCREEN,
+        repeats: None,
+    },
+    ErrorSpec {
+        kind: "answer-too-large",
+        meaning: "the answer is larger than the session carries; the call ran and is not rolled \
+                  back",
+        remedy: READ_THE_SCREEN,
+        repeats: Some("not-settled"),
+    },
+];
+
 impl SessionError {
+    /// The error's row of the session errors' table.
+    const fn spec(&self) -> &'static ErrorSpec {
+        let index = match self {
+            SessionError::AlreadyRunning => 0,
+            SessionError::NoSession => 1,
+            SessionError::Dead => 2,
+            SessionError::HostExited(_) => 3,
+            SessionError::Timeout => 4,
+            SessionError::Protocol => 5,
+            SessionError::InvalidLabel => 6,
+            SessionError::StateDirTooLong => 7,
+            SessionError::StateDirNotPrivate => 8,
+            SessionError::Unsupported => 9,
+            SessionError::Io(_) => 10,
+            SessionError::NotSettled(_) => 11,
+            SessionError::AnswerTooLarge => 12,
+        };
+        &SESSION_ERRORS[index]
+    }
+
     /// The error's kind: lowercase words joined by hyphens, one per variant.
     pub const fn kind(&self) -> &'static str {
-        match self {
-            SessionError::AlreadyRunning => "already-running",
-            SessionError::NoSession => "no-session",
-            SessionError::Dead => "dead",
-            SessionError::HostExited(_) => "host-exited",
-            SessionError::Timeout => "timeout",
-            SessionError::Protocol => "protocol",
-            SessionError::InvalidLabel => "invalid-label",
-            SessionError::StateDirTooLong => "state-dir-too-long",
-            SessionError::StateDirNotPrivate => "state-dir-not-private",
-            SessionError::Unsupported => "unsupported",
-            SessionError::Io(_) => "io",
-            SessionError::NotSettled(_) => "not-settled",
-            SessionError::AnswerTooLarge => "answer-too-large",
-        }
+        self.spec().kind
+    }
+
+    /// What the caller does next: a fixed string, one per variant.
+    pub const fn remedy(&self) -> &'static str {
+        self.spec().remedy
     }
 }
 
 impl fmt::Display for SessionError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let meaning = self.spec().meaning;
         match self {
-            SessionError::AlreadyRunning => f.write_str("a session is already running"),
-            SessionError::NoSession => f.write_str("no session is running"),
-            SessionError::Dead => f.write_str("the session's process is gone"),
-            SessionError::HostExited(_) => {
-                f.write_str("the session host exited before it answered")
-            }
-            SessionError::Timeout => f.write_str("the session did not answer in time"),
-            SessionError::Protocol => f.write_str("the session answered outside its protocol"),
-            SessionError::InvalidLabel => {
-                f.write_str("a session label is 1 to 32 bytes of a-z, 0-9 and -")
-            }
-            SessionError::StateDirTooLong => {
-                f.write_str("the session state directory's path is too long for a socket")
-            }
-            SessionError::StateDirNotPrivate => {
-                f.write_str("the session state directory is open to its group or to others")
-            }
-            SessionError::Unsupported => {
-                f.write_str("the session lifecycle is not supported on this platform")
-            }
-            SessionError::Io(kind) => write!(f, "a session input or output step failed: {kind:?}"),
-            SessionError::NotSettled(busy) => {
-                write!(f, "the instance did not go quiet after a step: {busy:?}")
-            }
-            SessionError::AnswerTooLarge => f.write_str(
-                "the answer is larger than the session carries; the call ran and is not rolled back",
-            ),
+            SessionError::Io(kind) => write!(f, "{meaning}: {kind:?}"),
+            SessionError::NotSettled(busy) => write!(f, "{meaning}: {busy:?}"),
+            _ => f.write_str(meaning),
         }
     }
 }
@@ -142,6 +248,71 @@ mod tests {
         assert_eq!(
             SessionError::HostExited(Some(101)).to_string(),
             SessionError::HostExited(None).to_string()
+        );
+    }
+
+    #[test]
+    fn the_thirteen_errors_each_state_a_kind_a_meaning_and_a_remedy() {
+        let variants = [
+            SessionError::AlreadyRunning,
+            SessionError::NoSession,
+            SessionError::Dead,
+            SessionError::HostExited(None),
+            SessionError::Timeout,
+            SessionError::Protocol,
+            SessionError::InvalidLabel,
+            SessionError::StateDirTooLong,
+            SessionError::StateDirNotPrivate,
+            SessionError::Unsupported,
+            SessionError::Io(io::ErrorKind::NotFound),
+            SessionError::NotSettled(Busy::Render),
+            SessionError::AnswerTooLarge,
+        ];
+        assert_eq!(SESSION_ERRORS.len(), 13);
+        assert_eq!(variants.len(), SESSION_ERRORS.len());
+        for (row, (variant, spec)) in variants.iter().zip(&SESSION_ERRORS).enumerate() {
+            assert!(variant.kind() == spec.kind, "row {row}");
+            assert!(variant.remedy() == spec.remedy, "row {row}");
+            assert!(variant.to_string().starts_with(spec.meaning), "row {row}");
+            assert!(
+                !spec.meaning.is_empty() && !spec.remedy.is_empty(),
+                "row {row}"
+            );
+            assert!(
+                !spec.meaning.contains('/') && !spec.remedy.contains('/'),
+                "row {row}"
+            );
+        }
+        // Two rows share a remedy exactly where the later names the earlier.
+        for (row, spec) in SESSION_ERRORS.iter().enumerate() {
+            for (earlier, other) in SESSION_ERRORS.iter().enumerate().take(row) {
+                let shared = spec.remedy == other.remedy;
+                assert!(
+                    shared == (spec.repeats == Some(other.kind)),
+                    "rows {earlier} and {row}"
+                );
+            }
+            if let Some(kind) = spec.repeats {
+                let named = SESSION_ERRORS[..row].iter().any(|other| other.kind == kind);
+                assert!(named, "row {row}");
+            }
+        }
+        let shared = SESSION_ERRORS
+            .iter()
+            .filter(|spec| spec.repeats.is_some())
+            .count();
+        assert_eq!(shared, 2);
+    }
+
+    #[test]
+    fn the_state_directorys_message_states_its_bound() {
+        let message = SessionError::StateDirTooLong.to_string();
+        let bound = if cfg!(target_os = "linux") { 94 } else { 90 };
+        assert!(message.ends_with(&format!("at most {bound} bytes")));
+        assert!(
+            SessionError::StateDirTooLong
+                .remedy()
+                .contains("a relative one")
         );
     }
 

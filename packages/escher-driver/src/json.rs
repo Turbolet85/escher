@@ -4,12 +4,13 @@
 use std::fmt::Write as _;
 
 use blitz_test_harness::Busy;
-use dioxus_native_dom::{DiffNode, SnapshotDiff};
+use dioxus_native_dom::{DiffNode, Reading, SnapshotDiff};
 
 use crate::client::Hello;
 use crate::error::SessionError;
 use crate::execute::{Outcome, busy_word};
 use crate::refusal::Refusal;
+use crate::schema::NODE_FIELDS;
 
 /// Writes `text` as a JSON string: `"` and `\` escaped, a control character as `\n`, `\r`,
 /// `\t` or `\u00XX`, everything else as it is.
@@ -105,10 +106,30 @@ struct NodeParts<'a> {
     focused: bool,
     /// x, y, width and height.
     bounds: [f64; 4],
+    /// For a changed node, the readings that differ; `None` for any other node.
+    differs: Option<&'a [Reading]>,
+}
+
+/// The node key a reading is written as.
+fn reading_word(reading: Reading) -> &'static str {
+    let index = match reading {
+        Reading::Parent => 1,
+        Reading::Role => 2,
+        Reading::Name => 3,
+        Reading::Enabled => 4,
+        Reading::Checked => 5,
+        Reading::Value => 6,
+        Reading::Selected => 7,
+        Reading::Pressed => 8,
+        Reading::Invalid => 9,
+        Reading::Focused => 10,
+        Reading::Bounds => 11,
+    };
+    NODE_FIELDS[index].name
 }
 
 /// A node as an object with the fields the schema's node fields name, in that order. A field
-/// the node has no reading for is left out.
+/// the node has no reading for is left out, and `differs` is written for a changed node only.
 fn node(parts: &NodeParts<'_>) -> String {
     let mut object = Object::new();
     object.text("id", parts.id);
@@ -143,11 +164,21 @@ fn node(parts: &NodeParts<'_>) -> String {
         number(bounds, bound);
     }
     bounds.push(']');
+    if let Some(differs) = parts.differs {
+        object.json(
+            "differs",
+            &list(differs.iter().map(|reading| {
+                let mut word = String::new();
+                string(&mut word, reading_word(*reading));
+                word
+            })),
+        );
+    }
     object.end()
 }
 
 /// A list of already written values.
-fn list(items: impl Iterator<Item = String>) -> String {
+pub(crate) fn list(items: impl Iterator<Item = String>) -> String {
     let mut text = String::from("[");
     for (index, item) in items.enumerate() {
         if index > 0 {
@@ -159,7 +190,8 @@ fn list(items: impl Iterator<Item = String>) -> String {
     text
 }
 
-fn nodes(nodes: &[DiffNode]) -> String {
+/// The nodes of a `nodes` result field; `changed` writes each node's `differs`.
+fn nodes(nodes: &[DiffNode], changed: bool) -> String {
     list(nodes.iter().map(|read| {
         // The role in the spelling the snapshot's text writes.
         let role = format!("{:?}", read.role);
@@ -181,6 +213,7 @@ fn nodes(nodes: &[DiffNode]) -> String {
                 read.bounds.width,
                 read.bounds.height,
             ],
+            differs: changed.then_some(read.differs.as_slice()),
         })
     }))
 }
@@ -192,7 +225,7 @@ fn acted(settled: bool, busy: Option<Busy>, diff: &SnapshotDiff) -> Object {
     if let Some(busy) = busy {
         object.text("busy", busy_word(busy));
     }
-    object.json("added", &nodes(&diff.added));
+    object.json("added", &nodes(&diff.added, false));
     object.json(
         "removed",
         &list(diff.removed.iter().map(|id| {
@@ -201,7 +234,7 @@ fn acted(settled: bool, busy: Option<Busy>, diff: &SnapshotDiff) -> Object {
             text
         })),
     );
-    object.json("changed", &nodes(&diff.changed));
+    object.json("changed", &nodes(&diff.changed, true));
     object
 }
 
@@ -268,11 +301,13 @@ impl Refusal {
 }
 
 impl SessionError {
-    /// The error as one line of JSON: `error`, holding the error's kind and its fixed message.
+    /// The error as one line of JSON: `error`, holding the error's kind, its fixed message and
+    /// its remedy.
     pub fn to_json(&self) -> String {
         let mut error = Object::new();
         error.text("kind", self.kind());
         error.text("message", &self.to_string());
+        error.text("remedy", self.remedy());
         let mut object = Object::new();
         object.json("error", &error.end());
         object.end()
@@ -437,12 +472,13 @@ mod tests {
             invalid: true,
             focused: true,
             bounds: [8.0, 8.5, 200.0, 24.0],
+            differs: Some(&[Reading::Value, Reading::Focused]),
         });
         assert_eq!(
             full,
-            r#"{"id":"who","parent":"form","role":"TextInput","name":"Name:","enabled":true,"checked":false,"value":"Ada","selected":false,"pressed":true,"invalid":true,"focused":true,"bounds":[8,8.5,200,24]}"#
+            r#"{"id":"who","parent":"form","role":"TextInput","name":"Name:","enabled":true,"checked":false,"value":"Ada","selected":false,"pressed":true,"invalid":true,"focused":true,"bounds":[8,8.5,200,24],"differs":["value","focused"]}"#
         );
-        assert_eq!(keys(&full), NODE_FIELDS);
+        assert_eq!(keys(&full), NODE_FIELDS.map(|key| key.name));
 
         let bare = node(&NodeParts {
             id: "root",
@@ -457,6 +493,7 @@ mod tests {
             invalid: false,
             focused: false,
             bounds: [0.0, 0.0, f64::NAN, 600.0],
+            differs: None,
         });
         assert_eq!(
             bare,
@@ -481,6 +518,7 @@ mod tests {
             invalid: false,
             focused: true,
             bounds: [0.0, 0.0, 1.0, 1.0],
+            differs: None,
         });
         assert!(masked.contains(&format!(r#""value":"{MASKED_VALUE}""#)));
         assert_eq!(
@@ -488,6 +526,14 @@ mod tests {
             format!("[{full},{bare}]")
         );
         assert_eq!(list(std::iter::empty()), "[]");
+
+        // Each reading is written as the node key it reads.
+        assert_eq!(Reading::ALL.len(), 11);
+        for (row, reading) in Reading::ALL.into_iter().enumerate() {
+            let word = reading_word(reading);
+            assert!(word == NODE_FIELDS[row + 1].name, "row {row}");
+            assert!(word == format!("{reading:?}").to_lowercase(), "row {row}");
+        }
     }
 
     #[test]
@@ -602,7 +648,7 @@ mod tests {
     }
 
     #[test]
-    fn each_session_error_is_written_with_its_kind_and_its_message() {
+    fn each_session_error_is_written_with_its_kind_its_message_and_its_remedy() {
         let rows = [
             (SessionError::AlreadyRunning, "already-running"),
             (SessionError::NoSession, "no-session"),
@@ -621,7 +667,10 @@ mod tests {
         assert_eq!(rows.len(), 13);
         for (row, (error, kind)) in rows.into_iter().enumerate() {
             let line = error.to_json();
-            let expected = format!("{{\"error\":{{\"kind\":\"{kind}\",\"message\":\"{error}\"}}}}");
+            let expected = format!(
+                "{{\"error\":{{\"kind\":\"{kind}\",\"message\":\"{error}\",\"remedy\":\"{}\"}}}}",
+                error.remedy()
+            );
             assert!(line == expected, "row {row}");
             assert!(!line.contains('\n') && !line.contains('/'), "row {row}");
             for (other, (_, later)) in rows.iter().enumerate().skip(row + 1) {

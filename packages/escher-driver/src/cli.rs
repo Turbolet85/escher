@@ -9,22 +9,23 @@ use std::time::Duration;
 
 use crate::client::{self, Answer};
 use crate::command::{ArgValue, Call, SessionCommand, validate, validate_session};
+use crate::describe::describe;
 use crate::error::SessionError;
 use crate::host::{IDLE_EXPIRY, serve};
 use crate::json;
 use crate::mcp::serve_mcp;
 use crate::refusal::{Cause, Refusal};
-use crate::schema::{self, ArgKind, ArgSpec, Level, VERBS, VerbSpec};
+use crate::schema::{self, ArgKind, ArgSpec, EXIT_STATUSES, Level, VERBS, VerbSpec};
 use crate::session::Session;
 
 /// The status of a command that ran.
-const ACCEPTED: u8 = 0;
+const ACCEPTED: u8 = EXIT_STATUSES[0].status;
 /// The status of a command that was refused.
-const REFUSED: u8 = 1;
+const REFUSED: u8 = EXIT_STATUSES[1].status;
 /// The status of a line that is no command.
-const USAGE: u8 = 2;
+const USAGE: u8 = EXIT_STATUSES[2].status;
 /// The status of a command a session edge stopped.
-const SESSION_ERROR: u8 = 3;
+const SESSION_ERROR: u8 = EXIT_STATUSES[3].status;
 
 /// The option that names the session's state directory, on every command.
 const SESSION_OPTION: &str = "--session";
@@ -49,15 +50,17 @@ const START_BOUND: Duration = Duration::from_secs(30);
 /// a bare `--shift` — except that `start` takes its app as one plain word; `--session <dir>`
 /// names the session's state directory on every command. `start` spawns the running binary
 /// again as `serve <app> --session <dir>`, its streams closed, and answers once that host
-/// does; `status` reaches the session and `stop` ends it; every other verb is sent to the
-/// session as a call ([`call`](crate::call)). `serve` is the host role: it boots the app and
+/// does; `status` reaches the session and `stop` ends it; `help` answers the tool's description
+/// of itself ([`describe`](crate::describe)) in this process, reaching no session — it takes no
+/// argument, and at most one `--session`, which it does not read; every other verb is sent to
+/// the session as a call ([`call`](crate::call)). `serve` is the host role: it boots the app and
 /// serves it in the foreground until it is stopped or has been idle for [`IDLE_EXPIRY`].
 /// `mcp`, alone on its line, is the MCP role: it speaks MCP on stdin and stdout
 /// ([`serve_mcp`](crate::serve_mcp)), holding the apps it starts in its own process, until stdin
 /// ends. Stdout is the protocol's: the role writes nothing else there, ends `0` when stdin
 /// ends, and `3` with the error's fixed message on stderr when a read or a write fails.
 ///
-/// A command ends one of four ways, and its status says which:
+/// A command ends one of four ways, the rows of [`EXIT_STATUSES`], and its status says which:
 ///
 /// - `0`, accepted: the answer on stdout as one line of JSON. A step that ran and did not go
 ///   quiet is accepted, and its `settled` reads false. The host role writes nothing.
@@ -104,6 +107,8 @@ enum Line {
     Serve { app: String, state_dir: PathBuf },
     /// The MCP role.
     Mcp,
+    /// The tool's description of itself.
+    Help,
     /// A session-level command.
     Session {
         command: SessionCommand,
@@ -145,12 +150,18 @@ fn read(args: &[String], apps: &[&str]) -> Line {
     let (call, state_dirs) = read_arguments(spec, rest);
     let checked = match spec.level {
         Level::Instance => validate(&call).map(|_| None),
-        Level::Session => validate_session(&call).map(Some),
+        Level::Session | Level::Tool => validate_session(&call).map(Some),
     };
     let command = match checked {
         Ok(command) => command,
         Err(refusal) => return Line::Refused(refusal),
     };
+    if command == Some(SessionCommand::Help) {
+        return match state_dirs.as_slice() {
+            [] | [Some(_)] => Line::Help,
+            _ => Line::Usage,
+        };
+    }
     let [Some(state_dir)] = state_dirs.as_slice() else {
         return Line::Usage;
     };
@@ -173,7 +184,7 @@ fn read_arguments(spec: &VerbSpec, words: &[String]) -> (Call, Vec<Option<String
     let none: &[ArgSpec] = &[];
     let (flags, plain) = match spec.level {
         Level::Instance => (spec.args, none),
-        Level::Session => (none, spec.args),
+        Level::Session | Level::Tool => (none, spec.args),
     };
     let mut plain = plain.iter();
     let mut args = Vec::new();
@@ -288,7 +299,7 @@ fn usage(apps: &[&str]) -> String {
         for argument in verb.args {
             let (name, kind) = (argument.name, argument.kind.name());
             let spelt = match (verb.level, argument.kind, argument.required) {
-                (Level::Session, _, _) => format!(" <{name}>"),
+                (Level::Session | Level::Tool, _, _) => format!(" <{name}>"),
                 (Level::Instance, ArgKind::Flag, _) => format!(" [--{name}]"),
                 (Level::Instance, _, true) => format!(" --{name} <{kind}>"),
                 (Level::Instance, _, false) => format!(" [--{name} <{kind}>]"),
@@ -330,6 +341,7 @@ fn run(
     match line {
         Line::Usage => Ending::Usage,
         Line::Refused(refusal) => Ending::Refused(refusal.to_json()),
+        Line::Help => Ending::Accepted(describe()),
         Line::Serve { app, state_dir } => {
             match boot(&app).and_then(|session| serve(&state_dir, session, IDLE_EXPIRY)) {
                 Ok(()) => Ending::Served,
@@ -347,6 +359,7 @@ fn run(
             SessionCommand::Start { app } => start(&app, &state_dir),
             SessionCommand::Status => client::attach(&state_dir).map(|hello| json::status(&hello)),
             SessionCommand::Stop => client::stop(&state_dir).map(|()| json::stopped()),
+            SessionCommand::Help => Ok(describe()),
         }),
         Line::Instance { call, state_dir } => match client::call(&state_dir, &call) {
             Ok(Answer {
@@ -549,6 +562,14 @@ mod tests {
                 &["status", "now", "--session", DIR],
                 malformed(Fault::Unnamed),
             ),
+            // `help` takes no argument, and at most one `--session`, which it does not read.
+            (&["help"], Line::Help),
+            (&["help", "--session", DIR], Line::Help),
+            (&["help", "x"], malformed(Fault::Unnamed)),
+            (&["help", "--verb", "click"], malformed(Fault::Unnamed)),
+            (&["help", "x", "--session", DIR], malformed(Fault::Unnamed)),
+            (&["help", "--session"], Line::Usage),
+            (&["help", "--session", DIR, "--session", DIR], Line::Usage),
             (
                 &["stop", "--id", "--session", DIR],
                 malformed(Fault::Unnamed),
@@ -641,7 +662,7 @@ mod tests {
             // `start` on an app the binary does not boot.
             (&["start", "timer", "--session", DIR], Line::Usage),
         ];
-        assert_eq!(rows.len(), 64);
+        assert_eq!(rows.len(), 71);
         for (row, (words, read)) in rows.into_iter().enumerate() {
             assert!(line(words) == read, "row {row}");
         }
@@ -737,10 +758,16 @@ mod tests {
             too_large.stdout.as_deref(),
             Some(
                 "{\"error\":{\"kind\":\"answer-too-large\",\"message\":\"the answer is larger \
-                 than the session carries; the call ran and is not rolled back\"}}"
+                 than the session carries; the call ran and is not rolled back\",\"remedy\":\"the \
+                 call ran and is not rolled back: take a snapshot to read the screen as it \
+                 stands\"}}"
             )
         );
         assert_eq!((ACCEPTED, REFUSED, USAGE, SESSION_ERROR), (0, 1, 2, 3));
+        let endings = [ACCEPTED, REFUSED, USAGE, SESSION_ERROR];
+        assert_eq!(EXIT_STATUSES.map(|ending| ending.status), endings);
+        let names = ["accepted", "refused", "usage", "session-error"];
+        assert_eq!(EXIT_STATUSES.map(|ending| ending.name), names);
     }
 
     #[test]
@@ -749,8 +776,8 @@ mod tests {
             usage(&APPS),
             "usage: <command> --session <dir>; commands: snapshot | click --id <id> | type --id \
              <id> --text <text> | press --key <key> [--shift] | advance --ms <milliseconds> | \
-             scroll --id <id> | start <app> | status | stop; host role: serve <app> --session \
-             <dir>; mcp role: mcp; apps: counter | flight-booker"
+             scroll --id <id> | start <app> | status | stop | help; host role: serve <app> \
+             --session <dir>; mcp role: mcp; apps: counter | flight-booker"
         );
         for verb in VERBS {
             assert!(usage(&[]).contains(verb.name));
@@ -763,6 +790,8 @@ mod tests {
             panic!("the boot ran for a line that reaches no session")
         };
         assert_eq!(run(Line::Usage, &APPS, never), Ending::Usage);
+        // `help` reaches no session and boots nothing.
+        assert_eq!(run(Line::Help, &APPS, never), Ending::Accepted(describe()));
         let refusal = Refusal::malformed(Fault::Missing("id"));
         assert_eq!(
             run(Line::Refused(refusal), &APPS, never),

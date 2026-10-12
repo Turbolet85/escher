@@ -45,7 +45,7 @@ target/debug/escher-session click --id counter-increment --session demo-session
 target/debug/escher-session stop --session demo-session
 ```
 
-An MCP client can drive the same apps: it spawns `target/debug/escher-session mcp` as its own child and gets the nine driver commands as tools. The help the driver serves about itself and its screenshot are still to come.
+An MCP client can drive the same apps: it spawns `target/debug/escher-session mcp` as its own child and gets the ten driver commands as tools. The driver describes itself: `target/debug/escher-session help` answers one line of JSON with every command, its arguments and its result, the refusal causes and session errors with their remedies, and the exit statuses; an MCP client gets the same from the `help` tool. Its screenshot is still to come.
 
 ## Plans
 

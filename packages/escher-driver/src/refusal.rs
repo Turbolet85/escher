@@ -17,8 +17,8 @@ pub enum Cause {
     Stale,
     /// The element carries the `disabled` attribute, which the snapshot reads as not enabled.
     Disabled,
-    /// Another element is hit at the point the action would land. A hit reaches content scrolled
-    /// out of a scrolling box, so an element lying where such content extends can read covered
+    /// Another element is hit at the point the action would land. A hit reaches content clipped
+    /// by `contain: paint`, so an element lying where such content extends can read covered
     /// though nothing shows over it.
     Covered,
     /// The element lies outside the viewport, or outside the visible part of a scrolling box

@@ -29,12 +29,82 @@ pub const KEY_NAMES: [&str; 12] = [
 /// The classes of work a `busy` result field names.
 pub const BUSY_CLASSES: [&str; 3] = ["render", "layout", "loads"];
 
-/// The fields of each node in a `nodes` result field, in the order a node is written with
-/// them. `parent`, `enabled`, `checked`, `value`, `selected` and `pressed` are left out where
-/// the node has no reading for them.
-pub const NODE_FIELDS: [&str; 12] = [
-    "id", "parent", "role", "name", "enabled", "checked", "value", "selected", "pressed",
-    "invalid", "focused", "bounds",
+/// One key of a node in a `nodes` result field.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct NodeFieldSpec {
+    /// The key's name.
+    pub name: &'static str,
+    /// What it reads.
+    pub help: &'static str,
+}
+
+/// The keys of each node in a `nodes` result field, in the order a node is written with them.
+/// `parent`, `enabled`, `checked`, `value`, `selected` and `pressed` are left out where the
+/// node has no reading for them, and `differs` is written on a changed node only.
+pub const NODE_FIELDS: [NodeFieldSpec; 13] = [
+    NodeFieldSpec {
+        name: "id",
+        help: "the element's stable id, the one a call names it by",
+    },
+    NodeFieldSpec {
+        name: "parent",
+        help: "the id of the element's parent; left out for a root",
+    },
+    NodeFieldSpec {
+        name: "role",
+        help: "the element's role, as the accessibility tree reads it",
+    },
+    NodeFieldSpec {
+        name: "name",
+        help: "the element's accessible name, as the accessibility tree reads it; empty where it \
+               has none",
+    },
+    NodeFieldSpec {
+        name: "enabled",
+        help: "for an element that can be disabled, whether it lacks a `disabled` attribute: the \
+               reading follows the attribute's presence, whatever its value; left out for every \
+               other element",
+    },
+    NodeFieldSpec {
+        name: "checked",
+        help: "for a checkbox or a radio input, whether it is checked; left out for every other \
+               element",
+    },
+    NodeFieldSpec {
+        name: "value",
+        help: "for a text-entry input or a textarea, the text it holds, else its `value` \
+               attribute; a password or a file input that holds a value reads a fixed mask; left \
+               out for every other element",
+    },
+    NodeFieldSpec {
+        name: "selected",
+        help: "whether the element states itself selected by `aria-selected`; left out where it \
+               states neither",
+    },
+    NodeFieldSpec {
+        name: "pressed",
+        help: "whether the element states itself pressed by `aria-pressed`; left out where it \
+               states neither; a mixed toggle reads false",
+    },
+    NodeFieldSpec {
+        name: "invalid",
+        help: "whether the element states itself invalid by `aria-invalid`; a grammar or spelling \
+               error reads true",
+    },
+    NodeFieldSpec {
+        name: "focused",
+        help: "whether the element holds the document's focus",
+    },
+    NodeFieldSpec {
+        name: "bounds",
+        help: "where the element stands on the screen: x, y, width and height, in pixels; a box \
+               reads the same bounds however far its content is scrolled",
+    },
+    NodeFieldSpec {
+        name: "differs",
+        help: "on a changed node only: the keys whose reading differs from before the step, in \
+               this order; a node that only moved reads bounds alone",
+    },
 ];
 
 /// The kind of an argument's value, each with the bound it states.
@@ -110,6 +180,10 @@ pub enum FieldKind {
     Ids,
     /// A list of nodes, each with the fields [`NODE_FIELDS`] names.
     Nodes,
+    /// A list of fixed words.
+    Words,
+    /// A list of entries, each keyed as its field's help names.
+    Entries,
 }
 
 impl FieldKind {
@@ -123,6 +197,8 @@ impl FieldKind {
             FieldKind::Busy => "busy",
             FieldKind::Ids => "ids",
             FieldKind::Nodes => "nodes",
+            FieldKind::Words => "words",
+            FieldKind::Entries => "entries",
         }
     }
 }
@@ -148,6 +224,19 @@ pub enum Level {
     Instance,
     /// The session itself: the verb starts it, reaches it or stops it.
     Session,
+    /// The tool itself: the verb describes the tool and asks nothing of a session.
+    Tool,
+}
+
+impl Level {
+    /// The level's name.
+    pub const fn name(self) -> &'static str {
+        match self {
+            Level::Instance => "instance",
+            Level::Session => "session",
+            Level::Tool => "tool",
+        }
+    }
 }
 
 /// One verb: its name, what it does, the arguments it takes and the fields of its result.
@@ -383,10 +472,109 @@ pub(crate) const STOP: VerbSpec = VerbSpec {
     }],
 };
 
-/// The verb set, in the schema's order: the six verbs asked of the held instance, then the
-/// three asked of the session.
+pub(crate) const HELP: VerbSpec = VerbSpec {
+    name: "help",
+    level: Level::Tool,
+    help: "describes the tool itself, as one document: every verb with its arguments and its \
+           result fields, the keys of a node, the key names, the busy classes, the refusal \
+           causes with their remedies, the command line's exit statuses and the session errors \
+           with their remedies",
+    args: &[],
+    fields: &[
+        FieldSpec {
+            name: "verbs",
+            kind: FieldKind::Entries,
+            always: true,
+            help: "every verb, in the table's order, keyed name, level, help, args and fields; \
+                   each argument keyed name, kind, bound, required and help, each result field \
+                   keyed name, kind, always and help",
+        },
+        FieldSpec {
+            name: "node_keys",
+            kind: FieldKind::Entries,
+            always: true,
+            help: "the keys of a node in a nodes field, in the order a node is written with \
+                   them, keyed name and help",
+        },
+        FieldSpec {
+            name: "key_names",
+            kind: FieldKind::Words,
+            always: true,
+            help: "the names a key argument admits",
+        },
+        FieldSpec {
+            name: "busy_classes",
+            kind: FieldKind::Words,
+            always: true,
+            help: "the classes of work a busy field names",
+        },
+        FieldSpec {
+            name: "causes",
+            kind: FieldKind::Entries,
+            always: true,
+            help: "every cause a refusal names, keyed name, meaning and remedy",
+        },
+        FieldSpec {
+            name: "exit_statuses",
+            kind: FieldKind::Entries,
+            always: true,
+            help: "the statuses a run of the command line ends with, keyed status, name and \
+                   meaning",
+        },
+        FieldSpec {
+            name: "session_errors",
+            kind: FieldKind::Entries,
+            always: true,
+            help: "every error a session edge ends a command with, keyed kind, meaning and remedy",
+        },
+    ],
+};
+
+/// The verb set, in the schema's order: the six verbs asked of the held instance, the three
+/// asked of the session, then `help`, asked of the tool itself.
 pub const VERBS: &[VerbSpec] = &[
-    SNAPSHOT, CLICK, TYPE, PRESS, ADVANCE, SCROLL, START, STATUS, STOP,
+    SNAPSHOT, CLICK, TYPE, PRESS, ADVANCE, SCROLL, START, STATUS, STOP, HELP,
+];
+
+/// One way a run of the command line ends: its status, its name and what it means.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct ExitStatus {
+    /// The process status.
+    pub status: u8,
+    /// The ending's name.
+    pub name: &'static str,
+    /// What the ending means and what it writes.
+    pub meaning: &'static str,
+}
+
+/// The four endings of a run of the command line, in status order.
+pub const EXIT_STATUSES: [ExitStatus; 4] = [
+    ExitStatus {
+        status: 0,
+        name: "accepted",
+        meaning: "the command ran: its answer on stdout as one line of JSON; a step that ran and \
+                  did not go quiet is accepted, and its `settled` reads false",
+    },
+    ExitStatus {
+        status: 1,
+        name: "refused",
+        meaning: "the command was refused and ran nothing: the refusal on stdout as one line of \
+                  JSON, naming its cause and its remedy; a word that is no verb and an argument \
+                  the verb's schema does not admit are refusals",
+    },
+    ExitStatus {
+        status: 2,
+        name: "usage",
+        meaning: "the line is no command: one fixed line on stderr and nothing on stdout; no \
+                  command, an argument that is not text, a `--session` that is absent where the \
+                  verb needs one or is given twice, an app the binary does not boot",
+    },
+    ExitStatus {
+        status: 3,
+        name: "session-error",
+        meaning: "a session edge stopped the command: the error on stdout as one line of JSON, \
+                  naming its kind and its remedy, and its fixed message on stderr",
+    },
 ];
 
 /// The verb `name` names exactly, or `None`.
@@ -400,23 +588,38 @@ mod tests {
 
     use super::*;
 
-    const VERB_NAMES: [&str; 9] = [
+    const VERB_NAMES: [&str; 10] = [
         "snapshot", "click", "type", "press", "advance", "scroll", "start", "status", "stop",
+        "help",
     ];
 
     #[test]
-    fn the_nine_verbs_are_named_in_order_each_at_its_level() {
-        assert_eq!(VERBS.len(), 9);
+    fn the_ten_verbs_are_named_in_order_each_at_its_level() {
+        assert_eq!(VERBS.len(), 10);
         let names: Vec<&str> = VERBS.iter().map(|verb| verb.name).collect();
         assert_eq!(names, VERB_NAMES);
         let levels: Vec<Level> = VERBS.iter().map(|verb| verb.level).collect();
-        let stated = [[Level::Instance; 6].as_slice(), &[Level::Session; 3]].concat();
+        let stated = [
+            [Level::Instance; 6].as_slice(),
+            &[Level::Session; 3],
+            &[Level::Tool; 1],
+        ]
+        .concat();
         assert_eq!(levels, stated);
+        let level_names = [
+            (Level::Instance, "instance"),
+            (Level::Session, "session"),
+            (Level::Tool, "tool"),
+        ];
+        assert_eq!(level_names.len(), 3);
+        for (row, (level, name)) in level_names.into_iter().enumerate() {
+            assert!(level.name() == name, "row {row}");
+        }
     }
 
     #[test]
     fn every_verb_states_its_help_its_arguments_and_a_result() {
-        assert_eq!(VERBS.len(), 9);
+        assert_eq!(VERBS.len(), 10);
         let field_help = |verb: &VerbSpec, name: &str| {
             verb.fields
                 .iter()
@@ -491,7 +694,7 @@ mod tests {
     fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         const ACTING: [&str; 5] = ["settled", "busy", "added", "removed", "changed"];
         type Args = &'static [(&'static str, ArgKind, bool)];
-        let rows: [(&str, Args, Vec<&str>); 9] = [
+        let rows: [(&str, Args, Vec<&str>); 10] = [
             ("snapshot", &[], vec!["text"]),
             ("click", &[("id", ArgKind::Id, true)], ACTING.to_vec()),
             (
@@ -525,6 +728,19 @@ mod tests {
                 vec!["label", "pid", "served", "idle_expiry_s"],
             ),
             ("stop", &[], vec!["stopped"]),
+            (
+                "help",
+                &[],
+                vec![
+                    "verbs",
+                    "node_keys",
+                    "key_names",
+                    "busy_classes",
+                    "causes",
+                    "exit_statuses",
+                    "session_errors",
+                ],
+            ),
         ];
         assert_eq!(VERBS.len(), rows.len());
         for (verb, (name, args, fields)) in VERBS.iter().zip(rows) {
@@ -556,8 +772,15 @@ mod tests {
             ("served", FieldKind::Count),
             ("idle_expiry_s", FieldKind::Count),
             ("stopped", FieldKind::Flag),
+            ("verbs", FieldKind::Entries),
+            ("node_keys", FieldKind::Entries),
+            ("key_names", FieldKind::Words),
+            ("busy_classes", FieldKind::Words),
+            ("causes", FieldKind::Entries),
+            ("exit_statuses", FieldKind::Entries),
+            ("session_errors", FieldKind::Entries),
         ];
-        assert_eq!(field_kinds.len(), 13);
+        assert_eq!(field_kinds.len(), 20);
         for verb in VERBS {
             for field in verb.fields {
                 let stated = field_kinds.iter().find(|(name, _)| *name == field.name);
@@ -580,14 +803,6 @@ mod tests {
                 "arrow-right",
                 "home",
                 "end",
-            ]
-        );
-        assert_eq!(NODE_FIELDS.len(), 12);
-        assert_eq!(
-            NODE_FIELDS,
-            [
-                "id", "parent", "role", "name", "enabled", "checked", "value", "selected",
-                "pressed", "invalid", "focused", "bounds",
             ]
         );
         assert_eq!(BUSY_CLASSES, ["render", "layout", "loads"]);
@@ -625,10 +840,60 @@ mod tests {
             (FieldKind::Busy, "busy"),
             (FieldKind::Ids, "ids"),
             (FieldKind::Nodes, "nodes"),
+            (FieldKind::Words, "words"),
+            (FieldKind::Entries, "entries"),
         ];
-        assert_eq!(field_kind_names.len(), 7);
+        assert_eq!(field_kind_names.len(), 9);
         for (kind, name) in field_kind_names {
             assert_eq!(kind.name(), name);
+        }
+    }
+
+    #[test]
+    fn the_thirteen_node_keys_are_named_in_order_each_with_its_help() {
+        let names = [
+            "id", "parent", "role", "name", "enabled", "checked", "value", "selected", "pressed",
+            "invalid", "focused", "bounds", "differs",
+        ];
+        assert_eq!(NODE_FIELDS.len(), 13);
+        assert_eq!(NODE_FIELDS.map(|key| key.name), names);
+        for (row, key) in NODE_FIELDS.iter().enumerate() {
+            assert!(!key.help.is_empty(), "row {row}");
+            assert!(!key.help.contains('/'), "row {row}");
+        }
+        let help = |name: &str| {
+            NODE_FIELDS
+                .iter()
+                .find(|key| key.name == name)
+                .map_or("", |key| key.help)
+        };
+        // The boolean model's two limits, each in its key's help; no role set and no kind.
+        assert!(help("pressed").contains("a mixed toggle reads false"));
+        assert!(help("invalid").contains("a grammar or spelling error reads true"));
+        assert!(!help("pressed").contains("aria-checked"));
+        for name in ["role", "name"] {
+            assert!(
+                help(name).contains("as the accessibility tree reads it"),
+                "{name}"
+            );
+        }
+        assert!(help("enabled").contains("the reading follows the attribute's presence"));
+    }
+
+    #[test]
+    fn the_four_exit_statuses_are_stated_in_status_order() {
+        let rows = [
+            (0, "accepted"),
+            (1, "refused"),
+            (2, "usage"),
+            (3, "session-error"),
+        ];
+        assert_eq!(EXIT_STATUSES.len(), 4);
+        assert_eq!(rows.len(), EXIT_STATUSES.len());
+        for (row, (ending, (status, name))) in EXIT_STATUSES.iter().zip(rows).enumerate() {
+            assert!(ending.status == status, "row {row}");
+            assert!(ending.name == name, "row {row}");
+            assert!(!ending.meaning.is_empty(), "row {row}");
         }
     }
 }

@@ -29,6 +29,50 @@ impl SnapshotDiff {
     }
 }
 
+/// One reading of a node that [`Snapshot::diff`] compares, in the order a node is read.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Reading {
+    /// The id of the node's parent.
+    Parent,
+    /// Its role.
+    Role,
+    /// Its accessible name.
+    Name,
+    /// [`NodeState::enabled`].
+    Enabled,
+    /// [`NodeState::checked`].
+    Checked,
+    /// [`NodeState::value`].
+    Value,
+    /// [`NodeState::selected`].
+    Selected,
+    /// [`NodeState::pressed`].
+    Pressed,
+    /// [`NodeState::invalid`].
+    Invalid,
+    /// [`NodeState::focused`].
+    Focused,
+    /// Its bounds.
+    Bounds,
+}
+
+impl Reading {
+    /// Every reading, in the order a node is read.
+    pub const ALL: [Reading; 11] = [
+        Reading::Parent,
+        Reading::Role,
+        Reading::Name,
+        Reading::Enabled,
+        Reading::Checked,
+        Reading::Value,
+        Reading::Selected,
+        Reading::Pressed,
+        Reading::Invalid,
+        Reading::Focused,
+        Reading::Bounds,
+    ];
+}
+
 /// One node of a [`SnapshotDiff`]: what the later snapshot reads for it, without its children.
 #[derive(Debug, Clone, PartialEq)]
 pub struct DiffNode {
@@ -44,6 +88,9 @@ pub struct DiffNode {
     pub state: NodeState,
     /// The node's bounds.
     pub bounds: BoundingRect,
+    /// For a changed node, the readings that differ from the earlier snapshot's, in the order of
+    /// [`Reading::ALL`]; empty for an added node.
+    pub differs: Vec<Reading>,
 }
 
 impl Snapshot {
@@ -51,8 +98,9 @@ impl Snapshot {
     ///
     /// A node is added when `after` holds its id and this snapshot does not, removed when
     /// this snapshot holds it and `after` does not, and changed when both hold it and its
-    /// role, name, state, bounds or parent's id differ. A node whose own reading is the same
-    /// is not named because a descendant's differs. Where two nodes of one snapshot carry one
+    /// role, name, state, bounds or parent's id differ; a changed node names which of them
+    /// differ ([`DiffNode::differs`]). A node whose own reading is the same is not named because
+    /// a descendant's differs. Where two nodes of one snapshot carry one
     /// id, the first in pre-order stands for it, as [`Snapshot::get`] reads it.
     ///
     /// The diff reads the two snapshots and nothing else, so every value in it is one a
@@ -70,16 +118,12 @@ impl Snapshot {
                 continue;
             }
             match earlier_at.get(node.id.as_str()) {
-                None => added.push(reading(node, *parent)),
+                None => added.push(reading(node, *parent, Vec::new())),
                 Some(&at) => {
                     let (was, was_parent) = earlier[at];
-                    if was.role != node.role
-                        || was.name != node.name
-                        || was.state != node.state
-                        || was.bounds != node.bounds
-                        || was_parent != *parent
-                    {
-                        changed.push(reading(node, *parent));
+                    let differs = differing(was, was_parent, node, *parent);
+                    if !differs.is_empty() {
+                        changed.push(reading(node, *parent, differs));
                     }
                 }
             }
@@ -127,7 +171,44 @@ fn first_by_id<'s>(nodes: &[(&'s SnapshotNode, Option<&'s str>)]) -> HashMap<&'s
     at
 }
 
-fn reading(node: &SnapshotNode, parent: Option<&str>) -> DiffNode {
+/// The readings of a node that differ between the two snapshots, in the order of
+/// [`Reading::ALL`].
+fn differing(
+    was: &SnapshotNode,
+    was_parent: Option<&str>,
+    node: &SnapshotNode,
+    parent: Option<&str>,
+) -> Vec<Reading> {
+    // Destructured whole, so a reading added to the state is a reading this list compares.
+    let NodeState {
+        enabled,
+        checked,
+        value,
+        selected,
+        pressed,
+        invalid,
+        focused,
+    } = &node.state;
+    let before = &was.state;
+    [
+        (Reading::Parent, was_parent != parent),
+        (Reading::Role, was.role != node.role),
+        (Reading::Name, was.name != node.name),
+        (Reading::Enabled, before.enabled != *enabled),
+        (Reading::Checked, before.checked != *checked),
+        (Reading::Value, before.value != *value),
+        (Reading::Selected, before.selected != *selected),
+        (Reading::Pressed, before.pressed != *pressed),
+        (Reading::Invalid, before.invalid != *invalid),
+        (Reading::Focused, before.focused != *focused),
+        (Reading::Bounds, was.bounds != node.bounds),
+    ]
+    .into_iter()
+    .filter_map(|(reading, differs)| differs.then_some(reading))
+    .collect()
+}
+
+fn reading(node: &SnapshotNode, parent: Option<&str>, differs: Vec<Reading>) -> DiffNode {
     DiffNode {
         id: node.id.clone(),
         parent: parent.map(str::to_string),
@@ -135,6 +216,7 @@ fn reading(node: &SnapshotNode, parent: Option<&str>) -> DiffNode {
         name: node.name.clone(),
         state: node.state.clone(),
         bounds: node.bounds,
+        differs,
     }
 }
 
@@ -235,6 +317,7 @@ mod tests {
                 name: "Deux".to_string(),
                 state: NodeState::default(),
                 bounds: BOX,
+                differs: vec![Reading::Name],
             }]
         );
         assert!(diff.added.is_empty() && diff.removed.is_empty());
@@ -286,8 +369,62 @@ mod tests {
         let diff = base().diff(&after);
         assert_eq!(ids(&diff.changed), ["side"]);
         assert_eq!(diff.changed[0].bounds, moved);
+        assert_eq!(diff.changed[0].differs, [Reading::Bounds]);
         assert_eq!(parents(&diff.changed), [Some("root")]);
         assert!(diff.added.is_empty() && diff.removed.is_empty());
+    }
+
+    #[test]
+    fn a_changed_node_names_exactly_the_readings_that_differ_in_order() {
+        let mut after = base();
+        let first = edit(&mut after, "first");
+        first.state.focused = true;
+        first.state.value = Some("1".to_string());
+        let side = edit(&mut after, "side");
+        side.bounds = BoundingRect { x: 4.0, ..BOX };
+        side.role = Role::Button;
+        side.state.pressed = Some(true);
+
+        let diff = base().diff(&after);
+        assert_eq!(ids(&diff.changed), ["first", "side"]);
+        assert_eq!(diff.changed[0].differs, [Reading::Value, Reading::Focused]);
+        assert_eq!(
+            diff.changed[1].differs,
+            [Reading::Role, Reading::Pressed, Reading::Bounds]
+        );
+
+        // An added node names nothing, and a node moved under another parent names its parent.
+        edit(&mut after, "side").children = vec![node("new", "", vec![])];
+        let diff = base().diff(&after);
+        assert_eq!(ids(&diff.added), ["new"]);
+        assert!(diff.added[0].differs.is_empty());
+        let mut moved = base();
+        let child = edit(&mut moved, "list").children.remove(0);
+        edit(&mut moved, "side").children.push(child);
+        assert_eq!(base().diff(&moved).changed[0].differs, [Reading::Parent]);
+
+        // Each reading alone names itself alone.
+        let edits: [fn(&mut SnapshotNode); 11] = [
+            |_| {},
+            |node| node.role = Role::Button,
+            |node| node.name = "Zwei".to_string(),
+            |node| node.state.enabled = Some(true),
+            |node| node.state.checked = Some(false),
+            |node| node.state.value = Some(String::new()),
+            |node| node.state.selected = Some(true),
+            |node| node.state.pressed = Some(false),
+            |node| node.state.invalid = true,
+            |node| node.state.focused = true,
+            |node| node.bounds = BoundingRect { y: 1.0, ..BOX },
+        ];
+        assert_eq!(edits.len(), Reading::ALL.len());
+        for (row, (set, reading)) in edits.into_iter().zip(Reading::ALL).enumerate().skip(1) {
+            let mut after = base();
+            set(edit(&mut after, "second"));
+            let diff = base().diff(&after);
+            assert_eq!(ids(&diff.changed), ["second"], "row {row}");
+            assert_eq!(diff.changed[0].differs, [reading], "row {row}");
+        }
     }
 
     #[test]

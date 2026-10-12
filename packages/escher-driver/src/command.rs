@@ -151,8 +151,8 @@ impl Command {
     }
 }
 
-/// A call the schema admits, asked of the session itself: one variant per session-level verb,
-/// holding its checked arguments.
+/// A call the schema admits, asked of the session itself or of the tool: one variant per
+/// session-level verb, holding its checked arguments, and one for `help`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum SessionCommand {
     /// Start a session on the app `app` names.
@@ -164,6 +164,8 @@ pub enum SessionCommand {
     Status,
     /// Stop the session.
     Stop,
+    /// Describe the tool itself.
+    Help,
 }
 
 impl SessionCommand {
@@ -173,6 +175,7 @@ impl SessionCommand {
             SessionCommand::Start { .. } => &schema::START,
             SessionCommand::Status => &schema::STATUS,
             SessionCommand::Stop => &schema::STOP,
+            SessionCommand::Help => &schema::HELP,
         }
     }
 }
@@ -197,7 +200,7 @@ enum Admitted<'a> {
 /// verb's arguments, in the schema's order, each for being required and absent, for a value of
 /// another kind and for a value outside its bound.
 pub fn validate(call: &Call) -> Result<Command, Refusal> {
-    let spec = verb_at(call, Level::Instance)?;
+    let spec = verb_at(call, &[Level::Instance])?;
     let admitted = admitted(spec, call)?;
     match (spec.name, admitted.as_slice()) {
         ("snapshot", []) => Ok(Command::Snapshot),
@@ -224,10 +227,11 @@ pub fn validate(call: &Call) -> Result<Command, Refusal> {
 /// Checks `call` against the schema: the [`SessionCommand`] it asks of the session, or why it
 /// is refused.
 ///
-/// The rules and their order are [`validate`]'s, over the session-level verbs: an
-/// instance-level verb handed to it is refused as an unknown verb.
+/// The rules and their order are [`validate`]'s, over the session-level verbs and `help`, the
+/// verb asked of the tool itself: an instance-level verb handed to it is refused as an unknown
+/// verb.
 pub fn validate_session(call: &Call) -> Result<SessionCommand, Refusal> {
-    let spec = verb_at(call, Level::Session)?;
+    let spec = verb_at(call, &[Level::Session, Level::Tool])?;
     let admitted = admitted(spec, call)?;
     match (spec.name, admitted.as_slice()) {
         ("start", [Some(Admitted::Name(app))]) => Ok(SessionCommand::Start {
@@ -235,15 +239,16 @@ pub fn validate_session(call: &Call) -> Result<SessionCommand, Refusal> {
         }),
         ("status", []) => Ok(SessionCommand::Status),
         ("stop", []) => Ok(SessionCommand::Stop),
+        ("help", []) => Ok(SessionCommand::Help),
         // A verb the table lists in a shape no command has is not one this function knows.
         _ => Err(Refusal::new(Cause::UnknownVerb)),
     }
 }
 
-/// The row of the verb `call` names, when the table lists it at `level`.
-fn verb_at(call: &Call, level: Level) -> Result<&'static VerbSpec, Refusal> {
+/// The row of the verb `call` names, when the table lists it at one of `levels`.
+fn verb_at(call: &Call, levels: &[Level]) -> Result<&'static VerbSpec, Refusal> {
     schema::verb(&call.verb)
-        .filter(|spec| spec.level == level)
+        .filter(|spec| levels.contains(&spec.level))
         .ok_or(Refusal::new(Cause::UnknownVerb))
 }
 
@@ -536,6 +541,7 @@ mod tests {
             ),
             (call("status", &[]), SessionCommand::Status),
             (call("stop", &[]), SessionCommand::Stop),
+            (call("help", &[]), SessionCommand::Help),
         ]
     }
 
@@ -544,7 +550,7 @@ mod tests {
         let unknown = Refusal::new(Cause::UnknownVerb);
 
         let session = session_rows();
-        assert_eq!(session.len(), 6);
+        assert_eq!(session.len(), 7);
         for (row, (call, command)) in session.iter().enumerate() {
             assert!(validate_session(call).as_ref() == Ok(command), "row {row}");
             assert!(validate(call) == Err(unknown), "row {row}");
@@ -560,8 +566,9 @@ mod tests {
             ),
             call("status", &[("id", text("save"))]),
             call("stop", &[("ms", ArgValue::Number(0))]),
+            call("help", &[("id", text("save"))]),
         ];
-        assert_eq!(whatever.len(), 5);
+        assert_eq!(whatever.len(), 6);
         for (row, call) in whatever.iter().enumerate() {
             assert!(validate(call) == Err(unknown), "row {row}");
         }
@@ -583,6 +590,8 @@ mod tests {
             (call("start", &[("id", text("save"))]), Fault::Unnamed),
             (call("status", &[("app", text("counter"))]), Fault::Unnamed),
             (call("stop", &[("id", text("save"))]), Fault::Unnamed),
+            (call("help", &[("id", text("save"))]), Fault::Unnamed),
+            (call("help", &[("", text("x"))]), Fault::Unnamed),
             (
                 call("start", &[("app", text("counter")), ("app", text("timer"))]),
                 Fault::Repeated("app"),
@@ -602,7 +611,7 @@ mod tests {
             (app("a/b"), Fault::OutOfBound("app")),
             (app("é"), Fault::OutOfBound("app")),
         ];
-        assert_eq!(rows.len(), 13);
+        assert_eq!(rows.len(), 15);
         for (row, (call, fault)) in rows.into_iter().enumerate() {
             assert!(
                 validate_session(&call) == Err(Refusal::malformed(fault)),
@@ -781,18 +790,26 @@ mod tests {
             let spec = command.spec();
             assert!(spec.name == call.verb, "session row {row}");
             assert!(schema::verb(&call.verb) == Some(spec), "session row {row}");
-            assert!(spec.level == Level::Session, "session row {row}");
+            assert!(
+                matches!(spec.level, Level::Session | Level::Tool),
+                "session row {row}"
+            );
             if !reached.contains(&spec.name) {
                 reached.push(spec.name);
             }
         }
         let table: Vec<&str> = schema::VERBS.iter().map(|verb| verb.name).collect();
-        assert_eq!(table.len(), 9);
+        assert_eq!(table.len(), 10);
         assert_eq!(reached, table);
-        let instance = schema::VERBS
-            .iter()
-            .filter(|verb| verb.level == Level::Instance)
-            .count();
-        assert_eq!(instance, 6);
+        let at = |level: Level| {
+            schema::VERBS
+                .iter()
+                .filter(|verb| verb.level == level)
+                .count()
+        };
+        assert_eq!(
+            (at(Level::Instance), at(Level::Session), at(Level::Tool)),
+            (6, 3, 1)
+        );
     }
 }

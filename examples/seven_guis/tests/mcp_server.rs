@@ -1,6 +1,8 @@
 //! The `escher-session` binary in its `mcp` role, run as a child the way an MCP client runs it:
-//! it answers `initialize` in the revision asked for, lists exactly the nine verbs of the
-//! driver's table as tools, and completes the Counter flow by tool calls alone — `start`, a
+//! it answers `initialize` in the revision asked for and `2025-11-25` to one it does not speak,
+//! lists exactly the ten verbs of the driver's table as tools, answers `help` — first after
+//! `initialize`, before any `start` — with the tool's description of itself, the same bytes the
+//! command line's `help` writes, and completes the Counter flow by tool calls alone — `start`, a
 //! snapshot, three clicks, a snapshot reading 3, `status`, `stop`. A refused call, a malformed
 //! call, an unknown method, a line that is not JSON, a line over the bound and an unknown tool
 //! are each answered and run nothing, and no reply holds what they named. Stdout holds one
@@ -15,7 +17,7 @@ mod common;
 use std::process::Command;
 
 use common::{Speaker, cause, number, string_at};
-use escher_driver::VERBS;
+use escher_driver::{VERBS, describe};
 
 const BINARY: &str = env!("CARGO_BIN_EXE_escher-session");
 
@@ -118,10 +120,10 @@ fn the_mcp_role_completes_the_counter_flow_by_tool_calls_alone() {
         "tools/list answers the tools"
     );
     let verbs: Vec<&str> = VERBS.iter().map(|verb| verb.name).collect();
-    assert_eq!(verbs.len(), 9);
+    assert_eq!(verbs.len(), 10);
     assert!(
         names(&listing) == verbs,
-        "the tools are the table's nine verbs in its order"
+        "the tools are the table's ten verbs in its order"
     );
 
     let started = accepted(&mut speaker, 3, "start", r#"{"app":"counter"}"#);
@@ -232,6 +234,75 @@ fn the_mcp_role_completes_the_counter_flow_by_tool_calls_alone() {
         })
         .count();
     assert_eq!(leaks, 0, "{leaks} replies hold what their request named");
+}
+
+/// What `initialize` answers when it asks for `asked`.
+#[track_caller]
+fn initialized(speaker: &mut Speaker, id: u32, asked: &str) -> String {
+    speaker.send(
+        format!(
+            r#"{{"jsonrpc":"2.0","id":{id},"method":"initialize","params":{{"protocolVersion":"{asked}","capabilities":{{}},"clientInfo":{{"name":"check","version":"1"}}}}}}"#
+        )
+        .as_bytes(),
+    );
+    speaker.reply()
+}
+
+#[test]
+fn the_newest_revision_is_spoken_and_help_answers_before_any_start() {
+    let mut speaker = mcp();
+    let rows = [
+        ("2025-11-25", "2025-11-25"),
+        ("2026-07-28", "2025-11-25"),
+        ("2025-06-18", "2025-06-18"),
+    ];
+    for (id, (asked, answered)) in (1u32..).zip(rows) {
+        assert!(
+            initialized(&mut speaker, id, asked).starts_with(&format!(
+                r#"{{"jsonrpc":"2.0","id":{id},"result":{{"protocolVersion":"{answered}","#
+            )),
+            "call {id}: initialize answers its revision"
+        );
+    }
+    let help = accepted(&mut speaker, 4, "help", "{}");
+    assert!(
+        help == describe(),
+        "help answers the tool's description of itself, {} bytes against {}",
+        help.len(),
+        describe().len()
+    );
+    speaker.send(br#"{"jsonrpc":"2.0","id":5,"method":"server/discover"}"#);
+    assert!(
+        speaker
+            .reply()
+            .starts_with(r#"{"jsonrpc":"2.0","id":5,"error":{"code":-32601,"message":""#),
+        "server/discover is still a method not found"
+    );
+    let spoke = speaker.close();
+    assert_eq!(spoke.status, Some(0), "the mcp role ends with status 0");
+    assert!(spoke.stdout.is_empty(), "no line past the replies");
+}
+
+#[cfg(unix)]
+#[test]
+fn help_reads_the_same_bytes_through_mcp_and_the_command_line() {
+    use common::client;
+
+    let mut speaker = mcp();
+    let through_mcp = accepted(&mut speaker, 1, "help", "{}");
+    assert_eq!(
+        speaker.close().status,
+        Some(0),
+        "the mcp role ends with status 0"
+    );
+    let ran = client(BINARY, &["help"]);
+    assert_eq!(ran.status, Some(0), "the command line answers help");
+    assert!(
+        through_mcp == ran.line(),
+        "help reads {} bytes through mcp and {} through the command line",
+        through_mcp.len(),
+        ran.line().len()
+    );
 }
 
 #[cfg(unix)]

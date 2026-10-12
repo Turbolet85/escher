@@ -1,0 +1,32 @@
+# design extract
+
+## Relevance
+partial — the chunk renders no pixels, so no colour, type, spacing, depth, radius, motion or icon token applies. What applies is design-system §Surface: cli, which sets the output form of the `escher-session` command line and its `mcp` role, the two surfaces this chunk's help and schemas are served on. (§Brand Identity, §Anti-Patterns, §Self-Validation Protocol and §Design Decisions Log read NO RECORDED INTENT. §Surface: cli §Navigation Pattern and §Platform-Specific Notes read NOT YET MEASURED. None of them is cited.)
+
+## Constraints
+- design-system §Surface: cli §Component Patterns says `escher-session` is a surface an agent reads, not a person. So a served verb list, help or schema is written for a machine reader, keyed by the driver schema's own words. It is not prose laid out for a terminal.
+- design-system §Surface: cli §Component Patterns requires a command to print one line of JSON on stdout and nothing else there. A help or self-description command served by the command line is held to that form. Research decides whether the planned help output fits one line within the answer bound.
+- design-system §Surface: cli §Component Patterns has a usage error print one fixed line on stderr, with stdout empty. A session error prints its fixed message on stderr. The exit status carries the class: `0` accepted · `1` refused · `2` usage · `3` session error. Serving the exit statuses' meanings (CARRY 1) must keep these four classes and the stderr/stdout split. Research decides whether today's usage line can grow into help without breaking "one fixed line".
+- design-system §Surface: cli §Component Patterns bans colour, any colour dependency and any ESC byte on an answer line. It also bans any check of whether a stream is a terminal, so output is the same piped or not. Every new served text is held to this.
+- design-system §Surface: cli §Component Patterns has the `mcp` role's stdout carry newline-delimited JSON-RPC 2.0 protocol lines only: one reply per request that is not a notification. A tool result's text is the screen text for `snapshot` and the JSON line for every other verb. Replies are uncoloured, with no ESC byte. An `Err` ending's fixed message goes to stderr with status `3`. Any reply this chunk adds or widens is held to this form: a richer `tools/list`, an output schema per tool, or a method such as `server/discover` (CARRY 6).
+- design-system §Surface: cli §Tokens (platform-specific) gives result colours, bright-black headings and OSC 8 hyperlinks gated on `supports_hyperlinks`. These are the WPT runner's tokens. They are not a pattern for the driver's surfaces.
+
+## Patterns to follow
+- The answer line keyed by schema words (design-system §Surface: cli §Component Patterns). The command line writes refusals, outcomes and session errors as JSON objects keyed by the driver schema's own words. A served help, verb list or shape should be a JSON object read from the same `'static` table in the same way, so that no text is restated outside it (scope CARRY 1).
+- Fixed text on stderr for a usage error (design-system §Surface: cli §Component Patterns). The usage line built from the verb table is the existing place where the table is turned into served text. Help built from the table extends that same derivation instead of adding a second source.
+- Readers already assert the no-ESC reading (design-system §Surface: cli §Component Patterns, the measured readings): the seven_guis checks' shared answer reader checks every command-line answer line, and the shared `Speaker` checks every MCP reply. New served lines should go through these same readers so the reading covers them.
+
+## Anti-patterns to avoid
+- No colour, no `owo-colors` or any other colour crate, no ESC byte and no terminal-detection branch in help or schema output, on either surface (per design-system §Surface: cli §Component Patterns; the coloured form belongs to the WPT runner per design-system §Surface: cli §Tokens (platform-specific)).
+- No OSC 8 hyperlinks in served help, such as a link to the MCP specification, even when stdout is a terminal (per design-system §Surface: cli §Tokens (platform-specific): that is the WPT runner's gated pattern, and the driver's surfaces make no terminal test, per design-system §Surface: cli §Component Patterns).
+- No help formatted for people, such as a multi-line block, padded columns or a pager, on stdout beside or in place of the one JSON answer line (per design-system §Surface: cli §Component Patterns).
+
+## Contract bindings
+- design ↔ tests: the no-ESC and one-line readings are asserted by the seven_guis checks' shared reader (`examples/seven_guis/tests/common/mod.rs`) and the shared MCP `Speaker`. Every served self-description line must go through them (design-system §Surface: cli §Component Patterns ↔ test-plan §3).
+- design ↔ observability: stderr carries the fixed usage line, a session error's message and escher-telemetry's log lines. Served help is an answer on stdout (or an MCP reply), never a log line (design-system §Surface: cli §Component Patterns ↔ obs-plan; CLAUDE.md telemetry invariant).
+- design ↔ security: the answer line is "keyed by the driver schema's own words", which is the shape of security-plan §Surfaces's rule that nothing the caller typed is written back. Served self-description text is the program's own fixed text (design-system §Surface: cli §Component Patterns ↔ security-plan §Surfaces / §Input Validation).
+
+## Acceptance criteria contributions
+- (design) Every line the command line serves for its verb list, help or shapes is one line of JSON on stdout with no ESC byte. Its exit status is one of `0` · `1` · `2` · `3`. A usage error still leaves stdout empty and writes one fixed line on stderr. All of this is asserted by the seven_guis shared answer reader (per design-system §Surface: cli §Component Patterns).
+- (design) Every MCP reply that serves self-description is one newline-delimited JSON-RPC 2.0 line with no ESC byte, asserted by the shared `Speaker`. This covers `tools/list` and any method this chunk newly answers (per design-system §Surface: cli §Component Patterns).
+- (design) After the chunk, `escher-driver` and `seven_guis` declare no colour dependency, and a search of the crate finds no terminal test, the count still 0 (per design-system §Surface: cli §Component Patterns; colour tokens remain the WPT runner's per design-system §Surface: cli §Tokens (platform-specific)).

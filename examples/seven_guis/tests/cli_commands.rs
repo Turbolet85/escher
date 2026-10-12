@@ -1,16 +1,20 @@
 //! Every driver command through the real `escher-session` binary: `start`, `status`, `stop` and
 //! each of the six verbs answer one line of uncoloured JSON on stdout and end with a status
 //! that tells accepted (`0`) from refused (`1`) and from a session error (`3`). The snapshot's
-//! line is the library's own form of the screen booted in process, inside its byte budget. Each
-//! check starts and stops its own session; a failure names a kind, a status or a count, never
-//! an id, a name or a value. Unix only: a session crosses a Unix-domain socket.
+//! line is the library's own form of the screen booted in process, inside its byte budget.
+//! `help` answers the library's own description of the tool, reaching no session. Every
+//! refusal the binary is driven to — seven causes, all but `covered` — and every session error
+//! read here names the remedy the table states, and on Linux a state directory of 94 bytes, as
+//! given, holds a session while one of 95 is refused with its bound. Each check starts and stops
+//! its own session; a failure names a kind, a status or a count, never an id, a name or a
+//! value. Unix only: a session crosses a Unix-domain socket.
 
 #![cfg(unix)]
 
 mod common;
 
-use common::{Ran, Started, cause, clear, client, keys, number, state_dir, text};
-use escher_driver::{Outcome, SessionError, VERBS, verb};
+use common::{Ran, Started, cause, clear, client, keys, number, state_dir, string_at, text};
+use escher_driver::{CAUSES, Outcome, SessionError, VERBS, describe, verb};
 use seven_guis::stand::{self, LeanTask};
 
 const BINARY: &str = env!("CARGO_BIN_EXE_escher-session");
@@ -25,6 +29,22 @@ const TASKS: [(&str, LeanTask); 4] = [
 
 /// An id no element of the stand carries.
 const NOBODY: &str = "cli-names-no-element";
+
+/// The cause a refused command's line names, read once its remedy is checked against the one
+/// the cause states.
+#[track_caller]
+fn remedied(line: &str) -> String {
+    let named = cause(line).expect("a refused command answers its refusal");
+    let stated = CAUSES
+        .into_iter()
+        .find(|cause| cause.name() == named)
+        .expect("the refusal names a cause of the set");
+    assert!(
+        string_at(line, "remedy").as_deref() == Some(stated.remedy()),
+        "the refusal names its cause's remedy"
+    );
+    named.to_string()
+}
 
 /// The fields the table states for `name`, without the one present only when a step did not
 /// go quiet.
@@ -83,9 +103,7 @@ impl Session {
     fn refused(&self, args: &[&str]) -> String {
         let ran = self.run(args);
         assert_eq!(ran.status, Some(1), "the command ends refused");
-        cause(ran.line())
-            .expect("a refused command answers its refusal")
-            .to_string()
+        remedied(ran.line())
     }
 
     #[track_caller]
@@ -97,7 +115,7 @@ impl Session {
 
 #[test]
 fn each_task_starts_answers_and_stops() {
-    assert_eq!(VERBS.len(), 9);
+    assert_eq!(VERBS.len(), 10);
     for (index, (task, _)) in TASKS.into_iter().enumerate() {
         let dir = state_dir(&format!("cc-life-{index}"));
         clear(&dir);
@@ -322,7 +340,7 @@ fn a_call_the_schema_refuses_reaches_no_session() {
     for (row, (args, refused)) in rows.into_iter().enumerate() {
         let ran = client(BINARY, args);
         assert_eq!(ran.status, Some(1), "row {row}: the command ends refused");
-        assert!(cause(ran.line()) == Some(refused), "row {row}: its cause");
+        assert!(remedied(ran.line()) == refused, "row {row}: its cause");
         assert!(ran.stderr.is_empty(), "row {row}: its stderr is empty");
         assert!(!dir.exists(), "row {row}: no state directory is created");
     }
@@ -356,6 +374,10 @@ fn a_command_with_no_session_is_a_session_error() {
         assert!(
             ran.line() == SessionError::NoSession.to_json(),
             "row {row}: stdout is the error for no session"
+        );
+        assert!(
+            string_at(ran.line(), "remedy").as_deref() == Some(SessionError::NoSession.remedy()),
+            "row {row}: the error names its remedy"
         );
         assert!(
             ran.stderr == format!("{}\n", SessionError::NoSession).as_bytes(),
@@ -410,4 +432,103 @@ fn tab_on_a_fresh_boot_moves_focus_to_the_back_button_alone() {
         "the diff names one node, and it reads focused"
     );
     counter.stop();
+}
+
+#[test]
+fn help_answers_the_tools_description_and_reaches_no_session() {
+    let dir = state_dir("cc-help");
+    clear(&dir);
+    let rows: [&[&str]; 2] = [&["help"], &["help", "--session", text(&dir)]];
+    for (row, args) in rows.into_iter().enumerate() {
+        let ran = client(BINARY, args);
+        assert_eq!(ran.status, Some(0), "row {row}: help ends accepted");
+        assert!(
+            ran.line() == describe(),
+            "row {row}: stdout is the tool's description, {} bytes against {}",
+            ran.line().len(),
+            describe().len()
+        );
+        assert!(
+            ran.stderr.is_empty(),
+            "row {row}: stderr holds {} bytes",
+            ran.stderr.len()
+        );
+        assert!(!dir.exists(), "row {row}: no state directory is created");
+    }
+    let named = client(BINARY, &["help", "--verb", "click"]);
+    assert_eq!(named.status, Some(1), "an argument to help is refused");
+    assert_eq!(remedied(named.line()), "malformed");
+    assert!(
+        !named.line().contains("--verb") && !named.line().contains("click"),
+        "the refusal holds nothing the line named"
+    );
+}
+
+#[cfg(target_os = "linux")]
+#[test]
+fn a_state_directory_of_94_bytes_holds_a_session_and_one_of_95_is_refused_with_its_bound() {
+    use std::path::{Path, PathBuf};
+    use std::process::Command;
+
+    const BOUND: usize = 94;
+    let base = Path::new(env!("CARGO_TARGET_TMPDIR"));
+    // A path as given: absolute when the target dir leaves room for a name, else relative to the
+    // child's working directory, which counts its own bytes alone.
+    let at = |length: usize| -> (PathBuf, String) {
+        let prefix = format!("{}/", text(base));
+        let given = if prefix.len() + 8 <= length {
+            format!("{prefix}{}", "b".repeat(length - prefix.len()))
+        } else {
+            "b".repeat(length)
+        };
+        (base.join(&given), given)
+    };
+    let run = |args: &[&str]| {
+        let mut command = Command::new(BINARY);
+        command.args(args).current_dir(base).env_remove("RUST_LOG");
+        common::run(command)
+    };
+
+    let (dir, given) = at(BOUND);
+    assert_eq!(given.len(), BOUND);
+    clear(&dir);
+    let ran = run(&["start", "counter", "--session", &given]);
+    assert_eq!(ran.status, Some(0), "a {BOUND}-byte state directory starts");
+    let _started = Started {
+        dir: dir.clone(),
+        pid: number(ran.line(), "pid"),
+    };
+    let ran = run(&["stop", "--session", &given]);
+    assert_eq!(ran.status, Some(0), "and stops");
+    assert!(!dir.exists(), "stop leaves no state directory");
+
+    let (dir, given) = at(BOUND + 1);
+    assert_eq!(given.len(), BOUND + 1);
+    clear(&dir);
+    let ran = run(&["start", "counter", "--session", &given]);
+    assert_eq!(
+        ran.status,
+        Some(3),
+        "a {}-byte state directory is a session error",
+        BOUND + 1
+    );
+    let error = SessionError::StateDirTooLong;
+    assert!(
+        ran.line() == error.to_json(),
+        "stdout is the error for a state directory too long"
+    );
+    let message = string_at(ran.line(), "message").expect("the error holds its message");
+    assert!(
+        message.contains(&format!("at most {BOUND} bytes")),
+        "the message names the bound"
+    );
+    assert!(
+        string_at(ran.line(), "remedy").as_deref() == Some(error.remedy()),
+        "the error names its remedy"
+    );
+    assert!(
+        ran.stderr == format!("{error}\n").as_bytes(),
+        "stderr is the error's fixed message"
+    );
+    assert!(!dir.exists(), "no state directory is created");
 }

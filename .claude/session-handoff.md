@@ -34,4 +34,8 @@
 - Carried, still open: `recurrence-despite-learning: "Committed run-dir and evidence text must not spell a host temp path, even as prose"`.
 
 ## Session End Status
-Completed normally at 2026-10-11 12:03:08
+Completed normally at 2026-10-12 10:17:06
+
+## AUTO-COMPACT 2026-10-12 10:07 (unattended)
+- Context at compact: 530k / 1.00M (53%); alarm level reached before it: none.
+- The pre-compact ritual did NOT run. Post-compact instance: re-verify the END STATE of every in-flight edit (phrase/hash probe per planned site), refresh the handoff, then continue.

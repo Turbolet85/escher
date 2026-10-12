@@ -27,10 +27,18 @@
 //! What can be asked of the driver, and how it says no, is stated once, as data held in
 //! process: [`VERBS`] lists each verb with its level, its argument shapes and its result
 //! shape, [`validate`] turns a [`Call`] into a typed [`Command`] or a [`Refusal`] before
-//! anything runs, and every refusal names a [`Cause`] with a fixed remedy. Six verbs are asked
-//! of the held instance: `snapshot`, `click`, `type`, `press`, `advance` and `scroll`. Three
-//! are asked of the session itself — `start`, `status` and `stop` — and are checked by
-//! [`validate_session`]; a session runs none of them.
+//! anything runs, and every refusal names a [`Cause`] with a fixed remedy. Ten verbs stand in
+//! three levels. Six are asked of the held instance: `snapshot`, `click`, `type`, `press`,
+//! `advance` and `scroll`. Three are asked of the session itself — `start`, `status` and
+//! `stop` — and one of the tool itself, `help`; these four are checked by [`validate_session`],
+//! and a session runs none of them.
+//!
+//! The tool describes itself through `help`: [`describe`] writes, from the table alone, one
+//! document of every verb with its arguments and result fields, the keys of a node
+//! ([`NODE_FIELDS`], each with its help), the key names, the busy classes, the causes with
+//! their remedies, the command line's exit statuses ([`EXIT_STATUSES`]) and the session errors
+//! with their remedies ([`SessionError::remedy`]). The command line and the MCP server serve the
+//! same document.
 //!
 //! A call runs through a session: [`Session::run`] checks it, runs its verb on the held
 //! instance, settles the instance and returns an [`Outcome`] — the screen's text for
@@ -53,10 +61,11 @@
 //! however far its content is scrolled — and a hit stops where a box clips by `overflow`, so
 //! content scrolled out of a box covers nothing. An element that states itself selected,
 //! pressed or invalid in its markup (`aria-selected`, `aria-pressed`, `aria-invalid`) reads so
-//! as true or false, with two limits: a mixed toggle reads not pressed, and a grammar or
-//! spelling error reads invalid. One reading is known to be off, measured on
-//! the engine as built and stated where the schema describes it: a hit reaches content clipped
-//! by `contain: paint`, so an element lying where such content extends can read
+//! as true or false, with two limits, each stated in its node key's help: a mixed toggle reads
+//! not pressed, and a grammar or spelling error reads invalid. A changed node names the keys
+//! whose reading differs (`differs`). One reading is known to be off, measured on the engine as
+//! built and stated where the schema describes it: a hit reaches content clipped by
+//! `contain: paint`, so an element lying where such content extends can read
 //! [`Cause::Covered`] though nothing shows over it.
 //!
 //! [`command_line`] is the whole command line of a binary that boots apps: every verb as one
@@ -84,6 +93,7 @@
 mod cli;
 mod client;
 mod command;
+mod describe;
 mod error;
 mod execute;
 mod host;
@@ -99,13 +109,15 @@ pub use blitz_test_harness::{Busy, Settled};
 pub use cli::command_line;
 pub use client::{Answer, Hello, Started, attach, call, start, stop};
 pub use command::{ArgValue, Call, Command, Key, SessionCommand, validate, validate_session};
+pub use describe::describe;
 pub use error::SessionError;
 pub use execute::Outcome;
 pub use host::{IDLE_EXPIRY, serve};
 pub use mcp::serve_mcp;
 pub use refusal::{CAUSES, Cause, Fault, Refusal};
 pub use schema::{
-    ArgKind, ArgSpec, BUSY_CLASSES, FieldKind, FieldSpec, KEY_NAMES, Level, MAX_ID_BYTES,
-    MAX_MILLISECONDS, MAX_TEXT_BYTES, NODE_FIELDS, VERBS, VerbSpec, verb,
+    ArgKind, ArgSpec, BUSY_CLASSES, EXIT_STATUSES, ExitStatus, FieldKind, FieldSpec, KEY_NAMES,
+    Level, MAX_ID_BYTES, MAX_MILLISECONDS, MAX_TEXT_BYTES, NODE_FIELDS, NodeFieldSpec, VERBS,
+    VerbSpec, verb,
 };
 pub use session::Session;
