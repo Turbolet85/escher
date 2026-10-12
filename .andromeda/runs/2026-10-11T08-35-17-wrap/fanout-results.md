@@ -194,7 +194,7 @@ boundary widening answered by fork 4 (the `tool_call` span, «Span с tool и en
 
 ## Escalation resolved (the Validate card, one halt)
 - W1 (19) and W4 (12) — 29 proposals: **Confirm all** — the operator's answer, carrying the founder's own confirm
-  («Подтвердить всё», 2026-10-11 08:50Z, by question dialog in the overseer session, relayed by the overseer;
+  («Подтвердить всё», 2026-10-11 09:37Z (corrected 2026-10-12, the overseer's estimate; ES33), by question dialog in the overseer session, relayed by the overseer;
   `relay-1.md`). Both forks recorded ratified; no PROVISIONAL mark written.
 - W3 (S13 · S14): **Apply on fork 3** — the same answer, the founder's label «Записать по форку 3»; the text scoped to
   the one live trial.

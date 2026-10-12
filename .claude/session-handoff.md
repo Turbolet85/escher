@@ -32,3 +32,6 @@
 - Curation applied one (Tier 3: `gh api` refuses a job's log that holds terminal escapes); nothing deferred by the cap. Session-local: P1's window is gone, and the report's Decisions & corrections stood in for it.
 - `recurrence-despite-learning: "\`$TMPDIR\` is unset in the Bash tool's shell on this host"` — the operator pass hit it again; the remedy is a check in the step that writes such a redirect.
 - Carried, still open: `recurrence-despite-learning: "Committed run-dir and evidence text must not spell a host temp path, even as prose"`.
+
+## Session End Status
+Completed normally at 2026-10-11 12:03:08

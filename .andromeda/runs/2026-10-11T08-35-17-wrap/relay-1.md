@@ -9,6 +9,8 @@ Given by the operator as the answer to the card's two questions (the AskUserQues
 - The operator's note on both: "The founder confirmed both by question dialog in the overseer session at 2026-10-11
   08:50Z, relayed by the overseer; his chosen labels were «Подтвердить всё» and «Записать по форку 3»."
 
+Correction 2026-10-12: the time in this note was the overseer's estimate; the founder answered at 2026-10-11 09:37Z (ES33).
+
 Not snapped through `inputs.py`: the report is reused as is and cites `inputs#I3` for the forks' words; this answer is
 the card's resolution, recorded here and cited by the sidecar entries' `Ref` (the 2026-10-10-snapshot-states wrap kept
 its card answer the same way, `relay-2.md`).
