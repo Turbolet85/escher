@@ -1,0 +1,207 @@
+[
+{
+"tool": "inputs",
+"v": "1.1",
+"sha8": "3ad6efca",
+"ts": "2026-10-12T08:55:35Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-12-self-description",
+"--message-file",
+".andromeda/runs/2026-10-12T08-55-10-wrap/relay-1.md",
+"--origin",
+"the operator, as the arguments of /andromeda-wrap-session, 2026-10-12, relaying the founder ruling F252 D2",
+"--kind",
+"relay",
+"--why",
+"this wrap runs P1 only and stops; by the founder ruling F252 D2 its P2 cascade runs WHOLE mode (cascade.py leaves --all) as a split wrap; the report accounts for the I4 copy no longer matching its recorded sha after the mask",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-10-12T08-55-10-wrap",
+"--marker",
+"2026-10-12-self-description"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I6 · copy message · message: the operator, as the arguments of /andromeda-wrap-session, 2026-10-12, relaying the founder ruling F252 D2",
+"cite: inputs#I6"
+],
+"stderr": null,
+"wrote": [
+"inputs/I6-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I6",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, as the arguments of /andromeda-wrap-session, 2026-10-12, relaying the founder ruling F252 D2",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "68a8a377fd27948b6b53e90f61b3d371389472c68af65fa1f035e03a9ba80422",
+"copy": "I6-relay-1.md.txt",
+"link": false,
+"read_at": "2026-10-12T08:55:35Z",
+"step": "wrap",
+"why": "this wrap runs P1 only and stops; by the founder ruling F252 D2 its P2 cascade runs WHOLE mode (cascade.py leaves --all) as a split wrap; the report accounts for the I4 copy no longer matching its recorded sha after the mask"
+}
+},
+{
+"tool": "inputs",
+"v": "1.1",
+"sha8": "3ad6efca",
+"ts": "2026-10-12T08:55:38Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-12-self-description",
+"--run-dir",
+".andromeda/runs/2026-10-12T08-55-10-wrap",
+"--marker",
+"2026-10-12-self-description"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, as the arguments of /andromeda-phase, 2026-10-12",
+"I1 cited scope.md:5 · scope.md:25 · scope.md:30 · scope.md:42 · scope.md:52 · research.md:7 · research.md:77 · plan.md:478",
+"I2 n/a — a message has no live source · copy message · message: the operator, in the P4 dialog of this phase, 2026-10-12",
+"I2 cited plan.md:11 · plan.md:82 · plan.md:87 · plan.md:138 · plan.md:146 · plan.md:163 · plan.md:438 · plan.md:441 · plan.md:443 · plan.md:479",
+"I3 unchanged · copy no-repo · ../additional/escher-overseer/relays/self-description-founder-answers.md",
+"I3 cited plan.md:10 · plan.md:87 · plan.md:434 · plan.md:445 · plan.md:480 · plan.md:497 · plan.md:499 · plan.md:527 · plan.md:539 · plan.md:540",
+"I4 copy altered — the snapshot no longer hashes to its sha256 · copy message · message: the operator, P5 review of p5-card-1.md, 2026-10-12",
+"I4 cited plan.md:11 · plan.md:83 · plan.md:196 · plan.md:482",
+"I5 n/a — a message has no live source · copy message · message: the operator, P5 word on p5-card-2.md, 2026-10-12",
+"I5 UNCITED",
+"I6 n/a — a message has no live source · copy message · message: the operator, as the arguments of /andromeda-wrap-session, 2026-10-12, relaying the founder ruling F252 D2",
+"I6 UNCITED",
+"inputs: 6 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 1 · unreachable 0 · n/a 4 · uncited 2 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 6,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 1,
+"unreachable": 0,
+"n/a": 4
+},
+"uncited": 2,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.1",
+"sha8": "3ad6efca",
+"ts": "2026-10-12T08:59:57Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-12-self-description",
+"--run-dir",
+".andromeda/runs/2026-10-12T08-55-10-wrap",
+"--marker",
+"2026-10-12-self-description"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, as the arguments of /andromeda-phase, 2026-10-12",
+"I1 cited scope.md:5 · scope.md:25 · scope.md:30 · scope.md:42 · scope.md:52 · research.md:7 · research.md:77 · plan.md:478 · report.md:63",
+"I2 n/a — a message has no live source · copy message · message: the operator, in the P4 dialog of this phase, 2026-10-12",
+"I2 cited plan.md:11 · plan.md:82 · plan.md:87 · plan.md:138 · plan.md:146 · plan.md:163 · plan.md:438 · plan.md:441 · plan.md:443 · plan.md:479 · report.md:64",
+"I3 unchanged · copy no-repo · ../additional/escher-overseer/relays/self-description-founder-answers.md",
+"I3 cited plan.md:10 · plan.md:87 · plan.md:434 · plan.md:445 · plan.md:480 · plan.md:497 · plan.md:499 · plan.md:527 · plan.md:539 · plan.md:540 · report.md:65 · report.md:86 · report.md:92 · report.md:93",
+"I4 copy altered — the snapshot no longer hashes to its sha256 · copy message · message: the operator, P5 review of p5-card-1.md, 2026-10-12",
+"I4 cited plan.md:11 · plan.md:83 · plan.md:196 · plan.md:482 · report.md:66 · report.md:104",
+"I5 n/a — a message has no live source · copy message · message: the operator, P5 word on p5-card-2.md, 2026-10-12",
+"I5 cited report.md:68 · report.md:93",
+"I6 n/a — a message has no live source · copy message · message: the operator, as the arguments of /andromeda-wrap-session, 2026-10-12, relaying the founder ruling F252 D2",
+"I6 cited report.md:7 · report.md:76 · report.md:114",
+"inputs: 6 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 1 · unreachable 0 · n/a 4 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 6,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 1,
+"unreachable": 0,
+"n/a": 4
+},
+"uncited": 0,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.1",
+"sha8": "3ad6efca",
+"ts": "2026-10-12T09:01:18Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-12-self-description",
+"--run-dir",
+".andromeda/runs/2026-10-12T08-55-10-wrap",
+"--marker",
+"2026-10-12-self-description"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, as the arguments of /andromeda-phase, 2026-10-12",
+"I1 cited scope.md:5 · scope.md:25 · scope.md:30 · scope.md:42 · scope.md:52 · research.md:7 · research.md:77 · plan.md:478 · report.md:63",
+"I2 n/a — a message has no live source · copy message · message: the operator, in the P4 dialog of this phase, 2026-10-12",
+"I2 cited plan.md:11 · plan.md:82 · plan.md:87 · plan.md:138 · plan.md:146 · plan.md:163 · plan.md:438 · plan.md:441 · plan.md:443 · plan.md:479 · report.md:64",
+"I3 unchanged · copy no-repo · ../additional/escher-overseer/relays/self-description-founder-answers.md",
+"I3 cited plan.md:10 · plan.md:87 · plan.md:434 · plan.md:445 · plan.md:480 · plan.md:497 · plan.md:499 · plan.md:527 · plan.md:539 · plan.md:540 · report.md:65 · report.md:86 · report.md:92 · report.md:93",
+"I4 copy altered — the snapshot no longer hashes to its sha256 · copy message · message: the operator, P5 review of p5-card-1.md, 2026-10-12",
+"I4 cited plan.md:11 · plan.md:83 · plan.md:196 · plan.md:482 · report.md:66 · report.md:104",
+"I5 n/a — a message has no live source · copy message · message: the operator, P5 word on p5-card-2.md, 2026-10-12",
+"I5 cited report.md:68 · report.md:93",
+"I6 n/a — a message has no live source · copy message · message: the operator, as the arguments of /andromeda-wrap-session, 2026-10-12, relaying the founder ruling F252 D2",
+"I6 cited report.md:7 · report.md:76 · report.md:114",
+"inputs: 6 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 1 · unreachable 0 · n/a 4 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 6,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 1,
+"unreachable": 0,
+"n/a": 4
+},
+"uncited": 0,
+"unparsed": 0
+}
+}
+]

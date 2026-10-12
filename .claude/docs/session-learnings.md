@@ -8,6 +8,20 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-12 — `cascade.py sweep --pattern` takes its ids after one flag
+`--pattern` is a list option: `--pattern A B C` runs the three named patterns, while `--pattern A --pattern B --pattern C` keeps only the last one given and silently runs one. A re-fire that should run only the patterns whose control never fired therefore names them all after a single `--pattern`. Read the count line of each pattern the listing prints before trusting a re-fire: the number of patterns run is in its `total (N patterns)` line.
+
+Where it applies: a wrap's P1 site sweep and P2 step-2 sweep, whenever only part of a patterns file is re-fired.
+
+---
+
+## 2026-10-12 — A sweep pattern for a bare count also matches a citation's digits
+A pattern for a count such as `\b805\b` matches every master citation whose range holds the same digits (`render.rs:805-812`), so the sweep lists a true claim beside the count it was written for. Anchor a count pattern on the words that state it (`805 passed`, `805 · 0 · 11`, `over 170 result lines`) rather than on the bare number, and when a bare number cannot be avoided, read every row it prints before dispositioning any as the count.
+
+Where it applies: writing `report-patterns.toml` and `cascade-patterns.toml` for a moved test count, re-export count or line count.
+
+---
+
 ## 2026-10-11 — `gh api` refuses a job's log that holds terminal escapes
 A CI job log read through `gh api repos/{owner}/{repo}/actions/jobs/{id}/logs` is refused when its text carries terminal escape sequences — and a runner's log usually does (coloured cargo and rustup output) — unless the call passes `--allow-escape-sequences`. Read a failed job's log with that flag (still with `-R` on the fork, per the Tier 1 note), and read the step's failure from the text, never from the refusal: the refusal says nothing about the job.
 

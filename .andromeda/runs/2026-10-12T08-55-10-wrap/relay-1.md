@@ -1,0 +1,1 @@
+run P1 only and stop. This is the first wrap since the cascade deploy: by the founder ruling (F252 D2) it runs the cascade WHOLE mode, cascade.py leaves --all, to clear the accumulated leaf drift, as a split wrap. In the report, account for the I4 snapped copy no longer matching its recorded sha after the mask (operator-pass.md holds both shas).

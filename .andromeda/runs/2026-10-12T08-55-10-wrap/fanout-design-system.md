@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens holds — all five Coverage rows (report.md:95-99) read `tokens n/a`, none `hardcoded✗` (the `escher-session help` line is one uncoloured line, no ESC byte). The design-system edits the report expects (§Surface: cli → Component Patterns, the `help` answer line; the `exitstat` site design-system.md:396; `ws805` design-system.md:76 a no-change citation, report.md:90) lie outside this detector's invariant and are left to the plan's expected-amendment list.

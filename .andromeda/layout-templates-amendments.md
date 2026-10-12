@@ -114,3 +114,9 @@ One entry per amendment to `layout-templates.md` (sidecar-contract.md §Entry fo
 - desktop-native: the `mcp` role is a further consumer of the TaskShell mount, booting one lean task in process on a `start` tool call through the same boot, adding no markup.
 **Why:** a new mode of an existing surface; the crossing it carries is the founder's ratified one (2026-10-10), recorded in the security plan.
 **Ref:** .andromeda/runs/2026-10-11T08-35-17-wrap/
+
+## 2026-10-12-self-description — `escher-session help`; the `mcp` role's ten tools and four revisions
+**Section:** Surface: cli → Primary screens (the `escher-session` bullet)
+**Change:** was "over the nine verbs of the driver's verb table … `--session <dir>` exactly once on every command"; now ten verbs in three levels — the six instance verbs, `start` · `status` · `stop`, then `help` — with `--session` exactly once on every command but `help`, which takes at most one and does not read it. `escher-session help` answers `describe()`'s line: seven keys, every text fixed table text; exit 0, no session reached. `help x` is `malformed` (1); `--session` with no directory, or twice, is usage (2). The session error's object carries `remedy`, the statuses are read from `EXIT_STATUSES`, and the usage line lists `help`. The `mcp` role: was three revisions, `2025-06-18` to any other; now four, `2025-11-25` to any other, `2026-07-28` included, with `server/discover` still `-32601`. It lists ten tools, each description the verb's help plus its result fields, and answers `start` · `status` · `stop` · `help` itself.
+**Why:** the chunk added the `help` ending and tool to this surface, and the fourth revision on the operator's answer at the plan forks.
+**Ref:** .andromeda/runs/2026-10-12T08-55-10-wrap/

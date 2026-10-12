@@ -1,0 +1,6 @@
+
+## 2026-10-12-self-description — a session error's remedy and its table, ratified
+**Section:** §Error Handling → Error format (the escher-driver refusal bullet)
+**Change:** was "a `SessionError` is written as `{"error":{"kind","message"}}`"; now `{"error":{"kind","message","remedy"}}`. Each error's kind, meaning and remedy are one row of the crate-private `SESSION_ERRORS: [ErrorSpec; 13]`. `kind()`, the new public `remedy()` and `Display` read it: `Display` is the row's meaning, with `Io` and `NotSettled` adding their detail as before. `dead` shares `no-session`'s remedy and `answer-too-large` shares `not-settled`'s, each later row naming the earlier. `StateDirTooLong` states its bound as a figure (94 / 90 bytes) and holds no path. Every text is fixed table text, served by `help` and carried on stdout and in MCP results. The node keys' help now also states the boolean model's two limits.
+**Why:** a boundary widening (fixed program text crossing out) ratified by the founder (2026-10-12, «Внутри, с правилом», by question dialog in the overseer session, relayed verbatim by the overseer; confirmed at the wrap's answer card, «Подтвердить всё», the same channel). The operator's answer for a remedy each and the bound was conditional on that answer.
+**Ref:** .andromeda/runs/2026-10-12T08-55-10-wrap/

@@ -1,0 +1,100 @@
+[[pattern]]
+id = 'verbs9'
+regex = '''\bnine (driver )?(verbs|tools|commands)\b|\b9 verbs\b|VERBS\.len\(\) == 9'''
+ignore_case = true
+
+[[pattern]]
+id = 'levels2'
+regex = '''\b(in )?two levels\b'''
+ignore_case = true
+
+[[pattern]]
+id = 'rev0618'
+fixed = '2025-06-18'
+
+[[pattern]]
+id = 'rev0728'
+fixed = '2026-07-28'
+
+[[pattern]]
+id = 'discover'
+fixed = 'server/discover'
+
+[[pattern]]
+id = 'nodef12'
+regex = '''\btwelve (`?NODE_FIELDS`?|node (fields|keys))\b|`?NODE_FIELDS`?[^.\n]{0,40}\btwelve\b'''
+ignore_case = true
+
+[[pattern]]
+id = 'errform'
+regex = '''"kind","message"|kind[`]? and (its|a) fixed message|a `kind` and a fixed message'''
+ignore_case = true
+
+[[pattern]]
+id = 'statedir'
+fixed = 'state-dir-too-long'
+
+[[pattern]]
+id = 'reexp41'
+regex = '''\b41\b[^.\n]{0,40}re-?exports?|re-?exports?[^.\n]{0,40}\b41\b|forty-one'''
+ignore_case = true
+
+[[pattern]]
+id = 'unit59'
+regex = '''\b59 unit|unit tests?[^.\n]{0,30}\b59\b'''
+ignore_case = true
+
+[[pattern]]
+id = 'ws805'
+regex = '''\b805\b'''
+
+[[pattern]]
+id = 'stand127'
+regex = '''\b127\b[^.\n]{0,30}\b(passed|over|files)\b|\b33 files\b'''
+
+[[pattern]]
+id = 'readers17'
+regex = '''\bseventeen\b'''
+ignore_case = true
+
+[[pattern]]
+id = 'modules12'
+regex = '''\btwelve (source )?modules\b|modules[^.\n]{0,20}\btwelve\b'''
+ignore_case = true
+
+[[pattern]]
+id = 'kinds7'
+regex = '''\bseven field kinds\b|FieldKind[^.\n]{0,40}\bseven\b'''
+ignore_case = true
+
+[[pattern]]
+id = 'toolcall'
+fixed = 'tool_call'
+
+[[pattern]]
+id = 'frontpage'
+regex = '''self-description|serves about itself|still to come'''
+ignore_case = true
+
+[[pattern]]
+id = 'pwmcp'
+regex = '''password[^.\n]{0,40}\bMCP\b|\bMCP\b[^.\n]{0,40}password'''
+ignore_case = true
+
+[[pattern]]
+id = 'mcptools'
+fixed = 'stand_mcp_tools'
+
+[[pattern]]
+id = 'sescommon'
+fixed = 'session_common'
+
+[[pattern]]
+id = 'exitstat'
+regex = '''exit `?0`? ·|exit statuses|`0` accepted'''
+ignore_case = true
+
+[[pattern]]
+id = 'covered'
+regex = '''content scrolled out of a (scrolling )?box'''
+ignore_case = true

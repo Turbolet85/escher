@@ -1,41 +1,39 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-11T09:57:48Z
+**Last Updated:** 2026-10-12T09:41:25Z
 **Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-10-mcp-surface — the driver's nine verbs as MCP tools over stdio, local to the invoking user, each tool call parenting its command span
+**Last Commit:** 2026-10-12-self-description — the driver describes itself: `help` and the self-description from the one schema, on the command line and over MCP
 
 ## Position
-- Done: 2026-10-10-mcp-surface — `escher_driver::serve_mcp` and the `escher-session mcp` role built and proved (v010-13 verified by this wrap's P7). Fork CI on the pre-CI commit `36877a23`: CI#38124028789 attempt 1 red (`Build wasm examples`, a rustup download reset before any compile), the failed job re-run on the operator's word, attempt 2 green 16/16. The wrap commit's own run is not read here.
-- Next: /andromeda-phase on "Self-description" (working-route.md:81) — it now carries the current-MCP-revision pin.
+- Done: 2026-10-12-self-description — `help`, the tenth verb, with `describe()`, the session errors' remedies, `differs` and MCP `2025-11-25` (v010-14 verified by this wrap's P7). CI on the pre-CI commit `22fc4553` was green (CI#38225228282, 16/16). The wrap commit's own run is not read here.
+- Next: /andromeda-phase on "Headless screenshot" (working-route.md:83), the last markerless entry of Epoch 5 — its wrap closes the epoch.
 
 ## Work done
-- The wrap resumed from the report an earlier window wrote (run dir `.andromeda/runs/2026-10-11T08-35-17-wrap/`); the report was reused as is. The founder's fork words relayed at the resume match `inputs#I3`, which the report already cites, so no input was snapped.
-- Reconcile: 52 amendments over the seven masters and the session-lifecycle key file (46 detector proposals, 6 raised from the plan's list), 0 rejected, 9 sidecar entries; 16 leaves re-derived; citations 89 re-pointed · 8 changed · 29 stretched.
-- One halt, at Validate, on one card with two questions: the 29 proposals of fork 1 («Ратифицировать как есть», the MCP crossing) and fork 4 («Span с tool и ending», the `tool_call` span) → "Confirm all", the operator's answer carrying the founder's own confirm («Подтвердить всё», relayed by the overseer, 08:50Z); S13 · S14 (the live trial a second user of the operator's login) → "Apply on fork 3" («Записать по форку 3»). Kept as `relay-1.md` in the run dir. Both forks are recorded ratified; no PROVISIONAL mark.
+- This was a split wrap (F252 D2, `inputs#I6`). P1 ran in the earlier window (run dir `.andromeda/runs/2026-10-12T08-55-10-wrap/`) and this window resumed at P2, with the report reused as is. The scope, inputs and new-text reads were re-fired: clean, as the report states, and unchanged.
+- Reconcile: 63 amendments over the seven masters and the session-lifecycle key file (59 detector proposals, 4 raised by main), 0 rejected, 9 sidecar entries; citations 140 re-pointed, 6 changed, 45 stretched.
+- The cascade ran in WHOLE mode (`cascade.py leaves --all`): 10 groups, 25 leaves, 130 findings — 68 applied by the tool, 61 merged or written by hand (60 conflicts, mostly `CLAUDE.md` spans shared by seven groups), 1 written without its unsourced last clause. 2 more leaf lines were written from the re-sweep.
+- One halt, at Validate, with three questions. The answer card (9 proposals, forks 1A «Внутри, с правилом» and 2A «help — десятый глагол») and the playbook rule were confirmed by the founder's own words «Подтвердить всё» and «Добавить как написано», relayed verbatim by the overseer (09:14Z). On `inputs#I4` the operator kept the `altered` verdict on record ("the one-writer contract stands"). Kept as `relay-2.md` and `answer-card.md` in the run dir; recorded ratified, no PROVISIONAL mark.
 
 ## Drift resolved
-- The masters now state the MCP server whole: its methods, bounds, `id` echo, results and protocol errors (architecture, security-plan's new Input Validation row, threat vector and auth row); `serde_json` as a reader only; the `tool_call` span (obs-plan §4 and every restatement of "one command span"); the `mcp` role on the cli surface (layout, design-system); seven seven_guis targets, 59 unit tests, `run stand` 127 over 33 files, the workspace 805 over 170 result lines (test-plan and its key); MCP results as a reader of the snapshot model (a11y-plan).
-- Six restatements no detector proposed were found by reading and amended (architecture :138 · :150 · :193 · :263, security-plan :123, test-plan §6).
+- The masters now state the self-description whole: ten verbs in three levels, `HELP`, `describe()`, thirteen node keys with help, `EXIT_STATUSES`, `SESSION_ERRORS` and `remedy()`, `differs` and `Reading`, four MCP revisions with `2025-11-25` as the default, tool descriptions with their result fields, and the `help` ending on both surfaces. The fixed program text riding the ratified carriers is recorded in architecture §Established Decisions and §Occupied Resources and in the security-plan rows.
+- Disproved claims fixed: `session_common` readers 17 → 18. The blitz-tests target count 108/107 → 110/109 had been stale since mcp-surface; measured at this wrap.
+- The playbook gained "The program's own fixed text inside a ratified carrier" (routine), beside the closed-field rule.
 
 ## Route as it now reads
-- "Self-description" (:81): + the current MCP revision — the server speaks `2025-06-18` · `2025-03-26` · `2024-11-05`, the current is `2026-07-28`; the live client sent `server/discover` first (answered `-32601`) and asked `2025-11-25` at `initialize` (answered `2025-06-18`) · + a password typed over MCP, not run · + the masters' count of `session_common`'s readers (`stand_mcp_tools` reads it; the report did not carry it, so "seventeen of the eighteen" stands unamended).
-- Every other entry unchanged.
+- "Stand requirement sweep" (:96): + CARRY — the state directory's bound off Linux (90 bytes read, not measured; a check at 90/91 on the macOS leg is owed).
+- `.andromeda/residuals.md`: + the actionable-key check as a command (founder 3A) · + taking up MCP `2026-07-28` (founder 4A).
+- Every other entry is unchanged. Epoch 5 has one markerless entry left (Headless screenshot).
 
 ## Notes
-- Not measured, stated so in the masters: a password typed through an MCP `type` and read back · the windowed stand · what an assistive technology reads of the three states · `run all` since the Driver CLI chunk · and the standing list of the previous handoffs.
-- The code-graph sentinel is the earlier window's refresh (08:40:38Z, `rust ok 34s 7544/43290`); this session's background refire left no newer mark — no source changed since.
-- **For the operator to relay to the pipeline owner**, new at this wrap: P2's opening citation sweep writes master digits before the fan-out a "stop before any master write" card needs, so such a directive reads as amendments only — said to the operator before the write · a card answer that relays a third party's word still has no named record and no snap step (kept as `relay-1.md` again) · one leaf was patched through a python heredoc against the letter; the rest went through Edit. Carried, not confirmed relayed: the items of the 2026-10-10T19-06-02 wrap's handoff.
+- Not measured, stated so in the masters: the macOS state-directory figure (90) · a file input typed over MCP (by construction) · `describe`'s clock (the report states none).
+- **For the operator to relay to the pipeline owner**, new at this wrap:
+  - CLAUDE.md sits in seven WHOLE-mode leaf groups, so 60 of 130 findings conflicted and were merged by hand.
+  - `cascade.py leaves --all` lists a plan group's source as the master alone; the prompts also named its key files.
+  - One comparer edited its own findings file after its Write, against the brief.
 - No gated record, no PREREQ, no WATCH. Last failed command: none.
 
 ## Deferred learnings
-- Curation applied one (Tier 3: `gh api` refuses a job's log that holds terminal escapes); nothing deferred by the cap. Session-local: P1's window is gone, and the report's Decisions & corrections stood in for it.
-- `recurrence-despite-learning: "\`$TMPDIR\` is unset in the Bash tool's shell on this host"` — the operator pass hit it again; the remedy is a check in the step that writes such a redirect.
-- Carried, still open: `recurrence-despite-learning: "Committed run-dir and evidence text must not spell a host temp path, even as prose"`.
-
-## Session End Status
-Completed normally at 2026-10-12 10:17:06
-
-## AUTO-COMPACT 2026-10-12 10:07 (unattended)
-- Context at compact: 530k / 1.00M (53%); alarm level reached before it: none.
-- The pre-compact ritual did NOT run. Post-compact instance: re-verify the END STATE of every in-flight edit (phrase/hash probe per planned site), refresh the handoff, then continue.
+- Curation wrote two Tier 3 entries (the `cascade.py sweep --pattern` flag and the bare-count sweep hazard); nothing deferred by the cap.
+- `recurrence-despite-learning: "Committed run-dir and evidence text must not spell a host temp path, even as prose"` — a phase relay carried a sibling directory's host path again, refused by hygiene at the operator pass.
+- `recurrence-despite-learning: "The rustfmt write hook … Extended 2026-10-06: an edit made through a Bash script never fires the hook"` — implement's python string replacements left two files unformatted, and the fast leg read red.

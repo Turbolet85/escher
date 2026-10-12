@@ -53,3 +53,61 @@ Fired through `gate.py run … --operator 17`, 2026-10-12, after the mask. Histo
 entries 19 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 18
 hygiene: clean — read 52 (runs 42 · evidence 3 · inputs 7) · trails 13 not read · copies 4 not read by P1 — 0 host paths kept · binary 0 not read by P1
 ```
+
+## The pre-CI commit
+
+`git add -A`, then the commit, on `build/escher-0.1.0`, the tree clean after it:
+
+```
+22fc4553 chore(2026-10-12-self-description): operator pre-CI commit, for the run this chunk verdict reads
+```
+
+Full sha `22fc455309db194c93ff391c24b60082eb5d0467`, parent `bf973d33`.
+
+## Entry 18 — the local pre-push gate, the clean-tree guard, the push
+
+The entry moves history, so it was run by hand exactly as the plan writes it — never through
+`--operator` — under a 3,600 s bound, its output to a log outside the tree:
+
+```
+bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0
+```
+
+Exit 0. The fast leg passed its four legs (fmt, clippy, workspace tests, CI scripts — the last
+`Ran 78 tests … OK`), the clean-tree guard held, and the push read:
+
+```
+   bf973d33..22fc4553  build/escher-0.1.0 -> build/escher-0.1.0
+```
+
+`origin/build/escher-0.1.0` read `bf973d33eee0d9776530fbb7bffebf50ab84a539` before and, fetched
+after, `22fc455309db194c93ff391c24b60082eb5d0467`, equal to `HEAD`. Green.
+
+## Entry 19 — the CI read of the pushed sha
+
+Fired through `gate.py run … --operator 19`, 2026-10-12, as the letter names an operator entry
+that moves no history. Tripwire: none of 7 forms matched. History: unmoved.
+
+```
+ 19 probe       green · exit 0 · 686.11s · 563 B → 19.log · history: unmoved
+entries 19 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 18
+```
+
+What it read (its log, copied):
+
+```
+repo Turbolet85/escher (the push remote `origin`) · polled 23× over 686 s
+22fc455309db verdict: green · checks 16/16 · wall 665 s · runs CI#38225228282 completed/success
+runs: CI#38225228282 push completed/success
+checks: Accessibility (a11y) tests · Build [default features] · Build counter example · Build wasm examples · Clippy
+  Coverage report · Dependency audit · Documentation · MSRV Build [Rust 1.91] · Rustfmt · Test (android) · Test (ios)
+  Test (macos) · Test (windows) · Test CI scripts · Test [default features]
+```
+
+The run on `22fc4553` is green, 16 of 16 checks: the witness of the MSRV build and the windows,
+macos, ios and android legs, which the plan does not run locally.
+
+## The pass
+
+Entries 17 (second firing), 18 and 19 green; the pre-CI commit `22fc4553` pushed and read
+green by CI#38225228282. This record and the run dir's gate trail are uncommitted, for the wrap.

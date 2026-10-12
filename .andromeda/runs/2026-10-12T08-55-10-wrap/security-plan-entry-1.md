@@ -1,0 +1,13 @@
+
+## 2026-10-12-self-description — `help` and the program's fixed text through the validated surfaces, ratified
+**Section:** §Input Validation → Driver command schema · CLI arguments (escher-session) · MCP server · Driver session socket · Driver session state directory · Markup attributes (password and file `input` value) · §API Security (opening; Settle and loads in flight)
+**Change:**
+- Driver command schema: was a closed table of nine verbs in two levels, now ten in three. `help` sits at the tool level: no argument, seven fixed-table result fields. `validate` refuses it `unknown-verb`, so its span records `help`. `validate_session` returns `SessionCommand::Help` and refuses any argument `malformed` (`Fault::Unnamed`). The MCP server answers it beside `start` · `status` · `stop`. `Outcome`'s `Debug` also prints `differs`, which no log fields. Still eight arguments.
+- CLI arguments: the `help` ending — at most one `--session`, not read; status 0, no session reached; `help x` `malformed`, 1; `--session` empty or twice, usage, 2; nothing typed written back. The usage line lists `help`; the statuses are read from `EXIT_STATUSES`; the session error's object carries `remedy`.
+- MCP server: `initialize` matched against a closed table of four revisions, any other answered `2025-11-25`. `tools/list` holds ten tools, each description the verb's help plus its result fields — fixed text, 2,984 → 8,844 bytes. `help` is answered by the server, ending accepted, with no `command` child. Still four methods; `server/discover` still `-32601`.
+- Socket: was twelve node keys, now thirteen — `differs`, closed node-key words on a changed node, inside the ratified carrier by the rule of 2026-10-10.
+- State directory: `StateDirTooLong` states its bound with no path — 94 bytes on Linux (measured), 90 elsewhere (read) — and its remedy.
+- Password row: was "a password typed over MCP not separately run"; now measured, `stand_mcp_masked` — 0 occurrences, the mask, both modes. A file input over MCP is still not run.
+- API Security: the role serves ten verbs, `help` running nothing on a session; the tool level waits on nothing.
+**Why:** a boundary widening — the validated surface admits `help`, and the program's own fixed `'static` table text crosses out on the ratified carriers — ratified by the founder (2026-10-12, «Внутри, с правилом» and «help — десятый глагол», by question dialog in the overseer session, relayed verbatim by the overseer; his confirm of the wrap's answer card, «Подтвердить всё», the same channel), no PROVISIONAL mark. Text from a page, a call or a screen, a new carrier or exit still widens — now a playbook rule. The revision table is the operator's answer at the plan forks.
+**Ref:** .andromeda/runs/2026-10-12T08-55-10-wrap/

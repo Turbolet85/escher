@@ -1,0 +1,93 @@
+[[pattern]]
+id = 'verbs9'
+regex = '''\bnine (driver )?(verbs|tools|commands|words)\b|\b9 verbs\b|\bthe nine of `?VERBS'''
+ignore_case = true
+
+[[pattern]]
+id = 'levels2'
+regex = '''\b(in )?two levels\b|in its two levels'''
+ignore_case = true
+
+[[pattern]]
+id = 'rev3'
+regex = '''one of the three, else|answering `2025-06-18` to any other|else `2025-06-18`|revisions `2025-06-18` · `2025-03-26`|in three handshake revisions'''
+ignore_case = true
+
+[[pattern]]
+id = 'nodef12'
+regex = '''\btwelve (`?NODE_FIELDS`?|node (fields|keys))\b|`?NODE_FIELDS`?[^.\n]{0,40}\btwelve\b|\btwelve fields\b'''
+ignore_case = true
+
+[[pattern]]
+id = 'errform'
+regex = '''"kind","message"\}|kind[`]? and (its|a) fixed message|each session error with its kind and its message'''
+ignore_case = true
+
+[[pattern]]
+id = 'reexp41'
+regex = '''\b41\b[^.\n]{0,40}re-?exports?|re-?exports?[^.\n]{0,40}\b41\b|forty-one|\b41 names\b'''
+ignore_case = true
+
+[[pattern]]
+id = 'unit59'
+regex = '''\b59 (inline )?unit|unit tests?[^.\n]{0,30}\b59\b|the crate's 59'''
+ignore_case = true
+
+[[pattern]]
+id = 'ws805'
+regex = '''\b805 passed\b|\b805 · 0 · 11\b|\b170 result lines\b'''
+
+[[pattern]]
+id = 'stand127'
+regex = '''\b127\b[^.\n]{0,30}\b(passed|over|files)\b|\b33 files\b|passed 127\b'''
+
+[[pattern]]
+id = 'readers17'
+regex = '''\bseventeen readers\b|seventeen of the eighteen|\b17 readers\b|\bby 17 checks\b'''
+ignore_case = true
+
+[[pattern]]
+id = 'modules12'
+regex = '''\btwelve private modules\b|\btwelve modules\b'''
+ignore_case = true
+
+[[pattern]]
+id = 'kinds7'
+regex = '''\bseven field kinds\b|`Busy` · `Ids` · `Nodes` · `Count`,'''
+ignore_case = true
+
+[[pattern]]
+id = 'frontpage'
+regex = '''serves about itself'''
+ignore_case = true
+
+[[pattern]]
+id = 'pwmcp'
+regex = '''password typed over MCP not|password typed over MCP, not|typed over MCP not separately'''
+ignore_case = true
+
+[[pattern]]
+id = 'testcounts'
+regex = '''cli_commands(\.rs)?`? \((8|8 tests)\b|mcp_server(\.rs)?`? \(2\b|stand_mcp_tools`? \(2\b|`stand_mcp_tools` 2\b|`mcp_server` 2\b|`cli_commands` 8\b|cli_commands. 8\b'''
+
+[[pattern]]
+id = 'onecomp'
+regex = '''one (CLI|command-line) comparison'''
+ignore_case = true
+
+[[pattern]]
+id = 'targets'
+regex = '''108 `\.rs` files|107 test targets'''
+
+[[pattern]]
+id = 'sesscmd'
+regex = '''`Status` · `Stop`(?! · `Help`)'''
+
+[[pattern]]
+id = 'listdesc'
+regex = '''with its help as `description`|its help as (the )?description'''
+ignore_case = true
+
+[[pattern]]
+id = 'nochild'
+regex = '''`start` · `status` · `stop`, answered by the server|session verbs `start` · `status` · `stop`, answered'''
