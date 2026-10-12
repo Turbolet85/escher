@@ -1,0 +1,17 @@
+# Headless screenshot — the founder's answers to the two forks of the P4 dialog (2026-10-12)
+
+**Provenance.** The founder answered both forks of escher-builder's P4 dialog (`/andromeda-phase`, run dir
+`.andromeda/runs/2026-10-12T18-14-09-phase/`) in one question dialog in the overseer session. The overseer read the
+clock at 2026-10-12 18:29:21Z, right after the dialog. First the overseer checked two premises:
+- the 1,048,576-byte answer bound is `MAX_ANSWER_BYTES`, at `packages/escher-driver/src/wire.rs:31`;
+- `blitz-dom` handles `password` the same as `text`: `layout/construct.rs:452` and `layout/mod.rs:358`, with no
+  masking path found.
+
+Each fork went to the founder whole, in Russian, with every option and the builder's recommendation first. The labels
+below are the ones he chose, in the overseer's rendering of the builder's option names. He added no words of his own.
+They are relayed verbatim by the overseer as his chosen option labels; the English wording is the overseer's.
+
+| Fork | His chosen label | = the builder's option |
+|---|---|---|
+| 1 — where the screenshot's image goes (a boundary widening: screen pixels leave the process) | «В самом ответе» | In-band: the PNG travels base64 in the one JSON answer on the socket and the CLI's stdout, and over MCP as a native `image` content block. No new carrier, exit or path argument; the 1,048,576-byte bounds stay, and a bigger image ends `oversize` / AnswerTooLarge |
+| 2 — keeping a typed password out of the pixels (an engine behaviour change for every document) | «Движок маскирует» | Engine masks: blitz-paint draws a password input's characters as U+2022 for every document, closing the windowed app's leak too. Caret and selection follow the bullet layout. A merge-surface CARRY is added on the upstream-sync entry |

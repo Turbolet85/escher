@@ -135,6 +135,11 @@ pub enum Command {
         /// The element's id.
         id: String,
     },
+    /// Take an image of the screen, or of the element `id` names.
+    Screenshot {
+        /// The element's id; `None` for the whole screen.
+        id: Option<String>,
+    },
 }
 
 impl Command {
@@ -147,6 +152,7 @@ impl Command {
             Command::Press { .. } => &schema::PRESS,
             Command::Advance { .. } => &schema::ADVANCE,
             Command::Scroll { .. } => &schema::SCROLL,
+            Command::Screenshot { .. } => &schema::SCREENSHOT,
         }
     }
 }
@@ -218,6 +224,10 @@ pub fn validate(call: &Call) -> Result<Command, Refusal> {
         ("advance", [Some(Admitted::Milliseconds(ms))]) => Ok(Command::Advance { ms: *ms }),
         ("scroll", [Some(Admitted::Id(id))]) => Ok(Command::Scroll {
             id: (*id).to_owned(),
+        }),
+        ("screenshot", [None]) => Ok(Command::Screenshot { id: None }),
+        ("screenshot", [Some(Admitted::Id(id))]) => Ok(Command::Screenshot {
+            id: Some((*id).to_owned()),
         }),
         // A verb the table lists in a shape no command has is not one this function knows.
         _ => Err(Refusal::new(Cause::UnknownVerb)),
@@ -444,6 +454,13 @@ mod tests {
                     id: widest_id.clone(),
                 },
             ),
+            (call("screenshot", &[]), Command::Screenshot { id: None }),
+            (
+                call("screenshot", &[("id", text(&widest_id))]),
+                Command::Screenshot {
+                    id: Some(widest_id.clone()),
+                },
+            ),
         ];
         let keys = [
             ("tab", Key::Tab),
@@ -471,7 +488,7 @@ mod tests {
     #[test]
     fn an_admitted_call_becomes_its_command() {
         let rows = admitted_rows();
-        assert_eq!(rows.len(), 28);
+        assert_eq!(rows.len(), 30);
         for (row, (call, command)) in rows.iter().enumerate() {
             assert!(validate(call).as_ref() == Ok(command), "row {row}");
         }
@@ -485,14 +502,7 @@ mod tests {
     #[test]
     fn an_unknown_verb_is_refused_by_that_name() {
         let verbs = [
-            "",
-            "CLICK",
-            "Snapshot",
-            " click",
-            "click ",
-            "hello",
-            "screenshot",
-            "serve",
+            "", "CLICK", "Snapshot", " click", "click ", "hello", "capture", "serve",
         ];
         assert_eq!(verbs.len(), 8);
         let unknown = Err(Refusal::new(Cause::UnknownVerb));
@@ -574,7 +584,7 @@ mod tests {
         }
 
         let instance = admitted_rows();
-        assert_eq!(instance.len(), 28);
+        assert_eq!(instance.len(), 30);
         for (row, (call, command)) in instance.iter().enumerate() {
             assert!(validate(call).as_ref() == Ok(command), "row {row}");
             assert!(validate_session(call) == Err(unknown), "row {row}");
@@ -638,6 +648,16 @@ mod tests {
             (call("advance", &[]), Fault::Missing("ms")),
             (call("scroll", &[]), Fault::Missing("id")),
             (call("snapshot", &[id()]), Fault::Unnamed),
+            (call("screenshot", &[("text", text("Ada"))]), Fault::Unnamed),
+            (call("screenshot", &[id(), id()]), Fault::Repeated("id")),
+            (
+                call("screenshot", &[("id", number.clone())]),
+                Fault::WrongKind("id"),
+            ),
+            (
+                call("screenshot", &[("id", text(""))]),
+                Fault::OutOfBound("id"),
+            ),
             (
                 call("click", &[id(), ("text", text("Ada"))]),
                 Fault::Unnamed,
@@ -727,7 +747,7 @@ mod tests {
                 Fault::OutOfBound("key"),
             ),
         ];
-        assert_eq!(rows.len(), 35);
+        assert_eq!(rows.len(), 39);
         for (row, (call, fault)) in rows.into_iter().enumerate() {
             assert!(validate(&call) == malformed(fault), "row {row}");
         }
@@ -765,7 +785,7 @@ mod tests {
         for (row, (call, fault)) in rows.into_iter().enumerate() {
             assert!(validate(&call) == malformed(fault), "row {row}");
         }
-        let unknown_and_malformed = call("screenshot", &[("id", text("")), ("id", text(""))]);
+        let unknown_and_malformed = call("capture", &[("id", text("")), ("id", text(""))]);
         assert!(validate(&unknown_and_malformed) == Err(Refusal::new(Cause::UnknownVerb)));
     }
 
@@ -799,7 +819,7 @@ mod tests {
             }
         }
         let table: Vec<&str> = schema::VERBS.iter().map(|verb| verb.name).collect();
-        assert_eq!(table.len(), 10);
+        assert_eq!(table.len(), 11);
         assert_eq!(reached, table);
         let at = |level: Level| {
             schema::VERBS
@@ -809,7 +829,7 @@ mod tests {
         };
         assert_eq!(
             (at(Level::Instance), at(Level::Session), at(Level::Tool)),
-            (6, 3, 1)
+            (7, 3, 1)
         );
     }
 }

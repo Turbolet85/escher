@@ -336,7 +336,7 @@ mod tests {
         let rows = [
             (
                 Call {
-                    verb: "screenshot".to_string(),
+                    verb: "capture".to_string(),
                     args: Vec::new(),
                 },
                 Refusal::new(Cause::UnknownVerb),

@@ -1019,6 +1019,53 @@ impl BaseDocument {
         std::mem::take(&mut self.changed_nodes)
     }
 
+    /// Whether the document's font context resolves at least one font family for the
+    /// `sans-serif` generic. Without one, text lays out with zero metrics and paints nothing.
+    /// Reads the context only; changes no state.
+    pub fn can_paint_text(&self) -> bool {
+        let mut font_ctx = self
+            .font_ctx
+            .lock()
+            .unwrap_or_else(std::sync::PoisonError::into_inner);
+        font_ctx
+            .collection
+            .generic_families(parley::fontique::GenericFamily::SansSerif)
+            .next()
+            .is_some()
+    }
+
+    /// Lay out `text` as the text input `node_id` lays out its own text: its editor's styles,
+    /// scale and direction, in this document's fonts, on one unbroken line. `None` when the
+    /// node is not a text input. Builds a fresh layout on each call and changes no state.
+    pub fn layout_as_text_input(
+        &self,
+        node_id: NodeId,
+        text: &str,
+    ) -> Option<parley::Layout<TextBrush>> {
+        let editor = &self
+            .get_node(node_id)?
+            .element_data()?
+            .text_input_data()?
+            .editor;
+        let mut font_ctx = self
+            .font_ctx
+            .lock()
+            .unwrap_or_else(std::sync::PoisonError::into_inner);
+        let mut layout_ctx = parley::LayoutContext::new();
+        let mut builder = layout_ctx.ranged_builder(&mut font_ctx, text, editor.get_scale(), true);
+        builder.set_base_direction(editor.base_direction());
+        for prop in editor.get_styles().inner().values() {
+            builder.push_default(prop.to_owned());
+        }
+        let mut layout = builder.build(text);
+        layout.break_all_lines(None);
+        layout.align(
+            parley::Alignment::Start,
+            parley::AlignmentOptions::default(),
+        );
+        Some(layout)
+    }
+
     pub fn create_text_node(&mut self, text: &str) -> NodeId {
         let content = text.to_string();
         let data = NodeData::Text(TextNodeData::new(content));
@@ -3596,5 +3643,31 @@ mod changed_set_tests {
                 "only the dropped node's id reads None"
             );
         }
+    }
+}
+
+#[cfg(test)]
+mod font_reading_tests {
+    use super::*;
+    use crate::build_single_font_ctx;
+
+    fn doc_with(font_ctx: FontContext) -> BaseDocument {
+        BaseDocument::new(DocumentConfig {
+            font_ctx: Some(font_ctx),
+            ..Default::default()
+        })
+    }
+
+    #[test]
+    fn a_context_holding_a_decodable_font_can_paint_text() {
+        let doc = doc_with(build_single_font_ctx(crate::BULLET_FONT));
+        assert!(doc.can_paint_text());
+    }
+
+    #[test]
+    fn a_context_holding_no_family_cannot_paint_text() {
+        let doc = doc_with(build_single_font_ctx(&[0u8; 16]));
+        assert!(!doc.can_paint_text());
+        assert!(!doc.can_paint_text(), "the reading changes nothing");
     }
 }

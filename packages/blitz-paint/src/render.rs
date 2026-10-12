@@ -899,6 +899,11 @@ impl ElementCx<'_, '_> {
                 y: pos.y + y_offset,
             };
 
+            if self.element.attr(local_name!("type")) == Some("password") {
+                self.draw_masked_input_text(scene, pos, input_data);
+                return;
+            }
+
             // Apply the scroll offset (stored in CSS pixels, scaled here to device pixels) so
             // that the caret stays visible. Single-line inputs scroll horizontally; multi-line
             // inputs scroll vertically.
@@ -924,16 +929,10 @@ impl ElementCx<'_, '_> {
                     );
                 }
                 if let Some(cursor) = input_data.editor.cursor_geometry(1.5) {
-                    let color = self.style.get_inherited_text().color;
-                    let caret_color = match &self.style.get_inherited_ui().caret_color.0 {
-                        ColorOrAuto::Auto => color,
-                        ColorOrAuto::Color(caret_color) => caret_color.resolve_to_absolute(&color),
-                    };
-
                     scene.fill(
                         Fill::NonZero,
                         transform,
-                        caret_color.as_srgb_color(),
+                        self.caret_color(),
                         None,
                         &convert_rect(&cursor),
                     );
@@ -952,6 +951,91 @@ impl ElementCx<'_, '_> {
                 &mut draw_text_context,
             );
         }
+    }
+
+    fn caret_color(&self) -> peniko::Color {
+        let color = self.style.get_inherited_text().color;
+        let caret_color = match &self.style.get_inherited_ui().caret_color.0 {
+            ColorOrAuto::Auto => color,
+            ColorOrAuto::Color(caret_color) => caret_color.resolve_to_absolute(&color),
+        };
+        caret_color.as_srgb_color()
+    }
+
+    /// A password input paints one U+2022 per character of its text, laid out in the input's
+    /// own text style, never the text itself. Its caret and selection stand at the bullets
+    /// for the same characters, and it scrolls only as far as keeps the caret in its content
+    /// box, so nothing painted depends on which characters it holds.
+    fn draw_masked_input_text(
+        &self,
+        scene: &mut impl PaintScene,
+        pos: Point,
+        input_data: &TextInputData,
+    ) {
+        const BULLET: char = '\u{2022}';
+        let editor = &input_data.editor;
+        let text = editor.raw_text();
+        let bullets: String = text.chars().map(|_| BULLET).collect();
+        let Some(layout) = self
+            .context
+            .dom
+            .layout_as_text_input(self.node.id, &bullets)
+        else {
+            return;
+        };
+
+        let to_bullets = |cursor: parley::Cursor| {
+            let chars = text.get(..cursor.index()).map_or(0, |s| s.chars().count());
+            parley::Cursor::from_byte_index(&layout, chars * BULLET.len_utf8(), cursor.affinity())
+        };
+        let selection = editor.raw_selection();
+        let selection = parley::Selection::new(
+            to_bullets(selection.anchor()),
+            to_bullets(selection.focus()),
+        );
+        let caret = selection.focus().geometry(&layout, 1.5);
+
+        let frame = self.node.final_layout();
+        let content_width = (frame.size.width
+            - frame.padding.left
+            - frame.padding.right
+            - frame.border.left
+            - frame.border.right) as f64;
+        let scroll_x = (caret.x1 - content_width * self.scale).max(0.0);
+        let transform =
+            self.transform * Affine::translate((pos.x * self.scale - scroll_x, pos.y * self.scale));
+
+        if self.node.is_focussed() {
+            for (rect, _line_idx) in selection.geometry(&layout).iter() {
+                scene.fill(
+                    Fill::NonZero,
+                    transform,
+                    SELECTION_COLOR,
+                    None,
+                    &convert_rect(rect),
+                );
+            }
+            if editor.is_cursor_visible() {
+                scene.fill(
+                    Fill::NonZero,
+                    transform,
+                    self.caret_color(),
+                    None,
+                    &convert_rect(&caret),
+                );
+            }
+        }
+
+        let mut draw_text_context = self.context.draw_text_context.borrow_mut();
+        crate::text::stroke_text(
+            scene,
+            layout.lines(),
+            self.context.dom,
+            transform,
+            self.scale,
+            self.node.id,
+            &mut draw_text_context,
+        );
     }
 
     fn draw_marker(&self, scene: &mut impl PaintScene, pos: Point) {

@@ -1,15 +1,16 @@
 //! Every driver command leaves one line in escher's sink, and nothing a command handled is on
 //! it. With the sink installed over a capture and `RUST_LOG=info`, in both layout modes, each
-//! call run through `Session::run` — the six verbs on the stand's CRUD task and its Timer, and
-//! a refused call for each of the eight causes, the `covered` one on a fixture booted with the
-//! stand's options — leaves exactly one line under `escher_driver`: at INFO, stamped with the
+//! call run through `Session::run` — the seven verbs on the stand's CRUD task and its Timer, and
+//! a refused call for each of the nine causes, the `covered` one on a fixture booted with the
+//! stand's options and the `fonts-unavailable` one on the CRUD task booted with a font context
+//! that holds no family — leaves exactly one line under `escher_driver`: at INFO, stamped with the
 //! service identity, its `span` reading `command`, its `verb` the table's word and absent for a
 //! verb the table lacks. Any other line a call leaves is an engine record, which a build with
 //! the engine's own call sites compiled in logs beside it. An acting call's line carries its
 //! settle reading and the three list lengths of the diff the call returned, which this file
 //! first holds equal to the diff of its own snapshots; a refused call's line carries the name
-//! of the cause the call returned and none of the settle or diff fields; a `snapshot`'s carries
-//! neither. Over the whole capture no field name of a driver line is outside the stated set,
+//! of the cause the call returned and none of the settle or diff fields; a `snapshot`'s and a
+//! `screenshot`'s carry neither. Over the whole capture no field name of a driver line is outside the stated set,
 //! none of its values is redacted, and no stable id, row text, label text or typed text of the
 //! driven screens occurs on any line. With `RUST_LOG` removed a command writes no driver line
 //! at all. The level filter is read from the process's environment when the sink is installed,
@@ -22,7 +23,7 @@ use std::io;
 use std::process::Command;
 use std::sync::{Arc, Mutex};
 
-use blitz_test_harness::Harness;
+use blitz_test_harness::{Harness, HarnessOptions};
 use dioxus::prelude::*;
 use dioxus_native_dom::SnapshotDiff;
 use escher_driver::{ArgValue, Busy, CAUSES, Call, Cause, Level, Outcome, Refusal, Session, VERBS};
@@ -30,7 +31,9 @@ use seven_guis::stand::{self, LeanTask};
 
 mod common;
 mod session_common;
-use session_common::{advance, click, hold, press, scroll, type_into};
+use session_common::{
+    advance, click, hold, press, screenshot, screenshot_of, scroll, slug, type_into,
+};
 
 /// The text the driver types into the CRUD name field: synthetic, and no part of any id.
 const SECRET: &str = "synthetic-sp-4Kx";
@@ -170,6 +173,7 @@ impl<'l> Record<'l> {
 #[derive(Clone, Copy)]
 enum Expect {
     Screen,
+    Shot,
     Acts,
     Refused(Cause),
 }
@@ -177,7 +181,7 @@ enum Expect {
 /// The settle reading and the diff of an outcome an acting verb returned.
 fn acting(outcome: &Outcome) -> Option<(bool, Option<Busy>, &SnapshotDiff)> {
     match outcome {
-        Outcome::Screen { .. } => None,
+        Outcome::Screen { .. } | Outcome::Shot { .. } => None,
         Outcome::Acted {
             settled,
             busy,
@@ -333,6 +337,13 @@ impl<'c> Run<'c> {
                 );
                 self.verbs.extend(verb.map(str::to_string));
             }
+            (Ok(Outcome::Shot { .. }), Expect::Shot) => {
+                assert!(
+                    !record.has("cause") && ACTING_FIELDS.iter().all(|field| !record.has(field)),
+                    "{at}: a screenshot's line carries its verb alone"
+                );
+                self.verbs.extend(verb.map(str::to_string));
+            }
             (Ok(outcome), Expect::Acts) => {
                 let Some((settled, busy, diff)) = acting(outcome) else {
                     panic!("{at}: the call returns an acting verb's outcome");
@@ -365,8 +376,8 @@ impl<'c> Run<'c> {
         result
     }
 
-    /// Holds the whole of what this run left in the capture: one driver line per call, the six
-    /// verbs and the eight causes read back, no field name outside the stated set, no redacted
+    /// Holds the whole of what this run left in the capture: one driver line per call, the seven
+    /// verbs and the nine causes read back, no field name outside the stated set, no redacted
     /// value, and none of `needles` nor of what the calls supplied.
     fn finish(self, needles: &Needles) {
         let mode = &self.mode;
@@ -394,12 +405,12 @@ impl<'c> Run<'c> {
             .map(|verb| verb.name)
             .collect();
         assert!(
-            run_by_a_session.len() == 6 && read_back(&self.verbs, run_by_a_session),
-            "{mode}: each of the six verbs ran and was read back from its line"
+            run_by_a_session.len() == 7 && read_back(&self.verbs, run_by_a_session),
+            "{mode}: each of the seven verbs ran and was read back from its line"
         );
         assert!(
-            CAUSES.len() == 8 && read_back(&self.causes, CAUSES.map(Cause::name).to_vec()),
-            "{mode}: each of the eight causes was read back from its own refused call"
+            CAUSES.len() == 9 && read_back(&self.causes, CAUSES.map(Cause::name).to_vec()),
+            "{mode}: each of the nine causes was read back from its own refused call"
         );
 
         let supplied = [SECRET, NOBODY, UNKNOWN_VERB];
@@ -526,6 +537,8 @@ fn child_records_each_command_at_info() {
             args: Vec::new(),
         };
         let _ = run.drive("Crud", &mut crud, &snapshot, Expect::Screen);
+        let _ = run.drive("Crud", &mut crud, &screenshot(), Expect::Shot);
+        let _ = run.drive("Crud", &mut crud, &screenshot_of("crud-list"), Expect::Shot);
         let _ = run.drive(
             "Crud",
             &mut crud,
@@ -556,6 +569,7 @@ fn child_records_each_command_at_info() {
             (click("crud-delete"), Expect::Acts),
             (click(&last_row), Expect::Refused(Cause::Stale)),
             (click(NOBODY), Expect::Refused(Cause::NotFound)),
+            (screenshot_of(NOBODY), Expect::Refused(Cause::NotFound)),
             (
                 Call {
                     verb: UNKNOWN_VERB.to_string(),
@@ -600,7 +614,25 @@ fn child_records_each_command_at_info() {
         );
         needles.read(&fixture);
 
-        assert!(run.calls == 27, "{}: {} calls", run.mode, run.calls);
+        let mut no_font = Session::start(slug(LeanTask::Crud), || {
+            stand::boot(
+                LeanTask::Crud,
+                HarnessOptions {
+                    font_ctx: Some(blitz_dom::build_single_font_ctx(&[0u8; 16])),
+                    ..stand::options(incremental)
+                },
+            )
+        })
+        .expect("a lean task's slug is a label");
+        let _ = run.drive(
+            "Crud with no font",
+            &mut no_font,
+            &screenshot(),
+            Expect::Refused(Cause::FontsUnavailable),
+        );
+        needles.read(&no_font);
+
+        assert!(run.calls == 31, "{}: {} calls", run.mode, run.calls);
         run.finish(&needles);
     }
 }

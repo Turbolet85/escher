@@ -26,10 +26,12 @@ pub enum Cause {
     OffScreen,
     /// The app this session holds gives it no way to move its time.
     TimeUnavailable,
+    /// The app this session holds has no font it can paint text with.
+    FontsUnavailable,
 }
 
 /// Every [`Cause`], in the set's order.
-pub const CAUSES: [Cause; 8] = [
+pub const CAUSES: [Cause; 9] = [
     Cause::UnknownVerb,
     Cause::Malformed,
     Cause::NotFound,
@@ -38,6 +40,7 @@ pub const CAUSES: [Cause; 8] = [
     Cause::Covered,
     Cause::OffScreen,
     Cause::TimeUnavailable,
+    Cause::FontsUnavailable,
 ];
 
 impl Cause {
@@ -52,6 +55,7 @@ impl Cause {
             Cause::Covered => "covered",
             Cause::OffScreen => "off-screen",
             Cause::TimeUnavailable => "time-unavailable",
+            Cause::FontsUnavailable => "fonts-unavailable",
         }
     }
 
@@ -78,6 +82,9 @@ impl Cause {
                  scrolling box that holds it"
             }
             Cause::TimeUnavailable => "the app this session holds gives it no way to move its time",
+            Cause::FontsUnavailable => {
+                "the app this session holds has no font it can paint text with"
+            }
         }
     }
 
@@ -107,6 +114,7 @@ impl Cause {
                 "this session cannot move time: act without `advance`, or start a session whose \
                  host supplies a time step"
             }
+            Cause::FontsUnavailable => "boot the app with a font it can decode",
         }
     }
 }
@@ -199,7 +207,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn the_eight_causes_are_named_in_order() {
+    fn the_nine_causes_are_named_in_order() {
         let names = [
             "unknown-verb",
             "malformed",
@@ -209,8 +217,9 @@ mod tests {
             "covered",
             "off-screen",
             "time-unavailable",
+            "fonts-unavailable",
         ];
-        assert_eq!(CAUSES.len(), 8);
+        assert_eq!(CAUSES.len(), 9);
         assert_eq!(CAUSES.map(Cause::name), names);
         for (cause, name) in CAUSES.into_iter().zip(names) {
             assert_eq!(cause.to_string(), name);
@@ -267,8 +276,13 @@ mod tests {
                 "this session cannot move time: act without `advance`, or start a session whose \
                  host supplies a time step",
             ),
+            (
+                "fonts-unavailable",
+                "the app this session holds has no font it can paint text with",
+                "boot the app with a font it can decode",
+            ),
         ];
-        assert_eq!(rows.len(), 8);
+        assert_eq!(rows.len(), 9);
         assert_eq!(CAUSES.len(), rows.len());
         for (cause, (name, meaning, remedy)) in CAUSES.into_iter().zip(rows) {
             assert_eq!(cause.name(), name);
@@ -303,7 +317,7 @@ mod tests {
             .map(Refusal::new)
             .chain(faults.into_iter().map(Refusal::malformed))
             .collect();
-        assert_eq!(refusals.len(), 13);
+        assert_eq!(refusals.len(), 14);
         for refusal in &refusals {
             let text = refusal.to_string();
             let name = refusal.cause().name();

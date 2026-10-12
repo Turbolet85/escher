@@ -184,6 +184,8 @@ pub enum FieldKind {
     Words,
     /// A list of entries, each keyed as its field's help names.
     Entries,
+    /// A PNG image, written as base64 text (RFC 4648 §4, padded).
+    Png,
 }
 
 impl FieldKind {
@@ -199,6 +201,7 @@ impl FieldKind {
             FieldKind::Nodes => "nodes",
             FieldKind::Words => "words",
             FieldKind::Entries => "entries",
+            FieldKind::Png => "png",
         }
     }
 }
@@ -409,6 +412,41 @@ pub(crate) const SCROLL: VerbSpec = VerbSpec {
     fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, IN_VIEW],
 };
 
+pub(crate) const SCREENSHOT: VerbSpec = VerbSpec {
+    name: "screenshot",
+    level: Level::Instance,
+    help: "the screen, or the element an id names, as a PNG image; an element shot is cropped to \
+           the part of its bounds that can be seen; in a build that paints overlay scrollbars, a \
+           scrollbar thumb painted within 0.7 s of a scroll fades by wall time",
+    args: &[ArgSpec {
+        name: "id",
+        kind: ArgKind::Id,
+        required: false,
+        help: "the id of the element to crop to, as a snapshot lists it; the whole screen is \
+               taken without it",
+    }],
+    fields: &[
+        FieldSpec {
+            name: "width",
+            kind: FieldKind::Count,
+            always: true,
+            help: "the image's width, in pixels",
+        },
+        FieldSpec {
+            name: "height",
+            kind: FieldKind::Count,
+            always: true,
+            help: "the image's height, in pixels",
+        },
+        FieldSpec {
+            name: "png",
+            kind: FieldKind::Png,
+            always: true,
+            help: "the image: a PNG of 8-bit RGBA pixels as painted, written as base64 text",
+        },
+    ],
+};
+
 const LABEL: FieldSpec = FieldSpec {
     name: "label",
     kind: FieldKind::Text,
@@ -530,10 +568,10 @@ pub(crate) const HELP: VerbSpec = VerbSpec {
     ],
 };
 
-/// The verb set, in the schema's order: the six verbs asked of the held instance, the three
+/// The verb set, in the schema's order: the seven verbs asked of the held instance, the three
 /// asked of the session, then `help`, asked of the tool itself.
 pub const VERBS: &[VerbSpec] = &[
-    SNAPSHOT, CLICK, TYPE, PRESS, ADVANCE, SCROLL, START, STATUS, STOP, HELP,
+    SNAPSHOT, CLICK, TYPE, PRESS, ADVANCE, SCROLL, SCREENSHOT, START, STATUS, STOP, HELP,
 ];
 
 /// One way a run of the command line ends: its status, its name and what it means.
@@ -588,19 +626,28 @@ mod tests {
 
     use super::*;
 
-    const VERB_NAMES: [&str; 10] = [
-        "snapshot", "click", "type", "press", "advance", "scroll", "start", "status", "stop",
+    const VERB_NAMES: [&str; 11] = [
+        "snapshot",
+        "click",
+        "type",
+        "press",
+        "advance",
+        "scroll",
+        "screenshot",
+        "start",
+        "status",
+        "stop",
         "help",
     ];
 
     #[test]
-    fn the_ten_verbs_are_named_in_order_each_at_its_level() {
-        assert_eq!(VERBS.len(), 10);
+    fn the_eleven_verbs_are_named_in_order_each_at_its_level() {
+        assert_eq!(VERBS.len(), 11);
         let names: Vec<&str> = VERBS.iter().map(|verb| verb.name).collect();
         assert_eq!(names, VERB_NAMES);
         let levels: Vec<Level> = VERBS.iter().map(|verb| verb.level).collect();
         let stated = [
-            [Level::Instance; 6].as_slice(),
+            [Level::Instance; 7].as_slice(),
             &[Level::Session; 3],
             &[Level::Tool; 1],
         ]
@@ -619,7 +666,7 @@ mod tests {
 
     #[test]
     fn every_verb_states_its_help_its_arguments_and_a_result() {
-        assert_eq!(VERBS.len(), 10);
+        assert_eq!(VERBS.len(), 11);
         let field_help = |verb: &VerbSpec, name: &str| {
             verb.fields
                 .iter()
@@ -648,8 +695,15 @@ mod tests {
                 "types text into the element an id names, replacing what the element holds, then \
                  settles; an empty text clears it",
             ),
+            (
+                Some(SCREENSHOT.help),
+                "the screen, or the element an id names, as a PNG image; an element shot is \
+                 cropped to the part of its bounds that can be seen; in a build that paints \
+                 overlay scrollbars, a scrollbar thumb painted within 0.7 s of a scroll fades by \
+                 wall time",
+            ),
         ];
-        assert_eq!(amended.len(), 3);
+        assert_eq!(amended.len(), 4);
         for (row, (stated, text)) in amended.into_iter().enumerate() {
             assert!(stated == Some(text), "row {row}");
         }
@@ -694,7 +748,7 @@ mod tests {
     fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         const ACTING: [&str; 5] = ["settled", "busy", "added", "removed", "changed"];
         type Args = &'static [(&'static str, ArgKind, bool)];
-        let rows: [(&str, Args, Vec<&str>); 10] = [
+        let rows: [(&str, Args, Vec<&str>); 11] = [
             ("snapshot", &[], vec!["text"]),
             ("click", &[("id", ArgKind::Id, true)], ACTING.to_vec()),
             (
@@ -716,6 +770,11 @@ mod tests {
                 "scroll",
                 &[("id", ArgKind::Id, true)],
                 [&ACTING[..], &["in_view"]].concat(),
+            ),
+            (
+                "screenshot",
+                &[("id", ArgKind::Id, false)],
+                vec!["width", "height", "png"],
             ),
             (
                 "start",
@@ -772,6 +831,9 @@ mod tests {
             ("served", FieldKind::Count),
             ("idle_expiry_s", FieldKind::Count),
             ("stopped", FieldKind::Flag),
+            ("width", FieldKind::Count),
+            ("height", FieldKind::Count),
+            ("png", FieldKind::Png),
             ("verbs", FieldKind::Entries),
             ("node_keys", FieldKind::Entries),
             ("key_names", FieldKind::Words),
@@ -780,7 +842,7 @@ mod tests {
             ("exit_statuses", FieldKind::Entries),
             ("session_errors", FieldKind::Entries),
         ];
-        assert_eq!(field_kinds.len(), 20);
+        assert_eq!(field_kinds.len(), 23);
         for verb in VERBS {
             for field in verb.fields {
                 let stated = field_kinds.iter().find(|(name, _)| *name == field.name);
@@ -842,8 +904,9 @@ mod tests {
             (FieldKind::Nodes, "nodes"),
             (FieldKind::Words, "words"),
             (FieldKind::Entries, "entries"),
+            (FieldKind::Png, "png"),
         ];
-        assert_eq!(field_kind_names.len(), 9);
+        assert_eq!(field_kind_names.len(), 10);
         for (kind, name) in field_kind_names {
             assert_eq!(kind.name(), name);
         }

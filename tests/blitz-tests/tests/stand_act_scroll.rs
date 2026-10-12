@@ -502,7 +502,7 @@ fn a_click_naming_a_scrolled_box_in_view_lands_on_the_row_at_its_centre() {
 
 #[test]
 fn a_scroll_needs_a_target_on_the_screen_and_nothing_else_of_it() {
-    assert_eq!(VERBS.len(), 10);
+    assert_eq!(VERBS.len(), 11);
     let sixth = VERBS[5].name;
     assert!(
         Cause::OffScreen.remedy().contains(sixth),

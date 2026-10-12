@@ -142,10 +142,15 @@ mod tests {
             .collect();
         assert!(at.windows(2).all(|pair| pair[0] < pair[1]));
         assert!(text.starts_with("{\"verbs\":["));
-        let counts = [10, 13, 12, 3, 8, 4, 13];
+        let counts = [11, 13, 12, 3, 9, 4, 13];
         for (row, (key, count)) in keys.iter().zip(counts).enumerate() {
             assert!(entries(&document, key).len() == count, "row {row}");
         }
+        // The image's field kind and the ninth cause, with its remedy.
+        assert!(text.contains(r#"{"name":"png","kind":"png","always":true,"#));
+        assert!(text.contains(
+            r#"{"name":"fonts-unavailable","meaning":"the app this session holds has no font it can paint text with","remedy":"boot the app with a font it can decode"}"#
+        ));
         assert!(!text.contains('\n') && !text.contains('\u{1b}'));
         assert!(text.len() <= MAX_ANSWER_BYTES);
         assert_eq!(describe(), text);

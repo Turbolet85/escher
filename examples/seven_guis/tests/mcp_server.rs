@@ -1,6 +1,8 @@
 //! The `escher-session` binary in its `mcp` role, run as a child the way an MCP client runs it:
 //! it answers `initialize` in the revision asked for and `2025-11-25` to one it does not speak,
-//! lists exactly the ten verbs of the driver's table as tools, answers `help` — first after
+//! lists exactly the eleven verbs of the driver's table as tools, `screenshot` before `start` and
+//! `help` last, answers a `screenshot` tool call with an image block, then a text block,
+//! answers `help` — first after
 //! `initialize`, before any `start` — with the tool's description of itself, the same bytes the
 //! command line's `help` writes, and completes the Counter flow by tool calls alone — `start`, a
 //! snapshot, three clicks, a snapshot reading 3, `status`, `stop`. A refused call, a malformed
@@ -120,10 +122,27 @@ fn the_mcp_role_completes_the_counter_flow_by_tool_calls_alone() {
         "tools/list answers the tools"
     );
     let verbs: Vec<&str> = VERBS.iter().map(|verb| verb.name).collect();
-    assert_eq!(verbs.len(), 10);
+    assert_eq!(verbs.len(), 11);
     assert!(
         names(&listing) == verbs,
-        "the tools are the table's ten verbs in its order"
+        "the tools are the table's eleven verbs in its order"
+    );
+    let at = |name: &str| verbs.iter().position(|verb| *verb == name);
+    assert!(
+        at("screenshot") < at("start") && at("help") == Some(verbs.len() - 1),
+        "screenshot stands before start, and help last"
+    );
+    let described = listing
+        .split_once(r#"{"name":"screenshot","description":""#)
+        .and_then(|(_, rest)| rest.split_once("\",\"inputSchema\""))
+        .map(|(description, _)| description)
+        .expect("the screenshot tool is described");
+    assert!(
+        described.contains(". Returns: ")
+            && ["width (count): ", "height (count): ", "png (png): "]
+                .iter()
+                .all(|field| described.contains(field)),
+        "the screenshot tool's description names its three result fields"
     );
 
     let started = accepted(&mut speaker, 3, "start", r#"{"app":"counter"}"#);
@@ -278,6 +297,38 @@ fn the_newest_revision_is_spoken_and_help_answers_before_any_start() {
             .starts_with(r#"{"jsonrpc":"2.0","id":5,"error":{"code":-32601,"message":""#),
         "server/discover is still a method not found"
     );
+    let spoke = speaker.close();
+    assert_eq!(spoke.status, Some(0), "the mcp role ends with status 0");
+    assert!(spoke.stdout.is_empty(), "no line past the replies");
+}
+
+#[test]
+fn a_screenshot_tool_call_answers_an_image_block_then_a_text_block() {
+    let mut speaker = mcp();
+    accepted(&mut speaker, 1, "start", r#"{"app":"crud"}"#);
+    speaker.send(tool_call(2, "screenshot", "{}").as_bytes());
+    let reply = speaker.reply();
+    assert!(
+        reply.starts_with(
+            r#"{"jsonrpc":"2.0","id":2,"result":{"content":[{"type":"image","data":"iVBORw0KGgo"#
+        ),
+        "the image block comes first, its data a PNG in base64"
+    );
+    assert!(
+        reply.contains(r#"","mimeType":"image/png"},{"type":"text","text":"{\"width\":800,\"height\":600}"}],"isError":false}}"#),
+        "the text block follows, the shot's line without its image"
+    );
+    let (is_error, refused) = call(
+        &mut speaker,
+        3,
+        "screenshot",
+        &format!(r#"{{"id":"{NOBODY}"}}"#),
+    );
+    assert!(
+        is_error && cause(&refused) == Some("not-found") && !refused.contains(NOBODY),
+        "a refused shot is one text block naming its cause, holding nothing it named"
+    );
+    accepted(&mut speaker, 4, "stop", "{}");
     let spoke = speaker.close();
     assert_eq!(spoke.status, Some(0), "the mcp role ends with status 0");
     assert!(spoke.stdout.is_empty(), "no line past the replies");

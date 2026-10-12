@@ -1059,8 +1059,11 @@ dependencies = [
 name = "blitz-test-harness"
 version = "0.3.0-beta.2"
 dependencies = [
+ "anyrender",
+ "anyrender_vello_cpu",
  "blitz-dom",
  "blitz-html",
+ "blitz-paint",
  "blitz-traits",
  "dioxus-core",
  "dioxus-native-dom",
@@ -1087,6 +1090,7 @@ dependencies = [
  "escher-telemetry",
  "keyboard-types 0.7.0",
  "markup5ever",
+ "png 0.18.1",
  "seven_guis",
  "stylo",
  "taffy",
@@ -3097,6 +3101,7 @@ version = "0.3.0-beta.2"
 dependencies = [
  "blitz-test-harness",
  "dioxus-native-dom",
+ "png 0.18.1",
  "serde_json",
  "tracing",
 ]

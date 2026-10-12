@@ -95,11 +95,11 @@
       "observed_gap": "a CPU raster and a PNG writer exist, apart from the test harness; the harness has no screenshot.",
       "verification": {
         "method": "integration",
-        "acceptance": "With no display present, the driver returns an image of the whole stand screen and an image cropped to one element addressed by its id.",
-        "ref": null,
-        "status": "planned"
+        "acceptance": "With no display present, the driver returns an image of the whole stand screen and an image cropped to one element addressed by its id. Concretely: on each of the four lean tasks (counter, flight booker, timer, CRUD), in both layout modes, `screenshot` is accepted as a PNG of 800 × 600 that decodes to the RGBA of the harness's own whole-viewport raster of that state, and text paints inside `#task-title` (`tests/blitz-tests/tests/stand_act_screenshot.rs`); `screenshot` with `id` `crud-list` on CRUD at boot is a PNG of 369 × 420 — the element's bounds intersected with what can be seen of it, rounded outward to whole pixels — equal to that rectangle of the whole-screen shot (`stand_act_screenshot`); the same verb answers through the `escher-session` binary with status 0 and one line of JSON whose `png` decodes to 800 × 600 (`examples/seven_guis/tests/cli_commands.rs`), and over `escher-session mcp` as an `image` content block followed by a `text` block (`tests/blitz-tests/tests/stand_mcp_tools.rs`, `examples/seven_guis/tests/mcp_server.rs`) — each under the per-package and the workspace build. The image travels in-band on the founder's fork 1 (the chunk's inputs#I1, inputs#I2).",
+        "ref": "tests/blitz-tests/tests/stand_act_screenshot.rs::the_whole_screen_is_a_png_of_the_harness_raster_and_text_paints · tests/blitz-tests/tests/stand_act_screenshot.rs::an_element_shot_is_its_bounds_rounded_outward · examples/seven_guis/tests/cli_commands.rs::a_screenshot_answers_one_line_whose_png_is_the_screen · tests/blitz-tests/tests/stand_mcp_tools.rs::a_screenshot_tool_call_answers_its_image_then_its_text_and_parents_its_command · examples/seven_guis/tests/mcp_server.rs::a_screenshot_tool_call_answers_an_image_block_then_a_text_block",
+        "status": "implemented"
       },
-      "chunk": null
+      "chunk": "2026-10-12-headless-screenshot"
     },
     {
       "id": "v010-08",
@@ -108,11 +108,11 @@
       "observed_gap": "a CPU raster and a PNG writer exist, apart from the test harness; the harness has no screenshot.",
       "verification": {
         "method": "integration",
-        "acceptance": "Two screenshots of the same stand state taken in separate runs on the same host are pixel-identical.",
-        "ref": null,
-        "status": "planned"
+        "acceptance": "Two screenshots of the same stand state taken in separate runs on the same host are pixel-identical. Concretely: `tests/blitz-tests/tests/stand_screenshot_repeat.rs` re-runs its own `#[ignore]` child twice; each child, in both layout modes, shoots the four lean tasks whole at boot, CRUD's `crud-list`, the counter's value display, and the flight booker with its start date focused by a click (its caret painted), printing each shot's PNG bytes; the two children's printed PNGs are byte-identical — so their pixels are identical — and each equals the same shot taken in the parent's process; this holds under the per-package build and under the workspace build, whose CPU renderer runs with `multithreading`. No scroll precedes a shot: an overlay scrollbar thumb fades by wall time for 0.7 s after a scroll, a limit the verb's help states.",
+        "ref": "tests/blitz-tests/tests/stand_screenshot_repeat.rs::a_shot_of_one_state_is_the_same_in_two_runs_and_in_this_one",
+        "status": "implemented"
       },
-      "chunk": null
+      "chunk": "2026-10-12-headless-screenshot"
     },
     {
       "id": "v010-09",

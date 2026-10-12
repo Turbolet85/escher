@@ -1,0 +1,96 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-12T19:20:09Z",
+"argv": [
+"implement",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-12-headless-screenshot",
+"--id",
+"v010-07",
+"--ref-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-12T18-43-51-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"implement v010-07 · status planned → implemented · ref tests/blitz-tests/tests/stand_act_screenshot.rs::the_whole_screen_is_a_png_of_th… (540 chars)",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-07",
+"chunk": "2026-10-12-headless-screenshot",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "With no display present, the driver returns an image of the whole stand screen and an image cropped to one element addre… (1193 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v010-07",
+"chunk": "2026-10-12-headless-screenshot",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_act_screenshot.rs::the_whole_screen_is_a_png_of_the_harness_raster_and_text_paints · tests… (540 chars)",
+"acceptance": "With no display present, the driver returns an image of the whole stand screen and an image cropped to one element addre… (1193 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-12T19:20:09Z",
+"argv": [
+"implement",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-12-headless-screenshot",
+"--id",
+"v010-08",
+"--ref-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-12T18-43-51-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"implement v010-08 · status planned → implemented · ref tests/blitz-tests/tests/stand_screenshot_repeat.rs::a_shot_of_one_state_is_the_s… (111 chars)",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-08",
+"chunk": "2026-10-12-headless-screenshot",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "Two screenshots of the same stand state taken in separate runs on the same host are pixel-identical. Concretely: `tests/… (839 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v010-08",
+"chunk": "2026-10-12-headless-screenshot",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_screenshot_repeat.rs::a_shot_of_one_state_is_the_same_in_two_runs_and_in_this_one",
+"acceptance": "Two screenshots of the same stand state taken in separate runs on the same host are pixel-identical. Concretely: `tests/… (839 chars)",
+"notes_chars": 0
+}
+}
+]

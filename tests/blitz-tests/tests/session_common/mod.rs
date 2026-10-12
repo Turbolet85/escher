@@ -101,6 +101,32 @@ pub fn scroll(id: &str) -> Call {
     call("scroll", &[("id", ArgValue::Text(id.to_string()))])
 }
 
+/// The driver call that takes an image of the whole screen.
+pub fn screenshot() -> Call {
+    call("screenshot", &[])
+}
+
+/// The driver call that takes an image of the element `id` names.
+pub fn screenshot_of(id: &str) -> Call {
+    call("screenshot", &[("id", ArgValue::Text(id.to_string()))])
+}
+
+/// What a `screenshot` returned: the image's width, its height and its PNG bytes.
+pub struct Shot {
+    pub width: u32,
+    pub height: u32,
+    pub png: Vec<u8>,
+}
+
+/// Runs `call` on `session` through the driver and reads its outcome as a shot: `None` for a
+/// refused call and for any other outcome.
+pub fn shot(session: &mut Session, call: &Call) -> Option<Shot> {
+    match session.run(call).ok()? {
+        Outcome::Shot { width, height, png } => Some(Shot { width, height, png }),
+        _ => None,
+    }
+}
+
 /// What an acting call returned, whichever of the three acting shapes it has.
 pub struct Acted {
     pub settled: bool,
@@ -152,10 +178,10 @@ pub fn focused(session: &Session) -> (Vec<String>, Vec<String>) {
 }
 
 /// Runs `call` on `session` through the driver and reads its outcome as an acting one: `None`
-/// for a refused call and for a `snapshot`.
+/// for a refused call, a `snapshot` and a `screenshot`.
 pub fn act(session: &mut Session, call: &Call) -> Option<Acted> {
     match session.run(call).ok()? {
-        Outcome::Screen { .. } => None,
+        Outcome::Screen { .. } | Outcome::Shot { .. } => None,
         Outcome::Acted {
             settled,
             busy,

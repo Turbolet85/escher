@@ -11,8 +11,13 @@
 //! each `tool_call` holding the table's word for its verb as `tool` and its ending as `ending`,
 //! and no other field. Every refusal cause a tool call can reach is read on its served form
 //! with the remedy its cause states: `malformed`, `not-found`, `stale`, `disabled`, `off-screen`
-//! and `time-unavailable` on the lean tasks, and `covered` on an overlay fixture beside them
-//! (an unknown tool is a protocol error, so `unknown-verb` is read through the binary). A `help`
+//! and `time-unavailable` on the lean tasks, `covered` on an overlay fixture beside them, and
+//! `fonts-unavailable` on the CRUD task booted with a font context that holds no family (an
+//! unknown tool is a protocol error, so `unknown-verb` is read through the binary). A
+//! `screenshot` tool result is an image block, then a text block holding its line without the
+//! image: the image's data decodes to the PNG `Session::run` returns for the same state, and its
+//! `tool_call` span holds `screenshot` and parents its command; a refused one is one text block
+//! marked as an error. A `help`
 //! tool call is answered by the server, with or without a held session: its text is the tool's
 //! description of itself, and its `tool_call` span holds `help` and `accepted` and parents no
 //! command. No check here sleeps or reads a clock. A failure message carries a layout mode and
@@ -21,7 +26,7 @@
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
-use blitz_test_harness::Harness;
+use blitz_test_harness::{Harness, HarnessOptions};
 use dioxus::prelude::*;
 use escher_driver::{CAUSES, Cause, Outcome, Session, SessionError, describe, serve_mcp};
 use seven_guis::stand::{self, LeanTask};
@@ -30,7 +35,7 @@ use tracing::span::{Attributes, Id, Record};
 use tracing::{Event, Metadata, Subscriber};
 
 mod session_common;
-use session_common::{click, hold, slug, snapshot};
+use session_common::{click, hold, screenshot, shot, slug, snapshot};
 
 /// The lean tasks, as the binary hands them to the server.
 const TASKS: [LeanTask; 4] = [
@@ -509,15 +514,171 @@ fn every_cause_a_tool_call_reaches_is_served_with_its_remedy() {
         );
         served.push(Cause::Covered);
 
+        // The fonts-unavailable cause, on the CRUD task booted with no usable font.
+        let requests = [
+            tool_call(1, "start", r#"{"app":"crud"}"#),
+            tool_call(2, "screenshot", "{}"),
+            tool_call(3, "stop", "{}"),
+        ];
+        let mut input = requests.join("\n");
+        input.push('\n');
+        let mut output = Vec::new();
+        tracing::subscriber::with_default(Recorder::default(), || {
+            serve_mcp(
+                input.as_bytes(),
+                &mut output,
+                &["crud"],
+                boot_without_font(incremental),
+                Duration::from_secs(1800),
+            )
+        })
+        .expect("the exchange ends");
+        let output = String::from_utf8(output).expect("replies are text");
+        let replies: Vec<&str> = output.lines().collect();
+        assert_eq!(replies.len(), 3, "{mode}: one reply per no-font call");
+        let (is_error, text) = result(replies[1]);
+        assert!(
+            is_error && remedied(&text) == Some(Cause::FontsUnavailable),
+            "{mode}: the shot with no font is refused with its cause and that cause's remedy"
+        );
+        served.push(Cause::FontsUnavailable);
+
         let reached: Vec<Cause> = CAUSES
             .into_iter()
             .filter(|cause| served.contains(cause))
             .collect();
         assert!(
-            reached.len() == 7 && !reached.contains(&Cause::UnknownVerb),
+            reached.len() == 8 && !reached.contains(&Cause::UnknownVerb),
             "{mode}: {} causes are served through MCP",
             reached.len()
         );
+    }
+}
+
+/// Boots the CRUD task with a font context built from bytes that decode as no font.
+fn boot_without_font(incremental: bool) -> impl FnMut(&str) -> Result<Session, SessionError> {
+    move |app| {
+        Session::start(app, || {
+            stand::boot(
+                LeanTask::Crud,
+                HarnessOptions {
+                    font_ctx: Some(blitz_dom::build_single_font_ctx(&[0u8; 16])),
+                    ..stand::options(incremental)
+                },
+            )
+        })
+    }
+}
+
+/// Reads RFC 4648 base64 with padding: `None` for any other text.
+fn decode_base64(text: &str) -> Option<Vec<u8>> {
+    const ALPHABET: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    if text.len() % 4 != 0 {
+        return None;
+    }
+    let mut out = Vec::new();
+    for chunk in text.as_bytes().chunks(4) {
+        let padding = chunk.iter().rev().take_while(|byte| **byte == b'=').count();
+        let mut n = 0u32;
+        for byte in &chunk[..4 - padding] {
+            n = n << 6 | ALPHABET.iter().position(|letter| letter == byte)? as u32;
+        }
+        n <<= 6 * padding as u32;
+        out.extend_from_slice(&n.to_be_bytes()[1..4 - padding]);
+    }
+    Some(out)
+}
+
+/// A screenshot tool result's two blocks: the image block's data and MIME type, then the text
+/// block's text, and whether the result is marked as an error. `None` when the reply does not
+/// hold an image block first.
+fn shot_result(reply: &str) -> Option<(String, String, String, bool)> {
+    let (_, rest) = reply.split_once(r#""content":[{"type":"image","data":""#)?;
+    let (data, rest) = rest.split_once('"')?;
+    let (_, rest) = rest.split_once(r#""mimeType":""#)?;
+    let (mime, rest) = rest.split_once('"')?;
+    let (_, rest) = rest.split_once(r#"},{"type":"text","text":""#)?;
+    let (text, rest) = rest.split_once(r#""}]"#)?;
+    Some((
+        data.to_string(),
+        mime.to_string(),
+        text.replace("\\\"", "\""),
+        rest.contains(r#""isError":true"#),
+    ))
+}
+
+#[test]
+fn a_screenshot_tool_call_answers_its_image_then_its_text_and_parents_its_command() {
+    for incremental in [false, true] {
+        let mode = if incremental { "incremental" } else { "full" };
+        let nobody = format!(r#"{{"id":"{NOBODY}"}}"#);
+        let requests = [
+            tool_call(1, "start", r#"{"app":"crud"}"#),
+            tool_call(2, "screenshot", "{}"),
+            tool_call(3, "screenshot", &nobody),
+            tool_call(4, "stop", "{}"),
+        ];
+        let recorder = Recorder::default();
+        let replies =
+            tracing::subscriber::with_default(recorder.clone(), || serve(&requests, incremental));
+        assert_eq!(replies.len(), 4, "{mode}: one reply per call");
+
+        let (mut direct, _ticks) = hold(LeanTask::Crud, incremental);
+        let direct = shot(&mut direct, &screenshot()).expect("a screenshot runs");
+
+        let Some((data, mime, text, is_error)) = shot_result(&replies[1]) else {
+            panic!("{mode}: the shot is an image block, then a text block");
+        };
+        assert!(!is_error, "{mode}: the shot is not marked as an error");
+        assert!(
+            mime == "image/png",
+            "{mode}: the image block says it is a PNG"
+        );
+        assert!(
+            decode_base64(&data) == Some(direct.png),
+            "{mode}: the image is the PNG Session::run returns for the same state"
+        );
+        assert!(
+            text == r#"{"width":800,"height":600}"#,
+            "{mode}: the text block is the shot's line without the image"
+        );
+
+        let (is_error, text) = result(&replies[2]);
+        assert!(
+            is_error && remedied(&text) == Some(Cause::NotFound),
+            "{mode}: the refused shot is one text block marked as an error"
+        );
+        assert!(
+            !replies[2].contains(r#""type":"image""#),
+            "{mode}: a refused shot holds no image"
+        );
+
+        let recorded = recorder.0.lock().unwrap();
+        let shots: Vec<usize> = recorded
+            .spans
+            .iter()
+            .enumerate()
+            .filter(|(_, seen)| {
+                seen.name == "tool_call"
+                    && seen
+                        .fields
+                        .iter()
+                        .any(|(field, value)| *field == "tool" && value == "screenshot")
+            })
+            .map(|(at, _)| at)
+            .collect();
+        assert_eq!(shots.len(), 2, "{mode}: one tool_call per screenshot call");
+        for (index, at) in shots.iter().enumerate() {
+            let children = recorded
+                .spans
+                .iter()
+                .filter(|seen| seen.name == "command" && seen.parent == Some(*at))
+                .count();
+            assert!(
+                children == 1,
+                "{mode}: screenshot {index} parents {children} commands"
+            );
+        }
     }
 }
 

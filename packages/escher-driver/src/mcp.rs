@@ -19,6 +19,7 @@ use crate::command::{ArgValue, Call, SessionCommand, validate, validate_session}
 use crate::describe::describe;
 use crate::error::SessionError;
 use crate::execute::Outcome;
+use crate::image;
 use crate::json::{self, Object};
 use crate::refusal::{Fault, Refusal};
 use crate::schema::{self, ArgKind, KEY_NAMES, Level, MAX_MILLISECONDS, VERBS, VerbSpec};
@@ -61,12 +62,14 @@ const START_APP: &str = match schema::START.args {
 /// `apps`. A tool call runs as the command line runs its verb, except that the session lives in
 /// this process: `start` boots the app `boot` builds and holds it, `status` reaches it, `stop`
 /// drops it, `help` answers the tool's description of itself ([`describe`]) whether or not a
-/// session is held, and the six instance verbs run on the held session through [`Session::run`]. A held session that has had no tool call for `idle_expiry` is
+/// session is held, and the seven instance verbs run on the held session through [`Session::run`]. A held session that has had no tool call for `idle_expiry` is
 /// dropped when the next request arrives.
 ///
 /// A tool result holds one text block: the screen's text for `snapshot`, the document for
 /// `help`, the command's line of JSON for every other call that ran, and its refusal or its session error, marked as an
-/// error, for one that did not. A text over 1,048,576 bytes is replaced by
+/// error, for one that did not. A `screenshot` that ran holds two blocks: an `image` block, the
+/// PNG as base64 with its MIME type, then the text block of its line of JSON without the image.
+/// A text over 1,048,576 bytes, or a `screenshot` result whose written form is, is replaced by
 /// [`SessionError::AnswerTooLarge`]'s: the call ran and is not rolled back.
 ///
 /// A request line is at most 65,536 bytes; a longer one, a line that is not JSON and one
@@ -454,10 +457,12 @@ impl Ending {
     }
 }
 
-/// A tool call's result: its one text block and how it ended.
+/// A tool call's result: its text block, the image a `screenshot` returns, and how it ended.
 #[derive(Debug, Clone, PartialEq)]
 struct ToolResult {
     text: String,
+    /// The PNG as base64, written as an image block before the text block.
+    image: Option<String>,
     ending: Ending,
 }
 
@@ -465,6 +470,16 @@ impl ToolResult {
     fn accepted(text: String) -> ToolResult {
         ToolResult {
             text,
+            image: None,
+            ending: Ending::Accepted,
+        }
+    }
+
+    /// What an accepted `screenshot` returns: its image, then its line without the image.
+    fn shot(width: u32, height: u32, png: &[u8]) -> ToolResult {
+        ToolResult {
+            text: json::shot_without_image(width, height),
+            image: Some(image::base64(png)),
             ending: Ending::Accepted,
         }
     }
@@ -472,6 +487,7 @@ impl ToolResult {
     fn refused(refusal: Refusal) -> ToolResult {
         ToolResult {
             text: refusal.to_json(),
+            image: None,
             ending: Ending::Refused,
         }
     }
@@ -479,14 +495,19 @@ impl ToolResult {
     fn failed(error: SessionError) -> ToolResult {
         ToolResult {
             text: error.to_json(),
+            image: None,
             ending: Ending::Error,
         }
     }
 
-    /// The result, or the session's answer-size error in its place when its text is over the
-    /// bound.
+    /// The result, or the session's answer-size error in its place when it is over the bound:
+    /// its text, or for a result that holds an image its whole written form.
     fn bounded(self) -> ToolResult {
-        if self.text.len() > MAX_ANSWER_BYTES {
+        let size = match self.image {
+            Some(_) => self.written().len(),
+            None => self.text.len(),
+        };
+        if size > MAX_ANSWER_BYTES {
             ToolResult::failed(SessionError::AnswerTooLarge)
         } else {
             self
@@ -494,11 +515,20 @@ impl ToolResult {
     }
 
     fn written(&self) -> String {
+        let mut blocks = Vec::with_capacity(2);
+        if let Some(data) = &self.image {
+            let mut block = Object::new();
+            block.text("type", "image");
+            block.text("data", data);
+            block.text("mimeType", "image/png");
+            blocks.push(block.end());
+        }
         let mut block = Object::new();
         block.text("type", "text");
         block.text("text", &self.text);
+        blocks.push(block.end());
         let mut result = Object::new();
-        result.json("content", &list([block.end()]));
+        result.json("content", &list(blocks));
         result.flag("isError", self.ending != Ending::Accepted);
         result.end()
     }
@@ -613,6 +643,9 @@ impl<B: FnMut(&str) -> Result<Session, SessionError>> Server<'_, B> {
                 };
                 match held.session.run(call) {
                     Ok(Outcome::Screen { text }) => ToolResult::accepted(text),
+                    Ok(Outcome::Shot { width, height, png }) => {
+                        ToolResult::shot(width, height, &png)
+                    }
                     Ok(outcome) => ToolResult::accepted(outcome.to_json()),
                     Err(refusal) => ToolResult::refused(refusal),
                 }
@@ -926,7 +959,7 @@ mod tests {
                 invalid_params,
             ),
             (
-                tool_call(1, "screenshot", "{}"),
+                tool_call(1, "capture", "{}"),
                 error("1", -32602, "unknown tool"),
             ),
             (
@@ -1030,7 +1063,7 @@ mod tests {
     }
 
     #[test]
-    fn the_listing_is_the_ten_verbs_of_the_table() {
+    fn the_listing_is_the_eleven_verbs_of_the_table() {
         let Ok(Value::Object(result)) = serde_json::from_str::<Value>(&tool_list(&APPS)) else {
             panic!("the listing is an object");
         };
@@ -1039,7 +1072,7 @@ mod tests {
         };
         assert_eq!(result.len(), 1, "no member beside the tools, no cursor");
         assert_eq!(tools.len(), VERBS.len());
-        assert_eq!(VERBS.len(), 10);
+        assert_eq!(VERBS.len(), 11);
         assert_eq!(
             tools.last().map(|tool| &tool["name"]),
             Some(&Value::from("help"))
@@ -1255,5 +1288,37 @@ mod tests {
         let written = ToolResult::refused(Refusal::new(Cause::Stale)).written();
         assert!(written.ends_with(r#""isError":true}"#));
         assert!(!written.contains('\n'));
+
+        // A result that holds an image is bounded by its whole written form.
+        let fits = MAX_ANSWER_BYTES / 4 * 3 - 300;
+        assert_eq!(
+            ToolResult::shot(1, 1, &vec![0; fits]).bounded().ending,
+            Ending::Accepted
+        );
+        assert_eq!(
+            ToolResult::shot(1, 1, &vec![0; MAX_ANSWER_BYTES / 4 * 3]).bounded(),
+            ToolResult::failed(SessionError::AnswerTooLarge)
+        );
+    }
+
+    #[test]
+    fn a_shot_is_written_as_its_image_block_then_its_text_block() {
+        let written = ToolResult::shot(800, 600, b"foobar").written();
+        assert_eq!(
+            written,
+            r#"{"content":[{"type":"image","data":"Zm9vYmFy","mimeType":"image/png"},{"type":"text","text":"{\"width\":800,\"height\":600}"}],"isError":false}"#
+        );
+        let Ok(Value::Object(result)) = serde_json::from_str::<Value>(&written) else {
+            panic!("the result is an object");
+        };
+        let Some(Value::Array(content)) = result.get("content") else {
+            panic!("the result holds its content");
+        };
+        assert_eq!(content.len(), 2);
+        assert_eq!(content[0]["type"], "image");
+        assert_eq!(content[1]["type"], "text");
+        let refused = ToolResult::refused(Refusal::new(Cause::FontsUnavailable)).written();
+        assert!(refused.starts_with(r#"{"content":[{"type":"text","#));
+        assert!(refused.ends_with(r#""isError":true}"#));
     }
 }

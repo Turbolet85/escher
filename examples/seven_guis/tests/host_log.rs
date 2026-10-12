@@ -1,6 +1,7 @@
 //! The `escher-session` host, its telemetry sink installed, writes nothing a command handled to
-//! stderr at `RUST_LOG=trace`: no stable element id, no accessible name and no typed text —
-//! while a hosted `snapshot`, `click` and `type` run on it — and each call it runs leaves
+//! stderr at `RUST_LOG=trace`: no stable element id, no accessible name, no typed text and no
+//! image byte — while a hosted `snapshot`, `click`, `type` and two `screenshot`s, the whole
+//! screen and one element, run on it — and each call it runs leaves
 //! exactly one command-span line there. Guards a measured leak: the sink printed records from
 //! third-party targets as written, which put every author key of the screen on stderr at
 //! `debug` and each row's name and each label's text at `trace`. The check reads the host as
@@ -104,7 +105,7 @@ fn the_host_logs_no_id_no_name_and_no_typed_text_at_trace() {
     assert_eq!(hello.pid, host.0.id(), "the binary itself answers");
     assert_eq!(hello.label, "crud");
 
-    // Three calls run on the host's own instance. Each answer is checked for what it must
+    // Five calls run on the host's own instance. Each answer is checked for what it must
     // hold, so the absences read below are of things the host did handle.
     let text = |value: &str| ArgValue::Text(value.to_string());
     let calls = [
@@ -122,6 +123,14 @@ fn the_host_logs_no_id_no_name_and_no_typed_text_at_trace() {
                 ("id".to_string(), text("crud-name")),
                 ("text".to_string(), text(SENTINEL)),
             ],
+        },
+        Call {
+            verb: "screenshot".to_string(),
+            args: Vec::new(),
+        },
+        Call {
+            verb: "screenshot".to_string(),
+            args: vec![("id".to_string(), text("crud-list"))],
         },
     ];
     let answers: Vec<String> = calls
@@ -145,6 +154,20 @@ fn the_host_logs_no_id_no_name_and_no_typed_text_at_trace() {
     assert!(
         answers[2].contains(SENTINEL),
         "the answer to the type holds the typed text as the control's value"
+    );
+    // The first 64 characters of each shot's base64: the image as it crosses.
+    let images: Vec<String> = answers[3..]
+        .iter()
+        .map(|answer| {
+            let (_, png) = answer
+                .split_once("\"png\":\"")
+                .expect("a shot's answer holds its png");
+            png.chars().take(64).collect()
+        })
+        .collect();
+    assert!(
+        images.iter().all(|image| image.len() == 64),
+        "each shot's answer holds an image"
     );
 
     stop(&dir).expect("the session stops");
@@ -208,10 +231,15 @@ fn the_host_logs_no_id_no_name_and_no_typed_text_at_trace() {
     };
     let (ids_found, names_found) = (found(&ids), found(&names));
     let sentinels = stderr.matches(SENTINEL).count();
+    let image_bytes: usize = images
+        .iter()
+        .map(|image| stderr.matches(image.as_str()).count())
+        .sum();
     assert!(
-        ids_found == 0 && names_found == 0 && sentinels == 0,
-        "{ids_found} of {} id needles, {names_found} of {} name needles and {sentinels} \
-         occurrences of the typed text found in {lines} stderr lines",
+        ids_found == 0 && names_found == 0 && sentinels == 0 && image_bytes == 0,
+        "{ids_found} of {} id needles, {names_found} of {} name needles, {sentinels} \
+         occurrences of the typed text and {image_bytes} of an image found in {lines} stderr \
+         lines",
         ids.len(),
         names.len()
     );

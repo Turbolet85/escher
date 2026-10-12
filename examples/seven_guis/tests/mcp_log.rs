@@ -1,6 +1,7 @@
 //! The `escher-session` binary in its `mcp` role, its telemetry sink installed, writes nothing a
-//! tool call handled to stderr at `RUST_LOG=trace`: no stable element id, no accessible name and
-//! no typed text — while a CRUD flow runs through it by tool calls, a `type` among them — and
+//! tool call handled to stderr at `RUST_LOG=trace`: no stable element id, no accessible name, no
+//! typed text and no image byte — while a CRUD flow runs through it by tool calls, a `type` and
+//! two `screenshot`s, the whole screen and one element, among them — and
 //! each tool call leaves exactly one `tool_call` line there, holding only its `tool` and its
 //! `ending` beside the sink's own fields, and each call run on the held instance one `command`
 //! line. Stdout holds protocol lines only. The check reads the binary as its own build makes
@@ -102,9 +103,16 @@ fn the_mcp_role_logs_no_id_no_name_and_no_typed_text_at_trace() {
         ),
         ("click", r#"{"id":"crud-create"}"#.to_string(), true, false),
         ("click", format!(r#"{{"id":"{NOBODY}"}}"#), true, true),
+        ("screenshot", "{}".to_string(), true, false),
+        (
+            "screenshot",
+            r#"{"id":"crud-list"}"#.to_string(),
+            true,
+            false,
+        ),
         ("stop", "{}".to_string(), false, false),
     ];
-    assert_eq!(calls.len(), 6);
+    assert_eq!(calls.len(), 8);
     for (index, (name, arguments, _, is_error)) in calls.iter().enumerate() {
         let id = index as u32 + 2;
         speaker.send(tool_call(id, name, arguments).as_bytes());
@@ -132,6 +140,20 @@ fn the_mcp_role_logs_no_id_no_name_and_no_typed_text_at_trace() {
     assert!(
         replies[3].contains(SENTINEL),
         "the type's result holds the typed text as the control's value"
+    );
+    // The first 64 characters of each shot's image block: the image as it crosses.
+    let images: Vec<String> = replies[6..8]
+        .iter()
+        .map(|reply| {
+            let (_, data) = reply
+                .split_once(r#"{"type":"image","data":""#)
+                .expect("a shot's result holds its image block");
+            data.chars().take(64).collect()
+        })
+        .collect();
+    assert!(
+        images.iter().all(|image| image.len() == 64),
+        "each shot's result holds an image"
     );
 
     let spoke = speaker.close();
@@ -229,11 +251,15 @@ fn the_mcp_role_logs_no_id_no_name_and_no_typed_text_at_trace() {
     let (ids_found, names_found) = (found(&ids), found(&names));
     let sentinels = stderr.matches(SENTINEL).count();
     let nobodies = stderr.matches(NOBODY).count();
+    let image_bytes: usize = images
+        .iter()
+        .map(|image| stderr.matches(image.as_str()).count())
+        .sum();
     assert!(
-        ids_found == 0 && names_found == 0 && sentinels == 0 && nobodies == 0,
+        ids_found == 0 && names_found == 0 && sentinels == 0 && nobodies == 0 && image_bytes == 0,
         "{ids_found} of {} id needles, {names_found} of {} name needles, {sentinels} \
-         occurrences of the typed text and {nobodies} of the refused id found in {lines} \
-         stderr lines",
+         occurrences of the typed text, {nobodies} of the refused id and {image_bytes} of an \
+         image found in {lines} stderr lines",
         ids.len(),
         names.len()
     );

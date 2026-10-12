@@ -457,13 +457,21 @@ mod tests {
             (&["mcp", "x"], Line::Usage),
             (&["mcp", "--session", DIR], Line::Usage),
             // A first word the table does not hold.
-            (&["screenshot", "--session", DIR], unknown()),
+            (&["capture", "--session", DIR], unknown()),
             (&["Click", "--id", "save", "--session", DIR], unknown()),
             (&["", "--session", DIR], unknown()),
             (&["--session", DIR, "snapshot"], unknown()),
-            (&["screenshot"], unknown()),
+            (&["capture"], unknown()),
             // Each instance verb, its arguments as flags in any order.
             (&["snapshot", "--session", DIR], instance("snapshot", &[])),
+            (
+                &["screenshot", "--session", DIR],
+                instance("screenshot", &[]),
+            ),
+            (
+                &["screenshot", "--session", DIR, "--id", "crud-list"],
+                instance("screenshot", &[("id", text("crud-list"))]),
+            ),
             (
                 &["click", "--id", "save", "--session", DIR],
                 instance("click", &[("id", text("save"))]),
@@ -662,7 +670,7 @@ mod tests {
             // `start` on an app the binary does not boot.
             (&["start", "timer", "--session", DIR], Line::Usage),
         ];
-        assert_eq!(rows.len(), 71);
+        assert_eq!(rows.len(), 73);
         for (row, (words, read)) in rows.into_iter().enumerate() {
             assert!(line(words) == read, "row {row}");
         }
@@ -776,8 +784,8 @@ mod tests {
             usage(&APPS),
             "usage: <command> --session <dir>; commands: snapshot | click --id <id> | type --id \
              <id> --text <text> | press --key <key> [--shift] | advance --ms <milliseconds> | \
-             scroll --id <id> | start <app> | status | stop | help; host role: serve <app> \
-             --session <dir>; mcp role: mcp; apps: counter | flight-booker"
+             scroll --id <id> | screenshot [--id <id>] | start <app> | status | stop | help; host \
+             role: serve <app> --session <dir>; mcp role: mcp; apps: counter | flight-booker"
         );
         for verb in VERBS {
             assert!(usage(&[]).contains(verb.name));

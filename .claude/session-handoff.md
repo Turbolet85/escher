@@ -37,3 +37,6 @@
 - Curation wrote two Tier 3 entries (the `cascade.py sweep --pattern` flag and the bare-count sweep hazard); nothing deferred by the cap.
 - `recurrence-despite-learning: "Committed run-dir and evidence text must not spell a host temp path, even as prose"` — a phase relay carried a sibling directory's host path again, refused by hygiene at the operator pass.
 - `recurrence-despite-learning: "The rustfmt write hook … Extended 2026-10-06: an edit made through a Bash script never fires the hook"` — implement's python string replacements left two files unformatted, and the fast leg read red.
+
+## Session End Status
+Completed normally at 2026-10-12 20:43:38

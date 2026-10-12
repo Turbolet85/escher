@@ -9,6 +9,7 @@ use dioxus_native_dom::{DiffNode, Reading, SnapshotDiff};
 use crate::client::Hello;
 use crate::error::SessionError;
 use crate::execute::{Outcome, busy_word};
+use crate::image;
 use crate::refusal::Refusal;
 use crate::schema::NODE_FIELDS;
 
@@ -238,6 +239,20 @@ fn acted(settled: bool, busy: Option<Busy>, diff: &SnapshotDiff) -> Object {
     object
 }
 
+/// The size fields of what `screenshot` returns, in the schema's order.
+fn shot(width: u32, height: u32) -> Object {
+    let mut object = Object::new();
+    object.count("width", u64::from(width));
+    object.count("height", u64::from(height));
+    object
+}
+
+/// What `screenshot` returns without its image: the line an MCP tool result carries beside the
+/// image itself.
+pub(crate) fn shot_without_image(width: u32, height: u32) -> String {
+    shot(width, height).end()
+}
+
 impl Outcome {
     /// The outcome as one line of JSON: an object keyed by the result fields of its verb, in
     /// the schema's order, each node an object keyed by the schema's node fields. A field that
@@ -275,6 +290,11 @@ impl Outcome {
             } => {
                 let mut object = acted(*settled, *busy, diff);
                 object.flag("in_view", *in_view);
+                object.end()
+            }
+            Outcome::Shot { width, height, png } => {
+                let mut object = shot(*width, *height);
+                object.text("png", &image::base64(png));
                 object.end()
             }
         }
@@ -593,8 +613,18 @@ mod tests {
                 &[][..],
                 r#"{"settled":false,"busy":"render","added":[],"removed":[],"changed":[],"in_view":false}"#,
             ),
+            (
+                Outcome::Shot {
+                    width: 800,
+                    height: 600,
+                    png: b"foobar".to_vec(),
+                },
+                &schema::SCREENSHOT,
+                &[][..],
+                r#"{"width":800,"height":600,"png":"Zm9vYmFy"}"#,
+            ),
         ];
-        assert_eq!(rows.len(), 5);
+        assert_eq!(rows.len(), 6);
         for (row, (outcome, verb, absent, json)) in rows.into_iter().enumerate() {
             let line = outcome.to_json();
             assert!(line == json, "row {row}");
@@ -605,6 +635,9 @@ mod tests {
             field_names(&schema::CLICK, &[]),
             field_names(&schema::PRESS, &[])
         );
+        let without = shot_without_image(369, 420);
+        assert_eq!(without, r#"{"width":369,"height":420}"#);
+        assert_eq!(keys(&without), field_names(&schema::SCREENSHOT, &["png"]));
     }
 
     #[test]
@@ -621,7 +654,7 @@ mod tests {
             .map(Refusal::new)
             .chain(faults.into_iter().map(Refusal::malformed))
             .collect();
-        assert_eq!(refusals.len(), 13);
+        assert_eq!(refusals.len(), 14);
         for (row, refusal) in refusals.iter().enumerate() {
             let cause = refusal.cause();
             let mut expected = format!(

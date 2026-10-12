@@ -1,11 +1,14 @@
 //! A call run on a held instance: checked, run, settled, and answered with a typed outcome.
 
-use blitz_test_harness::{Busy, Harness, Key as KeyboardKey, Modifiers};
+use blitz_test_harness::{
+    Busy, Harness, Key as KeyboardKey, Modifiers, PixelRect, ScreenshotError,
+};
 use dioxus_native_dom::{DioxusDocument, NodeId, Snapshot, SnapshotDiff};
 use tracing::Span;
 use tracing::field::Empty;
 
 use crate::command::{Call, Command, Key, validate};
+use crate::image;
 use crate::refusal::{Cause, Refusal};
 use crate::schema::{self, BUSY_CLASSES};
 use crate::session::{SeenIds, Session};
@@ -57,6 +60,15 @@ pub enum Outcome {
         /// [`Cause::OffScreen`].
         in_view: bool,
     },
+    /// What `screenshot` returns.
+    Shot {
+        /// The image's width, in pixels.
+        width: u32,
+        /// The image's height, in pixels.
+        height: u32,
+        /// The image: a PNG of 8-bit RGBA pixels as painted.
+        png: Vec<u8>,
+    },
 }
 
 /// States the fields of a command's span once: the span that carries them, and the table of
@@ -92,6 +104,13 @@ impl Session {
     /// [`Cause::Covered`] when another element is hit at that point. An `advance` on a
     /// session with no time step ([`Session::with_time`]) is refused as
     /// [`Cause::TimeUnavailable`].
+    ///
+    /// `screenshot` runs no step and settles nothing, as `snapshot` does: it paints the screen
+    /// as it stands, the whole of it, or the element an id names, cropped to the part of its
+    /// bounds that can be seen, rounded outward to whole pixels. An element out of view is
+    /// refused as [`Cause::OffScreen`]; one that is disabled or covered is not refused, since
+    /// the image shows what is painted there. An app with no font it can paint text with is
+    /// refused as [`Cause::FontsUnavailable`], with nothing painted.
     ///
     /// An acting verb takes the screen's snapshot, runs its step, settles the instance
     /// ([`Harness::settle`]) and takes the snapshot again; its outcome carries the diff of the
@@ -183,6 +202,31 @@ impl Session {
                     in_view,
                 })
             }
+            Command::Screenshot { id } => {
+                let shot = match id {
+                    None => harness.screenshot(),
+                    Some(id) => {
+                        let (_, target) = resolve(harness, seen, &id)?;
+                        if !in_view(harness, &target) {
+                            return Err(Refusal::new(Cause::OffScreen));
+                        }
+                        let rect = crop(harness, &target).ok_or(Refusal::new(Cause::OffScreen))?;
+                        harness.screenshot_rect(rect)
+                    }
+                };
+                let raster = shot.map_err(|error| match error {
+                    ScreenshotError::FontsUnavailable => Refusal::new(Cause::FontsUnavailable),
+                    ScreenshotError::EmptyRect => Refusal::new(Cause::OffScreen),
+                })?;
+                // A raster always fills its own non-empty size, and the encoder writes to
+                // memory, so the empty fallback is never taken.
+                let png = image::png(raster.width, raster.height, &raster.rgba).unwrap_or_default();
+                Ok(Outcome::Shot {
+                    width: raster.width,
+                    height: raster.height,
+                    png,
+                })
+            }
         }
     }
 }
@@ -195,7 +239,7 @@ fn record_result(span: &Span, result: &Result<Outcome, Refusal>) {
             span.record("cause", refusal.cause().name());
             return;
         }
-        Ok(Outcome::Screen { .. }) => return,
+        Ok(Outcome::Screen { .. } | Outcome::Shot { .. }) => return,
         Ok(
             Outcome::Acted {
                 settled,
@@ -242,6 +286,9 @@ struct Target {
     holds_value: bool,
     /// The centre of the element's bounds, relative to the viewport.
     centre: (f64, f64),
+    /// The element's bounds as the snapshot reads them: x, y, width and height, relative to
+    /// the viewport.
+    bounds: (f64, f64, f64, f64),
 }
 
 /// The screen of the held instance, its ids recorded.
@@ -276,6 +323,7 @@ fn locate(harness: &Harness<DioxusDocument>, screen: &Snapshot, id: &str) -> Opt
             bounds.x + bounds.width / 2.0,
             bounds.y + bounds.height / 2.0,
         ),
+        bounds: (bounds.x, bounds.y, bounds.width, bounds.height),
     })
 }
 
@@ -329,6 +377,29 @@ fn in_view(harness: &Harness<DioxusDocument>, target: &Target) -> bool {
         .is_some_and(|seen| {
             x >= seen.x && x <= seen.x + seen.width && y >= seen.y && y <= seen.y + seen.height
         })
+}
+
+/// The device pixels of `target` that can be seen: its bounds within the visible part of
+/// every scrolling box that holds it, at the viewport's scale, rounded outward — the near
+/// edges down, the far edges up. `None` when no pixel is left.
+fn crop(harness: &Harness<DioxusDocument>, target: &Target) -> Option<PixelRect> {
+    let doc = harness.base();
+    let seen = doc.visible_region(target.node)?;
+    let scale = doc.viewport().scale_f64();
+    let (x, y, width, height) = target.bounds;
+    let left = (x.max(seen.x) * scale).floor().max(0.0);
+    let top = (y.max(seen.y) * scale).floor().max(0.0);
+    let right = ((x + width).min(seen.x + seen.width) * scale).ceil();
+    let bottom = ((y + height).min(seen.y + seen.height) * scale).ceil();
+    if right <= left || bottom <= top {
+        return None;
+    }
+    Some(PixelRect {
+        x: left as u32,
+        y: top as u32,
+        width: (right - left) as u32,
+        height: (bottom - top) as u32,
+    })
 }
 
 /// Whether the element hit at `page` is neither `target` nor inside it. A point over no box
@@ -448,7 +519,7 @@ mod tests {
             .flat_map(|verb| verb.args)
             .map(|argument| argument.name)
             .collect();
-        assert_eq!(arguments.len(), 8);
+        assert_eq!(arguments.len(), 9);
         for (row, field) in SPAN_FIELDS.iter().enumerate() {
             assert!(!arguments.contains(field), "row {row}");
         }

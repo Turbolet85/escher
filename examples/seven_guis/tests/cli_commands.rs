@@ -1,7 +1,8 @@
 //! Every driver command through the real `escher-session` binary: `start`, `status`, `stop` and
-//! each of the six verbs answer one line of uncoloured JSON on stdout and end with a status
+//! each of the seven verbs answer one line of uncoloured JSON on stdout and end with a status
 //! that tells accepted (`0`) from refused (`1`) and from a session error (`3`). The snapshot's
-//! line is the library's own form of the screen booted in process, inside its byte budget.
+//! line is the library's own form of the screen booted in process, inside its byte budget; the
+//! screenshot's `png` is the PNG of the screen booted in process, 800 × 600.
 //! `help` answers the library's own description of the tool, reaching no session. Every
 //! refusal the binary is driven to — seven causes, all but `covered` — and every session error
 //! read here names the remedy the table states, and on Linux a state directory of 94 bytes, as
@@ -14,7 +15,7 @@
 mod common;
 
 use common::{Ran, Started, cause, clear, client, keys, number, state_dir, string_at, text};
-use escher_driver::{CAUSES, Outcome, SessionError, VERBS, describe, verb};
+use escher_driver::{CAUSES, Call, Outcome, SessionError, VERBS, describe, verb};
 use seven_guis::stand::{self, LeanTask};
 
 const BINARY: &str = env!("CARGO_BIN_EXE_escher-session");
@@ -115,7 +116,7 @@ impl Session {
 
 #[test]
 fn each_task_starts_answers_and_stops() {
-    assert_eq!(VERBS.len(), 10);
+    assert_eq!(VERBS.len(), 11);
     for (index, (task, _)) in TASKS.into_iter().enumerate() {
         let dir = state_dir(&format!("cc-life-{index}"));
         clear(&dir);
@@ -278,6 +279,79 @@ fn a_snapshot_is_the_in_process_text_as_one_line_inside_its_budget() {
     }
 }
 
+/// Reads RFC 4648 base64 with padding: `None` for any other text.
+fn decode_base64(text: &str) -> Option<Vec<u8>> {
+    const ALPHABET: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    if text.len() % 4 != 0 {
+        return None;
+    }
+    let mut out = Vec::new();
+    for chunk in text.as_bytes().chunks(4) {
+        let padding = chunk.iter().rev().take_while(|byte| **byte == b'=').count();
+        let mut n = 0u32;
+        for byte in &chunk[..4 - padding] {
+            n = n << 6 | ALPHABET.iter().position(|letter| letter == byte)? as u32;
+        }
+        n <<= 6 * padding as u32;
+        out.extend_from_slice(&n.to_be_bytes()[1..4 - padding]);
+    }
+    Some(out)
+}
+
+/// The width and height a PNG's header states: `None` for bytes that do not open as a PNG.
+fn png_size(bytes: &[u8]) -> Option<(u32, u32)> {
+    let header = bytes.strip_prefix(b"\x89PNG\r\n\x1a\n")?;
+    let ihdr = header.get(4..16)?.strip_prefix(b"IHDR")?;
+    let width = u32::from_be_bytes(ihdr.get(0..4)?.try_into().ok()?);
+    let height = u32::from_be_bytes(ihdr.get(4..8)?.try_into().ok()?);
+    Some((width, height))
+}
+
+#[test]
+fn a_screenshot_answers_one_line_whose_png_is_the_screen() {
+    // The host boots in the incremental layout mode; so does this.
+    let mut held =
+        escher_driver::Session::start("crud", || stand::boot(LeanTask::Crud, stand::options(true)))
+            .expect("the slug is a label");
+    let call = Call {
+        verb: "screenshot".to_string(),
+        args: Vec::new(),
+    };
+    let Ok(Outcome::Shot { png, .. }) = held.run(&call) else {
+        panic!("the screenshot runs in process");
+    };
+
+    let crud = Session::start("cc-shot", "crud");
+    let answer = crud.accepted(&["screenshot"]);
+    assert!(
+        keys(&answer) == fields("screenshot"),
+        "the screenshot's fields"
+    );
+    assert_eq!(number(&answer, "width"), Some(800));
+    assert_eq!(number(&answer, "height"), Some(600));
+    let shot = string_at(&answer, "png")
+        .and_then(|text| decode_base64(&text))
+        .expect("the png is base64");
+    assert_eq!(png_size(&shot), Some((800, 600)), "the PNG is 800 × 600");
+    assert!(
+        shot == png,
+        "the PNG is the screen's, as painted in process"
+    );
+
+    let element = crud.accepted(&["screenshot", "--id", "crud-list"]);
+    assert_eq!(number(&element, "width"), Some(369));
+    assert_eq!(number(&element, "height"), Some(420));
+
+    let ran = crud.run(&["screenshot", "--id", NOBODY]);
+    assert_eq!(ran.status, Some(1), "an unread id ends refused");
+    assert_eq!(remedied(ran.line()), "not-found");
+    assert!(
+        !ran.line().contains(NOBODY) && ran.stderr.is_empty(),
+        "the refusal writes back nothing the line named"
+    );
+    crud.stop();
+}
+
 #[test]
 fn a_call_a_target_cannot_take_is_refused_with_its_cause() {
     let crud = Session::start("cc-refuse", "crud");
@@ -330,8 +404,8 @@ fn a_call_the_schema_refuses_reaches_no_session() {
     clear(&dir);
     let at = text(&dir);
     let rows: [(&[&str], &str); 6] = [
-        (&["screenshot", "--session", at], "unknown-verb"),
-        (&["screenshot"], "unknown-verb"),
+        (&["capture", "--session", at], "unknown-verb"),
+        (&["capture"], "unknown-verb"),
         (&["click", "--session", at], "malformed"),
         (&["click"], "malformed"),
         (&["advance", "--ms", "soon", "--session", at], "malformed"),

@@ -27,9 +27,9 @@
 //! What can be asked of the driver, and how it says no, is stated once, as data held in
 //! process: [`VERBS`] lists each verb with its level, its argument shapes and its result
 //! shape, [`validate`] turns a [`Call`] into a typed [`Command`] or a [`Refusal`] before
-//! anything runs, and every refusal names a [`Cause`] with a fixed remedy. Ten verbs stand in
-//! three levels. Six are asked of the held instance: `snapshot`, `click`, `type`, `press`,
-//! `advance` and `scroll`. Three are asked of the session itself — `start`, `status` and
+//! anything runs, and every refusal names a [`Cause`] with a fixed remedy. Eleven verbs stand in
+//! three levels. Seven are asked of the held instance: `snapshot`, `click`, `type`, `press`,
+//! `advance`, `scroll` and `screenshot`. Three are asked of the session itself — `start`, `status` and
 //! `stop` — and one of the tool itself, `help`; these four are checked by [`validate_session`],
 //! and a session runs none of them.
 //!
@@ -45,8 +45,10 @@
 //! `snapshot`, and for an acting verb whether the instance went quiet and the diff of the
 //! screen before and after, named by stable element id. `type` replaces what the element
 //! holds, and an empty text clears it; `scroll` brings the element an id names into view and
-//! says whether it then is. Time moves only by `advance`, through the step a session's caller
-//! hands it ([`Session::with_time`]). An outcome, a refusal and a session error each have one
+//! says whether it then is. `screenshot` paints the screen, or the element an id names, with no
+//! display and returns it as a PNG ([`Outcome::Shot`]); an app with no font it can paint text
+//! with is refused ([`Cause::FontsUnavailable`]). Time moves only by `advance`, through the step
+//! a session's caller hands it ([`Session::with_time`]). An outcome, a refusal and a session error each have one
 //! written form, a line of JSON keyed by the schema's own words ([`Outcome::to_json`],
 //! [`Refusal::to_json`], [`SessionError::to_json`]), and three surfaces read it: the session's
 //! socket, the command line and the MCP server.
@@ -74,8 +76,9 @@
 //!
 //! [`serve_mcp`] serves the verbs as MCP tools over a reader and a writer — newline-delimited
 //! JSON-RPC 2.0 in the protocol's handshake revisions — and holds the session it starts in its
-//! own process. A `snapshot` tool result is the screen's text, and every other result the
-//! command's line of JSON. Each tool call leaves one `tracing` span, `tool_call`, under the
+//! own process. A `snapshot` tool result is the screen's text, a `screenshot` result the image
+//! as an MCP image block beside its line of JSON, and every other result the command's line of
+//! JSON. Each tool call leaves one `tracing` span, `tool_call`, under the
 //! target `escher_driver`, with two fields — `tool`, the table's word for its verb, and
 //! `ending`, `accepted`, `refused` or `error` — and the call's `command` span is its child.
 //!
@@ -97,6 +100,7 @@ mod describe;
 mod error;
 mod execute;
 mod host;
+mod image;
 mod json;
 mod mcp;
 mod refusal;
