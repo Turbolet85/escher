@@ -700,7 +700,7 @@ impl ElementData {
     }
 
     pub fn flush_is_focussable(&mut self) {
-        let disabled: bool = self.attr_parsed(local_name!("disabled")).unwrap_or(false);
+        let disabled = self.has_attr(local_name!("disabled"));
         let tabindex: Option<i32> = self.attr_parsed(local_name!("tabindex"));
         let contains_sub_document: bool = self.sub_doc_data().is_some();
 

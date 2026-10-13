@@ -650,8 +650,9 @@ fn child_drives_at_the_default_level() {
                 .as_ref()
                 .ok()
                 .and_then(acting)
-                .is_some_and(|(settled, _, diff)| settled && diff.changed.len() == 1),
-            "{mode}: the click returns settled with the value it rewrote"
+                .is_some_and(|(settled, _, diff)| settled && diff.changed.len() == 2),
+            "{mode}: the click returns settled with the value it rewrote and the button it \
+             focused"
         );
         assert!(
             counter

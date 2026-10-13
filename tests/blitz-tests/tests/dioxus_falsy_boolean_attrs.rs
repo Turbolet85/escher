@@ -5,7 +5,8 @@
 //! boolean attribute as the literal `"false"`; blitz-dom reads `hidden` by presence and gives
 //! it `display: none`, so an element rendered `hidden: false` left the screen, the
 //! accessibility tree and the snapshot. The names are the boolean-attribute list of Dioxus
-//! 0.7.10's own web renderer, which removes them the same way.
+//! 0.7.10's own web renderer, which removes them the same way, and `inert`, which the bridge's
+//! list holds beside them.
 
 use blitz_test_harness::{Harness, HarnessOptions};
 use dioxus::prelude::*;
@@ -83,7 +84,7 @@ fn a_falsy_hidden_element_is_displayed() {
 /// and one that carries every name with a signal-driven falsy value (a dynamic attribute).
 macro_rules! boolean_attrs {
     ($($name:tt),* $(,)?) => {
-        const BOOLEAN_ATTRS: [&str; 27] = [$($name),*];
+        const BOOLEAN_ATTRS: [&str; 28] = [$($name),*];
 
         fn falsy_app() -> Element {
             let off = use_signal(|| false);
@@ -108,6 +109,7 @@ boolean_attrs![
     "disabled",
     "formnovalidate",
     "hidden",
+    "inert",
     "ismap",
     "itemscope",
     "loop",
@@ -154,12 +156,14 @@ fn kept_app() -> Element {
         div {
             id: "literal",
             "readonly": "true",
+            "inert": "true",
             "aria-hidden": "false",
             "data-flag": "false",
         }
         div {
             id: "driven",
             "readonly": on(),
+            "inert": on(),
             "aria-hidden": off(),
             "data-flag": off(),
         }
@@ -168,7 +172,9 @@ fn kept_app() -> Element {
 
 #[test]
 fn a_truthy_or_unlisted_attribute_is_kept() {
-    assert!(BOOLEAN_ATTRS.contains(&"readonly"), "a listed name");
+    for listed in ["readonly", "inert"] {
+        assert!(BOOLEAN_ATTRS.contains(&listed), "a listed name");
+    }
     for unlisted in ["aria-hidden", "data-flag"] {
         assert!(!BOOLEAN_ATTRS.contains(&unlisted), "an unlisted name");
     }
@@ -179,6 +185,11 @@ fn a_truthy_or_unlisted_attribute_is_kept() {
             let what = format!("incremental={incremental}: on {element:?}");
             assert_eq!(
                 harness.attr(&selector, "readonly").as_deref(),
+                Some("true"),
+                "{what}"
+            );
+            assert_eq!(
+                harness.attr(&selector, "inert").as_deref(),
                 Some("true"),
                 "{what}"
             );

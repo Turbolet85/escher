@@ -1,0 +1,53 @@
+gate v1.17 · 383c6f7b
+4 integration green
+run (35e65e36): cargo test -p blitz-tests --locked --test stand_accessibility_ids --test stand_snapshot_state --test focusability_updates --test dioxus_falsy_boolean_attrs --test stand_act_keys --test stand_act_obstructed --test stand_act_diff --test stand_actionable_keys
+  exit 0 ✓
+  lacks 'running 0 tests' ✓
+  lacks 'FAILED' ✓
+log $TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/phase-2026-10-13T22-07-35/4.log · 4190 B · 24a7e006
+--- no anchored failure; last 6 non-empty lines ---
+test a_date_that_is_no_date_reads_invalid ... ok
+test exactly_the_selected_row_reads_selected ... ok
+test focus_reads_on_exactly_the_focused_control ... ok
+test typed_text_reads_back_as_the_value ... ok
+test a_disabled_control_reads_disabled_until_the_app_enables_it ... ok
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.36s
+gate v1.17 · 383c6f7b
+5 integration red · exit 0 ✗ (exit 101)
+run (f52d9d0c): cargo test --workspace --locked --test stand_keyboard --test stand_accessibility_ids --test stand_snapshot_state --test focusability_updates --test stand_act_keys --test stand_act_obstructed --test stand_act_diff
+  exit 0 ✗ (exit 101)
+  lacks 'running 0 tests' ✓
+  lacks 'FAILED' ✓
+log $TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/phase-2026-10-13T22-07-35/5.log · 3042 B · 7640a3ce
+--- failing block from L1 ---
+error: no test target named `stand_keyboard` in default-run packages
+help: available test targets:
+    accessibility_hidden
+    accessibility_names
+    accessibility_roles
+    accessibility_states
+gate v1.17 · 383c6f7b
+6 integration green
+run (e8935269): cargo test -p seven_guis --locked
+  exit 0 ✓
+  lacks 'FAILED' ✓
+log $TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/phase-2026-10-13T22-07-35/6.log · 4274 B · 4899e820
+--- no anchored failure; last 6 non-empty lines ---
+test a_fresh_counters_snapshot_reads_the_same_through_mcp_and_the_command_line ... ok
+test a_screenshot_tool_call_answers_an_image_block_then_a_text_block ... ok
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.31s
+   Doc-tests seven_guis
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+gate v1.17 · 383c6f7b
+12 integration green
+run (712f53cb): bash scripts/agent-run.sh run stand
+  exit 0 ✓
+log $TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/phase-2026-10-13T22-07-35/12.log · 19157 B · 13ed1fa1
+--- no anchored failure; last 6 non-empty lines ---
+{"event": "test", "file": "stand_snapshot_text", "test": "state_reads_as_the_model_holds_it", "outcome": "ok"}
+{"event": "test", "file": "stand_snapshot_text", "test": "the_text_is_deterministic", "outcome": "ok"}
+{"event": "test", "file": "stand_timer", "test": "ticks_past_the_duration_stop_at_it", "outcome": "ok"}
+{"event": "test", "file": "stand_timer", "test": "reset_zeroes_elapsed", "outcome": "ok"}
+{"event": "test", "file": "stand_timer", "test": "delivered_ticks_advance_elapsed_and_progress", "outcome": "ok"}
+{"event": "run.end", "ts": "2026-10-13T22:44:02Z", "selection": "stand", "passed": 141, "failed": 0, "ignored": 7, "cargo_exit": 0, "outcome": "passed"}

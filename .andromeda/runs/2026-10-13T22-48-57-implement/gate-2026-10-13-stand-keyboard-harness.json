@@ -1,0 +1,668 @@
+[
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-13T22:59:43Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness",
+"--run-dir",
+".andromeda/runs/2026-10-13T22-48-57-implement",
+"--marker",
+"2026-10-13-stand-keyboard-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 1 · modify 14 · derived 3 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list tests/blitz-tests/tests/stand_*.rs (derived by `cargo test -p blitz-tests --locked --no-fail-fast`) ×3",
+"list examples/seven_guis/tests/*.rs (derived by `cargo test -p seven_guis --locked --no-fail-fast`) ×0",
+"list examples/seven_guis/tests/flows/*.sh (derived by `cargo test -p seven_guis --locked --test cli_flow`) ×0",
+"scope: clean — changed 18 · listed 18 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 3 · excluded 87"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 18,
+"listed": 18,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 3
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 87,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-13T23:05:36Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-13T22-48-57-implement",
+"--marker",
+"2026-10-13-stand-keyboard-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-13-stand-keyboard-harness · entries 17",
+"logs $TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/implement-2026-10-13T22-48-57 · bound: GNU timeout",
+"delta docs 81 · rust 18 · unmapped 8",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L150-154: No mutation runs — the founder's word (inputs#I1). A check's power to fail is shown instea… (512 chars)",
+"  1 unit        green · exit 0 · 5.82s · 7405 B → 1.log · cargo test -p blitz-dom --locked",
+"  2 unit        green · exit 0 · 4.53s · 5850 B → 2.log · cargo test -p dioxus-native-dom --locked",
+"  3 integration green · exit 0 · 6.68s · 1143 B → 3.log · cargo test -p blitz-tests --locked --test stand_keyboard",
+"  4 integration green · exit 0 · 6.18s · 4249 B → 4.log · cargo test -p blitz-tests --locked --test stand_accessibil… (256 chars)",
+"  5 integration green · exit 0 · 14.63s · 5251 B → 5.log · cargo test --workspace --locked --test stand_keyboard --te… (212 chars)",
+"  6 integration green · exit 0 · 8.6s · 4274 B → 6.log · cargo test -p seven_guis --locked",
+"  7 probe       green · exit 1 · 0.01s · 2 B → 7.log · git diff e40d94371643eef83015c6a17f0ae750c8fbe4c0 -- Cargo… (94 chars)",
+"  8 probe       green · exit 1 · 0.01s · 2 B → 8.log · git diff e40d94371643eef83015c6a17f0ae750c8fbe4c0 -- packa… (223 chars)",
+"  9 probe       green · exit 1 · 0.0s · 2 B → 9.log · grep -c -E 'println!|eprintln!|print!|dbg!|std::env|env::v… (171 chars)",
+" 10 probe       green · exit 0 · 0.01s · 0 B → 10.log · git diff --quiet e40d94371643eef83015c6a17f0ae750c8fbe4c0 … (755 chars)",
+" 11 build       green · exit 0 · 47.6s · 137 B → 11.log · bash scripts/agent-run.sh boot",
+" 12 integration green · exit 0 · 51.83s · 20663 B → 12.log · bash scripts/agent-run.sh run stand",
+" 13 lint        green · exit 0 · 142.7s · 100071 B → 13.log · bash .github/scripts/ci-leg.sh fast",
+" 14 lint        green · exit 0 · 46.78s · 2320 B → 14.log · bash .github/scripts/ci-leg.sh doc",
+" 15 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 16 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 17 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 17 · green 14 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-13-stand-keyboard-harness",
+"plan": "./escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/implement-2026-10-13T22-48-57",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-13T21-11-52-wrap/evolve-2026-10-13-range-input-interaction.json",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-13T21-11-52-wrap/health-2026-10-13-range-input-interaction.json",
+".andromeda/runs/2026-10-13T22-07-35-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/a11y-history.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/a11y.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/arch-history-index.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/arch-history.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/arch.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/base-10.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/base-11.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/base-12.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/base-3.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/base-4.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/base-5.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/base-6.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/base-7.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/base-8.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/base-9.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/base-long.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/baseline-2.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/baseline-3.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-13T22-07-35-phase/controls-p5.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/design-history.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/design.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/dryrun-2.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/dryrun-3.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/dryrun.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/evolve-2026-10-13-stand-keyboard-harness.json",
+".andromeda/runs/2026-10-13T22-07-35-phase/gate-2026-10-13-stand-keyboard-harness.json",
+".andromeda/runs/2026-10-13T22-07-35-phase/graph-1.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/graph-2.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/inputs-2026-10-13-stand-keyboard-harness.json",
+".andromeda/runs/2026-10-13T22-07-35-phase/layouts-history.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/layouts.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/master-record.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/matrix-2026-10-13-stand-keyboard-harness.json",
+".andromeda/runs/2026-10-13T22-07-35-phase/obs-contracts.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/obs-history.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/obs.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/p5-card-1.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/p5-card-2.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/pins-out.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/planlint-2.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/planlint-2026-10-13-stand-keyboard-harness.json",
+".andromeda/runs/2026-10-13T22-07-35-phase/planlint-3.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/planlint.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/probe-counter.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/registry-2026-10-13-stand-keyboard-harness.json",
+".andromeda/runs/2026-10-13T22-07-35-phase/relay-1.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/relay-2.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/relay-3.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/relay-4.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/relay-5.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/route-2026-10-13-stand-keyboard-harness.json",
+".andromeda/runs/2026-10-13T22-07-35-phase/route-no-marker.json",
+".andromeda/runs/2026-10-13T22-07-35-phase/scope-2.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/scope-3.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/scope.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/security-history.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/security.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/show-3.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/show-9.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/show-help.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/show-long.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/sidecar-2026-10-13-stand-keyboard-harness.json",
+".andromeda/runs/2026-10-13T22-07-35-phase/tests-contracts.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/tests-history.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/tests.md",
+".andromeda/runs/2026-10-13T22-07-35-phase/tree-query-2026-10-13-stand-keyboard-harness.json",
+".andromeda/runs/2026-10-13T22-07-35-phase/verify-3.txt",
+".andromeda/runs/2026-10-13T22-07-35-phase/verify.txt",
+".andromeda/runs/2026-10-13T22-48-57-implement/evolve-2026-10-13-stand-keyboard-harness.json",
+".andromeda/runs/2026-10-13T22-48-57-implement/gate-2026-10-13-stand-keyboard-harness.json",
+"escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/plan.md",
+"escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/research.md",
+"escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/scope.md"
+],
+"rust": [
+"examples/seven_guis/src/tasks/crud.rs",
+"packages/blitz-dom/src/events/keyboard.rs",
+"packages/blitz-dom/src/events/mod.rs",
+"packages/blitz-dom/src/events/pointer.rs",
+"packages/blitz-dom/src/node/element.rs",
+"packages/dioxus-native-dom/src/snapshot.rs",
+"tests/blitz-tests/tests/common/mod.rs",
+"tests/blitz-tests/tests/dioxus_falsy_boolean_attrs.rs",
+"tests/blitz-tests/tests/focusability_updates.rs",
+"tests/blitz-tests/tests/stand_accessibility_ids.rs",
+"tests/blitz-tests/tests/stand_act_diff.rs",
+"tests/blitz-tests/tests/stand_act_ids.rs",
+"tests/blitz-tests/tests/stand_act_keys.rs",
+"tests/blitz-tests/tests/stand_act_obstructed.rs",
+"tests/blitz-tests/tests/stand_act_spans.rs",
+"tests/blitz-tests/tests/stand_diff.rs",
+"tests/blitz-tests/tests/stand_snapshot_state.rs",
+"tests/blitz-tests/tests/stand_keyboard.rs"
+]
+},
+"unmapped": [
+"escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/inputs/.gitattributes",
+"escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/inputs/I1-relay-1.md.txt",
+"escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/inputs/I2-relay-2.md.txt",
+"escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/inputs/I3-keyboard-harness-founder-answers.md.txt",
+"escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/inputs/I4-relay-3.md.txt",
+"escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/inputs/I5-relay-4.md.txt",
+"escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/inputs/I6-relay-5.md.txt",
+"escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/inputs/andromeda-inputs.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 107,
+"problem": null
+},
+"prose": [
+{
+"from": 150,
+"to": 154,
+"text": "No mutation runs — the founder's word (inputs#I1). A check's power to fail is shown instead by the baselines P5 reads on the untouched tree (the new target absent; `stand_act_keys`, `stand_accessibility_ids` and the restated pins green on the old readings that steps 1–6 turn red by design) and by the fixtures' preconditions. No live leg and no boot-path smoke: the stand boots in process in every check; the windows, macos, ios and android legs and the MSRV build are read only through the pushed sha's CI run."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-dom --locked",
+"run_sha8": "cd4c2b0f",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/implement-2026-10-13T22-48-57/1.log",
+"bytes": 7405,
+"log_sha8": "376b7000",
+"exit": 0,
+"seconds": 5.82,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked",
+"run_sha8": "ef86eea3",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/implement-2026-10-13T22-48-57/2.log",
+"bytes": 5850,
+"log_sha8": "d5b925e9",
+"exit": 0,
+"seconds": 4.53,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_keyboard",
+"run_sha8": "dbba0b60",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/implement-2026-10-13T22-48-57/3.log",
+"bytes": 1143,
+"log_sha8": "36fb7bf1",
+"exit": 0,
+"seconds": 6.68,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_accessibility_ids --test stand_snapshot_state --test focusability_updates --test dioxus_falsy_boolean_attrs --test stand_act_keys --test stand_act_obstructed --test stand_act_diff --test stand_actionable_keys",
+"run_sha8": "35e65e36",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/implement-2026-10-13T22-48-57/4.log",
+"bytes": 4249,
+"log_sha8": "b6d23814",
+"exit": 0,
+"seconds": 6.18,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "cargo test --workspace --locked --test stand_keyboard --test stand_accessibility_ids --test stand_snapshot_state --test focusability_updates --test stand_act_keys --test stand_act_obstructed --test stand_act_diff",
+"run_sha8": "f52d9d0c",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/implement-2026-10-13T22-48-57/5.log",
+"bytes": 5251,
+"log_sha8": "7cc27873",
+"exit": 0,
+"seconds": 14.63,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked",
+"run_sha8": "e8935269",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/implement-2026-10-13T22-48-57/6.log",
+"bytes": 4274,
+"log_sha8": "5a4ef851",
+"exit": 0,
+"seconds": 8.6,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff e40d94371643eef83015c6a17f0ae750c8fbe4c0 -- Cargo.lock | grep -c '^+\\[\\[package\\]\\]' ",
+"run_sha8": "6ccb0f5c",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/implement-2026-10-13T22-48-57/7.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "git diff e40d94371643eef83015c6a17f0ae750c8fbe4c0 -- packages/blitz-dom packages/dioxus-native-dom examples/seven_guis/src | grep -c -E '^\\+[^+].*(println!|eprintln!|dbg!|tracing::|std::env|\\.unwrap\\(\\)|\\.expect\\(|panic!)' ",
+"run_sha8": "91f47195",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/implement-2026-10-13T22-48-57/8.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "grep -c -E 'println!|eprintln!|print!|dbg!|std::env|env::var|escher_telemetry|tracing_subscriber|UnixListener|TcpListener|bind\\(' tests/blitz-tests/tests/stand_keyboard.rs",
+"run_sha8": "c771db1c",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/implement-2026-10-13T22-48-57/9.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "git diff --quiet e40d94371643eef83015c6a17f0ae750c8fbe4c0 -- packages/escher-driver packages/escher-telemetry packages/blitz-paint packages/blitz-traits packages/blitz-shell packages/blitz-html packages/blitz-test-harness packages/blitz-dom/src/node/node.rs packages/blitz-dom/src/accessibility.rs packages/blitz-dom/src/scrolling.rs packages/blitz-dom/assets packages/dioxus-native-dom/src/mutation_writer.rs packages/dioxus-native-dom/src/dioxus_document.rs examples/seven_guis/src/app.rs examples/seven_guis/src/stand.rs examples/seven_guis/src/tasks/counter.rs examples/seven_guis/src/tasks/flight_booker.rs examples/seven_guis/src/tasks/timer.rs tests/blitz-tests/Cargo.toml tests/blitz-tests/tests/session_common scripts .github deny.toml Cargo.toml",
+"run_sha8": "7aedada2",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/implement-2026-10-13T22-48-57/10.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/implement-2026-10-13T22-48-57/11.log",
+"bytes": 137,
+"log_sha8": "e683968a",
+"exit": 0,
+"seconds": 47.6,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/implement-2026-10-13T22-48-57/12.log",
+"bytes": 20663,
+"log_sha8": "6472c44d",
+"exit": 0,
+"seconds": 51.83,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/implement-2026-10-13T22-48-57/13.log",
+"bytes": 100071,
+"log_sha8": "4a93c2f6",
+"exit": 0,
+"seconds": 142.7,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/implement-2026-10-13T22-48-57/14.log",
+"bytes": 2320,
+"log_sha8": "bb53727e",
+"exit": 0,
+"seconds": 46.78,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-13T23:05:45Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-13T22-48-57-implement",
+"--marker",
+"2026-10-13-stand-keyboard-harness",
+"--n",
+"12"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"12 integration green",
+"run (712f53cb): bash scripts/agent-run.sh run stand",
+"  exit 0 ✓",
+"log $TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/implement-2026-10-13T22-48-57/12.log · 20663 B · 6472c44d",
+"--- no anchored failure; last 20 non-empty lines ---",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_state\", \"test\": \"a_checkbox_and_a_radio_read_checked_after_a_click\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_state\", \"test\": \"the_range_input_reads_the_apps_duration\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_state\", \"test\": \"a_textarea_reads_back_typed_text\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_state\", \"test\": \"exactly_the_active_flight_mode_reads_pressed\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_state\", \"test\": \"a_typed_password_never_appears_in_the_snapshot\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_state\", \"test\": \"a_date_that_is_no_date_reads_invalid\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_state\", \"test\": \"exactly_the_selected_row_reads_selected\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_state\", \"test\": \"focus_reads_on_exactly_the_focused_control\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_state\", \"test\": \"typed_text_reads_back_as_the_value\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_state\", \"test\": \"a_disabled_control_reads_disabled_until_the_app_enables_it\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_text\", \"test\": \"a_masked_file_input_stays_masked_in_the_text\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_text\", \"test\": \"a_masked_password_stays_masked_in_the_text\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_text\", \"test\": \"every_node_is_one_line_with_its_five_fields\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_text\", \"test\": \"every_screen_fits_the_budget\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_text\", \"test\": \"state_reads_as_the_model_holds_it\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_snapshot_text\", \"test\": \"the_text_is_deterministic\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_timer\", \"test\": \"ticks_past_the_duration_stop_at_it\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_timer\", \"test\": \"reset_zeroes_elapsed\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_timer\", \"test\": \"delivered_ticks_advance_elapsed_and_progress\", \"outcome\": \"ok\"}",
+"{\"event\": \"run.end\", \"ts\": \"2026-10-13T23:02:26Z\", \"selection\": \"stand\", \"passed\": 153, \"failed\": 0, \"ignored\": 7, \"cargo_exit\": 0, \"outcome\": \"passed\"}"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-13T23:06:34Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness",
+"--run-dir",
+".andromeda/runs/2026-10-13T22-48-57-implement",
+"--marker",
+"2026-10-13-stand-keyboard-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 1 · modify 14 · derived 3 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list tests/blitz-tests/tests/stand_*.rs (derived by `cargo test -p blitz-tests --locked --no-fail-fast`) ×3",
+"list examples/seven_guis/tests/*.rs (derived by `cargo test -p seven_guis --locked --no-fail-fast`) ×0",
+"list examples/seven_guis/tests/flows/*.sh (derived by `cargo test -p seven_guis --locked --test cli_flow`) ×0",
+"scope: clean — changed 18 · listed 18 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 3 · excluded 89"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 18,
+"listed": 18,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 3
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 89,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

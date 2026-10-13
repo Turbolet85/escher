@@ -6,10 +6,10 @@
 //! the header's spacer, a box with no height, at whose centre the header is hit. And an
 //! id-addressed click lands on the element it names: for each of the stand's 15 controls a
 //! click is accepted on, the diff the driver returns is the diff a twin instance reads when
-//! the same control is clicked by selector and settled — not empty for the controls a click
-//! changes at boot, empty for the rest; for a control a click is refused on, the twin's
-//! selector click changes nothing. At boot the Timer's one changing control is its duration
-//! slider, which a click focuses; its Reset has nothing to reset, so it is read after time has
+//! the same control is clicked by selector and settled — not empty for every control a click
+//! is accepted on, since a click focuses a button as it does a text input and the slider; for a
+//! control a click is refused on, the twin's selector click changes nothing. At boot the Timer's
+//! Reset has nothing to reset beyond taking focus, so what it resets is read after time has
 //! moved. The mount is still the stand's after every action. A failure
 //! message carries the layout mode, the task and a row index, never an id or what a screen
 //! reads.
@@ -31,15 +31,28 @@ const MOUNT: &str = "main#main > #task-shell";
 /// An id no stand element carries.
 const NOBODY: &str = "act-ids-names-no-element";
 
-/// The controls of `task` whose click changes what a snapshot reads at boot. The others are
-/// the shell's `back-btn`, which has no Home behind it on a held instance, the choice already
-/// made, the disabled controls and a Reset with nothing to reset.
+/// The controls of `task` whose click changes what a snapshot reads at boot: every one but the
+/// disabled controls, for a click focuses what it is accepted on — the shell's `back-btn`, which
+/// has no Home behind it on a held instance, the choice already made and a Reset with nothing to
+/// reset change only that.
 fn changes_at_boot(task: LeanTask) -> &'static [&'static str] {
     match task {
-        LeanTask::Counter => &["counter-increment"],
-        LeanTask::FlightBooker => &["flight-return", "flight-start", "flight-book"],
-        LeanTask::Timer => &["timer-duration"],
-        LeanTask::Crud => &["crud-filter", "crud-name", "crud-surname", "crud-create"],
+        LeanTask::Counter => &["back-btn", "counter-increment"],
+        LeanTask::FlightBooker => &[
+            "back-btn",
+            "flight-one-way",
+            "flight-return",
+            "flight-start",
+            "flight-book",
+        ],
+        LeanTask::Timer => &["back-btn", "timer-duration", "timer-reset"],
+        LeanTask::Crud => &[
+            "back-btn",
+            "crud-filter",
+            "crud-name",
+            "crud-surname",
+            "crud-create",
+        ],
     }
 }
 
@@ -227,8 +240,8 @@ fn an_id_addressed_click_has_the_effect_of_a_selector_click_on_a_twin() {
             "incremental={incremental}: the stand's 15 controls"
         );
         assert!(
-            changing == 9,
-            "incremental={incremental}: nine controls change the screen at boot"
+            changing == 15,
+            "incremental={incremental}: fifteen control rows change the screen at boot"
         );
         assert!(
             refused_controls == 3,

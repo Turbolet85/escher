@@ -12,30 +12,7 @@ use dioxus_native_dom::DioxusDocument;
 use seven_guis::stand::LeanTask;
 
 mod common;
-use common::{INPUT_NAMES, boot, by_id, controls, name};
-
-/// Each task's focus sequence from the root element, measured on the markup before the
-/// accessible-name attributes were added.
-fn tab_order(task: LeanTask) -> &'static [&'static str] {
-    match task {
-        LeanTask::Counter => &["back-btn", "counter-increment"],
-        LeanTask::FlightBooker => &[
-            "back-btn",
-            "flight-one-way",
-            "flight-return",
-            "flight-start",
-            "flight-book",
-        ],
-        LeanTask::Timer => &["back-btn", "timer-duration", "timer-reset"],
-        LeanTask::Crud => &[
-            "back-btn",
-            "crud-filter",
-            "crud-name",
-            "crud-surname",
-            "crud-create",
-        ],
-    }
-}
+use common::{INPUT_NAMES, boot, by_id, controls, name, tab_order};
 
 /// Every node standing for an element carries that element's stable id, and every other node
 /// carries none. Returns the carried ids, asserted pairwise distinct and non-empty.

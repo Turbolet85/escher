@@ -527,7 +527,7 @@ mod tests {
     /// the mutator, as parsed markup leaves them: the bridge itself never writes a falsy
     /// `disabled`.
     #[test]
-    fn a_present_disabled_attribute_reads_not_enabled_whatever_its_value() {
+    fn a_present_disabled_attribute_reads_not_enabled_and_not_focusable_whatever_its_value() {
         fn app() -> Element {
             rsx! {
                 button { id: "falsy", "A" }
@@ -560,8 +560,8 @@ mod tests {
                 "{id:?} carries the disabled attribute"
             );
             assert!(
-                node.is_focussable(),
-                "{id:?}: the focusability reader takes it as enabled"
+                !node.is_focussable(),
+                "{id:?}: the focusability reader takes it as disabled"
             );
         }
 

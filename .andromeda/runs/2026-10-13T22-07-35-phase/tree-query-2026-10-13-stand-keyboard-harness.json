@@ -1,0 +1,194 @@
+[
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name IN ('is_focussable','focus_next_node','focus_prev_node','apple_keybinding','synthetic_click_event_data','absolute_position') AND callee_kind = 'fn' ORDER BY callee_name, file, line",
+"rows": 34,
+"result": [
+{
+"caller_name": "handle_dom_event",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 108
+},
+{
+"caller_name": "focus",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 731
+},
+{
+"caller_name": "absolute_position",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1688
+},
+{
+"caller_name": "synthetic_click_event_data",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1928
+},
+{
+"caller_name": "scroll_into_view",
+"file": "packages/blitz-dom/src/scrolling.rs",
+"line": 719
+},
+{
+"caller_name": "layout_rect_of",
+"file": "packages/blitz-test-harness/src/inspect.rs",
+"line": 59
+},
+{
+"caller_name": "write_node",
+"file": "packages/blitz-test-harness/src/inspect.rs",
+"line": 141
+},
+{
+"caller_name": "hover",
+"file": "tests/blitz-tests/tests/anonymous_block_restyle.rs",
+"line": 99
+},
+{
+"caller_name": "absolute_position",
+"file": "tests/blitz-tests/tests/scrolled_box_absolute_position.rs",
+"line": 43
+},
+{
+"caller_name": "a_scrolled_box_reads_its_absolute_position_less_its_own_scroll_offset",
+"file": "tests/blitz-tests/tests/scrolled_box_absolute_position.rs",
+"line": 56
+},
+{
+"caller_name": "a_scrolled_box_reads_its_absolute_position_less_its_own_scroll_offset",
+"file": "tests/blitz-tests/tests/scrolled_box_absolute_position.rs",
+"line": 73
+},
+{
+"caller_name": "hover_keeps_working_after_undamaged_subtree_restyle",
+"file": "tests/blitz-tests/tests/stale_dirty_descendants.rs",
+"line": 80
+},
+{
+"caller_name": "hover_keeps_working_after_undamaged_subtree_restyle",
+"file": "tests/blitz-tests/tests/stale_dirty_descendants.rs",
+"line": 89
+},
+{
+"caller_name": "hover_keeps_working_after_undamaged_subtree_restyle",
+"file": "tests/blitz-tests/tests/stale_dirty_descendants.rs",
+"line": 99
+},
+{
+"caller_name": "handle_key_or_input_event",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 35
+},
+{
+"caller_name": "focus_sequence",
+"file": "tests/blitz-tests/tests/stand_accessibility_ids.rs",
+"line": 88
+},
+{
+"caller_name": "state_reads_the_engine",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 225
+},
+{
+"caller_name": "handle_key_or_input_event",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 33
+},
+{
+"caller_name": "focus_next_node",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1740
+},
+{
+"caller_name": "focus_prev_node",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1748
+},
+{
+"caller_name": "process_added_subtree",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 1041
+},
+{
+"caller_name": "unkeyed_actionable",
+"file": "packages/dioxus-native-dom/src/actionable.rs",
+"line": 69
+},
+{
+"caller_name": "a_present_disabled_attribute_reads_not_enabled_whatever_its_value",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 562
+},
+{
+"caller_name": "a_tabindex_set_after_creation_takes_effect",
+"file": "tests/blitz-tests/tests/focusability_updates.rs",
+"line": 37
+},
+{
+"caller_name": "a_tabindex_set_after_creation_takes_effect",
+"file": "tests/blitz-tests/tests/focusability_updates.rs",
+"line": 42
+},
+{
+"caller_name": "removing_it_takes_the_focusability_away_again",
+"file": "tests/blitz-tests/tests/focusability_updates.rs",
+"line": 51
+},
+{
+"caller_name": "removing_it_takes_the_focusability_away_again",
+"file": "tests/blitz-tests/tests/focusability_updates.rs",
+"line": 55
+},
+{
+"caller_name": "disabling_it_takes_it_out_of_both",
+"file": "tests/blitz-tests/tests/focusability_updates.rs",
+"line": 66
+},
+{
+"caller_name": "disabling_it_takes_it_out_of_both",
+"file": "tests/blitz-tests/tests/focusability_updates.rs",
+"line": 74
+},
+{
+"caller_name": "actionable_count",
+"file": "tests/blitz-tests/tests/stand_actionable_keys.rs",
+"line": 67
+},
+{
+"caller_name": "a_disabled_control_reads_disabled_until_the_app_enables_it",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 239
+},
+{
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 768
+},
+{
+"caller_name": "synthetic_click_event",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1924
+},
+{
+"caller_name": "synthetic_click_event",
+"file": "packages/dioxus-native-dom/src/events.rs",
+"line": 661
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT symbol, kind, file, def_line FROM symbol WHERE name = 'apple_keybinding' AND kind <> 'meta'",
+"rows": 1,
+"result": [
+{
+"symbol": "rust-analyzer cargo blitz-test-harness 0.3.0-beta.3 input/impl#[`Harness<D>`]apple_keybinding().",
+"kind": "fn",
+"file": "packages/blitz-test-harness/src/input.rs",
+"def_line": 229
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

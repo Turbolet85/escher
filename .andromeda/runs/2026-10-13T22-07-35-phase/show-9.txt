@@ -1,0 +1,8 @@
+gate v1.17 · 383c6f7b
+9 probe red · exit 1 ✗ (exit 2)
+run (c771db1c): grep -c -E 'println!|eprintln!|print!|dbg!|std::env|env::var|escher_telemetry|tracing_subscriber|UnixListener|TcpListener|bind\(' tests/blitz-tests/tests/stand_keyboard.rs
+  exit 1 ✗ (exit 2)
+  last line '0' ✗ (last: 'grep: tests/blitz-tests/tests/stand_keyb… (74 chars)')
+log $TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/phase-2026-10-13T22-07-35/9.log · 75 B · 190d2612
+--- no anchored failure; last 8 non-empty lines ---
+grep: tests/blitz-tests/tests/stand_keyboard.rs: No such file or directory

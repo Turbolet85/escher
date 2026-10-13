@@ -1,0 +1,21 @@
+gate v1.17 · 383c6f7b
+root . · marker 2026-10-13-stand-keyboard-harness · entries 17
+previous 2026-10-13-range-input-interaction · trails 124 run dirs · firings 61 (green 57) · other root 0 · unreadable 0
+  1 unit        seen green 2026-10-13T21:49:42Z #1 (wrap) · cargo test -p blitz-dom --locked
+  2 unit        seen green 2026-10-13T21:49:42Z #2 (wrap) · cargo test -p dioxus-native-dom --locked
+  3 integration new (key) · cargo test -p blitz-tests --locked --test stand_keyboard
+  4 integration new (key) · cargo test -p blitz-tests --locked --test stand_accessibil… (256 chars)
+  5 integration new (key) · cargo test --workspace --locked --test stand_keyboard --te… (212 chars)
+  6 integration new (key) · cargo test -p seven_guis --locked
+  7 probe       new (key) · git diff e40d94371643eef83015c6a17f0ae750c8fbe4c0 -- Cargo… (94 chars)
+  8 probe       new (key) · git diff e40d94371643eef83015c6a17f0ae750c8fbe4c0 -- packa… (223 chars)
+  9 probe       new (key) · grep -c -E 'println!|eprintln!|print!|dbg!|std::env|env::v… (171 chars)
+ 10 probe       new (key) · git diff --quiet e40d94371643eef83015c6a17f0ae750c8fbe4c0 … (755 chars)
+ 11 build       seen green 2026-10-13T21:49:42Z #12 (wrap) · bash scripts/agent-run.sh boot
+ 12 integration new (key) · bash scripts/agent-run.sh run stand
+ 13 lint        seen green 2026-10-13T21:49:42Z #14 (wrap) · bash .github/scripts/ci-leg.sh fast
+ 14 lint        seen green 2026-10-13T21:49:42Z #15 (wrap) · bash .github/scripts/ci-leg.sh doc
+ 15 probe       leg operator — exempt · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)
+ 16 probe       leg operator — exempt · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+ 17 probe       leg operator — exempt · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)
+entries 17 · seen green 5 · not seen 0 · new (key) 9 · leg 3

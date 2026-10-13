@@ -1,0 +1,25 @@
+gate v1.17 · 383c6f7b
+shell /usr/bin/bash (from $SHELL; -c, non-login)
+root . · marker 2026-10-13-stand-keyboard-harness · entries 17
+logs $TMPDIR/andromeda-gate/2026-10-13-stand-keyboard-harness/phase-2026-10-13T22-07-35 · bound: GNU timeout
+delta docs 52 · unmapped 6
+walk-class 0 marked (an unmarked walker reads as none)
+prose L146-150: No mutation runs — the founder's word (inputs#I1). A check's power to fail is shown instea… (512 chars)
+  1 unit        not run — excluded · cargo test -p blitz-dom --locked
+  2 unit        not run — excluded · cargo test -p dioxus-native-dom --locked
+  3 integration not run — excluded · cargo test -p blitz-tests --locked --test stand_keyboard
+  4 integration not run — excluded · cargo test -p blitz-tests --locked --test stand_accessibil… (256 chars)
+  5 integration not run — excluded · cargo test --workspace --locked --test stand_keyboard --te… (212 chars)
+  6 integration not run — excluded · cargo test -p seven_guis --locked
+  7 probe       not run — excluded · git diff e40d94371643eef83015c6a17f0ae750c8fbe4c0 -- Cargo… (94 chars)
+  8 probe       not run — excluded · git diff e40d94371643eef83015c6a17f0ae750c8fbe4c0 -- packa… (223 chars)
+  9 probe       red · exit 1 ✗ (exit 2) · exit 2 · 0.0s · 75 B → 9.log · grep -c -E 'println!|eprintln!|print!|dbg!|std::env|env::v… (171 chars)
+ 10 probe       not run — excluded · git diff --quiet e40d94371643eef83015c6a17f0ae750c8fbe4c0 … (755 chars)
+ 11 build       not run — excluded · bash scripts/agent-run.sh boot
+ 12 integration not run — excluded · bash scripts/agent-run.sh run stand
+ 13 lint        not run — excluded · bash .github/scripts/ci-leg.sh fast
+ 14 lint        not run — excluded · bash .github/scripts/ci-leg.sh doc
+ 15 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)
+ 16 probe       not run — excluded · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+ 17 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)
+entries 17 · green 0 · red 1 (9) · recorded 0 · timeout 0 · not-run 16

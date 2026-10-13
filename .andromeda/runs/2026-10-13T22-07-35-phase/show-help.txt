@@ -1,0 +1,14 @@
+usage: gate.py show [-h] [--run-dir RUN_DIR] [--marker MARKER] --n N
+                    [--firing FIRING] [--tail TAIL]
+
+options:
+  -h, --help         show this help message and exit
+  --run-dir RUN_DIR  the skill's run dir; the trail {tool}-{marker}.json is
+                     appended there
+  --marker MARKER    the trail's key when the subcommand has no --chunk
+                     (defaults to --chunk); the chunk the call serves — a
+                     value differing from --chunk is refused
+  --n N
+  --firing FIRING    the K-th firing of entry N in this trail (1 = the first);
+                     default: the last run record
+  --tail TAIL

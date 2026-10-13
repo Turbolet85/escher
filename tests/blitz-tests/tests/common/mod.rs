@@ -1,6 +1,6 @@
 //! The one statement of the tables and helpers the stand checks share: each lean task's
-//! controls, input names and rendered ids, the stand's boot and the lookups over a snapshot, an
-//! accessibility tree and a text input's editor. A check declares `mod common;` and reads what
+//! controls, Tab sequence, input names and rendered ids, the stand's boot, the focus read-back
+//! and the lookups over a snapshot, an accessibility tree and a text input's editor. A check declares `mod common;` and reads what
 //! it needs. This module holds no test.
 
 #![allow(dead_code)]
@@ -8,6 +8,7 @@
 use std::collections::HashMap;
 
 use accesskit::{Node, NodeId as TreeNodeId, Role, TreeUpdate};
+use blitz_dom::Document;
 use blitz_test_harness::Harness;
 use dioxus_native_dom::{DioxusDocument, Snapshot, SnapshotNode};
 use seven_guis::stand::{self, LeanTask};
@@ -42,6 +43,52 @@ pub fn controls(task: LeanTask) -> &'static [(&'static str, Role)] {
             ("crud-delete", Role::Button),
         ],
     }
+}
+
+/// Each task's focus sequence from the root element, measured on the markup before the
+/// accessible-name attributes were added; CRUD's list takes focus since it handles the arrows.
+pub fn tab_order(task: LeanTask) -> &'static [&'static str] {
+    match task {
+        LeanTask::Counter => &["back-btn", "counter-increment"],
+        LeanTask::FlightBooker => &[
+            "back-btn",
+            "flight-one-way",
+            "flight-return",
+            "flight-start",
+            "flight-book",
+        ],
+        LeanTask::Timer => &["back-btn", "timer-duration", "timer-reset"],
+        LeanTask::Crud => &[
+            "back-btn",
+            "crud-filter",
+            "crud-list",
+            "crud-name",
+            "crud-surname",
+            "crud-create",
+        ],
+    }
+}
+
+/// The ids of the snapshot nodes reading focused, asserted to be the element the
+/// accessibility tree reports as its focus: none when that is the `Window`.
+#[track_caller]
+pub fn focused(harness: &Harness<DioxusDocument>) -> Vec<String> {
+    let snapshot = harness.doc.snapshot();
+    let focused: Vec<String> = snapshot
+        .nodes()
+        .filter(|node| node.state.focused)
+        .map(|node| node.id.clone())
+        .collect();
+    let tree = harness.doc.accessibility_tree();
+    let tree_focus: Vec<String> = tree
+        .nodes
+        .iter()
+        .filter(|(id, _)| *id == tree.focus)
+        .filter_map(|(_, node)| node.author_id())
+        .map(str::to_string)
+        .collect();
+    assert_eq!(focused, tree_focus, "the accessibility tree's focus");
+    focused
 }
 
 /// The accessible names the markup gives the stand's inputs, trimmed.

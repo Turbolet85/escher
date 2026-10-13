@@ -797,12 +797,28 @@ pub(crate) fn handle_click(
                         tracing::info!("Clicked link without href: {:?}", el.attrs());
                     }
                 }
+                // A click focuses a button, as a pointerdown does in browsers, and a submit
+                // button submits its form owner.
                 local_name!("input") | local_name!("button")
-                    if el.is_submit_button() || el.attr(local_name!("type")) == Some("submit") =>
+                    if el.name.local == local_name!("button")
+                        || matches!(
+                            el.attr(local_name!("type")),
+                            Some("submit" | "reset" | "button")
+                        ) =>
                 {
-                    if let Some(form_owner) = doc.controls_to_form.get(&node_id) {
+                    let submits =
+                        el.is_submit_button() || el.attr(local_name!("type")) == Some("submit");
+                    generate_focus_events(
+                        doc,
+                        &mut |doc| {
+                            doc.set_focus_to(node_id);
+                        },
+                        dispatch_event,
+                    );
+                    if submits && let Some(form_owner) = doc.controls_to_form.get(&node_id) {
                         doc.submit_form(*form_owner, node_id);
                     }
+                    break 'matched true;
                 }
                 #[cfg(feature = "file-input")]
                 local_name!("input") if el.attr(local_name!("type")) == Some("file") => {

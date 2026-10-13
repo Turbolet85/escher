@@ -1,0 +1,1 @@
+"Stand keyboard harness" (working-route.md:92). Keep pipeline tools bare, or redirect them to a file you read whole. The founder's word stands: no mutation runs. A P4 fork that changes engine behaviour for every document goes to the founder (playbook :64), so raise it as a dialog and I will take it to him.

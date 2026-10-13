@@ -1,10 +1,11 @@
 //! What a driver action returns is the diff of the screen before and after it. On each lean
 //! stand task, in both layout modes, the diff an acting call returns equals `Snapshot::diff`
 //! over this file's own snapshots taken either side of the call, and names exactly the nodes
-//! stated per step: a click names the value it rewrote, a flight mode click the two mode
-//! buttons with the control it enabled, a row click that row, a typed text its input and the
-//! control that lost focus, Create the new row added and Delete that row removed, an advance
-//! the elapsed time. A click on an element that reacts to nothing returns settled with an empty
+//! stated per step: a click names the value it rewrote and, the first time, the button it
+//! focused, a flight mode click the two mode buttons with the control it enabled, a row click
+//! that row with the button that lost focus, a typed text its input and the control that lost
+//! focus, Create the new row added with the control that lost focus and Create itself, which a
+//! click focuses, and Delete that row removed, an advance the elapsed time. A click on an element that reacts to nothing returns settled with an empty
 //! diff, and the two layout modes return equal diffs. The case the lean tasks lack is proven on
 //! a fixture booted with the stand's options: a text typed by the driver into a password input
 //! is nowhere in what the call returns, and the entry reads the mask. A diff is content: this
@@ -100,7 +101,10 @@ fn a_click_on_the_counter_returns_the_value_it_rewrote() {
     let mut runs = Vec::new();
     for incremental in [false, true] {
         let mut counter = Held::task(LeanTask::Counter, incremental);
-        let first = counter.step(&click("counter-increment"), [&[], &[], &["counter-value"]]);
+        let first = counter.step(
+            &click("counter-increment"),
+            [&[], &[], &["counter-value", "counter-increment"]],
+        );
         assert!(
             entry(&first, "counter-value").is_some_and(|value| value.name == "1"),
             "{}: the first click returns the count it wrote",
@@ -200,7 +204,7 @@ fn create_returns_the_new_row_added_and_delete_returns_it_removed() {
 
         let create = crud.step(
             &click("crud-create"),
-            [&["crud-person-3"], &[], &["crud-surname"]],
+            [&["crud-person-3"], &[], &["crud-surname", "crud-create"]],
         );
         assert!(
             entry(&create, "crud-person-3").is_some_and(|row| {
@@ -213,7 +217,11 @@ fn create_returns_the_new_row_added_and_delete_returns_it_removed() {
 
         let select = crud.step(
             &click("crud-person-3"),
-            [&[], &[], &["crud-person-3", "crud-update", "crud-delete"]],
+            [
+                &[],
+                &[],
+                &["crud-person-3", "crud-create", "crud-update", "crud-delete"],
+            ],
         );
         assert!(
             entry(&select, "crud-delete").is_some_and(|delete| delete.state.enabled == Some(true)),

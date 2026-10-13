@@ -18,7 +18,7 @@ use keyboard_types::{Key, Modifiers};
 use seven_guis::stand::{self, LeanTask};
 
 mod common;
-use common::{boot, by_id, editor_text, name, node, tree_node};
+use common::{boot, by_id, editor_text, focused, name, node, tree_node};
 
 /// What [`focused`] reads when no control has focus.
 const NOTHING: [&str; 0] = [];
@@ -53,28 +53,6 @@ fn checked(harness: &Harness<DioxusDocument>, id: &str) -> Option<bool> {
 #[track_caller]
 fn reads_value(harness: &Harness<DioxusDocument>, id: &str, expected: Option<&str>) -> bool {
     node(&harness.doc.snapshot(), id).state.value.as_deref() == expected
-}
-
-/// The ids of the snapshot nodes reading focused, asserted to be the element the
-/// accessibility tree reports as its focus: none when that is the `Window`.
-#[track_caller]
-fn focused(harness: &Harness<DioxusDocument>) -> Vec<String> {
-    let snapshot = harness.doc.snapshot();
-    let focused: Vec<String> = snapshot
-        .nodes()
-        .filter(|node| node.state.focused)
-        .map(|node| node.id.clone())
-        .collect();
-    let tree = harness.doc.accessibility_tree();
-    let tree_focus: Vec<String> = tree
-        .nodes
-        .iter()
-        .filter(|(id, _)| *id == tree.focus)
-        .filter_map(|(_, node)| node.author_id())
-        .map(str::to_string)
-        .collect();
-    assert_eq!(focused, tree_focus, "the accessibility tree's focus");
-    focused
 }
 
 /// A snapshot of the screen, every node's selected, pressed and invalid reading asserted to
@@ -237,8 +215,8 @@ fn a_disabled_control_reads_disabled_until_the_app_enables_it() {
                 parsed
                     .base()
                     .get_node(element)
-                    .is_some_and(|node| node.is_focussable()),
-                "{mode}: the focusability reader takes {id:?} as enabled"
+                    .is_some_and(|node| !node.is_focussable()),
+                "{mode}: the focusability reader takes {id:?} as disabled"
             );
             assert_eq!(
                 enabled(&parsed, id),

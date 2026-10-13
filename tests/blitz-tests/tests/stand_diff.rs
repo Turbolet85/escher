@@ -1,14 +1,14 @@
 //! The diff of the snapshots taken before and after a step names exactly the nodes the step
 //! changed, proven through real input on the stand, booted headlessly in both layout modes: a
-//! click names the value it rewrote, Create and Delete name a row added and removed, a focus
+//! click names the value it rewrote and the button it focused, Create and Delete name a row added and removed, a focus
 //! move names the controls whose focus moved, a typed character its text input and delivered
 //! ticks the elapsed time — and a step that changes nothing reads an empty diff and a false
 //! change flag. The cases the lean tasks lack are proven on three minimal fixtures booted with
 //! the stand's options: an element hidden and shown by attribute, a password input and a
 //! label whose text is rewritten. Every step is also checked against this file's own reading
 //! of the two snapshots, a changed node's `differs` included: it names exactly the readings
-//! that differ, so the flight booker's Book, which moves eight nodes and changes nothing else
-//! of them, names bounds alone on each. A diff is content: this file formats none into a message and prints
+//! that differ, so the flight booker's Book, which moves eight nodes, names bounds alone on the
+//! seven it changes nothing else of and focused beside bounds on Book itself, which it focuses. A diff is content: this file formats none into a message and prints
 //! nothing; a message carries the layout mode and ids this file names.
 
 use std::collections::{BTreeSet, HashMap};
@@ -314,8 +314,9 @@ fn a_click_on_the_counter_names_its_value() {
         let click = counter.step(&mode, |harness| harness.click("#counter-increment"));
         assert!(click.flag, "{mode}: the click reads as a change");
         assert!(
-            click.changed() == ["counter-value"],
-            "{mode}: the click names counter-value alone, and nothing in the header"
+            click.changed() == ["counter-value", "counter-increment"],
+            "{mode}: the click names counter-value and the button it focused, and nothing in \
+             the header"
         );
         assert!(
             click.entry("counter-value").name == "1",
@@ -487,7 +488,7 @@ fn a_typed_character_names_its_text_input() {
 }
 
 #[test]
-fn the_flight_bookers_book_names_eight_nodes_that_only_moved() {
+fn the_flight_bookers_book_names_eight_nodes_that_moved_and_book_focused() {
     let mut runs = Vec::new();
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
@@ -517,8 +518,12 @@ fn the_flight_bookers_book_names_eight_nodes_that_only_moved() {
             .filter(|entry| entry.differs == [Reading::Bounds])
             .count();
         assert!(
-            moved == 8,
+            moved == 7,
             "{mode}: {moved} of the 8 changed nodes name bounds alone"
+        );
+        assert!(
+            book.entry("flight-book").differs == [Reading::Focused, Reading::Bounds],
+            "{mode}: Book names focused and bounds"
         );
 
         runs.push(flight.diffs);
@@ -781,8 +786,8 @@ fn a_rewritten_label_names_the_input_it_labels() {
         let rename = screen.step(&mode, |harness| harness.click("#fx-rename"));
         assert!(rename.flag, "{mode}: the rewrite reads as a change");
         assert!(
-            rename.changed() == ["fx-label", "fx-field"],
-            "{mode}: the rewrite names the label and the input it labels"
+            rename.changed() == ["fx-label", "fx-field", "fx-rename"],
+            "{mode}: the rewrite names the label, the input it labels and the button it focused"
         );
         let field = rename.entry("fx-field");
         assert!(

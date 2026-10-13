@@ -273,8 +273,9 @@ fn a_covered_target_is_refused_until_its_cover_is_gone_or_transparent() {
         );
 
         assert!(
-            act(&mut session, &click("fx-through"))
-                .is_some_and(|clicked| clicked.settled && clicked.changed() == ["fx-presses"]),
+            act(&mut session, &click("fx-through")).is_some_and(
+                |clicked| clicked.settled && clicked.changed() == ["fx-through", "fx-presses"]
+            ),
             "{mode}: a click under an overlay transparent to hits is accepted and lands"
         );
 
@@ -284,8 +285,8 @@ fn a_covered_target_is_refused_until_its_cover_is_gone_or_transparent() {
             "{mode}: the driver's click on the dismiss control removes the cover"
         );
         assert!(
-            act(&mut session, &click("fx-under"))
-                .is_some_and(|clicked| clicked.settled && clicked.changed() == ["fx-presses"]),
+            act(&mut session, &click("fx-under")).is_some_and(|clicked| clicked.settled
+                && clicked.changed() == ["fx-under", "fx-dismiss", "fx-presses"]),
             "{mode}: with the cover dismissed the click is accepted and lands"
         );
     }
@@ -349,8 +350,9 @@ fn a_target_out_of_view_is_refused_off_screen() {
         );
 
         assert!(
-            act(&mut session, &click("fx-near"))
-                .is_some_and(|clicked| clicked.settled && clicked.changed() == ["fx-presses"]),
+            act(&mut session, &click("fx-near")).is_some_and(
+                |clicked| clicked.settled && clicked.changed() == ["fx-near", "fx-presses"]
+            ),
             "{mode}: a click on the button inside the viewport is accepted and lands"
         );
     }
@@ -384,8 +386,9 @@ fn a_button_where_scrolled_out_rows_extend_is_hit_and_clicked_as_itself() {
             "{mode}: the hit at the later button's centre answers the button"
         );
         assert!(
-            act(&mut session, &click("fx-after"))
-                .is_some_and(|clicked| clicked.settled && clicked.changed() == ["fx-presses"]),
+            act(&mut session, &click("fx-after")).is_some_and(
+                |clicked| clicked.settled && clicked.changed() == ["fx-after", "fx-presses"]
+            ),
             "{mode}: a click on the later button is accepted and lands on it"
         );
 
@@ -415,8 +418,8 @@ fn a_button_where_scrolled_out_rows_extend_is_hit_and_clicked_as_itself() {
         );
 
         assert!(
-            act(&mut session, &click("fx-before"))
-                .is_some_and(|clicked| clicked.settled && clicked.changed() == ["fx-presses"]),
+            act(&mut session, &click("fx-before")).is_some_and(|clicked| clicked.settled
+                && clicked.changed() == ["fx-before", "fx-after", "fx-presses"]),
             "{mode}: a click on the earlier button is accepted and runs its handler and no row's"
         );
         let (in_snapshot, in_tree) = focused(&session);
@@ -428,10 +431,10 @@ fn a_button_where_scrolled_out_rows_extend_is_hit_and_clicked_as_itself() {
             "{mode}: after the click no row of the box reads focused or holds the \
              accessibility tree's focus"
         );
-        // A plain button's own focus after a pointer click, as measured (2026-10-10).
+        // A click focuses a plain button.
         assert!(
-            in_snapshot.is_empty() && in_tree.is_empty(),
-            "{mode}: after the click nothing reads focused"
+            in_snapshot == ["fx-before"] && in_tree == in_snapshot,
+            "{mode}: after the click the button reads focused and is the tree's focus"
         );
     }
 }

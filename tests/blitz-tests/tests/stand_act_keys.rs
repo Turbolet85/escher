@@ -5,9 +5,11 @@
 //! `type` of three characters, a `press` of Backspace leaves two. That last step is the one
 //! check driven by a deleting key: the key's platform behaviour is what it proves, and on macOS,
 //! where the editor leaves the backward delete to the standard key bindings, its reading is the
-//! CI run's. A failure message carries the layout mode and a step index, never an id or what a
-//! screen reads.
+//! CI run's. On Counter, a `press` of Enter and then of Space on the increment button two Tabs
+//! focused each counts one, as its click does, the diff naming the count's name alone. A failure
+//! message carries the layout mode and a step index, never an id or what a screen reads.
 
+use dioxus_native_dom::Reading;
 use escher_driver::{Call, Session};
 use seven_guis::stand::LeanTask;
 
@@ -123,5 +125,41 @@ fn backspace_deletes_one_character_of_what_the_driver_typed() {
             editor_text(crud.harness(), "crud-name") == "Ad",
             "{mode}: the input's editor holds the two characters"
         );
+    }
+}
+
+#[test]
+fn enter_and_space_on_a_focused_button_count_as_its_click_does() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let (mut counter, _ticks) = hold(LeanTask::Counter, incremental);
+        let value = |session: &Session| session.harness().text_content("#counter-value");
+        assert!(value(&counter) == "0", "{mode}: the count reads 0 at boot");
+
+        for index in 0..2 {
+            step(&mode, index, &mut counter, &press("tab", false));
+        }
+        let (in_snapshot, _) = focused(&counter);
+        assert!(
+            in_snapshot == ["counter-increment"],
+            "{mode}: two Tabs focus the increment button"
+        );
+
+        for (index, (key, count)) in [("enter", "1"), ("space", "2")].into_iter().enumerate() {
+            let index = index + 2;
+            let (acted, focus_moved) = step(&mode, index, &mut counter, &press(key, false));
+            assert!(
+                acted.changed() == ["counter-value"]
+                    && acted.added().is_empty()
+                    && acted.removed().is_empty()
+                    && focus_moved.is_empty(),
+                "{mode}: step {index} names the count alone"
+            );
+            assert!(
+                acted.diff.changed[0].differs == [Reading::Name],
+                "{mode}: step {index} names the count's name as what differs"
+            );
+            assert!(value(&counter) == count, "{mode}: step {index} counts one");
+        }
     }
 }

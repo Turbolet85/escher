@@ -1,6 +1,6 @@
 use crate::events::focus::generate_focus_events;
 use crate::{
-    BaseDocument,
+    BaseDocument, ElementData,
     node::{GeneratedTextInputEvent, RangeMove},
     util::ACTION_MOD,
 };
@@ -115,8 +115,81 @@ pub(crate) fn handle_key_or_input_event<F: FnMut(DomEvent)>(
                 _ => return,
             };
             doc.apply_range_move(node_id, to, &mut dispatch_event);
+        } else if let KeyboardOrTextInputEvent::KeyPress(key_event) = &event
+            && key_event.state.is_pressed()
+            && key_event.key == Key::Enter
+            && activates_on_enter(element_data)
+        {
+            dispatch_activation_click(doc, node_id, key_event.modifiers, &mut dispatch_event);
         }
     }
+}
+
+/// A released Space activates the focused control it targets, as a click would.
+pub(crate) fn handle_key_up<F: FnMut(DomEvent)>(
+    doc: &mut BaseDocument,
+    target: NodeId,
+    event: &BlitzKeyEvent,
+    mut dispatch_event: F,
+) {
+    if doc.focus_node_id != Some(target) || event.state.is_pressed() {
+        return;
+    }
+    if !matches!(&event.key, Key::Character(c) if c == " ") {
+        return;
+    }
+    if doc
+        .get_node(target)
+        .and_then(|node| node.element_data())
+        .is_some_and(activates_on_space)
+    {
+        dispatch_activation_click(doc, target, event.modifiers, &mut dispatch_event);
+    }
+}
+
+/// https://html.spec.whatwg.org/multipage/interaction.html#activation-behaviour:
+/// Enter activates a button, a submit, reset or button input, a link and a summary.
+fn activates_on_enter(element: &ElementData) -> bool {
+    if element.has_attr(local_name!("disabled")) {
+        return false;
+    }
+    match element.name.local {
+        local_name!("button") | local_name!("summary") => true,
+        local_name!("input") => matches!(
+            element.attr(local_name!("type")),
+            Some("submit" | "reset" | "button")
+        ),
+        local_name!("a") => element.has_attr(local_name!("href")),
+        _ => false,
+    }
+}
+
+/// Space activates a button, a submit, reset, button, checkbox or radio input and a summary;
+/// a link takes no Space.
+fn activates_on_space(element: &ElementData) -> bool {
+    if element.has_attr(local_name!("disabled")) {
+        return false;
+    }
+    match element.name.local {
+        local_name!("button") | local_name!("summary") => true,
+        local_name!("input") => matches!(
+            element.attr(local_name!("type")),
+            Some("submit" | "reset" | "button" | "checkbox" | "radio")
+        ),
+        _ => false,
+    }
+}
+
+/// Dispatches a click at the control, so the app's handlers run before the click's default
+/// action, as for a pointer click.
+fn dispatch_activation_click(
+    doc: &BaseDocument,
+    node_id: NodeId,
+    modifiers: Modifiers,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) {
+    let data = doc.nodes[node_id].synthetic_click_event_data(modifiers);
+    dispatch_event(DomEvent::new(node_id, DomEventData::Click(data)));
 }
 
 impl BaseDocument {

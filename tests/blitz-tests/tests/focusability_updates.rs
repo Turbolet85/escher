@@ -58,8 +58,8 @@ fn removing_it_takes_the_focusability_away_again() {
 
 /// Disabling an element takes it out of both.
 ///
-/// Note the value: blitz reads `disabled` as a parsed boolean rather than
-/// treating the bare attribute as disabling, so `""` would not count.
+/// blitz reads `disabled` by presence: any value disables, `"true"` here and the
+/// bare `""` below.
 #[test]
 fn disabling_it_takes_it_out_of_both() {
     let mut doc = make_doc("<html><body><button id=t>press</button></body></html>");
@@ -72,5 +72,25 @@ fn disabling_it_takes_it_out_of_both() {
         "true",
     );
 
+    assert!(!doc.get_node(node).unwrap().is_focussable());
+}
+
+#[test]
+fn a_bare_disabled_set_after_creation_takes_the_focusability_away() {
+    let mut doc = make_doc("<html><body><button id=t>press</button></body></html>");
+    let node = node_id(&doc, "#t");
+    assert!(doc.get_node(node).unwrap().is_focussable());
+
+    doc.mutate().set_attribute(
+        node,
+        QualName::new(None, ns!(), local_name!("disabled")),
+        "",
+    );
+
+    assert_eq!(
+        doc.get_node(node).unwrap().attr(local_name!("disabled")),
+        Some(""),
+        "the bare attribute is set"
+    );
     assert!(!doc.get_node(node).unwrap().is_focussable());
 }

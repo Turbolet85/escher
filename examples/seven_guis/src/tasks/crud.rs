@@ -56,15 +56,39 @@ pub fn Crud() -> Element {
                 // List
                 div { id: "crud-list", class: "list",
                     role: "listbox",
+                    tabindex: "0",
+                    onkeydown: move |e| {
+                        let filter_lower = filter().to_lowercase();
+                        let visible: Vec<usize> = people
+                            .read()
+                            .iter()
+                            .enumerate()
+                            .filter(|(_, p)| shown(p, &filter_lower))
+                            .map(|(i, _)| i)
+                            .collect();
+                        let at = selected().and_then(|s| visible.iter().position(|&i| i == s));
+                        let to = match (e.key(), at) {
+                            (Key::ArrowDown, None) => 0,
+                            (Key::ArrowDown, Some(k)) => k + 1,
+                            (Key::ArrowUp, Some(k)) if k > 0 => k - 1,
+                            (Key::Home, _) => 0,
+                            (Key::End, _) if !visible.is_empty() => visible.len() - 1,
+                            _ => return,
+                        };
+                        let Some(&i) = visible.get(to) else {
+                            return;
+                        };
+                        if let Some(p) = people.read().get(i).cloned() {
+                            selected.set(Some(i));
+                            first_field.set(p.first);
+                            last_field.set(p.last);
+                        }
+                    },
                     {
                         let filter_lower = filter().to_lowercase();
                         let people_snap = people();
                         rsx! {
-                            for (i, person) in people_snap.iter().enumerate().filter(|(_, p)| {
-                                format!("{}, {}", p.last, p.first)
-                                    .to_lowercase()
-                                    .starts_with(&filter_lower)
-                            }) {
+                            for (i, person) in people_snap.iter().enumerate().filter(|(_, p)| shown(p, &filter_lower)) {
                                 div {
                                     key: "{person.id}",
                                     id: "crud-person-{person.id}",
@@ -143,6 +167,13 @@ pub fn Crud() -> Element {
             }
         }
     }
+}
+
+/// Whether a person's "last, first" entry starts with the lower-cased filter prefix.
+fn shown(person: &Person, filter_lower: &str) -> bool {
+    format!("{}, {}", person.last, person.first)
+        .to_lowercase()
+        .starts_with(filter_lower)
 }
 
 const CSS: &str = r#"
