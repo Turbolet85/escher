@@ -8,6 +8,16 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-13 — An added-line census reads inline test modules too
+A plan's security census over the chunk's added engine lines (`git diff … | grep -c '\.expect\('` and its kin) counts every added line, including the `#[cfg(test)]` module inside a source file. A `.expect(…)` in a new inline test therefore reddens the census though no engine line carries one. In inline test modules write `let Some(x) = … else { panic!(…) };` (or an assertion) instead of `.expect`. Then the census reads 0 without a carve-out, and the plans' own note — inline test modules use assertions — holds.
+
+---
+
+## 2026-10-13 — obs-plan words its silent-check census "installs no subscriber"
+The census of checks that install no subscriber, read no env var and print nothing (obs-plan §3, the stand bullet) is never called a "silent census" in the master. A site-sweep pattern built on the plan's shorthand "silent census" finds no master row and is refused as an unfired control (`cascade.py sweep` exit 3). Sweep the master's own wording, `installs no subscriber`.
+
+---
+
 ## 2026-10-13 — A phase control that reads a scratchpad file lands a host temp path in the run dir
 A phase or implement control that records the command it ran, where that command reads a file in the session's scratchpad under the OS temp dir, writes the absolute host path into the committed run dir. `gate.py hygiene` refuses it (`· tmp`), and `gate.py respell` cannot fix it because the path is not under the project root, so the operator pass has to mask it by hand.
 

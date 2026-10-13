@@ -1,0 +1,39 @@
+[[pattern]]
+id = 'rangeretired'
+regex = '''range input's measured reading|no verb can move|reads its boot value|boot value after each|measured reading, pinned|cannot be changed|range interaction model|no range'''
+
+[[pattern]]
+id = 'range'
+regex = '''range input|type="range"|range state|\bSlider\b|\bslider\b|timer-duration'''
+
+[[pattern]]
+id = 'valueclause'
+regex = '''editor('s)? text,? else the `value` attribute|reading its `value` attribute'''
+
+[[pattern]]
+id = 'changedsites'
+regex = '''kinds of site|the last two wherever the node is'''
+
+[[pattern]]
+id = 'variants'
+regex = '''`CheckboxInput`, `FileInput`|SpecialElementData'''
+
+[[pattern]]
+id = 'engchange'
+regex = '''(second|third|fourth|fifth) direct engine change|direct engine change|engine change for every document'''
+
+[[pattern]]
+id = 'counts'
+regex = '''180 result lines|900 passed|180 · 900|119 `\.rs` files|118 test targets|67 unit tests|seventeen on the snapshot|34 `#\[test\]`|empty for the other 4|the 8 a click changes|Timer has none at boot'''
+
+[[pattern]]
+id = 'nodemods'
+regex = '''element data, node tree, scrollbars'''
+
+[[pattern]]
+id = 'clickfocus'
+regex = '''does not focus|click .{0,40}focus|focuses it'''
+
+[[pattern]]
+id = 'silent'
+regex = '''installs no subscriber'''

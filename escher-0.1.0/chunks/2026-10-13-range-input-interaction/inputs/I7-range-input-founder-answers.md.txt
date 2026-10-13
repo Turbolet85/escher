@@ -1,0 +1,30 @@
+# "Range input interaction": the founder's answers to the three P4 forks (2026-10-13)
+
+**Provenance.** The builder raised three P4 forks in dialog `1791918864048-916538-0` (phase run
+`2026-10-13T19-01-34-phase`). They shape engine behaviour for every document with a range input, so under the playbook
+rule "An engine behaviour change for every document" (`.andromeda/playbook.md:64`) the overseer put them to the
+founder rather than answering them as a delegate. He answered by question dialog in the overseer session on
+2026-10-13; the overseer's clock read 2026-10-13 20:07:00Z right after. Each fork was put with every option whole,
+in Russian, the builder's recommendation first. The Russian labels below are the ones he chose; the English after each
+`=` is the builder's option. He added no words of his own. Relayed verbatim by the overseer as his chosen option
+labels; the English wording is the overseer's.
+
+| Fork | His chosen label | = the builder's option |
+|---|---|---|
+| Q1 — where a moved range value is stored (engine-wide) | «Отдельное текущее значение» | A separate dirty value (NOT the recommendation) |
+| Q2 — which keys step a focused range input | «Стрелки + Home/End (Рекомендую)» | Arrows + Home/End |
+| Q3 — whether a pointer click focuses a range input | «Клик даёт фокус (Рекомендую)» | Click focuses |
+
+**What follows.** Q1 differs from the recommendation the plan was leaning on. The plan takes on the dirty value's
+stated costs: the public type change (arch §Standard Contracts → Nodes and widgets), the `construct.rs` edit, the new
+snapshot reader in dioxus-native-dom, the larger upstream merge surface, and the reset of the dirty value on a Dioxus
+re-render's attribute write.
+
+## The wrap's answer card (answered 2026-10-13)
+
+The founder answered the one question of `.andromeda/runs/2026-10-13T21-11-52-wrap/answer-card.md` by question dialog in
+the overseer session; the overseer's clock read 2026-10-13 21:27:32Z right after. The overseer put it in Russian with both options whole. Beyond the card, he was told plainly that
+his confirmation also covers the three consequences the operator confirmed at the P5 review: submission sends the
+current value; a `value` write resets it; the pointerdown moves the value and the click focuses. He chose
+«Подтвердить (Рекомендую)» = 1, Confirm: all seven proposals are recorded as ratified by his answers. He added no words
+of his own. Relayed verbatim by the overseer as his chosen option label; the English wording is the overseer's.

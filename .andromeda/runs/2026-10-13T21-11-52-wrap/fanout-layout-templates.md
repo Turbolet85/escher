@@ -1,0 +1,2 @@
+proposals: []
+note: D-layout-surface holds — the report's Changes add default actions (keys, pointerdown, click) to an existing control and a snapshot value reading, but no user-facing surface or region; it states no paint, UA-sheet or stand markup change (Unchanged bullet) and the Timer markup diff empty with stand_session_fresh green (Outcome, layouts row), so layout-templates' desktop-native TaskShell/timer-duration entry and its cli escher-session entry (no verb, key name, cause or help change) stand as they read.
