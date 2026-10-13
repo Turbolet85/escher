@@ -31,7 +31,7 @@ use super::svg::SvgImageData;
 use super::{Attribute, Attributes};
 use crate::Document;
 use crate::layout::table::TableContext;
-use crate::node::{TextBrush, TextInputData, TextLayout};
+use crate::node::{RangeInputData, RangeMove, RangeRules, TextBrush, TextInputData, TextLayout};
 
 #[cfg(feature = "custom-widget")]
 use super::custom_widget::CustomWidgetData;
@@ -338,6 +338,7 @@ pub enum SpecialElementType {
     TableRoot,
     TextInput,
     CheckboxInput,
+    RangeInput,
     #[cfg(feature = "file-input")]
     FileInput,
     #[default]
@@ -364,6 +365,8 @@ pub enum SpecialElementData {
     TextInput(TextInputData),
     /// Checkbox checked state
     CheckboxInput(bool),
+    /// A range input's current value
+    RangeInput(RangeInputData),
     /// Selected files
     #[cfg(feature = "file-input")]
     FileInput(FileData),
@@ -384,6 +387,7 @@ impl Clone for SpecialElementData {
             Self::TableRoot(data) => Self::TableRoot(data.clone()),
             Self::TextInput(data) => Self::TextInput(data.clone()),
             Self::CheckboxInput(data) => Self::CheckboxInput(*data),
+            Self::RangeInput(data) => Self::RangeInput(*data),
             #[cfg(feature = "file-input")]
             Self::FileInput(data) => Self::FileInput(data.clone()),
             Self::None => Self::None,
@@ -613,6 +617,70 @@ impl ElementData {
             *is_checked = checked;
         }
         self.element_state.set(ElementState::CHECKED, checked);
+    }
+
+    /// A range input's current value, held apart from its `value` attribute; `None` for every
+    /// other element.
+    pub fn range_input_data(&self) -> Option<&RangeInputData> {
+        match &self.special_data {
+            SpecialElementData::RangeInput(data) => Some(data),
+            _ => None,
+        }
+    }
+
+    /// A range input's current value, mutably; `None` for every other element.
+    pub fn range_input_data_mut(&mut self) -> Option<&mut RangeInputData> {
+        match &mut self.special_data {
+            SpecialElementData::RangeInput(data) => Some(data),
+            _ => None,
+        }
+    }
+
+    /// A range input's current value as the text an `input` event and a form submission carry;
+    /// `None` for every other element.
+    pub fn range_input_value(&self) -> Option<String> {
+        let data = self.range_input_data()?;
+        Some(self.range_rules().format(data.value()))
+    }
+
+    /// The range state's rules as this element's `min`, `max`, `step` and `value` read them.
+    pub(crate) fn range_rules(&self) -> RangeRules {
+        RangeRules::new(
+            self.attr(local_name!("min")),
+            self.attr(local_name!("max")),
+            self.attr(local_name!("step")),
+            self.attr(local_name!("value")),
+        )
+    }
+
+    /// Moves a range input's current value: the new value's text where it changed, `None` where
+    /// it did not or the element is not a range input.
+    pub(crate) fn move_range_input(&mut self, to: RangeMove) -> Option<String> {
+        let rules = self.range_rules();
+        let data = self.range_input_data_mut()?;
+        if !data.apply(&rules, to) {
+            return None;
+        }
+        Some(rules.format(data.value()))
+    }
+
+    /// Sets a range input's current value to its `value` attribute sanitized, as a write of that
+    /// attribute does.
+    pub(crate) fn reseed_range_input(&mut self) {
+        let rules = self.range_rules();
+        let value_attribute = self.attr(local_name!("value")).map(str::to_string);
+        if let Some(data) = self.range_input_data_mut() {
+            data.reseed(&rules, value_attribute.as_deref());
+        }
+    }
+
+    /// Sanitizes a range input's current value against its attributes, as a write of `min`,
+    /// `max` or `step` does.
+    pub(crate) fn resanitize_range_input(&mut self) {
+        let rules = self.range_rules();
+        if let Some(data) = self.range_input_data_mut() {
+            data.resanitize(&rules);
+        }
     }
 
     #[cfg(feature = "file-input")]
@@ -907,6 +975,7 @@ impl std::fmt::Debug for SpecialElementData {
             SpecialElementData::TableRoot(_) => f.write_str("NodeSpecificData::TableRoot"),
             SpecialElementData::TextInput(_) => f.write_str("NodeSpecificData::TextInput"),
             SpecialElementData::CheckboxInput(_) => f.write_str("NodeSpecificData::CheckboxInput"),
+            SpecialElementData::RangeInput(_) => f.write_str("NodeSpecificData::RangeInput"),
             #[cfg(feature = "file-input")]
             SpecialElementData::FileInput(_) => f.write_str("NodeSpecificData::FileInput"),
             SpecialElementData::None => f.write_str("NodeSpecificData::None"),

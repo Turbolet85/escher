@@ -1,5 +1,9 @@
 use crate::events::focus::generate_focus_events;
-use crate::{BaseDocument, node::GeneratedTextInputEvent, util::ACTION_MOD};
+use crate::{
+    BaseDocument,
+    node::{GeneratedTextInputEvent, RangeMove},
+    util::ACTION_MOD,
+};
 use blitz_traits::node_id::NodeId;
 use blitz_traits::{
     SmolStr,
@@ -96,6 +100,21 @@ pub(crate) fn handle_key_or_input_event<F: FnMut(DomEvent)>(
             if let Some(generated_event) = generated_event {
                 doc.apply_generated_text_input_event(node_id, generated_event, dispatch_event);
             }
+        } else if element_data.range_input_data().is_some()
+            && !element_data.has_attr(local_name!("disabled"))
+            && let KeyboardOrTextInputEvent::KeyPress(key_event) = &event
+            && key_event.state.is_pressed()
+        {
+            // https://html.spec.whatwg.org/multipage/input.html#range-state-(type=range):
+            // the arrows step the value, Home and End take it to its minimum and maximum.
+            let to = match key_event.key {
+                Key::ArrowRight | Key::ArrowUp => RangeMove::StepUp,
+                Key::ArrowLeft | Key::ArrowDown => RangeMove::StepDown,
+                Key::Home => RangeMove::Minimum,
+                Key::End => RangeMove::Maximum,
+                _ => return,
+            };
+            doc.apply_range_move(node_id, to, &mut dispatch_event);
         }
     }
 }
@@ -133,6 +152,29 @@ impl BaseDocument {
                 implicit_form_submission(self, node_id);
             }
         }
+    }
+
+    /// Moves a range input's current value. Where it changed, the node joins the changed set,
+    /// an `input` event carrying the new value is dispatched and a redraw is requested.
+    pub(crate) fn apply_range_move(
+        &mut self,
+        node_id: NodeId,
+        to: RangeMove,
+        dispatch_event: &mut dyn FnMut(DomEvent),
+    ) {
+        let Some(value) = self
+            .get_node_mut(node_id)
+            .and_then(|node| node.element_data_mut())
+            .and_then(|element| element.move_range_input(to))
+        else {
+            return;
+        };
+        self.changed_nodes.insert(node_id);
+        dispatch_event(DomEvent::new(
+            node_id,
+            DomEventData::Input(BlitzInputEvent { value }),
+        ));
+        self.shell_provider.request_redraw();
     }
 }
 

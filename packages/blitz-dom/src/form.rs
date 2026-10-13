@@ -315,6 +315,8 @@ fn construct_entry_list(doc: &BaseDocument, form_id: NodeId, submitter_id: NodeI
         // Otherwise, create an entry with name and the value of the field element, and append it to entry list.
         else if let Some(text) = element.text_input_data() {
             create_entry(name, text.editor.text().to_string().as_str().into());
+        } else if let Some(value) = element.range_input_value() {
+            create_entry(name, value.as_str().into());
         } else if let Some(value) = element.attr(local_name!("value")) {
             create_entry(name, value.into());
         }
@@ -460,4 +462,65 @@ fn encode_text_plain<T: AsRef<str>, U: AsRef<str>>(input: &[(T, U)]) -> String {
         out.push_str("\r\n");
     }
     out
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::{Attribute, DocumentConfig, QualName, node::RangeMove, qual_name};
+
+    fn attribute(name: &str, value: &str) -> Attribute {
+        Attribute {
+            name: QualName::new(None, markup5ever::ns!(), LocalName::from(name)),
+            value: value.to_string(),
+        }
+    }
+
+    #[test]
+    fn a_range_input_submits_its_current_value() {
+        let mut doc = BaseDocument::new(DocumentConfig::default());
+        let root_id = doc.root_node().id;
+        let mut mutator = doc.mutate();
+        let html = mutator.create_element(qual_name!("html", html), vec![]);
+        let body = mutator.create_element(qual_name!("body", html), vec![]);
+        let form = mutator.create_element(qual_name!("form", html), vec![]);
+        let input = mutator.create_element(
+            qual_name!("input", html),
+            vec![
+                attribute("type", "range"),
+                attribute("name", "level"),
+                attribute("min", "0"),
+                attribute("max", "10"),
+                attribute("step", "2"),
+                attribute("value", "4"),
+            ],
+        );
+        mutator.append_children(form, &[input]);
+        mutator.append_children(body, &[form]);
+        mutator.append_children(html, &[body]);
+        mutator.append_children(root_id, &[html]);
+        drop(mutator);
+        doc.resolve(0.0);
+
+        let element = doc.nodes[input].element_data_mut();
+        let moved = element.and_then(|element| element.move_range_input(RangeMove::StepUp));
+        assert_eq!(
+            moved.as_deref(),
+            Some("6"),
+            "the range input holds its data"
+        );
+        assert_eq!(
+            doc.nodes[input].attr(local_name!("value")),
+            Some("4"),
+            "the move leaves the value attribute"
+        );
+
+        let entries = construct_entry_list(&doc, form, form);
+        let read: Vec<(&str, &str)> = entries
+            .0
+            .iter()
+            .map(|entry| (entry.name.as_str(), entry.value.as_ref()))
+            .collect();
+        assert_eq!(read, [("level", "6")]);
+    }
 }

@@ -8,8 +8,9 @@
 //! click is accepted on, the diff the driver returns is the diff a twin instance reads when
 //! the same control is clicked by selector and settled — not empty for the controls a click
 //! changes at boot, empty for the rest; for a control a click is refused on, the twin's
-//! selector click changes nothing. The Timer has no changing control at boot, so its Reset is
-//! read after time has moved. The mount is still the stand's after every action. A failure
+//! selector click changes nothing. At boot the Timer's one changing control is its duration
+//! slider, which a click focuses; its Reset has nothing to reset, so it is read after time has
+//! moved. The mount is still the stand's after every action. A failure
 //! message carries the layout mode, the task and a row index, never an id or what a screen
 //! reads.
 
@@ -32,12 +33,12 @@ const NOBODY: &str = "act-ids-names-no-element";
 
 /// The controls of `task` whose click changes what a snapshot reads at boot. The others are
 /// the shell's `back-btn`, which has no Home behind it on a held instance, the choice already
-/// made, the disabled controls, the range input and a Reset with nothing to reset.
+/// made, the disabled controls and a Reset with nothing to reset.
 fn changes_at_boot(task: LeanTask) -> &'static [&'static str] {
     match task {
         LeanTask::Counter => &["counter-increment"],
         LeanTask::FlightBooker => &["flight-return", "flight-start", "flight-book"],
-        LeanTask::Timer => &[],
+        LeanTask::Timer => &["timer-duration"],
         LeanTask::Crud => &["crud-filter", "crud-name", "crud-surname", "crud-create"],
     }
 }
@@ -226,8 +227,8 @@ fn an_id_addressed_click_has_the_effect_of_a_selector_click_on_a_twin() {
             "incremental={incremental}: the stand's 15 controls"
         );
         assert!(
-            changing == 8,
-            "incremental={incremental}: eight controls change the screen at boot"
+            changing == 9,
+            "incremental={incremental}: nine controls change the screen at boot"
         );
         assert!(
             refused_controls == 3,

@@ -36,3 +36,6 @@
 - `recurrence-despite-learning: "Committed run-dir and evidence text must not spell a host temp path, even as prose"` (docs/session-learnings.md, 2026-10-06). Hygiene refused the implement outcome file once.
 - `recurrence-despite-learning: host-linux.md 2026-10-13 (run pipeline tools bare or redirected, never piped)`. One `inputs.py verify` was piped into `tail` at this resume.
 - Curation wrote T1 1 (a founder's word in its own script). Nothing was deferred by the cap.
+
+## Session End Status
+Completed normally at 2026-10-13 22:30:51

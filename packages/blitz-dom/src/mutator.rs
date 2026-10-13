@@ -349,6 +349,13 @@ impl DocumentMutator<'_> {
             element.flush_link_state();
         }
 
+        if name.local == local_name!("min")
+            || name.local == local_name!("max")
+            || name.local == local_name!("step")
+        {
+            element.resanitize_range_input();
+        }
+
         let tag = &element.name.local;
         let attr = &name.local;
 
@@ -365,6 +372,9 @@ impl DocumentMutator<'_> {
                     value,
                 );
             }
+            // A range input's current value follows its default value, so that an app
+            // re-rendering the attribute keeps control of it.
+            element.reseed_range_input();
             return;
         }
 
@@ -486,6 +496,14 @@ impl DocumentMutator<'_> {
                     "",
                 );
             }
+            element.reseed_range_input();
+        }
+
+        if name.local == local_name!("min")
+            || name.local == local_name!("max")
+            || name.local == local_name!("step")
+        {
+            element.resanitize_range_input();
         }
 
         let tag = &element.name.local;
@@ -1097,6 +1115,7 @@ impl<'doc> DocumentMutator<'doc> {
                 SpecialElementData::TableRoot(_) => {}
                 SpecialElementData::TextInput(_) => {}
                 SpecialElementData::CheckboxInput(_) => {}
+                SpecialElementData::RangeInput(_) => {}
                 #[cfg(feature = "file-input")]
                 SpecialElementData::FileInput(_) => {}
                 SpecialElementData::None => {}

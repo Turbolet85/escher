@@ -52,8 +52,8 @@ pub struct NodeState {
     pub enabled: Option<bool>,
     /// For a checkbox or radio `input`, whether it is checked; `None` for every other element.
     pub checked: Option<bool>,
-    /// For a text-entry `input` or a `textarea`, its current text, else its `value` attribute;
-    /// `None` for every other element. A password or file `input` whose value is not empty reads
+    /// For a text-entry `input` or a `textarea`, its current text, and for a range `input` its
+    /// current value, else its `value` attribute; `None` for every other element. A password or file `input` whose value is not empty reads
     /// [`MASKED_VALUE`], never the text or the path; an empty one reads as any other `input`.
     pub value: Option<String>,
     /// Whether the element states itself selected, as its accessibility node reads its
@@ -195,8 +195,9 @@ impl Builder<'_> {
     }
 }
 
-/// The form reader's value of a text-entry control: its editor's text, else its `value`
-/// attribute. A password or file `input` reads [`MASKED_VALUE`] in place of a non-empty one.
+/// The form reader's value of a text-entry control: its editor's text or a range input's
+/// current value, else its `value` attribute. A password or file `input` reads
+/// [`MASKED_VALUE`] in place of a non-empty one.
 fn value(element: &ElementData) -> Option<String> {
     let input_type = element.attr(local_name!("type"));
     let (entry, masked) = match &*element.name.local {
@@ -218,7 +219,9 @@ fn value(element: &ElementData) -> Option<String> {
     }
     let value = match element.text_input_data() {
         Some(text) => Some(text.editor.text().to_string()),
-        None => element.attr(local_name!("value")).map(str::to_string),
+        None => element
+            .range_input_value()
+            .or_else(|| element.attr(local_name!("value")).map(str::to_string)),
     };
     match value {
         Some(text) if masked && !text.is_empty() => Some(MASKED_VALUE.to_string()),
@@ -588,7 +591,7 @@ mod tests {
     }
 
     #[test]
-    fn a_range_input_reads_its_value_attribute() {
+    fn a_range_input_reads_its_current_value() {
         fn app() -> Element {
             rsx! { input { id: "level", r#type: "range", value: "15" } }
         }
@@ -601,7 +604,51 @@ mod tests {
         );
         assert!(
             value_of(&snapshot, "level") == Some("15"),
-            "a range input reads its value attribute"
+            "a range input reads its current value"
+        );
+    }
+
+    #[test]
+    fn a_stepped_uncontrolled_range_input_reads_its_moved_value() {
+        fn app() -> Element {
+            rsx! { input { id: "level", r#type: "range", min: "0", max: "30", value: "15" } }
+        }
+        let mut doc = build(app);
+        let level = {
+            let base = doc.inner();
+            let Some(level) = base.query_selector("#level").ok().flatten() else {
+                panic!("the fixture renders the range input");
+            };
+            assert!(
+                base.get_node(level)
+                    .and_then(|node| node.element_data())
+                    .and_then(ElementData::range_input_data)
+                    .is_some(),
+                "the range input holds its current value"
+            );
+            level
+        };
+
+        doc.inner_mut().set_focus_to(level);
+        doc.handle_ui_event(blitz_traits::events::UiEvent::KeyDown(
+            blitz_traits::events::BlitzKeyEvent {
+                key: keyboard_types::Key::ArrowRight,
+                code: keyboard_types::Code::Unidentified,
+                modifiers: keyboard_types::Modifiers::empty(),
+                location: keyboard_types::Location::Standard,
+                is_auto_repeating: false,
+                is_composing: false,
+                state: blitz_traits::events::KeyState::Pressed,
+                text: None,
+            },
+        ));
+        doc.inner_mut().resolve(0.0);
+
+        assert!(value_of(&doc.snapshot(), "level") == Some("16"));
+        assert_eq!(
+            attribute(&doc, "level", local_name!("value")).as_deref(),
+            Some("15"),
+            "the value attribute keeps its boot value"
         );
     }
 

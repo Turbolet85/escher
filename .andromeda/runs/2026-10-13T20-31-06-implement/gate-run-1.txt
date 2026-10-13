@@ -1,0 +1,31 @@
+gate v1.17 · 383c6f7b
+shell /usr/bin/bash (from $SHELL; -c, non-login)
+root . · marker 2026-10-13-range-input-interaction · entries 18
+logs $TMPDIR/andromeda-gate/2026-10-13-range-input-interaction/implement-2026-10-13T20-31-06 · bound: GNU timeout
+delta docs 46 · rust 12 · unmapped 6
+walk-class 0 marked (an unmarked walker reads as none)
+prose L209-211: No entry is a live leg: nothing is driven against an external process the operator brings … (249 chars)
+prose L213-214: The `a11y` leg runs three fixed files, `accessibility_roles` and `focusability_updates` am… (219 chars)
+prose L216-216: No manifest changes, so the audit leg is not listed. The `Cargo.lock` census stands in for… (94 chars)
+prose L218-218: No mutation control is planned or run: the mutation tier stays unstarted (inputs#I1).
+prose L220-221: **Not run locally:** the MSRV build and the windows, macos, ios and android legs. The fork… (198 chars)
+prose L223-224: `evidence/range-readings.md` (step 12) has no listed producer by construction. It is /impl… (158 chars)
+  1 unit        green · exit 0 · 6.28s · 7405 B → 1.log · cargo test -p blitz-dom --locked
+  2 unit        green · exit 0 · 1.96s · 5739 B → 2.log · cargo test -p dioxus-native-dom --locked
+  3 integration green · exit 0 · 0.63s · 668 B → 3.log · cargo test -p blitz-tests --locked --test range_input_inte… (65 chars)
+  4 integration green · exit 0 · 9.12s · 690 B → 4.log · cargo test -p blitz-tests --locked --test stand_act_range … (78 chars)
+  5 integration green · exit 0 · 17.2s · 2257 B → 5.log · cargo test --workspace --locked --test range_input_interac… (106 chars)
+  6 integration green · exit 0 · 26.76s · 7369 B → 6.log · cargo test -p blitz-tests --locked --test stand_snapshot_s… (410 chars)
+  7 probe       green · exit 1 · 0.01s · 2 B → 7.log · git diff 97ce760ddfb4db2996162551501b809e51b46367 -- Cargo… (94 chars)
+  8 probe       green · exit 1 · 0.0s · 2 B → 8.log · sed '/^#\[cfg(test)\]/,$d' packages/blitz-dom/src/node/ran… (173 chars)
+  9 probe       red · exit 1 ✗ (exit 0) · exit 0 · 0.01s · 2 B → 9.log · git diff 97ce760ddfb4db2996162551501b809e51b46367 -- packa… (192 chars)
+ 10 probe       green · exit 1 · 0.0s · 2 B → 10.log · cat tests/blitz-tests/tests/range_input_interaction.rs tes… (230 chars)
+ 11 probe       green · exit 0 · 0.01s · 0 B → 11.log · git diff --quiet 97ce760ddfb4db2996162551501b809e51b46367 … (532 chars)
+ 12 build       green · exit 0 · 33.99s · 137 B → 12.log · bash scripts/agent-run.sh boot
+ 13 integration green · exit 0 · 46.16s · 19157 B → 13.log · bash scripts/agent-run.sh run stand
+ 14 lint        red · exit 0 ✗ (exit 101) · exit 101 · 2.56s · 817 B → 14.log · bash .github/scripts/ci-leg.sh fast
+ 15 lint        green · exit 0 · 52.98s · 2320 B → 15.log · bash .github/scripts/ci-leg.sh doc
+ 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)
+ 17 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+ 18 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)
+entries 18 · green 13 · red 2 (9,14) · recorded 0 · timeout 0 · not-run 3

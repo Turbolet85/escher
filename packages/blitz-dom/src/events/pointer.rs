@@ -18,7 +18,7 @@ use taffy::AbsoluteAxis;
 
 use crate::{
     BaseDocument,
-    node::{ScrollbarRef, SpecialElementData},
+    node::{RangeMove, ScrollbarRef, SpecialElementData},
     scrolling::{FlingState, ScrollAnimationState},
 };
 
@@ -449,12 +449,29 @@ pub(crate) fn handle_pointerdown(
         },
         Disabled,
         SelectableText,
+        RangeInput {
+            /// How far along the content box the point lies, from 0 at its left edge to 1 at its
+            /// right.
+            fraction: f32,
+        },
     }
 
     let click_target = {
         let node = &doc.nodes[actual_target];
         match node.data.downcast_element() {
             Some(el) if el.has_attr(local_name!("disabled")) => ClickTarget::Disabled,
+            Some(el) if el.range_input_data().is_some() => {
+                // The track runs left to right across the content box.
+                let layout = node.final_layout();
+                let width = layout.content_box_width();
+                let offset = hit.x - (layout.padding.left + layout.border.left);
+                let fraction = if width > 0.0 {
+                    (offset / width).clamp(0.0, 1.0)
+                } else {
+                    0.0
+                };
+                ClickTarget::RangeInput { fraction }
+            }
             Some(el) => {
                 if let SpecialElementData::TextInput(ref text_input_data) = el.special_data {
                     let mut content_box_offset = taffy::Point {
@@ -497,6 +514,15 @@ pub(crate) fn handle_pointerdown(
 
     match click_target {
         ClickTarget::Disabled => (),
+        ClickTarget::RangeInput { fraction } => {
+            if button == MouseEventButton::Main {
+                doc.apply_range_move(
+                    actual_target,
+                    RangeMove::Fraction(f64::from(fraction)),
+                    dispatch_event,
+                );
+            }
+        }
         ClickTarget::SelectableText => {
             // Handle text selection for non-input elements
             if let Some((inline_root_id, byte_offset)) = doc.find_text_position(x, y) {
@@ -638,6 +664,19 @@ pub(crate) fn handle_click(
             }
 
             if let SpecialElementData::TextInput(_) = el.special_data {
+                break 'matched true;
+            }
+
+            // A click focuses a range input; its value was set by the pointerdown, so a label's
+            // synthetic click leaves it alone.
+            if el.range_input_data().is_some() {
+                generate_focus_events(
+                    doc,
+                    &mut |doc| {
+                        doc.set_focus_to(node_id);
+                    },
+                    dispatch_event,
+                );
                 break 'matched true;
             }
 

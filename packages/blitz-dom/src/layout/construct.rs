@@ -24,8 +24,8 @@ use crate::{
         CONSTRUCT_BOX, CONSTRUCT_DESCENDENT, CONSTRUCT_FC, sort_layout_children_by_order,
     },
     node::{
-        ListItemLayout, ListItemLayoutPosition, Marker, NodeFlags, NodeKind, SpecialElementData,
-        TextBrush, TextInputData, TextLayout,
+        ListItemLayout, ListItemLayoutPosition, Marker, NodeFlags, NodeKind, RangeInputData,
+        SpecialElementData, TextBrush, TextInputData, TextLayout,
     },
     qual_name, stylo_to_parley,
     traversal::{iter_children, iter_children_and_pseudos},
@@ -433,6 +433,7 @@ fn collect_layout_children_with_wrap(
     }
 
     flush_pseudo_elements(doc, container_node_id);
+    flush_range_input(doc, container_node_id);
 
     if let Some(el) = doc.nodes[container_node_id].data.downcast_element() {
         // Handle text inputs
@@ -922,6 +923,26 @@ fn create_checkbox_input(doc: &mut BaseDocument, input_element_id: NodeId) {
         let checked = element.has_attr(local_name!("checked"));
         element.special_data = SpecialElementData::CheckboxInput(checked);
         element.set_checkbox_input_checked(checked);
+    }
+}
+
+/// Seeds a range input's current value from its `value` attribute when it holds none, so that a
+/// re-construction keeps a moved value, and clears it off an element that is no longer a range
+/// input. The box it constructs is untouched.
+fn flush_range_input(doc: &mut BaseDocument, node_id: NodeId) {
+    let Some(element) = doc.nodes[node_id].data.downcast_element_mut() else {
+        return;
+    };
+    let is_range = element.name.local == local_name!("input")
+        && element
+            .attr(local_name!("type"))
+            .is_some_and(|input_type| input_type.eq_ignore_ascii_case("range"));
+    let holds_range = element.range_input_data().is_some();
+    if is_range && !holds_range {
+        let data = RangeInputData::new(&element.range_rules(), element.attr(local_name!("value")));
+        element.special_data = SpecialElementData::RangeInput(data);
+    } else if !is_range && holds_range {
+        element.special_data = SpecialElementData::None;
     }
 }
 
