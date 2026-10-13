@@ -881,7 +881,7 @@ dependencies = [
 
 [[package]]
 name = "blitz"
-version = "0.3.0-beta.2"
+version = "0.3.0-beta.3"
 dependencies = [
  "anyrender_vello",
  "blitz-dom",
@@ -897,7 +897,7 @@ dependencies = [
 
 [[package]]
 name = "blitz-dom"
-version = "0.3.0-beta.2"
+version = "0.3.0-beta.3"
 dependencies = [
  "accesskit",
  "anyrender",
@@ -984,7 +984,7 @@ dependencies = [
 
 [[package]]
 name = "blitz-html"
-version = "0.3.0-beta.2"
+version = "0.3.0-beta.3"
 dependencies = [
  "blitz-dom",
  "blitz-traits",
@@ -995,7 +995,7 @@ dependencies = [
 
 [[package]]
 name = "blitz-net"
-version = "0.3.0-beta.2"
+version = "0.3.0-beta.3"
 dependencies = [
  "blitz-traits",
  "data-url",
@@ -1011,7 +1011,7 @@ dependencies = [
 
 [[package]]
 name = "blitz-paint"
-version = "0.3.0-beta.2"
+version = "0.3.0-beta.3"
 dependencies = [
  "anyrender",
  "anyrender_svg",
@@ -1033,7 +1033,7 @@ dependencies = [
 
 [[package]]
 name = "blitz-shell"
-version = "0.3.0-beta.2"
+version = "0.3.0-beta.3"
 dependencies = [
  "accesskit",
  "accesskit_xplat",
@@ -1057,7 +1057,7 @@ dependencies = [
 
 [[package]]
 name = "blitz-test-harness"
-version = "0.3.0-beta.2"
+version = "0.3.0-beta.3"
 dependencies = [
  "anyrender",
  "anyrender_vello_cpu",
@@ -1073,7 +1073,7 @@ dependencies = [
 
 [[package]]
 name = "blitz-tests"
-version = "0.3.0-beta.2"
+version = "0.3.0-beta.3"
 dependencies = [
  "accesskit",
  "anyrender",
@@ -1083,6 +1083,7 @@ dependencies = [
  "blitz-paint",
  "blitz-test-harness",
  "blitz-traits",
+ "cursor-icon",
  "dioxus",
  "dioxus-core",
  "dioxus-native-dom",
@@ -1102,7 +1103,7 @@ dependencies = [
 
 [[package]]
 name = "blitz-traits"
-version = "0.3.0-beta.2"
+version = "0.3.0-beta.3"
 dependencies = [
  "atomic_refcell",
  "bitflags 2.13.2",
@@ -1117,7 +1118,7 @@ dependencies = [
 
 [[package]]
 name = "blitz-vibey-script"
-version = "0.3.0-beta.2"
+version = "0.3.0-beta.3"
 dependencies = [
  "blitz-dom",
  "blitz-html",
@@ -2141,7 +2142,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d045de693cb712d0b22c6a64be5b953f67b3ce00ab5ad3dd5d8b441886ab8e1a"
 dependencies = [
  "quote",
- "syn 2.0.119",
+ "syn 3.0.6",
 ]
 
 [[package]]
@@ -3097,7 +3098,7 @@ checksum = "0b5343afd4a8365a643ac588dab4cf234a190c7f6c88c9f6dd6ffe00837661b7"
 
 [[package]]
 name = "escher-driver"
-version = "0.3.0-beta.2"
+version = "0.3.0-beta.3"
 dependencies = [
  "blitz-test-harness",
  "dioxus-native-dom",
@@ -3108,7 +3109,7 @@ dependencies = [
 
 [[package]]
 name = "escher-telemetry"
-version = "0.3.0-beta.2"
+version = "0.3.0-beta.3"
 dependencies = [
  "tracing",
  "tracing-log",
@@ -7889,7 +7890,7 @@ dependencies = [
 
 [[package]]
 name = "stylo_taffy"
-version = "0.3.0-beta.2"
+version = "0.3.0-beta.3"
 dependencies = [
  "bitflags 2.13.2",
  "stylo",
@@ -8043,8 +8044,9 @@ dependencies = [
 
 [[package]]
 name = "taffy"
-version = "0.14.0"
-source = "git+https://github.com/DioxusLabs/taffy?rev=7d33901cc383489d9945ae796a1ceed0a935ef66#7d33901cc383489d9945ae796a1ceed0a935ef66"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3c8480887e8803986d96a7173729565520d4bbb721ad6b7ad6941a22897207aa"
 dependencies = [
  "serde",
  "slotmap",

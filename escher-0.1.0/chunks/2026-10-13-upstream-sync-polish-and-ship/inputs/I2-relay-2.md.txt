@@ -1,0 +1,1 @@
+"Upstream sync ahead of polish and ship" (working-route.md:86). Heads-up: a bash guard deploying soon refuses a pipeline tool's stdout piped into head/tail/grep/cut/sed/awk. Redirect the output to a file and read it whole instead, starting now. The founder's word stands: no mutation runs.

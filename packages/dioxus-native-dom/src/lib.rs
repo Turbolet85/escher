@@ -29,7 +29,7 @@ mod write_once_attr;
 pub use actionable::UnkeyedActionable;
 pub use blitz_dom::DocumentConfig;
 pub use dioxus_document::DioxusDocument;
-pub use events::{NodeHandle, synthetic_click_event};
+pub use events::{NodeHandle, synthetic_click_event, synthetic_form_event};
 #[cfg(feature = "accessibility")]
 pub use snapshot::{MASKED_VALUE, NodeState, Snapshot, SnapshotNode};
 #[cfg(feature = "accessibility")]

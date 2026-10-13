@@ -415,17 +415,8 @@ mod tests {
             doc.poll(None);
         }
 
-        // Removal detaches the node; dropping the unparented node, as the mutation writer does
-        // when its ElementId is reassigned, stales the id.
+        // Removal drops the node, and its id with it (upstream #1185).
         render(&mut doc, false);
-        let detached = doc.inner.borrow().get_node(removed).map(|node| node.parent);
-        assert_eq!(detached, Some(None));
-        assert_eq!(doc.element_id(removed), None);
-
-        doc.inner
-            .borrow_mut()
-            .mutate()
-            .remove_node_if_unparented(removed);
         assert!(doc.inner.borrow().get_node(removed).is_none());
         assert_eq!(doc.element_id(removed), None);
         assert!(doc.element_ids().iter().all(|(node, _)| *node != removed));

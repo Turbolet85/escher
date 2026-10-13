@@ -1,0 +1,210 @@
+[
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-13T14:28:53Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-13-upstream-sync-polish-and-ship",
+"--message-file",
+".andromeda/runs/2026-10-13T14-26-44-phase/relay-1.md",
+"--origin",
+"orchestrator git measurement, /andromeda-phase take-up, 2026-10-13T14:27Z",
+"--kind",
+"relay",
+"--why",
+"upstream/main measured at 434e0661 (ls-remote, then fetch): 16 commits past the merge base 7832c177, ours 83 past; trial merge conflicts in 2 files (dioxus-native-dom lib.rs, mutation_writer.rs); taffy to registry 0.15; our surface re-measured",
+"--step",
+"phase:P1",
+"--run-dir",
+".andromeda/runs/2026-10-13T14-26-44-phase",
+"--marker",
+"2026-10-13-upstream-sync-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I1 · copy message · message: orchestrator git measurement, /andromeda-phase take-up, 2026-10-13T14:27Z",
+"cite: inputs#I1"
+],
+"stderr": null,
+"wrote": [
+"inputs/.gitattributes",
+"inputs/I1-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I1",
+"kind": "relay",
+"repo": null,
+"path": "message: orchestrator git measurement, /andromeda-phase take-up, 2026-10-13T14:27Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "20a026a7a35cadc5cfcfb20edf2360adc9816d99ad64fa5240eeb08403e23c23",
+"copy": "I1-relay-1.md.txt",
+"link": false,
+"read_at": "2026-10-13T14:28:53Z",
+"step": "phase:P1",
+"why": "upstream/main measured at 434e0661 (ls-remote, then fetch): 16 commits past the merge base 7832c177, ours 83 past; trial merge conflicts in 2 files (dioxus-native-dom lib.rs, mutation_writer.rs); taffy to registry 0.15; our surface re-measured"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-13T14:28:53Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-13-upstream-sync-polish-and-ship",
+"--message-file",
+".andromeda/runs/2026-10-13T14-26-44-phase/relay-2.md",
+"--origin",
+"the operator, as the arguments of /andromeda-phase, 2026-10-13T14:26Z",
+"--kind",
+"relay",
+"--why",
+"the operator relays the founder: no mutation runs (the mutation tier stays unstarted until the founder says so); pipeline tool stdout is redirected to a file and read whole, never piped into head/tail/grep/cut/sed/awk",
+"--step",
+"phase:P1",
+"--run-dir",
+".andromeda/runs/2026-10-13T14-26-44-phase",
+"--marker",
+"2026-10-13-upstream-sync-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I2 · copy message · message: the operator, as the arguments of /andromeda-phase, 2026-10-13T14:26Z",
+"cite: inputs#I2"
+],
+"stderr": null,
+"wrote": [
+"inputs/I2-relay-2.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I2",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, as the arguments of /andromeda-phase, 2026-10-13T14:26Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "121cb7b0fcdd2140df4d2d659b61c2b031c27db8e9499f9b25a755ceffec5eb5",
+"copy": "I2-relay-2.md.txt",
+"link": false,
+"read_at": "2026-10-13T14:28:53Z",
+"step": "phase:P1",
+"why": "the operator relays the founder: no mutation runs (the mutation tier stays unstarted until the founder says so); pipeline tool stdout is redirected to a file and read whole, never piped into head/tail/grep/cut/sed/awk"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-13T14:49:39Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-13-upstream-sync-polish-and-ship",
+"--run-dir",
+".andromeda/runs/2026-10-13T14-26-44-phase",
+"--marker",
+"2026-10-13-upstream-sync-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: orchestrator git measurement, /andromeda-phase take-up, 2026-10-13T14:27Z",
+"I1 cited scope.md:8 · scope.md:11 · scope.md:14 · scope.md:15 · scope.md:19 · scope.md:36 · scope.md:47 · scope.md:51 · research.md:7 · plan.md:9 · plan.md:21 · plan.md:429",
+"I2 n/a — a message has no live source · copy message · message: the operator, as the arguments of /andromeda-phase, 2026-10-13T14:26Z",
+"I2 cited scope.md:39 · research.md:7 · plan.md:16 · plan.md:66 · plan.md:429 · plan.md:439",
+"inputs: 2 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 2 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 2,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 2
+},
+"uncited": 0,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-13T14:59:51Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-13-upstream-sync-polish-and-ship",
+"--message-file",
+".andromeda/runs/2026-10-13T14-26-44-phase/relay-3.md",
+"--origin",
+"the operator, at the P5 review, 2026-10-13T14:59Z",
+"--kind",
+"relay",
+"--why",
+"the operator word on .andromeda/runs/2026-10-13T14-26-44-phase/p5-card-1.md (the operator own word): yes, with the pin, merge base and lock delta re-checked, the gate 50 job-log read accepted, and a contingency for the operator pass: if a guard refuses gate 50 pipe, write the log to a file and count in it",
+"--step",
+"phase:P5",
+"--run-dir",
+".andromeda/runs/2026-10-13T14-26-44-phase",
+"--marker",
+"2026-10-13-upstream-sync-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I3 · copy message · message: the operator, at the P5 review, 2026-10-13T14:59Z",
+"cite: inputs#I3"
+],
+"stderr": null,
+"wrote": [
+"inputs/I3-relay-3.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I3",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, at the P5 review, 2026-10-13T14:59Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "8a79db5629ad70d9931abc5d672095f1d84f42e4f45f959c42371005f0a94f4d",
+"copy": "I3-relay-3.md.txt",
+"link": false,
+"read_at": "2026-10-13T14:59:51Z",
+"step": "phase:P5",
+"why": "the operator word on .andromeda/runs/2026-10-13T14-26-44-phase/p5-card-1.md (the operator own word): yes, with the pin, merge base and lock delta re-checked, the gate 50 job-log read accepted, and a contingency for the operator pass: if a guard refuses gate 50 pipe, write the log to a file and count in it"
+}
+}
+]

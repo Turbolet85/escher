@@ -1,0 +1,468 @@
+[
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'add_user_agent_stylesheet' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 8,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/impl#[BaseDocument]new().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 523
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/impl#[BaseDocument]new().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 526
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/hover_invalidation_tests/make_doc().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2994
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/hover_invalidation_tests/ancestor_hover_with_link_state_updates_descendant().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3081
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/hover_invalidation_tests/checkbox_toggle_updates_checked_styles().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3150
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/hover_invalidation_tests/hover_updates_existing_pseudo_element_style().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3229
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/hover_invalidation_tests/hover_updates_background_image_layers().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3285
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 dioxus_document/impl#[DioxusDocument]new().",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 97
+}
+],
+"db_state": "regenerated",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'take_changed_nodes' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 19,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/changed_set_tests/changed_set_fresh_document_reads_no_change().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3459
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/changed_set_tests/changed_set_attribute_write_marks_its_node_until_drained().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3477
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/changed_set_tests/changed_set_attribute_write_marks_its_node_until_drained().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3482
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/changed_set_tests/changed_set_attribute_write_marks_its_node_until_drained().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3490
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/changed_set_tests/changed_set_write_outside_the_document_marks_nothing().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3499
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/changed_set_tests/changed_set_write_outside_the_document_marks_nothing().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3518
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/changed_set_tests/changed_set_focus_move_marks_both_nodes_and_hover_marks_nothing().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3534
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/changed_set_tests/changed_set_focus_move_marks_both_nodes_and_hover_marks_nothing().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3539
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/changed_set_tests/changed_set_focus_move_marks_both_nodes_and_hover_marks_nothing().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3554
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/changed_set_tests/changed_set_checked_change_marks_its_node().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3580
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/changed_set_tests/changed_set_checked_change_marks_its_node().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3589
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/changed_set_tests/changed_set_idle_resolve_marks_nothing_in_either_layout_mode().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3608
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/changed_set_tests/changed_set_idle_resolve_marks_nothing_in_either_layout_mode().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3616
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/changed_set_tests/changed_set_drained_id_of_a_dropped_node_reads_none().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3626
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/changed_set_tests/changed_set_drained_id_of_a_dropped_node_reads_none().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3633
+},
+{
+"caller": "rust-analyzer cargo blitz-shell 0.3.0-beta.2 window/impl#[`View<Rend>`]poll().",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 375
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 a_shot_changes_nothing().",
+"file": "tests/blitz-tests/tests/stand_act_screenshot.rs",
+"line": 282
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 impl#[Screen]step().",
+"file": "tests/blitz-tests/tests/stand_diff.rs",
+"line": 102
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 a_settle_on_an_idle_instance_changes_nothing().",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 91
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee, file, line FROM refs WHERE callee_name = 'BOOLEAN_ATTRIBUTES' ORDER BY file, line",
+"rows": 1,
+"result": [
+{
+"callee": "rust-analyzer cargo dioxus-native-dom 0.7.0 mutation_writer/BOOLEAN_ATTRIBUTES.",
+"file": "packages/dioxus-native-dom/src/mutation_writer.rs",
+"line": 438
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'qual_name' AND callee_kind = 'fn' AND callee_file LIKE '%dioxus-native-dom/src/lib.rs' ORDER BY file, line",
+"rows": 12,
+"result": [
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 dioxus_document/",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 7
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 dioxus_document/impl#[DioxusDocument]new().",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 113
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 dioxus_document/impl#[DioxusDocument]new().",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 117
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 dioxus_document/impl#[DioxusDocument]new().",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 121
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 dioxus_document/impl#[DioxusDocument]new().",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 126
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 dioxus_document/impl#[DioxusDocument]new().",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 129
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 dioxus_document/impl#[DioxusDocument]create_head_element().",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 171
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 dioxus_document/impl#[DioxusDocument]create_head_element().",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 176
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 mutation_writer/",
+"file": "packages/dioxus-native-dom/src/mutation_writer.rs",
+"line": 1
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 mutation_writer/create_template_node().",
+"file": "packages/dioxus-native-dom/src/mutation_writer.rs",
+"line": 381
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 mutation_writer/set_attribute_inner().",
+"file": "packages/dioxus-native-dom/src/mutation_writer.rs",
+"line": 432
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 snapshot/tests/a_present_disabled_attribute_reads_not_enabled_whatever_its_value().",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 542
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'remove_node' AND callee_kind = 'fn' AND callee_file LIKE '%blitz-dom/src/mutator.rs' ORDER BY file, line",
+"rows": 20,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 mutator/impl#[`DocumentMutator<'_>`]replace_node_with().",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 799
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 mutator/impl#[`DocumentMutator<'_>`]detach_all().",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 816
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 mutator/impl#[`DocumentMutator<'_>`]replace_children().",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 858
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 mutator/test/get_element_by_id_duplicate_ids_first_in_tree_order_wins().",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 1595
+},
+{
+"caller": "rust-analyzer cargo blitz-html 0.3.0-beta.2 html_sink/impl#[`DocumentHtmlParser<'m, 'doc>`][TreeSink]remove_from_parent().",
+"file": "packages/blitz-html/src/html_sink.rs",
+"line": 305
+},
+{
+"caller": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.2 dom/element/set_inner_html().",
+"file": "packages/blitz-vibey-script/src/dom/element.rs",
+"line": 911
+},
+{
+"caller": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.2 dom/node/set_text_content().",
+"file": "packages/blitz-vibey-script/src/dom/node.rs",
+"line": 251
+},
+{
+"caller": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.2 dom/node/remove_child().",
+"file": "packages/blitz-vibey-script/src/dom/node.rs",
+"line": 351
+},
+{
+"caller": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.2 dom/node/replace_child().",
+"file": "packages/blitz-vibey-script/src/dom/node.rs",
+"line": 391
+},
+{
+"caller": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.2 dom/node/remove().",
+"file": "packages/blitz-vibey-script/src/dom/node.rs",
+"line": 402
+},
+{
+"caller": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.2 dom/node/insertable_node_ids().",
+"file": "packages/blitz-vibey-script/src/dom/node.rs",
+"line": 432
+},
+{
+"caller": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.2 dom/node/detach_all().",
+"file": "packages/blitz-vibey-script/src/dom/node.rs",
+"line": 468
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 mutation_writer/impl#[`MutationWriter<'_>`][WriteMutations]remove_node().",
+"file": "packages/dioxus-native-dom/src/mutation_writer.rs",
+"line": 224
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 incremental_oracle/append_remove_insert_subtree().",
+"file": "tests/blitz-tests/tests/incremental_oracle.rs",
+"line": 527
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 incremental_oracle/append_remove_insert_subtree().",
+"file": "tests/blitz-tests/tests/incremental_oracle.rs",
+"line": 531
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 incremental_oracle/append_remove_insert_subtree().",
+"file": "tests/blitz-tests/tests/incremental_oracle.rs",
+"line": 535
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 incremental_oracle/append_remove_insert_subtree().",
+"file": "tests/blitz-tests/tests/incremental_oracle.rs",
+"line": 539
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 incremental_oracle/append_remove_insert_subtree().",
+"file": "tests/blitz-tests/tests/incremental_oracle.rs",
+"line": 543
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 incremental_oracle/paint_tree_z_index_and_stacking_contexts().",
+"file": "tests/blitz-tests/tests/incremental_oracle.rs",
+"line": 681
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.2 oof_dynamic_cb/insert_and_remove_hoisted_box().",
+"file": "tests/blitz-tests/tests/oof_dynamic_cb.rs",
+"line": 230
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee, file, line FROM refs WHERE callee_name = 'ua_stylesheets' ORDER BY file, line",
+"rows": 14,
+"result": [
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 config/DocumentConfig#ua_stylesheets.",
+"file": "apps/browser/src/document_loader.rs",
+"line": 54
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 config/DocumentConfig#ua_stylesheets.",
+"file": "apps/browser/src/toolbar.rs",
+"line": 196
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 config/DocumentConfig#ua_stylesheets.",
+"file": "apps/readme/src/main.rs",
+"line": 111
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 config/DocumentConfig#ua_stylesheets.",
+"file": "apps/readme/src/readme_application.rs",
+"line": 113
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/BaseDocument#ua_stylesheets.",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 468
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 config/DocumentConfig#ua_stylesheets.",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 520
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/BaseDocument#ua_stylesheets.",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1192
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/BaseDocument#ua_stylesheets.",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1210
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/BaseDocument#ua_stylesheets.",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1215
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 config/DocumentConfig#ua_stylesheets.",
+"file": "packages/blitz-dom/src/iframe.rs",
+"line": 59
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 config/DocumentConfig#ua_stylesheets.",
+"file": "packages/blitz-html/src/html_document.rs",
+"line": 58
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 config/DocumentConfig#ua_stylesheets.",
+"file": "packages/blitz-vibey-script/src/document.rs",
+"line": 57
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 config/DocumentConfig#ua_stylesheets.",
+"file": "packages/blitz-vibey-script/src/document.rs",
+"line": 62
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 config/DocumentConfig#ua_stylesheets.",
+"file": "packages/blitz/src/lib.rs",
+"line": 116
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT from_crate, to_crate FROM crate_edges WHERE to_crate = 'dioxus-native-dom' OR from_crate = 'dioxus-native-dom'",
+"rows": 10,
+"result": [
+{
+"from_crate": "escher-driver",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "blitz-examples",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "browser",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "wgpu_texture",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "dioxus-native-dom",
+"to_crate": "blitz-traits"
+},
+{
+"from_crate": "blitz-tests",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "dioxus-native-dom",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "dioxus-native",
+"to_crate": "dioxus-native-dom"
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

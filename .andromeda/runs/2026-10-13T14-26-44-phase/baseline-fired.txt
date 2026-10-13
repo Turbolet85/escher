@@ -1,0 +1,86 @@
+  1 probe       red · exit 0 ✗ (exit 1) · exit 1 · 0.01s · 0 B → 1.log · git merge-base --is-ancestor 434e06615d5f47a3df92c0f94e916… (167 chars)
+   summary: entries 50 · green 0 · red 1 (1) · recorded 0 · timeout 0 · not-run 49
+  2 probe       green · exit 1 · 0.01s · 0 B → 2.log · git grep -n -I -E '^(<<<<<<< |>>>>>>> )' -- . ':(exclude)e… (136 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+  3 probe       green · exit 0 · 0.0s · 2 B → 3.log · grep -c -E '^    "packages/escher-(telemetry|driver)",$|^e… (171 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+  4 probe       red · exit 0 ✗ (exit 1) · exit 1 · 0.0s · 2 B → 4.log · grep -c -E '^taffy = \{ version = "0\.15",|^version = "0\.… (113 chars)
+   summary: entries 50 · green 0 · red 1 (4) · recorded 0 · timeout 0 · not-run 49
+  5 probe       red · exit 1 ✗ (exit 0) · exit 0 · 0.0s · 2 B → 5.log · grep -c 'DioxusLabs/taffy' Cargo.toml
+   summary: entries 50 · green 0 · red 1 (5) · recorded 0 · timeout 0 · not-run 49
+  6 probe       green · exit 0 · 0.41s · 0 B → 6.log · cargo metadata --locked --format-version 1 > /dev/null
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+  7 probe       red · exit 0 ✗ (exit 1) · exit 1 · 0.0s · 2 B → 7.log · grep -A1 -E '^name = "escher-(driver|telemetry)"$' Cargo.l… (104 chars)
+   summary: entries 50 · green 0 · red 1 (7) · recorded 0 · timeout 0 · not-run 49
+  8 probe       red · exit 0 ✗ (exit 1) · exit 1 · 0.01s · 784 B → 8.log · diff <(git show 434e06615d5f47a3df92c0f94e916df088fdcf4d:C… (230 chars)
+   summary: entries 50 · green 0 · red 1 (8) · recorded 0 · timeout 0 · not-run 49
+  9 probe       green · exit 0 · 0.01s · 0 B → 9.log · git diff --quiet a703136878e47c0cf583448bbac02f06f8365be5 … (522 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 10 probe       green · exit 0 · 0.0s · 3 B → 10.log · grep -c 'changed_nodes.insert' packages/blitz-dom/src/muta… (64 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 11 probe       green · exit 0 · 0.0s · 2 B → 11.log · grep -c -E 'fn (draw_masked_input_text|caret_color)\b' pac… (89 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 12 probe       green · exit 0 · 0.0s · 2 B → 12.log · grep -c -E 'pub fn (can_paint_text|layout_as_text_input)\b… (94 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 13 probe       green · exit 0 · 0.01s · 85 B → 13.log · git grep -c -E 'fn physical_unrounded_geometry\b' -- packa… (133 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 14 probe       green · exit 0 · 0.0s · 2 B → 14.log · grep -c -E 'fn hit_inner\b' packages/blitz-dom/src/node/no… (63 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 15 probe       green · exit 0 · 0.0s · 2 B → 15.log · grep -c -E 'fn accessibility_tree\b|^mod bridge_tests;$' p… (106 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 16 probe       green · exit 0 · 0.0s · 2 B → 16.log · grep -c 'take_changed_nodes' packages/blitz-shell/src/wind… (63 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 17 probe       red · exit 1 ✗ (exit 0) · exit 0 · 0.0s · 2 B → 17.log · grep -c BOOLEAN_ATTRIBUTES packages/dioxus-native-dom/src/… (76 chars)
+   summary: entries 50 · green 0 · red 1 (17) · recorded 0 · timeout 0 · not-run 49
+ 18 probe       red · exit 0 ✗ (exit 1) · exit 1 · 0.0s · 2 B → 18.log · grep -c -E 'fn is_bool_attr\(|is_falsy && is_bool_attr\(lo… (119 chars)
+   summary: entries 50 · green 0 · red 1 (18) · recorded 0 · timeout 0 · not-run 49
+ 19 probe       red · last line '4' ✗ (last: '3') · exit 0 · 0.0s · 2 B → 19.log · grep -c -E 'synthetic_click_event, synthetic_form_event\}|… (166 chars)
+   summary: entries 50 · green 0 · red 1 (19) · recorded 0 · timeout 0 · not-run 49
+ 20 probe       green · exit 1 · 0.01s · 2 B → 20.log · git diff 7832c177ff272128154bac58afe56c2b9164b417 434e0661… (235 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 21 probe       red · exit 1 ✗ (exit 0) · exit 0 · 0.0s · 2 B → 21.log · grep -c -E 'the ten driver commands|still to come' README.… (60 chars)
+   summary: entries 50 · green 0 · red 1 (21) · recorded 0 · timeout 0 · not-run 49
+ 22 probe       red · exit 0 ✗ (exit 1) · exit 1 · 0.0s · 2 B → 22.log · grep -c -F 'the eleven driver commands as tools' README.md
+   summary: entries 50 · green 0 · red 1 (22) · recorded 0 · timeout 0 · not-run 49
+ 23 unit        green · exit 0 · 0.08s · 247 B → 23.log · python3 -m unittest discover -s .github/scripts -v -k Blit… (75 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 24 unit        red · contains 'falsy_boolean_attributes_are_removed ... ok' ✗ · exit 0 · 5.43s · 5314 B → 24.log · cargo test -p dioxus-native-dom --locked 2>&1
+   summary: entries 50 · green 0 · red 1 (24) · recorded 0 · timeout 0 · not-run 49
+ 26 probe       green · exit 0 · 0.01s · 41 B → 26.log · grep -E '^test result:' target/ci-logs/test.log | awk '{p+… (146 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 27 probe       green · exit 1 · 0.2s · 2 B → 27.log · for f in tests/blitz-tests/tests/*.rs; do n=$(basename "$f… (184 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 28 probe       red · exit 0 ✗ (exit 1) · exit 1 · 0.01s · 2 B → 28.log · for n in anonymous_block_restyle button_alignment checked_… (183 chars)
+   summary: entries 50 · green 0 · red 1 (28) · recorded 0 · timeout 0 · not-run 49
+ 29 probe       green · exit 1 · 0.0s · 2 B → 29.log · grep -c -E 'Running tests/all\.rs' target/ci-logs/test.log
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 31 probe       recorded · exit 0 · 0.0s · 26 B → 31.log · grep -E '^Ran [0-9]+ tests|^OK$|^FAILED' target/ci-logs/ci… (70 chars)
+   summary: entries 50 · green 0 · red 0 · recorded 1 · timeout 0 · not-run 49
+ 33 probe       green · exit 0 · 1.19s · 14 B → 33.log · bash .github/scripts/ci-leg.sh audit
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 34 integration green · exit 0 · 4.04s · 1597 B → 34.log · bash .github/scripts/ci-leg.sh a11y
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 35 probe       green · exit 0 · 0.01s · 27 B → 35.log · grep -E '^test result:' target/ci-logs/a11y.log | awk '{p+… (125 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 36 probe       green · exit 1 · 0.0s · 2 B → 36.log · grep -c -E 'Running tests/all\.rs' target/ci-logs/a11y.log
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 38 integration green · exit 0 · 79.75s · 18912 B → 38.log · bash scripts/agent-run.sh run stand
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 39 probe       green · exit 0 · 0.0s · 3 B → 39.log · ls tests/blitz-tests/tests/stand_*.rs | wc -l
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 40 integration green · exit 0 · 83.11s · 56057 B → 40.log · bash scripts/agent-run.sh run all
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 41 integration green · exit 0 · 9.7s · 4274 B → 41.log · cargo test -p seven_guis --locked 2>&1
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 42 probe       green · exit 1 · 0.21s · 2 B → 42.log · cargo tree --locked -p seven_guis -e normal --prefix none … (99 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 43 probe       recorded · exit 0 · 0.32s · 1510 B → 43.log · cargo tree --locked --workspace -e features -i blitz-dom -… (66 chars)
+   summary: entries 50 · green 0 · red 0 · recorded 1 · timeout 0 · not-run 49
+ 44 probe       recorded · exit 0 · 0.21s · 917 B → 44.log · cargo tree --locked -p blitz-tests -e features -i blitz-do… (69 chars)
+   summary: entries 50 · green 0 · red 0 · recorded 1 · timeout 0 · not-run 49
+ 45 build       green · exit 0 · 0.24s · 461 B → 45.log · cargo build -p seven_guis --bin seven_guis_native --locked
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 46 smoke       green · exit 0 · 10.14s · 124 B → 46.log · RUST_LOG=info timeout 10 target/debug/seven_guis_native; t… (72 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49
+ 30 probe       green · exit 0 · 49.42s · 29 B → 30.log · cargo test --workspace --locked --no-run 2>&1 | awk '/Exec… (168 chars)
+   summary: entries 50 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 49

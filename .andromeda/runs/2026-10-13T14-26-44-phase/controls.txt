@@ -1,0 +1,92 @@
+--- 2 control: the trial-merge tree holds markers
+$ git grep -n -I -E '^(<<<<<<< |>>>>>>> )' 2481e052bcc6dcce27c300c27e1807681c7a7ccb -- . ':(exclude)escher-0.1.0' ':(exclude).andromeda' ':(exclude).claude' ':(exclude)CLAUDE.md'
+2481e052bcc6dcce27c300c27e1807681c7a7ccb:packages/dioxus-native-dom/src/lib.rs:32:<<<<<<< HEAD
+2481e052bcc6dcce27c300c27e1807681c7a7ccb:packages/dioxus-native-dom/src/lib.rs:42:>>>>>>> upstream/main
+2481e052bcc6dcce27c300c27e1807681c7a7ccb:packages/dioxus-native-dom/src/mutation_writer.rs:461:<<<<<<< HEAD
+2481e052bcc6dcce27c300c27e1807681c7a7ccb:packages/dioxus-native-dom/src/mutation_writer.rs:465:>>>>>>> upstream/main
+exit=0
+--- 3 control: upstream's manifest at the pin lacks the fork lines
+$ git show 434e06615d5f47a3df92c0f94e916df088fdcf4d:Cargo.toml | grep -c -E '^    "packages/escher-(telemetry|driver)",$|^escher-(telemetry|driver) = \{ path|^seven_guis = \{ path|^tracing-log = |^debug = "line-tables-only"$'
+0
+exit=1
+--- 4 must-pass: the trial manifest
+$ git show 2481e052bcc6dcce27c300c27e1807681c7a7ccb:Cargo.toml | grep -c -E '^taffy = \{ version = "0\.15",|^version = "0\.3\.0-beta\.3"$|version = "=0\.3\.0-beta\.3"'
+11
+exit=0
+--- 5 must-pass: the trial manifest
+$ git show 2481e052bcc6dcce27c300c27e1807681c7a7ccb:Cargo.toml | grep -c 'DioxusLabs/taffy'
+0
+exit=1
+--- 7 control: the pin's lock carries the version line form
+$ git show 434e06615d5f47a3df92c0f94e916df088fdcf4d:Cargo.lock | grep -A1 -E '^name = "blitz-(dom|html)"$' | grep -c '^version = "0\.3\.0-beta\.3"$'
+2
+exit=0
+--- 8 must-pass: the trial lock, escher set aside
+$ diff <(git show 434e06615d5f47a3df92c0f94e916df088fdcf4d:Cargo.lock | awk '/^name = /{n=$3} /^version = /{print n"@"$3}' | grep -v '^"escher-') <(awk '/^name = /{n=$3} /^version = /{print n"@"$3}' $TMPDIR/{phase-session-scratchpad}/trial-Cargo.lock | grep -v '^"escher-')
+exit=0
+--- 9 control: the same guard against the merge base
+$ git diff --quiet 7832c177ff272128154bac58afe56c2b9164b417 -- .github/workflows .github/scripts/ci-leg.sh .github/scripts/apt-install.sh .github/scripts/test_ci_workflows.py .github/scripts/test_agent_run.py .github/scripts/test_cold_agent.py .github/scripts/test_blitz_tests_targets.py scripts examples/seven_guis packages/escher-driver packages/escher-telemetry packages/blitz-test-harness packages/blitz-dom/src/accessibility.rs packages/blitz-dom/src/scrolling.rs packages/blitz-dom/src/layout/writing_mode.rs deny.toml
+exit=1
+--- 10 control: the base mutator
+$ git show 23354585:packages/blitz-dom/src/mutator.rs | grep -c 'changed_nodes.insert'
+0
+exit=1
+--- 11 control: the base render.rs
+$ git show 7832c177:packages/blitz-paint/src/render.rs | grep -c -E 'fn (draw_masked_input_text|caret_color)\b'
+0
+exit=1
+--- 12 control: the base document.rs
+$ git show 7832c177:packages/blitz-dom/src/document.rs | grep -c -E 'pub fn (can_paint_text|layout_as_text_input)\b'
+0
+exit=1
+--- 13 control: an older tree before the reader
+$ git grep -c -E 'fn physical_unrounded_geometry\b' 23354585 -- packages/blitz-dom/src/document.rs packages/blitz-dom/src/layout/writing_mode.rs
+exit=1
+--- 14 control: a name not in the file
+$ grep -c -E 'fn hit_inner_absent\b' packages/blitz-dom/src/node/node.rs
+0
+exit=1
+--- 15 control: the base dioxus_document.rs
+$ git show 7832c177:packages/dioxus-native-dom/src/dioxus_document.rs | grep -c -E 'fn accessibility_tree\b|^mod bridge_tests;$'
+0
+exit=1
+--- 16 control: the base window.rs
+$ git show 23354585:packages/blitz-shell/src/window.rs | grep -c 'take_changed_nodes'
+0
+exit=1
+--- 17 must-pass: upstream's mutation_writer at the pin
+$ git show 434e06615d5f47a3df92c0f94e916df088fdcf4d:packages/dioxus-native-dom/src/mutation_writer.rs | grep -c BOOLEAN_ATTRIBUTES
+0
+exit=1
+--- 18 must-pass: upstream's mutation_writer at the pin
+$ git show 434e06615d5f47a3df92c0f94e916df088fdcf4d:packages/dioxus-native-dom/src/mutation_writer.rs | grep -c -E 'fn is_bool_attr\(|is_falsy && is_bool_attr\(local_name\)'
+2
+exit=0
+--- 20 control: our own side of the same range form
+$ git diff 7832c177ff272128154bac58afe56c2b9164b417 a703136878e47c0cf583448bbac02f06f8365be5 -- packages apps examples wpt tests | grep -c -E '^\+[^+].*(TcpListener|UnixListener|UdpSocket|\.bind\(|env::var|tracing::|println!|eprintln!)'
+67
+exit=0
+--- 27 control: a test log without stand_boot
+$ for f in tests/blitz-tests/tests/*.rs; do n=$(basename "$f" .rs); test "$n" = all || grep -q -F "Running tests/$n.rs" $TMPDIR/{phase-session-scratchpad}/test-minus-stand_boot.log || echo "absent $n"; done | grep -c absent
+1
+exit=0
+--- 28 must-pass form: five of ours each ran once
+$ for n in stand_boot stand_snapshot stand_diff stand_settle accessibility_states; do grep -c -F "Running tests/$n.rs" target/ci-logs/test.log; done | grep -c -x 1
+5
+exit=0
+--- 29 control: a target that did run
+$ grep -c -E 'Running tests/stand_boot\.rs' target/ci-logs/test.log
+1
+exit=0
+--- 36 control: a target the a11y leg runs
+$ grep -c -E 'Running tests/accessibility_hidden\.rs' target/ci-logs/a11y.log
+1
+exit=0
+--- 39 control: a narrower stand glob
+$ ls tests/blitz-tests/tests/stand_act_*.rs | wc -l
+13
+exit=0
+--- 42 control: the core accesskit crate
+$ cargo tree --locked -p seven_guis -e normal --prefix none | grep -c -E '^accesskit '
+2
+exit=0

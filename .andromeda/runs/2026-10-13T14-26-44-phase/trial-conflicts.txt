@@ -1,0 +1,123 @@
+=== packages/dioxus-native-dom/src/lib.rs
+32: <<<<<<< HEAD
+33: pub use events::{NodeHandle, synthetic_click_event};
+34: #[cfg(feature = "accessibility")]
+35: pub use snapshot::{MASKED_VALUE, NodeState, Snapshot, SnapshotNode};
+36: #[cfg(feature = "accessibility")]
+37: pub use snapshot_diff::{DiffNode, Reading, SnapshotDiff};
+38: #[cfg(feature = "accessibility")]
+39: pub use snapshot_text::SNAPSHOT_TEXT_BUDGET;
+40: =======
+41: pub use events::{NodeHandle, synthetic_click_event, synthetic_form_event};
+42: >>>>>>> upstream/main
+---
+=== packages/dioxus-native-dom/src/mutation_writer.rs
+461: <<<<<<< HEAD
+462:             if is_falsy && BOOLEAN_ATTRIBUTES.contains(&local_name) {
+463: =======
+464:             if is_falsy && is_bool_attr(local_name) {
+465: >>>>>>> upstream/main
+---
+=== our mutation_writer hunks
+diff --git a/packages/dioxus-native-dom/src/lib.rs b/packages/dioxus-native-dom/src/lib.rs
+index cc5ae0d5c..4007dbf8d 100644
+--- a/packages/dioxus-native-dom/src/lib.rs
++++ b/packages/dioxus-native-dom/src/lib.rs
+@@ -4,18 +4,38 @@
+ //!
+ //! ## Feature flags
+ //!  - `default`: Enables the features listed below.
+-//!  - `accessibility`: Enables [`accesskit`](https://docs.rs/accesskit/latest/accesskit/) accessibility support.
++//!  - `accessibility`: Enables [`accesskit`](https://docs.rs/accesskit/latest/accesskit/) accessibility support,
++//!    and the snapshot model (`DioxusDocument::snapshot`), its text form (`Snapshot::to_text`),
++//!    its diff (`Snapshot::diff`) and the actionable-key check
++//!    (`DioxusDocument::unkeyed_actionable`) built on it.
+ //!  - `hot-reload`: Enables hot-reloading of Dioxus RSX.
+ //!  - `menu`: Enables the [`muda`](https://docs.rs/muda/latest/muda/) menubar.
+ //!  - `tracing`: Enables tracing support.
+ 
++#[cfg(feature = "accessibility")]
++mod actionable;
+ mod dioxus_document;
++mod element_id;
+ mod events;
+ mod mutation_writer;
++#[cfg(feature = "accessibility")]
++mod snapshot;
++#[cfg(feature = "accessibility")]
++mod snapshot_diff;
++#[cfg(feature = "accessibility")]
++mod snapshot_text;
+ mod write_once_attr;
++#[cfg(feature = "accessibility")]
++pub use actionable::UnkeyedActionable;
+ pub use blitz_dom::DocumentConfig;
+ pub use dioxus_document::DioxusDocument;
+ pub use events::{NodeHandle, synthetic_click_event};
++#[cfg(feature = "accessibility")]
++pub use snapshot::{MASKED_VALUE, NodeState, Snapshot, SnapshotNode};
++#[cfg(feature = "accessibility")]
++pub use snapshot_diff::{DiffNode, Reading, SnapshotDiff};
++#[cfg(feature = "accessibility")]
++pub use snapshot_text::SNAPSHOT_TEXT_BUDGET;
+ pub use write_once_attr::{CustomWidgetAttr, SubDocumentAttr};
+ 
+ pub use blitz_dom::NodeId;
+diff --git a/packages/dioxus-native-dom/src/mutation_writer.rs b/packages/dioxus-native-dom/src/mutation_writer.rs
+index 159e14e55..4d383e457 100644
+--- a/packages/dioxus-native-dom/src/mutation_writer.rs
++++ b/packages/dioxus-native-dom/src/mutation_writer.rs
+@@ -8,6 +8,39 @@ use dioxus_core::{
+ use rustc_hash::FxHashMap;
+ use std::str::FromStr as _;
+ 
++/// The boolean attributes: presence alone makes them true, so a falsy value removes them.
++/// The names are the `isBoolAttr` list of Dioxus 0.7.10's web interpreter
++/// (`dioxus-interpreter-js`, `set_attribute.ts`), which removes them the same way.
++const BOOLEAN_ATTRIBUTES: [&str; 27] = [
++    "allowfullscreen",
++    "allowpaymentrequest",
++    "async",
++    "autofocus",
++    "autoplay",
++    "checked",
++    "controls",
++    "default",
++    "defer",
++    "disabled",
++    "formnovalidate",
++    "hidden",
++    "ismap",
++    "itemscope",
++    "loop",
++    "multiple",
++    "muted",
++    "nomodule",
++    "novalidate",
++    "open",
++    "playsinline",
++    "readonly",
++    "required",
++    "reversed",
++    "selected",
++    "truespeed",
++    "webkitdirectory",
++];
++
+ /// The state of the Dioxus integration with the RealDom
+ #[derive(Debug)]
+ pub struct DioxusState {
+@@ -403,7 +436,7 @@ fn set_attribute_inner(
+     match value {
+         None => docm.clear_attribute(node_id, name),
+         Some(value) => {
+-            if local_name == "checked" && is_falsy {
++            if is_falsy && BOOLEAN_ATTRIBUTES.contains(&local_name) {
+                 docm.clear_attribute(node_id, name);
+             } else if local_name == "dangerous_inner_html" {
+                 docm.set_inner_html(node_id, value);
+=== upstream commits touching dioxus-native-dom
+7b28f0f16 Share parsed UA stylesheets (and their cascade data) across documents (#1189)
+52875c264 dioxus-native-dom: remove falsy boolean attributes instead of writing "false" (#1188)
+336a31cd0 Add `synthetic_form_event` and use the empty namespace for Dioxus attributes (#1186)
+a2454c564 Drop nodes removed by Dioxus in dioxus-native-dom (#1185)

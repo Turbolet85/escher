@@ -1,0 +1,54 @@
+gate v1.17 · 383c6f7b
+root . · marker 2026-10-13-upstream-sync-polish-and-ship · entries 50
+previous 2026-10-12-headless-screenshot · trails 115 run dirs · firings 70 (green 66) · other root 0 · unreadable 0
+  1 probe       new (key) · git merge-base --is-ancestor 434e06615d5f47a3df92c0f94e916… (167 chars)
+  2 probe       new (key) · git grep -n -I -E '^(<<<<<<< |>>>>>>> )' -- . ':(exclude)e… (136 chars)
+  3 probe       new (key) · grep -c -E '^    "packages/escher-(telemetry|driver)",$|^e… (171 chars)
+  4 probe       new (key) · grep -c -E '^taffy = \{ version = "0\.15",|^version = "0\.… (113 chars)
+  5 probe       new (key) · grep -c 'DioxusLabs/taffy' Cargo.toml
+  6 probe       new (key) · cargo metadata --locked --format-version 1 > /dev/null
+  7 probe       new (key) · grep -A1 -E '^name = "escher-(driver|telemetry)"$' Cargo.l… (104 chars)
+  8 probe       new (key) · diff <(git show 434e06615d5f47a3df92c0f94e916df088fdcf4d:C… (230 chars)
+  9 probe       new (key) · git diff --quiet a703136878e47c0cf583448bbac02f06f8365be5 … (522 chars)
+ 10 probe       new (key) · grep -c 'changed_nodes.insert' packages/blitz-dom/src/muta… (64 chars)
+ 11 probe       new (key) · grep -c -E 'fn (draw_masked_input_text|caret_color)\b' pac… (89 chars)
+ 12 probe       new (key) · grep -c -E 'pub fn (can_paint_text|layout_as_text_input)\b… (94 chars)
+ 13 probe       new (key) · git grep -c -E 'fn physical_unrounded_geometry\b' -- packa… (133 chars)
+ 14 probe       new (key) · grep -c -E 'fn hit_inner\b' packages/blitz-dom/src/node/no… (63 chars)
+ 15 probe       new (key) · grep -c -E 'fn accessibility_tree\b|^mod bridge_tests;$' p… (106 chars)
+ 16 probe       new (key) · grep -c 'take_changed_nodes' packages/blitz-shell/src/wind… (63 chars)
+ 17 probe       new (key) · grep -c BOOLEAN_ATTRIBUTES packages/dioxus-native-dom/src/… (76 chars)
+ 18 probe       new (key) · grep -c -E 'fn is_bool_attr\(|is_falsy && is_bool_attr\(lo… (119 chars)
+ 19 probe       new (key) · grep -c -E 'synthetic_click_event, synthetic_form_event\}|… (166 chars)
+ 20 probe       new (key) · git diff 7832c177ff272128154bac58afe56c2b9164b417 434e0661… (235 chars)
+ 21 probe       new (key) · grep -c -E 'the ten driver commands|still to come' README.… (60 chars)
+ 22 probe       new (key) · grep -c -F 'the eleven driver commands as tools' README.md
+ 23 unit        new (key) · python3 -m unittest discover -s .github/scripts -v -k Blit… (75 chars)
+ 24 unit        new (key) · cargo test -p dioxus-native-dom --locked 2>&1
+ 25 unit        seen green 2026-10-13T06:31:21Z #17 (wrap) · bash .github/scripts/ci-leg.sh fast
+ 26 probe       new (key) · grep -E '^test result:' target/ci-logs/test.log | awk '{p+… (146 chars)
+ 27 probe       new (key) · for f in tests/blitz-tests/tests/*.rs; do n=$(basename "$f… (184 chars)
+ 28 probe       new (key) · for n in anonymous_block_restyle button_alignment checked_… (183 chars)
+ 29 probe       new (key) · grep -c -E 'Running tests/all\.rs' target/ci-logs/test.log
+ 30 probe       new (key) · cargo test --workspace --locked --no-run 2>&1 | awk '/Exec… (168 chars)
+ 31 probe       new (key) · grep -E '^Ran [0-9]+ tests|^OK$|^FAILED' target/ci-logs/ci… (70 chars)
+ 32 lint        seen green 2026-10-13T06:31:21Z #18 (wrap) · bash .github/scripts/ci-leg.sh doc
+ 33 probe       new (key) · bash .github/scripts/ci-leg.sh audit
+ 34 integration new (key) · bash .github/scripts/ci-leg.sh a11y
+ 35 probe       new (key) · grep -E '^test result:' target/ci-logs/a11y.log | awk '{p+… (125 chars)
+ 36 probe       new (key) · grep -c -E 'Running tests/all\.rs' target/ci-logs/a11y.log
+ 37 build       seen green 2026-10-13T06:31:21Z #14 (wrap) · bash scripts/agent-run.sh boot
+ 38 integration new (key) · bash scripts/agent-run.sh run stand
+ 39 probe       new (key) · ls tests/blitz-tests/tests/stand_*.rs | wc -l
+ 40 integration new (key) · bash scripts/agent-run.sh run all
+ 41 integration new (key) · cargo test -p seven_guis --locked 2>&1
+ 42 probe       new (key) · cargo tree --locked -p seven_guis -e normal --prefix none … (99 chars)
+ 43 probe       new (key) · cargo tree --locked --workspace -e features -i blitz-dom -… (66 chars)
+ 44 probe       new (key) · cargo tree --locked -p blitz-tests -e features -i blitz-do… (69 chars)
+ 45 build       new (key) · cargo build -p seven_guis --bin seven_guis_native --locked
+ 46 smoke       new (key) · RUST_LOG=info timeout 10 target/debug/seven_guis_native; t… (72 chars)
+ 47 probe       leg operator — exempt · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)
+ 48 probe       leg operator — exempt · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+ 49 probe       leg operator — exempt · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)
+ 50 probe       leg operator — exempt · gh run view <id> -R Turbolet85/escher --log | grep -c -E '… (135 chars)
+entries 50 · seen green 3 · not seen 0 · new (key) 43 · leg 4

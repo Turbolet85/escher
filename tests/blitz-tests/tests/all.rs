@@ -7,9 +7,12 @@ mod animations;
 mod anonymous_block_cache_invalidation;
 mod anonymous_block_leak;
 mod anonymous_block_percentage_height;
+mod anonymous_block_restyle;
 mod autofocus_attribute;
 mod background_size;
 mod br_trailing_line;
+mod button_alignment;
+mod checked_attribute;
 mod comment_layout;
 mod custom_widget_layout;
 mod detached_attribute;
@@ -41,6 +44,7 @@ mod paint_order;
 mod paint_tree_bench;
 mod paint_tree_incremental;
 mod pointer_events;
+mod pointer_leave;
 mod pre_overflow_scroll;
 mod pseudo_element_update;
 mod rem_after_viewport_change;
@@ -62,6 +66,7 @@ mod touch_action;
 mod touch_events;
 mod transform_2d_subset;
 mod transform_viewport_scale;
+mod ua_stylesheet_order;
 mod whitespace_modes;
 
 #[test]

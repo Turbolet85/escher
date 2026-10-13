@@ -1,0 +1,141 @@
+## ours since base (name-only)
+3126
+## overlap
+Cargo.lock
+Cargo.toml
+packages/blitz-dom/src/document.rs
+packages/blitz-dom/src/mutator.rs
+packages/blitz-dom/src/node/node.rs
+packages/blitz-paint/src/render.rs
+packages/blitz-shell/src/window.rs
+packages/blitz-vibey-script/src/document.rs
+packages/dioxus-native-dom/src/dioxus_document.rs
+packages/dioxus-native-dom/src/lib.rs
+packages/dioxus-native-dom/src/mutation_writer.rs
+tests/blitz-tests/Cargo.toml
+## trial merge
+2481e052bcc6dcce27c300c27e1807681c7a7ccb
+packages/dioxus-native-dom/src/lib.rs
+packages/dioxus-native-dom/src/mutation_writer.rs
+
+Auto-merging Cargo.lock
+Auto-merging Cargo.toml
+Auto-merging packages/blitz-dom/src/document.rs
+Auto-merging packages/blitz-dom/src/mutator.rs
+Auto-merging packages/blitz-dom/src/node/node.rs
+Auto-merging packages/blitz-paint/src/render.rs
+Auto-merging packages/blitz-shell/src/window.rs
+Auto-merging packages/blitz-vibey-script/src/document.rs
+Auto-merging packages/dioxus-native-dom/src/dioxus_document.rs
+Auto-merging packages/dioxus-native-dom/src/lib.rs
+CONFLICT (content): Merge conflict in packages/dioxus-native-dom/src/lib.rs
+Auto-merging packages/dioxus-native-dom/src/mutation_writer.rs
+CONFLICT (content): Merge conflict in packages/dioxus-native-dom/src/mutation_writer.rs
+Auto-merging tests/blitz-tests/Cargo.toml
+merge-tree exit=1
+## upstream root Cargo.toml diff
+diff --git a/Cargo.toml b/Cargo.toml
+index 8f8da9020..dcbf05cd7 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -31,7 +31,7 @@ exclude = ["sites"]
+ resolver = "2"
+ 
+ [workspace.package]
+-version = "0.3.0-beta.2"
++version = "0.3.0-beta.3"
+ license = "MIT OR Apache-2.0"
+ homepage = "https://github.com/dioxuslabs/blitz"
+ repository = "https://github.com/dioxuslabs/blitz"
+@@ -41,15 +41,15 @@ rust-version = "1.91.0"
+ 
+ [workspace.dependencies]
+ # Blitz dependencies(in-repo)
+-blitz = { version = "=0.3.0-beta.2", path = "./packages/blitz" }
+-blitz-dom = { version = "=0.3.0-beta.2", path = "./packages/blitz-dom", default-features = false }
+-blitz-html = { version = "=0.3.0-beta.2", path = "./packages/blitz-html", default-features = false }
+-blitz-net = { version = "=0.3.0-beta.2", path = "./packages/blitz-net", default-features = false }
+-blitz-paint = { version = "=0.3.0-beta.2", path = "./packages/blitz-paint", default-features = false }
+-blitz-vibey-script = { version = "=0.3.0-beta.2", path = "./packages/blitz-vibey-script", default-features = false }
+-blitz-shell = { version = "=0.3.0-beta.2", path = "./packages/blitz-shell", default-features = false }
+-blitz-traits = { version = "=0.3.0-beta.2", path = "./packages/blitz-traits", default-features = false }
+-stylo_taffy = { version = "=0.3.0-beta.2", path = "./packages/stylo_taffy", default-features = false }
++blitz = { version = "=0.3.0-beta.3", path = "./packages/blitz" }
++blitz-dom = { version = "=0.3.0-beta.3", path = "./packages/blitz-dom", default-features = false }
++blitz-html = { version = "=0.3.0-beta.3", path = "./packages/blitz-html", default-features = false }
++blitz-net = { version = "=0.3.0-beta.3", path = "./packages/blitz-net", default-features = false }
++blitz-paint = { version = "=0.3.0-beta.3", path = "./packages/blitz-paint", default-features = false }
++blitz-vibey-script = { version = "=0.3.0-beta.3", path = "./packages/blitz-vibey-script", default-features = false }
++blitz-shell = { version = "=0.3.0-beta.3", path = "./packages/blitz-shell", default-features = false }
++blitz-traits = { version = "=0.3.0-beta.3", path = "./packages/blitz-traits", default-features = false }
++stylo_taffy = { version = "=0.3.0-beta.3", path = "./packages/stylo_taffy", default-features = false }
+ dioxus-native = { version = "0.7.0", path = "./packages/dioxus-native", default-features = false }
+ dioxus-native-dom = { version = "0.7.0", path = "./packages/dioxus-native-dom", default-features = false }
+ debug_timer = { version = "0.1.2", path = "./packages/debug_timer" }
+@@ -98,7 +98,7 @@ dioxus-cli-config = { version = "0.7.3" }
+ dioxus-core-macro = { version = "0.7.3" }
+ 
+ # Taffy + Parley + Fontations
+-taffy = { git = "https://github.com/DioxusLabs/taffy", rev = "7d33901cc383489d9945ae796a1ceed0a935ef66", default-features = false, features = [
++taffy = { version = "0.15", default-features = false, features = [
+     "std",
+     "flexbox",
+     "flexbox_balance",
+diff --git a/packages/blitz-vibey-script/Cargo.toml b/packages/blitz-vibey-script/Cargo.toml
+index f272f8865..60fbf97f2 100644
+--- a/packages/blitz-vibey-script/Cargo.toml
++++ b/packages/blitz-vibey-script/Cargo.toml
+@@ -9,6 +9,7 @@ repository.workspace = true
+ categories.workspace = true
+ edition.workspace = true
+ rust-version.workspace = true
++publish = false
+ 
+ [features]
+ default = []
+diff --git a/tests/blitz-tests/Cargo.toml b/tests/blitz-tests/Cargo.toml
+index 9659076cc..7b39bb89d 100644
+--- a/tests/blitz-tests/Cargo.toml
++++ b/tests/blitz-tests/Cargo.toml
+@@ -30,6 +30,7 @@ dioxus-core = { workspace = true }
+ style = { workspace = true }
+ accesskit = { workspace = true }
+ markup5ever = { workspace = true }
++cursor-icon = { workspace = true }
+ keyboard-types = { workspace = true }
+ taffy = { workspace = true }
+ test-that = { workspace = true }
+## all.rs diff
+diff --git a/tests/blitz-tests/tests/all.rs b/tests/blitz-tests/tests/all.rs
+index 079f69eb5..bc3c26030 100644
+--- a/tests/blitz-tests/tests/all.rs
++++ b/tests/blitz-tests/tests/all.rs
+@@ -7,9 +7,12 @@ mod animations;
+ mod anonymous_block_cache_invalidation;
+ mod anonymous_block_leak;
+ mod anonymous_block_percentage_height;
++mod anonymous_block_restyle;
+ mod autofocus_attribute;
+ mod background_size;
+ mod br_trailing_line;
++mod button_alignment;
++mod checked_attribute;
+ mod comment_layout;
+ mod custom_widget_layout;
+ mod detached_attribute;
+@@ -41,6 +44,7 @@ mod paint_order;
+ mod paint_tree_bench;
+ mod paint_tree_incremental;
+ mod pointer_events;
++mod pointer_leave;
+ mod pre_overflow_scroll;
+ mod pseudo_element_update;
+ mod rem_after_viewport_change;
+@@ -62,6 +66,7 @@ mod touch_action;
+ mod touch_events;
+ mod transform_2d_subset;
+ mod transform_viewport_scale;
++mod ua_stylesheet_order;
+ mod whitespace_modes;
+ 
+ #[test]

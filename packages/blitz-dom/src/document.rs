@@ -39,7 +39,7 @@ use std::rc::Rc;
 use std::str::FromStr;
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::mpsc::{Receiver, Sender, channel};
-use std::sync::{Arc, Mutex, MutexGuard, OnceLock, RwLockReadGuard, RwLockWriteGuard};
+use std::sync::{Arc, LazyLock, Mutex, MutexGuard, OnceLock, RwLockReadGuard, RwLockWriteGuard};
 use std::task::{Context as TaskContext, Waker};
 use style::Atom;
 use style::animation::DocumentAnimationSet;
@@ -71,6 +71,42 @@ use web_time::Instant;
 
 #[cfg(feature = "parallel-construct")]
 use thread_local::ThreadLocal;
+
+/// A user-agent stylesheet, parsed with a read-only lock so that it can be shared between documents.
+///
+/// Documents with the same user-agent stylesheets (in the same order) also share Stylo's
+/// cached user-agent cascade data. `@import` rules are ignored.
+#[derive(Clone, Debug, PartialEq)]
+pub struct UserAgentStylesheet(DocumentStyleSheet);
+
+impl UserAgentStylesheet {
+    pub fn parse(css: &str) -> Self {
+        let lock = SharedRwLock::read_only();
+        let data = Stylesheet::from_str(
+            css,
+            DocumentUrl::default().url_extra_data(),
+            Origin::UserAgent,
+            ServoArc::new(lock.wrap(MediaList::empty())),
+            lock,
+            None,
+            None,
+            QuirksMode::NoQuirks,
+            AllowImportRules::No,
+        );
+        Self(DocumentStyleSheet(ServoArc::new(data)))
+    }
+
+    /// The default user-agent stylesheet ([`DEFAULT_CSS`]), parsed once.
+    pub fn default_sheet() -> Self {
+        static SHEET: LazyLock<UserAgentStylesheet> =
+            LazyLock::new(|| UserAgentStylesheet::parse(DEFAULT_CSS));
+        SHEET.clone()
+    }
+
+    pub fn sheet(&self) -> &DocumentStyleSheet {
+        &self.0
+    }
+}
 
 pub enum DocGuard<'a> {
     Ref(&'a BaseDocument),
@@ -313,9 +349,6 @@ pub struct BaseDocument {
     /// added, replaced or removed), so that CSSOM wrappers can detect that
     /// their cached rule data is stale.
     pub(crate) stylesheet_generation: u64,
-    /// Stylesheets added by the useragent
-    /// where the key is the hashed CSS
-    pub(crate) ua_stylesheets: HashMap<String, DocumentStyleSheet>,
     /// Map from form control node ID's to their associated forms node ID's
     pub(crate) controls_to_form: HashMap<NodeId, NodeId>,
     /// Nodes that contain sub documents
@@ -466,7 +499,6 @@ impl BaseDocument {
             subdocument_depth: config.subdocument_depth,
             devtool_settings: DevtoolSettings::default(),
             url: base_url,
-            ua_stylesheets: HashMap::new(),
             nodes_to_stylesheet: BTreeMap::new(),
             stylesheet_generation: 0,
             font_ctx,
@@ -518,13 +550,8 @@ impl BaseDocument {
         doc.root_node_id = doc.create_node(NodeData::Document(Box::default()));
         doc.root_node_mut().flags.insert(NodeFlags::IS_IN_DOCUMENT);
 
-        match config.ua_stylesheets {
-            Some(stylesheets) => {
-                for ss in &stylesheets {
-                    doc.add_user_agent_stylesheet(ss);
-                }
-            }
-            None => doc.add_user_agent_stylesheet(DEFAULT_CSS),
+        for sheet in config.ua_stylesheets {
+            doc.add_user_agent_stylesheet(sheet);
         }
 
         // Stylo data on the root node container is needed to render the node
@@ -1189,9 +1216,10 @@ impl BaseDocument {
         self.add_stylesheet_for_node(sheet, target_id);
     }
 
-    pub fn remove_user_agent_stylesheet(&mut self, contents: &str) {
-        if let Some(sheet) = self.ua_stylesheets.remove(contents) {
-            self.stylist.remove_stylesheet(sheet, &self.guard.read());
+    pub fn remove_user_agent_stylesheet(&mut self, sheet: &UserAgentStylesheet) {
+        if self.useragent_stylesheets().any(|s| *s == sheet.0) {
+            self.stylist
+                .remove_stylesheet(sheet.0.clone(), &self.guard.read());
         }
     }
 
@@ -1208,13 +1236,16 @@ impl BaseDocument {
 
     /// Iterate over the user-agent stylesheets currently associated with this document
     pub fn useragent_stylesheets(&self) -> impl Iterator<Item = &DocumentStyleSheet> {
-        self.ua_stylesheets.values()
+        (0..self.stylist.sheet_count(Origin::UserAgent))
+            .filter_map(|i| self.stylist.sheet_at(Origin::UserAgent, i))
     }
 
-    pub fn add_user_agent_stylesheet(&mut self, css: &str) {
-        let sheet = self.make_stylesheet(css, Origin::UserAgent);
-        self.ua_stylesheets.insert(css.to_string(), sheet.clone());
-        self.stylist.append_stylesheet(sheet, &self.guard.read());
+    /// Append a user-agent stylesheet. Adding a sheet that is already present is a no-op.
+    pub fn add_user_agent_stylesheet(&mut self, sheet: UserAgentStylesheet) {
+        if self.useragent_stylesheets().any(|s| *s == sheet.0) {
+            return;
+        }
+        self.stylist.append_stylesheet(sheet.0, &self.guard.read());
     }
 
     pub fn make_stylesheet(&self, css: impl AsRef<str>, origin: Origin) -> DocumentStyleSheet {
@@ -1919,19 +1950,11 @@ impl BaseDocument {
         let hover_node_id = hit_node_id.and_then(|id| self.nearest_non_anonymous_ancestor(id));
         let new_is_text = hit.map(|hit| hit.is_text).unwrap_or(false);
 
-        let hit_changed =
-            hit_node_id != self.hover_hit_node_id || new_is_text != self.hover_node_is_text;
         self.hover_hit_node_id = hit_node_id;
         self.hover_node_is_text = new_is_text;
 
         // Return early if the new node is the same as the already-hovered node
         if hover_node_id == self.hover_node_id {
-            if hit_changed {
-                // The canonical target is unchanged (so no restyle is needed)
-                // but the precise hit node changed, which can change the cursor
-                // (e.g. moving between text and non-text within one element).
-                self.shell_provider.set_cursor(self.get_cursor());
-            }
             return scrollbar_changed;
         }
 
@@ -1950,9 +1973,6 @@ impl BaseDocument {
         }
 
         self.hover_node_id = hover_node_id;
-
-        // Update the cursor
-        self.shell_provider.set_cursor(self.get_cursor());
 
         // Request redraw
         self.shell_provider.request_redraw();
@@ -1978,9 +1998,6 @@ impl BaseDocument {
         self.hover_node_id = None;
         self.hover_node_is_text = false;
 
-        // Update the cursor
-        self.shell_provider.set_cursor(self.get_cursor());
-
         // Request redraw
         self.shell_provider.request_redraw();
 
@@ -1998,7 +2015,30 @@ impl BaseDocument {
         };
         let x = pos.x + self.viewport_scroll().x as f32;
         let y = pos.y + self.viewport_scroll().y as f32;
-        self.set_hover_to(x, y)
+        let prev_hover = self.hover_state();
+        let changed = self.set_hover_to(x, y);
+        if self.hover_state() != prev_hover {
+            self.update_cursor();
+        }
+        changed
+    }
+
+    /// The hover state that determines the cursor: the hovered node, the precise hit
+    /// node and whether the hit is text
+    pub(crate) fn hover_state(&self) -> (Option<NodeId>, Option<NodeId>, bool) {
+        (
+            self.hover_node_id,
+            self.hover_hit_node_id,
+            self.hover_node_is_text,
+        )
+    }
+
+    /// Send the current cursor to the shell.
+    ///
+    /// Hover updates don't send the cursor themselves: the cursor of a node hosting a
+    /// sub-document is only known once the sub-document has handled the event.
+    pub(crate) fn update_cursor(&self) {
+        self.shell_provider.set_cursor(self.get_cursor());
     }
 
     pub fn get_hover_node_id(&self) -> Option<NodeId> {
@@ -2228,7 +2268,9 @@ impl BaseDocument {
             .or(self.get_hover_node_id())?;
         let node = &self.nodes[node_id];
 
-        if let Some(subdoc) = node.subdoc().map(|doc| doc.inner()) {
+        if let Some(subdoc) = node.subdoc().map(|doc| doc.inner())
+            && subdoc.get_hover_node_id().is_some()
+        {
             return subdoc.get_cursor();
         }
 
@@ -2992,9 +3034,10 @@ mod hover_invalidation_tests {
             viewport: Some(Viewport::new(400, 300, 1.0, ColorScheme::Light)),
             ..Default::default()
         });
-        doc.add_user_agent_stylesheet(
+        let sheet = UserAgentStylesheet::parse(
             "div:hover { background-color: rgb(255, 0, 0); } div:hover span { color: rgb(0, 255, 0); }",
         );
+        doc.add_user_agent_stylesheet(sheet);
         let root_id = doc.root_node().id;
         let style = |value: &str| Attribute {
             name: qual_name!("style"),
@@ -3079,9 +3122,10 @@ mod hover_invalidation_tests {
             viewport: Some(Viewport::new(400, 300, 1.0, ColorScheme::Light)),
             ..Default::default()
         });
-        doc.add_user_agent_stylesheet(
+        let sheet = UserAgentStylesheet::parse(
             ".promo:link:hover .headline, .promo:visited:hover .headline { color: rgb(184, 0, 0); text-decoration-line: underline; }",
         );
+        doc.add_user_agent_stylesheet(sheet);
         let root_id = doc.root_node().id;
         let attr = |name: QualName, value: &str| Attribute {
             name,
@@ -3148,9 +3192,10 @@ mod hover_invalidation_tests {
             viewport: Some(Viewport::new(400, 300, 1.0, ColorScheme::Light)),
             ..Default::default()
         });
-        doc.add_user_agent_stylesheet(
+        let sheet = UserAgentStylesheet::parse(
             "input:checked { color: rgb(184, 0, 0); } input:checked + label { color: rgb(0, 184, 0); }",
         );
+        doc.add_user_agent_stylesheet(sheet);
         let root_id = doc.root_node().id;
         let attr = |name: QualName, value: &str| Attribute {
             name,
@@ -3227,10 +3272,11 @@ mod hover_invalidation_tests {
             viewport: Some(Viewport::new(400, 300, 1.0, ColorScheme::Light)),
             ..Default::default()
         });
-        doc.add_user_agent_stylesheet(
+        let sheet = UserAgentStylesheet::parse(
             "div::before { content: \"x\"; color: rgb(1, 2, 3); } \
              div:hover::before { color: rgb(0, 0, 255); }",
         );
+        doc.add_user_agent_stylesheet(sheet);
         let root_id = doc.root_node().id;
         let style = |value: &str| Attribute {
             name: qual_name!("style"),
@@ -3283,10 +3329,11 @@ mod hover_invalidation_tests {
             viewport: Some(Viewport::new(400, 300, 1.0, ColorScheme::Light)),
             ..Default::default()
         });
-        doc.add_user_agent_stylesheet(
+        let sheet = UserAgentStylesheet::parse(
             "div { background-image: url(\"https://example.com/a.png\"); } \
              div:hover { background-image: url(\"https://example.com/b.png\"); }",
         );
+        doc.add_user_agent_stylesheet(sheet);
         let root_id = doc.root_node().id;
         let style = |value: &str| Attribute {
             name: qual_name!("style"),

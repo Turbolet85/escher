@@ -1,0 +1,97 @@
+HEAD a70313687
+ours packages/dioxus-native-dom/src/dioxus_document.rs :: 58	0	packages/dioxus-native-dom/src/dioxus_document.rs :: hunks 4
+   theirs :: 318	6	packages/dioxus-native-dom/src/dioxus_document.rs
+ours packages/blitz-dom/src/scrolling.rs :: 153	6	packages/blitz-dom/src/scrolling.rs :: hunks 6
+   theirs :: 
+ours packages/blitz-test-harness/src/input.rs :: 21	1	packages/blitz-test-harness/src/input.rs :: hunks 3
+   theirs :: 
+ours packages/blitz-dom/src/document.rs :: 361	18	packages/blitz-dom/src/document.rs :: hunks 13
+   theirs :: 88	41	packages/blitz-dom/src/document.rs
+ours packages/blitz-dom/src/layout/writing_mode.rs :: 15	4	packages/blitz-dom/src/layout/writing_mode.rs :: hunks 3
+   theirs :: 
+ours packages/blitz-dom/src/node/node.rs :: 42	9	packages/blitz-dom/src/node/node.rs :: hunks 8
+   theirs :: 30	6	packages/blitz-dom/src/node/node.rs
+ours packages/blitz-dom/src/accessibility.rs :: 57	1	packages/blitz-dom/src/accessibility.rs :: hunks 6
+   theirs :: 
+ours packages/blitz-paint/src/render.rs :: 91	7	packages/blitz-paint/src/render.rs :: hunks 4
+   theirs :: 77	19	packages/blitz-paint/src/render.rs
+ours packages/dioxus-native-dom/src/lib.rs :: 21	1	packages/dioxus-native-dom/src/lib.rs :: hunks 6
+   theirs :: 1	1	packages/dioxus-native-dom/src/lib.rs
+ours packages/dioxus-native-dom/src/mutation_writer.rs :: 34	1	packages/dioxus-native-dom/src/mutation_writer.rs :: hunks 2
+   theirs :: 168	5	packages/dioxus-native-dom/src/mutation_writer.rs
+ours packages/blitz-dom/src/mutator.rs :: 45	0	packages/blitz-dom/src/mutator.rs :: hunks 15
+   theirs :: 2	0	packages/blitz-dom/src/mutator.rs
+ours packages/blitz-shell/src/window.rs :: 6	7	packages/blitz-shell/src/window.rs :: hunks 4
+   theirs :: 17	1	packages/blitz-shell/src/window.rs
+ours packages/blitz-vibey-script/src/document.rs :: 3	3	packages/blitz-vibey-script/src/document.rs :: hunks 3
+   theirs :: 1	10	packages/blitz-vibey-script/src/document.rs
+## tests Cargo.toml ours vs base
+diff --git a/tests/blitz-tests/Cargo.toml b/tests/blitz-tests/Cargo.toml
+index 9659076cc..f059e5afd 100644
+--- a/tests/blitz-tests/Cargo.toml
++++ b/tests/blitz-tests/Cargo.toml
+@@ -8,17 +8,19 @@ homepage.workspace = true
+ repository.workspace = true
+ categories.workspace = true
+ edition.workspace = true
+-autotests = false
+ rust-version.workspace = true
+ 
+ [dev-dependencies]
+ # Blitz dependencies
+ blitz-test-harness = { workspace = true }
++escher-telemetry = { workspace = true }
+ blitz-dom = { workspace = true, features = ["accessibility", "autofocus", "floats", "system-fonts", "text-transform-icu"] }
+ blitz-html = { workspace = true }
+ blitz-traits = { workspace = true }
+ blitz-paint = { workspace = true, features = ["scrollbars", "svg"] }
+-dioxus-native-dom = { workspace = true }
++dioxus-native-dom = { workspace = true, features = ["accessibility"] }
++seven_guis = { workspace = true }
++escher-driver = { workspace = true }
+ anyrender = { workspace = true }
+ anyrender_vello_cpu = { workspace = true }
+ 
+@@ -32,12 +34,25 @@ accesskit = { workspace = true }
+ markup5ever = { workspace = true }
+ keyboard-types = { workspace = true }
+ taffy = { workspace = true }
++png = { workspace = true }
+ test-that = { workspace = true }
+ usvg = { workspace = true }
++tracing = { workspace = true }
++tracing-log = { workspace = true }
+ 
+ [lib]
+ path = "lib.rs"
+ 
++# A standing difference from upstream, to keep at every upstream sync. Upstream (#1123) sets
++# `autotests = false` in [package] and builds this one target, so every file under tests/ is a
++# module of tests/all.rs. The fork declines both lines (the operator's decision, 2026-10-10):
++# each file stays its own test target, and this table carries `test = false`, so tests/all.rs
++# stays byte-identical to upstream's and no `cargo test` builds it.
++# A merge that takes upstream's two lines breaks the a11y leg's three `--test` names
++# (.github/scripts/ci-leg.sh), `scripts/agent-run.sh run {name}`, the per-target test baseline,
++# and upstream's own `all_test_files_are_included`, which fails on every fork file all.rs does
++# not list. Guarded by .github/scripts/test_blitz_tests_targets.py (the ci-scripts leg).
+ [[test]]
+ name = "all"
+ path = "tests/all.rs"
++test = false
+## README:40-55
+```sh
+cargo build -p seven_guis --bin escher-session
+target/debug/escher-session start counter --session demo-session
+target/debug/escher-session snapshot --session demo-session
+target/debug/escher-session click --id counter-increment --session demo-session
+target/debug/escher-session stop --session demo-session
+```
+
+An MCP client can drive the same apps: it spawns `target/debug/escher-session mcp` as its own child and gets the ten driver commands as tools. The driver describes itself: `target/debug/escher-session help` answers one line of JSON with every command, its arguments and its result, the refusal causes and session errors with their remedies, and the exit statuses; an MCP client gets the same from the `help` tool. Its screenshot is still to come.
+
+## Plans
+
+Version 0.1.0 is built in six stages:
+
+- **Epoch 1 — Foundation** — the inherited engine building and tested on the fork's CI, a headless 7GUIs demo stand, and a test harness an agent can run.
+- **Epoch 2 — Element identity** — a stable id for every element, kept across re-renders, remounts and restarts, and carried into the accessibility tree.
