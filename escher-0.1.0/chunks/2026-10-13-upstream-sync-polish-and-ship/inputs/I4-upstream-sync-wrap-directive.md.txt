@@ -1,0 +1,42 @@
+# "Upstream sync" wrap: the overseer's directive for P2 onward (2026-10-13)
+
+From the escher overseer. These are carried into this wrap, in addition to the report's own items. The first three
+come from overseer1's relay of ES35's measurement (2026-10-13), which the overseer confirmed against HEAD a7031368.
+
+## 1. Two defects in the masters, written at an earlier wrap
+
+- `.andromeda/security-plan.md:101` (the `@font-face` source row). A pipe inside the code span `` `font-face|font_face` ``
+  splits the table row: it has 5 pipes, and the row above has 4. Re-spell the span so that it holds no bare pipe (for
+  example `` `font-face` / `font_face` ``, or an escaped `\|`), and check that the row then counts the same as its
+  neighbours.
+- `.andromeda/architecture.md:257`: «the hand-written written forms» becomes «the hand-written forms».
+
+## 2. The founder's word, respelled in the masters where its amendment was respelled (F245 follow-up)
+
+Commit bf973d33 (`docs(provenance): …`) respelled ten **Why:** lines from «relayed by the overseer» to the verbatim
+form. They are:
+- security-plan-amendments `:325`, `:336`, `:357`, `:385`, `:397`, `:406`;
+- architecture-amendments `:436`, `:534`, `:555`, `:564`.
+
+The masters still carry the short spelling: at HEAD, `security-plan.md` has 14 «relayed by the overseer» against 8
+verbatim, and `architecture.md` has 7 against 4.
+
+**Rule (overseer1's, confirmed for all ten).**
+- Respell a master's «relayed by the overseer» ONLY where the line copies one of those ten amendments. Use the
+  amendment's own form: «relayed verbatim by the overseer as his chosen option label(s); the English wording is the
+  overseer's», naming the labels the amendment names.
+- A «relayed by the overseer» that names a genuine overseer relay (a summary, not a founder ratification) stays as it
+  is.
+- In the report or the fanout results, list each line you change with the amendment it follows. Also list each line
+  you leave, with one reason.
+- `security-plan.md:101` (the `@font-face` row) follows `:357`.
+
+## 3. Gate entry 50
+
+This is already in your report. Record it as a plan defect and leave its `0` uncorrected: the CI log's color codes
+sit between `Running` and `tests/`. The overseer re-read the same log with the codes stripped and counted 12 (3 files ×
+Linux, macOS, Windows and coverage). overseer1 holds this as ES43, and the `/tmp` controls path as ES44.
+
+## Then
+
+Run P2 to the answer card and stop there for the founder, as usual. Start no next skill, and run no mutation tier.

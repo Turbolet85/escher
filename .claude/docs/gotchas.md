@@ -4,7 +4,7 @@ _Documented architectural traps from `.andromeda/architecture.md` and the specia
 
 ## Coupled dependency pins
 **What breaks:** bumping one side of a coupled pin fails to build or mis-renders.
-**How to avoid:** markup5ever/html5ever/xml5ever must match stylo's `web_atoms`; skrifa must match parley and vello; svgtypes must match usvg; taffy is a git dep pinned by `rev` and parley a registry version (0.12); winit is exact `=0.31.0-beta.3`. Bump the set together.
+**How to avoid:** markup5ever/html5ever/xml5ever must match stylo's `web_atoms`; skrifa must match parley and vello; svgtypes must match usvg; taffy is a registry version (0.15) since 2026-10-13-upstream-sync-polish-and-ship — a git dep pinned by `rev` until then, so no git dependency is left in the manifest — and parley a registry version (0.12); winit is exact `=0.31.0-beta.3`. Bump the set together.
 **References:** arch §Established Decisions [Dependency pinning]
 
 ## `StyleThreading::Parallel` with two documents
@@ -13,7 +13,7 @@ _Documented architectural traps from `.andromeda/architecture.md` and the specia
 **References:** `packages/blitz-dom/src/config.rs`, `resolve.rs`; arch [Style threading]
 
 ## Stale `NodeId` indexing panics
-**What breaks:** `tree[id]` on a dropped node panics with "invalid SlotMap key used". `node_id_mapping` entries are deliberately not cleared on removal so dioxus-core can reuse detached nodes.
+**What breaks:** `tree[id]` on a dropped node panics with "invalid SlotMap key used". Since 2026-10-13-upstream-sync-polish-and-ship (upstream #1185) a node the Dioxus bridge removes is dropped with its descendants and their `element_id_mapping` / `node_id_mapping` entries are cleared, so a re-render-removed node no longer resolves; until then the mappings were not cleared so dioxus-core could reuse detached nodes.
 **How to avoid:** use `get` / `contains_key` for ids that may be stale; never treat a `NodeId` as a stable element identity across remounts.
 **References:** `packages/blitz-dom/src/tree.rs`; `tests/blitz-tests/tests/stale_node_mapping.rs`
 

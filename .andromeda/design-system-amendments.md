@@ -112,3 +112,9 @@ One entry per amendment to `design-system.md` (sidecar-contract.md §Entry form)
 - cli: `escher-session screenshot [--id]` answers one uncoloured line `{"width","height","png"}` on stdout, no ESC byte, status `0`, the image as base64 text inside it; the `mcp` role answers a shot with two content blocks — an `image` block (`image/png`, base64) then a text block, the line without `png` — every reply still one line with no ESC byte.
 **Why:** the surface stays one an agent reads; the image in band is the founder's fork 1, ratified by his own word (2026-10-12, by question dialog in the overseer session, relayed verbatim by the overseer; the wrap's answer card confirmed the same way, 2026-10-13).
 **Ref:** .andromeda/runs/2026-10-12T20-34-17-wrap/
+
+## 2026-10-13-upstream-sync-polish-and-ship — the default sheet arrives through the config
+**Section:** §Surface: desktop-native → Tokens (platform-specific)
+**Change:** the user-agent-sheet line: was "every document gets the blitz `DEFAULT_CSS` user-agent stylesheet" by `DioxusDocument::new`'s own call; now every document gets it once, through `DocumentConfig::default()` (`UserAgentStylesheet::default_sheet()`), the call removed by upstream #1189.
+**Why:** upstream's mechanism, merged; the claim stands and only its path changed. The reconcile was confirmed by the founder (2026-10-13, by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option label «Подтвердить (Рекомендую)»; the English wording is the overseer's).
+**Ref:** .andromeda/runs/2026-10-13T15-50-37-wrap/

@@ -12,7 +12,7 @@ _Extracted from architecture.md and project conventions by `/andromeda-setup-pro
 
 ## Andromeda workflow
 
-This project was adopted into the Andromeda pipeline (`/andromeda-adopt` at `0f60502e`); its masters describe the code as built. Upstream DioxusLabs/blitz `main` was last merged at `7832c177` (merge commit `9462a7e4`, 2026-10-10), the next sync's merge base.
+This project was adopted into the Andromeda pipeline (`/andromeda-adopt` at `0f60502e`); its masters describe the code as built. Upstream DioxusLabs/blitz `main` was last merged at `434e0661` (merge commit `a6c24d24`, 2026-10-13), the next sync's merge base.
 
 **Initial planning (done):** adopt → architecture + 6 specialist plans → `/andromeda-route` (escher-0.1.0 working route) → `/andromeda-setup-project` (this ecosystem).
 

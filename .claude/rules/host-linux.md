@@ -46,3 +46,4 @@ work, not hypothetical.
 
 ## Session Additions
 - 2026-10-10: `pgrep -x` matches nothing for a process name over 15 characters and says so on stderr only — take a census by `ps -eo comm=` and the name's first 15 characters (`seven_guis_nati`).
+- 2026-10-13: Run every pipeline tool (`{tools_dir}/*.py`, a CI leg script) bare or redirected to a file that is then read whole — never piped into `head`, `tail`, `grep`, `cut`, `sed` or `awk`, even when its verdict is its last line (the founder's standing direction).

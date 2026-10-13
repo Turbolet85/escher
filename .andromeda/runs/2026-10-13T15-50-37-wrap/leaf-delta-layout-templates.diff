@@ -1,0 +1,28 @@
+--- a/.andromeda/layout-templates.md
++++ b/.andromeda/layout-templates.md
+@@ -20,3 +20,3 @@
+ 
+-- Browser toolbar row: back, forward, refresh, home, urlbar with suggestion dropdown, overflow menu (apps/browser/src/toolbar.rs:318-446)
++- Browser toolbar row: back, forward, refresh, home, urlbar with suggestion dropdown, overflow menu (apps/browser/src/toolbar.rs:317-445)
+ - `ShellProvider` offers window chrome controls for documents drawing their own titlebar: request_window_close, set_window_minimized, set_window_maximized, is_window_maximized, set_window_decorations, drag_window (packages/blitz-traits/src/shell.rs:45-62)
+@@ -34,6 +34,6 @@
+ 
+-- Each document starts with the fixed skeleton `<html><head></head><body><main id="main"></main></body></html>` and the app mounts into `main` (packages/dioxus-native-dom/src/dioxus_document.rs:100-135)
+-- Arbitrary `index.html` templates are not supported (a TODO) (packages/dioxus-native-dom/src/dioxus_document.rs:110)
+-- Head elements (title, meta, script, style, link) are appended to `<head>`, with optional text contents (packages/dioxus-native-dom/src/dioxus_document.rs:157-183)
+-- Launch config carries `stylesheets` and `base_url` (packages/blitz/src/lib.rs:72-75; packages/blitz/src/lib.rs:113-121)
++- Each document starts with the fixed skeleton `<html><head></head><body><main id="main"></main></body></html>` and the app mounts into `main` (packages/dioxus-native-dom/src/dioxus_document.rs:97-132)
++- Arbitrary `index.html` templates are not supported (a TODO) (packages/dioxus-native-dom/src/dioxus_document.rs:107)
++- Head elements (title, meta, script, style, link) are appended to `<head>`, with optional text contents (packages/dioxus-native-dom/src/dioxus_document.rs:154-180)
++- Launch config carries `stylesheets` and `base_url` (packages/blitz/src/lib.rs:72-75; packages/blitz/src/lib.rs:113-127)
+ - The viewport is the window surface minus safe-area insets, while the render surface covers the whole window including the safe area (packages/blitz-shell/src/window.rs:183-190; packages/blitz-shell/src/window.rs:306-309)
+@@ -42,3 +42,3 @@
+ - The root element's `clientWidth`/`clientHeight` are viewport size minus scrollbar size (packages/blitz-vibey-script/src/dom/element.rs:1017-1062)
+-- Fixed-position children of the root element are not scrolled with the viewport (packages/blitz-paint/src/render.rs:1123-1138)
++- Fixed-position children of the root element are not scrolled with the viewport (packages/blitz-paint/src/render.rs:1133-1148)
+ - The test harness defaults to an 800x600 viewport at scale 1 in light mode (packages/blitz-test-harness/src/harness.rs:30-43; packages/blitz-test-harness/src/harness.rs:57-62)
+@@ -58,3 +58,3 @@
+ 
+-- On mobile the toolbar omits the forward and home buttons (apps/browser/src/toolbar.rs:325-335)
++- On mobile the toolbar omits the forward and home buttons (apps/browser/src/toolbar.rs:324-334)
+ - A bottom-toolbar (`column-reverse`) mobile layout is present only as commented-out CSS (apps/browser/assets/browser.css:141-155)

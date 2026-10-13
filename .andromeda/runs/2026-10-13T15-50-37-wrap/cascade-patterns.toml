@@ -1,0 +1,63 @@
+[[pattern]]
+id = 'taffy-git'
+regex = '''taffy (is a git|from git|at a pinned git)|git dependenc|pinned by (commit )?`?rev|the taffy git rev'''
+
+[[pattern]]
+id = 'beta2'
+fixed = '0.3.0-beta.2'
+
+[[pattern]]
+id = 'dom-removal'
+regex = '''not cleared on removal|intentionally not cleared|DETACHED|only detaches|remove_node_if_unparented|keeps resolving until'''
+
+[[pattern]]
+id = 'ua-default-css'
+regex = '''DEFAULT_CSS|always added to a `DioxusDocument`|appends `DEFAULT_CSS`'''
+
+[[pattern]]
+id = 'ua-sheets-type'
+regex = '''Option<Vec<String>>|add_user_agent_stylesheet|UserAgentStylesheet'''
+
+[[pattern]]
+id = 'falsy-list'
+regex = '''BOOLEAN_ATTRIBUTES|isBoolAttr|27 boolean|27 names|27-name|is_bool_attr'''
+
+[[pattern]]
+id = 'uievent-variants'
+regex = '''`PointerCancel`|PointerLeave'''
+
+[[pattern]]
+id = 'publish-false'
+regex = '''publish = false|escher-telemetry or escher-driver\)'''
+
+[[pattern]]
+id = 'sync-pin'
+regex = '''7832c177|9462a7e4|434e0661|a6c24d24'''
+
+[[pattern]]
+id = 'front-page'
+regex = '''still to come|(ten|eleven) driver commands|commands as tools'''
+
+[[pattern]]
+id = 'cursor-icon'
+regex = '''cursor-icon|tracing-log and'''
+
+[[pattern]]
+id = 'test-tallies'
+regex = '''\b(61|67) unit tests|in eight files|\b7[89] tests|Ran 7[89] tests|test_wpt_area_changes\.py's [45]|\b11[23] `\.rs` files|among 1(07|28)\b|849 passed|174 result lines|179 result lines'''
+
+[[pattern]]
+id = 'obs-census'
+fixed = 'password_painted_masked`, which installs none'
+
+[[pattern]]
+id = 'relayed-short'
+fixed = 'relayed by the overseer'
+
+[[pattern]]
+id = 'doubled-word'
+fixed = 'written written'
+
+[[pattern]]
+id = 'pipe-span'
+regex = '''font-face\|font_face'''

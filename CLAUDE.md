@@ -48,7 +48,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 - Incremental and non-incremental layout must stay identical (incremental_oracle); pipeline tests run `for incremental in [false, true]`.
 - DOM mutations go through `DocumentMutator` (`doc.mutate()`), which flushes on Drop — extend the mutator rather than reaching through `DocumentMutator::doc`.
 - `NodeId` is a versioned slot id: a dropped node's id stops resolving and indexing a stale id panics — use `get`/`contains_key` for ids that may be stale.
-- Dependency pins are coupled (html5ever family ↔ stylo web_atoms, skrifa ↔ parley/vello, svgtypes ↔ usvg, the taffy git rev, winit exact beta) — never bump one side alone.
+- Dependency pins are coupled (html5ever family ↔ stylo web_atoms, skrifa ↔ parley/vello, svgtypes ↔ usvg, winit exact beta; taffy a registry version, "0.15", since the 2026-10-13 upstream sync, no git dependency left) — never bump one side alone.
 - Work is not done until `bash .github/scripts/ci-leg.sh fast` (fmt · clippy `--locked -D warnings` · workspace tests · CI scripts — the same legs CI runs) and `bash .github/scripts/ci-leg.sh doc` (rustdoc `-D warnings` over every workspace crate — `cargo doc --workspace --no-deps --locked`) pass.
 <!-- GENERATED:setup:warnings end -->
 

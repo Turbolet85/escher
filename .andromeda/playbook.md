@@ -65,6 +65,10 @@ becomes a new rule here. Format owned by /andromeda-wrap-session (`references/am
   verdict: routine
   note: the founder's answer to the fork is the ratification, recorded 'ratified by the founder ({date})' with his word, its merge surface owned by a CARRY on the upstream-sync entry. A delegate's answer or a relay not verbatim is PROVISIONAL (Provisional discharge rule); a change with no fork answer, or one that widens what crosses a boundary, escalates. Appended at the 2026-10-12-headless-screenshot wrap (fork 2, «Движок маскирует»).
 
+- pattern: A master's spelling of the founder's word follows its amendment's — where a sidecar entry's **Why:** is respelled to the verbatim form, every master line that copies that entry takes the same form, naming the labels the entry names; a line that copies another entry, or a genuine overseer relay, keeps its spelling.
+  verdict: routine
+  note: provenance only — the respelling moves no claim, ratification or PROVISIONAL mark, and each changed and each left site is listed with the entry it follows or its one reason. Appended on the founder's word (word: «Добавить правило (Рекомендую)» — the founder, 2026-10-13, by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option label; the English wording is the overseer's, inputs#I5), proposed at the 2026-10-13-upstream-sync-polish-and-ship wrap's answer card after the overseer's directive (inputs#I4 item 2) settled its first case.
+
 _(more grow from escalations + resolved cases — the first five above were harvested from live projects that
 derived them separately, the sixth is the never-routine class; anything genuinely project-specific still starts
 here empty.)_

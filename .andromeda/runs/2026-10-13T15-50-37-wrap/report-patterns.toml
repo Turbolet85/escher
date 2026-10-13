@@ -1,0 +1,35 @@
+[[pattern]]
+id = 'sync-pin'
+regex = '7832c177|9462a7e4|Upstream sync:'
+
+[[pattern]]
+id = 'front-page'
+regex = 'Front page|ten driver commands|still to come'
+
+[[pattern]]
+id = 'taffy-pin'
+regex = 'taffy[^\n]{0,40}(git|rev)|7d33901c|DioxusLabs/taffy|taffy 0\.14|0\.3\.0-beta\.2'
+
+[[pattern]]
+id = 'dom-removal'
+regex = 'node_id_mapping|intentionally not cleared|remove_node_if_unparented|until its ElementId is reused'
+
+[[pattern]]
+id = 'falsy-attrs'
+regex = 'BOOLEAN_ATTRIBUTES|isBoolAttr|is_bool_attr|27 (boolean )?(names|attributes)|falsy'
+
+[[pattern]]
+id = 'adapter'
+regex = 'accesskit_(xplat|winit)'
+
+[[pattern]]
+id = 'test-tallies'
+regex = '174 result|849 passed|\b113 (files|test files)|112 targets|Ran 78|\b78 tests|449 passed|61 unit'
+
+[[pattern]]
+id = 'no-subscriber'
+regex = 'no-subscriber|0 subscriber'
+
+[[pattern]]
+id = 'ua-css'
+regex = 'default\.css|DEFAULT_CSS|add_user_agent_stylesheet|ua_stylesheets'

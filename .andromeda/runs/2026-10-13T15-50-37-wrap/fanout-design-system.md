@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens holds — every Coverage tokens flag in report.md:150-169 reads n/a or "UA sheet ✓" (button-input layout, :165), none hardcoded✗; outside this detector's invariant, report.md:130 lists design-system.md:339 ("gets the blitz DEFAULT_CSS user-agent stylesheet") as true but by a changed mechanism (DocumentConfig::default(), #1189), and report.md:147 leaves the nine default.css:{N} citations to the P2 citation sweep.

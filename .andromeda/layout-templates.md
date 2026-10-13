@@ -18,7 +18,7 @@
 
 ### Component — Header
 
-- Browser toolbar row: back, forward, refresh, home, urlbar with suggestion dropdown, overflow menu (apps/browser/src/toolbar.rs:318-446)
+- Browser toolbar row: back, forward, refresh, home, urlbar with suggestion dropdown, overflow menu (apps/browser/src/toolbar.rs:317-445)
 - `ShellProvider` offers window chrome controls for documents drawing their own titlebar: request_window_close, set_window_minimized, set_window_maximized, is_window_maximized, set_window_decorations, drag_window (packages/blitz-traits/src/shell.rs:45-62)
 
 ### Component — Primary navigation
@@ -32,15 +32,15 @@
 
 ### IA notes
 
-- Each document starts with the fixed skeleton `<html><head></head><body><main id="main"></main></body></html>` and the app mounts into `main` (packages/dioxus-native-dom/src/dioxus_document.rs:100-135)
-- Arbitrary `index.html` templates are not supported (a TODO) (packages/dioxus-native-dom/src/dioxus_document.rs:110)
-- Head elements (title, meta, script, style, link) are appended to `<head>`, with optional text contents (packages/dioxus-native-dom/src/dioxus_document.rs:157-183)
-- Launch config carries `stylesheets` and `base_url` (packages/blitz/src/lib.rs:72-75; packages/blitz/src/lib.rs:113-121)
+- Each document starts with the fixed skeleton `<html><head></head><body><main id="main"></main></body></html>` and the app mounts into `main` (packages/dioxus-native-dom/src/dioxus_document.rs:97-132)
+- Arbitrary `index.html` templates are not supported (a TODO) (packages/dioxus-native-dom/src/dioxus_document.rs:107)
+- Head elements (title, meta, script, style, link) are appended to `<head>`, with optional text contents (packages/dioxus-native-dom/src/dioxus_document.rs:154-180)
+- Launch config carries `stylesheets` and `base_url` (packages/blitz/src/lib.rs:72-75; packages/blitz/src/lib.rs:113-127)
 - The viewport is the window surface minus safe-area insets, while the render surface covers the whole window including the safe area (packages/blitz-shell/src/window.rs:183-190; packages/blitz-shell/src/window.rs:306-309)
 - Pointer client coordinates subtract the safe-area left/top insets and page coordinates add viewport scroll (packages/blitz-shell/src/window.rs:442-463)
 - The document element is the scrolling element; `window.scrollTo`/`scrollBy` scroll the root element (packages/blitz-vibey-script/src/dom/document.rs:129-133; packages/blitz-vibey-script/src/runtime.rs:2158-2193)
 - The root element's `clientWidth`/`clientHeight` are viewport size minus scrollbar size (packages/blitz-vibey-script/src/dom/element.rs:1017-1062)
-- Fixed-position children of the root element are not scrolled with the viewport (packages/blitz-paint/src/render.rs:1123-1138)
+- Fixed-position children of the root element are not scrolled with the viewport (packages/blitz-paint/src/render.rs:1133-1148)
 - The test harness defaults to an 800x600 viewport at scale 1 in light mode (packages/blitz-test-harness/src/harness.rs:30-43; packages/blitz-test-harness/src/harness.rs:57-62)
 - A screen can hold scrolling boxes inside the viewport, and an into-view scroll moves each of them: `BaseDocument::scroll_into_view` scrolls every scrolling box that holds its target, innermost first, and then the viewport, and `BaseDocument::visible_region` reads the part of the viewport an element can be seen through — the viewport narrowed to the padding box of every clipping box that holds it (ratified by the founder, 2026-10-07, for every document); on the headless stand the nested scroller is the CRUD list: `crud-list` reads (24, 112.796875, 369 × 419.203125) at boot and is the box that clips its rows — after twelve Creates the last row's centre lies below the list's box with the viewport unscrolled, a driver `click` on it is refused `off-screen` and a driver `scroll` brings it inside the list; the list itself reads the same four figures after its content is scrolled, that scroll's diff does not name it, and a driver `click` naming the list lands on the row at its centre at 12 Creates and at 14, since 2026-10-10-scrolling-box-bounds-and-hit — while `task-body` reads (0, 46, 800 × 554) and is not the box that clips that row; the pinned viewport itself is scrolled by a driver `scroll` only on an in-file fixture taller than it; no stand markup, id, class or style moved (packages/blitz-dom/src/scrolling.rs:659-801; tests/blitz-tests/tests/stand_act_scroll.rs:1-14; as measured at escher-0.1.0/chunks/2026-10-07-refusal-detection/evidence/stand-census.md, the scrolled list's own readings at escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/report.md)
 
@@ -56,7 +56,7 @@
 
 ### Component — Header
 
-- On mobile the toolbar omits the forward and home buttons (apps/browser/src/toolbar.rs:325-335)
+- On mobile the toolbar omits the forward and home buttons (apps/browser/src/toolbar.rs:324-334)
 - A bottom-toolbar (`column-reverse`) mobile layout is present only as commented-out CSS (apps/browser/assets/browser.css:141-155)
 
 ---

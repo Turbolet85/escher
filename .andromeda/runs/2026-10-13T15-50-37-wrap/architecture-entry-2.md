@@ -1,0 +1,14 @@
+
+## 2026-10-13-upstream-sync-polish-and-ship — the bridge drops a removed node; the default sheet from the config; the 28-name falsy predicate; `PointerLeave`
+**Section:** §Established Decisions → [DOM semantics] · [Dioxus integration] · [HTML parsing] · §Standard Contracts → Document core · Events · Dioxus DOM bridge · §Existing Scopes → blitz-tests row
+**Change:**
+- [DOM semantics]: was "`node_id_mapping` entries are intentionally not cleared on removal so dioxus-core can reuse detached nodes"; now the Dioxus bridge drops a removed node with its descendants and clears their `element_id_mapping` / `node_id_mapping` entries (upstream #1185), so a re-render-removed node no longer resolves.
+- Dioxus DOM bridge: was "a node a re-render removes is DETACHED (parent `None`) and keeps resolving until its ElementId is reassigned"; now it is dropped by the crate-private `remove_and_drop_node` / `replace_and_drop_node` and reads no id — `get_node` `None`, `element_id` `None`, no pair in `element_ids()`.
+- Dioxus DOM bridge, the falsy clear: was one of the 27 names of the module-private `BOOLEAN_ATTRIBUTES` list; now one of the 28 names of upstream's private `is_bool_attr`, a closed `matches!` set — `inert` added, a framework-written `inert: false` now cleared. `BOOLEAN_ATTRIBUTES` retired; `mutation_writer.rs` is byte-identical to upstream's at `434e0661`. The falsy values, both attribute paths and the `hidden` consequence are unchanged.
+- blitz-tests row: `dioxus_falsy_boolean_attrs` still reads the 27 names of its own list; whether a check reads a falsy `inert` is not measured.
+- [Dioxus integration]: was "`DEFAULT_CSS` always added to a `DioxusDocument`"; now `DioxusDocument::new` adds no sheet, and the default user-agent sheet arrives once through `DocumentConfig::default()` (upstream #1189). [HTML parsing]: was "`HtmlDocument` appends `DEFAULT_CSS` if absent"; now it uses the configured sheets as given.
+- Document core: `DocumentConfig.ua_stylesheets` is a `Vec<UserAgentStylesheet>` (was `Option<Vec<String>>`), its hand-written `Default` the one `UserAgentStylesheet::default_sheet()` (a `LazyLock` parse of `DEFAULT_CSS`), and a config that sets it is used as given.
+- Events: `UiEvent` gains `PointerLeave` (`DomEventKind::PointerLeave`, `EventDriver::handle_pointer_leave`), clearing hover, in a hosted sub-document too, and firing the leave events.
+**Why:** upstream's behaviour, merged and measured green; the [DOM semantics] retirement was named in the plan's reviewed Expected amendments and confirmed by the founder with the reconcile (2026-10-13, «Подтвердить (Рекомендую)», relayed verbatim by the overseer as his chosen option label; the English wording is the overseer's).
+**Kept:** the `add_`/`remove_user_agent_stylesheet` methods and `synthetic_form_event` are not registered in the contract — the contract names neither kind, and escher uses neither.
+**Ref:** .andromeda/runs/2026-10-13T15-50-37-wrap/

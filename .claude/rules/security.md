@@ -25,7 +25,7 @@ Source: `.andromeda/security-plan.md` (security tier 0; application threat model
 ## Dependencies
 - The dependency audit is cargo-deny (`bash .github/scripts/ci-leg.sh audit`, config `deny.toml`): an advisory it fires on is fixed by a semver-compatible update, or ignored by ID with a written reason — never a blanket allow, never `unmaintained`/`unsound` set to none. Its reach is cargo-deny's resolved graph, which misses the paste and memmap2 advisories in optional chains — still review new crates by hand.
 - `deny.toml` also holds upstream's `[licenses]` table, which no leg runs — one reading, `licenses ok`; whether the fork gates on it is an open question on the route entry "Quality gates".
-- `Cargo.lock` is committed; git deps are pinned by `rev`; builds pass `--locked` — keep all three.
+- `Cargo.lock` is committed; no git dependency is left in the root manifest (taffy, the one there was, a crates.io registry version since 2026-10-13-upstream-sync-polish-and-ship); builds pass `--locked` — keep both.
 
 ## Session Additions
 _This section is owned by `/andromeda-wrap-session`. setup-project preserves content added here on re-run. See `section-markers.md` for the convention._

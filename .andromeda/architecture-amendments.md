@@ -620,3 +620,43 @@ One entry per amendment to `architecture.md` (sidecar-contract.md §Entry form).
 - Testing: blitz-tests' dev-dependencies gain `png`. Media: `png` (0.18.1) also taken by escher-driver and blitz-tests, no package entering `Cargo.lock`; no `base64` crate.
 **Why:** the chunk's code: one more private module, one harness module, three new test targets and a dependency already in the graph.
 **Ref:** .andromeda/runs/2026-10-12T20-34-17-wrap/
+
+## 2026-10-13-upstream-sync-polish-and-ship — the upstream sync: taffy from the registry, the beta.3 pins, the pin and the front page
+**Section:** §Stack and Technologies → Workspace package row · Layout row · Testing row · §Established Decisions → [Dependency pinning] · §Inherited Defaults → Framework · Publishability · §Project Intent → `Upstream sync:` line · Front page
+**Change:**
+- [Dependency pinning]: was "taffy is a git dependency pinned by `rev`"; now taffy is a registry version, "0.15" (resolved 0.15.0, its eight features unchanged), and no git dependency is left in the manifest. The coupled pins, the winit exact beta and the commented-out patch blocks stand.
+- Layout row: was taffy from git at a pinned rev; now taffy "0.15" from crates.io with the same eight features. Inherited Defaults → Framework: engine pins `=0.3.0-beta.3`, taffy "0.15" from the registry.
+- Workspace package row: version and the nine in-repo `=` pins move `0.3.0-beta.2` → `0.3.0-beta.3`.
+- Testing row: blitz-tests' dev-dependencies gain `cursor-icon` (the workspace's), for upstream's `pointer_leave` check's hand-written `ShellProvider`.
+- Publishability: blitz-vibey-script sets `publish = false` and joins the exceptions to the published `packages/` crates.
+- `Upstream sync:` was last merged 7832c177 (merge 9462a7e4, 2026-10-10); now 434e06615d5f47a3df92c0f94e916df088fdcf4d (merge a6c24d24, 2026-10-13), the next sync's merge base.
+- Front page: the page says eleven driver commands as tools, and the screenshot is no longer named as still to come.
+**Why:** the merge took upstream's pin set whole — the plan's lean, with no third-party package moved and the audit green; the [Dependency pinning] retirement was named in the plan's reviewed Expected amendments and confirmed by the founder at this wrap's card (2026-10-13, by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option label «Подтвердить (Рекомендую)»; the English wording is the overseer's). Trap for the next sync: the CLAUDE.md coupled-pins warning no longer names a taffy git rev — taffy now moves with the registry like parley.
+**Ref:** .andromeda/runs/2026-10-13T15-50-37-wrap/
+
+## 2026-10-13-upstream-sync-polish-and-ship — the bridge drops a removed node; the default sheet from the config; the 28-name falsy predicate; `PointerLeave`
+**Section:** §Established Decisions → [DOM semantics] · [Dioxus integration] · [HTML parsing] · §Standard Contracts → Document core · Events · Dioxus DOM bridge · §Existing Scopes → blitz-tests row
+**Change:**
+- [DOM semantics]: was "`node_id_mapping` entries are intentionally not cleared on removal so dioxus-core can reuse detached nodes"; now the Dioxus bridge drops a removed node with its descendants and clears their `element_id_mapping` / `node_id_mapping` entries (upstream #1185), so a re-render-removed node no longer resolves.
+- Dioxus DOM bridge: was "a node a re-render removes is DETACHED (parent `None`) and keeps resolving until its ElementId is reassigned"; now it is dropped by the crate-private `remove_and_drop_node` / `replace_and_drop_node` and reads no id — `get_node` `None`, `element_id` `None`, no pair in `element_ids()`.
+- Dioxus DOM bridge, the falsy clear: was one of the 27 names of the module-private `BOOLEAN_ATTRIBUTES` list; now one of the 28 names of upstream's private `is_bool_attr`, a closed `matches!` set — `inert` added, a framework-written `inert: false` now cleared. `BOOLEAN_ATTRIBUTES` retired; `mutation_writer.rs` is byte-identical to upstream's at `434e0661`. The falsy values, both attribute paths and the `hidden` consequence are unchanged.
+- blitz-tests row: `dioxus_falsy_boolean_attrs` still reads the 27 names of its own list; whether a check reads a falsy `inert` is not measured.
+- [Dioxus integration]: was "`DEFAULT_CSS` always added to a `DioxusDocument`"; now `DioxusDocument::new` adds no sheet, and the default user-agent sheet arrives once through `DocumentConfig::default()` (upstream #1189). [HTML parsing]: was "`HtmlDocument` appends `DEFAULT_CSS` if absent"; now it uses the configured sheets as given.
+- Document core: `DocumentConfig.ua_stylesheets` is a `Vec<UserAgentStylesheet>` (was `Option<Vec<String>>`), its hand-written `Default` the one `UserAgentStylesheet::default_sheet()` (a `LazyLock` parse of `DEFAULT_CSS`), and a config that sets it is used as given.
+- Events: `UiEvent` gains `PointerLeave` (`DomEventKind::PointerLeave`, `EventDriver::handle_pointer_leave`), clearing hover, in a hosted sub-document too, and firing the leave events.
+**Why:** upstream's behaviour, merged and measured green; the [DOM semantics] retirement was named in the plan's reviewed Expected amendments and confirmed by the founder with the reconcile (2026-10-13, «Подтвердить (Рекомендую)», relayed verbatim by the overseer as his chosen option label; the English wording is the overseer's).
+**Kept:** the `add_`/`remove_user_agent_stylesheet` methods and `synthetic_form_event` are not registered in the contract — the contract names neither kind, and escher uses neither.
+**Ref:** .andromeda/runs/2026-10-13T15-50-37-wrap/
+
+## 2026-10-13-upstream-sync-polish-and-ship — the founder's word respelled to the verbatim form; a doubled word
+**Section:** §Established Decisions (the accessibility builder's states; escher-driver: the socket's crossing, `serde_json`, the `tool_call` span, the MCP crossing) · §Standard Contracts → Accessibility tree · Driver session (`serde_json`, the MCP bounds, the `tool_call` span) · §Occupied Resources (the socket widened to calls, the MCP crossing) · §Existing Scopes (escher-driver's json module)
+**Change:**
+- Eleven sites where the body's «relayed by the overseer» copies one of the four respelled entries now read "relayed verbatim by the overseer as his chosen option label …; the English wording is the overseer's", naming the entry's label:
+  - «Сокет несёт команды» — the socket's second widening;
+  - «Ратифицировать» — the adapter's three states;
+  - «Ратифицировать как есть» — the MCP crossing and its bounds;
+  - «serde_json, только чтение» and «Span с tool и ending».
+- Five short spellings stay, each copying an entry that kept its short spelling or names no label: the bounds-and-hit ruling ×3, `type` replacing, and the orphaned-host answer.
+- The `json` module: "the hand-written written forms" → "the hand-written forms".
+**Why:** the body follows the entry it copies, so the provenance spelling matches the sidecar's verbatim form; no claim, ratification or PROVISIONAL mark moved. The lists were confirmed by the founder (2026-10-13, by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option label «Подтвердить списки (Рекомендую)»; the English wording is the overseer's), and he added playbook rule A on the same answer («Добавить правило (Рекомендую)»), so the class is routine from here.
+**Ref:** .andromeda/runs/2026-10-13T15-50-37-wrap/

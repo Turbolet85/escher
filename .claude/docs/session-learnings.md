@@ -8,6 +8,13 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-13 — A phase control that reads a scratchpad file lands a host temp path in the run dir
+A phase or implement control that records the command it ran, where that command reads a file in the session's scratchpad under the OS temp dir, writes the absolute host path into the committed run dir. `gate.py hygiene` refuses it (`· tmp`), and `gate.py respell` cannot fix it because the path is not under the project root, so the operator pass has to mask it by hand.
+
+Where it applies: authoring a control. Point the recorded command at a file inside the run dir, or record it with the temp prefix already written as `$TMPDIR/…`, so the hygiene read stays clean.
+
+---
+
 ## 2026-10-13 — `gate.py run … --operator {n} --dry-run` writes the run dir's gate trail
 A dry run of an operator entry is not read-only: it appends to the run dir's `gate-{marker}.json` trail. Once that trail is tracked (after the operator pass's pre-CI commit), a dry run fired before the push entry dirties the tree, and the push entry's own `git diff --quiet` guard then fails. Set the trail aside before the dry run and restore it before the push entry runs, or skip the dry run once the trail is tracked (as measured at escher-0.1.0/chunks/2026-10-12-headless-screenshot/evidence/operator-pass.md, entry 20).
 
