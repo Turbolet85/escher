@@ -14,16 +14,16 @@ _Mirrors `.andromeda/architecture.md` §Stack and Technologies (citations live t
 |---|---|
 | CSS engine | Servo Stylo 0.22.0 (stylo, stylo_traits, stylo_atoms, stylo_static_prefs, stylo_dom); selectors 0.41.0; cssparser 0.38.0 |
 | HTML / XML parsing | html5ever 0.40.1, markup5ever 0.40.0, xml5ever 0.40.0 |
-| Layout | Taffy (git, pinned rev; std, flexbox, grid, block_layout, content_size, calc, detailed_layout_info) via `stylo_taffy` |
+| Layout | Taffy (git, pinned rev; std, flexbox, flexbox_balance, grid, block_layout, content_size, calc, detailed_layout_info) via `stylo_taffy` |
 | Text & fonts | Parley 0.12 (registry), skrifa 0.44, fontique; ICU4X 2.3 (icu_casemap, icu_locale_core, icu_properties, icu_segmenter) with writeable 0.6 — icu_casemap and writeable behind blitz-dom's default `text-transform-icu`; `wuff` for WOFF/WOFF2 |
 | Rendering | anyrender 0.14.0 + anyrender_vello / _vello_cpu / _vello_hybrid / _skia / _svg / _serialize; wgpu 30 |
 | Graphics | color 0.3, peniko 0.6.0, kurbo 0.13.1, usvg 0.48.1, svgtypes 0.16.1, euclid 0.22, app_units 0.7.5 |
 | Windowing & input | winit `=0.31.0-beta.3`, raw-window-handle 0.6, arboard 3.4.1, rfd 0.17.1, keyboard-types 0.7, cursor-icon 1 |
-| Accessibility | accesskit 0.25; accesskit_xplat (windows 0.35, macos 0.27, unix 0.23, android 0.8) |
+| Accessibility | accesskit 0.25; accesskit_xplat (windows 0.35, macos 0.27, unix 0.24, android 0.9) |
 | Networking & async | url 2.5, http 1.1, data-url 0.3.1, tokio 1.42, reqwest 0.13 (native-tls), reqwest-middleware 0.5.1, http-cache =1.0.0-alpha.6 |
 | JavaScript | Boa 0.22 (boa_engine with annex-b, boa_runtime, boa_gc) |
 | UI framework | Dioxus 0.7.3 crates |
-| Media | image 0.25.6, png 0.18, html-escape, percent-encoding, serde 1, serde_json 1 (1.0.151; since 2026-10-10-mcp-surface escher-driver's reader of MCP requests, writing nothing) |
+| Media | image 0.25.6, png 0.18 (since 2026-10-12-headless-screenshot also escher-driver's encoder of a shot and a blitz-tests dev-dependency, resolved 0.18.1, no package entering `Cargo.lock`; no `base64` crate taken), html-escape, percent-encoding, serde 1, serde_json 1 (1.0.151; since 2026-10-10-mcp-surface escher-driver's reader of MCP requests, writing nothing) |
 | Parallelism & misc | rayon 1, slotmap, rustc-hash, bytes, smallvec, thin-vec, atomic_refcell, bitflags, bytemuck, pollster, smol_str, thread_local |
 
 ## Data Storage
@@ -41,7 +41,7 @@ _Mirrors `.andromeda/architecture.md` §Stack and Technologies (citations live t
 - GitHub Actions: `ci.yml` on PRs and pushes to `main`, `v0.*`, `build/**`, under a workflow-level `permissions: contents: read` with every `uses:` pinned to a commit SHA — fast legs fmt, clippy, test, CI-script tests (no `needs`), then MSRV build, build, counter, wasm, docs (the whole workspace), dependency audit, accessibility (a11y) tests, coverage report and the windows/macos/ios/android matrix; rust-cache on every compiling job but coverage (saved on `main` + `build/*`; a11y restores the test job's `workspace-test` key and never saves), a 7-day `ci-log-*` artifact per failed leg and a 7-day `coverage-report` artifact on success. `wpt.yml` (css + svg WPT, scores, Pages), `wpt-post-results.yml`, `publish-browser.yml` (dx bundle, signed builds) run only in `DioxusLabs/blitz` (repository guard).
 - CI scripts: Python 3 — 3.11 or later, since `test_blitz_tests_targets.py` reads a manifest with the stdlib `tomllib` (`wpt_diff_to_pr.py`, upstream's `wpt_area_changes.py`, unittest suites; `test_ci_workflows.py` needs PyYAML, which the `ci-scripts` job installs only where `import yaml` fails), the bash leg runner `ci-leg.sh` and the bash install script `apt-install.sh` — fork CI's one statement of its package install, using the runner image's `sudo`, GNU `timeout` and `apt-get`, no package or action added.
 - Cold-agent run pipe (operator host only, ratified by the founder, 2026-10-06): the Claude Code CLI `claude` as the agent client (read at 2.1.288 on the dev host; a `run` precondition, not a CI requirement — CI runs only the pipe's shim tests) and a stdlib python3 MCP stub over stdio, no package added.
-- Testing deps: blitz-test-harness, seven_guis (the headless stand), escher-driver (the driver session), test-that 0.5.2, usvg; seven_guis' unix-gated test target `cli_flow` runs two POSIX `sh` scripts under plain `sh` — a shell is that one target's requirement, no dependency or framework added; WPT runner: dify 0.7.4, wptreport 0.0.5, glob, regex, owo-colors.
+- Testing deps: blitz-test-harness, seven_guis (the headless stand), escher-driver (the driver session), test-that 0.5.2, usvg and, since 2026-10-12-headless-screenshot, png, which `stand_act_screenshot` and `stand_screenshot_repeat` decode a shot with; seven_guis' unix-gated test target `cli_flow` runs two POSIX `sh` scripts under plain `sh` — a shell is that one target's requirement, no dependency or framework added; WPT runner: dify 0.7.4, wptreport 0.0.5, glob, regex, owo-colors.
 
 ## Infrastructure
 - Library workspace — no deployment target for the engine. The browser bundles per platform via `dx bundle --package browser --release --profile production --locked` (upstream `DioxusLabs/blitz` only); Nix `packages.browser`; WASM examples via Trunk.

@@ -1,0 +1,119 @@
+[
+{
+"tool": "route",
+"v": "1.7",
+"sha8": "7e4cd318",
+"ts": "2026-10-13T06:31:44Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-12-headless-screenshot",
+"--run-dir",
+".andromeda/runs/2026-10-12T20-34-17-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"flip master-route.md:45 - 2026-10-12-headless-screenshot pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.7",
+"sha8": "7e4cd318",
+"ts": "2026-10-13T06:31:44Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-12-headless-screenshot",
+"--date",
+"2026-10-13",
+"--run-dir",
+".andromeda/runs/2026-10-12T20-34-17-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :83 strip CARRY: 583ch \"CARRY: password painted in the clear (fr\"",
+"pin :83 strip CARRY: 363ch \"CARRY: one verb table (from 2026-10-07-c\"",
+"pin next markerless :86 holds CARRY:×7",
+"83 · 2026-10-12-headless-screenshot · strip 2 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 83,
+"marker": "2026-10-12-headless-screenshot",
+"blocks": 2,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.7",
+"sha8": "7e4cd318",
+"ts": "2026-10-13T06:31:48Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-12-headless-screenshot",
+"--date",
+"2026-10-13",
+"--run-dir",
+".andromeda/runs/2026-10-12T20-34-17-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :83 strip CARRY: 583ch \"CARRY: password painted in the clear (fr\"",
+"pin :83 strip CARRY: 363ch \"CARRY: one verb table (from 2026-10-07-c\"",
+"pin next markerless :86 holds CARRY:×7",
+"83 · 2026-10-12-headless-screenshot · strip 2 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.1.0/route-archive.md",
+"./escher-0.1.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 83,
+"marker": "2026-10-12-headless-screenshot",
+"blocks": 2,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]

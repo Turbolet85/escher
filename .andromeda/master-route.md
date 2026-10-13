@@ -42,4 +42,4 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 2026-10-10-snapshot-states · complete · Snapshot states — a snapshot reads which control is selected, pressed or invalid, and the stand's tasks state all three · → escher-0.1.0/chunks/2026-10-10-snapshot-states/
 2026-10-10-mcp-surface · complete · MCP surface — the driver's commands as MCP tools over stdio, local to the invoking user, no listener or auth surface, a tool call parenting its trace · → escher-0.1.0/chunks/2026-10-10-mcp-surface/
 2026-10-12-self-description · complete · Self-description — the verb list, help and schemas served by the command line and MCP from the one schema · → escher-0.1.0/chunks/2026-10-12-self-description/
-2026-10-12-headless-screenshot · pending · Headless screenshot — the whole screen or one element by id with no display, the same pixels on repeat with the bundled font · → escher-0.1.0/chunks/2026-10-12-headless-screenshot/
+2026-10-12-headless-screenshot · complete · Headless screenshot — the whole screen or one element by id with no display, the same pixels on repeat with the bundled font · → escher-0.1.0/chunks/2026-10-12-headless-screenshot/

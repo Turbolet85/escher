@@ -1,0 +1,55 @@
+proposals:
+  - detector: D-obs-instrumentation
+    severity: warning
+    section: '§4. Span / Trace Coverage (the `command` span bullet)'
+    change: 'The command span bullet (obs-plan.md:106) reads `cause` as one of the NINE names `Cause::name` returns — `fonts-unavailable` the ninth, returned by the executor before anything is painted when the held app has no font it can paint text with — "all nine returned by code today" (`unknown-verb` and `malformed` by `validate`; `not-found`, `stale`, `disabled`, `covered`, `off-screen`, `time-unavailable` and `fonts-unavailable` by the executor; the provenance clause "the six it returns now" kept as "the six it returned then"); the verb table gains `screenshot`, a seventh instance verb, and a shot — whole, or by `id` — records `verb` alone when accepted and `verb` and `cause` when refused (an element shot that crops to no pixel refused `off-screen`), never the image, its byte size or its `width` / `height`, which join the never-fielded list; the span keeps its eight fields; and the still-observed-absent list gains `Harness::screenshot` / `screenshot_rect` in blitz-test-harness and the driver''s private `image` encoder (`png`, `base64`), which print, panic and log nothing.'
+    sidecar: 'obs-plan §4 command span — causes eight → nine (`fonts-unavailable`, executor), `screenshot` the seventh instance verb recording `verb` / `cause` only, never the image, its size or its dimensions; the harness screenshot and the driver `image` encoder write no record (2026-10-12-headless-screenshot).'
+    rationale: 'Report Schema / config: "Causes eight → nine: `fonts-unavailable`, last in the order" and "The command span keeps its eight fields: a shot records `verb` (and `cause` when refused), never the image, its size or its dimensions"; Deviations: "An element shot that crops to no pixel is refused `off-screen`"; Harness / gate surface: "No path prints, panics or logs (probe over `image.rs` and `screenshot.rs` outside their test modules: 0 at exit 1)"; Coverage: `fonts-unavailable` "`cause=fonts-unavailable` on the span", harness "n/a — the harness writes no record (obs-plan §4)"; Counts: `causes8` obs-plan.md:106 changed; Expected amendments: obs-plan §4 (`verb` and `tool` gain `screenshot`, the cause set nine).'
+    basis: 'packages/escher-driver/src/schema.rs:415-448; packages/escher-driver/src/image.rs:3-37; packages/blitz-test-harness/src/screenshot.rs:37-103'
+  - detector: D-obs-instrumentation
+    severity: warning
+    section: '§4. Span / Trace Coverage (the `tool_call` span bullet)'
+    change: 'The `tool_call` bullet reads `tool` as the table''s word, one of its ELEVEN — `screenshot` among them since 2026-10-12-headless-screenshot, `help` since 2026-10-12-self-description; a `screenshot` tool call ends `accepted` (its reply an `image` block then a `text` block) or `refused` (one text block, `isError` true) and parents its `command` child like every instance verb; no field added, the span keeps its two; measured in process in both layout modes (`stand_mcp_tools::a_screenshot_tool_call_answers_its_image_then_its_text_and_parents_its_command`, tests/blitz-tests/tests/stand_mcp_tools.rs:610-683).'
+    sidecar: 'obs-plan §4 tool_call — `tool` one of eleven words, `screenshot` among them, a shot''s tool call parenting its command; two fields unchanged (2026-10-12-headless-screenshot).'
+    rationale: 'Report Schema / config: "eleven verbs, seven asked of the instance (`screenshot` the seventh)", "over MCP a shot is two content blocks … a refused shot stays one text block, `isError` true", "The `tool_call` span unchanged"; Coverage: "`tool_call` `tool=screenshot`✓"; Outcome (obs): "`tool_call` `tool=screenshot` parenting it".'
+    basis: 'tests/blitz-tests/tests/stand_mcp_tools.rs:610-683'
+    dependent-of: D-obs-instrumentation
+  - detector: D-obs-instrumentation
+    severity: warning
+    section: '§6. Log Coverage → Logged events (current truth) → escher-driver (the `command` closed-span line)'
+    change: 'The command-span line bullet reads "the verb table''s eleven words, ten until 2026-10-12-headless-screenshot and nine until 2026-10-12-self-description (seven instance-level; …), nine cause names, three busy-class words, bools and counts"; a shot''s line is `span="command" verb="screenshot"` (with `cause` when refused) and holds no image byte, size or dimension — measured: 0 occurrences of the first 64 base64 characters of a shot in the `escher-session` host''s and the `mcp` role''s stderr at `trace`, under both builds (`host_log`, `mcp_log`).'
+    sidecar: 'obs-plan §6 command line — eleven verb words (seven instance-level), nine cause names; a shot''s line holds no image byte, 0 at `trace` on host and `mcp` role, both builds (2026-10-12-headless-screenshot).'
+    rationale: 'Report Schema / config: eleven verbs, seven instance, causes nine, "a shot records `verb` (and `cause` when refused), never the image, its size or its dimensions"; Coverage: "logs carry no image byte — 0 occurrences of the first 64 base64 characters in the host''s and the `mcp` role''s stderr at `trace`, both builds✓"; Outcome (obs): "one `command` line per shot … 0 ids, names, sentinels and image bytes on stderr at `trace`, both builds — MET".'
+    basis: 'examples/seven_guis/tests/host_log.rs:158-171; examples/seven_guis/tests/mcp_log.rs:144-157'
+    dependent-of: D-obs-instrumentation
+  - detector: D-obs-instrumentation
+    severity: warning
+    section: '§6. Log Coverage → Logged events (current truth) → escher-driver (the `tool_call` closed-span line)'
+    change: 'The `tool_call` line bullet reads `tool` as the table''s word, one of its ELEVEN, `screenshot` among them since 2026-10-12-headless-screenshot and `help` since 2026-10-12-self-description.'
+    sidecar: 'obs-plan §6 tool_call line — `tool` one of eleven words, `screenshot` among them (2026-10-12-headless-screenshot).'
+    rationale: 'Report Schema / config: "The verb table: eleven verbs … `help` last"; "The `tool_call` span unchanged"; Coverage: "`tool_call` `tool=screenshot`✓".'
+    dependent-of: D-obs-instrumentation
+  - detector: D-obs-instrumentation
+    severity: warning
+    section: '§3. Observability Harness Contract → Logging stack (subscriber installation) (the headless stand bullet)'
+    change: 'Where the bullet names `Session::run` "with the refusal detection it runs in front of `click` and `type` and its sixth verb `scroll`", it reads "its sixth verb `scroll` and, since 2026-10-12-headless-screenshot, its seventh, `screenshot`".'
+    sidecar: 'obs-plan §3 Logging stack — `Session::run` gains its seventh verb, `screenshot` (2026-10-12-headless-screenshot).'
+    rationale: 'Report Schema / config: "eleven verbs, seven asked of the instance (`screenshot` the seventh)"; Symbols: `VERBS` gains `SCREENSHOT`, `Level::Instance`, after `scroll`.'
+    basis: 'packages/escher-driver/src/schema.rs:415-448'
+    dependent-of: D-obs-instrumentation
+  - detector: D-obs-instrumentation
+    severity: warning
+    section: '§8. PII Scrubbing & Compliance → Values logged as-is (current truth)'
+    change: 'In the bullet at obs-plan.md:296, the sentence "`stand_act_spans`''s re-run child drives the six instance-level verbs" is kept as the 2026-10-07-driver-command-spans reading it is ("drove the six instance-level verbs of that day"), with the verb table now holding seven and `stand_act_spans` since 2026-10-12-headless-screenshot also checking a refused shot''s `fonts-unavailable` cause on the span; and the bullet gains: a shot''s image is screen content that leaves only in its answer — 0 occurrences of the first 64 base64 characters of a shot in the `escher-session` host''s and the `mcp` role''s stderr at `trace`, under both builds (`host_log`, `mcp_log`).'
+    sidecar: 'obs-plan §8 Values logged as-is — the six-verb reading dated, seven instance verbs now; a shot''s image bytes 0 on host and `mcp` role stderr at `trace`, both builds (2026-10-12-headless-screenshot).'
+    rationale: 'Report Counts: `inst6` obs-plan.md:296 changed; Coverage: `fonts-unavailable` tests include `stand_act_spans`, and "logs carry no image byte — 0 occurrences of the first 64 base64 characters in the host''s and the `mcp` role''s stderr at `trace`, both builds✓"; Symbols: `stand_act_spans::acting` gained the `Shot` arm.'
+    basis: 'tests/blitz-tests/tests/stand_act_spans.rs:617-635; examples/seven_guis/tests/host_log.rs:234-237; examples/seven_guis/tests/mcp_log.rs:254-257'
+    dependent-of: D-obs-instrumentation
+  - detector: D-obs-stack
+    severity: warning
+    section: '§3. Observability Harness Contract → Logging stack (subscriber installation) (the headless stand bullet)'
+    change: 'The no-subscriber census gains this chunk''s files: the driver''s private module `image` (fourteen modules) installs no subscriber, reads no env var and prints nothing; `Outcome::Shot { width, height, png }` is written by `to_json` as a command''s answer and, over MCP, as an `image` block then the line without `png` (`ToolResult::shot`), never logged or fielded; `Harness::screenshot` / `screenshot_rect` print, panic and log nothing, beside the settle loop; the driver-action checks `stand_act_*` read thirteen (+ `stand_act_screenshot`) and the shared module `session_common` twenty readers (+ `stand_act_screenshot`, `stand_screenshot_repeat`), neither installing a subscriber; `stand_screenshot_repeat` re-runs its test binary on a child that prints its shots to stdout, read by the parent into its assertions only — a second such exception beside `stand_id_persistence`''s re-executed child; and the engine check `password_painted_masked` installs no subscriber.'
+    sidecar: 'obs-plan §3 Logging stack — census gains `image`, the harness screenshot, `stand_act_screenshot`, `stand_screenshot_repeat` (its stdout child), `password_painted_masked`; `session_common` readers 18 → 20; `Outcome::Shot` written by `to_json` and the MCP image block only (2026-10-12-headless-screenshot).'
+    rationale: 'Report Crates / modules: escher-driver gains the private module `image` (fourteen modules), the harness `screenshot`; Harness / gate surface: "No path prints, panics or logs"; Schema / config: the shot''s line and the MCP image then text block; Counts: `session_common` readers 18 → 20 (+ `stand_act_screenshot`, `stand_screenshot_repeat`); Files: three new test files; Expected amendments: "obs-plan … §3 (the no-subscriber census gains the new check files)".'
+    basis: 'tests/blitz-tests/tests/session_common/mod.rs:104-129; tests/blitz-tests/tests/stand_screenshot_repeat.rs:74-97; tests/blitz-tests/tests/stand_screenshot_repeat.rs:138-145; packages/escher-driver/src/json.rs:250-254'
+note: 'D-obs-pii holds — the shot adds no log field and the measured stderr holds 0 image bytes; no proposal. The report''s `causes8` hit at obs-plan.md:296 is a false positive of `\ball eight\b` ("all eight runs", the by-level readings) — no change there. The bootstrap-phases key file is untouched by this chunk.'

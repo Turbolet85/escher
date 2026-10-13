@@ -1,0 +1,17 @@
+proposals:
+  - detector: D-layout-surface
+    severity: warning
+    section: "Surface: cli → Primary screens (the `escher-session` entry)"
+    change: "The command line's verb set reads eleven verbs of the driver's verb table, in three levels — the SEVEN asked of the held instance, `screenshot` the seventh after `scroll` (since 2026-10-12-headless-screenshot), taking one optional `--id` (the screen whole without it, the element the id names with it, cropped to the part of its bounds that can be seen) and answering one uncoloured line `{\"width\":…,\"height\":…,\"png\":\"<base64>\"}` on stdout, exit 0 — then `start`, `status`, `stop` and `help`; the usage line built from the table names `screenshot` among the instance verbs; an app with no font it can paint text with is refused `fonts-unavailable` (exit 1), an element shot that crops to no pixel `off-screen`."
+    sidecar: "layout-templates §Surface: cli → Primary screens: `escher-session` verbs ten → eleven, instance verbs six → seven — `screenshot` (optional `--id`, answer line width · height · png), its `fonts-unavailable` refusal (2026-10-12-headless-screenshot)."
+    rationale: "The report adds a region to the existing CLI surface — the `screenshot` verb and its answer line — that the `escher-session` entry does not describe: Schema / config states eleven verbs, seven asked of the instance with `screenshot` the seventh, its optional `id` and its `width` · `height` · `png` fields, the shot's written line and the new cause `fonts-unavailable`; Deviations states an element shot cropping to no pixel is refused `off-screen`; Expected amendments name this section (`screenshot` in the usage line, eleven tools) with sites `verbs10` layout-templates.md:74 ×2 and `inst6` :74."
+    basis: "escher-0.1.0/chunks/2026-10-12-headless-screenshot/report.md:52-58; packages/escher-driver/src/schema.rs:415-448; layout-templates.md:74"
+  - detector: D-layout-surface
+    severity: warning
+    section: "Surface: cli → Primary screens (the `escher-session` entry, its `mcp` role)"
+    change: "The `mcp` role lists the ELEVEN verbs of the verb table as its tools in order, `help` last, and answers a `screenshot` tool call with two content blocks — an `image` block (`data` the base64 PNG, `mimeType` `image/png`) then a `text` block (the answer line without `png`), `isError` false — a refused shot staying one text block with `isError` true; a result holding an image is bounded by its whole written form at 1,048,576 bytes, a text-only result by its text as before."
+    sidecar: "layout-templates §Surface: cli → Primary screens: the `mcp` role's tool listing ten → eleven; a `screenshot` result is an image block then a text block (2026-10-12-headless-screenshot)."
+    rationale: "The same entry restates the retired verb count for the MCP role (`lists the ten verbs of the verb table as its tools`); the report's Schema / config states the shot's MCP form (image block then text block, a refusal one text block) and the bound on an image result by its whole written form, and Expected amendments count `verbs10` twice at layout-templates.md:74."
+    basis: "escher-0.1.0/chunks/2026-10-12-headless-screenshot/report.md:58-62; layout-templates.md:74"
+    dependent-of: D-layout-surface
+note: "No new screen region on desktop-native: the password mask (every document's password input paints bullets) and `Harness::screenshot` change paint, not layout, and the stand markup is untouched — left to arch/a11y/design; both proposals edit the one line layout-templates.md:74."

@@ -1,0 +1,13 @@
+
+## 2026-10-12-headless-screenshot — the harness's screenshot, the password mask, the image in band, `png`
+**Section:** §Standard Contracts → Test harness · Document core (blitz-dom) · Paint and shell · §Established Decisions → [Renderer backends] · [Painting] · [Driver session] · §Occupied Resources → Network ports and listeners · Names
+**Change:**
+- Test harness: exports gain `PixelRect`, `Raster`, `ScreenshotError::{FontsUnavailable, EmptyRect}`; `Harness::screenshot` / `screenshot_rect` resolve at the harness's own time (no tick, no pump), paint the viewport at its scale and device size into `VelloCpuImageRenderer` and composite over opaque white (each channel + (255 − alpha)); a rect is clipped, an empty one `EmptyRect`; `can_paint_text` false is `FontsUnavailable` with nothing painted; no print, panic or log; three more dependencies — `blitz-paint` (default features off), `anyrender`, `anyrender_vello_cpu` (no `multithreading`).
+- Document core: `BaseDocument` gains two public read-only methods, `can_paint_text` (a `sans-serif` family resolves) and `layout_as_text_input` (a text laid out as a text input lays out, one line; its one caller the mask).
+- Paint and shell: a password `input` paints its value as bullets in every document and renderer through blitz-paint, windowed included; equal-length values paint identical frames; the caret at its bullet in the input's caret colour; the field scrolls on the bullets. A click inside a filled field still places the caret by the real glyph widths — not measured, owned by a CARRY on "Stand requirement sweep".
+- [Renderer backends]: the harness composites white after paint where the example fills before it (no `kurbo` / `peniko` among its dependencies).
+- [Painting]: the mask is a direct engine change for every document; before it the engine painted a password's characters, confirmed on a frame; merge surface `render.rs` and `document.rs`.
+- [Driver session]: was four dependencies; now five, `png` (no package entered `Cargo.lock`). A shot's pixels cross in band — base64 in the socket's and stdout's answer line, an MCP `image` block — the bounds unchanged (largest whole-screen answer 22,404 bytes, 2.1 %).
+- Network ports and listeners: both carriers take a shot out; still one listener, no port. Names: escher-driver depends on `png`.
+**Why:** the image in band is the founder's fork 1 and the engine mask his fork 2, each ratified by his own word (2026-10-12, by question dialog in the overseer session, relayed verbatim by the overseer; the card confirmed the same way, 2026-10-13); the caret's owner is this wrap's route placement.
+**Ref:** .andromeda/runs/2026-10-12T20-34-17-wrap/

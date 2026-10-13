@@ -1,0 +1,231 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-13T06:31:29Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-12-headless-screenshot",
+"--run-dir",
+".andromeda/runs/2026-10-12T20-34-17-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-12-headless-screenshot: 2 · to flip 2 · already verified 0 · below 0",
+"flipped v010-07 → verified — With no display present, the driver returns an image of the whole stand screen a… (1193 chars)",
+"flipped v010-08 → verified — Two screenshots of the same stand state taken in separate runs on the same host … (839 chars)",
+"dry-run: nothing written",
+"version: verified 16/17"
+],
+"stderr": null,
+"wrote": [],
+"before": [
+{
+"id": "v010-07",
+"chunk": "2026-10-12-headless-screenshot",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_act_screenshot.rs::the_whole_screen_is_a_png_of_the_harness_raster_and_text_paints · tests… (540 chars)",
+"acceptance": "With no display present, the driver returns an image of the whole stand screen and an image cropped to one element addre… (1193 chars)",
+"notes_chars": 0
+},
+{
+"id": "v010-08",
+"chunk": "2026-10-12-headless-screenshot",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_screenshot_repeat.rs::a_shot_of_one_state_is_the_same_in_two_runs_and_in_this_one",
+"acceptance": "Two screenshots of the same stand state taken in separate runs on the same host are pixel-identical. Concretely: `tests/… (839 chars)",
+"notes_chars": 0
+}
+],
+"after": [
+{
+"id": "v010-07",
+"chunk": "2026-10-12-headless-screenshot",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_act_screenshot.rs::the_whole_screen_is_a_png_of_the_harness_raster_and_text_paints · tests… (540 chars)",
+"acceptance": "With no display present, the driver returns an image of the whole stand screen and an image cropped to one element addre… (1193 chars)",
+"notes_chars": 0
+},
+{
+"id": "v010-08",
+"chunk": "2026-10-12-headless-screenshot",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_screenshot_repeat.rs::a_shot_of_one_state_is_the_same_in_two_runs_and_in_this_one",
+"acceptance": "Two screenshots of the same stand state taken in separate runs on the same host are pixel-identical. Concretely: `tests/… (839 chars)",
+"notes_chars": 0
+}
+]
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-13T06:31:33Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-12-headless-screenshot",
+"--run-dir",
+".andromeda/runs/2026-10-12T20-34-17-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-12-headless-screenshot: 2 · to flip 2 · already verified 0 · below 0",
+"flipped v010-07 → verified — With no display present, the driver returns an image of the whole stand screen a… (1193 chars)",
+"flipped v010-08 → verified — Two screenshots of the same stand state taken in separate runs on the same host … (839 chars)",
+"wrote escher-0.1.0/verification-matrix.json · 2 entries changed",
+"version: verified 16/17"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": [
+{
+"id": "v010-07",
+"chunk": "2026-10-12-headless-screenshot",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_act_screenshot.rs::the_whole_screen_is_a_png_of_the_harness_raster_and_text_paints · tests… (540 chars)",
+"acceptance": "With no display present, the driver returns an image of the whole stand screen and an image cropped to one element addre… (1193 chars)",
+"notes_chars": 0
+},
+{
+"id": "v010-08",
+"chunk": "2026-10-12-headless-screenshot",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_screenshot_repeat.rs::a_shot_of_one_state_is_the_same_in_two_runs_and_in_this_one",
+"acceptance": "Two screenshots of the same stand state taken in separate runs on the same host are pixel-identical. Concretely: `tests/… (839 chars)",
+"notes_chars": 0
+}
+],
+"after": [
+{
+"id": "v010-07",
+"chunk": "2026-10-12-headless-screenshot",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_act_screenshot.rs::the_whole_screen_is_a_png_of_the_harness_raster_and_text_paints · tests… (540 chars)",
+"acceptance": "With no display present, the driver returns an image of the whole stand screen and an image cropped to one element addre… (1193 chars)",
+"notes_chars": 0
+},
+{
+"id": "v010-08",
+"chunk": "2026-10-12-headless-screenshot",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_screenshot_repeat.rs::a_shot_of_one_state_is_the_same_in_two_runs_and_in_this_one",
+"acceptance": "Two screenshots of the same stand state taken in separate runs on the same host are pixel-identical. Concretely: `tests/… (839 chars)",
+"notes_chars": 0
+}
+]
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-13T06:31:33Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-13",
+"--text-file",
+".andromeda/runs/2026-10-12T20-34-17-wrap/note-v010-13.md",
+"--run-dir",
+".andromeda/runs/2026-10-12T20-34-17-wrap",
+"--marker",
+"2026-10-12-headless-screenshot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v010-13: +1248 chars (total 2386) · status verified · ref/acceptance untouched",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-13",
+"chunk": "2026-10-10-mcp-surface",
+"status": "verified",
+"method": "dynamic-external",
+"ref": "tests/blitz-tests/tests/stand_mcp_tools.rs::a_scripted_mcp_session_completes_the_counter_flow_and_parents_each_command ·… (427 chars)",
+"acceptance": "`tools/list` of `escher-session mcp` offers exactly the nine verbs of `escher_driver::VERBS` — every command the command… (885 chars)",
+"notes_chars": 1136
+},
+"after": {
+"id": "v010-13",
+"chunk": "2026-10-10-mcp-surface",
+"status": "verified",
+"method": "dynamic-external",
+"ref": "tests/blitz-tests/tests/stand_mcp_tools.rs::a_scripted_mcp_session_completes_the_counter_flow_and_parents_each_command ·… (427 chars)",
+"acceptance": "`tools/list` of `escher-session mcp` offers exactly the nine verbs of `escher_driver::VERBS` — every command the command… (885 chars)",
+"notes_chars": 2386
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-13T06:31:33Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-14",
+"--text-file",
+".andromeda/runs/2026-10-12T20-34-17-wrap/note-v010-14.md",
+"--run-dir",
+".andromeda/runs/2026-10-12T20-34-17-wrap",
+"--marker",
+"2026-10-12-headless-screenshot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v010-14: +1252 chars (total 2308) · status verified · ref/acceptance untouched",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-14",
+"chunk": "2026-10-12-self-description",
+"status": "verified",
+"method": "integration",
+"ref": "examples/seven_guis/tests/cli_commands.rs::help_answers_the_tools_description_and_reaches_no_session · examples/seven_gu… (682 chars)",
+"acceptance": "The tool itself serves its verb list, help and schemas on both surfaces from one verb set, and every refusal cause the s… (1307 chars)",
+"notes_chars": 1054
+},
+"after": {
+"id": "v010-14",
+"chunk": "2026-10-12-self-description",
+"status": "verified",
+"method": "integration",
+"ref": "examples/seven_guis/tests/cli_commands.rs::help_answers_the_tools_description_and_reaches_no_session · examples/seven_gu… (682 chars)",
+"acceptance": "The tool itself serves its verb list, help and schemas on both surfaces from one verb set, and every refusal cause the s… (1307 chars)",
+"notes_chars": 2308
+}
+}
+]

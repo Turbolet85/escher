@@ -61,6 +61,10 @@ becomes a new rule here. Format owned by /andromeda-wrap-session (`references/am
   verdict: escalate
   note: a facet of the Boundary widening rule above — a widening that arrives by an upstream merge is recorded PROVISIONAL for the founder like any other: the founder's own word decides it also when the change is upstream's. The record states what widened, whether a test of ours or of the merged delta covers it, and whether escher routes agent- or user-supplied input through the path today; the mark is discharged by the Provisional discharge rule. Appended on the founder's word (word: "Добавить" — the founder, 2026-10-10, given by question dialog in the overseer session and relayed by the overseer); proposed at the 2026-10-10-upstream-sync-agent-surfaces wrap from the operator's note at its escalation, and appended by the 2026-10-10-driver-cli wrap on the operator's resume line.
 
+- pattern: An engine behaviour change for every document — a chunk changes what the inherited engine does for every document, not only escher's — on the founder's own word at that chunk's P4 fork (given by him or relayed verbatim), and the proposal records it.
+  verdict: routine
+  note: the founder's answer to the fork is the ratification, recorded 'ratified by the founder ({date})' with his word, its merge surface owned by a CARRY on the upstream-sync entry. A delegate's answer or a relay not verbatim is PROVISIONAL (Provisional discharge rule); a change with no fork answer, or one that widens what crosses a boundary, escalates. Appended at the 2026-10-12-headless-screenshot wrap (fork 2, «Движок маскирует»).
+
 _(more grow from escalations + resolved cases — the first five above were harvested from live projects that
 derived them separately, the sixth is the never-routine class; anything genuinely project-specific still starts
 here empty.)_

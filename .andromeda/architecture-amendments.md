@@ -583,3 +583,40 @@ One entry per amendment to `architecture.md` (sidecar-contract.md §Entry form).
 **Why:** a boundary widening ratified by the founder (2026-10-12, «Внутри, с правилом» and «help — десятый глагол», by question dialog in the overseer session, relayed verbatim by the overseer; his confirm of the wrap's answer card, «Подтвердить всё», the same channel) — recorded ratified, no PROVISIONAL mark. The playbook gained the rule his answer set. The readers' count was disproved by measurement (18 files declare the module).
 **Kept:** `stand_diff` is not named in the blitz-tests row, which never listed it; the diff contract cites it.
 **Ref:** .andromeda/runs/2026-10-12T08-55-10-wrap/
+
+## 2026-10-12-headless-screenshot — the `screenshot` verb, `fonts-unavailable`, `Outcome::Shot` and the MCP image block
+**Section:** §Standard Contracts → Driver session (escher-driver) · CLIs
+**Change:**
+- Was ten verbs, six asked of the instance; now eleven, seven: `screenshot` after `scroll` — one optional `id` (`ArgKind::Id`), result `width` · `height` (counts) and `png` (`FieldKind::Png`, base64 text), all always present; its help states two limits (an element shot is cropped to what can be seen; a thumb painted within 0.7 s of a scroll fades by wall time where overlay scrollbars are painted). `FieldKind` nine → ten. `Command` gains `Screenshot { id: Option<String> }`; `describe()` counts 11 verbs and 9 causes.
+- Was `Cause` closed at eight, the executor returning six; now nine, seven: `fonts-unavailable` last, from `screenshot` alone, checked before anything is painted.
+- `Outcome` gains `Shot { width, height, png: Vec<u8> }`. `screenshot` dispatches nothing and is no step; given an `id` it resolves it as `click` does, crops the frame to the element's visible part rounded outward (private `crop`), a crop of no pixel refused `off-screen`; a font context with no `sans-serif` family (`can_paint_text` false) is refused `fonts-unavailable`; the frame is the harness's, written as a PNG by the private `image::png`; a shot changes nothing. On the stand a whole shot is an 800 × 600 PNG equal to the harness's raster.
+- Written forms gain the shot's line `{"width","height","png"}`, its base64 hand-written (`image::base64`, padded) — no base64 crate. Was every MCP result one text block bounded by its text; now an accepted `screenshot` is an `image` block then a text block (the line without `png`), a refused one one text block, and a result holding an image is bounded by its whole written form (`ToolResult::bounded`). `tools/list` eleven.
+- The `command` span keeps its eight fields: a shot records `verb` (and `cause`), never the image, its size or dimensions; `tool_call.tool` reads `screenshot`.
+- CLIs: `escher-session screenshot [--id]`.
+**Why:** the chunk built the headless screenshot; the image in band is the founder's fork 1, ratified by his own word (2026-10-12, by question dialog in the overseer session, relayed verbatim by the overseer; the wrap's answer card confirmed the same way, 2026-10-13).
+**Ref:** .andromeda/runs/2026-10-12T20-34-17-wrap/
+
+## 2026-10-12-headless-screenshot — the harness's screenshot, the password mask, the image in band, `png`
+**Section:** §Standard Contracts → Test harness · Document core (blitz-dom) · Paint and shell · §Established Decisions → [Renderer backends] · [Painting] · [Driver session] · §Occupied Resources → Network ports and listeners · Names
+**Change:**
+- Test harness: exports gain `PixelRect`, `Raster`, `ScreenshotError::{FontsUnavailable, EmptyRect}`; `Harness::screenshot` / `screenshot_rect` resolve at the harness's own time (no tick, no pump), paint the viewport at its scale and device size into `VelloCpuImageRenderer` and composite over opaque white (each channel + (255 − alpha)); a rect is clipped, an empty one `EmptyRect`; `can_paint_text` false is `FontsUnavailable` with nothing painted; no print, panic or log; three more dependencies — `blitz-paint` (default features off), `anyrender`, `anyrender_vello_cpu` (no `multithreading`).
+- Document core: `BaseDocument` gains two public read-only methods, `can_paint_text` (a `sans-serif` family resolves) and `layout_as_text_input` (a text laid out as a text input lays out, one line; its one caller the mask).
+- Paint and shell: a password `input` paints its value as bullets in every document and renderer through blitz-paint, windowed included; equal-length values paint identical frames; the caret at its bullet in the input's caret colour; the field scrolls on the bullets. A click inside a filled field still places the caret by the real glyph widths — not measured, owned by a CARRY on "Stand requirement sweep".
+- [Renderer backends]: the harness composites white after paint where the example fills before it (no `kurbo` / `peniko` among its dependencies).
+- [Painting]: the mask is a direct engine change for every document; before it the engine painted a password's characters, confirmed on a frame; merge surface `render.rs` and `document.rs`.
+- [Driver session]: was four dependencies; now five, `png` (no package entered `Cargo.lock`). A shot's pixels cross in band — base64 in the socket's and stdout's answer line, an MCP `image` block — the bounds unchanged (largest whole-screen answer 22,404 bytes, 2.1 %).
+- Network ports and listeners: both carriers take a shot out; still one listener, no port. Names: escher-driver depends on `png`.
+**Why:** the image in band is the founder's fork 1 and the engine mask his fork 2, each ratified by his own word (2026-10-12, by question dialog in the overseer session, relayed verbatim by the overseer; the card confirmed the same way, 2026-10-13); the caret's owner is this wrap's route placement.
+**Ref:** .andromeda/runs/2026-10-12T20-34-17-wrap/
+
+## 2026-10-12-headless-screenshot — the scopes, the tests and the stack: `image`, three test targets, `png`
+**Section:** §Existing Scopes → escher-driver · blitz-test-harness · blitz-tests · §Conventions → Tests · §Occupied Resources → Process-wide state and threads · §Stack and Technologies → Testing · Media
+**Change:**
+- escher-driver: was thirteen private modules, now fourteen — `image` (the PNG encoder and the hand-written padded base64); execute holds `Outcome::Shot` and the crop, json the shot's line, mcp the image block; was four dependencies, now `png` the fifth.
+- blitz-test-harness: gains the private module `screenshot`, its three types re-exported.
+- blitz-tests: a thirteenth driver-action file, `stand_act_screenshot`; `stand_screenshot_repeat` (one state's shot byte-identical in two child runs and the parent, 12 shots); the engine check `password_painted_masked`. Was `session_common` read by eighteen; now twenty (+ `stand_act_screenshot`, `stand_screenshot_repeat`), holding the two `screenshot` builders and the `shot` reader.
+- Conventions → Tests: was the twelve `stand_act_*` and `stand_mcp_tools`; now the thirteen and `stand_screenshot_repeat` too.
+- Process-wide state: was four blitz-tests binaries re-executing their test binary; now five — `stand_screenshot_repeat` runs it twice, each child printing its shots for the parent's assertions only.
+- Testing: blitz-tests' dev-dependencies gain `png`. Media: `png` (0.18.1) also taken by escher-driver and blitz-tests, no package entering `Cargo.lock`; no `base64` crate.
+**Why:** the chunk's code: one more private module, one harness module, three new test targets and a dependency already in the graph.
+**Ref:** .andromeda/runs/2026-10-12T20-34-17-wrap/

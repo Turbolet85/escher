@@ -465,3 +465,25 @@ One entry per amendment to `test-plan.md` (sidecar-contract.md §Entry form). Ap
 **Why:** the chunk's new paths carry unit and integration checks at the tiers §2 requires; the readers' count was disproved by measurement, and the target count was re-measured because it was stale.
 **Kept:** the live trial's reading (asked `2025-11-25`, answered `2025-06-18`) stands as that trial measured it.
 **Ref:** .andromeda/runs/2026-10-12T08-55-10-wrap/
+
+## 2026-10-12-headless-screenshot — the counts moved and the new checks of the screenshot and the mask
+**Section:** §1 Test Scope Summary (apps · blitz-dom · blitz-dom covered behaviours · blitz-paint · blitz-test-harness · escher-driver · tests/blitz-tests) · §2 Harness-driven tests · Pixel tests · Font-dependent tests · Directory pattern · §4 What unit tests cover (blitz-test-harness · escher-driver) · §9 Engine features by runner · Local baseline
+**Change:**
+- §1: escher-driver was 66 unit tests in twelve files, now 72 in thirteen (image.rs 5, mcp.rs 10 → 11); refusal.rs's causes nine, schema.rs's verbs eleven (seven instance-level), the listing eleven; the thirteen `stand_act_*` files. blitz-dom 32 → 34 (`font_reading_tests`; `layout_as_text_input` read only through the mask's frames). blitz-paint: the mask has no unit test, read by `password_painted_masked` and `stand_act_screenshot`; the click-placed caret is read by no check. blitz-test-harness 11 → 17 (screenshot.rs 6). seven_guis: `cli_commands` 10 → 11, `mcp_server` 4 → 5; `host_log` / `mcp_log` read 0 image bytes. blitz-tests: `stand_act_screenshot` 6, `stand_screenshot_repeat` 1 (+1 child), `password_painted_masked` 4; `stand_mcp_tools` 4 → 5 (eight causes served, a shot parenting its `command`); `stand_act_spans` also reads `fonts-unavailable`.
+- §2: the harness paints with no display; frames compared whole (PNG equal to the raster, byte-identical across processes, both builds); a no-font shot refused, never skipped. Directory pattern: was 110 / 109 targets, now 113 / 112; `session_common` readers 18 → 20; `mod common;` readers 17, unchanged.
+- §4: screenshot.rs's six tests; schema.rs eleven verbs and ten field kinds, refusal.rs nine causes, image.rs, mcp.rs's image bound and shot form; `cli_commands` 11; three mutation controls.
+- §9: was 171 lines / 821 · 0 · 11; now 174 / 849 · 0 · 12. The harness takes blitz-paint without default features; shots equal under both builds; the 0.7 s fade limit owned by a CARRY on "Stand requirement sweep".
+**Why:** the chunk's tests as its report counts them; the per-file splits sum to its stated totals.
+**Ref:** .andromeda/runs/2026-10-12T20-34-17-wrap/
+
+## 2026-10-12-headless-screenshot — the harness and session contracts gain the shot; §3 → session-lifecycle
+**Section:** §3 Harness Core · Crate-local test helpers (stand checks · session checks) · Stand log format · Agent-run contract → Proof · §3 → Session lifecycle (session-start · session-wire · session-binary · session-proof) · §5 Session ↔ held instance · Session host ↔ what it writes · §6 Command line · MCP
+**Change:**
+- Harness Core: `screenshot` / `screenshot_rect`, `PixelRect`, `Raster`, `ScreenshotError::{FontsUnavailable, EmptyRect}` — at the harness's own time, `VelloCpuImageRenderer`, white composite, clip and `EmptyRect`, no font refused with nothing painted, no print, panic or log.
+- Helpers: six of the thirteen driver-action checks read `mod common;` (17 readers); `session_common` gains `screenshot()`, `screenshot_of(id)` and `shot(session, call)`, `act` reading `None` for a shot; was 18 readers, now 20.
+- Stand log format: `screenshot` joins `command.verb` and `tool_call.tool`, no field added; a shot's line holds no image byte (0 at `trace`, host and `mcp` role, both builds) — in step with obs-plan §4.
+- Proof: `run stand` was 131 / 0 / 6 over 34 files; now 139 / 0 / 7 over 36.
+- session-start: `run` takes `screenshot` and returns `Outcome::Shot { width, height, png }` — no diff, nothing changed; id refused as `click`'s, a crop of no pixel `off-screen`, no font `fonts-unavailable`. session-wire: a shot's PNG crosses in band as padded base64 in its answer line, the bound unchanged. session-binary: was ten verbs, six instance-level; now eleven, seven. session-proof: `cli_commands` 11, `mcp_server` 5, `stand_mcp_tools` 5, `stand_screenshot_repeat` 1, thirteen driver-action files 46, the crate 72; CI 38297557417.
+- §5: a shot through `Session::run` changes nothing; nine causes; `host_log` / `mcp_log` read no image byte. §6: `cli_commands` 11 (seven instance verbs, the shot's `png` equal in process); `mcp_server` 5 (eleven tools, image then text), `stand_mcp_tools` 5.
+**Why:** the in-band image on the wire is the founder's fork 1, ratified by his own word (2026-10-12, by question dialog in the overseer session, relayed verbatim by the overseer; the wrap's answer card confirmed the same way, 2026-10-13); the rest is the chunk's counted tests.
+**Ref:** .andromeda/runs/2026-10-12T20-34-17-wrap/

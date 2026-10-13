@@ -8,6 +8,20 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-13 — `gate.py run … --operator {n} --dry-run` writes the run dir's gate trail
+A dry run of an operator entry is not read-only: it appends to the run dir's `gate-{marker}.json` trail. Once that trail is tracked (after the operator pass's pre-CI commit), a dry run fired before the push entry dirties the tree, and the push entry's own `git diff --quiet` guard then fails. Set the trail aside before the dry run and restore it before the push entry runs, or skip the dry run once the trail is tracked (as measured at escher-0.1.0/chunks/2026-10-12-headless-screenshot/evidence/operator-pass.md, entry 20).
+
+Where it applies: an operator pass whose plan carries a push entry guarded by `git diff --quiet`.
+
+---
+
+## 2026-10-13 — The token `screenshot` in the masters mostly names something other than the driver's verb
+Before 2026-10-12-headless-screenshot the masters held `screenshot` 32 times, 31 of them the upstream `examples/screenshot.rs` example, the browser's `capture` (`blitz-screenshot-<unix-secs>`) or the `screenshot` Cargo feature. A grep or sweep pattern for the verb reads all of them as the verb. Key a pattern on the verb's own context (`` `screenshot` `` beside `verb`, `--id`, `Outcome::Shot`, `fonts-unavailable`) and disposition every row that names the example, the capture or the feature as a true claim sharing the token (as measured at escher-0.1.0/chunks/2026-10-12-headless-screenshot/report.md, Counts).
+
+Where it applies: a site sweep or a cascade sweep for the `screenshot` verb, its counts or its result fields.
+
+---
+
 ## 2026-10-12 — `cascade.py sweep --pattern` takes its ids after one flag
 `--pattern` is a list option: `--pattern A B C` runs the three named patterns, while `--pattern A --pattern B --pattern C` keeps only the last one given and silently runs one. A re-fire that should run only the patterns whose control never fired therefore names them all after a single `--pattern`. Read the count line of each pattern the listing prints before trusting a re-fire: the number of patterns run is in its `total (N patterns)` line.
 

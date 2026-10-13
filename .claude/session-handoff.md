@@ -1,42 +1,48 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-12T09:41:25Z
+**Last Updated:** 2026-10-13T06:26:03Z
 **Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-12-self-description — the driver describes itself: `help` and the self-description from the one schema, on the command line and over MCP
+**Last Commit:** 2026-10-12-headless-screenshot — the headless screenshot: the screen or one element as a PNG with no display, in band on every surface; a password painted masked in every document
 
 ## Position
-- Done: 2026-10-12-self-description — `help`, the tenth verb, with `describe()`, the session errors' remedies, `differs` and MCP `2025-11-25` (v010-14 verified by this wrap's P7). CI on the pre-CI commit `22fc4553` was green (CI#38225228282, 16/16). The wrap commit's own run is not read here.
-- Next: /andromeda-phase on "Headless screenshot" (working-route.md:83), the last markerless entry of Epoch 5 — its wrap closes the epoch.
+- Done: 2026-10-12-headless-screenshot — `screenshot`, the seventh instance verb (eleven verbs), `fonts-unavailable` (nine causes), `Harness::screenshot` / `screenshot_rect`, the MCP image block, and the engine's password mask (v010-07, v010-08 verified by this wrap's P7). CI on the pre-CI commit `5173f7e1` was green (CI#38297557417, 16/16). The wrap commit's own run is not read here. Epoch 5 — Agent surfaces is complete.
+- Next: /andromeda-phase on "Upstream sync ahead of polish and ship" (working-route.md:86), the first entry of Epoch 6. The epoch boundary also opens /andromeda-evolve-diagnose for Epoch 5.
 
 ## Work done
-- This was a split wrap (F252 D2, `inputs#I6`). P1 ran in the earlier window (run dir `.andromeda/runs/2026-10-12T08-55-10-wrap/`) and this window resumed at P2, with the report reused as is. The scope, inputs and new-text reads were re-fired: clean, as the report states, and unchanged.
-- Reconcile: 63 amendments over the seven masters and the session-lifecycle key file (59 detector proposals, 4 raised by main), 0 rejected, 9 sidecar entries; citations 140 re-pointed, 6 changed, 45 stretched.
-- The cascade ran in WHOLE mode (`cascade.py leaves --all`): 10 groups, 25 leaves, 130 findings — 68 applied by the tool, 61 merged or written by hand (60 conflicts, mostly `CLAUDE.md` spans shared by seven groups), 1 written without its unsourced last clause. 2 more leaf lines were written from the re-sweep.
-- One halt, at Validate, with three questions. The answer card (9 proposals, forks 1A «Внутри, с правилом» and 2A «help — десятый глагол») and the playbook rule were confirmed by the founder's own words «Подтвердить всё» and «Добавить как написано», relayed verbatim by the overseer (09:14Z). On `inputs#I4` the operator kept the `altered` verdict on record ("the one-writer contract stands"). Kept as `relay-2.md` and `answer-card.md` in the run dir; recorded ratified, no PROVISIONAL mark.
+- This was a split wrap. P1 and the fan-out ran on 2026-10-12 (run dir `.andromeda/runs/2026-10-12T20-34-17-wrap/`). The Validate halt's dialog timed out after 58 min. The founder's answers came on 2026-10-13: «Подтвердить все 16» and «Добавить правило», relayed verbatim by the overseer (`relay-1.md`, `answer-card.md`). They are recorded ratified, with no PROVISIONAL mark.
+- Reconcile: 82 amendments over the seven masters and the session-lifecycle key file (78 detector proposals, 4 raised by main), 0 rejected, 11 sidecar entries. Citations: 277 re-pointed, 5 changed, 81 stretched.
+- The leaf cascade ran in WHOLE mode on cascade.py v1.6: 11 groups, 25 leaves, 130 findings. The tool applied 126 and 4 were written by hand (unparsed: quoted labels); the re-sweep found 2 more lines. There were 0 conflicts, since CLAUDE.md now sits in one group. The v1.6 outputs are kept verbatim in the run dir (`cascade-leaves-whole.txt`, `cascade-leaves-apply-dry-run.txt`, `cascade-leaves-apply.txt`).
+- The epoch-close sidecar consolidation (P7 3b) found nothing to do: every sidecar's set was 0 and its prunable count 0. `architecture-amendments.md` is now 127,967 B, over the 120,000 B whole-read bound, so a phase history read goes through its index. It also holds 1 UNRESOLVED `Supersedes`, which was not touched.
 
 ## Drift resolved
-- The masters now state the self-description whole: ten verbs in three levels, `HELP`, `describe()`, thirteen node keys with help, `EXIT_STATUSES`, `SESSION_ERRORS` and `remedy()`, `differs` and `Reading`, four MCP revisions with `2025-11-25` as the default, tool descriptions with their result fields, and the `help` ending on both surfaces. The fixed program text riding the ratified carriers is recorded in architecture §Established Decisions and §Occupied Resources and in the security-plan rows.
-- Disproved claims fixed: `session_common` readers 17 → 18. The blitz-tests target count 108/107 → 110/109 had been stale since mcp-surface; measured at this wrap.
-- The playbook gained "The program's own fixed text inside a ratified carrier" (routine), beside the closed-field rule.
+- The masters now state the screenshot whole:
+  - eleven verbs, seven at the instance level; `FieldKind::Png`, ten kinds; nine causes;
+  - `Outcome::Shot`, the crop and `off-screen` on an empty crop;
+  - the hand-written base64 and the `image` module, fourteen modules; `png` as escher-driver's fifth dependency;
+  - the harness's three raster dependencies;
+  - the MCP image block and the image-result bound;
+  - the span and log readings: no image byte on stderr.
+- The in-band image is a boundary widening (the founder's fork 1). The password mask is an engine change for every document (fork 2), recorded in architecture §Established Decisions, the security-plan rows and a11y §6/§7.
+- The playbook gained "An engine behaviour change for every document … on the founder's own word" (routine).
 
 ## Route as it now reads
-- "Stand requirement sweep" (:96): + CARRY — the state directory's bound off Linux (90 bytes read, not measured; a check at 90/91 on the macOS leg is owed).
-- `.andromeda/residuals.md`: + the actionable-key check as a command (founder 3A) · + taking up MCP `2026-07-28` (founder 4A).
-- Every other entry is unchanged. Epoch 5 has one markerless entry left (Headless screenshot).
+- "Upstream sync ahead of polish and ship" (:86):
+  - + CARRY: the mask's merge surface, `render.rs` and `document.rs` (the P5 card, delegate the overseer).
+  - + CARRY: README.md:48 is stale ("the ten driver commands", the screenshot "still to come"), placed here on the operator's direction for the line.
+- "Stand requirement sweep" (:96):
+  - + CARRY: a shot within 0.7 s of a scroll can differ, because the overlay fade reads the wall clock (the P5 card).
+  - + CARRY: the click-placed caret in a filled password field (the delegate's direction, owner chosen at this wrap).
+- No PREREQ, no WATCH, no residual.
 
 ## Notes
-- Not measured, stated so in the masters: the macOS state-directory figure (90) · a file input typed over MCP (by construction) · `describe`'s clock (the report states none).
-- **For the operator to relay to the pipeline owner**, new at this wrap:
-  - CLAUDE.md sits in seven WHOLE-mode leaf groups, so 60 of 130 findings conflicted and were merged by hand.
-  - `cascade.py leaves --all` lists a plan group's source as the master alone; the prompts also named its key files.
-  - One comparer edited its own findings file after its Write, against the brief.
+- Not measured, stated so in the masters: the click-placed caret index · the windowed paint of the mask · the workspace build's features for the harness.
+- `inputs#I2` (the overseer's relay record) was appended to by the overseer for this wrap's answers, so a later `inputs.py verify` of this chunk reads it changed. The answers are recorded in `relay-1.md`.
+- **For the operator to relay to the pipeline owner**, both carried from P1:
+  - SKILL.md P1's site-sweep text still names the `cascade v1.4` stamp; v1.6 is deployed.
+  - A WHOLE-mode leaf finding whose replace-with quotes a «label» reads `unparsed`.
 - No gated record, no PREREQ, no WATCH. Last failed command: none.
 
 ## Deferred learnings
-- Curation wrote two Tier 3 entries (the `cascade.py sweep --pattern` flag and the bare-count sweep hazard); nothing deferred by the cap.
-- `recurrence-despite-learning: "Committed run-dir and evidence text must not spell a host temp path, even as prose"` — a phase relay carried a sibling directory's host path again, refused by hygiene at the operator pass.
-- `recurrence-despite-learning: "The rustfmt write hook … Extended 2026-10-06: an edit made through a Bash script never fires the hook"` — implement's python string replacements left two files unformatted, and the fast leg read red.
-
-## Session End Status
-Completed normally at 2026-10-12 20:43:38
+- Curation wrote two Tier 3 entries: `gate.py … --operator --dry-run` writes the gate trail, and the `screenshot` token hazard. Nothing was deferred by the cap. The prior window's conversation is gone, so its corrections were not curated.
+- `recurrence-despite-learning: "`cascade.py sweep --pattern` takes its ids after one flag"` — this chunk's P1 passed ten repeated flags and ran one pattern, the day after the entry landed.
