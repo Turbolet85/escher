@@ -1,46 +1,38 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-13T16:37:46Z
+**Last Updated:** 2026-10-13T18:31:43Z
 **Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-13-upstream-sync-polish-and-ship — the upstream sync: upstream/main 434e0661 merged, our surfaces kept, the masters at the merged truth
+**Last Commit:** 2026-10-13-stand-contrast-harness — the stand contrast harness: `Harness::text_contrast` and the 18-row stand record, the masters at the measured truth
 
 ## Position
-- Done: 2026-10-13-upstream-sync-polish-and-ship. Upstream/main `434e0661` (16 commits) is merged in `a6c24d24`. Our merge surfaces are intact, and `mutation_writer.rs` is now byte-identical to upstream's. Taffy moves to registry 0.15 and the workspace to `0.3.0-beta.3`. CI on the pre-CI commit `a6c24d24` was green (CI#38422391931, 16/16). The wrap commit's own run is read at this wrap's P7.
-- Next: /andromeda-phase on "Stand contrast harness" (working-route.md:88), the next markerless entry of Epoch 6.
+- Done: 2026-10-13-stand-contrast-harness. `Harness::text_contrast` and `contrast_ratio` / `TextContrast` landed in blitz-test-harness. `stand_contrast` records the stand's 18 control rows: pass 9 · fail 5 · exempt-inactive 3 · no-text 1. The five fails are the accent buttons, white on `#4a6cf7` at 4.39. CI on the pre-CI commit `dbc3049f` was green (CI#38440450055, 16/16). This wrap's own run is read at P7.
+- Next: /andromeda-phase on "Range input interaction" (working-route.md:90), the next markerless entry of Epoch 6.
 
 ## Work done
-- This was a split wrap. P1 and the fan-out ran first; the answer card stopped for the founder. His answers were relayed verbatim by the overseer (inputs#I5): «Подтвердить (Рекомендую)», «Подтвердить списки (Рекомендую)», «Добавить правило (Рекомендую)», «Не сейчас (Рекомендую)».
-- The overseer's directive (inputs#I4) was carried in full:
-  - two master defects fixed — `security-plan.md:101`'s bare pipe and `architecture.md:257`'s doubled word;
-  - the founder's word respelled at 29 confirmed sites, plus 4 folded at the cascade sweep under the new playbook rule A;
-  - gate entry 50 recorded as a plan defect, its `0` left as read.
-- Reconcile:
-  - 40 amendments over the seven masters and the session-lifecycle key file; 1 proposal rejected (registry over-reach, `synthetic_form_event`); 10 sidecar entries.
-  - Citations: 499 re-pointed, 20 changed, 38 stretched.
-  - Leaves: 11 groups in pass mode, 22 findings applied and 1 leaf line by hand.
+- A two-window wrap: P1 ran in its own window; this window resumed at the re-fires and ran P2–P7. No answer card was raised.
+- Reconcile: 23 amendments over six masters and one key file. 22 detector proposals; 21 applied, 1 rejected (a count the report did not carry, re-raised with a measured basis). 2 raised by main: design-system §Color Palette and the test-plan file count. 0 escalations. 6 sidecar entries.
+- Citations: 10 re-pointed · 0 changed · 4 stretched; the 10 held rows stand.
+- Leaves: 10 groups in pass mode, 24 findings — 23 applied by the tool, 1 by hand (CLAUDE.md's a11y warning).
 
 ## Drift resolved
-- [Dependency pinning]: taffy is registry 0.15, and no git dependency is left. The CLAUDE.md coupled-pins warning no longer names a taffy git rev.
-- [DOM semantics]: a removed node is dropped, its mappings cleared (#1185); the "not cleared on removal" decision is retired.
-- `DEFAULT_CSS`: it arrives through `DocumentConfig::default()` alone (#1189); `ua_stylesheets` is `Vec<UserAgentStylesheet>`.
-- The falsy clear is upstream's 28-name `is_bool_attr` (`inert` added); `BOOLEAN_ATTRIBUTES` is retired.
-- Smaller items: `UiEvent::PointerLeave`; blitz-vibey-script `publish = false`; the sync pin and the front page; the five upstream targets in the tallies and the obs census.
+- a11y-plan: §3's "contrast checks are observed absent" is retired — the harness is built and its keyed contract discharged. §6 now holds the stand's record. The NOT YET MEASURED clause is narrowed to focus-ring, target-size, typography and the unmeasured contrast cases.
+- architecture: the Test harness contract has the contrast reader and the harness's `color` dependency. Existing Scopes has six harness modules and 18 `mod common;` readers, `stand_contrast` named.
+- test-plan: harness unit tests 17 → 22; `run stand` 141 · 0 · 7 over 37 files; workspace 180 · 900 · 0 · 12; blitz-tests 119 files, 118 targets.
+- obs-plan: `stand_contrast` and the contrast reader join the silent census and the observed-absent list. obs-plan.md:70's "17 of which" → 18; the report's sweep had missed it.
+- security-plan: a reviewed Pinning bullet for `color`. design-system: the accent's measured 4.39.
 
 ## Route as it now reads
-- "Stand keyboard harness" (:92): + CARRY — a falsy Dioxus `inert` is now cleared, and no check of ours reads it.
-- "Stand requirement sweep" (:96): + CARRY — Circle Drawer's dialog attribute selector may apply for the first time (#1186). This is a hypothesis, not measured.
+- "Stand a11y assertions" (:94): + 4 CARRYs on the operator's word at the P5 review (inputs#I2): re-colour the five fails; the colour-changing states not measured; the CRUD list rows (a hypothesis: 4.39 when selected); text outside the controls.
+- Same line: the three-states CARRY's founder ratification respelled to the verbatim form naming «Ратифицировать». This is playbook rule A, read as covering a route line that copies arch-amend :534 / sp-amend :385, on the overseer's note (inputs#I3).
 - No PREREQ, no WATCH, no residual, no gated record.
 
 ## Notes
-- The playbook gained rule A, on the founder's word: a master's spelling of the founder's word follows its amendment's. Rule B was not added ("not now").
-- Five short-spelled founder words stay in architecture and three in security-plan, each listed with its reason in the run dir's `fanout-results.md`.
-- For the operator to relay to the pipeline owner: a gate entry over a `gh run view --log` capture recurred despite the 2026-10-10 Tier-3 entry. overseer1 holds it as ES43, and the `/tmp` controls path as ES44.
+- The operator corrected the founder's label mid-wrap (inputs#I4). It is «Ратифицировать», Cyrillic, as arch-amend :534 holds it. His transliteration was respelled out of `relay-3.md` and the I3 copy, so I3 reads `copy altered` by design. The addendum says so. Curation took it as a Tier-1 rule.
 - Last failed command: none.
 
 ## Deferred learnings
-- `recurrence-despite-learning: "A job log fetched with gh run view --log carries its colour codes as literal text …"`: the plan's gate entry 50 used the exact pattern that entry warns against.
-- Curation wrote T2 1 (`host-linux.md`: run pipeline tools bare or redirected, never piped) and T3 1 (a phase control's scratchpad path in the run dir). Nothing was deferred by the cap.
-
-## Session End Status
-Completed normally at 2026-10-13 19:24:53
+- `recurrence-despite-learning: "$TMPDIR is unset in the Bash tool's shell on this host"` (docs/session-learnings.md, 2026-10-07). At implement, a path printed with the literal `$TMPDIR` prefix was read through the variable.
+- `recurrence-despite-learning: "Committed run-dir and evidence text must not spell a host temp path, even as prose"` (docs/session-learnings.md, 2026-10-06). Hygiene refused the implement outcome file once.
+- `recurrence-despite-learning: host-linux.md 2026-10-13 (run pipeline tools bare or redirected, never piped)`. One `inputs.py verify` was piped into `tail` at this resume.
+- Curation wrote T1 1 (a founder's word in its own script). Nothing was deferred by the cap.

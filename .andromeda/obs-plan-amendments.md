@@ -286,3 +286,11 @@ One entry per amendment to `obs-plan.md` (sidecar-contract.md §Entry form). App
 **Why:** the merge added no log site, span, env read or print (the fixed-sha census reads 0), so the census grows by five rows and nothing else moves. The reconcile was confirmed by the founder (2026-10-13, by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option label «Подтвердить (Рекомендую)»; the English wording is the overseer's); the respelling was folded at the cascade sweep under playbook rule A, which he added at the same card.
 **Kept:** §6's sample closed-span line still reads `service.version=0.3.0-beta.2` — a capture dated to 2026-10-07-driver-command-spans, true of that run.
 **Ref:** .andromeda/runs/2026-10-13T15-50-37-wrap/
+
+## 2026-10-13-stand-contrast-harness — the contrast reader and `stand_contrast` silent
+**Section:** §3 Observability Harness Contract → Logging stack (subscriber installation) · §4 Span / Trace Coverage
+**Change:**
+- §3: the headless stand's `stand_*` checks reading the shared module are 18 (was 17), `stand_contrast` the eighteenth; the census names `stand_contrast` — no subscriber, no env read, no print, no listener, its readings into assertions only; the silent harness listing adds `Harness::text_contrast` (with `contrast_ratio` and `TextContrast`), which prints, panics and logs nothing and reads and changes nothing in the document.
+- §4: "Still observed absent" adds blitz-test-harness's contrast reader — `Harness::text_contrast` and the root re-exports, the private sixth module `contrast` — which opens no span, emits no event, reads no env var and mutates nothing; the crate still takes no `tracing`.
+**Why:** a test-harness reader and a stand check, no hot path; no instrumentation is owed, and the record of what is uninstrumented names them. The "17 of which" wording carried the readers' count without the `mod common;` token.
+**Ref:** .andromeda/runs/2026-10-13T18-00-36-wrap/

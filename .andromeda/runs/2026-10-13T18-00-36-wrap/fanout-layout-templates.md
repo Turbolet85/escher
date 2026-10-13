@@ -1,0 +1,2 @@
+proposals: []
+note: D-layout-surface holds — the report's Changes add no user-facing surface or region; the one new surface is a test-harness reader (`Harness::text_contrast`, Coverage of new surfaces: "a test-harness reader, not an external surface") and a stand check target, no stand markup, id, class or style moved (Outcome, layouts criterion: the preservation entry read exit 0 over `examples`), and the plan's smoke was skipped for "no boot-path / UI-surface change".

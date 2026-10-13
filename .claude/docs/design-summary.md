@@ -10,7 +10,7 @@ _Distilled from `.andromeda/design-system.md` + `.andromeda/layout-templates.md`
 ### Colour (selected)
 | Where | Value | Use |
 |---|---|---|
-| seven_guis (the stand) | `#4a6cf7` (hover `#3a5ce5`, active `#2a4cd3`) | accent, on page `#f5f5f5`, text `#1a1a1a` |
+| seven_guis (the stand) | `#4a6cf7` (hover `#3a5ce5`, active `#2a4cd3`) | accent, on page `#f5f5f5`, text `#1a1a1a`; white `#ffffff` button text on it (the five accent controls, 14–16 px) measures 4.39 against SC 1.4.3's 4.5, a fail (since 2026-10-13-stand-contrast-harness) |
 | seven_guis invalid | `#e53e3e` / `#fff5f5` / `#c53030` | flight-booker invalid state |
 | seven_guis success | `#ebf8ee` / `#68d391` / `#276749` | success message |
 | blitz-dom UA stylesheet | links (`a[href]`) `rgb(0,0,238)`, input focus outline `#4D90FE`, button `#EFEFEF` | engine defaults |

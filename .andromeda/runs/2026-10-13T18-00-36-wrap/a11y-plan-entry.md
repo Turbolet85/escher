@@ -1,0 +1,11 @@
+
+## 2026-10-13-stand-contrast-harness — the contrast verification harness built; the stand's 18 control rows measured
+**Section:** §3 A11y Assertion Harness Contract (Contrast verification harness) · §3 → contrast-verification-harness-setup · §6 Visual Design Verification (Color contrast · the closing NOT YET MEASURED)
+**Change:**
+- §3: was "contrast checks are observed absent"; now built — `Harness::text_contrast` reads an element's text/background pair and font metrics from computed styles as a `TextContrast` (`ratio` by `contrast_ratio`, WCAG 2.x; `required_ratio` 3.0 large, else 4.5), and `stand_contrast` states the 18 control rows as a table asserted row for row in both layout modes, beside a painted-pixel witness; in the workspace `test` leg, not the `a11y` leg.
+- §3 → contrast-verification-harness-setup: discharged (was "contrast checks are observed absent").
+- §6 Color contrast: the stand's reading — the reader's rules (the text-bearing element; the background composited to the first opaque ancestor, else the root-else-`body` canvas over white; `None` under opacity < 1, a filter or a background image; large text at 24 px, or 14 pt at weight 700), and the record at boot, 800 × 600, identical in both modes: pass 9 · fail 5 (`counter-increment`, `flight-one-way`, `flight-book`, `timer-reset`, `crud-create`, white on `#4a6cf7` at 4.39 against 4.5) · exempt-inactive 3 (exactly `enabled == Some(false)`) · no-text 1 (`timer-duration`); no text large; no colour differs from its declared value; the painted witness within 1 per channel. SC 1.4.3 is not met on the five accent buttons.
+- §6 NOT YET MEASURED: narrowed — the stand controls' pairs are measured; focus-ring, target-size and typography tokens, the CRUD list rows, the text outside the controls and the colour-changing states stay unmeasured.
+**Why:** the chunk built the instrument and took the reading. It gates nothing: the re-colouring, the states not measured, the CRUD rows and the text outside the controls are owned by "Stand a11y assertions" (CARRYs on the operator's word at the P5 review).
+**Kept:** the key's label `contrast-verification-harness-setup`, as `a11y-ci-gate-wire` keeps its own after discharge; §6's s05 "Observed absent — contrast checks" search record, true of its slice.
+**Ref:** .andromeda/runs/2026-10-13T18-00-36-wrap/

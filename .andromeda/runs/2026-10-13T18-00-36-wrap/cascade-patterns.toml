@@ -1,0 +1,63 @@
+[[pattern]]
+id = 'contrast-absent'
+regex = '''contrast checks are observed absent|contrast checks? (are|is) (absent|not built|not yet)|no contrast (check|harness|reading)|design-token contrast pairs'''
+ignore_case = true
+
+[[pattern]]
+id = 'contrast-harness'
+regex = '''contrast verification harness|contrast-verification-harness|text_contrast|contrast_ratio|TextContrast'''
+ignore_case = true
+
+[[pattern]]
+id = 'readers-17'
+regex = '''17 stand checks|17 of which|17 in all|by 17 `stand_|17 readers|seventeen readers|17 `stand_'''
+
+[[pattern]]
+id = 'files-118'
+regex = '''118 `\.rs` files|117 test targets|118 and 117'''
+
+[[pattern]]
+id = 'run-stand'
+regex = '''139 · 0 · 7|139 · failed 0|over 36 files|36 files'''
+
+[[pattern]]
+id = 'ws-totals'
+regex = '''179 result lines|893 passed|the same 179'''
+
+[[pattern]]
+id = 'harness-units'
+regex = '''17 since 2026-10-12|unit tests 17|17 unit tests|6 to 17'''
+
+[[pattern]]
+id = 'harness-mods'
+regex = '''(four|five|six|4|5|6) modules|(fourth|fifth|sixth) module|private screenshot|modules harness, input'''
+ignore_case = true
+
+[[pattern]]
+id = 'harness-surface'
+regex = '''Harness::screenshot|screenshot_rect'''
+
+[[pattern]]
+id = 'harness-deps'
+regex = '''harness depends on|blitz-test-harness (takes|depends)|three more crates|takes no `tracing`'''
+
+[[pattern]]
+id = 'silent-harness'
+regex = '''print, panic and log nothing|prints, panics and logs nothing|prints, panics or logs|no path prints'''
+
+[[pattern]]
+id = 'stand-census'
+regex = '''password_painted_masked'''
+
+[[pattern]]
+id = 'accent'
+regex = '''4a6cf7'''
+ignore_case = true
+
+[[pattern]]
+id = 'sc-143'
+regex = '''SC 1\.4\.3|1\.4\.3'''
+
+[[pattern]]
+id = 'color-dep'
+regex = '''`color`|color = |color crate|`color` crate'''

@@ -1,0 +1,707 @@
+[
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-13T18:00:47Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-13-stand-contrast-harness",
+"--run-dir",
+".andromeda/runs/2026-10-13T18-00-36-wrap",
+"--marker",
+"2026-10-13-stand-contrast-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 198bf85c (the parent of the oldest pre-CI commit dbc3049f) · lists new 3 · modify 3 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/evidence/ (dir) ×0",
+"scope: clean — changed 5 · listed 5 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 105"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "198bf85cb674498549cd8f36721041680770e7ce",
+"base_why": "the parent of the oldest pre-CI commit dbc3049f",
+"counts": {
+"changed": 5,
+"listed": 5,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 105,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-13T18:06:39Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-13-stand-contrast-harness",
+"--run-dir",
+".andromeda/runs/2026-10-13T18-00-36-wrap",
+"--marker",
+"2026-10-13-stand-contrast-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 198bf85c (the parent of the oldest pre-CI commit dbc3049f) · lists new 3 · modify 3 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/evidence/ (dir) ×0",
+"scope: clean — changed 5 · listed 5 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 115"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "198bf85cb674498549cd8f36721041680770e7ce",
+"base_why": "the parent of the oldest pre-CI commit dbc3049f",
+"counts": {
+"changed": 5,
+"listed": 5,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 115,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-13T18:36:19Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-13T18-00-36-wrap",
+"--marker",
+"2026-10-13-stand-contrast-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-13-stand-contrast-harness · entries 17",
+"logs $TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/wrap-2026-10-13T18-00-36 · bound: GNU timeout",
+"delta docs 87 · unmapped 3",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L220-222: No entry is a live leg: nothing is driven against an external process the operator brings … (257 chars)",
+"prose L224-226: The `a11y` leg runs three fixed files that this chunk does not touch (a11y-history 2026-10… (246 chars)",
+"prose L228-228: **Not run locally:** the MSRV build and the windows, macos, ios and android legs. The fork… (117 chars)",
+"prose L230-231: `evidence/pairs.md` and `evidence/counts.md` (steps 9, 10) have no listed producer by cons… (183 chars)",
+"  1 unit        green · exit 0 · 0.51s · 2493 B → 1.log · cargo test -p blitz-test-harness --locked",
+"  2 integration green · exit 0 · 8.33s · 575 B → 2.log · cargo test -p blitz-tests --locked --test stand_contrast",
+"  3 integration green · exit 0 · 4.71s · 575 B → 3.log · cargo test --workspace --locked --test stand_contrast",
+"  4 integration green · exit 0 · 27.56s · 3360 B → 4.log · cargo test -p blitz-tests --locked --test stand_snapshot -… (222 chars)",
+"  5 probe       green · exit 1 · 0.01s · 2 B → 5.log · git diff 198bf85cb674498549cd8f36721041680770e7ce -- Cargo… (94 chars)",
+"  6 probe       green · exit 1 · 0.0s · 2 B → 6.log · sed '/^#\\[cfg(test)\\]/,$d' packages/blitz-test-harness/src… (191 chars)",
+"  7 probe       green · exit 1 · 0.0s · 2 B → 7.log · cat tests/blitz-tests/tests/stand_contrast.rs | grep -c -E… (178 chars)",
+"  8 probe       green · exit 1 · 0.0s · 2 B → 8.log · grep -c -E 'tracing' packages/blitz-test-harness/Cargo.tom… (59 chars)",
+"  9 probe       green · exit 0 · 0.01s · 0 B → 9.log · git diff --quiet 198bf85cb674498549cd8f36721041680770e7ce … (588 chars)",
+" 10 build       green · exit 0 · 37.18s · 137 B → 10.log · bash scripts/agent-run.sh boot",
+" 11 integration green · exit 0 · 46.91s · 19168 B → 11.log · bash scripts/agent-run.sh run stand",
+" 12 probe       green · exit 0 · 1.12s · 14 B → 12.log · bash .github/scripts/ci-leg.sh audit",
+" 13 lint        green · exit 0 · 118.08s · 94277 B → 13.log · bash .github/scripts/ci-leg.sh fast",
+" 14 lint        green · exit 0 · 0.42s · 177 B → 14.log · bash .github/scripts/ci-leg.sh doc",
+" 15 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 16 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 17 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 17 · green 14 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-13-stand-contrast-harness",
+"plan": "./escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/wrap-2026-10-13T18-00-36",
+"delta": {
+"docs": [
+".andromeda/a11y-plan-amendments.md",
+".andromeda/a11y-plan.md",
+".andromeda/architecture-amendments.md",
+".andromeda/architecture.md",
+".andromeda/design-system-amendments.md",
+".andromeda/design-system.md",
+".andromeda/friction-log.ndjson",
+".andromeda/obs-plan-amendments.md",
+".andromeda/obs-plan.md",
+".andromeda/registries/contracts/a11y-plan/bootstrap-phases-derive-for-route-setup-project.md",
+".andromeda/runs/2026-10-13T17-25-26-implement/gate-2026-10-13-stand-contrast-harness.json",
+".andromeda/security-plan-amendments.md",
+".andromeda/security-plan.md",
+".andromeda/state.yaml",
+".andromeda/test-plan-amendments.md",
+".andromeda/test-plan.md",
+".claude/docs/a11y-summary.md",
+".claude/docs/commands.md",
+".claude/docs/design-summary.md",
+".claude/docs/obs-summary.md",
+".claude/docs/services/blitz-test-harness.md",
+".claude/docs/services/seven_guis.md",
+".claude/docs/tests-summary.md",
+".claude/rules/a11y.md",
+".claude/rules/observability.md",
+".claude/rules/verification-harness.md",
+".claude/session-handoff.md",
+"CLAUDE.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/a11y-plan-contracts.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/a11y-plan-entry.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/addendum-1.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/architecture-entry.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/cascade-2026-10-13-stand-contrast-harness-pre-pass.json",
+".andromeda/runs/2026-10-13T18-00-36-wrap/cascade-2026-10-13-stand-contrast-harness.json",
+".andromeda/runs/2026-10-13T18-00-36-wrap/cascade-dispositions.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/cascade-leaves-apply-dry-run.txt",
+".andromeda/runs/2026-10-13T18-00-36-wrap/cascade-leaves-apply.txt",
+".andromeda/runs/2026-10-13T18-00-36-wrap/cascade-leaves.txt",
+".andromeda/runs/2026-10-13T18-00-36-wrap/cascade-patterns.toml",
+".andromeda/runs/2026-10-13T18-00-36-wrap/cascade-sweep.txt",
+".andromeda/runs/2026-10-13T18-00-36-wrap/citation-dispositions.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/cites-2026-10-13-stand-contrast-harness.json",
+".andromeda/runs/2026-10-13T18-00-36-wrap/curation.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/design-system-entry.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/evolve-2026-10-13-stand-contrast-harness.json",
+".andromeda/runs/2026-10-13T18-00-36-wrap/fanout-a11y-plan.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/fanout-architecture.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/fanout-design-system.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/fanout-layout-templates.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/fanout-obs-plan.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/fanout-results.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/fanout-security-plan.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/fanout-test-plan.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/gate-2026-10-13-stand-contrast-harness.json",
+".andromeda/runs/2026-10-13T18-00-36-wrap/inputs-2026-10-13-stand-contrast-harness.json",
+".andromeda/runs/2026-10-13T18-00-36-wrap/leaf-a11y-plan.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/leaf-architecture+obs-plan.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/leaf-architecture+security-plan+design-system+test-plan+obs-plan+a11y-plan.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/leaf-architecture+test-plan.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/leaf-architecture-1.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/leaf-architecture-2.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/leaf-delta-a11y-plan.diff",
+".andromeda/runs/2026-10-13T18-00-36-wrap/leaf-delta-architecture.diff",
+".andromeda/runs/2026-10-13T18-00-36-wrap/leaf-delta-design-system.diff",
+".andromeda/runs/2026-10-13T18-00-36-wrap/leaf-delta-obs-plan.diff",
+".andromeda/runs/2026-10-13T18-00-36-wrap/leaf-delta-security-plan.diff",
+".andromeda/runs/2026-10-13T18-00-36-wrap/leaf-delta-test-plan.diff",
+".andromeda/runs/2026-10-13T18-00-36-wrap/leaf-design-system.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/leaf-obs-plan.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/leaf-security-plan.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/leaf-test-plan.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/new-text.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/obs-plan-contracts.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/obs-plan-entry.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/registry-2026-10-13-stand-contrast-harness.json",
+".andromeda/runs/2026-10-13T18-00-36-wrap/relay-3.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/relay-4.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/report-patterns.toml",
+".andromeda/runs/2026-10-13T18-00-36-wrap/report-sweep.txt",
+".andromeda/runs/2026-10-13T18-00-36-wrap/route-no-marker.json",
+".andromeda/runs/2026-10-13T18-00-36-wrap/security-plan-entry.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/splice-2026-10-13-stand-contrast-harness.json",
+".andromeda/runs/2026-10-13T18-00-36-wrap/test-plan-contracts.md",
+".andromeda/runs/2026-10-13T18-00-36-wrap/test-plan-entry.md",
+"escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/evidence/ci.md",
+"escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/report.md"
+]
+},
+"unmapped": [
+"escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/inputs/andromeda-inputs.json",
+"escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/inputs/I3-relay-3.md.txt",
+"escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/inputs/I4-relay-4.md.txt"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 90,
+"problem": null
+},
+"prose": [
+{
+"from": 220,
+"to": 222,
+"text": "No entry is a live leg: nothing is driven against an external process the operator brings up. The checks boot the stand in process. There is no boot smoke, because the chunk changes no binary and no boot path. The project has no headful self-verify harness."
+},
+{
+"from": 224,
+"to": 226,
+"text": "The `a11y` leg runs three fixed files that this chunk does not touch (a11y-history 2026-10-05-ci-gate-legs). The audit leg is listed because a manifest changes. No mutation control is planned or run: the mutation tier stays unstarted (inputs#I1)."
+},
+{
+"from": 228,
+"to": 228,
+"text": "**Not run locally:** the MSRV build and the windows, macos, ios and android legs. The fork's CI run is their witness."
+},
+{
+"from": 230,
+"to": 231,
+"text": "`evidence/pairs.md` and `evidence/counts.md` (steps 9, 10) have no listed producer by construction. They are /implement's records of one-shot readings, asserted by the listed entries."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-test-harness --locked",
+"run_sha8": "18448146",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/wrap-2026-10-13T18-00-36/1.log",
+"bytes": 2493,
+"log_sha8": "76ec9f6d",
+"exit": 0,
+"seconds": 0.51,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_contrast",
+"run_sha8": "be7abed0",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/wrap-2026-10-13T18-00-36/2.log",
+"bytes": 575,
+"log_sha8": "21940e07",
+"exit": 0,
+"seconds": 8.33,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test --workspace --locked --test stand_contrast",
+"run_sha8": "af42919c",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/wrap-2026-10-13T18-00-36/3.log",
+"bytes": 575,
+"log_sha8": "72c6938c",
+"exit": 0,
+"seconds": 4.71,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_snapshot --test stand_accessibility_ids --test stand_act_ids --test stand_session_fresh --test stand_screenshot_repeat --test stand_act_screenshot --test accessibility_states",
+"run_sha8": "a0cb4ec0",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/wrap-2026-10-13T18-00-36/4.log",
+"bytes": 3360,
+"log_sha8": "585baf00",
+"exit": 0,
+"seconds": 27.56,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "git diff 198bf85cb674498549cd8f36721041680770e7ce -- Cargo.lock | grep -c '^+\\[\\[package\\]\\]' ",
+"run_sha8": "9da5942d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/wrap-2026-10-13T18-00-36/5.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "sed '/^#\\[cfg(test)\\]/,$d' packages/blitz-test-harness/src/contrast.rs | grep -c -E 'println!|eprintln!|print!|dbg!|\\.unwrap\\(\\)|\\.expect\\(|panic!|unreachable!|tracing::|\\.mutate\\(|std::env' ",
+"run_sha8": "8fa9c27c",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/wrap-2026-10-13T18-00-36/6.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "cat tests/blitz-tests/tests/stand_contrast.rs | grep -c -E 'println!|eprintln!|print!|dbg!|std::env|env::var|escher_telemetry|tracing_subscriber|UnixListener|TcpListener|bind\\(' ",
+"run_sha8": "04f80c77",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/wrap-2026-10-13T18-00-36/7.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "grep -c -E 'tracing' packages/blitz-test-harness/Cargo.toml",
+"run_sha8": "54aef84c",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/wrap-2026-10-13T18-00-36/8.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "git diff --quiet 198bf85cb674498549cd8f36721041680770e7ce -- packages/blitz-paint packages/blitz-dom packages/blitz-html packages/blitz-traits packages/blitz-shell packages/dioxus-native-dom packages/escher-driver packages/escher-telemetry packages/blitz-test-harness/src/harness.rs packages/blitz-test-harness/src/inspect.rs packages/blitz-test-harness/src/screenshot.rs packages/blitz-test-harness/src/settle.rs packages/blitz-test-harness/src/input.rs examples tests/blitz-tests/Cargo.toml tests/blitz-tests/tests/common tests/blitz-tests/tests/session_common scripts .github deny.toml",
+"run_sha8": "0603f7bb",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/wrap-2026-10-13T18-00-36/9.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/wrap-2026-10-13T18-00-36/10.log",
+"bytes": 137,
+"log_sha8": "02143032",
+"exit": 0,
+"seconds": 37.18,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/wrap-2026-10-13T18-00-36/11.log",
+"bytes": 19168,
+"log_sha8": "c8263a5b",
+"exit": 0,
+"seconds": 46.91,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/wrap-2026-10-13T18-00-36/12.log",
+"bytes": 14,
+"log_sha8": "799fc05e",
+"exit": 0,
+"seconds": 1.12,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/wrap-2026-10-13T18-00-36/13.log",
+"bytes": 94277,
+"log_sha8": "58ad3254",
+"exit": 0,
+"seconds": 118.08,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/wrap-2026-10-13T18-00-36/14.log",
+"bytes": 177,
+"log_sha8": "f85b3125",
+"exit": 0,
+"seconds": 0.42,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-13T18:36:46Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-10-13T18-00-36-wrap",
+"--marker",
+"2026-10-13-stand-contrast-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base 198bf85c (the parent of the oldest pre-CI commit dbc3049f)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 157 (runs 147 · evidence 4 · inputs 6) · trails 23 not read · copies 3 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 147,
+"evidence": 4,
+"inputs": 6,
+"trails": 23,
+"copies": 3,
+"kept": 0,
+"binary": 0,
+"in_root": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-13T18:36:50Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-13-stand-contrast-harness",
+"--run-dir",
+".andromeda/runs/2026-10-13T18-00-36-wrap",
+"--marker",
+"2026-10-13-stand-contrast-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 198bf85c (the parent of the oldest pre-CI commit dbc3049f) · lists new 3 · modify 3 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/evidence/ (dir) ×0",
+"scope: clean — changed 5 · listed 5 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 190"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "198bf85cb674498549cd8f36721041680770e7ce",
+"base_why": "the parent of the oldest pre-CI commit dbc3049f",
+"counts": {
+"changed": 5,
+"listed": 5,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 190,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

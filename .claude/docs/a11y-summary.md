@@ -12,7 +12,7 @@ _Distilled from `.andromeda/a11y-plan.md` (adopted reading). wrap-session's casc
 - **Tool:** Rust tests in `tests/blitz-tests` over the AccessKit tree — `build_accessibility_tree()` (or `Document::accessibility_tree()`, which a `DioxusDocument` enriches with each element's stable id as `author_id`) after `resolve`, `test_that` matchers on `role()` / `is_hidden()`, `assert_role(html, id, expected)` and `unknown_tags(html)` helpers.
 - **Focus harness:** `Harness::focused()` / `hovered()`.
 - **Keyboard harness:** a Tab and Shift+Tab key-press focus check exists on the stand, driven through the harness's `press` / `press_with` (`stand_snapshot_state.rs`); the headless keyboard harness itself is still to come.
-- **Contrast harness:** observed absent (a Chrome-matching contrast-ratio helper exists in `blitz-paint/src/color.rs`).
+- **Contrast harness:** built since 2026-10-13-stand-contrast-harness — `Harness::text_contrast` (blitz-test-harness, read-only) reads an element's text/background pair and font metrics from computed styles as a `TextContrast` (`ratio` by `contrast_ratio`, the WCAG 2.x formula restating blitz-paint's Chrome-matching helper; `required_ratio` 3.0 for large text, else 4.5); `stand_contrast` asserts the 18 stand control rows in both layout modes beside a painted-pixel witness — pass 9, fail 5 (the accent buttons, `#ffffff` on `#4a6cf7` at 4.39 against 4.5, so SC 1.4.3 is not met there), exempt-inactive 3, no-text 1; it records and gates nothing and runs in the workspace `test` leg, not the `a11y` leg.
 - **Structured violation JSON / WCAG mapping of existing tests:** NOT YET MEASURED.
 
 ## Engine behaviour (measured)
@@ -29,7 +29,7 @@ _Distilled from `.andromeda/a11y-plan.md` (adopted reading). wrap-session's casc
 > NOT YET MEASURED — the 0.1.0 route makes the stand controls the target: every stand control reachable (2.1.1), in order (2.4.3), with measured contrast (1.4.3).
 
 ## Bootstrap phases (owners on the working route)
-1. `contrast-verification-harness-setup` → "Stand contrast harness"
+1. `contrast-verification-harness-setup` → discharged: the contrast harness is built (`Harness::text_contrast` with `contrast_ratio` and `TextContrast`) and `stand_contrast` measures the stand's 18 control rows (2026-10-13-stand-contrast-harness)
 2. Headless keyboard dispatch with focused-node read-back → "Stand keyboard harness"
 3. Stable id + role + name on every accessibility node → "Accessibility-tree identity" (tree leg built: `author_id` on every element node, 15 stand controls named; snapshot leg built: `DioxusDocument::snapshot` takes its ids, roles, names and focus from that tree; the driver leg waits on Epoch 4)
 4. SC assertions on every stand control, gating merges through the a11y CI leg (the `a11y` job runs the accessibility integration tests — `a11y-ci-gate-wire` discharged) → "Stand a11y assertions"
