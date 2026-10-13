@@ -1,0 +1,1 @@
+yes — apply. Checked: my planlint v1.8 reads 0 hits over 17 entries. The predicted #4a6cf7 against white works out by hand to 4.39:1 (L 0.189), so the fail prediction stands. The four Beyond-the-plan CARRYs to working-route.md:94 are approved with it.

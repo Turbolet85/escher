@@ -41,3 +41,6 @@
 ## Deferred learnings
 - `recurrence-despite-learning: "A job log fetched with gh run view --log carries its colour codes as literal text …"`: the plan's gate entry 50 used the exact pattern that entry warns against.
 - Curation wrote T2 1 (`host-linux.md`: run pipeline tools bare or redirected, never piped) and T3 1 (a phase control's scratchpad path in the run dir). Nothing was deferred by the cap.
+
+## Session End Status
+Completed normally at 2026-10-13 19:24:53

@@ -1,0 +1,27 @@
+gate v1.17 · 383c6f7b
+shell /usr/bin/bash (from $SHELL; -c, non-login)
+root . · marker 2026-10-13-stand-contrast-harness · entries 16
+logs $TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/run-20261013T171648Z · bound: GNU timeout
+delta docs 64 · unmapped 3
+walk-class 0 marked (an unmarked walker reads as none)
+prose L217-219: No entry is a live leg: nothing is driven against an external process the operator brings … (257 chars)
+prose L221-223: The `a11y` leg runs three fixed files that this chunk does not touch (a11y-history 2026-10… (246 chars)
+prose L225-225: **Not run locally:** the MSRV build and the windows, macos, ios and android legs. The fork… (117 chars)
+prose L227-228: `evidence/pairs.md` and `evidence/counts.md` (steps 9, 10) have no listed producer by cons… (183 chars)
+  1 unit        not run — dry-run · cargo test -p blitz-test-harness --locked
+  2 integration not run — dry-run · cargo test -p blitz-tests --locked --test stand_contrast
+  3 integration not run — dry-run · cargo test --workspace --locked --test stand_contrast
+  4 integration not run — dry-run · cargo test -p blitz-tests --locked --test stand_snapshot -… (222 chars)
+  5 probe       not run — dry-run · git diff 198bf85cb674498549cd8f36721041680770e7ce -- Cargo… (94 chars)
+  6 probe       not run — dry-run · sed '/^#\[cfg(test)\]/,$d' packages/blitz-test-harness/src… (191 chars)
+  7 probe       not run — dry-run · cat tests/blitz-tests/tests/stand_contrast.rs | grep -c -E… (178 chars)
+  8 probe       not run — dry-run · git diff --quiet 198bf85cb674498549cd8f36721041680770e7ce … (588 chars)
+  9 build       not run — dry-run · bash scripts/agent-run.sh boot
+ 10 integration not run — dry-run · bash scripts/agent-run.sh run stand
+ 11 probe       not run — dry-run · bash .github/scripts/ci-leg.sh audit
+ 12 lint        not run — dry-run · bash .github/scripts/ci-leg.sh fast
+ 13 lint        not run — dry-run · bash .github/scripts/ci-leg.sh doc
+ 14 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)
+ 15 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+ 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)
+entries 16 · green 0 · red 0 · recorded 0 · timeout 0 · not-run 16

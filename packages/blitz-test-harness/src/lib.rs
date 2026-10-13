@@ -13,15 +13,19 @@
 //! - Programmatic input synthesis (clicks, taps, drags, wheel, keyboard, IME) that routes
 //!   through the real event-dispatch pipeline, without requiring a window
 //! - A CPU [`screenshot`](Harness::screenshot) of the viewport, or of a pixel rectangle of it
+//! - The WCAG [`text_contrast`](Harness::text_contrast) of an element's text against the
+//!   background it is painted on, read from computed styles
 //!
 //! No window, GPU, or compositor is required, so tests run headless.
 
+mod contrast;
 mod harness;
 mod input;
 mod inspect;
 mod screenshot;
 mod settle;
 
+pub use contrast::{TextContrast, contrast_ratio};
 pub use harness::{Harness, HarnessOptions};
 pub use input::{key_event, mouse_pointer_event, pointer_event, touch_pointer_event};
 pub use inspect::Rect;

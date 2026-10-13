@@ -1,0 +1,233 @@
+[
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'contrast_ratio' AND callee_kind = 'fn' ORDER BY file, line;",
+"rows": 4,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-paint 0.3.0-beta.3 color/blend_for_contrast().",
+"file": "packages/blitz-paint/src/color.rs",
+"line": 48
+},
+{
+"caller": "rust-analyzer cargo blitz-paint 0.3.0-beta.3 color/blend_for_contrast().",
+"file": "packages/blitz-paint/src/color.rs",
+"line": 58
+},
+{
+"caller": "rust-analyzer cargo blitz-paint 0.3.0-beta.3 render/border/",
+"file": "packages/blitz-paint/src/render/border.rs",
+"line": 11
+},
+{
+"caller": "rust-analyzer cargo blitz-paint 0.3.0-beta.3 render/border/beveled_edge_color().",
+"file": "packages/blitz-paint/src/render/border.rs",
+"line": 73
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, file, line FROM refs WHERE callee_name IN ('primary_styles','as_srgb_color','controls','screenshot_rect') AND file LIKE '%tests/blitz-tests%' ORDER BY callee_name, file, line;",
+"rows": 31,
+"result": [
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_accessibility_ids.rs",
+"line": 14
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_accessibility_ids.rs",
+"line": 109
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_accessibility_ids.rs",
+"line": 159
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_act_ids.rs",
+"line": 23
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_act_ids.rs",
+"line": 92
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_act_ids.rs",
+"line": 172
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_act_obstructed.rs",
+"line": 442
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"line": 12
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"line": 63
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"line": 72
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 13
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 27
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"line": 67
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 15
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 106
+},
+{
+"callee_name": "primary_styles",
+"file": "tests/blitz-tests/tests/anonymous_block_restyle.rs",
+"line": 88
+},
+{
+"callee_name": "primary_styles",
+"file": "tests/blitz-tests/tests/anonymous_block_restyle.rs",
+"line": 287
+},
+{
+"callee_name": "primary_styles",
+"file": "tests/blitz-tests/tests/anonymous_block_restyle.rs",
+"line": 311
+},
+{
+"callee_name": "primary_styles",
+"file": "tests/blitz-tests/tests/anonymous_block_restyle.rs",
+"line": 320
+},
+{
+"callee_name": "primary_styles",
+"file": "tests/blitz-tests/tests/anonymous_block_restyle.rs",
+"line": 342
+},
+{
+"callee_name": "primary_styles",
+"file": "tests/blitz-tests/tests/anonymous_block_restyle.rs",
+"line": 348
+},
+{
+"callee_name": "primary_styles",
+"file": "tests/blitz-tests/tests/device_coalescing.rs",
+"line": 41
+},
+{
+"callee_name": "primary_styles",
+"file": "tests/blitz-tests/tests/hit_clipped_at_scrolling_box.rs",
+"line": 126
+},
+{
+"callee_name": "primary_styles",
+"file": "tests/blitz-tests/tests/hit_clipped_at_scrolling_box.rs",
+"line": 381
+},
+{
+"callee_name": "primary_styles",
+"file": "tests/blitz-tests/tests/lang_attribute.rs",
+"line": 9
+},
+{
+"callee_name": "primary_styles",
+"file": "tests/blitz-tests/tests/pseudo_element_update.rs",
+"line": 59
+},
+{
+"callee_name": "primary_styles",
+"file": "tests/blitz-tests/tests/rem_after_viewport_change.rs",
+"line": 38
+},
+{
+"callee_name": "primary_styles",
+"file": "tests/blitz-tests/tests/render_blocking_stylesheet.rs",
+"line": 72
+},
+{
+"callee_name": "primary_styles",
+"file": "tests/blitz-tests/tests/resize_restyle.rs",
+"line": 41
+},
+{
+"callee_name": "primary_styles",
+"file": "tests/blitz-tests/tests/stale_dirty_descendants.rs",
+"line": 53
+},
+{
+"callee_name": "primary_styles",
+"file": "tests/blitz-tests/tests/style_property_invalidation.rs",
+"line": 47
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT from_crate, to_crate FROM crate_edges WHERE from_crate = 'blitz-test-harness' OR to_crate = 'blitz-test-harness';",
+"rows": 8,
+"result": [
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "blitz-tests",
+"to_crate": "blitz-test-harness"
+},
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "blitz-html"
+},
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "blitz-paint"
+},
+{
+"from_crate": "escher-driver",
+"to_crate": "blitz-test-harness"
+},
+{
+"from_crate": "blitz-test-harness",
+"to_crate": "blitz-traits"
+},
+{
+"from_crate": "seven_guis",
+"to_crate": "blitz-test-harness"
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

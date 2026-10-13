@@ -1,0 +1,28 @@
+gate v1.17 · 383c6f7b
+shell /usr/bin/bash (from $SHELL; -c, non-login)
+root . · marker 2026-10-13-stand-contrast-harness · entries 17
+logs $TMPDIR/andromeda-gate/2026-10-13-stand-contrast-harness/phase-2026-10-13T17-00-57 · bound: GNU timeout
+delta docs 74 · unmapped 3
+walk-class 0 marked (an unmarked walker reads as none)
+prose L220-222: No entry is a live leg: nothing is driven against an external process the operator brings … (257 chars)
+prose L224-226: The `a11y` leg runs three fixed files that this chunk does not touch (a11y-history 2026-10… (246 chars)
+prose L228-228: **Not run locally:** the MSRV build and the windows, macos, ios and android legs. The fork… (117 chars)
+prose L230-231: `evidence/pairs.md` and `evidence/counts.md` (steps 9, 10) have no listed producer by cons… (183 chars)
+  1 unit        not run — excluded · cargo test -p blitz-test-harness --locked
+  2 integration not run — excluded · cargo test -p blitz-tests --locked --test stand_contrast
+  3 integration not run — excluded · cargo test --workspace --locked --test stand_contrast
+  4 integration not run — excluded · cargo test -p blitz-tests --locked --test stand_snapshot -… (222 chars)
+  5 probe       not run — excluded · git diff 198bf85cb674498549cd8f36721041680770e7ce -- Cargo… (94 chars)
+  6 probe       not run — excluded · sed '/^#\[cfg(test)\]/,$d' packages/blitz-test-harness/src… (191 chars)
+  7 probe       not run — excluded · cat tests/blitz-tests/tests/stand_contrast.rs | grep -c -E… (178 chars)
+  8 probe       not run — excluded · grep -c -E 'tracing' packages/blitz-test-harness/Cargo.tom… (59 chars)
+  9 probe       green · exit 0 · 0.01s · 0 B → 9.log · git diff --quiet 198bf85cb674498549cd8f36721041680770e7ce … (588 chars)
+ 10 build       not run — excluded · bash scripts/agent-run.sh boot
+ 11 integration not run — excluded · bash scripts/agent-run.sh run stand
+ 12 probe       not run — excluded · bash .github/scripts/ci-leg.sh audit
+ 13 lint        not run — excluded · bash .github/scripts/ci-leg.sh fast
+ 14 lint        not run — excluded · bash .github/scripts/ci-leg.sh doc
+ 15 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)
+ 16 probe       not run — excluded · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+ 17 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)
+entries 17 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 16
