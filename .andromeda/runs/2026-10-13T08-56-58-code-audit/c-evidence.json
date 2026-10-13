@@ -1,0 +1,171 @@
+{
+ "hotspot_origin": {
+  "packages/blitz-dom/src/layout/inline.rs": {
+   "commits": 7,
+   "upstream": 7,
+   "fork": 0
+  },
+  "packages/blitz-dom/src/resolved_style.rs": {
+   "commits": 3,
+   "upstream": 3,
+   "fork": 0
+  },
+  "packages/blitz-dom/src/layout/mod.rs": {
+   "commits": 5,
+   "upstream": 5,
+   "fork": 0
+  },
+  "packages/blitz-dom/src/node/node.rs": {
+   "commits": 4,
+   "upstream": 2,
+   "fork": 2
+  },
+  "packages/blitz-dom/src/document.rs": {
+   "commits": 6,
+   "upstream": 3,
+   "fork": 3
+  },
+  "packages/blitz-dom/src/layout/construct.rs": {
+   "commits": 2,
+   "upstream": 2,
+   "fork": 0
+  },
+  "packages/blitz-dom/src/layout/table.rs": {
+   "commits": 2,
+   "upstream": 2,
+   "fork": 0
+  },
+  "packages/blitz-paint/src/text.rs": {
+   "commits": 2,
+   "upstream": 2,
+   "fork": 0
+  },
+  "packages/blitz-dom/src/mutator.rs": {
+   "commits": 3,
+   "upstream": 2,
+   "fork": 1
+  },
+  "packages/escher-driver/src/cli.rs": {
+   "commits": 4,
+   "upstream": 0,
+   "fork": 4
+  }
+ },
+ "escher_over_ceiling": [
+  [
+   "tokenize",
+   "examples/seven_guis/src/tasks/cells.rs:71",
+   22.0
+  ],
+  [
+   "set_attribute",
+   "packages/dioxus-native-dom/src/mutation_writer.rs:240",
+   19.0
+  ],
+  [
+   "read",
+   "packages/escher-driver/src/cli.rs:123",
+   17.0
+  ],
+  [
+   "execute",
+   "packages/escher-driver/src/execute.rs:140",
+   17.0
+  ],
+  [
+   "run",
+   "packages/escher-driver/src/mcp.rs:634",
+   16.0
+  ]
+ ],
+ "over_ceiling_by_root": {
+  "apps/browser": 2,
+  "examples/seven_guis": 1,
+  "packages/blitz-dom": 49,
+  "packages/blitz-paint": 11,
+  "packages/blitz-shell": 2,
+  "packages/blitz-vibey-script": 4,
+  "packages/dioxus-native-dom": 1,
+  "packages/dioxus-native": 1,
+  "packages/escher-driver": 3,
+  "wpt/runner": 6
+ },
+ "dead_by_crate": {
+  "blitz-dom": 49,
+  "stylo_taffy": 16,
+  "blitz-test-harness": 12,
+  "blitz-traits": 10,
+  "browser": 8,
+  "blitz-paint": 6,
+  "dioxus-native": 6,
+  "debug_timer": 5,
+  "blitz-net": 2,
+  "blitz-shell": 2,
+  "blitz-vibey-script": 2,
+  "dioxus-native-dom": 2,
+  "rdme": 1,
+  "accesskit_xplat": 1
+ },
+ "dup_top_entered": [
+  [
+   "tests/blitz-tests/tests/device_coalescing.rs",
+   "tests/blitz-tests/tests/resize_restyle.rs",
+   43,
+   "Epoch 1 — Foundation"
+  ],
+  [
+   "packages/blitz-traits/src/events.rs",
+   "packages/blitz-traits/src/events.rs",
+   37,
+   "Epoch 1 — Foundation"
+  ],
+  [
+   "examples/counter/src/app.rs",
+   "examples/transparent/src/app.rs",
+   35,
+   "Epoch 1 — Foundation"
+  ],
+  [
+   "tests/blitz-tests/tests/inline_svg_restyle.rs",
+   "tests/blitz-tests/tests/inline_svg_serialize.rs",
+   32,
+   "Epoch 1 — Foundation"
+  ],
+  [
+   "tests/blitz-tests/tests/stand_mcp_masked.rs",
+   "tests/blitz-tests/tests/stand_mcp_tools.rs",
+   31,
+   "this epoch"
+  ],
+  [
+   "packages/blitz-dom/src/layout/inline.rs",
+   "packages/blitz-dom/src/layout/inline.rs",
+   29,
+   "Epoch 1 — Foundation"
+  ],
+  [
+   "packages/dioxus-native-dom/src/mutation_writer.rs",
+   "tests/blitz-tests/tests/dioxus_falsy_boolean_attrs.rs",
+   29,
+   "Epoch 3 — Observation model"
+  ],
+  [
+   "tests/blitz-tests/tests/interaction_state_canonicalization.rs",
+   "tests/blitz-tests/tests/interaction_state_teardown.rs",
+   28,
+   "Epoch 1 — Foundation"
+  ],
+  [
+   "tests/blitz-tests/tests/details_element.rs",
+   "tests/blitz-tests/tests/fragment_navigation.rs",
+   27,
+   "Epoch 1 — Foundation"
+  ],
+  [
+   "examples/custom_widget.rs",
+   "examples/wgpu_texture/src/dioxus_native.rs",
+   25,
+   "Epoch 1 — Foundation"
+  ]
+ ]
+}

@@ -1,0 +1,239 @@
+[
+{
+"sql": "SELECT count(*) AS n FROM crate_edges",
+"rows": 1,
+"result": [
+{
+"n": 96
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT s.symbol, s.crate, s.name, s.kind, s.file, s.def_line FROM symbol s WHERE s.symbol LIKE '%HistoryNav#current_url%'",
+"rows": 1,
+"result": [
+{
+"symbol": "rust-analyzer cargo browser 0.0.0 history/HistoryNav#current_url().",
+"crate": "browser",
+"name": "current_url",
+"kind": "fn",
+"file": "apps/browser/src/history.rs",
+"def_line": 66
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "WITH RECURSIVE walk(start, cur, path, depth) AS (\n  SELECT from_crate, to_crate, from_crate || '>' || to_crate, 1 FROM crate_edges\n  UNION ALL\n  SELECT w.start, e.to_crate, w.path || '>' || e.to_crate, w.depth + 1\n  FROM crate_edges e JOIN walk w ON e.from_crate = w.cur\n  WHERE w.depth < (SELECT count(DISTINCT from_crate) + 1 FROM crate_edges)\n    AND (position(e.to_crate IN w.path) = 0 OR e.to_crate = w.start))\nSELECT DISTINCT start, path FROM walk WHERE cur = start",
+"rows": 0,
+"result": [],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee, count(DISTINCT caller) AS n FROM calls_m GROUP BY callee ORDER BY n DESC LIMIT 20",
+"rows": 20,
+"result": [
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.2 node_id/NodeId#",
+"n": 637
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 crate/",
+"n": 553
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/impl#[BaseDocument]get_node().",
+"n": 281
+},
+{
+"callee": "rust-analyzer cargo blitz-html 0.3.0-beta.2 html_document/HtmlDocument#",
+"n": 237
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/BaseDocument#",
+"n": 230
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 config/DocumentConfig#",
+"n": 202
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 document/BaseDocument#nodes.",
+"n": 190
+},
+{
+"callee": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.2 dom/dom_ctx().",
+"n": 161
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 resolve/impl#[BaseDocument]resolve().",
+"n": 154
+},
+{
+"callee": "rust-analyzer cargo seven_guis 0.1.0 stand/LeanTask#",
+"n": 150
+},
+{
+"callee": "rust-analyzer cargo blitz-test-harness 0.3.0-beta.2 harness/Harness#",
+"n": 148
+},
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.2 crate/",
+"n": 148
+},
+{
+"callee": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.2 state/DomCtx#doc.",
+"n": 137
+},
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.2 shell/Viewport#",
+"n": 129
+},
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.2 shell/ColorScheme#",
+"n": 129
+},
+{
+"callee": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.2 dom/this_node_id().",
+"n": 123
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 node/node/Node#id.",
+"n": 119
+},
+{
+"callee": "rust-analyzer cargo blitz-test-harness 0.3.0-beta.2 harness/Harness#doc.",
+"n": 116
+},
+{
+"callee": "rust-analyzer cargo blitz-html 0.3.0-beta.2 html_sink/HtmlProvider#",
+"n": 112
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.2 node/node/Node#",
+"n": 112
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT from_crate, count(DISTINCT to_crate) AS n FROM crate_edges GROUP BY from_crate ORDER BY n DESC",
+"rows": 22,
+"result": [
+{
+"from_crate": "blitz-examples",
+"n": 10
+},
+{
+"from_crate": "blitz-tests",
+"n": 9
+},
+{
+"from_crate": "browser",
+"n": 9
+},
+{
+"from_crate": "seven_guis",
+"n": 7
+},
+{
+"from_crate": "wgpu_texture",
+"n": 6
+},
+{
+"from_crate": "dioxus-native",
+"n": 6
+},
+{
+"from_crate": "blitz",
+"n": 6
+},
+{
+"from_crate": "rdme",
+"n": 5
+},
+{
+"from_crate": "wpt",
+"n": 5
+},
+{
+"from_crate": "blitz-test-harness",
+"n": 5
+},
+{
+"from_crate": "blitz-shell",
+"n": 4
+},
+{
+"from_crate": "escher-driver",
+"n": 4
+},
+{
+"from_crate": "wasm_hello",
+"n": 3
+},
+{
+"from_crate": "blitz-dom",
+"n": 3
+},
+{
+"from_crate": "blitz-vibey-script",
+"n": 3
+},
+{
+"from_crate": "blitz-paint",
+"n": 2
+},
+{
+"from_crate": "transparent",
+"n": 2
+},
+{
+"from_crate": "dioxus-native-dom",
+"n": 2
+},
+{
+"from_crate": "blitz-html",
+"n": 2
+},
+{
+"from_crate": "todomvc",
+"n": 1
+},
+{
+"from_crate": "counter",
+"n": 1
+},
+{
+"from_crate": "blitz-net",
+"n": 1
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT count(*) AS n FROM crate_edges",
+"rows": 1,
+"result": [
+{
+"n": 96
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT s.symbol, s.crate, s.name, s.kind, s.file, s.def_line FROM symbol s LEFT JOIN refs r ON r.callee = s.symbol WHERE r.callee IS NULL",
+"rows": 1872,
+"result": null,
+"db_state": "fresh",
+"plane": "rust",
+"result_dropped": "over 25 rows - summarized in c-dead.json"
+}
+]

@@ -1,0 +1,1200 @@
+{
+ "links": [
+  {
+   "chunk": null,
+   "consumer": "new-session/orientation",
+   "consumer_id": "2026-10-09T19:14:33Z-a",
+   "artifact": "handoff",
+   "verdict": "wrong",
+   "note": "Done and the first markerless entry agree with the cursor; one boundary item is stale at read: it names the Epoch 4 diagnosis as not started with no proposals file, and a proposals.md titled for Epoch 4 stands untracked from 2026-10-09",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": []
+  },
+  {
+   "chunk": null,
+   "consumer": "new-session/orientation",
+   "consumer_id": "2026-10-09T19:14:33Z-b",
+   "artifact": ".claude/session-handoff.md:11",
+   "verdict": "friction:input.handoff-git-mismatch",
+   "note": "The handoff's Position lists /andromeda-evolve-diagnose for Epoch 4 as not started (no proposals file targets it); the tree holds an untracked run .andromeda/runs/2026-10-09T14-03-28-evolve-diagnose/proposals.md whose title line carries escher-0.1.0 and Epoch 4, and an untracked code-audit run of the same day. Neither skill writes the handoff, so its boundary list read one item behind; the nudge derivation read the title line and did not fire.",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": null,
+   "consumer": "new-session/orientation",
+   "consumer_id": "2026-10-09T19:14:33Z-b",
+   "artifact": ".andromeda/runs/2026-10-09T14-03-28-evolve-diagnose/proposals.md:1",
+   "verdict": "friction:input.handoff-git-mismatch",
+   "note": "The handoff's Position lists /andromeda-evolve-diagnose for Epoch 4 as not started (no proposals file targets it); the tree holds an untracked run .andromeda/runs/2026-10-09T14-03-28-evolve-diagnose/proposals.md whose title line carries escher-0.1.0 and Epoch 4, and an untracked code-audit run of the same day. Neither skill writes the handoff, so its boundary list read one item behind; the nudge derivation read the title line and did not fire.",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+   "consumer": "wrap-session/curation",
+   "consumer_id": "2026-10-09T21:19:51Z-a",
+   "artifact": "conversation",
+   "verdict": "thin",
+   "note": "a resumed wrap: the conversation that produced the chunk ended with a clear before the resume, so curation worked from the report on the operator's direction",
+   "producer": "implement/smoke",
+   "producer_id": "2026-10-09T20:11:37Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "skipped"
+   ],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+   "consumer": "phase/plan",
+   "consumer_id": "2026-10-10T01:11:14Z-a",
+   "artifact": "research",
+   "verdict": "thin",
+   "note": "it named three of the four changes the merge takes into the workflow outside the conflict regions and had no count of the tests the delta adds; both were probed at synthesis",
+   "producer": "phase/research",
+   "producer_id": "2026-10-10T01:02:41Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "unresolved-questions",
+    "lists-parsed-first-fire"
+   ],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+   "consumer": "phase/plan",
+   "consumer_id": "2026-10-10T01:11:14Z-b",
+   "artifact": "escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/research.md",
+   "verdict": "friction:input.research-thin",
+   "note": "research listed the conflict regions of the workflow and three upstream changes outside them, but not the full outside-region set (a runner label and a dropped toolchain component were found by resolving the trial merge to our sides and diffing against HEAD), and its platform-issues slot read none beside two folded runner-only bullets; both were filled at synthesis",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-10T01:22:32Z-b",
+   "artifact": "plan.md",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "the plan's conflict steps say how each of the four files is resolved and that the merge stays staged for the operator's commit, but not whether implement marks the resolved paths with git add; the four were staged so no unmerged path is left, and the choice goes into the P4 report",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-10T02:37:05Z-a",
+   "artifact": "report",
+   "verdict": "thin",
+   "note": "Changes carried every dependency, count and symbol fact; thin where the merge changed text a master cites: no Coverage row for the hint-less font source, the text-indent sentence marked not read, and 26 cited claims found false by the citation sweep, 8 of them stated in no bullet",
+   "producer": "wrap-session/report",
+   "producer_id": "2026-10-10T02:03:30Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "reconstructed",
+    "new-text-generated",
+    "new-text-rows:417"
+   ],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-10T02:37:05Z-b",
+   "artifact": "report",
+   "verdict": "friction:input.report-insufficient",
+   "note": "the security detector could not confirm the hint-less font-source change validated: the report states it in one Symbols sentence and gives it no Coverage row; and the report left the text-indent sentence unread for a detector that may open no source file",
+   "producer": "wrap-session/report",
+   "producer_id": "2026-10-10T02:03:30Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "reconstructed",
+    "new-text-generated",
+    "new-text-rows:417"
+   ],
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-10T02:37:05Z-b",
+   "artifact": "spec:security-plan",
+   "verdict": "friction:input.report-insufficient",
+   "note": "the security detector could not confirm the hint-less font-source change validated: the report states it in one Symbols sentence and gives it no Coverage row; and the report left the text-indent sentence unread for a detector that may open no source file",
+   "producer": "wrap-session/reconcile",
+   "producer_id": "2026-10-10T02:37:05Z-a",
+   "producer_outcome": "halted-resolved",
+   "producer_signals": [
+    "amendments:11",
+    "escalation-shaped",
+    "provisional-mark:1"
+   ],
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-10T02:37:05Z-b",
+   "artifact": "spec:architecture",
+   "verdict": "friction:input.report-insufficient",
+   "note": "the security detector could not confirm the hint-less font-source change validated: the report states it in one Symbols sentence and gives it no Coverage row; and the report left the text-indent sentence unread for a detector that may open no source file",
+   "producer": "wrap-session/reconcile",
+   "producer_id": "2026-10-10T02:37:05Z-a",
+   "producer_outcome": "halted-resolved",
+   "producer_signals": [
+    "amendments:27",
+    "hand-repoints:14"
+   ],
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+   "consumer": "wrap-session/curation",
+   "consumer_id": "2026-10-10T02:39:55Z-a",
+   "artifact": "conversation",
+   "verdict": "missing",
+   "note": "a resumed wrap in a fresh window: the conversation that ran the chunk is gone; candidates came from the report section alone, on the operator word in the wrap arguments",
+   "producer": "implement/smoke",
+   "producer_id": "2026-10-10T01:31:18Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "recorded-not-rerun",
+    "teardown-exact"
+   ],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-10-driver-cli",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-10T09:23:13Z-b",
+   "artifact": "plan.md step 8",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "step 13 states the idle-expiry check as the parent polling attach; step 8 makes each answered request restart the expiry, so the stated check can never read the host gone",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-driver-cli",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-10T09:23:13Z-b",
+   "artifact": "plan.md step 13",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "step 13 states the idle-expiry check as the parent polling attach; step 8 makes each answered request restart the expiry, so the stated check can never read the host gone",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-driver-cli",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-10T09:23:13Z-b",
+   "artifact": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "step 13 states the idle-expiry check as the parent polling attach; step 8 makes each answered request restart the expiry, so the stated check can never read the host gone",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-driver-cli",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-10T09:23:13Z-c",
+   "artifact": "plan.md step 6",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "step 6 asks unit rows over a built node with every optional field; a DiffNode's role and bounds types are nameable from no dependency of escher-driver and no manifest may change, so the node writer was split over plain parts and the rows written on those",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-driver-cli",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-10T09:23:13Z-c",
+   "artifact": "packages/escher-driver/src/json.rs",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "step 6 asks unit rows over a built node with every optional field; a DiffNode's role and bounds types are nameable from no dependency of escher-driver and no manifest may change, so the node writer was split over plain parts and the rows written on those",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-driver-cli",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-10T09:23:13Z-d",
+   "artifact": "plan.md step 8",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "step 8 gives the client a public call and does not say what it does with a call whose line is over the request bound; settled as: the client checks the call first and answers a schema refusal itself, so every call sent fits",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-driver-cli",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-10T09:23:13Z-d",
+   "artifact": "packages/escher-driver/src/client.rs",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "step 8 gives the client a public call and does not say what it does with a call whose line is over the request bound; settled as: the client checks the call first and answers a schema refusal itself, so every call sent fits",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-driver-cli",
+   "consumer": "implement/fix-loop",
+   "consumer_id": "2026-10-10T09:40:57Z-a",
+   "artifact": "research",
+   "verdict": "thin",
+   "note": "two standing checks that pin changed data (stand_act_spans: the verb table's rows; stand_act_disabled: type on a filled control) are in neither list",
+   "producer": "phase/research",
+   "producer_id": "2026-10-10T03:07:26Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "unresolved-questions"
+   ],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-10-driver-cli",
+   "consumer": "wrap-session/report",
+   "consumer_id": "2026-10-10T10:07:56Z-a",
+   "artifact": "implement-outcome",
+   "verdict": "thin",
+   "note": "its gate verdicts and deviations stood whole; graded thin by rule only — the operator pass ended fixed on the hygiene entry, a refusal implement's report had itself named",
+   "producer": "implement/smoke",
+   "producer_id": "2026-10-10T09:41:32Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "green"
+   ],
+   "operator_pass": [
+    {
+     "artifact": "operator-pass",
+     "quality": "ok",
+     "signals": [
+      "fixed",
+      "commits:1",
+      "red:2"
+     ],
+     "note": "evidence/operator-pass.md carries every result: entry 24 read refused twice (the phase file; then the record's own first draft, which quoted the path) and clean after; entries 25 and 26 green at the final HEAD"
+    }
+   ]
+  },
+  {
+   "chunk": "2026-10-10-driver-cli",
+   "consumer": "wrap-session/report",
+   "consumer_id": "2026-10-10T10:07:56Z-b",
+   "artifact": "evidence/operator-pass.md",
+   "verdict": "friction:input.implement-outcome-unsettled",
+   "note": "the operator pass ended fixed: the hygiene entry read refused on a file of the phase's run dir (27 temp-dir paths) and was re-fired clean after the operator-named rewrite, and once more after the pass's own record first quoted the path; the outcome basis is the pass's final state (one commit, CI green on its sha) with implement's report for what only it holds",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-driver-cli",
+   "consumer": "wrap-session/report",
+   "consumer_id": "2026-10-10T10:07:56Z-b",
+   "artifact": ".andromeda/runs/2026-10-10T02-50-31-phase/p4-founder-forks.md",
+   "verdict": "friction:input.implement-outcome-unsettled",
+   "note": "the operator pass ended fixed: the hygiene entry read refused on a file of the phase's run dir (27 temp-dir paths) and was re-fired clean after the operator-named rewrite, and once more after the pass's own record first quoted the path; the outcome basis is the pass's final state (one commit, CI green on its sha) with implement's report for what only it holds",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-driver-cli",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-10T10:57:00Z-a",
+   "artifact": "report",
+   "verdict": "thin",
+   "note": "carried every changed fact and coordinate; did not carry five counts the masters state (per-file unit-test split, readers of the two shared test modules, which modules the new check declares, the test-target count, the README's wording) - each measured by the orchestrator",
+   "producer": "wrap-session/report",
+   "producer_id": "2026-10-10T10:07:56Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "new-text-generated",
+    "new-text-rows:319"
+   ],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-10-driver-cli",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-10T10:57:00Z-e",
+   "artifact": "report",
+   "verdict": "friction:input.report-insufficient",
+   "note": "eleven proposals across three detectors said a count or a reader set `wants a re-read` because the report gives a new test file but not which shared modules it declares, the unit-test total but not its per-file split, and a changed README range but not its wording",
+   "producer": "wrap-session/report",
+   "producer_id": "2026-10-10T10:07:56Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "new-text-generated",
+    "new-text-rows:319"
+   ],
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-driver-cli",
+   "consumer": "wrap-session/curation",
+   "consumer_id": "2026-10-10T10:58:48Z-a",
+   "artifact": "conversation",
+   "verdict": "thin",
+   "note": "a two-window wrap: the first window's conversation, where implement's report and the operator pass happened, is gone; one candidate could not be scored for want of it",
+   "producer": "implement/smoke",
+   "producer_id": "2026-10-10T09:41:32Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "recorded-from-P2",
+    "hand-smoke"
+   ],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+   "consumer": "phase/research",
+   "consumer_id": "2026-10-10T13:26:37Z-b",
+   "artifact": "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/scope.md",
+   "verdict": "friction:input.extract-signal-gap",
+   "note": "the take-up scope listed a caller of the bounds reader by file and line without its function name; three extracts read it as the into-view scroll and raised a research question on that basis; the graph and the read showed the caller is the visible-region reader, and the closure overrode the extracts in scope",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-10T14:58:15Z-b",
+   "artifact": "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/plan.md",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "step 6 says the own-area and padding-box tests are made on the point before the scroll offset is added, and that the transform handling does not change; hit_inner inverse-transforms the point after the offset is added, so for a transformed scrolled box the step fixed no point — settled by reading paint (the clip is pushed before the scroll translation) and inverse-transforming the unscrolled point through the same matrix; a second point: step 5 is silent on the reader's loop shape while a listed probe forbids layout_data() on an added engine line, which ruled out starting the walk at the containing block in the writing_mode.rs body",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+   "consumer": "implement/fix-loop",
+   "consumer_id": "2026-10-10T15:11:45Z-a",
+   "artifact": "research",
+   "verdict": "thin",
+   "note": "the sweep for checks that pin the changed reading searched scroll verbs and the limit phrases; the one standing check that leaned on the hit defect drives a raw harness click on a Home card lying below Home's scrolling box and matched neither",
+   "producer": "phase/research",
+   "producer_id": "2026-10-10T13:26:37Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "unresolved-questions",
+    "open-questions:3",
+    "baseline-run-green"
+   ],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+   "consumer": "wrap-session/report",
+   "consumer_id": "2026-10-10T15:35:05Z-a",
+   "artifact": "implement-outcome",
+   "verdict": "thin",
+   "note": "its source outcome and every measurement stood; the operator pass after it ended fixed on a file implement did not write, which the grading rule reads as superseded",
+   "producer": "implement/smoke",
+   "producer_id": "2026-10-10T15:12:12Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "green"
+   ],
+   "operator_pass": [
+    {
+     "artifact": "operator-pass",
+     "quality": "ok",
+     "signals": [
+      "fixed",
+      "commits:1",
+      "red:1"
+     ],
+     "note": "evidence/operator-pass.md carried every result: hygiene refused once on a phase run-dir copy of an operator message holding a home path, re-fired clean after a one-token rewrite on the operator's word; the push and the CI read green"
+    }
+   ]
+  },
+  {
+   "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+   "consumer": "wrap-session/report",
+   "consumer_id": "2026-10-10T15:35:05Z-b",
+   "artifact": ".andromeda/runs/2026-10-10T13-07-20-phase/relay-3.md",
+   "verdict": "friction:input.implement-outcome-unsettled",
+   "note": "a step after implement changed the pass's outcome: the operator pass's hygiene entry read refused on the phase's run-dir copy of an operator message (a home path outside the repository), the pass stopped on the operator's instruction and went on after a one-token rewrite he named; the report's outcome basis is the pass's final state as evidence/operator-pass.md records it, implement's report standing for the source and its measurements",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+   "consumer": "wrap-session/report",
+   "consumer_id": "2026-10-10T15:35:05Z-b",
+   "artifact": "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/evidence/operator-pass.md",
+   "verdict": "friction:input.implement-outcome-unsettled",
+   "note": "a step after implement changed the pass's outcome: the operator pass's hygiene entry read refused on the phase's run-dir copy of an operator message (a home path outside the repository), the pass stopped on the operator's instruction and went on after a one-token rewrite he named; the report's outcome basis is the pass's final state as evidence/operator-pass.md records it, implement's report standing for the source and its measurements",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-10T15:58:16Z-a",
+   "artifact": "report",
+   "verdict": "thin",
+   "note": "25 proposals rested on it; two facts two detectors wanted were not in it — the harness helper's name (in evidence/readings.md only) and an unchecked path of the second reader body",
+   "producer": "wrap-session/report",
+   "producer_id": "2026-10-10T15:35:05Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "new-text-generated",
+    "new-text-rows:90",
+    "guard-refused:1",
+    "inputs-uncited-closed:1"
+   ],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-10T15:58:16Z-b",
+   "artifact": "report.md",
+   "verdict": "friction:input.report-insufficient",
+   "note": "two detectors left the report to finish a proposal: test-plan read stand_actionable_keys.rs to name Harness::scroll_into_view and grepped three new check files for a writing-mode style; both proposals were rejected for source and their facts re-measured and raised by the orchestrator",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-10T15:58:16Z-b",
+   "artifact": "fanout-results.md",
+   "verdict": "friction:input.report-insufficient",
+   "note": "two detectors left the report to finish a proposal: test-plan read stand_actionable_keys.rs to name Harness::scroll_into_view and grepped three new check files for a writing-mode style; both proposals were rejected for source and their facts re-measured and raised by the orchestrator",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+   "consumer": "wrap-session/curation",
+   "consumer_id": "2026-10-10T15:59:16Z-a",
+   "artifact": "conversation",
+   "verdict": "thin",
+   "note": "a resumed wrap: this window holds the resume only; the window that held implement's report and P1's authoring is gone, and the report's Decisions & corrections stood in for it",
+   "producer": "implement/smoke",
+   "producer_id": "2026-10-10T15:12:12Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "skipped"
+   ],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-10-snapshot-states",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-10T17:01:31Z-b",
+   "artifact": "plan.md step 2",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "steps 2 and 3 are to be read red before the code they hold, but both test files name fields the model gains only at step 5, so on the tree as built their red is a compile error; an assertion-level red was taken a second time after steps 4 to 8 with the stand unchanged",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-snapshot-states",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-10T17:01:31Z-b",
+   "artifact": "plan.md step 3",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "steps 2 and 3 are to be read red before the code they hold, but both test files name fields the model gains only at step 5, so on the tree as built their red is a compile error; an assertion-level red was taken a second time after steps 4 to 8 with the stand unchanged",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-snapshot-states",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-10T17:01:31Z-b",
+   "artifact": "plan.md step 10",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "steps 2 and 3 are to be read red before the code they hold, but both test files name fields the model gains only at step 5, so on the tree as built their red is a compile error; an assertion-level red was taken a second time after steps 4 to 8 with the stand unchanged",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-snapshot-states",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-10T17:01:31Z-c",
+   "artifact": "plan.md step 10",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "step 10 states one named mutation per new or extended test and then lists 17 mutations that reach no red for 4 of those tests (the diff unit test, the two restated schema tests, the aria-checked absence test); 5 controls were added and named as outside the list",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-snapshot-states",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-10T19:02:09Z-a",
+   "artifact": "report",
+   "verdict": "thin",
+   "note": "sufficient for every amendment; its per-count site lists under-ran — three test-plan sites of the retired 'eleven' and four security-plan restatements were found by wording, not from the report",
+   "producer": "wrap-session/report",
+   "producer_id": "2026-10-10T17:54:12Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "new-text-generated",
+    "new-text-rows:62",
+    "guard-refused:2"
+   ],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-10-snapshot-states",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-10T19:02:09Z-e",
+   "artifact": "escher-0.1.0/chunks/2026-10-10-snapshot-states/report.md",
+   "verdict": "friction:input.report-insufficient",
+   "note": "the report's Counts table names the master sites of each retired count; for the 'eleven driver-action files' claim it under-ran by three test-plan occurrences (§1 escher-driver, §4, §5), and it gave no site for four security-plan restatements of the socket's content list and the help texts — each found by a detector's wording sweep",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-mcp-surface",
+   "consumer": "phase/research",
+   "consumer_id": "2026-10-10T19:31:14Z-a",
+   "artifact": "cookbook",
+   "verdict": "thin",
+   "note": "canonical shapes 1 and 4 copy-adapted for both queries; no shape excludes call sites inside a source file's inline test module",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-10-mcp-surface",
+   "consumer": "phase/research",
+   "consumer_id": "2026-10-10T19:31:14Z-b",
+   "artifact": "scripts/code-graph-cookbook.md",
+   "verdict": "friction:input.cookbook-gap",
+   "note": "one impact query over eleven entry-point names, filtered on a tests directory in the caller's path, returned about 180 rows because Rust unit tests sit inline in the source files it meant to keep; the production call sites were about 20 of them and were picked out by reading the caller names",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-mcp-surface",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-11T08:02:42Z-c",
+   "artifact": "packages/escher-driver/src/cli.rs",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "three plan points left silent and settled in the impl: cli run() takes apps to hand serve_mcp (plan said its test call sites stay as they are), start on an app outside apps refused malformed out-of-bound, and the id-less parse-error lines answered with id null against step 10's one-line-per-id count",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-mcp-surface",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-11T08:02:42Z-c",
+   "artifact": "packages/escher-driver/src/mcp.rs",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "three plan points left silent and settled in the impl: cli run() takes apps to hand serve_mcp (plan said its test call sites stay as they are), start on an app outside apps refused malformed out-of-bound, and the id-less parse-error lines answered with id null against step 10's one-line-per-id count",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-mcp-surface",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-11T08:02:42Z-c",
+   "artifact": "examples/seven_guis/tests/mcp_server.rs",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "three plan points left silent and settled in the impl: cli run() takes apps to hand serve_mcp (plan said its test call sites stay as they are), start on an app outside apps refused malformed out-of-bound, and the id-less parse-error lines answered with id null against step 10's one-line-per-id count",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-mcp-surface",
+   "consumer": "wrap-session/report",
+   "consumer_id": "2026-10-11T08:38:54Z-a",
+   "artifact": "implement-outcome",
+   "verdict": "thin",
+   "note": "implement's code outcome stood unchanged; the operator pass's CI read went red on a runner toolchain download and was re-fired after a rerun, which by the letter supersedes the outcome basis",
+   "producer": "implement/smoke",
+   "producer_id": "2026-10-11T08:08:25Z-c",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "green"
+   ],
+   "operator_pass": [
+    {
+     "artifact": "operator-pass",
+     "quality": "ok",
+     "signals": [
+      "fixed",
+      "commits:1",
+      "red:1"
+     ],
+     "note": "pre-CI commit alone; entry 21 recorded red (attempt 1) then green (attempt 2), both in evidence/operator-pass.md"
+    }
+   ]
+  },
+  {
+   "chunk": "2026-10-10-mcp-surface",
+   "consumer": "wrap-session/report",
+   "consumer_id": "2026-10-11T08:38:54Z-b",
+   "artifact": "escher-0.1.0/chunks/2026-10-10-mcp-surface/evidence/operator-pass.md",
+   "verdict": "friction:input.implement-outcome-unsettled",
+   "note": "the operator pass ended fixed: CI#38124028789 attempt 1 red (Build wasm examples, rustup connection reset before any compile), the failed job re-run on the operator's word, attempt 2 green 16/16 — the report's outcome basis is the pass's evidence, implement's report for the rest",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-mcp-surface",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-11T09:55:09Z-d",
+   "artifact": "escher-0.1.0/chunks/2026-10-10-mcp-surface/report.md",
+   "verdict": "friction:input.report-insufficient",
+   "note": "the report's Harness bullet names stand_mcp_tools as a stand check but not that it reads tests/session_common/mod.rs, so the masters' reader counts (seventeen of the eighteen session-holding checks; seventeen readers in architecture's blitz-tests row) could not be amended from the report",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-10-mcp-surface",
+   "consumer": "wrap-session/curation",
+   "consumer_id": "2026-10-11T09:56:20Z-a",
+   "artifact": "conversation",
+   "verdict": "thin",
+   "note": "the resumed window holds the wrap only; implement's and the operator pass's window is gone",
+   "producer": "implement/smoke",
+   "producer_id": "2026-10-11T08:08:25Z-c",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "recorded-not-rerun"
+   ],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-12-self-description",
+   "consumer": "wrap-session/report",
+   "consumer_id": "2026-10-12T09:00:00Z-a",
+   "artifact": "implement-outcome",
+   "verdict": "thin",
+   "note": "implement's green stood, but the operator pass moved after it: hygiene read red, the mask, a second firing green",
+   "producer": "implement/smoke",
+   "producer_id": "2026-10-12T08:38:54Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "green"
+   ],
+   "operator_pass": [
+    {
+     "artifact": "operator-pass",
+     "quality": "ok",
+     "signals": [
+      "fixed",
+      "commits:1",
+      "red:1"
+     ],
+     "note": "the pre-CI commit alone; hygiene recorded red at its first firing and green after the mask; push and CI read green"
+    }
+   ]
+  },
+  {
+   "chunk": "2026-10-12-headless-screenshot",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-12T19:04:31Z-a",
+   "artifact": "plan",
+   "verdict": "thin",
+   "note": "step 5's white fill before paint needs kurbo and peniko, which no listed harness dependency re-exports, against the acceptance's three harness deps; step 3's mask needs a layout in the document's fonts that blitz-paint cannot reach, unstated by the plan",
+   "producer": "phase/plan",
+   "producer_id": "2026-10-12T18:34:20Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "designed-dialogue:image-crossing",
+    "designed-dialogue:password-mask",
+    "authority-resolved:obs-byte-count-field yielded to arch never-field-the-screen",
+    "guard-refused:1"
+   ],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-12-headless-screenshot",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-12T19:04:31Z-b",
+   "artifact": "escher-0.1.0/chunks/2026-10-12-headless-screenshot/plan.md",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "plan step 5 prescribes a white fill before paint_scene and the acceptance fixes the harness at three new deps; the fill's types (kurbo Rect, peniko Color/Fill) are re-exported by none of the three, so the two could not both hold as written",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  },
+  {
+   "chunk": "2026-10-12-headless-screenshot",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-12T19:04:31Z-b",
+   "artifact": "packages/blitz-test-harness/src/screenshot.rs",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "plan step 5 prescribes a white fill before paint_scene and the acceptance fixes the harness at three new deps; the fill's types (kurbo Rect, peniko Color/Fill) are re-exported by none of the three, so the two could not both hold as written",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "operator_pass": null
+  }
+ ],
+ "shapes": [
+  {
+   "producer": "implement/smoke",
+   "artifact": "conversation",
+   "consumer": "wrap-session/curation",
+   "chunks": [
+    "2026-10-09-audit-corrections-agent-surfaces",
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "k": 5
+  },
+  {
+   "producer": "wrap-session/report",
+   "artifact": "report",
+   "consumer": "wrap-session/reconcile",
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "2026-10-10-snapshot-states",
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "k": 4
+  },
+  {
+   "producer": "implement/smoke",
+   "artifact": "implement-outcome",
+   "consumer": "wrap-session/report",
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "2026-10-12-self-description"
+   ],
+   "k": 4
+  },
+  {
+   "producer": "phase/research",
+   "artifact": "research",
+   "consumer": "implement/fix-loop",
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-scrolling-box-bounds-and-hit"
+   ],
+   "k": 2
+  },
+  {
+   "producer": null,
+   "artifact": "handoff",
+   "consumer": "new-session/orientation",
+   "chunks": [
+    "None"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": ".claude/session-handoff.md:11",
+   "consumer": "new-session/orientation",
+   "chunks": [
+    "None"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": ".andromeda/runs/2026-10-09T14-03-28-evolve-diagnose/proposals.md:1",
+   "consumer": "new-session/orientation",
+   "chunks": [
+    "None"
+   ],
+   "k": 1
+  },
+  {
+   "producer": "phase/research",
+   "artifact": "research",
+   "consumer": "phase/plan",
+   "chunks": [
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/research.md",
+   "consumer": "phase/plan",
+   "chunks": [
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "plan.md",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "k": 1
+  },
+  {
+   "producer": "wrap-session/reconcile",
+   "artifact": "spec:security-plan",
+   "consumer": "wrap-session/reconcile",
+   "chunks": [
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "k": 1
+  },
+  {
+   "producer": "wrap-session/reconcile",
+   "artifact": "spec:architecture",
+   "consumer": "wrap-session/reconcile",
+   "chunks": [
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "plan.md step 8",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-10-driver-cli"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "plan.md step 13",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-10-driver-cli"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-10-driver-cli"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "plan.md step 6",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-10-driver-cli"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "packages/escher-driver/src/json.rs",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-10-driver-cli"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "packages/escher-driver/src/client.rs",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-10-driver-cli"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "evidence/operator-pass.md",
+   "consumer": "wrap-session/report",
+   "chunks": [
+    "2026-10-10-driver-cli"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": ".andromeda/runs/2026-10-10T02-50-31-phase/p4-founder-forks.md",
+   "consumer": "wrap-session/report",
+   "chunks": [
+    "2026-10-10-driver-cli"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/scope.md",
+   "consumer": "phase/research",
+   "chunks": [
+    "2026-10-10-scrolling-box-bounds-and-hit"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/plan.md",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-10-scrolling-box-bounds-and-hit"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": ".andromeda/runs/2026-10-10T13-07-20-phase/relay-3.md",
+   "consumer": "wrap-session/report",
+   "chunks": [
+    "2026-10-10-scrolling-box-bounds-and-hit"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/evidence/operator-pass.md",
+   "consumer": "wrap-session/report",
+   "chunks": [
+    "2026-10-10-scrolling-box-bounds-and-hit"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "report.md",
+   "consumer": "wrap-session/reconcile",
+   "chunks": [
+    "2026-10-10-scrolling-box-bounds-and-hit"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "fanout-results.md",
+   "consumer": "wrap-session/reconcile",
+   "chunks": [
+    "2026-10-10-scrolling-box-bounds-and-hit"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "plan.md step 2",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-10-snapshot-states"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "plan.md step 3",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-10-snapshot-states"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "plan.md step 10",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-10-snapshot-states"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "escher-0.1.0/chunks/2026-10-10-snapshot-states/report.md",
+   "consumer": "wrap-session/reconcile",
+   "chunks": [
+    "2026-10-10-snapshot-states"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "cookbook",
+   "consumer": "phase/research",
+   "chunks": [
+    "2026-10-10-mcp-surface"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "scripts/code-graph-cookbook.md",
+   "consumer": "phase/research",
+   "chunks": [
+    "2026-10-10-mcp-surface"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "packages/escher-driver/src/cli.rs",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-10-mcp-surface"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "packages/escher-driver/src/mcp.rs",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-10-mcp-surface"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "examples/seven_guis/tests/mcp_server.rs",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-10-mcp-surface"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "escher-0.1.0/chunks/2026-10-10-mcp-surface/evidence/operator-pass.md",
+   "consumer": "wrap-session/report",
+   "chunks": [
+    "2026-10-10-mcp-surface"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "escher-0.1.0/chunks/2026-10-10-mcp-surface/report.md",
+   "consumer": "wrap-session/reconcile",
+   "chunks": [
+    "2026-10-10-mcp-surface"
+   ],
+   "k": 1
+  },
+  {
+   "producer": "phase/plan",
+   "artifact": "plan",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-12-headless-screenshot"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "escher-0.1.0/chunks/2026-10-12-headless-screenshot/plan.md",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-12-headless-screenshot"
+   ],
+   "k": 1
+  },
+  {
+   "producer": null,
+   "artifact": "packages/blitz-test-harness/src/screenshot.rs",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-12-headless-screenshot"
+   ],
+   "k": 1
+  }
+ ]
+}

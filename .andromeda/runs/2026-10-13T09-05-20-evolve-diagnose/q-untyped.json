@@ -1,0 +1,19 @@
+{
+ "epoch": "Epoch 5 - Agent surfaces",
+ "untyped_total": 21,
+ "clusters": [
+  {"id": "U1", "name": "founder decision reached the step by relay, not by the step's own dialog", "n": 3, "above": true,
+   "records": ["2026-10-10T00:34:22Z-c", "2026-10-10T08:21:37Z-c", "2026-10-10T19:02:09Z-c"],
+   "lookback": ["2026-10-07T02:45:21Z-b (Epoch 4, route-resolve, delegated direction)"], "proposed_type": "input.relayed-decision"},
+  {"id": "U2", "name": "a count or coordinate the agent wrote was wrong on first write, outside reconcile", "n": 4, "above": true,
+   "records": ["2026-10-09T19:50:06Z-d", "2026-10-10T16:33:25Z-d", "2026-10-10T01:31:02Z-b", "2026-10-10T02:47:37Z-b"],
+   "lookback": ["2026-10-05T22:02:28Z-b (Epoch 1)"], "proposed_type": "contract.authored-count-error"},
+  {"id": "U3", "name": "citation tooling read a coordinate wrongly or left a row to hand reading", "n": 4, "above": true,
+   "records": ["2026-10-09T20:55:00Z-b", "2026-10-09T21:17:27Z-g", "2026-10-10T02:37:05Z-e", "2026-10-10T10:57:00Z-f"],
+   "lookback": ["2026-10-07T08:27:21Z-b", "2026-10-07T11:08:36Z-b (Epoch 4)"], "proposed_type": "tooling.citation-coordinate"},
+  {"id": "U4", "name": "cascade.py sweep --pattern repeated flags run one pattern", "n": 2, "above": false,
+   "records": ["2026-10-12T09:00:00Z-b", "2026-10-12T20:41:49Z-c"], "correlate": "recall.corpus-recurrence 2026-10-13T06:24:40Z-b"},
+  {"id": "singles", "n": 8, "above": false,
+   "records": ["2026-10-09T19:50:06Z-c gh search four words empty", "2026-10-09T20:07:28Z-b restore edit from a recalled line", "2026-10-10T14:58:15Z-c until-loop to the 600 s ceiling", "2026-10-10T16:33:25Z-c state-dir-too-long under the scratchpad","2026-10-11T08:02:42Z-b serde_json member order", "2026-10-11T09:55:09Z-f directive vs P2's opening sweep", "2026-10-12T08:38:10Z-b rustfmt red after scripted edits", "2026-10-13T06:23:35Z-f comparer's background work notice"]}
+ ]
+}

@@ -1,0 +1,4183 @@
+{
+ "per_step": [
+  {
+   "key": "wrap-session/reconcile/contract.in-pass-correction",
+   "n": 10,
+   "weight": 28,
+   "impact": {
+    "iterations": 12,
+    "extra_reads": 5,
+    "retries": 6
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "10/8",
+   "above": true,
+   "chunks": [
+    "2026-10-09-audit-corrections-agent-surfaces",
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "2026-10-10-snapshot-states",
+    "2026-10-10-upstream-sync-agent-surfaces",
+    "2026-10-12-headless-screenshot",
+    "2026-10-12-self-description"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T21:17:27Z-d",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "the a11y-plan clause first said no stand task or app holds a textarea; a re-read before the sweep reworded it to no stand task or app gained one, and the sweep then showed two masters naming an example fixture's textarea",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      ".andromeda/a11y-plan.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T20-50-14-wrap/sweep.txt",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-09T21:17:27Z-e",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "the appended playbook rule's note first carried a clause of the writer's own (never as prose) beside the founder's sentence; a re-read removed it before anything else was written",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      ".andromeda/playbook.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-09T21:17:27Z-f",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "the first write of the test-plan fixture clause dropped the mutant-kill reading the proposal carried, on the plan's wording that the controls join section 4; section 4 has no bullet for the snapshot unit, read after the write, and the reading was restored in the section 1 clause",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 1
+     },
+     "artifacts": [
+      ".andromeda/test-plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T02:37:05Z-d",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "2 texts of this pass corrected before the commit: architecture [Default features], the writing-mode forwarding clause first read \"dioxus-native's to both\", ambiguous, reworded on a re-read; architecture sidecar entry 4, its Why first gave a reason the plan does not state, replaced with the plan's four on a read of the plan before the append",
+     "impact": {
+      "iterations": 2
+     },
+     "artifacts": [
+      "spec:architecture",
+      "sidecar:architecture"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T01-56-50-wrap/architecture-entry-4.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T10:57:00Z-d",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "a sidecar payload was first written with a Supersedes line naming an earlier entry whose facts all still stand in the body (only its PROVISIONAL status was retired); reading that entry's Change before the append caught it, and the payload was rewritten as a partial retirement named in Change",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      "sidecar:security-plan"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T10-03-00-wrap/security-plan-entry-4.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T15:58:16Z-d",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "three texts this pass wrote were wrong on first write and corrected before the commit: layout-templates.md:10 closed a clause with a dash and a semicolon (a re-read); test-plan.md:181 said 'that chunk pinned' where the referent read as the wrong chunk (a re-read); cascade-dispositions.md was first written with 0 rows by a script that mis-located the listing's rows (its printed count)",
+     "impact": {
+      "iterations": 3
+     },
+     "artifacts": [
+      ".andromeda/layout-templates.md:10",
+      ".andromeda/test-plan.md:181",
+      "cascade-dispositions.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T15-29-49-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T19:02:09Z-d",
+     "chunk": "2026-10-10-snapshot-states",
+     "what": "3 corrections before the commit: (1) security-plan Driver session socket row — the first write put ' | ' between state words inside a table cell, which would split the row's columns; caught on a re-read before the row check, respelled ' / ', and the new row's payload with it; (2) architecture-entry-2 payload — named a hand citation re-point as an amended section; a re-point takes no sidecar entry; caught re-reading the payloads against the bodies, removed before the append; (3) the seven_guis crate notes leaf — said Cells states no selected cell, a reading nobody took; caught on a re-read, restated as untouched and owned on the route",
+     "impact": {
+      "iterations": 3
+     },
+     "artifacts": [
+      ".andromeda/security-plan.md",
+      ".andromeda/runs/2026-10-10T17-47-57-wrap/architecture-entry-2.md",
+      ".claude/docs/services/seven_guis.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T09:55:09Z-c",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "three first writes in architecture.md were wrong and corrected before the commit, each caught by a grep for ' , ': a stray space before a comma after a replaced 'and' ('`Outcome` , the'), the same at the Names entry ('feature named , since'), and a list item that lost its conjunction at Existing Scopes (repaired to '—, the command line')",
+     "impact": {
+      "retries": 3
+     },
+     "artifacts": [
+      ".andromeda/architecture.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-12T09:38:40Z-c",
+     "chunk": "2026-10-12-self-description",
+     "what": "three texts this pass wrote were wrong on first write and corrected before commit: test-plan citation mcp_server.rs:286-288 (not a listing coordinate) re-pointed to 286-306 on re-reading the citation rule; obs-plan:70 first extended 'read no clock' to describe, narrowed on re-read (the report states no clock); CLAUDE.md:37 carried describe() twice after the tool applied two groups' findings, merged into one by hand",
+     "impact": {
+      "retries": 3
+     },
+     "artifacts": [
+      ".andromeda/test-plan.md:10",
+      ".andromeda/obs-plan.md:70",
+      "CLAUDE.md:37"
+     ],
+     "evidence": ".andromeda/runs/2026-10-12T08-55-10-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-13T06:23:35Z-c",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "four first writes corrected before the commit: three citation rows (arch:150, test:103, sec:392) first dispositioned claim false, read against mcp_log.rs and corrected to holds; fanout-results first said main raised 5, corrected to 4; architecture.md's screenshot sentence first put the font refusal ahead of the crop (an order the report does not state), reordered; test-plan.md's mcp_server clause first landed inside the Counter-flow parenthesis, moved",
+     "impact": {
+      "extra_reads": 4
+     },
+     "artifacts": null,
+     "evidence": ".andromeda/runs/2026-10-12T20-34-17-wrap/citation-dispositions.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/curation/recall.corpus-recurrence",
+   "n": 7,
+   "weight": 18,
+   "impact": {
+    "iterations": 2,
+    "halted": 1,
+    "dialogue_rounds": 1,
+    "retries": 4
+   },
+   "halt_or_soft": 1,
+   "step_runs": 10,
+   "rate": "7/10",
+   "above": true,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "2026-10-10-upstream-sync-agent-surfaces",
+    "2026-10-12-headless-screenshot",
+    "2026-10-12-self-description"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T02:39:55Z-b",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "the report hazard that a pattern anchored on Running tests/ reads 0 over gh run view --log was already a Tier 3 entry (2026-10-07, literal colour codes between Running and the path); the chunk plan wrote a gate entry with that pattern and the session first tolerant read repeated the ESC-byte half",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      "docs/session-learnings.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T01-56-50-wrap/curation.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T10:58:48Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the report's sweep hazard that a record quoting a temp-dir path is refused by the hygiene read matched the 2026-10-06 session learning on that exact defect, and the defect had recurred: the first draft of the chunk's operator-pass record was refused for it",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T10-03-00-wrap/curation.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T15:59:16Z-b",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "an operator pass was stopped a second time in two chunks by a host path in a committed run-dir text — this time a home path in the phase's copy of the operator's own review message — past the 2026-10-06 session learning that names the class",
+     "impact": {
+      "halted": 1,
+      "dialogue_rounds": 1
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md",
+      "evidence/operator-pass.md"
+     ],
+     "evidence": "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/report.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T09:56:20Z-b",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "the operator pass hit `$TMPDIR` unset in the Bash tool's shell again (a redirect to $TMPDIR/x wrote to /x, permission denied) though docs/session-learnings.md records the defect and its remedy since 2026-10-07",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-12T09:39:58Z-b",
+     "chunk": "2026-10-12-self-description",
+     "what": "a phase relay written verbatim carried a sibling directory's host path into a committed run dir and the snapped input copy, refused by hygiene at the operator pass, though the session-learnings hygiene entry states that committed run-dir text must not spell a host path even as prose",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md",
+      ".andromeda/runs/2026-10-12T06-49-46-phase/relay-3.md"
+     ],
+     "evidence": "escher-0.1.0/chunks/2026-10-12-self-description/evidence/operator-pass.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-12T09:39:58Z-c",
+     "chunk": "2026-10-12-self-description",
+     "what": "implement's Rust edits made by python string replacement skipped the PostToolUse rustfmt hook and the fast leg read red on a rustfmt diff, though the session-learnings rustfmt entry's 2026-10-06 extension states a scripted edit never fires the hook",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "evidence": "escher-0.1.0/chunks/2026-10-12-self-description/report.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-13T06:24:40Z-b",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "the Tier 3 entry '`cascade.py sweep --pattern` takes its ids after one flag' (curated 2026-10-12) did not prevent its recurrence: this chunk's P1 passed ten repeated `--pattern` flags and ran one pattern",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": null,
+     "evidence": ".claude/docs/session-learnings.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/code/input.plan-step-ambiguous",
+   "n": 9,
+   "weight": 13,
+   "impact": {
+    "reformulations": 3,
+    "dialogue_rounds": 0,
+    "extra_reads": 6,
+    "retries": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "9/8",
+   "above": true,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "2026-10-10-snapshot-states",
+    "2026-10-10-upstream-sync-agent-surfaces",
+    "2026-10-12-headless-screenshot"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T01:22:32Z-b",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "the plan's conflict steps say how each of the four files is resolved and that the merge stays staged for the operator's commit, but not whether implement marks the resolved paths with git add; the four were staged so no unmerged path is left, and the choice goes into the P4 report",
+     "impact": {
+      "reformulations": 0,
+      "dialogue_rounds": 0
+     },
+     "artifacts": [
+      "plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T09:23:13Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "step 13 states the idle-expiry check as the parent polling attach; step 8 makes each answered request restart the expiry, so the stated check can never read the host gone",
+     "impact": {
+      "extra_reads": 0
+     },
+     "artifacts": [
+      "plan.md step 8",
+      "plan.md step 13",
+      "tests/blitz-tests/tests/stand_session_lifecycle.rs"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T09:23:13Z-c",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "step 6 asks unit rows over a built node with every optional field; a DiffNode's role and bounds types are nameable from no dependency of escher-driver and no manifest may change, so the node writer was split over plain parts and the rows written on those",
+     "impact": {
+      "extra_reads": 2
+     },
+     "artifacts": [
+      "plan.md step 6",
+      "packages/escher-driver/src/json.rs"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T09:23:13Z-d",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "step 8 gives the client a public call and does not say what it does with a call whose line is over the request bound; settled as: the client checks the call first and answers a schema refusal itself, so every call sent fits",
+     "impact": {
+      "extra_reads": 0
+     },
+     "artifacts": [
+      "plan.md step 8",
+      "packages/escher-driver/src/client.rs"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T14:58:15Z-b",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "step 6 says the own-area and padding-box tests are made on the point before the scroll offset is added, and that the transform handling does not change; hit_inner inverse-transforms the point after the offset is added, so for a transformed scrolled box the step fixed no point — settled by reading paint (the clip is pushed before the scroll translation) and inverse-transforming the unscrolled point through the same matrix; a second point: step 5 is silent on the reader's loop shape while a listed probe forbids layout_data() on an added engine line, which ruled out starting the walk at the containing block in the writing_mode.rs body",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T17:01:31Z-b",
+     "chunk": "2026-10-10-snapshot-states",
+     "what": "steps 2 and 3 are to be read red before the code they hold, but both test files name fields the model gains only at step 5, so on the tree as built their red is a compile error; an assertion-level red was taken a second time after steps 4 to 8 with the stand unchanged",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      "plan.md step 2",
+      "plan.md step 3",
+      "plan.md step 10"
+     ],
+     "evidence": "escher-0.1.0/chunks/2026-10-10-snapshot-states/evidence/controls.md section 1",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T17:01:31Z-c",
+     "chunk": "2026-10-10-snapshot-states",
+     "what": "step 10 states one named mutation per new or extended test and then lists 17 mutations that reach no red for 4 of those tests (the diff unit test, the two restated schema tests, the aria-checked absence test); 5 controls were added and named as outside the list",
+     "impact": {
+      "extra_reads": 0
+     },
+     "artifacts": [
+      "plan.md step 10"
+     ],
+     "evidence": "escher-0.1.0/chunks/2026-10-10-snapshot-states/evidence/controls.md section 2",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T08:02:42Z-c",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "three plan points left silent and settled in the impl: cli run() takes apps to hand serve_mcp (plan said its test call sites stay as they are), start on an app outside apps refused malformed out-of-bound, and the id-less parse-error lines answered with id null against step 10's one-line-per-id count",
+     "impact": {
+      "reformulations": 3
+     },
+     "artifacts": [
+      "packages/escher-driver/src/cli.rs",
+      "packages/escher-driver/src/mcp.rs",
+      "examples/seven_guis/tests/mcp_server.rs"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-12T19:04:31Z-b",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "plan step 5 prescribes a white fill before paint_scene and the acceptance fixes the harness at three new deps; the fill's types (kurbo Rect, peniko Color/Fill) are re-exported by none of the three, so the two could not both hold as written",
+     "impact": {
+      "extra_reads": 3
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-12-headless-screenshot/plan.md",
+      "packages/blitz-test-harness/src/screenshot.rs"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/route-resolve/contract.carry-no-owner",
+   "n": 7,
+   "weight": 13,
+   "impact": {
+    "extra_reads": 16,
+    "dialogue_rounds": 3
+   },
+   "halt_or_soft": 0,
+   "step_runs": 11,
+   "rate": "7/11",
+   "above": true,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "2026-10-10-upstream-sync-agent-surfaces",
+    "2026-10-12-headless-screenshot",
+    "None"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T02:42:17Z-b",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "three of seven open findings named no owner entry in the report (the CI-log count pattern, the unattributed per-OS tallies, the watch); placed by the wrap without a halt under the project rule that every unowned finding gets a route owner: the first on Driver CLI, the second on Quality gates, each block saying the placement is the wrap's",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "working-route"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T01-56-50-wrap/route-resolve.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T11:00:49Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "three carries had no owner named by the report or a direction: the two engine fixes the founder left unfixed (placed on the next entry whose output carries bounds and a diff out of the process) and two untested command-line paths the test-plan detector noticed (placed on the quality-gates entry); placed without a halt under the project's own curated placement rule, each marked as the wrap's placement",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "working-route"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T10-03-00-wrap/route-resolve.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T13:00:44Z-c",
+     "chunk": null,
+     "what": "placement ambiguity after a partial direction: the relay anchored the next-entry WATCH as unchanged on the entry it sat on, while route-resolve's insertion rule re-pins it onto the new first entry; put to the operator inside the one trajectory halt, who chose the move",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/working-route.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T12-54-32-wrap/adaptation-record.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T13:06:26Z-b",
+     "chunk": null,
+     "what": "six relayed observations arrived with none pre-placed and each a hypothesis about the product; finding an owner per item took six code and intent reads before the one trajectory halt, which placed three new CARRYs on three entries and two clauses on existing CARRYs",
+     "impact": {
+      "dialogue_rounds": 1,
+      "extra_reads": 6
+     },
+     "artifacts": [
+      "escher-0.1.0/working-route.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T13-01-58-wrap/adaptation-record.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T16:03:52Z-c",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "five engine readings the chunk left had no obvious owner entry — none is reachable on the stand or through the driver; the callers of the unfixed reader were read to find the first work resting on it, three owners were proposed, and the operator moved two readings from the third to the second",
+     "impact": {
+      "extra_reads": 5,
+      "dialogue_rounds": 1
+     },
+     "artifacts": [
+      "working-route.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T15-29-49-wrap/adaptation-record.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T09:57:34Z-b",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "the operator's directive named the MCP-revision pin's content but not its entry; placed by the wrap on Self-description (the entry that serves what the server says about itself, server/discover among it) — a placement judgement, not a halt",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": null,
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-13T06:25:51Z-b",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "two owners had to be chosen by the wrap: the click-placed caret (the delegate directed 'a route owner', no entry named) went to 'Stand requirement sweep'; README.md:48 (the operator directed 'P2 or P5', no entry named) went to 'Upstream sync ahead of polish and ship', the next entry; the fade's card citation document.rs:1782-1801 had moved to 1829-1848 and was re-read",
+     "impact": {
+      "extra_reads": 2
+     },
+     "artifacts": null,
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/validate/contract.mechanical-check",
+   "n": 5,
+   "weight": 14,
+   "impact": {
+    "iterations": 2,
+    "extra_reads": 1,
+    "dialogue_rounds": 3,
+    "retries": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "5/8",
+   "above": true,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-upstream-sync-agent-surfaces",
+    "2026-10-12-headless-screenshot",
+    "2026-10-12-self-description"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T01:18:10Z-b",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "three checks asked for a resolution on the plan as authored: 4 (4) — criteria name evidence records no entry produces and the prose named only one of them; 9 — the platform-issues slot read none beside two folded runner-only bullets; 4 (9) — a new mark stood on an entry an earlier plan already names",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/plan.md",
+      "escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/research.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T08:33:14Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the plan carried only the first half of the option the founder chose for the engine findings: it measured and pinned the readings and left their statement to the masters, where the chosen option says the limits are stated where the tool describes them; the operator's review caught it and no mechanical check compares a plan against the text of a chosen fork option",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "artifacts": [
+      "plan.md",
+      "p4-founder-forks.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T08:33:14Z-c",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "a bound the plan states for the wire, the largest answer, had no check that could reach its branch: no stand screen comes near it and the plan listed only the new error variant's message test; the operator's review caught it, in the same round as the record above, and no mechanical check asks whether a stated bound has a row on each side of it",
+     "impact": {
+      "dialogue_rounds": 0
+     },
+     "artifacts": [
+      "plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-12T08:16:22Z-b",
+     "chunk": "2026-10-12-self-description",
+     "what": "the operator's review of p5-card-1.md caught two plan defects no mechanical check attempts: step 3 required pairwise-distinct session-error remedies where two kinds may truly share a next step, and step 13 lacked a help tool call made first after initialize, before any start; folded, the full check set re-run, a second card",
+     "impact": {
+      "dialogue_rounds": 1,
+      "retries": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-12-self-description/plan.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-12T06-49-46-phase/relay-3.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-12T18:42:39Z-b",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "the operator's review caught that an eleventh verb and a ninth cause break the literals ('the ten verbs', 'the eight causes') of two already-verified caps (v010-13, v010-14) and the ref pins they cite; no P4 read or P5 predicate checks a verified cap's acceptance against counts the plan moves — folded as two ledger notes plus a ninth cause served over MCP so the restated acceptance holds",
+     "impact": {
+      "dialogue_rounds": 1,
+      "iterations": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-12-headless-screenshot/plan.md",
+      "escher-0.1.0/verification-matrix.json#v010-13",
+      "escher-0.1.0/verification-matrix.json#v010-14"
+     ],
+     "evidence": ".andromeda/runs/2026-10-12T18-14-09-phase/p5-card-2.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/input.report-insufficient",
+   "n": 5,
+   "weight": 12,
+   "impact": {
+    "dialogue_rounds": 1,
+    "halted": 1,
+    "extra_reads": 16,
+    "reformulations": 2
+   },
+   "halt_or_soft": 1,
+   "step_runs": 8,
+   "rate": "5/8",
+   "above": true,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "2026-10-10-snapshot-states",
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T02:37:05Z-b",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "the security detector could not confirm the hint-less font-source change validated: the report states it in one Symbols sentence and gives it no Coverage row; and the report left the text-indent sentence unread for a detector that may open no source file",
+     "impact": {
+      "dialogue_rounds": 1,
+      "halted": 1
+     },
+     "artifacts": [
+      "report",
+      "spec:security-plan",
+      "spec:architecture"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T01-56-50-wrap/escalations.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T10:57:00Z-e",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "eleven proposals across three detectors said a count or a reader set `wants a re-read` because the report gives a new test file but not which shared modules it declares, the unit-test total but not its per-file split, and a changed README range but not its wording",
+     "impact": {
+      "extra_reads": 5
+     },
+     "artifacts": [
+      "report"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T10-03-00-wrap/fanout-results.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T15:58:16Z-b",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "two detectors left the report to finish a proposal: test-plan read stand_actionable_keys.rs to name Harness::scroll_into_view and grepped three new check files for a writing-mode style; both proposals were rejected for source and their facts re-measured and raised by the orchestrator",
+     "impact": {
+      "extra_reads": 3,
+      "reformulations": 2
+     },
+     "artifacts": [
+      "report.md",
+      "fanout-results.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T15-29-49-wrap/fanout-results.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T19:02:09Z-e",
+     "chunk": "2026-10-10-snapshot-states",
+     "what": "the report's Counts table names the master sites of each retired count; for the 'eleven driver-action files' claim it under-ran by three test-plan occurrences (§1 escher-driver, §4, §5), and it gave no site for four security-plan restatements of the socket's content list and the help texts — each found by a detector's wording sweep",
+     "impact": {
+      "extra_reads": 7
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-snapshot-states/report.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T17-47-57-wrap/fanout-results.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T09:55:09Z-d",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "the report's Harness bullet names stand_mcp_tools as a stand check but not that it reads tests/session_common/mod.rs, so the masters' reader counts (seventeen of the eighteen session-holding checks; seventeen readers in architecture's blitz-tests row) could not be amended from the report",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-mcp-surface/report.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.cascade-miss",
+   "n": 6,
+   "weight": 9,
+   "impact": {
+    "extra_reads": 17,
+    "iterations": 3
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "6/8",
+   "above": true,
+   "chunks": [
+    "2026-10-09-audit-corrections-agent-surfaces",
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "2026-10-12-headless-screenshot",
+    "2026-10-12-self-description"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T21:17:27Z-c",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "the sweep pattern for the retired leg count keyed on the words 64 tests and Ran 64 and read 0 rows while a leaf still said 64 CI-script tests; the stale leaf was found by reading the line another pattern's row named",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      ".claude/docs/tests-summary.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T20-50-14-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T10:57:00Z-c",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "five restatements no detector proposed stood after the apply and were found by the cascade sweep or a leftover grep: an `adds no crossing` clause and a `measured in process only` clause in security-plan, the binary named `the headless session host` in security-plan and architecture, and test-plan's bullet name `Session host - lifecycle socket`",
+     "impact": {
+      "iterations": 2,
+      "extra_reads": 5
+     },
+     "artifacts": [
+      "spec:security-plan",
+      "spec:architecture",
+      "spec:test-plan"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T10-03-00-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T15:58:16Z-c",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "architecture.md:130 restated that the driver's scroll is Harness::scroll_into_view's one caller; no detector proposed it and the cascade sweep's scroll-only pattern found it after the bodies were applied; amended, a pattern added, the sweep run again",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 1
+     },
+     "artifacts": [
+      ".andromeda/architecture.md:130",
+      "cascade-patterns.toml"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T15-29-49-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T09:55:09Z-b",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "six restatements no detector proposed and the plan's list did not name were found by the orchestrator's own read during apply and amended: architecture.md:138 (escher-session roles and endings), :150 (escher_driver log target emitters), :193 (the command span alone), :263 (blitz-tests stand checks), security-plan.md:123 (the id's exits), test-plan.md §6 (no MCP driver row)",
+     "impact": {
+      "extra_reads": 6
+     },
+     "artifacts": [
+      ".andromeda/architecture.md",
+      ".andromeda/security-plan.md",
+      ".andromeda/test-plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-12T09:38:40Z-b",
+     "chunk": "2026-10-12-self-description",
+     "what": "three restatements no detector or comparer named were caught after the apply: test-plan.md:143 json.rs pins (session error without remedy) by the step-2 sweep's own listing; services/escher-driver.md:60 (59 unit tests) by the post-apply re-sweep; services/seven_guis.md:11 (one unix-only comparison) by main's read of the merged line",
+     "impact": {
+      "extra_reads": 3
+     },
+     "artifacts": [
+      ".andromeda/test-plan.md:143",
+      ".claude/docs/services/escher-driver.md:60",
+      ".claude/docs/services/seven_guis.md:11"
+     ],
+     "evidence": ".andromeda/runs/2026-10-12T08-55-10-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-13T06:23:35Z-d",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "the architecture-2 comparer (WHOLE mode) left services/escher-driver.md:60 stating 66 unit tests and mcp.rs 10, and :55 'the six instance verbs'; the re-sweep after the write found both, written by hand",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": null,
+     "evidence": ".andromeda/runs/2026-10-12T20-34-17-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/report/input.implement-outcome-unsettled",
+   "n": 3,
+   "weight": 11,
+   "impact": {
+    "retries": 4,
+    "dialogue_rounds": 2
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "3/8",
+   "above": true,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "2026-10-10-scrolling-box-bounds-and-hit"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T10:07:56Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the operator pass ended fixed: the hygiene entry read refused on a file of the phase's run dir (27 temp-dir paths) and was re-fired clean after the operator-named rewrite, and once more after the pass's own record first quoted the path; the outcome basis is the pass's final state (one commit, CI green on its sha) with implement's report for what only it holds",
+     "impact": {
+      "retries": 2
+     },
+     "artifacts": [
+      "evidence/operator-pass.md",
+      ".andromeda/runs/2026-10-10T02-50-31-phase/p4-founder-forks.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T15:35:05Z-b",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "a step after implement changed the pass's outcome: the operator pass's hygiene entry read refused on the phase's run-dir copy of an operator message (a home path outside the repository), the pass stopped on the operator's instruction and went on after a one-token rewrite he named; the report's outcome basis is the pass's final state as evidence/operator-pass.md records it, implement's report standing for the source and its measurements",
+     "impact": {
+      "dialogue_rounds": 1,
+      "retries": 1
+     },
+     "artifacts": [
+      ".andromeda/runs/2026-10-10T13-07-20-phase/relay-3.md",
+      "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/evidence/operator-pass.md"
+     ],
+     "evidence": "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/evidence/operator-pass.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T08:38:54Z-b",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "the operator pass ended fixed: CI#38124028789 attempt 1 red (Build wasm examples, rustup connection reset before any compile), the failed job re-run on the operator's word, attempt 2 green 16/16 — the report's outcome basis is the pass's evidence, implement's report for the rest",
+     "impact": {
+      "retries": 1,
+      "dialogue_rounds": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-mcp-surface/evidence/operator-pass.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/curation/ambiguity.filter-borderline",
+   "n": 4,
+   "weight": 8,
+   "impact": {
+    "iterations": 2,
+    "dialogue_rounds": 1,
+    "deferred": 1,
+    "extra_reads": 0
+   },
+   "halt_or_soft": 0,
+   "step_runs": 10,
+   "rate": "4/10",
+   "above": true,
+   "chunks": [
+    "2026-10-09-audit-corrections-agent-surfaces",
+    "2026-10-10-driver-cli",
+    "2026-10-10-upstream-sync-agent-surfaces",
+    "None"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T21:19:51Z-b",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "Filter 4, the no-other-home signal on the mutation-control restore rule: this wrap's test-plan amendment records that the chunk's controls were restored by sha256, a fact of the chunk, and whether that counts as the fact amended into a master was open; judged not, since the rule itself stands in no master",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      ".claude/rules/testing.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T20-50-14-wrap/curation.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T00:34:22Z-b",
+     "chunk": null,
+     "what": "Filter 5: four new entries were approved one by one in review mode (one Tier 3 promotion on the founder's word, three memory-note homes on the operator's); the letter does not say whether the cap of three binds entries approved singly in review mode, so it was put to the operator, who ruled that the letter holds and one entry waits in the handoff",
+     "impact": {
+      "dialogue_rounds": 1,
+      "deferred": 1
+     },
+     "artifacts": [
+      "curation-tier-decision.md",
+      "curation-guide.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T21-37-22-wrap/curation.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T02:39:55Z-c",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "Filter 4 conditional signal load-bearing for the next entry: the facet scored exactly 0.6 and the signal applies unless the entry already carries the fact at an annotation position; at P3 it does not, while P5 of the same wrap pins the same finding on that entry as its route owner; applied, the CARRY written to point at the entry rather than restate it",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      "curation-tier-decision"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T01-56-50-wrap/curation.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T10:58:48Z-c",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "Filter 4, the signal verified by measurement: whether an Edit refused on two matches counts as a real gate failure was open for the citation prefix-twin candidate; it was scored as one",
+     "impact": {
+      "extra_reads": 0
+     },
+     "artifacts": null,
+     "evidence": ".andromeda/runs/2026-10-10T10-03-00-wrap/curation.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/route-resolve/contract.no-sanctioned-channel",
+   "n": 4,
+   "weight": 8,
+   "impact": {
+    "dialogue_rounds": 2,
+    "extra_reads": 5,
+    "deferred": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 11,
+   "rate": "4/11",
+   "above": true,
+   "chunks": [
+    "2026-10-09-audit-corrections-agent-surfaces",
+    "None"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T19:28:10Z-b",
+     "chunk": null,
+     "what": "A directive item, the first citation sweep, had no permitted surface on the 0-pending path (citation-contract: the 0-pending path runs no sweep). First-sweep steps 1-2 were run before the ask (a refused dry run, map, 18 block rows and 4 stretched rows read, first-sweep-read.md written); the operator declined the write and the read is repeated at the next chunk wrap.",
+     "impact": {
+      "dialogue_rounds": 1,
+      "extra_reads": 4
+     },
+     "artifacts": [
+      "citation-contract.md",
+      "first-sweep-read.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T19-17-00-wrap/citation-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-09T19:28:10Z-c",
+     "chunk": null,
+     "what": "A directive item, appending a founder-approved playbook rule, had no named door on the 0-pending path (SKILL step 6 lists seed-rule supersession as the playbook's one door there; amendment-flow's propose-approve-append names no path). Asked in the same round; carried to the corrective chunk's wrap, the rule and the word kept in the handoff.",
+     "impact": {
+      "dialogue_rounds": 1,
+      "deferred": 1
+     },
+     "artifacts": [
+      ".andromeda/playbook.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T19-17-00-wrap/adaptation-record.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-09T21:21:27Z-c",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "one open finding of the report — the new-text listing's row for a bash while loop whose body is a case ends one line early — is about a pipeline tool, not the project, so it took no route owner under the direction that every open finding gets one; it is named in the handoff for the operator instead",
+     "impact": {
+      "extra_reads": 0
+     },
+     "artifacts": [
+      "report.md",
+      ".claude/session-handoff.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T13:00:44Z-d",
+     "chunk": null,
+     "what": "a green CI run on the last wrap commit, a run of the WATCH's subject, has no channel into the WATCH tally on the 0-pending path (the tally is re-authored from a chunk report's watches line); the tally was left as it stood and the run named in the handoff",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/working-route.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.false-positive-proposal",
+   "n": 3,
+   "weight": 8,
+   "impact": {
+    "extra_reads": 2,
+    "reformulations": 5
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "3/8",
+   "above": true,
+   "chunks": [
+    "2026-10-09-audit-corrections-agent-surfaces",
+    "2026-10-10-driver-cli",
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T21:17:27Z-b",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "a test-plan proposal was narrowed at apply: its change line counted five one-shot mutations for the CI-script bullet while listing four (the fifth of the chunk is the snapshot arm), and its retitle of the bullet was not applied",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "fanout-results",
+      "evidence/controls.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T20-50-14-wrap/fanout-results.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T02:37:05Z-c",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "5 of 54 proposals narrowed at Validate, none rejected whole: D-arch-resources x3 registered methods, functions or other crates feature names inside already-registered categories (registry over-reach), D-arch-decisions x1 carried a clause no report bullet states, x1 a by-runner clause that is test-plan's",
+     "impact": {
+      "reformulations": 5
+     },
+     "artifacts": [
+      "fanout-results"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T01-56-50-wrap/fanout-results.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T10:57:00Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "D-obs-stack proposal 10 (and the citation half of 8) asked to drop a line number because the report states none for it; the citation sweep had proved the cited lines unmoved and a read confirmed them",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "spec:obs-plan"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T10-03-00-wrap/fanout-results.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/validate/ambiguity.review-cycles",
+   "n": 2,
+   "weight": 7,
+   "impact": {
+    "dialogue_rounds": 2,
+    "iterations": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "2/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T01:18:10Z-c",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "the review took two rounds: the first yes carried a direction on what the moved-numbers table must show, which changed a step, an evidence item and a criterion, so it was folded, the check set re-run and the prompt shown again; the second yes was the word",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T14:32:50Z-b",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "one review round beyond the word: the plan was written on the narrowest option of two forks this phase had classified as the founder's; the operator answered both as technical with wider options and reversed one P4 answer, so three steps, three gate entries and two criteria were re-synthesised and the whole check set re-run; the review message and the relay it pointed to disagreed on one sentence, folded by the relay and flagged, then confirmed with the word",
+     "impact": {
+      "dialogue_rounds": 1,
+      "iterations": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/plan.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T13-07-20-phase/p4-founder-forks.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/fix-loop/contract.test-expectation",
+   "n": 2,
+   "weight": 4,
+   "impact": {
+    "iterations": 2,
+    "extra_reads": 2
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "2/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-scrolling-box-bounds-and-hit"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T09:40:57Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "gates 4, 20 and 21 went red on one cause: stand_act_disabled asserted that a type into a filled control adds its text to the old value, the reading the chunk's own step 4 replaces; restated as a recorded companion and surfaced in the report",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      "tests/blitz-tests/tests/stand_act_disabled.rs",
+      "plan.md gate 4"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T08-55-54-implement (gate trail, first run, entries 4 20 21)",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T15:11:45Z-b",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "the stand run and the local pre-push gate both went red on stand_actionable_keys::the_non_lean_tasks_are_measured: its way of opening a task (a click at the centre of a card lying outside Home's scrolling box) held only while a hit reached clipped-out content; the count it pins did not move",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 2
+     },
+     "artifacts": [
+      "tests/blitz-tests/tests/stand_actionable_keys.rs"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T14-33-38-implement",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/research/contract.token-proxy-check",
+   "n": 2,
+   "weight": 4,
+   "impact": {
+    "retries": 1,
+    "reformulations": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "2/8",
+   "above": false,
+   "chunks": [
+    "2026-10-09-audit-corrections-agent-surfaces",
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T19:50:06Z-b",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "the stamp-ahead write hook read a bare time-of-day quoted from a two-day-old CI job record as a stamp a few minutes ahead of the clock and blocked the evidence file; false positive, settled by reading the hit; the times were then written with their date",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      "ci-37673662374-install-hang.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T19-31-04-phase/ci-37673662374-install-hang.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T01:02:41Z-b",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "a job count over the three upstream-only workflows was taken by a line pattern for two-space-indented keys, which also matched the trigger keys under on:, and read 3, 4 and 2 jobs where a YAML read gives 1, 2 and 1; direction: a false over-count that made the guard lines look too few; the truth came from parsing the files",
+     "impact": {
+      "reformulations": 1
+     },
+     "artifacts": [
+      ".github/workflows/publish-browser.yml",
+      ".github/workflows/wpt.yml",
+      ".github/workflows/wpt-post-results.yml"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/route-resolve/tooling.long-line-edit",
+   "n": 2,
+   "weight": 4,
+   "impact": {
+    "retries": 2
+   },
+   "halt_or_soft": 0,
+   "step_runs": 11,
+   "rate": "2/11",
+   "above": false,
+   "chunks": [
+    "2026-10-10-mcp-surface",
+    "None"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T13:00:44Z-b",
+     "chunk": null,
+     "what": "an anchored Edit with an empty replacement, removing three freight blocks (3.3 KB) from the end of a route entry line, also consumed the line terminator and joined the separator onto the entry; route.py printed UNPARSED for the line; one anchored Edit restored the newline and the reads were re-run",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/working-route.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T12-54-32-wrap/adaptation-record.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T09:57:34Z-c",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "the first anchored Edit on working-route line 81 (4441 chars) failed: the anchor carried the Read view's line-number prefix of line 82; re-anchored on the line's own last clause plus the separator line",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/working-route.md:81"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/fix-loop/contract.instrument-validity",
+   "n": 2,
+   "weight": 3,
+   "impact": {
+    "extra_reads": 3,
+    "retries": 0,
+    "iterations": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "2/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-mcp-surface",
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T01:55:57Z-a",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "operator entry 38, a report-only grep count of three named test targets over gh run view --log, read 0 at exit 1 on a green 16/16 run: CI's cargo colours the word Running and the log spells the colour codes as text before the path, and the Windows job prints a backslash path, so the pattern cannot match; a second read of the saved log with the codes dropped and either separator read 12 (3 targets in 4 jobs); the entry's pattern had no known-positive control on a CI log, and the known positive that exposed it was the bare target name reading 4 lines",
+     "impact": {
+      "extra_reads": 3,
+      "retries": 0
+     },
+     "artifacts": [
+      "plan.md",
+      "evidence/ci.md",
+      "evidence/operator-pass.md"
+     ],
+     "evidence": "escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/evidence/ci.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T08:08:25Z-b",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "stand_mcp_tools' hand-written span subscriber (with_default) recorded 0 spans when the file's second test ran beside it with no subscriber — tracing's per-callsite interest cache; shown only by the known-positive of running the test alone (green); fixed by giving the second test its own recorder, then 15/15 repeated runs green",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 0
+     },
+     "artifacts": [
+      "tests/blitz-tests/tests/stand_mcp_tools.rs"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/route-resolve/ambiguity.trajectory-halt",
+   "n": 1,
+   "weight": 6,
+   "impact": {
+    "halted": 1,
+    "dialogue_rounds": 1
+   },
+   "halt_or_soft": 1,
+   "step_runs": 11,
+   "rate": "1/11",
+   "above": false,
+   "chunks": [
+    "2026-10-10-scrolling-box-bounds-and-hit"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T16:03:52Z-b",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "one halt, one round: a new entry ahead of the head for a founder ruling relayed for this wrap, its requirement side, the split of an existing CARRY and the owners of five engine readings, put as four questions",
+     "impact": {
+      "halted": 1,
+      "dialogue_rounds": 1
+     },
+     "artifacts": [
+      "working-route.md",
+      "adaptation-record.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T15-29-49-wrap/adaptation-record.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/fix-loop/contract.premise-falsified",
+   "n": 2,
+   "weight": 2,
+   "impact": {
+    "iterations": 0
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "2/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-driver-cli"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T09:40:57Z-c",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the route CARRY's hypothesis that typed text is inserted inside a filled control's old value read false at step 1: on the stand's date input it is appended after it, in both layout modes",
+     "impact": {
+      "iterations": 0
+     },
+     "artifacts": [
+      "scope.md CARRY 7",
+      "evidence/type-filled.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T09:40:57Z-d",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the route CARRY's hypothesis that a control where a scrolled-out row extends reads covered read false on the fixture the plan names (a button below the box) and true only for a button before a scrolled box; a second fixture was measured and both are pinned",
+     "impact": {
+      "iterations": 0
+     },
+     "artifacts": [
+      "scope.md CARRY 9",
+      "plan.md step 1",
+      "evidence/engine-findings.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/distill/contract.extract-format",
+   "n": 2,
+   "weight": 2,
+   "impact": {
+    "retries": 0
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "2/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T03:02:03Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the layouts history file carries two bold Kept spans inside its items beside the marker bold; sidecar.py cites listed both as not a marker, 11 of 11 cites resolved, no fix or re-spawn",
+     "impact": {
+      "retries": 0
+     },
+     "artifacts": [
+      "layouts-history.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T19:25:10Z-b",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "two history files (arch, obs) put a title beside the marker inside every bold span where the prompt says the bold holds the marker alone, and three (design, layouts, obs) bolded a label inside an item, read by sidecar.py cites as 6 not-a-marker rows; every cite still resolved and nothing was re-spawned",
+     "impact": {
+      "retries": 0
+     },
+     "artifacts": [
+      "arch-history.md",
+      "obs-history.md",
+      "design-history.md",
+      "layouts-history.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T19-14-13-phase/",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.proposal-format",
+   "n": 2,
+   "weight": 2,
+   "impact": {
+    "extra_reads": 2
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "2/8",
+   "above": false,
+   "chunks": [
+    "2026-10-12-headless-screenshot",
+    "2026-10-12-self-description"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-12T09:38:40Z-d",
+     "chunk": "2026-10-12-self-description",
+     "what": "two comparer outputs left the form: leaf-security-plan.md security-summary.md:22#2 read `unparsed` (a guillemet pair inside its replace-with), written by hand; the design-system comparer edited its own findings file twice after its one Write, against the brief, the path check still clean",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      ".andromeda/runs/2026-10-12T08-55-10-wrap/leaf-security-plan.md",
+      ".andromeda/runs/2026-10-12T08-55-10-wrap/leaf-design-system.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-12T08-55-10-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-13T06:23:35Z-e",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "4 security-plan leaf findings read unparsed: each replace-with quoted the founder's label in guillemets, a second «» pair inside the field; written by hand without the quoted labels",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": null,
+     "evidence": ".andromeda/runs/2026-10-12T20-34-17-wrap/cascade-leaves-apply.txt",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/code/tooling.hook-friction",
+   "n": 1,
+   "weight": 3,
+   "impact": {
+    "retries": 2
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "1/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-driver-cli"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T09:23:13Z-e",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the Bash guard refused a cat heredoc with a file target twice in this step (a scratch test fragment, then a scratch edit script); the second was the same act after the first refusal had named the form",
+     "impact": {
+      "retries": 2
+     },
+     "artifacts": [
+      "andromeda-tools/hooks/bash-guard.sh"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/research/tooling.output-cap-overflow",
+   "n": 1,
+   "weight": 3,
+   "impact": {
+    "retries": 2
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "1/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-snapshot-states"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T16:33:25Z-b",
+     "chunk": "2026-10-10-snapshot-states",
+     "what": "a fetch of the 1.4 MB WAI-ARIA 1.2 page was cut before the attribute definitions; recovered by one whole download and two local extraction runs (the first cut each block at its heading)",
+     "impact": {
+      "retries": 2
+     },
+     "artifacts": [
+      "https://www.w3.org/TR/wai-aria-1.2/"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/ambiguity.escalation-rounds",
+   "n": 1,
+   "weight": 3,
+   "impact": {
+    "dialogue_rounds": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "1/8",
+   "above": false,
+   "chunks": [
+    "2026-10-12-headless-screenshot"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-13T06:23:35Z-b",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "the Validate halt (answer card + playbook rule) went unanswered for 58 min and timed out; the founder's answers arrived the next morning as an operator message relaying his chosen labels, recorded as relay-1.md",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "artifacts": null,
+     "evidence": ".andromeda/runs/2026-10-12T20-34-17-wrap/relay-1.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/ambiguity.playbook-no-match",
+   "n": 1,
+   "weight": 3,
+   "impact": {
+    "dialogue_rounds": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "1/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-mcp-surface"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-11T09:55:09Z-e",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "S13 and S14 (the live trial a second user of the operator's Claude Code login) matched no playbook rule: not a boundary widening by the letter, but the 2026-10-06 ratification names the cold-agent run only — escalated by unease on the same card, resolved on the founder's relayed answer",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "artifacts": null,
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/plan/retry.synthesis-rework",
+   "n": 1,
+   "weight": 2,
+   "impact": {
+    "iterations": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "1/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-driver-cli"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T08:21:37Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the first draft had the mask criterion extend a standing check that another criterion and a gate note held unedited, a census entry that read green with its subject file absent, a note claiming zero-test lines the baseline run did not show, and five criteria naming an entry by description instead of its run text; each was rewritten before the checks were taken",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      "plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/research/contract.instrument-validity",
+   "n": 1,
+   "weight": 2,
+   "impact": {
+    "retries": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "1/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-driver-cli"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T03:07:26Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "a line-anchored count over cargo tree's feature output read 0 distinct blitz-dom features on both builds; cargo prints those lines behind tree-drawing characters, so the anchor could match none; shown by the implausible zero on a tree of 304 lines, re-run unanchored: 16 and 5",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      "research.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.jointly-contradictory-instructions",
+   "n": 1,
+   "weight": 2,
+   "impact": {
+    "reformulations": 1,
+    "extra_reads": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "1/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-snapshot-states"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T19:02:09Z-b",
+     "chunk": "2026-10-10-snapshot-states",
+     "what": "Setup 2a 'resume reuses the report as is' and P1 'an input the wrap reads is snapped and the report cites inputs#I{n}' cannot both hold when a resume reads a new input; exposed by inputs.py verify, which prints UNCITED until the report cites the entry. Second consecutive wrap with this shape",
+     "impact": {
+      "reformulations": 1,
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-snapshot-states/report.md",
+      "inputs#I6",
+      "inputs#I7"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T17-47-57-wrap/inputs-2026-10-10-snapshot-states.json",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/report/contract.narrow-basis-claim",
+   "n": 1,
+   "weight": 2,
+   "impact": {
+    "retries": 1,
+    "extra_reads": 2
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "1/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-snapshot-states"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T17:54:12Z-b",
+     "chunk": "2026-10-10-snapshot-states",
+     "what": "three clauses of the report were first written from a basis narrower than the claim and corrected by measuring before the listing was pasted: a base diff figure derived by subtraction, a statement that no registry file holds a hit made from a pattern set that lacked the count words (one key file states the eleven driver-action files), and a characterisation of digit hits that had not been read",
+     "impact": {
+      "retries": 1,
+      "extra_reads": 2
+     },
+     "artifacts": [
+      "report.md"
+     ],
+     "evidence": "escher-0.1.0/chunks/2026-10-10-snapshot-states/report.md Counts table and Expected amendments item 9",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/route-resolve/contract.grammar-irregularity",
+   "n": 1,
+   "weight": 2,
+   "impact": {
+    "iterations": 1,
+    "extra_reads": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 11,
+   "rate": "1/11",
+   "above": false,
+   "chunks": [
+    "2026-10-09-audit-corrections-agent-surfaces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T21:21:27Z-b",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "71 · WATCH: · 895 chars · clause UNPARSED — the first write put the watch's detail after its since-and-retires clause, and the clause has to close the block; rewritten with the clause last, then read 0/3",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/working-route.md:71"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T20-50-14-wrap/route-2026-10-09-audit-corrections-agent-surfaces.json",
+     "clause_retracted": [
+      "discount the evidence pointer '.andromeda/runs/2026-10-09T20-50-14-wrap/route-2026-10-09-audit-corrections-agent-surfaces.json' — no such file; the trail is route-no-marker.json in the same run dir. The record's finding stands."
+     ]
+    }
+   ]
+  },
+  {
+   "key": "implement/code/contract.token-proxy-check",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "1/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-snapshot-states"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T17:01:31Z-d",
+     "chunk": "2026-10-10-snapshot-states",
+     "what": "false positive: the control batch's closing check compared git status text before and after where the property was that the mutated sources were restored; a ledger-tool trail written into the run dir during the batch made the texts differ and the background call exit 1; the truth came from reading the diff and the per-control sha256 lines",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "scratchpad controls batch"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "new-session/orientation/input.handoff-git-mismatch",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 0
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "1/8",
+   "above": false,
+   "chunks": [
+    "None"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T19:14:33Z-b",
+     "chunk": null,
+     "what": "The handoff's Position lists /andromeda-evolve-diagnose for Epoch 4 as not started (no proposals file targets it); the tree holds an untracked run .andromeda/runs/2026-10-09T14-03-28-evolve-diagnose/proposals.md whose title line carries escher-0.1.0 and Epoch 4, and an untracked code-audit run of the same day. Neither skill writes the handoff, so its boundary list read one item behind; the nudge derivation read the title line and did not fire.",
+     "impact": {
+      "extra_reads": 0
+     },
+     "artifacts": [
+      ".claude/session-handoff.md:11",
+      ".andromeda/runs/2026-10-09T14-03-28-evolve-diagnose/proposals.md:1"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/plan/input.research-thin",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 2
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "1/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T01:11:14Z-b",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "research listed the conflict regions of the workflow and three upstream changes outside them, but not the full outside-region set (a runner label and a dropped toolchain component were found by resolving the trial merge to our sides and diffing against HEAD), and its platform-issues slot read none beside two folded runner-only bullets; both were filled at synthesis",
+     "impact": {
+      "extra_reads": 2
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/research.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/research/input.cookbook-gap",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "reformulations": 0,
+    "extra_reads": 0
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "1/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-mcp-surface"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T19:31:14Z-b",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "one impact query over eleven entry-point names, filtered on a tests directory in the caller's path, returned about 180 rows because Rust unit tests sit inline in the source files it meant to keep; the production call sites were about 20 of them and were picked out by reading the caller names",
+     "impact": {
+      "reformulations": 0,
+      "extra_reads": 0
+     },
+     "artifacts": [
+      "scripts/code-graph-cookbook.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T19-14-13-phase/tree-query-2026-10-10-mcp-surface.json",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/research/input.extract-signal-gap",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "1/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-scrolling-box-bounds-and-hit"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T13:26:37Z-b",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "the take-up scope listed a caller of the bounds reader by file and line without its function name; three extracts read it as the into-view scroll and raised a research question on that basis; the graph and the read showed the caller is the visible-region reader, and the closure overrode the extracts in scope",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/scope.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T13-07-20-phase/tree-query-2026-10-10-scrolling-box-bounds-and-hit.json",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/take-up/tooling.long-line-edit",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "1/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-driver-cli"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T02:54:48Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the taken-up working-route entry is a single 12358-char line; pins prints an index only, so the fold read the line through an authored scratchpad script that splits it at each separator plus introducer",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/working-route.md:73"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/curation/ambiguity.tier-routing",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "deferred": 0
+   },
+   "halt_or_soft": 0,
+   "step_runs": 10,
+   "rate": "1/10",
+   "above": false,
+   "chunks": [
+    "None"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T13:00:44Z-f",
+     "chunk": null,
+     "what": "a tool-mechanics learning whose Tier-2 class home is the always-loaded host leaf was judged by Tier 1's bar and demoted to Tier 3 whole; 1 demotion",
+     "impact": {
+      "deferred": 0
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T12-54-32-wrap/curation.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/gates/contract.narrow-basis-claim",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "1/8",
+   "above": false,
+   "chunks": [
+    "2026-10-09-audit-corrections-agent-surfaces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T21:27:13Z-b",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "an evidence pointer on a route-resolve record named the route tool's trail by the chunk's marker before the run dir was listed; the route calls carried no marker and the trail is route-no-marker.json",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      ".andromeda/runs/2026-10-09T20-50-14-wrap/route-no-marker.json"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/report/contract.skill-reference-drift",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "1/8",
+   "above": false,
+   "chunks": [
+    "2026-10-12-headless-screenshot"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-12T20:41:49Z-b",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "wrap SKILL.md Phase 1 (The site sweep) names `cascade v1.4` as the only accepted stamp, while amendment-flow.md §Tool and the deployed cascade.py print `cascade v1.6`",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "andromeda-wrap-session/SKILL.md",
+      "andromeda-wrap-session/references/amendment-flow.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/report/recall.change-reconstruction",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 6
+   },
+   "halt_or_soft": 0,
+   "step_runs": 8,
+   "rate": "1/8",
+   "above": false,
+   "chunks": [
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T02:03:30Z-b",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "a merge chunk's session holds the conflicts and the one fix, not upstream's 61 commits: the Symbols bullet's upstream facts (the trait impls moved to LayoutPassState, the autofocus condition, the hintless font source, the file URL read) and four Coverage rows were reconstructed at P1 from the merged files and upstream's fixed-sha diff, and three Coverage test flags stayed at none-named after a grep",
+     "impact": {
+      "extra_reads": 6
+     },
+     "artifacts": [
+      "report.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/route-resolve/contract.premise-falsified",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": 11,
+   "rate": "1/11",
+   "above": false,
+   "chunks": [
+    "None"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T19:28:10Z-d",
+     "chunk": null,
+     "what": "The directive states the CI package-install step hung in four CI runs on 2026-10-07; gh run list of the fork read two runs created that day with a re-run (37673662374 attempt 3, 37687897931 attempt 2), the second one's cause not read. The moved CARRY carries the measured reading and names the directive's count as the directive's, on the operator's word.",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/working-route.md:69"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T19-17-00-wrap/relay-1.md",
+     "clause_retracted": null
+    }
+   ]
+  }
+ ],
+ "by_type_alone": [
+  {
+   "key": "TYPE:contract.in-pass-correction",
+   "n": 10,
+   "weight": 28,
+   "impact": {
+    "iterations": 12,
+    "extra_reads": 5,
+    "retries": 6
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": true,
+   "chunks": [
+    "2026-10-09-audit-corrections-agent-surfaces",
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "2026-10-10-snapshot-states",
+    "2026-10-10-upstream-sync-agent-surfaces",
+    "2026-10-12-headless-screenshot",
+    "2026-10-12-self-description"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T21:17:27Z-d",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "the a11y-plan clause first said no stand task or app holds a textarea; a re-read before the sweep reworded it to no stand task or app gained one, and the sweep then showed two masters naming an example fixture's textarea",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      ".andromeda/a11y-plan.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T20-50-14-wrap/sweep.txt",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-09T21:17:27Z-e",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "the appended playbook rule's note first carried a clause of the writer's own (never as prose) beside the founder's sentence; a re-read removed it before anything else was written",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      ".andromeda/playbook.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-09T21:17:27Z-f",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "the first write of the test-plan fixture clause dropped the mutant-kill reading the proposal carried, on the plan's wording that the controls join section 4; section 4 has no bullet for the snapshot unit, read after the write, and the reading was restored in the section 1 clause",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 1
+     },
+     "artifacts": [
+      ".andromeda/test-plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T02:37:05Z-d",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "2 texts of this pass corrected before the commit: architecture [Default features], the writing-mode forwarding clause first read \"dioxus-native's to both\", ambiguous, reworded on a re-read; architecture sidecar entry 4, its Why first gave a reason the plan does not state, replaced with the plan's four on a read of the plan before the append",
+     "impact": {
+      "iterations": 2
+     },
+     "artifacts": [
+      "spec:architecture",
+      "sidecar:architecture"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T01-56-50-wrap/architecture-entry-4.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T10:57:00Z-d",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "a sidecar payload was first written with a Supersedes line naming an earlier entry whose facts all still stand in the body (only its PROVISIONAL status was retired); reading that entry's Change before the append caught it, and the payload was rewritten as a partial retirement named in Change",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      "sidecar:security-plan"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T10-03-00-wrap/security-plan-entry-4.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T15:58:16Z-d",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "three texts this pass wrote were wrong on first write and corrected before the commit: layout-templates.md:10 closed a clause with a dash and a semicolon (a re-read); test-plan.md:181 said 'that chunk pinned' where the referent read as the wrong chunk (a re-read); cascade-dispositions.md was first written with 0 rows by a script that mis-located the listing's rows (its printed count)",
+     "impact": {
+      "iterations": 3
+     },
+     "artifacts": [
+      ".andromeda/layout-templates.md:10",
+      ".andromeda/test-plan.md:181",
+      "cascade-dispositions.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T15-29-49-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T19:02:09Z-d",
+     "chunk": "2026-10-10-snapshot-states",
+     "what": "3 corrections before the commit: (1) security-plan Driver session socket row — the first write put ' | ' between state words inside a table cell, which would split the row's columns; caught on a re-read before the row check, respelled ' / ', and the new row's payload with it; (2) architecture-entry-2 payload — named a hand citation re-point as an amended section; a re-point takes no sidecar entry; caught re-reading the payloads against the bodies, removed before the append; (3) the seven_guis crate notes leaf — said Cells states no selected cell, a reading nobody took; caught on a re-read, restated as untouched and owned on the route",
+     "impact": {
+      "iterations": 3
+     },
+     "artifacts": [
+      ".andromeda/security-plan.md",
+      ".andromeda/runs/2026-10-10T17-47-57-wrap/architecture-entry-2.md",
+      ".claude/docs/services/seven_guis.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T09:55:09Z-c",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "three first writes in architecture.md were wrong and corrected before the commit, each caught by a grep for ' , ': a stray space before a comma after a replaced 'and' ('`Outcome` , the'), the same at the Names entry ('feature named , since'), and a list item that lost its conjunction at Existing Scopes (repaired to '—, the command line')",
+     "impact": {
+      "retries": 3
+     },
+     "artifacts": [
+      ".andromeda/architecture.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-12T09:38:40Z-c",
+     "chunk": "2026-10-12-self-description",
+     "what": "three texts this pass wrote were wrong on first write and corrected before commit: test-plan citation mcp_server.rs:286-288 (not a listing coordinate) re-pointed to 286-306 on re-reading the citation rule; obs-plan:70 first extended 'read no clock' to describe, narrowed on re-read (the report states no clock); CLAUDE.md:37 carried describe() twice after the tool applied two groups' findings, merged into one by hand",
+     "impact": {
+      "retries": 3
+     },
+     "artifacts": [
+      ".andromeda/test-plan.md:10",
+      ".andromeda/obs-plan.md:70",
+      "CLAUDE.md:37"
+     ],
+     "evidence": ".andromeda/runs/2026-10-12T08-55-10-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-13T06:23:35Z-c",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "four first writes corrected before the commit: three citation rows (arch:150, test:103, sec:392) first dispositioned claim false, read against mcp_log.rs and corrected to holds; fanout-results first said main raised 5, corrected to 4; architecture.md's screenshot sentence first put the font refusal ahead of the crop (an order the report does not state), reordered; test-plan.md's mcp_server clause first landed inside the Counter-flow parenthesis, moved",
+     "impact": {
+      "extra_reads": 4
+     },
+     "artifacts": null,
+     "evidence": ".andromeda/runs/2026-10-12T20-34-17-wrap/citation-dispositions.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:recall.corpus-recurrence",
+   "n": 7,
+   "weight": 18,
+   "impact": {
+    "iterations": 2,
+    "halted": 1,
+    "dialogue_rounds": 1,
+    "retries": 4
+   },
+   "halt_or_soft": 1,
+   "step_runs": null,
+   "rate": null,
+   "above": true,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "2026-10-10-upstream-sync-agent-surfaces",
+    "2026-10-12-headless-screenshot",
+    "2026-10-12-self-description"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T02:39:55Z-b",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "the report hazard that a pattern anchored on Running tests/ reads 0 over gh run view --log was already a Tier 3 entry (2026-10-07, literal colour codes between Running and the path); the chunk plan wrote a gate entry with that pattern and the session first tolerant read repeated the ESC-byte half",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      "docs/session-learnings.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T01-56-50-wrap/curation.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T10:58:48Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the report's sweep hazard that a record quoting a temp-dir path is refused by the hygiene read matched the 2026-10-06 session learning on that exact defect, and the defect had recurred: the first draft of the chunk's operator-pass record was refused for it",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T10-03-00-wrap/curation.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T15:59:16Z-b",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "an operator pass was stopped a second time in two chunks by a host path in a committed run-dir text — this time a home path in the phase's copy of the operator's own review message — past the 2026-10-06 session learning that names the class",
+     "impact": {
+      "halted": 1,
+      "dialogue_rounds": 1
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md",
+      "evidence/operator-pass.md"
+     ],
+     "evidence": "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/report.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T09:56:20Z-b",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "the operator pass hit `$TMPDIR` unset in the Bash tool's shell again (a redirect to $TMPDIR/x wrote to /x, permission denied) though docs/session-learnings.md records the defect and its remedy since 2026-10-07",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-12T09:39:58Z-b",
+     "chunk": "2026-10-12-self-description",
+     "what": "a phase relay written verbatim carried a sibling directory's host path into a committed run dir and the snapped input copy, refused by hygiene at the operator pass, though the session-learnings hygiene entry states that committed run-dir text must not spell a host path even as prose",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md",
+      ".andromeda/runs/2026-10-12T06-49-46-phase/relay-3.md"
+     ],
+     "evidence": "escher-0.1.0/chunks/2026-10-12-self-description/evidence/operator-pass.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-12T09:39:58Z-c",
+     "chunk": "2026-10-12-self-description",
+     "what": "implement's Rust edits made by python string replacement skipped the PostToolUse rustfmt hook and the fast leg read red on a rustfmt diff, though the session-learnings rustfmt entry's 2026-10-06 extension states a scripted edit never fires the hook",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "evidence": "escher-0.1.0/chunks/2026-10-12-self-description/report.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-13T06:24:40Z-b",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "the Tier 3 entry '`cascade.py sweep --pattern` takes its ids after one flag' (curated 2026-10-12) did not prevent its recurrence: this chunk's P1 passed ten repeated `--pattern` flags and ran one pattern",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": null,
+     "evidence": ".claude/docs/session-learnings.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:input.plan-step-ambiguous",
+   "n": 9,
+   "weight": 13,
+   "impact": {
+    "reformulations": 3,
+    "dialogue_rounds": 0,
+    "extra_reads": 6,
+    "retries": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": true,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "2026-10-10-snapshot-states",
+    "2026-10-10-upstream-sync-agent-surfaces",
+    "2026-10-12-headless-screenshot"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T01:22:32Z-b",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "the plan's conflict steps say how each of the four files is resolved and that the merge stays staged for the operator's commit, but not whether implement marks the resolved paths with git add; the four were staged so no unmerged path is left, and the choice goes into the P4 report",
+     "impact": {
+      "reformulations": 0,
+      "dialogue_rounds": 0
+     },
+     "artifacts": [
+      "plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T09:23:13Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "step 13 states the idle-expiry check as the parent polling attach; step 8 makes each answered request restart the expiry, so the stated check can never read the host gone",
+     "impact": {
+      "extra_reads": 0
+     },
+     "artifacts": [
+      "plan.md step 8",
+      "plan.md step 13",
+      "tests/blitz-tests/tests/stand_session_lifecycle.rs"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T09:23:13Z-c",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "step 6 asks unit rows over a built node with every optional field; a DiffNode's role and bounds types are nameable from no dependency of escher-driver and no manifest may change, so the node writer was split over plain parts and the rows written on those",
+     "impact": {
+      "extra_reads": 2
+     },
+     "artifacts": [
+      "plan.md step 6",
+      "packages/escher-driver/src/json.rs"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T09:23:13Z-d",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "step 8 gives the client a public call and does not say what it does with a call whose line is over the request bound; settled as: the client checks the call first and answers a schema refusal itself, so every call sent fits",
+     "impact": {
+      "extra_reads": 0
+     },
+     "artifacts": [
+      "plan.md step 8",
+      "packages/escher-driver/src/client.rs"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T14:58:15Z-b",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "step 6 says the own-area and padding-box tests are made on the point before the scroll offset is added, and that the transform handling does not change; hit_inner inverse-transforms the point after the offset is added, so for a transformed scrolled box the step fixed no point — settled by reading paint (the clip is pushed before the scroll translation) and inverse-transforming the unscrolled point through the same matrix; a second point: step 5 is silent on the reader's loop shape while a listed probe forbids layout_data() on an added engine line, which ruled out starting the walk at the containing block in the writing_mode.rs body",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T17:01:31Z-b",
+     "chunk": "2026-10-10-snapshot-states",
+     "what": "steps 2 and 3 are to be read red before the code they hold, but both test files name fields the model gains only at step 5, so on the tree as built their red is a compile error; an assertion-level red was taken a second time after steps 4 to 8 with the stand unchanged",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      "plan.md step 2",
+      "plan.md step 3",
+      "plan.md step 10"
+     ],
+     "evidence": "escher-0.1.0/chunks/2026-10-10-snapshot-states/evidence/controls.md section 1",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T17:01:31Z-c",
+     "chunk": "2026-10-10-snapshot-states",
+     "what": "step 10 states one named mutation per new or extended test and then lists 17 mutations that reach no red for 4 of those tests (the diff unit test, the two restated schema tests, the aria-checked absence test); 5 controls were added and named as outside the list",
+     "impact": {
+      "extra_reads": 0
+     },
+     "artifacts": [
+      "plan.md step 10"
+     ],
+     "evidence": "escher-0.1.0/chunks/2026-10-10-snapshot-states/evidence/controls.md section 2",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T08:02:42Z-c",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "three plan points left silent and settled in the impl: cli run() takes apps to hand serve_mcp (plan said its test call sites stay as they are), start on an app outside apps refused malformed out-of-bound, and the id-less parse-error lines answered with id null against step 10's one-line-per-id count",
+     "impact": {
+      "reformulations": 3
+     },
+     "artifacts": [
+      "packages/escher-driver/src/cli.rs",
+      "packages/escher-driver/src/mcp.rs",
+      "examples/seven_guis/tests/mcp_server.rs"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-12T19:04:31Z-b",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "plan step 5 prescribes a white fill before paint_scene and the acceptance fixes the harness at three new deps; the fill's types (kurbo Rect, peniko Color/Fill) are re-exported by none of the three, so the two could not both hold as written",
+     "impact": {
+      "extra_reads": 3
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-12-headless-screenshot/plan.md",
+      "packages/blitz-test-harness/src/screenshot.rs"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:contract.carry-no-owner",
+   "n": 7,
+   "weight": 13,
+   "impact": {
+    "extra_reads": 16,
+    "dialogue_rounds": 3
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": true,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "2026-10-10-upstream-sync-agent-surfaces",
+    "2026-10-12-headless-screenshot",
+    "None"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T02:42:17Z-b",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "three of seven open findings named no owner entry in the report (the CI-log count pattern, the unattributed per-OS tallies, the watch); placed by the wrap without a halt under the project rule that every unowned finding gets a route owner: the first on Driver CLI, the second on Quality gates, each block saying the placement is the wrap's",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "working-route"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T01-56-50-wrap/route-resolve.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T11:00:49Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "three carries had no owner named by the report or a direction: the two engine fixes the founder left unfixed (placed on the next entry whose output carries bounds and a diff out of the process) and two untested command-line paths the test-plan detector noticed (placed on the quality-gates entry); placed without a halt under the project's own curated placement rule, each marked as the wrap's placement",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "working-route"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T10-03-00-wrap/route-resolve.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T13:00:44Z-c",
+     "chunk": null,
+     "what": "placement ambiguity after a partial direction: the relay anchored the next-entry WATCH as unchanged on the entry it sat on, while route-resolve's insertion rule re-pins it onto the new first entry; put to the operator inside the one trajectory halt, who chose the move",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/working-route.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T12-54-32-wrap/adaptation-record.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T13:06:26Z-b",
+     "chunk": null,
+     "what": "six relayed observations arrived with none pre-placed and each a hypothesis about the product; finding an owner per item took six code and intent reads before the one trajectory halt, which placed three new CARRYs on three entries and two clauses on existing CARRYs",
+     "impact": {
+      "dialogue_rounds": 1,
+      "extra_reads": 6
+     },
+     "artifacts": [
+      "escher-0.1.0/working-route.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T13-01-58-wrap/adaptation-record.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T16:03:52Z-c",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "five engine readings the chunk left had no obvious owner entry — none is reachable on the stand or through the driver; the callers of the unfixed reader were read to find the first work resting on it, three owners were proposed, and the operator moved two readings from the third to the second",
+     "impact": {
+      "extra_reads": 5,
+      "dialogue_rounds": 1
+     },
+     "artifacts": [
+      "working-route.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T15-29-49-wrap/adaptation-record.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T09:57:34Z-b",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "the operator's directive named the MCP-revision pin's content but not its entry; placed by the wrap on Self-description (the entry that serves what the server says about itself, server/discover among it) — a placement judgement, not a halt",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": null,
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-13T06:25:51Z-b",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "two owners had to be chosen by the wrap: the click-placed caret (the delegate directed 'a route owner', no entry named) went to 'Stand requirement sweep'; README.md:48 (the operator directed 'P2 or P5', no entry named) went to 'Upstream sync ahead of polish and ship', the next entry; the fade's card citation document.rs:1782-1801 had moved to 1829-1848 and was re-read",
+     "impact": {
+      "extra_reads": 2
+     },
+     "artifacts": null,
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:contract.mechanical-check",
+   "n": 5,
+   "weight": 14,
+   "impact": {
+    "iterations": 2,
+    "extra_reads": 1,
+    "dialogue_rounds": 3,
+    "retries": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": true,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-upstream-sync-agent-surfaces",
+    "2026-10-12-headless-screenshot",
+    "2026-10-12-self-description"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T01:18:10Z-b",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "three checks asked for a resolution on the plan as authored: 4 (4) — criteria name evidence records no entry produces and the prose named only one of them; 9 — the platform-issues slot read none beside two folded runner-only bullets; 4 (9) — a new mark stood on an entry an earlier plan already names",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/plan.md",
+      "escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/research.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T08:33:14Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the plan carried only the first half of the option the founder chose for the engine findings: it measured and pinned the readings and left their statement to the masters, where the chosen option says the limits are stated where the tool describes them; the operator's review caught it and no mechanical check compares a plan against the text of a chosen fork option",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "artifacts": [
+      "plan.md",
+      "p4-founder-forks.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T08:33:14Z-c",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "a bound the plan states for the wire, the largest answer, had no check that could reach its branch: no stand screen comes near it and the plan listed only the new error variant's message test; the operator's review caught it, in the same round as the record above, and no mechanical check asks whether a stated bound has a row on each side of it",
+     "impact": {
+      "dialogue_rounds": 0
+     },
+     "artifacts": [
+      "plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-12T08:16:22Z-b",
+     "chunk": "2026-10-12-self-description",
+     "what": "the operator's review of p5-card-1.md caught two plan defects no mechanical check attempts: step 3 required pairwise-distinct session-error remedies where two kinds may truly share a next step, and step 13 lacked a help tool call made first after initialize, before any start; folded, the full check set re-run, a second card",
+     "impact": {
+      "dialogue_rounds": 1,
+      "retries": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-12-self-description/plan.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-12T06-49-46-phase/relay-3.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-12T18:42:39Z-b",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "the operator's review caught that an eleventh verb and a ninth cause break the literals ('the ten verbs', 'the eight causes') of two already-verified caps (v010-13, v010-14) and the ref pins they cite; no P4 read or P5 predicate checks a verified cap's acceptance against counts the plan moves — folded as two ledger notes plus a ninth cause served over MCP so the restated acceptance holds",
+     "impact": {
+      "dialogue_rounds": 1,
+      "iterations": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-12-headless-screenshot/plan.md",
+      "escher-0.1.0/verification-matrix.json#v010-13",
+      "escher-0.1.0/verification-matrix.json#v010-14"
+     ],
+     "evidence": ".andromeda/runs/2026-10-12T18-14-09-phase/p5-card-2.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:input.report-insufficient",
+   "n": 5,
+   "weight": 12,
+   "impact": {
+    "dialogue_rounds": 1,
+    "halted": 1,
+    "extra_reads": 16,
+    "reformulations": 2
+   },
+   "halt_or_soft": 1,
+   "step_runs": null,
+   "rate": null,
+   "above": true,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "2026-10-10-snapshot-states",
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T02:37:05Z-b",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "the security detector could not confirm the hint-less font-source change validated: the report states it in one Symbols sentence and gives it no Coverage row; and the report left the text-indent sentence unread for a detector that may open no source file",
+     "impact": {
+      "dialogue_rounds": 1,
+      "halted": 1
+     },
+     "artifacts": [
+      "report",
+      "spec:security-plan",
+      "spec:architecture"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T01-56-50-wrap/escalations.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T10:57:00Z-e",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "eleven proposals across three detectors said a count or a reader set `wants a re-read` because the report gives a new test file but not which shared modules it declares, the unit-test total but not its per-file split, and a changed README range but not its wording",
+     "impact": {
+      "extra_reads": 5
+     },
+     "artifacts": [
+      "report"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T10-03-00-wrap/fanout-results.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T15:58:16Z-b",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "two detectors left the report to finish a proposal: test-plan read stand_actionable_keys.rs to name Harness::scroll_into_view and grepped three new check files for a writing-mode style; both proposals were rejected for source and their facts re-measured and raised by the orchestrator",
+     "impact": {
+      "extra_reads": 3,
+      "reformulations": 2
+     },
+     "artifacts": [
+      "report.md",
+      "fanout-results.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T15-29-49-wrap/fanout-results.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T19:02:09Z-e",
+     "chunk": "2026-10-10-snapshot-states",
+     "what": "the report's Counts table names the master sites of each retired count; for the 'eleven driver-action files' claim it under-ran by three test-plan occurrences (§1 escher-driver, §4, §5), and it gave no site for four security-plan restatements of the socket's content list and the help texts — each found by a detector's wording sweep",
+     "impact": {
+      "extra_reads": 7
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-snapshot-states/report.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T17-47-57-wrap/fanout-results.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T09:55:09Z-d",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "the report's Harness bullet names stand_mcp_tools as a stand check but not that it reads tests/session_common/mod.rs, so the masters' reader counts (seventeen of the eighteen session-holding checks; seventeen readers in architecture's blitz-tests row) could not be amended from the report",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-mcp-surface/report.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:contract.cascade-miss",
+   "n": 6,
+   "weight": 9,
+   "impact": {
+    "extra_reads": 17,
+    "iterations": 3
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": true,
+   "chunks": [
+    "2026-10-09-audit-corrections-agent-surfaces",
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "2026-10-12-headless-screenshot",
+    "2026-10-12-self-description"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T21:17:27Z-c",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "the sweep pattern for the retired leg count keyed on the words 64 tests and Ran 64 and read 0 rows while a leaf still said 64 CI-script tests; the stale leaf was found by reading the line another pattern's row named",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      ".claude/docs/tests-summary.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T20-50-14-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T10:57:00Z-c",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "five restatements no detector proposed stood after the apply and were found by the cascade sweep or a leftover grep: an `adds no crossing` clause and a `measured in process only` clause in security-plan, the binary named `the headless session host` in security-plan and architecture, and test-plan's bullet name `Session host - lifecycle socket`",
+     "impact": {
+      "iterations": 2,
+      "extra_reads": 5
+     },
+     "artifacts": [
+      "spec:security-plan",
+      "spec:architecture",
+      "spec:test-plan"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T10-03-00-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T15:58:16Z-c",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "architecture.md:130 restated that the driver's scroll is Harness::scroll_into_view's one caller; no detector proposed it and the cascade sweep's scroll-only pattern found it after the bodies were applied; amended, a pattern added, the sweep run again",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 1
+     },
+     "artifacts": [
+      ".andromeda/architecture.md:130",
+      "cascade-patterns.toml"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T15-29-49-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T09:55:09Z-b",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "six restatements no detector proposed and the plan's list did not name were found by the orchestrator's own read during apply and amended: architecture.md:138 (escher-session roles and endings), :150 (escher_driver log target emitters), :193 (the command span alone), :263 (blitz-tests stand checks), security-plan.md:123 (the id's exits), test-plan.md §6 (no MCP driver row)",
+     "impact": {
+      "extra_reads": 6
+     },
+     "artifacts": [
+      ".andromeda/architecture.md",
+      ".andromeda/security-plan.md",
+      ".andromeda/test-plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-12T09:38:40Z-b",
+     "chunk": "2026-10-12-self-description",
+     "what": "three restatements no detector or comparer named were caught after the apply: test-plan.md:143 json.rs pins (session error without remedy) by the step-2 sweep's own listing; services/escher-driver.md:60 (59 unit tests) by the post-apply re-sweep; services/seven_guis.md:11 (one unix-only comparison) by main's read of the merged line",
+     "impact": {
+      "extra_reads": 3
+     },
+     "artifacts": [
+      ".andromeda/test-plan.md:143",
+      ".claude/docs/services/escher-driver.md:60",
+      ".claude/docs/services/seven_guis.md:11"
+     ],
+     "evidence": ".andromeda/runs/2026-10-12T08-55-10-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-13T06:23:35Z-d",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "the architecture-2 comparer (WHOLE mode) left services/escher-driver.md:60 stating 66 unit tests and mcp.rs 10, and :55 'the six instance verbs'; the re-sweep after the write found both, written by hand",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": null,
+     "evidence": ".andromeda/runs/2026-10-12T20-34-17-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:input.implement-outcome-unsettled",
+   "n": 3,
+   "weight": 11,
+   "impact": {
+    "retries": 4,
+    "dialogue_rounds": 2
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": true,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "2026-10-10-scrolling-box-bounds-and-hit"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T10:07:56Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the operator pass ended fixed: the hygiene entry read refused on a file of the phase's run dir (27 temp-dir paths) and was re-fired clean after the operator-named rewrite, and once more after the pass's own record first quoted the path; the outcome basis is the pass's final state (one commit, CI green on its sha) with implement's report for what only it holds",
+     "impact": {
+      "retries": 2
+     },
+     "artifacts": [
+      "evidence/operator-pass.md",
+      ".andromeda/runs/2026-10-10T02-50-31-phase/p4-founder-forks.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T15:35:05Z-b",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "a step after implement changed the pass's outcome: the operator pass's hygiene entry read refused on the phase's run-dir copy of an operator message (a home path outside the repository), the pass stopped on the operator's instruction and went on after a one-token rewrite he named; the report's outcome basis is the pass's final state as evidence/operator-pass.md records it, implement's report standing for the source and its measurements",
+     "impact": {
+      "dialogue_rounds": 1,
+      "retries": 1
+     },
+     "artifacts": [
+      ".andromeda/runs/2026-10-10T13-07-20-phase/relay-3.md",
+      "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/evidence/operator-pass.md"
+     ],
+     "evidence": "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/evidence/operator-pass.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T08:38:54Z-b",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "the operator pass ended fixed: CI#38124028789 attempt 1 red (Build wasm examples, rustup connection reset before any compile), the failed job re-run on the operator's word, attempt 2 green 16/16 — the report's outcome basis is the pass's evidence, implement's report for the rest",
+     "impact": {
+      "retries": 1,
+      "dialogue_rounds": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-mcp-surface/evidence/operator-pass.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:ambiguity.filter-borderline",
+   "n": 4,
+   "weight": 8,
+   "impact": {
+    "iterations": 2,
+    "dialogue_rounds": 1,
+    "deferred": 1,
+    "extra_reads": 0
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": true,
+   "chunks": [
+    "2026-10-09-audit-corrections-agent-surfaces",
+    "2026-10-10-driver-cli",
+    "2026-10-10-upstream-sync-agent-surfaces",
+    "None"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T21:19:51Z-b",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "Filter 4, the no-other-home signal on the mutation-control restore rule: this wrap's test-plan amendment records that the chunk's controls were restored by sha256, a fact of the chunk, and whether that counts as the fact amended into a master was open; judged not, since the rule itself stands in no master",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      ".claude/rules/testing.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T20-50-14-wrap/curation.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T00:34:22Z-b",
+     "chunk": null,
+     "what": "Filter 5: four new entries were approved one by one in review mode (one Tier 3 promotion on the founder's word, three memory-note homes on the operator's); the letter does not say whether the cap of three binds entries approved singly in review mode, so it was put to the operator, who ruled that the letter holds and one entry waits in the handoff",
+     "impact": {
+      "dialogue_rounds": 1,
+      "deferred": 1
+     },
+     "artifacts": [
+      "curation-tier-decision.md",
+      "curation-guide.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T21-37-22-wrap/curation.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T02:39:55Z-c",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "Filter 4 conditional signal load-bearing for the next entry: the facet scored exactly 0.6 and the signal applies unless the entry already carries the fact at an annotation position; at P3 it does not, while P5 of the same wrap pins the same finding on that entry as its route owner; applied, the CARRY written to point at the entry rather than restate it",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      "curation-tier-decision"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T01-56-50-wrap/curation.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T10:58:48Z-c",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "Filter 4, the signal verified by measurement: whether an Edit refused on two matches counts as a real gate failure was open for the citation prefix-twin candidate; it was scored as one",
+     "impact": {
+      "extra_reads": 0
+     },
+     "artifacts": null,
+     "evidence": ".andromeda/runs/2026-10-10T10-03-00-wrap/curation.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:contract.no-sanctioned-channel",
+   "n": 4,
+   "weight": 8,
+   "impact": {
+    "dialogue_rounds": 2,
+    "extra_reads": 5,
+    "deferred": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": true,
+   "chunks": [
+    "2026-10-09-audit-corrections-agent-surfaces",
+    "None"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T19:28:10Z-b",
+     "chunk": null,
+     "what": "A directive item, the first citation sweep, had no permitted surface on the 0-pending path (citation-contract: the 0-pending path runs no sweep). First-sweep steps 1-2 were run before the ask (a refused dry run, map, 18 block rows and 4 stretched rows read, first-sweep-read.md written); the operator declined the write and the read is repeated at the next chunk wrap.",
+     "impact": {
+      "dialogue_rounds": 1,
+      "extra_reads": 4
+     },
+     "artifacts": [
+      "citation-contract.md",
+      "first-sweep-read.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T19-17-00-wrap/citation-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-09T19:28:10Z-c",
+     "chunk": null,
+     "what": "A directive item, appending a founder-approved playbook rule, had no named door on the 0-pending path (SKILL step 6 lists seed-rule supersession as the playbook's one door there; amendment-flow's propose-approve-append names no path). Asked in the same round; carried to the corrective chunk's wrap, the rule and the word kept in the handoff.",
+     "impact": {
+      "dialogue_rounds": 1,
+      "deferred": 1
+     },
+     "artifacts": [
+      ".andromeda/playbook.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T19-17-00-wrap/adaptation-record.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-09T21:21:27Z-c",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "one open finding of the report — the new-text listing's row for a bash while loop whose body is a case ends one line early — is about a pipeline tool, not the project, so it took no route owner under the direction that every open finding gets one; it is named in the handoff for the operator instead",
+     "impact": {
+      "extra_reads": 0
+     },
+     "artifacts": [
+      "report.md",
+      ".claude/session-handoff.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T13:00:44Z-d",
+     "chunk": null,
+     "what": "a green CI run on the last wrap commit, a run of the WATCH's subject, has no channel into the WATCH tally on the 0-pending path (the tally is re-authored from a chunk report's watches line); the tally was left as it stood and the run named in the handoff",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/working-route.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:contract.false-positive-proposal",
+   "n": 3,
+   "weight": 8,
+   "impact": {
+    "extra_reads": 2,
+    "reformulations": 5
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": true,
+   "chunks": [
+    "2026-10-09-audit-corrections-agent-surfaces",
+    "2026-10-10-driver-cli",
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T21:17:27Z-b",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "a test-plan proposal was narrowed at apply: its change line counted five one-shot mutations for the CI-script bullet while listing four (the fifth of the chunk is the snapshot arm), and its retitle of the bullet was not applied",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "fanout-results",
+      "evidence/controls.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T20-50-14-wrap/fanout-results.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T02:37:05Z-c",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "5 of 54 proposals narrowed at Validate, none rejected whole: D-arch-resources x3 registered methods, functions or other crates feature names inside already-registered categories (registry over-reach), D-arch-decisions x1 carried a clause no report bullet states, x1 a by-runner clause that is test-plan's",
+     "impact": {
+      "reformulations": 5
+     },
+     "artifacts": [
+      "fanout-results"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T01-56-50-wrap/fanout-results.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T10:57:00Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "D-obs-stack proposal 10 (and the citation half of 8) asked to drop a line number because the report states none for it; the citation sweep had proved the cited lines unmoved and a read confirmed them",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "spec:obs-plan"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T10-03-00-wrap/fanout-results.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:contract.instrument-validity",
+   "n": 3,
+   "weight": 5,
+   "impact": {
+    "extra_reads": 3,
+    "retries": 1,
+    "iterations": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": true,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T01:55:57Z-a",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "operator entry 38, a report-only grep count of three named test targets over gh run view --log, read 0 at exit 1 on a green 16/16 run: CI's cargo colours the word Running and the log spells the colour codes as text before the path, and the Windows job prints a backslash path, so the pattern cannot match; a second read of the saved log with the codes dropped and either separator read 12 (3 targets in 4 jobs); the entry's pattern had no known-positive control on a CI log, and the known positive that exposed it was the bare target name reading 4 lines",
+     "impact": {
+      "extra_reads": 3,
+      "retries": 0
+     },
+     "artifacts": [
+      "plan.md",
+      "evidence/ci.md",
+      "evidence/operator-pass.md"
+     ],
+     "evidence": "escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/evidence/ci.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T03:07:26Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "a line-anchored count over cargo tree's feature output read 0 distinct blitz-dom features on both builds; cargo prints those lines behind tree-drawing characters, so the anchor could match none; shown by the implausible zero on a tree of 304 lines, re-run unanchored: 16 and 5",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      "research.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T08:08:25Z-b",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "stand_mcp_tools' hand-written span subscriber (with_default) recorded 0 spans when the file's second test ran beside it with no subscriber — tracing's per-callsite interest cache; shown only by the known-positive of running the test alone (green); fixed by giving the second test its own recorder, then 15/15 repeated runs green",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 0
+     },
+     "artifacts": [
+      "tests/blitz-tests/tests/stand_mcp_tools.rs"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:contract.token-proxy-check",
+   "n": 3,
+   "weight": 5,
+   "impact": {
+    "retries": 1,
+    "reformulations": 1,
+    "extra_reads": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": true,
+   "chunks": [
+    "2026-10-09-audit-corrections-agent-surfaces",
+    "2026-10-10-snapshot-states",
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T19:50:06Z-b",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "the stamp-ahead write hook read a bare time-of-day quoted from a two-day-old CI job record as a stamp a few minutes ahead of the clock and blocked the evidence file; false positive, settled by reading the hit; the times were then written with their date",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      "ci-37673662374-install-hang.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T19-31-04-phase/ci-37673662374-install-hang.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T01:02:41Z-b",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "a job count over the three upstream-only workflows was taken by a line pattern for two-space-indented keys, which also matched the trigger keys under on:, and read 3, 4 and 2 jobs where a YAML read gives 1, 2 and 1; direction: a false over-count that made the guard lines look too few; the truth came from parsing the files",
+     "impact": {
+      "reformulations": 1
+     },
+     "artifacts": [
+      ".github/workflows/publish-browser.yml",
+      ".github/workflows/wpt.yml",
+      ".github/workflows/wpt-post-results.yml"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T17:01:31Z-d",
+     "chunk": "2026-10-10-snapshot-states",
+     "what": "false positive: the control batch's closing check compared git status text before and after where the property was that the mutated sources were restored; a ledger-tool trail written into the run dir during the batch made the texts differ and the background call exit 1; the truth came from reading the diff and the per-control sha256 lines",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "scratchpad controls batch"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:tooling.long-line-edit",
+   "n": 3,
+   "weight": 5,
+   "impact": {
+    "extra_reads": 1,
+    "retries": 2
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": true,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface",
+    "None"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T02:54:48Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the taken-up working-route entry is a single 12358-char line; pins prints an index only, so the fold read the line through an authored scratchpad script that splits it at each separator plus introducer",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/working-route.md:73"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T13:00:44Z-b",
+     "chunk": null,
+     "what": "an anchored Edit with an empty replacement, removing three freight blocks (3.3 KB) from the end of a route entry line, also consumed the line terminator and joined the separator onto the entry; route.py printed UNPARSED for the line; one anchored Edit restored the newline and the reads were re-run",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/working-route.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T12-54-32-wrap/adaptation-record.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-11T09:57:34Z-c",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "the first anchored Edit on working-route line 81 (4441 chars) failed: the anchor carried the Read view's line-number prefix of line 82; re-anchored on the line's own last clause plus the separator line",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/working-route.md:81"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:ambiguity.review-cycles",
+   "n": 2,
+   "weight": 7,
+   "impact": {
+    "dialogue_rounds": 2,
+    "iterations": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T01:18:10Z-c",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "the review took two rounds: the first yes carried a direction on what the moved-numbers table must show, which changed a step, an evidence item and a criterion, so it was folded, the check set re-run and the prompt shown again; the second yes was the word",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T14:32:50Z-b",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "one review round beyond the word: the plan was written on the narrowest option of two forks this phase had classified as the founder's; the operator answered both as technical with wider options and reversed one P4 answer, so three steps, three gate entries and two criteria were re-synthesised and the whole check set re-run; the review message and the relay it pointed to disagreed on one sentence, folded by the relay and flagged, then confirmed with the word",
+     "impact": {
+      "dialogue_rounds": 1,
+      "iterations": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/plan.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T13-07-20-phase/p4-founder-forks.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:contract.premise-falsified",
+   "n": 3,
+   "weight": 3,
+   "impact": {
+    "extra_reads": 1,
+    "iterations": 0
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": true,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "None"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T19:28:10Z-d",
+     "chunk": null,
+     "what": "The directive states the CI package-install step hung in four CI runs on 2026-10-07; gh run list of the fork read two runs created that day with a re-run (37673662374 attempt 3, 37687897931 attempt 2), the second one's cause not read. The moved CARRY carries the measured reading and names the directive's count as the directive's, on the operator's word.",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/working-route.md:69"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T19-17-00-wrap/relay-1.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T09:40:57Z-c",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the route CARRY's hypothesis that typed text is inserted inside a filled control's old value read false at step 1: on the stand's date input it is appended after it, in both layout modes",
+     "impact": {
+      "iterations": 0
+     },
+     "artifacts": [
+      "scope.md CARRY 7",
+      "evidence/type-filled.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T09:40:57Z-d",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the route CARRY's hypothesis that a control where a scrolled-out row extends reads covered read false on the fixture the plan names (a button below the box) and true only for a button before a scrolled box; a second fixture was measured and both are pinned",
+     "impact": {
+      "iterations": 0
+     },
+     "artifacts": [
+      "scope.md CARRY 9",
+      "plan.md step 1",
+      "evidence/engine-findings.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:contract.test-expectation",
+   "n": 2,
+   "weight": 4,
+   "impact": {
+    "iterations": 2,
+    "extra_reads": 2
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-scrolling-box-bounds-and-hit"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T09:40:57Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "gates 4, 20 and 21 went red on one cause: stand_act_disabled asserted that a type into a filled control adds its text to the old value, the reading the chunk's own step 4 replaces; restated as a recorded companion and surfaced in the report",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      "tests/blitz-tests/tests/stand_act_disabled.rs",
+      "plan.md gate 4"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T08-55-54-implement (gate trail, first run, entries 4 20 21)",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T15:11:45Z-b",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "the stand run and the local pre-push gate both went red on stand_actionable_keys::the_non_lean_tasks_are_measured: its way of opening a task (a click at the centre of a card lying outside Home's scrolling box) held only while a hit reached clipped-out content; the count it pins did not move",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 2
+     },
+     "artifacts": [
+      "tests/blitz-tests/tests/stand_actionable_keys.rs"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T14-33-38-implement",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:ambiguity.trajectory-halt",
+   "n": 1,
+   "weight": 6,
+   "impact": {
+    "halted": 1,
+    "dialogue_rounds": 1
+   },
+   "halt_or_soft": 1,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-10-scrolling-box-bounds-and-hit"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T16:03:52Z-b",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "one halt, one round: a new entry ahead of the head for a founder ruling relayed for this wrap, its requirement side, the split of an existing CARRY and the owners of five engine readings, put as four questions",
+     "impact": {
+      "halted": 1,
+      "dialogue_rounds": 1
+     },
+     "artifacts": [
+      "working-route.md",
+      "adaptation-record.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T15-29-49-wrap/adaptation-record.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:contract.narrow-basis-claim",
+   "n": 2,
+   "weight": 3,
+   "impact": {
+    "extra_reads": 3,
+    "retries": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-09-audit-corrections-agent-surfaces",
+    "2026-10-10-snapshot-states"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T21:27:13Z-b",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "an evidence pointer on a route-resolve record named the route tool's trail by the chunk's marker before the run dir was listed; the route calls carried no marker and the trail is route-no-marker.json",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      ".andromeda/runs/2026-10-09T20-50-14-wrap/route-no-marker.json"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T17:54:12Z-b",
+     "chunk": "2026-10-10-snapshot-states",
+     "what": "three clauses of the report were first written from a basis narrower than the claim and corrected by measuring before the listing was pasted: a base diff figure derived by subtraction, a statement that no registry file holds a hit made from a pattern set that lacked the count words (one key file states the eleven driver-action files), and a characterisation of digit hits that had not been read",
+     "impact": {
+      "retries": 1,
+      "extra_reads": 2
+     },
+     "artifacts": [
+      "report.md"
+     ],
+     "evidence": "escher-0.1.0/chunks/2026-10-10-snapshot-states/report.md Counts table and Expected amendments item 9",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:contract.extract-format",
+   "n": 2,
+   "weight": 2,
+   "impact": {
+    "retries": 0
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-10-driver-cli",
+    "2026-10-10-mcp-surface"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T03:02:03Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the layouts history file carries two bold Kept spans inside its items beside the marker bold; sidecar.py cites listed both as not a marker, 11 of 11 cites resolved, no fix or re-spawn",
+     "impact": {
+      "retries": 0
+     },
+     "artifacts": [
+      "layouts-history.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-10T19:25:10Z-b",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "two history files (arch, obs) put a title beside the marker inside every bold span where the prompt says the bold holds the marker alone, and three (design, layouts, obs) bolded a label inside an item, read by sidecar.py cites as 6 not-a-marker rows; every cite still resolved and nothing was re-spawned",
+     "impact": {
+      "retries": 0
+     },
+     "artifacts": [
+      "arch-history.md",
+      "obs-history.md",
+      "design-history.md",
+      "layouts-history.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T19-14-13-phase/",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:contract.proposal-format",
+   "n": 2,
+   "weight": 2,
+   "impact": {
+    "extra_reads": 2
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-12-headless-screenshot",
+    "2026-10-12-self-description"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-12T09:38:40Z-d",
+     "chunk": "2026-10-12-self-description",
+     "what": "two comparer outputs left the form: leaf-security-plan.md security-summary.md:22#2 read `unparsed` (a guillemet pair inside its replace-with), written by hand; the design-system comparer edited its own findings file twice after its one Write, against the brief, the path check still clean",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      ".andromeda/runs/2026-10-12T08-55-10-wrap/leaf-security-plan.md",
+      ".andromeda/runs/2026-10-12T08-55-10-wrap/leaf-design-system.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-12T08-55-10-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-13T06:23:35Z-e",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "4 security-plan leaf findings read unparsed: each replace-with quoted the founder's label in guillemets, a second «» pair inside the field; written by hand without the quoted labels",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": null,
+     "evidence": ".andromeda/runs/2026-10-12T20-34-17-wrap/cascade-leaves-apply.txt",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:ambiguity.escalation-rounds",
+   "n": 1,
+   "weight": 3,
+   "impact": {
+    "dialogue_rounds": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-12-headless-screenshot"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-13T06:23:35Z-b",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "the Validate halt (answer card + playbook rule) went unanswered for 58 min and timed out; the founder's answers arrived the next morning as an operator message relaying his chosen labels, recorded as relay-1.md",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "artifacts": null,
+     "evidence": ".andromeda/runs/2026-10-12T20-34-17-wrap/relay-1.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:ambiguity.playbook-no-match",
+   "n": 1,
+   "weight": 3,
+   "impact": {
+    "dialogue_rounds": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-10-mcp-surface"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-11T09:55:09Z-e",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "S13 and S14 (the live trial a second user of the operator's Claude Code login) matched no playbook rule: not a boundary widening by the letter, but the 2026-10-06 ratification names the cold-agent run only — escalated by unease on the same card, resolved on the founder's relayed answer",
+     "impact": {
+      "dialogue_rounds": 1
+     },
+     "artifacts": null,
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:tooling.hook-friction",
+   "n": 1,
+   "weight": 3,
+   "impact": {
+    "retries": 2
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-10-driver-cli"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T09:23:13Z-e",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the Bash guard refused a cat heredoc with a file target twice in this step (a scratch test fragment, then a scratch edit script); the second was the same act after the first refusal had named the form",
+     "impact": {
+      "retries": 2
+     },
+     "artifacts": [
+      "andromeda-tools/hooks/bash-guard.sh"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:tooling.output-cap-overflow",
+   "n": 1,
+   "weight": 3,
+   "impact": {
+    "retries": 2
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-10-snapshot-states"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T16:33:25Z-b",
+     "chunk": "2026-10-10-snapshot-states",
+     "what": "a fetch of the 1.4 MB WAI-ARIA 1.2 page was cut before the attribute definitions; recovered by one whole download and two local extraction runs (the first cut each block at its heading)",
+     "impact": {
+      "retries": 2
+     },
+     "artifacts": [
+      "https://www.w3.org/TR/wai-aria-1.2/"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:contract.grammar-irregularity",
+   "n": 1,
+   "weight": 2,
+   "impact": {
+    "iterations": 1,
+    "extra_reads": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-09-audit-corrections-agent-surfaces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T21:21:27Z-b",
+     "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+     "what": "71 · WATCH: · 895 chars · clause UNPARSED — the first write put the watch's detail after its since-and-retires clause, and the clause has to close the block; rewritten with the clause last, then read 0/3",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/working-route.md:71"
+     ],
+     "evidence": ".andromeda/runs/2026-10-09T20-50-14-wrap/route-2026-10-09-audit-corrections-agent-surfaces.json",
+     "clause_retracted": [
+      "discount the evidence pointer '.andromeda/runs/2026-10-09T20-50-14-wrap/route-2026-10-09-audit-corrections-agent-surfaces.json' — no such file; the trail is route-no-marker.json in the same run dir. The record's finding stands."
+     ]
+    }
+   ]
+  },
+  {
+   "key": "TYPE:contract.jointly-contradictory-instructions",
+   "n": 1,
+   "weight": 2,
+   "impact": {
+    "reformulations": 1,
+    "extra_reads": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-10-snapshot-states"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T19:02:09Z-b",
+     "chunk": "2026-10-10-snapshot-states",
+     "what": "Setup 2a 'resume reuses the report as is' and P1 'an input the wrap reads is snapped and the report cites inputs#I{n}' cannot both hold when a resume reads a new input; exposed by inputs.py verify, which prints UNCITED until the report cites the entry. Second consecutive wrap with this shape",
+     "impact": {
+      "reformulations": 1,
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-snapshot-states/report.md",
+      "inputs#I6",
+      "inputs#I7"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T17-47-57-wrap/inputs-2026-10-10-snapshot-states.json",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:retry.synthesis-rework",
+   "n": 1,
+   "weight": 2,
+   "impact": {
+    "iterations": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-10-driver-cli"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T08:21:37Z-b",
+     "chunk": "2026-10-10-driver-cli",
+     "what": "the first draft had the mask criterion extend a standing check that another criterion and a gate note held unedited, a census entry that read green with its subject file absent, a note claiming zero-test lines the baseline run did not show, and five criteria naming an entry by description instead of its run text; each was rewritten before the checks were taken",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      "plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:ambiguity.tier-routing",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "deferred": 0
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "None"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T13:00:44Z-f",
+     "chunk": null,
+     "what": "a tool-mechanics learning whose Tier-2 class home is the always-loaded host leaf was judged by Tier 1's bar and demoted to Tier 3 whole; 1 demotion",
+     "impact": {
+      "deferred": 0
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T12-54-32-wrap/curation.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:contract.skill-reference-drift",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-12-headless-screenshot"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-12T20:41:49Z-b",
+     "chunk": "2026-10-12-headless-screenshot",
+     "what": "wrap SKILL.md Phase 1 (The site sweep) names `cascade v1.4` as the only accepted stamp, while amendment-flow.md §Tool and the deployed cascade.py print `cascade v1.6`",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "andromeda-wrap-session/SKILL.md",
+      "andromeda-wrap-session/references/amendment-flow.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:input.cookbook-gap",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "reformulations": 0,
+    "extra_reads": 0
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-10-mcp-surface"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T19:31:14Z-b",
+     "chunk": "2026-10-10-mcp-surface",
+     "what": "one impact query over eleven entry-point names, filtered on a tests directory in the caller's path, returned about 180 rows because Rust unit tests sit inline in the source files it meant to keep; the production call sites were about 20 of them and were picked out by reading the caller names",
+     "impact": {
+      "reformulations": 0,
+      "extra_reads": 0
+     },
+     "artifacts": [
+      "scripts/code-graph-cookbook.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T19-14-13-phase/tree-query-2026-10-10-mcp-surface.json",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:input.extract-signal-gap",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 1
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-10-scrolling-box-bounds-and-hit"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T13:26:37Z-b",
+     "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+     "what": "the take-up scope listed a caller of the bounds reader by file and line without its function name; three extracts read it as the into-view scroll and raised a research question on that basis; the graph and the read showed the caller is the visible-region reader, and the closure overrode the extracts in scope",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-scrolling-box-bounds-and-hit/scope.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-10T13-07-20-phase/tree-query-2026-10-10-scrolling-box-bounds-and-hit.json",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:input.handoff-git-mismatch",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 0
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "None"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-09T19:14:33Z-b",
+     "chunk": null,
+     "what": "The handoff's Position lists /andromeda-evolve-diagnose for Epoch 4 as not started (no proposals file targets it); the tree holds an untracked run .andromeda/runs/2026-10-09T14-03-28-evolve-diagnose/proposals.md whose title line carries escher-0.1.0 and Epoch 4, and an untracked code-audit run of the same day. Neither skill writes the handoff, so its boundary list read one item behind; the nudge derivation read the title line and did not fire.",
+     "impact": {
+      "extra_reads": 0
+     },
+     "artifacts": [
+      ".claude/session-handoff.md:11",
+      ".andromeda/runs/2026-10-09T14-03-28-evolve-diagnose/proposals.md:1"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:input.research-thin",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 2
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T01:11:14Z-b",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "research listed the conflict regions of the workflow and three upstream changes outside them, but not the full outside-region set (a runner label and a dropped toolchain component were found by resolving the trial merge to our sides and diffing against HEAD), and its platform-issues slot read none beside two folded runner-only bullets; both were filled at synthesis",
+     "impact": {
+      "extra_reads": 2
+     },
+     "artifacts": [
+      "escher-0.1.0/chunks/2026-10-10-upstream-sync-agent-surfaces/research.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE:recall.change-reconstruction",
+   "n": 1,
+   "weight": 1,
+   "impact": {
+    "extra_reads": 6
+   },
+   "halt_or_soft": 0,
+   "step_runs": null,
+   "rate": null,
+   "above": false,
+   "chunks": [
+    "2026-10-10-upstream-sync-agent-surfaces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-10T02:03:30Z-b",
+     "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+     "what": "a merge chunk's session holds the conflicts and the one fix, not upstream's 61 commits: the Symbols bullet's upstream facts (the trait impls moved to LayoutPassState, the autofocus condition, the hintless font source, the file URL read) and four Coverage rows were reconstructed at P1 from the merged files and upstream's fixed-sha diff, and three Coverage test flags stayed at none-named after a grep",
+     "impact": {
+      "extra_reads": 6
+     },
+     "artifacts": [
+      "report.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  }
+ ]
+}

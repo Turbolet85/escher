@@ -46,3 +46,6 @@
 ## Deferred learnings
 - Curation wrote two Tier 3 entries: `gate.py … --operator --dry-run` writes the gate trail, and the `screenshot` token hazard. Nothing was deferred by the cap. The prior window's conversation is gone, so its corrections were not curated.
 - `recurrence-despite-learning: "`cascade.py sweep --pattern` takes its ids after one flag"` — this chunk's P1 passed ten repeated flags and ran one pattern, the day after the entry landed.
+
+## Session End Status
+Completed normally at 2026-10-13 11:14:27
