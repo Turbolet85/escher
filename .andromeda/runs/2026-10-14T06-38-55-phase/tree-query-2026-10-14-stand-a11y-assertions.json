@@ -1,0 +1,165 @@
+[
+{
+"sql": "SELECT callee_name, file, COUNT(*) AS sites FROM refs WHERE callee_name IN ('tab_order','controls','INPUT_NAMES','focused') AND file LIKE 'tests/blitz-tests/%' GROUP BY 1,2 ORDER BY 1,2",
+"rows": 31,
+"result": [
+{
+"callee_name": "INPUT_NAMES",
+"file": "tests/blitz-tests/tests/stand_accessibility_ids.rs",
+"sites": 2
+},
+{
+"callee_name": "INPUT_NAMES",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"sites": 2
+},
+{
+"callee_name": "INPUT_NAMES",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"sites": 2
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_accessibility_ids.rs",
+"sites": 3
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_act_ids.rs",
+"sites": 3
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_act_obstructed.rs",
+"sites": 1
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_contrast.rs",
+"sites": 4
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_keyboard.rs",
+"sites": 2
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"sites": 3
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_session_ids.rs",
+"sites": 3
+},
+{
+"callee_name": "controls",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"sites": 2
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/common/mod.rs",
+"sites": 1
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/harness_smoke.rs",
+"sites": 1
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/password_painted_masked.rs",
+"sites": 1
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/range_input_interaction.rs",
+"sites": 3
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/session_common/mod.rs",
+"sites": 3
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/stand_act_diff.rs",
+"sites": 1
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/stand_act_keys.rs",
+"sites": 5
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/stand_act_obstructed.rs",
+"sites": 2
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/stand_act_range.rs",
+"sites": 3
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/stand_act_screenshot.rs",
+"sites": 3
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/stand_contrast.rs",
+"sites": 1
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/stand_diff.rs",
+"sites": 7
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/stand_id_persistence.rs",
+"sites": 1
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/stand_keyboard.rs",
+"sites": 4
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"sites": 3
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"sites": 3
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"sites": 2
+},
+{
+"callee_name": "focused",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"sites": 11
+},
+{
+"callee_name": "tab_order",
+"file": "tests/blitz-tests/tests/stand_accessibility_ids.rs",
+"sites": 2
+},
+{
+"callee_name": "tab_order",
+"file": "tests/blitz-tests/tests/stand_keyboard.rs",
+"sites": 5
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

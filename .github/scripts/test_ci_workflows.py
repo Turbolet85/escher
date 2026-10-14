@@ -286,7 +286,8 @@ class LegScriptTest(unittest.TestCase):
     def test_gate_legs_dispatch_to_cargo_and_write_their_log(self):
         for leg, expected in (
             ("audit", ("deny", "--locked", "advisories")),
-            ("a11y", ("--workspace", "--locked", "accessibility_hidden", "accessibility_roles", "focusability_updates")),
+            ("a11y", ("--workspace", "--locked", "accessibility_hidden", "accessibility_roles", "focusability_updates",
+                      "stand_keyboard", "stand_contrast", "stand_accessibility_ids")),
             ("coverage", ("llvm-cov", "--workspace", "--locked", "--lcov")),
         ):
             with self.subTest(leg=leg):

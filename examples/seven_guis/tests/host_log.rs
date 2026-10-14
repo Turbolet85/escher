@@ -54,7 +54,14 @@ fn the_host_logs_no_id_no_name_and_no_typed_text_at_trace() {
             .collect()
     };
     let rows = text_of("#crud-list > div");
-    let names: Vec<String> = rows.iter().cloned().chain(text_of("label")).collect();
+    let list_name = harness.attr("#crud-list", "aria-label");
+    assert!(list_name.is_some(), "the list's name was read");
+    let names: Vec<String> = rows
+        .iter()
+        .cloned()
+        .chain(text_of("label"))
+        .chain(list_name)
+        .collect();
 
     assert!(
         ids.iter().any(|id| id == "crud-surname"),

@@ -1,0 +1,57 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-14T07:04:39Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.1.0",
+"--run-dir",
+".andromeda/runs/2026-10-14T06-38-55-phase",
+"--marker",
+"2026-10-14-stand-a11y-assertions"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 16/17 · deferred 0 · planned 1 · implemented 0 · unclaimed 1",
+"unclaimed: v010-15",
+"claimed-unfinished: none",
+"done-test: NO — 1 not verified|deferred · unclaimed 1",
+"chunks referenced: 11 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-14T07:04:39Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-14-stand-a11y-assertions",
+"--plan",
+"escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-14T06-38-55-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-14-stand-a11y-assertions: 0 · ## Acceptance Criteria: line 283, 38 lines",
+"pool: unclaimed 1 [v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

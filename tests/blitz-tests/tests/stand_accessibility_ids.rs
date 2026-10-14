@@ -2,6 +2,14 @@
 //! carries every element's stable element id as the AccessKit `author_id` of that element's
 //! node, and no id on any other node; every interactive control has a role and a non-empty
 //! accessible name; the ids hold across a re-render; and the Tab order is unchanged.
+//!
+//! Every node of an interactive role reads a non-empty name, the CRUD list its stated one. The
+//! tree the shell hands the platform adapter — `Document::accessibility_tree` called through
+//! `&dyn Document`, as `AccessibilityState::update_tree` calls it — is the override's tree, its
+//! every `author_id` its node's stable element id and none an engine or framework handle; and a
+//! focus move and a rewritten text each leave the changed set non-empty, the shell's condition
+//! for rebuilding that tree, with the tree then reading them. The newer checks' failure messages
+//! carry a layout mode, a task and an index, never an id or what a screen reads.
 
 use std::collections::{HashMap, HashSet};
 
@@ -9,10 +17,34 @@ use accesskit::{NodeId as TreeNodeId, Role, TreeUpdate};
 use blitz_dom::Document;
 use blitz_test_harness::Harness;
 use dioxus_native_dom::DioxusDocument;
+use keyboard_types::Key;
 use seven_guis::stand::LeanTask;
 
 mod common;
-use common::{INPUT_NAMES, boot, by_id, controls, name, tab_order};
+use common::{INPUT_NAMES, REGION_NAMES, boot, by_id, controls, name, tab_order};
+
+/// The roles an element takes input in, each of whose nodes must read a name.
+const INTERACTIVE_ROLES: [Role; 9] = [
+    Role::Button,
+    Role::TextInput,
+    Role::Slider,
+    Role::ListBox,
+    Role::ListBoxOption,
+    Role::CheckBox,
+    Role::RadioButton,
+    Role::ComboBox,
+    Role::Link,
+];
+
+/// The tree the shell builds for `harness`'s document, through the trait object it holds.
+fn shell_tree(harness: &Harness<DioxusDocument>) -> TreeUpdate {
+    let document: &dyn Document = &harness.doc;
+    document.accessibility_tree()
+}
+
+fn mode(incremental: bool) -> &'static str {
+    if incremental { "incremental" } else { "full" }
+}
 
 /// Every node standing for an element carries that element's stable id, and every other node
 /// carries none. Returns the carried ids, asserted pairwise distinct and non-empty.
@@ -217,5 +249,162 @@ fn tab_order_is_unchanged() {
             })
             .collect();
         assert_eq!(measured, expected, "incremental {incremental}");
+    }
+}
+
+#[test]
+fn every_interactive_role_element_reads_a_name() {
+    for incremental in [false, true] {
+        let mode = mode(incremental);
+        let mut named = HashSet::new();
+        for task in LeanTask::ALL {
+            let harness = boot(task, incremental);
+            let tree = harness.doc.accessibility_tree();
+            let nodes = by_id(&tree);
+            let mut interactive = 0;
+            for (index, (_, node)) in tree.nodes.iter().enumerate() {
+                if !INTERACTIVE_ROLES.contains(&node.role()) {
+                    continue;
+                }
+                interactive += 1;
+                assert!(
+                    !name(&nodes, node).trim().is_empty(),
+                    "{mode}, {task:?}, tree node {index}: an interactive node is named"
+                );
+                named.extend(node.author_id().map(str::to_string));
+            }
+            assert!(
+                interactive >= controls(task).len(),
+                "{mode}, {task:?}: every control is among the interactive nodes"
+            );
+
+            let snapshot = harness.doc.snapshot();
+            for (index, (id, expected)) in REGION_NAMES.iter().enumerate() {
+                let Some(read) = snapshot.get(id) else {
+                    continue;
+                };
+                let (_, node) = common::tree_node(&tree, id);
+                assert!(
+                    node.role() == Role::ListBox,
+                    "{mode}, {task:?}, region {index}: the region is a list box"
+                );
+                assert!(
+                    name(&nodes, node).trim() == *expected,
+                    "{mode}, {task:?}, region {index}: the tree reads the stated name"
+                );
+                assert!(
+                    read.name == *expected,
+                    "{mode}, {task:?}, region {index}: the snapshot reads the stated name"
+                );
+            }
+        }
+        for (index, (id, _)) in REGION_NAMES.iter().enumerate() {
+            assert!(
+                named.contains(*id),
+                "{mode}, region {index}: the region is among the named interactive nodes"
+            );
+        }
+    }
+}
+
+#[test]
+fn the_tree_the_shell_hands_the_adapter_carries_stable_ids_only() {
+    for incremental in [false, true] {
+        let mode = mode(incremental);
+        for task in LeanTask::ALL {
+            let harness = boot(task, incremental);
+            let handed = shell_tree(&harness);
+            let overridden = harness.doc.accessibility_tree();
+            assert!(
+                handed.focus == overridden.focus && handed.tree == overridden.tree,
+                "{mode}, {task:?}: the handed tree has the override's root and focus"
+            );
+            assert!(
+                by_id(&handed) == by_id(&overridden)
+                    && handed.nodes.len() == overridden.nodes.len(),
+                "{mode}, {task:?}: the handed tree is the override's, node for node"
+            );
+
+            let mut carried = 0;
+            for (index, (tree_id, node)) in handed.nodes.iter().enumerate() {
+                let Some(author_id) = node.author_id() else {
+                    continue;
+                };
+                carried += 1;
+                let element = blitz_traits::node_id::NodeId::from_u64(tree_id.0);
+                assert!(
+                    harness.doc.element_id(element).as_deref() == Some(author_id),
+                    "{mode}, {task:?}, tree node {index}: the author id is the stable element id"
+                );
+                assert!(
+                    !author_id.is_empty()
+                        && !author_id.chars().all(|c| c.is_ascii_digit())
+                        && !author_id.contains("0x"),
+                    "{mode}, {task:?}, tree node {index}: the author id is no handle"
+                );
+            }
+            assert!(
+                carried >= controls(task).len(),
+                "{mode}, {task:?}: the handed tree carries ids"
+            );
+        }
+    }
+}
+
+/// The stable id of the element the tree reports as its focus, if any.
+fn tree_focus(tree: &TreeUpdate) -> Option<String> {
+    tree.nodes
+        .iter()
+        .find(|(id, _)| *id == tree.focus)
+        .and_then(|(_, node)| node.author_id())
+        .map(str::to_string)
+}
+
+#[test]
+fn a_focus_move_and_a_rewritten_name_reach_the_tree_the_shell_builds() {
+    for incremental in [false, true] {
+        let mode = mode(incremental);
+        let mut counter = boot(LeanTask::Counter, incremental);
+        let sequence = tab_order(LeanTask::Counter);
+
+        for (index, stop) in sequence.iter().enumerate() {
+            counter.base_mut().take_changed_nodes();
+            assert!(
+                !counter.base().has_changes(),
+                "{mode}, Counter, Tab {index}: the drained set is empty"
+            );
+            counter.press(Key::Tab);
+            assert!(
+                counter.base().has_changes(),
+                "{mode}, Counter, Tab {index}: the focus move marks the changed set"
+            );
+            assert!(
+                tree_focus(&shell_tree(&counter)).as_deref() == Some(*stop),
+                "{mode}, Counter, Tab {index}: the shell's tree reads the new focus"
+            );
+        }
+
+        let value = |harness: &Harness<DioxusDocument>| {
+            let tree = shell_tree(harness);
+            let nodes = by_id(&tree);
+            let (_, node) = common::tree_node(&tree, "counter-value");
+            name(&nodes, node)
+        };
+        let before = value(&counter);
+        counter.base_mut().take_changed_nodes();
+        assert!(
+            !counter.base().has_changes(),
+            "{mode}, Counter: the drained set is empty before Enter"
+        );
+        counter.press(Key::Enter);
+        assert!(
+            counter.base().has_changes(),
+            "{mode}, Counter: the rewritten count marks the changed set"
+        );
+        let after = value(&counter);
+        assert!(
+            before.trim() == "0" && after.trim() == "1",
+            "{mode}, Counter: the shell's tree reads the new count"
+        );
     }
 }

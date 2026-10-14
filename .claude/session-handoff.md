@@ -48,3 +48,6 @@
 ## Deferred learnings
 - recurrence-despite-learning: host-linux.md Session Additions 2026-10-13 (run every pipeline tool bare or read whole). At this chunk's P1 a `cascade.py sweep --pre-pass` output was read through `command grep` before it was read whole. The remedy is a check, not a second entry.
 - Curation wrote nothing: the root-fallback focus fact scored exactly 0.6, and this wrap's a11y-plan §5 now holds it.
+
+## Session End Status
+Completed normally at 2026-10-14 09:05:19

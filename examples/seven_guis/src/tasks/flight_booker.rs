@@ -169,7 +169,7 @@ const CSS: &str = r#"
 }
 
 .type-btn-active {
-    background: #4a6cf7;
+    background: #3a5ce5;
     color: #ffffff;
     font-weight: 600;
 }
@@ -185,7 +185,7 @@ const CSS: &str = r#"
 
 .date-input:focus {
     outline: none;
-    border-color: #4a6cf7;
+    border-color: #3a5ce5;
 }
 
 .date-input:disabled {
@@ -207,7 +207,7 @@ const CSS: &str = r#"
     font-size: 15px;
     font-weight: 500;
     color: #ffffff;
-    background-color: #4a6cf7;
+    background-color: #3a5ce5;
     border: none;
     border-radius: 6px;
     padding: 10px;
@@ -217,11 +217,11 @@ const CSS: &str = r#"
 }
 
 .flight-btn:hover {
-    background-color: #3a5ce5;
+    background-color: #2a4cd3;
 }
 
 .flight-btn:active {
-    background-color: #2a4cd3;
+    background-color: #1f3fc1;
 }
 
 .flight-btn:disabled {

@@ -467,7 +467,7 @@ const CSS: &str = r#"
 
 .cell.selected {
     background-color: #e8f0fe;
-    outline: 2px solid #4a6cf7;
+    outline: 2px solid #3a5ce5;
     outline-offset: -2px;
     padding: 0;
 }

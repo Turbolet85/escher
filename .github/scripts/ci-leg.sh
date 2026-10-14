@@ -31,7 +31,7 @@ run_leg() {
         ;;
     doc) cargo doc --workspace --no-deps --locked ;;
     audit) cargo deny --locked check advisories ;;
-    a11y) cargo test --workspace --locked --test accessibility_hidden --test accessibility_roles --test focusability_updates ;;
+    a11y) cargo test --workspace --locked --test accessibility_hidden --test accessibility_roles --test focusability_updates --test stand_keyboard --test stand_contrast --test stand_accessibility_ids ;;
     coverage)
         mkdir -p target/coverage &&
             cargo llvm-cov --workspace --locked --lcov --output-path target/coverage/lcov.info &&

@@ -74,8 +74,8 @@ const CSS: &str = r#"
 
 .temp-input:focus {
     outline: none;
-    border-color: #4a6cf7;
-    box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.15);
+    border-color: #3a5ce5;
+    box-shadow: 0 0 0 2px rgba(58, 92, 229, 0.15);
 }
 
 .temp-label {

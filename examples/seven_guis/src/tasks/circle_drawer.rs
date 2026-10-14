@@ -152,7 +152,7 @@ const CSS: &str = r#"
     font-size: 14px;
     font-weight: 500;
     color: #ffffff;
-    background-color: #4a6cf7;
+    background-color: #3a5ce5;
     border: none;
     border-radius: 6px;
     padding: 8px 20px;
@@ -160,7 +160,7 @@ const CSS: &str = r#"
 }
 
 .cd-toolbar button:hover {
-    background-color: #3a5ce5;
+    background-color: #2a4cd3;
 }
 
 .cd-toolbar button:disabled {
@@ -182,14 +182,14 @@ const CSS: &str = r#"
 .circle {
     position: absolute;
     border-radius: 50%;
-    background-color: rgba(74, 108, 247, 0.15);
-    border: 2px solid #4a6cf7;
+    background-color: rgba(58, 92, 229, 0.15);
+    border: 2px solid #3a5ce5;
     box-sizing: border-box;
     pointer-events: none;
 }
 
 .circle:hover {
-    background-color: rgba(74, 108, 247, 0.35);
+    background-color: rgba(58, 92, 229, 0.35);
 }
 
 .cd-dialog {
@@ -220,7 +220,7 @@ const CSS: &str = r#"
     font-size: 14px;
     font-weight: 500;
     color: #ffffff;
-    background-color: #4a6cf7;
+    background-color: #3a5ce5;
     border: none;
     border-radius: 6px;
     padding: 8px 20px;
@@ -228,6 +228,6 @@ const CSS: &str = r#"
 }
 
 .cd-dialog button:hover {
-    background-color: #3a5ce5;
+    background-color: #2a4cd3;
 }
 "#;

@@ -5,9 +5,17 @@
 //! that it is inactive and exempt, or that it paints no text. The reading is this file's stated
 //! record, row for row; and the background each measured row resolves is the one painted
 //! inside its control's left padding.
+//!
+//! SC 1.4.3 is asserted on what is measured, not on what is stated: every text-bearing reading
+//! that is not exempt meets its ratio — the control rows at boot, the CRUD list rows and the
+//! text outside the controls (`TEXT_ROWS`), and the colours the controls take under real input
+//! (`STATE_ROWS`: a toggle, an unparseable date, a booking, a selected row, hover and active).
+//! A failure message carries a layout mode, a task and an index, never an id or what a screen
+//! reads.
 
 use blitz_test_harness::{Harness, PixelRect, TextContrast};
 use dioxus_native_dom::DioxusDocument;
+use keyboard_types::Key;
 use seven_guis::stand::LeanTask;
 
 mod common;
@@ -48,7 +56,7 @@ const RECORD: &[(LeanTask, &str, Reading)] = &[
     (
         LeanTask::Counter,
         "counter-increment",
-        Fail(pair(0xffffff, 0x4a6cf7, 4.39, 16, 500.0)),
+        Pass(pair(0xffffff, 0x3a5ce5, 5.47, 16, 500.0)),
     ),
     (
         LeanTask::FlightBooker,
@@ -58,7 +66,7 @@ const RECORD: &[(LeanTask, &str, Reading)] = &[
     (
         LeanTask::FlightBooker,
         "flight-one-way",
-        Fail(pair(0xffffff, 0x4a6cf7, 4.39, 14, 600.0)),
+        Pass(pair(0xffffff, 0x3a5ce5, 5.47, 14, 600.0)),
     ),
     (
         LeanTask::FlightBooker,
@@ -78,7 +86,7 @@ const RECORD: &[(LeanTask, &str, Reading)] = &[
     (
         LeanTask::FlightBooker,
         "flight-book",
-        Fail(pair(0xffffff, 0x4a6cf7, 4.39, 15, 500.0)),
+        Pass(pair(0xffffff, 0x3a5ce5, 5.47, 15, 500.0)),
     ),
     (
         LeanTask::Timer,
@@ -89,7 +97,7 @@ const RECORD: &[(LeanTask, &str, Reading)] = &[
     (
         LeanTask::Timer,
         "timer-reset",
-        Fail(pair(0xffffff, 0x4a6cf7, 4.39, 16, 500.0)),
+        Pass(pair(0xffffff, 0x3a5ce5, 5.47, 16, 500.0)),
     ),
     (
         LeanTask::Crud,
@@ -114,7 +122,7 @@ const RECORD: &[(LeanTask, &str, Reading)] = &[
     (
         LeanTask::Crud,
         "crud-create",
-        Fail(pair(0xffffff, 0x4a6cf7, 4.39, 14, 500.0)),
+        Pass(pair(0xffffff, 0x3a5ce5, 5.47, 14, 500.0)),
     ),
     (
         LeanTask::Crud,
@@ -157,6 +165,27 @@ fn measured(contrast: TextContrast) -> Pair {
     }
 }
 
+/// The element `selector` resolves, as `harness` reads it: exempt only where the snapshot reads
+/// it not enabled, and passing or failing by its measured ratio against its required one.
+#[track_caller]
+fn read(harness: &Harness<DioxusDocument>, selector: &str, at: &str) -> Reading {
+    let enabled = selector.strip_prefix('#').and_then(|id| {
+        harness
+            .doc
+            .snapshot()
+            .get(id)
+            .map(|node| node.state.enabled)
+    });
+    let node = harness.query(selector);
+    assert!(node.is_some(), "{at}: the selector resolves the element");
+    match harness.text_contrast(node.unwrap()) {
+        None => NoText,
+        Some(contrast) if enabled == Some(Some(false)) => ExemptInactive(measured(contrast)),
+        Some(contrast) if contrast.ratio >= contrast.required_ratio() => Pass(measured(contrast)),
+        Some(contrast) => Fail(measured(contrast)),
+    }
+}
+
 /// Each control of `task` as `harness` reads it, in `controls(task)`'s order.
 fn measure(harness: &Harness<DioxusDocument>, task: LeanTask, incremental: bool) -> Vec<Reading> {
     let snapshot = harness.doc.snapshot();
@@ -165,22 +194,280 @@ fn measure(harness: &Harness<DioxusDocument>, task: LeanTask, incremental: bool)
         .enumerate()
         .map(|(row, (id, _))| {
             let at = format!("{}, {task:?}, control {row}", mode(incremental));
-            let enabled = snapshot.get(id).map(|node| node.state.enabled);
-            assert!(enabled.is_some(), "{at}: the snapshot lists the control");
-            let node = harness.query(&format!("#{id}"));
-            assert!(node.is_some(), "{at}: the selector resolves the control");
-            match harness.text_contrast(node.unwrap()) {
-                None => Reading::NoText,
-                Some(contrast) if enabled == Some(Some(false)) => {
-                    Reading::ExemptInactive(measured(contrast))
-                }
-                Some(contrast) if contrast.ratio >= contrast.required_ratio() => {
-                    Reading::Pass(measured(contrast))
-                }
-                Some(contrast) => Reading::Fail(measured(contrast)),
-            }
+            assert!(
+                snapshot.get(id).is_some(),
+                "{at}: the snapshot lists the control"
+            );
+            read(harness, &format!("#{id}"), &at)
         })
         .collect()
+}
+
+/// The CRUD list rows at boot and the text outside the controls, each read from the element its
+/// selector resolves, in `LeanTask::ALL`'s order.
+const TEXT_ROWS: [(LeanTask, &str, Reading); 14] = [
+    (
+        LeanTask::Counter,
+        "#task-title",
+        Pass(pair(0x111111, 0xffffff, 18.88, 15, 600.0)),
+    ),
+    (
+        LeanTask::Counter,
+        "#counter-value",
+        Pass(pair(0x1a1a1a, 0xffffff, 17.40, 24, 600.0)),
+    ),
+    (
+        LeanTask::FlightBooker,
+        "#task-title",
+        Pass(pair(0x111111, 0xffffff, 18.88, 15, 600.0)),
+    ),
+    (
+        LeanTask::Timer,
+        "#task-title",
+        Pass(pair(0x111111, 0xffffff, 18.88, 15, 600.0)),
+    ),
+    (
+        LeanTask::Timer,
+        "#timer-elapsed",
+        Pass(pair(0x1a1a1a, 0xffffff, 17.40, 18, 600.0)),
+    ),
+    (
+        LeanTask::Timer,
+        "label[for=timer-duration]",
+        Pass(pair(0x444444, 0xffffff, 9.74, 15, 400.0)),
+    ),
+    (
+        LeanTask::Timer,
+        "#timer-duration-value",
+        Pass(pair(0x1a1a1a, 0xffffff, 17.40, 15, 600.0)),
+    ),
+    (
+        LeanTask::Crud,
+        "#task-title",
+        Pass(pair(0x111111, 0xffffff, 18.88, 15, 600.0)),
+    ),
+    (
+        LeanTask::Crud,
+        "label[for=crud-filter]",
+        Pass(pair(0x000000, 0xf5f5f5, 19.26, 14, 400.0)),
+    ),
+    (
+        LeanTask::Crud,
+        "#crud-person-0",
+        Pass(pair(0x1a1a1a, 0xffffff, 17.40, 14, 400.0)),
+    ),
+    (
+        LeanTask::Crud,
+        "#crud-person-1",
+        Pass(pair(0x1a1a1a, 0xffffff, 17.40, 14, 400.0)),
+    ),
+    (
+        LeanTask::Crud,
+        "#crud-person-2",
+        Pass(pair(0x1a1a1a, 0xffffff, 17.40, 14, 400.0)),
+    ),
+    (
+        LeanTask::Crud,
+        "label[for=crud-name]",
+        Pass(pair(0x333333, 0xf5f5f5, 11.59, 14, 500.0)),
+    ),
+    (
+        LeanTask::Crud,
+        "label[for=crud-surname]",
+        Pass(pair(0x333333, 0xf5f5f5, 11.59, 14, 500.0)),
+    ),
+];
+
+/// The real input a state row is read after, on a fresh boot of its task.
+#[derive(Clone, Copy, Debug)]
+enum Reach {
+    /// A click on `flight-return`.
+    ReturnChosen,
+    /// A click on `flight-start` and one character typed after its date, which then parses no
+    /// more.
+    StartUnparseable,
+    /// A click on `flight-book`.
+    Booked,
+    /// Three Tabs to the CRUD list and ArrowDown, selecting its first row.
+    RowSelected,
+    /// The pointer moved to the centre of the row's own element.
+    Hover,
+    /// The pointer moved there and its main button pressed.
+    Active,
+}
+
+/// The colours the controls take under real input, each read after its `Reach` on a fresh boot.
+const STATE_ROWS: [(LeanTask, Reach, &str, Reading); 19] = [
+    (
+        LeanTask::FlightBooker,
+        Reach::ReturnChosen,
+        "flight-return",
+        Pass(pair(0xffffff, 0x3a5ce5, 5.47, 14, 600.0)),
+    ),
+    (
+        LeanTask::FlightBooker,
+        Reach::ReturnChosen,
+        "flight-one-way",
+        Pass(pair(0x444444, 0xfafafa, 9.33, 14, 400.0)),
+    ),
+    (
+        LeanTask::FlightBooker,
+        Reach::ReturnChosen,
+        "flight-return-date",
+        Pass(pair(0x1a1a1a, 0xffffff, 17.40, 15, 400.0)),
+    ),
+    (
+        LeanTask::FlightBooker,
+        Reach::StartUnparseable,
+        "flight-start",
+        Pass(pair(0xc53030, 0xfff5f5, 5.11, 15, 400.0)),
+    ),
+    (
+        LeanTask::FlightBooker,
+        Reach::StartUnparseable,
+        "flight-book",
+        ExemptInactive(pair(0xffffff, 0xa0aec0, 2.26, 15, 500.0)),
+    ),
+    (
+        LeanTask::FlightBooker,
+        Reach::Booked,
+        "flight-booked",
+        Pass(pair(0x276749, 0xebf8ee, 6.15, 14, 400.0)),
+    ),
+    (
+        LeanTask::Crud,
+        Reach::RowSelected,
+        "crud-person-0",
+        Pass(pair(0xffffff, 0x3a5ce5, 5.47, 14, 400.0)),
+    ),
+    (
+        LeanTask::Crud,
+        Reach::RowSelected,
+        "crud-update",
+        Pass(pair(0xffffff, 0x3a5ce5, 5.47, 14, 500.0)),
+    ),
+    (
+        LeanTask::Crud,
+        Reach::RowSelected,
+        "crud-delete",
+        Pass(pair(0xffffff, 0x3a5ce5, 5.47, 14, 500.0)),
+    ),
+    (
+        LeanTask::Counter,
+        Reach::Hover,
+        "counter-increment",
+        Pass(pair(0xffffff, 0x2a4cd3, 6.83, 16, 500.0)),
+    ),
+    (
+        LeanTask::Counter,
+        Reach::Active,
+        "counter-increment",
+        Pass(pair(0xffffff, 0x1f3fc1, 8.27, 16, 500.0)),
+    ),
+    (
+        LeanTask::FlightBooker,
+        Reach::Hover,
+        "flight-book",
+        Pass(pair(0xffffff, 0x2a4cd3, 6.83, 15, 500.0)),
+    ),
+    (
+        LeanTask::FlightBooker,
+        Reach::Active,
+        "flight-book",
+        Pass(pair(0xffffff, 0x1f3fc1, 8.27, 15, 500.0)),
+    ),
+    (
+        LeanTask::Timer,
+        Reach::Hover,
+        "timer-reset",
+        Pass(pair(0xffffff, 0x2a4cd3, 6.83, 16, 500.0)),
+    ),
+    (
+        LeanTask::Timer,
+        Reach::Active,
+        "timer-reset",
+        Pass(pair(0xffffff, 0x1f3fc1, 8.27, 16, 500.0)),
+    ),
+    // CRUD's buttons and the shell's back button declare no `:active` colour: pressed, they
+    // keep their hover one.
+    (
+        LeanTask::Crud,
+        Reach::Hover,
+        "crud-create",
+        Pass(pair(0xffffff, 0x2a4cd3, 6.83, 14, 500.0)),
+    ),
+    (
+        LeanTask::Crud,
+        Reach::Active,
+        "crud-create",
+        Pass(pair(0xffffff, 0x2a4cd3, 6.83, 14, 500.0)),
+    ),
+    (
+        LeanTask::Counter,
+        Reach::Hover,
+        "back-btn",
+        Pass(pair(0x333333, 0xe4e4e4, 9.94, 13, 400.0)),
+    ),
+    (
+        LeanTask::Counter,
+        Reach::Active,
+        "back-btn",
+        Pass(pair(0x333333, 0xe4e4e4, 9.94, 13, 400.0)),
+    ),
+];
+
+/// Drives `harness` through `reach`, asserting the state it leads to holds.
+#[track_caller]
+fn reach(harness: &mut Harness<DioxusDocument>, reach: Reach, id: &str, at: &str) {
+    match reach {
+        Reach::ReturnChosen => {
+            harness.click("#flight-return");
+            let snapshot = harness.doc.snapshot();
+            assert!(
+                common::node(&snapshot, "flight-return").state.pressed == Some(true),
+                "{at}: the return toggle reads pressed"
+            );
+        }
+        Reach::StartUnparseable => {
+            harness.click("#flight-start");
+            harness.type_text("x");
+            let snapshot = harness.doc.snapshot();
+            assert!(
+                common::node(&snapshot, "flight-start").state.invalid,
+                "{at}: the departure date reads invalid"
+            );
+        }
+        Reach::Booked => {
+            harness.click("#flight-book");
+            assert!(
+                harness.query("#flight-booked").is_some(),
+                "{at}: the booking message renders"
+            );
+        }
+        Reach::RowSelected => {
+            for _ in 0..3 {
+                harness.press(Key::Tab);
+            }
+            harness.press(Key::ArrowDown);
+            let snapshot = harness.doc.snapshot();
+            assert!(
+                common::node(&snapshot, "crud-person-0").state.selected == Some(true),
+                "{at}: the first row reads selected"
+            );
+        }
+        Reach::Hover | Reach::Active => {
+            let node = harness.node(&format!("#{id}"));
+            let (x, y) = harness.layout_rect_of(node).center();
+            harness.move_mouse_to(x, y);
+            if matches!(reach, Reach::Active) {
+                harness.mouse_down_at(x, y);
+            }
+            assert!(
+                harness.hovered() == Some(node),
+                "{at}: the pointer is over the control"
+            );
+        }
+    }
 }
 
 /// Every row of `controls(task)` over `LeanTask::ALL`, in that order.
@@ -273,5 +560,102 @@ fn the_painted_background_is_the_measured_background() {
                 }
             }
         }
+    }
+}
+
+/// How many of `readings` read each way: pass, fail, exempt-inactive, no text.
+fn tally(readings: &[Reading]) -> (usize, usize, usize, usize) {
+    let count = |class: fn(&Reading) -> bool| readings.iter().filter(|r| class(r)).count();
+    (
+        count(|r| matches!(r, Pass(_))),
+        count(|r| matches!(r, Fail(_))),
+        count(|r| matches!(r, ExemptInactive(_))),
+        count(|r| matches!(r, NoText)),
+    )
+}
+
+#[test]
+fn every_measured_control_meets_its_required_ratio() {
+    let rows = control_rows();
+    for incremental in [false, true] {
+        let mut readings = Vec::new();
+        for task in LeanTask::ALL {
+            readings.extend(measure(&boot(task, incremental), task, incremental));
+        }
+        assert_eq!(
+            readings.len(),
+            rows.len(),
+            "{}: a reading per control",
+            mode(incremental)
+        );
+        for (index, (reading, (task, _))) in readings.iter().zip(&rows).enumerate() {
+            assert!(
+                !matches!(reading, Fail(_)),
+                "{}, {task:?}, control row {index}: the measured ratio meets the required one",
+                mode(incremental)
+            );
+        }
+        assert_eq!(
+            tally(&readings),
+            (14, 0, 3, 1),
+            "{}: pass, fail, exempt-inactive and no-text rows",
+            mode(incremental)
+        );
+    }
+}
+
+#[test]
+fn every_list_row_and_text_outside_the_controls_meets_its_ratio() {
+    assert_eq!(TEXT_ROWS.len(), 14, "the stated text rows");
+    for incremental in [false, true] {
+        let mut readings = Vec::new();
+        for task in LeanTask::ALL {
+            let harness = boot(task, incremental);
+            for (index, (row_task, selector, stated)) in TEXT_ROWS.iter().enumerate() {
+                if *row_task != task {
+                    continue;
+                }
+                let at = format!("{}, {task:?}, text row {index}", mode(incremental));
+                let reading = read(&harness, selector, &at);
+                assert!(
+                    matches!(reading, Pass(_)),
+                    "{at}: the measured ratio meets the required one"
+                );
+                assert!(reading == *stated, "{at}: the reading is the recorded one");
+                readings.push(reading);
+            }
+        }
+        assert_eq!(
+            tally(&readings),
+            (14, 0, 0, 0),
+            "{}: every text row is read and passes",
+            mode(incremental)
+        );
+    }
+}
+
+#[test]
+fn every_colour_state_meets_its_ratio() {
+    assert_eq!(STATE_ROWS.len(), 19, "the stated state rows");
+    for incremental in [false, true] {
+        let mut readings = Vec::new();
+        for (index, (task, how, id, stated)) in STATE_ROWS.into_iter().enumerate() {
+            let at = format!("{}, {task:?}, state row {index}", mode(incremental));
+            let mut harness = boot(task, incremental);
+            reach(&mut harness, how, id, &at);
+            let reading = read(&harness, &format!("#{id}"), &at);
+            assert!(
+                !matches!(reading, Fail(_) | NoText),
+                "{at}: the measured ratio meets the required one, or the control is inactive"
+            );
+            assert!(reading == stated, "{at}: the reading is the recorded one");
+            readings.push(reading);
+        }
+        assert_eq!(
+            tally(&readings),
+            (18, 0, 1, 0),
+            "{}: pass, fail, exempt-inactive and no-text rows",
+            mode(incremental)
+        );
     }
 }

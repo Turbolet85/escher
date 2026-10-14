@@ -4,7 +4,10 @@
 //! *Tab walk:* from a fresh boot, Tab walks each task's stated sequence and wraps to its first
 //! control, and Shift+Tab walks it back and wraps to its last; at every step the engine's focused
 //! node, the snapshot's one `focused` node and the accessibility tree's focus name the same
-//! control. *Activation:* Enter and Space on every focused stand button leave the screen as a
+//! control. The flight booker with a return flight chosen by Enter and CRUD with a row selected
+//! by ArrowDown walk their longer stated sequences the same way, so every stand control is
+//! reached by Tab in some state, and Enter and Space on the CRUD buttons enabled then read as
+//! their click. *Activation:* Enter and Space on every focused stand button leave the screen as a
 //! click on it does, a stated table of 20 rows; Space types into a text input, Enter changes
 //! nothing there, and neither key moves the range input. On a fixture: Space toggles a checkbox
 //! and a radio and Enter does not, Enter follows a link and Space does not, both toggle a
@@ -29,7 +32,7 @@ use keyboard_types::{Key, Modifiers};
 use seven_guis::stand::{self, LeanTask};
 
 mod common;
-use common::{boot, controls, editor_text, focused, node, tab_order};
+use common::{ENABLED_TAB_ORDER, boot, controls, editor_text, focused, node, tab_order};
 
 /// Each stand button in the four Tab sequences, and whether a click on it changes the screen
 /// beyond its focus.
@@ -200,6 +203,141 @@ fn enter_and_space_on_a_focused_button_read_as_its_click() {
         }
         assert_eq!(rows, 20, "{mode}: the stated rows");
         assert!(changing >= 1, "{mode}: a row changes the screen");
+    }
+}
+
+/// Brings `task` from a fresh boot into the state `ENABLED_TAB_ORDER` states for it, by keyboard
+/// alone — Enter on `flight-return`, ArrowDown on the CRUD list — asserted to have enabled the
+/// controls disabled at boot. Focus is left where the last key was pressed.
+#[track_caller]
+fn enable_by_keyboard(harness: &mut Harness<DioxusDocument>, task: LeanTask, mode: &str) {
+    let (stop, key, enabled): (&str, Key, &[&str]) = match task {
+        LeanTask::FlightBooker => ("flight-return", Key::Enter, &["flight-return-date"]),
+        LeanTask::Crud => ("crud-list", Key::ArrowDown, &["crud-update", "crud-delete"]),
+        _ => panic!("{mode}: {task:?}: no control of the task is disabled at boot"),
+    };
+    let snapshot = harness.doc.snapshot();
+    for (index, id) in enabled.iter().enumerate() {
+        assert!(
+            node(&snapshot, id).state.enabled == Some(false),
+            "{mode}: {task:?}: control {index} is disabled at boot"
+        );
+    }
+    tab_to(harness, task, stop, mode);
+    harness.press(key);
+    let snapshot = harness.doc.snapshot();
+    for (index, id) in enabled.iter().enumerate() {
+        assert!(
+            node(&snapshot, id).state.enabled == Some(true),
+            "{mode}: {task:?}: control {index} is enabled by the key"
+        );
+    }
+}
+
+#[test]
+fn the_enabled_states_extend_the_walk_in_order() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        for (task, sequence) in ENABLED_TAB_ORDER {
+            let n = sequence.len();
+            let mut harness = boot(task, incremental);
+            enable_by_keyboard(&mut harness, task, &mode);
+            let holding = holder(&harness);
+            let mut at = sequence
+                .iter()
+                .position(|stop| holding == [*stop])
+                .unwrap_or_else(|| panic!("{mode}: {task:?}: focus is on a stated stop"));
+            for index in 1..=n + 1 {
+                harness.press(Key::Tab);
+                at = (at + 1) % n;
+                assert!(
+                    holder(&harness) == [sequence[at]],
+                    "{mode}: {task:?}: Tab {index}"
+                );
+            }
+            for index in 1..=n + 1 {
+                harness.press_with(Key::Tab, Modifiers::SHIFT);
+                at = (at + n - 1) % n;
+                assert!(
+                    holder(&harness) == [sequence[at]],
+                    "{mode}: {task:?}: Shift+Tab {index}"
+                );
+            }
+        }
+    }
+}
+
+/// The CRUD buttons enabled once a row is selected. Each is read after a character was typed
+/// into the name field, so that each one's click changes the screen.
+const ENABLED_BUTTONS: [(LeanTask, &str); 2] = [
+    (LeanTask::Crud, "crud-update"),
+    (LeanTask::Crud, "crud-delete"),
+];
+
+/// Selects the first CRUD row and types one character into the name field, by keyboard alone,
+/// then Tabs to `id`.
+#[track_caller]
+fn crud_ready_at(harness: &mut Harness<DioxusDocument>, id: &str, mode: &str, index: usize) {
+    enable_by_keyboard(harness, LeanTask::Crud, mode);
+    harness.press(Key::Tab);
+    assert!(
+        holder(harness) == ["crud-name"],
+        "{mode}: Crud: row {index}: Tab reaches the name field"
+    );
+    harness.type_text("x");
+    tab_until(harness, id, 8, &format!("{mode}: Crud: row {index}"));
+}
+
+#[test]
+fn enter_and_space_on_the_controls_enabled_later_read_as_their_click() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut rows = 0;
+        for (index, (task, id)) in ENABLED_BUTTONS.into_iter().enumerate() {
+            for (key_name, key) in activation_keys() {
+                rows += 1;
+                let mut by_key = boot(task, incremental);
+                crud_ready_at(&mut by_key, id, &mode, index);
+                by_key.press(key);
+                let keyed = text(&by_key);
+
+                let mut by_click = boot(task, incremental);
+                crud_ready_at(&mut by_click, id, &mode, index);
+                let focus_only = text(&by_click);
+                by_click.click(&format!("#{id}"));
+                let clicked = text(&by_click);
+
+                assert!(
+                    clicked != focus_only,
+                    "{mode}: {task:?}: row {index}: the click changes the screen beyond focus"
+                );
+                assert!(
+                    keyed == clicked,
+                    "{mode}: {task:?}: row {index}, {key_name}: the key reads as the click"
+                );
+            }
+        }
+        assert_eq!(rows, 4, "{mode}: the stated rows");
+    }
+}
+
+#[test]
+fn every_control_is_reached_by_tab() {
+    for task in LeanTask::ALL {
+        let enabled: &[&str] = ENABLED_TAB_ORDER
+            .iter()
+            .find(|(stated, _)| *stated == task)
+            .map_or(&[], |(_, sequence)| sequence);
+        let unreached: Vec<usize> = controls(task)
+            .iter()
+            .enumerate()
+            .filter(|(_, (id, _))| !tab_order(task).contains(id) && !enabled.contains(id))
+            .map(|(index, _)| index)
+            .collect();
+        assert!(
+            unreached.is_empty(),
+            "{task:?}: controls {unreached:?} lie in no stated Tab sequence"
+        );
     }
 }
 

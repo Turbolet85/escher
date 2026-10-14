@@ -1,0 +1,1 @@
+yes — apply. My planlint reads 0 hits, and my grep finds 17 old-accent sites (hex plus rgba) in examples/seven_guis/src for step 2 to clear. Beyond the plan: 1–3 go to residuals, target next, as the owners the founder's re-home answers left to this card. Each residuals line names his label. Row 4 is approved conditionally, as written.

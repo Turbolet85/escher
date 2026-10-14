@@ -56,6 +56,7 @@ pub fn Crud() -> Element {
                 // List
                 div { id: "crud-list", class: "list",
                     role: "listbox",
+                    aria_label: "People",
                     tabindex: "0",
                     onkeydown: move |e| {
                         let filter_lower = filter().to_lowercase();
@@ -228,7 +229,7 @@ const CSS: &str = r#"
 }
 
 .list-item.selected {
-    background-color: #4a6cf7;
+    background-color: #3a5ce5;
     color: #ffffff;
 }
 
@@ -263,14 +264,14 @@ const CSS: &str = r#"
     font-size: 14px;
     font-weight: 500;
     color: #ffffff;
-    background-color: #4a6cf7;
+    background-color: #3a5ce5;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .crud-buttons button:hover:not(.btn-off) {
-    background-color: #3a5ce5;
+    background-color: #2a4cd3;
 }
 
 .crud-buttons button.btn-off {

@@ -69,6 +69,35 @@ pub fn tab_order(task: LeanTask) -> &'static [&'static str] {
     }
 }
 
+/// The focus sequence of the two tasks whose controls disabled at boot are enabled by input:
+/// the flight booker once `flight-return` is chosen, CRUD once a row is selected.
+pub const ENABLED_TAB_ORDER: [(LeanTask, &[&str]); 2] = [
+    (
+        LeanTask::FlightBooker,
+        &[
+            "back-btn",
+            "flight-one-way",
+            "flight-return",
+            "flight-start",
+            "flight-return-date",
+            "flight-book",
+        ],
+    ),
+    (
+        LeanTask::Crud,
+        &[
+            "back-btn",
+            "crud-filter",
+            "crud-list",
+            "crud-name",
+            "crud-surname",
+            "crud-create",
+            "crud-update",
+            "crud-delete",
+        ],
+    ),
+];
+
 /// The ids of the snapshot nodes reading focused, asserted to be the element the
 /// accessibility tree reports as its focus: none when that is the `Window`.
 #[track_caller]
@@ -100,6 +129,10 @@ pub const INPUT_NAMES: [(&str, &str); 6] = [
     ("crud-name", "Name:"),
     ("crud-surname", "Surname:"),
 ];
+
+/// The stand's named regions: an element that is no control but takes focus, with the
+/// accessible name its markup gives it.
+pub const REGION_NAMES: [(&str, &str); 1] = [("crud-list", "People")];
 
 /// Each task's author-id controls and value displays rendered at boot with a box of their
 /// own. `flight-booked` renders only after a booking, and `timer-progress` is 0 wide until

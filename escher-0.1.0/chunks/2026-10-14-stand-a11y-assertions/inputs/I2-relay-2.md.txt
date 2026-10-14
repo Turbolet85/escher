@@ -1,0 +1,3 @@
+F1 = "Not now, re-home" · F2 = "Leave stated, re-home" · F3 = "Leave pinned, re-home" · F4 = "Widen the a11y leg"
+
+notes: All four are the FOUNDER's answers, relayed verbatim by the overseer as his chosen option labels; the English wording is the overseer's. F1 «Пока нет, перенести (Рекомендую)», F2 «Оставить записанным (Рекомендую)», F3 «Оставить, перенести (Рекомендую)», F4 «Расширить задание a11y (Рекомендую)». Record: ~/dev/projects/additional/escher-overseer/relays/a11y-assertions-founder-answers.md. Read the answers carefully — they may request clarification, changes, or that you not proceed — and follow what they actually say.
