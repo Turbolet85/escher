@@ -132,3 +132,9 @@ One entry per amendment to `layout-templates.md` (sidecar-contract.md §Entry fo
 **Change:** `crud-list` takes `tabindex="0"` and an `onkeydown`. ArrowDown selects the next visible row (the first when none is selected), ArrowUp the previous, Home the first, End the last, each filling `crud-name` and `crud-surname` as a row's click does; a key at the list's end, or ArrowUp with no row selected, changes nothing. CRUD's Tab sequence reads `back-btn` · `crud-filter` · `crud-list` · `crud-name` · `crud-surname` · `crud-create`, six stops (was five). No element, class, style, wrapper or row is added. The tree's focus is the list, never the row; no `aria-activedescendant` is read.
 **Why:** the operator's decision at the chunk's fork F5, which conditioned it on stating the tree-focus gap plainly; that gap is owned by a CARRY on "Stand a11y assertions".
 **Ref:** .andromeda/runs/2026-10-13T23-23-45-wrap/
+
+## 2026-10-14-stand-a11y-assertions — the CRUD list named `People`
+**Section:** §Surface: desktop-native → Primary screens (the CRUD keyboard region)
+**Change:** `crud-list` is named by an attribute alone — `aria-label="People"`, its accessible name `People` in the tree and the snapshot — adding no element, class, style, wrapper, id or order; the current-option gap stays stated (no `aria-activedescendant` read).
+**Why:** the plan's naming of the stand's one unnamed interactive-role element; the list's Tab sequence (six stops) is unchanged.
+**Ref:** .andromeda/runs/2026-10-14T19-50-50-wrap/

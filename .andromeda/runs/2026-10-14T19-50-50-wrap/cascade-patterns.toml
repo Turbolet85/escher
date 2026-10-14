@@ -1,0 +1,64 @@
+# Cascade step-2 sweep — the retired claims of this pass, by wording and by mechanism.
+
+[[pattern]]
+id = 'old-accent'
+regex = '#4a6cf7|74, ?108, ?247|4\.39'
+ignore_case = true
+
+[[pattern]]
+id = 'not-met'
+regex = 'not met on the|therefore not met|SC 1\.4\.3 is not met|accent buttons.{0,40}(fail|not met)'
+
+[[pattern]]
+id = 'record-tally'
+regex = 'pass 9|fail 5'
+
+[[pattern]]
+id = 'three-files'
+regex = 'three (named )?files|stays? (its )?three|staying its three'
+
+[[pattern]]
+id = 'leg-list'
+regex = 'focusability_updates` ?(integration tests|\)|`, 6 \+ 6 \+ 4)|--test focusability_updates`'
+
+[[pattern]]
+id = 'route-owner'
+fixed = 'Stand a11y assertions'
+
+[[pattern]]
+id = 'route-owned'
+regex = 'owned by a route entry|witness owned by a route|owed on the working route|owned by a CARRY on the route'
+
+[[pattern]]
+id = 'empty-name'
+regex = 'accessible name `""`|reads no accessible name|unnamed list|listbox reads no|list reads no'
+
+[[pattern]]
+id = 'records-nothing'
+regex = 'records and gates nothing|adds no stand assertion|existing tests and adds no'
+
+[[pattern]]
+id = 'kb-count'
+regex = '`stand_keyboard`,? 11|stand_keyboard 11'
+
+[[pattern]]
+id = 'contrast-count'
+regex = '`stand_contrast`,? 2\b|stand_contrast 2\b'
+
+# ids-count dropped: its control never fired over the pre-pass masters (no master stated the file's count).
+
+[[pattern]]
+id = 'run-stand'
+regex = 'passed 153'
+
+[[pattern]]
+id = 'ws-totals'
+regex = '928 passed'
+
+[[pattern]]
+id = 'states-unmeas'
+regex = 'colour-changing states|hover and active, the toggle|non-boot enabled states'
+
+[[pattern]]
+id = 'boot-only-walk'
+regex = 'Tab order (at boot|unchanged)|at boot only'

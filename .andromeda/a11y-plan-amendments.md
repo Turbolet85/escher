@@ -295,3 +295,21 @@ One entry per amendment to `a11y-plan.md` (sidecar-contract.md §Entry form). Ap
 - §9: the a11y leg runs 6 + 6 + 4 tests (was 6 + 6 + 3).
 **Why:** `disabled` by presence is the founder's own answer «По наличию (Рекомендую)» by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option label; the `<div>` limit is named on the operator's condition. The list's keys are the operator's F5 decision. The `inert` reading corrects a claim about unedited code to its measured limit.
 **Ref:** .andromeda/runs/2026-10-13T23-23-45-wrap/
+
+## 2026-10-14-stand-a11y-assertions — SC 1.4.3 met on the stand, three contrast tables, the a11y leg at six files
+**Section:** §3 Contrast verification harness, A11y testing tool pick · §6 Color contrast and its NOT YET MEASURED note · §9 CI Integration
+**Change:**
+- §6: the stand's accent one step darker (rest `#3a5ce5`, hover `#2a4cd3`, active `#1f3fc1`; white 5.47 · 6.83 · 8.27). `stand_contrast`'s record now 14 · 0 · 3 · 1, the five accent controls at 5.47 (was 9 · 5 · 3 · 1, `#4a6cf7` at 4.39). One shared reader classifies two more tables: `TEXT_ROWS` 14 (list rows, text outside the controls, all pass) and `STATE_ROWS` 19 (reached states, hover and active included; 18 pass, 1 exempt). Hover and active are read by pointer; a button with no `:active` rule keeps its hover pair. SC 1.4.3 met on every measured non-exempt row (was "not met on the five accent buttons"). The note no longer lists the list rows, outside text and colour states as unmeasured; the route-entry owner of all four is retired.
+- §3: `stand_contrast` states three tables and runs in the `a11y` leg; the state check is "not in the `a11y` leg, which runs six files" (was "the leg staying its three files").
+- §9: the leg runs six files — `stand_keyboard`, `stand_contrast`, `stand_accessibility_ids` added, the job unchanged; was "it runs existing tests and adds no stand assertion".
+**Why:** the re-colour is the operator's F5, a stand change and no engine change; the leg's widening is the founder's F4 «Расширить задание a11y (Рекомендую)», by question dialog in the overseer session, relayed by the overseer as his chosen option label — no new job, no required status check, no repository setting.
+**Ref:** .andromeda/runs/2026-10-14T19-50-50-wrap/
+
+## 2026-10-14-stand-a11y-assertions — the enabled-state walks, the list named, three gaps re-homed to residuals
+**Section:** §1 Dioxus crates · §2 Accessibility tree lifecycle, Role derivation · §5 Keyboard handling, Script and framework exposure, Per-surface keyboard shortcuts, Test harness pattern · §7 Accessibility tree output
+**Change:**
+- §5: Enter and Space read as the click of `crud-update` and `crud-delete` once enabled (4 rows); the walk asserted in two enabled states against `ENABLED_TAB_ORDER` (six and eight stops), every control reached by Tab. The `inert` gap and the missing `aria-activedescendant` (SC 4.1.2 work outside the tier-0 target) are owned by `.andromeda/residuals.md` lines (target: next), was a CARRY on "Stand a11y assertions". The list is named `People`.
+- §7: the list's empty name retired; every interactive-role node of the four lean tasks named over nine roles, `REGION_NAMES`; the `&dyn Document` tree equal to the document's, carrying stable ids only. One gap open, not two.
+- §1 · §2: the refresh's two halves proven headlessly on the stand; the adapter on the stand binary and its windowed AT witness (ids, names, the three states, the refresh) owned by a residuals line (target: next), was "a route entry" / "owed on the working route's entry".
+**Why:** the three re-homes are the founder's F1 «Пока нет, перенести (Рекомендую)», F2 «Оставить записанным (Рекомендую)» and F3 «Оставить, перенести (Рекомендую)», each by question dialog in the overseer session, relayed by the overseer as his chosen option label, placed as residuals lines by the operator's P5 word. No engine, boundary or PROVISIONAL mark moves.
+**Ref:** .andromeda/runs/2026-10-14T19-50-50-wrap/

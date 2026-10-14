@@ -1,0 +1,628 @@
+[
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-14T19:51:04Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions",
+"--run-dir",
+".andromeda/runs/2026-10-14T19-50-50-wrap",
+"--marker",
+"2026-10-14-stand-a11y-assertions"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base ccfcda48 (the parent of the oldest pre-CI commit aab4cda9) · lists new 0 · modify 15 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 15 · listed 15 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 56"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "ccfcda487b8123fc722e0a1fe8e1eda9d62c660d",
+"base_why": "the parent of the oldest pre-CI commit aab4cda9",
+"counts": {
+"changed": 15,
+"listed": 15,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 56,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-14T19:59:10Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions",
+"--run-dir",
+".andromeda/runs/2026-10-14T19-50-50-wrap",
+"--marker",
+"2026-10-14-stand-a11y-assertions"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base ccfcda48 (the parent of the oldest pre-CI commit aab4cda9) · lists new 0 · modify 15 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 15 · listed 15 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 68"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "ccfcda487b8123fc722e0a1fe8e1eda9d62c660d",
+"base_why": "the parent of the oldest pre-CI commit aab4cda9",
+"counts": {
+"changed": 15,
+"listed": 15,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 68,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-14T20:28:29Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-14T19-50-50-wrap",
+"--marker",
+"2026-10-14-stand-a11y-assertions"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-14-stand-a11y-assertions · entries 14",
+"logs $TMPDIR/andromeda-gate/2026-10-14-stand-a11y-assertions/wrap-2026-10-14T19-50-50 · bound: GNU timeout",
+"delta docs 89 · unmapped 2",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L166-169: No mutation runs — the founder's word (inputs#I1). A check's power to fail is shown instea… (334 chars)",
+"prose L171-174: There is no live leg and no boot-path smoke: the stand boots in process in every check. Th… (427 chars)",
+"  1 unit        green · exit 0 · 1.15s · 2493 B → 1.log · cargo test -p blitz-test-harness --locked",
+"  2 integration green · exit 0 · 13.93s · 2447 B → 2.log · cargo test -p blitz-tests --locked --test stand_contrast -… (109 chars)",
+"  3 integration green · exit 0 · 4.66s · 1064 B → 3.log · cargo test -p seven_guis --locked --test host_log --test m… (64 chars)",
+"  4 integration green · exit 0 · 11.48s · 3864 B → 4.log · bash .github/scripts/ci-leg.sh a11y",
+"  5 probe       green · exit 1 · 0.0s · 2 B → 5.log · grep -r -i -o -E '#4a6cf7|74, ?108, ?247' examples/seven_g… (73 chars)",
+"  6 probe       green · exit 1 · 0.0s · 2 B → 6.log · cat tests/blitz-tests/tests/stand_contrast.rs tests/blitz-… (309 chars)",
+"  7 probe       green · exit 0 · 0.01s · 0 B → 7.log · git diff --quiet ccfcda487b8123fc722e0a1fe8e1eda9d62c660d … (330 chars)",
+"  8 build       green · exit 0 · 48.11s · 137 B → 8.log · bash scripts/agent-run.sh boot",
+"  9 integration green · exit 0 · 50.32s · 21795 B → 9.log · bash scripts/agent-run.sh run stand",
+" 10 lint        green · exit 0 · 117.0s · 97188 B → 10.log · bash .github/scripts/ci-leg.sh fast",
+" 11 lint        green · exit 0 · 0.58s · 177 B → 11.log · bash .github/scripts/ci-leg.sh doc",
+" 12 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 13 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 14 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 14 · green 11 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-14-stand-a11y-assertions",
+"plan": "./escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-14-stand-a11y-assertions/wrap-2026-10-14T19-50-50",
+"delta": {
+"docs": [
+".andromeda/a11y-plan-amendments.md",
+".andromeda/a11y-plan.md",
+".andromeda/architecture-amendments.md",
+".andromeda/architecture.md",
+".andromeda/design-system-amendments.md",
+".andromeda/design-system.md",
+".andromeda/friction-log.ndjson",
+".andromeda/layout-templates-amendments.md",
+".andromeda/layout-templates.md",
+".andromeda/obs-plan-amendments.md",
+".andromeda/obs-plan.md",
+".andromeda/residuals.md",
+".andromeda/security-plan-amendments.md",
+".andromeda/security-plan.md",
+".andromeda/state.yaml",
+".andromeda/test-plan-amendments.md",
+".andromeda/test-plan.md",
+".claude/docs/a11y-summary.md",
+".claude/docs/design-summary.md",
+".claude/docs/obs-summary.md",
+".claude/docs/services/blitz-shell.md",
+".claude/docs/services/blitz-test-harness.md",
+".claude/docs/services/seven_guis.md",
+".claude/docs/session-learnings.md",
+".claude/docs/tests-summary.md",
+".claude/rules/a11y.md",
+".claude/rules/security.md",
+".claude/session-handoff.md",
+"CLAUDE.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/a11y-plan-contracts.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/a11y-plan-entry-1.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/a11y-plan-entry-2.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/architecture-entry.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/cascade-2026-10-14-stand-a11y-assertions-pre-pass.json",
+".andromeda/runs/2026-10-14T19-50-50-wrap/cascade-2026-10-14-stand-a11y-assertions.json",
+".andromeda/runs/2026-10-14T19-50-50-wrap/cascade-dispositions.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/cascade-patterns.toml",
+".andromeda/runs/2026-10-14T19-50-50-wrap/citation-dispositions.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/cites-2026-10-14-stand-a11y-assertions.json",
+".andromeda/runs/2026-10-14T19-50-50-wrap/curation.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/design-system-entry.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/evolve-2026-10-14-stand-a11y-assertions.json",
+".andromeda/runs/2026-10-14T19-50-50-wrap/fanout-a11y-plan.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/fanout-architecture.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/fanout-design-system.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/fanout-layout-templates.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/fanout-obs-plan.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/fanout-results.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/fanout-security-plan.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/fanout-test-plan.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/gate-2026-10-14-stand-a11y-assertions.json",
+".andromeda/runs/2026-10-14T19-50-50-wrap/health-2026-10-14-stand-a11y-assertions.json",
+".andromeda/runs/2026-10-14T19-50-50-wrap/inputs-2026-10-14-stand-a11y-assertions.json",
+".andromeda/runs/2026-10-14T19-50-50-wrap/inputs-verify-after.txt",
+".andromeda/runs/2026-10-14T19-50-50-wrap/layout-templates-entry.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-a11y-plan.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-architecture+layout-templates.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-architecture+obs-plan.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-architecture+test-plan.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-architecture-1.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-architecture-2.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-delta-a11y-plan.diff",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-delta-architecture.diff",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-delta-design-system.diff",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-delta-layout-templates.diff",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-delta-obs-plan.diff",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-delta-security-plan.diff",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-delta-test-plan.diff",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-design-system+layout-templates.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-masters.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-obs-plan.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-security-plan.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/leaf-test-plan.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/new-text.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/obs-plan-contracts.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/obs-plan-entry.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/registry-2026-10-14-stand-a11y-assertions.json",
+".andromeda/runs/2026-10-14T19-50-50-wrap/relay-1.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/report-patterns.toml",
+".andromeda/runs/2026-10-14T19-50-50-wrap/residual-1.txt",
+".andromeda/runs/2026-10-14T19-50-50-wrap/residual-2.txt",
+".andromeda/runs/2026-10-14T19-50-50-wrap/residual-3.txt",
+".andromeda/runs/2026-10-14T19-50-50-wrap/route-no-marker.json",
+".andromeda/runs/2026-10-14T19-50-50-wrap/security-plan-entry.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/splice-2026-10-14-stand-a11y-assertions.json",
+".andromeda/runs/2026-10-14T19-50-50-wrap/test-plan-contracts.md",
+".andromeda/runs/2026-10-14T19-50-50-wrap/test-plan-entry.md",
+"escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/evidence/ci.md",
+"escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/report.md"
+]
+},
+"unmapped": [
+"escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/inputs/andromeda-inputs.json",
+"escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/inputs/I6-relay-1.md.txt"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 91,
+"problem": null
+},
+"prose": [
+{
+"from": 166,
+"to": 169,
+"text": "No mutation runs — the founder's word (inputs#I1). A check's power to fail is shown instead: - by the P5 baselines on the untouched tree: the accent census red, the new tests absent, the restated record's five   rows standing as `Fail`; - by the assertion that the SC 1.4.3 predicate is evaluated per measured row, not per stated row."
+},
+{
+"from": 171,
+"to": 174,
+"text": "There is no live leg and no boot-path smoke: the stand boots in process in every check. The windows, macos, ios and android legs and the CI `a11y` job are read only through the pushed sha's CI run. The step-1 hover and active reading (`evidence/hover-active.md`) is a one-shot measurement at implement through a scratch test the step deletes, so no listed entry produces it; the criterion that names it reads the evidence file."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-test-harness --locked",
+"run_sha8": "18448146",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-stand-a11y-assertions/wrap-2026-10-14T19-50-50/1.log",
+"bytes": 2493,
+"log_sha8": "9986be1f",
+"exit": 0,
+"seconds": 1.15,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_contrast --test stand_keyboard --test stand_accessibility_ids",
+"run_sha8": "f9c2f209",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-stand-a11y-assertions/wrap-2026-10-14T19-50-50/2.log",
+"bytes": 2447,
+"log_sha8": "dadd96a8",
+"exit": 0,
+"seconds": 13.93,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test host_log --test mcp_log",
+"run_sha8": "d50841c8",
+"expect": [
+"exit 0",
+"lacks running 0 tests",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-stand-a11y-assertions/wrap-2026-10-14T19-50-50/3.log",
+"bytes": 1064,
+"log_sha8": "21a1d323",
+"exit": 0,
+"seconds": 4.66,
+"readings": [
+"exit 0 ✓",
+"lacks 'running 0 tests' ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": [
+"exit 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-stand-a11y-assertions/wrap-2026-10-14T19-50-50/4.log",
+"bytes": 3864,
+"log_sha8": "a44d0527",
+"exit": 0,
+"seconds": 11.48,
+"readings": [
+"exit 0 ✓",
+"artifact fresh (target/ci-logs/a11y.log)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "grep -r -i -o -E '#4a6cf7|74, ?108, ?247' examples/seven_guis/src | wc -l",
+"run_sha8": "a9b59a88",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-stand-a11y-assertions/wrap-2026-10-14T19-50-50/5.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "cat tests/blitz-tests/tests/stand_contrast.rs tests/blitz-tests/tests/stand_keyboard.rs tests/blitz-tests/tests/stand_accessibility_ids.rs tests/blitz-tests/tests/common/mod.rs | grep -c -E 'println!|eprintln!|print!|dbg!|std::env|env::var|escher_telemetry|tracing_subscriber|UnixListener|TcpListener|bind\\(' ",
+"run_sha8": "66e024eb",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-stand-a11y-assertions/wrap-2026-10-14T19-50-50/6.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff --quiet ccfcda487b8123fc722e0a1fe8e1eda9d62c660d -- packages Cargo.toml Cargo.lock deny.toml scripts examples/seven_guis/Cargo.toml examples/seven_guis/src/app.rs examples/seven_guis/src/stand.rs examples/seven_guis/src/session_host.rs tests/blitz-tests/Cargo.toml tests/blitz-tests/tests/session_common .github/workflows",
+"run_sha8": "6d2a419b",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-stand-a11y-assertions/wrap-2026-10-14T19-50-50/7.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-stand-a11y-assertions/wrap-2026-10-14T19-50-50/8.log",
+"bytes": 137,
+"log_sha8": "3e8244f0",
+"exit": 0,
+"seconds": 48.11,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-stand-a11y-assertions/wrap-2026-10-14T19-50-50/9.log",
+"bytes": 21795,
+"log_sha8": "22a18a16",
+"exit": 0,
+"seconds": 50.32,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-stand-a11y-assertions/wrap-2026-10-14T19-50-50/10.log",
+"bytes": 97188,
+"log_sha8": "f79c5cc8",
+"exit": 0,
+"seconds": 117.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-stand-a11y-assertions/wrap-2026-10-14T19-50-50/11.log",
+"bytes": 177,
+"log_sha8": "e877e8a0",
+"exit": 0,
+"seconds": 0.58,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-14T20:28:43Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-10-14T19-50-50-wrap",
+"--marker",
+"2026-10-14-stand-a11y-assertions"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base ccfcda48 (the parent of the oldest pre-CI commit aab4cda9)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 109 (runs 99 · evidence 2 · inputs 8) · trails 24 not read · copies 6 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 99,
+"evidence": 2,
+"inputs": 8,
+"trails": 24,
+"copies": 6,
+"kept": 0,
+"binary": 0,
+"in_root": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-14T20:28:46Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions",
+"--run-dir",
+".andromeda/runs/2026-10-14T19-50-50-wrap",
+"--marker",
+"2026-10-14-stand-a11y-assertions"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base ccfcda48 (the parent of the oldest pre-CI commit aab4cda9) · lists new 0 · modify 15 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 15 · listed 15 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 144"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "ccfcda487b8123fc722e0a1fe8e1eda9d62c660d",
+"base_why": "the parent of the oldest pre-CI commit aab4cda9",
+"counts": {
+"changed": 15,
+"listed": 15,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 144,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

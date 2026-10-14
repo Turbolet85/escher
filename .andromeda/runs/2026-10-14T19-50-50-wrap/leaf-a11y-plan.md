@@ -1,0 +1,58 @@
+group: a11y-plan
+read: .claude/docs/a11y-summary.md · 45 · «**Full plan:** `.andromeda/a11y-plan.md`. Path-scoped rules:»
+read: .claude/rules/a11y.md · 46 · «- 2026-10-06: On the dev host the AT-SPI bus reads `IsEnable»
+
+- leaf: .claude/docs/a11y-summary.md:15   class: stale
+  leaf-text: «`stand_contrast` asserts the 18 stand control rows in both layout modes beside a painted-pixel witness — pass 9, fail 5 (the accent buttons, `#ffffff` on `#4a6cf7` at 4.39 against 4.5, so SC 1.4.3 is not met there), exempt-inactive 3, no-text 1; it records and gates nothing and runs in the workspace `test` leg, not the `a11y` leg.»
+  source: .andromeda/a11y-plan.md:229 «each `#ffffff` on `#3a5ce5` at 5.47), fail 0, exempt-inactive 3 (`flight-return-date`, `crud-update` and `crud-delete`, exactly the rows whose snapshot `enabled` is `Some(false)`), no-text 1»
+  replace-with: «`stand_contrast` states three tables, read by one shared reader and asserted row for row in both layout modes — the 18 control rows beside a painted-pixel witness (pass 14, fail 0, exempt-inactive 3, no-text 1: since 2026-10-14-stand-a11y-assertions the stand's accent is one step darker, the operator's F5, a stand change and no engine change, so the five accent controls read `#ffffff` on `#3a5ce5` at 5.47 where `#4a6cf7` read 4.39 and failed), 14 `TEXT_ROWS` (the CRUD list rows and the text outside the controls, all pass) and 19 `STATE_ROWS` (the colour states reached by input, hover and active included: pass 18, exempt 1) — so SC 1.4.3 is met on every measured non-exempt stand row; it runs in the workspace `test` leg, per package and, since 2026-10-14-stand-a11y-assertions, in the `a11y` leg.»
+
+- leaf: .claude/docs/a11y-summary.md:21   class: stale
+  leaf-text: «what an assistive technology reads is unmeasured, the windowed witness owned by "Stand a11y assertions".»
+  source: .andromeda/a11y-plan.md:46 «witness, at an active assistive technology, is owned by a `.andromeda/residuals.md` line (target: next) on the founder's F1»
+  replace-with: «what an assistive technology reads is unmeasured, the windowed witness, at an active assistive technology, owned by a `.andromeda/residuals.md` line (target: next) on the founder's F1 (2026-10-14), the headless half — the tree the shell hands the adapter — proven on the stand since 2026-10-14-stand-a11y-assertions.»
+
+- leaf: .claude/docs/a11y-summary.md:22   class: stale
+  leaf-text: «Two gaps stand open: the rows are not focusable and the tree's focus is the list, never the option — the builder reads no `aria-activedescendant`, so an assistive technology learns the current row only from its `selected` reading (a CARRY on "Stand a11y assertions") — and the list reads no accessible name ("Stand a11y assertions").»
+  source: .andromeda/a11y-plan.md:283 «the second, the list's empty accessible name, closed at 2026-10-14-stand-a11y-assertions, the list named `People` by `aria-label`»
+  replace-with: «One gap stands open: the rows are not focusable and the tree's focus is the list, never the option — the builder reads no `aria-activedescendant`, so an assistive technology learns the current row only from its `selected` reading; an `aria-activedescendant` read in the builder, or a roving focus, is SC 4.1.2 work outside the tier-0 target, owned by a `.andromeda/residuals.md` line (target: next) on the founder's F2 (2026-10-14). The second, the list's empty accessible name, closed at 2026-10-14-stand-a11y-assertions: the list is named `People` by `aria-label`.»
+
+- leaf: .claude/docs/a11y-summary.md:24   class: stale
+  leaf-text: «Tab reaches the buttons under `inert: true` and `inert: false` alike — a CARRY on "Stand a11y assertions")»
+  source: .andromeda/a11y-plan.md:186 «owned by a `.andromeda/residuals.md` line (target: next) on the founder's F3»
+  replace-with: «Tab reaches the buttons under `inert: true` and `inert: false` alike — owned by a `.andromeda/residuals.md` line (target: next) on the founder's F3 (2026-10-14), `stand_keyboard::the_engine_honours_no_inert` staying its pin and whether an inert subtree takes a hit unmeasured)»
+
+- leaf: .claude/docs/a11y-summary.md:25   class: omission
+  leaf-text: «the three other tasks' unchanged and asserts the 15 stand controls' roles and non-empty names;»
+  source: .andromeda/a11y-plan.md:280 «every interactive-role tree node of the four lean tasks reads a non-empty name — asserted in both layout modes over the nine roles of `INTERACTIVE_ROLES`»
+  replace-with: «the three other tasks' unchanged and asserts the 15 stand controls' roles and non-empty names — and, since 2026-10-14-stand-a11y-assertions, that every interactive-role tree node of the four lean tasks reads a non-empty name (the nine roles of `INTERACTIVE_ROLES`; the CRUD list named `People` by `aria-label`), each `REGION_NAMES` row's name in the tree and the snapshot, and that the tree the shell hands the adapter (`Document::accessibility_tree` through `&dyn blitz_dom::Document`) equals `harness.doc.accessibility_tree()` node for node, with the same focus and root, every `author_id` on it the node's `element_id`;»
+
+- leaf: .claude/docs/a11y-summary.md:25   class: omission
+  leaf-text: «and through the driver `stand_act_keys.rs` presses `enter` and `space` on a Tab-focused `counter-increment`, each naming `counter-value`.»
+  source: .andromeda/a11y-plan.md:213 «the walk is also asserted in two enabled states, each reached by keyboard alone (`enable_by_keyboard`) and walked in order against the shared table `ENABLED_TAB_ORDER`»
+  replace-with: «and through the driver `stand_act_keys.rs` presses `enter` and `space` on a Tab-focused `counter-increment`, each naming `counter-value`; since 2026-10-14-stand-a11y-assertions Enter and Space also read as the click of the two buttons enabled after boot, `crud-update` and `crud-delete`, each reached by keyboard alone (4 rows), and the Tab walk is asserted in two enabled states, each reached by keyboard alone, against the shared table `ENABLED_TAB_ORDER` — the flight booker after `flight-return`, six stops; CRUD after a row is selected, eight, `crud-update` and `crud-delete` last — every `controls(task)` id lying in `tab_order` ∪ `ENABLED_TAB_ORDER`.»
+
+- leaf: .claude/docs/a11y-summary.md:26   class: stale
+  leaf-text: «no windowed witness on the dev host — still owed, on "Stand a11y assertions")»
+  source: .andromeda/a11y-plan.md:36 «its windowed witness, at the platform adapter, is still owed — the stand builds no adapter, kept so on the founder's F1»
+  replace-with: «no windowed witness on the dev host — still owed at the platform adapter, the stand building no adapter, kept so on the founder's F1 (2026-10-14), and owned by a `.andromeda/residuals.md` line (target: next); since 2026-10-14-stand-a11y-assertions both halves are proven headlessly on the stand in both layout modes: on Counter, after a drained changed set, each Tab of the whole `tab_order` and an Enter on `counter-increment` leave `has_changes()` true, and the tree read through `&dyn Document` reads the new focus stop and `counter-value`'s new name)»
+
+- leaf: .claude/rules/a11y.md:32   class: stale
+  leaf-text: «Tab reaches the buttons under `inert: true` and `inert: false` alike — a CARRY on "Stand a11y assertions")»
+  source: .andromeda/a11y-plan.md:186 «owned by a `.andromeda/residuals.md` line (target: next) on the founder's F3»
+  replace-with: «Tab reaches the buttons under `inert: true` and `inert: false` alike — owned by a `.andromeda/residuals.md` line (target: next) on the founder's F3 (2026-10-14), `stand_keyboard::the_engine_honours_no_inert` staying its pin and whether an inert subtree takes a hit unmeasured)»
+
+- leaf: .claude/rules/a11y.md:35   class: omission
+  leaf-text: «and through the driver `stand_act_keys` presses `enter` and `space` on a Tab-focused `counter-increment`.»
+  source: .andromeda/a11y-plan.md:213 «the walk is also asserted in two enabled states, each reached by keyboard alone (`enable_by_keyboard`) and walked in order against the shared table `ENABLED_TAB_ORDER`»
+  replace-with: «and through the driver `stand_act_keys` presses `enter` and `space` on a Tab-focused `counter-increment`; since 2026-10-14-stand-a11y-assertions the walk is also asserted in two enabled states, each reached by keyboard alone (`enable_by_keyboard`), against the shared table `ENABLED_TAB_ORDER` beside `tab_order` in the shared module — the flight booker after `flight-return`, six stops; CRUD after a row is selected, eight — every `controls(task)` id lying in `tab_order` ∪ `ENABLED_TAB_ORDER`, and Enter and Space read as the click of `crud-update` and `crud-delete` (4 rows), so a control enabled after boot needs its place in `ENABLED_TAB_ORDER`.»
+
+- leaf: .claude/rules/a11y.md:38   class: stale
+  leaf-text: «and `stand_contrast` asserts the 18 stand control rows in both layout modes — SC 1.4.3 is not met on the five accent buttons (`#ffffff` on `#4a6cf7`, 4.39 against 4.5); the check records and gates nothing and runs in the workspace `test` leg, not the `a11y` leg; the re-colouring, the unmeasured colour-changing states, the CRUD list rows and the text outside the controls are owned by "Stand a11y assertions".»
+  source: .andromeda/a11y-plan.md:229 «Three tests assert the three tables in both layout modes, so SC 1.4.3 is met on every measured non-exempt stand row; the check runs in the workspace `test` leg, per package and in the `a11y` leg (§9)»
+  replace-with: «and `stand_contrast` asserts three tables in both layout modes, read by one shared reader whose exempt class is exactly `enabled == Some(false)` — the 18 stand control rows, 14 `TEXT_ROWS` (the CRUD list rows and the text outside the controls) and 19 `STATE_ROWS` (the colour states reached by input, hover and active included) — so SC 1.4.3 is met on every measured non-exempt stand row: since 2026-10-14-stand-a11y-assertions the stand's accent is one step darker in every task CSS that declares it (rest `#3a5ce5`, hover `#2a4cd3`, active `#1f3fc1`, white on each 5.47 · 6.83 · 8.27; the operator's F5, a stand change and no engine change, design-system §Color Palette), where `#4a6cf7` read 4.39 and failed; `text_contrast` reads the declared `:hover` background after `move_mouse_to` and the `:active` one after `mouse_down_at`, and a button with no `:active` rule keeps its hover pair while pressed; the check runs in the workspace `test` leg, per package and in the `a11y` leg.»
+
+- leaf: .claude/rules/a11y.md:42   class: stale
+  leaf-text: «The a11y CI leg runs the existing accessibility tests (`bash .github/scripts/ci-leg.sh a11y` — `accessibility_hidden`, `accessibility_roles`, `focusability_updates`); `accessibility_states` (the three state attributes, one stated table per attribute with its row count asserted) and `accessibility_names` ride the workspace test leg, not this one; SC assertions on stand controls gating merges are owned by "Stand a11y assertions".»
+  source: .andromeda/a11y-plan.md:340 «--test focusability_updates --test stand_keyboard --test stand_contrast --test stand_accessibility_ids`»
+  replace-with: «The a11y CI leg (`bash .github/scripts/ci-leg.sh a11y`) runs six files since 2026-10-14-stand-a11y-assertions — `accessibility_hidden`, `accessibility_roles`, `focusability_updates`, `stand_keyboard`, `stand_contrast`, `stand_accessibility_ids`, the stand's keyboard, contrast and accessibility-id assertions — widened on the founder's F4 (2026-10-14) with no new job, no required status check and no repository setting; `accessibility_states` (the three state attributes, one stated table per attribute with its row count asserted) and `accessibility_names` ride the workspace test leg, not this one.»

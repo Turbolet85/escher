@@ -8,6 +8,13 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-14 — An operator gate entry's output survives a context clear; a bare-fired one does not
+`gate.py run --operator {n}` writes each entry's whole output to `$TMPDIR/andromeda-gate/{marker}/run-{UTC}/{n}.log`, outside the session and the repository, and that log outlives a pause-clear of the window. So an operator entry whose printed result was lost with the window can be read back from there instead of re-run. An operator entry the operator fires bare — `gate.py hygiene`, say — leaves no such log, and its result then rests only on the word of whoever saw it.
+
+Where it applies: resuming a chunk after a clear. Look in that directory before calling an operator entry's output lost. For an entry whose result must survive, fire it through `gate.py run --operator` rather than bare.
+
+---
+
 ## 2026-10-13 — An added-line census reads inline test modules too
 A plan's security census over the chunk's added engine lines (`git diff … | grep -c '\.expect\('` and its kin) counts every added line, including the `#[cfg(test)]` module inside a source file. A `.expect(…)` in a new inline test therefore reddens the census though no engine line carries one. In inline test modules write `let Some(x) = … else { panic!(…) };` (or an assertion) instead of `.expect`. Then the census reads 0 without a carve-out, and the plans' own note — inline test modules use assertions — holds.
 

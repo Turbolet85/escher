@@ -308,3 +308,9 @@ One entry per amendment to `obs-plan.md` (sidecar-contract.md §Entry form). App
 - `stand_keyboard` joins the silent census: it drives the four lean tasks and its own fixtures in process in both layout modes, installs no subscriber, reads no env var, prints nothing and binds no listener, its readings going into assertions only. The silence probe reads 0 over it and over the shared module whose `tab_order` and `focused` it reads.
 **Why:** this chunk's new check and its count. The shared module's probe was run at this wrap, the report's probe having read the check file alone.
 **Ref:** .andromeda/runs/2026-10-13T23-23-45-wrap/
+
+## 2026-10-14-stand-a11y-assertions — the silence census over the extended checks
+**Section:** §3 Observability Harness Contract → Logging stack (the headless-stand census)
+**Change:** `stand_contrast` and `stand_keyboard` with their new tests, and `stand_accessibility_ids` (its three tests reading the tree through `&dyn blitz_dom::Document`), each still install no subscriber, read no env var, print nothing and bind no listener; the silence probe reads 0 over the three files and the shared module. The shared module's reader count stays 19.
+**Why:** the chunk added tests to three checks and none installs a sink or prints; `stand_accessibility_ids` was not named in the census before.
+**Ref:** .andromeda/runs/2026-10-14T19-50-50-wrap/
