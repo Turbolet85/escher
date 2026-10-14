@@ -1,0 +1,9 @@
+
+## 2026-10-13-stand-keyboard-harness — Enter and Space activate a focused control, and a click focuses a button
+**Section:** §5 Keyboard Navigation → Keyboard handling (engine and shell) · Focus restoration · §7 Accessibility tree output (the diff)
+**Change:**
+- Keyboard handling: a pressed Enter on the focused node, after the text-input and range arms, dispatches a Click on a `button`, a `summary`, an `input` of type `submit`/`reset`/`button` or an `a` with `href` with no `disabled` attribute. A released Space (`handle_key_up`, KeyUp's first default action) does the same for a `button`, a `summary` or an `input` of type `submit`/`reset`/`button`/`checkbox`/`radio`. A link takes no Space; a text or range input takes neither key there. The app's handlers run, then `handle_click`. In every document. SC 2.1.1 on the stand's buttons is met by measurement: 20 rows, and the driver's `press enter`/`press space`.
+- Focus restoration: a pointer click on a `button` or a `submit`/`reset`/`button` `input` focuses it, then submits a submit button's form owner, in every document. A `disabled` attribute still stops the walk; any other click still clears focus. On the stand a click focuses each button and Tab continues. Was: a click on a plain button left no element focused, whether it should focus owned by a route entry.
+- §7 diff: the Book names seven bounds-only nodes and `flight-book` `[focused, bounds]`. Was eight `[bounds]`.
+**Why:** engine changes for every document; keyboard activation is a boundary widening. The founder answered himself by question dialog in the overseer session, each answer relayed verbatim by the overseer as his chosen option label: «Клавиши нажимают (Рекомендую)» and «Клик даёт фокус (Рекомендую)», 2026-10-13. He confirmed on this wrap's answer card, 2026-10-14, «Подтвердить (Рекомендую)», that the keyboard-handling proposal lies inside them.
+**Ref:** .andromeda/runs/2026-10-13T23-23-45-wrap/

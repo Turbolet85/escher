@@ -273,3 +273,25 @@ One entry per amendment to `a11y-plan.md` (sidecar-contract.md §Entry form). Ap
 - §7: the snapshot's `value` for a range input is its current value (`range_input_value`), was its `value` attribute. The file-input clause stands.
 **Why:** SC 2.1.1 keyboard reach on the stand's slider. The keys and the click focus were ratified by the founder (2026-10-13, his fork answers «Стрелки + Home/End (Рекомендую)» and «Клик даёт фокус (Рекомендую)», confirmed on this wrap's answer card «Подтвердить (Рекомендую)», each by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option label).
 **Ref:** .andromeda/runs/2026-10-13T21-11-52-wrap/
+
+## 2026-10-13-stand-keyboard-harness — Enter and Space activate a focused control, and a click focuses a button
+**Section:** §5 Keyboard Navigation → Keyboard handling (engine and shell) · Focus restoration · §7 Accessibility tree output (the diff)
+**Change:**
+- Keyboard handling: a pressed Enter on the focused node, after the text-input and range arms, dispatches a Click on a `button`, a `summary`, an `input` of type `submit`/`reset`/`button` or an `a` with `href` with no `disabled` attribute. A released Space (`handle_key_up`, KeyUp's first default action) does the same for a `button`, a `summary` or an `input` of type `submit`/`reset`/`button`/`checkbox`/`radio`. A link takes no Space; a text or range input takes neither key there. The app's handlers run, then `handle_click`. In every document. SC 2.1.1 on the stand's buttons is met by measurement: 20 rows, and the driver's `press enter`/`press space`.
+- Focus restoration: a pointer click on a `button` or a `submit`/`reset`/`button` `input` focuses it, then submits a submit button's form owner, in every document. A `disabled` attribute still stops the walk; any other click still clears focus. On the stand a click focuses each button and Tab continues. Was: a click on a plain button left no element focused, whether it should focus owned by a route entry.
+- §7 diff: the Book names seven bounds-only nodes and `flight-book` `[focused, bounds]`. Was eight `[bounds]`.
+**Why:** engine changes for every document; keyboard activation is a boundary widening. The founder answered himself by question dialog in the overseer session, each answer relayed verbatim by the overseer as his chosen option label: «Клавиши нажимают (Рекомендую)» and «Клик даёт фокус (Рекомендую)», 2026-10-13. He confirmed on this wrap's answer card, 2026-10-14, «Подтвердить (Рекомендую)», that the keyboard-handling proposal lies inside them.
+**Ref:** .andromeda/runs/2026-10-13T23-23-45-wrap/
+
+## 2026-10-13-stand-keyboard-harness — `disabled` by presence, the CRUD list's keys and the keyboard check
+**Section:** §5 Focus order · Per-surface keyboard shortcuts · Script and framework exposure · Test harness pattern · §3 Keyboard test harness · §7 Accessibility tree output · §8 Error recovery · §9 CI Integration
+**Change:**
+- §5 Focus order: an element is focusable only with no `disabled` attribute, any value, on any element. Disabled-ness is keyed one way, by presence. Was: focusability parsed the value as a bool and `disabled="false"` or a bare `disabled` stayed focusable. Known limit: a `<div disabled tabindex=0>` is not focusable, unlike in browsers, its narrowing owned by a CARRY on "Stand requirement sweep".
+- §5 Per-surface: the CRUD list takes `tabindex="0"` (the third Tab stop), and Arrow/Home/End move the selection. The rows stay unfocusable options; the tree's focus is the list; no `aria-activedescendant`, owned by a CARRY on "Stand a11y assertions". Was: no keyboard reaches an option.
+- §5 Script exposure: `inert` the 28th name the check reads; the engine honours no `inert`, owned by a CARRY on "Stand a11y assertions". Was: "it no longer makes content inert".
+- §5 Test harness pattern and §3: + `stand_keyboard`, and the driver's Enter and Space in `stand_act_keys`. Its focus reading drops the engine's root fallback.
+- §7: the snapshot's `enabled`, a present `disabled` not focusable either (was "both stay focusable"); the CRUD list focusable and a Tab stop in the actionable-key rule; the open gap restated as tree focus on the list; the 2026-10-06 Tab order bound to its chunk.
+- §8: the forward sequence read against `common::tab_order`, CRUD six stops.
+- §9: the a11y leg runs 6 + 6 + 4 tests (was 6 + 6 + 3).
+**Why:** `disabled` by presence is the founder's own answer «По наличию (Рекомендую)» by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option label; the `<div>` limit is named on the operator's condition. The list's keys are the operator's F5 decision. The `inert` reading corrects a claim about unedited code to its measured limit.
+**Ref:** .andromeda/runs/2026-10-13T23-23-45-wrap/

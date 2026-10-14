@@ -1,54 +1,50 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-13T21:44:39Z
-**Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's Setup
+**Last Updated:** 2026-10-14T06:16:15Z
+**Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's P6
 **Status:** clean
-**Last Commit:** 2026-10-13-range-input-interaction — the range interaction model: keys, click and an input event for every range input, ratified by the founder; the masters at the measured truth
+**Last Commit:** 2026-10-13-stand-keyboard-harness — keyboard activation, a click's focus and `disabled` by presence for every document, ratified by the founder; the masters at the measured truth
 
 ## Position
-- Done: 2026-10-13-range-input-interaction.
-  - A range input in every document holds a current value apart from its `value` attribute (`RangeInputData`, `node/range.rs`).
-  - The arrows step it and Home and End jump it; a pointerdown sets it by position and a click focuses it; one `input` per change.
-  - `stand_act_range` now proves that the driver moves the Timer slider. `range_input_interaction` adds 6 engine tests.
-  - CI on the pre-CI commit `dde6b170` was green (CI#38466886504, 16/16). This wrap's own run is read at P7.
-- Next: /andromeda-phase on "Stand keyboard harness" (working-route.md:92), the next markerless entry of Epoch 6.
+- Done: 2026-10-13-stand-keyboard-harness.
+  - Enter and Space activate a focused button-like control in every document; a click focuses a button; focusability reads `disabled` by presence. These are three engine changes, answered by the founder at the forks.
+  - The CRUD list takes focus, and its arrow, Home and End keys move the selection (the operator's F5).
+  - `stand_keyboard` (11 tests) proves it on the stand. CI on the pre-CI commit `71af33d0` was green (CI#38482525151, 16/16). This wrap's own run is read at P7.
+- Next: /andromeda-phase on "Stand a11y assertions" (working-route.md:94), the next markerless entry of Epoch 6.
 
 ## Work done
-- A two-window wrap. P1 ran in its own window. The first resume ran P2 to the answer card and stopped on the operator's word. The founder confirmed «Подтвердить (Рекомендую)» (inputs#I6, inputs#I7). This window resumed and ran P2 Apply through P7.
+- A three-window wrap. P1 ran in the first window. The first resume ran P2 to the answer card and stopped on the operator's word. The founder confirmed «Подтвердить (Рекомендую)» (inputs#I7). This window ran P2 Apply through P7.
 - Reconcile:
-  - 26 amendments over five masters (architecture 8, security-plan 2, test-plan 11, obs-plan 1, a11y-plan 4) and 6 sidecar entries.
-  - 26 detector proposals, all applied, 0 rejected. 7 rode one answer card: security-plan 1–2, architecture 1–3, a11y-plan 1–2.
+  - 47 amendments over six masters (architecture 10, security-plan 3, layout-templates 1, test-plan 16, obs-plan 2, a11y-plan 15) and 8 sidecar entries.
+  - 43 detector proposals plus 4 raised at the apply, all applied, 0 rejected. 6 rode one answer card: architecture 1 · 7, security-plan 1–3, a11y-plan 6.
   - 1 escalation resolved.
-- Citations: 140 re-pointed · 2 changed · 14 stretched; the 10 held rows stand.
-- Leaves: 10 groups in pass mode, 24 findings, all 24 applied by the tool.
+- Citations: 59 re-pointed · 14 changed · 26 stretched.
+- Leaves: 11 groups in pass mode, 44 findings, all 44 applied by the tool.
 
 ## Drift resolved
-- security-plan §Input Validation: a new `input type="range"` row, a boundary widening ratified by the founder. It covers `parse_float`, the sanitization, the default actions gated on `disabled` presence, and the value leaving only inside the ratified carriers. The `disabled` row adds the range arms.
+- security-plan §Input Validation: a new keyboard-activation row, a boundary widening ratified by the founder. Enter and Space reach the click default actions in every document, remote pages included, gated on `disabled` presence. The `disabled` row reads presence, and the `<div disabled tabindex=0>` known limit is named. The `attr_parsed` row drops `disabled`.
 - architecture:
-  - [Scrolling and input]: the fifth direct engine change for every document, upstreamable against 434e0661.
-  - [Layout]: the construction seed.
-  - Nodes and widgets: `RangeInput`, `RangeInputData` and the accessors.
-  - Events: `apply_range_move`.
-  - Dioxus DOM bridge: the snapshot `value` of a range input is its current value.
-  - Cross-cutting: the changed set has four kinds of writing site.
-  - Existing Scopes: the `range` module, `range_input_interaction`, and the restated `stand_act_range`.
-- test-plan: workspace 181 · 915 · 0 · 12; blitz-tests 120 files, 119 targets; dioxus-native-dom 68; blitz-dom 35 plus 7 in `range.rs`. `stand_act_ids` 9 change at boot, was 8. `stand_act_range` restated — the report had missed its test-plan.md:26 clause; the citation sweep caught it.
-- obs-plan: `range_input_interaction` joins the silent census.
-- a11y-plan §5: keyboard handling, click focus and the harness pattern for the range input. §7: the snapshot's range `value`.
+  - [Scrolling and input]: the sixth to eighth direct engine changes, upstreamable against 434e0661.
+  - Events: KeyUp's first default action.
+  - [DOM semantics]: `disabled` read one way.
+  - [Unsupported features]: no `inert`.
+  - Bridge and Driver session: the readings restated.
+  - Existing Scopes: `stand_keyboard`, 19 `common` readers, 41 driver-action tests.
+- test-plan: workspace 182 · 928 · 0 · 12; blitz-tests 121 files, 120 targets; `run stand` 153; `stand_act_keys` 3; the restated `stand_act_obstructed`, `stand_act_ids`, `stand_diff` and `stand_accessibility_ids` readings; the Session lifecycle key at 47.
+- a11y-plan §5: keyboard handling, click focus, `disabled` by presence, the CRUD list's keys, the harness pattern. §9: the a11y leg at 6 + 6 + 4.
+- obs-plan §3: `stand_keyboard` joins the silent census. The shared module's probe read 0 at this wrap.
+- layout-templates: the CRUD list is a keyboard region, Tab sequence six stops.
 
 ## Route as it now reads
-- "Quality gates" (:98): + CARRY, the range model's merge surface — seven upstream files plus `node/range.rs` against 434e0661 — on the operator's P5 word (inputs#I4).
-- "Stand requirement sweep" (:96): + CARRY, two range paths with no check: removing an attribute through `clear_attribute`, and the construction clear when `type` leaves `range`. Placed by the operator's 2026-10-10 precedent for owed checks on changed code.
+- "Stand a11y assertions" (:94): + CARRY, the CRUD list's tree focus (no `aria-activedescendant`); + CARRY, the engine honours no `inert`. Both are on the operator's P5 card 2 word (rows 1, 3).
+- "Stand requirement sweep" (:96): + CARRY, the second position reader, moved off the frozen line by the founder's F4 «Отложить (Рекомендую)» (card row 2); + CARRY, narrow `disabled` to the form controls (card row 5); + CARRY, two log readings a click's focus may move. The last is the wrap's placement, move it if it reads wrong.
+- "Quality gates" (:98): + CARRY, the keyboard activation's merge surface, four upstream files against 434e0661 (card row 4).
 - No PREREQ, no WATCH, no residual, no gated record.
 
 ## Notes
-- The founder's card answer also covers the three consequences the operator confirmed at P5: submission sends the current value, a `value` write resets it, and the pointerdown moves the value while the click focuses.
 - inputs#I3 reads `drifted`: the overseer appended the card-answer section to the record. I7 holds the whole file.
-- Last failed command: none.
+- Last failed command: none outstanding. One evolve append was refused for a hand-typed `ts` ahead of the clock and re-fired with the `date -u` reading.
 
 ## Deferred learnings
-- Deferred by the max-3 cap (0.8): clippy `-D warnings` flags `manual_clamp` on `x.max(0.0).min(1.0)`. With constant bounds use `clamp`; a variable-bound `value.max(min).min(max)` is not flagged.
-- Curation wrote T2 1 (host-linux: the state directory's 94-byte socket path) and T3 2 (the added-line census reads inline test modules; the silent census's master wording).
-
-## Session End Status
-Completed normally at 2026-10-14 00:48:41
+- recurrence-despite-learning: host-linux.md Session Additions 2026-10-13 (run every pipeline tool bare or read whole). At this chunk's P1 a `cascade.py sweep --pre-pass` output was read through `command grep` before it was read whole. The remedy is a check, not a second entry.
+- Curation wrote nothing: the root-fallback focus fact scored exactly 0.6, and this wrap's a11y-plan §5 now holds it.

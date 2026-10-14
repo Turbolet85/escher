@@ -1,0 +1,54 @@
+proposals:
+  - detector: D-arch-decisions
+    severity: warning
+    section: §Established Decisions → [Scrolling and input]
+    change: 'After the fifth direct engine change, record three more for every document since 2026-10-13-stand-keyboard-harness — (F1) keyboard activation: a pressed `Enter` on the focused node, after the text-input and range arms, dispatches a Click when `activates_on_enter` holds (no `disabled` attribute by presence; a `button`, a `summary`, an `input` of type `submit`/`reset`/`button`, an `a` with `href`), and a released Space on the focused node dispatches the same Click when `activates_on_space` holds (no `disabled` attribute; a `button`, a `summary`, an `input` of type `submit`/`reset`/`button`/`checkbox`/`radio`; a link takes no Space, a text or range input neither key), the Click built from `Node::synthetic_click_event_data(modifiers)` and queued so the app handlers run before `handle_click`; (F2) a click focuses a button: `handle_click`''s submit arm became a button arm matching a `button` of any type or an `input` of type `submit`/`reset`/`button`, focusing it through `generate_focus_events` / `set_focus_to`, then submitting the form owner for a submit button and ending the walk matched — before it a submit button submitted without breaking the walk and every other button fell through to the unmatched clear of focus, while a click on any other element still clears focus; (F3) focusability reads `disabled` by presence (§Established Decisions → DOM semantics) — each ratified by the founder by his chosen option labels «Клавиши нажимают (Рекомендую)», «Клик даёт фокус (Рекомендую)» and «По наличию (Рекомендую)» (inputs#I3), flagged upstreamable against upstream `main` at 434e0661 with the merge surface `events/keyboard.rs`, `events/mod.rs`, `events/pointer.rs` and `node/element.rs` owned by a CARRY on the route entry "Quality gates" — as measured at escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/report.md'
+    sidecar: '[Scrolling and input]: the sixth to eighth direct engine changes for every document — Enter/Space activation, a click focusing a button, `disabled` by presence for focusability — ratified by the founder (inputs#I3), upstreamable against 434e0661'
+    rationale: 'The report''s Symbols / APIs F1, F2 and F3 land three engine behaviour changes for every document, each answered by the founder (inputs#I3); this decision is where every direct engine change for every document is counted, ratified and given its upstream merge surface (card 2 row 4, inputs#I6), and it records none of the three'
+    basis: packages/blitz-dom/src/events/keyboard.rs:118-123; packages/blitz-dom/src/events/keyboard.rs:150-165; packages/blitz-dom/src/events/keyboard.rs:167-181; packages/blitz-dom/src/events/keyboard.rs:183-193; packages/blitz-dom/src/events/pointer.rs:800-821; packages/blitz-dom/src/node/element.rs:703
+  - detector: D-arch-decisions
+    severity: warning
+    section: §Established Decisions → [DOM semantics]
+    change: 'Replace "`disabled` is read two ways — focusability parses it as a boolean, so `disabled="false"` and a bare `disabled=""` leave a control focusable …" with: `disabled` is read one way, by presence — since 2026-10-13-stand-keyboard-harness `ElementData::flush_is_focussable` reads `has_attr(disabled)` where it parsed a boolean through `attr_parsed`, so a bare, a `"false"` and a `"true"` `disabled` on any element remove focusability, as the `DISABLED`/`ENABLED` element state (hence Stylo `:disabled`), the pointer click target and the activation keys already key on presence; the Tab walk (`focus_next_node` / `focus_prev_node`), autofocus and `DioxusDocument::unkeyed_actionable` move with it, and the recompute on a `disabled` write is unchanged; a known limit, pinned by `stand_keyboard`: a `<div disabled tabindex=0>` is not focusable where browsers apply `disabled` to form controls only and focus it, owned by a CARRY on the route entry "Stand requirement sweep" (inputs#I5, inputs#I6) — ratified by the founder «По наличию (Рекомендую)» (inputs#I3)'
+    sidecar: '[DOM semantics]: `disabled` read by presence for focusability too (F3), the boolean parse retired; the `<div disabled tabindex=0>` divergence named as a known limit'
+    rationale: 'Report Symbols / APIs F3 and Spec claims disproved: "Focusability parses `disabled` as a boolean; `disabled="false"` and a bare `disabled=""` stay focusable" is measured false (`stand_keyboard::a_disabled_attribute_of_any_value_is_skipped`, `focusability_updates::a_bare_disabled_set_after_creation_takes_the_focusability_away`), site architecture.md:91 named stale'
+    basis: packages/blitz-dom/src/node/element.rs:703; tests/blitz-tests/tests/focusability_updates.rs:78-96; tests/blitz-tests/tests/stand_keyboard.rs:469-500
+  - detector: D-arch-decisions
+    severity: warning
+    section: §Standard Contracts → Dioxus DOM bridge
+    change: 'In the snapshot `enabled` reading, replace "so a `disabled="false"` and a bare `disabled` both read `Some(false)` while the engine''s focusability reader still takes both as focusable" with: so a `disabled="false"` and a bare `disabled` both read `Some(false)` and, since 2026-10-13-stand-keyboard-harness, are not focusable either — the engine''s focusability reader keys on presence too (§Established Decisions → DOM semantics)'
+    sidecar: 'Dioxus DOM bridge: the snapshot `enabled` note no longer says the focusability reader takes a present `disabled` as focusable'
+    rationale: 'Report Spec claims disproved lists architecture.md:136 @c14297 ("while the engine''s focusability reader still takes both as focusable") as stale after F3; measured by the `snapshot.rs` unit pin `a_present_disabled_attribute_reads_not_enabled_and_not_focusable_whatever_its_value`'
+    basis: packages/dioxus-native-dom/src/snapshot.rs:563-564
+    dependent-of: D-arch-decisions
+  - detector: D-arch-decisions
+    severity: warning
+    section: §Established Decisions → [Unsupported features]
+    change: 'Add: `inert` is not implemented — a truthy `inert` neither removes focusability nor stops a hit, so Tab reaches content under `inert: true` as under `inert: false` (pinned by `stand_keyboard::the_engine_honours_no_inert`); a fix is an engine change for every document, owned by a CARRY on the route entry "Stand a11y assertions" (card 2 row 3, inputs#I6) — as measured at escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/report.md'
+    sidecar: '[Unsupported features]: the engine honours no `inert`, measured by `stand_keyboard`'
+    rationale: 'Report Spec claims disproved: "A framework-written `inert: false` is now cleared, so it no longer makes content inert" — the attribute half holds, the "no longer makes content inert" half is false because the engine never honoured `inert` (`stand_keyboard::the_engine_honours_no_inert`); no architecture decision records the missing feature'
+    basis: tests/blitz-tests/tests/stand_keyboard.rs:597-618
+  - detector: D-arch-decisions
+    severity: warning
+    section: §Standard Contracts → Dioxus DOM bridge
+    change: 'Replace "a framework-written `inert: false` is now cleared, so it no longer makes content inert" with: a framework-written `inert: false` is cleared — the engine honours no `inert`, so neither a truthy nor a falsy one makes content inert (§Established Decisions → Unsupported features)'
+    sidecar: 'Dioxus DOM bridge: the `inert: false` clause restated — cleared, and the engine honours no `inert` either way'
+    rationale: 'Report Spec claims disproved, inert-claim pattern: architecture.md:136 @c1749 is stale — the attribute is cleared (`dioxus_falsy_boolean_attrs`, 28 names) but content was never made inert by it'
+    basis: tests/blitz-tests/tests/stand_keyboard.rs:597-618; tests/blitz-tests/tests/dioxus_falsy_boolean_attrs.rs:175-177
+    dependent-of: D-arch-decisions
+  - detector: D-arch-decisions
+    severity: warning
+    section: §Existing Scopes
+    change: 'Replace "whether a check reads a falsy `inert` is not measured here" with: `dioxus_falsy_boolean_attrs` reads `inert` as its 28th name on both attribute paths since 2026-10-13-stand-keyboard-harness, and `stand_keyboard` pins that the engine honours neither a truthy nor a falsy `inert`'
+    sidecar: 'Existing Scopes: the falsy-`inert` reading is measured — `inert` the 28th name of `dioxus_falsy_boolean_attrs`'
+    rationale: 'Report Counts / qualifiers moved: `dioxus_falsy_boolean_attrs` names 27 → 28 (`inert` added); architecture.md:263 "whether a check reads a falsy `inert` is not measured" named stale'
+    basis: tests/blitz-tests/tests/dioxus_falsy_boolean_attrs.rs:175-177
+    dependent-of: D-arch-decisions
+  - detector: D-arch-resources
+    severity: warning
+    section: §Standard Contracts → Events
+    change: 'Add: since 2026-10-13-stand-keyboard-harness `DomEventData::KeyUp` has a default action — `events/mod.rs` routes it to the crate-internal `handle_key_up`, where a released Space targeting the focused node dispatches `DomEventData::Click` when `activates_on_space` holds — and `handle_key_or_input_event` dispatches the same Click for a pressed `Enter` targeting the focused node when `activates_on_enter` holds, after its text-input and range arms; both go through `dispatch_activation_click`, whose data is `Node::synthetic_click_event_data(modifiers)` and which the event driver queues so the app''s handlers (a Dioxus `onclick`) run before the default action `handle_click`; `handle_click`''s button arm focuses a `button` or a `submit`/`reset`/`button` `input` through `generate_focus_events` before submitting a submit button''s form owner ([Scrolling and input]); `handle_click`, `handle_pointerdown` and `handle_key_or_input_event` keep their signatures'
+    sidecar: 'Events: KeyUp gains a default action (`handle_key_up`, Space → Click), Enter → Click in `handle_key_or_input_event`, `dispatch_activation_click`, and the button click arm that focuses'
+    rationale: 'Report Symbols / APIs F1 and F2: a new crate-internal entry point `handle_key_up`, a new event route (KeyUp had no default action before) and a new Click dispatch from Enter and Space; the report''s Expected amendments name §Standard Contracts → Events ("KeyUp gains a default action … new text in architecture", keyup standing 0 in architecture)'
+    basis: packages/blitz-dom/src/events/mod.rs:228-229; packages/blitz-dom/src/events/keyboard.rs:128-148; packages/blitz-dom/src/events/keyboard.rs:183-193; packages/blitz-dom/src/events/pointer.rs:800-821
+note: 'Outside both detectors, the report also leaves §Existing Scopes (architecture.md:263) stale on counts — `tests/common/mod.rs` read by 19 stand checks, `stand_keyboard` the nineteenth (was 18, `stand_contrast` the eighteenth), the module now also stating `tab_order` (CRUD 6 stops, `crud-list` third) and `focused`, and the new target `stand_keyboard` unlisted — for the scope/count sweep to carry.'

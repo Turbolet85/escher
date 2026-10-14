@@ -1,0 +1,79 @@
+[[pattern]]
+id = 'keyup'
+regex = 'KeyUp|key ?up\b'
+ignore_case = true
+
+[[pattern]]
+id = 'activation'
+regex = 'Enter (and|or|/) Space|Space (and|or|/) Enter|activation key|activates? (a|the) (focused|button)|keyboard activation|no key activates'
+
+[[pattern]]
+id = 'click-focus'
+regex = 'plain[- ]button|click (on a button )?(clears|leaves) (nothing|focus)|leaves nothing focused|button click leaves|Focus restoration'
+
+[[pattern]]
+id = 'disabled-focus'
+regex = 'PARSED bool|parsed boolean|parsed bool|attr_parsed|disabled="false"|does not parse as `?true'
+
+[[pattern]]
+id = 'inert'
+regex = '\binert\b'
+
+[[pattern]]
+id = 'crud-tab'
+regex = 'crud-list|crud-filter'
+
+[[pattern]]
+id = 'tabindex'
+fixed = 'tabindex'
+
+[[pattern]]
+id = 'common-readers'
+regex = 'mod common|common/mod\.rs|`common` reader'
+
+[[pattern]]
+id = 'ws-counts'
+regex = '181 · 915|915 passed|\b120 files|119 targets|passed 141|141 · '
+
+[[pattern]]
+id = 'kbd-harness'
+regex = 'stand_keyboard|keyboard harness'
+ignore_case = true
+
+[[pattern]]
+id = 'apple-binding'
+regex = 'apple_keybinding|deleteBackward'
+
+[[pattern]]
+id = 'silent-census'
+regex = 'silent census|silent-census'
+ignore_case = true
+
+[[pattern]]
+id = 'sc-211'
+fixed = '2.1.1'
+
+[[pattern]]
+id = 'tab-order'
+regex = 'tab_order|focus sequence|Tab order|Tab sequence|forward focus sequence'
+
+[[pattern]]
+id = 'inert-claim'
+regex = 'makes content inert|no longer makes'
+
+[[pattern]]
+id = 'bt-files'
+regex = '\b1[12][0-9] (integration |test )?(files|targets)|\b1[12][0-9] files'
+
+[[pattern]]
+id = 'scroll-input'
+fixed = 'Scrolling and input'
+
+[[pattern]]
+id = 'engine-change'
+regex = 'engine change for every document|direct engine change'
+ignore_case = true
+
+[[pattern]]
+id = 'obs-silent'
+regex = 'installs no (subscriber|sink)|no subscriber'

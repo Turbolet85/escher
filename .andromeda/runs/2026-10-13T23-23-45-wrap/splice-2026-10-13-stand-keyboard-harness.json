@@ -1,0 +1,426 @@
+[
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "574aedd9",
+"ts": "2026-10-13T23:28:14Z",
+"argv": [
+"append",
+"--file",
+"escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/report.md",
+"--payload-file",
+".andromeda/runs/2026-10-13T23-23-45-wrap/new-text.md",
+"--lines",
+"111",
+"--if-absent-prefix",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-10-13T23-23-45-wrap",
+"--marker",
+"2026-10-13-stand-keyboard-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append report.md:+111 at line 386 · lines 385→496 · bytes 34288→40838 · term lf",
+"last line now: added: 21 · 218-219"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/report.md"
+],
+"before": {
+"lines": 385,
+"bytes": 34288,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 496,
+"bytes": 40838
+}
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "574aedd9",
+"ts": "2026-10-13T23:29:19Z",
+"argv": [
+"append",
+"--file",
+"escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/report.md",
+"--payload-file",
+".andromeda/runs/2026-10-13T23-23-45-wrap/new-text.md",
+"--lines",
+"111",
+"--if-absent-prefix",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-10-13T23-23-45-wrap",
+"--marker",
+"2026-10-13-stand-keyboard-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"skipped — '## New text, by line' already at line 386 (the append is idempotent)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "574aedd9",
+"ts": "2026-10-14T05:57:39Z",
+"argv": [
+"append",
+"--file",
+"./escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/report.md",
+"--payload-file",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap/addendum-1.md",
+"--lines",
+"6",
+"--before-line",
+"386",
+"--run-dir",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap",
+"--marker",
+"2026-10-13-stand-keyboard-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append report.md:+6 at line 386 · lines 496→502 · bytes 40838→41937 · term lf",
+"last line now: added: 21 · 218-219"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/report.md"
+],
+"before": {
+"lines": 496,
+"bytes": 40838,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 502,
+"bytes": 41937
+}
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "574aedd9",
+"ts": "2026-10-14T06:07:30Z",
+"argv": [
+"append",
+"--file",
+"./.andromeda/architecture-amendments.md",
+"--payload-file",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap/architecture-entry-1.md",
+"--lines",
+"13",
+"--run-dir",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap",
+"--marker",
+"2026-10-13-stand-keyboard-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append architecture-amendments.md:+13 at line 711 · lines 710→723 · bytes 142238→145216 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-13T23-23-45-wrap/"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/architecture-amendments.md"
+],
+"before": {
+"lines": 710,
+"bytes": 142238,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 723,
+"bytes": 145216
+}
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "574aedd9",
+"ts": "2026-10-14T06:07:30Z",
+"argv": [
+"append",
+"--file",
+"./.andromeda/architecture-amendments.md",
+"--payload-file",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap/architecture-entry-2.md",
+"--lines",
+"14",
+"--run-dir",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap",
+"--marker",
+"2026-10-13-stand-keyboard-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append architecture-amendments.md:+14 at line 724 · lines 723→737 · bytes 145216→147859 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-13T23-23-45-wrap/"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/architecture-amendments.md"
+],
+"before": {
+"lines": 723,
+"bytes": 145216,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 737,
+"bytes": 147859
+}
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "574aedd9",
+"ts": "2026-10-14T06:07:30Z",
+"argv": [
+"append",
+"--file",
+"./.andromeda/security-plan-amendments.md",
+"--payload-file",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap/security-plan-entry.md",
+"--lines",
+"14",
+"--run-dir",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap",
+"--marker",
+"2026-10-13-stand-keyboard-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append security-plan-amendments.md:+14 at line 501 · lines 500→514 · bytes 93794→96580 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-13T23-23-45-wrap/"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/security-plan-amendments.md"
+],
+"before": {
+"lines": 500,
+"bytes": 93794,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 514,
+"bytes": 96580
+}
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "574aedd9",
+"ts": "2026-10-14T06:07:30Z",
+"argv": [
+"append",
+"--file",
+"./.andromeda/layout-templates-amendments.md",
+"--payload-file",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap/layout-templates-entry.md",
+"--lines",
+"6",
+"--run-dir",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap",
+"--marker",
+"2026-10-13-stand-keyboard-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append layout-templates-amendments.md:+6 at line 129 · lines 128→134 · bytes 17945→18947 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-13T23-23-45-wrap/"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/layout-templates-amendments.md"
+],
+"before": {
+"lines": 128,
+"bytes": 17945,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 134,
+"bytes": 18947
+}
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "574aedd9",
+"ts": "2026-10-14T06:07:30Z",
+"argv": [
+"append",
+"--file",
+"./.andromeda/obs-plan-amendments.md",
+"--payload-file",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap/obs-plan-entry.md",
+"--lines",
+"8",
+"--run-dir",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap",
+"--marker",
+"2026-10-13-stand-keyboard-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append obs-plan-amendments.md:+8 at line 303 · lines 302→310 · bytes 50464→51297 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-13T23-23-45-wrap/"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/obs-plan-amendments.md"
+],
+"before": {
+"lines": 302,
+"bytes": 50464,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 310,
+"bytes": 51297
+}
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "574aedd9",
+"ts": "2026-10-14T06:07:31Z",
+"argv": [
+"append",
+"--file",
+"./.andromeda/test-plan-amendments.md",
+"--payload-file",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap/test-plan-entry.md",
+"--lines",
+"23",
+"--run-dir",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap",
+"--marker",
+"2026-10-13-stand-keyboard-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append test-plan-amendments.md:+23 at line 539 · lines 538→561 · bytes 92123→94616 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-13T23-23-45-wrap/"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/test-plan-amendments.md"
+],
+"before": {
+"lines": 538,
+"bytes": 92123,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 561,
+"bytes": 94616
+}
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "574aedd9",
+"ts": "2026-10-14T06:07:31Z",
+"argv": [
+"append",
+"--file",
+"./.andromeda/a11y-plan-amendments.md",
+"--payload-file",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap/a11y-plan-entry-1.md",
+"--lines",
+"9",
+"--run-dir",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap",
+"--marker",
+"2026-10-13-stand-keyboard-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append a11y-plan-amendments.md:+9 at line 276 · lines 275→284 · bytes 44111→46135 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-13T23-23-45-wrap/"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/a11y-plan-amendments.md"
+],
+"before": {
+"lines": 275,
+"bytes": 44111,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 284,
+"bytes": 46135
+}
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "574aedd9",
+"ts": "2026-10-14T06:07:31Z",
+"argv": [
+"append",
+"--file",
+"./.andromeda/a11y-plan-amendments.md",
+"--payload-file",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap/a11y-plan-entry-2.md",
+"--lines",
+"13",
+"--run-dir",
+"./.andromeda/runs/2026-10-13T23-23-45-wrap",
+"--marker",
+"2026-10-13-stand-keyboard-harness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append a11y-plan-amendments.md:+13 at line 285 · lines 284→297 · bytes 46135→48360 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-13T23-23-45-wrap/"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/a11y-plan-amendments.md"
+],
+"before": {
+"lines": 284,
+"bytes": 46135,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 297,
+"bytes": 48360
+}
+}
+]

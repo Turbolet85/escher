@@ -300,3 +300,11 @@ One entry per amendment to `obs-plan.md` (sidecar-contract.md §Entry form). App
 **Change:** the census names the engine check `range_input_interaction`, which drives `blitz_test_harness::Harness` on its own parsed pages in both layout modes. It installs no subscriber, reads no env var and prints nothing; its readings go into assertions only. The bullet's measured-at list cites this chunk's report. The rewritten `stand_act_range` stays one of the named `stand_act_*` checks.
 **Why:** a new check was added. The chunk adds no span, event, field or log site; the range value leaves only through the ratified carriers.
 **Ref:** .andromeda/runs/2026-10-13T21-11-52-wrap/
+
+## 2026-10-13-stand-keyboard-harness — `stand_keyboard` joins the silent census
+**Section:** §3 Observability Harness Contract → Logging stack (subscriber installation)
+**Change:**
+- The stand checks reading the shared module are 19 (was 18), `stand_keyboard` the nineteenth.
+- `stand_keyboard` joins the silent census: it drives the four lean tasks and its own fixtures in process in both layout modes, installs no subscriber, reads no env var, prints nothing and binds no listener, its readings going into assertions only. The silence probe reads 0 over it and over the shared module whose `tab_order` and `focused` it reads.
+**Why:** this chunk's new check and its count. The shared module's probe was run at this wrap, the report's probe having read the check file alone.
+**Ref:** .andromeda/runs/2026-10-13T23-23-45-wrap/

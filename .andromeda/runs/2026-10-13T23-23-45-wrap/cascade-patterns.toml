@@ -1,0 +1,37 @@
+# Cascade step 2 — the retired claims of this pass, by their own verbs and phrasings.
+[[pattern]]
+id = 'disabled-parse'
+regex = '''pars(e|es|ed) (it |its value )?as a bool|PARSED as a bool|does not parse as `true`|stays? focusable|leave a control focusable|focusability parse|read two ways|keyed two ways'''
+
+[[pattern]]
+id = 'click-no-focus'
+regex = '''leaves no element focused|no element reads `focused`|no node reads `focused`|whether a click should focus|focus carries no author id'''
+
+[[pattern]]
+id = 'inert-claim'
+regex = '''no longer makes content inert|falsy `inert`'''
+
+[[pattern]]
+id = 'names-27'
+regex = '''27 boolean|27 names|the 27\b'''
+
+[[pattern]]
+id = 'common-readers'
+regex = '''18 of which|18 stand checks|18 `stand_\*\.rs`|18 in all|the eighteenth'''
+
+[[pattern]]
+id = 'crud-keys'
+regex = '''Tab order unchanged|no keyboard reaches|no `tabindex`, no focusability|not focusable, so'''
+
+[[pattern]]
+id = 'old-counts'
+regex = '''181 result lines|915 passed|passed 141|120 `\.rs` files|119 test targets|6 \+ 6 \+ 3|40 tests and two|`stand_act_keys` 2 |the 9 a click|eight nodes that only moved'''
+
+[[pattern]]
+id = 'keyup-default'
+ignore_case = true
+regex = '''keyup[^.;]{0,80}(no default|default action)|KeyDown or KeyUp'''
+
+[[pattern]]
+id = 'apple-binding'
+regex = '''no standing check calls it'''
