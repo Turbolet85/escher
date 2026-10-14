@@ -1,0 +1,1 @@
+"Stand requirement sweep" (working-route.md:96). Run pipeline tools bare, or redirect them to a file you read whole, never through sed/grep/tail. The founder's word stands: no mutation runs. Raise as a dialog any fork that is the founder's: an engine change for every document (playbook :64), a boundary widening (:36), or a new gate or direction. I'll take it to him.

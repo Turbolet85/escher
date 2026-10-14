@@ -10,6 +10,7 @@ pub fn TempConverter() -> Element {
             style { {CSS} }
             div { class: "temp-card",
                 input {
+                    id: "temp-celsius",
                     class: "temp-input",
                     value: "{celsius}",
                     oninput: move |evt| {
@@ -22,6 +23,7 @@ pub fn TempConverter() -> Element {
                 }
                 span { class: "temp-label", " °C = " }
                 input {
+                    id: "temp-fahrenheit",
                     class: "temp-input",
                     value: "{fahrenheit}",
                     oninput: move |evt| {

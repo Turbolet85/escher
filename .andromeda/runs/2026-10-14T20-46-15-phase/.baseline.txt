@@ -1,0 +1,21 @@
+gate v1.17 · 383c6f7b
+root . · marker 2026-10-14-stand-requirement-sweep · entries 17
+previous 2026-10-14-stand-a11y-assertions · trails 130 run dirs · firings 31 (green 30) · other root 0 · unreadable 0
+  1 integration new (key) · cargo test -p blitz-tests --locked --test stand_requiremen… (122 chars)
+  2 integration new (key) · cargo test -p blitz-tests --locked --test stand_act_obstru… (189 chars)
+  3 integration new (key) · cargo test --workspace --locked --test scrolled_box_client… (130 chars)
+  4 unit        new (key) · cargo test -p escher-driver --locked
+  5 integration new (key) · cargo test -p seven_guis --locked --test cli_commands --te… (102 chars)
+  6 integration new (key) · cargo test --workspace --locked --test host_log --test mcp… (62 chars)
+  7 probe       new (key) · cat tests/blitz-tests/tests/stand_requirement_sweep.rs tes… (577 chars)
+  8 probe       new (key) · git diff --quiet 19756f2d60a0c770afe5b70ca51426019e33d02b … (629 chars)
+  9 probe       new (key) · git diff -U0 19756f2d60a0c770afe5b70ca51426019e33d02b -- e… (153 chars)
+ 10 build       seen green 2026-10-14T20:28:29Z #8 (wrap) · bash scripts/agent-run.sh boot
+ 11 integration new (key) · bash scripts/agent-run.sh run stand
+ 12 integration new (key) · bash .github/scripts/ci-leg.sh a11y
+ 13 lint        seen green 2026-10-14T20:28:29Z #10 (wrap) · bash .github/scripts/ci-leg.sh fast
+ 14 lint        seen green 2026-10-14T20:28:29Z #11 (wrap) · bash .github/scripts/ci-leg.sh doc
+ 15 probe       leg operator — exempt · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)
+ 16 probe       leg operator — exempt · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+ 17 probe       leg operator — exempt · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)
+entries 17 · seen green 3 · not seen 0 · new (key) 11 · leg 3

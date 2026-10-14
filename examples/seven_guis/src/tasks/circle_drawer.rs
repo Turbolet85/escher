@@ -26,6 +26,7 @@ pub fn CircleDrawer() -> Element {
             style { {CSS} }
             div { class: "cd-toolbar",
                 button {
+                    id: "circle-undo",
                     disabled: undo_stack().is_empty(),
                     onclick: move |_| {
                         if let Some(prev) = undo_stack.write().pop() {
@@ -36,6 +37,7 @@ pub fn CircleDrawer() -> Element {
                     "Undo"
                 }
                 button {
+                    id: "circle-redo",
                     disabled: redo_stack().is_empty(),
                     onclick: move |_| {
                         if let Some(next) = redo_stack.write().pop() {
@@ -48,6 +50,7 @@ pub fn CircleDrawer() -> Element {
             }
             // Canvas area
             div {
+                id: "circle-canvas",
                 class: "cd-canvas",
                 onmounted: move |evt: MountedEvent| {
                     canvas_handle.set(Some(evt.data()));
@@ -100,6 +103,7 @@ pub fn CircleDrawer() -> Element {
                 div { class: "cd-dialog",
                     p { "Adjust diameter of circle #{idx}" }
                     input {
+                        id: "circle-diameter",
                         r#type: "range",
                         min: "5",
                         max: "100",
@@ -119,6 +123,7 @@ pub fn CircleDrawer() -> Element {
                     }
                     p { "Diameter: {(dialog_r() * 2.0) as u32}px" }
                     button {
+                        id: "circle-close",
                         onclick: move |_| dialog_idx.set(None),
                         "Close"
                     }

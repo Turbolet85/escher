@@ -4,7 +4,7 @@
 //! counted a box's own scroll offset against the box itself, so a scrolled box read its rect
 //! that far from where it stands. On parsed pages at a fixed 800 × 600 viewport, in both layout
 //! modes: a box scrolled down its content, across it and both ways reads the rect it read
-//! unscrolled; a scrolled box inside a scrolled box moves by the outer box's offset alone; and
+//! unscrolled, under a vertical writing mode too; a scrolled box inside a scrolled box moves by the outer box's offset alone; and
 //! the readers that take a box as the origin of its content hold — an element inside a
 //! scrolled box moves by the box's offset, an inline element's fragment rects move with its
 //! scrolling inline root, an inline element's offset rect ignores its offset parent's scroll,
@@ -23,6 +23,15 @@ use std::sync::Arc;
 const ONE_BOX: &str = r#"<html><body style="margin:0">
     <div style="height:50px"></div>
     <div id="box" style="margin-left:40px; width:300px; height:200px; overflow:auto">
+        <div id="content" style="width:900px; height:900px"></div>
+    </div>
+</body></html>"#;
+
+/// The same box under a vertical writing mode: under blitz-dom's `writing-mode` feature its
+/// bounds are read on the reader's vertical path.
+const ONE_VERTICAL_BOX: &str = r#"<html><body style="margin:0">
+    <div style="height:50px"></div>
+    <div id="box" style="writing-mode:vertical-lr; margin-left:40px; width:300px; height:200px; overflow:auto">
         <div id="content" style="width:900px; height:900px"></div>
     </div>
 </body></html>"#;
@@ -148,6 +157,30 @@ fn a_scrolled_box_reads_the_client_rect_it_read_unscrolled() {
                 "{mode}: the scrolled box reads the client rect it read unscrolled"
             );
         }
+    }
+}
+
+#[test]
+fn a_scrolled_box_under_a_vertical_writing_mode_reads_the_client_rect_it_read_unscrolled() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}: one vertical box");
+        let mut doc = page(ONE_VERTICAL_BOX, incremental);
+        let unscrolled = rect(&doc, "#box");
+        assert!(
+            unscrolled == (40.0, 50.0, 300.0, 200.0) && offset(&doc, "#box") == (0.0, 0.0),
+            "{mode}: the box stands where the page puts it, unscrolled"
+        );
+
+        scroll(&mut doc, "#box", 70.0, 120.0);
+
+        assert!(
+            offset(&doc, "#box") == (70.0, 120.0) && doc.viewport_scroll().y == 0.0,
+            "{mode}: the box is scrolled by the offset asked and the viewport is not"
+        );
+        assert!(
+            rect(&doc, "#box") == unscrolled,
+            "{mode}: the scrolled box reads the client rect it read unscrolled"
+        );
     }
 }
 

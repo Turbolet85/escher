@@ -1,0 +1,80 @@
+[
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'absolute_position' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 14,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 events/handle_dom_event().",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 108
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 node/node/impl#[Node]focus().",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 731
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 node/node/impl#[Node]absolute_position().",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1688
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 node/node/impl#[Node]synthetic_click_event_data().",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1928
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 scrolling/impl#[BaseDocument]scroll_into_view().",
+"file": "packages/blitz-dom/src/scrolling.rs",
+"line": 719
+},
+{
+"caller": "rust-analyzer cargo blitz-test-harness 0.3.0-beta.3 inspect/impl#[`Harness<D>`]layout_rect_of().",
+"file": "packages/blitz-test-harness/src/inspect.rs",
+"line": 59
+},
+{
+"caller": "rust-analyzer cargo blitz-test-harness 0.3.0-beta.3 inspect/write_node().",
+"file": "packages/blitz-test-harness/src/inspect.rs",
+"line": 141
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.3 anonymous_block_restyle/hover().",
+"file": "tests/blitz-tests/tests/anonymous_block_restyle.rs",
+"line": 99
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.3 absolute_position().",
+"file": "tests/blitz-tests/tests/scrolled_box_absolute_position.rs",
+"line": 43
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.3 a_scrolled_box_reads_its_absolute_position_less_its_own_scroll_offset().",
+"file": "tests/blitz-tests/tests/scrolled_box_absolute_position.rs",
+"line": 56
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.3 a_scrolled_box_reads_its_absolute_position_less_its_own_scroll_offset().",
+"file": "tests/blitz-tests/tests/scrolled_box_absolute_position.rs",
+"line": 73
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.3 stale_dirty_descendants/hover_keeps_working_after_undamaged_subtree_restyle().",
+"file": "tests/blitz-tests/tests/stale_dirty_descendants.rs",
+"line": 80
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.3 stale_dirty_descendants/hover_keeps_working_after_undamaged_subtree_restyle().",
+"file": "tests/blitz-tests/tests/stale_dirty_descendants.rs",
+"line": 89
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.3 stale_dirty_descendants/hover_keeps_working_after_undamaged_subtree_restyle().",
+"file": "tests/blitz-tests/tests/stale_dirty_descendants.rs",
+"line": 99
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

@@ -13,9 +13,14 @@
 //! scrolled box's overlay scrollbar thumb is still resolved. *What the walk does not stop at,
 //! pinned as it reads on the engine as built (2026-10-10):* a `contain: paint` box whose
 //! `overflow` is `visible` — paint clips its content, and a hit reaches the clipped-out
-//! content. A failure message carries the layout mode and the page, never a coordinate.
+//! content. *Three boxes of their own, measured (2026-10-14):* a hit at an image answers the
+//! image, a hit inside an iframe's `srcdoc` sub-document answers the iframe, and a hit inside a
+//! filled text input answers the input. A box both transformed and scrolled is hit at the row
+//! showing where the row shows, and inside the box where a scrolled-out row would lie
+//! unscrolled it answers the box. A failure message carries the layout mode and the page, never
+//! a coordinate.
 
-use blitz_dom::node::ScrollbarRef;
+use blitz_dom::node::{ImageData, RasterImageData, ScrollbarRef, SpecialElementData};
 use blitz_dom::{DocumentConfig, EventDriver, NoopEventHandler, ScrollBehavior};
 use blitz_html::{HtmlDocument, HtmlProvider};
 use blitz_traits::events::{
@@ -391,6 +396,200 @@ fn a_contain_paint_box_with_visible_overflow_is_still_hit_through() {
         assert!(
             answer(&doc, at.below) == Some(node(&doc, "#row-4")),
             "{mode}: the hit below the box answers the row paint clips away there"
+        );
+    }
+}
+
+/// A page holding, in turn, an image 120 × 80, an iframe whose `srcdoc` sub-document holds one
+/// block 100 × 60, and a text input 200 wide holding text.
+const OWN_BOX_PAGE: &str = r#"<html><body style="margin:0">
+    <img id="picture" src="https://example.com/picture.png" style="display:block; width:120px; height:80px">
+    <iframe id="frame" style="display:block; width:200px; height:100px; border:0"
+        srcdoc="<html><body style='margin:0'><div id='inner' style='width:100px; height:60px'></div></body></html>"></iframe>
+    <input id="field" value="filled" style="display:block; width:200px">
+</body></html>"#;
+
+/// The page, its image's data injected as loaded, resolved again.
+fn own_box_page(incremental: bool) -> HtmlDocument {
+    let mut doc = page(OWN_BOX_PAGE, incremental);
+    let picture = node(&doc, "#picture");
+    let pixels = vec![255_u8; 120 * 80 * 4];
+    doc.get_node_mut(picture)
+        .and_then(|picture| picture.element_data_mut())
+        .expect("the image is an element")
+        .special_data = SpecialElementData::Image(Box::new(ImageData::Raster(
+        RasterImageData::new(120, 80, Arc::new(pixels)),
+    )));
+    doc.resolve(0.0);
+    doc
+}
+
+fn centre_of(doc: &HtmlDocument, selector: &str) -> (f64, f64) {
+    let (left, top, right, bottom) = edges(doc, selector);
+    ((left + right) / 2.0, (top + bottom) / 2.0)
+}
+
+#[test]
+fn a_hit_at_an_image_answers_the_image() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}: an image with its data loaded");
+        let doc = own_box_page(incremental);
+        let picture = node(&doc, "#picture");
+        let loaded = doc
+            .get_node(picture)
+            .and_then(|picture| picture.element_data())
+            .and_then(|picture| picture.image_data())
+            .is_some_and(|data| matches!(data, ImageData::Raster(_)));
+        assert!(loaded, "{mode}: the image holds raster data");
+        assert!(
+            edges(&doc, "#picture") == (0.0, 0.0, 120.0, 80.0),
+            "{mode}: the image lays out at its stated size"
+        );
+
+        assert!(
+            answer(&doc, centre_of(&doc, "#picture")) == Some(picture),
+            "{mode}: the hit at the image's centre answers the image"
+        );
+    }
+}
+
+/// The sub-document is a document of its own; the parent's hit walk does not enter it. The
+/// reading is pinned as measured on the engine as built (2026-10-14).
+#[test]
+fn a_hit_inside_a_sub_document_answers_the_iframe() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}: an iframe holding a srcdoc document");
+        let doc = own_box_page(incremental);
+        let frame = node(&doc, "#frame");
+        let attached = doc
+            .get_node(frame)
+            .and_then(|frame| frame.element_data())
+            .is_some_and(|frame| matches!(frame.special_data, SpecialElementData::SubDocument(_)));
+        assert!(attached, "{mode}: the iframe holds its sub-document");
+        let (left, top, right, bottom) = edges(&doc, "#frame");
+        assert!(
+            (right - left, bottom - top) == (200.0, 100.0),
+            "{mode}: the iframe lays out at its stated size"
+        );
+
+        // Inside the sub-document's block, 100 × 60 at the iframe's corner.
+        let inside_the_block = (left + 50.0, top + 30.0);
+        assert!(
+            answer(&doc, inside_the_block) == Some(frame),
+            "{mode}: the hit inside the sub-document's block answers the iframe"
+        );
+    }
+}
+
+#[test]
+fn a_hit_inside_a_filled_text_input_answers_the_input() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}: a text input holding text");
+        let doc = own_box_page(incremental);
+        let field = node(&doc, "#field");
+        let filled = doc
+            .get_node(field)
+            .and_then(|field| field.element_data())
+            .and_then(|field| field.text_input_data())
+            .is_some_and(|data| !data.editor.text().to_string().is_empty());
+        assert!(filled, "{mode}: the input's editor holds text");
+        let (left, top, right, bottom) = edges(&doc, "#field");
+        assert!(
+            right - left > 0.0 && bottom - top > 0.0,
+            "{mode}: the input reads non-zero bounds"
+        );
+
+        assert!(
+            answer(&doc, centre_of(&doc, "#field")) == Some(field),
+            "{mode}: the hit at the input's centre answers the input"
+        );
+    }
+}
+
+/// How far the transformed box's transform moves it, across and down.
+const MOVED: (f64, f64) = (50.0, 30.0);
+
+/// A box 300 × 100, moved by [`MOVED`] by a transform, scrolled 280 down ten rows: the first row
+/// as wide as the box, every other row 200 wide.
+const TRANSFORMED_PAGE: &str = r#"<html><body style="margin:0">
+    <div id="stage" style="width:400px; height:500px">
+        <div id="before" style="width:300px; height:40px"></div>
+        <div id="box" style="width:300px; height:100px; overflow:auto; transform:translate(50px, 30px)">
+            <div id="row-0" style="width:300px; height:40px"></div>
+            <div id="row-1" style="width:200px; height:40px"></div>
+            <div id="row-2" style="width:200px; height:40px"></div>
+            <div id="row-3" style="width:200px; height:40px"></div>
+            <div id="row-4" style="width:200px; height:40px"></div>
+            <div id="row-5" style="width:200px; height:40px"></div>
+            <div id="row-6" style="width:200px; height:40px"></div>
+            <div id="row-7" style="width:200px; height:40px"></div>
+            <div id="row-8" style="width:200px; height:40px"></div>
+            <div id="row-9" style="width:200px; height:40px"></div>
+        </div>
+    </div>
+</body></html>"#;
+
+/// `point` moved by the box's transform: from where the client rects read to where it shows.
+fn moved(point: (f64, f64)) -> (f64, f64) {
+    (point.0 + MOVED.0, point.1 + MOVED.1)
+}
+
+/// The walk tests a box's own area and its padding box on the point carried through its inverse
+/// transform, unscrolled, and its content on that point scrolled: a box both transformed and
+/// scrolled is hit at the row showing where the row shows, and a point inside the box where a
+/// scrolled-out row would lie unscrolled answers the box. The client rects read each element
+/// where layout puts it, before the transform (measured 2026-10-14), so the points are those
+/// rects' points moved by the transform.
+#[test]
+fn a_box_both_transformed_and_scrolled_is_hit_where_its_rows_show() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}: rows in a transformed overflow:auto box");
+        let mut doc = page(TRANSFORMED_PAGE, incremental);
+        let laid_out = edges(&doc, "#box");
+        assert!(
+            laid_out == (0.0, 40.0, 300.0, 140.0),
+            "{mode}: the box's client rect reads where layout puts it"
+        );
+        let unscrolled_first_row = edges(&doc, "#row-0");
+        scroll_the_box(&mut doc);
+        assert!(
+            offset(&doc) == SCROLLED && doc.viewport_scroll().y == 0.0,
+            "{mode}: the box is scrolled by the offset asked and the viewport is not"
+        );
+        assert!(
+            edges(&doc, "#box") == laid_out,
+            "{mode}: the scrolled box reads where it stands"
+        );
+        let (top_left, bottom_right) = (
+            moved((laid_out.0, laid_out.1)),
+            moved((laid_out.2, laid_out.3)),
+        );
+        let shows_at = (top_left.0, top_left.1, bottom_right.0, bottom_right.1);
+
+        let row = centre_of(&doc, "#row-8");
+        assert!(
+            inside(row, laid_out),
+            "{mode}: the ninth row shows inside the box"
+        );
+        assert!(
+            answer(&doc, moved(row)) == Some(node(&doc, "#row-8")),
+            "{mode}: the hit where the ninth row's centre shows answers the row"
+        );
+
+        let beside_the_rows = (laid_out.0 + 250.0, laid_out.1 + 20.0);
+        assert!(
+            inside(beside_the_rows, unscrolled_first_row)
+                && !inside(beside_the_rows, edges(&doc, "#row-7")),
+            "{mode}: the point lies where the first row lies unscrolled and beside the row \
+             showing there"
+        );
+        assert!(
+            inside(moved(beside_the_rows), shows_at),
+            "{mode}: moved by the transform, the point lies inside the box as it shows"
+        );
+        assert!(
+            answer(&doc, moved(beside_the_rows)) == Some(node(&doc, "#box")),
+            "{mode}: the hit there answers the box, not a row"
         );
     }
 }

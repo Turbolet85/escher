@@ -1,0 +1,26 @@
+gate v1.17 · 383c6f7b
+shell /usr/bin/bash (from $SHELL; -c, non-login)
+root . · marker 2026-10-14-stand-requirement-sweep · entries 17
+logs $TMPDIR/andromeda-gate/2026-10-14-stand-requirement-sweep/phase-2026-10-14T20-46-15 · bound: GNU timeout
+delta docs 58 · unmapped 5
+walk-class 0 marked (an unmarked walker reads as none)
+prose L241-243: No mutation runs — the founder's word (inputs#I1). A check's power to fail is shown instea… (324 chars)
+prose L245-248: There is no live leg and no boot-path smoke: the stand boots in process in every check. Th… (372 chars)
+  1 integration not run — excluded · cargo test -p blitz-tests --locked --test stand_requiremen… (122 chars)
+  2 integration not run — excluded · cargo test -p blitz-tests --locked --test stand_act_obstru… (189 chars)
+  3 integration not run — excluded · cargo test --workspace --locked --test scrolled_box_client… (130 chars)
+  4 unit        not run — excluded · cargo test -p escher-driver --locked
+  5 integration not run — excluded · cargo test -p seven_guis --locked --test cli_commands --te… (102 chars)
+  6 integration not run — excluded · cargo test --workspace --locked --test host_log --test mcp… (62 chars)
+  7 probe       not run — excluded · cat tests/blitz-tests/tests/stand_requirement_sweep.rs tes… (577 chars)
+  8 probe       not run — excluded · git diff --quiet 19756f2d60a0c770afe5b70ca51426019e33d02b … (629 chars)
+  9 probe       not run — excluded · git diff -U0 19756f2d60a0c770afe5b70ca51426019e33d02b -- e… (153 chars)
+ 10 build       green · exit 0 · 43.96s · 137 B → 10.log · bash scripts/agent-run.sh boot
+ 11 integration not run — excluded · bash scripts/agent-run.sh run stand
+ 12 integration not run — excluded · bash .github/scripts/ci-leg.sh a11y
+ 13 lint        not run — excluded · bash .github/scripts/ci-leg.sh fast
+ 14 lint        not run — excluded · bash .github/scripts/ci-leg.sh doc
+ 15 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)
+ 16 probe       not run — excluded · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+ 17 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)
+entries 17 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 16

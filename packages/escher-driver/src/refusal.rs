@@ -19,7 +19,9 @@ pub enum Cause {
     Disabled,
     /// Another element is hit at the point the action would land. A hit reaches content clipped
     /// by `contain: paint`, so an element lying where such content extends can read covered
-    /// though nothing shows over it.
+    /// though nothing shows over it; a box clipped on one axis stops a hit at its whole padding
+    /// box, so an element lying outside it along the axis it does not clip can read covered
+    /// though it shows.
     Covered,
     /// The element lies outside the viewport, or outside the visible part of a scrolling box
     /// that holds it.
@@ -75,7 +77,9 @@ impl Cause {
             Cause::Covered => {
                 "another element is hit at the point the action would land; a hit reaches content \
                  clipped by `contain: paint`, so an element lying where such content extends can \
-                 read `covered` though nothing shows over it"
+                 read `covered` though nothing shows over it; a box clipped on one axis stops a \
+                 hit at its whole padding box, so an element lying outside it along the axis it \
+                 does not clip can read `covered` though it shows"
             }
             Cause::OffScreen => {
                 "the element lies outside the viewport, or outside the visible part of a \
@@ -261,7 +265,9 @@ mod tests {
                 "covered",
                 "another element is hit at the point the action would land; a hit reaches content \
                  clipped by `contain: paint`, so an element lying where such content extends can \
-                 read `covered` though nothing shows over it",
+                 read `covered` though nothing shows over it; a box clipped on one axis stops a \
+                 hit at its whole padding box, so an element lying outside it along the axis it \
+                 does not clip can read `covered` though it shows",
                 "another element covers this one: act on the covering element or dismiss it first",
             ),
             (

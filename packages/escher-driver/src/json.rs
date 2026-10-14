@@ -672,11 +672,13 @@ mod tests {
             assert!(keys(&line) == ["refused"], "row {row}");
             assert!(!line.contains('\n') && !line.contains('/'), "row {row}");
         }
-        // The limit measured for `covered` is in every `covered` refusal an agent is handed.
+        // The limits measured for `covered` are in every `covered` refusal an agent is handed.
         let covered = Refusal::new(Cause::Covered).to_json();
         assert!(covered.contains(
             "a hit reaches content clipped by `contain: paint`, so an element lying where such \
-             content extends can read `covered` though nothing shows over it"
+             content extends can read `covered` though nothing shows over it; a box clipped on \
+             one axis stops a hit at its whole padding box, so an element lying outside it along \
+             the axis it does not clip can read `covered` though it shows"
         ));
     }
 

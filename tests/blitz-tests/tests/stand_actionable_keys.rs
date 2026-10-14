@@ -1,7 +1,7 @@
 //! Every element an agent can act on in the stand reads an author key:
 //! `DioxusDocument::unkeyed_actionable` returns nothing on the four lean tasks and on Home, booted
 //! headlessly in both layout modes, whatever state the screen is in. The three tasks outside
-//! the lean four are measured with the same function and their counts pinned.
+//! the lean four are keyed too: the same function reads 0 on each, measured and pinned.
 
 use std::collections::HashMap;
 
@@ -139,9 +139,9 @@ fn the_verdict_does_not_change_with_state() {
     }
 }
 
-/// The tasks outside the lean four are not keyed yet: their unkeyed actionable elements are
-/// counted here so the number is re-measured on every run. Keying them is owed to the working
-/// route's CARRY for the three non-lean tasks; when a task is keyed its count drops to 0 here.
+/// The tasks outside the lean four are keyed: their unkeyed actionable elements are counted
+/// here, re-measured on every run, and each count reads 0. A control added without a key moves
+/// its task's count off 0.
 #[test]
 fn the_non_lean_tasks_are_measured() {
     const CARDS_AND_TITLES: [(&str, &str); 3] = [
@@ -150,9 +150,9 @@ fn the_non_lean_tasks_are_measured() {
         ("task-card-cells", "Cells"),
     ];
     const UNKEYED: [(&str, usize); 3] = [
-        ("Temperature Converter", 2),
-        ("Circle Drawer", 3),
-        ("Cells", 676),
+        ("Temperature Converter", 0),
+        ("Circle Drawer", 0),
+        ("Cells", 0),
     ];
     for incremental in [false, true] {
         let mut measured = Vec::new();

@@ -372,6 +372,7 @@ pub fn Cells() -> Element {
                             rsx! {
                                 div {
                                     key: "{r}-{c}",
+                                    id: "cell-{col_label(c)}{r}",
                                     class: if is_selected { "cell selected" } else { "cell" },
                                     onclick: move |_| {
                                         let raw = sheet().get_raw(r, c).to_string();
@@ -380,6 +381,7 @@ pub fn Cells() -> Element {
                                     },
                                     if is_selected {
                                         input {
+                                            id: "cell-input",
                                             class: "cell-input",
                                             value: "{edit_val}",
                                             oninput: move |evt| edit_val.set(evt.value()),

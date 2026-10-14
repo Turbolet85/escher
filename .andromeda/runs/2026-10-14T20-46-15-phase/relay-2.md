@@ -1,0 +1,1 @@
+yes — apply. My planlint reads 0 hits. The eight residuals lines (C4, C14, C10, C7, C15, the C11 fix, the C3 field, C8) match the overseer's incubator list one for one. Write each with the founder's label verbatim, in its own script.

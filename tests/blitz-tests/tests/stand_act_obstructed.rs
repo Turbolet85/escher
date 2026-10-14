@@ -12,7 +12,9 @@
 //! leaves the snapshot and both focus readings as they were. *Content scrolled out of a box
 //! covers nothing:* the engine's hit stops where a box clips by `overflow`, so a button lying
 //! before a scrolling box, where its scrolled-out rows extend, is hit and clicked as itself, as
-//! is a button after the box, and no control of the stand's CRUD reads `covered` that way. A
+//! is a button after the box, and no control of the stand's CRUD reads `covered` that way.
+//! *One-axis clip, a measured limit:* a box that clips along x alone stops a hit at its whole
+//! padding box, so a button it holds below its bottom edge, in view, is refused `covered`. A
 //! failure message carries the layout mode and the fixture, never an id, a coordinate or what a
 //! screen reads.
 
@@ -131,6 +133,21 @@ fn boxed_rows_fixture() -> Element {
             button { id: "fx-after", onclick: move |_| presses += 1, "After" }
             p { id: "fx-presses", "{presses}" }
             p { id: "fx-rows", "{rows}" }
+        }
+    }
+}
+
+/// A box sixty high that clips along x alone, holding a spacer taller than itself and then a
+/// button, which lies below the box's bottom edge where the box shows its overflow.
+fn one_axis_clip_fixture() -> Element {
+    let mut presses = use_signal(|| 0u32);
+    rsx! {
+        div { id: "fx-root",
+            div { id: "fx-clip", style: "height: 60px; overflow-x: clip; overflow-y: visible;",
+                div { id: "fx-clip-spacer", style: "height: 100px;" }
+                button { id: "fx-beside", onclick: move |_| presses += 1, "Beside" }
+            }
+            p { id: "fx-presses", style: "margin-top: 120px;", "{presses}" }
         }
     }
 }
@@ -543,6 +560,53 @@ fn a_target_holding_two_causes_reads_the_earlier_one() {
         assert!(
             cause == Some(Cause::OffScreen) && unchanged,
             "{mode}: out of view and covered reads off-screen"
+        );
+    }
+}
+
+/// A box that clips on one axis stops a hit at its whole padding box, while the visible region
+/// clips along that axis alone: a button lying outside the box along the axis it shows reads in
+/// view, and a click on it is refused `covered` though nothing shows over it.
+#[test]
+fn a_target_beside_a_box_clipped_on_one_axis_is_refused_covered() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}: one-axis clip fixture");
+        let mut session = hold(one_axis_clip_fixture, incremental);
+        assert_fixture_is_keyed_and_unscrolled(&session, &mode);
+        for id in ["fx-clip", "fx-beside"] {
+            assert!(
+                has_area(&session, id),
+                "{mode}: the box and the button read non-zero bounds"
+            );
+        }
+        let (_, _, _, clip_bottom) = edges(&session, "fx-clip");
+        let (_, beside_top, _, _) = edges(&session, "fx-beside");
+        assert!(
+            beside_top >= clip_bottom,
+            "{mode}: the button lies below the box, along the axis it does not clip"
+        );
+        let beside = session.harness().node("#fx-beside");
+        let seen = session.harness().base().visible_region(beside);
+        assert!(
+            seen.is_some_and(|seen| inside(
+                centre(&session, "fx-beside"),
+                (seen.x, seen.y, seen.x + seen.width, seen.y + seen.height)
+            )),
+            "{mode}: the button's centre lies inside its visible region"
+        );
+        assert!(
+            !hit_answers(&session, "fx-beside"),
+            "{mode}: the hit at the button's centre does not answer the button"
+        );
+
+        let (cause, unchanged) = refused_unchanged(&mut session, &click("fx-beside"));
+        assert!(
+            cause == Some(Cause::Covered),
+            "{mode}: a click on the button is refused covered"
+        );
+        assert!(
+            unchanged,
+            "{mode}: the refused click leaves the snapshot and the focus as they were"
         );
     }
 }

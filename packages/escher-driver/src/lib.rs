@@ -65,10 +65,12 @@
 //! pressed or invalid in its markup (`aria-selected`, `aria-pressed`, `aria-invalid`) reads so
 //! as true or false, with two limits, each stated in its node key's help: a mixed toggle reads
 //! not pressed, and a grammar or spelling error reads invalid. A changed node names the keys
-//! whose reading differs (`differs`). One reading is known to be off, measured on the engine as
-//! built and stated where the schema describes it: a hit reaches content clipped by
+//! whose reading differs (`differs`). Two readings are known to be off, measured on the engine
+//! as built and stated where the schema describes them: a hit reaches content clipped by
 //! `contain: paint`, so an element lying where such content extends can read
-//! [`Cause::Covered`] though nothing shows over it.
+//! [`Cause::Covered`] though nothing shows over it; and a box clipped on one axis stops a hit
+//! at its whole padding box, so an element lying outside it along the axis it does not clip can
+//! read [`Cause::Covered`] though it shows.
 //!
 //! [`command_line`] is the whole command line of a binary that boots apps: every verb as one
 //! run, answered with one line of JSON on stdout and a status that tells accepted from

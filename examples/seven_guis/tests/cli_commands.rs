@@ -541,10 +541,21 @@ fn help_answers_the_tools_description_and_reaches_no_session() {
 #[cfg(target_os = "linux")]
 #[test]
 fn a_state_directory_of_94_bytes_holds_a_session_and_one_of_95_is_refused_with_its_bound() {
+    a_state_directory_at_the_bound_holds_a_session_and_one_byte_more_is_refused(94);
+}
+
+#[cfg(not(target_os = "linux"))]
+#[test]
+fn a_state_directory_of_90_bytes_holds_a_session_and_one_of_91_is_refused_with_its_bound() {
+    a_state_directory_at_the_bound_holds_a_session_and_one_byte_more_is_refused(90);
+}
+
+/// A state directory given in `bound` bytes starts a session and stops it; one byte more is a
+/// session error whose message states the bound and holds no path.
+fn a_state_directory_at_the_bound_holds_a_session_and_one_byte_more_is_refused(bound: usize) {
     use std::path::{Path, PathBuf};
     use std::process::Command;
 
-    const BOUND: usize = 94;
     let base = Path::new(env!("CARGO_TARGET_TMPDIR"));
     // A path as given: absolute when the target dir leaves room for a name, else relative to the
     // child's working directory, which counts its own bytes alone.
@@ -563,11 +574,11 @@ fn a_state_directory_of_94_bytes_holds_a_session_and_one_of_95_is_refused_with_i
         common::run(command)
     };
 
-    let (dir, given) = at(BOUND);
-    assert_eq!(given.len(), BOUND);
+    let (dir, given) = at(bound);
+    assert_eq!(given.len(), bound);
     clear(&dir);
     let ran = run(&["start", "counter", "--session", &given]);
-    assert_eq!(ran.status, Some(0), "a {BOUND}-byte state directory starts");
+    assert_eq!(ran.status, Some(0), "a {bound}-byte state directory starts");
     let _started = Started {
         dir: dir.clone(),
         pid: number(ran.line(), "pid"),
@@ -576,15 +587,15 @@ fn a_state_directory_of_94_bytes_holds_a_session_and_one_of_95_is_refused_with_i
     assert_eq!(ran.status, Some(0), "and stops");
     assert!(!dir.exists(), "stop leaves no state directory");
 
-    let (dir, given) = at(BOUND + 1);
-    assert_eq!(given.len(), BOUND + 1);
+    let (dir, given) = at(bound + 1);
+    assert_eq!(given.len(), bound + 1);
     clear(&dir);
     let ran = run(&["start", "counter", "--session", &given]);
     assert_eq!(
         ran.status,
         Some(3),
         "a {}-byte state directory is a session error",
-        BOUND + 1
+        bound + 1
     );
     let error = SessionError::StateDirTooLong;
     assert!(
@@ -593,9 +604,10 @@ fn a_state_directory_of_94_bytes_holds_a_session_and_one_of_95_is_refused_with_i
     );
     let message = string_at(ran.line(), "message").expect("the error holds its message");
     assert!(
-        message.contains(&format!("at most {BOUND} bytes")),
+        message.contains(&format!("at most {bound} bytes")),
         "the message names the bound"
     );
+    assert!(!message.contains(&given), "the message holds no path");
     assert!(
         string_at(ran.line(), "remedy").as_deref() == Some(error.remedy()),
         "the error names its remedy"

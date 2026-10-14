@@ -43,3 +43,6 @@
 - recurrence-despite-learning: session-learnings 2026-10-13 (obs-plan never says "silent census"). It recurred at this chunk's P1, where the pattern's control did not fire.
 - recurrence-despite-learning: host-linux.md Session Additions 2026-10-13 (pipeline tools bare or read whole). At this wrap's P2 the leaves apply's output file was read through `sed` before it was diffed whole against the dry run.
 - Each remedy is a check, not a second entry.
+
+## Session End Status
+Completed normally at 2026-10-14 23:19:54

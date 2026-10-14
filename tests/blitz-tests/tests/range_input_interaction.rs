@@ -3,8 +3,10 @@
 //! Home and End take it to its minimum and maximum; a click sets it by where it lands along the
 //! content box and focuses the input; every change fires one `input` event and a move that
 //! changes nothing fires none. The value is the input's own current value, apart from its `value`
-//! attribute: a write of that attribute re-seeds it, a write of `max` re-sanitizes it, and any
-//! markup number reads finite, inside `[min, max]` and on the step grid.
+//! attribute: a write of that attribute re-seeds it, a write of `max` re-sanitizes it, a removal
+//! of `value` re-seeds it and a removal of `step`, `min` or `max` re-sanitizes it, a change of
+//! `type` away from `range` clears it and a change back re-seeds it, and any markup number reads
+//! finite, inside `[min, max]` and on the step grid.
 //!
 //! <https://html.spec.whatwg.org/multipage/input.html#range-state-(type=range)>
 
@@ -293,6 +295,113 @@ fn attribute_writes_reseed_and_resanitize_the_value() {
             value(&harness, range).as_deref(),
             Some("4"),
             "incremental {incremental}: a max write below the value clamps it"
+        );
+    }
+}
+
+#[test]
+fn attribute_removals_reseed_and_resanitize_the_value() {
+    for incremental in [false, true] {
+        let (mut harness, range) = open(r#"min="1" max="9" step="1.5" value="4""#, incremental);
+        focus(&mut harness, range);
+        press(&mut harness, Key::ArrowRight);
+        press(&mut harness, Key::ArrowRight);
+        assert_eq!(
+            value(&harness, range).as_deref(),
+            Some("7"),
+            "incremental {incremental}: two keys moved the value off its attribute"
+        );
+
+        harness
+            .base_mut()
+            .mutate()
+            .clear_attribute(range, attribute("value"));
+        harness.pump();
+        assert_eq!(
+            value(&harness, range).as_deref(),
+            Some("5.5"),
+            "incremental {incremental}: a value removal re-seeds the default, on the grid"
+        );
+
+        harness
+            .base_mut()
+            .mutate()
+            .clear_attribute(range, attribute("step"));
+        harness.pump();
+        assert_eq!(
+            value(&harness, range).as_deref(),
+            Some("6"),
+            "incremental {incremental}: a step removal re-sanitizes onto the default step"
+        );
+
+        harness
+            .base_mut()
+            .mutate()
+            .clear_attribute(range, attribute("min"));
+        harness.pump();
+        press(&mut harness, Key::Home);
+        assert_eq!(
+            value(&harness, range).as_deref(),
+            Some("0"),
+            "incremental {incremental}: after a min removal Home reads the default minimum"
+        );
+
+        harness
+            .base_mut()
+            .mutate()
+            .clear_attribute(range, attribute("max"));
+        harness.pump();
+        press(&mut harness, Key::End);
+        assert_eq!(
+            value(&harness, range).as_deref(),
+            Some("100"),
+            "incremental {incremental}: after a max removal End reads the default maximum"
+        );
+    }
+}
+
+#[test]
+fn a_type_change_clears_the_range_data_and_a_change_back_reseeds_it() {
+    for incremental in [false, true] {
+        let (mut harness, range) = open(STEP_TWO, incremental);
+        focus(&mut harness, range);
+        press(&mut harness, Key::ArrowRight);
+        assert_eq!(
+            value(&harness, range).as_deref(),
+            Some("6"),
+            "incremental {incremental}: a key moved the value off its attribute"
+        );
+
+        harness
+            .base_mut()
+            .mutate()
+            .set_attribute(range, attribute("type"), "text");
+        harness.pump();
+        let holds_range = |harness: &Harness<HtmlDocument>| {
+            harness
+                .base()
+                .get_node(range)
+                .and_then(|node| node.element_data())
+                .is_some_and(|element| element.range_input_data().is_some())
+        };
+        assert!(
+            !holds_range(&harness),
+            "incremental {incremental}: a text input holds no range data"
+        );
+
+        harness
+            .base_mut()
+            .mutate()
+            .set_attribute(range, attribute("type"), "range");
+        harness.pump();
+        assert!(
+            holds_range(&harness),
+            "incremental {incremental}: a range input again holds its range data"
+        );
+        assert_eq!(
+            value(&harness, range).as_deref(),
+            Some("4"),
+            "incremental {incremental}: the change back re-seeds from the value attribute"
         );
     }
 }
