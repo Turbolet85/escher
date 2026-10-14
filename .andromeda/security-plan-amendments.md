@@ -520,3 +520,14 @@ One entry per amendment to `security-plan.md` (sidecar-contract.md §Entry form)
 - control-states row: the witness owned by that residuals line, the headless half proven; was "owned by a route entry".
 **Why:** the check the operator's ratification of 2026-10-06 (the id leaving as `author_id`, tracked) asked of this route entry; the adapter staying unbuilt is the founder's F1 «Пока нет, перенести (Рекомендую)», by question dialog in the overseer session, relayed by the overseer as his chosen option label, placed as a residuals line by the operator's P5 word. No new crossing, carrier, field or input class — not a widening.
 **Ref:** .andromeda/runs/2026-10-14T19-50-50-wrap/
+
+## 2026-10-14-stand-requirement-sweep — the password click caret a known 0.1.0 limit; the off-Linux bound measured; `covered`'s second limit
+**Section:** §Input Validation → password and file `input` value row · `disabled` row · Driver session state directory row; §API Security → settle and loads row; §Error Handling → escher-driver refusal bullet; §Logging & Monitoring
+**Change:**
+- password row: a click-placed caret depends on the real characters' widths — index 5 after eight narrow characters, 2 after eight wide — so where it paints in a shot says something of their relative widths: a known 0.1.0 limit; the snapshot, the diff and the bullets stay masked and nothing new crosses; its fix owned by the C11 `.andromeda/residuals.md` line (target: next). Was "not measured by any check", a CARRY on "Stand requirement sweep".
+- `disabled` row, settle row: the `disabled` narrowing and the overlay fade's move onto the harness clock are each owned by a residuals line; were CARRYs on that entry.
+- state directory row: the 90 off Linux is measured on the macOS leg — 90 holds a session, 91 ends `state-dir-too-long`, status 3, no path in the message; was "read, not measured". The refusal bullet's restatement marks both bounds measured.
+- refusal bullet: `covered`'s meaning states two measured limits, the one-axis clip added; remedy, the nine causes and their names unchanged.
+- Logging: the workspace-built host re-read at 6 lines / 978 B (the `focussed node` line twice; was 5 / 860 B), the `mcp` role at 11 lines (was 10); built alone unchanged; needles 0.
+**Why:** measured at this chunk. Stating C11 as a known 0.1.0 limit is the overseer's directive relayed by the operator at this wrap, on the founder's C11 «Замерить сейчас, исправить потом (Рекомендую)»; the owners rest on his C10 «Отложить на следующую версию (Рекомендую)» and C15 «Оставить по наличию, отложить (Рекомендую)» — each by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option labels — placed by the operator's word on the P5 card. `covered`'s text is the program's own fixed text inside the ratified carriers; no carrier, field or input class added — not a widening.
+**Ref:** .andromeda/runs/2026-10-14T22-00-51-wrap/

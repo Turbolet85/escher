@@ -1,0 +1,10 @@
+
+## 2026-10-14-stand-requirement-sweep — every stand task keyed; the password click caret measured; three new checks
+**Section:** §Standard Contracts → Dioxus DOM bridge · Paint and shell · §Established Decisions (the `disabled` row) · §Existing Scopes → blitz-tests · §Conventions → Tests
+**Change:**
+- Dioxus DOM bridge: `unkeyed_actionable()` returns nothing on all seven stand tasks, Circle Drawer's dialog open included; was "Temperature Converter 2 · Circle Drawer 3 · Cells 676 on the three tasks not yet keyed". Nine author ids named: `temp-celsius`, `temp-fahrenheit`, `circle-undo`, `circle-redo`, `circle-canvas`, `circle-diameter`, `circle-close`, `cell-{A..Z}{0..25}`, `cell-input`. A scrolled box under a vertical writing mode is read, under both builds; was "no check reads … owned by a route entry".
+- Paint and shell: the password click caret is measured — index 5 after eight narrow characters, 2 after eight wide — a known 0.1.0 limit whose fix is owned by a `.andromeda/residuals.md` line (target: next); was "not measured by any check", owned by a CARRY on "Stand requirement sweep".
+- `disabled` row: the narrowing's owner is a residuals line; was a CARRY on that entry.
+- Existing Scopes: `stand_requirement_sweep` 2 (`Session::run` alone on each lean task; `WITNESSES`, 16 rows), `stand_non_lean_tasks` 3, `password_caret_click` 1; `range_input_interaction` 6 → 8, `scrolled_box_client_rect` 6 → 7, `hit_clipped_at_scrolling_box` 9 → 13, `stand_act_obstructed` +1, so the twelve listed `stand_act_*` read 42, was 41; `common/mod.rs` readers 19 → 21 and `session_common/mod.rs` 20 → 21, the Conventions reader list naming the sweep.
+**Why:** measured at this chunk. The owners rest on the founder's C11 «Замерить сейчас, исправить потом (Рекомендую)» and C15 «Оставить по наличию, отложить (Рекомендую)», by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option labels, placed as residuals lines by the operator's word on the P5 card; the keys on the operator's "Key all three; C8 deferred" at P4.
+**Ref:** .andromeda/runs/2026-10-14T22-00-51-wrap/

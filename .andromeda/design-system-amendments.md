@@ -130,3 +130,9 @@ One entry per amendment to `design-system.md` (sidecar-contract.md §Entry form)
 **Change:** the accent is `#3a5ce5`, hover `#2a4cd3`, active `#1f3fc1` in every task CSS that declares it, its non-text uses moving with it and its three `rgba` uses at `rgba(58, 92, 229, …)`, alpha kept; was `#4a6cf7` / `#3a5ce5` / `#2a4cd3`. White button text on the five accent controls reads 5.47, a pass (was 4.39, a fail); on the hover shade 6.83 and on the active shade 8.27, reached states of `stand_contrast`.
 **Why:** the operator's F5, "One step darker, stand-wide", by question dialog — a stand change and no engine change, the hex literals staying where each task declares them (the token set is NOT YET MEASURED).
 **Ref:** .andromeda/runs/2026-10-14T19-50-50-wrap/
+
+## 2026-10-14-stand-requirement-sweep — the hit at an element's own box measured
+**Section:** §Depth Strategy → Engine depth behavior (the hit-testing bullet)
+**Change:** the bullet adds the measured answers at an element's own box — an `img` holding raster data answers the `img`, a block inside an `iframe`'s `srcdoc` sub-document answers the `iframe` (the parent's walk does not enter it, pinned as it reads), a filled text `input` answers the `input` — and a box both transformed and scrolled hit where its rows show, not through its scrolled-out content; both layout modes, both builds.
+**Why:** measured at this chunk; widening the stop to a `contain: paint` box stays deferred on the founder's C4 «Отложить (Рекомендую)», by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option label.
+**Ref:** .andromeda/runs/2026-10-14T22-00-51-wrap/

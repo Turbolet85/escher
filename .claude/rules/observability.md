@@ -33,7 +33,7 @@ Path-scoped rules for telemetry, logging and timing code. Source: `.andromeda/ob
 - The upstream apps' `fmt::init()` and the WPT runner's `env_logger` still log URLs, attribute values, text-node contents and outer HTML as-is.
 
 ## Not yet measured — owned by the working route
-- The windowed `seven_guis_native`'s stderr by level as a workspace-wide build makes it, and typed text in its log — no command reaches the windowed binary. `cargo test --workspace` compiles blitz-dom's `tracing` call sites in and a `-p` build does not; its by-level readings are of a `-p seven_guis` build. The session host's is measured since 2026-10-10-driver-cli: one engine line, `blitz_dom::document` at INFO, from `info` up under the workspace build and none built alone, with 0 occurrences of a typed sentinel either way.
+- The windowed `seven_guis_native`'s stderr by level as a workspace-wide build makes it, and typed text in its log — no command reaches the windowed binary. `cargo test --workspace` compiles blitz-dom's `tracing` call sites in and a `-p` build does not; its by-level readings are of a `-p seven_guis` build. The session host's is measured since 2026-10-10-driver-cli: one engine line, `blitz_dom::document` at INFO, printed twice from `info` up under the workspace build (re-measured at 2026-10-14-stand-requirement-sweep) and none built alone, with 0 occurrences of a typed sentinel either way.
 - Opt-in OTel export (`otel-sdk-install`) is out of escher 0.1.0 (the founder, 2026-10-06): add no OTel crate, egress or `OTEL_EXPORTER_OTLP_HEADERS` credential path; the transport and credential path are undecided — `.andromeda/residuals.md`.
 
 ## Session Additions

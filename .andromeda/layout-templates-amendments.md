@@ -138,3 +138,9 @@ One entry per amendment to `layout-templates.md` (sidecar-contract.md §Entry fo
 **Change:** `crud-list` is named by an attribute alone — `aria-label="People"`, its accessible name `People` in the tree and the snapshot — adding no element, class, style, wrapper, id or order; the current-option gap stays stated (no `aria-activedescendant` read).
 **Why:** the plan's naming of the stand's one unnamed interactive-role element; the list's Tab sequence (six stops) is unchanged.
 **Ref:** .andromeda/runs/2026-10-14T19-50-50-wrap/
+
+## 2026-10-14-stand-requirement-sweep — the non-lean tasks' author ids
+**Section:** §Surface: desktop-native → Primary screens (the seven_guis Home and TaskShell bullet)
+**Change:** the three tasks outside the lean four carry author ids on their controls — Temperature Converter `temp-celsius` · `temp-fahrenheit`; Circle Drawer `circle-undo` · `circle-redo` · `circle-canvas` and, on its open dialog, `circle-diameter` · `circle-close`; Cells `cell-{A..Z}{0..25}` on the 676 data cells and `cell-input` — added as `id:` lines alone, no element, class, style, wrapper or order moved and no CSS selecting by them; `unkeyed_actionable()` reads 0 on all seven tasks.
+**Why:** the operator's "Key all three; C8 deferred", by question dialog at this chunk's P4.
+**Ref:** .andromeda/runs/2026-10-14T22-00-51-wrap/

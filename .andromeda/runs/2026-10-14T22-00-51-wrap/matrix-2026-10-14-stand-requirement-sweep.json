@@ -1,0 +1,194 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-14T22:44:54Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-14-stand-requirement-sweep",
+"--run-dir",
+".andromeda/runs/2026-10-14T22-00-51-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed 0 — gate no-op (no entry carries chunk 2026-10-14-stand-requirement-sweep)",
+"pool: unclaimed 1 [v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-14T22:45:00Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-14-stand-requirement-sweep",
+"--run-dir",
+".andromeda/runs/2026-10-14T22-00-51-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed 0 — gate no-op (no entry carries chunk 2026-10-14-stand-requirement-sweep)",
+"pool: unclaimed 1 [v010-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-14T22:45:00Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-01",
+"--text-file",
+".andromeda/runs/2026-10-14T22-00-51-wrap/note-v010-01.md",
+"--run-dir",
+".andromeda/runs/2026-10-14T22-00-51-wrap",
+"--marker",
+"2026-10-14-stand-requirement-sweep"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v010-01: +412 chars (total 1707) · status verified · ref/acceptance untouched",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-01",
+"chunk": "2026-10-06-stable-element-ids",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_element_ids.rs::every_element_reads_exactly_one_unique_id · ::author_keyed_elements_read_t… (213 chars)",
+"acceptance": "On each of the four lean stand tasks (counter, flight booker, timer, CRUD), booted by `seven_guis::stand` with `stand::o… (830 chars)",
+"notes_chars": 1293
+},
+"after": {
+"id": "v010-01",
+"chunk": "2026-10-06-stable-element-ids",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_element_ids.rs::every_element_reads_exactly_one_unique_id · ::author_keyed_elements_read_t… (213 chars)",
+"acceptance": "On each of the four lean stand tasks (counter, flight booker, timer, CRUD), booted by `seven_guis::stand` with `stand::o… (830 chars)",
+"notes_chars": 1707
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-14T22:45:00Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-05",
+"--text-file",
+".andromeda/runs/2026-10-14T22-00-51-wrap/note-v010-05.md",
+"--run-dir",
+".andromeda/runs/2026-10-14T22-00-51-wrap",
+"--marker",
+"2026-10-14-stand-requirement-sweep"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v010-05: +428 chars (total 1082) · status verified · ref/acceptance untouched",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-05",
+"chunk": "2026-10-06-snapshot-state-fidelity",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_snapshot_state.rs::a_disabled_control_reads_disabled_until_the_app_enables_it · ::typed_te… (393 chars)",
+"acceptance": "On the stand, in both layout modes, read through `DioxusDocument::snapshot`: a disabled control (`flight-return-date`, `… (1017 chars)",
+"notes_chars": 652
+},
+"after": {
+"id": "v010-05",
+"chunk": "2026-10-06-snapshot-state-fidelity",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_snapshot_state.rs::a_disabled_control_reads_disabled_until_the_app_enables_it · ::typed_te… (393 chars)",
+"acceptance": "On the stand, in both layout modes, read through `DioxusDocument::snapshot`: a disabled control (`flight-return-date`, `… (1017 chars)",
+"notes_chars": 1082
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-14T22:45:00Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-16",
+"--text-file",
+".andromeda/runs/2026-10-14T22-00-51-wrap/note-v010-16.md",
+"--run-dir",
+".andromeda/runs/2026-10-14T22-00-51-wrap",
+"--marker",
+"2026-10-14-stand-requirement-sweep"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v010-16: +529 chars (total 2756) · status verified · ref/acceptance untouched",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-16",
+"chunk": "2026-10-06-id-stability-across-code-edits",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_id_edits.rs::a_task_keeps_every_id_when_the_code_around_it_changes · ::keyed_elements_keep… (453 chars)",
+"acceptance": "On the stand — the four lean tasks (counter, flight booker, timer, CRUD), Home, and the edit fixture beside them in test… (1722 chars)",
+"notes_chars": 2225
+},
+"after": {
+"id": "v010-16",
+"chunk": "2026-10-06-id-stability-across-code-edits",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_id_edits.rs::a_task_keeps_every_id_when_the_code_around_it_changes · ::keyed_elements_keep… (453 chars)",
+"acceptance": "On the stand — the four lean tasks (counter, flight booker, timer, CRUD), Home, and the edit fixture beside them in test… (1722 chars)",
+"notes_chars": 2756
+}
+}
+]

@@ -1,0 +1,58 @@
+# Cascade step-2 sweep — the retired claims of this pass, by wording and by mechanism.
+
+[[pattern]]
+id = 'nonlean-pin'
+regex = 'not yet keyed|Circle Drawer 3|2 · 3 · 676|Cells 676'
+
+[[pattern]]
+id = 'one-limit'
+regex = 'one reading (is |still |stays )?(known to be )?(as )?(off|measured)|one reading as off|reading still off|ends with the sentence'
+ignore_case = true
+
+[[pattern]]
+id = 'route-owner'
+fixed = 'Stand requirement sweep'
+
+[[pattern]]
+id = 'route-owned'
+regex = 'owned by a route entry|owned by a CARRY on the route|owned by a `CARRY:` on the route'
+
+[[pattern]]
+id = 'own-box'
+regex = "own box is not measured|text input's own box"
+
+[[pattern]]
+id = 'transf-scroll'
+regex = 'both transformed and scrolled|transformed-and-scrolled'
+
+[[pattern]]
+id = 'vertical-wm'
+regex = 'vertical writing mode'
+
+[[pattern]]
+id = 'bound-90'
+regex = 'read, not measured|90 elsewhere|90 on every other'
+
+[[pattern]]
+id = 'caret-unmeas'
+regex = 'read by no check|caret paints at can depend|lands on can depend|not measured by any check'
+
+[[pattern]]
+id = 'log-counts'
+regex = '10 built with the workspace|one engine line|860 B|the tenth `INFO'
+
+[[pattern]]
+id = 'readers'
+regex = '19 stand checks|19 of which|by 19 |19 in all|twenty readers|twenty checks|20 readers|by 20 checks'
+
+[[pattern]]
+id = 'act-totals'
+regex = '41 tests|\(47;|`stand_act_obstructed` 5'
+
+[[pattern]]
+id = 'file-counts'
+regex = '`range_input_interaction`,? 6|`scrolled_box_client_rect`,? 6|`hit_clipped_at_scrolling_box`,? 9|121 `\.rs` files'
+
+[[pattern]]
+id = 'one-axis'
+regex = 'clipped on one axis|one-axis'
