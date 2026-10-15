@@ -8,6 +8,20 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-15 — In a master sweep, `flake` reads Nix and `repeated` reads everything
+A site-sweep pattern for the flakiness budget built on `flake` matches the Nix `flake` / `flake.nix` sites of the masters — 13 of 14 standing rows at the 2026-10-14-quality-gates wrap — and one built on `repeated` matched 11 master rows, none about the stand-repeat leg. Spell the budget by `flakiness` or `zero-failure`, and the leg by its name `stand-repeat`, and disposition every row that is left.
+
+Where it applies: P1's site sweep and P2's cascade sweep over the masters, whenever a chunk touches the flakiness budget or a repeated run.
+
+---
+
+## 2026-10-15 — `git fetch upstream main` moves FETCH_HEAD; read upstream's head live
+`git fetch upstream main` prints `main -> FETCH_HEAD`, which says nothing about whether `upstream/main` names upstream's current head. Before a record states that upstream stands at a commit, read it live with `git ls-remote upstream refs/heads/main` and compare it with `upstream/main` (at 2026-10-14-quality-gates both read `e72650a6`).
+
+Where it applies: a merge-surface read, an upstream-sync take-up, or any claim about upstream's `main` that a later sync will rely on.
+
+---
+
 ## 2026-10-14 — An operator gate entry's output survives a context clear; a bare-fired one does not
 `gate.py run --operator {n}` writes each entry's whole output to `$TMPDIR/andromeda-gate/{marker}/run-{UTC}/{n}.log`, outside the session and the repository, and that log outlives a pause-clear of the window. So an operator entry whose printed result was lost with the window can be read back from there instead of re-run. An operator entry the operator fires bare — `gate.py hygiene`, say — leaves no such log, and its result then rests only on the word of whoever saw it.
 

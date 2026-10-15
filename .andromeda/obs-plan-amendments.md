@@ -322,3 +322,12 @@ One entry per amendment to `obs-plan.md` (sidecar-contract.md §Entry form). App
 - §8, §6, §2: re-read on the same flows — the workspace-built host writes 6 lines / 978 B, the `blitz_dom::document` `focussed node` INFO line printing twice (was 5 / 860 B, once); the `mcp` role 11 lines workspace-built (was 10); built alone unchanged (4 / 742 B; 9); needles 0 at `info` and `trace` under both builds. The dated readings stand as dated, the re-reads appended.
 **Why:** measured at this chunk. No log site, field or span added — the second line is the engine's existing event firing once more; why it fires twice is recorded, not established. The C16 CARRY asked for the re-read.
 **Ref:** .andromeda/runs/2026-10-14T22-00-51-wrap/
+
+## 2026-10-14-quality-gates — `busy` on a real line, the stderr readings, the `repair` phase
+**Section:** §2 Telemetry Strategy → Feature wiring · §4 Span / Trace Coverage (`command`) · §8 PII Scrubbing & Compliance · §9 CI Integration (package install)
+**Change:**
+- §4: `busy` is driven. `stand_act_spans` runs `press tab` on a fixture that re-keys an element every render, in both layout modes. The line carries `settled=false` and `busy="render"`, no `passes` and no `cause` — six of the span's eight fields. Was "not driven … covered by its unit test only".
+- §8 and §2: a client's own stderr, the host beyond three CRUD commands, and the workspace-built windowed `seven_guis_native` on the host's display were read by build and level, 28 runs, 0 needles. Was "not measured there".
+- §9: the install diagnostic's phase is `update`, `install` or `repair` — the bounded `dpkg --configure -a` before each retried attempt. The line's shape is unchanged (was "`update` or `install`").
+**Why:** measured at this chunk; no scrub, redaction, log field or span changed.
+**Ref:** .andromeda/runs/2026-10-15T06-51-44-wrap/

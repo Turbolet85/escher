@@ -1,0 +1,72 @@
+proposals:
+  - detector: D-security-deps
+    severity: escalate
+    section: Dependency Security → Audit tool
+    change: 'The audit leg runs `cargo deny --locked --workspace --all-features check advisories licenses` over the whole workspace''s graph (the `deny.toml` header now says so) and reads `advisories ok, licenses ok`; retire "The file also holds a `[licenses]` table, which the audit leg does not read": the leg reads it, on every push — as measured at escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/audit.md.'
+    sidecar: 'security-plan §Dependency Security Audit tool: the audit leg widened to `--workspace --all-features` and checks advisories and licences (2026-10-14-quality-gates).'
+    rationale: 'Report Changes → Symbols / APIs, `ci-leg.sh` arm `audit` (`cargo deny --locked --workspace --all-features check advisories licenses`) and `deny.toml` (header states the leg runs advisories and licences over the whole workspace''s graph); Outcome → Audit met (`advisories ok, licenses ok`); Expected amendments → security-plan §Dependency Security (`auditcmd` and `licgate` changed at security-plan.md:236); the founder''s «Аудит всего workspace (Рекомендую)» and «Проверка лицензий (Рекомендую)» (inputs#I2).'
+    basis: .andromeda/security-plan.md:236
+  - detector: D-security-deps
+    severity: escalate
+    section: Dependency Security → Audit tool
+    change: 'Two per-ID ignores stand: RUSTSEC-2026-0192 (ttf-parser, as before) and RUSTSEC-2024-0436 (paste 1.0.15, unmaintained, no patched release — reached only as a proc-macro of `rav1e 0.8.1` ← `ravif` ← `image`, through `anyrender_svg` and the apps'' `avif`; dropped when that chain leaves paste; re-read on every push; owned by a `.andromeda/residuals.md` line (target: next)); retire the reach claim that pruning keeps paste and memmap2 from the gate: on the whole-workspace graph paste reaches it (`advisories FAILED`, `error[unmaintained]: paste`, with the ignore removed through a copied config; `advisories ok` with it), and memmap2 0.5.10''s RUSTSEC-2026-0186 (unsound) is kept out by the `unsound` default, not pruning (reported under `unsound = "all"`) — a measured limit owned by a `.andromeda/residuals.md` line (target: next); both lines under the founder''s «Аудит всего workspace (Рекомендую)» (2026-10-14, inputs#I2); the 2026-10-05 pruning reading stays as history of the replaced invocation — as measured at escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/audit.md.'
+    sidecar: 'security-plan §Dependency Security Audit tool: RUSTSEC-2024-0436 (paste) ignored by ID with its reason; the pruning reach claim retired — paste reaches the whole-workspace graph, memmap2 kept out by the `unsound` default, each owned by a residuals line (2026-10-14-quality-gates).'
+    rationale: 'Report Spec claims disproved by measurement → security-plan.md:236 (paste reaches the new graph; memmap2 kept out by the `unsound` default, not pruning; evidence/audit.md); Changes → Symbols / APIs `deny.toml` (`[advisories] ignore` gains RUSTSEC-2024-0436 with its chain, no patched release, the residuals-line owner, a re-read on every push; `unmaintained`/`unsound` at their defaults); Cross-project → inputs#I4 card rows 1 and 2 and the Addendum inputs#I6 (both written as residuals lines naming the founder''s label verbatim); Expected amendments `advisory` changed at security-plan.md:236.'
+    basis: .andromeda/security-plan.md:236
+  - detector: D-security-deps
+    severity: escalate
+    section: Dependency Security → Supply chain integrity → Licence compliance
+    change: 'Retire "no CI leg runs it … whether the fork gates on it is an open question, owned by the route entry "Quality gates"": the audit leg runs `licenses` over the whole-workspace graph on every push and reads `licenses ok` (host and CI#38692629940) — the fork gates on licences, the founder''s «Проверка лицензий (Рекомендую)» (2026-10-14, inputs#I2); the 2026-10-10 six-target reading stays as history.'
+    sidecar: 'security-plan Licence compliance: the open licence-gate question decided — the audit leg checks licences on every push (2026-10-14-quality-gates).'
+    rationale: 'Report Changes → Symbols / APIs arm `audit` (`… check advisories licenses`); Outcome → Audit (`advisories ok, licenses ok`) and CI (CI#38692629940 green 17/17); Expected amendments `licgate` 2 standing · 2 changed (security-plan.md:236 · :267) and `qgowner` security-plan.md:267 (the licence question''s owner); inputs#I2 «Проверка лицензий (Рекомендую)».'
+    basis: .andromeda/security-plan.md:267
+    dependent-of: D-security-deps
+  - detector: D-security-deps
+    severity: escalate
+    section: Dependency Security → Supply chain integrity → Lockfile verification
+    change: 'The leg script''s commands passing `--locked` include the new `stand-repeat` leg''s two `cargo test` lines (blitz-tests'' 40 `stand_*` targets and seven_guis'' seven process checks, three rounds) and the clippy leg''s second line (`cargo clippy -p blitz-dom --no-default-features --features … --all-targets --locked`), beside build, test, clippy, doc, msrv, counter, wasm, audit, a11y and coverage.'
+    sidecar: 'security-plan Lockfile verification: the `stand-repeat` leg and the clippy leg''s second line pass `--locked` (2026-10-14-quality-gates).'
+    rationale: 'Report Changes → Symbols / APIs `ci-leg.sh`: new arm `stand-repeat` runs `cargo test -p blitz-tests --locked …` and `cargo test -p seven_guis --locked …`; arm `clippy` gains `cargo clippy -p blitz-dom … --locked -- -D warnings`; Harness / gate surface (new leg). The enumerated leg list at Lockfile verification omits the new leg.'
+    basis: .github/scripts/ci-leg.sh:43-57
+  - detector: D-security-input
+    severity: escalate
+    section: Input Validation → `@font-face` source row
+    change: 'Retire "still owed — no test of ours … a check of ours on this path is owed before 0.1.0 ships, owned by the route entry "Quality gates"": since 2026-10-14-quality-gates `tests/blitz-tests/tests/font_face_sniffed_source.rs` covers it — a held `NetProvider`, offline, a font context with no family, both layout modes: a hint-less `data:` source is requested exactly once and, answered with a `wOF2` body, registered (the text''s width 0 before the answer, > 0 after, no further request); a body no sniff matches registers nothing (width stays 0); the file names upstream #1109 and that escher routes no agent- or user-supplied URL through the path, and installs no subscriber and prints nothing (tests/blitz-tests/tests/font_face_sniffed_source.rs:86-109; tests/blitz-tests/tests/font_face_sniffed_source.rs:111-135) — the founder''s «Утвердить + проверка» discharged.'
+    sidecar: 'security-plan §Input Validation `@font-face` source: the owed check of ours discharged by `font_face_sniffed_source` (2026-10-14-quality-gates).'
+    rationale: 'Report Changes → Symbols / APIs `font_face_sniffed_source.rs` (new target, two tests as described) and Crates / modules (new test target); Outcome → `font_face_sniffed_source` met; Expected amendments → security-plan §Input Validation, `fontface` changed at security-plan.md:101 ("a check of ours on this path is owed") and `qgowner` security-plan.md:101 (the owed check''s owner).'
+    basis: .andromeda/security-plan.md:101
+  - detector: D-security-input
+    severity: escalate
+    section: Input Validation → Fetched fonts (Format) row
+    change: 'Add the witness: the sniff on a hint-less source is pinned since 2026-10-14-quality-gates — a `wOF2` body registered, a body no sniff matches (`abcd`) registered as nothing (tests/blitz-tests/tests/font_face_sniffed_source.rs:86-109; tests/blitz-tests/tests/font_face_sniffed_source.rs:111-135).'
+    sidecar: 'security-plan §Input Validation Fetched fonts: the format sniff witnessed by `font_face_sniffed_source` (2026-10-14-quality-gates).'
+    rationale: 'Report Expected amendments → security-plan §Input Validation, `fontface` extended at security-plan.md:99 ("the sniff, now witnessed"); Changes → Symbols / APIs `font_face_sniffed_source.rs`.'
+    basis: .andromeda/security-plan.md:99
+  - detector: D-security-input
+    severity: escalate
+    section: Input Validation → CLI arguments (escher-session) row
+    change: '"A write to a closed pipe is dropped, not a panic" is pinned since 2026-10-14-quality-gates by `a_closed_stdout_drops_the_answer_and_keeps_the_ending`: with its stdout''s read end closed before the run, `help` exits 0 and its stderr holds no `panicked` and no ESC byte, and `snapshot --session {dir}` with no session exits 3 with exactly `SessionError::NoSession`''s fixed message on stderr and no state directory created (examples/seven_guis/tests/cli_commands.rs:548-583; examples/seven_guis/tests/cli_commands.rs:585-610).'
+    sidecar: 'security-plan §Input Validation escher-session CLI: the closed-pipe claim pinned by a check (2026-10-14-quality-gates).'
+    rationale: 'Report Changes → Symbols / APIs `cli_commands.rs` (`with_stdout_closed` and the new check); Outcome → Closed stdout met; Expected amendments → security-plan §Input Validation, `clipaths` extended at security-plan.md:82 (the closed pipe).'
+    basis: .andromeda/security-plan.md:82
+  - detector: D-security-input
+    severity: escalate
+    section: Input Validation → Driver session socket (escher-driver) row
+    change: '"A client''s read of a call''s answer under 30 s" is pinned since 2026-10-14-quality-gates by the unix-only `client::imp::tests::an_answer_read_past_its_bound_is_a_timeout`: the answer read''s bound equals `wire::ANSWER_BOUND`, 30 s, and a read past its bound on a listener that accepts and never answers returns `SessionError::Timeout` (packages/escher-driver/src/client.rs:261-306).'
+    sidecar: 'security-plan §Input Validation session socket: the 30 s answer-read bound pinned by a check (2026-10-14-quality-gates).'
+    rationale: 'Report Changes → Symbols / APIs `escher-driver` `client.rs` (the new test asserts `ANSWER.0 == wire::ANSWER_BOUND == Duration::from_secs(30)` and a `SessionError::Timeout` past a 200 ms bound); Outcome → Answer bound met; the report''s `clipaths` sweep names the same 30 s per-read claim pinned at its architecture and session-lifecycle sites — this row restates it.'
+  - detector: D-security-input
+    severity: escalate
+    section: Input Validation → CLI arguments (apt-install.sh) row
+    change: 'ci.yml''s ten calls (was nine; the new `stand-repeat` job''s is the tenth) pass package names and no option; the usage gate still exits 2 before `sudo`, `timeout`, `apt-get` or `dpkg` runs; since 2026-10-14-quality-gates every attempt after the first runs a bounded repair first — `sudo timeout --kill-after="$GRACE" "$BOUND" dpkg --configure -a`, phase `repair` — and the first attempt runs no `dpkg`; a failed repair fails that attempt, named by the existing diagnostic `apt-install: attempt {n} of {N} failed in repair (exit {s})`; pinned by three new `InstallScriptTest` cases (.github/scripts/apt-install.sh:52-54; .github/scripts/apt-install.sh:57-60; .github/scripts/test_ci_workflows.py:418-422; .github/scripts/test_ci_workflows.py:433-444; .github/scripts/test_ci_workflows.py:446-452) — the operator''s fork 4 «Add a bounded repair» (inputs#I2).'
+    sidecar: 'security-plan §Input Validation apt-install.sh: ten calls; the bounded `dpkg --configure -a` repair before each retried attempt, the usage gate unchanged (2026-10-14-quality-gates).'
+    rationale: 'Report Changes → Symbols / APIs `apt-install.sh` (`repair()`, `attempt_once` with the attempt number, the first attempt runs no `dpkg`, the usage gate still exits 2 before `sudo`, `timeout`, `apt-get` or `dpkg`); Counts → Ubuntu jobs (nine jobs, ten `run:` calls); Expected amendments → `dpkg` security-plan.md:76 ("nine calls" → ten; the usage gate unchanged); Coverage of new surfaces → `apt-install.sh` repair phase.'
+    basis: .andromeda/security-plan.md:76
+  - detector: D-security-input
+    severity: escalate
+    section: Input Validation
+    change: 'Add a row "CLI arguments (coverage_floor.py) | An lcov path and `CRATE_DIR=PERCENT` floors from the coverage leg | Since 2026-10-14-quality-gates, stdlib only: each floor must match `CRATE_DIR=PERCENT` with a percent at most 100 and no crate named twice, else a usage line and exit 2; a crate with no `SF` record exits 2 naming its directory on stderr; an unreadable lcov is caught (`except OSError`); it sums `LF`/`LH` over records whose real path lies under each crate directory and prints only the crate directory and counts — no source path, never the lcov path; the leg passes it three fixed floors (escher-driver 97, dioxus-native-dom 83, blitz-test-harness 90); pinned by `test_coverage_floor.py` (7 cases) and two leg cases (.github/scripts/coverage_floor.py:20-22; .github/scripts/coverage_floor.py:25-36; .github/scripts/coverage_floor.py:70-101; .github/scripts/test_coverage_floor.py:70-88)".'
+    sidecar: 'security-plan §Input Validation: new row for `coverage_floor.py`''s argv (2026-10-14-quality-gates).'
+    rationale: 'Report Changes → Files (new `.github/scripts/coverage_floor.py`) and Symbols / APIs `coverage_floor.py` (argv form, per-crate lines, exit 0 / 1 / 2, no source path or lcov path echoed); Coverage of new surfaces → `coverage_floor.py` (CI script, argv): validation regex `CRATE_DIR=PERCENT`, ≤ 100, no duplicate, usage exit 2 — the validation is present, and §Input Validation lists the other CI scripts'' argv (agent-run.sh, cold-agent.sh, apt-install.sh) but holds no row for this new one.'
+    basis: .github/scripts/coverage_floor.py:25-36
+note: 'Not proposed, for the orchestrator: (1) the client.rs test binds a `UnixListener` in `std::env::temp_dir()/eab-{pid}` outside `serve`''s 0700/0600 checks — test-only, never answers, removed after; none of these three detectors scopes a test fixture, weigh it against §Surfaces / arch §Occupied Resources; (2) citations the chunk''s added ranges likely shifted — the Audit tool''s `deny.toml` and `ci-leg.sh` audit-arm cites, Licence compliance''s `deny.toml` cite, the apt-install row''s `apt-install.sh` and `test_ci_workflows.py` ranges, and the escher-session CLI and state-directory rows'' `cli_commands.rs` cites (that file gained 548-611) — the citation pass''s; (3) the report''s `stderrlvl` sweep extends security-plan.md:397 (§Logging & Monitoring, the host by level), outside these detectors; D-security-auth: no identity, session, token or key change — the new job takes no job-level permission and no secret.'

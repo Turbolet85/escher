@@ -763,3 +763,27 @@ The re-seed is the first answer's stated cost, so a Dioxus re-render keeps contr
 - Existing Scopes: `stand_requirement_sweep` 2 (`Session::run` alone on each lean task; `WITNESSES`, 16 rows), `stand_non_lean_tasks` 3, `password_caret_click` 1; `range_input_interaction` 6 → 8, `scrolled_box_client_rect` 6 → 7, `hit_clipped_at_scrolling_box` 9 → 13, `stand_act_obstructed` +1, so the twelve listed `stand_act_*` read 42, was 41; `common/mod.rs` readers 19 → 21 and `session_common/mod.rs` 20 → 21, the Conventions reader list naming the sweep.
 **Why:** measured at this chunk. The owners rest on the founder's C11 «Замерить сейчас, исправить потом (Рекомендую)» and C15 «Оставить по наличию, отложить (Рекомендую)», by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option labels, placed as residuals lines by the operator's word on the P5 card; the keys on the operator's "Key all three; C8 deferred" at P4.
 **Ref:** .andromeda/runs/2026-10-14T22-00-51-wrap/
+
+## 2026-10-14-quality-gates — the quality gates: legs, the new job, the install repair, the code-quality row
+**Section:** §Stack and Technologies → CI/CD, Code quality · §Conventions → Formatting and lints · §Standard Contracts → CI contracts · §Occupied Resources → CI infrastructure · §Infrastructure Patterns → CI/CD · §Inherited Defaults → Code quality
+**Change:**
+- The leg list gains `stand-repeat` (not a fast leg): three rounds of every `stand_*.rs` target, then seven_guis' seven process checks; the first red command ends the leg with its status, no retry; three green rounds print `stand-repeat: 3 of 3 rounds green`.
+- `audit` is `cargo deny --locked --workspace --all-features check advisories licenses` (was `cargo deny check advisories`).
+- `clippy` runs a second line, only when the workspace line is green: upstream's `cargo clippy -p blitz-dom --no-default-features --features svg,woff,accessibility,system-fonts,file-input,custom-widget --all-targets --locked -- -D warnings`.
+- `coverage` ends with `coverage_floor.py` over escher-driver 97 % · dioxus-native-dom 83 % · blitz-test-harness 90 % (read 98.34 · 84.25 · 91.69 %). Was "with no threshold".
+- New contract `coverage_floor.py LCOV CRATE_DIR=PERCENT …`: exit 0 / 1 / 2, prints crate directories and counts only. The ci-scripts leg discovers seven test files (was six).
+- `apt-install.sh`: every attempt after the first runs a bounded `dpkg --configure -a` first, in phase `repair`; the first runs no `dpkg`. Ten calls (was nine), `InstallScriptTest` eight (was five), `dpkg` among the runner tools. Was "dpkg interrupted, which the script does not handle".
+- CI/CD: the job `Stand checks repeated`; thirteen linux leg jobs (was twelve); nine `libfontconfig1-dev` jobs (was eight); `a11y` and `stand-repeat` restore `workspace-test` and never save.
+**Why:** this chunk's legs and job, on the founder's «3 крейта, на 1 пункт ниже (Рекомендую)», «Повторное задание, ноль сбоев (Рекомендую)», «Проверка лицензий (Рекомендую)», «Clippy blitz-dom, как в основном репозитории (Рекомендую)» and «Аудит всего workspace (Рекомендую)», relayed verbatim by the overseer as his chosen option labels; the repair on the operator's answer «Add a bounded repair» at P4.
+**Ref:** .andromeda/runs/2026-10-15T06-51-44-wrap/
+
+## 2026-10-14-quality-gates — the test-only listener, the manifests, the merge surface read, the pinned driver claims
+**Section:** §Occupied Resources → Network ports and listeners, Filesystem, Environment variables, Names · §Project Intent → Product type, Upstream sync · §Established Decisions → [Scrolling and input] · §Standard Contracts → Driver session
+**Change:**
+- Network ports and listeners: the session socket is the one served listener site. Beside it, one test-only bind: escher-driver's unix-only `client::imp::tests::an_answer_read_past_its_bound_is_a_timeout` binds a `UnixListener` in `eab-{pid}` under the system temp directory, never answers, removes it — no crossing. Filesystem gains that directory; Environment variables gain `TMPDIR`, through `std::env::temp_dir()`, test code only.
+- Names and Product type: the workspace package's and debug_timer's homepage and repository read `https://github.com/Turbolet85/escher` (was `https://github.com/dioxuslabs/blitz`, kept as the as-adopted reading).
+- [Scrolling and input]: the range model's and keyboard activation's merge surfaces read at upstream `e72650a6`, untouched since `434e0661`. Was "owned by a CARRY on the route entry Quality gates".
+- Upstream sync: the merge base stays `434e0661`; upstream `main` read at `e72650a6`, three commits past it (#1198, #1212, #1211), not merged.
+- Driver session: the 30 s per-read answer bound and "a write to a closed pipe is dropped, not a panic" each pinned by a check; `busy` read on a real not-settled `command` line. Was "covered by its unit test only".
+**Why:** measured at this chunk. The test-only bind registered on the operator's answer at this wrap's escalation, «Register test-only»: never served, reached by no caller, so no crossing and not the founder's — registered as `PAINT_TREE_BENCH_HTML` and `CARGO_TARGET_TMPDIR` are.
+**Ref:** .andromeda/runs/2026-10-15T06-51-44-wrap/

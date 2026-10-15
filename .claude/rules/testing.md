@@ -44,7 +44,7 @@ Path-scoped rules for test files. Source: `.andromeda/test-plan.md` §2 §4 §5 
 - **Benchmarks (ignored):** `cargo test -p blitz-tests --release --test paint_tree_bench -- --ignored --nocapture`
 
 ## Not yet measured
-- Coverage is measured with no threshold (`bash .github/scripts/ci-leg.sh coverage`, cargo-llvm-cov); a coverage floor, quality gates and the flakiness budget (§10) are owned by the working route's "Quality gates" chunk.
+- A performance budget (§10) is not set. Since 2026-10-14-quality-gates the `coverage` leg (`bash .github/scripts/ci-leg.sh coverage`, cargo-llvm-cov) ends with per-crate line floors — escher-driver 97 %, dioxus-native-dom 83 %, blitz-test-harness 90 %, by `.github/scripts/coverage_floor.py` — and the stand checks hold a zero-failure flakiness budget (`ci-leg.sh stand-repeat`, three rounds, no retry).
 
 ## Session Additions
 _This section is owned by `/andromeda-wrap-session`. setup-project preserves content added here on re-run._

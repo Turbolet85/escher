@@ -1,0 +1,308 @@
+[
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-15T06:52:27Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-14-quality-gates",
+"--message-file",
+".andromeda/runs/2026-10-15T06-51-44-wrap/relay-1.md",
+"--kind",
+"relay",
+"--origin",
+"the operator, in this session, 2026-10-15 06:51Z",
+"--why",
+"the operator pass was run on this directive (entry 16 by its own command line, the commit subject, entries 17 and 18, evidence/ci.md), and this wrap runs P1 only and stops (the two-window form)",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-10-15T06-51-44-wrap",
+"--marker",
+"2026-10-14-quality-gates"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I5 · copy message · message: the operator, in this session, 2026-10-15 06:51Z",
+"cite: inputs#I5"
+],
+"stderr": null,
+"wrote": [
+"inputs/I5-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I5",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, in this session, 2026-10-15 06:51Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "2b1b682dc3dc92418d549478df3410e5b45407022ce7b2e507ba1ed891aede4b",
+"copy": "I5-relay-1.md.txt",
+"link": false,
+"read_at": "2026-10-15T06:52:27Z",
+"step": "wrap",
+"why": "the operator pass was run on this directive (entry 16 by its own command line, the commit subject, entries 17 and 18, evidence/ci.md), and this wrap runs P1 only and stops (the two-window form)"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-15T06:52:31Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-14-quality-gates",
+"--run-dir",
+".andromeda/runs/2026-10-15T06-51-44-wrap",
+"--marker",
+"2026-10-14-quality-gates"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, 2026-10-14 23:03Z, as the arguments of /andromeda-phase",
+"I1 cited scope.md:31 · scope.md:33 · scope.md:35 · scope.md:37 · scope.md:40 · scope.md:87 · scope.md:91 · research.md:7 · plan.md:30 · plan.md:31 · plan.md:415 · plan.md:424 · plan.md:425",
+"I2 unchanged · copy no-repo · ../additional/escher-overseer/relays/quality-gates-founder-answers.md",
+"I2 cited plan.md:9 · plan.md:23 · plan.md:414 · plan.md:437 · plan.md:439",
+"I3 n/a — a message has no live source · copy message · message: the operator, 2026-10-15 05:06Z, relaying the founder via the overseer",
+"I3 cited plan.md:9 · plan.md:414",
+"I4 n/a — a message has no live source · copy message · message: the operator, 2026-10-15 05:19Z, at the P5 review",
+"I4 UNCITED",
+"I5 n/a — a message has no live source · copy message · message: the operator, in this session, 2026-10-15 06:51Z",
+"I5 UNCITED",
+"inputs: 5 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 4 · uncited 2 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 5,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 4
+},
+"uncited": 2,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-15T06:59:34Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-14-quality-gates",
+"--run-dir",
+".andromeda/runs/2026-10-15T06-51-44-wrap",
+"--marker",
+"2026-10-14-quality-gates"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, 2026-10-14 23:03Z, as the arguments of /andromeda-phase",
+"I1 cited scope.md:31 · scope.md:33 · scope.md:35 · scope.md:37 · scope.md:40 · scope.md:87 · scope.md:91 · research.md:7 · plan.md:30 · plan.md:31 · plan.md:415 · plan.md:424 · plan.md:425 · report.md:208",
+"I2 unchanged · copy no-repo · ../additional/escher-overseer/relays/quality-gates-founder-answers.md",
+"I2 cited plan.md:9 · plan.md:23 · plan.md:414 · plan.md:437 · plan.md:439 · report.md:212 · report.md:223 · report.md:226 · report.md:229",
+"I3 n/a — a message has no live source · copy message · message: the operator, 2026-10-15 05:06Z, relaying the founder via the overseer",
+"I3 cited plan.md:9 · plan.md:414 · report.md:217",
+"I4 n/a — a message has no live source · copy message · message: the operator, 2026-10-15 05:19Z, at the P5 review",
+"I4 cited report.md:219 · report.md:223 · report.md:397",
+"I5 n/a — a message has no live source · copy message · message: the operator, in this session, 2026-10-15 06:51Z",
+"I5 cited report.md:231 · report.md:376 · report.md:401",
+"inputs: 5 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 4 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 5,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 4
+},
+"uncited": 0,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-15T07:00:44Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-14-quality-gates",
+"--message-file",
+".andromeda/runs/2026-10-15T06-51-44-wrap/relay-2.md",
+"--origin",
+"the operator, in this session, 2026-10-15 07:00Z",
+"--kind",
+"relay",
+"--why",
+"the wrap resume directive: resume from the report; write both residuals lines (paste, memmap2) with the founder label verbatim; stop at an answer card, else wrap to the end, push, read CI, report, stop; no next skill",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-10-15T06-51-44-wrap",
+"--marker",
+"2026-10-14-quality-gates"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I6 · copy message · message: the operator, in this session, 2026-10-15 07:00Z",
+"cite: inputs#I6"
+],
+"stderr": null,
+"wrote": [
+"inputs/I6-relay-2.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I6",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, in this session, 2026-10-15 07:00Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "e8b92ef1e331325afb843f4a00566626c506ac25d6d1066da06d06c9fd2b49e7",
+"copy": "I6-relay-2.md.txt",
+"link": false,
+"read_at": "2026-10-15T07:00:44Z",
+"step": "wrap",
+"why": "the wrap resume directive: resume from the report; write both residuals lines (paste, memmap2) with the founder label verbatim; stop at an answer card, else wrap to the end, push, read CI, report, stop; no next skill"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-15T07:00:48Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-14-quality-gates",
+"--run-dir",
+".andromeda/runs/2026-10-15T06-51-44-wrap",
+"--marker",
+"2026-10-14-quality-gates"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, 2026-10-14 23:03Z, as the arguments of /andromeda-phase",
+"I1 cited scope.md:31 · scope.md:33 · scope.md:35 · scope.md:37 · scope.md:40 · scope.md:87 · scope.md:91 · research.md:7 · plan.md:30 · plan.md:31 · plan.md:415 · plan.md:424 · plan.md:425 · report.md:208",
+"I2 unchanged · copy no-repo · ../additional/escher-overseer/relays/quality-gates-founder-answers.md",
+"I2 cited plan.md:9 · plan.md:23 · plan.md:414 · plan.md:437 · plan.md:439 · report.md:212 · report.md:223 · report.md:226 · report.md:229",
+"I3 n/a — a message has no live source · copy message · message: the operator, 2026-10-15 05:06Z, relaying the founder via the overseer",
+"I3 cited plan.md:9 · plan.md:414 · report.md:217",
+"I4 n/a — a message has no live source · copy message · message: the operator, 2026-10-15 05:19Z, at the P5 review",
+"I4 cited report.md:219 · report.md:223 · report.md:397",
+"I5 n/a — a message has no live source · copy message · message: the operator, in this session, 2026-10-15 06:51Z",
+"I5 cited report.md:231 · report.md:376 · report.md:401",
+"I6 n/a — a message has no live source · copy message · message: the operator, in this session, 2026-10-15 07:00Z",
+"I6 UNCITED",
+"inputs: 6 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 5 · uncited 1 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 6,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 5
+},
+"uncited": 1,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-15T07:00:59Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-14-quality-gates",
+"--run-dir",
+".andromeda/runs/2026-10-15T06-51-44-wrap",
+"--marker",
+"2026-10-14-quality-gates"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, 2026-10-14 23:03Z, as the arguments of /andromeda-phase",
+"I1 cited scope.md:31 · scope.md:33 · scope.md:35 · scope.md:37 · scope.md:40 · scope.md:87 · scope.md:91 · research.md:7 · plan.md:30 · plan.md:31 · plan.md:415 · plan.md:424 · plan.md:425 · report.md:208",
+"I2 unchanged · copy no-repo · ../additional/escher-overseer/relays/quality-gates-founder-answers.md",
+"I2 cited plan.md:9 · plan.md:23 · plan.md:414 · plan.md:437 · plan.md:439 · report.md:212 · report.md:223 · report.md:226 · report.md:229",
+"I3 n/a — a message has no live source · copy message · message: the operator, 2026-10-15 05:06Z, relaying the founder via the overseer",
+"I3 cited plan.md:9 · plan.md:414 · report.md:217",
+"I4 n/a — a message has no live source · copy message · message: the operator, 2026-10-15 05:19Z, at the P5 review",
+"I4 cited report.md:219 · report.md:223 · report.md:397 · report.md:528",
+"I5 n/a — a message has no live source · copy message · message: the operator, in this session, 2026-10-15 06:51Z",
+"I5 cited report.md:231 · report.md:376 · report.md:401",
+"I6 n/a — a message has no live source · copy message · message: the operator, in this session, 2026-10-15 07:00Z",
+"I6 cited report.md:525",
+"inputs: 6 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 5 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 6,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 5
+},
+"uncited": 0,
+"unparsed": 0
+}
+}
+]

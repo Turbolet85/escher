@@ -12,7 +12,7 @@ _Extracted from architecture.md and project conventions by `/andromeda-setup-pro
 
 ## Andromeda workflow
 
-This project was adopted into the Andromeda pipeline (`/andromeda-adopt` at `0f60502e`); its masters describe the code as built. Upstream DioxusLabs/blitz `main` was last merged at `434e0661` (merge commit `a6c24d24`, 2026-10-13), the next sync's merge base.
+This project was adopted into the Andromeda pipeline (`/andromeda-adopt` at `0f60502e`); its masters describe the code as built. Upstream DioxusLabs/blitz `main` was last merged at `434e0661` (merge commit `a6c24d24`, 2026-10-13), the next sync's merge base; upstream `main` was read at `e72650a6` on 2026-10-15, three commits past it (#1198, #1212, #1211) and not merged, none of them touching the range or keyboard merge surface.
 
 **Initial planning (done):** adopt → architecture + 6 specialist plans → `/andromeda-route` (escher-0.1.0 working route) → `/andromeda-setup-project` (this ecosystem).
 
@@ -36,7 +36,7 @@ This project was adopted into the Andromeda pipeline (`/andromeda-adopt` at `0f6
 
 ## Release process
 - Upstream model: main is a prepatch until 1.0, one minor ahead of the release; `bump` versions blitz packages together and anyrender packages together; the browser is bundled by `publish-browser.yml` (signed builds only on main / `ci-test`, and only in `DioxusLabs/blitz` — the fork never runs it).
-- escher's fork CI runs on the build branch (fast legs fmt · clippy · test · CI scripts, then the slow legs — builds, docs, dependency audit, a11y, coverage, the matrix; cached; failure logs kept 7 days), every action SHA-pinned and the `GITHUB_TOKEN` read-only.
+- escher's fork CI runs on the build branch (fast legs fmt · clippy · test · CI scripts, then the slow legs — builds, docs, dependency and licence audit, a11y, coverage with its per-crate floors, the stand checks repeated three rounds at a zero-failure budget (`stand-repeat`), the matrix; cached; failure logs kept 7 days), every action SHA-pinned and the `GITHUB_TOKEN` read-only.
 
 ## Troubleshooting workflow
 - Tests failing? `.claude/rules/testing.md`; harness behaviour? `.claude/rules/verification-harness.md`.

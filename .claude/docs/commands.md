@@ -11,8 +11,8 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 
 ## CI legs (one script for CI and the host)
 - `bash .github/scripts/ci-leg.sh fast` — the local pre-push gate: fmt → clippy → test → ci-scripts, stops at the first red
-- `bash .github/scripts/ci-leg.sh {leg}` — one CI leg exactly as CI runs it: `fmt` · `clippy` · `test` · `ci-scripts` · `build` · `msrv` (needs toolchain 1.91) · `counter` · `wasm` · `doc`; its merged output lands in `target/ci-logs/{leg}.log`; unknown leg → exit 2
-- `bash .github/scripts/apt-install.sh <package>...` — fork CI's package install, called by ci.yml's install steps only (no leg calls it; never run on the dev host): up to 3 attempts, `apt-get update` then `install`, each call under a 120 s bound; exit 0 installed · 1 every attempt failed · 2 usage
+- `bash .github/scripts/ci-leg.sh {leg}` — one CI leg exactly as CI runs it: `fmt` · `clippy` · `test` · `ci-scripts` · `build` · `msrv` (needs toolchain 1.91) · `counter` · `wasm` · `doc` · `stand-repeat` (since 2026-10-14-quality-gates, not a fast leg: three rounds of `cargo test -p blitz-tests --locked` over every `tests/blitz-tests/tests/stand_*.rs`, then seven_guis' `cli_commands` · `cli_flow` · `host_binary` · `host_log` · `host_timer` · `mcp_server` · `mcp_log`, the first red ending the leg — a zero-failure budget, no retry); its merged output lands in `target/ci-logs/{leg}.log`; unknown leg → exit 2
+- `bash .github/scripts/apt-install.sh <package>...` — fork CI's package install, called by ci.yml's install steps only (no leg calls it; never run on the dev host): up to 3 attempts, `apt-get update` then `install`, each call under a 120 s bound, and since 2026-10-14-quality-gates each retried attempt first runs a bounded repair, `dpkg --configure -a` (phase `repair`, a failed repair failing that attempt; the first attempt runs no `dpkg`); exit 0 installed · 1 every attempt failed · 2 usage
 
 ## Build
 - `cargo build --workspace --locked` — every crate (dev profile, `debug = "line-tables-only"`); the `build` leg
@@ -49,8 +49,8 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 ## Linting & Formatting
 - `cargo fmt --all` / `just fmt` — format
 - `cargo fmt --all --check` — the CI format gate
-- `cargo clippy --workspace --locked -- -D warnings` — the CI lint gate, the `clippy` leg (`just clippy` runs without `-D warnings`)
-- `bash .github/scripts/ci-leg.sh doc` — `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps --locked`, the docs gate over every workspace library crate (green; CI's docs job runs the same leg). Beside it: `ci-leg.sh audit` (cargo-deny advisories over `deny.toml`), `ci-leg.sh a11y` (the accessibility integration tests) and `ci-leg.sh coverage` (cargo-llvm-cov lcov to `target/coverage/lcov.info`, then the per-file table; needs the `llvm-tools` rustup component)
+- `cargo clippy --workspace --locked -- -D warnings` — the CI lint gate, the `clippy` leg's first line; only when it is green, the leg then runs upstream's own `cargo clippy -p blitz-dom --no-default-features --features svg,woff,accessibility,system-fonts,file-input,custom-widget --all-targets --locked -- -D warnings` (since 2026-10-14-quality-gates; `just clippy` runs without `-D warnings`)
+- `bash .github/scripts/ci-leg.sh doc` — `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps --locked`, the docs gate over every workspace library crate (green; CI's docs job runs the same leg). Beside it: `ci-leg.sh audit` (`cargo deny --locked --workspace --all-features check advisories licenses` over `deny.toml` — the advisories and licences of the whole workspace's graph, since 2026-10-14-quality-gates), `ci-leg.sh a11y` (the accessibility integration tests) and `ci-leg.sh coverage` (cargo-llvm-cov lcov to `target/coverage/lcov.info`, then the per-file table, then, chained since 2026-10-14-quality-gates, `python3 .github/scripts/coverage_floor.py` over three per-crate line floors — `packages/escher-driver` 97 %, `packages/dioxus-native-dom` 83 %, `packages/blitz-test-harness` 90 % — the leg exiting with the floor's status; needs the `llvm-tools` rustup component)
 
 ## Running apps and examples
 - `just seven_guis` — the 7GUIs stand (`cargo run --release --package seven_guis --bin seven_guis_native`)

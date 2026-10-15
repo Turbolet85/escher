@@ -1,0 +1,124 @@
+[[pattern]]
+id = 'wscount'
+regex = '185 · 951|951 · 0 · 12|185 result lines|\b951 passed'
+
+[[pattern]]
+id = 'ciscripts'
+regex = 'Ran 79\b|\b79 tests|\b79 cases|ci-scripts[^\n]{0,60}\b79\b'
+
+[[pattern]]
+id = 'checks16'
+regex = '16/16|\b16 checks|sixteen checks|16 jobs'
+
+[[pattern]]
+id = 'cov5323'
+regex = '53\.23|66\.8[46]'
+
+[[pattern]]
+id = 'covfloor'
+regex = 'coverage floor|no threshold|without a threshold|fail-under'
+ignore_case = true
+
+[[pattern]]
+id = 'flake'
+regex = 'flakiness|flaky|\bflakes?\b'
+ignore_case = true
+
+[[pattern]]
+id = 'auditcmd'
+regex = 'check advisories|deny --locked'
+
+[[pattern]]
+id = 'licgate'
+regex = '\[licenses\]|licen[cs]e (gate|check|table)|licenses ok|NCSA|Unicode-DFS'
+ignore_case = true
+
+[[pattern]]
+id = 'clippyline'
+regex = 'cargo clippy|clippy leg|no-default-features'
+
+[[pattern]]
+id = 'qgowner'
+fixed = 'Quality gates'
+
+[[pattern]]
+id = 'hover'
+regex = 'hover cursor|hover_state|hovering_'
+ignore_case = true
+
+[[pattern]]
+id = 'busyline'
+regex = 'busy_word|busy=|`busy`[^\n]{0,120}(unit|real|captured|line)'
+
+[[pattern]]
+id = 'fontface'
+regex = '@font-face|font-face|hint-less|no format hint'
+ignore_case = true
+
+[[pattern]]
+id = 'dpkg'
+regex = 'dpkg|apt-install'
+
+[[pattern]]
+id = 'advisory'
+regex = 'paste|RUSTSEC-2024-0436|memmap2|RUSTSEC-2026-0186|unsound'
+
+[[pattern]]
+id = 'manifest'
+regex = 'dioxuslabs/blitz|Turbolet85/escher|homepage'
+ignore_case = true
+
+[[pattern]]
+id = 'merge'
+regex = '434e0661|e72650a6|merge surface'
+ignore_case = true
+
+[[pattern]]
+id = 'stderrlvl'
+regex = 'own stderr|stderr by level|by level|windowed binary'
+ignore_case = true
+
+[[pattern]]
+id = 'perostally'
+regex = '158 vs 139|\b139\b|per-OS|per OS|716|712'
+
+[[pattern]]
+id = 'clipaths'
+regex = 'ANSWER_BOUND|closed pipe|30 s bound|per read'
+ignore_case = true
+
+[[pattern]]
+id = 'standrepeat'
+regex = 'stand-repeat|Stand checks repeated|repeated'
+ignore_case = true
+
+[[pattern]]
+id = 'legsjobs'
+regex = 'LEGS|FAST_LEGS|slow tier|slow-tier|fast legs'
+
+[[pattern]]
+id = 'leglist'
+regex = 'counter · wasm|a11y · coverage|coverage · fast|wasm · doc|LEGS\b'
+
+[[pattern]]
+id = 'joblist'
+regex = 'build-msrv, build-features-default|INSTALL_JOBS|RESTORE_ONLY_JOBS|LINUX_JOB_LEGS'
+
+[[pattern]]
+id = 'a11yleg'
+regex = 'a11y leg|six files|six-file|a11y job'
+ignore_case = true
+
+[[pattern]]
+id = 'fontskip'
+regex = 'no usable font|skip with|font skip|skipping'
+ignore_case = true
+
+[[pattern]]
+id = 'faillog'
+regex = 'ci-log-|failure-only|uploads? (its|their) own log|its own log'
+ignore_case = true
+
+[[pattern]]
+id = 'covtotal'
+regex = '98\.20|84\.25|91\.69|96\.48'

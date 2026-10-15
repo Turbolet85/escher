@@ -45,7 +45,7 @@ _Extracted from `.andromeda/architecture.md` §Conventions (citations live there
 - Spec URLs are cited above or next to implementations; constants carry a rationale doc comment.
 
 ## Lints
-- `clippy::collapsible_if` allowed crate-wide in browser, blitz-dom, blitz-html, blitz-vibey-script; other allows are local, ideally with a reason.
+- `cargo fmt --all --check` and `cargo clippy --workspace --locked -- -D warnings` — then, only when that line is green and since 2026-10-14-quality-gates, upstream's own blitz-dom line `cargo clippy -p blitz-dom --no-default-features --features svg,woff,accessibility,system-fonts,file-input,custom-widget --all-targets --locked -- -D warnings` — each run as its `.github/scripts/ci-leg.sh` leg; `clippy::collapsible_if` allowed crate-wide in browser, blitz-dom, blitz-html, blitz-vibey-script; other allows are local, ideally with a reason.
 
 ## Logging
 See `.claude/rules/observability.md` for enforcement; this doc carries the conventions.

@@ -322,3 +322,9 @@ One entry per amendment to `a11y-plan.md` (sidecar-contract.md §Entry form). Ap
 - §4: reading `aria-checked` (as `checked` or `pressed`) is owned by a residuals line, `accessibility_states`' fourth test its pin; was "a route entry".
 **Why:** measured at this chunk. The owners rest on the founder's C3 «Замерить сейчас, поле позже (Рекомендую)», C7 «Отложить (Рекомендую)», C11 «Замерить сейчас, исправить потом (Рекомендую)» and C15 «Оставить по наличию, отложить (Рекомендую)», by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option labels, placed as residuals lines by the operator's word on the P5 card.
 **Ref:** .andromeda/runs/2026-10-14T22-00-51-wrap/
+
+## 2026-10-14-quality-gates — the stand's a11y files also run in `stand-repeat`
+**Section:** §9 CI Integration
+**Change:** `stand_keyboard`, `stand_contrast` and `stand_accessibility_ids`, as `stand_*` files, also run three times in the `stand-repeat` leg and its job `Stand checks repeated`, under the zero-failure budget (test-plan §10). The a11y leg and job are unchanged, their per-file counts as before.
+**Why:** the stand-repeat leg runs every `stand_*.rs` file, on the founder's «Повторное задание, ноль сбоев (Рекомендую)», relayed verbatim by the overseer as his chosen option label.
+**Ref:** .andromeda/runs/2026-10-15T06-51-44-wrap/

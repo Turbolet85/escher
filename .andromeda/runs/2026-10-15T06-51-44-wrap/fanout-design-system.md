@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens has nothing to evaluate. The chunk renders no new UI, and every row under the report's Coverage of new surfaces (coverage_floor.py, the stand-repeat leg and job, the apt-install.sh repair phase, the widened audit and clippy legs) reads `tokens n/a`, with none reading `hardcoded✗`. The design-system sites the report's sweeps touch are all marked no-change: design-system.md:335 (`flake`, Nix), :365 (`clippyline`), :95 (`advisory`, "pastel"), :152 (`fontface`) and :99 · :312 · :346 (`perostally`, line-range digits).

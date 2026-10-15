@@ -143,11 +143,15 @@ None. Two items stay with the wrap, as the plan already states them:
 - **Correction.** `evidence/clippy.md` first cited Finished lines from `target/ci-logs/clippy.log`, which the later `fast` entry had overwritten. It was corrected from the gate tool's stored `10.log`.
 - **Correction.** `evidence/flake-repeats.md` first stated why the 7 stand tests are ignored, which was not measured. It was replaced with what was measured: the same 7 are ignored in every round.
 
+## Operator pass (run on the operator's word, 2026-10-15)
+
+- 16 — `gate.py hygiene`, fired by its own command line: exit 0, `hygiene: clean`.
+- Pre-CI commit `d44090ebf68688a1f4195560db75e8d8f0aa3899`.
+- 17 — fast, the clean-tree guard, the push: exit 0, `eb5ba90c5..d44090ebf`.
+- 18 — `ci.py conclusion`: CI#38692629940, `verdict: green · checks 17/17`, `Stand checks repeated` among them.
+
+The record is `evidence/ci.md`.
+
 ## Next
 
-The operator pass, entries 16, 17 and 18:
-- 16 — `gate.py hygiene`
-- 17 — the operator pre-CI commit, then `ci-leg.sh fast`, the clean-tree guard and the push
-- 18 — `ci.py conclusion` on the pushed sha; the `Stand checks repeated` job should be among its checks
-
-After that, `/andromeda-wrap-session`.
+`/andromeda-wrap-session`.

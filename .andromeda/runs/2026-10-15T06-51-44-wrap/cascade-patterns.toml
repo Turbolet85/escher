@@ -1,0 +1,95 @@
+[[pattern]]
+id = 'auditcmd'
+regex = 'cargo deny (--locked )?check advisories'
+
+[[pattern]]
+id = 'nothreshold'
+regex = 'with no threshold|no threshold'
+
+[[pattern]]
+id = 'licgate'
+regex = 'audit leg does not read|no CI leg runs it|fork gates on it is an open question|licen[cs]e gate.{0,40}open'
+
+[[pattern]]
+id = 'dpkgunhandled'
+regex = 'does not handle'
+
+[[pattern]]
+id = 'phaseword'
+regex = 'failed in \{update\|install\}|\(`update` or `install`\)'
+
+[[pattern]]
+id = 'ninecalls'
+regex = 'nine `run:` steps|nine calls|Nine steps call|the nine of `INSTALL_JOBS`|the ninth the `ci-scripts`'
+
+[[pattern]]
+id = 'eightjobs'
+regex = 'eight Ubuntu jobs|in eight jobs|eight `libfontconfig1-dev`'
+
+[[pattern]]
+id = 'twelvelinux'
+regex = 'twelve linux'
+
+[[pattern]]
+id = 'fivetests'
+regex = 'five (contract )?tests'
+
+[[pattern]]
+id = 'busyunit'
+regex = 'covered by its unit test only|no stand step reads not settled'
+
+[[pattern]]
+id = 'stderrnm'
+regex = 'not measured there|Not measured: (the windowed )?`seven_guis_native`|stays unmeasured on the windowed'
+
+[[pattern]]
+id = 'fontskip'
+regex = 'skip with an `eprintln!`|measures 0x0'
+
+[[pattern]]
+id = 'fontowed'
+regex = 'check of ours on this path is owed|still owed'
+
+[[pattern]]
+id = 'qgowner'
+regex = 'route entry "Quality gates"|entry Quality gates'
+
+[[pattern]]
+id = 'manifest'
+regex = 'homepage and repository'
+
+[[pattern]]
+id = 'restore'
+regex = '`a11y` job restores|restore-only `a11y`|except `a11y`|which the a11y job restores'
+
+[[pattern]]
+id = 'ci79'
+regex = 'Ran 79|79 tests'
+
+[[pattern]]
+id = 'sixfiles'
+regex = 'six test files'
+
+[[pattern]]
+id = 'drv72'
+regex = '72 inline unit tests'
+
+[[pattern]]
+id = 'cli11'
+regex = '`cli_commands` \(11|cli_commands\.rs` \(11|`cli_commands` 11'
+
+[[pattern]]
+id = 'onelistener'
+regex = 'one listener'
+
+[[pattern]]
+id = 'rustlogonly'
+regex = 'beyond `RUST_LOG`'
+
+[[pattern]]
+id = 'pruning'
+regex = 'never reach the gate|prunes `http-cache`'
+
+[[pattern]]
+id = 'notyet10'
+regex = 'flakiness budget or performance budget'
