@@ -1,0 +1,9 @@
+Operator entry 13, fired by the operator pass after the pre-CI commit 539defbae322f8a65bf0ef8ac7b7e3bd9750ef0d (2026-10-15):
+
+$ python -X utf8 {tools_dir}/gate.py run --plan escher-0.1.0/chunks/2026-10-15-cold-agent-test/plan.md --operator 13
+operator entry 13 · history tripwire: git
+ 13 probe       green · exit 0 · 134.54s · 99469 B → 13.log · history moved: refs/remotes/origin/build/escher-0.1.0 01297a12→539defba · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+entries 14 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 13
+
+The history move is the intended one: the push of build/escher-0.1.0 to origin, 01297a12 → 539defba.
+After it: HEAD = origin/build/escher-0.1.0 = 539defbae322f8a65bf0ef8ac7b7e3bd9750ef0d.

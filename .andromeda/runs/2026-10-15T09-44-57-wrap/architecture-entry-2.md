@@ -1,0 +1,8 @@
+
+## 2026-10-15-cold-agent-test — the cold-agent pipe on the escher server: its contract and stack row
+**Section:** §Standard Contracts (CI contracts) · §Stack and Technologies (CI/CD row)
+**Change:**
+- CI contracts: the pipe's one task is `stand` (was `counter`); exit 3 also when `target/debug/escher-session` is absent or not executable, the pipe building nothing; `run` starts one isolated `claude -p` session with the fixed prompt `STAND_PROMPT` and only the escher server's eleven tools (`--allowedTools mcp__escher`, `--model claude-opus-5-5`, `--max-budget-usd 3`; was `mcp__stub`, `--max-budget-usd 1`, no model). `passed` needs `isolated` on the eleven `mcp__escher__{verb}` tools and one server `escher`, `counts_agree` against the server's `tool_call` span lines, all four lean apps met from `snapshot` answers, and the agent's check (≤ 65,536 bytes, ≤ 400 steps) replayed passing and failing when ablated; `wrong_calls` decides nothing. The stub sentence (tools `list` · `read` · `press`, its four causes, its own count at 3) is retired; `test_cold_agent.py` runs under a `claude` shim and a fake `escher-session`.
+- Stack CI/CD row: the pipe's MCP server is the workspace's own `escher-session mcp`, its judge stdlib python3 with no package added; `claude` read at 2.1.296 beside 2.1.288; the stub clause ("stdlib python3 speaking JSON-RPC 2.0 over stdio") is retired.
+**Why:** the chunk's swap of the pipe to the driver's own MCP surface, on the founder's four P4 answers (2026-10-15, relayed verbatim by the overseer as his chosen option labels); the replayed check is his «JSON-проверка с повтором (Рекомендую)».
+**Ref:** .andromeda/runs/2026-10-15T09-44-57-wrap/

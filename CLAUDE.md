@@ -14,7 +14,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 - `examples/` — example crates and root examples; `examples/seven_guis/` is the 7GUIs stand
 - `apps/` — reference browser (`blitz`), markdown viewer (`rdme`), release `bump`
 - `wpt/runner/` — the Web Platform Tests conformance runner
-- `scripts/` — the agent-run test contract, the cold-agent run pipe and its stub, the code-graph tooling
+- `scripts/` — the agent-run test contract, the cold-agent run pipe, the code-graph tooling
 <!-- GENERATED:setup:overview end -->
 
 ## Modules
@@ -65,7 +65,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 | Design tokens (as built) | `.andromeda/design-system.md` §Color Palette / §Typography |
 | Screen layouts per surface | `.andromeda/layout-templates.md` |
 | Test harness · agent-run contract | `.andromeda/test-plan.md` §3 (keyed contracts: `.andromeda/registries/test-plan-contracts.toml`) · `scripts/agent-run.sh` (contract tests `.github/scripts/test_agent_run.py`) |
-| Cold-agent run pipe (isolated agent session · stub MCP tool · verdict) | `.andromeda/test-plan.md` §3 · `scripts/cold-agent.sh` · `scripts/cold_agent_stub.py` (contract tests `.github/scripts/test_cold_agent.py`) |
+| Cold-agent run pipe (isolated agent session · the driver's own MCP server `escher-session mcp` · the agent's replayed check · verdict) | `.andromeda/test-plan.md` §3 · `scripts/cold-agent.sh` (contract tests `.github/scripts/test_cold_agent.py`) |
 | Observability pipeline | `.andromeda/obs-plan.md` §3 (keyed contracts: `.andromeda/registries/obs-plan-contracts.toml`) |
 | WCAG criteria · a11y harness | `.andromeda/a11y-plan.md` §1 / §3 (keyed contracts: `.andromeda/registries/a11y-plan-contracts.toml`) |
 | Chunk history (version-agnostic) | `.andromeda/master-route.md` |
@@ -140,7 +140,7 @@ _This section is curated by `/andromeda-wrap-session`. It accumulates universal 
 
 - 2026-10-05: This checkout carries an `upstream` remote (DioxusLabs/blitz) and no `gh repo set-default`, so a bare `gh run` / `gh cache` / `gh api` call reads upstream — pass `-R Turbolet85/escher` on every read of the fork. (confidence 0.8)
 - 2026-10-07: Inside a Bash tool call `grep` is a shell function running Claude Code's embedded ugrep (`/usr/bin/grep` is GNU grep), and a pattern with a long bounded repetition (a `.{0,200}` context window) exceeds ugrep's complexity limit and leaves stdout empty — use `command grep` or Python's `re`, never read an empty grep as an absence, and read stderr first (detail in `.claude/docs/session-learnings.md`). (confidence 0.7) [corrected 2026-10-07: the host's grep is GNU; the function is the tool's]
-- 2026-10-10: A per-crate `cargo clippy -p {crate} -- -D warnings` is not the lint leg and reads red in blitz-dom outside any change (its `file-input` feature is off) — lint with `bash .github/scripts/ci-leg.sh clippy`, compile-check one crate with `cargo test -p {crate} --locked`. (confidence 0.9)
+- 2026-10-10: A per-crate `cargo clippy -p {crate} -- -D warnings` is not the lint leg and reads red in blitz-dom outside any change (its `file-input` feature is off) — lint with `bash .github/scripts/ci-leg.sh clippy`, compile-check one crate with `cargo test -p {crate} --locked`. (confidence 0.9) Extended 2026-10-15: a per-package build or test (`-p escher-driver`, `-p seven_guis`) also warns blitz-paint's `variant Intrinsic is never constructed` under that feature set — not the change's defect.
 - 2026-10-10: At a wrap's route-resolve every open finding the chunk report leaves unowned — a defect, a CI gap, a bound that does not hold, a measured fact, an open question — gets a route owner without a halt for placement (work to do a `CARRY:` on the entry ahead of the first work that needs it, observe-only a `WATCH:`), and the handoff says where each landed; an upstreamable flag stays in the handoff. (confidence 0.9)
 - 2026-10-10: At a wrap's Validate a boundary widening is never resolved without a halt, even when the founder's answer is already recorded or relayed — stop on one card that cites his recorded word and lists the proposals it covers by document, put any rule that rides the ruling on the same card in full, and wait for one confirm before any apply. (confidence 0.7)
 - 2026-10-13: Write a founder's word only as he gave it — his chosen label verbatim, in its own script (Cyrillic stays Cyrillic) — never a relay's transliteration of it, in any file a skill writes, a run-dir relay copy included. (confidence 0.7)

@@ -37,7 +37,7 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 - Exit grammar `0` · `1` failed · `2` usage · `3` precondition unmet; raw cargo output in `target/agent-run/run.log`; `scripts/agent-run.ps1` forwards on Windows (contract: test-plan §3)
 
 ## Cold-agent run pipe
-- `bash scripts/cold-agent.sh run counter` — one isolated `claude -p` session given only the stub's MCP tools; writes `target/cold-agent/verdict.json` (exit 0 passed · 1 failed; 3 when `claude` or `python3` is not on PATH). A live model call on the operator's own Claude Code login — never in CI
+- `bash scripts/cold-agent.sh run stand` — the four lean apps, one at a time, in one isolated `claude -p` session (`run counter` is a usage error since 2026-10-15-cold-agent-test) given only the escher server's eleven tools (the driver's own `escher-session mcp`; the stub retired at 2026-10-15-cold-agent-test), the agent's last fenced JSON check then replayed on a fresh `escher-session mcp` child and, ablated, on a second; writes `target/cold-agent/verdict.json` (exit 0 passed · 1 failed; 3 when `claude` or `python3` is not on PATH or `target/debug/escher-session` is absent or not executable — build it first with `cargo build --locked -p seven_guis --bin escher-session`, the pipe builds nothing). A live model call on the operator's own Claude Code login — never in CI
 - `bash scripts/cold-agent.sh status` · `logs` · `cleanup` — the last verdict (exit 3 when none) · the appended events · remove `target/cold-agent/` (idempotent)
 - Exit grammar `0` · `1` failed · `2` usage · `3` precondition unmet; the raw session transcript in `target/cold-agent/transcript.jsonl`; `scripts/cold-agent.ps1` forwards on Windows (contract: test-plan §3)
 

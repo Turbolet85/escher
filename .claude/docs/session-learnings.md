@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-15 — A saved `cargo build` capture in a run dir holds the project root
+A phase or implement step that saves a `cargo build` run's output into its run dir commits the project root's absolute path: cargo's `Compiling {crate} v{version} ({root}/{path})` lines name it. `gate.py hygiene` refuses the file as an in-root host path. Because the path is under the root, `gate.py respell` fixes it, dropping the root prefix and nothing else, and the respell is recorded. Where it applies: any build or test capture kept as evidence. Keep the raw capture in the session scratchpad with its figures in a record, or respell it before the hygiene read.
+
+---
+
 ## 2026-10-15 — In a master sweep, `flake` reads Nix and `repeated` reads everything
 A site-sweep pattern for the flakiness budget built on `flake` matches the Nix `flake` / `flake.nix` sites of the masters — 13 of 14 standing rows at the 2026-10-14-quality-gates wrap — and one built on `repeated` matched 11 master rows, none about the stand-repeat leg. Spell the budget by `flakiness` or `zero-failure`, and the leg by its name `stand-repeat`, and disposition every row that is left.
 

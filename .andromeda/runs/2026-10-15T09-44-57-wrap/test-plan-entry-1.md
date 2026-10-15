@@ -1,0 +1,12 @@
+
+## 2026-10-15-cold-agent-test — the cold-agent run pipe on the escher server (§3)
+**Section:** §3 Cold-agent run pipe (Invocation · Exit grammar · `run stand` · the server and the check's judge, in place of the stub bullet · Verdict · Events · State · Proof)
+**Change:**
+- One task, `stand` (was `counter`; `run counter` is a usage error); `RUST_LOG=info` set on the server child only. Exit 3 also for an absent or non-executable `target/debug/escher-session`; the pipe builds nothing.
+- `run stand`: the session dir holds `mcp.json` alone, server `escher` (`escher-session mcp`); the client line adds `--model claude-opus-5-5`, `--allowedTools mcp__escher`, `--max-budget-usd 3` (was `mcp__stub`, `1`); `STAND_PROMPT` names no id or slug; the reply's last fenced json block (≤ 65,536 B, a JSON array) becomes `check.json`.
+- The stub bullet is retired. In its place: `server.log` counted by span name; the check judged — `valid_step` (the eleven verbs, closed keys), ≤ 400 steps, a malformed check never replayed; `judge_check` replays it in full, then ablated, on two fresh children, 30 s per reply, each step validated again by the server; a failing replay child reads `check_passed` / `check_can_fail` false.
+- Verdict: nine fields added, `final_count` retired; `passed` needs all four lean apps in `tasks_met` (an accepted `stop` clears the started app) and `check_passed` and `check_can_fail`; reasons add `no-check` (alone), `check-failed` (alone, nothing replayed), `check-cannot-fail` (after a replay); `isolated` on the eleven `mcp__escher__{verb}` tools and server `escher`; `counts_agree` = span lines vs tool uses AND refused + error vs `is_error`; `wrong_calls` = refused + error + foreign + denials.
+- Events: no check text reaches one (a fourth planted marker). State: `server.log` and `check.json` added, `calls.jsonl` and `stub-state.json` retired.
+- Proof: the 2026-10-15 live run, fired once — `passed`, 43 tool calls, 0 wrong (`spacer_calls` 0), 0.3197 USD, 48.8 s, `claude` 2.1.296; the 2026-10-06 stub run kept as history.
+**Why:** the replayed check is the founder's «JSON-проверка с повтором (Рекомендую)», the one run his «Один запуск, до $3 (Рекомендую)», the one task his «Все четыре в одной сессии» (2026-10-15, relayed verbatim by the overseer as his chosen option labels), the crossing confirmed by his «Подтвердить (Рекомендую)» at this wrap's answer card.
+**Ref:** .andromeda/runs/2026-10-15T09-44-57-wrap/

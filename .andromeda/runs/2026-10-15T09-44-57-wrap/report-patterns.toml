@@ -1,0 +1,38 @@
+# The site sweep of this wrap's P1 — one pattern per claim the report's Expected amendments bullet locates.
+
+[[pattern]]
+id = 'stub'
+regex = '''cold_agent_stub|mcp__stub|stub-state|calls\.jsonl|final_count|stdio stub|the stub|`stub`'''
+
+[[pattern]]
+id = 'task-counter'
+regex = '''cold-agent\.sh run counter|run counter|TASKS=\(counter\)'''
+
+[[pattern]]
+id = 'budget'
+regex = '''max-budget-usd'''
+
+[[pattern]]
+id = 'contract-tests'
+regex = '''test_cold_agent'''
+
+[[pattern]]
+id = 'state-files'
+regex = '''target/cold-agent'''
+
+[[pattern]]
+id = 'cold-agent'
+regex = '''cold-agent|cold agent|cold_agent'''
+ignore_case = true
+
+[[pattern]]
+id = 'ci-tally'
+regex = '''94 tests|Ran 94|ci-scripts.{0,40}94|94 .{0,20}seven files|seven files'''
+
+[[pattern]]
+id = 'rust-log'
+regex = '''RUST_LOG'''
+
+[[pattern]]
+id = 'server-name'
+regex = '''server `stub`|`stub` server|server name|named `stub`|mcp__escher'''

@@ -144,3 +144,9 @@ One entry per amendment to `layout-templates.md` (sidecar-contract.md §Entry fo
 **Change:** the three tasks outside the lean four carry author ids on their controls — Temperature Converter `temp-celsius` · `temp-fahrenheit`; Circle Drawer `circle-undo` · `circle-redo` · `circle-canvas` and, on its open dialog, `circle-diameter` · `circle-close`; Cells `cell-{A..Z}{0..25}` on the 676 data cells and `cell-input` — added as `id:` lines alone, no element, class, style, wrapper or order moved and no CSS selecting by them; `unkeyed_actionable()` reads 0 on all seven tasks.
 **Why:** the operator's "Key all three; C8 deferred", by question dialog at this chunk's P4.
 **Ref:** .andromeda/runs/2026-10-14T22-00-51-wrap/
+
+## 2026-10-15-cold-agent-test — the cold-agent.sh entry on the escher server
+**Section:** §Surface: cli → Primary screens (`scripts/cold-agent.sh`)
+**Change:** the entry names the one task `stand` — the four lean apps in one client session under `STAND_PROMPT`, no element id or app slug (was "the one task `counter`"); `run` needs `claude`, `python3` and a built `target/debug/escher-session` (exit 3, the pipe builds nothing) and gives the client the driver's own MCP server `escher` (was "the stdio MCP stub it spawns"); the agent's check stays in `target/cold-agent/check.json`, never printed; the exit grammar, schema and the check's replay live in test-plan §3.
+**Why:** the chunk swapped the pipe from the stub to the driver's own MCP surface on the founder's P4 answers (2026-10-15, relayed verbatim by the overseer as his chosen option labels).
+**Ref:** .andromeda/runs/2026-10-15T09-44-57-wrap/

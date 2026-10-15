@@ -787,3 +787,22 @@ The re-seed is the first answer's stated cost, so a Dioxus re-render keeps contr
 - Driver session: the 30 s per-read answer bound and "a write to a closed pipe is dropped, not a panic" each pinned by a check; `busy` read on a real not-settled `command` line. Was "covered by its unit test only".
 **Why:** measured at this chunk. The test-only bind registered on the operator's answer at this wrap's escalation, «Register test-only»: never served, reached by no caller, so no crossing and not the founder's — registered as `PAINT_TREE_BENCH_HTML` and `CARGO_TARGET_TMPDIR` are.
 **Ref:** .andromeda/runs/2026-10-15T06-51-44-wrap/
+
+## 2026-10-15-cold-agent-test — the cold-agent pipe on the escher server: its registered resources
+**Section:** §Occupied Resources (Names · Process-wide state and threads · Filesystem · Outbound hosts) · §Infrastructure Patterns (directory tree)
+**Change:**
+- Names: `scripts/cold_agent_stub.py` and its MCP server name `stub` are retired; the pipe's per-run `mcp.json` names the server `escher`, allowed as `mcp__escher` — the name the `escher-session mcp` role already holds.
+- Process-wide state: the `claude` client spawns `sh` → `escher-session mcp` (`RUST_LOG=info` on that child only, its stderr to `target/cold-agent/server.log`) in place of `python3 cold_agent_stub.py`; the judge spawns two replay `escher-session mcp` children directly (stderr to `/dev/null`, 30 s per reply, each killed and reaped); no listener, port or socket is added.
+- Filesystem: `target/cold-agent/` gains `server.log` (never printed or copied) and `check.json` (never printed) and loses `calls.jsonl` and `stub-state.json`; the session dir holds `mcp.json` alone (was "the stub copy and `mcp.json`"); the 2026-10-15 live copies (`live-run.md`, `live-verdict.json`, `live-events.jsonl`, `live-check.json`, `live-transcript.jsonl`) are registered beside the 2026-10-06 ones (was "the one recorded live run").
+- Outbound hosts: the model-provider row adds that the run now carries the stand's screen — element ids, accessible names and control values — from the driver's own MCP server, one run.
+- Directory tree: `scripts/` reads `cold-agent.{sh,ps1} (cold-agent pipe)`.
+**Why:** the process crossings and the provider row record a boundary widening, ratified by the founder: his «Один запуск, до $3 (Рекомендую)» and «JSON-проверка с повтором (Рекомендую)» (2026-10-15, by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option labels), confirmed by his «Подтвердить (Рекомендую)» at this wrap's answer card. No env var is new: `RUST_LOG` stays escher-telemetry's registered filter, set on a child.
+**Ref:** .andromeda/runs/2026-10-15T09-44-57-wrap/
+
+## 2026-10-15-cold-agent-test — the cold-agent pipe on the escher server: its contract and stack row
+**Section:** §Standard Contracts (CI contracts) · §Stack and Technologies (CI/CD row)
+**Change:**
+- CI contracts: the pipe's one task is `stand` (was `counter`); exit 3 also when `target/debug/escher-session` is absent or not executable, the pipe building nothing; `run` starts one isolated `claude -p` session with the fixed prompt `STAND_PROMPT` and only the escher server's eleven tools (`--allowedTools mcp__escher`, `--model claude-opus-5-5`, `--max-budget-usd 3`; was `mcp__stub`, `--max-budget-usd 1`, no model). `passed` needs `isolated` on the eleven `mcp__escher__{verb}` tools and one server `escher`, `counts_agree` against the server's `tool_call` span lines, all four lean apps met from `snapshot` answers, and the agent's check (≤ 65,536 bytes, ≤ 400 steps) replayed passing and failing when ablated; `wrong_calls` decides nothing. The stub sentence (tools `list` · `read` · `press`, its four causes, its own count at 3) is retired; `test_cold_agent.py` runs under a `claude` shim and a fake `escher-session`.
+- Stack CI/CD row: the pipe's MCP server is the workspace's own `escher-session mcp`, its judge stdlib python3 with no package added; `claude` read at 2.1.296 beside 2.1.288; the stub clause ("stdlib python3 speaking JSON-RPC 2.0 over stdio") is retired.
+**Why:** the chunk's swap of the pipe to the driver's own MCP surface, on the founder's four P4 answers (2026-10-15, relayed verbatim by the overseer as his chosen option labels); the replayed check is his «JSON-проверка с повтором (Рекомендую)».
+**Ref:** .andromeda/runs/2026-10-15T09-44-57-wrap/

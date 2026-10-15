@@ -2,7 +2,6 @@
 paths:
   - "scripts/agent-run.*"
   - "scripts/cold-agent.*"
-  - "scripts/cold_agent_stub.py"
   - "packages/blitz-test-harness/**"
   - "tests/blitz-tests/tests/harness_*.rs"
 ---
@@ -22,10 +21,10 @@ Development Style is agent-driven — escher's own driver is meant to become the
 - NOT YET MEASURED: a test-data bootstrap mechanism.
 
 ## The cold-agent run pipe (measured — `scripts/cold-agent.sh`)
-- Run from the repository root: `bash scripts/cold-agent.sh run counter`, then `status` · `logs` · `cleanup`; `scripts/cold-agent.ps1` only forwards. Same exit grammar as agent-run (`0` · `1` a `failed` verdict · `2` usage, checked first · `3` precondition — `claude`/`python3` absent, no verdict, no events).
-- `run` starts ONE live model session (`claude -p`, the operator's own login; ratified by the founder, 2026-10-06) from a per-run `mktemp -d` dir whose path names nothing, with only the stdio stub's `list`/`read`/`press` — never fire it in CI or in a loop; the contract tests (`.github/scripts/test_cold_agent.py`) use a `claude` shim.
-- The verdict (`target/cold-agent/verdict.json`) reads `passed` only on positive evidence — client exit 0, a successful `result`, `isolated`, `counts_agree`, ≥ 1 tool call, and the stub's own count at 3 (never the agent's reply); `wrong_calls` is recorded, never deciding. Events carry counts and identities only — no transcript text, argument or result.
-- State lives in `target/cold-agent/` only (`cleanup` touches nothing else); `transcript.jsonl` is raw (host paths included) — a copy committed as evidence is host-path-masked first (`gate.py hygiene` refuses an unmasked one).
+- Run from the repository root: `bash scripts/cold-agent.sh run stand` (`run counter` a usage error), then `status` · `logs` · `cleanup`; `scripts/cold-agent.ps1` only forwards. Same exit grammar as agent-run (`0` · `1` a `failed` verdict · `2` usage, checked first · `3` precondition — `claude`/`python3` absent, `target/debug/escher-session` absent or not executable (the pipe builds nothing: `cargo build --locked -p seven_guis --bin escher-session` first), no verdict, no events).
+- `run` starts ONE live model session (`claude -p`, the operator's own login; ratified by the founder, 2026-10-06) from a per-run `mktemp -d` dir whose path names nothing, holding only an `mcp.json` naming one stdio server `escher`, the driver's own `escher-session mcp` (the eleven verbs; its stderr at `RUST_LOG=info` in `server.log`, counted by `tool_call` span lines, never printed or copied), with a fixed prompt asking for the four lean apps one at a time and a JSON check as the reply's last fenced json block (`--model claude-opus-5-5 --max-budget-usd 3`) — never fire it in CI or in a loop; the contract tests (`.github/scripts/test_cold_agent.py`) use a `claude` shim and a fake `target/debug/escher-session`.
+- The verdict (`target/cold-agent/verdict.json`) reads `passed` only on positive evidence — client exit 0, a successful `result`, `isolated` (exactly the eleven `mcp__escher__*` tools, one server `escher`), `counts_agree` (the server's `tool_call` span lines against the transcript's escher tool uses, its refused + error lines against the results marked `is_error`), ≥ 1 tool call, all four lean apps in `tasks_met` (read from a `snapshot` answer while the app is the latest accepted `start`'s, never the agent's reply), and the agent's check — at most 400 steps, never replayed when malformed — replayed green on a fresh `escher-session mcp` child (`check_passed`) and failing with its acting steps left out (`check_can_fail`); `wrong_calls` is recorded, never deciding. Events carry counts and identities only — no transcript text, tool argument, tool result, reply or check text.
+- State lives in `target/cold-agent/{verdict.json, events.jsonl, transcript.jsonl, client.log, server.log, check.json}` only (`cleanup` touches nothing else; `server.log` counted by span name and `check.json` written as parsed, neither ever printed or copied); `transcript.jsonl` is raw (host paths included) — a copy committed as evidence is host-path-masked first (`gate.py hygiene` refuses an unmasked one).
 
 ## In-process `Harness` (measured — `packages/blitz-test-harness`)
 - Constructors `from_html`, `from_html_with(html, HarnessOptions)`, `from_component`, `from_vdom` pump once; `wrap` does not.
