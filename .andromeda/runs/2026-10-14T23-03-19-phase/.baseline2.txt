@@ -1,0 +1,22 @@
+gate v1.17 · 383c6f7b
+root . · marker 2026-10-14-quality-gates · entries 18
+previous 2026-10-14-stand-requirement-sweep · trails 133 run dirs · firings 40 (green 37) · other root 0 · unreadable 0
+  1 unit        new (key) · cargo test -p escher-driver --locked
+  2 unit        new (key) · cargo test -p blitz-dom --locked --features system-fonts -… (95 chars)
+  3 integration new (key) · cargo test -p blitz-tests --locked --test font_face_sniffe… (66 chars)
+  4 integration new (key) · cargo test -p blitz-tests --locked --test stand_act_spans
+  5 integration new (key) · cargo test -p seven_guis --locked --test cli_commands
+  6 probe       new (key) · command grep -c -E 'println!|eprintln!|print!|dbg!|std::en… (189 chars)
+  7 unit        new (key) · bash .github/scripts/ci-leg.sh ci-scripts
+  8 integration new (key) · bash .github/scripts/ci-leg.sh coverage
+  9 probe       new (key) · bash .github/scripts/ci-leg.sh audit
+ 10 lint        new (key) · bash .github/scripts/ci-leg.sh clippy
+ 11 integration new (key) · bash .github/scripts/ci-leg.sh stand-repeat
+ 12 integration new (key) · bash .github/scripts/ci-leg.sh a11y
+ 13 probe       new (key) · command grep -c '^| [0-9]* | passed |' escher-0.1.0/chunks… (109 chars)
+ 14 lint        seen green 2026-10-14T22:44:45Z #13 (wrap) · bash .github/scripts/ci-leg.sh fast
+ 15 lint        seen green 2026-10-14T22:44:45Z #14 (wrap) · bash .github/scripts/ci-leg.sh doc
+ 16 probe       leg operator — exempt · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)
+ 17 probe       leg operator — exempt · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+ 18 probe       leg operator — exempt · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)
+entries 18 · seen green 2 · not seen 0 · new (key) 13 · leg 3

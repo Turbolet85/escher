@@ -3,12 +3,15 @@
 //! call run through `Session::run` — the seven verbs on the stand's CRUD task and its Timer, and
 //! a refused call for each of the nine causes, the `covered` one on a fixture booted with the
 //! stand's options and the `fonts-unavailable` one on the CRUD task booted with a font context
-//! that holds no family — leaves exactly one line under `escher_driver`: at INFO, stamped with the
+//! that holds no family, and a `press` on a fixture that renders on every pass — leaves exactly
+//! one line under `escher_driver`: at INFO, stamped with the
 //! service identity, its `span` reading `command`, its `verb` the table's word and absent for a
 //! verb the table lacks. Any other line a call leaves is an engine record, which a build with
 //! the engine's own call sites compiled in logs beside it. An acting call's line carries its
 //! settle reading and the three list lengths of the diff the call returned, which this file
-//! first holds equal to the diff of its own snapshots; a refused call's line carries the name
+//! first holds equal to the diff of its own snapshots — `settled=true` with its passes, or, for
+//! the call that never went quiet, `settled=false` with `busy=render` and no passes; a refused
+//! call's line carries the name
 //! of the cause the call returned and none of the settle or diff fields; a `snapshot`'s and a
 //! `screenshot`'s carry neither. Over the whole capture no field name of a driver line is outside the stated set,
 //! none of its values is redacted, and no stable id, row text, label text or typed text of the
@@ -26,7 +29,9 @@ use std::sync::{Arc, Mutex};
 use blitz_test_harness::{Harness, HarnessOptions};
 use dioxus::prelude::*;
 use dioxus_native_dom::SnapshotDiff;
-use escher_driver::{ArgValue, Busy, CAUSES, Call, Cause, Level, Outcome, Refusal, Session, VERBS};
+use escher_driver::{
+    ArgValue, BUSY_CLASSES, Busy, CAUSES, Call, Cause, Level, Outcome, Refusal, Session, VERBS,
+};
 use seven_guis::stand::{self, LeanTask};
 
 mod common;
@@ -175,6 +180,8 @@ enum Expect {
     Screen,
     Shot,
     Acts,
+    /// An acting verb whose instance renders on every pass, so it never settles.
+    Restless,
     Refused(Cause),
 }
 
@@ -249,6 +256,7 @@ struct Run<'c> {
     calls: usize,
     verbs: Vec<String>,
     causes: Vec<String>,
+    busy: Vec<String>,
 }
 
 impl<'c> Run<'c> {
@@ -262,6 +270,7 @@ impl<'c> Run<'c> {
             calls: 0,
             verbs: Vec::new(),
             causes: Vec::new(),
+            busy: Vec::new(),
         }
     }
 
@@ -371,6 +380,46 @@ impl<'c> Run<'c> {
                 );
                 self.verbs.extend(verb.map(str::to_string));
             }
+            (Ok(outcome), Expect::Restless) => {
+                let Some((settled, busy, diff)) = acting(outcome) else {
+                    panic!("{at}: the call returns an acting verb's outcome");
+                };
+                assert!(
+                    *diff == before.diff(&after),
+                    "{at}: the call returns the diff of the snapshots before and after it"
+                );
+                assert!(
+                    !settled && busy == Some(Busy::Render),
+                    "{at}: the call returns not settled, still rendering"
+                );
+                assert!(
+                    record.get("settled") == Some("false")
+                        && record.word("busy") == Some(BUSY_CLASSES[0])
+                        && !record.has("passes"),
+                    "{at}: the line carries the settle reading the call returned, its busy class \
+                     and no passes"
+                );
+                assert!(
+                    record.count("added") == Some(diff.added.len())
+                        && record.count("removed") == Some(diff.removed.len())
+                        && record.count("changed") == Some(diff.changed.len()),
+                    "{at}: the line's three counts are the lengths of the returned diff's lists"
+                );
+                let span_fields = ["verb", "settled", "busy", "added", "removed", "changed"];
+                assert!(
+                    !record.has("cause")
+                        && record
+                            .pairs
+                            .iter()
+                            .skip(2)
+                            .all(|(field, _)| span_fields.contains(field)
+                                || ["span", "message", "time.busy", "time.idle"].contains(field)),
+                    "{at}: the line carries the span's fields a call that did not settle fills, \
+                     and no other"
+                );
+                self.busy.extend(record.word("busy").map(str::to_string));
+                self.verbs.extend(verb.map(str::to_string));
+            }
             _ => panic!("{at}: the call returns the shape stated for it"),
         }
         result
@@ -411,6 +460,10 @@ impl<'c> Run<'c> {
         assert!(
             CAUSES.len() == 9 && read_back(&self.causes, CAUSES.map(Cause::name).to_vec()),
             "{mode}: each of the nine causes was read back from its own refused call"
+        );
+        assert!(
+            self.busy == [BUSY_CLASSES[0]],
+            "{mode}: one line carries a busy class, the render class"
         );
 
         let supplied = [SECRET, NOBODY, UNKNOWN_VERB];
@@ -489,6 +542,20 @@ fn covered_fixture() -> Element {
             div {
                 id: "fx-cover",
                 style: "position: absolute; left: 0; top: 0; width: 200px; height: 140px; z-index: 5; background: #cccccc;",
+            }
+        }
+    }
+}
+
+/// Every render mounts a freshly keyed element whose `mounted` handler bumps the key, so the
+/// instance never goes quiet.
+fn restless_fixture() -> Element {
+    let mut round = use_signal(|| 0u32);
+    rsx! {
+        div { id: "fx-restless",
+            p { id: "fx-restless-label", "Restless" }
+            for key in [round()] {
+                div { key: "{key}", id: "fx-spinner", onmounted: move |_| round += 1 }
             }
         }
     }
@@ -632,7 +699,22 @@ fn child_records_each_command_at_info() {
         );
         needles.read(&no_font);
 
-        assert!(run.calls == 31, "{}: {} calls", run.mode, run.calls);
+        let mut restless = Session::start("restless", || {
+            Harness::from_vdom(
+                VirtualDom::new(restless_fixture),
+                stand::options(incremental),
+            )
+        })
+        .expect("the label is one of the closed set");
+        let _ = run.drive(
+            "restless fixture",
+            &mut restless,
+            &press("tab", false),
+            Expect::Restless,
+        );
+        needles.read(&restless);
+
+        assert!(run.calls == 32, "{}: {} calls", run.mode, run.calls);
         run.finish(&needles);
     }
 }

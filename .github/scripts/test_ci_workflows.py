@@ -34,6 +34,7 @@ LINUX_JOB_LEGS = {
     "audit": "audit",
     "a11y": "a11y",
     "coverage": "coverage",
+    "stand-repeat": "stand-repeat",
 }
 # cargo-deny resolves metadata and compiles nothing.
 NON_COMPILING_JOBS = {"fmt", "ci-scripts", "audit"}
@@ -41,7 +42,7 @@ NON_COMPILING_JOBS = {"fmt", "ci-scripts", "audit"}
 # from the fork's near-full Actions cache.
 NO_CACHE_JOBS = {"coverage"}
 # Restores the test job's cache under its shared key and never saves a second entry.
-RESTORE_ONLY_JOBS = {"a11y"}
+RESTORE_ONLY_JOBS = {"a11y", "stand-repeat"}
 CACHE_ACTION = "Swatinem/rust-cache@"
 PINNED_USES = re.compile(r"^[^/@\s]+/[^@\s]+@[0-9a-f]{40}$")
 LEG_STEP = re.compile(r"^bash \.github/scripts/ci-leg\.sh (\S+)$")
@@ -59,6 +60,7 @@ INSTALL_JOBS = {
     "doc",
     "a11y",
     "coverage",
+    "stand-repeat",
 }
 # An action step cannot be looped: its install is bounded by a step timeout alone.
 APT_ACTION_JOBS = ["matrix_test"]
@@ -278,6 +280,13 @@ class LegScriptTest(unittest.TestCase):
             self.assertEqual(proc.returncode, 0, proc.stderr)
             return (Path(tmp) / "target" / "ci-logs" / f"{leg}.log").read_text(encoding="utf-8").split()
 
+    def leg_log_after_red(self, leg):
+        """Runs the leg with every cargo call exiting 1; returns its exit and its log's words."""
+        with tempfile.TemporaryDirectory() as tmp:
+            proc = self.run_leg(tmp, leg, 1, echo_args=True)
+            log = (Path(tmp) / "target" / "ci-logs" / f"{leg}.log").read_text(encoding="utf-8")
+            return proc.returncode, log.split()
+
     def test_doc_leg_documents_the_whole_workspace(self):
         words = self.leg_log_words("doc")
         for word in ("doc", "--workspace", "--no-deps", "--locked"):
@@ -285,16 +294,77 @@ class LegScriptTest(unittest.TestCase):
 
     def test_gate_legs_dispatch_to_cargo_and_write_their_log(self):
         for leg, expected in (
-            ("audit", ("deny", "--locked", "advisories")),
+            ("audit", ("deny", "--locked", "--workspace", "--all-features", "advisories", "licenses")),
             ("a11y", ("--workspace", "--locked", "accessibility_hidden", "accessibility_roles", "focusability_updates",
                       "stand_keyboard", "stand_contrast", "stand_accessibility_ids")),
-            ("coverage", ("llvm-cov", "--workspace", "--locked", "--lcov")),
         ):
             with self.subTest(leg=leg):
                 words = self.leg_log_words(leg)
                 self.assertIn(self.MARKER, words)
                 for word in expected:
                     self.assertIn(word, words)
+
+    def coverage_leg(self, tmp, driver_hit):
+        """Runs the coverage leg over an lcov seeded in `tmp` (the shim writes none), with the dioxus-native-dom
+        and blitz-test-harness crates exactly at their floors and escher-driver at `driver_hit` lines of 100,
+        so the run reaches the floor script and its three committed floors decide the leg's exit."""
+        lcov = Path(tmp) / "target" / "coverage" / "lcov.info"
+        lcov.parent.mkdir(parents=True)
+        lcov.write_text(
+            "".join(
+                f"SF:{tmp}/packages/{crate}/src/lib.rs\nLF:100\nLH:{hit}\nend_of_record\n"
+                for crate, hit in (("escher-driver", driver_hit), ("dioxus-native-dom", 83), ("blitz-test-harness", 90))
+            ),
+            encoding="utf-8",
+        )
+        proc = self.run_leg(tmp, "coverage", 0, echo_args=True)
+        return proc.returncode, (Path(tmp) / "target" / "ci-logs" / "coverage.log").read_text(encoding="utf-8")
+
+    def test_coverage_leg_reaches_the_floor_on_each_crate(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            code, log = self.coverage_leg(tmp, 97)
+            self.assertEqual(code, 0, log)
+            for word in ("llvm-cov", "--workspace", "--locked", "--lcov"):
+                self.assertIn(word, log.split())
+            self.assertIn("packages/escher-driver 97/100 = 97.00 % (floor 97 %)", log)
+            self.assertIn("packages/dioxus-native-dom 83/100 = 83.00 % (floor 83 %)", log)
+            self.assertIn("packages/blitz-test-harness 90/100 = 90.00 % (floor 90 %)", log)
+            self.assertEqual(log.splitlines()[-1], "coverage floor: 3 of 3 crates at or above their floors")
+
+    def test_coverage_leg_fails_under_a_floor(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            code, log = self.coverage_leg(tmp, 96)
+            self.assertEqual(code, 1, log)
+            self.assertEqual(log.splitlines()[-1], "coverage floor: 1 of 3 crates under their floors")
+
+    def test_clippy_leg_lints_the_workspace_then_upstream_blitz_dom_line(self):
+        words = self.leg_log_words("clippy")
+        self.assertEqual(words.count(self.MARKER), 2)
+        for word in ("clippy", "--workspace", "--locked", "-p", "blitz-dom", "--no-default-features",
+                     "svg,woff,accessibility,system-fonts,file-input,custom-widget", "--all-targets", "-D", "warnings"):
+            self.assertIn(word, words)
+        code, words = self.leg_log_after_red("clippy")
+        self.assertNotEqual(code, 0)
+        self.assertEqual(words.count(self.MARKER), 1)
+        self.assertNotIn("blitz-dom", words)
+
+    def test_stand_repeat_leg_runs_three_rounds(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            proc = self.run_leg(tmp, "stand-repeat", 0, echo_args=True)
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            log = (Path(tmp) / "target" / "ci-logs" / "stand-repeat.log").read_text(encoding="utf-8")
+        words = log.split()
+        self.assertEqual(words.count(self.MARKER), 6)
+        for word in ("blitz-tests", "seven_guis", "--locked", "stand_settle", "cli_flow", "mcp_server"):
+            self.assertIn(word, words)
+        self.assertNotIn("--ignored", words)
+        self.assertEqual(log.splitlines()[-1], "stand-repeat: 3 of 3 rounds green")
+
+    def test_stand_repeat_leg_ends_at_its_first_red(self):
+        code, words = self.leg_log_after_red("stand-repeat")
+        self.assertNotEqual(code, 0)
+        self.assertEqual(words.count(self.MARKER), 1)
+        self.assertNotIn("green", words)
 
     def test_unknown_leg_exits_2(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -305,14 +375,16 @@ class InstallScriptTest(unittest.TestCase):
     STALL_SECONDS = 300
     WAIT_SECONDS = 30
 
-    def run_install(self, cwd, behaviour, *args):
-        """Runs the script against a stand-in `sudo` and `apt-get`; returns its exit, stderr and the apt-get calls."""
+    def run_install(self, cwd, behaviour, *args, repair="exit 0"):
+        """Runs the script against a stand-in `sudo`, `apt-get` and `dpkg`; returns its exit, stderr and the
+        apt-get and dpkg calls in order, a dpkg call prefixed `dpkg`."""
         bin_dir = Path(cwd) / "bin"
         bin_dir.mkdir()
         calls = Path(cwd) / "calls"
         shims = {
             "sudo": 'exec "$@"',
             "apt-get": f'echo "$*" >> {shlex.quote(str(calls))}\n{behaviour}',
+            "dpkg": f'echo "dpkg $*" >> {shlex.quote(str(calls))}\n{repair}',
         }
         for name, body in shims.items():
             shim = bin_dir / name
@@ -343,20 +415,47 @@ class InstallScriptTest(unittest.TestCase):
             self.assertEqual(code, 0)
             self.assertEqual(calls, ["update", "install -y libfontconfig1-dev python3-yaml"])
 
+    def test_a_healthy_install_runs_no_repair(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            code, _, calls = self.run_install(tmp, "exit 0", "libfontconfig1-dev")
+            self.assertEqual(code, 0)
+            self.assertEqual([c for c in calls if c.startswith("dpkg")], [])
+
     def test_a_failed_attempt_is_tried_again_from_update(self):
         with tempfile.TemporaryDirectory() as tmp:
             calls_file = shlex.quote(str(Path(tmp) / "calls"))
             fail_first = f'[ "$(wc -l < {calls_file})" -gt 1 ] || exit 100\nexit 0'
             code, stderr, calls = self.run_install(tmp, fail_first, "libfontconfig1-dev")
             self.assertEqual(code, 0)
-            self.assertEqual(calls, ["update", "update", "install -y libfontconfig1-dev"])
+            self.assertEqual(calls, ["update", "dpkg --configure -a", "update", "install -y libfontconfig1-dev"])
             self.assertIn("attempt 1 of 3 failed in update (exit 100)", stderr)
+
+    def test_an_install_failed_by_its_bound_is_repaired_before_the_next_attempt(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            calls_file = shlex.quote(str(Path(tmp) / "calls"))
+            fail_first_install = f'[ "$1" = install ] && [ "$(wc -l < {calls_file})" -eq 2 ] && exit 124\nexit 0'
+            code, stderr, calls = self.run_install(tmp, fail_first_install, "libfontconfig1-dev")
+            self.assertEqual(code, 0)
+            self.assertEqual(
+                calls,
+                ["update", "install -y libfontconfig1-dev", "dpkg --configure -a", "update",
+                 "install -y libfontconfig1-dev"],
+            )
+            self.assertIn("attempt 1 of 3 failed in install (exit 124)", stderr)
+
+    def test_a_failed_repair_fails_its_attempt_in_phase_repair(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            code, stderr, calls = self.run_install(tmp, "exit 100", "--attempts", "2", "libfontconfig1-dev",
+                                                   repair="exit 1")
+            self.assertEqual(code, 1)
+            self.assertEqual(calls, ["update", "dpkg --configure -a"])
+            self.assertIn("attempt 2 of 2 failed in repair (exit 1)", stderr)
 
     def test_every_attempt_failing_exits_1_after_three_attempts(self):
         with tempfile.TemporaryDirectory() as tmp:
             code, stderr, calls = self.run_install(tmp, "exit 100", "libfontconfig1-dev")
             self.assertEqual(code, 1)
-            self.assertEqual(calls, ["update"] * 3)
+            self.assertEqual(calls, ["update", "dpkg --configure -a", "update", "dpkg --configure -a", "update"])
             self.assertIn("attempt 3 of 3 failed in update (exit 100)", stderr)
 
     def test_a_stalled_call_ends_at_its_bound_and_is_tried_again(self):
@@ -366,7 +465,7 @@ class InstallScriptTest(unittest.TestCase):
                 tmp, f"exec sleep {self.STALL_SECONDS}", "--bound", "1", "--attempts", "2", "libfontconfig1-dev"
             )
             self.assertEqual(code, 1)
-            self.assertEqual(calls, ["update", "update"])
+            self.assertEqual(calls, ["update", "dpkg --configure -a", "update"])
             self.assertIn("attempt 2 of 2 failed in update (exit 124)", stderr)
             self.assertLess(time.monotonic() - started, self.WAIT_SECONDS)
 

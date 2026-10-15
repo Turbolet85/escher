@@ -53,3 +53,6 @@
 - recurrence-despite-learning: session-learnings 2026-10-13 (obs-plan never says "silent census"). It recurred at this chunk's P1.
 - recurrence-despite-learning: host-linux.md Session Additions 2026-10-13 (pipeline tools bare or read whole). At this wrap's P2, `cascade.py window` was piped into `tail`, and the leaves apply's saved output was filtered before it was read.
 - Each remedy is a check, not a second entry.
+
+## Session End Status
+Completed normally at 2026-10-15 07:20:47

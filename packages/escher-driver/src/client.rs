@@ -257,6 +257,53 @@ mod imp {
             Line::TooLong | Line::Unterminated => Err(SessionError::Protocol),
         }
     }
+
+    #[cfg(test)]
+    mod tests {
+        use std::fs;
+        use std::os::unix::net::UnixListener;
+
+        use super::*;
+
+        #[test]
+        fn an_answer_read_past_its_bound_is_a_timeout() {
+            assert!(ANSWER.0 == wire::ANSWER_BOUND);
+            assert!(wire::ANSWER_BOUND == Duration::from_secs(30));
+
+            // A short name: the socket's whole path must fit a socket address.
+            let state_dir = std::env::temp_dir().join(format!("eab-{}", std::process::id()));
+            let _ = fs::remove_dir_all(&state_dir);
+            fs::create_dir(&state_dir).expect("the test's own state directory is created");
+            let listener = UnixListener::bind(state_dir.join(wire::SOCKET_FILE))
+                .expect("the test's own listener binds");
+            // Accepts the one connection and holds it open, answering nothing.
+            let silent = thread::spawn(move || listener.accept().map(|(stream, _)| stream));
+
+            let read_bound = Duration::from_millis(200);
+            let started = Instant::now();
+            let read = exchange(
+                &state_dir,
+                &Request::Call(Call {
+                    verb: "snapshot".to_string(),
+                    args: Vec::new(),
+                }),
+                (read_bound, wire::MAX_CALL_REPLY_BYTES),
+            );
+            let elapsed = started.elapsed();
+            let held = silent.join().expect("the listener thread ends");
+            let _ = fs::remove_dir_all(&state_dir);
+
+            assert!(held.is_ok(), "the listener accepted the connection");
+            assert!(
+                read == Err(SessionError::Timeout),
+                "the unanswered read is a timeout"
+            );
+            assert!(
+                elapsed >= read_bound && elapsed < Duration::from_secs(10),
+                "the read ended at its bound, after {elapsed:?}"
+            );
+        }
+    }
 }
 
 #[cfg(not(unix))]

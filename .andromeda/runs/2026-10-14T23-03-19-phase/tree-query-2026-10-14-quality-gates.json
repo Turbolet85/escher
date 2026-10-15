@@ -1,0 +1,142 @@
+[
+{
+"sql": "SELECT caller_name, callee_name, file, line FROM calls WHERE callee_name IN ('write','exchange','read_answer') AND callee_crate = 'escher-driver' AND callee_kind = 'fn' ORDER BY callee_name, file, line",
+"rows": 18,
+"result": [
+{
+"caller_name": "attach",
+"callee_name": "exchange",
+"file": "packages/escher-driver/src/client.rs",
+"line": 146
+},
+{
+"caller_name": "call",
+"callee_name": "exchange",
+"file": "packages/escher-driver/src/client.rs",
+"line": 163
+},
+{
+"caller_name": "stop",
+"callee_name": "exchange",
+"file": "packages/escher-driver/src/client.rs",
+"line": 167
+},
+{
+"caller_name": "each_line_is_read_by_its_rules",
+"callee_name": "exchange",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 819
+},
+{
+"caller_name": "an_id_is_echoed_only_in_its_two_forms",
+"callee_name": "exchange",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 889
+},
+{
+"caller_name": "each_method_gets_its_reply",
+"callee_name": "exchange",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 971
+},
+{
+"caller_name": "each_argument_value_becomes_its_kind_or_refuses_the_call",
+"callee_name": "exchange",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 1029
+},
+{
+"caller_name": "the_session_verbs_are_answered_by_the_server",
+"callee_name": "exchange",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 1183
+},
+{
+"caller_name": "the_session_verbs_are_answered_by_the_server",
+"callee_name": "exchange",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 1204
+},
+{
+"caller_name": "help_is_answered_by_the_server_with_or_without_a_session",
+"callee_name": "exchange",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 1240
+},
+{
+"caller_name": "help_is_answered_by_the_server_with_or_without_a_session",
+"callee_name": "exchange",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 1250
+},
+{
+"caller_name": "a_session_idle_for_its_expiry_is_dropped_when_a_request_arrives",
+"callee_name": "exchange",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 1260
+},
+{
+"caller_name": "a_session_idle_for_its_expiry_is_dropped_when_a_request_arrives",
+"callee_name": "exchange",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 1268
+},
+{
+"caller_name": "imp",
+"callee_name": "read_answer",
+"file": "packages/escher-driver/src/client.rs",
+"line": 131
+},
+{
+"caller_name": "call",
+"callee_name": "read_answer",
+"file": "packages/escher-driver/src/client.rs",
+"line": 163
+},
+{
+"caller_name": "a_calls_reply_reads_as_its_answer_or_as_a_session_error",
+"callee_name": "read_answer",
+"file": "packages/escher-driver/src/client.rs",
+"line": 324
+},
+{
+"caller_name": "a_calls_reply_reads_as_its_answer_or_as_a_session_error",
+"callee_name": "read_answer",
+"file": "packages/escher-driver/src/client.rs",
+"line": 329
+},
+{
+"caller_name": "command_line",
+"callee_name": "write",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 87
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT from_crate, to_crate FROM crate_edges WHERE from_crate = 'escher-driver' ORDER BY to_crate",
+"rows": 4,
+"result": [
+{
+"from_crate": "escher-driver",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "escher-driver",
+"to_crate": "blitz-test-harness"
+},
+{
+"from_crate": "escher-driver",
+"to_crate": "blitz-traits"
+},
+{
+"from_crate": "escher-driver",
+"to_crate": "dioxus-native-dom"
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

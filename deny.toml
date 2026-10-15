@@ -1,5 +1,6 @@
 # cargo-deny configuration for the `audit` leg (`bash .github/scripts/ci-leg.sh audit`, which runs
-# `cargo deny --locked check advisories`). The `[licenses]` table is upstream's and no leg runs it yet.
+# `cargo deny --locked --workspace --all-features check advisories licenses`): the advisories and the
+# licences of the whole workspace's graph. The `[licenses]` table is upstream's.
 
 [graph]
 # Every platform ci.yml builds, with every feature on, so the audit sees each graph a user can build.
@@ -18,6 +19,7 @@ all-features = true
 # push, so a new advisory, or a fix landing upstream, surfaces at the next run.
 ignore = [
     { id = "RUSTSEC-2026-0192", reason = "ttf-parser 0.25.1 is unmaintained, no patched release exists; it reaches the graph only through winit 0.31.0-beta.3 -> winit-wayland -> sctk-adwaita -> ab_glyph -> owned_ttf_parser, and winit is an exact coupled pin (CLAUDE.md), so no fix is reachable without a winit bump; re-checked by the audit leg on every push" },
+    { id = "RUSTSEC-2024-0436", reason = "paste 1.0.15 is unmaintained, no patched release exists; it reaches the graph only as a proc-macro of rav1e 0.8.1 -> ravif -> image, through anyrender_svg and the apps' avif feature; owned by the .andromeda/residuals.md line that drops this ignore when that chain leaves paste; re-checked by the audit leg on every push" },
 ]
 
 [licenses]

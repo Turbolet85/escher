@@ -2954,11 +2954,11 @@ mod hover_state_tests {
         };
 
         let mut mutator = doc.mutate();
-        let html = mutator.create_element(qual_name!("html"), vec![]);
-        let body = mutator.create_element(qual_name!("body"), vec![style("margin:0")]);
-        let container = mutator.create_element(qual_name!("div"), vec![style("width:300px")]);
+        let html = mutator.create_element(qual_name!("html", html), vec![]);
+        let body = mutator.create_element(qual_name!("body", html), vec![style("margin:0")]);
+        let container = mutator.create_element(qual_name!("div", html), vec![style("width:300px")]);
         let text = mutator.create_text_node("some text");
-        let block = mutator.create_element(qual_name!("div"), vec![style("height:50px")]);
+        let block = mutator.create_element(qual_name!("div", html), vec![style("height:50px")]);
         mutator.append_children(container, &[text, block]);
         mutator.append_children(body, &[container]);
         mutator.append_children(html, &[body]);
@@ -2969,11 +2969,16 @@ mod hover_state_tests {
         (doc, container)
     }
 
-    /// Whether text laid out with a real (non-zero-metric) font. Without the
-    /// `system-fonts` feature text measures 0x0 and text hits are impossible,
-    /// making these tests vacuous.
-    fn text_has_size(doc: &BaseDocument, container: NodeId) -> bool {
-        doc.nodes[container].final_layout().size.height > 50.0
+    /// Asserts the text laid out with a real (non-zero-metric) font. Without
+    /// the `system-fonts` feature text measures 0x0 and text hits are
+    /// impossible, so the tests would be vacuous.
+    #[track_caller]
+    fn assert_text_has_size(doc: &BaseDocument, container: NodeId) {
+        let height = doc.nodes[container].final_layout().size.height;
+        assert!(
+            height > 50.0,
+            "precondition: the text must lay out above the 50px block (container height {height})"
+        );
     }
 
     /// Regression test: hovering bare text wrapped in an anonymous block must
@@ -2984,10 +2989,7 @@ mod hover_state_tests {
     #[test]
     fn hovering_text_in_anonymous_block_reports_text_cursor() {
         let (mut doc, container) = make_doc();
-        if !text_has_size(&doc, container) {
-            eprintln!("skipping: no usable font (text measures 0x0)");
-            return;
-        }
+        assert_text_has_size(&doc, container);
 
         doc.set_hover_to(5.0, 8.0);
         assert!(doc.hover_node_is_text, "expected a text hit");
@@ -3009,10 +3011,7 @@ mod hover_state_tests {
     #[test]
     fn hovering_anonymous_block_whitespace_reports_default_cursor() {
         let (mut doc, container) = make_doc();
-        if !text_has_size(&doc, container) {
-            eprintln!("skipping: no usable font (text measures 0x0)");
-            return;
-        }
+        assert_text_has_size(&doc, container);
 
         doc.set_hover_to(250.0, 8.0);
         assert!(!doc.hover_node_is_text);

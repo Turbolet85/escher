@@ -1,0 +1,26 @@
+gate v1.17 · 383c6f7b
+shell /usr/bin/bash (from $SHELL; -c, non-login)
+root . · marker 2026-10-14-quality-gates · entries 18
+logs $TMPDIR/andromeda-gate/2026-10-14-quality-gates/run-20261015T051233Z · bound: GNU timeout
+delta docs 47 · unmapped 5
+walk-class 0 marked (an unmarked walker reads as none)
+prose L204-207: Every gate is a leg the dev host runs as CI does. No live leg: the stand boots in process … (431 chars)
+  1 unit        not run — dry-run · cargo test -p escher-driver --locked
+  2 unit        not run — dry-run · cargo test -p blitz-dom --locked --features system-fonts -… (95 chars)
+  3 integration not run — dry-run · cargo test -p blitz-tests --locked --test font_face_sniffe… (66 chars)
+  4 integration not run — dry-run · cargo test -p blitz-tests --locked --test stand_act_spans
+  5 integration not run — dry-run · cargo test -p seven_guis --locked --test cli_commands
+  6 probe       not run — dry-run · command grep -c -E 'println!|eprintln!|print!|dbg!|std::en… (189 chars)
+  7 unit        not run — dry-run · bash .github/scripts/ci-leg.sh ci-scripts
+  8 integration not run — dry-run · bash .github/scripts/ci-leg.sh coverage
+  9 probe       not run — dry-run · bash .github/scripts/ci-leg.sh audit
+ 10 lint        not run — dry-run · bash .github/scripts/ci-leg.sh clippy
+ 11 integration not run — dry-run · bash .github/scripts/ci-leg.sh stand-repeat
+ 12 integration not run — dry-run · bash .github/scripts/ci-leg.sh a11y
+ 13 probe       not run — dry-run · command grep -c '^| [0-9]* | passed |' escher-0.1.0/chunks… (109 chars)
+ 14 lint        not run — dry-run · bash .github/scripts/ci-leg.sh fast
+ 15 lint        not run — dry-run · bash .github/scripts/ci-leg.sh doc
+ 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)
+ 17 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+ 18 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)
+entries 18 · green 0 · red 0 · recorded 0 · timeout 0 · not-run 18

@@ -5,8 +5,9 @@
 # the leg command's own status.
 set -euo pipefail
 
-LEGS=(fmt clippy test ci-scripts build msrv counter wasm doc audit a11y coverage fast)
+LEGS=(fmt clippy test ci-scripts build msrv counter wasm doc audit a11y coverage stand-repeat fast)
 FAST_LEGS=(fmt clippy test ci-scripts)
+SCRIPTS="$(dirname "$0")"
 
 usage() {
     echo "usage: $0 <leg>" >&2
@@ -17,7 +18,11 @@ usage() {
 run_leg() {
     case "$1" in
     fmt) cargo fmt --all --check ;;
-    clippy) cargo clippy --workspace --locked -- -D warnings ;;
+    clippy)
+        # Upstream's own blitz-dom line beside the workspace's: its tests and benches, without text-transform-icu.
+        cargo clippy --workspace --locked -- -D warnings &&
+            cargo clippy -p blitz-dom --no-default-features --features svg,woff,accessibility,system-fonts,file-input,custom-widget --all-targets --locked -- -D warnings
+        ;;
     test) cargo test --workspace --locked ;;
     ci-scripts) python3 -m unittest discover -s .github/scripts ;;
     build) cargo build --workspace --locked ;;
@@ -30,12 +35,26 @@ run_leg() {
             cargo build -p todomvc --lib --target wasm32-unknown-unknown --no-default-features --features hybrid --locked
         ;;
     doc) cargo doc --workspace --no-deps --locked ;;
-    audit) cargo deny --locked check advisories ;;
+    audit) cargo deny --locked --workspace --all-features check advisories licenses ;;
     a11y) cargo test --workspace --locked --test accessibility_hidden --test accessibility_roles --test focusability_updates --test stand_keyboard --test stand_contrast --test stand_accessibility_ids ;;
     coverage)
         mkdir -p target/coverage &&
             cargo llvm-cov --workspace --locked --lcov --output-path target/coverage/lcov.info &&
-            cargo llvm-cov report --workspace --locked
+            cargo llvm-cov report --workspace --locked &&
+            python3 "$SCRIPTS/coverage_floor.py" target/coverage/lcov.info packages/escher-driver=97 packages/dioxus-native-dom=83 packages/blitz-test-harness=90
+        ;;
+    stand-repeat)
+        # The flakiness budget is zero failures: the first red command ends the leg, and nothing is retried.
+        local f round stand=()
+        for f in "$SCRIPTS"/../../tests/blitz-tests/tests/stand_*.rs; do
+            stand+=(--test "$(basename "$f" .rs)")
+        done
+        for round in 1 2 3; do
+            echo "stand-repeat: round $round of 3"
+            cargo test -p blitz-tests --locked "${stand[@]}" || return
+            cargo test -p seven_guis --locked --test cli_commands --test cli_flow --test host_binary --test host_log --test host_timer --test mcp_server --test mcp_log || return
+        done
+        echo "stand-repeat: 3 of 3 rounds green"
         ;;
     esac
 }

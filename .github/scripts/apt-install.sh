@@ -4,7 +4,9 @@
 # `apt-get update` with no error line (actions/runner-images#14594, #14823), so each apt-get call
 # is bounded and a failed attempt is tried again: up to ATTEMPTS attempts of update then install,
 # each call ended BOUND seconds in (killed GRACE seconds later if it has not ended), PAUSE seconds
-# between attempts. Exits 0 when an attempt completes, 1 when every attempt failed, 2 on usage.
+# between attempts. A bound firing inside an install can leave dpkg interrupted, so every attempt
+# after the first opens with `dpkg --configure -a` under the same bound. Exits 0 when an attempt
+# completes, 1 when every attempt failed, 2 on usage.
 set -euo pipefail
 
 ATTEMPTS=3
@@ -47,7 +49,15 @@ bounded() {
     sudo timeout --kill-after="$GRACE" "$BOUND" apt-get "$@"
 }
 
+repair() {
+    sudo timeout --kill-after="$GRACE" "$BOUND" dpkg --configure -a
+}
+
 attempt_once() {
+    if (($1 > 1)); then
+        phase=repair
+        repair || return
+    fi
     phase=update
     bounded update || return
     phase=install
@@ -55,7 +65,7 @@ attempt_once() {
 }
 
 for ((attempt = 1; attempt <= ATTEMPTS; attempt++)); do
-    attempt_once && exit 0
+    attempt_once "$attempt" && exit 0
     status=$?
     echo "apt-install: attempt $attempt of $ATTEMPTS failed in $phase (exit $status)" >&2
     if ((attempt < ATTEMPTS)); then

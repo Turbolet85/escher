@@ -6,7 +6,9 @@
 //! `help` answers the library's own description of the tool, reaching no session. Every
 //! refusal the binary is driven to — seven causes, all but `covered` — and every session error
 //! read here names the remedy the table states, and on Linux a state directory of 94 bytes, as
-//! given, holds a session while one of 95 is refused with its bound. Each check starts and stops
+//! given, holds a session while one of 95 is refused with its bound. With its stdout a pipe no
+//! one reads, a command drops its answer's write and ends with its ending's status, no panic
+//! and nothing typed written back. Each check starts and stops
 //! its own session; a failure names a kind, a status or a count, never an id, a name or a
 //! value. Unix only: a session crosses a Unix-domain socket.
 
@@ -14,7 +16,12 @@
 
 mod common;
 
-use common::{Ran, Started, cause, clear, client, keys, number, state_dir, string_at, text};
+use std::process::{Command, Stdio};
+use std::time::{Duration, Instant};
+
+use common::{
+    RUN_BOUND, Ran, Started, cause, clear, client, drain, keys, number, state_dir, string_at, text,
+};
 use escher_driver::{CAUSES, Call, Outcome, SessionError, VERBS, describe, verb};
 use seven_guis::stand::{self, LeanTask};
 
@@ -536,6 +543,70 @@ fn help_answers_the_tools_description_and_reaches_no_session() {
         !named.line().contains("--verb") && !named.line().contains("click"),
         "the refusal holds nothing the line named"
     );
+}
+
+/// Runs the binary as a client, `RUST_LOG` unset, with its stdout a pipe whose read end is
+/// closed before the binary starts, for at most [`RUN_BOUND`]: its answer's write meets a closed
+/// pipe. Nothing is read from its stdout.
+fn with_stdout_closed(args: &[&str]) -> Ran {
+    let (reader, writer) = std::io::pipe().expect("a pipe opens");
+    drop(reader);
+    let mut child = Command::new(BINARY)
+        .args(args)
+        .env_remove("RUST_LOG")
+        .stdin(Stdio::null())
+        .stdout(writer)
+        .stderr(Stdio::piped())
+        .spawn()
+        .expect("the binary spawns");
+    let stderr = drain(child.stderr.take().expect("stderr is piped"));
+    let deadline = Instant::now() + RUN_BOUND;
+    let status = loop {
+        if let Some(status) = child.try_wait().expect("the binary can be waited on") {
+            break status.code();
+        }
+        if Instant::now() >= deadline {
+            let _ = child.kill();
+            let _ = child.wait();
+            break None;
+        }
+        std::thread::sleep(Duration::from_millis(5));
+    };
+    Ran {
+        status,
+        stdout: Vec::new(),
+        stderr: stderr
+            .join()
+            .expect("the stderr reader ends")
+            .expect("stderr is read to its end"),
+    }
+}
+
+#[test]
+fn a_closed_stdout_drops_the_answer_and_keeps_the_ending() {
+    let help = with_stdout_closed(&["help"]);
+    assert_eq!(help.status, Some(0), "help still ends accepted");
+    let stderr = String::from_utf8_lossy(&help.stderr);
+    assert!(
+        !stderr.contains("panicked") && !help.stderr.contains(&0x1b),
+        "help's stderr holds no panic and no ESC byte, {} bytes",
+        help.stderr.len()
+    );
+
+    let dir = state_dir("cc-closed");
+    clear(&dir);
+    let snapshot = with_stdout_closed(&["snapshot", "--session", text(&dir)]);
+    assert_eq!(
+        snapshot.status,
+        Some(3),
+        "a command with no session still ends a session error"
+    );
+    assert!(
+        snapshot.stderr == format!("{}\n", SessionError::NoSession).as_bytes(),
+        "stderr is the error's fixed message alone, {} bytes",
+        snapshot.stderr.len()
+    );
+    assert!(!dir.exists(), "no state directory is created");
 }
 
 #[cfg(target_os = "linux")]

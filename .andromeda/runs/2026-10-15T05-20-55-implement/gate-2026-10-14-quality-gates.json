@@ -1,0 +1,1539 @@
+[
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-15T05:37:42Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-15T05-20-55-implement",
+"--marker",
+"2026-10-14-quality-gates"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-14-quality-gates · entries 18",
+"logs $TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55 · bound: GNU timeout",
+"delta docs 59 · python 3 · rust 8 · unmapped 9",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L210-219: Every gate is a leg the dev host runs as CI does. No live leg: the stand boots in process … (1116 chars)",
+"  1 unit        green · exit 0 · 0.45s · 6225 B → 1.log · cargo test -p escher-driver --locked",
+"  2 unit        green · exit 0 · 0.19s · 462 B → 2.log · cargo test -p blitz-dom --locked --features system-fonts -… (95 chars)",
+"  3 integration green · exit 0 · 0.33s · 423 B → 3.log · cargo test -p blitz-tests --locked --test font_face_sniffe… (66 chars)",
+"  4 integration green · exit 0 · 2.89s · 792 B → 4.log · cargo test -p blitz-tests --locked --test stand_act_spans",
+"  5 integration green · exit 0 · 3.27s · 1534 B → 5.log · cargo test -p seven_guis --locked --test cli_commands",
+"  6 probe       green · exit 1 · 0.0s · 2 B → 6.log · command grep -c -E 'println!|eprintln!|print!|dbg!|std::en… (189 chars)",
+"  7 unit        green · exit 0 · 5.91s · 193 B → 7.log · bash .github/scripts/ci-leg.sh ci-scripts",
+"  8 integration green · exit 0 · 127.44s · 142279 B → 8.log · bash .github/scripts/ci-leg.sh coverage",
+"  9 probe       green · exit 0 · 1.22s · 229 B → 9.log · bash .github/scripts/ci-leg.sh audit",
+" 10 lint        green · exit 0 · 3.42s · 3017 B → 10.log · bash .github/scripts/ci-leg.sh clippy",
+" 11 integration green · exit 0 · 252.04s · 70108 B → 11.log · bash .github/scripts/ci-leg.sh stand-repeat",
+" 12 integration green · exit 0 · 12.97s · 4654 B → 12.log · bash .github/scripts/ci-leg.sh a11y",
+" 13 probe       red · exit 0 ✗ (exit 2) · exit 2 · 0.0s · 104 B → 13.log · command grep -c '^| [0-9]* | passed |' escher-0.1.0/chunks… (109 chars)",
+" 14 lint        green · exit 0 · 131.95s · 101068 B → 14.log · bash .github/scripts/ci-leg.sh fast",
+" 15 lint        green · exit 0 · 42.06s · 2410 B → 15.log · bash .github/scripts/ci-leg.sh doc",
+" 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 17 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 18 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 18 · green 14 · red 1 (13) · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-14-quality-gates",
+"plan": "./escher-0.1.0/chunks/2026-10-14-quality-gates/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-14T22-00-51-wrap/evolve-2026-10-14-stand-requirement-sweep.json",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-14T22-00-51-wrap/health-2026-10-14-stand-requirement-sweep.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/.baseline2.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.dryrun.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.dryrun2.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.dryrun3.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.graph-1.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.graph-2.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.pins.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.planlint.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.planlint2.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.render-a11y.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.render-arch.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.render-obs.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.render-tests.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.verify2.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/a11y-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/a11y.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/arch-history-index.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/arch-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/arch.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/design-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/design.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/evolve-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/gate-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/inputs-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/layouts-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/layouts.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/master-record.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/matrix-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/obs-contracts.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/obs-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/obs.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/p5-card-1.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/p5-controls.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/planlint-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/registry-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/relay-1.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/relay-2.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/relay-3.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/route-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/route-no-marker.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/security-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/security.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/sidecar-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/tests-contracts.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/tests-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/tests.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/tree-query-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-15T05-20-55-implement/evolve-2026-10-14-quality-gates.json",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/plan.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/research.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/scope.md"
+],
+"python": [
+".github/scripts/test_ci_workflows.py",
+".github/scripts/coverage_floor.py",
+".github/scripts/test_coverage_floor.py"
+],
+"rust": [
+"Cargo.toml",
+"deny.toml",
+"examples/seven_guis/tests/cli_commands.rs",
+"packages/blitz-dom/src/document.rs",
+"packages/debug_timer/Cargo.toml",
+"packages/escher-driver/src/client.rs",
+"tests/blitz-tests/tests/stand_act_spans.rs",
+"tests/blitz-tests/tests/font_face_sniffed_source.rs"
+]
+},
+"unmapped": [
+".github/scripts/apt-install.sh",
+".github/scripts/ci-leg.sh",
+".github/workflows/ci.yml",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/.gitattributes",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/I1-relay-1.md.txt",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/I2-quality-gates-founder-answers.md.txt",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/I3-relay-2.md.txt",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/I4-relay-3.md.txt",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/andromeda-inputs.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 79,
+"problem": null
+},
+"prose": [
+{
+"from": 210,
+"to": 219,
+"text": "Every gate is a leg the dev host runs as CI does. No live leg: the stand boots in process and the seven_guis checks spawn and reap their own binaries; the agent-run harness is used for step 9's measurement, recorded in `evidence/flake-repeats.md` and read back by the reader entry below (that record's producer is step 9, outside the block). Every other `evidence/` file a criterion cites is a record its named step writes (steps 4, 8, 11, 12, 13, 20–23) — no entry produces one, and no entry carries `artifact`. The three hand controls are ONE-SHOT runs at implement, never entries (the light gate re-runs entries verbatim): the floor script at a floor of 99 (step 4, a known-fail input of the instrument this chunk builds, before its first graded use), the `stand-repeat` leg over a failing test restored by sha256 (step 8, likewise before step 9), and the audit with the paste ignore removed through a copied `deny.toml` (step 11); their non-mutating guards on re-run are the `coverage`, `stand-repeat` and `audit` entries. The coverage, stand-repeat and fast legs run long: each entry declares its own `timeout`."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked",
+"run_sha8": "5f0bb953",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/1.log",
+"bytes": 6225,
+"log_sha8": "2b99f7c4",
+"exit": 0,
+"seconds": 0.45,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p blitz-dom --locked --features system-fonts --lib hover_state_tests -- --nocapture",
+"run_sha8": "d4ddbb34",
+"expect": [
+"exit 0",
+"contains 2 passed",
+"lacks skipping"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/2.log",
+"bytes": 462,
+"log_sha8": "e38e7480",
+"exit": 0,
+"seconds": 0.19,
+"readings": [
+"exit 0 ✓",
+"contains '2 passed' ✓",
+"lacks 'skipping' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test font_face_sniffed_source",
+"run_sha8": "0677beb1",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/3.log",
+"bytes": 423,
+"log_sha8": "15a7b5d9",
+"exit": 0,
+"seconds": 0.33,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_act_spans",
+"run_sha8": "d7cc0359",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/4.log",
+"bytes": 792,
+"log_sha8": "9a431766",
+"exit": 0,
+"seconds": 2.89,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test cli_commands",
+"run_sha8": "029abbd6",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/5.log",
+"bytes": 1534,
+"log_sha8": "97d42c44",
+"exit": 0,
+"seconds": 3.27,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "command grep -c -E 'println!|eprintln!|print!|dbg!|std::env|env::var|escher_telemetry|tracing_subscriber|UnixListener|TcpListener|bind\\(' tests/blitz-tests/tests/font_face_sniffed_source.rs",
+"run_sha8": "2db7d88d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/6.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "unit",
+"run": "bash .github/scripts/ci-leg.sh ci-scripts",
+"run_sha8": "439b8b7a",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/7.log",
+"bytes": 193,
+"log_sha8": "4967b3f6",
+"exit": 0,
+"seconds": 5.91,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh coverage",
+"run_sha8": "8c67d572",
+"expect": [
+"exit 0",
+"contains coverage floor: 3 of 3 crates at or above their floors"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/8.log",
+"bytes": 142279,
+"log_sha8": "ac4f088a",
+"exit": 0,
+"seconds": 127.44,
+"readings": [
+"exit 0 ✓",
+"contains 'coverage floor: 3 of 3 crates at or above their floors' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": [
+"exit 0",
+"contains advisories ok",
+"contains licenses ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/9.log",
+"bytes": 229,
+"log_sha8": "ca4b0298",
+"exit": 0,
+"seconds": 1.22,
+"readings": [
+"exit 0 ✓",
+"contains 'advisories ok' ✓",
+"contains 'licenses ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh clippy",
+"run_sha8": "8be93962",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/10.log",
+"bytes": 3017,
+"log_sha8": "e3291891",
+"exit": 0,
+"seconds": 3.42,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh stand-repeat",
+"run_sha8": "4a77feee",
+"expect": [
+"exit 0",
+"contains stand-repeat: 3 of 3 rounds green"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/11.log",
+"bytes": 70108,
+"log_sha8": "3ad99faf",
+"exit": 0,
+"seconds": 252.04,
+"readings": [
+"exit 0 ✓",
+"contains 'stand-repeat: 3 of 3 rounds green' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/12.log",
+"bytes": 4654,
+"log_sha8": "c7d313aa",
+"exit": 0,
+"seconds": 12.97,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "command grep -c '^| [0-9]* | passed |' escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/flake-repeats.md",
+"run_sha8": "2b2eaf3e",
+"expect": [
+"exit 0",
+"last line 20"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/13.log",
+"bytes": 104,
+"log_sha8": "541ee56e",
+"exit": 2,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✗ (exit 2)",
+"last line '20' ✗ (last: 'grep: escher-0.1.0/chunks/2026-10-14-qua… (103 chars)')"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 2)"
+},
+{
+"n": 14,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/14.log",
+"bytes": 101068,
+"log_sha8": "6868be4d",
+"exit": 0,
+"seconds": 131.95,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/15.log",
+"bytes": 2410,
+"log_sha8": "be1696d8",
+"exit": 0,
+"seconds": 42.06,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 2400",
+"run_sha8": "1e745bf8",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-15T05:44:05Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-15T05-20-55-implement",
+"--marker",
+"2026-10-14-quality-gates",
+"--only",
+"11"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-14-quality-gates · entries 18",
+"logs $TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55 · bound: GNU timeout",
+"delta docs 64 · python 4 · rust 8 · unmapped 9",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L210-219: Every gate is a leg the dev host runs as CI does. No live leg: the stand boots in process … (1116 chars)",
+"  1 unit        not run — excluded · cargo test -p escher-driver --locked",
+"  2 unit        not run — excluded · cargo test -p blitz-dom --locked --features system-fonts -… (95 chars)",
+"  3 integration not run — excluded · cargo test -p blitz-tests --locked --test font_face_sniffe… (66 chars)",
+"  4 integration not run — excluded · cargo test -p blitz-tests --locked --test stand_act_spans",
+"  5 integration not run — excluded · cargo test -p seven_guis --locked --test cli_commands",
+"  6 probe       not run — excluded · command grep -c -E 'println!|eprintln!|print!|dbg!|std::en… (189 chars)",
+"  7 unit        not run — excluded · bash .github/scripts/ci-leg.sh ci-scripts",
+"  8 integration not run — excluded · bash .github/scripts/ci-leg.sh coverage",
+"  9 probe       not run — excluded · bash .github/scripts/ci-leg.sh audit",
+" 10 lint        not run — excluded · bash .github/scripts/ci-leg.sh clippy",
+" 11 integration green · exit 0 · 230.39s · 70019 B → 11.2.log · bash .github/scripts/ci-leg.sh stand-repeat",
+" 12 integration not run — excluded · bash .github/scripts/ci-leg.sh a11y",
+" 13 probe       not run — excluded · command grep -c '^| [0-9]* | passed |' escher-0.1.0/chunks… (109 chars)",
+" 14 lint        not run — excluded · bash .github/scripts/ci-leg.sh fast",
+" 15 lint        not run — excluded · bash .github/scripts/ci-leg.sh doc",
+" 16 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 17 probe       not run — excluded · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 18 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 18 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 17"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-14-quality-gates",
+"plan": "./escher-0.1.0/chunks/2026-10-14-quality-gates/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-14T22-00-51-wrap/evolve-2026-10-14-stand-requirement-sweep.json",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-14T22-00-51-wrap/health-2026-10-14-stand-requirement-sweep.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/.baseline2.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.dryrun.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.dryrun2.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.dryrun3.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.graph-1.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.graph-2.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.pins.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.planlint.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.planlint2.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.render-a11y.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.render-arch.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.render-obs.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.render-tests.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.verify2.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/a11y-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/a11y.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/arch-history-index.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/arch-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/arch.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/design-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/design.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/evolve-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/gate-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/inputs-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/layouts-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/layouts.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/master-record.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/matrix-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/obs-contracts.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/obs-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/obs.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/p5-card-1.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/p5-controls.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/planlint-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/registry-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/relay-1.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/relay-2.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/relay-3.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/route-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/route-no-marker.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/security-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/security.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/sidecar-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/tests-contracts.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/tests-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/tests.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/tree-query-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-15T05-20-55-implement/evolve-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-15T05-20-55-implement/gate-2026-10-14-quality-gates.json",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/apt-install.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/coverage-floor.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/merge-surface.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/per-os-tallies.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/plan.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/research.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/scope.md"
+],
+"python": [
+".github/scripts/test_ci_workflows.py",
+".github/scripts/coverage_floor.py",
+".github/scripts/test_coverage_floor.py",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/stderr-by-level.py"
+],
+"rust": [
+"Cargo.toml",
+"deny.toml",
+"examples/seven_guis/tests/cli_commands.rs",
+"packages/blitz-dom/src/document.rs",
+"packages/debug_timer/Cargo.toml",
+"packages/escher-driver/src/client.rs",
+"tests/blitz-tests/tests/stand_act_spans.rs",
+"tests/blitz-tests/tests/font_face_sniffed_source.rs"
+]
+},
+"unmapped": [
+".github/scripts/apt-install.sh",
+".github/scripts/ci-leg.sh",
+".github/workflows/ci.yml",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/.gitattributes",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/I1-relay-1.md.txt",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/I2-quality-gates-founder-answers.md.txt",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/I3-relay-2.md.txt",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/I4-relay-3.md.txt",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/andromeda-inputs.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 85,
+"problem": null
+},
+"prose": [
+{
+"from": 210,
+"to": 219,
+"text": "Every gate is a leg the dev host runs as CI does. No live leg: the stand boots in process and the seven_guis checks spawn and reap their own binaries; the agent-run harness is used for step 9's measurement, recorded in `evidence/flake-repeats.md` and read back by the reader entry below (that record's producer is step 9, outside the block). Every other `evidence/` file a criterion cites is a record its named step writes (steps 4, 8, 11, 12, 13, 20–23) — no entry produces one, and no entry carries `artifact`. The three hand controls are ONE-SHOT runs at implement, never entries (the light gate re-runs entries verbatim): the floor script at a floor of 99 (step 4, a known-fail input of the instrument this chunk builds, before its first graded use), the `stand-repeat` leg over a failing test restored by sha256 (step 8, likewise before step 9), and the audit with the paste ignore removed through a copied `deny.toml` (step 11); their non-mutating guards on re-run are the `coverage`, `stand-repeat` and `audit` entries. The coverage, stand-repeat and fast legs run long: each entry declares its own `timeout`."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked",
+"run_sha8": "5f0bb953",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p blitz-dom --locked --features system-fonts --lib hover_state_tests -- --nocapture",
+"run_sha8": "d4ddbb34",
+"expect": [
+"exit 0",
+"contains 2 passed",
+"lacks skipping"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test font_face_sniffed_source",
+"run_sha8": "0677beb1",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_act_spans",
+"run_sha8": "d7cc0359",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test cli_commands",
+"run_sha8": "029abbd6",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "command grep -c -E 'println!|eprintln!|print!|dbg!|std::env|env::var|escher_telemetry|tracing_subscriber|UnixListener|TcpListener|bind\\(' tests/blitz-tests/tests/font_face_sniffed_source.rs",
+"run_sha8": "2db7d88d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 7,
+"role": "unit",
+"run": "bash .github/scripts/ci-leg.sh ci-scripts",
+"run_sha8": "439b8b7a",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh coverage",
+"run_sha8": "8c67d572",
+"expect": [
+"exit 0",
+"contains coverage floor: 3 of 3 crates at or above their floors"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": [
+"exit 0",
+"contains advisories ok",
+"contains licenses ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 10,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh clippy",
+"run_sha8": "8be93962",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh stand-repeat",
+"run_sha8": "4a77feee",
+"expect": [
+"exit 0",
+"contains stand-repeat: 3 of 3 rounds green"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/11.2.log",
+"bytes": 70019,
+"log_sha8": "973e398b",
+"exit": 0,
+"seconds": 230.39,
+"readings": [
+"exit 0 ✓",
+"contains 'stand-repeat: 3 of 3 rounds green' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "command grep -c '^| [0-9]* | passed |' escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/flake-repeats.md",
+"run_sha8": "2b2eaf3e",
+"expect": [
+"exit 0",
+"last line 20"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 14,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 15,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 2400",
+"run_sha8": "1e745bf8",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-15T05:45:27Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-15T05-20-55-implement",
+"--marker",
+"2026-10-14-quality-gates",
+"--n",
+"10"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"10 lint not run — excluded",
+"run (8be93962): bash .github/scripts/ci-leg.sh clippy",
+"firings of entry 10 in this trail: 1 — 1 green · shown: none — the last run did not fire it"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-15T06:24:57Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-15T05-20-55-implement",
+"--marker",
+"2026-10-14-quality-gates"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-14-quality-gates · entries 18",
+"logs $TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55 · bound: GNU timeout",
+"delta docs 70 · python 4 · rust 8 · unmapped 9",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L210-219: Every gate is a leg the dev host runs as CI does. No live leg: the stand boots in process … (1116 chars)",
+"  1 unit        green · exit 0 · 0.69s · 6225 B → 1.2.log · cargo test -p escher-driver --locked",
+"  2 unit        green · exit 0 · 0.27s · 462 B → 2.2.log · cargo test -p blitz-dom --locked --features system-fonts -… (95 chars)",
+"  3 integration green · exit 0 · 1.79s · 605 B → 3.2.log · cargo test -p blitz-tests --locked --test font_face_sniffe… (66 chars)",
+"  4 integration green · exit 0 · 2.88s · 792 B → 4.2.log · cargo test -p blitz-tests --locked --test stand_act_spans",
+"  5 integration green · exit 0 · 3.45s · 1534 B → 5.2.log · cargo test -p seven_guis --locked --test cli_commands",
+"  6 probe       green · exit 1 · 0.0s · 2 B → 6.2.log · command grep -c -E 'println!|eprintln!|print!|dbg!|std::en… (189 chars)",
+"  7 unit        green · exit 0 · 6.05s · 193 B → 7.2.log · bash .github/scripts/ci-leg.sh ci-scripts",
+"  8 integration green · exit 0 · 131.07s · 142279 B → 8.2.log · bash .github/scripts/ci-leg.sh coverage",
+"  9 probe       green · exit 0 · 1.51s · 229 B → 9.2.log · bash .github/scripts/ci-leg.sh audit",
+" 10 lint        green · exit 0 · 0.64s · 144 B → 10.2.log · bash .github/scripts/ci-leg.sh clippy",
+" 11 integration green · exit 0 · 283.76s · 70108 B → 11.3.log · bash .github/scripts/ci-leg.sh stand-repeat",
+" 12 integration green · exit 0 · 11.89s · 3864 B → 12.2.log · bash .github/scripts/ci-leg.sh a11y",
+" 13 probe       green · exit 0 · 0.0s · 3 B → 13.2.log · command grep -c '^| [0-9]* | passed |' escher-0.1.0/chunks… (109 chars)",
+" 14 lint        green · exit 0 · 124.16s · 99352 B → 14.2.log · bash .github/scripts/ci-leg.sh fast",
+" 15 lint        green · exit 0 · 2.48s · 271 B → 15.2.log · bash .github/scripts/ci-leg.sh doc",
+" 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 17 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 18 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 18 · green 15 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-14-quality-gates",
+"plan": "./escher-0.1.0/chunks/2026-10-14-quality-gates/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-14T22-00-51-wrap/evolve-2026-10-14-stand-requirement-sweep.json",
+".claude/session-handoff.md",
+"escher-0.1.0/working-route.md",
+".andromeda/runs/2026-10-14T22-00-51-wrap/health-2026-10-14-stand-requirement-sweep.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/.baseline2.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.dryrun.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.dryrun2.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.dryrun3.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.graph-1.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.graph-2.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.pins.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.planlint.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.planlint2.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.render-a11y.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.render-arch.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.render-obs.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.render-tests.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/.verify2.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/a11y-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/a11y.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/arch-history-index.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/arch-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/arch.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/design-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/design.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/evolve-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/gate-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/inputs-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/layouts-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/layouts.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/master-record.txt",
+".andromeda/runs/2026-10-14T23-03-19-phase/matrix-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/obs-contracts.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/obs-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/obs.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/p5-card-1.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/p5-controls.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/planlint-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/registry-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/relay-1.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/relay-2.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/relay-3.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/route-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/route-no-marker.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/security-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/security.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/sidecar-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-14T23-03-19-phase/tests-contracts.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/tests-history.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/tests.md",
+".andromeda/runs/2026-10-14T23-03-19-phase/tree-query-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-15T05-20-55-implement/evolve-2026-10-14-quality-gates.json",
+".andromeda/runs/2026-10-15T05-20-55-implement/gate-2026-10-14-quality-gates.json",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/apt-install.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/audit.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/clippy.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/counts.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/coverage-floor.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/flake-repeats.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/merge-surface.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/per-os-tallies.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/stand-repeat.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/stderr-by-level.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/plan.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/research.md",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/scope.md"
+],
+"python": [
+".github/scripts/test_ci_workflows.py",
+".github/scripts/coverage_floor.py",
+".github/scripts/test_coverage_floor.py",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/stderr-by-level.py"
+],
+"rust": [
+"Cargo.toml",
+"deny.toml",
+"examples/seven_guis/tests/cli_commands.rs",
+"packages/blitz-dom/src/document.rs",
+"packages/debug_timer/Cargo.toml",
+"packages/escher-driver/src/client.rs",
+"tests/blitz-tests/tests/stand_act_spans.rs",
+"tests/blitz-tests/tests/font_face_sniffed_source.rs"
+]
+},
+"unmapped": [
+".github/scripts/apt-install.sh",
+".github/scripts/ci-leg.sh",
+".github/workflows/ci.yml",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/.gitattributes",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/I1-relay-1.md.txt",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/I2-quality-gates-founder-answers.md.txt",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/I3-relay-2.md.txt",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/I4-relay-3.md.txt",
+"escher-0.1.0/chunks/2026-10-14-quality-gates/inputs/andromeda-inputs.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 91,
+"problem": null
+},
+"prose": [
+{
+"from": 210,
+"to": 219,
+"text": "Every gate is a leg the dev host runs as CI does. No live leg: the stand boots in process and the seven_guis checks spawn and reap their own binaries; the agent-run harness is used for step 9's measurement, recorded in `evidence/flake-repeats.md` and read back by the reader entry below (that record's producer is step 9, outside the block). Every other `evidence/` file a criterion cites is a record its named step writes (steps 4, 8, 11, 12, 13, 20–23) — no entry produces one, and no entry carries `artifact`. The three hand controls are ONE-SHOT runs at implement, never entries (the light gate re-runs entries verbatim): the floor script at a floor of 99 (step 4, a known-fail input of the instrument this chunk builds, before its first graded use), the `stand-repeat` leg over a failing test restored by sha256 (step 8, likewise before step 9), and the audit with the paste ignore removed through a copied `deny.toml` (step 11); their non-mutating guards on re-run are the `coverage`, `stand-repeat` and `audit` entries. The coverage, stand-repeat and fast legs run long: each entry declares its own `timeout`."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked",
+"run_sha8": "5f0bb953",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/1.2.log",
+"bytes": 6225,
+"log_sha8": "a3f548d1",
+"exit": 0,
+"seconds": 0.69,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p blitz-dom --locked --features system-fonts --lib hover_state_tests -- --nocapture",
+"run_sha8": "d4ddbb34",
+"expect": [
+"exit 0",
+"contains 2 passed",
+"lacks skipping"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/2.2.log",
+"bytes": 462,
+"log_sha8": "049f14f1",
+"exit": 0,
+"seconds": 0.27,
+"readings": [
+"exit 0 ✓",
+"contains '2 passed' ✓",
+"lacks 'skipping' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test font_face_sniffed_source",
+"run_sha8": "0677beb1",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/3.2.log",
+"bytes": 605,
+"log_sha8": "14cb42fc",
+"exit": 0,
+"seconds": 1.79,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_act_spans",
+"run_sha8": "d7cc0359",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/4.2.log",
+"bytes": 792,
+"log_sha8": "8acf16c9",
+"exit": 0,
+"seconds": 2.88,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test cli_commands",
+"run_sha8": "029abbd6",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/5.2.log",
+"bytes": 1534,
+"log_sha8": "2023b9c9",
+"exit": 0,
+"seconds": 3.45,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "command grep -c -E 'println!|eprintln!|print!|dbg!|std::env|env::var|escher_telemetry|tracing_subscriber|UnixListener|TcpListener|bind\\(' tests/blitz-tests/tests/font_face_sniffed_source.rs",
+"run_sha8": "2db7d88d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/6.2.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "unit",
+"run": "bash .github/scripts/ci-leg.sh ci-scripts",
+"run_sha8": "439b8b7a",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/7.2.log",
+"bytes": 193,
+"log_sha8": "5ab8e5d3",
+"exit": 0,
+"seconds": 6.05,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh coverage",
+"run_sha8": "8c67d572",
+"expect": [
+"exit 0",
+"contains coverage floor: 3 of 3 crates at or above their floors"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/8.2.log",
+"bytes": 142279,
+"log_sha8": "a770849e",
+"exit": 0,
+"seconds": 131.07,
+"readings": [
+"exit 0 ✓",
+"contains 'coverage floor: 3 of 3 crates at or above their floors' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": [
+"exit 0",
+"contains advisories ok",
+"contains licenses ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/9.2.log",
+"bytes": 229,
+"log_sha8": "ca4b0298",
+"exit": 0,
+"seconds": 1.51,
+"readings": [
+"exit 0 ✓",
+"contains 'advisories ok' ✓",
+"contains 'licenses ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh clippy",
+"run_sha8": "8be93962",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/10.2.log",
+"bytes": 144,
+"log_sha8": "624e5ba3",
+"exit": 0,
+"seconds": 0.64,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh stand-repeat",
+"run_sha8": "4a77feee",
+"expect": [
+"exit 0",
+"contains stand-repeat: 3 of 3 rounds green"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/11.3.log",
+"bytes": 70108,
+"log_sha8": "f137d3eb",
+"exit": 0,
+"seconds": 283.76,
+"readings": [
+"exit 0 ✓",
+"contains 'stand-repeat: 3 of 3 rounds green' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/12.2.log",
+"bytes": 3864,
+"log_sha8": "d8c6ce72",
+"exit": 0,
+"seconds": 11.89,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "command grep -c '^| [0-9]* | passed |' escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/flake-repeats.md",
+"run_sha8": "2b2eaf3e",
+"expect": [
+"exit 0",
+"last line 20"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/13.2.log",
+"bytes": 3,
+"log_sha8": "53787963",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '20' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/14.2.log",
+"bytes": 99352,
+"log_sha8": "2f027fbe",
+"exit": 0,
+"seconds": 124.16,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/15.2.log",
+"bytes": 271,
+"log_sha8": "5ab00407",
+"exit": 0,
+"seconds": 2.48,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.1.0",
+"run_sha8": "a2c8603f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 2400",
+"run_sha8": "1e745bf8",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.17",
+"sha8": "383c6f7b",
+"ts": "2026-10-15T06:25:34Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.1.0/chunks/2026-10-14-quality-gates",
+"--run-dir",
+".andromeda/runs/2026-10-15T05-20-55-implement",
+"--marker",
+"2026-10-14-quality-gates"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 4 · modify 11 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/ (dir) ×0",
+"scope: clean — changed 14 · listed 14 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 77"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 14,
+"listed": 14,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 77,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]
