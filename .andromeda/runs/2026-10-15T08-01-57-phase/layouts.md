@@ -1,0 +1,33 @@
+# layouts extract
+
+## Relevance
+partial — the chunk changes one CLI surface row (`scripts/cold-agent.sh`'s usage and task set) and drives the stand's TaskShell mount through the `escher-session mcp` role. Neither needs a new screen, region or focus stop. (The cli and desktop-native surface headers are marked NOT YET MEASURED only for tooling context, expression level and signature placement. Their Primary screens and IA notes subsections carry measured rows, and those rows are what is cited here.)
+
+## Constraints
+- layout-templates §Surface: cli → Primary screens requires this `scripts/cold-agent.sh` shape: run from the repository root, usage `cold-agent.sh <verb> [task]`, verbs `run · status · cleanup · logs`. A usage error prints to stderr with stdout empty, exits 2 and is checked before any precondition. Every verb's stdout is JSON lines only, one object per event. The raw session transcript stays in `target/cold-agent/transcript.jsonl`, and `scripts/cold-agent.ps1` is a pass-through. The row's "one task `counter`" and "the stdio MCP stub it spawns" are what the swap replaces, so the row is the wrap's to amend to the measured pipe.
+- layout-templates §Surface: cli → Primary screens requires that the `escher-session mcp` role be `mcp` alone, with any other shape after it a usage error. It writes protocol lines only on stdout, uncoloured with no ESC byte. It lists the eleven verbs as tools in table order, `help` last, and boots a lean task in process on a `start` tool call through the same boot `main` hands to the command line. Its end writes nothing on stdout. Whether the swapped pipe hands the client exactly this invocation is research's question.
+- layout-templates §Surface: desktop-native → Primary screens requires the headless stand to skip Home and mount one lean task (Counter, FlightBooker, Timer, Crud) in TaskShell. The mount is `main#main > #task-shell` with `#task-header > #back-btn + #task-title` above `#task-body`, at the pinned 800 × 600, scale 1.0, Light viewport with bundled DejaVu Sans. The `mcp` role, as a consumer of that mount, adds no markup, id, class, style, wrapper or order.
+- layout-templates §Surface: desktop-native → Primary screens records each lean task's controls and value displays by author `id`, and those ids are the stable element ids a cold agent's calls and its check would name. Examples: `counter-value` · `counter-increment`, the `flight-*` ids, the `timer-*` ids, the `crud-*` ids, and the rows `crud-person-{person.id}`. Ids add no class, style, wrapper or order, and no task CSS selects by them.
+- layout-templates §Surface: desktop-native → Primary screens records TaskShell's header as back button, title and spacer. Any resolution of CARRY 3 (`task-header-spacer` refused `covered`) that moves, removes or re-attributes the spacer is a stand markup change against that row. A rewording of the cause leaves the row alone.
+- layout-templates §Surface: desktop-native → IA notes records the CRUD list as the stand's nested scroller. `crud-list` clips its rows. After twelve Creates, a `click` on the last row is refused `off-screen` and a driver `scroll` brings the row inside the list. A CRUD task given to the cold agent can reach this, so it is a legitimate path and not a wrong call by layout.
+- layout-templates §Surface: desktop-native → Primary screens records CRUD's Tab sequence as `back-btn` · `crud-filter` · `crud-list` · `crud-name` · `crud-surname` · `crud-create`, six stops. The chunk adds no focusable element, so the sequence stays.
+
+## Patterns to follow
+- An agent-invocable script carries JSON lines on stdout, usage on stderr with stdout empty, a raw log under `target/<tool>/` and a `.ps1` pass-through, as `scripts/agent-run.sh` and `scripts/cold-agent.sh` both read (per layout-templates §Surface: cli → Primary screens).
+- A stand change that serves the driver is made by attributes alone, adding no element, class, style, wrapper or order. Each stand-markup row since 2026-10-10 follows this (per layout-templates §Surface: desktop-native → Primary screens).
+- A new consumer of the stand boot (host role, `mcp` role) reuses `seven_guis::stand` and reads as a fresh boot, so the TaskShell mount and the pinned viewport hold after commands (per layout-templates §Surface: desktop-native → Primary screens).
+
+## Anti-patterns to avoid
+- Reshaping the stand (wrappers, reordering, new ids or classes) to make a cold agent's run or its check easier. The stand rows admit attribute-only changes (per layout-templates §Surface: desktop-native → Primary screens).
+- Anything on the `mcp` role's stdout other than protocol lines, or anything on `cold-agent.sh`'s stdout other than JSON event lines. Usage goes to stderr with stdout empty (per layout-templates §Surface: cli → Primary screens).
+
+## Contract bindings
+- cli ↔ tests: `cold-agent.sh`'s exit grammar and its event and verdict schema live in test-plan §3, and the layout row defers to them. The `escher-session` session contract lives in test-plan §3 → Session lifecycle (per layout-templates §Surface: cli → Primary screens).
+- TaskShell header spacer ↔ driver refusal schema: CARRY 3's `covered` reading on `task-header-spacer` is a cause text in `packages/escher-driver/src/refusal.rs`, and the spacer is a layout row. Deciding one moves the other only if the spacer's markup changes (per layout-templates §Surface: desktop-native → Primary screens).
+- Focus order ↔ a11y SC 2.4.3: the stand's Tab sequences are asserted by `stand_keyboard`, and the chunk must leave them unchanged (per layout-templates §Surface: desktop-native → Primary screens).
+
+## Acceptance criteria contributions
+- (layouts) `cold-agent.sh` with a bad verb or a task outside its new task set prints usage on stderr, leaves stdout empty and exits 2, before any precondition. The usage line names the stand task(s) that replace `counter` (per layout-templates §Surface: cli → Primary screens).
+- (layouts) Every `cold-agent.sh` verb's stdout parses as JSON lines only, and the raw transcript lands in `target/cold-agent/transcript.jsonl` (per layout-templates §Surface: cli → Primary screens).
+- (layouts) The diff touches no stand markup (`examples/seven_guis/src/app.rs`, `examples/seven_guis/src/tasks/*.rs`) beyond an attribute-only change with a recorded reason. The TaskShell mount, the lean tasks' author ids and CRUD's six-stop Tab sequence stay as recorded (per layout-templates §Surface: desktop-native → Primary screens).
+- (layouts) The client is handed the server as `escher-session mcp`, `mcp` alone (per layout-templates §Surface: cli → Primary screens).

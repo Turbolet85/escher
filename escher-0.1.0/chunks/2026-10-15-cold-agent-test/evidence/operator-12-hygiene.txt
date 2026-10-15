@@ -1,0 +1,9 @@
+Operator entry 12, fired AS WRITTEN by the operator pass, before the pre-CI commit (2026-10-15):
+
+$ python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene
+gate v1.17 · 383c6f7b
+root . · case exact · planes rust · base HEAD (no --marker)
+control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive
+hygiene: clean — read 85 (runs 69 · evidence 7 · inputs 9) · trails 15 not read · copies 7 not read by P1 — 0 host paths kept · binary 0 not read by P1
+
+exit 0 · expect ['exit 0', 'contains hygiene: clean'] — both held.

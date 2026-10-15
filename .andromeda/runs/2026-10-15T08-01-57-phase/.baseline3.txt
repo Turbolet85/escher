@@ -1,0 +1,18 @@
+gate v1.17 · 383c6f7b
+root . · marker 2026-10-15-cold-agent-test · entries 14
+previous 2026-10-14-quality-gates · trails 136 run dirs · firings 59 (green 51) · other root 0 · unreadable 0
+  1 lint        new (key) · bash -n scripts/cold-agent.sh
+  2 unit        new (key) · python3 -m unittest discover -s .github/scripts -p test_co… (69 chars)
+  3 probe       new (key) · test ! -e scripts/cold_agent_stub.py
+  4 probe       new (key) · grep -c -E 'socket|TcpListener|bind\(|listen\(|http\.serve… (128 chars)
+  5 probe       new (key) · git diff --name-only 01297a12af19946fe1d213cc8d549907ccb71… (127 chars)
+  6 integration new (key) · bash .github/scripts/ci-leg.sh ci-scripts
+  7 lint        seen green 2026-10-15T07:42:20Z #14 (wrap) · bash .github/scripts/ci-leg.sh fast
+  8 lint        seen green 2026-10-15T07:42:20Z #15 (wrap) · bash .github/scripts/ci-leg.sh doc
+  9 probe       leg operator — exempt · claude --version
+ 10 e2e         leg operator — exempt · cargo build --locked -p seven_guis --bin escher-session &&… (95 chars)
+ 11 probe       new (key) · grep -c '"outcome": "passed"' escher-0.1.0/chunks/2026-10-… (103 chars)
+ 12 probe       leg operator — exempt · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)
+ 13 probe       leg operator — exempt · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+ 14 probe       leg operator — exempt · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)
+entries 14 · seen green 2 · not seen 0 · new (key) 7 · leg 5

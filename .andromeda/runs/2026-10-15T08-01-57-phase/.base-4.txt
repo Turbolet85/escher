@@ -1,0 +1,22 @@
+gate v1.17 · 383c6f7b
+shell /usr/bin/bash (from $SHELL; -c, non-login)
+root . · marker 2026-10-15-cold-agent-test · entries 14
+logs $TMPDIR/andromeda-gate/2026-10-15-cold-agent-test/phase-2026-10-15T08-01-57 · bound: GNU timeout
+delta docs 51 · unmapped 5
+walk-class 0 marked (an unmarked walker reads as none)
+prose L172-179: Every gate is one entry below. No gate but the `operator` live entry may start a model ses… (863 chars)
+  1 lint        not run — excluded · bash -n scripts/cold-agent.sh
+  2 unit        not run — excluded · python3 -m unittest discover -s .github/scripts -p test_co… (69 chars)
+  3 probe       not run — excluded · test ! -e scripts/cold_agent_stub.py
+  4 probe       green · exit 1 · 0.0s · 2 B → 4.log · grep -c -E 'socket|TcpListener|bind\(|listen\(|http\.serve… (128 chars)
+  5 probe       not run — excluded · git diff --name-only 01297a12af19946fe1d213cc8d549907ccb71… (127 chars)
+  6 integration not run — excluded · bash .github/scripts/ci-leg.sh ci-scripts
+  7 lint        not run — excluded · bash .github/scripts/ci-leg.sh fast
+  8 lint        not run — excluded · bash .github/scripts/ci-leg.sh doc
+  9 probe       not run — excluded · claude --version
+ 10 e2e         not run — excluded · cargo build --locked -p seven_guis --bin escher-session &&… (95 chars)
+ 11 probe       not run — excluded · grep -c '"outcome": "passed"' escher-0.1.0/chunks/2026-10-… (103 chars)
+ 12 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)
+ 13 probe       not run — excluded · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+ 14 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)
+entries 14 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 13

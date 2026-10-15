@@ -1,0 +1,36 @@
+[
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "8fc13695",
+"ts": "2026-10-15T08:05:17Z",
+"argv": [
+"route.py",
+"promote",
+"--root",
+".",
+"--chunk",
+"2026-10-15-cold-agent-test",
+"--expect-prefix",
+"Cold-agent test",
+"--record-file",
+".andromeda/runs/2026-10-15T08-01-57-phase/master-record.txt",
+"--run-dir",
+".andromeda/runs/2026-10-15T08-01-57-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"stamp escher-0.1.0/working-route.md:100 - [2026-10-15-cold-agent-test]",
+"record master-route.md:53 - appended under `## escher-0.1.0`",
+"promoted 2026-10-15-cold-agent-test - escher-0.1.0/working-route.md:100 frozen - master record appended"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.1.0/working-route.md",
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+}
+]

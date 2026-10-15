@@ -1,0 +1,14 @@
+warning: variant `Intrinsic` is never constructed
+   --> packages/blitz-paint/src/render/background.rs:789:5
+    |
+783 | enum BackgroundSizeComputeMode {
+    |      ------------------------- variant in this enum
+...
+789 |     Intrinsic {
+    |     ^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `blitz-paint` (lib) generated 1 warning
+   Compiling seven_guis v0.1.0 (examples/seven_guis)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.71s

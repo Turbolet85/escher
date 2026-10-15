@@ -46,3 +46,6 @@
 - recurrence-despite-learning: session-learnings.md, a bare-number count pattern matching citation digits. It recurred at P1's site sweep.
 - recurrence-despite-learning: session-learnings.md, `gh run view --log` colour codes as literal text. It recurred at implement.
 - Each remedy is a check, not a second entry. Review with `/andromeda-wrap-session --review` if a deferred one should be applied.
+
+## Session End Status
+Completed normally at 2026-10-15 11:12:56

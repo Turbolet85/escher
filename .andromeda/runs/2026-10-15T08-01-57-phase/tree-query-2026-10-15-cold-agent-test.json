@@ -1,0 +1,183 @@
+[
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'serve_mcp' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 12,
+"result": [
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.3 cli/",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 15
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.3 cli/run().",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 350
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.3 crate/",
+"file": "packages/escher-driver/src/lib.rs",
+"line": 121
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.3 mcp/tests/exchange().",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 733
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.3 mcp/tests/a_line_is_read_whole_across_reads_and_an_unended_last_line_is_one().",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 839
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.3 mcp/tests/a_line_is_read_whole_across_reads_and_an_unended_last_line_is_one().",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 853
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.3 crate/",
+"file": "tests/blitz-tests/tests/stand_mcp_masked.rs",
+"line": 13
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.3 a_password_typed_over_mcp_reads_the_mask_and_never_the_typed_text().",
+"file": "tests/blitz-tests/tests/stand_mcp_masked.rs",
+"line": 96
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.3 crate/",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"line": 30
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.3 serve().",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"line": 85
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.3 every_cause_a_tool_call_reaches_is_served_with_its_remedy().",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"line": 497
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.3 every_cause_a_tool_call_reaches_is_served_with_its_remedy().",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"line": 526
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT symbol, crate, kind, file, def_line FROM symbol WHERE name = 'Covered' AND kind <> 'meta'",
+"rows": 1,
+"result": [
+{
+"symbol": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"crate": "escher-driver",
+"kind": "type",
+"file": "packages/escher-driver/src/refusal.rs",
+"def_line": 24
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee, file, line FROM refs WHERE callee_name = 'Covered' ORDER BY file, line",
+"rows": 18,
+"result": [
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 717
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 718
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 363
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "packages/escher-driver/src/json.rs",
+"line": 675
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 41
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 56
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 76
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "packages/escher-driver/src/refusal.rs",
+"line": 110
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "tests/blitz-tests/tests/stand_act_ids.rs",
+"line": 61
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "tests/blitz-tests/tests/stand_act_ids.rs",
+"line": 63
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "tests/blitz-tests/tests/stand_act_ids.rs",
+"line": 66
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "tests/blitz-tests/tests/stand_act_ids.rs",
+"line": 68
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "tests/blitz-tests/tests/stand_act_obstructed.rs",
+"line": 278
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "tests/blitz-tests/tests/stand_act_obstructed.rs",
+"line": 287
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "tests/blitz-tests/tests/stand_act_obstructed.rs",
+"line": 603
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "tests/blitz-tests/tests/stand_act_spans.rs",
+"line": 679
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"line": 511
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.3 refusal/Cause#Covered#",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"line": 514
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

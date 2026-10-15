@@ -1,0 +1,108 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-15T09:11:49Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.1.0",
+"--run-dir",
+".andromeda/runs/2026-10-15T08-01-57-phase",
+"--marker",
+"2026-10-15-cold-agent-test"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 16/17 · deferred 0 · planned 1 · implemented 0 · unclaimed 1",
+"unclaimed: v010-15",
+"claimed-unfinished: none",
+"done-test: NO — 1 not verified|deferred · unclaimed 1",
+"chunks referenced: 11 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-15T09:11:59Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-15",
+"--chunk",
+"2026-10-15-cold-agent-test",
+"--acceptance-file",
+".andromeda/runs/2026-10-15T08-01-57-phase/acceptance-v010-15.md",
+"--run-dir",
+".andromeda/runs/2026-10-15T08-01-57-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v010-15 → chunk 2026-10-15-cold-agent-test (was null; status planned kept)",
+"acceptance: A fresh agent with no prior context, given only the tool, completes a … (154 chars)",
+"         → One live run of `bash scripts/cold-agent.sh run stand` on the operator… (1230 chars)",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 0"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-15",
+"chunk": null,
+"status": "planned",
+"method": "dynamic-external",
+"ref": "null",
+"acceptance": "A fresh agent with no prior context, given only the tool, completes a stand task and writes a check that passes; the run… (154 chars)",
+"notes_chars": 923
+},
+"after": {
+"id": "v010-15",
+"chunk": "2026-10-15-cold-agent-test",
+"status": "planned",
+"method": "dynamic-external",
+"ref": "null",
+"acceptance": "One live run of `bash scripts/cold-agent.sh run stand` on the operator host (the founder's one run, at most $3, claude-o… (1230 chars)",
+"notes_chars": 923
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-15T09:11:59Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-15-cold-agent-test",
+"--plan",
+"escher-0.1.0/chunks/2026-10-15-cold-agent-test/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-15T08-01-57-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-15-cold-agent-test: 1 · ## Acceptance Criteria: line 295, 28 lines",
+"v010-15: cited in ## Acceptance Criteria (line 300)",
+"pool: unclaimed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

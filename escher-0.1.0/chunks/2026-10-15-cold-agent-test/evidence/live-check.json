@@ -1,0 +1,235 @@
+[
+  {
+    "tool": "start",
+    "arguments": {
+      "app": "counter"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "counter-increment"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "counter-increment"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "counter-increment"
+    }
+  },
+  {
+    "tool": "snapshot",
+    "expect": [
+      "Paragraph \"3\" id=\"counter-value\""
+    ]
+  },
+  {
+    "tool": "stop"
+  },
+  {
+    "tool": "start",
+    "arguments": {
+      "app": "flight-booker"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "flight-return"
+    }
+  },
+  {
+    "tool": "type",
+    "arguments": {
+      "id": "flight-start",
+      "text": "24.12.2026"
+    }
+  },
+  {
+    "tool": "type",
+    "arguments": {
+      "id": "flight-return-date",
+      "text": "31.12.2026"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "flight-book"
+    }
+  },
+  {
+    "tool": "snapshot",
+    "expect": [
+      "Booked return flight: 24.12.2026 → 31.12.2026",
+      "value=\"24.12.2026\"",
+      "value=\"31.12.2026\""
+    ]
+  },
+  {
+    "tool": "stop"
+  },
+  {
+    "tool": "start",
+    "arguments": {
+      "app": "timer"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "timer-duration"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "advance",
+    "arguments": {
+      "ms": 12000
+    }
+  },
+  {
+    "tool": "snapshot",
+    "expect": [
+      "Elapsed: 10.0s",
+      "value=\"10\"",
+      "Unknown \"10.0s\" id=\"timer-duration-value\""
+    ]
+  },
+  {
+    "tool": "stop"
+  },
+  {
+    "tool": "start",
+    "arguments": {
+      "app": "crud"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "crud-person-2"
+    }
+  },
+  {
+    "tool": "type",
+    "arguments": {
+      "id": "crud-surname",
+      "text": "Tischler"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "crud-update"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "crud-person-0"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "crud-delete"
+    }
+  },
+  {
+    "tool": "type",
+    "arguments": {
+      "id": "crud-name",
+      "text": "Ada"
+    }
+  },
+  {
+    "tool": "type",
+    "arguments": {
+      "id": "crud-surname",
+      "text": "Lovelace"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "crud-create"
+    }
+  },
+  {
+    "tool": "snapshot",
+    "expect": [
+      "ListBoxOption \"Lovelace, Ada\"",
+      "ListBoxOption \"Tischler, Roman\"",
+      "ListBoxOption \"Mustermann, Max\""
+    ]
+  },
+  {
+    "tool": "stop"
+  }
+]

@@ -1,18 +1,30 @@
 #!/usr/bin/env bash
-# The cold-agent run pipe: starts a fresh agent session whose only tools are the stub's
-# (scripts/cold_agent_stub.py), gives it one task, captures the session as a stream-json transcript, counts its
-# wrong calls from the stub's own call log and writes a verdict. Four verbs, each printing JSON lines and exiting
-# 0 success · 1 the verb ran and failed · 2 usage · 3 a precondition is unmet. Run it from the repository root.
-# State lives in target/cold-agent/ only: verdict.json, events.jsonl, transcript.jsonl, client.log, calls.jsonl and
-# stub-state.json. The session runs from a per-run mktemp -d directory whose path names nothing, removed after the
-# run. scripts/cold-agent.ps1 delegates here on Windows.
+# The cold-agent run pipe: starts a fresh agent session whose only tools are the driver's own MCP server (the built
+# `escher-session mcp`), gives it the stand's four lean tasks, captures the session as a stream-json transcript,
+# counts its wrong calls from the server's own tool_call span lines, reads completion from the tool's own snapshot
+# answers, replays the check the agent wrote on a fresh server and writes a verdict. Four verbs, each printing JSON
+# lines and exiting 0 success · 1 the verb ran and failed · 2 usage · 3 a precondition is unmet. Run it from the
+# repository root after `cargo build --locked -p seven_guis --bin escher-session`. State lives in target/cold-agent/
+# only: verdict.json, events.jsonl, transcript.jsonl, client.log, server.log and check.json. The session runs from a
+# per-run mktemp -d directory whose path names nothing, removed after the run. scripts/cold-agent.ps1 delegates here
+# on Windows.
 set -euo pipefail
 
 VERBS=(run status cleanup logs)
-TASKS=(counter)
+TASKS=(stand)
 STATE_DIR=target/cold-agent
-STUB="$(dirname "${BASH_SOURCE[0]}")/cold_agent_stub.py"
-COUNTER_PROMPT="Operate the counter through your tools until its display reads 3, then reply with the display's final reading."
+BINARY=target/debug/escher-session
+read -r -d '' STAND_PROMPT <<'PROMPT' || true
+Use only your tools. The stand has four apps: counter, flight booker, timer and CRUD. Work on one app at a time: start it, reach its goal, take a snapshot of its final screen, then stop it before you start the next app.
+
+The goals:
+1. Counter: the display reads 3.
+2. Flight booker: a return flight is booked, departing 24.12.2026 and returning 31.12.2026.
+3. Timer: the duration is set to 10 seconds, and time is passed until the elapsed time reads 10.0s.
+4. CRUD: the person Ada Lovelace is added, Roman Tisch's surname is changed to Tischler, and Hans Emil is deleted.
+
+Finally, reply with a check as the LAST thing in your reply: one fenced ```json block holding a JSON array of steps, each {"tool": <a tool name without its server prefix>, "arguments": {...}, "expect": [texts]} ("arguments" and "expect" optional). Run in order on a fresh server, the steps must redo all four tasks from fresh sessions, starting and stopping each app in turn; each app's part ends with a snapshot step whose "expect" lists texts from that screen which prove the task is done, before that app is stopped.
+PROMPT
 
 usage() {
     echo "usage: $0 <verb> [task]" >&2
@@ -21,20 +33,34 @@ usage() {
     exit 2
 }
 
-# Every event and the verdict are encoded by python's json module. No transcript text, tool argument, tool result
-# or final reply is copied into either: the verdict carries counts and identities only.
+# Every event and the verdict are encoded by python's json module. No transcript text, tool argument, tool result,
+# final reply or check step is copied into either: the verdict carries counts, booleans and closed words only.
 read -r -d '' EVENTS_PY <<'PY' || true
-import datetime, json, os, sys
+import datetime, json, os, queue, re, subprocess, sys, threading
 
 STATE = "target/cold-agent"
 EVENTS = os.path.join(STATE, "events.jsonl")
 VERDICT = os.path.join(STATE, "verdict.json")
 TRANSCRIPT = os.path.join(STATE, "transcript.jsonl")
-CALLS = os.path.join(STATE, "calls.jsonl")
-STUB_STATE = os.path.join(STATE, "stub-state.json")
-STUB_PREFIX = "mcp__stub__"
-STUB_TOOLS = {STUB_PREFIX + t for t in ("list", "read", "press")}
-TARGET_COUNT = 3
+SERVER_LOG = os.path.join(STATE, "server.log")
+CHECK = os.path.join(STATE, "check.json")
+PREFIX = "mcp__escher__"
+VERBS = ("snapshot", "click", "type", "press", "advance", "scroll", "screenshot", "start", "status", "stop", "help")
+TOOLS = {PREFIX + verb for verb in VERBS}
+ACTING = {"click", "type", "press", "advance", "scroll"}
+SPACER = "task-header-spacer"
+# Each app's done state as its snapshot text reads it: every `contains` text present, no `lacks` text.
+DONE = {
+    "counter": (['Paragraph "3" id="counter-value"'], []),
+    "flight-booker": (['Paragraph "Booked return flight: 24.12.2026 → 31.12.2026" id="flight-booked"'], []),
+    "timer": (['Paragraph "Elapsed: 10.0s" id="timer-elapsed"', 'Unknown "10.0s" id="timer-duration-value"'], []),
+    "crud": (['ListBoxOption "Lovelace, Ada"', 'ListBoxOption "Tischler, Roman"'], ['id="crud-person-0"']),
+}
+APPS = tuple(DONE)
+MAX_CHECK_BYTES = 65536
+MAX_CHECK_STEPS = 400
+REPLY_BOUND = 30
+FENCE = re.compile(r"```json[ \t]*\r?\n(.*?)```", re.DOTALL)
 
 
 def now():
@@ -79,6 +105,14 @@ def blocks(record, kind):
     return [b for b in content if isinstance(b, dict) and b.get("type") == kind] if isinstance(content, list) else []
 
 
+def text_of(content):
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        return "".join(b["text"] for b in content if isinstance(b, dict) and isinstance(b.get("text"), str))
+    return ""
+
+
 def strings(value):
     if isinstance(value, str):
         return [value]
@@ -96,12 +130,12 @@ def isolated(init, root_name):
     named = root_name.casefold()
     return (
         isinstance(init.get("tools"), list)
-        and set(init["tools"]) == STUB_TOOLS
-        and len(init["tools"]) == len(STUB_TOOLS)
+        and set(init["tools"]) == TOOLS
+        and len(init["tools"]) == len(TOOLS)
         and isinstance(servers, list)
         and len(servers) == 1
         and isinstance(servers[0], dict)
-        and servers[0].get("name") == "stub"
+        and servers[0].get("name") == "escher"
         and servers[0].get("status") == "connected"
         and init.get("skills") == []
         and init.get("slash_commands") == []
@@ -111,7 +145,167 @@ def isolated(init, root_name):
     )
 
 
-def verdict(task, client_exit, root_name):
+def span_counts():
+    lines = []
+    try:
+        with open(SERVER_LOG, encoding="utf-8", errors="replace") as f:
+            lines = [line for line in f if ' span="tool_call" ' in line]
+    except OSError:
+        pass
+    refused = sum(1 for line in lines if ' ending="refused" ' in line)
+    errors = sum(1 for line in lines if ' ending="error" ' in line)
+    return len(lines), refused, errors
+
+
+def done(app, text):
+    contains, lacks = DONE[app]
+    return all(t in text for t in contains) and not any(t in text for t in lacks)
+
+
+def tasks_met(transcript, uses):
+    started = None
+    last = {}
+    for record in transcript:
+        if record.get("type") != "user":
+            continue
+        for block in blocks(record, "tool_result"):
+            name, arguments = uses.get(block.get("tool_use_id"), (None, {}))
+            accepted = block.get("is_error") is not True
+            if name == PREFIX + "start" and accepted:
+                app = arguments.get("app")
+                started = app if isinstance(app, str) and app in DONE else None
+            elif name == PREFIX + "stop" and accepted:
+                started = None
+            elif name == PREFIX + "snapshot" and started is not None:
+                last[started] = text_of(block.get("content"))
+    return [app for app in APPS if app in last and done(app, last[app])]
+
+
+def extract_check(result):
+    reply = (result or {}).get("result")
+    found = FENCE.findall(reply) if isinstance(reply, str) else []
+    if not found or len(found[-1].encode("utf-8")) > MAX_CHECK_BYTES:
+        return None
+    try:
+        check = json.loads(found[-1])
+    except ValueError:
+        return None
+    return check if isinstance(check, list) else None
+
+
+def valid_step(step):
+    return (
+        isinstance(step, dict)
+        and set(step) <= {"tool", "arguments", "expect"}
+        and step.get("tool") in VERBS
+        and isinstance(step.get("arguments", {}), dict)
+        and isinstance(step.get("expect", []), list)
+        and all(isinstance(t, str) for t in step.get("expect", []))
+    )
+
+
+class Server:
+    """The built server as a stdio child, every reply read under REPLY_BOUND; closed by kill and reap."""
+
+    def __init__(self, binary):
+        self.proc = subprocess.Popen([binary, "mcp"], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                                     stderr=subprocess.DEVNULL, text=True, encoding="utf-8", errors="replace")
+        self.lines = queue.Queue()
+        threading.Thread(target=self.pump, daemon=True).start()
+        self.next_id = 0
+
+    def pump(self):
+        for line in self.proc.stdout:
+            self.lines.put(line)
+        self.lines.put(None)
+
+    def send(self, frame):
+        self.proc.stdin.write(json.dumps(frame) + "\n")
+        self.proc.stdin.flush()
+
+    def rpc(self, method, params):
+        self.next_id += 1
+        self.send({"jsonrpc": "2.0", "id": self.next_id, "method": method, "params": params})
+        while True:
+            line = self.lines.get(timeout=REPLY_BOUND)
+            if line is None:
+                raise EOFError("the server closed its output")
+            try:
+                frame = json.loads(line)
+            except ValueError:
+                continue
+            if isinstance(frame, dict) and frame.get("id") == self.next_id:
+                return frame.get("result")
+
+    def close(self):
+        try:
+            self.proc.stdin.close()
+        except OSError:
+            pass
+        self.proc.kill()
+        self.proc.wait()
+
+
+def replay(binary, steps):
+    """Each step's (isError, answer text) on a fresh server, or None when the server failed to answer."""
+    server = Server(binary)
+    try:
+        server.rpc("initialize", {"protocolVersion": "2025-06-18", "capabilities": {},
+                                  "clientInfo": {"name": "cold-agent-replay", "version": "1"}})
+        server.send({"jsonrpc": "2.0", "method": "notifications/initialized"})
+        answers = []
+        for step in steps:
+            result = server.rpc("tools/call", {"name": step["tool"], "arguments": step.get("arguments", {})})
+            if not isinstance(result, dict):
+                return None
+            answers.append((result.get("isError") is not False, text_of(result.get("content"))))
+        return answers
+    except (OSError, ValueError, EOFError, queue.Empty):
+        return None
+    finally:
+        server.close()
+
+
+def started_apps(check):
+    started, apps = None, []
+    for step in check:
+        if step["tool"] == "start":
+            app = step.get("arguments", {}).get("app")
+            started = app if isinstance(app, str) and app in DONE else None
+        elif step["tool"] == "stop":
+            started = None
+        apps.append(started)
+    return apps
+
+
+def judge_check(check, binary):
+    """(check_passed, check_can_fail, replayed) for a parsed check."""
+    if len(check) > MAX_CHECK_STEPS or not all(valid_step(step) for step in check):
+        return False, False, False
+    answers = replay(binary, check)
+    apps = started_apps(check)
+    passed = (
+        answers is not None
+        and all(not is_error and all(t in answer for t in step.get("expect", []))
+                for step, (is_error, answer) in zip(check, answers))
+        and any(step["tool"] in ACTING for step in check)
+        and any(step.get("expect") for step in check)
+        and set(APPS) <= {app for app in apps if app is not None}
+    )
+    kept = [i for i, step in enumerate(check) if step["tool"] not in ACTING]
+    ablated = replay(binary, [check[i] for i in kept])
+    can_fail = False
+    if ablated is not None:
+        answer_of = dict(zip(kept, (answer for _, answer in ablated)))
+        can_fail = all(
+            any(t not in answer_of[i] for i, step in enumerate(check)
+                if apps[i] == app and step["tool"] == "snapshot" for t in step.get("expect", []))
+            for app in APPS
+        )
+    return bool(passed), can_fail, True
+
+
+def verdict(task, client_exit, root_name, binary):
     transcript = json_lines(TRANSCRIPT)
     init = next((r for r in transcript if r.get("type") == "system" and r.get("subtype") == "init"), None)
     result = next((r for r in reversed(transcript) if r.get("type") == "result"), None)
@@ -119,22 +313,31 @@ def verdict(task, client_exit, root_name):
     for record in transcript:
         if record.get("type") == "assistant":
             for block in blocks(record, "tool_use"):
-                uses[block.get("id")] = block.get("name")
+                arguments = block.get("input")
+                uses[block.get("id")] = (block.get("name"), arguments if isinstance(arguments, dict) else {})
     results = {}
     for record in transcript:
         if record.get("type") == "user":
             for block in blocks(record, "tool_result"):
                 results[block.get("tool_use_id")] = block.get("is_error") is True
-    calls = json_lines(CALLS)
-    refused = sum(1 for c in calls if c.get("outcome") == "refused")
-    stub_uses = [i for i, name in uses.items() if isinstance(name, str) and name.startswith(STUB_PREFIX)]
-    stub_errors = sum(1 for i in stub_uses if results.get(i))
+    server_calls, refused, errors = span_counts()
+    escher_uses = [i for i, (name, _) in uses.items() if isinstance(name, str) and name.startswith(PREFIX)]
+    escher_errors = sum(1 for i in escher_uses if results.get(i))
+    foreign = len(uses) - len(escher_uses)
     denials = result.get("permission_denials") if result else None
     denials = denials if isinstance(denials, list) else []
-    state = load_json(STUB_STATE)
-    final_count = state.get("count") if isinstance(state, dict) else None
+    check = extract_check(result)
+    if check is not None:
+        with open(CHECK, "w", encoding="utf-8", newline="\n") as f:
+            json.dump(check, f, indent=2, ensure_ascii=False)
+            f.write("\n")
+        check_passed, check_can_fail, replayed = judge_check(check, binary)
+    else:
+        check_passed, check_can_fail, replayed = False, False, False
+    check_steps = check if check is not None else []
     usage = (result or {}).get("usage") or {}
     succeeded = result is not None and result.get("subtype") == "success" and result.get("is_error") is False
+    met = tasks_met(transcript, uses)
     v = {
         "task": task,
         "client_exit": client_exit,
@@ -143,11 +346,19 @@ def verdict(task, client_exit, root_name):
         "client_version": init.get("claude_code_version") if init else None,
         "model": init.get("model") if init else None,
         "tool_calls": len(uses),
-        "wrong_calls": refused + sum(1 for n in uses.values() if not (isinstance(n, str) and n.startswith(STUB_PREFIX)))
-        + len(denials),
+        "server_tool_calls": server_calls,
+        "refused_calls": refused,
+        "error_calls": errors,
+        "wrong_calls": refused + errors + foreign + len(denials),
         "transcript_errors": sum(1 for e in results.values() if e),
-        "counts_agree": stub_errors == refused and len(stub_uses) == len(calls),
-        "final_count": final_count,
+        "counts_agree": server_calls == len(escher_uses) and refused + errors == escher_errors,
+        "spacer_calls": sum(1 for i in escher_uses if uses[i][1].get("id") == SPACER),
+        "tasks_met": met,
+        "check_steps": len(check_steps),
+        "check_expects": sum(len(s["expect"]) for s in check_steps
+                             if isinstance(s, dict) and isinstance(s.get("expect"), list)),
+        "check_passed": check_passed,
+        "check_can_fail": check_can_fail,
         "num_turns": (result or {}).get("num_turns"),
         "duration_ms": (result or {}).get("duration_ms"),
         "cost_usd": (result or {}).get("total_cost_usd"),
@@ -168,8 +379,15 @@ def verdict(task, client_exit, root_name):
         reasons.append("counts-disagree")
     if v["tool_calls"] < 1:
         reasons.append("no-tool-call")
-    if final_count != TARGET_COUNT:
+    if len(met) != len(APPS):
         reasons.append("task-unmet")
+    if check is None:
+        reasons.append("no-check")
+    else:
+        if not check_passed:
+            reasons.append("check-failed")
+        if replayed and not check_can_fail:
+            reasons.append("check-cannot-fail")
     v["outcome"] = "failed" if reasons else "passed"
     v["reasons"] = reasons
     return v
@@ -177,12 +395,10 @@ def verdict(task, client_exit, root_name):
 
 def main(verb, *args):
     if verb == "config":
-        session = args[0]
-        config = {"mcpServers": {"stub": {"type": "stdio", "command": "python3", "args": [
-            os.path.join(session, "stub.py"),
-            "--state", os.path.join(session, "stub-state.json"),
-            "--calls", os.path.join(session, "calls.jsonl"),
-        ]}}}
+        session, binary, server_log = args
+        server = 'exec env RUST_LOG=info "$1" mcp 2>"$2"'
+        config = {"mcpServers": {"escher": {"type": "stdio", "command": "sh",
+                                            "args": ["-c", server, "sh", binary, server_log]}}}
         with open(os.path.join(session, "mcp.json"), "w", encoding="utf-8", newline="\n") as f:
             json.dump(config, f)
         return 0
@@ -190,8 +406,8 @@ def main(verb, *args):
         emit({"event": "run.start", "ts": now(), "task": args[0]})
         return 0
     if verb == "run-end":
-        task, client_exit, root_name = args[0], int(args[1]), args[2]
-        v = verdict(task, client_exit, root_name)
+        task, client_exit, root_name, binary = args[0], int(args[1]), args[2], args[3]
+        v = verdict(task, client_exit, root_name, binary)
         v["ts"] = now()
         with open(VERDICT, "w", encoding="utf-8", newline="\n") as f:
             json.dump(v, f, indent=2)
@@ -240,30 +456,29 @@ run)
             exit 3
         fi
     done
+    if [[ ! -f "$BINARY" || ! -x "$BINARY" ]]; then
+        echo "cold-agent: $BINARY is not built — run \`cargo build --locked -p seven_guis --bin escher-session\` first" >&2
+        exit 3
+    fi
     root_name=$(basename "$(git rev-parse --show-toplevel 2>/dev/null || pwd)")
     rm -rf "$STATE_DIR"
     mkdir -p "$STATE_DIR"
     : >"$STATE_DIR/events.jsonl"
     state="$PWD/$STATE_DIR"
+    binary="$PWD/$BINARY"
     session=$(mktemp -d)
     trap 'rm -rf "$session"' EXIT
-    cp "$STUB" "$session/stub.py"
-    py config "$session"
+    py config "$session" "$binary" "$state/server.log"
     py run-start "$task"
     client_exit=0
     (
         cd "$session"
-        timeout 600 claude -p "$COUNTER_PROMPT" --output-format stream-json --verbose --tools "" \
-            --strict-mcp-config --mcp-config "$session/mcp.json" --allowedTools mcp__stub --setting-sources "" \
-            --disable-slash-commands --no-session-persistence --max-budget-usd 1
+        timeout 600 claude -p "$STAND_PROMPT" --output-format stream-json --verbose --tools "" \
+            --strict-mcp-config --mcp-config "$session/mcp.json" --allowedTools mcp__escher --setting-sources "" \
+            --disable-slash-commands --no-session-persistence --model claude-opus-5-5 --max-budget-usd 3
     ) </dev/null >"$state/transcript.jsonl" 2>"$state/client.log" || client_exit=$?
-    for f in calls.jsonl stub-state.json; do
-        if [[ -f "$session/$f" ]]; then
-            cp "$session/$f" "$state/$f"
-        fi
-    done
     rm -rf "$session"
-    py run-end "$task" "$client_exit" "$root_name"
+    py run-end "$task" "$client_exit" "$root_name" "$binary"
     ;;
 status)
     [[ $# -eq 1 ]] || usage
@@ -277,7 +492,7 @@ cleanup)
 logs)
     [[ $# -eq 1 ]] || usage
     if [[ ! -f "$STATE_DIR/events.jsonl" ]]; then
-        echo "cold-agent: no events — run \`$0 run counter\` first" >&2
+        echo "cold-agent: no events — run \`$0 run stand\` first" >&2
         exit 3
     fi
     cat "$STATE_DIR/events.jsonl"

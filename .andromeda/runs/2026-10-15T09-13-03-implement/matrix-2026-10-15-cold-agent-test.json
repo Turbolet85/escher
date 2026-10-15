@@ -1,0 +1,49 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-15T09:26:16Z",
+"argv": [
+"implement",
+"--dir",
+"escher-0.1.0",
+"--chunk",
+"2026-10-15-cold-agent-test",
+"--id",
+"v010-15",
+"--ref-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-15T09-13-03-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"implement v010-15 · status planned → implemented · ref escher-0.1.0/chunks/2026-10-15-cold-agent-test/evidence/live-verdict.json",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-15",
+"chunk": "2026-10-15-cold-agent-test",
+"status": "planned",
+"method": "dynamic-external",
+"ref": "null",
+"acceptance": "One live run of `bash scripts/cold-agent.sh run stand` on the operator host (the founder's one run, at most $3, claude-o… (1230 chars)",
+"notes_chars": 923
+},
+"after": {
+"id": "v010-15",
+"chunk": "2026-10-15-cold-agent-test",
+"status": "implemented",
+"method": "dynamic-external",
+"ref": "escher-0.1.0/chunks/2026-10-15-cold-agent-test/evidence/live-verdict.json",
+"acceptance": "One live run of `bash scripts/cold-agent.sh run stand` on the operator host (the founder's one run, at most $3, claude-o… (1230 chars)",
+"notes_chars": 923
+}
+}
+]
