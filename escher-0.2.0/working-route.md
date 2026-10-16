@@ -10,7 +10,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
 ### Epoch 1 — Foundation
 [2026-10-16-handler-splits-and-readme] Handler splits and README — range and activation handler arms as named functions, `parse_float` in steps; README states 0.1.0 done, 0.2.0 planned, «Escher» capitalized (v020-01)
    ↓
-File splits — escher's inline test modules out of `document.rs`, upstream body untouched; `mcp.rs`, `schema.rs` along their seams, spans unchanged (v020-01; audit M2, M3)
+[2026-10-16-file-splits] File splits — escher's inline test modules out of `document.rs`, upstream body untouched; `mcp.rs`, `schema.rs` along their seams, spans unchanged (v020-01; audit M2, M3)
    ↓
 Fast-failing mutants — the six timeout-only mutants each fail a test fast; mutation score held at 0 survivors (v020-02)
 

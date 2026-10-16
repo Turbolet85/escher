@@ -1,0 +1,30 @@
+gate v1.18 · fb28dd29
+root . · marker 2026-10-16-file-splits · entries 26
+previous 2026-10-16-handler-splits-and-readme · trails 142 run dirs · firings 44 (green 39) · other root 0 · unreadable 0
+  1 unit        new (key) · cargo test -p escher-driver --locked
+  2 unit        new (key) · cargo test -p blitz-dom --locked --lib document::
+  3 probe       new (key) · cargo test -p escher-driver --locked --lib -- --list | cmp… (136 chars)
+  4 probe       new (key) · cargo test -p blitz-dom --locked --lib -- --list | cmp - e… (129 chars)
+  5 build       new (key) · cargo build --locked -p seven_guis --bin escher-session
+  6 probe       new (key) · target/debug/escher-session help | cmp - escher-0.2.0/chun… (109 chars)
+  7 probe       new (key) · target/debug/escher-session mcp < escher-0.2.0/chunks/2026… (181 chars)
+  8 integration new (key) · cargo test -p blitz-tests --locked --test stand_mcp_tools … (135 chars)
+  9 integration new (key) · cargo test -p seven_guis --locked --test mcp_server --test… (102 chars)
+ 10 probe       new (key) · grep -c -E '^mod (changed_set_tests|font_reading_tests) \{… (94 chars)
+ 11 probe       new (key) · cmp <(git show 4f3939914e525e284a32beb91bdc97972d40c904:pa… (157 chars)
+ 12 probe       new (key) · for f in packages/escher-driver/src/mcp.rs packages/escher… (507 chars)
+ 13 probe       new (key) · git diff --name-only 4f3939914e525e284a32beb91bdc97972d40c… (221 chars)
+ 14 probe       new (key) · git ls-files --others --exclude-standard -- packages examp… (320 chars)
+ 15 probe       new (key) · ls packages/escher-driver/src/mcp.rs packages/escher-drive… (702 chars)
+ 16 probe       new (key) · ls packages/escher-driver/src/mcp.rs packages/escher-drive… (589 chars)
+ 17 probe       new (key) · ls packages/escher-driver/src/mcp/framing.rs packages/esch… (308 chars)
+ 18 probe       new (key) · grep -r -h -F -e 'tracing::info_span!(target: "escher_driv… (223 chars)
+ 19 probe       new (key) · grep -r -h -F 'info_span!' packages/escher-driver/src | wc… (61 chars)
+ 20 probe       seen green 2026-10-16T15:16:14Z #4 (wrap) · d=$(mktemp -d) && rust-code-analysis-cli -m -O json -o "$d… (284 chars)
+ 21 integration seen green 2026-10-16T15:16:14Z #13 (wrap) · bash .github/scripts/ci-leg.sh a11y
+ 22 lint        seen green 2026-10-16T15:16:14Z #14 (wrap) · bash .github/scripts/ci-leg.sh fast
+ 23 lint        seen green 2026-10-16T15:16:14Z #15 (wrap) · bash .github/scripts/ci-leg.sh doc
+ 24 probe       leg operator — exempt · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)
+ 25 probe       leg operator — exempt · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+ 26 probe       leg operator — exempt · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)
+entries 26 · seen green 4 · not seen 0 · new (key) 19 · leg 3

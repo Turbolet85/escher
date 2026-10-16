@@ -1,0 +1,36 @@
+[
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "8fc13695",
+"ts": "2026-10-16T15:52:13Z",
+"argv": [
+"route.py",
+"promote",
+"--root",
+".",
+"--chunk",
+"2026-10-16-file-splits",
+"--expect-prefix",
+"File splits",
+"--record-file",
+".andromeda/runs/2026-10-16T15-51-04-phase/master-record.txt",
+"--run-dir",
+".andromeda/runs/2026-10-16T15-51-04-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"stamp escher-0.2.0/working-route.md:13 - [2026-10-16-file-splits]",
+"record master-route.md:57 - appended under `## escher-0.2.0`",
+"promoted 2026-10-16-file-splits - escher-0.2.0/working-route.md:13 frozen - master record appended"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.2.0/working-route.md",
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+}
+]

@@ -1,0 +1,37 @@
+gate v1.18 · fb28dd29
+shell /usr/bin/bash (from $SHELL; -c, non-login)
+root . · marker 2026-10-16-file-splits · entries 26
+logs $TMPDIR/andromeda-gate/2026-10-16-file-splits/phase-2026-10-16T15-51-04 · $TMPDIR = /tmp · bound: GNU timeout
+delta docs 66
+walk-class 0 marked (an unmarked walker reads as none)
+prose L114-116: Every gate is one entry below. There is no boot smoke: the chunk changes no app and no boo… (298 chars)
+prose L118-122: The byte-identity and test-list entries read records step 1 writes before any source edit … (462 chars)
+prose L124-125: The complexity entry is the previous chunk's gate, byte-equal. It keeps v020-01's first le… (202 chars)
+prose L127-127: Every git read names the base `4f3939914e525e284a32beb91bdc97972d40c904`.
+  1 unit        not run — excluded · cargo test -p escher-driver --locked
+  2 unit        not run — excluded · cargo test -p blitz-dom --locked --lib document::
+  3 probe       not run — excluded · cargo test -p escher-driver --locked --lib -- --list | cmp… (136 chars)
+  4 probe       not run — excluded · cargo test -p blitz-dom --locked --lib -- --list | cmp - e… (129 chars)
+  5 build       not run — excluded · cargo build --locked -p seven_guis --bin escher-session
+  6 probe       not run — excluded · target/debug/escher-session help | cmp - escher-0.2.0/chun… (109 chars)
+  7 probe       not run — excluded · target/debug/escher-session mcp < escher-0.2.0/chunks/2026… (181 chars)
+  8 integration not run — excluded · cargo test -p blitz-tests --locked --test stand_mcp_tools … (135 chars)
+  9 integration not run — excluded · cargo test -p seven_guis --locked --test mcp_server --test… (102 chars)
+ 10 probe       not run — excluded · grep -c -E '^mod (changed_set_tests|font_reading_tests) \{… (94 chars)
+ 11 probe       not run — excluded · cmp <(git show 4f3939914e525e284a32beb91bdc97972d40c904:pa… (157 chars)
+ 12 probe       not run — excluded · for f in packages/escher-driver/src/mcp.rs packages/escher… (507 chars)
+ 13 probe       not run — excluded · git diff --name-only 4f3939914e525e284a32beb91bdc97972d40c… (221 chars)
+ 14 probe       not run — excluded · git ls-files --others --exclude-standard -- packages examp… (320 chars)
+ 15 probe       not run — excluded · ls packages/escher-driver/src/mcp.rs packages/escher-drive… (661 chars)
+ 16 probe       not run — excluded · ls packages/escher-driver/src/mcp.rs packages/escher-drive… (589 chars)
+ 17 probe       red · exit 1 ✗ (exit 2) · exit 2 · 0.0s · 266 B → 17.2.log · ls packages/escher-driver/src/mcp/framing.rs packages/esch… (308 chars)
+ 18 probe       not run — excluded · grep -r -h -F -e 'tracing::info_span!(target: "escher_driv… (223 chars)
+ 19 probe       not run — excluded · grep -r -h -F 'info_span!' packages/escher-driver/src | wc… (61 chars)
+ 20 probe       not run — excluded · d=$(mktemp -d) && rust-code-analysis-cli -m -O json -o "$d… (284 chars)
+ 21 integration not run — excluded · bash .github/scripts/ci-leg.sh a11y
+ 22 lint        not run — excluded · bash .github/scripts/ci-leg.sh fast
+ 23 lint        not run — excluded · bash .github/scripts/ci-leg.sh doc
+ 24 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)
+ 25 probe       not run — excluded · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+ 26 probe       not run — excluded · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)
+entries 26 · green 0 · red 1 (17) · recorded 0 · timeout 0 · not-run 25

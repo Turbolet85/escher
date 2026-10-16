@@ -1,0 +1,1527 @@
+[
+{
+"tool": "gate",
+"v": "1.19",
+"sha8": "457c1da1",
+"ts": "2026-10-16T16:57:12Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.2.0/chunks/2026-10-16-file-splits/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-16T16-56-12-implement",
+"--marker",
+"2026-10-16-file-splits",
+"--only",
+"3,4,6,7"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-16-file-splits · entries 26",
+"logs $TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 75 · unmapped 6",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L114-116: Every gate is one entry below. There is no boot smoke: the chunk changes no app and no boo… (298 chars)",
+"prose L118-122: The byte-identity and test-list entries read records step 1 writes before any source edit … (462 chars)",
+"prose L124-125: The complexity entry is the previous chunk's gate, byte-equal. It keeps v020-01's first le… (202 chars)",
+"prose L127-127: Every git read names the base `4f3939914e525e284a32beb91bdc97972d40c904`.",
+"  3 probe       green · exit 0 · 0.17s · 547 B → 3.log · cargo test -p escher-driver --locked --lib -- --list | cmp… (136 chars)",
+"  4 probe       green · exit 0 · 0.16s · 154 B → 4.log · cargo test -p blitz-dom --locked --lib -- --list | cmp - e… (129 chars)",
+"  6 probe       green · exit 0 · 0.01s · 0 B → 6.log · target/debug/escher-session help | cmp - escher-0.2.0/chun… (109 chars)",
+"  7 probe       green · exit 0 · 0.01s · 0 B → 7.log · target/debug/escher-session mcp < escher-0.2.0/chunks/2026… (181 chars)",
+"not run — excluded · 22: 1-2,5,8-26",
+"entries 26 · green 4 · red 0 · recorded 0 · timeout 0 · not-run 22"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-16-file-splits",
+"plan": "./escher-0.2.0/chunks/2026-10-16-file-splits/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/evolve-2026-10-16-handler-splits-and-readme.json",
+".claude/session-handoff.md",
+"escher-0.2.0/working-route.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/health-2026-10-16-handler-splits-and-readme.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/.reg-a11y.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/.reg-arch.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/.reg-obs.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/.reg-tests.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/a11y-history.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/a11y.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/acceptance-v020-01.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/arch-history-index.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/arch-history.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/arch.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/baseline-2.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/baseline-3.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-1.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-10.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-11.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-12.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-13.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-14.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-15.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-16.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-17.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-18.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-19.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-2.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-3.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-4.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-5.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-6.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-7.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-8.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-9.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/controls.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/design-history.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/design.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/dryrun-1.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/dryrun-2.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/evolve-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/gate-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/inputs-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/layouts-history.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/layouts.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/master-record.txt",
+".andromeda/runs/2026-10-16T15-51-04-phase/matrix-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/note-v020-01.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/obs-contracts.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/obs-history.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/obs.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/p5-card-1.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/planlint-1.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/planlint-2.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/planlint-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/q1.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/registry-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/route-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/route-no-marker.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/security-history.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/security.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/show-3.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/show-4.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/sidecar-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/tests-contracts.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/tests-history.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/tests.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/tree-query-2026-10-16-file-splits.json",
+"escher-0.2.0/chunks/2026-10-16-file-splits/plan.md",
+"escher-0.2.0/chunks/2026-10-16-file-splits/research.md",
+"escher-0.2.0/chunks/2026-10-16-file-splits/scope.md"
+]
+},
+"unmapped": [
+"escher-0.2.0/verification-matrix.json",
+"escher-0.2.0/chunks/2026-10-16-file-splits/evidence/dom-tests-before.txt",
+"escher-0.2.0/chunks/2026-10-16-file-splits/evidence/driver-tests-before.txt",
+"escher-0.2.0/chunks/2026-10-16-file-splits/evidence/help-before.json",
+"escher-0.2.0/chunks/2026-10-16-file-splits/evidence/mcp-before.jsonl",
+"escher-0.2.0/chunks/2026-10-16-file-splits/evidence/mcp-requests.jsonl"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 81,
+"problem": null
+},
+"prose": [
+{
+"from": 114,
+"to": 116,
+"text": "Every gate is one entry below. There is no boot smoke: the chunk changes no app and no boot path, and the stand checks boot the stand in process. There is no live leg. The two byte-identity entries run the built binary once per firing, read its stdout, and leave nothing running. They are not legs."
+},
+{
+"from": 118,
+"to": 122,
+"text": "The byte-identity and test-list entries read records step 1 writes before any source edit (`evidence/help-before.json`, `mcp-before.jsonl`, `mcp-requests.jsonl`, `driver-tests-before.txt`, `dom-tests-before.txt`). On the untouched tree those records are absent, so those entries baseline red. Step 1's first firing of each entry, before the edits, is its known-green control. Because the entries read records rather than produce them, none carries an `artifact`."
+},
+{
+"from": 124,
+"to": 125,
+"text": "The complexity entry is the previous chunk's gate, byte-equal. It keeps v020-01's first leg read at this chunk's wrap. The `coverage` and `stand-repeat` legs run in CI and are read through the CI entry."
+},
+{
+"from": 127,
+"to": 127,
+"text": "Every git read names the base `4f3939914e525e284a32beb91bdc97972d40c904`."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked",
+"run_sha8": "5f0bb953",
+"expect": [
+"exit 0",
+"contains test result: ok. 73 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p blitz-dom --locked --lib document::",
+"run_sha8": "6a5d7939",
+"expect": [
+"exit 0",
+"contains test result: ok. 18 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "probe",
+"run": "cargo test -p escher-driver --locked --lib -- --list | cmp - escher-0.2.0/chunks/2026-10-16-file-splits/evidence/driver-tests-before.txt",
+"run_sha8": "5c3fbb14",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/3.log",
+"bytes": 547,
+"log_sha8": "fe0edece",
+"exit": 0,
+"seconds": 0.17,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "cargo test -p blitz-dom --locked --lib -- --list | cmp - escher-0.2.0/chunks/2026-10-16-file-splits/evidence/dom-tests-before.txt",
+"run_sha8": "5b55782b",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/4.log",
+"bytes": 154,
+"log_sha8": "38e1280d",
+"exit": 0,
+"seconds": 0.16,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "build",
+"run": "cargo build --locked -p seven_guis --bin escher-session",
+"run_sha8": "e9fc8897",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "target/debug/escher-session help | cmp - escher-0.2.0/chunks/2026-10-16-file-splits/evidence/help-before.json",
+"run_sha8": "b46dbf42",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/6.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "target/debug/escher-session mcp < escher-0.2.0/chunks/2026-10-16-file-splits/evidence/mcp-requests.jsonl | cmp - escher-0.2.0/chunks/2026-10-16-file-splits/evidence/mcp-before.jsonl",
+"run_sha8": "e2fd680b",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/7.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_mcp_tools --test stand_mcp_masked --test stand_act_spans --test stand_accessibility_ids",
+"run_sha8": "8235f08d",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test mcp_server --test mcp_log --test host_log --test cli_commands",
+"run_sha8": "e8467edb",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "grep -c -E '^mod (changed_set_tests|font_reading_tests) \\{' packages/blitz-dom/src/document.rs",
+"run_sha8": "95b6d502",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "cmp <(git show 4f3939914e525e284a32beb91bdc97972d40c904:packages/blitz-dom/src/document.rs | head -n 3461) <(head -n 3461 packages/blitz-dom/src/document.rs)",
+"run_sha8": "bd8d5422",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "for f in packages/escher-driver/src/mcp.rs packages/escher-driver/src/mcp/framing.rs packages/escher-driver/src/mcp/listing.rs packages/escher-driver/src/mcp/result.rs packages/escher-driver/src/mcp_tests.rs packages/escher-driver/src/schema.rs packages/escher-driver/src/schema/spec.rs packages/escher-driver/src/schema_tests.rs; do test -f \"$f\" || exit 1; n=$(tokei -o json \"$f\" | python3 -c 'import json, sys; print(json.load(sys.stdin)[\"Rust\"][\"code\"])'); echo \"$f $n\"; test \"$n\" -le 800 || exit 1; done",
+"run_sha8": "42ab1889",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "git diff --name-only 4f3939914e525e284a32beb91bdc97972d40c904 -- packages examples tests apps wpt Cargo.toml Cargo.lock | grep -c -v -x -E 'packages/blitz-dom/src/document\\.rs|packages/escher-driver/src/(mcp|schema)\\.rs' ",
+"run_sha8": "f6c338e4",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "git ls-files --others --exclude-standard -- packages examples tests apps wpt | grep -c -v -x -E 'packages/blitz-dom/src/document_(changed_set|font_reading)_tests\\.rs|packages/escher-driver/src/(mcp|schema)_tests\\.rs|packages/escher-driver/src/mcp/(framing|listing|result)\\.rs|packages/escher-driver/src/schema/spec\\.rs' ",
+"run_sha8": "0a56f0ca",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "ls packages/escher-driver/src/mcp.rs packages/escher-driver/src/mcp/framing.rs packages/escher-driver/src/mcp/listing.rs packages/escher-driver/src/mcp/result.rs packages/escher-driver/src/schema.rs packages/escher-driver/src/schema/spec.rs > /dev/null && cat packages/escher-driver/src/mcp.rs packages/escher-driver/src/mcp/framing.rs packages/escher-driver/src/mcp/listing.rs packages/escher-driver/src/mcp/result.rs packages/escher-driver/src/schema.rs packages/escher-driver/src/schema/spec.rs | grep -v -F 'env!(\"CARGO_PKG_VERSION\")' | grep -c -E '\\.unwrap\\(|\\.expect\\(|panic!|unreachable!|todo!|println!|eprintln!|print!|dbg!|std::env|env::var|env!|tracing_subscriber|#\\[instrument|cfg\\(feature' ",
+"run_sha8": "3ee24f9b",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "ls packages/escher-driver/src/mcp.rs packages/escher-driver/src/mcp/framing.rs packages/escher-driver/src/mcp/listing.rs packages/escher-driver/src/mcp/result.rs packages/escher-driver/src/schema.rs packages/escher-driver/src/schema/spec.rs > /dev/null && cat packages/escher-driver/src/mcp.rs packages/escher-driver/src/mcp/framing.rs packages/escher-driver/src/mcp/listing.rs packages/escher-driver/src/mcp/result.rs packages/escher-driver/src/schema.rs packages/escher-driver/src/schema/spec.rs | grep -c -E 'serde_json::(to_|json!)|Serialize|serde::|is_terminal|IsTerminal|owo_colors' ",
+"run_sha8": "e8910ae1",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "ls packages/escher-driver/src/mcp/framing.rs packages/escher-driver/src/mcp/listing.rs packages/escher-driver/src/mcp/result.rs > /dev/null && cat packages/escher-driver/src/mcp/framing.rs packages/escher-driver/src/mcp/listing.rs packages/escher-driver/src/mcp/result.rs | grep -c -E '^\\s*pub(\\(crate\\))? ' ",
+"run_sha8": "bdc61626",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "grep -r -h -F -e 'tracing::info_span!(target: \"escher_driver\", \"tool_call\", tool = Empty, ending = Empty)' -e 'tracing::info_span!(target: \"escher_driver\", \"command\", $($field = Empty),+)' packages/escher-driver/src | wc -l",
+"run_sha8": "2b5d8519",
+"expect": [
+"exit 0",
+"last line 2"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "grep -r -h -F 'info_span!' packages/escher-driver/src | wc -l",
+"run_sha8": "6ddc3655",
+"expect": [
+"exit 0",
+"last line 2"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 20,
+"role": "probe",
+"run": "d=$(mktemp -d) && rust-code-analysis-cli -m -O json -o \"$d\" -p packages/blitz-dom/src/events/pointer.rs -p packages/blitz-dom/src/events/keyboard.rs -p packages/blitz-dom/src/node/range.rs && python3 escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/evidence/complexity.py \"$d\"",
+"run_sha8": "46b53a90",
+"expect": [
+"exit 0",
+"last line over-ceiling: handle_click handle_key_or_input_event handle_pointerdown handle_pointermove touch_action_pan_axes"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 21,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 22,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 23,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 24,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 25,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.2.0",
+"run_sha8": "ee10eab9",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 26,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.19",
+"sha8": "457c1da1",
+"ts": "2026-10-16T17:03:44Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-file-splits",
+"--run-dir",
+".andromeda/runs/2026-10-16T16-56-12-implement",
+"--marker",
+"2026-10-16-file-splits"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 8 · modify 3 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 11 · listed 11 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 84"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 11,
+"listed": 11,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 84,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.19",
+"sha8": "457c1da1",
+"ts": "2026-10-16T17:06:58Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.2.0/chunks/2026-10-16-file-splits/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-16T16-56-12-implement",
+"--marker",
+"2026-10-16-file-splits"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-16-file-splits · entries 26",
+"logs $TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 77 · rust 11 · unmapped 6",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L114-116: Every gate is one entry below. There is no boot smoke: the chunk changes no app and no boo… (298 chars)",
+"prose L118-122: The byte-identity and test-list entries read records step 1 writes before any source edit … (462 chars)",
+"prose L124-125: The complexity entry is the previous chunk's gate, byte-equal. It keeps v020-01's first le… (202 chars)",
+"prose L127-127: Every git read names the base `4f3939914e525e284a32beb91bdc97972d40c904`.",
+"  1 unit        green · exit 0 · 1.29s · 6326 B → 1.log · cargo test -p escher-driver --locked",
+"  2 unit        green · exit 0 · 2.31s · 1977 B → 2.log · cargo test -p blitz-dom --locked --lib document::",
+"  3 probe       green · exit 0 · 0.2s · 547 B → 3.2.log · cargo test -p escher-driver --locked --lib -- --list | cmp… (136 chars)",
+"  4 probe       green · exit 0 · 0.17s · 154 B → 4.2.log · cargo test -p blitz-dom --locked --lib -- --list | cmp - e… (129 chars)",
+"  5 build       green · exit 0 · 4.53s · 1339 B → 5.log · cargo build --locked -p seven_guis --bin escher-session",
+"  6 probe       green · exit 0 · 0.01s · 0 B → 6.2.log · target/debug/escher-session help | cmp - escher-0.2.0/chun… (109 chars)",
+"  7 probe       green · exit 0 · 0.01s · 0 B → 7.2.log · target/debug/escher-session mcp < escher-0.2.0/chunks/2026… (181 chars)",
+"  8 integration green · exit 0 · 9.28s · 3155 B → 8.log · cargo test -p blitz-tests --locked --test stand_mcp_tools … (135 chars)",
+"  9 integration green · exit 0 · 7.51s · 2677 B → 9.log · cargo test -p seven_guis --locked --test mcp_server --test… (102 chars)",
+" 10 probe       green · exit 1 · 0.0s · 2 B → 10.log · grep -c -E '^mod (changed_set_tests|font_reading_tests) \\{… (94 chars)",
+" 11 probe       green · exit 0 · 0.0s · 0 B → 11.log · cmp <(git show 4f3939914e525e284a32beb91bdc97972d40c904:pa… (157 chars)",
+" 12 probe       green · exit 0 · 0.13s · 351 B → 12.log · for f in packages/escher-driver/src/mcp.rs packages/escher… (507 chars)",
+" 13 probe       green · exit 1 · 0.01s · 2 B → 13.log · git diff --name-only 4f3939914e525e284a32beb91bdc97972d40c… (221 chars)",
+" 14 probe       green · exit 1 · 0.01s · 2 B → 14.log · git ls-files --others --exclude-standard -- packages examp… (320 chars)",
+" 15 probe       green · exit 1 · 0.0s · 2 B → 15.log · ls packages/escher-driver/src/mcp.rs packages/escher-drive… (702 chars)",
+" 16 probe       green · exit 1 · 0.0s · 2 B → 16.log · ls packages/escher-driver/src/mcp.rs packages/escher-drive… (589 chars)",
+" 17 probe       green · exit 1 · 0.0s · 2 B → 17.log · ls packages/escher-driver/src/mcp/framing.rs packages/esch… (308 chars)",
+" 18 probe       green · exit 0 · 0.0s · 2 B → 18.log · grep -r -h -F -e 'tracing::info_span!(target: \"escher_driv… (223 chars)",
+" 19 probe       green · exit 0 · 0.0s · 2 B → 19.log · grep -r -h -F 'info_span!' packages/escher-driver/src | wc… (61 chars)",
+" 20 probe       green · exit 0 · 0.05s · 452 B → 20.log · d=$(mktemp -d) && rust-code-analysis-cli -m -O json -o \"$d… (284 chars)",
+" 21 integration green · exit 0 · 12.74s · 4654 B → 21.log · bash .github/scripts/ci-leg.sh a11y",
+" 22 lint        green · exit 0 · 149.42s · 102900 B → 22.log · bash .github/scripts/ci-leg.sh fast",
+" 23 lint        green · exit 0 · 46.9s · 2226 B → 23.log · bash .github/scripts/ci-leg.sh doc",
+" 24 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 25 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 26 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 26 · green 23 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-16-file-splits",
+"plan": "./escher-0.2.0/chunks/2026-10-16-file-splits/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/evolve-2026-10-16-handler-splits-and-readme.json",
+".claude/session-handoff.md",
+"escher-0.2.0/working-route.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/health-2026-10-16-handler-splits-and-readme.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/.reg-a11y.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/.reg-arch.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/.reg-obs.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/.reg-tests.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/a11y-history.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/a11y.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/acceptance-v020-01.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/arch-history-index.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/arch-history.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/arch.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/baseline-2.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/baseline-3.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-1.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-10.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-11.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-12.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-13.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-14.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-15.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-16.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-17.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-18.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-19.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-2.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-3.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-4.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-5.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-6.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-7.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-8.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/bl-9.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/controls.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/design-history.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/design.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/dryrun-1.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/dryrun-2.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/evolve-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/gate-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/inputs-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/layouts-history.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/layouts.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/master-record.txt",
+".andromeda/runs/2026-10-16T15-51-04-phase/matrix-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/note-v020-01.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/obs-contracts.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/obs-history.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/obs.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/p5-card-1.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/planlint-1.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/planlint-2.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/planlint-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/q1.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/registry-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/route-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/route-no-marker.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/security-history.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/security.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/show-3.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/show-4.out",
+".andromeda/runs/2026-10-16T15-51-04-phase/sidecar-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T15-51-04-phase/tests-contracts.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/tests-history.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/tests.md",
+".andromeda/runs/2026-10-16T15-51-04-phase/tree-query-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T16-56-12-implement/evolve-2026-10-16-file-splits.json",
+".andromeda/runs/2026-10-16T16-56-12-implement/gate-2026-10-16-file-splits.json",
+"escher-0.2.0/chunks/2026-10-16-file-splits/plan.md",
+"escher-0.2.0/chunks/2026-10-16-file-splits/research.md",
+"escher-0.2.0/chunks/2026-10-16-file-splits/scope.md"
+],
+"rust": [
+"packages/blitz-dom/src/document.rs",
+"packages/escher-driver/src/mcp.rs",
+"packages/escher-driver/src/schema.rs",
+"packages/blitz-dom/src/document_changed_set_tests.rs",
+"packages/blitz-dom/src/document_font_reading_tests.rs",
+"packages/escher-driver/src/mcp/framing.rs",
+"packages/escher-driver/src/mcp/listing.rs",
+"packages/escher-driver/src/mcp/result.rs",
+"packages/escher-driver/src/mcp_tests.rs",
+"packages/escher-driver/src/schema/spec.rs",
+"packages/escher-driver/src/schema_tests.rs"
+]
+},
+"unmapped": [
+"escher-0.2.0/verification-matrix.json",
+"escher-0.2.0/chunks/2026-10-16-file-splits/evidence/dom-tests-before.txt",
+"escher-0.2.0/chunks/2026-10-16-file-splits/evidence/driver-tests-before.txt",
+"escher-0.2.0/chunks/2026-10-16-file-splits/evidence/help-before.json",
+"escher-0.2.0/chunks/2026-10-16-file-splits/evidence/mcp-before.jsonl",
+"escher-0.2.0/chunks/2026-10-16-file-splits/evidence/mcp-requests.jsonl"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 94,
+"problem": null
+},
+"prose": [
+{
+"from": 114,
+"to": 116,
+"text": "Every gate is one entry below. There is no boot smoke: the chunk changes no app and no boot path, and the stand checks boot the stand in process. There is no live leg. The two byte-identity entries run the built binary once per firing, read its stdout, and leave nothing running. They are not legs."
+},
+{
+"from": 118,
+"to": 122,
+"text": "The byte-identity and test-list entries read records step 1 writes before any source edit (`evidence/help-before.json`, `mcp-before.jsonl`, `mcp-requests.jsonl`, `driver-tests-before.txt`, `dom-tests-before.txt`). On the untouched tree those records are absent, so those entries baseline red. Step 1's first firing of each entry, before the edits, is its known-green control. Because the entries read records rather than produce them, none carries an `artifact`."
+},
+{
+"from": 124,
+"to": 125,
+"text": "The complexity entry is the previous chunk's gate, byte-equal. It keeps v020-01's first leg read at this chunk's wrap. The `coverage` and `stand-repeat` legs run in CI and are read through the CI entry."
+},
+{
+"from": 127,
+"to": 127,
+"text": "Every git read names the base `4f3939914e525e284a32beb91bdc97972d40c904`."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked",
+"run_sha8": "5f0bb953",
+"expect": [
+"exit 0",
+"contains test result: ok. 73 passed; 0 failed"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/1.log",
+"bytes": 6326,
+"log_sha8": "22619f57",
+"exit": 0,
+"seconds": 1.29,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok. 73 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p blitz-dom --locked --lib document::",
+"run_sha8": "6a5d7939",
+"expect": [
+"exit 0",
+"contains test result: ok. 18 passed; 0 failed"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/2.log",
+"bytes": 1977,
+"log_sha8": "dff5c993",
+"exit": 0,
+"seconds": 2.31,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok. 18 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "probe",
+"run": "cargo test -p escher-driver --locked --lib -- --list | cmp - escher-0.2.0/chunks/2026-10-16-file-splits/evidence/driver-tests-before.txt",
+"run_sha8": "5c3fbb14",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/3.2.log",
+"bytes": 547,
+"log_sha8": "90d69763",
+"exit": 0,
+"seconds": 0.2,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "cargo test -p blitz-dom --locked --lib -- --list | cmp - escher-0.2.0/chunks/2026-10-16-file-splits/evidence/dom-tests-before.txt",
+"run_sha8": "5b55782b",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/4.2.log",
+"bytes": 154,
+"log_sha8": "ba9a35f8",
+"exit": 0,
+"seconds": 0.17,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "build",
+"run": "cargo build --locked -p seven_guis --bin escher-session",
+"run_sha8": "e9fc8897",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/5.log",
+"bytes": 1339,
+"log_sha8": "b596800d",
+"exit": 0,
+"seconds": 4.53,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "target/debug/escher-session help | cmp - escher-0.2.0/chunks/2026-10-16-file-splits/evidence/help-before.json",
+"run_sha8": "b46dbf42",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/6.2.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "target/debug/escher-session mcp < escher-0.2.0/chunks/2026-10-16-file-splits/evidence/mcp-requests.jsonl | cmp - escher-0.2.0/chunks/2026-10-16-file-splits/evidence/mcp-before.jsonl",
+"run_sha8": "e2fd680b",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/7.2.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_mcp_tools --test stand_mcp_masked --test stand_act_spans --test stand_accessibility_ids",
+"run_sha8": "8235f08d",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/8.log",
+"bytes": 3155,
+"log_sha8": "9f92afaa",
+"exit": 0,
+"seconds": 9.28,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test mcp_server --test mcp_log --test host_log --test cli_commands",
+"run_sha8": "e8467edb",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/9.log",
+"bytes": 2677,
+"log_sha8": "f096de96",
+"exit": 0,
+"seconds": 7.51,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "grep -c -E '^mod (changed_set_tests|font_reading_tests) \\{' packages/blitz-dom/src/document.rs",
+"run_sha8": "95b6d502",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/10.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "cmp <(git show 4f3939914e525e284a32beb91bdc97972d40c904:packages/blitz-dom/src/document.rs | head -n 3461) <(head -n 3461 packages/blitz-dom/src/document.rs)",
+"run_sha8": "bd8d5422",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/11.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "for f in packages/escher-driver/src/mcp.rs packages/escher-driver/src/mcp/framing.rs packages/escher-driver/src/mcp/listing.rs packages/escher-driver/src/mcp/result.rs packages/escher-driver/src/mcp_tests.rs packages/escher-driver/src/schema.rs packages/escher-driver/src/schema/spec.rs packages/escher-driver/src/schema_tests.rs; do test -f \"$f\" || exit 1; n=$(tokei -o json \"$f\" | python3 -c 'import json, sys; print(json.load(sys.stdin)[\"Rust\"][\"code\"])'); echo \"$f $n\"; test \"$n\" -le 800 || exit 1; done",
+"run_sha8": "42ab1889",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/12.log",
+"bytes": 351,
+"log_sha8": "cedaf0c6",
+"exit": 0,
+"seconds": 0.13,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "git diff --name-only 4f3939914e525e284a32beb91bdc97972d40c904 -- packages examples tests apps wpt Cargo.toml Cargo.lock | grep -c -v -x -E 'packages/blitz-dom/src/document\\.rs|packages/escher-driver/src/(mcp|schema)\\.rs' ",
+"run_sha8": "f6c338e4",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/13.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "git ls-files --others --exclude-standard -- packages examples tests apps wpt | grep -c -v -x -E 'packages/blitz-dom/src/document_(changed_set|font_reading)_tests\\.rs|packages/escher-driver/src/(mcp|schema)_tests\\.rs|packages/escher-driver/src/mcp/(framing|listing|result)\\.rs|packages/escher-driver/src/schema/spec\\.rs' ",
+"run_sha8": "0a56f0ca",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/14.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "ls packages/escher-driver/src/mcp.rs packages/escher-driver/src/mcp/framing.rs packages/escher-driver/src/mcp/listing.rs packages/escher-driver/src/mcp/result.rs packages/escher-driver/src/schema.rs packages/escher-driver/src/schema/spec.rs > /dev/null && cat packages/escher-driver/src/mcp.rs packages/escher-driver/src/mcp/framing.rs packages/escher-driver/src/mcp/listing.rs packages/escher-driver/src/mcp/result.rs packages/escher-driver/src/schema.rs packages/escher-driver/src/schema/spec.rs | grep -v -F 'env!(\"CARGO_PKG_VERSION\")' | grep -c -E '\\.unwrap\\(|\\.expect\\(|panic!|unreachable!|todo!|println!|eprintln!|print!|dbg!|std::env|env::var|env!|tracing_subscriber|#\\[instrument|cfg\\(feature' ",
+"run_sha8": "3ee24f9b",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/15.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "ls packages/escher-driver/src/mcp.rs packages/escher-driver/src/mcp/framing.rs packages/escher-driver/src/mcp/listing.rs packages/escher-driver/src/mcp/result.rs packages/escher-driver/src/schema.rs packages/escher-driver/src/schema/spec.rs > /dev/null && cat packages/escher-driver/src/mcp.rs packages/escher-driver/src/mcp/framing.rs packages/escher-driver/src/mcp/listing.rs packages/escher-driver/src/mcp/result.rs packages/escher-driver/src/schema.rs packages/escher-driver/src/schema/spec.rs | grep -c -E 'serde_json::(to_|json!)|Serialize|serde::|is_terminal|IsTerminal|owo_colors' ",
+"run_sha8": "e8910ae1",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/16.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "ls packages/escher-driver/src/mcp/framing.rs packages/escher-driver/src/mcp/listing.rs packages/escher-driver/src/mcp/result.rs > /dev/null && cat packages/escher-driver/src/mcp/framing.rs packages/escher-driver/src/mcp/listing.rs packages/escher-driver/src/mcp/result.rs | grep -c -E '^\\s*pub(\\(crate\\))? ' ",
+"run_sha8": "bdc61626",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/17.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "grep -r -h -F -e 'tracing::info_span!(target: \"escher_driver\", \"tool_call\", tool = Empty, ending = Empty)' -e 'tracing::info_span!(target: \"escher_driver\", \"command\", $($field = Empty),+)' packages/escher-driver/src | wc -l",
+"run_sha8": "2b5d8519",
+"expect": [
+"exit 0",
+"last line 2"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/18.log",
+"bytes": 2,
+"log_sha8": "53c234e5",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '2' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "grep -r -h -F 'info_span!' packages/escher-driver/src | wc -l",
+"run_sha8": "6ddc3655",
+"expect": [
+"exit 0",
+"last line 2"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/19.log",
+"bytes": 2,
+"log_sha8": "53c234e5",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '2' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 20,
+"role": "probe",
+"run": "d=$(mktemp -d) && rust-code-analysis-cli -m -O json -o \"$d\" -p packages/blitz-dom/src/events/pointer.rs -p packages/blitz-dom/src/events/keyboard.rs -p packages/blitz-dom/src/node/range.rs && python3 escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/evidence/complexity.py \"$d\"",
+"run_sha8": "46b53a90",
+"expect": [
+"exit 0",
+"last line over-ceiling: handle_click handle_key_or_input_event handle_pointerdown handle_pointermove touch_action_pan_axes"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/20.log",
+"bytes": 452,
+"log_sha8": "8e28d159",
+"exit": 0,
+"seconds": 0.05,
+"readings": [
+"exit 0 ✓",
+"last line 'over-ceiling: handle_click handle_key_or_input_event handle_pointerdown handle_pointermove touch_action_pan_axes' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 21,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/21.log",
+"bytes": 4654,
+"log_sha8": "f34eaa98",
+"exit": 0,
+"seconds": 12.74,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 22,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/22.log",
+"bytes": 102900,
+"log_sha8": "14bf1b73",
+"exit": 0,
+"seconds": 149.42,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 23,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/23.log",
+"bytes": 2226,
+"log_sha8": "8a977101",
+"exit": 0,
+"seconds": 46.9,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 24,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 25,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.2.0",
+"run_sha8": "ee10eab9",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 26,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.19",
+"sha8": "457c1da1",
+"ts": "2026-10-16T17:07:09Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-16T16-56-12-implement",
+"--marker",
+"2026-10-16-file-splits",
+"--n",
+"21"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"21 integration green",
+"run (0e88f78c): bash .github/scripts/ci-leg.sh a11y",
+"  exit 0 ✓",
+"log $TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/21.log · 4654 B · f34eaa98 · $TMPDIR = /tmp",
+"--- no anchored failure; last 20 non-empty lines ---",
+"test every_colour_state_meets_its_ratio ... ok",
+"test the_painted_background_is_the_measured_background ... ok",
+"test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.23s",
+"     Running tests/stand_keyboard.rs (target/debug/deps/stand_keyboard-14fc46c47aca965b)",
+"running 14 tests",
+"test every_control_is_reached_by_tab ... ok",
+"test the_engine_honours_no_inert ... ok",
+"test a_disabled_attribute_of_any_value_is_skipped ... ok",
+"test a_button_that_is_itself_scrolled_takes_enter_as_its_own_click ... ok",
+"test a_button_disabled_after_it_took_focus_takes_no_key ... ok",
+"test the_apple_delete_binding_deletes_on_every_os ... ok",
+"test the_crud_list_takes_focus_and_its_keys_move_the_selection ... ok",
+"test the_enabled_states_extend_the_walk_in_order ... ok",
+"test the_fixture_controls_take_the_keys_html_gives_them ... ok",
+"test tab_and_shift_tab_walk_the_stated_sequence_and_wrap ... ok",
+"test a_click_focuses_a_stand_button_and_tab_continues_from_it ... ok",
+"test keys_that_do_not_activate_type_or_change_nothing ... ok",
+"test enter_and_space_on_the_controls_enabled_later_read_as_their_click ... ok",
+"test enter_and_space_on_a_focused_button_read_as_its_click ... ok",
+"test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.48s"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.19",
+"sha8": "457c1da1",
+"ts": "2026-10-16T17:07:09Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-16T16-56-12-implement",
+"--marker",
+"2026-10-16-file-splits",
+"--n",
+"8"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"8 integration green",
+"run (8235f08d): cargo test -p blitz-tests --locked --test stand_mcp_tools --test stand_mcp_masked --test stand_act_spans --test stand_accessibility_ids",
+"  exit 0 ✓",
+"log $TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/8.log · 3155 B · 9f92afaa · $TMPDIR = /tmp",
+"--- no anchored failure; last 20 non-empty lines ---",
+"test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.42s",
+"     Running tests/stand_act_spans.rs (target/debug/deps/stand_act_spans-e4fc4ea2b103d827)",
+"running 4 tests",
+"test child_drives_at_the_default_level ... ignored, spawned as a child process by a_driver_command_writes_no_line_at_the_default_level",
+"test child_records_each_command_at_info ... ignored, spawned as a child process by each_driver_command_leaves_one_line_holding_nothing_it_handled",
+"test a_driver_command_writes_no_line_at_the_default_level ... ok",
+"test each_driver_command_leaves_one_line_holding_nothing_it_handled ... ok",
+"test result: ok. 2 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 1.88s",
+"     Running tests/stand_mcp_masked.rs (target/debug/deps/stand_mcp_masked-3646c8f1fff08c07)",
+"running 1 test",
+"test a_password_typed_over_mcp_reads_the_mask_and_never_the_typed_text ... ok",
+"test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.13s",
+"     Running tests/stand_mcp_tools.rs (target/debug/deps/stand_mcp_tools-83c372b6426d599e)",
+"running 5 tests",
+"test help_is_answered_by_the_server_and_parents_no_command ... ok",
+"test a_held_timer_gets_its_time_step_through_start ... ok",
+"test a_scripted_mcp_session_completes_the_counter_flow_and_parents_each_command ... ok",
+"test every_cause_a_tool_call_reaches_is_served_with_its_remedy ... ok",
+"test a_screenshot_tool_call_answers_its_image_then_its_text_and_parents_its_command ... ok",
+"test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.21s"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.19",
+"sha8": "457c1da1",
+"ts": "2026-10-16T17:07:09Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-16T16-56-12-implement",
+"--marker",
+"2026-10-16-file-splits",
+"--n",
+"9"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"9 integration green",
+"run (e8467edb): cargo test -p seven_guis --locked --test mcp_server --test mcp_log --test host_log --test cli_commands",
+"  exit 0 ✓",
+"log $TMPDIR/andromeda-gate/2026-10-16-file-splits/implement-2026-10-16T16-56-12/9.log · 2677 B · f096de96 · $TMPDIR = /tmp",
+"--- no anchored failure; last 20 non-empty lines ---",
+"test a_snapshot_is_the_in_process_text_as_one_line_inside_its_budget ... ok",
+"test a_screenshot_answers_one_line_whose_png_is_the_screen ... ok",
+"test a_call_a_target_cannot_take_is_refused_with_its_cause ... ok",
+"test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.08s",
+"     Running tests/host_log.rs (target/debug/deps/host_log-626cd6c7d4f27a62)",
+"running 1 test",
+"test the_host_logs_no_id_no_name_and_no_typed_text_at_trace ... ok",
+"test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.82s",
+"     Running tests/mcp_log.rs (target/debug/deps/mcp_log-8cdeedba7f12e486)",
+"running 1 test",
+"test the_mcp_role_logs_no_id_no_name_and_no_typed_text_at_trace ... ok",
+"test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.64s",
+"     Running tests/mcp_server.rs (target/debug/deps/mcp_server-01fdd85736a40032)",
+"running 5 tests",
+"test the_newest_revision_is_spoken_and_help_answers_before_any_start ... ok",
+"test help_reads_the_same_bytes_through_mcp_and_the_command_line ... ok",
+"test the_mcp_role_completes_the_counter_flow_by_tool_calls_alone ... ok",
+"test a_fresh_counters_snapshot_reads_the_same_through_mcp_and_the_command_line ... ok",
+"test a_screenshot_tool_call_answers_an_image_block_then_a_text_block ... ok",
+"test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.31s"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.19",
+"sha8": "457c1da1",
+"ts": "2026-10-16T17:08:03Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-file-splits",
+"--run-dir",
+".andromeda/runs/2026-10-16T16-56-12-implement",
+"--marker",
+"2026-10-16-file-splits"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 8 · modify 3 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 11 · listed 11 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 85"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 11,
+"listed": 11,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 85,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

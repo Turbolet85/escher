@@ -54,3 +54,4 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 
 ## escher-0.2.0
 2026-10-16-handler-splits-and-readme · complete · Handler splits and README — blitz-dom's range and activation handler arms as named functions, parse_float in steps; the README at the current state, «Escher» capitalized (v020-01) · → escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/
+2026-10-16-file-splits · pending · escher's document.rs test modules out, mcp.rs and schema.rs split along their seams · → escher-0.2.0/chunks/2026-10-16-file-splits/

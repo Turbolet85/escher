@@ -1,0 +1,955 @@
+[
+{
+"sql": "SELECT callee_name, callee_kind, regexp_extract(callee_file, '[^/]+$') AS def_file, regexp_extract(file, '[^/]+$') AS from_file, COUNT(*) AS sites FROM refs WHERE callee_crate = 'escher-driver' AND (callee_file LIKE '%/src/mcp.rs' OR callee_file LIKE '%/src/schema.rs') AND file NOT LIKE '%/src/mcp.rs' AND file NOT LIKE '%/src/schema.rs' AND callee_kind <> 'module' GROUP BY 1,2,3,4 ORDER BY 3,1,4",
+"rows": 135,
+"result": [
+{
+"callee_name": "serve_mcp",
+"callee_kind": "fn",
+"def_file": "mcp.rs",
+"from_file": "cli.rs",
+"sites": 2
+},
+{
+"callee_name": "serve_mcp",
+"callee_kind": "fn",
+"def_file": "mcp.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "serve_mcp",
+"callee_kind": "fn",
+"def_file": "mcp.rs",
+"from_file": "stand_mcp_masked.rs",
+"sites": 2
+},
+{
+"callee_name": "serve_mcp",
+"callee_kind": "fn",
+"def_file": "mcp.rs",
+"from_file": "stand_mcp_tools.rs",
+"sites": 4
+},
+{
+"callee_name": "ADVANCE",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "ADVANCE",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "json.rs",
+"sites": 1
+},
+{
+"callee_name": "ArgKind",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 4
+},
+{
+"callee_name": "ArgKind",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 7
+},
+{
+"callee_name": "ArgKind",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "ArgSpec",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 2
+},
+{
+"callee_name": "ArgSpec",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 3
+},
+{
+"callee_name": "ArgSpec",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 2
+},
+{
+"callee_name": "ArgSpec",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "BUSY_CLASSES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 3
+},
+{
+"callee_name": "BUSY_CLASSES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "execute.rs",
+"sites": 5
+},
+{
+"callee_name": "BUSY_CLASSES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "BUSY_CLASSES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "stand_act_spans.rs",
+"sites": 3
+},
+{
+"callee_name": "CLICK",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "CLICK",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "json.rs",
+"sites": 2
+},
+{
+"callee_name": "EXIT_STATUSES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 7
+},
+{
+"callee_name": "EXIT_STATUSES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 3
+},
+{
+"callee_name": "EXIT_STATUSES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "ExitStatus",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "FieldKind",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "FieldSpec",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 2
+},
+{
+"callee_name": "FieldSpec",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "Flag",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 2
+},
+{
+"callee_name": "Flag",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "HELP",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "HELP",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 3
+},
+{
+"callee_name": "Id",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "Instance",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 5
+},
+{
+"callee_name": "Instance",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 2
+},
+{
+"callee_name": "Instance",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "stand_act_spans.rs",
+"sites": 1
+},
+{
+"callee_name": "KEY_NAMES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 3
+},
+{
+"callee_name": "KEY_NAMES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 3
+},
+{
+"callee_name": "KEY_NAMES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "Key",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "Level",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 9
+},
+{
+"callee_name": "Level",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 7
+},
+{
+"callee_name": "Level",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "Level",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "stand_act_spans.rs",
+"sites": 2
+},
+{
+"callee_name": "MAX_ID_BYTES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 4
+},
+{
+"callee_name": "MAX_ID_BYTES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "MAX_ID_BYTES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "session.rs",
+"sites": 5
+},
+{
+"callee_name": "MAX_ID_BYTES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "stand_act_refused.rs",
+"sites": 3
+},
+{
+"callee_name": "MAX_ID_BYTES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "wire.rs",
+"sites": 3
+},
+{
+"callee_name": "MAX_MILLISECONDS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 2
+},
+{
+"callee_name": "MAX_MILLISECONDS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "MAX_TEXT_BYTES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 4
+},
+{
+"callee_name": "MAX_TEXT_BYTES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "MAX_TEXT_BYTES",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "wire.rs",
+"sites": 3
+},
+{
+"callee_name": "Milliseconds",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 1
+},
+{
+"callee_name": "Milliseconds",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "NODE_FIELDS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 3
+},
+{
+"callee_name": "NODE_FIELDS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "json.rs",
+"sites": 5
+},
+{
+"callee_name": "NODE_FIELDS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "Name",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "NodeFieldSpec",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "PRESS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "PRESS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "json.rs",
+"sites": 1
+},
+{
+"callee_name": "SCREENSHOT",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "SCREENSHOT",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "json.rs",
+"sites": 2
+},
+{
+"callee_name": "SCROLL",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "SCROLL",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "json.rs",
+"sites": 1
+},
+{
+"callee_name": "SNAPSHOT",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "SNAPSHOT",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "json.rs",
+"sites": 1
+},
+{
+"callee_name": "START",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "START",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "json.rs",
+"sites": 1
+},
+{
+"callee_name": "STATUS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "STATUS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "json.rs",
+"sites": 1
+},
+{
+"callee_name": "STOP",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "STOP",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "json.rs",
+"sites": 1
+},
+{
+"callee_name": "Session",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 3
+},
+{
+"callee_name": "Session",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 3
+},
+{
+"callee_name": "TYPE",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "TYPE",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "json.rs",
+"sites": 1
+},
+{
+"callee_name": "Text",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "Tool",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 3
+},
+{
+"callee_name": "Tool",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 3
+},
+{
+"callee_name": "VERBS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 3
+},
+{
+"callee_name": "VERBS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "cli_commands.rs",
+"sites": 2
+},
+{
+"callee_name": "VERBS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 2
+},
+{
+"callee_name": "VERBS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 4
+},
+{
+"callee_name": "VERBS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "execute.rs",
+"sites": 2
+},
+{
+"callee_name": "VERBS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "VERBS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "mcp_server.rs",
+"sites": 2
+},
+{
+"callee_name": "VERBS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "stand_act_scroll.rs",
+"sites": 3
+},
+{
+"callee_name": "VERBS",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "stand_act_spans.rs",
+"sites": 2
+},
+{
+"callee_name": "VerbSpec",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 2
+},
+{
+"callee_name": "VerbSpec",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 5
+},
+{
+"callee_name": "VerbSpec",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 2
+},
+{
+"callee_name": "VerbSpec",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "json.rs",
+"sites": 2
+},
+{
+"callee_name": "VerbSpec",
+"callee_kind": "type",
+"def_file": "schema.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "always",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "cli_commands.rs",
+"sites": 1
+},
+{
+"callee_name": "always",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 2
+},
+{
+"callee_name": "args",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 3
+},
+{
+"callee_name": "args",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "args",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 3
+},
+{
+"callee_name": "args",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "execute.rs",
+"sites": 1
+},
+{
+"callee_name": "bound",
+"callee_kind": "fn",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 2
+},
+{
+"callee_name": "fields",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "cli_commands.rs",
+"sites": 1
+},
+{
+"callee_name": "fields",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 5
+},
+{
+"callee_name": "fields",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "json.rs",
+"sites": 1
+},
+{
+"callee_name": "help",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 8
+},
+{
+"callee_name": "kind",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 4
+},
+{
+"callee_name": "kind",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "kind",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 6
+},
+{
+"callee_name": "level",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 3
+},
+{
+"callee_name": "level",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 3
+},
+{
+"callee_name": "level",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 2
+},
+{
+"callee_name": "level",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "stand_act_spans.rs",
+"sites": 1
+},
+{
+"callee_name": "meaning",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 2
+},
+{
+"callee_name": "name",
+"callee_kind": "fn",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 1
+},
+{
+"callee_name": "name",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 9
+},
+{
+"callee_name": "name",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "cli_commands.rs",
+"sites": 1
+},
+{
+"callee_name": "name",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 14
+},
+{
+"callee_name": "name",
+"callee_kind": "fn",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 6
+},
+{
+"callee_name": "name",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 12
+},
+{
+"callee_name": "name",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "execute.rs",
+"sites": 2
+},
+{
+"callee_name": "name",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "json.rs",
+"sites": 4
+},
+{
+"callee_name": "name",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "mcp_server.rs",
+"sites": 1
+},
+{
+"callee_name": "name",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "stand_act_scroll.rs",
+"sites": 1
+},
+{
+"callee_name": "name",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "stand_act_spans.rs",
+"sites": 2
+},
+{
+"callee_name": "required",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 1
+},
+{
+"callee_name": "required",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 1
+},
+{
+"callee_name": "required",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 2
+},
+{
+"callee_name": "status",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 5
+},
+{
+"callee_name": "status",
+"callee_kind": "term",
+"def_file": "schema.rs",
+"from_file": "describe.rs",
+"sites": 2
+},
+{
+"callee_name": "verb",
+"callee_kind": "fn",
+"def_file": "schema.rs",
+"from_file": "cli.rs",
+"sites": 1
+},
+{
+"callee_name": "verb",
+"callee_kind": "fn",
+"def_file": "schema.rs",
+"from_file": "cli_commands.rs",
+"sites": 2
+},
+{
+"callee_name": "verb",
+"callee_kind": "fn",
+"def_file": "schema.rs",
+"from_file": "command.rs",
+"sites": 3
+},
+{
+"callee_name": "verb",
+"callee_kind": "fn",
+"def_file": "schema.rs",
+"from_file": "execute.rs",
+"sites": 1
+},
+{
+"callee_name": "verb",
+"callee_kind": "fn",
+"def_file": "schema.rs",
+"from_file": "lib.rs",
+"sites": 1
+},
+{
+"callee_name": "verb",
+"callee_kind": "fn",
+"def_file": "schema.rs",
+"from_file": "stand_act_spans.rs",
+"sites": 1
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]
