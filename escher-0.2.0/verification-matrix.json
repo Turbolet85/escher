@@ -1,0 +1,151 @@
+{
+ "schema_version": 1,
+ "version": "escher-0.2.0",
+ "source": "intent",
+ "id_scheme": "v020-NN",
+ "capabilities": [
+  {
+   "id": "v020-01",
+   "title": "Codebase structure",
+   "requirement": "escher's over-ceiling event handlers are split into named functions along their range and activation branches; escher's inline test modules leave document.rs while upstream's body stays; mcp.rs and schema.rs are split along their seams; every check stays green",
+   "observed_gap": "functions over the complexity ceiling went 74 → 80 → 83 across the last two epochs, the escher-authored growth in blitz-dom's event handlers (handle_click 74, handle_pointerdown 40, handle_key_or_input_event 56) and the range input's parse_float (19); the largest file, blitz-dom/src/document.rs, holds 2,793 code lines, 688 of them in five inline test modules; files over 800 code lines went 12 → 15 → 16, escher's own being escher-driver/src/mcp.rs (1,140) and schema.rs (840)",
+   "verification": {
+    "method": "integration",
+    "acceptance": "A re-read of the code audit's measures shows escher's handler branches for range and activation no longer over the complexity ceiling, escher's inline test modules gone from the engine's document file with upstream's body unchanged, and the two driver files split along their seams under the size line, while every existing check, the stand checks included, stays green.",
+    "ref": null,
+    "status": "planned"
+   },
+   "chunk": null
+  },
+  {
+   "id": "v020-02",
+   "title": "Fast-failing mutants",
+   "requirement": "each of the six mutants caught only by the timeout fails a test fast, and the mutation score holds at 0 survivors",
+   "observed_gap": "six mutants are caught only by the 300 s timeout, never by a failing test: three in TimerTicks::next, two in mcp.rs read_request, one in MutationWriter::create_text_node",
+   "verification": {
+    "method": "unit",
+    "acceptance": "A mutation run over the units that held the six timeout-only mutants catches each of them with a failing test well inside the timeout, and the run's score holds at 0 survivors.",
+    "ref": null,
+    "status": "planned"
+   },
+   "chunk": null
+  },
+  {
+   "id": "v020-03",
+   "title": "Engine debts dispositioned",
+   "requirement": "each recorded engine debt reaches the founder as a fork, then is fixed and proven on the stand or a fixture with its upstream merge surface owned, pinned as a stated limit, or kept as a residual by his word",
+   "observed_gap": "the engine ignores inert; it does not read aria-checked, nor follow aria-activedescendant to the current option; Node::absolute_position reads a self-scrolled box shifted by its own scroll; the hit does not stop at a contain: paint box; a clicked caret in a password field reveals the hidden characters' width class (measured: index 5 against 2); disabled removes focusability on any element, not only form controls; a transformed box's client rect reads its untransformed position; covered is ambiguous on a zero-height box",
+   "verification": {
+    "method": "integration",
+    "acceptance": "Each of the nine recorded engine debts carries the founder's recorded answer, and its outcome matches that answer: a fixed debt is proven by a check on the stand or a fixture in both layout modes, with an owner named for its upstream merge surface; a pinned debt has its limit stated and a check that holds it; a kept debt stands as a residual line.",
+    "ref": null,
+    "status": "planned"
+   },
+   "chunk": null
+  },
+  {
+   "id": "v020-04",
+   "title": "Trace to regression check",
+   "requirement": "any driver session, through the CLI or MCP, is recorded as a replayable check, ordinary test input that runs in CI, failing when the UI's behaviour changes and passing while it holds",
+   "observed_gap": "the cold-agent pipe replays one agent-written JSON check on a fresh session with no model; no general command turns a driver session into a check",
+   "verification": {
+    "method": "e2e",
+    "acceptance": "A stand session driven through the command line and one driven through MCP are each recorded and replayed as ordinary tests in CI; each replay passes on the unchanged app and fails when the app's behaviour is changed under it, with no hand edit of the recording.",
+    "ref": null,
+    "status": "planned"
+   },
+   "chunk": null
+  },
+  {
+   "id": "v020-05",
+   "title": "Visual lint",
+   "requirement": "one command reports, for the current screen, each element that overlaps another, is clipped, has truncated text, lies off-screen, has zero size or fails text contrast, naming its stable id and measured reason",
+   "observed_gap": "covered and off-screen are named per action only; text contrast is checked on the stand by one test, not by a command",
+   "verification": {
+    "method": "integration",
+    "acceptance": "On a fixture that plants each of the six defects, one lint command names every planted element by its stable id with its measured reason, and on the stand at boot it reports no defect the stand's recorded contrast and layout readings do not hold.",
+    "ref": null,
+    "status": "planned"
+   },
+   "chunk": null
+  },
+  {
+   "id": "v020-06",
+   "title": "One virtual clock",
+   "requirement": "every time the engine and the app read in a headless run comes from one virtual clock only the driver moves; two shots of the same state read the same pixels",
+   "observed_gap": "time under a driver session moves only by advance, but the overlay scrollbar fade reads the wall clock, so two screenshots within 0.7 s of a scroll can differ",
+   "verification": {
+    "method": "integration",
+    "acceptance": "In a headless run that paints overlay scrollbars, two screenshots of the same state taken right after a scroll, with wall time passing between them and no driver advance, read the same pixels, and the fade moves only when the driver advances time.",
+    "ref": null,
+    "status": "planned"
+   },
+   "chunk": null
+  },
+  {
+   "id": "v020-07",
+   "title": "Load wait",
+   "requirement": "a command that meets a load in flight waits it out within a stated bound, proven on a fixture",
+   "observed_gap": "no command waits out a network load: a command that finds a load in flight reports it and returns, so an app that loads over the network is polled by its caller",
+   "verification": {
+    "method": "integration",
+    "acceptance": "On a fixture whose load completes inside the stated bound, an acting command returns settled with the loaded content on screen; on one whose load does not complete, the command returns within the bound and says the load is still in flight.",
+    "ref": null,
+    "status": "planned"
+   },
+   "chunk": null
+  },
+  {
+   "id": "v020-08",
+   "title": "Select by id",
+   "requirement": "a select is driven by id like any control and read in the snapshot, proven on a fixture",
+   "observed_gap": "there is no select interaction model",
+   "verification": {
+    "method": "integration",
+    "acceptance": "On a fixture holding a select, an agent chooses an option by the control's stable id through the driver, and the snapshot reads the select with its role, its name and the chosen value, the focus order unchanged.",
+    "ref": null,
+    "status": "planned"
+   },
+   "chunk": null
+  },
+  {
+   "id": "v020-09",
+   "title": "Large screen in parts",
+   "requirement": "a screen over the snapshot text budget is read in parts an agent can walk, proven on a fixture",
+   "observed_gap": "a screen over the 10,000-byte snapshot budget (Cells) cannot be read whole",
+   "verification": {
+    "method": "integration",
+    "acceptance": "On a fixture whose screen exceeds the 10,000-byte snapshot budget, an agent reads it part by part, each part within the budget, and the parts together hold every node of the whole screen exactly once.",
+    "ref": null,
+    "status": "planned"
+   },
+   "chunk": null
+  },
+  {
+   "id": "v020-10",
+   "title": "Capabilities stated for a consumer",
+   "requirement": "what escher can do, and its stated limits, is written where Viola's frontend planning reads it, before that planning starts",
+   "observed_gap": null,
+   "verification": {
+    "method": "manual",
+    "acceptance": "Before Viola's frontend planning starts, the operator confirms one statement of what escher can do and its stated limits, current with 0.2.0's capabilities, stands where that planning reads it.",
+    "ref": null,
+    "status": "planned"
+   },
+   "chunk": null
+  },
+  {
+   "id": "v020-11",
+   "title": "Cold-agent bar",
+   "requirement": "0.2.0 ends with a cold-agent run over its new capabilities, judged against a wrong-call bar the founder sets from 0.1.0's baseline of 0 wrong in 43",
+   "observed_gap": "0.1.0's run is the baseline: 4 tasks, 43 calls, 0 wrong, $0.32; the bar starts in 0.2.0",
+   "verification": {
+    "method": "dynamic-external",
+    "acceptance": "A fresh agent given only the tool exercises 0.2.0's new capabilities in one recorded run whose wrong-call count meets the bar the founder set from 0.1.0's baseline, and the check it writes passes on replay.",
+    "ref": null,
+    "status": "planned"
+   },
+   "chunk": null
+  }
+ ]
+}

@@ -51,3 +51,5 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 2026-10-14-stand-requirement-sweep · complete · Stand requirement sweep — every 0.1.0 capability proven headless by an agent across the stand tasks, with fixtures beside the stand where the tasks lack a case · → escher-0.1.0/chunks/2026-10-14-stand-requirement-sweep/
 2026-10-14-quality-gates · complete · Quality gates — coverage floor on the driver crates and a flakiness budget for the stand checks, enforced on fork CI · → escher-0.1.0/chunks/2026-10-14-quality-gates/
 2026-10-15-cold-agent-test · complete · cold-agent test: a fresh agent given only the driver's MCP tool completes a stand task and writes a passing check, wrong calls counted (v010-15) · → escher-0.1.0/chunks/2026-10-15-cold-agent-test/
+
+## escher-0.2.0
