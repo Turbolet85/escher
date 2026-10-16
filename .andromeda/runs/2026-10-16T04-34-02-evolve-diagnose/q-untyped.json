@@ -1,0 +1,654 @@
+[
+ {
+  "id": "2026-10-09T19:50:06Z-c",
+  "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+  "skill": "phase",
+  "step": "research",
+  "what": "a four-word gh search over the platform issue tracker returned no rows at exit 0; a one-term query returned eight, two of them the platform reports of this exact failure; the empty result was not read as an absence",
+  "impact": {
+   "reformulations": 1
+  },
+  "evidence": null,
+  "artifacts": null,
+  "weight": 2,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-09T19:50:06Z-d",
+  "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+  "skill": "phase",
+  "step": "research",
+  "what": "two line citations into pointer.rs were written into research.md from a view that printed three line ranges with no separator between them, so a line of the third range was cited as the end of the first; caught by a numbered re-read before the premise closure and corrected",
+  "impact": {
+   "extra_reads": 1
+  },
+  "evidence": null,
+  "artifacts": [
+   "research.md"
+  ],
+  "weight": 1,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-09T20:07:28Z-b",
+  "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+  "skill": "implement",
+  "step": "code",
+  "what": "the restore edit of the step-2 mutation named a match header line recalled, not read (match element.name.local.as_ref() against the file's match &*element.name.local), so it did not apply; the restore check exited 1 and the unit command read the mutant's red again before the line was read and the edit re-issued",
+  "impact": {
+   "retries": 1,
+   "extra_reads": 1
+  },
+  "evidence": "escher-0.1.0/chunks/2026-10-09-audit-corrections-agent-surfaces/evidence/controls.md",
+  "artifacts": [
+   "packages/dioxus-native-dom/src/snapshot.rs"
+  ],
+  "weight": 2,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-09T20:55:00Z-b",
+  "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+  "skill": "wrap-session",
+  "step": "report",
+  "what": "cites.py added listed the new bash script's while loop as the block 25-41 while its done line is 42 (the loop body is a case whose esac is line 41); the report's finer coordinate for the argument validation, first typed 25-42 from the row, was corrected to 25-43 by an awk read of lines 36-46 before the listing was pasted",
+  "impact": {
+   "extra_reads": 1
+  },
+  "evidence": "escher-0.1.0/chunks/2026-10-09-audit-corrections-agent-surfaces/report.md",
+  "artifacts": [
+   ".github/scripts/apt-install.sh",
+   ".andromeda/runs/2026-10-09T20-50-14-wrap/new-text.md"
+  ],
+  "weight": 1,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-09T21:17:27Z-g",
+  "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+  "skill": "wrap-session",
+  "step": "reconcile",
+  "what": "the citation tool read a backticked list of bare line numbers that follows an uncited file name on a frozen route line against the path cited before it; three printed out-of-range and the five that fit that file's length read unmoved with no row",
+  "impact": {
+   "extra_reads": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-09T20-50-14-wrap/citation-dispositions.md",
+  "artifacts": [
+   "escher-0.1.0/working-route.md:69"
+  ],
+  "weight": 1,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-10T00:34:22Z-c",
+  "chunk": null,
+  "skill": "wrap-session",
+  "step": "curation",
+  "what": "two question dialogs carrying the five review items, addressed to a founder reached through the operator in another session, expired unanswered after 58 minutes each; the turn ended with nothing written and the answers arrived the next day by relay message",
+  "impact": {
+   "halted": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-09T21-37-22-wrap/relay-1.md",
+  "artifacts": null,
+  "weight": 4,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-10T01:31:02Z-b",
+  "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+  "skill": "implement",
+  "step": "fix-loop",
+  "what": "research.md states the merged lock's package set as upstream's set plus the 3 entries ours added since the base; parsed from the four lock blobs the names ours added are 2 (990 + 2 = 992 entries), found when the comparison was re-derived for evidence/lock.md and recorded there with both figures",
+  "impact": {
+   "extra_reads": 1
+  },
+  "evidence": null,
+  "artifacts": [
+   "research.md",
+   "evidence/lock.md"
+  ],
+  "weight": 1,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-10T02:37:05Z-e",
+  "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+  "skill": "wrap-session",
+  "step": "reconcile",
+  "what": "the citation sweep after an upstream merge listed 123 master rows and 6 route rows for a read (780 re-pointed by the tool); a scratch reader printed each citing window with the base lines, the lines now and the hunks inside; 26 rows read claim false, 22 were re-pointed by hand, and 15 hold at the number as it stood, of which those on an otherwise untouched citing line will print held at the next sweep",
+  "impact": {
+   "extra_reads": 129
+  },
+  "evidence": ".andromeda/runs/2026-10-10T01-56-50-wrap/citation-dispositions.md",
+  "artifacts": [
+   "citation-dispositions"
+  ],
+  "weight": 1,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-10T02:47:37Z-b",
+  "chunk": "2026-10-10-upstream-sync-agent-surfaces",
+  "skill": "wrap-session",
+  "step": "gates",
+  "what": "a count in this wrap's reconcile step record is wrong: its produced signal reads amendments:27 for spec:architecture where the pass applied 24 (23 proposals and 1 raise); the handoff and the commit message carry 24 and the total of 57 stands",
+  "impact": {
+   "iterations": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-10T01-56-50-wrap/fanout-results.md",
+  "artifacts": [
+   "friction-log"
+  ],
+  "weight": 2,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-10T08:21:37Z-c",
+  "chunk": "2026-10-10-driver-cli",
+  "skill": "phase",
+  "step": "plan",
+  "what": "a question dialog addressed to the founder was answered by the operator with every answer marked not answered; the forks then went to a file and came back by relay about five hours later",
+  "impact": {
+   "dialogue_rounds": 1
+  },
+  "evidence": null,
+  "artifacts": [
+   "p4-founder-forks.md"
+  ],
+  "weight": 3,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-10T10:57:00Z-f",
+  "chunk": "2026-10-10-driver-cli",
+  "skill": "wrap-session",
+  "step": "reconcile",
+  "what": "a hand re-point of a citation by anchored Edit matched a prefix twin: `common/mod.rs:1-4` is also the head of `common/mod.rs:1-40`; the Edit refused on two matches and a closing parenthesis disambiguated it, then every replace-all re-point was checked for a longer twin",
+  "impact": {
+   "retries": 1,
+   "extra_reads": 1
+  },
+  "evidence": null,
+  "artifacts": [
+   "spec:test-plan"
+  ],
+  "weight": 2,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-10T14:58:15Z-c",
+  "chunk": "2026-10-10-scrolling-box-bounds-and-hit",
+  "skill": "implement",
+  "step": "code",
+  "what": "a hand-written until-loop polling a backgrounded script's log for its last line never matched (a sed range over tail -n 12 that the section outgrew), ran to the Bash tool's 600 s ceiling and was stopped by task id; the script's own completion notification had already arrived",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": null,
+  "artifacts": null,
+  "weight": 2,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-10T16:33:25Z-c",
+  "chunk": "2026-10-10-snapshot-states",
+  "skill": "phase",
+  "step": "research",
+  "what": "the measured-first script started a session host with its state directory under the session scratchpad and was answered state-dir-too-long; re-run once with the directory under target/tmp",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": null,
+  "artifacts": null,
+  "weight": 2,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-10T16:33:25Z-d",
+  "chunk": "2026-10-10-snapshot-states",
+  "skill": "phase",
+  "step": "research",
+  "what": "two counts first written into research.md were off by one (check files calling accessibility_tree, hits of an id sweep) and were corrected by re-counting the query and grep output before the lists check",
+  "impact": {
+   "iterations": 1
+  },
+  "evidence": null,
+  "artifacts": [
+   "research.md"
+  ],
+  "weight": 2,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-10T19:02:09Z-c",
+  "chunk": "2026-10-10-snapshot-states",
+  "skill": "wrap-session",
+  "step": "reconcile",
+  "what": "the escalation's answer relayed a third party's confirm (the founder's, through the overseer) after the report existed; no step names how an input arriving at Validate is recorded — it was kept verbatim as relay-2.md in the run dir and not snapped, since a snap would read UNCITED in a report reused as is",
+  "impact": {
+   "extra_reads": 0
+  },
+  "evidence": null,
+  "artifacts": [
+   ".andromeda/runs/2026-10-10T17-47-57-wrap/relay-2.md",
+   ".andromeda/runs/2026-10-10T17-47-57-wrap/fanout-results.md"
+  ],
+  "weight": 1,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-11T08:02:42Z-b",
+  "chunk": "2026-10-10-mcp-surface",
+  "skill": "implement",
+  "step": "code",
+  "what": "plan step 5 required tool-call arguments in the JSON object's member order, which serde_json's default Map (BTreeMap) cannot give and its preserve_order feature would move the lock the plan pins to one line",
+  "impact": {
+   "reformulations": 1
+  },
+  "evidence": null,
+  "artifacts": [
+   "escher-0.1.0/chunks/2026-10-10-mcp-surface/plan.md",
+   "packages/escher-driver/src/mcp.rs"
+  ],
+  "weight": 2,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-11T09:55:09Z-f",
+  "chunk": "2026-10-10-mcp-surface",
+  "skill": "wrap-session",
+  "step": "reconcile",
+  "what": "the operator's directive 'before any master write, stop on a card' met P2's opening citation sweep, which writes digits into masters before the fan-out the card needs; read as amendments only and said so to the operator before the write, no dialogue",
+  "impact": {
+   "extra_reads": 0
+  },
+  "evidence": null,
+  "artifacts": null,
+  "weight": 1,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-12T08:38:10Z-b",
+  "chunk": "2026-10-12-self-description",
+  "skill": "implement",
+  "step": "fix-loop",
+  "what": "the fast leg read red on a rustfmt diff in two files edited by python string replacement, which the PostToolUse fmt hook never sees; fixed by cargo fmt and one re-run of the leg",
+  "impact": {
+   "iterations": 1,
+   "retries": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-12T08-17-16-implement (gate entry 15, firings 1 and 2)",
+  "artifacts": [
+   "packages/escher-driver/src/cli.rs",
+   "examples/seven_guis/tests/cli_commands.rs"
+  ],
+  "weight": 3,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-12T09:00:00Z-b",
+  "chunk": "2026-10-12-self-description",
+  "skill": "wrap-session",
+  "step": "report",
+  "what": "the site sweep was fired with --pattern given once per id (18 flags); argparse kept the last, so one pattern ran; re-fired with one --pattern flag naming the 18 ids",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-12T08-55-10-wrap/sweep-pre-pass.txt",
+  "artifacts": [
+   "cascade.py sweep --pattern"
+  ],
+  "weight": 2,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-12T20:41:49Z-c",
+  "chunk": "2026-10-12-headless-screenshot",
+  "skill": "wrap-session",
+  "step": "report",
+  "what": "cascade.py sweep --pattern is nargs (`--pattern a b c`); passing ten repeated `--pattern` flags ran only the last pattern, read from its count line and re-fired with one flag",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-12T20-34-17-wrap/cascade-2026-10-12-headless-screenshot-pre-pass.json",
+  "artifacts": null,
+  "weight": 2,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-13T06:23:35Z-f",
+  "chunk": "2026-10-12-headless-screenshot",
+  "skill": "wrap-session",
+  "step": "reconcile",
+  "what": "one leaf comparer's task notification said it stopped with background work of its own still running; the after snapshot and a later git status showed no write beyond its leaf file",
+  "impact": {
+   "extra_reads": 1
+  },
+  "evidence": null,
+  "artifacts": null,
+  "weight": 1,
+  "epoch": "Epoch 5 - Agent surfaces"
+ },
+ {
+  "id": "2026-10-13T15:55:05Z-c",
+  "chunk": "2026-10-13-upstream-sync-polish-and-ship",
+  "skill": "wrap-session",
+  "step": "report",
+  "what": "the operator directive inputs#I2 (pipeline tool stdout to a file, read whole, never piped into head/tail) was broken twice this chunk: gate.py show piped into head at implement P2, gate.py hygiene piped into tail at the operator pass; found at wrap P1 when reading I2",
+  "impact": {
+   "extra_reads": 0
+  },
+  "evidence": "escher-0.1.0/chunks/2026-10-13-upstream-sync-polish-and-ship/report.md",
+  "artifacts": [
+   "escher-0.1.0/chunks/2026-10-13-upstream-sync-polish-and-ship/inputs/I2-relay-2.md.txt"
+  ],
+  "weight": 1,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-13T17:17:03Z-b",
+  "chunk": "2026-10-13-stand-contrast-harness",
+  "skill": "phase",
+  "step": "plan",
+  "what": "the plan's Generated stamp was written as an estimated 17:20Z without reading the clock; the stamp-ahead PostToolUse hook flagged it 3 min ahead and it was corrected from date -u to 17:16Z",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": null,
+  "artifacts": [
+   "escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/plan.md"
+  ],
+  "weight": 2,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-13T17:36:44Z-b",
+  "chunk": "2026-10-13-stand-contrast-harness",
+  "skill": "implement",
+  "step": "fix-loop",
+  "what": "gate.py's header printed the log dir as $TMPDIR/andromeda-gate/... while TMPDIR is unset in the Bash tool's shell; a read through the literal $TMPDIR resolved to /andromeda-gate and failed, and the logs were found under /tmp",
+  "impact": {
+   "extra_reads": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-13T17-25-26-implement",
+  "artifacts": [
+   "gate.py header logs line"
+  ],
+  "weight": 1,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-13T18:05:30Z-b",
+  "chunk": "2026-10-13-stand-contrast-harness",
+  "skill": "wrap-session",
+  "step": "report",
+  "what": "cascade.py sweep --pre-pass refused the report patterns file at exit 2: two pattern ids over the 16-character limit §Tool states (a11y-contrast-nym, obs-harness-silent); renamed and re-fired at exit 0",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-13T18-00-36-wrap/report-sweep.txt",
+  "artifacts": [
+   "report-patterns.toml"
+  ],
+  "weight": 2,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-13T18:28:22Z-d",
+  "chunk": "2026-10-13-stand-contrast-harness",
+  "skill": "wrap-session",
+  "step": "reconcile",
+  "what": "a repo-wide recursive grep for the withdrawn transliteration over the whole tree (target/ included) ran past the 120 s Bash timeout and was stopped; re-issued as git grep plus a grep over the two new dirs",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": null,
+  "artifacts": null,
+  "weight": 2,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-13T20:20:07Z-b",
+  "chunk": "2026-10-13-range-input-interaction",
+  "skill": "phase",
+  "step": "validate",
+  "what": "the P5 word's snap --origin was typed with a guessed time 5 min ahead of the clock; inputs.py refused it at exit 2 and it was re-fired with the time read from date -u",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-13T19-01-34-phase/relay-3.md",
+  "artifacts": [
+   "escher-0.1.0/chunks/2026-10-13-range-input-interaction/inputs/andromeda-inputs.json"
+  ],
+  "weight": 2,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-13T21:16:02Z-b",
+  "chunk": "2026-10-13-range-input-interaction",
+  "skill": "wrap-session",
+  "step": "report",
+  "what": "P1 site sweep refused (exit 3, unfired control) on a pattern worded from the plan's 'silent census'; obs-plan states that census as 'installs no subscriber' — one re-fire with the master's wording",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-13T21-11-52-wrap/report-patterns.toml",
+  "artifacts": [
+   ".andromeda/obs-plan.md:70",
+   "escher-0.1.0/chunks/2026-10-13-range-input-interaction/plan.md:533"
+  ],
+  "weight": 2,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-13T21:41:41Z-d",
+  "chunk": "2026-10-13-range-input-interaction",
+  "skill": "wrap-session",
+  "step": "reconcile",
+  "what": "a redirect target composed as $RD/../../../.andromeda/runs/x resolved inside the tree and wrote a stray file .andromeda/runs/x from an inputs.py verify; seen in the next listing and removed before any snapshot or commit",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": null,
+  "artifacts": [
+   ".andromeda/runs/x"
+  ],
+  "weight": 2,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-13T22:22:28Z-b",
+  "chunk": "2026-10-13-stand-keyboard-harness",
+  "skill": "phase",
+  "step": "research",
+  "what": "a calls query for apple_keybinding returned no row while its symbol row stands: the one caller sits under cfg(target_os = macos), which the Linux-built SCIP index does not see, so a cfg-gated caller reads as no caller",
+  "impact": {
+   "extra_reads": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-13T22-07-35-phase/tree-query-2026-10-13-stand-keyboard-harness.json",
+  "artifacts": [
+   "packages/escher-driver/src/execute.rs:483",
+   "packages/blitz-test-harness/src/input.rs:230"
+  ],
+  "weight": 1,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-13T22:48:08Z-b",
+  "chunk": "2026-10-13-stand-keyboard-harness",
+  "skill": "phase",
+  "step": "validate",
+  "what": "an inputs.py snap of the operator P5 directive was refused at exit 2: its --origin time was typed from an estimate and read 3 min ahead of the clock; re-fired once with the time read from date -u",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-13T22-07-35-phase/relay-4.md",
+  "artifacts": [
+   "escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/inputs/"
+  ],
+  "weight": 2,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-13T23:28:17Z-b",
+  "chunk": "2026-10-13-stand-keyboard-harness",
+  "skill": "wrap-session",
+  "step": "report",
+  "what": "a standing learning recurred: cascade.py sweep --pre-pass output filtered through command grep (twice) before the whole read the rule requires",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-13T23-23-45-wrap/sweep-pre-pass.txt",
+  "artifacts": [
+   ".claude/rules/host-linux.md"
+  ],
+  "weight": 2,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-14T06:36:45Z-b",
+  "chunk": "2026-10-13-stand-keyboard-harness",
+  "skill": "wrap-session",
+  "step": "gates",
+  "what": "a standing learning recurred in this window: gate.py scope's redirected output was first read through tail before the file was read whole (host-linux.md Session Additions 2026-10-13); the verdict line read the same, corrected in the same step",
+  "impact": {
+   "extra_reads": 1
+  },
+  "evidence": null,
+  "artifacts": [
+   ".claude/rules/host-linux.md"
+  ],
+  "weight": 1,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-14T07:11:49Z-c",
+  "chunk": "2026-10-14-stand-a11y-assertions",
+  "skill": "implement",
+  "step": "code",
+  "what": "an Edit anchored on a test name recalled as read_as_their_click (the file reads read_as_its_click) failed string-not-found and was re-issued on another anchor",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": null,
+  "artifacts": [
+   "tests/blitz-tests/tests/stand_keyboard.rs"
+  ],
+  "weight": 2,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-14T19:58:01Z-c",
+  "chunk": "2026-10-14-stand-a11y-assertions",
+  "skill": "wrap-session",
+  "step": "report",
+  "what": "the operator pass's entry 14 (ci.py conclusion) fired in the background before a context clear completed exit 0 with an empty output file; the entry was re-fired as written after the clear to read its verdict",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": null,
+  "artifacts": [
+   "escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/evidence/ci.md"
+  ],
+  "weight": 2,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-14T20:21:07Z-b",
+  "chunk": "2026-10-14-stand-a11y-assertions",
+  "skill": "wrap-session",
+  "step": "reconcile",
+  "what": "cascade.py sweep exited 2 on the first fire: two pattern ids (route-entry-owned, states-unmeasured) passed the 16-char id bound; shortened and re-fired",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-14T19-50-50-wrap/cascade-2026-10-14-stand-a11y-assertions.json",
+  "artifacts": [
+   ".andromeda/runs/2026-10-14T19-50-50-wrap/cascade-patterns.toml"
+  ],
+  "weight": 2,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-14T20:48:17Z-b",
+  "chunk": "2026-10-14-stand-requirement-sweep",
+  "skill": "phase",
+  "step": "take-up",
+  "what": "route.py pins output was redirected to a file and first counted through an inline python filter before the file was read whole: the shape of the deferred learning on reading pipeline tool output whole",
+  "impact": {
+   "extra_reads": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-14T20-46-15-phase/.pins-out.txt",
+  "artifacts": [
+   "route.py pins"
+  ],
+  "weight": 1,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-15T05:12:40Z-b",
+  "chunk": "2026-10-14-quality-gates",
+  "skill": "phase",
+  "step": "plan",
+  "what": "plan.md's Generated stamp was written as an estimated time 7 min ahead of the clock; the stamp-ahead hook refused it and the stamp was corrected from date -u",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": null,
+  "artifacts": [
+   "escher-0.1.0/chunks/2026-10-14-quality-gates/plan.md"
+  ],
+  "weight": 2,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-15T09:12:15Z-d",
+  "chunk": "2026-10-15-cold-agent-test",
+  "skill": "phase",
+  "step": "validate",
+  "what": "four authored time stamps were estimated instead of read from the clock (baselines 09:10Z, plan Generated 09:05Z, two --origin values 09:12Z); a PostToolUse hook and inputs.py refused two, one landed ahead of the clock in the I5 manifest entry and is corrected on p5-card-2.md",
+  "impact": {
+   "retries": 3
+  },
+  "evidence": null,
+  "artifacts": [
+   "escher-0.1.0/chunks/2026-10-15-cold-agent-test/plan.md",
+   "escher-0.1.0/chunks/2026-10-15-cold-agent-test/inputs/andromeda-inputs.json"
+  ],
+  "weight": 4,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-15T09:49:28Z-b",
+  "chunk": "2026-10-15-cold-agent-test",
+  "skill": "wrap-session",
+  "step": "report",
+  "what": "recurrence-despite-learning: a pipeline tool's saved capture (cascade.py sweep --pre-pass) read through a grep -v filter that dropped its count lines; re-read whole at the cost of one extra call — host-linux.md Session Additions 2026-10-13 standing",
+  "impact": {
+   "extra_reads": 1
+  },
+  "evidence": null,
+  "artifacts": [
+   ".claude/rules/host-linux.md",
+   ".andromeda/runs/2026-10-15T09-44-57-wrap/report-patterns.toml"
+  ],
+  "weight": 1,
+  "epoch": "Epoch 6 - Polish & ship"
+ },
+ {
+  "id": "2026-10-15T10:18:37Z-b",
+  "chunk": "2026-10-15-cold-agent-test",
+  "skill": "wrap-session",
+  "step": "reconcile",
+  "what": "the orchestrator ran route.py pins and cursor (tools that write a run-dir trail) while the leaf comparers' snapshot pair was open, so the after-snapshot's diff-tree held an extra M line on the orchestrator's own trail",
+  "impact": {
+   "extra_reads": 2
+  },
+  "evidence": ".andromeda/runs/2026-10-15T09-44-57-wrap/cascade-dispositions.md",
+  "artifacts": [
+   ".andromeda/runs/2026-10-15T09-44-57-wrap/route-no-marker.json"
+  ],
+  "weight": 1,
+  "epoch": "Epoch 6 - Polish & ship"
+ }
+]

@@ -1,0 +1,35 @@
+{
+ "blitz-dom/range-keyboard": [],
+ "blitz-test-harness": [],
+ "dioxus-native-dom": [
+  [
+   "packages/dioxus-native-dom/src/mutation_writer.rs:172:9",
+   "replace <impl WriteMutations for MutationWriter<'_>>::create_text_node with ()"
+  ]
+ ],
+ "escher-driver": [
+  [
+   "packages/escher-driver/src/mcp.rs:154:53",
+   "replace + with * in read_request"
+  ],
+  [
+   "packages/escher-driver/src/mcp.rs:154:53",
+   "replace + with - in read_request"
+  ]
+ ],
+ "escher-telemetry": [],
+ "seven_guis": [
+  [
+   "examples/seven_guis/src/tasks/timer.rs:29:9",
+   "replace TimerTicks::next with ()"
+  ],
+  [
+   "examples/seven_guis/src/tasks/timer.rs:32:31",
+   "replace -= with += in TimerTicks::next"
+  ],
+  [
+   "examples/seven_guis/src/tasks/timer.rs:32:31",
+   "replace -= with /= in TimerTicks::next"
+  ]
+ ]
+}

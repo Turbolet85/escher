@@ -1,0 +1,31 @@
+{
+  "note": "q-chains.json is the mechanical join (anchors on input.* frictions and thin consumed[] verdicts, producers by exact artifact name in the same chunk). Friction anchors carry file paths, producers logical names, so most friction anchors join nothing mechanically; the shapes below are the same join done by hand on the logical artifact.",
+  "shapes": [
+    {"id": "X1", "producer": "wrap-session/report", "artifact": "report (its site sweep and Spec-claims lists)", "consumer": "wrap-session/reconcile (+ route-resolve)",
+     "chunks": {
+       "2026-10-13-stand-contrast-harness": {"producer": "2026-10-13T18:05:30Z-a ok [new-text-generated, new-text-rows:72, guard-refused:1]", "consumer": ["2026-10-13T18:28:22Z-a consumed report thin", "2026-10-13T18:28:22Z-b input.report-insufficient"]},
+       "2026-10-13-range-input-interaction": {"producer": "2026-10-13T21:16:02Z-a ok [new-text-generated, new-text-rows:104]", "consumer": ["2026-10-13T21:41:41Z-a consumed report thin", "2026-10-13T21:41:41Z-b input.report-insufficient", "2026-10-13T21:44:23Z-a route-resolve consumed report thin"]},
+       "2026-10-13-stand-keyboard-harness": {"producer": "report step record (formally ok)", "consumer": ["2026-10-14T06:13:21Z-c input.report-insufficient"]}
+     },
+     "related_downstream": ["contract.cascade-miss x4 (reconcile)", "contract.narrow-basis-claim 2026-10-14T22:08:02Z-b (report sweep)", "recall.corpus-recurrence wording hazards x4"]},
+    {"id": "X2", "producer": "phase/plan (validate ok)", "artifact": "plan", "consumer": "implement/code",
+     "chunks": {
+       "2026-10-14-stand-a11y-assertions": {"producer": "2026-10-14T06:59:30Z-a ok [unresolved-questions]; validate 2026-10-14T07:04:48Z-a ok [control-caught-plan-gap]", "consumer": ["2026-10-14T07:11:49Z-b input.plan-step-ambiguous"]},
+       "2026-10-14-stand-requirement-sweep": {"producer": "2026-10-14T21:13:31Z-a ok, 527 lines past the ~400 template, planlint 0 hits", "consumer": ["2026-10-14T21:32:12Z-a consumed plan thin", "2026-10-14T21:32:12Z-b input.plan-step-ambiguous"]},
+       "2026-10-14-quality-gates": {"producer": "2026-10-15T05:12:40Z-a halted-resolved; validate 2026-10-15T05:20:15Z-a ok after 4 REQUIRED-RESOLUTIONs planlint did not list (2026-10-15T05:20:15Z-b)", "consumer": ["2026-10-15T05:27:38Z-b input.plan-step-ambiguous", "2026-10-15T05:27:38Z-c input.plan-step-ambiguous"]},
+       "2026-10-15-cold-agent-test": {"producer": "2026-10-15T09:03:52Z-a ok; validate 2026-10-15T09:12:15Z-a ok after two P4 plan defects (2026-10-15T09:12:15Z-b)", "consumer": ["2026-10-15T09:19:55Z-b input.plan-step-ambiguous"]}
+     }},
+    {"id": "X3", "producer": "route authoring (no step record in this epoch)", "artifact": "working-entry", "consumer": "phase/take-up",
+     "chunks": {
+       "2026-10-13-stand-contrast-harness": {"consumer": ["2026-10-13T17:03:08Z-a consumed working-entry thin", "2026-10-13T17:03:08Z-b input.working-entry-thin"]},
+       "2026-10-15-cold-agent-test": {"consumer": ["2026-10-15T08:05:28Z-a consumed working-entry thin", "2026-10-15T08:05:28Z-b input.working-entry-thin"]}
+     }},
+    {"id": "single", "items": [
+      "quality-gates research 2026-10-14T23:19:09Z-a ok [unresolved-questions] + contract.instrument-validity -> plan 2026-10-15T05:12:40Z-a consumed research thin",
+      "stand-contrast-harness smoke 2026-10-13T17:37:02Z-a ok [green] -> report 2026-10-13T18:05:30Z-a consumed implement-outcome thin (operator pass respelled a host temp path)",
+      "stand-a11y-assertions operator-pass [as-left] -> report 2026-10-14T19:58:01Z-a consumed operator-pass thin",
+      "upstream-sync plan 2026-10-13T14:49:11Z-a ok -> report 2026-10-13T15:55:05Z-a consumed plan thin (gate 50's pattern cannot match a gh job log)",
+      "previous wrap's handoff -> orientation 2026-10-13T14:25:20Z-a/-b (post-wrap code-audit and evolve-diagnose run dirs not in the handoff)"
+    ]}
+  ]
+}

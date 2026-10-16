@@ -1,0 +1,44 @@
+{
+ "unit": "escher-driver",
+ "scope": "unit",
+ "complete": true,
+ "unit_state": "complete 525/525",
+ "counts": {
+  "mutants": 525,
+  "caught": 444,
+  "missed": 0,
+  "not_measured": 0,
+  "timeout": 2,
+  "unviable": 79
+ },
+ "score": 100.0,
+ "score_formula": "caught/(caught+missed)",
+ "tool_tallies": {
+  "total_mutants": 525,
+  "caught": 444,
+  "missed": 0,
+  "timeout": 2,
+  "unviable": 79,
+  "success": 0
+ },
+ "other_outcomes": {},
+ "survivors": [],
+ "not_measured": [],
+ "timing": {
+  "scope": "unit",
+  "planned": 525,
+  "tested": 525,
+  "jobs": 4,
+  "cap_s": 27795,
+  "wall_s": 20424
+ },
+ "hand": {
+  "command": "CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo test --locked -p escher-driver -p blitz-tests -p seven_guis --lib --test=cli_commands --test=cli_flow --test=font_face_sniffed_source --test=host_binary --test=host_log --test=host_timer --test=mcp_log --test=mcp_server --test=password_caret_click --test=password_painted_masked --test=stand_accessibility_ids --test=stand_act_diff --test=stand_act_disabled --test=stand_act_filled --test=stand_act_ids --test=stand_act_keys --test=stand_act_obstructed --test=stand_act_range --test=stand_act_refused --test=stand_act_screenshot --test=stand_act_scroll --test=stand_act_spans --test=stand_act_states --test=stand_act_timer --test=stand_actionable_keys --test=stand_boot --test=stand_contrast --test=stand_counter --test=stand_crud --test=stand_diff --test=stand_element_ids --test=stand_flight_booker --test=stand_id_edits --test=stand_id_persistence --test=stand_keyboard --test=stand_mcp_masked --test=stand_mcp_tools --test=stand_non_lean_tasks --test=stand_requirement_sweep --test=stand_screenshot_repeat --test=stand_session_fresh --test=stand_session_ids --test=stand_session_lifecycle --test=stand_session_quiet --test=stand_session_state --test=stand_settle --test=stand_snapshot --test=stand_snapshot_state --test=stand_snapshot_text --test=stand_timer --test=telemetry_scrub",
+  "exit": 0,
+  "wall_s": 81
+ },
+ "command": "mkdir -p target/mutants-tmp && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 RUST_TEST_THREADS=4 cargo mutants -p escher-driver --test-package=escher-driver,blitz-tests,seven_guis --cargo-test-arg=--lib --cargo-test-arg=--test=cli_commands --cargo-test-arg=--test=cli_flow --cargo-test-arg=--test=font_face_sniffed_source --cargo-test-arg=--test=host_binary --cargo-test-arg=--test=host_log --cargo-test-arg=--test=host_timer --cargo-test-arg=--test=mcp_log --cargo-test-arg=--test=mcp_server --cargo-test-arg=--test=password_caret_click --cargo-test-arg=--test=password_painted_masked --cargo-test-arg=--test=stand_accessibility_ids --cargo-test-arg=--test=stand_act_diff --cargo-test-arg=--test=stand_act_disabled --cargo-test-arg=--test=stand_act_filled --cargo-test-arg=--test=stand_act_ids --cargo-test-arg=--test=stand_act_keys --cargo-test-arg=--test=stand_act_obstructed --cargo-test-arg=--test=stand_act_range --cargo-test-arg=--test=stand_act_refused --cargo-test-arg=--test=stand_act_screenshot --cargo-test-arg=--test=stand_act_scroll --cargo-test-arg=--test=stand_act_spans --cargo-test-arg=--test=stand_act_states --cargo-test-arg=--test=stand_act_timer --cargo-test-arg=--test=stand_actionable_keys --cargo-test-arg=--test=stand_boot --cargo-test-arg=--test=stand_contrast --cargo-test-arg=--test=stand_counter --cargo-test-arg=--test=stand_crud --cargo-test-arg=--test=stand_diff --cargo-test-arg=--test=stand_element_ids --cargo-test-arg=--test=stand_flight_booker --cargo-test-arg=--test=stand_id_edits --cargo-test-arg=--test=stand_id_persistence --cargo-test-arg=--test=stand_keyboard --cargo-test-arg=--test=stand_mcp_masked --cargo-test-arg=--test=stand_mcp_tools --cargo-test-arg=--test=stand_non_lean_tasks --cargo-test-arg=--test=stand_requirement_sweep --cargo-test-arg=--test=stand_screenshot_repeat --cargo-test-arg=--test=stand_session_fresh --cargo-test-arg=--test=stand_session_ids --cargo-test-arg=--test=stand_session_lifecycle --cargo-test-arg=--test=stand_session_quiet --cargo-test-arg=--test=stand_session_state --cargo-test-arg=--test=stand_settle --cargo-test-arg=--test=stand_snapshot --cargo-test-arg=--test=stand_snapshot_state --cargo-test-arg=--test=stand_snapshot_text --cargo-test-arg=--test=stand_timer --cargo-test-arg=--test=telemetry_scrub --baseline=skip --timeout 300 -j 4 --output .andromeda/runs/2026-10-15T10-44-59-code-audit/mutants-escher-driver",
+ "exit": 3,
+ "start_time": "2026-10-15T21:12:00.759951746Z",
+ "end_time": "2026-10-16T02:52:24.566269311Z"
+}

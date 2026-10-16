@@ -43,3 +43,6 @@
   - It recurred at this wrap's P1 (a `grep -v` over a saved `cascade.py sweep` capture).
   - It recurred twice in P2–P3 (greps over a saved `inputs.py verify` capture and over the leaves-apply capture).
 - Each remedy is a check, not a second entry. Review with `/andromeda-wrap-session --review` if one should be applied.
+
+## Session End Status
+Completed normally at 2026-10-16 08:45:09

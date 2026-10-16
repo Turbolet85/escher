@@ -1,0 +1,27 @@
+{
+  "epoch_untyped": 20,
+  "clusters": [
+    {"id": "U1", "theme": "an authored time stamp estimated instead of read from the clock; a hook or inputs.py refused it",
+     "epoch6": ["2026-10-13T17:17:03Z-b phase/plan", "2026-10-13T20:20:07Z-b phase/validate", "2026-10-13T22:48:08Z-b phase/validate", "2026-10-15T05:12:40Z-b phase/plan", "2026-10-15T09:12:15Z-d phase/validate"],
+     "lookback_untyped": ["E2 2026-10-06T08:37:04Z-f report", "E2 2026-10-06T11:26:17Z-c validate", "E2 2026-10-06T11:44:41Z-c report", "E2 2026-10-06T12:58:15Z-c report", "E4 2026-10-07T16:46:22Z-c plan"],
+     "lookback_typed_elsewhere": ["E3 2026-10-06T19:31:05Z-b ambiguity.filter-borderline (the learning scored exactly 0.6)", "E3 2026-10-06T21:00:32Z-b contract.narrow-basis-claim", "E3 2026-10-07T00:15:43Z-e contract.in-pass-correction"],
+     "threshold": "met (n=5 in-epoch)"},
+    {"id": "U2", "theme": "a recurrence of the read-whole rule (host-linux.md Session Additions 2026-10-13) recorded untyped at steps whose playbook lists no recall type",
+     "epoch6": ["2026-10-13T15:55:05Z-c wrap/report", "2026-10-13T23:28:17Z-b wrap/report", "2026-10-14T06:36:45Z-b wrap/gates", "2026-10-14T20:48:17Z-b phase/take-up", "2026-10-15T09:49:28Z-b wrap/report"],
+     "threshold": "met (n=5 in-epoch)"},
+    {"id": "U3", "theme": "cascade.py sweep refused or misread its arguments on first fire (pattern id over 16 chars; repeated --pattern flags keep the last)",
+     "epoch6": ["2026-10-13T18:05:30Z-b wrap/report", "2026-10-14T20:21:07Z-b wrap/reconcile"],
+     "lookback_untyped": ["E5 2026-10-12T09:00:00Z-b wrap/report", "E5 2026-10-12T20:41:49Z-c wrap/report"],
+     "lookback_typed_elsewhere": ["E5 2026-10-13T06:24:40Z-b recall.corpus-recurrence"],
+     "threshold": "met (n=2 in-epoch, recurring from Epoch 5)"}
+  ],
+  "below": [
+    {"theme": "gate.py prints its log dir as a literal $TMPDIR while TMPDIR is unset", "epoch6": ["2026-10-13T17:36:44Z-b"], "typed_kin": ["2026-10-13T18:30:15Z-b recall", "E5 2026-10-11T09:56:20Z-b recall"]},
+    {"theme": "a long or background command outlived its window (120 s timeout; fired before a context clear, empty output)", "epoch6": ["2026-10-13T18:28:22Z-d", "2026-10-14T19:58:01Z-c"], "note": "two distinct mechanisms"},
+    {"theme": "orchestrator trail inside a snapshot pair", "epoch6": ["2026-10-15T10:18:37Z-b"], "note": "joins level theme T6"},
+    {"theme": "code-graph: a cfg-gated caller reads as no caller on the Linux-built index", "epoch6": ["2026-10-13T22:22:28Z-b"]},
+    {"theme": "a relative redirect wrote a stray file into .andromeda/runs/", "epoch6": ["2026-10-13T21:41:41Z-d"]},
+    {"theme": "an Edit anchor recalled, not read", "epoch6": ["2026-10-14T07:11:49Z-c"], "lookback": ["E5 2026-10-09T20:07:28Z-b"]},
+    {"theme": "a sweep pattern worded from the plan, not the master ('silent census')", "epoch6": ["2026-10-13T21:16:02Z-b"], "typed_kin": ["2026-10-14T20:22:19Z-c recall", "2026-10-14T22:38:25Z-c recall"]}
+  ]
+}

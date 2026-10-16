@@ -1,0 +1,827 @@
+{
+ "anchors": [
+  {
+   "chunk": null,
+   "consumer": "new-session/orientation",
+   "consumer_id": "2026-10-13T14:25:20Z-a",
+   "artifact": "handoff",
+   "verdict": "consumed:thin",
+   "note": "Status clean, but the tree holds the later code-audit and Epoch 5 evolve-diagnose run dirs and their telemetry, written after the wrap",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": null,
+   "consumer": "new-session/orientation",
+   "consumer_id": "2026-10-13T14:25:20Z-b",
+   "artifact": ".claude/session-handoff.md",
+   "verdict": "friction:input.handoff-git-mismatch",
+   "note": "Handoff Status reads clean; git shows two untracked post-wrap run dirs (2026-10-13T08-56-58-code-audit, 2026-10-13T09-05-20-evolve-diagnose) plus modified telemetry and handoff, more than a lone friction append; Position agreed with the derived cursor",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": null,
+   "consumer": "new-session/orientation",
+   "consumer_id": "2026-10-13T14:25:20Z-b",
+   "artifact": ".andromeda/runs/2026-10-13T08-56-58-code-audit/",
+   "verdict": "friction:input.handoff-git-mismatch",
+   "note": "Handoff Status reads clean; git shows two untracked post-wrap run dirs (2026-10-13T08-56-58-code-audit, 2026-10-13T09-05-20-evolve-diagnose) plus modified telemetry and handoff, more than a lone friction append; Position agreed with the derived cursor",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": null,
+   "consumer": "new-session/orientation",
+   "consumer_id": "2026-10-13T14:25:20Z-b",
+   "artifact": ".andromeda/runs/2026-10-13T09-05-20-evolve-diagnose/",
+   "verdict": "friction:input.handoff-git-mismatch",
+   "note": "Handoff Status reads clean; git shows two untracked post-wrap run dirs (2026-10-13T08-56-58-code-audit, 2026-10-13T09-05-20-evolve-diagnose) plus modified telemetry and handoff, more than a lone friction append; Position agreed with the derived cursor",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-13-upstream-sync-polish-and-ship",
+   "consumer": "wrap-session/report",
+   "consumer_id": "2026-10-13T15:55:05Z-a",
+   "artifact": "plan",
+   "verdict": "consumed:thin",
+   "note": "gate entry 50's pattern cannot match a gh job log (literal ^[ colour codes)",
+   "consumer_signals": null,
+   "producer": "phase/plan",
+   "producer_id": "2026-10-13T14:49:11Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "authority-resolved:extract 27-name list yielded to research (upstream's 28)",
+    "authority-resolved:arch [DOM semantics] kept-mapping yielded to the merged #1185 drop",
+    "model-from-prior-sync-fence"
+   ],
+   "producer_note": "456 lines, 50 entries (4 operator), 15 criteria; fence parsed first fire; planlint 1 hit, 4 (13) on the job-log read, resolved by its note as the last sync's was; no fork asked, three decisive leans stated in Provenance with the playbook escalate patterns read",
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-13-stand-contrast-harness",
+   "consumer": "phase/take-up",
+   "consumer_id": "2026-10-13T17:03:08Z-a",
+   "artifact": "working-entry",
+   "verdict": "consumed:thin",
+   "note": "one line, no freight; control set, threshold handling, measuring source and the boundary with Stand a11y assertions all inferred",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-13-stand-contrast-harness",
+   "consumer": "phase/take-up",
+   "consumer_id": "2026-10-13T17:03:08Z-b",
+   "artifact": "escher-0.1.0/working-route.md:88",
+   "verdict": "friction:input.working-entry-thin",
+   "note": "the entry names no control set, no SC 1.4.3 threshold or exemption handling, no measuring source and no boundary with the following Stand a11y assertions entry; each was inferred from a11y-plan, the stand's controls() table and the task stylesheets",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-13-stand-contrast-harness",
+   "consumer": "phase/take-up",
+   "consumer_id": "2026-10-13T17:03:08Z-b",
+   "artifact": "escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/scope.md",
+   "verdict": "friction:input.working-entry-thin",
+   "note": "the entry names no control set, no SC 1.4.3 threshold or exemption handling, no measuring source and no boundary with the following Stand a11y assertions entry; each was inferred from a11y-plan, the stand's controls() table and the task stylesheets",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-13-stand-contrast-harness",
+   "consumer": "wrap-session/report",
+   "consumer_id": "2026-10-13T18:05:30Z-a",
+   "artifact": "implement-outcome",
+   "verdict": "consumed:thin",
+   "note": "outcome green stood; the operator pass respelled its line 78 (a host temp path) to clear hygiene, no fact changed",
+   "consumer_signals": null,
+   "producer": "implement/smoke",
+   "producer_id": "2026-10-13T17:37:02Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "green"
+   ],
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-13-stand-contrast-harness",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-13T18:28:22Z-a",
+   "artifact": "report",
+   "verdict": "consumed:thin",
+   "note": "the test-totals site list missed obs-plan.md:70 '17 of which' (worded without the token), attributed the 139 · 0 · 7 re-count to test-plan.md:330 where it stands at :116, and carried no blitz-tests file/target count, so one detector derived it",
+   "consumer_signals": null,
+   "producer": "wrap-session/report",
+   "producer_id": "2026-10-13T18:05:30Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "new-text-generated",
+    "new-text-rows:72",
+    "guard-refused:1"
+   ],
+   "producer_note": "Bash guard refused a cd into .andromeda/, re-issued once as a subshell; the site sweep surfaced test-plan.md:100's named reader list (17 in all) as stale after a read of the row",
+   "producer_frictions": [
+    null
+   ]
+  },
+  {
+   "chunk": "2026-10-13-stand-contrast-harness",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-13T18:28:22Z-b",
+   "artifact": "escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/report.md",
+   "verdict": "friction:input.report-insufficient",
+   "note": "the report's site sweep reached its pattern wording only: obs-plan.md:70 stated the mod common readers as '17 of which' and the obs detector caught it; the report also put the run-stand re-count at test-plan.md:330 (it stands at :116) and gave no blitz-tests file count",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-13-range-input-interaction",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-13T21:41:41Z-a",
+   "artifact": "report",
+   "verdict": "consumed:thin",
+   "note": "Spec claims disproved missed test-plan.md:26@c17032 (stand_act_range 1, the pinned no-op); the citation sweep's changed row caught it",
+   "consumer_signals": null,
+   "producer": "wrap-session/report",
+   "producer_id": "2026-10-13T21:16:02Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "new-text-generated",
+    "new-text-rows:104"
+   ],
+   "producer_note": "listing pasted by splice.py at line 285, no line typed or edited after; a P5-card row carried verbatim under inputs#I4",
+   "producer_frictions": [
+    null
+   ]
+  },
+  {
+   "chunk": "2026-10-13-range-input-interaction",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-13T21:41:41Z-b",
+   "artifact": "escher-0.1.0/chunks/2026-10-13-range-input-interaction/report.md",
+   "verdict": "friction:input.report-insufficient",
+   "note": "the report's Spec claims disproved listed test-plan.md:26 as still true at @c4626 and missed the stale stand_act_range 1 clause on the same line (@c17032); the citation sweep's changed row for stand_act_range.rs:1-10 surfaced it before the fan-out",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-13-range-input-interaction",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-13T21:41:41Z-b",
+   "artifact": ".andromeda/test-plan.md:26",
+   "verdict": "friction:input.report-insufficient",
+   "note": "the report's Spec claims disproved listed test-plan.md:26 as still true at @c4626 and missed the stale stand_act_range 1 clause on the same line (@c17032); the citation sweep's changed row for stand_act_range.rs:1-10 surfaced it before the fan-out",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-13-range-input-interaction",
+   "consumer": "wrap-session/route-resolve",
+   "consumer_id": "2026-10-13T21:44:23Z-a",
+   "artifact": "report",
+   "verdict": "consumed:thin",
+   "note": "the report carried the approved merge-surface CARRY but not the two untested range paths; the test-plan detector's note raised them and a grep of the new check measured them",
+   "consumer_signals": null,
+   "producer": "wrap-session/report",
+   "producer_id": "2026-10-13T21:16:02Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "new-text-generated",
+    "new-text-rows:104"
+   ],
+   "producer_note": "listing pasted by splice.py at line 285, no line typed or edited after; a P5-card row carried verbatim under inputs#I4",
+   "producer_frictions": [
+    null
+   ]
+  },
+  {
+   "chunk": "2026-10-13-stand-keyboard-harness",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-14T06:13:21Z-c",
+   "artifact": "escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/report.md",
+   "verdict": "friction:input.report-insufficient",
+   "note": "the report's silence probe read stand_keyboard.rs alone while obs-plan §3 claims no env read in the stand checks' shared modules, which the chunk extended; the obs detector flagged it unmeasured and main ran the probe over common/mod.rs (0) at the apply",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-14-stand-a11y-assertions",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-14T07:11:49Z-b",
+   "artifact": "plan.md step 6",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "step 6 asks Enter/Space on crud-update and crud-delete to read as their click 'the way BUTTONS rows are' but states no change flag; a click on Update with unchanged fields changes nothing, so the row would have no power — the reach types one character into the name field first, reported as a deviation",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-14-stand-a11y-assertions",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-14T07:11:49Z-b",
+   "artifact": "tests/blitz-tests/tests/stand_keyboard.rs",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "step 6 asks Enter/Space on crud-update and crud-delete to read as their click 'the way BUTTONS rows are' but states no change flag; a click on Update with unchanged fields changes nothing, so the row would have no power — the reach types one character into the name field first, reported as a deviation",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-14-stand-a11y-assertions",
+   "consumer": "wrap-session/report",
+   "consumer_id": "2026-10-14T19:58:01Z-a",
+   "artifact": "operator-pass",
+   "verdict": "consumed:thin",
+   "note": "entry 12's result read from the operator's word only (no log); entry 13's read from the gate tool's log dir, outside evidence/ until ci.md was corrected at P1; entry 14 in evidence/ci.md",
+   "consumer_signals": [
+    "as-left",
+    "commits:1",
+    "red:0"
+   ],
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-14-stand-requirement-sweep",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-14T21:32:12Z-a",
+   "artifact": "plan",
+   "verdict": "consumed:thin",
+   "note": "three steps underdetermined: C6(1)'s 'inside the box where scrolled-out content would lie', a witness subject for task-less help tests, and step 4's listed order (a Tab after the acting click would not read the first stop)",
+   "consumer_signals": null,
+   "producer": "phase/plan",
+   "producer_id": "2026-10-14T21:13:31Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "designed-dialogue:founder-forks-c4-c5-c14-c10",
+    "designed-dialogue:founder-forks-c7-c15-c11-c3",
+    "designed-dialogue:operator-forks-sweep-form-and-c2-c8",
+    "authority-resolved:extract claims yielded to the P3 premise closure"
+   ],
+   "producer_note": "527 lines, past the template's ~400 for 16 folded CARRYs; 16 gate entries; planlint 0 hits; the founder relay file was updated between the two founder rounds and snapped twice (inputs#I3 supersedes I2); one step sentence reworded before the self-check",
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-14-stand-requirement-sweep",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-14T21:32:12Z-b",
+   "artifact": "escher-0.1.0/chunks/2026-10-14-stand-requirement-sweep/plan.md",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "plan step 7(1) asks a hit 'inside the box where scrolled-out content would lie' to reach the box; content scrolled out lies outside the box, so the fixture was designed (a full-width first row, narrower rows after) to give the phrase a point inside the box; surfaced in the report",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-14-quality-gates",
+   "consumer": "phase/plan",
+   "consumer_id": "2026-10-15T05:12:40Z-a",
+   "artifact": "research",
+   "verdict": "consumed:thin",
+   "note": "the audit-reach option needed two more measurements at P4 (cargo-deny with --workspace reaching paste; unsound=all reaching memmap2) and the qual_name sweep miscounted the style attribute as an element",
+   "consumer_signals": null,
+   "producer": "phase/research",
+   "producer_id": "2026-10-14T23:19:09Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "unresolved-questions"
+   ],
+   "producer_note": "3 open questions, all founder-gate forks; coverage leg and upstream clippy line run live at HEAD; CARRY 8 attributed from CI job logs",
+   "producer_frictions": [
+    "contract.instrument-validity"
+   ]
+  },
+  {
+   "chunk": "2026-10-14-quality-gates",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-15T05:27:38Z-b",
+   "artifact": ".github/scripts/ci-leg.sh",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "step 3 offered two shim pins for the coverage leg (the floor's invocation in the log, or exit 2 naming a crate); neither is reachable with a cargo shim that writes no lcov and a floor script found by a cwd-relative path, so the pin seeds an lcov in the temp cwd and the leg finds the script beside itself",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-14-quality-gates",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-15T05:27:38Z-b",
+   "artifact": ".github/scripts/test_ci_workflows.py",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "step 3 offered two shim pins for the coverage leg (the floor's invocation in the log, or exit 2 naming a crate); neither is reachable with a cargo shim that writes no lcov and a floor script found by a cwd-relative path, so the pin seeds an lcov in the temp cwd and the leg finds the script beside itself",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-14-quality-gates",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-15T05:27:38Z-c",
+   "artifact": "tests/blitz-tests/tests/stand_act_spans.rs",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "step 16 asks the not-settled line to carry its eight fields; execute.rs records passes only on a settle that went quiet and cause only on a refusal, so the line fills six of the span's eight; step 17 names a unix test module client.rs does not have, so the test sits in a new tests module inside the unix-only imp",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-14-quality-gates",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-15T05:27:38Z-c",
+   "artifact": "packages/escher-driver/src/client.rs",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "step 16 asks the not-settled line to carry its eight fields; execute.rs records passes only on a settle that went quiet and cause only on a refusal, so the line fills six of the span's eight; step 17 names a unix test module client.rs does not have, so the test sits in a new tests module inside the unix-only imp",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-15-cold-agent-test",
+   "consumer": "phase/take-up",
+   "consumer_id": "2026-10-15T08:05:28Z-a",
+   "artifact": "working-entry",
+   "verdict": "consumed:thin",
+   "note": "names no form, delivery or runner for the check the agent writes; 4 CARRY blocks carry the rest with enough context",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-15-cold-agent-test",
+   "consumer": "phase/take-up",
+   "consumer_id": "2026-10-15T08:05:28Z-b",
+   "artifact": "escher-0.1.0/working-route.md:100",
+   "verdict": "friction:input.working-entry-thin",
+   "note": "the entry asks for a check the agent writes and passes, but neither it nor any CARRY or the matrix acceptance names the check's form, how an agent holding only the MCP tool hands one over, or what runs it; carried to P4 as a fork",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-15-cold-agent-test",
+   "consumer": "phase/take-up",
+   "consumer_id": "2026-10-15T08:05:28Z-b",
+   "artifact": "escher-0.1.0/chunks/2026-10-15-cold-agent-test/scope.md",
+   "verdict": "friction:input.working-entry-thin",
+   "note": "the entry asks for a check the agent writes and passes, but neither it nor any CARRY or the matrix acceptance names the check's form, how an agent holding only the MCP tool hands one over, or what runs it; carried to P4 as a fork",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-15-cold-agent-test",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-15T09:19:55Z-b",
+   "artifact": "escher-0.1.0/chunks/2026-10-15-cold-agent-test/plan.md",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "plan steps 5 and 7 leave open which reasons accompany no-check or an invalid check (check-cannot-fail beside them or not) and whether an accepted stop ends 'the app started' for tasks_met; settled as no-check alone, check-cannot-fail only after a replay, and stop clearing the started app — surfaced in the P4 report",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "chunk": "2026-10-15-cold-agent-test",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-15T09:19:55Z-b",
+   "artifact": "scripts/cold-agent.sh",
+   "verdict": "friction:input.plan-step-ambiguous",
+   "note": "plan steps 5 and 7 leave open which reasons accompany no-check or an invalid check (check-cannot-fail beside them or not) and whether an accepted stop ends 'the app started' for tasks_met; settled as no-check alone, check-cannot-fail only after a replay, and stop clearing the started app — surfaced in the P4 report",
+   "consumer_signals": null,
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_note": null,
+   "producer_frictions": []
+  }
+ ],
+ "shapes": [
+  {
+   "shape": [
+    null,
+    "working-entry",
+    "phase/take-up"
+   ],
+   "chunks": [
+    "2026-10-13-stand-contrast-harness",
+    "2026-10-15-cold-agent-test"
+   ],
+   "n": 2
+  },
+  {
+   "shape": [
+    "wrap-session/report",
+    "report",
+    "wrap-session/reconcile"
+   ],
+   "chunks": [
+    "2026-10-13-range-input-interaction",
+    "2026-10-13-stand-contrast-harness"
+   ],
+   "n": 2
+  },
+  {
+   "shape": [
+    null,
+    "handoff",
+    "new-session/orientation"
+   ],
+   "chunks": [
+    "None"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    ".claude/session-handoff.md",
+    "new-session/orientation"
+   ],
+   "chunks": [
+    "None"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    ".andromeda/runs/2026-10-13T08-56-58-code-audit/",
+    "new-session/orientation"
+   ],
+   "chunks": [
+    "None"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    ".andromeda/runs/2026-10-13T09-05-20-evolve-diagnose/",
+    "new-session/orientation"
+   ],
+   "chunks": [
+    "None"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    "phase/plan",
+    "plan",
+    "wrap-session/report"
+   ],
+   "chunks": [
+    "2026-10-13-upstream-sync-polish-and-ship"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    "escher-0.1.0/working-route.md:88",
+    "phase/take-up"
+   ],
+   "chunks": [
+    "2026-10-13-stand-contrast-harness"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    "escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/scope.md",
+    "phase/take-up"
+   ],
+   "chunks": [
+    "2026-10-13-stand-contrast-harness"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    "implement/smoke",
+    "implement-outcome",
+    "wrap-session/report"
+   ],
+   "chunks": [
+    "2026-10-13-stand-contrast-harness"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    "escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/report.md",
+    "wrap-session/reconcile"
+   ],
+   "chunks": [
+    "2026-10-13-stand-contrast-harness"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    "escher-0.1.0/chunks/2026-10-13-range-input-interaction/report.md",
+    "wrap-session/reconcile"
+   ],
+   "chunks": [
+    "2026-10-13-range-input-interaction"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    ".andromeda/test-plan.md:26",
+    "wrap-session/reconcile"
+   ],
+   "chunks": [
+    "2026-10-13-range-input-interaction"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    "wrap-session/report",
+    "report",
+    "wrap-session/route-resolve"
+   ],
+   "chunks": [
+    "2026-10-13-range-input-interaction"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    "escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/report.md",
+    "wrap-session/reconcile"
+   ],
+   "chunks": [
+    "2026-10-13-stand-keyboard-harness"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    "plan.md step 6",
+    "implement/code"
+   ],
+   "chunks": [
+    "2026-10-14-stand-a11y-assertions"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    "tests/blitz-tests/tests/stand_keyboard.rs",
+    "implement/code"
+   ],
+   "chunks": [
+    "2026-10-14-stand-a11y-assertions"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    "operator-pass",
+    "wrap-session/report"
+   ],
+   "chunks": [
+    "2026-10-14-stand-a11y-assertions"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    "phase/plan",
+    "plan",
+    "implement/code"
+   ],
+   "chunks": [
+    "2026-10-14-stand-requirement-sweep"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    "escher-0.1.0/chunks/2026-10-14-stand-requirement-sweep/plan.md",
+    "implement/code"
+   ],
+   "chunks": [
+    "2026-10-14-stand-requirement-sweep"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    "phase/research",
+    "research",
+    "phase/plan"
+   ],
+   "chunks": [
+    "2026-10-14-quality-gates"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    ".github/scripts/ci-leg.sh",
+    "implement/code"
+   ],
+   "chunks": [
+    "2026-10-14-quality-gates"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    ".github/scripts/test_ci_workflows.py",
+    "implement/code"
+   ],
+   "chunks": [
+    "2026-10-14-quality-gates"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    "tests/blitz-tests/tests/stand_act_spans.rs",
+    "implement/code"
+   ],
+   "chunks": [
+    "2026-10-14-quality-gates"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    "packages/escher-driver/src/client.rs",
+    "implement/code"
+   ],
+   "chunks": [
+    "2026-10-14-quality-gates"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    "escher-0.1.0/working-route.md:100",
+    "phase/take-up"
+   ],
+   "chunks": [
+    "2026-10-15-cold-agent-test"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    "escher-0.1.0/chunks/2026-10-15-cold-agent-test/scope.md",
+    "phase/take-up"
+   ],
+   "chunks": [
+    "2026-10-15-cold-agent-test"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    "escher-0.1.0/chunks/2026-10-15-cold-agent-test/plan.md",
+    "implement/code"
+   ],
+   "chunks": [
+    "2026-10-15-cold-agent-test"
+   ],
+   "n": 1
+  },
+  {
+   "shape": [
+    null,
+    "scripts/cold-agent.sh",
+    "implement/code"
+   ],
+   "chunks": [
+    "2026-10-15-cold-agent-test"
+   ],
+   "n": 1
+  }
+ ]
+}

@@ -1,0 +1,1934 @@
+[
+ {
+  "key": "ALL/ALL/recall.corpus-recurrence",
+  "n": 17,
+  "weight_sum": 26,
+  "score": 442,
+  "rate": null,
+  "chunks": [
+   "2026-10-13-range-input-interaction",
+   "2026-10-13-stand-contrast-harness",
+   "2026-10-13-stand-keyboard-harness",
+   "2026-10-13-upstream-sync-polish-and-ship",
+   "2026-10-14-quality-gates",
+   "2026-10-14-stand-a11y-assertions",
+   "2026-10-14-stand-requirement-sweep",
+   "2026-10-15-cold-agent-test"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-13T16:36:40Z-b",
+    "chunk": "2026-10-13-upstream-sync-polish-and-ship",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "the plan's gate entry 50 counted `Running tests/…` over a `gh run view --log` capture and read 0 by construction — the exact hazard the Tier-3 entry of 2026-10-10 (literal colour codes, Windows backslash) already records; Filter 1 deduped the report's sweep-hazard candidate against it",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-13-upstream-sync-polish-and-ship/evidence/ci.md",
+    "artifacts": [
+     ".claude/docs/session-learnings.md"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-13T18:28:22Z-c",
+    "chunk": "2026-10-13-stand-contrast-harness",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "what": "at this resume's P1 re-fires one pipeline tool call was piped into tail (inputs.py verify | tail -2) against the 2026-10-13 Tier-2 host-linux rule (run pipeline tools bare or redirected); the next call ran it bare",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-13T18-00-36-wrap/inputs-2026-10-13-stand-contrast-harness.json",
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-13T18:30:15Z-b",
+    "chunk": "2026-10-13-stand-contrast-harness",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "at implement a path printed with the literal $TMPDIR prefix was read through the variable, which is unset in the Bash tool's shell, and resolved to /andromeda-gate/...; docs/session-learnings.md already records $TMPDIR unset on this host (2026-10-07)",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/report.md",
+    "artifacts": [
+     ".claude/docs/session-learnings.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-13T18:30:15Z-c",
+    "chunk": "2026-10-13-stand-contrast-harness",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "at the operator pass hygiene refused the implement outcome file for a host temp path written in its prose; docs/session-learnings.md already records that committed run-dir text must not spell a host temp path, even as prose (2026-10-06)",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/evidence/operator-15.txt",
+    "artifacts": [
+     ".claude/docs/session-learnings.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-13T21:50:35Z-b",
+    "chunk": "2026-10-13-range-input-interaction",
+    "skill": "wrap-session",
+    "step": "gates",
+    "what": "route.py epoch was re-fired for step 3b's predicate with its output redirected to /dev/null, against host-linux.md 2026-10-13 (pipeline tools bare or redirected to a file read whole); the predicate was taken from the P5 firing read whole (Epoch 6: markerless 5), so no decision rested on the discarded run",
+    "impact": {
+     "retries": 0
+    },
+    "evidence": null,
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-14T06:14:35Z-b",
+    "chunk": "2026-10-13-stand-keyboard-harness",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "a pipeline tool's output (cascade.py sweep --pre-pass) was read through command grep at P1 although host-linux.md Session Additions 2026-10-13 states the bare-or-whole-file rule; the same event P1's checkpoint recorded, weighed again here from the report's Decisions & corrections",
+    "impact": {
+     "iterations": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-13T23-23-45-wrap/curation.md",
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-14T20:22:19Z-b",
+    "chunk": "2026-10-14-stand-a11y-assertions",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "the bare-count sweep hazard (session-learnings 2026-10-12) recurred at this chunk's P1: `\\b153\\b` hit 25 master rows, 23 of them citation digits",
+    "impact": {
+     "reformulations": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/report.md",
+    "artifacts": [
+     ".claude/docs/session-learnings.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-14T20:22:19Z-c",
+    "chunk": "2026-10-14-stand-a11y-assertions",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "the obs-plan census wording hazard (session-learnings 2026-10-13, never called a silent census) recurred at this chunk's P1: the pattern's control did not fire and it was re-fired",
+    "impact": {
+     "reformulations": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/report.md",
+    "artifacts": [
+     ".claude/docs/session-learnings.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-14T20:22:19Z-d",
+    "chunk": "2026-10-14-stand-a11y-assertions",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "host-linux.md Session Additions 2026-10-13 (run every pipeline tool bare or redirect it to a file read whole) recurred at P2: the leaves apply's redirected output file was first read through sed, then diffed whole against the dry run",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-14T19-50-50-wrap/cascade-dispositions.md",
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-14T22:38:25Z-b",
+    "chunk": "2026-10-14-stand-requirement-sweep",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "session-learnings 2026-10-07 (the Bash tool's grep refuses a bounded repetition) recurred at this chunk's P1: a bare grep with .{0,60} printed one hit then nothing",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-14-stand-requirement-sweep/report.md",
+    "artifacts": null,
+    "weight": 1
+   },
+   {
+    "id": "2026-10-14T22:38:25Z-c",
+    "chunk": "2026-10-14-stand-requirement-sweep",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "session-learnings 2026-10-13 (obs-plan never says 'silent census') recurred at this chunk's P1: the plan's word 'silence census' fired as a sweep pattern and its control never fired",
+    "impact": {
+     "reformulations": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-14-stand-requirement-sweep/report.md",
+    "artifacts": null,
+    "weight": 2
+   },
+   {
+    "id": "2026-10-14T22:38:25Z-d",
+    "chunk": "2026-10-14-stand-requirement-sweep",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "host-linux.md Session Addition 2026-10-13 (pipeline tools bare or read whole) recurred at this wrap's P2: cascade.py window piped into tail once, and the leaves apply's saved output read through grep -v",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-14T22-00-51-wrap/curation.md",
+    "artifacts": null,
+    "weight": 1
+   },
+   {
+    "id": "2026-10-15T07:31:31Z-b",
+    "chunk": "2026-10-14-quality-gates",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "host-linux.md Session Addition 2026-10-13 (pipeline tools read whole, never filtered) recurred at implement, at P1 and in this window, where the leaf apply's saved output was read through tail -25",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-15T06-51-44-wrap/curation.md",
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-15T07:31:31Z-c",
+    "chunk": "2026-10-14-quality-gates",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "session-learnings.md's entry on a bare-number count pattern matching citation digits recurred at P1's site sweep (bare 139, 716, 712 matched citation ranges in 12 of 13 rows)",
+    "impact": {
+     "reformulations": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-14-quality-gates/report.md",
+    "artifacts": [
+     ".claude/docs/session-learnings.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-15T07:31:31Z-d",
+    "chunk": "2026-10-14-quality-gates",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "session-learnings.md's entry on gh run view --log colour codes as literal text recurred at implement: a parser keyed on Running attributed 0 targets until both forms were stripped",
+    "impact": {
+     "reformulations": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-14-quality-gates/report.md",
+    "artifacts": [
+     ".claude/docs/session-learnings.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-15T10:18:37Z-c",
+    "chunk": "2026-10-15-cold-agent-test",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "what": "a pipeline tool's saved output was read through a grep filter twice this pass (inputs.py verify's capture, the leaves apply's capture), against host-linux.md Session Additions 2026-10-13 (read whole, never filtered)",
+    "impact": {
+     "extra_reads": 0
+    },
+    "evidence": null,
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-15T10:20:07Z-b",
+    "chunk": "2026-10-15-cold-agent-test",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "Filter 1 deduped the P1 sweep hazard (a grep -v over a saved cascade.py sweep capture dropped its count lines) against host-linux.md Session Additions 2026-10-13, which already states the rule correctly; logged to the handoff as recurrence-despite-learning",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-15T09-44-57-wrap/curation.md",
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/curation/recall.corpus-recurrence",
+  "n": 14,
+  "weight_sum": 22,
+  "score": 308,
+  "rate": "14/8",
+  "chunks": [
+   "2026-10-13-stand-contrast-harness",
+   "2026-10-13-stand-keyboard-harness",
+   "2026-10-13-upstream-sync-polish-and-ship",
+   "2026-10-14-quality-gates",
+   "2026-10-14-stand-a11y-assertions",
+   "2026-10-14-stand-requirement-sweep",
+   "2026-10-15-cold-agent-test"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-13T16:36:40Z-b",
+    "chunk": "2026-10-13-upstream-sync-polish-and-ship",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "the plan's gate entry 50 counted `Running tests/…` over a `gh run view --log` capture and read 0 by construction — the exact hazard the Tier-3 entry of 2026-10-10 (literal colour codes, Windows backslash) already records; Filter 1 deduped the report's sweep-hazard candidate against it",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-13-upstream-sync-polish-and-ship/evidence/ci.md",
+    "artifacts": [
+     ".claude/docs/session-learnings.md"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-13T18:30:15Z-b",
+    "chunk": "2026-10-13-stand-contrast-harness",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "at implement a path printed with the literal $TMPDIR prefix was read through the variable, which is unset in the Bash tool's shell, and resolved to /andromeda-gate/...; docs/session-learnings.md already records $TMPDIR unset on this host (2026-10-07)",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/report.md",
+    "artifacts": [
+     ".claude/docs/session-learnings.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-13T18:30:15Z-c",
+    "chunk": "2026-10-13-stand-contrast-harness",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "at the operator pass hygiene refused the implement outcome file for a host temp path written in its prose; docs/session-learnings.md already records that committed run-dir text must not spell a host temp path, even as prose (2026-10-06)",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/evidence/operator-15.txt",
+    "artifacts": [
+     ".claude/docs/session-learnings.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-14T06:14:35Z-b",
+    "chunk": "2026-10-13-stand-keyboard-harness",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "a pipeline tool's output (cascade.py sweep --pre-pass) was read through command grep at P1 although host-linux.md Session Additions 2026-10-13 states the bare-or-whole-file rule; the same event P1's checkpoint recorded, weighed again here from the report's Decisions & corrections",
+    "impact": {
+     "iterations": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-13T23-23-45-wrap/curation.md",
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-14T20:22:19Z-b",
+    "chunk": "2026-10-14-stand-a11y-assertions",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "the bare-count sweep hazard (session-learnings 2026-10-12) recurred at this chunk's P1: `\\b153\\b` hit 25 master rows, 23 of them citation digits",
+    "impact": {
+     "reformulations": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/report.md",
+    "artifacts": [
+     ".claude/docs/session-learnings.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-14T20:22:19Z-c",
+    "chunk": "2026-10-14-stand-a11y-assertions",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "the obs-plan census wording hazard (session-learnings 2026-10-13, never called a silent census) recurred at this chunk's P1: the pattern's control did not fire and it was re-fired",
+    "impact": {
+     "reformulations": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/report.md",
+    "artifacts": [
+     ".claude/docs/session-learnings.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-14T20:22:19Z-d",
+    "chunk": "2026-10-14-stand-a11y-assertions",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "host-linux.md Session Additions 2026-10-13 (run every pipeline tool bare or redirect it to a file read whole) recurred at P2: the leaves apply's redirected output file was first read through sed, then diffed whole against the dry run",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-14T19-50-50-wrap/cascade-dispositions.md",
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-14T22:38:25Z-b",
+    "chunk": "2026-10-14-stand-requirement-sweep",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "session-learnings 2026-10-07 (the Bash tool's grep refuses a bounded repetition) recurred at this chunk's P1: a bare grep with .{0,60} printed one hit then nothing",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-14-stand-requirement-sweep/report.md",
+    "artifacts": null,
+    "weight": 1
+   },
+   {
+    "id": "2026-10-14T22:38:25Z-c",
+    "chunk": "2026-10-14-stand-requirement-sweep",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "session-learnings 2026-10-13 (obs-plan never says 'silent census') recurred at this chunk's P1: the plan's word 'silence census' fired as a sweep pattern and its control never fired",
+    "impact": {
+     "reformulations": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-14-stand-requirement-sweep/report.md",
+    "artifacts": null,
+    "weight": 2
+   },
+   {
+    "id": "2026-10-14T22:38:25Z-d",
+    "chunk": "2026-10-14-stand-requirement-sweep",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "host-linux.md Session Addition 2026-10-13 (pipeline tools bare or read whole) recurred at this wrap's P2: cascade.py window piped into tail once, and the leaves apply's saved output read through grep -v",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-14T22-00-51-wrap/curation.md",
+    "artifacts": null,
+    "weight": 1
+   },
+   {
+    "id": "2026-10-15T07:31:31Z-b",
+    "chunk": "2026-10-14-quality-gates",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "host-linux.md Session Addition 2026-10-13 (pipeline tools read whole, never filtered) recurred at implement, at P1 and in this window, where the leaf apply's saved output was read through tail -25",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-15T06-51-44-wrap/curation.md",
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-15T07:31:31Z-c",
+    "chunk": "2026-10-14-quality-gates",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "session-learnings.md's entry on a bare-number count pattern matching citation digits recurred at P1's site sweep (bare 139, 716, 712 matched citation ranges in 12 of 13 rows)",
+    "impact": {
+     "reformulations": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-14-quality-gates/report.md",
+    "artifacts": [
+     ".claude/docs/session-learnings.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-15T07:31:31Z-d",
+    "chunk": "2026-10-14-quality-gates",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "session-learnings.md's entry on gh run view --log colour codes as literal text recurred at implement: a parser keyed on Running attributed 0 targets until both forms were stripped",
+    "impact": {
+     "reformulations": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-14-quality-gates/report.md",
+    "artifacts": [
+     ".claude/docs/session-learnings.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-15T10:20:07Z-b",
+    "chunk": "2026-10-15-cold-agent-test",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "Filter 1 deduped the P1 sweep hazard (a grep -v over a saved cascade.py sweep capture dropped its count lines) against host-linux.md Session Additions 2026-10-13, which already states the rule correctly; logged to the handoff as recurrence-despite-learning",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-15T09-44-57-wrap/curation.md",
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "phase/validate/contract.mechanical-check",
+  "n": 7,
+  "weight_sum": 13,
+  "score": 91,
+  "rate": "7/8",
+  "chunks": [
+   "2026-10-13-stand-contrast-harness",
+   "2026-10-14-quality-gates",
+   "2026-10-14-stand-a11y-assertions",
+   "2026-10-14-stand-requirement-sweep",
+   "2026-10-15-cold-agent-test"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-13T17:23:36Z-b",
+    "chunk": "2026-10-13-stand-contrast-harness",
+    "skill": "phase",
+    "step": "validate",
+    "what": "check 8 (mechanism reach) found the glyph-colour frame cited as packages/blitz-paint/src/text.rs:25-48, which is the inline-background path; the producing frame is resolve_decoration_entry text.rs:156-167 read at 616-638; corrected in plan, research and scope before the card",
+    "impact": {
+     "extra_reads": 2
+    },
+    "evidence": null,
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/plan.md",
+     "escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/research.md"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-13T17:23:36Z-c",
+    "chunk": "2026-10-13-stand-contrast-harness",
+    "skill": "phase",
+    "step": "validate",
+    "what": "check 4 (6) found the obs criterion naming a manifest property (no tracing in the harness Cargo.toml) that no listed entry proved; a grep-count probe entry was added and controlled both ways, and the criterion reworded to cite the census entries",
+    "impact": {
+     "iterations": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/plan.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-14T07:04:48Z-b",
+    "chunk": "2026-10-14-stand-a11y-assertions",
+    "skill": "phase",
+    "step": "validate",
+    "what": "the P3 accent sweep searched the hex spellings only, so step 2 named one of the three rgba(74, 108, 247, ...) forms; no P3 or P4 predicate read the colour's other spellings, and the gap surfaced only when the P5 must-pass control of the census entry read one hit left",
+    "impact": {
+     "iterations": 1,
+     "extra_reads": 2
+    },
+    "evidence": ".andromeda/runs/2026-10-14T06-38-55-phase/controls-p5.md",
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/plan.md",
+     "escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/research.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-14T21:19:20Z-b",
+    "chunk": "2026-10-14-stand-requirement-sweep",
+    "skill": "phase",
+    "step": "validate",
+    "what": "check 4 (0) failed after the P5 baseline writes: a baseline reading holding an apostrophe was written as a TOML literal string with a doubled quote, which TOML does not escape; re-written as a basic string and the whole set re-run green",
+    "impact": {
+     "iterations": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-14T20-46-15-phase/",
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-14-stand-requirement-sweep/plan.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-15T05:20:15Z-b",
+    "chunk": "2026-10-14-quality-gates",
+    "skill": "phase",
+    "step": "validate",
+    "what": "P5 reads raised four REQUIRED-RESOLUTIONs on the P4 plan, none listed by planlint: check 12 (step 23 cited a step 25 that does not exist), check 4 (4)/(6) (evidence files and one-shot hand controls named in no prose), check 11 (the windowed binary run in step 20 had no named end), check 4 (9) (six entries NOT SEEN unmarked new); each fixed and the whole set re-run",
+    "impact": {
+     "iterations": 1,
+     "extra_reads": 2
+    },
+    "evidence": null,
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-14-quality-gates/plan.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-15T09:12:15Z-b",
+    "chunk": "2026-10-15-cold-agent-test",
+    "skill": "phase",
+    "step": "validate",
+    "what": "the first P5 pass found two plan defects authored at P4: check 12 (step 10 fired the evidence reader whose input step 11 writes) and check 4 (4) (no prose naming the producer of evidence/live-verdict.json); both fixed before the card",
+    "impact": {
+     "iterations": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-15-cold-agent-test/plan.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-15T09:12:15Z-c",
+    "chunk": "2026-10-15-cold-agent-test",
+    "skill": "phase",
+    "step": "validate",
+    "what": "the baseline write put implement''s inside a TOML literal string; the full re-run's check 4 (0) dry-run read UNPARSED at fence line 13, fixed as a basic string",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-15-cold-agent-test/plan.md"
+    ],
+    "weight": 2
+   }
+  ]
+ },
+ {
+  "key": "implement/code/input.plan-step-ambiguous",
+  "n": 5,
+  "weight_sum": 7,
+  "score": 35,
+  "rate": "5/8",
+  "chunks": [
+   "2026-10-14-quality-gates",
+   "2026-10-14-stand-a11y-assertions",
+   "2026-10-14-stand-requirement-sweep",
+   "2026-10-15-cold-agent-test"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-14T07:11:49Z-b",
+    "chunk": "2026-10-14-stand-a11y-assertions",
+    "skill": "implement",
+    "step": "code",
+    "what": "step 6 asks Enter/Space on crud-update and crud-delete to read as their click 'the way BUTTONS rows are' but states no change flag; a click on Update with unchanged fields changes nothing, so the row would have no power — the reach types one character into the name field first, reported as a deviation",
+    "impact": {
+     "reformulations": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "plan.md step 6",
+     "tests/blitz-tests/tests/stand_keyboard.rs"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-14T21:32:12Z-b",
+    "chunk": "2026-10-14-stand-requirement-sweep",
+    "skill": "implement",
+    "step": "code",
+    "what": "plan step 7(1) asks a hit 'inside the box where scrolled-out content would lie' to reach the box; content scrolled out lies outside the box, so the fixture was designed (a full-width first row, narrower rows after) to give the phrase a point inside the box; surfaced in the report",
+    "impact": {
+     "reformulations": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-14-stand-requirement-sweep/plan.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-15T05:27:38Z-b",
+    "chunk": "2026-10-14-quality-gates",
+    "skill": "implement",
+    "step": "code",
+    "what": "step 3 offered two shim pins for the coverage leg (the floor's invocation in the log, or exit 2 naming a crate); neither is reachable with a cargo shim that writes no lcov and a floor script found by a cwd-relative path, so the pin seeds an lcov in the temp cwd and the leg finds the script beside itself",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     ".github/scripts/ci-leg.sh",
+     ".github/scripts/test_ci_workflows.py"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-15T05:27:38Z-c",
+    "chunk": "2026-10-14-quality-gates",
+    "skill": "implement",
+    "step": "code",
+    "what": "step 16 asks the not-settled line to carry its eight fields; execute.rs records passes only on a settle that went quiet and cause only on a refusal, so the line fills six of the span's eight; step 17 names a unix test module client.rs does not have, so the test sits in a new tests module inside the unix-only imp",
+    "impact": {
+     "extra_reads": 2
+    },
+    "evidence": null,
+    "artifacts": [
+     "tests/blitz-tests/tests/stand_act_spans.rs",
+     "packages/escher-driver/src/client.rs"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-15T09:19:55Z-b",
+    "chunk": "2026-10-15-cold-agent-test",
+    "skill": "implement",
+    "step": "code",
+    "what": "plan steps 5 and 7 leave open which reasons accompany no-check or an invalid check (check-cannot-fail beside them or not) and whether an accepted stop ends 'the app started' for tasks_met; settled as no-check alone, check-cannot-fail only after a replay, and stop clearing the started app — surfaced in the P4 report",
+    "impact": {
+     "extra_reads": 0
+    },
+    "evidence": null,
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-15-cold-agent-test/plan.md",
+     "scripts/cold-agent.sh"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/contract.cascade-miss",
+  "n": 4,
+  "weight_sum": 6,
+  "score": 24,
+  "rate": "4/8",
+  "chunks": [
+   "2026-10-13-stand-keyboard-harness",
+   "2026-10-13-upstream-sync-polish-and-ship",
+   "2026-10-14-quality-gates",
+   "2026-10-14-stand-requirement-sweep"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-13T16:35:04Z-b",
+    "chunk": "2026-10-13-upstream-sync-polish-and-ship",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "what": "the directive's respelling list covered security-plan and architecture only; the cascade step-2 sweep found four more master sites copying one of the ten amendments (obs-plan.md:107, a11y-plan.md:46, a11y-plan.md:275, the session-lifecycle key file :7), folded under the new playbook rule A",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-13T15-50-37-wrap/cascade-sweep.txt",
+    "artifacts": [
+     ".andromeda/runs/2026-10-13T15-50-37-wrap/cascade-dispositions.md"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-14T06:13:21Z-b",
+    "chunk": "2026-10-13-stand-keyboard-harness",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "what": "four stale master sites no detector proposed: architecture.md:133 (no element focused after the obstructed click), architecture.md:263 (the twelve driver-action files' 40 tests), a11y-plan.md:280 (Tab order unchanged, present tense), the Session lifecycle key file (stand_act_keys 2, total 46); three caught by the step-2 sweep, one by main's count",
+    "impact": {
+     "iterations": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-13T23-23-45-wrap/cascade-dispositions.md",
+    "artifacts": [
+     ".andromeda/architecture.md",
+     ".andromeda/a11y-plan.md",
+     ".andromeda/registries/contracts/test-plan/session-lifecycle.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-14T22:37:37Z-b",
+    "chunk": "2026-10-14-stand-requirement-sweep",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "what": "no detector proposed five master sites naming the completing route entry as an owner or carrying its dated counts (architecture.md:91, :136; test-plan.md:92, :324; security-plan.md:397); main's owner sweep at Validate caught them and raised them as amendments",
+    "impact": {
+     "extra_reads": 3
+    },
+    "evidence": ".andromeda/runs/2026-10-14T22-00-51-wrap/fanout-results.md",
+    "artifacts": [
+     ".andromeda/architecture.md",
+     ".andromeda/test-plan.md",
+     ".andromeda/security-plan.md"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-15T07:29:35Z-c",
+    "chunk": "2026-10-14-quality-gates",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "what": "the session-lifecycle key file restated cli_commands 11 at :11, a site no detector proposed; the step-2 sweep's cli11 pattern caught it and it was folded into this pass",
+    "impact": {
+     "iterations": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-15T06-51-44-wrap/cascade-dispositions.md",
+    "artifacts": [
+     ".andromeda/registries/contracts/test-plan/session-lifecycle.md:11"
+    ],
+    "weight": 2
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/contract.in-pass-correction",
+  "n": 3,
+  "weight_sum": 12,
+  "score": 36,
+  "rate": "3/8",
+  "chunks": [
+   "2026-10-13-range-input-interaction",
+   "2026-10-13-upstream-sync-polish-and-ship",
+   "2026-10-14-stand-requirement-sweep"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-13T16:35:04Z-c",
+    "chunk": "2026-10-13-upstream-sync-polish-and-ship",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "what": "five texts this pass wrote were wrong on first write and corrected before the commit: answer-card counts 33/32 → 37/36 (a recount); design-system raise's section named §Depth Strategy → §Surface: desktop-native (heading read); architecture entry 3's Section put line 101 under Inherited Defaults → Established Decisions (heading map); design-system entry claimed a default.css change the body does not carry (re-read); architecture entry 2 at 3058 B over the 3000 B bound (sidecar.py check)",
+    "impact": {
+     "retries": 5
+    },
+    "evidence": ".andromeda/runs/2026-10-13T15-50-37-wrap/",
+    "artifacts": [
+     "answer-card.md",
+     "fanout-results.md",
+     "architecture-entry-3.md",
+     "design-system-entry.md",
+     "architecture-entry-2.md"
+    ],
+    "weight": 6
+   },
+   {
+    "id": "2026-10-13T21:41:41Z-c",
+    "chunk": "2026-10-13-range-input-interaction",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "what": "three first writes corrected by re-read before commit: architecture.md:87 closed the new clause with an unbalanced ')'; architecture.md:197 first said 'the last three wherever the node is' (extending an unmeasured in-or-out-of-document claim to apply_range_move) and left a dangling '— the in the document or not'; answer-card.md cited plan.md:446-447 for inputs#I2/I3, which sit at plan.md:451",
+    "impact": {
+     "retries": 3
+    },
+    "evidence": null,
+    "artifacts": [
+     ".andromeda/architecture.md:87",
+     ".andromeda/architecture.md:197",
+     ".andromeda/runs/2026-10-13T21-11-52-wrap/answer-card.md"
+    ],
+    "weight": 4
+   },
+   {
+    "id": "2026-10-14T22:37:37Z-c",
+    "chunk": "2026-10-14-stand-requirement-sweep",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "what": "architecture sidecar entry 1's Why first said C4, C5 and C14 were each placed as a residuals line; C5 places none (nothing moves); a re-read after the append caught it and the entry was corrected in place before commit",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-14T22-00-51-wrap/architecture-entry-1.md",
+    "artifacts": [
+     ".andromeda/architecture-amendments.md"
+    ],
+    "weight": 2
+   }
+  ]
+ },
+ {
+  "key": "ALL/ALL/contract.narrow-basis-claim",
+  "n": 3,
+  "weight_sum": 4,
+  "score": 12,
+  "rate": null,
+  "chunks": [
+   "2026-10-14-stand-a11y-assertions",
+   "2026-10-14-stand-requirement-sweep"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-14T06:59:30Z-b",
+    "chunk": "2026-10-14-stand-a11y-assertions",
+    "skill": "phase",
+    "step": "plan",
+    "what": "a contrast ratio (black on #4a6cf7 4.79) was written into a dialog option without being computed; the operator checked it by hand and corrected it to 4.78 (computed 4.7793 after)",
+    "impact": {
+     "dialogue_rounds": 0,
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-14T06-38-55-phase/relay-3.md",
+    "artifacts": [
+     "dialog F5 option 3"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-14T19:58:01Z-b",
+    "chunk": "2026-10-14-stand-a11y-assertions",
+    "skill": "wrap-session",
+    "step": "report",
+    "what": "evidence/ci.md stated operator entry 13's printed output was not kept, read from the conversation, git and target/ci-logs only; the entry's whole log stood in the gate tool's log dir (run-20261014T071904Z/13.log)",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/report.md (Deviations, Decisions & corrections)",
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/evidence/ci.md"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-14T22:08:02Z-b",
+    "chunk": "2026-10-14-stand-requirement-sweep",
+    "skill": "wrap-session",
+    "step": "report",
+    "what": "the site sweep's log-counts pattern (742 B|860 B|9 / 10|4 / 5 lines) found the host's dated counts at obs-plan.md:296 and missed the mcp role's, worded '9 lines built alone and 10 built with the workspace' at obs-plan.md:181, test-plan.md:103 and security-plan.md:397; found by a GNU grep, then swept by a second pattern mcp-lines",
+    "impact": {
+     "reformulations": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-14T22-00-51-wrap/",
+    "artifacts": [
+     ".andromeda/runs/2026-10-14T22-00-51-wrap/report-patterns.toml"
+    ],
+    "weight": 2
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/route-resolve/contract.carry-no-owner",
+  "n": 3,
+  "weight_sum": 3,
+  "score": 9,
+  "rate": "3/8",
+  "chunks": [
+   "2026-10-13-range-input-interaction",
+   "2026-10-13-stand-keyboard-harness",
+   "2026-10-13-upstream-sync-polish-and-ship"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-13T16:37:32Z-b",
+    "chunk": "2026-10-13-upstream-sync-polish-and-ship",
+    "skill": "wrap-session",
+    "step": "route-resolve",
+    "what": "the falsy-`inert` reading the reconcile wrote as 'not measured' had no owner in the report; the wrap placed it on 'Stand keyboard harness' by judgment (focus reach is what that harness reads) — a non-obvious owner, no halt",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-13T15-50-37-wrap/fanout-results.md",
+    "artifacts": [
+     "escher-0.1.0/working-route.md:92"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-13T21:44:23Z-b",
+    "chunk": "2026-10-13-range-input-interaction",
+    "skill": "wrap-session",
+    "step": "route-resolve",
+    "what": "the owed checks for clear_attribute's range re-seed and construction's type-change clearing had no named owner; placed on Stand requirement sweep by the operator's 2026-10-10 precedent for owed checks on changed code, a non-obvious owner since the first markerless entry (Stand keyboard harness) does not fit",
+    "impact": {
+     "extra_reads": 2
+    },
+    "evidence": null,
+    "artifacts": [
+     "escher-0.1.0/working-route.md"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-14T06:15:54Z-b",
+    "chunk": "2026-10-13-stand-keyboard-harness",
+    "skill": "wrap-session",
+    "step": "route-resolve",
+    "what": "the obs-plan detector's two unmeasured log readings (focussed-node event counts under F2; Enter reaching the href log site) had no direction naming an owner; the wrap placed one CARRY on \"Stand requirement sweep\", move-if-wrong, without a halt",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-13T23-23-45-wrap/fanout-results.md",
+    "artifacts": [
+     "escher-0.1.0/working-route.md:96"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/input.report-insufficient",
+  "n": 3,
+  "weight_sum": 3,
+  "score": 9,
+  "rate": "3/8",
+  "chunks": [
+   "2026-10-13-range-input-interaction",
+   "2026-10-13-stand-contrast-harness",
+   "2026-10-13-stand-keyboard-harness"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-13T18:28:22Z-b",
+    "chunk": "2026-10-13-stand-contrast-harness",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "what": "the report's site sweep reached its pattern wording only: obs-plan.md:70 stated the mod common readers as '17 of which' and the obs detector caught it; the report also put the run-stand re-count at test-plan.md:330 (it stands at :116) and gave no blitz-tests file count",
+    "impact": {
+     "extra_reads": 3
+    },
+    "evidence": ".andromeda/runs/2026-10-13T18-00-36-wrap/fanout-results.md",
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/report.md"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-13T21:41:41Z-b",
+    "chunk": "2026-10-13-range-input-interaction",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "what": "the report's Spec claims disproved listed test-plan.md:26 as still true at @c4626 and missed the stale stand_act_range 1 clause on the same line (@c17032); the citation sweep's changed row for stand_act_range.rs:1-10 surfaced it before the fan-out",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-13T21-11-52-wrap/citation-dispositions.md",
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-13-range-input-interaction/report.md",
+     ".andromeda/test-plan.md:26"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-14T06:13:21Z-c",
+    "chunk": "2026-10-13-stand-keyboard-harness",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "what": "the report's silence probe read stand_keyboard.rs alone while obs-plan §3 claims no env read in the stand checks' shared modules, which the chunk extended; the obs detector flagged it unmeasured and main ran the probe over common/mod.rs (0) at the apply",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-13T23-23-45-wrap/fanout-results.md",
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-13-stand-keyboard-harness/report.md"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "phase/research/contract.instrument-validity",
+  "n": 2,
+  "weight_sum": 5,
+  "score": 10,
+  "rate": "2/8",
+  "chunks": [
+   "2026-10-14-quality-gates",
+   "2026-10-14-stand-requirement-sweep"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-14T20:59:46Z-b",
+    "chunk": "2026-10-14-stand-requirement-sweep",
+    "skill": "phase",
+    "step": "research",
+    "what": "a regex per-test probe classified each test's surface (session/cli/mcp/in-process) and was not validated on a known positive; reading its rows showed misclassifications (stand_act_diff tests driven through the session read in-process), so research's claims rest on the matrix refs and not on the probe",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-14-stand-requirement-sweep/research.md",
+    "artifacts": [
+     "$TMPDIR/{scratchpad}/per_test.py"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-14T23:19:09Z-b",
+    "chunk": "2026-10-14-quality-gates",
+    "skill": "phase",
+    "step": "research",
+    "what": "the CI job-log tally read 0 lines then keyed every result line to None: gh api /logs refuses escape sequences on stderr (redirected away, an empty file), and gh run view --log renders ESC as literal ^[ so the ANSI strip and the deps regex never matched; caught by reading the keys, fixed by a caret-notation strip, validated on a raw line",
+    "impact": {
+     "retries": 3,
+     "extra_reads": 3
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-14-quality-gates/research.md (Readings, CARRY 8)",
+    "artifacts": [
+     "$TMPDIR/{scratchpad}/tally.py"
+    ],
+    "weight": 4
+   }
+  ]
+ },
+ {
+  "key": "ALL/ALL/tooling.host-shell",
+  "n": 2,
+  "weight_sum": 4,
+  "score": 8,
+  "rate": null,
+  "chunks": [
+   "2026-10-14-stand-requirement-sweep",
+   "2026-10-15-cold-agent-test"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-14T22:08:02Z-c",
+    "chunk": "2026-10-14-stand-requirement-sweep",
+    "skill": "wrap-session",
+    "step": "report",
+    "what": "recurrence of session-learnings 2026-10-07: a bare grep -o with .\\{0,40\\} context windows ran under the Bash tool's ugrep function and printed nothing for the census pattern; re-run with command grep before reading the absence",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": null,
+    "artifacts": null,
+    "weight": 2
+   },
+   {
+    "id": "2026-10-15T08:17:08Z-b",
+    "chunk": "2026-10-15-cold-agent-test",
+    "skill": "phase",
+    "step": "research",
+    "what": "a companion sweep piped through `xargs command grep -l … 2>/dev/null` returned an empty result: xargs looks for an executable named `command`, the error was discarded, and the empty stdout read like an absence until the re-run with /usr/bin/grep found 5 files",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-15-cold-agent-test/research.md"
+    ],
+    "weight": 2
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/recall.corpus-recurrence",
+  "n": 2,
+  "weight_sum": 3,
+  "score": 6,
+  "rate": "2/8",
+  "chunks": [
+   "2026-10-13-stand-contrast-harness",
+   "2026-10-15-cold-agent-test"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-13T18:28:22Z-c",
+    "chunk": "2026-10-13-stand-contrast-harness",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "what": "at this resume's P1 re-fires one pipeline tool call was piped into tail (inputs.py verify | tail -2) against the 2026-10-13 Tier-2 host-linux rule (run pipeline tools bare or redirected); the next call ran it bare",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-13T18-00-36-wrap/inputs-2026-10-13-stand-contrast-harness.json",
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "weight": 2
+   },
+   {
+    "id": "2026-10-15T10:18:37Z-c",
+    "chunk": "2026-10-15-cold-agent-test",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "what": "a pipeline tool's saved output was read through a grep filter twice this pass (inputs.py verify's capture, the leaves apply's capture), against host-linux.md Session Additions 2026-10-13 (read whole, never filtered)",
+    "impact": {
+     "extra_reads": 0
+    },
+    "evidence": null,
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/report/contract.narrow-basis-claim",
+  "n": 2,
+  "weight_sum": 3,
+  "score": 6,
+  "rate": "2/8",
+  "chunks": [
+   "2026-10-14-stand-a11y-assertions",
+   "2026-10-14-stand-requirement-sweep"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-14T19:58:01Z-b",
+    "chunk": "2026-10-14-stand-a11y-assertions",
+    "skill": "wrap-session",
+    "step": "report",
+    "what": "evidence/ci.md stated operator entry 13's printed output was not kept, read from the conversation, git and target/ci-logs only; the entry's whole log stood in the gate tool's log dir (run-20261014T071904Z/13.log)",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/report.md (Deviations, Decisions & corrections)",
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/evidence/ci.md"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-14T22:08:02Z-b",
+    "chunk": "2026-10-14-stand-requirement-sweep",
+    "skill": "wrap-session",
+    "step": "report",
+    "what": "the site sweep's log-counts pattern (742 B|860 B|9 / 10|4 / 5 lines) found the host's dated counts at obs-plan.md:296 and missed the mcp role's, worded '9 lines built alone and 10 built with the workspace' at obs-plan.md:181, test-plan.md:103 and security-plan.md:397; found by a GNU grep, then swept by a second pattern mcp-lines",
+    "impact": {
+     "reformulations": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-14T22-00-51-wrap/",
+    "artifacts": [
+     ".andromeda/runs/2026-10-14T22-00-51-wrap/report-patterns.toml"
+    ],
+    "weight": 2
+   }
+  ]
+ },
+ {
+  "key": "ALL/ALL/contract.premise-falsified",
+  "n": 2,
+  "weight_sum": 2,
+  "score": 4,
+  "rate": null,
+  "chunks": [
+   "2026-10-13-range-input-interaction",
+   "2026-10-13-upstream-sync-polish-and-ship"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-13T15:55:05Z-b",
+    "chunk": "2026-10-13-upstream-sync-polish-and-ship",
+    "skill": "wrap-session",
+    "step": "report",
+    "what": "plan gate entry 50 (gh run view --log | grep -c 'Running tests/…') reads 0 by construction: gh writes colour codes as literal two-char ^[ text, so the pattern never matches; Windows jobs print tests\\ paths",
+    "impact": {
+     "extra_reads": 3
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-13-upstream-sync-polish-and-ship/evidence/ci.md",
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-13-upstream-sync-polish-and-ship/plan.md"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-13T20:53:23Z-c",
+    "chunk": "2026-10-13-range-input-interaction",
+    "skill": "implement",
+    "step": "fix-loop",
+    "what": "plan implementation note bases the centre-click-reads-15 hypothesis on the default sheet's 2px padding; measured padding 0 (border 1, content 107x0) — conclusion holds by the symmetric border alone",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-13-range-input-interaction/evidence/range-readings.md",
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-13-range-input-interaction/plan.md"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "phase/take-up/input.working-entry-thin",
+  "n": 2,
+  "weight_sum": 2,
+  "score": 4,
+  "rate": "2/8",
+  "chunks": [
+   "2026-10-13-stand-contrast-harness",
+   "2026-10-15-cold-agent-test"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-13T17:03:08Z-b",
+    "chunk": "2026-10-13-stand-contrast-harness",
+    "skill": "phase",
+    "step": "take-up",
+    "what": "the entry names no control set, no SC 1.4.3 threshold or exemption handling, no measuring source and no boundary with the following Stand a11y assertions entry; each was inferred from a11y-plan, the stand's controls() table and the task stylesheets",
+    "impact": {
+     "extra_reads": 4
+    },
+    "evidence": null,
+    "artifacts": [
+     "escher-0.1.0/working-route.md:88",
+     "escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/scope.md"
+    ],
+    "weight": 1
+   },
+   {
+    "id": "2026-10-15T08:05:28Z-b",
+    "chunk": "2026-10-15-cold-agent-test",
+    "skill": "phase",
+    "step": "take-up",
+    "what": "the entry asks for a check the agent writes and passes, but neither it nor any CARRY or the matrix acceptance names the check's form, how an agent holding only the MCP tool hands one over, or what runs it; carried to P4 as a fork",
+    "impact": {
+     "deferred": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "escher-0.1.0/working-route.md:100",
+     "escher-0.1.0/chunks/2026-10-15-cold-agent-test/scope.md"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/ambiguity.escalation-rounds",
+  "n": 1,
+  "weight_sum": 6,
+  "score": 6,
+  "rate": "1/8",
+  "chunks": [
+   "2026-10-13-upstream-sync-polish-and-ship"
+  ],
+  "halt_or_soft": 1,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-13T16:35:04Z-d",
+    "chunk": "2026-10-13-upstream-sync-polish-and-ship",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "what": "no boundary widening reached the card; the halt carried the directive's respelling lists, two Established-Decision retirements already named by the P5-reviewed plan and two playbook-rule proposals, and stopped for the founder by the operator's invocation; resolved in one relayed round (rule A added, rule B not now)",
+    "impact": {
+     "dialogue_rounds": 1,
+     "halted": 1
+    },
+    "evidence": "inputs#I5",
+    "artifacts": [
+     "answer-card.md"
+    ],
+    "weight": 6
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/ambiguity.playbook-no-match",
+  "n": 1,
+  "weight_sum": 6,
+  "score": 6,
+  "rate": "1/8",
+  "chunks": [
+   "2026-10-14-quality-gates"
+  ],
+  "halt_or_soft": 1,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-15T07:29:35Z-b",
+    "chunk": "2026-10-14-quality-gates",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "what": "a test-only UnixListener and its TMPDIR read in escher-driver's client test matched no playbook rule against the one-listener registry claim; escalated, the operator answered Register test-only",
+    "impact": {
+     "dialogue_rounds": 1,
+     "halted": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-15T06-51-44-wrap/fanout-results.md",
+    "artifacts": [
+     ".andromeda/architecture.md",
+     ".andromeda/security-plan.md"
+    ],
+    "weight": 6
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/contract.false-positive-proposal",
+  "n": 1,
+  "weight_sum": 3,
+  "score": 3,
+  "rate": "1/8",
+  "chunks": [
+   "2026-10-14-quality-gates"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-15T07:29:35Z-d",
+    "chunk": "2026-10-14-quality-gates",
+    "skill": "wrap-session",
+    "step": "reconcile",
+    "what": "obs-plan proposals 2 and 3 carried per-reading byte and line figures from evidence/stderr-by-level.md that the report does not state; narrowed on apply to the report's 28 runs, 0 needles",
+    "impact": {
+     "reformulations": 2
+    },
+    "evidence": ".andromeda/runs/2026-10-15T06-51-44-wrap/fanout-results.md",
+    "artifacts": [
+     ".andromeda/runs/2026-10-15T06-51-44-wrap/fanout-obs-plan.md"
+    ],
+    "weight": 3
+   }
+  ]
+ },
+ {
+  "key": "phase/validate/ambiguity.review-cycles",
+  "n": 1,
+  "weight_sum": 3,
+  "score": 3,
+  "rate": "1/8",
+  "chunks": [
+   "2026-10-15-cold-agent-test"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-15T09:12:15Z-e",
+    "chunk": "2026-10-15-cold-agent-test",
+    "skill": "phase",
+    "step": "validate",
+    "what": "the operator's first yes placed the live run in the operator pass, where no step writes the claimed capability's ref; the fork went back to P4 as one question and the operator chose the firing inside /implement on his word",
+    "impact": {
+     "dialogue_rounds": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     ".andromeda/runs/2026-10-15T08-01-57-phase/p5-card-1.md",
+     ".andromeda/runs/2026-10-15T08-01-57-phase/p5-card-2.md"
+    ],
+    "weight": 3
+   }
+  ]
+ },
+ {
+  "key": "implement/fix-loop/tooling.environmental",
+  "n": 1,
+  "weight_sum": 2,
+  "score": 2,
+  "rate": "1/8",
+  "chunks": [
+   "2026-10-13-range-input-interaction"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-13T20:53:23Z-b",
+    "chunk": "2026-10-13-range-input-interaction",
+    "skill": "implement",
+    "step": "fix-loop",
+    "what": "the session command line's state dir under the session scratchpad exceeds the 94-byte socket path bound; all 11 calls of the first evidence drive returned state-dir-too-long",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-13-range-input-interaction/evidence/range-readings.md",
+    "artifacts": [
+     "target/debug/escher-session"
+    ],
+    "weight": 2
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/report/tooling.host-shell",
+  "n": 1,
+  "weight_sum": 2,
+  "score": 2,
+  "rate": "1/8",
+  "chunks": [
+   "2026-10-14-stand-requirement-sweep"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-14T22:08:02Z-c",
+    "chunk": "2026-10-14-stand-requirement-sweep",
+    "skill": "wrap-session",
+    "step": "report",
+    "what": "recurrence of session-learnings 2026-10-07: a bare grep -o with .\\{0,40\\} context windows ran under the Bash tool's ugrep function and printed nothing for the census pattern; re-run with command grep before reading the absence",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": null,
+    "artifacts": null,
+    "weight": 2
+   }
+  ]
+ },
+ {
+  "key": "phase/research/tooling.host-shell",
+  "n": 1,
+  "weight_sum": 2,
+  "score": 2,
+  "rate": "1/8",
+  "chunks": [
+   "2026-10-15-cold-agent-test"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-15T08:17:08Z-b",
+    "chunk": "2026-10-15-cold-agent-test",
+    "skill": "phase",
+    "step": "research",
+    "what": "a companion sweep piped through `xargs command grep -l … 2>/dev/null` returned an empty result: xargs looks for an executable named `command`, the error was discarded, and the empty stdout read like an absence until the re-run with /usr/bin/grep found 5 files",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-15-cold-agent-test/research.md"
+    ],
+    "weight": 2
+   }
+  ]
+ },
+ {
+  "key": "implement/fix-loop/contract.test-expectation",
+  "n": 1,
+  "weight_sum": 2,
+  "score": 2,
+  "rate": "1/8",
+  "chunks": [
+   "2026-10-15-cold-agent-test"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-15T09:26:21Z-b",
+    "chunk": "2026-10-15-cold-agent-test",
+    "skill": "implement",
+    "step": "fix-loop",
+    "what": "the new passing-run test hard-coded check_expects 7 where its own EXPECT table sums to 6; the pipe was right, the test's literal replaced by the sum of the table",
+    "impact": {
+     "iterations": 1
+    },
+    "evidence": "gate.py show --n 2 (firing 1)",
+    "artifacts": [
+     ".github/scripts/test_cold_agent.py"
+    ],
+    "weight": 2
+   }
+  ]
+ },
+ {
+  "key": "new-session/orientation/input.handoff-git-mismatch",
+  "n": 1,
+  "weight_sum": 1,
+  "score": 1,
+  "rate": "1/8",
+  "chunks": [
+   "None"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-13T14:25:20Z-b",
+    "chunk": null,
+    "skill": "new-session",
+    "step": "orientation",
+    "what": "Handoff Status reads clean; git shows two untracked post-wrap run dirs (2026-10-13T08-56-58-code-audit, 2026-10-13T09-05-20-evolve-diagnose) plus modified telemetry and handoff, more than a lone friction append; Position agreed with the derived cursor",
+    "impact": {
+     "extra_reads": 2
+    },
+    "evidence": null,
+    "artifacts": [
+     ".claude/session-handoff.md",
+     ".andromeda/runs/2026-10-13T08-56-58-code-audit/",
+     ".andromeda/runs/2026-10-13T09-05-20-evolve-diagnose/"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/report/contract.premise-falsified",
+  "n": 1,
+  "weight_sum": 1,
+  "score": 1,
+  "rate": "1/8",
+  "chunks": [
+   "2026-10-13-upstream-sync-polish-and-ship"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-13T15:55:05Z-b",
+    "chunk": "2026-10-13-upstream-sync-polish-and-ship",
+    "skill": "wrap-session",
+    "step": "report",
+    "what": "plan gate entry 50 (gh run view --log | grep -c 'Running tests/…') reads 0 by construction: gh writes colour codes as literal two-char ^[ text, so the pattern never matches; Windows jobs print tests\\ paths",
+    "impact": {
+     "extra_reads": 3
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-13-upstream-sync-polish-and-ship/evidence/ci.md",
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-13-upstream-sync-polish-and-ship/plan.md"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/curation/recall.curated-rule-not-applied",
+  "n": 1,
+  "weight_sum": 1,
+  "score": 1,
+  "rate": "1/8",
+  "chunks": [
+   "2026-10-13-upstream-sync-polish-and-ship"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-13T16:36:40Z-c",
+    "chunk": "2026-10-13-upstream-sync-polish-and-ship",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "the founder's standing direction (inputs#I2: pipeline tool stdout redirected to a file and read whole, never piped) and the wrap skill's run-bare rule were both in context; this wrap still read splice.py summary and every sidecar.py check through `| tail -n 1`, as implement and the operator pass had; now a host-linux Session Addition",
+    "impact": {
+     "retries": 0
+    },
+    "evidence": ".andromeda/runs/2026-10-13T15-50-37-wrap/curation.md",
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "ALL/ALL/recall.curated-rule-not-applied",
+  "n": 1,
+  "weight_sum": 1,
+  "score": 1,
+  "rate": null,
+  "chunks": [
+   "2026-10-13-upstream-sync-polish-and-ship"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-13T16:36:40Z-c",
+    "chunk": "2026-10-13-upstream-sync-polish-and-ship",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "the founder's standing direction (inputs#I2: pipeline tool stdout redirected to a file and read whole, never piped) and the wrap skill's run-bare rule were both in context; this wrap still read splice.py summary and every sidecar.py check through `| tail -n 1`, as implement and the operator pass had; now a host-linux Session Addition",
+    "impact": {
+     "retries": 0
+    },
+    "evidence": ".andromeda/runs/2026-10-13T15-50-37-wrap/curation.md",
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "implement/fix-loop/contract.premise-falsified",
+  "n": 1,
+  "weight_sum": 1,
+  "score": 1,
+  "rate": "1/8",
+  "chunks": [
+   "2026-10-13-range-input-interaction"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-13T20:53:23Z-c",
+    "chunk": "2026-10-13-range-input-interaction",
+    "skill": "implement",
+    "step": "fix-loop",
+    "what": "plan implementation note bases the centre-click-reads-15 hypothesis on the default sheet's 2px padding; measured padding 0 (border 1, content 107x0) — conclusion holds by the symmetric border alone",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": "escher-0.1.0/chunks/2026-10-13-range-input-interaction/evidence/range-readings.md",
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-13-range-input-interaction/plan.md"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/curation/ambiguity.filter-borderline",
+  "n": 1,
+  "weight_sum": 1,
+  "score": 1,
+  "rate": "1/8",
+  "chunks": [
+   "2026-10-13-range-input-interaction"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-13T21:43:13Z-b",
+    "chunk": "2026-10-13-range-input-interaction",
+    "skill": "wrap-session",
+    "step": "curation",
+    "what": "Filter 5: four candidates tied at 0.8; the cap's confidence sort could not order them, and the clippy manual_clamp gotcha was deferred on a value judgment (generic lint knowledge) rather than a filter rule",
+    "impact": {
+     "deferred": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-13T21-11-52-wrap/curation.md",
+    "artifacts": null,
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/gates/recall.corpus-recurrence",
+  "n": 1,
+  "weight_sum": 1,
+  "score": 1,
+  "rate": "1/8",
+  "chunks": [
+   "2026-10-13-range-input-interaction"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-13T21:50:35Z-b",
+    "chunk": "2026-10-13-range-input-interaction",
+    "skill": "wrap-session",
+    "step": "gates",
+    "what": "route.py epoch was re-fired for step 3b's predicate with its output redirected to /dev/null, against host-linux.md 2026-10-13 (pipeline tools bare or redirected to a file read whole); the predicate was taken from the P5 firing read whole (Epoch 6: markerless 5), so no decision rested on the discarded run",
+    "impact": {
+     "retries": 0
+    },
+    "evidence": null,
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "phase/plan/contract.narrow-basis-claim",
+  "n": 1,
+  "weight_sum": 1,
+  "score": 1,
+  "rate": "1/8",
+  "chunks": [
+   "2026-10-14-stand-a11y-assertions"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-14T06:59:30Z-b",
+    "chunk": "2026-10-14-stand-a11y-assertions",
+    "skill": "phase",
+    "step": "plan",
+    "what": "a contrast ratio (black on #4a6cf7 4.79) was written into a dialog option without being computed; the operator checked it by hand and corrected it to 4.78 (computed 4.7793 after)",
+    "impact": {
+     "dialogue_rounds": 0,
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-14T06-38-55-phase/relay-3.md",
+    "artifacts": [
+     "dialog F5 option 3"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/report/contract.token-proxy-check",
+  "n": 1,
+  "weight_sum": 1,
+  "score": 1,
+  "rate": "1/8",
+  "chunks": [
+   "2026-10-14-stand-a11y-assertions"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-14T19:58:01Z-d",
+    "chunk": "2026-10-14-stand-a11y-assertions",
+    "skill": "wrap-session",
+    "step": "report",
+    "what": "the site-sweep pattern \\b153\\b for run stand's count matched 25 master rows, 23 of them line-number digits inside citations (false positive); the claim sites were found by reading the hits",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     ".andromeda/runs/2026-10-14T19-50-50-wrap/report-patterns.toml"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "ALL/ALL/contract.token-proxy-check",
+  "n": 1,
+  "weight_sum": 1,
+  "score": 1,
+  "rate": null,
+  "chunks": [
+   "2026-10-14-stand-a11y-assertions"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-14T19:58:01Z-d",
+    "chunk": "2026-10-14-stand-a11y-assertions",
+    "skill": "wrap-session",
+    "step": "report",
+    "what": "the site-sweep pattern \\b153\\b for run stand's count matched 25 master rows, 23 of them line-number digits inside citations (false positive); the claim sites were found by reading the hits",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     ".andromeda/runs/2026-10-14T19-50-50-wrap/report-patterns.toml"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "phase/take-up/tooling.output-cap-overflow",
+  "n": 1,
+  "weight_sum": 1,
+  "score": 1,
+  "rate": "1/8",
+  "chunks": [
+   "2026-10-14-quality-gates"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-14T23:05:31Z-b",
+    "chunk": "2026-10-14-quality-gates",
+    "skill": "phase",
+    "step": "take-up",
+    "what": "a case-insensitive grep for mutation over test-plan.md matched the multi-KB §1 and §9 lines and returned 82.4 KB, persisted out of the window; recovered by a narrower bounded-context query",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     ".andromeda/test-plan.md"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "ALL/ALL/tooling.output-cap-overflow",
+  "n": 1,
+  "weight_sum": 1,
+  "score": 1,
+  "rate": null,
+  "chunks": [
+   "2026-10-14-quality-gates"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-14T23:05:31Z-b",
+    "chunk": "2026-10-14-quality-gates",
+    "skill": "phase",
+    "step": "take-up",
+    "what": "a case-insensitive grep for mutation over test-plan.md matched the multi-KB §1 and §9 lines and returned 82.4 KB, persisted out of the window; recovered by a narrower bounded-context query",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     ".andromeda/test-plan.md"
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ {
+  "key": "implement/fix-loop/tooling.result-not-run-stable",
+  "n": 1,
+  "weight_sum": 1,
+  "score": 1,
+  "rate": "1/8",
+  "chunks": [
+   "2026-10-14-quality-gates"
+  ],
+  "halt_or_soft": 0,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-15T06:25:12Z-b",
+    "chunk": "2026-10-14-quality-gates",
+    "skill": "implement",
+    "step": "fix-loop",
+    "what": "the clippy record first cited gate entry 10's Finished lines from target/ci-logs/clippy.log, which the later fast entry (14) had overwritten; corrected from the gate tool's own stored 10.log before the record was final",
+    "impact": {
+     "extra_reads": 2
+    },
+    "evidence": "$TMPDIR/andromeda-gate/2026-10-14-quality-gates/implement-2026-10-15T05-20-55/10.log",
+    "artifacts": [
+     "escher-0.1.0/chunks/2026-10-14-quality-gates/evidence/clippy.md"
+    ],
+    "weight": 1
+   }
+  ]
+ }
+]
