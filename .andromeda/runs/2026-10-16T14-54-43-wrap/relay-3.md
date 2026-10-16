@@ -1,0 +1,1 @@
+/andromeda-wrap-session resume from report.md in .andromeda/runs/2026-10-16T14-54-43-wrap/. Stop at an answer card if one is raised; otherwise wrap to the end: push, read CI, report, and stop. No next skill.

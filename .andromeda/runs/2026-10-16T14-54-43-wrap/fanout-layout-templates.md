@@ -1,0 +1,2 @@
+proposals: []
+note: D-layout-surface holds — the report's Changes add no UI surface or region ("Coverage of new surfaces: no new external surface, hot-path op or UI element"; seven private blitz-dom functions moving existing input-path arms, no `examples/` file moved, `stand_contrast` 5 passed); the README.md rewrite is repository front-page prose owned by architecture §Project Intent → Front page, not a layout-templates surface.

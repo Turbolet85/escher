@@ -1,0 +1,19 @@
+--- a/.andromeda/obs-plan.md
++++ b/.andromeda/obs-plan.md
+@@ -12,3 +12,3 @@
+ - **blitz-dom** — optional `tracing` logging, `println!` debug dumps and `debug_timer` phase timings (packages/blitz-dom/src/lib.rs:26-29; packages/blitz-dom/src/debug.rs:7-155; packages/blitz-dom/src/resolve.rs:76)
+-- **blitz-dom (events / util)** — six `tracing` log call sites, all behind the `tracing` feature (packages/blitz-dom/src/stylo_to_cursor_icon.rs:9-10; packages/blitz-dom/src/events/ime.rs:27-28; packages/blitz-dom/src/events/pointer.rs:791-797; packages/blitz-dom/src/util.rs:26-27; packages/blitz-dom/src/util.rs:34-35)
++- **blitz-dom (events / util)** — six `tracing` log call sites, all behind the `tracing` feature (packages/blitz-dom/src/stylo_to_cursor_icon.rs:9-10; packages/blitz-dom/src/events/ime.rs:27-28; packages/blitz-dom/src/events/pointer.rs:806-812; packages/blitz-dom/src/util.rs:26-27; packages/blitz-dom/src/util.rs:34-35)
+ - **blitz-dom (layout)** — emits `tracing` events only when the `tracing` feature is enabled (packages/blitz-dom/src/layout/mod.rs:247; packages/blitz-dom/src/layout/construct.rs:480; packages/blitz-dom/src/layout/damage.rs:583; packages/blitz-dom/src/layout/table.rs:536)
+@@ -192,4 +192,4 @@
+   - `debug` logs a sent IME event with a `node_id` field (packages/blitz-dom/src/events/ime.rs:28)
+-  - `warn` logs an unparseable link href together with the document URL (packages/blitz-dom/src/events/pointer.rs:792)
+-  - `info` logs a click on a link without href together with the element's attributes (packages/blitz-dom/src/events/pointer.rs:797)
++  - `warn` logs an unparseable link href together with the document URL (packages/blitz-dom/src/events/pointer.rs:807)
++  - `info` logs a click on a link without href together with the element's attributes (packages/blitz-dom/src/events/pointer.rs:812)
+   - `warn` logs WOFF1 and WOFF2 decompression failures (packages/blitz-dom/src/util.rs:27; packages/blitz-dom/src/util.rs:35)
+@@ -289,3 +289,3 @@
+ - `debug_log_node` prints every attribute name and value of a node (packages/blitz-dom/src/debug.rs:30-34)
+-- Log lines include the raw href, the document URL and element attributes unfiltered (packages/blitz-dom/src/events/pointer.rs:792; packages/blitz-dom/src/events/pointer.rs:797)
++- Log lines include the raw href, the document URL and element attributes unfiltered (packages/blitz-dom/src/events/pointer.rs:807; packages/blitz-dom/src/events/pointer.rs:812)
+ - The SVG parse-failure event carries the element's full outer HTML in field `html` (packages/blitz-dom/src/layout/construct.rs:463; packages/blitz-dom/src/layout/construct.rs:481-486)

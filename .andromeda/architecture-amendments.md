@@ -806,3 +806,18 @@ The re-seed is the first answer's stated cost, so a Dioxus re-render keeps contr
 - Stack CI/CD row: the pipe's MCP server is the workspace's own `escher-session mcp`, its judge stdlib python3 with no package added; `claude` read at 2.1.296 beside 2.1.288; the stub clause ("stdlib python3 speaking JSON-RPC 2.0 over stdio") is retired.
 **Why:** the chunk's swap of the pipe to the driver's own MCP surface, on the founder's four P4 answers (2026-10-15, relayed verbatim by the overseer as his chosen option labels); the replayed check is his «JSON-проверка с повтором (Рекомендую)».
 **Ref:** .andromeda/runs/2026-10-15T09-44-57-wrap/
+
+## 2026-10-16-handler-splits-and-readme — the front page states the version state; «Escher» in its prose
+**Section:** §Project Intent (Front page)
+**Change:** the root `README.md` states its state under `## Status`: 0.1.0 done and verified, its six stages listed with three recorded facts (17 capabilities verified, 43 cold-agent tool calls with 0 wrong, 0 surviving mutants of 1,558), and 0.2.0 planned in five stages, one line per epoch of `escher-0.2.0/working-route.md`. Was "what escher is, built vs planned". The page spells the name «Escher» in its prose and title; crate, binary and path names, URLs and the e-mail are unchanged. Every other element of the clause (the driver's command line, the MCP client, `help`, the Blitz lineage, the 0.1.0 epochs, the licence, Author / Contact, the `ci.yml` badge) stands.
+**Why:** the README brought to the state at 0.1.0's close on the founder's word, given 2026-10-16 and relayed verbatim by the overseer; the capital is his, for the README alone — re-spelling the name elsewhere is not this decision.
+**Ref:** .andromeda/runs/2026-10-16T14-54-43-wrap/
+
+## 2026-10-16-handler-splits-and-readme — the range and button arms as private named functions
+**Section:** §Established Decisions ([Scrolling and input]) · §Standard Contracts (Events)
+**Change:**
+- Events: `handle_click`, `handle_pointerdown` and `handle_key_or_input_event` keep their signatures, and the bodies of their range and button arms are private named functions: `range_track_fraction` and `press_range_input` for the range pointerdown, `click_button` for the button arm's focus and submit, `press_range_input_key` for the range keys. The range ones still write only through `apply_range_move`. The range input's private `parse_float` reads its sign, digits and exponent through the private steps `take_sign`, `take_digits` and `take_exponent`. No behaviour changed for any document. The button arm's citation gains `click_button`.
+- [Scrolling and input]: the range keys cite the range arm's gate beside the key mapping, the range pointerdown cites `press_range_input`, and the button click cites `click_button`; every claim stands as it read.
+**Why:** the code audit's complexity split, the parents left above the ceiling at their upstream floor so the next upstream sync's diff stays out of arms escher does not own.
+**Kept:** the gates (`disabled` by presence, the closed element and type sets), event order and counts, and the range-focus block inside `handle_click`'s walk, each unchanged and in place.
+**Ref:** .andromeda/runs/2026-10-16T14-54-43-wrap/

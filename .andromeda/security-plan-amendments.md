@@ -555,3 +555,12 @@ One entry per amendment to `security-plan.md` (sidecar-contract.md §Entry form)
 - Logging: the stub's call log is retired; `server.log` (escher's sink at `RUST_LOG=info`, counted by span name) and `check.json` are never printed; four planted markers (tool argument, tool answer, reply, check).
 **Why:** a boundary widening, ratified by the founder: his «Один запуск, до $3 (Рекомендую)» and «JSON-проверка с повтором (Рекомендую)» (2026-10-15, by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option labels), confirmed by his «Подтвердить (Рекомендую)» at this wrap's answer card, relayed verbatim the same way. The CLI allowlist follows his «Все четыре в одной сессии».
 **Ref:** .andromeda/runs/2026-10-15T09-44-57-wrap/
+
+## 2026-10-16-handler-splits-and-readme — the range and keyboard-activation rows cite the named functions
+**Section:** §Input Validation (the `input type="range"` row · the keyboard-activation row)
+**Change:**
+- The range row: `parse_float` reads the four attributes through its private steps `take_sign`, `take_digits` and `take_exponent`, the readings unchanged; the keys cite the range arm's gate beside the key mapping (`press_range_input_key`); the pointerdown cites `press_range_input`.
+- The keyboard-activation row: the button arm's focus and submit sit in the private `click_button`.
+- No gate, input class, reading, carrier or log site moved; the added lines carry no `unwrap`, `expect`, panic, print, `tracing` site or env read, so §Error Handling's panic-path list gains nothing.
+**Why:** the code audit's complexity split moved those bodies into private functions with no behaviour changed; the rows' claims stand and cite where the code now is.
+**Ref:** .andromeda/runs/2026-10-16T14-54-43-wrap/

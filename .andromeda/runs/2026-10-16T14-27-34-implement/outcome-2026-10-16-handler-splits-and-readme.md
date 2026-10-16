@@ -89,10 +89,14 @@ The census was measured with `ps -eo pid,comm,args` after the block, matching `e
 ## Decisions & corrections
 none
 
-## Next
-The operator pass comes before the wrap:
-- entry 16, `gate.py hygiene`, before the pre-CI commit;
-- entry 17, the fast gate, the clean-tree guard and the push, after the operator's pre-CI commit;
-- entry 18, `ci.py conclusion --sha HEAD --wait 1800`, whose run id the CI acceptance names.
+## Operator pass (run on the operator's directive, 2026-10-16)
+- Entry 16, hygiene, fired as written: `hygiene: clean`, green.
+- The pre-CI commit is `c71f7ed14d5ba8c0e9ffa3c66cb91747688861e2`.
+- Entry 17, fast, clean-tree guard and push: green. `history moved: refs/remotes/origin/build/escher-0.2.0
+  d236e918→c71f7ed1`, the intended push.
+- Entry 18, `ci.py conclusion`: `verdict: green · checks 17/17 · wall 897 s`, CI#38917429198, with `Stand checks
+  repeated` among the checks.
+- Record: `escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/evidence/ci.md`.
 
-Then `/andromeda-wrap-session`.
+## Next
+`/andromeda-wrap-session`. The pass stopped before the wrap, on the operator's directive.

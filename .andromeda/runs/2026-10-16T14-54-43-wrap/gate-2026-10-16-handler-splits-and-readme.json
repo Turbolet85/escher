@@ -1,0 +1,696 @@
+[
+{
+"tool": "gate",
+"v": "1.18",
+"sha8": "fb28dd29",
+"ts": "2026-10-16T14:54:58Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme",
+"--run-dir",
+".andromeda/runs/2026-10-16T14-54-43-wrap",
+"--marker",
+"2026-10-16-handler-splits-and-readme"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base d236e918 (the parent of the oldest pre-CI commit c71f7ed1) · lists new 1 · modify 4 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/evidence/ (dir) ×0",
+"scope: clean — changed 4 · listed 4 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 74"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "d236e9186e4ff6ca2610ddfbc9f54f590e8dd01b",
+"base_why": "the parent of the oldest pre-CI commit c71f7ed1",
+"counts": {
+"changed": 4,
+"listed": 4,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 74,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.18",
+"sha8": "fb28dd29",
+"ts": "2026-10-16T15:00:02Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme",
+"--run-dir",
+".andromeda/runs/2026-10-16T14-54-43-wrap",
+"--marker",
+"2026-10-16-handler-splits-and-readme"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base d236e918 (the parent of the oldest pre-CI commit c71f7ed1) · lists new 1 · modify 4 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/evidence/ (dir) ×0",
+"scope: clean — changed 4 · listed 4 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 88"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "d236e9186e4ff6ca2610ddfbc9f54f590e8dd01b",
+"base_why": "the parent of the oldest pre-CI commit c71f7ed1",
+"counts": {
+"changed": 4,
+"listed": 4,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 88,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.18",
+"sha8": "fb28dd29",
+"ts": "2026-10-16T15:16:14Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-16T14-54-43-wrap",
+"--marker",
+"2026-10-16-handler-splits-and-readme"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-16-handler-splits-and-readme · entries 18",
+"logs $TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/wrap-2026-10-16T14-54-43 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 63 · unmapped 4",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L139-140: Every gate is one entry below. There is no boot smoke: the chunk changes no app and no boo… (197 chars)",
+"prose L142-144: The complexity entry reads the instrument the audit used: `rust-code-analysis-cli` 0.0.25,… (337 chars)",
+"prose L146-146: Every git read names the base `d236e9186e4ff6ca2610ddfbc9f54f590e8dd01b`, which is HEAD at… (99 chars)",
+"prose L148-150: The `evidence/` records the complexity criterion names are produced by steps 1 and 7, whic… (286 chars)",
+"  1 unit        green · exit 0 · 3.54s · 7312 B → 1.log · cargo test -p blitz-dom --locked",
+"  2 integration green · exit 0 · 15.31s · 4312 B → 2.log · cargo test -p blitz-tests --locked --test range_input_inte… (213 chars)",
+"  3 integration green · exit 0 · 4.03s · 1064 B → 3.log · cargo test -p seven_guis --locked --test host_log --test m… (64 chars)",
+"  4 probe       green · exit 0 · 0.06s · 452 B → 4.log · d=$(mktemp -d) && rust-code-analysis-cli -m -O json -o \"$d… (284 chars)",
+"  5 probe       green · exit 1 · 0.01s · 2 B → 5.log · git diff --name-only d236e9186e4ff6ca2610ddfbc9f54f590e8dd… (232 chars)",
+"  6 probe       green · exit 0 · 0.01s · 2 B → 6.log · git ls-files --others --exclude-standard -- packages examp… (84 chars)",
+"  7 probe       green · exit 1 · 0.01s · 2 B → 7.log · git diff --src-prefix=a/ --dst-prefix=b/ d236e9186e4ff6ca2… (345 chars)",
+"  8 probe       green · exit 1 · 0.01s · 2 B → 8.log · git diff --src-prefix=a/ --dst-prefix=b/ d236e9186e4ff6ca2… (139 chars)",
+"  9 probe       green · exit 1 · 0.0s · 2 B → 9.log · grep -c -E '(^|[^-_/a-z`])escher($|[^-_/a-z`])' README.md",
+" 10 probe       green · exit 1 · 0.0s · 2 B → 10.log · grep -c -E 'Escher[-_/]|[-_/]Escher' README.md",
+" 11 probe       green · exit 0 · 0.01s · 0 B → 11.log · for s in 'Engine debts' 'Determinism and traces' 'Visual l… (298 chars)",
+" 12 probe       green · exit 1 · 0.0s · 2 B → 12.log · grep -c -i -E 'being built|is built in six stages|Beyond 0… (109 chars)",
+" 13 integration green · exit 0 · 10.83s · 3864 B → 13.log · bash .github/scripts/ci-leg.sh a11y",
+" 14 lint        green · exit 0 · 130.73s · 99359 B → 14.log · bash .github/scripts/ci-leg.sh fast",
+" 15 lint        green · exit 0 · 0.61s · 177 B → 15.log · bash .github/scripts/ci-leg.sh doc",
+" 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 17 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 18 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 18 · green 15 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-16-handler-splits-and-readme",
+"plan": "./escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/wrap-2026-10-16T14-54-43",
+"delta": {
+"docs": [
+".andromeda/a11y-plan-amendments.md",
+".andromeda/a11y-plan.md",
+".andromeda/architecture-amendments.md",
+".andromeda/architecture.md",
+".andromeda/friction-log.ndjson",
+".andromeda/obs-plan.md",
+".andromeda/runs/2026-10-16T14-27-34-implement/outcome-2026-10-16-handler-splits-and-readme.md",
+".andromeda/security-plan-amendments.md",
+".andromeda/security-plan.md",
+".andromeda/state.yaml",
+".andromeda/test-plan.md",
+".claude/docs/services/blitz-dom.md",
+".claude/session-handoff.md",
+"CLAUDE.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/a11y-plan-contracts.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/a11y-plan-entry.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/addendum-1.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/architecture-entry-1.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/architecture-entry-2.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/cascade-2026-10-16-handler-splits-and-readme-pre-pass.json",
+".andromeda/runs/2026-10-16T14-54-43-wrap/cascade-2026-10-16-handler-splits-and-readme.json",
+".andromeda/runs/2026-10-16T14-54-43-wrap/cascade-dispositions.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/cascade-patterns.toml",
+".andromeda/runs/2026-10-16T14-54-43-wrap/citation-dispositions.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/cites-2026-10-16-handler-splits-and-readme.json",
+".andromeda/runs/2026-10-16T14-54-43-wrap/curation.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/evolve-2026-10-16-handler-splits-and-readme.json",
+".andromeda/runs/2026-10-16T14-54-43-wrap/fanout-a11y-plan.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/fanout-architecture.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/fanout-design-system.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/fanout-layout-templates.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/fanout-obs-plan.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/fanout-results.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/fanout-security-plan.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/fanout-test-plan.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/gate-2026-10-16-handler-splits-and-readme.json",
+".andromeda/runs/2026-10-16T14-54-43-wrap/inputs-2026-10-16-handler-splits-and-readme.json",
+".andromeda/runs/2026-10-16T14-54-43-wrap/leaf-a11y-plan.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/leaf-architecture+obs-plan.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/leaf-architecture+security-plan+test-plan+obs-plan+a11y-plan.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/leaf-architecture+test-plan.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/leaf-architecture-1.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/leaf-architecture-2.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/leaf-architecture-3.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/leaf-delta-a11y-plan.diff",
+".andromeda/runs/2026-10-16T14-54-43-wrap/leaf-delta-architecture.diff",
+".andromeda/runs/2026-10-16T14-54-43-wrap/leaf-delta-obs-plan.diff",
+".andromeda/runs/2026-10-16T14-54-43-wrap/leaf-delta-security-plan.diff",
+".andromeda/runs/2026-10-16T14-54-43-wrap/leaf-delta-test-plan.diff",
+".andromeda/runs/2026-10-16T14-54-43-wrap/leaf-security-plan.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/new-text.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/obs-plan-contracts.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/registry-2026-10-16-handler-splits-and-readme.json",
+".andromeda/runs/2026-10-16T14-54-43-wrap/relay-1.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/relay-2.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/relay-3.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/report-patterns.toml",
+".andromeda/runs/2026-10-16T14-54-43-wrap/route-no-marker.json",
+".andromeda/runs/2026-10-16T14-54-43-wrap/security-plan-entry.md",
+".andromeda/runs/2026-10-16T14-54-43-wrap/splice-2026-10-16-handler-splits-and-readme.json",
+".andromeda/runs/2026-10-16T14-54-43-wrap/test-plan-contracts.md",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/evidence/ci.md",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/report.md"
+]
+},
+"unmapped": [
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/inputs/andromeda-inputs.json",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/inputs/I3-relay-1.md.txt",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/inputs/I4-relay-2.md.txt",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/inputs/I5-relay-3.md.txt"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 67,
+"problem": null
+},
+"prose": [
+{
+"from": 139,
+"to": 140,
+"text": "Every gate is one entry below. There is no boot smoke: the chunk changes no app and no boot path, and the stand checks boot the stand in process. There is no live leg. No mutation runs (inputs#I1)."
+},
+{
+"from": 142,
+"to": 144,
+"text": "The complexity entry reads the instrument the audit used: `rust-code-analysis-cli` 0.0.25, on the host's PATH (`~/.cargo/bin`). Its reader is the script step 1 writes, so its baseline on the untouched tree is the absent script. Step 1's own control is its first firing before any source edit, recorded in `evidence/complexity-before.md`."
+},
+{
+"from": 146,
+"to": 146,
+"text": "Every git read names the base `d236e9186e4ff6ca2610ddfbc9f54f590e8dd01b`, which is HEAD at take-up."
+},
+{
+"from": 148,
+"to": 150,
+"text": "The `evidence/` records the complexity criterion names are produced by steps 1 and 7, which run outside the block: `complexity-before.md` (step 1's two controls) and `complexity-after.md` (step 7). The complexity entry reads the tree, not those files, so no entry carries an `artifact`."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-dom --locked",
+"run_sha8": "cd4c2b0f",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/wrap-2026-10-16T14-54-43/1.log",
+"bytes": 7312,
+"log_sha8": "24a59ee6",
+"exit": 0,
+"seconds": 3.54,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test range_input_interaction --test stand_keyboard --test focusability_updates --test stand_accessibility_ids --test stand_act_range --test stand_act_keys --test stand_contrast",
+"run_sha8": "f192e479",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/wrap-2026-10-16T14-54-43/2.log",
+"bytes": 4312,
+"log_sha8": "5fe7d8ff",
+"exit": 0,
+"seconds": 15.31,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test host_log --test mcp_log",
+"run_sha8": "d50841c8",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/wrap-2026-10-16T14-54-43/3.log",
+"bytes": 1064,
+"log_sha8": "05e25d9c",
+"exit": 0,
+"seconds": 4.03,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "d=$(mktemp -d) && rust-code-analysis-cli -m -O json -o \"$d\" -p packages/blitz-dom/src/events/pointer.rs -p packages/blitz-dom/src/events/keyboard.rs -p packages/blitz-dom/src/node/range.rs && python3 escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/evidence/complexity.py \"$d\"",
+"run_sha8": "46b53a90",
+"expect": [
+"exit 0",
+"last line over-ceiling: handle_click handle_key_or_input_event handle_pointerdown handle_pointermove touch_action_pan_axes"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/wrap-2026-10-16T14-54-43/4.log",
+"bytes": 452,
+"log_sha8": "8e28d159",
+"exit": 0,
+"seconds": 0.06,
+"readings": [
+"exit 0 ✓",
+"last line 'over-ceiling: handle_click handle_key_or_input_event handle_pointerdown handle_pointermove touch_action_pan_axes' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "git diff --name-only d236e9186e4ff6ca2610ddfbc9f54f590e8dd01b -- packages examples tests apps wpt Cargo.toml Cargo.lock | grep -c -v -x -E 'packages/blitz-dom/src/events/(pointer|keyboard)\\.rs|packages/blitz-dom/src/node/range\\.rs' ",
+"run_sha8": "3134383f",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/wrap-2026-10-16T14-54-43/5.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "git ls-files --others --exclude-standard -- packages examples tests apps wpt | wc -l",
+"run_sha8": "220d7205",
+"expect": [
+"exit 0",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/wrap-2026-10-16T14-54-43/6.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff --src-prefix=a/ --dst-prefix=b/ d236e9186e4ff6ca2610ddfbc9f54f590e8dd01b -- packages/blitz-dom/src/events/pointer.rs packages/blitz-dom/src/events/keyboard.rs packages/blitz-dom/src/node/range.rs | grep -c -E '^\\+.*(\\.unwrap\\(|\\.expect\\(|panic!|todo!|unreachable!|println!|eprintln!|dbg!|tracing::|info_span!|instrument|std::env|env!)' ",
+"run_sha8": "3eb07e49",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/wrap-2026-10-16T14-54-43/7.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "git diff --src-prefix=a/ --dst-prefix=b/ d236e9186e4ff6ca2610ddfbc9f54f590e8dd01b -- packages/blitz-dom/src | grep -c -E '^\\+\\s*pub(\\(| )' ",
+"run_sha8": "5ec93d7b",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/wrap-2026-10-16T14-54-43/8.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "grep -c -E '(^|[^-_/a-z`])escher($|[^-_/a-z`])' README.md",
+"run_sha8": "cd933781",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/wrap-2026-10-16T14-54-43/9.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "grep -c -E 'Escher[-_/]|[-_/]Escher' README.md",
+"run_sha8": "6e1075a6",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/wrap-2026-10-16T14-54-43/10.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "for s in 'Engine debts' 'Determinism and traces' 'Visual lint and real-app readiness' 'Polish & ship' '17' '43' '1,558' 'escher-session mcp' 'escher-session help' 'actions/workflows/ci.yml/badge.svg' 'Built on Blitz' 'LICENSE-MIT' 'Author / Contact'; do grep -q -F -- \"$s\" README.md || exit 1; done",
+"run_sha8": "cc5bff96",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/wrap-2026-10-16T14-54-43/11.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "grep -c -i -E 'being built|is built in six stages|Beyond 0\\.1\\.0|api[_-]?key|secret|password|token' README.md",
+"run_sha8": "876cfb65",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/wrap-2026-10-16T14-54-43/12.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/wrap-2026-10-16T14-54-43/13.log",
+"bytes": 3864,
+"log_sha8": "10803566",
+"exit": 0,
+"seconds": 10.83,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/wrap-2026-10-16T14-54-43/14.log",
+"bytes": 99359,
+"log_sha8": "75faf3c6",
+"exit": 0,
+"seconds": 130.73,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/wrap-2026-10-16T14-54-43/15.log",
+"bytes": 177,
+"log_sha8": "2ac8fc5e",
+"exit": 0,
+"seconds": 0.61,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.2.0",
+"run_sha8": "ee10eab9",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.18",
+"sha8": "fb28dd29",
+"ts": "2026-10-16T15:16:37Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-10-16T14-54-43-wrap",
+"--marker",
+"2026-10-16-handler-splits-and-readme"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base d236e918 (the parent of the oldest pre-CI commit c71f7ed1)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 117 (runs 105 · evidence 5 · inputs 7) · trails 22 not read · copies 5 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 105,
+"evidence": 5,
+"inputs": 7,
+"trails": 22,
+"copies": 5,
+"kept": 0,
+"binary": 0,
+"in_root": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.18",
+"sha8": "fb28dd29",
+"ts": "2026-10-16T15:16:37Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme",
+"--run-dir",
+".andromeda/runs/2026-10-16T14-54-43-wrap",
+"--marker",
+"2026-10-16-handler-splits-and-readme"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base d236e918 (the parent of the oldest pre-CI commit c71f7ed1) · lists new 1 · modify 4 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/evidence/ (dir) ×0",
+"scope: clean — changed 4 · listed 4 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 137"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "d236e9186e4ff6ca2610ddfbc9f54f590e8dd01b",
+"base_why": "the parent of the oldest pre-CI commit c71f7ed1",
+"counts": {
+"changed": 4,
+"listed": 4,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 137,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

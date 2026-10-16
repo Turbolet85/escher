@@ -10,7 +10,7 @@
 - **examples** — console printing of timings (examples/screenshot.rs:200-214), and the escher-telemetry events of seven_guis' two binaries, `seven_guis_native` and `escher-session`, on stderr (examples/seven_guis/src/main.rs:6-9; examples/seven_guis/src/session_host.rs:20-22)
 - **escher-telemetry** — escher's telemetry bootstrap crate: the stderr subscriber with service identity, the allowlist formatter — a scrub for engine and escher targets, a drop for every other target, printing one line per event and one per closed span — and the chaining panic hook (packages/escher-telemetry/src/lib.rs:1-22; Cargo.toml:17)
 - **blitz-dom** — optional `tracing` logging, `println!` debug dumps and `debug_timer` phase timings (packages/blitz-dom/src/lib.rs:26-29; packages/blitz-dom/src/debug.rs:7-155; packages/blitz-dom/src/resolve.rs:76)
-- **blitz-dom (events / util)** — six `tracing` log call sites, all behind the `tracing` feature (packages/blitz-dom/src/stylo_to_cursor_icon.rs:9-10; packages/blitz-dom/src/events/ime.rs:27-28; packages/blitz-dom/src/events/pointer.rs:791-797; packages/blitz-dom/src/util.rs:26-27; packages/blitz-dom/src/util.rs:34-35)
+- **blitz-dom (events / util)** — six `tracing` log call sites, all behind the `tracing` feature (packages/blitz-dom/src/stylo_to_cursor_icon.rs:9-10; packages/blitz-dom/src/events/ime.rs:27-28; packages/blitz-dom/src/events/pointer.rs:806-812; packages/blitz-dom/src/util.rs:26-27; packages/blitz-dom/src/util.rs:34-35)
 - **blitz-dom (layout)** — emits `tracing` events only when the `tracing` feature is enabled (packages/blitz-dom/src/layout/mod.rs:247; packages/blitz-dom/src/layout/construct.rs:480; packages/blitz-dom/src/layout/damage.rs:583; packages/blitz-dom/src/layout/table.rs:536)
 - **blitz-net, blitz-html, blitz-dom node module** — `tracing` log events behind optional cargo features (packages/blitz-net/Cargo.toml:18; packages/blitz-html/Cargo.toml:15; packages/blitz-dom/src/node/element.rs:768-769)
 - **blitz-shell, blitz-paint** — in-app devtools offer a layout outline, hover highlight overlay, node highlight overlay and taffy tree print (packages/blitz-shell/src/window.rs:667-685; packages/blitz-paint/src/render.rs:245-275; packages/blitz-paint/src/render.rs:1350-1366); the debug overlay visualises content, padding, border and margin boxes of a node (packages/blitz-paint/src/debug_overlay.rs:7-16)
@@ -190,8 +190,8 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
   - `debug_log_node` prints layout, attributes, inline layout and children via `println!` and `tracing::info!` (packages/blitz-dom/src/debug.rs:19-155)
 - **blitz-dom (events / util)**
   - `debug` logs a sent IME event with a `node_id` field (packages/blitz-dom/src/events/ime.rs:28)
-  - `warn` logs an unparseable link href together with the document URL (packages/blitz-dom/src/events/pointer.rs:792)
-  - `info` logs a click on a link without href together with the element's attributes (packages/blitz-dom/src/events/pointer.rs:797)
+  - `warn` logs an unparseable link href together with the document URL (packages/blitz-dom/src/events/pointer.rs:807)
+  - `info` logs a click on a link without href together with the element's attributes (packages/blitz-dom/src/events/pointer.rs:812)
   - `warn` logs WOFF1 and WOFF2 decompression failures (packages/blitz-dom/src/util.rs:27; packages/blitz-dom/src/util.rs:35)
   - `warn` logs a call to `stylo_to_cursor_icon` with `CursorKind::Auto` (packages/blitz-dom/src/stylo_to_cursor_icon.rs:10)
 - **blitz-dom (layout)**
@@ -287,7 +287,7 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 - Visited URLs are logged at info and urlbar text at warn (apps/browser/src/document_loader.rs:120; apps/browser/src/toolbar.rs:130)
 - blitz-dom log lines include resource URLs (packages/blitz-dom/src/document.rs:1357-1362; packages/blitz-dom/src/mutator.rs:1229; packages/blitz-dom/src/mutator.rs:1248)
 - `debug_log_node` prints every attribute name and value of a node (packages/blitz-dom/src/debug.rs:30-34)
-- Log lines include the raw href, the document URL and element attributes unfiltered (packages/blitz-dom/src/events/pointer.rs:792; packages/blitz-dom/src/events/pointer.rs:797)
+- Log lines include the raw href, the document URL and element attributes unfiltered (packages/blitz-dom/src/events/pointer.rs:807; packages/blitz-dom/src/events/pointer.rs:812)
 - The SVG parse-failure event carries the element's full outer HTML in field `html` (packages/blitz-dom/src/layout/construct.rs:463; packages/blitz-dom/src/layout/construct.rs:481-486)
 - Image-fetch info events carry the full image URL (packages/blitz-dom/src/layout/damage.rs:581-599)
 - Full request URLs are logged as field `url` (packages/blitz-net/src/lib.rs:238; packages/blitz-net/src/lib.rs:285; packages/blitz-net/src/lib.rs:290)

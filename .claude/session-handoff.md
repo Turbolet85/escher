@@ -1,48 +1,36 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-15T10:20:45Z
-**Branch:** build/escher-0.1.0 · 0 ahead of origin/build/escher-0.1.0 as read at this wrap's Setup
+**Last Updated:** 2026-10-16T15:13:00Z
+**Branch:** build/escher-0.2.0 · 0 ahead of origin/build/escher-0.2.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-15-cold-agent-test — the cold-agent test on the driver's own MCP surface: one live run passed over the four lean tasks with its replayed check; the masters at the swap
+**Last Commit:** 2026-10-16-handler-splits-and-readme — the range and activation handler arms as private named functions, `parse_float` in steps; the README states 0.1.0 done and 0.2.0 planned, «Escher» capitalized
 
 ## Position
-- Done: 2026-10-15-cold-agent-test (v010-15).
-  - The pipe now drives `escher-session mcp`: task `stand`, the agent's JSON check replayed full and ablated, and the stub deleted.
-  - The founder's one live run read `passed`: 43 calls, 0 wrong, `spacer_calls` 0, 0.3197 USD.
-  - Pre-CI CI#38713461945 was green, 17/17. This wrap's own run is read at P7.
-- Next: the 0.1.0 working route has no markerless entry left, and Epoch 6 closed with this chunk.
-  - The version-end boundary — a version close, or a route run for 0.2.0 — is the founder's call. This wrap ran neither, on the operator's directive (inputs#I10, inputs#I11).
+- Done: 2026-10-16-handler-splits-and-readme, the first 0.2.0 chunk (Epoch 1 — Foundation).
+  - blitz-dom gained seven private functions with no behaviour change. Complexity: `parse_float` 19 → 10; the parents 74 · 40 · 56 → 71 · 35 · 53, stopping at their upstream floor (69 · 35 · 50).
+  - The README now has `## Status`.
+  - Pre-CI run CI#38917429198 on `c71f7ed1` was green, 17/17. This wrap's own run is read at P7.
+- Next: «File splits», the next markerless entry (v020-01; audit M2, M3). The next step is `/andromeda-phase` to promote and plan it.
+  - v020-01 stays unclaimed: this chunk claimed no capability.
 
 ## Work done
-- A two-window wrap. P1 ran in the first window. The second window resumed at P2, halted at the founder's answer card (the swap crossing) and, on his «Подтвердить (Рекомендую)» (relayed verbatim, inputs#I11 · inputs#I12), ran to the end.
-- Reconcile: 30 amendments over five masters and seven sidecar entries; 1 escalation resolved; 0 rejected.
-- Citations: 19 re-pointed (+1 by hand), 20 changed, 8 stretched.
-- Leaves: whole mode for the epoch close, 11 groups, 45 findings (43 tool-applied, 2 by hand).
+- A two-window wrap. P1 ran in the first window (inputs#I4). The second window resumed at P2 on the operator's directive (inputs#I5) and ran to the end with no halt.
+- Reconcile: 6 amendments over architecture, security-plan and a11y-plan, giving 4 sidecar entries. There were 0 escalations and 0 rejections; all 7 detectors held and returned 0 proposals.
+- Citations: 73 re-pointed (+7 by hand), 7 changed, 8 stretched.
+- Leaves: pass mode, 8 comparers, 3 findings applied.
 
 ## Drift resolved
-- Every stub-era claim of the cold-agent pipe is retired across test-plan §1 · §3 · §4, obs-plan §3 · §6 · §8 · §9, security-plan, arch and layout-templates:
-  - the stub file, server `stub`, `run counter`, `--max-budget-usd 1`;
-  - `final_count`, `calls.jsonl` / `stub-state.json`, the 27 / 94 test counts.
-- The swap crossing is recorded as the founder's ratification, his «Один запуск, до $3 (Рекомендую)» and «JSON-проверка с повтором (Рекомендую)» confirmed at the card:
-  - the stand's screen carried to the model provider;
-  - the agent-written check as a new input class;
-  - the two replay children.
-- Whole-mode leaf staleness closed: stack.md's cache figure; a11y-summary's adapter reading and two discharged owed items; security.md's build-time env reads.
+- architecture §Project Intent → Front page now states the README's `## Status` and «Escher» in its prose, on the founder's word. It previously read "built vs planned".
+- The range, button and `parse_float` claims now also cite the private functions their bodies moved into (`press_range_input_key`, `range_track_fraction`, `press_range_input`, `click_button`, `take_sign` · `take_digits` · `take_exponent`). This covers arch [Scrolling and input] and Events, the security-plan range and keyboard-activation rows, and a11y-plan §5.
+- Leaves: `CLAUDE.md`'s pointer row and `services/blitz-dom.md` name the functions.
 
 ## Route as it now reads
-- `.andromeda/residuals.md` +1 line, `(target: 0.2.0)`: whether `covered` and its remedy fit a box with no height (`task-header-spacer`). It is on the founder's «Отложить на 0.2.0, наблюдать (Рекомендую)», with 0 spacer calls observed.
-- No tail edit, no PREREQ, no WATCH, no gated record. Epoch 6: 8 entries, 0 markerless.
+- No tail edit, PREREQ, CARRY, WATCH, residual or gated record.
+- Epoch 1 has 3 entries; this one is complete and the next two are markerless.
 
 ## Notes
-- The leaf batch's path check listed one extra line: this wrap's own `route-no-marker.json` trail, written by two read-only `route.py` calls fired inside the snapshot pair. It was attributed by timestamps and recorded in `cascade-dispositions.md`.
+- The three parents stay over the complexity ceiling. The remainder is upstream's own body, owned by upstream per the audit's §M1; no residual line was minted.
 - Last failed command: none outstanding.
 
 ## Deferred learnings
-- 1 carried from the previous handoff, not this session's to curate: read a CI job's verdict with `ci.py`, not a log pattern (confidence 0.7).
-- recurrence-despite-learning: host-linux.md Session Additions 2026-10-13 (pipeline tools read whole, never filtered).
-  - It recurred at this wrap's P1 (a `grep -v` over a saved `cascade.py sweep` capture).
-  - It recurred twice in P2–P3 (greps over a saved `inputs.py verify` capture and over the leaves-apply capture).
-- Each remedy is a check, not a second entry. Review with `/andromeda-wrap-session --review` if one should be applied.
-
-## Session End Status
-Completed normally at 2026-10-16 16:27:26
+- 1 carried from earlier handoffs, not this session's to curate: read a CI job's verdict with `ci.py`, not a log pattern (confidence 0.7).

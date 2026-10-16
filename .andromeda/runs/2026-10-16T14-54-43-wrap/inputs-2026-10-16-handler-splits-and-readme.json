@@ -1,0 +1,307 @@
+[
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-16T14:55:15Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme",
+"--message-file",
+".andromeda/runs/2026-10-16T14-54-43-wrap/relay-1.md",
+"--origin",
+"the operator, typed in this session, 2026-10-16 14:36Z",
+"--kind",
+"relay",
+"--why",
+"the operator directive for the operator pass: fire 16 as written, the pre-CI commit message, then 17 and 18, write evidence/ci.md, stop before the wrap",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-10-16T14-54-43-wrap",
+"--marker",
+"2026-10-16-handler-splits-and-readme"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I3 · copy message · message: the operator, typed in this session, 2026-10-16 14:36Z",
+"cite: inputs#I3"
+],
+"stderr": null,
+"wrote": [
+"inputs/I3-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I3",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, typed in this session, 2026-10-16 14:36Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "e2b2cdbdf5e265775b1da76b04f418610f8a51ff995796d0163db9267e73cd88",
+"copy": "I3-relay-1.md.txt",
+"link": false,
+"read_at": "2026-10-16T14:55:15Z",
+"step": "wrap",
+"why": "the operator directive for the operator pass: fire 16 as written, the pre-CI commit message, then 17 and 18, write evidence/ci.md, stop before the wrap"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-16T14:55:15Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme",
+"--message-file",
+".andromeda/runs/2026-10-16T14-54-43-wrap/relay-2.md",
+"--origin",
+"the operator, typed in this session, 2026-10-16 14:54Z",
+"--kind",
+"relay",
+"--why",
+"the operator word at invocation: the wrap runs P1 only and stops (the two-window form)",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-10-16T14-54-43-wrap",
+"--marker",
+"2026-10-16-handler-splits-and-readme"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I4 · copy message · message: the operator, typed in this session, 2026-10-16 14:54Z",
+"cite: inputs#I4"
+],
+"stderr": null,
+"wrote": [
+"inputs/I4-relay-2.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I4",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, typed in this session, 2026-10-16 14:54Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "971053dc81fbddc6ff3e70f69e7ab86762efe95be6c99ea6c38c8b3b3245a9d7",
+"copy": "I4-relay-2.md.txt",
+"link": false,
+"read_at": "2026-10-16T14:55:15Z",
+"step": "wrap",
+"why": "the operator word at invocation: the wrap runs P1 only and stops (the two-window form)"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-16T14:55:18Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme",
+"--run-dir",
+".andromeda/runs/2026-10-16T14-54-43-wrap",
+"--marker",
+"2026-10-16-handler-splits-and-readme"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, the /andromeda-phase invocation, 2026-10-16T14:07Z",
+"I1 cited scope.md:18 · scope.md:19 · scope.md:25 · scope.md:28 · research.md:5 · research.md:7 · plan.md:26 · plan.md:32 · plan.md:140 · plan.md:220 (in fence) · plan.md:345 · plan.md:367 · plan.md:379",
+"I2 unchanged · copy no-repo · ../additional/escher-overseer/relays/route-0.2.0-founder-answers.md",
+"I2 cited scope.md:18 · scope.md:19 · research.md:7 · plan.md:26 · plan.md:220 (in fence) · plan.md:228 (in fence) · plan.md:329 · plan.md:345 · plan.md:350 · plan.md:351 · plan.md:369",
+"I3 n/a — a message has no live source · copy message · message: the operator, typed in this session, 2026-10-16 14:36Z",
+"I3 UNCITED",
+"I4 n/a — a message has no live source · copy message · message: the operator, typed in this session, 2026-10-16 14:54Z",
+"I4 UNCITED",
+"inputs: 4 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 3 · uncited 2 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 4,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 3
+},
+"uncited": 2,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-16T14:58:46Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme",
+"--run-dir",
+".andromeda/runs/2026-10-16T14-54-43-wrap",
+"--marker",
+"2026-10-16-handler-splits-and-readme"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, the /andromeda-phase invocation, 2026-10-16T14:07Z",
+"I1 cited scope.md:18 · scope.md:19 · scope.md:25 · scope.md:28 · research.md:5 · research.md:7 · plan.md:26 · plan.md:32 · plan.md:140 · plan.md:220 (in fence) · plan.md:345 · plan.md:367 · plan.md:379",
+"I2 unchanged · copy no-repo · ../additional/escher-overseer/relays/route-0.2.0-founder-answers.md",
+"I2 cited scope.md:18 · scope.md:19 · research.md:7 · plan.md:26 · plan.md:220 (in fence) · plan.md:228 (in fence) · plan.md:329 · plan.md:345 · plan.md:350 · plan.md:351 · plan.md:369",
+"I3 n/a — a message has no live source · copy message · message: the operator, typed in this session, 2026-10-16 14:36Z",
+"I3 cited report.md:127 · report.md:235 · report.md:249",
+"I4 n/a — a message has no live source · copy message · message: the operator, typed in this session, 2026-10-16 14:54Z",
+"I4 cited report.md:130 · report.md:242 · report.md:261",
+"inputs: 4 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 3 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 4,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 3
+},
+"uncited": 0,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-16T15:00:17Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme",
+"--message-file",
+".andromeda/runs/2026-10-16T14-54-43-wrap/relay-3.md",
+"--origin",
+"the operator, 2026-10-16T14:59:20Z, at this wrap resume invocation",
+"--kind",
+"relay",
+"--why",
+"the operator directive for the resumed wrap: stop at an answer card if one is raised, otherwise wrap to the end (push, read CI, report) and stop, no next skill",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-10-16T14-54-43-wrap",
+"--marker",
+"2026-10-16-handler-splits-and-readme"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I5 · copy message · message: the operator, 2026-10-16T14:59:20Z, at this wrap resume invocation",
+"cite: inputs#I5"
+],
+"stderr": null,
+"wrote": [
+"inputs/I5-relay-3.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I5",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, 2026-10-16T14:59:20Z, at this wrap resume invocation",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "4fb21a44fbddfda3bd5bc2905cf7d8c2694dc16289bcae43b48007fd24556ead",
+"copy": "I5-relay-3.md.txt",
+"link": false,
+"read_at": "2026-10-16T15:00:17Z",
+"step": "wrap",
+"why": "the operator directive for the resumed wrap: stop at an answer card if one is raised, otherwise wrap to the end (push, read CI, report) and stop, no next skill"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-16T15:00:17Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme",
+"--run-dir",
+".andromeda/runs/2026-10-16T14-54-43-wrap",
+"--marker",
+"2026-10-16-handler-splits-and-readme"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, the /andromeda-phase invocation, 2026-10-16T14:07Z",
+"I1 cited scope.md:18 · scope.md:19 · scope.md:25 · scope.md:28 · research.md:5 · research.md:7 · plan.md:26 · plan.md:32 · plan.md:140 · plan.md:220 (in fence) · plan.md:345 · plan.md:367 · plan.md:379",
+"I2 unchanged · copy no-repo · ../additional/escher-overseer/relays/route-0.2.0-founder-answers.md",
+"I2 cited scope.md:18 · scope.md:19 · research.md:7 · plan.md:26 · plan.md:220 (in fence) · plan.md:228 (in fence) · plan.md:329 · plan.md:345 · plan.md:350 · plan.md:351 · plan.md:369",
+"I3 n/a — a message has no live source · copy message · message: the operator, typed in this session, 2026-10-16 14:36Z",
+"I3 cited report.md:127 · report.md:235 · report.md:249",
+"I4 n/a — a message has no live source · copy message · message: the operator, typed in this session, 2026-10-16 14:54Z",
+"I4 cited report.md:130 · report.md:242 · report.md:261",
+"I5 n/a — a message has no live source · copy message · message: the operator, 2026-10-16T14:59:20Z, at this wrap resume invocation",
+"I5 UNCITED",
+"inputs: 5 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 4 · uncited 1 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 5,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 4
+},
+"uncited": 1,
+"unparsed": 0
+}
+}
+]
