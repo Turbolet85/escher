@@ -1,0 +1,136 @@
+[
+{
+"sql": "SELECT callee_name, caller, file, line FROM calls WHERE callee_name IN ('handle_click','handle_pointerdown','handle_key_or_input_event','parse_float','apply_range_move','dispatch_activation_click','activates_on_enter','handle_key_up') AND callee_kind = 'fn' AND callee_file LIKE 'packages/blitz-dom/%' ORDER BY callee_name, file, line",
+"rows": 21,
+"result": [
+{
+"callee_name": "activates_on_enter",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 events/keyboard/handle_key_or_input_event().",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 120
+},
+{
+"callee_name": "apply_range_move",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 events/keyboard/handle_key_or_input_event().",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 116
+},
+{
+"callee_name": "apply_range_move",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 events/pointer/handle_pointerdown().",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 518
+},
+{
+"callee_name": "dispatch_activation_click",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 events/keyboard/handle_key_or_input_event().",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 122
+},
+{
+"callee_name": "dispatch_activation_click",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 events/keyboard/handle_key_up().",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 145
+},
+{
+"callee_name": "handle_click",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 events/",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 13
+},
+{
+"callee_name": "handle_click",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 events/handle_dom_event().",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 214
+},
+{
+"callee_name": "handle_click",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 events/pointer/handle_click().",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 769
+},
+{
+"callee_name": "handle_key_or_input_event",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 events/",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 11
+},
+{
+"callee_name": "handle_key_or_input_event",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 events/handle_dom_event().",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 217
+},
+{
+"callee_name": "handle_key_or_input_event",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 events/handle_dom_event().",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 231
+},
+{
+"callee_name": "handle_key_up",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 events/",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 11
+},
+{
+"callee_name": "handle_key_up",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 events/handle_dom_event().",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 228
+},
+{
+"callee_name": "handle_pointerdown",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 events/",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 13
+},
+{
+"callee_name": "handle_pointerdown",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 events/handle_dom_event().",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 191
+},
+{
+"callee_name": "parse_float",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 node/range/impl#[RangeRules]new().",
+"file": "packages/blitz-dom/src/node/range.rs",
+"line": 90
+},
+{
+"callee_name": "parse_float",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 node/range/impl#[RangeRules]new().",
+"file": "packages/blitz-dom/src/node/range.rs",
+"line": 94
+},
+{
+"callee_name": "parse_float",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 node/range/impl#[RangeRules]new().",
+"file": "packages/blitz-dom/src/node/range.rs",
+"line": 105
+},
+{
+"callee_name": "parse_float",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 node/range/impl#[RangeRules]new().",
+"file": "packages/blitz-dom/src/node/range.rs",
+"line": 113
+},
+{
+"callee_name": "parse_float",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 node/range/impl#[RangeRules]sanitize_attribute().",
+"file": "packages/blitz-dom/src/node/range.rs",
+"line": 131
+},
+{
+"callee_name": "parse_float",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.3 node/range/tests/the_float_parser_reads_the_html_grammar().",
+"file": "packages/blitz-dom/src/node/range.rs",
+"line": 350
+}
+],
+"db_state": "regenerated",
+"plane": "rust"
+}
+]

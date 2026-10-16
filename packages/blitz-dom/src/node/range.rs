@@ -3,6 +3,8 @@
 //!
 //! <https://html.spec.whatwg.org/multipage/input.html#range-state-(type=range)>
 
+use std::{iter::Peekable, str::Chars};
+
 /// A range `input`'s current value: the number its keys and clicks move, held apart from its
 /// `value` attribute, which is its default value.
 ///
@@ -238,28 +240,16 @@ fn parse_float(input: &str) -> Option<f64> {
         .peekable();
     let mut number = String::new();
 
-    match chars.peek() {
-        Some('-') => {
-            number.push('-');
-            chars.next();
-        }
-        Some('+') => {
-            chars.next();
-        }
-        _ => {}
+    if take_sign(&mut chars) == Some('-') {
+        number.push('-');
     }
 
-    let mut integer = String::new();
-    while let Some(digit) = chars.next_if(char::is_ascii_digit) {
-        integer.push(digit);
-    }
-
-    let mut fraction = String::new();
-    if chars.next_if_eq(&'.').is_some() {
-        while let Some(digit) = chars.next_if(char::is_ascii_digit) {
-            fraction.push(digit);
-        }
-    }
+    let integer = take_digits(&mut chars);
+    let fraction = if chars.next_if_eq(&'.').is_some() {
+        take_digits(&mut chars)
+    } else {
+        String::new()
+    };
     // A number opens with a digit, or with a point a digit follows.
     if integer.is_empty() && fraction.is_empty() {
         return None;
@@ -270,27 +260,44 @@ fn parse_float(input: &str) -> Option<f64> {
         number.push_str(&fraction);
     }
 
-    if chars.next_if(|c| matches!(c, 'e' | 'E')).is_some() {
-        let mut exponent = String::new();
-        if let Some(sign) = chars.next_if(|c| matches!(c, '-' | '+')) {
-            exponent.push(sign);
-        }
-        let mut digits = String::new();
-        while let Some(digit) = chars.next_if(char::is_ascii_digit) {
-            digits.push(digit);
-        }
-        if !digits.is_empty() {
-            number.push('e');
-            number.push_str(&exponent);
-            number.push_str(&digits);
-        }
-    }
+    number.push_str(&take_exponent(&mut chars));
 
     let value = number
         .parse::<f64>()
         .ok()
         .filter(|value| value.is_finite())?;
     Some(if value == 0.0 { 0.0 } else { value })
+}
+
+/// An optional sign, `-` or `+`.
+fn take_sign(chars: &mut Peekable<Chars<'_>>) -> Option<char> {
+    chars.next_if(|c| matches!(c, '-' | '+'))
+}
+
+/// A run of ASCII digits, empty where none follows.
+fn take_digits(chars: &mut Peekable<Chars<'_>>) -> String {
+    let mut digits = String::new();
+    while let Some(digit) = chars.next_if(char::is_ascii_digit) {
+        digits.push(digit);
+    }
+    digits
+}
+
+/// An exponent, `e` or `E` then an optional sign and a run of digits, written as `e{sign}{digits}`;
+/// one with no digits is read as no exponent.
+fn take_exponent(chars: &mut Peekable<Chars<'_>>) -> String {
+    if chars.next_if(|c| matches!(c, 'e' | 'E')).is_none() {
+        return String::new();
+    }
+    let sign = take_sign(chars);
+    let digits = take_digits(chars);
+    if digits.is_empty() {
+        return String::new();
+    }
+    let mut exponent = String::from("e");
+    exponent.extend(sign);
+    exponent.push_str(&digits);
+    exponent
 }
 
 #[cfg(test)]

@@ -1,0 +1,29 @@
+gate v1.18 · fb28dd29
+shell /usr/bin/bash (from $SHELL; -c, non-login)
+root . · marker 2026-10-16-handler-splits-and-readme · entries 18
+logs $TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/implement-2026-10-16T14-27-34 · $TMPDIR = /tmp · bound: GNU timeout
+delta docs 65 · python 1 · rust 3 · unmapped 5
+walk-class 0 marked (an unmarked walker reads as none)
+prose L139-140: Every gate is one entry below. There is no boot smoke: the chunk changes no app and no boo… (197 chars)
+prose L142-144: The complexity entry reads the instrument the audit used: `rust-code-analysis-cli` 0.0.25,… (337 chars)
+prose L146-146: Every git read names the base `d236e9186e4ff6ca2610ddfbc9f54f590e8dd01b`, which is HEAD at… (99 chars)
+prose L148-150: The `evidence/` records the complexity criterion names are produced by steps 1 and 7, whic… (286 chars)
+  1 unit        green · exit 0 · 5.3s · 7405 B → 1.log · cargo test -p blitz-dom --locked
+  2 integration green · exit 0 · 17.41s · 5102 B → 2.log · cargo test -p blitz-tests --locked --test range_input_inte… (213 chars)
+  3 integration green · exit 0 · 5.61s · 1854 B → 3.log · cargo test -p seven_guis --locked --test host_log --test m… (64 chars)
+  4 probe       green · exit 0 · 0.05s · 452 B → 4.2.log · d=$(mktemp -d) && rust-code-analysis-cli -m -O json -o "$d… (284 chars)
+  5 probe       green · exit 1 · 0.01s · 2 B → 5.log · git diff --name-only d236e9186e4ff6ca2610ddfbc9f54f590e8dd… (232 chars)
+  6 probe       green · exit 0 · 0.01s · 2 B → 6.log · git ls-files --others --exclude-standard -- packages examp… (84 chars)
+  7 probe       green · exit 1 · 0.01s · 2 B → 7.log · git diff --src-prefix=a/ --dst-prefix=b/ d236e9186e4ff6ca2… (345 chars)
+  8 probe       green · exit 1 · 0.01s · 2 B → 8.log · git diff --src-prefix=a/ --dst-prefix=b/ d236e9186e4ff6ca2… (139 chars)
+  9 probe       green · exit 1 · 0.0s · 2 B → 9.log · grep -c -E '(^|[^-_/a-z`])escher($|[^-_/a-z`])' README.md
+ 10 probe       green · exit 1 · 0.0s · 2 B → 10.log · grep -c -E 'Escher[-_/]|[-_/]Escher' README.md
+ 11 probe       green · exit 0 · 0.01s · 0 B → 11.log · for s in 'Engine debts' 'Determinism and traces' 'Visual l… (298 chars)
+ 12 probe       green · exit 1 · 0.0s · 2 B → 12.log · grep -c -i -E 'being built|is built in six stages|Beyond 0… (109 chars)
+ 13 integration green · exit 0 · 12.78s · 4654 B → 13.log · bash .github/scripts/ci-leg.sh a11y
+ 14 lint        green · exit 0 · 158.19s · 102900 B → 14.log · bash .github/scripts/ci-leg.sh fast
+ 15 lint        green · exit 0 · 40.77s · 2226 B → 15.log · bash .github/scripts/ci-leg.sh doc
+ 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)
+ 17 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+ 18 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)
+entries 18 · green 15 · red 0 · recorded 0 · timeout 0 · not-run 3

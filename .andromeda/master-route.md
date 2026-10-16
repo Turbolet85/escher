@@ -53,3 +53,4 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 2026-10-15-cold-agent-test · complete · cold-agent test: a fresh agent given only the driver's MCP tool completes a stand task and writes a passing check, wrong calls counted (v010-15) · → escher-0.1.0/chunks/2026-10-15-cold-agent-test/
 
 ## escher-0.2.0
+2026-10-16-handler-splits-and-readme · pending · Handler splits and README — blitz-dom's range and activation handler arms as named functions, parse_float in steps; the README at the current state, «Escher» capitalized (v020-01) · → escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/

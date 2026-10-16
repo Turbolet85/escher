@@ -8,7 +8,7 @@ _verbatim line to route-archive.md); markerless lines stay mutable._
 _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` headers are structural._
 
 ### Epoch 1 — Foundation
-Handler splits and README — range and activation handler arms as named functions, `parse_float` in steps; README states 0.1.0 done, 0.2.0 planned, «Escher» capitalized (v020-01)
+[2026-10-16-handler-splits-and-readme] Handler splits and README — range and activation handler arms as named functions, `parse_float` in steps; README states 0.1.0 done, 0.2.0 planned, «Escher» capitalized (v020-01)
    ↓
 File splits — escher's inline test modules out of `document.rs`, upstream body untouched; `mcp.rs`, `schema.rs` along their seams, spans unchanged (v020-01; audit M2, M3)
    ↓

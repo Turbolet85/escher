@@ -1,0 +1,153 @@
+[
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-16T14:08:06Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme",
+"--message-file",
+".andromeda/runs/2026-10-16T14-07-11-phase/relay-1.md",
+"--origin",
+"the operator, the /andromeda-phase invocation, 2026-10-16T14:07Z",
+"--kind",
+"relay",
+"--why",
+"the operator directive: the README part is the founder word (current state, Escher capitalized in prose, crate and binary names lowercase); pipeline tools bare or read whole; no mutation run without the founder new word; forks as dialogs; every deferral a residuals line naming his label",
+"--step",
+"phase:P1",
+"--run-dir",
+".andromeda/runs/2026-10-16T14-07-11-phase",
+"--marker",
+"2026-10-16-handler-splits-and-readme"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I1 · copy message · message: the operator, the /andromeda-phase invocation, 2026-10-16T14:07Z",
+"cite: inputs#I1"
+],
+"stderr": null,
+"wrote": [
+"inputs/.gitattributes",
+"inputs/I1-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I1",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, the /andromeda-phase invocation, 2026-10-16T14:07Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "2ccf7bb9c0cb2943ccf42eb6605d27094980c97eb5a99794a7ec84185793c11a",
+"copy": "I1-relay-1.md.txt",
+"link": false,
+"read_at": "2026-10-16T14:08:06Z",
+"step": "phase:P1",
+"why": "the operator directive: the README part is the founder word (current state, Escher capitalized in prose, crate and binary names lowercase); pipeline tools bare or read whole; no mutation run without the founder new word; forks as dialogs; every deferral a residuals line naming his label"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-16T14:08:06Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme",
+"--source",
+"~/dev/projects/additional/escher-overseer/relays/route-0.2.0-founder-answers.md",
+"--kind",
+"relay",
+"--why",
+"the founder README word (2026-10-16), the overseer reading: README shows 0.1.0 done and verified and 0.2.0 planned, Escher with a capital E in prose, crate binary and path names unchanged; placed in the first 0.2.0 entry",
+"--step",
+"phase:P1",
+"--run-dir",
+".andromeda/runs/2026-10-16T14-07-11-phase",
+"--marker",
+"2026-10-16-handler-splits-and-readme"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I2 · copy no-repo · ../additional/escher-overseer/relays/route-0.2.0-founder-answers.md",
+"cite: inputs#I2"
+],
+"stderr": null,
+"wrote": [
+"inputs/I2-route-0.2.0-founder-answers.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I2",
+"kind": "relay",
+"repo": null,
+"path": "../additional/escher-overseer/relays/route-0.2.0-founder-answers.md",
+"form": "copy",
+"state": "no-repo",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "e18f0f66d428c860862c61ad4de3b34eaed21faf931e9dbb2a040681e2a5999d",
+"copy": "I2-route-0.2.0-founder-answers.md.txt",
+"link": false,
+"read_at": "2026-10-16T14:08:06Z",
+"step": "phase:P1",
+"why": "the founder README word (2026-10-16), the overseer reading: README shows 0.1.0 done and verified and 0.2.0 planned, Escher with a capital E in prose, crate binary and path names unchanged; placed in the first 0.2.0 entry"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-16T14:25:32Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme",
+"--run-dir",
+".andromeda/runs/2026-10-16T14-07-11-phase",
+"--marker",
+"2026-10-16-handler-splits-and-readme"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, the /andromeda-phase invocation, 2026-10-16T14:07Z",
+"I1 cited scope.md:18 · scope.md:19 · scope.md:25 · scope.md:28 · research.md:5 · research.md:7 · plan.md:26 · plan.md:32 · plan.md:140 · plan.md:220 (in fence) · plan.md:345 · plan.md:367 · plan.md:379",
+"I2 unchanged · copy no-repo · ../additional/escher-overseer/relays/route-0.2.0-founder-answers.md",
+"I2 cited scope.md:18 · scope.md:19 · research.md:7 · plan.md:26 · plan.md:220 (in fence) · plan.md:228 (in fence) · plan.md:329 · plan.md:345 · plan.md:350 · plan.md:351 · plan.md:369",
+"inputs: 2 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 1 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 2,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 1
+},
+"uncited": 0,
+"unparsed": 0
+}
+}
+]

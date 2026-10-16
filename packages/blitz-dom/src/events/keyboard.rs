@@ -105,16 +105,7 @@ pub(crate) fn handle_key_or_input_event<F: FnMut(DomEvent)>(
             && let KeyboardOrTextInputEvent::KeyPress(key_event) = &event
             && key_event.state.is_pressed()
         {
-            // https://html.spec.whatwg.org/multipage/input.html#range-state-(type=range):
-            // the arrows step the value, Home and End take it to its minimum and maximum.
-            let to = match key_event.key {
-                Key::ArrowRight | Key::ArrowUp => RangeMove::StepUp,
-                Key::ArrowLeft | Key::ArrowDown => RangeMove::StepDown,
-                Key::Home => RangeMove::Minimum,
-                Key::End => RangeMove::Maximum,
-                _ => return,
-            };
-            doc.apply_range_move(node_id, to, &mut dispatch_event);
+            press_range_input_key(doc, node_id, &key_event.key, &mut dispatch_event);
         } else if let KeyboardOrTextInputEvent::KeyPress(key_event) = &event
             && key_event.state.is_pressed()
             && key_event.key == Key::Enter
@@ -145,6 +136,25 @@ pub(crate) fn handle_key_up<F: FnMut(DomEvent)>(
     {
         dispatch_activation_click(doc, target, event.modifiers, &mut dispatch_event);
     }
+}
+
+/// https://html.spec.whatwg.org/multipage/input.html#range-state-(type=range):
+/// the arrows step a range input's value, Home and End take it to its minimum and maximum, and
+/// every other key does nothing.
+fn press_range_input_key(
+    doc: &mut BaseDocument,
+    node_id: NodeId,
+    key: &Key,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) {
+    let to = match key {
+        Key::ArrowRight | Key::ArrowUp => RangeMove::StepUp,
+        Key::ArrowLeft | Key::ArrowDown => RangeMove::StepDown,
+        Key::Home => RangeMove::Minimum,
+        Key::End => RangeMove::Maximum,
+        _ => return,
+    };
+    doc.apply_range_move(node_id, to, dispatch_event);
 }
 
 /// https://html.spec.whatwg.org/multipage/interaction.html#activation-behaviour:

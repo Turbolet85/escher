@@ -1,0 +1,104 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-16T14:26:47Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.2.0",
+"--run-dir",
+".andromeda/runs/2026-10-16T14-07-11-phase",
+"--marker",
+"2026-10-16-handler-splits-and-readme"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 0/11 · deferred 0 · planned 11 · implemented 0 · unclaimed 11",
+"unclaimed: v020-01 v020-02 v020-03 v020-04 v020-05 v020-06 v020-07 v020-08 v020-09 v020-10 v020-11",
+"claimed-unfinished: none",
+"done-test: NO — 11 not verified|deferred · unclaimed 11",
+"chunks referenced: 0 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-16T14:26:56Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.2.0",
+"--id",
+"v020-01",
+"--text-file",
+".andromeda/runs/2026-10-16T14-07-11-phase/note-v020-01.md",
+"--run-dir",
+".andromeda/runs/2026-10-16T14-07-11-phase",
+"--marker",
+"2026-10-16-handler-splits-and-readme"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v020-01: +1059 chars (total 1059) · status planned · ref/acceptance untouched",
+"wrote escher-0.2.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.2.0/verification-matrix.json"
+],
+"before": {
+"id": "v020-01",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "A re-read of the code audit's measures shows escher's handler branches for range and activation no longer over the compl… (370 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v020-01",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "A re-read of the code audit's measures shows escher's handler branches for range and activation no longer over the compl… (370 chars)",
+"notes_chars": 1059
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-16T14:26:56Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.2.0",
+"--chunk",
+"2026-10-16-handler-splits-and-readme",
+"--plan",
+"escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-16T14-07-11-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-16-handler-splits-and-readme: 0 · ## Acceptance Criteria: line 290, 45 lines",
+"pool: unclaimed 11 [v020-01 v020-02 v020-03 v020-04 v020-05 v020-06 v020-07 v020-08 v020-09 v020-10 v020-11]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

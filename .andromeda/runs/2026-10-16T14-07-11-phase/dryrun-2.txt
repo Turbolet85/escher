@@ -1,0 +1,29 @@
+gate v1.18 · fb28dd29
+shell /usr/bin/bash (from $SHELL; -c, non-login)
+root . · marker 2026-10-16-handler-splits-and-readme · entries 18
+logs $TMPDIR/andromeda-gate/2026-10-16-handler-splits-and-readme/run-20261016T142532Z · $TMPDIR = /tmp · bound: GNU timeout
+delta docs 54 · unmapped 4
+walk-class 0 marked (an unmarked walker reads as none)
+prose L139-140: Every gate is one entry below. There is no boot smoke: the chunk changes no app and no boo… (197 chars)
+prose L142-144: The complexity entry reads the instrument the audit used: `rust-code-analysis-cli` 0.0.25,… (337 chars)
+prose L146-146: Every git read names the base `d236e9186e4ff6ca2610ddfbc9f54f590e8dd01b`, which is HEAD at… (99 chars)
+prose L148-150: The `evidence/` records the complexity criterion names are produced by steps 1 and 7, whic… (286 chars)
+  1 unit        not run — dry-run · cargo test -p blitz-dom --locked
+  2 integration not run — dry-run · cargo test -p blitz-tests --locked --test range_input_inte… (213 chars)
+  3 integration not run — dry-run · cargo test -p seven_guis --locked --test host_log --test m… (64 chars)
+  4 probe       not run — dry-run · d=$(mktemp -d) && rust-code-analysis-cli -m -O json -o "$d… (284 chars)
+  5 probe       not run — dry-run · git diff --name-only d236e9186e4ff6ca2610ddfbc9f54f590e8dd… (232 chars)
+  6 probe       not run — dry-run · git ls-files --others --exclude-standard -- packages examp… (84 chars)
+  7 probe       not run — dry-run · git diff --src-prefix=a/ --dst-prefix=b/ d236e9186e4ff6ca2… (345 chars)
+  8 probe       not run — dry-run · git diff --src-prefix=a/ --dst-prefix=b/ d236e9186e4ff6ca2… (139 chars)
+  9 probe       not run — dry-run · grep -c -E '(^|[^-_/a-z`])escher($|[^-_/a-z`])' README.md
+ 10 probe       not run — dry-run · grep -c -E 'Escher[-_/]|[-_/]Escher' README.md
+ 11 probe       not run — dry-run · for s in 'Engine debts' 'Determinism and traces' 'Visual l… (298 chars)
+ 12 probe       not run — dry-run · grep -c -i -E 'being built|is built in six stages|Beyond 0… (109 chars)
+ 13 integration not run — dry-run · bash .github/scripts/ci-leg.sh a11y
+ 14 lint        not run — dry-run · bash .github/scripts/ci-leg.sh fast
+ 15 lint        not run — dry-run · bash .github/scripts/ci-leg.sh doc
+ 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)
+ 17 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+ 18 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)
+entries 18 · green 0 · red 0 · recorded 0 · timeout 0 · not-run 18

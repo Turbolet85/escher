@@ -460,18 +460,9 @@ pub(crate) fn handle_pointerdown(
         let node = &doc.nodes[actual_target];
         match node.data.downcast_element() {
             Some(el) if el.has_attr(local_name!("disabled")) => ClickTarget::Disabled,
-            Some(el) if el.range_input_data().is_some() => {
-                // The track runs left to right across the content box.
-                let layout = node.final_layout();
-                let width = layout.content_box_width();
-                let offset = hit.x - (layout.padding.left + layout.border.left);
-                let fraction = if width > 0.0 {
-                    (offset / width).clamp(0.0, 1.0)
-                } else {
-                    0.0
-                };
-                ClickTarget::RangeInput { fraction }
-            }
+            Some(el) if el.range_input_data().is_some() => ClickTarget::RangeInput {
+                fraction: range_track_fraction(node.final_layout(), hit.x),
+            },
             Some(el) => {
                 if let SpecialElementData::TextInput(ref text_input_data) = el.special_data {
                     let mut content_box_offset = taffy::Point {
@@ -515,13 +506,7 @@ pub(crate) fn handle_pointerdown(
     match click_target {
         ClickTarget::Disabled => (),
         ClickTarget::RangeInput { fraction } => {
-            if button == MouseEventButton::Main {
-                doc.apply_range_move(
-                    actual_target,
-                    RangeMove::Fraction(f64::from(fraction)),
-                    dispatch_event,
-                );
-            }
+            press_range_input(doc, actual_target, button, fraction, dispatch_event);
         }
         ClickTarget::SelectableText => {
             // Handle text selection for non-input elements
@@ -575,6 +560,36 @@ pub(crate) fn handle_pointerdown(
                 dispatch_event,
             );
         }
+    }
+}
+
+/// How far along a range input's track a point at `x` lies, from 0 at the content box's left edge
+/// to 1 at its right: the track runs left to right across the content box, and a content box of
+/// no width reads 0.
+fn range_track_fraction(layout: &taffy::Layout, x: f32) -> f32 {
+    let width = layout.content_box_width();
+    let offset = x - (layout.padding.left + layout.border.left);
+    if width > 0.0 {
+        (offset / width).clamp(0.0, 1.0)
+    } else {
+        0.0
+    }
+}
+
+/// A main-button pointerdown on a range input sets its value from the fraction of its track.
+fn press_range_input(
+    doc: &mut BaseDocument,
+    target: NodeId,
+    button: MouseEventButton,
+    fraction: f32,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) {
+    if button == MouseEventButton::Main {
+        doc.apply_range_move(
+            target,
+            RangeMove::Fraction(f64::from(fraction)),
+            dispatch_event,
+        );
     }
 }
 
@@ -808,16 +823,7 @@ pub(crate) fn handle_click(
                 {
                     let submits =
                         el.is_submit_button() || el.attr(local_name!("type")) == Some("submit");
-                    generate_focus_events(
-                        doc,
-                        &mut |doc| {
-                            doc.set_focus_to(node_id);
-                        },
-                        dispatch_event,
-                    );
-                    if submits && let Some(form_owner) = doc.controls_to_form.get(&node_id) {
-                        doc.submit_form(*form_owner, node_id);
-                    }
+                    click_button(doc, node_id, submits, dispatch_event);
                     break 'matched true;
                 }
                 #[cfg(feature = "file-input")]
@@ -878,6 +884,25 @@ pub(crate) fn handle_click(
             target,
             DomEventData::DoubleClick(double_click_event),
         ));
+    }
+}
+
+/// Focuses a clicked button, then submits its form owner when it is a submit button.
+fn click_button(
+    doc: &mut BaseDocument,
+    node_id: NodeId,
+    submits: bool,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) {
+    generate_focus_events(
+        doc,
+        &mut |doc| {
+            doc.set_focus_to(node_id);
+        },
+        dispatch_event,
+    );
+    if submits && let Some(form_owner) = doc.controls_to_form.get(&node_id) {
+        doc.submit_form(*form_owner, node_id);
     }
 }
 
