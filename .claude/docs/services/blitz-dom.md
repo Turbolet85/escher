@@ -32,7 +32,7 @@ See `.claude/docs/gotchas.md`.
 - **Events:** `src/events/{driver,focus,keyboard,pointer,ime}.rs`
 - **Layout:** `src/layout/{mod,construct,damage,inline,paint_tree,table,replaced}.rs`
 - **Accessibility:** `src/accessibility.rs` · **Nodes:** `src/node/`
-- **Tests:** in-file `#[cfg(test)]` (document.rs, mutator.rs, net.rs, …) + `tests/blitz-tests/tests/`
+- **Tests:** in-file `#[cfg(test)]` (document.rs, mutator.rs, net.rs, …) — and, since 2026-10-16-file-splits, `document`'s two `#[cfg(test)]` children declared through `#[path]`, `changed_set_tests` in `src/document_changed_set_tests.rs` and `font_reading_tests` in `src/document_font_reading_tests.rs` — + `tests/blitz-tests/tests/`
 
 ## Testing this crate
 - **Unit:** `cargo test -p blitz-dom` (SVG tests need the `svg` feature)

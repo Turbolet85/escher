@@ -8,6 +8,21 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-16 — Moving Rust items between modules strands two kinds of import
+Splitting a module along its seams leaves two imports behind that the compiler only reports one at a time. An import
+whose only use is an intra-doc link (`[`VERBS`]` in a doc comment) reads as `unused_imports` to rustc, so clippy
+`-D warnings` fails on it, while dropping it breaks the link under rustdoc `-D warnings` — name the target by path
+instead (`[`VERBS`](schema::VERBS)`, `[`NAME`](super::NAME)`), or keep the import only where code uses it. And a
+`#[cfg(test)]` child module reaches its parent's private `use` imports through `use super::*`: when the code that
+needed an import moves out, the parent stops importing it and the tests lose it too, moved item or not — the test
+module then names it with its own `use` line.
+
+Where it applies: any split of a Rust file into child or sibling modules, and any test module moved out of line
+through `#[path]`; plan the test file's own `use` lines for every name the parent no longer imports, not only for the
+moved items.
+
+---
+
 ## 2026-10-15 — A saved `cargo build` capture in a run dir holds the project root
 A phase or implement step that saves a `cargo build` run's output into its run dir commits the project root's absolute path: cargo's `Compiling {crate} v{version} ({root}/{path})` lines name it. `gate.py hygiene` refuses the file as an in-root host path. Because the path is under the root, `gate.py respell` fixes it, dropping the root prefix and nothing else, and the respell is recorded. Where it applies: any build or test capture kept as evidence. Keep the raw capture in the session scratchpad with its figures in a record, or respell it before the hygiene read.
 

@@ -1,0 +1,36 @@
+# Wrap P1 site sweep — 2026-10-16-file-splits. One pattern per report claim.
+
+# The one out-of-line #[path] test module claim (architecture §Conventions → Tests; test-plan §2, §4).
+[[pattern]]
+id = 'path-module'
+regex = '''bridge_tests|bar one .cfg\(test\). module|sits out of line'''
+
+# escher's two document.rs test modules named by name.
+[[pattern]]
+id = 'doc-modules'
+regex = '''changed_set_tests|font_reading_tests'''
+
+# Citations into document.rs past line 3461 (the moved span).
+[[pattern]]
+id = 'doc-tail-cite'
+regex = '''document\.rs:3(46[2-9]|4[7-9][0-9]|[5-9][0-9][0-9])'''
+
+# Citations of packages/escher-driver/src/mcp.rs by path.
+[[pattern]]
+id = 'mcp-cite'
+regex = '''escher-driver/src/mcp\.rs'''
+
+# Citations of packages/escher-driver/src/schema.rs by path.
+[[pattern]]
+id = 'schema-cite'
+regex = '''escher-driver/src/schema\.rs'''
+
+# mcp.rs / schema.rs named bare, without the crate path.
+[[pattern]]
+id = 'bare-file'
+regex = '''(?<![/\w])(mcp|schema)\.rs'''
+
+# The escher-driver module count (architecture §Existing Scopes → escher-driver).
+[[pattern]]
+id = 'module-count'
+regex = '''fourteen (private )?modules|fourteenth module'''

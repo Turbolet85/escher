@@ -1,0 +1,2 @@
+proposals: []
+note: D-layout-surface holds — the report adds no user-facing surface or region (Coverage of new surfaces "no new external surface, hot-path op or UI element"; Smoke "no boot path or UI surface changed"; Schema / config "escher-session help" and the mcp record byte-identical). layout-templates.md:74's four mcp-cite rows (pattern mcp-cite) already read the line map's new paths (mcp.rs:44-110, mcp/listing.rs:28-48 · 50-59 · 61-110) — the citation sweep's, no detector proposal.

@@ -1,0 +1,26 @@
+# Cascade step 2 sweep — 2026-10-16-file-splits. One pattern per retired claim of this pass.
+
+# The one out-of-line test module claim (arch §Conventions → Tests; test-plan §2, §4), its verbs and phrasings.
+[[pattern]]
+id = 'one-module'
+regex = '''one unit-test module|bar one .cfg\(test\). module|one .cfg\(test\). (child )?module|(sits|held) (in a file of its own|out of line)'''
+
+# escher-driver's 72 unit tests and client.rs's two.
+[[pattern]]
+id = 'count-72'
+regex = '''72 unit tests|client\.rs`? 2\b'''
+
+# The moved tests' counts and claims named by their old files.
+[[pattern]]
+id = 'file-count'
+regex = '''(?<![/\w])(mcp|schema)\.rs`?( |'s )(6|11|pins|that|tests|unit)'''
+
+# blitz-dom's document tests counted by document.rs.
+[[pattern]]
+id = 'doc-count'
+regex = '''18 in document\.rs|in document\.rs \('''
+
+# Unit tests said to be inline, the driver's and mcp.rs's.
+[[pattern]]
+id = 'inline'
+regex = '''inline unit tests|unit tests inline|tests inline'''
