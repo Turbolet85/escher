@@ -1,0 +1,13 @@
+# cargo-nextest configuration. Its one use is the mutation run (cargo-mutants
+# `--test-tool nextest` under `NEXTEST_PROFILE=mutants`): the `mutants` profile runs the
+# direct unit tests of the timer, the MCP framing and the mutation writer first and ends
+# the run at its first failure, so a mutant that hangs a stand check fails fast instead.
+# The default profile is nextest's own.
+
+[profile.mutants]
+fail-fast = { max-fail = 1, terminate = "immediate" }
+test-threads = 4
+
+[[profile.mutants.overrides]]
+filter = "test(=tasks::timer::tests::a_delivered_tick_is_taken_once_and_an_empty_wait_parks) | test(=mcp::tests::read_request_takes_each_line_with_its_terminator) | test(=dioxus_document::bridge_tests::a_created_text_node_is_mapped_and_left_on_the_stack)"
+priority = 100

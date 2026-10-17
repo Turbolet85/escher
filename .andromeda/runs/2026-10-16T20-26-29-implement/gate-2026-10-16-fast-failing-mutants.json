@@ -1,0 +1,2974 @@
+[
+{
+"tool": "gate",
+"v": "1.19",
+"sha8": "457c1da1",
+"ts": "2026-10-16T20:30:09Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-16T20-26-29-implement",
+"--marker",
+"2026-10-16-fast-failing-mutants",
+"--only",
+"1,2,3,4,5,6,7"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-16-fast-failing-mutants · entries 25",
+"logs $TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 56 · rust 3 · unmapped 6",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L158-163: Every gate is one entry below. There is no boot smoke, because the chunk changes no app an… (604 chars)",
+"prose L165-169: Every git read names the base `494abd258fee55528006cfeaef68c145fd291de6`. The `coverage` a… (556 chars)",
+"  1 unit        green · exit 0 · 0.79s · 821 B → 1.log · cargo test -p seven_guis --locked --lib",
+"  2 unit        green · exit 0 · 0.63s · 6298 B → 2.log · cargo test -p escher-driver --locked",
+"  3 unit        green · exit 0 · 0.67s · 5435 B → 3.log · cargo test -p dioxus-native-dom --locked --lib",
+"  4 probe       green · exit 0 · 2.32s · 2 B → 4.log · out=$(NEXTEST_PROFILE=mutants cargo nextest list --locked … (454 chars)",
+"  5 integration green · exit 0 · 58.82s · 23632 B → 5.log · L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/tar… (201 chars)",
+"  6 integration green · exit 0 · 29.1s · 31892 B → 6.log · L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/tar… (204 chars)",
+"  7 integration green · exit 0 · 83.7s · 56349 B → 7.log · L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/tar… (208 chars)",
+"not run — excluded · 18: 8-25",
+"entries 25 · green 7 · red 0 · recorded 0 · timeout 0 · not-run 18"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-16-fast-failing-mutants",
+"plan": "./escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-16T17-27-46-wrap/evolve-2026-10-16-file-splits.json",
+".claude/session-handoff.md",
+"escher-0.2.0/working-route.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/a11y-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/a11y.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/acceptance-v020-02.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/arch-history-index.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/arch-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/arch.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/controls.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/design.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/gate-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/inputs-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/layouts-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/layouts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/master-record.txt",
+".andromeda/runs/2026-10-16T18-14-30-phase/matrix-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/obs-contracts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/obs-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/obs.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/p5-card-1.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/planlint-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/registry-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/relay-1.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/route-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/route-no-marker.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/security-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/security.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/sidecar-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/tests-contracts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/tests-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/tests.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/tree-query-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-04-49-implement/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-04-49-implement/gate-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-04-49-implement/outcome-2026-10-16-fast-failing-mutants.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/acceptance-v020-02.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/controls.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/gate-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/inputs-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/matrix-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/note-v020-02.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/p5-card-1.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/planlint-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/relay-1.md",
+".andromeda/runs/2026-10-16T20-26-29-implement/evolve-2026-10-16-fast-failing-mutants.json",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/controls.md",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/research.md",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/scope.md"
+],
+"rust": [
+"examples/seven_guis/src/tasks/timer.rs",
+"packages/dioxus-native-dom/src/dioxus_document_tests.rs",
+"packages/escher-driver/src/mcp_tests.rs"
+]
+},
+"unmapped": [
+"escher-0.2.0/verification-matrix.json",
+".config/nextest.toml",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/.gitattributes",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/I1-relay-1.md.txt",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/I2-relay-1.md.txt",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/andromeda-inputs.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 65,
+"problem": null
+},
+"prose": [
+{
+"from": 158,
+"to": 163,
+"text": "Every gate is one entry below. There is no boot smoke, because the chunk changes no app and no boot path. There is no live leg. The three unmutated baselines are ordinary entries, fired before the runs and re-run by any reader. The three mutation runs are `operator` entries fired once by /implement. They are long runs whose re-run is not the reader's: the wrap re-verifies them from `evidence/`. They write the records that three later probes read, so those probes read a record a step outside them made and carry no `artifact`. On the untouched tree the records are absent and the probes baseline red."
+},
+{
+"from": 165,
+"to": 169,
+"text": "Every git read names the base `494abd258fee55528006cfeaef68c145fd291de6`. The `coverage` and `stand-repeat` legs run in CI and are read through the CI entry. /implement fired the `nextest list` entry right after step 5, before any graded use: that firing was its must-pass reading (green, last line 3), because the profile and the three tests it lists are this chunk's. The controls behind the take-up's baselines are in `.andromeda/runs/2026-10-16T18-14-30-phase/controls.md`; the revision's are in `.andromeda/runs/2026-10-16T20-13-52-phase/controls.md`."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p seven_guis --locked --lib",
+"run_sha8": "fce03d28",
+"expect": [
+"exit 0",
+"contains test result: ok. 2 passed; 0 failed"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/1.log",
+"bytes": 821,
+"log_sha8": "039a2896",
+"exit": 0,
+"seconds": 0.79,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok. 2 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked",
+"run_sha8": "5f0bb953",
+"expect": [
+"exit 0",
+"contains test result: ok. 74 passed; 0 failed"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/2.log",
+"bytes": 6298,
+"log_sha8": "b5abf900",
+"exit": 0,
+"seconds": 0.63,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok. 74 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok. 69 passed; 0 failed"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/3.log",
+"bytes": 5435,
+"log_sha8": "84f40e35",
+"exit": 0,
+"seconds": 0.67,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok. 69 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "out=$(NEXTEST_PROFILE=mutants cargo nextest list --locked -p seven_guis -p escher-driver -p dioxus-native-dom --lib 2>&1) && ! printf '%s\\n' \"$out\" | grep -q 'ignoring unknown configuration key' && printf '%s\\n' \"$out\" | grep -c -E 'tasks::timer::tests::a_delivered_tick_is_taken_once_and_an_empty_wait_parks|mcp::tests::read_request_takes_each_line_with_its_terminator|dioxus_document::bridge_tests::a_created_text_node_is_mapped_and_left_on_the_stack' ",
+"run_sha8": "9390fe61",
+"expect": [
+"exit 0",
+"last line 3"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/4.log",
+"bytes": 2,
+"log_sha8": "1121cfcc",
+"exit": 0,
+"seconds": 2.32,
+"readings": [
+"exit 0 ✓",
+"last line '3' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-seven_guis.txt && NEXTEST_PROFILE=mutants cargo nextest run --locked $(head -n 1 $L | tr ',' '\\n' | sed 's/^/-p /') --lib $(tail -n +2 $L)",
+"run_sha8": "33ff5f8f",
+"expect": [
+"exit 0",
+"contains 201 tests run: 201 passed"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/5.log",
+"bytes": 23632,
+"log_sha8": "e1539771",
+"exit": 0,
+"seconds": 58.82,
+"readings": [
+"exit 0 ✓",
+"contains '201 tests run: 201 passed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-escher-driver.txt && NEXTEST_PROFILE=mutants cargo nextest run --locked $(head -n 1 $L | tr ',' '\\n' | sed 's/^/-p /') --lib $(tail -n +2 $L)",
+"run_sha8": "abd075bd",
+"expect": [
+"exit 0",
+"contains 276 tests run: 276 passed"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/6.log",
+"bytes": 31892,
+"log_sha8": "ea05d84c",
+"exit": 0,
+"seconds": 29.1,
+"readings": [
+"exit 0 ✓",
+"contains '276 tests run: 276 passed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-dioxus-native-dom.txt && NEXTEST_PROFILE=mutants cargo nextest run --locked $(head -n 1 $L | tr ',' '\\n' | sed 's/^/-p /') --lib $(tail -n +2 $L)",
+"run_sha8": "16a84fcd",
+"expect": [
+"exit 0",
+"contains 494 tests run: 494 passed"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/7.log",
+"bytes": 56349,
+"log_sha8": "9d6644dc",
+"exit": 0,
+"seconds": 83.7,
+"readings": [
+"exit 0 ✓",
+"contains '494 tests run: 494 passed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "o=target/tmp/ffm-timer-$(date -u +%Y%m%dT%H%M%SZ) && printf 'output %s\\n' \"$o\" && mkdir -p target/mutants-tmp && L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-seven_guis.txt && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants taskset -c 12-15,28-31 cargo mutants -p seven_guis --file examples/seven_guis/src/tasks/timer.rs --test-tool nextest --test-package=$(head -n 1 $L) --cargo-test-arg=--lib $(tail -n +2 $L | sed 's/^/--cargo-test-arg=/') --baseline=skip --timeout 600 -j 2 --output $o; rc=$?; jq -c '[.outcomes[] | {mutant: ((.scenario | objects | .Mutant.name) // \"baseline\"), summary, test_s: ([.phase_results[] | select(.phase == \"Test\") | .duration] | first)}]' $o/mutants.out/outcomes.json > $o/record.json; exit $rc",
+"run_sha8": "311b87b6",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "o=target/tmp/ffm-framing-$(date -u +%Y%m%dT%H%M%SZ) && printf 'output %s\\n' \"$o\" && mkdir -p target/mutants-tmp && L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-escher-driver.txt && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants taskset -c 12-15,28-31 cargo mutants -p escher-driver --file packages/escher-driver/src/mcp/framing.rs --test-tool nextest --test-package=$(head -n 1 $L) --cargo-test-arg=--lib $(tail -n +2 $L | sed 's/^/--cargo-test-arg=/') --baseline=skip --timeout 600 -j 2 --output $o; rc=$?; jq -c '[.outcomes[] | {mutant: ((.scenario | objects | .Mutant.name) // \"baseline\"), summary, test_s: ([.phase_results[] | select(.phase == \"Test\") | .duration] | first)}]' $o/mutants.out/outcomes.json > $o/record.json; exit $rc",
+"run_sha8": "836e745c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "o=target/tmp/ffm-writer-$(date -u +%Y%m%dT%H%M%SZ) && printf 'output %s\\n' \"$o\" && mkdir -p target/mutants-tmp && L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-dioxus-native-dom.txt && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants taskset -c 12-15,28-31 cargo mutants -p dioxus-native-dom --file packages/dioxus-native-dom/src/mutation_writer.rs --test-tool nextest --test-package=$(head -n 1 $L) --cargo-test-arg=--lib $(tail -n +2 $L | sed 's/^/--cargo-test-arg=/') --baseline=skip --timeout 600 -j 2 --output $o; rc=$?; jq -c '[.outcomes[] | {mutant: ((.scenario | objects | .Mutant.name) // \"baseline\"), summary, test_s: ([.phase_results[] | select(.phase == \"Test\") | .duration] | first)}]' $o/mutants.out/outcomes.json > $o/record.json; exit $rc",
+"run_sha8": "6e9f3094",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "jq -s '[.[][] | select(.mutant | test(\"timer\\\\.rs:(29:9|32:31): |framing\\\\.rs:47:53: |mutation_writer\\\\.rs:172:9: \")) | select(.summary == \"CaughtMutant\" and .test_s < 120)] | length' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-framing.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-writer.json",
+"run_sha8": "d68de7ba",
+"expect": [
+"exit 0",
+"last line 6"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "jq -s '[.[][] | select(.summary == \"MissedMutant\" or .summary == \"Timeout\" or .summary == \"Failure\")] | length' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-framing.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-writer.json",
+"run_sha8": "ba2e0882",
+"expect": [
+"exit 0",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "jq -s '[.[][] | select(.mutant != \"baseline\")] | length' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-framing.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-writer.json",
+"run_sha8": "42a17d9f",
+"expect": [
+"exit 0",
+"last line 137"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "grep -c -E '^\\| .+ \\| (a_delivered_tick_is_taken_once_and_an_empty_wait_parks|read_request_takes_each_line_with_its_terminator|a_created_text_node_is_mapped_and_left_on_the_stack) \\| red \\| [0-9.]+ s \\| sha256 equal \\| green \\|$' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/controls.md",
+"run_sha8": "47b43d09",
+"expect": [
+"exit 0",
+"last line 6"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "git diff --quiet 434e06615d5f47a3df92c0f94e916df088fdcf4d -- packages/dioxus-native-dom/src/mutation_writer.rs",
+"run_sha8": "36d4d814",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "cmp <(git show 494abd258fee55528006cfeaef68c145fd291de6:examples/seven_guis/src/tasks/timer.rs) <(head -n 196 examples/seven_guis/src/tasks/timer.rs)",
+"run_sha8": "59a9a796",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "git diff --name-only 494abd258fee55528006cfeaef68c145fd291de6 -- packages examples tests apps wpt scripts .github Cargo.toml Cargo.lock | grep -c -v -x -E 'examples/seven_guis/src/tasks/timer\\.rs|packages/escher-driver/src/mcp_tests\\.rs|packages/dioxus-native-dom/src/dioxus_document_tests\\.rs' ",
+"run_sha8": "a40a381d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "git ls-files --others --exclude-standard -- packages examples tests apps wpt scripts .github .config | grep -c -v -x -F '.config/nextest.toml' ",
+"run_sha8": "9c583784",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "grep -c -E 'println!|eprintln!|print!|dbg!|std::env|env::var|escher_telemetry|tracing_subscriber|UnixListener|TcpListener|bind\\(' examples/seven_guis/src/tasks/timer.rs packages/escher-driver/src/mcp_tests.rs packages/dioxus-native-dom/src/dioxus_document_tests.rs | grep -c -v ':0$' ",
+"run_sha8": "102bebc5",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 20,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 21,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 22,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 23,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 24,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.2.0",
+"run_sha8": "ee10eab9",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 25,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.19",
+"sha8": "457c1da1",
+"ts": "2026-10-16T20:42:42Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-16T20-26-29-implement",
+"--marker",
+"2026-10-16-fast-failing-mutants",
+"--operator",
+"8"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-16-fast-failing-mutants · entries 25",
+"logs $TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 57 · rust 3 · unmapped 6",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L158-163: Every gate is one entry below. There is no boot smoke, because the chunk changes no app an… (604 chars)",
+"prose L165-169: Every git read names the base `494abd258fee55528006cfeaef68c145fd291de6`. The `coverage` a… (556 chars)",
+"operator entry 8 · history tripwire: none of 7 forms matched — not a clearance",
+"  8 integration green · exit 0 · 743.92s · 118 B → 8.log · history: unmoved · o=target/tmp/ffm-timer-$(date -u +%Y%m%dT%H%M%SZ) && print… (770 chars)",
+"not run — excluded · 24: 1-7,9-25",
+"entries 25 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 24"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-16-fast-failing-mutants",
+"plan": "./escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-16T17-27-46-wrap/evolve-2026-10-16-file-splits.json",
+".claude/session-handoff.md",
+"escher-0.2.0/working-route.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/a11y-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/a11y.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/acceptance-v020-02.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/arch-history-index.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/arch-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/arch.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/controls.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/design.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/gate-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/inputs-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/layouts-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/layouts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/master-record.txt",
+".andromeda/runs/2026-10-16T18-14-30-phase/matrix-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/obs-contracts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/obs-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/obs.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/p5-card-1.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/planlint-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/registry-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/relay-1.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/route-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/route-no-marker.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/security-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/security.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/sidecar-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/tests-contracts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/tests-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/tests.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/tree-query-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-04-49-implement/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-04-49-implement/gate-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-04-49-implement/outcome-2026-10-16-fast-failing-mutants.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/acceptance-v020-02.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/controls.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/gate-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/inputs-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/matrix-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/note-v020-02.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/p5-card-1.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/planlint-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/relay-1.md",
+".andromeda/runs/2026-10-16T20-26-29-implement/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-26-29-implement/gate-2026-10-16-fast-failing-mutants.json",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/controls.md",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/research.md",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/scope.md"
+],
+"rust": [
+"examples/seven_guis/src/tasks/timer.rs",
+"packages/dioxus-native-dom/src/dioxus_document_tests.rs",
+"packages/escher-driver/src/mcp_tests.rs"
+]
+},
+"unmapped": [
+"escher-0.2.0/verification-matrix.json",
+".config/nextest.toml",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/.gitattributes",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/I1-relay-1.md.txt",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/I2-relay-1.md.txt",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/andromeda-inputs.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 66,
+"problem": null
+},
+"prose": [
+{
+"from": 158,
+"to": 163,
+"text": "Every gate is one entry below. There is no boot smoke, because the chunk changes no app and no boot path. There is no live leg. The three unmutated baselines are ordinary entries, fired before the runs and re-run by any reader. The three mutation runs are `operator` entries fired once by /implement. They are long runs whose re-run is not the reader's: the wrap re-verifies them from `evidence/`. They write the records that three later probes read, so those probes read a record a step outside them made and carry no `artifact`. On the untouched tree the records are absent and the probes baseline red."
+},
+{
+"from": 165,
+"to": 169,
+"text": "Every git read names the base `494abd258fee55528006cfeaef68c145fd291de6`. The `coverage` and `stand-repeat` legs run in CI and are read through the CI entry. /implement fired the `nextest list` entry right after step 5, before any graded use: that firing was its must-pass reading (green, last line 3), because the profile and the three tests it lists are this chunk's. The controls behind the take-up's baselines are in `.andromeda/runs/2026-10-16T18-14-30-phase/controls.md`; the revision's are in `.andromeda/runs/2026-10-16T20-13-52-phase/controls.md`."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p seven_guis --locked --lib",
+"run_sha8": "fce03d28",
+"expect": [
+"exit 0",
+"contains test result: ok. 2 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked",
+"run_sha8": "5f0bb953",
+"expect": [
+"exit 0",
+"contains test result: ok. 74 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok. 69 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "out=$(NEXTEST_PROFILE=mutants cargo nextest list --locked -p seven_guis -p escher-driver -p dioxus-native-dom --lib 2>&1) && ! printf '%s\\n' \"$out\" | grep -q 'ignoring unknown configuration key' && printf '%s\\n' \"$out\" | grep -c -E 'tasks::timer::tests::a_delivered_tick_is_taken_once_and_an_empty_wait_parks|mcp::tests::read_request_takes_each_line_with_its_terminator|dioxus_document::bridge_tests::a_created_text_node_is_mapped_and_left_on_the_stack' ",
+"run_sha8": "9390fe61",
+"expect": [
+"exit 0",
+"last line 3"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-seven_guis.txt && NEXTEST_PROFILE=mutants cargo nextest run --locked $(head -n 1 $L | tr ',' '\\n' | sed 's/^/-p /') --lib $(tail -n +2 $L)",
+"run_sha8": "33ff5f8f",
+"expect": [
+"exit 0",
+"contains 201 tests run: 201 passed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-escher-driver.txt && NEXTEST_PROFILE=mutants cargo nextest run --locked $(head -n 1 $L | tr ',' '\\n' | sed 's/^/-p /') --lib $(tail -n +2 $L)",
+"run_sha8": "abd075bd",
+"expect": [
+"exit 0",
+"contains 276 tests run: 276 passed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-dioxus-native-dom.txt && NEXTEST_PROFILE=mutants cargo nextest run --locked $(head -n 1 $L | tr ',' '\\n' | sed 's/^/-p /') --lib $(tail -n +2 $L)",
+"run_sha8": "16a84fcd",
+"expect": [
+"exit 0",
+"contains 494 tests run: 494 passed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "o=target/tmp/ffm-timer-$(date -u +%Y%m%dT%H%M%SZ) && printf 'output %s\\n' \"$o\" && mkdir -p target/mutants-tmp && L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-seven_guis.txt && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants taskset -c 12-15,28-31 cargo mutants -p seven_guis --file examples/seven_guis/src/tasks/timer.rs --test-tool nextest --test-package=$(head -n 1 $L) --cargo-test-arg=--lib $(tail -n +2 $L | sed 's/^/--cargo-test-arg=/') --baseline=skip --timeout 600 -j 2 --output $o; rc=$?; jq -c '[.outcomes[] | {mutant: ((.scenario | objects | .Mutant.name) // \"baseline\"), summary, test_s: ([.phase_results[] | select(.phase == \"Test\") | .duration] | first)}]' $o/mutants.out/outcomes.json > $o/record.json; exit $rc",
+"run_sha8": "311b87b6",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/8.log",
+"bytes": 118,
+"log_sha8": "4f4afd49",
+"exit": 0,
+"seconds": 743.92,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"operator": true,
+"witness": "history: unmoved",
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "o=target/tmp/ffm-framing-$(date -u +%Y%m%dT%H%M%SZ) && printf 'output %s\\n' \"$o\" && mkdir -p target/mutants-tmp && L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-escher-driver.txt && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants taskset -c 12-15,28-31 cargo mutants -p escher-driver --file packages/escher-driver/src/mcp/framing.rs --test-tool nextest --test-package=$(head -n 1 $L) --cargo-test-arg=--lib $(tail -n +2 $L | sed 's/^/--cargo-test-arg=/') --baseline=skip --timeout 600 -j 2 --output $o; rc=$?; jq -c '[.outcomes[] | {mutant: ((.scenario | objects | .Mutant.name) // \"baseline\"), summary, test_s: ([.phase_results[] | select(.phase == \"Test\") | .duration] | first)}]' $o/mutants.out/outcomes.json > $o/record.json; exit $rc",
+"run_sha8": "836e745c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "o=target/tmp/ffm-writer-$(date -u +%Y%m%dT%H%M%SZ) && printf 'output %s\\n' \"$o\" && mkdir -p target/mutants-tmp && L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-dioxus-native-dom.txt && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants taskset -c 12-15,28-31 cargo mutants -p dioxus-native-dom --file packages/dioxus-native-dom/src/mutation_writer.rs --test-tool nextest --test-package=$(head -n 1 $L) --cargo-test-arg=--lib $(tail -n +2 $L | sed 's/^/--cargo-test-arg=/') --baseline=skip --timeout 600 -j 2 --output $o; rc=$?; jq -c '[.outcomes[] | {mutant: ((.scenario | objects | .Mutant.name) // \"baseline\"), summary, test_s: ([.phase_results[] | select(.phase == \"Test\") | .duration] | first)}]' $o/mutants.out/outcomes.json > $o/record.json; exit $rc",
+"run_sha8": "6e9f3094",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "jq -s '[.[][] | select(.mutant | test(\"timer\\\\.rs:(29:9|32:31): |framing\\\\.rs:47:53: |mutation_writer\\\\.rs:172:9: \")) | select(.summary == \"CaughtMutant\" and .test_s < 120)] | length' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-framing.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-writer.json",
+"run_sha8": "d68de7ba",
+"expect": [
+"exit 0",
+"last line 6"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "jq -s '[.[][] | select(.summary == \"MissedMutant\" or .summary == \"Timeout\" or .summary == \"Failure\")] | length' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-framing.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-writer.json",
+"run_sha8": "ba2e0882",
+"expect": [
+"exit 0",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "jq -s '[.[][] | select(.mutant != \"baseline\")] | length' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-framing.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-writer.json",
+"run_sha8": "42a17d9f",
+"expect": [
+"exit 0",
+"last line 137"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "grep -c -E '^\\| .+ \\| (a_delivered_tick_is_taken_once_and_an_empty_wait_parks|read_request_takes_each_line_with_its_terminator|a_created_text_node_is_mapped_and_left_on_the_stack) \\| red \\| [0-9.]+ s \\| sha256 equal \\| green \\|$' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/controls.md",
+"run_sha8": "47b43d09",
+"expect": [
+"exit 0",
+"last line 6"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "git diff --quiet 434e06615d5f47a3df92c0f94e916df088fdcf4d -- packages/dioxus-native-dom/src/mutation_writer.rs",
+"run_sha8": "36d4d814",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "cmp <(git show 494abd258fee55528006cfeaef68c145fd291de6:examples/seven_guis/src/tasks/timer.rs) <(head -n 196 examples/seven_guis/src/tasks/timer.rs)",
+"run_sha8": "59a9a796",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "git diff --name-only 494abd258fee55528006cfeaef68c145fd291de6 -- packages examples tests apps wpt scripts .github Cargo.toml Cargo.lock | grep -c -v -x -E 'examples/seven_guis/src/tasks/timer\\.rs|packages/escher-driver/src/mcp_tests\\.rs|packages/dioxus-native-dom/src/dioxus_document_tests\\.rs' ",
+"run_sha8": "a40a381d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "git ls-files --others --exclude-standard -- packages examples tests apps wpt scripts .github .config | grep -c -v -x -F '.config/nextest.toml' ",
+"run_sha8": "9c583784",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "grep -c -E 'println!|eprintln!|print!|dbg!|std::env|env::var|escher_telemetry|tracing_subscriber|UnixListener|TcpListener|bind\\(' examples/seven_guis/src/tasks/timer.rs packages/escher-driver/src/mcp_tests.rs packages/dioxus-native-dom/src/dioxus_document_tests.rs | grep -c -v ':0$' ",
+"run_sha8": "102bebc5",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 20,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 21,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 22,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 23,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 24,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.2.0",
+"run_sha8": "ee10eab9",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 25,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+],
+"operator": {
+"n": 8,
+"tripwire": []
+}
+}
+},
+{
+"tool": "gate",
+"v": "1.19",
+"sha8": "457c1da1",
+"ts": "2026-10-16T21:14:52Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-16T20-26-29-implement",
+"--marker",
+"2026-10-16-fast-failing-mutants",
+"--operator",
+"9"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-16-fast-failing-mutants · entries 25",
+"logs $TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 57 · rust 3 · unmapped 7",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L158-163: Every gate is one entry below. There is no boot smoke, because the chunk changes no app an… (604 chars)",
+"prose L165-169: Every git read names the base `494abd258fee55528006cfeaef68c145fd291de6`. The `coverage` a… (556 chars)",
+"operator entry 9 · history tripwire: none of 7 forms matched — not a clearance",
+"  9 integration green · exit 0 · 1893.94s · 120 B → 9.log · history: unmoved · o=target/tmp/ffm-framing-$(date -u +%Y%m%dT%H%M%SZ) && pri… (781 chars)",
+"not run — excluded · 24: 1-8,10-25",
+"entries 25 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 24"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-16-fast-failing-mutants",
+"plan": "./escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-16T17-27-46-wrap/evolve-2026-10-16-file-splits.json",
+".claude/session-handoff.md",
+"escher-0.2.0/working-route.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/a11y-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/a11y.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/acceptance-v020-02.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/arch-history-index.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/arch-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/arch.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/controls.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/design.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/gate-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/inputs-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/layouts-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/layouts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/master-record.txt",
+".andromeda/runs/2026-10-16T18-14-30-phase/matrix-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/obs-contracts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/obs-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/obs.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/p5-card-1.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/planlint-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/registry-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/relay-1.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/route-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/route-no-marker.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/security-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/security.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/sidecar-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/tests-contracts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/tests-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/tests.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/tree-query-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-04-49-implement/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-04-49-implement/gate-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-04-49-implement/outcome-2026-10-16-fast-failing-mutants.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/acceptance-v020-02.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/controls.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/gate-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/inputs-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/matrix-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/note-v020-02.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/p5-card-1.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/planlint-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/relay-1.md",
+".andromeda/runs/2026-10-16T20-26-29-implement/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-26-29-implement/gate-2026-10-16-fast-failing-mutants.json",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/controls.md",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/research.md",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/scope.md"
+],
+"rust": [
+"examples/seven_guis/src/tasks/timer.rs",
+"packages/dioxus-native-dom/src/dioxus_document_tests.rs",
+"packages/escher-driver/src/mcp_tests.rs"
+]
+},
+"unmapped": [
+"escher-0.2.0/verification-matrix.json",
+".config/nextest.toml",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/.gitattributes",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/I1-relay-1.md.txt",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/I2-relay-1.md.txt",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/andromeda-inputs.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 67,
+"problem": null
+},
+"prose": [
+{
+"from": 158,
+"to": 163,
+"text": "Every gate is one entry below. There is no boot smoke, because the chunk changes no app and no boot path. There is no live leg. The three unmutated baselines are ordinary entries, fired before the runs and re-run by any reader. The three mutation runs are `operator` entries fired once by /implement. They are long runs whose re-run is not the reader's: the wrap re-verifies them from `evidence/`. They write the records that three later probes read, so those probes read a record a step outside them made and carry no `artifact`. On the untouched tree the records are absent and the probes baseline red."
+},
+{
+"from": 165,
+"to": 169,
+"text": "Every git read names the base `494abd258fee55528006cfeaef68c145fd291de6`. The `coverage` and `stand-repeat` legs run in CI and are read through the CI entry. /implement fired the `nextest list` entry right after step 5, before any graded use: that firing was its must-pass reading (green, last line 3), because the profile and the three tests it lists are this chunk's. The controls behind the take-up's baselines are in `.andromeda/runs/2026-10-16T18-14-30-phase/controls.md`; the revision's are in `.andromeda/runs/2026-10-16T20-13-52-phase/controls.md`."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p seven_guis --locked --lib",
+"run_sha8": "fce03d28",
+"expect": [
+"exit 0",
+"contains test result: ok. 2 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked",
+"run_sha8": "5f0bb953",
+"expect": [
+"exit 0",
+"contains test result: ok. 74 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok. 69 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "out=$(NEXTEST_PROFILE=mutants cargo nextest list --locked -p seven_guis -p escher-driver -p dioxus-native-dom --lib 2>&1) && ! printf '%s\\n' \"$out\" | grep -q 'ignoring unknown configuration key' && printf '%s\\n' \"$out\" | grep -c -E 'tasks::timer::tests::a_delivered_tick_is_taken_once_and_an_empty_wait_parks|mcp::tests::read_request_takes_each_line_with_its_terminator|dioxus_document::bridge_tests::a_created_text_node_is_mapped_and_left_on_the_stack' ",
+"run_sha8": "9390fe61",
+"expect": [
+"exit 0",
+"last line 3"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-seven_guis.txt && NEXTEST_PROFILE=mutants cargo nextest run --locked $(head -n 1 $L | tr ',' '\\n' | sed 's/^/-p /') --lib $(tail -n +2 $L)",
+"run_sha8": "33ff5f8f",
+"expect": [
+"exit 0",
+"contains 201 tests run: 201 passed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-escher-driver.txt && NEXTEST_PROFILE=mutants cargo nextest run --locked $(head -n 1 $L | tr ',' '\\n' | sed 's/^/-p /') --lib $(tail -n +2 $L)",
+"run_sha8": "abd075bd",
+"expect": [
+"exit 0",
+"contains 276 tests run: 276 passed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-dioxus-native-dom.txt && NEXTEST_PROFILE=mutants cargo nextest run --locked $(head -n 1 $L | tr ',' '\\n' | sed 's/^/-p /') --lib $(tail -n +2 $L)",
+"run_sha8": "16a84fcd",
+"expect": [
+"exit 0",
+"contains 494 tests run: 494 passed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "o=target/tmp/ffm-timer-$(date -u +%Y%m%dT%H%M%SZ) && printf 'output %s\\n' \"$o\" && mkdir -p target/mutants-tmp && L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-seven_guis.txt && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants taskset -c 12-15,28-31 cargo mutants -p seven_guis --file examples/seven_guis/src/tasks/timer.rs --test-tool nextest --test-package=$(head -n 1 $L) --cargo-test-arg=--lib $(tail -n +2 $L | sed 's/^/--cargo-test-arg=/') --baseline=skip --timeout 600 -j 2 --output $o; rc=$?; jq -c '[.outcomes[] | {mutant: ((.scenario | objects | .Mutant.name) // \"baseline\"), summary, test_s: ([.phase_results[] | select(.phase == \"Test\") | .duration] | first)}]' $o/mutants.out/outcomes.json > $o/record.json; exit $rc",
+"run_sha8": "311b87b6",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "o=target/tmp/ffm-framing-$(date -u +%Y%m%dT%H%M%SZ) && printf 'output %s\\n' \"$o\" && mkdir -p target/mutants-tmp && L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-escher-driver.txt && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants taskset -c 12-15,28-31 cargo mutants -p escher-driver --file packages/escher-driver/src/mcp/framing.rs --test-tool nextest --test-package=$(head -n 1 $L) --cargo-test-arg=--lib $(tail -n +2 $L | sed 's/^/--cargo-test-arg=/') --baseline=skip --timeout 600 -j 2 --output $o; rc=$?; jq -c '[.outcomes[] | {mutant: ((.scenario | objects | .Mutant.name) // \"baseline\"), summary, test_s: ([.phase_results[] | select(.phase == \"Test\") | .duration] | first)}]' $o/mutants.out/outcomes.json > $o/record.json; exit $rc",
+"run_sha8": "836e745c",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/9.log",
+"bytes": 120,
+"log_sha8": "ba81f41d",
+"exit": 0,
+"seconds": 1893.94,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"operator": true,
+"witness": "history: unmoved",
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "o=target/tmp/ffm-writer-$(date -u +%Y%m%dT%H%M%SZ) && printf 'output %s\\n' \"$o\" && mkdir -p target/mutants-tmp && L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-dioxus-native-dom.txt && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants taskset -c 12-15,28-31 cargo mutants -p dioxus-native-dom --file packages/dioxus-native-dom/src/mutation_writer.rs --test-tool nextest --test-package=$(head -n 1 $L) --cargo-test-arg=--lib $(tail -n +2 $L | sed 's/^/--cargo-test-arg=/') --baseline=skip --timeout 600 -j 2 --output $o; rc=$?; jq -c '[.outcomes[] | {mutant: ((.scenario | objects | .Mutant.name) // \"baseline\"), summary, test_s: ([.phase_results[] | select(.phase == \"Test\") | .duration] | first)}]' $o/mutants.out/outcomes.json > $o/record.json; exit $rc",
+"run_sha8": "6e9f3094",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "jq -s '[.[][] | select(.mutant | test(\"timer\\\\.rs:(29:9|32:31): |framing\\\\.rs:47:53: |mutation_writer\\\\.rs:172:9: \")) | select(.summary == \"CaughtMutant\" and .test_s < 120)] | length' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-framing.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-writer.json",
+"run_sha8": "d68de7ba",
+"expect": [
+"exit 0",
+"last line 6"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "jq -s '[.[][] | select(.summary == \"MissedMutant\" or .summary == \"Timeout\" or .summary == \"Failure\")] | length' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-framing.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-writer.json",
+"run_sha8": "ba2e0882",
+"expect": [
+"exit 0",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "jq -s '[.[][] | select(.mutant != \"baseline\")] | length' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-framing.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-writer.json",
+"run_sha8": "42a17d9f",
+"expect": [
+"exit 0",
+"last line 137"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "grep -c -E '^\\| .+ \\| (a_delivered_tick_is_taken_once_and_an_empty_wait_parks|read_request_takes_each_line_with_its_terminator|a_created_text_node_is_mapped_and_left_on_the_stack) \\| red \\| [0-9.]+ s \\| sha256 equal \\| green \\|$' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/controls.md",
+"run_sha8": "47b43d09",
+"expect": [
+"exit 0",
+"last line 6"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "git diff --quiet 434e06615d5f47a3df92c0f94e916df088fdcf4d -- packages/dioxus-native-dom/src/mutation_writer.rs",
+"run_sha8": "36d4d814",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "cmp <(git show 494abd258fee55528006cfeaef68c145fd291de6:examples/seven_guis/src/tasks/timer.rs) <(head -n 196 examples/seven_guis/src/tasks/timer.rs)",
+"run_sha8": "59a9a796",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "git diff --name-only 494abd258fee55528006cfeaef68c145fd291de6 -- packages examples tests apps wpt scripts .github Cargo.toml Cargo.lock | grep -c -v -x -E 'examples/seven_guis/src/tasks/timer\\.rs|packages/escher-driver/src/mcp_tests\\.rs|packages/dioxus-native-dom/src/dioxus_document_tests\\.rs' ",
+"run_sha8": "a40a381d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "git ls-files --others --exclude-standard -- packages examples tests apps wpt scripts .github .config | grep -c -v -x -F '.config/nextest.toml' ",
+"run_sha8": "9c583784",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "grep -c -E 'println!|eprintln!|print!|dbg!|std::env|env::var|escher_telemetry|tracing_subscriber|UnixListener|TcpListener|bind\\(' examples/seven_guis/src/tasks/timer.rs packages/escher-driver/src/mcp_tests.rs packages/dioxus-native-dom/src/dioxus_document_tests.rs | grep -c -v ':0$' ",
+"run_sha8": "102bebc5",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 20,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 21,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 22,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 23,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 24,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.2.0",
+"run_sha8": "ee10eab9",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 25,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+],
+"operator": {
+"n": 9,
+"tripwire": []
+}
+}
+},
+{
+"tool": "gate",
+"v": "1.19",
+"sha8": "457c1da1",
+"ts": "2026-10-16T22:02:12Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-16T20-26-29-implement",
+"--marker",
+"2026-10-16-fast-failing-mutants",
+"--operator",
+"10"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-16-fast-failing-mutants · entries 25",
+"logs $TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 57 · rust 3 · unmapped 8",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L158-163: Every gate is one entry below. There is no boot smoke, because the chunk changes no app an… (604 chars)",
+"prose L165-169: Every git read names the base `494abd258fee55528006cfeaef68c145fd291de6`. The `coverage` a… (556 chars)",
+"operator entry 10 · history tripwire: none of 7 forms matched — not a clearance",
+" 10 integration green · exit 0 · 2823.86s · 119 B → 10.log · history: unmoved · o=target/tmp/ffm-writer-$(date -u +%Y%m%dT%H%M%SZ) && prin… (796 chars)",
+"not run — excluded · 24: 1-9,11-25",
+"entries 25 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 24"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-16-fast-failing-mutants",
+"plan": "./escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-16T17-27-46-wrap/evolve-2026-10-16-file-splits.json",
+".claude/session-handoff.md",
+"escher-0.2.0/working-route.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/a11y-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/a11y.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/acceptance-v020-02.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/arch-history-index.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/arch-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/arch.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/controls.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/design.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/gate-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/inputs-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/layouts-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/layouts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/master-record.txt",
+".andromeda/runs/2026-10-16T18-14-30-phase/matrix-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/obs-contracts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/obs-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/obs.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/p5-card-1.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/planlint-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/registry-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/relay-1.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/route-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/route-no-marker.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/security-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/security.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/sidecar-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/tests-contracts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/tests-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/tests.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/tree-query-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-04-49-implement/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-04-49-implement/gate-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-04-49-implement/outcome-2026-10-16-fast-failing-mutants.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/acceptance-v020-02.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/controls.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/gate-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/inputs-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/matrix-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/note-v020-02.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/p5-card-1.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/planlint-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/relay-1.md",
+".andromeda/runs/2026-10-16T20-26-29-implement/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-26-29-implement/gate-2026-10-16-fast-failing-mutants.json",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/controls.md",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/research.md",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/scope.md"
+],
+"rust": [
+"examples/seven_guis/src/tasks/timer.rs",
+"packages/dioxus-native-dom/src/dioxus_document_tests.rs",
+"packages/escher-driver/src/mcp_tests.rs"
+]
+},
+"unmapped": [
+"escher-0.2.0/verification-matrix.json",
+".config/nextest.toml",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-framing.json",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/.gitattributes",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/I1-relay-1.md.txt",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/I2-relay-1.md.txt",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/andromeda-inputs.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 68,
+"problem": null
+},
+"prose": [
+{
+"from": 158,
+"to": 163,
+"text": "Every gate is one entry below. There is no boot smoke, because the chunk changes no app and no boot path. There is no live leg. The three unmutated baselines are ordinary entries, fired before the runs and re-run by any reader. The three mutation runs are `operator` entries fired once by /implement. They are long runs whose re-run is not the reader's: the wrap re-verifies them from `evidence/`. They write the records that three later probes read, so those probes read a record a step outside them made and carry no `artifact`. On the untouched tree the records are absent and the probes baseline red."
+},
+{
+"from": 165,
+"to": 169,
+"text": "Every git read names the base `494abd258fee55528006cfeaef68c145fd291de6`. The `coverage` and `stand-repeat` legs run in CI and are read through the CI entry. /implement fired the `nextest list` entry right after step 5, before any graded use: that firing was its must-pass reading (green, last line 3), because the profile and the three tests it lists are this chunk's. The controls behind the take-up's baselines are in `.andromeda/runs/2026-10-16T18-14-30-phase/controls.md`; the revision's are in `.andromeda/runs/2026-10-16T20-13-52-phase/controls.md`."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p seven_guis --locked --lib",
+"run_sha8": "fce03d28",
+"expect": [
+"exit 0",
+"contains test result: ok. 2 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked",
+"run_sha8": "5f0bb953",
+"expect": [
+"exit 0",
+"contains test result: ok. 74 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok. 69 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "out=$(NEXTEST_PROFILE=mutants cargo nextest list --locked -p seven_guis -p escher-driver -p dioxus-native-dom --lib 2>&1) && ! printf '%s\\n' \"$out\" | grep -q 'ignoring unknown configuration key' && printf '%s\\n' \"$out\" | grep -c -E 'tasks::timer::tests::a_delivered_tick_is_taken_once_and_an_empty_wait_parks|mcp::tests::read_request_takes_each_line_with_its_terminator|dioxus_document::bridge_tests::a_created_text_node_is_mapped_and_left_on_the_stack' ",
+"run_sha8": "9390fe61",
+"expect": [
+"exit 0",
+"last line 3"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-seven_guis.txt && NEXTEST_PROFILE=mutants cargo nextest run --locked $(head -n 1 $L | tr ',' '\\n' | sed 's/^/-p /') --lib $(tail -n +2 $L)",
+"run_sha8": "33ff5f8f",
+"expect": [
+"exit 0",
+"contains 201 tests run: 201 passed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-escher-driver.txt && NEXTEST_PROFILE=mutants cargo nextest run --locked $(head -n 1 $L | tr ',' '\\n' | sed 's/^/-p /') --lib $(tail -n +2 $L)",
+"run_sha8": "abd075bd",
+"expect": [
+"exit 0",
+"contains 276 tests run: 276 passed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-dioxus-native-dom.txt && NEXTEST_PROFILE=mutants cargo nextest run --locked $(head -n 1 $L | tr ',' '\\n' | sed 's/^/-p /') --lib $(tail -n +2 $L)",
+"run_sha8": "16a84fcd",
+"expect": [
+"exit 0",
+"contains 494 tests run: 494 passed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "o=target/tmp/ffm-timer-$(date -u +%Y%m%dT%H%M%SZ) && printf 'output %s\\n' \"$o\" && mkdir -p target/mutants-tmp && L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-seven_guis.txt && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants taskset -c 12-15,28-31 cargo mutants -p seven_guis --file examples/seven_guis/src/tasks/timer.rs --test-tool nextest --test-package=$(head -n 1 $L) --cargo-test-arg=--lib $(tail -n +2 $L | sed 's/^/--cargo-test-arg=/') --baseline=skip --timeout 600 -j 2 --output $o; rc=$?; jq -c '[.outcomes[] | {mutant: ((.scenario | objects | .Mutant.name) // \"baseline\"), summary, test_s: ([.phase_results[] | select(.phase == \"Test\") | .duration] | first)}]' $o/mutants.out/outcomes.json > $o/record.json; exit $rc",
+"run_sha8": "311b87b6",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "o=target/tmp/ffm-framing-$(date -u +%Y%m%dT%H%M%SZ) && printf 'output %s\\n' \"$o\" && mkdir -p target/mutants-tmp && L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-escher-driver.txt && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants taskset -c 12-15,28-31 cargo mutants -p escher-driver --file packages/escher-driver/src/mcp/framing.rs --test-tool nextest --test-package=$(head -n 1 $L) --cargo-test-arg=--lib $(tail -n +2 $L | sed 's/^/--cargo-test-arg=/') --baseline=skip --timeout 600 -j 2 --output $o; rc=$?; jq -c '[.outcomes[] | {mutant: ((.scenario | objects | .Mutant.name) // \"baseline\"), summary, test_s: ([.phase_results[] | select(.phase == \"Test\") | .duration] | first)}]' $o/mutants.out/outcomes.json > $o/record.json; exit $rc",
+"run_sha8": "836e745c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "o=target/tmp/ffm-writer-$(date -u +%Y%m%dT%H%M%SZ) && printf 'output %s\\n' \"$o\" && mkdir -p target/mutants-tmp && L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-dioxus-native-dom.txt && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants taskset -c 12-15,28-31 cargo mutants -p dioxus-native-dom --file packages/dioxus-native-dom/src/mutation_writer.rs --test-tool nextest --test-package=$(head -n 1 $L) --cargo-test-arg=--lib $(tail -n +2 $L | sed 's/^/--cargo-test-arg=/') --baseline=skip --timeout 600 -j 2 --output $o; rc=$?; jq -c '[.outcomes[] | {mutant: ((.scenario | objects | .Mutant.name) // \"baseline\"), summary, test_s: ([.phase_results[] | select(.phase == \"Test\") | .duration] | first)}]' $o/mutants.out/outcomes.json > $o/record.json; exit $rc",
+"run_sha8": "6e9f3094",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/10.log",
+"bytes": 119,
+"log_sha8": "78ef7706",
+"exit": 0,
+"seconds": 2823.86,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"operator": true,
+"witness": "history: unmoved",
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "jq -s '[.[][] | select(.mutant | test(\"timer\\\\.rs:(29:9|32:31): |framing\\\\.rs:47:53: |mutation_writer\\\\.rs:172:9: \")) | select(.summary == \"CaughtMutant\" and .test_s < 120)] | length' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-framing.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-writer.json",
+"run_sha8": "d68de7ba",
+"expect": [
+"exit 0",
+"last line 6"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "jq -s '[.[][] | select(.summary == \"MissedMutant\" or .summary == \"Timeout\" or .summary == \"Failure\")] | length' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-framing.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-writer.json",
+"run_sha8": "ba2e0882",
+"expect": [
+"exit 0",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "jq -s '[.[][] | select(.mutant != \"baseline\")] | length' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-framing.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-writer.json",
+"run_sha8": "42a17d9f",
+"expect": [
+"exit 0",
+"last line 137"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "grep -c -E '^\\| .+ \\| (a_delivered_tick_is_taken_once_and_an_empty_wait_parks|read_request_takes_each_line_with_its_terminator|a_created_text_node_is_mapped_and_left_on_the_stack) \\| red \\| [0-9.]+ s \\| sha256 equal \\| green \\|$' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/controls.md",
+"run_sha8": "47b43d09",
+"expect": [
+"exit 0",
+"last line 6"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "git diff --quiet 434e06615d5f47a3df92c0f94e916df088fdcf4d -- packages/dioxus-native-dom/src/mutation_writer.rs",
+"run_sha8": "36d4d814",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "cmp <(git show 494abd258fee55528006cfeaef68c145fd291de6:examples/seven_guis/src/tasks/timer.rs) <(head -n 196 examples/seven_guis/src/tasks/timer.rs)",
+"run_sha8": "59a9a796",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "git diff --name-only 494abd258fee55528006cfeaef68c145fd291de6 -- packages examples tests apps wpt scripts .github Cargo.toml Cargo.lock | grep -c -v -x -E 'examples/seven_guis/src/tasks/timer\\.rs|packages/escher-driver/src/mcp_tests\\.rs|packages/dioxus-native-dom/src/dioxus_document_tests\\.rs' ",
+"run_sha8": "a40a381d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "git ls-files --others --exclude-standard -- packages examples tests apps wpt scripts .github .config | grep -c -v -x -F '.config/nextest.toml' ",
+"run_sha8": "9c583784",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "grep -c -E 'println!|eprintln!|print!|dbg!|std::env|env::var|escher_telemetry|tracing_subscriber|UnixListener|TcpListener|bind\\(' examples/seven_guis/src/tasks/timer.rs packages/escher-driver/src/mcp_tests.rs packages/dioxus-native-dom/src/dioxus_document_tests.rs | grep -c -v ':0$' ",
+"run_sha8": "102bebc5",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 20,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 21,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 22,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 23,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 24,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.2.0",
+"run_sha8": "ee10eab9",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 25,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+],
+"operator": {
+"n": 10,
+"tripwire": []
+}
+}
+},
+{
+"tool": "gate",
+"v": "1.19",
+"sha8": "457c1da1",
+"ts": "2026-10-16T22:07:49Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-16T20-26-29-implement",
+"--marker",
+"2026-10-16-fast-failing-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-16-fast-failing-mutants · entries 25",
+"logs $TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 57 · rust 3 · unmapped 9",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L158-163: Every gate is one entry below. There is no boot smoke, because the chunk changes no app an… (604 chars)",
+"prose L165-169: Every git read names the base `494abd258fee55528006cfeaef68c145fd291de6`. The `coverage` a… (556 chars)",
+"  1 unit        green · exit 0 · 0.84s · 821 B → 1.2.log · cargo test -p seven_guis --locked --lib",
+"  2 unit        green · exit 0 · 1.34s · 6298 B → 2.2.log · cargo test -p escher-driver --locked",
+"  3 unit        green · exit 0 · 0.65s · 5435 B → 3.2.log · cargo test -p dioxus-native-dom --locked --lib",
+"  4 probe       green · exit 0 · 0.59s · 2 B → 4.2.log · out=$(NEXTEST_PROFILE=mutants cargo nextest list --locked … (454 chars)",
+"  5 integration green · exit 0 · 49.68s · 23632 B → 5.2.log · L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/tar… (201 chars)",
+"  6 integration green · exit 0 · 28.75s · 31892 B → 6.2.log · L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/tar… (204 chars)",
+"  7 integration green · exit 0 · 66.62s · 56349 B → 7.2.log · L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/tar… (208 chars)",
+"  8 integration not run — leg operator (the letter drives it) · o=target/tmp/ffm-timer-$(date -u +%Y%m%dT%H%M%SZ) && print… (770 chars)",
+"  9 integration not run — leg operator (the letter drives it) · o=target/tmp/ffm-framing-$(date -u +%Y%m%dT%H%M%SZ) && pri… (781 chars)",
+" 10 integration not run — leg operator (the letter drives it) · o=target/tmp/ffm-writer-$(date -u +%Y%m%dT%H%M%SZ) && prin… (796 chars)",
+" 11 probe       green · exit 0 · 0.02s · 2 B → 11.log · jq -s '[.[][] | select(.mutant | test(\"timer\\\\.rs:(29:9|32… (426 chars)",
+" 12 probe       green · exit 0 · 0.0s · 2 B → 12.log · jq -s '[.[][] | select(.summary == \"MissedMutant\" or .summ… (354 chars)",
+" 13 probe       green · exit 0 · 0.0s · 4 B → 13.log · jq -s '[.[][] | select(.mutant != \"baseline\")] | length' e… (299 chars)",
+" 14 probe       green · exit 0 · 0.01s · 2 B → 14.log · grep -c -E '^\\| .+ \\| (a_delivered_tick_is_taken_once_and_… (302 chars)",
+" 15 probe       green · exit 0 · 0.01s · 0 B → 15.log · git diff --quiet 434e06615d5f47a3df92c0f94e916df088fdcf4d … (110 chars)",
+" 16 probe       green · exit 0 · 0.01s · 0 B → 16.log · cmp <(git show 494abd258fee55528006cfeaef68c145fd291de6:ex… (149 chars)",
+" 17 probe       green · exit 1 · 0.01s · 2 B → 17.log · git diff --name-only 494abd258fee55528006cfeaef68c145fd291… (295 chars)",
+" 18 probe       green · exit 1 · 0.01s · 2 B → 18.log · git ls-files --others --exclude-standard -- packages examp… (143 chars)",
+" 19 probe       green · exit 1 · 0.0s · 2 B → 19.log · grep -c -E 'println!|eprintln!|print!|dbg!|std::env|env::v… (284 chars)",
+" 20 integration green · exit 0 · 11.99s · 4272 B → 20.log · bash .github/scripts/ci-leg.sh a11y",
+" 21 lint        green · exit 0 · 131.33s · 100944 B → 21.log · bash .github/scripts/ci-leg.sh fast",
+" 22 lint        green · exit 0 · 28.12s · 1414 B → 22.log · bash .github/scripts/ci-leg.sh doc",
+" 23 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 24 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 25 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 25 · green 19 · red 0 · recorded 0 · timeout 0 · not-run 6"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-16-fast-failing-mutants",
+"plan": "./escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-16T17-27-46-wrap/evolve-2026-10-16-file-splits.json",
+".claude/session-handoff.md",
+"escher-0.2.0/working-route.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/a11y-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/a11y.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/acceptance-v020-02.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/arch-history-index.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/arch-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/arch.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/controls.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/design.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/gate-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/inputs-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/layouts-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/layouts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/master-record.txt",
+".andromeda/runs/2026-10-16T18-14-30-phase/matrix-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/obs-contracts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/obs-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/obs.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/p5-card-1.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/planlint-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/registry-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/relay-1.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/route-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/route-no-marker.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/security-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/security.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/sidecar-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T18-14-30-phase/tests-contracts.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/tests-history.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/tests.md",
+".andromeda/runs/2026-10-16T18-14-30-phase/tree-query-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-04-49-implement/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-04-49-implement/gate-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-04-49-implement/outcome-2026-10-16-fast-failing-mutants.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/acceptance-v020-02.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/controls.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/gate-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/inputs-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/matrix-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/note-v020-02.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/p5-card-1.md",
+".andromeda/runs/2026-10-16T20-13-52-phase/planlint-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-13-52-phase/relay-1.md",
+".andromeda/runs/2026-10-16T20-26-29-implement/evolve-2026-10-16-fast-failing-mutants.json",
+".andromeda/runs/2026-10-16T20-26-29-implement/gate-2026-10-16-fast-failing-mutants.json",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/controls.md",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/research.md",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/scope.md"
+],
+"rust": [
+"examples/seven_guis/src/tasks/timer.rs",
+"packages/dioxus-native-dom/src/dioxus_document_tests.rs",
+"packages/escher-driver/src/mcp_tests.rs"
+]
+},
+"unmapped": [
+"escher-0.2.0/verification-matrix.json",
+".config/nextest.toml",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-framing.json",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-writer.json",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/.gitattributes",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/I1-relay-1.md.txt",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/I2-relay-1.md.txt",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/inputs/andromeda-inputs.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 69,
+"problem": null
+},
+"prose": [
+{
+"from": 158,
+"to": 163,
+"text": "Every gate is one entry below. There is no boot smoke, because the chunk changes no app and no boot path. There is no live leg. The three unmutated baselines are ordinary entries, fired before the runs and re-run by any reader. The three mutation runs are `operator` entries fired once by /implement. They are long runs whose re-run is not the reader's: the wrap re-verifies them from `evidence/`. They write the records that three later probes read, so those probes read a record a step outside them made and carry no `artifact`. On the untouched tree the records are absent and the probes baseline red."
+},
+{
+"from": 165,
+"to": 169,
+"text": "Every git read names the base `494abd258fee55528006cfeaef68c145fd291de6`. The `coverage` and `stand-repeat` legs run in CI and are read through the CI entry. /implement fired the `nextest list` entry right after step 5, before any graded use: that firing was its must-pass reading (green, last line 3), because the profile and the three tests it lists are this chunk's. The controls behind the take-up's baselines are in `.andromeda/runs/2026-10-16T18-14-30-phase/controls.md`; the revision's are in `.andromeda/runs/2026-10-16T20-13-52-phase/controls.md`."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p seven_guis --locked --lib",
+"run_sha8": "fce03d28",
+"expect": [
+"exit 0",
+"contains test result: ok. 2 passed; 0 failed"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/1.2.log",
+"bytes": 821,
+"log_sha8": "5c2ee6b6",
+"exit": 0,
+"seconds": 0.84,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok. 2 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked",
+"run_sha8": "5f0bb953",
+"expect": [
+"exit 0",
+"contains test result: ok. 74 passed; 0 failed"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/2.2.log",
+"bytes": 6298,
+"log_sha8": "fa8313a3",
+"exit": 0,
+"seconds": 1.34,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok. 74 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok. 69 passed; 0 failed"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/3.2.log",
+"bytes": 5435,
+"log_sha8": "3de26610",
+"exit": 0,
+"seconds": 0.65,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok. 69 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "out=$(NEXTEST_PROFILE=mutants cargo nextest list --locked -p seven_guis -p escher-driver -p dioxus-native-dom --lib 2>&1) && ! printf '%s\\n' \"$out\" | grep -q 'ignoring unknown configuration key' && printf '%s\\n' \"$out\" | grep -c -E 'tasks::timer::tests::a_delivered_tick_is_taken_once_and_an_empty_wait_parks|mcp::tests::read_request_takes_each_line_with_its_terminator|dioxus_document::bridge_tests::a_created_text_node_is_mapped_and_left_on_the_stack' ",
+"run_sha8": "9390fe61",
+"expect": [
+"exit 0",
+"last line 3"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/4.2.log",
+"bytes": 2,
+"log_sha8": "1121cfcc",
+"exit": 0,
+"seconds": 0.59,
+"readings": [
+"exit 0 ✓",
+"last line '3' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-seven_guis.txt && NEXTEST_PROFILE=mutants cargo nextest run --locked $(head -n 1 $L | tr ',' '\\n' | sed 's/^/-p /') --lib $(tail -n +2 $L)",
+"run_sha8": "33ff5f8f",
+"expect": [
+"exit 0",
+"contains 201 tests run: 201 passed"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/5.2.log",
+"bytes": 23632,
+"log_sha8": "9f9ee382",
+"exit": 0,
+"seconds": 49.68,
+"readings": [
+"exit 0 ✓",
+"contains '201 tests run: 201 passed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-escher-driver.txt && NEXTEST_PROFILE=mutants cargo nextest run --locked $(head -n 1 $L | tr ',' '\\n' | sed 's/^/-p /') --lib $(tail -n +2 $L)",
+"run_sha8": "abd075bd",
+"expect": [
+"exit 0",
+"contains 276 tests run: 276 passed"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/6.2.log",
+"bytes": 31892,
+"log_sha8": "ef9ceb0a",
+"exit": 0,
+"seconds": 28.75,
+"readings": [
+"exit 0 ✓",
+"contains '276 tests run: 276 passed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-dioxus-native-dom.txt && NEXTEST_PROFILE=mutants cargo nextest run --locked $(head -n 1 $L | tr ',' '\\n' | sed 's/^/-p /') --lib $(tail -n +2 $L)",
+"run_sha8": "16a84fcd",
+"expect": [
+"exit 0",
+"contains 494 tests run: 494 passed"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/7.2.log",
+"bytes": 56349,
+"log_sha8": "c2f2fe14",
+"exit": 0,
+"seconds": 66.62,
+"readings": [
+"exit 0 ✓",
+"contains '494 tests run: 494 passed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "o=target/tmp/ffm-timer-$(date -u +%Y%m%dT%H%M%SZ) && printf 'output %s\\n' \"$o\" && mkdir -p target/mutants-tmp && L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-seven_guis.txt && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants taskset -c 12-15,28-31 cargo mutants -p seven_guis --file examples/seven_guis/src/tasks/timer.rs --test-tool nextest --test-package=$(head -n 1 $L) --cargo-test-arg=--lib $(tail -n +2 $L | sed 's/^/--cargo-test-arg=/') --baseline=skip --timeout 600 -j 2 --output $o; rc=$?; jq -c '[.outcomes[] | {mutant: ((.scenario | objects | .Mutant.name) // \"baseline\"), summary, test_s: ([.phase_results[] | select(.phase == \"Test\") | .duration] | first)}]' $o/mutants.out/outcomes.json > $o/record.json; exit $rc",
+"run_sha8": "311b87b6",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "o=target/tmp/ffm-framing-$(date -u +%Y%m%dT%H%M%SZ) && printf 'output %s\\n' \"$o\" && mkdir -p target/mutants-tmp && L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-escher-driver.txt && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants taskset -c 12-15,28-31 cargo mutants -p escher-driver --file packages/escher-driver/src/mcp/framing.rs --test-tool nextest --test-package=$(head -n 1 $L) --cargo-test-arg=--lib $(tail -n +2 $L | sed 's/^/--cargo-test-arg=/') --baseline=skip --timeout 600 -j 2 --output $o; rc=$?; jq -c '[.outcomes[] | {mutant: ((.scenario | objects | .Mutant.name) // \"baseline\"), summary, test_s: ([.phase_results[] | select(.phase == \"Test\") | .duration] | first)}]' $o/mutants.out/outcomes.json > $o/record.json; exit $rc",
+"run_sha8": "836e745c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "o=target/tmp/ffm-writer-$(date -u +%Y%m%dT%H%M%SZ) && printf 'output %s\\n' \"$o\" && mkdir -p target/mutants-tmp && L=.andromeda/runs/2026-10-15T10-44-59-code-audit/lists/targets-dioxus-native-dom.txt && TMPDIR=$PWD/target/mutants-tmp CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants taskset -c 12-15,28-31 cargo mutants -p dioxus-native-dom --file packages/dioxus-native-dom/src/mutation_writer.rs --test-tool nextest --test-package=$(head -n 1 $L) --cargo-test-arg=--lib $(tail -n +2 $L | sed 's/^/--cargo-test-arg=/') --baseline=skip --timeout 600 -j 2 --output $o; rc=$?; jq -c '[.outcomes[] | {mutant: ((.scenario | objects | .Mutant.name) // \"baseline\"), summary, test_s: ([.phase_results[] | select(.phase == \"Test\") | .duration] | first)}]' $o/mutants.out/outcomes.json > $o/record.json; exit $rc",
+"run_sha8": "6e9f3094",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "jq -s '[.[][] | select(.mutant | test(\"timer\\\\.rs:(29:9|32:31): |framing\\\\.rs:47:53: |mutation_writer\\\\.rs:172:9: \")) | select(.summary == \"CaughtMutant\" and .test_s < 120)] | length' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-framing.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-writer.json",
+"run_sha8": "d68de7ba",
+"expect": [
+"exit 0",
+"last line 6"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/11.log",
+"bytes": 2,
+"log_sha8": "06e9d52c",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"last line '6' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "jq -s '[.[][] | select(.summary == \"MissedMutant\" or .summary == \"Timeout\" or .summary == \"Failure\")] | length' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-framing.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-writer.json",
+"run_sha8": "ba2e0882",
+"expect": [
+"exit 0",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/12.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "jq -s '[.[][] | select(.mutant != \"baseline\")] | length' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-timer.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-framing.json escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/mutants-writer.json",
+"run_sha8": "42a17d9f",
+"expect": [
+"exit 0",
+"last line 137"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/13.log",
+"bytes": 4,
+"log_sha8": "e3b9c284",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '137' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "grep -c -E '^\\| .+ \\| (a_delivered_tick_is_taken_once_and_an_empty_wait_parks|read_request_takes_each_line_with_its_terminator|a_created_text_node_is_mapped_and_left_on_the_stack) \\| red \\| [0-9.]+ s \\| sha256 equal \\| green \\|$' escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/controls.md",
+"run_sha8": "47b43d09",
+"expect": [
+"exit 0",
+"last line 6"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/14.log",
+"bytes": 2,
+"log_sha8": "06e9d52c",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line '6' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "git diff --quiet 434e06615d5f47a3df92c0f94e916df088fdcf4d -- packages/dioxus-native-dom/src/mutation_writer.rs",
+"run_sha8": "36d4d814",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/15.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "cmp <(git show 494abd258fee55528006cfeaef68c145fd291de6:examples/seven_guis/src/tasks/timer.rs) <(head -n 196 examples/seven_guis/src/tasks/timer.rs)",
+"run_sha8": "59a9a796",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/16.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "git diff --name-only 494abd258fee55528006cfeaef68c145fd291de6 -- packages examples tests apps wpt scripts .github Cargo.toml Cargo.lock | grep -c -v -x -E 'examples/seven_guis/src/tasks/timer\\.rs|packages/escher-driver/src/mcp_tests\\.rs|packages/dioxus-native-dom/src/dioxus_document_tests\\.rs' ",
+"run_sha8": "a40a381d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/17.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "git ls-files --others --exclude-standard -- packages examples tests apps wpt scripts .github .config | grep -c -v -x -F '.config/nextest.toml' ",
+"run_sha8": "9c583784",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/18.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "grep -c -E 'println!|eprintln!|print!|dbg!|std::env|env::var|escher_telemetry|tracing_subscriber|UnixListener|TcpListener|bind\\(' examples/seven_guis/src/tasks/timer.rs packages/escher-driver/src/mcp_tests.rs packages/dioxus-native-dom/src/dioxus_document_tests.rs | grep -c -v ':0$' ",
+"run_sha8": "102bebc5",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/19.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 20,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/20.log",
+"bytes": 4272,
+"log_sha8": "b4bccf16",
+"exit": 0,
+"seconds": 11.99,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 21,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/21.log",
+"bytes": 100944,
+"log_sha8": "ec8a6aa5",
+"exit": 0,
+"seconds": 131.33,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 22,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-16-fast-failing-mutants/implement-2026-10-16T20-26-29/22.log",
+"bytes": 1414,
+"log_sha8": "8f547297",
+"exit": 0,
+"seconds": 28.12,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 23,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 24,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.2.0",
+"run_sha8": "ee10eab9",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 25,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.19",
+"sha8": "457c1da1",
+"ts": "2026-10-16T22:08:47Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants",
+"--run-dir",
+".andromeda/runs/2026-10-16T20-26-29-implement",
+"--marker",
+"2026-10-16-fast-failing-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 2 · modify 3 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"list escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/ (dir) ×0",
+"scope: clean — changed 4 · listed 4 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 67"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 4,
+"listed": 4,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 67,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

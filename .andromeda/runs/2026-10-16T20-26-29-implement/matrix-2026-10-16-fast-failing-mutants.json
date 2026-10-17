@@ -1,0 +1,49 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-16T22:08:22Z",
+"argv": [
+"implement",
+"--dir",
+"escher-0.2.0",
+"--chunk",
+"2026-10-16-fast-failing-mutants",
+"--id",
+"v020-02",
+"--ref-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-16T20-26-29-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"implement v020-02 · status planned → implemented · ref escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/{mutants-timer,muta… (714 chars)",
+"wrote escher-0.2.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.2.0/verification-matrix.json"
+],
+"before": {
+"id": "v020-02",
+"chunk": "2026-10-16-fast-failing-mutants",
+"status": "planned",
+"method": "unit",
+"ref": "null",
+"acceptance": "Under cargo-mutants 27.1.0 with `--test-tool nextest`, `--baseline=skip` and `.config/nextest.toml`'s `mutants` profile … (994 chars)",
+"notes_chars": 664
+},
+"after": {
+"id": "v020-02",
+"chunk": "2026-10-16-fast-failing-mutants",
+"status": "implemented",
+"method": "unit",
+"ref": "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/{mutants-timer,mutants-framing,mutants-writer}.json (the th… (714 chars)",
+"acceptance": "Under cargo-mutants 27.1.0 with `--test-tool nextest`, `--baseline=skip` and `.config/nextest.toml`'s `mutants` profile … (994 chars)",
+"notes_chars": 664
+}
+}
+]

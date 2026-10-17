@@ -1,14 +1,15 @@
 //! Guards the bridge behaviour no other test reads: a Dioxus key the id grammar refuses — empty,
 //! or holding `/` — reads a positional segment; a head element is appended under `<head>`;
 //! `mounted` listeners fire after the build and after a poll; the document's id is the inner
-//! document's; and a handled event reports cancel and stop as its listener left them. A child
-//! module of `dioxus_document`, because the event handler's fields are private to it.
+//! document's; a handled event reports cancel and stop as its listener left them; and a text
+//! node the mutation writer creates is mapped to its element id and left on the writer's stack.
+//! A child module of `dioxus_document`, because the event handler's fields are private to it.
 
 use super::*;
 use blitz_dom::{EventHandler, local_name};
 use blitz_traits::events::BlitzInputEvent;
 use dioxus::prelude::*;
-use dioxus_core::ScopeId;
+use dioxus_core::{ScopeId, WriteMutations};
 use std::cell::Cell;
 
 fn build(app: fn() -> Element) -> DioxusDocument {
@@ -141,6 +142,27 @@ fn mounted_listeners_fire_after_the_build_and_after_a_poll() {
     doc.vdom.mark_dirty(ScopeId::APP);
     doc.poll(None);
     assert_eq!(mounts.fired.get(), 2, "the poll mounted the second element");
+}
+
+#[test]
+fn a_created_text_node_is_mapped_and_left_on_the_stack() {
+    let mut doc = build(empty_app);
+    let id = ElementId(doc.vdom_state.node_id_mapping.len());
+    let stacked = doc.vdom_state.stack.len();
+    let mut inner = doc.inner.borrow_mut();
+    MutationWriter::new(&mut inner, &mut doc.vdom_state).create_text_node("x", id);
+
+    assert_eq!(
+        doc.vdom_state.stack.len(),
+        stacked + 1,
+        "the stack grew by one"
+    );
+    let node = doc
+        .vdom_state
+        .try_element_to_node_id(id)
+        .expect("the element id maps to a node");
+    let text = inner.get_node(node).expect("the mapped node resolves");
+    assert_eq!(text.text_content(), "x");
 }
 
 #[test]

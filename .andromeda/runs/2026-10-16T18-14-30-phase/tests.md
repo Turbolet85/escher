@@ -1,0 +1,37 @@
+# tests extract
+
+## Relevance
+relevant — the chunk builds tests only (fast-failing tests for six timeout-only mutants plus one scoped mutation run), squarely the test plan's surface.
+
+## Constraints
+- test-plan §10 Quality Gates & Coverage Targets requires the `coverage` leg's per-crate line floors to hold (`packages/escher-driver` 97 %, `packages/dioxus-native-dom` 83 %), and sets no mutation-score gate: the "0 survivors" bar is the requirement's (v020-02), not a plan gate, and the plan records no mutation tooling. Whether a new test file's lines count toward those floors is research's question (per test-plan §10 Coverage floors).
+- test-plan §10 requires the stand checks to hold a zero-failure budget: three `stand-repeat` rounds with no retry. A new `tests/blitz-tests/tests/stand_*.rs` file, or a new Timer check among seven_guis' process checks, joins that budget (per test-plan §10 Flakiness budget).
+- test-plan §9 requires the `stand-repeat` leg to run every `stand_*.rs` file (40 today) and seven_guis' seven process checks, `host_timer` among them, with no retry, no `--ignored` and no env var. A watchdog or bound added inside a Timer test must keep that leg green in all three rounds (per test-plan §9 CI Integration → Legs).
+- test-plan §2 requires a check that holds a process to bound every wait and to kill and reap its child in a guard. The `#[ignore]` host children serve until their expiry (`IDLE_EXPIRY`, 1,800 s), so a bare `--ignored` run waits on them. The scoped mutation run must not take them in, and any in-test bound added for a hung mutant follows this shape (per test-plan §2 Test Strategy → Process-lifecycle checks).
+- test-plan §8 requires the seven_guis Timer's time in every headless-stand boot to be `TimerTicks`, not a real delay. `deliver(n)` ticks are applied on the next pass, `Harness::settle` neither advances the timer nor waits on an undelivered tick, and the driver moves time only by `advance` through `stand::timer_step`. A fast-failing Timer test moves time through these and never through a sleep (per test-plan §8 Mocking & Stubbing Discipline → Time (seven_guis timer)).
+- test-plan §3 `session-proof` records the per-file counts that the wrap's reconcile re-reads: escher-driver's 73 unit tests (`mcp_tests.rs` 11, `mcp::tests` in its `#[path]` sibling since 2026-10-16-file-splits), seven_guis' 1 library unit test (the stand's time step), `stand_act_timer` 4 and `stand_settle` 8. A test added to any of them moves that row (per test-plan §3 `session-proof`).
+- test-plan §1 records dioxus-native-dom at 68 unit tests in nine files, two of them in `mutation_writer::tests` (`packages/dioxus-native-dom/src/mutation_writer.rs`). A test added beside `create_text_node` moves that count (per test-plan §1 Test Scope Summary → dioxus-native-dom).
+
+## Patterns to follow
+- Unit tests sit beside the code: an inline `#[cfg(test)] mod tests`, or one of the five out-of-line `#[path]` modules. `mcp::tests` lives in `packages/escher-driver/src/mcp_tests.rs` and covers the line-reading rules ("a line is read whole across reads and an unended last line is one"). Since 2026-10-16-file-splits `read_request` lives in the private child `mcp/framing.rs`. Whether that child has its own test module, and which existing tests reach the mutated `+`, is research's question (per test-plan §4 Unit Test Strategy → Test file location; test-plan §1 → escher-driver).
+- Mutation controls as the evidence form: apply each mutant, read the named test red, restore, read green, and compare the restored file's sha256, recorded in the chunk's `evidence/controls.md`. Precedents are 2026-10-07-audit-corrections (each surviving mutant turning a named test red) and 2026-10-12-self-description (all restores sha-equal) (per test-plan §4 → escher-driver; test-plan §1 → dioxus-native-dom).
+- A bound inside a test so that a regression fails instead of hanging CI. The precedents are the browser worker test's 2-second timeout and the MCP checks' `Speaker`, which reads under the 30 s `REPLY_BOUND` and kills and reaps its child in `Drop` (per test-plan §9 → Hang guard; test-plan §2 → Process-lifecycle checks).
+- Tests that already drive the Timer: `stand_timer`, `stand_settle`, `stand_act_timer` (in process, through `Session::run`, both layout modes) and seven_guis' `host_timer` (a hosted `advance`, with no sleep). The stand's step is unit-tested with `cargo test -p seven_guis --locked --lib stand::` (per test-plan §8 → Time (seven_guis timer); test-plan §3 `session-proof`).
+- Stand checks run in both layout modes, `for incremental in [false, true]` (per test-plan §3 `session-proof`).
+
+## Anti-patterns to avoid
+- An unbounded wait in a test (a loop, read or join with no bound). That is exactly what lets a mutant read `timeout` instead of red. Every wait is bounded and every child is reaped by a guard (per test-plan §2 → Process-lifecycle checks; test-plan §3 `session-checks`).
+- A skip path or a conditional assertion that lets a test pass without asserting. The headless-stand checks assert unconditionally, and the document.rs font tests had their skips removed in 2026-10-14-quality-gates (per test-plan §2 → Font-dependent tests; test-plan §8 → Real dependencies kept).
+- Retrying a red stand check, or passing `--ignored` or an env var into the repeated leg (per test-plan §9 → Legs).
+
+## Contract bindings
+- tests ↔ CI: a new `stand_*.rs` file enters `stand-repeat` automatically. Any new test sits under the `coverage` leg's floor script (`.github/scripts/coverage_floor.py`) and under `ci-leg.sh fast` (per test-plan §9 → Legs, Coverage, Local pre-push gate).
+- tests ↔ the blitz-tests target pin: a new `tests/blitz-tests/tests/*.rs` file is an auto-discovered target with no manifest line. `BlitzTestsTargetsTest` (`.github/scripts/test_blitz_tests_targets.py`) must stay green, and the recorded target count moves (124 `.rs` files, 123 targets) (per test-plan §2 → Directory pattern; test-plan §4 → blitz-tests targets).
+- tests ↔ architecture: test-plan §2 Directory pattern and arch §Conventions → Tests both name the five `#[path]` test modules, so a new out-of-line test module moves both (per test-plan §2 → Directory pattern).
+- tests ↔ security: an assertion over a driver call carries a row index only, and no test name or assertion message holds an id, name or call-supplied value (per test-plan §4 → escher-driver).
+
+## Acceptance criteria contributions
+- Each of the six mutants, applied alone, turns a named test red well inside the timeout. Each named test is green on the restored tree, and each restore is sha256-equal to the original, recorded as mutation controls in the chunk's evidence (per test-plan §4 → escher-driver).
+- `bash .github/scripts/ci-leg.sh fast` and `bash .github/scripts/ci-leg.sh coverage` pass. The coverage verdict reads `coverage floor: 3 of 3 crates at or above their floors` (per test-plan §10 Coverage floors).
+- If a stand or Timer check is added or changed: `bash .github/scripts/ci-leg.sh stand-repeat` ends `stand-repeat: 3 of 3 rounds green` with 0 failures (per test-plan §10 Flakiness budget).
+- The per-file counts are amended to the measured totals: escher-driver's 73 and `mcp_tests.rs` 11, seven_guis' library unit test count, dioxus-native-dom's 68, and any `stand_act_timer` or `stand_settle` count. A new blitz-tests file is auto-discovered with `BlitzTestsTargetsTest` green (per test-plan §3 `session-proof`; test-plan §1 → dioxus-native-dom; test-plan §4 → blitz-tests targets).

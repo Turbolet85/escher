@@ -165,6 +165,37 @@ fn a_line_is_read_whole_across_reads_and_an_unended_last_line_is_one() {
 }
 
 #[test]
+fn read_request_takes_each_line_with_its_terminator() {
+    let input: &[u8] = b"a\n\nb\n";
+    let expected = [
+        Request::Line(b"a".to_vec()),
+        Request::Line(Vec::new()),
+        Request::Line(b"b".to_vec()),
+        Request::End,
+    ];
+    let readers: Vec<Box<dyn BufRead>> = vec![
+        Box::new(input),
+        Box::new(BufReader::with_capacity(1, input)),
+    ];
+    assert_eq!(readers.len(), 2);
+    for (row, mut reader) in readers.into_iter().enumerate() {
+        let mut reads = Vec::new();
+        for _ in 0..=expected.len() {
+            let read = read_request(&mut reader).expect("a slice reads");
+            let ended = read == Request::End;
+            reads.push(read);
+            if ended {
+                break;
+            }
+        }
+        for (index, due) in expected.iter().enumerate() {
+            assert!(reads.get(index) == Some(due), "reader {row} read {index}");
+        }
+        assert!(reads.len() == expected.len(), "reader {row}");
+    }
+}
+
+#[test]
 fn an_id_is_echoed_only_in_its_two_forms() {
     let edge = "i".repeat(MAX_ID_BYTES);
     let over = "i".repeat(MAX_ID_BYTES + 1);

@@ -1,0 +1,111 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-16T20:25:30Z",
+"argv": [
+"coverage",
+"--dir",
+"./escher-0.2.0",
+"--run-dir",
+"./.andromeda/runs/2026-10-16T20-13-52-phase",
+"--marker",
+"2026-10-16-fast-failing-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 1/11 · deferred 0 · planned 10 · implemented 0 · unclaimed 9",
+"unclaimed: v020-03 v020-04 v020-05 v020-06 v020-07 v020-08 v020-09 v020-10 v020-11",
+"claimed-unfinished: 2026-10-16-fast-failing-mutants: v020-02",
+"done-test: NO — 10 not verified|deferred · unclaimed 9",
+"chunks referenced: 2 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-16T20:25:41Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.2.0",
+"--id",
+"v020-02",
+"--chunk",
+"2026-10-16-fast-failing-mutants",
+"--acceptance-file",
+".andromeda/runs/2026-10-16T20-13-52-phase/acceptance-v020-02.md",
+"--note-file",
+".andromeda/runs/2026-10-16T20-13-52-phase/note-v020-02.md",
+"--run-dir",
+".andromeda/runs/2026-10-16T20-13-52-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v020-02 → chunk 2026-10-16-fast-failing-mutants (was 2026-10-16-fast-failing-mutants; status planned kept)",
+"acceptance: Under cargo-mutants 27.1.0 with `--test-tool nextest` and `.config/nex… (789 chars)",
+"         → Under cargo-mutants 27.1.0 with `--test-tool nextest`, `--baseline=ski… (994 chars)",
+"notes: +664 chars (total 664)",
+"wrote escher-0.2.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 9 [v020-03 v020-04 v020-05 v020-06 v020-07 v020-08 v020-09 v020-10 v020-11]"
+],
+"stderr": null,
+"wrote": [
+"escher-0.2.0/verification-matrix.json"
+],
+"before": {
+"id": "v020-02",
+"chunk": "2026-10-16-fast-failing-mutants",
+"status": "planned",
+"method": "unit",
+"ref": "null",
+"acceptance": "Under cargo-mutants 27.1.0 with `--test-tool nextest` and `.config/nextest.toml`'s `mutants` profile (the three direct t… (789 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v020-02",
+"chunk": "2026-10-16-fast-failing-mutants",
+"status": "planned",
+"method": "unit",
+"ref": "null",
+"acceptance": "Under cargo-mutants 27.1.0 with `--test-tool nextest`, `--baseline=skip` and `.config/nextest.toml`'s `mutants` profile … (994 chars)",
+"notes_chars": 664
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "bf298da7",
+"ts": "2026-10-16T20:25:44Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.2.0",
+"--chunk",
+"2026-10-16-fast-failing-mutants",
+"--plan",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-16T20-13-52-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-16-fast-failing-mutants: 1 · ## Acceptance Criteria: line 371, 24 lines",
+"v020-02: cited in ## Acceptance Criteria (line 373)",
+"pool: unclaimed 9 [v020-03 v020-04 v020-05 v020-06 v020-07 v020-08 v020-09 v020-10 v020-11]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

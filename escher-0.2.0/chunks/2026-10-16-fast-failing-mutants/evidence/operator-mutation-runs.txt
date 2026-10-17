@@ -1,0 +1,36 @@
+Operator entries 8-10, the three mutation runs of step 7, each fired once by /implement through
+`gate.py run --plan … --operator {n}` (trail: .andromeda/runs/2026-10-16T20-26-29-implement/gate-2026-10-16-fast-failing-mutants.json).
+Each entry asserts exit 0 alone; its whole log follows its line. The baseline entries 5-7 read green before entry 8
+was fired (201 · 276 · 494 tests run, all passed).
+
+operator entry 8 · history tripwire: none of 7 forms matched — not a clearance
+  8 integration green · exit 0 · 743.92s · 118 B → 8.log · history: unmoved · o=target/tmp/ffm-timer-$(date -u +%Y%m%dT%H%M%SZ) && print… (770 chars)
+entries 25 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 24
+8.log:
+output target/tmp/ffm-timer-20261016T203018Z
+Found 19 mutants to test
+19 mutants tested in 12m: 18 caught, 1 unviable
+record: evidence/mutants-timer.json, sha256 0bc3291b032939787c8db6b69077e7ad3b6e3f54cfe57664a0e7ab7d78b361ee (equal to the run's record.json)
+
+operator entry 9 · history tripwire: none of 7 forms matched — not a clearance
+  9 integration green · exit 0 · 1893.94s · 120 B → 9.log · history: unmoved · o=target/tmp/ffm-framing-$(date -u +%Y%m%dT%H%M%SZ) && pri… (781 chars)
+entries 25 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 24
+9.log:
+output target/tmp/ffm-framing-20261016T204318Z
+Found 42 mutants to test
+42 mutants tested in 32m: 39 caught, 3 unviable
+record: evidence/mutants-framing.json, sha256 1a37f3b57f79c366e331cdd01a38c96f0b73ff7efdf84a278258343766beaa99 (equal to the run's record.json)
+
+operator entry 10 · history tripwire: none of 7 forms matched — not a clearance
+ 10 integration green · exit 0 · 2823.86s · 119 B → 10.log · history: unmoved · o=target/tmp/ffm-writer-$(date -u +%Y%m%dT%H%M%SZ) && prin… (796 chars)
+entries 25 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 24
+10.log:
+output target/tmp/ffm-writer-20261016T211508Z
+Found 76 mutants to test
+76 mutants tested in 47m: 69 caught, 7 unviable
+record: evidence/mutants-writer.json, sha256 b93bf066a9671f227378fe119023cca5fa8ce42d0b0ee0023cdeca6bea22d979 (equal to the run's record.json)
+
+The six, from the records: timer.rs:29:9 `next → ()` CaughtMutant 2.47 s · timer.rs:32:31 `-= → +=` 2.87 s ·
+timer.rs:32:31 `-= → /=` 2.62 s · framing.rs:47:53 `+ → -` 2.62 s · framing.rs:47:53 `+ → *` 2.72 s ·
+mutation_writer.rs:172:9 `create_text_node → ()` 2.97 s (test-phase seconds). Over all 137: 126 CaughtMutant,
+11 Unviable, 0 MissedMutant, 0 Timeout, 0 Failure; the longest test phase 73.33 s (writer).

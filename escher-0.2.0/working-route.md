@@ -12,7 +12,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
    ↓
 [2026-10-16-file-splits] File splits — escher's inline test modules out of `document.rs`, upstream body untouched; `mcp.rs`, `schema.rs` along their seams, spans unchanged (v020-01; audit M2, M3)
    ↓
-Fast-failing mutants — the six timeout-only mutants each fail a test fast; mutation score held at 0 survivors (v020-02)
+[2026-10-16-fast-failing-mutants] Fast-failing mutants — the six timeout-only mutants each fail a test fast; mutation score held at 0 survivors (v020-02)
 
 ### Epoch 2 — Engine debts
 Upstream sync ahead of engine debts — upstream/main merged, changes mostly additive; CI and audit green, per-OS tallies re-read, sink allowlist re-checked

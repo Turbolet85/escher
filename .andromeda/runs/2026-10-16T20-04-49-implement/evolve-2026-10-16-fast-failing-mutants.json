@@ -1,0 +1,82 @@
+[
+{
+"tool": "evolve",
+"v": "1.1",
+"sha8": "2f500b21",
+"ts": "2026-10-16T20:06:39Z",
+"argv": [
+"append",
+"--root",
+".",
+"--count",
+"1",
+"--records-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-16T20-04-49-implement",
+"--marker",
+"2026-10-16-fast-failing-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"appended 1 record(s) · friction-log.ndjson lines 1192→1193 · bytes 1207221→1208022 · term lf",
+"ts 2026-10-16T20:06:34Z · clock 2026-10-16T20:06:39Z · bound 2026-10-16T19:34:20Z (line 1192)",
+"ids 2026-10-16T20:06:34Z-a"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/friction-log.ndjson"
+],
+"before": {
+"lines": 1192,
+"bytes": 1207221,
+"terminator": "LF",
+"bound": "2026-10-16T19:34:20Z"
+},
+"after": {
+"lines": 1193,
+"bytes": 1208022
+}
+},
+{
+"tool": "evolve",
+"v": "1.1",
+"sha8": "2f500b21",
+"ts": "2026-10-16T20:11:42Z",
+"argv": [
+"append",
+"--root",
+".",
+"--count",
+"2",
+"--records-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-16T20-04-49-implement",
+"--marker",
+"2026-10-16-fast-failing-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"appended 2 record(s) · friction-log.ndjson lines 1193→1195 · bytes 1208022→1210312 · term lf",
+"ts 2026-10-16T20:11:30Z · clock 2026-10-16T20:11:42Z · bound 2026-10-16T20:06:34Z (line 1193)",
+"ids 2026-10-16T20:11:30Z-a … 2026-10-16T20:11:30Z-b (2)"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/friction-log.ndjson"
+],
+"before": {
+"lines": 1193,
+"bytes": 1208022,
+"terminator": "LF",
+"bound": "2026-10-16T20:06:34Z"
+},
+"after": {
+"lines": 1195,
+"bytes": 1210312
+}
+}
+]

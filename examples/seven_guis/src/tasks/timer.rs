@@ -194,3 +194,33 @@ const CSS: &str = r#"
     background-color: #1f3fc1;
 }
 "#;
+
+#[cfg(test)]
+mod tests {
+    use std::future::Future;
+    use std::pin::pin;
+    use std::task::{Context, Poll, Waker};
+
+    use super::TimerTicks;
+
+    #[test]
+    fn a_delivered_tick_is_taken_once_and_an_empty_wait_parks() {
+        let rows: [(u64, &[Poll<()>]); 3] = [
+            (0, &[Poll::Pending]),
+            (1, &[Poll::Ready(()), Poll::Pending]),
+            (2, &[Poll::Ready(()), Poll::Ready(()), Poll::Pending]),
+        ];
+        assert_eq!(rows.len(), 3);
+        let mut cx = Context::from_waker(Waker::noop());
+        for (row, (delivered, polls)) in rows.into_iter().enumerate() {
+            let ticks = TimerTicks::default();
+            if delivered > 0 {
+                ticks.deliver(delivered);
+            }
+            for (index, expected) in polls.iter().enumerate() {
+                let read = pin!(ticks.next()).poll(&mut cx);
+                assert!(read == *expected, "row {row} poll {index}");
+            }
+        }
+    }
+}

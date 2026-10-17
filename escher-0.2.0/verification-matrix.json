@@ -25,11 +25,12 @@
    "observed_gap": "six mutants are caught only by the 300 s timeout, never by a failing test: three in TimerTicks::next, two in mcp.rs read_request, one in MutationWriter::create_text_node",
    "verification": {
     "method": "unit",
-    "acceptance": "A mutation run over the units that held the six timeout-only mutants catches each of them with a failing test well inside the timeout, and the run's score holds at 0 survivors.",
-    "ref": null,
-    "status": "planned"
+    "acceptance": "Under cargo-mutants 27.1.0 with `--test-tool nextest`, `--baseline=skip` and `.config/nextest.toml`'s `mutants` profile (the three direct tests at `priority = 100`, the run ended at its first failure), one mutation run per file over the three files that hold the six timeout-only mutants — `examples/seven_guis/src/tasks/timer.rs`, `packages/escher-driver/src/mcp/framing.rs`, `packages/dioxus-native-dom/src/mutation_writer.rs`, 137 mutants at 494abd25 — each file against the 0.1.0 audit's test set for its unit, at `-j 2`, `taskset -c 12-15,28-31` and `--timeout 600` (the operator's limits), exits 0, after that unit's mutant test command (the same packages and arguments, run directly under the `mutants` profile) reads every test passed on the unmutated tree: 0 mutants read missed, timeout or an unattributed failure; each of the six reads `CaughtMutant` with a test phase under 120 s; and each of the six turns its named direct test red in a hand mutation control restored sha256-equal.",
+    "ref": "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/evidence/{mutants-timer,mutants-framing,mutants-writer}.json (the three cargo-mutants 27.1.0 runs, operator entries 8-10, each exit 0; evidence/operator-mutation-runs.txt) read by the plan's jq probes (six CaughtMutant under 120 s: 6; missed/timeout/failure: 0; mutants run: 137) after the three unmutated baseline entries (201 · 276 · 494 passed); hand controls evidence/controls.md (6 rows); direct tests tasks::timer::tests::a_delivered_tick_is_taken_once_and_an_empty_wait_parks · escher_driver mcp::tests::read_request_takes_each_line_with_its_terminator · dioxus_native_dom dioxus_document::bridge_tests::a_created_text_node_is_mapped_and_left_on_the_stack",
+    "status": "implemented"
    },
-   "chunk": null
+   "chunk": "2026-10-16-fast-failing-mutants",
+   "notes": "2026-10-16 (2026-10-16-fast-failing-mutants, phase P5, revision): acceptance re-concretized on the operator's word at the revision's review (.andromeda/runs/2026-10-16T20-13-52-phase/p5-card-1.md). cargo-mutants 27.1.0's baseline tests only the mutated package while passing every --cargo-test-arg (lab.rs:179-190), so the audit's per-unit test set could not be its baseline and /andromeda-implement stopped at the first run (inputs#I2). The runs take --baseline=skip, the unmutated tree's green is read first by each unit's mutant test command run directly, and an unattributed Failure joins missed and timeout against the 0-survivor score. Outcome bar unchanged."
   },
   {
    "id": "v020-03",

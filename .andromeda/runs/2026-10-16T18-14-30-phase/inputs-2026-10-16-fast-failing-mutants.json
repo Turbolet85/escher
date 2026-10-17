@@ -1,0 +1,138 @@
+[
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-16T18:15:15Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants",
+"--message-file",
+".andromeda/runs/2026-10-16T18-14-30-phase/relay-1.md",
+"--origin",
+"the operator, typed in this session as /andromeda-phase arguments, 2026-10-16 18:13Z",
+"--kind",
+"relay",
+"--why",
+"mutation runs allowed for this chunk only over the files holding the six timeout-only mutants, -j 2, taskset -c 12-15,28-31, 600 s test timeout, no wider run",
+"--step",
+"phase:P1",
+"--run-dir",
+".andromeda/runs/2026-10-16T18-14-30-phase",
+"--marker",
+"2026-10-16-fast-failing-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I1 · copy message · message: the operator, typed in this session as /andromeda-phase arguments, 2026-10-16 18:13Z",
+"cite: inputs#I1"
+],
+"stderr": null,
+"wrote": [
+"inputs/.gitattributes",
+"inputs/I1-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I1",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, typed in this session as /andromeda-phase arguments, 2026-10-16 18:13Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "23954b6f67a1402660ff3ff39fbc218b2d5ed79c36745331de25c3429e5c971a",
+"copy": "I1-relay-1.md.txt",
+"link": false,
+"read_at": "2026-10-16T18:15:15Z",
+"step": "phase:P1",
+"why": "mutation runs allowed for this chunk only over the files holding the six timeout-only mutants, -j 2, taskset -c 12-15,28-31, 600 s test timeout, no wider run"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-16T19:29:16Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants",
+"--run-dir",
+".andromeda/runs/2026-10-16T18-14-30-phase",
+"--marker",
+"2026-10-16-fast-failing-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, typed in this session as /andromeda-phase arguments, 2026-10-16 18:13Z",
+"I1 cited scope.md:33 · scope.md:47 · scope.md:50 · research.md:11 · plan.md:12 · plan.md:168 (in fence) · plan.md:176 (in fence) · plan.md:184 (in fence) · plan.md:297 · plan.md:327 · plan.md:339",
+"inputs: 1 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 1 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 1,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 1
+},
+"uncited": 0,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "4b7d3772",
+"ts": "2026-10-16T19:32:54Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants",
+"--run-dir",
+".andromeda/runs/2026-10-16T18-14-30-phase",
+"--marker",
+"2026-10-16-fast-failing-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, typed in this session as /andromeda-phase arguments, 2026-10-16 18:13Z",
+"I1 cited scope.md:33 · scope.md:47 · scope.md:50 · research.md:11 · plan.md:12 · plan.md:176 (in fence) · plan.md:184 (in fence) · plan.md:192 (in fence) · plan.md:314 · plan.md:344 · plan.md:356",
+"inputs: 1 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 1 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 1,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 1
+},
+"uncited": 0,
+"unparsed": 0
+}
+}
+]
