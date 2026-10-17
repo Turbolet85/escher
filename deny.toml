@@ -20,6 +20,9 @@ all-features = true
 ignore = [
     { id = "RUSTSEC-2026-0192", reason = "ttf-parser 0.25.1 is unmaintained, no patched release exists; it reaches the graph only through winit 0.31.0-beta.3 -> winit-wayland -> sctk-adwaita -> ab_glyph -> owned_ttf_parser, and winit is an exact coupled pin (CLAUDE.md), so no fix is reachable without a winit bump; re-checked by the audit leg on every push" },
     { id = "RUSTSEC-2024-0436", reason = "paste 1.0.15 is unmaintained, no patched release exists; it reaches the graph only as a proc-macro of rav1e 0.8.1 -> ravif -> image, through anyrender_svg and the apps' avif feature; owned by the .andromeda/residuals.md line that drops this ignore when that chain leaves paste; re-checked by the audit leg on every push" },
+    { id = "RUSTSEC-2026-0367", reason = "zip 2.4.2 reaches the graph only through anyrender_serialize 0.8.0 (apps/browser capture feature only), which reads entries by_name into memory and never extracts to disk; no fixed release is reachable (anyrender_serialize 0.8.0 is the latest, requiring zip ^2.1; the fix is in zip 9.0); re-checked by the audit leg on every push" },
+    { id = "RUSTSEC-2026-0368", reason = "zip 2.4.2 reaches the graph only through anyrender_serialize 0.8.0 (apps/browser capture feature only), which reads entries by_name into memory and never extracts to disk; no fixed release is reachable (anyrender_serialize 0.8.0 is the latest, requiring zip ^2.1; the fix is in zip 9.0); re-checked by the audit leg on every push" },
+    { id = "RUSTSEC-2026-0369", reason = "zip 2.4.2 reaches the graph only through anyrender_serialize 0.8.0 (apps/browser capture feature only), which reads entries by_name into memory and never extracts to disk; no fixed release is reachable (anyrender_serialize 0.8.0 is the latest, requiring zip ^2.1; the fix is in zip 9.0); re-checked by the audit leg on every push" },
 ]
 
 [licenses]
