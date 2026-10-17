@@ -1,0 +1,3 @@
+The operator's arguments to /andromeda-wrap-session, typed in the session, 2026-10-17 (about 07:59Z), verbatim:
+
+run P1 only and stop. Before P1 cites.py added, make two edits (ES66: no edit after it): (1) .gitignore, under the Future-version incubator block, add escher-0.3.0-incubator/ with a one-line comment in the 0.2.0 form (0.3.0 notes: what 0.2.0 deferred; local + untracked until promoted, the founder ask 2026-10-16); (2) .andromeda/residuals.md, one line in the paste-line form: the RUSTSEC-2026-0367/0368/0369 ignores (zip 2.4.2 via anyrender_serialize 0.8.0, apps/browser capture only, read by_name, never extracted), the founder word «Игнор по ID (Рекомендую)» 2026-10-17 07:39Z; drops when that chain reaches zip 9.0 or leaves zip (target: next).

@@ -1,0 +1,193 @@
+[
+{
+"tool": "cascade",
+"v": "1.10",
+"sha8": "5d118dbc",
+"ts": "2026-10-17T08:02:13Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-10-17T07-59-25-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-17T07-59-25-wrap",
+"--marker",
+"2026-10-16-fast-failing-mutants"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline f072cd61 (pre-pass — HEAD)",
+"incubator · control UNFIRED over the seven masters at f072cd61",
+"title · control UNFIRED over the seven masters at f072cd61"
+],
+"stderr": "control: incubator, title never fired over the seven masters' pre-pass text (f072cd61) — a sweep runs a positive control or refuses; drop the pattern or control it by hand",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.10",
+"sha8": "5d118dbc",
+"ts": "2026-10-17T08:02:25Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-10-17T07-59-25-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-17T07-59-25-wrap",
+"--marker",
+"2026-10-16-fast-failing-mutants",
+"--pattern",
+"sgui-lib",
+"--pattern",
+"drv-unit",
+"--pattern",
+"mcp-tests",
+"--pattern",
+"dnd-unit",
+"--pattern",
+"bridge-six",
+"--pattern",
+"mut-tier",
+"--pattern",
+"tree-cfg",
+"--pattern",
+"zip-ign",
+"--pattern",
+"owner-gen"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline f072cd61 (pre-pass — HEAD)",
+"sgui-lib · new 0 · standing 3 · leaf 0 · curation 0 · base 0 · control test-plan.md:10 (prose)",
+"drv-unit · new 0 · standing 2 · leaf 2 · curation 0 · base 0 · control test-plan.md:21 (prose)",
+"mcp-tests · new 0 · standing 2 · leaf 2 · curation 0 · base 0 · control test-plan.md:21 (prose)",
+"dnd-unit · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:24 (prose)",
+"bridge-six · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:254 (prose)",
+"mut-tier · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:210 (prose)",
+"tree-cfg · new 0 · standing 5 · leaf 0 · curation 0 · base 0 · control architecture.md:67 (prose)",
+"zip-ign · new 0 · standing 1 · leaf 2 · curation 0 · base 0 · control security-plan.md:237 (prose)",
+"owner-gen · new 0 · standing 1 · leaf 0 · curation 0 · base 2 · control security-plan.md:124 (prose)",
+".andromeda/test-plan.md:10 sgui-lib standing ×2 @c6031,6073/7691 …07-act-by-id the library's first unit test, `stand::t…",
+".andromeda/test-plan.md:331 sgui-lib standing @c7403/16639 …b result line; +1 `seven_guis` library unit test, the crate…",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md:11 sgui-lib standing @c2914/7168 …cord · seven_guis' lib…",
+".andromeda/test-plan.md:21 drv-unit standing @c21/8540 - **escher-driver:** 73 unit tests in thirteen files, 56 inline …",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md:11 drv-unit standing @c2972/7168 …tep) · escher-driver's…",
+".claude/docs/services/escher-driver.md:60 drv-unit leaf - 73 unit tests (`wire.rs` 12 · `session.rs` 4 · `error.rs` 5 ·…",
+".claude/docs/tests-summary.md:24 drv-unit leaf @c19/12063 - `escher-driver`: 73 unit tests in thirteen files, 56 inline…",
+".andromeda/test-plan.md:21 mcp-tests standing ×2 @c4802,7423/8540 …-10-mcp-surface, mcp_tests.rs 11 (`mcp::tests`, in m…",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md:11 mcp-tests standing @c3112/7168 …s 7 · mcp_tests.rs 11…",
+".claude/docs/services/escher-driver.md:60 mcp-tests leaf markup …`client.rs` 3 · `mcp_tests.rs` 11 · `describe.rs` 2 · …",
+".claude/docs/tests-summary.md:24 mcp-tests leaf markup @c2876/12063 …0-mcp-surface, `mcp_tests.rs` 11 (`mcp::tests`, in…",
+".andromeda/test-plan.md:24 dnd-unit standing @c25/6369 …ioxus-native-dom:** 68 unit tests in nine files (67 until 2026-…",
+".andromeda/architecture.md:254 bridge-six standing …_document_tests.rs` — six unit tests of the bridge, declared at the…",
+".andromeda/architecture.md:210 mut-tier standing …calls with 0 wrong, 0 surviving mutants of 1,558), and 0.2.0 planned …",
+".andromeda/architecture.md:67 tree-cfg standing @c1155/2260 …licenses` over the root `deny.toml` — the advisories and t…",
+".andromeda/architecture.md:159 tree-cfg standing …ate configured by the root `deny.toml` (.github/workflows/ci.yml:146-…",
+".andromeda/security-plan.md:237 tree-cfg standing @c471/3063 …configured by the root `deny.toml`: `[graph]` the six pla…",
+".andromeda/security-plan.md:268 tree-cfg standing …nce compliance:** the root `deny.toml` holds upstream's `[licenses]`…",
+".andromeda/security-plan.md:277 tree-cfg standing …-deny 0.20.2 with the root `deny.toml` is the audit tool — see Depen…",
+".andromeda/security-plan.md:237 zip-ign standing ×2 @c1023,1042/3063 …tegrity below). Two ignores stand. RUSTSEC-2026-0…",
+".claude/rules/security.md:26 zip-ign leaf ×2 …r-compatible update, or ignored by ID with a written reason — never a bla…",
+".claude/docs/security-summary.md:42 zip-ign leaf …ed) reaches it and is ignored by ID, its drop owned by a `.andromeda/…",
+".andromeda/security-plan.md:124 owner-gen standing @c7873/15014 …t becomes one is owned by a route entry) — the id's ex…",
+".andromeda/playbook.md:58 owner-gen base markup … limit, and the fix is owned by a `CARRY:` on a route entry. Appended …",
+".andromeda/playbook.md:66 owner-gen base … word, its merge surface owned by a CARRY on the upstream-sync entry. A deleg…",
+".andromeda/security-plan.md:237 · 3063 chars · 2 patterns",
+"  @c1042 zip-ign «…rity below). Two ignores stand. RUSTSEC-2026-0192 (ttf-parser 0.25.1, unmaintained, no patched rele…»",
+".andromeda/test-plan.md:10 · 7691 chars · 1 pattern",
+"  @c6073 sgui-lib «…first unit test, `stand::tests::the_timer_step_maps_milliseconds_onto_whole_ticks` — five rows of …»",
+".andromeda/test-plan.md:21 · 8540 chars · 2 patterns",
+"  @c7423 mcp-tests «…423; packages/escher-driver/src/mcp_tests.rs:1-624; packages/escher-driver/src/describe.rs:97-227…»",
+"by line · 3 lines · 3 offsets",
+"sgui-lib · new 0 · standing 3 · leaf 0 · curation 0 · base 0 · control test-plan.md:10 (prose)",
+"drv-unit · new 0 · standing 2 · leaf 2 · curation 0 · base 0 · control test-plan.md:21 (prose)",
+"mcp-tests · new 0 · standing 2 · leaf 2 · curation 0 · base 0 · control test-plan.md:21 (prose)",
+"dnd-unit · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:24 (prose)",
+"bridge-six · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:254 (prose)",
+"mut-tier · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture.md:210 (prose)",
+"tree-cfg · new 0 · standing 5 · leaf 0 · curation 0 · base 0 · control architecture.md:67 (prose)",
+"zip-ign · new 0 · standing 1 · leaf 2 · curation 0 · base 0 · control security-plan.md:237 (prose)",
+"owner-gen · new 0 · standing 1 · leaf 0 · curation 0 · base 2 · control security-plan.md:124 (prose)",
+"total (9 patterns) · 25 rows over 9 files",
+"per class · new 0/0 · standing 17/4 · leaf 6/4 · curation 0/0 · base 2/1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "f072cd615c33928295a97a0b7cc4091cdd40c537",
+"how": "pre-pass — HEAD",
+"counts": {
+"sgui-lib": {
+"new": 0,
+"standing": 3,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"drv-unit": {
+"new": 0,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"mcp-tests": {
+"new": 0,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"dnd-unit": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"bridge-six": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"mut-tier": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"tree-cfg": {
+"new": 0,
+"standing": 5,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"zip-ign": {
+"new": 0,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"owner-gen": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 2
+}
+}
+}
+}
+]

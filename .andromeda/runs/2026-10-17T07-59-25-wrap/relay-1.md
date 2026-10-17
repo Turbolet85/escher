@@ -1,0 +1,3 @@
+The operator's message in the session, 2026-10-17 (between 07:39Z and 07:40Z), verbatim:
+
+Founder word (07:39Z, dialog): «Игнор по ID (Рекомендую)». Fix push: add RUSTSEC-2026-0367, -0368, -0369 to deny.toml [advisories] ignore, per-ID, reason in the existing form: zip 2.4.2 via anyrender_serialize 0.8.0 (apps/browser capture feature only), which reads entries by_name into memory and never extracts to disk; no fixed release reachable (0.8.0 latest, zip ^2.1; fix in 9.0); re-checked by the audit leg on every push. Run ci-leg.sh audit locally (green), record the word in operator-pass.md, commit "fix(deps): ignore the zip extraction advisories by ID", re-fire entry 24 then 25. Residuals + incubator lines ride the wrap P1 line. Stop after 25.

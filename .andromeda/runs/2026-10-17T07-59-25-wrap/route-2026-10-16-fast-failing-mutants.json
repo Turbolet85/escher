@@ -1,0 +1,63 @@
+[
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "a81d3633",
+"ts": "2026-10-17T08:34:19Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-16-fast-failing-mutants",
+"--run-dir",
+".andromeda/runs/2026-10-17T07-59-25-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"flip master-route.md:58 - 2026-10-16-fast-failing-mutants pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "a81d3633",
+"ts": "2026-10-17T08:34:19Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-16-fast-failing-mutants",
+"--date",
+"2026-10-17",
+"--run-dir",
+".andromeda/runs/2026-10-17T07-59-25-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin listing NOT DERIVED -- 2026-10-16-fast-failing-mutants's line :15 carries no freight (already compact)",
+"compacted 0 lines (3 stamped read) -- an empty sweep is a verdict, not an absence proof"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [],
+"skips": [],
+"kept_notes": []
+}
+}
+]

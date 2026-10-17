@@ -1,0 +1,28 @@
+[[pattern]]
+id = 'sgui-lib'
+regex = '''seven_guis' library unit test|library's first unit test|seven_guis. library unit test|library unit test 1|the_timer_step_maps_milliseconds_onto_whole_ticks|a_delivered_tick_is_taken_once_and_an_empty_wait_parks'''
+
+[[pattern]]
+id = 'drv-unit'
+regex = '''73 unit tests|escher-driver's 73|73 inline unit tests|17 in two `#\[path\]`|the crate's 73'''
+
+[[pattern]]
+id = 'mcp-tests'
+regex = '''mcp_tests\.rs 11|mcp_tests\.rs's eleventh|mcp\.rs's eleventh|read_request_takes_each_line_with_its_terminator|eleven tests in `mcp'''
+
+[[pattern]]
+id = 'dnd-unit'
+regex = '''68 unit tests|68 #\[test\]'''
+
+[[pattern]]
+id = 'bridge-six'
+regex = '''six unit tests of the bridge|six on the bridge|bridge's six unit tests|bridge_tests`, six unit tests|bridge_tests` 6|a_created_text_node_is_mapped_and_left_on_the_stack|create_text_node'''
+
+[[pattern]]
+id = 'mut-tier'
+regex = '''cargo-mutants|cargo mutants|mutation tier|mutation run|nextest|baseline=skip|surviving mutants|timeout-only'''
+ignore_case = true
+
+[[pattern]]
+id = 'zip-ign'
+regex = '''Two ignores stand|Two ignores|two ignores|RUSTSEC-2026-0192|RUSTSEC-2026-036[789]|ignored by ID|ignores by ID|zip 2\.4\.2'''

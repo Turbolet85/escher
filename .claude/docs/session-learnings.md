@@ -8,6 +8,19 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-17 — A leaf comparer cannot see a count its group's sources do not state
+`cascade.py leaves` groups a leaf by the masters its provenance names, and the comparer it spawns is told that a
+statement no source states is not its own. `.claude/docs/services/escher-driver.md` names architecture alone, yet it
+restates test-plan §1's per-file unit-test counts for escher-driver (`73 unit tests (… mcp_tests.rs 11 …)`). A wrap
+that moves those counts amends test-plan, and the escher-driver leaf's comparer, reading architecture, raises
+nothing. The stale count shows up only as the step-2 sweep's `leaf` row on that file.
+
+Where it applies: a wrap that moves a per-crate test count. Dispose the sweep's `leaf` rows on
+`services/escher-driver.md` by hand, and on any other services leaf that restates test-plan text, because no comparer
+reaches them. A count pattern that carries the leaf's own spelling (the backticked file names) finds the rows.
+
+---
+
 ## 2026-10-16 — Moving Rust items between modules strands two kinds of import
 Splitting a module along its seams leaves two imports behind that the compiler only reports one at a time. An import
 whose only use is an intra-doc link (`[`VERBS`]` in a doc comment) reads as `unused_imports` to rustc, so clippy

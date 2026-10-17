@@ -91,3 +91,28 @@ Residuals + incubator lines ride the wrap P1 line. Stop after 25."
   and the green is not a stale database's.
 - **Left for the wrap, on the directive:** the residuals line and the incubator `.gitignore` line ride the wrap's P1
   line, not this fix push.
+- **The fix commit:** `f072cd615c33928295a97a0b7cc4091cdd40c537 fix(deps): ignore the zip extraction advisories by
+  ID`. It carries `deny.toml` and this file. After it, `git status --short` read 0 rows.
+
+## Entry 24, re-fired — `gate.py run --plan escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md --operator 24`
+
+```
+operator entry 24 · history tripwire: git
+ 24 probe       green · exit 0 · 79.28s · 99543 B → 24.log · history moved: refs/remotes/origin/build/escher-0.2.0 79cfb5d1→f072cd61 · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+entries 25 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 24
+```
+
+## Entry 25, re-fired — `python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800`, as written
+
+```
+ci v1.3 · b795b622
+repo Turbolet85/escher (the push remote `origin`) · polled 32× over 960 s
+f072cd615c33 verdict: green · checks 17/17 · wall 888 s · runs CI#39014589486 completed/success
+runs: CI#39014589486 push completed/success
+checks: Accessibility (a11y) tests · Build [default features] · Build counter example · Build wasm examples · Clippy
+  Coverage report · Dependency audit · Documentation · MSRV Build [Rust 1.91] · Rustfmt · Stand checks repeated
+  Test (android) · Test (ios) · Test (macos) · Test (windows) · Test CI scripts · Test [default features]
+```
+
+**Verdict: green.** The entry's `contains verdict: green` atom holds, and all 17 checks passed, including the
+Dependency audit, the Coverage report and Stand checks repeated.

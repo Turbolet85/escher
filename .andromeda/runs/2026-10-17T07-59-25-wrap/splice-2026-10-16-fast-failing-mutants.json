@@ -1,0 +1,231 @@
+[
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "5b243943",
+"ts": "2026-10-17T08:05:35Z",
+"argv": [
+"append",
+"--file",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/report.md",
+"--payload-file",
+".andromeda/runs/2026-10-17T07-59-25-wrap/new-text.md",
+"--lines",
+"25",
+"--if-absent-prefix",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-10-17T07-59-25-wrap",
+"--marker",
+"2026-10-16-fast-failing-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append report.md:+25 at line 312 · lines 311→336 · bytes 26347→27663 · term lf",
+"last line now:   - 181-195 «for (row, mut reader) in readers.into_iter().enumerate() {»"
+],
+"stderr": null,
+"wrote": [
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/report.md"
+],
+"before": {
+"lines": 311,
+"bytes": 26347,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 336,
+"bytes": 27663
+}
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "5b243943",
+"ts": "2026-10-17T08:07:18Z",
+"argv": [
+"append",
+"--file",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/report.md",
+"--payload-file",
+".andromeda/runs/2026-10-17T07-59-25-wrap/new-text.md",
+"--lines",
+"21",
+"--if-absent-prefix",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-10-17T07-59-25-wrap",
+"--marker",
+"2026-10-16-fast-failing-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"skipped — '## New text, by line' already at line 312 (the append is idempotent)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "5b243943",
+"ts": "2026-10-17T08:07:51Z",
+"argv": [
+"append",
+"--file",
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/report.md",
+"--payload-file",
+".andromeda/runs/2026-10-17T07-59-25-wrap/addendum-1.md",
+"--lines",
+"5",
+"--before-line",
+"312",
+"--run-dir",
+".andromeda/runs/2026-10-17T07-59-25-wrap",
+"--marker",
+"2026-10-16-fast-failing-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append report.md:+5 at line 312 · lines 336→341 · bytes 27663→29260 · term lf",
+"last line now:   - 181-195 «for (row, mut reader) in readers.into_iter().enumerate() {»"
+],
+"stderr": null,
+"wrote": [
+"escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/report.md"
+],
+"before": {
+"lines": 336,
+"bytes": 27663,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 341,
+"bytes": 29260
+}
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "5b243943",
+"ts": "2026-10-17T08:26:26Z",
+"argv": [
+"append",
+"--file",
+".andromeda/test-plan-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-17T07-59-25-wrap/test-plan-entry.md",
+"--lines",
+"11",
+"--run-dir",
+".andromeda/runs/2026-10-17T07-59-25-wrap",
+"--marker",
+"2026-10-16-fast-failing-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append test-plan-amendments.md:+11 at line 624 · lines 623→634 · bytes 106722→109012 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-17T07-59-25-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/test-plan-amendments.md"
+],
+"before": {
+"lines": 623,
+"bytes": 106722,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 634,
+"bytes": 109012
+}
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "5b243943",
+"ts": "2026-10-17T08:26:26Z",
+"argv": [
+"append",
+"--file",
+".andromeda/architecture-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-17T07-59-25-wrap/architecture-entry.md",
+"--lines",
+"9",
+"--run-dir",
+".andromeda/runs/2026-10-17T07-59-25-wrap",
+"--marker",
+"2026-10-16-fast-failing-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append architecture-amendments.md:+9 at line 835 · lines 834→843 · bytes 167390→168667 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-17T07-59-25-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/architecture-amendments.md"
+],
+"before": {
+"lines": 834,
+"bytes": 167390,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 843,
+"bytes": 168667
+}
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "5b243943",
+"ts": "2026-10-17T08:26:26Z",
+"argv": [
+"append",
+"--file",
+".andromeda/security-plan-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-17T07-59-25-wrap/security-plan-entry.md",
+"--lines",
+"6",
+"--run-dir",
+".andromeda/runs/2026-10-17T07-59-25-wrap",
+"--marker",
+"2026-10-16-fast-failing-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append security-plan-amendments.md:+6 at line 567 · lines 566→572 · bytes 106342→107745 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-17T07-59-25-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/security-plan-amendments.md"
+],
+"before": {
+"lines": 566,
+"bytes": 106342,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 572,
+"bytes": 107745
+}
+}
+]

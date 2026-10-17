@@ -1,0 +1,2 @@
+proposals: []
+note: All three obs-plan detectors held. The report's Changes add no hot-path operation (Coverage of new surfaces: none — three cfg(test) tests, a host tool's profile, an audit config), no telemetry dependency (Dependencies: none added or bumped), and no span, tracing site or log field (Symbols: no span field added; Outcome (obs): silence probe 0, no span or tracing site added), so D-obs-instrumentation, D-obs-stack and D-obs-pii have nothing to evaluate against §3–§8.

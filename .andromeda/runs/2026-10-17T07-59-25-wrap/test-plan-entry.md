@@ -1,0 +1,11 @@
+
+## 2026-10-16-fast-failing-mutants — three direct tests counted; the mutation tier's recipe (§1, §3, §10)
+**Section:** §1 Coverage scope (apps · escher-driver · dioxus-native-dom) · §3 → Session lifecycle · §10 Quality Gates & Coverage Targets
+**Change:**
+- §1 apps: was «the library's first unit test» alone; now the seven_guis library's second, `tasks::timer::tests::a_delivered_tick_is_taken_once_and_an_empty_wait_parks` (the private `TimerTicks::next()` polled under `Waker::noop()` over a three-row table), `cargo test -p seven_guis --locked --lib` 2 passed.
+- §1 escher-driver: was «73 unit tests … 17 in two `#[path]` test files», «mcp_tests.rs 11»; now 74, 18, mcp_tests.rs 12 — `framing::read_request` taking each line with its terminator over a slice and a one-byte `BufReader`, at most count + 1 reads each.
+- §1 dioxus-native-dom: was «68 unit tests», «six on the bridge»; now 69 and seven — a text node `WriteMutations::create_text_node` creates mapped to its element id and left on the writer's stack, `mutation_writer.rs` byte-identical to upstream's at `434e0661`.
+- §3 → Session lifecycle: was «seven_guis' library unit test 1», «escher-driver's 73 unit tests (… mcp_tests.rs 11 …)»; now 2 and 74 (mcp_tests.rs 12).
+- §10: a new Mutation tier bullet — cargo-mutants `--test-tool nextest` under the root `.config/nextest.toml`'s `mutants` profile (`fail-fast = { max-fail = 1, terminate = "immediate" }`, `test-threads = 4`, a `priority = 100` override naming the direct tests, the default profile untouched, selected by `NEXTEST_PROFILE=mutants`), `--baseline=skip`, each unit's mutant test command first read green on the unmutated tree; under plain `cargo test` the six still read `timeout`; dev host only, never in CI, cargo-mutants 27.1.0 and cargo-nextest 0.9.146 host tools no lockfile resolves; 137 mutants over the three files, 0 missed, 0 timeout.
+**Why:** the counts are this chunk's measured gates; the recipe is the remedy's owner — cargo-mutants 27.1.0's baseline tests the mutated package alone yet passes every `--cargo-test-arg`, so the baseline is skipped and read directly, and the next audit must run under the profile or the six read `timeout` again.
+**Ref:** .andromeda/runs/2026-10-17T07-59-25-wrap/
