@@ -13,13 +13,13 @@
 
 use std::collections::{BTreeSet, HashMap};
 
+use ::keyboard_types::{Key, Modifiers, NamedKey};
 use accesskit::Role;
 use blitz_test_harness::Harness;
 use dioxus::prelude::*;
 use dioxus_native_dom::{
     DiffNode, DioxusDocument, MASKED_VALUE, Reading, Snapshot, SnapshotDiff, SnapshotNode,
 };
-use keyboard_types::{Key, Modifiers};
 use seven_guis::stand::{self, LeanTask};
 
 mod common;
@@ -410,7 +410,7 @@ fn a_focus_move_names_exactly_the_controls_whose_focus_moved() {
             "{mode}: crud-name reads focused after the click"
         );
 
-        let tab = crud.step(&mode, |harness| harness.press(Key::Tab));
+        let tab = crud.step(&mode, |harness| harness.press(Key::Named(NamedKey::Tab)));
         assert!(tab.flag, "{mode}: Tab reads as a change");
         assert!(
             tab.changed() == ["crud-name", "crud-surname"] && tab.changed() == tab.focus_moved,
@@ -422,7 +422,7 @@ fn a_focus_move_names_exactly_the_controls_whose_focus_moved() {
         );
 
         let back = crud.step(&mode, |harness| {
-            harness.press_with(Key::Tab, Modifiers::SHIFT)
+            harness.press_with(Key::Named(NamedKey::Tab), Modifiers::SHIFT)
         });
         assert!(back.flag, "{mode}: Shift+Tab reads as a change");
         assert!(
@@ -438,7 +438,7 @@ fn a_focus_move_names_exactly_the_controls_whose_focus_moved() {
         }
 
         let mut fresh = Screen::boot(LeanTask::Crud, incremental);
-        let first = fresh.step(&mode, |harness| harness.press(Key::Tab));
+        let first = fresh.step(&mode, |harness| harness.press(Key::Named(NamedKey::Tab)));
         assert!(first.flag, "{mode}: the first Tab reads as a change");
         assert!(
             first.changed() == ["back-btn"] && first.changed() == first.focus_moved,

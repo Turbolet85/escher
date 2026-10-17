@@ -1,7 +1,7 @@
 //! A call run on a held instance: checked, run, settled, and answered with a typed outcome.
 
 use blitz_test_harness::{
-    Busy, Harness, Key as KeyboardKey, Modifiers, PixelRect, ScreenshotError,
+    Busy, Harness, Key as KeyboardKey, Modifiers, NamedKey, PixelRect, ScreenshotError,
 };
 use dioxus_native_dom::{DioxusDocument, NodeId, Snapshot, SnapshotDiff};
 use tracing::Span;
@@ -459,7 +459,7 @@ fn acted(
 /// The modifier the engine's editor reads as its action modifier: Super on macOS, Control
 /// elsewhere.
 #[cfg(target_os = "macos")]
-const ACTION_MODIFIER: Modifiers = Modifiers::SUPER;
+const ACTION_MODIFIER: Modifiers = Modifiers::META;
 #[cfg(not(target_os = "macos"))]
 const ACTION_MODIFIER: Modifiers = Modifiers::CONTROL;
 
@@ -487,18 +487,18 @@ fn press(harness: &mut Harness<DioxusDocument>, key: Key, shift: bool) {
 /// The keyboard key a schema key stands for.
 fn keyboard_key(key: Key) -> KeyboardKey {
     match key {
-        Key::Tab => KeyboardKey::Tab,
-        Key::Enter => KeyboardKey::Enter,
-        Key::Escape => KeyboardKey::Escape,
-        Key::Backspace => KeyboardKey::Backspace,
-        Key::Delete => KeyboardKey::Delete,
+        Key::Tab => KeyboardKey::Named(NamedKey::Tab),
+        Key::Enter => KeyboardKey::Named(NamedKey::Enter),
+        Key::Escape => KeyboardKey::Named(NamedKey::Escape),
+        Key::Backspace => KeyboardKey::Named(NamedKey::Backspace),
+        Key::Delete => KeyboardKey::Named(NamedKey::Delete),
         Key::Space => KeyboardKey::Character(" ".to_string()),
-        Key::ArrowUp => KeyboardKey::ArrowUp,
-        Key::ArrowDown => KeyboardKey::ArrowDown,
-        Key::ArrowLeft => KeyboardKey::ArrowLeft,
-        Key::ArrowRight => KeyboardKey::ArrowRight,
-        Key::Home => KeyboardKey::Home,
-        Key::End => KeyboardKey::End,
+        Key::ArrowUp => KeyboardKey::Named(NamedKey::ArrowUp),
+        Key::ArrowDown => KeyboardKey::Named(NamedKey::ArrowDown),
+        Key::ArrowLeft => KeyboardKey::Named(NamedKey::ArrowLeft),
+        Key::ArrowRight => KeyboardKey::Named(NamedKey::ArrowRight),
+        Key::Home => KeyboardKey::Named(NamedKey::Home),
+        Key::End => KeyboardKey::Named(NamedKey::End),
     }
 }
 
@@ -542,18 +542,18 @@ mod tests {
     #[test]
     fn each_schema_key_stands_for_one_keyboard_key() {
         let rows = [
-            (Key::Tab, KeyboardKey::Tab),
-            (Key::Enter, KeyboardKey::Enter),
-            (Key::Escape, KeyboardKey::Escape),
-            (Key::Backspace, KeyboardKey::Backspace),
-            (Key::Delete, KeyboardKey::Delete),
+            (Key::Tab, KeyboardKey::Named(NamedKey::Tab)),
+            (Key::Enter, KeyboardKey::Named(NamedKey::Enter)),
+            (Key::Escape, KeyboardKey::Named(NamedKey::Escape)),
+            (Key::Backspace, KeyboardKey::Named(NamedKey::Backspace)),
+            (Key::Delete, KeyboardKey::Named(NamedKey::Delete)),
             (Key::Space, KeyboardKey::Character(" ".to_string())),
-            (Key::ArrowUp, KeyboardKey::ArrowUp),
-            (Key::ArrowDown, KeyboardKey::ArrowDown),
-            (Key::ArrowLeft, KeyboardKey::ArrowLeft),
-            (Key::ArrowRight, KeyboardKey::ArrowRight),
-            (Key::Home, KeyboardKey::Home),
-            (Key::End, KeyboardKey::End),
+            (Key::ArrowUp, KeyboardKey::Named(NamedKey::ArrowUp)),
+            (Key::ArrowDown, KeyboardKey::Named(NamedKey::ArrowDown)),
+            (Key::ArrowLeft, KeyboardKey::Named(NamedKey::ArrowLeft)),
+            (Key::ArrowRight, KeyboardKey::Named(NamedKey::ArrowRight)),
+            (Key::Home, KeyboardKey::Named(NamedKey::Home)),
+            (Key::End, KeyboardKey::Named(NamedKey::End)),
         ];
         assert_eq!(rows.len(), 12);
         assert_eq!(rows.len(), Key::ALL.len());

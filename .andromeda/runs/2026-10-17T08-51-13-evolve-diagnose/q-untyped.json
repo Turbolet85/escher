@@ -1,0 +1,208 @@
+{
+ "target": [
+  {
+   "id": "2026-10-16T14:13:59Z-b",
+   "chunk": "2026-10-16-handler-splits-and-readme",
+   "step": "phase/distill",
+   "what": "a compound command opening with a cd into the run dir (cd X 2>/dev/null; …) passed the Bash guard and moved the session cwd into the run dir; one extra call returned it to the project root",
+   "impact": {
+    "retries": 1
+   },
+   "proposed": null
+  },
+  {
+   "id": "2026-10-16T14:18:21Z-b",
+   "chunk": "2026-10-16-handler-splits-and-readme",
+   "step": "phase/research",
+   "what": "a code-graph query's stdout was redirected to a relative path climbing four levels from the run dir, which landed outside the project root; one extra call moved it into the scratchpad",
+   "impact": {
+    "extra_reads": 1
+   },
+   "proposed": null
+  },
+  {
+   "id": "2026-10-16T14:26:59Z-b",
+   "chunk": "2026-10-16-handler-splits-and-readme",
+   "step": "phase/validate",
+   "what": "recurrence-despite-learning (host-linux.md Session Additions 2026-10-13, restated by the operator's directive inputs#I1): saved gate.py baseline outputs were read through sed, and the first draft of the controls script piped gate.py into a python filter; the script was rewritten before it ran and the baselines re-read whole",
+   "impact": {
+    "retries": 1,
+    "extra_reads": 1
+   },
+   "proposed": null
+  },
+  {
+   "id": "2026-10-16T16:55:35Z-b",
+   "chunk": "2026-10-16-file-splits",
+   "step": "phase/validate",
+   "what": "two typed must-fail controls (entries 6 and 7) read green because their sed substitution matched nothing in the record, leaving it identical; caught by reading the readings, re-run with a first-byte edit and a differs check",
+   "impact": {
+    "iterations": 1
+   },
+   "proposed": null
+  },
+  {
+   "id": "2026-10-16T17:49:24Z-d",
+   "chunk": "2026-10-16-file-splits",
+   "step": "wrap-session/reconcile",
+   "what": "a scratch re-point script was imported by the dispositions script and ran its main at import; its offset assertion refused before any write, re-run after a __main__ guard",
+   "impact": {
+    "retries": 1
+   },
+   "proposed": null
+  },
+  {
+   "id": "2026-10-16T19:21:10Z-b",
+   "chunk": "2026-10-16-fast-failing-mutants",
+   "step": "phase/research",
+   "what": "the P3 hang-site script crashed parsing cargo-mutants outcomes.json (phase duration is a float, not an object) after the first unit's 1,386 s run; fixed the parser, read the finished unit from disk, ran the other two units as a second call",
+   "impact": {
+    "retries": 1
+   },
+   "proposed": null
+  },
+  {
+   "id": "2026-10-16T19:21:10Z-c",
+   "chunk": "2026-10-16-fast-failing-mutants",
+   "step": "phase/research",
+   "what": "cargo mutants --list --file {path} without -p printed nothing on stdout for all three files, its reason on stderr hidden by 2>/dev/null; re-run with -p {pkg} and stderr shown listed 19 · 42 · 76",
+   "impact": {
+    "retries": 1
+   },
+   "proposed": null
+  },
+  {
+   "id": "2026-10-16T19:34:20Z-c",
+   "chunk": "2026-10-16-fast-failing-mutants",
+   "step": "phase/validate",
+   "what": "plan-template's artifact key names 'the output removed first' as a producer's freshness form, while this host's bash-guard refuses every recursive rm; the P4-authored rm -rf entries had to be re-spelt to a per-run unique dir at P5",
+   "impact": {
+    "iterations": 1,
+    "retries": 1
+   },
+   "proposed": null
+  }
+ ],
+ "previous_epoch_lookback": [
+  {
+   "id": "2026-10-13T15:55:05Z-c",
+   "chunk": "2026-10-13-upstream-sync-polish-and-ship",
+   "step": "wrap-session/report",
+   "what": "the operator directive inputs#I2 (pipeline tool stdout to a file, read whole, never piped into head/tail) was broken twice this chunk: gate.py show piped into head at implement P2, gate.py hygiene piped into tail at the operator pass; found at wrap P1 when reading I2"
+  },
+  {
+   "id": "2026-10-13T17:17:03Z-b",
+   "chunk": "2026-10-13-stand-contrast-harness",
+   "step": "phase/plan",
+   "what": "the plan's Generated stamp was written as an estimated 17:20Z without reading the clock; the stamp-ahead PostToolUse hook flagged it 3 min ahead and it was corrected from date -u to 17:16Z"
+  },
+  {
+   "id": "2026-10-13T17:36:44Z-b",
+   "chunk": "2026-10-13-stand-contrast-harness",
+   "step": "implement/fix-loop",
+   "what": "gate.py's header printed the log dir as $TMPDIR/andromeda-gate/... while TMPDIR is unset in the Bash tool's shell; a read through the literal $TMPDIR resolved to /andromeda-gate and failed, and the logs were found under /tmp"
+  },
+  {
+   "id": "2026-10-13T18:05:30Z-b",
+   "chunk": "2026-10-13-stand-contrast-harness",
+   "step": "wrap-session/report",
+   "what": "cascade.py sweep --pre-pass refused the report patterns file at exit 2: two pattern ids over the 16-character limit §Tool states (a11y-contrast-nym, obs-harness-silent); renamed and re-fired at exit 0"
+  },
+  {
+   "id": "2026-10-13T18:28:22Z-d",
+   "chunk": "2026-10-13-stand-contrast-harness",
+   "step": "wrap-session/reconcile",
+   "what": "a repo-wide recursive grep for the withdrawn transliteration over the whole tree (target/ included) ran past the 120 s Bash timeout and was stopped; re-issued as git grep plus a grep over the two new dirs"
+  },
+  {
+   "id": "2026-10-13T20:20:07Z-b",
+   "chunk": "2026-10-13-range-input-interaction",
+   "step": "phase/validate",
+   "what": "the P5 word's snap --origin was typed with a guessed time 5 min ahead of the clock; inputs.py refused it at exit 2 and it was re-fired with the time read from date -u"
+  },
+  {
+   "id": "2026-10-13T21:16:02Z-b",
+   "chunk": "2026-10-13-range-input-interaction",
+   "step": "wrap-session/report",
+   "what": "P1 site sweep refused (exit 3, unfired control) on a pattern worded from the plan's 'silent census'; obs-plan states that census as 'installs no subscriber' — one re-fire with the master's wording"
+  },
+  {
+   "id": "2026-10-13T21:41:41Z-d",
+   "chunk": "2026-10-13-range-input-interaction",
+   "step": "wrap-session/reconcile",
+   "what": "a redirect target composed as $RD/../../../.andromeda/runs/x resolved inside the tree and wrote a stray file .andromeda/runs/x from an inputs.py verify; seen in the next listing and removed before any snapshot or commit"
+  },
+  {
+   "id": "2026-10-13T22:22:28Z-b",
+   "chunk": "2026-10-13-stand-keyboard-harness",
+   "step": "phase/research",
+   "what": "a calls query for apple_keybinding returned no row while its symbol row stands: the one caller sits under cfg(target_os = macos), which the Linux-built SCIP index does not see, so a cfg-gated caller reads as no caller"
+  },
+  {
+   "id": "2026-10-13T22:48:08Z-b",
+   "chunk": "2026-10-13-stand-keyboard-harness",
+   "step": "phase/validate",
+   "what": "an inputs.py snap of the operator P5 directive was refused at exit 2: its --origin time was typed from an estimate and read 3 min ahead of the clock; re-fired once with the time read from date -u"
+  },
+  {
+   "id": "2026-10-13T23:28:17Z-b",
+   "chunk": "2026-10-13-stand-keyboard-harness",
+   "step": "wrap-session/report",
+   "what": "a standing learning recurred: cascade.py sweep --pre-pass output filtered through command grep (twice) before the whole read the rule requires"
+  },
+  {
+   "id": "2026-10-14T06:36:45Z-b",
+   "chunk": "2026-10-13-stand-keyboard-harness",
+   "step": "wrap-session/gates",
+   "what": "a standing learning recurred in this window: gate.py scope's redirected output was first read through tail before the file was read whole (host-linux.md Session Additions 2026-10-13); the verdict line read the same, corrected in the same step"
+  },
+  {
+   "id": "2026-10-14T07:11:49Z-c",
+   "chunk": "2026-10-14-stand-a11y-assertions",
+   "step": "implement/code",
+   "what": "an Edit anchored on a test name recalled as read_as_their_click (the file reads read_as_its_click) failed string-not-found and was re-issued on another anchor"
+  },
+  {
+   "id": "2026-10-14T19:58:01Z-c",
+   "chunk": "2026-10-14-stand-a11y-assertions",
+   "step": "wrap-session/report",
+   "what": "the operator pass's entry 14 (ci.py conclusion) fired in the background before a context clear completed exit 0 with an empty output file; the entry was re-fired as written after the clear to read its verdict"
+  },
+  {
+   "id": "2026-10-14T20:21:07Z-b",
+   "chunk": "2026-10-14-stand-a11y-assertions",
+   "step": "wrap-session/reconcile",
+   "what": "cascade.py sweep exited 2 on the first fire: two pattern ids (route-entry-owned, states-unmeasured) passed the 16-char id bound; shortened and re-fired"
+  },
+  {
+   "id": "2026-10-14T20:48:17Z-b",
+   "chunk": "2026-10-14-stand-requirement-sweep",
+   "step": "phase/take-up",
+   "what": "route.py pins output was redirected to a file and first counted through an inline python filter before the file was read whole: the shape of the deferred learning on reading pipeline tool output whole"
+  },
+  {
+   "id": "2026-10-15T05:12:40Z-b",
+   "chunk": "2026-10-14-quality-gates",
+   "step": "phase/plan",
+   "what": "plan.md's Generated stamp was written as an estimated time 7 min ahead of the clock; the stamp-ahead hook refused it and the stamp was corrected from date -u"
+  },
+  {
+   "id": "2026-10-15T09:12:15Z-d",
+   "chunk": "2026-10-15-cold-agent-test",
+   "step": "phase/validate",
+   "what": "four authored time stamps were estimated instead of read from the clock (baselines 09:10Z, plan Generated 09:05Z, two --origin values 09:12Z); a PostToolUse hook and inputs.py refused two, one landed ahead of the clock in the I5 manifest entry and is corrected on p5-card-2.md"
+  },
+  {
+   "id": "2026-10-15T09:49:28Z-b",
+   "chunk": "2026-10-15-cold-agent-test",
+   "step": "wrap-session/report",
+   "what": "recurrence-despite-learning: a pipeline tool's saved capture (cascade.py sweep --pre-pass) read through a grep -v filter that dropped its count lines; re-read whole at the cost of one extra call — host-linux.md Session Additions 2026-10-13 standing"
+  },
+  {
+   "id": "2026-10-15T10:18:37Z-b",
+   "chunk": "2026-10-15-cold-agent-test",
+   "step": "wrap-session/reconcile",
+   "what": "the orchestrator ran route.py pins and cursor (tools that write a run-dir trail) while the leaf comparers' snapshot pair was open, so the after-snapshot's diff-tree held an extra M line on the orchestrator's own trail"
+  }
+ ]
+}

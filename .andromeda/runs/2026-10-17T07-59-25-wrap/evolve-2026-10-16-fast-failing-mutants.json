@@ -158,5 +158,45 @@
 "lines": 1210,
 "bytes": 1224782
 }
+},
+{
+"tool": "evolve",
+"v": "1.1",
+"sha8": "364eac66",
+"ts": "2026-10-17T08:34:54Z",
+"argv": [
+"append",
+"--root",
+".",
+"--count",
+"1",
+"--records-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-17T07-59-25-wrap",
+"--marker",
+"2026-10-16-fast-failing-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"appended 1 record(s) · friction-log.ndjson lines 1210→1211 · bytes 1224782→1226239 · term lf",
+"ts 2026-10-17T08:34:47Z · clock 2026-10-17T08:34:54Z · bound 2026-10-17T08:28:05Z (line 1210)",
+"ids 2026-10-17T08:34:47Z-a"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/friction-log.ndjson"
+],
+"before": {
+"lines": 1210,
+"bytes": 1224782,
+"terminator": "LF",
+"bound": "2026-10-17T08:28:05Z"
+},
+"after": {
+"lines": 1211,
+"bytes": 1226239
+}
 }
 ]

@@ -9,12 +9,12 @@
 //! radio read checked after a click, a password input reads a fixed mask, never its text, and
 //! a textarea reads back the text typed into it.
 
+use ::keyboard_types::{Key, Modifiers, NamedKey};
 use accesskit::{Node, Role, Toggled};
 use blitz_dom::Document;
 use blitz_test_harness::Harness;
 use dioxus::prelude::*;
 use dioxus_native_dom::{DioxusDocument, MASKED_VALUE, Snapshot, UnkeyedActionable};
-use keyboard_types::{Key, Modifiers};
 use seven_guis::stand::{self, LeanTask};
 
 mod common;
@@ -331,9 +331,9 @@ fn focus_reads_on_exactly_the_focused_control() {
         );
         crud.click("#crud-name");
         assert_eq!(focused(&crud), ["crud-name"], "{mode}: after a click");
-        crud.press(Key::Tab);
+        crud.press(Key::Named(NamedKey::Tab));
         assert_eq!(focused(&crud), ["crud-surname"], "{mode}: after Tab");
-        crud.press_with(Key::Tab, Modifiers::SHIFT);
+        crud.press_with(Key::Named(NamedKey::Tab), Modifiers::SHIFT);
         assert_eq!(focused(&crud), ["crud-name"], "{mode}: after Shift+Tab");
         crud.click("#task-title");
         assert_eq!(
@@ -343,7 +343,7 @@ fn focus_reads_on_exactly_the_focused_control() {
         );
 
         let mut fresh = boot(LeanTask::Crud, incremental);
-        fresh.press(Key::Tab);
+        fresh.press(Key::Named(NamedKey::Tab));
         assert_eq!(
             focused(&fresh),
             ["back-btn"],

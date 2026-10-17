@@ -632,10 +632,10 @@ mod tests {
         doc.inner_mut().set_focus_to(level);
         doc.handle_ui_event(blitz_traits::events::UiEvent::KeyDown(
             blitz_traits::events::BlitzKeyEvent {
-                key: keyboard_types::Key::ArrowRight,
-                code: keyboard_types::Code::Unidentified,
-                modifiers: keyboard_types::Modifiers::empty(),
-                location: keyboard_types::Location::Standard,
+                key: ::keyboard_types::Key::Named(::keyboard_types::NamedKey::ArrowRight),
+                code: ::keyboard_types::Code::Unidentified,
+                modifiers: ::keyboard_types::Modifiers::empty(),
+                location: ::keyboard_types::Location::Standard,
                 is_auto_repeating: false,
                 is_composing: false,
                 state: blitz_traits::events::KeyState::Pressed,

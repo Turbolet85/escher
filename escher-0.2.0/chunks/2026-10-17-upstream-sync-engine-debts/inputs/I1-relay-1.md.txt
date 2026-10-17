@@ -1,0 +1,37 @@
+# Orchestrator git measurement — /andromeda-phase take-up, 2026-10-17T12:21Z
+
+Measured by the orchestrator on the dev host at HEAD `143b60132` (build/escher-0.2.0, 0 ahead of origin).
+
+- `git fetch upstream`: exit 0 (it also fetched upstream's release tags, v0.3.0-alpha.6 … v0.3.0-beta.4, as local tags).
+- `git ls-remote upstream refs/heads/main` at 2026-10-17T12:21:12Z: `1e5479ae62737d60f7c2f8e8d31524f5cfe2ec01`.
+- `upstream/main` = `1e5479ae6` (2026-10-17) "Bump Taffy to main (ea07c4c3) (#1219)".
+- Merge base of HEAD and `upstream/main`: `434e06615d5f47a3df92c0f94e916df088fdcf4d` — the pin the last sync merged (2026-10-13-upstream-sync-polish-and-ship).
+- Commits: upstream 14 past the base; ours 108 past it.
+- Upstream's 14, newest first:
+  - 1e5479ae6 #1219 Bump Taffy to main (ea07c4c3) — Cargo.lock, Cargo.toml
+  - 510b592ab #1216 Bump Taffy to main (1cb4b02a) — Cargo.lock, Cargo.toml
+  - 4a5ab9cc9 #1218 Pin Taffy to main (9f9b7365) — Cargo.lock, Cargo.toml
+  - 1a11761bc Bump Taffy to main (7a9f4212) — Cargo.lock, Cargo.toml, blitz-dom layout/inline.rs
+  - 23b9b26a9 Delete the bump crate — apps/bump/*, justfile, Cargo.toml, Cargo.lock
+  - 92b11f1bd Bump version for 0.3.0-beta.4 release
+  - 85340347f Revert to Taffy 0.15 — Cargo.lock, Cargo.toml, layout/inline.rs
+  - dd6f46b55 #1013 Support aria-description and aria-describedby building accesskit nodes
+  - 8114cd505 #1014 Set the ARIA level as well as disabled, selected, and expanded flags in accesskit nodes
+  - fabd70e78 #859 Support the aria-label and aria-labelledby attributes (also test-that 0.5.2 → 0.6.0)
+  - 3f483ff2a Upgrade to keyboard-types 0.8 (compat code in dioxus-native-dom temporarily)
+  - e72650a6e #1211 vibey-script: Element.attributes, getAttributeNames, clientTop/clientLeft, offsetParent and window.event
+  - 6032d0b9d #1212 Bump Taffy to main (6c2106e3) — Cargo.lock, Cargo.toml, layout/inline.rs
+  - 8d35e562c #1198 Honor baseline-source when aligning atomic inlines
+- Root `Cargo.toml`'s `taffy` line by commit: 85340347f · 92b11f1bd · 23b9b26a9 read `version = "0.15"` (registry); 1a11761bc · 4a5ab9cc9 · 1e5479ae6 read `git = "https://github.com/DioxusLabs/taffy", rev = …` (7a9f4212, 9f9b7365, ea07c4c3). HEAD reads `version = "0.15"`.
+- `git diff --stat 23b9b26a9 upstream/main`: 3 files — Cargo.lock (+2 −3), Cargo.toml (the taffy line), `packages/blitz-dom/src/layout/inline.rs` (+1: `crate::taffy_node_id(node_id).into()` as a new first argument to `place_floated_box`, Taffy main's API).
+- Upstream delta `git diff --shortstat 434e06615 upstream/main`: 20 files changed, 1352 insertions(+), 803 deletions(-). At `23b9b26a9`: 20 files changed, 1348 insertions(+), 799 deletions(-).
+- Per file (`--numstat`, base → upstream/main): Cargo.lock +29 −63 · Cargo.toml +13 −14 · apps/bump/Cargo.toml +0 −11 (deleted) · apps/bump/src/main.rs +0 −111 (deleted) · justfile +1 −6 · blitz-dom accessibility.rs +175 −2 · events/keyboard.rs +2 −2 · layout/inline.rs +29 −20 · node/text.rs +11 −11 · util.rs +1 −1 · blitz-shell convert_events.rs +7 −550 · blitz-vibey-script dom/element.rs +84 −1 · runtime.rs +15 −0 · tests/preact.rs +2 −2 · dioxus-native-dom events.rs +10 −9 · keyboard_compat.rs +564 −0 (new) · lib.rs +1 −0 · tests/blitz-tests/tests/accessibility_description.rs +101 (new) · accessibility_label.rs +305 (new) · all.rs +2 (two `mod` lines).
+- Root `Cargo.toml` at `upstream/main` against the base: `apps/bump` leaves `members`; workspace version 0.3.0-beta.3 → 0.3.0-beta.4 with its nine in-repo `=` pins; `keyboard-types` "0.7" → "0.8"; `test-that` "0.5.2" → "0.6.0"; `taffy` registry 0.15 → git rev ea07c4c3. No `rust-version` change (1.91.0).
+- Lock package set (tomllib over `git show {rev}:Cargo.lock`), base → `23b9b26a9`: −17 +13 — the eleven in-repo packages beta.3 → beta.4, `bump` 0.0.0 and `toml_datetime` 0.6.11 · `toml_edit` 0.22.27 · `toml_write` 0.1.2 leave, `test-that`/`test-that-macro` 0.5.2 → 0.6.0. Base → `upstream/main`: the same plus `taffy 0.15.0` registry → `taffy 0.15.0 git+https://github.com/DioxusLabs/taffy?rev=ea07…`. No other third-party package enters or leaves (keyboard-types 0.8 was already in the lock).
+- Files both sides changed since the base (5), ours · upstream's: `Cargo.lock` 11 hunks +36 −1 · 34 hunks +29 −63; `Cargo.toml` 6 hunks +12 −2 · 6 hunks +13 −14; `packages/blitz-dom/src/accessibility.rs` 6 hunks +57 −1 · 9 hunks +175 −2; `packages/blitz-dom/src/events/keyboard.rs` 5 hunks +127 −1 · 2 hunks +2 −2; `packages/dioxus-native-dom/src/lib.rs` 6 hunks +21 −1 · 1 hunk +1 −0.
+- In-memory trial merge `git merge-tree --write-tree --name-only HEAD upstream/main`: exit 1, tree `7ac45106df28d744baa14f6f58e37bfdb6989117`; 2 textual conflicts — `Cargo.lock` and `packages/blitz-dom/src/accessibility.rs` (5 regions: the `use` lines; ours `labels` vs upstream `labelled_by_nodes`/`described_by_nodes`; ours collects `<label>` elements vs upstream collects `aria-labelledby`/`aria-describedby` holders; ours' label→input `push_labelled_by` loop vs upstream's labelledby (with `clear_labelled_by` and a computed `set_label`) and describedby loops; ours' `aria-selected`/`aria-pressed`/`aria-invalid` closed-set trimmed reads vs upstream's `aria-expanded` · `aria-disabled` · `aria-selected` (`str::parse::<bool>`, untrimmed) · `aria-label` (unfiltered) · `aria-description` · `aria-level` with tag/role defaults · `set_html_tag` moved last). Our trimmed, non-empty `aria-label` read (accname step 2C) merges outside the conflict, so the merged text sets the label twice. The other 3 overlap files auto-merge. Trial at `23b9b26a9`: exit 1, tree `3f625f43f53962f5f0c94f52fb333f7530de2aa7`, the same two conflicts.
+- keyboard-types 0.8 renames a named key (`Key::Tab` → `Key::Named(NamedKey::Tab)`) and `Modifiers::SUPER` → `Modifiers::META` (upstream's util.rs). Files of ours (changed since the base) naming `Key::…`, by rough count of `Key::[A-Z]…` tokens: escher-driver command.rs 42 · execute.rs 29; blitz-dom events/keyboard.rs 8 (upstream also edits it); blitz-test-harness input.rs 3; dioxus-native-dom snapshot.rs 1; tests/blitz-tests stand_keyboard.rs 29 · range_input_interaction.rs 16 · stand_snapshot_state.rs 3 · stand_diff.rs 3 · stand_contrast.rs 2 · stand_accessibility_ids.rs 2 · stand_session_fresh.rs · stand_session_state.rs · stand_settle.rs · stand_snapshot_text.rs 1 each; seven_guis crud.rs 5 · cells.rs 1 (Dioxus's `Key`, which dioxus-native-dom's new keyboard_compat converts to). The count does not tell blitz's `Key` from Dioxus's or our own names.
+- Upstream's two new test files import `accesskit`, `blitz_dom::DocumentConfig`, `blitz_html`, `blitz_traits::shell`, `std::sync::Arc`, `test_that::prelude::*`; 0 `use super`/`use crate`/`mod` lines; 0 env reads or prints. Our `tests/blitz-tests/Cargo.toml` already lists `accesskit`, `blitz-html` and `test-that` as dev-dependencies. `test_that` is used by 1 file of the tree, none of ours.
+- Stand markup reads `aria_label` 3 · `aria_pressed` 2 · `aria_invalid` 2 · `aria_selected` 1 — none of `aria-labelledby`, `aria-describedby`, `aria-description`, `aria-disabled`, `aria-expanded`, `aria-level`.
+- `DioxusDocument::snapshot` (snapshot.rs:154-161, 178-195): `enabled` reads the `disabled` attribute, not the AccessKit node; `selected` · `pressed` · `invalid` read the AccessKit node; `name` reads the node's non-empty label, else its `labelled_by` nodes' names. `description`, `level`, `expanded` and AccessKit's `disabled` are not read.
+- `deny.toml` carries no `[sources]` table.

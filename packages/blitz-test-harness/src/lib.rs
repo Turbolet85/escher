@@ -29,6 +29,6 @@ pub use contrast::{TextContrast, contrast_ratio};
 pub use harness::{Harness, HarnessOptions};
 pub use input::{key_event, mouse_pointer_event, pointer_event, touch_pointer_event};
 pub use inspect::Rect;
-pub use keyboard_types::{Key, Modifiers};
+pub use keyboard_types::{Key, Modifiers, NamedKey};
 pub use screenshot::{PixelRect, Raster, ScreenshotError};
 pub use settle::{Busy, NotSettled, SETTLE_PASS_LIMIT, Settled};

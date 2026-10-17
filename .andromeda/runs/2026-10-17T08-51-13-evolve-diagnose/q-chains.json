@@ -1,0 +1,336 @@
+{
+ "chains": [
+  {
+   "anchor_kind": "friction",
+   "chunk": null,
+   "consumer": "new-session/orientation",
+   "consumer_id": "2026-10-16T14:06:35Z-b",
+   "artifact": ".claude/session-handoff.md",
+   "verdict": {
+    "type": "input.handoff-git-mismatch",
+    "what": "handoff Branch (build/escher-0.1.0) and Position Next (version-end boundary, founder's call) disagree with git (build/escher-0.2.0, HEAD d236e9186 the 0.2.0 route) and the cursor (next: Handler splits and README); the audit and route commits after the wrap left the handoff unrewritten beyond its Session End Status line"
+   },
+   "operator_pass": [],
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_frictions": []
+  },
+  {
+   "anchor_kind": "friction",
+   "chunk": "2026-10-16-file-splits",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-16T17:02:38Z-b",
+   "artifact": "escher-0.2.0/chunks/2026-10-16-file-splits/plan.md",
+   "verdict": {
+    "type": "input.plan-step-ambiguous",
+    "what": "plan steps 3-5 said move items unchanged and allow only use lines naming moved items, but the parent's shrunken imports left doc links and test names unresolved; settled by path-qualified doc links and extra test use lines, one compile to find them"
+   },
+   "operator_pass": [],
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_frictions": []
+  },
+  {
+   "anchor_kind": "friction",
+   "chunk": "2026-10-16-fast-failing-mutants",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-17T08:26:39Z-b",
+   "artifact": "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/report.md",
+   "verdict": {
+    "type": "input.report-insufficient",
+    "what": "the report's bridge-six pattern listed one standing site (architecture.md:254); test-plan.md:24 stated the same count as «six on the bridge», which the pattern's wording did not reach — the test-plan detector proposed it as a dependent"
+   },
+   "operator_pass": [],
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_frictions": []
+  },
+  {
+   "anchor_kind": "friction",
+   "chunk": "2026-10-16-fast-failing-mutants",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-17T08:26:39Z-b",
+   "artifact": ".andromeda/test-plan.md:24",
+   "verdict": {
+    "type": "input.report-insufficient",
+    "what": "the report's bridge-six pattern listed one standing site (architecture.md:254); test-plan.md:24 stated the same count as «six on the bridge», which the pattern's wording did not reach — the test-plan detector proposed it as a dependent"
+   },
+   "operator_pass": [],
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_frictions": []
+  },
+  {
+   "anchor_kind": "verdict",
+   "chunk": null,
+   "consumer": "new-session/orientation",
+   "consumer_id": "2026-10-16T14:06:35Z-a",
+   "artifact": "handoff",
+   "verdict": {
+    "artifact": "handoff",
+    "quality": "wrong",
+    "note": "Branch names build/escher-0.1.0 and Position Next names the 0.1.0 version-end boundary; HEAD is on build/escher-0.2.0 with the epoch6 audit and the 0.2.0 route committed after the wrap"
+   },
+   "operator_pass": [],
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_frictions": []
+  },
+  {
+   "anchor_kind": "verdict",
+   "chunk": "2026-10-16-handler-splits-and-readme",
+   "consumer": "phase/take-up",
+   "consumer_id": "2026-10-16T14:08:52Z-a",
+   "artifact": "handoff",
+   "verdict": {
+    "artifact": "handoff",
+    "quality": "wrong",
+    "note": "Position Next still names the 0.1.0 version-end boundary; the cursor read directly"
+   },
+   "operator_pass": [],
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_frictions": []
+  },
+  {
+   "anchor_kind": "verdict",
+   "chunk": "2026-10-16-file-splits",
+   "consumer": "wrap-session/gates",
+   "consumer_id": "2026-10-16T17:56:52Z-a",
+   "artifact": "plan",
+   "verdict": {
+    "artifact": "plan",
+    "quality": "thin",
+    "note": "entry 13's git-diff probe reads untracked new files as absent, so it is green only before the operator pass's pre-CI commit"
+   },
+   "operator_pass": [],
+   "producer": "phase/validate",
+   "producer_id": "2026-10-16T16:55:35Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    {
+     "artifact": "plan",
+     "signals": [
+      "control-caught-vacuity",
+      "control-caught-preexisting-hit"
+     ],
+     "note": "check 4 (9)'s clone controls found three cat-based guards that read green with a file absent (fixed by an ls presence guard) and a must-pass red on the pre-existing compile-time env!(CARGO_PKG_VERSION) at mcp.rs:339 (excluded with its basis); a single text yes on the review card"
+    }
+   ],
+   "producer_frictions": [
+    {
+     "type": null,
+     "what": "two typed must-fail controls (entries 6 and 7) read green because their sed substitution matched nothing in the record, leaving it identical; caught by reading the readings, re-run with a first-byte edit and a differs check"
+    }
+   ]
+  },
+  {
+   "anchor_kind": "verdict",
+   "chunk": "2026-10-16-fast-failing-mutants",
+   "consumer": "implement/fix-loop",
+   "consumer_id": "2026-10-16T20:11:30Z-a",
+   "artifact": "plan",
+   "verdict": {
+    "artifact": "plan",
+    "quality": "wrong",
+    "note": "operator entries 5-7 cannot pass as written: the default baseline under cargo-mutants 27.1.0 tests only the mutated package while passing the audit's --test=stand_* args"
+   },
+   "operator_pass": [],
+   "producer": "phase/validate",
+   "producer_id": "2026-10-16T19:34:20Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    {
+     "artifact": "plan",
+     "signals": [
+      "guard-refused:1"
+     ],
+     "note": "bash-guard refused gate.py output piped into grep; re-issued bare in the background once"
+    }
+   ],
+   "producer_frictions": [
+    {
+     "type": "contract.mechanical-check",
+     "what": "check 4 (7) fired: the three mutation-run entries redirected their jq record into the tracked chunk evidence/ folder; re-pointed to the run's gitignored output dir, with step 7 copying the record to evidence/"
+    },
+    {
+     "type": null,
+     "what": "plan-template's artifact key names 'the output removed first' as a producer's freshness form, while this host's bash-guard refuses every recursive rm; the P4-authored rm -rf entries had to be re-spelt to a per-run unique dir at P5"
+    },
+    {
+     "type": "contract.mechanical-check",
+     "what": "check 4 (0) read the fence UNPARSED after P5 wrote three baseline keys as TOML literal strings, two of which held an apostrophe (entry 5's); rewritten as basic strings and the whole check set re-run green"
+    }
+   ]
+  },
+  {
+   "anchor_kind": "verdict",
+   "chunk": "2026-10-16-fast-failing-mutants",
+   "consumer": "implement/fix-loop",
+   "consumer_id": "2026-10-16T20:11:30Z-a",
+   "artifact": "research",
+   "verdict": {
+    "artifact": "research",
+    "quality": "thin",
+    "note": "P3 measured the six with --baseline=skip; the default-baseline path the plan chose was never exercised"
+   },
+   "operator_pass": [],
+   "producer": "phase/research",
+   "producer_id": "2026-10-16T19:21:10Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    {
+     "artifact": "research",
+     "signals": [
+      "unresolved-questions"
+     ],
+     "note": "1 open question (instrument fork) carried to P4; measured: six-mutant hang sites via a scoped cargo-mutants run under inputs#I1, cargo test binary order, nextest baseline 491/491"
+    }
+   ],
+   "producer_frictions": [
+    {
+     "type": null,
+     "what": "the P3 hang-site script crashed parsing cargo-mutants outcomes.json (phase duration is a float, not an object) after the first unit's 1,386 s run; fixed the parser, read the finished unit from disk, ran the other two units as a second call"
+    },
+    {
+     "type": null,
+     "what": "cargo mutants --list --file {path} without -p printed nothing on stdout for all three files, its reason on stderr hidden by 2>/dev/null; re-run with -p {pkg} and stderr shown listed 19 · 42 · 76"
+    },
+    {
+     "type": "contract.instrument-validity",
+     "what": "the take-up's P3 validated the mutation runs with --baseline=skip and a direct joined nextest run, never the plan's default-baseline form, which cargo-mutants 27.1.0 cannot run with --cargo-test-arg targets outside the mutated package; found at implement entry 5, closed here against lab.rs:179-190"
+    }
+   ]
+  },
+  {
+   "anchor_kind": "verdict",
+   "chunk": "2026-10-16-fast-failing-mutants",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-17T08:26:39Z-a",
+   "artifact": "report",
+   "verdict": {
+    "artifact": "report",
+    "quality": "thin",
+    "note": "its bridge-six pattern («six unit tests of the bridge») missed test-plan.md:24's «six on the bridge»; the test-plan detector raised it"
+   },
+   "operator_pass": [],
+   "producer": "wrap-session/report",
+   "producer_id": "2026-10-17T08:05:45Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    {
+     "artifact": "report",
+     "signals": [
+      "new-text-generated",
+      "new-text-rows:9"
+     ]
+    }
+   ],
+   "producer_frictions": []
+  }
+ ],
+ "shapes": [
+  {
+   "producer": null,
+   "artifact": ".claude/session-handoff.md",
+   "consumer": "new-session/orientation",
+   "chunks": [
+    "None"
+   ],
+   "candidate": false
+  },
+  {
+   "producer": null,
+   "artifact": "escher-0.2.0/chunks/2026-10-16-file-splits/plan.md",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-16-file-splits"
+   ],
+   "candidate": false
+  },
+  {
+   "producer": null,
+   "artifact": "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/report.md",
+   "consumer": "wrap-session/reconcile",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants"
+   ],
+   "candidate": false
+  },
+  {
+   "producer": null,
+   "artifact": ".andromeda/test-plan.md:24",
+   "consumer": "wrap-session/reconcile",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants"
+   ],
+   "candidate": false
+  },
+  {
+   "producer": null,
+   "artifact": "handoff",
+   "consumer": "new-session/orientation",
+   "chunks": [
+    "None"
+   ],
+   "candidate": false
+  },
+  {
+   "producer": null,
+   "artifact": "handoff",
+   "consumer": "phase/take-up",
+   "chunks": [
+    "2026-10-16-handler-splits-and-readme"
+   ],
+   "candidate": false
+  },
+  {
+   "producer": "phase/validate",
+   "artifact": "plan",
+   "consumer": "wrap-session/gates",
+   "chunks": [
+    "2026-10-16-file-splits"
+   ],
+   "candidate": false
+  },
+  {
+   "producer": "phase/validate",
+   "artifact": "plan",
+   "consumer": "implement/fix-loop",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants"
+   ],
+   "candidate": false
+  },
+  {
+   "producer": "phase/research",
+   "artifact": "research",
+   "consumer": "implement/fix-loop",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants"
+   ],
+   "candidate": false
+  },
+  {
+   "producer": "wrap-session/report",
+   "artifact": "report",
+   "consumer": "wrap-session/reconcile",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants"
+   ],
+   "candidate": false
+  }
+ ]
+}

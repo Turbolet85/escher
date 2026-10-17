@@ -1,0 +1,938 @@
+{
+ "per_step": [
+  {
+   "key": "phase/validate/contract.mechanical-check",
+   "n": 2,
+   "weight": 4,
+   "rate": "2/4",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T19:34:20Z-b",
+     "chunk": "2026-10-16-fast-failing-mutants",
+     "step": "phase/validate",
+     "what": "check 4 (7) fired: the three mutation-run entries redirected their jq record into the tracked chunk evidence/ folder; re-pointed to the run's gitignored output dir, with step 7 copying the record to evidence/",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-16T20:25:48Z-b",
+     "chunk": "2026-10-16-fast-failing-mutants",
+     "step": "phase/validate",
+     "what": "check 4 (0) read the fence UNPARSED after P5 wrote three baseline keys as TOML literal strings, two of which held an apostrophe (entry 5's); rewritten as basic strings and the whole check set re-run green",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-16T20-13-52-phase/planlint-2026-10-16-fast-failing-mutants.json",
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/fix-loop/contract.instrument-validity",
+   "n": 1,
+   "weight": 6,
+   "rate": "1/4",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants"
+   ],
+   "halt_or_soft_exit": true,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T20:11:30Z-b",
+     "chunk": "2026-10-16-fast-failing-mutants",
+     "step": "implement/fix-loop",
+     "what": "plan entries 5-7 ran cargo-mutants with its default baseline; P3/P4 validated the instrument only under --baseline=skip and with a direct nextest pass, so the baseline's own package selection (mutated package only, test args still passed) was never exercised; entry 5 read exit 4 in 60 s",
+     "impact": {
+      "soft_exit": 1,
+      "dialogue_rounds": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-16T20-04-49-implement/gate-2026-10-16-fast-failing-mutants.json",
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+      "cargo-mutants-27.1.0/src/lab.rs:179"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/curation/recall.corpus-recurrence",
+   "n": 2,
+   "weight": 3,
+   "rate": "2/3",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants",
+    "2026-10-16-file-splits"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T17:50:57Z-c",
+     "chunk": "2026-10-16-file-splits",
+     "step": "wrap-session/curation",
+     "what": "implement's process census by ps piped into grep -c counted its own probing shell twice, the failure host-linux's Processes rule already states; re-taken on the comm column it read 0",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": "escher-0.2.0/chunks/2026-10-16-file-splits/report.md",
+     "artifacts": [
+      ".claude/rules/host-linux.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-17T08:27:41Z-b",
+     "chunk": "2026-10-16-fast-failing-mutants",
+     "step": "wrap-session/curation",
+     "what": "both implement runs' census grep over ps args matched its own probing shell and grep, read on the comm column — the host-linux «Processes» rule states the remedy correctly; carried to the handoff as recurrence-despite-learning",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/report.md",
+     "artifacts": [
+      ".claude/rules/host-linux.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/gates/tooling.result-not-run-stable",
+   "n": 1,
+   "weight": 6,
+   "rate": "1/3",
+   "chunks": [
+    "2026-10-16-file-splits"
+   ],
+   "halt_or_soft_exit": true,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T17:56:52Z-b",
+     "chunk": "2026-10-16-file-splits",
+     "step": "wrap-session/gates",
+     "what": "plan entry 13 (git diff --name-only base -- … | grep -c -v -x the three modified sources) read 0 at implement and 8 at the wrap over the same source: the operator pass's pre-CI commit tracked the eight new files, which git diff from the base then lists; its control was taken on an untouched tree, never after a commit",
+     "impact": {
+      "halted": 1,
+      "dialogue_rounds": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-16T17-27-46-wrap/light-gate.md",
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-16-file-splits/plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.jointly-contradictory-instructions",
+   "n": 1,
+   "weight": 6,
+   "rate": "1/3",
+   "chunks": [
+    "2026-10-16-file-splits"
+   ],
+   "halt_or_soft_exit": true,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T17:49:24Z-b",
+     "chunk": "2026-10-16-file-splits",
+     "step": "wrap-session/reconcile",
+     "what": "the operator's resume directive to add a .gitignore line in this wrap and the 2a-resume rule that the new-text listing re-reads 'unchanged' (exit 3 → HALT) cannot both hold: any tracked edit outside the excluded set after P1 moves the listing; no mechanical check attempted it before the edit",
+     "impact": {
+      "dialogue_rounds": 1,
+      "halted": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-16T17-27-46-wrap/cites-2026-10-16-file-splits.json",
+     "artifacts": [
+      ".gitignore",
+      "cites.py added"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/code/input.plan-step-ambiguous",
+   "n": 1,
+   "weight": 2,
+   "rate": "1/4",
+   "chunks": [
+    "2026-10-16-file-splits"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T17:02:38Z-b",
+     "chunk": "2026-10-16-file-splits",
+     "step": "implement/code",
+     "what": "plan steps 3-5 said move items unchanged and allow only use lines naming moved items, but the parent's shrunken imports left doc links and test names unresolved; settled by path-qualified doc links and extra test use lines, one compile to find them",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-16-file-splits/plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/plan/retry.synthesis-rework",
+   "n": 1,
+   "weight": 2,
+   "rate": "1/4",
+   "chunks": [
+    "2026-10-16-file-splits"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T16:08:21Z-b",
+     "chunk": "2026-10-16-file-splits",
+     "step": "phase/plan",
+     "what": "a span-identity gate entry was written with an expected sha256 prefix that no reading had produced; replaced before validation by two exact-text count entries (the two info_span! sites, last line 2)",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-16-file-splits/plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/research/contract.instrument-validity",
+   "n": 1,
+   "weight": 2,
+   "rate": "1/4",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T20:18:32Z-b",
+     "chunk": "2026-10-16-fast-failing-mutants",
+     "step": "phase/research",
+     "what": "the take-up's P3 validated the mutation runs with --baseline=skip and a direct joined nextest run, never the plan's default-baseline form, which cargo-mutants 27.1.0 cannot run with --cargo-test-arg targets outside the mutated package; found at implement entry 5, closed here against lab.rs:179-190",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-16T20-04-49-implement/outcome-2026-10-16-fast-failing-mutants.md",
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+      "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/research.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "new-session/orientation/input.handoff-git-mismatch",
+   "n": 1,
+   "weight": 1,
+   "rate": "1/3",
+   "chunks": [
+    "None"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T14:06:35Z-b",
+     "chunk": null,
+     "step": "new-session/orientation",
+     "what": "handoff Branch (build/escher-0.1.0) and Position Next (version-end boundary, founder's call) disagree with git (build/escher-0.2.0, HEAD d236e9186 the 0.2.0 route) and the cursor (next: Handler splits and README); the audit and route commits after the wrap left the handoff unrewritten beyond its Session End Status line",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/session-handoff.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/curation/ambiguity.tier-routing",
+   "n": 1,
+   "weight": 1,
+   "rate": "1/3",
+   "chunks": [
+    "2026-10-16-file-splits"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T17:50:57Z-b",
+     "chunk": "2026-10-16-file-splits",
+     "step": "wrap-session/curation",
+     "what": "the Rust move-import learning is a directive for src/ files, but no rule file's paths cover src/ (testing.md scopes tests/**), so the fallback demoted it to Tier 3",
+     "impact": {},
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md",
+      ".claude/rules/testing.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/gates/recall.corpus-recurrence",
+   "n": 1,
+   "weight": 1,
+   "rate": "1/3",
+   "chunks": [
+    "2026-10-16-handler-splits-and-readme"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T15:17:20Z-b",
+     "chunk": "2026-10-16-handler-splits-and-readme",
+     "step": "wrap-session/gates",
+     "what": "the P7 report's health.py check capture was read through a grep for its check 1 row instead of read whole, against host-linux.md Session Additions 2026-10-13 (pipeline tools read whole, never filtered); the row read was correct",
+     "impact": {
+      "retries": 0
+     },
+     "evidence": "this wrap's P7 step 6 health read",
+     "artifacts": [
+      ".claude/rules/host-linux.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.cascade-miss",
+   "n": 1,
+   "weight": 1,
+   "rate": "1/3",
+   "chunks": [
+    "2026-10-16-file-splits"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T17:49:24Z-c",
+     "chunk": "2026-10-16-file-splits",
+     "step": "wrap-session/reconcile",
+     "what": "the leaf services/escher-driver.md:60 held escher-driver's 72; its comparer group (architecture-2) reads architecture alone, so the test-plan key file's 73 was outside its sources and the count was written by hand",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-16T17-27-46-wrap/cascade-dispositions.md",
+     "artifacts": [
+      ".claude/docs/services/escher-driver.md:60"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.structural-blind-spot",
+   "n": 1,
+   "weight": 1,
+   "rate": "1/3",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-17T08:26:39Z-c",
+     "chunk": "2026-10-16-fast-failing-mutants",
+     "step": "wrap-session/reconcile",
+     "what": "cascade.py leaves groups services/escher-driver.md under architecture alone (its provenance), yet the leaf restates test-plan §1's per-crate unit count; a comparer told 'a statement no source states is not yours' cannot flag it, so the stale count reached only through the step-2 sweep's leaf row",
+     "impact": {
+      "extra_reads": 2
+     },
+     "evidence": ".andromeda/runs/2026-10-17T07-59-25-wrap/cascade-dispositions.md",
+     "artifacts": [
+      ".claude/docs/services/escher-driver.md:60"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/input.report-insufficient",
+   "n": 1,
+   "weight": 1,
+   "rate": "1/3",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-17T08:26:39Z-b",
+     "chunk": "2026-10-16-fast-failing-mutants",
+     "step": "wrap-session/reconcile",
+     "what": "the report's bridge-six pattern listed one standing site (architecture.md:254); test-plan.md:24 stated the same count as «six on the bridge», which the pattern's wording did not reach — the test-plan detector proposed it as a dependent",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-17T07-59-25-wrap/fanout-test-plan.md",
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/report.md",
+      ".andromeda/test-plan.md:24"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  }
+ ],
+ "universal_by_type": [
+  {
+   "key": "*/*/recall.corpus-recurrence",
+   "n": 3,
+   "weight": 4,
+   "rate": "3/3",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants",
+    "2026-10-16-file-splits",
+    "2026-10-16-handler-splits-and-readme"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "cases": [
+    {
+     "id": "2026-10-16T15:17:20Z-b",
+     "chunk": "2026-10-16-handler-splits-and-readme",
+     "step": "wrap-session/gates",
+     "what": "the P7 report's health.py check capture was read through a grep for its check 1 row instead of read whole, against host-linux.md Session Additions 2026-10-13 (pipeline tools read whole, never filtered); the row read was correct",
+     "impact": {
+      "retries": 0
+     },
+     "evidence": "this wrap's P7 step 6 health read",
+     "artifacts": [
+      ".claude/rules/host-linux.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-16T17:50:57Z-c",
+     "chunk": "2026-10-16-file-splits",
+     "step": "wrap-session/curation",
+     "what": "implement's process census by ps piped into grep -c counted its own probing shell twice, the failure host-linux's Processes rule already states; re-taken on the comm column it read 0",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": "escher-0.2.0/chunks/2026-10-16-file-splits/report.md",
+     "artifacts": [
+      ".claude/rules/host-linux.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-17T08:27:41Z-b",
+     "chunk": "2026-10-16-fast-failing-mutants",
+     "step": "wrap-session/curation",
+     "what": "both implement runs' census grep over ps args matched its own probing shell and grep, read on the comm column — the host-linux «Processes» rule states the remedy correctly; carried to the handoff as recurrence-despite-learning",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/report.md",
+     "artifacts": [
+      ".claude/rules/host-linux.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "*/*/contract.jointly-contradictory-instructions",
+   "n": 1,
+   "weight": 6,
+   "rate": "1/3",
+   "chunks": [
+    "2026-10-16-file-splits"
+   ],
+   "halt_or_soft_exit": true,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T17:49:24Z-b",
+     "chunk": "2026-10-16-file-splits",
+     "step": "wrap-session/reconcile",
+     "what": "the operator's resume directive to add a .gitignore line in this wrap and the 2a-resume rule that the new-text listing re-reads 'unchanged' (exit 3 → HALT) cannot both hold: any tracked edit outside the excluded set after P1 moves the listing; no mechanical check attempted it before the edit",
+     "impact": {
+      "dialogue_rounds": 1,
+      "halted": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-16T17-27-46-wrap/cites-2026-10-16-file-splits.json",
+     "artifacts": [
+      ".gitignore",
+      "cites.py added"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "*/*/contract.structural-blind-spot",
+   "n": 1,
+   "weight": 1,
+   "rate": "1/3",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-17T08:26:39Z-c",
+     "chunk": "2026-10-16-fast-failing-mutants",
+     "step": "wrap-session/reconcile",
+     "what": "cascade.py leaves groups services/escher-driver.md under architecture alone (its provenance), yet the leaf restates test-plan §1's per-crate unit count; a comparer told 'a statement no source states is not yours' cannot flag it, so the stale count reached only through the step-2 sweep's leaf row",
+     "impact": {
+      "extra_reads": 2
+     },
+     "evidence": ".andromeda/runs/2026-10-17T07-59-25-wrap/cascade-dispositions.md",
+     "artifacts": [
+      ".claude/docs/services/escher-driver.md:60"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  }
+ ],
+ "by_type_alone_observation": [
+  {
+   "key": "(any)/contract.instrument-validity",
+   "n": 2,
+   "weight": 8,
+   "rate": "2/4",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants"
+   ],
+   "halt_or_soft_exit": true,
+   "above_threshold": true,
+   "cases": [
+    {
+     "id": "2026-10-16T20:11:30Z-b",
+     "chunk": "2026-10-16-fast-failing-mutants",
+     "step": "implement/fix-loop",
+     "what": "plan entries 5-7 ran cargo-mutants with its default baseline; P3/P4 validated the instrument only under --baseline=skip and with a direct nextest pass, so the baseline's own package selection (mutated package only, test args still passed) was never exercised; entry 5 read exit 4 in 60 s",
+     "impact": {
+      "soft_exit": 1,
+      "dialogue_rounds": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-16T20-04-49-implement/gate-2026-10-16-fast-failing-mutants.json",
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+      "cargo-mutants-27.1.0/src/lab.rs:179"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-16T20:18:32Z-b",
+     "chunk": "2026-10-16-fast-failing-mutants",
+     "step": "phase/research",
+     "what": "the take-up's P3 validated the mutation runs with --baseline=skip and a direct joined nextest run, never the plan's default-baseline form, which cargo-mutants 27.1.0 cannot run with --cargo-test-arg targets outside the mutated package; found at implement entry 5, closed here against lab.rs:179-190",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-16T20-04-49-implement/outcome-2026-10-16-fast-failing-mutants.md",
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md",
+      "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/research.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "(any)/recall.corpus-recurrence",
+   "n": 3,
+   "weight": 4,
+   "rate": "3/3",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants",
+    "2026-10-16-file-splits",
+    "2026-10-16-handler-splits-and-readme"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": true,
+   "cases": [
+    {
+     "id": "2026-10-16T15:17:20Z-b",
+     "chunk": "2026-10-16-handler-splits-and-readme",
+     "step": "wrap-session/gates",
+     "what": "the P7 report's health.py check capture was read through a grep for its check 1 row instead of read whole, against host-linux.md Session Additions 2026-10-13 (pipeline tools read whole, never filtered); the row read was correct",
+     "impact": {
+      "retries": 0
+     },
+     "evidence": "this wrap's P7 step 6 health read",
+     "artifacts": [
+      ".claude/rules/host-linux.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-16T17:50:57Z-c",
+     "chunk": "2026-10-16-file-splits",
+     "step": "wrap-session/curation",
+     "what": "implement's process census by ps piped into grep -c counted its own probing shell twice, the failure host-linux's Processes rule already states; re-taken on the comm column it read 0",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": "escher-0.2.0/chunks/2026-10-16-file-splits/report.md",
+     "artifacts": [
+      ".claude/rules/host-linux.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-17T08:27:41Z-b",
+     "chunk": "2026-10-16-fast-failing-mutants",
+     "step": "wrap-session/curation",
+     "what": "both implement runs' census grep over ps args matched its own probing shell and grep, read on the comm column — the host-linux «Processes» rule states the remedy correctly; carried to the handoff as recurrence-despite-learning",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/report.md",
+     "artifacts": [
+      ".claude/rules/host-linux.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "(any)/contract.mechanical-check",
+   "n": 2,
+   "weight": 4,
+   "rate": "2/4",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T19:34:20Z-b",
+     "chunk": "2026-10-16-fast-failing-mutants",
+     "step": "phase/validate",
+     "what": "check 4 (7) fired: the three mutation-run entries redirected their jq record into the tracked chunk evidence/ folder; re-pointed to the run's gitignored output dir, with step 7 copying the record to evidence/",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-16T20:25:48Z-b",
+     "chunk": "2026-10-16-fast-failing-mutants",
+     "step": "phase/validate",
+     "what": "check 4 (0) read the fence UNPARSED after P5 wrote three baseline keys as TOML literal strings, two of which held an apostrophe (entry 5's); rewritten as basic strings and the whole check set re-run green",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-16T20-13-52-phase/planlint-2026-10-16-fast-failing-mutants.json",
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "(any)/contract.jointly-contradictory-instructions",
+   "n": 1,
+   "weight": 6,
+   "rate": "1/3",
+   "chunks": [
+    "2026-10-16-file-splits"
+   ],
+   "halt_or_soft_exit": true,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T17:49:24Z-b",
+     "chunk": "2026-10-16-file-splits",
+     "step": "wrap-session/reconcile",
+     "what": "the operator's resume directive to add a .gitignore line in this wrap and the 2a-resume rule that the new-text listing re-reads 'unchanged' (exit 3 → HALT) cannot both hold: any tracked edit outside the excluded set after P1 moves the listing; no mechanical check attempted it before the edit",
+     "impact": {
+      "dialogue_rounds": 1,
+      "halted": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-16T17-27-46-wrap/cites-2026-10-16-file-splits.json",
+     "artifacts": [
+      ".gitignore",
+      "cites.py added"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "(any)/tooling.result-not-run-stable",
+   "n": 1,
+   "weight": 6,
+   "rate": "1/3",
+   "chunks": [
+    "2026-10-16-file-splits"
+   ],
+   "halt_or_soft_exit": true,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T17:56:52Z-b",
+     "chunk": "2026-10-16-file-splits",
+     "step": "wrap-session/gates",
+     "what": "plan entry 13 (git diff --name-only base -- … | grep -c -v -x the three modified sources) read 0 at implement and 8 at the wrap over the same source: the operator pass's pre-CI commit tracked the eight new files, which git diff from the base then lists; its control was taken on an untouched tree, never after a commit",
+     "impact": {
+      "halted": 1,
+      "dialogue_rounds": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-16T17-27-46-wrap/light-gate.md",
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-16-file-splits/plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "(any)/input.plan-step-ambiguous",
+   "n": 1,
+   "weight": 2,
+   "rate": "1/4",
+   "chunks": [
+    "2026-10-16-file-splits"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T17:02:38Z-b",
+     "chunk": "2026-10-16-file-splits",
+     "step": "implement/code",
+     "what": "plan steps 3-5 said move items unchanged and allow only use lines naming moved items, but the parent's shrunken imports left doc links and test names unresolved; settled by path-qualified doc links and extra test use lines, one compile to find them",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-16-file-splits/plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "(any)/retry.synthesis-rework",
+   "n": 1,
+   "weight": 2,
+   "rate": "1/4",
+   "chunks": [
+    "2026-10-16-file-splits"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T16:08:21Z-b",
+     "chunk": "2026-10-16-file-splits",
+     "step": "phase/plan",
+     "what": "a span-identity gate entry was written with an expected sha256 prefix that no reading had produced; replaced before validation by two exact-text count entries (the two info_span! sites, last line 2)",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-16-file-splits/plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "(any)/ambiguity.tier-routing",
+   "n": 1,
+   "weight": 1,
+   "rate": "1/3",
+   "chunks": [
+    "2026-10-16-file-splits"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T17:50:57Z-b",
+     "chunk": "2026-10-16-file-splits",
+     "step": "wrap-session/curation",
+     "what": "the Rust move-import learning is a directive for src/ files, but no rule file's paths cover src/ (testing.md scopes tests/**), so the fallback demoted it to Tier 3",
+     "impact": {},
+     "evidence": null,
+     "artifacts": [
+      ".claude/docs/session-learnings.md",
+      ".claude/rules/testing.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "(any)/contract.cascade-miss",
+   "n": 1,
+   "weight": 1,
+   "rate": "1/3",
+   "chunks": [
+    "2026-10-16-file-splits"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T17:49:24Z-c",
+     "chunk": "2026-10-16-file-splits",
+     "step": "wrap-session/reconcile",
+     "what": "the leaf services/escher-driver.md:60 held escher-driver's 72; its comparer group (architecture-2) reads architecture alone, so the test-plan key file's 73 was outside its sources and the count was written by hand",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-16T17-27-46-wrap/cascade-dispositions.md",
+     "artifacts": [
+      ".claude/docs/services/escher-driver.md:60"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "(any)/contract.structural-blind-spot",
+   "n": 1,
+   "weight": 1,
+   "rate": "1/3",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-17T08:26:39Z-c",
+     "chunk": "2026-10-16-fast-failing-mutants",
+     "step": "wrap-session/reconcile",
+     "what": "cascade.py leaves groups services/escher-driver.md under architecture alone (its provenance), yet the leaf restates test-plan §1's per-crate unit count; a comparer told 'a statement no source states is not yours' cannot flag it, so the stale count reached only through the step-2 sweep's leaf row",
+     "impact": {
+      "extra_reads": 2
+     },
+     "evidence": ".andromeda/runs/2026-10-17T07-59-25-wrap/cascade-dispositions.md",
+     "artifacts": [
+      ".claude/docs/services/escher-driver.md:60"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "(any)/input.handoff-git-mismatch",
+   "n": 1,
+   "weight": 1,
+   "rate": "1/3",
+   "chunks": [
+    "None"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-16T14:06:35Z-b",
+     "chunk": null,
+     "step": "new-session/orientation",
+     "what": "handoff Branch (build/escher-0.1.0) and Position Next (version-end boundary, founder's call) disagree with git (build/escher-0.2.0, HEAD d236e9186 the 0.2.0 route) and the cursor (next: Handler splits and README); the audit and route commits after the wrap left the handoff unrewritten beyond its Session End Status line",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".claude/session-handoff.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "(any)/input.report-insufficient",
+   "n": 1,
+   "weight": 1,
+   "rate": "1/3",
+   "chunks": [
+    "2026-10-16-fast-failing-mutants"
+   ],
+   "halt_or_soft_exit": false,
+   "above_threshold": false,
+   "cases": [
+    {
+     "id": "2026-10-17T08:26:39Z-b",
+     "chunk": "2026-10-16-fast-failing-mutants",
+     "step": "wrap-session/reconcile",
+     "what": "the report's bridge-six pattern listed one standing site (architecture.md:254); test-plan.md:24 stated the same count as «six on the bridge», which the pattern's wording did not reach — the test-plan detector proposed it as a dependent",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-17T07-59-25-wrap/fanout-test-plan.md",
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/report.md",
+      ".andromeda/test-plan.md:24"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  }
+ ],
+ "step_runs": {
+  "new-session/orientation": 3,
+  "phase/take-up": 3,
+  "phase/distill": 3,
+  "phase/research": 4,
+  "phase/plan": 4,
+  "phase/validate": 4,
+  "implement/code": 4,
+  "implement/fix-loop": 4,
+  "implement/smoke": 3,
+  "wrap-session/report": 3,
+  "wrap-session/reconcile": 3,
+  "wrap-session/curation": 3,
+  "wrap-session/route-resolve": 3,
+  "wrap-session/gates": 3
+ }
+}

@@ -1,0 +1,52 @@
+{
+ "epoch": "escher-0.2.0 · Epoch 1 — Foundation",
+ "untyped_total": 8,
+ "f4_threshold": "n >= 3 in-epoch, or n >= 2 in-epoch also present in the previous epoch (escher-0.1.0 · Epoch 6)",
+ "clusters": [
+  {
+   "cluster": "U1 — a working directory or relative path resolved outside where the author meant",
+   "in_epoch": [
+    {"id": "2026-10-16T14:13:59Z-b", "chunk": "2026-10-16-handler-splits-and-readme", "step": "phase/distill"},
+    {"id": "2026-10-16T14:18:21Z-b", "chunk": "2026-10-16-handler-splits-and-readme", "step": "phase/research"}
+   ],
+   "previous_epoch": [
+    {"id": "2026-10-13T21:41:41Z-d", "chunk": "2026-10-13-range-input-interaction", "step": "wrap-session/reconcile"}
+   ],
+   "fact_side_recurrence": ["0.1.0 E5 2026-10-10-mcp-surface phase/distill removed-cause", "0.1.0 E6 2026-10-13-stand-contrast-harness phase/distill removed-cause", "0.1.0 E1 ×3 and E2 ×1 distill/research workarounds"],
+   "neighbouring_type": "tooling.host-shell (host shell semantics) — covers cwd persistence only partly, a ../ climb not at all",
+   "proposed_type": "tooling.path-anchor-drift",
+   "at_threshold": true
+  },
+  {
+   "cluster": "U2 — a third-party tool's output read on an assumed shape, or its reason hidden on stderr",
+   "in_epoch": [
+    {"id": "2026-10-16T19:21:10Z-b", "chunk": "2026-10-16-fast-failing-mutants", "step": "phase/research"},
+    {"id": "2026-10-16T19:21:10Z-c", "chunk": "2026-10-16-fast-failing-mutants", "step": "phase/research"}
+   ],
+   "previous_epoch": [],
+   "at_threshold": false
+  },
+  {
+   "cluster": "U3 — recurrence-despite-learning (pipeline tool output read through sed / piped into a filter)",
+   "in_epoch": [{"id": "2026-10-16T14:26:59Z-b", "chunk": "2026-10-16-handler-splits-and-readme", "step": "phase/validate"}],
+   "note": "an existing type fits (recall.corpus-recurrence) — a type-application miss, not an extension candidate; P1's untyped sibling",
+   "at_threshold": false
+  },
+  {
+   "cluster": "U4 — a must-fail control read green because its mutation matched nothing",
+   "in_epoch": [{"id": "2026-10-16T16:55:35Z-b", "chunk": "2026-10-16-file-splits", "step": "phase/validate"}],
+   "at_threshold": false
+  },
+  {
+   "cluster": "U5 — a scratch script imported by another ran its main at import",
+   "in_epoch": [{"id": "2026-10-16T17:49:24Z-d", "chunk": "2026-10-16-file-splits", "step": "wrap-session/reconcile"}],
+   "at_threshold": false
+  },
+  {
+   "cluster": "U6 — a skill template's form (output removed first) vs the host guard (no recursive rm)",
+   "in_epoch": [{"id": "2026-10-16T19:34:20Z-c", "chunk": "2026-10-16-fast-failing-mutants", "step": "phase/validate"}],
+   "note": "an existing universal fits (contract.skill-reference-drift); fact-side theme T3 in q-level.json",
+   "at_threshold": false
+  }
+ ]
+}

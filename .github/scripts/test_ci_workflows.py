@@ -324,7 +324,7 @@ class LegScriptTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             code, log = self.coverage_leg(tmp, 97)
             self.assertEqual(code, 0, log)
-            for word in ("llvm-cov", "--workspace", "--locked", "--lcov"):
+            for word in ("llvm-cov", "--workspace", "--locked", "--ignore-filename-regex", "--lcov"):
                 self.assertIn(word, log.split())
             self.assertIn("packages/escher-driver 97/100 = 97.00 % (floor 97 %)", log)
             self.assertIn("packages/dioxus-native-dom 83/100 = 83.00 % (floor 83 %)", log)

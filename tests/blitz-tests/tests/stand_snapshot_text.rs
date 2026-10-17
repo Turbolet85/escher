@@ -6,12 +6,12 @@
 //! the fixed mask and occur nowhere in the text. The text is content: this file binds it only
 //! to `text`-named variables, never formats one into a message and prints nothing.
 
+use ::keyboard_types::{Key, NamedKey};
 use blitz_test_harness::Harness;
 use dioxus::prelude::*;
 use dioxus_native_dom::{
     DioxusDocument, MASKED_VALUE, SNAPSHOT_TEXT_BUDGET, Snapshot, SnapshotNode,
 };
-use keyboard_types::Key;
 use seven_guis::stand::{self, LeanTask};
 
 mod common;
@@ -213,7 +213,7 @@ fn state_reads_as_the_model_holds_it() {
                 "{mode}: no line reads focused at boot"
             );
 
-            harness.press(Key::Tab);
+            harness.press(Key::Named(NamedKey::Tab));
             let text = harness.doc.snapshot().to_text();
             let focused = text
                 .lines()

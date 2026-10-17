@@ -38,9 +38,11 @@ run_leg() {
     audit) cargo deny --locked --workspace --all-features check advisories licenses ;;
     a11y) cargo test --workspace --locked --test accessibility_hidden --test accessibility_roles --test focusability_updates --test stand_keyboard --test stand_contrast --test stand_accessibility_ids ;;
     coverage)
+        # keyboard_compat.rs is upstream's temporary keyboard-types 0.7/0.8 bridge in dioxus-native-dom,
+        # excluded by filename until upstream retires it.
         mkdir -p target/coverage &&
-            cargo llvm-cov --workspace --locked --lcov --output-path target/coverage/lcov.info &&
-            cargo llvm-cov report --workspace --locked &&
+            cargo llvm-cov --workspace --locked --ignore-filename-regex 'keyboard_compat\.rs$' --lcov --output-path target/coverage/lcov.info &&
+            cargo llvm-cov report --workspace --locked --ignore-filename-regex 'keyboard_compat\.rs$' &&
             python3 "$SCRIPTS/coverage_floor.py" target/coverage/lcov.info packages/escher-driver=97 packages/dioxus-native-dom=83 packages/blitz-test-harness=90
         ;;
     stand-repeat)

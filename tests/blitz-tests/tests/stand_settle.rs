@@ -10,12 +10,12 @@
 
 use std::sync::{Arc, Mutex};
 
+use ::keyboard_types::{Key, NamedKey};
 use blitz_test_harness::{Busy, Harness, HarnessOptions, NotSettled, Settled};
 use blitz_traits::net::{Bytes, NetHandler, NetProvider, Request};
 use dioxus::prelude::*;
 use dioxus_native_dom::DioxusDocument;
 use escher_driver::{Session, SessionError};
-use keyboard_types::Key;
 use seven_guis::stand::{self, LeanTask};
 
 mod session_common;
@@ -113,7 +113,7 @@ fn a_settle_on_an_idle_instance_changes_nothing() {
                 "{mode}: no snapshot node reads focused after the settle"
             );
 
-            let tab = session.act(|harness| harness.press(Key::Tab));
+            let tab = session.act(|harness| harness.press(Key::Named(NamedKey::Tab)));
             assert!(tab.is_ok(), "{mode}: the Tab step");
             assert!(
                 focused(&session) == ["back-btn"],

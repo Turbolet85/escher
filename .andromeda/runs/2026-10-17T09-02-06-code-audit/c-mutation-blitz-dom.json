@@ -1,0 +1,37 @@
+{
+ "unit": "blitz-dom",
+ "state": "complete 135/135",
+ "complete": true,
+ "unit_states_line": "complete 135/135 (total_mutants 135 / len(mutants.json) 135)",
+ "counts": {
+  "mutants": 135,
+  "caught": 129,
+  "missed": 0,
+  "not_measured": 0,
+  "timeout": 0,
+  "unviable": 6
+ },
+ "score": 100.0,
+ "score_formula": "caught/(caught+missed)",
+ "survivors": [],
+ "not_measured": [],
+ "timeouts": [],
+ "host": "x86_64-unknown-linux-gnu",
+ "baseline_outcome": "skip (--baseline=skip); hand pass exit 0",
+ "timing": {
+  "scope": "files",
+  "files": [
+   "packages/blitz-dom/src/events/keyboard.rs",
+   "packages/blitz-dom/src/node/range.rs"
+  ],
+  "planned": 135,
+  "tested": 135,
+  "wall_s": 5191,
+  "jobs": 2,
+  "cap_s": 18248
+ },
+ "requested_files": [
+  "packages/blitz-dom/src/node/range.rs",
+  "packages/blitz-dom/src/events/keyboard.rs"
+ ]
+}

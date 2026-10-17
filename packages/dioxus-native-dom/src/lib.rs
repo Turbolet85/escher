@@ -17,6 +17,7 @@ mod actionable;
 mod dioxus_document;
 mod element_id;
 mod events;
+mod keyboard_compat;
 mod mutation_writer;
 #[cfg(feature = "accessibility")]
 mod snapshot;

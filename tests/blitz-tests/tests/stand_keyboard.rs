@@ -24,11 +24,11 @@
 //! A failure message carries a layout mode, a task and an index, never an id or what a screen
 //! reads.
 
+use ::keyboard_types::{Key, Modifiers, NamedKey};
 use blitz_dom::{QualName, ScrollBehavior, local_name, ns};
 use blitz_test_harness::Harness;
 use dioxus::prelude::*;
 use dioxus_native_dom::DioxusDocument;
-use keyboard_types::{Key, Modifiers};
 use seven_guis::stand::{self, LeanTask};
 
 mod common;
@@ -63,7 +63,7 @@ fn space() -> Key {
 
 /// The two activation keys, each with the name a failure message gives it.
 fn activation_keys() -> [(&'static str, Key); 2] {
-    [("Enter", Key::Enter), ("Space", space())]
+    [("Enter", Key::Named(NamedKey::Enter)), ("Space", space())]
 }
 
 /// The ids of the controls holding focus, read three ways that must agree: the stable id of the
@@ -94,7 +94,7 @@ fn tab_to(harness: &mut Harness<DioxusDocument>, task: LeanTask, id: &str, mode:
         .position(|stop| *stop == id)
         .unwrap_or_else(|| panic!("{mode}: {task:?}: the control is in the stated sequence"));
     for _ in 0..=position {
-        harness.press(Key::Tab);
+        harness.press(Key::Named(NamedKey::Tab));
     }
     assert!(
         holder(harness) == [id],
@@ -106,7 +106,7 @@ fn tab_to(harness: &mut Harness<DioxusDocument>, task: LeanTask, id: &str, mode:
 #[track_caller]
 fn tab_until(harness: &mut Harness<DioxusDocument>, id: &str, bound: usize, what: &str) {
     for _ in 0..bound {
-        harness.press(Key::Tab);
+        harness.press(Key::Named(NamedKey::Tab));
         if holder(harness) == [id] {
             return;
         }
@@ -131,14 +131,14 @@ fn tab_and_shift_tab_walk_the_stated_sequence_and_wrap() {
                 "{mode}: {task:?}: nothing is focused at boot"
             );
             for index in 0..=n {
-                harness.press(Key::Tab);
+                harness.press(Key::Named(NamedKey::Tab));
                 assert!(
                     holder(&harness) == [sequence[index % n]],
                     "{mode}: {task:?}: Tab {index}"
                 );
             }
             for index in 1..=n + 1 {
-                harness.press_with(Key::Tab, Modifiers::SHIFT);
+                harness.press_with(Key::Named(NamedKey::Tab), Modifiers::SHIFT);
                 assert!(
                     holder(&harness) == [sequence[(n - index % n) % n]],
                     "{mode}: {task:?}: Shift+Tab {index}"
@@ -212,8 +212,16 @@ fn enter_and_space_on_a_focused_button_read_as_its_click() {
 #[track_caller]
 fn enable_by_keyboard(harness: &mut Harness<DioxusDocument>, task: LeanTask, mode: &str) {
     let (stop, key, enabled): (&str, Key, &[&str]) = match task {
-        LeanTask::FlightBooker => ("flight-return", Key::Enter, &["flight-return-date"]),
-        LeanTask::Crud => ("crud-list", Key::ArrowDown, &["crud-update", "crud-delete"]),
+        LeanTask::FlightBooker => (
+            "flight-return",
+            Key::Named(NamedKey::Enter),
+            &["flight-return-date"],
+        ),
+        LeanTask::Crud => (
+            "crud-list",
+            Key::Named(NamedKey::ArrowDown),
+            &["crud-update", "crud-delete"],
+        ),
         _ => panic!("{mode}: {task:?}: no control of the task is disabled at boot"),
     };
     let snapshot = harness.doc.snapshot();
@@ -248,7 +256,7 @@ fn the_enabled_states_extend_the_walk_in_order() {
                 .position(|stop| holding == [*stop])
                 .unwrap_or_else(|| panic!("{mode}: {task:?}: focus is on a stated stop"));
             for index in 1..=n + 1 {
-                harness.press(Key::Tab);
+                harness.press(Key::Named(NamedKey::Tab));
                 at = (at + 1) % n;
                 assert!(
                     holder(&harness) == [sequence[at]],
@@ -256,7 +264,7 @@ fn the_enabled_states_extend_the_walk_in_order() {
                 );
             }
             for index in 1..=n + 1 {
-                harness.press_with(Key::Tab, Modifiers::SHIFT);
+                harness.press_with(Key::Named(NamedKey::Tab), Modifiers::SHIFT);
                 at = (at + n - 1) % n;
                 assert!(
                     holder(&harness) == [sequence[at]],
@@ -279,7 +287,7 @@ const ENABLED_BUTTONS: [(LeanTask, &str); 2] = [
 #[track_caller]
 fn crud_ready_at(harness: &mut Harness<DioxusDocument>, id: &str, mode: &str, index: usize) {
     enable_by_keyboard(harness, LeanTask::Crud, mode);
-    harness.press(Key::Tab);
+    harness.press(Key::Named(NamedKey::Tab));
     assert!(
         holder(harness) == ["crud-name"],
         "{mode}: Crud: row {index}: Tab reaches the name field"
@@ -364,7 +372,7 @@ fn keys_that_do_not_activate_type_or_change_nothing() {
             let mut entered = boot(task, incremental);
             tab_to(&mut entered, task, id, &mode);
             let (screen, held) = (text(&entered), editor_text(&entered, id));
-            entered.press(Key::Enter);
+            entered.press(Key::Named(NamedKey::Enter));
             assert!(
                 text(&entered) == screen && editor_text(&entered, id) == held,
                 "{mode}: {task:?}: row {index}: Enter changes nothing"
@@ -440,7 +448,7 @@ fn the_fixture_controls_take_the_keys_html_gives_them() {
                 checked(&harness, id) == Some(false),
                 "{mode}: the {what} is unchecked first"
             );
-            harness.press(Key::Enter);
+            harness.press(Key::Named(NamedKey::Enter));
             assert!(
                 checked(&harness, id) == Some(false),
                 "{mode}: Enter leaves the {what} unchecked"
@@ -463,7 +471,7 @@ fn the_fixture_controls_take_the_keys_html_gives_them() {
             harness.text_content("#fx-followed") == "0",
             "{mode}: Space does not follow the link"
         );
-        harness.press(Key::Enter);
+        harness.press(Key::Named(NamedKey::Enter));
         assert!(
             harness.text_content("#fx-followed") == "1",
             "{mode}: Enter follows the link"
@@ -481,7 +489,7 @@ fn the_fixture_controls_take_the_keys_html_gives_them() {
             open(&harness).is_none(),
             "{mode}: the details is closed first"
         );
-        harness.press(Key::Enter);
+        harness.press(Key::Named(NamedKey::Enter));
         assert!(open(&harness).is_some(), "{mode}: Enter opens the details");
         harness.press(space());
         assert!(open(&harness).is_none(), "{mode}: Space closes the details");
@@ -493,7 +501,7 @@ fn the_fixture_controls_take_the_keys_html_gives_them() {
             8,
             &format!("{mode}: the input button"),
         );
-        harness.press(Key::Enter);
+        harness.press(Key::Named(NamedKey::Enter));
         assert!(
             harness.text_content("#fx-pressed") == "1",
             "{mode}: Enter presses the input button"
@@ -557,7 +565,7 @@ fn a_button_that_is_itself_scrolled_takes_enter_as_its_own_click() {
             offset.is_some_and(|y| y != 0.0),
             "{mode}: the button is scrolled"
         );
-        harness.press(Key::Enter);
+        harness.press(Key::Named(NamedKey::Enter));
         assert!(
             harness.text_content("#fx-scrolled-count") == "1",
             "{mode}: Enter fires the scrolled button's own click"
@@ -585,7 +593,7 @@ fn a_click_focuses_a_stand_button_and_tab_continues_from_it() {
                 holder(&harness) == [id],
                 "{mode}: {task:?}: row {index}: the click focuses the button"
             );
-            harness.press(Key::Tab);
+            harness.press(Key::Named(NamedKey::Tab));
             assert!(
                 holder(&harness) == [sequence[(position + 1) % sequence.len()]],
                 "{mode}: {task:?}: row {index}: Tab continues from the button"
@@ -622,14 +630,14 @@ fn a_disabled_attribute_of_any_value_is_skipped() {
                 "{mode}: attribute {index} is written as stated"
             );
         }
-        harness.press(Key::Tab);
+        harness.press(Key::Named(NamedKey::Tab));
         assert!(holder(&harness) == ["fx-a"], "{mode}: the first Tab");
-        harness.press(Key::Tab);
+        harness.press(Key::Named(NamedKey::Tab));
         assert!(
             holder(&harness) == ["fx-e"],
             "{mode}: Tab skips every disabled element"
         );
-        harness.press_with(Key::Tab, Modifiers::SHIFT);
+        harness.press_with(Key::Named(NamedKey::Tab), Modifiers::SHIFT);
         assert!(
             holder(&harness) == ["fx-a"],
             "{mode}: Shift+Tab skips them back"
@@ -662,7 +670,7 @@ fn the_crud_list_takes_focus_and_its_keys_move_the_selection() {
 
         let mut crud = boot(LeanTask::Crud, incremental);
         for _ in 0..3 {
-            crud.press(Key::Tab);
+            crud.press(Key::Named(NamedKey::Tab));
         }
         assert!(
             holder(&crud) == ["crud-list"],
@@ -673,11 +681,11 @@ fn the_crud_list_takes_focus_and_its_keys_move_the_selection() {
             "{mode}: no row is selected first"
         );
         let steps = [
-            (Key::ArrowDown, 0),
-            (Key::ArrowDown, 1),
-            (Key::ArrowUp, 0),
-            (Key::End, 2),
-            (Key::Home, 0),
+            (Key::Named(NamedKey::ArrowDown), 0),
+            (Key::Named(NamedKey::ArrowDown), 1),
+            (Key::Named(NamedKey::ArrowUp), 0),
+            (Key::Named(NamedKey::End), 2),
+            (Key::Named(NamedKey::Home), 0),
         ];
         for (index, (key, row)) in steps.into_iter().enumerate() {
             crud.press(key);
@@ -742,12 +750,12 @@ fn the_engine_honours_no_inert() {
                 && harness.attr("#fx-inert-off", "inert").is_none(),
             "{mode}: a truthy inert is written and a falsy one is not"
         );
-        harness.press(Key::Tab);
+        harness.press(Key::Named(NamedKey::Tab));
         assert!(
             holder(&harness) == ["fx-under-inert"],
             "{mode}: Tab reaches the button under a truthy inert"
         );
-        harness.press(Key::Tab);
+        harness.press(Key::Named(NamedKey::Tab));
         assert!(
             holder(&harness) == ["fx-under-falsy"],
             "{mode}: Tab reaches the button under a falsy inert"

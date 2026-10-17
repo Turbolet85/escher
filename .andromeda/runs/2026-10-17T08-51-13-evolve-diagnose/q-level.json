@@ -1,0 +1,112 @@
+{
+ "epoch": "escher-0.2.0 · Epoch 1 — Foundation",
+ "threshold_reading": "F-2 for a theme: n >= 3 in-epoch, or n >= 2 in-epoch with the theme also present in a prior epoch (read-only lookback); n = 1 in-epoch stays below threshold however often it recurred earlier",
+ "pass_a_note_themes": [
+  {
+   "theme": "T1 — cascade.py's leaf-group source map does not match what a leaf restates (over-lists on a digit re-point, under-lists a key file's count)",
+   "nature": "process",
+   "solution": "workaround",
+   "in_epoch": [
+    {"id": "2026-10-16T15:11:14Z-a", "idx": 0, "chunk": "2026-10-16-handler-splits-and-readme", "step": "wrap-session/reconcile"},
+    {"id": "2026-10-17T08:26:39Z-a", "idx": 0, "chunk": "2026-10-16-fast-failing-mutants", "step": "wrap-session/reconcile"}
+   ],
+   "typed_correlates": [
+    {"id": "2026-10-16T17:49:24Z-c", "type": "contract.cascade-miss", "chunk": "2026-10-16-file-splits", "site": ".claude/docs/services/escher-driver.md:60"},
+    {"id": "2026-10-17T08:26:39Z-c", "type": "contract.structural-blind-spot", "chunk": "2026-10-16-fast-failing-mutants", "site": ".claude/docs/services/escher-driver.md:60"}
+   ],
+   "prior_epochs": [
+    {"epoch": "escher-0.1.0 · Epoch 5 — Agent surfaces", "chunk": "2026-10-12-self-description", "step": "wrap-session/reconcile", "note": "comparer prompts' {source_paths} named each plan's key files though cascade.py leaves --all printed the master alone as the group's source"}
+   ],
+   "project_absorption": "fast-failing-mutants curation wrote one Tier 3 entry on the leaf-comparer blind spot (exact-hit:1)",
+   "at_threshold": true,
+   "signature": "band-aid"
+  },
+  {
+   "theme": "T2 — tool-output discipline (a pipeline tool's stdout sent to /dev/null against the tools rule)",
+   "nature": "process", "solution": "workaround",
+   "in_epoch": [{"id": "2026-10-16T17:49:24Z-a", "idx": 1, "chunk": "2026-10-16-file-splits", "step": "wrap-session/reconcile"}],
+   "note": "the fact-side companion of P1's recurrence records; n=1 as a fact",
+   "at_threshold": false
+  },
+  {
+   "theme": "T3 — freshness by removal (rm -rf of an output dir) refused by the host's bash-guard / permission layer",
+   "nature": "environment", "solution": "workaround",
+   "in_epoch": [{"id": "2026-10-16T19:34:20Z-a", "idx": 0, "chunk": "2026-10-16-fast-failing-mutants", "step": "phase/validate"}],
+   "untyped_sibling": "2026-10-16T19:34:20Z-c (plan-template's 'output removed first' vs the guard)",
+   "prior_epochs": [
+    {"epoch": "escher-0.1.0 · Epoch 2", "chunk": "2026-10-06-upstream-sync-element-identity", "step": "phase/research"},
+    {"epoch": "escher-0.1.0 · Epoch 4", "chunk": "2026-10-07-audit-corrections", "step": "phase/validate", "solution": "overridden"},
+    {"epoch": "escher-0.1.0 · Epoch 4", "chunk": "2026-10-07-driver-session", "step": "implement/code"}
+   ],
+   "at_threshold": false,
+   "reason": "n=1 in-epoch; recurring"
+  },
+  {
+   "theme": "T4 — the two-window wrap's resume skipped Setup step 7's background code-graph refresh",
+   "nature": "process", "solution": "workaround",
+   "in_epoch": [{"id": "2026-10-17T08:34:47Z-a", "idx": 0, "chunk": "2026-10-16-fast-failing-mutants", "step": "wrap-session/gates"}],
+   "prior_epochs": [
+    {"epoch": "escher-0.1.0 · Epoch 4", "chunk": "2026-10-07-driver-command-spans", "solution": "overridden"},
+    {"epoch": "escher-0.1.0 · Epoch 5", "chunk": "2026-10-09-audit-corrections-agent-surfaces", "solution": "deferred"},
+    {"epoch": "escher-0.1.0 · Epoch 5", "chunk": "2026-10-10-scrolling-box-bounds-and-hit", "solution": "workaround"}
+   ],
+   "at_threshold": false,
+   "reason": "n=1 in-epoch; recurring across three prior chunks"
+  },
+  {
+   "theme": "T5 — rustc unused_imports on items used only by intra-doc links after a module split",
+   "nature": "product-logic", "solution": "workaround",
+   "in_epoch": [
+    {"id": "2026-10-16T17:02:38Z-a", "idx": 0, "chunk": "2026-10-16-file-splits", "step": "implement/code"},
+    {"id": "2026-10-16T17:02:38Z-a", "idx": 1, "chunk": "2026-10-16-file-splits", "step": "implement/code"}
+   ],
+   "at_threshold": false,
+   "reason": "two facts of one record in one chunk, nature product-logic (not a band-aid nature); curated as a Tier 3 learning (file-splits curation exact-hit:2)"
+  },
+  {
+   "theme": "T6 — tokei panic over a scratch dir",
+   "nature": "environment", "solution": "workaround",
+   "in_epoch": [{"id": "2026-10-16T16:03:19Z-a", "idx": 0, "chunk": "2026-10-16-file-splits", "step": "phase/research"}],
+   "at_threshold": false
+  }
+ ],
+ "removed_cause_themes": [],
+ "pass_b_signatures": {
+  "band_aid": ["T1"],
+  "chronic_degrade": {
+   "hits": [],
+   "observed": "tooling.result-not-run-stable recurs across epochs (0.1.0 E1 llvm-cov counts, 0.1.0 E6, 0.2.0 E1 git-diff probe) but its in-epoch occurrence halted (halted:1) and the specifics differ — not the never-halting form; no ok-degraded outcome in the epoch"
+  },
+  "deferred_forever": {
+   "hits": [],
+   "observed": "no deferred fact and no deferral-open signal in the epoch; the file-splits route-resolve note's operator-deferred .gitignore line closed in fast-failing-mutants (report fact 2026-10-17T08:05:45Z-a)"
+  },
+  "override": [
+   {
+    "rule": "a wrap holds its chunk's tree from P1 (cites.py added — the new-text listing re-reads unchanged at a 2a resume) vs an operator-directed tracked edit during the wrap",
+    "facts": [
+     {"id": "2026-10-16T17:49:24Z-a", "idx": 0, "chunk": "2026-10-16-file-splits", "step": "wrap-session/reconcile"},
+     {"id": "2026-10-17T08:05:45Z-a", "idx": 0, "chunk": "2026-10-16-fast-failing-mutants", "step": "wrap-session/report"}
+    ],
+    "halt_correlate": {"id": "2026-10-16T17:49:24Z-b", "type": "contract.jointly-contradictory-instructions", "impact": {"halted": 1, "dialogue_rounds": 1}},
+    "prior_epochs": [
+     {"epoch": "escher-0.1.0 · Epoch 5", "chunk": "2026-10-10-driver-cli", "step": "wrap-session/reconcile", "note": "the resumed report gained two lines although a 2a resume reuses the report as is"}
+    ],
+    "at_threshold": true
+   },
+   {
+    "rule": "light gate red-means-no-commit vs a red on the probe's form, not the work",
+    "facts": [{"id": "2026-10-16T17:56:52Z-a", "idx": 0, "chunk": "2026-10-16-file-splits", "step": "wrap-session/gates"}],
+    "prior_epochs": [{"epoch": "escher-0.1.0 · Epoch 2", "chunk": "2026-10-06-project-readme", "step": "wrap-session/gates"}],
+    "at_threshold": false,
+    "reason": "n=1 in-epoch"
+   },
+   {
+    "rule": "fix-loop red on an instrument the plan never exercised in its run form → operator chose a phase revision",
+    "facts": [{"id": "2026-10-16T20:11:30Z-a", "idx": 0, "chunk": "2026-10-16-fast-failing-mutants", "step": "implement/fix-loop"}],
+    "at_threshold": false,
+    "reason": "n=1 in-epoch"
+   }
+  ]
+ }
+}

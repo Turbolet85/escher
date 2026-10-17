@@ -17,7 +17,7 @@ use accesskit::{NodeId as TreeNodeId, Role, TreeUpdate};
 use blitz_dom::Document;
 use blitz_test_harness::Harness;
 use dioxus_native_dom::DioxusDocument;
-use keyboard_types::Key;
+use keyboard_types::{Key, NamedKey};
 use seven_guis::stand::LeanTask;
 
 mod common;
@@ -373,7 +373,7 @@ fn a_focus_move_and_a_rewritten_name_reach_the_tree_the_shell_builds() {
                 !counter.base().has_changes(),
                 "{mode}, Counter, Tab {index}: the drained set is empty"
             );
-            counter.press(Key::Tab);
+            counter.press(Key::Named(NamedKey::Tab));
             assert!(
                 counter.base().has_changes(),
                 "{mode}, Counter, Tab {index}: the focus move marks the changed set"
@@ -396,7 +396,7 @@ fn a_focus_move_and_a_rewritten_name_reach_the_tree_the_shell_builds() {
             !counter.base().has_changes(),
             "{mode}, Counter: the drained set is empty before Enter"
         );
-        counter.press(Key::Enter);
+        counter.press(Key::Named(NamedKey::Enter));
         assert!(
             counter.base().has_changes(),
             "{mode}, Counter: the rewritten count marks the changed set"

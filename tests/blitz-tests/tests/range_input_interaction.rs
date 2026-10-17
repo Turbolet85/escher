@@ -12,7 +12,9 @@
 
 use blitz_dom::{LocalName, NodeId, QualName, ns};
 use blitz_html::HtmlDocument;
-use blitz_test_harness::{Harness, HarnessOptions, Key, Modifiers, key_event, mouse_pointer_event};
+use blitz_test_harness::{
+    Harness, HarnessOptions, Key, Modifiers, NamedKey, key_event, mouse_pointer_event,
+};
 use blitz_traits::events::{KeyState, UiEvent};
 
 const STEP_TWO: &str = r#"min="0" max="10" step="2" value="4""#;
@@ -103,13 +105,13 @@ fn along(harness: &Harness<HtmlDocument>, range: NodeId, fraction: f32) -> (f32,
 /// Keys pressed in order on the step-two input, focused: the value each reads and the `input`
 /// events each fires.
 const KEYS: [(Key, &str, usize); 7] = [
-    (Key::ArrowRight, "6", 1),
-    (Key::ArrowUp, "8", 1),
-    (Key::ArrowLeft, "6", 1),
-    (Key::ArrowDown, "4", 1),
-    (Key::End, "10", 1),
-    (Key::Home, "0", 1),
-    (Key::Home, "0", 0),
+    (Key::Named(NamedKey::ArrowRight), "6", 1),
+    (Key::Named(NamedKey::ArrowUp), "8", 1),
+    (Key::Named(NamedKey::ArrowLeft), "6", 1),
+    (Key::Named(NamedKey::ArrowDown), "4", 1),
+    (Key::Named(NamedKey::End), "10", 1),
+    (Key::Named(NamedKey::Home), "0", 1),
+    (Key::Named(NamedKey::Home), "0", 0),
 ];
 
 #[test]
@@ -196,7 +198,7 @@ fn degenerate_attributes_keep_the_value_finite_bounded_and_on_the_grid() {
         for (row, (attributes, (min, max, step, base))) in DEGENERATE.into_iter().enumerate() {
             let (mut harness, range) = open(attributes, incremental);
             focus(&mut harness, range);
-            press(&mut harness, Key::ArrowRight);
+            press(&mut harness, Key::Named(NamedKey::ArrowRight));
             let (x, y) = along(&harness, range, 0.5);
             click(&mut harness, x, y);
 
@@ -225,7 +227,7 @@ fn a_decimal_step_reads_its_decimals() {
         let (mut harness, range) = open(r#"min="0" max="1" step="0.1" value="0""#, incremental);
         focus(&mut harness, range);
         for _ in 0..3 {
-            press(&mut harness, Key::ArrowRight);
+            press(&mut harness, Key::Named(NamedKey::ArrowRight));
         }
         assert_eq!(
             value(&harness, range).as_deref(),
@@ -240,7 +242,7 @@ fn a_disabled_range_input_takes_neither_keys_nor_a_click() {
     for incremental in [false, true] {
         let (mut harness, range) = open(&format!("{STEP_TWO} disabled"), incremental);
         focus(&mut harness, range);
-        let keyed = press(&mut harness, Key::ArrowRight);
+        let keyed = press(&mut harness, Key::Named(NamedKey::ArrowRight));
         assert_eq!(keyed, 0, "incremental {incremental}");
         assert_eq!(
             value(&harness, range).as_deref(),
@@ -268,7 +270,7 @@ fn attribute_writes_reseed_and_resanitize_the_value() {
     for incremental in [false, true] {
         let (mut harness, range) = open(STEP_TWO, incremental);
         focus(&mut harness, range);
-        press(&mut harness, Key::ArrowRight);
+        press(&mut harness, Key::Named(NamedKey::ArrowRight));
         assert_eq!(
             value(&harness, range).as_deref(),
             Some("6"),
@@ -304,8 +306,8 @@ fn attribute_removals_reseed_and_resanitize_the_value() {
     for incremental in [false, true] {
         let (mut harness, range) = open(r#"min="1" max="9" step="1.5" value="4""#, incremental);
         focus(&mut harness, range);
-        press(&mut harness, Key::ArrowRight);
-        press(&mut harness, Key::ArrowRight);
+        press(&mut harness, Key::Named(NamedKey::ArrowRight));
+        press(&mut harness, Key::Named(NamedKey::ArrowRight));
         assert_eq!(
             value(&harness, range).as_deref(),
             Some("7"),
@@ -339,7 +341,7 @@ fn attribute_removals_reseed_and_resanitize_the_value() {
             .mutate()
             .clear_attribute(range, attribute("min"));
         harness.pump();
-        press(&mut harness, Key::Home);
+        press(&mut harness, Key::Named(NamedKey::Home));
         assert_eq!(
             value(&harness, range).as_deref(),
             Some("0"),
@@ -351,7 +353,7 @@ fn attribute_removals_reseed_and_resanitize_the_value() {
             .mutate()
             .clear_attribute(range, attribute("max"));
         harness.pump();
-        press(&mut harness, Key::End);
+        press(&mut harness, Key::Named(NamedKey::End));
         assert_eq!(
             value(&harness, range).as_deref(),
             Some("100"),
@@ -365,7 +367,7 @@ fn a_type_change_clears_the_range_data_and_a_change_back_reseeds_it() {
     for incremental in [false, true] {
         let (mut harness, range) = open(STEP_TWO, incremental);
         focus(&mut harness, range);
-        press(&mut harness, Key::ArrowRight);
+        press(&mut harness, Key::Named(NamedKey::ArrowRight));
         assert_eq!(
             value(&harness, range).as_deref(),
             Some("6"),

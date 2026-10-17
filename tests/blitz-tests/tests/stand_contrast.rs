@@ -15,7 +15,7 @@
 
 use blitz_test_harness::{Harness, PixelRect, TextContrast};
 use dioxus_native_dom::DioxusDocument;
-use keyboard_types::Key;
+use keyboard_types::{Key, NamedKey};
 use seven_guis::stand::LeanTask;
 
 mod common;
@@ -446,9 +446,9 @@ fn reach(harness: &mut Harness<DioxusDocument>, reach: Reach, id: &str, at: &str
         }
         Reach::RowSelected => {
             for _ in 0..3 {
-                harness.press(Key::Tab);
+                harness.press(Key::Named(NamedKey::Tab));
             }
-            harness.press(Key::ArrowDown);
+            harness.press(Key::Named(NamedKey::ArrowDown));
             let snapshot = harness.doc.snapshot();
             assert!(
                 common::node(&snapshot, "crud-person-0").state.selected == Some(true),

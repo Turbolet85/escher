@@ -33,3 +33,6 @@
 ## Deferred learnings
 - recurrence-despite-learning: host-linux «Processes». Both implement runs' census grep over `ps` args counted its own probing shell (read on the `comm` column).
 - 1 carried from earlier handoffs, not this session's to curate: read a CI job's verdict with `ci.py`, not a log pattern (confidence 0.7).
+
+## Session End Status
+Completed normally at 2026-10-17 16:33:59

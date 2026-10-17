@@ -1,0 +1,35 @@
+{
+ "unit": "seven_guis",
+ "state": "complete 19/19",
+ "complete": true,
+ "unit_states_line": "complete 19/19 (total_mutants 19 / len(mutants.json) 19)",
+ "counts": {
+  "mutants": 19,
+  "caught": 18,
+  "missed": 0,
+  "not_measured": 0,
+  "timeout": 0,
+  "unviable": 1
+ },
+ "score": 100.0,
+ "score_formula": "caught/(caught+missed)",
+ "survivors": [],
+ "not_measured": [],
+ "timeouts": [],
+ "host": "x86_64-unknown-linux-gnu",
+ "baseline_outcome": "skip (--baseline=skip); hand pass exit 0",
+ "timing": {
+  "scope": "files",
+  "files": [
+   "examples/seven_guis/src/tasks/timer.rs"
+  ],
+  "planned": 19,
+  "tested": 19,
+  "wall_s": 734,
+  "jobs": 2,
+  "cap_s": 2308
+ },
+ "requested_files": [
+  "examples/seven_guis/src/tasks/timer.rs"
+ ]
+}

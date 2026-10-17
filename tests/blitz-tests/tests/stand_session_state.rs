@@ -5,7 +5,7 @@
 
 use blitz_dom::Document;
 use escher_driver::Session;
-use keyboard_types::Key;
+use keyboard_types::{Key, NamedKey};
 use seven_guis::stand::{self, LeanTask};
 
 mod common;
@@ -114,7 +114,7 @@ fn focus_left_by_one_command_is_read_by_the_next() {
             "{mode}: Crud: nothing reads focused on a started session"
         );
 
-        crud.harness_mut().press(Key::Tab);
+        crud.harness_mut().press(Key::Named(NamedKey::Tab));
         crud.harness_mut().pump();
 
         let (in_snapshot, in_tree) = focused(&crud);

@@ -1,0 +1,47 @@
+{
+ "unit": "escher-driver",
+ "state": "complete 102/102",
+ "complete": true,
+ "unit_states_line": "complete 102/102 (total_mutants 102 / len(mutants.json) 102)",
+ "counts": {
+  "mutants": 102,
+  "caught": 84,
+  "missed": 0,
+  "not_measured": 0,
+  "timeout": 0,
+  "unviable": 18
+ },
+ "score": 100.0,
+ "score_formula": "caught/(caught+missed)",
+ "survivors": [],
+ "not_measured": [],
+ "timeouts": [],
+ "host": "x86_64-unknown-linux-gnu",
+ "baseline_outcome": "skip (--baseline=skip); hand pass exit 0",
+ "timing": {
+  "scope": "files",
+  "files": [
+   "packages/escher-driver/src/mcp.rs",
+   "packages/escher-driver/src/mcp/framing.rs",
+   "packages/escher-driver/src/mcp/listing.rs",
+   "packages/escher-driver/src/mcp/result.rs",
+   "packages/escher-driver/src/schema.rs",
+   "packages/escher-driver/src/schema/spec.rs"
+  ],
+  "planned": 102,
+  "tested": 102,
+  "wall_s": 3751,
+  "jobs": 2,
+  "cap_s": 11905
+ },
+ "requested_files": [
+  "packages/escher-driver/src/mcp.rs",
+  "packages/escher-driver/src/mcp/framing.rs",
+  "packages/escher-driver/src/mcp/listing.rs",
+  "packages/escher-driver/src/mcp/result.rs",
+  "packages/escher-driver/src/mcp_tests.rs",
+  "packages/escher-driver/src/schema.rs",
+  "packages/escher-driver/src/schema/spec.rs",
+  "packages/escher-driver/src/schema_tests.rs"
+ ]
+}

@@ -9,7 +9,7 @@ use blitz_traits::{
     SmolStr,
     events::{BlitzInputEvent, BlitzKeyEvent, DomEvent, DomEventData},
 };
-use keyboard_types::{Key, Modifiers};
+use keyboard_types::{Key, Modifiers, NamedKey};
 use markup5ever::local_name;
 
 pub(super) enum KeyboardOrTextInputEvent {
@@ -24,7 +24,7 @@ pub(crate) fn handle_key_or_input_event<F: FnMut(DomEvent)>(
     mut dispatch_event: F,
 ) {
     if let KeyboardOrTextInputEvent::KeyPress(event) = &event {
-        if event.key == Key::Tab {
+        if event.key == Key::Named(NamedKey::Tab) {
             let backwards = event.modifiers.contains(Modifiers::SHIFT);
             let old_focus = doc.focus_node_id;
             generate_focus_events(
@@ -108,7 +108,7 @@ pub(crate) fn handle_key_or_input_event<F: FnMut(DomEvent)>(
             press_range_input_key(doc, node_id, &key_event.key, &mut dispatch_event);
         } else if let KeyboardOrTextInputEvent::KeyPress(key_event) = &event
             && key_event.state.is_pressed()
-            && key_event.key == Key::Enter
+            && key_event.key == Key::Named(NamedKey::Enter)
             && activates_on_enter(element_data)
         {
             dispatch_activation_click(doc, node_id, key_event.modifiers, &mut dispatch_event);
@@ -148,10 +148,10 @@ fn press_range_input_key(
     dispatch_event: &mut dyn FnMut(DomEvent),
 ) {
     let to = match key {
-        Key::ArrowRight | Key::ArrowUp => RangeMove::StepUp,
-        Key::ArrowLeft | Key::ArrowDown => RangeMove::StepDown,
-        Key::Home => RangeMove::Minimum,
-        Key::End => RangeMove::Maximum,
+        Key::Named(NamedKey::ArrowRight) | Key::Named(NamedKey::ArrowUp) => RangeMove::StepUp,
+        Key::Named(NamedKey::ArrowLeft) | Key::Named(NamedKey::ArrowDown) => RangeMove::StepDown,
+        Key::Named(NamedKey::Home) => RangeMove::Minimum,
+        Key::Named(NamedKey::End) => RangeMove::Maximum,
         _ => return,
     };
     doc.apply_range_move(node_id, to, dispatch_event);

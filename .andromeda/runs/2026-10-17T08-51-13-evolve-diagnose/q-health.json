@@ -1,0 +1,167 @@
+{
+ "records": 71,
+ "step": 47,
+ "friction": 24,
+ "unparseable_whole_ledger": 0,
+ "malformed_ts_in_epoch": [],
+ "coverage": {
+  "None": {
+   "counts": {
+    "new-session": 3
+   },
+   "steps": [
+    "new-session/orientation",
+    "new-session/orientation",
+    "new-session/orientation"
+   ],
+   "gaps": {}
+  },
+  "2026-10-16-handler-splits-and-readme": {
+   "counts": {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   "steps": [
+    "phase/take-up",
+    "phase/distill",
+    "phase/research",
+    "phase/plan",
+    "phase/validate",
+    "implement/code",
+    "implement/fix-loop",
+    "implement/smoke",
+    "wrap-session/report",
+    "wrap-session/reconcile",
+    "wrap-session/curation",
+    "wrap-session/route-resolve",
+    "wrap-session/gates"
+   ],
+   "gaps": {}
+  },
+  "2026-10-16-file-splits": {
+   "counts": {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   "steps": [
+    "phase/take-up",
+    "phase/distill",
+    "phase/research",
+    "phase/plan",
+    "phase/validate",
+    "implement/code",
+    "implement/fix-loop",
+    "implement/smoke",
+    "wrap-session/report",
+    "wrap-session/reconcile",
+    "wrap-session/curation",
+    "wrap-session/route-resolve",
+    "wrap-session/gates"
+   ],
+   "gaps": {}
+  },
+  "2026-10-16-fast-failing-mutants": {
+   "counts": {
+    "phase": 8,
+    "implement": 5,
+    "wrap-session": 5
+   },
+   "steps": [
+    "phase/take-up",
+    "phase/distill",
+    "phase/research",
+    "phase/plan",
+    "phase/validate",
+    "implement/code",
+    "implement/fix-loop",
+    "phase/research",
+    "phase/plan",
+    "phase/validate",
+    "implement/code",
+    "implement/fix-loop",
+    "implement/smoke",
+    "wrap-session/report",
+    "wrap-session/reconcile",
+    "wrap-session/curation",
+    "wrap-session/route-resolve",
+    "wrap-session/gates"
+   ],
+   "gaps": {}
+  }
+ },
+ "untyped_by_step": {
+  "new-session/orientation": {
+   "untyped": 0,
+   "of": 1
+  },
+  "phase/distill": {
+   "untyped": 1,
+   "of": 1
+  },
+  "phase/research": {
+   "untyped": 3,
+   "of": 4
+  },
+  "phase/validate": {
+   "untyped": 3,
+   "of": 5
+  },
+  "wrap-session/gates": {
+   "untyped": 0,
+   "of": 2
+  },
+  "phase/plan": {
+   "untyped": 0,
+   "of": 1
+  },
+  "implement/code": {
+   "untyped": 0,
+   "of": 1
+  },
+  "wrap-session/reconcile": {
+   "untyped": 1,
+   "of": 5
+  },
+  "wrap-session/curation": {
+   "untyped": 0,
+   "of": 3
+  },
+  "implement/fix-loop": {
+   "untyped": 0,
+   "of": 1
+  }
+ },
+ "problem_fact_fill": [
+  10,
+  47
+ ],
+ "id_fill": [
+  71,
+  71
+ ],
+ "signal_line": "guard-refused 11 over 47 step records · exact-hit 3 over 3 curation records",
+ "signal_odd": [],
+ "outcomes": {
+  "new-session/orientation=ok": 3,
+  "phase/take-up=ok": 3,
+  "phase/distill=ok": 3,
+  "phase/research=ok": 4,
+  "phase/plan=ok": 4,
+  "phase/validate=ok": 4,
+  "implement/code=ok": 4,
+  "implement/fix-loop=ok": 3,
+  "implement/smoke=ok": 3,
+  "wrap-session/report=ok": 3,
+  "wrap-session/reconcile=ok": 3,
+  "wrap-session/curation=ok": 3,
+  "wrap-session/route-resolve=ok": 3,
+  "wrap-session/gates=ok": 2,
+  "wrap-session/gates=halted-resolved": 1,
+  "implement/fix-loop=halted-resolved": 1
+ },
+ "retracted_in_ledger": 0,
+ "unresolvable": 1,
+ "clause_retracted": 2
+}

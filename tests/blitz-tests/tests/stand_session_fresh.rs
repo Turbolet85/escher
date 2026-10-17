@@ -5,7 +5,7 @@
 //! file binds it only to `text`-named variables and never formats one into a message.
 
 use escher_driver::Session;
-use keyboard_types::Key;
+use keyboard_types::{Key, NamedKey};
 use seven_guis::stand::{COLOR_SCHEME, HIDPI_SCALE, LeanTask, VIEWPORT_HEIGHT, VIEWPORT_WIDTH};
 
 mod common;
@@ -94,7 +94,7 @@ fn the_mount_and_the_viewport_hold_after_commands() {
             let screen = session.harness().doc.snapshot();
 
             change(task, &mut session, &ticks);
-            session.harness_mut().press(Key::Tab);
+            session.harness_mut().press(Key::Named(NamedKey::Tab));
             change(task, &mut session, &ticks);
 
             assert!(

@@ -15,7 +15,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
 [2026-10-16-fast-failing-mutants] Fast-failing mutants — the six timeout-only mutants each fail a test fast; mutation score held at 0 survivors (v020-02)
 
 ### Epoch 2 — Engine debts
-Upstream sync ahead of engine debts — upstream/main merged, changes mostly additive; CI and audit green, per-OS tallies re-read, sink allowlist re-checked
+[2026-10-17-upstream-sync-engine-debts] Upstream sync ahead of engine debts — upstream/main merged, changes mostly additive; CI and audit green, per-OS tallies re-read, sink allowlist re-checked
    ↓
 Engine debts — nine recorded engine deferrals, each the founder's fork: fixed and proven on stand or fixture, pinned as a limit, or kept (v020-03)
 
