@@ -841,3 +841,41 @@ The re-seed is the first answer's stated cost, so a Dioxus re-render keeps contr
 - §Existing Scopes, dioxus-native-dom: was «six unit tests of the bridge»; now seven, the seventh a created text node's mapping and stack read.
 **Why:** this chunk's own additions; `NEXTEST_PROFILE` takes no §Occupied Resources line, which registers what workspace source and CI scripts read.
 **Ref:** .andromeda/runs/2026-10-17T07-59-25-wrap/
+
+## 2026-10-17-upstream-sync-engine-debts — the sync at `23b9b26a9`: pin, workspace version, keyboard-types 0.8, test-that 0.6.0
+**Section:** §Project Intent (Upstream sync) · §Stack and Technologies (Workspace package · Windowing and input · Parallelism and misc) · §Inherited Defaults (Framework)
+**Change:**
+- Upstream sync: was «last merged at `434e0661` (merge `a6c24d24`, 2026-10-13)»; now last merged at `23b9b26a9` (merge commit `3eda07bc`, parents `143b6013` · `23b9b26a9`, 2026-10-17), the next sync's merge base — upstream read at `1e5479ae`, 14 commits past `434e0661`, the pin taking 10; the four Taffy-main commits past it wait for the next sync (`6032d0b9d` inside it reverted by upstream's own `85340347f`), so Taffy stays the registry "0.15".
+- Workspace package and the engine crates' pins: was `0.3.0-beta.3`; now `0.3.0-beta.4`, the nine in-repo `=` pins with it.
+- keyboard-types: was "0.7"; now "0.8" (lock 0.8.3), while Dioxus 0.7.3 carries its own 0.7, so two versions stand in the graph and a module that glob-imports `dioxus::prelude::*` names the workspace's crate as `::keyboard_types`.
+- test-that: was "0.5.2"; now "0.6.0", reviewed by hand at the bump.
+**Why:** the upstream sync's merge of `23b9b26a9` at the pin the operator chose at its P4 fork; dated readings at `434e0661` elsewhere in the body stand as dated.
+**Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/
+
+## 2026-10-17-upstream-sync-engine-debts — the bump crate leaves the workspace
+**Section:** §Stack and Technologies (Language / runtime · Release tooling) · §Established Decisions ([Release versioning]) · §Standard Contracts (CLIs) · §Occupied Resources (Names) · §Infrastructure Patterns (Directory structure · Deployment model) · §Project Intent (Apps and demonstrators · Growth model) · §Inherited Defaults (Publishability) · §Existing Scopes
+**Change:**
+- The Release tooling row (bump: toml_edit 0.22, semver 1) and the Existing Scopes `bump` row are gone; `bump` leaves the edition-2024 list, the Names row, the directory tree's `apps/` line, the CLIs line (its target-and-semver arguments), the Deployment model (its toml_edit version rewrite) and Apps and demonstrators.
+- [Release versioning], the Growth model and Publishability: was «bump versions blitz packages together and anyrender packages together» / «versioned together for release by bump»; now blitz packages are versioned together through the one workspace version and the in-repo `=` pins, with no in-repo release tool since upstream deleted the bump crate. The prepatch rule stands.
+**Why:** upstream's `23b9b26a9` "Delete the bump crate", taken by the sync; `toml_datetime`, `toml_edit` and `toml_write` left the lock with it, and no port, listener, env read or member was added.
+**Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/
+
+## 2026-10-17-upstream-sync-engine-debts — the builder's merged ARIA reads; descriptions on the adapter crossing
+**Section:** §Standard Contracts (Mutation, query and CSSOM · Dioxus DOM bridge)
+**Change:**
+- Mutation, query and CSSOM: was «naming a node from three sources»; now four — `aria-labelledby` after the `<label>` → input loop clears `labelled_by`, pushes the referenced built nodes (an id naming no element ignored) and sets their text as the computed `label`, outranking a `<label>` and an `aria-label` (accname 2B), the `aria-label` the fallback when the targets hold no text. The builder also reads `aria-describedby` (`described_by`), `aria-description` (AccessKit's description), `aria-expanded`, `aria-disabled` (`true` → disabled) and `aria-level` (tag and role defaults), then `set_html_tag` last; upstream's own `aria-selected` (`parse::<bool>`) and unfiltered `aria-label` reads were dropped, so each attribute is read once.
+- The adapter crossing: the names class carries `aria-labelledby`'s computed text, and a fourth content class, descriptions — `aria-description`'s free page text and `aria-describedby`'s targets — goes to the adapter only; the three closed values sit inside the states class, unmeasured at an assistive technology.
+- Dioxus DOM bridge: a snapshot node's `name` takes the computed `aria-labelledby` label; the snapshot reads no description and `enabled` still reads the `disabled` attribute.
+**Why:** upstream's reads merged as upstream wrote them; a boundary widening by upstream merge ratified as upstream's behaviour by the founder's own word at P4 fork 2, by question dialog in the overseer session, relayed by the overseer — `aria-labelledby` names inside the ratified name crossing, the description to the adapter — and both description sources confirmed on this wrap's answer card by his word, relayed by the overseer.
+**Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/
+
+## 2026-10-17-upstream-sync-engine-debts — the keyboard-types 0.8 surfaces: `NamedKey`, `META`, `keyboard_compat`, the coverage exclusion
+**Section:** §Standard Contracts (Test harness · CI contracts) · §Established Decisions ([Driver session] · the interaction constants) · §Existing Scopes (dioxus-native-dom)
+**Change:**
+- Test harness: was «`Key` and `Modifiers` — the two types `press_with` takes»; now `Key`, `Modifiers` and `NamedKey`, re-exports of keyboard-types 0.8 (`pub use keyboard_types::{Key, Modifiers, NamedKey};`).
+- [Driver session]: the driver's key types come through those three re-exports; `keyboard_key` maps each of the 11 named keys to `Key::Named(NamedKey::…)`, Space staying `Character(" ")`, and the macOS `ACTION_MODIFIER` reads `Modifiers::META`.
+- The engine's platform action modifier: was `SUPER` on macOS; now `META` (`SUPER` until keyboard-types 0.8), `CONTROL` elsewhere.
+- dioxus-native-dom: gains the crate-private `keyboard_compat`, upstream's bridge converting keyboard-types 0.8 into Dioxus 0.7's types for `events.rs`.
+- CI contracts, the `coverage` leg: both `cargo llvm-cov` lines take `--ignore-filename-regex 'keyboard_compat\.rs$'` until upstream retires the bridge, pinned by `test_coverage_leg_reaches_the_floor_on_each_crate`; `coverage_floor.py` and the three floors unchanged.
+**Why:** upstream's keyboard-types 0.7 → 0.8 move, taken by the sync, and our sites migrated in the smallest edit; the filename exclusion on the operator's answer to P4 fork 3.
+**Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/

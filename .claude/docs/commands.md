@@ -50,7 +50,7 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 - `cargo fmt --all` / `just fmt` — format
 - `cargo fmt --all --check` — the CI format gate
 - `cargo clippy --workspace --locked -- -D warnings` — the CI lint gate, the `clippy` leg's first line; only when it is green, the leg then runs upstream's own `cargo clippy -p blitz-dom --no-default-features --features svg,woff,accessibility,system-fonts,file-input,custom-widget --all-targets --locked -- -D warnings` (since 2026-10-14-quality-gates; `just clippy` runs without `-D warnings`)
-- `bash .github/scripts/ci-leg.sh doc` — `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps --locked`, the docs gate over every workspace library crate (green; CI's docs job runs the same leg). Beside it: `ci-leg.sh audit` (`cargo deny --locked --workspace --all-features check advisories licenses` over `deny.toml` — the advisories and licences of the whole workspace's graph, since 2026-10-14-quality-gates), `ci-leg.sh a11y` (the accessibility integration tests) and `ci-leg.sh coverage` (cargo-llvm-cov lcov to `target/coverage/lcov.info`, then the per-file table, then, chained since 2026-10-14-quality-gates, `python3 .github/scripts/coverage_floor.py` over three per-crate line floors — `packages/escher-driver` 97 %, `packages/dioxus-native-dom` 83 %, `packages/blitz-test-harness` 90 % — the leg exiting with the floor's status; needs the `llvm-tools` rustup component)
+- `bash .github/scripts/ci-leg.sh doc` — `RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps --locked`, the docs gate over every workspace library crate (green; CI's docs job runs the same leg). Beside it: `ci-leg.sh audit` (`cargo deny --locked --workspace --all-features check advisories licenses` over `deny.toml` — the advisories and licences of the whole workspace's graph, since 2026-10-14-quality-gates), `ci-leg.sh a11y` (the accessibility integration tests) and `ci-leg.sh coverage` (cargo-llvm-cov lcov to `target/coverage/lcov.info`, then the per-file table — both `cargo llvm-cov` lines taking `--ignore-filename-regex 'keyboard_compat\.rs$'` since the 2026-10-17 upstream sync, excluding dioxus-native-dom's crate-private `keyboard_compat.rs` (upstream's temporary keyboard-types 0.7/0.8 bridge) until upstream retires it, the floors unchanged — then, chained since 2026-10-14-quality-gates, `python3 .github/scripts/coverage_floor.py` over three per-crate line floors — `packages/escher-driver` 97 %, `packages/dioxus-native-dom` 83 %, `packages/blitz-test-harness` 90 % — the leg exiting with the floor's status; needs the `llvm-tools` rustup component)
 
 ## Running apps and examples
 - `just seven_guis` — the 7GUIs stand (`cargo run --release --package seven_guis --bin seven_guis_native`)
@@ -68,7 +68,7 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 - `just wasm-serve seven_guis` — Trunk dev server for a wasm example
 
 ## Release
-- `just bump blitz {version}` / `just bump anyrender {version}` — version bumps
+- No in-repo version bump tool: blitz packages are versioned together through the one workspace version and the in-repo `=` pins (`Cargo.toml`) since upstream deleted the bump crate (merged at the 2026-10-17 upstream sync)
 - Browser bundles: `dx bundle --package browser --release --profile production --locked` (publish workflow — runs only in `DioxusLabs/blitz`)
 ## Code graph
 - `python scripts/code-graph.py refresh` — rebuild `.andromeda/cache/rust/tree.db`

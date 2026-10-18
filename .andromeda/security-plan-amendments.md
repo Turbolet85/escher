@@ -570,3 +570,29 @@ One entry per amendment to `security-plan.md` (sidecar-contract.md §Entry form)
 **Change:** was «Two ignores stand»; now five — RUSTSEC-2026-0367, RUSTSEC-2026-0368 and RUSTSEC-2026-0369 (zip 2.4.2, each fixed in zip 9.0) ignored by ID with a written reason: zip reaches the whole-workspace graph only through `anyrender_serialize 0.8.0` ← `browser` (apps/browser's capture feature), which reads archive entries `by_name` into memory and never extracts to disk; no fixed release is reachable (anyrender_serialize 0.8.0 is the latest and requires zip ^2.1); dropped when that chain reaches zip 9.0 or leaves zip, owned by a `.andromeda/residuals.md` line (target: next), and re-read by the audit leg on every push. No dependency added or bumped.
 **Why:** external decay — the three advisories turned the Dependency audit red over a `Cargo.lock` and `deny.toml` byte-identical to the base's green run; the ID-scoped ignore with a named owner is the founder's decision (the founder, 2026-10-17, by question dialog, relayed verbatim by the operator), and the count's amendment the operator's directive at this wrap's resume (the operator, 2026-10-17). An advisory ignore by ID with a written reason is the audit policy this section already states, not a boundary widening.
 **Ref:** .andromeda/runs/2026-10-17T07-59-25-wrap/
+
+## 2026-10-17-upstream-sync-engine-debts — the merged ARIA reads: `aria-labelledby` names, descriptions to the adapter, three closed values
+**Section:** §Input Validation (the `aria-label` · `<label for>` row · a new `aria-describedby` · `aria-description` row · a new `aria-expanded` · `aria-disabled` · `aria-level` row · the `id` row)
+**Change:**
+- Names row: gains upstream's `aria-labelledby` read — referenced ids resolved to built nodes only, an unknown id ignored, the text gathered cycle-guarded, the computed `label` outranking a `<label>` and an `aria-label` (the fallback when the targets hold no text); upstream's unfiltered `aria-label` read dropped, one trimmed non-empty read left; the text stays inside the ratified name crossing.
+- New descriptions row: `aria-describedby`'s targets as `described_by`, `aria-description`'s own free, unbounded text into AccessKit's description field; no log site, print or panic path; the one exit is the platform adapter — the snapshot reads no description, so no driver or MCP carrier, verb, field, log field or span carries it; escher routes no agent- or user-supplied input through it.
+- New closed-values row: `aria-expanded` (a boolean), `aria-disabled` (`true` → disabled), `aria-level` (a number, tag and role defaults), each carrying none of the attribute's text, inside the states class; `aria-disabled` moves no snapshot reading.
+- `id` row: the adapter crossing gains a fourth content class, descriptions, and its names include `aria-labelledby`'s text.
+**Why:** a boundary widening by upstream merge, ratified as upstream's behaviour by the founder's own word at P4 fork 2, by question dialog in the overseer session, relayed by the overseer, and both description sources confirmed by his word on this wrap's answer card, relayed by the overseer; the closed values are a field inside a ratified carrier.
+**Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/
+
+## 2026-10-17-upstream-sync-engine-debts — the bump CLI's rows leave; no physical key code hits `todo!()`
+**Section:** §Input Validation (the `CLI arguments (bump)` row) · §Error Handling (External responses · the panic paths)
+**Change:**
+- The `CLI arguments (bump)` row and §Error Handling's «bump's `bail!` macro» clause are gone with the crate.
+- The panic paths: was «KeyboardBacklightToggle and any unlisted physical key code hit todo!()»; now the shell passes winit's physical key `Code` through, so no physical key code hits a `todo!()`.
+**Why:** upstream's `23b9b26a9` "Delete the bump crate" and its keyboard-types 0.8 converters, taken by the sync.
+**Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/
+
+## 2026-10-17-upstream-sync-engine-debts — eight advisory ignores: the zbus family's three; the 2026-10-17 sync record (§Dependency Security)
+**Section:** §Dependency Security (Audit tool · Pinning)
+**Change:**
+- Audit tool: was «Five ignores stand»; now eight — RUSTSEC-2026-0370 (zvariant 5.15.0), RUSTSEC-2026-0371 (zbus_names 4.3.4) and RUSTSEC-2026-0372 (zvariant_derive 5.15.0), each unmaintained and folded into zbus 6.0.0, reached only through zbus 5.19 + atspi 0.29 under accesskit_unix 0.24.0 (the latest, requiring zbus ^5.19) ← accesskit_xplat ← blitz-shell, so no fix is reachable; each ignored by ID with that reason, external decay over an unchanged tree, dropped when accesskit_unix moves to zbus 6, owned by a `.andromeda/residuals.md` line, re-read by the audit leg on every push.
+- Pinning: gains the 2026-10-17 sync record — upstream's set taken whole at `23b9b26a9`: keyboard-types 0.8 (Dioxus keeping its 0.7), test-that and test-that-macro 0.6.0 reviewed by hand, the workspace at 0.3.0-beta.4, the three bump-only toml crates leaving, Taffy still the registry "0.15" with no git dependency, the lock's set equal to upstream's with the two `escher-*` entries aside; the audit green with `deny.toml` unchanged at implement and, on the final HEAD, only with the three ignores.
+**Why:** the operator's word under the playbook's External decay pattern, recorded as a widening in the chunk's scope record — the three advisories turned the audit red over a tree that had read green; the (security) criterion «with `deny.toml` unchanged» stays UNMET as written, its letter unchanged and nothing reverted, on the operator's resume directive.
+**Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/

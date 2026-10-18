@@ -1,0 +1,9 @@
+
+## 2026-10-17-upstream-sync-engine-debts — the builder's merged ARIA reads; descriptions on the adapter crossing
+**Section:** §Standard Contracts (Mutation, query and CSSOM · Dioxus DOM bridge)
+**Change:**
+- Mutation, query and CSSOM: was «naming a node from three sources»; now four — `aria-labelledby` after the `<label>` → input loop clears `labelled_by`, pushes the referenced built nodes (an id naming no element ignored) and sets their text as the computed `label`, outranking a `<label>` and an `aria-label` (accname 2B), the `aria-label` the fallback when the targets hold no text. The builder also reads `aria-describedby` (`described_by`), `aria-description` (AccessKit's description), `aria-expanded`, `aria-disabled` (`true` → disabled) and `aria-level` (tag and role defaults), then `set_html_tag` last; upstream's own `aria-selected` (`parse::<bool>`) and unfiltered `aria-label` reads were dropped, so each attribute is read once.
+- The adapter crossing: the names class carries `aria-labelledby`'s computed text, and a fourth content class, descriptions — `aria-description`'s free page text and `aria-describedby`'s targets — goes to the adapter only; the three closed values sit inside the states class, unmeasured at an assistive technology.
+- Dioxus DOM bridge: a snapshot node's `name` takes the computed `aria-labelledby` label; the snapshot reads no description and `enabled` still reads the `disabled` attribute.
+**Why:** upstream's reads merged as upstream wrote them; a boundary widening by upstream merge ratified as upstream's behaviour by the founder's own word at P4 fork 2, by question dialog in the overseer session, relayed by the overseer — `aria-labelledby` names inside the ratified name crossing, the description to the adapter — and both description sources confirmed on this wrap's answer card by his word, relayed by the overseer.
+**Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/

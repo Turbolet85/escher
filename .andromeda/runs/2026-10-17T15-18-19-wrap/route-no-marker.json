@@ -1,0 +1,108 @@
+[
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "a81d3633",
+"ts": "2026-10-18T01:51:21Z",
+"argv": [
+"route.py",
+"epoch",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-10-17T15-18-19-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"escher-0.2.0/working-route.md · 5 epoch headers · 20 entries · freeze state joined to 47 master records",
+"10 · Epoch 1 — Foundation · entries 3 · markerless 0 · frozen complete 3 · pending 0",
+"17 · Epoch 2 — Engine debts · entries 2 · markerless 1 · frozen complete 0 · pending 1",
+"22 · Epoch 3 — Determinism and traces · entries 4 · markerless 4 · frozen complete 0 · pending 0",
+"31 · Epoch 4 — Visual lint and real-app readiness · entries 6 · markerless 6 · frozen complete 0 · pending 0",
+"44 · Epoch 5 — Polish & ship · entries 5 · markerless 5 · frozen complete 0 · pending 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "a81d3633",
+"ts": "2026-10-18T01:59:39Z",
+"argv": [
+"route.py",
+"pins",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-10-17T15-18-19-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"escher-0.2.0/working-route.md · markerless 16 of 20 entries · freight blocks 0 · an INDEX, not the text",
+"no freight block on a markerless entry matched (53 lines read) — an empty listing is a verdict, not an absence proof"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "a81d3633",
+"ts": "2026-10-18T01:59:39Z",
+"argv": [
+"route.py",
+"cursor",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-10-17T15-18-19-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"version escher-0.2.0 · dir present · master master-route.md",
+"version dir escher-0.2.0/ — at --root, beside .andromeda/, never inside it",
+"records 47 · complete 46 · pending 1 · 2026-10-17-upstream-sync-engine-debts · gated 0",
+"done 2026-10-16-fast-failing-mutants",
+"next escher-0.2.0/working-route.md:20 · Engine debts · markerless 16 of 20 entries",
+"half-promote 0 of 4 stamped lines vs 47 master records (anchored `{marker} · `, whole file)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "a81d3633",
+"ts": "2026-10-18T02:00:03Z",
+"argv": [
+"route.py",
+"pins",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-10-17T15-18-19-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"escher-0.2.0/working-route.md · markerless 16 of 20 entries · freight blocks 3 · an INDEX, not the text",
+"20 · CARRY: · 206 chars · CARRY: a test of the builder's merged `aria-expanded` · `aria-disabled` · `aria-level` reads,…",
+"23 · CARRY: · 159 chars · CARRY: upstream's four Taffy-main commits past `23b9b26a9`, left out at 2026-10-17-upstream-s…",
+"23 · CARRY: · 122 chars · CARRY: whether upstream retired `keyboard_compat.rs` — the coverage leg's filename exclusion …"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

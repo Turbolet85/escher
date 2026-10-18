@@ -1,0 +1,3 @@
+The operator's message in the session, the /andromeda-wrap-session arguments, 2026-10-17 (about 18:10Z), verbatim:
+
+run P1 only and stop. Reuse the empty run dir .andromeda/runs/2026-10-17T15-18-19-wrap/. Before P1 cites.py added, make one edit (ES66: no edit after it): .andromeda/residuals.md, one open line in the paste-line form for this chunk: the RUSTSEC-2026-0370/0371/0372 ignores (zvariant, zbus_names, zvariant_derive unmaintained, folded into zbus 6.0.0; via zbus 5.19 + atspi 0.29 under accesskit_unix 0.24.0 <- accesskit_xplat <- blitz-shell, no fix reachable), the operator word under the playbook External decay pattern 2026-10-17 18:03Z; drops when accesskit_unix moves to zbus 6 (target: next).

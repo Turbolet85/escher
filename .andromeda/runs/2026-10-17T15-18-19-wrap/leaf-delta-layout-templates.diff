@@ -1,0 +1,13 @@
+--- a/.andromeda/layout-templates.md
++++ b/.andromeda/layout-templates.md
+@@ -40,4 +40,4 @@
+ - Pointer client coordinates subtract the safe-area left/top insets and page coordinates add viewport scroll (packages/blitz-shell/src/window.rs:442-463)
+-- The document element is the scrolling element; `window.scrollTo`/`scrollBy` scroll the root element (packages/blitz-vibey-script/src/dom/document.rs:129-133; packages/blitz-vibey-script/src/runtime.rs:2158-2193)
+-- The root element's `clientWidth`/`clientHeight` are viewport size minus scrollbar size (packages/blitz-vibey-script/src/dom/element.rs:1017-1062)
++- The document element is the scrolling element; `window.scrollTo`/`scrollBy` scroll the root element (packages/blitz-vibey-script/src/dom/document.rs:129-133; packages/blitz-vibey-script/src/runtime.rs:2173-2208)
++- The root element's `clientWidth`/`clientHeight` are viewport size minus scrollbar size (packages/blitz-vibey-script/src/dom/element.rs:1072-1145)
+ - Fixed-position children of the root element are not scrolled with the viewport (packages/blitz-paint/src/render.rs:1133-1148)
+@@ -70,3 +70,2 @@
+ - `paint_bench` — usage line `paint_bench <url> [width] [height] [scale] [iters] [backend]` with `backend: vello (default) | cpu | hybrid` (examples/paint_bench.rs:6-7)
+-- `bump` — takes two positional arguments and emits single-line output (apps/bump/src/main.rs:67-91; apps/bump/src/main.rs:100; apps/bump/src/main.rs:109)
+ - `scripts/agent-run.sh` — the agent-invocable test contract, run from the repository root: usage `agent-run.sh <verb> [selection]` with verbs `boot · run · status · cleanup · logs` and run selections `stand · all · <blitz-tests file name>`, printed to stderr on a usage error (exit 2); every verb's stdout is JSON lines only, one object per event, and the raw cargo output stays in `target/agent-run/run.log`; `scripts/agent-run.ps1` is its Windows pass-through. The exit grammar and event schema live in test-plan §3 (scripts/agent-run.sh:12-17; scripts/agent-run.ps1:1-4)

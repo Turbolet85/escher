@@ -1,0 +1,157 @@
+sweep: base: 143b6013 — the previous sweep (2026-10-17T07-59-25-wrap) · re-pointed 266 · changed 31 · stretched 105
+
+Every row the apply call printed (trail `cites-2026-10-17-upstream-sync-engine-debts.json`, its non-dry-run `apply` record), read at its citing line and, for a master row, at the cited lines in the work tree.
+
+- changed .andromeda/architecture.md:44 apps/bump/Cargo.toml:4 → ? — the file is gone «edition = "2024"» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- stretched .andromeda/architecture.md:45 Cargo.toml:35-40 → 34-39 — changed inside → claim false — raised at Validate (the range holds at 34-39; its version "0.3.0-beta.3" is the report's `wsver` fact)
+- stretched .andromeda/architecture.md:45 Cargo.toml:45-61 → 44-60 — changed inside → claim false — raised at Validate (the range holds at 44-60; `=0.3.0-beta.3` is the report's `wsver` fact)
+- stretched .andromeda/architecture.md:52 Cargo.toml:140-147 → 139-146 — changed inside → claim false — raised at Validate (the range holds at 139-146; keyboard-types "0.7" is the report's `kbt` fact, now "0.8")
+- stretched .andromeda/architecture.md:53 Cargo.toml:140-147 → 139-146 — changed inside → holds
+- stretched .andromeda/architecture.md:59 Cargo.toml:185-200 → 184-199 — changed inside → claim false — raised at Validate (the range holds at 184-199; test-that "0.5.2" is the report's `testthat` fact, now "0.6.0")
+- changed .andromeda/architecture.md:63 apps/bump/Cargo.toml:10-11 → ? — the file is gone «toml_edit = "0.22"» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- stretched .andromeda/architecture.md:67@c1575 .github/scripts/ci-leg.sh:38-45 → 38-47 — changed inside → holds
+- changed .andromeda/architecture.md:67@c2096 .github/scripts/ci-leg.sh:43-57 → ? — the start rewritten «cargo llvm-cov …» → holds — re-pointed by hand to 48-60 (the stand-repeat leg)
+- changed .andromeda/architecture.md:76 apps/bump/src/main.rs:5-23 → ? — the file is gone «// The set of the "anyrender"…» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- changed .andromeda/architecture.md:76 apps/bump/src/main.rs:95-110 → ? — the file is gone «if target == "anyrender" {» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- stretched .andromeda/architecture.md:86@c2012 tests/blitz-tests/tests/stand_keyboard.rs:735-756 → 743-764 — changed inside → holds
+- stretched .andromeda/architecture.md:87@c4581 packages/blitz-dom/src/events/keyboard.rs:141-158 → 141-158 — changed inside → holds
+- stretched .andromeda/architecture.md:87@c8032 packages/blitz-dom/src/events/keyboard.rs:109-114 → 109-114 — changed inside → holds
+- stretched .andromeda/architecture.md:87@c10896 packages/blitz-dom/src/util.rs:7-10 → 7-10 — changed inside → claim false — raised at Validate (util.rs:8 now reads `Modifiers::META` under `cfg(target_os = "macos")`: "platform action modifier `SUPER` on macOS" retires; util.rs:8 is the report's new text, `util.rs — added 1 line`)
+- stretched .andromeda/architecture.md:91@c1849 tests/blitz-tests/tests/stand_keyboard.rs:607-638 → 615-646 — changed inside → holds
+- held .andromeda/architecture.md:106 Cargo.toml:47-58 — refused at 2026-10-13T15-50-37-wrap, not touched since «blitz-dom =…» → holds — stands
+- stretched .andromeda/architecture.md:106 Cargo.toml:65-185 → 64-184 — changed inside → holds
+- held .andromeda/architecture.md:113 examples/screenshot.rs:41-51 — refused at 2026-10-10T01-56-50-wrap, not touched since «let file_co…» → holds — stands
+- stretched .andromeda/architecture.md:122@c2242 packages/blitz-dom/src/accessibility.rs:31-50 → 35-60 — changed inside → holds
+- stretched .andromeda/architecture.md:122@c5553 tests/blitz-tests/tests/stand_accessibility_ids.rs:363-410 → 363-410 — changed inside → holds
+- stretched .andromeda/architecture.md:123@c1979 packages/blitz-dom/src/events/keyboard.rs:109-114 → 109-114 — changed inside → holds
+- stretched .andromeda/architecture.md:123@c3189 packages/blitz-dom/src/events/keyboard.rs:141-158 → 141-158 — changed inside → holds
+- stretched .andromeda/architecture.md:130@c426 packages/blitz-test-harness/src/lib.rs:29-34 → 29-34 — changed inside → claim false — raised at Validate (the range holds; "the two types" is the report's `reexp` fact)
+- stretched .andromeda/architecture.md:133@c38204 packages/escher-driver/src/execute.rs:281-503 → 281-503 — changed inside → holds
+- changed .andromeda/architecture.md:138@c1458 apps/bump/src/main.rs:67-91 → ? — the file is gone «let mut args = std::e…» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- changed .andromeda/architecture.md:141@c3495 .github/scripts/ci-leg.sh:43-57 → ? — the start rewritten «cargo llvm-cov…» → holds — re-pointed by hand to 48-60 (the stand-repeat leg)
+- stretched .andromeda/architecture.md:141@c3903 .github/scripts/ci-leg.sh:8-82 → 8-84 — changed inside → holds
+- stretched .andromeda/architecture.md:141@c4514 .github/scripts/test_ci_workflows.py:103-492 → 103-492 — changed inside → holds
+- stretched .andromeda/architecture.md:149@c1372 .github/scripts/ci-leg.sh:40-45 → 40-47 — changed inside → holds
+- changed .andromeda/architecture.md:154@c225 apps/bump/Cargo.toml:2 → ? — the file is gone «name = "bump"» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- stretched .andromeda/architecture.md:159 deny.toml:1-26 → 1-29 — changed inside → holds
+- stretched .andromeda/architecture.md:160 Cargo.toml:2-31 → 2-30 — changed inside → holds
+- changed .andromeda/architecture.md:180 apps/bump/src/main.rs:33-62 → ? — the file is gone «fn with_cargo_toml(package_…» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- stretched .andromeda/architecture.md:181@c1284 .github/scripts/ci-leg.sh:18-60 → 18-62 — changed inside → holds
+- changed .andromeda/architecture.md:213 apps/bump/Cargo.toml:5 → ? — the file is gone «description = "Utility to aid pu…» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- stretched .andromeda/architecture.md:216 Cargo.toml:2-31 → 2-30 — changed inside → holds
+- changed .andromeda/architecture.md:216 apps/bump/src/main.rs:5-23 → ? — the file is gone «// The set of the "anyrender…» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- changed .andromeda/architecture.md:216 apps/bump/src/main.rs:95-110 → ? — the file is gone «if target == "anyrender" {» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- stretched .andromeda/architecture.md:220 Cargo.toml:45-61 → 44-60 — changed inside → claim false — raised at Validate (the range holds at 44-60; `=0.3.0-beta.3` is the report's `wsver` fact)
+- changed .andromeda/architecture.md:225 apps/bump/src/main.rs:33-62 → ? — the file is gone «fn with_cargo_toml(package_…» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- changed .andromeda/architecture.md:225 apps/bump/Cargo.toml:5 → ? — the file is gone «description = "Utility to aid pu…» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- stretched .andromeda/architecture.md:226 .github/scripts/ci-leg.sh:37-57 → 37-59 — changed inside → holds
+- stretched .andromeda/architecture.md:240 packages/blitz-dom/src/accessibility.rs:7-140 → 9-228 — changed inside → holds
+- stretched .andromeda/architecture.md:255 packages/dioxus-native-dom/src/lib.rs:15-27 → 15-28 — changed inside → claim false — raised at Validate (the range holds at 15-28; the module list lacks upstream's private `keyboard_compat`, lib.rs:20 — the report's Crates / modules fact)
+- changed .andromeda/architecture.md:262 apps/bump/Cargo.toml:2-5 → ? — the file is gone «name = "bump"» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- stretched .andromeda/architecture.md:264@c2695 tests/blitz-tests/tests/range_input_interaction.rs:115-300 → 117-302 — changed inside → holds
+- stretched .andromeda/architecture.md:264@c2961 tests/blitz-tests/tests/range_input_interaction.rs:302-407 → 304-409 — changed inside → holds
+- stretched .andromeda/architecture.md:264@c8408 tests/blitz-tests/tests/stand_keyboard.rs:237-268 → 245-276 — changed inside → holds
+- stretched .andromeda/architecture.md:264@c8561 tests/blitz-tests/tests/stand_keyboard.rs:121-149 → 121-149 — changed inside → holds
+- stretched .andromeda/architecture.md:264@c8663 tests/blitz-tests/tests/stand_keyboard.rs:568-595 → 576-603 — changed inside → holds
+- stretched .andromeda/architecture.md:264@c8714 tests/blitz-tests/tests/stand_keyboard.rs:607-638 → 615-646 — changed inside → holds
+- stretched .andromeda/architecture.md:264@c8765 tests/blitz-tests/tests/stand_keyboard.rs:640-700 → 648-708 — changed inside → holds
+- stretched .andromeda/architecture.md:264@c8816 tests/blitz-tests/tests/stand_keyboard.rs:735-756 → 743-764 — changed inside → holds
+- changed .andromeda/security-plan.md:73 apps/bump/src/main.rs:71-91 → ? — the file is gone «let target = match target.a…» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- stretched .andromeda/security-plan.md:120@c540 tests/blitz-tests/tests/stand_keyboard.rs:607-638 → 615-646 — changed inside → holds
+- stretched .andromeda/security-plan.md:120@c1901 tests/blitz-tests/tests/range_input_interaction.rs:238-260 → 240-262 — changed inside → holds
+- stretched .andromeda/security-plan.md:124@c3805 tests/blitz-tests/tests/stand_accessibility_ids.rs:363-410 → 363-410 — changed inside → holds
+- held .andromeda/security-plan.md:124@c14037 tests/blitz-tests/tests/stand_actionable_keys.rs:1-4 — refused at 2026-10-14T22-00-51-wrap, not touched since «//! Every e…» → holds — stands
+- stretched .andromeda/security-plan.md:125@c4096 packages/blitz-dom/src/accessibility.rs:31-50 → 35-60 — changed inside → holds
+- stretched .andromeda/security-plan.md:127@c1816 tests/blitz-tests/tests/range_input_interaction.rs:179-220 → 181-222 — changed inside → holds
+- stretched .andromeda/security-plan.md:127@c2185 packages/blitz-dom/src/events/keyboard.rs:141-158 → 141-158 — changed inside → holds
+- stretched .andromeda/security-plan.md:127@c2996 tests/blitz-tests/tests/range_input_interaction.rs:238-260 → 240-262 — changed inside → holds
+- stretched .andromeda/security-plan.md:128@c473 packages/blitz-dom/src/events/keyboard.rs:109-114 → 109-114 — changed inside → holds
+- held .andromeda/security-plan.md:228 .github/workflows/wpt-post-results.yml:29-49 — refused at 2026-10-10T01-56-50-wrap, not touched since «- name: Fin…» → holds — stands
+- stretched .andromeda/security-plan.md:237@c828 deny.toml:1-26 → 1-29 — changed inside → holds
+- stretched .andromeda/security-plan.md:243 .github/scripts/ci-leg.sh:20-58 → 20-60 — changed inside → holds
+- stretched .andromeda/security-plan.md:265 .github/scripts/ci-leg.sh:20-58 → 20-60 — changed inside → holds
+- changed .andromeda/security-plan.md:330 apps/bump/src/main.rs:25-31 → ? — the file is gone «macro_rules! bail {» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- held .andromeda/security-plan.md:342 packages/blitz-dom/src/layout/table.rs:535-539 — refused at 2026-10-13T15-50-37-wrap, not touched since «let Some(di…» → holds — stands
+- changed .andromeda/security-plan.md:371 packages/blitz-shell/src/convert_events.rs:398-399 → ? — both ends deleted → claim false — raised at Validate (the physical-key converter now passes winit's `Code` through, `WinitPhysicalKey::Code(code) => *code`, convert_events.rs:165-170: no `todo!()` for KeyboardBacklightToggle or an unlisted code is left)
+- held .andromeda/security-plan.md:376 examples/screenshot.rs:41-42 — refused at 2026-10-10T01-56-50-wrap, not touched since «let file_co…» → holds — stands
+- held .andromeda/design-system.md:36 examples/seven_guis/src/tasks/counter.rs:59-72 — refused at 2026-10-14T19-50-50-wrap, not touched since «background-…» → holds — stands
+- held .andromeda/design-system.md:46 examples/seven_guis/src/tasks/counter.rs:59-72 — refused at 2026-10-14T19-50-50-wrap, not touched since «background-…» → holds — stands
+- held .andromeda/design-system.md:134 tests/blitz-tests/Cargo.toml:17 — refused at 2026-10-10T01-56-50-wrap, not touched since «blitz-dom =…» → holds — stands
+- changed .andromeda/design-system.md:385 apps/bump/src/main.rs:25-31 → ? — the file is gone «macro_rules! bail {» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- changed .andromeda/design-system.md:396 apps/bump/src/main.rs:25-31 → ? — the file is gone «macro_rules! bail {» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- changed .andromeda/design-system.md:396 apps/bump/src/main.rs:100 → ? — the file is gone «println!("Bumped anyrender v…» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- changed .andromeda/design-system.md:396 apps/bump/src/main.rs:109 → ? — the file is gone «println!("Bumped blitz versi…» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- stretched .andromeda/layout-templates.md:10@c2268 tests/blitz-tests/tests/stand_session_fresh.rs:39-117 → 39-117 — changed inside → holds
+- stretched .andromeda/layout-templates.md:42 packages/blitz-vibey-script/src/dom/element.rs:1017-1062 → 1072-1145 — changed inside → holds
+- changed .andromeda/layout-templates.md:71 apps/bump/src/main.rs:67-91 → ? — the file is gone «let mut args = std::env:…» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- changed .andromeda/layout-templates.md:71 apps/bump/src/main.rs:100 → ? — the file is gone «println!("Bumped anyrender…» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- changed .andromeda/layout-templates.md:71 apps/bump/src/main.rs:109 → ? — the file is gone «println!("Bumped blitz ver…» → claim false — raised at Validate (the file is gone: `apps/bump` leaves with upstream's `23b9b26a9` — the report's `bump` fact; the amendment removes the citation)
+- stretched .andromeda/test-plan.md:21@c7526 packages/escher-driver/src/execute.rs:505-568 → 505-568 — changed inside → holds
+- stretched .andromeda/test-plan.md:24@c461 packages/dioxus-native-dom/src/snapshot.rs:607-651 → 607-651 — changed inside → holds
+- stretched .andromeda/test-plan.md:24@c3619 packages/dioxus-native-dom/src/snapshot.rs:607-651 → 607-651 — changed inside → holds
+- stretched .andromeda/test-plan.md:24@c3974 packages/dioxus-native-dom/src/snapshot.rs:232-786 → 232-786 — changed inside → holds
+- stretched .andromeda/test-plan.md:26@c4891 tests/blitz-tests/tests/stand_accessibility_ids.rs:363-410 → 363-410 — changed inside → holds
+- stretched .andromeda/test-plan.md:26@c27669 tests/blitz-tests/tests/range_input_interaction.rs:302-407 → 304-409 — changed inside → holds
+- stretched .andromeda/test-plan.md:26@c27800 tests/blitz-tests/tests/range_input_interaction.rs:115-300 → 117-302 — changed inside → holds
+- stretched .andromeda/test-plan.md:26@c38392 tests/blitz-tests/tests/stand_keyboard.rs:237-268 → 245-276 — changed inside → holds
+- stretched .andromeda/test-plan.md:26@c38545 tests/blitz-tests/tests/stand_keyboard.rs:121-149 → 121-149 — changed inside → holds
+- stretched .andromeda/test-plan.md:26@c38647 tests/blitz-tests/tests/stand_keyboard.rs:428-507 → 436-515 — changed inside → holds
+- stretched .andromeda/test-plan.md:26@c38698 tests/blitz-tests/tests/stand_keyboard.rs:568-595 → 576-603 — changed inside → holds
+- stretched .andromeda/test-plan.md:26@c38749 tests/blitz-tests/tests/stand_keyboard.rs:607-638 → 615-646 — changed inside → holds
+- stretched .andromeda/test-plan.md:26@c38800 tests/blitz-tests/tests/stand_keyboard.rs:640-700 → 648-708 — changed inside → holds
+- stretched .andromeda/test-plan.md:26@c38902 tests/blitz-tests/tests/stand_keyboard.rs:735-756 → 743-764 — changed inside → holds
+- changed .andromeda/test-plan.md:88@c1977 packages/blitz-test-harness/src/lib.rs:32 → ? — rewritten «pub use keyboard_t…» → claim false — raised at Validate (line 32 now re-exports `Key`, `Modifiers` and `NamedKey`: "the two types" retires — the report's `reexp` fact; the number holds)
+- stretched .andromeda/test-plan.md:98 packages/blitz-vibey-script/tests/preact.rs:16-100 → 16-100 — changed inside → holds
+- held .andromeda/test-plan.md:99@c1592 packages/dioxus-native-dom/src/snapshot.rs:530-577 — refused at 2026-10-13T23-23-45-wrap, not touched since «fn a_presen…» → holds — stands
+- stretched .andromeda/test-plan.md:143@c8936 packages/escher-driver/src/execute.rs:505-568 → 505-568 — changed inside → holds
+- stretched .andromeda/test-plan.md:145@c2525 .github/scripts/test_ci_workflows.py:323-367 → 323-367 — changed inside → holds
+- stretched .andromeda/test-plan.md:145@c3869 .github/scripts/test_ci_workflows.py:103-492 → 103-492 — changed inside → holds
+- stretched .andromeda/test-plan.md:181@c210 tests/blitz-tests/tests/stand_session_state.rs:56-169 → 56-169 — changed inside → holds
+- stretched .andromeda/test-plan.md:181@c318 tests/blitz-tests/tests/stand_session_fresh.rs:39-117 → 39-117 — changed inside → holds
+- stretched .andromeda/test-plan.md:181@c689 tests/blitz-tests/tests/stand_settle.rs:40-180 → 40-180 — changed inside → holds
+- held .andromeda/test-plan.md:196 .github/workflows/wpt-post-results.yml:43-49 — refused at 2026-10-10T01-56-50-wrap, not touched since «- name: Pos…» → holds — stands
+- changed .andromeda/test-plan.md:315 .github/scripts/ci-leg.sh:43-57 → ? — the start rewritten «cargo llvm-cov report -…» → holds — re-pointed by hand to 48-60 (the stand-repeat leg)
+- stretched .andromeda/test-plan.md:315 .github/scripts/ci-leg.sh:18-60 → 18-62 — changed inside → holds
+- stretched .andromeda/test-plan.md:335 .github/scripts/ci-leg.sh:40-45 → 40-47 — changed inside → holds
+- stretched .andromeda/test-plan.md:343 .github/scripts/ci-leg.sh:40-45 → 40-47 — changed inside → holds
+- changed .andromeda/test-plan.md:344 .github/scripts/ci-leg.sh:43-57 → ? — the start rewritten «cargo llvm-cov report -…» → holds — re-pointed by hand to 48-60 (the stand-repeat leg)
+- held .andromeda/obs-plan.md:41 packages/blitz/Cargo.toml:14 — refused at 2026-10-10T01-56-50-wrap, not touched since «default = […» → holds — stands
+- stretched .andromeda/obs-plan.md:329 .github/scripts/ci-leg.sh:40-45 → 40-47 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:8 packages/blitz-dom/src/accessibility.rs:7-64 → 9-116 — changed inside → holds
+- held .andromeda/a11y-plan.md:12 packages/blitz/Cargo.toml:14 — refused at 2026-10-10T01-56-50-wrap, not touched since «default = […» → holds — stands
+- held .andromeda/a11y-plan.md:16 tests/blitz-tests/Cargo.toml:17 — refused at 2026-10-10T01-56-50-wrap, not touched since «blitz-dom =…» → holds — stands
+- stretched .andromeda/a11y-plan.md:36@c2142 tests/blitz-tests/tests/stand_accessibility_ids.rs:363-410 → 363-410 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:37 tests/blitz-tests/tests/stand_settle.rs:83-124 → 83-124 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:75 tests/blitz-tests/tests/stand_snapshot_state.rs:317-353 → 317-353 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:75 tests/blitz-tests/tests/stand_keyboard.rs:121-149 → 121-149 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:144 tests/blitz-tests/tests/stand_keyboard.rs:607-638 → 615-646 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:145 packages/blitz-dom/src/events/keyboard.rs:26-45 → 26-45 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:148 tests/blitz-tests/tests/stand_keyboard.rs:607-638 → 615-646 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:158 tests/blitz-tests/tests/stand_keyboard.rs:568-595 → 576-603 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:164 packages/blitz-dom/src/node/text.rs:202-370 → 202-370 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:165 packages/blitz-dom/src/events/keyboard.rs:141-158 → 141-158 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:166@c1214 packages/blitz-dom/src/events/keyboard.rs:109-114 → 109-114 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:167 packages/blitz-dom/src/node/text.rs:333-342 → 333-342 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:172 packages/blitz-shell/src/convert_events.rs:52-69 → 49-66 — changed inside → holds
+- changed .andromeda/a11y-plan.md:172 packages/blitz-shell/src/convert_events.rs:151-175 → ? — the end deleted → holds — re-pointed by hand to 148-179 (the modifiers, physical-key and key converters)
+- stretched .andromeda/a11y-plan.md:181 packages/dioxus-native-dom/src/events.rs:338-371 → 339-372 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:186@c1635 tests/blitz-tests/tests/stand_keyboard.rs:735-756 → 743-764 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:196 tests/blitz-tests/tests/stand_keyboard.rs:640-700 → 648-708 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:212 tests/blitz-tests/tests/stand_snapshot_state.rs:317-353 → 317-353 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:213@c1137 tests/blitz-tests/tests/stand_keyboard.rs:121-149 → 121-149 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:213@c1239 tests/blitz-tests/tests/stand_keyboard.rs:428-507 → 436-515 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:213@c1290 tests/blitz-tests/tests/stand_keyboard.rs:568-595 → 576-603 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:213@c1341 tests/blitz-tests/tests/stand_keyboard.rs:607-638 → 615-646 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:213@c1392 tests/blitz-tests/tests/stand_keyboard.rs:640-700 → 648-708 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:213@c1494 tests/blitz-tests/tests/stand_keyboard.rs:735-756 → 743-764 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:213@c2763 tests/blitz-tests/tests/stand_keyboard.rs:209-235 → 209-243 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:213@c2814 tests/blitz-tests/tests/stand_keyboard.rs:237-268 → 245-276 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:214 tests/blitz-tests/tests/range_input_interaction.rs:238-260 → 240-262 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:214 tests/blitz-tests/tests/range_input_interaction.rs:266-300 → 268-302 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:279 packages/blitz-dom/src/accessibility.rs:31-50 → 35-60 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:281@c4289 packages/dioxus-native-dom/src/snapshot.rs:607-651 → 607-651 — changed inside → holds
+- changed .andromeda/a11y-plan.md:284 packages/blitz-dom/src/accessibility.rs:88 → ? — deleted «builder.set_html_tag(nam…» → holds — re-pointed by hand to 217 (`builder.set_html_tag(name)`)
+- changed .andromeda/a11y-plan.md:340@c1849 .github/scripts/ci-leg.sh:43-57 → ? — the start rewritten «cargo llvm-cov re…» → holds — re-pointed by hand to 48-60 (the stand-repeat leg)
+- out-of-range .claude/docs/session-learnings.md:135 host.rs:350 — the file held 225 lines at the base → curation home — P3
+
+Counts: claim false — raised at Validate 32 · curation home — P3 1 · holds 97 · holds — re-pointed by hand to 148-179 1 · holds — re-pointed by hand to 217 1 · holds — re-pointed by hand to 48-60 5 · holds — stands 14

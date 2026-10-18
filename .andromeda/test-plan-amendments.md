@@ -632,3 +632,38 @@ One entry per amendment to `test-plan.md` (sidecar-contract.md §Entry form). Ap
 - §10: a new Mutation tier bullet — cargo-mutants `--test-tool nextest` under the root `.config/nextest.toml`'s `mutants` profile (`fail-fast = { max-fail = 1, terminate = "immediate" }`, `test-threads = 4`, a `priority = 100` override naming the direct tests, the default profile untouched, selected by `NEXTEST_PROFILE=mutants`), `--baseline=skip`, each unit's mutant test command first read green on the unmutated tree; under plain `cargo test` the six still read `timeout`; dev host only, never in CI, cargo-mutants 27.1.0 and cargo-nextest 0.9.146 host tools no lockfile resolves; 137 mutants over the three files, 0 missed, 0 timeout.
 **Why:** the counts are this chunk's measured gates; the recipe is the remedy's owner — cargo-mutants 27.1.0's baseline tests the mutated package alone yet passes every `--cargo-test-arg`, so the baseline is skipped and read directly, and the next audit must run under the profile or the six read `timeout` again.
 **Ref:** .andromeda/runs/2026-10-17T07-59-25-wrap/
+
+## 2026-10-17-upstream-sync-engine-debts — the two merged ARIA checks; 127 files and 126 targets; bump leaves the inventory (§1, §2)
+**Section:** §1 Test Scope Summary (tests/blitz-tests · apps) · §2 Test Strategy (Directory pattern)
+**Change:**
+- tests/blitz-tests: gains upstream's `accessibility_label` 10 and `accessibility_description` 3, asserted through test-that's `verify_that!`, each its own target, run by the workspace `test` leg and per package, not by the `a11y` leg's six; and records observed absent a test naming the merged `aria-expanded`, `aria-disabled` or `aria-level` reads.
+- apps: `bump` leaves the no-tests inventory.
+- Directory pattern: was «124 `.rs` files, 123 test targets»; now 127 and 126, `all.rs` gaining the two `mod` lines and staying unbuilt — the tree before the merge measured 125 and 124, so the earlier figures were one short; the run-time read gains 137 executables with no `all` among them.
+**Why:** upstream's #859 · #1013 files, merged by the sync, and the measured count correcting a figure one short; the 127 / 126 on the operator's resume directive. The report credited the three closed-value reads to upstream tests, and the wrap's search found none.
+**Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/
+
+## 2026-10-17-upstream-sync-engine-debts — the tallies after the merge: workspace, per-OS, agent-run (§3, §9)
+**Section:** §3 Test Harness Contract (Agent-run contract → Proof) · §9 CI Integration (Per-OS test tallies · the workspace tally history)
+**Change:**
+- Workspace tally: was 186 · 958 · 0 · 12; now 187 result lines, 971 passed · 0 failed · 12 ignored — +13 passed in the two merged files' new result lines, the bump crate's empty `unittests src/main.rs` line gone.
+- Per-OS tallies: was the 2026-10-14 reading (linux 185 · 951 · 0 · 12); now re-read on the final HEAD's green 17/17 run — linux 187 · 971 · 0 · 12, macos and coverage 168 · 968 · 0 · 12, windows 168 · 944 · 0 · 9, the a11y job 6 · 43 · 0 · 0, the stand repeat 141 · 576 · 0 · 21, ios and android build only, each equal to the merge's first green run.
+- Agent-run: `run stand` unmoved at 168 · 0 · 7 over 40 files; `run all` 546 · 0 · 12, +13 over 533, with no script change.
+**Why:** the merge's two test files and bump's departure, every moved count explained by name.
+**Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/
+
+## 2026-10-17-upstream-sync-engine-debts — the coverage leg excludes `keyboard_compat.rs` by filename (§9, §10)
+**Section:** §9 CI Integration (Coverage) · §10 Quality Gates & Coverage Targets (Coverage floors)
+**Change:**
+- Coverage: was «`cargo llvm-cov --workspace --locked --lcov …`, then `cargo llvm-cov report --workspace --locked`»; now both lines take `--ignore-filename-regex 'keyboard_compat\.rs$'`.
+- Coverage floors: the exclusion of dioxus-native-dom's crate-private `keyboard_compat.rs` — upstream's temporary keyboard-types 0.7/0.8 bridge, 564 lines whose 530 arms no test of ours reaches — until upstream retires it; the floors and `coverage_floor.py` unchanged; the merged tree reads dioxus-native-dom 84.25 % (equal to the baseline), escher-driver 98.19 %, blitz-test-harness 91.69 %, `3 of 3` with no `keyboard_compat` record in the lcov; pinned by `test_coverage_leg_reaches_the_floor_on_each_crate`.
+**Why:** the operator's answer to P4 fork 3 — a named filename exclusion over lowering the floor or testing the bridge's arms.
+**Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/
+
+## 2026-10-17-upstream-sync-engine-debts — the harness re-exports `NamedKey`; test-that named as the assertion crate (§3)
+**Section:** §3 Test Harness Contract (blitz-test-harness → Core · Runners and invocation → Rust tests · Third-party test frameworks)
+**Change:**
+- Core: was «re-exports `keyboard_types::Key` and `keyboard_types::Modifiers`, the two types `press_with` takes»; now keyboard-types 0.8's `Key`, `Modifiers` and `NamedKey` — the two types `press_with` takes and the named-key enum a 0.8 `Key::Named` holds.
+- Third-party test frameworks: beside the slice search, blitz-tests carries test-that 0.6.0 and test-that-macro 0.6.0 as dev-dependencies (0.5.2 until this sync, reviewed by hand at the bump), whose `verify_that!` and `TestResult<()>` the merged checks assert through.
+- Rust tests: the merged checks return `TestResult<()>` and assert with `verify_that!` under the same `#[test]` harness.
+**Why:** the keyboard-types 0.8 move and the test-that bump, both taken by the sync.
+**Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/

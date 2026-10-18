@@ -1,0 +1,17 @@
+---
+name: owed-checks-go-on-the-earliest-owner
+description: "At a wrap's route-resolve, a check owed on code the chunk changed is pinned on the earliest entry that can own it, not on \"Quality gates\""
+metadata:
+  node_type: memory
+  type: feedback
+  originSessionId: ad0538bd-dc37-4025-ba51-d1128e105a19
+  modified: 2026-10-10T16:09:50.583Z
+---
+
+When a chunk leaves an edited code path with no check, the route owner for that owed check is the earliest markerless entry that plausibly takes it — not the catch-all "Quality gates" entry near the route's end.
+
+**What happened (2026-10-10, the wrap of 2026-10-10-scrolling-box-bounds-and-hit):** I proposed "Quality gates" for two unchecked paths (a box both transformed and scrolled; a scrolled box under a vertical writing mode). The operator moved both to "Stand requirement sweep", in their words: "they are checks owed on code this chunk changed, and the sweep comes first."
+
+**Why:** a check owed on code that already shipped should be written as soon as an entry can take it; an entry late in the route leaves the path unchecked for longer.
+
+**How to apply:** when proposing owners at a wrap's P5, order the candidate entries by position and lean to the first one whose scope fits, saying why. My interpretation, not the operator's words: this is about owed checks on shipped code, not about every open finding — a decision question ("does the fork gate on licences") can still belong on the entry that decides that class. Related: [[fork-ownership-founder-vs-operator]].

@@ -341,3 +341,9 @@ One entry per amendment to `obs-plan.md` (sidecar-contract.md §Entry form). App
 - §9: the state row names the six files; the session dir holds `mcp.json` alone.
 **Why:** the pipe's swap to the driver's own MCP surface; the transcript's new content is the boundary widening the founder ratified — his «Один запуск, до $3 (Рекомендую)» (2026-10-15, relayed verbatim by the overseer as his chosen option label), confirmed by his «Подтвердить (Рекомендую)» at this wrap's answer card. The pipe is a new reader of the ratified `tool_call` span line, not a new emitter: no span field added.
 **Ref:** .andromeda/runs/2026-10-15T09-44-57-wrap/
+
+## 2026-10-17-upstream-sync-engine-debts — the coverage report's lcov excludes `keyboard_compat.rs`
+**Section:** §9 (the Coverage report row)
+**Change:** the row's lcov file — line counts of the workspace's public source, no user data — excludes `keyboard_compat.rs` by filename, the exclusion test-plan §10 records.
+**Why:** kept bound to test-plan's coverage leg, which takes the exclusion on the operator's answer to P4 fork 3.
+**Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/

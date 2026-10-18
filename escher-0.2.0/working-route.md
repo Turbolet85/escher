@@ -17,10 +17,10 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
 ### Epoch 2 — Engine debts
 [2026-10-17-upstream-sync-engine-debts] Upstream sync ahead of engine debts — upstream/main merged, changes mostly additive; CI and audit green, per-OS tallies re-read, sink allowlist re-checked
    ↓
-Engine debts — nine recorded engine deferrals, each the founder's fork: fixed and proven on stand or fixture, pinned as a limit, or kept (v020-03)
+Engine debts — nine recorded engine deferrals, each the founder's fork: fixed and proven on stand or fixture, pinned as a limit, or kept (v020-03)  CARRY: a test of the builder's merged `aria-expanded` · `aria-disabled` · `aria-level` reads, observed absent (test-plan §1) — upstream's reads, adapter-only, merged at 2026-10-17-upstream-sync-engine-debts
 
 ### Epoch 3 — Determinism and traces
-Upstream sync ahead of determinism and traces — upstream/main merged, changes mostly additive; CI and audit green, per-OS tallies re-read, sink allowlist re-checked
+Upstream sync ahead of determinism and traces — upstream/main merged, changes mostly additive; CI and audit green, per-OS tallies re-read, sink allowlist re-checked  CARRY: upstream's four Taffy-main commits past `23b9b26a9`, left out at 2026-10-17-upstream-sync-engine-debts because they put a git Taffy in the root manifest  CARRY: whether upstream retired `keyboard_compat.rs` — the coverage leg's filename exclusion drops with it (test-plan §10)
    ↓
 One virtual clock — every time a headless run reads, scrollbar fade included, from one clock the driver alone moves; repeat shots identical (v020-06)
    ↓

@@ -1,0 +1,36 @@
+--- a/.andromeda/obs-plan.md
++++ b/.andromeda/obs-plan.md
+@@ -6,4 +6,4 @@
+ 
+-- **Workspace** — dependencies include tracing, tracing-subscriber, tracing-log, tracing-wasm and console_error_panic_hook; the root dev-dependencies add env_logger (Cargo.toml:175; Cargo.toml:178; Cargo.toml:189-191; Cargo.toml:299)
+-- **Workspace** — `packages/debug_timer` is a workspace member (Cargo.toml:4; Cargo.toml:57)
++- **Workspace** — dependencies include tracing, tracing-subscriber, tracing-log, tracing-wasm and console_error_panic_hook; the root dev-dependencies add env_logger (Cargo.toml:174; Cargo.toml:177; Cargo.toml:188-190; Cargo.toml:298)
++- **Workspace** — `packages/debug_timer` is a workspace member (Cargo.toml:4; Cargo.toml:56)
+ - **apps/browser** — observability is `tracing` logging, optional frame/phase timing features, and an in-app FPS overlay (apps/browser/Cargo.toml:28-30; apps/browser/Cargo.toml:37; apps/browser/src/fps_overlay.rs:94-124)
+@@ -116,3 +116,3 @@
+ |-----------|------------------|--------|--------|
+-| Frame / phase timing | Timing logs gated by `log-frame-times`, `log-phase-times`, umbrella `log-times` | log features only | (Cargo.toml:266-269); (packages/dioxus-native/Cargo.toml:60-68) |
++| Frame / phase timing | Timing logs gated by `log-frame-times`, `log-phase-times`, umbrella `log-times` | log features only | (Cargo.toml:265-268); (packages/dioxus-native/Cargo.toml:60-68) |
+ | blitz-dom `resolve` | Phase times style, mark_all, damage, construct, pconstruct, layout, transform, paint_tree, c_damage, subdocs | printed, prefixed `Resolve({id}): ` | (packages/blitz-dom/src/resolve.rs:76-168) |
+@@ -213,3 +213,3 @@
+ - **blitz-shell, blitz-paint**
+-  - `tracing::error!` is logged for unsupported Ime, PointerSource, PointerKind, ButtonSource and MouseScrollDelta variants (packages/blitz-shell/src/convert_events.rs:44-48; packages/blitz-shell/src/convert_events.rs:81-85; packages/blitz-shell/src/convert_events.rs:97-101; packages/blitz-shell/src/convert_events.rs:115-119; packages/blitz-shell/src/convert_events.rs:143-147; packages/blitz-shell/src/window.rs:849-853)
++  - `tracing::error!` is logged for unsupported Ime, PointerSource, PointerKind, ButtonSource and MouseScrollDelta variants (packages/blitz-shell/src/convert_events.rs:41-45; packages/blitz-shell/src/convert_events.rs:78-82; packages/blitz-shell/src/convert_events.rs:94-98; packages/blitz-shell/src/convert_events.rs:112-116; packages/blitz-shell/src/convert_events.rs:140-144; packages/blitz-shell/src/window.rs:849-853)
+   - `warn!` is logged for unimplemented image layer kinds and unsupported mask-mode luminance (packages/blitz-paint/src/render/background.rs:201-220; packages/blitz-paint/src/render/mask.rs:102-111)
+@@ -245,3 +245,3 @@
+ 
+-- `console_error_panic_hook` is a workspace dependency (Cargo.toml:178)
++- `console_error_panic_hook` is a workspace dependency (Cargo.toml:177)
+ - WASM builds install `console_error_panic_hook` (examples/seven_guis/src/lib.rs:16; examples/todomvc/src/wasm.rs:8; examples/wasm_hello/src/lib.rs:104)
+@@ -269,3 +269,3 @@
+ - Exceptions thrown by error handlers are recorded but fire no further error events (packages/blitz-vibey-script/src/runtime.rs:1118-1120; packages/blitz-vibey-script/src/state.rs:93-96)
+-- Error sources labelled in reports include "timer callback", "event listener", "error event listener", "timer microtasks", "event microtasks" (packages/blitz-vibey-script/src/runtime.rs:1636; packages/blitz-vibey-script/src/runtime.rs:1639; packages/blitz-vibey-script/src/runtime.rs:1691; packages/blitz-vibey-script/src/runtime.rs:1801; packages/blitz-vibey-script/src/runtime.rs:1165)
++- Error sources labelled in reports include "timer callback", "event listener", "error event listener", "timer microtasks", "event microtasks" (packages/blitz-vibey-script/src/runtime.rs:1636; packages/blitz-vibey-script/src/runtime.rs:1639; packages/blitz-vibey-script/src/runtime.rs:1691; packages/blitz-vibey-script/src/runtime.rs:1810; packages/blitz-vibey-script/src/runtime.rs:1165)
+ 
+@@ -327,4 +327,4 @@
+ | `wptscores.json` | computed from the WPT run and published to Pages, upstream only | (.github/workflows/wpt.yml:26; .github/workflows/wpt.yml:64-67) |
+-| Per-leg CI log | each ci.yml leg's merged stdout+stderr, written by `ci-leg.sh` to `target/ci-logs/{leg}.log` (matrix: `target/ci-logs/matrix-{platform}.log`), truncated at the leg's start; uploaded only on failure as artifact `ci-log-{job id}` (`if-no-files-found: ignore`), kept 7 days, from `target/ci-logs/` alone; unscrubbed build output (no user data — §8) | (.github/scripts/ci-leg.sh:81-82; .github/workflows/ci.yml:48-54; .github/workflows/ci.yml:416-425) |
+-| Coverage report | the `coverage` leg's lcov file `target/coverage/lcov.info` — line counts of the workspace's public source, no user data (§8); uploaded only on success as artifact `coverage-report` from `target/coverage/`, kept 7 days — the one fork-CI artifact outside `target/ci-logs/` | (.github/scripts/ci-leg.sh:40-45; .github/workflows/ci.yml:286-291) |
++| Per-leg CI log | each ci.yml leg's merged stdout+stderr, written by `ci-leg.sh` to `target/ci-logs/{leg}.log` (matrix: `target/ci-logs/matrix-{platform}.log`), truncated at the leg's start; uploaded only on failure as artifact `ci-log-{job id}` (`if-no-files-found: ignore`), kept 7 days, from `target/ci-logs/` alone; unscrubbed build output (no user data — §8) | (.github/scripts/ci-leg.sh:83-84; .github/workflows/ci.yml:48-54; .github/workflows/ci.yml:416-425) |
++| Coverage report | the `coverage` leg's lcov file `target/coverage/lcov.info` — line counts of the workspace's public source, no user data (§8), `keyboard_compat.rs` excluded by filename since 2026-10-17-upstream-sync-engine-debts (test-plan §10 Coverage floors); uploaded only on success as artifact `coverage-report` from `target/coverage/`, kept 7 days — the one fork-CI artifact outside `target/ci-logs/` | (.github/scripts/ci-leg.sh:40-47; .github/workflows/ci.yml:286-291) |
+ | Agent-run harness state | `target/agent-run/{status.json, events.jsonl, run.log}` — the test contract's status, its JSON-line events (§6) and the raw merged cargo/libtest output (unscrubbed, no user data — §8); local only, gitignored under `target/`, uploaded by no CI leg, removed by `agent-run.sh cleanup`, which touches nothing else under `target/` | (scripts/agent-run.sh:9; scripts/agent-run.sh:165-174; scripts/agent-run.sh:215-218) |

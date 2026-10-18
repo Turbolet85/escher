@@ -1,0 +1,13 @@
+## Addendum — resumed 2026-10-17
+- inputs#I4 · message: the operator, the /andromeda-wrap-session arguments, 2026-10-17 19:06Z · copy message · n/a — this wrap's resume directive, five items (a)–(e).
+  - bears on **(security) The lock exactly upstream's set …** (Outcome): supersedes «so it routes to a P2 escalation» — the operator's word resolves it: the criterion "audit passes with `deny.toml` unchanged" is UNMET as written, its letter unchanged and nothing reverted; it rests on `scope-record.md` (the `deny.toml` widening, `ae8c8daf`) and on the External decay cause (the RustSec database moved between CI#39043080454 and CI#39055555592 over the tree `45fcd733`).
+  - bears on **P7 note — entry 11 at the light gate** (Outcome): supersedes «P7.1 owes a treatment on the operator's word before the flip» — after entry 11 is read red on `deny.toml` alone, its treatment is `--skip 11:"deny.toml is this chunk recorded widening (scope-record.md, ae8c8daf)"`.
+  - bears on **Spec claims disproved by measurement**: adds to it — `test-plan.md:66` moves to the merged 127 files / 126 targets.
+  - bears on **Expected amendments (from plan)**: adds to it — the security-plan ARIA entry: P2 stops on the founder's card once, and the operator brings it to him.
+  - bears on **Decisions & corrections**: adds to it — curation homes the two auto-memory entries (inputs#I5, inputs#I6) into the project tiers.
+- inputs#I5 · ~/.claude/projects/-home-turbolet-dev-projects-escher/memory/fork-ownership-founder-vs-operator.md · copy no-repo · unchanged — a P4 fork whose options each change engine behaviour for every document is the founder's (playbook "An engine behaviour change for every document"); the reach of a fix he already ruled, inside his principle, and the consequences of his answers are the operator's.
+  - bears on **Decisions & corrections**: adds to it — a curation candidate (directive e).
+- inputs#I6 · ~/.claude/projects/-home-turbolet-dev-projects-escher/memory/owed-checks-go-on-the-earliest-owner.md · copy no-repo · unchanged — at a wrap's route-resolve, a check owed on code the chunk changed is pinned on the earliest markerless entry that can take it, not on the catch-all "Quality gates" entry (the operator, 2026-10-10).
+  - bears on **Decisions & corrections**: adds to it — a curation candidate (directive e).
+- inputs.py verify, re-fired: `inputs: 6 entries — unchanged 2 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 4 · uncited 3 · unparsed 0`; moved since the report: uncited 1 → 3 — I3 now cited (`report.md:26 · :225 · :363`), and I4 · I5 · I6 are the three, each cited by this addendum.
+

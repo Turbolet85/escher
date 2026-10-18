@@ -8,7 +8,7 @@ Types and traits shared by the other Blitz crates "without circular or unnecessa
 ## Key integrations
 
 ### Consumes from
-- keyboard-types, cursor-icon, http, url, bytes.
+- keyboard-types (0.8 since the 2026-10-17 upstream sync, while Dioxus 0.7.3 carries its own keyboard-types 0.7, so two versions stand in the graph and a module that glob-imports `dioxus::prelude::*` names the workspace's crate as `::keyboard_types`), cursor-icon, http, url, bytes.
 
 ### Publishes to
 - `NetProvider::fetch(doc_id, Request, Box<dyn NetHandler>)` + `is_noop()`; `NetHandler::bytes`; `NetWaker`; `Request` / `Body` / `FormData`; `AbortController` / `AbortSignal`.

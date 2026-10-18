@@ -136,3 +136,9 @@ One entry per amendment to `design-system.md` (sidecar-contract.md §Entry form)
 **Change:** the bullet adds the measured answers at an element's own box — an `img` holding raster data answers the `img`, a block inside an `iframe`'s `srcdoc` sub-document answers the `iframe` (the parent's walk does not enter it, pinned as it reads), a filled text `input` answers the `input` — and a box both transformed and scrolled hit where its rows show, not through its scrolled-out content; both layout modes, both builds.
 **Why:** measured at this chunk; widening the stop to a `contain: paint` box stays deferred on the founder's C4 «Отложить (Рекомендую)», by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option label.
 **Ref:** .andromeda/runs/2026-10-14T22-00-51-wrap/
+
+## 2026-10-17-upstream-sync-engine-debts — the bump app leaves §Surface: cli
+**Section:** §Surface: cli (Platform · Component Patterns)
+**Change:** the Platform line no longer names the `bump` app among the binaries that print to the terminal, and the «bump prints "Bumped anyrender versions" or "Bumped blitz versions"» pattern is gone.
+**Why:** upstream's `23b9b26a9` "Delete the bump crate", taken by the sync.
+**Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/

@@ -1,0 +1,77 @@
+[[pattern]]
+id = 'pin'
+regex = '434e06615?|Upstream sync|last merged at|23b9b26a9?'
+
+[[pattern]]
+id = 'wsver'
+regex = '\b0\.3\.0-beta\.[34]\b|workspace version'
+
+[[pattern]]
+id = 'kbt'
+regex = 'keyboard[-_]types|NamedKey|keyboard_compat'
+
+[[pattern]]
+id = 'testthat'
+regex = 'test-that'
+
+[[pattern]]
+id = 'bump'
+regex = '\b[Bb]ump\b|apps/bump|Release tooling'
+
+[[pattern]]
+id = 'tomlc'
+regex = 'toml_edit|toml_datetime|toml_write'
+
+[[pattern]]
+id = 'aria6'
+regex = 'aria-(labelledby|describedby|description|expanded|disabled|level)|labelled_by|described_by'
+
+[[pattern]]
+id = 'aria3'
+regex = 'aria-selected'
+
+[[pattern]]
+id = 'reexp'
+regex = 'Key` and `Modifiers|keyboard_types::Key|Key, Modifiers'
+
+[[pattern]]
+id = 'files'
+regex = '\.rs` files, [0-9]+ test targets|BlitzTestsTargetsTest'
+
+[[pattern]]
+id = 'newt'
+regex = 'accessibility_(label|description|states)\b'
+
+[[pattern]]
+id = 'tally'
+regex = '[0-9]+ result lines|Per-OS test tallies'
+
+[[pattern]]
+id = 'cov'
+regex = 'llvm-cov|ignore-filename-regex|Coverage floors|coverage floor'
+
+[[pattern]]
+id = 'deny'
+regex = 'ignores stand|RUSTSEC-2026-03|ignored by ID'
+
+[[pattern]]
+id = 'macmod'
+regex = 'Modifiers::(SUPER|META)|ACTION_MODIFIER'
+
+[[pattern]]
+id = 'exe'
+regex = '`all` executable'
+
+[[pattern]]
+id = 'runall'
+regex = '`run all`|run stand'
+
+[[pattern]]
+id = 'title'
+fixed = 'Upstream sync ahead of engine debts'
+ignore_case = true
+
+[[pattern]]
+id = 'owner-gen'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true

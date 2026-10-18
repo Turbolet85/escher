@@ -1,0 +1,2 @@
+proposals: []
+note: D-layout-surface is not violated — the report adds no user-facing surface or region (Changes: engine reads, script bindings, a crate-private module, CI/deny config; no stand markup, id, class or style moved). The one layout-templates move is a retirement, not an addition: §Surface: cli's `bump` row (layout-templates.md:71) leaves with apps/bump — the report carries it under Counts (pattern `bump`, layout-templates `:71` ×4) and Expected amendments ("layout-templates §Surface: cli: the `bump` line leaves"), so it belongs to that cascade, not this detector.

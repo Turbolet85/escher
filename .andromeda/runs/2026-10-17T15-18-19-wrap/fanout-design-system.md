@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens holds — every new surface in the report's Coverage of new surfaces (report.md:304-322) reads `tokens n/a`, none `hardcoded✗`, and no stand UI is added. Outside this detector, the plan's expected amendment for design-system §Surface: cli (bump's Platform line and its "bump prints …" pattern leave, `design-system.md:385` ×2 and `:396` ×4, pattern `bump`, report.md:131 and :297-298) is carried by the Counts sweep, not by a drift-base detector.

@@ -4,8 +4,8 @@
 
 **Instrumentation scope (entities needing instrumentation):**
 
-- **Workspace** — dependencies include tracing, tracing-subscriber, tracing-log, tracing-wasm and console_error_panic_hook; the root dev-dependencies add env_logger (Cargo.toml:175; Cargo.toml:178; Cargo.toml:189-191; Cargo.toml:299)
-- **Workspace** — `packages/debug_timer` is a workspace member (Cargo.toml:4; Cargo.toml:57)
+- **Workspace** — dependencies include tracing, tracing-subscriber, tracing-log, tracing-wasm and console_error_panic_hook; the root dev-dependencies add env_logger (Cargo.toml:174; Cargo.toml:177; Cargo.toml:188-190; Cargo.toml:298)
+- **Workspace** — `packages/debug_timer` is a workspace member (Cargo.toml:4; Cargo.toml:56)
 - **apps/browser** — observability is `tracing` logging, optional frame/phase timing features, and an in-app FPS overlay (apps/browser/Cargo.toml:28-30; apps/browser/Cargo.toml:37; apps/browser/src/fps_overlay.rs:94-124)
 - **examples** — console printing of timings (examples/screenshot.rs:200-214), and the escher-telemetry events of seven_guis' two binaries, `seven_guis_native` and `escher-session`, on stderr (examples/seven_guis/src/main.rs:6-9; examples/seven_guis/src/session_host.rs:20-22)
 - **escher-telemetry** — escher's telemetry bootstrap crate: the stderr subscriber with service identity, the allowlist formatter — a scrub for engine and escher targets, a drop for every other target, printing one line per event and one per closed span — and the chaining panic hook (packages/escher-telemetry/src/lib.rs:1-22; Cargo.toml:17)
@@ -114,7 +114,7 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 
 | Operation | What is recorded | Output | Source |
 |-----------|------------------|--------|--------|
-| Frame / phase timing | Timing logs gated by `log-frame-times`, `log-phase-times`, umbrella `log-times` | log features only | (Cargo.toml:266-269); (packages/dioxus-native/Cargo.toml:60-68) |
+| Frame / phase timing | Timing logs gated by `log-frame-times`, `log-phase-times`, umbrella `log-times` | log features only | (Cargo.toml:265-268); (packages/dioxus-native/Cargo.toml:60-68) |
 | blitz-dom `resolve` | Phase times style, mark_all, damage, construct, pconstruct, layout, transform, paint_tree, c_damage, subdocs | printed, prefixed `Resolve({id}): ` | (packages/blitz-dom/src/resolve.rs:76-168) |
 | debug_timer | Labelled instants; total and per-step durations in ns/us/ms/s | printed | (packages/debug_timer/src/lib.rs:14-24; packages/debug_timer/src/lib.rs:33-66) |
 | Browser FPS overlay | Frame deltas in a 60-entry ring, polled every 250 ms; average FPS and ms | in-app overlay, toggled from the menu item "Toggle FPS" | (apps/browser/src/fps_overlay.rs:7; apps/browser/src/fps_overlay.rs:27-49; apps/browser/src/fps_overlay.rs:105-123); (apps/browser/src/toolbar.rs:436-439) |
@@ -211,7 +211,7 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 - **blitz-html**
   - Each collected HTML parse error is logged at error level on sink finish (packages/blitz-html/src/html_sink.rs:181-186)
 - **blitz-shell, blitz-paint**
-  - `tracing::error!` is logged for unsupported Ime, PointerSource, PointerKind, ButtonSource and MouseScrollDelta variants (packages/blitz-shell/src/convert_events.rs:44-48; packages/blitz-shell/src/convert_events.rs:81-85; packages/blitz-shell/src/convert_events.rs:97-101; packages/blitz-shell/src/convert_events.rs:115-119; packages/blitz-shell/src/convert_events.rs:143-147; packages/blitz-shell/src/window.rs:849-853)
+  - `tracing::error!` is logged for unsupported Ime, PointerSource, PointerKind, ButtonSource and MouseScrollDelta variants (packages/blitz-shell/src/convert_events.rs:41-45; packages/blitz-shell/src/convert_events.rs:78-82; packages/blitz-shell/src/convert_events.rs:94-98; packages/blitz-shell/src/convert_events.rs:112-116; packages/blitz-shell/src/convert_events.rs:140-144; packages/blitz-shell/src/window.rs:849-853)
   - `warn!` is logged for unimplemented image layer kinds and unsupported mask-mode luminance (packages/blitz-paint/src/render/background.rs:201-220; packages/blitz-paint/src/render/mask.rs:102-111)
 - **blitz, blitz-vibey-script**
   - `launch_url` logs `tracing::info!` with "Launching" and the URL under the `tracing` feature (packages/blitz/src/lib.rs:48-49)
@@ -243,7 +243,7 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 
 **Panic hooks:**
 
-- `console_error_panic_hook` is a workspace dependency (Cargo.toml:178)
+- `console_error_panic_hook` is a workspace dependency (Cargo.toml:177)
 - WASM builds install `console_error_panic_hook` (examples/seven_guis/src/lib.rs:16; examples/todomvc/src/wasm.rs:8; examples/wasm_hello/src/lib.rs:104)
 - The wpt runner's panic hook captures message, file, line, column and a forced backtrace (wpt/runner/src/panic_backtrace.rs:12-38)
 - escher-telemetry's hook, installed by `init` in `seven_guis_native` and in `escher-session`, chains: it takes the previous hook, logs one ERROR event at target `escher_telemetry::panic` with `panic.file`, `panic.line`, `panic.column` and `panic.payload` (redacted, §8), then runs the previous hook — std's default still prints the raw message to stderr and the exit code is unchanged (packages/escher-telemetry/src/panic.rs:4-24)
@@ -267,7 +267,7 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 - The window `error` event carries message, filename "", lineno 0, colno 0 and error (packages/blitz-vibey-script/src/runtime.rs:1142-1158)
 - `window.onerror` is called with message, source, lineno, colno, error (packages/blitz-vibey-script/src/runtime.rs:1168-1180)
 - Exceptions thrown by error handlers are recorded but fire no further error events (packages/blitz-vibey-script/src/runtime.rs:1118-1120; packages/blitz-vibey-script/src/state.rs:93-96)
-- Error sources labelled in reports include "timer callback", "event listener", "error event listener", "timer microtasks", "event microtasks" (packages/blitz-vibey-script/src/runtime.rs:1636; packages/blitz-vibey-script/src/runtime.rs:1639; packages/blitz-vibey-script/src/runtime.rs:1691; packages/blitz-vibey-script/src/runtime.rs:1801; packages/blitz-vibey-script/src/runtime.rs:1165)
+- Error sources labelled in reports include "timer callback", "event listener", "error event listener", "timer microtasks", "event microtasks" (packages/blitz-vibey-script/src/runtime.rs:1636; packages/blitz-vibey-script/src/runtime.rs:1639; packages/blitz-vibey-script/src/runtime.rs:1691; packages/blitz-vibey-script/src/runtime.rs:1810; packages/blitz-vibey-script/src/runtime.rs:1165)
 
 **Absent:**
 
@@ -325,8 +325,8 @@ Contracts: .andromeda/registries/obs-plan-contracts.toml — ask registry.py con
 |----------|---------|--------|
 | WPT report and scores | archived to GitHub Pages and dispatched to `DioxusLabs/blitz-wpt-results` on main, on upstream `DioxusLabs/blitz` only (`wpt` and `trigger-archive` are repository-guarded; neither runs on the fork) | (.github/workflows/wpt.yml:26; .github/workflows/wpt.yml:89-113) |
 | `wptscores.json` | computed from the WPT run and published to Pages, upstream only | (.github/workflows/wpt.yml:26; .github/workflows/wpt.yml:64-67) |
-| Per-leg CI log | each ci.yml leg's merged stdout+stderr, written by `ci-leg.sh` to `target/ci-logs/{leg}.log` (matrix: `target/ci-logs/matrix-{platform}.log`), truncated at the leg's start; uploaded only on failure as artifact `ci-log-{job id}` (`if-no-files-found: ignore`), kept 7 days, from `target/ci-logs/` alone; unscrubbed build output (no user data — §8) | (.github/scripts/ci-leg.sh:81-82; .github/workflows/ci.yml:48-54; .github/workflows/ci.yml:416-425) |
-| Coverage report | the `coverage` leg's lcov file `target/coverage/lcov.info` — line counts of the workspace's public source, no user data (§8); uploaded only on success as artifact `coverage-report` from `target/coverage/`, kept 7 days — the one fork-CI artifact outside `target/ci-logs/` | (.github/scripts/ci-leg.sh:40-45; .github/workflows/ci.yml:286-291) |
+| Per-leg CI log | each ci.yml leg's merged stdout+stderr, written by `ci-leg.sh` to `target/ci-logs/{leg}.log` (matrix: `target/ci-logs/matrix-{platform}.log`), truncated at the leg's start; uploaded only on failure as artifact `ci-log-{job id}` (`if-no-files-found: ignore`), kept 7 days, from `target/ci-logs/` alone; unscrubbed build output (no user data — §8) | (.github/scripts/ci-leg.sh:83-84; .github/workflows/ci.yml:48-54; .github/workflows/ci.yml:416-425) |
+| Coverage report | the `coverage` leg's lcov file `target/coverage/lcov.info` — line counts of the workspace's public source, no user data (§8), `keyboard_compat.rs` excluded by filename since 2026-10-17-upstream-sync-engine-debts (test-plan §10 Coverage floors); uploaded only on success as artifact `coverage-report` from `target/coverage/`, kept 7 days — the one fork-CI artifact outside `target/ci-logs/` | (.github/scripts/ci-leg.sh:40-47; .github/workflows/ci.yml:286-291) |
 | Agent-run harness state | `target/agent-run/{status.json, events.jsonl, run.log}` — the test contract's status, its JSON-line events (§6) and the raw merged cargo/libtest output (unscrubbed, no user data — §8); local only, gitignored under `target/`, uploaded by no CI leg, removed by `agent-run.sh cleanup`, which touches nothing else under `target/` | (scripts/agent-run.sh:9; scripts/agent-run.sh:165-174; scripts/agent-run.sh:215-218) |
 | Session state directory | the directory a session's caller names — in the checks `ss-life`, `ss-idle` and `ss-quiet` (blitz-tests) and `hb-*`, `hl-trace`, `cc-*`, `cf-*` and `ht-timer` (seven_guis) under `target/tmp/` — created `0700` by the host, holding the socket file `session.sock` alone while a session is up and nothing after `stop` or after the host's idle expiry, which ends it exactly as `stop` does; no log, event or screen content is written into it; local only, uploaded by no CI leg; it belongs to the session library and its checks, not to `agent-run.sh` | (packages/escher-driver/src/host.rs:59-106; tests/blitz-tests/tests/session_common/mod.rs:264-272; examples/seven_guis/tests/common/mod.rs:14-22; examples/seven_guis/tests/host_log.rs:83) |
 | Cold-agent pipe state | `target/cold-agent/{verdict.json, events.jsonl, transcript.jsonl, client.log, server.log, check.json}` — the run's verdict, its JSON-line events (§6), the client's raw transcript and stderr, the escher server's stderr (escher's sink, counted by span name) and the agent's check (raw by design, never printed — §8; `calls.jsonl` and `stub-state.json` retired at 2026-10-15-cold-agent-test); local only, gitignored under `target/`, uploaded by no CI leg (CI runs only the shim contract tests), removed by `cold-agent.sh cleanup`, which touches nothing else under `target/`; the per-run `mktemp -d` session directory, holding `mcp.json` alone, is removed when the run exits | (scripts/cold-agent.sh:15; scripts/cold-agent.sh:450-482; scripts/cold-agent.sh:487-490) |

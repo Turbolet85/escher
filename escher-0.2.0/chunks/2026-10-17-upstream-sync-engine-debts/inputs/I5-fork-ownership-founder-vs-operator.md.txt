@@ -1,0 +1,26 @@
+---
+name: fork-ownership-founder-vs-operator
+description: "In escher, which planning forks go to the founder and which are the operator's — a P4 fork changing engine behaviour for every document is the founder's (playbook :64); how far a ruled fix reaches, and consequences of his answers, are the operator's"
+metadata:
+  node_type: memory
+  type: feedback
+  originSessionId: 6d3afa93-e4d4-4bd9-9918-a724b944116a
+  modified: 2026-10-13T20:20:33.155Z
+---
+
+In escher's /andromeda-phase, a fork that only decides **how far a fix the founder has already ruled reaches**, inside a principle he already set, is a **technical fork — the operator's**, asked in the dialog. It does not go into the founder's forks file.
+
+What happened (2026-10-10, chunk `2026-10-10-scrolling-box-bounds-and-hit`): I put two forks into `p4-founder-forks.md` — which boxes stop a hit at their edge, and whether a second engine reader with the same defect is left, measured or fixed — reasoning that each was "a behaviour change for every document". The operator answered both himself at the P5 review and said the placement was wrong: neither widens a boundary nor changes what the project is for.
+
+**Why:** the founder has a standing delegation of technical decisions to the operator. His own word is needed for a boundary widening (something new crossing a hardened boundary), for what an agent meets changing beyond what was ruled, and for what the project is for — not for the reach of an engine fix he already ruled, even when that fix changes behaviour for every document.
+
+**Correction (2026-10-13, chunk `2026-10-13-range-input-interaction`):** I put three P4 forks that shape an engine
+change for every document (where a range value lives, which keys step it, whether a click focuses) to the operator as
+"technical forks within the founder's ruling". The overseer routed all three to the founder instead, citing the
+playbook rule "An engine behaviour change for every document" (`.andromeda/playbook.md:64`): it is routine only "on
+the founder's own word at that chunk's P4 fork". The founder answered, one answer against my recommendation. So a P4
+fork whose options each change engine behaviour for every document is the founder's, asked as a dialog the overseer
+relays. The operator then confirmed my leans that followed from his answers (form submission, re-seed on attribute
+write, pointer-down vs click) "as consequences of the founder's own answers, not new forks" — those stay the operator's.
+
+**How to apply:** before writing a fork for the founder, ask whether he has already ruled the change itself and set its principle. If yes, and no boundary widens, put the fork to the operator in the dialog with a marked recommendation. When unsure, ask the operator whose it is rather than routing it to the founder and planning on the narrowest option — that cost a full extra review round here. My interpretation: the playbook's "behaviour change for every document" clause is about a change with no ruling behind it, not about the extent of a ruled one.

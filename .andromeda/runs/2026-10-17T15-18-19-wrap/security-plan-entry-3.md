@@ -1,0 +1,8 @@
+
+## 2026-10-17-upstream-sync-engine-debts — eight advisory ignores: the zbus family's three; the 2026-10-17 sync record (§Dependency Security)
+**Section:** §Dependency Security (Audit tool · Pinning)
+**Change:**
+- Audit tool: was «Five ignores stand»; now eight — RUSTSEC-2026-0370 (zvariant 5.15.0), RUSTSEC-2026-0371 (zbus_names 4.3.4) and RUSTSEC-2026-0372 (zvariant_derive 5.15.0), each unmaintained and folded into zbus 6.0.0, reached only through zbus 5.19 + atspi 0.29 under accesskit_unix 0.24.0 (the latest, requiring zbus ^5.19) ← accesskit_xplat ← blitz-shell, so no fix is reachable; each ignored by ID with that reason, external decay over an unchanged tree, dropped when accesskit_unix moves to zbus 6, owned by a `.andromeda/residuals.md` line, re-read by the audit leg on every push.
+- Pinning: gains the 2026-10-17 sync record — upstream's set taken whole at `23b9b26a9`: keyboard-types 0.8 (Dioxus keeping its 0.7), test-that and test-that-macro 0.6.0 reviewed by hand, the workspace at 0.3.0-beta.4, the three bump-only toml crates leaving, Taffy still the registry "0.15" with no git dependency, the lock's set equal to upstream's with the two `escher-*` entries aside; the audit green with `deny.toml` unchanged at implement and, on the final HEAD, only with the three ignores.
+**Why:** the operator's word under the playbook's External decay pattern, recorded as a widening in the chunk's scope record — the three advisories turned the audit red over a tree that had read green; the (security) criterion «with `deny.toml` unchanged» stays UNMET as written, its letter unchanged and nothing reverted, on the operator's resume directive.
+**Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/

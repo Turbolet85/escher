@@ -1,0 +1,63 @@
+[
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "a81d3633",
+"ts": "2026-10-18T02:09:34Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-17-upstream-sync-engine-debts",
+"--run-dir",
+".andromeda/runs/2026-10-17T15-18-19-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"flip master-route.md:59 - 2026-10-17-upstream-sync-engine-debts pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "a81d3633",
+"ts": "2026-10-18T02:09:34Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-17-upstream-sync-engine-debts",
+"--date",
+"2026-10-18",
+"--run-dir",
+".andromeda/runs/2026-10-17T15-18-19-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin listing NOT DERIVED -- 2026-10-17-upstream-sync-engine-debts's line :18 carries no freight (already compact)",
+"compacted 0 lines (4 stamped read) -- an empty sweep is a verdict, not an absence proof"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [],
+"skips": [],
+"kept_notes": []
+}
+}
+]
