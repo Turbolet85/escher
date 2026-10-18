@@ -365,3 +365,8 @@ One entry per amendment to `obs-plan.md` (sidecar-contract.md §Entry form). App
 The delegate-answered facts PROVISIONAL.
 **Why:** the founder's forks F2 A and F2b A, answered by the operator as the founder's delegate (delegate the operator, 2026-10-18), PROVISIONAL, for the founder's epoch-boundary batch (the operator, 2026-10-18, at the wrap resume); the silence probe was read at this wrap.
 **Ref:** .andromeda/runs/2026-10-18T08-45-11-wrap/
+## 2026-10-18-engine-debts — the PROVISIONAL batch ratified by the founder (Epoch 2 close): one-virtual-clock, 4 marks
+**Section:** §4 Span / Trace Coverage (the `command` span's causes, an accepted `advance` and its `tool_call`) · §6 Log Coverage (the span line's eight cause names)
+**Change:** each PROVISIONAL mark now reads `ratified by the founder (2026-10-18)` (inside parentheses `ratified by the founder, 2026-10-18`), the clause unchanged: the eight cause names, `fonts-unavailable` among them; an `advance` accepted on every session, recording `verb` and the acting fields; an `advance` tool call ending `accepted` with one `command` child; the line's eight cause names. Partly retires the PROVISIONAL clause of the earlier 2026-10-18-one-virtual-clock entry here; its other claims stand. No span, field or log field moves.
+**Why:** the Provisional discharge at the epoch boundary, on the founder's own word: «Утвердить всё (Рекомендую)» on one-virtual-clock F1 B · F2 A · F2b A · F3 A (the founder, 2026-10-18, by question dialog in the overseer session, relayed by the overseer with his chosen labels verbatim), discharged at this wrap on the operator's direction (the operator, 2026-10-18, at the gated wrap's resume).
+**Ref:** .andromeda/runs/2026-10-18T20-46-02-wrap/

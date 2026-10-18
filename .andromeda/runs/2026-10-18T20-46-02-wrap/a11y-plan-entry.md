@@ -1,0 +1,8 @@
+## 2026-10-18-engine-debts — the PROVISIONAL batch ratified by the founder (Epoch 2 close): two batches, 13 marks
+**Section:** §2 A11y Strategy · §4 ARIA Patterns & Roles · §5 Keyboard Navigation · §6 Visual Design Verification · §7 Screen Reader Support
+**Change:** every PROVISIONAL mark now reads `ratified by the founder (2026-10-18)` (inside parentheses `ratified by the founder, 2026-10-18`), the clause each one qualifies unchanged:
+- engine-debts, 12 marks: the toggle read per role and `role="switch"` mapping to `Switch`, `disabled` narrowed to form controls and the `inert` read in focus order, the click walk stopped by a disabled form control alone, the activation keys' disabled gate, `inert` taking focusability, hits and the tree, `accessibility_active_descendant_unread`'s pin, the snapshot's `checked` source and its mixed-reads-false, the password caret by the bullets;
+- one-virtual-clock, 1 mark: two `click`s with no `advance` between them a double click on the document's clock.
+Partly retires the PROVISIONAL clause of the earlier 2026-10-18-engine-debts and 2026-10-18-one-virtual-clock entries here; each one's other claims stand. The native-checkedness residual (`.andromeda/residuals.md`, target next) stays open, on the founder's «Исправить позже (Рекомендую)».
+**Why:** the Provisional discharge at the epoch boundary, on the founder's own word: «Утвердить всё (Рекомендую)» on the engine-debts batch and on one-virtual-clock F1 B · F2 A · F2b A · F3 A (the founder, 2026-10-18, by question dialog in the overseer session, relayed by the overseer with his chosen labels verbatim), discharged at this wrap on the operator's direction (the operator, 2026-10-18, at the gated wrap's resume).
+**Ref:** .andromeda/runs/2026-10-18T20-46-02-wrap/

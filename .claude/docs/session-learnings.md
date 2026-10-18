@@ -8,6 +8,20 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-18 — A gated wrap with later chunks committed on top of its flip
+When a gated chunk's acceptance waits while later chunks are taken up and committed, its gated wrap finds the
+pipeline's base rules reading the wrong tree. Each tool looks for the marker's operator pre-CI commit anywhere in
+HEAD's history and finds the take-up's. `gate.py scope` then reads every file the later chunks changed as
+unrecorded. `cites.py added --base {the gated flip}` lists their added text. `cascade.py sweep`'s default baseline
+lands before the masters the pass amends, so every control reads unfired. The plan's base-anchored probes also
+read the later chunks' edits.
+
+The gated part's own tree is HEAD. List new text with `--base HEAD`, sweep with `--baseline HEAD`, and have the
+operator rule the scope stop on exactly the later chunks' file set. A base-anchored probe that counts the later
+chunks' files is `--skip`ped with the operator's reason, never re-anchored by the wrap.
+
+---
+
 ## 2026-10-18 — An atomic read-modify-write that builds on the MSRV and on the host toolchain
 `AtomicU64::fetch_update` reads as deprecated on the dev host's toolchain ("renamed to `try_update`"), so under clippy's `-D warnings` it fails the lint leg, while `try_update` is newer than the workspace's MSRV (1.91) and fails the MSRV build. Write the update as a hand `compare_exchange_weak` loop — load, compute, `compare_exchange_weak(current, next, …)`, retry on `Err(actual)` — which builds clean on both; blitz-dom's `VirtualClock::advance` is written that way, its saturating add pinned by a unit test.
 

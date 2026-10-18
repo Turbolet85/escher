@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens has nothing to read — Coverage of new surfaces is "none" (the gated part adds no UI surface and touches no source), and the report carries no Retired bullet, so no D-retired correction; the design-system PROVISIONAL marks the report classes (design-system 216 engine-debts, 291 one-virtual-clock, 316 cursor fix) are the Provisional-discharge escalation's at P2 on inputs#I9/I11, not a detector proposal of this fan-out.

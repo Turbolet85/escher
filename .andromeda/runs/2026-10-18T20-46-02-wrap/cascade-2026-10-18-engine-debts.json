@@ -1,0 +1,3292 @@
+[
+{
+"tool": "cascade",
+"v": "1.11",
+"sha8": "449df21b",
+"ts": "2026-10-18T21:16:53Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-18T20-46-02-wrap/cascade-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-18T20-46-02-wrap",
+"--marker",
+"2026-10-18-engine-debts"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline 34bcf71c (pre-CI parent — the oldest of 1 pre-CI commit(s), 48680dfb)",
+"prov · control UNFIRED over the seven masters at 34bcf71c",
+"deleg · control UNFIRED over the seven masters at 34bcf71c",
+"batch · control UNFIRED over the seven masters at 34bcf71c"
+],
+"stderr": "control: prov, deleg, batch never fired over the seven masters' pre-pass text (34bcf71c) — a sweep runs a positive control or refuses; drop the pattern or control it by hand",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.11",
+"sha8": "449df21b",
+"ts": "2026-10-18T21:17:02Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-18T20-46-02-wrap/cascade-patterns.toml",
+"--baseline",
+"HEAD",
+"--run-dir",
+".andromeda/runs/2026-10-18T20-46-02-wrap",
+"--marker",
+"2026-10-18-engine-debts"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline 1c9bc58b (given)",
+"batch · control UNFIRED over the seven masters at 1c9bc58b"
+],
+"stderr": "control: batch never fired over the seven masters' pre-pass text (1c9bc58b) — a sweep runs a positive control or refuses; drop the pattern or control it by hand",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.11",
+"sha8": "449df21b",
+"ts": "2026-10-18T21:17:06Z",
+"argv": [
+"sweep",
+"--patterns-file",
+".andromeda/runs/2026-10-18T20-46-02-wrap/cascade-patterns.toml",
+"--baseline",
+"HEAD",
+"--pattern",
+"prov",
+"--pattern",
+"deleg",
+"--run-dir",
+".andromeda/runs/2026-10-18T20-46-02-wrap",
+"--marker",
+"2026-10-18-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 1c9bc58b (given)",
+"prov · new 0 · standing 0 · leaf 50 · curation 0 · base 6 · control architecture.md:86 (prose)",
+"deleg · new 0 · standing 3 · leaf 0 · curation 0 · base 0 · control architecture.md:248 (prose)",
+".andromeda/playbook.md:48 prov base …standing past its epoch, a PROVISIONAL mark: a body, key-file or sidecar clause re…",
+".andromeda/playbook.md:50 prov base   note: PROVISIONAL items are discharged in one batch at each epoch boundary, on th…",
+".andromeda/playbook.md:54 prov base … and it never discharges a PROVISIONAL mark. The class reached four wraps, all on …",
+".andromeda/playbook.md:62 prov base …upstream merge is recorded PROVISIONAL for the founder like any other: the founder…",
+".andromeda/playbook.md:66 prov base …or a relay not verbatim is PROVISIONAL (Provisional discharge rule); a change with…",
+".andromeda/playbook.md:70 prov base … no claim, ratification or PROVISIONAL mark, and each changed and each left site i…",
+"CLAUDE.md:22 prov leaf ×7 @c379,657,1093,2606,2982,3055,3488/4352 …ncludes `paint` (PROVISIONAL) — and passes through a…",
+"CLAUDE.md:26 prov leaf …wo values of one length lands on one index, a double click selects the whole value; PROVISIONAL)",
+"CLAUDE.md:33 prov leaf …`), a mixed one reading false (PROVISIONAL); `selected` · `pressed` · `invalid` are taken from …",
+"CLAUDE.md:35 prov leaf …ness`: construction, its time (PROVISIONAL: a `VirtualClock` its documents share — `HarnessOpti…",
+"CLAUDE.md:37 prov leaf ×2 @c2389,3898/6774 … by `screenshot` alone; PROVISIONAL). `Session::run` executes a `Call` — on…",
+"CLAUDE.md:45 prov leaf …out of the accessibility tree (PROVISIONAL), `stand_keyboard` and `inert_subtree` its pins — wh…",
+"CLAUDE.md:110 prov leaf ×6 @c1407,3634,4200,6861,7479,7649/10257 … checkable role, PROVISIONAL) · `aria-invalid`, a thi…",
+".claude/rules/a11y.md:24 prov leaf … it, removing `inert` restoring the tree and the hit (the `inert` read PROVISIONAL).",
+".claude/rules/a11y.md:25 prov leaf ×2 @c660,1803/2504 …toggle read per role PROVISIONAL, `accessibility_states`' fourth…",
+".claude/rules/a11y.md:31 prov leaf …owing and the `inert` read PROVISIONAL) and has `tabindex >= 0`, or (no tabindex) `…",
+".claude/rules/a11y.md:32 prov leaf ×2 …ect` or `textarea` alone (PROVISIONAL) — so `disabled=\"false\"` and a bare `disab…",
+".claude/rules/a11y.md:33 prov leaf ×3 @c251,1308,1743/2398 …ata::is_disabled`; PROVISIONAL — a `disabled` attribute on …",
+".claude/rules/security.md:17 prov leaf ×3 @c149,1947,3872/4378 …e toggle by role, PROVISIONAL: `aria-checked` on the fi…",
+".claude/rules/security.md:22 prov leaf @c543/3210 …ses with fixed texts (PROVISIONAL; `fonts-unavailable` since 2026-10…",
+".claude/rules/testing.md:31 prov leaf …lock and the wrapped document keeps the one its own config gave it (PROVISIONAL).",
+".claude/rules/verification-harness.md:31 prov leaf …ontrast` or `settle` (PROVISIONAL); `dispatch` / `dispatch_recorded…",
+".claude/rules/verification-harness.md:36 prov leaf …by exactly `ms`, and `advanced_ms` reads exactly `ms`, PROVISIONAL).",
+".claude/docs/a11y-summary.md:20 prov leaf …moving `inert` restoring the tree and the hit (the `inert` read PROVISIONAL).",
+".claude/docs/a11y-summary.md:21 prov leaf @c625/2690 …toggle read per role PROVISIONAL, `accessibility_states`' fourth …",
+".claude/docs/a11y-summary.md:22 prov leaf …tive_descendant_unread` (PROVISIONAL). The second, the list's empty accessib…",
+".claude/docs/a11y-summary.md:23 prov leaf ×3 @c493,924,1187/2315 …estor `div` not (PROVISIONAL), and a click on any oth…",
+".claude/docs/a11y-summary.md:24 prov leaf ×4 @c416,1033,2119,3290/5688 …xtarea` alone (PROVISIONAL) — so `disabled=\"fal…",
+".claude/docs/commands.md:61 prov leaf ×2 …k `stand_virtual_clock`, PROVISIONAL: a shot after a scroll repeating across …",
+".claude/docs/commands.md:63 prov leaf ×4 …clips by `overflow` and, PROVISIONAL, at a `contain: paint` box's padding box…",
+".claude/docs/design-summary.md:24 prov leaf …ith the app's own time (PROVISIONAL), while `click`, `type` and `press` le…",
+".claude/docs/obs-summary.md:49 prov leaf ×2 @c566,886/9283 …longer among them (PROVISIONAL)), `settled`, `busy`, `passe…",
+".claude/docs/security-summary.md:13 prov leaf ×3 @c1335,2575,3000/3431 …se\"` included; PROVISIONAL) for focusability, t…",
+".claude/docs/security-summary.md:23 prov leaf @c1315/3528 … with fixed texts (PROVISIONAL; `time-unavailable` gone, `ad…",
+".claude/docs/security-summary.md:32 prov leaf @c2281/2656 …k_password_input`, PROVISIONAL), so no width of the real cha…",
+".claude/docs/services/blitz-dom.md:15 prov leaf ×7 @c195,1435,2119,2278,3527,8018/9011 …'s clock (PROVISIONAL: `Documen…",
+".claude/docs/services/blitz-dom.md:15 prov @c+8571/9011",
+".claude/docs/services/blitz-paint.md:18 prov leaf … click selects the whole value (PROVISIONAL; `password_caret_click`).",
+".claude/docs/services/blitz-test-harness.md:16 prov leaf …ere one was handed (PROVISIONAL, since 2026-10-18-one-virtual…",
+".claude/docs/services/blitz-test-harness.md:19 prov leaf ×2 @c63,2293/2306 …rness's time (PROVISIONAL, since 2026-10-18…",
+".claude/docs/services/blitz-test-harness.md:34 prov leaf @c2309/2322 … modes, reading `harness().time()`) (PROVISIONAL).",
+".claude/docs/services/dioxus-native-dom.md:17 prov leaf ×2 @c946,1901/3325 …orms move it (PROVISIONAL), so a driver `cl…",
+".claude/docs/services/escher-driver.md:16 prov leaf … on every `advance` (PROVISIONAL). A session started without it ca…",
+".claude/docs/services/escher-driver.md:18 prov leaf ×2 @c1461,2306/3360 …`'s help says (PROVISIONAL); `type` then repla…",
+".claude/docs/services/escher-driver.md:19 prov leaf … a step's diff can be non-empty on any animated page (PROVISIONAL).",
+".claude/docs/services/escher-driver.md:24 prov leaf @c789/3475 … the same pixels (PROVISIONAL)), then `start` (`app`), …",
+".claude/docs/services/escher-driver.md:26 prov leaf …eight (`[Cause; 8]`, PROVISIONAL): `unknown-verb` · `malformed` · …",
+".claude/docs/services/escher-driver.md:35 prov leaf …ead the same pixels (PROVISIONAL); the help of `changed` and of `s…",
+".claude/docs/services/escher-driver.md:38 prov leaf … the app's own time (PROVISIONAL); no driver command waits on a lo…",
+".claude/docs/services/escher-driver.md:53 prov leaf …Fixed in the engine (PROVISIONAL): a hit stops at the padding box …",
+".claude/docs/services/seven_guis.md:11 prov leaf @c724/4619 …ion's clock alone (PROVISIONAL)). `start <task>` spawns th…",
+".claude/docs/services/seven_guis.md:19 prov leaf … the harness's clock (PROVISIONAL). It installs no telemetry, reads n…",
+".claude/docs/tests-summary.md:13 prov leaf …t's own config gave it; PROVISIONAL), `settle` (that pass repeated until no…",
+".claude/docs/tests-summary.md:14 prov leaf …2 then 3 ticks), `advanced_ms` exactly `ms`, the clock's move (PROVISIONAL).",
+".claude/docs/tests-summary.md:21 prov leaf @c12026/12291 …hem a double click; PROVISIONAL) — asserted unconditionally, …",
+".claude/docs/tests-summary.md:24 prov leaf @c1311/12731 …re_named_in_order`, PROVISIONAL), `fonts-unavailable` last, th…",
+".claude/docs/workflow.md:15 prov leaf …ot manifest, so Taffy stays the registry \"0.15\"; the partial take is PROVISIONAL.",
+".andromeda/architecture.md:248 deleg standing edited …F1 answered B by the founder's delegate, ratified by the founder …",
+".andromeda/security-plan.md:246 deleg standing edited …F1 answered B by the founder's delegate, ratified by the founder…",
+".andromeda/design-system.md:316 deleg standing edited …F1 answered B by the founder's delegate, ratified by the founder…",
+"prov · new 0 · standing 0 · leaf 50 · curation 0 · base 6 · control architecture.md:86 (prose)",
+"deleg · new 0 · standing 3 · leaf 0 · curation 0 · base 0 · control architecture.md:248 (prose)",
+"total (2 patterns) · 59 rows over 22 files",
+"per class · new 0/0 · standing 3/3 · leaf 50/18 · curation 0/0 · base 6/1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "1c9bc58b5ea2332dcc2013d2407f0fe7374c798c",
+"how": "given",
+"counts": {
+"prov": {
+"new": 0,
+"standing": 0,
+"leaf": 50,
+"curation": 0,
+"base": 6
+},
+"deleg": {
+"new": 0,
+"standing": 3,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+}
+}
+},
+{
+"tool": "cascade",
+"v": "1.11",
+"sha8": "449df21b",
+"ts": "2026-10-18T21:18:23Z",
+"argv": [
+"leaves",
+"--all",
+"--baseline",
+"HEAD",
+"--run-dir",
+".andromeda/runs/2026-10-18T20-46-02-wrap",
+"--marker",
+"2026-10-18-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture-1 · whole · 7 leaves · 50911 B · 1 source file(s)",
+"  leaf .claude/docs/conventions.md · 5935 B",
+"  leaf .claude/docs/gotchas.md · 6411 B",
+"  leaf .claude/docs/services/blitz-dom.md · 13980 B",
+"  leaf .claude/docs/services/blitz-paint.md · 3231 B",
+"  leaf .claude/docs/services/blitz-shell.md · 3065 B",
+"  leaf .claude/docs/services/blitz-traits.md · 1974 B",
+"  leaf .claude/docs/services/dioxus-native-dom.md · 16315 B",
+"  source .andromeda/architecture.md",
+"architecture-2 · whole · 3 leaves · 61047 B · 1 source file(s)",
+"  leaf .claude/docs/services/escher-driver.md · 46665 B",
+"  leaf .claude/docs/stack.md · 10001 B",
+"  leaf .claude/docs/workflow.md · 4381 B",
+"  source .andromeda/architecture.md",
+"masters · whole · 1 leaves · 47232 B · 14 source file(s)",
+"  leaf CLAUDE.md · 47232 B",
+"  source .andromeda/architecture.md",
+"  source .andromeda/security-plan.md",
+"  source .andromeda/design-system.md",
+"  source .andromeda/layout-templates.md",
+"  source .andromeda/test-plan.md",
+"  source .andromeda/registries/test-plan-contracts.toml",
+"  source .andromeda/registries/contracts/test-plan/bootstrap-phases-derive-for-route-setup-project.md",
+"  source .andromeda/registries/contracts/test-plan/session-lifecycle.md",
+"  source .andromeda/obs-plan.md",
+"  source .andromeda/registries/obs-plan-contracts.toml",
+"  source .andromeda/registries/contracts/obs-plan/bootstrap-phases-derive-for-route-setup-project.md",
+"  source .andromeda/a11y-plan.md",
+"  source .andromeda/registries/a11y-plan-contracts.toml",
+"  source .andromeda/registries/contracts/a11y-plan/bootstrap-phases-derive-for-route-setup-project.md",
+"architecture+layout-templates · whole · 1 leaves · 18074 B · 2 source file(s)",
+"  leaf .claude/docs/services/seven_guis.md · 18074 B",
+"  source .andromeda/architecture.md",
+"  source .andromeda/layout-templates.md",
+"architecture+test-plan · whole · 2 leaves · 28822 B · 5 source file(s)",
+"  leaf .claude/docs/commands.md · 16915 B",
+"  leaf .claude/docs/services/blitz-test-harness.md · 11907 B",
+"  source .andromeda/architecture.md",
+"  source .andromeda/test-plan.md",
+"  source .andromeda/registries/test-plan-contracts.toml",
+"  source .andromeda/registries/contracts/test-plan/bootstrap-phases-derive-for-route-setup-project.md",
+"  source .andromeda/registries/contracts/test-plan/session-lifecycle.md",
+"architecture+obs-plan · whole · 1 leaves · 10131 B · 4 source file(s)",
+"  leaf .claude/docs/services/escher-telemetry.md · 10131 B",
+"  source .andromeda/architecture.md",
+"  source .andromeda/obs-plan.md",
+"  source .andromeda/registries/obs-plan-contracts.toml",
+"  source .andromeda/registries/contracts/obs-plan/bootstrap-phases-derive-for-route-setup-project.md",
+"security-plan · whole · 2 leaves · 42640 B · 1 source file(s)",
+"  leaf .claude/docs/security-summary.md · 25786 B",
+"  leaf .claude/rules/security.md · 16854 B",
+"  source .andromeda/security-plan.md",
+"design-system+layout-templates · whole · 1 leaves · 7723 B · 2 source file(s)",
+"  leaf .claude/docs/design-summary.md · 7723 B",
+"  source .andromeda/design-system.md",
+"  source .andromeda/layout-templates.md",
+"test-plan-1 · whole · 2 leaves · 57806 B · 4 source file(s)",
+"  leaf .claude/docs/tests-summary.md · 49251 B",
+"  leaf .claude/rules/testing.md · 8555 B",
+"  source .andromeda/test-plan.md",
+"  source .andromeda/registries/test-plan-contracts.toml",
+"  source .andromeda/registries/contracts/test-plan/bootstrap-phases-derive-for-route-setup-project.md",
+"  source .andromeda/registries/contracts/test-plan/session-lifecycle.md",
+"test-plan-2 · whole · 1 leaves · 9366 B · 4 source file(s)",
+"  leaf .claude/rules/verification-harness.md · 9366 B",
+"  source .andromeda/test-plan.md",
+"  source .andromeda/registries/test-plan-contracts.toml",
+"  source .andromeda/registries/contracts/test-plan/bootstrap-phases-derive-for-route-setup-project.md",
+"  source .andromeda/registries/contracts/test-plan/session-lifecycle.md",
+"obs-plan · whole · 2 leaves · 28276 B · 3 source file(s)",
+"  leaf .claude/docs/obs-summary.md · 19237 B",
+"  leaf .claude/rules/observability.md · 9039 B",
+"  source .andromeda/obs-plan.md",
+"  source .andromeda/registries/obs-plan-contracts.toml",
+"  source .andromeda/registries/contracts/obs-plan/bootstrap-phases-derive-for-route-setup-project.md",
+"a11y-plan · whole · 2 leaves · 39336 B · 3 source file(s)",
+"  leaf .claude/docs/a11y-summary.md · 23145 B",
+"  leaf .claude/rules/a11y.md · 16191 B",
+"  source .andromeda/a11y-plan.md",
+"  source .andromeda/registries/a11y-plan-contracts.toml",
+"  source .andromeda/registries/contracts/a11y-plan/bootstrap-phases-derive-for-route-setup-project.md",
+"unmapped .claude/rules/host-linux.md (host)",
+"total · whole · 12 group(s) · 25 leaves · 401364 B · unmapped 1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"leaves": {
+"mode": "whole",
+"groups": {
+"architecture-1": {
+"leaves": [
+".claude/docs/conventions.md",
+".claude/docs/gotchas.md",
+".claude/docs/services/blitz-dom.md",
+".claude/docs/services/blitz-paint.md",
+".claude/docs/services/blitz-shell.md",
+".claude/docs/services/blitz-traits.md",
+".claude/docs/services/dioxus-native-dom.md"
+],
+"sources": [
+"architecture"
+],
+"files": [
+".andromeda/architecture.md"
+],
+"deltas": [],
+"read": {
+".claude/docs/conventions.md": [
+61,
+"- Architecture: `.andromeda/architecture.md` · directory layout: §Infrastructure Patterns · gotchas: `.claude/docs/gotchas.md` · per-crate notes: `.claude/docs/services/`."
+],
+".claude/docs/gotchas.md": [
+68,
+"- Decisions and rationale: `.andromeda/architecture.md` §Established Decisions"
+],
+".claude/docs/services/blitz-dom.md": [
+43,
+"- `.andromeda/architecture.md` · `.claude/docs/stack.md` · `.claude/docs/conventions.md`"
+],
+".claude/docs/services/blitz-paint.md": [
+35,
+"- `.andromeda/architecture.md` · `.claude/docs/services/blitz-dom.md`"
+],
+".claude/docs/services/blitz-shell.md": [
+34,
+"- `.andromeda/architecture.md` · `.claude/docs/services/blitz-dom.md`"
+],
+".claude/docs/services/blitz-traits.md": [
+33,
+"- `.andromeda/architecture.md` · `.claude/docs/services/blitz-dom.md`"
+],
+".claude/docs/services/dioxus-native-dom.md": [
+44,
+"- `.andromeda/architecture.md` · `.claude/docs/services/blitz-test-harness.md`"
+]
+},
+"lines": {
+".claude/docs/conventions.md": [
+"849780a07c",
+"da39a3ee5e",
+"95f55e056e",
+"da39a3ee5e",
+"71af29bb51",
+"216caf3563",
+"c533d99427",
+"a717e0a6ea",
+"da39a3ee5e",
+"7ca4a5d048",
+"1a586e25b9",
+"1a2368b881",
+"5181756c72",
+"003379ee09",
+"da39a3ee5e",
+"d22e9def2d",
+"9cd927e279",
+"d5fa9653d6",
+"fe79ddf378",
+"da39a3ee5e",
+"399f44c050",
+"6dfdbdf059",
+"da39a3ee5e",
+"61a8affddb",
+"dc4a0dea67",
+"1784995237",
+"6a5bedd5b3",
+"da39a3ee5e",
+"5308756353",
+"6cf87e94c2",
+"d24979cbd0",
+"855cb5bbe4",
+"da39a3ee5e",
+"2d5bfc551c",
+"9e15fdbd68",
+"b32fcd2c2c",
+"da39a3ee5e",
+"d48fe53875",
+"f54fc96716",
+"e867d9eeaf",
+"8ebd4dea2d",
+"da39a3ee5e",
+"473864f653",
+"5fdced5c46",
+"c495820aa3",
+"da39a3ee5e",
+"8b066442c8",
+"d484a16190",
+"da39a3ee5e",
+"8f7f129916",
+"6a79fbeb3e",
+"da39a3ee5e",
+"07bdf06fa8",
+"74e66cbe8d",
+"da39a3ee5e",
+"3b681fef0e",
+"2486dcf215",
+"44e9ea8c17",
+"da39a3ee5e",
+"4136cd20de",
+"c767882395"
+],
+".claude/docs/gotchas.md": [
+"5b61f88df7",
+"da39a3ee5e",
+"67b92e2a45",
+"da39a3ee5e",
+"cd3482f084",
+"2c37734990",
+"a0055fb5b6",
+"87c0631bc0",
+"da39a3ee5e",
+"62356d5149",
+"0a4ac53ffe",
+"274e845f28",
+"4efe811dd8",
+"da39a3ee5e",
+"3e193f7f21",
+"bd33cc3e3b",
+"1898c4cde7",
+"a234870d1e",
+"da39a3ee5e",
+"65c81c53ea",
+"bb67233374",
+"f77643cb21",
+"686d22e8ab",
+"da39a3ee5e",
+"0cc0d338f1",
+"9b08ee96d2",
+"a1b1cd5dd2",
+"84cdb666e6",
+"da39a3ee5e",
+"1d615c0391",
+"d73a146fbd",
+"1b14987f4b",
+"45151e1bda",
+"da39a3ee5e",
+"fe0b44cd24",
+"f8ea8aaf5e",
+"794058a5b6",
+"fba2cfc729",
+"da39a3ee5e",
+"f39c949279",
+"9cd9e813a5",
+"be9add27cb",
+"e8d7ca659e",
+"da39a3ee5e",
+"180cb39283",
+"9dedaad51c",
+"7ea02e915a",
+"f5f3310c66",
+"da39a3ee5e",
+"d69060beeb",
+"55bc66a874",
+"1ab6e2007c",
+"b0d923a781",
+"da39a3ee5e",
+"decf72b6ac",
+"492acc0bca",
+"7bae2e3e3d",
+"1e2c9f084f",
+"da39a3ee5e",
+"4b37b73bb5",
+"b04123647f",
+"6d3f6a0b57",
+"9f79fa9689",
+"da39a3ee5e",
+"c859397df4",
+"c2e01d297f",
+"05590eb8a9",
+"ae43c1d355"
+],
+".claude/docs/services/blitz-dom.md": [
+"4f35148f0a",
+"da39a3ee5e",
+"d3b845449c",
+"da39a3ee5e",
+"c70c16f6eb",
+"2d7ff663d4",
+"da39a3ee5e",
+"3c9551b01a",
+"da39a3ee5e",
+"6a022646bc",
+"fe02838893",
+"d034fee974",
+"da39a3ee5e",
+"85d665a7e0",
+"e6ad682244",
+"da39a3ee5e",
+"f1232550fa",
+"3c01341980",
+"655d757518",
+"faba06c86b",
+"fd91d882f0",
+"da39a3ee5e",
+"8e80b82eb5",
+"68512a60d8",
+"f8e378b385",
+"01b22402f2",
+"5f8dc353a0",
+"da39a3ee5e",
+"a3498830ec",
+"da01aff714",
+"985c0d75c6",
+"33db100563",
+"b7991c20ab",
+"0e7d1973fd",
+"8dfba6d246",
+"da39a3ee5e",
+"ceb8d5d66f",
+"681e9d108b",
+"b477636df0",
+"66a59bb963",
+"da39a3ee5e",
+"8fa6c6f1a6",
+"219aad8570"
+],
+".claude/docs/services/blitz-paint.md": [
+"46f87b6888",
+"da39a3ee5e",
+"cfd940b8bd",
+"da39a3ee5e",
+"c70c16f6eb",
+"2fb770d034",
+"da39a3ee5e",
+"3c9551b01a",
+"da39a3ee5e",
+"6a022646bc",
+"4f95f0fa0d",
+"da39a3ee5e",
+"85d665a7e0",
+"008d05d4e7",
+"da39a3ee5e",
+"f1232550fa",
+"767fce5faf",
+"f31285bf86",
+"dbb3ee6c06",
+"da39a3ee5e",
+"8e80b82eb5",
+"bd36ce93f5",
+"46ccfb308b",
+"6cb8f424d1",
+"da39a3ee5e",
+"a3498830ec",
+"8652ed0058",
+"da39a3ee5e",
+"ceb8d5d66f",
+"75cdbfeffe",
+"0f7a541531",
+"a5ad2cf7ec",
+"da39a3ee5e",
+"8fa6c6f1a6",
+"ecb4519d30"
+],
+".claude/docs/services/blitz-shell.md": [
+"4629e43acb",
+"da39a3ee5e",
+"29ceda57a3",
+"da39a3ee5e",
+"c70c16f6eb",
+"546547d1cd",
+"da39a3ee5e",
+"3c9551b01a",
+"da39a3ee5e",
+"6a022646bc",
+"6b1cf3b5fc",
+"da39a3ee5e",
+"85d665a7e0",
+"0da31065bb",
+"da39a3ee5e",
+"f1232550fa",
+"e773e31f42",
+"ec3e7383bf",
+"46e9c9f11b",
+"da39a3ee5e",
+"8e80b82eb5",
+"050ccff6ce",
+"a953457255",
+"5b832f8499",
+"9d0d8ffd43",
+"da39a3ee5e",
+"a3498830ec",
+"b68ed31197",
+"da39a3ee5e",
+"ceb8d5d66f",
+"ee83087334",
+"da39a3ee5e",
+"8fa6c6f1a6",
+"ecb4519d30"
+],
+".claude/docs/services/blitz-traits.md": [
+"a0e1a4626f",
+"da39a3ee5e",
+"08c7b20941",
+"da39a3ee5e",
+"c70c16f6eb",
+"ce419f675c",
+"da39a3ee5e",
+"3c9551b01a",
+"da39a3ee5e",
+"6a022646bc",
+"de39a3862f",
+"da39a3ee5e",
+"85d665a7e0",
+"d95faa8411",
+"52c6091785",
+"c5e603d47c",
+"5e49edfe61",
+"da39a3ee5e",
+"f1232550fa",
+"0a2ca96195",
+"f67880d47c",
+"da39a3ee5e",
+"8e80b82eb5",
+"bd2d0ee374",
+"da39a3ee5e",
+"a3498830ec",
+"9e75e851e9",
+"da39a3ee5e",
+"ceb8d5d66f",
+"4c71c4fd39",
+"da39a3ee5e",
+"8fa6c6f1a6",
+"ecb4519d30"
+],
+".claude/docs/services/dioxus-native-dom.md": [
+"ab78267152",
+"da39a3ee5e",
+"10de0ca12d",
+"da39a3ee5e",
+"c70c16f6eb",
+"707d8af74b",
+"da39a3ee5e",
+"3c9551b01a",
+"da39a3ee5e",
+"6a022646bc",
+"fd6078486f",
+"da39a3ee5e",
+"85d665a7e0",
+"6736197c52",
+"b3debe8242",
+"d7bbc88d72",
+"256e076b37",
+"b6b0af2eed",
+"2991ac4dfc",
+"da39a3ee5e",
+"f1232550fa",
+"eb1217c71e",
+"63d342601c",
+"cea9cc49aa",
+"5a554a3b83",
+"008adaac45",
+"da39a3ee5e",
+"8e80b82eb5",
+"1e647ec441",
+"be0522371d",
+"145670ac12",
+"ff105023fa",
+"ad9b18482d",
+"aabd7b9f8a",
+"9c2f6d0441",
+"da39a3ee5e",
+"a3498830ec",
+"bc43cbd3de",
+"da39a3ee5e",
+"ceb8d5d66f",
+"10b054553b",
+"da39a3ee5e",
+"8fa6c6f1a6",
+"7f74aee207"
+]
+}
+},
+"architecture-2": {
+"leaves": [
+".claude/docs/services/escher-driver.md",
+".claude/docs/stack.md",
+".claude/docs/workflow.md"
+],
+"sources": [
+"architecture"
+],
+"files": [
+".andromeda/architecture.md"
+],
+"deltas": [],
+"read": {
+".claude/docs/services/escher-driver.md": [
+63,
+"- The command line, through the real `escher-session` binary (seven_guis, unix only): `host_binary` (the host role on `counter`; a host that cannot serve; nine argv rows that are no command), `host_log` (a host on `crud` at `RUST_LOG=trace` while three calls run: one span line per call, no id, name or typed text, under both builds), `host_timer` (the timer host moved by a hosted `advance`), `cli_commands` (every driver command as a process on the four tasks: fields, refusals by status `1`, usage by `2`, session errors by `3`) and `cli_flow` (two POSIX `sh` flows, `counter.sh` and `flight.sh`); since 2026-10-10-mcp-surface `mcp_server` (the `mcp` role completes the Counter flow by tool calls alone; protocol errors run nothing and leak nothing; unix only, a snapshot equal through MCP and the command line) and `mcp_log` (the role at `RUST_LOG=trace`: no id, name or typed text, one `tool_call` line per call, under both builds), not unix-gated but the comparison — and in process `stand_mcp_tools` (blitz-tests; the flow through `serve_mcp` in both layout modes, one `tool_call` span the parent of each `command`; since 2026-10-12-self-description every cause a tool call reaches served with its remedy, `covered` on an overlay fixture, and `help` answered by the server, parenting no `command` span) and, since 2026-10-12-self-description, `stand_mcp_masked` (a password typed through an MCP `type` reads `MASKED_VALUE` and never the typed text, role `PasswordInput` with a non-empty name, in both layout modes; it declares no `mod session_common;`). Mutation controls in `escher-0.1.0/chunks/2026-10-10-mcp-surface/evidence/controls.md` (five)."
+],
+".claude/docs/stack.md": [
+59,
+"4. Commit as `chore: bump {crate} to {version}`."
+],
+".claude/docs/workflow.md": [
+47,
+"A reference-based CLAUDE.md: a thin index, with depth in `.claude/docs/` (on demand) and `.claude/rules/` (path-scoped)."
+]
+},
+"lines": {
+".claude/docs/services/escher-driver.md": [
+"b1868861d3",
+"da39a3ee5e",
+"7c4c78d464",
+"da39a3ee5e",
+"c70c16f6eb",
+"ce15436db6",
+"da39a3ee5e",
+"3c9551b01a",
+"da39a3ee5e",
+"6a022646bc",
+"39b6649131",
+"5f6f30e6a9",
+"da39a3ee5e",
+"85d665a7e0",
+"8671b2e453",
+"0c0ea922e1",
+"39cc8262bc",
+"4bac2a1ed2",
+"3d933fa167",
+"970a176452",
+"f9bb9775ed",
+"6ef82b354f",
+"873f692649",
+"7ed4311f6c",
+"c5299f7b42",
+"56693da386",
+"81338b0029",
+"256bacf2e4",
+"5f02eca217",
+"da39a3ee5e",
+"f1232550fa",
+"982bd40889",
+"c0b8e061f9",
+"8bde3dd212",
+"78afed5aaa",
+"793dd52065",
+"52a3086480",
+"44aa93103e",
+"1782ff59fb",
+"da39a3ee5e",
+"8e80b82eb5",
+"8cb2546874",
+"594ab8da50",
+"3672434f6a",
+"7c25dc5e93",
+"e067dddc12",
+"ffa579f313",
+"b0c980722f",
+"2b3e28c78a",
+"27dcd5b2e6",
+"4d20c01d96",
+"c4ec8bc7f0",
+"7ea83fc1eb",
+"5250c3cf3d",
+"074dfd0eca",
+"e121d3c172",
+"246f3609df",
+"da39a3ee5e",
+"76789687cb",
+"6ca8417982",
+"2760da7397",
+"c3aa7e2b4f",
+"1d1df4003c"
+],
+".claude/docs/stack.md": [
+"7b063a97f7",
+"da39a3ee5e",
+"6e1bf2a7f2",
+"da39a3ee5e",
+"c7753fae52",
+"94736d45c8",
+"2c92b66f11",
+"81df0d64bb",
+"3ed692a539",
+"85b7abd1f1",
+"da39a3ee5e",
+"b081aa9757",
+"072048ef75",
+"8272d43233",
+"6b7c4ecadc",
+"c820e3fe9e",
+"c8ed372c0e",
+"268a329006",
+"c16ee1b8bc",
+"36e91e9647",
+"f3eb204cd1",
+"0158fe46f7",
+"7a57becab8",
+"4bfbf2cc8f",
+"792d9aab95",
+"95ab04a19c",
+"bf829e4d05",
+"da39a3ee5e",
+"84d1ad41d7",
+"d33e9e02d7",
+"da39a3ee5e",
+"32f671e437",
+"a7a23e2ecc",
+"da39a3ee5e",
+"ec0ae59f54",
+"0af77aae4e",
+"da39a3ee5e",
+"b1f53298d3",
+"72fb743b40",
+"24652a1ff5",
+"0bad4162b7",
+"b00ff2619a",
+"23db228750",
+"78e5a8a0e3",
+"da39a3ee5e",
+"ec6aa4e5a9",
+"baa706a853",
+"da39a3ee5e",
+"d327eb1f71",
+"e3ac08984a",
+"da39a3ee5e",
+"a20d05b737",
+"0e75c05223",
+"da39a3ee5e",
+"22c8166a31",
+"ca33f97b28",
+"7d15179ab7",
+"ab8eef619c",
+"ab8191a3be"
+],
+".claude/docs/workflow.md": [
+"412a27c0d5",
+"da39a3ee5e",
+"253cec0dfa",
+"da39a3ee5e",
+"c0549fded5",
+"9fed04fea2",
+"ac8d9fc0da",
+"5a3151d9a0",
+"b404df055d",
+"820201d8e8",
+"21a0b325f9",
+"da39a3ee5e",
+"1e9e60adc3",
+"da39a3ee5e",
+"b3b8dc0cef",
+"da39a3ee5e",
+"5a7b44e4db",
+"da39a3ee5e",
+"70654d6e84",
+"30253c9cf8",
+"e0664eac41",
+"027ee33c78",
+"c430abe23d",
+"f9004a2900",
+"da39a3ee5e",
+"fed1060e05",
+"761d8ad161",
+"0358c6f57e",
+"6613bbdcff",
+"da39a3ee5e",
+"c64447f9f3",
+"da39a3ee5e",
+"56fc2d3968",
+"b02622ffe4",
+"d67de10361",
+"da39a3ee5e",
+"8115c65c28",
+"95b70e69f6",
+"8a83adedba",
+"da39a3ee5e",
+"1a8b0eaaa7",
+"9b33cb8621",
+"565bc49ca8",
+"9a75c2ffad",
+"da39a3ee5e",
+"ca70c12a84",
+"707d90cfe5"
+]
+}
+},
+"masters": {
+"leaves": [
+"CLAUDE.md"
+],
+"sources": [
+"architecture",
+"security-plan",
+"design-system",
+"layout-templates",
+"test-plan",
+"obs-plan",
+"a11y-plan"
+],
+"files": [
+".andromeda/architecture.md",
+".andromeda/security-plan.md",
+".andromeda/design-system.md",
+".andromeda/layout-templates.md",
+".andromeda/test-plan.md",
+".andromeda/registries/test-plan-contracts.toml",
+".andromeda/registries/contracts/test-plan/bootstrap-phases-derive-for-route-setup-project.md",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md",
+".andromeda/obs-plan.md",
+".andromeda/registries/obs-plan-contracts.toml",
+".andromeda/registries/contracts/obs-plan/bootstrap-phases-derive-for-route-setup-project.md",
+".andromeda/a11y-plan.md",
+".andromeda/registries/a11y-plan-contracts.toml",
+".andromeda/registries/contracts/a11y-plan/bootstrap-phases-derive-for-route-setup-project.md"
+],
+"deltas": [],
+"read": {
+"CLAUDE.md": [
+150,
+"<!-- USER:session-learnings end -->"
+]
+},
+"lines": {
+"CLAUDE.md": [
+"4ff44db58e",
+"da39a3ee5e",
+"ac7cd0f1ca",
+"da39a3ee5e",
+"0ade3de42d",
+"ef0f52a471",
+"12f9c11ba2",
+"da39a3ee5e",
+"a7f7457b00",
+"da39a3ee5e",
+"00baf97656",
+"fcb79ad400",
+"c0f06d51b1",
+"901144d71f",
+"e735b79faf",
+"54bf3496c1",
+"71b13134a5",
+"0f09e114dd",
+"da39a3ee5e",
+"ab9bf2dec0",
+"7862999491",
+"adf0087873",
+"f963a79a76",
+"c9395e6aeb",
+"3a465ac3a2",
+"3a88bf3f58",
+"28863c2f22",
+"5ab9999091",
+"62cc3fd4cf",
+"0806420dc0",
+"be305a0533",
+"8c9540efeb",
+"3829993d1b",
+"b99e160932",
+"a976d37d14",
+"9bccc261e0",
+"0a11fabfd4",
+"aaf4c4b2f4",
+"6428ed6152",
+"da39a3ee5e",
+"7a80dc049c",
+"022793ab50",
+"b03986a4ca",
+"0774e83c9a",
+"3fe29c8523",
+"8f68af5d90",
+"6aca791f58",
+"db607c871a",
+"e0a65d9e1f",
+"809a5d4776",
+"5984b69e19",
+"e2c7aadba1",
+"448c43cd4d",
+"da39a3ee5e",
+"b77946ef92",
+"6241722c36",
+"ea1b11d47b",
+"8272d43233",
+"595bafb322",
+"bde7610d5f",
+"14619bc63e",
+"ac75e6fc43",
+"653964b9f6",
+"d604ee524a",
+"5bfe819872",
+"79986cdcf1",
+"228ae8e931",
+"14d620a20e",
+"ea6dcdbb16",
+"2d78429a5a",
+"84728b29de",
+"222ccf2ac9",
+"3bf598493e",
+"7f55579fe9",
+"86abce72dc",
+"93cd214f36",
+"34cfdb0d56",
+"3335dcf945",
+"1a62648cb7",
+"d29b0e3674",
+"15a8539bff",
+"3645412b91",
+"e85db1f4cb",
+"0045c64adc",
+"1370581011",
+"ced284d567",
+"d557bdbed7",
+"194c717655",
+"f75fbc92d3",
+"444751b581",
+"da39a3ee5e",
+"a1ea5a8989",
+"5a043c7176",
+"3ccc9e25d4",
+"b6437ebe73",
+"5e8b0a5b79",
+"89eb051fde",
+"a2b267b54e",
+"8d5a7cb1be",
+"bb8d047bd1",
+"b9686619a5",
+"da39a3ee5e",
+"2e037b9f17",
+"fb793cec58",
+"da39a3ee5e",
+"458937df33",
+"3aaa44b006",
+"5a84c27959",
+"da39a3ee5e",
+"891a0dcf94",
+"da39a3ee5e",
+"7f92492164",
+"731dda7553",
+"da39a3ee5e",
+"1ab26704f1",
+"f0cc859a47",
+"2638c355dc",
+"da39a3ee5e",
+"e2e5c8c227",
+"da39a3ee5e",
+"2194ca5db3",
+"a67a17604f",
+"b5f8d809fd",
+"f8cbc72892",
+"06c47fbcb3",
+"42bc375d22",
+"e3997f1560",
+"da39a3ee5e",
+"14a4ad642e",
+"d3e5c3cad8",
+"da39a3ee5e",
+"5513fd8429",
+"16e53c0f94",
+"da39a3ee5e",
+"18e60db170",
+"da39a3ee5e",
+"a4522b9352",
+"fe46b68080",
+"1dfa5e8cc3",
+"da39a3ee5e",
+"b8122e1891",
+"8fd6c20c94",
+"6bbe6ad963",
+"dbcd50c7d8",
+"d54f9b4d24",
+"4ff3c3dbba",
+"c39f1b3bbe",
+"d0ac5d020c",
+"f79a5b1dc1",
+"1837202c42"
+]
+}
+},
+"architecture+layout-templates": {
+"leaves": [
+".claude/docs/services/seven_guis.md"
+],
+"sources": [
+"architecture",
+"layout-templates"
+],
+"files": [
+".andromeda/architecture.md",
+".andromeda/layout-templates.md"
+],
+"deltas": [],
+"read": {
+".claude/docs/services/seven_guis.md": [
+44,
+"- `.claude/rules/a11y.md` (the stand is in its paths) · `.claude/docs/design-summary.md`"
+]
+},
+"lines": {
+".claude/docs/services/seven_guis.md": [
+"8602038ebd",
+"da39a3ee5e",
+"7a00b073c9",
+"da39a3ee5e",
+"c70c16f6eb",
+"61ed580a22",
+"da39a3ee5e",
+"3c9551b01a",
+"da39a3ee5e",
+"6a022646bc",
+"b17aac2dc1",
+"dcec5ec8a3",
+"e7a8d6e7f1",
+"da39a3ee5e",
+"8b75a7bdca",
+"da39a3ee5e",
+"85d665a7e0",
+"e38cc639ab",
+"5a1d78f84b",
+"841b1e6e3f",
+"d45097db18",
+"da39a3ee5e",
+"f1232550fa",
+"541b424f3a",
+"b163738b97",
+"f08789aca7",
+"da39a3ee5e",
+"a4d204f765",
+"6068c62553",
+"48624dbc78",
+"f650b452ca",
+"7fac6d66cb",
+"da39a3ee5e",
+"a3498830ec",
+"9a5aba381a",
+"da39a3ee5e",
+"ceb8d5d66f",
+"8cc7ecf1b5",
+"015bb77a2a",
+"8df7f3a881",
+"5eabef1433",
+"da39a3ee5e",
+"8fa6c6f1a6",
+"a943ec16f4"
+]
+}
+},
+"architecture+test-plan": {
+"leaves": [
+".claude/docs/commands.md",
+".claude/docs/services/blitz-test-harness.md"
+],
+"sources": [
+"architecture",
+"test-plan"
+],
+"files": [
+".andromeda/architecture.md",
+".andromeda/test-plan.md",
+".andromeda/registries/test-plan-contracts.toml",
+".andromeda/registries/contracts/test-plan/bootstrap-phases-derive-for-route-setup-project.md",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md"
+],
+"deltas": [],
+"read": {
+".claude/docs/commands.md": [
+82,
+"- Fonts missing in headless tests → `system-fonts` feature / fontconfig installed; stand checks need neither — they boot with the bundled DejaVu Sans (`seven_guis::stand::options`)"
+],
+".claude/docs/services/blitz-test-harness.md": [
+37,
+"- `.claude/rules/verification-harness.md` · `.claude/docs/tests-summary.md`"
+]
+},
+"lines": {
+".claude/docs/commands.md": [
+"48ef5ab20e",
+"da39a3ee5e",
+"a59a0912c3",
+"da39a3ee5e",
+"8443b75994",
+"5b3ef05d7b",
+"3c936e778b",
+"dc8acc552a",
+"7b7bf898ad",
+"9111356585",
+"da39a3ee5e",
+"655966a341",
+"18b7808c96",
+"d584df611c",
+"6f57cfbb0b",
+"da39a3ee5e",
+"8d172e8849",
+"ada01f75d9",
+"58ca971b2c",
+"8804b94725",
+"960fd20b03",
+"b3005202dd",
+"da39a3ee5e",
+"07bdf06fa8",
+"cb7af4eaa9",
+"2117e56c1c",
+"008c329e07",
+"95b98381c7",
+"b9c1add80b",
+"007b79b586",
+"e35eda88a8",
+"da39a3ee5e",
+"83fc2f2430",
+"fd19c18e4f",
+"63d16fbdee",
+"669137bfb9",
+"2e12ec26e6",
+"da39a3ee5e",
+"d2e8c3c929",
+"43f933f3cd",
+"6bd463d6dc",
+"6703249f1f",
+"da39a3ee5e",
+"7e5afab26c",
+"c0436b204c",
+"d6b1397df8",
+"8bf6105b95",
+"da39a3ee5e",
+"2b722b2d06",
+"4bc864033e",
+"5ba0f0eded",
+"7f828f93af",
+"dcde53a547",
+"da39a3ee5e",
+"3561bec13c",
+"9a5575c16b",
+"07c00aa95a",
+"dd1f702946",
+"587aa1223e",
+"5d889c135a",
+"39e96dba25",
+"74d6340685",
+"66f5c19618",
+"da280bc209",
+"23ec9b8b62",
+"861ffd0aa5",
+"67df999936",
+"42fe5b1d65",
+"da39a3ee5e",
+"3a5002a4ca",
+"f19bcfeb49",
+"81b3dace18",
+"fcc278e784",
+"579e7fafb0",
+"482162721c",
+"da39a3ee5e",
+"85f0ddd2d9",
+"aa9f5ff154",
+"da39a3ee5e",
+"8f2d9d234a",
+"405b382b8e",
+"f755a4896e"
+],
+".claude/docs/services/blitz-test-harness.md": [
+"c2c8202695",
+"da39a3ee5e",
+"4573c9d1e6",
+"da39a3ee5e",
+"c70c16f6eb",
+"be5b04c432",
+"da39a3ee5e",
+"3c9551b01a",
+"da39a3ee5e",
+"6a022646bc",
+"014cb9f8c5",
+"da39a3ee5e",
+"85d665a7e0",
+"3d65c91181",
+"4e93b52624",
+"c8a32f8082",
+"da39a3ee5e",
+"f1232550fa",
+"f3236bc158",
+"f98b381e7a",
+"a84c82e446",
+"86df6643b1",
+"18cc5fa910",
+"da39a3ee5e",
+"8e80b82eb5",
+"f620e57b04",
+"a334043b12",
+"da39a3ee5e",
+"a3498830ec",
+"28049c779f",
+"da39a3ee5e",
+"ceb8d5d66f",
+"9d636d2979",
+"9bcee3a11e",
+"da39a3ee5e",
+"8fa6c6f1a6",
+"239fdbb206"
+]
+}
+},
+"architecture+obs-plan": {
+"leaves": [
+".claude/docs/services/escher-telemetry.md"
+],
+"sources": [
+"architecture",
+"obs-plan"
+],
+"files": [
+".andromeda/architecture.md",
+".andromeda/obs-plan.md",
+".andromeda/registries/obs-plan-contracts.toml",
+".andromeda/registries/contracts/obs-plan/bootstrap-phases-derive-for-route-setup-project.md"
+],
+"deltas": [],
+"read": {
+".claude/docs/services/escher-telemetry.md": [
+46,
+"- `.claude/rules/observability.md` · `.claude/docs/obs-summary.md` · `.claude/rules/security.md` (env reads)"
+]
+},
+"lines": {
+".claude/docs/services/escher-telemetry.md": [
+"7dc812c161",
+"da39a3ee5e",
+"be22be4934",
+"da39a3ee5e",
+"c70c16f6eb",
+"048f10588d",
+"da39a3ee5e",
+"3c9551b01a",
+"da39a3ee5e",
+"6a022646bc",
+"02838d6362",
+"f0c86b9102",
+"da39a3ee5e",
+"85d665a7e0",
+"cff79ce36a",
+"1f58b72a75",
+"664fd713ae",
+"a08de0a467",
+"e1ec20e700",
+"e510fdb0c0",
+"0c7b07e4c7",
+"da39a3ee5e",
+"f1232550fa",
+"1bba2265fe",
+"dfa7c7408e",
+"5d3054aaa5",
+"da39a3ee5e",
+"8e80b82eb5",
+"0ff45c4513",
+"8db0385b20",
+"f9732d46b7",
+"7e0f385a6c",
+"a4562cba68",
+"a5038866ed",
+"da39a3ee5e",
+"a3498830ec",
+"99c212e9a5",
+"da39a3ee5e",
+"ceb8d5d66f",
+"9139790cee",
+"7e8a879be9",
+"422a9c8df9",
+"8383e3b34b",
+"da39a3ee5e",
+"8fa6c6f1a6",
+"7d223a3e8d"
+]
+}
+},
+"security-plan": {
+"leaves": [
+".claude/docs/security-summary.md",
+".claude/rules/security.md"
+],
+"sources": [
+"security-plan"
+],
+"files": [
+".andromeda/security-plan.md"
+],
+"deltas": [],
+"read": {
+".claude/docs/security-summary.md": [
+56,
+"**Full plan:** `.andromeda/security-plan.md`."
+],
+".claude/rules/security.md": [
+32,
+"- 2026-10-15: A listener or env read that only a test makes — served by no binary, reached by no caller — is no crossing and not the founder's call, yet it is registered as test-only in arch §Occupied Resources and the security plan's environment values before it lands, as `PAINT_TREE_BENCH_HTML` and `CARGO_TARGET_TMPDIR` are (the operator's answer, 2026-10-15)."
+]
+},
+"lines": {
+".claude/docs/security-summary.md": [
+"d4a9572dd8",
+"da39a3ee5e",
+"2832811299",
+"da39a3ee5e",
+"4ed5be3a76",
+"da39a3ee5e",
+"ec03dcc2eb",
+"da39a3ee5e",
+"62aeacd99a",
+"c7adf14502",
+"da39a3ee5e",
+"d58ebc9b6f",
+"611acd9aa4",
+"6d0f58c649",
+"f8ca7275fb",
+"b60c60273e",
+"f502d72242",
+"94238a8469",
+"c3996e2309",
+"b5d6be0f96",
+"34f974bc8b",
+"9935e804dd",
+"9dd9940def",
+"a4fe17984a",
+"2bde448b8d",
+"da39a3ee5e",
+"44182ab91a",
+"c32b8bb8a3",
+"91d220c646",
+"fcef5dd9f6",
+"edc8ea9bea",
+"860dca8955",
+"e2b8a28ec0",
+"418c1c4e55",
+"ee87616499",
+"3dc246e575",
+"da39a3ee5e",
+"2a3deedff6",
+"a898925f79",
+"da39a3ee5e",
+"bcabd6a9d2",
+"bd90783f8a",
+"5cb4566237",
+"0b34391f2f",
+"39baa7e125",
+"30bc42ab7f",
+"da39a3ee5e",
+"70b333f26b",
+"d0ac824ebe",
+"da39a3ee5e",
+"c57515f1c4",
+"9248fd17c8",
+"da39a3ee5e",
+"58b63e273b",
+"da39a3ee5e",
+"7c141b9fe3"
+],
+".claude/rules/security.md": [
+"0565bd4818",
+"da39a3ee5e",
+"27f5fba5f4",
+"aef8cc4a33",
+"da39a3ee5e",
+"000f73f80f",
+"c4db2aed42",
+"ec61ad0d68",
+"e7a440b9cf",
+"da39a3ee5e",
+"7687f8df54",
+"e1d2c036ef",
+"7e4ccab806",
+"57845aea9b",
+"ba3e3ec718",
+"af088798ad",
+"ad011a65de",
+"da39a3ee5e",
+"79cb60bc94",
+"66623fd0c6",
+"9b414c5554",
+"c29daa69dc",
+"e4ab7a0fd0",
+"da39a3ee5e",
+"2923f45b2a",
+"783ba90050",
+"71b1578ca7",
+"fcc72b543e",
+"da39a3ee5e",
+"9bd5a5d679",
+"eafc71ff1a",
+"fdcacea246"
+]
+}
+},
+"design-system+layout-templates": {
+"leaves": [
+".claude/docs/design-summary.md"
+],
+"sources": [
+"design-system",
+"layout-templates"
+],
+"files": [
+".andromeda/design-system.md",
+".andromeda/layout-templates.md"
+],
+"deltas": [],
+"read": {
+".claude/docs/design-summary.md": [
+43,
+"**Full plans:** `.andromeda/design-system.md` + `.andromeda/layout-templates.md`."
+]
+},
+"lines": {
+".claude/docs/design-summary.md": [
+"d0d3c842ea",
+"da39a3ee5e",
+"d0592ce12b",
+"da39a3ee5e",
+"0a6577b4d0",
+"8af990d2b5",
+"da39a3ee5e",
+"886e7acd3e",
+"da39a3ee5e",
+"d5db9d2925",
+"2565af0f5e",
+"91d220c646",
+"70e89be82b",
+"87ad11ae65",
+"e2704c831a",
+"0eed9c48f9",
+"6b755205a1",
+"d04947f429",
+"da39a3ee5e",
+"ba84e071f6",
+"6481f932c3",
+"da39a3ee5e",
+"4b751f7b92",
+"25e13f2e93",
+"da39a3ee5e",
+"e994dcf47d",
+"6e027c7a70",
+"4a819f6b4a",
+"206c91356a",
+"89234a09d3",
+"da39a3ee5e",
+"1b9e6d3a84",
+"401c895ec6",
+"89583c08d0",
+"e144127a71",
+"ee9cc44456",
+"da39a3ee5e",
+"0abed3a4e1",
+"909bb75a2a",
+"da39a3ee5e",
+"58b63e273b",
+"da39a3ee5e",
+"dad07d8ec7"
+]
+}
+},
+"test-plan-1": {
+"leaves": [
+".claude/docs/tests-summary.md",
+".claude/rules/testing.md"
+],
+"sources": [
+"test-plan"
+],
+"files": [
+".andromeda/test-plan.md",
+".andromeda/registries/test-plan-contracts.toml",
+".andromeda/registries/contracts/test-plan/bootstrap-phases-derive-for-route-setup-project.md",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md"
+],
+"deltas": [],
+"read": {
+".claude/docs/tests-summary.md": [
+56,
+"**Full plan:** `.andromeda/test-plan.md`. Path-scoped rules: `.claude/rules/testing.md`."
+],
+".claude/rules/testing.md": [
+58,
+"- 2026-10-15: In a contract test whose expected total follows from a table the test itself holds (expectations per app, steps per case), assert the table's computed sum, never a hand-typed literal beside it — a literal drifts from its own table and reads red against a correct implementation."
+]
+},
+"lines": {
+".claude/docs/tests-summary.md": [
+"e27bb72366",
+"da39a3ee5e",
+"e61f6e04c6",
+"da39a3ee5e",
+"52b0a40d9f",
+"da39a3ee5e",
+"62aeacd99a",
+"bc1f03d5d7",
+"da39a3ee5e",
+"2f6f1c5835",
+"da39a3ee5e",
+"c0273aac74",
+"d4b625dd2c",
+"44f826a2c8",
+"48949baec0",
+"fb9798d913",
+"f57bd80ef7",
+"9dfd810502",
+"da39a3ee5e",
+"faab7dd599",
+"1780f45a5d",
+"9107f62f56",
+"593543eab9",
+"9f749809d5",
+"4fd21a70ca",
+"b3bb8e9c5d",
+"da11889d88",
+"3d24e74c25",
+"a20303e1dd",
+"7a3d2e31e5",
+"17d16e4eb5",
+"da39a3ee5e",
+"de16f6951b",
+"6f9832610b",
+"4daa4a3432",
+"2219b2052b",
+"ab987fda92",
+"da39a3ee5e",
+"966965ad9d",
+"80c6d1fa18",
+"91d220c646",
+"6f73c301f7",
+"5ff524285b",
+"89076074a9",
+"230144cd7f",
+"e71aea40a5",
+"da39a3ee5e",
+"2a3deedff6",
+"909bb75a2a",
+"da39a3ee5e",
+"c57515f1c4",
+"30e6d5c5a0",
+"da39a3ee5e",
+"58b63e273b",
+"da39a3ee5e",
+"d8254c5b3d"
+],
+".claude/rules/testing.md": [
+"58b63e273b",
+"bd88ec853c",
+"0d8f9e0a30",
+"acadcca3d1",
+"c30c1dbd63",
+"4ee8bcd48b",
+"58b63e273b",
+"da39a3ee5e",
+"a8b9620b57",
+"da39a3ee5e",
+"570ee185db",
+"da39a3ee5e",
+"bb005d940d",
+"1ced9f19d7",
+"3c947893b0",
+"5d8b2b5140",
+"b30bca1a58",
+"cc57028fff",
+"da39a3ee5e",
+"bfc3feee18",
+"3e10de3eab",
+"2e4c3980f3",
+"9549fbd0a6",
+"da39a3ee5e",
+"8837dff127",
+"0ffb266008",
+"f1a1c1c986",
+"c7da2f5bd2",
+"663ab7e3a3",
+"b2d0962796",
+"34bff5dfdf",
+"da39a3ee5e",
+"4b151e7462",
+"3fd6039c04",
+"a5119152a3",
+"da39a3ee5e",
+"1125cdb35f",
+"76cc603f86",
+"b88f74ae54",
+"c3925b637f",
+"020440c3c0",
+"0eba12d520",
+"c5336cfd75",
+"74f40fe94c",
+"da39a3ee5e",
+"f543a5876f",
+"9bbf0ad226",
+"da39a3ee5e",
+"9bd5a5d679",
+"fb93930dd3",
+"a98e3ad748",
+"09689a938d",
+"5a6626be90",
+"181cc31b52",
+"c4f911621b",
+"07a031f769",
+"0c311e90b9",
+"f99f3bcaa2"
+]
+}
+},
+"test-plan-2": {
+"leaves": [
+".claude/rules/verification-harness.md"
+],
+"sources": [
+"test-plan"
+],
+"files": [
+".andromeda/test-plan.md",
+".andromeda/registries/test-plan-contracts.toml",
+".andromeda/registries/contracts/test-plan/bootstrap-phases-derive-for-route-setup-project.md",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md"
+],
+"deltas": [],
+"read": {
+".claude/rules/verification-harness.md": [
+41,
+"- 2026-10-06: A boot smoke bounded by `timeout N` exits 124 when the stand stays up, but the Andromeda gate tool reads any entry exit 124 or 137 as its own bound firing (`timeout`), so `expect = ['exit 124']` never reads green — author the entry so its own exit is 0 on the stay-up case, or drive it by hand and record its exit and atoms under the chunk's `evidence/`."
+]
+},
+"lines": {
+".claude/rules/verification-harness.md": [
+"58b63e273b",
+"bd88ec853c",
+"ae8548ba2a",
+"e5fb4da903",
+"97b82473bb",
+"5f6b4f04cf",
+"58b63e273b",
+"da39a3ee5e",
+"23d18bc4ad",
+"da39a3ee5e",
+"328e026543",
+"9d94cb38d4",
+"da39a3ee5e",
+"7f592f2d31",
+"9d422c12eb",
+"772de5390c",
+"8fd3440cc1",
+"c5d6200875",
+"ad8809b8c8",
+"d0ba753f31",
+"2509474321",
+"da39a3ee5e",
+"0b2ad0f6a3",
+"dd35d910c0",
+"2fe59db5d6",
+"5dff3edcc1",
+"cad446bd64",
+"da39a3ee5e",
+"79511eb27c",
+"6ae4e626eb",
+"0401762196",
+"28700cef14",
+"6e21944e7f",
+"b56326264e",
+"b50ed78772",
+"0cc8eff1f5",
+"cf0d197415",
+"da39a3ee5e",
+"9bd5a5d679",
+"fb93930dd3",
+"bfd95611ad"
+]
+}
+},
+"obs-plan": {
+"leaves": [
+".claude/docs/obs-summary.md",
+".claude/rules/observability.md"
+],
+"sources": [
+"obs-plan"
+],
+"files": [
+".andromeda/obs-plan.md",
+".andromeda/registries/obs-plan-contracts.toml",
+".andromeda/registries/contracts/obs-plan/bootstrap-phases-derive-for-route-setup-project.md"
+],
+"deltas": [],
+"read": {
+".claude/docs/obs-summary.md": [
+59,
+"**Full plan:** `.andromeda/obs-plan.md`. Path-scoped rules: `.claude/rules/observability.md`."
+],
+".claude/rules/observability.md": [
+41,
+"- 2026-10-06: With the workspace's tracing 0.1.44, `tracing::error!(target: \"…\", a.b = x, \"msg\")` does not parse dotted field names (local macro ambiguity) and rejects string-literal keys — write `tracing::event!(target: \"…\", tracing::Level::ERROR, { a.b = x }, \"msg\")`."
+]
+},
+"lines": {
+".claude/docs/obs-summary.md": [
+"9ce576e323",
+"da39a3ee5e",
+"6ce58c1209",
+"da39a3ee5e",
+"8c7658064a",
+"da39a3ee5e",
+"62aeacd99a",
+"b8ba3a836b",
+"da39a3ee5e",
+"2f6f1c5835",
+"da39a3ee5e",
+"06346a50aa",
+"5ba7a332e8",
+"1b7aea496b",
+"eff0e073ba",
+"d966e19038",
+"a867dbcd3c",
+"30815aa695",
+"6c0e3b01b8",
+"da39a3ee5e",
+"f44b77585b",
+"4da60b4298",
+"8272d43233",
+"0bcb13e6e8",
+"76ef80e7b1",
+"f1a81a8d27",
+"c9981a750a",
+"e94060f26f",
+"da39a3ee5e",
+"e978597c36",
+"da39a3ee5e",
+"1574c7ae0d",
+"da39a3ee5e",
+"ef3c69fb10",
+"3a1c57e42d",
+"476aa4203b",
+"da39a3ee5e",
+"90fbb9edd8",
+"909bb75a2a",
+"da39a3ee5e",
+"bd1dd34a48",
+"3fbaa61ad0",
+"17a359f9c9",
+"67ae5a30a6",
+"5e88864548",
+"da39a3ee5e",
+"010485233b",
+"b3ddec7fe6",
+"ce2d16009b",
+"da39a3ee5e",
+"2a3deedff6",
+"909bb75a2a",
+"da39a3ee5e",
+"c57515f1c4",
+"909bb75a2a",
+"da39a3ee5e",
+"58b63e273b",
+"da39a3ee5e",
+"e36c3c8307"
+],
+".claude/rules/observability.md": [
+"58b63e273b",
+"bd88ec853c",
+"2c3b730108",
+"3648bd90ef",
+"ede3e33e22",
+"f6b9357dcf",
+"e53d2a376e",
+"becf07ee54",
+"9dd2ca9c14",
+"70ce2b033b",
+"58b63e273b",
+"da39a3ee5e",
+"0f9484c290",
+"da39a3ee5e",
+"d561076e38",
+"da39a3ee5e",
+"7fced540d3",
+"ce5bf5fd48",
+"e44d1b5dfe",
+"cde0113ba3",
+"dc77d32cdc",
+"59a6a302bc",
+"99ddc9af67",
+"eedd021f2a",
+"e689cbb04d",
+"c1e4240e5f",
+"da39a3ee5e",
+"38bef94622",
+"7ceb23dd33",
+"da39a3ee5e",
+"927a5a7bd9",
+"15f5b9ba23",
+"fbca5ccfab",
+"da39a3ee5e",
+"9403eecde0",
+"7b94793f10",
+"d0ee4147c4",
+"da39a3ee5e",
+"9bd5a5d679",
+"fb93930dd3",
+"084fc86cb6"
+]
+}
+},
+"a11y-plan": {
+"leaves": [
+".claude/docs/a11y-summary.md",
+".claude/rules/a11y.md"
+],
+"sources": [
+"a11y-plan"
+],
+"files": [
+".andromeda/a11y-plan.md",
+".andromeda/registries/a11y-plan-contracts.toml",
+".andromeda/registries/contracts/a11y-plan/bootstrap-phases-derive-for-route-setup-project.md"
+],
+"deltas": [],
+"read": {
+".claude/docs/a11y-summary.md": [
+45,
+"**Full plan:** `.andromeda/a11y-plan.md`. Path-scoped rules: `.claude/rules/a11y.md`."
+],
+".claude/rules/a11y.md": [
+46,
+"- 2026-10-06: On the dev host the AT-SPI bus reads `IsEnabled` false, so AccessKit's `update_if_active` never runs the tree build in a windowed boot — a windowed smoke proves the boot only; prove tree output headlessly through `Document::accessibility_tree`, and leave the bus flag alone (the operator's desktop state)."
+]
+},
+"lines": {
+".claude/docs/a11y-summary.md": [
+"9dac55b93f",
+"da39a3ee5e",
+"582f5d2d15",
+"da39a3ee5e",
+"0a8f1bea0f",
+"da39a3ee5e",
+"62aeacd99a",
+"1886fbcbcb",
+"da39a3ee5e",
+"2f6f1c5835",
+"da39a3ee5e",
+"8942cc064f",
+"978c354b67",
+"964fc4c089",
+"6e94b980f7",
+"1792afe62b",
+"da39a3ee5e",
+"52e932f452",
+"c299b22e84",
+"cc675d809f",
+"e799478914",
+"108dc9fbde",
+"4d1009ffb4",
+"8c1a4ac1d7",
+"b88d588fb4",
+"67e8098139",
+"da39a3ee5e",
+"92972da9c0",
+"0969791ae4",
+"da39a3ee5e",
+"010485233b",
+"1d5eddb2ba",
+"eab57ef905",
+"66225c62ff",
+"c57a85f8dc",
+"da39a3ee5e",
+"2a3deedff6",
+"909bb75a2a",
+"da39a3ee5e",
+"c57515f1c4",
+"909bb75a2a",
+"da39a3ee5e",
+"58b63e273b",
+"da39a3ee5e",
+"475cb47b6c"
+],
+".claude/rules/a11y.md": [
+"58b63e273b",
+"bd88ec853c",
+"b66790ed77",
+"4f0aacf810",
+"e3767bb8aa",
+"60522b059a",
+"26e88adb00",
+"486dc08535",
+"4141274f24",
+"55e85eee04",
+"f41214d201",
+"8039ed3f37",
+"349de15dcd",
+"58b63e273b",
+"da39a3ee5e",
+"e68e03d560",
+"da39a3ee5e",
+"2fc823a190",
+"e03db50478",
+"da39a3ee5e",
+"35126c8079",
+"8cc3ef6738",
+"5e2dfef07b",
+"3d025a8159",
+"9f21ad64f3",
+"6db2ad9a59",
+"59cd85abfb",
+"54c173041d",
+"da39a3ee5e",
+"f7d8cdb508",
+"35252f1f74",
+"2a157825cc",
+"32ffef95d9",
+"dd4067cb76",
+"650a5a23f6",
+"da39a3ee5e",
+"66561899e5",
+"9246cb2e1b",
+"da39a3ee5e",
+"76789687cb",
+"b20566b4d7",
+"816574f902",
+"da39a3ee5e",
+"9bd5a5d679",
+"fb93930dd3",
+"e8da8a671f"
+]
+}
+}
+},
+"unmapped": [
+".claude/rules/host-linux.md"
+]
+}
+}
+},
+{
+"tool": "cascade",
+"v": "1.11",
+"sha8": "449df21b",
+"ts": "2026-10-18T21:24:27Z",
+"argv": [
+"leaves",
+"--apply",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-a11y-plan.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-architecture-1.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-architecture-2.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-architecture+layout-templates.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-architecture+obs-plan.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-architecture+test-plan.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-design-system+layout-templates.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-masters.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-obs-plan.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-security-plan.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-test-plan-1.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-test-plan-2.md",
+"--dry-run",
+"--run-dir",
+".andromeda/runs/2026-10-18T20-46-02-wrap",
+"--marker",
+"2026-10-18-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"file leaf-a11y-plan.md · group a11y-plan · blocks 19 · receipts ok",
+"file leaf-architecture-1.md · group architecture-1 · blocks 10 · receipts ok",
+"file leaf-architecture-2.md · group architecture-2 · blocks 10 · receipts ok",
+"file leaf-architecture+layout-templates.md · group architecture+layout-templates · blocks 2 · receipts ok",
+"file leaf-architecture+obs-plan.md · group architecture+obs-plan · blocks 1 · receipts ok",
+"file leaf-architecture+test-plan.md · group architecture+test-plan · blocks 10 · receipts ok",
+"file leaf-design-system+layout-templates.md · group design-system+layout-templates · blocks 1 · receipts ok",
+"file leaf-masters.md · group masters · blocks 19 · receipts ok",
+"file leaf-obs-plan.md · group obs-plan · blocks 2 · receipts ok",
+"file leaf-security-plan.md · group security-plan · blocks 9 · receipts ok",
+"file leaf-test-plan-1.md · group test-plan-1 · blocks 5 · receipts ok",
+"file leaf-test-plan-2.md · group test-plan-2 · blocks 3 · receipts ok",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:20#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:21#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:22#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:23#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:23#2 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:23#3 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:24#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:24#2 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:24#3 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:24#4 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:24#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:25#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:25#2 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:31#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:32#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:32#2 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:33#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:33#2 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:33#3 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#1 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#2 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#3 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#4 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#5 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#6 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#7 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/blitz-paint.md:18#1 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/dioxus-native-dom.md:17#1 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/dioxus-native-dom.md:17#2 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:16#1 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:18#1 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:18#2 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:19#1 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:24#1 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:26#1 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:35#1 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:38#1 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:53#1 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/workflow.md:15#1 · stale",
+"applied · leaf-architecture+layout-templates.md/.claude/docs/services/seven_guis.md:11#1 · stale",
+"applied · leaf-architecture+layout-templates.md/.claude/docs/services/seven_guis.md:19#1 · stale",
+"applied · leaf-architecture+obs-plan.md/.claude/docs/services/escher-telemetry.md:18#1 · omission",
+"applied · leaf-architecture+test-plan.md/.claude/docs/commands.md:61#1 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/commands.md:61#2 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/commands.md:63#1 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/commands.md:63#2 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/commands.md:63#3 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/commands.md:63#4 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/services/blitz-test-harness.md:16#1 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/services/blitz-test-harness.md:19#1 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/services/blitz-test-harness.md:19#2 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/services/blitz-test-harness.md:34#1 · stale",
+"applied · leaf-design-system+layout-templates.md/.claude/docs/design-summary.md:24#1 · stale",
+"applied · leaf-masters.md/CLAUDE.md:22#1 · stale",
+"applied · leaf-masters.md/CLAUDE.md:22#2 · stale",
+"applied · leaf-masters.md/CLAUDE.md:22#3 · stale",
+"applied · leaf-masters.md/CLAUDE.md:22#4 · stale",
+"applied · leaf-masters.md/CLAUDE.md:22#5 · stale",
+"applied · leaf-masters.md/CLAUDE.md:22#6 · stale",
+"applied · leaf-masters.md/CLAUDE.md:22#7 · stale",
+"applied · leaf-masters.md/CLAUDE.md:26#1 · stale",
+"applied · leaf-masters.md/CLAUDE.md:33#1 · stale",
+"applied · leaf-masters.md/CLAUDE.md:35#1 · stale",
+"applied · leaf-masters.md/CLAUDE.md:37#1 · stale",
+"applied · leaf-masters.md/CLAUDE.md:37#2 · stale",
+"applied · leaf-masters.md/CLAUDE.md:45#1 · stale",
+"applied · leaf-masters.md/CLAUDE.md:110#1 · stale",
+"applied · leaf-masters.md/CLAUDE.md:110#2 · stale",
+"applied · leaf-masters.md/CLAUDE.md:110#3 · stale",
+"applied · leaf-masters.md/CLAUDE.md:110#4 · stale",
+"applied · leaf-masters.md/CLAUDE.md:110#5 · stale",
+"applied · leaf-masters.md/CLAUDE.md:110#6 · stale",
+"applied · leaf-obs-plan.md/.claude/docs/obs-summary.md:49#1 · stale",
+"applied · leaf-obs-plan.md/.claude/docs/obs-summary.md:49#2 · stale",
+"applied · leaf-security-plan.md/.claude/docs/security-summary.md:13#1 · stale",
+"applied · leaf-security-plan.md/.claude/docs/security-summary.md:13#2 · stale",
+"applied · leaf-security-plan.md/.claude/docs/security-summary.md:13#3 · stale",
+"applied · leaf-security-plan.md/.claude/docs/security-summary.md:23#1 · stale",
+"applied · leaf-security-plan.md/.claude/docs/security-summary.md:32#1 · stale",
+"applied · leaf-security-plan.md/.claude/rules/security.md:17#1 · stale",
+"applied · leaf-security-plan.md/.claude/rules/security.md:17#2 · stale",
+"applied · leaf-security-plan.md/.claude/rules/security.md:17#3 · stale",
+"applied · leaf-security-plan.md/.claude/rules/security.md:22#1 · stale",
+"applied · leaf-test-plan-1.md/.claude/docs/tests-summary.md:13#1 · stale",
+"applied · leaf-test-plan-1.md/.claude/docs/tests-summary.md:14#1 · stale",
+"applied · leaf-test-plan-1.md/.claude/docs/tests-summary.md:21#1 · stale",
+"applied · leaf-test-plan-1.md/.claude/docs/tests-summary.md:24#1 · stale",
+"applied · leaf-test-plan-1.md/.claude/rules/testing.md:31#1 · stale",
+"applied · leaf-test-plan-2.md/.claude/rules/verification-harness.md:31#1 · stale",
+"applied · leaf-test-plan-2.md/.claude/rules/verification-harness.md:36#1 · stale",
+"applied · leaf-test-plan-2.md/.claude/rules/verification-harness.md:32#1 · stale",
+"dry-run: would write .claude/docs/a11y-summary.md: 10 finding(s)",
+"dry-run: would write .claude/rules/a11y.md: 9 finding(s)",
+"dry-run: would write .claude/docs/services/blitz-dom.md: 7 finding(s)",
+"dry-run: would write .claude/docs/services/blitz-paint.md: 1 finding(s)",
+"dry-run: would write .claude/docs/services/dioxus-native-dom.md: 2 finding(s)",
+"dry-run: would write .claude/docs/services/escher-driver.md: 9 finding(s)",
+"dry-run: would write .claude/docs/workflow.md: 1 finding(s)",
+"dry-run: would write .claude/docs/services/seven_guis.md: 2 finding(s)",
+"dry-run: would write .claude/docs/services/escher-telemetry.md: 1 finding(s)",
+"dry-run: would write .claude/docs/commands.md: 6 finding(s)",
+"dry-run: would write .claude/docs/services/blitz-test-harness.md: 4 finding(s)",
+"dry-run: would write .claude/docs/design-summary.md: 1 finding(s)",
+"dry-run: would write CLAUDE.md: 19 finding(s)",
+"dry-run: would write .claude/docs/obs-summary.md: 2 finding(s)",
+"dry-run: would write .claude/docs/security-summary.md: 5 finding(s)",
+"dry-run: would write .claude/rules/security.md: 4 finding(s)",
+"dry-run: would write .claude/docs/tests-summary.md: 4 finding(s)",
+"dry-run: would write .claude/rules/testing.md: 1 finding(s)",
+"dry-run: would write .claude/rules/verification-harness.md: 3 finding(s)",
+"total · blocks 91 · applied 91 — dry-run, nothing written"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"apply": [
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:20#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:21#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:22#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:23#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:23#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:23#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:24#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:24#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:24#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:24#4",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:24#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:25#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:25#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:31#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:32#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:32#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:33#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:33#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:33#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#4",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#5",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#6",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#7",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/blitz-paint.md:18#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/dioxus-native-dom.md:17#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/dioxus-native-dom.md:17#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:16#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:18#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:18#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:19#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:24#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:26#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:35#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:38#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:53#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/workflow.md:15#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+layout-templates.md/.claude/docs/services/seven_guis.md:11#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+layout-templates.md/.claude/docs/services/seven_guis.md:19#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+obs-plan.md/.claude/docs/services/escher-telemetry.md:18#1",
+"status": "applied",
+"class": "omission"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/commands.md:61#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/commands.md:61#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/commands.md:63#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/commands.md:63#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/commands.md:63#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/commands.md:63#4",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/services/blitz-test-harness.md:16#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/services/blitz-test-harness.md:19#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/services/blitz-test-harness.md:19#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/services/blitz-test-harness.md:34#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-design-system+layout-templates.md/.claude/docs/design-summary.md:24#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:22#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:22#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:22#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:22#4",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:22#5",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:22#6",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:22#7",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:26#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:33#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:35#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:37#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:37#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:45#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:110#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:110#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:110#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:110#4",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:110#5",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:110#6",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-obs-plan.md/.claude/docs/obs-summary.md:49#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-obs-plan.md/.claude/docs/obs-summary.md:49#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/docs/security-summary.md:13#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/docs/security-summary.md:13#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/docs/security-summary.md:13#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/docs/security-summary.md:23#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/docs/security-summary.md:32#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/rules/security.md:17#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/rules/security.md:17#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/rules/security.md:17#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/rules/security.md:22#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-test-plan-1.md/.claude/docs/tests-summary.md:13#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-test-plan-1.md/.claude/docs/tests-summary.md:14#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-test-plan-1.md/.claude/docs/tests-summary.md:21#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-test-plan-1.md/.claude/docs/tests-summary.md:24#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-test-plan-1.md/.claude/rules/testing.md:31#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-test-plan-2.md/.claude/rules/verification-harness.md:31#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-test-plan-2.md/.claude/rules/verification-harness.md:36#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-test-plan-2.md/.claude/rules/verification-harness.md:32#1",
+"status": "applied",
+"class": "stale"
+}
+],
+"applied": false,
+"files": {
+"leaf-a11y-plan.md": "1486c4d977",
+"leaf-architecture-1.md": "3fdf7fecdd",
+"leaf-architecture-2.md": "784c81d973",
+"leaf-architecture+layout-templates.md": "b1ac41537a",
+"leaf-architecture+obs-plan.md": "bafdce01fe",
+"leaf-architecture+test-plan.md": "dd2f658345",
+"leaf-design-system+layout-templates.md": "e4a9669205",
+"leaf-masters.md": "f1aae10515",
+"leaf-obs-plan.md": "83bb1f87f7",
+"leaf-security-plan.md": "11dd8a3e92",
+"leaf-test-plan-1.md": "c9139a61fe",
+"leaf-test-plan-2.md": "ef70e33fdd"
+}
+}
+},
+{
+"tool": "cascade",
+"v": "1.11",
+"sha8": "449df21b",
+"ts": "2026-10-18T21:25:08Z",
+"argv": [
+"leaves",
+"--apply",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-a11y-plan.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-architecture-1.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-architecture-2.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-architecture+layout-templates.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-architecture+obs-plan.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-architecture+test-plan.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-design-system+layout-templates.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-masters.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-obs-plan.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-security-plan.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-test-plan-1.md",
+".andromeda/runs/2026-10-18T20-46-02-wrap/leaf-test-plan-2.md",
+"--run-dir",
+".andromeda/runs/2026-10-18T20-46-02-wrap",
+"--marker",
+"2026-10-18-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"file leaf-a11y-plan.md · group a11y-plan · blocks 19 · receipts ok",
+"file leaf-architecture-1.md · group architecture-1 · blocks 10 · receipts ok",
+"file leaf-architecture-2.md · group architecture-2 · blocks 10 · receipts ok",
+"file leaf-architecture+layout-templates.md · group architecture+layout-templates · blocks 2 · receipts ok",
+"file leaf-architecture+obs-plan.md · group architecture+obs-plan · blocks 1 · receipts ok",
+"file leaf-architecture+test-plan.md · group architecture+test-plan · blocks 10 · receipts ok",
+"file leaf-design-system+layout-templates.md · group design-system+layout-templates · blocks 1 · receipts ok",
+"file leaf-masters.md · group masters · blocks 19 · receipts ok",
+"file leaf-obs-plan.md · group obs-plan · blocks 2 · receipts ok",
+"file leaf-security-plan.md · group security-plan · blocks 9 · receipts ok",
+"file leaf-test-plan-1.md · group test-plan-1 · blocks 5 · receipts ok",
+"file leaf-test-plan-2.md · group test-plan-2 · blocks 3 · receipts ok",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:20#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:21#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:22#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:23#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:23#2 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:23#3 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:24#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:24#2 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:24#3 · stale",
+"applied · leaf-a11y-plan.md/.claude/docs/a11y-summary.md:24#4 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:24#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:25#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:25#2 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:31#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:32#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:32#2 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:33#1 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:33#2 · stale",
+"applied · leaf-a11y-plan.md/.claude/rules/a11y.md:33#3 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#1 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#2 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#3 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#4 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#5 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#6 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#7 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/blitz-paint.md:18#1 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/dioxus-native-dom.md:17#1 · stale",
+"applied · leaf-architecture-1.md/.claude/docs/services/dioxus-native-dom.md:17#2 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:16#1 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:18#1 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:18#2 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:19#1 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:24#1 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:26#1 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:35#1 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:38#1 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/services/escher-driver.md:53#1 · stale",
+"applied · leaf-architecture-2.md/.claude/docs/workflow.md:15#1 · stale",
+"applied · leaf-architecture+layout-templates.md/.claude/docs/services/seven_guis.md:11#1 · stale",
+"applied · leaf-architecture+layout-templates.md/.claude/docs/services/seven_guis.md:19#1 · stale",
+"applied · leaf-architecture+obs-plan.md/.claude/docs/services/escher-telemetry.md:18#1 · omission",
+"applied · leaf-architecture+test-plan.md/.claude/docs/commands.md:61#1 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/commands.md:61#2 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/commands.md:63#1 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/commands.md:63#2 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/commands.md:63#3 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/commands.md:63#4 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/services/blitz-test-harness.md:16#1 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/services/blitz-test-harness.md:19#1 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/services/blitz-test-harness.md:19#2 · stale",
+"applied · leaf-architecture+test-plan.md/.claude/docs/services/blitz-test-harness.md:34#1 · stale",
+"applied · leaf-design-system+layout-templates.md/.claude/docs/design-summary.md:24#1 · stale",
+"applied · leaf-masters.md/CLAUDE.md:22#1 · stale",
+"applied · leaf-masters.md/CLAUDE.md:22#2 · stale",
+"applied · leaf-masters.md/CLAUDE.md:22#3 · stale",
+"applied · leaf-masters.md/CLAUDE.md:22#4 · stale",
+"applied · leaf-masters.md/CLAUDE.md:22#5 · stale",
+"applied · leaf-masters.md/CLAUDE.md:22#6 · stale",
+"applied · leaf-masters.md/CLAUDE.md:22#7 · stale",
+"applied · leaf-masters.md/CLAUDE.md:26#1 · stale",
+"applied · leaf-masters.md/CLAUDE.md:33#1 · stale",
+"applied · leaf-masters.md/CLAUDE.md:35#1 · stale",
+"applied · leaf-masters.md/CLAUDE.md:37#1 · stale",
+"applied · leaf-masters.md/CLAUDE.md:37#2 · stale",
+"applied · leaf-masters.md/CLAUDE.md:45#1 · stale",
+"applied · leaf-masters.md/CLAUDE.md:110#1 · stale",
+"applied · leaf-masters.md/CLAUDE.md:110#2 · stale",
+"applied · leaf-masters.md/CLAUDE.md:110#3 · stale",
+"applied · leaf-masters.md/CLAUDE.md:110#4 · stale",
+"applied · leaf-masters.md/CLAUDE.md:110#5 · stale",
+"applied · leaf-masters.md/CLAUDE.md:110#6 · stale",
+"applied · leaf-obs-plan.md/.claude/docs/obs-summary.md:49#1 · stale",
+"applied · leaf-obs-plan.md/.claude/docs/obs-summary.md:49#2 · stale",
+"applied · leaf-security-plan.md/.claude/docs/security-summary.md:13#1 · stale",
+"applied · leaf-security-plan.md/.claude/docs/security-summary.md:13#2 · stale",
+"applied · leaf-security-plan.md/.claude/docs/security-summary.md:13#3 · stale",
+"applied · leaf-security-plan.md/.claude/docs/security-summary.md:23#1 · stale",
+"applied · leaf-security-plan.md/.claude/docs/security-summary.md:32#1 · stale",
+"applied · leaf-security-plan.md/.claude/rules/security.md:17#1 · stale",
+"applied · leaf-security-plan.md/.claude/rules/security.md:17#2 · stale",
+"applied · leaf-security-plan.md/.claude/rules/security.md:17#3 · stale",
+"applied · leaf-security-plan.md/.claude/rules/security.md:22#1 · stale",
+"applied · leaf-test-plan-1.md/.claude/docs/tests-summary.md:13#1 · stale",
+"applied · leaf-test-plan-1.md/.claude/docs/tests-summary.md:14#1 · stale",
+"applied · leaf-test-plan-1.md/.claude/docs/tests-summary.md:21#1 · stale",
+"applied · leaf-test-plan-1.md/.claude/docs/tests-summary.md:24#1 · stale",
+"applied · leaf-test-plan-1.md/.claude/rules/testing.md:31#1 · stale",
+"applied · leaf-test-plan-2.md/.claude/rules/verification-harness.md:31#1 · stale",
+"applied · leaf-test-plan-2.md/.claude/rules/verification-harness.md:36#1 · stale",
+"applied · leaf-test-plan-2.md/.claude/rules/verification-harness.md:32#1 · stale",
+"wrote .claude/docs/a11y-summary.md: 10 finding(s), read back",
+"wrote .claude/rules/a11y.md: 9 finding(s), read back",
+"wrote .claude/docs/services/blitz-dom.md: 7 finding(s), read back",
+"wrote .claude/docs/services/blitz-paint.md: 1 finding(s), read back",
+"wrote .claude/docs/services/dioxus-native-dom.md: 2 finding(s), read back",
+"wrote .claude/docs/services/escher-driver.md: 9 finding(s), read back",
+"wrote .claude/docs/workflow.md: 1 finding(s), read back",
+"wrote .claude/docs/services/seven_guis.md: 2 finding(s), read back",
+"wrote .claude/docs/services/escher-telemetry.md: 1 finding(s), read back",
+"wrote .claude/docs/commands.md: 6 finding(s), read back",
+"wrote .claude/docs/services/blitz-test-harness.md: 4 finding(s), read back",
+"wrote .claude/docs/design-summary.md: 1 finding(s), read back",
+"wrote CLAUDE.md: 19 finding(s), read back",
+"wrote .claude/docs/obs-summary.md: 2 finding(s), read back",
+"wrote .claude/docs/security-summary.md: 5 finding(s), read back",
+"wrote .claude/rules/security.md: 4 finding(s), read back",
+"wrote .claude/docs/tests-summary.md: 4 finding(s), read back",
+"wrote .claude/rules/testing.md: 1 finding(s), read back",
+"wrote .claude/rules/verification-harness.md: 3 finding(s), read back",
+"total · blocks 91 · applied 91"
+],
+"stderr": null,
+"wrote": [
+"./.claude/docs/a11y-summary.md",
+"./.claude/rules/a11y.md",
+"./.claude/docs/services/blitz-dom.md",
+"./.claude/docs/services/blitz-paint.md",
+"./.claude/docs/services/dioxus-native-dom.md",
+"./.claude/docs/services/escher-driver.md",
+"./.claude/docs/workflow.md",
+"./.claude/docs/services/seven_guis.md",
+"./.claude/docs/services/escher-telemetry.md",
+"./.claude/docs/commands.md",
+"./.claude/docs/services/blitz-test-harness.md",
+"./.claude/docs/design-summary.md",
+"./CLAUDE.md",
+"./.claude/docs/obs-summary.md",
+"./.claude/docs/security-summary.md",
+"./.claude/rules/security.md",
+"./.claude/docs/tests-summary.md",
+"./.claude/rules/testing.md",
+"./.claude/rules/verification-harness.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"apply": [
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:20#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:21#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:22#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:23#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:23#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:23#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:24#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:24#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:24#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/docs/a11y-summary.md:24#4",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:24#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:25#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:25#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:31#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:32#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:32#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:33#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:33#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-a11y-plan.md/.claude/rules/a11y.md:33#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#4",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#5",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#6",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/blitz-dom.md:15#7",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/blitz-paint.md:18#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/dioxus-native-dom.md:17#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-1.md/.claude/docs/services/dioxus-native-dom.md:17#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:16#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:18#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:18#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:19#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:24#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:26#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:35#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:38#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/services/escher-driver.md:53#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture-2.md/.claude/docs/workflow.md:15#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+layout-templates.md/.claude/docs/services/seven_guis.md:11#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+layout-templates.md/.claude/docs/services/seven_guis.md:19#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+obs-plan.md/.claude/docs/services/escher-telemetry.md:18#1",
+"status": "applied",
+"class": "omission"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/commands.md:61#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/commands.md:61#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/commands.md:63#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/commands.md:63#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/commands.md:63#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/commands.md:63#4",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/services/blitz-test-harness.md:16#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/services/blitz-test-harness.md:19#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/services/blitz-test-harness.md:19#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-architecture+test-plan.md/.claude/docs/services/blitz-test-harness.md:34#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-design-system+layout-templates.md/.claude/docs/design-summary.md:24#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:22#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:22#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:22#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:22#4",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:22#5",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:22#6",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:22#7",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:26#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:33#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:35#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:37#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:37#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:45#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:110#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:110#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:110#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:110#4",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:110#5",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-masters.md/CLAUDE.md:110#6",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-obs-plan.md/.claude/docs/obs-summary.md:49#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-obs-plan.md/.claude/docs/obs-summary.md:49#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/docs/security-summary.md:13#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/docs/security-summary.md:13#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/docs/security-summary.md:13#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/docs/security-summary.md:23#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/docs/security-summary.md:32#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/rules/security.md:17#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/rules/security.md:17#2",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/rules/security.md:17#3",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-security-plan.md/.claude/rules/security.md:22#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-test-plan-1.md/.claude/docs/tests-summary.md:13#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-test-plan-1.md/.claude/docs/tests-summary.md:14#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-test-plan-1.md/.claude/docs/tests-summary.md:21#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-test-plan-1.md/.claude/docs/tests-summary.md:24#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-test-plan-1.md/.claude/rules/testing.md:31#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-test-plan-2.md/.claude/rules/verification-harness.md:31#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-test-plan-2.md/.claude/rules/verification-harness.md:36#1",
+"status": "applied",
+"class": "stale"
+},
+{
+"id": "leaf-test-plan-2.md/.claude/rules/verification-harness.md:32#1",
+"status": "applied",
+"class": "stale"
+}
+],
+"applied": true,
+"files": {
+"leaf-a11y-plan.md": "1486c4d977",
+"leaf-architecture-1.md": "3fdf7fecdd",
+"leaf-architecture-2.md": "784c81d973",
+"leaf-architecture+layout-templates.md": "b1ac41537a",
+"leaf-architecture+obs-plan.md": "bafdce01fe",
+"leaf-architecture+test-plan.md": "dd2f658345",
+"leaf-design-system+layout-templates.md": "e4a9669205",
+"leaf-masters.md": "f1aae10515",
+"leaf-obs-plan.md": "83bb1f87f7",
+"leaf-security-plan.md": "11dd8a3e92",
+"leaf-test-plan-1.md": "c9139a61fe",
+"leaf-test-plan-2.md": "ef70e33fdd"
+}
+}
+}
+]

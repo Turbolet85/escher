@@ -1,0 +1,2 @@
+proposals: []
+note: No obs-plan detector fires — the gated part changes no source, symbol, crate, dependency or log site (report Changes: Files, Symbols / APIs, Dependencies all none; new text 0 files) and has no Retired bullet. The only obs-plan sites the report names are the one-virtual-clock class's PROVISIONAL marks at obs-plan:114 ×2 · 115 · 188 (the `prov` table, discharged at P2 on inputs#I9 per inputs#I11 (b)) and obs-plan:74, an `ed-batch` citation needing no change — both the Provisional discharge sweep's, not these detectors'.

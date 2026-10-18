@@ -1,0 +1,756 @@
+[
+{
+"tool": "gate",
+"v": "1.20",
+"sha8": "da334230",
+"ts": "2026-10-18T20:42:53Z",
+"argv": [
+"run",
+"--plan",
+"./escher-0.2.0/chunks/2026-10-18-engine-debts/plan.md",
+"--run-dir",
+"./.andromeda/runs/2026-10-18T20-41-41-implement",
+"--marker",
+"2026-10-18-engine-debts",
+"--entry",
+"26",
+"--void",
+"26:block cleared — the founder's own word «Утвердить всё (Рекомендую)» 2026-10-18 about 20:40Z relayed verbatim by the overseer (inputs#I9) recorded in evidence/founder-word.md"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-18-engine-debts · entries 31",
+"logs $TMPDIR/andromeda-gate/2026-10-18-engine-debts/implement-2026-10-18T20-41-41 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 7 · unmapped 2",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L208-215: Every proof is a headless blitz-tests check, so the chunk has no boot path and no live leg… (904 chars)",
+" 26 probe       green · exit 0 · 0.0s · 2 B → 26.log · void: block cleared — the founder's own word «… (173 chars) · grep -c -E '^\\| F[1-9] \\| [AB] \\| ratified by the founder … (157 chars)",
+"not run — excluded · 30: 1-25,27-31",
+"entries 31 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 30 · voided 1 (26)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-18-engine-debts",
+"plan": "./escher-0.2.0/chunks/2026-10-18-engine-debts/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-18-engine-debts/implement-2026-10-18T20-41-41",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/runs/2026-10-18T08-45-11-wrap/evolve-2026-10-18-one-virtual-clock.json",
+".claude/session-handoff.md",
+".andromeda/runs/2026-10-18T08-45-11-wrap/health-2026-10-18-one-virtual-clock.json",
+".andromeda/runs/2026-10-18T20-41-41-implement/cleared-v020-03.md",
+".andromeda/runs/2026-10-18T20-41-41-implement/inputs-2026-10-18-engine-debts.json",
+"escher-0.2.0/chunks/2026-10-18-engine-debts/evidence/founder-word.md"
+]
+},
+"unmapped": [
+"escher-0.2.0/chunks/2026-10-18-engine-debts/inputs/andromeda-inputs.json",
+"escher-0.2.0/chunks/2026-10-18-engine-debts/inputs/I9-provisional-batch-founder-word-2026-10-18.md.txt"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 9,
+"problem": null
+},
+"prose": [
+{
+"from": 208,
+"to": 215,
+"text": "Every proof is a headless blitz-tests check, so the chunk has no boot path and no live leg; the smoke and self-verify entries are absent for that reason. The per-file entries run under the per-package build (`-p blitz-tests`), and `ci-leg.sh fast` runs the workspace build, so each geometry check meets both bodies of `physical_unrounded_geometry` (test-plan §9). A count in an atom is the plan's forecast for the file after its step: the baseline P5 reads on the untouched tree is red for every new file and for every rewritten count. Two records have no listed producer, by design. `evidence/controls.md` is written by step 10's mutation controls, a ONE-SHOT run at implement: each control mutates source and restores it, so no gate may re-run it, and its non-mutating guard is the `controls.md` reader below. `evidence/merge-surface.md` is written by step 11 by hand. Both readers carry no `artifact`."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test accessibility_merged_states",
+"run_sha8": "debaa872",
+"expect": [
+"exit 0",
+"contains test result: ok. 3 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test inert_subtree",
+"run_sha8": "83e2dcd0",
+"expect": [
+"exit 0",
+"contains test result: ok. 4 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_keyboard",
+"run_sha8": "dbba0b60",
+"expect": [
+"exit 0",
+"contains test result: ok. 14 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test accessibility_states",
+"run_sha8": "e063b1d0",
+"expect": [
+"exit 0",
+"contains test result: ok. 5 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok. 72 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked --lib",
+"run_sha8": "62729176",
+"expect": [
+"exit 0",
+"contains test result: ok. 74 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test accessibility_active_descendant_unread",
+"run_sha8": "1607bc0d",
+"expect": [
+"exit 0",
+"contains test result: ok. 1 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test scrolled_box_absolute_position",
+"run_sha8": "855b035e",
+"expect": [
+"exit 0",
+"contains test result: ok. 1 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test scroll_into_view_nested",
+"run_sha8": "a09e11cd",
+"expect": [
+"exit 0",
+"contains test result: ok. 7 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test hit_clipped_at_scrolling_box",
+"run_sha8": "c8dae42b",
+"expect": [
+"exit 0",
+"contains test result: ok. 13 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test transformed_client_rect",
+"run_sha8": "95d9ada8",
+"expect": [
+"exit 0",
+"contains test result: ok. 4 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_act_transformed",
+"run_sha8": "8ffe3574",
+"expect": [
+"exit 0",
+"contains test result: ok. 2 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 13,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_act_obstructed",
+"run_sha8": "d3671a69",
+"expect": [
+"exit 0",
+"contains test result: ok. 6 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 14,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test password_caret_click",
+"run_sha8": "61d1ee04",
+"expect": [
+"exit 0",
+"contains test result: ok. 2 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "grep -c -E '^\\| [a-z_]+ \\| [a-z_]+ \\| red \\| [0-9.]+ s \\| sha256 equal \\| green \\|$' escher-0.2.0/chunks/2026-10-18-engine-debts/evidence/controls.md",
+"run_sha8": "8df47617",
+"expect": [
+"exit 0",
+"last line 8"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "grep -c -E '^\\| F[124-8] \\|.*23b9b26a9.*no upstream PR.*Upstream sync ahead of determinism and traces' escher-0.2.0/chunks/2026-10-18-engine-debts/evidence/merge-surface.md",
+"run_sha8": "e1153a4c",
+"expect": [
+"exit 0",
+"last line 7"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "git diff -U0 34bcf71c678c6b40960ee629e19af6c27b6986cb -- packages/blitz-dom/src packages/dioxus-native-dom/src/snapshot.rs | grep -E '^\\+' | grep -v -E '^\\+\\+\\+' | grep -c -E 'println!|eprintln!|print!|dbg!|panic!|todo!|unimplemented!|std::env|env::var|\\.unwrap\\(\\)|\\.expect\\(|tracing::|log::' ",
+"run_sha8": "1c5d5c8d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "grep -c -E 'println!|eprintln!|print!|dbg!|std::env|env::var|escher_telemetry|tracing_subscriber|UnixListener|TcpListener|bind\\(' tests/blitz-tests/tests/accessibility_merged_states.rs tests/blitz-tests/tests/inert_subtree.rs tests/blitz-tests/tests/accessibility_active_descendant_unread.rs tests/blitz-tests/tests/transformed_client_rect.rs tests/blitz-tests/tests/stand_act_transformed.rs tests/blitz-tests/tests/stand_keyboard.rs tests/blitz-tests/tests/accessibility_states.rs tests/blitz-tests/tests/scrolled_box_absolute_position.rs tests/blitz-tests/tests/hit_clipped_at_scrolling_box.rs tests/blitz-tests/tests/password_caret_click.rs tests/blitz-tests/tests/common/mod.rs | grep -c -v ':0$' ",
+"run_sha8": "3b1688dc",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "git diff --quiet 23b9b26a9b6af5947b8f003d2c2cc768bff10b8a -- packages/dioxus-native-dom/src/mutation_writer.rs",
+"run_sha8": "69577a42",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 20,
+"role": "probe",
+"run": "git diff --quiet 34bcf71c678c6b40960ee629e19af6c27b6986cb -- Cargo.toml Cargo.lock deny.toml packages/blitz-dom/Cargo.toml packages/dioxus-native-dom/Cargo.toml packages/escher-driver/Cargo.toml tests/blitz-tests/Cargo.toml",
+"run_sha8": "e6fabbcb",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 21,
+"role": "probe",
+"run": "git diff --name-only 34bcf71c678c6b40960ee629e19af6c27b6986cb -- packages examples apps wpt scripts .github | grep -c -v -x -E 'packages/blitz-dom/src/node/node\\.rs|packages/blitz-dom/src/node/element\\.rs|packages/blitz-dom/src/scrolling\\.rs|packages/blitz-dom/src/accessibility\\.rs|packages/blitz-dom/src/document\\.rs|packages/blitz-dom/src/events/pointer\\.rs|packages/blitz-dom/src/events/keyboard\\.rs|packages/dioxus-native-dom/src/snapshot\\.rs|packages/escher-driver/src/schema\\.rs|packages/escher-driver/src/refusal\\.rs|packages/escher-driver/src/json\\.rs|packages/escher-driver/src/lib\\.rs' ",
+"run_sha8": "6a75bf89",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 22,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 23,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh stand-repeat",
+"run_sha8": "4a77feee",
+"expect": [
+"exit 0",
+"contains stand-repeat: 3 of 3 rounds green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 24,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh coverage",
+"run_sha8": "8c67d572",
+"expect": [
+"exit 0",
+"contains coverage floor: 3 of 3 crates at or above their floors"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 25,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 26,
+"role": "probe",
+"run": "grep -c -E '^\\| F[1-9] \\| [AB] \\| ratified by the founder \\| 2026-[0-9]{2}-[0-9]{2} \\|$' escher-0.2.0/chunks/2026-10-18-engine-debts/evidence/founder-word.md",
+"run_sha8": "1775a669",
+"expect": [
+"exit 0",
+"last line 9"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-engine-debts/implement-2026-10-18T20-41-41/26.log",
+"bytes": 2,
+"log_sha8": "2e6d31a5",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '9' ✓"
+],
+"survivors": [],
+"outcome": "green",
+"void": "block cleared — the founder's own word «Утвердить всё (Рекомендую)» 2026-10-18 about 20:40Z relayed verbatim by the overseer (inputs#I9) recorded in evidence/founder-word.md",
+"defer": "gated: the founder's own word discharging this chunk's PROVISIONAL batch at its wrap, the Epoch 2 boundary: the nine fork answers the operator gave as delegate (inputs#I2), the seven engine fixes and the `switch` role mapping among them (inputs#I3)"
+},
+{
+"n": 27,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 28,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 29,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 30,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.2.0",
+"run_sha8": "ee10eab9",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 31,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.20",
+"sha8": "da334230",
+"ts": "2026-10-18T20:42:58Z",
+"argv": [
+"show",
+"--run-dir",
+"./.andromeda/runs/2026-10-18T20-41-41-implement",
+"--marker",
+"2026-10-18-engine-debts",
+"--n",
+"26"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"26 probe green",
+"run (1775a669): grep -c -E '^\\| F[1-9] \\| [AB] \\| ratified by the founder \\| 2026-[0-9]{2}-[0-9]{2} \\|$' escher-0.2.0/chunks/2026-10-18-engine-debts/evidence/founder-word.md",
+"  exit 0 ✓",
+"  last line '9' ✓",
+"log $TMPDIR/andromeda-gate/2026-10-18-engine-debts/implement-2026-10-18T20-41-41/26.log · 2 B · 2e6d31a5 · $TMPDIR = /tmp",
+"--- no anchored failure; last 20 non-empty lines ---",
+"9"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.20",
+"sha8": "da334230",
+"ts": "2026-10-18T20:43:47Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"./escher-0.2.0/chunks/2026-10-18-engine-debts",
+"--run-dir",
+"./.andromeda/runs/2026-10-18T20-41-41-implement",
+"--marker",
+"2026-10-18-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 34bcf71c (the parent of the oldest pre-CI commit 48680dfb) · lists new 5 · modify 17 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"unrecorded examples/seven_guis/src/stand.rs",
+"unrecorded examples/seven_guis/tests/cli_commands.rs",
+"unrecorded examples/seven_guis/tests/host_timer.rs",
+"unrecorded packages/blitz-dom/src/clock.rs",
+"unrecorded packages/blitz-dom/src/config.rs",
+"unrecorded packages/blitz-dom/src/iframe.rs",
+"unrecorded packages/blitz-dom/src/lib.rs",
+"unrecorded packages/blitz-dom/src/resolve.rs",
+"unrecorded packages/blitz-test-harness/src/harness.rs",
+"unrecorded packages/escher-driver/src/describe.rs",
+"unrecorded packages/escher-driver/src/execute.rs",
+"unrecorded packages/escher-driver/src/schema_tests.rs",
+"unrecorded packages/escher-driver/src/session.rs",
+"unrecorded tests/blitz-tests/tests/session_common/mod.rs",
+"unrecorded tests/blitz-tests/tests/stand_act_spans.rs",
+"unrecorded tests/blitz-tests/tests/stand_act_timer.rs",
+"unrecorded tests/blitz-tests/tests/stand_mcp_tools.rs",
+"unrecorded tests/blitz-tests/tests/stand_non_lean_tasks.rs",
+"unrecorded tests/blitz-tests/tests/stand_screenshot_repeat.rs",
+"unrecorded tests/blitz-tests/tests/stand_virtual_clock.rs",
+"unrecorded tests/blitz-tests/tests/virtual_clock_engine.rs",
+"scope: unrecorded 21 files · changed 43 · listed 22 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 437"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "34bcf71c678c6b40960ee629e19af6c27b6986cb",
+"base_why": "the parent of the oldest pre-CI commit 48680dfb",
+"counts": {
+"changed": 43,
+"listed": 22,
+"recorded": 0,
+"unrecorded": 21,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 437,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.20",
+"sha8": "da334230",
+"ts": "2026-10-18T20:43:48Z",
+"argv": [
+"census",
+"--comm",
+"escher-session",
+"--comm",
+"seven_guis_native",
+"--comm",
+"cargo",
+"--run-dir",
+"./.andromeda/runs/2026-10-18T20-41-41-implement",
+"--marker",
+"2026-10-18-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"census · ps · comm escher-session, seven_guis_native, cargo · args — · own tree excluded: 8",
+"census: none running"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"census": {
+"comm": [
+"escher-session",
+"seven_guis_native",
+"cargo"
+],
+"args": [],
+"running": []
+}
+}
+}
+]
