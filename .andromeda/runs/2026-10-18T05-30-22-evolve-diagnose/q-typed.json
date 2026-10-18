@@ -1,0 +1,829 @@
+[
+ {
+  "key": "wrap-session/reconcile/contract.in-pass-correction",
+  "n": 4,
+  "weight": 8,
+  "score": 8.0,
+  "rate": "4/2",
+  "chunks": [
+   "2026-10-18-engine-debts"
+  ],
+  "above": true,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-18T05:13:34Z-b",
+    "chunk": "2026-10-18-engine-debts",
+    "step": "wrap-session/reconcile",
+    "what": "obs-plan's new detail group was written as an indented list item with no blank line after its close label; classify.py check failed it (units 2) and it was rewritten before the sidecar entry",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-18T04-30-47-wrap/classify-2026-10-18-engine-debts.json",
+    "artifacts": [
+     ".andromeda/obs-plan.md:72"
+    ],
+    "clause": null
+   },
+   {
+    "id": "2026-10-18T05:13:34Z-c",
+    "chunk": "2026-10-18-engine-debts",
+    "step": "wrap-session/reconcile",
+    "what": "the citation-dispositions writer counted the cites.py summary line beginning `out-of-range 1` as a row (112 rows for 111); the asserted count caught it and the parser was narrowed",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "citation-dispositions.md"
+    ],
+    "clause": null
+   },
+   {
+    "id": "2026-10-18T05:13:34Z-d",
+    "chunk": "2026-10-18-engine-debts",
+    "step": "wrap-session/reconcile",
+    "what": "the a11y-plan sidecar payload named the founder's F3 fork `C3`; a re-read before the append caught it and it was corrected to F3",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "a11y-plan-entry-2.md"
+    ],
+    "clause": null
+   },
+   {
+    "id": "2026-10-18T05:13:34Z-e",
+    "chunk": "2026-10-18-engine-debts",
+    "step": "wrap-session/reconcile",
+    "what": "relay-4.md stamped the two dialog answers with estimated times (05:10Z, 05:16Z); inputs.py snap refused the later as ahead of the clock and the stamp-ahead hook flagged it; rewritten as `by 05:12Z`, the clock read after them",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": "inputs#I8",
+    "artifacts": [
+     "relay-4.md"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "phase/validate/contract.mechanical-check",
+  "n": 2,
+  "weight": 5,
+  "score": 5.0,
+  "rate": "2/2",
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-17T14:33:31Z-b",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "phase/validate",
+    "what": "check 2 (modify paths exist): plan touchpoints listed three upstream new files under Files to modify and folded several paths per line as fragments; caught by the orchestrator's own path read before the card, rewritten one full path per line with the new files moved to New files (plan and research)",
+    "impact": {
+     "iterations": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "plan.md",
+     "research.md"
+    ],
+    "clause": null
+   },
+   {
+    "id": "2026-10-17T14:33:31Z-c",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "phase/validate",
+    "what": "the operator's review folded the security-plan expected amendment to name aria-describedby beside aria-description as a second source of the ratified description field, so the wrap card shows it for the founder; no mechanical predicate reads an expected amendment's coverage of a ruling's subjects",
+    "impact": {
+     "dialogue_rounds": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "plan.md",
+     "p5-card-2.md"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "*/*/recall.corpus-recurrence",
+  "n": 2,
+  "weight": 4,
+  "score": 4.0,
+  "rate": null,
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-18T01:57:54Z-c",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "wrap-session/reconcile",
+    "what": "a bare cd into the run dir in a read call moved the session cwd, against host-linux «Paths & the working directory» (cd only inside a subshell); restored by cd to the root next call",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "clause": null
+   },
+   {
+    "id": "2026-10-18T01:59:21Z-b",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "wrap-session/curation",
+    "what": "the report's guard-refusal entry (cd moving the cwd) and this window's own bare cd both reproduce host-linux «Paths & the working directory», already curated; logged as recurrence-despite-learning in the handoff",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/ambiguity.escalation-rounds",
+  "n": 1,
+  "weight": 8,
+  "score": 8.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 1,
+  "cases": [
+   {
+    "id": "2026-10-18T01:57:54Z-d",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "wrap-session/reconcile",
+    "what": "the answer card's dialog went unanswered within the driver's 58-minute hold; the wrap stopped on the dialog fallback and resumed on the founder's late relayed answer in a second window",
+    "impact": {
+     "dialogue_rounds": 2,
+     "halted": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-17T15-18-19-wrap/relay-3.md",
+    "artifacts": null,
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "phase/validate/contract.matrix-claim",
+  "n": 1,
+  "weight": 6,
+  "score": 6.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-18-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-18T03:16:13Z-b",
+    "chunk": "2026-10-18-engine-debts",
+    "step": "phase/validate",
+    "what": "the P5 concretization of v020-03 replaced the founder's recorded answer with the delegate's PROVISIONAL one; the operator's review restored the founder's word as the condition (requirements.md:13) and the claim was re-encoded gated",
+    "impact": {
+     "dialogue_rounds": 2,
+     "iterations": 1
+    },
+    "evidence": "escher-0.2.0/chunks/2026-10-18-engine-debts/inputs (I3)",
+    "artifacts": [
+     ".andromeda/runs/2026-10-18T02-38-20-phase/p5-card-1.md",
+     ".andromeda/runs/2026-10-18T02-38-20-phase/acceptance-v020-03.md"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/route-resolve/contract.no-sanctioned-channel",
+  "n": 1,
+  "weight": 6,
+  "score": 6.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-18-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 1,
+  "cases": [
+   {
+    "id": "2026-10-18T05:16:28Z-b",
+    "chunk": "2026-10-18-engine-debts",
+    "step": "wrap-session/route-resolve",
+    "what": "phase claimed v020-03 gated in the ledger (claim --gated-file) but stamped no BLOCKED-ON on the frozen line; route.py flip --to gated refuses without one and the wrap has no sanctioned frozen-line write, so the operator's directive (take the gated arm) could not be carried out until the operator named a frozen-line stamp",
+    "impact": {
+     "dialogue_rounds": 1,
+     "halted": 1,
+     "extra_reads": 2
+    },
+    "evidence": "inputs#I8",
+    "artifacts": [
+     "escher-0.2.0/working-route.md:20",
+     "escher-0.2.0/verification-matrix.json#v020-03"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "*/*/contract.token-proxy-check",
+  "n": 1,
+  "weight": 4,
+  "score": 4.0,
+  "rate": null,
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-17T18:34:19Z-c",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "wrap-session/report",
+    "what": "the scope base finder matches the fixed string 'chore({marker}): operator pre-CI commit' in a subject; the merge commit's subject put 'merge upstream/main at 23b9b26a9, ' between them, the base fell to HEAD and control C1 failed (false negative); recovered by a founder-approved reword and force-push",
+    "impact": {
+     "retries": 1,
+     "dialogue_rounds": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-17T15-18-19-wrap/gate-2026-10-17-upstream-sync-engine-debts.json (15:18:36Z record); evidence/operator-pass.md, The reword",
+    "artifacts": [
+     "gate.py scope",
+     "cites.py added"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "implement/code/input.conventions-gap",
+  "n": 1,
+  "weight": 4,
+  "score": 4.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-17T14:39:30Z-b",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "implement/code",
+    "what": "After the keyboard-types 0.8 migration, `keyboard_types` resolved to Dioxus's 0.7 re-export through `use dioxus::prelude::*` (E0659 ambiguous in 5 checks, E0599/E0308 in snapshot.rs's test module); fixed by the absolute path `::keyboard_types` in those six sites",
+    "impact": {
+     "iterations": 3
+    },
+    "evidence": null,
+    "artifacts": [
+     "research.md §Conventions to follow",
+     "packages/dioxus-native-dom/src/snapshot.rs",
+     "tests/blitz-tests/tests/stand_{keyboard,snapshot_state,diff,settle,snapshot_text}.rs"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/input.report-insufficient",
+  "n": 2,
+  "weight": 2,
+  "score": 2.0,
+  "rate": "2/2",
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts",
+   "2026-10-18-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-18T01:57:54Z-b",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "wrap-session/reconcile",
+    "what": "the report's macmod fact named only execute.rs's ACTION_MODIFIER; the engine's util.rs ACTION_MOD (SUPER->META) and the removed todo!() arms surfaced only as citation-sweep claim-false rows, and its Coverage line credited the three closed ARIA reads to tests the wrap's search found absent",
+    "impact": {
+     "extra_reads": 3
+    },
+    "evidence": ".andromeda/runs/2026-10-17T15-18-19-wrap/fanout-results.md",
+    "artifacts": [
+     "report.md",
+     "citation-dispositions.md"
+    ],
+    "clause": null
+   },
+   {
+    "id": "2026-10-18T05:13:34Z-g",
+    "chunk": "2026-10-18-engine-debts",
+    "step": "wrap-session/reconcile",
+    "what": "the plan's expected amendment named test-plan §9's per-OS tallies, and the report carried only CI's 17/17 verdict, not the per-OS test-result lines; the detector proposed nothing and the entry was dispositioned with no fact to apply",
+    "impact": {
+     "iterations": 0
+    },
+    "evidence": null,
+    "artifacts": [
+     "report.md",
+     "fanout-test-plan.md"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/report/contract.token-proxy-check",
+  "n": 1,
+  "weight": 4,
+  "score": 4.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-17T18:34:19Z-c",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "wrap-session/report",
+    "what": "the scope base finder matches the fixed string 'chore({marker}): operator pre-CI commit' in a subject; the merge commit's subject put 'merge upstream/main at 23b9b26a9, ' between them, the base fell to HEAD and control C1 failed (false negative); recovered by a founder-approved reword and force-push",
+    "impact": {
+     "retries": 1,
+     "dialogue_rounds": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-17T15-18-19-wrap/gate-2026-10-17-upstream-sync-engine-debts.json (15:18:36Z record); evidence/operator-pass.md, The reword",
+    "artifacts": [
+     "gate.py scope",
+     "cites.py added"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "*/*/tooling.host-shell",
+  "n": 1,
+  "weight": 2,
+  "score": 2.0,
+  "rate": null,
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-17T14:21:45Z-c",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "phase/plan",
+    "what": "firing a gate entry's run by hand as bash -c with TOML-style triple single quotes nested around single-quoted sed/awk programs broke the session shell's parse (syntax error near '('); re-run from a scratchpad script file",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "plan.md gate 47"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "phase/plan/UNTYPED",
+  "n": 1,
+  "weight": 2,
+  "score": 2.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-17T14:21:45Z-b",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "phase/plan",
+    "what": "a control-reading time written into plan.md was estimated (14:25Z) instead of read; the stamp-ahead PostToolUse hook refused it 3 min ahead of the clock and it was corrected from date -u",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "plan.md"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "phase/plan/tooling.host-shell",
+  "n": 1,
+  "weight": 2,
+  "score": 2.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-17T14:21:45Z-c",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "phase/plan",
+    "what": "firing a gate entry's run by hand as bash -c with TOML-style triple single quotes nested around single-quoted sed/awk programs broke the session shell's parse (syntax error near '('); re-run from a scratchpad script file",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "plan.md gate 47"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/curation/ambiguity.tier-routing",
+  "n": 1,
+  "weight": 2,
+  "score": 2.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-18T01:59:21Z-c",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "wrap-session/curation",
+    "what": "two operator-memory entries about pipeline process (fork ownership, route owners) had no path scope and were judged at Tier 1's one-sentence bar rather than Tier 3; the Tier-1 extension landed 2 B over the 600 B cap before trimming",
+    "impact": {
+     "iterations": 1
+    },
+    "evidence": null,
+    "artifacts": null,
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/curation/recall.corpus-recurrence",
+  "n": 1,
+  "weight": 2,
+  "score": 2.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-18T01:59:21Z-b",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "wrap-session/curation",
+    "what": "the report's guard-refusal entry (cd moving the cwd) and this window's own bare cd both reproduce host-linux «Paths & the working directory», already curated; logged as recurrence-despite-learning in the handoff",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/recall.corpus-recurrence",
+  "n": 1,
+  "weight": 2,
+  "score": 2.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-18T01:57:54Z-c",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "wrap-session/reconcile",
+    "what": "a bare cd into the run dir in a read call moved the session cwd, against host-linux «Paths & the working directory» (cd only inside a subshell); restored by cd to the root next call",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     ".claude/rules/host-linux.md"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "*/*/contract.premise-falsified",
+  "n": 1,
+  "weight": 1,
+  "score": 1.0,
+  "rate": null,
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-17T18:34:19Z-b",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "wrap-session/report",
+    "what": "the plan's (security) criterion 'audit ok with deny.toml unchanged' and its preservation guard (entry 11, pathspec names deny.toml) were falsified by the operator pass's External-decay fix ae8c8daf; the criterion reads UNMET as written and entry 11 reads red at the final tree, routed to a P2 escalation and a P7.1 treatment",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": "escher-0.2.0/chunks/2026-10-17-upstream-sync-engine-debts/report.md (Outcome, the P7 note)",
+    "artifacts": [
+     "escher-0.2.0/chunks/2026-10-17-upstream-sync-engine-debts/plan.md",
+     "deny.toml"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "implement/code/input.plan-step-ambiguous",
+  "n": 1,
+  "weight": 1,
+  "score": 1.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-18-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-18T03:31:59Z-b",
+    "chunk": "2026-10-18-engine-debts",
+    "step": "implement/code",
+    "what": "step 2 states the inert focus-kept limit 'in the check's //! and pinned by its fourth test' under the stand_keyboard paragraph, which has 14 tests; read as inert_subtree's fourth test and stated in both files' //! docs",
+    "impact": {
+     "extra_reads": 0
+    },
+    "evidence": null,
+    "artifacts": [
+     "escher-0.2.0/chunks/2026-10-18-engine-debts/plan.md:64-68"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "phase/research/input.extract-signal-gap",
+  "n": 1,
+  "weight": 1,
+  "score": 1.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-17T12:37:12Z-b",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "phase/research",
+    "what": "arch extract stated escher-driver AND the stand checks name keys only through blitz-test-harness re-exports; a typed sweep found nine stand checks importing keyboard_types directly via blitz-tests' own dev-dependency, and NamedKey not re-exported",
+    "impact": {
+     "extra_reads": 2
+    },
+    "evidence": "escher-0.2.0/chunks/2026-10-17-upstream-sync-engine-debts/research.md §Sweeps",
+    "artifacts": [
+     "arch.md",
+     "tests/blitz-tests/Cargo.toml:36"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "phase/take-up/input.working-entry-thin",
+  "n": 1,
+  "weight": 1,
+  "score": 1.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-18-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-18T02:40:27Z-b",
+    "chunk": "2026-10-18-engine-debts",
+    "step": "phase/take-up",
+    "what": "the entry says nine engine deferrals; a grep of residuals.md for target: next found eight absorbed:v020-03 lines, the ninth (covered on a zero-height box) carries target: 0.2.0 and was found only through intent.md and the incubator's deferred list",
+    "impact": {
+     "extra_reads": 3
+    },
+    "evidence": null,
+    "artifacts": [
+     ".andromeda/residuals.md:28",
+     "escher-0.2.0/working-route.md:20"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "phase/validate/UNTYPED",
+  "n": 1,
+  "weight": 1,
+  "score": 1.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-18-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-18T03:16:13Z-c",
+    "chunk": "2026-10-18-engine-debts",
+    "step": "phase/validate",
+    "what": "validation.md check 4 (9) requires a baseline run of every NOT SEEN entry, but gate.py prints not run — defer for a gated entry and a not-run word may not be recorded as a baseline; resolved by firing the entry with --void over the scratch clone alone",
+    "impact": {
+     "extra_reads": 2
+    },
+    "evidence": ".andromeda/runs/2026-10-18T02-38-20-phase/p5-controls.md",
+    "artifacts": [
+     "escher-0.2.0/chunks/2026-10-18-engine-debts/plan.md:420"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/gates/UNTYPED",
+  "n": 1,
+  "weight": 1,
+  "score": 1.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-18T02:10:02Z-b",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "wrap-session/gates",
+    "what": "the plan's preservation guard (entry 11) named deny.toml, which a later External-decay fix push had to move; the entry could only be read red by hand beside the tool (--entry is forbidden at the wrap) and skipped on the operator's directive",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-17T15-18-19-wrap/gate-2026-10-17-upstream-sync-engine-debts.json",
+    "artifacts": null,
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/gates/contract.coverage-hold",
+  "n": 1,
+  "weight": 1,
+  "score": 1.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-18-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-18T05:28:03Z-b",
+    "chunk": "2026-10-18-engine-debts",
+    "step": "wrap-session/gates",
+    "what": "v020-03 held below verified on the gated arm: the founder's own word on the PROVISIONAL batch (evidence/founder-word.md) is absent while the operator's directive took the wrap to its commit; the master record reads gated",
+    "impact": {
+     "deferred": 1
+    },
+    "evidence": "inputs#I7",
+    "artifacts": [
+     "escher-0.2.0/verification-matrix.json#v020-03",
+     ".andromeda/master-route.md:60"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/UNTYPED",
+  "n": 1,
+  "weight": 1,
+  "score": 1.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-18T01:57:54Z-e",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "wrap-session/reconcile",
+    "what": "cascade.py leaves --apply refused 2 of 35 findings as escaped because their replace-with quoted a regex backslash the leaf legitimately needed (keyboard_compat\\.rs$); both written by hand",
+    "impact": {
+     "extra_reads": 2
+    },
+    "evidence": ".andromeda/runs/2026-10-17T15-18-19-wrap/cascade-dispositions.md",
+    "artifacts": null,
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/contract.false-positive-proposal",
+  "n": 1,
+  "weight": 1,
+  "score": 1.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-18-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-18T05:13:34Z-f",
+    "chunk": "2026-10-18-engine-debts",
+    "step": "wrap-session/reconcile",
+    "what": "D-tests-coverage proposed two `observed absent` claims (a password shift-click / triple-click test; a disabled summary or link activation test) inferred from the report's test names with no search; returned under Validate check 4",
+    "impact": {
+     "iterations": 0
+    },
+    "evidence": null,
+    "artifacts": [
+     "fanout-test-plan.md#26",
+     "fanout-test-plan.md#27"
+    ],
+    "clause": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/report/contract.premise-falsified",
+  "n": 1,
+  "weight": 1,
+  "score": 1.0,
+  "rate": "1/2",
+  "chunks": [
+   "2026-10-17-upstream-sync-engine-debts"
+  ],
+  "above": false,
+  "halt_or_soft": 0,
+  "cases": [
+   {
+    "id": "2026-10-17T18:34:19Z-b",
+    "chunk": "2026-10-17-upstream-sync-engine-debts",
+    "step": "wrap-session/report",
+    "what": "the plan's (security) criterion 'audit ok with deny.toml unchanged' and its preservation guard (entry 11, pathspec names deny.toml) were falsified by the operator pass's External-decay fix ae8c8daf; the criterion reads UNMET as written and entry 11 reads red at the final tree, routed to a P2 escalation and a P7.1 treatment",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": "escher-0.2.0/chunks/2026-10-17-upstream-sync-engine-debts/report.md (Outcome, the P7 note)",
+    "artifacts": [
+     "escher-0.2.0/chunks/2026-10-17-upstream-sync-engine-debts/plan.md",
+     "deny.toml"
+    ],
+    "clause": null
+   }
+  ]
+ }
+]

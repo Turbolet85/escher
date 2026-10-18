@@ -1,0 +1,48 @@
+[
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name IN ('get_cursor','place_floated_box') AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 4,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/impl#[BaseDocument]update_cursor().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2040
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/impl#[BaseDocument]get_cursor().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2273
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/hover_state_tests/hovering_text_in_anonymous_block_reports_text_cursor().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3112
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/hover_state_tests/hovering_anonymous_block_whitespace_reports_default_cursor().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3125
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'update_cursor' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 2,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/impl#[BaseDocument]refresh_hover().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2020
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 events/driver/impl#[`EventDriver<'doc, Handler>`]handle_ui_event().",
+"file": "packages/blitz-dom/src/events/driver.rs",
+"line": 305
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

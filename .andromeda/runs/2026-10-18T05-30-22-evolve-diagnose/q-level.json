@@ -1,0 +1,57 @@
+{
+ "scope": "escher-0.2.0 · Epoch 2 — Engine debts (epoch-to-date); prior-epoch lookback = escher-0.2.0 Epoch 1 — Foundation, read-only",
+ "threshold_reading": "Pass A: n >= 3 in-epoch, or n >= 2 when one occurrence carries halt/soft-exit impact (the skill body's F-2), or n >= 2 in-epoch recurring from the prior epoch; a same-event typed friction on the fact's step record counts as that occurrence's impact, never as an extra n",
+ "facts_in_epoch": 14,
+ "facts_prior_epoch": 12,
+ "themes": [
+  {"theme": "T1 gated arm presumes a BLOCKED-ON head; a chunk claimed gated at phase P5 carries none and the wrap has no sanctioned frozen-line write",
+   "nature": "process", "n_in_epoch": 2, "halt_bearing": true, "prior_epoch": 0, "at_threshold": true, "signature": "band-aid",
+   "facts": [
+    {"id": "2026-10-18T03:16:13Z-a", "index": 1, "chunk": "2026-10-18-engine-debts", "step": "phase/validate", "solution": "workaround"},
+    {"id": "2026-10-18T05:16:28Z-a", "index": 0, "chunk": "2026-10-18-engine-debts", "step": "wrap-session/route-resolve", "solution": "overridden", "step_outcome": "halted-resolved"}],
+   "typed_correlates": ["2026-10-18T05:16:28Z-b contract.no-sanctioned-channel (halted 1, dialogue_rounds 1)", "2026-10-18T05:16:28Z-a consumed working-route quality thin"]},
+  {"theme": "T2 the founder's answer channel: a dialog unanswered within the driver's 58-minute hold, answered late by relay or in his stead as delegate (PROVISIONAL), leaving a gated claim",
+   "nature": "process", "n_in_epoch": 2, "halt_bearing": true, "prior_epoch": 0, "at_threshold": true, "signature": "band-aid",
+   "facts": [
+    {"id": "2026-10-17T14:21:45Z-a", "index": 0, "chunk": "2026-10-17-upstream-sync-engine-debts", "step": "phase/plan", "solution": "workaround"},
+    {"id": "2026-10-18T03:01:31Z-a", "index": 0, "chunk": "2026-10-18-engine-debts", "step": "phase/plan", "solution": "overridden"}],
+   "typed_correlates": ["2026-10-18T01:57:54Z-d ambiguity.escalation-rounds (halted 1, dialogue_rounds 2) — the same 58-minute hold at the 10-17 wrap, a step record with no fact of this theme",
+                        "2026-10-18T03:16:13Z-b contract.matrix-claim (dialogue_rounds 2, iterations 1) — the delegate's PROVISIONAL answer replaced the founder's recorded one in v020-03",
+                        "2026-10-18T05:28:03Z-b contract.coverage-hold (deferred 1) — v020-03 held below verified on the founder's absent word",
+                        "signal dialog-fallback-used (1)"],
+   "counting_note": "2 facts; the halt sits on a typed correlate in a third step record, not on either fact's own record — the founder may discount it and read the theme as n=2 below the halt clause"},
+  {"theme": "T3 a hand-written time ahead of the clock (estimated, not read), refused by the stamp-ahead hook",
+   "nature": "process", "n_in_epoch": 1, "halt_bearing": false, "prior_epoch": 0, "at_threshold": false,
+   "facts": [{"id": "2026-10-18T02:00:13Z-a", "index": 0, "chunk": "2026-10-17-upstream-sync-engine-debts", "step": "wrap-session/route-resolve", "solution": "workaround"}],
+   "typed_correlates": ["2026-10-17T14:21:45Z-b UNTYPED phase/plan", "2026-10-18T05:13:34Z-e contract.in-pass-correction reconcile (relay-4 stamps)", "2026-10-18T03:01:31Z-a plan signal note: guard-refused on a guessed Generated time", "2026-10-18T05:13:34Z-a reconcile signal note: stamp-ahead hook on an estimated dialog time"],
+   "note": "five occurrences across four steps and both chunks, each held by the stamp-ahead hook at one re-issue; one problem fact, so Pass A reads n=1"},
+  {"theme": "T4 a pipeline tool's stdout sent to /dev/null against the tools rule, read back from the trail",
+   "nature": "process", "n_in_epoch": 1, "prior_epoch": 1, "at_threshold": false,
+   "facts": [{"id": "2026-10-18T01:57:54Z-a", "index": 1, "chunk": "2026-10-17-upstream-sync-engine-debts", "step": "wrap-session/reconcile", "solution": "workaround"},
+             {"src": "prior", "id": "2026-10-16T17:49:24Z-a", "index": 1, "chunk": "2026-10-16-file-splits", "step": "wrap-session/reconcile", "solution": "workaround"}]},
+  {"theme": "T5 a validate/gates rule asks an act the gate tool or the wrap's letter gives no surface for (baseline of a defer entry; reading a red entry with --entry forbidden)",
+   "nature": "process", "n_in_epoch": 1, "prior_epoch": 1, "at_threshold": false,
+   "facts": [{"id": "2026-10-18T03:16:13Z-a", "index": 2, "chunk": "2026-10-18-engine-debts", "step": "phase/validate", "solution": "workaround"},
+             {"src": "prior", "id": "2026-10-16T19:34:20Z-a", "index": 0, "chunk": "2026-10-16-fast-failing-mutants", "step": "phase/validate", "solution": "workaround", "nature": "environment"}],
+   "note": "surfaced as Stage-2 cluster U1 (untyped records), where it meets F-4"},
+  {"theme": "single-fact themes", "facts": [
+    {"id": "2026-10-18T01:57:54Z-a", "index": 0, "note": "anchored Edit missed the a11y-plan bullet; scratch-script insert"},
+    {"id": "2026-10-18T01:59:21Z-a", "index": 0, "note": "Tier-1 extension 2 B over the 600 B cap"},
+    {"id": "2026-10-18T02:10:02Z-a", "index": 0, "note": "ScheduleWakeup armed as a fallback against the letter, cancelled"},
+    {"id": "2026-10-18T03:16:13Z-a", "index": 0, "note": "a technical fork at P5 asked by question dialog in P4's form"},
+    {"id": "2026-10-18T03:31:59Z-a", "index": 0, "nature": "product-logic", "note": "password caret: bullets' own scroll, not the plan's (tx, ty)"},
+    {"id": "2026-10-18T03:31:59Z-a", "index": 1, "note": "snapshot.rs carries a private copy of is_checkable to stay inside the twelve-file source gate"},
+    {"id": "2026-10-18T05:13:34Z-a", "index": 0, "solution": "overridden", "note": "leaf batch path check read the orchestrator's own route.py trail append"}]}
+ ],
+ "signatures": {
+  "band-aid": ["T1", "T2"],
+  "removed-cause": [],
+  "chronic-degrade": [{"type": "tooling.host-shell", "in_epoch": ["2026-10-17T14:21:45Z-c"],
+                       "lookback": ["2026-10-06T08:37:04Z-c (0.1.0 E2)", "2026-10-06T21:59:01Z-b (0.1.0 E3)", "2026-10-07T20:34:14Z-d (0.1.0 E4)", "2026-10-14T22:08:02Z-c (0.1.0 E6)", "2026-10-15T08:17:08Z-b (0.1.0 E6)"],
+                       "halted": 0, "epochs": 5}],
+  "deferred-forever": [],
+  "deferred_note": "no deferral signal and no solution:deferred fact in range; the one deferred impact (coverage-hold, v020-03) is routed: BLOCKED-ON on the frozen line, plan step 13",
+  "override": [],
+  "override_note": "three overridden facts in range, each on a different rule (delegate forks · leaf-batch path check · frozen-line write); none recurs on one rule across chunks"
+ }
+}

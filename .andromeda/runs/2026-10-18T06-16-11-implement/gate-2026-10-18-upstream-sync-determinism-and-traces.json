@@ -1,0 +1,870 @@
+[
+{
+"tool": "gate",
+"v": "1.20",
+"sha8": "da334230",
+"ts": "2026-10-18T06:25:11Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-18T06-16-11-implement",
+"--marker",
+"2026-10-18-upstream-sync-determinism-and-traces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-18-upstream-sync-determinism-and-traces · entries 30",
+"logs $TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 71 · python 9 · rust 1 · unmapped 8",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L72-81: Every gate is one entry of the fence below, in the order /implement runs it. - No `leg = '… (911 chars)",
+"  1 probe       green · exit 0 · 0.01s · 0 B → 1.log · git show fb8d6c15e9ce062b3b41e71cd48988f0093506cc -- packa… (110 chars)",
+"  2 probe       green · exit 0 · 0.01s · 0 B → 2.log · diff <(git diff fb842671137fc4f5e48059f269e796b57cf25017 -… (232 chars)",
+"  3 probe       green · exit 0 · 0.01s · 0 B → 3.log · git diff --quiet fb842671137fc4f5e48059f269e796b57cf25017 … (189 chars)",
+"  4 probe       green · exit 1 · 0.0s · 2 B → 4.log · grep -c -E 'DioxusLabs/taffy|git = ' Cargo.toml",
+"  5 probe       green · exit 0 · 0.0s · 2 B → 5.log · grep -c -E '^taffy = \\{ version = \"0\\.15\",' Cargo.toml",
+"  6 probe       green · exit 1 · 0.01s · 2 B → 6.log · git show fb8d6c15e9ce062b3b41e71cd48988f0093506cc -- '*.rs… (223 chars)",
+"  7 probe       green · exit 0 · 0.0s · 2 B → 7.log · git ls-tree -r --name-only fb8d6c15e9ce062b3b41e71cd48988f… (128 chars)",
+"  8 probe       green · exit 0 · 0.0s · 2 B → 8.log · grep -c -F -e \"--ignore-filename-regex 'keyboard_compat\\.r… (89 chars)",
+"  9 unit        green · exit 0 · 1.92s · 642 B → 9.log · cargo test -p blitz-dom --locked --lib hover_state_tests 2… (61 chars)",
+" 10 integration green · exit 0 · 3.08s · 1645 B → 10.log · cargo test -p blitz-tests --locked --test pointer_leave 2>… (60 chars)",
+" 11 unit        green · exit 0 · 149.68s · 106818 B → 11.log · bash .github/scripts/ci-leg.sh fast",
+" 12 probe       green · exit 0 · 0.01s · 41 B → 12.log · grep -E '^test result:' target/ci-logs/test.log | awk '{p+… (146 chars)",
+" 13 probe       green · exit 1 · 0.22s · 2 B → 13.log · for f in tests/blitz-tests/tests/*.rs; do n=$(basename \"$f… (184 chars)",
+" 14 probe       recorded · exit 0 · 0.0s · 27 B → 14.log · grep -E '^Ran [0-9]+ tests|^OK$|^FAILED' target/ci-logs/ci… (70 chars)",
+" 15 lint        green · exit 0 · 64.57s · 2226 B → 15.log · bash .github/scripts/ci-leg.sh doc",
+" 16 probe       green · exit 0 · 1.2s · 229 B → 16.log · bash .github/scripts/ci-leg.sh audit",
+" 17 integration green · exit 0 · 12.37s · 4672 B → 17.log · bash .github/scripts/ci-leg.sh a11y",
+" 18 probe       green · exit 0 · 0.0s · 27 B → 18.log · grep -E '^test result:' target/ci-logs/a11y.log | awk '{p+… (125 chars)",
+" 19 build       green · exit 0 · 54.51s · 137 B → 19.log · bash scripts/agent-run.sh boot",
+" 20 integration green · exit 0 · 55.03s · 22945 B → 20.log · bash scripts/agent-run.sh run stand",
+" 21 probe       green · exit 0 · 0.0s · 3 B → 21.log · ls tests/blitz-tests/tests/stand_*.rs | wc -l",
+" 22 integration green · exit 0 · 65.17s · 70568 B → 22.log · bash scripts/agent-run.sh run all",
+" 23 integration green · exit 0 · 9.35s · 5219 B → 23.log · cargo test -p seven_guis --locked 2>&1",
+" 24 probe       green · exit 1 · 0.18s · 2 B → 24.log · cargo tree --locked -p seven_guis -e normal --prefix none … (99 chars)",
+" 25 build       green · exit 0 · 0.22s · 461 B → 25.log · cargo build -p seven_guis --bin seven_guis_native --locked",
+" 26 smoke       green · exit 0 · 10.13s · 124 B → 26.log · RUST_LOG=info timeout 10 target/debug/seven_guis_native; t… (72 chars)",
+" 27 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 28 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 29 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+" 30 probe       not run — leg operator (the letter drives it) · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\… (311 chars)",
+"entries 30 · green 25 · red 0 · recorded 1 · timeout 0 · not-run 4"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-18-upstream-sync-determinism-and-traces",
+"plan": "./escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-18T04-30-47-wrap/evolve-2026-10-18-engine-debts.json",
+".claude/session-handoff.md",
+"escher-0.2.0/working-route.md",
+".andromeda/runs/2026-10-18T04-30-47-wrap/health-2026-10-18-engine-debts.json",
+".andromeda/runs/2026-10-18T05-30-22-evolve-diagnose/proposals.md",
+".andromeda/runs/2026-10-18T05-30-22-evolve-diagnose/q-chains.json",
+".andromeda/runs/2026-10-18T05-30-22-evolve-diagnose/q-health.json",
+".andromeda/runs/2026-10-18T05-30-22-evolve-diagnose/q-level-raw.json",
+".andromeda/runs/2026-10-18T05-30-22-evolve-diagnose/q-level.json",
+".andromeda/runs/2026-10-18T05-30-22-evolve-diagnose/q-retractions.json",
+".andromeda/runs/2026-10-18T05-30-22-evolve-diagnose/q-typed.json",
+".andromeda/runs/2026-10-18T05-30-22-evolve-diagnose/q-untyped-raw.json",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/c-churn.json",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/c-complexity.json",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/c-coverage.json",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/c-dead.json",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/c-duplication.json",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/c-filecog.json",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/c-graph.json",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/c-hotspots.json",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/c-sizes.json",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/proposals.md",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/snapshot.json",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/srcfiles.txt",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/tree-query-code-audit.json",
+".andromeda/runs/2026-10-18T05-47-23-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/a11y-history.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/a11y.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/arch-history-index.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/arch-history.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/arch.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-18T05-47-23-phase/design-history.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/design.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/evolve-2026-10-18-upstream-sync-determinism-and-traces.json",
+".andromeda/runs/2026-10-18T05-47-23-phase/founder-forks.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/gate-2026-10-18-upstream-sync-determinism-and-traces.json",
+".andromeda/runs/2026-10-18T05-47-23-phase/inputs-2026-10-18-upstream-sync-determinism-and-traces.json",
+".andromeda/runs/2026-10-18T05-47-23-phase/layouts-history.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/layouts.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/master-record.txt",
+".andromeda/runs/2026-10-18T05-47-23-phase/matrix-2026-10-18-upstream-sync-determinism-and-traces.json",
+".andromeda/runs/2026-10-18T05-47-23-phase/obs-contracts.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/obs-history.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/obs.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/p5-card-1.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/p5-controls.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/planlint-2026-10-18-upstream-sync-determinism-and-traces.json",
+".andromeda/runs/2026-10-18T05-47-23-phase/registry-2026-10-18-upstream-sync-determinism-and-traces.json",
+".andromeda/runs/2026-10-18T05-47-23-phase/relay-1.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/relay-2.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/relay-3.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/relay-4.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/relay-5.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/relay-6.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/route-2026-10-18-upstream-sync-determinism-and-traces.json",
+".andromeda/runs/2026-10-18T05-47-23-phase/route-no-marker.json",
+".andromeda/runs/2026-10-18T05-47-23-phase/security-history.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/security.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/sidecar-2026-10-18-upstream-sync-determinism-and-traces.json",
+".andromeda/runs/2026-10-18T05-47-23-phase/tests-contracts.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/tests-history.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/tests.md",
+".andromeda/runs/2026-10-18T05-47-23-phase/tree-query-2026-10-18-upstream-sync-determinism-and-traces.json",
+".andromeda/runs/2026-10-18T06-16-11-implement/evolve-2026-10-18-upstream-sync-determinism-and-traces.json",
+"escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces/evidence/before.md",
+"escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces/plan.md",
+"escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces/research.md",
+"escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces/scope.md"
+],
+"rust": [
+"packages/blitz-dom/src/document.rs"
+],
+"python": [
+".andromeda/runs/2026-10-18T05-30-22-evolve-diagnose/analyze.py",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/assemble.py",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/clean.py",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/graph_queries.py",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/render.py",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/sum_dead.py",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/sum_dup.py",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/sum_git.py",
+".andromeda/runs/2026-10-18T05-37-25-code-audit/sum_sizes_cx.py"
+]
+},
+"unmapped": [
+"escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces/inputs/.gitattributes",
+"escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces/inputs/I1-relay-1.md.txt",
+"escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces/inputs/I2-relay-2.md.txt",
+"escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces/inputs/I3-relay-3.md.txt",
+"escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces/inputs/I4-relay-4.md.txt",
+"escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces/inputs/I5-relay-5.md.txt",
+"escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces/inputs/I6-relay-6.md.txt",
+"escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces/inputs/andromeda-inputs.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 89,
+"problem": null
+},
+"prose": [
+{
+"from": 72,
+"to": 81,
+"text": "Every gate is one entry of the fence below, in the order /implement runs it. - No `leg = 'live'` entry: no external process is driven. - The windowed smoke needs `WAYLAND_DISPLAY`; unset, it reads `not run`, and the windowed build stays proven by its   `build` entry and CI. The smoke cannot see a cursor's visibility, so the windowed effect of `fb8d6c15e` is witnessed   by upstream's unit test alone. That limit is recorded, not claimed. - The coverage leg is not run locally: the take changes no line of the three floored crates (escher-driver,   dioxus-native-dom, blitz-test-harness). Its `coverage floor: 3 of 3` reading is CI's \"Coverage report\" job, which   the CI read's green covers. - The CI-reading acceptance spans two runs by construction, so the operator's commit and push precede the CI read. - Every git read of what this chunk changed names the base `fb842671137fc4f5e48059f269e796b57cf25017`."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "probe",
+"run": "git show fb8d6c15e9ce062b3b41e71cd48988f0093506cc -- packages/blitz-dom/src/document.rs | git apply --check -R",
+"run_sha8": "40e71f6d",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/1.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "probe",
+"run": "diff <(git diff fb842671137fc4f5e48059f269e796b57cf25017 -- packages/blitz-dom/src/document.rs | grep -E '^[+-][^+-]') <(git show fb8d6c15e9ce062b3b41e71cd48988f0093506cc -- packages/blitz-dom/src/document.rs | grep -E '^[+-][^+-]')",
+"run_sha8": "9cb460cb",
+"expect": [
+"exit 0",
+"no output"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/2.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"no output ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "probe",
+"run": "git diff --quiet fb842671137fc4f5e48059f269e796b57cf25017 -- Cargo.toml Cargo.lock deny.toml packages examples tests apps wpt .github scripts ':(exclude)packages/blitz-dom/src/document.rs' ",
+"run_sha8": "fedfe6e5",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/3.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "grep -c -E 'DioxusLabs/taffy|git = ' Cargo.toml",
+"run_sha8": "30367f09",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/4.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "grep -c -E '^taffy = \\{ version = \"0\\.15\",' Cargo.toml",
+"run_sha8": "4437d934",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/5.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "git show fb8d6c15e9ce062b3b41e71cd48988f0093506cc -- '*.rs' | grep -c -E '^\\+[^+].*(tracing::|debug!|trace!\\(|info!|warn!|error!|println!|eprintln!|dbg!|env::var|std::env|log::|TcpListener|UnixListener|UdpSocket|\\.bind\\()' ",
+"run_sha8": "1efa166e",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/6.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git ls-tree -r --name-only fb8d6c15e9ce062b3b41e71cd48988f0093506cc -- packages/dioxus-native-dom/src/keyboard_compat.rs | wc -l",
+"run_sha8": "1e1e1b2f",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/7.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "grep -c -F -e \"--ignore-filename-regex 'keyboard_compat\\.rs\\$'\" .github/scripts/ci-leg.sh",
+"run_sha8": "49d04816",
+"expect": [
+"exit 0",
+"last line 2"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/8.log",
+"bytes": 2,
+"log_sha8": "53c234e5",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '2' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "unit",
+"run": "cargo test -p blitz-dom --locked --lib hover_state_tests 2>&1",
+"run_sha8": "706f05e6",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test document::hover_state_tests::hovering_below_content_reports_default_cursor ... ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/9.log",
+"bytes": 642,
+"log_sha8": "b1266113",
+"exit": 0,
+"seconds": 1.92,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"contains 'test document::hover_state_tests::hovering_below_content_reports_default_cursor ... ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test pointer_leave 2>&1",
+"run_sha8": "fd811a26",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains Running tests/pointer_leave.rs"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/10.log",
+"bytes": 1645,
+"log_sha8": "35024a1d",
+"exit": 0,
+"seconds": 3.08,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"contains 'Running tests/pointer_leave.rs' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "unit",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/11.log",
+"bytes": 106818,
+"log_sha8": "198e4d2c",
+"exit": 0,
+"seconds": 149.68,
+"readings": [
+"exit 0 ✓",
+"artifact fresh (target/ci-logs/test.log)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "grep -E '^test result:' target/ci-logs/test.log | awk '{p+=$4; f+=$6; i+=$8; n++} END {print \"lines \" n \" passed \" p \" failed \" f \" ignored \" i}' ",
+"run_sha8": "2ec38d01",
+"expect": [
+"exit 0",
+"contains failed 0 ignored"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/12.log",
+"bytes": 41,
+"log_sha8": "bf0f68d3",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"contains 'failed 0 ignored' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "for f in tests/blitz-tests/tests/*.rs; do n=$(basename \"$f\" .rs); test \"$n\" = all || grep -q -F \"Running tests/$n.rs\" target/ci-logs/test.log || echo \"absent $n\"; done | grep -c absent",
+"run_sha8": "665fd186",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/13.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.22,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "grep -E '^Ran [0-9]+ tests|^OK$|^FAILED' target/ci-logs/ci-scripts.log",
+"run_sha8": "3c080385",
+"expect": [],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/14.log",
+"bytes": 27,
+"log_sha8": "f83e9a70",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"report-only (expect = [])"
+],
+"survivors": [],
+"outcome": "recorded"
+},
+{
+"n": 15,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/15.log",
+"bytes": 2226,
+"log_sha8": "e3ac2e86",
+"exit": 0,
+"seconds": 64.57,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": [
+"exit 0",
+"contains advisories ok",
+"contains licenses ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/16.log",
+"bytes": 229,
+"log_sha8": "5a6e13a9",
+"exit": 0,
+"seconds": 1.2,
+"readings": [
+"exit 0 ✓",
+"contains 'advisories ok' ✓",
+"contains 'licenses ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 17,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/17.log",
+"bytes": 4672,
+"log_sha8": "6a4e7483",
+"exit": 0,
+"seconds": 12.37,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"artifact fresh (target/ci-logs/a11y.log)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "grep -E '^test result:' target/ci-logs/a11y.log | awk '{p+=$4; f+=$6; n++} END {print \"lines \" n \" passed \" p \" failed \" f}' ",
+"run_sha8": "effc4633",
+"expect": [
+"exit 0",
+"last line lines 6 passed 43 failed 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/18.log",
+"bytes": 27,
+"log_sha8": "2f254651",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line 'lines 6 passed 43 failed 0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 19,
+"role": "build",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/19.log",
+"bytes": 137,
+"log_sha8": "ed7305bc",
+"exit": 0,
+"seconds": 54.51,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 20,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": [
+"exit 0",
+"contains \"outcome\": \"passed\""
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/20.log",
+"bytes": 22945,
+"log_sha8": "be5fa281",
+"exit": 0,
+"seconds": 55.03,
+"readings": [
+"exit 0 ✓",
+"contains '\"outcome\": \"passed\"' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 21,
+"role": "probe",
+"run": "ls tests/blitz-tests/tests/stand_*.rs | wc -l",
+"run_sha8": "c5ff640f",
+"expect": [
+"exit 0",
+"last line 41"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/21.log",
+"bytes": 3,
+"log_sha8": "040316ec",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '41' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 22,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run all",
+"run_sha8": "f826ef2a",
+"expect": [
+"exit 0",
+"contains \"outcome\": \"passed\""
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/22.log",
+"bytes": 70568,
+"log_sha8": "29f82cc1",
+"exit": 0,
+"seconds": 65.17,
+"readings": [
+"exit 0 ✓",
+"contains '\"outcome\": \"passed\"' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 23,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked 2>&1",
+"run_sha8": "cf1eaec9",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/23.log",
+"bytes": 5219,
+"log_sha8": "b5254721",
+"exit": 0,
+"seconds": 9.35,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 24,
+"role": "probe",
+"run": "cargo tree --locked -p seven_guis -e normal --prefix none | grep -c -E '^accesskit_(xplat|winit) ' ",
+"run_sha8": "a4f95de6",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/24.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.18,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 25,
+"role": "build",
+"run": "cargo build -p seven_guis --bin seven_guis_native --locked",
+"run_sha8": "094a3644",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/25.log",
+"bytes": 461,
+"log_sha8": "7cfcf6ce",
+"exit": 0,
+"seconds": 0.22,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 26,
+"role": "smoke",
+"run": "RUST_LOG=info timeout 10 target/debug/seven_guis_native; test $? -eq 124",
+"run_sha8": "e0f15baf",
+"expect": [
+"exit 0",
+"contains service.name=seven_guis"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-18-upstream-sync-determinism-and-traces/implement-2026-10-18T06-16-11/26.log",
+"bytes": 124,
+"log_sha8": "d19e10be",
+"exit": 0,
+"seconds": 10.13,
+"readings": [
+"exit 0 ✓",
+"contains 'service.name=seven_guis' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 27,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 28,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.2.0",
+"run_sha8": "ee10eab9",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 29,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 30,
+"role": "probe",
+"run": "gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\t' '$3 ~ /test result:/ {n[$1]++; if (match($3, /([0-9]+) passed; ([0-9]+) failed; ([0-9]+) ignored/, m)) {p[$1]+=m[1]; f[$1]+=m[2]; i[$1]+=m[3]}} END {for (j in n) print j \" · \" n[j] \" · \" p[j] \" · \" f[j] \" · \" i[j]}' ",
+"run_sha8": "06d4f637",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.20",
+"sha8": "da334230",
+"ts": "2026-10-18T06:27:59Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces",
+"--run-dir",
+".andromeda/runs/2026-10-18T06-16-11-implement",
+"--marker",
+"2026-10-18-upstream-sync-determinism-and-traces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 0 · modify 1 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 1 · listed 1 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 94"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 1,
+"listed": 1,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 94,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.20",
+"sha8": "da334230",
+"ts": "2026-10-18T06:27:59Z",
+"argv": [
+"census",
+"--comm",
+"seven_guis_native",
+"--comm",
+"escher-session",
+"--comm",
+"cargo",
+"--comm",
+"rustc",
+"--args",
+"agent-run.sh",
+"--run-dir",
+".andromeda/runs/2026-10-18T06-16-11-implement",
+"--marker",
+"2026-10-18-upstream-sync-determinism-and-traces"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"census · ps · comm seven_guis_native, escher-session, cargo, rustc · args agent-run.sh · own tree excluded: 8",
+"census: none running"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"census": {
+"comm": [
+"seven_guis_native",
+"escher-session",
+"cargo",
+"rustc"
+],
+"args": [
+"agent-run.sh"
+],
+"running": []
+}
+}
+}
+]

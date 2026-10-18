@@ -42,3 +42,6 @@
 - recurrence-despite-learning: host-linux «Transports». A `cat` heredoc with a file target was refused at implement.
 - recurrence-despite-learning: host-linux Session Additions 2026-10-13. A pipeline tool's output was piped into `tail` twice at this wrap; the guard refused both.
 - Carried from earlier handoffs, not this session's to curate: read a CI job's verdict with `ci.py`, not a log pattern (confidence 0.7). A Tier 3 entry cites `host.rs:350` past its file's end (`.claude/docs/session-learnings.md`), unmeasured.
+
+## Session End Status
+Completed normally at 2026-10-18 08:15:57

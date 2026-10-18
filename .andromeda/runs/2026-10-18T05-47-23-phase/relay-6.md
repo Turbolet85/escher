@@ -1,0 +1,1 @@
+yes. My planlint shows 1 hit: check 4 (13) on gate 30, the per-OS tally log read. Its note names the read ci.py never makes and carries a fired known-positive control, so I accept it, as at the last sync. "Ruling 9" is the founder's 2026-10-06 sync rule: a real merge, with cherry-pick as the fallback. It lives in the overseer's records, so recording it in my words is right.

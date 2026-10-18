@@ -1,0 +1,126 @@
+{
+ "records": 55,
+ "step": 28,
+ "friction": 27,
+ "unparseable": 0,
+ "malformed_ts_in_epoch": [],
+ "malformed_ts_ledger": 0,
+ "coverage": {
+  "None": {
+   "per_skill": {
+    "new-session": 2
+   },
+   "steps": {
+    "new-session/orientation": 2
+   },
+   "gaps": {}
+  },
+  "2026-10-17-upstream-sync-engine-debts": {
+   "per_skill": {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   "steps": {
+    "phase/take-up": 1,
+    "phase/distill": 1,
+    "phase/research": 1,
+    "phase/plan": 1,
+    "phase/validate": 1,
+    "implement/code": 1,
+    "implement/fix-loop": 1,
+    "implement/smoke": 1,
+    "wrap-session/report": 1,
+    "wrap-session/reconcile": 1,
+    "wrap-session/curation": 1,
+    "wrap-session/route-resolve": 1,
+    "wrap-session/gates": 1
+   },
+   "gaps": {}
+  },
+  "2026-10-18-engine-debts": {
+   "per_skill": {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   "steps": {
+    "phase/take-up": 1,
+    "phase/distill": 1,
+    "phase/research": 1,
+    "phase/plan": 1,
+    "phase/validate": 1,
+    "implement/code": 1,
+    "implement/fix-loop": 1,
+    "implement/smoke": 1,
+    "wrap-session/report": 1,
+    "wrap-session/reconcile": 1,
+    "wrap-session/curation": 1,
+    "wrap-session/route-resolve": 1,
+    "wrap-session/gates": 1
+   },
+   "gaps": {}
+  }
+ },
+ "friction_per_step": {
+  "phase/research": 1,
+  "phase/plan": 2,
+  "phase/validate": 4,
+  "implement/code": 2,
+  "wrap-session/report": 2,
+  "wrap-session/reconcile": 10,
+  "wrap-session/curation": 2,
+  "wrap-session/gates": 2,
+  "phase/take-up": 1,
+  "wrap-session/route-resolve": 1
+ },
+ "untyped_per_step": {
+  "phase/plan": 1,
+  "wrap-session/reconcile": 1,
+  "wrap-session/gates": 1,
+  "phase/validate": 1
+ },
+ "problem_fact_fill": [
+  10,
+  28
+ ],
+ "id_fill": [
+  55,
+  55
+ ],
+ "signal_line": "guard-refused 18 over 28 step records · exact-hit 2 over 2 curation records",
+ "signal_odd": [],
+ "step_outcomes": {
+  "new-session/orientation/ok": 2,
+  "phase/take-up/ok": 2,
+  "phase/distill/ok": 2,
+  "phase/research/ok": 2,
+  "phase/plan/ok": 2,
+  "phase/validate/ok": 2,
+  "implement/code/ok": 2,
+  "implement/fix-loop/ok": 2,
+  "implement/smoke/ok": 2,
+  "wrap-session/report/halted-resolved": 1,
+  "wrap-session/reconcile/halted-resolved": 2,
+  "wrap-session/curation/ok": 2,
+  "wrap-session/route-resolve/ok": 1,
+  "wrap-session/gates/ok": 2,
+  "wrap-session/report/ok": 1,
+  "wrap-session/route-resolve/halted-resolved": 1
+ },
+ "retracted_in_epoch": [],
+ "retractions_ledger": {
+  "retracted": 0,
+  "unresolvable": 1,
+  "clause": 2,
+  "retr_of_retr": []
+ },
+ "null_epoch_records": [
+  [
+   "2026-10-16T06:45:44Z",
+   "step",
+   "andromeda-new-session",
+   "orientation"
+  ]
+ ]
+}

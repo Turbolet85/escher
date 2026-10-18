@@ -1,0 +1,222 @@
+{
+ "anchors": [
+  {
+   "anchor_kind": "friction",
+   "chunk": "2026-10-17-upstream-sync-engine-debts",
+   "consumer": "phase/research",
+   "id": "2026-10-17T12:37:12Z-b",
+   "artifacts": [
+    "arch.md",
+    "tests/blitz-tests/Cargo.toml:36"
+   ],
+   "producers": [],
+   "type": "input.extract-signal-gap",
+   "what": "arch extract stated escher-driver AND the stand checks name keys only through blitz-test-harness re-exports; a typed sweep found nine stand checks importing keyboard_types directly via blitz-tests' own dev-dependency, and NamedKey not re-exported"
+  },
+  {
+   "anchor_kind": "friction",
+   "chunk": "2026-10-17-upstream-sync-engine-debts",
+   "consumer": "implement/code",
+   "id": "2026-10-17T14:39:30Z-b",
+   "artifacts": [
+    "research.md §Conventions to follow",
+    "packages/dioxus-native-dom/src/snapshot.rs",
+    "tests/blitz-tests/tests/stand_{keyboard,snapshot_state,diff,settle,snapshot_text}.rs"
+   ],
+   "producers": [],
+   "type": "input.conventions-gap",
+   "what": "After the keyboard-types 0.8 migration, `keyboard_types` resolved to Dioxus's 0.7 re-export through `use dioxus::prelude::*` (E0659 ambiguous in 5 checks, E0599/E0308 in snapshot.rs's test module); fixed by the absolute path `::keyboard_types` in those six sites"
+  },
+  {
+   "anchor_kind": "friction",
+   "chunk": "2026-10-17-upstream-sync-engine-debts",
+   "consumer": "wrap-session/reconcile",
+   "id": "2026-10-18T01:57:54Z-b",
+   "artifacts": [
+    "report.md",
+    "citation-dispositions.md"
+   ],
+   "producers": [],
+   "type": "input.report-insufficient",
+   "what": "the report's macmod fact named only execute.rs's ACTION_MODIFIER; the engine's util.rs ACTION_MOD (SUPER->META) and the removed todo!() arms surfaced only as citation-sweep claim-false rows, and its Coverage line credited the three closed ARIA reads to tests the wrap's search found absent"
+  },
+  {
+   "anchor_kind": "friction",
+   "chunk": "2026-10-18-engine-debts",
+   "consumer": "phase/take-up",
+   "id": "2026-10-18T02:40:27Z-b",
+   "artifacts": [
+    ".andromeda/residuals.md:28",
+    "escher-0.2.0/working-route.md:20"
+   ],
+   "producers": [],
+   "type": "input.working-entry-thin",
+   "what": "the entry says nine engine deferrals; a grep of residuals.md for target: next found eight absorbed:v020-03 lines, the ninth (covered on a zero-height box) carries target: 0.2.0 and was found only through intent.md and the incubator's deferred list"
+  },
+  {
+   "anchor_kind": "friction",
+   "chunk": "2026-10-18-engine-debts",
+   "consumer": "implement/code",
+   "id": "2026-10-18T03:31:59Z-b",
+   "artifacts": [
+    "escher-0.2.0/chunks/2026-10-18-engine-debts/plan.md:64-68"
+   ],
+   "producers": [],
+   "type": "input.plan-step-ambiguous",
+   "what": "step 2 states the inert focus-kept limit 'in the check's //! and pinned by its fourth test' under the stand_keyboard paragraph, which has 14 tests; read as inert_subtree's fourth test and stated in both files' //! docs"
+  },
+  {
+   "anchor_kind": "friction",
+   "chunk": "2026-10-18-engine-debts",
+   "consumer": "wrap-session/reconcile",
+   "id": "2026-10-18T05:13:34Z-g",
+   "artifacts": [
+    "report.md",
+    "fanout-test-plan.md"
+   ],
+   "producers": [],
+   "type": "input.report-insufficient",
+   "what": "the plan's expected amendment named test-plan §9's per-OS tallies, and the report carried only CI's 17/17 verdict, not the per-OS test-result lines; the detector proposed nothing and the entry was dispositioned with no fact to apply"
+  },
+  {
+   "anchor_kind": "verdict",
+   "chunk": "2026-10-17-upstream-sync-engine-debts",
+   "consumer": "implement/code",
+   "id": "2026-10-17T14:39:30Z-a",
+   "artifacts": [
+    "research"
+   ],
+   "producers": [
+    {
+     "producer": "phase/research",
+     "id": "2026-10-17T12:37:12Z-a",
+     "artifact": "research",
+     "outcome": "ok",
+     "signals": [
+      "unresolved-questions",
+      "guard-refused:1"
+     ],
+     "producer_frictions": [
+      "input.extract-signal-gap"
+     ]
+    }
+   ],
+   "verdict": {
+    "artifact": "research",
+    "quality": "thin",
+    "note": "boundary lists exact; the key-migration convention ('import NamedKey beside Key') missed that a `use dioxus::prelude::*` glob shadows the crate name keyboard_types, now two versions — 5 check files and snapshot.rs's test needed `::keyboard_types`"
+   },
+   "operator_pass": []
+  },
+  {
+   "anchor_kind": "verdict",
+   "chunk": "2026-10-17-upstream-sync-engine-debts",
+   "consumer": "wrap-session/reconcile",
+   "id": "2026-10-18T01:57:54Z-a",
+   "artifacts": [
+    "report"
+   ],
+   "producers": [
+    {
+     "producer": "wrap-session/report",
+     "id": "2026-10-17T18:34:19Z-a",
+     "artifact": "report",
+     "outcome": "halted-resolved",
+     "signals": [
+      "new-text-generated",
+      "new-text-rows:85",
+      "guard-refused:3"
+     ],
+     "producer_frictions": [
+      "contract.premise-falsified",
+      "contract.token-proxy-check"
+     ]
+    }
+   ],
+   "verdict": {
+    "artifact": "report",
+    "quality": "thin",
+    "note": "three facts absent or wrong: util.rs:8 SUPER->META, the convert_events todo!() arms gone, the three closed ARIA reads credited to tests that do not exist"
+   },
+   "operator_pass": []
+  },
+  {
+   "anchor_kind": "verdict",
+   "chunk": "2026-10-18-engine-debts",
+   "consumer": "phase/take-up",
+   "id": "2026-10-18T02:40:27Z-a",
+   "artifacts": [
+    "working-entry"
+   ],
+   "producers": [],
+   "verdict": {
+    "artifact": "working-entry",
+    "quality": "thin",
+    "note": "names nine debts without listing them; the nine were assembled from residuals.md absorbed:v020-03 lines (8 tagged target: next, the ninth target: 0.2.0) cross-read against the matrix observed_gap and the incubator deferred-from-0.1.0.md"
+   },
+   "operator_pass": []
+  },
+  {
+   "anchor_kind": "verdict",
+   "chunk": "2026-10-18-engine-debts",
+   "consumer": "wrap-session/route-resolve",
+   "id": "2026-10-18T05:16:28Z-a",
+   "artifacts": [
+    "working-route"
+   ],
+   "producers": [
+    {
+     "producer": "phase/take-up",
+     "id": "2026-10-18T02:40:27Z-a",
+     "artifact": "working-route",
+     "outcome": "ok",
+     "signals": [],
+     "producer_frictions": [
+      "input.working-entry-thin"
+     ]
+    }
+   ],
+   "verdict": {
+    "artifact": "working-route",
+    "quality": "thin",
+    "note": "the frozen line carried no BLOCKED-ON though the ledger held v020-03 gated"
+   },
+   "operator_pass": []
+  }
+ ],
+ "shapes": [
+  {
+   "shape": [
+    "phase/research",
+    "research",
+    "implement/code"
+   ],
+   "chunks": [
+    "2026-10-17-upstream-sync-engine-debts"
+   ],
+   "pattern_candidate": false
+  },
+  {
+   "shape": [
+    "wrap-session/report",
+    "report",
+    "wrap-session/reconcile"
+   ],
+   "chunks": [
+    "2026-10-17-upstream-sync-engine-debts"
+   ],
+   "pattern_candidate": false
+  },
+  {
+   "shape": [
+    "phase/take-up",
+    "working-route",
+    "wrap-session/route-resolve"
+   ],
+   "chunks": [
+    "2026-10-18-engine-debts"
+   ],
+   "pattern_candidate": false
+  }
+ ]
+}
