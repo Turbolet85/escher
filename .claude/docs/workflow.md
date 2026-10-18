@@ -12,7 +12,7 @@ _Extracted from architecture.md and project conventions by `/andromeda-setup-pro
 
 ## Andromeda workflow
 
-This project was adopted into the Andromeda pipeline (`/andromeda-adopt` at `0f60502e`); its masters describe the code as built. Upstream DioxusLabs/blitz `main` was last merged at `23b9b26a9` (merge commit `3eda07bc`, 2026-10-17), the next sync's merge base; upstream `main` was read at `1e5479ae` at that take-up, 14 commits past the previous base `434e0661`, of which the pin took 10 — the four Taffy-main commits past it wait for the next sync, so Taffy stays the registry "0.15".
+This project was adopted into the Andromeda pipeline (`/andromeda-adopt` at `0f60502e`); its masters describe the code as built. Upstream DioxusLabs/blitz `main` was last merged at `23b9b26a9` (merge commit `3eda07bc`, 2026-10-17), the next sync's merge base; upstream `main` was last read at `fb8d6c15e`, 5 commits past it, of which one, `fb8d6c15e` (the default cursor over no box, upstream #1220), is taken alone by a no-commit cherry-pick of upstream's text (`275950dc0`), the merge base unmoved — the four Taffy-main commits wait for the next sync, since they put a git Taffy in the root manifest, so Taffy stays the registry "0.15"; the partial take is PROVISIONAL.
 
 **Initial planning (done):** adopt → architecture + 6 specialist plans → `/andromeda-route` (escher-0.1.0 working route) → `/andromeda-setup-project` (this ecosystem).
 

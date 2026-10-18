@@ -919,3 +919,10 @@ The re-seed is the first answer's stated cost, so a Dioxus re-render keeps contr
 - `session_common` readers: was twenty-one with the thirteen `stand_act_*`; now twenty-two, fourteen.
 **Why:** the chunk's new and rewritten checks; their fixes PROVISIONAL, delegate operator, as the batch entry states.
 **Ref:** .andromeda/runs/2026-10-18T04-30-47-wrap/
+## 2026-10-18-upstream-sync-determinism-and-traces — §Project Intent: the sync line, a partial take; the merge surface's owner moves on
+**Section:** §Project Intent (the `Upstream sync:` line) · §Established Decisions (the engine-debts paragraph's merge-surface owner)
+**Change:**
+- Sync line: was «upstream `main` read at `1e5479ae` at that chunk's take-up, 14 commits past the previous base `434e0661`, of which the pin took 10 — the four Taffy-main commits past it wait for the next sync»; now upstream `main` last read at `fb8d6c15e`, 5 commits past `23b9b26a9`, of which `fb8d6c15e` (the default cursor over no box, upstream #1220) is taken alone by a no-commit cherry-pick of upstream's text (`275950dc0`), the merge base unmoved at `23b9b26a9`; the four Taffy-main commits (`1a11761bc` · `4a5ab9cc9` · `510b592ab` · `1e5479ae6`) wait for the next sync, since they put a git Taffy in the root manifest, so Taffy stays the registry "0.15"; the partial take PROVISIONAL.
+- The seven engine-debts fixes' merge surface: its CARRY owner was «Upstream sync ahead of determinism and traces»; now «Upstream sync ahead of visual lint and real-app readiness».
+**Why:** F1 answered B (cherry-pick `fb8d6c15e` alone, Taffy stays the registry) by the operator as the founder's delegate, PROVISIONAL, joining the founder's epoch-boundary discharge batch on the operator's direction (the operator, 2026-10-18), with cherry-pick the fallback of the founder's 2026-10-06 sync rule, as the operator states it; the owner title moves with the CARRY on the operator's direction (the operator, 2026-10-18). A sync may now land as a partial take: the base stays the last whole merge.
+**Ref:** .andromeda/runs/2026-10-18T06-47-20-wrap/

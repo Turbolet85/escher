@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-18 — A count the plan names may stand in no master
+A plan's baseline count is often taken from the previous chunk's gate log or CI run, and that chunk's wrap may never have written it to a master — a wrap that carries counts without re-reading the tallies leaves the masters on an older figure. A site sweep for the plan's own numbers then finds nothing. Before amending a tally, sweep for the masters' latest recorded reading, move the record from that figure, and name the reading in between as skipped.
+
+---
+
 ## 2026-10-18 — A sweep pattern's clause in a master's stock wording widens it past its fact
 A site-sweep pattern built from a fact's wording can carry a clause the masters also use as stock phrasing for unrelated facts: a CARRY pattern's `observed absent` clause matched 71 unrelated «observed absent» lines across five masters, and a `0 high` alternative matched «600 high». The pattern's count then measures the phrase, not the fact, and every extra row costs a disposition. Anchor such a clause to the fact's own name token (`observed absent: a test naming the builder's merged`) or drop it — a bare stock phrase belongs in no pattern.
 
@@ -63,7 +68,7 @@ Where it applies: a merge-surface read, an upstream-sync take-up, or any claim a
 ## 2026-10-14 — An operator gate entry's output survives a context clear; a bare-fired one does not
 `gate.py run --operator {n}` writes each entry's whole output to `$TMPDIR/andromeda-gate/{marker}/run-{UTC}/{n}.log`, outside the session and the repository, and that log outlives a pause-clear of the window. So an operator entry whose printed result was lost with the window can be read back from there instead of re-run. An operator entry the operator fires bare — `gate.py hygiene`, say — leaves no such log, and its result then rests only on the word of whoever saw it.
 
-Where it applies: resuming a chunk after a clear. Look in that directory before calling an operator entry's output lost. For an entry whose result must survive, fire it through `gate.py run --operator` rather than bare.
+Where it applies: resuming a chunk after a clear. Look in that directory before calling an operator entry's output lost. For an entry whose result must survive, fire it through `gate.py run --operator` rather than bare. Extended 2026-10-18: an earlier wrap's gate log in that directory is also a per-target baseline — pairing its `test result:` lines against a new run's attributes a moved tally to the one target that moved.
 
 ---
 

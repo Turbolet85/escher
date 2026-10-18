@@ -1,0 +1,5 @@
+## 2026-10-18-upstream-sync-determinism-and-traces — §Iconography: the cursor over no box reads Default
+**Section:** §Iconography (Cursors and favicons (engine), the cursor-source bullet)
+**Change:** «Default otherwise» now covers a pointer over no box, so the shell keeps a visible arrow there; was: over no box `get_cursor` answered no cursor, which the shell hides. `cursor: none` still maps to no cursor, so the shell's `None` path stands (the `ShellProvider::set_cursor` bullet unchanged). Upstream's `hovering_below_content_reports_default_cursor` pins it.
+**Why:** upstream's #1220 (`fb8d6c15e`), taken by the 2026-10-18 sync on F1 answered B by the operator as the founder's delegate — an engine behaviour change for every document, PROVISIONAL, in the founder's epoch-boundary discharge batch on the operator's direction (the operator, 2026-10-18); no crossing widens, the value reaching `ShellProvider::set_cursor` alone, as the operator agrees.
+**Ref:** .andromeda/runs/2026-10-18T06-47-20-wrap/

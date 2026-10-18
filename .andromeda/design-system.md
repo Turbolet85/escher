@@ -313,7 +313,7 @@
 **Size grid:** toolbar icon images 20px high (apps/browser/src/icons.rs:13-40; apps/browser/assets/browser.css:200-202); menu item icons 16x16 (apps/browser/assets/browser.css:243-246); favicons 16x16 (apps/browser/src/tab.rs:269-281)
 
 **Cursors and favicons (engine):**
-- The cursor is taken from the CSS `cursor` keyword, else Text for text inputs, Pointer inside links, Text over selectable text, Default otherwise (packages/blitz-dom/src/document.rs:2260-2316)
+- The cursor is taken from the CSS `cursor` keyword, else Text for text inputs, Pointer inside links, Text over selectable text, Default otherwise — a pointer over no box included, so the shell keeps a visible arrow there — upstream's #1220, taken on F1 answered B by the founder's delegate, PROVISIONAL (packages/blitz-dom/src/document.rs:2260-2320; packages/blitz-dom/src/document.rs:3133-3141)
 - CSS `cursor` keywords map one-to-one to `CursorIcon` values, and `cursor: none` maps to no cursor (packages/blitz-dom/src/stylo_to_cursor_icon.rs:4-49); cursor icons use the `cursor-icon` crate and `ShellProvider::set_cursor` takes an optional `CursorIcon` (packages/blitz-traits/Cargo.toml:21; packages/blitz-traits/src/shell.rs:3; packages/blitz-traits/src/shell.rs:13-15); in the shell they are winit CursorIcon values, and None hides the cursor and resets it to Default (packages/blitz-shell/src/lib.rs:101-112)
 - `favicon_url` returns the `href` of the first `<link>` whose `rel` contains `icon` (packages/blitz-dom/src/document.rs:622-637)
 

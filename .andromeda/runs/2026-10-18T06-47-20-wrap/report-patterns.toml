@@ -1,0 +1,50 @@
+[[pattern]]
+id = 'sync-line'
+regex = 'Upstream sync:|23b9b26a9|fb8d6c15e'
+
+[[pattern]]
+id = 'cursor'
+regex = 'None hides the cursor|get_cursor|set_cursor|hover cursor'
+
+[[pattern]]
+id = 'tally-local'
+regex = '187 result lines|971 passed|192 result lines|Local baseline'
+
+[[pattern]]
+id = 'tally-os'
+regex = 'CI#39056637407|168 · 968|168 · 944|Per-OS test tallies|CI#39100630123'
+
+[[pattern]]
+id = 'hover-tests'
+fixed = 'hover_state_tests'
+
+[[pattern]]
+id = 'dom-tests'
+regex = '35 .#\[test\]. functions|18 .document::. tests|9 in document\.rs'
+
+[[pattern]]
+id = 'taffy-pin'
+regex = 'taffy = \{|registry .?0\.15|git dependency'
+ignore_case = true
+
+[[pattern]]
+id = 'docrs-cite'
+fixed = 'packages/blitz-dom/src/document.rs:'
+
+[[pattern]]
+id = 'new-test'
+fixed = 'hovering_below_content_reports_default_cursor'
+
+[[pattern]]
+id = 'provisional'
+fixed = 'Provisional discharge'
+
+[[pattern]]
+id = 'title'
+fixed = 'Upstream sync ahead of determinism and traces'
+ignore_case = true
+
+[[pattern]]
+id = 'owner'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true

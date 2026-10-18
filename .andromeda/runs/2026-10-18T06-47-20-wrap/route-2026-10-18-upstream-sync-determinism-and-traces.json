@@ -1,0 +1,169 @@
+[
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "9923497e",
+"ts": "2026-10-18T07:15:45Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-18-upstream-sync-determinism-and-traces",
+"--run-dir",
+".andromeda/runs/2026-10-18T06-47-20-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"flip master-route.md:61 - 2026-10-18-upstream-sync-determinism-and-traces pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "9923497e",
+"ts": "2026-10-18T07:15:49Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-18-upstream-sync-determinism-and-traces",
+"--date",
+"2026-10-18",
+"--run-dir",
+".andromeda/runs/2026-10-18T06-47-20-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"pin :23 strip CARRY: 159ch \"CARRY: upstream's four Taffy-main commit\"",
+"pin :23 strip CARRY: 122ch \"CARRY: whether upstream retired `keyboar\"",
+"pin :23 strip CARRY: 482ch \"CARRY: the merge surface of 2026-10-18-e\"",
+"pin next markerless :25 holds no freight",
+"23 · 2026-10-18-upstream-sync-determinism-and-traces · strip 3 block(s) · archive APPEND"
+],
+"stderr": "escher-0.2.0/route-archive.md: absent -- pass --header-file with the letter's authored header (the tool writes no text of its own)",
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 23,
+"marker": "2026-10-18-upstream-sync-determinism-and-traces",
+"blocks": 3,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "9923497e",
+"ts": "2026-10-18T07:16:01Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-18-upstream-sync-determinism-and-traces",
+"--date",
+"2026-10-18",
+"--run-dir",
+".andromeda/runs/2026-10-18T06-47-20-wrap",
+"--header-file",
+".andromeda/runs/2026-10-18T06-47-20-wrap/archive-header.md",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :23 strip CARRY: 159ch \"CARRY: upstream's four Taffy-main commit\"",
+"pin :23 strip CARRY: 122ch \"CARRY: whether upstream retired `keyboar\"",
+"pin :23 strip CARRY: 482ch \"CARRY: the merge surface of 2026-10-18-e\"",
+"pin next markerless :25 holds no freight",
+"23 · 2026-10-18-upstream-sync-determinism-and-traces · strip 3 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s); route-archive.md would be CREATED"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 23,
+"marker": "2026-10-18-upstream-sync-determinism-and-traces",
+"blocks": 3,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "9923497e",
+"ts": "2026-10-18T07:16:06Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-18-upstream-sync-determinism-and-traces",
+"--date",
+"2026-10-18",
+"--run-dir",
+".andromeda/runs/2026-10-18T06-47-20-wrap",
+"--header-file",
+".andromeda/runs/2026-10-18T06-47-20-wrap/archive-header.md"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :23 strip CARRY: 159ch \"CARRY: upstream's four Taffy-main commit\"",
+"pin :23 strip CARRY: 122ch \"CARRY: whether upstream retired `keyboar\"",
+"pin :23 strip CARRY: 482ch \"CARRY: the merge surface of 2026-10-18-e\"",
+"pin next markerless :25 holds no freight",
+"23 · 2026-10-18-upstream-sync-determinism-and-traces · strip 3 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.2.0/route-archive.md",
+"./escher-0.2.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 23,
+"marker": "2026-10-18-upstream-sync-determinism-and-traces",
+"blocks": 3,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]

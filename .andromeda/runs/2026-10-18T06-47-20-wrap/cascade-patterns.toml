@@ -1,0 +1,31 @@
+[[pattern]]
+id = 'sync-read'
+regex = '''last merged at|`main` (last )?read at|read at `1e5479ae`|of which the pin took|wait for the next sync|cherry[- ]pick'''
+ignore_case = true
+
+[[pattern]]
+id = 'owner-title'
+fixed = 'Upstream sync ahead of determinism and traces'
+ignore_case = true
+
+[[pattern]]
+id = 'cursor'
+regex = '''over no box|Default otherwise|None hides the cursor|hides the cursor|get_cursor|set_cursor'''
+ignore_case = true
+
+[[pattern]]
+id = 'taffy-pin'
+regex = '''Taffy stays the registry|registry "0\.15"|no git dependency|Taffy-main'''
+ignore_case = true
+
+[[pattern]]
+id = 'dom-tests'
+regex = '''35 `#\[test\]`|18 `document::`|9 in document\.rs|`document::` tests'''
+
+[[pattern]]
+id = 'hover-tests'
+regex = '''two `hover_state_tests`|hover_state_tests'''
+
+[[pattern]]
+id = 'tally'
+regex = '''CI#39056637407|CI#39100630123|187 · 971|971 passed|187 result lines|192 · 990|990 passed'''

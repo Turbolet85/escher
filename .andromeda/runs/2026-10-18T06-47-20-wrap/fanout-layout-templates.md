@@ -1,0 +1,2 @@
+proposals: []
+note: D-layout-surface holds — the report's Changes add no user-facing surface or region (one engine read changed, `BaseDocument::get_cursor` over no box → `Default`, a cursor icon and no screen, region or wireframe; Crates / modules none; Outcome (design · layouts) "no geometry, Tab-order, contrast or screenshot figure moved"), and the `docrs-cite` sweep reads layout-templates 0 rows (Expected amendments, the citation bullet), so no citation in this document moves.
