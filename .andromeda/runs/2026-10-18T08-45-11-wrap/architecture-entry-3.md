@@ -1,0 +1,11 @@
+## 2026-10-18-one-virtual-clock — Driver session and CLIs: `advance` on every session, eight causes, PROVISIONAL
+**Section:** §Standard Contracts → Driver session (escher-driver) · §Standard Contracts → CLIs
+**Change:**
+- `with_time`: was `impl FnMut(&mut Harness<DioxusDocument>, u32) -> u32` returning the milliseconds the app moved; now `impl FnMut(&mut Harness<DioxusDocument>, u32)`, the step moving the app's own time and returning nothing, the session moving the harness's clock on every `advance`.
+- `advance`: was «asks for the app's time to move … a session that carries none refuses `advance` as `time-unavailable`» and «`advanced_ms` is the lesser of the step's return and `ms`»; now `advance` moves the session's clock by exactly `ms` (`Harness::advance_time`) on every session inside one settled step — the engine's animations, the overlay scrollbar fade and, through the step where one was handed, the app's own time — and `advanced_ms` is exactly `ms`, a step's diff possibly non-empty on any animated page; two `click`s on one point with no `advance` of at least 500 ms between them read as a double click, as `click`'s help says. The record clause «and an `advance` refused `time-unavailable`, record nothing» is dropped.
+- `Cause`: was closed at nine, `time-unavailable` among them, the executor returning seven; now closed at eight (`CAUSES: [Cause; 8]`), `fonts-unavailable` the eighth, the executor returning six.
+- `screenshot`'s help: was two measured limits, the second the wall-time fade within 0.7 s of a scroll; now one, the element-shot crop, two shots of one state with no `advance` between them reading the same pixels.
+- CLIs: the three tasks with no time step still take `advance`, which moves their session's clock alone.
+All PROVISIONAL.
+**Why:** the founder's forks F2 (A: `advance` moves the one clock by exactly `ms` on every session, `advanced_ms` its move), F2b (A: `time-unavailable` retired, eight causes) and F3 (A: the double click on the one clock), answered by the operator as the founder's delegate (delegate the operator, 2026-10-18), PROVISIONAL, for the founder's epoch-boundary batch (the operator, 2026-10-18, at the wrap resume). A cause leaving the set narrows the refusal surface: no carrier, field or exit is added.
+**Ref:** .andromeda/runs/2026-10-18T08-45-11-wrap/

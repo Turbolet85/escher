@@ -1,0 +1,105 @@
+[[pattern]]
+id = 'title'
+fixed = 'One virtual clock'
+ignore_case = true
+
+[[pattern]]
+id = 'carry-owner'
+fixed = 'Upstream sync ahead of visual lint and real-app readiness'
+ignore_case = true
+
+[[pattern]]
+id = 'causes-nine'
+regex = 'nine (fixed )?(refusal )?(causes|cause names|`?Cause`?s)|ninth|\[Cause; 9\]|all nine|seven by the executor|closed at nine|the other seven'
+ignore_case = true
+
+[[pattern]]
+id = 'time-unavail'
+regex = 'time-unavailable|TimeUnavailable'
+
+[[pattern]]
+id = 'step-returns'
+regex = '''returns the milliseconds|-> u32 \+ 'static|the lesser of|clamped to the|never more than asked|claims more than it was asked'''
+
+[[pattern]]
+id = 'remainder'
+regex = 'remainder (is )?dropped|drops the remainder|dropped per call|delivers none'
+
+[[pattern]]
+id = 'clock-still'
+regex = '''clock stays where it was|leaves that clock|reading the same before and after|harness's animation clock|reads no clock'''
+
+[[pattern]]
+id = 'wall-fade'
+regex = 'wall[- ](time|clock)|0\.7 s'
+ignore_case = true
+
+[[pattern]]
+id = 'epoch'
+regex = 'UNIX_EPOCH|Unix epoch|duration_since|scrolling\.rs:515|pointer\.rs:717'
+
+[[pattern]]
+id = 'tick-unchanged'
+regex = '`tick`, `dispatch`|tick, dispatch'
+
+[[pattern]]
+id = 'refuses-adv'
+regex = 'refuses `advance`|carries no time step|with no time step|no time step'
+
+[[pattern]]
+id = 'sc-readers'
+regex = 'twenty-two (readers|checks)|by 22 checks|22 readers|twenty-three'
+
+[[pattern]]
+id = 'stand-files'
+regex = '41 (files|`stand_)|— 41 files'
+
+[[pattern]]
+id = 'bt-targets'
+regex = '132 .\.rs. files|131 test targets'
+
+[[pattern]]
+id = 'local-tally'
+fixed = '192 · 991'
+
+[[pattern]]
+id = 'repeat-tally'
+fixed = '144 · 582'
+
+[[pattern]]
+id = 'sg-units'
+regex = 'library unit tests 2|reads 2 passed'
+
+[[pattern]]
+id = 'renamed-tests'
+regex = 'the_timer_step_maps_milliseconds_onto_whole_ticks|a_session_with_no_time_step_refuses_advance|an_advance_reports_no_more_than_it_was_asked'
+
+[[pattern]]
+id = 'help-text'
+regex = '''moves the app's time|fades by wall|two measured limits'''
+ignore_case = true
+
+[[pattern]]
+id = 'doc-clock'
+regex = 'VirtualClock|WallClock|DocumentConfig\.clock|\bclock\.rs|advance_time'
+
+[[pattern]]
+id = 'mcp-causes'
+regex = 'seven through MCP|eight since 2026-10-12'
+
+[[pattern]]
+id = 'dblclick'
+regex = 'double[- ]click|repeated clicks'
+ignore_case = true
+
+[[pattern]]
+id = 'with-time'
+regex = 'with_time|time step'
+
+[[pattern]]
+id = 'module-list'
+fixed = 'node, config, cssom'
+
+[[pattern]]
+id = 'fade-residual'
+regex = 'moving the fade onto|C10'

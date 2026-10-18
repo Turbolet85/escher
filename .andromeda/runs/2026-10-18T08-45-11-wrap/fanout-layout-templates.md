@@ -1,0 +1,2 @@
+proposals: []
+note: D-layout-surface holds — the report's Changes add no user-facing surface or region (new are an embedder API `DocumentConfig.clock`, the clock types, `Harness::advance_time` and two checks; the cli's `advance` widening and the eight causes change no surface), and layout-templates.md:73, the cli surface, lists neither `advance`'s per-task acceptance nor the causes, so no layout-templates site states a moved fact (Expected amendments item 4: `cli-advance` 0 · `time-unavail` 0 · `with-time` 0; `driver-click` layout-templates.md:45 no-change).

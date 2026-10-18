@@ -1,6 +1,6 @@
 # /implement outcome — 2026-10-18-one-virtual-clock
 
-**Outcome: green.** The smoke was skipped because no boot path changed. The plan's three `operator` entries (15–17) are still to run.
+**Outcome: green.** The smoke was skipped because no boot path changed. The operator pass is done and every entry is green: fork CI reads `verdict: green` on the pushed `87f12079`, run CI#39111579925, 17 of 17 checks. Its record is `escher-0.2.0/chunks/2026-10-18-one-virtual-clock/evidence/operator-pass.md`.
 
 Gate run: trail `.andromeda/runs/2026-10-18T07-55-10-implement/gate-2026-10-18-one-virtual-clock.json`. Summary line, verbatim: `entries 17 · green 14 · red 0 · recorded 0 · timeout 0 · not-run 3`. It went green on the first firing, in one iteration:
 - the census probe (entry 8) read `0`;
@@ -24,14 +24,14 @@ Smoke: `skipped — no boot-path change`.
 - `tests/blitz-tests/tests/virtual_clock_engine.rs`
 - `tests/blitz-tests/tests/stand_virtual_clock.rs`
 
-**Modified (24):**
+**Modified (25):**
 - blitz-dom: `lib.rs`, `config.rs`, `document.rs`, `resolve.rs`, `iframe.rs`, `events/pointer.rs`, `scrolling.rs`
 - blitz-test-harness: `harness.rs`
 - escher-driver: `execute.rs`, `session.rs`, `refusal.rs`, `schema.rs`, `schema_tests.rs`, `lib.rs`, plus two recorded companions, `json.rs` and `describe.rs`
 - seven_guis: `src/stand.rs`, `tests/host_timer.rs`, `tests/cli_commands.rs`
-- blitz-tests: `stand_act_timer.rs`, `stand_act_spans.rs`, `stand_mcp_tools.rs`, `stand_screenshot_repeat.rs`, `stand_non_lean_tasks.rs`
+- blitz-tests: `stand_act_timer.rs`, `stand_act_spans.rs`, `stand_mcp_tools.rs`, `stand_screenshot_repeat.rs`, `stand_non_lean_tasks.rs`, plus a recorded companion, `session_common/mod.rs`
 
-Scope read: `scope: clean — changed 27 · listed 25 · recorded 2 (companion 2 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 55`.
+Scope read: `scope: clean — changed 28 · listed 25 · recorded 3 (companion 3 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 56`.
 
 ## Deviations from plan, with justifications
 
@@ -77,9 +77,10 @@ Scope read: `scope: clean — changed 27 · listed 25 · recorded 2 (companion 2
     - `schema_tests`' `amended` table moved from 4 to 7 rows: `screenshot`, `click`, `advance`, `advanced_ms`.
     - The crate docs gained a sentence that a screenshot no longer depends on wall time.
     - `cli_commands`' `//!` now says the binary is driven to "six causes, all but `covered` and `fonts-unavailable`".
-11. **Not done:**
-    - `stand_mcp_tools`' accepted `advance` row is judged by its result not being an error. That test does not read its `tool_call` span's `ending`, so the plan's "`ending` accepted" is not asserted separately.
-    - The docstring at `tests/blitz-tests/tests/session_common/mod.rs:94` ("moves the app's time forward") was left as written. That file is not on the lists, and the text still reads true loosely.
+11. **Two loose ends, closed on the operator's word (2026-10-18) after the first report.**
+    - `stand_mcp_tools` now reads the accepted `advance` call's `tool_call` span. It asserts `ending` = `accepted` and one child `command` span whose `verb` is `advance`, with no `cause`.
+    - The docstring at `tests/blitz-tests/tests/session_common/mod.rs:94` is restated to what `advance` does now: it moves the session's clock by `ms`, then hands `ms` to the app's time step. The file is recorded as a companion under the operator's word: `` - `tests/blitz-tests/tests/session_common/mod.rs` · companion · serves packages/escher-driver/src/execute.rs · word: "…" — the operator, 2026-10-18 ``.
+    - Entries 5, 6, 9 and 11 were re-fired: `entries 17 · green 4 · red 0 · recorded 0 · timeout 0 · not-run 13`.
 
 ## Surfaced / stuck
 None. No spec↔reality gap was met, and every expected amendment is the wrap's, as plan §Implementation notes lists them.
@@ -93,8 +94,11 @@ None. No spec↔reality gap was met, and every expected amendment is the wrap's,
 ## Decisions & corrections
 - A guard refusal and a recurring standing learning. The Bash guard refused a bare `cd` into `~/.claude/skills/andromeda-implement/references`: "Blocked: cd (…) moves the session cwd for every later call". This is host-linux «Paths & the working directory», already recorded as recurring in the handoff's deferred learnings. The call was re-issued once, as an absolute-path `grep`.
 
+## Operator pass (fired in this session on the operator's direction)
+- Entry 15, hygiene: `hygiene: clean — read 47 (runs 42 · evidence 0 · inputs 5) · …`.
+- The pre-CI commit `87f12079`: `chore(2026-10-18-one-virtual-clock): operator pre-CI commit, for the run this chunk's verdict reads`.
+- Entry 16: green. The push moved `refs/remotes/origin/build/escher-0.2.0` from `f45bb570` to `87f12079`.
+- Entry 17: `87f1207940e1 verdict: green · checks 17/17 · wall 924 s · runs CI#39111579925 completed/success`.
+
 ## Next
-The operator pass first, then `/andromeda-wrap-session`. Entries for the operator to fire, in order:
-- **15** — `gate.py hygiene`, before the pre-CI commit, whose subject is `chore(2026-10-18-one-virtual-clock): operator pre-CI commit…`.
-- **16** — the `fast` leg, the clean-tree guard, then the push.
-- **17** — `ci.py conclusion --sha HEAD`.
+`/andromeda-wrap-session`. The operator directed that no wrap be started in this session.

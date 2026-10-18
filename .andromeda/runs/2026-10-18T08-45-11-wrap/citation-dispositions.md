@@ -1,0 +1,81 @@
+sweep: base: f45bb570 — the previous sweep (2026-10-18T06-47-20-wrap) · re-pointed 378 · changed 7 · stretched 55
+
+Every row the apply call printed (trail `cites-2026-10-18-one-virtual-clock.json`, its non-dry-run `apply` record), read at its citing line (by offset on a line over 2 000 chars) and, for a master row, at the cited lines in the work tree. The held rows' cited files are byte-identical to `f45bb570` (`git diff --quiet f45bb570 -- Cargo.toml examples/screenshot.rs .github/workflows/wpt-post-results.yml packages/blitz-dom/src/layout/table.rs examples/seven_guis/src/tasks/counter.rs tests/blitz-tests/Cargo.toml packages/blitz/Cargo.toml` exit 0), so each reads as the previous wrap read it.
+
+- stretched .andromeda/architecture.md:48 packages/blitz-dom/src/lib.rs:93-119 → 94-121 — changed inside → holds (the taffy re-export, 94-121)
+- stretched .andromeda/architecture.md:86@c11146 packages/blitz-dom/src/events/pointer.rs:394-404 → 390-400 — changed inside → holds (the click-count arm, 500 ms and 2 px unchanged; the clock qualifier is the report's Counts item 8, raised by its own amendment)
+- stretched .andromeda/architecture.md:105 packages/blitz-dom/src/config.rs:73-91 → 76-95 — changed inside → holds (the hand-written `Default`, the default sheet)
+- stretched .andromeda/architecture.md:111 packages/blitz-dom/src/config.rs:73-91 → 76-95 — changed inside → holds
+- held .andromeda/architecture.md:119 Cargo.toml:47-58 — refused at 2026-10-13T15-50-37-wrap, not touched since «blitz-dom =…» → holds — stands
+- stretched .andromeda/architecture.md:123 packages/blitz-dom/src/document.rs:242-404 → 242-407 — changed inside → holds (`pub(crate)` config fields, the new `clock` one among them)
+- held .andromeda/architecture.md:126 examples/screenshot.rs:41-51 — refused at 2026-10-10T01-56-50-wrap, not touched since «let file_co…» → holds — stands
+- stretched .andromeda/architecture.md:134@c1106 packages/blitz-dom/src/config.rs:31-71 → 31-74 — changed inside → claim false — raised at Validate (the `DocumentConfig` field list ends at `subdocument_depth`; the struct now ends with `clock`, config.rs:71-73 — report Counts item 7)
+- stretched .andromeda/architecture.md:134@c1490 packages/blitz-dom/src/config.rs:73-91 → 76-95 — changed inside → holds
+- stretched .andromeda/architecture.md:134@c4528 packages/blitz-dom/src/lib.rs:74-127 → 75-129 — changed inside → holds (the crate-root re-exports, the clock types' line 96 among them)
+- changed .andromeda/architecture.md:157@c6933 packages/blitz-test-harness/src/harness.rs:46-71 → ? — the start rewritten → holds — re-pointed by hand to 48-76 (`impl HarnessOptions` and `into_config`, mapping `font_ctx` and `incremental`)
+- changed .andromeda/architecture.md:157@c9060 packages/blitz-test-harness/src/harness.rs:46-71 → ? — the start rewritten → holds — re-pointed by hand to 48-76 (`into_config` wraps a fetching provider in the load counter, 51-58)
+- stretched .andromeda/architecture.md:158@c1320 examples/seven_guis/src/stand.rs:14-118 → 14-122 — changed inside → claim false — raised at Validate (the citing clause says the remainder below one tick is dropped per call and the harness's animation clock stays where it was; `timer_step` now carries its remainder and `advance` moves the clock — report Counts items 3, 4 and 6)
+- stretched .andromeda/architecture.md:160@c2052 packages/escher-driver/src/session.rs:14-161 → 14-162 — changed inside → holds (the session holds a boot and an optional step; the crate names no app)
+- stretched .andromeda/architecture.md:160@c9471 packages/escher-driver/src/schema.rs:272-305 → 275-307 — changed inside → claim false — raised at Validate (the help's "fades by wall time" sentence is dropped — report Counts item 5)
+- changed .andromeda/architecture.md:160@c21371 packages/escher-driver/src/lib.rs:68-74 → ? — the end rewritten → holds — re-pointed by hand to 72-78 (the three readings known to be off, lib.rs:72 «Three readings are known to be off» to 78 «though it shows»)
+- stretched .andromeda/architecture.md:160@c38879 packages/escher-driver/src/execute.rs:93-232 → 95-234 — changed inside → holds (`impl Session`, `run`)
+- stretched .andromeda/architecture.md:209@c771 packages/blitz-dom/src/iframe.rs:49-76 → 49-77 — changed inside → holds (the sub-document inherits the parent's providers and settings; its clock is one more, iframe.rs:75)
+- stretched .andromeda/architecture.md:209@c1176 packages/blitz-dom/src/resolve.rs:39-169 → 39-170 — changed inside → holds (the resolve order is unchanged; the fade prune at 67-74 reads the clock)
+- stretched .andromeda/architecture.md:220 packages/blitz-dom/src/config.rs:31-71 → 31-74 — changed inside → holds (documents are configured through `DocumentConfig`)
+- stretched .andromeda/architecture.md:263 packages/blitz-dom/src/lib.rs:37-84 → 37-85 — changed inside → claim false — raised at Validate (the module list omits `clock`, `mod clock;` at lib.rs:42 — report Symbols / APIs)
+- stretched .andromeda/architecture.md:266 packages/blitz-dom/src/document.rs:1843-1890 → 1847-1905 — changed inside → holds (overlay scrollbar hover, drag, fade — `scrollbar_opacity`, `show_scrollbars` and the clock helpers inside the range)
+- stretched .andromeda/architecture.md:290@c13811 tests/blitz-tests/tests/stand_act_timer.rs:1-11 → 1-12 — changed inside → holds (a check named in the list of acting checks)
+- stretched .andromeda/architecture.md:290@c14162 tests/blitz-tests/tests/stand_act_spans.rs:1-23 → 1-23 — changed inside → holds
+- stretched .andromeda/architecture.md:290@c17450 tests/blitz-tests/tests/stand_mcp_tools.rs:422-556 → 423-598 — changed inside → holds (`every_cause_a_tool_call_reaches_is_served_with_its_remedy`, now with the accepted `advance` row)
+- stretched .andromeda/security-plan.md:80 packages/escher-driver/src/session.rs:14-114 → 14-114 — changed inside → holds (`valid_label`, the label check before boot)
+- stretched .andromeda/security-plan.md:81@c9400 packages/escher-driver/src/execute.rs:93-232 → 95-234 — changed inside → holds
+- held .andromeda/security-plan.md:230 .github/workflows/wpt-post-results.yml:29-49 — refused at 2026-10-10T01-56-50-wrap, not touched since «- name: Fin…» → holds — stands
+- held .andromeda/security-plan.md:346 packages/blitz-dom/src/layout/table.rs:535-539 — refused at 2026-10-13T15-50-37-wrap, not touched since «let Some(di…» → holds — stands
+- changed .andromeda/security-plan.md:374 packages/blitz-dom/src/scrolling.rs:515-518 → ? — both ends rewritten → claim false — raised at Validate (the epoch `unwrap` is gone; the smooth-scroll start reads the clock, scrolling.rs:514 — report Counts item 9)
+- changed .andromeda/security-plan.md:374 packages/blitz-dom/src/events/pointer.rs:717-720 → ? — both ends rewritten → claim false — raised at Validate (the fling's epoch `unwrap` is gone, pointer.rs:713 — report Counts item 9)
+- held .andromeda/security-plan.md:380 examples/screenshot.rs:41-42 — refused at 2026-10-10T01-56-50-wrap, not touched since «let file_co…» → holds — stands
+- held .andromeda/design-system.md:36 examples/seven_guis/src/tasks/counter.rs:59-72 — refused at 2026-10-14T19-50-50-wrap, not touched since «background-…» → holds — stands
+- held .andromeda/design-system.md:46 examples/seven_guis/src/tasks/counter.rs:59-72 — refused at 2026-10-14T19-50-50-wrap, not touched since «background-…» → holds — stands
+- held .andromeda/design-system.md:134 tests/blitz-tests/Cargo.toml:17 — refused at 2026-10-10T01-56-50-wrap, not touched since «blitz-dom =…» → holds — stands
+- stretched .andromeda/design-system.md:285 packages/blitz-dom/src/scrolling.rs:870-893 → 867-885 — changed inside → holds (the fling arm decelerates per frame; constants unchanged)
+- stretched .andromeda/design-system.md:286 packages/blitz-dom/src/document.rs:1856-1873 → 1860-1877 — changed inside → holds (`scrollbar_opacity`, `FADE_DELAY` 500 ms and `FADE_DURATION` 200 ms unchanged)
+- stretched .andromeda/design-system.md:286 packages/blitz-dom/src/resolve.rs:67-73 → 67-74 — changed inside → holds (finished fades dropped each resolve)
+- changed .andromeda/design-system.md:291 packages/blitz-test-harness/src/harness.rs:140-155 → ? — the start rewritten → claim false — raised at Validate (the harness's clock is now the documents' `VirtualClock`, read by `time()` 152-155, moved by `tick` 164-168 and `advance_time` 170-174, and the driver's `advance` moves it — report Counts item 6; the amendment rewrites the citation)
+- stretched .andromeda/design-system.md:291 tests/blitz-tests/tests/stand_act_timer.rs:1-11 → 1-12 — changed inside → claim false — raised at Validate (the citing clause says `advance` leaves the harness clock where it was — report Counts items 3 and 6)
+- stretched .andromeda/design-system.md:339 packages/blitz-dom/src/config.rs:73-91 → 76-95 — changed inside → holds
+- stretched .andromeda/test-plan.md:10@c7601 examples/seven_guis/tests/cli_commands.rs:124-516 → 125-516 — changed inside → holds
+- stretched .andromeda/test-plan.md:10@c7748 examples/seven_guis/tests/host_timer.rs:21-121 → 22-126 — changed inside → holds
+- stretched .andromeda/test-plan.md:10@c8034 examples/seven_guis/src/stand.rs:120-159 → 124-174 — changed inside → holds (the stand's unit-test module)
+- stretched .andromeda/test-plan.md:21@c7422 packages/escher-driver/src/refusal.rs:212-352 → 203-336 — changed inside → holds (the unit-test module)
+- stretched .andromeda/test-plan.md:21@c7469 packages/escher-driver/src/schema_tests.rs:1-342 → 1-357 — changed inside → holds
+- stretched .andromeda/test-plan.md:21@c7613 packages/escher-driver/src/json.rs:363-744 → 363-744 — changed inside → holds
+- stretched .andromeda/test-plan.md:21@c7839 packages/escher-driver/src/describe.rs:97-227 → 97-227 — changed inside → holds
+- stretched .andromeda/test-plan.md:26@c34337 tests/blitz-tests/tests/stand_act_timer.rs:1-11 → 1-12 — changed inside → holds (a check named in a list)
+- stretched .andromeda/test-plan.md:26@c34688 tests/blitz-tests/tests/stand_act_spans.rs:1-23 → 1-23 — changed inside → holds
+- stretched .andromeda/test-plan.md:26@c35996 tests/blitz-tests/tests/stand_mcp_tools.rs:422-556 → 423-598 — changed inside → holds
+- stretched .andromeda/test-plan.md:87 packages/blitz-test-harness/src/harness.rs:83-124 → 88-136 — changed inside → holds (the constructors; `wrap` does not pump)
+- stretched .andromeda/test-plan.md:87 examples/seven_guis/src/stand.rs:58-107 → 58-111 — changed inside → holds (`options`, `timer_step` 89-100 and `boot`; the step's semantics is the report's Counts item 4, raised by its own amendment)
+- stretched .andromeda/test-plan.md:88@c106 packages/blitz-test-harness/src/harness.rs:126-216 → 138-235 — changed inside → claim false — raised at Validate (the Core list omits `advance_time`, harness.rs:170-174 — report Counts item 6)
+- stretched .andromeda/test-plan.md:89 packages/blitz-test-harness/src/harness.rs:145-170 → 157-189 — changed inside → holds (pump resolves at the harness time)
+- stretched .andromeda/test-plan.md:101@c2696 tests/blitz-tests/tests/session_common/mod.rs:1-339 → 1-340 — changed inside → holds
+- stretched .andromeda/test-plan.md:103@c6243 tests/blitz-tests/tests/stand_act_spans.rs:1-23 → 1-23 — changed inside → holds
+- stretched .andromeda/test-plan.md:143@c8609 packages/escher-driver/src/describe.rs:97-227 → 97-227 — changed inside → holds
+- stretched .andromeda/test-plan.md:143@c8792 packages/escher-driver/src/refusal.rs:212-352 → 203-336 — changed inside → holds
+- stretched .andromeda/test-plan.md:143@c8839 packages/escher-driver/src/schema_tests.rs:1-342 → 1-357 — changed inside → holds
+- stretched .andromeda/test-plan.md:183@c3433 tests/blitz-tests/tests/stand_act_spans.rs:1-23 → 1-23 — changed inside → holds
+- held .andromeda/test-plan.md:196 .github/workflows/wpt-post-results.yml:43-49 — refused at 2026-10-10T01-56-50-wrap, not touched since «- name: Pos…» → holds — stands
+- stretched .andromeda/test-plan.md:200@c2746 examples/seven_guis/tests/cli_commands.rs:124-516 → 125-516 — changed inside → holds
+- stretched .andromeda/test-plan.md:200@c2893 examples/seven_guis/tests/host_timer.rs:21-121 → 22-126 — changed inside → holds
+- stretched .andromeda/test-plan.md:255 packages/blitz-test-harness/src/harness.rs:45-72 → 48-76 — changed inside → holds (harness documents use `HtmlProvider`, harness.rs:68)
+- changed .andromeda/test-plan.md:255 packages/blitz-test-harness/src/harness.rs:46-71 → ? — the start rewritten → holds — re-pointed by hand to 48-76 (the load counter wrapped in `into_config`, 51-58)
+- stretched .andromeda/test-plan.md:284 examples/seven_guis/src/stand.rs:85-98 → 85-102 — changed inside → holds (`TIMER_TICK_MS` and `timer_step`; the row's carried-remainder reading is the report's Counts item 4)
+- stretched .andromeda/test-plan.md:284 tests/blitz-tests/tests/stand_act_timer.rs:1-11 → 1-12 — changed inside → holds (a check named)
+- held .andromeda/obs-plan.md:41 packages/blitz/Cargo.toml:14 — refused at 2026-10-10T01-56-50-wrap, not touched since «default = […» → holds — stands
+- stretched .andromeda/obs-plan.md:70@c12419 examples/seven_guis/src/stand.rs:1-118 → 1-122 — changed inside → holds
+- held .andromeda/a11y-plan.md:12 packages/blitz/Cargo.toml:14 — refused at 2026-10-10T01-56-50-wrap, not touched since «default = […» → holds — stands
+- held .andromeda/a11y-plan.md:16 tests/blitz-tests/Cargo.toml:17 — refused at 2026-10-10T01-56-50-wrap, not touched since «blitz-dom =…» → holds — stands
+- stretched .andromeda/registries/contracts/test-plan/session-lifecycle.md:5@c3522 packages/escher-driver/src/session.rs:25-161 → 25-162 — changed inside → holds
+- stretched .andromeda/registries/contracts/test-plan/session-lifecycle.md:5@c3568 packages/escher-driver/src/execute.rs:93-232 → 95-234 — changed inside → holds
+- out-of-range .claude/docs/session-learnings.md:145 host.rs:350 — the file held 225 lines at the base → curation home — P3
+
+Claim-false rows raised at Validate (9): architecture.md:134@c1106 · :158 · :160@c9471 · :263; security-plan.md:374 ×2; design-system.md:291 ×2; test-plan.md:88@c106. Hand re-points (4): architecture.md:157 ×2 and test-plan.md:255 → harness.rs:48-76; architecture.md:160 → escher-driver lib.rs:72-78.

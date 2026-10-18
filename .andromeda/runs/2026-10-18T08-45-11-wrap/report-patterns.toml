@@ -1,0 +1,104 @@
+[[pattern]]
+id = 'title'
+fixed = 'One virtual clock'
+ignore_case = true
+
+[[pattern]]
+id = 'owned-by'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true
+
+[[pattern]]
+id = 'carry-owner'
+fixed = 'Upstream sync ahead of visual lint and real-app readiness'
+ignore_case = true
+
+[[pattern]]
+id = 'causes-nine'
+regex = 'nine (fixed )?(refusal )?(causes|`?Cause`?s)|ninth|\[Cause; 9\]'
+ignore_case = true
+
+[[pattern]]
+id = 'time-unavail'
+regex = 'time-unavailable|TimeUnavailable'
+
+[[pattern]]
+id = 'advanced-ms'
+fixed = 'advanced_ms'
+
+[[pattern]]
+id = 'with-time'
+regex = 'with_time|time step'
+
+[[pattern]]
+id = 'timer-step'
+regex = 'timer_step|remainder (is )?dropped|whole 100 ms ticks'
+
+[[pattern]]
+id = 'wall-fade'
+regex = 'wall[- ](time|clock)|0\.7 s'
+ignore_case = true
+
+[[pattern]]
+id = 'harness-time'
+regex = '''advance_time|Harness::time|\btick\b|harness('s)? (own )?(animation )?(time|clock)|animation clock'''
+ignore_case = true
+
+[[pattern]]
+id = 'doc-clock'
+regex = 'VirtualClock|WallClock|DocumentConfig\.clock|\bclock\.rs'
+
+[[pattern]]
+id = 'dblclick'
+regex = 'double[- ]click|500 ms'
+ignore_case = true
+
+[[pattern]]
+id = 'epoch-unwrap'
+regex = 'scrolling\.rs:515|pointer\.rs:717|UNIX_EPOCH|duration_since'
+
+[[pattern]]
+id = 'no-sleep'
+regex = 'no[- ]sleep|thread::sleep'
+ignore_case = true
+
+[[pattern]]
+id = 'bt-targets'
+regex = '132 .\.rs. files|131 test targets'
+
+[[pattern]]
+id = 'local-tally'
+fixed = '192 · 991'
+
+[[pattern]]
+id = 'repeat-tally'
+fixed = '144 · 582'
+
+[[pattern]]
+id = 'new-checks'
+regex = 'virtual_clock_engine|stand_virtual_clock'
+
+[[pattern]]
+id = 'help-text'
+regex = '''moves the app's time|fades by wall'''
+ignore_case = true
+
+[[pattern]]
+id = 'renamed-tests'
+regex = 'the_timer_step_maps_milliseconds_onto_whole_ticks|a_session_with_no_time_step_refuses_advance|an_advance_reports_no_more_than_it_was_asked'
+
+[[pattern]]
+id = 'sg-units'
+regex = 'library unit tests 2'
+
+[[pattern]]
+id = 'cli-advance'
+regex = 'advance --ms|`advance`'
+
+[[pattern]]
+id = 'driver-click'
+regex = 'driver `click`'
+
+[[pattern]]
+id = 'settle-anim'
+regex = 'Settled::animating|\banimating\b'

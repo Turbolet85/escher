@@ -1,0 +1,10 @@
+## 2026-10-18-one-virtual-clock — §1, §2, §3, §4, §7, §9, §10: the clock checks counted, the tallies re-read on CI#39111579925
+**Section:** §1 (blitz-dom (clock); tests/blitz-tests) · §2 (Directory pattern) · §3 (Crate-local test helpers) · §3 → session-lifecycle (session-proof) · §4 (blitz-dom (clock)) · §7 (Builders and options) · §9 (Engine features by runner; Per-OS test tallies; Local baseline; Legs) · §10 (Flakiness budget)
+**Change:**
+- New: blitz-dom's `clock.rs` holds 3 unit tests (a virtual clock's sum on every clone, its saturation, a wall clock never reading less); blitz-tests' `virtual_clock_engine` 4 and `stand_virtual_clock` 2, in both layout modes; session-proof gains `stand_virtual_clock`; §7: `into_config` puts the harness's clock in `DocumentConfig.clock`, a wrapped document keeping its own.
+- Counts: blitz-tests was 132 `.rs` files and 131 targets, now 134 and 133; `session_common` readers was 22, now 23; the stand-repeat files was 41, now 42; seven_guis' library tests was 2, now 3.
+- §9 Engine features: was «the `screenshot` verb's help states the limit … fades by wall time — no check shoots inside that window, … owned by a `.andromeda/residuals.md` line»; now the fade reads the document's clock, a shot after a scroll repeating until `advance` moves it, read by `stand_virtual_clock` across an 800 ms sleep (PROVISIONAL).
+- §9 Per-OS: re-read on CI#39111579925 (`87f12079`, green 17/17) — linux 194 · 1001 · 0 · 12; macos and coverage 175 · 998 · 0 · 12; windows 175 · 974 · 0 · 9; a11y 6 · 43 · 0 · 0; stand repeat 147 · 588 · 0 · 21; was CI#39104364530's 192 · 991 / 173 · 988 / 173 · 964 / 6 · 43 / 144 · 582.
+- §9 Local baseline: was 192 · 991 · 0 · 12; now 194 · 1001 · 0 · 12.
+**Why:** the chunk's new module and checks; the per-OS tallies read at reconcile on the operator's direction (the operator, 2026-10-18, at the wrap resume), beside the local `fast` and `stand-repeat` readings; the counts measured at this wrap and at implement.
+**Ref:** .andromeda/runs/2026-10-18T08-45-11-wrap/

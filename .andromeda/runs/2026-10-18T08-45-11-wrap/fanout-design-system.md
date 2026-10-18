@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens holds — every Coverage row in the report (DocumentConfig.clock, Harness::advance_time, driver advance on every session, the double click on the one clock) reads `tokens n/a`, and the chunk renders no new UI element; the design-system §Motion moves the report names (Counts items 3, 6 and 15 at design-system.md:290 and :291, Expected amendments entry 3) are the cascade sweep's facts, outside this detector's invariant.

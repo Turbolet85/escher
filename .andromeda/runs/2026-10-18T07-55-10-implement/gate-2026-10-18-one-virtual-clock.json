@@ -1077,5 +1077,343 @@
 }
 ]
 }
+},
+{
+"tool": "gate",
+"v": "1.20",
+"sha8": "da334230",
+"ts": "2026-10-18T08:28:31Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.2.0/chunks/2026-10-18-one-virtual-clock/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-18T07-55-10-implement",
+"--marker",
+"2026-10-18-one-virtual-clock",
+"--operator",
+"16"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-18-one-virtual-clock · entries 17",
+"logs $TMPDIR/andromeda-gate/2026-10-18-one-virtual-clock/implement-2026-10-18T07-55-10 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta none",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L126-126: Agent-driven project: the stand checks run through cargo here, and `agent-run.sh run stand… (539 chars)",
+"operator entry 16 · history tripwire: git",
+" 16 probe       green · exit 0 · 129.8s · 104534 B → 16.log · history moved: refs/remotes/origin/build/escher-0.2.0 f45bb570→87f12079 · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+"not run — excluded · 16: 1-15,17",
+"entries 17 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 16"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-18-one-virtual-clock",
+"plan": "./escher-0.2.0/chunks/2026-10-18-one-virtual-clock/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-18-one-virtual-clock/implement-2026-10-18T07-55-10",
+"delta": {},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 0,
+"problem": null
+},
+"prose": [
+{
+"from": 126,
+"to": 126,
+"text": "Agent-driven project: the stand checks run through cargo here, and `agent-run.sh run stand` is the same set. There is no boot path and no live leg this chunk, so there is no smoke entry: the driver is proven in process and through `escher-session` by the seven_guis checks. The headful self-verify does not exist on this project, so it is omitted. The pre-push gate, the doc leg, `stand-repeat`, the a11y leg and the coverage floors are the CI legs the acceptance reads, and an acceptance needs CI, so the operator entries close the block."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-dom --locked --lib",
+"run_sha8": "b33d169f",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked",
+"run_sha8": "5f0bb953",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "unit",
+"run": "cargo test -p blitz-test-harness --locked",
+"run_sha8": "18448146",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test virtual_clock_engine",
+"run_sha8": "4aa3ee2c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_virtual_clock",
+"run_sha8": "d539c12a",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_act_timer --test stand_act_spans --test stand_mcp_tools --test stand_screenshot_repeat --test stand_non_lean_tasks --test password_caret_click --test scrollbars --test scrollbar_drag --test fragment_navigation --test scroll_into_view_nested --test stand_settle",
+"run_sha8": "3ad1cc39",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked",
+"run_sha8": "e8935269",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "awk '/Instant::now\\(\\)|SystemTime::now\\(\\)/ && FILENAME != \"packages/blitz-dom/src/clock.rs\" {n++} END {print n+0}' $(find packages/blitz-dom/src -name '*.rs')",
+"run_sha8": "e6cd99ce",
+"expect": [
+"exit 0",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 10,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh stand-repeat",
+"run_sha8": "4a77feee",
+"expect": [
+"exit 0",
+"contains stand-repeat: 3 of 3 rounds green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh coverage",
+"run_sha8": "8c67d572",
+"expect": [
+"exit 0",
+"contains coverage floor: 3 of 3 crates at or above their floors"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.2.0",
+"run_sha8": "ee10eab9",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-18-one-virtual-clock/implement-2026-10-18T07-55-10/16.log",
+"bytes": 104534,
+"log_sha8": "87c1c015",
+"exit": 0,
+"seconds": 129.8,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"operator": true,
+"witness": "history moved: refs/remotes/origin/build/escher-0.2.0 f45bb570→87f12079",
+"outcome": "green"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+],
+"operator": {
+"n": 16,
+"tripwire": [
+"git"
+]
+}
+}
 }
 ]

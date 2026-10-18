@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-18 — An atomic read-modify-write that builds on the MSRV and on the host toolchain
+`AtomicU64::fetch_update` reads as deprecated on the dev host's toolchain ("renamed to `try_update`"), so under clippy's `-D warnings` it fails the lint leg, while `try_update` is newer than the workspace's MSRV (1.91) and fails the MSRV build. Write the update as a hand `compare_exchange_weak` loop — load, compute, `compare_exchange_weak(current, next, …)`, retry on `Err(actual)` — which builds clean on both; blitz-dom's `VirtualClock::advance` is written that way, its saturating add pinned by a unit test.
+
+---
+
 ## 2026-10-18 — A count the plan names may stand in no master
 A plan's baseline count is often taken from the previous chunk's gate log or CI run, and that chunk's wrap may never have written it to a master — a wrap that carries counts without re-reading the tallies leaves the masters on an older figure. A site sweep for the plan's own numbers then finds nothing. Before amending a tally, sweep for the masters' latest recorded reading, move the record from that figure, and name the reading in between as skipped.
 

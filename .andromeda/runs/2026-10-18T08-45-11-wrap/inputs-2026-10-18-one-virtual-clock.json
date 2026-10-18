@@ -1,0 +1,147 @@
+[
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "3f25895d",
+"ts": "2026-10-18T08:45:27Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-18-one-virtual-clock",
+"--run-dir",
+".andromeda/runs/2026-10-18T08-45-11-wrap",
+"--marker",
+"2026-10-18-one-virtual-clock"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, 2026-10-18T07:18Z, the /andromeda-phase invocation",
+"I1 cited scope.md:7 · scope.md:19 · scope.md:28 · research.md:8 · plan.md:279",
+"I2 n/a — a message has no live source · copy message · message: the operator, as the founder delegate, 2026-10-18T07:36Z",
+"I2 cited research.md:9 · research.md:67 · research.md:94 · research.md:105 · plan.md:12 · plan.md:279",
+"I3 n/a — a message has no live source · copy message · message: the operator, 2026-10-18T07:55Z, the P5 word",
+"I3 UNCITED",
+"inputs: 3 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 3 · uncited 1 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 3,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 3
+},
+"uncited": 1,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "3f25895d",
+"ts": "2026-10-18T08:54:43Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-18-one-virtual-clock",
+"--message-file",
+".andromeda/runs/2026-10-18T08-45-11-wrap/relay-1.md",
+"--origin",
+"the operator, 2026-10-18 08:53Z, at the wrap resume",
+"--kind",
+"relay",
+"--why",
+"the resume directive: the four delegate answers stay PROVISIONAL in the epoch batch, marked where the masters state them; test-plan §9 per-OS tallies from CI#39111579925 read at reconcile; P5 places the merge-surface CARRY on «Upstream sync ahead of visual lint and real-app readiness»; through to the commit",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-10-18T08-45-11-wrap",
+"--marker",
+"2026-10-18-one-virtual-clock"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I4 · copy message · message: the operator, 2026-10-18 08:53Z, at the wrap resume",
+"cite: inputs#I4"
+],
+"stderr": null,
+"wrote": [
+"inputs/I4-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I4",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, 2026-10-18 08:53Z, at the wrap resume",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "79b3655a8dbcf0776e3344c1bf40121b179be0b9e3a3adf6b9d500e07eb48e65",
+"copy": "I4-relay-1.md.txt",
+"link": false,
+"read_at": "2026-10-18T08:54:43Z",
+"step": "wrap",
+"why": "the resume directive: the four delegate answers stay PROVISIONAL in the epoch batch, marked where the masters state them; test-plan §9 per-OS tallies from CI#39111579925 read at reconcile; P5 places the merge-surface CARRY on «Upstream sync ahead of visual lint and real-app readiness»; through to the commit"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "3f25895d",
+"ts": "2026-10-18T08:54:51Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-18-one-virtual-clock",
+"--run-dir",
+".andromeda/runs/2026-10-18T08-45-11-wrap",
+"--marker",
+"2026-10-18-one-virtual-clock"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, 2026-10-18T07:18Z, the /andromeda-phase invocation",
+"I1 cited scope.md:7 · scope.md:19 · scope.md:28 · research.md:8 · plan.md:279",
+"I2 n/a — a message has no live source · copy message · message: the operator, as the founder delegate, 2026-10-18T07:36Z",
+"I2 cited research.md:9 · research.md:67 · research.md:94 · research.md:105 · plan.md:12 · plan.md:279 · report.md:293",
+"I3 n/a — a message has no live source · copy message · message: the operator, 2026-10-18T07:55Z, the P5 word",
+"I3 cited report.md:218 · report.md:222 · report.md:294",
+"I4 n/a — a message has no live source · copy message · message: the operator, 2026-10-18 08:53Z, at the wrap resume",
+"I4 UNCITED",
+"inputs: 4 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 4 · uncited 1 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 4,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 4
+},
+"uncited": 1,
+"unparsed": 0
+}
+}
+]
