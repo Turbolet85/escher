@@ -879,3 +879,43 @@ The re-seed is the first answer's stated cost, so a Dioxus re-render keeps contr
 - CI contracts, the `coverage` leg: both `cargo llvm-cov` lines take `--ignore-filename-regex 'keyboard_compat\.rs$'` until upstream retires the bridge, pinned by `test_coverage_leg_reaches_the_floor_on_each_crate`; `coverage_floor.py` and the three floors unchanged.
 **Why:** upstream's keyboard-types 0.7 → 0.8 move, taken by the sync, and our sites migrated in the smallest edit; the filename exclusion on the operator's answer to P4 fork 3.
 **Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/
+## 2026-10-18-engine-debts — seven engine changes for every document, PROVISIONAL: `inert`, `disabled` on form controls, the toggle per role
+**Section:** §Established Decisions ([Unsupported features] · [Scrolling and input] · [DOM semantics], with the groups `dec-scrolling-and-input` · `dec-dom-semantics`) · §Conventions · the subject line
+**Change:**
+- [Unsupported features]: was «`inert` is not implemented … `stand_keyboard::the_engine_honours_no_inert` staying its pin»; now `inert` leaves the list.
+- [DOM semantics], a new group: `inert` honoured by presence on the element or an ancestor (`Node::is_inert`, an ancestor walk, no mutator hook) — not focusable, no hit, out of the tree and the snapshot; the focus-fixup limit stated, its fix owned by a `.andromeda/residuals.md` line.
+- [DOM semantics]: was «a bare, a `"false"` and a `"true"` `disabled` on any element remove focusability … the `<div disabled tabindex=0>` limit»; now `ElementData::is_disabled` — `can_be_disabled()` and the attribute present — read by focusability, the pointer-move gate, `ClickTarget::Disabled`, `handle_click`'s walk gate and Enter / Space; a `<div disabled tabindex=0>` takes focus, a disabled `summary` or link activates, a disabled ancestor `div` stops no walk; the `DISABLED` state still reads presence.
+- [Scrolling and input]: the hit stops at a `contain: paint` box too (was «not at a `contain: paint` box»); `Node::absolute_position` subtracts only ancestors' scroll (was «measured and left as it reads»); the builder's `toggled` from `aria-checked` on a checkable role, from neither on a native checkbox or radio; the activation and click gates read `is_disabled`; a new group counts the seven changes, states the password click caret by the bullets and names the merge surface's CARRY on «Upstream sync ahead of determinism and traces».
+- §Conventions: thirteen → fourteen driver-action checks.
+- The master's first subject line, as its last line.
+**Why:** the nine debts closed on the operator's answers as the founder's delegate (F1 A · F2 A · F4 A · F5 A · F6 A · F7 A · F8 A, the `switch` mapping; F3 B and F9 A change no engine) — PROVISIONAL, delegate operator, each standing for the founder's own word at the Epoch 2 Provisional discharge, which the operator directed the wrap not to wait for (the gated arm on v020-03).
+**Ref:** .andromeda/runs/2026-10-18T04-30-47-wrap/
+## 2026-10-18-engine-debts — the geometry readers: the hit at `contain: paint`, `absolute_position`, the client rect under transforms
+**Section:** §Standard Contracts → Scrolling, selection, tree (with the group `contract-scrolling-selection-tree`) · Document core (blitz-dom) · Nodes and widgets (with the group `contract-nodes-and-widgets`) · Paint and shell
+**Change:**
+- Scrolling, selection, tree: the hit walk stops at the padding box of a box paint clips — `overflow`, or a computed `contain` with `paint` on a box paint applies it to — was «the overflow half of paint's predicate» and «does not stop at a `contain: paint` box … still hit through»; `Node::absolute_position` adds the node's own location and subtracts its containing blocks' scroll through `position_in_containing_block`, `scroll_into_view` passing `(0.0, 0.0)`, a box at (40, 50) reading (40, 50) — was «(−30, −70) … left as it reads»; `get_client_bounding_rect` reads a transformed box where its transform moves it — was «at its layout position (0, 40, 300, 140)»; the residuals ownership of both retired readings dropped.
+- A new group: `get_client_bounding_rect` and `node_client_rects` through `transformed_bounds` (gated by `is_transformed_chain`, inline fragments through `transformed_fragment_rects`), `offset_rect`, `inline_fragment_rects`, `physical_unrounded_geometry` and `visible_region` unedited; the measured limit — `visible_region` reads a translated scrolling box untransformed — stated in `off-screen`'s meaning, owned by a `.andromeda/residuals.md` line.
+- Document core: `layout_as_text_input` has two callers — was «its one caller is blitz-paint's password mask».
+- Nodes and widgets: `ElementData::is_disabled` registered.
+- Paint and shell: a click places a password's caret by the bullets — was «by the real characters' widths … index 5 … 2», the C11 limit retired.
+**Why:** F4 A, F5 A, F6 A and F8 A — PROVISIONAL, delegate operator, as the batch entry states; the `visible_region` limit is the plan's forecast measured, its residuals line the P5 card's row 3.
+**Ref:** .andromeda/runs/2026-10-18T04-30-47-wrap/
+## 2026-10-18-engine-debts — the toggle per role in the builder, the snapshot and the driver's texts
+**Section:** §Standard Contracts → Mutation, query and CSSOM · Dioxus DOM bridge · Driver session (escher-driver)
+**Change:**
+- Mutation, query and CSSOM: was «three state attributes … whatever its role and with no role consulted … `aria-checked` is not read»; now the toggle by role — `aria-pressed` on every role but `CheckBox` · `Switch` · `RadioButton` · `MenuItemCheckBox` · `MenuItemRadio`, `aria-checked` on those five alone, neither on a native checkbox or radio, `"switch"` → `Role::Switch`; each attribute read once; the measured absence — the builder writes no `toggled` from a native input's own checked state — owned by a `.andromeda/residuals.md` line.
+- Dioxus DOM bridge: a truthy `inert` makes its subtree inert (was «the engine honours no `inert`»); `checked` a native input's state, else a checkable role's `toggled == Toggled::True`, `None` where it states nothing, a mixed one `Some(false)`; `pressed` off those five roles; `bounds` read where an element's transforms move it, a driver `click` on a translated button accepted.
+- Driver session: `off-screen`'s meaning gains «a scrolling box under a transform is read where it stands untransformed, so an element inside it can read `off-screen` though it shows»; `covered`'s drops «a hit reaches content clipped by `contain: paint` …» and gains «a box with no width or no height is hit at its centre on the element that holds it, so it can read `covered` though nothing covers it»; the node-key help of `checked` and `pressed` restated; the crate docs state three readings off (was two); the `covered` reading as it stands names the no-area reading (`task-header-spacer`) beside the one-axis one; the cause set nine, no remedy moved.
+**Why:** F2 A with the native exclusion (the operator's two corrections, after HTML-AAM / ARIA in HTML), F8 A and F9 A — PROVISIONAL, delegate operator, as the batch entry states; the driver texts are the program's own fixed text inside the ratified carriers.
+**Ref:** .andromeda/runs/2026-10-18T04-30-47-wrap/
+## 2026-10-18-engine-debts — the blitz-tests scope: five new checks, five restated
+**Section:** §Existing Scopes → blitz-tests
+**Change:**
+- `accessibility_states`: was «`aria-checked` setting none of the three, 4 tests»; now `aria-checked` on a checkable role alone, neither attribute on a native checkbox or radio, a 5,500-character value nowhere, 5 tests.
+- Added: `accessibility_merged_states` 3, `accessibility_active_descendant_unread` 1, `inert_subtree` 4, `transformed_client_rect` 4, and the fourteenth driver-action file `stand_act_transformed` 2.
+- `hit_clipped_at_scrolling_box`: a `contain: paint` box stops the hit (was «still hit through»); `scrolled_box_absolute_position`: a scrolled box read where it stands (was «pinned as it reads»).
+- `stand_keyboard`: a `disabled` attribute skips a form control and not a `<div disabled tabindex=0>` (was «of any value skipped, the limit pinned»); an inert subtree skipped by Tab (was «the engine honouring no `inert`»); the falsy-attribute clause: a truthy `inert` honoured, a falsy one cleared.
+- `password_caret_click`: was 1 test pinning index 5 and 2; now 2 tests, one index for two values of one length and a double click selecting the whole value.
+- `session_common` readers: was twenty-one with the thirteen `stand_act_*`; now twenty-two, fourteen.
+**Why:** the chunk's new and rewritten checks; their fixes PROVISIONAL, delegate operator, as the batch entry states.
+**Ref:** .andromeda/runs/2026-10-18T04-30-47-wrap/

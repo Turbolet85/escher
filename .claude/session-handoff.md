@@ -1,48 +1,44 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-18T02:01:00Z
+**Last Updated:** 2026-10-18T05:16:33Z
 **Branch:** build/escher-0.2.0 · 0 ahead of origin/build/escher-0.2.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-17-upstream-sync-engine-debts — upstream/main merged at `23b9b26a9`, the ARIA exits ratified, the docs reconciled
+**Last Commit:** 2026-10-18-engine-debts — the nine engine debts closed, PROVISIONAL, gated on the founder's word
 
 ## Position
-- Done: 2026-10-17-upstream-sync-engine-debts, the first Epoch 2 entry. Upstream/main is merged at `23b9b26a9` (merge `3eda07bc`), and the final HEAD `ae8c8daf` read CI#39056637407 green, 17/17.
-- Next: `/andromeda-phase` to promote and plan «Engine debts» (v020-03), the last Epoch 2 entry. It carries a CARRY for the untested merged `aria-expanded` · `aria-disabled` · `aria-level` reads.
+- Done: 2026-10-18-engine-debts, the last Epoch 2 entry, wrapped on the gated arm: the master record reads `gated`, v020-03 held below verified. Every other part landed: seven engine fixes, F3 pinned, F9 stated, and the merged-ARIA CARRY tested.
+- Gated: `gated 2026-10-18-engine-debts: standing — evidence/founder-word.md absent`. The block is the founder's own word on the PROVISIONAL batch (the run dir's `provisional-discharge.md`). His word becomes `evidence/founder-word.md` (plan step 13) in a gated `/andromeda-implement`, then the gated wrap flips the record `complete`.
+- Next: `/andromeda-phase` to promote and plan «Upstream sync ahead of determinism and traces», Epoch 3's head. It carries three CARRYs: the Taffy-main commits, `keyboard_compat.rs`, and this chunk's merge surface. Epoch 2 closes at the gated wrap, not before.
 
 ## Work done
-- A three-window wrap. P1 ran in the first window. The second resumed on the operator's directive (inputs#I4) and stopped at P2's answer card. This window resumed on the founder's late answer (inputs#I7): P2 apply through P7.
-- Reconcile: 56 amendments across all seven masters, in 15 sidecar entries (49 proposed, 7 raised by main). 1 escalation was resolved: the answer card's ten ARIA proposals, confirmed by the founder's «Подтвердить все 10 (Рекомендую)». No proposal was rejected.
-- Citations: 266 re-pointed, 31 changed, 105 stretched.
-- Leaves: pass mode. 11 comparers returned 35 findings: 33 applied by the tool, 2 written by hand (a regex backslash the tool refuses).
-- Curation (directive e): the two auto-memory entries are homed in Tier 1, one new and one extension, and drained from the memory. Tier 1 also gained a rule for the pre-CI commit subject.
+- A two-window wrap: P1 in the first, P2–P7 in this one, on the operator's resume directive (inputs#I7).
+- Reconcile: 85 amendments across six masters and one key file, in 12 sidecar entries (82 detector proposals, 3 raised by main). 1 escalation, the Provisional discharge, was resolved by the directive.
+- Rejected: 2 test-plan «observed absent» claims, returned under check 4 because no search stood behind them.
+- Citations: 299 re-pointed, 23 changed, 74 stretched. Leaves: 90 findings applied over 16 leaves.
+- First labelled writes: architecture (four detail groups, its first subject line) and obs-plan (one group, its subject line). `classify.py` PASS on all three classified masters.
 
 ## Drift resolved
-- **The bump crate leaves.** Its rows and citations are gone from architecture, security-plan, design-system, layout-templates and test-plan.
-- **Upstream's ARIA reads.**
-  - `aria-labelledby` is now a fourth name source, outranking `<label>`.
-  - Descriptions (`aria-description` text, `aria-describedby` targets) are a fourth content class, to the platform adapter only. This is a boundary widening by upstream merge, ratified as upstream's behaviour by the founder.
-  - The three closed values sit inside the states class.
-- **keyboard-types 0.8.**
-  - The harness re-exports `NamedKey`.
-  - The macOS action modifier is now `META`.
-  - `keyboard_compat` is excluded from coverage by filename.
-- **Versions and pin.** The workspace is at 0.3.0-beta.4, test-that at 0.6.0, and the merge base at `23b9b26a9`.
-- **cargo-deny.** The ignores go 5 → 8 (the zbus family, External decay).
-- **The (security) criterion** «audit … with `deny.toml` unchanged» is UNMET as written (directive a). Its letter is unchanged and nothing was reverted; it rests on scope-record.md's `deny.toml` widening and the External decay cause.
-- **Two facts the report lacked.**
-  - util.rs's `SUPER` → `META`.
-  - The `todo!()` arms for physical key codes are gone.
-- **The report's coverage line was false.** It credited tests for the three closed ARIA reads, and none exist. test-plan §1 now records them observed absent.
-- **test-plan §2's count** is now 127 files / 126 targets (directive c). The earlier count was one short.
+- The seven fixes restated wherever a master stated the old reading, each marked PROVISIONAL:
+  - `inert` leaves [Unsupported features] and is honoured.
+  - The toggle is read per role; `role="switch"` is mapped.
+  - `Node::absolute_position` subtracts only ancestors' scroll.
+  - The hit stops at a `contain: paint` box.
+  - A password click places the caret by the bullets.
+  - `disabled` is read on form controls only.
+  - The client rect follows transforms.
+- `covered`'s meaning drops the `contain: paint` sentence and gains the no-area one; `off-screen`'s gains the transformed-box one.
+- Counts moved: blitz-tests 132 files and 131 targets, `stand_*` 41, `stand_act_*` 14, `session_common` readers 22, dioxus-native-dom 72 unit tests, the session-proof key file's total 50.
+- New: three `open` residuals lines — the `visible_region` misreading, `inert` focus fixup, and native checkedness unread by the tree.
+- New: the merge-surface CARRY on «Upstream sync ahead of determinism and traces».
 
 ## Notes
-- The P7.1 treatment of entry 11 (the plan's preservation guard, red on `deny.toml` alone) is `--skip 11` on the operator's directive (b).
+- PROVISIONAL, standing for the founder's word (the operator's directive, inputs#I7): the nine delegate answers, the seven engine fixes and the `switch` mapping. None was ratified at this wrap. Sites: `provisional-discharge.md` in the run dir.
+- A sanctioned frozen-line write, on the operator's word (inputs#I8): `BLOCKED-ON:` stamped on `[2026-10-18-engine-debts]`. Phase had claimed v020-03 gated without the block, and `route.py flip --to gated` refuses without it.
+- The leaf batch's path check showed one extra line: the orchestrator's own `route.py blocked --run-dir` trail append made mid-batch. Accepted on the operator's word (inputs#I8).
 - Last failed command: none outstanding.
 
 ## Deferred learnings
-- recurrence-despite-learning: host-linux «Paths & the working directory». A bare `cd` into a run dir moved this window's cwd, and the guard refused three such `cd`s at the earlier windows.
-- A Tier 3 entry cites `host.rs:350` (`.claude/docs/session-learnings.md:135`), past the end of the file it named at the base. Which file it meant is unmeasured; it was left as it stands.
-- 1 carried from earlier handoffs, not this session's to curate: read a CI job's verdict with `ci.py`, not a log pattern (confidence 0.7).
-
-## Session End Status
-Completed normally at 2026-10-18 05:16:45
+- recurrence-despite-learning: host-linux «Paths & the working directory». A bare `cd` was refused at implement and twice at this wrap; the guard held each time.
+- recurrence-despite-learning: host-linux «Transports». A `cat` heredoc with a file target was refused at implement.
+- recurrence-despite-learning: host-linux Session Additions 2026-10-13. A pipeline tool's output was piped into `tail` twice at this wrap; the guard refused both.
+- Carried from earlier handoffs, not this session's to curate: read a CI job's verdict with `ci.py`, not a log pattern (confidence 0.7). A Tier 3 entry cites `host.rs:350` past its file's end (`.claude/docs/session-learnings.md`), unmeasured.

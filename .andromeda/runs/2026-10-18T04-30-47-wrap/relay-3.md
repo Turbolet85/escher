@@ -1,0 +1,3 @@
+# relay-3 — the operator's directive at the wrap's resume invocation (2026-10-18, 04:39Z), verbatim
+
+resume from report.md (run 2026-10-18T04-30-47-wrap). Directive: (a) the founder is away. At the Provisional discharge card, do not wait for him: list the batch (the nine delegate answers, the seven engine fixes, the switch mapping) as standing PROVISIONAL for his word, take the gated arm for v020-03 (master record gated), and go on to the commit. (b) At the end, report the §Apply classification step from classify-2026-10-18-engine-debts.json: labels written, subjects, the verdict, and any provenance span the apply added to a master body (such as «(chunk …)», «approved by …», «measured on …»).

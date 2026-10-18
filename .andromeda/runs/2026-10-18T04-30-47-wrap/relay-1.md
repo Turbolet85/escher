@@ -1,0 +1,3 @@
+# relay-1 — the operator's correction inside F2 A, in the implementing session (2026-10-18, about 03:52Z), verbatim
+
+One fix before the operator pass, inside F2 A: a native <input type=checkbox> or <input type=radio> must NOT take aria-checked (HTML-AAM / ARIA in HTML: the native checkedness wins, the author attribute is ignored there). Gate is_checkable reading on the element not being such a native input, add a check that a native checkbox with aria-checked="true" and no checked state reads no toggled from it, and re-fire the affected entries plus the stand-repeat and coverage legs. Then say whether native checkedness reaches the tree at all today; if not, name it as a new open residuals line for the wrap (target: next). Stop after that; no operator pass yet.

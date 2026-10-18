@@ -343,3 +343,24 @@ One entry per amendment to `a11y-plan.md` (sidecar-contract.md §Entry form). Ap
 - Accessibility tree output: the `aria-label` bullet — an `aria-labelledby` with text outranks it; the `<label>` bullet — an input carrying `aria-labelledby` is named by its targets instead; the snapshot's `name` takes that computed text; was «the tree gives an element node no value, checked or disabled property»; now no value or checked property, a disabled one only from `aria-disabled`, which the snapshot's `enabled` never reads.
 **Why:** the merge, keeping upstream's reads as written; `aria-labelledby` names inside the ratified name crossing and the description to the adapter ratified as upstream's behaviour by the founder's own word at P4 fork 2, relayed by the overseer, both description sources confirmed by his word on this wrap's answer card.
 **Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/
+## 2026-10-18-engine-debts — §2–§4, §7: the toggle per role and the snapshot's sources
+**Section:** §2 A11y Strategy (Role derivation) · §3 A11y Assertion Harness Contract (testing tool pick) · §4 ARIA Patterns & Roles (ARIA state attributes) · §7 Screen Reader Support (Accessibility tree output)
+**Change:**
+- Role derivation: was «with no role consulted … `aria-checked` is not read, so a node's `toggled` is exactly its `aria-pressed` reading»; now `aria-pressed` off the five checkable roles, `aria-checked` on `CheckBox` · `Switch` · `RadioButton` · `MenuItemCheckBox` · `MenuItemRadio` alone, `role="switch"` → `Switch`, a native checkbox or radio reading neither; native checkedness written on no tree node — a measured absence, owned by a `.andromeda/residuals.md` line.
+- §4: was «`aria-checked` sets none of the three … owned by a `.andromeda/residuals.md` line … C7 … the fourth test standing as its pin»; now the per-role read, the fourth test its pin.
+- §3: `accessibility_states` 5 tests (was 4 at its row); a bullet for `accessibility_merged_states` 3, `inert_subtree` 4, `accessibility_active_descendant_unread` 1, outside the a11y leg's six files.
+- §7: the snapshot's `pressed` off the checkable roles, `checked` a native input's state else a checkable role's toggle, the help states its source; the password click caret by the bullets (was «the real characters' widths … C11»); the unread `aria-activedescendant` kept and pinned by its check (was «owned by a `.andromeda/residuals.md` line»).
+**Why:** F2 A with the `switch` mapping and the native exclusion, F3 B and F6 A — PROVISIONAL, delegate operator, standing for the founder's own word at the Epoch 2 Provisional discharge.
+**Ref:** .andromeda/runs/2026-10-18T04-30-47-wrap/
+## 2026-10-18-engine-debts — §5, §6: `inert` and `disabled` in focus order, keys and the hit
+**Section:** §5 Keyboard Navigation (Focus order per layout · Focus restoration · Keyboard handling · Per-surface keyboard shortcuts · Script and framework exposure · Test harness pattern) · §6 Visual Design Verification (Visibility and hit-testing)
+**Change:**
+- Focus order: an element is focusable when it is not inert (presence, on itself or an ancestor — `Node::is_inert`) and no disabled form control; `disabled` read by presence on a form control alone (`ElementData::is_disabled`), so a `<div disabled tabindex=0>` takes focus — was «on any element … the C15 limit»; the focus-fixup limit stated, owned by a `.andromeda/residuals.md` line; disabled-ness keyed by `is_disabled` for the pointer, click, activation and focus gates, the `DISABLED` state still by presence.
+- Focus restoration: a disabled form control stops the click walk, a disabled ancestor `div` not.
+- Keyboard handling: a `disabled` attribute on a `summary` or an `a` gates neither Enter nor Space.
+- CRUD list: the unread `aria-activedescendant` pinned by `accessibility_active_descendant_unread` (was owned by a residuals line).
+- Script and framework exposure: was «the engine honours no `inert` … F3 … whether an inert subtree takes a hit unmeasured»; now a truthy `inert` takes focusability, hits and the tree away, a falsy one is removed.
+- Test harness: `stand_keyboard`'s `disabled` and `inert` tests restated.
+- Visibility and hit-testing: an element carrying `inert` and its subtree leave the tree and the snapshot, a hit passes through it, removing `inert` restores both.
+**Why:** F1 A, F3 B and F7 A — PROVISIONAL, delegate operator, as the first entry states.
+**Ref:** .andromeda/runs/2026-10-18T04-30-47-wrap/

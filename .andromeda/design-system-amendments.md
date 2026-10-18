@@ -142,3 +142,8 @@ One entry per amendment to `design-system.md` (sidecar-contract.md §Entry form)
 **Change:** the Platform line no longer names the `bump` app among the binaries that print to the terminal, and the «bump prints "Bumped anyrender versions" or "Bumped blitz versions"» pattern is gone.
 **Why:** upstream's `23b9b26a9` "Delete the bump crate", taken by the sync.
 **Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/
+## 2026-10-18-engine-debts — the hit stops at a `contain: paint` box
+**Section:** §Depth Strategy (Engine depth behavior, the hit-testing bullet)
+**Change:** the hit stops at the padding box of a node paint clips — by `overflow`, or by a computed `contain` that includes `paint` on a box paint applies it to — the root element excepted; was «a node that clips by `overflow`» alone.
+**Why:** F5 A — PROVISIONAL, delegate operator; hit and paint agree. No design-system line states a client rect, so F8 moves nothing here.
+**Ref:** .andromeda/runs/2026-10-18T04-30-47-wrap/

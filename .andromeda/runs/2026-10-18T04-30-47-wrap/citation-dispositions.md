@@ -1,0 +1,115 @@
+sweep: base: 34bcf71c — the previous sweep (2026-10-17T15-18-19-wrap) · re-pointed 299 · changed 23 · stretched 74
+
+Every row the apply call printed (trail `cites-2026-10-18-engine-debts.json`, its non-dry-run `apply` record), read at its citing line and, for a master row, at the cited lines in the work tree.
+
+- stretched .andromeda/architecture.md:85@c2012 tests/blitz-tests/tests/stand_keyboard.rs:743-764 → 755-782 — changed inside → claim false — raised at Validate (F1 `inert`)
+- stretched .andromeda/architecture.md:86@c1060 packages/blitz-dom/src/scrolling.rs:659-739 → 659-738 — changed inside → holds
+- changed .andromeda/architecture.md:86@c1759 packages/blitz-dom/src/node/node.rs:1383-1496 → ? — the start rewritten → claim false — raised at Validate (F5 `contain-paint`: «not at a `contain: paint` box» — the amendment rewrites the clause and its citation)
+- stretched .andromeda/architecture.md:86@c3307 packages/blitz-dom/src/accessibility.rs:162-189 → 162-200 — changed inside → holds
+- stretched .andromeda/architecture.md:86@c8134 packages/blitz-dom/src/events/keyboard.rs:160-175 → 160-175 — changed inside → holds
+- stretched .andromeda/architecture.md:86@c8185 packages/blitz-dom/src/events/keyboard.rs:177-191 → 177-191 — changed inside → holds
+- changed .andromeda/architecture.md:90@c603 packages/blitz-dom/src/node/element.rs:703 → ? — rewritten «let disabled = …» → claim false — raised at Validate (F7 `disabled-any`: presence on any element — the amendment rewrites it, citing `ElementData::is_disabled`)
+- changed .andromeda/architecture.md:90@c978 packages/blitz-dom/src/events/pointer.rs:330 → ? — rewritten «let disabled …» → claim false — raised at Validate (F7 `disabled-any`)
+- changed .andromeda/architecture.md:90@c1024 packages/blitz-dom/src/events/pointer.rs:462 → ? — rewritten «Some(el) if …» → claim false — raised at Validate (F7 `disabled-any`)
+- stretched .andromeda/architecture.md:90@c1849 tests/blitz-tests/tests/stand_keyboard.rs:615-646 → 617-658 — changed inside → claim false — raised at Validate (F7 `disabled-any`)
+- held .andromeda/architecture.md:105 Cargo.toml:47-58 — refused at 2026-10-13T15-50-37-wrap, not touched since «blitz-dom =…» → holds — stands
+- held .andromeda/architecture.md:112 examples/screenshot.rs:41-51 — refused at 2026-10-10T01-56-50-wrap, not touched since «let file_co…» → holds — stands
+- stretched .andromeda/architecture.md:121@c5184 packages/blitz-dom/src/accessibility.rs:162-189 → 162-200 — changed inside → claim false — raised at Validate (F2 `aria-checked`)
+- stretched .andromeda/architecture.md:121@c5233 tests/blitz-tests/tests/accessibility_states.rs:128-220 → 134-243 — changed inside → claim false — raised at Validate (F2 `acc-states`)
+- stretched .andromeda/architecture.md:123@c2127 packages/blitz-dom/src/scrolling.rs:659-739 → 659-738 — changed inside → holds
+- changed .andromeda/architecture.md:123@c4021 packages/blitz-dom/src/node/node.rs:1383-1496 → ? — the start rewritten → holds — re-pointed by hand to 1401-1531 (`hit_inner`'s body, its `use` line to the padding-box stop)
+- changed .andromeda/architecture.md:123@c4511 tests/blitz-tests/tests/hit_clipped_at_scrolling_box.rs:375-401 → ? — the start rewritten → claim false — raised at Validate (F5 `contain-paint`: «still hit through» — the test now stops the hit)
+- changed .andromeda/architecture.md:123@c5736 packages/escher-driver/src/refusal.rs:77-82 → ? — the end rewritten → holds — re-pointed by hand to 78-83 (the `Covered` arm, its one-axis sentence standing)
+- stretched .andromeda/architecture.md:123@c6160 tests/blitz-tests/tests/hit_clipped_at_scrolling_box.rs:537-595 → 531-584 — changed inside → holds
+- stretched .andromeda/architecture.md:123@c7152 tests/blitz-tests/tests/scrolled_box_absolute_position.rs:48-78 → 52-82 — changed inside → claim false — raised at Validate (F4 `abs-position`)
+- stretched .andromeda/architecture.md:128@c2747 tests/blitz-tests/tests/password_caret_click.rs:47-95 → 83-104 — changed inside → claim false — raised at Validate (F6 `pw-caret`)
+- stretched .andromeda/architecture.md:132@c12356 packages/escher-driver/src/schema.rs:36-112 → 36-115 — changed inside → holds
+- changed .andromeda/architecture.md:132@c19174 packages/escher-driver/src/refusal.rs:77-82 → ? — the end rewritten → claim false — raised at Validate (`covered-limits`: the meaning quoted with its `contain: paint` sentence)
+- changed .andromeda/architecture.md:132@c19219 packages/escher-driver/src/refusal.rs:22-24 → ? — both ends rewritten → claim false — raised at Validate (`covered-limits`)
+- changed .andromeda/architecture.md:132@c19264 packages/escher-driver/src/json.rs:679-681 → ? — both ends rewritten → claim false — raised at Validate (`covered-limits`)
+- changed .andromeda/architecture.md:132@c21011 packages/escher-driver/src/lib.rs:62-73 → ? — the end rewritten → holds — re-pointed by hand to 64-68 (the selected · pressed · invalid sentence with its two limits)
+- stretched .andromeda/architecture.md:135@c11900 packages/dioxus-native-dom/src/snapshot.rs:59-69 → 63-74 — changed inside → holds
+- stretched .andromeda/architecture.md:135@c13891 packages/blitz-dom/src/document.rs:2373-2390 → 2373-2403 — changed inside → holds
+- stretched .andromeda/architecture.md:135@c17217 packages/dioxus-native-dom/src/snapshot.rs:159-161 → 171-176 — changed inside → holds
+- stretched .andromeda/architecture.md:135@c18206 packages/dioxus-native-dom/src/snapshot.rs:11-72 → 11-77 — changed inside → holds
+- stretched .andromeda/architecture.md:135@c18256 packages/dioxus-native-dom/src/snapshot.rs:91-110 → 96-115 — changed inside → holds
+- stretched .andromeda/architecture.md:135@c18307 packages/dioxus-native-dom/src/snapshot.rs:122-230 → 127-258 — changed inside → holds
+- stretched .andromeda/architecture.md:238 packages/blitz-dom/src/document.rs:2372-2494 → 2372-2601 — changed inside → holds
+- stretched .andromeda/architecture.md:239 packages/blitz-dom/src/accessibility.rs:9-228 → 9-239 — changed inside → holds
+- stretched .andromeda/architecture.md:241 packages/blitz-dom/src/scrolling.rs:659-801 → 659-800 — changed inside → holds
+- stretched .andromeda/architecture.md:262@c636 tests/blitz-tests/tests/accessibility_states.rs:128-220 → 134-243 — changed inside → claim false — raised at Validate (F2 `acc-states`)
+- stretched .andromeda/architecture.md:262@c3952 tests/blitz-tests/tests/hit_clipped_at_scrolling_box.rs:188-401 → 187-400 — changed inside → holds (the test list's range; the `contain: paint` wording on the line is raised as `contain-paint`)
+- stretched .andromeda/architecture.md:262@c4017 tests/blitz-tests/tests/scrolled_box_absolute_position.rs:48-78 → 52-82 — changed inside → claim false — raised at Validate (F4 `abs-position`)
+- stretched .andromeda/architecture.md:262@c8714 tests/blitz-tests/tests/stand_keyboard.rs:615-646 → 617-658 — changed inside → holds (a range of the test list; its `disabled` wording raised as `disabled-any`)
+- stretched .andromeda/architecture.md:262@c8816 tests/blitz-tests/tests/stand_keyboard.rs:743-764 → 755-782 — changed inside → holds (a range of the test list; its `inert` wording raised as `inert`)
+- stretched .andromeda/architecture.md:262@c17948 tests/blitz-tests/tests/password_caret_click.rs:47-95 → 83-104 — changed inside → claim false — raised at Validate (F6 `pw-caret`)
+- stretched .andromeda/security-plan.md:78@c4125 packages/escher-driver/src/schema.rs:36-112 → 36-115 — changed inside → holds
+- stretched .andromeda/security-plan.md:118 packages/blitz-dom/src/node/element.rs:702-704 → 708-710 — changed inside → holds (presence, on the four controls; the narrowing raised as `disabled-any`)
+- changed .andromeda/security-plan.md:119@c441 packages/blitz-dom/src/node/element.rs:703 → ? — rewritten «let disabled …» → claim false — raised at Validate (F7 `disabled-any`)
+- stretched .andromeda/security-plan.md:119@c540 tests/blitz-tests/tests/stand_keyboard.rs:615-646 → 617-658 — changed inside → claim false — raised at Validate (F7 `disabled-any`)
+- changed .andromeda/security-plan.md:119@c1321 packages/blitz-dom/src/events/pointer.rs:330-333 → ? — the start rewritten → claim false — raised at Validate (F7 `disabled-any`)
+- changed .andromeda/security-plan.md:119@c1371 packages/blitz-dom/src/events/pointer.rs:462 → ? — rewritten «Some(el) i…» → claim false — raised at Validate (F7 `disabled-any`)
+- changed .andromeda/security-plan.md:119@c1417 packages/blitz-dom/src/events/pointer.rs:676-679 → ? — the start rewritten → claim false — raised at Validate (F7 `disabled-any`)
+- stretched .andromeda/security-plan.md:119@c2116 packages/blitz-dom/src/events/keyboard.rs:160-191 → 160-191 — changed inside → claim false — raised at Validate (F7 `disabled-any`: a `summary` and an `a` now ignore `disabled`)
+- stretched .andromeda/security-plan.md:123@c14246 packages/dioxus-native-dom/src/snapshot.rs:91-110 → 96-115 — changed inside → holds
+- stretched .andromeda/security-plan.md:123@c14297 packages/dioxus-native-dom/src/snapshot.rs:125-174 → 130-189 — changed inside → holds
+- stretched .andromeda/security-plan.md:127@c3202 packages/blitz-dom/src/accessibility.rs:162-189 → 162-200 — changed inside → claim false — raised at Validate (F2 `aria-checked`)
+- stretched .andromeda/security-plan.md:127@c3251 packages/dioxus-native-dom/src/snapshot.rs:59-69 → 63-74 — changed inside → holds
+- stretched .andromeda/security-plan.md:127@c3301 packages/dioxus-native-dom/src/snapshot.rs:159-161 → 171-176 — changed inside → claim false — raised at Validate (F2: `pressed` reads `toggled` off the five checkable roles only)
+- stretched .andromeda/security-plan.md:127@c3452 tests/blitz-tests/tests/accessibility_states.rs:128-220 → 134-243 — changed inside → claim false — raised at Validate (F2 `acc-states`)
+- stretched .andromeda/security-plan.md:129@c524 packages/blitz-dom/src/events/keyboard.rs:160-175 → 160-175 — changed inside → claim false — raised at Validate (F7 `disabled-any`: a site the report's pattern did not list — security-plan.md:129, raised by check 5)
+- stretched .andromeda/security-plan.md:129@c1014 packages/blitz-dom/src/events/keyboard.rs:177-191 → 177-191 — changed inside → claim false — raised at Validate (F7 `disabled-any`: security-plan.md:129)
+- stretched .andromeda/security-plan.md:130@c6298 tests/blitz-tests/tests/password_caret_click.rs:47-95 → 83-104 — changed inside → claim false — raised at Validate (F6 `pw-caret`)
+- held .andromeda/security-plan.md:229 .github/workflows/wpt-post-results.yml:29-49 — refused at 2026-10-10T01-56-50-wrap, not touched since «- name: Fin…» → holds — stands
+- held .andromeda/security-plan.md:344 packages/blitz-dom/src/layout/table.rs:535-539 — refused at 2026-10-13T15-50-37-wrap, not touched since «let Some(di…» → holds — stands
+- changed .andromeda/security-plan.md:355@c2773 packages/escher-driver/src/refusal.rs:77-82 → ? — the end rewritten → claim false — raised at Validate (`covered-limits`: the meaning with its `contain: paint` sentence)
+- held .andromeda/security-plan.md:378 examples/screenshot.rs:41-42 — refused at 2026-10-10T01-56-50-wrap, not touched since «let file_co…» → holds — stands
+- held .andromeda/design-system.md:36 examples/seven_guis/src/tasks/counter.rs:59-72 — refused at 2026-10-14T19-50-50-wrap, not touched since «background-…» → holds — stands
+- held .andromeda/design-system.md:46 examples/seven_guis/src/tasks/counter.rs:59-72 — refused at 2026-10-14T19-50-50-wrap, not touched since «background-…» → holds — stands
+- held .andromeda/design-system.md:134 tests/blitz-tests/Cargo.toml:17 — refused at 2026-10-10T01-56-50-wrap, not touched since «blitz-dom =…» → holds — stands
+- stretched .andromeda/design-system.md:216 packages/blitz-dom/src/node/node.rs:1471-1496 → 1498-1531 — changed inside → holds (the overflow stop; the stop at a `contain: paint` box is an addition, raised at Validate — the plan's design-system expected amendment)
+- stretched .andromeda/design-system.md:216 tests/blitz-tests/tests/hit_clipped_at_scrolling_box.rs:432-595 → 431-584 — changed inside → holds
+- stretched .andromeda/design-system.md:284 packages/blitz-dom/src/scrolling.rs:659-739 → 659-738 — changed inside → holds
+- stretched .andromeda/layout-templates.md:45 packages/blitz-dom/src/scrolling.rs:659-801 → 659-800 — changed inside → holds
+- stretched .andromeda/test-plan.md:18 tests/blitz-tests/tests/password_caret_click.rs:47-95 → 83-104 — changed inside → claim false — raised at Validate (F6 `pw-caret`)
+- stretched .andromeda/test-plan.md:21@c7382 packages/escher-driver/src/refusal.rs:209-347 → 212-352 — changed inside → holds
+- stretched .andromeda/test-plan.md:21@c7573 packages/escher-driver/src/json.rs:363-744 → 363-744 — changed inside → holds
+- stretched .andromeda/test-plan.md:24@c3974 packages/dioxus-native-dom/src/snapshot.rs:232-786 → 260-868 — changed inside → holds (the range; the lib test count raised as `dnd-69`)
+- stretched .andromeda/test-plan.md:26@c11450 tests/blitz-tests/tests/accessibility_states.rs:128-220 → 134-243 — changed inside → claim false — raised at Validate (F2 `acc-states`)
+- stretched .andromeda/test-plan.md:26@c31337 tests/blitz-tests/tests/hit_clipped_at_scrolling_box.rs:537-595 → 531-584 — changed inside → claim false — raised at Validate (F8 `client-rect-tf`)
+- stretched .andromeda/test-plan.md:26@c32572 tests/blitz-tests/tests/hit_clipped_at_scrolling_box.rs:188-401 → 187-400 — changed inside → claim false — raised at Validate (F5 · F4: «what stays measured and not fixed»)
+- stretched .andromeda/test-plan.md:26@c32637 tests/blitz-tests/tests/scrolled_box_absolute_position.rs:48-78 → 52-82 — changed inside → claim false — raised at Validate (F4 `abs-position`)
+- stretched .andromeda/test-plan.md:26@c40328 tests/blitz-tests/tests/stand_keyboard.rs:615-646 → 617-658 — changed inside → holds (a range of the test list)
+- stretched .andromeda/test-plan.md:26@c40481 tests/blitz-tests/tests/stand_keyboard.rs:743-764 → 755-782 — changed inside → holds (a range of the test list)
+- held .andromeda/test-plan.md:99@c1592 packages/dioxus-native-dom/src/snapshot.rs:530-577 — refused at 2026-10-13T23-23-45-wrap, not touched since «fn a_presen…» → holds — re-pointed by hand to 558-605 (the test moved with the chunk's three new unit tests above it)
+- stretched .andromeda/test-plan.md:143@c8792 packages/escher-driver/src/refusal.rs:209-347 → 212-352 — changed inside → holds
+- changed .andromeda/test-plan.md:181@c4486 packages/escher-driver/src/refusal.rs:77-82 → ? — the end rewritten → holds — re-pointed by hand to 78-83 (the one-axis sentence of `covered`'s meaning)
+- held .andromeda/test-plan.md:196 .github/workflows/wpt-post-results.yml:43-49 — refused at 2026-10-10T01-56-50-wrap, not touched since «- name: Pos…» → holds — stands
+- held .andromeda/obs-plan.md:41 packages/blitz/Cargo.toml:14 — refused at 2026-10-10T01-56-50-wrap, not touched since «default = […» → holds — stands
+- held .andromeda/a11y-plan.md:12 packages/blitz/Cargo.toml:14 — refused at 2026-10-10T01-56-50-wrap, not touched since «default = […» → holds — stands
+- held .andromeda/a11y-plan.md:16 tests/blitz-tests/Cargo.toml:17 — refused at 2026-10-10T01-56-50-wrap, not touched since «blitz-dom =…» → holds — stands
+- stretched .andromeda/a11y-plan.md:46 packages/blitz-dom/src/accessibility.rs:162-189 → 162-200 — changed inside → claim false — raised at Validate (F2 `aria-checked`)
+- changed .andromeda/a11y-plan.md:46 tests/blitz-tests/tests/accessibility_states.rs:188-220 → ? — the start rewritten → claim false — raised at Validate (F2 `aria-checked` · `acc-states`: the fourth test rewritten)
+- stretched .andromeda/a11y-plan.md:69 tests/blitz-tests/tests/accessibility_states.rs:128-220 → 134-243 — changed inside → claim false — raised at Validate (F2 `acc-states`)
+- stretched .andromeda/a11y-plan.md:103 packages/blitz-dom/src/accessibility.rs:298-360 → 313-376 — changed inside → holds (`role_from_name`; `switch` now among its names — raised with F2)
+- stretched .andromeda/a11y-plan.md:104 packages/blitz-dom/src/accessibility.rs:162-189 → 162-200 — changed inside → claim false — raised at Validate (F2 `aria-checked`)
+- changed .andromeda/a11y-plan.md:104 tests/blitz-tests/tests/accessibility_states.rs:188-220 → ? — the start rewritten → claim false — raised at Validate (F2 `aria-checked` · `acc-states`)
+- stretched .andromeda/a11y-plan.md:146 packages/blitz-dom/src/node/element.rs:702-734 → 708-740 — changed inside → claim false — raised at Validate (F7 `disabled-any`)
+- changed .andromeda/a11y-plan.md:146 packages/blitz-dom/src/node/element.rs:703 → ? — rewritten «let disabled = self.ha…» → claim false — raised at Validate (F7 `disabled-any`)
+- stretched .andromeda/a11y-plan.md:146 tests/blitz-tests/tests/stand_keyboard.rs:615-646 → 617-658 — changed inside → claim false — raised at Validate (F7 `disabled-any`)
+- changed .andromeda/a11y-plan.md:150 packages/blitz-dom/src/node/element.rs:703 → ? — rewritten «let disabled = self.ha…» → claim false — raised at Validate (F7 `disabled-any`)
+- changed .andromeda/a11y-plan.md:150 packages/blitz-dom/src/events/pointer.rs:330 → ? — rewritten «let disabled = el.at…» → claim false — raised at Validate (F7 `disabled-any`)
+- changed .andromeda/a11y-plan.md:150 packages/blitz-dom/src/events/pointer.rs:462 → ? — rewritten «Some(el) if el.has_a…» → claim false — raised at Validate (F7 `disabled-any`)
+- stretched .andromeda/a11y-plan.md:150 tests/blitz-tests/tests/stand_keyboard.rs:615-646 → 617-658 — changed inside → claim false — raised at Validate (F7 `disabled-any`)
+- stretched .andromeda/a11y-plan.md:168@c1316 packages/blitz-dom/src/events/keyboard.rs:160-175 → 160-175 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:168@c1367 packages/blitz-dom/src/events/keyboard.rs:177-191 → 177-191 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:188@c1635 tests/blitz-tests/tests/stand_keyboard.rs:743-764 → 755-782 — changed inside → claim false — raised at Validate (F1 `inert`)
+- stretched .andromeda/a11y-plan.md:215@c1341 tests/blitz-tests/tests/stand_keyboard.rs:615-646 → 617-658 — changed inside → claim false — raised at Validate (F7 `disabled-any`, a11y-plan.md:215)
+- stretched .andromeda/a11y-plan.md:215@c1494 tests/blitz-tests/tests/stand_keyboard.rs:743-764 → 755-782 — changed inside → claim false — raised at Validate (F1 `inert`, a11y-plan.md:215)
+- stretched .andromeda/a11y-plan.md:266 packages/blitz-dom/src/accessibility.rs:230-242 → 241-257 — changed inside → holds (the exclusion; an `inert` subtree now excluded beside it — raised with F1)
+- stretched .andromeda/a11y-plan.md:283@c740 packages/dioxus-native-dom/src/snapshot.rs:91-110 → 96-115 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:283@c1940 packages/dioxus-native-dom/src/snapshot.rs:59-69 → 63-74 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:283@c1990 packages/dioxus-native-dom/src/snapshot.rs:159-161 → 171-176 — changed inside → holds
+- stretched .andromeda/a11y-plan.md:283@c6766 tests/blitz-tests/tests/password_caret_click.rs:47-95 → 83-104 — changed inside → claim false — raised at Validate (F6 `pw-caret`)
+- stretched .andromeda/a11y-plan.md:283@c7666 packages/dioxus-native-dom/src/snapshot.rs:153-163 → 159-178 — changed inside → holds
+- out-of-range .claude/docs/session-learnings.md:135 host.rs:350 — the file held 225 lines at the base → curation home — P3

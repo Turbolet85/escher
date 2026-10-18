@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-18 — A sweep pattern's clause in a master's stock wording widens it past its fact
+A site-sweep pattern built from a fact's wording can carry a clause the masters also use as stock phrasing for unrelated facts: a CARRY pattern's `observed absent` clause matched 71 unrelated «observed absent» lines across five masters, and a `0 high` alternative matched «600 high». The pattern's count then measures the phrase, not the fact, and every extra row costs a disposition. Anchor such a clause to the fact's own name token (`observed absent: a test naming the builder's merged`) or drop it — a bare stock phrase belongs in no pattern.
+
+---
+
 ## 2026-10-17 — A leaf comparer cannot see a count its group's sources do not state
 `cascade.py leaves` groups a leaf by the masters its provenance names, and the comparer it spawns is told that a
 statement no source states is not its own. `.claude/docs/services/escher-driver.md` names architecture alone, yet it

@@ -1,0 +1,10 @@
+## 2026-10-18-engine-debts — the geometry readers: the hit at `contain: paint`, `absolute_position`, the client rect under transforms
+**Section:** §Standard Contracts → Scrolling, selection, tree (with the group `contract-scrolling-selection-tree`) · Document core (blitz-dom) · Nodes and widgets (with the group `contract-nodes-and-widgets`) · Paint and shell
+**Change:**
+- Scrolling, selection, tree: the hit walk stops at the padding box of a box paint clips — `overflow`, or a computed `contain` with `paint` on a box paint applies it to — was «the overflow half of paint's predicate» and «does not stop at a `contain: paint` box … still hit through»; `Node::absolute_position` adds the node's own location and subtracts its containing blocks' scroll through `position_in_containing_block`, `scroll_into_view` passing `(0.0, 0.0)`, a box at (40, 50) reading (40, 50) — was «(−30, −70) … left as it reads»; `get_client_bounding_rect` reads a transformed box where its transform moves it — was «at its layout position (0, 40, 300, 140)»; the residuals ownership of both retired readings dropped.
+- A new group: `get_client_bounding_rect` and `node_client_rects` through `transformed_bounds` (gated by `is_transformed_chain`, inline fragments through `transformed_fragment_rects`), `offset_rect`, `inline_fragment_rects`, `physical_unrounded_geometry` and `visible_region` unedited; the measured limit — `visible_region` reads a translated scrolling box untransformed — stated in `off-screen`'s meaning, owned by a `.andromeda/residuals.md` line.
+- Document core: `layout_as_text_input` has two callers — was «its one caller is blitz-paint's password mask».
+- Nodes and widgets: `ElementData::is_disabled` registered.
+- Paint and shell: a click places a password's caret by the bullets — was «by the real characters' widths … index 5 … 2», the C11 limit retired.
+**Why:** F4 A, F5 A, F6 A and F8 A — PROVISIONAL, delegate operator, as the batch entry states; the `visible_region` limit is the plan's forecast measured, its residuals line the P5 card's row 3.
+**Ref:** .andromeda/runs/2026-10-18T04-30-47-wrap/

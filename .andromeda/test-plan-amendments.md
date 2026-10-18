@@ -667,3 +667,23 @@ One entry per amendment to `test-plan.md` (sidecar-contract.md §Entry form). Ap
 - Rust tests: the merged checks return `TestResult<()>` and assert with `verify_that!` under the same `#[test]` harness.
 **Why:** the keyboard-types 0.8 move and the test-that bump, both taken by the sync.
 **Ref:** .andromeda/runs/2026-10-17T15-18-19-wrap/
+## 2026-10-18-engine-debts — §1 coverage: the five new checks, the fixes' checks restated, the CARRY observed present
+**Section:** §1 Test Scope Summary (blitz-paint · escher-driver · dioxus-native-dom · tests/blitz-tests)
+**Change:**
+- blitz-paint: `password_caret_click` was 1, pinning index 5 and 2 «by the real characters' widths»; now 2 — one index for two values of one length, a double click selecting the whole value.
+- escher-driver: the executor covered by fourteen `stand_act_*` files (was thirteen).
+- dioxus-native-dom: was 69 unit tests; now 72, three on the toggle's sources and `aria-disabled`; the `disabled` snapshot pin's gloss reads presence on a form control (was «in every document»).
+- tests/blitz-tests: `accessibility_states` 4 → 5, `aria-checked` read on the checkable roles alone and neither attribute on a native checkbox or radio; the «observed absent» merged-ARIA clause gives way to `accessibility_merged_states` 3; added `accessibility_active_descendant_unread` 1, `inert_subtree` 4, `transformed_client_rect` 4 and `stand_act_transformed` 2; `hit_clipped_at_scrolling_box` reads a `contain: paint` box stopping the hit, `scrolled_box_absolute_position` a scrolled box where it stands, the transformed box's client rect where its transform moves it — «what stays measured and not fixed» retired; `stand_keyboard`'s `disabled` and `inert` readings restated; the falsy-`inert` clause: a truthy one honoured.
+**Why:** the chunk's checks; the merged reads were the CARRY this chunk discharged.
+**Kept:** two «observed absent» claims a detector proposed — the password click's shift-click and triple-click branches, and a disabled `summary` or link activating — were returned at Validate, no search behind them; a later chunk's report may carry them.
+**Ref:** .andromeda/runs/2026-10-18T04-30-47-wrap/
+## 2026-10-18-engine-debts — §2–§10 counts and the harness readings
+**Section:** §2 Test Strategy (Directory pattern) · §3 Test Harness Contract (Inspection helpers · Crate-local test helpers · → `session-lifecycle`, its `session-proof` label) · §4 Unit Test Strategy · §5 Integration Test Strategy (Session ↔ held instance) · §9 CI Integration (Legs) · §10 Quality Gates (Flakiness budget)
+**Change:**
+- blitz-tests: was 127 `.rs` files and 126 targets; now 132 and 131, the five new each its own target with no manifest line.
+- `session_common` readers: was 21; now 22. `stand_act_*`: was thirteen; now fourteen, in §2, §3, §4, §5 and the key file, whose total reads 50 (was 48), `stand_act_transformed` 2.
+- `stand_*.rs` files run by `stand-repeat`: was 40; now 41.
+- Inspection helpers: `layout_rect`, `layout_rect_of` and `center_of` read a scrolled box where it stands (was «less its own scroll offset … (−30, −70) … C14»).
+- Session ↔ held instance: `covered`'s two measured readings are the no-area and the one-axis ones (was `contain: paint` and the one-axis); `stand_act_transformed` added.
+**Why:** the chunk's new files and F4's fix (PROVISIONAL, delegate operator); no harness verb, status shape or log format moved. The §9 per-OS tallies were not read by the report and stand as dated.
+**Ref:** .andromeda/runs/2026-10-18T04-30-47-wrap/

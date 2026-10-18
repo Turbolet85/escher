@@ -1,0 +1,53 @@
+[[pattern]]
+id = 'inert-none'
+regex = 'honou?rs? no `?inert|honours neither|honouring no|inert` is not implemented|takes no focusability away|the_engine_honours_no_inert|whether an inert subtree (still )?takes a hit'
+ignore_case = true
+
+[[pattern]]
+id = 'checked-unread'
+regex = 'aria-checked` (is not read|sets none|setting none)|no role (is )?consulted|whatever its role|exactly its `aria-pressed` reading|a_?ria_checked_sets_none_of_the_three|states no checked reading'
+ignore_case = true
+
+[[pattern]]
+id = 'disabled-any'
+regex = 'on any element remove|of any value (is )?skipped|div disabled tabindex=0>` (is not focusable|limit|known limit)|carries no `disabled` attribute|with no `disabled` attribute|`disabled` attribute still stop|a_disabled_attribute_of_any_value_is_skipped|focusability read by presence in every document'
+ignore_case = true
+
+[[pattern]]
+id = 'contain-through'
+regex = 'still hit through|a hit (still )?reaches content clipped|not at a `contain: paint` box|does not stop at a `contain: paint`|a_contain_paint_box_with_visible_overflow_is_still_hit_through|`contain: paint` one'
+ignore_case = true
+
+[[pattern]]
+id = 'abs-pos'
+regex = '−30, −70|-30, -70|less (the box.s|its) own scroll|left as it reads|`Node::absolute_position` (pinned as it reads|measured and left)|is not edited: for a box that is itself scrolled'
+ignore_case = true
+
+[[pattern]]
+id = 'rect-layout'
+regex = '0, 40, 300, 140|at its layout position|not where (its|the) transform moves'
+ignore_case = true
+
+[[pattern]]
+id = 'pw-real'
+regex = 'real characters.? widths|index 5 after eight|by the real characters|places_the_caret_by_the_real_characters'
+ignore_case = true
+
+[[pattern]]
+id = 'covered-two'
+regex = 'two readings (as|are still|stay as)|readings are still off'
+ignore_case = true
+
+[[pattern]]
+id = 'counts'
+regex = 'thirteen `stand_act|thirteen driver-action|127 `\.rs`|126 test targets|twenty-one readers|21 readers|by 21 checks|`stand_\*\.rs` — 40 files|the 40 `stand_|69 unit tests'
+ignore_case = true
+
+[[pattern]]
+id = 'merged-absent'
+regex = 'observed absent: a test naming the builder.s merged|no test names any of the three'
+ignore_case = true
+
+[[pattern]]
+id = 'owners'
+regex = 'C7 «|C11 «|C14 «|C4 «|C15 «|F3 «Оставить, перенести'

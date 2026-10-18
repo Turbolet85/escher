@@ -1,0 +1,2 @@
+proposals: []
+note: D-layout-surface holds — the report's Changes add no user-facing surface or region (engine behaviour changes F1–F8, the driver's reworded fixed texts, five new and five rewritten checks; "No stand file ... moved"); the sweep's layout-templates.md:10 rows stay true (`aria-activedescendant` unread, now pinned by `accessibility_active_descendant_unread` — naming the check there is optional, not drift) and the `covered-noarea` hit at :10 is a token match on «600 high».

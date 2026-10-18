@@ -1,0 +1,90 @@
+[[pattern]]
+id = 'title'
+fixed = 'Engine debts'
+ignore_case = true
+
+[[pattern]]
+id = 'owner-generic'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true
+
+[[pattern]]
+id = 'inert'
+regex = '\binert\b|honours no|the_engine_honours_no_inert|an_inert_subtree_is_skipped_by_tab|inert_subtree|focus fixup'
+
+[[pattern]]
+id = 'aria-checked'
+regex = 'aria-checked|checkable|Role::Switch|role="switch"|native checkedness'
+
+[[pattern]]
+id = 'active-desc'
+regex = 'aria-activedescendant|active_descendant|accessibility_active_descendant_unread'
+
+[[pattern]]
+id = 'abs-position'
+regex = 'absolute_position|scrolled_box_absolute_position|−30, −70|-30, -70'
+
+[[pattern]]
+id = 'contain-paint'
+regex = 'contain: ?paint|Contain::PAINT|a_contain_paint_box'
+
+[[pattern]]
+id = 'pw-caret'
+regex = 'password_caret_click|caret by the|index 5 after|width class'
+
+[[pattern]]
+id = 'disabled-any'
+regex = 'a_disabled_attribute|<div disabled|disabled tabindex|by (its )?presence|can_be_disabled|is_disabled'
+
+[[pattern]]
+id = 'client-rect-tf'
+regex = 'get_client_bounding_rect|transformed_client_rect|stand_act_transformed|transform moves it|layout position'
+
+[[pattern]]
+id = 'covered-noarea'
+regex = 'task-header-spacer|no width or no height|zero-height|refused_at_boot|0 high'
+
+[[pattern]]
+id = 'covered-limits'
+regex = 'two readings|readings are known to be off|one axis|covered.s meaning'
+ignore_case = true
+
+[[pattern]]
+id = 'offscreen'
+regex = 'visible_region|off-screen'
+
+[[pattern]]
+id = 'merged-aria'
+regex = 'aria-expanded|aria-disabled|aria-level|accessibility_merged_states|observed absent'
+
+[[pattern]]
+id = 'files-127'
+regex = '12[67] (files|targets|test targets|test files)'
+
+[[pattern]]
+id = 'stand-40'
+regex = '\b40 (files|stand)|run stand'
+
+[[pattern]]
+id = 'sc-readers'
+regex = '21 readers|session_common. readers|\(21 '
+
+[[pattern]]
+id = 'stand-act-13'
+regex = 'thirteen driver-action|stand_act_\*|13 stand_act'
+
+[[pattern]]
+id = 'dnd-69'
+regex = '69 (unit )?tests|69 passed'
+
+[[pattern]]
+id = 'acc-states'
+regex = 'accessibility_states'
+
+[[pattern]]
+id = 'merge-surface'
+regex = 'merge surface|23b9b26a9'
+
+[[pattern]]
+id = 'provisional'
+regex = 'PROVISIONAL|Provisional discharge|delegate operator'

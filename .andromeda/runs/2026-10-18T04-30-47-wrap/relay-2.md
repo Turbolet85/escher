@@ -1,0 +1,3 @@
+# relay-2 — the operator's second correction inside F2 A and the operator-pass direction, in the implementing session (2026-10-18, about 04:03Z), verbatim
+
+Yes, add that condition: a native checkbox or radio takes neither aria-checked nor aria-pressed (HTML-AAM). Cover it in accessibility_states, re-fire it and the a11y, fast and coverage legs. Then run the operator pass, each entry by hand in plan order: entry 29 hygiene; the commit with EXACTLY this subject "chore(2026-10-18-engine-debts): operator pre-CI commit, for the run this chunk verdict reads"; entry 30 via gate.py run --operator 30 in the background; entry 31 as written. Record it in evidence/operator-pass.md. Stop and tell me if any entry is red; start no wrap.
