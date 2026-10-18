@@ -1,0 +1,114 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "35400ea8",
+"ts": "2026-10-18T03:15:53Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.2.0",
+"--run-dir",
+".andromeda/runs/2026-10-18T02-38-20-phase",
+"--marker",
+"2026-10-18-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 2/11 · deferred 0 · planned 9 · implemented 0 · unclaimed 9",
+"unclaimed: v020-03 v020-04 v020-05 v020-06 v020-07 v020-08 v020-09 v020-10 v020-11",
+"claimed-unfinished: none",
+"done-test: NO — 9 not verified|deferred · unclaimed 9",
+"chunks referenced: 2 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "35400ea8",
+"ts": "2026-10-18T03:15:58Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.2.0",
+"--id",
+"v020-03",
+"--chunk",
+"2026-10-18-engine-debts",
+"--acceptance-file",
+".andromeda/runs/2026-10-18T02-38-20-phase/acceptance-v020-03.md",
+"--gated-file",
+".andromeda/runs/2026-10-18T02-38-20-phase/gated-v020-03.md",
+"--note-file",
+".andromeda/runs/2026-10-18T02-38-20-phase/note-claim-v020-03.md",
+"--run-dir",
+".andromeda/runs/2026-10-18T02-38-20-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v020-03 → chunk 2026-10-18-engine-debts (was null; status planned kept)",
+"acceptance: Each of the nine recorded engine debts carries the founder's recorded … (349 chars)",
+"         → Each of the nine engine debts `.andromeda/residuals.md` marks `absorbe… (1876 chars)",
+"gated: the founder's own word discharging this chunk's PROVISIONAL batch at its wrap, t… (329 chars)",
+"notes: +451 chars (total 451)",
+"wrote escher-0.2.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 8 [v020-04 v020-05 v020-06 v020-07 v020-08 v020-09 v020-10 v020-11]"
+],
+"stderr": null,
+"wrote": [
+"escher-0.2.0/verification-matrix.json"
+],
+"before": {
+"id": "v020-03",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "Each of the nine recorded engine debts carries the founder's recorded answer, and its outcome matches that answer: a fix… (349 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v020-03",
+"chunk": "2026-10-18-engine-debts",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "Each of the nine engine debts `.andromeda/residuals.md` marks `absorbed:v020-03` carries the founder's recorded answer, … (1876 chars)",
+"notes_chars": 451
+}
+},
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "35400ea8",
+"ts": "2026-10-18T03:15:58Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.2.0",
+"--chunk",
+"2026-10-18-engine-debts",
+"--plan",
+"escher-0.2.0/chunks/2026-10-18-engine-debts/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-18T02-38-20-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-18-engine-debts: 1 · ## Acceptance Criteria: line 462, 45 lines",
+"v020-03: cited in ## Acceptance Criteria (line 475)",
+"pool: unclaimed 8 [v020-04 v020-05 v020-06 v020-07 v020-08 v020-09 v020-10 v020-11]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

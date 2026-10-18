@@ -160,7 +160,7 @@ fn press_range_input_key(
 /// https://html.spec.whatwg.org/multipage/interaction.html#activation-behaviour:
 /// Enter activates a button, a submit, reset or button input, a link and a summary.
 fn activates_on_enter(element: &ElementData) -> bool {
-    if element.has_attr(local_name!("disabled")) {
+    if element.is_disabled() {
         return false;
     }
     match element.name.local {
@@ -177,7 +177,7 @@ fn activates_on_enter(element: &ElementData) -> bool {
 /// Space activates a button, a submit, reset, button, checkbox or radio input and a summary;
 /// a link takes no Space.
 fn activates_on_space(element: &ElementData) -> bool {
-    if element.has_attr(local_name!("disabled")) {
+    if element.is_disabled() {
         return false;
     }
     match element.name.local {

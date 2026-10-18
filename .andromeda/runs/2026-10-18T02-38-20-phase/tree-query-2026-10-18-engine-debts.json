@@ -1,0 +1,310 @@
+[
+{
+"sql": "SELECT callee_name, caller_name, file, line FROM calls WHERE callee_name IN ('absolute_position','flush_is_focussable','get_client_bounding_rect','is_focussable','physical_unrounded_geometry') AND callee_kind = 'fn' AND callee_file LIKE 'packages/blitz-dom/%' ORDER BY callee_name, file, line",
+"rows": 50,
+"result": [
+{
+"callee_name": "absolute_position",
+"caller_name": "handle_dom_event",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 108
+},
+{
+"callee_name": "absolute_position",
+"caller_name": "focus",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 731
+},
+{
+"callee_name": "absolute_position",
+"caller_name": "absolute_position",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1688
+},
+{
+"callee_name": "absolute_position",
+"caller_name": "synthetic_click_event_data",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1928
+},
+{
+"callee_name": "absolute_position",
+"caller_name": "scroll_into_view",
+"file": "packages/blitz-dom/src/scrolling.rs",
+"line": 719
+},
+{
+"callee_name": "absolute_position",
+"caller_name": "layout_rect_of",
+"file": "packages/blitz-test-harness/src/inspect.rs",
+"line": 59
+},
+{
+"callee_name": "absolute_position",
+"caller_name": "write_node",
+"file": "packages/blitz-test-harness/src/inspect.rs",
+"line": 141
+},
+{
+"callee_name": "absolute_position",
+"caller_name": "hover",
+"file": "tests/blitz-tests/tests/anonymous_block_restyle.rs",
+"line": 99
+},
+{
+"callee_name": "absolute_position",
+"caller_name": "absolute_position",
+"file": "tests/blitz-tests/tests/scrolled_box_absolute_position.rs",
+"line": 43
+},
+{
+"callee_name": "absolute_position",
+"caller_name": "hover_keeps_working_after_undamaged_subtree_restyle",
+"file": "tests/blitz-tests/tests/stale_dirty_descendants.rs",
+"line": 80
+},
+{
+"callee_name": "absolute_position",
+"caller_name": "hover_keeps_working_after_undamaged_subtree_restyle",
+"file": "tests/blitz-tests/tests/stale_dirty_descendants.rs",
+"line": 89
+},
+{
+"callee_name": "absolute_position",
+"caller_name": "hover_keeps_working_after_undamaged_subtree_restyle",
+"file": "tests/blitz-tests/tests/stale_dirty_descendants.rs",
+"line": 99
+},
+{
+"callee_name": "flush_is_focussable",
+"caller_name": "set_attribute",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 344
+},
+{
+"callee_name": "flush_is_focussable",
+"caller_name": "clear_attribute",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 482
+},
+{
+"callee_name": "flush_is_focussable",
+"caller_name": "new",
+"file": "packages/blitz-dom/src/node/element.rs",
+"line": 439
+},
+{
+"callee_name": "get_client_bounding_rect",
+"caller_name": "node_client_rects",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2462
+},
+{
+"callee_name": "get_client_bounding_rect",
+"caller_name": "adjust_element_coords",
+"file": "packages/blitz-dom/src/events/driver.rs",
+"line": 366
+},
+{
+"callee_name": "get_client_bounding_rect",
+"caller_name": "get_bounding_client_rect",
+"file": "packages/blitz-vibey-script/src/dom/element.rs",
+"line": 1415
+},
+{
+"callee_name": "get_client_bounding_rect",
+"caller_name": "get_client_rect",
+"file": "packages/dioxus-native-dom/src/events.rs",
+"line": 222
+},
+{
+"callee_name": "get_client_bounding_rect",
+"caller_name": "visit",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 139
+},
+{
+"callee_name": "get_client_bounding_rect",
+"caller_name": "edges",
+"file": "tests/blitz-tests/tests/hit_clipped_at_scrolling_box.rs",
+"line": 79
+},
+{
+"callee_name": "get_client_bounding_rect",
+"caller_name": "bounding_rect_is_union_of_fragments",
+"file": "tests/blitz-tests/tests/inline_fragment_rects.rs",
+"line": 67
+},
+{
+"callee_name": "get_client_bounding_rect",
+"caller_name": "fragments_include_nested_inline_and_atomic_children",
+"file": "tests/blitz-tests/tests/inline_fragment_rects.rs",
+"line": 86
+},
+{
+"callee_name": "get_client_bounding_rect",
+"caller_name": "block_elements_return_single_rect",
+"file": "tests/blitz-tests/tests/inline_fragment_rects.rs",
+"line": 116
+},
+{
+"callee_name": "get_client_bounding_rect",
+"caller_name": "target_edges",
+"file": "tests/blitz-tests/tests/scroll_into_view_nested.rs",
+"line": 107
+},
+{
+"callee_name": "get_client_bounding_rect",
+"caller_name": "reader_holds_the_target",
+"file": "tests/blitz-tests/tests/scroll_into_view_nested.rs",
+"line": 116
+},
+{
+"callee_name": "get_client_bounding_rect",
+"caller_name": "rect",
+"file": "tests/blitz-tests/tests/scrolled_box_client_rect.rs",
+"line": 106
+},
+{
+"callee_name": "get_client_bounding_rect",
+"caller_name": "controls_lie_inside_the_viewport",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 199
+},
+{
+"callee_name": "get_client_bounding_rect",
+"caller_name": "node_center",
+"file": "tests/blitz-tests/tests/text_selection_anonymous_block.rs",
+"line": 92
+},
+{
+"callee_name": "is_focussable",
+"caller_name": "focus_next_node",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1740
+},
+{
+"callee_name": "is_focussable",
+"caller_name": "focus_prev_node",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1748
+},
+{
+"callee_name": "is_focussable",
+"caller_name": "process_added_subtree",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 1041
+},
+{
+"callee_name": "is_focussable",
+"caller_name": "unkeyed_actionable",
+"file": "packages/dioxus-native-dom/src/actionable.rs",
+"line": 69
+},
+{
+"callee_name": "is_focussable",
+"caller_name": "a_present_disabled_attribute_reads_not_enabled_and_not_focusable_whatever_its_value",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 562
+},
+{
+"callee_name": "is_focussable",
+"caller_name": "a_tabindex_set_after_creation_takes_effect",
+"file": "tests/blitz-tests/tests/focusability_updates.rs",
+"line": 37
+},
+{
+"callee_name": "is_focussable",
+"caller_name": "a_tabindex_set_after_creation_takes_effect",
+"file": "tests/blitz-tests/tests/focusability_updates.rs",
+"line": 42
+},
+{
+"callee_name": "is_focussable",
+"caller_name": "removing_it_takes_the_focusability_away_again",
+"file": "tests/blitz-tests/tests/focusability_updates.rs",
+"line": 51
+},
+{
+"callee_name": "is_focussable",
+"caller_name": "removing_it_takes_the_focusability_away_again",
+"file": "tests/blitz-tests/tests/focusability_updates.rs",
+"line": 55
+},
+{
+"callee_name": "is_focussable",
+"caller_name": "disabling_it_takes_it_out_of_both",
+"file": "tests/blitz-tests/tests/focusability_updates.rs",
+"line": 66
+},
+{
+"callee_name": "is_focussable",
+"caller_name": "disabling_it_takes_it_out_of_both",
+"file": "tests/blitz-tests/tests/focusability_updates.rs",
+"line": 74
+},
+{
+"callee_name": "is_focussable",
+"caller_name": "a_bare_disabled_set_after_creation_takes_the_focusability_away",
+"file": "tests/blitz-tests/tests/focusability_updates.rs",
+"line": 81
+},
+{
+"callee_name": "is_focussable",
+"caller_name": "a_bare_disabled_set_after_creation_takes_the_focusability_away",
+"file": "tests/blitz-tests/tests/focusability_updates.rs",
+"line": 94
+},
+{
+"callee_name": "is_focussable",
+"caller_name": "actionable_count",
+"file": "tests/blitz-tests/tests/stand_actionable_keys.rs",
+"line": 67
+},
+{
+"callee_name": "is_focussable",
+"caller_name": "a_disabled_control_reads_disabled_until_the_app_enables_it",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"line": 217
+},
+{
+"callee_name": "physical_unrounded_geometry",
+"caller_name": "get_client_bounding_rect",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2380
+},
+{
+"callee_name": "physical_unrounded_geometry",
+"caller_name": "offset_rect",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2440
+},
+{
+"callee_name": "physical_unrounded_geometry",
+"caller_name": "inline_fragment_rects",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2482
+},
+{
+"callee_name": "physical_unrounded_geometry",
+"caller_name": "resolved_style_value",
+"file": "packages/blitz-dom/src/resolved_style.rs",
+"line": 508
+},
+{
+"callee_name": "physical_unrounded_geometry",
+"caller_name": "resolved_style_value",
+"file": "packages/blitz-dom/src/resolved_style.rs",
+"line": 520
+},
+{
+"callee_name": "physical_unrounded_geometry",
+"caller_name": "visible_region",
+"file": "packages/blitz-dom/src/scrolling.rs",
+"line": 773
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

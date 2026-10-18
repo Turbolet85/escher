@@ -43,3 +43,6 @@
 - recurrence-despite-learning: host-linux «Paths & the working directory». A bare `cd` into a run dir moved this window's cwd, and the guard refused three such `cd`s at the earlier windows.
 - A Tier 3 entry cites `host.rs:350` (`.claude/docs/session-learnings.md:135`), past the end of the file it named at the base. Which file it meant is unmeasured; it was left as it stands.
 - 1 carried from earlier handoffs, not this session's to curate: read a CI job's verdict with `ci.py`, not a log pattern (confidence 0.7).
+
+## Session End Status
+Completed normally at 2026-10-18 05:16:45

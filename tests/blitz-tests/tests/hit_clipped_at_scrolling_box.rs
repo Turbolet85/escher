@@ -9,14 +9,13 @@
 //! answers what shows there; a point inside the box answers the row showing there, scrolled or
 //! not; an `overflow: hidden` box scrolled by a program and an `overflow: clip` box read the
 //! same; a box clipped on one axis only is stopped at its whole padding box, as paint clips it;
-//! an `overflow: visible` box's overflowing content is still hit outside the box; and a
-//! scrolled box's overlay scrollbar thumb is still resolved. *What the walk does not stop at,
-//! pinned as it reads on the engine as built (2026-10-10):* a `contain: paint` box whose
-//! `overflow` is `visible` — paint clips its content, and a hit reaches the clipped-out
-//! content. *Three boxes of their own, measured (2026-10-14):* a hit at an image answers the
-//! image, a hit inside an iframe's `srcdoc` sub-document answers the iframe, and a hit inside a
-//! filled text input answers the input. A box both transformed and scrolled is hit at the row
-//! showing where the row shows, and inside the box where a scrolled-out row would lie
+//! a `contain: paint` box whose `overflow` is `visible` is stopped at its padding box too, as
+//! paint clips it; an `overflow: visible` box's overflowing content is still hit outside the
+//! box; and a scrolled box's overlay scrollbar thumb is still resolved. *Three boxes of their
+//! own, measured (2026-10-14):* a hit at an image answers the image, a hit inside an iframe's
+//! `srcdoc` sub-document answers the iframe, and a hit inside a filled text input answers the
+//! input. A box both transformed and scrolled is hit at the row showing where the row shows,
+//! where its client rect reads it, and inside the box where a scrolled-out row would lie
 //! unscrolled it answers the box. A failure message carries the layout mode and the page, never
 //! a coordinate.
 
@@ -372,12 +371,12 @@ fn a_scrolled_box_overlay_scrollbar_thumb_is_still_resolved() {
     }
 }
 
-/// What the hit walk does not stop at. Paint clips the content of a `contain: paint` box to
-/// its padding box whatever its `overflow`; the hit takes paint's `overflow` rule only. The
-/// reading is pinned as measured on the engine as built (2026-10-10): this check turns red by
-/// design if the walk is made to stop at such a box, and is then restated.
+/// Paint clips the content of a `contain: paint` box to its padding box whatever its
+/// `overflow`, and the hit stops where paint clips: the content clipped away below the box is
+/// not reached. Before the fix (measured 2026-10-10) the hit took paint's `overflow` rule only
+/// and answered the clipped-out row.
 #[test]
-fn a_contain_paint_box_with_visible_overflow_is_still_hit_through() {
+fn a_contain_paint_box_stops_the_hit_at_its_padding_box() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: rows in a contain:paint box");
         let doc = page(&rows_page("contain:paint"), incremental);
@@ -394,8 +393,8 @@ fn a_contain_paint_box_with_visible_overflow_is_still_hit_through() {
         assert_an_overflowing_row_extends_below_the_box(&doc, &at, &mode);
 
         assert!(
-            answer(&doc, at.below) == Some(node(&doc, "#row-4")),
-            "{mode}: the hit below the box answers the row paint clips away there"
+            answer(&doc, at.below) == Some(node(&doc, "#stage")),
+            "{mode}: the hit below the box answers the stage, not the row paint clips away there"
         );
     }
 }
@@ -529,26 +528,21 @@ const TRANSFORMED_PAGE: &str = r#"<html><body style="margin:0">
     </div>
 </body></html>"#;
 
-/// `point` moved by the box's transform: from where the client rects read to where it shows.
-fn moved(point: (f64, f64)) -> (f64, f64) {
-    (point.0 + MOVED.0, point.1 + MOVED.1)
-}
-
 /// The walk tests a box's own area and its padding box on the point carried through its inverse
 /// transform, unscrolled, and its content on that point scrolled: a box both transformed and
 /// scrolled is hit at the row showing where the row shows, and a point inside the box where a
 /// scrolled-out row would lie unscrolled answers the box. The client rects read each element
-/// where layout puts it, before the transform (measured 2026-10-14), so the points are those
-/// rects' points moved by the transform.
+/// where it shows, moved by the transform — before the fix (measured 2026-10-14) they read it
+/// where layout puts it — so the points are those rects' own points.
 #[test]
 fn a_box_both_transformed_and_scrolled_is_hit_where_its_rows_show() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: rows in a transformed overflow:auto box");
         let mut doc = page(TRANSFORMED_PAGE, incremental);
-        let laid_out = edges(&doc, "#box");
+        let shows_at = edges(&doc, "#box");
         assert!(
-            laid_out == (0.0, 40.0, 300.0, 140.0),
-            "{mode}: the box's client rect reads where layout puts it"
+            shows_at == (MOVED.0, 40.0 + MOVED.1, 300.0 + MOVED.0, 140.0 + MOVED.1),
+            "{mode}: the box's client rect reads where the transform moves it"
         );
         let unscrolled_first_row = edges(&doc, "#row-0");
         scroll_the_box(&mut doc);
@@ -557,26 +551,21 @@ fn a_box_both_transformed_and_scrolled_is_hit_where_its_rows_show() {
             "{mode}: the box is scrolled by the offset asked and the viewport is not"
         );
         assert!(
-            edges(&doc, "#box") == laid_out,
+            edges(&doc, "#box") == shows_at,
             "{mode}: the scrolled box reads where it stands"
         );
-        let (top_left, bottom_right) = (
-            moved((laid_out.0, laid_out.1)),
-            moved((laid_out.2, laid_out.3)),
-        );
-        let shows_at = (top_left.0, top_left.1, bottom_right.0, bottom_right.1);
 
         let row = centre_of(&doc, "#row-8");
         assert!(
-            inside(row, laid_out),
+            inside(row, shows_at),
             "{mode}: the ninth row shows inside the box"
         );
         assert!(
-            answer(&doc, moved(row)) == Some(node(&doc, "#row-8")),
+            answer(&doc, row) == Some(node(&doc, "#row-8")),
             "{mode}: the hit where the ninth row's centre shows answers the row"
         );
 
-        let beside_the_rows = (laid_out.0 + 250.0, laid_out.1 + 20.0);
+        let beside_the_rows = (shows_at.0 + 250.0, shows_at.1 + 20.0);
         assert!(
             inside(beside_the_rows, unscrolled_first_row)
                 && !inside(beside_the_rows, edges(&doc, "#row-7")),
@@ -584,11 +573,11 @@ fn a_box_both_transformed_and_scrolled_is_hit_where_its_rows_show() {
              showing there"
         );
         assert!(
-            inside(moved(beside_the_rows), shows_at),
-            "{mode}: moved by the transform, the point lies inside the box as it shows"
+            inside(beside_the_rows, shows_at),
+            "{mode}: the point lies inside the box as it shows"
         );
         assert!(
-            answer(&doc, moved(beside_the_rows)) == Some(node(&doc, "#box")),
+            answer(&doc, beside_the_rows) == Some(node(&doc, "#box")),
             "{mode}: the hit there answers the box, not a row"
         );
     }

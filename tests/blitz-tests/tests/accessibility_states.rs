@@ -1,19 +1,25 @@
-//! The accessibility tree reads three ARIA states from an element's markup, by value:
-//! `aria-selected` as its node's `selected`, `aria-pressed` as its `toggled` and `aria-invalid`
-//! as its `invalid`.
+//! The accessibility tree reads ARIA states from an element's markup, by value: `aria-selected`
+//! as its node's `selected`, `aria-invalid` as its `invalid`, and as its `toggled` the
+//! `aria-checked` of an element whose role is `checkbox`, `switch`, `radio`, `menuitemcheckbox`
+//! or `menuitemradio` and the `aria-pressed` of every other element.
 //!
 //! The builder read `aria-label` and `aria-hidden` and no state, so a control that stated
 //! itself selected, pressed or invalid read the same as one that did not. On parsed pages at a
 //! fixed 800 × 600 viewport, in both layout modes: each value of an attribute's grammar reads
 //! the property stated for it; a value is compared trimmed, exactly and in lower case, so
-//! `TRUE` is a value of none of the three; an `aria-invalid` value outside its grammar reads
+//! `TRUE` is a value of none of them; an `aria-invalid` value outside its grammar reads
 //! invalid, as the specification rules; a value of several thousand characters builds the tree
-//! like any other and is nowhere in it; an element whose role does not support an attribute
-//! reads as one whose role does; each attribute sets its own property alone; and `aria-checked`
-//! sets none of the three.
+//! like any other and is nowhere in it; an element whose role does not support `aria-selected`,
+//! `aria-pressed` or `aria-invalid` reads it as one whose role does; each attribute sets its own
+//! property alone; and AccessKit's one `toggled` property takes `aria-checked` on the five
+//! checkable roles alone, where `aria-pressed` sets nothing, and `aria-pressed` everywhere else,
+//! where `aria-checked` sets nothing — but for a native checkbox or radio `input`, which keeps
+//! its own checkedness and whose `aria-checked` and `aria-pressed` set nothing whatever its role.
+//! <https://www.w3.org/TR/html-aria/#docconformance>
 //!
 //! <https://www.w3.org/TR/wai-aria-1.2/#aria-selected>
 //! <https://www.w3.org/TR/wai-aria-1.2/#aria-pressed>
+//! <https://www.w3.org/TR/wai-aria-1.2/#aria-checked>
 //! <https://www.w3.org/TR/wai-aria-1.2/#aria-invalid>
 
 use accesskit::{Invalid, NodeId, Role, Toggled, TreeUpdate};
@@ -185,36 +191,126 @@ fn aria_invalid_reads_its_values_and_an_unrecognized_one_as_true() {
     assert_rows("aria-invalid", INPUT, &rows);
 }
 
-#[test]
-fn aria_checked_sets_none_of_the_three() {
-    let supporting = [BUTTON, OPTION, INPUT];
-    let values = [Some("true"), Some("false"), Some("mixed")];
+/// The five roles whose toggle is their `aria-checked`, each as an element stating it.
+const CHECKABLE: [Supporting; 5] = [
+    (r#"<div role="checkbox""#, "</div>", Role::CheckBox),
+    (r#"<div role="switch""#, "</div>", Role::Switch),
+    (r#"<div role="radio""#, "</div>", Role::RadioButton),
+    (
+        r#"<div role="menuitemcheckbox""#,
+        "</div>",
+        Role::MenuItemCheckBox,
+    ),
+    (
+        r#"<div role="menuitemradio""#,
+        "</div>",
+        Role::MenuItemRadio,
+    ),
+];
+
+/// Asserts, in both layout modes, that on each element of `supporting` every row's value of
+/// `attribute` reads the states stated for it, and the plain `div` beside it the states stated
+/// for a plain element: a row is its value, then the two readings.
+#[track_caller]
+fn assert_rows_on_roles(
+    attribute: &str,
+    supporting: &[Supporting],
+    rows: &[(Option<&str>, States, States)],
+) {
+    let values: Vec<Option<&str>> = rows.iter().map(|(value, _, _)| *value).collect();
     for incremental in [false, true] {
-        for (element, supporting) in supporting.into_iter().enumerate() {
-            let mode = format!("incremental={incremental}: element {element}");
-            let doc = page(&carriers("aria-checked", supporting, &values), incremental);
+        for (element, supporting) in supporting.iter().enumerate() {
+            let mode = format!("incremental={incremental}: {attribute}: element {element}");
+            let doc = page(&carriers(attribute, *supporting, &values), incremental);
             let tree = doc.build_accessibility_tree();
-            for row in 0..values.len() {
+            for (row, (_, stated, on_a_plain)) in rows.iter().enumerate() {
                 let (role, on_supporting) = read(&doc, &tree, &format!("s{row}"));
                 assert_eq!(role, supporting.2, "{mode}: row {row}, the fixture's role");
-                assert_eq!(on_supporting, NOTHING, "{mode}: row {row}");
+                assert_eq!(on_supporting, *stated, "{mode}: row {row}");
                 let (_, on_plain) = read(&doc, &tree, &format!("p{row}"));
-                assert_eq!(on_plain, NOTHING, "{mode}: row {row} on the plain element");
+                assert_eq!(
+                    on_plain, *on_a_plain,
+                    "{mode}: row {row} on the plain element"
+                );
+            }
+            let written = format!("{tree:?}");
+            assert!(
+                !written.contains(UNRECOGNIZED) && !written.contains(LONG_PART),
+                "{mode}: the tree holds a value as it was written"
+            );
+        }
+    }
+}
+
+#[test]
+fn aria_checked_reads_its_three_values_on_a_checkable_role_alone() {
+    let toggled = |toggled| (None, Some(toggled), None);
+    let rows = [
+        (Some("true"), toggled(Toggled::True), NOTHING),
+        (Some("false"), toggled(Toggled::False), NOTHING),
+        (Some("mixed"), toggled(Toggled::Mixed), NOTHING),
+        (None, NOTHING, NOTHING),
+        (Some("TRUE"), NOTHING, NOTHING),
+        (Some(UNRECOGNIZED), NOTHING, NOTHING),
+        (Some(" mixed "), toggled(Toggled::Mixed), NOTHING),
+    ];
+    assert_eq!(rows.len(), 7);
+    assert_eq!(CHECKABLE.len(), 5);
+    assert_rows_on_roles("aria-checked", &CHECKABLE, &rows);
+
+    let unread: Vec<_> = rows
+        .iter()
+        .map(|(value, _, _)| (*value, NOTHING, NOTHING))
+        .collect();
+    assert_rows_on_roles("aria-checked", &[BUTTON, OPTION, INPUT], &unread);
+
+    // A native checkbox or radio keeps its own checkedness: neither its author `aria-checked`
+    // nor its `aria-pressed` writes a `toggled`, here on an input that is not checked, so the
+    // attribute is the only source.
+    let natives = [
+        (r#"type="checkbox""#, Role::CheckBox),
+        (r#"type="radio""#, Role::RadioButton),
+        (r#"type="checkbox" role="switch""#, Role::Switch),
+        (r#"type="radio" role="button""#, Role::Button),
+    ];
+    let attributes = ["aria-checked", "aria-pressed"];
+    assert_eq!((natives.len(), attributes.len()), (4, 2));
+    for incremental in [false, true] {
+        for (row, (typed, role_read)) in natives.into_iter().enumerate() {
+            for attribute in attributes {
+                let mode = format!("incremental={incremental}: native input {row}: {attribute}");
+                let html = format!(
+                    r#"<html><body><input id="box" {typed} {attribute}="true"></body></html>"#
+                );
+                let doc = page(&html, incremental);
+                let unchecked = doc
+                    .get_element_by_id("box")
+                    .and_then(|id| doc.get_node(id))
+                    .and_then(|node| node.element_data())
+                    .is_some_and(|element| element.checkbox_input_checked() == Some(false));
+                assert!(unchecked, "{mode}: the fixture's input is not checked");
+                let tree = doc.build_accessibility_tree();
+                let (role, states) = read(&doc, &tree, "box");
+                assert_eq!(role, role_read, "{mode}: the fixture's role");
+                assert_eq!(states, NOTHING, "{mode}: the attribute writes no toggled");
             }
         }
-
-        let html = r#"<html><body><input id="box" type="checkbox" checked aria-checked="true"></body></html>"#;
-        let doc = page(html, incremental);
-        let tree = doc.build_accessibility_tree();
-        let (role, states) = read(&doc, &tree, "box");
-        assert_eq!(
-            role,
-            Role::CheckBox,
-            "incremental={incremental}: the fixture's checkbox"
-        );
-        assert_eq!(
-            states, NOTHING,
-            "incremental={incremental}: a native checkbox"
-        );
     }
+}
+
+#[test]
+fn aria_pressed_on_a_checkable_role_reads_nothing_and_a_long_aria_checked_is_nowhere() {
+    let long = LONG_PART.repeat(500);
+    assert_eq!(long.chars().count(), 5_500);
+    let pressed = |toggled| (None, Some(toggled), None);
+    let rows = [
+        (Some("true"), NOTHING, pressed(Toggled::True)),
+        (Some("false"), NOTHING, pressed(Toggled::False)),
+        (Some("mixed"), NOTHING, pressed(Toggled::Mixed)),
+    ];
+    assert_eq!(rows.len(), 3);
+    assert_rows_on_roles("aria-pressed", &CHECKABLE, &rows);
+
+    let rows = [(Some(long.as_str()), NOTHING, NOTHING)];
+    assert_rows_on_roles("aria-checked", &CHECKABLE, &rows);
 }

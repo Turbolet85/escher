@@ -168,9 +168,20 @@ impl BaseDocument {
                 _ => {}
             }
 
+            // AccessKit holds a checkable role's `aria-checked` and every other role's
+            // `aria-pressed` as the one `toggled` property, so each element reads one of the two.
+            // A native checkbox or radio keeps its own checkedness and reads neither author
+            // attribute (https://www.w3.org/TR/html-aria/#docconformance).
+            // https://www.w3.org/TR/wai-aria-1.2/#aria-checked
             // https://www.w3.org/TR/wai-aria-1.2/#aria-pressed
-            let pressed = element_data.attr(local_name!("aria-pressed"));
-            match pressed.map(str::trim_ascii) {
+            let toggled = if is_native_checkable(element_data) {
+                None
+            } else if is_checkable(role) {
+                element_data.attr(local_name!("aria-checked"))
+            } else {
+                element_data.attr(local_name!("aria-pressed"))
+            };
+            match toggled.map(str::trim_ascii) {
                 Some("true") => builder.set_toggled(Toggled::True),
                 Some("false") => builder.set_toggled(Toggled::False),
                 Some("mixed") => builder.set_toggled(Toggled::Mixed),
@@ -229,16 +240,20 @@ impl BaseDocument {
 
 impl BlitzDomNode {
     // https://www.w3.org/TR/wai-aria-1.2/#tree_exclusion
+    // https://html.spec.whatwg.org/multipage/interaction.html#the-inert-attribute
     fn is_hidden_from_accessibility_tree(&self) -> bool {
-        self.try_stylo_element_data()
-            .as_ref()
-            .and_then(|s| s.get())
-            .map(|s| {
-                s.styles.is_display_none()
-                    || s.styles.primary().clone_visibility()
-                        == visibility::computed_value::T::Hidden
-            })
-            .unwrap_or(false)
+        self.element_data()
+            .is_some_and(|element| element.has_attr(local_name!("inert")))
+            || self
+                .try_stylo_element_data()
+                .as_ref()
+                .and_then(|s| s.get())
+                .map(|s| {
+                    s.styles.is_display_none()
+                        || s.styles.primary().clone_visibility()
+                            == visibility::computed_value::T::Hidden
+                })
+                .unwrap_or(false)
     }
 
     fn write_text_alternative(&self, out: &mut FlatText) {
@@ -312,6 +327,7 @@ fn role_from_name(name: &str) -> Option<Role> {
         "option" => Some(Role::ListBoxOption),
         "progressbar" => Some(Role::ProgressIndicator),
         "radio" => Some(Role::RadioButton),
+        "switch" => Some(Role::Switch),
         "scrollbar" => Some(Role::ScrollBar),
         "slider" => Some(Role::Slider),
         "spinbutton" => Some(Role::SpinButton),
@@ -357,6 +373,28 @@ fn role_from_name(name: &str) -> Option<Role> {
         "search" => Some(Role::Search),
         _ => None,
     }
+}
+
+/// Whether `role` states its toggle by `aria-checked` rather than `aria-pressed`.
+fn is_checkable(role: Role) -> bool {
+    matches!(
+        role,
+        Role::CheckBox
+            | Role::Switch
+            | Role::RadioButton
+            | Role::MenuItemCheckBox
+            | Role::MenuItemRadio
+    )
+}
+
+/// Whether `element` is an `input` whose `type` is `checkbox` or `radio`, which holds a native
+/// checkedness of its own.
+fn is_native_checkable(element: &ElementData) -> bool {
+    element.name.local == local_name!("input")
+        && matches!(
+            element.attr(local_name!("type")),
+            Some("checkbox" | "radio")
+        )
 }
 
 fn default_level_for_tag(name: &str) -> Option<usize> {

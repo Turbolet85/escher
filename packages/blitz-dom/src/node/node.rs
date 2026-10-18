@@ -555,6 +555,24 @@ impl Node {
             .downcast_element()
             .map(|el| el.is_focussable)
             .unwrap_or(false)
+            && !self.is_inert()
+    }
+
+    /// Whether this node or an ancestor element carries an `inert` attribute, read by presence:
+    /// <https://html.spec.whatwg.org/multipage/interaction.html#the-inert-attribute>.
+    pub(crate) fn is_inert(&self) -> bool {
+        let mut current = Some(self.id);
+        while let Some(id) = current {
+            let node = self.with(id);
+            if node
+                .element_data()
+                .is_some_and(|element| element.has_attr(local_name!("inert")))
+            {
+                return true;
+            }
+            current = node.parent;
+        }
+        false
     }
 
     pub fn set_restyle_hint(&mut self, hint: RestyleHint) {
@@ -1380,7 +1398,16 @@ impl Node {
     ) -> Option<HitResult> {
         use style::computed_values::pointer_events::T as PointerEvents;
         use style::computed_values::visibility::T as Visibility;
-        use style::values::computed::Overflow;
+        use style::values::computed::{Contain, Overflow};
+
+        // An inert subtree takes no hit, so the walk goes on as for a miss:
+        // <https://html.spec.whatwg.org/multipage/interaction.html#the-inert-attribute>.
+        if self
+            .element_data()
+            .is_some_and(|element| element.has_attr(local_name!("inert")))
+        {
+            return None;
+        }
 
         // Don't hit on visbility:hidden elements
         if let Some(style) = self.primary_styles() {
@@ -1471,14 +1498,22 @@ impl Node {
         // CSS Overflow: a box whose `overflow` is not `visible` clips what it holds to its
         // padding box (<https://drafts.csswg.org/css-overflow-3/#overflow-properties>), so
         // outside that box nothing it holds is there to be hit — only the box itself, on its
-        // border. The boxes are the ones paint clips by `overflow`: either axis not `visible`,
-        // the root element excepted, the two axes not told apart.
-        let clips_by_overflow = self.containing_block().is_some()
+        // border. The boxes are the ones paint clips: either axis not `visible`, or a `contain`
+        // that includes `paint` on a box it applies to
+        // (<https://drafts.csswg.org/css-contain-2/#containment-paint>), the root element
+        // excepted, the two axes not told apart.
+        let clips_to_padding_box = self.containing_block().is_some()
             && self.primary_styles().is_some_and(|style| {
+                let display = style.clone_display();
+                let contains_paint = style.get_box().clone_contain().contains(Contain::PAINT)
+                    && !display.is_inline_flow()
+                    && !(display.outside() == DisplayOutside::InternalTable
+                        && display.inside() != DisplayInside::TableCell);
                 style.clone_overflow_x() != Overflow::Visible
                     || style.clone_overflow_y() != Overflow::Visible
+                    || contains_paint
             });
-        if clips_by_overflow {
+        if clips_to_padding_box {
             let border = self.final_layout().border;
             let in_padding_box = own_x >= border.left
                 && own_x <= size.width - border.right
@@ -1679,15 +1714,28 @@ impl Node {
             .or_else(|| self.layout_parent.get())
     }
 
-    /// Computes the Document-relative coordinates of the `Node`
+    /// Computes the Document-relative coordinates of the `Node`: where its border box stands,
+    /// offset by `(x, y)`. The scroll offset of every box that holds it is counted and its own
+    /// is not, since scrolling a box moves what it holds and never the box.
     pub fn absolute_position(&self, x: f32, y: f32) -> crate::util::Point<f32> {
-        let x = x + self.final_layout().location.x - self.scroll_offset().x as f32;
-        let y = y + self.final_layout().location.y - self.scroll_offset().y as f32;
+        let x = x + self.final_layout().location.x;
+        let y = y + self.final_layout().location.y;
+        self.position_in_containing_block(x, y)
+    }
 
-        // Recurse up the positioning hierarchy
-        self.containing_block()
-            .map(|i| self.with(i).absolute_position(x, y))
-            .unwrap_or(crate::util::Point { x, y })
+    /// `(x, y)`, given in the frame of this node's containing block's border box, in document
+    /// coordinates: less that block's scroll offset, then up the positioning hierarchy.
+    fn position_in_containing_block(&self, x: f32, y: f32) -> crate::util::Point<f32> {
+        match self.containing_block() {
+            Some(id) => {
+                let block = self.with(id);
+                block.absolute_position(
+                    x - block.scroll_offset().x as f32,
+                    y - block.scroll_offset().y as f32,
+                )
+            }
+            None => crate::util::Point { x, y },
+        }
     }
 
     /// Whether this node can act as an [`offset_parent`](Self::offset_parent): a positioned

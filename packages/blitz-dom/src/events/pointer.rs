@@ -327,8 +327,7 @@ pub(crate) fn handle_pointermove<F: FnMut(DomEvent)>(
         return changed;
     };
 
-    let disabled = el.attr(local_name!("disabled")).is_some();
-    if disabled {
+    if el.is_disabled() {
         return changed;
     }
 
@@ -446,6 +445,8 @@ pub(crate) fn handle_pointerdown(
             content_box_offset: taffy::Point<f32>,
             /// Scroll offset of the input along each axis, in scaled (device) pixels.
             scroll: taffy::Point<f64>,
+            /// Whether the input is a password input, which paints bullets for its text.
+            password: bool,
         },
         Disabled,
         SelectableText,
@@ -459,7 +460,7 @@ pub(crate) fn handle_pointerdown(
     let click_target = {
         let node = &doc.nodes[actual_target];
         match node.data.downcast_element() {
-            Some(el) if el.has_attr(local_name!("disabled")) => ClickTarget::Disabled,
+            Some(el) if el.is_disabled() => ClickTarget::Disabled,
             Some(el) if el.range_input_data().is_some() => ClickTarget::RangeInput {
                 fraction: range_track_fraction(node.final_layout(), hit.x),
             },
@@ -494,6 +495,10 @@ pub(crate) fn handle_pointerdown(
                     ClickTarget::TextInput {
                         content_box_offset,
                         scroll,
+                        password: el.name.local == local_name!("input")
+                            && el
+                                .attr(local_name!("type"))
+                                .is_some_and(|ty| ty.eq_ignore_ascii_case("password")),
                     }
                 } else {
                     ClickTarget::SelectableText
@@ -520,6 +525,7 @@ pub(crate) fn handle_pointerdown(
         ClickTarget::TextInput {
             content_box_offset,
             scroll,
+            password,
         } => {
             // Clear general text selection when focusing a text input
             doc.clear_text_selection();
@@ -531,7 +537,9 @@ pub(crate) fn handle_pointerdown(
             let click_count = doc.click_count;
             let node = &mut doc.nodes[actual_target];
             let el = node.data.downcast_element_mut().unwrap();
-            if let SpecialElementData::TextInput(ref mut text_input_data) = el.special_data {
+            if let SpecialElementData::TextInput(ref mut text_input_data) = el.special_data
+                && !password
+            {
                 let mut font_ctx = doc.font_ctx.lock().unwrap();
                 let mut driver = text_input_data
                     .editor
@@ -551,6 +559,18 @@ pub(crate) fn handle_pointerdown(
 
                 drop(font_ctx);
             }
+            if password {
+                click_password_input(
+                    doc,
+                    actual_target,
+                    taffy::Point {
+                        x: hit.x - content_box_offset.x,
+                        y: hit.y - content_box_offset.y,
+                    },
+                    click_count,
+                    mods,
+                );
+            }
 
             generate_focus_events(
                 doc,
@@ -560,6 +580,74 @@ pub(crate) fn handle_pointerdown(
                 dispatch_event,
             );
         }
+    }
+}
+
+/// A click in a password input places its caret by the bullets painted for its text, never by
+/// the widths of the characters it holds: the bullet under the point, in the bullets' layout
+/// scrolled as paint scrolls it, names the character the caret goes before. `point` is in the
+/// input's content box, in CSS px. A second click selects the whole value.
+fn click_password_input(
+    doc: &mut BaseDocument,
+    node_id: NodeId,
+    point: taffy::Point<f32>,
+    click_count: u16,
+    mods: Modifiers,
+) {
+    const BULLET: char = '\u{2022}';
+    let scale = doc.viewport.scale_f64();
+    let node = &doc.nodes[node_id];
+    let Some(editor) = node
+        .element_data()
+        .and_then(|el| el.text_input_data())
+        .map(|data| &data.editor)
+    else {
+        return;
+    };
+    let text = editor.raw_text().to_string();
+    let focus = editor.raw_selection().focus();
+    let frame = node.final_layout();
+    let content_width = (frame.size.width
+        - frame.padding.left
+        - frame.padding.right
+        - frame.border.left
+        - frame.border.right) as f64;
+
+    let bullets: String = text.chars().map(|_| BULLET).collect();
+    let Some(layout) = doc.layout_as_text_input(node_id, &bullets) else {
+        return;
+    };
+    let focus_chars = text.get(..focus.index()).map_or(0, |s| s.chars().count());
+    let caret =
+        parley::Cursor::from_byte_index(&layout, focus_chars * BULLET.len_utf8(), focus.affinity())
+            .geometry(&layout, 1.5);
+    let scroll_x = (caret.x1 - content_width * scale).max(0.0);
+    let under = parley::Cursor::from_point(
+        &layout,
+        (point.x as f64 * scale + scroll_x) as f32,
+        (point.y as f64 * scale) as f32,
+    );
+    let chars = under.index() / BULLET.len_utf8();
+    let byte = text
+        .char_indices()
+        .nth(chars)
+        .map_or(text.len(), |(index, _)| index);
+
+    let Some(data) = doc.nodes[node_id]
+        .element_data_mut()
+        .and_then(|el| el.text_input_data_mut())
+    else {
+        return;
+    };
+    let mut font_ctx = doc
+        .font_ctx
+        .lock()
+        .unwrap_or_else(std::sync::PoisonError::into_inner);
+    let mut driver = data.editor.driver(&mut font_ctx, &mut doc.layout_ctx);
+    match click_count {
+        1 if mods.shift() => driver.extend_selection_to_byte(byte),
+        1 => driver.move_to_byte(byte),
+        _ => driver.select_all(),
     }
 }
 
@@ -673,8 +761,7 @@ pub(crate) fn handle_click(
                 continue;
             };
 
-            let disabled = el.attr(local_name!("disabled")).is_some();
-            if disabled {
+            if el.is_disabled() {
                 break 'matched true;
             }
 

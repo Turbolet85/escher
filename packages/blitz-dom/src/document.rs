@@ -2373,6 +2373,9 @@ impl BaseDocument {
     pub fn get_client_bounding_rect(&self, node_id: NodeId) -> Option<BoundingRect> {
         // Non-atomic inline elements have no layout box of their own: return
         // the union of their per-line-box fragment rects.
+        if let Some(rects) = self.transformed_fragment_rects(node_id) {
+            return rects.into_iter().reduce(BoundingRect::union);
+        }
         if let Some(rects) = self.inline_fragment_rects(node_id) {
             return rects.reduce(BoundingRect::union);
         }
@@ -2381,12 +2384,113 @@ impl BaseDocument {
         let (pos, layout) = self.physical_unrounded_geometry(node_id);
         let size = layout.size;
 
+        let border_box = kurbo::Rect::new(0.0, 0.0, size.width as f64, size.height as f64);
+        if let Some(shown) = self.transformed_bounds(node_id, border_box) {
+            return Some(BoundingRect {
+                x: snap_to_layout_unit(shown.x0 - self.viewport_scroll().x),
+                y: snap_to_layout_unit(shown.y0 - self.viewport_scroll().y),
+                width: snap_to_layout_unit(shown.width()),
+                height: snap_to_layout_unit(shown.height()),
+            });
+        }
+
         Some(BoundingRect {
             x: snap_to_layout_unit(pos.x as f64 - self.viewport_scroll().x),
             y: snap_to_layout_unit(pos.y as f64 - self.viewport_scroll().y),
             width: snap_to_layout_unit(size.width as f64),
             height: snap_to_layout_unit(size.height as f64),
         })
+    }
+
+    /// `rect`, given in `node_id`'s border-box frame in CSS px, mapped through the transform of
+    /// `node_id` and of every box on its containing-block chain into document coordinates, as
+    /// the hit and paint map them: the axis-aligned bounding box of the mapped corners. `None`
+    /// when no box on the chain is transformed, where the untransformed reading stands.
+    /// <https://drafts.csswg.org/cssom-view/#dom-element-getboundingclientrect>
+    fn transformed_bounds(&self, node_id: NodeId, rect: kurbo::Rect) -> Option<kurbo::Rect> {
+        let chain =
+            || std::iter::successors(Some(node_id), |id| self.nodes[*id].containing_block());
+        if !self.is_transformed_chain(node_id) {
+            return None;
+        }
+        let scale = self.viewport.scale_f64();
+        let mut corners = [
+            kurbo::Point::new(rect.x0, rect.y0),
+            kurbo::Point::new(rect.x1, rect.y0),
+            kurbo::Point::new(rect.x0, rect.y1),
+            kurbo::Point::new(rect.x1, rect.y1),
+        ];
+        for id in chain() {
+            let node = &self.nodes[id];
+            if let Some(transform) = node.transform().as_deref() {
+                for corner in &mut corners {
+                    let device = *transform * kurbo::Point::new(corner.x * scale, corner.y * scale);
+                    *corner = kurbo::Point::new(device.x / scale, device.y / scale);
+                }
+            }
+            // From this box's border-box frame to its containing block's, that block's own
+            // scroll offset counted; or, at the top, to the document.
+            let (pos, _) = self.physical_unrounded_geometry(id);
+            let origin = match node.containing_block() {
+                Some(block) => {
+                    let (block_pos, _) = self.physical_unrounded_geometry(block);
+                    kurbo::Vec2::new((pos.x - block_pos.x) as f64, (pos.y - block_pos.y) as f64)
+                }
+                None => kurbo::Vec2::new(pos.x as f64, pos.y as f64),
+            };
+            for corner in &mut corners {
+                *corner += origin;
+            }
+        }
+        let [first, rest @ ..] = corners;
+        Some(
+            rest.iter()
+                .fold(kurbo::Rect::from_points(first, first), |bounds, corner| {
+                    bounds.union_pt(*corner)
+                }),
+        )
+    }
+
+    /// Whether `node_id` or a box on its containing-block chain carries a transform.
+    fn is_transformed_chain(&self, node_id: NodeId) -> bool {
+        std::iter::successors(Some(node_id), |id| self.nodes[*id].containing_block())
+            .any(|id| self.nodes[id].transform().is_some())
+    }
+
+    /// The client rects of a non-atomic inline element's fragments, mapped through the
+    /// transforms on its inline root's containing-block chain as [`Self::transformed_bounds`]
+    /// maps a box. `None` for a node with a layout box of its own, and where no box on that
+    /// chain is transformed, where [`Self::inline_fragment_rects`] stands — which `offset_rect`
+    /// reads untransformed, as CSSOM's `offsetTop` and kin ignore transforms.
+    fn transformed_fragment_rects(&self, node_id: NodeId) -> Option<Vec<BoundingRect>> {
+        let node = self.get_node(node_id)?;
+        let fragments = node.inline_fragment_boxes()?;
+        let inline_root = node.inline_root_ancestor()?;
+        let root_id = inline_root.id;
+        if !self.is_transformed_chain(root_id) {
+            return None;
+        }
+        // Fragment boxes are relative to the inline root's border box, and move with the
+        // root's own scroll offset.
+        let root_scroll = *inline_root.scroll_offset();
+        let viewport_scroll = self.viewport_scroll();
+        fragments
+            .map(|rect| {
+                let local = kurbo::Rect::new(
+                    rect.left as f64 - root_scroll.x,
+                    rect.top as f64 - root_scroll.y,
+                    rect.right as f64 - root_scroll.x,
+                    rect.bottom as f64 - root_scroll.y,
+                );
+                let shown = self.transformed_bounds(root_id, local)?;
+                Some(BoundingRect {
+                    x: snap_to_layout_unit(shown.x0 - viewport_scroll.x),
+                    y: snap_to_layout_unit(shown.y0 - viewport_scroll.y),
+                    width: snap_to_layout_unit(shown.width()),
+                    height: snap_to_layout_unit(shown.height()),
+                })
+            })
+            .collect()
     }
 
     /// CSSOM View's `offsetLeft`/`offsetTop`/`offsetWidth`/`offsetHeight` as a single rect:
@@ -2458,6 +2562,9 @@ impl BaseDocument {
     /// return a single rect. Non-atomic inline elements (which are laid out as style
     /// spans within an inline root's text layout) return one rect per line box.
     pub fn node_client_rects(&self, node_id: NodeId) -> Vec<BoundingRect> {
+        if let Some(rects) = self.transformed_fragment_rects(node_id) {
+            return rects;
+        }
         match self.inline_fragment_rects(node_id) {
             Some(rects) => rects.collect(),
             None => self.get_client_bounding_rect(node_id).into_iter().collect(),

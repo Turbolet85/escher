@@ -716,8 +716,7 @@ impl BaseDocument {
         let Some(node) = self.nodes.get(node_id) else {
             return;
         };
-        let target =
-            node.absolute_position(node.scroll_offset().x as f32, node.scroll_offset().y as f32);
+        let target = node.absolute_position(0.0, 0.0);
         let scale = self.viewport.scale() as f64;
         let viewport_width = self.viewport.window_size.0 as f64 / scale;
         let viewport_height = self.viewport.window_size.1 as f64 / scale;

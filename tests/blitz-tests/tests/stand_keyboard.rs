@@ -14,12 +14,14 @@
 //! `details` through its `summary` and press an `input type="button"`, a button whose `disabled`
 //! attribute appeared after it took focus takes neither, and a button that is itself a scrolled
 //! box takes Enter as its own click. *Focus:* a click on a stand button focuses it and the next
-//! Tab continues from it; a `disabled` attribute of any value — bare, `"false"`, `"true"`, on a
-//! `tabindex` div too — takes an element out of the walk; the CRUD list takes focus and its
-//! arrows, Home and End move the selection as a click on a row does, while the focus stays on
-//! the list. *Delete:* the Apple delete binding deletes one character on every OS. *Inert:* the
-//! engine honours no `inert`, so Tab reaches content under a truthy one — pinned, and red by
-//! design once the engine honours it.
+//! Tab continues from it; a `disabled` attribute of any value — bare, `"false"`, `"true"` —
+//! takes a button out of the walk, while a `tabindex` div carrying one stays in it, as HTML
+//! disables form controls alone; the CRUD list takes focus and its arrows, Home and End move the
+//! selection as a click on a row does, while the focus stays on the list. *Delete:* the Apple
+//! delete binding deletes one character on every OS. *Inert:* Tab skips content under a truthy
+//! `inert` and reaches content under a falsy one, whose attribute the bridge removed. Known
+//! limit: a node that holds focus when it becomes inert keeps it until focus moves, as HTML's
+//! focus fixup is not built — pinned by `inert_subtree`.
 //!
 //! A failure message carries a layout mode, a task and an index, never an id or what a screen
 //! reads.
@@ -613,7 +615,7 @@ fn disabled_markup() -> Element {
 }
 
 #[test]
-fn a_disabled_attribute_of_any_value_is_skipped() {
+fn a_disabled_attribute_skips_a_form_control_and_not_a_div() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
         let mut harness = boot_fixture(disabled_markup, incremental);
@@ -634,13 +636,23 @@ fn a_disabled_attribute_of_any_value_is_skipped() {
         assert!(holder(&harness) == ["fx-a"], "{mode}: the first Tab");
         harness.press(Key::Named(NamedKey::Tab));
         assert!(
+            holder(&harness) == ["fx-div"],
+            "{mode}: Tab skips the disabled buttons and reaches the div"
+        );
+        harness.press(Key::Named(NamedKey::Tab));
+        assert!(
             holder(&harness) == ["fx-e"],
-            "{mode}: Tab skips every disabled element"
+            "{mode}: Tab skips the last disabled button"
+        );
+        harness.press_with(Key::Named(NamedKey::Tab), Modifiers::SHIFT);
+        assert!(
+            holder(&harness) == ["fx-div"],
+            "{mode}: Shift+Tab skips the disabled button back to the div"
         );
         harness.press_with(Key::Named(NamedKey::Tab), Modifiers::SHIFT);
         assert!(
             holder(&harness) == ["fx-a"],
-            "{mode}: Shift+Tab skips them back"
+            "{mode}: Shift+Tab skips the disabled buttons back"
         );
     }
 }
@@ -741,7 +753,7 @@ fn inert_fixture() -> Element {
 }
 
 #[test]
-fn the_engine_honours_no_inert() {
+fn an_inert_subtree_is_skipped_by_tab() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
         let mut harness = boot_fixture(inert_fixture, incremental);
@@ -752,13 +764,19 @@ fn the_engine_honours_no_inert() {
         );
         harness.press(Key::Named(NamedKey::Tab));
         assert!(
-            holder(&harness) == ["fx-under-inert"],
-            "{mode}: Tab reaches the button under a truthy inert"
+            holder(&harness) == ["fx-under-falsy"],
+            "{mode}: Tab skips the button under a truthy inert and reaches the one under a falsy \
+             inert"
         );
         harness.press(Key::Named(NamedKey::Tab));
         assert!(
             holder(&harness) == ["fx-under-falsy"],
-            "{mode}: Tab reaches the button under a falsy inert"
+            "{mode}: Tab wraps to the one button outside the inert subtree"
+        );
+        harness.press_with(Key::Named(NamedKey::Tab), Modifiers::SHIFT);
+        assert!(
+            holder(&harness) == ["fx-under-falsy"],
+            "{mode}: Shift+Tab skips the button under a truthy inert"
         );
     }
 }

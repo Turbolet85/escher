@@ -17,14 +17,15 @@ pub enum Cause {
     Stale,
     /// The element carries the `disabled` attribute, which the snapshot reads as not enabled.
     Disabled,
-    /// Another element is hit at the point the action would land. A hit reaches content clipped
-    /// by `contain: paint`, so an element lying where such content extends can read covered
-    /// though nothing shows over it; a box clipped on one axis stops a hit at its whole padding
-    /// box, so an element lying outside it along the axis it does not clip can read covered
-    /// though it shows.
+    /// Another element is hit at the point the action would land. A box clipped on one axis
+    /// stops a hit at its whole padding box, so an element lying outside it along the axis it
+    /// does not clip can read covered though it shows; a box with no width or no height is hit
+    /// at its centre on the element that holds it, so it can read covered though nothing covers
+    /// it.
     Covered,
     /// The element lies outside the viewport, or outside the visible part of a scrolling box
-    /// that holds it.
+    /// that holds it. A scrolling box under a transform is read where it stands untransformed,
+    /// so an element inside it can read off-screen though it shows.
     OffScreen,
     /// The app this session holds gives it no way to move its time.
     TimeUnavailable,
@@ -75,15 +76,17 @@ impl Cause {
                  enabled"
             }
             Cause::Covered => {
-                "another element is hit at the point the action would land; a hit reaches content \
-                 clipped by `contain: paint`, so an element lying where such content extends can \
-                 read `covered` though nothing shows over it; a box clipped on one axis stops a \
-                 hit at its whole padding box, so an element lying outside it along the axis it \
-                 does not clip can read `covered` though it shows"
+                "another element is hit at the point the action would land; a box clipped on one \
+                 axis stops a hit at its whole padding box, so an element lying outside it along \
+                 the axis it does not clip can read `covered` though it shows; a box with no width \
+                 or no height is hit at its centre on the element that holds it, so it can read \
+                 `covered` though nothing covers it"
             }
             Cause::OffScreen => {
                 "the element lies outside the viewport, or outside the visible part of a \
-                 scrolling box that holds it"
+                 scrolling box that holds it; a scrolling box under a transform is read where it \
+                 stands untransformed, so an element inside it can read `off-screen` though it \
+                 shows"
             }
             Cause::TimeUnavailable => "the app this session holds gives it no way to move its time",
             Cause::FontsUnavailable => {
@@ -263,17 +266,19 @@ mod tests {
             ),
             (
                 "covered",
-                "another element is hit at the point the action would land; a hit reaches content \
-                 clipped by `contain: paint`, so an element lying where such content extends can \
-                 read `covered` though nothing shows over it; a box clipped on one axis stops a \
-                 hit at its whole padding box, so an element lying outside it along the axis it \
-                 does not clip can read `covered` though it shows",
+                "another element is hit at the point the action would land; a box clipped on one \
+                 axis stops a hit at its whole padding box, so an element lying outside it along \
+                 the axis it does not clip can read `covered` though it shows; a box with no width \
+                 or no height is hit at its centre on the element that holds it, so it can read \
+                 `covered` though nothing covers it",
                 "another element covers this one: act on the covering element or dismiss it first",
             ),
             (
                 "off-screen",
                 "the element lies outside the viewport, or outside the visible part of a \
-                 scrolling box that holds it",
+                 scrolling box that holds it; a scrolling box under a transform is read where it \
+                 stands untransformed, so an element inside it can read `off-screen` though it \
+                 shows",
                 "the element is out of view: bring it into view with `scroll`, then act again",
             ),
             (

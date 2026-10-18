@@ -50,7 +50,11 @@ pub struct NodeState {
     /// the attribute's presence, which is what decides whether a click acts on the element, so
     /// a `disabled="false"` and a bare `disabled` both read not enabled.
     pub enabled: Option<bool>,
-    /// For a checkbox or radio `input`, whether it is checked; `None` for every other element.
+    /// For a checkbox or radio `input`, whether it is checked; else, for an element whose role is
+    /// `checkbox`, `switch`, `radio`, `menuitemcheckbox` or `menuitemradio`, whether it states
+    /// itself checked, as its accessibility node reads its `aria-checked`; `None` for every
+    /// other element and where such a role states neither. A mixed one reads `Some(false)`, not
+    /// checked; the accessibility node keeps which of the three it is.
     pub checked: Option<bool>,
     /// For a text-entry `input` or a `textarea`, its current text, and for a range `input` its
     /// current value, else its `value` attribute; `None` for every other element. A password or file `input` whose value is not empty reads
@@ -60,7 +64,8 @@ pub struct NodeState {
     /// `aria-selected`: `None` where the element states neither.
     pub selected: Option<bool>,
     /// Whether the element states itself pressed, as its accessibility node reads its
-    /// `aria-pressed`: `None` where the element states neither. A mixed toggle reads
+    /// `aria-pressed`: `None` where the element states neither and for the five roles whose
+    /// toggle is their `aria-checked`, read as [`NodeState::checked`]. A mixed toggle reads
     /// `Some(false)`, not pressed; the accessibility node keeps which of the three it is.
     pub pressed: Option<bool>,
     /// Whether the element states itself invalid, as its accessibility node reads its
@@ -92,7 +97,7 @@ impl DioxusDocument {
     /// The screen as a [`Snapshot`]: one node per element the accessibility tree keeps, with
     /// its id and role from that tree, its name resolved over that tree, its bounds from
     /// [`BaseDocument::get_client_bounding_rect`] and its state from the element — but for
-    /// selected, pressed and invalid, which that tree's node holds.
+    /// selected, pressed, invalid and an ARIA checked, which that tree's node holds.
     pub fn snapshot(&self) -> Snapshot {
         let tree = self.accessibility_tree();
         let doc = self.inner();
@@ -142,6 +147,7 @@ impl Builder<'_> {
         });
         match element {
             Some((author_id, element, bounds)) => {
+                let checkable = is_checkable(tree_node.role());
                 let mut children = Vec::new();
                 for child in tree_node.children() {
                     self.visit(*child, visited, &mut children);
@@ -154,10 +160,19 @@ impl Builder<'_> {
                         enabled: element
                             .can_be_disabled()
                             .then(|| !element.has_attr(local_name!("disabled"))),
-                        checked: element.checkbox_input_checked(),
+                        checked: element.checkbox_input_checked().or_else(|| {
+                            checkable
+                                .then(|| {
+                                    tree_node.toggled().map(|toggled| toggled == Toggled::True)
+                                })
+                                .flatten()
+                        }),
                         value: value(element),
                         selected: tree_node.is_selected(),
-                        pressed: tree_node.toggled().map(|toggled| toggled == Toggled::True),
+                        pressed: tree_node
+                            .toggled()
+                            .filter(|_| !checkable)
+                            .map(|toggled| toggled == Toggled::True),
                         invalid: tree_node.invalid().is_some(),
                         focused: id == self.focus,
                     },
@@ -193,6 +208,19 @@ impl Builder<'_> {
         }
         name
     }
+}
+
+/// Whether `role` states its toggle by `aria-checked`, which its accessibility node holds as
+/// `toggled`, as every other role holds `aria-pressed` there.
+fn is_checkable(role: Role) -> bool {
+    matches!(
+        role,
+        Role::CheckBox
+            | Role::Switch
+            | Role::RadioButton
+            | Role::MenuItemCheckBox
+            | Role::MenuItemRadio
+    )
 }
 
 /// The form reader's value of a text-entry control: its editor's text or a range input's
@@ -752,6 +780,60 @@ mod tests {
         assert_eq!((aria_box.checked, aria_box.pressed), (Some(false), None));
         let aria_plain = &node(&snapshot, "aria-plain").state;
         assert_eq!((aria_plain.checked, aria_plain.pressed), (None, None));
+    }
+
+    #[test]
+    fn an_aria_disabled_button_still_reads_enabled() {
+        fn app() -> Element {
+            rsx! { button { id: "aria-off", "aria-disabled": "true", "Off" } }
+        }
+        let doc = build(app);
+        assert_eq!(
+            attribute(&doc, "aria-off", local_name!("aria-disabled")).as_deref(),
+            Some("true"),
+            "the fixture's button carries the attribute"
+        );
+        let tree = doc.accessibility_tree();
+        let node_id = doc.inner().query_selector("#aria-off").ok().flatten();
+        let disabled_in_tree = node_id.is_some_and(|node_id| {
+            tree.nodes
+                .iter()
+                .any(|(id, node)| id.0 == node_id.as_u64() && node.is_disabled())
+        });
+        assert!(disabled_in_tree, "the tree reads the button disabled");
+        assert_eq!(
+            node(&doc.snapshot(), "aria-off").state.enabled,
+            Some(true),
+            "the snapshot reads the disabled attribute only"
+        );
+    }
+
+    #[test]
+    fn a_switch_reads_its_aria_checked_as_checked_and_not_pressed() {
+        fn app() -> Element {
+            rsx! { div { id: "toggle", role: "switch", "aria-checked": "true" } }
+        }
+        let snapshot = build(app).snapshot();
+        let toggle = node(&snapshot, "toggle");
+        assert_eq!(toggle.role, Role::Switch, "the fixture renders a switch");
+        assert_eq!(
+            (toggle.state.checked, toggle.state.pressed),
+            (Some(true), None)
+        );
+    }
+
+    #[test]
+    fn a_toggle_button_still_reads_its_aria_pressed_as_pressed() {
+        fn app() -> Element {
+            rsx! { div { id: "toggle", role: "button", "aria-pressed": "true" } }
+        }
+        let snapshot = build(app).snapshot();
+        let toggle = node(&snapshot, "toggle");
+        assert_eq!(toggle.role, Role::Button, "the fixture renders a button");
+        assert_eq!(
+            (toggle.state.checked, toggle.state.pressed),
+            (None, Some(true))
+        );
     }
 
     /// Each value an `aria-invalid` is written with and whether its element reads invalid: a

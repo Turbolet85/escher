@@ -487,6 +487,12 @@ impl ElementData {
         local_names!("button", "input", "select", "textarea").contains(&self.name.local)
     }
 
+    /// Whether this is an element that can be disabled carrying a `disabled` attribute, read by
+    /// presence: on any other element the attribute disables nothing.
+    pub fn is_disabled(&self) -> bool {
+        self.can_be_disabled() && self.has_attr(local_name!("disabled"))
+    }
+
     /// Whether this element is a link (an `<a>` or `<area>` element with an `href` attribute)
     pub fn is_link(&self) -> bool {
         (self.name.local == local_name!("a") || self.name.local == local_name!("area"))
@@ -700,7 +706,7 @@ impl ElementData {
     }
 
     pub fn flush_is_focussable(&mut self) {
-        let disabled = self.has_attr(local_name!("disabled"));
+        let disabled = self.is_disabled();
         let tabindex: Option<i32> = self.attr_parsed(local_name!("tabindex"));
         let contains_sub_document: bool = self.sub_doc_data().is_some();
 

@@ -1,0 +1,1 @@
+the founder's own word discharging this chunk's PROVISIONAL batch at its wrap, the Epoch 2 boundary: the nine fork answers the operator gave as delegate (escher-0.2.0/chunks/2026-10-18-engine-debts/inputs#I2), the seven engine fixes and the `switch` role mapping among them (escher-0.2.0/chunks/2026-10-18-engine-debts/inputs#I3)

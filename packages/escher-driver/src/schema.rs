@@ -71,8 +71,10 @@ pub const NODE_FIELDS: [NodeFieldSpec; 13] = [
     },
     NodeFieldSpec {
         name: "checked",
-        help: "for a checkbox or a radio input, whether it is checked; left out for every other \
-               element",
+        help: "for a checkbox or a radio input, whether it is checked; else, for an element whose \
+               role is checkbox, switch, radio, menuitemcheckbox or menuitemradio, whether it \
+               states itself checked by `aria-checked`; left out for every other element and \
+               where such a role states neither; a mixed one reads false",
     },
     NodeFieldSpec {
         name: "value",
@@ -88,7 +90,8 @@ pub const NODE_FIELDS: [NodeFieldSpec; 13] = [
     NodeFieldSpec {
         name: "pressed",
         help: "whether the element states itself pressed by `aria-pressed`; left out where it \
-               states neither; a mixed toggle reads false",
+               states neither and for the five roles whose toggle reads as `checked`; a mixed \
+               toggle reads false",
     },
     NodeFieldSpec {
         name: "invalid",

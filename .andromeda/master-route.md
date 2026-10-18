@@ -57,3 +57,4 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 2026-10-16-file-splits · complete · escher's document.rs test modules out, mcp.rs and schema.rs split along their seams · → escher-0.2.0/chunks/2026-10-16-file-splits/
 2026-10-16-fast-failing-mutants · complete · the six timeout-only mutants each caught by a fast-failing test, a scoped mutation run at 0 survivors (v020-02) · → escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/
 2026-10-17-upstream-sync-engine-debts · complete · Upstream sync ahead of engine debts — upstream/main merged at a measured pin, our changes mostly additive; CI and audit green, per-OS tallies re-read, sink allowlist re-checked · → escher-0.2.0/chunks/2026-10-17-upstream-sync-engine-debts/
+2026-10-18-engine-debts · pending · Engine debts — the nine recorded engine deferrals each fixed, pinned or kept on the founder's fork · → escher-0.2.0/chunks/2026-10-18-engine-debts/
