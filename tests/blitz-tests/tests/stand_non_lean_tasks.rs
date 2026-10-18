@@ -79,8 +79,9 @@ fn circle_drawer_with_dialog(incremental: bool) -> Harness<DioxusDocument> {
         1,
         "a click on the canvas adds a circle"
     );
-    // A click within 500 ms of wall time and 2 px of the last one counts as a double click; a
-    // third would count 3, so none follows.
+    // A click within 500 ms of the harness's clock and 2 px of the last one counts as a double
+    // click, and nothing moves that clock between the two; a third would count 3, so none
+    // follows.
     harness.click_at(x, y);
     assert!(
         harness.query("#circle-diameter").is_some(),

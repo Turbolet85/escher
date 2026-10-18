@@ -27,7 +27,8 @@
 //! What can be asked of the driver, and how it says no, is stated once, as data held in
 //! process: [`VERBS`] lists each verb with its level, its argument shapes and its result
 //! shape, [`validate`] turns a [`Call`] into a typed [`Command`] or a [`Refusal`] before
-//! anything runs, and every refusal names a [`Cause`] with a fixed remedy. Eleven verbs stand in
+//! anything runs, and every refusal names one of eight [`Cause`]s ([`CAUSES`]) with a fixed
+//! remedy. Eleven verbs stand in
 //! three levels. Seven are asked of the held instance: `snapshot`, `click`, `type`, `press`,
 //! `advance`, `scroll` and `screenshot`. Three are asked of the session itself — `start`, `status` and
 //! `stop` — and one of the tool itself, `help`; these four are checked by [`validate_session`],
@@ -47,8 +48,11 @@
 //! holds, and an empty text clears it; `scroll` brings the element an id names into view and
 //! says whether it then is. `screenshot` paints the screen, or the element an id names, with no
 //! display and returns it as a PNG ([`Outcome::Shot`]); an app with no font it can paint text
-//! with is refused ([`Cause::FontsUnavailable`]). Time moves only by `advance`, through the step
-//! a session's caller hands it ([`Session::with_time`]). An outcome, a refusal and a session error each have one
+//! with is refused ([`Cause::FontsUnavailable`]). Time moves only by `advance`: it moves the held
+//! instance's clock — the one clock every time the engine reads takes, the overlay scrollbar
+//! fade and double-click detection included — by exactly the milliseconds asked, on every
+//! session, then hands them to the step a session's caller supplies for the app's own time
+//! ([`Session::with_time`]), where one was supplied. An outcome, a refusal and a session error each have one
 //! written form, a line of JSON keyed by the schema's own words ([`Outcome::to_json`],
 //! [`Refusal::to_json`], [`SessionError::to_json`]), and three surfaces read it: the session's
 //! socket, the command line and the MCP server.
@@ -71,7 +75,9 @@
 //! read [`Cause::Covered`] though it shows; a box with no width or no height is hit at its
 //! centre on the element that holds it, so it can read [`Cause::Covered`] though nothing covers
 //! it; and a scrolling box under a transform is read where it stands untransformed, so an
-//! element inside it can read [`Cause::OffScreen`] though it shows.
+//! element inside it can read [`Cause::OffScreen`] though it shows. A screenshot no longer
+//! depends on wall time: the overlay scrollbar fade reads the session's clock, so two shots of
+//! one state with no `advance` between them read the same pixels.
 //!
 //! [`command_line`] is the whole command line of a binary that boots apps: every verb as one
 //! run, answered with one line of JSON on stdout and a status that tells accepted from

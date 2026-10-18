@@ -79,12 +79,27 @@ fn every_verb_states_its_help_its_arguments_and_a_result() {
         (
             Some(SCREENSHOT.help),
             "the screen, or the element an id names, as a PNG image; an element shot is \
-             cropped to the part of its bounds that can be seen; in a build that paints \
-             overlay scrollbars, a scrollbar thumb painted within 0.7 s of a scroll fades by \
-             wall time",
+             cropped to the part of its bounds that can be seen",
+        ),
+        (
+            Some(CLICK.help),
+            "clicks the element an id names, then settles; a click on the same point within \
+             500 ms of the session's time after the last click there, `type`'s own click \
+             included, is a double click, and an `advance` of at least 500 ms separates two \
+             single clicks",
+        ),
+        (
+            Some(ADVANCE.help),
+            "moves the session's clock forward by `ms` milliseconds, then settles; on every \
+             session it moves the engine's animations, the overlay scrollbar fade and the \
+             app's own time together, and `advanced_ms` is that move",
+        ),
+        (
+            field_help(&ADVANCE, "advanced_ms"),
+            "the time the session's clock moved, in milliseconds: exactly `ms`",
         ),
     ];
-    assert_eq!(amended.len(), 4);
+    assert_eq!(amended.len(), 7);
     for (row, (stated, text)) in amended.into_iter().enumerate() {
         assert!(stated == Some(text), "row {row}");
     }

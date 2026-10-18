@@ -1,6 +1,9 @@
 use std::sync::Arc;
+use std::time::Duration;
 
-use blitz_dom::{DocGuard, DocGuardMut, Document, DocumentConfig, FontContext};
+use blitz_dom::{
+    Clock, DocGuard, DocGuardMut, Document, DocumentConfig, FontContext, VirtualClock,
+};
 use blitz_html::{HtmlDocument, HtmlProvider};
 use blitz_traits::events::UiEvent;
 use blitz_traits::net::NetProvider;
@@ -43,9 +46,9 @@ impl Default for HarnessOptions {
 }
 
 impl HarnessOptions {
-    /// The document's config, and the counter wrapped around the net provider when one that
-    /// fetches was supplied.
-    fn into_config(self) -> (DocumentConfig, Option<Arc<LoadCounter>>) {
+    /// The document's config reading `clock`, and the counter wrapped around the net provider
+    /// when one that fetches was supplied.
+    fn into_config(self, clock: &VirtualClock) -> (DocumentConfig, Option<Arc<LoadCounter>>) {
         let (net_provider, loads) = match self.net_provider {
             Some(provider) if !provider.is_noop() => {
                 let loads = Arc::new(LoadCounter::new(provider));
@@ -65,6 +68,7 @@ impl HarnessOptions {
             html_parser_provider: Some(Arc::new(HtmlProvider) as _),
             font_ctx: self.font_ctx,
             incremental: self.incremental,
+            clock: Some(Arc::new(clock.clone()) as _),
             ..Default::default()
         };
         (config, loads)
@@ -74,7 +78,8 @@ impl HarnessOptions {
 /// A headless wrapper around a [`Document`] for driving it programmatically in tests.
 pub struct Harness<D: Document = HtmlDocument> {
     pub doc: D,
-    time: f64,
+    /// The harness's time: every document a constructor builds reads this clock.
+    clock: VirtualClock,
     /// Counts the requests the document issues. `None` for an offline document and for one
     /// passed to [`wrap`](Self::wrap).
     pub(crate) loads: Option<Arc<LoadCounter>>,
@@ -87,9 +92,11 @@ impl Harness<HtmlDocument> {
     }
 
     pub fn from_html_with(html: &str, options: HarnessOptions) -> Self {
-        let (config, loads) = options.into_config();
+        let clock = VirtualClock::new();
+        let (config, loads) = options.into_config(&clock);
         let doc = HtmlDocument::from_html(html, config);
         let mut harness = Self::wrap(doc);
+        harness.clock = clock;
         harness.loads = loads;
         harness.pump();
         harness
@@ -103,10 +110,12 @@ impl Harness<DioxusDocument> {
     }
 
     pub fn from_vdom(vdom: VirtualDom, options: HarnessOptions) -> Self {
-        let (config, loads) = options.into_config();
+        let clock = VirtualClock::new();
+        let (config, loads) = options.into_config(&clock);
         let mut doc = DioxusDocument::new(vdom, config);
         doc.initial_build();
         let mut harness = Self::wrap(doc);
+        harness.clock = clock;
         harness.loads = loads;
         harness.pump();
         harness
@@ -115,10 +124,13 @@ impl Harness<DioxusDocument> {
 
 impl<D: Document> Harness<D> {
     /// Wrap an already-constructed document. Does not [`pump`](Self::pump).
+    ///
+    /// The document keeps the clock its own config gave it (wall time by default); the
+    /// harness's time, handed to `resolve`, is a fresh virtual clock of its own.
     pub fn wrap(doc: D) -> Self {
         Self {
             doc,
-            time: 0.0,
+            clock: VirtualClock::new(),
             loads: None,
         }
     }
@@ -137,20 +149,27 @@ impl<D: Document> Harness<D> {
         self.doc.inner_mut()
     }
 
-    /// The current time (in seconds) of the harness's animation clock
+    /// The current time (in seconds) of the harness's clock, the one its documents read
     pub fn time(&self) -> f64 {
-        self.time
+        self.clock.now().as_secs_f64()
     }
 
     /// Poll pending async work (e.g. the Dioxus VirtualDom) and resolve style/layout
     pub fn pump(&mut self) {
         self.doc.poll(None);
-        self.doc.inner_mut().resolve(self.time);
+        let time = self.time();
+        self.doc.inner_mut().resolve(time);
     }
 
-    /// Advance the animation clock by `dt_seconds` and [`pump`](Self::pump)
+    /// Advance the harness's clock by `dt_seconds` and [`pump`](Self::pump). A negative or
+    /// non-finite `dt_seconds` moves nothing: the clock never runs backwards.
     pub fn tick(&mut self, dt_seconds: f64) {
-        self.time += dt_seconds;
+        self.advance_time(Duration::try_from_secs_f64(dt_seconds).unwrap_or(Duration::ZERO));
+    }
+
+    /// Advance the harness's clock by exactly `by` and [`pump`](Self::pump)
+    pub fn advance_time(&mut self, by: Duration) {
+        self.clock.advance(by);
         self.pump();
     }
 

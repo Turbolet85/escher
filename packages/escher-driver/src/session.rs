@@ -18,9 +18,9 @@ pub(crate) fn valid_label(label: &str) -> bool {
             .all(|byte| byte.is_ascii_lowercase() || byte.is_ascii_digit() || byte == b'-')
 }
 
-/// A caller's way to move its app's time: handed the held instance and the milliseconds asked,
-/// it returns the milliseconds the app actually moved.
-pub(crate) type TimeStep = Box<dyn FnMut(&mut Harness<DioxusDocument>, u32) -> u32>;
+/// A caller's way to move its app's own time: handed the held instance and the milliseconds an
+/// `advance` moved the instance's clock by.
+pub(crate) type TimeStep = Box<dyn FnMut(&mut Harness<DioxusDocument>, u32)>;
 
 /// The most ids a session remembers.
 pub(crate) const MAX_SEEN_IDS: usize = 4096;
@@ -113,15 +113,16 @@ impl Session {
         })
     }
 
-    /// The session, carrying `step` as its way to move the app's time.
+    /// The session, carrying `step` as its way to move the app's own time.
     ///
-    /// An app moves time in its own units, so the step is the caller's: it is handed the held
-    /// instance and the milliseconds an `advance` asks for, moves the app by as much of that
-    /// as its units hold, and returns the milliseconds it actually moved. A session started
-    /// without one has no way to move time, and refuses `advance`.
+    /// The session moves the held instance's clock on every `advance` — the clock the
+    /// engine's animations and the overlay scrollbar fade read — whether or not a step was
+    /// handed. An app that keeps time in its own units beside that clock needs the step: it is
+    /// handed the held instance and the milliseconds the clock just moved by, after the clock
+    /// has moved, and moves the app by them.
     pub fn with_time(
         mut self,
-        step: impl FnMut(&mut Harness<DioxusDocument>, u32) -> u32 + 'static,
+        step: impl FnMut(&mut Harness<DioxusDocument>, u32) + 'static,
     ) -> Session {
         self.time = Some(Box::new(step));
         self

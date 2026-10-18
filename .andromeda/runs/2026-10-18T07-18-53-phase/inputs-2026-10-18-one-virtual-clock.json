@@ -1,0 +1,252 @@
+[
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "3f25895d",
+"ts": "2026-10-18T07:19:53Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-18-one-virtual-clock",
+"--message-file",
+".andromeda/runs/2026-10-18T07-18-53-phase/relay-1.md",
+"--origin",
+"the operator, 2026-10-18T07:18Z, the /andromeda-phase invocation",
+"--kind",
+"relay",
+"--why",
+"founder away: his forks go to one founder-forks file in the run dir, answered by the operator as delegate and recorded PROVISIONAL; technical forks in dialog; pre-CI commit subject the guide form exactly",
+"--step",
+"phase:P1",
+"--run-dir",
+".andromeda/runs/2026-10-18T07-18-53-phase",
+"--marker",
+"2026-10-18-one-virtual-clock"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I1 · copy message · message: the operator, 2026-10-18T07:18Z, the /andromeda-phase invocation",
+"cite: inputs#I1"
+],
+"stderr": null,
+"wrote": [
+"inputs/.gitattributes",
+"inputs/I1-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I1",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, 2026-10-18T07:18Z, the /andromeda-phase invocation",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "cc4544294e412c3ad9192edb3893a34773a0eb6bd7ff97a0fe367be9ca12ce3e",
+"copy": "I1-relay-1.md.txt",
+"link": false,
+"read_at": "2026-10-18T07:19:53Z",
+"step": "phase:P1",
+"why": "founder away: his forks go to one founder-forks file in the run dir, answered by the operator as delegate and recorded PROVISIONAL; technical forks in dialog; pre-CI commit subject the guide form exactly"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "3f25895d",
+"ts": "2026-10-18T07:36:18Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-18-one-virtual-clock",
+"--message-file",
+".andromeda/runs/2026-10-18T07-18-53-phase/founder-forks.md",
+"--origin",
+"the operator, as the founder delegate, 2026-10-18T07:36Z",
+"--kind",
+"relay",
+"--why",
+"founder forks answered by delegate operator, PROVISIONAL: F1 B (embedder-supplied clock, wall default) · F2 A (advance moves the instance clock on every session) · F2b A (time-unavailable retired, eight causes) · F3 A (double-click window on the one clock); technical: one 800 ms sleep, stand CRUD list, all five reads",
+"--step",
+"phase:P4",
+"--run-dir",
+".andromeda/runs/2026-10-18T07-18-53-phase",
+"--marker",
+"2026-10-18-one-virtual-clock"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I2 · copy message · message: the operator, as the founder delegate, 2026-10-18T07:36Z",
+"cite: inputs#I2"
+],
+"stderr": null,
+"wrote": [
+"inputs/I2-founder-forks.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I2",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, as the founder delegate, 2026-10-18T07:36Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "81ee6a395fa6fe890e06d0b304f67a9b5a4bca04276c6fe7126b4ca9207de08d",
+"copy": "I2-founder-forks.md.txt",
+"link": false,
+"read_at": "2026-10-18T07:36:18Z",
+"step": "phase:P4",
+"why": "founder forks answered by delegate operator, PROVISIONAL: F1 B (embedder-supplied clock, wall default) · F2 A (advance moves the instance clock on every session) · F2b A (time-unavailable retired, eight causes) · F3 A (double-click window on the one clock); technical: one 800 ms sleep, stand CRUD list, all five reads"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "3f25895d",
+"ts": "2026-10-18T07:43:04Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-18-one-virtual-clock",
+"--run-dir",
+".andromeda/runs/2026-10-18T07-18-53-phase",
+"--marker",
+"2026-10-18-one-virtual-clock"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, 2026-10-18T07:18Z, the /andromeda-phase invocation",
+"I1 cited scope.md:7 · scope.md:19 · scope.md:28 · research.md:8 · plan.md:258",
+"I2 n/a — a message has no live source · copy message · message: the operator, as the founder delegate, 2026-10-18T07:36Z",
+"I2 cited research.md:9 · research.md:67 · research.md:94 · research.md:105 · plan.md:12 · plan.md:258",
+"inputs: 2 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 2 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 2,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 2
+},
+"uncited": 0,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "3f25895d",
+"ts": "2026-10-18T07:52:31Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-18-one-virtual-clock",
+"--run-dir",
+".andromeda/runs/2026-10-18T07-18-53-phase",
+"--marker",
+"2026-10-18-one-virtual-clock"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, 2026-10-18T07:18Z, the /andromeda-phase invocation",
+"I1 cited scope.md:7 · scope.md:19 · scope.md:28 · research.md:8 · plan.md:279",
+"I2 n/a — a message has no live source · copy message · message: the operator, as the founder delegate, 2026-10-18T07:36Z",
+"I2 cited research.md:9 · research.md:67 · research.md:94 · research.md:105 · plan.md:12 · plan.md:279",
+"inputs: 2 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 2 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 2,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 2
+},
+"uncited": 0,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "3f25895d",
+"ts": "2026-10-18T07:53:58Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-18-one-virtual-clock",
+"--message-file",
+".andromeda/runs/2026-10-18T07-18-53-phase/relay-2.md",
+"--origin",
+"the operator, 2026-10-18T07:55Z, the P5 word",
+"--kind",
+"relay",
+"--why",
+"the operator own word yes on .andromeda/runs/2026-10-18T07-18-53-phase/p5-card-1.md, Beyond-the-plan row 1 (the merge-surface CARRY on Upstream sync ahead of visual lint and real-app readiness) accepted; the operator read CI#39107039862 on f45bb570 green 17/17 at 07:31Z",
+"--step",
+"phase:P5",
+"--run-dir",
+".andromeda/runs/2026-10-18T07-18-53-phase",
+"--marker",
+"2026-10-18-one-virtual-clock"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I3 · copy message · message: the operator, 2026-10-18T07:55Z, the P5 word",
+"cite: inputs#I3"
+],
+"stderr": null,
+"wrote": [
+"inputs/I3-relay-2.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I3",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, 2026-10-18T07:55Z, the P5 word",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "f2b22a279e9f8ffdcf17ef688793fd2f45789e9c31c3f7cca8ccb333454eb69d",
+"copy": "I3-relay-2.md.txt",
+"link": false,
+"read_at": "2026-10-18T07:53:58Z",
+"step": "phase:P5",
+"why": "the operator own word yes on .andromeda/runs/2026-10-18T07-18-53-phase/p5-card-1.md, Beyond-the-plan row 1 (the merge-surface CARRY on Upstream sync ahead of visual lint and real-app readiness) accepted; the operator read CI#39107039862 on f45bb570 green 17/17 at 07:31Z"
+}
+}
+]

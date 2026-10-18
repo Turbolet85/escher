@@ -15,9 +15,9 @@ use crate::traversal::TreeTraverser;
 use crate::url::DocumentUrl;
 use crate::util::ImageType;
 use crate::{
-    DEFAULT_CSS, DocumentConfig, DocumentMutator, DummyHtmlParserProvider, ElementData,
+    Clock, DEFAULT_CSS, DocumentConfig, DocumentMutator, DummyHtmlParserProvider, ElementData,
     EventDriver, HtmlParserProvider, Node, NodeData, NoopEventHandler, StyleThreading,
-    TextNodeData,
+    TextNodeData, WallClock,
 };
 use blitz_traits::devtools::DevtoolSettings;
 use blitz_traits::events::{DomEvent, HitResult, UiEvent};
@@ -67,7 +67,7 @@ use style::{
 use style_dom::ElementState;
 use thin_vec::ThinVec;
 use url::Url;
-use web_time::Instant;
+use web_time::Duration;
 
 #[cfg(feature = "parallel-construct")]
 use thread_local::ThreadLocal;
@@ -261,6 +261,8 @@ pub struct BaseDocument {
     /// How deeply this document is nested within other documents
     /// (0 for a root document). Used to limit `<iframe>` nesting depth.
     pub(crate) subdocument_depth: usize,
+    /// The clock the document reads its own time from
+    pub(crate) clock: Arc<dyn Clock>,
 
     // Events
     pub(crate) tx: Sender<DocumentEvent>,
@@ -312,8 +314,8 @@ pub struct BaseDocument {
     pub(crate) active_node_id: Option<NodeId>,
     /// The node which recieved a mousedown event (if any)
     pub(crate) mousedown_node_id: Option<NodeId>,
-    /// The last time a mousedown was made (for double-click detection)
-    pub(crate) last_mousedown_time: Option<Instant>,
+    /// The clock's reading at the last mousedown (for double-click detection)
+    pub(crate) last_mousedown_time: Option<Duration>,
     /// The position where mousedown occurred (for selection drags and double-click detection)
     pub(crate) mousedown_position: taffy::Point<f32>,
     /// How many clicks have been made in quick succession
@@ -323,8 +325,9 @@ pub struct BaseDocument {
     /// The scrollbar thumb currently under the pointer, if any
     pub(crate) hovered_scrollbar: Option<crate::node::ScrollbarRef>,
     /// When each scroll container's overlay scrollbars were last shown
-    /// (scrolled, or the pointer left the thumb); drives their fade-out
-    pub(crate) scrollbar_activity: HashMap<NodeId, Instant>,
+    /// (scrolled, or the pointer left the thumb), as the clock's reading; drives
+    /// their fade-out
+    pub(crate) scrollbar_activity: HashMap<NodeId, Duration>,
     /// Whether and what kind of scroll animation is currently in progress
     pub(crate) scroll_animation: ScrollAnimationState,
 
@@ -497,6 +500,7 @@ impl BaseDocument {
             style_threading: config.style_threading,
             incremental_layout: config.incremental.unwrap_or(true),
             subdocument_depth: config.subdocument_depth,
+            clock: config.clock.unwrap_or_else(|| Arc::new(WallClock::new())),
             devtool_settings: DevtoolSettings::default(),
             url: base_url,
             nodes_to_stylesheet: BTreeMap::new(),
@@ -1867,8 +1871,8 @@ impl BaseDocument {
         {
             return 1.0;
         }
-        self.scrollbar_activity.get(&node_id).map_or(0.0, |last| {
-            crate::node::scrollbar::opacity_at(last.elapsed())
+        self.scrollbar_activity.get(&node_id).map_or(0.0, |&last| {
+            crate::node::scrollbar::opacity_at(self.elapsed_since(last))
         })
     }
 
@@ -1876,7 +1880,8 @@ impl BaseDocument {
     /// fade-out delay.
     pub(crate) fn show_scrollbars(&mut self, node_id: NodeId) {
         if cfg!(feature = "scrollbars") {
-            self.scrollbar_activity.insert(node_id, Instant::now());
+            let now = self.clock.now();
+            self.scrollbar_activity.insert(node_id, now);
         }
     }
 
@@ -1886,7 +1891,17 @@ impl BaseDocument {
         use crate::node::scrollbar::{FADE_DELAY, FADE_DURATION};
         self.scrollbar_activity
             .values()
-            .any(|last| last.elapsed() < FADE_DELAY + FADE_DURATION)
+            .any(|&last| self.elapsed_since(last) < FADE_DELAY + FADE_DURATION)
+    }
+
+    /// How long ago, by the document's clock, `stamp` was read from it.
+    pub(crate) fn elapsed_since(&self, stamp: Duration) -> Duration {
+        self.clock.now().saturating_sub(stamp)
+    }
+
+    /// The document's clock, in whole milliseconds since its origin.
+    pub(crate) fn clock_millis(&self) -> u64 {
+        u64::try_from(self.clock.now().as_millis()).unwrap_or(u64::MAX)
     }
 
     /// [`hit`](Self::hit), also resolving the innermost overlay scrollbar

@@ -91,7 +91,8 @@ pub fn press(key: &str, shift: bool) -> Call {
     }
 }
 
-/// The driver call that moves the app's time forward by `ms` milliseconds.
+/// The driver call that moves the session's clock forward by `ms` milliseconds, then hands
+/// `ms` to the app's time step where the session carries one.
 pub fn advance(ms: i64) -> Call {
     call("advance", &[("ms", ArgValue::Number(ms))])
 }

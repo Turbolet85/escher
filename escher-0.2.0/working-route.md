@@ -22,7 +22,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
 ### Epoch 3 — Determinism and traces
 [2026-10-18-upstream-sync-determinism-and-traces] Upstream sync ahead of determinism and traces — upstream/main merged, changes mostly additive; CI and audit green, per-OS tallies re-read, sink allowlist re-checked
    ↓
-One virtual clock — every time a headless run reads, scrollbar fade included, from one clock the driver alone moves; repeat shots identical (v020-06)
+[2026-10-18-one-virtual-clock] One virtual clock — every time a headless run reads, scrollbar fade included, from one clock the driver alone moves; repeat shots identical (v020-06)
    ↓
 Session recording — a driver session via CLI or MCP kept as an owner-only replayable check, never logged; password handling per security-plan (v020-04)
    ↓

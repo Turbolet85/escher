@@ -1,4 +1,4 @@
-use crate::{HtmlParserProvider, UserAgentStylesheet};
+use crate::{Clock, HtmlParserProvider, UserAgentStylesheet};
 use blitz_traits::{
     navigation::NavigationProvider,
     net::{AbortSignal, NetProvider},
@@ -68,6 +68,9 @@ pub struct DocumentConfig {
     /// How deeply this document is nested within other documents
     /// (0 for a root document). Used to limit `<iframe>` nesting depth.
     pub subdocument_depth: usize,
+    /// The clock the document reads its own time from: the scrollbar fade,
+    /// double-click detection, smooth scrolling and fling. Wall time when `None`.
+    pub clock: Option<Arc<dyn Clock>>,
 }
 
 impl Default for DocumentConfig {
@@ -86,6 +89,7 @@ impl Default for DocumentConfig {
             incremental: None,
             abort_signal: None,
             subdocument_depth: 0,
+            clock: None,
         }
     }
 }

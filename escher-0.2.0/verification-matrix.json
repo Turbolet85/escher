@@ -80,11 +80,11 @@
    "observed_gap": "time under a driver session moves only by advance, but the overlay scrollbar fade reads the wall clock, so two screenshots within 0.7 s of a scroll can differ",
    "verification": {
     "method": "integration",
-    "acceptance": "In a headless run that paints overlay scrollbars, two screenshots of the same state taken right after a scroll, with wall time passing between them and no driver advance, read the same pixels, and the fade moves only when the driver advances time.",
-    "ref": null,
-    "status": "planned"
+    "acceptance": "In a headless run that paints overlay scrollbars, two screenshots of the same state taken right after a scroll, with wall time passing between them and no driver advance, read the same pixels, and the fade moves only when the driver advances time. Concretely, all three hold, each in both layout modes where it runs a pipeline:\n(1) `cargo test -p blitz-tests --locked --test stand_virtual_clock` passes. On a held CRUD session in the blitz-tests build, which paints overlay scrollbars, after twelve Creates and a driver `scroll` to the last row: `crud-list`'s shot taken after an 800 ms wall-clock sleep with no `advance` is byte-identical to the shot taken right after the scroll; `advance --ms 600` changes it, `advance --ms 100` changes it again, and `advance --ms 1000` leaves it unchanged; the post-scroll shot differs from the faded one, so a thumb was painted; and the session clock reads exactly 1.7 s.\n(2) The plan's wall-clock census entry prints 0: no `Instant::now()` or `SystemTime::now()` in `packages/blitz-dom/src` outside `clock.rs`, so every engine time read goes through the document's clock.\n(3) `cargo test -p blitz-tests --locked --test virtual_clock_engine` passes: the scrollbar fade, the double-click window and a smooth scroll move only with a document's virtual clock, and a document built with no clock still reads the wall clock.",
+    "ref": "tests/blitz-tests/tests/stand_virtual_clock.rs::a_shot_after_a_scroll_repeats_until_advance_moves_the_fade",
+    "status": "implemented"
    },
-   "chunk": null
+   "chunk": "2026-10-18-one-virtual-clock"
   },
   {
    "id": "v020-07",

@@ -1,7 +1,7 @@
 //! Every driver command leaves one line in escher's sink, and nothing a command handled is on
 //! it. With the sink installed over a capture and `RUST_LOG=info`, in both layout modes, each
 //! call run through `Session::run` — the seven verbs on the stand's CRUD task and its Timer, and
-//! a refused call for each of the nine causes, the `covered` one on a fixture booted with the
+//! a refused call for each of the eight causes, the `covered` one on a fixture booted with the
 //! stand's options and the `fonts-unavailable` one on the CRUD task booted with a font context
 //! that holds no family, and a `press` on a fixture that renders on every pass — leaves exactly
 //! one line under `escher_driver`: at INFO, stamped with the
@@ -426,7 +426,7 @@ impl<'c> Run<'c> {
     }
 
     /// Holds the whole of what this run left in the capture: one driver line per call, the seven
-    /// verbs and the nine causes read back, no field name outside the stated set, no redacted
+    /// verbs and the eight causes read back, no field name outside the stated set, no redacted
     /// value, and none of `needles` nor of what the calls supplied.
     fn finish(self, needles: &Needles) {
         let mode = &self.mode;
@@ -458,8 +458,8 @@ impl<'c> Run<'c> {
             "{mode}: each of the seven verbs ran and was read back from its line"
         );
         assert!(
-            CAUSES.len() == 9 && read_back(&self.causes, CAUSES.map(Cause::name).to_vec()),
-            "{mode}: each of the nine causes was read back from its own refused call"
+            CAUSES.len() == 8 && read_back(&self.causes, CAUSES.map(Cause::name).to_vec()),
+            "{mode}: each of the eight causes was read back from its own refused call"
         );
         assert!(
             self.busy == [BUSY_CLASSES[0]],
@@ -651,7 +651,7 @@ fn child_records_each_command_at_info() {
                 },
                 Expect::Refused(Cause::Malformed),
             ),
-            (advance(300), Expect::Refused(Cause::TimeUnavailable)),
+            (advance(300), Expect::Acts),
         ] {
             let _ = run.drive("Crud", &mut crud, &call, expect);
         }

@@ -654,7 +654,7 @@ mod tests {
             .map(Refusal::new)
             .chain(faults.into_iter().map(Refusal::malformed))
             .collect();
-        assert_eq!(refusals.len(), 14);
+        assert_eq!(refusals.len(), 13);
         for (row, refusal) in refusals.iter().enumerate() {
             let cause = refusal.cause();
             let mut expected = format!(

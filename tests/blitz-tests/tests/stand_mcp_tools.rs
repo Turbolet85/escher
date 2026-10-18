@@ -5,13 +5,14 @@
 //! `Session::run` returns on a session booted the same way; each `click`'s text block is the
 //! line of JSON that click returns run directly on that session; the second snapshot reads 3;
 //! and the diff of each click reads the same in the two layout modes. A held Timer gets its
-//! time step through `start`, so `advance` moves it. A subscriber of this file's own, which
+//! time step through `start`, so `advance` moves it as it moves the session's clock, which an
+//! `advance` moves on every task. A subscriber of this file's own, which
 //! keeps the stack of entered spans, reads every `command` span's parent as a `tool_call` span,
 //! one `tool_call` per tool call sent, none under a session-level call or an unknown tool, and
 //! each `tool_call` holding the table's word for its verb as `tool` and its ending as `ending`,
 //! and no other field. Every refusal cause a tool call can reach is read on its served form
-//! with the remedy its cause states: `malformed`, `not-found`, `stale`, `disabled`, `off-screen`
-//! and `time-unavailable` on the lean tasks, `covered` on an overlay fixture beside them, and
+//! with the remedy its cause states: `malformed`, `not-found`, `stale`, `disabled` and
+//! `off-screen` on the lean tasks, where an `advance` on the counter is accepted, `covered` on an overlay fixture beside them, and
 //! `fonts-unavailable` on the CRUD task booted with a font context that holds no family (an
 //! unknown tool is a protocol error, so `unknown-verb` is read through the binary). A
 //! `screenshot` tool result is an image block, then a text block holding its line without the
@@ -431,7 +432,7 @@ fn every_cause_a_tool_call_reaches_is_served_with_its_remedy() {
             ("start", r#"{"app":"counter"}"#, None),
             ("click", "{}", Some(Cause::Malformed)),
             ("click", &nobody, Some(Cause::NotFound)),
-            ("advance", r#"{"ms":100}"#, Some(Cause::TimeUnavailable)),
+            ("advance", r#"{"ms":100}"#, None),
             ("stop", "{}", None),
             ("start", r#"{"app":"flight-booker"}"#, None),
             (
@@ -457,9 +458,9 @@ fn every_cause_a_tool_call_reaches_is_served_with_its_remedy() {
             .enumerate()
             .map(|(index, (name, arguments, _))| tool_call(index + 1, name, arguments))
             .collect();
-        let replies = tracing::subscriber::with_default(Recorder::default(), || {
-            serve(&requests, incremental)
-        });
+        let recorder = Recorder::default();
+        let replies =
+            tracing::subscriber::with_default(recorder.clone(), || serve(&requests, incremental));
         assert_eq!(replies.len(), calls.len(), "{mode}: one reply per call");
         let mut served = Vec::new();
         for (index, (reply, (_, _, cause))) in replies.iter().zip(&calls).enumerate() {
@@ -475,6 +476,47 @@ fn every_cause_a_tool_call_reaches_is_served_with_its_remedy() {
                 );
                 served.push(*cause);
             }
+        }
+
+        // The accepted advance: its tool_call span ends accepted and parents its command.
+        {
+            let recorded = recorder.0.lock().unwrap();
+            let named = |seen: &Seen, name: &str| -> Vec<String> {
+                seen.fields
+                    .iter()
+                    .filter(|(field, _)| *field == name)
+                    .map(|(_, value)| value.clone())
+                    .collect()
+            };
+            let advances: Vec<usize> = recorded
+                .spans
+                .iter()
+                .enumerate()
+                .filter(|(_, seen)| seen.target == "escher_driver" && seen.name == "tool_call")
+                .filter(|(_, seen)| named(seen, "tool") == ["advance"])
+                .map(|(at, _)| at)
+                .collect();
+            assert!(
+                advances.len() == 1,
+                "{mode}: {} advance tool_call spans",
+                advances.len()
+            );
+            let at = advances[0];
+            assert!(
+                named(&recorded.spans[at], "ending") == ["accepted"],
+                "{mode}: the advance's tool_call ends accepted"
+            );
+            let children: Vec<&Seen> = recorded
+                .spans
+                .iter()
+                .filter(|seen| seen.name == "command" && seen.parent == Some(at))
+                .collect();
+            assert!(
+                children.len() == 1
+                    && named(children[0], "verb") == ["advance"]
+                    && named(children[0], "cause").is_empty(),
+                "{mode}: the advance's tool_call parents one accepted advance command"
+            );
         }
 
         // The covered cause, on a fixture beside the stand.
@@ -548,7 +590,7 @@ fn every_cause_a_tool_call_reaches_is_served_with_its_remedy() {
             .filter(|cause| served.contains(cause))
             .collect();
         assert!(
-            reached.len() == 8 && !reached.contains(&Cause::UnknownVerb),
+            reached.len() == 7 && !reached.contains(&Cause::UnknownVerb),
             "{mode}: {} causes are served through MCP",
             reached.len()
         );

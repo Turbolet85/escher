@@ -1,7 +1,7 @@
 use blitz_traits::node_id::NodeId;
 use std::collections::VecDeque;
 
-use web_time::{Duration, Instant, SystemTime, UNIX_EPOCH};
+use web_time::Duration;
 
 use blitz_traits::{
     events::{
@@ -263,12 +263,8 @@ pub(crate) fn handle_pointermove<F: FnMut(DomEvent)>(
         }
     }
 
+    let time_ms = doc.clock_millis();
     if let DragMode::Panning(state) = &mut doc.drag_mode {
-        let time_ms = SystemTime::now()
-            .duration_since(UNIX_EPOCH)
-            .unwrap()
-            .as_millis() as u64;
-
         let target = state.target;
         let (dx, dy) = state.update(time_ms, event.screen_x(), event.screen_y());
 
@@ -393,7 +389,7 @@ pub(crate) fn handle_pointerdown(
     // TODO: For text inputs, only increment click count if click maps to the same/similar caret position
     doc.click_count = if doc
         .last_mousedown_time
-        .map(|t| t.elapsed() < Duration::from_millis(500))
+        .map(|t| doc.elapsed_since(t) < Duration::from_millis(500))
         .unwrap_or(false)
         && (doc.mousedown_position.x - x).abs() <= 2.0
         && (doc.mousedown_position.y - y).abs() <= 2.0
@@ -404,7 +400,7 @@ pub(crate) fn handle_pointerdown(
     };
 
     // Update mousedown tracking for next click and selection drag detection
-    doc.last_mousedown_time = Some(Instant::now());
+    doc.last_mousedown_time = Some(doc.clock.now());
     doc.mousedown_position = taffy::Point { x, y };
     doc.drag_mode = DragMode::None;
     doc.scroll_animation = ScrollAnimationState::None;
@@ -714,10 +710,7 @@ pub(crate) fn handle_pointerup<F: FnMut(DomEvent)>(
         doc.shell_provider.request_redraw();
     }
 
-    let time_ms = SystemTime::now()
-        .duration_since(UNIX_EPOCH)
-        .unwrap()
-        .as_millis() as u64;
+    let time_ms = doc.clock_millis();
 
     if let DragMode::Panning(state) = &drag_mode {
         if let Some(fling) = state.generate_fling(time_ms) {

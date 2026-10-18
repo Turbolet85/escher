@@ -158,7 +158,7 @@ const ADVANCED_MS: FieldSpec = FieldSpec {
     name: "advanced_ms",
     kind: FieldKind::Milliseconds,
     always: true,
-    help: "the time the app actually moved, in milliseconds: never more than `ms`",
+    help: "the time the session's clock moved, in milliseconds: exactly `ms`",
 };
 
 const IN_VIEW: FieldSpec = FieldSpec {
@@ -189,7 +189,9 @@ pub(crate) const SNAPSHOT: VerbSpec = VerbSpec {
 pub(crate) const CLICK: VerbSpec = VerbSpec {
     name: "click",
     level: Level::Instance,
-    help: "clicks the element an id names, then settles",
+    help: "clicks the element an id names, then settles; a click on the same point within 500 ms \
+           of the session's time after the last click there, `type`'s own click included, is a \
+           double click, and an `advance` of at least 500 ms separates two single clicks",
     args: &[ArgSpec {
         name: "id",
         kind: ArgKind::Id,
@@ -245,13 +247,14 @@ pub(crate) const PRESS: VerbSpec = VerbSpec {
 pub(crate) const ADVANCE: VerbSpec = VerbSpec {
     name: "advance",
     level: Level::Instance,
-    help: "moves the app's time forward by `ms` milliseconds, then settles; an app moves time in \
-           its own units, and `advanced_ms` is the time it actually moved, never more than asked",
+    help: "moves the session's clock forward by `ms` milliseconds, then settles; on every session \
+           it moves the engine's animations, the overlay scrollbar fade and the app's own time \
+           together, and `advanced_ms` is that move",
     args: &[ArgSpec {
         name: "ms",
         kind: ArgKind::Milliseconds,
         required: true,
-        help: "how far to move the app's time, in milliseconds",
+        help: "how far to move the session's clock, in milliseconds",
     }],
     fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, ADVANCED_MS],
 };
@@ -273,8 +276,7 @@ pub(crate) const SCREENSHOT: VerbSpec = VerbSpec {
     name: "screenshot",
     level: Level::Instance,
     help: "the screen, or the element an id names, as a PNG image; an element shot is cropped to \
-           the part of its bounds that can be seen; in a build that paints overlay scrollbars, a \
-           scrollbar thumb painted within 0.7 s of a scroll fades by wall time",
+           the part of its bounds that can be seen",
     args: &[ArgSpec {
         name: "id",
         kind: ArgKind::Id,

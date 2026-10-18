@@ -1,0 +1,49 @@
+[
+{
+"tool": "matrix",
+"v": "1.4",
+"sha8": "35400ea8",
+"ts": "2026-10-18T08:16:01Z",
+"argv": [
+"implement",
+"--dir",
+"escher-0.2.0",
+"--chunk",
+"2026-10-18-one-virtual-clock",
+"--id",
+"v020-06",
+"--ref-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-18T07-55-10-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"implement v020-06 · status planned → implemented · ref tests/blitz-tests/tests/stand_virtual_clock.rs::a_shot_after_a_scroll_repeats_un… (106 chars)",
+"wrote escher-0.2.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.2.0/verification-matrix.json"
+],
+"before": {
+"id": "v020-06",
+"chunk": "2026-10-18-one-virtual-clock",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "In a headless run that paints overlay scrollbars, two screenshots of the same state taken right after a scroll, with wal… (1358 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v020-06",
+"chunk": "2026-10-18-one-virtual-clock",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_virtual_clock.rs::a_shot_after_a_scroll_repeats_until_advance_moves_the_fade",
+"acceptance": "In a headless run that paints overlay scrollbars, two screenshots of the same state taken right after a scroll, with wal… (1358 chars)",
+"notes_chars": 0
+}
+}
+]

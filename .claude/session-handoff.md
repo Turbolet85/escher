@@ -34,3 +34,6 @@
 ## Deferred learnings
 - recurrence-despite-learning: host-linux «Paths & the working directory». A bare `cd` was refused at implement and once more at this wrap's resume; the guard held each time.
 - Carried from earlier handoffs, not this session's to curate: read a CI job's verdict with `ci.py`, not a log pattern (confidence 0.7). A Tier 3 entry cites `host.rs:350` past its file's end (`.claude/docs/session-learnings.md`), unmeasured.
+
+## Session End Status
+Completed normally at 2026-10-18 09:54:56

@@ -86,14 +86,18 @@ pub fn boot_timer(options: HarnessOptions) -> (Harness<DioxusDocument>, TimerTic
 pub const TIMER_TICK_MS: u32 = 100;
 
 /// The Timer's time step for a driver session (`escher_driver::Session::with_time`): handed
-/// the milliseconds asked, it delivers the whole ticks they hold through `ticks` and returns
-/// the milliseconds those ticks stand for. The remainder below one tick is dropped, and the
-/// harness's animation clock stays where it was. The ticks apply on the harness's next pass.
-pub fn timer_step(ticks: TimerTicks) -> impl FnMut(&mut Harness<DioxusDocument>, u32) -> u32 {
+/// the milliseconds the session's clock just moved, it delivers through `ticks` the whole
+/// ticks the clock now holds beyond those already delivered. The remainder below one tick is
+/// carried to the next call, so the Timer's elapsed time is always the session clock's whole
+/// ticks: 250 ms then 250 ms deliver 2 then 3 ticks. The session moves the clock itself; the
+/// step moves only the Timer. The ticks apply on the harness's next pass.
+pub fn timer_step(ticks: TimerTicks) -> impl FnMut(&mut Harness<DioxusDocument>, u32) {
+    let mut carried_ms = 0;
     move |_harness, ms| {
-        let whole = ms / TIMER_TICK_MS;
-        ticks.deliver(u64::from(whole));
-        whole * TIMER_TICK_MS
+        let held = carried_ms + u64::from(ms);
+        let tick = u64::from(TIMER_TICK_MS);
+        ticks.deliver(held / tick);
+        carried_ms = held % tick;
     }
 }
 
@@ -122,38 +126,49 @@ mod tests {
     use super::*;
 
     #[test]
-    fn the_timer_step_maps_milliseconds_onto_whole_ticks() {
-        // Milliseconds asked, milliseconds moved, and what the Timer reads after them.
+    fn the_timer_step_carries_milliseconds_onto_whole_ticks() {
+        // One session's steps in order: the milliseconds handed, the clock's total after
+        // them, and what the Timer reads then. The third and fourth rows carry a remainder.
         let rows = [
-            (1, 0, Some("Elapsed: 0.0s")),
-            (99, 0, Some("Elapsed: 0.0s")),
-            (100, 100, Some("Elapsed: 0.1s")),
-            (250, 200, Some("Elapsed: 0.2s")),
-            (60_000, 60_000, None),
+            (1, 1, "Elapsed: 0.0s"),
+            (99, 100, "Elapsed: 0.1s"),
+            (250, 350, "Elapsed: 0.3s"),
+            (250, 600, "Elapsed: 0.6s"),
+            (99, 699, "Elapsed: 0.6s"),
+            (1, 700, "Elapsed: 0.7s"),
         ];
-        assert_eq!(rows.len(), 5);
+        assert_eq!(rows.len(), 6);
         assert_eq!(TIMER_TICK_MS, 100);
+        let mut total = 0;
+        for (row, (asked, held, _)) in rows.into_iter().enumerate() {
+            total += asked;
+            assert_eq!(total, held, "row {row}");
+        }
         for incremental in [false, true] {
-            for (row, (asked, moved, elapsed)) in rows.into_iter().enumerate() {
-                let (mut harness, ticks) = boot_timer(options(incremental));
-                let mut step = timer_step(ticks);
-                let clock = harness.time();
+            let (mut harness, ticks) = boot_timer(options(incremental));
+            let mut step = timer_step(ticks);
+            for (row, (asked, _, elapsed)) in rows.into_iter().enumerate() {
+                step(&mut harness, asked);
+                harness.pump();
                 assert!(
-                    step(&mut harness, asked) == moved,
-                    "incremental={incremental}: row {row}"
+                    harness.text_content("#timer-elapsed") == elapsed,
+                    "incremental={incremental}: row {row} reads its elapsed time"
                 );
-                assert!(
-                    harness.time() == clock,
-                    "incremental={incremental}: row {row} leaves the animation clock"
-                );
-                if let Some(elapsed) = elapsed {
-                    harness.pump();
-                    assert!(
-                        harness.text_content("#timer-elapsed") == elapsed,
-                        "incremental={incremental}: row {row} reads its elapsed time"
-                    );
-                }
             }
+        }
+    }
+
+    #[test]
+    fn the_timer_step_takes_the_largest_advance() {
+        for incremental in [false, true] {
+            let (mut harness, ticks) = boot_timer(options(incremental));
+            let mut step = timer_step(ticks);
+            step(&mut harness, 60_000);
+            harness.pump();
+            assert!(
+                harness.text_content("#timer-elapsed") != "Elapsed: 0.0s",
+                "incremental={incremental}"
+            );
         }
     }
 }

@@ -1,7 +1,8 @@
 //! The timer host: `escher-session serve timer` is the one host whose session carries a time
-//! step, and a hosted `advance` moves its time by whole ticks — 250 ms asked moves 200 — with
-//! the elapsed time the screen reads one tick pair on. No sleep and no clock read: time moves
-//! by the command alone. Unix only: a session crosses a Unix-domain socket.
+//! step, and a hosted `advance` moves the session's clock by exactly the milliseconds asked
+//! while the Timer reads the clock's whole ticks — 250 ms read as 0.2 s, and 99 ms more, 349 ms
+//! of clock, as 0.3 s, the remainder carried. No sleep and no clock read: time moves by the
+//! command alone. Unix only: a session crosses a Unix-domain socket.
 
 #![cfg(unix)]
 
@@ -66,13 +67,13 @@ fn a_hosted_advance_moves_the_timer_by_whole_ticks() {
         "the timer reads no elapsed time at boot"
     );
 
-    // The stand's step delivers whole 100 ms ticks: 250 asked moves 200.
+    // The clock moves by what is asked; the stand's step delivers its whole 100 ms ticks.
     let advanced = run(&["advance", "--ms", "250"]);
     assert!(
         advanced.starts_with("{\"settled\":true,"),
         "the step went quiet"
     );
-    assert_eq!(number(&advanced, "advanced_ms"), Some(200));
+    assert_eq!(number(&advanced, "advanced_ms"), Some(250));
     assert!(
         advanced.contains("\"id\":\"timer-elapsed\"") && advanced.contains("Elapsed: 0.2s"),
         "the diff names the elapsed time, two ticks on"
@@ -82,12 +83,16 @@ fn a_hosted_advance_moves_the_timer_by_whole_ticks() {
         "the screen reads the elapsed time two ticks on"
     );
 
-    // Less than one tick moves nothing.
+    // Less than one tick, with the 50 ms carried, makes the third tick: 349 ms of clock.
     let short = run(&["advance", "--ms", "99"]);
-    assert_eq!(number(&short, "advanced_ms"), Some(0));
+    assert_eq!(number(&short, "advanced_ms"), Some(99));
     assert!(
-        run(&["snapshot"]).contains("Elapsed: 0.2s"),
-        "the screen reads the same elapsed time"
+        short.contains("\"id\":\"timer-elapsed\"") && short.contains("Elapsed: 0.3s"),
+        "the diff names the elapsed time, the carried remainder making a third tick"
+    );
+    assert!(
+        run(&["snapshot"]).contains("Elapsed: 0.3s"),
+        "the screen reads the elapsed time three ticks on"
     );
 
     stop(&dir).expect("the session stops");

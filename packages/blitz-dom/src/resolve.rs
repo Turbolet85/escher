@@ -68,8 +68,9 @@ impl BaseDocument {
         // sheds entries for removed nodes).
         {
             use crate::node::scrollbar::{FADE_DELAY, FADE_DURATION};
+            let now = self.clock.now();
             self.scrollbar_activity
-                .retain(|_, last| last.elapsed() < FADE_DELAY + FADE_DURATION);
+                .retain(|_, last| now.saturating_sub(*last) < FADE_DELAY + FADE_DURATION);
         }
 
         let root_node_id = self.root_element().id;

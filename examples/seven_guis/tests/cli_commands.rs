@@ -4,7 +4,8 @@
 //! line is the library's own form of the screen booted in process, inside its byte budget; the
 //! screenshot's `png` is the PNG of the screen booted in process, 800 × 600.
 //! `help` answers the library's own description of the tool, reaching no session. Every
-//! refusal the binary is driven to — seven causes, all but `covered` — and every session error
+//! refusal the binary is driven to — six causes, all but `covered` and `fonts-unavailable` — and
+//! every session error
 //! read here names the remedy the table states, and on Linux a state directory of 94 bytes, as
 //! given, holds a session while one of 95 is refused with its bound. With its stdout a pipe no
 //! one reads, a command drops its answer's write and ends with its ending's status, no panic
@@ -397,11 +398,10 @@ fn a_call_a_target_cannot_take_is_refused_with_its_cause() {
     );
     flight.stop();
 
+    // A session with no time step of its own still moves its clock.
     let counter = Session::start("cc-refuse-c", "counter");
-    assert_eq!(
-        counter.refused(&["advance", "--ms", "100"]),
-        "time-unavailable"
-    );
+    let advanced = counter.accepted(&["advance", "--ms", "100"]);
+    assert_eq!(number(&advanced, "advanced_ms"), Some(100));
     counter.stop();
 }
 

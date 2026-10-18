@@ -1,5 +1,7 @@
 //! A call run on a held instance: checked, run, settled, and answered with a typed outcome.
 
+use std::time::Duration;
+
 use blitz_test_harness::{
     Busy, Harness, Key as KeyboardKey, Modifiers, NamedKey, PixelRect, ScreenshotError,
 };
@@ -101,9 +103,7 @@ impl Session {
     /// holds, in this order: [`Cause::Disabled`] when the element reads not enabled,
     /// [`Cause::OffScreen`] when the point the action would land at is outside the viewport
     /// or outside the visible part of a scrolling box that holds the element, and
-    /// [`Cause::Covered`] when another element is hit at that point. An `advance` on a
-    /// session with no time step ([`Session::with_time`]) is refused as
-    /// [`Cause::TimeUnavailable`].
+    /// [`Cause::Covered`] when another element is hit at that point.
     ///
     /// `screenshot` runs no step and settles nothing, as `snapshot` does: it paints the screen
     /// as it stands, the whole of it, or the element an id names, cropped to the part of its
@@ -118,7 +118,9 @@ impl Session {
     /// which focuses a text input, and types into what holds focus — where the element reads
     /// a value, everything it holds is selected first, so the text replaces it, and an empty
     /// text clears it; `press` presses its key
-    /// on what holds focus; `advance` hands its milliseconds to the session's time step;
+    /// on what holds focus; `advance` moves the held instance's clock by its milliseconds —
+    /// the clock every time the engine reads takes — then hands them to the session's time
+    /// step, where one was handed ([`Session::with_time`]);
     /// `scroll` scrolls every scrolling box that holds the element, and the viewport, until
     /// the element is in view, whether or not it is enabled or covered, and says whether it
     /// then is. Settling moves no time and waits on no load.
@@ -173,19 +175,19 @@ impl Session {
                 }))
             }
             Command::Advance { ms } => {
-                let Some(step) = self.time.as_mut() else {
-                    return Err(Refusal::new(Cause::TimeUnavailable));
-                };
+                let step = &mut self.time;
                 let before = read_screen(harness, seen);
-                let mut advanced_ms = 0;
                 let (busy, diff, _) = settled_step(harness, seen, span, before, |harness| {
-                    advanced_ms = step(harness, ms).min(ms);
+                    harness.advance_time(Duration::from_millis(u64::from(ms)));
+                    if let Some(step) = step.as_mut() {
+                        step(harness, ms);
+                    }
                 });
                 Ok(Outcome::Advanced {
                     settled: busy.is_none(),
                     busy,
                     diff,
-                    advanced_ms,
+                    advanced_ms: ms,
                 })
             }
             Command::Scroll { id } => {

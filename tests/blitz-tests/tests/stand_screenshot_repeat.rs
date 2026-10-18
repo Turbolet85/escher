@@ -2,7 +2,8 @@
 //! This test binary re-runs its own ignored child twice. Each child boots the four lean tasks in
 //! both layout modes and takes, through the driver, each task's whole screen, CRUD's list, the
 //! counter's value display, and the flight booker with its start date focused by a click, so its
-//! caret is painted. No scroll precedes a shot: an overlay scrollbar thumb fades by wall time.
+//! caret is painted. No scroll precedes a shot here; a shot after one repeats too, since an
+//! overlay scrollbar thumb fades by the session's clock alone (`stand_virtual_clock`).
 //! The child prints one line per shot — its layout mode, its task, its index and the PNG's bytes
 //! in hex — and nothing else of the screen; the two children's lines are byte-identical, and
 //! each equals the same shot taken in the parent's process. A failure message carries a layout
