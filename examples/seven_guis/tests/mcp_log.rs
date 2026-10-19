@@ -53,6 +53,8 @@ fn the_mcp_role_logs_no_id_no_name_and_no_typed_text_at_trace() {
     mcp_flow(None);
 }
 
+// Recording is unix-only: off unix `mcp --record` is refused before it serves.
+#[cfg(unix)]
 #[test]
 fn a_recording_mcp_role_logs_nothing_of_its_checks_at_trace() {
     let kept = common::state_dir("ml-rec-kept");
@@ -63,6 +65,7 @@ fn a_recording_mcp_role_logs_nothing_of_its_checks_at_trace() {
 
 /// What a recording session leaves for the log checks to look for: the recording directory's
 /// name and each digest its one check holds, as the check writes them.
+#[cfg(unix)]
 fn recorded_needles(kept: &std::path::Path) -> Vec<String> {
     let names: Vec<_> = std::fs::read_dir(kept)
         .expect("the recording directory is listed")
@@ -317,6 +320,7 @@ fn mcp_flow(record: Option<&std::path::Path>) {
         names.len()
     );
 
+    #[cfg(unix)]
     if let Some(kept) = record {
         let recorded = recorded_needles(kept);
         let recorded_found = found(&recorded);

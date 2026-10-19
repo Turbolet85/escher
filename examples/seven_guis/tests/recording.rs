@@ -9,24 +9,34 @@
 //! *Unchanged surfaces:* the `mcp` role's `tools/list` and `help` answer the same bytes with and
 //! without a recording directory, and every stdout line is one uncoloured line. Every host is
 //! held behind a guard that stops or kills it, and every wait is bounded. A failure message
-//! names a step and a count — never a captured line. Unix only: the hosted session crosses a
-//! Unix-domain socket, and a check's modes are unix modes.
+//! names a step and a count — never a captured line. These checks are unix only: the hosted
+//! session crosses a Unix-domain socket, and a check's modes are unix modes. *Off unix,*
+//! recording is unsupported: `mcp --record` ends with exit 3 and the `unsupported` error's
+//! message on stderr, `start … --record` answers that error, and neither creates the directory.
 
-#![cfg(unix)]
+#![cfg(not(target_arch = "wasm32"))]
+// The helpers serve the unix checks; off unix only the refusal check reads them.
+#![cfg_attr(not(unix), allow(dead_code, unused_imports))]
 
 mod common;
 
 use std::fs;
+#[cfg(unix)]
 use std::os::unix::fs::PermissionsExt;
 use std::path::Path;
 use std::process::Command;
 
-use common::{Speaker, Started, clear, client, number, state_dir, string_at, text};
+#[cfg(unix)]
+use common::Started;
+use common::{Speaker, clear, client, number, state_dir, string_at, text};
 use escher_driver::Check;
+#[cfg(not(unix))]
+use escher_driver::SessionError;
 
 const BINARY: &str = env!("CARGO_BIN_EXE_escher-session");
 
 /// The permission bits of `path`.
+#[cfg(unix)]
 fn mode(path: &Path) -> u32 {
     fs::metadata(path)
         .expect("the path is there")
@@ -93,6 +103,7 @@ fn answered(speaker: &mut Speaker, line: &str, step: &str) -> String {
     reply
 }
 
+#[cfg(unix)]
 #[test]
 fn the_command_line_and_the_mcp_role_keep_the_same_check() {
     let dir = state_dir("rc-cli");
@@ -165,6 +176,7 @@ fn the_command_line_and_the_mcp_role_keep_the_same_check() {
     }
 }
 
+#[cfg(unix)]
 #[test]
 fn a_recording_directory_open_to_its_group_is_refused_before_anything_runs() {
     let open = fresh("rc-open");
@@ -206,6 +218,7 @@ fn a_recording_directory_open_to_its_group_is_refused_before_anything_runs() {
     let _ = fs::remove_dir_all(&open);
 }
 
+#[cfg(unix)]
 #[test]
 fn the_mcp_roles_listing_and_help_are_the_same_with_a_recording_directory() {
     let kept = fresh("rc-same");
@@ -230,4 +243,41 @@ fn the_mcp_roles_listing_and_help_are_the_same_with_a_recording_directory() {
         "no session was started, so no check is kept"
     );
     let _ = fs::remove_dir_all(&kept);
+}
+
+#[cfg(not(unix))]
+#[test]
+fn off_unix_a_recording_directory_is_refused_as_unsupported() {
+    let kept = fresh("rc-off-unix");
+    let unsupported = SessionError::Unsupported;
+
+    let spoken = client(BINARY, &["mcp", "--record", text(&kept)]);
+    assert!(spoken.status == Some(3), "mcp: a session error");
+    assert!(spoken.stdout.is_empty(), "mcp: stdout is the protocol's");
+    assert!(
+        spoken.stderr == format!("{unsupported}\n").as_bytes(),
+        "mcp: stderr is the unsupported error's fixed message, {} bytes",
+        spoken.stderr.len()
+    );
+    assert!(!kept.exists(), "mcp: no recording directory is created");
+
+    let dir = state_dir("rc-off-unix-s");
+    let started = client(
+        BINARY,
+        &[
+            "start",
+            "counter",
+            "--session",
+            text(&dir),
+            "--record",
+            text(&kept),
+        ],
+    );
+    assert!(started.status == Some(3), "start: a session error");
+    assert!(
+        string_at(started.line(), "kind").as_deref() == Some(unsupported.kind()),
+        "start: the error is the unsupported one"
+    );
+    assert!(!kept.exists(), "start: no recording directory is created");
+    assert!(!dir.exists(), "start: no state directory is created");
 }

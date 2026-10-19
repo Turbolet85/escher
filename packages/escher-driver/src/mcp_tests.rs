@@ -584,6 +584,21 @@ fn help_is_answered_by_the_server_with_or_without_a_session() {
     assert_eq!(read, [tool_reply(1, &help)]);
 }
 
+#[cfg(not(unix))]
+#[test]
+fn off_unix_a_recording_boot_answers_start_as_unsupported() {
+    let boot = |app: &str| empty(app)?.recording_into(std::path::Path::new("kept-off-unix"));
+    let sent = [tool_call(1, "start", r#"{"app":"counter"}"#)];
+    let read = exchange(&lines(&sent), boot, Duration::from_secs(1800));
+    assert_eq!(
+        read,
+        [tool_reply(
+            1,
+            &ToolResult::failed(SessionError::Unsupported)
+        )]
+    );
+}
+
 /// A fresh path under the workspace's `target/tmp`, named for the test: nothing is there.
 #[cfg(unix)]
 fn scratch(name: &str) -> std::path::PathBuf {

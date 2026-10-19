@@ -263,7 +263,6 @@ mod tests {
         assert_eq!(MAX_ID_BYTES, 1024);
     }
 
-    #[cfg(unix)]
     fn empty() -> Session {
         Session::start("counter", || {
             Harness::from_component(|| Ok(Default::default()))
@@ -280,6 +279,17 @@ mod tests {
         let _ = std::fs::remove_dir_all(&dir);
         std::fs::create_dir_all(dir.parent().expect("a parent")).expect("target/tmp is created");
         dir
+    }
+
+    #[cfg(not(unix))]
+    #[test]
+    fn off_unix_a_recording_is_refused_as_unsupported() {
+        let dir = Path::new("kept-off-unix");
+        assert!(matches!(
+            empty().recording_into(dir),
+            Err(SessionError::Unsupported)
+        ));
+        assert!(!dir.exists());
     }
 
     #[cfg(unix)]

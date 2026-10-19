@@ -420,6 +420,22 @@ fn step_of(record: &Value) -> Option<Step> {
     })
 }
 
+#[cfg(all(test, not(unix)))]
+mod off_unix_tests {
+    use super::*;
+
+    #[test]
+    fn off_unix_a_recording_is_refused_as_unsupported() {
+        let dir = Path::new("kept-off-unix");
+        assert!(matches!(prepare_dir(dir), Err(SessionError::Unsupported)));
+        assert!(matches!(
+            Recording::create(dir, "counter"),
+            Err(SessionError::Unsupported)
+        ));
+        assert!(!dir.exists());
+    }
+}
+
 #[cfg(all(test, unix))]
 mod tests {
     use std::fs;
