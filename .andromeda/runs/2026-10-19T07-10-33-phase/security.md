@@ -1,0 +1,35 @@
+# security extract
+
+## Relevance
+relevant — the chunk widens what a kept check holds at rest (each answer whole, a shot's pixels excepted), changes the strict reader of an untrusted input (`Check::from_bytes`), and asks whether a committed check is a new at-rest medium.
+
+## Constraints
+- security-plan §Input Validation (Recorded check row) requires `Check::from_bytes` to stay a strict reader of untrusted bytes: at most 1,048,576 bytes and 400 records, closed keys, `tool` one of the seven instance verbs, argument names from that verb's schema, anything else refused `Cause::Malformed` with no fault and nothing of the file held, no panic path. The `answer` key is the one key the plan names as owed to this entry; any other new key stays refused. Whether the 1,048,576-byte bound still holds a 400-step check once every step carries its whole answer (snapshot text up to `SNAPSHOT_TEXT_BUDGET` per step) is research's question and P4's to settle.
+- security-plan §Input Validation (Recorded check row) requires every replayed `Call` to be built through `command::call_of` and validated again inside `Session::run`. A replay runner, whether test-only or a public escher-driver API, must not bypass `validate`.
+- security-plan §Data Protection (At rest, Files (kept checks)) records the kept check's content class as call content and "no screen reading". It records the answers kept whole, a shot's pixels excepted, as owed at «Recorded-check replay» on the founder's F1 A and F2 B. Ids, names, values, snapshot text and diffs at rest are the widening this entry carries; a `screenshot` step must keep no `png`. Whether every masked reading (`MASKED_VALUE` for a password or file input, `MASKED_STAND_IN` for a masked or unresolved `type`) already reaches the kept answer unchanged is research's question.
+- security-plan §Data Protection (At rest, Files (kept checks)) and §Input Validation (Driver recording directory row) require every kept check to be owner-only: `check-{n}.json` `0600`, `create_new`, in a `0700` directory. A check committed to the repository is outside that mode. Whether a committed check of the stand's own screens is inside the ratified widening or a new at-rest medium is a P4 fork, and the founder's if it widens.
+- security-plan §Logging & Monitoring requires the driver's log records to stay the `command` span (eight fixed-word and count fields) and the `tool_call` span (`tool`, `ending`). A replay or a kept answer adds no field, line or log site that holds an id, name, value, typed text, answer text, digest or the recording directory's path. Per §Input Validation (Driver recording directory row), nothing of the directory is logged or named by a tool call, verb, argument or result field.
+- security-plan §Error Handling (escher-driver `Refusal` and the session error table) requires `Refusal`, `Fault` and `SessionError` to hold nothing a call or file supplied: closed causes, fixed `'static` texts, no `String` field. A replay's mismatch report must not enter these types.
+- security-plan §Dependency Security requires `serde_json` to stay reader-only in escher-driver (the founder's «serde_json, только чтение»). The `answer` key is written the way the recorder writes JSON today, not through `serde_json` serialization. A new crate goes through the audit leg and a review by hand.
+
+## Patterns to follow
+- The recorder's write discipline (security-plan §Input Validation, Driver recording directory row): rewrite the whole file through `.check-{n}.json.tmp` (`0600`) and a rename, never replace a file it did not create, and end the recording on a failed write or a passed bound with its check removed (`recording-failed`).
+- The cold-agent check's replay (security-plan §Input Validation, Cold-agent check row): a check outside the closed shape is never replayed, a valid one is replayed on fresh `escher-session mcp` children with every step validated again by the server, each reply bounded, each child killed and reaped, and the check file never printed.
+- The masked-input readers (security-plan §Data Protection, Local user data handled): a password's or a file input's value reads `MASKED_VALUE` in the snapshot, its text and its diff, so a kept answer copied from the driver's written line carries no secret.
+- The log-census measurement (security-plan §Logging & Monitoring): runs at `RUST_LOG=trace` under both builds, counting id, name and typed-sentinel needles at 0, as `host_log` and `mcp_log` do.
+
+## Anti-patterns to avoid
+- Printing, logging or putting into a span field, assertion text or `Refusal` any kept answer, its digest or the record directory's path. A kept check is never logged (security-plan §Data Protection, Files (kept checks); §Logging & Monitoring).
+- Loosening `Check::from_bytes` past the one `answer` key, for example accepting unknown keys or a lenient parse so a replay can tolerate drift. A malformed check is refused, never replayed (security-plan §Input Validation, Recorded check row).
+- Keeping a shot's PNG, or a masked `type`'s text, its length or a digest of it, in a kept check (security-plan §Data Protection, Files (kept checks)).
+
+## Contract bindings
+- security ↔ obs: the never-logged rule for kept checks and the closed `command` and `tool_call` span fields bind to `.andromeda/obs-plan.md`'s never-logged rule and its log census (`host_log`, `mcp_log`).
+- security ↔ tests: committed checks become test input for `agent-run.sh run stand`, CI and the `stand-repeat` leg (`.andromeda/test-plan.md` §3 and `.andromeda/registries/contracts/test-plan/session-lifecycle.md`). Their at-rest form in git is the open question in Constraints item 4.
+- security ↔ architecture: the kept-check form (the `answer` key after `digest`) and any public replay API bind to `.andromeda/architecture.md` §Standard Contracts (Driver session). The masters' Data Protection and §Surfaces text is amended at the wrap card as the ratified widening.
+
+## Acceptance criteria contributions
+- `Check::from_bytes` accepts a record whose `answer` key follows `digest`. It refuses `Malformed`, holding nothing of the file and with no panic, for any other unknown key, an `answer` out of place, a file over 1,048,576 bytes and more than 400 records (per security-plan §Input Validation).
+- A recorded `screenshot` step's kept answer holds no `png`. A kept answer for a password or file input reads `MASKED_VALUE`, and a masked `type` keeps `MASKED_STAND_IN`. A planted typed sentinel occurs 0 times in a check recorded through a masked control (per security-plan §Data Protection).
+- Recording with answers and replaying a kept check under `escher-session` (host role and `mcp` role) at `RUST_LOG=trace` leaves 0 id needles, 0 name needles, 0 typed-sentinel occurrences and 0 occurrences of the record directory's path in stderr, under both builds (per security-plan §Logging & Monitoring).
+- `bash .github/scripts/ci-leg.sh audit` reads `advisories ok` and `licenses ok` with no ignore added, and escher-driver still uses `serde_json` for reading only (per security-plan §Dependency Security).

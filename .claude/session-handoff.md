@@ -34,3 +34,6 @@
 - recurrence-despite-learning: T3 «2026-10-11 — `gh api` refuses a job's log that holds terminal escapes». A fetch at the implement pass read 0 failures from the refusal text.
 - recurrence-despite-learning: T3 «2026-10-12 — A sweep pattern for a bare count also matches a citation's digits». At P1, `\b134\b` matched 26 line-range citations.
 - recurrence-despite-learning: host-linux «Paths & the working directory» and the 2026-10-13 run-bare rule. A `cd` into a skill dir and a tool piped into `tail` were each refused; the guard held at one re-issue.
+
+## Session End Status
+Completed normally at 2026-10-19 10:21:59

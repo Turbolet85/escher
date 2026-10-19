@@ -159,8 +159,9 @@ fn Home(on_select: EventHandler<Task>) -> Element {
     }
 }
 
+/// The stand's chrome around a task: its Back button and title over the task's own body.
 #[component]
-fn TaskShell(title: &'static str, on_back: EventHandler<()>, children: Element) -> Element {
+pub fn TaskShell(title: &'static str, on_back: EventHandler<()>, children: Element) -> Element {
     rsx! {
         style { {SHELL_CSS} }
         div { id: "task-shell",

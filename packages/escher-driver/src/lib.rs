@@ -81,10 +81,13 @@
 //!
 //! A session can keep itself as a replayable check ([`Session::recording_into`]): every call
 //! [`Session::run`] answers, written to an owner-only file of a directory its launcher names as
-//! the call crossed in, with whether it was accepted and the [`answer_digest`] of its answer —
-//! no screen reading, and the text typed into a masked control as [`MASKED_STAND_IN`].
-//! [`Check::from_bytes`] reads one back, strictly and under its bounds, into [`Step`]s whose
-//! calls run again through [`Session::run`]. Nothing of a recording is logged.
+//! the call crossed in, with whether it was accepted, the [`answer_digest`] of its answer and the
+//! answer itself, whole as the driver wrote it but for a shot's pixels — masked as on every
+//! carrier, and the text typed into a masked control as [`MASKED_STAND_IN`].
+//! [`Check::from_bytes`] reads one back, strictly and under its bounds, into [`Step`]s, and
+//! [`Check::replay`] runs their calls again through [`Session::run`] and says in a [`Replay`]
+//! whether every answer is the kept one, or names the first step that changed and the keys of
+//! its answer that differ ([`Change`]). Nothing of a recording or a replay is logged.
 //!
 //! [`command_line`] is the whole command line of a binary that boots apps: every verb as one
 //! run, answered with one line of JSON on stdout and a status that tells accepted from
@@ -121,6 +124,7 @@ mod json;
 mod mcp;
 mod recording;
 mod refusal;
+mod replay;
 mod schema;
 mod session;
 #[cfg_attr(not(unix), allow(dead_code))]
@@ -137,6 +141,7 @@ pub use host::{IDLE_EXPIRY, serve};
 pub use mcp::serve_mcp;
 pub use recording::{Check, MASKED_STAND_IN, Step, answer_digest};
 pub use refusal::{CAUSES, Cause, Fault, Refusal};
+pub use replay::{Change, Replay};
 pub use schema::{
     ArgKind, ArgSpec, BUSY_CLASSES, EXIT_STATUSES, ExitStatus, FieldKind, FieldSpec, KEY_NAMES,
     Level, MAX_ID_BYTES, MAX_MILLISECONDS, MAX_TEXT_BYTES, NODE_FIELDS, NodeFieldSpec, VERBS,

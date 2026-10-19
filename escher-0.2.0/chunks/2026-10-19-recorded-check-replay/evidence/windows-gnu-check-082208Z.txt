@@ -1,0 +1,10 @@
+The windows-gnu check (plan entry 7), fired by /andromeda-implement in run .andromeda/runs/2026-10-19T08-22-08-implement
+(trail: .andromeda/runs/2026-10-19T08-22-08-implement/gate-2026-10-19-recorded-check-replay.json).
+
+  7 build       green · exit 0 · 2.44s · 763 B → 7.log · cargo check --tests --locked --target x86_64-pc-windows-gn… (105 chars)
+entries 16 · green 13 · red 0 · recorded 0 · timeout 0 · not-run 3
+
+Copied from its log (gate.py show --n 7): escher-driver, seven_guis and blitz-tests checked for
+x86_64-pc-windows-gnu with no error. One warning, the standing one P5's baseline names:
+  warning: unused imports: `Command` and `Stdio` --> examples/seven_guis/tests/host_binary.rs:10:20
+No C-dependency failure; no limit to record.

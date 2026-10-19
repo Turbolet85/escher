@@ -89,8 +89,8 @@ impl SeenIds {
 ///
 /// A session can also keep itself as a replayable check ([`Session::recording_into`]): each
 /// call it answers, written to a file of its caller's directory as the call crossed in, with
-/// whether it was accepted and a digest of its answer. Nothing reads the recording out of the
-/// session either.
+/// whether it was accepted, a digest of its answer and the answer itself, a shot's without its
+/// pixels. Nothing reads the recording out of the session either.
 pub struct Session {
     label: String,
     pub(crate) harness: Harness<DioxusDocument>,
@@ -132,9 +132,11 @@ impl Session {
     /// to its group or to others. The check is a new file there, `check-{n}.json` with `n` the
     /// smallest from 1 that names no file yet, owner-only (mode `0600`); no file is ever
     /// replaced. It holds one JSON array: first the session's label as the app it was started
-    /// on, then one record per call — the call as it crossed in, whether it was accepted and the
-    /// [`answer_digest`](crate::answer_digest) of its answer. No screen reading is kept, and the
-    /// text of a `type` into a masked control is [`MASKED_STAND_IN`](crate::MASKED_STAND_IN). The
+    /// on, then one record per call — the call as it crossed in, whether it was accepted, the
+    /// [`answer_digest`](crate::answer_digest) of its answer and the answer whole, as the driver
+    /// wrote it but for a shot's pixels, masked as on every carrier; the text of a `type` into a
+    /// masked control is [`MASKED_STAND_IN`](crate::MASKED_STAND_IN), and
+    /// [`Check::replay`](crate::Check::replay) runs a kept check again. The
     /// check is rewritten whole after every call, through a temporary file renamed over it, so
     /// a process that is killed leaves the calls so far.
     ///

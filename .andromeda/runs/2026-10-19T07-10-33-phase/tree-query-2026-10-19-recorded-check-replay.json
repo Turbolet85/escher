@@ -1,0 +1,358 @@
+[
+{
+"sql": "SELECT callee_name, caller, file, line FROM calls WHERE callee_name IN ('from_bytes','step_of','record_of','record','answer_digest','replay','kept') AND callee_kind = 'fn' AND callee_crate IN ('escher-driver','blitz-tests') ORDER BY callee_name, file, line",
+"rows": 58,
+"result": [
+{
+"callee_name": "answer_digest",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 crate/",
+"file": "packages/escher-driver/src/lib.rs",
+"line": 137
+},
+{
+"callee_name": "answer_digest",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 mcp/tests/each_session_a_recording_boot_starts_is_kept_as_one_check().",
+"file": "packages/escher-driver/src/mcp_tests.rs",
+"line": 614
+},
+{
+"callee_name": "answer_digest",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 mcp/tests/each_session_a_recording_boot_starts_is_kept_as_one_check().",
+"file": "packages/escher-driver/src/mcp_tests.rs",
+"line": 647
+},
+{
+"callee_name": "answer_digest",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/impl#[Recording]record().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 164
+},
+{
+"callee_name": "answer_digest",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/the_digest_is_fnv_1a_64_of_the_written_answer().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 506
+},
+{
+"callee_name": "answer_digest",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/the_digest_is_fnv_1a_64_of_the_written_answer().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 516
+},
+{
+"callee_name": "answer_digest",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/the_digest_is_fnv_1a_64_of_the_written_answer().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 517
+},
+{
+"callee_name": "answer_digest",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_recording_reads_back_as_the_calls_it_kept().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 579
+},
+{
+"callee_name": "answer_digest",
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 session_common/",
+"file": "tests/blitz-tests/tests/session_common/mod.rs",
+"line": 19
+},
+{
+"callee_name": "answer_digest",
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 session_common/replay().",
+"file": "tests/blitz-tests/tests/session_common/mod.rs",
+"line": 247
+},
+{
+"callee_name": "answer_digest",
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 crate/",
+"file": "tests/blitz-tests/tests/stand_session_recording.rs",
+"line": 23
+},
+{
+"callee_name": "answer_digest",
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_recorded_session_replays_and_keeps_no_screen_reading().",
+"file": "tests/blitz-tests/tests/stand_session_recording.rs",
+"line": 147
+},
+{
+"callee_name": "answer_digest",
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 record_typed().",
+"file": "tests/blitz-tests/tests/stand_session_recording.rs",
+"line": 268
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 recorded_needles().",
+"file": "examples/seven_guis/tests/host_log.rs",
+"line": 45
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 recorded_needles().",
+"file": "examples/seven_guis/tests/mcp_log.rs",
+"line": 75
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo seven_guis 0.1.0 the_command_line_and_the_mcp_role_keep_the_same_check().",
+"file": "examples/seven_guis/tests/recording.rs",
+"line": 143
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 mcp/tests/each_session_a_recording_boot_starts_is_kept_as_one_check().",
+"file": "packages/escher-driver/src/mcp_tests.rs",
+"line": 637
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 mcp/tests/each_session_a_recording_boot_starts_is_kept_as_one_check().",
+"file": "packages/escher-driver/src/mcp_tests.rs",
+"line": 650
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_recording_reads_back_as_the_calls_it_kept().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 568
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_masked_type_keeps_the_stand_in_and_nothing_of_the_text().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 621
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_call_no_record_can_spell_is_not_kept().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 654
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_recording_that_would_pass_its_bound_or_cannot_write_ends_and_removes_its_check().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 716
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_check_in_the_grammar_is_read().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 786
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_check_in_the_grammar_is_read().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 788
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_check_outside_the_grammar_is_refused_as_malformed().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 866
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_check_at_its_bounds_is_read_and_one_past_them_is_refused().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 880
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_check_at_its_bounds_is_read_and_one_past_them_is_refused().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 885
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_check_at_its_bounds_is_read_and_one_past_them_is_refused().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 892
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_check_at_its_bounds_is_read_and_one_past_them_is_refused().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 895
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_recorded_session_replays_and_keeps_no_screen_reading().",
+"file": "tests/blitz-tests/tests/stand_session_recording.rs",
+"line": 159
+},
+{
+"callee_name": "from_bytes",
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_password_typed_in_a_recorded_session_is_kept_as_the_stand_in().",
+"file": "tests/blitz-tests/tests/stand_session_recording.rs",
+"line": 289
+},
+{
+"callee_name": "kept",
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 crate/",
+"file": "tests/blitz-tests/tests/stand_session_recording.rs",
+"line": 28
+},
+{
+"callee_name": "kept",
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_recorded_session_replays_and_keeps_no_screen_reading().",
+"file": "tests/blitz-tests/tests/stand_session_recording.rs",
+"line": 180
+},
+{
+"callee_name": "kept",
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_password_typed_in_a_recorded_session_is_kept_as_the_stand_in().",
+"file": "tests/blitz-tests/tests/stand_session_recording.rs",
+"line": 300
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/impl#[Session]run().",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 144
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/read_screen().",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 319
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/record().",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 325
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/resolve().",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 368
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_recording_reads_back_as_the_calls_it_kept().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 564
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_masked_type_keeps_the_stand_in_and_nothing_of_the_text().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 598
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_masked_type_keeps_the_stand_in_and_nothing_of_the_text().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 600
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_masked_type_keeps_the_stand_in_and_nothing_of_the_text().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 614
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_masked_type_keeps_the_stand_in_and_nothing_of_the_text().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 615
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_call_no_record_can_spell_is_not_kept().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 651
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/the_check_and_its_directory_are_owner_only_and_no_file_is_replaced().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 669
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_recording_that_would_pass_its_bound_or_cannot_write_ends_and_removes_its_check().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 711
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_recording_that_would_pass_its_bound_or_cannot_write_ends_and_removes_its_check().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 719
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_recording_that_would_pass_its_bound_or_cannot_write_ends_and_removes_its_check().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 726
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/tests/a_recording_that_would_pass_its_bound_or_cannot_write_ends_and_removes_its_check().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 747
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 session/tests/the_record_holds_the_ids_read_and_forgets_the_one_read_longest_ago().",
+"file": "packages/escher-driver/src/session.rs",
+"line": 242
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 session/tests/the_record_holds_no_id_longer_than_a_call_can_name().",
+"file": "packages/escher-driver/src/session.rs",
+"line": 256
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 session/tests/the_record_holds_no_id_longer_than_a_call_can_name().",
+"file": "packages/escher-driver/src/session.rs",
+"line": 258
+},
+{
+"callee_name": "record",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 session/tests/the_record_holds_no_id_longer_than_a_call_can_name().",
+"file": "packages/escher-driver/src/session.rs",
+"line": 259
+},
+{
+"callee_name": "record_of",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/impl#[Recording]record().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 159
+},
+{
+"callee_name": "replay",
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 crate/",
+"file": "tests/blitz-tests/tests/stand_session_recording.rs",
+"line": 28
+},
+{
+"callee_name": "replay",
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_recorded_session_replays_and_keeps_no_screen_reading().",
+"file": "tests/blitz-tests/tests/stand_session_recording.rs",
+"line": 186
+},
+{
+"callee_name": "replay",
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_password_typed_in_a_recorded_session_is_kept_as_the_stand_in().",
+"file": "tests/blitz-tests/tests/stand_session_recording.rs",
+"line": 315
+},
+{
+"callee_name": "step_of",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 recording/impl#[Check]from_bytes().",
+"file": "packages/escher-driver/src/recording.rs",
+"line": 330
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

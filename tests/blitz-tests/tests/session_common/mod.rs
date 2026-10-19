@@ -17,7 +17,7 @@ use std::time::{Duration, Instant};
 
 use blitz_dom::Document;
 use dioxus_native_dom::SnapshotDiff;
-use escher_driver::{ArgValue, Busy, Call, Cause, Check, Outcome, Session, answer_digest};
+use escher_driver::{ArgValue, Busy, Call, Cause, Check, Outcome, Session};
 use seven_guis::stand::{self, LeanTask};
 use seven_guis::tasks::timer::TimerTicks;
 
@@ -237,17 +237,17 @@ pub fn refused_unchanged(session: &mut Session, call: &Call) -> (Option<Cause>, 
     (cause, before == after)
 }
 
-/// Runs each step of a kept check on `session` through the driver, in order, and reads what
-/// each answer was: whether it was accepted and its digest.
-pub fn replay(session: &mut Session, check: &Check) -> Vec<(bool, u64)> {
-    check
-        .steps()
-        .iter()
-        .map(|step| {
-            let answer = session.run(step.call());
-            (answer.is_ok(), answer_digest(&answer))
-        })
-        .collect()
+/// The first 64 base64 characters of the image a `screenshot` of the whole screen answers, as
+/// the driver writes it: what a kept check would hold if it kept a shot's pixels.
+pub fn shot_prefix(session: &mut Session) -> String {
+    let line = session
+        .run(&screenshot())
+        .expect("the screenshot is accepted")
+        .to_json();
+    let (_, png) = line
+        .split_once(r#""png":""#)
+        .expect("a shot's line holds its image");
+    png.chars().take(64).collect()
 }
 
 /// What a kept check reads for each step: whether it was accepted and its digest.

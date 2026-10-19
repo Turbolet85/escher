@@ -1,0 +1,49 @@
+[
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "49bca268",
+"ts": "2026-10-19T08:42:47Z",
+"argv": [
+"implement",
+"--dir",
+"escher-0.2.0",
+"--chunk",
+"2026-10-19-recorded-check-replay",
+"--id",
+"v020-04",
+"--ref-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-19T08-22-08-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"implement v020-04 · status planned → implemented · ref tests/blitz-tests/tests/stand_replay.rs::each_committed_check_holds_on_the_uncha… (300 chars)",
+"wrote escher-0.2.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.2.0/verification-matrix.json"
+],
+"before": {
+"id": "v020-04",
+"chunk": "2026-10-19-recorded-check-replay",
+"status": "planned",
+"method": "e2e",
+"ref": "null",
+"acceptance": "A Counter session recorded through `escher-session start counter --record` (`tests/blitz-tests/checks/counter-cli.json`)… (815 chars)",
+"notes_chars": 490
+},
+"after": {
+"id": "v020-04",
+"chunk": "2026-10-19-recorded-check-replay",
+"status": "implemented",
+"method": "e2e",
+"ref": "tests/blitz-tests/tests/stand_replay.rs::each_committed_check_holds_on_the_unchanged_stand · tests/blitz-tests/tests/sta… (300 chars)",
+"acceptance": "A Counter session recorded through `escher-session start counter --record` (`tests/blitz-tests/checks/counter-cli.json`)… (815 chars)",
+"notes_chars": 490
+}
+}
+]

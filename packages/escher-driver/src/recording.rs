@@ -1,12 +1,13 @@
 //! A session kept as a replayable check: the calls as they crossed in, each with whether it was
-//! accepted and a digest of the answer the driver wrote for it.
+//! accepted, a digest of the answer the driver wrote for it and that answer itself.
 //!
 //! A check is one JSON array. Its first record names the app the session was started on; every
 //! later record is one call the session answered: its verb, its arguments by their schema names,
-//! `masked` on a `type` whose text was not kept, `accepted` and `digest`. No screen reading is
-//! kept — no snapshot text, name, value, diff or pixel — and the text typed into a masked control
-//! is [`MASKED_STAND_IN`]. The form is written here by the crate's own JSON writer and read back
-//! with `serde_json`, strictly and under its bounds. Nothing here logs.
+//! `masked` on a `type` whose text was not kept, `accepted`, `digest` and `answer`, the answer's
+//! line as the driver wrote it — masked as on every carrier, and a shot's without its pixels.
+//! The text typed into a masked control is [`MASKED_STAND_IN`]. The form is written here by the
+//! crate's own JSON writer and read back with `serde_json`, strictly and under its bounds.
+//! Nothing here logs.
 
 use std::path::{Path, PathBuf};
 
@@ -15,7 +16,7 @@ use serde_json::{Map, Value};
 use crate::command::{ArgValue, Call, call_of};
 use crate::error::SessionError;
 use crate::execute::Outcome;
-use crate::json::Object;
+use crate::json::{Object, shot_without_image};
 use crate::refusal::{Cause, Refusal};
 use crate::schema::{self, ArgKind, Level, VerbSpec};
 use crate::session::valid_label;
@@ -36,14 +37,26 @@ const FNV_PRIME: u64 = 0x0000_0100_0000_01b3;
 /// The digest of an answer: FNV-1a 64 over the bytes of the line the driver writes for it,
 /// [`Outcome::to_json`] or [`Refusal::to_json`].
 ///
-/// It tells one answer from another, not a reading from a guess: a check keeps it in place of
-/// the answer, so the check holds no screen reading.
+/// It tells one answer from another, a shot's pixels included: a check keeps it beside the
+/// answer, which it keeps whole but for a shot's image.
 pub fn answer_digest(answer: &Result<Outcome, Refusal>) -> u64 {
-    let written = match answer {
+    fnv1a(written(answer).as_bytes())
+}
+
+/// The line the driver writes for an answer.
+fn written(answer: &Result<Outcome, Refusal>) -> String {
+    match answer {
         Ok(outcome) => outcome.to_json(),
         Err(refusal) => refusal.to_json(),
-    };
-    fnv1a(written.as_bytes())
+    }
+}
+
+/// The line a check keeps for an answer: the written line, a shot's without its image.
+pub(crate) fn kept_line(answer: &Result<Outcome, Refusal>) -> String {
+    match answer {
+        Ok(Outcome::Shot { width, height, .. }) => shot_without_image(*width, *height),
+        answer => written(answer),
+    }
 }
 
 fn fnv1a(bytes: &[u8]) -> u64 {
@@ -90,8 +103,14 @@ fn kept_verb(call: &Call) -> Option<&'static VerbSpec> {
 }
 
 /// One record of a call: its arguments in the schema's order, which is the order the schema
-/// checks them in, so a replay meets every rule as the call did.
-fn record_of(verb: &VerbSpec, call: &Call, masked: bool, accepted: bool, digest: u64) -> String {
+/// checks them in, so a replay meets every rule as the call did, then its answer's acceptance,
+/// digest and kept line, the line inlined as the object it is.
+fn record_of(
+    verb: &VerbSpec,
+    call: &Call,
+    masked: bool,
+    answer: &Result<Outcome, Refusal>,
+) -> String {
     let mut arguments = Object::new();
     for arg in verb.args {
         let Some((_, value)) = call.args.iter().find(|(name, _)| name == arg.name) else {
@@ -112,8 +131,9 @@ fn record_of(verb: &VerbSpec, call: &Call, masked: bool, accepted: bool, digest:
     if masked {
         record.flag("masked", true);
     }
-    record.flag("accepted", accepted);
-    record.text("digest", &hex(digest));
+    record.flag("accepted", answer.is_ok());
+    record.text("digest", &hex(answer_digest(answer)));
+    record.json("answer", &kept_line(answer));
     record.end()
 }
 
@@ -157,13 +177,7 @@ impl Recording {
             return true;
         };
         let masked = masked && verb.name == schema::TYPE.name;
-        self.records.push(record_of(
-            verb,
-            call,
-            masked,
-            answer.is_ok(),
-            answer_digest(answer),
-        ));
+        self.records.push(record_of(verb, call, masked, answer));
         let text = check_text(&self.records);
         let written = self.records.len() <= MAX_CHECK_STEPS
             && text.len() <= MAX_CHECK_BYTES
@@ -300,6 +314,7 @@ pub struct Step {
     accepted: bool,
     digest: u64,
     masked: bool,
+    answer: Value,
 }
 
 impl Check {
@@ -310,7 +325,8 @@ impl Check {
     /// is `{"tool":"start","arguments":{"app":…}}`, the app a session label. Every later one has
     /// the keys `tool`, an instance verb of the table; `arguments`, an object of the verb's
     /// arguments by their schema names, each text, a whole number or a flag; `accepted`, a flag;
-    /// `digest`, 16 lowercase hex digits; and on a `type` alone, `masked`, true. Anything else
+    /// `digest`, 16 lowercase hex digits; `answer`, an object, the answer's line as the driver
+    /// wrote it, a shot's without its image; and on a `type` alone, `masked`, true. Anything else
     /// is refused. Each step's call is the call its arguments spell, as an MCP tool call's are
     /// read; it is checked against the schema only when it is run.
     pub fn from_bytes(bytes: &[u8]) -> Result<Check, Refusal> {
@@ -365,6 +381,11 @@ impl Step {
     pub fn masked(&self) -> bool {
         self.masked
     }
+
+    /// The kept answer, as read: an object.
+    pub(crate) fn answer(&self) -> &Value {
+        &self.answer
+    }
 }
 
 /// The object `value` is, when every key it has is one of `keys`.
@@ -391,7 +412,14 @@ fn opening_app(record: &Value) -> Option<String> {
 fn step_of(record: &Value) -> Option<Step> {
     let record = object_of(
         record,
-        &["tool", "arguments", "masked", "accepted", "digest"],
+        &[
+            "tool",
+            "arguments",
+            "masked",
+            "accepted",
+            "digest",
+            "answer",
+        ],
     )?;
     let verb =
         schema::verb(record.get("tool")?.as_str()?).filter(|verb| verb.level == Level::Instance)?;
@@ -412,11 +440,13 @@ fn step_of(record: &Value) -> Option<Step> {
     if !is_hex {
         return None;
     }
+    let answer = record.get("answer").filter(|answer| answer.is_object())?;
     Some(Step {
         call,
         accepted,
         digest: u64::from_str_radix(digest, 16).ok()?,
         masked,
+        answer: answer.clone(),
     })
 }
 
@@ -553,7 +583,15 @@ mod tests {
                 acted(),
             ),
             (call("scroll", &[("id", text("row-14"))]), false, acted()),
-            (call("screenshot", &[]), false, acted()),
+            (
+                call("screenshot", &[]),
+                false,
+                Ok(Outcome::Shot {
+                    width: 2,
+                    height: 1,
+                    png: b"foobar".to_vec(),
+                }),
+            ),
             (
                 call("click", &[("id", ArgValue::Number(7))]),
                 false,
@@ -579,13 +617,22 @@ mod tests {
             assert!(step.accepted() == answer.is_ok(), "row {row}");
             assert!(step.digest() == answer_digest(answer), "row {row}");
             assert!(!step.masked(), "row {row}");
+            let line: Value = serde_json::from_str(&kept_line(answer)).expect("a line of JSON");
+            assert!(step.answer() == &line, "row {row}");
         }
+        let shot = check.steps()[7].answer();
+        assert_eq!(check.steps()[7].call().verb, "screenshot");
+        assert!(shot.get("png").is_none());
+        assert_eq!(shot.as_object().map(Map::len), Some(2));
+        assert!(shot["width"] == 2 && shot["height"] == 1);
+        assert!(check.steps()[7].digest() == answer_digest(&calls[7].2));
         let text = String::from_utf8(bytes).expect("the check is text");
         assert!(text.starts_with("[\n{\"tool\":\"start\",\"arguments\":{\"app\":\"counter\"}},\n"));
         assert!(text.contains(
             r#"{"tool":"press","arguments":{"key":"tab","shift":true},"accepted":true,"digest":""#
         ));
         assert!(text.ends_with("}\n]\n"));
+        assert!(!text.contains(r#""png""#) && !text.contains("Zm9vYmFy"));
         assert_eq!(text.lines().count(), calls.len() + 3);
         let _ = fs::remove_dir_all(&dir);
     }
@@ -756,7 +803,9 @@ mod tests {
     }
 
     const OPENING: &str = r#"{"tool":"start","arguments":{"app":"counter"}}"#;
-    const CLICK: &str =
+    const CLICK: &str = r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"digest":"0123456789abcdef","answer":{"settled":true,"added":[],"removed":[],"changed":[]}}"#;
+    /// [`CLICK`] without its answer.
+    const UNANSWERED: &str =
         r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"digest":"0123456789abcdef"}"#;
 
     fn check(records: &[&str]) -> Vec<u8> {
@@ -770,19 +819,27 @@ mod tests {
             check(&[OPENING, CLICK]),
             check(&[
                 OPENING,
-                r#"{"digest":"ffffffffffffffff","accepted":false,"arguments":{"text":"masked","id":"p"},"masked":true,"tool":"type"}"#,
+                r#"{"digest":"ffffffffffffffff","accepted":false,"arguments":{"text":"masked","id":"p"},"masked":true,"tool":"type","answer":{}}"#,
             ]),
             check(&[
                 OPENING,
-                r#"{"tool":"advance","arguments":{"ms":0},"accepted":false,"digest":"0000000000000000"}"#,
+                r#"{"tool":"advance","arguments":{"ms":0},"accepted":false,"digest":"0000000000000000","answer":{}}"#,
             ]),
             check(&[
                 OPENING,
-                r#"{"tool":"screenshot","arguments":{},"accepted":true,"digest":"0123456789abcdef"}"#,
+                r#"{"tool":"screenshot","arguments":{},"accepted":true,"digest":"0123456789abcdef","answer":{}}"#,
             ]),
             format!(" [ {OPENING} ,\n {CLICK} ] \n").into_bytes(),
+            check(&[
+                OPENING,
+                r#"{"answer":{"text":"Button \"Go\" id=\"go\"\n"},"digest":"0123456789abcdef","accepted":true,"arguments":{},"tool":"snapshot"}"#,
+            ]),
+            check(&[
+                OPENING,
+                r#"{"tool":"click","arguments":{"id":"x"},"accepted":false,"digest":"0123456789abcdef","answer":{"refused":{"cause":"not-found"}}}"#,
+            ]),
         ];
-        assert_eq!(rows.len(), 6);
+        assert_eq!(rows.len(), 8);
         for (row, bytes) in rows.iter().enumerate() {
             assert!(Check::from_bytes(bytes).is_ok(), "row {row}");
         }
@@ -809,59 +866,82 @@ mod tests {
             check(&[r#"{"tool":"start","arguments":{"app":"counter"},"accepted":true}"#]),
             check(&[r#"{"tool":"start"}"#]),
             check(&[r#""start""#]),
-            step(r#"{"tool":"stop","arguments":{},"accepted":true,"digest":"0123456789abcdef"}"#),
             step(
-                r#"{"tool":"capture","arguments":{},"accepted":true,"digest":"0123456789abcdef"}"#,
+                r#"{"tool":"stop","arguments":{},"accepted":true,"digest":"0123456789abcdef","answer":{}}"#,
             ),
-            step(r#"{"tool":7,"arguments":{},"accepted":true,"digest":"0123456789abcdef"}"#),
-            step(r#"{"arguments":{},"accepted":true,"digest":"0123456789abcdef"}"#),
+            step(
+                r#"{"tool":"capture","arguments":{},"accepted":true,"digest":"0123456789abcdef","answer":{}}"#,
+            ),
+            step(
+                r#"{"tool":7,"arguments":{},"accepted":true,"digest":"0123456789abcdef","answer":{}}"#,
+            ),
+            step(r#"{"arguments":{},"accepted":true,"digest":"0123456789abcdef","answer":{}}"#),
+            step(UNANSWERED),
             step(
                 r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"digest":"0123456789abcdef","answer":"x"}"#,
             ),
             step(
-                r#"{"tool":"click","arguments":{"target":"save"},"accepted":true,"digest":"0123456789abcdef"}"#,
+                r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"digest":"0123456789abcdef","answer":7}"#,
             ),
             step(
-                r#"{"tool":"click","arguments":{"id":null},"accepted":true,"digest":"0123456789abcdef"}"#,
+                r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"digest":"0123456789abcdef","answer":[]}"#,
             ),
             step(
-                r#"{"tool":"click","arguments":{"id":["save"]},"accepted":true,"digest":"0123456789abcdef"}"#,
+                r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"digest":"0123456789abcdef","answer":null}"#,
             ),
             step(
-                r#"{"tool":"advance","arguments":{"ms":1.5},"accepted":true,"digest":"0123456789abcdef"}"#,
-            ),
-            step(r#"{"tool":"click","arguments":[],"accepted":true,"digest":"0123456789abcdef"}"#),
-            step(r#"{"tool":"click","arguments":{"id":"save"},"digest":"0123456789abcdef"}"#),
-            step(
-                r#"{"tool":"click","arguments":{"id":"save"},"accepted":"true","digest":"0123456789abcdef"}"#,
-            ),
-            step(r#"{"tool":"click","arguments":{"id":"save"},"accepted":true}"#),
-            step(
-                r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"digest":"0123456789abcde"}"#,
+                r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"digest":"0123456789abcdef","answer":{},"answers":{}}"#,
             ),
             step(
-                r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"digest":"0123456789abcdef0"}"#,
+                r#"{"tool":"click","arguments":{"target":"save"},"accepted":true,"digest":"0123456789abcdef","answer":{}}"#,
             ),
             step(
-                r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"digest":"0123456789ABCDEF"}"#,
+                r#"{"tool":"click","arguments":{"id":null},"accepted":true,"digest":"0123456789abcdef","answer":{}}"#,
             ),
             step(
-                r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"digest":"0123456789abcdeg"}"#,
-            ),
-            step(r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"digest":7}"#),
-            step(
-                r#"{"tool":"click","arguments":{"id":"save"},"masked":true,"accepted":true,"digest":"0123456789abcdef"}"#,
+                r#"{"tool":"click","arguments":{"id":["save"]},"accepted":true,"digest":"0123456789abcdef","answer":{}}"#,
             ),
             step(
-                r#"{"tool":"type","arguments":{"id":"p","text":"masked"},"masked":false,"accepted":true,"digest":"0123456789abcdef"}"#,
+                r#"{"tool":"advance","arguments":{"ms":1.5},"accepted":true,"digest":"0123456789abcdef","answer":{}}"#,
             ),
             step(
-                r#"{"tool":"type","arguments":{"id":"p","text":"masked"},"masked":"true","accepted":true,"digest":"0123456789abcdef"}"#,
+                r#"{"tool":"click","arguments":[],"accepted":true,"digest":"0123456789abcdef","answer":{}}"#,
+            ),
+            step(
+                r#"{"tool":"click","arguments":{"id":"save"},"digest":"0123456789abcdef","answer":{}}"#,
+            ),
+            step(
+                r#"{"tool":"click","arguments":{"id":"save"},"accepted":"true","digest":"0123456789abcdef","answer":{}}"#,
+            ),
+            step(r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"answer":{}}"#),
+            step(
+                r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"digest":"0123456789abcde","answer":{}}"#,
+            ),
+            step(
+                r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"digest":"0123456789abcdef0","answer":{}}"#,
+            ),
+            step(
+                r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"digest":"0123456789ABCDEF","answer":{}}"#,
+            ),
+            step(
+                r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"digest":"0123456789abcdeg","answer":{}}"#,
+            ),
+            step(
+                r#"{"tool":"click","arguments":{"id":"save"},"accepted":true,"digest":7,"answer":{}}"#,
+            ),
+            step(
+                r#"{"tool":"click","arguments":{"id":"save"},"masked":true,"accepted":true,"digest":"0123456789abcdef","answer":{}}"#,
+            ),
+            step(
+                r#"{"tool":"type","arguments":{"id":"p","text":"masked"},"masked":false,"accepted":true,"digest":"0123456789abcdef","answer":{}}"#,
+            ),
+            step(
+                r#"{"tool":"type","arguments":{"id":"p","text":"masked"},"masked":"true","accepted":true,"digest":"0123456789abcdef","answer":{}}"#,
             ),
             step(r#""click""#),
             check(&[OPENING, CLICK, "null"]),
         ];
-        assert_eq!(rows.len(), 35);
+        assert_eq!(rows.len(), 40);
         for (row, bytes) in rows.iter().enumerate() {
             assert!(
                 Check::from_bytes(bytes) == Err(Refusal::new(Cause::Malformed)),

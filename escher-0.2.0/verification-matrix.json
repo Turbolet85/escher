@@ -54,11 +54,11 @@
    "observed_gap": "the cold-agent pipe replays one agent-written JSON check on a fresh session with no model; no general command turns a driver session into a check",
    "verification": {
     "method": "e2e",
-    "acceptance": "A stand session driven through the command line and one driven through MCP are each recorded and replayed as ordinary tests in CI; each replay passes on the unchanged app and fails when the app's behaviour is changed under it, with no hand edit of the recording.",
-    "ref": null,
-    "status": "planned"
+    "acceptance": "A Counter session recorded through `escher-session start counter --record` (`tests/blitz-tests/checks/counter-cli.json`) and one recorded through `escher-session mcp --record` (`tests/blitz-tests/checks/counter-mcp.json`) are committed as the binary wrote them, and `examples/seven_guis/tests/flows/record_checks.sh` run through the binary reads byte-equal to both (seven_guis `recording`); `stand_replay` replays each through `Check::replay` on a freshly booted stand Counter and each holds in both layout modes; against a variant Counter whose click adds 2 each does not hold, its first change at its first activation step (index 1 and 3) with every earlier step holding and `changed` among the differing keys; both are green in CI's `test` leg on linux, windows and macos and in `stand-repeat`, the run id named.",
+    "ref": "tests/blitz-tests/tests/stand_replay.rs::each_committed_check_holds_on_the_unchanged_stand · tests/blitz-tests/tests/stand_replay.rs::each_committed_check_turns_red_at_its_first_activation_on_a_changed_counter · examples/seven_guis/tests/recording.rs::the_committed_checks_are_what_the_binary_records",
+    "status": "implemented"
    },
-   "chunk": null,
+   "chunk": "2026-10-19-recorded-check-replay",
    "notes": "2026-10-19 (2026-10-19-session-recording, phase P5): not claimed — this chunk ships the recording half (an opt-in, launcher-named recording directory; a check of the calls with each answer's FNV-1a 64 digest; a strict reader and an in-process round trip on the four lean tasks); the acceptance's CI replays that pass on the unchanged app and fail on a changed one are «Recorded-check replay»'s (escher-0.2.0/working-route.md:29, which names v020-04), so the cap stays pooled for that entry."
   },
   {

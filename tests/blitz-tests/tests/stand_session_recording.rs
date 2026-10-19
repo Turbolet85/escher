@@ -1,17 +1,18 @@
-//! A driver session keeps itself as a replayable check, owner-only and holding no screen
-//! reading, and the check replays. In both layout modes. *On each lean task:* a session recording
-//! under the test target's temp dir runs a script of a click, a `type`, a `press`, an `advance`
-//! and a `scroll` where the task has the control, a call refused for an id no screen reads, a
-//! `snapshot` and a `screenshot`; its check reads back with one step per call, each step's
-//! acceptance and digest those of the answer the call got, and run again on a freshly booted
-//! session every step answers alike. The check file reads `0600` in a `0700` directory, and no
-//! accessible name, control value or snapshot-text line of the screens the session read occurs
-//! in it but the text the script itself typed, which a check keeps as it crossed. *On a password
-//! fixture:* a sentinel typed into the password input is kept as the fixed stand-in, flagged
-//! masked — the sentinel's bytes occur nowhere, and a sentinel of another length leaves the same
-//! file — and the replay's digests still match. *A recording directory open to its group* is
-//! refused with nothing written. A failure message carries the layout mode, the task and a step
-//! index, never an id, a name or what a screen reads. Unix only: a check's modes are unix modes.
+//! A driver session keeps itself as a replayable check, owner-only and holding each answer as
+//! the call got it but a shot's pixels, and the check replays. In both layout modes. *On each
+//! lean task:* a session recording under the test target's temp dir runs a script of a click, a
+//! `type`, a `press`, an `advance` and a `scroll` where the task has the control, a call refused
+//! for an id no screen reads, a `snapshot` and a `screenshot`; its check reads back with one step
+//! per call, each step's acceptance and digest those of the answer the call got and its `answer`
+//! the line the driver wrote for it — a shot's without its image, so no `png` key and none of the
+//! shot's first 64 base64 characters occur in the check — and `Check::replay` on a freshly
+//! booted session holds with every step run. The check file reads `0600` in a `0700` directory.
+//! *On a password fixture:* a sentinel typed into the password input is kept as the fixed
+//! stand-in, flagged masked — the sentinel's bytes occur nowhere, and a sentinel of another
+//! length leaves the same file — and the check still holds on replay. *A recording directory open
+//! to its group* is refused with nothing written. A failure message carries the layout mode, the
+//! task and a step index, never an id, a name or what a screen reads. Unix only: a check's modes
+//! are unix modes.
 
 #![cfg(unix)]
 
@@ -21,13 +22,15 @@ use std::path::{Path, PathBuf};
 
 use blitz_test_harness::Harness;
 use dioxus::prelude::*;
-use escher_driver::{ArgValue, Call, Check, MASKED_STAND_IN, Session, SessionError, answer_digest};
+use escher_driver::{
+    ArgValue, Call, Check, MASKED_STAND_IN, Outcome, Refusal, Session, SessionError, answer_digest,
+};
 use seven_guis::stand::{self, LeanTask};
 
 mod session_common;
 use session_common::{
-    advance, click, hold, kept, mode, press, replay, screenshot, scroll, slug, snapshot, state_dir,
-    type_into,
+    advance, click, hold, kept, mode, press, screenshot, scroll, shot_prefix, slug, snapshot,
+    state_dir, type_into,
 };
 
 /// An id no element of the stand or of the fixture carries.
@@ -92,39 +95,19 @@ fn the_check(dir: &Path) -> Vec<u8> {
     fs::read(dir.join("check-1.json")).expect("the check is read")
 }
 
-/// `text` as a JSON string writes it, without the quotes: how a reading would stand in a check.
-fn escaped(text: &str) -> String {
-    let mut out = String::new();
-    for character in text.chars() {
-        match character {
-            '"' => out.push_str("\\\""),
-            '\\' => out.push_str("\\\\"),
-            '\n' => out.push_str("\\n"),
-            '\r' => out.push_str("\\r"),
-            '\t' => out.push_str("\\t"),
-            control if control < '\u{20}' => {
-                out.push_str(&format!("\\u{:04x}", u32::from(control)))
-            }
-            other => out.push(other),
+/// The line a check keeps for `answer`: the line the driver wrote, a shot's without its image.
+fn kept_line(answer: &Result<Outcome, Refusal>) -> String {
+    match answer {
+        Ok(Outcome::Shot { width, height, .. }) => {
+            format!(r#"{{"width":{width},"height":{height}}}"#)
         }
+        Ok(outcome) => outcome.to_json(),
+        Err(refusal) => refusal.to_json(),
     }
-    out
-}
-
-/// The text arguments a script sent: what a check keeps as it crossed.
-fn sent(calls: &[Call]) -> Vec<String> {
-    calls
-        .iter()
-        .flat_map(|call| &call.args)
-        .filter_map(|(_, value)| match value {
-            ArgValue::Text(text) => Some(text.clone()),
-            _ => None,
-        })
-        .collect()
 }
 
 #[test]
-fn a_recorded_session_replays_and_keeps_no_screen_reading() {
+fn a_recorded_session_keeps_each_answer_but_a_shots_image_and_replays() {
     for incremental in [false, true] {
         let mode_name = if incremental { "incremental" } else { "full" };
         for task in LeanTask::ALL {
@@ -134,18 +117,11 @@ fn a_recorded_session_replays_and_keeps_no_screen_reading() {
             let mut session = session.recording_into(&dir).expect("the recording starts");
             let calls = script(task);
             let mut answers = Vec::new();
-            let mut names = Vec::new();
-            let mut values = Vec::new();
             let mut lines = Vec::new();
             for call in &calls {
-                let screen = session.harness().doc.snapshot();
-                for node in screen.nodes() {
-                    names.push(node.name.clone());
-                    values.extend(node.state.value.clone());
-                }
-                lines.extend(screen.to_text().lines().map(str::to_string));
                 let answer = session.run(call);
                 answers.push((answer.is_ok(), answer_digest(&answer)));
+                lines.push(kept_line(&answer));
                 assert!(
                     !session.recording_failed(),
                     "{mode_name} {task_name}: the recording stands"
@@ -182,15 +158,29 @@ fn a_recorded_session_replays_and_keeps_no_screen_reading() {
                 "{mode_name} {task_name}: each step keeps its answer's acceptance and digest"
             );
 
-            let (fresh_session, _ticks) = hold(task, incremental);
-            let mut fresh_session = fresh_session;
-            let replayed = replay(&mut fresh_session, &check);
-            for (index, (again, recorded)) in replayed.iter().zip(&answers).enumerate() {
+            let text = String::from_utf8(bytes).expect("the check is text");
+            // The opening `[` and record come first; each step's record ends with its answer.
+            for (index, (record, line)) in text.lines().skip(2).zip(&lines).enumerate() {
+                let record = record.strip_suffix(',').unwrap_or(record);
                 assert!(
-                    again == recorded,
-                    "{mode_name} {task_name}: step {index} replays alike"
+                    record.ends_with(&format!(r#","answer":{line}}}"#)),
+                    "{mode_name} {task_name}: step {index} keeps the line its call got"
                 );
             }
+            let prefix = shot_prefix(&mut session);
+            assert!(
+                !text.contains(r#""png""#) && !text.contains(&prefix),
+                "{mode_name} {task_name}: the check holds a shot's image"
+            );
+
+            let (mut fresh_session, _ticks) = hold(task, incremental);
+            let replay = check.replay(&mut fresh_session);
+            let changed_at = replay.change().map(|change| change.step());
+            assert!(
+                replay.holds() && replay.ran() == calls.len(),
+                "{mode_name} {task_name}: the check holds on replay, its first change at step \
+                 {changed_at:?}"
+            );
 
             assert!(
                 mode(&dir) == 0o700,
@@ -201,37 +191,6 @@ fn a_recorded_session_replays_and_keeps_no_screen_reading() {
                 "{mode_name} {task_name}: the check is owner-only"
             );
 
-            let text = String::from_utf8(bytes).expect("the check is text");
-            let typed = sent(&calls);
-            let at_rest = |reading: &String| {
-                !reading.is_empty()
-                    && !typed.contains(reading)
-                    && text.contains(&format!("\"{}\"", escaped(reading)))
-            };
-            assert!(
-                !names.is_empty() && !lines.is_empty(),
-                "{mode_name} {task_name}: the session read names and lines"
-            );
-            assert!(
-                task == LeanTask::Counter || !values.is_empty(),
-                "{mode_name} {task_name}: the session read control values"
-            );
-            assert!(
-                names.iter().filter(|name| at_rest(name)).count() == 0,
-                "{mode_name} {task_name}: an accessible name is at rest"
-            );
-            assert!(
-                values.iter().filter(|value| at_rest(value)).count() == 0,
-                "{mode_name} {task_name}: a control value is at rest"
-            );
-            assert!(
-                lines
-                    .iter()
-                    .filter(|line| text.contains(&escaped(line.trim())))
-                    .count()
-                    == 0,
-                "{mode_name} {task_name}: a snapshot-text line is at rest"
-            );
             let _ = fs::remove_dir_all(&dir);
         }
     }
@@ -311,10 +270,10 @@ fn a_password_typed_in_a_recorded_session_is_kept_as_the_stand_in() {
             "{mode_name}: a secret of another length leaves another file"
         );
 
-        let mut replayed_session = hold_fixture(incremental);
+        let replay = check.replay(&mut hold_fixture(incremental));
         assert!(
-            replay(&mut replayed_session, &check) == answers,
-            "{mode_name}: the masked check replays alike"
+            replay.holds() && replay.ran() == answers.len(),
+            "{mode_name}: the masked check holds on replay"
         );
         for dir in [dir, other] {
             let _ = fs::remove_dir_all(&dir);

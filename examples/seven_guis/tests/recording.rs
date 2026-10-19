@@ -4,7 +4,11 @@
 //! leaves exactly one `check-1.json`, `0600` in a `0700` directory, and the state directory gone
 //! after `stop` as without a recording. *The `mcp` role:* `mcp --record <dir>` driven with
 //! `start` counter, the same `click` and `snapshot`, then `stop`, leaves a check byte-identical to
-//! the command line's. *Refusals:* a recording directory open to its group refuses `start` with
+//! the command line's. *The committed checks:* `tests/flows/record_checks.sh` run through the
+//! binary records the two Counter sessions committed under `tests/blitz-tests/checks/`, and each
+//! file it writes equals its committed copy byte for byte — no hand edit stands in one; a failure
+//! names the file and the re-record command, never a byte of either. *Refusals:* a recording
+//! directory open to its group refuses `start` with
 //! `record-dir-not-private`, exit 3 and no host spawned, and refuses `mcp --record` with exit 3.
 //! *Unchanged surfaces:* the `mcp` role's `tools/list` and `help` answer the same bytes with and
 //! without a recording directory, and every stdout line is one uncoloured line. Every host is
@@ -28,7 +32,7 @@ use std::process::Command;
 
 #[cfg(unix)]
 use common::Started;
-use common::{Speaker, clear, client, number, state_dir, string_at, text};
+use common::{Speaker, clear, client, number, run, state_dir, string_at, text};
 use escher_driver::Check;
 #[cfg(not(unix))]
 use escher_driver::SessionError;
@@ -175,6 +179,86 @@ fn the_command_line_and_the_mcp_role_keep_the_same_check() {
     for dir in [kept, kept_by_mcp] {
         let _ = fs::remove_dir_all(&dir);
     }
+}
+
+/// The script that records the committed checks through the binary.
+const RECORD_CHECKS: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/tests/flows/record_checks.sh");
+
+/// The checks committed under `tests/blitz-tests/checks/`, by file name.
+const COMMITTED: [(&str, &[u8]); 2] = [
+    (
+        "counter-cli.json",
+        include_bytes!(concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/../../tests/blitz-tests/checks/counter-cli.json"
+        )),
+    ),
+    (
+        "counter-mcp.json",
+        include_bytes!(concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/../../tests/blitz-tests/checks/counter-mcp.json"
+        )),
+    ),
+];
+
+#[cfg(unix)]
+#[test]
+fn the_committed_checks_are_what_the_binary_records() {
+    let out = fresh("rc-fresh");
+    fs::create_dir(&out).expect("the output directory is created");
+    // The script stops its own session when it fails; this guard is for one it could not.
+    let _guard = Started {
+        dir: out.join("rec").join("s"),
+        pid: None,
+    };
+    let mut command = Command::new("sh");
+    command
+        .arg(RECORD_CHECKS)
+        .arg(BINARY)
+        .arg(&out)
+        .env_remove("RUST_LOG");
+    let ran = run(command);
+    // A failing script prints the number of its failing step and nothing else.
+    let failed_step: Option<u32> = String::from_utf8_lossy(&ran.stdout)
+        .trim()
+        .strip_prefix("step ")
+        .and_then(|step| step.parse().ok());
+    assert!(
+        ran.status == Some(0),
+        "record_checks.sh: status {:?}, failing step {failed_step:?}",
+        ran.status
+    );
+    assert!(
+        ran.stdout.is_empty() && ran.stderr.is_empty(),
+        "record_checks.sh wrote {} bytes to stdout and {} to stderr",
+        ran.stdout.len(),
+        ran.stderr.len()
+    );
+    let mut names: Vec<_> = fs::read_dir(&out)
+        .expect("the output directory is listed")
+        .map(|entry| entry.expect("an entry").file_name())
+        .collect();
+    names.sort();
+    assert!(
+        names == ["counter-cli.json", "counter-mcp.json"],
+        "the output directory holds {} entries, not the two checks",
+        names.len()
+    );
+    for (name, committed) in COMMITTED {
+        let recorded = fs::read(out.join(name)).expect("the check is read");
+        assert!(
+            recorded == committed,
+            "{name}: the binary records {} bytes where {} are committed; after a deliberate \
+             change to the Counter, re-record from the repository root: cargo build --locked -p \
+             seven_guis --bin escher-session, then sh \
+             examples/seven_guis/tests/flows/record_checks.sh target/debug/escher-session \
+             tests/blitz-tests/checks",
+            recorded.len(),
+            committed.len()
+        );
+    }
+    let _ = fs::remove_dir_all(&out);
 }
 
 #[cfg(unix)]
