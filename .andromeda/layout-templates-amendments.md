@@ -166,3 +166,8 @@ One entry per amendment to `layout-templates.md` (sidecar-contract.md §Entry fo
 - The desktop-native row's host role reads the same shape.
 **Why:** a boundary widening on the command line, ratified by the founder — F1 A and F2 B as his (the founder, 2026-10-19, by question dialog in the overseer session, relayed by the operator), the card confirmed «Подтвердить все 25 (Рекомендую)» (the founder, 2026-10-19, by question dialog in the overseer session, relayed by the overseer). No PROVISIONAL mark.
 **Ref:** .andromeda/runs/2026-10-19T05-20-24-wrap/
+## 2026-10-19-recorded-check-replay — the `--record` check keeps each answer
+**Section:** Surface: cli → Primary screens (the `escher-session` row, its `--record <dir>` sentence)
+**Change:** was «holding the calls and no screen reading»; now holding per call its verb, arguments, acceptance, the answer's digest and the answer itself as an `answer` key — the line the driver wrote, masked as on every carrier, a shot's kept as `{"width":…,"height":…}` without its `png` — read back and replayed by `Check::replay`; `record-dir-not-private`, `recording-failed`, `help` and `tools/list` unchanged.
+**Why:** a boundary widening ratified by the founder — F3 B (the founder's word, relayed verbatim by the operator, 2026-10-19 05:02Z); the answer card confirmed «Подтвердить все 22 (Рекомендую)» (the founder, by question dialog in the overseer session, relayed by the overseer through the operator). No new surface or region. Not PROVISIONAL.
+**Ref:** .andromeda/runs/2026-10-19T09-49-14-wrap/

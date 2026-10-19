@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens holds — every Coverage row reads `tokens n/a` (no `hardcoded✗`) and `pub fn TaskShell` states "No UI element added; tokens and a11y unchanged"; the only new style text is the test-local `mod variant` Counter's CSS in `tests/blitz-tests/tests/stand_replay.rs` (138-186), a test fixture the stand never renders, so no new UI against §Color Palette / §Spacing / §Typography; Retired reads None, so no D-retired.

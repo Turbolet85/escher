@@ -1,0 +1,47 @@
+[[pattern]]
+id = 'no-reading'
+regex = '''no screen reading|answers'? digests? alone|digest alone|no snapshot text, name, value, diff|never the snapshot or its text|nor does a kept check'''
+
+[[pattern]]
+id = 'no-file'
+regex = '''(log, event or file|log, event, or file)'''
+
+[[pattern]]
+id = 'owed-replay'
+regex = '''owed at «Recorded-check replay»|refused until «Recorded-check replay»|kept whole, a shot's pixels excepted, (is )?owed'''
+
+[[pattern]]
+id = 'acc-digest'
+regex = '''acceptance and digest equal|every step's acceptance and digest|run again with every step'''
+
+[[pattern]]
+id = 'sc-helper'
+regex = '''replay\(session, check\)|through its `replay`|session_common::replay'''
+
+[[pattern]]
+id = 'counts'
+regex = '''twenty-three readers|twenty-four checks|by 24 checks|24 readers|43 files|the 43 `stand_|135 `\.rs` files|re-exports 49|fifteen private modules|87 unit tests|35 refusal rows|35 rows|recording` 3 \(|recording\.rs` \(3 tests'''
+
+[[pattern]]
+id = 'shot-ident'
+regex = '''byte-identical (in two child runs|across (two child runs|processes)|PNGs|shots)|byte-identical across'''
+
+[[pattern]]
+id = 'taskshell'
+fixed = 'TaskShell` staying private'
+
+[[pattern]]
+id = 'flows'
+regex = '''two POSIX `sh` scripts|the two `sh` flow scripts|two flow scripts'''
+
+[[pattern]]
+id = 'serde-reader'
+regex = '''reader of MCP requests and (of )?kept checks|of a kept check's bytes \(`Check::from_bytes`\), writing nothing'''
+
+[[pattern]]
+id = 'record-keys'
+regex = '''`accepted` · `digest`(,| only| \()|accepted` · `digest` only'''
+
+[[pattern]]
+id = 'name-token'
+regex = '''stand_replay|Check::replay|record_checks|tests/blitz-tests/checks|shot_prefix|kept_line'''

@@ -3,7 +3,7 @@
 _Extracted from `.andromeda/architecture.md` §Conventions (citations live there). Detail that does not fit CLAUDE.md's budget._
 
 ## File & directory naming
-- Crates under `packages/`, apps under `apps/`, example crates under `examples/{name}/`, root examples as `examples/*.rs`; integration tests one file per behaviour in `tests/blitz-tests/tests/`, each its own test target — upstream's single-binary `tests/all.rs` stays in the manifest at `test = false`, never built, pinned by `BlitzTestsTargetsTest` — with the stand checks' shared tables and helpers stated once in `tests/blitz-tests/tests/common/mod.rs`, and what the checks that hold a `Session` share in a second such module, `tests/blitz-tests/tests/session_common/mod.rs` (neither a test target).
+- Crates under `packages/`, apps under `apps/`, example crates under `examples/{name}/`, root examples as `examples/*.rs`; integration tests one file per behaviour in `tests/blitz-tests/tests/`, each its own test target — upstream's single-binary `tests/all.rs` stays in the manifest at `test = false`, never built, pinned by `BlitzTestsTargetsTest` — with the stand checks' shared tables and helpers stated once in `tests/blitz-tests/tests/common/mod.rs`, and what the checks that hold a `Session` share in a second such module, `tests/blitz-tests/tests/session_common/mod.rs` (neither a test target); the two committed kept checks `stand_replay` replays sit in `tests/blitz-tests/checks/`.
 - Modules and files open with a `//!` doc; examples open with a `//!` comment saying what they demonstrate.
 - Paint rendering is split one module per concern (`blitz-paint/src/render/*`).
 

@@ -116,3 +116,35 @@ OS»). The comparison stays byte-strict.
     `snapshot` only and holds no `screenshot` step, so as it stands it does not cover the shot path. Measured by
     reading `recording.rs:129-164`; left unchanged here.
 - **Still owed:** pixel comparison of shots stays out of this version (F3 B).
+
+## Fix commit
+`git add -A`, then the commit:
+- sha `f15c28fcb2ac339e3d47607ceb073679100bb414`;
+- subject `fix(2026-10-19-recorded-check-replay): operator fix after CI run 39225375577, drop the screenshot step from
+  the committed checks — a shot's PNG bytes differ by OS`.
+
+## Entry 15, re-fired for the fix push
+    operator entry 15 · history tripwire: git
+     15 probe       green · exit 0 · 147.48s · 107702 B → 15.log · history moved: refs/remotes/origin/build/escher-0.2.0 d2f010a2→f15c28fc · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+    entries 16 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 15
+
+## Entry 16, re-fired on the fix's sha
+    ci v1.3 · 2b582a9b
+    repo Turbolet85/escher (the push remote `origin`) · polled 35× over 1056 s
+    f15c28fcb2ac verdict: green · checks 17/17 · wall 1030 s · runs CI#39227884248 completed/success
+    runs: CI#39227884248 push completed/success
+
+**Verdict: green**, CI#39227884248 on `f15c28fc`.
+
+Read from the job logs of CI#39227884248. The three `stand_replay` tests are
+`each_committed_check_holds_on_the_unchanged_stand`, `each_committed_check_turns_red_at_its_first_activation…` and
+`a_check_on_a_session_of_another_app…`. The freshness test is `the_committed_checks_are_what_the_binary_records`.
+
+| job | job id | `stand_replay` ok | freshness ok | `FAILED` lines |
+|---|---|---|---|---|
+| `Test (macos)` | 117980673002 | 3 | 1 | 0 |
+| `Test (windows)` | 117980673074 | 3 | 0 (the test is unix only) | 0 |
+| `Test [default features]` (linux) | 117978535102 | 3 | 1 | 0 |
+| `Stand checks repeated` | 117980672807 | 9 (3 rounds) | 3 | 0 |
+
+The pass stops here, on the operator's word. No wrap was started.

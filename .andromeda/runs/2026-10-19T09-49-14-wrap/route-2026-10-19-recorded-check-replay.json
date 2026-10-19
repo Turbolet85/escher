@@ -1,0 +1,117 @@
+[
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "cc3d30ac",
+"ts": "2026-10-19T11:04:58Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-19-recorded-check-replay",
+"--run-dir",
+".andromeda/runs/2026-10-19T09-49-14-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"flip master-route.md:64 - 2026-10-19-recorded-check-replay pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "cc3d30ac",
+"ts": "2026-10-19T11:05:01Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-19-recorded-check-replay",
+"--date",
+"2026-10-19",
+"--run-dir",
+".andromeda/runs/2026-10-19T09-49-14-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :29 strip CARRY: 497ch \"CARRY: F3 widens to B here, on the found\"",
+"pin next markerless :32 holds CARRY:×4",
+"29 · 2026-10-19-recorded-check-replay · strip 1 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 29,
+"marker": "2026-10-19-recorded-check-replay",
+"blocks": 1,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "cc3d30ac",
+"ts": "2026-10-19T11:05:05Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-19-recorded-check-replay",
+"--date",
+"2026-10-19",
+"--run-dir",
+".andromeda/runs/2026-10-19T09-49-14-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :29 strip CARRY: 497ch \"CARRY: F3 widens to B here, on the found\"",
+"pin next markerless :32 holds CARRY:×4",
+"29 · 2026-10-19-recorded-check-replay · strip 1 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.2.0/route-archive.md",
+"./escher-0.2.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 29,
+"marker": "2026-10-19-recorded-check-replay",
+"blocks": 1,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]

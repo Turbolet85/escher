@@ -1,0 +1,65 @@
+[[pattern]]
+id = 'reading'
+regex = '''no screen reading|answers'? digests?|digest alone|answer digest|in place of the answer'''
+
+[[pattern]]
+id = 'digest'
+regex = 'answer_digest|FNV-1a'
+
+[[pattern]]
+id = 'record-keys'
+regex = '''masked.{0,60}accepted.{0,60}digest|tool.{0,30}arguments.{0,60}accepted|closed keys'''
+
+[[pattern]]
+id = 'replay'
+regex = 'Check::replay|session_common::replay|\bReplay\b|\breplay(ed|s)?\b'
+
+[[pattern]]
+id = 'checks-dir'
+regex = 'tests/blitz-tests/checks|counter-(cli|mcp)\.json|record_checks|committed checks?'
+
+[[pattern]]
+id = 'stand-replay'
+fixed = 'stand_replay'
+
+[[pattern]]
+id = 'taskshell'
+fixed = 'TaskShell'
+
+[[pattern]]
+id = 'sc-readers'
+regex = 'session_common|\b\d+ readers\b|twenty-\w+ readers'
+
+[[pattern]]
+id = 'stand-files'
+regex = 'stand_\*'
+
+[[pattern]]
+id = 'rec-tests'
+regex = '''recording`?\W{0,3}\d+\b'''
+
+[[pattern]]
+id = 'unit-count'
+regex = '\b\d+ unit tests'
+
+[[pattern]]
+id = 'shot-os'
+regex = 'byte-identical across processes|byte-identical in two child runs|across processes'
+
+[[pattern]]
+id = 'at-rest'
+regex = 'at rest'
+
+[[pattern]]
+id = 'bt-files'
+regex = '''\b\d+ `\.rs` files|\b\d+ test targets'''
+
+[[pattern]]
+id = 'owner-title'
+fixed = 'Recorded-check replay'
+ignore_case = true
+
+[[pattern]]
+id = 'owner-generic'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true

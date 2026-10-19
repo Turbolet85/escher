@@ -1,0 +1,38 @@
+proposals:
+  - detector: D-obs-instrumentation
+    severity: warning
+    section: "§4 Span / Trace Coverage"
+    change: "In the `command`-span bullet's «Still observed absent» list add the replay: since 2026-10-19-recorded-check-replay `Check::replay` (escher-driver's private module `replay`, re-exporting `Replay` and `Change`) opens no span and writes no event, line or field of its own; each replayed step runs through `Session::run` and so writes its own one closed `command` span, the replay adding none, and `Replay` / `Change` hold only bools, a step index and closed key words (no reading)."
+    sidecar: "§4 — `Check::replay` (module `replay`) added to the observed-absent list: no span of its own; each replayed step writes its `command` span through `Session::run` (2026-10-19-recorded-check-replay)."
+    rationale: "Report Changes → Symbols / APIs (the replay: each step's `call()` runs through `Session::run`; `Replay`/`Change` hold no reading) and Coverage of new surfaces («instrumentation ✓ (each step's own `command` span; the module opens none, the silence probe reads 0)»); Expected amendments: «In §4 `Check::replay` goes on the observed-absent list»."
+    basis: "packages/escher-driver/src/replay.rs:41-69"
+  - detector: D-obs-instrumentation
+    severity: warning
+    section: "§3 Observability Harness Contract — Logging stack (detail: absence · logs)"
+    change: "Restate the session-recording silence bullet (obs-plan.md:76): `stand_session_recording` replays through `Check::replay` (the `session_common` helper `replay` removed) and reads the module's `kept`, `mode` and, since 2026-10-19-recorded-check-replay, `shot_prefix`; add the new target `stand_replay` (a `session_common` reader, replaying the two committed checks in process in both layout modes) — it installs no subscriber, reads no env var and prints nothing, its failure messages holding `{mode} {file}` and a step index alone; the recorder writes each answered call's arguments, `accepted`, its answer's FNV-1a 64 digest and the answer itself as `answer` (a shot's without `png`) through the crate's `json` writer — a file at rest, never a log line, field or print; the private module `replay` holds no tracing site, env read or print and calls `serde_json` only to read; `host_log` and `mcp_log` still read 0 recording needles."
+    sidecar: "§3 detail — session-recording silence bullet: `Check::replay` replaces the removed `session_common::replay`, `stand_replay` added as a silent check, the kept record now carries `answer` (2026-10-19-recorded-check-replay)."
+    rationale: "Report Counts / qualifiers moved: pattern `sc-readers` and `replay` name `obs-plan.md:76` («through its `replay`, `kept` and `mode`», stale), pattern `digest` names `obs-plan.md:76` as stating the digest as all answer content kept (stale); Symbols / APIs: `session_common::replay` removed, `shot_prefix` added (`session_common/mod.rs:240-250`), `record_of` writes `answer` (`recording.rs:134-136`); Outcome (obs): silence probe `last line 0`, `stand_replay`'s failure messages `{mode} {file}` and a step index alone, `host_log`/`mcp_log` passed."
+    basis: ".andromeda/obs-plan.md:76; packages/escher-driver/src/recording.rs:134-136; tests/blitz-tests/tests/session_common/mod.rs:240-250"
+  - detector: D-obs-instrumentation
+    severity: warning
+    section: "§3 Observability Harness Contract — Logging stack"
+    change: "In the headless-stand bullet, «the module twenty-four checks read» becomes twenty-five, its reader list gaining `stand_replay` (since 2026-10-19-recorded-check-replay), which installs no subscriber, reads no env var and prints nothing."
+    sidecar: "§3 Logging stack — `session_common` readers 24 → 25 (+`stand_replay`) (2026-10-19-recorded-check-replay)."
+    rationale: "Report Counts / qualifiers moved: «`session_common` readers: 24 → 25 (+`stand_replay`)», basis `grep -l '^mod session_common;'` reads 25; the bullet's own count is the base's 24, a duplicate of the reader claim the §3 detail bullet restates."
+    basis: ".andromeda/obs-plan.md (§3 Logging stack, the headless stand bullet)"
+    dependent-of: D-obs-instrumentation
+  - detector: D-obs-pii
+    severity: escalate
+    section: "§9 CI Integration — Telemetry artifact handling, Recording directory row"
+    change: "The row's «with each call's `accepted` and answer digest, and no screen reading» becomes: each call's `accepted`, its answer's digest and, since 2026-10-19-recorded-check-replay, the answer itself kept whole as `answer` — the line the driver wrote, masked as on every carrier (a password's or file input's value as the mask, a masked or unresolved `type`'s text as `MASKED_STAND_IN`), a shot's as `{width, height}` without `png` — so a kept check holds the screens' ids, names, values, snapshot text and diffs at rest; still no log or event line; the founder's ratified F3 B."
+    sidecar: "§9 Recording directory row — a kept check now holds each answer whole as `answer` (masked, a shot's pixels excepted), no longer «no screen reading»; F3 B ratified (2026-10-19-recorded-check-replay)."
+    rationale: "Report Changes → Schema / config: «`answer` is the answer's line as the driver wrote it — masked as on every carrier, and a shot's without `png` … A kept check now holds the screens' ids, names, values, snapshot text and diffs at rest; it held none before» (F3 B, inputs#I1); Counts pattern `reading`/`record-keys`/`at-rest` name `obs-plan.md:341` stale. Not a log: the silence probe and `host_log`/`mcp_log` read 0 needles (Coverage of new surfaces), so no raw PII reaches a log — the escalation is for the at-rest widening's wording, already ratified."
+    basis: ".andromeda/obs-plan.md:341; packages/escher-driver/src/recording.rs:55-60; packages/escher-driver/src/recording.rs:134-136"
+  - detector: D-obs-pii
+    severity: escalate
+    section: "§9 CI Integration — Telemetry artifact handling"
+    change: "Add a «Committed checks» row: `tests/blitz-tests/checks/counter-{cli,mcp}.json`, two kept checks in git (mode `100644`, a public repository — the founder's F1 A), written by `examples/seven_guis/tests/flows/record_checks.sh` (which prints only `step N`), holding the stand Counter's ids, names, values, snapshot text and diffs and the scripts' calls — no typed text, host path, name, secret or `screenshot` step — read by `stand_replay` and seven_guis' freshness check `recording::the_committed_checks_are_what_the_binary_records`; uploaded by no CI leg, no log or event line."
+    sidecar: "§9 — new row: the two committed checks under `tests/blitz-tests/checks/` (in git, uploaded by no leg; F1 A) (2026-10-19-recorded-check-replay)."
+    rationale: "Report Changes → Files (two new checks) and Schema / config («Two committed checks in a public repository … the founder's F1 A (inputs#I2) … No typed text, host path, name or secret … No `screenshot` step since `f15c28fc`»; `record_checks.sh` «prints only `step N`»); Expected amendments: «a committed-checks row is added (in git, uploaded by no leg)»; pattern `checks-dir` 0 master sites."
+    basis: "tests/blitz-tests/checks/counter-cli.json:1-8; tests/blitz-tests/checks/counter-mcp.json:1-11; examples/seven_guis/tests/flows/record_checks.sh:21-26"
+note: "D-obs-stack: no drift — the report's Dependencies bullet reads none added or bumped, no telemetry crate or subscriber change. The two D-obs-pii proposals carry escalate by the detector's severity: no raw input reaches a log (silence probe 0, host_log/mcp_log 0 needles); both restate at-rest widenings the founder already ratified (F3 B via inputs#I1, F1 A inputs#I2), so they belong on the wrap's Boundary widening card."

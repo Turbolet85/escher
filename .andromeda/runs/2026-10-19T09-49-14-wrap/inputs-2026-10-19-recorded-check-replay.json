@@ -1,0 +1,307 @@
+[
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "0c159d7d",
+"ts": "2026-10-19T09:49:42Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-recorded-check-replay",
+"--message-file",
+".andromeda/runs/2026-10-19T09-49-14-wrap/relay-1.md",
+"--kind",
+"relay",
+"--origin",
+"the operator, by message in the implementing session, 2026-10-19 08:45Z",
+"--why",
+"the operator pass directive: entries 14-16 by hand in plan order, the pre-CI subject exact, evidence/operator-pass.md; the operator read both committed checks (stand Counter screens only, no host path, name or secret); on a cross-OS replay red stop with the measured diff, never loosen the comparison",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-10-19T09-49-14-wrap",
+"--marker",
+"2026-10-19-recorded-check-replay"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I3 · copy message · message: the operator, by message in the implementing session, 2026-10-19 08:45Z",
+"cite: inputs#I3"
+],
+"stderr": null,
+"wrote": [
+"inputs/I3-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I3",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, by message in the implementing session, 2026-10-19 08:45Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "b8f70845571335d8862575e1a0856ebcf1d3caa8ebb134c884dc7ab07497b90c",
+"copy": "I3-relay-1.md.txt",
+"link": false,
+"read_at": "2026-10-19T09:49:42Z",
+"step": "wrap",
+"why": "the operator pass directive: entries 14-16 by hand in plan order, the pre-CI subject exact, evidence/operator-pass.md; the operator read both committed checks (stand Counter screens only, no host path, name or secret); on a cross-OS replay red stop with the measured diff, never loosen the comparison"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "0c159d7d",
+"ts": "2026-10-19T09:49:42Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-recorded-check-replay",
+"--message-file",
+".andromeda/runs/2026-10-19T09-49-14-wrap/relay-2.md",
+"--kind",
+"relay",
+"--origin",
+"the operator, by message in the implementing session, 2026-10-19 09:04Z",
+"--why",
+"the fix directive after CI#39225375577 (Test (macos) red on the freshness check): drop the screenshot step from both record_checks.sh sessions, re-record, windows-gnu check, a fix commit naming the run, re-fire entries 15 and 16; the plan own narrowing, the comparison byte-strict; record the limit that a shot PNG bytes differ by OS",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-10-19T09-49-14-wrap",
+"--marker",
+"2026-10-19-recorded-check-replay"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I4 · copy message · message: the operator, by message in the implementing session, 2026-10-19 09:04Z",
+"cite: inputs#I4"
+],
+"stderr": null,
+"wrote": [
+"inputs/I4-relay-2.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I4",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, by message in the implementing session, 2026-10-19 09:04Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "8890016433d8866756054806f4f40014bb8eab2d663f1381b487241e0113907b",
+"copy": "I4-relay-2.md.txt",
+"link": false,
+"read_at": "2026-10-19T09:49:42Z",
+"step": "wrap",
+"why": "the fix directive after CI#39225375577 (Test (macos) red on the freshness check): drop the screenshot step from both record_checks.sh sessions, re-record, windows-gnu check, a fix commit naming the run, re-fire entries 15 and 16; the plan own narrowing, the comparison byte-strict; record the limit that a shot PNG bytes differ by OS"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "0c159d7d",
+"ts": "2026-10-19T09:49:46Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-recorded-check-replay",
+"--run-dir",
+".andromeda/runs/2026-10-19T09-49-14-wrap",
+"--marker",
+"2026-10-19-recorded-check-replay"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, /andromeda-phase invocation, 2026-10-19T07:10Z",
+"I1 cited scope.md:32 · scope.md:69 · scope.md:90 · scope.md:93 · research.md:11 · research.md:95 · plan.md:16 · plan.md:156 · plan.md:188 · plan.md:240 (in fence) · plan.md:336 · plan.md:355 · plan.md:376",
+"I2 n/a — a message has no live source · copy message · message: the founder, 2026-10-19 08:04Z, by question dialog in the overseer session, relayed by the overseer through the operator",
+"I2 cited scope.md:100 · research.md:103 · plan.md:26 · plan.md:374 · plan.md:427 · plan.md:429",
+"I3 n/a — a message has no live source · copy message · message: the operator, by message in the implementing session, 2026-10-19 08:45Z",
+"I3 UNCITED",
+"I4 n/a — a message has no live source · copy message · message: the operator, by message in the implementing session, 2026-10-19 09:04Z",
+"I4 UNCITED",
+"inputs: 4 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 4 · uncited 2 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 4,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 4
+},
+"uncited": 2,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "0c159d7d",
+"ts": "2026-10-19T09:55:44Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-recorded-check-replay",
+"--run-dir",
+".andromeda/runs/2026-10-19T09-49-14-wrap",
+"--marker",
+"2026-10-19-recorded-check-replay"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, /andromeda-phase invocation, 2026-10-19T07:10Z",
+"I1 cited scope.md:32 · scope.md:69 · scope.md:90 · scope.md:93 · research.md:11 · research.md:95 · plan.md:16 · plan.md:156 · plan.md:188 · plan.md:240 (in fence) · plan.md:336 · plan.md:355 · plan.md:376 · report.md:94 · report.md:232 · report.md:273",
+"I2 n/a — a message has no live source · copy message · message: the founder, 2026-10-19 08:04Z, by question dialog in the overseer session, relayed by the overseer through the operator",
+"I2 cited scope.md:100 · research.md:103 · plan.md:26 · plan.md:374 · plan.md:427 · plan.md:429 · report.md:97 · report.md:234 · report.md:279",
+"I3 n/a — a message has no live source · copy message · message: the operator, by message in the implementing session, 2026-10-19 08:45Z",
+"I3 cited report.md:99 · report.md:235 · report.md:324 · report.md:368",
+"I4 n/a — a message has no live source · copy message · message: the operator, by message in the implementing session, 2026-10-19 09:04Z",
+"I4 cited report.md:100 · report.md:236 · report.md:243 · report.md:261 · report.md:348 · report.md:367 · report.md:371",
+"inputs: 4 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 4 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 4,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 4
+},
+"uncited": 0,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "0c159d7d",
+"ts": "2026-10-19T09:57:22Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-recorded-check-replay",
+"--message-file",
+".andromeda/runs/2026-10-19T09-49-14-wrap/relay-3.md",
+"--origin",
+"the operator, /andromeda-wrap-session resume invocation, 2026-10-19 09:56Z",
+"--kind",
+"relay",
+"--why",
+"the resume directive: restate the masters byte-identical shot claims as same-host only citing CI#39225375577 with the limit that a committed check holds no screenshot step; record that stand_session_recording covers the shot path on each OS, correcting the fix directive; retire the T3 learning on a gated wrap with later chunks atop its flip (gate v1.21 shared base resolver)",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-10-19T09-49-14-wrap",
+"--marker",
+"2026-10-19-recorded-check-replay"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I5 · copy message · message: the operator, /andromeda-wrap-session resume invocation, 2026-10-19 09:56Z",
+"cite: inputs#I5"
+],
+"stderr": null,
+"wrote": [
+"inputs/I5-relay-3.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I5",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, /andromeda-wrap-session resume invocation, 2026-10-19 09:56Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "9a035dba3290e23e138957d87d29859cc1696589a971d51f0b993092fd0ec276",
+"copy": "I5-relay-3.md.txt",
+"link": false,
+"read_at": "2026-10-19T09:57:22Z",
+"step": "wrap",
+"why": "the resume directive: restate the masters byte-identical shot claims as same-host only citing CI#39225375577 with the limit that a committed check holds no screenshot step; record that stand_session_recording covers the shot path on each OS, correcting the fix directive; retire the T3 learning on a gated wrap with later chunks atop its flip (gate v1.21 shared base resolver)"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "0c159d7d",
+"ts": "2026-10-19T09:57:35Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-recorded-check-replay",
+"--run-dir",
+".andromeda/runs/2026-10-19T09-49-14-wrap",
+"--marker",
+"2026-10-19-recorded-check-replay"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, /andromeda-phase invocation, 2026-10-19T07:10Z",
+"I1 cited scope.md:32 · scope.md:69 · scope.md:90 · scope.md:93 · research.md:11 · research.md:95 · plan.md:16 · plan.md:156 · plan.md:188 · plan.md:240 (in fence) · plan.md:336 · plan.md:355 · plan.md:376 · report.md:94 · report.md:232 · report.md:273",
+"I2 n/a — a message has no live source · copy message · message: the founder, 2026-10-19 08:04Z, by question dialog in the overseer session, relayed by the overseer through the operator",
+"I2 cited scope.md:100 · research.md:103 · plan.md:26 · plan.md:374 · plan.md:427 · plan.md:429 · report.md:97 · report.md:234 · report.md:279",
+"I3 n/a — a message has no live source · copy message · message: the operator, by message in the implementing session, 2026-10-19 08:45Z",
+"I3 cited report.md:99 · report.md:235 · report.md:324 · report.md:368",
+"I4 n/a — a message has no live source · copy message · message: the operator, by message in the implementing session, 2026-10-19 09:04Z",
+"I4 cited report.md:100 · report.md:236 · report.md:243 · report.md:261 · report.md:348 · report.md:367 · report.md:371",
+"I5 n/a — a message has no live source · copy message · message: the operator, /andromeda-wrap-session resume invocation, 2026-10-19 09:56Z",
+"I5 UNCITED",
+"inputs: 5 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 5 · uncited 1 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 5,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 5
+},
+"uncited": 1,
+"unparsed": 0
+}
+}
+]
