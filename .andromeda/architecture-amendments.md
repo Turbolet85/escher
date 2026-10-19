@@ -1021,3 +1021,12 @@ Partly retires the PROVISIONAL clause of every earlier 2026-10-18-engine-debts a
 - The engine-debts merge-surface CARRY and the document clock's: owner was «Upstream sync ahead of visual lint and real-app readiness»; now «Upstream sync ahead of polish and ship».
 **Why:** upstream's engine behaviour for every document, taken on F1 «Cherry-pick two (Recommended)», answered by the operator as delegate (2026-10-19, by question dialog in the phase session). It is therefore PROVISIONAL under the playbook's «An engine behaviour change for every document», to be discharged in the Epoch 4 boundary batch. The take is not a boundary widening: nothing new crosses a carrier. The CARRY move is the P5 review card's rows 3–4, the operator's own word at that review. The proposed `Node` method registration was declined as registry over-reach: architecture enumerates no `Node` method.
 **Ref:** .andromeda/runs/2026-10-19T19-54-24-wrap/
+
+## 2026-10-19-test-splits — eight `#[path]` test children; the seven_guis log checks' shared fragment
+**Section:** §Conventions → Tests (`conv-tests` group) · §Occupied Resources → Process-wide state and threads (`res-process-wide-state-and-threads` group) · §Existing Scopes (`scopes` group, escher-driver)
+**Change:**
+- §Conventions: unit-test modules in files of their own were five, now eight; the three new are escher-driver's `cli::tests` in `cli_tests.rs`, `recording::tests` in `recording_tests.rs` (`#[cfg(all(test, unix))]`) and `recording::off_unix_tests` in `recording_off_unix_tests.rs` (`#[cfg(all(test, not(unix)))]`, the windows job alone), each moved whole, test paths unchanged.
+- §Occupied Resources: seven_guis' shared test module also holds the log checks' readers — `Needles`, `stand_needles`, `stamped_lines`, `found`, `occurrences`, the unix-only `recorded_needles` — for `host_log` and `mcp_log` alone.
+- §Existing Scopes: escher-driver's `cli` and `recording` hold their tests in those `#[path]` children, as `schema` and `mcp` do; no module added to the public tree, the row unchanged.
+**Why:** this chunk's own test-only moves (the playbook's «Accurate this-chunk addition», the plan's reviewed expected amendment); written as detail groups below their standing records, the module count replaced in place.
+**Ref:** .andromeda/runs/2026-10-19T21-24-54-wrap/

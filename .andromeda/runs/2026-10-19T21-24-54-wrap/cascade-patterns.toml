@@ -1,0 +1,39 @@
+[[pattern]]
+id = 'path-count'
+regex = '\b(five|5)\b[^.;|]{0,60}(modules|#\[path\]|files of their own|out of line)'
+ignore_case = true
+
+[[pattern]]
+id = 'out-of-line'
+regex = '(held|sit) in files of their own|sit out of line|#\[path\][^.;|]{0,40}(child|children|test files?)'
+ignore_case = true
+
+[[pattern]]
+id = 'split'
+regex = '72 inline|20 in two|two `#\[path\]` test files|in two `#\[path\]`'
+
+[[pattern]]
+id = 'perfile'
+regex = '''\bcli\.rs (5|pins)\b|\brecording\.rs (9|pins)\b|`recording\.rs`'s `off_unix_tests`'''
+
+[[pattern]]
+id = 'moved-cite'
+regex = 'escher-driver/src/cli\.rs:(47[6-9]|4[89]\d|[5-9]\d\d|10\d\d)|escher-driver/src/recording\.rs:(45[3-9]|4[6-9]\d|[5-9]\d\d)'
+
+[[pattern]]
+id = 'rec-needles'
+fixed = 'recorded_needles'
+
+[[pattern]]
+id = 'off-unix'
+regex = 'off_unix_tests|off-unix (test|check|recording)'
+ignore_case = true
+
+[[pattern]]
+id = 'sg-common'
+regex = '''seven_guis/tests/common/mod\.rs|seven_guis' shared (test )?module'''
+
+[[pattern]]
+id = 'cov-split'
+regex = 'moved lines stay counted|_tests\.rs[^.;]{0,80}(lcov|coverage)|coverage_floor\.py[^.;]{0,80}(every `SF`|sums)'
+ignore_case = true

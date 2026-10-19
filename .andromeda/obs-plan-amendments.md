@@ -395,3 +395,9 @@ The delegate-answered facts PROVISIONAL.
 **Change:** a bullet is added: `focus_within` and `focus_redraw`, upstream's own targets, install no subscriber, read no env var and print nothing (0 · 0 · 0 each). `focus_redraw`'s `RecordingShell` is a counting `ShellProvider`, not a sink. The engine changes they pin (`:focus-within` matching, the not-in-document focus refusal, the focus-move redraw; PROVISIONAL) add no log site, span, field or env read. The `Focussed node` INFO line stands after the new gate, and `host_log` and `mcp_log` pass under both builds.
 **Why:** the silence census records every new check of the tree (the playbook's «Accurate this-chunk addition»). No raw input reaches a log. The engine take is PROVISIONAL on the operator's delegate answer to F1 (2026-10-19).
 **Ref:** .andromeda/runs/2026-10-19T19-54-24-wrap/
+
+## 2026-10-19-test-splits — the log checks' shared fragment and its silence census
+**Section:** §3 Observability Harness Contract → Logging stack (`absence · logs` group)
+**Change:** a census item added: escher-driver's `cli_tests.rs`, `recording_tests.rs`, `recording_off_unix_tests.rs` and seven_guis' shared `tests/common/mod.rs` are silent — 0 print, tracing and subscriber sites over the four; the shared module now states once, for `host_log` and `mcp_log` alone, `Needles`, `stand_needles`, `stamped_lines`, `found`, `occurrences` and the unix-only `recorded_needles`, its assertion messages a kind and a count, never a needle or a captured line; escher-driver still holds its 2 `info_span!` sites, the env-read set unchanged.
+**Why:** this chunk's own test-only move (the playbook's «Accurate this-chunk addition», the plan's reviewed expected amendment); the log checks the security and obs readings rest on still assert the same zeros.
+**Ref:** .andromeda/runs/2026-10-19T21-24-54-wrap/

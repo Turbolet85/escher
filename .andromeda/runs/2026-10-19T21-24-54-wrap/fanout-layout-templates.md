@@ -1,0 +1,2 @@
+proposals: []
+note: D-layout-surface holds — the report adds no UI surface or region (Coverage of new surfaces "none — no external surface, hot-path operation or UI element is added"; Outcome "(layouts · design) escher-session's endings, statuses, stdout/stderr split and usage line untouched — MET"); Retired is none; layout-templates.md:73's cli.rs citations all read ≤ 474 and stay resolved (F3 · cli-cite, no-change).

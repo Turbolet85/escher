@@ -1,0 +1,61 @@
+[[pattern]]
+id = 'split-count'
+regex = '72 inline|20 in two files|inline and 20|mcp_tests|schema_tests|in files of their own|#\[path\]'
+
+[[pattern]]
+id = 'path-children'
+regex = '(five|5) (out-of-line|modules|`#\[path\]`)|bridge_tests|font_reading_tests|changed_set_tests'
+
+[[pattern]]
+id = 'cli-cite'
+regex = 'escher-driver/src/cli\.rs:[0-9]|cli\.rs:[0-9]'
+
+[[pattern]]
+id = 'rec-cite'
+regex = 'escher-driver/src/recording\.rs:[0-9]|recording\.rs:[0-9]'
+
+[[pattern]]
+id = 'log-cite'
+regex = 'host_log\.rs:[0-9]|mcp_log\.rs:[0-9]|common/mod\.rs:[0-9]'
+
+[[pattern]]
+id = 'common-mod'
+regex = 'seven_guis/tests/common/mod\.rs|tests/common/mod\.rs|recorded_needles|stand_needles|stamped_lines'
+
+[[pattern]]
+id = 'log-checks'
+regex = 'host_log|mcp_log'
+
+[[pattern]]
+id = 'cov-reading'
+regex = '98\.33|5180/5268|98\.07|4266/4350|escher-driver 97'
+
+[[pattern]]
+id = 'cov-tests-rs'
+regex = '_tests\.rs|SF record|coverage_floor\.py'
+
+[[pattern]]
+id = 'file-size'
+regex = '1,032|1032 lines|981 lines|over-800|over 800'
+
+[[pattern]]
+id = 'jscpd'
+regex = 'jscpd|clone pairs|95 duplicated'
+
+[[pattern]]
+id = 'title'
+fixed = 'Test splits'
+ignore_case = true
+
+[[pattern]]
+id = 'owner-generic'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true
+
+[[pattern]]
+id = 'cli-moved'
+regex = 'escher-driver/src/cli\.rs:(47[5-9]|4[89][0-9]|[5-9][0-9]{2}|1[0-9]{3})'
+
+[[pattern]]
+id = 'rec-moved'
+regex = 'escher-driver/src/recording\.rs:(45[3-9]|4[6-9][0-9]|[5-9][0-9]{2})'
