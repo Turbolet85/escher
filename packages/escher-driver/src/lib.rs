@@ -79,6 +79,13 @@
 //! depends on wall time: the overlay scrollbar fade reads the session's clock, so two shots of
 //! one state with no `advance` between them read the same pixels.
 //!
+//! A session can keep itself as a replayable check ([`Session::recording_into`]): every call
+//! [`Session::run`] answers, written to an owner-only file of a directory its launcher names as
+//! the call crossed in, with whether it was accepted and the [`answer_digest`] of its answer —
+//! no screen reading, and the text typed into a masked control as [`MASKED_STAND_IN`].
+//! [`Check::from_bytes`] reads one back, strictly and under its bounds, into [`Step`]s whose
+//! calls run again through [`Session::run`]. Nothing of a recording is logged.
+//!
 //! [`command_line`] is the whole command line of a binary that boots apps: every verb as one
 //! run, answered with one line of JSON on stdout and a status that tells accepted from
 //! refused, from a usage error and from a session error.
@@ -112,6 +119,7 @@ mod host;
 mod image;
 mod json;
 mod mcp;
+mod recording;
 mod refusal;
 mod schema;
 mod session;
@@ -127,6 +135,7 @@ pub use error::SessionError;
 pub use execute::Outcome;
 pub use host::{IDLE_EXPIRY, serve};
 pub use mcp::serve_mcp;
+pub use recording::{Check, MASKED_STAND_IN, Step, answer_digest};
 pub use refusal::{CAUSES, Cause, Fault, Refusal};
 pub use schema::{
     ArgKind, ArgSpec, BUSY_CLASSES, EXIT_STATUSES, ExitStatus, FieldKind, FieldSpec, KEY_NAMES,

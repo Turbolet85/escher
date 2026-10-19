@@ -14,6 +14,7 @@ use crate::error::SessionError;
 use crate::host::{IDLE_EXPIRY, serve};
 use crate::json;
 use crate::mcp::serve_mcp;
+use crate::recording;
 use crate::refusal::{Cause, Refusal};
 use crate::schema::{self, ArgKind, ArgSpec, EXIT_STATUSES, Level, VERBS, VerbSpec};
 use crate::session::Session;
@@ -29,6 +30,9 @@ const SESSION_ERROR: u8 = EXIT_STATUSES[3].status;
 
 /// The option that names the session's state directory, on every command.
 const SESSION_OPTION: &str = "--session";
+
+/// The option that names a recording directory, on `start`, the host role and the MCP role.
+const RECORD_OPTION: &str = "--record";
 
 /// The first word of the host role.
 const HOST_ROLE: &str = "serve";
@@ -50,15 +54,22 @@ const START_BOUND: Duration = Duration::from_secs(30);
 /// a bare `--shift` — except that `start` takes its app as one plain word; `--session <dir>`
 /// names the session's state directory on every command. `start` spawns the running binary
 /// again as `serve <app> --session <dir>`, its streams closed, and answers once that host
-/// does; `status` reaches the session and `stop` ends it; `help` answers the tool's description
+/// does; given `--record <dir>`, it first creates that recording directory owner-only or
+/// refuses it when it is open to its group or to others, then passes it on to the host, which
+/// keeps its session as a replayable check there ([`Session::recording_into`]). `status`
+/// reaches the session and `stop` ends it; `help` answers the tool's description
 /// of itself ([`describe`](crate::describe)) in this process, reaching no session — it takes no
 /// argument, and at most one `--session`, which it does not read; every other verb is sent to
 /// the session as a call ([`call`](crate::call)). `serve` is the host role: it boots the app and
-/// serves it in the foreground until it is stopped or has been idle for [`IDLE_EXPIRY`].
-/// `mcp`, alone on its line, is the MCP role: it speaks MCP on stdin and stdout
+/// serves it in the foreground until it is stopped or has been idle for [`IDLE_EXPIRY`], and
+/// given `--record <dir>` after its state directory records its session there. `mcp`, alone on
+/// its line or with `--record <dir>`, is the MCP role: it speaks MCP on stdin and stdout
 /// ([`serve_mcp`](crate::serve_mcp)), holding the apps it starts in its own process, until stdin
-/// ends. Stdout is the protocol's: the role writes nothing else there, ends `0` when stdin
-/// ends, and `3` with the error's fixed message on stderr when a read or a write fails.
+/// ends, and given a recording directory checks it before it serves and records each session it
+/// starts there, one check from `start` to `stop`. Stdout is the protocol's: the role writes
+/// nothing else there, ends `0` when stdin ends, and `3` with the error's fixed message on
+/// stderr when a read or a write fails or its recording directory is refused. A `--record`
+/// anywhere else, given twice or with no directory after it, is a usage error.
 ///
 /// A command ends one of four ways, the rows of [`EXIT_STATUSES`], and its status says which:
 ///
@@ -104,15 +115,20 @@ enum Line {
     /// A command the schema refuses.
     Refused(Refusal),
     /// The host role.
-    Serve { app: String, state_dir: PathBuf },
+    Serve {
+        app: String,
+        state_dir: PathBuf,
+        record: Option<PathBuf>,
+    },
     /// The MCP role.
-    Mcp,
+    Mcp { record: Option<PathBuf> },
     /// The tool's description of itself.
     Help,
-    /// A session-level command.
+    /// A session-level command; a recording directory on `start` alone.
     Session {
         command: SessionCommand,
         state_dir: PathBuf,
+        record: Option<PathBuf>,
     },
     /// A call for the session's instance.
     Instance { call: Call, state_dir: PathBuf },
@@ -126,28 +142,31 @@ fn read(args: &[String], apps: &[&str]) -> Line {
     };
     if word == HOST_ROLE {
         return match rest {
-            [app, option, state_dir]
+            [app, option, state_dir, record @ ..]
                 if option == SESSION_OPTION && apps.contains(&app.as_str()) =>
             {
-                Line::Serve {
-                    app: app.clone(),
-                    state_dir: PathBuf::from(state_dir),
+                match record_option(record) {
+                    Some(record) => Line::Serve {
+                        app: app.clone(),
+                        state_dir: PathBuf::from(state_dir),
+                        record,
+                    },
+                    None => Line::Usage,
                 }
             }
             _ => Line::Usage,
         };
     }
     if word == MCP_ROLE {
-        return if rest.is_empty() {
-            Line::Mcp
-        } else {
-            Line::Usage
+        return match record_option(rest) {
+            Some(record) => Line::Mcp { record },
+            None => Line::Usage,
         };
     }
     let Some(spec) = schema::verb(word) else {
         return Line::Refused(Refusal::new(Cause::UnknownVerb));
     };
-    let (call, state_dirs) = read_arguments(spec, rest);
+    let (call, state_dirs, records) = read_arguments(spec, rest);
     let checked = match spec.level {
         Level::Instance => validate(&call).map(|_| None),
         Level::Session | Level::Tool => validate_session(&call).map(Some),
@@ -157,8 +176,8 @@ fn read(args: &[String], apps: &[&str]) -> Line {
         Err(refusal) => return Line::Refused(refusal),
     };
     if command == Some(SessionCommand::Help) {
-        return match state_dirs.as_slice() {
-            [] | [Some(_)] => Line::Help,
+        return match (state_dirs.as_slice(), records.as_slice()) {
+            ([] | [Some(_)], []) => Line::Help,
             _ => Line::Usage,
         };
     }
@@ -166,20 +185,43 @@ fn read(args: &[String], apps: &[&str]) -> Line {
         return Line::Usage;
     };
     let state_dir = PathBuf::from(state_dir);
+    let starts = matches!(command, Some(SessionCommand::Start { .. }));
+    let record = match records.as_slice() {
+        [] => None,
+        [Some(record)] if starts => Some(PathBuf::from(record)),
+        _ => return Line::Usage,
+    };
     match command {
         None => Line::Instance { call, state_dir },
         Some(SessionCommand::Start { app }) if !apps.contains(&app.as_str()) => Line::Usage,
-        Some(command) => Line::Session { command, state_dir },
+        Some(command) => Line::Session {
+            command,
+            state_dir,
+            record,
+        },
     }
 }
 
-/// The call the words after a verb spell, and the value of each `--session` among them:
-/// `None` for one with no word after it.
+/// The recording directory `words` name: `Some(None)` for no words, `Some(Some(dir))` for
+/// `--record <dir>`, `None` for anything else.
+fn record_option(words: &[String]) -> Option<Option<PathBuf>> {
+    match words {
+        [] => Some(None),
+        [option, dir] if option == RECORD_OPTION => Some(Some(PathBuf::from(dir))),
+        _ => None,
+    }
+}
+
+/// The call the words after a verb spell, and the value of each `--session` and each
+/// `--record` among them: `None` for one with no word after it.
 ///
 /// Nothing is judged here. A word the verb's schema has no place for becomes an argument with
 /// no name, a flag with no word after it one with no value of its kind, and a flag given twice
 /// two arguments, so the schema's own check says what is wrong, in its own order.
-fn read_arguments(spec: &VerbSpec, words: &[String]) -> (Call, Vec<Option<String>>) {
+fn read_arguments(
+    spec: &VerbSpec,
+    words: &[String],
+) -> (Call, Vec<Option<String>>, Vec<Option<String>>) {
     // A session-level verb takes its arguments as plain words, an instance-level one as flags.
     let none: &[ArgSpec] = &[];
     let (flags, plain) = match spec.level {
@@ -189,10 +231,15 @@ fn read_arguments(spec: &VerbSpec, words: &[String]) -> (Call, Vec<Option<String
     let mut plain = plain.iter();
     let mut args = Vec::new();
     let mut state_dirs = Vec::new();
+    let mut records = Vec::new();
     let mut words = words.iter();
     while let Some(word) = words.next() {
         if word == SESSION_OPTION {
             state_dirs.push(words.next().cloned());
+            continue;
+        }
+        if word == RECORD_OPTION {
+            records.push(words.next().cloned());
             continue;
         }
         let named = word.strip_prefix("--");
@@ -223,7 +270,7 @@ fn read_arguments(spec: &VerbSpec, words: &[String]) -> (Call, Vec<Option<String
         verb: spec.name.to_string(),
         args,
     };
-    (call, state_dirs)
+    (call, state_dirs, records)
 }
 
 /// How a command ended.
@@ -306,9 +353,13 @@ fn usage(apps: &[&str]) -> String {
             };
             line.push_str(&spelt);
         }
+        if verb.name == schema::START.name {
+            line.push_str(&format!(" [{RECORD_OPTION} <dir>]"));
+        }
     }
     line.push_str(&format!(
-        "; host role: {HOST_ROLE} <app> {SESSION_OPTION} <dir>; mcp role: {MCP_ROLE}; apps: {}",
+        "; host role: {HOST_ROLE} <app> {SESSION_OPTION} <dir> [{RECORD_OPTION} <dir>]; mcp role: \
+         {MCP_ROLE} [{RECORD_OPTION} <dir>]; apps: {}",
         apps.join(" | ")
     ));
     line
@@ -342,21 +393,41 @@ fn run(
         Line::Usage => Ending::Usage,
         Line::Refused(refusal) => Ending::Refused(refusal.to_json()),
         Line::Help => Ending::Accepted(describe()),
-        Line::Serve { app, state_dir } => {
-            match boot(&app).and_then(|session| serve(&state_dir, session, IDLE_EXPIRY)) {
-                Ok(()) => Ending::Served,
-                Err(error) => Ending::Failed(error),
-            }
-        }
-        Line::Mcp => Ending::Spoken(serve_mcp(
+        Line::Serve {
+            app,
+            state_dir,
+            record,
+        } => match boot(&app)
+            .and_then(|session| recording_into(session, record.as_deref()))
+            .and_then(|session| serve(&state_dir, session, IDLE_EXPIRY))
+        {
+            Ok(()) => Ending::Served,
+            Err(error) => Ending::Failed(error),
+        },
+        Line::Mcp { record: None } => Ending::Spoken(serve_mcp(
             io::stdin().lock(),
             io::stdout().lock(),
             apps,
             boot,
             IDLE_EXPIRY,
         )),
-        Line::Session { command, state_dir } => answered(match command {
-            SessionCommand::Start { app } => start(&app, &state_dir),
+        Line::Mcp { record: Some(dir) } => {
+            Ending::Spoken(recording::prepare_dir(&dir).and_then(|()| {
+                serve_mcp(
+                    io::stdin().lock(),
+                    io::stdout().lock(),
+                    apps,
+                    |app| boot(app)?.recording_into(&dir),
+                    IDLE_EXPIRY,
+                )
+            }))
+        }
+        Line::Session {
+            command,
+            state_dir,
+            record,
+        } => answered(match command {
+            SessionCommand::Start { app } => start(&app, &state_dir, record.as_deref()),
             SessionCommand::Status => client::attach(&state_dir).map(|hello| json::status(&hello)),
             SessionCommand::Stop => client::stop(&state_dir).map(|()| json::stopped()),
             SessionCommand::Help => Ok(describe()),
@@ -372,14 +443,28 @@ fn run(
     }
 }
 
+/// `session`, recording into `record` when one is named.
+fn recording_into(session: Session, record: Option<&Path>) -> Result<Session, SessionError> {
+    match record {
+        Some(dir) => session.recording_into(dir),
+        None => Ok(session),
+    }
+}
+
 /// Starts a session on `app`: the running binary, spawned again in the host role with its
-/// streams closed, and waited for until it answers.
-fn start(app: &str, state_dir: &Path) -> Result<String, SessionError> {
+/// streams closed, and waited for until it answers. A recording directory is checked first, and
+/// a refused one spawns nothing.
+fn start(app: &str, state_dir: &Path, record: Option<&Path>) -> Result<String, SessionError> {
+    if let Some(dir) = record {
+        recording::prepare_dir(dir)?;
+    }
     let binary = std::env::current_exe().map_err(|error| SessionError::Io(error.kind()))?;
     let mut host = Process::new(binary);
-    host.args([HOST_ROLE, app, SESSION_OPTION])
-        .arg(state_dir)
-        .stdin(Stdio::null())
+    host.args([HOST_ROLE, app, SESSION_OPTION]).arg(state_dir);
+    if let Some(dir) = record {
+        host.arg(RECORD_OPTION).arg(dir);
+    }
+    host.stdin(Stdio::null())
         .stdout(Stdio::null())
         .stderr(Stdio::null());
     // The session outlives this command: the host's handle is dropped, neither killed nor
@@ -397,6 +482,7 @@ mod tests {
 
     const APPS: [&str; 2] = ["counter", "flight-booker"];
     const DIR: &str = "state";
+    const RECORD: &str = "kept";
 
     fn line(words: &[&str]) -> Line {
         let args: Vec<String> = words.iter().map(|word| word.to_string()).collect();
@@ -424,6 +510,25 @@ mod tests {
         Line::Session {
             command,
             state_dir: PathBuf::from(DIR),
+            record: None,
+        }
+    }
+
+    fn recorded_start(app: &str) -> Line {
+        Line::Session {
+            command: SessionCommand::Start {
+                app: app.to_string(),
+            },
+            state_dir: PathBuf::from(DIR),
+            record: Some(PathBuf::from(RECORD)),
+        }
+    }
+
+    fn served(record: Option<&str>) -> Line {
+        Line::Serve {
+            app: "counter".to_string(),
+            state_dir: PathBuf::from(DIR),
+            record: record.map(PathBuf::from),
         }
     }
 
@@ -437,13 +542,36 @@ mod tests {
         let rows: Vec<(&[&str], Line)> = vec![
             // No first word.
             (&[], Line::Usage),
-            // The host role, in its one shape.
+            // The host role, in its one shape, with or without its recording directory.
+            (&["serve", "counter", "--session", DIR], served(None)),
             (
-                &["serve", "counter", "--session", DIR],
-                Line::Serve {
-                    app: "counter".to_string(),
-                    state_dir: PathBuf::from(DIR),
-                },
+                &["serve", "counter", "--session", DIR, "--record", RECORD],
+                served(Some(RECORD)),
+            ),
+            (
+                &["serve", "counter", "--session", DIR, "--record"],
+                Line::Usage,
+            ),
+            (
+                &[
+                    "serve",
+                    "counter",
+                    "--session",
+                    DIR,
+                    "--record",
+                    RECORD,
+                    "--record",
+                    RECORD,
+                ],
+                Line::Usage,
+            ),
+            (
+                &["serve", "counter", "--record", RECORD, "--session", DIR],
+                Line::Usage,
+            ),
+            (
+                &["serve", "counter", "--session", DIR, "--more", RECORD],
+                Line::Usage,
             ),
             (&["serve"], Line::Usage),
             (&["serve", "counter"], Line::Usage),
@@ -452,10 +580,22 @@ mod tests {
             (&["serve", "--session", DIR, "counter"], Line::Usage),
             (&["serve", "counter", "--session", DIR, "more"], Line::Usage),
             (&["serve", "timer", "--session", DIR], Line::Usage),
-            // The MCP role, alone on its line.
-            (&["mcp"], Line::Mcp),
+            // The MCP role, alone on its line or with its recording directory.
+            (&["mcp"], Line::Mcp { record: None }),
+            (
+                &["mcp", "--record", RECORD],
+                Line::Mcp {
+                    record: Some(PathBuf::from(RECORD)),
+                },
+            ),
             (&["mcp", "x"], Line::Usage),
             (&["mcp", "--session", DIR], Line::Usage),
+            (&["mcp", "--record"], Line::Usage),
+            (
+                &["mcp", "--record", RECORD, "--record", RECORD],
+                Line::Usage,
+            ),
+            (&["mcp", "--record", RECORD, "x"], Line::Usage),
             // A first word the table does not hold.
             (&["capture", "--session", DIR], unknown()),
             (&["Click", "--id", "save", "--session", DIR], unknown()),
@@ -541,6 +681,80 @@ mod tests {
                 session(SessionCommand::Status),
             ),
             (&["stop", "--session", DIR], session(SessionCommand::Stop)),
+            // `start` takes a recording directory, at most once and with its value.
+            (
+                &["start", "counter", "--session", DIR, "--record", RECORD],
+                recorded_start("counter"),
+            ),
+            (
+                &[
+                    "start",
+                    "--record",
+                    RECORD,
+                    "flight-booker",
+                    "--session",
+                    DIR,
+                ],
+                recorded_start("flight-booker"),
+            ),
+            (
+                &["start", "counter", "--session", DIR, "--record"],
+                Line::Usage,
+            ),
+            (
+                &[
+                    "start",
+                    "counter",
+                    "--session",
+                    DIR,
+                    "--record",
+                    RECORD,
+                    "--record",
+                    RECORD,
+                ],
+                Line::Usage,
+            ),
+            (
+                &["start", "timer", "--session", DIR, "--record", RECORD],
+                Line::Usage,
+            ),
+            // Anywhere else a recording directory is a usage error.
+            (
+                &["snapshot", "--session", DIR, "--record", RECORD],
+                Line::Usage,
+            ),
+            (
+                &[
+                    "click",
+                    "--id",
+                    "save",
+                    "--record",
+                    RECORD,
+                    "--session",
+                    DIR,
+                ],
+                Line::Usage,
+            ),
+            (
+                &["status", "--session", DIR, "--record", RECORD],
+                Line::Usage,
+            ),
+            (&["stop", "--record", RECORD, "--session", DIR], Line::Usage),
+            (&["help", "--record", RECORD], Line::Usage),
+            (&["help", "--session", DIR, "--record"], Line::Usage),
+            // The word after a flag is its value, `--record` included.
+            (
+                &[
+                    "type",
+                    "--id",
+                    "who",
+                    "--text",
+                    "--record",
+                    "--session",
+                    DIR,
+                ],
+                instance("type", &[("id", text("who")), ("text", text("--record"))]),
+            ),
             // A flag the row does not name, a stray word, a flag given twice.
             (
                 &["click", "--id", "save", "--now", "--session", DIR],
@@ -670,7 +884,7 @@ mod tests {
             // `start` on an app the binary does not boot.
             (&["start", "timer", "--session", DIR], Line::Usage),
         ];
-        assert_eq!(rows.len(), 73);
+        assert_eq!(rows.len(), 94);
         for (row, (words, read)) in rows.into_iter().enumerate() {
             assert!(line(words) == read, "row {row}");
         }
@@ -742,8 +956,10 @@ mod tests {
             failed(SessionError::Io(io::ErrorKind::PermissionDenied)),
             failed(SessionError::NotSettled(Busy::Render)),
             failed(SessionError::AnswerTooLarge),
+            failed(SessionError::RecordDirNotPrivate),
+            failed(SessionError::RecordingFailed),
         ];
-        assert_eq!(rows.len(), 19);
+        assert_eq!(rows.len(), 21);
         for (row, (ending, stdout, stderr, status)) in rows.into_iter().enumerate() {
             let written = ending.written(&APPS);
             let expected = Written {
@@ -784,8 +1000,9 @@ mod tests {
             usage(&APPS),
             "usage: <command> --session <dir>; commands: snapshot | click --id <id> | type --id \
              <id> --text <text> | press --key <key> [--shift] | advance --ms <milliseconds> | \
-             scroll --id <id> | screenshot [--id <id>] | start <app> | status | stop | help; host \
-             role: serve <app> --session <dir>; mcp role: mcp; apps: counter | flight-booker"
+             scroll --id <id> | screenshot [--id <id>] | start <app> [--record <dir>] | status | \
+             stop | help; host role: serve <app> --session <dir> [--record <dir>]; mcp role: mcp \
+             [--record <dir>]; apps: counter | flight-booker"
         );
         for verb in VERBS {
             assert!(usage(&[]).contains(verb.name));
@@ -806,10 +1023,7 @@ mod tests {
             Ending::Refused(refusal.to_json())
         );
         // The host role ends as a session error when its boot does.
-        let serve = Line::Serve {
-            app: "counter".to_string(),
-            state_dir: PathBuf::from(DIR),
-        };
+        let serve = served(None);
         assert_eq!(
             run(serve, &APPS, |_| Err(SessionError::InvalidLabel)),
             Ending::Failed(SessionError::InvalidLabel)

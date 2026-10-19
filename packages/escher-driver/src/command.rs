@@ -1,5 +1,7 @@
 //! A call checked against the schema: a typed command, or a refusal, before anything runs.
 
+use serde_json::{Map, Value};
+
 use crate::refusal::{Cause, Fault, Refusal};
 use crate::schema::{
     self, ArgKind, ArgSpec, KEY_NAMES, Level, MAX_ID_BYTES, MAX_MILLISECONDS, MAX_TEXT_BYTES,
@@ -25,6 +27,36 @@ pub struct Call {
     pub verb: String,
     /// The arguments, each a name and a value, in the order they were passed.
     pub args: Vec<(String, ArgValue)>,
+}
+
+/// The call JSON arguments spell for `verb`, as an MCP tool call or a kept check carries them:
+/// one argument per member. A value that is neither text, a whole number nor a flag refuses the
+/// call as malformed.
+pub(crate) fn call_of(
+    verb: &'static VerbSpec,
+    arguments: &Map<String, Value>,
+) -> Result<Call, Refusal> {
+    let mut args = Vec::with_capacity(arguments.len());
+    for (name, value) in arguments {
+        let value = match value {
+            Value::String(text) => Some(ArgValue::Text(text.clone())),
+            Value::Bool(flag) => Some(ArgValue::Flag(*flag)),
+            Value::Number(number) => number.as_i64().map(ArgValue::Number),
+            Value::Null | Value::Array(_) | Value::Object(_) => None,
+        };
+        let Some(value) = value else {
+            let fault = match verb.args.iter().find(|arg| arg.name == name) {
+                Some(arg) => Fault::WrongKind(arg.name),
+                None => Fault::Unnamed,
+            };
+            return Err(Refusal::malformed(fault));
+        };
+        args.push((name.clone(), value));
+    }
+    Ok(Call {
+        verb: verb.name.to_string(),
+        args,
+    })
 }
 
 /// A key a `press` names: one per name of [`KEY_NAMES`], in its order.

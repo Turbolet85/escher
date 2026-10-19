@@ -1,0 +1,19 @@
+{
+ "anchors_file": "q-chains.json (10 anchors; friction anchors joined by hand below)",
+ "hypotheses": [
+  {"x": "X1", "shape": "wrap-session/report -report-> wrap-session/reconcile", "chunks": 2, "pattern_candidate": true,
+   "cases": [
+    {"chunk": "2026-10-17-upstream-sync-engine-debts", "producer": "2026-10-17T18:34:19Z-a (halted-resolved; new-text-generated, new-text-rows:85, guard-refused:3)", "consumer": "2026-10-18T01:57:54Z-a (report thin)", "friction": "2026-10-18T01:57:54Z-b input.report-insufficient"},
+    {"chunk": "2026-10-18-engine-debts", "producer": "2026-10-18T04:38:25Z-a (ok; new-text-generated, new-text-rows:123)", "consumer": "2026-10-18T05:13:34Z-a (report ok, note: per-OS tallies not carried)", "friction": "2026-10-18T05:13:34Z-g input.report-insufficient"}],
+   "lookback": "input.report-insufficient at reconcile in every epoch of the ledger: 26 records"},
+  {"x": "X2", "shape": "phase/distill -extracts-> phase/research -research-> implement/code", "chunks": 1, "pattern_candidate": false,
+   "cases": [{"chunk": "2026-10-17-upstream-sync-engine-debts", "links": ["2026-10-17T12:31:05Z-a distill ok (guard-refused:1, scope-premise-challenged) -> 2026-10-17T12:37:12Z-b input.extract-signal-gap", "2026-10-17T12:37:12Z-a research ok (unresolved-questions) -> 2026-10-17T14:39:30Z-a research thin + 2026-10-17T14:39:30Z-b input.conventions-gap (iterations 3)"]}],
+   "note": "transitive link not scored (heuristic bound)"},
+  {"x": "X3", "shape": "phase (take-up / validate) -working-route-> wrap-session/route-resolve", "chunks": 1, "pattern_candidate": false,
+   "cases": [{"chunk": "2026-10-18-engine-debts", "producer": "2026-10-18T02:40:27Z-a take-up ok, signals [] on working-route; 2026-10-18T03:16:13Z-a validate claimed gated (claims-refined)", "consumer": "2026-10-18T05:16:28Z-a working-route thin", "friction": "2026-10-18T05:16:28Z-b contract.no-sanctioned-channel (halted)"}],
+   "note": "feeds level candidate L1"},
+  {"x": "X4", "shape": "phase/plan -plan-> implement/code", "chunks": 1, "pattern_candidate": false,
+   "cases": [{"chunk": "2026-10-18-engine-debts", "producer": "2026-10-18T03:01:31Z-a plan ok (designed-dialogue:nine-founder-forks, guard-refused:1)", "consumer": "2026-10-18T03:31:59Z-a plan ok (note: one placement left open)", "friction": "2026-10-18T03:31:59Z-b input.plan-step-ambiguous"}]}
+ ],
+ "unjoined": ["2026-10-18T02:40:27Z-a working-entry thin + 2026-10-18T02:40:27Z-b input.working-entry-thin: producer outside the chunk (the route entry), no same-chunk join"]
+}

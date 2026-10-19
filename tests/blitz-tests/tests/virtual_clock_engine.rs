@@ -5,9 +5,12 @@
 //! of clock, part-faded at 600 ms and gone at 700 ms, when the document stops animating; two
 //! clicks on one point with the clock unmoved select a text input's word, while 500 ms of clock
 //! between them leave its caret; and a smooth scroll stands still however often the document
-//! resolves until the clock moves, and ends at its target after 300 ms of it. A document built
-//! with no clock keeps the wall clock: its thumb reads fully opaque right after a scroll. A
-//! failure message carries the layout mode, a case and a step index.
+//! resolves until the clock moves, and ends at its target after 300 ms of it. A finger pan's
+//! moves and its release are stamped by the clock: a pan whose moves the clock spaced flings on
+//! release, one the clock held through, or released 100 ms of clock after its last move, does
+//! not; and the fling stands still however often the document resolves until the clock moves.
+//! A document built with no clock keeps the wall clock: its thumb reads fully opaque right
+//! after a scroll. A failure message carries the layout mode, a case and a step index.
 
 use std::sync::Arc;
 use std::time::Duration;
@@ -212,6 +215,74 @@ fn a_smooth_scroll_stands_still_until_the_clock_moves() {
             offset_y(&doc, node) == 200.0,
             "{at}: the ended scroll stays at its target"
         );
+    }
+}
+
+/// The scroller's offset in a harness's document.
+fn harness_offset_y(harness: &Harness<HtmlDocument>) -> f64 {
+    let node = harness.node("#scroller");
+    harness
+        .base()
+        .get_node(node)
+        .expect("the node is live")
+        .scroll_offset()
+        .y
+}
+
+#[test]
+fn a_finger_pan_and_its_fling_move_only_with_the_clock() {
+    // The clock between the pan's moves, the clock between its last move and the release, and
+    // whether the release flings: a fling reads the pan's speed off the moves' clock stamps and
+    // takes none from a pan more than 100 ms of clock old.
+    let rows = [(10, 0, true), (0, 0, false), (10, 100, false)];
+    assert_eq!(rows.len(), 3);
+    for incremental in [false, true] {
+        for (case, (between_ms, before_release_ms, flings)) in rows.into_iter().enumerate() {
+            let at = format!("incremental={incremental}: pan: case {case}");
+            let clock = VirtualClock::new();
+            let mut harness = Harness::wrap(document(incremental, Some(&clock)));
+            harness.pump();
+            assert!(
+                harness_offset_y(&harness) == 0.0,
+                "{at}: the box starts unscrolled"
+            );
+
+            // A finger drawn up the box: the first move past the threshold starts the pan, and
+            // each later one scrolls by its own distance.
+            harness.touch_down(0, 100.0, 90.0);
+            for y in [80.0, 60.0, 40.0] {
+                clock.advance(Duration::from_millis(between_ms));
+                harness.touch_move(0, 100.0, y);
+            }
+            assert!(
+                harness_offset_y(&harness) == 40.0,
+                "{at}: the pan moves the box by the finger's distance"
+            );
+            clock.advance(Duration::from_millis(before_release_ms));
+            harness.touch_up(0, 100.0, 40.0);
+            for step in 0..5 {
+                harness.pump();
+                assert!(
+                    harness_offset_y(&harness) == 40.0,
+                    "{at}: step {step}: with the clock held the box stands still"
+                );
+            }
+            clock.advance(Duration::from_millis(16));
+            harness.pump();
+            let after = harness_offset_y(&harness);
+            assert!(
+                (after > 40.0) == flings,
+                "{at}: 16 ms of clock move the box exactly when the release flung"
+            );
+            if flings {
+                clock.advance(Duration::from_millis(16));
+                harness.pump();
+                assert!(
+                    harness_offset_y(&harness) > after,
+                    "{at}: the fling goes on as the clock moves"
+                );
+            }
+        }
     }
 }
 

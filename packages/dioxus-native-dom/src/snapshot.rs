@@ -223,28 +223,32 @@ fn is_checkable(role: Role) -> bool {
     )
 }
 
+/// Whether `element` is a masked control: an `input` whose `type` is `password` or `file`,
+/// in any ASCII case. What such a control holds reads as [`MASKED_VALUE`] in a [`Snapshot`].
+pub fn is_masked_input(element: &ElementData) -> bool {
+    &*element.name.local == "input"
+        && element.attr(local_name!("type")).is_some_and(|input_type| {
+            input_type.eq_ignore_ascii_case("password") || input_type.eq_ignore_ascii_case("file")
+        })
+}
+
 /// The form reader's value of a text-entry control: its editor's text or a range input's
-/// current value, else its `value` attribute. A password or file `input` reads
+/// current value, else its `value` attribute. A masked control ([`is_masked_input`]) reads
 /// [`MASKED_VALUE`] in place of a non-empty one.
 fn value(element: &ElementData) -> Option<String> {
     let input_type = element.attr(local_name!("type"));
-    let (entry, masked) = match &*element.name.local {
-        "textarea" => (true, false),
-        "input" => (
-            !matches!(
-                input_type,
-                Some("checkbox" | "radio" | "button" | "submit" | "reset" | "hidden")
-            ),
-            input_type.is_some_and(|input_type| {
-                input_type.eq_ignore_ascii_case("password")
-                    || input_type.eq_ignore_ascii_case("file")
-            }),
+    let entry = match &*element.name.local {
+        "textarea" => true,
+        "input" => !matches!(
+            input_type,
+            Some("checkbox" | "radio" | "button" | "submit" | "reset" | "hidden")
         ),
-        _ => (false, false),
+        _ => false,
     };
     if !entry {
         return None;
     }
+    let masked = is_masked_input(element);
     let value = match element.text_input_data() {
         Some(text) => Some(text.editor.text().to_string()),
         None => element
@@ -678,6 +682,45 @@ mod tests {
             Some("15"),
             "the value attribute keeps its boot value"
         );
+    }
+
+    #[test]
+    fn a_password_or_file_input_is_masked_and_nothing_else_is() {
+        fn app() -> Element {
+            rsx! {
+                input { id: "password", r#type: "password" }
+                input { id: "upper", r#type: "PassWord" }
+                input { id: "file", r#type: "file" }
+                input { id: "text", r#type: "text" }
+                input { id: "untyped" }
+                textarea { id: "area" }
+                button { id: "button", r#type: "password", "Go" }
+            }
+        }
+        let rows = [
+            ("password", true),
+            ("upper", true),
+            ("file", true),
+            ("text", false),
+            ("untyped", false),
+            ("area", false),
+            ("button", false),
+        ];
+        assert_eq!(rows.len(), 7);
+        let doc = build(app);
+        let base = doc.inner();
+        for (row, (id, masked)) in rows.into_iter().enumerate() {
+            let element = base
+                .query_selector(&format!("#{id}"))
+                .ok()
+                .flatten()
+                .and_then(|node_id| base.get_node(node_id))
+                .and_then(|node| node.element_data());
+            assert!(
+                element.is_some_and(|element| is_masked_input(element) == masked),
+                "row {row}"
+            );
+        }
     }
 
     /// What `id`'s element holds as the attribute `name`.

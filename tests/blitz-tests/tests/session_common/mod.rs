@@ -17,7 +17,7 @@ use std::time::{Duration, Instant};
 
 use blitz_dom::Document;
 use dioxus_native_dom::SnapshotDiff;
-use escher_driver::{ArgValue, Busy, Call, Cause, Outcome, Session};
+use escher_driver::{ArgValue, Busy, Call, Cause, Check, Outcome, Session, answer_digest};
 use seven_guis::stand::{self, LeanTask};
 use seven_guis::tasks::timer::TimerTicks;
 
@@ -235,6 +235,40 @@ pub fn refused_unchanged(session: &mut Session, call: &Call) -> (Option<Cause>, 
     let cause = refused(session, call);
     let after = (session.harness().doc.snapshot(), focused(session));
     (cause, before == after)
+}
+
+/// Runs each step of a kept check on `session` through the driver, in order, and reads what
+/// each answer was: whether it was accepted and its digest.
+pub fn replay(session: &mut Session, check: &Check) -> Vec<(bool, u64)> {
+    check
+        .steps()
+        .iter()
+        .map(|step| {
+            let answer = session.run(step.call());
+            (answer.is_ok(), answer_digest(&answer))
+        })
+        .collect()
+}
+
+/// What a kept check reads for each step: whether it was accepted and its digest.
+pub fn kept(check: &Check) -> Vec<(bool, u64)> {
+    check
+        .steps()
+        .iter()
+        .map(|step| (step.accepted(), step.digest()))
+        .collect()
+}
+
+/// The permission bits of `path`.
+#[cfg(unix)]
+pub fn mode(path: &Path) -> u32 {
+    use std::os::unix::fs::PermissionsExt;
+
+    fs::metadata(path)
+        .expect("the path is there")
+        .permissions()
+        .mode()
+        & 0o777
 }
 
 /// One command that changes what `task` shows: a click, or for the timer three delivered ticks.

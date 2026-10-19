@@ -158,5 +158,45 @@
 "lines": 1314,
 "bytes": 1333037
 }
+},
+{
+"tool": "evolve",
+"v": "1.1",
+"sha8": "96ebf601",
+"ts": "2026-10-18T21:40:35Z",
+"argv": [
+"append",
+"--root",
+".",
+"--count",
+"1",
+"--records-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-18T20-46-02-wrap",
+"--marker",
+"2026-10-18-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"appended 1 record(s) · friction-log.ndjson lines 1314→1315 · bytes 1333037→1334900 · term lf",
+"ts 2026-10-18T21:40:26Z · clock 2026-10-18T21:40:35Z · bound 2026-10-18T21:27:14Z (line 1314)",
+"ids 2026-10-18T21:40:26Z-a"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/friction-log.ndjson"
+],
+"before": {
+"lines": 1314,
+"bytes": 1333037,
+"terminator": "LF",
+"bound": "2026-10-18T21:27:14Z"
+},
+"after": {
+"lines": 1315,
+"bytes": 1334900
+}
 }
 ]

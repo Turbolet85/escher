@@ -183,3 +183,31 @@ impl BaseDocument {
         self.attach_iframe_document(node_id, html, resolved_url, signal);
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use std::time::Duration;
+
+    use super::*;
+    use crate::{Clock, VirtualClock};
+
+    #[test]
+    fn a_sub_documents_config_carries_its_parents_clock() {
+        let virtual_clock = VirtualClock::new();
+        let clock: Arc<dyn Clock> = Arc::new(virtual_clock.clone());
+        let doc = BaseDocument::new(DocumentConfig {
+            clock: Some(clock.clone()),
+            ..Default::default()
+        });
+        let node_id = doc.root_node().id;
+        let config = doc.iframe_document_config(node_id, None, AbortController::default().signal);
+        let carried = config.clock.expect("a sub-document's config names a clock");
+        assert!(
+            Arc::ptr_eq(&carried, &clock),
+            "it is the parent's own clock"
+        );
+        virtual_clock.advance(Duration::from_millis(250));
+        assert_eq!(carried.now(), Duration::from_millis(250));
+        assert_eq!(config.subdocument_depth, 1);
+    }
+}

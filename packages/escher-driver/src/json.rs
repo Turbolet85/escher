@@ -81,6 +81,10 @@ impl Object {
         let _ = write!(self.member(key), "{value}");
     }
 
+    pub(crate) fn integer(&mut self, key: &str, value: i64) {
+        let _ = write!(self.member(key), "{value}");
+    }
+
     /// A member whose value is already JSON.
     pub(crate) fn json(&mut self, key: &str, value: &str) {
         self.member(key).push_str(value);
@@ -698,8 +702,10 @@ mod tests {
             (SessionError::Io(io::ErrorKind::NotFound), "io"),
             (SessionError::NotSettled(Busy::Layout), "not-settled"),
             (SessionError::AnswerTooLarge, "answer-too-large"),
+            (SessionError::RecordDirNotPrivate, "record-dir-not-private"),
+            (SessionError::RecordingFailed, "recording-failed"),
         ];
-        assert_eq!(rows.len(), 13);
+        assert_eq!(rows.len(), 15);
         for (row, (error, kind)) in rows.into_iter().enumerate() {
             let line = error.to_json();
             let expected = format!(

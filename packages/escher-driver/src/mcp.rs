@@ -19,7 +19,7 @@ use tracing::Span;
 use tracing::field::Empty;
 
 use crate::client::Hello;
-use crate::command::{Call, SessionCommand, validate, validate_session};
+use crate::command::{Call, SessionCommand, call_of, validate, validate_session};
 use crate::describe::describe;
 use crate::error::SessionError;
 use crate::execute::Outcome;
@@ -32,7 +32,7 @@ use framing::{
     write_line,
 };
 use listing::{initialized, tool_list};
-use result::{Ending, ToolResult, call_of};
+use result::{Ending, ToolResult};
 
 /// The table's name for `start`'s one argument, which an app the binary does not boot is
 /// refused as outside the bound of.
@@ -63,7 +63,9 @@ const START_APP: &str = match schema::START.args {
 /// error, for one that did not. A `screenshot` that ran holds two blocks: an `image` block, the
 /// PNG as base64 with its MIME type, then the text block of its line of JSON without the image.
 /// A text over 1,048,576 bytes, or a `screenshot` result whose written form is, is replaced by
-/// [`SessionError::AnswerTooLarge`]'s: the call ran and is not rolled back.
+/// [`SessionError::AnswerTooLarge`]'s, and the result of a call that ended the held session's
+/// recording by [`SessionError::RecordingFailed`]'s: either way the call ran and is not rolled
+/// back.
 ///
 /// A request line is at most 65,536 bytes; a longer one, a line that is not JSON and one
 /// outside the protocol are answered with a fixed JSON-RPC error and run nothing. A reply
@@ -220,7 +222,11 @@ impl<B: FnMut(&str) -> Result<Session, SessionError>> Server<'_, B> {
                         Err(refusal) => ToolResult::refused(refusal),
                     };
                 };
-                match held.session.run(call) {
+                let answer = held.session.run(call);
+                if held.session.recording_failed() {
+                    return ToolResult::failed(SessionError::RecordingFailed);
+                }
+                match answer {
                     Ok(Outcome::Screen { text }) => ToolResult::accepted(text),
                     Ok(Outcome::Shot { width, height, png }) => {
                         ToolResult::shot(width, height, &png)

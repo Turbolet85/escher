@@ -1,0 +1,8 @@
+{
+ "exit": 0,
+ "wall_s": 50,
+ "summary": [
+  "     Summary [  29.916s] 311 tests run: 311 passed, 7 skipped"
+ ],
+ "command": "CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants taskset -c 12-15,28-31 cargo nextest run --locked -p escher-driver -p blitz-tests -p seven_guis --lib --test=accessibility_active_descendant_unread --test=accessibility_description --test=accessibility_label --test=accessibility_merged_states --test=cli_commands --test=cli_flow --test=font_face_sniffed_source --test=host_binary --test=host_log --test=host_timer --test=inert_subtree --test=mcp_log --test=mcp_server --test=password_caret_click --test=password_painted_masked --test=stand_accessibility_ids --test=stand_act_diff --test=stand_act_disabled --test=stand_act_filled --test=stand_act_ids --test=stand_act_keys --test=stand_act_obstructed --test=stand_act_range --test=stand_act_refused --test=stand_act_screenshot --test=stand_act_scroll --test=stand_act_spans --test=stand_act_states --test=stand_act_timer --test=stand_act_transformed --test=stand_actionable_keys --test=stand_boot --test=stand_contrast --test=stand_counter --test=stand_crud --test=stand_diff --test=stand_element_ids --test=stand_flight_booker --test=stand_id_edits --test=stand_id_persistence --test=stand_keyboard --test=stand_mcp_masked --test=stand_mcp_tools --test=stand_non_lean_tasks --test=stand_requirement_sweep --test=stand_screenshot_repeat --test=stand_session_fresh --test=stand_session_ids --test=stand_session_lifecycle --test=stand_session_quiet --test=stand_session_state --test=stand_settle --test=stand_snapshot --test=stand_snapshot_state --test=stand_snapshot_text --test=stand_timer --test=stand_virtual_clock --test=telemetry_scrub --test=transformed_client_rect --test=virtual_clock_engine"
+}

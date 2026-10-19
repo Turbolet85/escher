@@ -22,8 +22,9 @@ pub const IDLE_EXPIRY: Duration = Duration::from_secs(1800);
 ///
 /// A connection carries one request. `hello` and `stop` are the lifecycle's. A call is run on
 /// the session through [`Session::run`] and nothing else, and answered with its outcome or its
-/// refusal as one line of JSON; a call whose answer is longer than the socket carries is told
-/// so in place of the answer, and what it did stands. A request outside the protocol, or
+/// refusal as one line of JSON; a call whose answer is longer than the socket carries, or that
+/// ended the session's recording ([`Session::recording_failed`]), is told so in place of the
+/// answer, and what it did stands. A request outside the protocol, or
 /// longer than it admits, is refused and runs nothing, and so does a connection that breaks
 /// before its request is whole.
 ///
@@ -195,9 +196,14 @@ mod imp {
             ),
             Ok(Request::Stop) => (Reply::Stopping, true),
             Ok(Request::Call(call)) => {
-                let reply = match session.run(&call) {
-                    Ok(outcome) => wire::frame(true, outcome.to_json()),
-                    Err(refusal) => wire::frame(false, refusal.to_json()),
+                let answer = session.run(&call);
+                let reply = if session.recording_failed() {
+                    Reply::RecordingFailed
+                } else {
+                    match answer {
+                        Ok(outcome) => wire::frame(true, outcome.to_json()),
+                        Err(refusal) => wire::frame(false, refusal.to_json()),
+                    }
                 };
                 (reply, false)
             }

@@ -142,7 +142,7 @@ mod tests {
             .collect();
         assert!(at.windows(2).all(|pair| pair[0] < pair[1]));
         assert!(text.starts_with("{\"verbs\":["));
-        let counts = [11, 13, 12, 3, 8, 4, 13];
+        let counts = [11, 13, 12, 3, 8, 4, 15];
         for (row, (key, count)) in keys.iter().zip(counts).enumerate() {
             assert!(entries(&document, key).len() == count, "row {row}");
         }
@@ -150,6 +150,13 @@ mod tests {
         assert!(text.contains(r#"{"name":"png","kind":"png","always":true,"#));
         assert!(text.contains(
             r#"{"name":"fonts-unavailable","meaning":"the app this session holds has no font it can paint text with","remedy":"boot the app with a font it can decode"}"#
+        ));
+        // The two recording errors, with their remedies.
+        assert!(text.contains(
+            r#"{"kind":"record-dir-not-private","meaning":"the recording directory is open to its group or to others","remedy":"name a new recording directory, or make this one open to its owner only"}"#
+        ));
+        assert!(text.contains(
+            r#"{"kind":"recording-failed","meaning":"the session's recording ended; the call ran and is not rolled back, the check is removed and nothing further is recorded","remedy":"a check holds at most 400 steps and 1,048,576 bytes: start a new recorded session to record again"}"#
         ));
         assert!(!text.contains('\n') && !text.contains('\u{1b}'));
         assert!(text.len() <= MAX_ANSWER_BYTES);

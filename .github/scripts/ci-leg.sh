@@ -54,7 +54,7 @@ run_leg() {
         for round in 1 2 3; do
             echo "stand-repeat: round $round of 3"
             cargo test -p blitz-tests --locked "${stand[@]}" || return
-            cargo test -p seven_guis --locked --test cli_commands --test cli_flow --test host_binary --test host_log --test host_timer --test mcp_server --test mcp_log || return
+            cargo test -p seven_guis --locked --test cli_commands --test cli_flow --test host_binary --test host_log --test host_timer --test mcp_server --test mcp_log --test recording || return
         done
         echo "stand-repeat: 3 of 3 rounds green"
         ;;

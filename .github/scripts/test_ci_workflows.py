@@ -355,7 +355,8 @@ class LegScriptTest(unittest.TestCase):
             log = (Path(tmp) / "target" / "ci-logs" / "stand-repeat.log").read_text(encoding="utf-8")
         words = log.split()
         self.assertEqual(words.count(self.MARKER), 6)
-        for word in ("blitz-tests", "seven_guis", "--locked", "stand_settle", "cli_flow", "mcp_server"):
+        for word in ("blitz-tests", "seven_guis", "--locked", "stand_settle", "cli_flow", "mcp_server",
+                     "recording", "stand_session_recording"):
             self.assertIn(word, words)
         self.assertNotIn("--ignored", words)
         self.assertEqual(log.splitlines()[-1], "stand-repeat: 3 of 3 rounds green")

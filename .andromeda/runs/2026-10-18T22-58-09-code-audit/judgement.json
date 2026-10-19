@@ -1,0 +1,166 @@
+{
+ "baseline_ts": "2026-10-17T12:14:26Z",
+ "baseline_epoch": "Epoch 1 — Foundation",
+ "prev_ts": "2026-10-16T04:32:16Z",
+ "span": 1,
+ "proposals": [],
+ "informational": [],
+ "below": [
+  [
+   "new-cycle",
+   "graph.cycles",
+   0,
+   0
+  ],
+  [
+   "duplication-up",
+   "duplication.pct",
+   3.679,
+   3.86
+  ],
+  [
+   "complexity-creep",
+   "complexity.over_ceiling",
+   82,
+   84
+  ],
+  [
+   "dead-growth",
+   "dead.zero_ref_candidates",
+   119,
+   119
+  ],
+  [
+   "coverage-drop",
+   "coverage.line",
+   66.37,
+   67.53
+  ]
+ ],
+ "monotonic": [
+  [
+   "duplication.pct",
+   [
+    3.686,
+    3.679,
+    3.86
+   ],
+   "no"
+  ],
+  [
+   "complexity.over_ceiling",
+   [
+    83,
+    82,
+    84
+   ],
+   "no"
+  ],
+  [
+   "dead.zero_ref_candidates",
+   [
+    119,
+    119,
+    119
+   ],
+   "no"
+  ],
+  [
+   "sizes.file_max",
+   [
+    2793,
+    2573,
+    2680
+   ],
+   "no"
+  ],
+  [
+   "sizes.over_800",
+   [
+    16,
+    14,
+    15
+   ],
+   "no"
+  ],
+  [
+   "coverage.line",
+   [
+    67.07,
+    66.37,
+    67.53
+   ],
+   "no"
+  ]
+ ],
+ "entrants": {
+  "duplication.top": [],
+  "complexity.top": [],
+  "sizes.top": [],
+  "graph.fan_in_top": [],
+  "dead.top": [],
+  "hotspots": [
+   [
+    "packages/blitz-dom/src/layout/inline.rs",
+    417.0
+   ],
+   [
+    "packages/blitz-dom/src/accessibility.rs",
+    144.0
+   ],
+   [
+    "packages/blitz-dom/src/node/node.rs",
+    74.0
+   ],
+   [
+    "packages/blitz-dom/src/node/text.rs",
+    66.0
+   ],
+   [
+    "packages/blitz-vibey-script/src/runtime.rs",
+    56.0
+   ],
+   [
+    "packages/blitz-dom/src/resolve.rs",
+    27.0
+   ],
+   [
+    "packages/blitz-dom/src/scrolling.rs",
+    26.0
+   ]
+  ]
+ },
+ "mutation": [
+  [
+   "blitz-test-harness",
+   100.0,
+   "files",
+   "not comparable with 100.0 (unit, Epoch 6 — Polish & ship af1a00ad5b)"
+  ],
+  [
+   "dioxus-native-dom",
+   100.0,
+   "files",
+   "not comparable with 100.0 (unit, Epoch 6 — Polish & ship af1a00ad5b)"
+  ],
+  [
+   "blitz-dom/clock",
+   100.0,
+   "files",
+   "no prior score"
+  ],
+  [
+   "escher-driver",
+   100.0,
+   "shard 0/2",
+   "not comparable with 100.0 (files, Epoch 1 — Foundation 143b601322)"
+  ],
+  [
+   "blitz-dom/engine-debts",
+   100.0,
+   "in-diff",
+   "no prior score"
+  ]
+ ],
+ "trend_breaks": []
+}

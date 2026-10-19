@@ -5,7 +5,7 @@ use std::time::Duration;
 use blitz_test_harness::{
     Busy, Harness, Key as KeyboardKey, Modifiers, NamedKey, PixelRect, ScreenshotError,
 };
-use dioxus_native_dom::{DioxusDocument, NodeId, Snapshot, SnapshotDiff};
+use dioxus_native_dom::{DioxusDocument, NodeId, Snapshot, SnapshotDiff, is_masked_input};
 use tracing::Span;
 use tracing::field::Empty;
 
@@ -128,18 +128,32 @@ impl Session {
     /// The call leaves one `tracing` span, `command`, under the target `escher_driver`: the
     /// table's word for its verb, the name of the cause it was refused with, or how its settle
     /// went and how many nodes its diff adds, removes and changes.
+    ///
+    /// A session recording into a directory ([`Session::recording_into`]) keeps the call, refused
+    /// or not, once it is answered. A `type` keeps its text only when the element it names
+    /// resolves to a control that is not masked.
     pub fn run(&mut self, call: &Call) -> Result<Outcome, Refusal> {
         let span = command_span();
         let _entered = span.enter();
         if let Some(row) = schema::verb(&call.verb) {
             span.record("verb", row.name);
         }
-        let result = self.execute(call, &span);
+        let mut masked = false;
+        let result = self.execute(call, &span, &mut masked);
         record_result(&span, &result);
+        if let Some(recording) = &mut self.recording
+            && !recording.record(call, masked, &result)
+        {
+            self.recording = None;
+            self.recording_failed = true;
+        }
         result
     }
 
-    fn execute(&mut self, call: &Call, span: &Span) -> Result<Outcome, Refusal> {
+    /// Runs `call`. `masked` is set when the call is a `type` whose text a recording must not
+    /// keep: its element resolves to a masked control, or resolves to none, so its control
+    /// cannot be read.
+    fn execute(&mut self, call: &Call, span: &Span, masked: &mut bool) -> Result<Outcome, Refusal> {
         let command = validate(call)?;
         let (harness, seen) = (&mut self.harness, &mut self.seen);
         match command {
@@ -154,7 +168,12 @@ impl Session {
                 }))
             }
             Command::Type { id, text } => {
-                let (before, target) = resolve(harness, seen, &id)?;
+                let resolved = resolve(harness, seen, &id);
+                *masked = resolved
+                    .as_ref()
+                    .ok()
+                    .is_none_or(|(_, target)| target.masked);
+                let (before, target) = resolved?;
                 let (x, y) = action_point(harness, &target)?;
                 let holds_value = target.holds_value;
                 Ok(acted(harness, seen, span, before, |harness| {
@@ -286,6 +305,8 @@ struct Target {
     enabled: Option<bool>,
     /// Whether the snapshot reads a value for the element: a control that holds one.
     holds_value: bool,
+    /// Whether the element is a masked control ([`is_masked_input`]).
+    masked: bool,
     /// The centre of the element's bounds, relative to the viewport.
     centre: (f64, f64),
     /// The element's bounds as the snapshot reads them: x, y, width and height, relative to
@@ -315,12 +336,17 @@ fn locate(harness: &Harness<DioxusDocument>, screen: &Snapshot, id: &str) -> Opt
         .element_ids()
         .into_iter()
         .find(|(_, read)| read == id)?;
-    harness.base().get_node(node)?;
+    let masked = harness
+        .base()
+        .get_node(node)?
+        .element_data()
+        .is_some_and(is_masked_input);
     let bounds = listed.bounds;
     Some(Target {
         node,
         enabled: listed.state.enabled,
         holds_value: listed.state.value.is_some(),
+        masked,
         centre: (
             bounds.x + bounds.width / 2.0,
             bounds.y + bounds.height / 2.0,

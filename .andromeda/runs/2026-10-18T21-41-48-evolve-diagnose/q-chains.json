@@ -1,0 +1,151 @@
+[
+ {
+  "kind": "friction",
+  "id": "2026-10-17T12:37:12Z-b",
+  "chunk": "2026-10-17-upstream-sync-engine-debts",
+  "step": "phase/research",
+  "type": "input.extract-signal-gap",
+  "artifacts": [
+   "arch.md",
+   "tests/blitz-tests/Cargo.toml:36"
+  ],
+  "what": "arch extract stated escher-driver AND the stand checks name keys only through blitz-test-harness re-exports; a typed sweep found nine stand checks importing keyboard_types directly via blitz-tests' own dev-dependency, and NamedKey not re-exported",
+  "producers": []
+ },
+ {
+  "kind": "friction",
+  "id": "2026-10-17T14:39:30Z-b",
+  "chunk": "2026-10-17-upstream-sync-engine-debts",
+  "step": "implement/code",
+  "type": "input.conventions-gap",
+  "artifacts": [
+   "research.md §Conventions to follow",
+   "packages/dioxus-native-dom/src/snapshot.rs",
+   "tests/blitz-tests/tests/stand_{keyboard,snapshot_state,diff,settle,snapshot_text}.rs"
+  ],
+  "what": "After the keyboard-types 0.8 migration, `keyboard_types` resolved to Dioxus's 0.7 re-export through `use dioxus::prelude::*` (E0659 ambiguous in 5 checks, E0599/E0308 in snapshot.rs's test module); fixed by the absolute path `::keyboard_types` in those six sites",
+  "producers": []
+ },
+ {
+  "kind": "friction",
+  "id": "2026-10-18T01:57:54Z-b",
+  "chunk": "2026-10-17-upstream-sync-engine-debts",
+  "step": "wrap-session/reconcile",
+  "type": "input.report-insufficient",
+  "artifacts": [
+   "report.md",
+   "citation-dispositions.md"
+  ],
+  "what": "the report's macmod fact named only execute.rs's ACTION_MODIFIER; the engine's util.rs ACTION_MOD (SUPER->META) and the removed todo!() arms surfaced only as citation-sweep claim-false rows, and its Coverage line credited the three closed ARIA reads to tests the wrap's search found absent",
+  "producers": []
+ },
+ {
+  "kind": "friction",
+  "id": "2026-10-18T02:40:27Z-b",
+  "chunk": "2026-10-18-engine-debts",
+  "step": "phase/take-up",
+  "type": "input.working-entry-thin",
+  "artifacts": [
+   ".andromeda/residuals.md:28",
+   "escher-0.2.0/working-route.md:20"
+  ],
+  "what": "the entry says nine engine deferrals; a grep of residuals.md for target: next found eight absorbed:v020-03 lines, the ninth (covered on a zero-height box) carries target: 0.2.0 and was found only through intent.md and the incubator's deferred list",
+  "producers": []
+ },
+ {
+  "kind": "friction",
+  "id": "2026-10-18T03:31:59Z-b",
+  "chunk": "2026-10-18-engine-debts",
+  "step": "implement/code",
+  "type": "input.plan-step-ambiguous",
+  "artifacts": [
+   "escher-0.2.0/chunks/2026-10-18-engine-debts/plan.md:64-68"
+  ],
+  "what": "step 2 states the inert focus-kept limit 'in the check's //! and pinned by its fourth test' under the stand_keyboard paragraph, which has 14 tests; read as inert_subtree's fourth test and stated in both files' //! docs",
+  "producers": []
+ },
+ {
+  "kind": "friction",
+  "id": "2026-10-18T05:13:34Z-g",
+  "chunk": "2026-10-18-engine-debts",
+  "step": "wrap-session/reconcile",
+  "type": "input.report-insufficient",
+  "artifacts": [
+   "report.md",
+   "fanout-test-plan.md"
+  ],
+  "what": "the plan's expected amendment named test-plan §9's per-OS tallies, and the report carried only CI's 17/17 verdict, not the per-OS test-result lines; the detector proposed nothing and the entry was dispositioned with no fact to apply",
+  "producers": []
+ },
+ {
+  "kind": "step",
+  "id": "2026-10-17T14:39:30Z-a",
+  "chunk": "2026-10-17-upstream-sync-engine-debts",
+  "step": "implement/code",
+  "artifact": "research",
+  "quality": "thin",
+  "note": "boundary lists exact; the key-migration convention ('import NamedKey beside Key') missed that a `use dioxus::prelude::*` glob shadows the crate name keyboard_types, now two versions — 5 check files and snapshot.rs's test needed `::keyboard_types`",
+  "producers": [
+   {
+    "id": "2026-10-17T12:37:12Z-a",
+    "step": "phase/research",
+    "outcome": "ok",
+    "signals": [
+     "unresolved-questions",
+     "guard-refused:1"
+    ],
+    "note": "3 plan-decision forks (pin, ARIA text crossing, coverage floor); bash-guard refused a cd into the skill dir, re-issued once with an absolute path"
+   }
+  ]
+ },
+ {
+  "kind": "step",
+  "id": "2026-10-18T01:57:54Z-a",
+  "chunk": "2026-10-17-upstream-sync-engine-debts",
+  "step": "wrap-session/reconcile",
+  "artifact": "report",
+  "quality": "thin",
+  "note": "three facts absent or wrong: util.rs:8 SUPER->META, the convert_events todo!() arms gone, the three closed ARIA reads credited to tests that do not exist",
+  "producers": [
+   {
+    "id": "2026-10-17T18:34:19Z-a",
+    "step": "wrap-session/report",
+    "outcome": "halted-resolved",
+    "signals": [
+     "new-text-generated",
+     "new-text-rows:85",
+     "guard-refused:3"
+    ],
+    "note": "guard-refused: bash-guard's cwd arm refused three cd calls (references dir, evidence dir, .andromeda); each re-issued once with absolute paths or a subshell and ran"
+   }
+  ]
+ },
+ {
+  "kind": "step",
+  "id": "2026-10-18T02:40:27Z-a",
+  "chunk": "2026-10-18-engine-debts",
+  "step": "phase/take-up",
+  "artifact": "working-entry",
+  "quality": "thin",
+  "note": "names nine debts without listing them; the nine were assembled from residuals.md absorbed:v020-03 lines (8 tagged target: next, the ninth target: 0.2.0) cross-read against the matrix observed_gap and the incubator deferred-from-0.1.0.md",
+  "producers": []
+ },
+ {
+  "kind": "step",
+  "id": "2026-10-18T05:16:28Z-a",
+  "chunk": "2026-10-18-engine-debts",
+  "step": "wrap-session/route-resolve",
+  "artifact": "working-route",
+  "quality": "thin",
+  "note": "the frozen line carried no BLOCKED-ON though the ledger held v020-03 gated",
+  "producers": [
+   {
+    "id": "2026-10-18T02:40:27Z-a",
+    "step": "phase/take-up",
+    "outcome": "ok",
+    "signals": [],
+    "note": null
+   }
+  ]
+ }
+]

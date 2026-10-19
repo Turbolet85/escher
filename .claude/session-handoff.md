@@ -37,3 +37,6 @@
 - recurrence-despite-learning: host-linux «Paths & the working directory». A `cd` into the skill's references dir was refused at this resume; the guard held at one re-issue.
 - recurrence-despite-learning: host-linux's 2026-10-13 rule (run a pipeline tool bare). A tool piped into `head` and one redirected to a file were each refused; the guard held at one re-issue.
 - Carried, not this session's to curate: read a CI job's verdict with `ci.py`, not a log pattern (confidence 0.7).
+
+## Session End Status
+Completed normally at 2026-10-19 05:31:37

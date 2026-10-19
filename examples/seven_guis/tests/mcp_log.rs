@@ -6,7 +6,10 @@
 //! `ending` beside the sink's own fields, and each call run on the held instance one `command`
 //! line. Stdout holds protocol lines only. The check reads the binary as its own build makes
 //! it; the workspace build compiles the engine's tracing call sites in, and the same check is
-//! run on that build too. A failure message names a kind and a count, never a captured line.
+//! run on that build too. The flow runs once more on a role keeping each session as a check
+//! (`mcp --record`): its stderr then holds neither the recording directory's name nor any
+//! digest the check keeps, and its span lines are as many as without. A failure message names a
+//! kind and a count, never a captured line.
 
 #![cfg(not(target_arch = "wasm32"))]
 
@@ -47,6 +50,46 @@ fn tool_call(id: u32, name: &str, arguments: &str) -> String {
 
 #[test]
 fn the_mcp_role_logs_no_id_no_name_and_no_typed_text_at_trace() {
+    mcp_flow(None);
+}
+
+#[test]
+fn a_recording_mcp_role_logs_nothing_of_its_checks_at_trace() {
+    let kept = common::state_dir("ml-rec-kept");
+    let _ = std::fs::remove_dir_all(&kept);
+    mcp_flow(Some(&kept));
+    let _ = std::fs::remove_dir_all(&kept);
+}
+
+/// What a recording session leaves for the log checks to look for: the recording directory's
+/// name and each digest its one check holds, as the check writes them.
+fn recorded_needles(kept: &std::path::Path) -> Vec<String> {
+    let names: Vec<_> = std::fs::read_dir(kept)
+        .expect("the recording directory is listed")
+        .map(|entry| entry.expect("an entry").file_name())
+        .collect();
+    assert!(names == ["check-1.json"], "the session kept one check");
+    let bytes = std::fs::read(kept.join("check-1.json")).expect("the check is read");
+    let check = escher_driver::Check::from_bytes(&bytes).expect("the check reads back");
+    assert!(!check.steps().is_empty(), "the check holds the calls");
+    let dir_name = kept
+        .file_name()
+        .and_then(|name| name.to_str())
+        .expect("the directory's name is text")
+        .to_string();
+    std::iter::once(dir_name)
+        .chain(
+            check
+                .steps()
+                .iter()
+                .map(|step| format!("{:016x}", step.digest())),
+        )
+        .collect()
+}
+
+/// The role's CRUD flow at `RUST_LOG=trace`, keeping its session as a check in `record` when
+/// one is named.
+fn mcp_flow(record: Option<&std::path::Path>) {
     // The needles are read from the screen the role serves, booted here in process, as the
     // host's own log check reads them. An id is a needle when it is an author key (it holds no
     // `/`) and holds a `-`: that leaves out `main`, an ordinary word.
@@ -91,6 +134,9 @@ fn the_mcp_role_logs_no_id_no_name_and_no_typed_text_at_trace() {
 
     let mut command = Command::new(BINARY);
     command.arg("mcp").env("RUST_LOG", "trace");
+    if let Some(kept) = record {
+        command.arg("--record").arg(kept);
+    }
     let mut speaker = Speaker::spawn(command);
 
     speaker.send(
@@ -270,4 +316,14 @@ fn the_mcp_role_logs_no_id_no_name_and_no_typed_text_at_trace() {
         ids.len(),
         names.len()
     );
+
+    if let Some(kept) = record {
+        let recorded = recorded_needles(kept);
+        let recorded_found = found(&recorded);
+        assert!(
+            recorded_found == 0,
+            "{recorded_found} of {} recording needles found in {lines} stderr lines",
+            recorded.len()
+        );
+    }
 }

@@ -74,7 +74,8 @@ pub fn stop(state_dir: &Path) -> Result<(), SessionError> {
 /// nothing on the screen, or the element cannot take the action.
 ///
 /// The answer is waited for under a 30 s bound on each read ([`SessionError::Timeout`] past
-/// it). An answer longer than the socket carries is [`SessionError::AnswerTooLarge`]: the call
+/// it). An answer longer than the socket carries is [`SessionError::AnswerTooLarge`], and a call
+/// that ended the session's recording [`SessionError::RecordingFailed`]: either way the call
 /// ran, and what it did is not rolled back. With no session to reach this reads as [`attach`]
 /// does.
 ///
@@ -102,6 +103,7 @@ fn read_answer(reply: Reply) -> Result<Answer, SessionError> {
             json,
         }),
         Reply::Oversize => Err(SessionError::AnswerTooLarge),
+        Reply::RecordingFailed => Err(SessionError::RecordingFailed),
         _ => Err(SessionError::Protocol),
     }
 }
@@ -362,12 +364,13 @@ mod tests {
             (Reply::Accepted("{}".to_string()), answer(true, "{}")),
             (Reply::Refused("{}".to_string()), answer(false, "{}")),
             (Reply::Oversize, Err(SessionError::AnswerTooLarge)),
+            (Reply::RecordingFailed, Err(SessionError::RecordingFailed)),
             (hello, Err(SessionError::Protocol)),
             (Reply::Stopping, Err(SessionError::Protocol)),
             (Reply::RefusedVersion, Err(SessionError::Protocol)),
             (Reply::RefusedMalformed, Err(SessionError::Protocol)),
         ];
-        assert_eq!(rows.len(), 7);
+        assert_eq!(rows.len(), 8);
         for (row, (reply, read)) in rows.into_iter().enumerate() {
             assert!(read_answer(reply) == read, "row {row}");
         }

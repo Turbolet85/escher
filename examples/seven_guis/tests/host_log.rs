@@ -6,7 +6,9 @@
 //! third-party targets as written, which put every author key of the screen on stderr at
 //! `debug` and each row's name and each label's text at `trace`. The check reads the host as
 //! its own build makes it; the workspace build compiles the engine's tracing call sites in, and
-//! the same check is run on that host too.
+//! the same check is run on that host too. The flow runs once more on a host keeping its session
+//! as a check (`--record`): its stderr then holds neither the recording directory's name nor
+//! any digest the check keeps, and its command-span lines are as many as without.
 
 #![cfg(not(target_arch = "wasm32"))]
 
@@ -22,6 +24,46 @@ const SENTINEL: &str = "Typed-Sentinel-71kWzq";
 #[cfg(unix)]
 #[test]
 fn the_host_logs_no_id_no_name_and_no_typed_text_at_trace() {
+    host_flow("hl-trace", false);
+}
+
+#[cfg(unix)]
+#[test]
+fn a_recording_host_logs_nothing_of_its_check_at_trace() {
+    host_flow("hl-rec", true);
+}
+
+/// What a recording session leaves for the log checks to look for: the recording directory's
+/// name and each digest its one check holds, as the check writes them.
+#[cfg(unix)]
+fn recorded_needles(kept: &std::path::Path) -> Vec<String> {
+    let names: Vec<_> = std::fs::read_dir(kept)
+        .expect("the recording directory is listed")
+        .map(|entry| entry.expect("an entry").file_name())
+        .collect();
+    assert!(names == ["check-1.json"], "the session kept one check");
+    let bytes = std::fs::read(kept.join("check-1.json")).expect("the check is read");
+    let check = escher_driver::Check::from_bytes(&bytes).expect("the check reads back");
+    assert!(!check.steps().is_empty(), "the check holds the calls");
+    let dir_name = kept
+        .file_name()
+        .and_then(|name| name.to_str())
+        .expect("the directory's name is text")
+        .to_string();
+    std::iter::once(dir_name)
+        .chain(
+            check
+                .steps()
+                .iter()
+                .map(|step| format!("{:016x}", step.digest())),
+        )
+        .collect()
+}
+
+/// The host's flow at `RUST_LOG=trace` in the state directory `name`, keeping its session as a
+/// check beside it when `record` is set.
+#[cfg(unix)]
+fn host_flow(name: &str, record: bool) {
     use std::process::{Command, Stdio};
     use std::thread;
     use std::time::{Duration, Instant};
@@ -80,12 +122,17 @@ fn the_host_logs_no_id_no_name_and_no_typed_text_at_trace() {
         "the sentinel is no part of a needle"
     );
 
-    let dir = state_dir("hl-trace");
+    let dir = state_dir(name);
     clear(&dir);
+    let kept = state_dir(&format!("{name}-kept"));
+    let _ = std::fs::remove_dir_all(&kept);
+    let mut serve = Command::new(BINARY);
+    serve.args(["serve", "crud", "--session"]).arg(&dir);
+    if record {
+        serve.arg("--record").arg(&kept);
+    }
     let mut host = Host(
-        Command::new(BINARY)
-            .args(["serve", "crud", "--session"])
-            .arg(&dir)
+        serve
             .env("RUST_LOG", "trace")
             .stdin(Stdio::null())
             .stdout(Stdio::piped())
@@ -250,4 +297,19 @@ fn the_host_logs_no_id_no_name_and_no_typed_text_at_trace() {
         ids.len(),
         names.len()
     );
+
+    assert!(
+        kept.exists() == record,
+        "a check is kept exactly when recording"
+    );
+    if record {
+        let recorded = recorded_needles(&kept);
+        let recorded_found = found(&recorded);
+        assert!(
+            recorded_found == 0,
+            "{recorded_found} of {} recording needles found in {lines} stderr lines",
+            recorded.len()
+        );
+        let _ = std::fs::remove_dir_all(&kept);
+    }
 }

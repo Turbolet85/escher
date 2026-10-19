@@ -24,7 +24,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
    ↓
 [2026-10-18-one-virtual-clock] One virtual clock — every time a headless run reads, scrollbar fade included, from one clock the driver alone moves; repeat shots identical (v020-06)
    ↓
-Session recording — a driver session via CLI or MCP kept as an owner-only replayable check, never logged; password handling per security-plan (v020-04)  CARRY: a check that the sub-document's carried clock (`iframe.rs`), pan and the fling read the document's clock — 2026-10-18-one-virtual-clock's `virtual_clock_engine` reads only the fade, the double click and the smooth scroll on it (that chunk's wrap, the test-plan detector's note); hypothesis: a recorded check that scrolls replays only as deterministically as those reads
+[2026-10-19-session-recording] Session recording — a driver session via CLI or MCP kept as an owner-only replayable check, never logged; password handling per security-plan (v020-04)  CARRY: a check that the sub-document's carried clock (`iframe.rs`), pan and the fling read the document's clock — 2026-10-18-one-virtual-clock's `virtual_clock_engine` reads only the fade, the double click and the smooth scroll on it (that chunk's wrap, the test-plan detector's note); hypothesis: a recorded check that scrolls replays only as deterministically as those reads
    ↓
 Recorded-check replay — recorded checks run as ordinary tests under agent-run, CI and stand-repeat, steps re-validated; red on behaviour change, green otherwise (v020-04)
 

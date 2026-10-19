@@ -474,12 +474,17 @@ fn a_line_that_is_no_command_is_a_usage_error() {
     let dir = state_dir("cc-usage");
     clear(&dir);
     let at = text(&dir);
-    let rows: [&[&str]; 5] = [
+    let rows: [&[&str]; 9] = [
         &[],
         &["snapshot"],
         &["click", "--id", "counter-increment"],
         &["status", "--session", at, "--session", at],
         &["start", "no-such-task", "--session", at],
+        // A recording directory anywhere but on `start` and the two roles, or with no value.
+        &["snapshot", "--session", at, "--record", at],
+        &["start", "counter", "--session", at, "--record"],
+        &["mcp", "--record"],
+        &["serve", "counter", "--session", at, "--record"],
     ];
     for (row, args) in rows.into_iter().enumerate() {
         let ran = client(BINARY, args);
@@ -494,6 +499,17 @@ fn a_line_that_is_no_command_is_a_usage_error() {
             stderr.starts_with("usage: ") && stderr.lines().count() == 1,
             "row {row}: stderr is one usage line"
         );
+        // The usage line names the recording directory where it is taken.
+        for spelt in [
+            " start <app> [--record <dir>] ",
+            "; host role: serve <app> --session <dir> [--record <dir>]; ",
+            "; mcp role: mcp [--record <dir>]; ",
+        ] {
+            assert!(
+                stderr.contains(spelt),
+                "row {row}: the usage line names --record"
+            );
+        }
         assert!(!dir.exists(), "row {row}: no state directory is created");
     }
 }

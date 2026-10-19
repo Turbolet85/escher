@@ -1,11 +1,13 @@
 //! The held instance.
 
 use std::collections::HashMap;
+use std::path::Path;
 
 use blitz_test_harness::{Harness, Settled};
 use dioxus_native_dom::DioxusDocument;
 
 use crate::SessionError;
+use crate::recording::Recording;
 use crate::schema::MAX_ID_BYTES;
 
 const MAX_LABEL_BYTES: usize = 32;
@@ -84,11 +86,18 @@ impl SeenIds {
 /// The session also remembers the ids of the screens it reads to answer a call, as text and up
 /// to a bound, for as long as it lives: that is how [`Session::run`] tells an id that named an
 /// element earlier from one that never did. Nothing reads that record out of the session.
+///
+/// A session can also keep itself as a replayable check ([`Session::recording_into`]): each
+/// call it answers, written to a file of its caller's directory as the call crossed in, with
+/// whether it was accepted and a digest of its answer. Nothing reads the recording out of the
+/// session either.
 pub struct Session {
     label: String,
     pub(crate) harness: Harness<DioxusDocument>,
     pub(crate) time: Option<TimeStep>,
     pub(crate) seen: SeenIds,
+    pub(crate) recording: Option<Recording>,
+    pub(crate) recording_failed: bool,
 }
 
 impl Session {
@@ -110,7 +119,39 @@ impl Session {
             harness: boot(),
             time: None,
             seen: SeenIds::with_bound(MAX_SEEN_IDS),
+            recording: None,
+            recording_failed: false,
         })
+    }
+
+    /// The session, keeping every call [`Session::run`] answers from now on as a replayable
+    /// check in `dir`.
+    ///
+    /// The directory is created owner-only (mode `0700`) when it is absent — its parent must
+    /// exist — and refused with [`SessionError::RecordDirNotPrivate`] when it is present and open
+    /// to its group or to others. The check is a new file there, `check-{n}.json` with `n` the
+    /// smallest from 1 that names no file yet, owner-only (mode `0600`); no file is ever
+    /// replaced. It holds one JSON array: first the session's label as the app it was started
+    /// on, then one record per call — the call as it crossed in, whether it was accepted and the
+    /// [`answer_digest`](crate::answer_digest) of its answer. No screen reading is kept, and the
+    /// text of a `type` into a masked control is [`MASKED_STAND_IN`](crate::MASKED_STAND_IN). The
+    /// check is rewritten whole after every call, through a temporary file renamed over it, so
+    /// a process that is killed leaves the calls so far.
+    ///
+    /// When a write fails, or a check would pass 400 records or 1,048,576 bytes, the recording
+    /// ends: the check is removed and nothing further is recorded, and
+    /// [`Session::recording_failed`] reads true once. The call itself ran.
+    ///
+    /// Unix only: elsewhere this returns [`SessionError::Unsupported`].
+    pub fn recording_into(mut self, dir: &Path) -> Result<Session, SessionError> {
+        self.recording = Some(Recording::create(dir, &self.label)?);
+        Ok(self)
+    }
+
+    /// Whether the session's recording has ended since this was last asked: true once after
+    /// the call that ended it, then false.
+    pub fn recording_failed(&mut self) -> bool {
+        std::mem::take(&mut self.recording_failed)
     }
 
     /// The session, carrying `step` as its way to move the app's own time.
@@ -220,5 +261,64 @@ mod tests {
         assert!(seen.holds(&at_the_bound) && !seen.holds(&over_long));
         assert_eq!(seen.last_read.len(), 1);
         assert_eq!(MAX_ID_BYTES, 1024);
+    }
+
+    #[cfg(unix)]
+    fn empty() -> Session {
+        Session::start("counter", || {
+            Harness::from_component(|| Ok(Default::default()))
+        })
+        .expect("the session starts")
+    }
+
+    /// A fresh path under the workspace's `target/tmp`, named for the test: nothing is there.
+    #[cfg(unix)]
+    fn scratch(name: &str) -> std::path::PathBuf {
+        let dir = Path::new(concat!(env!("CARGO_MANIFEST_DIR"), "/../../target/tmp")).join(
+            format!("escher-driver-session-{}-{name}", std::process::id()),
+        );
+        let _ = std::fs::remove_dir_all(&dir);
+        std::fs::create_dir_all(dir.parent().expect("a parent")).expect("target/tmp is created");
+        dir
+    }
+
+    #[cfg(unix)]
+    #[test]
+    fn a_recording_directory_open_to_others_is_refused_with_nothing_written() {
+        use std::os::unix::fs::PermissionsExt;
+
+        let dir = scratch("open");
+        std::fs::create_dir(&dir).expect("the directory is created");
+        std::fs::set_permissions(&dir, std::fs::Permissions::from_mode(0o750))
+            .expect("opened to the group");
+        let refused = empty().recording_into(&dir);
+        assert!(matches!(refused, Err(SessionError::RecordDirNotPrivate)));
+        assert_eq!(std::fs::read_dir(&dir).expect("listed").count(), 0);
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+
+    #[cfg(unix)]
+    #[test]
+    fn a_recording_that_ends_reads_failed_once() {
+        let dir = scratch("ends");
+        let mut session = empty().recording_into(&dir).expect("the recording starts");
+        let snapshot = crate::Call {
+            verb: "snapshot".to_string(),
+            args: Vec::new(),
+        };
+        assert!(session.run(&snapshot).is_ok());
+        assert!(!session.recording_failed());
+        // The rewrite's temporary path taken: the next write fails.
+        std::fs::write(dir.join(".check-1.json.tmp"), "").expect("the path is taken");
+        assert!(session.run(&snapshot).is_ok());
+        assert!(session.recording_failed());
+        assert!(!session.recording_failed());
+        assert!(!dir.join("check-1.json").exists());
+        // Nothing further is recorded, and the file the recording did not create stands.
+        std::fs::remove_file(dir.join(".check-1.json.tmp")).expect("the file stood");
+        assert!(session.run(&snapshot).is_ok());
+        assert!(!session.recording_failed());
+        assert_eq!(std::fs::read_dir(&dir).expect("listed").count(), 0);
+        let _ = std::fs::remove_dir_all(&dir);
     }
 }

@@ -37,6 +37,11 @@ pub enum SessionError {
     /// A call's answer is longer than the session's socket carries. The call ran, and what it
     /// did is not rolled back.
     AnswerTooLarge,
+    /// The recording directory grants access to its group or to others.
+    RecordDirNotPrivate,
+    /// The session's recording ended: its check could not be written, or would pass its bound.
+    /// The call ran and is not rolled back; the check is removed and nothing further is recorded.
+    RecordingFailed,
 }
 
 /// One row of the session errors' table: an error's kind, what it means and what the caller
@@ -72,7 +77,7 @@ const READ_THE_SCREEN: &str =
     "the call ran and is not rolled back: take a snapshot to read the screen as it stands";
 
 /// Every session error's row, in the variants' order.
-pub(crate) const SESSION_ERRORS: [ErrorSpec; 13] = [
+pub(crate) const SESSION_ERRORS: [ErrorSpec; 15] = [
     ErrorSpec {
         kind: "already-running",
         meaning: "a session is already running",
@@ -155,6 +160,20 @@ pub(crate) const SESSION_ERRORS: [ErrorSpec; 13] = [
         remedy: READ_THE_SCREEN,
         repeats: Some("not-settled"),
     },
+    ErrorSpec {
+        kind: "record-dir-not-private",
+        meaning: "the recording directory is open to its group or to others",
+        remedy: "name a new recording directory, or make this one open to its owner only",
+        repeats: None,
+    },
+    ErrorSpec {
+        kind: "recording-failed",
+        meaning: "the session's recording ended; the call ran and is not rolled back, the check is \
+                  removed and nothing further is recorded",
+        remedy: "a check holds at most 400 steps and 1,048,576 bytes: start a new recorded \
+                 session to record again",
+        repeats: None,
+    },
 ];
 
 impl SessionError {
@@ -174,6 +193,8 @@ impl SessionError {
             SessionError::Io(_) => 10,
             SessionError::NotSettled(_) => 11,
             SessionError::AnswerTooLarge => 12,
+            SessionError::RecordDirNotPrivate => 13,
+            SessionError::RecordingFailed => 14,
         };
         &SESSION_ERRORS[index]
     }
@@ -227,8 +248,10 @@ mod tests {
             SessionError::NotSettled(Busy::Layout),
             SessionError::NotSettled(Busy::Loads),
             SessionError::AnswerTooLarge,
+            SessionError::RecordDirNotPrivate,
+            SessionError::RecordingFailed,
         ];
-        assert_eq!(variants.len(), 18);
+        assert_eq!(variants.len(), 20);
         for variant in variants {
             let message = variant.to_string();
             assert!(!message.is_empty(), "{variant:?}");
@@ -252,7 +275,7 @@ mod tests {
     }
 
     #[test]
-    fn the_thirteen_errors_each_state_a_kind_a_meaning_and_a_remedy() {
+    fn the_fifteen_errors_each_state_a_kind_a_meaning_and_a_remedy() {
         let variants = [
             SessionError::AlreadyRunning,
             SessionError::NoSession,
@@ -267,8 +290,10 @@ mod tests {
             SessionError::Io(io::ErrorKind::NotFound),
             SessionError::NotSettled(Busy::Render),
             SessionError::AnswerTooLarge,
+            SessionError::RecordDirNotPrivate,
+            SessionError::RecordingFailed,
         ];
-        assert_eq!(SESSION_ERRORS.len(), 13);
+        assert_eq!(SESSION_ERRORS.len(), 15);
         assert_eq!(variants.len(), SESSION_ERRORS.len());
         for (row, (variant, spec)) in variants.iter().zip(&SESSION_ERRORS).enumerate() {
             assert!(variant.kind() == spec.kind, "row {row}");

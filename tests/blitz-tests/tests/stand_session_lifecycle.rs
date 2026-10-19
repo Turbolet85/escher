@@ -123,11 +123,11 @@ fn start_attach_stop_and_each_edge() {
 
     // A request outside the wire's grammar, and one over its bound, are refused and run
     // nothing.
-    let over_long = format!("call v2 click id=t:{}\n", "i".repeat(20_000));
+    let over_long = format!("call v3 click id=t:{}\n", "i".repeat(20_000));
     let outside: [&[u8]; 5] = [
-        b"call v2 click id=x:counter-increment\n",
-        b"call v2 click id=t:counter%2\n",
-        b"click v2 id=t:counter-increment\n",
+        b"call v3 click id=x:counter-increment\n",
+        b"call v3 click id=t:counter%2\n",
+        b"click v3 id=t:counter-increment\n",
         b"snapshot\n",
         over_long.as_bytes(),
     ];
@@ -137,11 +137,13 @@ fn start_attach_stop_and_each_edge() {
             "row {row}: a request outside the protocol is refused as malformed"
         );
     }
-    assert_eq!(
-        raw_exchange(&dir, b"call v1 snapshot\n"),
-        "refused version\n",
-        "a call in another version is refused by version"
-    );
+    for request in [&b"call v1 snapshot\n"[..], &b"call v2 snapshot\n"[..]] {
+        assert_eq!(
+            raw_exchange(&dir, request),
+            "refused version\n",
+            "a call in another version is refused by version"
+        );
+    }
     assert!(
         call(&dir, &snapshot()).is_ok_and(|after| after.json == changed.json),
         "the refused requests changed nothing"

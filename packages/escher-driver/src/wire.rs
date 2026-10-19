@@ -31,10 +31,10 @@ pub(crate) const MAX_REPLY_BYTES: usize = 128;
 pub(crate) const MAX_ANSWER_BYTES: usize = 1_048_576;
 
 /// The longest reply line to a call, without its terminator: the widest words in front of an
-/// answer are `ok v2 accepted `.
+/// answer are `ok v3 accepted `.
 pub(crate) const MAX_CALL_REPLY_BYTES: usize = MAX_ANSWER_BYTES + 16;
 
-const VERSION: &str = "v2";
+const VERSION: &str = "v3";
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub(crate) enum Request {
@@ -58,6 +58,8 @@ pub(crate) enum Reply {
     Refused(String),
     /// A call whose answer is over [`MAX_ANSWER_BYTES`]. It was not refused: what it did stands.
     Oversize,
+    /// A call that ended the session's recording. It was not refused: what it did stands.
+    RecordingFailed,
     RefusedVersion,
     RefusedMalformed,
 }
@@ -241,6 +243,7 @@ impl Reply {
             Reply::Accepted(json) => format!("ok {VERSION} accepted {json}\n"),
             Reply::Refused(json) => format!("ok {VERSION} refused {json}\n"),
             Reply::Oversize => format!("ok {VERSION} oversize\n"),
+            Reply::RecordingFailed => format!("ok {VERSION} recording-failed\n"),
             Reply::RefusedVersion => "refused version\n".to_string(),
             Reply::RefusedMalformed => "refused malformed\n".to_string(),
         }
@@ -268,6 +271,7 @@ impl Reply {
         match fields.as_slice() {
             ["stopping"] => Some(Reply::Stopping),
             ["oversize"] => Some(Reply::Oversize),
+            ["recording-failed"] => Some(Reply::RecordingFailed),
             [pid, label, served, idle_expiry_s] => {
                 let label = label.strip_prefix("label=")?;
                 valid_label(label).then_some(())?;
@@ -345,10 +349,10 @@ mod tests {
                 "row {row}"
             );
         }
-        assert_eq!(Request::Hello.encode(), "hello v2\n");
-        assert_eq!(Request::Stop.encode(), "stop v2\n");
-        assert_eq!(requests[2].encode(), "call v2 snapshot\n");
-        assert_eq!(requests[3].encode(), "call v2 click id=t:save\n");
+        assert_eq!(Request::Hello.encode(), "hello v3\n");
+        assert_eq!(Request::Stop.encode(), "stop v3\n");
+        assert_eq!(requests[2].encode(), "call v3 snapshot\n");
+        assert_eq!(requests[3].encode(), "call v3 click id=t:save\n");
     }
 
     #[test]
@@ -368,10 +372,11 @@ mod tests {
             },
             Reply::Stopping,
             Reply::Oversize,
+            Reply::RecordingFailed,
             Reply::RefusedVersion,
             Reply::RefusedMalformed,
         ];
-        assert_eq!(lifecycle.len(), 6);
+        assert_eq!(lifecycle.len(), 7);
         for (row, reply) in lifecycle.iter().enumerate() {
             let encoded = reply.encode();
             assert!(encoded.is_ascii(), "row {row}");
@@ -410,17 +415,18 @@ mod tests {
                 idle_expiry_s: 1800,
             }
             .encode(),
-            "ok v2 pid=4242 label=counter served=0 idle_expiry_s=1800\n"
+            "ok v3 pid=4242 label=counter served=0 idle_expiry_s=1800\n"
         );
-        assert_eq!(Reply::Stopping.encode(), "ok v2 stopping\n");
-        assert_eq!(Reply::Oversize.encode(), "ok v2 oversize\n");
+        assert_eq!(Reply::Stopping.encode(), "ok v3 stopping\n");
+        assert_eq!(Reply::Oversize.encode(), "ok v3 oversize\n");
+        assert_eq!(Reply::RecordingFailed.encode(), "ok v3 recording-failed\n");
         assert_eq!(
             Reply::Accepted("{}".to_string()).encode(),
-            "ok v2 accepted {}\n"
+            "ok v3 accepted {}\n"
         );
         assert_eq!(
             Reply::Refused("{}".to_string()).encode(),
-            "ok v2 refused {}\n"
+            "ok v3 refused {}\n"
         );
     }
 
@@ -432,7 +438,9 @@ mod tests {
             "hello v10",
             "stop v1",
             "call v1 snapshot",
-            "call v3 click id=t:save",
+            "call v2 click id=t:save",
+            "hello v2",
+            "stop v4",
         ];
         for line in lines {
             assert_eq!(Request::parse(line), Err(Reply::RefusedVersion), "{line:?}");
@@ -441,65 +449,65 @@ mod tests {
 
     #[test]
     fn anything_else_is_refused_as_malformed() {
-        let over_long = format!("hello v2{}", " ".repeat(MAX_REQUEST_BYTES));
-        let over_long_call = format!("call v2 type text=t:{}", "t".repeat(MAX_REQUEST_BYTES));
+        let over_long = format!("hello v3{}", " ".repeat(MAX_REQUEST_BYTES));
+        let over_long_call = format!("call v3 type text=t:{}", "t".repeat(MAX_REQUEST_BYTES));
         let lines = [
             "",
             " ",
             "hello",
             "hello ",
-            "hello  v2",
-            "hello v2 ",
-            "hello v2 now",
+            "hello  v3",
+            "hello v3 ",
+            "hello v3 now",
             "hello 2",
             "hello vx",
-            "HELLO v2",
-            "snapshot v2",
+            "HELLO v3",
+            "snapshot v3",
             "snapshot v1",
-            "hello v2\r",
+            "hello v3\r",
             "call",
-            "call v2",
+            "call v3",
             "call vx snapshot",
-            "CALL v2 snapshot",
+            "CALL v3 snapshot",
             // A double space is an empty argument word.
-            "call v2 click  id=t:save",
-            "call v2 click ",
+            "call v3 click  id=t:save",
+            "call v3 click ",
             // An argument with no name separator, or no kind separator.
-            "call v2 click id",
-            "call v2 click id=tsave",
+            "call v3 click id",
+            "call v3 click id=tsave",
             // A kind letter outside the three.
-            "call v2 click id=x:save",
-            "call v2 click id=T:save",
-            "call v2 click id=:save",
+            "call v3 click id=x:save",
+            "call v3 click id=T:save",
+            "call v3 click id=:save",
             // A number or a flag that does not parse, or is not in its one spelling.
-            "call v2 advance ms=n:",
-            "call v2 advance ms=n:ten",
-            "call v2 advance ms=n:+7",
-            "call v2 advance ms=n:007",
-            "call v2 advance ms=n:1.5",
-            "call v2 advance ms=n:9223372036854775808",
-            "call v2 press shift=f:",
-            "call v2 press shift=f:yes",
-            "call v2 press shift=f:TRUE",
+            "call v3 advance ms=n:",
+            "call v3 advance ms=n:ten",
+            "call v3 advance ms=n:+7",
+            "call v3 advance ms=n:007",
+            "call v3 advance ms=n:1.5",
+            "call v3 advance ms=n:9223372036854775808",
+            "call v3 press shift=f:",
+            "call v3 press shift=f:yes",
+            "call v3 press shift=f:TRUE",
             // A bad escape: cut short, not hex, lowercase hex, or of a byte that needs none.
-            "call v2 click id=t:a%",
-            "call v2 click id=t:a%2",
-            "call v2 click id=t:a%2G",
-            "call v2 click id=t:a%2f",
-            "call v2 click id=t:%41",
+            "call v3 click id=t:a%",
+            "call v3 click id=t:a%2",
+            "call v3 click id=t:a%2G",
+            "call v3 click id=t:a%2f",
+            "call v3 click id=t:%41",
             // A byte that is neither plain nor an escape.
-            "call v2 click id=t:a/b",
-            "call v2 click id=t:a:b",
-            "call v2 click id=t:a=b",
-            "call v2 click id=t:é",
-            "call v2 cli/ck",
-            "call v2 click i/d=t:save",
+            "call v3 click id=t:a/b",
+            "call v3 click id=t:a:b",
+            "call v3 click id=t:a=b",
+            "call v3 click id=t:é",
+            "call v3 cli/ck",
+            "call v3 click i/d=t:save",
             // Escaped bytes that are not UTF-8.
-            "call v2 click id=t:%FF",
-            "call v2 click id=t:%C3",
-            "call v2 %FF",
-            "call v2 click %FF=t:save",
-            "call v2 snapshot\r",
+            "call v3 click id=t:%FF",
+            "call v3 click id=t:%C3",
+            "call v3 %FF",
+            "call v3 click %FF=t:save",
+            "call v3 snapshot\r",
             &over_long,
             &over_long_call,
         ];
@@ -514,36 +522,39 @@ mod tests {
 
     #[test]
     fn a_reply_outside_the_protocol_does_not_parse() {
-        let over_long_answer = format!("ok v2 accepted {}", "x".repeat(MAX_ANSWER_BYTES + 1));
+        let over_long_answer = format!("ok v3 accepted {}", "x".repeat(MAX_ANSWER_BYTES + 1));
         let lines = [
             "",
             "ok",
-            "ok v2",
-            "ok v2 ",
+            "ok v3",
+            "ok v3 ",
             "ok v1 stopping",
-            "ok v3 stopping",
-            "ok v2 stopped",
-            "ok v2 pid=1 label=counter served=0",
-            "ok v2 pid=1 label=counter served=0 idle_expiry_s=1 more=1",
-            "ok v2 pid=x label=counter served=0 idle_expiry_s=1",
-            "ok v2 pid=-1 label=counter served=0 idle_expiry_s=1",
-            "ok v2 pid=1 label=Counter served=0 idle_expiry_s=1",
-            "ok v2 pid=1 label= served=0 idle_expiry_s=1",
-            "ok v2 pid=1 label=counter served= idle_expiry_s=1",
-            "ok v2 pid=1 label=counter served=0 idle_expiry_s=",
-            "ok v2 pid=1 label=counter served=0 idle=1",
-            "ok v2 label=counter pid=1 served=0 idle_expiry_s=1",
-            "ok v2 accepted",
-            "ok v2 accepted ",
-            "ok v2 refused",
-            "ok v2 refused ",
-            "ok v2 oversize now",
+            "ok v2 stopping",
+            "ok v4 stopping",
+            "ok v3 stopped",
+            "ok v3 pid=1 label=counter served=0",
+            "ok v3 pid=1 label=counter served=0 idle_expiry_s=1 more=1",
+            "ok v3 pid=x label=counter served=0 idle_expiry_s=1",
+            "ok v3 pid=-1 label=counter served=0 idle_expiry_s=1",
+            "ok v3 pid=1 label=Counter served=0 idle_expiry_s=1",
+            "ok v3 pid=1 label= served=0 idle_expiry_s=1",
+            "ok v3 pid=1 label=counter served= idle_expiry_s=1",
+            "ok v3 pid=1 label=counter served=0 idle_expiry_s=",
+            "ok v3 pid=1 label=counter served=0 idle=1",
+            "ok v3 label=counter pid=1 served=0 idle_expiry_s=1",
+            "ok v3 accepted",
+            "ok v3 accepted ",
+            "ok v3 refused",
+            "ok v3 refused ",
+            "ok v3 oversize now",
+            "ok v3 recording-failed now",
+            "ok v2 recording-failed",
             "ok v1 accepted {}",
             "refused",
             "refused other",
             &over_long_answer,
         ];
-        assert_eq!(lines.len(), 26);
+        assert_eq!(lines.len(), 29);
         for (row, line) in lines.into_iter().enumerate() {
             assert!(Reply::parse(line).is_none(), "row {row}");
         }
@@ -552,8 +563,8 @@ mod tests {
     #[test]
     fn a_line_is_read_up_to_its_terminator_and_no_further() {
         assert_eq!(
-            read_line(&b"hello v2\nstop v2\n"[..], MAX_REQUEST_BYTES).unwrap(),
-            Line::Text("hello v2".to_string())
+            read_line(&b"hello v3\nstop v3\n"[..], MAX_REQUEST_BYTES).unwrap(),
+            Line::Text("hello v3".to_string())
         );
         assert_eq!(
             read_line(&b"\n"[..], MAX_REQUEST_BYTES).unwrap(),
@@ -574,7 +585,7 @@ mod tests {
             Line::TooLong
         );
         assert_eq!(
-            read_line(&b"hello v2"[..], MAX_REQUEST_BYTES).unwrap(),
+            read_line(&b"hello v3"[..], MAX_REQUEST_BYTES).unwrap(),
             Line::Unterminated
         );
         assert_eq!(
@@ -585,7 +596,7 @@ mod tests {
 
     #[test]
     fn bytes_that_are_not_text_are_refused_as_malformed() {
-        for raw in [&b"hello \xff2\n"[..], &b"call v2 click id=t:\xff\n"[..]] {
+        for raw in [&b"hello \xff2\n"[..], &b"call v3 click id=t:\xff\n"[..]] {
             let Line::Text(text) = read_line(raw, MAX_REQUEST_BYTES).unwrap() else {
                 panic!("a terminated line is text");
             };
@@ -720,7 +731,7 @@ mod tests {
                 "accepted={accepted}: one byte over"
             );
         }
-        assert_eq!(Reply::parse("ok v2 oversize"), Some(Reply::Oversize));
+        assert_eq!(Reply::parse("ok v3 oversize"), Some(Reply::Oversize));
         assert!(frame(true, "{}".to_string()) == Reply::Accepted("{}".to_string()));
         assert!(frame(false, "{}".to_string()) == Reply::Refused("{}".to_string()));
     }

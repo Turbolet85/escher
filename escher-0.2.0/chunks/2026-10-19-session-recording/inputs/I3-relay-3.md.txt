@@ -1,0 +1,1 @@
+yes. My planlint: 0 hits. F3 C is about answers only. The calls are kept as they came in (target ids, the press key, advance ms, and text typed into unmasked inputs), because a replay needs them; that is the F1/F2 widening itself and stays PROVISIONAL with them. List it by name in the wrap's Boundary widening card for the founder. Your other leans stand.

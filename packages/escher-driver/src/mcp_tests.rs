@@ -584,6 +584,94 @@ fn help_is_answered_by_the_server_with_or_without_a_session() {
     assert_eq!(read, [tool_reply(1, &help)]);
 }
 
+/// A fresh path under the workspace's `target/tmp`, named for the test: nothing is there.
+#[cfg(unix)]
+fn scratch(name: &str) -> std::path::PathBuf {
+    let dir = std::path::Path::new(concat!(env!("CARGO_MANIFEST_DIR"), "/../../target/tmp"))
+        .join(format!("escher-driver-mcp-{}-{name}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&dir);
+    std::fs::create_dir_all(dir.parent().expect("a parent")).expect("target/tmp is created");
+    dir
+}
+
+#[cfg(unix)]
+#[test]
+fn each_session_a_recording_boot_starts_is_kept_as_one_check() {
+    use crate::recording::{Check, answer_digest};
+
+    let dir = scratch("recorded");
+    let boot = |app: &str| empty(app)?.recording_into(&dir);
+    let sent = [
+        tool_call(1, "start", r#"{"app":"counter"}"#),
+        tool_call(2, "snapshot", "{}"),
+        tool_call(3, "click", r#"{"id":"names-nothing"}"#),
+        tool_call(4, "status", "{}"),
+        tool_call(5, "stop", "{}"),
+        tool_call(6, "start", r#"{"app":"crud"}"#),
+        tool_call(7, "help", "{}"),
+        tool_call(8, "stop", "{}"),
+    ];
+    let read = exchange(&lines(&sent), boot, Duration::from_secs(1800));
+    assert_eq!(read.len(), sent.len());
+    assert!(read[1].contains(r#""isError":false"#));
+    assert_eq!(
+        read[2],
+        tool_reply(3, &ToolResult::refused(Refusal::new(Cause::NotFound)))
+    );
+
+    let first = std::fs::read(dir.join("check-1.json")).expect("the first session's check");
+    let first = Check::from_bytes(&first).expect("it reads back");
+    assert_eq!(first.app(), "counter");
+    let verbs: Vec<&str> = first
+        .steps()
+        .iter()
+        .map(|step| step.call().verb.as_str())
+        .collect();
+    assert_eq!(verbs, ["snapshot", "click"]);
+    let not_found = Err(Refusal::new(Cause::NotFound));
+    assert!(!first.steps()[1].accepted());
+    assert_eq!(first.steps()[1].digest(), answer_digest(&not_found));
+
+    let second = std::fs::read(dir.join("check-2.json")).expect("the second session's check");
+    let second = Check::from_bytes(&second).expect("it reads back");
+    assert_eq!(second.app(), "crud");
+    assert!(second.steps().is_empty());
+    assert_eq!(std::fs::read_dir(&dir).expect("listed").count(), 2);
+    let _ = std::fs::remove_dir_all(&dir);
+}
+
+#[cfg(unix)]
+#[test]
+fn a_call_that_ends_the_recording_is_answered_as_its_session_error() {
+    let dir = scratch("ends");
+    let boot = |app: &str| empty(app)?.recording_into(&dir);
+    std::fs::create_dir(&dir).expect("the directory is created");
+    std::fs::set_permissions(
+        &dir,
+        <std::fs::Permissions as std::os::unix::fs::PermissionsExt>::from_mode(0o700),
+    )
+    .expect("made private");
+    // The rewrite's temporary path taken: the first recorded call cannot be written.
+    std::fs::write(dir.join(".check-1.json.tmp"), "").expect("the path is taken");
+    let sent = [
+        tool_call(1, "start", r#"{"app":"counter"}"#),
+        tool_call(2, "snapshot", "{}"),
+        tool_call(3, "snapshot", "{}"),
+    ];
+    let read = exchange(&lines(&sent), boot, Duration::from_secs(1800));
+    assert_eq!(read.len(), 3);
+    assert_eq!(
+        read[1],
+        tool_reply(2, &ToolResult::failed(SessionError::RecordingFailed))
+    );
+    assert!(read[1].contains(r#""isError":true"#));
+    // The session goes on, recording nothing further.
+    assert!(read[2].contains(r#""isError":false"#));
+    assert!(!dir.join("check-1.json").exists());
+    assert_eq!(std::fs::read_dir(&dir).expect("listed").count(), 1);
+    let _ = std::fs::remove_dir_all(&dir);
+}
+
 #[test]
 fn a_session_idle_for_its_expiry_is_dropped_when_a_request_arrives() {
     let sent = [

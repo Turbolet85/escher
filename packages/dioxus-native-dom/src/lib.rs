@@ -32,7 +32,7 @@ pub use blitz_dom::DocumentConfig;
 pub use dioxus_document::DioxusDocument;
 pub use events::{NodeHandle, synthetic_click_event, synthetic_form_event};
 #[cfg(feature = "accessibility")]
-pub use snapshot::{MASKED_VALUE, NodeState, Snapshot, SnapshotNode};
+pub use snapshot::{MASKED_VALUE, NodeState, Snapshot, SnapshotNode, is_masked_input};
 #[cfg(feature = "accessibility")]
 pub use snapshot_diff::{DiffNode, Reading, SnapshotDiff};
 #[cfg(feature = "accessibility")]

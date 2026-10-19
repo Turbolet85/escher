@@ -1,0 +1,133 @@
+[
+ {
+  "sql": "SELECT count(*) FROM crate_edges",
+  "rows": 1,
+  "result": [
+   {
+    "count_star()": 97
+   }
+  ],
+  "db_state": "fresh",
+  "plane": "rust"
+ },
+ {
+  "sql": "WITH RECURSIVE walk(start, cur, path, depth) AS (\n  SELECT from_crate, to_crate, from_crate || '>' || to_crate, 1 FROM crate_edges\n  UNION ALL\n  SELECT w.start, e.to_crate, w.path || '>' || e.to_crate, w.depth + 1\n  FROM crate_edges e JOIN walk w ON e.from_crate = w.cur\n  WHERE w.depth < (SELECT count(DISTINCT from_crate) + 1 FROM crate_edges)\n    AND (position(e.to_crate IN w.path) = 0 OR e.to_crate = w.start))\nSELECT DISTINCT start, path FROM walk WHERE cur = start;",
+  "rows": 0,
+  "result": [],
+  "db_state": "fresh",
+  "plane": "rust"
+ },
+ {
+  "sql": "SELECT callee, count(DISTINCT caller) AS n FROM calls_m GROUP BY callee ORDER BY n DESC LIMIT 20;",
+  "rows": 20,
+  "result": [
+   {
+    "callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 node_id/NodeId#",
+    "n": 680
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 crate/",
+    "n": 588
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/impl#[BaseDocument]get_node().",
+    "n": 339
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-html 0.3.0-beta.4 html_document/HtmlDocument#",
+    "n": 289
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/BaseDocument#",
+    "n": 246
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 config/DocumentConfig#",
+    "n": 223
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-test-harness 0.3.0-beta.4 harness/Harness#",
+    "n": 201
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/BaseDocument#nodes.",
+    "n": 198
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 resolve/impl#[BaseDocument]resolve().",
+    "n": 192
+   },
+   {
+    "callee": "rust-analyzer cargo seven_guis 0.1.0 stand/LeanTask#",
+    "n": 183
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.4 dom/dom_ctx().",
+    "n": 164
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 crate/",
+    "n": 156
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.4 state/DomCtx#doc.",
+    "n": 139
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/node/impl#[Node]element_data().",
+    "n": 134
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 shell/Viewport#",
+    "n": 134
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-test-harness 0.3.0-beta.4 harness/Harness#doc.",
+    "n": 134
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 shell/ColorScheme#",
+    "n": 133
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 config/impl#[DocumentConfig][Default]default().",
+    "n": 128
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.4 dom/this_node_id().",
+    "n": 126
+   },
+   {
+    "callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/node/Node#id.",
+    "n": 125
+   }
+  ],
+  "db_state": "fresh",
+  "plane": "rust"
+ },
+ {
+  "sql": "SELECT from_crate, count(DISTINCT to_crate) AS n FROM crate_edges GROUP BY from_crate ORDER BY n DESC;",
+  "rows": 22,
+  "result": "(dropped by the audit: 22 rows; summarized in c-dead.json / c-graph.json)",
+  "db_state": "fresh",
+  "plane": "rust"
+ },
+ {
+  "sql": "SELECT count(*) FROM crate_edges;",
+  "rows": 1,
+  "result": [
+   {
+    "count_star()": 97
+   }
+  ],
+  "db_state": "fresh",
+  "plane": "rust"
+ },
+ {
+  "sql": "SELECT s.symbol, s.crate, s.name, s.kind, s.file, s.def_line FROM symbol s LEFT JOIN refs r ON r.callee = s.symbol WHERE r.callee IS NULL",
+  "rows": 2039,
+  "result": "(dropped by the audit: 2039 rows; summarized in c-dead.json / c-graph.json)",
+  "db_state": "fresh",
+  "plane": "rust"
+ }
+]

@@ -1,0 +1,986 @@
+{
+ "stamp-ahead": [
+  {
+   "ep": "escher-0.1.0 / Epoch 2 - Element identity",
+   "id": "2026-10-06T08:37:04Z-f",
+   "chunk": "2026-10-06-upstream-sync-element-identity",
+   "step": "andromeda-wrap-session/report",
+   "kind": "friction",
+   "type": null,
+   "text": "the report's Date field was written as an estimated time 8 min ahead of the clock; the stamp-ahead PostToolUse hook refused it and the clock was read and the field corrected"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 2 - Element identity",
+   "id": "2026-10-06T09:06:35Z-a",
+   "chunk": "2026-10-06-stable-element-ids",
+   "step": "andromeda-phase/plan",
+   "kind": "fact#0 process/removed-cause",
+   "type": null,
+   "text": "stamp-ahead hook refused the plan's Generated stamp written without reading the clock; re-read date -u and corrected it"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 2 - Element identity",
+   "id": "2026-10-06T11:26:17Z-c",
+   "chunk": "2026-10-06-project-readme",
+   "step": "andromeda-phase/validate",
+   "kind": "friction",
+   "type": null,
+   "text": "two time stamps were estimated instead of read from the clock (a P5 CI re-read at 11:27Z, a baseline at 11:25Z, both ahead of the 11:24Z clock); the stamp-ahead hook refused the first, the second was found and corrected "
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 2 - Element identity",
+   "id": "2026-10-06T11:44:41Z-c",
+   "chunk": "2026-10-06-project-readme",
+   "step": "wrap-session/report",
+   "kind": "friction",
+   "type": null,
+   "text": "report Date written as an estimated 11:50Z without reading the clock; the stamp-ahead PostToolUse hook refused it (+5 min) and it was corrected from date -u"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 2 - Element identity",
+   "id": "2026-10-06T12:58:15Z-c",
+   "chunk": "2026-10-06-accessibility-tree-identity",
+   "step": "wrap-session/report",
+   "kind": "friction",
+   "type": null,
+   "text": "the report's Date was written as an estimated 13:05Z; the stamp-ahead PostToolUse hook refused it (+7 min ahead of the clock) and it was corrected from date -u"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 3 - Observation model",
+   "id": "2026-10-06T19:31:05Z-b",
+   "chunk": "2026-10-06-snapshot-model",
+   "step": "wrap-session/curation",
+   "kind": "friction",
+   "type": "ambiguity.filter-borderline",
+   "text": "one candidate (a document stamp is read from the clock, never estimated — proven by the stamp-ahead hook refusing the report's Date) scored exactly 0.6 at Filter 4 and rejected; the no-other-home signal was judged not to"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 3 - Observation model",
+   "id": "2026-10-06T21:00:32Z-b",
+   "chunk": "2026-10-06-id-stability-across-code-edits",
+   "step": "wrap-session/report",
+   "kind": "friction",
+   "type": "contract.narrow-basis-claim",
+   "text": "the first draft of report.md carried a citation tally typed without a count (88 found, 41 change, 47 unchanged) and a Date five minutes ahead of the clock; the stamp-ahead hook refused the date, and the tally, re-derived"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 3 - Observation model",
+   "id": "2026-10-07T00:15:43Z-e",
+   "chunk": "2026-10-06-compact-snapshot-serialization",
+   "step": "wrap-session/reconcile",
+   "kind": "friction",
+   "type": "contract.in-pass-correction",
+   "text": "a correction note written into report.md carried an estimated time four minutes ahead of the clock; the host's stamp hook refused it on the write and the stamp was replaced by a clock reading"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 4 - Driver core",
+   "id": "2026-10-07T07:18:59Z-c",
+   "chunk": "2026-10-07-driver-session",
+   "step": "wrap-session/reconcile",
+   "kind": "friction",
+   "type": "contract.in-pass-correction",
+   "text": "four first writes corrected before the commit: two cited ranges in the new architecture bullet ended one line short (host.rs:20-145, client.rs:11-176 — caught by a line print); two sidecar payloads miscounted ratified cl"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 4 - Driver core",
+   "id": "2026-10-07T16:46:22Z-a",
+   "chunk": "2026-10-07-refusal-detection",
+   "step": "andromeda-phase/plan",
+   "kind": "fact#1 process/removed-cause",
+   "type": null,
+   "text": "three baseline strings were written with an estimated time before their baselines had run; the stamp-ahead hook refused the edits; the baselines were then run and the stamps written from the clock"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 4 - Driver core",
+   "id": "2026-10-07T16:46:22Z-c",
+   "chunk": "2026-10-07-refusal-detection",
+   "step": "andromeda-phase/plan",
+   "kind": "friction",
+   "type": null,
+   "text": "three gate baseline strings were authored with a time estimated ahead of the clock, before the baseline commands had been run; a PostToolUse hook refused each edit, the baselines were run and the stamps rewritten from da"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 4 - Driver core",
+   "id": "2026-10-07T23:08:04Z-a",
+   "chunk": "2026-10-07-driver-command-spans",
+   "step": "andromeda-wrap-session/curation",
+   "kind": "fact#0 process/prohibition",
+   "type": null,
+   "text": "a frontmatter time stamp in the operator's auto-memory file was typed from an estimate two minutes ahead of the clock; the host's stamp hook refused it and the harness's own stamp stood"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "id": "2026-10-09T19:50:06Z-b",
+   "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+   "step": "andromeda-phase/research",
+   "kind": "friction",
+   "type": "contract.token-proxy-check",
+   "text": "the stamp-ahead write hook read a bare time-of-day quoted from a two-day-old CI job record as a stamp a few minutes ahead of the clock and blocked the evidence file; false positive, settled by reading the hit; the times "
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 6 - Polish & ship",
+   "id": "2026-10-13T17:17:03Z-b",
+   "chunk": "2026-10-13-stand-contrast-harness",
+   "step": "andromeda-phase/plan",
+   "kind": "friction",
+   "type": null,
+   "text": "the plan's Generated stamp was written as an estimated 17:20Z without reading the clock; the stamp-ahead PostToolUse hook flagged it 3 min ahead and it was corrected from date -u to 17:16Z"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 6 - Polish & ship",
+   "id": "2026-10-13T20:20:07Z-b",
+   "chunk": "2026-10-13-range-input-interaction",
+   "step": "andromeda-phase/validate",
+   "kind": "friction",
+   "type": null,
+   "text": "the P5 word's snap --origin was typed with a guessed time 5 min ahead of the clock; inputs.py refused it at exit 2 and it was re-fired with the time read from date -u"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 6 - Polish & ship",
+   "id": "2026-10-13T22:48:08Z-b",
+   "chunk": "2026-10-13-stand-keyboard-harness",
+   "step": "andromeda-phase/validate",
+   "kind": "friction",
+   "type": null,
+   "text": "an inputs.py snap of the operator P5 directive was refused at exit 2: its --origin time was typed from an estimate and read 3 min ahead of the clock; re-fired once with the time read from date -u"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 6 - Polish & ship",
+   "id": "2026-10-15T05:12:40Z-b",
+   "chunk": "2026-10-14-quality-gates",
+   "step": "andromeda-phase/plan",
+   "kind": "friction",
+   "type": null,
+   "text": "plan.md's Generated stamp was written as an estimated time 7 min ahead of the clock; the stamp-ahead hook refused it and the stamp was corrected from date -u"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 6 - Polish & ship",
+   "id": "2026-10-15T09:12:15Z-d",
+   "chunk": "2026-10-15-cold-agent-test",
+   "step": "andromeda-phase/validate",
+   "kind": "friction",
+   "type": null,
+   "text": "four authored time stamps were estimated instead of read from the clock (baselines 09:10Z, plan Generated 09:05Z, two --origin values 09:12Z); a PostToolUse hook and inputs.py refused two, one landed ahead of the clock i"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-17T14:21:45Z-b",
+   "chunk": "2026-10-17-upstream-sync-engine-debts",
+   "step": "andromeda-phase/plan",
+   "kind": "friction",
+   "type": null,
+   "text": "a control-reading time written into plan.md was estimated (14:25Z) instead of read; the stamp-ahead PostToolUse hook refused it 3 min ahead of the clock and it was corrected from date -u"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T02:00:13Z-a",
+   "chunk": "2026-10-17-upstream-sync-engine-debts",
+   "step": "wrap-session/route-resolve",
+   "kind": "fact#0 process/workaround",
+   "type": null,
+   "text": "the step record's first append carried a hand-typed ts ahead of the clock and was refused; re-stamped from date -u"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T05:13:34Z-e",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-wrap-session/reconcile",
+   "kind": "friction",
+   "type": "contract.in-pass-correction",
+   "text": "relay-4.md stamped the two dialog answers with estimated times (05:10Z, 05:16Z); inputs.py snap refused the later as ahead of the clock and the stamp-ahead hook flagged it; rewritten as `by 05:12Z`, the clock read after "
+  }
+ ],
+ "dialog-hold": [
+  {
+   "ep": "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "id": "2026-10-10T00:34:22Z-a",
+   "chunk": null,
+   "step": "andromeda-wrap-session/curation",
+   "kind": "fact#0 process/workaround",
+   "type": null,
+   "text": "the two review dialogs expired unanswered; the founder's words on the five items arrived as an operator relay message instead of dialog answers and were written from that message"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "id": "2026-10-10T00:34:22Z-c",
+   "chunk": null,
+   "step": "andromeda-wrap-session/curation",
+   "kind": "friction",
+   "type": null,
+   "text": "two question dialogs carrying the five review items, addressed to a founder reached through the operator in another session, expired unanswered after 58 minutes each; the turn ended with nothing written and the answers a"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "id": "2026-10-10T08:21:37Z-a",
+   "chunk": "2026-10-10-driver-cli",
+   "step": "andromeda-phase/plan",
+   "kind": "fact#0 process/overridden",
+   "type": null,
+   "text": "the first founder dialog was returned unanswered by the operator, who directed that all nine forks be written whole to one file in the run dir and answered by relay; done, and the answers arrived as a file snapped as I3"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "id": "2026-10-12T08:16:22Z-a",
+   "chunk": "2026-10-12-self-description",
+   "step": "andromeda-phase/validate",
+   "kind": "fact#0 process/workaround",
+   "type": null,
+   "text": "the first card went to the operator while the founder's four forks were unanswered; the operator relayed his answers (1A 2A 3A 4A) at the review, snapped as inputs#I3, and the plan's conditional lines were folded out bef"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "id": "2026-10-13T06:23:35Z-b",
+   "chunk": "2026-10-12-headless-screenshot",
+   "step": "andromeda-wrap-session/reconcile",
+   "kind": "friction",
+   "type": "ambiguity.escalation-rounds",
+   "text": "the Validate halt (answer card + playbook rule) went unanswered for 58 min and timed out; the founder's answers arrived the next morning as an operator message relaying his chosen labels, recorded as relay-1.md"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 6 - Polish & ship",
+   "id": "2026-10-15T05:12:40Z-a",
+   "chunk": "2026-10-14-quality-gates",
+   "step": "andromeda-phase/plan",
+   "kind": "fact#0 process/workaround",
+   "type": null,
+   "text": "the P4 dialog returned no answer within 58 min; the step stopped with the forks in relay-2.md and resumed on the operator's relayed answer in a later turn"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-17T14:21:45Z-a",
+   "chunk": "2026-10-17-upstream-sync-engine-debts",
+   "step": "andromeda-phase/plan",
+   "kind": "fact#0 process/workaround",
+   "type": null,
+   "text": "the AskUserQuestion round went unanswered for 58 min through the driver's dialog hook, which said to end the turn; the operator answered by message in the next turn, written verbatim to relay-2.md and snapped as inputs#I"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T01:57:54Z-d",
+   "chunk": "2026-10-17-upstream-sync-engine-debts",
+   "step": "wrap-session/reconcile",
+   "kind": "friction",
+   "type": "ambiguity.escalation-rounds",
+   "text": "the answer card's dialog went unanswered within the driver's 58-minute hold; the wrap stopped on the dialog fallback and resumed on the founder's late relayed answer in a second window"
+  }
+ ],
+ "gated-arm": [
+  {
+   "ep": "escher-0.1.0 / Epoch 4 - Driver core",
+   "id": "2026-10-07T12:55:00Z-b",
+   "chunk": "2026-10-07-command-and-refusal-schema",
+   "step": "andromeda-wrap-session/route-resolve",
+   "kind": "friction",
+   "type": "contract.no-sanctioned-channel",
+   "text": "a CARRY on a markerless entry ended with a clause this chunk made false (its leg waits on a question carried on the entry now completed); route-resolve names a premise rewrite for a BLOCKED-ON block and for a residual, a"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T03:16:13Z-a",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-phase/validate",
+   "kind": "fact#1 process/workaround",
+   "type": null,
+   "text": "the gated arm, written for a BLOCKED-ON head, was used for a chunk taken up with no block: v020-03 claimed --gated-file on the founder's discharge of the PROVISIONAL batch, with a defer gated entry and step 13"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T03:16:13Z-a",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-phase/validate",
+   "kind": "fact#2 process/workaround",
+   "type": null,
+   "text": "check 4 (9) asks a baseline of a NOT SEEN entry while gate.py runs no defer entry; the gated entry was baselined through --void in the scratch clone only"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T03:16:13Z-c",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-phase/validate",
+   "kind": "friction",
+   "type": null,
+   "text": "validation.md check 4 (9) requires a baseline run of every NOT SEEN entry, but gate.py prints not run — defer for a gated entry and a not-run word may not be recorded as a baseline; resolved by firing the entry with --vo"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T05:16:28Z-a",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-wrap-session/route-resolve",
+   "kind": "fact#0 process/overridden",
+   "type": null,
+   "text": "route-resolve edits only the markerless tail; on the operator's word one anchored Edit appended a BLOCKED-ON block to the frozen [2026-10-18-engine-debts] line so the gated arm's flip can run"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T05:16:28Z-b",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-wrap-session/route-resolve",
+   "kind": "friction",
+   "type": "contract.no-sanctioned-channel",
+   "text": "phase claimed v020-03 gated in the ledger (claim --gated-file) but stamped no BLOCKED-ON on the frozen line; route.py flip --to gated refuses without one and the wrap has no sanctioned frozen-line write, so the operator'"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T05:28:03Z-b",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-wrap-session/gates",
+   "kind": "friction",
+   "type": "contract.coverage-hold",
+   "text": "v020-03 held below verified on the gated arm: the founder's own word on the PROVISIONAL batch (evidence/founder-word.md) is absent while the operator's directive took the wrap to its commit; the master record reads gated"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T20:43:13Z-a",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-implement/code",
+   "kind": "fact#0 process/workaround",
+   "type": null,
+   "text": "the code checkpoint was appended after P2's single gated entry fired and the matrix ref was written, not before P2 — the gated run's P1 was one file write"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T20:43:32Z-a",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-implement/fix-loop",
+   "kind": "fact#0 process/overridden",
+   "type": null,
+   "text": "the gated arm's letter runs the block with the gated entry voided; the operator's invocation directed entry 26 alone (fire entry 26, stop at the gated implement's end), so entries 1-25 and 27-31 were not re-fired here — "
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T20:44:07Z-b",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-implement/smoke",
+   "kind": "friction",
+   "type": "contract.structural-blind-spot",
+   "text": "gated take-up: gate.py scope took base 34bcf71c (the parent of this marker's oldest pre-CI commit 48680dfb), so its set spans the two later chunks' commits (275950dc0..1c9bc58b5) and lists 21 of their files unrecorded; t"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T20:53:39Z-b",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-wrap-session/report",
+   "kind": "friction",
+   "type": "contract.structural-blind-spot",
+   "text": "a gated take-up with two later chunks committed on top of its gated flip: gate.py scope's base rule (oldest pre-CI parent 34bcf71c) reads their 21 files unrecorded, cites.py added --base {basis commit} lists their 28 fil"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T21:25:38Z-a",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-wrap-session/reconcile",
+   "kind": "fact#0 process/workaround",
+   "type": null,
+   "text": "cascade.py sweep's default baseline was 34bcf71c (the parent of the take-up's pre-CI commit 48680dfb), where none of the 71 marks stood, so every control was unfired (exit 3); re-fired with --baseline HEAD, the gated wra"
+  }
+ ],
+ "base-finder": [
+  {
+   "ep": "escher-0.1.0 / Epoch 3 - Observation model",
+   "id": "2026-10-06T22:38:42Z-a",
+   "chunk": "2026-10-06-snapshot-state-fidelity",
+   "step": "implement/fix-loop",
+   "kind": "friction",
+   "type": "contract.narrow-basis-claim",
+   "text": "the Backspace step added at the fix-loop (step record 2026-10-06T22:13:54Z-a, its problem fact) was checked by a grep hit on the editor arm and a Linux run only; the arm is cfg(not(target_os = \"macos\")), so the pushed pr"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 3 - Observation model",
+   "id": "2026-10-07T00:01:49Z-b",
+   "chunk": "2026-10-06-compact-snapshot-serialization",
+   "step": "wrap-session/report",
+   "kind": "friction",
+   "type": "input.implement-outcome-unsettled",
+   "text": "implement's P4 report was not the final word: after it the operator directed a source change (the quoting form) and the operator pass, so the report's outcome basis is the pre-CI commit and its CI run, with implement's r"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 1 - Foundation",
+   "id": "2026-10-16T17:56:52Z-a",
+   "chunk": "2026-10-16-file-splits",
+   "step": "andromeda-wrap-session/gates",
+   "kind": "fact#0 process/overridden",
+   "type": null,
+   "text": "light-gate entry 13 red on the probe's form after the pre-CI commit tracked the eight new files; the operator ruled record-and-proceed, the joined allow-list reading 0 recorded in light-gate.md"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 1 - Foundation",
+   "id": "2026-10-16T17:56:52Z-b",
+   "chunk": "2026-10-16-file-splits",
+   "step": "andromeda-wrap-session/gates",
+   "kind": "friction",
+   "type": "tooling.result-not-run-stable",
+   "text": "plan entry 13 (git diff --name-only base -- … | grep -c -v -x the three modified sources) read 0 at implement and 8 at the wrap over the same source: the operator pass's pre-CI commit tracked the eight new files, which g"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 1 - Foundation",
+   "id": "2026-10-16T20:11:30Z-a",
+   "chunk": "2026-10-16-fast-failing-mutants",
+   "step": "andromeda-implement/fix-loop",
+   "kind": "fact#0 product-logic/overridden",
+   "type": null,
+   "text": "plan's mutation-run entries red on cargo-mutants' baseline package selection (lab.rs run_baseline); operator chose a phase revision over a hand-fired --baseline=skip run"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 1 - Foundation",
+   "id": "2026-10-16T20:11:30Z-b",
+   "chunk": "2026-10-16-fast-failing-mutants",
+   "step": "andromeda-implement/fix-loop",
+   "kind": "friction",
+   "type": "contract.instrument-validity",
+   "text": "plan entries 5-7 ran cargo-mutants with its default baseline; P3/P4 validated the instrument only under --baseline=skip and with a direct nextest pass, so the baseline's own package selection (mutated package only, test "
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 1 - Foundation",
+   "id": "2026-10-16T20:18:32Z-b",
+   "chunk": "2026-10-16-fast-failing-mutants",
+   "step": "andromeda-phase/research",
+   "kind": "friction",
+   "type": "contract.instrument-validity",
+   "text": "the take-up's P3 validated the mutation runs with --baseline=skip and a direct joined nextest run, never the plan's default-baseline form, which cargo-mutants 27.1.0 cannot run with --cargo-test-arg targets outside the m"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-17T18:34:19Z-c",
+   "chunk": "2026-10-17-upstream-sync-engine-debts",
+   "step": "andromeda-wrap-session/report",
+   "kind": "friction",
+   "type": "contract.token-proxy-check",
+   "text": "the scope base finder matches the fixed string 'chore({marker}): operator pre-CI commit' in a subject; the merge commit's subject put 'merge upstream/main at 23b9b26a9, ' between them, the base fell to HEAD and control C"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T20:44:07Z-b",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-implement/smoke",
+   "kind": "friction",
+   "type": "contract.structural-blind-spot",
+   "text": "gated take-up: gate.py scope took base 34bcf71c (the parent of this marker's oldest pre-CI commit 48680dfb), so its set spans the two later chunks' commits (275950dc0..1c9bc58b5) and lists 21 of their files unrecorded; t"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T20:53:39Z-a",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-wrap-session/report",
+   "kind": "fact#0 process/workaround",
+   "type": null,
+   "text": "cites.py added took --base HEAD, not the gated basis commit fb842671: that base listed 28 files / 843 lines of the two later chunks' text, against the operator's ruling that those files are theirs"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T20:53:39Z-b",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-wrap-session/report",
+   "kind": "friction",
+   "type": "contract.structural-blind-spot",
+   "text": "a gated take-up with two later chunks committed on top of its gated flip: gate.py scope's base rule (oldest pre-CI parent 34bcf71c) reads their 21 files unrecorded, cites.py added --base {basis commit} lists their 28 fil"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T21:25:38Z-a",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-wrap-session/reconcile",
+   "kind": "fact#0 process/workaround",
+   "type": null,
+   "text": "cascade.py sweep's default baseline was 34bcf71c (the parent of the take-up's pre-CI commit 48680dfb), where none of the 71 marks stood, so every control was unfired (exit 3); re-fired with --baseline HEAD, the gated wra"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T21:25:38Z-b",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-wrap-session/reconcile",
+   "kind": "friction",
+   "type": "contract.structural-blind-spot",
+   "text": "cascade.py sweep resolves its baseline from this marker's oldest pre-CI commit across all of HEAD's history; in a GATED WRAP with later chunks on top, that is the take-up's base, before the masters this pass amends, so e"
+  }
+ ],
+ "cd-cwd": [
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-05T18:43:33Z-a",
+   "chunk": null,
+   "step": "new-session/orientation",
+   "kind": "fact#0 environment/workaround",
+   "type": null,
+   "text": "PreToolUse hook blocked a leading cd into the skill references dir; re-ran with absolute paths"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-05T18:50:12Z-a",
+   "chunk": "2026-10-05-as-built-baseline",
+   "step": "phase/distill",
+   "kind": "fact#0 environment/workaround",
+   "type": null,
+   "text": "PreToolUse hook blocked a leading cd into the run dir; re-ran with absolute paths"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-05T20:36:57Z-a",
+   "chunk": "2026-10-05-as-built-baseline",
+   "step": "andromeda-wrap-session/report",
+   "kind": "fact#0 environment/workaround",
+   "type": null,
+   "text": "project PreToolUse Bash guard blocked a leading cd into .andromeda/ for the master grep — re-run inside a subshell"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-05T20:55:54Z-a",
+   "chunk": "2026-10-05-fork-ci-reached",
+   "step": "phase/distill",
+   "kind": "fact#0 process/workaround",
+   "type": null,
+   "text": "a PreToolUse hook blocked a leading cd into the run dir for the extract read; re-ran with absolute paths"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-05T22:36:48Z-a",
+   "chunk": "2026-10-05-ci-gate-legs",
+   "step": "phase/distill",
+   "kind": "fact#0 environment/workaround",
+   "type": null,
+   "text": "an earlier probe ran `cd {run_dir} && ...`, moving the session cwd; a later leading `cd` was blocked by the PreToolUse cwd hook; switched to subshell `( cd ... && ... )` and absolute paths"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-05T23:53:00Z-a",
+   "chunk": "2026-10-05-ci-gate-legs",
+   "step": "wrap-session/report",
+   "kind": "fact#0 environment/workaround",
+   "type": null,
+   "text": "the project PreToolUse guard blocked a leading cd into .andromeda for the per-master sweep; re-run as a scratch python script over absolute paths"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-06T00:19:53Z-a",
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "step": "andromeda-phase/distill",
+   "kind": "fact#0 environment/workaround",
+   "type": null,
+   "text": "a bare cd into the run dir in an earlier call moved the session cwd; the PreToolUse hook blocked the next leading cd, re-run inside a subshell"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-06T00:23:29Z-a",
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "step": "andromeda-phase/research",
+   "kind": "fact#0 environment/workaround",
+   "type": null,
+   "text": "session cwd still in the run dir from P2; first P3 read was blocked by the leading-cd hook and re-run in a subshell"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-06T00:37:33Z-b",
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "step": "implement/code",
+   "kind": "friction",
+   "type": "tooling.hook-friction",
+   "text": "PreToolUse cd guard blocked a Bash call that began with cd into the new crate dir; re-issued with repo-relative paths"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-06T01:49:36Z-b",
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "step": "wrap-session/curation",
+   "kind": "friction",
+   "type": "recall.corpus-recurrence",
+   "text": "the 2026-10-06 Tier-3 entry on the project's Bash guards (leading cd refused) was already curated, yet two calls this session began with cd into a subdirectory and were blocked; Tier 3 is not auto-loaded"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-06T02:58:48Z-d",
+   "chunk": "2026-10-06-headless-stand",
+   "step": "wrap-session/reconcile",
+   "kind": "friction",
+   "type": "recall.corpus-recurrence",
+   "text": "the Tier 3 learning 'the project's Bash guards refuse a heredoc written to a file and a leading cd' recurred twice this session: a cat heredoc into a probe test file at implement, a leading cd into .claude/docs at this w"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-06T03:51:12Z-b",
+   "chunk": "2026-10-06-stand-test-contract",
+   "step": "wrap-session/curation",
+   "kind": "friction",
+   "type": "recall.corpus-recurrence",
+   "text": "session-learnings.md already records that the project's Bash guard refuses a leading cd; this session (implement and wrap) issued two more leading-cd calls (into a chunk evidence dir, into .andromeda/) and both were bloc"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-06T04:02:06Z-a",
+   "chunk": "2026-10-06-cold-agent-run-pipe",
+   "step": "phase/distill",
+   "kind": "fact#0 process/workaround",
+   "type": null,
+   "text": "a leading cd into the run dir was blocked by the project's Bash guard; reran with absolute paths"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-06T04:02:06Z-b",
+   "chunk": "2026-10-06-cold-agent-run-pipe",
+   "step": "phase/distill",
+   "kind": "friction",
+   "type": null,
+   "text": "a leading cd into the phase run dir was blocked by the project's PreToolUse Bash guard — the handoff's deferred learning on this guard recurred again"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 2 - Element identity",
+   "id": "2026-10-06T08:02:00Z-a",
+   "chunk": "2026-10-06-upstream-sync-element-identity",
+   "step": "andromeda-phase/research",
+   "kind": "fact#0 environment/workaround",
+   "type": null,
+   "text": "permission guard refused a chained rm -rf + cd + git archive export; re-run as plain mkdir + git archive|tar and cargo --manifest-path"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 2 - Element identity",
+   "id": "2026-10-06T08:02:00Z-b",
+   "chunk": "2026-10-06-upstream-sync-element-identity",
+   "step": "andromeda-phase/research",
+   "kind": "friction",
+   "type": null,
+   "text": "Bash permission guard refused a chained export command containing rm -rf and a leading cd (the deferred-learning recurrence named in the handoff); recovered with guard-safe forms"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 2 - Element identity",
+   "id": "2026-10-06T08:58:03Z-a",
+   "chunk": "2026-10-06-stable-element-ids",
+   "step": "andromeda-phase/distill",
+   "kind": "fact#0 process/workaround",
+   "type": null,
+   "text": "project Bash guard refused a leading cd into the run dir for the extract probe; re-ran with a path variable (recurrence of the carried deferred learning)"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 2 - Element identity",
+   "id": "2026-10-06T08:58:03Z-b",
+   "chunk": "2026-10-06-stable-element-ids",
+   "step": "andromeda-phase/distill",
+   "kind": "friction",
+   "type": null,
+   "text": "leading cd into the run dir refused by the project's Bash guard during extract probing — the same guard the handoff carries as a deferred recurrence-despite-learning"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 2 - Element identity",
+   "id": "2026-10-06T09:56:54Z-a",
+   "chunk": "2026-10-06-id-persistence",
+   "step": "phase/distill",
+   "kind": "fact#0 environment/workaround",
+   "type": null,
+   "text": "a non-leading cd inside the stage-1 path-check call moved the session cwd to the run dir; the Bash guard then refused a leading cd back; continued with absolute paths and --root instead of routing around the guard"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 2 - Element identity",
+   "id": "2026-10-06T09:56:54Z-c",
+   "chunk": "2026-10-06-id-persistence",
+   "step": "phase/distill",
+   "kind": "friction",
+   "type": null,
+   "text": "recurrence of the deferred learning on the leading-cd guard: a cd mid-command (after git diff-tree) moved the session cwd; the next call's leading cd back to the project root was refused, costing one retry"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 2 - Element identity",
+   "id": "2026-10-06T11:05:55Z-b",
+   "chunk": "2026-10-06-id-persistence",
+   "step": "andromeda-wrap-session/curation",
+   "kind": "friction",
+   "type": "recall.corpus-recurrence",
+   "text": "the curated Bash-guard entry (heredoc-to-file and leading cd refused) recurred twice this session: a cat >> evidence heredoc and a leading cd into the scratchpad were both refused"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 2 - Element identity",
+   "id": "2026-10-06T11:48:46Z-b",
+   "chunk": "2026-10-06-project-readme",
+   "step": "wrap-session/curation",
+   "kind": "friction",
+   "type": "recall.corpus-recurrence",
+   "text": "a leading cd into the skill references directory was refused by the project Bash guard during implement, though session-learnings already records that guard (third recurrence after two at the previous chunk)"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 2 - Element identity",
+   "id": "2026-10-06T13:11:21Z-b",
+   "chunk": "2026-10-06-accessibility-tree-identity",
+   "step": "wrap-session/curation",
+   "kind": "friction",
+   "type": "recall.corpus-recurrence",
+   "text": "the Tier-3 entry 'The project's Bash guards refuse a heredoc written to a file and a leading cd' already states the rule; a cat heredoc to scope-record.md was still sent at implement P1 and refused whole (fourth recurren"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 3 - Observation model",
+   "id": "2026-10-06T18:00:28Z-a",
+   "chunk": "2026-10-06-upstream-sync-observation-model",
+   "step": "andromeda-phase/distill",
+   "kind": "fact#0 environment/workaround",
+   "type": null,
+   "text": "project Bash guard refused a leading cd into the run dir when reading the extracts; re-issued with absolute paths (deferred learning, sixth recurrence)"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 3 - Observation model",
+   "id": "2026-10-06T19:30:21Z-a",
+   "chunk": "2026-10-06-snapshot-model",
+   "step": "wrap-session/reconcile",
+   "kind": "fact#0 environment/workaround",
+   "type": null,
+   "text": "the Bash guard refused a leading cd into the run dir for a python heredoc writing four raw twins; the twins were written with the Write tool instead"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 3 - Observation model",
+   "id": "2026-10-06T19:30:21Z-e",
+   "chunk": "2026-10-06-snapshot-model",
+   "step": "wrap-session/reconcile",
+   "kind": "friction",
+   "type": "recall.corpus-recurrence",
+   "text": "two deferred Tier-3 learnings recurred in this wrap: a leading cd refused by the Bash guard (once), and ugrep rejecting a bounded repetition {0,130} with 'exceeds complexity limits' on five patterns (re-run through pytho"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 4 - Driver core",
+   "id": "2026-10-07T04:22:51Z-a",
+   "chunk": null,
+   "step": "andromeda-new-session/orientation",
+   "kind": "fact#0 process/workaround",
+   "type": null,
+   "text": "the Bash cd guard refused a `cd` into the skill's references dir (outside the project root) on a grep of session-state-contract.md; the same grep was re-run by absolute path with no cd"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 4 - Driver core",
+   "id": "2026-10-07T04:31:21Z-a",
+   "chunk": "2026-10-07-upstream-sync-driver-core",
+   "step": "andromeda-phase/distill",
+   "kind": "fact#0 process/workaround",
+   "type": null,
+   "text": "the Bash cd guard refused a second `cd`, into the phase run dir, on the entity probe of the seven extracts; the probe was re-run with absolute paths and no cd (the first refusal was at new-session orientation in this win"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 4 - Driver core",
+   "id": "2026-10-07T05:00:44Z-a",
+   "chunk": "2026-10-07-driver-session",
+   "step": "phase/distill",
+   "kind": "fact#0 process/workaround",
+   "type": null,
+   "text": "the stage-1 probe command used cd into the run dir; the session's cd guard refused the whole call before anything ran; re-run with absolute paths"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 4 - Driver core",
+   "id": "2026-10-07T21:27:00Z-a",
+   "chunk": "2026-10-07-driver-command-spans",
+   "step": "andromeda-phase/distill",
+   "kind": "fact#0 process/workaround",
+   "type": null,
+   "text": "the validation probe was first sent with a leading cd into the run dir and the project's Bash guard refused it; re-sent in a subshell, nothing was written between the snapshots by it"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "id": "2026-10-10T19:25:10Z-a",
+   "chunk": "2026-10-10-mcp-surface",
+   "step": "andromeda-phase/distill",
+   "kind": "fact#0 environment/removed-cause",
+   "type": null,
+   "text": "a probe opened with a cd into the run dir, which the guard passed, and the session cwd moved there; the next call returned it to the project root before any relative path was used"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 6 - Polish & ship",
+   "id": "2026-10-13T17:08:40Z-a",
+   "chunk": "2026-10-13-stand-contrast-harness",
+   "step": "andromeda-phase/distill",
+   "kind": "fact#0 process/removed-cause",
+   "type": null,
+   "text": "a probe loop opened with a bare cd into the run dir that the Bash guard did not refuse, moving the session cwd; the next call cd'd back to the project root before any write"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 1 - Foundation",
+   "id": "2026-10-16T14:13:59Z-b",
+   "chunk": "2026-10-16-handler-splits-and-readme",
+   "step": "andromeda-phase/distill",
+   "kind": "friction",
+   "type": null,
+   "text": "a compound command opening with a cd into the run dir (cd X 2>/dev/null; …) passed the Bash guard and moved the session cwd into the run dir; one extra call returned it to the project root"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T01:57:54Z-c",
+   "chunk": "2026-10-17-upstream-sync-engine-debts",
+   "step": "wrap-session/reconcile",
+   "kind": "friction",
+   "type": "recall.corpus-recurrence",
+   "text": "a bare cd into the run dir in a read call moved the session cwd, against host-linux «Paths & the working directory» (cd only inside a subshell); restored by cd to the root next call"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T01:59:21Z-b",
+   "chunk": "2026-10-17-upstream-sync-engine-debts",
+   "step": "wrap-session/curation",
+   "kind": "friction",
+   "type": "recall.corpus-recurrence",
+   "text": "the report's guard-refusal entry (cd moving the cwd) and this window's own bare cd both reproduce host-linux «Paths & the working directory», already curated; logged as recurrence-despite-learning in the handoff"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T20:53:39Z-a",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-wrap-session/report",
+   "kind": "fact#2 environment/workaround",
+   "type": null,
+   "text": "compound Bash calls led by cd to the absolute root, against host-linux Paths rule; no guard refused, cwd already the root"
+  }
+ ],
+ "delegate-provisional": [
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-05T21:10:44Z-d",
+   "chunk": "2026-10-05-fork-ci-reached",
+   "step": "phase/validate",
+   "kind": "friction",
+   "type": null,
+   "text": "P4 recorded the fork answers as delegate-provisional although the answer note named the founder's own words 'сам решай'; the operator corrected the authority at the review, superseding the record; the full mechanical set"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-06T00:07:40Z-a",
+   "chunk": "2026-10-05-ci-gate-legs",
+   "step": "wrap-session/reconcile",
+   "kind": "fact#0 process/overridden",
+   "type": null,
+   "text": "E1 boundary widening (coverage-report upload) applied on a delegate overseer ratification recorded PROVISIONAL — the contract ratifies a widening only on the founder's own word, who was unavailable; the record names the "
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-06T00:07:40Z-d",
+   "chunk": "2026-10-05-ci-gate-legs",
+   "step": "wrap-session/reconcile",
+   "kind": "friction",
+   "type": "ambiguity.escalation-rounds",
+   "text": "E1 boundary widening: the plan's P5 overseer word was a delegate answer; the contract needs the founder's own word; the overseer re-ratified under the standing delegation and directed a PROVISIONAL record pending the fou"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-06T00:28:48Z-a",
+   "chunk": "2026-10-06-telemetry-bootstrap",
+   "step": "andromeda-phase/plan",
+   "kind": "fact#0 process/overridden",
+   "type": null,
+   "text": "OTel export fork: operator (overseer delegate) chose Defer over the recommended http-only-now option, naming the boundary-widening escalation to the founder; scope/research/plan re-cut to drop the exporter and add a rout"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-06T02:22:58Z-a",
+   "chunk": "2026-10-06-headless-stand",
+   "step": "implement/fix-loop",
+   "kind": "fact#0 product-logic/removed-cause",
+   "type": null,
+   "text": "dioxus-native-dom wrote a falsy disabled as disabled=\"false\" (only checked was cleared); fixed in mutation_writer.rs outside research's lists as a widening on the delegate overseer's word, pinned by a regression test"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-06T02:22:58Z-c",
+   "chunk": "2026-10-06-headless-stand",
+   "step": "implement/fix-loop",
+   "kind": "friction",
+   "type": "ambiguity.scope-pressure",
+   "text": "Trigger 3 fired: the engine fix lives outside research's lists and changes engine behaviour; soft-exited for the operator's word via AskUserQuestion, answered by the delegate overseer, recorded as two widening lines"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 1 - Foundation",
+   "id": "2026-10-06T03:50:18Z-d",
+   "chunk": "2026-10-06-stand-test-contract",
+   "step": "wrap-session/reconcile",
+   "kind": "friction",
+   "type": "contract.in-pass-correction",
+   "text": "the test-plan sidecar entry's Why first named the founder as the ruling's author; whose word it was (founder or overseer delegate) is not known from this session — re-worded to the operator's ruling on re-read, before th"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 4 - Driver core",
+   "id": "2026-10-07T02:45:21Z-b",
+   "chunk": null,
+   "step": "wrap-session/route-resolve",
+   "kind": "friction",
+   "type": null,
+   "text": "the operator's direction named the entry and its slot and handed the four items over for the wrap's disposition; the letter's trajectory gate names a direction stating the disposition, or a HALT, and no delegated form; a"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 4 - Driver core",
+   "id": "2026-10-07T23:06:24Z-a",
+   "chunk": "2026-10-07-driver-command-spans",
+   "step": "andromeda-wrap-session/reconcile",
+   "kind": "fact#0 process/overridden",
+   "type": null,
+   "text": "the boundary-widening escalation for the sink's closed-span line was resolved by the operator's direction at the wrap's invocation (keep PROVISIONAL), so no halt was raised for it; one halt was raised for a second founde"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "id": "2026-10-10T10:57:00Z-d",
+   "chunk": "2026-10-10-driver-cli",
+   "step": "andromeda-wrap-session/reconcile",
+   "kind": "friction",
+   "type": "contract.in-pass-correction",
+   "text": "a sidecar payload was first written with a Supersedes line naming an earlier entry whose facts all still stand in the body (only its PROVISIONAL status was retired); reading that entry's Change before the append caught i"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "id": "2026-10-10T16:44:10Z-a",
+   "chunk": "2026-10-10-snapshot-states",
+   "step": "andromeda-phase/plan",
+   "kind": "fact#1 process/deferred",
+   "type": null,
+   "text": "two boundary forks are the founder's by the take-up directive; on the operator's answer both are planned on their recommended option and recorded PROVISIONAL, their discharge left to this chunk's wrap or the Epoch 5 batc"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "id": "2026-10-12T20:41:49Z-a",
+   "chunk": "2026-10-12-headless-screenshot",
+   "step": "andromeda-wrap-session/report",
+   "kind": "fact#0 process/overridden",
+   "type": null,
+   "text": "SKILL.md P1 says HALT on a cascade stamp other than v1.4; the deployed tool prints v1.6, which amendment-flow §Tool and the operator's delegate name; proceeded on v1.6"
+  },
+  {
+   "ep": "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "id": "2026-10-13T06:25:51Z-b",
+   "chunk": "2026-10-12-headless-screenshot",
+   "step": "andromeda-wrap-session/route-resolve",
+   "kind": "friction",
+   "type": "contract.carry-no-owner",
+   "text": "two owners had to be chosen by the wrap: the click-placed caret (the delegate directed 'a route owner', no entry named) went to 'Stand requirement sweep'; README.md:48 (the operator directed 'P2 or P5', no entry named) w"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T03:01:31Z-a",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-phase/plan",
+   "kind": "fact#0 process/overridden",
+   "type": null,
+   "text": "the operator directed every founder fork into one run-dir file answered in the founder's stead as delegate, in place of a question dialog the overseer relays (inputs#I1); answers recorded PROVISIONAL (inputs#I2)"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T03:16:13Z-a",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-phase/validate",
+   "kind": "fact#1 process/workaround",
+   "type": null,
+   "text": "the gated arm, written for a BLOCKED-ON head, was used for a chunk taken up with no block: v020-03 claimed --gated-file on the founder's discharge of the PROVISIONAL batch, with a defer gated entry and step 13"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T03:16:13Z-b",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-phase/validate",
+   "kind": "friction",
+   "type": "contract.matrix-claim",
+   "text": "the P5 concretization of v020-03 replaced the founder's recorded answer with the delegate's PROVISIONAL one; the operator's review restored the founder's word as the condition (requirements.md:13) and the claim was re-en"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 2 - Engine debts",
+   "id": "2026-10-18T05:28:03Z-b",
+   "chunk": "2026-10-18-engine-debts",
+   "step": "andromeda-wrap-session/gates",
+   "kind": "friction",
+   "type": "contract.coverage-hold",
+   "text": "v020-03 held below verified on the gated arm: the founder's own word on the PROVISIONAL batch (evidence/founder-word.md) is absent while the operator's directive took the wrap to its commit; the master record reads gated"
+  },
+  {
+   "ep": "escher-0.2.0 / Epoch 3 - Determinism and traces",
+   "id": "2026-10-18T07:41:31Z-a",
+   "chunk": "2026-10-18-one-virtual-clock",
+   "step": "andromeda-phase/plan",
+   "kind": "fact#0 process/overridden",
+   "type": null,
+   "text": "the operator's directive (inputs#I1) routed the founder's forks to one founder-forks.md in the run dir with the turn ended, in place of P4's AskUserQuestion round; the delegate's answer arrived by message and was snapped"
+  }
+ ]
+}

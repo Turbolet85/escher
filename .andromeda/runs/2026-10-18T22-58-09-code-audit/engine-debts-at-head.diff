@@ -1,0 +1,373 @@
+diff --git a/packages/blitz-dom/src/accessibility.rs b/packages/blitz-dom/src/accessibility.rs
+--- a/packages/blitz-dom/src/accessibility.rs
++++ b/packages/blitz-dom/src/accessibility.rs
+@@ -170,0 +171,5 @@
++            // AccessKit holds a checkable role's `aria-checked` and every other role's
++            // `aria-pressed` as the one `toggled` property, so each element reads one of the two.
++            // A native checkbox or radio keeps its own checkedness and reads neither author
++            // attribute (https://www.w3.org/TR/html-aria/#docconformance).
++            // https://www.w3.org/TR/wai-aria-1.2/#aria-checked
+@@ -176,0 +177,8 @@
++            let toggled = if is_native_checkable(element_data) {
++                None
++            } else if is_checkable(role) {
++                element_data.attr(local_name!("aria-checked"))
++            } else {
++                element_data.attr(local_name!("aria-pressed"))
++            };
++            match toggled.map(str::trim_ascii) {
+@@ -242,0 +243,1 @@
++    // https://html.spec.whatwg.org/multipage/interaction.html#the-inert-attribute
+@@ -244,0 +245,12 @@
++        self.element_data()
++            .is_some_and(|element| element.has_attr(local_name!("inert")))
++            || self
++                .try_stylo_element_data()
++                .as_ref()
++                .and_then(|s| s.get())
++                .map(|s| {
++                    s.styles.is_display_none()
++                        || s.styles.primary().clone_visibility()
++                            == visibility::computed_value::T::Hidden
++                })
++                .unwrap_or(false)
+@@ -329,0 +330,1 @@
++        "switch" => Some(Role::Switch),
+@@ -377,0 +378,22 @@
++/// Whether `role` states its toggle by `aria-checked` rather than `aria-pressed`.
++fn is_checkable(role: Role) -> bool {
++    matches!(
++        role,
++        Role::CheckBox
++            | Role::Switch
++            | Role::RadioButton
++            | Role::MenuItemCheckBox
++            | Role::MenuItemRadio
++    )
++}
++
++/// Whether `element` is an `input` whose `type` is `checkbox` or `radio`, which holds a native
++/// checkedness of its own.
++fn is_native_checkable(element: &ElementData) -> bool {
++    element.name.local == local_name!("input")
++        && matches!(
++            element.attr(local_name!("type")),
++            Some("checkbox" | "radio")
++        )
++}
++
+diff --git a/packages/blitz-dom/src/document.rs b/packages/blitz-dom/src/document.rs
+--- a/packages/blitz-dom/src/document.rs
++++ b/packages/blitz-dom/src/document.rs
+@@ -2394,0 +2395,3 @@
++        if let Some(rects) = self.transformed_fragment_rects(node_id) {
++            return rects.into_iter().reduce(BoundingRect::union);
++        }
+@@ -2405,0 +2406,10 @@
++        let border_box = kurbo::Rect::new(0.0, 0.0, size.width as f64, size.height as f64);
++        if let Some(shown) = self.transformed_bounds(node_id, border_box) {
++            return Some(BoundingRect {
++                x: snap_to_layout_unit(shown.x0 - self.viewport_scroll().x),
++                y: snap_to_layout_unit(shown.y0 - self.viewport_scroll().y),
++                width: snap_to_layout_unit(shown.width()),
++                height: snap_to_layout_unit(shown.height()),
++            });
++        }
++
+@@ -2423,0 +2424,91 @@
++    /// `rect`, given in `node_id`'s border-box frame in CSS px, mapped through the transform of
++    /// `node_id` and of every box on its containing-block chain into document coordinates, as
++    /// the hit and paint map them: the axis-aligned bounding box of the mapped corners. `None`
++    /// when no box on the chain is transformed, where the untransformed reading stands.
++    /// <https://drafts.csswg.org/cssom-view/#dom-element-getboundingclientrect>
++    fn transformed_bounds(&self, node_id: NodeId, rect: kurbo::Rect) -> Option<kurbo::Rect> {
++        let chain =
++            || std::iter::successors(Some(node_id), |id| self.nodes[*id].containing_block());
++        if !self.is_transformed_chain(node_id) {
++            return None;
++        }
++        let scale = self.viewport.scale_f64();
++        let mut corners = [
++            kurbo::Point::new(rect.x0, rect.y0),
++            kurbo::Point::new(rect.x1, rect.y0),
++            kurbo::Point::new(rect.x0, rect.y1),
++            kurbo::Point::new(rect.x1, rect.y1),
++        ];
++        for id in chain() {
++            let node = &self.nodes[id];
++            if let Some(transform) = node.transform().as_deref() {
++                for corner in &mut corners {
++                    let device = *transform * kurbo::Point::new(corner.x * scale, corner.y * scale);
++                    *corner = kurbo::Point::new(device.x / scale, device.y / scale);
++                }
++            }
++            // From this box's border-box frame to its containing block's, that block's own
++            // scroll offset counted; or, at the top, to the document.
++            let (pos, _) = self.physical_unrounded_geometry(id);
++            let origin = match node.containing_block() {
++                Some(block) => {
++                    let (block_pos, _) = self.physical_unrounded_geometry(block);
++                    kurbo::Vec2::new((pos.x - block_pos.x) as f64, (pos.y - block_pos.y) as f64)
++                }
++                None => kurbo::Vec2::new(pos.x as f64, pos.y as f64),
++            };
++            for corner in &mut corners {
++                *corner += origin;
++            }
++        }
++        let [first, rest @ ..] = corners;
++        Some(
++            rest.iter()
++                .fold(kurbo::Rect::from_points(first, first), |bounds, corner| {
++                    bounds.union_pt(*corner)
++                }),
++        )
++    }
++
++    /// Whether `node_id` or a box on its containing-block chain carries a transform.
++    fn is_transformed_chain(&self, node_id: NodeId) -> bool {
++        std::iter::successors(Some(node_id), |id| self.nodes[*id].containing_block())
++            .any(|id| self.nodes[id].transform().is_some())
++    }
++
++    /// The client rects of a non-atomic inline element's fragments, mapped through the
++    /// transforms on its inline root's containing-block chain as [`Self::transformed_bounds`]
++    /// maps a box. `None` for a node with a layout box of its own, and where no box on that
++    /// chain is transformed, where [`Self::inline_fragment_rects`] stands — which `offset_rect`
++    /// reads untransformed, as CSSOM's `offsetTop` and kin ignore transforms.
++    fn transformed_fragment_rects(&self, node_id: NodeId) -> Option<Vec<BoundingRect>> {
++        let node = self.get_node(node_id)?;
++        let fragments = node.inline_fragment_boxes()?;
++        let inline_root = node.inline_root_ancestor()?;
++        let root_id = inline_root.id;
++        if !self.is_transformed_chain(root_id) {
++            return None;
++        }
++        // Fragment boxes are relative to the inline root's border box, and move with the
++        // root's own scroll offset.
++        let root_scroll = *inline_root.scroll_offset();
++        let viewport_scroll = self.viewport_scroll();
++        fragments
++            .map(|rect| {
++                let local = kurbo::Rect::new(
++                    rect.left as f64 - root_scroll.x,
++                    rect.top as f64 - root_scroll.y,
++                    rect.right as f64 - root_scroll.x,
++                    rect.bottom as f64 - root_scroll.y,
++                );
++                let shown = self.transformed_bounds(root_id, local)?;
++                Some(BoundingRect {
++                    x: snap_to_layout_unit(shown.x0 - viewport_scroll.x),
++                    y: snap_to_layout_unit(shown.y0 - viewport_scroll.y),
++                    width: snap_to_layout_unit(shown.width()),
++                    height: snap_to_layout_unit(shown.height()),
++                })
++            })
++            .collect()
++    }
++
+@@ -2583,0 +2584,3 @@
++        if let Some(rects) = self.transformed_fragment_rects(node_id) {
++            return rects;
++        }
+diff --git a/packages/blitz-dom/src/events/keyboard.rs b/packages/blitz-dom/src/events/keyboard.rs
+--- a/packages/blitz-dom/src/events/keyboard.rs
++++ b/packages/blitz-dom/src/events/keyboard.rs
+@@ -162,0 +163,1 @@
++    if element.is_disabled() {
+@@ -179,0 +180,1 @@
++    if element.is_disabled() {
+diff --git a/packages/blitz-dom/src/events/pointer.rs b/packages/blitz-dom/src/events/pointer.rs
+--- a/packages/blitz-dom/src/events/pointer.rs
++++ b/packages/blitz-dom/src/events/pointer.rs
+@@ -325,0 +326,1 @@
++    if el.is_disabled() {
+@@ -443,0 +444,2 @@
++            /// Whether the input is a password input, which paints bullets for its text.
++            password: bool,
+@@ -458,0 +459,1 @@
++            Some(el) if el.is_disabled() => ClickTarget::Disabled,
+@@ -493,0 +494,4 @@
++                        password: el.name.local == local_name!("input")
++                            && el
++                                .attr(local_name!("type"))
++                                .is_some_and(|ty| ty.eq_ignore_ascii_case("password")),
+@@ -523,0 +524,1 @@
++            password,
+@@ -535,0 +536,3 @@
++            if let SpecialElementData::TextInput(ref mut text_input_data) = el.special_data
++                && !password
++            {
+@@ -557,0 +558,12 @@
++            if password {
++                click_password_input(
++                    doc,
++                    actual_target,
++                    taffy::Point {
++                        x: hit.x - content_box_offset.x,
++                        y: hit.y - content_box_offset.y,
++                    },
++                    click_count,
++                    mods,
++                );
++            }
+@@ -581,0 +582,68 @@
++/// A click in a password input places its caret by the bullets painted for its text, never by
++/// the widths of the characters it holds: the bullet under the point, in the bullets' layout
++/// scrolled as paint scrolls it, names the character the caret goes before. `point` is in the
++/// input's content box, in CSS px. A second click selects the whole value.
++fn click_password_input(
++    doc: &mut BaseDocument,
++    node_id: NodeId,
++    point: taffy::Point<f32>,
++    click_count: u16,
++    mods: Modifiers,
++) {
++    const BULLET: char = '\u{2022}';
++    let scale = doc.viewport.scale_f64();
++    let node = &doc.nodes[node_id];
++    let Some(editor) = node
++        .element_data()
++        .and_then(|el| el.text_input_data())
++        .map(|data| &data.editor)
++    else {
++        return;
++    };
++    let text = editor.raw_text().to_string();
++    let focus = editor.raw_selection().focus();
++    let frame = node.final_layout();
++    let content_width = (frame.size.width
++        - frame.padding.left
++        - frame.padding.right
++        - frame.border.left
++        - frame.border.right) as f64;
++
++    let bullets: String = text.chars().map(|_| BULLET).collect();
++    let Some(layout) = doc.layout_as_text_input(node_id, &bullets) else {
++        return;
++    };
++    let focus_chars = text.get(..focus.index()).map_or(0, |s| s.chars().count());
++    let caret =
++        parley::Cursor::from_byte_index(&layout, focus_chars * BULLET.len_utf8(), focus.affinity())
++            .geometry(&layout, 1.5);
++    let scroll_x = (caret.x1 - content_width * scale).max(0.0);
++    let under = parley::Cursor::from_point(
++        &layout,
++        (point.x as f64 * scale + scroll_x) as f32,
++        (point.y as f64 * scale) as f32,
++    );
++    let chars = under.index() / BULLET.len_utf8();
++    let byte = text
++        .char_indices()
++        .nth(chars)
++        .map_or(text.len(), |(index, _)| index);
++
++    let Some(data) = doc.nodes[node_id]
++        .element_data_mut()
++        .and_then(|el| el.text_input_data_mut())
++    else {
++        return;
++    };
++    let mut font_ctx = doc
++        .font_ctx
++        .lock()
++        .unwrap_or_else(std::sync::PoisonError::into_inner);
++    let mut driver = data.editor.driver(&mut font_ctx, &mut doc.layout_ctx);
++    match click_count {
++        1 if mods.shift() => driver.extend_selection_to_byte(byte),
++        1 => driver.move_to_byte(byte),
++        _ => driver.select_all(),
++    }
++}
++
+@@ -756,0 +757,1 @@
++            if el.is_disabled() {
+diff --git a/packages/blitz-dom/src/node/element.rs b/packages/blitz-dom/src/node/element.rs
+--- a/packages/blitz-dom/src/node/element.rs
++++ b/packages/blitz-dom/src/node/element.rs
+@@ -489,0 +490,6 @@
++    /// Whether this is an element that can be disabled carrying a `disabled` attribute, read by
++    /// presence: on any other element the attribute disables nothing.
++    pub fn is_disabled(&self) -> bool {
++        self.can_be_disabled() && self.has_attr(local_name!("disabled"))
++    }
++
+@@ -708,0 +709,1 @@
++        let disabled = self.is_disabled();
+diff --git a/packages/blitz-dom/src/node/node.rs b/packages/blitz-dom/src/node/node.rs
+--- a/packages/blitz-dom/src/node/node.rs
++++ b/packages/blitz-dom/src/node/node.rs
+@@ -557,0 +558,18 @@
++            && !self.is_inert()
++    }
++
++    /// Whether this node or an ancestor element carries an `inert` attribute, read by presence:
++    /// <https://html.spec.whatwg.org/multipage/interaction.html#the-inert-attribute>.
++    pub(crate) fn is_inert(&self) -> bool {
++        let mut current = Some(self.id);
++        while let Some(id) = current {
++            let node = self.with(id);
++            if node
++                .element_data()
++                .is_some_and(|element| element.has_attr(local_name!("inert")))
++            {
++                return true;
++            }
++            current = node.parent;
++        }
++        false
+@@ -1400,0 +1401,10 @@
++        use style::values::computed::{Contain, Overflow};
++
++        // An inert subtree takes no hit, so the walk goes on as for a miss:
++        // <https://html.spec.whatwg.org/multipage/interaction.html#the-inert-attribute>.
++        if self
++            .element_data()
++            .is_some_and(|element| element.has_attr(local_name!("inert")))
++        {
++            return None;
++        }
+@@ -1500,0 +1501,5 @@
++        // border. The boxes are the ones paint clips: either axis not `visible`, or a `contain`
++        // that includes `paint` on a box it applies to
++        // (<https://drafts.csswg.org/css-contain-2/#containment-paint>), the root element
++        // excepted, the two axes not told apart.
++        let clips_to_padding_box = self.containing_block().is_some()
+@@ -1506,0 +1507,5 @@
++                let display = style.clone_display();
++                let contains_paint = style.get_box().clone_contain().contains(Contain::PAINT)
++                    && !display.is_inline_flow()
++                    && !(display.outside() == DisplayOutside::InternalTable
++                        && display.inside() != DisplayInside::TableCell);
+@@ -1513,0 +1514,1 @@
++                    || contains_paint
+@@ -1515,0 +1516,1 @@
++        if clips_to_padding_box {
+@@ -1716,0 +1717,3 @@
++    /// Computes the Document-relative coordinates of the `Node`: where its border box stands,
++    /// offset by `(x, y)`. The scroll offset of every box that holds it is counted and its own
++    /// is not, since scrolling a box moves what it holds and never the box.
+@@ -1720,0 +1721,4 @@
++        let x = x + self.final_layout().location.x;
++        let y = y + self.final_layout().location.y;
++        self.position_in_containing_block(x, y)
++    }
+@@ -1725,0 +1726,13 @@
++    /// `(x, y)`, given in the frame of this node's containing block's border box, in document
++    /// coordinates: less that block's scroll offset, then up the positioning hierarchy.
++    fn position_in_containing_block(&self, x: f32, y: f32) -> crate::util::Point<f32> {
++        match self.containing_block() {
++            Some(id) => {
++                let block = self.with(id);
++                block.absolute_position(
++                    x - block.scroll_offset().x as f32,
++                    y - block.scroll_offset().y as f32,
++                )
++            }
++            None => crate::util::Point { x, y },
++        }
+diff --git a/packages/blitz-dom/src/scrolling.rs b/packages/blitz-dom/src/scrolling.rs
+--- a/packages/blitz-dom/src/scrolling.rs
++++ b/packages/blitz-dom/src/scrolling.rs
+@@ -714,0 +715,1 @@
++        let target = node.absolute_position(0.0, 0.0);

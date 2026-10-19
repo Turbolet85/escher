@@ -1,0 +1,151 @@
+{
+ "scoped_units": [
+  "seven_guis",
+  "blitz-test-harness",
+  "dioxus-native-dom",
+  "blitz-dom/clock",
+  "escher-driver",
+  "blitz-dom/engine-debts"
+ ],
+ "unit_states": {
+  "seven_guis": "unviable-dominant 14/22",
+  "blitz-test-harness": "complete 32/32",
+  "dioxus-native-dom": "complete 34/34",
+  "blitz-dom/clock": "complete 3/3",
+  "escher-driver": "complete 97/97",
+  "blitz-dom/engine-debts": "complete 153/153"
+ },
+ "scores": {
+  "blitz-test-harness": 100.0,
+  "dioxus-native-dom": 100.0,
+  "blitz-dom/clock": 100.0,
+  "escher-driver": 100.0,
+  "blitz-dom/engine-debts": 100.0
+ },
+ "counts": {
+  "seven_guis": {
+   "mutants": 22,
+   "caught": 8,
+   "missed": 0,
+   "not_measured": 0,
+   "timeout": 0,
+   "unviable": 14
+  },
+  "blitz-test-harness": {
+   "mutants": 32,
+   "caught": 23,
+   "missed": 0,
+   "not_measured": 0,
+   "timeout": 0,
+   "unviable": 9
+  },
+  "dioxus-native-dom": {
+   "mutants": 34,
+   "caught": 30,
+   "missed": 0,
+   "not_measured": 0,
+   "timeout": 0,
+   "unviable": 4
+  },
+  "blitz-dom/clock": {
+   "mutants": 3,
+   "caught": 3,
+   "missed": 0,
+   "not_measured": 0,
+   "timeout": 0,
+   "unviable": 0
+  },
+  "escher-driver": {
+   "mutants": 97,
+   "caught": 88,
+   "missed": 0,
+   "not_measured": 0,
+   "timeout": 0,
+   "unviable": 9
+  },
+  "blitz-dom/engine-debts": {
+   "mutants": 153,
+   "caught": 124,
+   "missed": 0,
+   "not_measured": 0,
+   "timeout": 0,
+   "unviable": 29
+  }
+ },
+ "timing": {
+  "seven_guis": {
+   "scope": "files",
+   "planned": 22,
+   "tested": 22,
+   "wall_s": 433,
+   "jobs": 2,
+   "cap_s": 1800,
+   "files": [
+    "examples/seven_guis/src/stand.rs"
+   ]
+  },
+  "blitz-test-harness": {
+   "scope": "files",
+   "planned": 32,
+   "tested": 32,
+   "wall_s": 1190,
+   "jobs": 2,
+   "cap_s": 1800,
+   "files": [
+    "packages/blitz-test-harness/src/harness.rs"
+   ]
+  },
+  "dioxus-native-dom": {
+   "scope": "files",
+   "planned": 34,
+   "tested": 34,
+   "wall_s": 1380,
+   "jobs": 2,
+   "cap_s": 1800,
+   "files": [
+    "packages/dioxus-native-dom/src/snapshot.rs"
+   ]
+  },
+  "blitz-dom/clock": {
+   "scope": "files",
+   "planned": 3,
+   "tested": 3,
+   "wall_s": 229,
+   "jobs": 2,
+   "cap_s": 1800,
+   "files": [
+    "packages/blitz-dom/src/clock.rs"
+   ]
+  },
+  "escher-driver": {
+   "scope": "shard 0/2",
+   "planned": 97,
+   "tested": 97,
+   "wall_s": 3488,
+   "jobs": 2,
+   "cap_s": 5350
+  },
+  "blitz-dom/engine-debts": {
+   "scope": "in-diff",
+   "planned": 153,
+   "tested": 153,
+   "wall_s": 6013,
+   "jobs": 2,
+   "cap_s": 8824,
+   "files": [
+    "packages/blitz-dom/src/accessibility.rs",
+    "packages/blitz-dom/src/document.rs",
+    "packages/blitz-dom/src/events/keyboard.rs",
+    "packages/blitz-dom/src/events/pointer.rs",
+    "packages/blitz-dom/src/node/element.rs",
+    "packages/blitz-dom/src/node/node.rs",
+    "packages/blitz-dom/src/scrolling.rs"
+   ],
+   "in_diff": ".andromeda/runs/2026-10-18T22-58-09-code-audit/engine-debts-at-head.diff"
+  }
+ },
+ "score_formula": "caught/(caught+missed)",
+ "survivors": [],
+ "host": "x86_64-unknown-linux-gnu",
+ "not_measured": []
+}
