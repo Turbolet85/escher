@@ -1,0 +1,123 @@
+[
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "cc3d30ac",
+"ts": "2026-10-19T20:26:43Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+"--run-dir",
+".andromeda/runs/2026-10-19T19-54-24-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"flip master-route.md:65 - 2026-10-19-upstream-sync-visual-lint-and-real-app-readiness pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "cc3d30ac",
+"ts": "2026-10-19T20:26:43Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+"--date",
+"2026-10-19",
+"--run-dir",
+".andromeda/runs/2026-10-19T19-54-24-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :32 strip CARRY: 404ch \"CARRY: upstream's four Taffy-main commit\"",
+"pin :32 strip CARRY: 175ch \"CARRY: whether upstream retired `keyboar\"",
+"pin :32 strip CARRY: 751ch \"CARRY: the merge surface of 2026-10-18-e\"",
+"pin :32 strip CARRY: 684ch \"CARRY: the merge surface of 2026-10-18-o\"",
+"pin next markerless :34 holds no freight",
+"32 · 2026-10-19-upstream-sync-visual-lint-and-real-app-readiness · strip 4 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 32,
+"marker": "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+"blocks": 4,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "cc3d30ac",
+"ts": "2026-10-19T20:26:47Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+"--date",
+"2026-10-19",
+"--run-dir",
+".andromeda/runs/2026-10-19T19-54-24-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :32 strip CARRY: 404ch \"CARRY: upstream's four Taffy-main commit\"",
+"pin :32 strip CARRY: 175ch \"CARRY: whether upstream retired `keyboar\"",
+"pin :32 strip CARRY: 751ch \"CARRY: the merge surface of 2026-10-18-e\"",
+"pin :32 strip CARRY: 684ch \"CARRY: the merge surface of 2026-10-18-o\"",
+"pin next markerless :34 holds no freight",
+"32 · 2026-10-19-upstream-sync-visual-lint-and-real-app-readiness · strip 4 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.2.0/route-archive.md",
+"./escher-0.2.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 32,
+"marker": "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+"blocks": 4,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]

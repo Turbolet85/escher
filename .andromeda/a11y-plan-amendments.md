@@ -377,3 +377,9 @@ One entry per amendment to `a11y-plan.md` (sidecar-contract.md §Entry form). Ap
 Partly retires the PROVISIONAL clause of the earlier 2026-10-18-engine-debts and 2026-10-18-one-virtual-clock entries here; each one's other claims stand. The native-checkedness residual (`.andromeda/residuals.md`, target next) stays open, on the founder's «Исправить позже (Рекомендую)».
 **Why:** the Provisional discharge at the epoch boundary, on the founder's own word: «Утвердить всё (Рекомендую)» on the engine-debts batch and on one-virtual-clock F1 B · F2 A · F2b A · F3 A (the founder, 2026-10-18, by question dialog in the overseer session, relayed by the overseer with his chosen labels verbatim), discharged at this wrap on the operator's direction (the operator, 2026-10-18, at the gated wrap's resume).
 **Ref:** .andromeda/runs/2026-10-18T20-46-02-wrap/
+
+## 2026-10-19-upstream-sync-visual-lint-and-real-app-readiness — `:focus-within` matches
+**Section:** §5 Keyboard Navigation (Focus order per layout (engine))
+**Change:** was «`:focus-visible` and `:focus-within` never match»; now `:focus-within` matches the focused element and its ancestors by the `FOCUS_WITHIN` element state, while `:focus-visible` still never matches (PROVISIONAL). Focus order is unmoved: no stand style uses `:focus-within`, `stand_keyboard` and `inert_subtree` are green, and the a11y leg reads 6 · 43.
+**Why:** upstream #1226's behaviour for every document, taken on F1 answered by the operator as delegate (2026-10-19, by question dialog in the phase session). It is PROVISIONAL until the Epoch 4 boundary batch.
+**Ref:** .andromeda/runs/2026-10-19T19-54-24-wrap/

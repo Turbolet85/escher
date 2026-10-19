@@ -1,0 +1,63 @@
+[[pattern]]
+id = 'focuswithin'
+regex = 'focus-within|FocusWithin|FOCUS_WITHIN|focus_within'
+
+[[pattern]]
+id = 'focusredraw'
+regex = 'focus_redraw|request_redraw|redraw on a focus|focus move asks|asks the shell for a redraw'
+
+[[pattern]]
+id = 'notindoc'
+regex = 'not in the document|outside the document|is_in_document|set_focus_to|clear_focus'
+ignore_case = true
+
+[[pattern]]
+id = 'syncline'
+regex = 'Upstream sync:|23b9b26a9|fb8d6c15e|275950dc0|17de049b1|38ca4e777'
+
+[[pattern]]
+id = 'taffymain'
+regex = 'Taffy-main|Taffy main|ea07c4c3|git Taffy'
+
+[[pattern]]
+id = 'wptpin'
+regex = 'WPT_COMMIT|WPT pin|cd1d8aa5|9d8aceec'
+
+[[pattern]]
+id = 'stylocite'
+regex = 'stylo\.rs:4[67][0-9]'
+
+[[pattern]]
+id = 'testfiles'
+regex = '\b13[5-8] (`?\.rs`? )?(files|targets|test targets|integration)|\b13[5-8] of 13[5-8]'
+
+[[pattern]]
+id = 'wstally'
+regex = '194 result lines|1001 passed|197 result lines|1034 passed|199 result lines|1045 passed|194 · 1001|197 · 1034'
+
+[[pattern]]
+id = 'perostally'
+regex = 'CI#39111579925|CI#39302945352|Per-OS test tallies'
+
+[[pattern]]
+id = 'runall'
+regex = '\b575\b|\b586\b|passed 575|passed 586'
+
+[[pattern]]
+id = 'silence'
+regex = 'silence census'
+ignore_case = true
+
+[[pattern]]
+id = 'focusinfo'
+regex = 'Focussed node|focussed node'
+
+[[pattern]]
+id = 'owner-title'
+fixed = 'Upstream sync ahead of visual lint and real-app readiness'
+ignore_case = true
+
+[[pattern]]
+id = 'owner-generic'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true

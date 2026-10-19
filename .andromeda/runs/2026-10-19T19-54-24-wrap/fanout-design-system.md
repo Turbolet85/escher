@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens holds — the report's Coverage lists three new surfaces (`:focus-within` matching, the not-in-document focus refusal, the focus-move redraw), each upstream engine behaviour with `tokens n/a`, none `hardcoded✗`; no stand UI or style changed (no stand style uses `:focus-within`, `stand_contrast` unmoved). Retired: none, so no D-retired correction; design-system names no `:focus-within` claim.

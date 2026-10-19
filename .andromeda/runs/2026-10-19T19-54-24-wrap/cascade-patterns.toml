@@ -1,0 +1,57 @@
+[[pattern]]
+id = 'focuswithin'
+fixed = 'focus-within'
+ignore_case = true
+
+[[pattern]]
+id = 'nevermatch'
+regex = 'never match|always match false|always matches false'
+ignore_case = true
+
+[[pattern]]
+id = 'oldowner'
+fixed = 'Upstream sync ahead of visual lint and real-app readiness'
+ignore_case = true
+
+[[pattern]]
+id = 'lastread'
+regex = 'last read at|fb8d6c15e, 5 commits|5 commits past'
+ignore_case = true
+
+[[pattern]]
+id = 'files136'
+regex = '136 `\.rs` files|135 test targets|136 files'
+
+[[pattern]]
+id = 'wstally'
+regex = '194 result lines|194 · 1001|1001 passed'
+
+[[pattern]]
+id = 'perostally'
+fixed = 'CI#39111579925'
+
+[[pattern]]
+id = 'runall'
+regex = 'passed 546|run all` 546|546 passed'
+
+[[pattern]]
+id = 'redrawlist'
+regex = 'hover and device changes|request_redraw'
+
+[[pattern]]
+id = 'setfocus'
+regex = 'set_focus_to|clear_focus'
+
+[[pattern]]
+id = 'tabredraw'
+regex = 'Tab[^.;]{0,80}redraw'
+ignore_case = true
+
+[[pattern]]
+id = 'sync1018'
+regex = '2026-10-18 upstream sync|upstream sync took one commit'
+ignore_case = true
+
+[[pattern]]
+id = 'wptpin'
+regex = 'WPT_COMMIT|cd1d8aa5'

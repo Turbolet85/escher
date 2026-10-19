@@ -1,0 +1,281 @@
+[
+{
+"tool": "cascade",
+"v": "1.13",
+"sha8": "6e64cee6",
+"ts": "2026-10-19T19:56:08Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-10-19T19-54-24-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-19T19-54-24-wrap",
+"--marker",
+"2026-10-19-upstream-sync-visual-lint-and-real-app-readiness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 79603d1e (pre-pass — HEAD)",
+"focuswithin · new 0 · standing 2 · leaf 3 · curation 0 · base 0 · control architecture.md:85 (prose)",
+"focusredraw · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:254 (prose)",
+"notindoc · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:113 (prose)",
+"syncline · new 0 · standing 10 · leaf 1 · curation 0 · base 0 · control architecture.md:75 (prose)",
+"taffymain · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control architecture.md:278 (prose)",
+"wptpin · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control test-plan.md:59 (prose)",
+"stylocite · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:85 (prose)",
+"testfiles · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:68 (prose)",
+"wstally · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control test-plan.md:330 (prose)",
+"perostally · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:330 (prose)",
+"runall · new 0 · standing 4 · leaf 0 · curation 0 · base 0 · control architecture.md:102 (prose)",
+"silence · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control obs-plan.md:70 (prose)",
+"focusinfo · new 0 · standing 6 · leaf 1 · curation 0 · base 0 · control security-plan.md:407 (prose)",
+"owner-title · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:90 (prose)",
+"owner-generic · new 0 · standing 2 · leaf 0 · curation 0 · base 2 · control architecture.md:90 (prose)",
+".andromeda/architecture.md:85 focuswithin standing …; `:focus-visible`, `:focus-within`, `:valid`, `:invalid`, `:requir…",
+".andromeda/a11y-plan.md:155 focuswithin standing …:focus-visible` and `:focus-within` never match (packages/blitz-dom/s…",
+".claude/rules/a11y.md:34 focuswithin leaf - `:focus-visible` and `:focus-within` never match — a stand style that relie…",
+".claude/docs/a11y-summary.md:23 focuswithin leaf @c1007/2387 …ocus-visible` / `:focus-within` never match. Enter and Sp…",
+".claude/docs/gotchas.md:41 focuswithin leaf …:** `:focus-visible`, `:focus-within`, `:valid`, `:invalid`, `:required`, …",
+".andromeda/architecture.md:254 focusredraw standing @c360/2656 …the channel then `request_redraw` (packages/blitz-dom/s…",
+".andromeda/architecture.md:268 focusredraw standing …ough `ShellProvider::request_redraw` after mutations, resource loa…",
+".andromeda/architecture.md:113 notindoc standing …are Dioxus components outside the document loader (apps/browser/src/a…",
+".andromeda/test-plan.md:12 notindoc standing …des` drains it, a write outside the document and a hover marking nothing,…",
+".andromeda/architecture.md:75 syncline standing …leted the bump crate (`23b9b26a9`, merged at the 2026-10-17 upstream s…",
+".andromeda/architecture.md:90 syncline standing …st upstream `main` at `23b9b26a9` with no upstream pull request open; …",
+".andromeda/architecture.md:150 syncline standing @c2427/10036 … them, merged at `23b9b26a9`), `aria-labelledby`: after …",
+".andromeda/architecture.md:278 syncline standing ×6 Upstream sync: DioxusLabs/blitz `main` last merged at 23b9b26a9b6af…",
+".andromeda/security-plan.md:249 syncline standing …10-17 upstream sync (`23b9b26a9`, merge `3eda07bc`) took upstream's …",
+".andromeda/security-plan.md:250 syncline standing ×3 …nc took one commit, `fb8d6c15e`, alone by a no-commit cherry-pick…",
+".andromeda/test-plan.md:10 syncline standing @c86/9624 …ce with upstream's `23b9b26a9` \"Delete the bump crate\", merged …",
+".andromeda/test-plan.md:27 syncline standing @c12807/49246 … #859 · #1013, at `23b9b26a9`), two checks of the builder's…",
+".andromeda/test-plan.md:330 syncline standing @c1186/2753 …the pre-CI commit `275950dc0` (green 17/17): linux 192 · 991…",
+".andromeda/a11y-plan.md:47 syncline standing @c126/2278 …te them (merged at `23b9b26a9`, merge `3eda07bc`): `aria-label…",
+".claude/docs/workflow.md:15 syncline leaf ×4 …in` was last merged at `23b9b26a9` (merge commit `3eda07bc`, 2026-10-17),…",
+".andromeda/architecture.md:278 taffymain standing ×2 …e unmoved — the four Taffy-main commits (`1a11761bc` · `4a5ab9cc9…",
+".andromeda/security-plan.md:250 taffymain standing ×3 …est; upstream's four Taffy-main commits (`1a11761bc` · `4a5ab9cc…",
+".claude/docs/workflow.md:15 taffymain leaf ×2 …ase unmoved — the four Taffy-main commits wait for the next sync, since …",
+".andromeda/test-plan.md:59 wptpin standing …iew` at the commit `wpt/WPT_COMMIT` pins (71b4d5f0eb7628a5d5f7cd2ee868ce1b1…",
+".andromeda/test-plan.md:226 wptpin standing …at the commit in `./wpt/WPT_COMMIT` (.github/workflows/wpt.yml:44-45); tes…",
+".andromeda/architecture.md:85 stylocite standing …ackages/blitz-dom/src/stylo.rs:460-506); anchor positioning \"flagged …",
+".andromeda/a11y-plan.md:155 stylocite standing …nd `:focus-within` never match (packages/blitz-dom/src/stylo.rs:476-478)",
+".andromeda/test-plan.md:68 testfiles standing ×2 @c2497,2514/7467 …scovered target: 136 `.rs` files, 135 test targets a…",
+".andromeda/test-plan.md:330 wstally standing @c2265/2753 …green 17/17): linux 194 · 1001 · 0 · 12; macos and coverage 1…",
+".andromeda/test-plan.md:336 wstally standing ×2 @c17756,17774/18148 …-virtual-clock: 194 result lines, 1001 passed · 0 …",
+".claude/docs/tests-summary.md:30 wstally leaf @c283/8849 … 1001 · 0 · 12 over 194 result lines at 2026-10-18-one-virtua…",
+".andromeda/test-plan.md:330 perostally standing ×2 @c4,2199/2753 - **Per-OS test tallies:** CI#38649787488 on `eb5ba90c…",
+".andromeda/architecture.md:102 runall standing …m/src/node/node.rs:558-575; packages/blitz-dom/src/node/node.rs:1401-14…",
+".andromeda/security-plan.md:130 runall standing …m/src/node/node.rs:558-575; packages/blitz-dom/src/node/node.rs:1401-1…",
+".andromeda/security-plan.md:377 runall standing …rrors impossible with Cursor\")` (packages/blitz-dom/src/net.rs:572-575)",
+".andromeda/a11y-plan.md:147 runall standing …om/src/node/node.rs:558-575; tests/blitz-tests/tests/stand_keyboard.rs:617…",
+".andromeda/obs-plan.md:70 silence standing @c9091/15196 …ssertions only, the silence census reading 0 over them and ove…",
+".andromeda/security-plan.md:407 focusinfo standing @c5532/8505 … now prints that `focussed node` line twice, 6 lines / …",
+".andromeda/test-plan.md:50 focusinfo standing @c2554/3510 …p, two since (the `focussed node` line printed twice) —, and…",
+".andromeda/test-plan.md:105 focusinfo standing ×2 @c2321,3972/6582 …ow prints that `focussed node` line twice, 6 lines …",
+".andromeda/test-plan.md:329 focusinfo standing @c1946/4877 … host prints that `focussed node` line twice (6 lines / 978…",
+".andromeda/obs-plan.md:197 focusinfo standing   - info: focussed node (packages/blitz-dom/src/document.rs:1780-1781)",
+".andromeda/obs-plan.md:305 focusinfo standing @c3937/4707 …tz_dom::document` `focussed node` INFO line now printing twi…",
+".claude/docs/tests-summary.md:17 focusinfo leaf @c1356/2197 …en — the engine's `focussed node` INFO line now printing t…",
+".andromeda/architecture.md:90 owner-title standing … owned by a CARRY on «Upstream sync ahead of visual lint and real-a…",
+".andromeda/architecture.md:91 owner-title standing …by the same CARRY on «Upstream sync ahead of visual lint and real-a…",
+".andromeda/architecture.md:90 owner-generic standing …surface, by file, is owned by a CARRY on «Upstream sync ahead of …",
+".andromeda/security-plan.md:125 owner-generic standing @c9272/16760 … becomes one is owned by a route entry) — the id's…",
+".andromeda/playbook.md:58 owner-generic base markup …imit, and the fix is owned by a `CARRY:` on a route entry. Appende…",
+".andromeda/playbook.md:66 owner-generic base …word, its merge surface owned by a CARRY on the upstream-sync entry. A de…",
+".andromeda/test-plan.md:68 · 7467 chars · 1 pattern",
+"  @c2514 testfiles «…overed target: 136 `.rs` files, 135 test targets and the unbuilt `all.rs` (135 and 134 until 2026…»",
+".andromeda/test-plan.md:105 · 6582 chars · 1 pattern",
+"  @c3972 focusinfo «…ce — the `blitz_dom::document` `focussed node` INFO line, `message=[redacted]`, printing twice wh…»",
+".andromeda/test-plan.md:330 · 2753 chars · 3 patterns",
+"  @c2199 perostally «…026-10-18-one-virtual-clock on CI#39111579925, the pre-CI commit `87f12079` (green 17/17): linux…»",
+".andromeda/test-plan.md:336 · 18148 chars · 1 pattern",
+"  @c17774 wstally «…irtual-clock: 194 result lines, 1001 passed · 0 failed · 12 ignored, from 192 · 991 — +2 result li…»",
+"by line · 4 lines · 4 offsets",
+"focuswithin · new 0 · standing 2 · leaf 3 · curation 0 · base 0 · control architecture.md:85 (prose)",
+"focusredraw · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:254 (prose)",
+"notindoc · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:113 (prose)",
+"syncline · new 0 · standing 10 · leaf 1 · curation 0 · base 0 · control architecture.md:75 (prose)",
+"taffymain · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control architecture.md:278 (prose)",
+"wptpin · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control test-plan.md:59 (prose)",
+"stylocite · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:85 (prose)",
+"testfiles · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:68 (prose)",
+"wstally · new 0 · standing 2 · leaf 1 · curation 0 · base 0 · control test-plan.md:330 (prose)",
+"perostally · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control test-plan.md:330 (prose)",
+"runall · new 0 · standing 4 · leaf 0 · curation 0 · base 0 · control architecture.md:102 (prose)",
+"silence · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control obs-plan.md:70 (prose)",
+"focusinfo · new 0 · standing 6 · leaf 1 · curation 0 · base 0 · control security-plan.md:407 (prose)",
+"owner-title · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture.md:90 (prose)",
+"owner-generic · new 0 · standing 2 · leaf 0 · curation 0 · base 2 · control architecture.md:90 (prose)",
+"total (15 patterns) · 50 rows over 11 files",
+"per class · new 0/0 · standing 41/5 · leaf 7/5 · curation 0/0 · base 2/1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "79603d1ef633cde4dfc841e3bb4da23a39b86115",
+"how": "pre-pass — HEAD",
+"counts": {
+"focuswithin": {
+"new": 0,
+"standing": 2,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"focusredraw": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"notindoc": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"syncline": {
+"new": 0,
+"standing": 10,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"taffymain": {
+"new": 0,
+"standing": 2,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"wptpin": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"stylocite": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"testfiles": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"wstally": {
+"new": 0,
+"standing": 2,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"perostally": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"runall": {
+"new": 0,
+"standing": 4,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"silence": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"focusinfo": {
+"new": 0,
+"standing": 6,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"owner-title": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"owner-generic": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 2
+}
+}
+}
+},
+{
+"tool": "cascade",
+"v": "1.13",
+"sha8": "6e64cee6",
+"ts": "2026-10-19T19:57:07Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-10-19T19-54-24-wrap/report-patterns.toml",
+"--pattern",
+"notindoc",
+"--run-dir",
+".andromeda/runs/2026-10-19T19-54-24-wrap",
+"--marker",
+"2026-10-19-upstream-sync-visual-lint-and-real-app-readiness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 79603d1e (pre-pass — HEAD)",
+"notindoc · new 0 · standing 5 · leaf 2 · curation 0 · base 0 · control architecture.md:86 (prose)",
+".andromeda/architecture.md:86 notindoc standing @c9031/11722 …_focus_events` / `set_focus_to`, then submits the form ow…",
+".andromeda/architecture.md:113 notindoc standing …are Dioxus components outside the document loader (apps/browser/src/a…",
+".andromeda/security-plan.md:132 notindoc standing @c1702/3117 …_focus_events` / `set_focus_to`, its form owner submitte…",
+".andromeda/test-plan.md:12 notindoc standing …des` drains it, a write outside the document and a hover marking nothing,…",
+".andromeda/a11y-plan.md:161 notindoc standing …erate_focus_events` / `set_focus_to`, then submits the form owner when i…",
+".claude/rules/a11y.md:33 notindoc leaf @c1178/2470 …rate_focus_events` / `set_focus_to`, then submits the form owner wh…",
+".claude/docs/services/blitz-dom.md:15 notindoc leaf @c7829/9179 …focus_events` / `set_focus_to` before it submits a sub…",
+"by line · 0 lines · 0 offsets",
+"notindoc · new 0 · standing 5 · leaf 2 · curation 0 · base 0 · control architecture.md:86 (prose)",
+"total (1 pattern) · 7 rows over 6 files",
+"per class · new 0/0 · standing 5/4 · leaf 2/2 · curation 0/0 · base 0/0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "79603d1ef633cde4dfc841e3bb4da23a39b86115",
+"how": "pre-pass — HEAD",
+"counts": {
+"notindoc": {
+"new": 0,
+"standing": 5,
+"leaf": 2,
+"curation": 0,
+"base": 0
+}
+}
+}
+}
+]

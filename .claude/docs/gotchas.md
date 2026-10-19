@@ -38,7 +38,7 @@ _Documented architectural traps from `.andromeda/architecture.md` and the specia
 **References:** `tests/blitz-tests/tests/anonymous_block_cache_invalidation.rs`, `incremental_oracle.rs`
 
 ## Unsupported CSS that silently reads false
-**What breaks:** `:focus-visible`, `:focus-within`, `:valid`, `:invalid`, `:required`, `:target` always match false; Shadow DOM, container queries, 3D transforms, anchor positioning (hits `unreachable!()` on size variants), subgrid/masonry are absent.
+**What breaks:** `:focus-visible`, `:valid`, `:invalid`, `:required`, `:target` always match false, while `:focus-within` matches the focused element and its ancestors by the `FOCUS_WITHIN` element state (PROVISIONAL); Shadow DOM, container queries, 3D transforms, anchor positioning (hits `unreachable!()` on size variants), subgrid/masonry are absent.
 **How to avoid:** stand styles use `:focus`; never feed anchor-positioning sizes to `stylo_taffy`.
 **References:** arch [Unsupported features]
 

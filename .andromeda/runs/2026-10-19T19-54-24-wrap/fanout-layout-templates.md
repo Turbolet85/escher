@@ -1,0 +1,2 @@
+proposals: []
+note: D-layout-surface holds — the report's Changes add no user-facing surface or region (upstream's every-document `:focus-within` matching, not-in-document focus refusal and focus-move redraw in blitz-dom, two blitz-tests targets and the WPT pin; "no surface of escher's own is added", no stand markup, id, class or style moved); Retired is none, so no D-retired occurrence; layout-templates states no `:focus-within`, focus-redraw or upstream-sync fact for this chunk's moves to stale.
