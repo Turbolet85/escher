@@ -1,0 +1,380 @@
+{
+ "anchors": [
+  {
+   "chunk": "2026-10-18-upstream-sync-determinism-and-traces",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-18T07:06:59Z-a",
+   "artifact": "drift-base",
+   "quality": "thin",
+   "note": "15 detectors, none binds to a count, tally or sync-record fact; 7 of 8 amendments raised by main from the plan's list",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_frictions": [],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-18-one-virtual-clock",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-18T08:04:09Z-a",
+   "artifact": "research",
+   "quality": "thin",
+   "note": "Files to modify omitted escher-driver json.rs and describe.rs, whose unit tests pin the cause count (14 refusals, 9 causes); plan step 8 said both need no change of their own",
+   "producer": "phase/research",
+   "producer_id": "2026-10-18T07:33:24Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    [
+     "unresolved-questions"
+    ]
+   ],
+   "producer_frictions": [],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-18-one-virtual-clock",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-18T09:23:19Z-a",
+   "artifact": "report",
+   "quality": "thin",
+   "note": "detectors and main found moved sites the P1 sweep's patterns did not reach: escher-driver refusal.rs 'nine since', stand_mcp_tools 'eight since', obs §6 'nine cause names', session_common readers 22→23 (4 sites), stand files 41→42 (2 sites); the local tally placed at test-plan.md:325 stands at :331; no silence probe over the two new checks",
+   "producer": "wrap-session/report",
+   "producer_id": "2026-10-18T08:52:55Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    [
+     "new-text-generated",
+     "new-text-rows:58"
+    ]
+   ],
+   "producer_frictions": [
+    null
+   ],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-19-session-recording",
+   "consumer": "phase/take-up",
+   "consumer_id": "2026-10-19T02:58:36Z-a",
+   "artifact": "working-entry",
+   "quality": "thin",
+   "note": "one line naming CLI/MCP, owner-only, never logged, password per security-plan; boundaries, location, form and the v020-04 split with the next entry all inferred",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_frictions": [],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-19-session-recording",
+   "consumer": "phase/plan",
+   "consumer_id": "2026-10-19T03:18:48Z-a",
+   "artifact": "research",
+   "quality": "thin",
+   "note": "the modify list missed wire.rs, client.rs, execute.rs, mcp/result.rs, command.rs, dioxus-native-dom lib.rs and blitz-dom iframe.rs until the fork answers fixed the design; amended at P4 and re-parsed",
+   "producer": "phase/research",
+   "producer_id": "2026-10-19T03:09:27Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    [
+     "unresolved-questions"
+    ]
+   ],
+   "producer_frictions": [],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-19-session-recording",
+   "consumer": "wrap-session/report",
+   "consumer_id": "2026-10-19T05:27:08Z-a",
+   "artifact": "implement-outcome",
+   "quality": "thin",
+   "note": "superseded by the operator pass's two fixes to files implement wrote (mcp_log.rs, seven_guis recording.rs, session.rs, recording.rs, mcp_tests.rs)",
+   "producer": "implement/smoke",
+   "producer_id": "2026-10-19T04:09:44Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    [
+     "green"
+    ]
+   ],
+   "producer_frictions": [],
+   "operator_pass": [
+    {
+     "artifact": "operator-pass",
+     "quality": "ok",
+     "signals": [
+      "fixed",
+      "commits:3",
+      "red:2"
+     ],
+     "note": "evidence/operator-pass.md holds every entry's result; its last two sections uncommitted at P1"
+    }
+   ]
+  },
+  {
+   "chunk": "2026-10-19-recorded-check-replay",
+   "consumer": "wrap-session/report",
+   "consumer_id": "2026-10-19T09:55:54Z-a",
+   "artifact": "implement-outcome",
+   "quality": "thin",
+   "note": "superseded by the operator pass: CI#39225375577 red on macOS, fix commit f15c28fc re-recorded the two checks implement wrote and narrowed record_checks.sh",
+   "producer": "implement/smoke",
+   "producer_id": "2026-10-19T08:44:05Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    [
+     "green"
+    ]
+   ],
+   "producer_frictions": [],
+   "operator_pass": [
+    {
+     "artifact": "operator-pass",
+     "quality": "ok",
+     "signals": [
+      "fixed",
+      "commits:2",
+      "red:1"
+     ],
+     "note": "evidence/operator-pass.md carried every entry's line; the red verdict, the measured difference and the green re-read on f15c28fc"
+    }
+   ]
+  },
+  {
+   "chunk": "2026-10-18-one-virtual-clock",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-18T08:04:09Z-b",
+   "artifact": "packages/escher-driver/src/json.rs",
+   "quality": "input-friction",
+   "note": "two escher-driver unit tests outside research's lists pinned the old cause count (json.rs refusals.len()==14, describe.rs counts row 9) and went red after the eight-cause change; edited as companions and recorded",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_frictions": [],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-18-one-virtual-clock",
+   "consumer": "wrap-session/reconcile",
+   "consumer_id": "2026-10-18T09:23:19Z-b",
+   "artifact": "escher-0.2.0/chunks/2026-10-18-one-virtual-clock/report.md",
+   "quality": "input-friction",
+   "note": "the P1 report's site sweep reached 0 rows for six moved facts its wording did not name (session_common readers 22→23, stand files 41→42, 'nine since' / 'eight since' / 'nine cause names' restatements) and placed the local tally at the per-OS line; the detectors and main's check-5 raises found them",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_frictions": [],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-19-session-recording",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-19T03:49:26Z-b",
+   "artifact": "escher-0.2.0/chunks/2026-10-19-session-recording/plan.md",
+   "quality": "input-friction",
+   "note": "plan step 8 states help's line byte-identical to before the chunk, but step 5's 13->15 session errors are served by describe(), so help's line must change; built step 5, the acceptance's with/without --record reading holds, surfaced in the report",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_frictions": [],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-19-session-recording",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-19T03:49:26Z-c",
+   "artifact": "escher-0.2.0/chunks/2026-10-19-session-recording/plan.md",
+   "quality": "input-friction",
+   "note": "plan steps 3-4 do not say what a recording keeps of a call no record can spell (unknown or session verb, unnamed or repeated argument) or of a type refused stale/not-found whose control cannot be read; chose: not kept, and kept masked; both surfaced",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_frictions": [],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-19-session-recording",
+   "consumer": "wrap-session/report",
+   "consumer_id": "2026-10-19T05:27:08Z-b",
+   "artifact": "escher-0.2.0/chunks/2026-10-19-session-recording/evidence/operator-pass.md",
+   "quality": "input-friction",
+   "note": "the operator pass ended fixed after two Windows CI reds (an ungated recorded mcp_log test, then a de-gated helper calling a unix-only fn); the outcome basis is the pass's final HEAD 3cbb0eeef and CI#39202401256, not implement's green",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_frictions": [],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-19-recorded-check-replay",
+   "consumer": "implement/code",
+   "consumer_id": "2026-10-19T08:31:04Z-b",
+   "artifact": "escher-0.2.0/chunks/2026-10-19-recorded-check-replay/plan.md",
+   "quality": "input-friction",
+   "note": "plan step 10 named the test-only variant VariantCounter, but a component's name enters every unkeyed element's id, so that name would turn the checks red at their first snapshot rather than their first activation step; settled by reading element_id.rs",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_frictions": [],
+   "operator_pass": []
+  },
+  {
+   "chunk": "2026-10-19-recorded-check-replay",
+   "consumer": "wrap-session/report",
+   "consumer_id": "2026-10-19T09:55:54Z-b",
+   "artifact": "escher-0.2.0/chunks/2026-10-19-recorded-check-replay/evidence/operator-pass.md",
+   "quality": "input-friction",
+   "note": "implement's green was not the final word: the operator pass read CI#39225375577 red on Test (macos) (the freshness check, a shot's PNG bytes differing by OS) and fix commit f15c28fc changed files implement wrote; the report's outcome basis is the pass's evidence and CI#39227884248 on f15c28fc",
+   "producer": null,
+   "producer_id": null,
+   "producer_outcome": null,
+   "producer_signals": null,
+   "producer_frictions": [],
+   "operator_pass": []
+  }
+ ],
+ "shapes": [
+  {
+   "shape": [
+    null,
+    "drift-base",
+    "wrap-session/reconcile"
+   ],
+   "chunks": [
+    "2026-10-18-upstream-sync-determinism-and-traces"
+   ],
+   "candidate": false
+  },
+  {
+   "shape": [
+    "phase/research",
+    "research",
+    "implement/code"
+   ],
+   "chunks": [
+    "2026-10-18-one-virtual-clock"
+   ],
+   "candidate": false
+  },
+  {
+   "shape": [
+    "wrap-session/report",
+    "report",
+    "wrap-session/reconcile"
+   ],
+   "chunks": [
+    "2026-10-18-one-virtual-clock"
+   ],
+   "candidate": false
+  },
+  {
+   "shape": [
+    null,
+    "working-entry",
+    "phase/take-up"
+   ],
+   "chunks": [
+    "2026-10-19-session-recording"
+   ],
+   "candidate": false
+  },
+  {
+   "shape": [
+    "phase/research",
+    "research",
+    "phase/plan"
+   ],
+   "chunks": [
+    "2026-10-19-session-recording"
+   ],
+   "candidate": false
+  },
+  {
+   "shape": [
+    "implement/smoke",
+    "implement-outcome",
+    "wrap-session/report"
+   ],
+   "chunks": [
+    "2026-10-19-recorded-check-replay",
+    "2026-10-19-session-recording"
+   ],
+   "candidate": true
+  },
+  {
+   "shape": [
+    null,
+    "packages/escher-driver/src/json.rs",
+    "implement/code"
+   ],
+   "chunks": [
+    "2026-10-18-one-virtual-clock"
+   ],
+   "candidate": false
+  },
+  {
+   "shape": [
+    null,
+    "escher-0.2.0/chunks/2026-10-18-one-virtual-clock/report.md",
+    "wrap-session/reconcile"
+   ],
+   "chunks": [
+    "2026-10-18-one-virtual-clock"
+   ],
+   "candidate": false
+  },
+  {
+   "shape": [
+    null,
+    "escher-0.2.0/chunks/2026-10-19-session-recording/plan.md",
+    "implement/code"
+   ],
+   "chunks": [
+    "2026-10-19-session-recording"
+   ],
+   "candidate": false
+  },
+  {
+   "shape": [
+    null,
+    "escher-0.2.0/chunks/2026-10-19-session-recording/evidence/operator-pass.md",
+    "wrap-session/report"
+   ],
+   "chunks": [
+    "2026-10-19-session-recording"
+   ],
+   "candidate": false
+  },
+  {
+   "shape": [
+    null,
+    "escher-0.2.0/chunks/2026-10-19-recorded-check-replay/plan.md",
+    "implement/code"
+   ],
+   "chunks": [
+    "2026-10-19-recorded-check-replay"
+   ],
+   "candidate": false
+  },
+  {
+   "shape": [
+    null,
+    "escher-0.2.0/chunks/2026-10-19-recorded-check-replay/evidence/operator-pass.md",
+    "wrap-session/report"
+   ],
+   "chunks": [
+    "2026-10-19-recorded-check-replay"
+   ],
+   "candidate": false
+  }
+ ]
+}

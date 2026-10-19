@@ -1,0 +1,38 @@
+{
+ "epoch": "escher-0.2.0 · Epoch 3 — Determinism and traces",
+ "untyped_in_epoch": 3,
+ "clusters": [
+  {
+   "cluster": "an authored time stamp estimated instead of read from the clock; the stamp-ahead hook or inputs.py refuses it",
+   "in_epoch": [{"id": "2026-10-19T08:09:01Z-b", "chunk": "2026-10-19-recorded-check-replay", "step": "phase/plan"}],
+   "previous_epoch": [
+    {"chunk": "2026-10-17-upstream-sync-engine-debts", "step": "phase/plan", "untyped": true, "what": "a control-reading time written into plan.md was estimated (2026-10-17 14:25Z) instead of read; the stamp-ahead PostToolUse hook refused it 3 min ahead"},
+    {"chunk": "2026-10-18-engine-debts", "step": "wrap-session/reconcile", "type": "contract.in-pass-correction", "what": "relay-4.md stamped the two dialog answers with estimated times; inputs.py snap refused the later"},
+    {"chunk": "2026-10-17-upstream-sync-engine-debts", "step": "wrap-session/route-resolve", "problem_fact": "workaround", "note": "the step record's first append carried a hand-typed ts ahead of the clock and was refused; re-stamped from date -u"}
+   ],
+   "earlier_lookback_escher_0_1_0_epoch_6": [
+    "2026-10-13-stand-contrast-harness phase/plan (untyped)",
+    "2026-10-13-range-input-interaction phase/validate (untyped)",
+    "2026-10-13-stand-keyboard-harness phase/validate (untyped)",
+    "2026-10-14-quality-gates phase/plan (untyped)",
+    "2026-10-15-cold-agent-test phase/validate (untyped)"
+   ],
+   "f4": "n=1 in-epoch untyped, recurring from the previous epoch (1 untyped at the same step, plus 1 typed record and 1 problem fact of the same shape) — at threshold as n >= 2 recurring",
+   "candidate": true
+  },
+  {
+   "cluster": "an inline python heredoc edit script broken by nested triple quotes; re-run from a scratchpad file",
+   "in_epoch": [{"id": "2026-10-19T03:49:26Z-d", "chunk": "2026-10-19-session-recording", "step": "implement/code"}],
+   "previous_epoch": [],
+   "f4": "below — n=1, no previous-epoch member (host-linux.md §Transports already states the rule)",
+   "candidate": false
+  },
+  {
+   "cluster": "hand-tallied per-master row counts (the sweep prints per-pattern totals only), wrong at first write",
+   "in_epoch": [{"id": "2026-10-18T08:52:55Z-b", "chunk": "2026-10-18-one-virtual-clock", "step": "wrap-session/report"}],
+   "previous_epoch": [],
+   "f4": "below — n=1, no previous-epoch member",
+   "candidate": false
+  }
+ ]
+}

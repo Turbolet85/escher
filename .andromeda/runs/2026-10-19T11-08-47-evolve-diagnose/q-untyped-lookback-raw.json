@@ -1,0 +1,93 @@
+[
+ {
+  "version": "escher-0.2.0",
+  "epoch": "Epoch 1 - Foundation",
+  "chunk": "2026-10-16-handler-splits-and-readme",
+  "step": "phase/distill",
+  "what": "a compound command opening with a cd into the run dir (cd X 2>/dev/null; …) passed the Bash guard and moved the session cwd into the run dir; one extra call returned it to the project root"
+ },
+ {
+  "version": "escher-0.2.0",
+  "epoch": "Epoch 1 - Foundation",
+  "chunk": "2026-10-16-handler-splits-and-readme",
+  "step": "phase/research",
+  "what": "a code-graph query's stdout was redirected to a relative path climbing four levels from the run dir, which landed outside the project root; one extra call moved it into the scratchpad"
+ },
+ {
+  "version": "escher-0.2.0",
+  "epoch": "Epoch 1 - Foundation",
+  "chunk": "2026-10-16-handler-splits-and-readme",
+  "step": "phase/validate",
+  "what": "recurrence-despite-learning (host-linux.md Session Additions 2026-10-13, restated by the operator's directive inputs#I1): saved gate.py baseline outputs were read through sed, and the first draft of the controls script piped gate.py into a python filter; the script was rewritten before it ran and the baselines re-read whole"
+ },
+ {
+  "version": "escher-0.2.0",
+  "epoch": "Epoch 1 - Foundation",
+  "chunk": "2026-10-16-file-splits",
+  "step": "phase/validate",
+  "what": "two typed must-fail controls (entries 6 and 7) read green because their sed substitution matched nothing in the record, leaving it identical; caught by reading the readings, re-run with a first-byte edit and a differs check"
+ },
+ {
+  "version": "escher-0.2.0",
+  "epoch": "Epoch 1 - Foundation",
+  "chunk": "2026-10-16-file-splits",
+  "step": "wrap-session/reconcile",
+  "what": "a scratch re-point script was imported by the dispositions script and ran its main at import; its offset assertion refused before any write, re-run after a __main__ guard"
+ },
+ {
+  "version": "escher-0.2.0",
+  "epoch": "Epoch 1 - Foundation",
+  "chunk": "2026-10-16-fast-failing-mutants",
+  "step": "phase/research",
+  "what": "the P3 hang-site script crashed parsing cargo-mutants outcomes.json (phase duration is a float, not an object) after the first unit's 1,386 s run; fixed the parser, read the finished unit from disk, ran the other two units as a second call"
+ },
+ {
+  "version": "escher-0.2.0",
+  "epoch": "Epoch 1 - Foundation",
+  "chunk": "2026-10-16-fast-failing-mutants",
+  "step": "phase/research",
+  "what": "cargo mutants --list --file {path} without -p printed nothing on stdout for all three files, its reason on stderr hidden by 2>/dev/null; re-run with -p {pkg} and stderr shown listed 19 · 42 · 76"
+ },
+ {
+  "version": "escher-0.2.0",
+  "epoch": "Epoch 1 - Foundation",
+  "chunk": "2026-10-16-fast-failing-mutants",
+  "step": "phase/validate",
+  "what": "plan-template's artifact key names 'the output removed first' as a producer's freshness form, while this host's bash-guard refuses every recursive rm; the P4-authored rm -rf entries had to be re-spelt to a per-run unique dir at P5"
+ },
+ {
+  "version": "escher-0.2.0",
+  "epoch": "Epoch 2 - Engine debts",
+  "chunk": "2026-10-17-upstream-sync-engine-debts",
+  "step": "phase/plan",
+  "what": "a control-reading time written into plan.md was estimated (14:25Z) instead of read; the stamp-ahead PostToolUse hook refused it 3 min ahead of the clock and it was corrected from date -u"
+ },
+ {
+  "version": "escher-0.2.0",
+  "epoch": "Epoch 2 - Engine debts",
+  "chunk": "2026-10-17-upstream-sync-engine-debts",
+  "step": "wrap-session/reconcile",
+  "what": "cascade.py leaves --apply refused 2 of 35 findings as escaped because their replace-with quoted a regex backslash the leaf legitimately needed (keyboard_compat\\.rs$); both written by hand"
+ },
+ {
+  "version": "escher-0.2.0",
+  "epoch": "Epoch 2 - Engine debts",
+  "chunk": "2026-10-17-upstream-sync-engine-debts",
+  "step": "wrap-session/gates",
+  "what": "the plan's preservation guard (entry 11) named deny.toml, which a later External-decay fix push had to move; the entry could only be read red by hand beside the tool (--entry is forbidden at the wrap) and skipped on the operator's directive"
+ },
+ {
+  "version": "escher-0.2.0",
+  "epoch": "Epoch 2 - Engine debts",
+  "chunk": "2026-10-18-engine-debts",
+  "step": "phase/validate",
+  "what": "validation.md check 4 (9) requires a baseline run of every NOT SEEN entry, but gate.py prints not run — defer for a gated entry and a not-run word may not be recorded as a baseline; resolved by firing the entry with --void over the scratch clone alone"
+ },
+ {
+  "version": "escher-0.2.0",
+  "epoch": "Epoch 2 - Engine debts",
+  "chunk": "2026-10-18-engine-debts",
+  "step": "implement/smoke",
+  "what": "the evidence pointer was written from an assumed per-verb trail name; gate.py writes every verb's record (run, show, scope, census) into one gate-{marker}.json"
+ }
+]

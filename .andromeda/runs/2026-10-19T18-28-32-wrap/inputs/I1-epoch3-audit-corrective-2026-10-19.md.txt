@@ -1,0 +1,19 @@
+# The founder's word on the Epoch 3 audit's two proposals (2026-10-19)
+
+The founder answered by question dialog in the escher overseer session, on 2026-10-19 at about 18:25Z. The overseer
+relays it, with his chosen label verbatim: «Небольшой чанк сейчас (Рекомендую)».
+
+**What he was asked.** Run `2026-10-19T11-16-25-code-audit` (Epoch 3, trend) raised two proposals. Each metric got
+worse at both of the last two epochs.
+- **M2: files over 800 code lines went 14 → 15 → 17.** The two new ones are escher-driver's `cli.rs` (876) and
+  `recording.rs` (831). About half of each file is an inline test module.
+- **M1: duplication went 3.679 → 3.86 → 3.88 %,** almost all of it in tests. `host_log` and `mcp_log` share
+  fragments, 95 lines in all. `stand_replay` re-declares the Counter (59 lines, as a deliberate variant).
+
+**What he chose.** A small corrective chunk now, modelled on 0.2.0's «File splits». It goes at the head of Epoch 4,
+right after «Upstream sync ahead of visual lint and real-app readiness», and it changes no behaviour:
+- move the inline test modules of `cli.rs` and `recording.rs` into sibling files;
+- fold the `host_log`/`mcp_log` shared test fragment into a shared test module.
+
+**How it reaches the route.** It is an operator-requested adaptation: a 0-pending wrap, route-resolve §Operator-requested
+adaptation. The adaptation writes one markerless entry, in WHAT-not-HOW form of at most 25 words, citing this audit run.

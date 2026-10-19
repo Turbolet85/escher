@@ -1,0 +1,477 @@
+{
+ "health": {
+  "epoch_records": 84,
+  "step": 56,
+  "friction": 28,
+  "unparseable": 0,
+  "malformed_ts_in_epoch": [],
+  "malformed_ts_ledger": 0,
+  "untyped_rate": {
+   "new-session/orientation": {
+    "step_runs": 4,
+    "untyped": 0,
+    "friction": 0
+   },
+   "phase/take-up": {
+    "step_runs": 4,
+    "untyped": 0,
+    "friction": 0
+   },
+   "phase/distill": {
+    "step_runs": 4,
+    "untyped": 0,
+    "friction": 0
+   },
+   "phase/research": {
+    "step_runs": 4,
+    "untyped": 0,
+    "friction": 0
+   },
+   "phase/plan": {
+    "step_runs": 4,
+    "untyped": 1,
+    "friction": 1
+   },
+   "phase/validate": {
+    "step_runs": 4,
+    "untyped": 0,
+    "friction": 3
+   },
+   "implement/code": {
+    "step_runs": 4,
+    "untyped": 1,
+    "friction": 5
+   },
+   "implement/fix-loop": {
+    "step_runs": 4,
+    "untyped": 0,
+    "friction": 1
+   },
+   "implement/smoke": {
+    "step_runs": 4,
+    "untyped": 0,
+    "friction": 0
+   },
+   "wrap-session/report": {
+    "step_runs": 4,
+    "untyped": 1,
+    "friction": 3
+   },
+   "wrap-session/reconcile": {
+    "step_runs": 4,
+    "untyped": 0,
+    "friction": 12
+   },
+   "wrap-session/curation": {
+    "step_runs": 4,
+    "untyped": 0,
+    "friction": 2
+   },
+   "wrap-session/route-resolve": {
+    "step_runs": 4,
+    "untyped": 0,
+    "friction": 1
+   },
+   "wrap-session/gates": {
+    "step_runs": 4,
+    "untyped": 0,
+    "friction": 0
+   }
+  },
+  "problem_fill": "7/56",
+  "id_fill": "84/84",
+  "signal_line": "guard-refused 18 over 56 step records · exact-hit 10 over 4 curation records",
+  "signal_odd": [],
+  "retracted_in_ledger": 0,
+  "unresolvable": 1
+ },
+ "coverage": {
+  "None": [
+   {
+    "new-session": 4
+   },
+   {}
+  ],
+  "2026-10-18-upstream-sync-determinism-and-traces": [
+   {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   {}
+  ],
+  "2026-10-18-one-virtual-clock": [
+   {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   {}
+  ],
+  "2026-10-19-session-recording": [
+   {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   {}
+  ],
+  "2026-10-19-recorded-check-replay": [
+   {
+    "phase": 5,
+    "implement": 3,
+    "wrap-session": 5
+   },
+   {}
+  ]
+ },
+ "typed_above": [
+  [
+   "wrap-session/reconcile/contract.in-pass-correction",
+   4,
+   8,
+   0
+  ],
+  [
+   "phase/validate/contract.mechanical-check",
+   3,
+   6,
+   0
+  ],
+  [
+   "wrap-session/reconcile/contract.cascade-miss",
+   3,
+   5,
+   0
+  ],
+  [
+   "implement/code/input.plan-step-ambiguous",
+   3,
+   3,
+   0
+  ],
+  [
+   "TYPE-ALONE contract.in-pass-correction",
+   4,
+   8,
+   0
+  ],
+  [
+   "TYPE-ALONE contract.mechanical-check",
+   3,
+   6,
+   0
+  ],
+  [
+   "TYPE-ALONE recall.corpus-recurrence",
+   3,
+   6,
+   0
+  ],
+  [
+   "TYPE-ALONE contract.cascade-miss",
+   3,
+   5,
+   0
+  ]
+ ],
+ "typed_all": [
+  [
+   "wrap-session/reconcile/contract.in-pass-correction",
+   4,
+   8,
+   0
+  ],
+  [
+   "phase/validate/contract.mechanical-check",
+   3,
+   6,
+   0
+  ],
+  [
+   "wrap-session/reconcile/contract.cascade-miss",
+   3,
+   5,
+   0
+  ],
+  [
+   "implement/code/input.plan-step-ambiguous",
+   3,
+   3,
+   0
+  ],
+  [
+   "wrap-session/report/input.implement-outcome-unsettled",
+   2,
+   4,
+   0
+  ],
+  [
+   "wrap-session/curation/recall.corpus-recurrence",
+   2,
+   4,
+   0
+  ],
+  [
+   "wrap-session/reconcile/retry.detector-respawn",
+   1,
+   2,
+   0
+  ],
+  [
+   "implement/code/input.research-files-wrong",
+   1,
+   2,
+   0
+  ],
+  [
+   "wrap-session/report/UNTYPED",
+   1,
+   2,
+   0
+  ],
+  [
+   "implement/code/UNTYPED",
+   1,
+   2,
+   0
+  ],
+  [
+   "implement/fix-loop/contract.test-expectation",
+   1,
+   2,
+   0
+  ],
+  [
+   "phase/plan/UNTYPED",
+   1,
+   2,
+   0
+  ],
+  [
+   "wrap-session/reconcile/recall.corpus-recurrence",
+   1,
+   2,
+   0
+  ],
+  [
+   "wrap-session/reconcile/input.report-insufficient",
+   1,
+   1,
+   0
+  ],
+  [
+   "wrap-session/route-resolve/contract.carry-no-owner",
+   1,
+   1,
+   0
+  ],
+  [
+   "wrap-session/reconcile/contract.proposal-format",
+   1,
+   1,
+   0
+  ],
+  [
+   "wrap-session/reconcile/contract.premise-falsified",
+   1,
+   1,
+   0
+  ]
+ ],
+ "cross": [
+  [
+   "TYPE-ALONE contract.in-pass-correction",
+   4,
+   8
+  ],
+  [
+   "TYPE-ALONE contract.mechanical-check",
+   3,
+   6
+  ],
+  [
+   "TYPE-ALONE recall.corpus-recurrence",
+   3,
+   6
+  ],
+  [
+   "TYPE-ALONE contract.cascade-miss",
+   3,
+   5
+  ],
+  [
+   "TYPE-ALONE contract.test-expectation",
+   1,
+   2
+  ],
+  [
+   "TYPE-ALONE contract.carry-no-owner",
+   1,
+   1
+  ],
+  [
+   "TYPE-ALONE contract.proposal-format",
+   1,
+   1
+  ],
+  [
+   "TYPE-ALONE contract.premise-falsified",
+   1,
+   1
+  ]
+ ],
+ "lookout": [
+  [
+   "TYPE-ANY contract.in-pass-correction",
+   4,
+   [
+    "2026-10-18-one-virtual-clock",
+    "2026-10-18-upstream-sync-determinism-and-traces",
+    "2026-10-19-session-recording"
+   ]
+  ],
+  [
+   "TYPE-ANY contract.mechanical-check",
+   3,
+   [
+    "2026-10-18-upstream-sync-determinism-and-traces",
+    "2026-10-19-recorded-check-replay"
+   ]
+  ],
+  [
+   "TYPE-ANY recall.corpus-recurrence",
+   3,
+   [
+    "2026-10-19-recorded-check-replay",
+    "2026-10-19-session-recording"
+   ]
+  ],
+  [
+   "TYPE-ANY contract.cascade-miss",
+   3,
+   [
+    "2026-10-19-recorded-check-replay",
+    "2026-10-19-session-recording"
+   ]
+  ],
+  [
+   "TYPE-ANY input.plan-step-ambiguous",
+   3,
+   [
+    "2026-10-19-recorded-check-replay",
+    "2026-10-19-session-recording"
+   ]
+  ],
+  [
+   "TYPE-ANY input.implement-outcome-unsettled",
+   2,
+   [
+    "2026-10-19-recorded-check-replay",
+    "2026-10-19-session-recording"
+   ]
+  ]
+ ],
+ "chains": [
+  [
+   "2026-10-18-upstream-sync-determinism-and-traces",
+   null,
+   "drift-base",
+   "wrap-session/reconcile",
+   "thin"
+  ],
+  [
+   "2026-10-18-one-virtual-clock",
+   "phase/research",
+   "research",
+   "implement/code",
+   "thin"
+  ],
+  [
+   "2026-10-18-one-virtual-clock",
+   "wrap-session/report",
+   "report",
+   "wrap-session/reconcile",
+   "thin"
+  ],
+  [
+   "2026-10-19-session-recording",
+   null,
+   "working-entry",
+   "phase/take-up",
+   "thin"
+  ],
+  [
+   "2026-10-19-session-recording",
+   "phase/research",
+   "research",
+   "phase/plan",
+   "thin"
+  ],
+  [
+   "2026-10-19-session-recording",
+   "implement/smoke",
+   "implement-outcome",
+   "wrap-session/report",
+   "thin"
+  ],
+  [
+   "2026-10-19-recorded-check-replay",
+   "implement/smoke",
+   "implement-outcome",
+   "wrap-session/report",
+   "thin"
+  ],
+  [
+   "2026-10-18-one-virtual-clock",
+   null,
+   "packages/escher-driver/src/json.rs",
+   "implement/code",
+   "input-friction"
+  ],
+  [
+   "2026-10-18-one-virtual-clock",
+   null,
+   "escher-0.2.0/chunks/2026-10-18-one-virtual-clock/report.md",
+   "wrap-session/reconcile",
+   "input-friction"
+  ],
+  [
+   "2026-10-19-session-recording",
+   null,
+   "escher-0.2.0/chunks/2026-10-19-session-recording/plan.md",
+   "implement/code",
+   "input-friction"
+  ],
+  [
+   "2026-10-19-session-recording",
+   null,
+   "escher-0.2.0/chunks/2026-10-19-session-recording/plan.md",
+   "implement/code",
+   "input-friction"
+  ],
+  [
+   "2026-10-19-session-recording",
+   null,
+   "escher-0.2.0/chunks/2026-10-19-session-recording/evidence/operator-pass.md",
+   "wrap-session/report",
+   "input-friction"
+  ],
+  [
+   "2026-10-19-recorded-check-replay",
+   null,
+   "escher-0.2.0/chunks/2026-10-19-recorded-check-replay/plan.md",
+   "implement/code",
+   "input-friction"
+  ],
+  [
+   "2026-10-19-recorded-check-replay",
+   null,
+   "escher-0.2.0/chunks/2026-10-19-recorded-check-replay/evidence/operator-pass.md",
+   "wrap-session/report",
+   "input-friction"
+  ]
+ ],
+ "untyped": 3,
+ "pfacts": 9
+}

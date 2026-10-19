@@ -1,0 +1,1332 @@
+{
+ "per_step": [
+  {
+   "key": "wrap-session/reconcile/contract.in-pass-correction",
+   "n": 4,
+   "weight": 8,
+   "rate": "4/4",
+   "halt_or_soft": 0,
+   "above": true,
+   "chunks": [
+    "2026-10-18-one-virtual-clock",
+    "2026-10-18-upstream-sync-determinism-and-traces",
+    "2026-10-19-session-recording"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-18T07:06:59Z-c",
+     "chunk": "2026-10-18-upstream-sync-determinism-and-traces",
+     "step": "wrap-session/reconcile",
+     "what": "architecture.md:233 first written that the four Taffy-main commits 'wait for a Taffy release' — a cause the report does not carry; a re-read of the line against the report caught it and it was rewritten to 'wait for the next sync' before the sweep",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/architecture.md:233"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-18T07:06:59Z-d",
+     "chunk": "2026-10-18-upstream-sync-determinism-and-traces",
+     "step": "wrap-session/reconcile",
+     "what": "design-system.md:316 first written with the retired value ('where it read no cursor (hidden in the shell)') in the body — provenance the classification contract keeps out; a re-read caught it and the clause moved to the sidecar entry's Change",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/design-system.md:316"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-18T09:23:19Z-c",
+     "chunk": "2026-10-18-one-virtual-clock",
+     "step": "wrap-session/reconcile",
+     "what": "citation-dispositions.md's closing line first said 'Claim-false rows raised at Validate (10)' over a list of 9; a re-read of the line corrected it to 9 before the fan-out",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/runs/2026-10-18T08-45-11-wrap/citation-dispositions.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T06:41:41Z-b",
+     "chunk": "2026-10-19-session-recording",
+     "step": "wrap-session/reconcile",
+     "what": "three architecture.md:182/325 in-line edits landed changing the anchor of a standing provenance parenthesis; classify standing FAIL provenance 5 caught them, re-shaped before the sidecar entries",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T05-20-24-wrap/classify-2026-10-19-session-recording.json",
+     "artifacts": [
+      ".andromeda/architecture.md:182",
+      ".andromeda/architecture.md:325"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/validate/contract.mechanical-check",
+   "n": 3,
+   "weight": 6,
+   "rate": "3/4",
+   "halt_or_soft": 0,
+   "above": true,
+   "chunks": [
+    "2026-10-18-upstream-sync-determinism-and-traces",
+    "2026-10-19-recorded-check-replay"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-18T06:15:29Z-b",
+     "chunk": "2026-10-18-upstream-sync-determinism-and-traces",
+     "step": "phase/validate",
+     "what": "check 10 (inputs.py verify) listed scope.md:28 citing this chunk's I4 where the folded CARRY 3 text verbatim cites 2026-10-18-engine-debts' inputs#I4; the fold had copied a foreign inputs#In token into scope, re-spelt by path at P5",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-18T05-47-23-phase/inputs-2026-10-18-upstream-sync-determinism-and-traces.json",
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces/scope.md:28"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T08:21:31Z-b",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "phase/validate",
+     "what": "check 10 read UNPARSED inputs#I4 at scope.md:19: the verbatim-folded CARRY cites another chunk's snapshot by its inputs id; re-pointed to that chunk's file path and re-verified clean",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-recorded-check-replay/scope.md:19",
+      "escher-0.2.0/working-route.md:29"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T08:21:31Z-c",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "phase/validate",
+     "what": "check 8's reach read found the plan's MCP first-activation index written as 4 where the script's steps give 3 (snapshot, tab, tab, enter); no predicate counts a script's steps; corrected in step 10 and the criterion before the review",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-recorded-check-replay/plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.cascade-miss",
+   "n": 3,
+   "weight": 5,
+   "rate": "3/4",
+   "halt_or_soft": 0,
+   "above": true,
+   "chunks": [
+    "2026-10-19-recorded-check-replay",
+    "2026-10-19-session-recording"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T06:41:41Z-c",
+     "chunk": "2026-10-19-session-recording",
+     "step": "wrap-session/reconcile",
+     "what": "three standing master restatements of the v2 wire and the bare host-role spawn no detector proposed (architecture.md:182 call v2, architecture.md:220 start spawn, test-plan.md:144 ok v2 replies) were caught by the step-2 sweep and amended in the pass",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T05-20-24-wrap/cascade-dispositions.md",
+     "artifacts": [
+      ".andromeda/architecture.md:182",
+      ".andromeda/architecture.md:220",
+      ".andromeda/test-plan.md:144"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T10:47:19Z-c",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "wrap-session/reconcile",
+     "what": "architecture.md:193 and security-plan.md:125 restated 'no log, event or file carries a diff', retired with the snapshot-text claim; no detector proposed them and the step-2 sweep's no-file pattern caught both",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T09-49-14-wrap/cascade-dispositions.md",
+     "artifacts": [
+      ".andromeda/architecture.md:193",
+      ".andromeda/security-plan.md:125"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T10:47:19Z-e",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "wrap-session/reconcile",
+     "what": "seven_guis.md:38's stand_screenshot_repeat 'byte-identical in two child runs and in the parent' was in no comparer finding; the re-fired sweep's shot-ident leaf row caught it, written by hand",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T09-49-14-wrap/cascade-dispositions.md",
+     "artifacts": [
+      ".claude/docs/services/seven_guis.md:38"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/code/input.plan-step-ambiguous",
+   "n": 3,
+   "weight": 3,
+   "rate": "3/4",
+   "halt_or_soft": 0,
+   "above": true,
+   "chunks": [
+    "2026-10-19-recorded-check-replay",
+    "2026-10-19-session-recording"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T03:49:26Z-b",
+     "chunk": "2026-10-19-session-recording",
+     "step": "implement/code",
+     "what": "plan step 8 states help's line byte-identical to before the chunk, but step 5's 13->15 session errors are served by describe(), so help's line must change; built step 5, the acceptance's with/without --record reading holds, surfaced in the report",
+     "impact": {
+      "iterations": 0
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-session-recording/plan.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T03:49:26Z-c",
+     "chunk": "2026-10-19-session-recording",
+     "step": "implement/code",
+     "what": "plan steps 3-4 do not say what a recording keeps of a call no record can spell (unknown or session verb, unnamed or repeated argument) or of a type refused stale/not-found whose control cannot be read; chose: not kept, and kept masked; both surfaced",
+     "impact": {
+      "iterations": 0
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-session-recording/plan.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T08:31:04Z-b",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "implement/code",
+     "what": "plan step 10 named the test-only variant VariantCounter, but a component's name enters every unkeyed element's id, so that name would turn the checks red at their first snapshot rather than their first activation step; settled by reading element_id.rs",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-recorded-check-replay/plan.md",
+      "packages/dioxus-native-dom/src/element_id.rs"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/report/input.implement-outcome-unsettled",
+   "n": 2,
+   "weight": 4,
+   "rate": "2/4",
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-19-recorded-check-replay",
+    "2026-10-19-session-recording"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T05:27:08Z-b",
+     "chunk": "2026-10-19-session-recording",
+     "step": "wrap-session/report",
+     "what": "the operator pass ended fixed after two Windows CI reds (an ungated recorded mcp_log test, then a de-gated helper calling a unix-only fn); the outcome basis is the pass's final HEAD 3cbb0eeef and CI#39202401256, not implement's green",
+     "impact": {
+      "iterations": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-session-recording/evidence/operator-pass.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T09:55:54Z-b",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "wrap-session/report",
+     "what": "implement's green was not the final word: the operator pass read CI#39225375577 red on Test (macos) (the freshness check, a shot's PNG bytes differing by OS) and fix commit f15c28fc changed files implement wrote; the report's outcome basis is the pass's evidence and CI#39227884248 on f15c28fc",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T08-22-08-implement/outcome-2026-10-19-recorded-check-replay.md",
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-recorded-check-replay/evidence/operator-pass.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/curation/recall.corpus-recurrence",
+   "n": 2,
+   "weight": 4,
+   "rate": "2/4",
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-19-session-recording"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T06:43:39Z-b",
+     "chunk": "2026-10-19-session-recording",
+     "step": "wrap-session/curation",
+     "what": "the gh api job-log escape-sequence refusal recurred at the implement pass (a fetch read 0 failures from a refusal text) past the 2026-10-11 T3 entry stating its remedy",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": "escher-0.2.0/chunks/2026-10-19-session-recording/report.md",
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T06:43:39Z-c",
+     "chunk": "2026-10-19-session-recording",
+     "step": "wrap-session/curation",
+     "what": "a bare-digit sweep pattern (\\b134\\b) matched 26 line-range citations at P1 past the 2026-10-12 T3 entry on bare-count patterns",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T05-20-24-wrap/cascade-2026-10-19-session-recording-pre-pass.json",
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/retry.detector-respawn",
+   "n": 1,
+   "weight": 2,
+   "rate": "1/4",
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-18-upstream-sync-determinism-and-traces"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-18T07:06:59Z-b",
+     "chunk": "2026-10-18-upstream-sync-determinism-and-traces",
+     "step": "wrap-session/reconcile",
+     "what": "leaf comparer design-system wrote a read: line count of 44 for a 43-line leaf; leaves --apply --dry-run refused it (exit 3) and it was re-spawned once in its own snapshot pair, 0 findings both times",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-18T06-47-20-wrap/cascade-dispositions.md",
+     "artifacts": [
+      ".andromeda/runs/2026-10-18T06-47-20-wrap/.raw-leaf-design-system.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/code/input.research-files-wrong",
+   "n": 1,
+   "weight": 2,
+   "rate": "1/4",
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-18-one-virtual-clock"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-18T08:04:09Z-b",
+     "chunk": "2026-10-18-one-virtual-clock",
+     "step": "implement/code",
+     "what": "two escher-driver unit tests outside research's lists pinned the old cause count (json.rs refusals.len()==14, describe.rs counts row 9) and went red after the eight-cause change; edited as companions and recorded",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": "escher-0.2.0/chunks/2026-10-18-one-virtual-clock/scope-record.md",
+     "artifacts": [
+      "packages/escher-driver/src/json.rs",
+      "packages/escher-driver/src/describe.rs"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/report/UNTYPED",
+   "n": 1,
+   "weight": 2,
+   "rate": "1/4",
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-18-one-virtual-clock"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-18T08:52:55Z-b",
+     "chunk": "2026-10-18-one-virtual-clock",
+     "step": "wrap-session/report",
+     "what": "the Expected-amendments per-master row counts are hand-tallied from the sweep's rows (the tool prints per-pattern totals, not per-master ones); three figures were wrong at first write (harness-time architecture 6 for 5, test-plan 9 for 8; the reach line's moved-fact count 19/17 for 17/15) and were caught by a re-count against the listing before the paste",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-18T08-45-11-wrap/cascade-2026-10-18-one-virtual-clock-pre-pass.json",
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-18-one-virtual-clock/report.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/code/UNTYPED",
+   "n": 1,
+   "weight": 2,
+   "rate": "1/4",
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-19-session-recording"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T03:49:26Z-d",
+     "chunk": "2026-10-19-session-recording",
+     "step": "implement/code",
+     "what": "an inline python heredoc edit script nesting raw triple quotes ended in a SyntaxError and changed nothing; re-run unchanged from a scratchpad file by path",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "packages/escher-driver/src/cli.rs"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/fix-loop/contract.test-expectation",
+   "n": 1,
+   "weight": 2,
+   "rate": "1/4",
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-19-session-recording"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T04:07:55Z-b",
+     "chunk": "2026-10-19-session-recording",
+     "step": "implement/fix-loop",
+     "what": "stand_session_lifecycle wrote raw v2 request lines to test the grammar; the wire's move to v3 read them as version refusals, reddening four gates; the plan listed the file as unchanged under F1 A",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T03-31-48Z-implement/gate-2026-10-19-session-recording.json",
+     "artifacts": [
+      "tests/blitz-tests/tests/stand_session_lifecycle.rs"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/plan/UNTYPED",
+   "n": 1,
+   "weight": 2,
+   "rate": "1/4",
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-19-recorded-check-replay"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T08:09:01Z-b",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "phase/plan",
+     "what": "plan.md's Generated stamp was written as an estimated 08:20Z without reading the clock; the stamp-ahead PostToolUse hook refused it (clock 08:08:44Z) and it was corrected by one Edit",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-recorded-check-replay/plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/recall.corpus-recurrence",
+   "n": 1,
+   "weight": 2,
+   "rate": "1/4",
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-19-recorded-check-replay"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T10:47:19Z-b",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "wrap-session/reconcile",
+     "what": "obs-plan.md:70: inserting stand_replay just before the parenthesis '(twenty measured ..., where eighteen stood)' made classify read it as new provenance — the 2026-10-19 Tier-3 entry states this exact trap",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T09-49-14-wrap/replace-5.md",
+     "artifacts": [
+      ".andromeda/obs-plan.md:70",
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/input.report-insufficient",
+   "n": 1,
+   "weight": 1,
+   "rate": "1/4",
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-18-one-virtual-clock"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-18T09:23:19Z-b",
+     "chunk": "2026-10-18-one-virtual-clock",
+     "step": "wrap-session/reconcile",
+     "what": "the P1 report's site sweep reached 0 rows for six moved facts its wording did not name (session_common readers 22→23, stand files 41→42, 'nine since' / 'eight since' / 'nine cause names' restatements) and placed the local tally at the per-OS line; the detectors and main's check-5 raises found them",
+     "impact": {
+      "extra_reads": 6
+     },
+     "evidence": ".andromeda/runs/2026-10-18T08-45-11-wrap/fanout-results.md",
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-18-one-virtual-clock/report.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/route-resolve/contract.carry-no-owner",
+   "n": 1,
+   "weight": 1,
+   "rate": "1/4",
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-18-one-virtual-clock"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-18T09:25:15Z-b",
+     "chunk": "2026-10-18-one-virtual-clock",
+     "step": "wrap-session/route-resolve",
+     "what": "the test-plan detector's coverage gap (the sub-document's carried clock, pan and the fling unread on the virtual clock) had no entry that names it; pinned without a halt to the earliest markerless entry able to take a check on the changed code, «Session recording», its reason written as a labelled hypothesis",
+     "impact": {
+      "extra_reads": 2
+     },
+     "evidence": ".andromeda/runs/2026-10-18T08-45-11-wrap/fanout-results.md",
+     "artifacts": [
+      "escher-0.2.0/working-route.md:27"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.proposal-format",
+   "n": 1,
+   "weight": 1,
+   "rate": "1/4",
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-19-recorded-check-replay"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T10:47:19Z-d",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "wrap-session/reconcile",
+     "what": "the architecture-1 leaf comparer cited dioxus-native-dom.md:85/:86 and stack.md:137/:155, lines past the files' ends (44, 59); leaves --apply read anchor moved and the four were written by hand",
+     "impact": {
+      "extra_reads": 4
+     },
+     "evidence": ".andromeda/runs/2026-10-19T09-49-14-wrap/cascade-dispositions.md",
+     "artifacts": [
+      ".andromeda/runs/2026-10-19T09-49-14-wrap/leaf-architecture-1.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.premise-falsified",
+   "n": 1,
+   "weight": 1,
+   "rate": "1/4",
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-19-recorded-check-replay"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T10:47:19Z-f",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "wrap-session/reconcile",
+     "what": "the resume directive (b) and the report both say stand_session_recording covers the shot path on each OS; tests/blitz-tests/tests/stand_session_recording.rs:17 is #![cfg(unix)], so windows runs none of it",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T09-49-14-wrap/relay-3.md",
+     "artifacts": [
+      "tests/blitz-tests/tests/stand_session_recording.rs:17"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  }
+ ],
+ "universal_and_recall_by_type": [
+  {
+   "key": "TYPE-ALONE contract.in-pass-correction",
+   "n": 4,
+   "weight": 8,
+   "rate": null,
+   "halt_or_soft": 0,
+   "above": true,
+   "chunks": [
+    "2026-10-18-one-virtual-clock",
+    "2026-10-18-upstream-sync-determinism-and-traces",
+    "2026-10-19-session-recording"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-18T07:06:59Z-c",
+     "chunk": "2026-10-18-upstream-sync-determinism-and-traces",
+     "step": "wrap-session/reconcile",
+     "what": "architecture.md:233 first written that the four Taffy-main commits 'wait for a Taffy release' — a cause the report does not carry; a re-read of the line against the report caught it and it was rewritten to 'wait for the next sync' before the sweep",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/architecture.md:233"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-18T07:06:59Z-d",
+     "chunk": "2026-10-18-upstream-sync-determinism-and-traces",
+     "step": "wrap-session/reconcile",
+     "what": "design-system.md:316 first written with the retired value ('where it read no cursor (hidden in the shell)') in the body — provenance the classification contract keeps out; a re-read caught it and the clause moved to the sidecar entry's Change",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/design-system.md:316"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-18T09:23:19Z-c",
+     "chunk": "2026-10-18-one-virtual-clock",
+     "step": "wrap-session/reconcile",
+     "what": "citation-dispositions.md's closing line first said 'Claim-false rows raised at Validate (10)' over a list of 9; a re-read of the line corrected it to 9 before the fan-out",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/runs/2026-10-18T08-45-11-wrap/citation-dispositions.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T06:41:41Z-b",
+     "chunk": "2026-10-19-session-recording",
+     "step": "wrap-session/reconcile",
+     "what": "three architecture.md:182/325 in-line edits landed changing the anchor of a standing provenance parenthesis; classify standing FAIL provenance 5 caught them, re-shaped before the sidecar entries",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T05-20-24-wrap/classify-2026-10-19-session-recording.json",
+     "artifacts": [
+      ".andromeda/architecture.md:182",
+      ".andromeda/architecture.md:325"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE-ALONE contract.mechanical-check",
+   "n": 3,
+   "weight": 6,
+   "rate": null,
+   "halt_or_soft": 0,
+   "above": true,
+   "chunks": [
+    "2026-10-18-upstream-sync-determinism-and-traces",
+    "2026-10-19-recorded-check-replay"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-18T06:15:29Z-b",
+     "chunk": "2026-10-18-upstream-sync-determinism-and-traces",
+     "step": "phase/validate",
+     "what": "check 10 (inputs.py verify) listed scope.md:28 citing this chunk's I4 where the folded CARRY 3 text verbatim cites 2026-10-18-engine-debts' inputs#I4; the fold had copied a foreign inputs#In token into scope, re-spelt by path at P5",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-18T05-47-23-phase/inputs-2026-10-18-upstream-sync-determinism-and-traces.json",
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces/scope.md:28"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T08:21:31Z-b",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "phase/validate",
+     "what": "check 10 read UNPARSED inputs#I4 at scope.md:19: the verbatim-folded CARRY cites another chunk's snapshot by its inputs id; re-pointed to that chunk's file path and re-verified clean",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-recorded-check-replay/scope.md:19",
+      "escher-0.2.0/working-route.md:29"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T08:21:31Z-c",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "phase/validate",
+     "what": "check 8's reach read found the plan's MCP first-activation index written as 4 where the script's steps give 3 (snapshot, tab, tab, enter); no predicate counts a script's steps; corrected in step 10 and the criterion before the review",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-recorded-check-replay/plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE-ALONE recall.corpus-recurrence",
+   "n": 3,
+   "weight": 6,
+   "rate": null,
+   "halt_or_soft": 0,
+   "above": true,
+   "chunks": [
+    "2026-10-19-recorded-check-replay",
+    "2026-10-19-session-recording"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T06:43:39Z-b",
+     "chunk": "2026-10-19-session-recording",
+     "step": "wrap-session/curation",
+     "what": "the gh api job-log escape-sequence refusal recurred at the implement pass (a fetch read 0 failures from a refusal text) past the 2026-10-11 T3 entry stating its remedy",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": "escher-0.2.0/chunks/2026-10-19-session-recording/report.md",
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T06:43:39Z-c",
+     "chunk": "2026-10-19-session-recording",
+     "step": "wrap-session/curation",
+     "what": "a bare-digit sweep pattern (\\b134\\b) matched 26 line-range citations at P1 past the 2026-10-12 T3 entry on bare-count patterns",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T05-20-24-wrap/cascade-2026-10-19-session-recording-pre-pass.json",
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T10:47:19Z-b",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "wrap-session/reconcile",
+     "what": "obs-plan.md:70: inserting stand_replay just before the parenthesis '(twenty measured ..., where eighteen stood)' made classify read it as new provenance — the 2026-10-19 Tier-3 entry states this exact trap",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T09-49-14-wrap/replace-5.md",
+     "artifacts": [
+      ".andromeda/obs-plan.md:70",
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE-ALONE contract.cascade-miss",
+   "n": 3,
+   "weight": 5,
+   "rate": null,
+   "halt_or_soft": 0,
+   "above": true,
+   "chunks": [
+    "2026-10-19-recorded-check-replay",
+    "2026-10-19-session-recording"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T06:41:41Z-c",
+     "chunk": "2026-10-19-session-recording",
+     "step": "wrap-session/reconcile",
+     "what": "three standing master restatements of the v2 wire and the bare host-role spawn no detector proposed (architecture.md:182 call v2, architecture.md:220 start spawn, test-plan.md:144 ok v2 replies) were caught by the step-2 sweep and amended in the pass",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T05-20-24-wrap/cascade-dispositions.md",
+     "artifacts": [
+      ".andromeda/architecture.md:182",
+      ".andromeda/architecture.md:220",
+      ".andromeda/test-plan.md:144"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T10:47:19Z-c",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "wrap-session/reconcile",
+     "what": "architecture.md:193 and security-plan.md:125 restated 'no log, event or file carries a diff', retired with the snapshot-text claim; no detector proposed them and the step-2 sweep's no-file pattern caught both",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T09-49-14-wrap/cascade-dispositions.md",
+     "artifacts": [
+      ".andromeda/architecture.md:193",
+      ".andromeda/security-plan.md:125"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T10:47:19Z-e",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "wrap-session/reconcile",
+     "what": "seven_guis.md:38's stand_screenshot_repeat 'byte-identical in two child runs and in the parent' was in no comparer finding; the re-fired sweep's shot-ident leaf row caught it, written by hand",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T09-49-14-wrap/cascade-dispositions.md",
+     "artifacts": [
+      ".claude/docs/services/seven_guis.md:38"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE-ALONE contract.test-expectation",
+   "n": 1,
+   "weight": 2,
+   "rate": null,
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-19-session-recording"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T04:07:55Z-b",
+     "chunk": "2026-10-19-session-recording",
+     "step": "implement/fix-loop",
+     "what": "stand_session_lifecycle wrote raw v2 request lines to test the grammar; the wire's move to v3 read them as version refusals, reddening four gates; the plan listed the file as unchanged under F1 A",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T03-31-48Z-implement/gate-2026-10-19-session-recording.json",
+     "artifacts": [
+      "tests/blitz-tests/tests/stand_session_lifecycle.rs"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE-ALONE contract.carry-no-owner",
+   "n": 1,
+   "weight": 1,
+   "rate": null,
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-18-one-virtual-clock"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-18T09:25:15Z-b",
+     "chunk": "2026-10-18-one-virtual-clock",
+     "step": "wrap-session/route-resolve",
+     "what": "the test-plan detector's coverage gap (the sub-document's carried clock, pan and the fling unread on the virtual clock) had no entry that names it; pinned without a halt to the earliest markerless entry able to take a check on the changed code, «Session recording», its reason written as a labelled hypothesis",
+     "impact": {
+      "extra_reads": 2
+     },
+     "evidence": ".andromeda/runs/2026-10-18T08-45-11-wrap/fanout-results.md",
+     "artifacts": [
+      "escher-0.2.0/working-route.md:27"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE-ALONE contract.proposal-format",
+   "n": 1,
+   "weight": 1,
+   "rate": null,
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-19-recorded-check-replay"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T10:47:19Z-d",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "wrap-session/reconcile",
+     "what": "the architecture-1 leaf comparer cited dioxus-native-dom.md:85/:86 and stack.md:137/:155, lines past the files' ends (44, 59); leaves --apply read anchor moved and the four were written by hand",
+     "impact": {
+      "extra_reads": 4
+     },
+     "evidence": ".andromeda/runs/2026-10-19T09-49-14-wrap/cascade-dispositions.md",
+     "artifacts": [
+      ".andromeda/runs/2026-10-19T09-49-14-wrap/leaf-architecture-1.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE-ALONE contract.premise-falsified",
+   "n": 1,
+   "weight": 1,
+   "rate": null,
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-19-recorded-check-replay"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T10:47:19Z-f",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "wrap-session/reconcile",
+     "what": "the resume directive (b) and the report both say stand_session_recording covers the shot path on each OS; tests/blitz-tests/tests/stand_session_recording.rs:17 is #![cfg(unix)], so windows runs none of it",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T09-49-14-wrap/relay-3.md",
+     "artifacts": [
+      "tests/blitz-tests/tests/stand_session_recording.rs:17"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  }
+ ],
+ "all_types_by_type_lookout": [
+  {
+   "key": "TYPE-ANY contract.in-pass-correction",
+   "n": 4,
+   "weight": 8,
+   "rate": null,
+   "halt_or_soft": 0,
+   "above": true,
+   "chunks": [
+    "2026-10-18-one-virtual-clock",
+    "2026-10-18-upstream-sync-determinism-and-traces",
+    "2026-10-19-session-recording"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-18T07:06:59Z-c",
+     "chunk": "2026-10-18-upstream-sync-determinism-and-traces",
+     "step": "wrap-session/reconcile",
+     "what": "architecture.md:233 first written that the four Taffy-main commits 'wait for a Taffy release' — a cause the report does not carry; a re-read of the line against the report caught it and it was rewritten to 'wait for the next sync' before the sweep",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/architecture.md:233"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-18T07:06:59Z-d",
+     "chunk": "2026-10-18-upstream-sync-determinism-and-traces",
+     "step": "wrap-session/reconcile",
+     "what": "design-system.md:316 first written with the retired value ('where it read no cursor (hidden in the shell)') in the body — provenance the classification contract keeps out; a re-read caught it and the clause moved to the sidecar entry's Change",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/design-system.md:316"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-18T09:23:19Z-c",
+     "chunk": "2026-10-18-one-virtual-clock",
+     "step": "wrap-session/reconcile",
+     "what": "citation-dispositions.md's closing line first said 'Claim-false rows raised at Validate (10)' over a list of 9; a re-read of the line corrected it to 9 before the fan-out",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      ".andromeda/runs/2026-10-18T08-45-11-wrap/citation-dispositions.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T06:41:41Z-b",
+     "chunk": "2026-10-19-session-recording",
+     "step": "wrap-session/reconcile",
+     "what": "three architecture.md:182/325 in-line edits landed changing the anchor of a standing provenance parenthesis; classify standing FAIL provenance 5 caught them, re-shaped before the sidecar entries",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T05-20-24-wrap/classify-2026-10-19-session-recording.json",
+     "artifacts": [
+      ".andromeda/architecture.md:182",
+      ".andromeda/architecture.md:325"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE-ANY contract.mechanical-check",
+   "n": 3,
+   "weight": 6,
+   "rate": null,
+   "halt_or_soft": 0,
+   "above": true,
+   "chunks": [
+    "2026-10-18-upstream-sync-determinism-and-traces",
+    "2026-10-19-recorded-check-replay"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-18T06:15:29Z-b",
+     "chunk": "2026-10-18-upstream-sync-determinism-and-traces",
+     "step": "phase/validate",
+     "what": "check 10 (inputs.py verify) listed scope.md:28 citing this chunk's I4 where the folded CARRY 3 text verbatim cites 2026-10-18-engine-debts' inputs#I4; the fold had copied a foreign inputs#In token into scope, re-spelt by path at P5",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-18T05-47-23-phase/inputs-2026-10-18-upstream-sync-determinism-and-traces.json",
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-18-upstream-sync-determinism-and-traces/scope.md:28"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T08:21:31Z-b",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "phase/validate",
+     "what": "check 10 read UNPARSED inputs#I4 at scope.md:19: the verbatim-folded CARRY cites another chunk's snapshot by its inputs id; re-pointed to that chunk's file path and re-verified clean",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-recorded-check-replay/scope.md:19",
+      "escher-0.2.0/working-route.md:29"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T08:21:31Z-c",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "phase/validate",
+     "what": "check 8's reach read found the plan's MCP first-activation index written as 4 where the script's steps give 3 (snapshot, tab, tab, enter); no predicate counts a script's steps; corrected in step 10 and the criterion before the review",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-recorded-check-replay/plan.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE-ANY recall.corpus-recurrence",
+   "n": 3,
+   "weight": 6,
+   "rate": null,
+   "halt_or_soft": 0,
+   "above": true,
+   "chunks": [
+    "2026-10-19-recorded-check-replay",
+    "2026-10-19-session-recording"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T06:43:39Z-b",
+     "chunk": "2026-10-19-session-recording",
+     "step": "wrap-session/curation",
+     "what": "the gh api job-log escape-sequence refusal recurred at the implement pass (a fetch read 0 failures from a refusal text) past the 2026-10-11 T3 entry stating its remedy",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": "escher-0.2.0/chunks/2026-10-19-session-recording/report.md",
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T06:43:39Z-c",
+     "chunk": "2026-10-19-session-recording",
+     "step": "wrap-session/curation",
+     "what": "a bare-digit sweep pattern (\\b134\\b) matched 26 line-range citations at P1 past the 2026-10-12 T3 entry on bare-count patterns",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T05-20-24-wrap/cascade-2026-10-19-session-recording-pre-pass.json",
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T10:47:19Z-b",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "wrap-session/reconcile",
+     "what": "obs-plan.md:70: inserting stand_replay just before the parenthesis '(twenty measured ..., where eighteen stood)' made classify read it as new provenance — the 2026-10-19 Tier-3 entry states this exact trap",
+     "impact": {
+      "retries": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T09-49-14-wrap/replace-5.md",
+     "artifacts": [
+      ".andromeda/obs-plan.md:70",
+      ".claude/docs/session-learnings.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE-ANY contract.cascade-miss",
+   "n": 3,
+   "weight": 5,
+   "rate": null,
+   "halt_or_soft": 0,
+   "above": true,
+   "chunks": [
+    "2026-10-19-recorded-check-replay",
+    "2026-10-19-session-recording"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T06:41:41Z-c",
+     "chunk": "2026-10-19-session-recording",
+     "step": "wrap-session/reconcile",
+     "what": "three standing master restatements of the v2 wire and the bare host-role spawn no detector proposed (architecture.md:182 call v2, architecture.md:220 start spawn, test-plan.md:144 ok v2 replies) were caught by the step-2 sweep and amended in the pass",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T05-20-24-wrap/cascade-dispositions.md",
+     "artifacts": [
+      ".andromeda/architecture.md:182",
+      ".andromeda/architecture.md:220",
+      ".andromeda/test-plan.md:144"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T10:47:19Z-c",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "wrap-session/reconcile",
+     "what": "architecture.md:193 and security-plan.md:125 restated 'no log, event or file carries a diff', retired with the snapshot-text claim; no detector proposed them and the step-2 sweep's no-file pattern caught both",
+     "impact": {
+      "iterations": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T09-49-14-wrap/cascade-dispositions.md",
+     "artifacts": [
+      ".andromeda/architecture.md:193",
+      ".andromeda/security-plan.md:125"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T10:47:19Z-e",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "wrap-session/reconcile",
+     "what": "seven_guis.md:38's stand_screenshot_repeat 'byte-identical in two child runs and in the parent' was in no comparer finding; the re-fired sweep's shot-ident leaf row caught it, written by hand",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T09-49-14-wrap/cascade-dispositions.md",
+     "artifacts": [
+      ".claude/docs/services/seven_guis.md:38"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE-ANY input.plan-step-ambiguous",
+   "n": 3,
+   "weight": 3,
+   "rate": null,
+   "halt_or_soft": 0,
+   "above": true,
+   "chunks": [
+    "2026-10-19-recorded-check-replay",
+    "2026-10-19-session-recording"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T03:49:26Z-b",
+     "chunk": "2026-10-19-session-recording",
+     "step": "implement/code",
+     "what": "plan step 8 states help's line byte-identical to before the chunk, but step 5's 13->15 session errors are served by describe(), so help's line must change; built step 5, the acceptance's with/without --record reading holds, surfaced in the report",
+     "impact": {
+      "iterations": 0
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-session-recording/plan.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T03:49:26Z-c",
+     "chunk": "2026-10-19-session-recording",
+     "step": "implement/code",
+     "what": "plan steps 3-4 do not say what a recording keeps of a call no record can spell (unknown or session verb, unnamed or repeated argument) or of a type refused stale/not-found whose control cannot be read; chose: not kept, and kept masked; both surfaced",
+     "impact": {
+      "iterations": 0
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-session-recording/plan.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T08:31:04Z-b",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "implement/code",
+     "what": "plan step 10 named the test-only variant VariantCounter, but a component's name enters every unkeyed element's id, so that name would turn the checks red at their first snapshot rather than their first activation step; settled by reading element_id.rs",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-recorded-check-replay/plan.md",
+      "packages/dioxus-native-dom/src/element_id.rs"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "TYPE-ANY input.implement-outcome-unsettled",
+   "n": 2,
+   "weight": 4,
+   "rate": null,
+   "halt_or_soft": 0,
+   "above": false,
+   "chunks": [
+    "2026-10-19-recorded-check-replay",
+    "2026-10-19-session-recording"
+   ],
+   "cases": [
+    {
+     "id": "2026-10-19T05:27:08Z-b",
+     "chunk": "2026-10-19-session-recording",
+     "step": "wrap-session/report",
+     "what": "the operator pass ended fixed after two Windows CI reds (an ungated recorded mcp_log test, then a de-gated helper calling a unix-only fn); the outcome basis is the pass's final HEAD 3cbb0eeef and CI#39202401256, not implement's green",
+     "impact": {
+      "iterations": 2
+     },
+     "evidence": null,
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-session-recording/evidence/operator-pass.md"
+     ],
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T09:55:54Z-b",
+     "chunk": "2026-10-19-recorded-check-replay",
+     "step": "wrap-session/report",
+     "what": "implement's green was not the final word: the operator pass read CI#39225375577 red on Test (macos) (the freshness check, a shot's PNG bytes differing by OS) and fix commit f15c28fc changed files implement wrote; the report's outcome basis is the pass's evidence and CI#39227884248 on f15c28fc",
+     "impact": {
+      "extra_reads": 1
+     },
+     "evidence": ".andromeda/runs/2026-10-19T08-22-08-implement/outcome-2026-10-19-recorded-check-replay.md",
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-recorded-check-replay/evidence/operator-pass.md"
+     ],
+     "clause_retracted": null
+    }
+   ]
+  }
+ ]
+}

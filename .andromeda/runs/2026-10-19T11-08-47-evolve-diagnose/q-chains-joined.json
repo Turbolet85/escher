@@ -1,0 +1,48 @@
+{
+ "note": "q-chains.json is the script's join; an input.* friction's artifacts[] holds a file path, so its producer was joined here by hand: plan.md -> phase/plan 'plan', operator-pass.md -> implement/smoke 'implement-outcome', report.md -> wrap-session/report 'report', json.rs -> phase/research 'research'",
+ "shapes": [
+  {
+   "id": "X1", "shape": ["implement/smoke", "implement-outcome", "wrap-session/report"], "candidate": true,
+   "chunks": ["2026-10-19-session-recording", "2026-10-19-recorded-check-replay"],
+   "producers": [
+    {"id": "2026-10-19T04:09:44Z-a", "outcome": "ok", "signals": ["green"]},
+    {"id": "2026-10-19T08:44:05Z-a", "outcome": "ok", "signals": ["green"]}
+   ],
+   "consumers": [
+    {"id": "2026-10-19T05:27:08Z-a", "quality": "thin", "operator_pass": ["fixed", "commits:3", "red:2"], "friction": "2026-10-19T05:27:08Z-b input.implement-outcome-unsettled"},
+    {"id": "2026-10-19T09:55:54Z-a", "quality": "thin", "operator_pass": ["fixed", "commits:2", "red:1"], "friction": "2026-10-19T09:55:54Z-b input.implement-outcome-unsettled"}
+   ]
+  },
+  {
+   "id": "X2", "shape": ["phase/plan", "plan", "implement/code"], "candidate": true,
+   "chunks": ["2026-10-19-session-recording", "2026-10-19-recorded-check-replay"],
+   "producers": [
+    {"id": "2026-10-19T03:18:48Z-a", "outcome": "ok", "signals": ["designed-dialogue:founder-boundary-forks", "designed-dialogue:recorder-placement-form-roundtrip", "planlint-hit-resolved:12c"]},
+    {"id": "2026-10-19T08:09:01Z-a", "outcome": "ok", "signals": ["designed-dialogue:committed-checks-at-rest (founder F1, one round through the overseer)", "designed-dialogue:replay-api-and-variant-mount (operator T1 T2, one round)", "unresolved-questions"]}
+   ],
+   "consumers": [
+    {"id": "2026-10-19T03:49:26Z-a", "plan_quality": "ok", "frictions": ["2026-10-19T03:49:26Z-b", "2026-10-19T03:49:26Z-c"]},
+    {"id": "2026-10-19T08:31:04Z-a", "plan_quality": "ok", "frictions": ["2026-10-19T08:31:04Z-b"]}
+   ],
+   "observation": "each consumer graded the plan ok while filing input.plan-step-ambiguous against it"
+  },
+  {
+   "id": "near-1", "shape": ["phase/research", "research", "implement/code | phase/plan"], "candidate": false,
+   "chunks": ["2026-10-18-one-virtual-clock (consumer implement/code)", "2026-10-19-session-recording (consumer phase/plan)"],
+   "reason_below": "the same producer and artifact, two different consumers — not the same (producer, artifact, consumer) shape",
+   "observation": "phase/research produced 'unresolved-questions' and scope 'premise-corrected' in 4/4 chunks, so neither signal separates the two thin research files from the two ok ones"
+  },
+  {
+   "id": "single-1", "shape": ["wrap-session/report", "report", "wrap-session/reconcile"], "candidate": false,
+   "chunks": ["2026-10-18-one-virtual-clock"],
+   "producer": {"id": "2026-10-18T08:52:55Z-a", "outcome": "ok", "signals": ["new-text-generated", "new-text-rows:58"], "friction": "2026-10-18T08:52:55Z-b (untyped)"},
+   "consumer": {"id": "2026-10-18T09:23:19Z-a", "quality": "thin", "friction": "2026-10-18T09:23:19Z-b input.report-insufficient"}
+  },
+  {
+   "id": "no-producer", "items": [
+    {"chunk": "2026-10-18-upstream-sync-determinism-and-traces", "artifact": "drift-base", "consumer": "wrap-session/reconcile", "quality": "thin", "why": "drift-base is a standing artifact; no in-chunk producer record"},
+    {"chunk": "2026-10-19-session-recording", "artifact": "working-entry", "consumer": "phase/take-up", "quality": "thin", "why": "the entry was written by an earlier chunk's route-resolve; no in-chunk producer record"}
+   ]
+  }
+ ]
+}

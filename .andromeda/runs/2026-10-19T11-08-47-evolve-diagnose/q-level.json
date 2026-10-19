@@ -1,0 +1,93 @@
+{
+ "epoch": "escher-0.2.0 · Epoch 3 — Determinism and traces",
+ "facts_in_epoch": 9,
+ "note_theme_clusters": [
+  {
+   "theme": "founder forks routed to a run-dir file answered by a delegate, in place of P4's question dialog",
+   "solution": "overridden", "nature": "process",
+   "in_epoch": [
+    {"step_id": "2026-10-18T07:41:31Z-a", "index": 0, "chunk": "2026-10-18-one-virtual-clock", "step": "phase/plan"},
+    {"step_id": "2026-10-19T03:18:48Z-a", "index": 0, "chunk": "2026-10-19-session-recording", "step": "phase/plan"}
+   ],
+   "in_epoch_signal_correlates": [
+    {"step_id": "2026-10-18T06:08:18Z-a", "chunk": "2026-10-18-upstream-sync-determinism-and-traces", "signal": "designed-dialogue:the take at this sync, a founder fork answered by the operator as delegate through founder-forks.md"},
+    {"step_id": "2026-10-19T08:09:01Z-a", "chunk": "2026-10-19-recorded-check-replay", "signal": "designed-dialogue:committed-checks-at-rest (founder F1, one round through the overseer)"}
+   ],
+   "lookback": [
+    {"where": "escher-0.2.0 Epoch 2", "chunk": "2026-10-18-engine-debts", "step": "phase/plan", "solution": "overridden"},
+    {"where": "escher-0.2.0 Epoch 2", "chunk": "2026-10-17-upstream-sync-engine-debts", "step": "phase/plan", "solution": "workaround", "note": "AskUserQuestion unanswered 58 min through the dialog hook"},
+    {"where": "escher-0.1.0 Epoch 5", "chunk": "2026-10-10-driver-cli", "step": "phase/plan", "solution": "overridden", "note": "forks written whole to one file, answered by relay"}
+   ],
+   "threshold": "n=2 in-epoch across 2 chunks, recurring from the prior epoch (and 0.1.0 Epoch 5)",
+   "signature": "override"
+  },
+  {
+   "theme": "cites.py apply stdout sent to /dev/null against the letter; listing recovered from the trail",
+   "solution": "workaround", "nature": "process",
+   "in_epoch": [
+    {"step_id": "2026-10-19T10:47:19Z-a", "index": 0, "chunk": "2026-10-19-recorded-check-replay", "step": "wrap-session/reconcile"}
+   ],
+   "lookback": [
+    {"where": "escher-0.2.0 Epoch 2", "chunk": "2026-10-17-upstream-sync-engine-debts", "step": "wrap-session/reconcile"},
+    {"where": "escher-0.2.0 Epoch 1", "chunk": "2026-10-16-file-splits", "step": "wrap-session/reconcile"}
+   ],
+   "threshold": "n=1 in-epoch, recurring from the prior epoch (3 consecutive epochs, one per epoch); read as at threshold under 'n >= 2 recurring from a prior epoch' counted across the target and prior epoch",
+   "signature": "band-aid"
+  },
+  {
+   "theme": "master amendments routed around the amendment tools (bulk scratch-script replacements; an edit cascade.py replace cannot make; an anchored Edit that missed)",
+   "solution": "workaround", "nature": "process",
+   "in_epoch": [
+    {"step_id": "2026-10-18T09:23:19Z-a", "index": 0, "chunk": "2026-10-18-one-virtual-clock", "step": "wrap-session/reconcile"},
+    {"step_id": "2026-10-19T06:41:41Z-a", "index": 1, "chunk": "2026-10-19-session-recording", "step": "wrap-session/reconcile"}
+   ],
+   "in_epoch_friction_correlates": ["2026-10-19T10:47:19Z-d (contract.proposal-format: four leaf rows written by hand)", "2026-10-19T10:47:19Z-e (contract.cascade-miss: row written by hand)"],
+   "lookback": [
+    {"where": "escher-0.2.0 Epoch 2", "chunk": "2026-10-17-upstream-sync-engine-debts", "step": "wrap-session/reconcile", "note": "anchored Edit missed; bullet inserted by a scratch script"}
+   ],
+   "threshold": "n=2 in-epoch, recurring from the prior epoch",
+   "signature": "band-aid"
+  },
+  {
+   "theme": "classify provenance arm vs in-line edits beside a provenance parenthesis",
+   "solution": "workaround", "nature": "product-logic",
+   "in_epoch": [
+    {"step_id": "2026-10-19T06:41:41Z-a", "index": 0, "chunk": "2026-10-19-session-recording", "step": "wrap-session/reconcile"}
+   ],
+   "in_epoch_friction_correlates": ["2026-10-19T06:41:41Z-b (contract.in-pass-correction)", "2026-10-19T10:47:19Z-b (recall.corpus-recurrence)"],
+   "threshold": "below (1 fact; nature product-logic) — carried by P1 and P5 through its friction correlates",
+   "signature": null
+  },
+  {
+   "theme": "a sweep's output lacks the breakdown the report needs (cited line numbers; per-master counts) — scratch reader or hand tally",
+   "solution": "workaround", "nature": "process",
+   "in_epoch": [
+    {"step_id": "2026-10-18T06:53:28Z-a", "index": 0, "chunk": "2026-10-18-upstream-sync-determinism-and-traces", "step": "wrap-session/report"}
+   ],
+   "in_epoch_friction_correlates": ["2026-10-18T08:52:55Z-b (untyped: per-master counts hand-tallied)"],
+   "threshold": "below (1 fact in-epoch, no prior-epoch fact of the theme)",
+   "signature": null
+  },
+  {
+   "theme": "a plan name that enters stable ids",
+   "solution": "workaround", "nature": "product-logic",
+   "in_epoch": [{"step_id": "2026-10-19T08:31:04Z-a", "index": 0, "chunk": "2026-10-19-recorded-check-replay", "step": "implement/code"}],
+   "threshold": "below (1 fact, product-logic) — carried by P4 through 2026-10-19T08:31:04Z-b",
+   "signature": null
+  },
+  {
+   "theme": "an operator directive's premise contradicted by the file (cfg(unix))",
+   "solution": "overridden", "nature": "product-logic",
+   "in_epoch": [{"step_id": "2026-10-19T10:47:19Z-a", "index": 1, "chunk": "2026-10-19-recorded-check-replay", "step": "wrap-session/reconcile"}],
+   "threshold": "below (1 fact)",
+   "signature": null
+  }
+ ],
+ "signatures": {
+  "band-aid": ["cites.py stdout discarded", "amendment tools routed around"],
+  "override": ["P4 founder dialog replaced by the founder-forks file"],
+  "chronic-degrade": "no hit — 0 tooling.* frictions and 0 ok-degraded outcomes in-epoch (outcomes: 54 ok, 2 halted-resolved at reconcile)",
+  "deferred-forever": "no hit — 0 solution:deferred facts and 0 deferral-open signals in-epoch",
+  "removed-cause": "no theme — 0 removed-cause facts in-epoch"
+ }
+}

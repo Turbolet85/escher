@@ -1,0 +1,35 @@
+[
+ {
+  "id": "2026-10-18T08:52:55Z-b",
+  "chunk": "2026-10-18-one-virtual-clock",
+  "step": "wrap-session/report",
+  "type": null,
+  "what": "the Expected-amendments per-master row counts are hand-tallied from the sweep's rows (the tool prints per-pattern totals, not per-master ones); three figures were wrong at first write (harness-time architecture 6 for 5, test-plan 9 for 8; the reach line's moved-fact count 19/17 for 17/15) and were caught by a re-count against the listing before the paste",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-18T08-45-11-wrap/cascade-2026-10-18-one-virtual-clock-pre-pass.json"
+ },
+ {
+  "id": "2026-10-19T03:49:26Z-d",
+  "chunk": "2026-10-19-session-recording",
+  "step": "implement/code",
+  "type": null,
+  "what": "an inline python heredoc edit script nesting raw triple quotes ended in a SyntaxError and changed nothing; re-run unchanged from a scratchpad file by path",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": null
+ },
+ {
+  "id": "2026-10-19T08:09:01Z-b",
+  "chunk": "2026-10-19-recorded-check-replay",
+  "step": "phase/plan",
+  "type": null,
+  "what": "plan.md's Generated stamp was written as an estimated 08:20Z without reading the clock; the stamp-ahead PostToolUse hook refused it (clock 08:08:44Z) and it was corrected by one Edit",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": null
+ }
+]

@@ -1,0 +1,71 @@
+{
+ "records": 1362,
+ "unparseable": 0,
+ "malformed_ts": [],
+ "retracted_ids": [],
+ "retracted_problems": [],
+ "clause_retracted": {
+  "2026-10-06T02:22:58Z-b": [
+   "discount the clause 'focus excluded' in '(:disabled matches, focus excluded)' — focusability parses the value as a bool (element.rs:629); :disabled matching stands"
+  ],
+  "2026-10-09T21:21:27Z-b": [
+   "discount the evidence pointer '.andromeda/runs/2026-10-09T20-50-14-wrap/route-2026-10-09-audit-corrections-agent-surfaces.json' — no such file; the trail is route-no-marker.json in the same run dir. The record's finding stands."
+  ],
+  "2026-10-18T20:44:07Z-b": [
+   "evidence: .andromeda/runs/2026-10-18T20-41-41-implement/scope-2026-10-18-engine-debts.json — no such file; the scope call's record is in gate-2026-10-18-engine-debts.json"
+  ]
+ },
+ "unresolvable": [
+  [
+   "2026-10-07T04:21:25Z-a",
+   "unknown-id-or-scope",
+   "{\"id\": null, \"note\": \"in step record 2026-10-07T04:21:04Z-a (a step record, so n"
+  ]
+ ],
+ "retraction_of_retraction": [],
+ "retraction_records": [
+  {
+   "id": "2026-10-06T02:58:48Z-c",
+   "chunk": "2026-10-06-headless-stand",
+   "retracts": [
+    {
+     "id": "2026-10-06T02:22:58Z-b",
+     "scope": "clause",
+     "note": "discount the clause 'focus excluded' in '(:disabled matches, focus excluded)' — focusability parses the value as a bool (element.rs:629); :disabled matching stands"
+    }
+   ]
+  },
+  {
+   "id": "2026-10-07T04:21:25Z-a",
+   "chunk": "2026-10-07-audit-corrections",
+   "retracts": [
+    {
+     "id": null,
+     "note": "in step record 2026-10-07T04:21:04Z-a (a step record, so no record or clause scope applies), produced git-state note: discount 'add -A staged 43 paths' — the measured count is 47 files changed"
+    }
+   ]
+  },
+  {
+   "id": "2026-10-09T21:27:13Z-b",
+   "chunk": "2026-10-09-audit-corrections-agent-surfaces",
+   "retracts": [
+    {
+     "id": "2026-10-09T21:21:27Z-b",
+     "scope": "clause",
+     "note": "discount the evidence pointer '.andromeda/runs/2026-10-09T20-50-14-wrap/route-2026-10-09-audit-corrections-agent-surfaces.json' — no such file; the trail is route-no-marker.json in the same run dir. The record's finding stands."
+    }
+   ]
+  },
+  {
+   "id": "2026-10-18T20:44:29Z-a",
+   "chunk": "2026-10-18-engine-debts",
+   "retracts": [
+    {
+     "id": "2026-10-18T20:44:07Z-b",
+     "scope": "clause",
+     "note": "evidence: .andromeda/runs/2026-10-18T20-41-41-implement/scope-2026-10-18-engine-debts.json — no such file; the scope call's record is in gate-2026-10-18-engine-debts.json"
+    }
+   ]
+  }
+ ]
+}
