@@ -30,3 +30,6 @@
   At P2, an insertion before obs-plan.md:70's «(twenty measured …, where eighteen stood)» read FAIL; it was re-shaped and passed.
 - recurrence-despite-learning: host-linux «Transports (documents through the Write tool)». At implement P1 a `cat`
   heredoc to a scratch script was refused; the guard held at one re-issue.
+
+## Session End Status
+Completed normally at 2026-10-19 21:16:17

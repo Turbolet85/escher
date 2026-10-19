@@ -1,0 +1,36 @@
+# arch extract
+
+## Relevance
+relevant — the sync lands in upstream-owned engine crates (blitz-dom: `mutator.rs`, `document.rs`, `node/node.rs`, `events/keyboard.rs`, `stylo.rs`) and blitz-tests, against locked pin, changed-set, test-target and upstream-sync records
+
+## Constraints
+- Pins move only as a coupled set, and taffy is required to stay a registry version ("0.15"), so that no git dependency is left in the root manifest. Upstream's git-Taffy line is therefore a reversal of a recorded decision, never a silent take (per architecture.md §Established Decisions → [Dependency pinning]); the inherited framework baseline also names taffy "0.15" from the registry (per architecture.md §Inherited Defaults).
+- The MSRV is rust-version "1.91.0", and the MSRV job runs only `cargo build`. Whatever the take carries must build there (per architecture.md §Stack and Technologies; per architecture.md §Established Decisions → [MSRV]).
+- The changed set's sites are fixed. `add_children_to_parent` is required to mark the parent and the moved child, each only when its own in-document condition holds. `snapshot_node_and` marks only when its `ElementState` intersects `FOCUS` or `CHECKED`. Hover, layout and similar changes write nothing. A resolution of the `mutator.rs` conflict that drops or widens a site moves this contract (per architecture.md §Cross-cutting Patterns → Invalidation and state integrity). `has_changes` and `take_changed_nodes` keep their read-and-drain semantics (per architecture.md §Standard Contracts → Document core).
+- DOM mutations go through `DocumentMutator`, which flushes on Drop and requests a redraw only for in-document mutations. A resolution extends the mutator and does not reach through `DocumentMutator::doc` (per architecture.md §Conventions → DOM API patterns).
+- Incremental and non-incremental layout must stay identical after any mutation sequence, including one that restyles a focused element's ancestors (per architecture.md §Design Philosophy → One incremental pipeline, safe identities).
+- Every engine time read goes through `DocumentConfig.clock`. The document's clock and the seven 2026-10-18 engine changes (`inert`, toggle per role, `contain: paint` hit stop, `absolute_position`, password click caret, `disabled` on form controls, transformed client rect) are upstreamable merge surfaces owned by a CARRY on this entry. Each is re-read against the take, and nothing is sent (per architecture.md §Established Decisions → [Scrolling and input] detail dec-scrolling-and-input).
+- Focusability is required to keep reading `disabled` on a form control alone and `inert` by an ancestor walk, and the Tab walk, autofocus and `unkeyed_actionable` skip an inert node. Whether upstream's `set_focus_to` not-in-document refusal and its focus-within bookkeeping leave this intact is research's question (per architecture.md §Established Decisions → [DOM semantics] and its detail dec-dom-semantics).
+
+## Patterns to follow
+- A partial take is a no-commit cherry-pick of upstream's text that keeps its `(cherry picked from commit …)` trailer and leaves the merge base unmoved. The left-out commits are named for the next sync (per architecture.md §Project Intent, the `Upstream sync:` line, the record of `fb8d6c15e` / `275950dc0`).
+- Upstream test files that a sync brings in become blitz-tests targets of their own, one file per behaviour, directly under `tests/`. Upstream's `tests/all.rs` stays declared with `test = false`, which `BlitzTestsTargetsTest` pins. New checks run `for incremental in [false, true]` (per architecture.md §Conventions → Tests).
+- Interaction state that references a removed node is cleared or retargeted before the node is freed. Upstream's focus-within clear in `clear_interaction_state_for_removed_node` belongs to this discipline (per architecture.md §Cross-cutting Patterns → Invalidation and state integrity).
+- A recorded decision that a merge moves is amended in place with "since {chunk}" wording and an as-measured citation. Examples are taffy's registry move and upstream #1185 / #1189 under [DOM semantics], [HTML parsing] and [Dioxus integration] (per architecture.md §Established Decisions → [DOM semantics]).
+
+## Anti-patterns to avoid
+- Bumping one side of a coupled pin, or loosening a moved layout number, snapshot size or pixel reading to make it pass, is banned (per architecture.md §Established Decisions → [Dependency pinning]).
+- A new tracing call site in an engine crate without `#[cfg(feature = "tracing")]` and its no-op fallback, or one that prints outside escher's sink, is banned (per architecture.md §Conventions → Feature gating; per architecture.md §Cross-cutting Patterns → Logging and timing).
+- A new workspace crate, `members` entry, env var, listener or port added without registration is banned (per architecture.md §Occupied Resources → Names / Environment variables / Network ports and listeners).
+
+## Contract bindings
+- arch ↔ security: the no-git-dependency pin rule and the cargo-deny gate over `deny.toml`. The audit leg's ignored IDs come from security's §Dependencies (per architecture.md §Established Decisions → [Dependency pinning]; per architecture.md §Infrastructure Patterns → Build system).
+- arch ↔ tests: the blitz-tests target list pinned by `.github/scripts/test_blitz_tests_targets.py`, and the incremental oracle. Per-OS tallies move with any new targets (per architecture.md §Conventions → Tests).
+- arch ↔ obs: escher's sink admits engine and `escher_*` targets and drops the rest, and engine tracing is gated per call site. Upstream's delta is re-read against both (per architecture.md §Cross-cutting Patterns → Logging and timing).
+- arch ↔ a11y: focusability, the Tab walk and inert exclusion under [DOM semantics] are what `stand_keyboard` and `inert_subtree` read. The changed set drives the shell's accessibility-tree rebuild (per architecture.md §Established Decisions → [DOM semantics]; per architecture.md §Cross-cutting Patterns → Invalidation and state integrity).
+
+## Acceptance criteria contributions
+- (arch) After the take, the root manifest holds no git dependency and `Cargo.lock` resolves taffy from the registry. The only exception is a recorded founder reversal of the rule (per architecture.md §Established Decisions → [Dependency pinning]).
+- (arch) The `add_children_to_parent` resolution keeps both the changed-set marks (the parent and the moved child, each under its in-document condition) and upstream's focus-within record. It is named as the chunk's one non-additive edit, and `stand_diff` and `stand_accessibility_ids` stay green (per architecture.md §Cross-cutting Patterns → Invalidation and state integrity).
+- (arch) A take carrying `38ca4e777` registers `focus_within.rs` and `focus_redraw.rs` as blitz-tests targets of their own, with `tests/all.rs` still `test = false` (per architecture.md §Conventions → Tests).
+- (arch) At the wrap, the `Upstream sync:` line moves to the measured pin and commit, and the `:focus-within` "always match false" entry is amended wherever the take carries `38ca4e777`. No new crate, member, env var or listener is recorded (per architecture.md §Project Intent; per architecture.md §Established Decisions → [Unsupported features]; per architecture.md §Occupied Resources).

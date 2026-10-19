@@ -1,0 +1,165 @@
+[
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name IN ('set_focus_to','clear_focus','clear_interaction_state_for_removed_node','add_children_to_parent') AND callee_kind = 'fn' AND callee_file LIKE '%blitz-dom%' ORDER BY callee_name, file, line",
+"rows": 31,
+"result": [
+{
+"caller_name": "append_children",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 706
+},
+{
+"caller_name": "insert_nodes_before",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 713
+},
+{
+"caller_name": "Toolbar",
+"file": "apps/browser/src/toolbar.rs",
+"line": 59
+},
+{
+"caller_name": "changed_set_focus_move_marks_both_nodes_and_hover_marks_nothing",
+"file": "packages/blitz-dom/src/document_changed_set_tests.rs",
+"line": 141
+},
+{
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 956
+},
+{
+"caller_name": "blur",
+"file": "packages/blitz-vibey-script/src/dom/element.rs",
+"line": 1016
+},
+{
+"caller_name": "set_focus",
+"file": "packages/dioxus-native-dom/src/events.rs",
+"line": 301
+},
+{
+"caller_name": "focus_state_is_cleared_when_focused_node_is_dropped",
+"file": "tests/blitz-tests/tests/stale_interaction_state.rs",
+"line": 194
+},
+{
+"caller_name": "remove_node_from_tree",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 900
+},
+{
+"caller_name": "process_removed_subtree",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 1067
+},
+{
+"caller_name": "focus_next_node",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1745
+},
+{
+"caller_name": "focus_prev_node",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1753
+},
+{
+"caller_name": "changed_set_focus_move_marks_both_nodes_and_hover_marks_nothing",
+"file": "packages/blitz-dom/src/document_changed_set_tests.rs",
+"line": 120
+},
+{
+"caller_name": "changed_set_focus_move_marks_both_nodes_and_hover_marks_nothing",
+"file": "packages/blitz-dom/src/document_changed_set_tests.rs",
+"line": 125
+},
+{
+"caller_name": "handle_dom_event",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 141
+},
+{
+"caller_name": "handle_dom_event",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 171
+},
+{
+"caller_name": "handle_pointerdown",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 573
+},
+{
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 770
+},
+{
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 794
+},
+{
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 822
+},
+{
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 848
+},
+{
+"caller_name": "click_button",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 979
+},
+{
+"caller_name": "flush",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 963
+},
+{
+"caller_name": "focus",
+"file": "packages/blitz-vibey-script/src/dom/element.rs",
+"line": 1009
+},
+{
+"caller_name": "add_todo",
+"file": "packages/blitz-vibey-script/tests/preact.rs",
+"line": 97
+},
+{
+"caller_name": "set_focus",
+"file": "packages/dioxus-native-dom/src/events.rs",
+"line": 297
+},
+{
+"caller_name": "a_stepped_uncontrolled_range_input_reads_its_moved_value",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 663
+},
+{
+"caller_name": "a_focused_listbox_reads_focus_and_no_active_descendant",
+"file": "tests/blitz-tests/tests/accessibility_active_descendant_unread.rs",
+"line": 57
+},
+{
+"caller_name": "ime_is_disabled_when_focused_text_input_is_removed",
+"file": "tests/blitz-tests/tests/interaction_state_teardown.rs",
+"line": 200
+},
+{
+"caller_name": "focus",
+"file": "tests/blitz-tests/tests/range_input_interaction.rs",
+"line": 59
+},
+{
+"caller_name": "focus_state_is_cleared_when_focused_node_is_dropped",
+"file": "tests/blitz-tests/tests/stale_interaction_state.rs",
+"line": 189
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

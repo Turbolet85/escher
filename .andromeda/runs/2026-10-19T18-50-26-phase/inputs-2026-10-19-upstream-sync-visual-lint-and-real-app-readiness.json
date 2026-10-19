@@ -1,0 +1,256 @@
+[
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "0c159d7d",
+"ts": "2026-10-19T18:52:15Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+"--message-file",
+".andromeda/runs/2026-10-19T18-50-26-phase/relay-1.md",
+"--origin",
+"the orchestrator, git and crates.io measurement on the dev host, 2026-10-19T18:51Z",
+"--kind",
+"relay",
+"--why",
+"upstream/main 17de049b1, 7 commits past 23b9b26a9 (four Taffy-main bumps, the cursor fix already taken, :focus-within, a WPT pin bump); one conflict in mutator.rs; keyboard_compat.rs not retired; no Taffy release past 0.15.0",
+"--step",
+"phase:P1",
+"--run-dir",
+".andromeda/runs/2026-10-19T18-50-26-phase",
+"--marker",
+"2026-10-19-upstream-sync-visual-lint-and-real-app-readiness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I1 · copy message · message: the orchestrator, git and crates.io measurement on the dev host, 2026-10-19T18:51Z",
+"cite: inputs#I1"
+],
+"stderr": null,
+"wrote": [
+"inputs/.gitattributes",
+"inputs/I1-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I1",
+"kind": "relay",
+"repo": null,
+"path": "message: the orchestrator, git and crates.io measurement on the dev host, 2026-10-19T18:51Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "749949535aa57443aedc60094d235ccad6184748bf5630266066079ce8e34933",
+"copy": "I1-relay-1.md.txt",
+"link": false,
+"read_at": "2026-10-19T18:52:15Z",
+"step": "phase:P1",
+"why": "upstream/main 17de049b1, 7 commits past 23b9b26a9 (four Taffy-main bumps, the cursor fix already taken, :focus-within, a WPT pin bump); one conflict in mutator.rs; keyboard_compat.rs not retired; no Taffy release past 0.15.0"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "0c159d7d",
+"ts": "2026-10-19T19:04:16Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+"--message-file",
+".andromeda/runs/2026-10-19T18-50-26-phase/relay-2.md",
+"--origin",
+"the operator, P4 question dialog in this /andromeda-phase session, 2026-10-19T19:05Z",
+"--kind",
+"relay",
+"--why",
+"F1 pin shape answered: cherry-pick 38ca4e777 and 17de049b1 alone, Taffy registry 0.15 kept, merge base unmoved; the operator as delegate, so PROVISIONAL",
+"--step",
+"phase:P4",
+"--run-dir",
+".andromeda/runs/2026-10-19T18-50-26-phase",
+"--marker",
+"2026-10-19-upstream-sync-visual-lint-and-real-app-readiness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I2 · copy message · message: the operator, P4 question dialog in this /andromeda-phase session, 2026-10-19T19:05Z",
+"cite: inputs#I2"
+],
+"stderr": null,
+"wrote": [
+"inputs/I2-relay-2.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I2",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, P4 question dialog in this /andromeda-phase session, 2026-10-19T19:05Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "2d060216122a4d5fd62d96e7b32fd1cc770c661176f6d5085746ade0185ac406",
+"copy": "I2-relay-2.md.txt",
+"link": false,
+"read_at": "2026-10-19T19:04:16Z",
+"step": "phase:P4",
+"why": "F1 pin shape answered: cherry-pick 38ca4e777 and 17de049b1 alone, Taffy registry 0.15 kept, merge base unmoved; the operator as delegate, so PROVISIONAL"
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "0c159d7d",
+"ts": "2026-10-19T19:11:16Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+"--run-dir",
+".andromeda/runs/2026-10-19T18-50-26-phase",
+"--marker",
+"2026-10-19-upstream-sync-visual-lint-and-real-app-readiness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the orchestrator, git and crates.io measurement on the dev host, 2026-10-19T18:51Z",
+"I1 cited scope.md:8 · scope.md:11 · scope.md:12 · scope.md:13 · scope.md:18 · scope.md:19 · scope.md:19 · scope.md:24 · scope.md:27 · scope.md:28 · scope.md:29 · scope.md:30 · scope.md:35 · scope.md:40 · research.md:7 · research.md:11 · plan.md:15 · plan.md:49 · plan.md:51 · plan.md:68 · plan.md:361 · plan.md:376",
+"I2 n/a — a message has no live source · copy message · message: the operator, P4 question dialog in this /andromeda-phase session, 2026-10-19T19:05Z",
+"I2 cited plan.md:15 · plan.md:68 · plan.md:126 (in fence) · plan.md:132 (in fence) · plan.md:347 · plan.md:361 · plan.md:362 · plan.md:366 · plan.md:384",
+"UNPARSED: inputs#I3 — no entry (scope.md:30)",
+"UNPARSED: inputs#I4 — no entry (scope.md:30)",
+"UNPARSED: inputs#I6 — no entry (scope.md:29)",
+"UNPARSED: inputs#I7 — no entry (scope.md:29)",
+"inputs: 2 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 2 · uncited 0 · unparsed 4"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 2,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 2
+},
+"uncited": 0,
+"unparsed": 4
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "0c159d7d",
+"ts": "2026-10-19T19:11:32Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+"--run-dir",
+".andromeda/runs/2026-10-19T18-50-26-phase",
+"--marker",
+"2026-10-19-upstream-sync-visual-lint-and-real-app-readiness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the orchestrator, git and crates.io measurement on the dev host, 2026-10-19T18:51Z",
+"I1 cited scope.md:8 · scope.md:11 · scope.md:12 · scope.md:13 · scope.md:18 · scope.md:19 · scope.md:19 · scope.md:24 · scope.md:27 · scope.md:28 · scope.md:29 · scope.md:30 · scope.md:35 · scope.md:40 · research.md:7 · research.md:11 · plan.md:15 · plan.md:49 · plan.md:51 · plan.md:68 · plan.md:361 · plan.md:376",
+"I2 n/a — a message has no live source · copy message · message: the operator, P4 question dialog in this /andromeda-phase session, 2026-10-19T19:05Z",
+"I2 cited plan.md:15 · plan.md:68 · plan.md:126 (in fence) · plan.md:132 (in fence) · plan.md:347 · plan.md:361 · plan.md:362 · plan.md:366 · plan.md:384",
+"inputs: 2 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 2 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 2,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 2
+},
+"uncited": 0,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "0c159d7d",
+"ts": "2026-10-19T19:15:47Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+"--message-file",
+".andromeda/runs/2026-10-19T18-50-26-phase/relay-3.md",
+"--origin",
+"the operator, P5 review in this /andromeda-phase session, 2026-10-19T19:16Z",
+"--kind",
+"relay",
+"--why",
+"the operator approved .andromeda/runs/2026-10-19T18-50-26-phase/p5-card-1.md with yes, its own word, including Beyond the plan rows 1-5 (CARRY 1-4 forward to the polish-and-ship sync; the take PROVISIONAL until the founder rules)",
+"--step",
+"phase:P5",
+"--run-dir",
+".andromeda/runs/2026-10-19T18-50-26-phase",
+"--marker",
+"2026-10-19-upstream-sync-visual-lint-and-real-app-readiness"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I3 · copy message · message: the operator, P5 review in this /andromeda-phase session, 2026-10-19T19:16Z",
+"cite: inputs#I3"
+],
+"stderr": null,
+"wrote": [
+"inputs/I3-relay-3.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I3",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, P5 review in this /andromeda-phase session, 2026-10-19T19:16Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "450ed9922318d02053bab81107d510a9f905fd588caf1f2478869e7cc842b01a",
+"copy": "I3-relay-3.md.txt",
+"link": false,
+"read_at": "2026-10-19T19:15:47Z",
+"step": "phase:P5",
+"why": "the operator approved .andromeda/runs/2026-10-19T18-50-26-phase/p5-card-1.md with yes, its own word, including Beyond the plan rows 1-5 (CARRY 1-4 forward to the polish-and-ship sync; the take PROVISIONAL until the founder rules)"
+}
+}
+]
