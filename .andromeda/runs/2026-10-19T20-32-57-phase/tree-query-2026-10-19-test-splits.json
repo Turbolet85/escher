@@ -1,0 +1,46 @@
+[
+{
+"sql": "SELECT callee_name, callee_file, file, line FROM refs WHERE callee_name IN ('recorded_needles', 'host_flow', 'mcp_flow') ORDER BY callee_name, file, line",
+"rows": 6,
+"result": [
+{
+"callee_name": "host_flow",
+"callee_file": "examples/seven_guis/tests/host_log.rs",
+"file": "examples/seven_guis/tests/host_log.rs",
+"line": 26
+},
+{
+"callee_name": "host_flow",
+"callee_file": "examples/seven_guis/tests/host_log.rs",
+"file": "examples/seven_guis/tests/host_log.rs",
+"line": 32
+},
+{
+"callee_name": "mcp_flow",
+"callee_file": "examples/seven_guis/tests/mcp_log.rs",
+"file": "examples/seven_guis/tests/mcp_log.rs",
+"line": 52
+},
+{
+"callee_name": "mcp_flow",
+"callee_file": "examples/seven_guis/tests/mcp_log.rs",
+"file": "examples/seven_guis/tests/mcp_log.rs",
+"line": 61
+},
+{
+"callee_name": "recorded_needles",
+"callee_file": "examples/seven_guis/tests/host_log.rs",
+"file": "examples/seven_guis/tests/host_log.rs",
+"line": 305
+},
+{
+"callee_name": "recorded_needles",
+"callee_file": "examples/seven_guis/tests/host_log.rs",
+"file": "examples/seven_guis/tests/mcp_log.rs",
+"line": 324
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

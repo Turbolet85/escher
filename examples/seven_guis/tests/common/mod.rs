@@ -2,8 +2,10 @@
 //! target's temp dir, the clear of what a killed earlier run left there, a guard that kills
 //! and reaps a host a failing check still holds, one bounded run of the binary as a client with
 //! both its streams drained, a child held with a piped stdin that is spoken to one line at a
-//! time and answers one line at a time, and the readers of an answer's one line. A check
-//! declares `mod common;` and reads what it needs. This module holds no test.
+//! time and answers one line at a time, the readers of an answer's one line, and what the two
+//! log checks read stderr with: the CRUD screen's id and name needles, the service-name stamp,
+//! the needle and occurrence counts and a recording's needles. A check declares `mod common;`
+//! and reads what it needs. This module holds no test.
 
 #![allow(dead_code)]
 
@@ -364,4 +366,117 @@ impl Drop for Started {
         }
         clear(&self.dir);
     }
+}
+
+/// What a log check looks for in what the binary wrote to stderr, read from the CRUD screen the
+/// binary serves, booted here in process.
+pub struct Needles {
+    pub ids: Vec<String>,
+    pub names: Vec<String>,
+}
+
+/// Reads the CRUD screen's needles. An id is a needle when it is an author key (it holds no `/`)
+/// and holds a `-`: that leaves out `main`, an author key that is also an ordinary word, so a hit
+/// on it could not be attributed. A name is a needle when it is a row's, a label's or the list's
+/// `aria-label`. Asserts that enough of each were read and that none is empty or a part of
+/// `sentinel`.
+#[track_caller]
+pub fn stand_needles(sentinel: &str) -> Needles {
+    use seven_guis::stand::{self, LeanTask};
+
+    let harness = stand::boot(LeanTask::Crud, stand::options(true));
+    let ids: Vec<String> = harness
+        .doc
+        .element_ids()
+        .into_iter()
+        .map(|(_, id)| id)
+        .filter(|id| !id.contains('/') && id.contains('-'))
+        .collect();
+    let text_of = |selector: &str| -> Vec<String> {
+        let nodes = harness.query_all(selector);
+        let doc = harness.base();
+        nodes
+            .into_iter()
+            .map(|node| doc.get_node(node).expect("a queried node exists"))
+            .map(|node| node.text_content())
+            .collect()
+    };
+    let rows = text_of("#crud-list > div");
+    let list_name = harness.attr("#crud-list", "aria-label");
+    assert!(list_name.is_some(), "the list's name was read");
+    let names: Vec<String> = rows
+        .iter()
+        .cloned()
+        .chain(text_of("label"))
+        .chain(list_name)
+        .collect();
+    assert!(ids.len() >= 15, "{} id needles were read", ids.len());
+    assert!(rows.len() >= 3, "{} row names were read", rows.len());
+    assert!(
+        ids.iter().chain(&names).all(|needle| !needle.is_empty()
+            && !needle.contains(sentinel)
+            && !sentinel.contains(needle.as_str())),
+        "no needle is empty or a part of the sentinel"
+    );
+    Needles { ids, names }
+}
+
+/// Asserts that the sink's install line reached stderr and that every line carries the service
+/// name, and returns how many lines stderr holds.
+#[track_caller]
+pub fn stamped_lines(stderr: &str) -> usize {
+    let lines = stderr.lines().count();
+    let unstamped = stderr
+        .lines()
+        .filter(|line| !line.contains("service.name=seven_guis"))
+        .count();
+    assert!(lines >= 1, "the sink's install line reaches stderr");
+    assert_eq!(
+        unstamped, 0,
+        "{unstamped} of {lines} stderr lines carry no service name"
+    );
+    lines
+}
+
+/// How many of `needles` a captured stderr holds.
+pub fn found(stderr: &str, needles: &[String]) -> usize {
+    needles
+        .iter()
+        .filter(|needle| stderr.contains(needle.as_str()))
+        .count()
+}
+
+/// How many times a captured stderr holds any of `needles`, each occurrence counted.
+pub fn occurrences(stderr: &str, needles: &[String]) -> usize {
+    needles
+        .iter()
+        .map(|needle| stderr.matches(needle.as_str()).count())
+        .sum()
+}
+
+/// What a recording session leaves for the log checks to look for: the recording directory's
+/// name and each digest its one check holds, as the check writes them.
+#[cfg(unix)]
+pub fn recorded_needles(kept: &Path) -> Vec<String> {
+    let names: Vec<_> = fs::read_dir(kept)
+        .expect("the recording directory is listed")
+        .map(|entry| entry.expect("an entry").file_name())
+        .collect();
+    assert!(names == ["check-1.json"], "the session kept one check");
+    let bytes = fs::read(kept.join("check-1.json")).expect("the check is read");
+    let check = escher_driver::Check::from_bytes(&bytes).expect("the check reads back");
+    assert!(!check.steps().is_empty(), "the check holds the calls");
+    let dir_name = kept
+        .file_name()
+        .and_then(|name| name.to_str())
+        .expect("the directory's name is text")
+        .to_string();
+    std::iter::once(dir_name)
+        .chain(
+            check
+                .steps()
+                .iter()
+                .map(|step| format!("{:016x}", step.digest())),
+        )
+        .collect()
 }

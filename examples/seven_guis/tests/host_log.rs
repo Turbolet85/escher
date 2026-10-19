@@ -33,33 +33,6 @@ fn a_recording_host_logs_nothing_of_its_check_at_trace() {
     host_flow("hl-rec", true);
 }
 
-/// What a recording session leaves for the log checks to look for: the recording directory's
-/// name and each digest its one check holds, as the check writes them.
-#[cfg(unix)]
-fn recorded_needles(kept: &std::path::Path) -> Vec<String> {
-    let names: Vec<_> = std::fs::read_dir(kept)
-        .expect("the recording directory is listed")
-        .map(|entry| entry.expect("an entry").file_name())
-        .collect();
-    assert!(names == ["check-1.json"], "the session kept one check");
-    let bytes = std::fs::read(kept.join("check-1.json")).expect("the check is read");
-    let check = escher_driver::Check::from_bytes(&bytes).expect("the check reads back");
-    assert!(!check.steps().is_empty(), "the check holds the calls");
-    let dir_name = kept
-        .file_name()
-        .and_then(|name| name.to_str())
-        .expect("the directory's name is text")
-        .to_string();
-    std::iter::once(dir_name)
-        .chain(
-            check
-                .steps()
-                .iter()
-                .map(|step| format!("{:016x}", step.digest())),
-        )
-        .collect()
-}
-
 /// The host's flow at `RUST_LOG=trace` in the state directory `name`, keeping its session as a
 /// check beside it when `record` is set.
 #[cfg(unix)]
@@ -68,58 +41,20 @@ fn host_flow(name: &str, record: bool) {
     use std::thread;
     use std::time::{Duration, Instant};
 
-    use common::{Host, clear, drain, state_dir};
+    use common::{
+        Host, Needles, clear, drain, found, occurrences, recorded_needles, stamped_lines,
+        stand_needles, state_dir,
+    };
     use escher_driver::{ArgValue, Call, attach, call, stop};
-    use seven_guis::stand::{self, LeanTask};
 
     const READY: Duration = Duration::from_secs(60);
     const EXIT: Duration = Duration::from_secs(10);
 
-    // The needles are read from the screen the host serves, booted here in process. An id is a
-    // needle when it is an author key (it holds no `/`) and holds a `-`: that leaves out `main`,
-    // an author key that is also an ordinary word, so a hit on it could not be attributed.
-    let harness = stand::boot(LeanTask::Crud, stand::options(true));
-    let ids: Vec<String> = harness
-        .doc
-        .element_ids()
-        .into_iter()
-        .map(|(_, id)| id)
-        .filter(|id| !id.contains('/') && id.contains('-'))
-        .collect();
-    let text_of = |selector: &str| -> Vec<String> {
-        let nodes = harness.query_all(selector);
-        let doc = harness.base();
-        nodes
-            .into_iter()
-            .map(|node| doc.get_node(node).expect("a queried node exists"))
-            .map(|node| node.text_content())
-            .collect()
-    };
-    let rows = text_of("#crud-list > div");
-    let list_name = harness.attr("#crud-list", "aria-label");
-    assert!(list_name.is_some(), "the list's name was read");
-    let names: Vec<String> = rows
-        .iter()
-        .cloned()
-        .chain(text_of("label"))
-        .chain(list_name)
-        .collect();
-
+    // The needles are read from the screen the host serves.
+    let Needles { ids, names } = stand_needles(SENTINEL);
     assert!(
         ids.iter().any(|id| id == "crud-surname"),
         "the screen's author keys are among the id needles"
-    );
-    assert!(ids.len() >= 15, "{} id needles were read", ids.len());
-    assert!(rows.len() >= 3, "{} row names were read", rows.len());
-    assert!(
-        ids.iter().chain(&names).all(|needle| !needle.is_empty()),
-        "no needle is empty"
-    );
-    assert!(
-        ids.iter()
-            .chain(&names)
-            .all(|needle| !needle.contains(SENTINEL) && !SENTINEL.contains(needle.as_str())),
-        "the sentinel is no part of a needle"
     );
 
     let dir = state_dir(name);
@@ -254,16 +189,7 @@ fn host_flow(name: &str, record: bool) {
     );
     assert!(!dir.exists(), "stop leaves no state directory");
 
-    let lines = stderr.lines().count();
-    let unstamped = stderr
-        .lines()
-        .filter(|line| !line.contains("service.name=seven_guis"))
-        .count();
-    assert!(lines >= 1, "the sink's install line reaches stderr");
-    assert_eq!(
-        unstamped, 0,
-        "{unstamped} of {lines} stderr lines carry no service name"
-    );
+    let lines = stamped_lines(&stderr);
 
     // One line per call the host ran: the command span, closed, under the driver's target.
     let command_spans = stderr
@@ -277,18 +203,9 @@ fn host_flow(name: &str, record: bool) {
         calls.len()
     );
 
-    let found = |needles: &[String]| {
-        needles
-            .iter()
-            .filter(|needle| stderr.contains(needle.as_str()))
-            .count()
-    };
-    let (ids_found, names_found) = (found(&ids), found(&names));
+    let (ids_found, names_found) = (found(&stderr, &ids), found(&stderr, &names));
     let sentinels = stderr.matches(SENTINEL).count();
-    let image_bytes: usize = images
-        .iter()
-        .map(|image| stderr.matches(image.as_str()).count())
-        .sum();
+    let image_bytes = occurrences(&stderr, &images);
     assert!(
         ids_found == 0 && names_found == 0 && sentinels == 0 && image_bytes == 0,
         "{ids_found} of {} id needles, {names_found} of {} name needles, {sentinels} \
@@ -304,7 +221,7 @@ fn host_flow(name: &str, record: bool) {
     );
     if record {
         let recorded = recorded_needles(&kept);
-        let recorded_found = found(&recorded);
+        let recorded_found = found(&stderr, &recorded);
         assert!(
             recorded_found == 0,
             "{recorded_found} of {} recording needles found in {lines} stderr lines",

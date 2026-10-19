@@ -1,0 +1,86 @@
+[
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "0c159d7d",
+"ts": "2026-10-19T20:46:27Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-test-splits",
+"--run-dir",
+".andromeda/runs/2026-10-19T20-32-57-phase",
+"--marker",
+"2026-10-19-test-splits"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"inputs: absent — no external input snapshotted"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 0,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.2",
+"sha8": "0c159d7d",
+"ts": "2026-10-19T20:50:41Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-test-splits",
+"--message-file",
+".andromeda/runs/2026-10-19T20-32-57-phase/relay-1.md",
+"--origin",
+"the operator, in this session, 2026-10-19 20:50Z",
+"--kind",
+"relay",
+"--why",
+"the operator's own word yes on .andromeda/runs/2026-10-19T20-32-57-phase/p5-card-1.md, approving the plan and its Beyond-the-plan row 1 (the audit's other three directions left unowned)",
+"--step",
+"phase:P5",
+"--run-dir",
+".andromeda/runs/2026-10-19T20-32-57-phase",
+"--marker",
+"2026-10-19-test-splits"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I1 · copy message · message: the operator, in this session, 2026-10-19 20:50Z",
+"cite: inputs#I1"
+],
+"stderr": null,
+"wrote": [
+"inputs/.gitattributes",
+"inputs/I1-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I1",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, in this session, 2026-10-19 20:50Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "fe1b80c045a0ca50cfb1ee4bbad63e38686ea4c252d7a2c19146863887119f50",
+"copy": "I1-relay-1.md.txt",
+"link": false,
+"read_at": "2026-10-19T20:50:41Z",
+"step": "phase:P5",
+"why": "the operator's own word yes on .andromeda/runs/2026-10-19T20-32-57-phase/p5-card-1.md, approving the plan and its Beyond-the-plan row 1 (the audit's other three directions left unowned)"
+}
+}
+]

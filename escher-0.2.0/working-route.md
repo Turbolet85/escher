@@ -31,7 +31,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
 ### Epoch 4 — Visual lint and real-app readiness
 [2026-10-19-upstream-sync-visual-lint-and-real-app-readiness] Upstream sync ahead of visual lint and real-app readiness — upstream/main merged, changes mostly additive; CI and audit green, per-OS tallies re-read, sink allowlist re-checked
    ↓
-Test splits — inline test modules out of escher-driver's `cli.rs` and `recording.rs`; `host_log`/`mcp_log`'s shared fragment stated once; behaviour unchanged (audit 2026-10-19T11-16-25-code-audit M1, M2)
+[2026-10-19-test-splits] Test splits — inline test modules out of escher-driver's `cli.rs` and `recording.rs`; `host_log`/`mcp_log`'s shared fragment stated once; behaviour unchanged (audit 2026-10-19T11-16-25-code-audit M1, M2)
    ↓
 Shared fixtures — fixture pages beside the stand and one held network stand-in, stated once in blitz-tests' shared modules, run through agent-run
    ↓

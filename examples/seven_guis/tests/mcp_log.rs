@@ -17,8 +17,7 @@ mod common;
 
 use std::process::Command;
 
-use common::{Speaker, string_at};
-use seven_guis::stand::{self, LeanTask};
+use common::{Needles, Speaker, found, occurrences, stamped_lines, stand_needles, string_at};
 
 const BINARY: &str = env!("CARGO_BIN_EXE_escher-session");
 
@@ -63,76 +62,15 @@ fn a_recording_mcp_role_logs_nothing_of_its_checks_at_trace() {
     let _ = std::fs::remove_dir_all(&kept);
 }
 
-/// What a recording session leaves for the log checks to look for: the recording directory's
-/// name and each digest its one check holds, as the check writes them.
-#[cfg(unix)]
-fn recorded_needles(kept: &std::path::Path) -> Vec<String> {
-    let names: Vec<_> = std::fs::read_dir(kept)
-        .expect("the recording directory is listed")
-        .map(|entry| entry.expect("an entry").file_name())
-        .collect();
-    assert!(names == ["check-1.json"], "the session kept one check");
-    let bytes = std::fs::read(kept.join("check-1.json")).expect("the check is read");
-    let check = escher_driver::Check::from_bytes(&bytes).expect("the check reads back");
-    assert!(!check.steps().is_empty(), "the check holds the calls");
-    let dir_name = kept
-        .file_name()
-        .and_then(|name| name.to_str())
-        .expect("the directory's name is text")
-        .to_string();
-    std::iter::once(dir_name)
-        .chain(
-            check
-                .steps()
-                .iter()
-                .map(|step| format!("{:016x}", step.digest())),
-        )
-        .collect()
-}
-
 /// The role's CRUD flow at `RUST_LOG=trace`, keeping its session as a check in `record` when
 /// one is named.
 fn mcp_flow(record: Option<&std::path::Path>) {
-    // The needles are read from the screen the role serves, booted here in process, as the
-    // host's own log check reads them. An id is a needle when it is an author key (it holds no
-    // `/`) and holds a `-`: that leaves out `main`, an ordinary word.
-    let harness = stand::boot(LeanTask::Crud, stand::options(true));
-    let ids: Vec<String> = harness
-        .doc
-        .element_ids()
-        .into_iter()
-        .map(|(_, id)| id)
-        .filter(|id| !id.contains('/') && id.contains('-'))
-        .collect();
-    let text_of = |selector: &str| -> Vec<String> {
-        let nodes = harness.query_all(selector);
-        let doc = harness.base();
-        nodes
-            .into_iter()
-            .map(|node| doc.get_node(node).expect("a queried node exists"))
-            .map(|node| node.text_content())
-            .collect()
-    };
-    let rows = text_of("#crud-list > div");
-    let list_name = harness.attr("#crud-list", "aria-label");
-    assert!(list_name.is_some(), "the list's name was read");
-    let names: Vec<String> = rows
-        .iter()
-        .cloned()
-        .chain(text_of("label"))
-        .chain(list_name)
-        .collect();
+    // The needles are read from the screen the role serves, as the host's own log check reads
+    // them.
+    let Needles { ids, names } = stand_needles(SENTINEL);
     assert!(
         ids.iter().any(|id| id == "crud-name"),
         "the screen's author keys are among the id needles"
-    );
-    assert!(ids.len() >= 15, "{} id needles were read", ids.len());
-    assert!(rows.len() >= 3, "{} row names were read", rows.len());
-    assert!(
-        ids.iter().chain(&names).all(|needle| !needle.is_empty()
-            && !needle.contains(SENTINEL)
-            && !SENTINEL.contains(needle.as_str())),
-        "no needle is empty or a part of the sentinel"
     );
 
     let mut command = Command::new(BINARY);
@@ -234,16 +172,7 @@ fn mcp_flow(record: Option<&std::path::Path>) {
     );
 
     let stderr = String::from_utf8_lossy(&spoke.stderr);
-    let lines = stderr.lines().count();
-    let unstamped = stderr
-        .lines()
-        .filter(|line| !line.contains("service.name=seven_guis"))
-        .count();
-    assert!(lines >= 1, "the sink's install line reaches stderr");
-    assert_eq!(
-        unstamped, 0,
-        "{unstamped} of {lines} stderr lines carry no service name"
-    );
+    let lines = stamped_lines(&stderr);
 
     let span_lines = |span: &str| -> Vec<&str> {
         stderr
@@ -298,19 +227,10 @@ fn mcp_flow(record: Option<&std::path::Path>) {
         "{commands} command lines for {instance_calls} calls run on the held instance"
     );
 
-    let found = |needles: &[String]| {
-        needles
-            .iter()
-            .filter(|needle| stderr.contains(needle.as_str()))
-            .count()
-    };
-    let (ids_found, names_found) = (found(&ids), found(&names));
+    let (ids_found, names_found) = (found(&stderr, &ids), found(&stderr, &names));
     let sentinels = stderr.matches(SENTINEL).count();
     let nobodies = stderr.matches(NOBODY).count();
-    let image_bytes: usize = images
-        .iter()
-        .map(|image| stderr.matches(image.as_str()).count())
-        .sum();
+    let image_bytes = occurrences(&stderr, &images);
     assert!(
         ids_found == 0 && names_found == 0 && sentinels == 0 && nobodies == 0 && image_bytes == 0,
         "{ids_found} of {} id needles, {names_found} of {} name needles, {sentinels} \
@@ -322,8 +242,8 @@ fn mcp_flow(record: Option<&std::path::Path>) {
 
     #[cfg(unix)]
     if let Some(kept) = record {
-        let recorded = recorded_needles(kept);
-        let recorded_found = found(&recorded);
+        let recorded = common::recorded_needles(kept);
+        let recorded_found = found(&stderr, &recorded);
         assert!(
             recorded_found == 0,
             "{recorded_found} of {} recording needles found in {lines} stderr lines",
