@@ -3,6 +3,9 @@
 # command line and one through the `mcp` role, each kept by `--record`, then moved into the
 # output directory as `counter-cli.json` and `counter-mcp.json`.
 #
+# Neither session takes a `screenshot`: a kept step's digest hashes a shot's PNG, and the PNG's
+# bytes differ by OS, so a committed check of one would hold on one OS alone.
+#
 # To re-record after a deliberate change to the Counter, from the repository root:
 #   cargo build --locked -p seven_guis --bin escher-session
 #   sh examples/seven_guis/tests/flows/record_checks.sh target/debug/escher-session tests/blitz-tests/checks
@@ -33,9 +36,8 @@ mkdir -m 700 "$scratch" || fail 1
 "$bin" advance --ms 600 --session "$scratch/s" >/dev/null || fail 5
 "$bin" click --id counter-increment --session "$scratch/s" >/dev/null || fail 6
 "$bin" snapshot --session "$scratch/s" >/dev/null || fail 7
-"$bin" screenshot --session "$scratch/s" >/dev/null || fail 8
-"$bin" stop --session "$scratch/s" >/dev/null || fail 9
-mv "$scratch/c/check-1.json" "$out/counter-cli.json" || fail 10
+"$bin" stop --session "$scratch/s" >/dev/null || fail 8
+mv "$scratch/c/check-1.json" "$out/counter-cli.json" || fail 9
 
 # The `mcp` role: the second Tab focuses the Counter's button, which Enter and Space press.
 replies=$(printf '%s\n' \
@@ -49,16 +51,15 @@ replies=$(printf '%s\n' \
     '{"jsonrpc":"2.0","id":7,"method":"tools/call","params":{"name":"press","arguments":{"key":"space"}}}' \
     '{"jsonrpc":"2.0","id":8,"method":"tools/call","params":{"name":"advance","arguments":{"ms":100}}}' \
     '{"jsonrpc":"2.0","id":9,"method":"tools/call","params":{"name":"scroll","arguments":{"id":"counter-increment"}}}' \
-    '{"jsonrpc":"2.0","id":10,"method":"tools/call","params":{"name":"screenshot","arguments":{}}}' \
-    '{"jsonrpc":"2.0","id":11,"method":"tools/call","params":{"name":"snapshot","arguments":{}}}' \
-    '{"jsonrpc":"2.0","id":12,"method":"tools/call","params":{"name":"stop","arguments":{}}}' |
-    "$bin" mcp --record "$scratch/m") || fail 11
+    '{"jsonrpc":"2.0","id":10,"method":"tools/call","params":{"name":"snapshot","arguments":{}}}' \
+    '{"jsonrpc":"2.0","id":11,"method":"tools/call","params":{"name":"stop","arguments":{}}}' |
+    "$bin" mcp --record "$scratch/m") || fail 10
 case $replies in
-    *'"isError":true'* | *'"error":'*) fail 12 ;;
-    *'"id":12,"result":'*) ;;
-    *) fail 12 ;;
+    *'"isError":true'* | *'"error":'*) fail 11 ;;
+    *'"id":11,"result":'*) ;;
+    *) fail 11 ;;
 esac
-mv "$scratch/m/check-1.json" "$out/counter-mcp.json" || fail 13
+mv "$scratch/m/check-1.json" "$out/counter-mcp.json" || fail 12
 
 rm -rf "$scratch"
 exit 0

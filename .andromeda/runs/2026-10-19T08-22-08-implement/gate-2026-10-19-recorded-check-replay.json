@@ -567,5 +567,336 @@
 "running": []
 }
 }
+},
+{
+"tool": "gate",
+"v": "1.21",
+"sha8": "e2f3ad5e",
+"ts": "2026-10-19T09:06:05Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.2.0/chunks/2026-10-19-recorded-check-replay/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-19T08-22-08-implement",
+"--marker",
+"2026-10-19-recorded-check-replay",
+"--entry",
+"7"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-19-recorded-check-replay · entries 16",
+"logs $TMPDIR/andromeda-gate/2026-10-19-recorded-check-replay/implement-2026-10-19T08-22-08 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 1 · unmapped 3",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L184-186: No boot smoke and no live leg: - every check boots the stand in process, or holds the bina… (172 chars)",
+"prose L188-189: The windows-gnu entry is the operator's directive (inputs#I1). A C-dependency failure in i… (159 chars)",
+"  7 build       green · exit 0 · 0.74s · 662 B → 7.2.log · cargo check --tests --locked --target x86_64-pc-windows-gn… (105 chars)",
+"not run — excluded · 15: 1-6,8-16",
+"entries 16 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 15"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-19-recorded-check-replay",
+"plan": "./escher-0.2.0/chunks/2026-10-19-recorded-check-replay/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-19-recorded-check-replay/implement-2026-10-19T08-22-08",
+"delta": {
+"docs": [
+"escher-0.2.0/chunks/2026-10-19-recorded-check-replay/evidence/operator-pass.md"
+]
+},
+"unmapped": [
+"examples/seven_guis/tests/flows/record_checks.sh",
+"tests/blitz-tests/checks/counter-cli.json",
+"tests/blitz-tests/checks/counter-mcp.json"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 4,
+"problem": null
+},
+"prose": [
+{
+"from": 184,
+"to": 186,
+"text": "No boot smoke and no live leg: - every check boots the stand in process, or holds the binary as a child behind a guard (test-plan §2); - the CI read is the operator pass's."
+},
+{
+"from": 188,
+"to": 189,
+"text": "The windows-gnu entry is the operator's directive (inputs#I1). A C-dependency failure in it is a recorded limit, not a red. Its reading is recorded either way."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked",
+"run_sha8": "5f0bb953",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_replay --test stand_session_recording",
+"run_sha8": "34c0d4ba",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked",
+"run_sha8": "e8935269",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "awk '/println!|eprintln!|print!|dbg!|std::env|env::var|escher_telemetry|tracing_subscriber|UnixListener|TcpListener|bind\\(|tracing::/ {n++} END {print n+0}' packages/escher-driver/src/recording.rs packages/escher-driver/src/replay.rs tests/blitz-tests/tests/stand_replay.rs",
+"run_sha8": "e4269832",
+"expect": [
+"exit 0",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "git diff --quiet 6fd1d3daf6a111c49d478967611b1014359eae81 -- examples/seven_guis/src/tasks/ examples/seven_guis/src/stand.rs examples/seven_guis/src/session_host.rs",
+"run_sha8": "41e7b346",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "git diff -U0 6fd1d3daf6a111c49d478967611b1014359eae81 -- examples/seven_guis/src/app.rs | command grep -c '^[-+][^-+]' ",
+"run_sha8": "0fca9a57",
+"expect": [
+"exit 0",
+"last line 3"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 7,
+"role": "build",
+"run": "cargo check --tests --locked --target x86_64-pc-windows-gnu -p escher-driver -p seven_guis -p blitz-tests",
+"run_sha8": "8f17dbd1",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-19-recorded-check-replay/implement-2026-10-19T08-22-08/7.2.log",
+"bytes": 662,
+"log_sha8": "b9fbe0b6",
+"exit": 0,
+"seconds": 0.74,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh stand-repeat",
+"run_sha8": "4a77feee",
+"expect": [
+"exit 0",
+"contains stand-repeat: 3 of 3 rounds green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh coverage",
+"run_sha8": "8c67d572",
+"expect": [
+"exit 0",
+"contains coverage floor: 3 of 3 crates at or above their floors"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.2.0",
+"run_sha8": "ee10eab9",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+]
+}
 }
 ]
