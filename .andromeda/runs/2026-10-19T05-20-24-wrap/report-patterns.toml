@@ -1,0 +1,71 @@
+[[pattern]]
+id = 'serr'
+regex = 'SESSION_ERRORS|SessionError`? \(thirteen\)|thirteen session errors|13 session errors|session errors \(13\)|thirteen typed'
+
+[[pattern]]
+id = 'wire'
+regex = 'wire `?v2|wire version|`v2`|wire \(v2\)|hello v2|ok v2'
+
+[[pattern]]
+id = 'modules'
+regex = 'private modules|private module count|fourteen modules|14 modules'
+ignore_case = true
+
+[[pattern]]
+id = 'btfiles'
+regex = '\b134\b'
+
+[[pattern]]
+id = 'standf'
+regex = '\b42\b[^.\n]{0,40}stand|stand_\*[^.\n]{0,60}\b42\b'
+
+[[pattern]]
+id = 'sgtargets'
+regex = 'host_timer[^.\n]{0,40}mcp_server|mcp_server --test mcp_log|seven_guis test targets|seven seven_guis'
+
+[[pattern]]
+id = 'readers'
+regex = '23 readers|session_common'
+
+[[pattern]]
+id = 'nofile'
+fixed = 'no log, event or file carries'
+
+[[pattern]]
+id = 'atrest'
+regex = 'at rest'
+ignore_case = true
+
+[[pattern]]
+id = 'statedir'
+regex = 'session\.sock|caller-named state directory|owner-only state directory'
+
+[[pattern]]
+id = 'vce'
+fixed = 'virtual_clock_engine'
+
+[[pattern]]
+id = 'callof'
+fixed = 'call_of'
+
+[[pattern]]
+id = 'serde'
+fixed = 'serde_json'
+
+[[pattern]]
+id = 'usage'
+regex = 'mcp role|host role|serve <app> --session'
+
+[[pattern]]
+id = 'cov'
+regex = '98\.[0-9]+ ?%'
+
+[[pattern]]
+id = 'title'
+fixed = 'Session recording'
+ignore_case = true
+
+[[pattern]]
+id = 'owned'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true

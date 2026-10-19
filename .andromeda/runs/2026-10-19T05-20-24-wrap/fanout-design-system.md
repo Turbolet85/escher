@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens holds — every new surface in the report's Coverage list reads `tokens n/a` (no new rendered UI); Retired is none. The plan's expected amendment 7 (design-system §Surface: cli §Component Patterns — the two new session errors `record-dir-not-private` · `recording-failed` in the exit-3 class, no new exit; `--record` on the `mcp` role's surface kind) is no token drift and no detector of this doc fires on it — the orchestrator owns it from the report's Expected amendments.

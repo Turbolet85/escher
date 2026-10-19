@@ -8,6 +8,17 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-19 — An in-line edit beside a provenance parenthesis reads as new provenance
+On architecture, design-system and obs-plan, `classify.py check --mode standing` keys each provenance span inside a
+parenthesis on the 8 tokens of the claim just before its `(`. An in-line edit that rewrites those tokens — a value
+changed in place, a word added to the claim — makes the standing ratification, date or chunk marker in the parenthesis
+read as new on the line, and the provenance arm fails though nothing was added. Write the new words after the
+parenthesis (`… (the founder, …), and kept checks the same way (…`), or keep the claim's last 8 tokens as they were. A
+superseded earlier-reading parenthesis («(10 verbs and 8 causes until …)») is history: drop it from the body rather
+than re-shaping around it.
+
+---
+
 ## 2026-10-18 — A gated wrap with later chunks committed on top of its flip
 When a gated chunk's acceptance waits while later chunks are taken up and committed, its gated wrap finds the
 pipeline's base rules reading the wrong tree. Each tool looks for the marker's operator pre-CI commit anywhere in

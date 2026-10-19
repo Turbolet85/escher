@@ -225,3 +225,52 @@ out, no pair can break.
 - **Named limit:** this is a read, not a compile. The `cfg(not(unix))` arms are compiled only by the Windows CI leg.
 
 Linux after the gate: `cargo test -p seven_guis --locked --test recording` 3 passed; `cargo fmt --check` exit 0.
+
+Commit: `3cbb0eeef fix(2026-10-19-session-recording): operator fix after CI run 39201074261, gate the_check to unix beside the mode it calls`.
+
+### Entry 16, re-fired
+```
+operator entry 16 · history tripwire: git
+ 16 probe       green · exit 0 · 138.33s · 106844 B → 16.log · history moved: refs/remotes/origin/build/escher-0.2.0 00a6c26b→3cbb0eee · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)
+not run — excluded · 16: 1-15,17
+entries 17 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 16
+```
+green.
+
+## The off-unix compile check — on the founder's word (inputs#I4)
+The founder's word, relayed: «Поставить (Рекомендую)» (overseer dialog, 05:02Z). The `x86_64-pc-windows-gnu` target
+was installed on the host by that word, not by this session.
+
+- `cargo check --tests --locked --target x86_64-pc-windows-gnu -p escher-driver -p seven_guis` built in 31.77 s:
+  exit 0, no error.
+- Two warnings, neither in a file this chunk touched:
+  - `variant Intrinsic is never constructed` in blitz-paint. It is the standing warning a per-package build prints.
+  - `unused imports: Command and Stdio` in `examples/seven_guis/tests/host_binary.rs`. That file predates the chunk and
+    imports them for its unix-only check.
+- So every `cfg(not(unix))` arm this chunk wrote compiles off unix. That covers the four off-unix refusal tests and
+  the `mcp_log` gate. The round-2 audit's one break, `the_check` → `mode`, no longer reproduces.
+- **Named limit:** a check, not a run. It neither links nor executes on Windows. The Windows CI leg's test run is
+  entry 17.
+
+### Entry 17, re-fired (fired as written)
+```
+ci v1.3 · 2b582a9b
+repo Turbolet85/escher (the push remote `origin`) · polled 35× over 1055 s
+3cbb0eeef1d8 verdict: green · checks 17/17 · wall 1027 s · runs CI#39202401256 completed/success
+runs: CI#39202401256 push completed/success
+checks: Accessibility (a11y) tests · Build [default features] · Build counter example · Build wasm examples · Clippy
+  Coverage report · Dependency audit · Documentation · MSRV Build [Rust 1.91] · Rustfmt · Stand checks repeated
+  Test (android) · Test (ios) · Test (macos) · Test (windows) · Test CI scripts · Test [default features]
+```
+**green** — `contains verdict: green` holds.
+
+## Final verdict
+**GREEN on `3cbb0eeef`.**
+- **Run:** CI#39202401256, 17/17 checks, `Test (windows)` among them.
+- **History:**
+  1. pre-CI commit `9da7b75dd` → red (CI#39199277925)
+  2. fix `00a6c26bf` → red (CI#39201074261)
+  3. fix `3cbb0eeef` → green
+- **Wrap:** not started, on the operator's direction.
+- **The founder's word for the wrap (inputs#I4):** Session recording F1 A and F2 B are ratified as his, and F3 widens
+  to B in «Recorded-check replay», not in this chunk.

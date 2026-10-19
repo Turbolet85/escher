@@ -1,42 +1,36 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-18T21:27:25Z
+**Last Updated:** 2026-10-19T06:45:12Z
 **Branch:** build/escher-0.2.0 · 0 ahead of origin/build/escher-0.2.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-18-engine-debts — gated acceptance: the founder's word discharges the PROVISIONAL batch
+**Last Commit:** 2026-10-19-session-recording — session recording: an owner-only replayable check, never logged
 
 ## Position
-- Done: 2026-10-18-engine-debts (v020-03), gated → complete.
-  - The founder's own word (inputs#I9) ratified the batch: the nine fork answers, the seven engine fixes and the `switch` mapping.
-  - Epoch 2 closes at this wrap.
-- Next: `/andromeda-phase` to promote and plan «Session recording» (v020-04), the next Epoch 3 entry.
+- Done: 2026-10-19-session-recording (v020-04, its first half) → complete.
+  - The founder's own word ratified the widening: F1 A and F2 B (inputs#I4), plus the 25 carded proposals, confirmed «Подтвердить все 25 (Рекомендую)».
+  - F3 C stands as this chunk's form.
+- Next: `/andromeda-phase` to promote and plan «Recorded-check replay» (v020-04's CI leg), the last Epoch 3 entry.
+  - Its CARRY: F3 widens to B there, each answer kept whole (a shot's pixels excepted) as an `answer` key.
 
 ## Work done
-- A two-window gated wrap: P1 in the first; P2–P7 in this one, on the operator's resume directive (inputs#I11).
-- Reconcile: 15 amendments discharge 71 PROVISIONAL marks over six masters and the session-lifecycle key file, all three batches.
-  - The batches: engine-debts 34 · one-virtual-clock 34 · cursor fix 3.
-  - Each mark now reads «ratified by the founder (2026-10-18)», on the founder's word inputs#I9, discharged on the operator's word inputs#I11 (b). There are six sidecar entries.
-  - 0 detector proposals; 0 rejected.
-- Leaves, whole mode (epoch close): 12 comparers, 91 findings applied. 89 are mark swaps; the other two are the telemetry `log.target` omission and settle's `Loads` ordering.
-- Route: the gated premise is cleared (`evidence/founder-word.md`, 9 rows). Two CARRYs on «Upstream sync ahead of visual lint and real-app readiness» now read ratified.
-- Curation: one T3 entry, «A gated wrap with later chunks committed on top of its flip».
+- A two-window wrap: P1 in the first; P2–P7 in this one, on the operator's resume directive (inputs#I5).
+- Reconcile:
+  - 84 detector proposals and 6 main-raised; 0 rejected.
+  - 25 lay on one Boundary widening card citing inputs#I4, confirmed by the founder; the other 65 applied routinely.
+  - The step-2 sweep folded 3 more stale master sites (the `v2` wire, the `start` spawn).
+  - 9 sidecar entries over six masters and the session-lifecycle key file. No PROVISIONAL mark written.
+- Citations: 245 re-pointed · 11 changed · 106 stretched. Three `call_of` rows were re-pointed to `command.rs:32-60`.
+- Leaves, pass mode: 12 comparers, 89 findings applied.
+- Curation: one T2 entry in testing.md (off-unix code needs a windows-gnu `cargo check`) and one T3 entry (classify's provenance anchor).
 
 ## Drift resolved
-- No master holds a PROVISIONAL mark. Only sidecar history and the playbook's rule text still name the word.
-- `.andromeda/residuals.md` native-checkedness line: it stays open (target next), on the founder's «Исправить позже (Рекомендую)».
+- The masters now state the recording directory, the kept check and its reader, `--record` on three surfaces, wire `v3` and the fifteen session errors.
+- The classify provenance arm first read FAIL (5 standing spans whose claim anchors the edits changed). Three edits were re-shaped and the check reads PASS.
 
 ## Notes
-- The light gate ran on HEAD's tree after a cold build (`target/` cleaned at 21:11Z on the founder's word).
-  - Entry 21 (the source-list probe) was `--skip`ped: «its 13 are the later chunks' (I10); 0 at fb842671».
-  - Entry 26 was voided, its block cleared.
-  - Legs 29–31 stand on `48680dfb`; CI#39116069520 is green on HEAD `1c9bc58b` (the operator's reading).
-- `cascade.py sweep` ran with `--baseline HEAD`. Its default (the take-up's pre-CI parent `34bcf71c`) left every control unfired. It is recorded as friction for the pipeline.
 - Last failed command: none outstanding.
 
 ## Deferred learnings
-- recurrence-despite-learning: host-linux «Paths & the working directory». A `cd` into the skill's references dir was refused at this resume; the guard held at one re-issue.
-- recurrence-despite-learning: host-linux's 2026-10-13 rule (run a pipeline tool bare). A tool piped into `head` and one redirected to a file were each refused; the guard held at one re-issue.
-- Carried, not this session's to curate: read a CI job's verdict with `ci.py`, not a log pattern (confidence 0.7).
-
-## Session End Status
-Completed normally at 2026-10-19 05:31:37
+- recurrence-despite-learning: T3 «2026-10-11 — `gh api` refuses a job's log that holds terminal escapes». A fetch at the implement pass read 0 failures from the refusal text.
+- recurrence-despite-learning: T3 «2026-10-12 — A sweep pattern for a bare count also matches a citation's digits». At P1, `\b134\b` matched 26 line-range citations.
+- recurrence-despite-learning: host-linux «Paths & the working directory» and the 2026-10-13 run-bare rule. A `cd` into a skill dir and a tool piped into `tail` were each refused; the guard held at one re-issue.

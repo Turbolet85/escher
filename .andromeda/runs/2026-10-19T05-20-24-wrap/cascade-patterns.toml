@@ -1,0 +1,75 @@
+[[pattern]]
+id = "wire-v2"
+regex = '''(ok|hello|stop|call) v2\b|wire version `v2`|versioned `v2`|wire \(`v2`\)|wire `v2`|`v2` grammar|closed grammar at `v2`|version `v2` on every'''
+
+[[pattern]]
+id = "serr13"
+regex = '''\[ErrorSpec; 13\]|13 session errors|thirteen session errors|thirteen errors|thirteen variants|thirteen, the last'''
+
+[[pattern]]
+id = "mcp-alone"
+regex = '''`mcp` alone|mcp role: mcp`|first word `mcp` alone'''
+
+[[pattern]]
+id = "exact-shape"
+regex = '''in exactly that shape'''
+
+[[pattern]]
+id = "serde-scope"
+regex = '''reader of MCP requests|reads MCP requests|reading requests and writing nothing|reader of the MCP server's untrusted stdin'''
+
+[[pattern]]
+id = "modules14"
+regex = '''fourteen private modules|14 private modules'''
+
+[[pattern]]
+id = "sg-seven"
+regex = '''seven integration-test targets|seven seven_guis|by all seven|the seven share|seven_guis' seven'''
+
+[[pattern]]
+id = "btfiles"
+regex = '''134 `\.rs` files|133 test targets'''
+
+[[pattern]]
+id = "standf"
+regex = '''42 files|the 42 `stand_'''
+
+[[pattern]]
+id = "readers"
+regex = '''by 23 checks|23 readers|twenty-three checks|four of the session checks|four of the five `stand_session|for the five `stand_session'''
+
+[[pattern]]
+id = "units"
+regex = '''74 unit tests|72 unit tests|session\.rs 4 \(|mcp_tests\.rs 12 \('''
+
+[[pattern]]
+id = "vce"
+regex = '''`virtual_clock_engine` 4'''
+
+[[pattern]]
+id = "nofile"
+regex = '''no log, event or file carries'''
+
+[[pattern]]
+id = "keeps"
+regex = '''one thing the session keeps'''
+
+[[pattern]]
+id = "reexp"
+regex = '''re-exports 45|45 names'''
+
+[[pattern]]
+id = "exits"
+regex = '''three exits|the id's exits being'''
+
+[[pattern]]
+id = "callof"
+regex = '''mcp/result\.rs:15-42|a tool call's arguments read into a call'''
+
+[[pattern]]
+id = "logcount"
+regex = '''`host_log` 1|`mcp_log` 1|host_log\.rs` \(1 test|mcp_log\.rs` \(1 test'''
+
+[[pattern]]
+id = "hostrole"
+regex = '''serve <task> --session <dir>`|serve <app> --session <dir>`'''

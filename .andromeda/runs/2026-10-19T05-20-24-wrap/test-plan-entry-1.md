@@ -1,0 +1,11 @@
+## 2026-10-19-session-recording — the session lifecycle contract gains the recording; wire v3
+**Section:** §3 → Session lifecycle (`.andromeda/registries/contracts/test-plan/session-lifecycle.md`: session-start, session-host, session-wire, session-binary, session-checks, session-proof)
+**Change:**
+- session-start: `Session::recording_into` (unix only) creates the directory `0700` or refuses `RecordDirNotPrivate`, then `check-{n}.json` `0600`; `run` records each answered instance call (`tool` · `arguments` in schema order · `masked` · `accepted` · `digest`), a masked or unresolved `type` as `MASKED_STAND_IN`; past 400 records or 1,048,576 bytes, or on a failed write, the recording ends and `recording_failed()` reads true once; `Check::from_bytes` reads strictly; `run`'s signature and span unchanged.
+- session-host: the edges gain `RecordDirNotPrivate` and `RecordingFailed` — fifteen session errors.
+- session-wire: was version `v2`; now `v3` on every request, with the fixed `ok v3 recording-failed` reply.
+- session-binary: `start <task> [--record <dir>]`, the host role `[--record <dir>]`, the `mcp` role alone or `mcp --record <dir>` (was alone); a stray `--record` usage (status 2) after `validate`, a refused directory status 3, the usage line naming it.
+- session-checks: a check that records is `cfg(unix)`-gated item by item beside an off-unix `Unsupported` check the windows job alone runs.
+- session-proof: `stand_session_recording` 3 and seven_guis `recording` 3 (+1 off-unix); `host_log` and `mcp_log` 2 each (were 1); escher-driver's unit tests 87 (were 74: recording.rs 9, session.rs 4 → 6, mcp_tests.rs 12 → 14, three off-unix besides).
+**Why:** this chunk's own facts (the playbook's «Accurate this-chunk addition»); the `--record` argument and the kept check are the boundary widening ratified by the founder — F1 A and F2 B as his (the founder, 2026-10-19, by question dialog in the overseer session, relayed by the operator), the card confirmed «Подтвердить все 25 (Рекомендую)» (the founder, 2026-10-19, by question dialog in the overseer session, relayed by the overseer); the reply word sits inside the ratified carrier.
+**Ref:** .andromeda/runs/2026-10-19T05-20-24-wrap/

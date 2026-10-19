@@ -23,7 +23,7 @@ _Mirrors `.andromeda/architecture.md` §Stack and Technologies (citations live t
 | Networking & async | url 2.5, http 1.1, data-url 0.3.1, tokio 1.42, reqwest 0.13 (native-tls), reqwest-middleware 0.5.1, http-cache =1.0.0-alpha.6 |
 | JavaScript | Boa 0.22 (boa_engine with annex-b, boa_runtime, boa_gc) |
 | UI framework | Dioxus 0.7.3 crates |
-| Media | image 0.25.6, png 0.18 (since 2026-10-12-headless-screenshot also escher-driver's encoder of a shot and a blitz-tests dev-dependency, resolved 0.18.1, no package entering `Cargo.lock`; no `base64` crate taken), html-escape, percent-encoding, serde 1, serde_json 1 (1.0.151; since 2026-10-10-mcp-surface escher-driver's reader of MCP requests, writing nothing) |
+| Media | image 0.25.6, png 0.18 (since 2026-10-12-headless-screenshot also escher-driver's encoder of a shot and a blitz-tests dev-dependency, resolved 0.18.1, no package entering `Cargo.lock`; no `base64` crate taken), html-escape, percent-encoding, serde 1, serde_json 1 (1.0.151; since 2026-10-10-mcp-surface escher-driver's reader of MCP requests and of kept checks, writing nothing) |
 | Parallelism & misc | rayon 1, slotmap, rustc-hash, bytes, smallvec, thin-vec, atomic_refcell, bitflags, bytemuck, pollster, smol_str, thread_local |
 
 ## Data Storage

@@ -726,3 +726,26 @@ The delegate-answered facts PROVISIONAL.
 Partly retires the PROVISIONAL clause of the earlier 2026-10-18-engine-debts and 2026-10-18-one-virtual-clock entries here; each one's other claims stand. The counts, tallies and measured readings are unchanged.
 **Why:** the Provisional discharge at the epoch boundary, on the founder's own word: «Утвердить всё (Рекомендую)» on the engine-debts batch and on one-virtual-clock F1 B · F2 A · F2b A · F3 A (the founder, 2026-10-18, by question dialog in the overseer session, relayed by the overseer with his chosen labels verbatim), discharged at this wrap on the operator's direction (the operator, 2026-10-18, at the gated wrap's resume).
 **Ref:** .andromeda/runs/2026-10-18T20-46-02-wrap/
+## 2026-10-19-session-recording — the session lifecycle contract gains the recording; wire v3
+**Section:** §3 → Session lifecycle (`.andromeda/registries/contracts/test-plan/session-lifecycle.md`: session-start, session-host, session-wire, session-binary, session-checks, session-proof)
+**Change:**
+- session-start: `Session::recording_into` (unix only) creates the directory `0700` or refuses `RecordDirNotPrivate`, then `check-{n}.json` `0600`; `run` records each answered instance call (`tool` · `arguments` in schema order · `masked` · `accepted` · `digest`), a masked or unresolved `type` as `MASKED_STAND_IN`; past 400 records or 1,048,576 bytes, or on a failed write, the recording ends and `recording_failed()` reads true once; `Check::from_bytes` reads strictly; `run`'s signature and span unchanged.
+- session-host: the edges gain `RecordDirNotPrivate` and `RecordingFailed` — fifteen session errors.
+- session-wire: was version `v2`; now `v3` on every request, with the fixed `ok v3 recording-failed` reply.
+- session-binary: `start <task> [--record <dir>]`, the host role `[--record <dir>]`, the `mcp` role alone or `mcp --record <dir>` (was alone); a stray `--record` usage (status 2) after `validate`, a refused directory status 3, the usage line naming it.
+- session-checks: a check that records is `cfg(unix)`-gated item by item beside an off-unix `Unsupported` check the windows job alone runs.
+- session-proof: `stand_session_recording` 3 and seven_guis `recording` 3 (+1 off-unix); `host_log` and `mcp_log` 2 each (were 1); escher-driver's unit tests 87 (were 74: recording.rs 9, session.rs 4 → 6, mcp_tests.rs 12 → 14, three off-unix besides).
+**Why:** this chunk's own facts (the playbook's «Accurate this-chunk addition»); the `--record` argument and the kept check are the boundary widening ratified by the founder — F1 A and F2 B as his (the founder, 2026-10-19, by question dialog in the overseer session, relayed by the operator), the card confirmed «Подтвердить все 25 (Рекомендую)» (the founder, 2026-10-19, by question dialog in the overseer session, relayed by the overseer); the reply word sits inside the ratified carrier.
+**Ref:** .andromeda/runs/2026-10-19T05-20-24-wrap/
+## 2026-10-19-session-recording — the recording's tests, the counts they move and the stand-repeat list
+**Section:** §1 Test Scope Summary (apps, blitz-dom (clock), escher-driver, dioxus-native-dom, tests/blitz-tests) · §2 → Directory pattern · §3 → Crate-local test helpers (session checks), Stand log format · §4 → escher-driver · §5 → Session host ↔ what it writes · §6 → Command line, MCP · §9 → Legs · §10 → Flakiness budget
+**Change:**
+- §1 apps: seven_guis holds eight integration-test targets (was seven) with `tests/recording.rs` (3, unix only, +1 off-unix), `mod common;` read by all eight; `host_log` and `mcp_log` 2 tests each (were 1); the host role `[--record <dir>]`.
+- §1 escher-driver: was 74 unit tests in thirteen files; now 87 in fourteen, 67 inline and 20 in two `#[path]` files, three off-unix besides — error.rs over fifteen variants (was thirteen), session.rs 6 (was 4), wire.rs's `v3` grammar (was `v2`) with `recording-failed`, mcp_tests.rs 14 (was 12), recording.rs 9, describe.rs's count row `[11, 13, 12, 3, 8, 4, 15]`.
+- §1 dioxus-native-dom: was 72 unit tests; now 73 (`is_masked_input`'s seven rows). §1 blitz-dom (clock): pan and the fling among the reads, and `iframe`'s carried-clock test. §1 tests/blitz-tests: `stand_session_recording` 3 among the session checks; `virtual_clock_engine` 5 (was 4).
+- §2: was 134 `.rs` files and 133 targets; now 135 and 134; `session_common` read by 24 checks (was 23). §3 helpers: `replay`, `kept` and the unix-only `mode` (24 readers). §3 Stand log format: the host role `[--record <dir>]`, spans the same with a recording held.
+- §4 escher-driver: wire.rs's grammar at `v3` with `ok v3 recording-failed` (was `v2`); error.rs over the fifteen errors; the recorder's, the reader's and the recording-failed unit tests.
+- §5: the recorded `host_log` / `mcp_log` runs read 0 recording needles, span counts unchanged. §6: `start --record` and `cli_commands`' usage line; `mcp_log` 2 and `recording`'s `mcp --record` runs.
+- §9: stand-repeat runs 43 `stand_*` files (was 42) and seven_guis' `recording` too, both words pinned; §10: 43 files and eight process checks (were 42 and seven).
+**Why:** this chunk's own shipped tests and the counts they move (the playbook's «Accurate this-chunk addition»).
+**Ref:** .andromeda/runs/2026-10-19T05-20-24-wrap/

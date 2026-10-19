@@ -1,0 +1,117 @@
+[
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "cc3d30ac",
+"ts": "2026-10-19T06:56:53Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-19-session-recording",
+"--run-dir",
+".andromeda/runs/2026-10-19T05-20-24-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"flip master-route.md:63 - 2026-10-19-session-recording pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "cc3d30ac",
+"ts": "2026-10-19T06:56:53Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-19-session-recording",
+"--date",
+"2026-10-19",
+"--run-dir",
+".andromeda/runs/2026-10-19T05-20-24-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :27 strip CARRY: 376ch \"CARRY: a check that the sub-document's c\"",
+"pin next markerless :29 holds CARRY:×1",
+"27 · 2026-10-19-session-recording · strip 1 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 27,
+"marker": "2026-10-19-session-recording",
+"blocks": 1,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "cc3d30ac",
+"ts": "2026-10-19T06:57:01Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-19-session-recording",
+"--date",
+"2026-10-19",
+"--run-dir",
+".andromeda/runs/2026-10-19T05-20-24-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :27 strip CARRY: 376ch \"CARRY: a check that the sub-document's c\"",
+"pin next markerless :29 holds CARRY:×1",
+"27 · 2026-10-19-session-recording · strip 1 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.2.0/route-archive.md",
+"./escher-0.2.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 27,
+"marker": "2026-10-19-session-recording",
+"blocks": 1,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]
