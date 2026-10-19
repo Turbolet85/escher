@@ -2,28 +2,23 @@
 //! both layout modes: the stand's Timer reads its delivered ticks when `Session::act` returns,
 //! and a settle on an idle lean task changes nothing. The cases the lean tasks lack are proven
 //! on minimal fixtures: a write made while an element mounts, a stylesheet and its import
-//! answered by this file's own provider, a running animation, a hover that moves with the
+//! answered through the shared held stand-in, a running animation, a hover that moves with the
 //! layout — and two instances that never go quiet, which end at the bound with the class of
 //! work still outstanding. No check here sleeps, reads a clock or makes a pass of its own: the
 //! only passes are the input helpers' and the settle under test. A failure message carries the
 //! layout mode and ids this file names, never what a screen reads.
 
-use std::sync::{Arc, Mutex};
+use std::sync::Arc;
 
 use ::keyboard_types::{Key, NamedKey};
 use blitz_test_harness::{Busy, Harness, HarnessOptions, NotSettled, Settled};
-use blitz_traits::net::{Bytes, NetHandler, NetProvider, Request};
 use dioxus::prelude::*;
-use dioxus_native_dom::DioxusDocument;
 use escher_driver::{Session, SessionError};
 use seven_guis::stand::{self, LeanTask};
 
+mod fixtures;
 mod session_common;
-
-/// A fixture booted as the stand boots a task: pinned viewport, bundled font, offline.
-fn fixture(app: fn() -> Element, incremental: bool) -> Harness<DioxusDocument> {
-    Harness::from_vdom(VirtualDom::new(app), stand::options(incremental))
-}
+use fixtures::HeldNet;
 
 /// The ids reading focused in a snapshot of the held instance.
 fn focused(session: &Session) -> Vec<String> {
@@ -142,7 +137,7 @@ fn mount_fixture() -> Element {
 fn a_write_made_while_mounting_is_present_after_the_step() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
-        let mut screen = fixture(mount_fixture, incremental);
+        let mut screen = fixtures::boot(mount_fixture, incremental);
         assert!(
             screen.text_content("#fx-status") == "waiting",
             "{mode}: fx-status reads its first text at boot"
@@ -168,48 +163,13 @@ fn a_write_made_while_mounting_is_present_after_the_step() {
             "{mode}: fx-status reads the mounting write after the settle"
         );
 
-        let mut session = Session::start("mounting", || fixture(mount_fixture, incremental))
-            .expect("the label is one of the closed set");
+        let mut session = fixtures::hold("mounting", mount_fixture, incremental);
         let step = session.act(|harness| harness.click("#fx-reveal"));
         assert!(step.is_ok(), "{mode}: the click step on a held instance");
         assert!(
             session.harness().text_content("#fx-status") == "mounted",
             "{mode}: fx-status reads the mounting write when the step returns"
         );
-    }
-}
-
-/// A `NetProvider` that keeps every request for the check to answer.
-#[derive(Default)]
-struct ManualNetProvider {
-    requests: Mutex<Vec<(String, Box<dyn NetHandler>)>>,
-}
-
-impl ManualNetProvider {
-    fn held(&self) -> usize {
-        self.requests.lock().unwrap().len()
-    }
-
-    /// Answers the one held request, which names `file`, with `css`.
-    #[track_caller]
-    fn answer(&self, file: &str, css: &'static str) {
-        let (url, handler) = self
-            .requests
-            .lock()
-            .unwrap()
-            .pop()
-            .expect("a request is held");
-        assert!(url.ends_with(file), "the held request names {file}");
-        handler.bytes(url, Bytes::from_static(css.as_bytes()));
-    }
-}
-
-impl NetProvider for ManualNetProvider {
-    fn fetch(&self, _doc_id: usize, request: Request, handler: Box<dyn NetHandler>) {
-        self.requests
-            .lock()
-            .unwrap()
-            .push((request.url.to_string(), handler));
     }
 }
 
@@ -228,7 +188,7 @@ fn a_load_in_flight_reads_not_settled_until_it_is_answered() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
         let loads = Err(NotSettled { busy: Busy::Loads });
-        let net = Arc::new(ManualNetProvider::default());
+        let net = Arc::new(HeldNet::default());
         let mut page = Harness::from_html_with(
             LOADING_HTML,
             HarnessOptions {
@@ -248,7 +208,11 @@ fn a_load_in_flight_reads_not_settled_until_it_is_answered() {
         );
         assert!(net.held() == 1, "{mode}: the settle answered nothing");
 
-        net.answer("first.css", FIRST_CSS);
+        let file = "first.css";
+        assert!(
+            net.answer(FIRST_CSS.as_bytes()).ends_with(file),
+            "the held request names {file}"
+        );
         assert!(
             page.settle() == loads,
             "{mode}: the import in flight reads not settled"
@@ -263,7 +227,11 @@ fn a_load_in_flight_reads_not_settled_until_it_is_answered() {
             "{mode}: fx-box reads the first sheet's width and no height yet"
         );
 
-        net.answer("second.css", SECOND_CSS);
+        let file = "second.css";
+        assert!(
+            net.answer(SECOND_CSS.as_bytes()).ends_with(file),
+            "the held request names {file}"
+        );
         assert!(
             page.settle().is_ok(),
             "{mode}: every load answered reads settled"
@@ -323,8 +291,7 @@ fn restless_fixture() -> Element {
 fn an_instance_that_never_goes_quiet_ends_at_the_bound() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
-        let mut session = Session::start("restless", || fixture(restless_fixture, incremental))
-            .expect("the label is one of the closed set");
+        let mut session = fixtures::hold("restless", restless_fixture, incremental);
 
         let outcome = session.act(|_| {});
         assert!(
@@ -367,7 +334,7 @@ fn hover_fixture() -> Element {
 fn a_hover_that_moves_with_layout_is_resolved_before_the_step_returns() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
-        let mut screen = fixture(hover_fixture, incremental);
+        let mut screen = fixtures::boot(hover_fixture, incremental);
 
         screen.click("#fx-upper");
         assert!(

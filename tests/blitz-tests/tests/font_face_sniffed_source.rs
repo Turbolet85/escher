@@ -4,13 +4,15 @@
 //! lays out with a width, while a body no sniff matches registers nothing. Upstream's behaviour
 //! since <https://github.com/DioxusLabs/blitz/pull/1109>; escher routes no agent- or
 //! user-supplied URL through it. Each document is built with a font context that holds no
-//! family and with this file's own provider, which holds every request until the check answers
+//! family and with the shared held stand-in, which holds every request until the check answers
 //! it: offline, in both layout modes.
 
-use std::sync::{Arc, Mutex};
+use std::sync::Arc;
 
 use blitz_test_harness::{Harness, HarnessOptions};
-use blitz_traits::net::{Bytes, NetHandler, NetProvider, Request};
+
+mod fixtures;
+use fixtures::HeldNet;
 
 /// The source the rule names: no `format()` hint, and a URL with no extension.
 const SOURCE: &str = "data:application/octet-stream;base64,AAAA";
@@ -27,47 +29,9 @@ const PAGE: &str = r#"<!doctype html>
 /// Four bytes that open no font format the sniff knows.
 const UNSNIFFABLE: &[u8] = b"abcd";
 
-/// A `NetProvider` that keeps every request for the check to answer.
-#[derive(Default)]
-struct HeldNetProvider {
-    requests: Mutex<Vec<(String, Box<dyn NetHandler>)>>,
-}
-
-impl HeldNetProvider {
-    fn urls(&self) -> Vec<String> {
-        self.requests
-            .lock()
-            .unwrap()
-            .iter()
-            .map(|(url, _)| url.clone())
-            .collect()
-    }
-
-    /// Answers the one held request with `body`.
-    #[track_caller]
-    fn answer(&self, body: &'static [u8]) {
-        let (url, handler) = self
-            .requests
-            .lock()
-            .unwrap()
-            .pop()
-            .expect("a request is held");
-        handler.bytes(url, Bytes::from_static(body));
-    }
-}
-
-impl NetProvider for HeldNetProvider {
-    fn fetch(&self, _doc_id: usize, request: Request, handler: Box<dyn NetHandler>) {
-        self.requests
-            .lock()
-            .unwrap()
-            .push((request.url.to_string(), handler));
-    }
-}
-
 /// The page, under a font context that holds no family, its one font request held.
-fn page(incremental: bool) -> (Harness, Arc<HeldNetProvider>) {
-    let net = Arc::new(HeldNetProvider::default());
+fn page(incremental: bool) -> (Harness, Arc<HeldNet>) {
+    let net = Arc::new(HeldNet::default());
     let page = Harness::from_html_with(
         PAGE,
         HarnessOptions {

@@ -13,11 +13,11 @@
 //! box lands at its centre, however far its content is scrolled. A failure message carries the
 //! layout mode and the task or fixture, never an id, a coordinate or what a screen reads.
 
-use blitz_test_harness::Harness;
 use dioxus::prelude::*;
 use escher_driver::{Cause, Session, VERBS};
 use seven_guis::stand::{self, LeanTask};
 
+mod fixtures;
 mod session_common;
 use session_common::{act, click, hold, refused, refused_unchanged, scroll};
 
@@ -80,13 +80,6 @@ fn unreachable_fixture() -> Element {
             button { id: "fx-near", "Near" }
         }
     }
-}
-
-fn hold_fixture(fixture: fn() -> Element, incremental: bool) -> Session {
-    Session::start("scroll", || {
-        Harness::from_vdom(VirtualDom::new(fixture), stand::options(incremental))
-    })
-    .expect("the label is one of the closed set")
 }
 
 /// The left, top, right and bottom of the bounds the snapshot reads for `id`.
@@ -268,7 +261,7 @@ fn a_row_past_the_list_is_refused_scrolled_into_view_and_then_clicked() {
 fn a_far_button_is_scrolled_into_a_viewport_that_scrolls_and_then_clicked() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: tall fixture");
-        let mut session = hold_fixture(tall_fixture, incremental);
+        let mut session = fixtures::hold("scroll", tall_fixture, incremental);
         assert!(
             session.harness().doc.unkeyed_actionable().is_empty(),
             "{mode}: every actionable element of the fixture reads an author key"
@@ -322,7 +315,7 @@ fn a_far_button_is_scrolled_into_a_viewport_that_scrolls_and_then_clicked() {
 fn a_target_no_scroll_can_reach_is_told_in_the_result() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: unreachable fixture");
-        let mut session = hold_fixture(unreachable_fixture, incremental);
+        let mut session = fixtures::hold("scroll", unreachable_fixture, incremental);
         assert!(
             session.harness().doc.unkeyed_actionable().is_empty(),
             "{mode}: every actionable element of the fixture reads an author key"
@@ -433,7 +426,7 @@ fn a_scrolled_box_reads_its_own_bounds_and_a_click_naming_it_lands_at_its_centre
 fn a_click_naming_a_scrolled_box_in_view_lands_on_the_row_at_its_centre() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: box fixture");
-        let mut session = hold_fixture(box_fixture, incremental);
+        let mut session = fixtures::hold("scroll", box_fixture, incremental);
         assert!(
             session.harness().doc.unkeyed_actionable().is_empty(),
             "{mode}: every actionable element of the fixture reads an author key"

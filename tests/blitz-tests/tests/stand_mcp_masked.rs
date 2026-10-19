@@ -8,11 +8,10 @@
 
 use std::time::Duration;
 
-use blitz_test_harness::Harness;
-use dioxus::prelude::*;
 use dioxus_native_dom::MASKED_VALUE;
 use escher_driver::{Session, SessionError, serve_mcp};
-use seven_guis::stand;
+
+mod fixtures;
 
 /// What the check types into the password input: synthetic, and no part of any id or name.
 const SENTINEL: &str = "Mcp-Typed-Sentinel-4kPw";
@@ -20,22 +19,10 @@ const SENTINEL: &str = "Mcp-Typed-Sentinel-4kPw";
 /// The name the server boots the fixture by.
 const APP: &str = "masked";
 
-/// A password input, empty.
-fn password_fixture() -> Element {
-    rsx! {
-        div { id: "fx-root",
-            input { id: "fx-secret", r#type: "password", aria_label: "Secret" }
-        }
-    }
-}
-
 fn boot(incremental: bool) -> impl FnMut(&str) -> Result<Session, SessionError> {
     move |app| {
         Session::start(app, || {
-            Harness::from_vdom(
-                VirtualDom::new(password_fixture),
-                stand::options(incremental),
-            )
+            fixtures::boot(fixtures::password_named, incremental)
         })
     }
 }

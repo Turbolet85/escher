@@ -9,13 +9,13 @@
 //! in place and put its text beside it, so a control never read what an agent typed. A failure
 //! message carries the layout mode and the task or fixture, never an id or what a screen reads.
 
-use blitz_test_harness::Harness;
 use dioxus::prelude::*;
 use dioxus_native_dom::MASKED_VALUE;
 use escher_driver::{Call, Session};
-use seven_guis::stand::{self, LeanTask};
+use seven_guis::stand::LeanTask;
 
 mod common;
+mod fixtures;
 mod session_common;
 use session_common::{act, hold, type_into};
 
@@ -200,13 +200,7 @@ fn a_masked_controls_written_form_holds_the_mask_and_never_the_typed_text() {
     assert!(!SECRET.contains(MASKED_VALUE) && !MASKED_VALUE.is_empty());
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: password fixture");
-        let mut session = Session::start("filled", || {
-            Harness::from_vdom(
-                VirtualDom::new(password_fixture),
-                stand::options(incremental),
-            )
-        })
-        .expect("the label is one of the closed set");
+        let mut session = fixtures::hold("filled", password_fixture, incremental);
         assert!(
             session.harness().doc.unkeyed_actionable().is_empty(),
             "{mode}: every actionable element of the fixture reads an author key"

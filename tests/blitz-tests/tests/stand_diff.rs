@@ -23,6 +23,7 @@ use dioxus_native_dom::{
 use seven_guis::stand::{self, LeanTask};
 
 mod common;
+mod fixtures;
 use common::editor_text;
 
 /// The text typed into the fixture's password input: synthetic, and no part of any name.
@@ -89,10 +90,7 @@ impl Screen {
     }
 
     fn fixture(fixture: fn() -> Element, incremental: bool) -> Self {
-        Self::of(Harness::from_vdom(
-            VirtualDom::new(fixture),
-            stand::options(incremental),
-        ))
+        Self::of(fixtures::boot(fixture, incremental))
     }
 
     /// Take one step: read the snapshot, drain the changed set, run `act`, read the change
@@ -683,22 +681,12 @@ fn a_hidden_element_leaves_with_its_descendants_and_returns_with_them() {
     assert_modes_agree(&runs);
 }
 
-/// A labelled password input, the control the lean tasks lack.
-fn password_fixture() -> Element {
-    rsx! {
-        div { id: "fx-root",
-            label { r#for: "fx-secret", "Passphrase" }
-            input { id: "fx-secret", r#type: "password" }
-        }
-    }
-}
-
 #[test]
 fn a_typed_password_is_named_once_and_only_by_its_mask() {
     let mut runs = Vec::new();
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
-        let mut screen = Screen::fixture(password_fixture, incremental);
+        let mut screen = Screen::fixture(fixtures::password_labelled, incremental);
         screen.step(&mode, |harness| harness.click("#fx-secret"));
         assert!(
             screen.node("fx-secret").state.value.as_deref() == Some(""),

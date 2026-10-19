@@ -20,13 +20,12 @@ use std::fs;
 use std::os::unix::fs::PermissionsExt;
 use std::path::{Path, PathBuf};
 
-use blitz_test_harness::Harness;
-use dioxus::prelude::*;
 use escher_driver::{
-    ArgValue, Call, Check, MASKED_STAND_IN, Outcome, Refusal, Session, SessionError, answer_digest,
+    ArgValue, Call, Check, MASKED_STAND_IN, Outcome, Refusal, SessionError, answer_digest,
 };
-use seven_guis::stand::{self, LeanTask};
+use seven_guis::stand::LeanTask;
 
+mod fixtures;
 mod session_common;
 use session_common::{
     advance, click, hold, kept, mode, press, screenshot, scroll, shot_prefix, slug, snapshot,
@@ -196,29 +195,10 @@ fn a_recorded_session_keeps_each_answer_but_a_shots_image_and_replays() {
     }
 }
 
-/// A password input, empty.
-fn password_fixture() -> Element {
-    rsx! {
-        div { id: "fx-root",
-            input { id: "fx-secret", r#type: "password", aria_label: "Secret" }
-        }
-    }
-}
-
-fn hold_fixture(incremental: bool) -> Session {
-    Session::start("masked", || {
-        Harness::from_vdom(
-            VirtualDom::new(password_fixture),
-            stand::options(incremental),
-        )
-    })
-    .expect("the fixture's label is a label")
-}
-
 /// Records `start`, a `type` of `secret` into the password input and a `snapshot` into `dir`:
 /// the answers' acceptances and digests.
 fn record_typed(dir: &Path, secret: &str, incremental: bool) -> Vec<(bool, u64)> {
-    let mut session = hold_fixture(incremental)
+    let mut session = fixtures::hold("masked", fixtures::password_named, incremental)
         .recording_into(dir)
         .expect("the recording starts");
     [type_into("fx-secret", secret), snapshot()]
@@ -270,7 +250,11 @@ fn a_password_typed_in_a_recorded_session_is_kept_as_the_stand_in() {
             "{mode_name}: a secret of another length leaves another file"
         );
 
-        let replay = check.replay(&mut hold_fixture(incremental));
+        let replay = check.replay(&mut fixtures::hold(
+            "masked",
+            fixtures::password_named,
+            incremental,
+        ));
         assert!(
             replay.holds() && replay.ran() == answers.len(),
             "{mode_name}: the masked check holds on replay"

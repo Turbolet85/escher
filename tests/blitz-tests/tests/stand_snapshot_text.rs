@@ -7,14 +7,12 @@
 //! to `text`-named variables, never formats one into a message and prints nothing.
 
 use ::keyboard_types::{Key, NamedKey};
-use blitz_test_harness::Harness;
 use dioxus::prelude::*;
-use dioxus_native_dom::{
-    DioxusDocument, MASKED_VALUE, SNAPSHOT_TEXT_BUDGET, Snapshot, SnapshotNode,
-};
-use seven_guis::stand::{self, LeanTask};
+use dioxus_native_dom::{MASKED_VALUE, SNAPSHOT_TEXT_BUDGET, Snapshot, SnapshotNode};
+use seven_guis::stand::LeanTask;
 
 mod common;
+mod fixtures;
 use common::{boot, editor_text, rendered};
 
 /// The text typed into the fixture's password input: synthetic, and no part of any name.
@@ -329,16 +327,6 @@ fn every_screen_fits_the_budget() {
     }
 }
 
-/// A labelled password input, the control the lean tasks lack.
-fn password_fixture() -> Element {
-    rsx! {
-        div {
-            label { r#for: "fx-secret", "Passphrase" }
-            input { id: "fx-secret", r#type: "password" }
-        }
-    }
-}
-
 /// A labelled file input authored with a path as its value, as a chosen file leaves it.
 fn file_fixture() -> Element {
     rsx! {
@@ -347,10 +335,6 @@ fn file_fixture() -> Element {
             input { id: "fx-upload", r#type: "file", value: UPLOAD_PATH }
         }
     }
-}
-
-fn boot_fixture(fixture: fn() -> Element, incremental: bool) -> Harness<DioxusDocument> {
-    Harness::from_vdom(VirtualDom::new(fixture), stand::options(incremental))
 }
 
 /// How a line writes the mask as its value.
@@ -362,7 +346,7 @@ fn masked_field() -> String {
 fn a_masked_password_stays_masked_in_the_text() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
-        let mut harness = boot_fixture(password_fixture, incremental);
+        let mut harness = fixtures::boot(fixtures::password_labelled, incremental);
         let text = harness.doc.snapshot().to_text();
         let (_, text_secret) = line_of(&text, "fx-secret");
         assert!(
@@ -393,7 +377,7 @@ fn a_masked_password_stays_masked_in_the_text() {
 fn a_masked_file_input_stays_masked_in_the_text() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
-        let harness = boot_fixture(file_fixture, incremental);
+        let harness = fixtures::boot(file_fixture, incremental);
         assert!(
             harness.attr("#fx-upload", "value").as_deref() == Some(UPLOAD_PATH),
             "{mode}: the fixture's file input holds the path"

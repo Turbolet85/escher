@@ -8,11 +8,10 @@
 //! landed beside it and was refused `covered`. A failure message carries the layout mode and the
 //! fixture, never an id, a coordinate or what a screen reads.
 
-use blitz_test_harness::Harness;
 use dioxus::prelude::*;
 use escher_driver::Session;
-use seven_guis::stand;
 
+mod fixtures;
 mod session_common;
 use session_common::{act, click};
 
@@ -37,16 +36,6 @@ fn transformed_fixture() -> Element {
             }
         }
     }
-}
-
-fn hold(incremental: bool) -> Session {
-    Session::start("transformed", || {
-        Harness::from_vdom(
-            VirtualDom::new(transformed_fixture),
-            stand::options(incremental),
-        )
-    })
-    .expect("the label is one of the closed set")
 }
 
 /// The left, top, width and height of the bounds the snapshot reads for `id`.
@@ -88,7 +77,7 @@ fn assert_the_button_is_moved(session: &Session, mode: &str) {
 fn a_click_on_a_translated_button_is_accepted_and_lands() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: transformed fixture");
-        let mut session = hold(incremental);
+        let mut session = fixtures::hold("transformed", transformed_fixture, incremental);
         assert_the_button_is_moved(&session, &mode);
         assert!(
             session.harness().text_content("#fx-presses") == "0",
@@ -113,7 +102,7 @@ fn a_click_on_a_translated_button_is_accepted_and_lands() {
 fn the_snapshot_bounds_of_a_translated_button_read_where_it_shows() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: transformed fixture");
-        let session = hold(incremental);
+        let session = fixtures::hold("transformed", transformed_fixture, incremental);
         assert_the_button_is_moved(&session, &mode);
         let (root_x, root_y, _, _) = bounds(&session, "fx-root");
         let laid_out = session.harness().layout_rect("#fx-moved");

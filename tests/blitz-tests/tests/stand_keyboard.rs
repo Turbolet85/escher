@@ -31,9 +31,10 @@ use blitz_dom::{QualName, ScrollBehavior, local_name, ns};
 use blitz_test_harness::Harness;
 use dioxus::prelude::*;
 use dioxus_native_dom::DioxusDocument;
-use seven_guis::stand::{self, LeanTask};
+use seven_guis::stand::LeanTask;
 
 mod common;
+mod fixtures;
 use common::{ENABLED_TAB_ORDER, boot, controls, editor_text, focused, node, tab_order};
 
 /// Each stand button in the four Tab sequences, and whether a click on it changes the screen
@@ -431,10 +432,6 @@ fn activation_fixture() -> Element {
     }
 }
 
-fn boot_fixture(app: fn() -> Element, incremental: bool) -> Harness<DioxusDocument> {
-    Harness::from_vdom(VirtualDom::new(app), stand::options(incremental))
-}
-
 #[test]
 fn the_fixture_controls_take_the_keys_html_gives_them() {
     for incremental in [false, true] {
@@ -444,7 +441,7 @@ fn the_fixture_controls_take_the_keys_html_gives_them() {
         };
 
         for (what, id) in [("checkbox", "fx-check"), ("radio", "fx-radio")] {
-            let mut harness = boot_fixture(activation_fixture, incremental);
+            let mut harness = fixtures::boot(activation_fixture, incremental);
             tab_until(&mut harness, id, 8, &format!("{mode}: the {what}"));
             assert!(
                 checked(&harness, id) == Some(false),
@@ -462,7 +459,7 @@ fn the_fixture_controls_take_the_keys_html_gives_them() {
             );
         }
 
-        let mut harness = boot_fixture(activation_fixture, incremental);
+        let mut harness = fixtures::boot(activation_fixture, incremental);
         tab_until(&mut harness, "fx-link", 8, &format!("{mode}: the link"));
         assert!(
             harness.text_content("#fx-followed") == "0",
@@ -479,7 +476,7 @@ fn the_fixture_controls_take_the_keys_html_gives_them() {
             "{mode}: Enter follows the link"
         );
 
-        let mut harness = boot_fixture(activation_fixture, incremental);
+        let mut harness = fixtures::boot(activation_fixture, incremental);
         tab_until(
             &mut harness,
             "fx-summary",
@@ -496,7 +493,7 @@ fn the_fixture_controls_take_the_keys_html_gives_them() {
         harness.press(space());
         assert!(open(&harness).is_none(), "{mode}: Space closes the details");
 
-        let mut harness = boot_fixture(activation_fixture, incremental);
+        let mut harness = fixtures::boot(activation_fixture, incremental);
         tab_until(
             &mut harness,
             "fx-input-button",
@@ -520,7 +517,7 @@ fn the_fixture_controls_take_the_keys_html_gives_them() {
 fn a_button_disabled_after_it_took_focus_takes_no_key() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
-        let mut harness = boot_fixture(activation_fixture, incremental);
+        let mut harness = fixtures::boot(activation_fixture, incremental);
         tab_until(&mut harness, "fx-later", 8, &format!("{mode}: the button"));
         let button = harness.node("#fx-later");
         harness.base_mut().mutate().set_attribute(
@@ -547,7 +544,7 @@ fn a_button_disabled_after_it_took_focus_takes_no_key() {
 fn a_button_that_is_itself_scrolled_takes_enter_as_its_own_click() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
-        let mut harness = boot_fixture(activation_fixture, incremental);
+        let mut harness = fixtures::boot(activation_fixture, incremental);
         tab_until(
             &mut harness,
             "fx-scrolled",
@@ -618,7 +615,7 @@ fn disabled_markup() -> Element {
 fn a_disabled_attribute_skips_a_form_control_and_not_a_div() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
-        let mut harness = boot_fixture(disabled_markup, incremental);
+        let mut harness = fixtures::boot(disabled_markup, incremental);
         let stated = [
             ("#fx-b", "disabled", ""),
             ("#fx-c", "disabled", "false"),
@@ -756,7 +753,7 @@ fn inert_fixture() -> Element {
 fn an_inert_subtree_is_skipped_by_tab() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
-        let mut harness = boot_fixture(inert_fixture, incremental);
+        let mut harness = fixtures::boot(inert_fixture, incremental);
         assert!(
             harness.attr("#fx-inert-on", "inert").is_some()
                 && harness.attr("#fx-inert-off", "inert").is_none(),

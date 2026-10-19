@@ -13,12 +13,12 @@
 
 use std::time::Duration;
 
-use blitz_test_harness::Harness;
 use dioxus::prelude::*;
 use dioxus_native_dom::DiffNode;
 use escher_driver::Session;
-use seven_guis::stand::{self, LeanTask};
+use seven_guis::stand::LeanTask;
 
+mod fixtures;
 mod session_common;
 use session_common::{Acted, act, advance, click, hold};
 
@@ -167,19 +167,14 @@ fn an_advance_reports_exactly_what_was_asked_whatever_the_step_does() {
             let mode = format!("incremental={incremental}: fixture: row {row}");
             let handed = std::rc::Rc::new(std::cell::Cell::new(None));
             let seen = handed.clone();
-            let mut session = Session::start("claims", || {
-                Harness::from_vdom(
-                    VirtualDom::new(animated_fixture),
-                    stand::options(incremental),
-                )
-            })
-            .expect("the label is one of the closed set")
-            .with_time(move |harness, ms| {
-                seen.set(Some(ms));
-                if presses {
-                    harness.click("#fx-press");
-                }
-            });
+            let mut session = fixtures::hold("claims", animated_fixture, incremental).with_time(
+                move |harness, ms| {
+                    seen.set(Some(ms));
+                    if presses {
+                        harness.click("#fx-press");
+                    }
+                },
+            );
 
             let Some(advanced) = act(&mut session, &advance(asked)) else {
                 panic!("{mode}: the advance runs");
@@ -213,13 +208,7 @@ fn an_advance_reports_exactly_what_was_asked_whatever_the_step_does() {
 fn a_click_beside_a_running_animation_returns_settled_and_moves_no_clock() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: fixture");
-        let mut session = Session::start("animated", || {
-            Harness::from_vdom(
-                VirtualDom::new(animated_fixture),
-                stand::options(incremental),
-            )
-        })
-        .expect("the label is one of the closed set");
+        let mut session = fixtures::hold("animated", animated_fixture, incremental);
         assert!(
             session.harness().base().is_animating(),
             "{mode}: the fixture is animating at boot"

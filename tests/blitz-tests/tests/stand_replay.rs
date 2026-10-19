@@ -12,12 +12,12 @@
 //! it was and does not hold. A failure message names the layout mode, the check's file and a
 //! step index, never an id, a name or a reading.
 
-use blitz_test_harness::Harness;
 use dioxus::prelude::*;
-use escher_driver::{ArgValue, Check, Session, Step};
+use escher_driver::{ArgValue, Check, Step};
 use seven_guis::app::TaskShell;
-use seven_guis::stand::{self, LeanTask};
+use seven_guis::stand::LeanTask;
 
+mod fixtures;
 mod session_common;
 use session_common::{hold, shot_prefix, slug};
 
@@ -195,20 +195,17 @@ fn variant_root() -> Element {
     }
 }
 
-/// A session on the variant Counter, started as the Counter's.
-fn hold_variant(incremental: bool) -> Session {
-    Session::start(slug(LeanTask::Counter), || {
-        Harness::from_vdom(VirtualDom::new(variant_root), stand::options(incremental))
-    })
-    .expect("the Counter's slug is a label")
-}
-
 #[test]
 fn each_committed_check_turns_red_at_its_first_activation_on_a_changed_counter() {
     for incremental in [false, true] {
         let mode = mode_name(incremental);
         for (file, _, check, first) in checks() {
-            let replay = check.replay(&mut hold_variant(incremental));
+            // The variant Counter, started as the Counter's.
+            let replay = check.replay(&mut fixtures::hold(
+                slug(LeanTask::Counter),
+                variant_root,
+                incremental,
+            ));
             assert!(!replay.holds(), "{mode} {file}: the check does not hold");
             assert!(
                 !replay.another_app(),

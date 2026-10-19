@@ -15,9 +15,10 @@ use blitz_dom::Document;
 use blitz_test_harness::Harness;
 use dioxus::prelude::*;
 use dioxus_native_dom::{DioxusDocument, MASKED_VALUE, Snapshot, UnkeyedActionable};
-use seven_guis::stand::{self, LeanTask};
+use seven_guis::stand::LeanTask;
 
 mod common;
+mod fixtures;
 use common::{boot, by_id, editor_text, focused, name, node, tree_node};
 
 /// What [`focused`] reads when no control has focus.
@@ -207,8 +208,7 @@ fn a_disabled_control_reads_disabled_until_the_app_enables_it() {
         );
         assert_eq!(enabled(&crud, "crud-create"), Some(true), "{mode}");
 
-        let parsed =
-            Harness::from_vdom(VirtualDom::new(parsed_markup), stand::options(incremental));
+        let parsed = fixtures::boot(parsed_markup, incremental);
         for id in ["fx-falsy", "fx-bare"] {
             let element = parsed.node(&format!("#{id}"));
             assert!(
@@ -508,15 +508,11 @@ const FIXTURE_CONTROLS: [(&str, Role); 5] = [
     ("fx-notes", Role::MultilineTextInput),
 ];
 
-fn boot_fixture(incremental: bool) -> Harness<DioxusDocument> {
-    Harness::from_vdom(VirtualDom::new(fixture), stand::options(incremental))
-}
-
 #[test]
 fn the_fixture_controls_are_keyed_named_and_typed() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
-        let harness = boot_fixture(incremental);
+        let harness = fixtures::boot(fixture, incremental);
         let snapshot = harness.doc.snapshot();
         let tree = harness.doc.accessibility_tree();
         let nodes = by_id(&tree);
@@ -554,7 +550,7 @@ fn the_fixture_controls_are_keyed_named_and_typed() {
 fn a_checkbox_and_a_radio_read_checked_after_a_click() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
-        let mut harness = boot_fixture(incremental);
+        let mut harness = fixtures::boot(fixture, incremental);
 
         assert_eq!(
             checked(&harness, "fx-agree"),
@@ -620,7 +616,7 @@ fn a_checkbox_and_a_radio_read_checked_after_a_click() {
 fn a_typed_password_never_appears_in_the_snapshot() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
-        let mut harness = boot_fixture(incremental);
+        let mut harness = fixtures::boot(fixture, incremental);
         assert!(
             reads_value(&harness, "fx-secret", Some("")),
             "{mode}: an empty password reads empty"
@@ -671,7 +667,7 @@ fn a_typed_password_never_appears_in_the_snapshot() {
 fn a_textarea_reads_back_typed_text() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
-        let mut harness = boot_fixture(incremental);
+        let mut harness = fixtures::boot(fixture, incremental);
         assert!(
             reads_value(&harness, "fx-notes", Some("")),
             "{mode}: an empty textarea reads empty"

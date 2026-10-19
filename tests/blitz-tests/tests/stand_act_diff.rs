@@ -12,13 +12,12 @@
 //! file prints none, and a failure message carries the layout mode, the task and a step index,
 //! never an id or what a screen reads.
 
-use blitz_test_harness::Harness;
-use dioxus::prelude::*;
 use dioxus_native_dom::{DiffNode, MASKED_VALUE, SnapshotDiff};
 use escher_driver::{Call, Outcome, Session};
-use seven_guis::stand::{self, LeanTask};
+use seven_guis::stand::LeanTask;
 
 mod common;
+mod fixtures;
 mod session_common;
 use common::editor_text;
 use session_common::{Acted, act, advance, click, hold, type_into};
@@ -266,28 +265,12 @@ fn a_click_on_an_element_that_reacts_to_nothing_returns_settled_with_an_empty_di
     assert_modes_agree(&runs);
 }
 
-/// A labelled password input, the control the lean tasks lack.
-fn password_fixture() -> Element {
-    rsx! {
-        div { id: "fx-root",
-            label { r#for: "fx-secret", "Passphrase" }
-            input { id: "fx-secret", r#type: "password" }
-        }
-    }
-}
-
 #[test]
 fn a_password_typed_by_the_driver_is_returned_only_as_its_mask() {
     let mut runs = Vec::new();
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: fixture");
-        let mut session = Session::start("password", || {
-            Harness::from_vdom(
-                VirtualDom::new(password_fixture),
-                stand::options(incremental),
-            )
-        })
-        .expect("the label is one of the closed set");
+        let mut session = fixtures::hold("password", fixtures::password_labelled, incremental);
         assert!(
             session
                 .harness()

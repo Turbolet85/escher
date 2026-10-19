@@ -13,11 +13,12 @@
 //! check here skips, sleeps or reads a clock. A failure message carries a layout mode, a task and
 //! an index only.
 
-use blitz_test_harness::{Harness, HarnessOptions};
+use blitz_test_harness::HarnessOptions;
 use dioxus::prelude::*;
 use escher_driver::{Cause, Session};
 use seven_guis::stand::{self, LeanTask};
 
+mod fixtures;
 mod session_common;
 use session_common::{
     act, click, focused, hold, refused_unchanged, screenshot, screenshot_of, scroll, shot, slug,
@@ -240,10 +241,7 @@ fn text_fixture() -> Element {
 
 /// The shot of `fixture` after the driver typed `text` into its input.
 fn typed_shot(fixture: fn() -> Element, text: &str, incremental: bool) -> Vec<u8> {
-    let mut session = Session::start("typed", || {
-        Harness::from_vdom(VirtualDom::new(fixture), stand::options(incremental))
-    })
-    .expect("the label is one of the closed set");
+    let mut session = fixtures::hold("typed", fixture, incremental);
     assert!(
         act(&mut session, &type_into("fx-input", text)).is_some(),
         "the type runs"

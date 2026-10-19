@@ -18,13 +18,13 @@
 //! failure message carries the layout mode and the fixture, never an id, a coordinate or what a
 //! screen reads.
 
-use blitz_test_harness::Harness;
 use blitz_traits::node_id::NodeId;
 use dioxus::prelude::*;
 use escher_driver::{Cause, Session};
 use seven_guis::stand::{self, LeanTask};
 
 mod common;
+mod fixtures;
 mod session_common;
 use session_common::{
     act, click, focused, hold as hold_task, refused_unchanged, scroll, type_into,
@@ -152,13 +152,6 @@ fn one_axis_clip_fixture() -> Element {
     }
 }
 
-fn hold(fixture: fn() -> Element, incremental: bool) -> Session {
-    Session::start("obstructed", || {
-        Harness::from_vdom(VirtualDom::new(fixture), stand::options(incremental))
-    })
-    .expect("the label is one of the closed set")
-}
-
 /// The left, top, right and bottom of the bounds the snapshot reads for `id`.
 fn edges(session: &Session, id: &str) -> (f64, f64, f64, f64) {
     let snapshot = session.harness().doc.snapshot();
@@ -254,7 +247,7 @@ fn assert_fixture_is_keyed_and_unscrolled(session: &Session, mode: &str) {
 fn a_covered_target_is_refused_until_its_cover_is_gone_or_transparent() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: covered fixture");
-        let mut session = hold(covered_fixture, incremental);
+        let mut session = fixtures::hold("obstructed", covered_fixture, incremental);
         assert_fixture_is_keyed_and_unscrolled(&session, &mode);
         for id in ["fx-under", "fx-cover", "fx-through", "fx-glass"] {
             assert!(
@@ -313,7 +306,7 @@ fn a_covered_target_is_refused_until_its_cover_is_gone_or_transparent() {
 fn a_target_out_of_view_is_refused_off_screen() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: tall fixture");
-        let mut session = hold(tall_fixture, incremental);
+        let mut session = fixtures::hold("obstructed", tall_fixture, incremental);
         assert_fixture_is_keyed_and_unscrolled(&session, &mode);
         for id in ["fx-near", "fx-far", "fx-boxed", "fx-box"] {
             assert!(
@@ -382,7 +375,7 @@ fn a_target_out_of_view_is_refused_off_screen() {
 fn a_button_where_scrolled_out_rows_extend_is_hit_and_clicked_as_itself() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: boxed rows fixture");
-        let mut session = hold(boxed_rows_fixture, incremental);
+        let mut session = fixtures::hold("obstructed", boxed_rows_fixture, incremental);
         assert_fixture_is_keyed_and_unscrolled(&session, &mode);
         let scrolling_box = edges(&session, "fx-box");
         for id in ["fx-before", "fx-box", "fx-after"] {
@@ -521,7 +514,7 @@ fn no_stand_control_is_hit_through_by_a_row_scrolled_out_of_the_list() {
 fn a_target_holding_two_causes_reads_the_earlier_one() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: covered fixture");
-        let mut session = hold(covered_fixture, incremental);
+        let mut session = fixtures::hold("obstructed", covered_fixture, incremental);
         let cover = session.harness().query("#fx-cover");
         assert!(
             enabled(&session, "fx-under-off") == Some(false)
@@ -536,7 +529,7 @@ fn a_target_holding_two_causes_reads_the_earlier_one() {
         );
 
         let mode = format!("incremental={incremental}: tall fixture");
-        let mut session = hold(tall_fixture, incremental);
+        let mut session = fixtures::hold("obstructed", tall_fixture, incremental);
         let below =
             |session: &Session, id: &str| edges(session, id).1 >= f64::from(stand::VIEWPORT_HEIGHT);
         assert!(
@@ -571,7 +564,7 @@ fn a_target_holding_two_causes_reads_the_earlier_one() {
 fn a_target_beside_a_box_clipped_on_one_axis_is_refused_covered() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: one-axis clip fixture");
-        let mut session = hold(one_axis_clip_fixture, incremental);
+        let mut session = fixtures::hold("obstructed", one_axis_clip_fixture, incremental);
         assert_fixture_is_keyed_and_unscrolled(&session, &mode);
         for id in ["fx-clip", "fx-beside"] {
             assert!(

@@ -33,7 +33,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
    ↓
 [2026-10-19-test-splits] Test splits — inline test modules out of escher-driver's `cli.rs` and `recording.rs`; `host_log`/`mcp_log`'s shared fragment stated once; behaviour unchanged (audit 2026-10-19T11-16-25-code-audit M1, M2)
    ↓
-Shared fixtures — fixture pages beside the stand and one held network stand-in, stated once in blitz-tests' shared modules, run through agent-run
+[2026-10-19-shared-fixtures] Shared fixtures — fixture pages beside the stand and one held network stand-in, stated once in blitz-tests' shared modules, run through agent-run
    ↓
 Visual lint — one command: overlap, clipping, truncated text, off-screen, zero size, text contrast as `stand_contrast` reads it; stable id, measured reason; fixture-proven (v020-05)
    ↓

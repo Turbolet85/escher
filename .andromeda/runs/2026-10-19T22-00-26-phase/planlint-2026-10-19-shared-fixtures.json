@@ -1,0 +1,240 @@
+[
+{
+"tool": "planlint",
+"v": "1.12",
+"sha8": "a62601f7",
+"ts": "2026-10-19T22:16:16Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.2.0/chunks/2026-10-19-shared-fixtures/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-19T22-00-26-phase",
+"--marker",
+"2026-10-19-shared-fixtures"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 24 entries · plan: escher-0.2.0/chunks/2026-10-19-shared-fixtures/plan.md · research: escher-0.2.0/chunks/2026-1…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` — r…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 24 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 20 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 20",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 6 of 9 — listed, P5's read",
+"  line 47 · «unchanged» · stand_act_diff.rs (step 4)",
+"  line 49 · «unchanged» · stand_mcp_masked.rs (step 5)",
+"  line 51 · «unchanged» · stand_act_spans.rs (step 6)",
+"  line 313 · «byte for byte» · FAILED (Test Commands) · evidence/blitz-tests-before.txt (step 1)",
+"  line 325 · «unchanged» · blitz_net (step 2)",
+"  line 400 · «unchanged» · HeldNet (step 2) · stand_settle (step 3) · ManualNetProvider (step 3)",
+"      font_face_sniffed_source (step 3) · HeldNetProvider (step 3) · stand_boot (step 3) · RecordingNetProvider (step 3)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 1",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+24
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 20,
+"listed": []
+},
+"check2": {
+"entries": 19,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 8,
+"refs": 20,
+"hits": []
+},
+"claims": {
+"read": 9,
+"listed": [
+47,
+49,
+51,
+313,
+325,
+400
+]
+},
+"c44": {
+"paths": 1,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.12",
+"sha8": "a62601f7",
+"ts": "2026-10-19T22:24:01Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.2.0/chunks/2026-10-19-shared-fixtures/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-19T22-00-26-phase",
+"--marker",
+"2026-10-19-shared-fixtures"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 24 entries · plan: escher-0.2.0/chunks/2026-10-19-shared-fixtures/plan.md · research: escher-0.2.0/chunks/2026-1…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` — r…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 24 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 20 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 20",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 3 of 6 — listed, P5's read",
+"  line 331 · «byte for byte» · FAILED (Test Commands) · evidence/blitz-tests-before.txt (step 1)",
+"  line 343 · «unchanged» · blitz_net (step 2)",
+"  line 418 · «unchanged» · HeldNet (step 2) · stand_settle (step 3) · ManualNetProvider (step 3)",
+"      font_face_sniffed_source (step 3) · HeldNetProvider (step 3) · stand_boot (step 3) · RecordingNetProvider (step 3)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 1",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+24
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 20,
+"listed": []
+},
+"check2": {
+"entries": 19,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 8,
+"refs": 20,
+"hits": []
+},
+"claims": {
+"read": 6,
+"listed": [
+331,
+343,
+418
+]
+},
+"c44": {
+"paths": 1,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+}
+]

@@ -1,0 +1,178 @@
+[
+{
+"sql": "SELECT symbol, crate, kind, file, def_line FROM symbol WHERE name IN ('ManualNetProvider','HeldNetProvider','RecordingNetProvider','password_fixture','covered_fixture','hold_fixture','boot_fixture','fixture') AND kind <> 'meta' ORDER BY file, def_line",
+"rows": 23,
+"result": [
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 HeldNetProvider#",
+"crate": "blitz-tests",
+"kind": "type",
+"file": "tests/blitz-tests/tests/font_face_sniffed_source.rs",
+"def_line": 31
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 link_rel_attribute/RecordingNetProvider#",
+"crate": "blitz-tests",
+"kind": "type",
+"file": "tests/blitz-tests/tests/link_rel_attribute.rs",
+"def_line": 15
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 render_blocking_stylesheet/ManualNetProvider#",
+"crate": "blitz-tests",
+"kind": "type",
+"file": "tests/blitz-tests/tests/render_blocking_stylesheet.rs",
+"def_line": 18
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 password_fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_act_diff.rs",
+"def_line": 269
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 password_fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_act_filled.rs",
+"def_line": 46
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 covered_fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_act_obstructed.rs",
+"def_line": 34
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 password_fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_act_screenshot.rs",
+"def_line": 223
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 hold_fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_act_scroll.rs",
+"def_line": 84
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 covered_fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_act_spans.rs",
+"def_line": 533
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 RecordingNetProvider#",
+"crate": "blitz-tests",
+"kind": "type",
+"file": "tests/blitz-tests/tests/stand_boot.rs",
+"def_line": 12
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 impl#[Screen]fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_diff.rs",
+"def_line": 90
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 password_fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_diff.rs",
+"def_line": 686
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 boot_fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_keyboard.rs",
+"def_line": 433
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 password_fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_mcp_masked.rs",
+"def_line": 23
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 covered_fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"def_line": 397
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 password_fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_session_recording.rs",
+"def_line": 199
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 hold_fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_session_recording.rs",
+"def_line": 207
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"def_line": 23
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 ManualNetProvider#",
+"crate": "blitz-tests",
+"kind": "type",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"def_line": 183
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"def_line": 467
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 boot_fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_snapshot_state.rs",
+"def_line": 510
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 password_fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"def_line": 332
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 boot_fixture().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"def_line": 351
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT symbol, kind, file FROM symbol WHERE name IN ('fixtures','fixture_common','HeldNet','held_net') AND kind <> 'meta'",
+"rows": 0,
+"result": [],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

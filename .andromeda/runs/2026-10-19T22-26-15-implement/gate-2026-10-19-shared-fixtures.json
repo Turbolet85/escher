@@ -1,0 +1,710 @@
+[
+{
+"tool": "gate",
+"v": "1.21",
+"sha8": "e6b5f42f",
+"ts": "2026-10-19T22:37:44Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.2.0/chunks/2026-10-19-shared-fixtures/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-19T22-26-15-implement",
+"--marker",
+"2026-10-19-shared-fixtures"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-19-shared-fixtures · entries 24",
+"logs $TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 44 · rust 20 · unmapped 1",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L130-133: There is no live leg and no boot path to smoke: the chunk changes test code only, and the … (394 chars)",
+"  1 unit        green · exit 0 · 91.46s · 65222 B → 1.log · cargo test -p blitz-tests --locked 2>&1",
+"  2 probe       green · exit 0 · 0.91s · 0 B → 2.log · cargo test -p blitz-tests --locked -- --list 2>/dev/null |… (143 chars)",
+"  3 build       green · exit 0 · 0.95s · 166 B → 3.log · cargo check --tests --locked --target x86_64-pc-windows-gn… (74 chars)",
+"  4 probe       green · exit 0 · 0.01s · 140 B → 4.log · grep -l 'NetProvider for' tests/blitz-tests/tests/*.rs tes… (103 chars)",
+"  5 probe       green · exit 0 · 0.01s · 140 B → 5.log · grep -l -E '^fn (password_fixture|covered_fixture)\\(' test… (98 chars)",
+"  6 probe       green · exit 1 · 0.01s · 2 B → 6.log · cat tests/blitz-tests/tests/*.rs | grep -c -E '^fn (boot_f… (118 chars)",
+"  7 probe       green · exit 0 · 0.01s · 2 B → 7.log · cat tests/blitz-tests/tests/*.rs | grep -c 'Harness::from_… (64 chars)",
+"  8 probe       green · exit 0 · 0.01s · 3 B → 8.log · grep -l '^mod fixtures;' tests/blitz-tests/tests/*.rs | wc… (61 chars)",
+"  9 probe       green · exit 1 · 0.0s · 2 B → 9.log · grep -c -E 'println!|eprintln!|print!|dbg!|tracing|escher_… (165 chars)",
+" 10 probe       green · exit 0 · 0.0s · 2 B → 10.log · cat tests/blitz-tests/tests/{stand_settle,font_face_sniffe… (505 chars)",
+" 11 probe       green · exit 0 · 0.01s · 125 B → 11.log · cat tests/blitz-tests/tests/*.rs tests/blitz-tests/tests/*… (220 chars)",
+" 12 probe       green · exit 1 · 0.01s · 2 B → 12.log · git diff --name-only 5174f92a7335b4f469cbaf94763086378016b… (528 chars)",
+" 13 probe       green · exit 1 · 0.01s · 2 B → 13.log · git ls-files --others --exclude-standard -- packages examp… (151 chars)",
+" 14 integration green · exit 0 · 0.61s · 137 B → 14.log · bash scripts/agent-run.sh boot",
+" 15 integration green · exit 0 · 76.04s · 24139 B → 15.log · bash scripts/agent-run.sh run stand",
+" 16 integration green · exit 0 · 0.76s · 571 B → 16.log · bash scripts/agent-run.sh run font_face_sniffed_source",
+" 17 integration green · exit 0 · 12.99s · 3882 B → 17.log · bash .github/scripts/ci-leg.sh a11y",
+" 18 unit        green · exit 0 · 170.3s · 108817 B → 18.log · bash .github/scripts/ci-leg.sh fast",
+" 19 probe       green · exit 0 · 0.0s · 42 B → 19.log · grep -E '^test result:' target/ci-logs/test.log | awk '{p+… (146 chars)",
+" 20 lint        green · exit 0 · 2.03s · 427 B → 20.log · bash .github/scripts/ci-leg.sh doc",
+" 21 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 22 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 23 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+" 24 probe       not run — leg operator (the letter drives it) · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\… (311 chars)",
+"entries 24 · green 20 · red 0 · recorded 0 · timeout 0 · not-run 4"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-19-shared-fixtures",
+"plan": "./escher-0.2.0/chunks/2026-10-19-shared-fixtures/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-10-19T21-24-54-wrap/evolve-2026-10-19-test-splits.json",
+".claude/session-handoff.md",
+"escher-0.2.0/working-route.md",
+".andromeda/runs/2026-10-19T21-24-54-wrap/health-2026-10-19-test-splits.json",
+".andromeda/runs/2026-10-19T22-00-26-phase/a11y-contracts.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/a11y-history.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/a11y.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/arch-history-index.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/arch-history.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/arch.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/ci-no-marker.json",
+".andromeda/runs/2026-10-19T22-00-26-phase/design-history.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/design.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/evolve-2026-10-19-shared-fixtures.json",
+".andromeda/runs/2026-10-19T22-00-26-phase/gate-2026-10-19-shared-fixtures.json",
+".andromeda/runs/2026-10-19T22-00-26-phase/inputs-2026-10-19-shared-fixtures.json",
+".andromeda/runs/2026-10-19T22-00-26-phase/layouts-history.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/layouts.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/master-record.txt",
+".andromeda/runs/2026-10-19T22-00-26-phase/matrix-2026-10-19-shared-fixtures.json",
+".andromeda/runs/2026-10-19T22-00-26-phase/obs-contracts.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/obs-history.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/obs.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/p5-card-1.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/p5-controls.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/planlint-2026-10-19-shared-fixtures.json",
+".andromeda/runs/2026-10-19T22-00-26-phase/registry-2026-10-19-shared-fixtures.json",
+".andromeda/runs/2026-10-19T22-00-26-phase/route-2026-10-19-shared-fixtures.json",
+".andromeda/runs/2026-10-19T22-00-26-phase/route-no-marker.json",
+".andromeda/runs/2026-10-19T22-00-26-phase/security-history-index.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/security-history.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/security.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/sidecar-2026-10-19-shared-fixtures.json",
+".andromeda/runs/2026-10-19T22-00-26-phase/tests-contracts.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/tests-history-index.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/tests-history.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/tests.md",
+".andromeda/runs/2026-10-19T22-00-26-phase/tree-query-2026-10-19-shared-fixtures.json",
+".andromeda/runs/2026-10-19T22-26-15-implement/evolve-2026-10-19-shared-fixtures.json",
+"escher-0.2.0/chunks/2026-10-19-shared-fixtures/plan.md",
+"escher-0.2.0/chunks/2026-10-19-shared-fixtures/research.md",
+"escher-0.2.0/chunks/2026-10-19-shared-fixtures/scope.md"
+],
+"rust": [
+"tests/blitz-tests/tests/font_face_sniffed_source.rs",
+"tests/blitz-tests/tests/stand_act_diff.rs",
+"tests/blitz-tests/tests/stand_act_filled.rs",
+"tests/blitz-tests/tests/stand_act_obstructed.rs",
+"tests/blitz-tests/tests/stand_act_screenshot.rs",
+"tests/blitz-tests/tests/stand_act_scroll.rs",
+"tests/blitz-tests/tests/stand_act_spans.rs",
+"tests/blitz-tests/tests/stand_act_timer.rs",
+"tests/blitz-tests/tests/stand_act_transformed.rs",
+"tests/blitz-tests/tests/stand_boot.rs",
+"tests/blitz-tests/tests/stand_diff.rs",
+"tests/blitz-tests/tests/stand_keyboard.rs",
+"tests/blitz-tests/tests/stand_mcp_masked.rs",
+"tests/blitz-tests/tests/stand_mcp_tools.rs",
+"tests/blitz-tests/tests/stand_replay.rs",
+"tests/blitz-tests/tests/stand_session_recording.rs",
+"tests/blitz-tests/tests/stand_settle.rs",
+"tests/blitz-tests/tests/stand_snapshot_state.rs",
+"tests/blitz-tests/tests/stand_snapshot_text.rs",
+"tests/blitz-tests/tests/fixtures/mod.rs"
+]
+},
+"unmapped": [
+"escher-0.2.0/chunks/2026-10-19-shared-fixtures/evidence/blitz-tests-before.txt"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 65,
+"problem": null
+},
+"prose": [
+{
+"from": 130,
+"to": 133,
+"text": "There is no live leg and no boot path to smoke: the chunk changes test code only, and the windowed stand is not re-booted. The agent-run entries drive the project's own 5-command harness in process, with no external process. The stand-repeat leg and the coverage leg run in CI and are read through the CI entry. Every count below is a prediction to be measured: a move adds and removes no test."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-tests --locked 2>&1",
+"run_sha8": "2b19debd",
+"expect": [
+"exit 0",
+"lacks FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/1.log",
+"bytes": 65222,
+"log_sha8": "3538ba00",
+"exit": 0,
+"seconds": 91.46,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "probe",
+"run": "cargo test -p blitz-tests --locked -- --list 2>/dev/null | cmp - escher-0.2.0/chunks/2026-10-19-shared-fixtures/evidence/blitz-tests-before.txt",
+"run_sha8": "f21c3b6c",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/2.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.91,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "build",
+"run": "cargo check --tests --locked --target x86_64-pc-windows-gnu -p blitz-tests",
+"run_sha8": "b06327e6",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/3.log",
+"bytes": 166,
+"log_sha8": "84e611d0",
+"exit": 0,
+"seconds": 0.95,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "grep -l 'NetProvider for' tests/blitz-tests/tests/*.rs tests/blitz-tests/tests/*/mod.rs | paste -sd' ' ",
+"run_sha8": "4d90f950",
+"expect": [
+"exit 0",
+"last line tests/blitz-tests/tests/link_rel_attribute.rs tests/blitz-tests/tests/render_blocking_stylesheet.rs tests/blitz-tests/tests/fixtures/mod.rs"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/4.log",
+"bytes": 140,
+"log_sha8": "22fe1c05",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line 'tests/blitz-tests/tests/link_rel_attribute.rs tests/blitz-tests/tests/render_blocking_stylesheet.rs tests/blitz-tests/tests/fixtures/mod.rs' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "grep -l -E '^fn (password_fixture|covered_fixture)\\(' tests/blitz-tests/tests/*.rs | paste -sd' ' ",
+"run_sha8": "80c7c678",
+"expect": [
+"exit 0",
+"last line tests/blitz-tests/tests/stand_act_filled.rs tests/blitz-tests/tests/stand_act_obstructed.rs tests/blitz-tests/tests/stand_act_screenshot.rs"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/5.log",
+"bytes": 140,
+"log_sha8": "4dbd0719",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line 'tests/blitz-tests/tests/stand_act_filled.rs tests/blitz-tests/tests/stand_act_obstructed.rs tests/blitz-tests/tests/stand_act_screenshot.rs' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "cat tests/blitz-tests/tests/*.rs | grep -c -E '^fn (boot_fixture|hold_fixture|hold|hold_variant)\\(|^fn fixture\\(app:' ",
+"run_sha8": "2204c225",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/6.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "cat tests/blitz-tests/tests/*.rs | grep -c 'Harness::from_vdom' ",
+"run_sha8": "ff835e4a",
+"expect": [
+"exit 0",
+"last line 7"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/7.log",
+"bytes": 2,
+"log_sha8": "10159baf",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line '7' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "grep -l '^mod fixtures;' tests/blitz-tests/tests/*.rs | wc -l",
+"run_sha8": "f3f999fb",
+"expect": [
+"exit 0",
+"last line 19"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/8.log",
+"bytes": 3,
+"log_sha8": "a9742eb8",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line '19' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "grep -c -E 'println!|eprintln!|print!|dbg!|tracing|escher_telemetry|std::env|env!|UnixListener|TcpListener|std::fs|blitz_net' tests/blitz-tests/tests/fixtures/mod.rs",
+"run_sha8": "eb009d49",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/9.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "cat tests/blitz-tests/tests/{stand_settle,font_face_sniffed_source,stand_boot,stand_act_diff,stand_diff,stand_snapshot_text,stand_mcp_masked,stand_session_recording,stand_act_spans,stand_mcp_tools,stand_act_filled,stand_act_screenshot,stand_act_obstructed,stand_act_scroll,stand_act_transformed,stand_act_timer,stand_replay,stand_keyboard,stand_snapshot_state}.rs tests/blitz-tests/tests/fixtures/mod.rs | grep -c -E 'println!|eprintln!|print!|dbg!|tracing_subscriber|escher_telemetry|set_global_default' ",
+"run_sha8": "77e05f11",
+"expect": [
+"exit 0",
+"last line 4"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/10.log",
+"bytes": 2,
+"log_sha8": "7de1555d",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '4' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "cat tests/blitz-tests/tests/*.rs tests/blitz-tests/tests/*/mod.rs | grep -oE 'env!\\(\"[^\"]*\"\\)|env::var[a-z_]*|std::env::[a-z_]+|option_env!|temp_dir\\(\\)' | sort | uniq -c | awk '{printf \"%s %s;\", $1, $2} END {print \"\"}' ",
+"run_sha8": "a07e2a8b",
+"expect": [
+"exit 0",
+"last line 1 env!(\"CARGO_MANIFEST_DIR\");1 env!(\"CARGO_PKG_NAME\");1 env!(\"CARGO_TARGET_TMPDIR\");6 std::env::current_exe;1 std::env::var;"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/11.log",
+"bytes": 125,
+"log_sha8": "a7507457",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line '1 env!(\"CARGO_MANIFEST_DIR\");1 env!(\"CARGO_PKG_NAME\");1 env!(\"CARGO_TARGET_TMPDIR\");6 std::env::current_exe;1 std::env::var;' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "git diff --name-only 5174f92a7335b4f469cbaf94763086378016b04b -- packages examples tests apps wpt .github scripts Cargo.toml Cargo.lock deny.toml | grep -c -v -x -E 'tests/blitz-tests/tests/(stand_settle|font_face_sniffed_source|stand_boot|stand_act_diff|stand_diff|stand_snapshot_text|stand_mcp_masked|stand_session_recording|stand_act_spans|stand_mcp_tools|stand_act_filled|stand_act_screenshot|stand_act_obstructed|stand_act_scroll|stand_act_transformed|stand_act_timer|stand_replay|stand_keyboard|stand_snapshot_state)\\.rs' ",
+"run_sha8": "cce68dd7",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/12.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "git ls-files --others --exclude-standard -- packages examples tests apps wpt .github scripts | grep -c -v -x 'tests/blitz-tests/tests/fixtures/mod.rs' ",
+"run_sha8": "590afdad",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/13.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "integration",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": [
+"exit 0",
+"contains \"outcome\": \"ready\""
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/14.log",
+"bytes": 137,
+"log_sha8": "3d7f5fc0",
+"exit": 0,
+"seconds": 0.61,
+"readings": [
+"exit 0 ✓",
+"contains '\"outcome\": \"ready\"' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": [
+"exit 0",
+"contains \"selection\": \"stand\", \"passed\": 178, \"failed\": 0, \"ignored\": 7"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/15.log",
+"bytes": 24139,
+"log_sha8": "6f146d10",
+"exit": 0,
+"seconds": 76.04,
+"readings": [
+"exit 0 ✓",
+"contains '\"selection\": \"stand\", \"passed\": 178, \"failed\": 0, \"ignored\": 7' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run font_face_sniffed_source",
+"run_sha8": "61c18f5b",
+"expect": [
+"exit 0",
+"contains \"selection\": \"font_face_sniffed_source\", \"passed\": 2, \"failed\": 0, \"ignored\": 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/16.log",
+"bytes": 571,
+"log_sha8": "d901bfa6",
+"exit": 0,
+"seconds": 0.76,
+"readings": [
+"exit 0 ✓",
+"contains '\"selection\": \"font_face_sniffed_source\", \"passed\": 2, \"failed\": 0, \"ignored\": 0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 17,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/17.log",
+"bytes": 3882,
+"log_sha8": "42025b62",
+"exit": 0,
+"seconds": 12.99,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 18,
+"role": "unit",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/18.log",
+"bytes": 108817,
+"log_sha8": "9465ddaf",
+"exit": 0,
+"seconds": 170.3,
+"readings": [
+"exit 0 ✓",
+"artifact fresh (target/ci-logs/test.log)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "grep -E '^test result:' target/ci-logs/test.log | awk '{p+=$4; f+=$6; i+=$8; n++} END {print \"lines \" n \" passed \" p \" failed \" f \" ignored \" i}' ",
+"run_sha8": "2ec38d01",
+"expect": [
+"exit 0",
+"contains lines 199 passed 1045 failed 0 ignored 12"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/19.log",
+"bytes": 42,
+"log_sha8": "97a0566d",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"contains 'lines 199 passed 1045 failed 0 ignored 12' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 20,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-19-shared-fixtures/implement-2026-10-19T22-26-15/20.log",
+"bytes": 427,
+"log_sha8": "4bb9e07e",
+"exit": 0,
+"seconds": 2.03,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 21,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 22,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.2.0",
+"run_sha8": "ee10eab9",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 23,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 24,
+"role": "probe",
+"run": "gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\t' '$3 ~ /test result:/ {n[$1]++; if (match($3, /([0-9]+) passed; ([0-9]+) failed; ([0-9]+) ignored/, m)) {p[$1]+=m[1]; f[$1]+=m[2]; i[$1]+=m[3]}} END {for (j in n) print j \" · \" n[j] \" · \" p[j] \" · \" f[j] \" · \" i[j]}' ",
+"run_sha8": "06d4f637",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.21",
+"sha8": "e6b5f42f",
+"ts": "2026-10-19T22:38:52Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-shared-fixtures",
+"--run-dir",
+".andromeda/runs/2026-10-19T22-26-15-implement",
+"--marker",
+"2026-10-19-shared-fixtures"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 1 · modify 19 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 20 · listed 20 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 47"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 20,
+"listed": 20,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 47,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.21",
+"sha8": "e6b5f42f",
+"ts": "2026-10-19T22:38:52Z",
+"argv": [
+"census",
+"--comm",
+"escher-session",
+"--comm",
+"cargo",
+"--comm",
+"rustc",
+"--args",
+"agent-run.sh",
+"--run-dir",
+".andromeda/runs/2026-10-19T22-26-15-implement",
+"--marker",
+"2026-10-19-shared-fixtures"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"census · ps · comm escher-session, cargo, rustc · args agent-run.sh · own tree excluded: 8",
+"census: none running"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"census": {
+"comm": [
+"escher-session",
+"cargo",
+"rustc"
+],
+"args": [
+"agent-run.sh"
+],
+"running": []
+}
+}
+}
+]

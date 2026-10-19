@@ -2,23 +2,13 @@
 //! offline, at the pinned viewport with the bundled font, and lays it out the
 //! same way on every fresh boot and in both layout modes.
 
-use std::sync::{Arc, Mutex};
+use std::sync::Arc;
 
 use blitz_test_harness::{Harness, HarnessOptions};
-use blitz_traits::net::{NetHandler, NetProvider, Request};
 use seven_guis::stand::{self, LeanTask};
 
-/// A `NetProvider` which records the urls it is asked for.
-#[derive(Default)]
-struct RecordingNetProvider {
-    requests: Mutex<Vec<String>>,
-}
-
-impl NetProvider for RecordingNetProvider {
-    fn fetch(&self, _doc_id: usize, request: Request, _handler: Box<dyn NetHandler>) {
-        self.requests.lock().unwrap().push(request.url.to_string());
-    }
-}
+mod fixtures;
+use fixtures::HeldNet;
 
 fn title(task: LeanTask) -> &'static str {
     match task {
@@ -29,7 +19,7 @@ fn title(task: LeanTask) -> &'static str {
     }
 }
 
-fn recording_options(net: &Arc<RecordingNetProvider>) -> HarnessOptions {
+fn recording_options(net: &Arc<HeldNet>) -> HarnessOptions {
     HarnessOptions {
         net_provider: Some(Arc::clone(net) as _),
         ..stand::options(true)
@@ -96,28 +86,24 @@ fn incremental_and_full_layout_boots_lay_out_identically() {
 
 #[test]
 fn stand_options_reach_the_injected_net_provider() {
-    let net = Arc::new(RecordingNetProvider::default());
+    let net = Arc::new(HeldNet::default());
 
     Harness::from_html_with(
         r#"<html><head><link rel="stylesheet" href="http://example.test/a.css"></head></html>"#,
         recording_options(&net),
     );
 
-    assert_eq!(*net.requests.lock().unwrap(), ["http://example.test/a.css"]);
+    assert_eq!(net.urls(), ["http://example.test/a.css"]);
 }
 
 #[test]
 fn boot_and_click_make_no_net_requests() {
     for task in LeanTask::ALL {
-        let net = Arc::new(RecordingNetProvider::default());
+        let net = Arc::new(HeldNet::default());
         let mut harness = stand::boot(task, recording_options(&net));
 
         harness.click("#back-btn");
 
-        assert_eq!(
-            *net.requests.lock().unwrap(),
-            Vec::<String>::new(),
-            "{task:?}"
-        );
+        assert_eq!(net.urls(), Vec::<String>::new(), "{task:?}");
     }
 }

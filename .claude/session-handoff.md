@@ -38,3 +38,6 @@
   repetition). At this chunk's P1 a `.{200}` pattern printed nothing, and the pass was read by Python instead.
 - recurrence-despite-learning: host-linux §Paths («`cd` only inside a subshell»). The Bash guard refused a `cd` into
   the run dir at this wrap's P2. It held at one re-issue.
+
+## Session End Status
+Completed normally at 2026-10-20 00:25:56

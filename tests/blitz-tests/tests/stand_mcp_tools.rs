@@ -27,14 +27,14 @@
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
-use blitz_test_harness::{Harness, HarnessOptions};
-use dioxus::prelude::*;
+use blitz_test_harness::HarnessOptions;
 use escher_driver::{CAUSES, Cause, Outcome, Session, SessionError, describe, serve_mcp};
 use seven_guis::stand::{self, LeanTask};
 use tracing::field::{Field, Visit};
 use tracing::span::{Attributes, Id, Record};
 use tracing::{Event, Metadata, Subscriber};
 
+mod fixtures;
 mod session_common;
 use session_common::{click, hold, screenshot, shot, slug, snapshot};
 
@@ -394,23 +394,6 @@ fn a_scripted_mcp_session_completes_the_counter_flow_and_parents_each_command() 
     );
 }
 
-/// A button under an opaque overlay with a `z-index` above it.
-fn covered_fixture() -> Element {
-    rsx! {
-        div { id: "fx-root", style: "position: relative; width: 600px; height: 400px;",
-            button {
-                id: "fx-under",
-                style: "position: absolute; left: 20px; top: 20px; width: 120px; height: 40px;",
-                "Under"
-            }
-            div {
-                id: "fx-cover",
-                style: "position: absolute; left: 0; top: 0; width: 200px; height: 140px; z-index: 5; background: #cccccc;",
-            }
-        }
-    }
-}
-
 /// The cause a refusal's text names, when its remedy is the one the cause states.
 fn remedied(text: &str) -> Option<Cause> {
     let cause = CAUSES
@@ -528,14 +511,8 @@ fn every_cause_a_tool_call_reaches_is_served_with_its_remedy() {
         let mut input = requests.join("\n");
         input.push('\n');
         let mut output = Vec::new();
-        let boot_fixture = |app: &str| {
-            Session::start(app, || {
-                Harness::from_vdom(
-                    VirtualDom::new(covered_fixture),
-                    stand::options(incremental),
-                )
-            })
-        };
+        let boot_fixture =
+            |app: &str| Session::start(app, || fixtures::boot(fixtures::covered, incremental));
         tracing::subscriber::with_default(Recorder::default(), || {
             serve_mcp(
                 input.as_bytes(),

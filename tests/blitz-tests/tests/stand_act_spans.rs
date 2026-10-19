@@ -26,7 +26,7 @@ use std::io;
 use std::process::Command;
 use std::sync::{Arc, Mutex};
 
-use blitz_test_harness::{Harness, HarnessOptions};
+use blitz_test_harness::HarnessOptions;
 use dioxus::prelude::*;
 use dioxus_native_dom::SnapshotDiff;
 use escher_driver::{
@@ -35,6 +35,7 @@ use escher_driver::{
 use seven_guis::stand::{self, LeanTask};
 
 mod common;
+mod fixtures;
 mod session_common;
 use session_common::{
     advance, click, hold, press, screenshot, screenshot_of, scroll, slug, type_into,
@@ -530,23 +531,6 @@ impl<'c> Run<'c> {
     }
 }
 
-/// One button under one positioned overlay: the `covered` case the stand lacks.
-fn covered_fixture() -> Element {
-    rsx! {
-        div { id: "fx-root", style: "position: relative; width: 600px; height: 400px;",
-            button {
-                id: "fx-under",
-                style: "position: absolute; left: 20px; top: 20px; width: 120px; height: 40px;",
-                "Under"
-            }
-            div {
-                id: "fx-cover",
-                style: "position: absolute; left: 0; top: 0; width: 200px; height: 140px; z-index: 5; background: #cccccc;",
-            }
-        }
-    }
-}
-
 /// Every render mounts a freshly keyed element whose `mounted` handler bumps the key, so the
 /// instance never goes quiet.
 fn restless_fixture() -> Element {
@@ -666,13 +650,7 @@ fn child_records_each_command_at_info() {
         );
         needles.read(&timer);
 
-        let mut fixture = Session::start("spans", || {
-            Harness::from_vdom(
-                VirtualDom::new(covered_fixture),
-                stand::options(incremental),
-            )
-        })
-        .expect("the label is one of the closed set");
+        let mut fixture = fixtures::hold("spans", fixtures::covered, incremental);
         let _ = run.drive(
             "fixture",
             &mut fixture,
@@ -699,13 +677,7 @@ fn child_records_each_command_at_info() {
         );
         needles.read(&no_font);
 
-        let mut restless = Session::start("restless", || {
-            Harness::from_vdom(
-                VirtualDom::new(restless_fixture),
-                stand::options(incremental),
-            )
-        })
-        .expect("the label is one of the closed set");
+        let mut restless = fixtures::hold("restless", restless_fixture, incremental);
         let _ = run.drive(
             "restless fixture",
             &mut restless,
