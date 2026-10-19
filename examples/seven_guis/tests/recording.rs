@@ -53,6 +53,7 @@ fn fresh(name: &str) -> std::path::PathBuf {
 }
 
 /// The one check a recording directory holds, read after its modes are checked.
+#[cfg(unix)]
 #[track_caller]
 fn the_check(dir: &Path, surface: &str) -> Vec<u8> {
     let names: Vec<_> = fs::read_dir(dir)
