@@ -1,43 +1,34 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-19T21:49:58Z
+**Last Updated:** 2026-10-19T23:29:30Z
 **Branch:** build/escher-0.2.0 · 0 ahead of origin/build/escher-0.2.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-19-test-splits — escher-driver's cli and recording tests out of line, the log checks' fragment stated once
+**Last Commit:** 2026-10-19-shared-fixtures — fixture pages and one held network stand-in stated once in blitz-tests' shared `fixtures` module
 
 ## Position
-- Done: 2026-10-19-test-splits. escher-driver's `cli::tests`, `recording::tests` and `recording::off_unix_tests` now sit
-  in `#[path]` files of their own (`cli.rs` 478 lines, `recording.rs` 459). `host_log` and `mcp_log`'s shared fragment is
-  stated once in seven_guis' `tests/common/mod.rs` (jscpd 6 clones → 0). CI#39324662409 green 17/17.
-- Next: «Shared fixtures» (Epoch 4), by `/andromeda-phase`.
+- Done: 2026-10-19-shared-fixtures. A third blitz-tests shared module, `tests/fixtures/mod.rs`, now holds the fixture
+  boot and hold, the pages `password_labelled` · `password_named` · `covered`, and `HeldNet`, escher's one held network
+  stand-in. 19 checks read it, upstream's two stand-ins are untouched, and CI#39336988025 is green 17/17.
+- Next: «Visual lint» (Epoch 4), by `/andromeda-phase`.
 
 ## Work done
-- Wrapped in two windows: P1 in the first, P2–P7 resumed from `.andromeda/runs/2026-10-19T21-24-54-wrap/`.
-- No route edit was owed. The P5 card's three audit directions stay unowned for the founder's judgment, on the
-  operator's "yes" (M1's `command.rs`/`wire.rs` reader reuse, M1's `stand_replay` Counter variant, M2's per-verb
-  helpers for `cli.rs::read`).
+- Wrapped in two windows: P1 in the first, P2–P7 resumed from `.andromeda/runs/2026-10-19T23-02-04-wrap/`.
+- No route edit was owed. Curation added two Tier-3 learnings: a new name that is a prefix of the one it replaced, and
+  evidence times are read, never estimated.
 
 ## Drift resolved
-- 17 amendments across test-plan (with its session-lifecycle key file), architecture and obs-plan, 0 escalations:
-  - out-of-line `#[path]` test modules: five → eight;
-  - escher-driver's split: 72/20 → 58 inline / 34 in four `#[path]` files, the per-file names renamed;
-  - the shared log-check fragment and its silence census;
-  - test-plan §10: a `*_tests.rs` file is no record of the coverage reading, so a split moves it (escher-driver
-    98.33 % → 98.07 %, floors held). This disposes the chunk's disproved forecast.
-- 0 proposals rejected. Citations: 37 re-pointed, 7 changed, 11 stretched. Leaves: 16 findings applied over
-  5 leaves, 1 declined.
+- 14 amendments across test-plan (10), architecture (2), obs-plan (1) and a11y-plan (1), with 0 escalations and
+  0 rejected. They cover:
+  - the third shared module and its 19 readers;
+  - one `HeldNet` in place of escher's three file-private stand-ins (test-plan §8);
+  - the test-data bootstrap moving from NOT YET MEASURED to measured (fixtures compiled at `agent-run.sh boot`, nothing
+    seeded);
+  - three moved pages that were described as in-file.
+- Citations: 113 re-pointed · 2 changed · 41 stretched. Leaves: 14 findings over 10 groups, 10 applied by the tool,
+  4 by hand, 0 declined.
 
 ## Notes
-- PROVISIONAL (carried): the previous chunk's take (upstream's `:focus-within`, the not-in-document focus refusal and
-  the focus redraw) rests on F1 answered by the operator as delegate. The wrap that closes Epoch 4 lists it for the
-  founder's boundary batch.
+- PROVISIONAL (carried): the take from 2026-10-19-upstream-sync-visual-lint-and-real-app-readiness (upstream's
+  `:focus-within`, the not-in-document focus refusal and the focus redraw) rests on F1, answered by the operator as
+  delegate. The wrap that closes Epoch 4 lists it for the founder's boundary batch.
 - Last failed command: none outstanding.
-
-## Deferred learnings
-- recurrence-despite-learning: T1 2026-10-07 and the global Shell rule (the embedded grep refuses a bounded
-  repetition). At this chunk's P1 a `.{200}` pattern printed nothing, and the pass was read by Python instead.
-- recurrence-despite-learning: host-linux §Paths («`cd` only inside a subshell»). The Bash guard refused a `cd` into
-  the run dir at this wrap's P2. It held at one re-issue.
-
-## Session End Status
-Completed normally at 2026-10-20 00:25:56

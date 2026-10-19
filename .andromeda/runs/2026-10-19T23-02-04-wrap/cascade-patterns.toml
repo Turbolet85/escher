@@ -1,0 +1,26 @@
+[[pattern]]
+id = 'shared-mods'
+regex = '(two|three) shared modules|second such module|third such module|shared modules? that (is|are) no target|(third|fourth) file that is no built target|their shared modules'
+ignore_case = true
+
+[[pattern]]
+id = 'heldnet'
+regex = 'HeldNet|ManualNetProvider|RecordingNetProvider|hand provider|own provider|network stand-in'
+
+[[pattern]]
+id = 'bootstrap'
+regex = 'test-data bootstrap|bootstrap mechanism'
+ignore_case = true
+
+[[pattern]]
+id = 'infile'
+regex = '''in-file (overlay )?fixtures?|stand_mcp_masked`'s fixture'''
+
+[[pattern]]
+id = 'readers'
+regex = 'mod fixtures;|read through `mod (common|session_common);`'
+
+[[pattern]]
+id = 'census'
+regex = 'silence census'
+ignore_case = true

@@ -8,6 +8,16 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-19 — A new name that is a prefix of the name it replaced counts the old sites
+When a chunk renames a symbol to a shorter name that the old one begins with (`HeldNet` replacing `HeldNetProvider`), a bare grep or sweep pattern for the new name also matches every surviving site of the old one, and a count reads the retired name's sites as the new one's. Bound the new name at its end (`HeldNet\b`) and sweep the old name as its own alternative, so each site is counted once and as what it is.
+
+---
+
+## 2026-10-19 — An evidence time is read, never estimated
+A time written into chunk evidence (a run's start or end, a stamp beside a reading) is copied from a recorded event's own stamp or from `date -u` at the moment of writing. An estimated time ahead of the clock is refused by the stamp-ahead hook, and one behind it still misdates the reading.
+
+---
+
 ## 2026-10-19 — An in-line edit beside a provenance parenthesis reads as new provenance
 On architecture, design-system and obs-plan, `classify.py check --mode standing` keys each provenance span inside a
 parenthesis on the 8 tokens of the claim just before its `(`. An in-line edit that rewrites those tokens — a value

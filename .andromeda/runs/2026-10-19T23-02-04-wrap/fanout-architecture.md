@@ -1,0 +1,17 @@
+proposals:
+  - detector: D-arch-resources
+    severity: warning
+    section: §Existing Scopes → blitz-tests
+    change: after the `tests/session_common/mod.rs` clause (its twenty-five readers and helpers), add the third shared module — since 2026-10-19-shared-fixtures `tests/fixtures/mod.rs`, no test target and no test in it, the one statement of the fixture boot `boot` (the stand's pinned options through `stand::options`), the held session `hold`, three pages `password_labelled`, `password_named` and `covered`, and `HeldNet`, escher's one held network stand-in (requests held in order, answered last-first by `answer`, no `is_noop` override so the harness counts its loads; replacing `stand_settle`'s, `font_face_sniffed_source`'s and `stand_boot`'s file-private copies), read through `mod fixtures;` by 19 checks (tests/blitz-tests/tests/fixtures/mod.rs:17-20; tests/blitz-tests/tests/fixtures/mod.rs:22-25; tests/blitz-tests/tests/fixtures/mod.rs:27-62; tests/blitz-tests/tests/fixtures/mod.rs:64-107)
+    sidecar: arch §Existing Scopes blitz-tests — the third shared no-target module `tests/fixtures/mod.rs` (boot, hold, three pages, `HeldNet`) and its 19 readers registered (2026-10-19-shared-fixtures)
+    rationale: report Changes → Symbols / APIs adds `tests/blitz-tests/tests/fixtures/mod.rs` (boot, hold, three pages, HeldNet) with 19 readers; Counts «shared modules 2 → 3» marks `architecture.md:350` (@c7031, @c20777) stale (the third module missing); Expected amendments name architecture's shared-module statements
+    basis: escher-0.2.0/chunks/2026-10-19-shared-fixtures/report.md:19-47, :63-73, :168-170
+  - detector: D-arch-resources
+    severity: warning
+    section: §Conventions → Tests
+    change: after «keep what they share in a second such module, `tests/blitz-tests/tests/session_common/mod.rs`, read by `mod session_common;` (tests/blitz-tests/tests/session_common/mod.rs:1-7)», add — and, since 2026-10-19-shared-fixtures, the fixture boot and hold, the pages more than one check reads and the held network stand-in `HeldNet` sit in a third such module, `tests/blitz-tests/tests/fixtures/mod.rs`, read by `mod fixtures;` by 19 checks, while a page with one reader stays in its file (tests/blitz-tests/tests/fixtures/mod.rs:17-25; tests/blitz-tests/tests/fixtures/mod.rs:64-107)
+    sidecar: arch §Conventions Tests — the third blitz-tests shared module `fixtures` stated beside `common` and `session_common` (2026-10-19-shared-fixtures)
+    rationale: report Counts «shared modules 2 → 3» names `architecture.md:137` (@c3496–4233, «a second such module») stale; Expected amendments: «architecture §Conventions → Tests — the third shared module and the reader counts» (common 21, session_common 25, fixtures 19)
+    basis: escher-0.2.0/chunks/2026-10-19-shared-fixtures/report.md:63-66, :168-170
+    dependent-of: D-arch-resources
+note: D-arch-decisions clean (Dependencies none; no library, runtime or locked decision touched). No Retired item. `architecture.md:221`/`:230`/`:234`/`:351` are no-change per the report; the `cites19` digit re-points at `:63`, `:98`, `:160`, `:190`, `:201`, `:230`, `:350` are P2's citation sweep, not proposed here. The «in-file fixture(s)» wording at `:350` (stand_snapshot_state, stand_keyboard, stand_settle pages, stand_act_obstructed) stays true — only the boot/hold helpers and the stand-in moved, the pages there kept their files.

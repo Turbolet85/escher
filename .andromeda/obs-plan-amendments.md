@@ -401,3 +401,9 @@ The delegate-answered facts PROVISIONAL.
 **Change:** a census item added: escher-driver's `cli_tests.rs`, `recording_tests.rs`, `recording_off_unix_tests.rs` and seven_guis' shared `tests/common/mod.rs` are silent — 0 print, tracing and subscriber sites over the four; the shared module now states once, for `host_log` and `mcp_log` alone, `Needles`, `stand_needles`, `stamped_lines`, `found`, `occurrences` and the unix-only `recorded_needles`, its assertion messages a kind and a count, never a needle or a captured line; escher-driver still holds its 2 `info_span!` sites, the env-read set unchanged.
 **Why:** this chunk's own test-only move (the playbook's «Accurate this-chunk addition», the plan's reviewed expected amendment); the log checks the security and obs readings rest on still assert the same zeros.
 **Ref:** .andromeda/runs/2026-10-19T21-24-54-wrap/
+
+## 2026-10-19-shared-fixtures — the fixtures module in the silence census
+**Section:** §3 Observability Harness Contract → Logging stack (`absence · logs` group)
+**Change:** the stand checks' third shared module, `tests/blitz-tests/tests/fixtures/mod.rs` (the fixture boot and hold, three pages and the held network stand-in `HeldNet`), is silent: no print, `tracing` call, subscriber, env read, file, socket, listener or `blitz_net`, the census reading 0. Its 19 readers, now including `stand_mcp_masked`, `stand_boot` and `font_face_sniffed_source`, hold the 4 print or sink sites of `stand_act_spans`' re-run children, none added, and the blitz-tests env-read set is unchanged.
+**Why:** this chunk's own test-only module: the playbook's «Accurate this-chunk addition» and the plan's reviewed expected amendment. The «their shared modules» clause of the stand line already covers all three modules, so it is left as written.
+**Ref:** .andromeda/runs/2026-10-19T23-02-04-wrap/

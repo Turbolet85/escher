@@ -1,0 +1,41 @@
+[[pattern]]
+id = 'shared-mods'
+regex = 'session_common/mod\.rs|common/mod\.rs|fixtures/mod\.rs|mod fixtures|shared module'
+
+[[pattern]]
+id = 'heldnet'
+regex = 'ManualNetProvider|HeldNetProvider|RecordingNetProvider|HeldNet\b|held network stand-in'
+
+[[pattern]]
+id = 'bootstrap'
+regex = 'test-data bootstrap|bootstrap mechanism'
+
+[[pattern]]
+id = 'cites19'
+regex = '(stand_settle|font_face_sniffed_source|stand_boot|stand_act_diff|stand_diff|stand_snapshot_text|stand_mcp_masked|stand_session_recording|stand_act_spans|stand_mcp_tools|stand_act_filled|stand_act_screenshot|stand_act_obstructed|stand_act_scroll|stand_act_transformed|stand_act_timer|stand_replay|stand_keyboard|stand_snapshot_state)\.rs:\d+'
+
+[[pattern]]
+id = 'helpers'
+regex = 'password_fixture|covered_fixture|hold_fixture|boot_fixture|hold_variant'
+
+[[pattern]]
+id = 'declnone'
+regex = 'declares? none|declares? no shared module'
+
+[[pattern]]
+id = 'census'
+regex = 'silence census|census exception'
+
+[[pattern]]
+id = 'readers'
+regex = '\b\d+ readers\b'
+
+[[pattern]]
+id = 'title'
+fixed = 'Shared fixtures'
+ignore_case = true
+
+[[pattern]]
+id = 'owner'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true

@@ -1,0 +1,229 @@
+[
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "447df23e",
+"ts": "2026-10-19T23:06:33Z",
+"argv": [
+"append",
+"--file",
+"escher-0.2.0/chunks/2026-10-19-shared-fixtures/report.md",
+"--payload-file",
+".andromeda/runs/2026-10-19T23-02-04-wrap/new-text.md",
+"--lines",
+"59",
+"--if-absent-prefix",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-10-19T23-02-04-wrap",
+"--marker",
+"2026-10-19-shared-fixtures"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append report.md:+59 at line 306 · lines 305→364 · bytes 30432→33909 · term lf",
+"last line now: added: 11-12 · 15 · 349 · 380"
+],
+"stderr": null,
+"wrote": [
+"escher-0.2.0/chunks/2026-10-19-shared-fixtures/report.md"
+],
+"before": {
+"lines": 305,
+"bytes": 30432,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 364,
+"bytes": 33909
+}
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "447df23e",
+"ts": "2026-10-19T23:08:16Z",
+"argv": [
+"append",
+"--file",
+"escher-0.2.0/chunks/2026-10-19-shared-fixtures/report.md",
+"--payload-file",
+".andromeda/runs/2026-10-19T23-02-04-wrap/new-text.md",
+"--lines",
+"59",
+"--if-absent-prefix",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-10-19T23-02-04-wrap",
+"--marker",
+"2026-10-19-shared-fixtures"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"skipped — '## New text, by line' already at line 306 (the append is idempotent)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "447df23e",
+"ts": "2026-10-19T23:26:39Z",
+"argv": [
+"append",
+"--file",
+".andromeda/test-plan-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-19T23-02-04-wrap/test-plan-entry.md",
+"--lines",
+"12",
+"--run-dir",
+".andromeda/runs/2026-10-19T23-02-04-wrap",
+"--marker",
+"2026-10-19-shared-fixtures"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append test-plan-amendments.md:+12 at line 792 · lines 791→803 · bytes 138500→141488 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-19T23-02-04-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/test-plan-amendments.md"
+],
+"before": {
+"lines": 791,
+"bytes": 138500,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 803,
+"bytes": 141488
+}
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "447df23e",
+"ts": "2026-10-19T23:26:39Z",
+"argv": [
+"append",
+"--file",
+".andromeda/architecture-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-19T23-02-04-wrap/architecture-entry.md",
+"--lines",
+"8",
+"--run-dir",
+".andromeda/runs/2026-10-19T23-02-04-wrap",
+"--marker",
+"2026-10-19-shared-fixtures"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append architecture-amendments.md:+8 at line 1033 · lines 1032→1040 · bytes 210108→211232 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-19T23-02-04-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/architecture-amendments.md"
+],
+"before": {
+"lines": 1032,
+"bytes": 210108,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 1040,
+"bytes": 211232
+}
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "447df23e",
+"ts": "2026-10-19T23:26:39Z",
+"argv": [
+"append",
+"--file",
+".andromeda/obs-plan-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-19T23-02-04-wrap/obs-plan-entry.md",
+"--lines",
+"6",
+"--run-dir",
+".andromeda/runs/2026-10-19T23-02-04-wrap",
+"--marker",
+"2026-10-19-shared-fixtures"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append obs-plan-amendments.md:+6 at line 404 · lines 403→409 · bytes 68192→69181 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-19T23-02-04-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/obs-plan-amendments.md"
+],
+"before": {
+"lines": 403,
+"bytes": 68192,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 409,
+"bytes": 69181
+}
+},
+{
+"tool": "splice",
+"v": "1.0",
+"sha8": "447df23e",
+"ts": "2026-10-19T23:26:39Z",
+"argv": [
+"append",
+"--file",
+".andromeda/a11y-plan-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-19T23-02-04-wrap/a11y-plan-entry.md",
+"--lines",
+"6",
+"--run-dir",
+".andromeda/runs/2026-10-19T23-02-04-wrap",
+"--marker",
+"2026-10-19-shared-fixtures"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append a11y-plan-amendments.md:+6 at line 386 · lines 385→391 · bytes 64312→65166 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-19T23-02-04-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/a11y-plan-amendments.md"
+],
+"before": {
+"lines": 385,
+"bytes": 64312,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 391,
+"bytes": 65166
+}
+}
+]

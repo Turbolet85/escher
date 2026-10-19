@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens holds — the report's Coverage reads `tokens n/a` for both new surfaces (`fixtures::HeldNet`; `fixtures::{boot, hold, password_labelled, password_named, covered}`, the covered page's inline `#cccccc` test markup moved byte for byte, no CSS moved) and no `hardcoded✗`; Retired is none. The design-system §Motion citation move (`design-system.md:290` re-point, `:291` no-change) is carried by the Counts «Citations» `cites19` pattern for P2's citation sweep, coordinates only, not a detector proposal.

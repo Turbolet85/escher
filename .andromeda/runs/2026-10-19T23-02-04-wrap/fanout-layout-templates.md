@@ -1,0 +1,2 @@
+proposals: []
+note: D-layout-surface holds — the report's Changes add no user-facing surface or region (test code only, 20 files under tests/blitz-tests/tests/; no examples/ change; Smoke skipped "no boot-path or UI-surface change"); Retired is none, so no D-retired; the two layout-templates citations into moved test files (layout-templates.md:10, :45) are the report's cites19 re-point class, left to P2's citation sweep.

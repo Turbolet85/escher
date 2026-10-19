@@ -31,7 +31,7 @@ _From `.andromeda/architecture.md`, the `justfile` and `.github/workflows/ci.yml
 - `python3 -m unittest discover -s .github/scripts` — CI Python script tests (the `ci-scripts` leg; needs PyYAML) — `test_ci_workflows.py`, `test_agent_run.py` and `test_cold_agent.py` among them
 
 ## Agent-run test contract
-- `bash scripts/agent-run.sh boot` — build every blitz-tests test binary; opens `target/agent-run/` (exit 0 ready · 1 failed)
+- `bash scripts/agent-run.sh boot` — build every blitz-tests test binary, and so the test-data bootstrap: nothing is seeded, since the fixtures are code (`tests/blitz-tests/tests/fixtures/mod.rs` and the one-reader pages in their checks' own files) compiled into each target, and there is no `run fixtures` selection; opens `target/agent-run/` (exit 0 ready · 1 failed)
 - `bash scripts/agent-run.sh run stand|all|{file}` — run the stand checks, the whole blitz-tests package, or one file; JSON-line `test` events and a `run.end` with the counts (exit 1 on a failing or empty run)
 - `bash scripts/agent-run.sh status` · `logs` · `cleanup` — the status object (exit 3 when not booted) · the appended events · remove `target/agent-run/` (idempotent)
 - Exit grammar `0` · `1` failed · `2` usage · `3` precondition unmet; raw cargo output in `target/agent-run/run.log`; `scripts/agent-run.ps1` forwards on Windows (contract: test-plan §3)

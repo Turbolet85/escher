@@ -226,12 +226,12 @@ baseline = 'green — exit 0 on the untouched tree, 2026-10-19T22:17Z: the expec
 note = 'the env-read set and its counts unchanged across blitz-tests, the new module included by the glob (security-plan §Secret Management; obs-plan §3; read at P4 on the base)'
 
 [[gate]]
-run = '''git diff --name-only 5174f92a7335b4f469cbaf94763086378016b04b -- packages examples tests apps wpt .github scripts Cargo.toml Cargo.lock deny.toml | grep -c -v -x -E 'tests/blitz-tests/tests/(stand_settle|font_face_sniffed_source|stand_boot|stand_act_diff|stand_diff|stand_snapshot_text|stand_mcp_masked|stand_session_recording|stand_act_spans|stand_mcp_tools|stand_act_filled|stand_act_screenshot|stand_act_obstructed|stand_act_scroll|stand_act_transformed|stand_act_timer|stand_replay|stand_keyboard|stand_snapshot_state)\.rs' '''
+run = '''git diff --name-only 5174f92a7335b4f469cbaf94763086378016b04b -- packages examples tests apps wpt .github scripts Cargo.toml Cargo.lock deny.toml | grep -c -v -x -E 'tests/blitz-tests/tests/(stand_settle|font_face_sniffed_source|stand_boot|stand_act_diff|stand_diff|stand_snapshot_text|stand_mcp_masked|stand_session_recording|stand_act_spans|stand_mcp_tools|stand_act_filled|stand_act_screenshot|stand_act_obstructed|stand_act_scroll|stand_act_transformed|stand_act_timer|stand_replay|stand_keyboard|stand_snapshot_state|fixtures/mod)\.rs' '''
 role = 'probe'
 expect = ['exit 1', 'last line 0']
 new = true
 baseline = 'green — exit 1, last line 0 on an empty change, 2026-10-19T22:17Z; must-pass green on the simulated after-state, must-fail red, last line 1, with Cargo.toml edited (p5-controls.md)'
-note = "no tracked file outside the nineteen: no production module, manifest, lock, deny.toml, CI file, script or upstream test (architecture §Project Intent → Upstream sync; the agent-run contract unchanged on the operator's answer at this P4)"
+note = "no tracked file outside the nineteen and the new module: no production module, manifest, lock, deny.toml, CI file, script or upstream test (architecture §Project Intent → Upstream sync; the agent-run contract unchanged on the operator's answer at this P4). `fixtures/mod` joined the alternation at the wrap, on the operator's answer «Amend entry 12, re-gate (Recommended)» (2026-10-19, dialog): the operator pre-CI commit 0fbdda02 made the new module tracked, so it now reaches git diff, where at implement it was untracked and entry 13's alone"
 
 [[gate]]
 run = '''git ls-files --others --exclude-standard -- packages examples tests apps wpt .github scripts | grep -c -v -x 'tests/blitz-tests/tests/fixtures/mod.rs' '''
