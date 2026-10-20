@@ -1669,8 +1669,8 @@ impl ScriptRuntime {
         );
 
         // Browsers fire a `change` event after `input` events on checkbox/radio
-        // inputs. Blitz only generates `input` events, so synthesise the `change`
-        // event here.
+        // inputs. Blitz generates a `change` event for a `select` alone (dispatched
+        // above like any event), so synthesise the checkbox/radio one here.
         if matches!(event.data, DomEventData::Input(_))
             && self.target_is_checkbox_or_radio(event.target)
         {

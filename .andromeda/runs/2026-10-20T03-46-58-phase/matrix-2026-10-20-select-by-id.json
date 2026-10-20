@@ -1,0 +1,112 @@
+[
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "49bca268",
+"ts": "2026-10-20T04:12:52Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.2.0",
+"--run-dir",
+".andromeda/runs/2026-10-20T03-46-58-phase",
+"--marker",
+"2026-10-20-select-by-id"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 6/11 · deferred 0 · planned 5 · implemented 0 · unclaimed 4",
+"unclaimed: v020-08 v020-09 v020-10 v020-11",
+"claimed-unfinished: 2026-10-19-visual-lint: v020-05",
+"gated: 2026-10-19-visual-lint: v020-05(planned)",
+"done-test: NO — 5 not verified|deferred · unclaimed 4",
+"chunks referenced: 7 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "49bca268",
+"ts": "2026-10-20T04:12:56Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.2.0",
+"--id",
+"v020-08",
+"--chunk",
+"2026-10-20-select-by-id",
+"--acceptance-file",
+".andromeda/runs/2026-10-20T03-46-58-phase/acceptance-v020-08.md",
+"--method",
+"integration",
+"--run-dir",
+".andromeda/runs/2026-10-20T03-46-58-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v020-08 → chunk 2026-10-20-select-by-id (was null; status planned kept)",
+"acceptance: On a fixture holding a select, an agent chooses an option by the contr… (211 chars)",
+"         → On the in-file fixture page of `stand_act_select`, held in a driver se… (609 chars)",
+"method: integration → integration",
+"wrote escher-0.2.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 3 [v020-09 v020-10 v020-11]"
+],
+"stderr": null,
+"wrote": [
+"escher-0.2.0/verification-matrix.json"
+],
+"before": {
+"id": "v020-08",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On a fixture holding a select, an agent chooses an option by the control's stable id through the driver, and the snapsho… (211 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v020-08",
+"chunk": "2026-10-20-select-by-id",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the in-file fixture page of `stand_act_select`, held in a driver session in both layout modes: the snapshot reads the… (609 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "49bca268",
+"ts": "2026-10-20T04:13:01Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.2.0",
+"--chunk",
+"2026-10-20-select-by-id",
+"--plan",
+"escher-0.2.0/chunks/2026-10-20-select-by-id/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-20T03-46-58-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-20-select-by-id: 1 · ## Acceptance Criteria: line 369, 39 lines",
+"v020-08: cited in ## Acceptance Criteria (line 371)",
+"pool: unclaimed 3 [v020-09 v020-10 v020-11]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

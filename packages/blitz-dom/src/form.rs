@@ -3,6 +3,7 @@ use markup5ever::{LocalName, local_name};
 
 use crate::{
     BaseDocument, ElementData,
+    node::select,
     traversal::{AncestorTraverser, TreeTraverser},
 };
 use blitz_traits::{
@@ -267,11 +268,26 @@ fn construct_entry_list(doc: &BaseDocument, form_id: NodeId, submitter_id: NodeI
             continue;
         };
 
-        // TODO: If the field element is a select element,
+        // If the field element is a select element,
         //  then for each option element in the select element's
         //  list of options whose selectedness is true and that is not disabled,
         //  create an entry with name and the value of the option element,
         //  and append it to entry list.
+        if element.name.local == local_name!("select") {
+            for option in select::options(doc, control_id) {
+                let Some(option) = doc.get_node(option) else {
+                    continue;
+                };
+                if select::is_chosen(option)
+                    && !option
+                        .element_data()
+                        .is_some_and(|option| option.has_attr(local_name!("disabled")))
+                {
+                    create_entry(name, select::option_value(option).as_str().into());
+                }
+            }
+            continue;
+        }
 
         // Otherwise, if the field element is an input element whose type attribute is in the Checkbox state or the Radio Button state, then:
         if element.name.local == local_name!("input")

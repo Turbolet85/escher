@@ -55,6 +55,9 @@ pub struct DocumentMutator<'doc> {
     title_node: Option<NodeId>,
     style_nodes: HashSet<NodeId>,
     form_nodes: HashSet<NodeId>,
+    /// Selects whose options or options' `selected` attributes changed: each runs its
+    /// selectedness setting algorithm at the flush
+    select_nodes: HashSet<NodeId>,
 
     /// Whether an element/attribute that affect animation status has been seen
     recompute_is_animating: bool,
@@ -84,6 +87,7 @@ impl DocumentMutator<'_> {
             title_node: None,
             style_nodes: HashSet::new(),
             form_nodes: HashSet::new(),
+            select_nodes: HashSet::new(),
             recompute_is_animating: false,
             mutations_occurred: false,
             #[cfg(feature = "autofocus")]
@@ -314,6 +318,10 @@ impl DocumentMutator<'_> {
             }
         }
 
+        if name.local == local_name!("selected") {
+            self.set_option_selectedness(node_id, true);
+        }
+
         let node = &mut self.doc.nodes[node_id];
 
         let NodeData::Element(ref mut element) = node.data else {
@@ -461,6 +469,15 @@ impl DocumentMutator<'_> {
         if node_is_in_document {
             self.doc.changed_nodes.insert(node_id);
         }
+
+        if name.local == local_name!("selected") {
+            self.set_option_selectedness(node_id, false);
+        }
+
+        let node = &mut self.doc.nodes[node_id];
+        let Some(element) = node.element_data_mut() else {
+            return;
+        };
 
         // If element is a CustomWidget, then call attribute_changed on it
         #[cfg(feature = "custom-widget")]
@@ -997,6 +1014,10 @@ impl<'doc> DocumentMutator<'doc> {
             self.doc.reset_form_owner(id);
         }
 
+        for id in mem::take(&mut self.select_nodes) {
+            self.doc.settle_select_choice(id);
+        }
+
         #[cfg(feature = "autofocus")]
         if let Some(node_id) = self.node_to_autofocus.take() {
             if self.doc.get_node(node_id).is_some() {
@@ -1073,6 +1094,11 @@ impl<'doc> DocumentMutator<'doc> {
                     self.eager_op_queue
                         .push(SpecialOp::ProcessButtonInput(node_id));
                     self.form_nodes.insert(node_id);
+                    // A select built outside the document, or cloned whole, settles its choice
+                    // as it enters it.
+                    if tag == "select" {
+                        self.select_nodes.insert(node_id);
+                    }
                 }
                 _ => {}
             }
@@ -1182,7 +1208,35 @@ impl<'doc> DocumentMutator<'doc> {
             "style" => {
                 self.style_nodes.insert(node_id);
             }
+            // https://html.spec.whatwg.org/multipage/form-elements.html#the-select-element:2
+            // an option inserted into or removed from a select's list of options asks for a reset
+            "select" => {
+                self.select_nodes.insert(node_id);
+            }
             _ => {}
+        }
+    }
+
+    /// https://html.spec.whatwg.org/multipage/form-elements.html#concept-option-selectedness:
+    /// an option's `selected` written sets it selected, and its select's other options not,
+    /// and one cleared sets it not selected; its select settles its choice at the flush.
+    fn set_option_selectedness(&mut self, node_id: NodeId, selected: bool) {
+        let node = &self.doc.nodes[node_id];
+        if !node.data.is_element_with_tag_name(&local_name!("option")) {
+            return;
+        }
+        let select = node.parent.filter(|parent| {
+            self.doc.nodes[*parent]
+                .element_data()
+                .is_some_and(crate::node::select::is_single_select)
+        });
+        self.doc.set_option_chosen(node_id, selected);
+        if let Some(select) = select {
+            if selected {
+                let options = crate::node::select::options(self.doc, select);
+                self.doc.set_select_choice(&options, Some(node_id));
+            }
+            self.select_nodes.insert(select);
         }
     }
 

@@ -4,7 +4,7 @@
 use std::collections::{HashMap, HashSet};
 
 use accesskit::{Node as TreeNode, NodeId as TreeNodeId, Role, Toggled, TreeUpdate};
-use blitz_dom::{BaseDocument, BoundingRect, Document, ElementData, NodeId, local_name};
+use blitz_dom::{BaseDocument, BoundingRect, Document, ElementData, Node, NodeId, local_name};
 
 use crate::DioxusDocument;
 
@@ -141,12 +141,18 @@ impl Builder<'_> {
         };
         let element = tree_node.author_id().and_then(|author_id| {
             let node_id = NodeId::from_u64(id.0);
-            let element = self.doc.get_node(node_id)?.element_data()?;
-            let bounds = self.doc.get_client_bounding_rect(node_id)?;
-            Some((author_id, element, bounds))
+            let node = self.doc.get_node(node_id)?;
+            let element = node.element_data()?;
+            // A select's option is seen in its select's box, the one it shows or not.
+            let boxed_by = match select_parent(self.doc, node) {
+                Some(select) => select,
+                None => node_id,
+            };
+            let bounds = self.doc.get_client_bounding_rect(boxed_by)?;
+            Some((author_id, node_id, element, bounds))
         });
         match element {
-            Some((author_id, element, bounds)) => {
+            Some((author_id, node_id, element, bounds)) => {
                 let checkable = is_checkable(tree_node.role());
                 let mut children = Vec::new();
                 for child in tree_node.children() {
@@ -167,7 +173,7 @@ impl Builder<'_> {
                                 })
                                 .flatten()
                         }),
-                        value: value(element),
+                        value: value(self.doc, node_id, element),
                         selected: tree_node.is_selected(),
                         pressed: tree_node
                             .toggled()
@@ -232,10 +238,25 @@ pub fn is_masked_input(element: &ElementData) -> bool {
         })
 }
 
+/// The parent of an `option` whose parent is a `select`; `None` for any other node.
+fn select_parent(doc: &BaseDocument, node: &Node) -> Option<NodeId> {
+    let parent = node.parent?;
+    (node.data.is_element_with_tag_name(&local_name!("option"))
+        && doc
+            .get_node(parent)?
+            .data
+            .is_element_with_tag_name(&local_name!("select")))
+    .then_some(parent)
+}
+
 /// The form reader's value of a text-entry control: its editor's text or a range input's
-/// current value, else its `value` attribute. A masked control ([`is_masked_input`]) reads
-/// [`MASKED_VALUE`] in place of a non-empty one.
-fn value(element: &ElementData) -> Option<String> {
+/// current value, else its `value` attribute, and a single-choice select's chosen option's
+/// value. A masked control ([`is_masked_input`]) reads [`MASKED_VALUE`] in place of a
+/// non-empty one.
+fn value(doc: &BaseDocument, node_id: NodeId, element: &ElementData) -> Option<String> {
+    if &*element.name.local == "select" {
+        return doc.select_value(node_id);
+    }
     let input_type = element.attr(local_name!("type"));
     let entry = match &*element.name.local {
         "textarea" => true,
@@ -906,6 +927,89 @@ mod tests {
             let state = &node(&snapshot, &format!("row-{row}")).state;
             assert_eq!(state.invalid, stated, "row {row}");
             assert_eq!((state.selected, state.pressed), (None, None), "row {row}");
+        }
+    }
+
+    /// One option's `(value attribute, text, selected)`.
+    type SelectOption = (Option<&'static str>, &'static str, bool);
+
+    /// Each select of the value table: its options as `(value attribute, text, selected)` and
+    /// the value the select reads — a chosen option's `value` attribute, else its text stripped
+    /// and collapsed, and with none written `selected` its first option.
+    const SELECT_VALUES: [(&[SelectOption], Option<&str>); 4] = [
+        (
+            &[(Some("a"), "Apple", false), (Some("b"), "Banana", true)],
+            Some("b"),
+        ),
+        (
+            &[(None, "Apple", false), (None, "  Big\n Banana ", true)],
+            Some("Big Banana"),
+        ),
+        (
+            &[(Some("a"), "Apple", false), (Some("b"), "Banana", false)],
+            Some("a"),
+        ),
+        (&[(Some(""), "Empty", true)], Some("")),
+    ];
+
+    #[test]
+    fn a_select_reads_its_chosen_options_value() {
+        fn app() -> Element {
+            rsx! {
+                for (row, (options, _)) in SELECT_VALUES.into_iter().enumerate() {
+                    select { id: "row-{row}",
+                        for (index, (value, text, selected)) in options.iter().copied().enumerate() {
+                            option { id: "row-{row}-{index}", value, selected, "{text}" }
+                        }
+                    }
+                }
+            }
+        }
+        let snapshot = build(app).snapshot();
+        assert_eq!(SELECT_VALUES.len(), 4);
+        for (row, (_, expected)) in SELECT_VALUES.into_iter().enumerate() {
+            let select = node(&snapshot, &format!("row-{row}"));
+            assert_eq!(select.role, Role::ComboBox, "row {row}");
+            assert_eq!(select.state.value.as_deref(), expected, "row {row}");
+        }
+    }
+
+    #[test]
+    fn a_selects_options_are_its_children_named_by_their_labels() {
+        fn app() -> Element {
+            rsx! {
+                select { id: "pick",
+                    option { id: "apple", value: "a", "Apple" }
+                    option { id: "banana", value: "b", selected: true, "Banana" }
+                    option { id: "cherry", value: "c", label: "Cherries", "Cherry" }
+                }
+            }
+        }
+        let snapshot = build(app).snapshot();
+        let pick = node(&snapshot, "pick");
+        let children: Vec<_> = pick
+            .children
+            .iter()
+            .map(|child| {
+                (
+                    child.id.as_str(),
+                    child.role,
+                    child.name.as_str(),
+                    child.state.selected,
+                )
+            })
+            .collect();
+        assert_eq!(
+            children,
+            [
+                ("apple", Role::ListBoxOption, "Apple", Some(false)),
+                ("banana", Role::ListBoxOption, "Banana", Some(true)),
+                ("cherry", Role::ListBoxOption, "Cherries", Some(false)),
+            ]
+        );
+        for child in &pick.children {
+            assert_eq!(child.bounds, pick.bounds, "{}", child.id);
+            assert_eq!(child.state.value, None, "{}", child.id);
         }
     }
 }

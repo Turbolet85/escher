@@ -39,7 +39,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
    ↓
 [2026-10-20-load-wait] Load wait — a command meeting a load in flight waits it out within a stated bound, on a fixture (v020-07; per security-plan §API Security)
    ↓
-Select by id — a `select` driven by id like any control, read in the snapshot with role and name, Tab order kept; fixture-proven (v020-08)
+[2026-10-20-select-by-id] Select by id — a `select` driven by id like any control, read in the snapshot with role and name, Tab order kept; fixture-proven (v020-08)
    ↓
 Large screen in parts — a screen over the snapshot text budget read in parts an agent can walk, proven on a fixture (v020-09)
 

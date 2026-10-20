@@ -74,7 +74,8 @@ fn every_verb_states_its_help_its_arguments_and_a_result() {
         (
             Some(TYPE.help),
             "types text into the element an id names, replacing what the element holds, then \
-             settles; an empty text clears it",
+             settles; an empty text clears it; on a select, the text chooses the first option \
+             whose label starts with it",
         ),
         (
             Some(SCREENSHOT.help),

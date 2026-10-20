@@ -1,0 +1,57 @@
+## Relevant amendment history
+- **2026-10-06-headless-stand** — made stand checks assert unconditionally under the bundled DejaVu Sans with system fonts off, with `stand::options(incremental)` as the pinned builder. That is the font rule and the boot options the select fixture check inherits through `fixtures::boot`. It must have no skip path.
+- **2026-10-06-stand-test-contract** — set the agent-run contract: `run {name}` takes `^[a-z0-9_]+$` and an existing file, and `run stand` takes every `stand_*.rs`. The new check is selected this way, and its file prefix decides whether `run stand` and `stand-repeat` pick it up.
+- **2026-10-06-accessibility-tree-identity** — added `stand_accessibility_ids`, which checks the controls' roles and names and that "the Tab order [is] unchanged". It set the first precedent for proving that a change leaves Tab order as it was, which this chunk's acceptance repeats for a page that holds a select.
+- **2026-10-06-snapshot-model** — the snapshot unit tests in dioxus-native-dom's `snapshot.rs` call `resolve(0.0)` through `inner_mut()` after `initial_build`. They are compiled only under `accessibility`. This is the harness for any new unit test of a select's value reading.
+- **2026-10-06-snapshot-state-fidelity** — two precedents:
+  - Parsed markup is pinned in blitz-tests, not at unit level, because the unit `build` helper has a no-op HTML parser and `dangerous_inner_html` renders nothing there. A select page's options must be built in `rsx!` at unit level.
+  - Trap: a deleting key differs by platform (the Backspace arm is compiled out on macOS). Prove a state change with clicks and typed characters.
+- **2026-10-06-compact-snapshot-serialization** — pinned the text form's state tokens and value quoting, under `SNAPSHOT_TEXT_BUDGET`. A select's chosen value now appears in `to_text`. Trap: a search for `snapshot.rs:` also matches `stand_snapshot.rs:`, so anchor citation searches on the path.
+- **2026-10-07-change-tracking-and-diff** — the diff unit tests (`snapshot_diff.rs`) and `stand_diff` hold every step against the file's own reading of the two snapshots. That is how the acceptance "the step's diff names the select" is asserted. A select change must also mark the changed set.
+- **2026-10-07-audit-corrections** — set three things this chunk follows:
+  - blitz-tests holds one target per behaviour plus shared modules that are no target.
+  - The stand tables in `common` (`controls`, `INPUT_NAMES`, `rendered`) are stated expectation.
+  - Trap: a sed or grep address ending at a function's name also selects every item whose name starts with it.
+- **2026-10-07-driver-session** — created the `§3 → Session lifecycle` key (`session-start` … `session-proof`). Any new verb, argument or proof file this chunk adds must move it.
+- **2026-10-07-command-and-refusal-schema** — every schema table is stated in its test with its row count asserted. An assertion over a call carries only a row index. If a verb or argument kind is added for choosing an option, these tables move. Trap: a crate's count is written in two word orders ("13 unit tests", "unit tests 13"), so a sweep must search both.
+- **2026-10-07-act-by-id** — set three rules:
+  - A driver check's failure message names a layout mode, a task and an index, never an id or a screen reading.
+  - A deleting key is used in no check but `stand_act_keys`.
+  - `stand_act_range` pinned the measured no-op reading before the range model existed. This is the precedent the select residual asks to repeat: measure the select under the driver's verbs first.
+- **2026-10-07-refusal-detection** — set the refusal order `stale`/`not-found`, then `disabled` · `off-screen` · `covered`, and the `refused_unchanged` helper in `session_common`. A `click` or `type` on the select goes through these gates, and a refused call must leave the snapshot unchanged.
+- **2026-10-07-driver-command-spans** — every `Session::run` call leaves one `command` span (`stand_act_spans`). A check that reads a sink capture counts lines by target, never in total. Trap: a green per-package run is not the workspace leg's green, so run both builds.
+- **2026-10-09-audit-corrections-agent-surfaces** (a textarea's value read on the fixture) — the nearest precedent for a new `value` arm in the snapshot. `a_textarea_reads_back_typed_text` read red with the `textarea` arm deleted. The stand tables in `tests/common/mod.rs` did not gain the textarea because no stand task holds one, and a select follows the same rule. The mutation audit runs a fixed test set, so it matters which file holds the check.
+- **2026-10-10-upstream-sync-agent-surfaces** (`tests/all.rs` declared and never built) — `BlitzTestsTargetsTest` pins exactly one `[[test]]` table (`all`, `test = false`). The new check is auto-discovered and gets no manifest line.
+- **2026-10-10-driver-cli** — the unit, CLI and session-lifecycle tables (verb levels, argv reader rows, `cli_commands`, `session-binary`) that a new verb or argument for choosing an option would have to extend. The macOS CI leg is the only witness of the select-all modifier that `type` uses.
+- **2026-10-10-snapshot-states** — the precedent for a new snapshot reading proved twice. It is pinned at unit level in `snapshot.rs` and on a parsed page in both modes (`accessibility_states`), then driven through `Session::run` (`stand_act_states`), with each returned diff equal to the file's own and equal across modes. That entry also moved the counts (driver-action census, unit tests, `.rs` files and targets), which this chunk must move the same way.
+- **2026-10-12-self-description** — a changed node's `differs` names the readings that changed. A select's chosen value should show in `differs` as `value`. A new verb or node key moves `describe.rs`'s count row and the MCP listing tests.
+- **2026-10-13-range-input-interaction** — the closest precedent: a form control gained an interaction model (a direct engine change for every document, ratified) and a value reading. Its proof was:
+  - unit tests over stated tables in the engine (`node/range.rs`);
+  - a snapshot unit test renamed to the current-value reading;
+  - an engine check `range_input_interaction` in both modes, run by the `test` leg and per package, not by `run stand`;
+  - `stand_act_range` rewritten to the new model;
+  - the `stand_act_ids` changing-control count moved.
+- **2026-10-13-stand-keyboard-harness** — `stand_keyboard` and `tab_order`/`focused`, moved into `common`, pin the Tab walk. The pins this chunk keeps unchanged are the `disabled`-by-presence focusability (a `select` is a form control) and the `<div disabled tabindex=0>` limit. A focus-order change moves those tables.
+- **2026-10-14-stand-a11y-assertions** — added `ENABLED_TAB_ORDER` and `REGION_NAMES` to `common`, and interactive-role naming over nine roles in `stand_accessibility_ids`. The a11y leg runs a fixed list of six files. A new fixture check is not in that leg unless it is added deliberately.
+- **2026-10-14-stand-requirement-sweep** — `stand_requirement_sweep` and its `WITNESSES` table record which check is the witness for each requirement. A new driver-proved requirement (v020-08) may need a witness row or a stated reason for having none.
+- **2026-10-14-quality-gates** — set the coverage floors (escher-driver 97 %, dioxus-native-dom 83 %, blitz-test-harness 90 %) and the zero-failure flakiness budget on the stand checks. The new check and any new snapshot or driver code are held to both.
+- **2026-10-16-fast-failing-mutants** — the mutation tier recipe: cargo-mutants `--test-tool nextest`, the `mutants` profile, `--baseline=skip`, the direct tests first. A new snapshot value arm should have a direct test that kills its mutants, on the dev host only.
+- **2026-10-17-upstream-sync-engine-debts** (the coverage leg excludes `keyboard_compat.rs` by filename) — dioxus-native-dom's floor reading (84.25 %) depends on that exclusion. Its margin over the 83 % floor is small, so a select reading added there needs its own tests.
+- **2026-10-18-engine-debts** (§1 coverage) — the `disabled` snapshot pin reads presence on a form control, and `inert` takes an element out of Tab order, the hit and the snapshot. The `accessibility_*` checks pin the builder's state reads per role. A select maps to `ComboBox`/`ListBox` and its options to `ListBoxOption`, so selected and toggle readings on options fall under these pins.
+- **2026-10-18-engine-debts** (§2–§10 counts) — the pattern of each new check moving the census:
+  - `.rs` files and targets;
+  - `session_common` readers;
+  - the `stand_act_*` count and the key file's total;
+  - the `stand_*` files in `stand-repeat`.
+- **2026-10-18-one-virtual-clock** — two `click`s on one point with no `advance` of at least 500 ms between them read as a double click (`stand_virtual_clock`). A check that clicks a select and then an option at the same point must allow for this.
+- **2026-10-19-test-splits** — a `*_tests.rs` `#[path]` file is no record of the per-crate coverage reading. Moving tests out of line moves the crate's coverage figure, so new tests placed in such a file need a fresh floor reading.
+- **2026-10-19-shared-fixtures** — created `tests/fixtures/mod.rs` with `boot`/`hold` and the pages `password_labelled` · `password_named` · `covered`. The rule: a page two checks share goes in `fixtures`, and a page with one reader stays in its own file. The module holds no print, tracing, env read, file, socket or `blitz_net`. Its readers are counted (`fixtures` readers, `stand_*` among them).
+- **2026-10-19-visual-lint** — `stand_lint` is a `fixtures` and `session_common` reader that holds a planted page. If a select fixture is shared with it, or its page gains a select, its finding counts move. It also set the latest counts and coverage reading (escher-driver 97.93 %).
+- **2026-10-20-load-wait** — the latest baseline this chunk moves from:
+  - blitz-tests: 141 `.rs` files and 140 targets.
+  - Readers: `session_common` 27, `fixtures` 21 (20 `stand_*`).
+  - `run stand`: 185 · 0 · 7 over 46 files.
+  - Workspace: 202 · 1062 · 0 · 12.
+  - `stand-repeat` and the flakiness budget: 46 files.
+
+  It also set the precedent that a fixture check proving a driver behaviour enters `session-proof`.

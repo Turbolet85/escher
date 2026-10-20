@@ -1,0 +1,502 @@
+[
+{
+"tool": "planlint",
+"v": "1.12",
+"sha8": "a62601f7",
+"ts": "2026-10-20T04:06:32Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.2.0/chunks/2026-10-20-select-by-id/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-20T03-46-58-phase",
+"--marker",
+"2026-10-20-select-by-id"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 23 entries · plan: escher-0.2.0/chunks/2026-10-20-select-by-id/plan.md · research: escher-0.2.0/chunks/2026-10-2…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/testing.md` — 9 additions ap…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 23 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 19 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 13",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 7 of 8 — listed, P5's read",
+"  line 11 · «unchanged» · select (step 1)",
+"  line 93 · «unchanged» · button (step 7) · input (step 3) · type (step 13) · hidden (step 10) · select (step 1)",
+"      textarea (step 15)",
+"  line 145 · «unchanged» · disabled (step 1)",
+"  line 146 · «unchanged» · disabled (step 1)",
+"  line 148 · «unchanged» · accessibility_roles (Test Commands)",
+"  line 149 · «untouched» · accessibility_roles (Test Commands) · multiple (step 3) · optgroup (step 1)",
+"  line 358 · «unchanged» · fx-before (step 16) · fx-pick (step 16) · fx-named (step 16) · fx-after (step 16)",
+"      fx-off (step 16)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 1",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+23
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 19,
+"listed": []
+},
+"check2": {
+"entries": 19,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 17,
+"refs": 13,
+"hits": []
+},
+"claims": {
+"read": 8,
+"listed": [
+11,
+93,
+145,
+146,
+148,
+149,
+358
+]
+},
+"c44": {
+"paths": 1,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.12",
+"sha8": "a62601f7",
+"ts": "2026-10-20T04:07:17Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.2.0/chunks/2026-10-20-select-by-id/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-20T03-46-58-phase",
+"--marker",
+"2026-10-20-select-by-id"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 23 entries · plan: escher-0.2.0/chunks/2026-10-20-select-by-id/plan.md · research: escher-0.2.0/chunks/2026-10-2…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/testing.md` — 9 additions ap…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 23 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 19 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 13",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 7 of 8 — listed, P5's read",
+"  line 11 · «unchanged» · select (step 1)",
+"  line 93 · «unchanged» · button (step 7) · input (step 3) · type (step 13) · hidden (step 10) · select (step 1)",
+"      textarea (step 15)",
+"  line 145 · «unchanged» · disabled (step 1)",
+"  line 146 · «unchanged» · disabled (step 1)",
+"  line 148 · «unchanged» · accessibility_roles (Test Commands)",
+"  line 149 · «untouched» · accessibility_roles (Test Commands) · multiple (step 3) · optgroup (step 1)",
+"  line 358 · «unchanged» · fx-before (step 16) · fx-pick (step 16) · fx-named (step 16) · fx-after (step 16)",
+"      fx-off (step 16)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 1",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+23
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 19,
+"listed": []
+},
+"check2": {
+"entries": 19,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 17,
+"refs": 13,
+"hits": []
+},
+"claims": {
+"read": 8,
+"listed": [
+11,
+93,
+145,
+146,
+148,
+149,
+358
+]
+},
+"c44": {
+"paths": 1,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.12",
+"sha8": "a62601f7",
+"ts": "2026-10-20T04:11:23Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.2.0/chunks/2026-10-20-select-by-id/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-20T03-46-58-phase",
+"--marker",
+"2026-10-20-select-by-id"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 23 entries · plan: escher-0.2.0/chunks/2026-10-20-select-by-id/plan.md · research: escher-0.2.0/chunks/2026-10-2…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/testing.md` — 9 additions ap…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 23 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 19 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 14",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 7 of 8 — listed, P5's read",
+"  line 11 · «unchanged» · select (step 1)",
+"  line 93 · «unchanged» · button (step 7) · input (step 3) · type (step 13) · hidden (step 10) · output (Test Commands)",
+"      select (step 1) · textarea (step 15)",
+"  line 145 · «unchanged» · disabled (step 1)",
+"  line 146 · «unchanged» · disabled (step 1)",
+"  line 148 · «unchanged» · accessibility_roles (Test Commands)",
+"  line 149 · «untouched» · accessibility_roles (Test Commands) · multiple (step 3) · optgroup (step 1)",
+"  line 377 · «unchanged» · fx-before (step 16) · fx-pick (step 16) · fx-named (step 16) · fx-after (step 16)",
+"      fx-off (step 16)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 1",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+23
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 19,
+"listed": []
+},
+"check2": {
+"entries": 19,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 17,
+"refs": 14,
+"hits": []
+},
+"claims": {
+"read": 8,
+"listed": [
+11,
+93,
+145,
+146,
+148,
+149,
+377
+]
+},
+"c44": {
+"paths": 1,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.12",
+"sha8": "a62601f7",
+"ts": "2026-10-20T04:11:35Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.2.0/chunks/2026-10-20-select-by-id/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-20T03-46-58-phase",
+"--marker",
+"2026-10-20-select-by-id"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 23 entries · plan: escher-0.2.0/chunks/2026-10-20-select-by-id/plan.md · research: escher-0.2.0/chunks/2026-10-2…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/testing.md` — 9 additions ap…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 23 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 19 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 13",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 7 of 8 — listed, P5's read",
+"  line 11 · «unchanged» · select (step 1)",
+"  line 93 · «unchanged» · button (step 7) · input (step 3) · type (step 13) · hidden (step 10) · output (Test Commands)",
+"      select (step 1) · textarea (step 15)",
+"  line 145 · «unchanged» · disabled (step 1)",
+"  line 146 · «unchanged» · disabled (step 1)",
+"  line 148 · «unchanged» · accessibility_roles (Test Commands)",
+"  line 149 · «untouched» · accessibility_roles (Test Commands) · multiple (step 3) · optgroup (step 1)",
+"  line 377 · «unchanged» · fx-before (step 16) · fx-pick (step 16) · fx-named (step 16) · fx-after (step 16)",
+"      fx-off (step 16)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 1",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+23
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 19,
+"listed": []
+},
+"check2": {
+"entries": 19,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 17,
+"refs": 13,
+"hits": []
+},
+"claims": {
+"read": 8,
+"listed": [
+11,
+93,
+145,
+146,
+148,
+149,
+377
+]
+},
+"c44": {
+"paths": 1,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+}
+]

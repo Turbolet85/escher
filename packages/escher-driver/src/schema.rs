@@ -205,7 +205,8 @@ pub(crate) const TYPE: VerbSpec = VerbSpec {
     name: "type",
     level: Level::Instance,
     help: "types text into the element an id names, replacing what the element holds, then \
-           settles; an empty text clears it",
+           settles; an empty text clears it; on a select, the text chooses the first option \
+           whose label starts with it",
     args: &[
         ArgSpec {
             name: "id",

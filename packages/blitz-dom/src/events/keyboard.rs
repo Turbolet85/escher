@@ -1,7 +1,10 @@
 use crate::events::focus::generate_focus_events;
 use crate::{
     BaseDocument, ElementData,
-    node::{GeneratedTextInputEvent, RangeMove},
+    node::{
+        GeneratedTextInputEvent, RangeMove,
+        select::{self, SelectStep, TYPEAHEAD_TIMEOUT, Typeahead},
+    },
     util::ACTION_MOD,
 };
 use blitz_traits::node_id::NodeId;
@@ -102,6 +105,12 @@ pub(crate) fn handle_key_or_input_event<F: FnMut(DomEvent)>(
             && key_event.state.is_pressed()
         {
             press_range_input_key(doc, node_id, &key_event.key, &mut dispatch_event);
+        } else if select::is_single_select(element_data)
+            && !element_data.is_disabled()
+            && let KeyboardOrTextInputEvent::KeyPress(key_event) = &event
+            && key_event.state.is_pressed()
+        {
+            press_select_key(doc, node_id, key_event, &mut dispatch_event);
         } else if let KeyboardOrTextInputEvent::KeyPress(key_event) = &event
             && key_event.state.is_pressed()
             && key_event.key == Key::Named(NamedKey::Enter)
@@ -153,6 +162,43 @@ fn press_range_input_key(
     doc.apply_range_move(node_id, to, dispatch_event);
 }
 
+/// A focused single-choice select's keys: the arrows choose the next or previous option that is
+/// not disabled, Home and End the first and last, and a typed character joins the text typed so
+/// far — afresh where it was typed into another select, or after [`TYPEAHEAD_TIMEOUT`] of the
+/// document's clock — choosing the first option whose label starts with it. Every other key, and
+/// a character typed with Ctrl, Alt or Meta held, does nothing: no list is opened.
+fn press_select_key(
+    doc: &mut BaseDocument,
+    node_id: NodeId,
+    event: &BlitzKeyEvent,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) {
+    let options = select::options(doc, node_id);
+    let readings = select::readings(doc, &options);
+    let step = match &event.key {
+        Key::Named(NamedKey::ArrowDown) => Some(SelectStep::Next),
+        Key::Named(NamedKey::ArrowUp) => Some(SelectStep::Previous),
+        Key::Named(NamedKey::Home) => Some(SelectStep::First),
+        Key::Named(NamedKey::End) => Some(SelectStep::Last),
+        _ => None,
+    };
+    let target = match (&event.key, step) {
+        (_, Some(step)) => select::stepped(&readings, step),
+        (Key::Character(text), None)
+            if !event
+                .modifiers
+                .intersects(Modifiers::CONTROL | Modifiers::ALT | Modifiers::META) =>
+        {
+            let typed = doc.type_into_select(node_id, text);
+            select::matched(&readings, &typed)
+        }
+        _ => None,
+    };
+    if let Some(option) = target.and_then(|index| options.get(index).copied()) {
+        doc.apply_select_choice(node_id, option, dispatch_event);
+    }
+}
+
 /// https://html.spec.whatwg.org/multipage/interaction.html#activation-behaviour:
 /// Enter activates a button, a submit, reset or button input, a link and a summary.
 fn activates_on_enter(element: &ElementData) -> bool {
@@ -199,6 +245,57 @@ fn dispatch_activation_click(
 }
 
 impl BaseDocument {
+    /// Adds `text` to the text typed into `select` and reads the whole of it.
+    fn type_into_select(&mut self, select: NodeId, text: &str) -> String {
+        let now = self.clock.now();
+        let typeahead = match self.select_typeahead.take() {
+            Some(mut typeahead)
+                if typeahead.select == select
+                    && now.saturating_sub(typeahead.at) < TYPEAHEAD_TIMEOUT =>
+            {
+                typeahead.text.push_str(text);
+                typeahead.at = now;
+                typeahead
+            }
+            _ => Typeahead {
+                select,
+                text: text.to_string(),
+                at: now,
+            },
+        };
+        let typed = typeahead.text.clone();
+        self.select_typeahead = Some(typeahead);
+        typed
+    }
+
+    /// Makes `option` a single-choice select's chosen option. Where the choice changed, the
+    /// select joins the changed set, an `input` and then a `change` event, each carrying the
+    /// select's new value, are dispatched and a redraw is requested.
+    pub(crate) fn apply_select_choice(
+        &mut self,
+        select: NodeId,
+        option: NodeId,
+        dispatch_event: &mut dyn FnMut(DomEvent),
+    ) {
+        let options = select::options(self, select);
+        if !self.set_select_choice(&options, Some(option)) {
+            return;
+        }
+        let value = self.select_value(select).unwrap_or_default();
+        self.changed_nodes.insert(select);
+        dispatch_event(DomEvent::new(
+            select,
+            DomEventData::Input(BlitzInputEvent {
+                value: value.clone(),
+            }),
+        ));
+        dispatch_event(DomEvent::new(
+            select,
+            DomEventData::Change(BlitzInputEvent { value }),
+        ));
+        self.shell_provider.request_redraw();
+    }
+
     pub(crate) fn apply_generated_text_input_event<F: FnMut(DomEvent)>(
         &mut self,
         node_id: NodeId,

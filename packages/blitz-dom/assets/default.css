@@ -74,10 +74,15 @@ input[type="radio"] {
 }
 
 input,
-textarea {
+textarea,
+select {
     border: 1px solid #999;
     padding: 2px;
     background-color: white;
+}
+
+select {
+    display: inline-block;
 }
 
 input,
@@ -145,6 +150,12 @@ legend {
 
 option {
     display: none;
+}
+
+/* A single-choice select shows its selected option, which matches `:checked`
+ * (https://html.spec.whatwg.org/#the-select-element-2). */
+select:not([multiple]) > option:checked {
+    display: inline;
 }
 
 picture {

@@ -1,0 +1,123 @@
+
+running 2 tests
+test engine ... ===== engine incremental false
+fx-root display=Display(514) layout=784x23 rect=Some(BoundingRect { x: 8.0, y: 8.0, width: 784.0, height: 23.0 }) focusable=false
+fx-before display=Display(259) layout=67x23 rect=Some(BoundingRect { x: 8.0, y: 8.0, width: 67.0, height: 23.0 }) focusable=true
+fx-root//label:0 display=Display(258) layout=0x0 rect=Some(BoundingRect { x: 75.0, y: 8.0, width: 35.484375, height: 23.0 }) focusable=false
+fx-pick display=Display(258) layout=0x0 rect=None focusable=true
+fx-pick//option:0 display=Display(0) layout=0x0 rect=Some(BoundingRect { x: 8.0, y: 8.0, width: 0.0, height: 0.0 }) focusable=false
+fx-pick//option:1 display=Display(0) layout=0x0 rect=Some(BoundingRect { x: 8.0, y: 8.0, width: 0.0, height: 0.0 }) focusable=false
+fx-pick//option:2 display=Display(0) layout=0x0 rect=Some(BoundingRect { x: 8.0, y: 8.0, width: 0.0, height: 0.0 }) focusable=false
+fx-named display=Display(258) layout=0x0 rect=None focusable=true
+fx-named//option:0 display=Display(0) layout=0x0 rect=Some(BoundingRect { x: 8.0, y: 8.0, width: 0.0, height: 0.0 }) focusable=false
+fx-named//option:1 display=Display(0) layout=0x0 rect=Some(BoundingRect { x: 8.0, y: 8.0, width: 0.0, height: 0.0 }) focusable=false
+fx-off display=Display(258) layout=0x0 rect=None focusable=false
+fx-off//option:0 display=Display(0) layout=0x0 rect=Some(BoundingRect { x: 8.0, y: 8.0, width: 0.0, height: 0.0 }) focusable=false
+fx-after display=Display(259) layout=53x23 rect=Some(BoundingRect { x: 110.484375, y: 8.0, width: 53.0, height: 23.0 }) focusable=true
+tree fx-pick role=ComboBox children=0 label=None value=None
+tree fx-before role=Button children=1 label=None value=None
+tree fx-named role=ComboBox children=0 label=Some("Colour") value=None
+tree fx-root role=GenericContainer children=6 label=None value=None
+tree fx-root//label:0 role=Label children=1 label=None value=None
+tree fx-off role=ComboBox children=0 label=Some("Off") value=None
+tree fx-after role=Button children=1 label=None value=None
+===== engine incremental true
+fx-root display=Display(514) layout=784x23 rect=Some(BoundingRect { x: 8.0, y: 8.0, width: 784.0, height: 23.0 }) focusable=false
+fx-before display=Display(259) layout=67x23 rect=Some(BoundingRect { x: 8.0, y: 8.0, width: 67.0, height: 23.0 }) focusable=true
+fx-root//label:0 display=Display(258) layout=0x0 rect=Some(BoundingRect { x: 75.0, y: 8.0, width: 35.484375, height: 23.0 }) focusable=false
+fx-pick display=Display(258) layout=0x0 rect=None focusable=true
+fx-pick//option:0 display=Display(0) layout=0x0 rect=Some(BoundingRect { x: 8.0, y: 8.0, width: 0.0, height: 0.0 }) focusable=false
+fx-pick//option:1 display=Display(0) layout=0x0 rect=Some(BoundingRect { x: 8.0, y: 8.0, width: 0.0, height: 0.0 }) focusable=false
+fx-pick//option:2 display=Display(0) layout=0x0 rect=Some(BoundingRect { x: 8.0, y: 8.0, width: 0.0, height: 0.0 }) focusable=false
+fx-named display=Display(258) layout=0x0 rect=None focusable=true
+fx-named//option:0 display=Display(0) layout=0x0 rect=Some(BoundingRect { x: 8.0, y: 8.0, width: 0.0, height: 0.0 }) focusable=false
+fx-named//option:1 display=Display(0) layout=0x0 rect=Some(BoundingRect { x: 8.0, y: 8.0, width: 0.0, height: 0.0 }) focusable=false
+fx-off display=Display(258) layout=0x0 rect=None focusable=false
+fx-off//option:0 display=Display(0) layout=0x0 rect=Some(BoundingRect { x: 8.0, y: 8.0, width: 0.0, height: 0.0 }) focusable=false
+fx-after display=Display(259) layout=53x23 rect=Some(BoundingRect { x: 110.484375, y: 8.0, width: 53.0, height: 23.0 }) focusable=true
+tree fx-before role=Button children=1 label=None value=None
+tree fx-pick role=ComboBox children=0 label=None value=None
+tree fx-off role=ComboBox children=0 label=Some("Off") value=None
+tree fx-named role=ComboBox children=0 label=Some("Colour") value=None
+tree fx-root//label:0 role=Label children=1 label=None value=None
+tree fx-root role=GenericContainer children=6 label=None value=None
+tree fx-after role=Button children=1 label=None value=None
+ok
+test probe ... ===== incremental false
+--- boot snapshot
+{"text":"Unknown \"\" id=\"/html:0\" @0,0 800x39\n  Unknown \"\" id=\"/html:0/body:0\" @8,8 784x23\n    Main \"\" id=\"main\" @8,8 784x23\n      GenericContainer \"\" id=\"fx-root\" @8,8 784x23\n        Button \"Before\" id=\"fx-before\" enabled @8,8 67x23\n        Label \"Fruit\" id=\"fx-root//label:0\" @75,8 35.484375x23\n        Button \"After\" id=\"fx-after\" enabled @110.484375,8 53x23\n"}
+--- tab 1
+{"settled":true,"added":[],"removed":[],"changed":[{"id":"fx-before","parent":"fx-root","role":"Button","name":"Before","enabled":true,"invalid":false,"focused":true,"bounds":[8,8,67,23],"differs":["focused"]}]}
+--- tab 2
+{"settled":true,"added":[],"removed":[],"changed":[{"id":"fx-before","parent":"fx-root","role":"Button","name":"Before","enabled":true,"invalid":false,"focused":false,"bounds":[8,8,67,23],"differs":["focused"]}]}
+--- tab 3
+{"settled":true,"added":[],"removed":[],"changed":[]}
+--- tab 4
+{"settled":true,"added":[],"removed":[],"changed":[{"id":"fx-after","parent":"fx-root","role":"Button","name":"After","enabled":true,"invalid":false,"focused":true,"bounds":[110.484375,8,53,23],"differs":["focused"]}]}
+--- tab 5
+{"settled":true,"added":[],"removed":[],"changed":[{"id":"fx-before","parent":"fx-root","role":"Button","name":"Before","enabled":true,"invalid":false,"focused":true,"bounds":[8,8,67,23],"differs":["focused"]},{"id":"fx-after","parent":"fx-root","role":"Button","name":"After","enabled":true,"invalid":false,"focused":false,"bounds":[110.484375,8,53,23],"differs":["focused"]}]}
+--- snapshot after tabs
+{"text":"Unknown \"\" id=\"/html:0\" @0,0 800x39\n  Unknown \"\" id=\"/html:0/body:0\" @8,8 784x23\n    Main \"\" id=\"main\" @8,8 784x23\n      GenericContainer \"\" id=\"fx-root\" @8,8 784x23\n        Button \"Before\" id=\"fx-before\" enabled focused @8,8 67x23\n        Label \"Fruit\" id=\"fx-root//label:0\" @75,8 35.484375x23\n        Button \"After\" id=\"fx-after\" enabled @110.484375,8 53x23\n"}
+--- click fx-pick
+{"refused":{"cause":"not-found","meaning":"no element on the screen reads the id","remedy":"take a snapshot and use an id it lists"}}
+--- press arrow-down
+{"settled":true,"added":[],"removed":[],"changed":[]}
+--- press home
+{"settled":true,"added":[],"removed":[],"changed":[]}
+--- press enter
+{"settled":true,"added":[],"removed":[],"changed":[]}
+--- press space
+{"settled":true,"added":[],"removed":[],"changed":[]}
+--- type fx-pick Cherry
+{"refused":{"cause":"not-found","meaning":"no element on the screen reads the id","remedy":"take a snapshot and use an id it lists"}}
+--- type fx-pick c
+{"refused":{"cause":"not-found","meaning":"no element on the screen reads the id","remedy":"take a snapshot and use an id it lists"}}
+--- click fx-named
+{"refused":{"cause":"not-found","meaning":"no element on the screen reads the id","remedy":"take a snapshot and use an id it lists"}}
+--- click fx-off
+{"refused":{"cause":"not-found","meaning":"no element on the screen reads the id","remedy":"take a snapshot and use an id it lists"}}
+--- screenshot fx-pick
+{"refused":{"cause":"not-found","meaning":"no element on the screen reads the id","remedy":"take a snapshot and use an id it lists"}}
+--- final snapshot
+{"text":"Unknown \"\" id=\"/html:0\" @0,0 800x39\n  Unknown \"\" id=\"/html:0/body:0\" @8,8 784x23\n    Main \"\" id=\"main\" @8,8 784x23\n      GenericContainer \"\" id=\"fx-root\" @8,8 784x23\n        Button \"Before\" id=\"fx-before\" enabled focused @8,8 67x23\n        Label \"Fruit\" id=\"fx-root//label:0\" @75,8 35.484375x23\n        Button \"After\" id=\"fx-after\" enabled @110.484375,8 53x23\n"}
+===== incremental true
+--- boot snapshot
+{"text":"Unknown \"\" id=\"/html:0\" @0,0 800x39\n  Unknown \"\" id=\"/html:0/body:0\" @8,8 784x23\n    Main \"\" id=\"main\" @8,8 784x23\n      GenericContainer \"\" id=\"fx-root\" @8,8 784x23\n        Button \"Before\" id=\"fx-before\" enabled @8,8 67x23\n        Label \"Fruit\" id=\"fx-root//label:0\" @75,8 35.484375x23\n        Button \"After\" id=\"fx-after\" enabled @110.484375,8 53x23\n"}
+--- tab 1
+{"settled":true,"added":[],"removed":[],"changed":[{"id":"fx-before","parent":"fx-root","role":"Button","name":"Before","enabled":true,"invalid":false,"focused":true,"bounds":[8,8,67,23],"differs":["focused"]}]}
+--- tab 2
+{"settled":true,"added":[],"removed":[],"changed":[{"id":"fx-before","parent":"fx-root","role":"Button","name":"Before","enabled":true,"invalid":false,"focused":false,"bounds":[8,8,67,23],"differs":["focused"]}]}
+--- tab 3
+{"settled":true,"added":[],"removed":[],"changed":[]}
+--- tab 4
+{"settled":true,"added":[],"removed":[],"changed":[{"id":"fx-after","parent":"fx-root","role":"Button","name":"After","enabled":true,"invalid":false,"focused":true,"bounds":[110.484375,8,53,23],"differs":["focused"]}]}
+--- tab 5
+{"settled":true,"added":[],"removed":[],"changed":[{"id":"fx-before","parent":"fx-root","role":"Button","name":"Before","enabled":true,"invalid":false,"focused":true,"bounds":[8,8,67,23],"differs":["focused"]},{"id":"fx-after","parent":"fx-root","role":"Button","name":"After","enabled":true,"invalid":false,"focused":false,"bounds":[110.484375,8,53,23],"differs":["focused"]}]}
+--- snapshot after tabs
+{"text":"Unknown \"\" id=\"/html:0\" @0,0 800x39\n  Unknown \"\" id=\"/html:0/body:0\" @8,8 784x23\n    Main \"\" id=\"main\" @8,8 784x23\n      GenericContainer \"\" id=\"fx-root\" @8,8 784x23\n        Button \"Before\" id=\"fx-before\" enabled focused @8,8 67x23\n        Label \"Fruit\" id=\"fx-root//label:0\" @75,8 35.484375x23\n        Button \"After\" id=\"fx-after\" enabled @110.484375,8 53x23\n"}
+--- click fx-pick
+{"refused":{"cause":"not-found","meaning":"no element on the screen reads the id","remedy":"take a snapshot and use an id it lists"}}
+--- press arrow-down
+{"settled":true,"added":[],"removed":[],"changed":[]}
+--- press home
+{"settled":true,"added":[],"removed":[],"changed":[]}
+--- press enter
+{"settled":true,"added":[],"removed":[],"changed":[]}
+--- press space
+{"settled":true,"added":[],"removed":[],"changed":[]}
+--- type fx-pick Cherry
+{"refused":{"cause":"not-found","meaning":"no element on the screen reads the id","remedy":"take a snapshot and use an id it lists"}}
+--- type fx-pick c
+{"refused":{"cause":"not-found","meaning":"no element on the screen reads the id","remedy":"take a snapshot and use an id it lists"}}
+--- click fx-named
+{"refused":{"cause":"not-found","meaning":"no element on the screen reads the id","remedy":"take a snapshot and use an id it lists"}}
+--- click fx-off
+{"refused":{"cause":"not-found","meaning":"no element on the screen reads the id","remedy":"take a snapshot and use an id it lists"}}
+--- screenshot fx-pick
+{"refused":{"cause":"not-found","meaning":"no element on the screen reads the id","remedy":"take a snapshot and use an id it lists"}}
+--- final snapshot
+{"text":"Unknown \"\" id=\"/html:0\" @0,0 800x39\n  Unknown \"\" id=\"/html:0/body:0\" @8,8 784x23\n    Main \"\" id=\"main\" @8,8 784x23\n      GenericContainer \"\" id=\"fx-root\" @8,8 784x23\n        Button \"Before\" id=\"fx-before\" enabled focused @8,8 67x23\n        Label \"Fruit\" id=\"fx-root//label:0\" @75,8 35.484375x23\n        Button \"After\" id=\"fx-after\" enabled @110.484375,8 53x23\n"}
+ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.20s
+

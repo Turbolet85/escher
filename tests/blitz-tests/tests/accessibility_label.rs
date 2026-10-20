@@ -1,4 +1,4 @@
-use accesskit::{Node as AccessKitNode, Role};
+use accesskit::{Node as AccessKitNode, NodeId, Role};
 use blitz_dom::DocumentConfig;
 use blitz_html::{HtmlDocument, HtmlProvider};
 use blitz_traits::shell::{ColorScheme, Viewport};
@@ -294,6 +294,148 @@ fn falls_back_to_aria_label_when_aria_labelledby_targets_have_no_text() -> TestR
             })
         ))
     )
+}
+
+/// The accessibility node id of the element `selector` matches.
+fn tree_id(document: &HtmlDocument, selector: &str) -> NodeId {
+    let node = document
+        .query_selector(selector)
+        .ok()
+        .flatten()
+        .unwrap_or_else(|| panic!("the fixture holds {selector}"));
+    NodeId(node.as_u64())
+}
+
+#[test]
+fn a_label_for_names_a_select_and_a_textarea() -> TestResult<()> {
+    for incremental in [false, true] {
+        let mut document = HtmlDocument::from_html(
+            r#"<html>
+              <label id="fruit" for="pick">Fruit</label>
+              <select id="pick"><option>Apple</option></select>
+              <label id="note" for="say">Note</label>
+              <textarea id="say"></textarea>
+            </html>"#,
+            config_in(incremental),
+        );
+        document.resolve(0.0);
+        let (fruit, note) = (tree_id(&document, "#fruit"), tree_id(&document, "#note"));
+
+        let tree_update = document.build_accessibility_tree();
+
+        verify_that!(
+            tree_update.nodes,
+            contains((
+                anything(),
+                matches_pattern!(AccessKitNode {
+                    role(): eq(Role::ComboBox),
+                    *labelled_by(): container_eq(vec![fruit]),
+                })
+            ))
+        )?;
+        verify_that!(
+            tree_update.nodes,
+            contains((
+                anything(),
+                matches_pattern!(AccessKitNode {
+                    role(): eq(Role::MultilineTextInput),
+                    *labelled_by(): container_eq(vec![note]),
+                })
+            ))
+        )?;
+    }
+    Ok(())
+}
+
+#[test]
+fn a_wrapping_label_names_a_select_and_a_textarea() -> TestResult<()> {
+    for incremental in [false, true] {
+        let mut document = HtmlDocument::from_html(
+            r#"<html>
+              <label id="colour">Colour <select><option>Red</option></select></label>
+              <label id="comment">Comment <textarea></textarea></label>
+            </html>"#,
+            config_in(incremental),
+        );
+        document.resolve(0.0);
+        let colour = tree_id(&document, "#colour");
+        let comment = tree_id(&document, "#comment");
+
+        let tree_update = document.build_accessibility_tree();
+
+        verify_that!(
+            tree_update.nodes,
+            contains((
+                anything(),
+                matches_pattern!(AccessKitNode {
+                    role(): eq(Role::ComboBox),
+                    *labelled_by(): container_eq(vec![colour]),
+                })
+            ))
+        )?;
+        verify_that!(
+            tree_update.nodes,
+            contains((
+                anything(),
+                matches_pattern!(AccessKitNode {
+                    role(): eq(Role::MultilineTextInput),
+                    *labelled_by(): container_eq(vec![comment]),
+                })
+            ))
+        )?;
+    }
+    Ok(())
+}
+
+#[test]
+fn a_label_names_no_hidden_input() -> TestResult<()> {
+    for incremental in [false, true] {
+        let mut document = HtmlDocument::from_html(
+            r#"<html>
+              <label id="for-hidden" for="secret">Secret</label>
+              <input id="secret" type="hidden" value="x">
+              <label id="wrapping">Name <input type="hidden"><input id="name"></label>
+            </html>"#,
+            config_in(incremental),
+        );
+        document.resolve(0.0);
+        let for_hidden = document
+            .query_selector("#for-hidden")
+            .ok()
+            .flatten()
+            .expect("the fixture holds the label");
+        let wrapping = document
+            .query_selector("#wrapping")
+            .ok()
+            .flatten()
+            .expect("the fixture holds the label");
+        let name = document
+            .query_selector("#name")
+            .ok()
+            .flatten()
+            .expect("the fixture holds the input");
+
+        verify_that!(
+            document
+                .label_bound_input_element(for_hidden)
+                .map(|node| node.id),
+            none()
+        )?;
+        verify_that!(
+            document
+                .label_bound_input_element(wrapping)
+                .map(|node| node.id),
+            some(eq(name))
+        )?;
+    }
+    Ok(())
+}
+
+fn config_in(incremental: bool) -> DocumentConfig {
+    DocumentConfig {
+        incremental: Some(incremental),
+        ..default_document_config()
+    }
 }
 
 fn default_document_config() -> DocumentConfig {

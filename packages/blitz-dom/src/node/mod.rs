@@ -7,6 +7,7 @@ mod element;
 mod node;
 mod range;
 pub(crate) mod scrollbar;
+pub(crate) mod select;
 mod serialize;
 mod stylo_data;
 #[cfg(feature = "svg")]

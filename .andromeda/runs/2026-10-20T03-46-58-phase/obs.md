@@ -1,0 +1,35 @@
+# obs extract
+
+## Relevance
+partial — the chunk adds engine and driver behaviour (a `select` chosen by stable id, its value read in the snapshot) and a fixture check; obs governs only the span vocabulary that behaviour reaches, the silence of the new code and check, and keeping a chosen option's value and text out of every log line.
+
+## Constraints
+- Engine telemetry in any new `select` interaction code in blitz-dom (a keyboard or pointer default action, a value change) must be gated `#[cfg(feature = "tracing")]` with a no-op path when the feature is off; whether blitz-dom's `select` handling holds any log site today is research's question (per obs-plan §2 Telemetry Strategy).
+- §4 Span / Trace Coverage requires every call handed to `Session::run` to open exactly one `command` span (target `escher_driver`, INFO, `info_span!` by hand) whose eight fields stay `verb` · `cause` · `settled` · `busy` · `passes` · `added` · `removed` · `changed`. If the chunk adds a verb, `verb` must record the verb table's own word and never the caller's text, and an acting select step must record the acting fields like every other acting verb (per obs-plan §4 Span / Trace Coverage).
+- §4 Span / Trace Coverage lists what is never fielded: any argument, `Command`, `Call`, `ArgValue`, `Outcome`, `Refusal` or `Fault`. A new option argument (an option's value, text or index) or the snapshot's chosen-value reading must not become a span field or event field. `tool_call` keeps its two closed-word fields, `tool` and `ending`, and a new tool word, if one lands, records the table's word (per obs-plan §4 Span / Trace Coverage).
+- Under escher's sink, an `escher_*` target prints every field outside the content-named set, and an engine target prints only the safe fields. So a field named for an option (`option`, `choice`, `index`) under `escher_driver` would print as is. The ban on fielding arguments is the guard, because the scrub set cannot be relied on to catch it (per obs-plan §8 PII Scrubbing & Compliance).
+- The headless stand, its shared modules (`tests/blitz-tests/tests/fixtures/mod.rs`, `session_common/mod.rs`, `common/mod.rs`) and every driver check install no subscriber, read no env var and print nothing; their readings go into assertions only. A select fixture page added to `fixtures/mod.rs`, and its check, must keep that silence (per obs-plan §3 Observability Harness Contract).
+- The driver crate (`packages/escher-driver`) installs no subscriber, reads no env var and prints nothing but its command line's answers and `serve_mcp`'s replies. An `Outcome` carrying a select's chosen value is written by `to_json` alone, as an answer and never as a log line (per obs-plan §3 Observability Harness Contract).
+- A changed span field set or a new verb word moves §6's recorded line shape (`span="command" verb=…`) and the `tool_call` line's closed `tool` vocabulary. The verb table's word count stated there (eleven) is a count site to sweep if a verb lands (per obs-plan §6 Log Coverage).
+
+## Patterns to follow
+- The range input precedent (2026-10-13-range-input-interaction): its engine interaction model (`node/range.rs`, keyboard and pointer default actions) added no log site, span, field, log field or env read, and its check `range_input_interaction` installs no subscriber, reads no env var and prints nothing, with its readings going into assertions only (per obs-plan §3 Observability Harness Contract).
+- The recent driver additions (`stand_load_wait`, the visual lint, the engine debts) are each recorded with a silence census: the probe `println!|eprintln!|print!|dbg!|std::env|env::var|escher_telemetry|tracing_subscriber|UnixListener|TcpListener|bind\(` reads 0 over the new and changed files, and escher-driver keeps its 2 `info_span!` sites and 0 events (per obs-plan §3 Observability Harness Contract).
+- A refused call records `verb` (when known) and `cause` only, `cause` being one of the eight fixed `Cause::name` words. A select call refused `disabled` · `off-screen` · `covered` · `not-found` · `stale` · `malformed` must reuse those words and add no new cause text to the span (per obs-plan §4 Span / Trace Coverage).
+- Span shape for a verb is pinned through `stand_act_spans` (its `Expect` rows, re-run children capturing the sink at `RUST_LOG=info`) and `stand_mcp_tools` (its hand-written `Recorder`, one `tool_call` parenting each `command`) (per obs-plan §4 Span / Trace Coverage).
+
+## Anti-patterns to avoid
+- Fielding an option's value or text, a select argument by its schema name, or a `Command` / `Outcome` with `Debug` on the `command` or `tool_call` span: the printed line would carry page content or a value the caller supplied (per obs-plan §4 Span / Trace Coverage).
+- An unconditional `println!` or an ungated `tracing` call in the engine's select handling, or a new engine log field holding option text or a value, which the engine scrub would redact but which adds a user-content log field all the same (per obs-plan §2 Telemetry Strategy).
+- A print, subscriber or env read in the select fixture or its check, or in the shared `fixtures` module (per obs-plan §3 Observability Harness Contract).
+
+## Contract bindings
+- obs ↔ tests: the span shape for any new or reused acting verb is asserted by `stand_act_spans` (sink capture) and `stand_mcp_tools` (recorder). The sink-installing binaries' stderr at `trace` is read by seven_guis' `host_log` and `mcp_log` against their id, name and sentinel needles (`examples/seven_guis/tests/common/mod.rs` `Needles`). If the select choice crosses a carrier, its value or text must join those needles.
+- obs ↔ security: the content-named scrub set and the ban on fielding arguments bind to security-plan §Input Validation, which bans a call-supplied argument in a `Refusal`, a `Fault` or a field.
+- obs ↔ architecture: a new verb moves `VERBS` (eleven) and the closed `verb` / `tool` vocabularies the spans record. That count is stated in §4 and §6.
+
+## Acceptance criteria contributions
+- (obs) The select fixture page and its check install no subscriber, read no env var and print nothing, with their readings going into assertions only. The silence census reads 0 over the check file and `tests/blitz-tests/tests/fixtures/mod.rs` (per obs-plan §3 Observability Harness Contract).
+- (obs) escher-driver still holds exactly 2 `info_span!` sites and 0 events. The `command` span keeps its eight fields and `tool_call` its two. A select step through `Session::run` records the table's verb word and the acting fields, and no option value, text or index (per obs-plan §4 Span / Trace Coverage).
+- (obs) Any log site the chunk adds in blitz-dom's select handling is `#[cfg(feature = "tracing")]` with a no-op fallback and carries no option text or value field (per obs-plan §2 Telemetry Strategy).
+- (obs) If the select choice reaches the `escher-session` host or `mcp` role, `host_log` and `mcp_log` at `RUST_LOG=trace` read 0 occurrences of the chosen option's value and text sentinels, beside 0 id and 0 name needles, under both builds (per obs-plan §8 PII Scrubbing & Compliance).

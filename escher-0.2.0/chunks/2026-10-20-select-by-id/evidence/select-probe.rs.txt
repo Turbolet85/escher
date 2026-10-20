@@ -1,0 +1,119 @@
+//! Throwaway P3 probe (2026-10-20-select-by-id): a select under the driver's verbs. Removed after
+//! the run; its output is research.md's measurement.
+
+mod fixtures;
+mod session_common;
+
+use dioxus::prelude::*;
+use escher_driver::{Outcome, Session};
+use session_common::{click, press, snapshot, type_into};
+
+fn page() -> Element {
+    rsx! {
+        div { id: "fx-root",
+            button { id: "fx-before", "Before" }
+            label { r#for: "fx-pick", "Fruit" }
+            select { id: "fx-pick",
+                option { value: "a", "Apple" }
+                option { value: "b", selected: true, "Banana" }
+                option { value: "c", "Cherry" }
+            }
+            select { id: "fx-named", aria_label: "Colour",
+                option { value: "r", "Red" }
+                option { value: "g", "Green" }
+            }
+            select { id: "fx-off", aria_label: "Off", disabled: true,
+                option { value: "x", "X" }
+            }
+            button { id: "fx-after", "After" }
+        }
+    }
+}
+
+fn run(session: &mut Session, label: &str, call: &escher_driver::Call) {
+    let line = match session.run(call) {
+        Ok(Outcome::Shot { width, height, .. }) => format!("shot {width}x{height}"),
+        Ok(outcome) => outcome.to_json(),
+        Err(refusal) => refusal.to_json(),
+    };
+    println!("--- {label}\n{line}");
+}
+
+#[test]
+fn engine() {
+    use blitz_dom::Document;
+    for incremental in [false, true] {
+        println!("===== engine incremental {incremental}");
+        let harness = fixtures::boot(page, incremental);
+        let doc = harness.base();
+        for (node, id) in harness.doc.element_ids() {
+            if !id.starts_with("fx-") && !id.contains("option") && !id.contains("label") {
+                continue;
+            }
+            let n = doc.get_node(node).unwrap();
+            let display = n
+                .primary_styles()
+                .map(|s| format!("{:?}", s.clone_display()))
+                .unwrap_or_else(|| "no-style".into());
+            let size = n.final_layout().size;
+            println!(
+                "{id} display={display} layout={}x{} rect={:?} focusable={}",
+                size.width,
+                size.height,
+                doc.get_client_bounding_rect(node),
+                n.element_data().is_some_and(|e| e.is_focussable)
+            );
+        }
+        let tree = harness.doc.accessibility_tree();
+        for (tid, tnode) in tree.nodes.iter() {
+            if let Some(a) = tnode.author_id() {
+                if a.starts_with("fx-") {
+                    println!(
+                        "tree {a} role={:?} children={} label={:?} value={:?}",
+                        tnode.role(),
+                        tnode.children().len(),
+                        tnode.label(),
+                        tnode.value()
+                    );
+                }
+            }
+            let _ = tid;
+        }
+    }
+}
+
+#[test]
+fn probe() {
+    for incremental in [false, true] {
+        println!("===== incremental {incremental}");
+        let mut session = fixtures::hold("probe", page, incremental);
+        run(&mut session, "boot snapshot", &snapshot());
+        for n in 1..=5 {
+            run(&mut session, &format!("tab {n}"), &press("tab", false));
+        }
+        run(&mut session, "snapshot after tabs", &snapshot());
+        run(&mut session, "click fx-pick", &click("fx-pick"));
+        run(
+            &mut session,
+            "press arrow-down",
+            &press("arrow-down", false),
+        );
+        run(&mut session, "press home", &press("home", false));
+        run(&mut session, "press enter", &press("enter", false));
+        run(&mut session, "press space", &press("space", false));
+        run(
+            &mut session,
+            "type fx-pick Cherry",
+            &type_into("fx-pick", "Cherry"),
+        );
+        run(&mut session, "type fx-pick c", &type_into("fx-pick", "c"));
+        run(&mut session, "click fx-named", &click("fx-named"));
+        run(&mut session, "click fx-off", &click("fx-off"));
+        run(
+            &mut session,
+            "screenshot fx-pick",
+            &session_common::screenshot_of("fx-pick"),
+        );
+        run(&mut session, "final snapshot", &snapshot());
+    }
+}

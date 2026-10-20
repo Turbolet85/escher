@@ -1,5 +1,6 @@
 use crate::{
-    BaseDocument, ElementData, Node as BlitzDomNode, NodeData, NodeId as BlitzDomNodeId, local_name,
+    BaseDocument, ElementData, Node as BlitzDomNode, NodeData, NodeId as BlitzDomNodeId,
+    local_name, node::select,
 };
 use accesskit::{
     Invalid, Node as AccessKitNode, NodeId, Role, Toggled, TreeId, TreeInfo, TreeUpdate,
@@ -153,6 +154,12 @@ impl BaseDocument {
                 .filter(|label| !label.trim().is_empty())
             {
                 builder.set_label(label);
+            } else if select::is_select_option(node)
+                && let Some(label) = element_data
+                    .attr(local_name!("label"))
+                    .filter(|label| !label.is_empty())
+            {
+                builder.set_label(label);
             }
 
             // https://www.w3.org/TR/wai-aria-1.2/#tree_exclusion
@@ -161,11 +168,17 @@ impl BaseDocument {
             }
 
             // https://www.w3.org/TR/wai-aria-1.2/#aria-selected
-            let selected = element_data.attr(local_name!("aria-selected"));
-            match selected.map(str::trim_ascii) {
-                Some("true") => builder.set_selected(true),
-                Some("false") => builder.set_selected(false),
-                _ => {}
+            // A select's option holds its own selectedness, and reads no `aria-selected`
+            // (https://www.w3.org/TR/html-aam-1.0/#el-option).
+            if select::is_select_option(node) {
+                builder.set_selected(select::is_chosen(node));
+            } else {
+                let selected = element_data.attr(local_name!("aria-selected"));
+                match selected.map(str::trim_ascii) {
+                    Some("true") => builder.set_selected(true),
+                    Some("false") => builder.set_selected(false),
+                    _ => {}
+                }
             }
 
             // AccessKit holds a checkable role's `aria-checked` and every other role's
@@ -241,19 +254,23 @@ impl BaseDocument {
 impl BlitzDomNode {
     // https://www.w3.org/TR/wai-aria-1.2/#tree_exclusion
     // https://html.spec.whatwg.org/multipage/interaction.html#the-inert-attribute
+    // A select's options compute `display: none` but its one shown, and are its children in the
+    // tree all the same (https://www.w3.org/TR/html-aam-1.0/#el-option); `hidden` still hides one.
     fn is_hidden_from_accessibility_tree(&self) -> bool {
-        self.element_data()
-            .is_some_and(|element| element.has_attr(local_name!("inert")))
-            || self
-                .try_stylo_element_data()
-                .as_ref()
-                .and_then(|s| s.get())
-                .map(|s| {
-                    s.styles.is_display_none()
-                        || s.styles.primary().clone_visibility()
-                            == visibility::computed_value::T::Hidden
-                })
-                .unwrap_or(false)
+        let is_select_option = select::is_select_option(self);
+        self.element_data().is_some_and(|element| {
+            element.has_attr(local_name!("inert"))
+                || (is_select_option && element.has_attr(local_name!("hidden")))
+        }) || self
+            .try_stylo_element_data()
+            .as_ref()
+            .and_then(|s| s.get())
+            .map(|s| {
+                (s.styles.is_display_none() && !is_select_option)
+                    || s.styles.primary().clone_visibility()
+                        == visibility::computed_value::T::Hidden
+            })
+            .unwrap_or(false)
     }
 
     fn write_text_alternative(&self, out: &mut FlatText) {

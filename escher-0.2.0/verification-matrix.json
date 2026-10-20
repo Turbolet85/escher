@@ -109,11 +109,11 @@
    "observed_gap": "there is no select interaction model",
    "verification": {
     "method": "integration",
-    "acceptance": "On a fixture holding a select, an agent chooses an option by the control's stable id through the driver, and the snapshot reads the select with its role, its name and the chosen value, the focus order unchanged.",
-    "ref": null,
-    "status": "planned"
+    "acceptance": "On the in-file fixture page of `stand_act_select`, held in a driver session in both layout modes: the snapshot reads the select `fx-pick` with role `ComboBox`, name `Fruit` (from its `<label>`) and value `b` at boot; `type --id fx-pick --text Cherry` through `Session::run` is accepted and settled, its diff names `fx-pick` with `value` in `differs`, and the next snapshot reads its value `c`; the Tab walk reads `fx-before` → `fx-pick` → `fx-named` → `fx-after`, the disabled select skipped, before and after the choice. Gate: `cargo test -p blitz-tests --locked --test stand_act_select 2>&1` reads 0 failed.",
+    "ref": "tests/blitz-tests/tests/stand_act_select.rs::at_boot_the_snapshot_reads_the_select_its_name_value_and_options · ::type_with_a_label_chooses_that_option · ::the_tab_walk_skips_the_disabled_select_before_and_after_the_choices",
+    "status": "implemented"
    },
-   "chunk": null
+   "chunk": "2026-10-20-select-by-id"
   },
   {
    "id": "v020-09",

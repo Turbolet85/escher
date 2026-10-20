@@ -854,6 +854,20 @@ pub(crate) fn handle_click(
                         }
                     }
                 }
+                // A click focuses a select and starts its typed text afresh; it opens no list of
+                // options, and the text it hit inside the select is not selected.
+                local_name!("select") => {
+                    doc.select_typeahead = None;
+                    doc.text_selection.clear();
+                    generate_focus_events(
+                        doc,
+                        &mut |doc| {
+                            doc.set_focus_to(node_id);
+                        },
+                        dispatch_event,
+                    );
+                    break 'matched true;
+                }
                 // Clicking labels triggers click, and possibly input event, of associated input
                 local_name!("label") => {
                     if let Some(target_node_id) =

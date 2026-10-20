@@ -6,7 +6,9 @@ use crate::mutator::ViewportMut;
 use crate::net::{
     Resource, ResourceHandler, ResourceLoadResponse, StylesheetHandler, StylesheetLoader,
 };
-use crate::node::{ImageData, NodeFlags, RasterImageData, SpecialElementData, Status, TextBrush};
+use crate::node::{
+    ImageData, NodeFlags, RasterImageData, SpecialElementData, Status, TextBrush, select,
+};
 use crate::scrolling::ScrollAnimationState;
 use crate::selection::TextSelection;
 use crate::stylo_device::{DeviceChanges, make_device};
@@ -333,6 +335,8 @@ pub struct BaseDocument {
 
     /// Text selection state (for non-input text)
     pub(crate) text_selection: TextSelection,
+    /// The text typed so far into the focused select, for typeahead
+    pub(crate) select_typeahead: Option<crate::node::select::Typeahead>,
 
     // TODO: collapse animating state into a bitflags
     /// Whether there are active CSS animations/transitions (so we should re-render every frame)
@@ -548,6 +552,7 @@ impl BaseDocument {
             scrollbar_activity: HashMap::new(),
             scroll_animation: ScrollAnimationState::None,
             text_selection: TextSelection::default(),
+            select_typeahead: None,
         };
 
         // Initialise document with root Document node
@@ -669,12 +674,13 @@ impl BaseDocument {
         self
     }
 
-    /// Find the label's bound input elements:
-    /// the element id referenced by the "for" attribute of a given label element
-    /// or the first input element which is nested in the label
-    /// Note that although there should only be one bound element,
-    /// we return all possibilities instead of just the first
-    /// in order to allow the caller to decide which one is correct
+    /// Find the label's labeled control: the labelable element whose id the label's "for"
+    /// attribute names, or else the first labelable element nested in the label.
+    ///
+    /// <https://html.spec.whatwg.org/multipage/forms.html#labeled-control>; the labelable
+    /// elements are `button`, `input` whose `type` is not `hidden`, `meter`, `output`,
+    /// `progress`, `select` and `textarea`
+    /// (<https://html.spec.whatwg.org/multipage/forms.html#category-label>).
     pub fn label_bound_input_element(&self, label_node_id: NodeId) -> Option<&Node> {
         let label_element = self.nodes[label_node_id].element_data()?;
         if let Some(target_element_dom_id) = label_element.attr(local_name!("for")) {
@@ -682,7 +688,7 @@ impl BaseDocument {
                 .filter_map(|id| {
                     let node = self.get_node(id)?;
                     let element_data = node.element_data()?;
-                    if element_data.name.local != local_name!("input") {
+                    if !is_labelable(element_data) {
                         return None;
                     }
                     let id = element_data.id.as_ref()?;
@@ -698,7 +704,7 @@ impl BaseDocument {
                 .filter_map(|child_id| {
                     let node = self.get_node(child_id)?;
                     let element_data = node.element_data()?;
-                    if element_data.name.local == local_name!("input") {
+                    if is_labelable(element_data) {
                         Some(node)
                     } else {
                         None
@@ -706,6 +712,66 @@ impl BaseDocument {
                 })
                 .next()
         }
+    }
+
+    /// A single-choice select's value: its chosen option's value, `None` with no chosen option
+    /// or for any other node.
+    ///
+    /// <https://html.spec.whatwg.org/multipage/form-elements.html#dom-select-value>
+    pub fn select_value(&self, select: NodeId) -> Option<String> {
+        let element = self.get_node(select)?.element_data()?;
+        if !select::is_single_select(element) {
+            return None;
+        }
+        let option = select::chosen_option(self, select)?;
+        self.get_node(option).map(select::option_value)
+    }
+
+    /// Runs a single-choice select's selectedness setting algorithm, leaving one option chosen.
+    pub(crate) fn settle_select_choice(&mut self, select: NodeId) {
+        if !self
+            .get_node(select)
+            .and_then(|node| node.element_data())
+            .is_some_and(select::is_single_select)
+        {
+            return;
+        }
+        let options = select::options(self, select);
+        let settled = select::settled(&select::readings(self, &options));
+        let target = settled.and_then(|index| options.get(index).copied());
+        self.set_select_choice(&options, target);
+    }
+
+    /// Makes `target` the one chosen option of `options`, writing each option whose
+    /// selectedness changes; reads whether any did.
+    pub(crate) fn set_select_choice(&mut self, options: &[NodeId], target: Option<NodeId>) -> bool {
+        let mut changed = false;
+        for &option in options {
+            changed |= self.set_option_chosen(option, Some(option) == target);
+        }
+        changed
+    }
+
+    /// Sets an option's selectedness — its `CHECKED` state, which `:checked` reads — through
+    /// [`Self::snapshot_node_and`] where it is in the document; reads whether it changed.
+    pub(crate) fn set_option_chosen(&mut self, option: NodeId, chosen: bool) -> bool {
+        let Some(node) = self.get_node(option) else {
+            return false;
+        };
+        if node.element_data().is_none() || select::is_chosen(node) == chosen {
+            return false;
+        }
+        if node.flags.is_in_document() {
+            self.snapshot_node_and(option, ElementState::CHECKED, |node| {
+                node.element_state_mut().set(ElementState::CHECKED, chosen);
+                node.mark_ancestors_dirty();
+            });
+        } else {
+            self.nodes[option]
+                .element_state_mut()
+                .set(ElementState::CHECKED, chosen);
+        }
+        true
     }
 
     pub fn toggle_checkbox(el: &mut ElementData) -> bool {
@@ -3055,6 +3121,22 @@ impl BoundingRect {
 /// otherwise end at `55.0000005` and appear to overflow their 55px container.
 fn snap_to_layout_unit(value: f64) -> f64 {
     (value * 64.0).round() / 64.0
+}
+
+/// Whether `element` is labelable: one a `label` can name.
+fn is_labelable(element: &ElementData) -> bool {
+    match element.name.local {
+        local_name!("button")
+        | local_name!("meter")
+        | local_name!("output")
+        | local_name!("progress")
+        | local_name!("select")
+        | local_name!("textarea") => true,
+        local_name!("input") => !element
+            .attr(local_name!("type"))
+            .is_some_and(|kind| kind.eq_ignore_ascii_case("hidden")),
+        _ => false,
+    }
 }
 
 impl AsRef<BaseDocument> for BaseDocument {
