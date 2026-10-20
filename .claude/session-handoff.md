@@ -1,49 +1,46 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-20T03:34:30Z
+**Last Updated:** 2026-10-20T07:02:41Z
 **Branch:** build/escher-0.2.0 · 0 ahead of origin/build/escher-0.2.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-20-load-wait — an acting command waits out a load in flight for up to 5 s
+**Last Commit:** 2026-10-20-select-by-id — a select driven by id, read in the snapshot
 
 ## Position
-- Done: 2026-10-20-load-wait — an acting driver step that meets a load in flight now waits for it, for at most
-  `LOAD_WAIT` (5 s of wall time), and moves no time while it waits. `stand_load_wait` 2 passes in both modes, and
-  CI#39360124515 is green 17/17. v020-07 is verified.
-- gated 2026-10-19-visual-lint: standing — `.andromeda/runs/2026-10-19T23-47-25-phase/founder-forks.md` still holds
-  only the delegate's answers. Once the founder's own word on F1 lands, its gated part runs: /andromeda-implement in
-  gated mode, then its gated wrap.
-- Next: «Select by id» (Epoch 4), by `/andromeda-phase`.
+- Done: 2026-10-20-select-by-id. A single-choice `select` is now an engine control in every document: its keys and
+  typeahead, click focus, `CHECKED` choice, options in the tree, the `change` event and the labelable `<label>`. The
+  driver reads it in the snapshot and drives it with `type`. `stand_act_select` 5 and `select_interaction` 7 pass in
+  both layout modes, and CI#39371468367 is green 17/17. v020-08 is verified.
+- gated 2026-10-19-visual-lint: premise cleared — the founder's own word on F1, «Новая команда lint (Рекомендую)»,
+  relayed by the overseer on 2026-10-20 (escher-0.2.0/chunks/2026-10-20-select-by-id/inputs/I3-morning-founder-answers-2026-10-20.md.txt).
+  Its gated part runs next: /andromeda-implement in gated mode, then its gated wrap. That chunk snaps the word as its
+  own input.
+- Next after that: «Large screen in parts» (Epoch 4's last markerless entry), by `/andromeda-phase`.
 
 ## Work done
-- Resumed from P1 in `.andromeda/runs/2026-10-20T03-00-02-wrap/`; P2–P7 ran in this window.
-- Route: no tail edit. Curation added one Tier-2 host rule: search tracked files with `git grep`, not a whole-tree
-  `grep -rn`.
+- Resumed from P1 in `.andromeda/runs/2026-10-20T05-49-12-wrap/`; P2–P7 ran in this window.
+- One stop mid-apply: the shell failed EDQUOT on the temp dir. The operator measured the space free and directed a
+  retry, which ran.
 
 ## Drift resolved
-- 42 amendments: test-plan 24 (3 of them in the session-lifecycle key file), architecture 6, obs-plan 6,
-  security-plan 4, design-system 1, layout-templates 1. 0 escalations, 0 rejected.
-  - The retired «no driver command waits on a load» (the operator, 2026-10-07) ends by requirement v020-07, which
-    names it as its residual.
-  - Three stale count sites were outside the report's sweep: obs-plan «twenty-six checks», test-plan «the 19
-    `stand_*` readers» and architecture §Existing Scopes. All three were amended.
-- Citations: 43 re-pointed · 3 changed · 14 stretched. Leaves: 42 findings over 12 groups, 42 applied, 0 declined.
+- 78 amendments over the seven masters and one key file (`session-lifecycle`): architecture 20, security-plan 8,
+  design-system 1, layout-templates 1, test-plan 26, obs-plan 7, a11y-plan 15. 0 rejected. 85 leaf findings were
+  applied over 13 groups.
+- Citations: 455 re-pointed · 10 changed · 28 stretched.
+- One Validate halt resolved:
+  - Q1 answer card: the select model (security-plan's new `select` row, a boundary widening for every document) is
+    ratified by the founder's own word, F1–F4 «Утвердить все четыре (Рекомендую)». His confirm of the card,
+    «Подтвердить все (Рекомендую)», came by dialog, relayed by the overseer (inputs I3, I4).
+  - Q2: every standing PROVISIONAL mark dropped now, before the Epoch 4 close («Drop all now», the overseer, recorded
+    in I4). This covers the `:focus-within` take, visual lint F2 with «Record as built», and F1. «In process only»
+    stands as built for the lint, and its `lint` verb is owed to «Visual lint»'s gated part. No PROVISIONAL mark
+    stands in a master, key file or leaf.
+- Route: one CARRY on «Upstream sync ahead of polish and ship» (the select model's merge surface). One residual for
+  the select's stated limits (`multiple`, `optgroup`, popup, option click).
 
 ## Notes
-- PROVISIONAL for the founder's Epoch 4 boundary batch (the wrap that closes Epoch 4 lists them), carried unchanged:
-  - visual-lint's F1 «In process only (Most conservative)» and F2 «No new field (Recommended)», answered by the
-    operator as delegate;
-  - that wrap's P2 answer «Record as built (Recommended)», also delegate;
-  - the carried take from 2026-10-19-upstream-sync-visual-lint-and-real-app-readiness (`:focus-within`, the
-    not-in-document focus refusal, the focus redraw).
-  - This wrap added none: no escalation reached P2.
-- Deferred learnings — 4 × recurrence-despite-learning (each fault reproduced past its curated entry):
-  - «2026-10-13 — A phase control that reads a scratchpad file lands a host temp path in the run dir»
-    (`p5-controls.sh`).
-  - «2026-10-07 — `$TMPDIR` is unset in the Bash tool's shell on this host».
-  - «2026-10-16 — Moving Rust items between modules strands two kinds of import» (the intra-doc link import).
-  - «2026-10-20 — A count stated in more than one form needs every form in its sweep pattern» (this wrap's P1
-    sweep).
-- Last failed command: none outstanding.
-
-## Session End Status
-Completed normally at 2026-10-20 06:14:15
+- Deferred learnings — 2 × recurrence-despite-learning, each fault reproduced past its curated entry:
+  - «2026-10-19 — An in-line edit beside a provenance parenthesis reads as new provenance». It hit P2's test-plan and
+    key-file apply: 22 classify rows, fixed by dropping the history markers.
+  - «2026-10-20 — A count stated in more than one form needs every form in its sweep pattern». P1's sweep missed
+    «twenty-seven checks» at obs-plan §3.
+- Last failed command: none outstanding. The EDQUOT stop cleared on retry; its cause was not identified.

@@ -13,7 +13,7 @@ Types and traits shared by the other Blitz crates "without circular or unnecessa
 ### Publishes to
 - `NetProvider::fetch(doc_id, Request, Box<dyn NetHandler>)` + `is_noop()`; `NetHandler::bytes`; `NetWaker`; `Request` / `Body` / `FormData`; `AbortController` / `AbortSignal`.
 - `NavigationProvider::navigate_to(NavigationOptions)`; `ShellProvider` (redraw, cursor, title, IME, window chrome, clipboard, file dialog — no-op defaults).
-- `UiEvent`, `DomEvent`, `DomEventKind`, `EventState`, `BlitzPointerId`, per-event `cancelable()` / `bubbles()` tables, `BlitzImeEvent`.
+- `UiEvent`, `DomEvent`, `DomEventKind` (`from_str` strips `on`, maps `composition` to `Ime` and `change` to `Change`; `DomEventKind::Change`, after `Input`, and `DomEventData::Change(BlitzInputEvent)` — named `change`, not cancelable, bubbling, with no UI event mapped and no default action — dispatched by blitz-dom only after `input` on a select's choice, a checkbox, radio or text input firing no engine `change`), `EventState`, `BlitzPointerId`, per-event `cancelable()` / `bubbles()` tables, `BlitzImeEvent`.
 - `NodeId` (32-bit slot + 32-bit version, `as_u64()` for AccessKit interop), `Viewport` (`color_scheme`, `window_size`, `hidpi_scale`, `zoom`), `DevtoolSettings`.
 
 ## Internal conventions

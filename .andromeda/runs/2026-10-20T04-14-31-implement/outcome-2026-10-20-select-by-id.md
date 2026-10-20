@@ -1,6 +1,13 @@
 # /andromeda-implement — 2026-10-20-select-by-id · outcome
 
-**Outcome: surfaced.** The chunk is functionally complete: 18 of the block's 19 non-operator entries are green
+**Outcome: green + operator pass done** (moved from `surfaced` on 2026-10-20). By the operator's word («On my word, an
+operator edit of plan.md: add events/mod to gate entry 12's whitelist …» — the operator, 2026-10-20), entry 12's
+alternation gained `events/mod` (`evidence/gate-12-amend.md`), and its re-fire (firing 3) reads green. The operator
+pass then ran in plan order: 20 `hygiene: clean`; the pre-CI commit `14818317c`; 21 green, `history moved:
+refs/remotes/origin/build/escher-0.2.0 2f099735→14818317`; 22 `verdict: green · checks 17/17`, CI#39371468367; 23
+recorded, with the per-OS tallies in `evidence/ci.md`, each moved count explained by name. Next: `/andromeda-wrap-session`.
+
+The text below is the report as first written, when the outcome was `surfaced`. The chunk is functionally complete: 18 of the block's 19 non-operator entries are green
 (second full firing, trail `.andromeda/runs/2026-10-20T04-14-31-implement/gate-2026-10-20-select-by-id.json`), smoke
 skipped with a stated reason, v020-08 `implemented`. One entry, 12, reads red on a defect of the plan's own probe — not
 of the tree — surfaced below; nothing was authored and `plan.md` is unchanged.

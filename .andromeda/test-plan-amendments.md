@@ -824,3 +824,15 @@ Partly retires the PROVISIONAL clause of the earlier 2026-10-18-engine-debts and
 - Readings: `run stand` 183 · 0 · 7 over 45 → 185 · 0 · 7 over 46; workspace 201 · 1055 → 202 · 1062 · 0 · 12; CI#39360124515 linux 202 · 1062, macos and coverage 183 · 1059, windows 183 · 1017, stand repeat 162 · 645 · 0 · 21; escher-driver coverage 4634/4732 → 4695/4794 = 97.93 %, floor holding; stand-repeat and flakiness files 45 → 46.
 **Why:** this chunk's own checks and the counts they move (the playbook's «Accurate this-chunk addition», the plan's reviewed expected amendments); a check whose subject is wall time may read it, the plan's stated second exception.
 **Ref:** .andromeda/runs/2026-10-20T03-00-02-wrap/
+
+## 2026-10-20-select-by-id — the select checks, the counts, and the PROVISIONAL discharge
+**Section:** §1 Test Scope Summary · §2 Test Strategy · §3 Test Harness Contract (and its key `session-lifecycle`) · §4 Unit Test Strategy · §5 Integration Test Strategy · §9 CI Integration · §10 Quality Gates & Coverage Targets
+**Change:**
+- §1: `select_interaction` 7 and `stand_act_select` 5 entered under tests/blitz-tests; `accessibility_label` 10 → 13; the select model's proofs and its stated limits (asserted by no check), a select's label click (asserted by no check), a select's form entries (no test of their own), `node/select.rs`'s 4 unit tests; dioxus-native-dom 73 → 75 unit tests, the snapshot builder's eighteen → twenty; escher-driver's `stand_act_*` fourteen → fifteen.
+- §2: 141 → 143 `.rs` files, 140 → 142 targets; `session_common` readers 27 → 28, `fixtures` 21 → 23; fifteen `stand_act_*`, `stand_act_select` declaring no `mod common;`; the chunk markers in those counts' history parentheses dropped (the files named stand).
+- §3: fixtures helpers 23 readers; `run stand` runs 21 `stand_*` readers and `run {file}` two non-stand readers, `run stand` 190 · 0 · 7; session-check helpers fifteen driver-action checks, 28 readers; «six of the fifteen»; Proof re-counted, 190 · 0 · 7 over 47 files. Key `session-lifecycle` (session-proof): fifteen driver-action files, `stand_act_select` 5, 55 in all.
+- §4: the four `node/select.rs` tests described; fifteen `stand_act_*`. §5: `type` on a select and its proof `stand_act_select`.
+- §9: stand-repeat over 47 files; CI#39371468367's per-OS tallies (linux 204 · 1083 · 0 · 12, macos and coverage 185 · 1080, windows 185 · 1038, stand repeat 165 · 660 · 0 · 21); local baseline 204 · 1083 · 0 · 12. §10: 47 files.
+- The take's checks' «the behaviour they pin PROVISIONAL» and `stand_lint`'s «PROVISIONAL: in process only» dropped.
+**Why:** this chunk's checks and counts (the report's sweep; the playbook's accurate this-chunk addition). The marks drop on the founder's own word, relayed verbatim by the overseer (2026-10-20, chunk inputs#I3) — the take «Утвердить (Рекомендую)», the visual lint F1 «Новая команда lint (Рекомендую)» — on the operator's «Drop all now» at this wrap's halt. The history markers dropped by classification rule 7: a count moved beside them re-anchors them as new provenance.
+**Ref:** .andromeda/runs/2026-10-20T05-49-12-wrap/

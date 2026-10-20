@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens holds — the one new UI surface (the user-agent select box, packages/blitz-dom/assets/default.css 77-78 · 84-87 · 155-160) carries tokens {UA defaults reused from `input`, engine defaults, n/a for the stand}, no `hardcoded✗`; Retired reads none. The plan's expected design-system amendment (§Surface: desktop-native → Tokens, the UA `select` box and the shown option) is an addition, not drift, and the moved `default.css:N` citations past line 76 (design-system.md:25, :72, :116-118, :179, :211, :245) are the P2 citation sweep's.

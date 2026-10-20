@@ -183,3 +183,9 @@ One entry per amendment to `layout-templates.md` (sidecar-contract.md §Entry fo
 **Change:** the MCP role's tool descriptions: each acting tool's `settled` result field now states that a load in flight is waited for up to 5 s, the `settled` help (and with it `help`'s self-description) the program's fixed table text.
 **Why:** this chunk's help text, fixed text inside a ratified carrier (the playbook's «The program's own fixed text inside a ratified carrier»); the plan's reviewed expected amendment.
 **Ref:** .andromeda/runs/2026-10-20T03-00-02-wrap/
+
+## 2026-10-20-select-by-id — the visual lint's PROVISIONAL mark dropped
+**Section:** §Surface: desktop-native → IA notes
+**Change:** the stand-layout bullet's «PROVISIONAL: in process only» now reads «in process only» — the lint as built.
+**Why:** the founder's own word, relayed verbatim by the overseer (2026-10-20, chunk inputs#I3): «Visual lint» F1 «Новая команда lint (Рекомендую)» and F2 «Без поля (Рекомендую)» with «Record as built» — the in-process record stands, its verb owed to «Visual lint»'s gated part. Dropped before the Epoch 4 close on the operator's word at this wrap's halt («Drop all now»).
+**Ref:** .andromeda/runs/2026-10-20T05-49-12-wrap/

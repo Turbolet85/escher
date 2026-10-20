@@ -1,0 +1,82 @@
+[[pattern]]
+id = 'title'
+fixed = 'Select by id'
+ignore_case = true
+
+[[pattern]]
+id = 'owner'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true
+
+[[pattern]]
+id = 'bt-files'
+regex = '141 `\.rs` files|140 test targets|140 and 139'
+
+[[pattern]]
+id = 'stand-files'
+regex = '\b46 files|46 `stand_\*`|over 46 files|46 `stand_'
+
+[[pattern]]
+id = 'stand-pass'
+regex = 'passed 185|185 passed'
+
+[[pattern]]
+id = 'stand-act'
+regex = 'fourteen (driver-action|`stand_act_\*`)|fourteenth `stand_act_\*`|`stand_act_\*`'
+
+[[pattern]]
+id = 'fixtures'
+regex = 'mod fixtures;` by 21|21 checks|20 `stand_\*`|mod fixtures;'
+
+[[pattern]]
+id = 'session-common'
+regex = 'by 27|27 readers|27 checks|mod session_common;'
+
+[[pattern]]
+id = 'tally'
+regex = '1062|202 result lines|202 · 1062'
+
+[[pattern]]
+id = 'label'
+regex = 'binds an `input` alone|`input` alone|label_bound_input_element|first nested input|bound `<input>`'
+
+[[pattern]]
+id = 'change-event'
+regex = '`Input` the one|DomEventKind|`change` event|no `change`'
+
+[[pattern]]
+id = 'select'
+regex = '`select`|<select|`option`|ComboBox|ListBoxOption'
+
+[[pattern]]
+id = 'type-help'
+regex = '''replacing what the element hol|`type`'s help|type --id'''
+
+[[pattern]]
+id = 'acc-label'
+regex = '`accessibility_label` \(10|accessibility_label` \(?10|`accessibility_label`'
+
+[[pattern]]
+id = 'hidden-tree'
+regex = '`hidden`, `display: none`|display: none` exclude|is_hidden_from_accessibility_tree'
+
+[[pattern]]
+id = 'form-entry'
+regex = 'form submission|form entry|entry list|form\.rs'
+
+[[pattern]]
+id = 'ua-css'
+regex = 'default\.css|user-agent (rule|stylesheet)|UA stylesheet'
+
+[[pattern]]
+id = 'typeahead'
+regex = 'typeahead|type-ahead'
+ignore_case = true
+
+[[pattern]]
+id = 'click-focus'
+regex = 'a click on a `button`|click on any other element|clears focus'
+
+[[pattern]]
+id = 'silence'
+regex = 'silence census|silent checks|are silent'

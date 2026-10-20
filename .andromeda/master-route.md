@@ -67,4 +67,4 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 2026-10-19-shared-fixtures · complete · Shared fixtures — fixture pages and one held network stand-in stated once in blitz-tests' shared modules, run through agent-run · → escher-0.2.0/chunks/2026-10-19-shared-fixtures/
 2026-10-19-visual-lint · gated · Visual lint — `Session::lint` reads overlap, clipping, truncated text, off-screen, zero size and text contrast by stable id with a measured reason, in process, fixture- and stand-proven; its one command gated on the founder's F1 word · → escher-0.2.0/chunks/2026-10-19-visual-lint/
 2026-10-20-load-wait · complete · Load wait — an acting command meeting a load in flight waits it out within a stated bound, fixture-proven (v020-07) · → escher-0.2.0/chunks/2026-10-20-load-wait/
-2026-10-20-select-by-id · pending · Select by id — a select driven by id, read in the snapshot, fixture-proven (v020-08) · → escher-0.2.0/chunks/2026-10-20-select-by-id/
+2026-10-20-select-by-id · complete · Select by id — a select driven by id, read in the snapshot, fixture-proven (v020-08) · → escher-0.2.0/chunks/2026-10-20-select-by-id/
