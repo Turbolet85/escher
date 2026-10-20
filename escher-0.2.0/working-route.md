@@ -35,7 +35,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
    ↓
 [2026-10-19-shared-fixtures] Shared fixtures — fixture pages beside the stand and one held network stand-in, stated once in blitz-tests' shared modules, run through agent-run
    ↓
-Visual lint — one command: overlap, clipping, truncated text, off-screen, zero size, text contrast as `stand_contrast` reads it; stable id, measured reason; fixture-proven (v020-05)
+[2026-10-19-visual-lint] Visual lint — one command: overlap, clipping, truncated text, off-screen, zero size, text contrast as `stand_contrast` reads it; stable id, measured reason; fixture-proven (v020-05)  BLOCKED-ON: the founder's own word on F1 of .andromeda/runs/2026-10-19T23-47-25-phase/founder-forks.md, the lint's carriage, answered by the operator as delegate «In process only (Most conservative)», PROVISIONAL (escher-0.2.0/chunks/2026-10-19-visual-lint/inputs#I2)
    ↓
 Load wait — a command meeting a load in flight waits it out within a stated bound, on a fixture (v020-07; per security-plan §API Security)
    ↓

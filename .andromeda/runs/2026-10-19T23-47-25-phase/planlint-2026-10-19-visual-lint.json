@@ -1,0 +1,236 @@
+[
+{
+"tool": "planlint",
+"v": "1.12",
+"sha8": "a62601f7",
+"ts": "2026-10-20T00:05:25Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-19T23-47-25-phase",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 21 entries · plan: escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md · research: escher-0.2.0/chunks/2026-10-19…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` — r…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 19 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 17 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 15",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 4 of 4 — listed, P5's read",
+"  line 83 · «unchanged» · contain (step 5) · paint (step 5)",
+"  line 156 · «unchanged» · snapshot (step 3)",
+"  line 167 · «unchanged» · Cause::FontsUnavailable (step 4) · Session::lint (step 4)",
+"  line 422 · «unchanged» · visible_region (step 4)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 0",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+19
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 17,
+"listed": []
+},
+"check2": {
+"entries": 13,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 12,
+"refs": 15,
+"hits": []
+},
+"claims": {
+"read": 4,
+"listed": [
+83,
+156,
+167,
+422
+]
+},
+"c44": {
+"paths": 0,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.12",
+"sha8": "a62601f7",
+"ts": "2026-10-20T00:10:24Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-19T23-47-25-phase",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 22 entries · plan: escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md · research: escher-0.2.0/chunks/2026-10-19…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` — r…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 19 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 18 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 15",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 4 of 4 — listed, P5's read",
+"  line 83 · «unchanged» · contain (step 5) · paint (step 5)",
+"  line 156 · «unchanged» · snapshot (step 3)",
+"  line 167 · «unchanged» · Cause::FontsUnavailable (step 4) · Session::lint (step 4)",
+"  line 445 · «unchanged» · visible_region (step 4)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 0",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+19
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 18,
+"listed": []
+},
+"check2": {
+"entries": 13,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 12,
+"refs": 15,
+"hits": []
+},
+"claims": {
+"read": 4,
+"listed": [
+83,
+156,
+167,
+445
+]
+},
+"c44": {
+"paths": 0,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+}
+]

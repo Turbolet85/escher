@@ -1,0 +1,114 @@
+[
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "49bca268",
+"ts": "2026-10-20T00:12:14Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.2.0",
+"--run-dir",
+".andromeda/runs/2026-10-19T23-47-25-phase",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 5/11 · deferred 0 · planned 6 · implemented 0 · unclaimed 6",
+"unclaimed: v020-05 v020-07 v020-08 v020-09 v020-10 v020-11",
+"claimed-unfinished: none",
+"done-test: NO — 6 not verified|deferred · unclaimed 6",
+"chunks referenced: 5 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "49bca268",
+"ts": "2026-10-20T00:12:37Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.2.0",
+"--id",
+"v020-05",
+"--chunk",
+"2026-10-19-visual-lint",
+"--acceptance-file",
+".andromeda/runs/2026-10-19T23-47-25-phase/acceptance-v020-05.md",
+"--gated-file",
+".andromeda/runs/2026-10-19T23-47-25-phase/gated-v020-05.md",
+"--note-file",
+".andromeda/runs/2026-10-19T23-47-25-phase/note-v020-05.md",
+"--run-dir",
+".andromeda/runs/2026-10-19T23-47-25-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v020-05 → chunk 2026-10-19-visual-lint (was null; status planned kept)",
+"acceptance: On a fixture that plants each of the six defects, one lint command nam… (246 chars)",
+"         → On `tests/blitz-tests/tests/stand_lint.rs`'s planted page, which holds… (1626 chars)",
+"gated: the founder's own word on F1 of .andromeda/runs/2026-10-19T23-47-25-phase/founde… (255 chars)",
+"notes: +486 chars (total 486)",
+"wrote escher-0.2.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 5 [v020-07 v020-08 v020-09 v020-10 v020-11]"
+],
+"stderr": null,
+"wrote": [
+"escher-0.2.0/verification-matrix.json"
+],
+"before": {
+"id": "v020-05",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On a fixture that plants each of the six defects, one lint command names every planted element by its stable id with its… (246 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v020-05",
+"chunk": "2026-10-19-visual-lint",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On `tests/blitz-tests/tests/stand_lint.rs`'s planted page, which holds the six defects (two sibling boxes that overlap; … (1626 chars)",
+"notes_chars": 486
+}
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "49bca268",
+"ts": "2026-10-20T00:12:41Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.2.0",
+"--chunk",
+"2026-10-19-visual-lint",
+"--plan",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-19T23-47-25-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-19-visual-lint: 1 · ## Acceptance Criteria: line 401, 32 lines",
+"v020-05: cited in ## Acceptance Criteria (line 409)",
+"pool: unclaimed 5 [v020-07 v020-08 v020-09 v020-10 v020-11]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

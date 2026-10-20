@@ -1,0 +1,1 @@
+the founder's own word on F1 of .andromeda/runs/2026-10-19T23-47-25-phase/founder-forks.md, the lint's carriage, answered by the operator as delegate «In process only (Most conservative)», PROVISIONAL (escher-0.2.0/chunks/2026-10-19-visual-lint/inputs#I2)

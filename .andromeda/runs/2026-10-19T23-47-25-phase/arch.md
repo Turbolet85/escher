@@ -1,0 +1,37 @@
+# arch extract
+
+## Relevance
+relevant — the chunk adds a driver command (most likely a new instance verb) to escher-driver's one verb table and its three carriers, reads engine geometry and the harness's contrast reader, and must place any new reader within the workspace's crate boundaries.
+
+## Constraints
+- The verb table is stated once as `'static` schema data. arch §Standard Contracts → Driver session requires a new verb to be one row of `VERBS` (a `VerbSpec` with a level, help, arguments and result fields), a closed `Command` variant reached only through `validate`, and `Session::run` as the one entry point. The command line's argv reader, `describe()`/`help`, the MCP `tools/list` and the written forms all read from that table. Whether `lint` is an instance verb, and what its result field kinds are, is P3 research's question, and the founder's fork for the widening.
+- Per arch §Established Decisions → [Driver session], escher-driver names no app and depends on its five crates only (blitz-test-harness, dioxus-native-dom with `accessibility`, `tracing`, `serde_json` as a reader only, `png`). A lint answer must therefore be built from what the harness and the snapshot already expose, with no new dependency and nothing written by a serialization crate.
+- Per arch §Occupied Resources → Network ports and listeners, the session socket (wire `v3`), the command line's stdout and the `mcp` role's stdio are the only carriers. A new field of a closed value set inside a ratified carrier is no widening. Screen content in a new shape (findings that name ids and measured reasons) on those carriers is a crossing question, so it goes to the founder before it lands.
+- Per arch §Standard Contracts → Driver session, the `command` span's eight fields are fixed words and counts. A read-only verb on the `screenshot` precedent records `verb` alone, and `cause` when refused. A count of findings, or any reading, would be a new field, which is the founder's fork and never a silent add.
+- Per arch §Standard Contracts → Scrolling, selection, tree, `visible_region` reads whether an element can be seen from geometry and never from a hit. It carries three stated, measured limits: a box clipped on one axis, a box with no width or height hit at its centre, and a scrolling box under a transform read untransformed. A lint's `off-screen`, `clipped` and `zero size` readings inherit them. They are either stated in the verb's help or kept from producing false findings on the stand.
+- Per arch §Standard Contracts → Test harness, `Harness::text_contrast` reads and changes nothing and never moves the clock. It answers `None` past an `opacity` below 1, a filter or a background image, and `TextContrast::required_ratio` is the threshold. The lint's contrast reading must use this reader as it stands, not a restated copy.
+- Per arch §Standard Contracts → Dioxus DOM bridge, a snapshot node is a tree node whose `author_id` resolves, and its `bounds` is the unclamped, viewport-relative reading of `get_client_bounding_rect`. The elements linted and the ids a finding names are this set and these readings, so each finding's id is one a `snapshot` of the same screen lists.
+
+## Patterns to follow
+- `screenshot` is the read-only instance verb to copy (arch §Standard Contracts → Driver session). It is no step and dispatches nothing. An optional `id` resolves as `click`'s does (`stale`/`not-found`), a precondition refusal comes before any work, `has_changes` stays false, and the focus and the next snapshot are unchanged. Its `Outcome` variant gets its own written form, and its MCP result has its own shape.
+- Every answer has one written form, hand-written JSON through the crate-private `json` module and keyed by the schema's own words (arch §Standard Contracts → Driver session). The same section requires `describe()` and the MCP tool description, with its result fields, to come from the table, never from page or call text.
+- blitz-dom's read-only readers beside the engine, `visible_region` among them (arch §Standard Contracts → Scrolling, selection, tree), set the shape for a missing truncated-text reader: `&self`, an `Option` answer, `get_node` for ids that may be stale, and no mutation and no engine behaviour change for any document.
+- Test placement follows arch §Conventions → Tests: unit tests inline or in a `#[path]` child, as `schema`/`mcp`/`cli`/`recording` do. Per arch §Existing Scopes (blitz-tests' shared modules), a planted-defect page with more than one reader goes in `tests/blitz-tests/tests/fixtures/mod.rs`, and a page with one reader stays in its check's file.
+
+## Anti-patterns to avoid
+- Changing engine behaviour for any document to make a reading come out (arch §Established Decisions → [Scrolling and input] detail: each engine change there needed its own ratification). The lint only reports.
+- Reading visibility or clipping from a hit instead of geometry, or adding a second position reader (arch §Standard Contracts → Scrolling, selection, tree).
+- Adding a crate, dependency, env var or listener silently. Per arch §Occupied Resources → Names, each one is a registration, and `serde_json` stays a reader only (arch §Established Decisions → [Driver session]).
+
+## Contract bindings
+- arch §Standard Contracts → Driver session ↔ security. `validate` comes before anything runs, a refusal holds nothing of the call, and the findings' content is a new carriage on the socket, CLI and MCP carriers.
+- arch §Standard Contracts → Driver session (`command`/`tool_call` spans) ↔ obs. The verb's span records closed words only, and the findings and their count are not fielded unless ratified.
+- arch §Standard Contracts → Driver session (recording detail: `Check::from_bytes` admits the seven instance verbs, and a call no record can spell is not kept) ↔ tests. A new instance verb either joins the recorded set, which changes the replay's closed set and the committed Counter checks' reader, or is named as not recorded.
+- arch §Standard Contracts → Test harness (`text_contrast`, `required_ratio`) ↔ a11y. The lint's contrast reading must match `stand_contrast`'s rows (WCAG SC 1.4.3).
+- arch §Standard Contracts → Dioxus DOM bridge (snapshot ids and bounds) ↔ tests. The fixture and the stand checks address findings by stable id through `tests/blitz-tests/tests/session_common/mod.rs`'s call builders.
+
+## Acceptance criteria contributions
+- The new command is one row of `VERBS` and is reached only through `validate` → `Session::run`. `help`'s `describe()` line, the MCP `tools/list` and the command line's usage line each list it from the table, and a refused call leaves the instance unchanged (per arch §Standard Contracts → Driver session).
+- After an accepted lint, `has_changes` reads false, focus and the next `snapshot` are unchanged, and the harness's `time()` has not moved (per arch §Standard Contracts → Driver session and §Standard Contracts → Test harness).
+- `packages/escher-driver/Cargo.toml` gains no dependency, `Cargo.lock` does not change for the driver, and no crate, env var or listener is added unregistered (per arch §Established Decisions → [Driver session] and §Occupied Resources → Names).
+- The planted-defect fixture and the stand-at-boot reading hold in both layout modes, `for incremental in [false, true]`, and any new blitz-dom reader reads the same in both (per arch §Design Philosophy → One incremental pipeline, safe identities).

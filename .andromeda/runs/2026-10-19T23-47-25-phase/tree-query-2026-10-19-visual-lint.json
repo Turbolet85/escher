@@ -1,0 +1,173 @@
+[
+{
+"sql": "SELECT DISTINCT file FROM refs WHERE callee_name = 'VERBS' ORDER BY file",
+"rows": 14,
+"result": [
+{
+"file": "examples/seven_guis/tests/cli_commands.rs"
+},
+{
+"file": "examples/seven_guis/tests/mcp_server.rs"
+},
+{
+"file": "packages/escher-driver/src/cli.rs"
+},
+{
+"file": "packages/escher-driver/src/cli_tests.rs"
+},
+{
+"file": "packages/escher-driver/src/command.rs"
+},
+{
+"file": "packages/escher-driver/src/describe.rs"
+},
+{
+"file": "packages/escher-driver/src/execute.rs"
+},
+{
+"file": "packages/escher-driver/src/lib.rs"
+},
+{
+"file": "packages/escher-driver/src/mcp/listing.rs"
+},
+{
+"file": "packages/escher-driver/src/mcp_tests.rs"
+},
+{
+"file": "packages/escher-driver/src/schema.rs"
+},
+{
+"file": "packages/escher-driver/src/schema_tests.rs"
+},
+{
+"file": "tests/blitz-tests/tests/stand_act_scroll.rs"
+},
+{
+"file": "tests/blitz-tests/tests/stand_act_spans.rs"
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT DISTINCT file FROM refs WHERE callee_name = 'Outcome' AND callee_file LIKE '%execute.rs' ORDER BY file",
+"rows": 14,
+"result": [
+{
+"file": "examples/seven_guis/tests/cli_commands.rs"
+},
+{
+"file": "packages/escher-driver/src/execute.rs"
+},
+{
+"file": "packages/escher-driver/src/json.rs"
+},
+{
+"file": "packages/escher-driver/src/lib.rs"
+},
+{
+"file": "packages/escher-driver/src/mcp.rs"
+},
+{
+"file": "packages/escher-driver/src/recording.rs"
+},
+{
+"file": "packages/escher-driver/src/recording_tests.rs"
+},
+{
+"file": "packages/escher-driver/src/replay.rs"
+},
+{
+"file": "tests/blitz-tests/tests/session_common/mod.rs"
+},
+{
+"file": "tests/blitz-tests/tests/stand_act_diff.rs"
+},
+{
+"file": "tests/blitz-tests/tests/stand_act_spans.rs"
+},
+{
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs"
+},
+{
+"file": "tests/blitz-tests/tests/stand_requirement_sweep.rs"
+},
+{
+"file": "tests/blitz-tests/tests/stand_session_recording.rs"
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'text_contrast' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 5,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-test-harness 0.3.0-beta.4 contrast/tests/a_button_reads_its_own_text_and_background().",
+"file": "packages/blitz-test-harness/src/contrast.rs",
+"line": 269
+},
+{
+"caller": "rust-analyzer cargo blitz-test-harness 0.3.0-beta.4 contrast/tests/a_translucent_ancestor_is_composited_over_the_page().",
+"file": "packages/blitz-test-harness/src/contrast.rs",
+"line": 294
+},
+{
+"caller": "rust-analyzer cargo blitz-test-harness 0.3.0-beta.4 contrast/tests/an_element_with_no_text_reads_none().",
+"file": "packages/blitz-test-harness/src/contrast.rs",
+"line": 305
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 read().",
+"file": "tests/blitz-tests/tests/stand_contrast.rs",
+"line": 180
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 the_painted_background_is_the_measured_background().",
+"file": "tests/blitz-tests/tests/stand_contrast.rs",
+"line": 524
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'visible_region' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 6,
+"result": [
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/in_view().",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 403
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/crop().",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 414
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 reader_holds_the_target().",
+"file": "tests/blitz-tests/tests/scroll_into_view_nested.rs",
+"line": 119
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 the_visible_region_inside_a_scrolled_box_is_its_padding_box_cut_by_the_viewport().",
+"file": "tests/blitz-tests/tests/scrolled_box_client_rect.rs",
+"line": 337
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_target_beside_a_box_clipped_on_one_axis_is_refused_covered().",
+"file": "tests/blitz-tests/tests/stand_act_obstructed.rs",
+"line": 581
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 region().",
+"file": "tests/blitz-tests/tests/transformed_client_rect.rs",
+"line": 174
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

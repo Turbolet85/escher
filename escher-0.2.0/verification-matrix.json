@@ -68,11 +68,13 @@
    "observed_gap": "covered and off-screen are named per action only; text contrast is checked on the stand by one test, not by a command",
    "verification": {
     "method": "integration",
-    "acceptance": "On a fixture that plants each of the six defects, one lint command names every planted element by its stable id with its measured reason, and on the stand at boot it reports no defect the stand's recorded contrast and layout readings do not hold.",
+    "acceptance": "On `tests/blitz-tests/tests/stand_lint.rs`'s planted page, which holds the six defects (two sibling boxes that overlap; an element clipped by an `overflow: hidden` box and one clipped by a `contain: paint` box; a nowrap line truncated by its own `overflow: hidden`; an element wholly right of the 800 px viewport; a labelled button with zero size; `#999999` text on `#ffffff`) and six negatives (an `inert` and a `hidden` element over another box, a disabled low-contrast button, low-contrast text under `opacity: 0.5`, a text input holding a value wider than its box, a wrapping paragraph), one lint names exactly the seven planted findings, in document order, each by its stable id, its defect word (`overlap` · `clipped` · `clipped` · `truncated` · `off-screen` · `zero-size` · `contrast`) and its measured reason (the other element's id; the visible part inside its clipping box; the text box wider than its box; the contrast ratio equal to `Harness::text_contrast`'s reading and below its required 4.5), and nothing on a negative; on each of the four lean stand tasks at boot it names 0 findings; both in both layout modes. Proven through `Session::lint` (escher-driver), and through the one command the founder's own word on F1 of `.andromeda/runs/2026-10-19T23-47-25-phase/founder-forks.md` sets, whose answer equals `Session::lint`'s findings on the same screens (gated: the founder's own word on F1, the lint's carriage, answered by the operator as delegate «In process only (Most conservative)», PROVISIONAL — escher-0.2.0/chunks/2026-10-19-visual-lint/inputs#I2). The in-process reader alone never verifies the cap.",
     "ref": null,
-    "status": "planned"
+    "status": "planned",
+    "gated": "the founder's own word on F1 of .andromeda/runs/2026-10-19T23-47-25-phase/founder-forks.md, the lint's carriage, answered by the operator as delegate «In process only (Most conservative)», PROVISIONAL (escher-0.2.0/chunks/2026-10-19-visual-lint/inputs#I2)"
    },
-   "chunk": null
+   "chunk": "2026-10-19-visual-lint",
+   "notes": "2026-10-20 (2026-10-19-visual-lint, phase P5): claimed GATED on the operator's note to F1 (inputs#I2): v020-05 asks for one command, so the in-process `Session::lint` this chunk builds does not verify it; it verifies only when the founder's own word on F1 sets the carriage and the one command answers `Session::lint`'s findings (plan step 12). His word confirming in process only releases the claim; option 2 or 4 is a phase revision. Approved by the operator's word at P5 (inputs#I3)."
   },
   {
    "id": "v020-06",

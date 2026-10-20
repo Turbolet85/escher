@@ -79,6 +79,12 @@
 //! depends on wall time: the overlay scrollbar fade reads the session's clock, so two shots of
 //! one state with no `advance` between them read the same pixels.
 //!
+//! [`Session::lint`] reads the screen of the held instance, in process, for six defects: an
+//! element that overlaps another, is clipped, has text cut from view, lies off-screen, holds
+//! content in a box with no area or reads below its text contrast ratio. Each [`Finding`] names
+//! the element's stable id, its [`Defect`] and the measured [`Reason`], numbers and ids only. It
+//! runs no step and changes nothing.
+//!
 //! A session can keep itself as a replayable check ([`Session::recording_into`]): every call
 //! [`Session::run`] answers, written to an owner-only file of a directory its launcher names as
 //! the call crossed in, with whether it was accepted, the [`answer_digest`] of its answer and the
@@ -121,6 +127,7 @@ mod execute;
 mod host;
 mod image;
 mod json;
+mod lint;
 mod mcp;
 mod recording;
 mod refusal;
@@ -138,6 +145,7 @@ pub use describe::describe;
 pub use error::SessionError;
 pub use execute::Outcome;
 pub use host::{IDLE_EXPIRY, serve};
+pub use lint::{Bounds, Defect, Finding, Reason};
 pub use mcp::serve_mcp;
 pub use recording::{Check, MASKED_STAND_IN, Step, answer_digest};
 pub use refusal::{CAUSES, Cause, Fault, Refusal};

@@ -1,0 +1,35 @@
+# layouts extract
+
+## Relevance
+partial — the chunk adds no screen and moves no markup. It reads the stand's layout at boot (TaskShell, the CRUD list's scrolling box) and adds one verb to the `escher-session` command-line surface and to the MCP tool listing.
+
+## Constraints
+- The stand at boot is the proof's screen: layout-templates §Surface: desktop-native → Primary screens requires the headless stand to mount one lean task in TaskShell (`main#main > #task-shell`, `#task-header > #back-btn + #task-title` above `#task-body`) at the pinned 800 × 600, scale 1.0, Light viewport with the bundled DejaVu Sans. A stand-at-boot lint run reads that mount, for each of the four lean tasks.
+- Stand markup must stay where it is: layout-templates §Surface: desktop-native → Primary screens requires every stand id (`counter-*`, `flight-*`, `timer-*`, `crud-*`, `crud-person-{id}`) to add no class, style, wrapper or order, and requires that no task CSS select by them. The planted-defect page therefore belongs beside the stand (blitz-tests' `fixtures` module), not in it.
+- A held instance must read as a fresh boot: layout-templates §Surface: desktop-native → Primary screens requires the TaskShell mount and the pinned viewport to hold after commands in both layout modes (`stand_session_fresh`). A read-only lint must leave both as they were.
+- Clipping is measured against the box that clips: layout-templates §Surface: desktop-native → IA notes requires `visible_region` to read the viewport narrowed to the padding box of every clipping box that holds the element. On the stand, `crud-list` (24, 112.796875, 369 × 419.203125) is the box that clips its rows, and `task-body` (0, 46, 800 × 554) is not. A `clipped` or `off-screen` finding names the cut by those readings.
+- A scrolled box reads its own bounds where it stands: layout-templates §Surface: desktop-native → IA notes records that `crud-list` reads the same four figures after its content scrolls, and that the scroll's diff does not name it. A lint finding on the list itself must not change with its rows' scroll position.
+- The new verb follows the command-line grammar: layout-templates §Surface: cli → Primary screens requires every `escher-session` instance verb to take its arguments as flags spelt as the schema spells them, and to end in one of four endings. Accepted is one uncoloured JSON line on stdout with exit 0; refused is exit 1; usage is exit 2 with stdout empty; session error is exit 3. No ending writes back anything the caller typed.
+- The new verb follows the tool listing: layout-templates §Surface: cli → Primary screens requires the MCP role to list the verb table's verbs as tools in order with `help` last, each tool described by its help followed by `. Returns: ` and its result fields. It also requires `escher-session help` to answer the seven-key self-description from the schema's tables alone.
+
+## Patterns to follow
+- `screenshot` is the model for a read-only instance verb that takes an optional `--id`. It runs no step, answers one uncoloured line on stdout and refuses a crop that holds no pixel as `off-screen`. Its usage, refusal and MCP result shapes are in layout-templates §Surface: cli → Primary screens.
+- The stand already has a measured off-screen case to build on: after twelve Creates, the last CRUD row's centre lies below `crud-list`'s box, a driver `click` on it is refused `off-screen`, and a driver `scroll` brings it inside the list (per layout-templates §Surface: desktop-native → IA notes). A lint reading taken there must agree with that refusal.
+- Below-the-box placement is a known layout shape: Home's Cells card lies at 615 to 684, below Home's 600-high scrolling box, and shows only once it is scrolled into view (per layout-templates §Surface: desktop-native → Primary screens). The headless stand skips Home, so this case belongs on a fixture, not at stand boot.
+- Readings are recorded with their source: every layout figure in the plan is tied to a chunk's evidence or report (per layout-templates §Surface: desktop-native → IA notes). The stand-at-boot "no false defect" claim should cite figures measured the same way.
+
+## Anti-patterns to avoid
+- Do not add or move any stand element, class, style, wrapper, id or order to plant a defect or to silence a finding. layout-templates §Surface: desktop-native → Primary screens forbids each of these on the stand's ids and task markup.
+- Do not count TaskShell's own nesting (`#task-shell` ⊃ `#task-header` / `#task-body` ⊃ a task's controls) as overlap, and do not name `task-body` as the box that clips a CRUD row. The wireframe nests every control inside its region's box, and `crud-list`, not `task-body`, is that row's clipping box (per layout-templates §Surface: desktop-native → IA notes). Which overlap definition keeps the stand at boot free of false findings is P3's fork.
+- No ending may write back the caller's text, and no ending may be coloured. layout-templates §Surface: cli → Primary screens forbids both.
+
+## Contract bindings
+- Focus order (layouts) ↔ a11y SC 2.4.3: the lint adds no focusable element, so each lean task's Tab sequence must stay as layout-templates §Surface: desktop-native → Primary screens records it (CRUD six stops: `back-btn` · `crud-filter` · `crud-list` · `crud-name` · `crud-surname` · `crud-create`). `stand_keyboard`'s tables must not move.
+- Stand layout (layouts) ↔ design / `stand_contrast`: the contrast finding reads the colour pairs `stand_contrast` records. Which stand elements are text-bearing comes from the TaskShell mount in layout-templates §Surface: desktop-native → Primary screens.
+- Command-line surface (layouts) ↔ test-plan §3 Session lifecycle: layout-templates §Surface: cli → Primary screens defers the session contract to that section. The new verb's command-line and MCP checks bind there.
+
+## Acceptance criteria contributions
+- (layouts) On each lean task booted headless in TaskShell at 800 × 600, the lint reports no overlap between an element and its ancestor or descendant (`#task-shell` · `#task-header` · `#task-body` and their controls), and no `clipped` or `off-screen` finding on any element the boot shows inside `crud-list` or `task-body` (per layout-templates §Surface: desktop-native → Primary screens).
+- (layouts) A `clipped` or `off-screen` finding on a CRUD row is measured against `crud-list`'s box (24, 112.796875, 369 × 419.203125), never against `task-body`'s. Whether the three boot rows fit inside the list is research's question (per layout-templates §Surface: desktop-native → IA notes).
+- (layouts) After a lint call, the TaskShell mount, the pinned viewport and a following `snapshot`'s text read exactly as before the call, in both layout modes (per layout-templates §Surface: desktop-native → Primary screens).
+- (layouts) `escher-session lint … --session <dir>` answers one uncoloured JSON line on stdout with exit 0. A malformed shape is usage, exit 2, stdout empty. `help` and `tools/list` list the verb in its verb-table place with `help` last (per layout-templates §Surface: cli → Primary screens).

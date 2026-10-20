@@ -66,6 +66,8 @@ mod stylo_device;
 mod stylo_to_cursor_icon;
 mod stylo_to_kurbo;
 mod stylo_to_parley;
+/// The extent of an inline root's laid-out text beside its content box.
+mod text_extent;
 pub mod traversal;
 /// Versioned storage for the nodes of the DOM tree.
 mod tree;
@@ -106,6 +108,7 @@ pub use mutator::DocumentMutator;
 pub use node::{Attribute, DocumentData, ElementData, Node, NodeData, TextNodeData};
 pub use parley::FontContext;
 pub use scrolling::{ScrollBehavior, ScrollLogicalPosition};
+pub use text_extent::TextExtent;
 pub use tree::NodeTree;
 
 /// Convert a Blitz [`NodeId`] into a [`taffy::NodeId`] (which wraps a `u64`).
