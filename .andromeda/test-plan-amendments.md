@@ -813,3 +813,14 @@ Partly retires the PROVISIONAL clause of the earlier 2026-10-18-engine-debts and
 - §10: escher-driver coverage was 4266/4350 = 98.07 %, now 4634/4732 = 97.93 %, the 97 % floor holding, 3 of 3 crates at or above their floors; the flakiness budget's files 44 → 45.
 **Why:** this chunk's own checks and the counts they move (the playbook's «Accurate this-chunk addition», the plan's reviewed expected amendments); the lint's in-process scope is PROVISIONAL for the founder's own word (delegate the operator, 2026-10-20).
 **Ref:** .andromeda/runs/2026-10-20T00-54-29-wrap/
+
+## 2026-10-20-load-wait — `stand_load_wait`, the load wait's units, and the counts they move
+**Section:** §1 (escher-driver · tests/blitz-tests) · §2 Directory pattern · §3 (session checks and fixtures helpers · test-data bootstrap · Agent-run Proof) · §3 → Session lifecycle (session-start · session-proof) · §4 (escher-driver) · §5 Session ↔ held instance · §8 Hand-written fakes · §9 (Legs · Per-OS tallies · Local baseline) · §10 (Coverage floors · Flakiness budget)
+**Change:**
+- §1 / §4 / session-proof: escher-driver was 94 unit tests (60 inline · 34 `#[path]`), now 99 (64 · 35); session.rs 6 → 10 (the load wait's four over a scripted settle), schema_tests.rs 6 → 7 (the `settled` help states `LOAD_WAIT` in whole seconds, the acting verbs carry it, the wait ends before an answer read). §1 enters `stand_load_wait` 2: both layout modes, a load answered at 200 ms ends the `click` settled with `fx-box` at 70, a load never answered ends it at `LOAD_WAIT` still `Loads`, no time moved.
+- §2 / §3 / Existing counts: blitz-tests `.rs` files 140 → 141, targets 139 → 140; `session_common` readers 26 → 27; `fixtures` readers 20 → 21, `stand_*` 19 → 20 (§3 bootstrap's «the 19 `stand_*` readers» too).
+- §3 → Session lifecycle session-start: `act` and each acting verb wait on a load in flight up to `LOAD_WAIT`, settling every 10 ms and moving no time; one still loading at the bound is `NotSettled(Loads)`; `snapshot` and `screenshot` wait on nothing.
+- §5: the load wait and its proof stated; «no sleep and no wall-clock read» gains a second exception, `stand_load_wait`'s `Instant::now()` around its call and `LateNet`'s 200 ms sleep. §8: `LateNet` beside `HeldNet`.
+- Readings: `run stand` 183 · 0 · 7 over 45 → 185 · 0 · 7 over 46; workspace 201 · 1055 → 202 · 1062 · 0 · 12; CI#39360124515 linux 202 · 1062, macos and coverage 183 · 1059, windows 183 · 1017, stand repeat 162 · 645 · 0 · 21; escher-driver coverage 4634/4732 → 4695/4794 = 97.93 %, floor holding; stand-repeat and flakiness files 45 → 46.
+**Why:** this chunk's own checks and the counts they move (the playbook's «Accurate this-chunk addition», the plan's reviewed expected amendments); a check whose subject is wall time may read it, the plan's stated second exception.
+**Ref:** .andromeda/runs/2026-10-20T03-00-02-wrap/

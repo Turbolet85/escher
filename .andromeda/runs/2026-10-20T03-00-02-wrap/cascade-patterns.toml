@@ -1,0 +1,63 @@
+[[pattern]]
+id = 'noload'
+regex = '''waits? on no load|waits? on (a|any) load|never waits on (a load|one)|wait(s|ed)? on no load'''
+ignore_case = true
+
+[[pattern]]
+id = 'nocmdwait'
+fixed = 'no driver command waits'
+ignore_case = true
+
+[[pattern]]
+id = 'actover'
+regex = '''`act` over it|act\(step\)|`Session::act`'''
+
+[[pattern]]
+id = 'reexp'
+regex = '''re-exports (55|56)|(55|56) names'''
+
+[[pattern]]
+id = 'noclock'
+regex = '''reads? no clock|read no clock|reading no clock|no clock or environment'''
+ignore_case = true
+
+[[pattern]]
+id = 'screaders'
+regex = '''twenty-six checks|twenty-seven checks|by 2[67] checks|2[67] readers'''
+
+[[pattern]]
+id = 'fxreaders'
+regex = '''(20|21) checks declare|by (20|21) checks|(19|20) `stand_\*|its (20|21) readers'''
+
+[[pattern]]
+id = 'tfiles'
+regex = '''14[01] `\.rs` files|1(39|40) test targets'''
+
+[[pattern]]
+id = 'runstand'
+regex = '''18[35] · 0 · 7|4[56] files|4[56] `stand_\*\.rs`'''
+
+[[pattern]]
+id = 'duunit'
+regex = '''(94|99) unit tests|session\.rs (6|10) |schema_tests\.rs (6|7) '''
+
+[[pattern]]
+id = 'wstally'
+regex = '''20[12] result lines|10(55|62) passed'''
+
+[[pattern]]
+id = 'ostally'
+regex = '''CI#39348671810|CI#39360124515|159 · 639|162 · 645'''
+
+[[pattern]]
+id = 'cover'
+regex = '''4634/4732|4695/4794'''
+
+[[pattern]]
+id = 'sleepexc'
+regex = '''no sleep and no wall-clock|800 ms sleep|no sleep or clock read'''
+ignore_case = true
+
+[[pattern]]
+id = 'settlehelp'
+regex = '''went quiet after the step|settled. field's help|the .settled. help'''

@@ -177,3 +177,9 @@ One entry per amendment to `layout-templates.md` (sidecar-contract.md §Entry fo
 **Change:** a new note — the stand's layout reads clean to the in-process visual lint (`Session::lint`, PROVISIONAL: in process only): at boot each of the four lean tasks reads 0 findings in both layout modes (no overlap, clipping, truncated text, off-screen element, zero-size element holding content or contrast failure); after twelve Creates the last CRUD row, `crud-person-14`, reads `clipped`, visible 367 × 11.203125 inside `crud-list`, agreeing with the driver's `off-screen` refusal of its `click`; no stand markup, id, class or style moved.
 **Why:** this chunk's measured stand readings (the plan's reviewed expected amendment); the lint's in-process scope is PROVISIONAL for the founder's own word (delegate the operator, 2026-10-20).
 **Ref:** .andromeda/runs/2026-10-20T00-54-29-wrap/
+
+## 2026-10-20-load-wait — the acting tools state the load wait
+**Section:** §Surface: cli → Primary screens (`escher-session`)
+**Change:** the MCP role's tool descriptions: each acting tool's `settled` result field now states that a load in flight is waited for up to 5 s, the `settled` help (and with it `help`'s self-description) the program's fixed table text.
+**Why:** this chunk's help text, fixed text inside a ratified carrier (the playbook's «The program's own fixed text inside a ratified carrier»); the plan's reviewed expected amendment.
+**Ref:** .andromeda/runs/2026-10-20T03-00-02-wrap/

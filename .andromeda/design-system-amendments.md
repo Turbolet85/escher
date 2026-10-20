@@ -169,3 +169,9 @@ One entry per amendment to `design-system.md` (sidecar-contract.md §Entry form)
 **Change:** the exit-status class line now names the recording's `record-dir-not-private` and `recording-failed` among the session errors, status `3`, with no new exit; the four statuses are unchanged.
 **Why:** this chunk's two new session errors, fixed text inside a ratified carrier (the playbook's «The program's own fixed text inside a ratified carrier»); the plan's expected amendment.
 **Ref:** .andromeda/runs/2026-10-19T05-20-24-wrap/
+
+## 2026-10-20-load-wait — the load wait moves no clock
+**Section:** §Motion → Animation runtime
+**Change:** a new bullet: the driver's load wait moves no clock — while an acting step waits on a load in flight, for at most `LOAD_WAIT` (5 s of wall time), the harness's `VirtualClock` stands still, so a timer or an animation does not run during the wait.
+**Why:** this chunk's own wait (the plan's reviewed expected amendment); settle's own claim beside it stays true.
+**Ref:** .andromeda/runs/2026-10-20T03-00-02-wrap/

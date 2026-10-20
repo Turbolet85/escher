@@ -98,7 +98,7 @@
     "method": "integration",
     "acceptance": "On the in-file fixture of tests/blitz-tests/tests/stand_load_wait.rs, held in a driver session in both layout modes and driven through Session::run: a click on fx-load adds a body stylesheet link whose .test request a stand-in answers on its own thread 200 ms later, and the click returns settled true with no busy, its diff naming fx-box changed with bounds in differs and the next snapshot reading fx-box at the sheet's height, the call taking less than LOAD_WAIT; with a HeldNet that never answers, the same click returns settled false and busy \"loads\" no earlier than LOAD_WAIT and less than 2 s after it; LOAD_WAIT is 5 s, the value the settled field's help states, pinned by an escher-driver unit test. Gate: cargo test -p blitz-tests --locked --test stand_load_wait reads 2 passed.",
     "ref": "tests/blitz-tests/tests/stand_load_wait.rs::a_load_answered_inside_the_bound_ends_the_step_settled_with_its_content_on_screen + tests/blitz-tests/tests/stand_load_wait.rs::a_load_never_answered_ends_the_step_at_the_bound_still_loading",
-    "status": "implemented"
+    "status": "verified"
    },
    "chunk": "2026-10-20-load-wait"
   },

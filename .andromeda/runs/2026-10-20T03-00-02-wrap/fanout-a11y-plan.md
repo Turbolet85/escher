@@ -1,0 +1,2 @@
+proposals: []
+note: D-a11y-surface unfired — the report adds no interactive UI element (Coverage of new surfaces reads a11y n/a for LOAD_WAIT and the settled help; smoke skipped, library-only); D-a11y-obs-schema unfired — Schema / config adds no span field and no a11y violation schema exists; Retired none; a11y-plan's only settle claim (§2, the changed set neither read nor drained by a harness settle or the driver's act) stays true per the report (settle_waiting calls no take_changed_nodes), and §9's a11y leg counts are unmoved (Outcome: 6 · 6 · 4 · 8 · 5 · 14 = 43).

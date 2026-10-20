@@ -1,42 +1,46 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-20T01:30:32Z
+**Last Updated:** 2026-10-20T03:34:30Z
 **Branch:** build/escher-0.2.0 · 0 ahead of origin/build/escher-0.2.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-19-visual-lint — an in-process visual lint and blitz-dom's text extent reader — gated on the founder's F1 word
+**Last Commit:** 2026-10-20-load-wait — an acting command waits out a load in flight for up to 5 s
 
 ## Position
-- Done (gated): 2026-10-19-visual-lint. `Session::lint` reads six defects by stable id with a measured reason, in
-  process only, through blitz-dom's new read-only `BaseDocument::text_extent`. `stand_lint` 5 and `text_extent` 3 pass
-  in both modes, and CI#39348671810 is green 17/17. v020-05 is held below verified on the gated arm.
-- gated 2026-10-19-visual-lint: standing — `.andromeda/runs/2026-10-19T23-47-25-phase/founder-forks.md` holds only
-  the delegate's answers. Once the founder's own word on F1 (the lint's carriage) lands, its gated part runs:
-  /andromeda-implement in gated mode, then its gated wrap.
-- Next: «Load wait» (Epoch 4), by `/andromeda-phase`.
+- Done: 2026-10-20-load-wait — an acting driver step that meets a load in flight now waits for it, for at most
+  `LOAD_WAIT` (5 s of wall time), and moves no time while it waits. `stand_load_wait` 2 passes in both modes, and
+  CI#39360124515 is green 17/17. v020-07 is verified.
+- gated 2026-10-19-visual-lint: standing — `.andromeda/runs/2026-10-19T23-47-25-phase/founder-forks.md` still holds
+  only the delegate's answers. Once the founder's own word on F1 lands, its gated part runs: /andromeda-implement in
+  gated mode, then its gated wrap.
+- Next: «Select by id» (Epoch 4), by `/andromeda-phase`.
 
 ## Work done
-- Wrapped in two windows: P1 in the first, P2–P7 resumed from `.andromeda/runs/2026-10-20T00-54-29-wrap/`.
-- Route: one CARRY on «Stand requirement sweep» for the lint readings no check asserts. Curation added two Tier-3
-  learnings: escher-driver names no engine type, and a count stated in several forms needs every form in its sweep.
+- Resumed from P1 in `.andromeda/runs/2026-10-20T03-00-02-wrap/`; P2–P7 ran in this window.
+- Route: no tail edit. Curation added one Tier-2 host rule: search tracked files with `git grep`, not a whole-tree
+  `grep -rn`.
 
 ## Drift resolved
-- 32 amendments: test-plan 17 (one in the session-lifecycle key file), architecture 7, obs-plan 4, security-plan 2,
-  a11y-plan 1, layout-templates 1. 1 escalation resolved, 0 rejected.
-  - The escalation covered the in-process lint's record (arch Driver session, security `id` row, obs §3/§4). The
-    operator answered «Record as built (Recommended)» as delegate, PROVISIONAL.
-- Citations: 16 re-pointed · 0 changed · 6 stretched. Leaves: 44 findings over 13 groups, 44 applied, 0 declined.
+- 42 amendments: test-plan 24 (3 of them in the session-lifecycle key file), architecture 6, obs-plan 6,
+  security-plan 4, design-system 1, layout-templates 1. 0 escalations, 0 rejected.
+  - The retired «no driver command waits on a load» (the operator, 2026-10-07) ends by requirement v020-07, which
+    names it as its residual.
+  - Three stale count sites were outside the report's sweep: obs-plan «twenty-six checks», test-plan «the 19
+    `stand_*` readers» and architecture §Existing Scopes. All three were amended.
+- Citations: 43 re-pointed · 3 changed · 14 stretched. Leaves: 42 findings over 12 groups, 42 applied, 0 declined.
 
 ## Notes
-- PROVISIONAL for the founder's Epoch 4 boundary batch (the wrap that closes Epoch 4 lists them):
-  - F1 «In process only (Most conservative)» and F2 «No new field (Recommended)», answered by the operator as delegate;
-  - this wrap's P2 answer «Record as built (Recommended)», also delegate;
+- PROVISIONAL for the founder's Epoch 4 boundary batch (the wrap that closes Epoch 4 lists them), carried unchanged:
+  - visual-lint's F1 «In process only (Most conservative)» and F2 «No new field (Recommended)», answered by the
+    operator as delegate;
+  - that wrap's P2 answer «Record as built (Recommended)», also delegate;
   - the carried take from 2026-10-19-upstream-sync-visual-lint-and-real-app-readiness (`:focus-within`, the
     not-in-document focus refusal, the focus redraw).
-- Deviation 3 (overlap read over visible parts) was ruled by the operator.
-- Deferred learnings:
-  - recurrence-despite-learning: «An in-line edit beside a provenance parenthesis reads as new provenance» (2026-10-19).
-    The obs-plan.md:70 replace reproduced it, and the fix was moving the insertion.
+  - This wrap added none: no escalation reached P2.
+- Deferred learnings — 4 × recurrence-despite-learning (each fault reproduced past its curated entry):
+  - «2026-10-13 — A phase control that reads a scratchpad file lands a host temp path in the run dir»
+    (`p5-controls.sh`).
+  - «2026-10-07 — `$TMPDIR` is unset in the Bash tool's shell on this host».
+  - «2026-10-16 — Moving Rust items between modules strands two kinds of import» (the intra-doc link import).
+  - «2026-10-20 — A count stated in more than one form needs every form in its sweep pattern» (this wrap's P1
+    sweep).
 - Last failed command: none outstanding.
-
-## Session End Status
-Completed normally at 2026-10-20 04:02:02

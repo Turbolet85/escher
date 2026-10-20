@@ -1,0 +1,54 @@
+[
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "cc3d30ac",
+"ts": "2026-10-20T03:25:59Z",
+"argv": [
+"route.py",
+"epoch",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-10-20T03-00-02-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"escher-0.2.0/working-route.md · 5 epoch headers · 21 entries · freeze state joined to 57 master records",
+"10 · Epoch 1 — Foundation · entries 3 · markerless 0 · frozen complete 3 · pending 0",
+"17 · Epoch 2 — Engine debts · entries 2 · markerless 0 · frozen complete 2 · pending 0",
+"22 · Epoch 3 — Determinism and traces · entries 4 · markerless 0 · frozen complete 4 · pending 0",
+"31 · Epoch 4 — Visual lint and real-app readiness · entries 7 · markerless 2 · frozen complete 3 · pending 1 · gated 1",
+"46 · Epoch 5 — Polish & ship · entries 5 · markerless 5 · frozen complete 0 · pending 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "cc3d30ac",
+"ts": "2026-10-20T03:33:57Z",
+"argv": [
+"route.py",
+"blocked",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-10-20T03-00-02-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"master-route.md · pending 1 · gated 1 · markerless 7 · BLOCKED-ON blocks 1 · each printed WHOLE",
+"gated 2026-10-19-visual-lint · escher-0.2.0/working-route.md:38 · 267 chars · BLOCKED-ON: the founder's own word on F1 of .andromeda/runs/2026-10-19T23-47-25-phase/founder-forks.md, the lint's carriage, answered by the operator as delegate «In process only (Most conservative)», PROVISIONAL (escher-0.2.0/chunks/2026-10-19-visual-lint/inputs#I2)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

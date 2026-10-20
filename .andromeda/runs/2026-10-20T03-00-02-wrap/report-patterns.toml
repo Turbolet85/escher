@@ -1,0 +1,65 @@
+[[pattern]]
+id = 'wait'
+regex = 'waits on no load|no driver command waits on a load|never waits on one|LOAD_WAIT|Settle and loads in flight'
+
+[[pattern]]
+id = 'reexp'
+regex = 're-exports 5[56] names'
+
+[[pattern]]
+id = 'tfiles'
+regex = '140 .\.rs. files|139 test targets'
+
+[[pattern]]
+id = 'screaders'
+regex = 'by 26 checks|26 readers'
+
+[[pattern]]
+id = 'fxreaders'
+regex = 'by 20 checks|20 checks declare|its 20 readers'
+
+[[pattern]]
+id = 'runstand'
+regex = 'passed 183 · failed 0 · ignored 7 over 45 files|run stand. 183 · 0 · 7|the 45 .stand_\*\.rs. files|45 files'
+
+[[pattern]]
+id = 'duunit'
+regex = '94 unit tests|escher-driver.s 94'
+
+[[pattern]]
+id = 'wstally'
+regex = '201 result lines|201 · 1055'
+
+[[pattern]]
+id = 'ostally'
+regex = '182 · 1052|182 · 1010|159 · 639|CI#39348671810'
+
+[[pattern]]
+id = 'cover'
+regex = '4634/4732'
+
+[[pattern]]
+id = 'settled'
+regex = 'whether the app went quiet|present only when .settled. is false'
+
+[[pattern]]
+id = 'clockrd'
+regex = 'reads a clock for the idle expiry|the clocks are the host.s|read no clock or environment|reads no clock'
+
+[[pattern]]
+id = 'sleep'
+regex = 'one recorded 800 ms sleep|no sleep and no wall-clock read|stand_load_wait'
+
+[[pattern]]
+id = 'motion'
+regex = 'none is waited on or advanced|none holds it open'
+
+[[pattern]]
+id = 'title'
+fixed = 'Load wait'
+ignore_case = true
+
+[[pattern]]
+id = 'owner'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true

@@ -1,0 +1,32 @@
+proposals:
+  - detector: D-arch-resources
+    severity: warning
+    section: §Standard Contracts → Driver session (escher-driver)
+    change: "The crate re-exports 56 names (55 until 2026-10-20-load-wait), the session's group reading `Session`, `SessionError`, `serve`, `IDLE_EXPIRY`, `LOAD_WAIT`, `start`, `attach`, `stop`, `call`, `Hello`, `Answer` and `Started` — `LOAD_WAIT: Duration` (5 s) being how long an acting step waits for a load in flight before it returns with the load still outstanding (packages/escher-driver/src/session.rs:19; packages/escher-driver/src/lib.rs:158)."
+    sidecar: "arch Driver session: crate re-exports 55 → 56, `LOAD_WAIT` (5 s) added to the session's names (2026-10-20-load-wait)."
+    rationale: "Report Changes → Symbols / APIs: new `pub const LOAD_WAIT: Duration = Duration::from_secs(5)` at session.rs:19, re-exported at lib.rs:158 (`pub use session::{LOAD_WAIT, Session};`); Counts fact `reexp` 55 → 56, `architecture.md:192@c48` changed. The new public constant is unregistered in the contract's export list."
+    basis: "architecture.md:192@c48"
+  - detector: D-arch-resources
+    severity: warning
+    section: §Standard Contracts → Driver session (escher-driver)
+    change: "Replace «Each acting verb is one settled step: the snapshot before, the step, `Harness::settle`, the snapshot after and `before.diff(&after)`; settling moves no time and waits on no load» with: each acting verb (`click` · `type` · `press` · `advance` · `scroll`, on every carrier) is one settled step — the snapshot before, the step, the crate-private `settle_waiting`, the snapshot after and `before.diff(&after)`; `settle_waiting` settles through `Harness::settle` and, while it answers `NotSettled { busy: Busy::Loads }`, settles again every 10 ms (private `LOAD_POLL`) until the load is answered or `LOAD_WAIT` (5 s of wall time) has passed — the last sleep `min(poll, time left)` then one more settle, so a never-answered wait returns at or past the bound and within one settle of it, `settled` false with `busy` `loads`; a `Render` or `Layout` answer returns at once; settling moves no time on the held instance (no `tick`, `advance_time`, time step or changed-set drain); `snapshot` and `screenshot` run no step and do not wait; the `settled` field's help states the bound («a load in flight waited for up to 5 s»), and on a waited step the `command` span's `passes` is the passes of the settle that went quiet (packages/escher-driver/src/session.rs:16-53; packages/escher-driver/src/execute.rs:462; packages/escher-driver/src/schema.rs:121)."
+    sidecar: "arch Driver session: an acting verb's settle now waits on a load in flight up to `LOAD_WAIT` (5 s wall, 10 ms poll), moving no time; «settling … waits on no load» retired (2026-10-20-load-wait)."
+    rationale: "Report Changes → Symbols / APIs: `settle_waiting`/`settle_within` (session.rs:24-29, 31-52), `execute::settled_step` (execute.rs:462) settling through it so all five acting verbs wait on every carrier, `Session::run`'s doc moved off «waits on no load» (execute.rs:126-127), `settled` help at schema.rs:121, `passes` on a waited step; Counts fact `wait`: `architecture.md:192@c38779` («settling moves no time and waits on no load») changed; Expected amendments: arch Driver session «settling … waits on no load» retires."
+    basis: "architecture.md:192@c38779"
+  - detector: D-arch-resources
+    severity: warning
+    section: §Standard Contracts → Driver session (escher-driver)
+    change: "`act(step)` runs the step on the held instance and settles it through the load wait (`settle_waiting` over `Harness::settle`, the Test harness contract above — a load in flight waited for up to `LOAD_WAIT`, settling again as it is answered, no time moving while it waits) and maps an instance that did not go quiet onto `NotSettled(Busy)` (packages/escher-driver/src/session.rs:233-236)."
+    sidecar: "arch Driver session: `Session::act` settles through the bounded load wait, not bare `Harness::settle` (2026-10-20-load-wait)."
+    rationale: "Report Changes → Symbols / APIs: `Session::act` (session.rs:236) now settles through `settle_waiting`, its doc (session.rs:233-234) «A load in flight is waited for up to [`LOAD_WAIT`], settling again as it is answered; no time moves while it waits». The contract's `act` sentence still names `Harness::settle` as what it settles with — the same retired claim (a settle that never waits) restated at `act`."
+    basis: "architecture.md:192 (the `act(step: impl FnOnce…)` sentence)"
+    dependent-of: D-arch-resources
+  - detector: D-arch-resources
+    severity: warning
+    section: §Standard Contracts → Driver session (escher-driver)
+    change: "«its executor, session, schema, validation and JSON writer and … its private `image` encoder print nothing and read no clock or environment» → they print nothing and read no environment, and read no clock save the session's load wait: since 2026-10-20-load-wait `session.rs` reads `std::time::Instant` and calls `std::thread::sleep` for `settle_waiting` alone (beside `client.rs`, `host.rs` and `mcp.rs`), while the executor, schema, validation, JSON writer and `image` stay clock-free."
+    sidecar: "arch Driver session: the session module now reads a wall clock (`Instant::now`, `thread::sleep`) for the load wait only; the «read no clock» list narrowed (2026-10-20-load-wait)."
+    rationale: "Report Counts fact `clockrd`: `architecture.md:192@c24965` («its executor, session, schema, validation and JSON writer … read no clock or environment») changed — the session now reads one; probe `grep -rln -E 'Instant::now|thread::sleep' packages/escher-driver/src` reads `client.rs host.rs mcp.rs session.rs`."
+    basis: "architecture.md:192@c24965"
+    dependent-of: D-arch-resources
+note: "D-arch-decisions clean — Dependencies none, no new runtime (std `Instant`/`thread::sleep` only); Harness::settle's own «never waits on one» (architecture.md:182@c8324) stays true per the report's `wait` fact and needs no edit. The Driver session's code citations `packages/escher-driver/src/session.rs:55-244` and `execute.rs:454-471` sit in files this chunk shifted (session.rs added 16-53, 233-234, 241, 307-369; execute.rs 16, 126-127, 462) — for the citation pass, not proposed here. §Existing Scopes' escher-driver row (architecture.md:348, the `session` module's contents) does not name `LOAD_WAIT` or the load wait — an omission, not a retired claim, left to the orchestrator."

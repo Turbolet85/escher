@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens holds — both new surfaces in the report's Coverage (the load wait, the `settled` help text) read `tokens n/a`, no `hardcoded✗`; Retired reads none, so no D-retired. The report's Expected amendment for design-system §Motion (the load wait moves no clock, so a timer or animation does not run during it; fact `motion`, `design-system.md:290` no-change — true of settle) falls under no design-system detector and is left to the orchestrator.
