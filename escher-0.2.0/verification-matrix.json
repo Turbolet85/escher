@@ -124,7 +124,7 @@
     "method": "integration",
     "acceptance": "On the stand_snapshot_parts fixture page, whose Snapshot::to_text passes SNAPSHOT_TEXT_BUDGET (10,000 bytes), in both layout modes and through Session::run (the path every carrier runs): snapshot with no argument answers part 1 with parts >= 2; snapshot with part 1..=parts answers each part's text, each at most 10,000 bytes; the texts concatenated in order equal the whole to_text(), and every node id of the whole snapshot is on exactly one line across the parts; part = parts + 1 answers the empty text; an id read only in the last part is accepted by scroll then click; and the same walk through serve_mcp returns the same JSON lines.",
     "ref": "tests/blitz-tests/tests/stand_snapshot_parts.rs::a_screen_over_the_budget_is_walked_in_parts · tests/blitz-tests/tests/stand_snapshot_parts.rs::over_mcp_the_walk_answers_the_json_lines_of_the_same_calls",
-    "status": "implemented"
+    "status": "verified"
    },
    "chunk": "2026-10-20-large-screen-in-parts"
   },

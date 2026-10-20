@@ -1,0 +1,43 @@
+[[pattern]]
+id = 'kinds'
+regex = '''six argument kinds|six kinds|the sixth(, `name`|, `ArgKind::Name`| kind)'''
+
+[[pattern]]
+id = 'noarg'
+regex = '''`snapshot` \(no argument|snapshot`? takes no argument|`snapshot` with no argument'''
+
+[[pattern]]
+id = 'mcpsnap'
+regex = '''screen text itself|`to_text`'s output( itself)?|the screen text for a `snapshot`|`snapshot` (tool's )?result'''
+
+[[pattern]]
+id = 'nopaging'
+regex = '''no truncation or paging|never (truncates|pages)|no paging|not paged'''
+
+[[pattern]]
+id = 'outcome'
+regex = '''as `Outcome::Screen`|`Outcome` is exactly|`snapshot` returns'''
+
+[[pattern]]
+id = 'cliflags'
+regex = '''`--ms` each|and `--ms` each|`--key`, `--ms`'''
+
+[[pattern]]
+id = 'spanverb'
+regex = '''records? `verb` alone'''
+
+[[pattern]]
+id = 'logflows'
+regex = '''one `lint` with 0 needles|each drives? one `lint`'''
+
+[[pattern]]
+id = 'oldcounts'
+regex = '''re-exports 56|the 28 of the command|eight arguments across|99 unit tests|75 unit tests|mcp_tests\.rs 14|`cli_commands` \(?13|34 calls per mode|47 files|47 `stand_|by 28 checks|session_common/mod\.rs`, by 28|by 23 checks|23 readers|21 `stand_|twenty-eight checks|passed 192|192 · 0 · 7|all four of which'''
+
+[[pattern]]
+id = 'budget'
+regex = '''SNAPSHOT_TEXT_BUDGET|10,000-byte|snapshot budget'''
+
+[[pattern]]
+id = 'usage'
+fixed = 'usage line'

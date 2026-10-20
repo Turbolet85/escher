@@ -1,0 +1,81 @@
+[[pattern]]
+id = 'title'
+fixed = 'Large screen in parts'
+ignore_case = true
+
+[[pattern]]
+id = 'owner'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true
+
+[[pattern]]
+id = 'kinds'
+regex = 'six argument kinds|argument kinds?\b|ArgKind'
+
+[[pattern]]
+id = 'snaparg'
+regex = '`snapshot`[^.;]{0,60}(no argument|takes no)|MAX_PART|ArgKind::Part|`part` argument|snapshot \[--part'
+
+[[pattern]]
+id = 'parts'
+regex = 'never truncates or pages|nothing pages|truncates or pages|text_parts|TextPart|Outcome::Part|read in parts|in parts an agent'
+
+[[pattern]]
+id = 'budget'
+regex = 'SNAPSHOT_TEXT_BUDGET|10,000-byte|10 000-byte'
+
+[[pattern]]
+id = 'mcpsnap'
+regex = 'a `snapshot` result|snapshot` result the screen text|`snapshot` tool result'
+
+[[pattern]]
+id = 'usage'
+regex = 'snapshot \| click|usage line'
+
+[[pattern]]
+id = 'standrun'
+regex = '47 (files|stand)|192 passed|192 · 0 · 7|passed 192'
+
+[[pattern]]
+id = 'spancalls'
+regex = '34 calls|34 per mode|calls per mode'
+
+[[pattern]]
+id = 'clicount'
+regex = 'cli_commands[^.;\n]{0,40}\b13\b|13 passed'
+
+[[pattern]]
+id = 'tally'
+regex = '204 · 1087|lines 204|passed 1087|1087 passed'
+
+[[pattern]]
+id = 'peros'
+regex = '185 · 1084|185 · 1041|165 · 672|1084 · 0|1041 · 0|672 · 0'
+
+[[pattern]]
+id = 'unitcount'
+regex = '75 passed|99 passed'
+
+[[pattern]]
+id = 'readers'
+regex = '28 readers|twenty-eighth|23 checks|21 `stand_\*` files'
+
+[[pattern]]
+id = 'logflows'
+regex = 'host_log|mcp_log'
+
+[[pattern]]
+id = 'limit'
+regex = 'no budget of (its|their) own|not paged|held only by the 1,048,576'
+
+[[pattern]]
+id = 'a11y7'
+regex = 'Screen Reader Support'
+
+[[pattern]]
+id = 'dsjson'
+regex = 'uncoloured|one line of JSON'
+
+[[pattern]]
+id = 'ltsnap'
+regex = '`snapshot` · `click`|snapshot · click|`snapshot`, `click`'

@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens holds — every new surface in the report's Coverage (snapshot's `part` argument, `Outcome::Part`, `Snapshot::text_parts`/`TextPart`) reads `tokens n/a`, no `hardcoded✗`; Retired is none. The cli §Component Patterns line for the paged `{"text","part","parts"}` answer (design-system.md:398, `dsjson`) is the pre-pass sweep's count/qualifier site, already recorded as changed in the report, not a token-detector finding.

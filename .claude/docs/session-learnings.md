@@ -8,6 +8,16 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-20 — Read a capability's acceptance against the plan's steps before writing its test
+When the verification matrix's acceptance for a capability names more than the plan step that satisfies it — an
+acceptance reading «the same walk through `serve_mcp`» while the step names two calls — the acceptance is the contract.
+Compare the two before writing the satisfying test, not after its first green run: a gap found after green costs a
+full re-run of the gate block.
+
+Where it applies: implement, at the step that writes a claimed capability's satisfying test.
+
+---
+
 ## 2026-10-20 — A case-blind sweep pattern turns a code token into its plain-word homonym
 A site-sweep pattern written `ignore_case = true` that holds a code token alongside its prose wording (`\bVERBS\b`
 beside «eleven verbs») matches every plain word the token spells, so a table-name alternative becomes a sweep of
@@ -40,7 +50,7 @@ Where it applies: phase planning and implement steps that add a public escher-dr
 ---
 
 ## 2026-10-20 — A count stated in more than one form needs every form in its sweep pattern
-The masters state one reader count several ways on the same line: `25 readers`, `by 25 checks`, `by 25`, and in words, `twenty-five checks`. A sweep pattern for the digits beside one noun misses the other forms. A site that matched only on the path beside the count then reads as a path citation, and the count stays stale. Write the pattern for a moved count with every form: the digits before each noun the masters use, `by N`, and the number in words.
+The masters state one reader count several ways on the same line: `25 readers`, `by 25 checks`, `by 25`, and in words, `twenty-five checks`. A sweep pattern for the digits beside one noun misses the other forms. A site that matched only on the path beside the count then reads as a path citation, and the count stays stale. Write the pattern for a moved count with every form: the digits before each noun the masters use, `by N`, and the number in words. Extended 2026-10-20: spell the count as the masters do, never as a gate prints it — `99 passed` is a test runner's line, while the masters say `99 unit tests`.
 
 Where it applies: P1's site sweep and P2's cascade sweep, whenever a chunk moves a shared module's reader count or any count the masters also spell out.
 
@@ -56,14 +66,16 @@ A time written into chunk evidence (a run's start or end, a stamp beside a readi
 
 ---
 
-## 2026-10-19 — An in-line edit beside a provenance parenthesis reads as new provenance
-On architecture, design-system and obs-plan, `classify.py check --mode standing` keys each provenance span inside a
-parenthesis on the 8 tokens of the claim just before its `(`. An in-line edit that rewrites those tokens — a value
-changed in place, a word added to the claim — makes the standing ratification, date or chunk marker in the parenthesis
-read as new on the line, and the provenance arm fails though nothing was added. Write the new words after the
-parenthesis (`… (the founder, …), and kept checks the same way (…`), or keep the claim's last 8 tokens as they were. A
-superseded earlier-reading parenthesis («(10 verbs and 8 causes until …)») is history: drop it from the body rather
-than re-shaping around it.
+## 2026-10-19 — Provenance is counted by class and span, not by the words beside it
+[corrected 2026-10-20: under classify v1.3 an in-line edit beside a standing provenance parenthesis read provenance 0
+on every master this wrap edited]
+`classify.py check --mode standing` (v1.3) counts a provenance span — a chunk marker as a stamp, a date, a chunk named
+by reference, who ruled, what a value was — by its class and span over the whole file: it is new only when the file
+adds it more often than it removes it, whatever words stand beside it. An in-line edit next to a standing parenthesis
+(a value changed in place, a clause added before it) leaves the parenthesis standing and reads nothing new. Two things
+still fail the arm: a new marker, date or who-ruled written anywhere in the body, and a row "cleared" by deleting
+standing text, which never clears it. Write the new truth without provenance and put the ratification, the date and
+the old value in the sidecar entry.
 
 ---
 

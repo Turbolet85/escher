@@ -181,3 +181,9 @@ One entry per amendment to `design-system.md` (sidecar-contract.md §Entry form)
 **Change:** a new bullet — in the user-agent sheet a `select` takes `input, textarea`'s border (`1px solid #999`), padding (`2px`) and background (`white`) and `display: inline-block`, and a single-choice select shows its chosen option alone (`select:not([multiple]) > option:checked { display: inline; }` beside `option { display: none; }`), so it lays out as a box holding its chosen option's label — engine defaults, no design token.
 **Why:** this chunk's stylesheet change (the plan's expected amendment); the engine showing the chosen option's label is F2 «Engine shows its label», ratified by the founder (2026-10-20, «Утвердить все четыре (Рекомендую)», relayed verbatim by the overseer, chunk inputs#I3).
 **Ref:** .andromeda/runs/2026-10-20T05-49-12-wrap/
+
+## 2026-10-20-large-screen-in-parts — the paged `snapshot` answer line on the cli surface
+**Section:** §Surface: cli §Component Patterns
+**Change:** `escher-session snapshot [--part <part>]` answers one uncoloured line with no ESC byte, `{"text":…}` for a whole screen and `{"text":…,"part":n,"parts":m}` for a screen read in parts, status `0`. Over the `mcp` role a paged `snapshot` result is that JSON line (was the screen text alone).
+**Why:** the paged answer the founder ratified, F1 «Аргумент part, части по умолчанию (Рекомендую)», by question dialog in the overseer session, relayed verbatim by the overseer (2026-10-20, chunk inputs#I2); his card confirm «Подтвердить все (Рекомендую)» (inputs#I5).
+**Ref:** .andromeda/runs/2026-10-20T11-11-53-wrap/
