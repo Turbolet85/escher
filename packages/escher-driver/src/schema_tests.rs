@@ -128,6 +128,20 @@ fn every_verb_states_its_help_its_arguments_and_a_result() {
 }
 
 #[test]
+fn the_settled_help_states_the_load_wait_and_the_wait_ends_before_an_answer_read() {
+    let stated = format!(
+        "whether the app went quiet after the step, a load in flight waited for up to {} s",
+        crate::LOAD_WAIT.as_secs()
+    );
+    assert_eq!(SETTLED.help, stated);
+    assert_eq!(crate::LOAD_WAIT.subsec_nanos(), 0);
+    for acting in [&CLICK, &TYPE, &PRESS, &ADVANCE, &SCROLL] {
+        assert!(acting.fields.contains(&SETTLED), "{}", acting.name);
+    }
+    assert!(crate::LOAD_WAIT < crate::wire::ANSWER_BOUND);
+}
+
+#[test]
 fn a_verb_is_found_by_its_exact_name_only() {
     for name in VERB_NAMES {
         assert_eq!(verb(name).map(|verb| verb.name), Some(name));

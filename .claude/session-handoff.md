@@ -37,3 +37,6 @@
   - recurrence-despite-learning: «An in-line edit beside a provenance parenthesis reads as new provenance» (2026-10-19).
     The obs-plan.md:70 replace reproduced it, and the fix was moving the insertion.
 - Last failed command: none outstanding.
+
+## Session End Status
+Completed normally at 2026-10-20 04:02:02

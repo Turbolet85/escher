@@ -13,7 +13,7 @@ use crate::command::{Call, Command, Key, validate};
 use crate::image;
 use crate::refusal::{Cause, Refusal};
 use crate::schema::{self, BUSY_CLASSES};
-use crate::session::{SeenIds, Session};
+use crate::session::{SeenIds, Session, settle_waiting};
 
 /// What a call that ran returns: one variant per result shape of the verb table.
 ///
@@ -123,7 +123,8 @@ impl Session {
     /// step, where one was handed ([`Session::with_time`]);
     /// `scroll` scrolls every scrolling box that holds the element, and the viewport, until
     /// the element is in view, whether or not it is enabled or covered, and says whether it
-    /// then is. Settling moves no time and waits on no load.
+    /// then is. Settling moves no time; a load in flight is waited for up to
+    /// [`LOAD_WAIT`](crate::LOAD_WAIT).
     ///
     /// The call leaves one `tracing` span, `command`, under the target `escher_driver`: the
     /// table's word for its verb, the name of the cause it was refused with, or how its settle
@@ -458,7 +459,7 @@ fn settled_step(
     step: impl FnOnce(&mut Harness<DioxusDocument>),
 ) -> (Option<Busy>, SnapshotDiff, Snapshot) {
     step(harness);
-    let busy = match harness.settle() {
+    let busy = match settle_waiting(harness) {
         Ok(settled) => {
             span.record("passes", settled.passes);
             None

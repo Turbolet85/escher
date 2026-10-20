@@ -118,7 +118,7 @@ const SETTLED: FieldSpec = FieldSpec {
     name: "settled",
     kind: FieldKind::Flag,
     always: true,
-    help: "whether the app went quiet after the step",
+    help: "whether the app went quiet after the step, a load in flight waited for up to 5 s",
 };
 
 const BUSY: FieldSpec = FieldSpec {

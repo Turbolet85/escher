@@ -2,8 +2,9 @@
 
 use std::collections::HashMap;
 use std::path::Path;
+use std::time::{Duration, Instant};
 
-use blitz_test_harness::{Harness, Settled};
+use blitz_test_harness::{Busy, Harness, NotSettled, Settled};
 use dioxus_native_dom::DioxusDocument;
 
 use crate::SessionError;
@@ -11,6 +12,44 @@ use crate::recording::Recording;
 use crate::schema::MAX_ID_BYTES;
 
 const MAX_LABEL_BYTES: usize = 32;
+
+/// How long an acting step waits for a load in flight to be answered before it returns with
+/// the load still outstanding: 5 seconds of wall time, during which no time moves on the held
+/// instance.
+pub const LOAD_WAIT: Duration = Duration::from_secs(5);
+
+/// The wall time between two settles of a step waiting on a load.
+const LOAD_POLL: Duration = Duration::from_millis(10);
+
+/// Settles `harness` ([`Harness::settle`]), and while the only work outstanding is a load in
+/// flight, settles it again every [`LOAD_POLL`] until the load is answered or [`LOAD_WAIT`]
+/// has passed. Nothing but the settles runs: no time moves and no time step is run.
+pub(crate) fn settle_waiting(harness: &mut Harness<DioxusDocument>) -> Result<Settled, NotSettled> {
+    settle_within(|| harness.settle(), LOAD_WAIT, LOAD_POLL)
+}
+
+/// Calls `settle` until it returns anything but a load in flight, sleeping `poll` between
+/// calls, and returns the last load reading once the next poll would pass `bound`.
+fn settle_within(
+    mut settle: impl FnMut() -> Result<Settled, NotSettled>,
+    bound: Duration,
+    poll: Duration,
+) -> Result<Settled, NotSettled> {
+    let start = Instant::now();
+    loop {
+        let result = settle();
+        if !matches!(result, Err(NotSettled { busy: Busy::Loads })) {
+            return result;
+        }
+        let Some(left) = bound.checked_sub(start.elapsed()) else {
+            return result;
+        };
+        if left.is_zero() {
+            return result;
+        }
+        std::thread::sleep(poll.min(left));
+    }
+}
 
 /// Whether `label` is 1 to 32 bytes of `a-z`, `0-9` and `-`.
 pub(crate) fn valid_label(label: &str) -> bool {
@@ -191,15 +230,15 @@ impl Session {
     ///
     /// An instance that does not go quiet returns [`SessionError::NotSettled`] with the class
     /// of work still outstanding. The step is not rolled back: the instance keeps what it did.
-    /// Settling moves no time — a timer or an animation advances only when the caller
+    /// A load in flight is waited for up to [`LOAD_WAIT`], settling again as it is answered;
+    /// no time moves while it waits — a timer or an animation advances only when the caller
     /// advances it.
     pub fn act(
         &mut self,
         step: impl FnOnce(&mut Harness<DioxusDocument>),
     ) -> Result<Settled, SessionError> {
         step(&mut self.harness);
-        self.harness
-            .settle()
+        settle_waiting(&mut self.harness)
             .map_err(|not_settled| SessionError::NotSettled(not_settled.busy))
     }
 }
@@ -263,6 +302,69 @@ mod tests {
         assert!(seen.holds(&at_the_bound) && !seen.holds(&over_long));
         assert_eq!(seen.last_read.len(), 1);
         assert_eq!(MAX_ID_BYTES, 1024);
+    }
+
+    const QUIET: Result<Settled, NotSettled> = Ok(Settled {
+        passes: 1,
+        animating: false,
+    });
+
+    fn busy(busy: Busy) -> Result<Settled, NotSettled> {
+        Err(NotSettled { busy })
+    }
+
+    /// Settles through [`settle_within`] on the scripted readings, the last repeated: what it
+    /// returned, how many settles it took and the wall time it took.
+    fn settle_scripted(
+        readings: &[Result<Settled, NotSettled>],
+        bound: Duration,
+    ) -> (Result<Settled, NotSettled>, usize, Duration) {
+        let mut settles = 0;
+        let start = Instant::now();
+        let result = settle_within(
+            || {
+                settles += 1;
+                readings[(settles - 1).min(readings.len() - 1)]
+            },
+            bound,
+            LOAD_POLL,
+        );
+        (result, settles, start.elapsed())
+    }
+
+    #[test]
+    fn a_load_answered_inside_the_bound_ends_the_wait_settled() {
+        let (result, settles, _) =
+            settle_scripted(&[busy(Busy::Loads), busy(Busy::Loads), QUIET], LOAD_WAIT);
+        assert_eq!(result, QUIET);
+        assert_eq!(settles, 3);
+    }
+
+    #[test]
+    fn a_load_never_answered_ends_the_wait_at_the_bound() {
+        let bound = Duration::from_millis(50);
+        let (result, settles, took) = settle_scripted(&[busy(Busy::Loads)], bound);
+        assert_eq!(result, busy(Busy::Loads));
+        assert!(settles > 1);
+        assert!(took >= bound && took < bound + Duration::from_secs(1));
+    }
+
+    #[test]
+    fn work_other_than_a_load_returns_at_once() {
+        for class in [Busy::Render, Busy::Layout] {
+            // A sleep only ever comes before another settle: one settle slept none.
+            let (result, settles, _) = settle_scripted(&[busy(class)], LOAD_WAIT);
+            assert_eq!(result, busy(class));
+            assert_eq!(settles, 1);
+        }
+    }
+
+    #[test]
+    fn a_quiet_settle_returns_after_one_settle() {
+        let (result, settles, _) = settle_scripted(&[QUIET], LOAD_WAIT);
+        assert_eq!(result, QUIET);
+        assert_eq!(settles, 1);
+        assert_eq!(LOAD_WAIT, Duration::from_secs(5));
     }
 
     fn empty() -> Session {

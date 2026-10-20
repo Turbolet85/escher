@@ -155,4 +155,4 @@ pub use schema::{
     Level, MAX_ID_BYTES, MAX_MILLISECONDS, MAX_TEXT_BYTES, NODE_FIELDS, NodeFieldSpec, VERBS,
     VerbSpec, verb,
 };
-pub use session::Session;
+pub use session::{LOAD_WAIT, Session};
