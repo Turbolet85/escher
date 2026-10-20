@@ -20,7 +20,7 @@ MARKER = "cold-agent-reply-marker"
 ARGUMENT_MARKER = "cold-agent-argument-marker"
 ANSWER_MARKER = "cold-agent-answer-marker"
 CHECK_MARKER = "cold-agent-check-marker"
-VERBS = ["snapshot", "click", "type", "press", "advance", "scroll", "screenshot", "start", "status", "stop", "help"]
+VERBS = ["snapshot", "click", "type", "press", "advance", "scroll", "screenshot", "lint", "start", "status", "stop", "help"]
 TOOLS = ["mcp__escher__" + verb for verb in VERBS]
 APPS = ("counter", "flight-booker", "timer", "crud")
 STAND_IDS = ("counter-", "flight-", "timer-", "crud-", "task-header", "id=")
@@ -57,7 +57,7 @@ SPACER_CLICK = {"tool": "mcp__escher__click", "arguments": {"id": "task-header-s
 LEFT = {"tool": "mcp__escher__press", "arguments": {"key": "arrowleft"}}
 STOP = {"tool": "mcp__escher__stop"}
 
-# The fake stands in for the built `escher-session`: its `mcp` role answers the eleven tools, holds one app at a
+# The fake stands in for the built `escher-session`: its `mcp` role answers the twelve tools, holds one app at a
 # time, answers a snapshot with the scenario's screen for that app indexed by its count of accepted acting calls, and
 # writes one tool_call span line per tools/call on stderr when RUST_LOG=info, as escher's sink does.
 FAKE = """\
@@ -97,6 +97,8 @@ def call(name, arguments):
         return "accepted", '{"stopped":true}'
     if name in ("snapshot", "screenshot"):
         return "accepted", screens[started][min(acts, len(screens[started]) - 1)]
+    if name == "lint":
+        return "accepted", '{"findings":[]}'
     if any(value in refuse for value in arguments.values()):
         return "refused", '{"refused":{"cause":"covered"}}'
     acts += 1

@@ -10,6 +10,7 @@ use crate::client::Hello;
 use crate::error::SessionError;
 use crate::execute::{Outcome, busy_word};
 use crate::image;
+use crate::lint::{Bounds, Finding, Reason};
 use crate::refusal::Refusal;
 use crate::schema::NODE_FIELDS;
 
@@ -251,6 +252,61 @@ fn shot(width: u32, height: u32) -> Object {
     object
 }
 
+/// A box as a JSON list of x, y, width and height, as a node's bounds are written.
+fn bounds(rect: Bounds) -> String {
+    let mut text = String::from("[");
+    for (index, bound) in [rect.x, rect.y, rect.width, rect.height]
+        .into_iter()
+        .enumerate()
+    {
+        if index > 0 {
+            text.push(',');
+        }
+        number(&mut text, bound);
+    }
+    text.push(']');
+    text
+}
+
+/// A ratio as the shortest decimal its `f32` reads back as; `null` when not finite.
+fn ratio(out: &mut String, value: f32) {
+    if value.is_finite() {
+        let _ = write!(out, "{value}");
+    } else {
+        out.push_str("null");
+    }
+}
+
+/// One finding as an object keyed `id`, `defect`, `bounds`, then its reason's keys.
+fn finding(finding: &Finding) -> String {
+    let mut object = Object::new();
+    object.text("id", &finding.id);
+    object.text("defect", finding.defect.name());
+    object.json("bounds", &bounds(finding.bounds));
+    match &finding.reason {
+        Reason::Overlap { other, area } => {
+            object.text("other", other);
+            object.json("area", &bounds(*area));
+        }
+        Reason::Clipped { visible } => object.json("visible", &bounds(*visible)),
+        Reason::Truncated { text, visible } => {
+            object.json("text", &bounds(*text));
+            if let Some(visible) = visible {
+                object.json("visible", &bounds(*visible));
+            }
+        }
+        Reason::OffScreen | Reason::ZeroSize => {}
+        Reason::Contrast {
+            ratio: measured,
+            required,
+        } => {
+            ratio(object.member("ratio"), *measured);
+            ratio(object.member("required"), *required);
+        }
+    }
+    object.end()
+}
+
 /// What `screenshot` returns without its image: the line an MCP tool result carries beside the
 /// image itself.
 pub(crate) fn shot_without_image(width: u32, height: u32) -> String {
@@ -299,6 +355,11 @@ impl Outcome {
             Outcome::Shot { width, height, png } => {
                 let mut object = shot(*width, *height);
                 object.text("png", &image::base64(png));
+                object.end()
+            }
+            Outcome::Linted { findings } => {
+                let mut object = Object::new();
+                object.json("findings", &list(findings.iter().map(finding)));
                 object.end()
             }
         }
@@ -371,6 +432,7 @@ mod tests {
     use dioxus_native_dom::MASKED_VALUE;
 
     use super::*;
+    use crate::lint::Defect;
     use crate::refusal::{CAUSES, Cause, Fault};
     use crate::schema::{self, NODE_FIELDS, VerbSpec};
 
@@ -560,6 +622,79 @@ mod tests {
         }
     }
 
+    fn rect(x: f64, y: f64, width: f64, height: f64) -> Bounds {
+        Bounds {
+            x,
+            y,
+            width,
+            height,
+        }
+    }
+
+    /// One finding of every reason, a truncation with no visible part among them.
+    fn every_reason() -> Vec<Finding> {
+        let found = |id: &str, defect, bounds, reason| Finding {
+            id: id.to_string(),
+            defect,
+            bounds,
+            reason,
+        };
+        let (cut, gone) = (rect(0.0, 40.0, 80.0, 18.0), rect(900.0, 40.0, 80.0, 18.0));
+        vec![
+            found(
+                "a",
+                Defect::Overlap,
+                rect(0.0, 0.0, 10.0, 10.0),
+                Reason::Overlap {
+                    other: "b".to_string(),
+                    area: rect(5.0, 5.0, 5.0, 5.0),
+                },
+            ),
+            found(
+                "c",
+                Defect::Clipped,
+                rect(0.0, 20.0, 200.0, 18.0),
+                Reason::Clipped {
+                    visible: rect(0.0, 20.0, 100.0, 18.0),
+                },
+            ),
+            found(
+                "d",
+                Defect::Truncated,
+                cut,
+                Reason::Truncated {
+                    text: rect(0.0, 40.0, 120.5, 18.0),
+                    visible: Some(cut),
+                },
+            ),
+            found(
+                "e",
+                Defect::Truncated,
+                gone,
+                Reason::Truncated {
+                    text: rect(900.0, 40.0, 120.5, 18.0),
+                    visible: None,
+                },
+            ),
+            found("e", Defect::OffScreen, gone, Reason::OffScreen),
+            found(
+                "f",
+                Defect::ZeroSize,
+                rect(0.0, 60.0, 0.0, 0.0),
+                Reason::ZeroSize,
+            ),
+            found(
+                "g",
+                Defect::Contrast,
+                rect(0.0, 80.0, 50.0, 18.0),
+                Reason::Contrast {
+                    ratio: 2.85,
+                    required: 4.5,
+                },
+            ),
+        ]
+    }
+
     #[test]
     fn each_outcome_is_written_with_its_verbs_fields_in_order() {
         let removed = SnapshotDiff {
@@ -627,8 +762,32 @@ mod tests {
                 &[][..],
                 r#"{"width":800,"height":600,"png":"Zm9vYmFy"}"#,
             ),
+            (
+                Outcome::Linted {
+                    findings: Vec::new(),
+                },
+                &schema::LINT,
+                &[][..],
+                r#"{"findings":[]}"#,
+            ),
+            (
+                Outcome::Linted {
+                    findings: every_reason(),
+                },
+                &schema::LINT,
+                &[][..],
+                concat!(
+                    r#"{"findings":[{"id":"a","defect":"overlap","bounds":[0,0,10,10],"other":"b","area":[5,5,5,5]},"#,
+                    r#"{"id":"c","defect":"clipped","bounds":[0,20,200,18],"visible":[0,20,100,18]},"#,
+                    r#"{"id":"d","defect":"truncated","bounds":[0,40,80,18],"text":[0,40,120.5,18],"visible":[0,40,80,18]},"#,
+                    r#"{"id":"e","defect":"truncated","bounds":[900,40,80,18],"text":[900,40,120.5,18]},"#,
+                    r#"{"id":"e","defect":"off-screen","bounds":[900,40,80,18]},"#,
+                    r#"{"id":"f","defect":"zero-size","bounds":[0,60,0,0]},"#,
+                    r#"{"id":"g","defect":"contrast","bounds":[0,80,50,18],"ratio":2.85,"required":4.5}]}"#,
+                ),
+            ),
         ];
-        assert_eq!(rows.len(), 6);
+        assert_eq!(rows.len(), 8);
         for (row, (outcome, verb, absent, json)) in rows.into_iter().enumerate() {
             let line = outcome.to_json();
             assert!(line == json, "row {row}");

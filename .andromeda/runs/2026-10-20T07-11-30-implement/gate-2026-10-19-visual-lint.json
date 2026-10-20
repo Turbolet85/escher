@@ -1,0 +1,1751 @@
+[
+{
+"tool": "gate",
+"v": "1.21",
+"sha8": "e6b5f42f",
+"ts": "2026-10-20T07:25:13Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-20T07-11-30-implement",
+"--marker",
+"2026-10-19-visual-lint",
+"--void",
+"20:block cleared — the founder's own word on F1 «Новая команда lint (Рекомендую)» = option 1 (inputs#I7 · evidence/founder-word.md),21:block cleared — the founder's own word on F1 «Новая команда lint (Рекомендую)» = option 1 (inputs#I7 · evidence/founder-word.md),22:block cleared — the founder's own word on F1 «Новая команда lint (Рекомендую)» = option 1 (inputs#I7 · evidence/founder-word.md)"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-19-visual-lint · entries 22",
+"logs $TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 8 · python 1 · rust 20 · unmapped 3",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L222-225: There is no live leg and no boot path to smoke: the lint runs in process over held instanc… (451 chars)",
+"  1 unit        green · exit 0 · 1.01s · 534 B → 1.log · cargo test -p blitz-tests --locked --test text_extent 2>&1",
+"  2 unit        green · exit 0 · 1.47s · 900 B → 2.log · cargo test -p escher-driver --locked lint 2>&1",
+"  3 integration green · exit 0 · 2.09s · 605 B → 3.log · cargo test -p blitz-tests --locked --test stand_lint 2>&1",
+"  4 build       green · exit 0 · 4.7s · 1143 B → 4.log · cargo check --tests --locked --target x86_64-pc-windows-gn… (74 chars)",
+"  5 probe       green · exit 0 · 0.0s · 2 B → 5.log · cat packages/escher-driver/src/*.rs packages/escher-driver… (93 chars)",
+"  6 probe       green · exit 1 · 0.0s · 2 B → 6.log · cat packages/escher-driver/src/lint.rs packages/blitz-dom/… (272 chars)",
+"  7 probe       red · exit 1 ✗ (exit 0) · exit 0 · 0.01s · 3 B → 7.log · git diff --name-only e97a7f41b10a318cfe9b7ba07f089c6c7944c… (296 chars)",
+"  8 probe       green · exit 1 · 0.01s · 2 B → 8.log · git ls-files --others --exclude-standard -- packages examp… (231 chars)",
+"  9 integration green · exit 0 · 49.53s · 137 B → 9.log · bash scripts/agent-run.sh boot",
+" 10 integration red · contains '\"selection\": \"stand\", \"passed\": 183, \"failed\": 0, \"ignored\": 7' ✗ · exit 0 · 80.46s · 25931 B → 10.log · bash scripts/agent-run.sh run stand",
+" 11 integration green · exit 0 · 0.39s · 606 B → 11.log · bash scripts/agent-run.sh run text_extent",
+" 12 integration green · exit 0 · 11.63s · 3983 B → 12.log · bash .github/scripts/ci-leg.sh a11y",
+" 13 unit        green · exit 0 · 166.15s · 112767 B → 13.log · bash .github/scripts/ci-leg.sh fast",
+" 14 probe       red · contains 'lines 201 passed 1055 failed 0 ignored 12' ✗ · exit 0 · 0.0s · 42 B → 14.log · grep -E '^test result:' target/ci-logs/test.log | awk '{p+… (146 chars)",
+" 15 lint        green · exit 0 · 4.45s · 649 B → 15.log · bash .github/scripts/ci-leg.sh doc",
+" 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 17 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 18 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+" 19 probe       not run — leg operator (the letter drives it) · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\… (311 chars)",
+" 20 probe       green · exit 0 · 0.01s · 2 B → 20.log · void: block cleared — the founder's own word o… (128 chars) · grep -c -E '^\\| F1 \\| [1-4] \\| .+ \\| 2026-[0-9]{2}-[0-9]{2… (132 chars)",
+" 21 integration green · exit 0 · 3.77s · 787 B → 21.log · void: block cleared — the founder's own word o… (128 chars) · cargo test -p blitz-tests --locked --test stand_lint 2>&1",
+" 22 integration green · exit 0 · 7.68s · 2370 B → 22.log · void: block cleared — the founder's own word o… (128 chars) · cargo test -p seven_guis --locked --test cli_commands 2>&1",
+"entries 22 · green 15 · red 3 (7,10,14) · recorded 0 · timeout 0 · not-run 4 · voided 3 (20,21,22)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-19-visual-lint",
+"plan": "./escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/runs/2026-10-20T05-49-12-wrap/evolve-2026-10-20-select-by-id.json",
+".claude/session-handoff.md",
+".andromeda/runs/2026-10-20T05-49-12-wrap/health-2026-10-20-select-by-id.json",
+".andromeda/runs/2026-10-20T07-11-30-implement/evolve-2026-10-19-visual-lint.json",
+".andromeda/runs/2026-10-20T07-11-30-implement/inputs-2026-10-19-visual-lint.json",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/evidence/founder-word.md",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/scope-record.md"
+],
+"python": [
+".github/scripts/test_cold_agent.py"
+],
+"rust": [
+"examples/seven_guis/tests/cli_commands.rs",
+"examples/seven_guis/tests/host_log.rs",
+"examples/seven_guis/tests/mcp_log.rs",
+"examples/seven_guis/tests/mcp_server.rs",
+"packages/escher-driver/src/cli_tests.rs",
+"packages/escher-driver/src/command.rs",
+"packages/escher-driver/src/describe.rs",
+"packages/escher-driver/src/execute.rs",
+"packages/escher-driver/src/json.rs",
+"packages/escher-driver/src/lib.rs",
+"packages/escher-driver/src/mcp.rs",
+"packages/escher-driver/src/mcp_tests.rs",
+"packages/escher-driver/src/recording_tests.rs",
+"packages/escher-driver/src/schema.rs",
+"packages/escher-driver/src/schema_tests.rs",
+"tests/blitz-tests/tests/session_common/mod.rs",
+"tests/blitz-tests/tests/stand_act_scroll.rs",
+"tests/blitz-tests/tests/stand_act_spans.rs",
+"tests/blitz-tests/tests/stand_lint.rs",
+"tests/blitz-tests/tests/stand_mcp_tools.rs"
+]
+},
+"unmapped": [
+"escher-0.2.0/chunks/2026-10-19-visual-lint/inputs/andromeda-inputs.json",
+"scripts/cold-agent.sh",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/inputs/I7-morning-founder-answers-2026-10-20.md.txt"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 32,
+"problem": null
+},
+"prose": [
+{
+"from": 222,
+"to": 225,
+"text": "There is no live leg and no boot path to smoke: the lint runs in process over held instances, and the windowed stand is not re-booted. The agent-run entries drive the project's own 5-command harness in process. The stand-repeat leg and the coverage leg run in CI and are read through the CI entry. Every count below is a prediction to be measured. The two `gated:` entries run only through `--void` once the founder's word on F1 is recorded (step 12)."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-tests --locked --test text_extent 2>&1",
+"run_sha8": "7300170c",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test result: ok. 3 passed; 0 failed"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/1.log",
+"bytes": 534,
+"log_sha8": "f8324dac",
+"exit": 0,
+"seconds": 1.01,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"contains 'test result: ok. 3 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked lint 2>&1",
+"run_sha8": "ed02be50",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test lint::tests::the_six_defects_are_named_in_order ... ok",
+"contains test lint::tests::findings_follow_document_order_then_the_defect_order ... ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/2.log",
+"bytes": 900,
+"log_sha8": "baa2fada",
+"exit": 0,
+"seconds": 1.47,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"contains 'test lint::tests::the_six_defects_are_named_in_order ... ok' ✓",
+"contains 'test lint::tests::findings_follow_document_order_then_the_defect_order ... ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_lint 2>&1",
+"run_sha8": "d361bcae",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test the_planted_defects_are_named_each_by_its_id_and_reason ... ok",
+"contains test the_stand_at_boot_reads_no_finding ... ok",
+"contains test the_lint_reads_and_changes_nothing ... ok",
+"contains test the_rows_cut_by_the_list_agree_with_off_screen ... ok",
+"contains test an_app_with_no_font_is_refused_fonts_unavailable ... ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/3.log",
+"bytes": 605,
+"log_sha8": "03883cba",
+"exit": 0,
+"seconds": 2.09,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"contains 'test the_planted_defects_are_named_each_by_its_id_and_reason ... ok' ✓",
+"contains 'test the_stand_at_boot_reads_no_finding ... ok' ✓",
+"contains 'test the_lint_reads_and_changes_nothing ... ok' ✓",
+"contains 'test the_rows_cut_by_the_list_agree_with_off_screen ... ok' ✓",
+"contains 'test an_app_with_no_font_is_refused_fonts_unavailable ... ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "build",
+"run": "cargo check --tests --locked --target x86_64-pc-windows-gnu -p blitz-tests",
+"run_sha8": "b06327e6",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/4.log",
+"bytes": 1143,
+"log_sha8": "a6f96c4e",
+"exit": 0,
+"seconds": 4.7,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "cat packages/escher-driver/src/*.rs packages/escher-driver/src/*/*.rs | grep -c 'info_span!' ",
+"run_sha8": "af5b4430",
+"expect": [
+"exit 0",
+"last line 2"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/5.log",
+"bytes": 2,
+"log_sha8": "53c234e5",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '2' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "cat packages/escher-driver/src/lint.rs packages/blitz-dom/src/text_extent.rs tests/blitz-tests/tests/stand_lint.rs tests/blitz-tests/tests/text_extent.rs | grep -c -E 'println!|eprintln!|print!|dbg!|tracing|escher_telemetry|std::env|env!|UnixListener|TcpListener|std::fs' ",
+"run_sha8": "6512bc00",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/6.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff --name-only e97a7f41b10a318cfe9b7ba07f089c6c7944c077 -- packages examples tests apps wpt .github scripts Cargo.toml Cargo.lock deny.toml | grep -c -v -x -E 'packages/(blitz-dom/src/(lib|text_extent)|escher-driver/src/(lib|lint))\\.rs|tests/blitz-tests/tests/(stand_lint|text_extent)\\.rs' ",
+"run_sha8": "28717b34",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/7.log",
+"bytes": 3,
+"log_sha8": "673650f9",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✗ (exit 0)",
+"last line '0' ✗ (last: '40')"
+],
+"survivors": [],
+"outcome": "red · exit 1 ✗ (exit 0)"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "git ls-files --others --exclude-standard -- packages examples tests apps wpt .github scripts | grep -c -v -x -E 'packages/(blitz-dom/src/text_extent|escher-driver/src/lint)\\.rs|tests/blitz-tests/tests/(stand_lint|text_extent)\\.rs' ",
+"run_sha8": "b785ce1d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/8.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": [
+"exit 0",
+"contains \"outcome\": \"ready\""
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/9.log",
+"bytes": 137,
+"log_sha8": "38ad8a8d",
+"exit": 0,
+"seconds": 49.53,
+"readings": [
+"exit 0 ✓",
+"contains '\"outcome\": \"ready\"' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": [
+"exit 0",
+"contains \"selection\": \"stand\", \"passed\": 183, \"failed\": 0, \"ignored\": 7"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/10.log",
+"bytes": 25931,
+"log_sha8": "4c75bf55",
+"exit": 0,
+"seconds": 80.46,
+"readings": [
+"exit 0 ✓",
+"contains '\"selection\": \"stand\", \"passed\": 183, \"failed\": 0, \"ignored\": 7' ✗"
+],
+"survivors": [],
+"outcome": "red · contains '\"selection\": \"stand\", \"passed\": 183, \"failed\": 0, \"ignored\": 7' ✗"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run text_extent",
+"run_sha8": "f04cc1b0",
+"expect": [
+"exit 0",
+"contains \"selection\": \"text_extent\", \"passed\": 3, \"failed\": 0, \"ignored\": 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/11.log",
+"bytes": 606,
+"log_sha8": "fa94c194",
+"exit": 0,
+"seconds": 0.39,
+"readings": [
+"exit 0 ✓",
+"contains '\"selection\": \"text_extent\", \"passed\": 3, \"failed\": 0, \"ignored\": 0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/12.log",
+"bytes": 3983,
+"log_sha8": "0544a1ac",
+"exit": 0,
+"seconds": 11.63,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "unit",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/13.log",
+"bytes": 112767,
+"log_sha8": "03f1db52",
+"exit": 0,
+"seconds": 166.15,
+"readings": [
+"exit 0 ✓",
+"artifact fresh (target/ci-logs/test.log)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "grep -E '^test result:' target/ci-logs/test.log | awk '{p+=$4; f+=$6; i+=$8; n++} END {print \"lines \" n \" passed \" p \" failed \" f \" ignored \" i}' ",
+"run_sha8": "2ec38d01",
+"expect": [
+"exit 0",
+"contains lines 201 passed 1055 failed 0 ignored 12"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/14.log",
+"bytes": 42,
+"log_sha8": "8b6f9b0c",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"contains 'lines 201 passed 1055 failed 0 ignored 12' ✗"
+],
+"survivors": [],
+"outcome": "red · contains 'lines 201 passed 1055 failed 0 ignored 12' ✗"
+},
+{
+"n": 15,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/15.log",
+"bytes": 649,
+"log_sha8": "e2f2bafc",
+"exit": 0,
+"seconds": 4.45,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.2.0",
+"run_sha8": "ee10eab9",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\t' '$3 ~ /test result:/ {n[$1]++; if (match($3, /([0-9]+) passed; ([0-9]+) failed; ([0-9]+) ignored/, m)) {p[$1]+=m[1]; f[$1]+=m[2]; i[$1]+=m[3]}} END {for (j in n) print j \" · \" n[j] \" · \" p[j] \" · \" f[j] \" · \" i[j]}' ",
+"run_sha8": "06d4f637",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 20,
+"role": "probe",
+"run": "grep -c -E '^\\| F1 \\| [1-4] \\| .+ \\| 2026-[0-9]{2}-[0-9]{2} \\|$' escher-0.2.0/chunks/2026-10-19-visual-lint/evidence/founder-word.md",
+"run_sha8": "41a06195",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/20.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green",
+"void": "block cleared — the founder's own word on F1 «Новая команда lint (Рекомендую)» = option 1 (inputs#I7 · evidence/founder-word.md)",
+"defer": "gated: the founder's own word on F1 of .andromeda/runs/2026-10-19T23-47-25-phase/founder-forks.md, the lint's carriage, answered by the operator as delegate «In process only (Most conservative)», PROVISIONAL (inputs#I2)"
+},
+{
+"n": 21,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_lint 2>&1",
+"run_sha8": "d361bcae",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test the_lint_verb_answers_what_the_reader_reads ... ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/21.log",
+"bytes": 787,
+"log_sha8": "aba206e0",
+"exit": 0,
+"seconds": 3.77,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"contains 'test the_lint_verb_answers_what_the_reader_reads ... ok' ✓"
+],
+"survivors": [],
+"outcome": "green",
+"void": "block cleared — the founder's own word on F1 «Новая команда lint (Рекомендую)» = option 1 (inputs#I7 · evidence/founder-word.md)",
+"defer": "gated: the founder's own word on F1 of .andromeda/runs/2026-10-19T23-47-25-phase/founder-forks.md, the lint's carriage, answered by the operator as delegate «In process only (Most conservative)», PROVISIONAL (inputs#I2)"
+},
+{
+"n": 22,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test cli_commands 2>&1",
+"run_sha8": "bf35f42c",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test lint_answers_one_line_of_findings ... ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/22.log",
+"bytes": 2370,
+"log_sha8": "ea926542",
+"exit": 0,
+"seconds": 7.68,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"contains 'test lint_answers_one_line_of_findings ... ok' ✓"
+],
+"survivors": [],
+"outcome": "green",
+"void": "block cleared — the founder's own word on F1 «Новая команда lint (Рекомендую)» = option 1 (inputs#I7 · evidence/founder-word.md)",
+"defer": "gated: the founder's own word on F1 of .andromeda/runs/2026-10-19T23-47-25-phase/founder-forks.md, the lint's carriage, answered by the operator as delegate «In process only (Most conservative)», PROVISIONAL (inputs#I2)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.21",
+"sha8": "e6b5f42f",
+"ts": "2026-10-20T07:25:23Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-20T07-11-30-implement",
+"--marker",
+"2026-10-19-visual-lint",
+"--n",
+"7"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"7 probe red · exit 1 ✗ (exit 0)",
+"run (28717b34): git diff --name-only e97a7f41b10a318cfe9b7ba07f089c6c7944c077 -- packages examples tests apps wpt .github scripts Cargo.toml Cargo.lock deny.toml | grep -c -v -x -E 'packages/(blitz-dom/src/(lib|text_extent)|escher-driver/src/(lib|lint))\\.rs|tests/blitz-tests/tests/(stand_lint|text_extent)\\.rs' ",
+"  exit 1 ✗ (exit 0)",
+"  last line '0' ✗ (last: '40')",
+"log $TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/7.log · 3 B · 673650f9 · $TMPDIR = /tmp",
+"--- no anchored failure; last 20 non-empty lines ---",
+"40"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.21",
+"sha8": "e6b5f42f",
+"ts": "2026-10-20T07:25:23Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-20T07-11-30-implement",
+"--marker",
+"2026-10-19-visual-lint",
+"--n",
+"14"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"14 probe red · contains 'lines 201 passed 1055 failed 0 ignored 12' ✗",
+"run (2ec38d01): grep -E '^test result:' target/ci-logs/test.log | awk '{p+=$4; f+=$6; i+=$8; n++} END {print \"lines \" n \" passed \" p \" failed \" f \" ignored \" i}' ",
+"  exit 0 ✓",
+"  contains 'lines 201 passed 1055 failed 0 ignored 12' ✗",
+"log $TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/14.log · 42 B · 8b6f9b0c · $TMPDIR = /tmp",
+"--- no anchored failure; last 20 non-empty lines ---",
+"lines 204 passed 1087 failed 0 ignored 12"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.21",
+"sha8": "e6b5f42f",
+"ts": "2026-10-20T07:25:40Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-10-20T07-11-30-implement",
+"--marker",
+"2026-10-19-visual-lint",
+"--n",
+"10",
+"--tail",
+"3"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"10 integration red · contains '\"selection\": \"stand\", \"passed\": 183, \"failed\": 0, \"ignored\": 7' ✗",
+"run (712f53cb): bash scripts/agent-run.sh run stand",
+"  exit 0 ✓",
+"  contains '\"selection\": \"stand\", \"passed\": 183, \"failed\": 0, \"ignored\": 7' ✗",
+"log $TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/10.log · 25931 B · 4c75bf55 · $TMPDIR = /tmp",
+"--- no anchored failure; last 3 non-empty lines ---",
+"{\"event\": \"test\", \"file\": \"stand_virtual_clock\", \"test\": \"two_clicks_with_no_advance_between_them_are_a_double_click\", \"outcome\": \"ok\"}",
+"{\"event\": \"test\", \"file\": \"stand_virtual_clock\", \"test\": \"a_shot_after_a_scroll_repeats_until_advance_moves_the_fade\", \"outcome\": \"ok\"}",
+"{\"event\": \"run.end\", \"ts\": \"2026-10-20T07:21:58Z\", \"selection\": \"stand\", \"passed\": 192, \"failed\": 0, \"ignored\": 7, \"cargo_exit\": 0, \"outcome\": \"passed\"}"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.21",
+"sha8": "e6b5f42f",
+"ts": "2026-10-20T07:27:17Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-visual-lint",
+"--run-dir",
+".andromeda/runs/2026-10-20T07-11-30-implement",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (gated: no pre-CI commit after the gated flip 165cfe44) · lists new 4 · modify 21 · derived 0 · record 1",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"recorded companion tests/blitz-tests/tests/stand_act_scroll.rs",
+"scope: clean — changed 22 · listed 21 · recorded 1 (companion 1 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 15"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "HEAD",
+"base_why": "gated: no pre-CI commit after the gated flip 165cfe44",
+"counts": {
+"changed": 22,
+"listed": 21,
+"recorded": 1,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 1,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 15,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.21",
+"sha8": "e6b5f42f",
+"ts": "2026-10-20T07:27:23Z",
+"argv": [
+"census",
+"--comm",
+"escher-session",
+"--comm",
+"seven_guis_native",
+"--args",
+"vl-smoke",
+"--args",
+"agent-run",
+"--run-dir",
+".andromeda/runs/2026-10-20T07-11-30-implement",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"census · ps · comm escher-session, seven_guis_native · args vl-smoke, agent-run · own tree excluded: 8",
+"census: none running"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"census": {
+"comm": [
+"escher-session",
+"seven_guis_native"
+],
+"args": [
+"vl-smoke",
+"agent-run"
+],
+"running": []
+}
+}
+},
+{
+"tool": "gate",
+"v": "1.21",
+"sha8": "e6b5f42f",
+"ts": "2026-10-20T07:33:23Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-20T07-11-30-implement",
+"--marker",
+"2026-10-19-visual-lint",
+"--entry",
+"10"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-19-visual-lint · entries 22",
+"logs $TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 14 · python 1 · rust 20 · unmapped 4",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L222-225: There is no live leg and no boot path to smoke: the lint runs in process over held instanc… (451 chars)",
+" 10 integration green · exit 0 · 121.16s · 25931 B → 10.2.log · bash scripts/agent-run.sh run stand",
+"not run — excluded · 21: 1-9,11-22",
+"entries 22 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 21"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-19-visual-lint",
+"plan": "./escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/runs/2026-10-20T05-49-12-wrap/evolve-2026-10-20-select-by-id.json",
+".claude/session-handoff.md",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/evidence/counts.md",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md",
+".andromeda/runs/2026-10-20T05-49-12-wrap/health-2026-10-20-select-by-id.json",
+".andromeda/runs/2026-10-20T07-11-30-implement/cleared-v020-05.md",
+".andromeda/runs/2026-10-20T07-11-30-implement/evolve-2026-10-19-visual-lint.json",
+".andromeda/runs/2026-10-20T07-11-30-implement/gate-2026-10-19-visual-lint.json",
+".andromeda/runs/2026-10-20T07-11-30-implement/inputs-2026-10-19-visual-lint.json",
+".andromeda/runs/2026-10-20T07-11-30-implement/matrix-2026-10-19-visual-lint.json",
+".andromeda/runs/2026-10-20T07-11-30-implement/outcome-2026-10-19-visual-lint.md",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/evidence/founder-word.md",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/scope-record.md"
+],
+"python": [
+".github/scripts/test_cold_agent.py"
+],
+"rust": [
+"examples/seven_guis/tests/cli_commands.rs",
+"examples/seven_guis/tests/host_log.rs",
+"examples/seven_guis/tests/mcp_log.rs",
+"examples/seven_guis/tests/mcp_server.rs",
+"packages/escher-driver/src/cli_tests.rs",
+"packages/escher-driver/src/command.rs",
+"packages/escher-driver/src/describe.rs",
+"packages/escher-driver/src/execute.rs",
+"packages/escher-driver/src/json.rs",
+"packages/escher-driver/src/lib.rs",
+"packages/escher-driver/src/mcp.rs",
+"packages/escher-driver/src/mcp_tests.rs",
+"packages/escher-driver/src/recording_tests.rs",
+"packages/escher-driver/src/schema.rs",
+"packages/escher-driver/src/schema_tests.rs",
+"tests/blitz-tests/tests/session_common/mod.rs",
+"tests/blitz-tests/tests/stand_act_scroll.rs",
+"tests/blitz-tests/tests/stand_act_spans.rs",
+"tests/blitz-tests/tests/stand_lint.rs",
+"tests/blitz-tests/tests/stand_mcp_tools.rs"
+]
+},
+"unmapped": [
+"escher-0.2.0/chunks/2026-10-19-visual-lint/inputs/andromeda-inputs.json",
+"escher-0.2.0/verification-matrix.json",
+"scripts/cold-agent.sh",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/inputs/I7-morning-founder-answers-2026-10-20.md.txt"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 39,
+"problem": null
+},
+"prose": [
+{
+"from": 222,
+"to": 225,
+"text": "There is no live leg and no boot path to smoke: the lint runs in process over held instances, and the windowed stand is not re-booted. The agent-run entries drive the project's own 5-command harness in process. The stand-repeat leg and the coverage leg run in CI and are read through the CI entry. Every count below is a prediction to be measured. The two `gated:` entries run only through `--void` once the founder's word on F1 is recorded (step 12)."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-tests --locked --test text_extent 2>&1",
+"run_sha8": "7300170c",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test result: ok. 3 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked lint 2>&1",
+"run_sha8": "ed02be50",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test lint::tests::the_six_defects_are_named_in_order ... ok",
+"contains test lint::tests::findings_follow_document_order_then_the_defect_order ... ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_lint 2>&1",
+"run_sha8": "d361bcae",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test the_planted_defects_are_named_each_by_its_id_and_reason ... ok",
+"contains test the_stand_at_boot_reads_no_finding ... ok",
+"contains test the_lint_reads_and_changes_nothing ... ok",
+"contains test the_rows_cut_by_the_list_agree_with_off_screen ... ok",
+"contains test an_app_with_no_font_is_refused_fonts_unavailable ... ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 4,
+"role": "build",
+"run": "cargo check --tests --locked --target x86_64-pc-windows-gnu -p blitz-tests",
+"run_sha8": "b06327e6",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "cat packages/escher-driver/src/*.rs packages/escher-driver/src/*/*.rs | grep -c 'info_span!' ",
+"run_sha8": "af5b4430",
+"expect": [
+"exit 0",
+"last line 2"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "cat packages/escher-driver/src/lint.rs packages/blitz-dom/src/text_extent.rs tests/blitz-tests/tests/stand_lint.rs tests/blitz-tests/tests/text_extent.rs | grep -c -E 'println!|eprintln!|print!|dbg!|tracing|escher_telemetry|std::env|env!|UnixListener|TcpListener|std::fs' ",
+"run_sha8": "6512bc00",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff --name-only e97a7f41b10a318cfe9b7ba07f089c6c7944c077 -- packages examples tests apps wpt .github scripts Cargo.toml Cargo.lock deny.toml | grep -c -v -x -E 'packages/(blitz-dom/src/(lib|text_extent)|escher-driver/src/(lib|lint))\\.rs|tests/blitz-tests/tests/(stand_lint|text_extent)\\.rs' ",
+"run_sha8": "28717b34",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "git ls-files --others --exclude-standard -- packages examples tests apps wpt .github scripts | grep -c -v -x -E 'packages/(blitz-dom/src/text_extent|escher-driver/src/lint)\\.rs|tests/blitz-tests/tests/(stand_lint|text_extent)\\.rs' ",
+"run_sha8": "b785ce1d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": [
+"exit 0",
+"contains \"outcome\": \"ready\""
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": [
+"exit 0",
+"contains \"selection\": \"stand\", \"passed\": 192, \"failed\": 0, \"ignored\": 7"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/10.2.log",
+"bytes": 25931,
+"log_sha8": "c31146de",
+"exit": 0,
+"seconds": 121.16,
+"readings": [
+"exit 0 ✓",
+"contains '\"selection\": \"stand\", \"passed\": 192, \"failed\": 0, \"ignored\": 7' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run text_extent",
+"run_sha8": "f04cc1b0",
+"expect": [
+"exit 0",
+"contains \"selection\": \"text_extent\", \"passed\": 3, \"failed\": 0, \"ignored\": 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 13,
+"role": "unit",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "grep -E '^test result:' target/ci-logs/test.log | awk '{p+=$4; f+=$6; i+=$8; n++} END {print \"lines \" n \" passed \" p \" failed \" f \" ignored \" i}' ",
+"run_sha8": "2ec38d01",
+"expect": [
+"exit 0",
+"contains lines 204 passed 1087 failed 0 ignored 12"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 15,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.2.0",
+"run_sha8": "ee10eab9",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\t' '$3 ~ /test result:/ {n[$1]++; if (match($3, /([0-9]+) passed; ([0-9]+) failed; ([0-9]+) ignored/, m)) {p[$1]+=m[1]; f[$1]+=m[2]; i[$1]+=m[3]}} END {for (j in n) print j \" · \" n[j] \" · \" p[j] \" · \" f[j] \" · \" i[j]}' ",
+"run_sha8": "06d4f637",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 20,
+"role": "probe",
+"run": "grep -c -E '^\\| F1 \\| [1-4] \\| .+ \\| 2026-[0-9]{2}-[0-9]{2} \\|$' escher-0.2.0/chunks/2026-10-19-visual-lint/evidence/founder-word.md",
+"run_sha8": "41a06195",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 21,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_lint 2>&1",
+"run_sha8": "d361bcae",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test the_lint_verb_answers_what_the_reader_reads ... ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 22,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test cli_commands 2>&1",
+"run_sha8": "bf35f42c",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test lint_answers_one_line_of_findings ... ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.21",
+"sha8": "e6b5f42f",
+"ts": "2026-10-20T07:33:24Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-20T07-11-30-implement",
+"--marker",
+"2026-10-19-visual-lint",
+"--entry",
+"14"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-19-visual-lint · entries 22",
+"logs $TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 14 · python 1 · rust 20 · unmapped 4",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L222-225: There is no live leg and no boot path to smoke: the lint runs in process over held instanc… (451 chars)",
+" 14 probe       green · exit 0 · 0.0s · 42 B → 14.2.log · grep -E '^test result:' target/ci-logs/test.log | awk '{p+… (146 chars)",
+"not run — excluded · 21: 1-13,15-22",
+"entries 22 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 21"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-19-visual-lint",
+"plan": "./escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30",
+"delta": {
+"docs": [
+".andromeda/friction-log.ndjson",
+".andromeda/runs/2026-10-20T05-49-12-wrap/evolve-2026-10-20-select-by-id.json",
+".claude/session-handoff.md",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/evidence/counts.md",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md",
+".andromeda/runs/2026-10-20T05-49-12-wrap/health-2026-10-20-select-by-id.json",
+".andromeda/runs/2026-10-20T07-11-30-implement/cleared-v020-05.md",
+".andromeda/runs/2026-10-20T07-11-30-implement/evolve-2026-10-19-visual-lint.json",
+".andromeda/runs/2026-10-20T07-11-30-implement/gate-2026-10-19-visual-lint.json",
+".andromeda/runs/2026-10-20T07-11-30-implement/inputs-2026-10-19-visual-lint.json",
+".andromeda/runs/2026-10-20T07-11-30-implement/matrix-2026-10-19-visual-lint.json",
+".andromeda/runs/2026-10-20T07-11-30-implement/outcome-2026-10-19-visual-lint.md",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/evidence/founder-word.md",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/scope-record.md"
+],
+"python": [
+".github/scripts/test_cold_agent.py"
+],
+"rust": [
+"examples/seven_guis/tests/cli_commands.rs",
+"examples/seven_guis/tests/host_log.rs",
+"examples/seven_guis/tests/mcp_log.rs",
+"examples/seven_guis/tests/mcp_server.rs",
+"packages/escher-driver/src/cli_tests.rs",
+"packages/escher-driver/src/command.rs",
+"packages/escher-driver/src/describe.rs",
+"packages/escher-driver/src/execute.rs",
+"packages/escher-driver/src/json.rs",
+"packages/escher-driver/src/lib.rs",
+"packages/escher-driver/src/mcp.rs",
+"packages/escher-driver/src/mcp_tests.rs",
+"packages/escher-driver/src/recording_tests.rs",
+"packages/escher-driver/src/schema.rs",
+"packages/escher-driver/src/schema_tests.rs",
+"tests/blitz-tests/tests/session_common/mod.rs",
+"tests/blitz-tests/tests/stand_act_scroll.rs",
+"tests/blitz-tests/tests/stand_act_spans.rs",
+"tests/blitz-tests/tests/stand_lint.rs",
+"tests/blitz-tests/tests/stand_mcp_tools.rs"
+]
+},
+"unmapped": [
+"escher-0.2.0/chunks/2026-10-19-visual-lint/inputs/andromeda-inputs.json",
+"escher-0.2.0/verification-matrix.json",
+"scripts/cold-agent.sh",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/inputs/I7-morning-founder-answers-2026-10-20.md.txt"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 39,
+"problem": null
+},
+"prose": [
+{
+"from": 222,
+"to": 225,
+"text": "There is no live leg and no boot path to smoke: the lint runs in process over held instances, and the windowed stand is not re-booted. The agent-run entries drive the project's own 5-command harness in process. The stand-repeat leg and the coverage leg run in CI and are read through the CI entry. Every count below is a prediction to be measured. The two `gated:` entries run only through `--void` once the founder's word on F1 is recorded (step 12)."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-tests --locked --test text_extent 2>&1",
+"run_sha8": "7300170c",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test result: ok. 3 passed; 0 failed"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked lint 2>&1",
+"run_sha8": "ed02be50",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test lint::tests::the_six_defects_are_named_in_order ... ok",
+"contains test lint::tests::findings_follow_document_order_then_the_defect_order ... ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_lint 2>&1",
+"run_sha8": "d361bcae",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test the_planted_defects_are_named_each_by_its_id_and_reason ... ok",
+"contains test the_stand_at_boot_reads_no_finding ... ok",
+"contains test the_lint_reads_and_changes_nothing ... ok",
+"contains test the_rows_cut_by_the_list_agree_with_off_screen ... ok",
+"contains test an_app_with_no_font_is_refused_fonts_unavailable ... ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 4,
+"role": "build",
+"run": "cargo check --tests --locked --target x86_64-pc-windows-gnu -p blitz-tests",
+"run_sha8": "b06327e6",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "cat packages/escher-driver/src/*.rs packages/escher-driver/src/*/*.rs | grep -c 'info_span!' ",
+"run_sha8": "af5b4430",
+"expect": [
+"exit 0",
+"last line 2"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "cat packages/escher-driver/src/lint.rs packages/blitz-dom/src/text_extent.rs tests/blitz-tests/tests/stand_lint.rs tests/blitz-tests/tests/text_extent.rs | grep -c -E 'println!|eprintln!|print!|dbg!|tracing|escher_telemetry|std::env|env!|UnixListener|TcpListener|std::fs' ",
+"run_sha8": "6512bc00",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff --name-only e97a7f41b10a318cfe9b7ba07f089c6c7944c077 -- packages examples tests apps wpt .github scripts Cargo.toml Cargo.lock deny.toml | grep -c -v -x -E 'packages/(blitz-dom/src/(lib|text_extent)|escher-driver/src/(lib|lint))\\.rs|tests/blitz-tests/tests/(stand_lint|text_extent)\\.rs' ",
+"run_sha8": "28717b34",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "git ls-files --others --exclude-standard -- packages examples tests apps wpt .github scripts | grep -c -v -x -E 'packages/(blitz-dom/src/text_extent|escher-driver/src/lint)\\.rs|tests/blitz-tests/tests/(stand_lint|text_extent)\\.rs' ",
+"run_sha8": "b785ce1d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": [
+"exit 0",
+"contains \"outcome\": \"ready\""
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": [
+"exit 0",
+"contains \"selection\": \"stand\", \"passed\": 192, \"failed\": 0, \"ignored\": 7"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run text_extent",
+"run_sha8": "f04cc1b0",
+"expect": [
+"exit 0",
+"contains \"selection\": \"text_extent\", \"passed\": 3, \"failed\": 0, \"ignored\": 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 13,
+"role": "unit",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "grep -E '^test result:' target/ci-logs/test.log | awk '{p+=$4; f+=$6; i+=$8; n++} END {print \"lines \" n \" passed \" p \" failed \" f \" ignored \" i}' ",
+"run_sha8": "2ec38d01",
+"expect": [
+"exit 0",
+"contains lines 204 passed 1087 failed 0 ignored 12"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/implement-2026-10-20T07-11-30/14.2.log",
+"bytes": 42,
+"log_sha8": "8b6f9b0c",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"contains 'lines 204 passed 1087 failed 0 ignored 12' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.2.0",
+"run_sha8": "ee10eab9",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\t' '$3 ~ /test result:/ {n[$1]++; if (match($3, /([0-9]+) passed; ([0-9]+) failed; ([0-9]+) ignored/, m)) {p[$1]+=m[1]; f[$1]+=m[2]; i[$1]+=m[3]}} END {for (j in n) print j \" · \" n[j] \" · \" p[j] \" · \" f[j] \" · \" i[j]}' ",
+"run_sha8": "06d4f637",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 20,
+"role": "probe",
+"run": "grep -c -E '^\\| F1 \\| [1-4] \\| .+ \\| 2026-[0-9]{2}-[0-9]{2} \\|$' escher-0.2.0/chunks/2026-10-19-visual-lint/evidence/founder-word.md",
+"run_sha8": "41a06195",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 21,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_lint 2>&1",
+"run_sha8": "d361bcae",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test the_lint_verb_answers_what_the_reader_reads ... ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 22,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test cli_commands 2>&1",
+"run_sha8": "bf35f42c",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test lint_answers_one_line_of_findings ... ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+]
+}
+}
+]

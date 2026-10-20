@@ -1,8 +1,9 @@
 //! Every driver command through the real `escher-session` binary: `start`, `status`, `stop` and
-//! each of the seven verbs answer one line of uncoloured JSON on stdout and end with a status
+//! each of the eight verbs answer one line of uncoloured JSON on stdout and end with a status
 //! that tells accepted (`0`) from refused (`1`) and from a session error (`3`). The snapshot's
 //! line is the library's own form of the screen booted in process, inside its byte budget; the
-//! screenshot's `png` is the PNG of the screen booted in process, 800 × 600.
+//! screenshot's `png` is the PNG of the screen booted in process, 800 × 600; a lint on a held
+//! counter answers one line whose `findings` is empty.
 //! `help` answers the library's own description of the tool, reaching no session. Every
 //! refusal the binary is driven to — six causes, all but `covered` and `fonts-unavailable` — and
 //! every session error
@@ -124,7 +125,7 @@ impl Session {
 
 #[test]
 fn each_task_starts_answers_and_stops() {
-    assert_eq!(VERBS.len(), 11);
+    assert_eq!(VERBS.len(), 12);
     for (index, (task, _)) in TASKS.into_iter().enumerate() {
         let dir = state_dir(&format!("cc-life-{index}"));
         clear(&dir);
@@ -358,6 +359,29 @@ fn a_screenshot_answers_one_line_whose_png_is_the_screen() {
         "the refusal writes back nothing the line named"
     );
     crud.stop();
+}
+
+#[test]
+fn lint_answers_one_line_of_findings() {
+    let counter = Session::start("cc-lint", "counter");
+    let answer = counter.accepted(&["lint"]);
+    assert!(keys(&answer) == fields("lint"), "the lint's fields");
+    assert_eq!(
+        answer, r#"{"findings":[]}"#,
+        "the counter at boot reads no finding"
+    );
+    let ran = counter.run(&["lint", "--id", NOBODY]);
+    assert_eq!(
+        ran.status,
+        Some(1),
+        "a lint naming an argument ends refused"
+    );
+    assert_eq!(remedied(ran.line()), "malformed");
+    assert!(
+        !ran.line().contains(NOBODY) && ran.stderr.is_empty(),
+        "the refusal writes back nothing the line named"
+    );
+    counter.stop();
 }
 
 #[test]

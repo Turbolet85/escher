@@ -276,6 +276,7 @@ note = 'silence census over every new file: no print, log site, sink, env read, 
 run = '''git diff --name-only e97a7f41b10a318cfe9b7ba07f089c6c7944c077 -- packages examples tests apps wpt .github scripts Cargo.toml Cargo.lock deny.toml | grep -c -v -x -E 'packages/(blitz-dom/src/(lib|text_extent)|escher-driver/src/(lib|lint))\.rs|tests/blitz-tests/tests/(stand_lint|text_extent)\.rs' '''
 role = 'probe'
 expect = ['exit 1', 'last line 0']
+defer = "voided — the founder's F1 word (inputs#I7) rules the crossing it forbade; its base also reads the two later chunks"
 new = true
 baseline = 'green — exit 1, last line 0 on an empty change, 2026-10-20T00:07Z; must-pass green with both lib.rs edited and the four new files minted, must-fail red, exit 0, with schema.rs edited, in the scratch clone (p5-controls.md)'
 note = 'no tracked file outside the in-process change: no verb table, written form, MCP, CLI, recording, cold-agent, manifest, lock or CI file moves before the founder word (F1, inputs#I2; the new files in the alternation so the guard holds after the pre-CI commit tracks them)'
@@ -299,7 +300,7 @@ note = 'the bootstrap, the two new targets compiled in (test-plan §3 Agent-run 
 [[gate]]
 run = 'bash scripts/agent-run.sh run stand'
 role = 'integration'
-expect = ['exit 0', 'contains "selection": "stand", "passed": 183, "failed": 0, "ignored": 7']
+expect = ['exit 0', 'contains "selection": "stand", "passed": 192, "failed": 0, "ignored": 7']
 new = true
 baseline = 'red — exit 0, run.end selection stand passed 178 failed 0 ignored 7 on the untouched tree, 2026-10-20T00:09Z: the count this chunk moves by stand_lint; the atom read through the run own output'
 note = 'every stand_* check through the agent harness: predicted 178 + 5 = 183 · 0 · 7 over 45 files (stand_lint the forty-fifth; the base read 178 · 0 · 7 over 44 at 2026-10-19-shared-fixtures); atom from scripts/agent-run.sh:135-137 (the run.end event); record what it prints'
@@ -327,7 +328,7 @@ note = 'the local pre-push gate: fmt, clippy -D warnings over the new reader, li
 run = '''grep -E '^test result:' target/ci-logs/test.log | awk '{p+=$4; f+=$6; i+=$8; n++} END {print "lines " n " passed " p " failed " f " ignored " i}' '''
 role = 'probe'
 env = []
-expect = ['exit 0', 'contains lines 201 passed 1055 failed 0 ignored 12']
+expect = ['exit 0', 'contains lines 204 passed 1087 failed 0 ignored 12']
 new = true
 baseline = 'red — lines 199 passed 1045 failed 0 ignored 12 over the residue test.log of the last wrap fast run, 2026-10-20T00:07Z: the base tally this chunk moves (freshness is the fast entry artifact key, which precedes it)'
 note = 'the workspace tally, predicted 199 → 201 lines (two new targets) and 1045 → 1055 passed (stand_lint 5, text_extent 3, lint.rs 2), as the last wrap recorded the base (evidence/counts.md of 2026-10-19-shared-fixtures); record what the run measures'

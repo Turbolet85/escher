@@ -142,7 +142,7 @@ mod tests {
             .collect();
         assert!(at.windows(2).all(|pair| pair[0] < pair[1]));
         assert!(text.starts_with("{\"verbs\":["));
-        let counts = [11, 13, 12, 3, 8, 4, 15];
+        let counts = [12, 13, 12, 3, 8, 4, 15];
         for (row, (key, count)) in keys.iter().zip(counts).enumerate() {
             assert!(entries(&document, key).len() == count, "row {row}");
         }

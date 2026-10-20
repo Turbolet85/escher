@@ -1,7 +1,7 @@
 //! The `escher-session` binary in its `mcp` role, its telemetry sink installed, writes nothing a
 //! tool call handled to stderr at `RUST_LOG=trace`: no stable element id, no accessible name, no
-//! typed text and no image byte — while a CRUD flow runs through it by tool calls, a `type` and
-//! two `screenshot`s, the whole screen and one element, among them — and
+//! typed text and no image byte — while a CRUD flow runs through it by tool calls, a `type`, two
+//! `screenshot`s, the whole screen and one element, and a `lint` among them — and
 //! each tool call leaves exactly one `tool_call` line there, holding only its `tool` and its
 //! `ending` beside the sink's own fields, and each call run on the held instance one `command`
 //! line. Stdout holds protocol lines only. The check reads the binary as its own build makes
@@ -104,9 +104,10 @@ fn mcp_flow(record: Option<&std::path::Path>) {
             true,
             false,
         ),
+        ("lint", "{}".to_string(), true, false),
         ("stop", "{}".to_string(), false, false),
     ];
-    assert_eq!(calls.len(), 8);
+    assert_eq!(calls.len(), 9);
     for (index, (name, arguments, _, is_error)) in calls.iter().enumerate() {
         let id = index as u32 + 2;
         speaker.send(tool_call(id, name, arguments).as_bytes());
@@ -148,6 +149,10 @@ fn mcp_flow(record: Option<&std::path::Path>) {
     assert!(
         images.iter().all(|image| image.len() == 64),
         "each shot's result holds an image"
+    );
+    assert!(
+        string_at(&replies[8], "text").is_some_and(|text| text.starts_with(r#"{"findings":["#)),
+        "the lint's result holds its findings"
     );
 
     let spoke = speaker.close();

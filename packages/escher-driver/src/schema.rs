@@ -307,6 +307,33 @@ pub(crate) const SCREENSHOT: VerbSpec = VerbSpec {
     ],
 };
 
+pub(crate) const LINT: VerbSpec = VerbSpec {
+    name: "lint",
+    level: Level::Instance,
+    help: "reads the screen for six defects, each found on an element by its id with the \
+           measured reason: overlap, an element's visible part intersecting another's, neither \
+           holding the other; clipped, part of its box cut from view; truncated, part of its \
+           laid-out text cut from view, a text control's value never measured; off-screen, no \
+           part of its box in view; zero-size, content in a box with no width or no height; \
+           contrast, its text below the contrast ratio WCAG 2.x SC 1.4.3 sets, an element that \
+           reads not enabled exempt; geometry only, no hit tested, and right-to-left and \
+           vertical text read as left-to-right lines",
+    args: &[],
+    fields: &[FieldSpec {
+        name: "findings",
+        kind: FieldKind::Entries,
+        always: true,
+        help: "every defect found, in document order, one element's in the order the help \
+               names them; each keyed id, defect (overlap, clipped, truncated, off-screen, \
+               zero-size or contrast) and bounds as a node's, then the reason: other, the id of \
+               the element later in document order, and area, where the two intersect, for an \
+               overlap; visible, the part of the box that can be seen, for a clip; text, the box \
+               the laid-out lines take, and visible, the part of it that can be seen, left out \
+               when none can, for a truncation; ratio, the measured ratio, and required, 3 for \
+               large text, else 4.5, for contrast; each box x, y, width and height, in pixels",
+    }],
+};
+
 const LABEL: FieldSpec = FieldSpec {
     name: "label",
     kind: FieldKind::Text,
@@ -428,10 +455,10 @@ pub(crate) const HELP: VerbSpec = VerbSpec {
     ],
 };
 
-/// The verb set, in the schema's order: the seven verbs asked of the held instance, the three
+/// The verb set, in the schema's order: the eight verbs asked of the held instance, the three
 /// asked of the session, then `help`, asked of the tool itself.
 pub const VERBS: &[VerbSpec] = &[
-    SNAPSHOT, CLICK, TYPE, PRESS, ADVANCE, SCROLL, SCREENSHOT, START, STATUS, STOP, HELP,
+    SNAPSHOT, CLICK, TYPE, PRESS, ADVANCE, SCROLL, SCREENSHOT, LINT, START, STATUS, STOP, HELP,
 ];
 
 /// One way a run of the command line ends: its status, its name and what it means.

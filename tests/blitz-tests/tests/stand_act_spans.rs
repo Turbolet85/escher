@@ -1,6 +1,6 @@
 //! Every driver command leaves one line in escher's sink, and nothing a command handled is on
 //! it. With the sink installed over a capture and `RUST_LOG=info`, in both layout modes, each
-//! call run through `Session::run` — the seven verbs on the stand's CRUD task and its Timer, and
+//! call run through `Session::run` — the eight verbs on the stand's CRUD task and its Timer, and
 //! a refused call for each of the eight causes, the `covered` one on a fixture booted with the
 //! stand's options and the `fonts-unavailable` one on the CRUD task booted with a font context
 //! that holds no family, and a `press` on a fixture that renders on every pass — leaves exactly
@@ -12,8 +12,8 @@
 //! first holds equal to the diff of its own snapshots — `settled=true` with its passes, or, for
 //! the call that never went quiet, `settled=false` with `busy=render` and no passes; a refused
 //! call's line carries the name
-//! of the cause the call returned and none of the settle or diff fields; a `snapshot`'s and a
-//! `screenshot`'s carry neither. Over the whole capture no field name of a driver line is outside the stated set,
+//! of the cause the call returned and none of the settle or diff fields; a `snapshot`'s, a
+//! `screenshot`'s and a `lint`'s carry neither. Over the whole capture no field name of a driver line is outside the stated set,
 //! none of its values is redacted, and no stable id, row text, label text or typed text of the
 //! driven screens occurs on any line. With `RUST_LOG` removed a command writes no driver line
 //! at all. The level filter is read from the process's environment when the sink is installed,
@@ -38,7 +38,7 @@ mod common;
 mod fixtures;
 mod session_common;
 use session_common::{
-    advance, click, hold, press, screenshot, screenshot_of, scroll, slug, type_into,
+    advance, click, hold, lint, press, screenshot, screenshot_of, scroll, slug, type_into,
 };
 
 /// The text the driver types into the CRUD name field: synthetic, and no part of any id.
@@ -180,6 +180,7 @@ impl<'l> Record<'l> {
 enum Expect {
     Screen,
     Shot,
+    Linted,
     Acts,
     /// An acting verb whose instance renders on every pass, so it never settles.
     Restless,
@@ -189,7 +190,7 @@ enum Expect {
 /// The settle reading and the diff of an outcome an acting verb returned.
 fn acting(outcome: &Outcome) -> Option<(bool, Option<Busy>, &SnapshotDiff)> {
     match outcome {
-        Outcome::Screen { .. } | Outcome::Shot { .. } => None,
+        Outcome::Screen { .. } | Outcome::Shot { .. } | Outcome::Linted { .. } => None,
         Outcome::Acted {
             settled,
             busy,
@@ -354,6 +355,13 @@ impl<'c> Run<'c> {
                 );
                 self.verbs.extend(verb.map(str::to_string));
             }
+            (Ok(Outcome::Linted { .. }), Expect::Linted) => {
+                assert!(
+                    !record.has("cause") && ACTING_FIELDS.iter().all(|field| !record.has(field)),
+                    "{at}: a lint's line carries its verb alone"
+                );
+                self.verbs.extend(verb.map(str::to_string));
+            }
             (Ok(outcome), Expect::Acts) => {
                 let Some((settled, busy, diff)) = acting(outcome) else {
                     panic!("{at}: the call returns an acting verb's outcome");
@@ -426,7 +434,7 @@ impl<'c> Run<'c> {
         result
     }
 
-    /// Holds the whole of what this run left in the capture: one driver line per call, the seven
+    /// Holds the whole of what this run left in the capture: one driver line per call, the eight
     /// verbs and the eight causes read back, no field name outside the stated set, no redacted
     /// value, and none of `needles` nor of what the calls supplied.
     fn finish(self, needles: &Needles) {
@@ -455,8 +463,8 @@ impl<'c> Run<'c> {
             .map(|verb| verb.name)
             .collect();
         assert!(
-            run_by_a_session.len() == 7 && read_back(&self.verbs, run_by_a_session),
-            "{mode}: each of the seven verbs ran and was read back from its line"
+            run_by_a_session.len() == 8 && read_back(&self.verbs, run_by_a_session),
+            "{mode}: each of the eight verbs ran and was read back from its line"
         );
         assert!(
             CAUSES.len() == 8 && read_back(&self.causes, CAUSES.map(Cause::name).to_vec()),
@@ -590,6 +598,7 @@ fn child_records_each_command_at_info() {
         let _ = run.drive("Crud", &mut crud, &snapshot, Expect::Screen);
         let _ = run.drive("Crud", &mut crud, &screenshot(), Expect::Shot);
         let _ = run.drive("Crud", &mut crud, &screenshot_of("crud-list"), Expect::Shot);
+        let _ = run.drive("Crud", &mut crud, &lint(), Expect::Linted);
         let _ = run.drive(
             "Crud",
             &mut crud,
@@ -675,6 +684,12 @@ fn child_records_each_command_at_info() {
             &screenshot(),
             Expect::Refused(Cause::FontsUnavailable),
         );
+        let _ = run.drive(
+            "Crud with no font",
+            &mut no_font,
+            &lint(),
+            Expect::Refused(Cause::FontsUnavailable),
+        );
         needles.read(&no_font);
 
         let mut restless = fixtures::hold("restless", restless_fixture, incremental);
@@ -686,7 +701,7 @@ fn child_records_each_command_at_info() {
         );
         needles.read(&restless);
 
-        assert!(run.calls == 32, "{}: {} calls", run.mode, run.calls);
+        assert!(run.calls == 34, "{}: {} calls", run.mode, run.calls);
         run.finish(&needles);
     }
 }

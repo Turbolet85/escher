@@ -4,7 +4,9 @@
 //! document order, with their reasons; on each lean stand task at boot it reads nothing; it
 //! changes nothing; after twelve Creates it names the last CRUD row cut by the list's box, the
 //! row a `click` is refused `off-screen` on; and an app with no font is refused
-//! `fonts-unavailable`. A failure message carries a layout mode, a task and a row index only.
+//! `fonts-unavailable`. The verb `lint`, run through `Session::run`, answers exactly the findings
+//! the reader reads, on the planted page and on each lean task. A failure message carries a
+//! layout mode, a task and a row index only.
 
 use blitz_test_harness::HarnessOptions;
 use dioxus::prelude::*;
@@ -13,7 +15,7 @@ use seven_guis::stand::{self, LeanTask};
 
 mod fixtures;
 mod session_common;
-use session_common::{act, click, focused, hold, refused, slug, type_into};
+use session_common::{act, click, focused, hold, lint, linted, refused, slug, type_into};
 
 /// How many Creates put the last CRUD row's centre past the list's box.
 const CREATES: usize = 12;
@@ -300,5 +302,29 @@ fn an_app_with_no_font_is_refused_fonts_unavailable() {
         );
         let after = (session.harness().doc.snapshot(), focused(&session));
         assert!(before == after, "{at}: the screen is unchanged");
+    }
+}
+
+#[test]
+fn the_lint_verb_answers_what_the_reader_reads() {
+    for incremental in [false, true] {
+        for case in 0..=LeanTask::ALL.len() {
+            let at = format!("incremental={incremental}: case {case}");
+            let mut session = match case {
+                0 => fixtures::hold("lint", lint_page, incremental),
+                task => hold(LeanTask::ALL[task - 1], incremental).0,
+            };
+            let read = session.lint();
+            assert!(read.is_ok(), "{at}: the reader reads the screen");
+            let read = read.unwrap();
+            assert!(
+                read.len() == if case == 0 { 7 } else { 0 },
+                "{at}: the reader reads the planted findings, and none on a task at boot"
+            );
+            assert!(
+                linted(&mut session, &lint()) == Some(read),
+                "{at}: the verb answers the reader's findings"
+            );
+        }
     }
 }

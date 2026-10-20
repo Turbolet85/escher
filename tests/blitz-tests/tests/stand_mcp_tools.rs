@@ -18,7 +18,9 @@
 //! `screenshot` tool result is an image block, then a text block holding its line without the
 //! image: the image's data decodes to the PNG `Session::run` returns for the same state, and its
 //! `tool_call` span holds `screenshot` and parents its command; a refused one is one text block
-//! marked as an error. A `help`
+//! marked as an error. A `lint` tool result on each lean task is one text block, the line of the
+//! findings `Session::lint` reads on a session booted the same way, and its `tool_call` span
+//! holds `lint` and parents its command. A `help`
 //! tool call is answered by the server, with or without a held session: its text is the tool's
 //! description of itself, and its `tool_call` span holds `help` and `accepted` and parents no
 //! command. No check here sleeps or reads a clock. A failure message carries a layout mode and
@@ -696,6 +698,68 @@ fn a_screenshot_tool_call_answers_its_image_then_its_text_and_parents_its_comman
             assert!(
                 children == 1,
                 "{mode}: screenshot {index} parents {children} commands"
+            );
+        }
+    }
+}
+
+#[test]
+fn a_lint_tool_call_answers_the_readers_findings_and_parents_its_command() {
+    for incremental in [false, true] {
+        let mode = if incremental { "incremental" } else { "full" };
+        for (row, task) in TASKS.into_iter().enumerate() {
+            let start = format!(r#"{{"app":"{}"}}"#, slug(task));
+            let requests = [
+                tool_call(1, "start", &start),
+                tool_call(2, "lint", "{}"),
+                tool_call(3, "lint", r#"{"id":"x"}"#),
+                tool_call(4, "stop", "{}"),
+            ];
+            let recorder = Recorder::default();
+            let replies = tracing::subscriber::with_default(recorder.clone(), || {
+                serve(&requests, incremental)
+            });
+            assert_eq!(replies.len(), 4, "{mode}: task {row}: one reply per call");
+
+            let (mut direct, _ticks) = hold(task, incremental);
+            let findings = direct.lint().expect("the stand has a font");
+            assert!(
+                result(&replies[1]) == (false, Outcome::Linted { findings }.to_json()),
+                "{mode}: task {row}: the text block is the line of the reader's own findings"
+            );
+            let (is_error, text) = result(&replies[2]);
+            assert!(
+                is_error && remedied(&text) == Some(Cause::Malformed),
+                "{mode}: task {row}: a lint naming an argument is refused malformed"
+            );
+
+            let recorded = recorder.0.lock().unwrap();
+            let lints: Vec<usize> = recorded
+                .spans
+                .iter()
+                .enumerate()
+                .filter(|(_, seen)| {
+                    seen.name == "tool_call"
+                        && seen
+                            .fields
+                            .iter()
+                            .any(|(field, value)| *field == "tool" && value == "lint")
+                })
+                .map(|(at, _)| at)
+                .collect();
+            assert_eq!(lints.len(), 2, "{mode}: task {row}: one tool_call per lint");
+            let accepted = recorded.spans[lints[0]]
+                .fields
+                .iter()
+                .any(|(field, value)| *field == "ending" && value == "accepted");
+            let children = recorded
+                .spans
+                .iter()
+                .filter(|seen| seen.name == "command" && seen.parent == Some(lints[0]))
+                .count();
+            assert!(
+                accepted && children == 1,
+                "{mode}: task {row}: the lint's tool_call is accepted and parents one command"
             );
         }
     }

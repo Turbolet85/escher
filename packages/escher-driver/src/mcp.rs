@@ -55,7 +55,7 @@ const START_APP: &str = match schema::START.args {
 /// `apps`. A tool call runs as the command line runs its verb, except that the session lives in
 /// this process: `start` boots the app `boot` builds and holds it, `status` reaches it, `stop`
 /// drops it, `help` answers the tool's description of itself ([`describe`]) whether or not a
-/// session is held, and the seven instance verbs run on the held session through [`Session::run`]. A held session that has had no tool call for `idle_expiry` is
+/// session is held, and the eight instance verbs run on the held session through [`Session::run`]. A held session that has had no tool call for `idle_expiry` is
 /// dropped when the next request arrives.
 ///
 /// A tool result holds one text block: the screen's text for `snapshot`, the document for

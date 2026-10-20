@@ -396,7 +396,7 @@ fn listed(verb: &VerbSpec) -> (Vec<&'static str>, Vec<&'static str>, Vec<&'stati
 }
 
 #[test]
-fn the_listing_is_the_eleven_verbs_of_the_table() {
+fn the_listing_is_the_twelve_verbs_of_the_table() {
     let Ok(Value::Object(result)) = serde_json::from_str::<Value>(&tool_list(&APPS)) else {
         panic!("the listing is an object");
     };
@@ -405,7 +405,7 @@ fn the_listing_is_the_eleven_verbs_of_the_table() {
     };
     assert_eq!(result.len(), 1, "no member beside the tools, no cursor");
     assert_eq!(tools.len(), VERBS.len());
-    assert_eq!(VERBS.len(), 11);
+    assert_eq!(VERBS.len(), 12);
     assert_eq!(
         tools.last().map(|tool| &tool["name"]),
         Some(&Value::from("help"))
@@ -496,7 +496,9 @@ fn the_session_verbs_are_answered_by_the_server() {
                 tool_call(6, "start", r#"{"app":"timer"}"#),
                 tool_call(7, "start", r#"{"app":"Counter"}"#),
                 tool_call(8, "start", "{}"),
-                tool_call(9, "start", r#"{"app":"counter"}"#),
+                tool_call(9, "lint", "{}"),
+                tool_call(10, "lint", r#"{"id":"save"}"#),
+                tool_call(11, "start", r#"{"app":"counter"}"#),
             ],
             vec![
                 no_session.clone(),
@@ -507,6 +509,8 @@ fn the_session_verbs_are_answered_by_the_server() {
                 ToolResult::refused(Refusal::malformed(Fault::OutOfBound("app"))),
                 ToolResult::refused(Refusal::malformed(Fault::OutOfBound("app"))),
                 ToolResult::refused(Refusal::malformed(Fault::Missing("app"))),
+                no_session.clone(),
+                ToolResult::refused(Refusal::malformed(Fault::Unnamed)),
                 ToolResult::failed(SessionError::InvalidLabel),
             ],
         ),

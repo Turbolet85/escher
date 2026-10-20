@@ -17,7 +17,7 @@ use std::time::{Duration, Instant};
 
 use blitz_dom::Document;
 use dioxus_native_dom::SnapshotDiff;
-use escher_driver::{ArgValue, Busy, Call, Cause, Check, Outcome, Session};
+use escher_driver::{ArgValue, Busy, Call, Cause, Check, Finding, Outcome, Session};
 use seven_guis::stand::{self, LeanTask};
 use seven_guis::tasks::timer::TimerTicks;
 
@@ -112,6 +112,20 @@ pub fn screenshot_of(id: &str) -> Call {
     call("screenshot", &[("id", ArgValue::Text(id.to_string()))])
 }
 
+/// The driver call that reads the screen for its visual defects.
+pub fn lint() -> Call {
+    call("lint", &[])
+}
+
+/// Runs `call` on `session` through the driver and reads its outcome as a lint's findings:
+/// `None` for a refused call and for any other outcome.
+pub fn linted(session: &mut Session, call: &Call) -> Option<Vec<Finding>> {
+    match session.run(call).ok()? {
+        Outcome::Linted { findings } => Some(findings),
+        _ => None,
+    }
+}
+
 /// What a `screenshot` returned: the image's width, its height and its PNG bytes.
 pub struct Shot {
     pub width: u32,
@@ -179,10 +193,10 @@ pub fn focused(session: &Session) -> (Vec<String>, Vec<String>) {
 }
 
 /// Runs `call` on `session` through the driver and reads its outcome as an acting one: `None`
-/// for a refused call, a `snapshot` and a `screenshot`.
+/// for a refused call, a `snapshot`, a `screenshot` and a `lint`.
 pub fn act(session: &mut Session, call: &Call) -> Option<Acted> {
     match session.run(call).ok()? {
-        Outcome::Screen { .. } | Outcome::Shot { .. } => None,
+        Outcome::Screen { .. } | Outcome::Shot { .. } | Outcome::Linted { .. } => None,
         Outcome::Acted {
             settled,
             busy,

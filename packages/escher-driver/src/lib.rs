@@ -28,9 +28,9 @@
 //! process: [`VERBS`] lists each verb with its level, its argument shapes and its result
 //! shape, [`validate`] turns a [`Call`] into a typed [`Command`] or a [`Refusal`] before
 //! anything runs, and every refusal names one of eight [`Cause`]s ([`CAUSES`]) with a fixed
-//! remedy. Eleven verbs stand in
-//! three levels. Seven are asked of the held instance: `snapshot`, `click`, `type`, `press`,
-//! `advance`, `scroll` and `screenshot`. Three are asked of the session itself — `start`, `status` and
+//! remedy. Twelve verbs stand in
+//! three levels. Eight are asked of the held instance: `snapshot`, `click`, `type`, `press`,
+//! `advance`, `scroll`, `screenshot` and `lint`. Three are asked of the session itself — `start`, `status` and
 //! `stop` — and one of the tool itself, `help`; these four are checked by [`validate_session`],
 //! and a session runs none of them.
 //!
@@ -79,11 +79,12 @@
 //! depends on wall time: the overlay scrollbar fade reads the session's clock, so two shots of
 //! one state with no `advance` between them read the same pixels.
 //!
-//! [`Session::lint`] reads the screen of the held instance, in process, for six defects: an
-//! element that overlaps another, is clipped, has text cut from view, lies off-screen, holds
-//! content in a box with no area or reads below its text contrast ratio. Each [`Finding`] names
-//! the element's stable id, its [`Defect`] and the measured [`Reason`], numbers and ids only. It
-//! runs no step and changes nothing.
+//! [`Session::lint`] reads the screen of the held instance for six defects: an element that
+//! overlaps another, is clipped, has text cut from view, lies off-screen, holds content in a box
+//! with no area or reads below its text contrast ratio. Each [`Finding`] names the element's
+//! stable id, its [`Defect`] and the measured [`Reason`], numbers and ids only. It runs no step
+//! and changes nothing. The verb `lint` answers its findings on every surface
+//! ([`Outcome::Linted`]), and a recorded session keeps them as it keeps every answer.
 //!
 //! A session can keep itself as a replayable check ([`Session::recording_into`]): every call
 //! [`Session::run`] answers, written to an owner-only file of a directory its launcher names as

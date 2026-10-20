@@ -11,6 +11,7 @@ use tracing::field::Empty;
 
 use crate::command::{Call, Command, Key, validate};
 use crate::image;
+use crate::lint::Finding;
 use crate::refusal::{Cause, Refusal};
 use crate::schema::{self, BUSY_CLASSES};
 use crate::session::{SeenIds, Session, settle_waiting};
@@ -71,6 +72,11 @@ pub enum Outcome {
         /// The image: a PNG of 8-bit RGBA pixels as painted.
         png: Vec<u8>,
     },
+    /// What `lint` returns.
+    Linted {
+        /// Every defect found on the screen, as [`Session::lint`] reads it.
+        findings: Vec<Finding>,
+    },
 }
 
 /// States the fields of a command's span once: the span that carries them, and the table of
@@ -111,6 +117,9 @@ impl Session {
     /// refused as [`Cause::OffScreen`]; one that is disabled or covered is not refused, since
     /// the image shows what is painted there. An app with no font it can paint text with is
     /// refused as [`Cause::FontsUnavailable`], with nothing painted.
+    ///
+    /// `lint` runs no step either: it answers [`Session::lint`]'s findings on the screen as it
+    /// stands, or its refusal.
     ///
     /// An acting verb takes the screen's snapshot, runs its step, settles the instance
     /// ([`Harness::settle`]) and takes the snapshot again; its outcome carries the diff of the
@@ -249,6 +258,9 @@ impl Session {
                     png,
                 })
             }
+            Command::Lint => Ok(Outcome::Linted {
+                findings: self.lint()?,
+            }),
         }
     }
 }
@@ -261,7 +273,7 @@ fn record_result(span: &Span, result: &Result<Outcome, Refusal>) {
             span.record("cause", refusal.cause().name());
             return;
         }
-        Ok(Outcome::Screen { .. } | Outcome::Shot { .. }) => return,
+        Ok(Outcome::Screen { .. } | Outcome::Shot { .. } | Outcome::Linted { .. }) => return,
         Ok(
             Outcome::Acted {
                 settled,

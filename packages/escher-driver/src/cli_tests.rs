@@ -140,6 +140,7 @@ fn a_line_is_read_by_its_rules_in_order() {
             &["screenshot", "--session", DIR, "--id", "crud-list"],
             instance("screenshot", &[("id", text("crud-list"))]),
         ),
+        (&["lint", "--session", DIR], instance("lint", &[])),
         (
             &["click", "--id", "save", "--session", DIR],
             instance("click", &[("id", text("save"))]),
@@ -293,6 +294,10 @@ fn a_line_is_read_by_its_rules_in_order() {
             malformed(Fault::Unnamed),
         ),
         (
+            &["lint", "--id", "save", "--session", DIR],
+            malformed(Fault::Unnamed),
+        ),
+        (
             &["click", "save", "--session", DIR],
             malformed(Fault::Unnamed),
         ),
@@ -412,7 +417,7 @@ fn a_line_is_read_by_its_rules_in_order() {
         // `start` on an app the binary does not boot.
         (&["start", "timer", "--session", DIR], Line::Usage),
     ];
-    assert_eq!(rows.len(), 94);
+    assert_eq!(rows.len(), 96);
     for (row, (words, read)) in rows.into_iter().enumerate() {
         assert!(line(words) == read, "row {row}");
     }
@@ -528,8 +533,8 @@ fn the_usage_line_is_built_from_the_table_and_the_apps() {
         usage(&APPS),
         "usage: <command> --session <dir>; commands: snapshot | click --id <id> | type --id \
          <id> --text <text> | press --key <key> [--shift] | advance --ms <milliseconds> | \
-         scroll --id <id> | screenshot [--id <id>] | start <app> [--record <dir>] | status | \
-         stop | help; host role: serve <app> --session <dir> [--record <dir>]; mcp role: mcp \
+         scroll --id <id> | screenshot [--id <id>] | lint | start <app> [--record <dir>] | status \
+         | stop | help; host role: serve <app> --session <dir> [--record <dir>]; mcp role: mcp \
          [--record <dir>]; apps: counter | flight-booker"
     );
     for verb in VERBS {

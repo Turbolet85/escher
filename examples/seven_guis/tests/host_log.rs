@@ -1,7 +1,7 @@
 //! The `escher-session` host, its telemetry sink installed, writes nothing a command handled to
 //! stderr at `RUST_LOG=trace`: no stable element id, no accessible name, no typed text and no
-//! image byte — while a hosted `snapshot`, `click`, `type` and two `screenshot`s, the whole
-//! screen and one element, run on it — and each call it runs leaves
+//! image byte — while a hosted `snapshot`, `click`, `type`, two `screenshot`s, the whole
+//! screen and one element, and a `lint` run on it — and each call it runs leaves
 //! exactly one command-span line there. Guards a measured leak: the sink printed records from
 //! third-party targets as written, which put every author key of the screen on stderr at
 //! `debug` and each row's name and each label's text at `trace`. The check reads the host as
@@ -94,7 +94,7 @@ fn host_flow(name: &str, record: bool) {
     assert_eq!(hello.pid, host.0.id(), "the binary itself answers");
     assert_eq!(hello.label, "crud");
 
-    // Five calls run on the host's own instance. Each answer is checked for what it must
+    // Six calls run on the host's own instance. Each answer is checked for what it must
     // hold, so the absences read below are of things the host did handle.
     let text = |value: &str| ArgValue::Text(value.to_string());
     let calls = [
@@ -121,6 +121,10 @@ fn host_flow(name: &str, record: bool) {
             verb: "screenshot".to_string(),
             args: vec![("id".to_string(), text("crud-list"))],
         },
+        Call {
+            verb: "lint".to_string(),
+            args: Vec::new(),
+        },
     ];
     let answers: Vec<String> = calls
         .iter()
@@ -145,7 +149,7 @@ fn host_flow(name: &str, record: bool) {
         "the answer to the type holds the typed text as the control's value"
     );
     // The first 64 characters of each shot's base64: the image as it crosses.
-    let images: Vec<String> = answers[3..]
+    let images: Vec<String> = answers[3..5]
         .iter()
         .map(|answer| {
             let (_, png) = answer
@@ -157,6 +161,10 @@ fn host_flow(name: &str, record: bool) {
     assert!(
         images.iter().all(|image| image.len() == 64),
         "each shot's answer holds an image"
+    );
+    assert!(
+        answers[5].starts_with(r#"{"findings":["#),
+        "the lint's answer holds its findings"
     );
 
     stop(&dir).expect("the session stops");

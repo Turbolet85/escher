@@ -10,6 +10,7 @@ use std::os::unix::fs::PermissionsExt;
 use dioxus_native_dom::SnapshotDiff;
 
 use super::*;
+use crate::lint::{Bounds, Defect, Finding, Reason};
 
 /// A fresh path under the workspace's `target/tmp`, named for the test: nothing is there.
 fn scratch(name: &str) -> PathBuf {
@@ -130,12 +131,29 @@ fn a_recording_reads_back_as_the_calls_it_kept() {
             }),
         ),
         (
+            call("lint", &[]),
+            false,
+            Ok(Outcome::Linted {
+                findings: vec![Finding {
+                    id: "go".to_string(),
+                    defect: Defect::ZeroSize,
+                    bounds: Bounds {
+                        x: 8.0,
+                        y: 8.0,
+                        width: 0.0,
+                        height: 0.0,
+                    },
+                    reason: Reason::ZeroSize,
+                }],
+            }),
+        ),
+        (
             call("click", &[("id", ArgValue::Number(7))]),
             false,
             not_found,
         ),
     ];
-    assert_eq!(calls.len(), 9);
+    assert_eq!(calls.len(), 10);
     for (row, (call, masked, answer)) in calls.iter().enumerate() {
         assert!(recording.record(call, *masked, answer), "row {row}");
     }
@@ -163,6 +181,9 @@ fn a_recording_reads_back_as_the_calls_it_kept() {
     assert_eq!(shot.as_object().map(Map::len), Some(2));
     assert!(shot["width"] == 2 && shot["height"] == 1);
     assert!(check.steps()[7].digest() == answer_digest(&calls[7].2));
+    // A lint's findings are kept whole.
+    assert_eq!(check.steps()[8].call().verb, "lint");
+    assert!(check.steps()[8].answer()["findings"][0]["defect"] == "zero-size");
     let text = String::from_utf8(bytes).expect("the check is text");
     assert!(text.starts_with("[\n{\"tool\":\"start\",\"arguments\":{\"app\":\"counter\"}},\n"));
     assert!(text.contains(
