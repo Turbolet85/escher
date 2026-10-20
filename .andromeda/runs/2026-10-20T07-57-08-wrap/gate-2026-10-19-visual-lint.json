@@ -1,0 +1,881 @@
+[
+{
+"tool": "gate",
+"v": "1.22",
+"sha8": "47c603a3",
+"ts": "2026-10-20T07:57:32Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-visual-lint",
+"--run-dir",
+".andromeda/runs/2026-10-20T07-57-08-wrap",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 537a7ced (gated: the parent of the oldest pre-CI commit ea3153f3 after the gated flip 165cfe44) · lists new 4 · modify 21 · derived 0 · record 1",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"recorded companion tests/blitz-tests/tests/stand_act_scroll.rs",
+"scope: clean — changed 22 · listed 21 · recorded 1 (companion 1 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 19"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "537a7ced8345f3f33fc85c542aec4ae641de83db",
+"base_why": "gated: the parent of the oldest pre-CI commit ea3153f3 after the gated flip 165cfe44",
+"counts": {
+"changed": 22,
+"listed": 21,
+"recorded": 1,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 1,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 19,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.22",
+"sha8": "47c603a3",
+"ts": "2026-10-20T08:01:06Z",
+"argv": [
+"census",
+"--comm",
+"escher-session",
+"--comm",
+"seven_guis_native",
+"--args",
+"vl-smoke",
+"--args",
+"agent-run",
+"--run-dir",
+".andromeda/runs/2026-10-20T07-57-08-wrap",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"census · ps · comm escher-session, seven_guis_native · args vl-smoke, agent-run · own tree excluded: 8",
+"census: none running"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"census": {
+"comm": [
+"escher-session",
+"seven_guis_native"
+],
+"args": [
+"vl-smoke",
+"agent-run"
+],
+"running": []
+}
+}
+},
+{
+"tool": "gate",
+"v": "1.22",
+"sha8": "47c603a3",
+"ts": "2026-10-20T08:09:26Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-visual-lint",
+"--run-dir",
+".andromeda/runs/2026-10-20T07-57-08-wrap",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 537a7ced (gated: the parent of the oldest pre-CI commit ea3153f3 after the gated flip 165cfe44) · lists new 4 · modify 21 · derived 0 · record 1",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"recorded companion tests/blitz-tests/tests/stand_act_scroll.rs",
+"scope: clean — changed 22 · listed 21 · recorded 1 (companion 1 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 32"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "537a7ced8345f3f33fc85c542aec4ae641de83db",
+"base_why": "gated: the parent of the oldest pre-CI commit ea3153f3 after the gated flip 165cfe44",
+"counts": {
+"changed": 22,
+"listed": 21,
+"recorded": 1,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 1,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 32,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.22",
+"sha8": "47c603a3",
+"ts": "2026-10-20T09:02:47Z",
+"argv": [
+"run",
+"--plan",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-20T07-57-08-wrap",
+"--marker",
+"2026-10-19-visual-lint",
+"--void",
+"20:block cleared — the founder's own word on F1 «Новая команда lint (Рекомендую)» (inputs#I7 · evidence/founder-word.md),21:block cleared — the founder's own word on F1 (inputs#I7 · evidence/founder-word.md),22:block cleared — the founder's own word on F1 (inputs#I7 · evidence/founder-word.md)"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-10-19-visual-lint · entries 22",
+"logs $TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 104 · unmapped 5",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L222-225: There is no live leg and no boot path to smoke: the lint runs in process over held instanc… (451 chars)",
+"  1 unit        green · exit 0 · 2.49s · 622 B → 1.log · cargo test -p blitz-tests --locked --test text_extent 2>&1",
+"  2 unit        green · exit 0 · 0.21s · 799 B → 2.log · cargo test -p escher-driver --locked lint 2>&1",
+"  3 integration green · exit 0 · 3.03s · 699 B → 3.log · cargo test -p blitz-tests --locked --test stand_lint 2>&1",
+"  4 build       green · exit 0 · 0.42s · 72 B → 4.log · cargo check --tests --locked --target x86_64-pc-windows-gn… (74 chars)",
+"  5 probe       green · exit 0 · 0.0s · 2 B → 5.log · cat packages/escher-driver/src/*.rs packages/escher-driver… (93 chars)",
+"  6 probe       green · exit 1 · 0.0s · 2 B → 6.log · cat packages/escher-driver/src/lint.rs packages/blitz-dom/… (272 chars)",
+"  7 probe       not run — defer (key): voided — the founder's F1 word (inputs#I… (114 chars) · git diff --name-only e97a7f41b10a318cfe9b7ba07f089c6c7944c… (296 chars)",
+"  8 probe       green · exit 1 · 0.01s · 2 B → 8.log · git ls-files --others --exclude-standard -- packages examp… (231 chars)",
+"  9 integration green · exit 0 · 57.1s · 137 B → 9.log · bash scripts/agent-run.sh boot",
+" 10 integration green · exit 0 · 80.72s · 25931 B → 10.log · bash scripts/agent-run.sh run stand",
+" 11 integration green · exit 0 · 0.43s · 606 B → 11.log · bash scripts/agent-run.sh run text_extent",
+" 12 integration green · exit 0 · 11.2s · 3882 B → 12.log · bash .github/scripts/ci-leg.sh a11y",
+" 13 unit        green · exit 0 · 161.13s · 112477 B → 13.log · bash .github/scripts/ci-leg.sh fast",
+" 14 probe       green · exit 0 · 0.0s · 42 B → 14.log · grep -E '^test result:' target/ci-logs/test.log | awk '{p+… (146 chars)",
+" 15 lint        green · exit 0 · 0.65s · 177 B → 15.log · bash .github/scripts/ci-leg.sh doc",
+" 16 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 17 probe       not run — leg operator (the letter drives it) · bash .github/scripts/ci-leg.sh fast && git diff --quiet &&… (122 chars)",
+" 18 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+" 19 probe       not run — leg operator (the letter drives it) · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\… (311 chars)",
+" 20 probe       green · exit 0 · 0.0s · 2 B → 20.log · void: block cleared — the founder's own word o… (117 chars) · grep -c -E '^\\| F1 \\| [1-4] \\| .+ \\| 2026-[0-9]{2}-[0-9]{2… (132 chars)",
+" 21 integration green · exit 0 · 4.1s · 787 B → 21.log · void: block cleared — the founder's own word o… (83 chars) · cargo test -p blitz-tests --locked --test stand_lint 2>&1",
+" 22 integration green · exit 0 · 3.46s · 1580 B → 22.log · void: block cleared — the founder's own word o… (83 chars) · cargo test -p seven_guis --locked --test cli_commands 2>&1",
+"entries 22 · green 17 · red 0 · recorded 0 · timeout 0 · not-run 5 · voided 3 (20,21,22)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-10-19-visual-lint",
+"plan": "./escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08",
+"delta": {
+"docs": [
+".andromeda/a11y-plan-amendments.md",
+".andromeda/a11y-plan.md",
+".andromeda/architecture-amendments.md",
+".andromeda/architecture.md",
+".andromeda/design-system.md",
+".andromeda/friction-log.ndjson",
+".andromeda/layout-templates-amendments.md",
+".andromeda/layout-templates.md",
+".andromeda/obs-plan-amendments.md",
+".andromeda/obs-plan.md",
+".andromeda/registries/contracts/test-plan/session-lifecycle.md",
+".andromeda/security-plan-amendments.md",
+".andromeda/security-plan.md",
+".andromeda/state.yaml",
+".andromeda/test-plan-amendments.md",
+".andromeda/test-plan.md",
+".claude/docs/a11y-summary.md",
+".claude/docs/commands.md",
+".claude/docs/design-summary.md",
+".claude/docs/obs-summary.md",
+".claude/docs/security-summary.md",
+".claude/docs/services/blitz-test-harness.md",
+".claude/docs/services/escher-driver.md",
+".claude/docs/services/escher-telemetry.md",
+".claude/docs/services/seven_guis.md",
+".claude/docs/session-learnings.md",
+".claude/docs/tests-summary.md",
+".claude/rules/a11y.md",
+".claude/rules/observability.md",
+".claude/rules/security.md",
+".claude/rules/testing.md",
+".claude/rules/verification-harness.md",
+".claude/session-handoff.md",
+"CLAUDE.md",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/evidence/ci.md",
+"escher-0.2.0/working-route.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/a11y-plan-contracts.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/a11y-plan-entry.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/addendum-1.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/answer-card.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/architecture-entry.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/cascade-2026-10-19-visual-lint-pre-pass.json",
+".andromeda/runs/2026-10-20T07-57-08-wrap/cascade-2026-10-19-visual-lint.json",
+".andromeda/runs/2026-10-20T07-57-08-wrap/cascade-dispositions.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/cascade-patterns.toml",
+".andromeda/runs/2026-10-20T07-57-08-wrap/citation-dispositions.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/cites-2026-10-19-visual-lint.json",
+".andromeda/runs/2026-10-20T07-57-08-wrap/classify-2026-10-19-visual-lint.json",
+".andromeda/runs/2026-10-20T07-57-08-wrap/curation.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/evolve-2026-10-19-visual-lint.json",
+".andromeda/runs/2026-10-20T07-57-08-wrap/fanout-a11y-plan.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/fanout-architecture.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/fanout-design-system.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/fanout-layout-templates.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/fanout-obs-plan.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/fanout-results.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/fanout-security-plan.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/fanout-test-plan.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/gate-2026-10-19-visual-lint.json",
+".andromeda/runs/2026-10-20T07-57-08-wrap/inputs-2026-10-19-visual-lint.json",
+".andromeda/runs/2026-10-20T07-57-08-wrap/layout-templates-entry.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-a11y-plan.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-architecture+layout-templates.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-architecture+obs-plan.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-architecture+security-plan+layout-templates+test-plan+obs-plan+a11y-plan.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-architecture+security-plan+test-plan.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-architecture+test-plan.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-architecture-1.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-architecture-2.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-delta-a11y-plan.diff",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-delta-architecture.diff",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-delta-layout-templates.diff",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-delta-obs-plan.diff",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-delta-security-plan.diff",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-delta-test-plan.diff",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-layout-templates.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-obs-plan.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-security-plan.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-test-plan-1.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/leaf-test-plan-2.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/new-text.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/obs-plan-contracts.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/obs-plan-entry.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/registry-2026-10-19-visual-lint.json",
+".andromeda/runs/2026-10-20T07-57-08-wrap/relay-1.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/relay-2.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/relay-3.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/relay-4.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/replace-1.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/replace-2.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/replace-3.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/replace-4.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/replace-5.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/replace-6.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/replace-7.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/replace-8.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/replace-9.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/report-patterns.toml",
+".andromeda/runs/2026-10-20T07-57-08-wrap/route-no-marker.json",
+".andromeda/runs/2026-10-20T07-57-08-wrap/security-plan-entry.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/splice-2026-10-19-visual-lint.json",
+".andromeda/runs/2026-10-20T07-57-08-wrap/test-plan-contracts.md",
+".andromeda/runs/2026-10-20T07-57-08-wrap/test-plan-entry.md",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/report-gated.md"
+]
+},
+"unmapped": [
+"escher-0.2.0/chunks/2026-10-19-visual-lint/inputs/andromeda-inputs.json",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/inputs/I10-relay-3.md.txt",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/inputs/I11-relay-4.md.txt",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/inputs/I8-relay-1.md.txt",
+"escher-0.2.0/chunks/2026-10-19-visual-lint/inputs/I9-relay-2.md.txt"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 109,
+"problem": null
+},
+"prose": [
+{
+"from": 222,
+"to": 225,
+"text": "There is no live leg and no boot path to smoke: the lint runs in process over held instances, and the windowed stand is not re-booted. The agent-run entries drive the project's own 5-command harness in process. The stand-repeat leg and the coverage leg run in CI and are read through the CI entry. Every count below is a prediction to be measured. The two `gated:` entries run only through `--void` once the founder's word on F1 is recorded (step 12)."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-tests --locked --test text_extent 2>&1",
+"run_sha8": "7300170c",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test result: ok. 3 passed; 0 failed"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08/1.log",
+"bytes": 622,
+"log_sha8": "6dc19935",
+"exit": 0,
+"seconds": 2.49,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"contains 'test result: ok. 3 passed; 0 failed' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked lint 2>&1",
+"run_sha8": "ed02be50",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test lint::tests::the_six_defects_are_named_in_order ... ok",
+"contains test lint::tests::findings_follow_document_order_then_the_defect_order ... ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08/2.log",
+"bytes": 799,
+"log_sha8": "55f0f9fd",
+"exit": 0,
+"seconds": 0.21,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"contains 'test lint::tests::the_six_defects_are_named_in_order ... ok' ✓",
+"contains 'test lint::tests::findings_follow_document_order_then_the_defect_order ... ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_lint 2>&1",
+"run_sha8": "d361bcae",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test the_planted_defects_are_named_each_by_its_id_and_reason ... ok",
+"contains test the_stand_at_boot_reads_no_finding ... ok",
+"contains test the_lint_reads_and_changes_nothing ... ok",
+"contains test the_rows_cut_by_the_list_agree_with_off_screen ... ok",
+"contains test an_app_with_no_font_is_refused_fonts_unavailable ... ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08/3.log",
+"bytes": 699,
+"log_sha8": "df595927",
+"exit": 0,
+"seconds": 3.03,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"contains 'test the_planted_defects_are_named_each_by_its_id_and_reason ... ok' ✓",
+"contains 'test the_stand_at_boot_reads_no_finding ... ok' ✓",
+"contains 'test the_lint_reads_and_changes_nothing ... ok' ✓",
+"contains 'test the_rows_cut_by_the_list_agree_with_off_screen ... ok' ✓",
+"contains 'test an_app_with_no_font_is_refused_fonts_unavailable ... ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "build",
+"run": "cargo check --tests --locked --target x86_64-pc-windows-gnu -p blitz-tests",
+"run_sha8": "b06327e6",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08/4.log",
+"bytes": 72,
+"log_sha8": "b2c020f2",
+"exit": 0,
+"seconds": 0.42,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "cat packages/escher-driver/src/*.rs packages/escher-driver/src/*/*.rs | grep -c 'info_span!' ",
+"run_sha8": "af5b4430",
+"expect": [
+"exit 0",
+"last line 2"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08/5.log",
+"bytes": 2,
+"log_sha8": "53c234e5",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '2' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "cat packages/escher-driver/src/lint.rs packages/blitz-dom/src/text_extent.rs tests/blitz-tests/tests/stand_lint.rs tests/blitz-tests/tests/text_extent.rs | grep -c -E 'println!|eprintln!|print!|dbg!|tracing|escher_telemetry|std::env|env!|UnixListener|TcpListener|std::fs' ",
+"run_sha8": "6512bc00",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08/6.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff --name-only e97a7f41b10a318cfe9b7ba07f089c6c7944c077 -- packages examples tests apps wpt .github scripts Cargo.toml Cargo.lock deny.toml | grep -c -v -x -E 'packages/(blitz-dom/src/(lib|text_extent)|escher-driver/src/(lib|lint))\\.rs|tests/blitz-tests/tests/(stand_lint|text_extent)\\.rs' ",
+"run_sha8": "28717b34",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — defer (key): voided — the founder's F1 word (inputs#I… (114 chars)"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "git ls-files --others --exclude-standard -- packages examples tests apps wpt .github scripts | grep -c -v -x -E 'packages/(blitz-dom/src/text_extent|escher-driver/src/lint)\\.rs|tests/blitz-tests/tests/(stand_lint|text_extent)\\.rs' ",
+"run_sha8": "b785ce1d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08/8.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "bash scripts/agent-run.sh boot",
+"run_sha8": "e8c28af5",
+"expect": [
+"exit 0",
+"contains \"outcome\": \"ready\""
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08/9.log",
+"bytes": 137,
+"log_sha8": "f2bfcc09",
+"exit": 0,
+"seconds": 57.1,
+"readings": [
+"exit 0 ✓",
+"contains '\"outcome\": \"ready\"' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run stand",
+"run_sha8": "712f53cb",
+"expect": [
+"exit 0",
+"contains \"selection\": \"stand\", \"passed\": 192, \"failed\": 0, \"ignored\": 7"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08/10.log",
+"bytes": 25931,
+"log_sha8": "ce66eccf",
+"exit": 0,
+"seconds": 80.72,
+"readings": [
+"exit 0 ✓",
+"contains '\"selection\": \"stand\", \"passed\": 192, \"failed\": 0, \"ignored\": 7' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "bash scripts/agent-run.sh run text_extent",
+"run_sha8": "f04cc1b0",
+"expect": [
+"exit 0",
+"contains \"selection\": \"text_extent\", \"passed\": 3, \"failed\": 0, \"ignored\": 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08/11.log",
+"bytes": 606,
+"log_sha8": "2dec4dbe",
+"exit": 0,
+"seconds": 0.43,
+"readings": [
+"exit 0 ✓",
+"contains '\"selection\": \"text_extent\", \"passed\": 3, \"failed\": 0, \"ignored\": 0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08/12.log",
+"bytes": 3882,
+"log_sha8": "52e9a653",
+"exit": 0,
+"seconds": 11.2,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "unit",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08/13.log",
+"bytes": 112477,
+"log_sha8": "fdae6acc",
+"exit": 0,
+"seconds": 161.13,
+"readings": [
+"exit 0 ✓",
+"artifact fresh (target/ci-logs/test.log)"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "grep -E '^test result:' target/ci-logs/test.log | awk '{p+=$4; f+=$6; i+=$8; n++} END {print \"lines \" n \" passed \" p \" failed \" f \" ignored \" i}' ",
+"run_sha8": "2ec38d01",
+"expect": [
+"exit 0",
+"contains lines 204 passed 1087 failed 0 ignored 12"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08/14.log",
+"bytes": 42,
+"log_sha8": "8b6f9b0c",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"contains 'lines 204 passed 1087 failed 0 ignored 12' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08/15.log",
+"bytes": 177,
+"log_sha8": "9ff5e0c8",
+"exit": 0,
+"seconds": 0.65,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh fast && git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.2.0",
+"run_sha8": "ee10eab9",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\t' '$3 ~ /test result:/ {n[$1]++; if (match($3, /([0-9]+) passed; ([0-9]+) failed; ([0-9]+) ignored/, m)) {p[$1]+=m[1]; f[$1]+=m[2]; i[$1]+=m[3]}} END {for (j in n) print j \" · \" n[j] \" · \" p[j] \" · \" f[j] \" · \" i[j]}' ",
+"run_sha8": "06d4f637",
+"expect": [],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 20,
+"role": "probe",
+"run": "grep -c -E '^\\| F1 \\| [1-4] \\| .+ \\| 2026-[0-9]{2}-[0-9]{2} \\|$' escher-0.2.0/chunks/2026-10-19-visual-lint/evidence/founder-word.md",
+"run_sha8": "41a06195",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08/20.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green",
+"void": "block cleared — the founder's own word on F1 «Новая команда lint (Рекомендую)» (inputs#I7 · evidence/founder-word.md)",
+"defer": "gated: the founder's own word on F1 of .andromeda/runs/2026-10-19T23-47-25-phase/founder-forks.md, the lint's carriage, answered by the operator as delegate «In process only (Most conservative)», PROVISIONAL (inputs#I2)"
+},
+{
+"n": 21,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_lint 2>&1",
+"run_sha8": "d361bcae",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test the_lint_verb_answers_what_the_reader_reads ... ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08/21.log",
+"bytes": 787,
+"log_sha8": "cce90c4c",
+"exit": 0,
+"seconds": 4.1,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"contains 'test the_lint_verb_answers_what_the_reader_reads ... ok' ✓"
+],
+"survivors": [],
+"outcome": "green",
+"void": "block cleared — the founder's own word on F1 (inputs#I7 · evidence/founder-word.md)",
+"defer": "gated: the founder's own word on F1 of .andromeda/runs/2026-10-19T23-47-25-phase/founder-forks.md, the lint's carriage, answered by the operator as delegate «In process only (Most conservative)», PROVISIONAL (inputs#I2)"
+},
+{
+"n": 22,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test cli_commands 2>&1",
+"run_sha8": "bf35f42c",
+"expect": [
+"exit 0",
+"lacks FAILED",
+"contains test lint_answers_one_line_of_findings ... ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-10-19-visual-lint/wrap-2026-10-20T07-57-08/22.log",
+"bytes": 1580,
+"log_sha8": "9febc5d6",
+"exit": 0,
+"seconds": 3.46,
+"readings": [
+"exit 0 ✓",
+"lacks 'FAILED' ✓",
+"contains 'test lint_answers_one_line_of_findings ... ok' ✓"
+],
+"survivors": [],
+"outcome": "green",
+"void": "block cleared — the founder's own word on F1 (inputs#I7 · evidence/founder-word.md)",
+"defer": "gated: the founder's own word on F1 of .andromeda/runs/2026-10-19T23-47-25-phase/founder-forks.md, the lint's carriage, answered by the operator as delegate «In process only (Most conservative)», PROVISIONAL (inputs#I2)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.22",
+"sha8": "47c603a3",
+"ts": "2026-10-20T09:03:01Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-10-20T07-57-08-wrap",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base 537a7ced (gated: the parent of the oldest pre-CI commit ea3153f3 after the gated flip 165cfe44)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 86 (runs 76 · evidence 4 · inputs 6) · trails 17 not read · copies 5 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 76,
+"evidence": 4,
+"inputs": 6,
+"trails": 17,
+"copies": 5,
+"kept": 0,
+"binary": 0,
+"in_root": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.22",
+"sha8": "47c603a3",
+"ts": "2026-10-20T09:03:01Z",
+"argv": [
+"scope",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-visual-lint",
+"--run-dir",
+".andromeda/runs/2026-10-20T07-57-08-wrap",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 537a7ced (gated: the parent of the oldest pre-CI commit ea3153f3 after the gated flip 165cfe44) · lists new 4 · modify 21 · derived 0 · record 1",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"recorded companion tests/blitz-tests/tests/stand_act_scroll.rs",
+"scope: clean — changed 22 · listed 21 · recorded 1 (companion 1 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 125"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "537a7ced8345f3f33fc85c542aec4ae641de83db",
+"base_why": "gated: the parent of the oldest pre-CI commit ea3153f3 after the gated flip 165cfe44",
+"counts": {
+"changed": 22,
+"listed": 21,
+"recorded": 1,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 1,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 125,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]

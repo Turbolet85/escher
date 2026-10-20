@@ -1,0 +1,1 @@
+/andromeda-wrap-session resume from report-gated.md in .andromeda/runs/2026-10-20T07-57-08-wrap/. The lint carriage is the founder's own word (inputs#I7, «Новая команда lint (Рекомендую)»), relayed by the overseer from his dialog in the overseer session. If P2 stops on a card citing it, I bring the card to him.

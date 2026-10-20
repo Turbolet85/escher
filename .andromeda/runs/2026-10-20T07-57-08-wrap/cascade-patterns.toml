@@ -1,0 +1,44 @@
+# Cascade step 2 — the old wordings and the retired mechanism of this pass's amendments.
+[[pattern]]
+id = 'verbcount'
+regex = '(eleven|11) (verbs|tools|words|`mcp__escher)|one of its eleven|the eleven verbs|ten of `VERBS`|`VERBS` (stays|staying) eleven|eleven `mcp__escher'
+ignore_case = true
+
+[[pattern]]
+id = 'instcount'
+regex = 'seven instance|seven asked of the held instance|its seven instance-level'
+ignore_case = true
+
+[[pattern]]
+id = 'inprocess'
+regex = 'in process only|in-process `Session::lint`|in-process visual lint|in-process lint|no verb carries|no verb, `Command`|never handed to `Session::run`'
+ignore_case = true
+
+[[pattern]]
+id = 'crossesnone'
+regex = 'crosses nothing'
+ignore_case = true
+
+[[pattern]]
+id = 'waitnone'
+regex = '`snapshot` and `screenshot`(, which run no step,)? (wait|run no step)'
+
+[[pattern]]
+id = 'fontsalone'
+regex = '`screenshot` alone among the verbs'
+
+[[pattern]]
+id = 'describecounts'
+regex = '11 verbs, 13 node keys|9 causes|\[11, 13, 12, 3, 8, 4, 15\]'
+
+[[pattern]]
+id = 'oldtallies'
+regex = '190 · 0 · 7|204 · 1083|185 · 1080|185 · 1038|165 · 660|32 calls per mode'
+
+[[pattern]]
+id = 'oldtestcounts'
+regex = '`stand_lint` 5|`stand_mcp_tools` \(?5|`mcp_server` \(?5|mcp_server.rs` \(5|`cli_commands` \(?12|cli_commands.rs` \(12'
+
+[[pattern]]
+id = 'lintverb'
+regex = '`lint` verb|Outcome::Linted|Command::Lint'

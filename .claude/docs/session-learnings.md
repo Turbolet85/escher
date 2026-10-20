@@ -8,6 +8,17 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-20 — A case-blind sweep pattern turns a code token into its plain-word homonym
+A site-sweep pattern written `ignore_case = true` that holds a code token alongside its prose wording (`\bVERBS\b`
+beside «eleven verbs») matches every plain word the token spells, so a table-name alternative becomes a sweep of
+every mention of the word, and its standing figure counts rows that never name the table. Put a code token in a
+case-sensitive pattern of its own, and keep `ignore_case` for the prose wording alone.
+
+Where it applies: P1's site sweep and P2's cascade sweep, whenever a moved fact is named both by an identifier and by
+an ordinary word.
+
+---
+
 ## 2026-10-20 — A write-set probe must allow the files a new enum variant's exhaustive matches live in
 A plan gate that asserts "no tracked file changed outside the write set" (a `git diff --name-only` filtered by an
 alternation of allowed paths) reads red when a step adds an enum variant: every exhaustive `match` on that enum gains

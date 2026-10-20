@@ -1,0 +1,99 @@
+[
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "b5232064",
+"ts": "2026-10-20T08:57:27Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.2.0",
+"--chunk",
+"2026-10-19-visual-lint",
+"--run-dir",
+".andromeda/runs/2026-10-20T07-57-08-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-19-visual-lint: 1 · to flip 1 · already verified 0 · below 0",
+"flipped v020-05 → verified — On `tests/blitz-tests/tests/stand_lint.rs`'s planted page, which holds the six d… (1626 chars)",
+"dry-run: nothing written",
+"version: verified 8/11"
+],
+"stderr": null,
+"wrote": [],
+"before": [
+{
+"id": "v020-05",
+"chunk": "2026-10-19-visual-lint",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_lint.rs::the_planted_defects_are_named_each_by_its_id_and_reason + ::the_stand_at_boot_rea… (643 chars)",
+"acceptance": "On `tests/blitz-tests/tests/stand_lint.rs`'s planted page, which holds the six defects (two sibling boxes that overlap; … (1626 chars)",
+"notes_chars": 1491
+}
+],
+"after": [
+{
+"id": "v020-05",
+"chunk": "2026-10-19-visual-lint",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_lint.rs::the_planted_defects_are_named_each_by_its_id_and_reason + ::the_stand_at_boot_rea… (643 chars)",
+"acceptance": "On `tests/blitz-tests/tests/stand_lint.rs`'s planted page, which holds the six defects (two sibling boxes that overlap; … (1626 chars)",
+"notes_chars": 1491
+}
+]
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "b5232064",
+"ts": "2026-10-20T09:02:57Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.2.0",
+"--chunk",
+"2026-10-19-visual-lint",
+"--run-dir",
+".andromeda/runs/2026-10-20T07-57-08-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-19-visual-lint: 1 · to flip 1 · already verified 0 · below 0",
+"flipped v020-05 → verified — On `tests/blitz-tests/tests/stand_lint.rs`'s planted page, which holds the six d… (1626 chars)",
+"wrote escher-0.2.0/verification-matrix.json · 1 entry changed",
+"version: verified 8/11"
+],
+"stderr": null,
+"wrote": [
+"escher-0.2.0/verification-matrix.json"
+],
+"before": [
+{
+"id": "v020-05",
+"chunk": "2026-10-19-visual-lint",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_lint.rs::the_planted_defects_are_named_each_by_its_id_and_reason + ::the_stand_at_boot_rea… (643 chars)",
+"acceptance": "On `tests/blitz-tests/tests/stand_lint.rs`'s planted page, which holds the six defects (two sibling boxes that overlap; … (1626 chars)",
+"notes_chars": 1491
+}
+],
+"after": [
+{
+"id": "v020-05",
+"chunk": "2026-10-19-visual-lint",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_lint.rs::the_planted_defects_are_named_each_by_its_id_and_reason + ::the_stand_at_boot_rea… (643 chars)",
+"acceptance": "On `tests/blitz-tests/tests/stand_lint.rs`'s planted page, which holds the six defects (two sibling boxes that overlap; … (1626 chars)",
+"notes_chars": 1491
+}
+]
+}
+]

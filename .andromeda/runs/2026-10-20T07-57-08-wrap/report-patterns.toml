@@ -1,0 +1,73 @@
+[[pattern]]
+id = 'verbs12'
+regex = '''eleven (verbs|tools|verb names|instance|MCP)|VERBS` staying eleven|staying eleven|the eleven|twelve verbs|twelfth verb|\bVERBS\b'''
+ignore_case = true
+
+[[pattern]]
+id = 'instance8'
+regex = '''seven (instance|verbs asked|of them)|seven are asked|seven instance verbs|instance verbs.{0,12}seven|eighth instance|eight instance verbs|Level::Instance'''
+ignore_case = true
+
+[[pattern]]
+id = 'lintverb'
+regex = '''Session::lint|in process only|`lint` verb|lint verb|Outcome::Linted|Command::Lint|\bLINT\b'''
+ignore_case = false
+
+[[pattern]]
+id = 'outcome'
+regex = '''Outcome::Shot|Outcome` variant|`Outcome` holds|Outcome variants|five variants|six variants'''
+ignore_case = false
+
+[[pattern]]
+id = 'runstand'
+regex = '''190 · 0 · 7|192 · 0 · 7|passed 190|passed 192|190 passed|192 passed'''
+
+[[pattern]]
+id = 'tally'
+regex = '''1083|1087'''
+
+[[pattern]]
+id = 'citallies'
+regex = '''185 · 1080|185 · 1084|185 · 1038|185 · 1041|165 · 660|165 · 672|CI#39371468367|CI#39387656399'''
+
+[[pattern]]
+id = 'renamed'
+regex = '''the_eleven_verbs_are_named|the_listing_is_the_eleven_verbs|the_twelve_verbs|the_listing_is_the_twelve'''
+
+[[pattern]]
+id = 'spancalls'
+regex = '''32 calls|34 calls|stand_act_spans'''
+
+[[pattern]]
+id = 'newtests'
+regex = '''lint_answers_one_line_of_findings|a_lint_tool_call|the_lint_verb_answers|\blinted\b'''
+
+[[pattern]]
+id = 'clicmds'
+regex = '''cli_commands'''
+
+[[pattern]]
+id = 'mcpsrv'
+regex = '''\bmcp_server\b|stand_mcp_tools'''
+
+[[pattern]]
+id = 'standlint'
+regex = '''stand_lint'''
+
+[[pattern]]
+id = 'coldagent'
+regex = '''cold-agent\.sh:48|test_cold_agent\.py:23|mcp__escher'''
+
+[[pattern]]
+id = 'logflows'
+regex = '''host_log|mcp_log'''
+
+[[pattern]]
+id = 'title'
+fixed = 'Visual lint'
+ignore_case = true
+
+[[pattern]]
+id = 'owner'
+regex = '''owned by a (route entry|CARRY)'''
+ignore_case = true

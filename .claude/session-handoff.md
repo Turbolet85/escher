@@ -1,49 +1,34 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-20T07:02:41Z
+**Last Updated:** 2026-10-20T08:56:50Z
 **Branch:** build/escher-0.2.0 · 0 ahead of origin/build/escher-0.2.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-20-select-by-id — a select driven by id, read in the snapshot
+**Last Commit:** 2026-10-19-visual-lint — gated acceptance — the `lint` verb on every carrier, recorded
 
 ## Position
-- Done: 2026-10-20-select-by-id. A single-choice `select` is now an engine control in every document: its keys and
-  typeahead, click focus, `CHECKED` choice, options in the tree, the `change` event and the labelable `<label>`. The
-  driver reads it in the snapshot and drives it with `type`. `stand_act_select` 5 and `select_interaction` 7 pass in
-  both layout modes, and CI#39371468367 is green 17/17. v020-08 is verified.
-- gated 2026-10-19-visual-lint: premise cleared — the founder's own word on F1, «Новая команда lint (Рекомендую)»,
-  relayed by the overseer on 2026-10-20 (escher-0.2.0/chunks/2026-10-20-select-by-id/inputs/I3-morning-founder-answers-2026-10-20.md.txt).
-  Its gated part runs next: /andromeda-implement in gated mode, then its gated wrap. That chunk snaps the word as its
-  own input.
-- Next after that: «Large screen in parts» (Epoch 4's last markerless entry), by `/andromeda-phase`.
+- Done: 2026-10-19-visual-lint (gated wrap). `lint` is the twelfth verb and the eighth instance verb. It runs on
+  `Session::run`, the socket, the command line, MCP and `help`, and is kept in a recorded check. It answers
+  `{"findings":[…]}` (ids, closed words and numbers), runs no step and adds no span field.
+  - This is the founder's own word on F1/F2: «Новая команда lint (Рекомендую)» · «Без поля (Рекомендую)».
+  - CI#39387656399 is green 17/17. v020-05 is verified. Epoch 4 has one markerless entry left.
+- Next: «Large screen in parts» (Epoch 4's last markerless entry), by `/andromeda-phase`.
 
 ## Work done
-- Resumed from P1 in `.andromeda/runs/2026-10-20T05-49-12-wrap/`; P2–P7 ran in this window.
-- One stop mid-apply: the shell failed EDQUOT on the temp dir. The operator measured the space free and directed a
-  retry, which ran.
+- Resumed the gated wrap from P1 in `.andromeda/runs/2026-10-20T07-57-08-wrap/`; P2–P7 ran in this window. The
+  resume's operator word is snapped as inputs#I10, cited in report-gated.md's addendum.
 
 ## Drift resolved
-- 78 amendments over the seven masters and one key file (`session-lifecycle`): architecture 20, security-plan 8,
-  design-system 1, layout-templates 1, test-plan 26, obs-plan 7, a11y-plan 15. 0 rejected. 85 leaf findings were
-  applied over 13 groups.
-- Citations: 455 re-pointed · 10 changed · 28 stretched.
-- One Validate halt resolved:
-  - Q1 answer card: the select model (security-plan's new `select` row, a boundary widening for every document) is
-    ratified by the founder's own word, F1–F4 «Утвердить все четыре (Рекомендую)». His confirm of the card,
-    «Подтвердить все (Рекомендую)», came by dialog, relayed by the overseer (inputs I3, I4).
-  - Q2: every standing PROVISIONAL mark dropped now, before the Epoch 4 close («Drop all now», the overseer, recorded
-    in I4). This covers the `:focus-within` take, visual lint F2 with «Record as built», and F1. «In process only»
-    stands as built for the lint, and its `lint` verb is owed to «Visual lint»'s gated part. No PROVISIONAL mark
-    stands in a master, key file or leaf.
-- Route: one CARRY on «Upstream sync ahead of polish and ship» (the select model's merge surface). One residual for
-  the select's stated limits (`multiple`, `optgroup`, popup, option click).
+- 80 amendments over six masters and one key file (`session-lifecycle`): architecture 21, security-plan 12,
+  layout-templates 3, test-plan 35, obs-plan 7, a11y-plan 2; design-system 0. 0 rejected.
+- 100 of 101 leaf findings applied over 13 groups. One declined: the escher-driver doc's «three … measured limits»
+  stands.
+- Citations: 172 re-pointed · 0 changed · 60 stretched.
+- One Validate halt: the answer card. 34 proposals lie inside the founder's F1/F2 answers (inputs#I7). His own confirm,
+  «Подтвердить все (Рекомендую)», came by dialog in the overseer session, relayed by the overseer (inputs#I11).
+- Route: one CARRY on «Capability statement». README.md still says the MCP role gives eleven driver commands as tools.
 
 ## Notes
-- Deferred learnings — 2 × recurrence-despite-learning, each fault reproduced past its curated entry:
-  - «2026-10-19 — An in-line edit beside a provenance parenthesis reads as new provenance». It hit P2's test-plan and
-    key-file apply: 22 classify rows, fixed by dropping the history markers.
-  - «2026-10-20 — A count stated in more than one form needs every form in its sweep pattern». P1's sweep missed
-    «twenty-seven checks» at obs-plan §3.
-- Last failed command: none outstanding. The EDQUOT stop cleared on retry; its cause was not identified.
-
-## Session End Status
-Completed normally at 2026-10-20 09:10:38
+- Deferred learnings — 1 × recurrence-despite-learning: «2026-10-19 — An in-line edit beside a provenance parenthesis
+  reads as new provenance». It hit P2's architecture :196 and test-plan :22 count edits, fixed by dropping two
+  anchored markers and moving one insertion.
+- Last failed command: none.
