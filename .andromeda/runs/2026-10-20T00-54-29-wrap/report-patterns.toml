@@ -1,0 +1,73 @@
+[[pattern]]
+id = 'title'
+fixed = 'Visual lint'
+ignore_case = true
+
+[[pattern]]
+id = 'owner-generic'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true
+
+[[pattern]]
+id = 'stand-count'
+regex = '178 · 0 · 7|178 passed|\brun stand\b'
+
+[[pattern]]
+id = 'stand-files'
+regex = '\b44 (`?stand_|files|stand files)|over 44\b'
+
+[[pattern]]
+id = 'bt-files'
+regex = '\b13[78] (`?\.rs`? files|targets|test targets|files)'
+
+[[pattern]]
+id = 'ws-tally'
+regex = '199 lines|1045 passed|199 · 1045'
+
+[[pattern]]
+id = 'ci-tally'
+regex = '180 · 1042|180 · 1000|156 · 624|[Pp]er-OS test tallies'
+
+[[pattern]]
+id = 'fixtures-readers'
+regex = '\b19 checks|18 `?stand_\*`? (files|readers)|fixtures::hold|\bfixtures/mod\.rs'
+
+[[pattern]]
+id = 'session-readers'
+regex = '\b25 readers|session_common/mod\.rs'
+
+[[pattern]]
+id = 'text-contrast'
+regex = '\btext_contrast\b'
+
+[[pattern]]
+id = 'visible-region'
+regex = '\bvisible_region\b'
+
+[[pattern]]
+id = 'contain-paint'
+regex = 'contain: paint|`contain`'
+
+[[pattern]]
+id = 'text-extent'
+regex = '\btext_extent\b|\bTextExtent\b|text extent'
+
+[[pattern]]
+id = 'lint'
+regex = 'Session::lint|\blint\b'
+
+[[pattern]]
+id = 'driver-session'
+fixed = 'Driver session'
+
+[[pattern]]
+id = 'spans'
+regex = 'info_span!|two spans|`tool_call`'
+
+[[pattern]]
+id = 'at-boot'
+regex = 'stand at boot'
+
+[[pattern]]
+id = 'cov-driver'
+regex = '4266/4350|98\.07'

@@ -1,0 +1,403 @@
+[
+{
+"tool": "inputs",
+"v": "1.3",
+"sha8": "28fe9dcf",
+"ts": "2026-10-20T00:54:59Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-visual-lint",
+"--message-file",
+".andromeda/runs/2026-10-20T00-54-29-wrap/relay-1.md",
+"--origin",
+"the operator, in this session, 2026-10-20T00:54Z",
+"--kind",
+"relay",
+"--why",
+"the operator directed the operator pass (entries 16-19 in plan order, the pre-CI commit subject, evidence/ci.md) and this wrap stopping after P1",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-10-20T00-54-29-wrap",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I4 · copy message · message: the operator, in this session, 2026-10-20T00:54Z",
+"cite: inputs#I4"
+],
+"stderr": null,
+"wrote": [
+"inputs/I4-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I4",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, in this session, 2026-10-20T00:54Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "3fc21fa69402aab27b995c42eb0c821c50970f4e4e39715512c358282655143f",
+"copy": "I4-relay-1.md.txt",
+"link": false,
+"read_at": "2026-10-20T00:54:59Z",
+"step": "wrap",
+"why": "the operator directed the operator pass (entries 16-19 in plan order, the pre-CI commit subject, evidence/ci.md) and this wrap stopping after P1"
+}
+},
+{
+"tool": "inputs",
+"v": "1.3",
+"sha8": "28fe9dcf",
+"ts": "2026-10-20T00:55:05Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-visual-lint",
+"--run-dir",
+".andromeda/runs/2026-10-20T00-54-29-wrap",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, with /andromeda-phase, 2026-10-19T23:47Z",
+"I1 cited scope.md:30 · scope.md:47 · research.md:7 · plan.md:448",
+"I2 n/a — a message has no live source · copy message · message: the operator, by question dialog at phase P4, 2026-10-20T00:00Z",
+"I2 cited scope.md:57 · research.md:89 · plan.md:19 · plan.md:23 · plan.md:26 · plan.md:178 · plan.md:265 (in fence) · plan.md:281 (in fence) · plan.md:377 (in fence) · plan.md:386 (in fence) · plan.md:395 (in fence) · plan.md:415 · plan.md:448 · plan.md:452",
+"I3 n/a — a message has no live source · copy message · message: the operator, at phase P5, 2026-10-20T00:12Z",
+"I3 UNCITED",
+"I4 n/a — a message has no live source · copy message · message: the operator, in this session, 2026-10-20T00:54Z",
+"I4 UNCITED",
+"inputs: 4 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 4 · uncited 2 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 4,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 4
+},
+"uncited": 2,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.3",
+"sha8": "28fe9dcf",
+"ts": "2026-10-20T00:59:12Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-visual-lint",
+"--run-dir",
+".andromeda/runs/2026-10-20T00-54-29-wrap",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, with /andromeda-phase, 2026-10-19T23:47Z",
+"I1 cited scope.md:30 · scope.md:47 · research.md:7 · plan.md:448",
+"I2 n/a — a message has no live source · copy message · message: the operator, by question dialog at phase P4, 2026-10-20T00:00Z",
+"I2 cited scope.md:57 · research.md:89 · plan.md:19 · plan.md:23 · plan.md:26 · plan.md:178 · plan.md:265 (in fence) · plan.md:281 (in fence) · plan.md:377 (in fence) · plan.md:386 (in fence) · plan.md:395 (in fence) · plan.md:415 · plan.md:448 · plan.md:452 · report.md:156",
+"I3 n/a — a message has no live source · copy message · message: the operator, at phase P5, 2026-10-20T00:12Z",
+"I3 cited report.md:128 · report.md:157 · report.md:236",
+"I4 n/a — a message has no live source · copy message · message: the operator, in this session, 2026-10-20T00:54Z",
+"I4 cited report.md:136 · report.md:229",
+"inputs: 4 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 4 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 4,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 4
+},
+"uncited": 0,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.3",
+"sha8": "28fe9dcf",
+"ts": "2026-10-20T01:01:16Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-visual-lint",
+"--message-file",
+".andromeda/runs/2026-10-20T00-54-29-wrap/relay-2.md",
+"--kind",
+"relay",
+"--origin",
+"the operator, with /andromeda-wrap-session resuming, 2026-10-20T01:00Z",
+"--why",
+"the operator rules Deviation 3 (overlap read over the visible parts of boxes) and directs that a P2 escalation comes to him by dialog, his answer the delegate's, PROVISIONAL, listed for the founder's Epoch 4 batch",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-10-20T00-54-29-wrap",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I5 · copy message · message: the operator, with /andromeda-wrap-session resuming, 2026-10-20T01:00Z",
+"cite: inputs#I5"
+],
+"stderr": null,
+"wrote": [
+"inputs/I5-relay-2.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I5",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, with /andromeda-wrap-session resuming, 2026-10-20T01:00Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "ba10596478f02c771c576c760233e1188fa4ff41332a55c6720b79232abb97b6",
+"copy": "I5-relay-2.md.txt",
+"link": false,
+"read_at": "2026-10-20T01:01:16Z",
+"step": "wrap",
+"why": "the operator rules Deviation 3 (overlap read over the visible parts of boxes) and directs that a P2 escalation comes to him by dialog, his answer the delegate's, PROVISIONAL, listed for the founder's Epoch 4 batch"
+}
+},
+{
+"tool": "inputs",
+"v": "1.3",
+"sha8": "28fe9dcf",
+"ts": "2026-10-20T01:01:24Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-visual-lint",
+"--run-dir",
+".andromeda/runs/2026-10-20T00-54-29-wrap",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, with /andromeda-phase, 2026-10-19T23:47Z",
+"I1 cited scope.md:30 · scope.md:47 · research.md:7 · plan.md:448",
+"I2 n/a — a message has no live source · copy message · message: the operator, by question dialog at phase P4, 2026-10-20T00:00Z",
+"I2 cited scope.md:57 · research.md:89 · plan.md:19 · plan.md:23 · plan.md:26 · plan.md:178 · plan.md:265 (in fence) · plan.md:281 (in fence) · plan.md:377 (in fence) · plan.md:386 (in fence) · plan.md:395 (in fence) · plan.md:415 · plan.md:448 · plan.md:452 · report.md:156",
+"I3 n/a — a message has no live source · copy message · message: the operator, at phase P5, 2026-10-20T00:12Z",
+"I3 cited report.md:128 · report.md:157 · report.md:236",
+"I4 n/a — a message has no live source · copy message · message: the operator, in this session, 2026-10-20T00:54Z",
+"I4 cited report.md:136 · report.md:229",
+"I5 n/a — a message has no live source · copy message · message: the operator, with /andromeda-wrap-session resuming, 2026-10-20T01:00Z",
+"I5 UNCITED",
+"inputs: 5 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 5 · uncited 1 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 5,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 5
+},
+"uncited": 1,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.3",
+"sha8": "28fe9dcf",
+"ts": "2026-10-20T01:01:35Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-visual-lint",
+"--run-dir",
+".andromeda/runs/2026-10-20T00-54-29-wrap",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, with /andromeda-phase, 2026-10-19T23:47Z",
+"I1 cited scope.md:30 · scope.md:47 · research.md:7 · plan.md:448",
+"I2 n/a — a message has no live source · copy message · message: the operator, by question dialog at phase P4, 2026-10-20T00:00Z",
+"I2 cited scope.md:57 · research.md:89 · plan.md:19 · plan.md:23 · plan.md:26 · plan.md:178 · plan.md:265 (in fence) · plan.md:281 (in fence) · plan.md:377 (in fence) · plan.md:386 (in fence) · plan.md:395 (in fence) · plan.md:415 · plan.md:448 · plan.md:452 · report.md:156",
+"I3 n/a — a message has no live source · copy message · message: the operator, at phase P5, 2026-10-20T00:12Z",
+"I3 cited report.md:128 · report.md:157 · report.md:236",
+"I4 n/a — a message has no live source · copy message · message: the operator, in this session, 2026-10-20T00:54Z",
+"I4 cited report.md:136 · report.md:229",
+"I5 n/a — a message has no live source · copy message · message: the operator, with /andromeda-wrap-session resuming, 2026-10-20T01:00Z",
+"I5 UNCITED",
+"inputs: 5 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 5 · uncited 1 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 5,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 5
+},
+"uncited": 1,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.3",
+"sha8": "28fe9dcf",
+"ts": "2026-10-20T01:01:40Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-visual-lint",
+"--run-dir",
+".andromeda/runs/2026-10-20T00-54-29-wrap",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, with /andromeda-phase, 2026-10-19T23:47Z",
+"I1 cited scope.md:30 · scope.md:47 · research.md:7 · plan.md:448",
+"I2 n/a — a message has no live source · copy message · message: the operator, by question dialog at phase P4, 2026-10-20T00:00Z",
+"I2 cited scope.md:57 · research.md:89 · plan.md:19 · plan.md:23 · plan.md:26 · plan.md:178 · plan.md:265 (in fence) · plan.md:281 (in fence) · plan.md:377 (in fence) · plan.md:386 (in fence) · plan.md:395 (in fence) · plan.md:415 · plan.md:448 · plan.md:452 · report.md:156",
+"I3 n/a — a message has no live source · copy message · message: the operator, at phase P5, 2026-10-20T00:12Z",
+"I3 cited report.md:128 · report.md:157 · report.md:236",
+"I4 n/a — a message has no live source · copy message · message: the operator, in this session, 2026-10-20T00:54Z",
+"I4 cited report.md:136 · report.md:229",
+"I5 n/a — a message has no live source · copy message · message: the operator, with /andromeda-wrap-session resuming, 2026-10-20T01:00Z",
+"I5 cited report.md:304",
+"inputs: 5 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 5 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 5,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 5
+},
+"uncited": 0,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.3",
+"sha8": "28fe9dcf",
+"ts": "2026-10-20T01:09:21Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-19-visual-lint",
+"--message-file",
+".andromeda/runs/2026-10-20T00-54-29-wrap/escalation-1.md",
+"--kind",
+"relay",
+"--origin",
+"the operator, by question dialog at wrap P2, 2026-10-20T01:08Z",
+"--why",
+"the operator answers the P2 lint escalation «Record as built (Recommended)» as delegate, PROVISIONAL for the founder's Epoch 4 batch",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-10-20T00-54-29-wrap",
+"--marker",
+"2026-10-19-visual-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I6 · copy message · message: the operator, by question dialog at wrap P2, 2026-10-20T01:08Z",
+"cite: inputs#I6"
+],
+"stderr": null,
+"wrote": [
+"inputs/I6-escalation-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I6",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, by question dialog at wrap P2, 2026-10-20T01:08Z",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "497cf17d1e146f053434c1c6e2b3e4f54e4db43d01223d944d1c87c7951437f9",
+"copy": "I6-escalation-1.md.txt",
+"link": false,
+"read_at": "2026-10-20T01:09:21Z",
+"step": "wrap",
+"why": "the operator answers the P2 lint escalation «Record as built (Recommended)» as delegate, PROVISIONAL for the founder's Epoch 4 batch"
+}
+}
+]

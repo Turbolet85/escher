@@ -8,6 +8,20 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-20 — escher-driver names no engine type, so a driver type cannot hold one
+escher-driver depends on blitz-test-harness, dioxus-native-dom, `tracing`, `serde_json` and `png` and on neither blitz-dom nor stylo, so a type it exports cannot carry blitz-dom's `BoundingRect` or read stylo's `Contain` or `Overflow` without a manifest and lockfile change. A plan that types a driver field with an engine type, or reads a computed style as an engine enum inside the driver, should first read the crate's `[dependencies]`. If the manifest is out of scope, the driver holds its own rectangle and reads computed styles through `BaseDocument::resolved_style_value` as closed keyword sets.
+
+Where it applies: phase planning and implement steps that add a public escher-driver type built from engine data.
+
+---
+
+## 2026-10-20 — A count stated in more than one form needs every form in its sweep pattern
+The masters state one reader count several ways on the same line: `25 readers`, `by 25 checks`, `by 25`, and in words, `twenty-five checks`. A sweep pattern for the digits beside one noun misses the other forms. A site that matched only on the path beside the count then reads as a path citation, and the count stays stale. Write the pattern for a moved count with every form: the digits before each noun the masters use, `by N`, and the number in words.
+
+Where it applies: P1's site sweep and P2's cascade sweep, whenever a chunk moves a shared module's reader count or any count the masters also spell out.
+
+---
+
 ## 2026-10-19 — A new name that is a prefix of the name it replaced counts the old sites
 When a chunk renames a symbol to a shorter name that the old one begins with (`HeldNet` replacing `HeldNetProvider`), a bare grep or sweep pattern for the new name also matches every surviving site of the old one, and a count reads the retired name's sites as the new one's. Bound the new name at its end (`HeldNet\b`) and sweep the old name as its own alternative, so each site is counted once and as what it is.
 

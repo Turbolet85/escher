@@ -1,0 +1,63 @@
+[[pattern]]
+id = 'reexp'
+regex = 're-exports 5[15] names|\b51 names'
+
+[[pattern]]
+id = 'fonts-alone'
+regex = '`screenshot` alone|from screenshot alone|returned by `screenshot` alone'
+
+[[pattern]]
+id = 'record-fed'
+regex = 'fed (only )?from (every |the )?snapshots?|record is fed|record of ids'
+
+[[pattern]]
+id = 'drv-modules'
+regex = '(sixteen|seventeen) private modules'
+
+[[pattern]]
+id = 'dom-modules'
+regex = 'stylo_to_parley, (text_extent, )?traversal'
+
+[[pattern]]
+id = 'sess-readers'
+regex = '\b2[56] (readers|checks)|by 2[56]\b|twenty-(five|six) checks'
+
+[[pattern]]
+id = 'fix-readers'
+regex = '\b(19|20) (checks|readers)|by (19|20)\b|1[89] `?stand_\*`?'
+
+[[pattern]]
+id = 'bt-files'
+regex = '\b1(37|38|39|40) (`?\.rs`? files|targets|test targets)'
+
+[[pattern]]
+id = 'unit-count'
+regex = '9[24] unit tests|(fifteen|sixteen) files'
+
+[[pattern]]
+id = 'stand-files'
+regex = '\b4[45] (`?stand_|files)|over 4[45]\b'
+
+[[pattern]]
+id = 'stand-count'
+regex = '1(78|83) · 0 · 7|1(78|83) passed|passed 1(78|83)'
+
+[[pattern]]
+id = 'ws-tally'
+regex = '(199|201) · 10(45|55)|10(45|55) passed|(199|201) result lines'
+
+[[pattern]]
+id = 'ci-tally'
+regex = 'CI#39336988025|CI#39348671810|180 · 1042|180 · 1000|156 · 624'
+
+[[pattern]]
+id = 'cov-driver'
+regex = '4266/4350|98\.07|4634/4732|97\.93'
+
+[[pattern]]
+id = 'tc-caller'
+regex = '\btext_contrast\b'
+
+[[pattern]]
+id = 'spans-two'
+regex = '2 `info_span!`|two `info_span!`|info_span! sites'

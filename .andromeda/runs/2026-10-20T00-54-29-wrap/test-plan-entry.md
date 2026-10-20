@@ -1,0 +1,12 @@
+
+## 2026-10-19-visual-lint — `stand_lint` and `text_extent`, and the counts they move
+**Section:** §1 Test Scope Summary (blitz-dom covered behaviours · escher-driver · tests/blitz-tests) · §2 Directory pattern · §3 Crate-local test helpers, test-data bootstrap and agent-run Proof · §3 → session-lifecycle · §4 Unit Test Strategy (escher-driver) · §9 Legs, Per-OS test tallies and Local baseline · §10 Coverage floors and Flakiness budget
+**Change:**
+- §1: `stand_lint` 5 (both modes, a `fixtures` and `session_common` reader) on the in-process `Session::lint` (PROVISIONAL): the planted page's seven findings, each lean task 0 at boot, no change, the last CRUD row `clipped` against `off-screen`, `fonts-unavailable`; a clipped or off-screen text node also reading `truncated` is asserted by no check. blitz-dom: `text_extent` 3 (both modes) on `BaseDocument::text_extent`, its limits asserted by no check. escher-driver: was 92 unit tests in fifteen files, 58 inline; now 94 in sixteen, 60 inline, `lint.rs` 2; `Session::lint` covered by `stand_lint`.
+- §2: blitz-tests was 138 `.rs` files and 137 targets, now 140 and 139; `fixtures` readers were 19 (18 `stand_*`), now 20 (19); `session_common` readers were 25, now 26.
+- §3: `fixtures` readers 19 → 20; `session_common` 25 → 26 (`stand_lint` reads `hold`, `act`, `click`, `type_into`, `refused`, `focused`, `slug`); `run stand` runs 19 `stand_*` readers (was 18) and reads 183 · 0 · 7 over 45 files (was 178 over 44); `run text_extent` 3 · 0 · 0. session-lifecycle: escher-driver's unit tests 92 → 94, `lint.rs 2` listed.
+- §4: `lint.rs` — `Defect::ALL` names the six defects in order; findings follow document order, then the defect order.
+- §9: stand-repeat files 44 → 45; CI#39348671810 tallies — linux 201 · 1055 · 0 · 12, macos and coverage 182 · 1052, windows 182 · 1010 · 0 · 9, a11y 6 · 43 unmoved, stand repeat 159 · 639 · 0 · 21; the local workspace 199 · 1045 → 201 · 1055 · 0 · 12.
+- §10: escher-driver coverage was 4266/4350 = 98.07 %, now 4634/4732 = 97.93 %, the 97 % floor holding, 3 of 3 crates at or above their floors; the flakiness budget's files 44 → 45.
+**Why:** this chunk's own checks and the counts they move (the playbook's «Accurate this-chunk addition», the plan's reviewed expected amendments); the lint's in-process scope is PROVISIONAL for the founder's own word (delegate the operator, 2026-10-20).
+**Ref:** .andromeda/runs/2026-10-20T00-54-29-wrap/
