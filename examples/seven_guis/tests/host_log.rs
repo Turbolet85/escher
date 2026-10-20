@@ -1,7 +1,7 @@
 //! The `escher-session` host, its telemetry sink installed, writes nothing a command handled to
 //! stderr at `RUST_LOG=trace`: no stable element id, no accessible name, no typed text and no
 //! image byte — while a hosted `snapshot`, `click`, `type`, two `screenshot`s, the whole
-//! screen and one element, and a `lint` run on it — and each call it runs leaves
+//! screen and one element, a `lint` and a `snapshot` of part 1 run on it — and each call it runs leaves
 //! exactly one command-span line there. Guards a measured leak: the sink printed records from
 //! third-party targets as written, which put every author key of the screen on stderr at
 //! `debug` and each row's name and each label's text at `trace`. The check reads the host as
@@ -94,7 +94,7 @@ fn host_flow(name: &str, record: bool) {
     assert_eq!(hello.pid, host.0.id(), "the binary itself answers");
     assert_eq!(hello.label, "crud");
 
-    // Six calls run on the host's own instance. Each answer is checked for what it must
+    // Seven calls run on the host's own instance. Each answer is checked for what it must
     // hold, so the absences read below are of things the host did handle.
     let text = |value: &str| ArgValue::Text(value.to_string());
     let calls = [
@@ -124,6 +124,10 @@ fn host_flow(name: &str, record: bool) {
         Call {
             verb: "lint".to_string(),
             args: Vec::new(),
+        },
+        Call {
+            verb: "snapshot".to_string(),
+            args: vec![("part".to_string(), ArgValue::Number(1))],
         },
     ];
     let answers: Vec<String> = calls
@@ -165,6 +169,11 @@ fn host_flow(name: &str, record: bool) {
     assert!(
         answers[5].starts_with(r#"{"findings":["#),
         "the lint's answer holds its findings"
+    );
+    assert!(
+        answers[6].ends_with(r#","part":1,"parts":1}"#)
+            && ids.iter().all(|id| answers[6].contains(id.as_str())),
+        "the part's answer holds the screen as its one part"
     );
 
     stop(&dir).expect("the session stops");

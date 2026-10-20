@@ -1,0 +1,34 @@
+# obs extract
+
+## Relevance
+partial — the chunk adds no telemetry of its own, but however the walk is reached (a new verb, a `snapshot` argument, a result field), it runs through `Session::run` and the MCP `tools/call`. Both write closed spans, so the walk must fit the existing `command` / `tool_call` span contracts and the sink's scrub without widening them.
+
+## Constraints
+- obs-plan §4 requires the `command` span to keep exactly its eight fields (`verb` · `cause` · `settled` · `busy` · `passes` · `added` · `removed` · `changed`). It never fields the screen text or its length, any argument, or any `Command` / `Call` / `ArgValue` / `Outcome` / `Refusal` / `Fault`. So a part's index, a cursor, a part count, a "more parts" flag or a part's byte size must not become a span field. A part read records `verb` alone, as `snapshot` and `lint` do, plus `cause` when refused.
+- obs-plan §4 requires the `tool_call` span to keep its two closed fields, `tool` and `ending`. `tool` must be one of the verb table's words. If the walk is a new verb, its word joins `tool`'s closed set, and the span must still parent exactly one `command` child for an instance verb. If it is an argument on `snapshot`, `tool` stays `snapshot`.
+- obs-plan §6 (Log format, escher's sink) requires one closed-span line per call at `info` or below and no line at the default `warn`. Each part an agent reads is one call, so it writes one `command` line (and over MCP one `tool_call` line), never a line per part inside one call. obs-plan §6 also requires an event's line to stay unchanged inside a span.
+- obs-plan §8 (Scrubbing) prints every `escher_*` field except the content-named set (`url` · `href` · `src` · `html` · `text` · `value` · `attrs` · `path` · `request` · `error` · `panic.payload`). A new field under any other name would print in clear, so any span or event carrying part content is barred at the source, not left to the scrub.
+- obs-plan §3 (Logging stack) requires escher-driver to install no subscriber, read no env var and print nothing beyond the command line's answer line and `serve_mcp`'s JSON-RPC lines. An `Outcome` (a part's text included) is written only by `Outcome::to_json`, as an answer, and is never logged, fielded or printed with `Debug`. The record of ids, which also takes every part's ids, has no reader outside the crate and is never printed, logged or fielded.
+- obs-plan §9 (Recording directory) keeps a recorded call's answer whole at rest in the owner-only `check-{n}.json`, with no log or event line. A recorded part read must follow the same rule: the file only, never a log, print or field.
+- obs-plan §3 (Logging stack, the silence lines) requires new checks and the shared modules they read (`tests/blitz-tests/tests/fixtures/mod.rs`, `tests/blitz-tests/tests/session_common/mod.rs`) to stay silent: no subscriber, no env read, no print, readings going into assertions only. `stand_act_spans`' two re-run children and `stand_mcp_tools`' in-process `Recorder` stay the only sink and recorder installs.
+
+## Patterns to follow
+- The `lint` verb's path (obs-plan §4; obs-plan §6, escher-driver logged events): a new instance verb that adds no span field, its accepted line `span="command" verb="lint"`. `stand_act_spans` reads its accepted and refused lines, and `stand_mcp_tools` proves its `tool_call` parents one `command` child in both layout modes.
+- `host_log` and `mcp_log` (obs-plan §6, escher-driver logged events): each drives the new read once at `RUST_LOG=trace` under both builds, with 0 id needles, 0 name needles and the span-line counts as expected. The shared `Needles` / `stand_needles` / `occurrences` readers in `examples/seven_guis/tests/common/mod.rs` name a kind and a count, never a needle (obs-plan §3, the silence lines).
+- The silence census (obs-plan §3, the silence lines): the probe over new and changed check files and driver modules reads 0 print, tracing, subscriber and env sites. escher-driver keeps its 2 `info_span!` sites and 0 events.
+- `stand_act_spans`' per-verb readback (obs-plan §8, Values logged as-is): every verb in the table is driven in process with the sink over a capture at `RUST_LOG=info`, in both layout modes, and the capture holds 0 id, name and supplied-text needles. If the verb table grows, the calls per mode and the verbs read back grow with it.
+
+## Anti-patterns to avoid
+- Fielding a part's cursor, index, count, byte length, completion flag or text on the `command` or `tool_call` span, or recording an argument by its schema name. obs-plan §4 lists "the screen text or its length" and "any argument" as never fielded. Whether such a field is wanted is a boundary fork (a new log field), not an obs default.
+- Adding a log site, event, print or `Debug` of an `Outcome` / `Command` for the walk in escher-driver. obs-plan §4 states "the driver emits no event", and obs-plan §3 (Logging stack) allows `to_json` as an `Outcome`'s only writer.
+
+## Contract bindings
+- obs ↔ security: the span field set and the sink's content-named scrub (obs-plan §4, obs-plan §8 Scrubbing) bind to the security plan's driver log-record rule: add no field holding what a call supplied or a screen reads. A new verb, argument or log field is the founder's boundary fork (inputs#I1).
+- obs ↔ tests: `stand_act_spans`, `stand_mcp_tools`, `host_log` and `mcp_log` are the test-plan checks that measure the span contracts (obs-plan §4, obs-plan §6). A verb-table change moves their rows, and the silence census is read over the new fixture check (obs-plan §3).
+- obs ↔ architecture: `tool`'s closed word set is `VERBS` (obs-plan §4). A twelve → thirteen move changes the count every span section states.
+
+## Acceptance criteria contributions
+- A part read through `Session::run` writes one `command` line holding `verb` (plus `cause` when refused) and none of the other fields beyond the existing eight. Over MCP, its `tool_call` line (`tool`, `ending` only) parents exactly one `command` child. Read by `stand_act_spans` and `stand_mcp_tools` in both layout modes (per obs-plan §4).
+- `host_log` and `mcp_log`, under both builds at `RUST_LOG=trace`, drive at least one part read on a screen over the budget (or the stand's flow if no fixture reaches the host): 0 id needles, 0 name needles, and span-line counts equal to the calls made (per obs-plan §6, escher-driver logged events).
+- The silence census over the new fixture check, any changed `fixtures` / `session_common` module and the changed escher-driver modules reads 0 print, tracing, subscriber and env sites. escher-driver still holds 2 `info_span!` sites and 0 events (per obs-plan §3, Logging stack).
+- If the walk is recorded: the recorded check holds each part read's answer whole as `answer`, and no log or event line carries it (per obs-plan §9, Recording directory).

@@ -65,6 +65,20 @@ pub fn snapshot() -> Call {
     call("snapshot", &[])
 }
 
+/// The driver call that reads part `n` of a screen read in parts.
+pub fn snapshot_part(n: i64) -> Call {
+    call("snapshot", &[("part", ArgValue::Number(n))])
+}
+
+/// What a `snapshot` read in parts answered: the part's text, the part and how many parts the
+/// screen reads as. Any other outcome fails the check.
+pub fn part(outcome: Outcome) -> (String, u32, u32) {
+    match outcome {
+        Outcome::Part { text, part, parts } => (text, part, parts),
+        _ => panic!("the outcome is a part"),
+    }
+}
+
 /// The driver call that clicks the element `id` names.
 pub fn click(id: &str) -> Call {
     call("click", &[("id", ArgValue::Text(id.to_string()))])
@@ -196,7 +210,10 @@ pub fn focused(session: &Session) -> (Vec<String>, Vec<String>) {
 /// for a refused call, a `snapshot`, a `screenshot` and a `lint`.
 pub fn act(session: &mut Session, call: &Call) -> Option<Acted> {
     match session.run(call).ok()? {
-        Outcome::Screen { .. } | Outcome::Shot { .. } | Outcome::Linted { .. } => None,
+        Outcome::Screen { .. }
+        | Outcome::Part { .. }
+        | Outcome::Shot { .. }
+        | Outcome::Linted { .. } => None,
         Outcome::Acted {
             settled,
             busy,

@@ -153,7 +153,7 @@ pub use refusal::{CAUSES, Cause, Fault, Refusal};
 pub use replay::{Change, Replay};
 pub use schema::{
     ArgKind, ArgSpec, BUSY_CLASSES, EXIT_STATUSES, ExitStatus, FieldKind, FieldSpec, KEY_NAMES,
-    Level, MAX_ID_BYTES, MAX_MILLISECONDS, MAX_TEXT_BYTES, NODE_FIELDS, NodeFieldSpec, VERBS,
-    VerbSpec, verb,
+    Level, MAX_ID_BYTES, MAX_MILLISECONDS, MAX_PART, MAX_TEXT_BYTES, NODE_FIELDS, NodeFieldSpec,
+    VERBS, VerbSpec, verb,
 };
 pub use session::{LOAD_WAIT, Session};

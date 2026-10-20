@@ -14,6 +14,9 @@ pub const MAX_TEXT_BYTES: usize = 4096;
 /// The most time one call may ask for, in milliseconds.
 pub const MAX_MILLISECONDS: u32 = 60_000;
 
+/// The highest part of a screen a `snapshot` may ask for.
+pub const MAX_PART: u32 = 1000;
+
 /// The names a `key` argument admits.
 pub const KEY_NAMES: [&str; 12] = [
     "tab",
@@ -172,18 +175,45 @@ const IN_VIEW: FieldSpec = FieldSpec {
 pub(crate) const SNAPSHOT: VerbSpec = VerbSpec {
     name: "snapshot",
     level: Level::Instance,
-    help: "reads the screen: every element with its id, role, name, state and bounds",
-    args: &[],
-    fields: &[FieldSpec {
-        name: "text",
-        kind: FieldKind::Text,
-        always: true,
-        help: "the screen as one text: one line per element, nested by indent; a line's state \
-               words, each written only where the element states it, are enabled or disabled, \
-               checked or unchecked, value=, selected or unselected, pressed or unpressed, \
-               invalid and focused; a mixed toggle reads unpressed, and a grammar or spelling \
-               error reads invalid",
+    help: "reads the screen: every element with its id, role, name, state and bounds; a screen \
+           whose text is over 10,000 bytes is read in parts, each a run of whole lines of at most \
+           10,000 bytes, and the parts in order are the whole text; without `part`, a screen over \
+           the budget answers part 1, and one inside it answers whole with no `part` or `parts`; \
+           a part past the last is the empty text; one element's line longer than 10,000 bytes is \
+           a part alone, longer than the budget; each part is read from the screen as it stands, \
+           so a step between two reads gives parts of the new screen",
+    args: &[ArgSpec {
+        name: "part",
+        kind: ArgKind::Part,
+        required: false,
+        help: "the part of the screen to read, counted from 1; a screen over the budget is read \
+               in parts without it from part 1",
     }],
+    fields: &[
+        FieldSpec {
+            name: "text",
+            kind: FieldKind::Text,
+            always: true,
+            help: "the screen as one text, or the part of it asked for: one line per element, \
+                   nested by indent, a part's lines as they read in the whole text; a line's state \
+                   words, each written only where the element states it, are enabled or disabled, \
+                   checked or unchecked, value=, selected or unselected, pressed or unpressed, \
+                   invalid and focused; a mixed toggle reads unpressed, and a grammar or spelling \
+                   error reads invalid",
+        },
+        FieldSpec {
+            name: "part",
+            kind: FieldKind::Count,
+            always: false,
+            help: "the part this answer holds, present when the screen is read in parts",
+        },
+        FieldSpec {
+            name: "parts",
+            kind: FieldKind::Count,
+            always: false,
+            help: "how many parts the screen reads as, present with `part`",
+        },
+    ],
 };
 
 pub(crate) const CLICK: VerbSpec = VerbSpec {

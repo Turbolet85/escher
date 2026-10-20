@@ -250,9 +250,11 @@ fn read_arguments(
             }
             (Some(flag), _) => {
                 let value = match words.next() {
-                    Some(value) if flag.kind == ArgKind::Milliseconds => value
-                        .parse()
-                        .map_or_else(|_| ArgValue::Text(value.clone()), ArgValue::Number),
+                    Some(value) if matches!(flag.kind, ArgKind::Milliseconds | ArgKind::Part) => {
+                        value
+                            .parse()
+                            .map_or_else(|_| ArgValue::Text(value.clone()), ArgValue::Number)
+                    }
                     Some(value) => ArgValue::Text(value.clone()),
                     None => ArgValue::Flag(true),
                 };

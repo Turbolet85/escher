@@ -4,8 +4,8 @@ use serde_json::{Map, Value};
 
 use crate::refusal::{Cause, Fault, Refusal};
 use crate::schema::{
-    self, ArgKind, ArgSpec, KEY_NAMES, Level, MAX_ID_BYTES, MAX_MILLISECONDS, MAX_TEXT_BYTES,
-    VerbSpec,
+    self, ArgKind, ArgSpec, KEY_NAMES, Level, MAX_ID_BYTES, MAX_MILLISECONDS, MAX_PART,
+    MAX_TEXT_BYTES, VerbSpec,
 };
 use crate::session::valid_label;
 
@@ -136,8 +136,12 @@ impl Key {
 /// holding its checked arguments.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Command {
-    /// Read the screen.
-    Snapshot,
+    /// Read the screen, or one part of a screen read in parts.
+    Snapshot {
+        /// The part, counted from 1; `None` for the whole screen, or its first part when it is
+        /// read in parts.
+        part: Option<u32>,
+    },
     /// Click the element `id` names.
     Click {
         /// The element's id.
@@ -180,7 +184,7 @@ impl Command {
     /// The schema of the command's verb.
     pub const fn spec(&self) -> &'static VerbSpec {
         match self {
-            Command::Snapshot => &schema::SNAPSHOT,
+            Command::Snapshot { .. } => &schema::SNAPSHOT,
             Command::Click { .. } => &schema::CLICK,
             Command::Type { .. } => &schema::TYPE,
             Command::Press { .. } => &schema::PRESS,
@@ -228,6 +232,7 @@ enum Admitted<'a> {
     Flag(bool),
     Milliseconds(u32),
     Name(&'a str),
+    Part(u32),
 }
 
 /// Checks `call` against the schema: the [`Command`] it asks of the held instance, or why it is
@@ -244,7 +249,8 @@ pub fn validate(call: &Call) -> Result<Command, Refusal> {
     let spec = verb_at(call, &[Level::Instance])?;
     let admitted = admitted(spec, call)?;
     match (spec.name, admitted.as_slice()) {
-        ("snapshot", []) => Ok(Command::Snapshot),
+        ("snapshot", [None]) => Ok(Command::Snapshot { part: None }),
+        ("snapshot", [Some(Admitted::Part(part))]) => Ok(Command::Snapshot { part: Some(*part) }),
         ("click", [Some(Admitted::Id(id))]) => Ok(Command::Click {
             id: (*id).to_owned(),
         }),
@@ -353,6 +359,11 @@ fn admit<'a>(arg: &'static ArgSpec, value: &'a ArgValue) -> Result<Admitted<'a>,
             .filter(|ms| (1..=MAX_MILLISECONDS).contains(ms))
             .map(Admitted::Milliseconds)
             .ok_or(out_of_bound),
+        (ArgKind::Part, ArgValue::Number(number)) => u32::try_from(*number)
+            .ok()
+            .filter(|part| (1..=MAX_PART).contains(part))
+            .map(Admitted::Part)
+            .ok_or(out_of_bound),
         (ArgKind::Name, ArgValue::Text(name)) => {
             if valid_label(name) {
                 Ok(Admitted::Name(name))
@@ -390,7 +401,15 @@ mod tests {
         let widest_id = "i".repeat(MAX_ID_BYTES);
         let widest_text = "t".repeat(MAX_TEXT_BYTES);
         let mut rows = vec![
-            (call("snapshot", &[]), Command::Snapshot),
+            (call("snapshot", &[]), Command::Snapshot { part: None }),
+            (
+                call("snapshot", &[("part", ArgValue::Number(1))]),
+                Command::Snapshot { part: Some(1) },
+            ),
+            (
+                call("snapshot", &[("part", ArgValue::Number(1000))]),
+                Command::Snapshot { part: Some(1000) },
+            ),
             (
                 call("click", &[("id", text("save"))]),
                 Command::Click {
@@ -525,7 +544,7 @@ mod tests {
     #[test]
     fn an_admitted_call_becomes_its_command() {
         let rows = admitted_rows();
-        assert_eq!(rows.len(), 31);
+        assert_eq!(rows.len(), 33);
         for (row, (call, command)) in rows.iter().enumerate() {
             assert!(validate(call).as_ref() == Ok(command), "row {row}");
         }
@@ -621,7 +640,7 @@ mod tests {
         }
 
         let instance = admitted_rows();
-        assert_eq!(instance.len(), 31);
+        assert_eq!(instance.len(), 33);
         for (row, (call, command)) in instance.iter().enumerate() {
             assert!(validate(call).as_ref() == Ok(command), "row {row}");
             assert!(validate_session(call) == Err(unknown), "row {row}");
@@ -673,6 +692,7 @@ mod tests {
         let flag = ArgValue::Flag(true);
         let number = ArgValue::Number(7);
         let ms = |number| call("advance", &[("ms", ArgValue::Number(number))]);
+        let part = |number| call("snapshot", &[("part", ArgValue::Number(number))]);
         let rows = [
             (call("click", &[]), Fault::Missing("id")),
             (call("type", &[("text", text("Ada"))]), Fault::Missing("id")),
@@ -772,6 +792,18 @@ mod tests {
             (ms(-1), Fault::OutOfBound("ms")),
             (ms(i64::MAX), Fault::OutOfBound("ms")),
             (ms(i64::MIN), Fault::OutOfBound("ms")),
+            (part(0), Fault::OutOfBound("part")),
+            (part(1001), Fault::OutOfBound("part")),
+            (part(-1), Fault::OutOfBound("part")),
+            (part(i64::MAX), Fault::OutOfBound("part")),
+            (
+                call("snapshot", &[("part", text("2"))]),
+                Fault::WrongKind("part"),
+            ),
+            (
+                call("snapshot", &[("part", flag.clone())]),
+                Fault::WrongKind("part"),
+            ),
             (
                 call("press", &[("key", text("f1"))]),
                 Fault::OutOfBound("key"),
@@ -785,7 +817,7 @@ mod tests {
                 Fault::OutOfBound("key"),
             ),
         ];
-        assert_eq!(rows.len(), 40);
+        assert_eq!(rows.len(), 46);
         for (row, (call, fault)) in rows.into_iter().enumerate() {
             assert!(validate(&call) == malformed(fault), "row {row}");
         }

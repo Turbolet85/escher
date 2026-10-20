@@ -1,0 +1,49 @@
+[
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "b5232064",
+"ts": "2026-10-20T10:45:37Z",
+"argv": [
+"implement",
+"--dir",
+"escher-0.2.0",
+"--chunk",
+"2026-10-20-large-screen-in-parts",
+"--id",
+"v020-09",
+"--ref-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-20T10-25-09-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"implement v020-09 · status planned → implemented · ref tests/blitz-tests/tests/stand_snapshot_parts.rs::a_screen_over_the_budget_is_wal… (202 chars)",
+"wrote escher-0.2.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.2.0/verification-matrix.json"
+],
+"before": {
+"id": "v020-09",
+"chunk": "2026-10-20-large-screen-in-parts",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand_snapshot_parts fixture page, whose Snapshot::to_text passes SNAPSHOT_TEXT_BUDGET (10,000 bytes), in both la… (639 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v020-09",
+"chunk": "2026-10-20-large-screen-in-parts",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_snapshot_parts.rs::a_screen_over_the_budget_is_walked_in_parts · tests/blitz-tests/tests/s… (202 chars)",
+"acceptance": "On the stand_snapshot_parts fixture page, whose Snapshot::to_text passes SNAPSHOT_TEXT_BUDGET (10,000 bytes), in both la… (639 chars)",
+"notes_chars": 0
+}
+}
+]

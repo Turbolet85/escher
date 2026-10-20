@@ -5,7 +5,7 @@ use serde_json::Value;
 
 use super::framing::list;
 use crate::json::{self, Object};
-use crate::schema::{self, ArgKind, KEY_NAMES, MAX_MILLISECONDS, VERBS, VerbSpec};
+use crate::schema::{self, ArgKind, KEY_NAMES, MAX_MILLISECONDS, MAX_PART, VERBS, VerbSpec};
 
 /// The protocol revision answered when a client asks for one this server does not speak.
 const LATEST_VERSION: &str = "2025-11-25";
@@ -81,6 +81,11 @@ pub(super) fn tool(verb: &VerbSpec, apps: &[&str]) -> String {
                 property.text("type", "integer");
                 property.count("minimum", 1);
                 property.count("maximum", u64::from(MAX_MILLISECONDS));
+            }
+            ArgKind::Part => {
+                property.text("type", "integer");
+                property.count("minimum", 1);
+                property.count("maximum", u64::from(MAX_PART));
             }
         }
         property.text(

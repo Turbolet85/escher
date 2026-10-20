@@ -5,7 +5,9 @@ use std::time::Duration;
 use blitz_test_harness::{
     Busy, Harness, Key as KeyboardKey, Modifiers, NamedKey, PixelRect, ScreenshotError,
 };
-use dioxus_native_dom::{DioxusDocument, NodeId, Snapshot, SnapshotDiff, is_masked_input};
+use dioxus_native_dom::{
+    DioxusDocument, NodeId, SNAPSHOT_TEXT_BUDGET, Snapshot, SnapshotDiff, is_masked_input,
+};
 use tracing::Span;
 use tracing::field::Empty;
 
@@ -22,10 +24,20 @@ use crate::session::{SeenIds, Session, settle_waiting};
 /// `busy` names the class of work still outstanding, and the step is not rolled back.
 #[derive(Debug, Clone, PartialEq)]
 pub enum Outcome {
-    /// What `snapshot` returns.
+    /// What `snapshot` returns for a screen read whole.
     Screen {
         /// The screen as one text: one line per element, nested by indent.
         text: String,
+    },
+    /// What `snapshot` returns when the screen is read in parts: a `part` asked for, or a
+    /// screen whose text is over [`SNAPSHOT_TEXT_BUDGET`].
+    Part {
+        /// The part's lines, as they read in the whole text; empty for a part past the last.
+        text: String,
+        /// The part this answer holds, counted from 1.
+        part: u32,
+        /// How many parts the screen reads as.
+        parts: u32,
     },
     /// What `click`, `type` and `press` return.
     Acted {
@@ -118,6 +130,12 @@ impl Session {
     /// the image shows what is painted there. An app with no font it can paint text with is
     /// refused as [`Cause::FontsUnavailable`], with nothing painted.
     ///
+    /// `snapshot` answers the screen whole when no `part` is asked and its text is at most
+    /// [`SNAPSHOT_TEXT_BUDGET`] bytes; otherwise it cuts the screen as it stands into parts of
+    /// whole lines within the budget ([`Snapshot::text_parts`]) and answers the one asked, part 1
+    /// without a `part`, or the empty text for a part past the last. Either way every id of the
+    /// whole screen is recorded.
+    ///
     /// `lint` runs no step either: it answers [`Session::lint`]'s findings on the screen as it
     /// stands, or its refusal.
     ///
@@ -167,9 +185,23 @@ impl Session {
         let command = validate(call)?;
         let (harness, seen) = (&mut self.harness, &mut self.seen);
         match command {
-            Command::Snapshot => Ok(Outcome::Screen {
-                text: read_screen(harness, seen).to_text(),
-            }),
+            Command::Snapshot { part } => {
+                let screen = read_screen(harness, seen);
+                let text = screen.to_text();
+                if part.is_none() && text.len() <= SNAPSHOT_TEXT_BUDGET {
+                    return Ok(Outcome::Screen { text });
+                }
+                let mut cut = screen.text_parts(SNAPSHOT_TEXT_BUDGET);
+                let part = part.unwrap_or(1);
+                let parts = u32::try_from(cut.len()).unwrap_or(u32::MAX);
+                let text = part
+                    .checked_sub(1)
+                    .and_then(|index| usize::try_from(index).ok())
+                    .filter(|index| *index < cut.len())
+                    .map(|index| cut.swap_remove(index).text)
+                    .unwrap_or_default();
+                Ok(Outcome::Part { text, part, parts })
+            }
             Command::Click { id } => {
                 let (before, target) = resolve(harness, seen, &id)?;
                 let (x, y) = action_point(harness, &target)?;
@@ -273,7 +305,12 @@ fn record_result(span: &Span, result: &Result<Outcome, Refusal>) {
             span.record("cause", refusal.cause().name());
             return;
         }
-        Ok(Outcome::Screen { .. } | Outcome::Shot { .. } | Outcome::Linted { .. }) => return,
+        Ok(
+            Outcome::Screen { .. }
+            | Outcome::Part { .. }
+            | Outcome::Shot { .. }
+            | Outcome::Linted { .. },
+        ) => return,
         Ok(
             Outcome::Acted {
                 settled,
@@ -560,7 +597,7 @@ mod tests {
             .flat_map(|verb| verb.args)
             .map(|argument| argument.name)
             .collect();
-        assert_eq!(arguments.len(), 9);
+        assert_eq!(arguments.len(), 10);
         for (row, field) in SPAN_FIELDS.iter().enumerate() {
             assert!(!arguments.contains(field), "row {row}");
         }

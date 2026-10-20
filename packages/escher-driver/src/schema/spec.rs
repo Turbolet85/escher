@@ -16,6 +16,9 @@ pub enum ArgKind {
     Milliseconds,
     /// A name: 1 to 32 bytes of `a-z`, `0-9` and `-`.
     Name,
+    /// A part of a screen read in parts, counted from 1: a whole number from 1 to
+    /// [`MAX_PART`](super::MAX_PART).
+    Part,
 }
 
 impl ArgKind {
@@ -28,6 +31,7 @@ impl ArgKind {
             ArgKind::Flag => "flag",
             ArgKind::Milliseconds => "milliseconds",
             ArgKind::Name => "name",
+            ArgKind::Part => "part",
         }
     }
 
@@ -40,6 +44,7 @@ impl ArgKind {
             ArgKind::Flag => "true or false",
             ArgKind::Milliseconds => "a whole number from 1 to 60000",
             ArgKind::Name => "1 to 32 bytes of a-z, 0-9 and -",
+            ArgKind::Part => "a whole number from 1 to 1000",
         }
     }
 }

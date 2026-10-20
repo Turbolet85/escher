@@ -59,11 +59,31 @@ fn every_verb_states_its_help_its_arguments_and_a_result() {
     let amended = [
         (
             field_help(&SNAPSHOT, "text"),
-            "the screen as one text: one line per element, nested by indent; a line's state \
-             words, each written only where the element states it, are enabled or disabled, \
-             checked or unchecked, value=, selected or unselected, pressed or unpressed, \
-             invalid and focused; a mixed toggle reads unpressed, and a grammar or spelling \
-             error reads invalid",
+            "the screen as one text, or the part of it asked for: one line per element, nested \
+             by indent, a part's lines as they read in the whole text; a line's state words, \
+             each written only where the element states it, are enabled or disabled, checked \
+             or unchecked, value=, selected or unselected, pressed or unpressed, invalid and \
+             focused; a mixed toggle reads unpressed, and a grammar or spelling error reads \
+             invalid",
+        ),
+        (
+            Some(SNAPSHOT.help),
+            "reads the screen: every element with its id, role, name, state and bounds; a \
+             screen whose text is over 10,000 bytes is read in parts, each a run of whole lines \
+             of at most 10,000 bytes, and the parts in order are the whole text; without \
+             `part`, a screen over the budget answers part 1, and one inside it answers whole \
+             with no `part` or `parts`; a part past the last is the empty text; one element's \
+             line longer than 10,000 bytes is a part alone, longer than the budget; each part \
+             is read from the screen as it stands, so a step between two reads gives parts of \
+             the new screen",
+        ),
+        (
+            field_help(&SNAPSHOT, "part"),
+            "the part this answer holds, present when the screen is read in parts",
+        ),
+        (
+            field_help(&SNAPSHOT, "parts"),
+            "how many parts the screen reads as, present with `part`",
         ),
         (
             field_help(&CLICK, "changed"),
@@ -101,7 +121,7 @@ fn every_verb_states_its_help_its_arguments_and_a_result() {
             "the time the session's clock moved, in milliseconds: exactly `ms`",
         ),
     ];
-    assert_eq!(amended.len(), 7);
+    assert_eq!(amended.len(), 10);
     for (row, (stated, text)) in amended.into_iter().enumerate() {
         assert!(stated == Some(text), "row {row}");
     }
@@ -161,7 +181,11 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
     const ACTING: [&str; 5] = ["settled", "busy", "added", "removed", "changed"];
     type Args = &'static [(&'static str, ArgKind, bool)];
     let rows: [(&str, Args, Vec<&str>); 12] = [
-        ("snapshot", &[], vec!["text"]),
+        (
+            "snapshot",
+            &[("part", ArgKind::Part, false)],
+            vec!["text", "part", "parts"],
+        ),
         ("click", &[("id", ArgKind::Id, true)], ACTING.to_vec()),
         (
             "type",
@@ -226,12 +250,15 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         let stated: Vec<&str> = verb.fields.iter().map(|field| field.name).collect();
         assert_eq!(stated, fields, "{name}");
         for field in verb.fields {
-            assert_eq!(field.always, field.name != "busy", "{name} {}", field.name);
+            let sometimes = ["busy", "part", "parts"].contains(&field.name);
+            assert_eq!(field.always, !sometimes, "{name} {}", field.name);
         }
     }
 
     let field_kinds = [
         ("text", FieldKind::Text),
+        ("part", FieldKind::Count),
+        ("parts", FieldKind::Count),
         ("settled", FieldKind::Flag),
         ("busy", FieldKind::Busy),
         ("added", FieldKind::Nodes),
@@ -256,7 +283,7 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         ("exit_statuses", FieldKind::Entries),
         ("session_errors", FieldKind::Entries),
     ];
-    assert_eq!(field_kinds.len(), 24);
+    assert_eq!(field_kinds.len(), 26);
     for verb in VERBS {
         for field in verb.fields {
             let stated = field_kinds.iter().find(|(name, _)| *name == field.name);
@@ -291,6 +318,7 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
     assert_eq!(MAX_ID_BYTES, 1024);
     assert_eq!(MAX_TEXT_BYTES, 4096);
     assert_eq!(MAX_MILLISECONDS, 60_000);
+    assert_eq!(MAX_PART, 1000);
     let arg_kinds = [
         (ArgKind::Id, "id", "1 to 1024 bytes of text"),
         (ArgKind::Text, "text", "0 to 4096 bytes of text"),
@@ -302,8 +330,9 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
             "a whole number from 1 to 60000",
         ),
         (ArgKind::Name, "name", "1 to 32 bytes of a-z, 0-9 and -"),
+        (ArgKind::Part, "part", "a whole number from 1 to 1000"),
     ];
-    assert_eq!(arg_kinds.len(), 6);
+    assert_eq!(arg_kinds.len(), 7);
     for (kind, name, bound) in arg_kinds {
         assert_eq!(kind.name(), name);
         assert_eq!(kind.bound(), bound, "{name}");

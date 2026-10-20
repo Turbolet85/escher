@@ -1,0 +1,228 @@
+[
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'to_text' AND callee_kind = 'fn' AND callee_file LIKE '%snapshot_text.rs' ORDER BY file, line",
+"rows": 28,
+"result": [
+{
+"caller": "rust-analyzer cargo seven_guis 0.1.0 a_snapshot_is_the_in_process_text_as_one_line_inside_its_budget().",
+"file": "examples/seven_guis/tests/cli_commands.rs",
+"line": 261
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 snapshot_text/tests/text_of().",
+"file": "packages/dioxus-native-dom/src/snapshot_text.rs",
+"line": 141
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 snapshot_text/tests/a_mixed_toggle_is_written_unpressed_and_an_error_kind_invalid().",
+"file": "packages/dioxus-native-dom/src/snapshot_text.rs",
+"line": 276
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 snapshot_text/tests/children_are_indented_in_pre_order().",
+"file": "packages/dioxus-native-dom/src/snapshot_text.rs",
+"line": 335
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 snapshot_text/tests/the_text_of_a_document_has_one_line_per_node().",
+"file": "packages/dioxus-native-dom/src/snapshot_text.rs",
+"line": 426
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 snapshot_text/tests/the_text_of_a_document_has_one_line_per_node().",
+"file": "packages/dioxus-native-dom/src/snapshot_text.rs",
+"line": 430
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/impl#[Session]execute().",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 170
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_refused_call_names_its_cause_and_leaves_the_instance_unchanged().",
+"file": "tests/blitz-tests/tests/stand_act_refused.rs",
+"line": 119
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 text().",
+"file": "tests/blitz-tests/tests/stand_keyboard.rs",
+"line": 120
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_held_instance_reads_as_a_fresh_boot().",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"line": 46
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_held_instance_reads_as_a_fresh_boot().",
+"file": "tests/blitz-tests/tests/stand_session_fresh.rs",
+"line": 47
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_settle_on_an_idle_instance_changes_nothing().",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 83
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_settle_on_an_idle_instance_changes_nothing().",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"line": 96
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_screen_is_one_line_per_node().",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 115
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 state_reads_as_the_model_holds_it().",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 206
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 state_reads_as_the_model_holds_it().",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 214
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 state_reads_as_the_model_holds_it().",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 235
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 state_reads_as_the_model_holds_it().",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 254
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 state_reads_as_the_model_holds_it().",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 261
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 the_text_is_deterministic().",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 277
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 the_text_is_deterministic().",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 279
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 the_text_is_deterministic().",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 281
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 every_screen_fits_the_budget().",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 302
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 every_screen_fits_the_budget().",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 315
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 every_screen_fits_the_budget().",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 317
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_masked_password_stays_masked_in_the_text().",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 349
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_masked_password_stays_masked_in_the_text().",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 362
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_masked_file_input_stays_masked_in_the_text().",
+"file": "tests/blitz-tests/tests/stand_snapshot_text.rs",
+"line": 384
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee, file, line FROM refs WHERE callee_name = 'Screen' AND callee_file LIKE '%escher-driver%' ORDER BY file, line",
+"rows": 14,
+"result": [
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/Outcome#Screen#",
+"file": "examples/seven_guis/tests/cli_commands.rs",
+"line": 260
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/Outcome#Screen#",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 169
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/Outcome#Screen#",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 275
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/Outcome#Screen#",
+"file": "packages/escher-driver/src/json.rs",
+"line": 324
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/Outcome#Screen#",
+"file": "packages/escher-driver/src/json.rs",
+"line": 705
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/Outcome#Screen#",
+"file": "packages/escher-driver/src/mcp.rs",
+"line": 229
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/Outcome#Screen#",
+"file": "packages/escher-driver/src/recording_tests.rs",
+"line": 77
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/Outcome#Screen#",
+"file": "packages/escher-driver/src/recording_tests.rs",
+"line": 80
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/Outcome#Screen#",
+"file": "tests/blitz-tests/tests/session_common/mod.rs",
+"line": 198
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/Outcome#Screen#",
+"file": "tests/blitz-tests/tests/stand_act_spans.rs",
+"line": 192
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/Outcome#Screen#",
+"file": "tests/blitz-tests/tests/stand_act_spans.rs",
+"line": 343
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/Outcome#Screen#",
+"file": "tests/blitz-tests/tests/stand_load_wait.rs",
+"line": 78
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/Outcome#Screen#",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"line": 277
+},
+{
+"callee": "rust-analyzer cargo escher-driver 0.3.0-beta.4 execute/Outcome#Screen#",
+"file": "tests/blitz-tests/tests/stand_requirement_sweep.rs",
+"line": 68
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

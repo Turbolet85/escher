@@ -5,8 +5,8 @@
 //! ## Feature flags
 //!  - `default`: Enables the features listed below.
 //!  - `accessibility`: Enables [`accesskit`](https://docs.rs/accesskit/latest/accesskit/) accessibility support,
-//!    and the snapshot model (`DioxusDocument::snapshot`), its text form (`Snapshot::to_text`),
-//!    its diff (`Snapshot::diff`) and the actionable-key check
+//!    and the snapshot model (`DioxusDocument::snapshot`), its text form (`Snapshot::to_text`)
+//!    and its parts (`Snapshot::text_parts`), its diff (`Snapshot::diff`) and the actionable-key check
 //!    (`DioxusDocument::unkeyed_actionable`) built on it.
 //!  - `hot-reload`: Enables hot-reloading of Dioxus RSX.
 //!  - `menu`: Enables the [`muda`](https://docs.rs/muda/latest/muda/) menubar.
@@ -36,7 +36,7 @@ pub use snapshot::{MASKED_VALUE, NodeState, Snapshot, SnapshotNode, is_masked_in
 #[cfg(feature = "accessibility")]
 pub use snapshot_diff::{DiffNode, Reading, SnapshotDiff};
 #[cfg(feature = "accessibility")]
-pub use snapshot_text::SNAPSHOT_TEXT_BUDGET;
+pub use snapshot_text::{SNAPSHOT_TEXT_BUDGET, TextPart};
 pub use write_once_attr::{CustomWidgetAttr, SubDocumentAttr};
 
 pub use blitz_dom::NodeId;

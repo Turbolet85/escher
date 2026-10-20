@@ -12,8 +12,20 @@ use crate::snapshot::{Snapshot, SnapshotNode};
 /// tokens and saves one longer than 50,000 characters to a file. A text of N bytes holds at
 /// most N characters and at most N tokens, so a text inside this budget is inside all three
 /// whatever the tokenizer. [`Snapshot::to_text`] never truncates or pages: the budget is a
-/// ceiling a caller compares against, not a behaviour.
+/// ceiling a caller compares against, not a behaviour. [`Snapshot::text_parts`] is the reader
+/// that cuts the text into parts within it.
 pub const SNAPSHOT_TEXT_BUDGET: usize = 10_000;
+
+/// One part of a snapshot's text, as [`Snapshot::text_parts`] cuts it: a run of consecutive
+/// lines of [`Snapshot::to_text`] and the ids of the nodes they write.
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
+pub struct TextPart {
+    /// The part's lines, each byte-equal to its line in the whole text and ended by a line
+    /// break.
+    pub text: String,
+    /// The stable element ids of the part's nodes, one per line, in pre-order.
+    pub ids: Vec<String>,
+}
 
 impl Snapshot {
     /// The snapshot as one text: a line per node in pre-order (the order of
@@ -40,13 +52,42 @@ impl Snapshot {
     /// ```
     pub fn to_text(&self) -> String {
         let mut text = String::new();
+        self.each_line(|node, depth| write_line(&mut text, node, depth));
+        text
+    }
+
+    /// The text of [`Snapshot::to_text`] cut into parts of at most `budget` bytes, in order: the
+    /// parts' texts concatenated are the whole text, so each node's line is in exactly one part.
+    ///
+    /// A part takes consecutive lines while its text stays within `budget`, and a cut falls
+    /// between two lines, never inside one: a line longer than `budget` is a part alone, longer
+    /// than the budget. A snapshot with no nodes is one empty part, so there is always at least
+    /// one.
+    pub fn text_parts(&self, budget: usize) -> Vec<TextPart> {
+        let mut parts = Vec::new();
+        let mut part = TextPart::default();
+        let mut line = String::new();
+        self.each_line(|node, depth| {
+            line.clear();
+            write_line(&mut line, node, depth);
+            if !part.ids.is_empty() && part.text.len() + line.len() > budget {
+                parts.push(std::mem::take(&mut part));
+            }
+            part.text.push_str(&line);
+            part.ids.push(node.id.clone());
+        });
+        parts.push(part);
+        parts
+    }
+
+    /// Visits every node in pre-order with its depth from its root.
+    fn each_line<'a>(&'a self, mut visit: impl FnMut(&'a SnapshotNode, usize)) {
         let mut stack: Vec<(&SnapshotNode, usize)> =
             self.roots.iter().rev().map(|root| (root, 0)).collect();
         while let Some((node, depth)) = stack.pop() {
-            write_line(&mut text, node, depth);
+            visit(node, depth);
             stack.extend(node.children.iter().rev().map(|child| (child, depth + 1)));
         }
-        text
     }
 }
 
@@ -446,6 +487,124 @@ mod tests {
             go.trim_start()
                 .starts_with("Button \"Go\" id=\"go\" disabled @"),
             "{go:?}"
+        );
+    }
+
+    fn sample() -> Snapshot {
+        let first = with_children(
+            leaf(Role::GenericContainer, "", "a"),
+            vec![
+                with_children(
+                    leaf(Role::List, "", "a1"),
+                    vec![
+                        leaf(Role::ListItem, "One", "a1x"),
+                        leaf(Role::ListItem, "Two", "a1y"),
+                    ],
+                ),
+                leaf(Role::Button, "Go", "a2"),
+            ],
+        );
+        let second = with_children(
+            leaf(Role::GenericContainer, "", "b"),
+            vec![leaf(Role::Paragraph, "End", "b1")],
+        );
+        Snapshot {
+            roots: vec![first, second],
+        }
+    }
+
+    #[test]
+    fn parts_concatenate_to_the_whole_text_each_within_the_budget() {
+        let snapshot = sample();
+        let whole = snapshot.to_text();
+        let longest = whole.lines().map(|line| line.len() + 1).max().unwrap_or(0);
+        for budget in [longest, longest + 10, 2 * longest, whole.len() - 1] {
+            let parts = snapshot.text_parts(budget);
+            assert!(parts.len() >= 2, "budget {budget}");
+            let joined: String = parts.iter().map(|part| part.text.as_str()).collect();
+            assert_eq!(joined, whole, "budget {budget}");
+            for (index, part) in parts.iter().enumerate() {
+                assert!(part.text.len() <= budget, "budget {budget} part {index}");
+                assert!(part.text.ends_with('\n'), "budget {budget} part {index}");
+                assert_eq!(part.text.lines().count(), part.ids.len(), "part {index}");
+            }
+        }
+    }
+
+    #[test]
+    fn each_node_id_is_in_exactly_one_part_in_pre_order() {
+        let snapshot = sample();
+        let longest = snapshot
+            .to_text()
+            .lines()
+            .map(|line| line.len() + 1)
+            .max()
+            .unwrap_or(0);
+        let parts = snapshot.text_parts(longest + 1);
+        let ids: Vec<&str> = parts
+            .iter()
+            .flat_map(|part| part.ids.iter().map(String::as_str))
+            .collect();
+        let nodes: Vec<&str> = snapshot.nodes().map(|node| node.id.as_str()).collect();
+        assert_eq!(ids, nodes);
+        for part in &parts {
+            for (line, id) in part.text.lines().zip(&part.ids) {
+                assert!(line.contains(&format!(" id={id:?} ")), "{line:?}");
+            }
+        }
+    }
+
+    #[test]
+    fn a_line_longer_than_the_budget_is_a_part_alone() {
+        let long = "x".repeat(200);
+        let snapshot = Snapshot {
+            roots: vec![
+                leaf(Role::Button, "Go", "go"),
+                leaf(Role::Paragraph, &long, "long"),
+                leaf(Role::Button, "Stop", "stop"),
+            ],
+        };
+        let parts = snapshot.text_parts(100);
+        let ids: Vec<Vec<String>> = parts.iter().map(|part| part.ids.clone()).collect();
+        assert_eq!(ids, [vec!["go"], vec!["long"], vec!["stop"]]);
+        assert!(parts[1].text.len() > 100);
+        let joined: String = parts.iter().map(|part| part.text.as_str()).collect();
+        assert_eq!(joined, snapshot.to_text());
+    }
+
+    #[test]
+    fn an_empty_snapshot_is_one_empty_part() {
+        let parts = Snapshot { roots: Vec::new() }.text_parts(SNAPSHOT_TEXT_BUDGET);
+        assert_eq!(parts, [TextPart::default()]);
+        assert!(parts[0].text.is_empty() && parts[0].ids.is_empty());
+    }
+
+    #[test]
+    fn a_budget_that_holds_the_whole_text_is_one_part() {
+        let snapshot = sample();
+        let whole = snapshot.to_text();
+        for budget in [whole.len(), SNAPSHOT_TEXT_BUDGET] {
+            let parts = snapshot.text_parts(budget);
+            assert_eq!(parts.len(), 1, "budget {budget}");
+            assert_eq!(parts[0].text, whole, "budget {budget}");
+            assert_eq!(
+                parts[0].ids.len(),
+                snapshot.nodes().count(),
+                "budget {budget}"
+            );
+        }
+    }
+
+    #[test]
+    fn a_part_keeps_each_lines_absolute_indent() {
+        let snapshot = sample();
+        let whole = snapshot.to_text();
+        let parts = snapshot.text_parts(40);
+        let lines: Vec<&str> = parts.iter().flat_map(|part| part.text.lines()).collect();
+        assert_eq!(lines, whole.lines().collect::<Vec<_>>());
+        assert!(
+            parts.iter().skip(1).any(|part| part.text.starts_with("  ")),
+            "a part opening on a nested line keeps its indent"
         );
     }
 }

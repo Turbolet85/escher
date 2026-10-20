@@ -13,7 +13,7 @@
 //! the call that never went quiet, `settled=false` with `busy=render` and no passes; a refused
 //! call's line carries the name
 //! of the cause the call returned and none of the settle or diff fields; a `snapshot`'s, a
-//! `screenshot`'s and a `lint`'s carry neither. Over the whole capture no field name of a driver line is outside the stated set,
+//! part read's among them, a `screenshot`'s and a `lint`'s carry neither. Over the whole capture no field name of a driver line is outside the stated set,
 //! none of its values is redacted, and no stable id, row text, label text or typed text of the
 //! driven screens occurs on any line. With `RUST_LOG` removed a command writes no driver line
 //! at all. The level filter is read from the process's environment when the sink is installed,
@@ -38,7 +38,8 @@ mod common;
 mod fixtures;
 mod session_common;
 use session_common::{
-    advance, click, hold, lint, press, screenshot, screenshot_of, scroll, slug, type_into,
+    advance, click, hold, lint, press, screenshot, screenshot_of, scroll, slug, snapshot_part,
+    type_into,
 };
 
 /// The text the driver types into the CRUD name field: synthetic, and no part of any id.
@@ -179,6 +180,7 @@ impl<'l> Record<'l> {
 #[derive(Clone, Copy)]
 enum Expect {
     Screen,
+    Part,
     Shot,
     Linted,
     Acts,
@@ -190,7 +192,10 @@ enum Expect {
 /// The settle reading and the diff of an outcome an acting verb returned.
 fn acting(outcome: &Outcome) -> Option<(bool, Option<Busy>, &SnapshotDiff)> {
     match outcome {
-        Outcome::Screen { .. } | Outcome::Shot { .. } | Outcome::Linted { .. } => None,
+        Outcome::Screen { .. }
+        | Outcome::Part { .. }
+        | Outcome::Shot { .. }
+        | Outcome::Linted { .. } => None,
         Outcome::Acted {
             settled,
             busy,
@@ -345,6 +350,13 @@ impl<'c> Run<'c> {
                 assert!(
                     !record.has("cause") && ACTING_FIELDS.iter().all(|field| !record.has(field)),
                     "{at}: a snapshot's line carries its verb alone"
+                );
+                self.verbs.extend(verb.map(str::to_string));
+            }
+            (Ok(Outcome::Part { .. }), Expect::Part) => {
+                assert!(
+                    !record.has("cause") && ACTING_FIELDS.iter().all(|field| !record.has(field)),
+                    "{at}: a part read's line carries its verb alone"
                 );
                 self.verbs.extend(verb.map(str::to_string));
             }
@@ -596,6 +608,7 @@ fn child_records_each_command_at_info() {
             args: Vec::new(),
         };
         let _ = run.drive("Crud", &mut crud, &snapshot, Expect::Screen);
+        let _ = run.drive("Crud", &mut crud, &snapshot_part(1), Expect::Part);
         let _ = run.drive("Crud", &mut crud, &screenshot(), Expect::Shot);
         let _ = run.drive("Crud", &mut crud, &screenshot_of("crud-list"), Expect::Shot);
         let _ = run.drive("Crud", &mut crud, &lint(), Expect::Linted);
@@ -701,7 +714,7 @@ fn child_records_each_command_at_info() {
         );
         needles.read(&restless);
 
-        assert!(run.calls == 34, "{}: {} calls", run.mode, run.calls);
+        assert!(run.calls == 35, "{}: {} calls", run.mode, run.calls);
         run.finish(&needles);
     }
 }

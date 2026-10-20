@@ -3,7 +3,10 @@
 //! that tells accepted (`0`) from refused (`1`) and from a session error (`3`). The snapshot's
 //! line is the library's own form of the screen booted in process, inside its byte budget; the
 //! screenshot's `png` is the PNG of the screen booted in process, 800 × 600; a lint on a held
-//! counter answers one line whose `findings` is empty.
+//! counter answers one line whose `findings` is empty. On a screen inside the budget,
+//! `snapshot --part 1` answers that screen's text as part 1 of 1, a part past it the empty text,
+//! and a part outside its bound or of another kind is refused `malformed`, its line the
+//! library's own refusal.
 //! `help` answers the library's own description of the tool, reaching no session. Every
 //! refusal the binary is driven to — six causes, all but `covered` and `fonts-unavailable` — and
 //! every session error
@@ -24,7 +27,7 @@ use std::time::{Duration, Instant};
 use common::{
     RUN_BOUND, Ran, Started, cause, clear, client, drain, keys, number, state_dir, string_at, text,
 };
-use escher_driver::{CAUSES, Call, Outcome, SessionError, VERBS, describe, verb};
+use escher_driver::{CAUSES, Call, Fault, Outcome, Refusal, SessionError, VERBS, describe, verb};
 use seven_guis::stand::{self, LeanTask};
 
 const BINARY: &str = env!("CARGO_BIN_EXE_escher-session");
@@ -286,6 +289,53 @@ fn a_snapshot_is_the_in_process_text_as_one_line_inside_its_budget() {
         assert!(keys(&answer) == ["text"], "task {index}: one field");
         session.stop();
     }
+}
+
+#[test]
+fn snapshot_reads_a_part_by_number_and_a_part_outside_its_bound_is_refused() {
+    let counter = Session::start("cc-part", "counter");
+    let whole = counter.accepted(&["snapshot"]);
+    assert!(
+        keys(&whole) == ["text"],
+        "a whole snapshot holds its text alone"
+    );
+    let first = counter.accepted(&["snapshot", "--part", "1"]);
+    assert!(
+        keys(&first) == ["text", "part", "parts"],
+        "a part's line holds its three fields"
+    );
+    assert!(
+        string_at(&first, "text") == string_at(&whole, "text"),
+        "part 1 of a screen inside the budget is its whole text"
+    );
+    assert!(
+        first.ends_with(",\"part\":1,\"parts\":1}"),
+        "the screen reads as one part"
+    );
+    assert_eq!(
+        counter.accepted(&["snapshot", "--part", "2"]),
+        r#"{"text":"","part":2,"parts":1}"#
+    );
+    let rows: [(&str, Fault); 3] = [
+        ("0", Fault::OutOfBound("part")),
+        ("1001", Fault::OutOfBound("part")),
+        ("x", Fault::WrongKind("part")),
+    ];
+    for (row, (part, fault)) in rows.into_iter().enumerate() {
+        let ran = counter.run(&["snapshot", "--part", part]);
+        assert_eq!(ran.status, Some(1), "row {row}: the command ends refused");
+        assert!(remedied(ran.line()) == "malformed", "row {row}: its cause");
+        assert!(
+            ran.line() == Refusal::malformed(fault).to_json(),
+            "row {row}: the line is the library's refusal, holding nothing typed"
+        );
+        assert!(ran.stderr.is_empty(), "row {row}: its stderr is empty");
+    }
+    assert!(
+        counter.accepted(&["snapshot"]) == whole,
+        "a plain snapshot is unchanged"
+    );
+    counter.stop();
 }
 
 /// Reads RFC 4648 base64 with padding: `None` for any other text.

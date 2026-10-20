@@ -327,6 +327,13 @@ impl Outcome {
                 object.text("text", text);
                 object.end()
             }
+            Outcome::Part { text, part, parts } => {
+                let mut object = Object::new();
+                object.text("text", text);
+                object.count("part", u64::from(*part));
+                object.count("parts", u64::from(*parts));
+                object.end()
+            }
             Outcome::Acted {
                 settled,
                 busy,
@@ -707,8 +714,28 @@ mod tests {
                     text: "Button \"Save\" id=\"save\" @0,0 1x1\n".to_string(),
                 },
                 &schema::SNAPSHOT,
-                &[][..],
+                &["part", "parts"][..],
                 r#"{"text":"Button \"Save\" id=\"save\" @0,0 1x1\n"}"#,
+            ),
+            (
+                Outcome::Part {
+                    text: "  Button \"Save\" id=\"save\" @0,0 1x1\n".to_string(),
+                    part: 2,
+                    parts: 3,
+                },
+                &schema::SNAPSHOT,
+                &[][..],
+                r#"{"text":"  Button \"Save\" id=\"save\" @0,0 1x1\n","part":2,"parts":3}"#,
+            ),
+            (
+                Outcome::Part {
+                    text: String::new(),
+                    part: 4,
+                    parts: 3,
+                },
+                &schema::SNAPSHOT,
+                &[][..],
+                r#"{"text":"","part":4,"parts":3}"#,
             ),
             (
                 Outcome::Acted {
@@ -787,7 +814,7 @@ mod tests {
                 ),
             ),
         ];
-        assert_eq!(rows.len(), 8);
+        assert_eq!(rows.len(), 10);
         for (row, (outcome, verb, absent, json)) in rows.into_iter().enumerate() {
             let line = outcome.to_json();
             assert!(line == json, "row {row}");

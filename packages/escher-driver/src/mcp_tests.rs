@@ -12,7 +12,7 @@ use super::listing::{description, tool};
 use super::*;
 use crate::command::ArgValue;
 use crate::refusal::Cause;
-use crate::schema::{ArgKind, ArgSpec, KEY_NAMES, MAX_MILLISECONDS, VERBS};
+use crate::schema::{self, ArgKind, ArgSpec, KEY_NAMES, MAX_MILLISECONDS, MAX_PART, VERBS};
 use crate::wire::MAX_ANSWER_BYTES;
 
 const APPS: [&str; 2] = ["counter", "crud"];
@@ -389,7 +389,7 @@ fn listed(verb: &VerbSpec) -> (Vec<&'static str>, Vec<&'static str>, Vec<&'stati
         .map(|arg: &ArgSpec| match arg.kind {
             ArgKind::Id | ArgKind::Text | ArgKind::Key | ArgKind::Name => "string",
             ArgKind::Flag => "boolean",
-            ArgKind::Milliseconds => "integer",
+            ArgKind::Milliseconds | ArgKind::Part => "integer",
         })
         .collect();
     (names, required, types)
@@ -463,14 +463,38 @@ fn the_listing_is_the_twelve_verbs_of_the_table() {
                 Some(values) => assert!(property["enum"] == Value::from(values), "row {row}"),
                 None => assert!(property.get("enum").is_none(), "row {row}"),
             }
-            let bounded = arg.kind == ArgKind::Milliseconds;
+            let maximum = match arg.kind {
+                ArgKind::Milliseconds => Some(Value::from(MAX_MILLISECONDS)),
+                ArgKind::Part => Some(Value::from(MAX_PART)),
+                _ => None,
+            };
+            let bounded = maximum.is_some();
             assert!(
                 (property.get("minimum") == Some(&Value::from(1))) == bounded
-                    && (property.get("maximum") == Some(&Value::from(MAX_MILLISECONDS))) == bounded,
+                    && property.get("maximum") == maximum.as_ref(),
                 "row {row}"
             );
         }
     }
+}
+
+#[test]
+fn the_snapshot_tool_takes_an_optional_part_and_names_its_two_counts() {
+    let written = tool(&schema::SNAPSHOT, &APPS);
+    let input_schema = concat!(
+        r#""inputSchema":{"type":"object","properties":{"part":{"type":"integer","minimum":1,"#,
+        r#""maximum":1000,"description":"the part of the screen to read, counted from 1; a "#,
+        r#"screen over the budget is read in parts without it from part 1 (a whole number "#,
+        r#"from 1 to 1000)"}},"required":[],"additionalProperties":false}}"#,
+    );
+    assert!(written.ends_with(input_schema), "{written}");
+    let described = description(&schema::SNAPSHOT);
+    assert!(described.starts_with(schema::SNAPSHOT.help));
+    assert!(described.contains(
+        "; part (count): the part this answer holds, present when the screen is read in parts; \
+         parts (count): how many parts the screen reads as, present with `part`"
+    ));
+    assert!(described.ends_with("present with `part`"));
 }
 
 #[test]

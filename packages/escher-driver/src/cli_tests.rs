@@ -133,6 +133,10 @@ fn a_line_is_read_by_its_rules_in_order() {
         // Each instance verb, its arguments as flags in any order.
         (&["snapshot", "--session", DIR], instance("snapshot", &[])),
         (
+            &["snapshot", "--part", "2", "--session", DIR],
+            instance("snapshot", &[("part", ArgValue::Number(2))]),
+        ),
+        (
             &["screenshot", "--session", DIR],
             instance("screenshot", &[]),
         ),
@@ -371,6 +375,18 @@ fn a_line_is_read_by_its_rules_in_order() {
             malformed(Fault::OutOfBound("ms")),
         ),
         (
+            &["snapshot", "--part", "x", "--session", DIR],
+            malformed(Fault::WrongKind("part")),
+        ),
+        (
+            &["snapshot", "--part", "0", "--session", DIR],
+            malformed(Fault::OutOfBound("part")),
+        ),
+        (
+            &["snapshot", "--part", "1001", "--session", DIR],
+            malformed(Fault::OutOfBound("part")),
+        ),
+        (
             &["press", "--key", "f1", "--session", DIR],
             malformed(Fault::OutOfBound("key")),
         ),
@@ -417,7 +433,7 @@ fn a_line_is_read_by_its_rules_in_order() {
         // `start` on an app the binary does not boot.
         (&["start", "timer", "--session", DIR], Line::Usage),
     ];
-    assert_eq!(rows.len(), 96);
+    assert_eq!(rows.len(), 100);
     for (row, (words, read)) in rows.into_iter().enumerate() {
         assert!(line(words) == read, "row {row}");
     }
@@ -531,8 +547,8 @@ fn each_ending_writes_its_streams_and_returns_its_status() {
 fn the_usage_line_is_built_from_the_table_and_the_apps() {
     assert_eq!(
         usage(&APPS),
-        "usage: <command> --session <dir>; commands: snapshot | click --id <id> | type --id \
-         <id> --text <text> | press --key <key> [--shift] | advance --ms <milliseconds> | \
+        "usage: <command> --session <dir>; commands: snapshot [--part <part>] | click --id \
+         <id> | type --id <id> --text <text> | press --key <key> [--shift] | advance --ms <milliseconds> | \
          scroll --id <id> | screenshot [--id <id>] | lint | start <app> [--record <dir>] | status \
          | stop | help; host role: serve <app> --session <dir> [--record <dir>]; mcp role: mcp \
          [--record <dir>]; apps: counter | flight-booker"
