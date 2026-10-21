@@ -1,0 +1,980 @@
+{
+ "anchors": [
+  {
+   "kind": "friction",
+   "id": "2026-10-19T20:17:00Z-b",
+   "chunk": "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+   "consumer": "wrap-session/reconcile",
+   "type": "input.report-insufficient",
+   "artifacts": [
+    "escher-0.2.0/chunks/2026-10-19-upstream-sync-visual-lint-and-real-app-readiness/report.md",
+    ".andromeda/test-plan.md:118"
+   ],
+   "what": "the report's Counts said no master site states the run-all agent-run figure; its sweep pattern \\b575\\b could not meet a series last written at 546 (test-plan.md:118), which the test-plan detector found and the orchestrator confirmed by offset read"
+  },
+  {
+   "kind": "friction",
+   "id": "2026-10-19T21:48:43Z-b",
+   "chunk": "2026-10-19-test-splits",
+   "consumer": "wrap-session/reconcile",
+   "type": "input.report-insufficient",
+   "artifacts": [
+    "escher-0.2.0/chunks/2026-10-19-test-splits/report.md",
+    ".andromeda/architecture.md"
+   ],
+   "what": "the report's pre-pass site dispositions misread two architecture sites: :309 (blitz-dom row) listed stale under the five-to-eight fact though it names only blitz-dom's own children, and :223 listed citation-only though its list of the seven_guis shared module's helpers missed the moved fragment; caught by the architecture doc-agent's note and main's window read"
+  },
+  {
+   "kind": "friction",
+   "id": "2026-10-19T22:31:26Z-b",
+   "chunk": "2026-10-19-shared-fixtures",
+   "consumer": "implement/code",
+   "type": "input.plan-step-ambiguous",
+   "artifacts": [
+    "escher-0.2.0/chunks/2026-10-19-shared-fixtures/plan.md",
+    "tests/blitz-tests/tests/stand_mcp_tools.rs"
+   ],
+   "what": "plan step 6 lists stand_mcp_tools :532 under fixtures::hold, but the site is serve_mcp's boot closure (label from the caller, Result returned); took step 5's stand_mcp_masked form, Session::start(app, || fixtures::boot(fixtures::covered, incremental)), and surfaced it in the report"
+  },
+  {
+   "kind": "friction",
+   "id": "2026-10-20T00:24:41Z-b",
+   "chunk": "2026-10-19-visual-lint",
+   "consumer": "implement/code",
+   "type": "input.plan-step-ambiguous",
+   "artifacts": [
+    "escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md",
+    "packages/escher-driver/Cargo.toml"
+   ],
+   "what": "plan steps 3-4 assume escher-driver can name blitz_dom::BoundingRect and read computed contain/overflow; the crate depends on neither blitz-dom nor style, and the git guard entry forbids the manifest edit that would add one"
+  },
+  {
+   "kind": "friction",
+   "id": "2026-10-20T01:26:37Z-b",
+   "chunk": "2026-10-19-visual-lint",
+   "consumer": "wrap-session/reconcile",
+   "type": "input.report-insufficient",
+   "artifacts": [
+    "escher-0.2.0/chunks/2026-10-19-visual-lint/report.md"
+   ],
+   "what": "the report Counts carried no escher-driver unit-count fact (92 -> 94) and dispositioned test-plan.md:68, obs-plan.md:70 and obs-plan.md:79 as path citations though each states a reader count the chunk moved"
+  },
+  {
+   "kind": "friction",
+   "id": "2026-10-20T02:07:01Z-b",
+   "chunk": "2026-10-20-load-wait",
+   "consumer": "implement/code",
+   "type": "input.plan-step-ambiguous",
+   "artifacts": [
+    "escher-0.2.0/chunks/2026-10-20-load-wait/plan.md"
+   ],
+   "what": "plan step 1's two stopping clauses for the never-answered wait disagree (return before the next poll would pass the bound vs. never sleep past it and end within one settle of it); implemented the second, which the arm-2 criterion (>= LOAD_WAIT) requires"
+  },
+  {
+   "kind": "friction",
+   "id": "2026-10-20T03:32:15Z-b",
+   "chunk": "2026-10-20-load-wait",
+   "consumer": "wrap-session/reconcile",
+   "type": "input.report-insufficient",
+   "artifacts": [
+    "obs-plan.md:70",
+    "test-plan.md:132",
+    "architecture.md:363"
+   ],
+   "what": "the report's digit-keyed pre-pass sweep missed three stale count sites (a count in words, a «19 stand_*» restatement, and arch §Existing Scopes' «by 26 … by 20» form); detectors caught two, the cascade sweep the third"
+  },
+  {
+   "kind": "friction",
+   "id": "2026-10-20T04:30:29Z-b",
+   "chunk": "2026-10-20-select-by-id",
+   "consumer": "implement/code",
+   "type": "input.plan-step-ambiguous",
+   "artifacts": [
+    "plan.md step 4",
+    "plan.md step 14"
+   ],
+   "what": "plan step 4 named the mutator's tree entry points for re-seeding but a Dioxus static template is deep-cloned and enters the document through process_added_subtree, so a select with no selected option never settled until a select arm was added there; and step 14's counting app with dynamic selected reverted every key choice on re-render"
+  },
+  {
+   "kind": "friction",
+   "id": "2026-10-20T05:56:43Z-b",
+   "chunk": "2026-10-20-select-by-id",
+   "consumer": "wrap-session/report",
+   "type": "input.implement-outcome-unsettled",
+   "artifacts": [
+    "outcome-2026-10-20-select-by-id.md",
+    "evidence/gate-12-amend.md"
+   ],
+   "what": "implement ended surfaced on plan gate entry 12; the operator then edited plan.md (entry 12's alternation gains events/mod) and the re-fire read green, so the report's outcome basis is the operator's edit plus the pass, not implement's P4 verdict"
+  },
+  {
+   "kind": "friction",
+   "id": "2026-10-20T07:00:02Z-c",
+   "chunk": "2026-10-20-select-by-id",
+   "consumer": "wrap-session/reconcile",
+   "type": "input.report-insufficient",
+   "artifacts": [
+    "escher-0.2.0/chunks/2026-10-20-select-by-id/report.md"
+   ],
+   "what": "the report's site sweep missed three moved-count sites stated in another form: obs-plan.md:70 'twenty-seven checks' (a word form), obs-plan.md:79 '21 readers', test-plan.md:132 'run stand 185 · 0 · 7'; the detectors caught each"
+  },
+  {
+   "kind": "friction",
+   "id": "2026-10-20T07:19:00Z-b",
+   "chunk": "2026-10-19-visual-lint",
+   "consumer": "implement/code",
+   "type": "input.research-files-wrong",
+   "artifacts": [
+    "escher-0.2.0/chunks/2026-10-19-visual-lint/research.md",
+    "tests/blitz-tests/tests/stand_act_scroll.rs"
+   ],
+   "what": "research §Sweeps said stand_act_scroll.rs reads VERBS and pins no count; its a_scroll_needs_a_target test asserts VERBS.len() == 11, so a twelfth verb needed a companion edit outside the lists"
+  },
+  {
+   "kind": "friction",
+   "id": "2026-10-20T08:05:19Z-b",
+   "chunk": "2026-10-19-visual-lint",
+   "consumer": "wrap-session/report",
+   "type": "input.implement-outcome-unsettled",
+   "artifacts": [
+    ".andromeda/runs/2026-10-20T07-11-30-implement/outcome-2026-10-19-visual-lint.md",
+    "escher-0.2.0/chunks/2026-10-19-visual-lint/evidence/gate-amend-gated.md"
+   ],
+   "what": "implement's P4 outcome listed reds 7, 10 and 14 on take-up-frozen atoms; the operator then changed the plan's precondition (inputs#I8: entries 10 and 14 re-expect HEAD plus this chunk's counts, entry 7 deferred), and the re-fires 10.2.log and 14.2.log read green; the report rests on those re-fires and evidence/gate-amend-gated.md"
+  },
+  {
+   "kind": "friction",
+   "id": "2026-10-20T10:32:33Z-b",
+   "chunk": "2026-10-20-large-screen-in-parts",
+   "consumer": "implement/code",
+   "type": "input.plan-step-ambiguous",
+   "artifacts": [
+    "escher-0.2.0/chunks/2026-10-20-large-screen-in-parts/plan.md"
+   ],
+   "what": "plan.md Codebase touchpoints row for execute.rs names 'the record fed from the part' while Implementation step 7 and Provenance state the record takes the whole screen's ids; resolved by the step's explicit text"
+  },
+  {
+   "kind": "friction",
+   "id": "2026-10-20T12:20:13Z-b",
+   "chunk": "2026-10-20-large-screen-in-parts",
+   "consumer": "wrap-session/reconcile",
+   "type": "input.report-insufficient",
+   "artifacts": [
+    "escher-0.2.0/chunks/2026-10-20-large-screen-in-parts/report.md"
+   ],
+   "what": "the report's pre-pass patterns `unitcount` and `readers` missed six standing count sites (test-plan.md:22, :25, :132; session-lifecycle.md:11; obs-plan.md:70, :79) that the detectors then proposed from the report's deltas"
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-19T20:17:00Z-a",
+   "chunk": "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+   "consumer": "wrap-session/reconcile",
+   "artifact": "report",
+   "quality": "thin",
+   "note": "one Counts bullet claimed no master site states the run-all figure; test-plan.md:118 carries the series (546), found by the test-plan detector",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-19T20:41:54Z-a",
+   "chunk": "2026-10-19-test-splits",
+   "consumer": "phase/research",
+   "artifact": "tree-db",
+   "quality": "thin",
+   "note": "one refs query, 6 rows; two test crates' same-named recorded_needles resolved to one SCIP symbol (host_log's def), so the mcp_log ref reads as a host_log callee",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-19T21:48:43Z-a",
+   "chunk": "2026-10-19-test-splits",
+   "consumer": "wrap-session/reconcile",
+   "artifact": "report",
+   "quality": "thin",
+   "note": "two pre-pass site dispositions wrong: architecture.md:309 listed stale under F2, read true; architecture.md:223 listed citation-only under F6, its shared-module helper list content-stale (raised by main)",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-19T22:31:26Z-a",
+   "chunk": "2026-10-19-shared-fixtures",
+   "consumer": "implement/code",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "step 6 names stand_mcp_tools :532 as a fixtures::hold site, but that closure takes the MCP caller's app label and returns a Result to serve_mcp",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-19T23:43:31Z-a",
+   "chunk": "2026-10-19-shared-fixtures",
+   "consumer": "wrap-session/gates",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "entry 12's tracked-diff probe did not anticipate that the operator pre-CI commit tracks the chunk's new file",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T00:24:41Z-a",
+   "chunk": "2026-10-19-visual-lint",
+   "consumer": "implement/code",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "step 3 names Finding.bounds a BoundingRect and step 4 a contain:paint walk; escher-driver can name neither blitz_dom::BoundingRect nor stylo's Contain/Overflow without a manifest edit the plan's git guard forbids",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T01:26:37Z-a",
+   "chunk": "2026-10-19-visual-lint",
+   "consumer": "wrap-session/reconcile",
+   "artifact": "report",
+   "quality": "thin",
+   "note": "Counts omitted the escher-driver unit count 92 -> 94 as a moved fact and dispositioned three count-bearing sites (test-plan.md:68, obs-plan.md:70, obs-plan.md:79) as path citations; detectors and the cascade sweep caught them",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T02:07:01Z-a",
+   "chunk": "2026-10-20-load-wait",
+   "consumer": "implement/code",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "step 1 says the loop returns the last Loads 'once the next poll would pass the bound' and also 'never sleeps past LOAD_WAIT, ends within one settle of the bound'; read literally the first returns before the bound, which arm 2's 'at least LOAD_WAIT' contradicts — resolved toward the criterion (sleep min(poll, time left), settle once more)",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T03:32:15Z-a",
+   "chunk": "2026-10-20-load-wait",
+   "consumer": "wrap-session/reconcile",
+   "artifact": "report",
+   "quality": "thin",
+   "note": "its pre-pass site sweep listed none of three stale count sites the pass found: obs-plan §3 «twenty-six checks» (word form), test-plan §3 «the 19 stand_* readers», architecture §Existing Scopes «by 26 … by 20 (19 stand_*)»",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T04:30:29Z-a",
+   "chunk": "2026-10-20-select-by-id",
+   "consumer": "implement/code",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "step 14's fixture left controlled vs uncontrolled unstated; a Dioxus re-render re-writes a dynamic selected and reverts a key's choice, so the fixture app was made controlled (writes selected from its input event's value)",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T04:41:26Z-a",
+   "chunk": "2026-10-20-select-by-id",
+   "consumer": "implement/fix-loop",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "entry 12's write-set alternation omits packages/blitz-dom/src/events/mod.rs, the companion step 8 itself requires (two exhaustive DomEventData matches), so the probe reads 1 on a correct tree",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T05:56:43Z-a",
+   "chunk": "2026-10-20-select-by-id",
+   "consumer": "wrap-session/report",
+   "artifact": "implement-outcome",
+   "quality": "thin",
+   "note": "implement's outcome was surfaced (plan gate entry 12); the operator's plan edit after it moved the outcome to green",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T05:56:43Z-a",
+   "chunk": "2026-10-20-select-by-id",
+   "consumer": "wrap-session/report",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "gate entry 12's write-set alternation omitted the companion step 8 requires",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T07:00:02Z-a",
+   "chunk": "2026-10-20-select-by-id",
+   "consumer": "wrap-session/reconcile",
+   "artifact": "report",
+   "quality": "thin",
+   "note": "three moved-count sites the report's pre-pass sweep missed (obs-plan.md:70 'twenty-seven' in words, obs-plan.md:79 '21 readers', test-plan.md:132 'run stand 185'), each caught by a detector",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T07:19:00Z-a",
+   "chunk": "2026-10-19-visual-lint",
+   "consumer": "implement/code",
+   "artifact": "research",
+   "quality": "thin",
+   "note": "sweep called stand_act_scroll.rs table-reading with no count pin; it pinned VERBS.len() == 11",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T07:26:35Z-a",
+   "chunk": "2026-10-19-visual-lint",
+   "consumer": "implement/fix-loop",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "in gated mode three entries could not read green as written: 7 forbids step 12's files, 10 and 14 hold counts frozen before two later chunks",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T08:05:19Z-a",
+   "chunk": "2026-10-19-visual-lint",
+   "consumer": "wrap-session/report",
+   "artifact": "implement-outcome",
+   "quality": "thin",
+   "note": "its reds on entries 7, 10 and 14 were superseded by the operator's plan edit (inputs#I8) and the --entry re-fires",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T08:05:19Z-a",
+   "chunk": "2026-10-19-visual-lint",
+   "consumer": "wrap-session/report",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "its block, frozen at the first take-up, held two count atoms two later chunks moved and a pre-word guard the founder's word superseded",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T09:43:48Z-a",
+   "chunk": "2026-10-20-large-screen-in-parts",
+   "consumer": "phase/plan",
+   "artifact": "research",
+   "quality": "thin",
+   "note": "read execute.rs to :200 only; missed resolve recording every id at :378-382, so its id-record lean was wrong until synthesis re-read it",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T09:52:35Z-a",
+   "chunk": "2026-10-20-large-screen-in-parts",
+   "consumer": "phase/validate",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "two plan defects reached P5: a census entry whose expect and file set were wrong (caught by its must-pass control) and a hand preservation guard where the tool's guard rule applied (caught at the operator's review)",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T10:32:33Z-a",
+   "chunk": "2026-10-20-large-screen-in-parts",
+   "consumer": "implement/code",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "Codebase touchpoints says execute.rs gets 'the record fed from the part' while step 7 says the record takes the whole screen's ids; step 7 followed",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T10:45:45Z-a",
+   "chunk": "2026-10-20-large-screen-in-parts",
+   "consumer": "implement/fix-loop",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "Test Commands ran as written, 17 green on the first block run; step 12.7 named two MCP calls where v020-09's acceptance names the same walk",
+   "signals": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T12:20:13Z-a",
+   "chunk": "2026-10-20-large-screen-in-parts",
+   "consumer": "wrap-session/reconcile",
+   "artifact": "report",
+   "quality": "thin",
+   "note": "the pre-pass pattern `unitcount` fired 0 while three standing unit-count sites stood (test-plan.md:22, :25, session-lifecycle.md:11), and the `readers` pattern missed two obs-plan count sites and test-plan.md:132; the detectors carried them from the report's own deltas",
+   "signals": null
+  }
+ ],
+ "chains": [
+  {
+   "kind": "step",
+   "id": "2026-10-19T20:17:00Z-a",
+   "chunk": "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+   "consumer": "wrap-session/reconcile",
+   "artifact": "report",
+   "quality": "thin",
+   "note": "one Counts bullet claimed no master site states the run-all figure; test-plan.md:118 carries the series (546), found by the test-plan detector",
+   "signals": null,
+   "producer": "wrap-session/report",
+   "producer_id": "2026-10-19T20:00:02Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "new-text-generated",
+    "new-text-rows:44",
+    "guard-refused:1"
+   ],
+   "producer_note": "Bash guard refused a cd into the chunk inputs dir, re-issued with absolute paths; the notindoc sweep pattern re-fired once with the set_focus_to name token added (2 -> 5 standing)",
+   "producer_frictions": []
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-19T20:41:54Z-a",
+   "chunk": "2026-10-19-test-splits",
+   "consumer": "phase/research",
+   "artifact": "tree-db",
+   "quality": "thin",
+   "note": "one refs query, 6 rows; two test crates' same-named recorded_needles resolved to one SCIP symbol (host_log's def), so the mcp_log ref reads as a host_log callee",
+   "signals": null,
+   "producer": null
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-19T21:48:43Z-a",
+   "chunk": "2026-10-19-test-splits",
+   "consumer": "wrap-session/reconcile",
+   "artifact": "report",
+   "quality": "thin",
+   "note": "two pre-pass site dispositions wrong: architecture.md:309 listed stale under F2, read true; architecture.md:223 listed citation-only under F6, its shared-module helper list content-stale (raised by main)",
+   "signals": null,
+   "producer": "wrap-session/report",
+   "producer_id": "2026-10-19T21:31:30Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "new-text-generated",
+    "new-text-rows:102",
+    "sweep-control-refused-3"
+   ],
+   "producer_note": "the pre-pass sweep refused file-size, jscpd and the title as unfired controls, the refusal line kept as their zero basis; three line counts typed wrong in the first draft were corrected against wc -l before the paste",
+   "producer_frictions": [
+    "2026-10-19T21:31:30Z-b",
+    "2026-10-19T21:31:54Z-a"
+   ]
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-19T22:31:26Z-a",
+   "chunk": "2026-10-19-shared-fixtures",
+   "consumer": "implement/code",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "step 6 names stand_mcp_tools :532 as a fixtures::hold site, but that closure takes the MCP caller's app label and returns a Result to serve_mcp",
+   "signals": null,
+   "producer": "phase/validate",
+   "producer_id": "2026-10-19T22:25:35Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [],
+   "producer_note": "18 baselines written; 8 predicted reds each with a must-pass reading on a scripted after-state in a scratch clone, 5 guards with must-fail controls, entry 2 by a typed record control; review prompt as text, one bare yes",
+   "producer_frictions": []
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-19T23:43:31Z-a",
+   "chunk": "2026-10-19-shared-fixtures",
+   "consumer": "wrap-session/gates",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "entry 12's tracked-diff probe did not anticipate that the operator pre-CI commit tracks the chunk's new file",
+   "signals": null,
+   "producer": "phase/validate",
+   "producer_id": "2026-10-19T22:25:35Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [],
+   "producer_note": "18 baselines written; 8 predicted reds each with a must-pass reading on a scripted after-state in a scratch clone, 5 guards with must-fail controls, entry 2 by a typed record control; review prompt as text, one bare yes",
+   "producer_frictions": []
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T00:24:41Z-a",
+   "chunk": "2026-10-19-visual-lint",
+   "consumer": "implement/code",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "step 3 names Finding.bounds a BoundingRect and step 4 a contain:paint walk; escher-driver can name neither blitz_dom::BoundingRect nor stylo's Contain/Overflow without a manifest edit the plan's git guard forbids",
+   "signals": null,
+   "producer": "phase/plan",
+   "producer_id": "2026-10-20T00:05:58Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "designed-dialogue:founder-forks-F1-F2",
+    "designed-dialogue:lint-edge-definitions-T1-T3",
+    "authority-resolved:arch crossing-question yielded to security closed-field rule for finding content, both moot under F1 in process",
+    "guard-refused:1"
+   ],
+   "producer_note": "467 lines incl. a 21-entry fence; v020-05 gated on the founder F1 word per the operator note; planlint 4 (13) hit resolved by a known-positive control fired at P4 on CI#39336988025; bash-guard refused a pipe of gate.py into tail, re-issued bare",
+   "producer_frictions": []
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T01:26:37Z-a",
+   "chunk": "2026-10-19-visual-lint",
+   "consumer": "wrap-session/reconcile",
+   "artifact": "report",
+   "quality": "thin",
+   "note": "Counts omitted the escher-driver unit count 92 -> 94 as a moved fact and dispositioned three count-bearing sites (test-plan.md:68, obs-plan.md:70, obs-plan.md:79) as path citations; detectors and the cascade sweep caught them",
+   "signals": null,
+   "producer": "wrap-session/report",
+   "producer_id": "2026-10-20T00:59:18Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "new-text-generated",
+    "new-text-rows:100"
+   ],
+   "producer_note": "escher-driver coverage 97.93 % read from CI#39348671810's Coverage job log, the one figure no evidence file held",
+   "producer_frictions": [
+    "2026-10-20T08:05:19Z-b",
+    "2026-10-20T08:05:19Z-c",
+    "2026-10-20T08:05:19Z-d"
+   ]
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T02:07:01Z-a",
+   "chunk": "2026-10-20-load-wait",
+   "consumer": "implement/code",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "step 1 says the loop returns the last Loads 'once the next poll would pass the bound' and also 'never sleeps past LOAD_WAIT, ends within one settle of the bound'; read literally the first returns before the bound, which arm 2's 'at least LOAD_WAIT' contradicts — resolved toward the criterion (sleep min(poll, time left), settle once more)",
+   "signals": null,
+   "producer": "phase/plan",
+   "producer_id": "2026-10-20T01:56:03Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "designed-dialogue:load-bound-value",
+    "authority-resolved:a11y has_changes criterion yielded to research's changed_nodes sweep"
+   ],
+   "producer_note": "399 lines (262 prose), 20 gate entries, 10 criteria; planlint 2 hits resolved (4 (15) expect re-spelt, 4 (13) control fired on CI#39348671810); 0 founder forks",
+   "producer_frictions": [
+    "2026-10-20T01:56:03Z-b",
+    "2026-10-20T01:56:03Z-c"
+   ]
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T03:32:15Z-a",
+   "chunk": "2026-10-20-load-wait",
+   "consumer": "wrap-session/reconcile",
+   "artifact": "report",
+   "quality": "thin",
+   "note": "its pre-pass site sweep listed none of three stale count sites the pass found: obs-plan §3 «twenty-six checks» (word form), test-plan §3 «the 19 stand_* readers», architecture §Existing Scopes «by 26 … by 20 (19 stand_*)»",
+   "signals": null,
+   "producer": "wrap-session/report",
+   "producer_id": "2026-10-20T03:04:16Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "new-text-generated",
+    "new-text-rows:30"
+   ],
+   "producer_note": "site sweep: 14 patterns over 14 facts; the title owner pattern's control unfired (no master names 'Load wait'), recorded as the template directs",
+   "producer_frictions": []
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T04:30:29Z-a",
+   "chunk": "2026-10-20-select-by-id",
+   "consumer": "implement/code",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "step 14's fixture left controlled vs uncontrolled unstated; a Dioxus re-render re-writes a dynamic selected and reverts a key's choice, so the fixture app was made controlled (writes selected from its input event's value)",
+   "signals": null,
+   "producer": "phase/validate",
+   "producer_id": "2026-10-20T04:13:01Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "guard-refused:1",
+    "baseline-caught-defect"
+   ],
+   "producer_note": "the bash guard refused a cd into the gate log dir, re-issued with absolute paths; the baseline run exposed entry 9's unpassable exit atom before approval; review prompt issued as text, one yes",
+   "producer_frictions": [
+    "2026-10-20T04:13:01Z-b"
+   ]
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T04:41:26Z-a",
+   "chunk": "2026-10-20-select-by-id",
+   "consumer": "implement/fix-loop",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "entry 12's write-set alternation omits packages/blitz-dom/src/events/mod.rs, the companion step 8 itself requires (two exhaustive DomEventData matches), so the probe reads 1 on a correct tree",
+   "signals": null,
+   "producer": "phase/validate",
+   "producer_id": "2026-10-20T04:13:01Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "guard-refused:1",
+    "baseline-caught-defect"
+   ],
+   "producer_note": "the bash guard refused a cd into the gate log dir, re-issued with absolute paths; the baseline run exposed entry 9's unpassable exit atom before approval; review prompt issued as text, one yes",
+   "producer_frictions": [
+    "2026-10-20T04:13:01Z-b"
+   ]
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T05:56:43Z-a",
+   "chunk": "2026-10-20-select-by-id",
+   "consumer": "wrap-session/report",
+   "artifact": "implement-outcome",
+   "quality": "thin",
+   "note": "implement's outcome was surfaced (plan gate entry 12); the operator's plan edit after it moved the outcome to green",
+   "signals": null,
+   "producer": "implement/smoke",
+   "producer_id": "2026-10-20T04:41:46Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "surfaced"
+   ],
+   "producer_note": "re-declares the fix-loop verdict: entry 12's plan probe defect surfaced",
+   "producer_frictions": []
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T05:56:43Z-a",
+   "chunk": "2026-10-20-select-by-id",
+   "consumer": "wrap-session/report",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "gate entry 12's write-set alternation omitted the companion step 8 requires",
+   "signals": null,
+   "producer": "phase/validate",
+   "producer_id": "2026-10-20T04:13:01Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "guard-refused:1",
+    "baseline-caught-defect"
+   ],
+   "producer_note": "the bash guard refused a cd into the gate log dir, re-issued with absolute paths; the baseline run exposed entry 9's unpassable exit atom before approval; review prompt issued as text, one yes",
+   "producer_frictions": [
+    "2026-10-20T04:13:01Z-b"
+   ]
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T07:00:02Z-a",
+   "chunk": "2026-10-20-select-by-id",
+   "consumer": "wrap-session/reconcile",
+   "artifact": "report",
+   "quality": "thin",
+   "note": "three moved-count sites the report's pre-pass sweep missed (obs-plan.md:70 'twenty-seven' in words, obs-plan.md:79 '21 readers', test-plan.md:132 'run stand 185'), each caught by a detector",
+   "signals": null,
+   "producer": "wrap-session/report",
+   "producer_id": "2026-10-20T05:56:43Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "new-text-generated",
+    "new-text-rows:110"
+   ],
+   "producer_note": "pre-pass sweep: 18 patterns, 178 rows over 26 files; title and typeahead controls unfired, carried as refusal lines",
+   "producer_frictions": [
+    "2026-10-20T05:56:43Z-b"
+   ]
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T07:19:00Z-a",
+   "chunk": "2026-10-19-visual-lint",
+   "consumer": "implement/code",
+   "artifact": "research",
+   "quality": "thin",
+   "note": "sweep called stand_act_scroll.rs table-reading with no count pin; it pinned VERBS.len() == 11",
+   "signals": null,
+   "producer": "phase/research",
+   "producer_id": "2026-10-19T23:58:30Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "unresolved-questions"
+   ],
+   "producer_note": "2 open questions, both forks (founder: the verb; technical: edge-case definitions); stand at boot measured through escher-session snapshot by a scratchpad probe",
+   "producer_frictions": []
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T07:26:35Z-a",
+   "chunk": "2026-10-19-visual-lint",
+   "consumer": "implement/fix-loop",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "in gated mode three entries could not read green as written: 7 forbids step 12's files, 10 and 14 hold counts frozen before two later chunks",
+   "signals": null,
+   "producer": "phase/plan",
+   "producer_id": "2026-10-20T00:05:58Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "designed-dialogue:founder-forks-F1-F2",
+    "designed-dialogue:lint-edge-definitions-T1-T3",
+    "authority-resolved:arch crossing-question yielded to security closed-field rule for finding content, both moot under F1 in process",
+    "guard-refused:1"
+   ],
+   "producer_note": "467 lines incl. a 21-entry fence; v020-05 gated on the founder F1 word per the operator note; planlint 4 (13) hit resolved by a known-positive control fired at P4 on CI#39336988025; bash-guard refused a pipe of gate.py into tail, re-issued bare",
+   "producer_frictions": []
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T08:05:19Z-a",
+   "chunk": "2026-10-19-visual-lint",
+   "consumer": "wrap-session/report",
+   "artifact": "implement-outcome",
+   "quality": "thin",
+   "note": "its reds on entries 7, 10 and 14 were superseded by the operator's plan edit (inputs#I8) and the --entry re-fires",
+   "signals": null,
+   "producer": "implement/smoke",
+   "producer_id": "2026-10-20T07:27:04Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "green"
+   ],
+   "producer_note": null,
+   "producer_frictions": []
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T08:05:19Z-a",
+   "chunk": "2026-10-19-visual-lint",
+   "consumer": "wrap-session/report",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "its block, frozen at the first take-up, held two count atoms two later chunks moved and a pre-word guard the founder's word superseded",
+   "signals": null,
+   "producer": "phase/plan",
+   "producer_id": "2026-10-20T00:05:58Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "designed-dialogue:founder-forks-F1-F2",
+    "designed-dialogue:lint-edge-definitions-T1-T3",
+    "authority-resolved:arch crossing-question yielded to security closed-field rule for finding content, both moot under F1 in process",
+    "guard-refused:1"
+   ],
+   "producer_note": "467 lines incl. a 21-entry fence; v020-05 gated on the founder F1 word per the operator note; planlint 4 (13) hit resolved by a known-positive control fired at P4 on CI#39336988025; bash-guard refused a pipe of gate.py into tail, re-issued bare",
+   "producer_frictions": []
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T09:43:48Z-a",
+   "chunk": "2026-10-20-large-screen-in-parts",
+   "consumer": "phase/plan",
+   "artifact": "research",
+   "quality": "thin",
+   "note": "read execute.rs to :200 only; missed resolve recording every id at :378-382, so its id-record lean was wrong until synthesis re-read it",
+   "signals": null,
+   "producer": "phase/research",
+   "producer_id": "2026-10-20T09:17:47Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "unresolved-questions"
+   ],
+   "producer_note": "2 open questions, both plan-decision: the founder's walk-shape forks and the id-record lean; lists parsed 24 items",
+   "producer_frictions": []
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T09:52:35Z-a",
+   "chunk": "2026-10-20-large-screen-in-parts",
+   "consumer": "phase/validate",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "two plan defects reached P5: a census entry whose expect and file set were wrong (caught by its must-pass control) and a hand preservation guard where the tool's guard rule applied (caught at the operator's review)",
+   "signals": null,
+   "producer": "phase/plan",
+   "producer_id": "2026-10-20T09:43:48Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "designed-dialogue:walk-shape",
+    "designed-dialogue:part-past-end"
+   ],
+   "producer_note": "2 founder forks in one round (F1 part argument with default paging, F2 empty part), answered by the founder relayed by the overseer, inputs#I2; 4 leans stated with their artifacts; 15 steps, 21 gate entries",
+   "producer_frictions": [
+    "2026-10-20T09:43:48Z-b"
+   ]
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T10:32:33Z-a",
+   "chunk": "2026-10-20-large-screen-in-parts",
+   "consumer": "implement/code",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "Codebase touchpoints says execute.rs gets 'the record fed from the part' while step 7 says the record takes the whole screen's ids; step 7 followed",
+   "signals": null,
+   "producer": "phase/plan",
+   "producer_id": "2026-10-20T09:43:48Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "designed-dialogue:walk-shape",
+    "designed-dialogue:part-past-end"
+   ],
+   "producer_note": "2 founder forks in one round (F1 part argument with default paging, F2 empty part), answered by the founder relayed by the overseer, inputs#I2; 4 leans stated with their artifacts; 15 steps, 21 gate entries",
+   "producer_frictions": [
+    "2026-10-20T09:43:48Z-b"
+   ]
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T10:45:45Z-a",
+   "chunk": "2026-10-20-large-screen-in-parts",
+   "consumer": "implement/fix-loop",
+   "artifact": "plan",
+   "quality": "thin",
+   "note": "Test Commands ran as written, 17 green on the first block run; step 12.7 named two MCP calls where v020-09's acceptance names the same walk",
+   "signals": null,
+   "producer": "phase/plan",
+   "producer_id": "2026-10-20T09:43:48Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "designed-dialogue:walk-shape",
+    "designed-dialogue:part-past-end"
+   ],
+   "producer_note": "2 founder forks in one round (F1 part argument with default paging, F2 empty part), answered by the founder relayed by the overseer, inputs#I2; 4 leans stated with their artifacts; 15 steps, 21 gate entries",
+   "producer_frictions": [
+    "2026-10-20T09:43:48Z-b"
+   ]
+  },
+  {
+   "kind": "step",
+   "id": "2026-10-20T12:20:13Z-a",
+   "chunk": "2026-10-20-large-screen-in-parts",
+   "consumer": "wrap-session/reconcile",
+   "artifact": "report",
+   "quality": "thin",
+   "note": "the pre-pass pattern `unitcount` fired 0 while three standing unit-count sites stood (test-plan.md:22, :25, session-lifecycle.md:11), and the `readers` pattern missed two obs-plan count sites and test-plan.md:132; the detectors carried them from the report's own deltas",
+   "signals": null,
+   "producer": "wrap-session/report",
+   "producer_id": "2026-10-20T11:17:43Z-a",
+   "producer_outcome": "ok",
+   "producer_signals": [
+    "new-text-generated",
+    "new-text-rows:48"
+   ],
+   "producer_note": "pre-pass sweep: four patterns' controls unfired, their zeros carried by the refusal line; re-fired with the remaining 14, then 2 more",
+   "producer_frictions": []
+  }
+ ],
+ "shapes": [
+  {
+   "producer": "wrap-session/report",
+   "artifact": "report",
+   "consumer": "wrap-session/reconcile",
+   "chunks": [
+    "2026-10-19-test-splits",
+    "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+    "2026-10-19-visual-lint",
+    "2026-10-20-large-screen-in-parts",
+    "2026-10-20-load-wait",
+    "2026-10-20-select-by-id"
+   ],
+   "n": 6
+  },
+  {
+   "producer": null,
+   "artifact": "tree-db",
+   "consumer": "phase/research",
+   "chunks": [
+    "2026-10-19-test-splits"
+   ],
+   "n": 1
+  },
+  {
+   "producer": "phase/validate",
+   "artifact": "plan",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-19-shared-fixtures",
+    "2026-10-20-select-by-id"
+   ],
+   "n": 2
+  },
+  {
+   "producer": "phase/validate",
+   "artifact": "plan",
+   "consumer": "wrap-session/gates",
+   "chunks": [
+    "2026-10-19-shared-fixtures"
+   ],
+   "n": 1
+  },
+  {
+   "producer": "phase/plan",
+   "artifact": "plan",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-19-visual-lint",
+    "2026-10-20-large-screen-in-parts",
+    "2026-10-20-load-wait"
+   ],
+   "n": 3
+  },
+  {
+   "producer": "phase/validate",
+   "artifact": "plan",
+   "consumer": "implement/fix-loop",
+   "chunks": [
+    "2026-10-20-select-by-id"
+   ],
+   "n": 1
+  },
+  {
+   "producer": "implement/smoke",
+   "artifact": "implement-outcome",
+   "consumer": "wrap-session/report",
+   "chunks": [
+    "2026-10-19-visual-lint",
+    "2026-10-20-select-by-id"
+   ],
+   "n": 2
+  },
+  {
+   "producer": "phase/validate",
+   "artifact": "plan",
+   "consumer": "wrap-session/report",
+   "chunks": [
+    "2026-10-20-select-by-id"
+   ],
+   "n": 1
+  },
+  {
+   "producer": "phase/research",
+   "artifact": "research",
+   "consumer": "implement/code",
+   "chunks": [
+    "2026-10-19-visual-lint"
+   ],
+   "n": 1
+  },
+  {
+   "producer": "phase/plan",
+   "artifact": "plan",
+   "consumer": "implement/fix-loop",
+   "chunks": [
+    "2026-10-19-visual-lint",
+    "2026-10-20-large-screen-in-parts"
+   ],
+   "n": 2
+  },
+  {
+   "producer": "phase/plan",
+   "artifact": "plan",
+   "consumer": "wrap-session/report",
+   "chunks": [
+    "2026-10-19-visual-lint"
+   ],
+   "n": 1
+  },
+  {
+   "producer": "phase/research",
+   "artifact": "research",
+   "consumer": "phase/plan",
+   "chunks": [
+    "2026-10-20-large-screen-in-parts"
+   ],
+   "n": 1
+  },
+  {
+   "producer": "phase/plan",
+   "artifact": "plan",
+   "consumer": "phase/validate",
+   "chunks": [
+    "2026-10-20-large-screen-in-parts"
+   ],
+   "n": 1
+  }
+ ]
+}

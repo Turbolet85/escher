@@ -1,0 +1,32 @@
+{
+ "epoch": "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+ "untyped_records": 6,
+ "clusters": [
+  {
+   "cluster": "estimated clock stamp written into a phase artifact without reading the clock",
+   "owning_step": "phase/plan",
+   "in_epoch": ["2026-10-20T01:56:03Z-b"],
+   "previous_epoch": ["2026-10-19T08:09:01Z-b"],
+   "same_theme_problem_facts": ["2026-10-20T04:07:12Z-a#1 (removed-cause)"],
+   "n_in_epoch": 1, "n_recurring": 2,
+   "threshold": "F-4 met: n >= 2 recurring from the previous epoch",
+   "proposed_type": "contract.unread-clock-stamp",
+   "lookback_note": "the q-lookback.json 'estimated-stamp' theme hits records in 8 epochs of both versions (frictions and facts)"
+  },
+  {
+   "cluster": "a site sweep's printed rows hand-tallied or hand-dispositioned, miscounted at first write",
+   "owning_step": "wrap-session/report",
+   "in_epoch": ["2026-10-20T08:05:19Z-c"],
+   "previous_epoch": ["2026-10-18T08:52:55Z-b"],
+   "n_in_epoch": 1, "n_recurring": 2,
+   "threshold": "F-4 met: n >= 2 recurring from the previous epoch",
+   "proposed_type": "retry.hand-tally-rework",
+   "neighbouring_typed": ["2026-10-20T03:32:15Z-c", "2026-10-20T08:54:51Z-b", "2026-10-20T12:20:13Z-d (contract.in-pass-correction at reconcile: citation-dispositions copy and summary-line rows)"]
+  },
+  {"cluster": "a must-fail control aimed outside its entry's read", "owning_step": "phase/validate", "in_epoch": ["2026-10-20T02:00:45Z-c"], "previous_epoch": [], "threshold": "below"},
+  {"cluster": "a leaf sub-agent returned with its own background job open", "owning_step": "wrap-session/reconcile", "in_epoch": ["2026-10-20T03:32:15Z-d"], "previous_epoch": [], "threshold": "below"},
+  {"cluster": "EDQUOT on Claude Code's temp dir for every command", "owning_step": "wrap-session/reconcile", "in_epoch": ["2026-10-20T07:00:02Z-d"], "previous_epoch": [], "threshold": "below (halted)"},
+  {"cluster": "a plan step narrower than the matrix acceptance it serves", "owning_step": "implement/fix-loop", "in_epoch": ["2026-10-20T10:45:45Z-b"], "previous_epoch": [], "threshold": "below"},
+  {"cluster": "an inline python heredoc nesting triple quotes (previous epoch only; the in-epoch analogues are typed tooling.host-shell)", "owning_step": "implement/code", "in_epoch": [], "previous_epoch": ["2026-10-19T03:49:26Z-d"], "threshold": "below as an untyped cluster; see P6"}
+ ]
+}

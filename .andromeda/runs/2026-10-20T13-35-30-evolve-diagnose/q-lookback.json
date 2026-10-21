@@ -1,0 +1,919 @@
+{
+ "types_by_epoch": {
+  "contract.mechanical-check": {
+   "escher-0.1.0 / Epoch 1 - Foundation": 10,
+   "escher-0.1.0 / Epoch 2 - Element identity": 2,
+   "escher-0.1.0 / Epoch 3 - Observation model": 3,
+   "escher-0.1.0 / Epoch 4 - Driver core": 4,
+   "0.1.0 / Epoch 4 - Driver core": 2,
+   "escher-0.1.0 / Epoch 5 - Agent surfaces": 5,
+   "escher-0.1.0 / Epoch 6 - Polish & ship": 7,
+   "escher-0.2.0 / Epoch 1 - Foundation": 2,
+   "escher-0.2.0 / Epoch 2 - Engine debts": 2,
+   "escher-0.2.0 / Epoch 3 - Determinism and traces": 3,
+   "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness": 7
+  },
+  "input.report-insufficient": {
+   "escher-0.1.0 / Epoch 1 - Foundation": 4,
+   "escher-0.1.0 / Epoch 2 - Element identity": 1,
+   "escher-0.1.0 / Epoch 3 - Observation model": 4,
+   "escher-0.1.0 / Epoch 4 - Driver core": 6,
+   "escher-0.1.0 / Epoch 5 - Agent surfaces": 5,
+   "escher-0.1.0 / Epoch 6 - Polish & ship": 3,
+   "escher-0.2.0 / Epoch 1 - Foundation": 1,
+   "escher-0.2.0 / Epoch 2 - Engine debts": 2,
+   "escher-0.2.0 / Epoch 3 - Determinism and traces": 1,
+   "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness": 6
+  },
+  "contract.cascade-miss": {
+   "escher-0.1.0 / Epoch 1 - Foundation": 1,
+   "escher-0.1.0 / Epoch 3 - Observation model": 1,
+   "escher-0.1.0 / Epoch 4 - Driver core": 4,
+   "escher-0.1.0 / Epoch 5 - Agent surfaces": 6,
+   "escher-0.1.0 / Epoch 6 - Polish & ship": 4,
+   "escher-0.2.0 / Epoch 1 - Foundation": 1,
+   "escher-0.2.0 / Epoch 3 - Determinism and traces": 3,
+   "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness": 2
+  },
+  "contract.in-pass-correction": {
+   "escher-0.1.0 / Epoch 1 - Foundation": 7,
+   "escher-0.1.0 / Epoch 2 - Element identity": 4,
+   "escher-0.1.0 / Epoch 3 - Observation model": 7,
+   "escher-0.1.0 / Epoch 4 - Driver core": 9,
+   "escher-0.1.0 / Epoch 5 - Agent surfaces": 10,
+   "escher-0.1.0 / Epoch 6 - Polish & ship": 3,
+   "escher-0.2.0 / Epoch 2 - Engine debts": 4,
+   "escher-0.2.0 / Epoch 3 - Determinism and traces": 4,
+   "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness": 9
+  },
+  "input.plan-step-ambiguous": {
+   "escher-0.1.0 / Epoch 1 - Foundation": 4,
+   "escher-0.1.0 / Epoch 2 - Element identity": 3,
+   "escher-0.1.0 / Epoch 3 - Observation model": 4,
+   "escher-0.1.0 / Epoch 4 - Driver core": 6,
+   "escher-0.1.0 / Epoch 5 - Agent surfaces": 9,
+   "escher-0.1.0 / Epoch 6 - Polish & ship": 5,
+   "escher-0.2.0 / Epoch 1 - Foundation": 1,
+   "escher-0.2.0 / Epoch 2 - Engine debts": 1,
+   "escher-0.2.0 / Epoch 3 - Determinism and traces": 3,
+   "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness": 5
+  },
+  "recall.corpus-recurrence": {
+   "escher-0.1.0 / Epoch 1 - Foundation": 5,
+   "escher-0.1.0 / Epoch 2 - Element identity": 7,
+   "escher-0.1.0 / Epoch 3 - Observation model": 7,
+   "escher-0.1.0 / Epoch 4 - Driver core": 4,
+   "escher-0.1.0 / Epoch 5 - Agent surfaces": 7,
+   "escher-0.1.0 / Epoch 6 - Polish & ship": 17,
+   "escher-0.2.0 / Epoch 1 - Foundation": 3,
+   "escher-0.2.0 / Epoch 2 - Engine debts": 2,
+   "escher-0.2.0 / Epoch 3 - Determinism and traces": 3,
+   "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness": 12
+  },
+  "tooling.host-shell": {
+   "escher-0.1.0 / Epoch 2 - Element identity": 1,
+   "escher-0.1.0 / Epoch 3 - Observation model": 1,
+   "escher-0.1.0 / Epoch 4 - Driver core": 1,
+   "escher-0.1.0 / Epoch 6 - Polish & ship": 2,
+   "escher-0.2.0 / Epoch 2 - Engine debts": 1,
+   "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness": 3
+  },
+  "tooling.light-gate-red": {
+   "escher-0.1.0 / Epoch 2 - Element identity": 1,
+   "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness": 1
+  }
+ },
+ "overridden_facts": [
+  [
+   "escher-0.1.0 / Epoch 1 - Foundation",
+   "2026-10-05-ci-gate-legs",
+   "wrap-session/reconcile",
+   "2026-10-06T00:07:40Z-a",
+   "E1 boundary widening (coverage-report upload) applied on a delegate overseer ratification recorded PROVISIONAL — the contract ratifies a widening only on the founder's own word, who was unavailable; t"
+  ],
+  [
+   "escher-0.1.0 / Epoch 1 - Foundation",
+   "2026-10-06-telemetry-bootstrap",
+   "phase/plan",
+   "2026-10-06T00:28:48Z-a",
+   "OTel export fork: operator (overseer delegate) chose Defer over the recommended http-only-now option, naming the boundary-widening escalation to the founder; scope/research/plan re-cut to drop the exp"
+  ],
+  [
+   "escher-0.1.0 / Epoch 1 - Foundation",
+   "2026-10-06-cold-agent-run-pipe",
+   "phase/research",
+   "2026-10-06T04:05:52Z-a",
+   "a second live probe from a neutral mktemp /tmp cwd was denied at the operator's permission prompt; the neutral-cwd equality is left unmeasured and carried to the recorded run's context check"
+  ],
+  [
+   "escher-0.1.0 / Epoch 2 - Element identity",
+   "2026-10-06-upstream-sync-element-identity",
+   "wrap-session/reconcile",
+   "2026-10-06T08:46:30Z-a",
+   "playbook 'Not this chunk's drift' routes pre-existing drift to CARRY/residuals; operator chose fix-now for 53 stale root-manifest citations at the escalation"
+  ],
+  [
+   "escher-0.1.0 / Epoch 2 - Element identity",
+   "2026-10-06-id-persistence",
+   "implement/fix-loop",
+   "2026-10-06T10:17:15Z-a",
+   "entry 3 reds on 4 leading spaces after the row loop un-nested; operator chose keep fix + surface entry 3, plan.md entry to become whitespace-insensitive after implement"
+  ],
+  [
+   "escher-0.1.0 / Epoch 2 - Element identity",
+   "2026-10-06-project-readme",
+   "wrap-session/gates",
+   "2026-10-06T11:52:55Z-a",
+   "light-gate entry 17 (diff guard) red only from the wrap's own P3 Tier-3 curation write to .claude/docs/session-learnings.md; the operator chose accept-record-commit over the red-means-no-commit course"
+  ],
+  [
+   "escher-0.1.0 / Epoch 2 - Element identity",
+   "2026-10-06-accessibility-tree-identity",
+   "implement/code",
+   "2026-10-06T12:28:40Z-a",
+   "dioxus-native-dom's accessibility feature resolved off in blitz-tests (workspace default-features=false), so the author_id override was compiled out; the operator chose to add features=[\"accessibility"
+  ],
+  [
+   "escher-0.1.0 / Epoch 3 - Observation model",
+   "2026-10-06-upstream-sync-observation-model",
+   "phase/take-up",
+   "2026-10-06T17:56:40Z-a",
+   "entry's stated work (merge upstream/main) has nothing to merge at take-up; operator ruled a measured no-op, no merge commit (inputs#I2)"
+  ],
+  [
+   "escher-0.1.0 / Epoch 3 - Observation model",
+   "2026-10-06-snapshot-model",
+   "wrap-session/route-resolve",
+   "2026-10-06T19:33:46Z-a",
+   "the operator's wrap directive carried four intent rulings; intent.md and requirements.md, which no wrap step names as its write, were edited on that word and on the precedent of commit ab936a9e"
+  ],
+  [
+   "escher-0.1.0 / Epoch 4 - Driver core",
+   "2026-10-07-audit-corrections",
+   "phase/validate",
+   "2026-10-07T03:27:14Z-a",
+   "a compound call that ended by removing the baseline mutation run's output directory under target/mutants-out was denied by the permission layer; the checks were re-fired without the removal and the 81"
+  ],
+  [
+   "escher-0.1.0 / Epoch 4 - Driver core",
+   "2026-10-07-driver-session",
+   "wrap-session/reconcile",
+   "2026-10-07T07:18:59Z-a",
+   "three escalations (the socket as a boundary widening; ids and names at debug and trace under two escalate-severity detectors; the unmet quiet criterion) took no HALT: each was resolved on a word recor"
+  ],
+  [
+   "escher-0.1.0 / Epoch 4 - Driver core",
+   "2026-10-07-settle-detection",
+   "phase/validate",
+   "2026-10-07T10:39:07Z-a",
+   "the plan proposed claiming v010-10 on an in-process Session::act step; the operator review overrode it: no claim, test 1 kept as a tests criterion, a ledger note written, the driver leg carried for ro"
+  ],
+  [
+   "escher-0.1.0 / Epoch 4 - Driver core",
+   "2026-10-07-command-and-refusal-schema",
+   "phase/plan",
+   "2026-10-07T12:06:38Z-a",
+   "the recommended time option was offered with a bare step count; the operator took the option and directed the unit to be weighed against milliseconds so the schema itself states it, and added a refusa"
+  ],
+  [
+   "escher-0.1.0 / Epoch 4 - Driver core",
+   "2026-10-07-refusal-detection",
+   "phase/plan",
+   "2026-10-07T16:46:22Z-a",
+   "the operator rejected the first plan's lean at the P5 review — scroll moved the viewport only and the nested case was a stated limit with no owner — and directed the nested scroll, the stand proof and"
+  ],
+  [
+   "escher-0.1.0 / Epoch 4 - Driver core",
+   "2026-10-07-refusal-detection",
+   "wrap-session/report",
+   "2026-10-07T20:34:14Z-a",
+   "the operator bounded this wrap to P1 for window size (43.8 percent at invocation, the last wrap grew its window by 46 points); P2 to P7 run in a fresh window from report.md, so the report's Decisions "
+  ],
+  [
+   "escher-0.1.0 / Epoch 4 - Driver core",
+   "2026-10-07-driver-command-spans",
+   "wrap-session/report",
+   "2026-10-07T22:39:30Z-a",
+   "the operator directed this wrap to run P1 only and stop, the remaining phases to run in a fresh window from report.md; Setup's background code-graph refresh was still fired here and finished, though t"
+  ],
+  [
+   "escher-0.1.0 / Epoch 4 - Driver core",
+   "2026-10-07-driver-command-spans",
+   "wrap-session/reconcile",
+   "2026-10-07T23:06:24Z-a",
+   "the boundary-widening escalation for the sink's closed-span line was resolved by the operator's direction at the wrap's invocation (keep PROVISIONAL), so no halt was raised for it; one halt was raised"
+  ],
+  [
+   "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   null,
+   "new-session/orientation",
+   "2026-10-09T19:14:33Z-a",
+   "the ladder's rung 4 (no pending, a markerless entry remains) names /andromeda-phase; the handoff records the operator's pause at the Epoch 4 boundary (2026-10-07): no Epoch 5 entry is promoted and no "
+  ],
+  [
+   "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   null,
+   "wrap-session/route-resolve",
+   "2026-10-09T19:28:10Z-a",
+   "the directive placed escher's first citation sweep in this 0-pending wrap; citation-contract says the 0-pending path runs no sweep; map and the read of 22 rows were done and the read file written, the"
+  ],
+  [
+   "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "2026-10-09-audit-corrections-agent-surfaces",
+   "wrap-session/report",
+   "2026-10-09T20:55:00Z-a",
+   "the operator's word limits this wrap run to P1 and a stop; P2 to P7 run at the resume the operator sends after clearing the window"
+  ],
+  [
+   "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "2026-10-10-upstream-sync-agent-surfaces",
+   "wrap-session/report",
+   "2026-10-10T02:03:30Z-a",
+   "the operator bounded this wrap to P1 and a stop; P2 to P7 do not run in this invocation and the chunk stays pending with its report on disk"
+  ],
+  [
+   "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "2026-10-10-driver-cli",
+   "phase/plan",
+   "2026-10-10T08:21:37Z-a",
+   "the first founder dialog was returned unanswered by the operator, who directed that all nine forks be written whole to one file in the run dir and answered by relay; done, and the answers arrived as a"
+  ],
+  [
+   "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "2026-10-10-driver-cli",
+   "wrap-session/report",
+   "2026-10-10T10:07:56Z-a",
+   "the operator's invocation ends this wrap after P1 (run P1 only and stop): P2 to P7 are left for a resumed window, the report standing as written"
+  ],
+  [
+   "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "2026-10-10-driver-cli",
+   "wrap-session/reconcile",
+   "2026-10-10T10:57:00Z-a",
+   "the resumed report gained two lines (the wrap arguments snapped as an input and cited) although a 2a resume reuses the report as is; done before the fan-out so the snapshot would not read UNCITED"
+  ],
+  [
+   "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "2026-10-10-scrolling-box-bounds-and-hit",
+   "phase/validate",
+   "2026-10-10T14:32:50Z-a",
+   "the operator overrode two placements of this run at the review: the two forks this phase had written for the founder were answered by the operator as technical forks, and the conformance reading decli"
+  ],
+  [
+   "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "2026-10-10-scrolling-box-bounds-and-hit",
+   "wrap-session/report",
+   "2026-10-10T15:35:05Z-a",
+   "the operator's argument to the wrap was to run P1 only and stop: the report is authored and its checkpoint run, and P2 to P7 are not run in this invocation — the chunk stays pending with report.md in "
+  ],
+  [
+   "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "2026-10-10-snapshot-states",
+   "phase/plan",
+   "2026-10-10T16:44:10Z-a",
+   "research read that no schema help text lists the state fields, and the scope bullet closed as none restated; the operator directed that the boolean model's two limits be said in a served help text, so"
+  ],
+  [
+   "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "2026-10-10-snapshot-states",
+   "wrap-session/report",
+   "2026-10-10T17:54:12Z-a",
+   "the operator invoked the wrap with run P1 only and stop: Setup and Phase 1 ran, Phases 2 to 7 did not, the master record stays pending and no amendment is applied"
+  ],
+  [
+   "escher-0.1.0 / Epoch 5 - Agent surfaces",
+   "2026-10-12-headless-screenshot",
+   "wrap-session/report",
+   "2026-10-12T20:41:49Z-a",
+   "SKILL.md P1 says HALT on a cascade stamp other than v1.4; the deployed tool prints v1.6, which amendment-flow §Tool and the operator's delegate name; proceeded on v1.6"
+  ],
+  [
+   "escher-0.1.0 / Epoch 6 - Polish & ship",
+   "2026-10-13-upstream-sync-polish-and-ship",
+   "phase/take-up",
+   "2026-10-13T14:30:13Z-a",
+   "the operator directed every pipeline tool's stdout redirected to a run-dir file and read whole (a bash guard deploying soon refuses a pipe into head/tail/grep/cut/sed/awk); the skill's own form is a b"
+  ],
+  [
+   "escher-0.1.0 / Epoch 6 - Polish & ship",
+   "2026-10-13-upstream-sync-polish-and-ship",
+   "phase/distill",
+   "2026-10-13T14:36:36Z-a",
+   "the operator's directive held: every pipeline tool's stdout went to a run-dir file and was read whole, never a pipe into head/tail/grep"
+  ],
+  [
+   "escher-0.1.0 / Epoch 6 - Polish & ship",
+   "2026-10-13-upstream-sync-polish-and-ship",
+   "phase/research",
+   "2026-10-13T14:43:36Z-a",
+   "the operator's directive held: tool stdout redirected to run-dir files and read whole"
+  ],
+  [
+   "escher-0.1.0 / Epoch 6 - Polish & ship",
+   "2026-10-13-upstream-sync-polish-and-ship",
+   "phase/plan",
+   "2026-10-13T14:49:11Z-a",
+   "the operator's directive held: tool stdout redirected to run-dir files and read whole"
+  ],
+  [
+   "escher-0.1.0 / Epoch 6 - Polish & ship",
+   "2026-10-13-upstream-sync-polish-and-ship",
+   "phase/validate",
+   "2026-10-13T14:59:57Z-a",
+   "the operator's directive held: tool stdout redirected to run-dir files and read whole; the word carried a contingency for gate 50 (write the log to a file if a guard refuses its pipe), snapped as inpu"
+  ],
+  [
+   "escher-0.1.0 / Epoch 6 - Polish & ship",
+   "2026-10-13-stand-contrast-harness",
+   "wrap-session/reconcile",
+   "2026-10-13T18:28:22Z-a",
+   "the operator corrected the I3 relay mid-step: the founder label is the Cyrillic one arch-amend :534 holds and the transliteration is written nowhere; relay-3.md and the I3 copy were respelled on his w"
+  ],
+  [
+   "escher-0.1.0 / Epoch 6 - Polish & ship",
+   "2026-10-13-stand-contrast-harness",
+   "wrap-session/route-resolve",
+   "2026-10-13T18:31:23Z-a",
+   "playbook rule A names master lines only; on the overseer's relayed direction (inputs#I3) it was read as covering the route CARRY that copies arch-amend :534 / sp-amend :385, and that CARRY's 'relayed "
+  ],
+  [
+   "escher-0.2.0 / Epoch 1 - Foundation",
+   "2026-10-16-file-splits",
+   "wrap-session/reconcile",
+   "2026-10-16T17:49:24Z-a",
+   "at the P1 resume reads the operator-directed .gitignore line made cites.py added read 'the listing differs' (HALT); the operator dropped that part of the directive, the line reverted, nothing recorded"
+  ],
+  [
+   "escher-0.2.0 / Epoch 1 - Foundation",
+   "2026-10-16-file-splits",
+   "wrap-session/gates",
+   "2026-10-16T17:56:52Z-a",
+   "light-gate entry 13 red on the probe's form after the pre-CI commit tracked the eight new files; the operator ruled record-and-proceed, the joined allow-list reading 0 recorded in light-gate.md"
+  ],
+  [
+   "escher-0.2.0 / Epoch 1 - Foundation",
+   "2026-10-16-fast-failing-mutants",
+   "implement/fix-loop",
+   "2026-10-16T20:11:30Z-a",
+   "plan's mutation-run entries red on cargo-mutants' baseline package selection (lab.rs run_baseline); operator chose a phase revision over a hand-fired --baseline=skip run"
+  ],
+  [
+   "escher-0.2.0 / Epoch 1 - Foundation",
+   "2026-10-16-fast-failing-mutants",
+   "wrap-session/report",
+   "2026-10-17T08:05:45Z-a",
+   "the operator directed the residuals.md open line (route-resolve's P5 write) and the .gitignore incubator line to be made at P1 before cites.py added, so both land with this chunk's new-text listing (i"
+  ],
+  [
+   "escher-0.2.0 / Epoch 2 - Engine debts",
+   "2026-10-18-engine-debts",
+   "phase/plan",
+   "2026-10-18T03:01:31Z-a",
+   "the operator directed every founder fork into one run-dir file answered in the founder's stead as delegate, in place of a question dialog the overseer relays (inputs#I1); answers recorded PROVISIONAL "
+  ],
+  [
+   "escher-0.2.0 / Epoch 2 - Engine debts",
+   "2026-10-18-engine-debts",
+   "wrap-session/reconcile",
+   "2026-10-18T05:13:34Z-a",
+   "the orchestrator ran route.py blocked --run-dir between the leaf batch's snapshots, so the path check printed a 12th line (its own trail append); the operator accepted the batch rather than a re-run"
+  ],
+  [
+   "escher-0.2.0 / Epoch 2 - Engine debts",
+   "2026-10-18-engine-debts",
+   "wrap-session/route-resolve",
+   "2026-10-18T05:16:28Z-a",
+   "route-resolve edits only the markerless tail; on the operator's word one anchored Edit appended a BLOCKED-ON block to the frozen [2026-10-18-engine-debts] line so the gated arm's flip can run"
+  ],
+  [
+   "escher-0.2.0 / Epoch 3 - Determinism and traces",
+   "2026-10-18-one-virtual-clock",
+   "phase/plan",
+   "2026-10-18T07:41:31Z-a",
+   "the operator's directive (inputs#I1) routed the founder's forks to one founder-forks.md in the run dir with the turn ended, in place of P4's AskUserQuestion round; the delegate's answer arrived by mes"
+  ],
+  [
+   "escher-0.2.0 / Epoch 2 - Engine debts",
+   "2026-10-18-engine-debts",
+   "implement/fix-loop",
+   "2026-10-18T20:43:32Z-a",
+   "the gated arm's letter runs the block with the gated entry voided; the operator's invocation directed entry 26 alone (fire entry 26, stop at the gated implement's end), so entries 1-25 and 27-31 were "
+  ],
+  [
+   "escher-0.2.0 / Epoch 2 - Engine debts",
+   "2026-10-18-engine-debts",
+   "wrap-session/report",
+   "2026-10-18T20:53:39Z-a",
+   "gate.py scope read 21 later-chunk files unrecorded; the operator's ruling at invocation (inputs#I10) answered the stop, no scope-record line written"
+  ],
+  [
+   "escher-0.2.0 / Epoch 2 - Engine debts",
+   "2026-10-18-engine-debts",
+   "wrap-session/reconcile",
+   "2026-10-18T21:25:38Z-a",
+   "the Provisional discharge escalation resolved without a halt: the operator's resume directive (inputs#I11 (b)) answered the card question the P1 report left open, on the founder's own word inputs#I9"
+  ],
+  [
+   "escher-0.2.0 / Epoch 2 - Engine debts",
+   "2026-10-18-engine-debts",
+   "wrap-session/gates",
+   "2026-10-18T21:40:26Z-a",
+   "plan entry 21 (the source-list probe anchored at 34bcf71c) --skipped on the operator's word: its 13 files are the later chunks' (inputs#I10), 0 at fb842671"
+  ],
+  [
+   "escher-0.2.0 / Epoch 3 - Determinism and traces",
+   "2026-10-19-session-recording",
+   "phase/plan",
+   "2026-10-19T03:18:48Z-a",
+   "the operator directed that founder forks go to one founder-forks file answered by a delegate, PROVISIONAL, in place of the P4 dialog (inputs#I1)"
+  ],
+  [
+   "escher-0.2.0 / Epoch 3 - Determinism and traces",
+   "2026-10-19-recorded-check-replay",
+   "wrap-session/reconcile",
+   "2026-10-19T10:47:19Z-a",
+   "the operator's directive (b) says stand_session_recording covers the shot path on each OS; the file is cfg(unix), so the masters read linux and macOS and the summary names the difference"
+  ],
+  [
+   "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+   "2026-10-19-shared-fixtures",
+   "wrap-session/gates",
+   "2026-10-19T23:43:31Z-a",
+   "light gate entry 12 red (the pre-CI commit made fixtures/mod.rs tracked, so the tracked-diff probe counted it); the contract's course was to stop tests-failing, but the operator answered «Amend entry "
+  ],
+  [
+   "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+   "2026-10-19-visual-lint",
+   "phase/plan",
+   "2026-10-20T00:05:58Z-a",
+   "the operator answered the founder fork F1 as delegate with the most conservative option and directed a gated claim of v020-05, so the recommended verb carriage became the gated criterion"
+  ]
+ ],
+ "theme_hits": {
+  "scripted-bulk-edit": [
+   [
+    "escher-0.1.0 / Epoch 1 - Foundation",
+    "2026-10-06-telemetry-bootstrap",
+    "fact:workaround",
+    "2026-10-06T00:28:48Z-a",
+    "fixed an invalid TOML literal (doubled quote in a single-quoted note) and the stdout census regex with a python heredoc replace on plan.md instead of the Edit t"
+   ],
+   [
+    "escher-0.1.0 / Epoch 1 - Foundation",
+    "2026-10-06-headless-stand",
+    "fact:workaround",
+    "2026-10-06T02:58:48Z-a",
+    "the report and evidence corrections were applied with python heredoc replaces instead of the Edit tool the skill names for document writes; the masters, leaves "
+   ],
+   [
+    "escher-0.1.0 / Epoch 3 - Observation model",
+    "2026-10-06-id-stability-across-code-edits",
+    "fact:workaround",
+    "2026-10-06T20:38:28Z-a",
+    "app.rs and the four stand re-pins were edited by a scripted python replace through Bash rather than the Edit tool, so the PostToolUse fmt hook did not fire on t"
+   ],
+   [
+    "escher-0.1.0 / Epoch 3 - Observation model",
+    "2026-10-06-snapshot-state-fidelity",
+    "fact:workaround",
+    "2026-10-06T22:07:58Z-a",
+    "multi-site edits after a formatter hook rewrote the file were applied by a python replace script with count assertions instead of the Edit tool"
+   ],
+   [
+    "escher-0.1.0 / Epoch 4 - Driver core",
+    "2026-10-07-audit-corrections",
+    "fact:workaround",
+    "2026-10-07T03:33:38Z-a",
+    "step 4's block deletions and the unused-import removals in six stand checks were made by a scratchpad python script and sed rather than the Edit tool, so the ru"
+   ],
+   [
+    "escher-0.1.0 / Epoch 4 - Driver core",
+    "2026-10-07-settle-detection",
+    "fact:workaround",
+    "2026-10-07T10:33:50Z-a",
+    "six point corrections to plan.md were applied through one exact-match python script fed by a heredoc instead of six anchored Edit calls; the phase letter reserv"
+   ],
+   [
+    "escher-0.1.0 / Epoch 5 - Agent surfaces",
+    "2026-10-10-driver-cli",
+    "fact:workaround",
+    "2026-10-10T08:21:37Z-a",
+    "research.md's two file lists and four point changes to plan.md were written by a python script fed through a quoted heredoc instead of the Write or Edit tool; e"
+   ],
+   [
+    "escher-0.1.0 / Epoch 5 - Agent surfaces",
+    "2026-10-10-scrolling-box-bounds-and-hit",
+    "fact:workaround",
+    "2026-10-10T14:58:15Z-a",
+    "the driver's eight text sites (three sentences, their held copies, the crate docs) were replaced by one exact-count python script instead of eight Edit calls, s"
+   ],
+   [
+    "escher-0.1.0 / Epoch 5 - Agent surfaces",
+    "2026-10-10-mcp-surface",
+    "fact:workaround",
+    "2026-10-11T09:55:09Z-a",
+    "one leaf (docs/services/escher-driver.md) was patched by a python heredoc of 12 asserted replacements instead of the Edit tool the letter names; every later lea"
+   ],
+   [
+    "escher-0.1.0 / Epoch 6 - Polish & ship",
+    "2026-10-14-stand-a11y-assertions",
+    "fact:workaround",
+    "2026-10-14T20:21:07Z-a",
+    "master body edits were applied by a scratchpad Python exact-substring replace script (each old text asserted unique, line count asserted) instead of anchored Ed"
+   ],
+   [
+    "escher-0.2.0 / Epoch 3 - Determinism and traces",
+    "2026-10-18-one-virtual-clock",
+    "fact:workaround",
+    "2026-10-18T09:23:19Z-a",
+    "67 point amendments on master lines up to 49 KB applied by one scratch python script of exact-match replacements (each asserted to occur once, dry run first) in"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-20-load-wait",
+    "fact:workaround",
+    "2026-10-20T01:51:21Z-a",
+    "closed scope.md's 11 [inferred] tags with one python replace script (each anchor asserted unique) instead of 11 Edit-tool calls"
+   ]
+  ],
+  "estimated-stamp": [
+   [
+    "escher-0.1.0 / Epoch 2 - Element identity",
+    "2026-10-06-upstream-sync-element-identity",
+    "friction",
+    "2026-10-06T08:37:04Z-f",
+    "the report's Date field was written as an estimated time 8 min ahead of the clock; the stamp-ahead PostToolUse hook refused it and the clock was read and the fi"
+   ],
+   [
+    "escher-0.1.0 / Epoch 2 - Element identity",
+    "2026-10-06-stable-element-ids",
+    "fact:removed-cause",
+    "2026-10-06T09:06:35Z-a",
+    "stamp-ahead hook refused the plan's Generated stamp written without reading the clock; re-read date -u and corrected it"
+   ],
+   [
+    "escher-0.1.0 / Epoch 2 - Element identity",
+    "2026-10-06-project-readme",
+    "friction",
+    "2026-10-06T11:26:17Z-c",
+    "two time stamps were estimated instead of read from the clock (a P5 CI re-read at 11:27Z, a baseline at 11:25Z, both ahead of the 11:24Z clock); the stamp-ahead"
+   ],
+   [
+    "escher-0.1.0 / Epoch 2 - Element identity",
+    "2026-10-06-project-readme",
+    "friction",
+    "2026-10-06T11:44:41Z-c",
+    "report Date written as an estimated 11:50Z without reading the clock; the stamp-ahead PostToolUse hook refused it (+5 min) and it was corrected from date -u"
+   ],
+   [
+    "escher-0.1.0 / Epoch 2 - Element identity",
+    "2026-10-06-accessibility-tree-identity",
+    "friction",
+    "2026-10-06T12:58:15Z-c",
+    "the report's Date was written as an estimated 13:05Z; the stamp-ahead PostToolUse hook refused it (+7 min ahead of the clock) and it was corrected from date -u"
+   ],
+   [
+    "escher-0.1.0 / Epoch 3 - Observation model",
+    "2026-10-06-snapshot-model",
+    "friction",
+    "2026-10-06T19:31:05Z-b",
+    "one candidate (a document stamp is read from the clock, never estimated — proven by the stamp-ahead hook refusing the report's Date) scored exactly 0.6 at Filte"
+   ],
+   [
+    "escher-0.1.0 / Epoch 3 - Observation model",
+    "2026-10-06-id-stability-across-code-edits",
+    "friction",
+    "2026-10-06T21:00:32Z-b",
+    "the first draft of report.md carried a citation tally typed without a count (88 found, 41 change, 47 unchanged) and a Date five minutes ahead of the clock; the "
+   ],
+   [
+    "escher-0.1.0 / Epoch 4 - Driver core",
+    "2026-10-07-refusal-detection",
+    "fact:removed-cause",
+    "2026-10-07T16:46:22Z-a",
+    "three baseline strings were written with an estimated time before their baselines had run; the stamp-ahead hook refused the edits; the baselines were then run a"
+   ],
+   [
+    "escher-0.1.0 / Epoch 5 - Agent surfaces",
+    "2026-10-09-audit-corrections-agent-surfaces",
+    "friction",
+    "2026-10-09T19:50:06Z-b",
+    "the stamp-ahead write hook read a bare time-of-day quoted from a two-day-old CI job record as a stamp a few minutes ahead of the clock and blocked the evidence "
+   ],
+   [
+    "escher-0.1.0 / Epoch 6 - Polish & ship",
+    "2026-10-13-stand-contrast-harness",
+    "friction",
+    "2026-10-13T17:17:03Z-b",
+    "the plan's Generated stamp was written as an estimated 17:20Z without reading the clock; the stamp-ahead PostToolUse hook flagged it 3 min ahead and it was corr"
+   ],
+   [
+    "escher-0.1.0 / Epoch 6 - Polish & ship",
+    "2026-10-14-quality-gates",
+    "friction",
+    "2026-10-15T05:12:40Z-b",
+    "plan.md's Generated stamp was written as an estimated time 7 min ahead of the clock; the stamp-ahead hook refused it and the stamp was corrected from date -u"
+   ],
+   [
+    "escher-0.2.0 / Epoch 2 - Engine debts",
+    "2026-10-17-upstream-sync-engine-debts",
+    "friction",
+    "2026-10-17T14:21:45Z-b",
+    "a control-reading time written into plan.md was estimated (14:25Z) instead of read; the stamp-ahead PostToolUse hook refused it 3 min ahead of the clock and it "
+   ],
+   [
+    "escher-0.2.0 / Epoch 2 - Engine debts",
+    "2026-10-18-engine-debts",
+    "friction",
+    "2026-10-18T05:13:34Z-e",
+    "relay-4.md stamped the two dialog answers with estimated times (05:10Z, 05:16Z); inputs.py snap refused the later as ahead of the clock and the stamp-ahead hook"
+   ],
+   [
+    "escher-0.2.0 / Epoch 3 - Determinism and traces",
+    "2026-10-19-recorded-check-replay",
+    "friction",
+    "2026-10-19T08:09:01Z-b",
+    "plan.md's Generated stamp was written as an estimated 08:20Z without reading the clock; the stamp-ahead PostToolUse hook refused it (clock 08:08:44Z) and it was"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-20-load-wait",
+    "friction",
+    "2026-10-20T01:56:03Z-b",
+    "wrote estimated clock stamps (Generated 01:56Z, control fired 01:58Z) into plan.md without reading the clock; the stamp-ahead hook refused the second, both re-w"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-20-select-by-id",
+    "fact:removed-cause",
+    "2026-10-20T04:07:12Z-a",
+    "a stamp-ahead hook refused the plan's estimated Generated time (04:10Z vs clock 04:06Z); the stamp was corrected from date -u"
+   ]
+  ],
+  "bash-c-quoting": [
+   [
+    "escher-0.1.0 / Epoch 2 - Element identity",
+    "2026-10-06-stable-element-ids",
+    "fact:workaround",
+    "2026-10-06T09:10:26Z-a",
+    "baseline of a TOML triple-quoted run was first fired through bash -c with the TOML quotes (syntax error); re-run from a scratchpad script holding the entry's ex"
+   ],
+   [
+    "escher-0.2.0 / Epoch 2 - Engine debts",
+    "2026-10-17-upstream-sync-engine-debts",
+    "friction",
+    "2026-10-17T14:21:45Z-c",
+    "firing a gate entry's run by hand as bash -c with TOML-style triple single quotes nested around single-quoted sed/awk programs broke the session shell's parse ("
+   ],
+   [
+    "escher-0.2.0 / Epoch 2 - Engine debts",
+    "2026-10-18-engine-debts",
+    "friction",
+    "2026-10-18T05:13:34Z-f",
+    "D-tests-coverage proposed two `observed absent` claims (a password shift-click / triple-click test; a disabled summary or link activation test) inferred from th"
+   ],
+   [
+    "escher-0.2.0 / Epoch 3 - Determinism and traces",
+    "2026-10-19-session-recording",
+    "friction",
+    "2026-10-19T03:49:26Z-d",
+    "an inline python heredoc edit script nesting raw triple quotes ended in a SyntaxError and changed nothing; re-run unchanged from a scratchpad file by path"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+    "fact:workaround",
+    "2026-10-19T19:09:05Z-a",
+    "the tally control typed as bash -c with triple single quotes broke on the Bash tool's eval; re-run from a scratchpad script under bash -o pipefail, the command "
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+    "friction",
+    "2026-10-19T19:09:05Z-b",
+    "a TOML-literal style triple-single-quoted run string pasted into bash -c failed as a syntax error near ( because bash has no triple-quote form; one re-issue thr"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-19-test-splits",
+    "friction",
+    "2026-10-19T21:48:43Z-c",
+    "cascade-patterns.toml first written with two TOML literal strings holding a doubled single quote; cascade.py sweep refused it (exit 2, not TOML at line 17); rew"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-19-shared-fixtures",
+    "fact:workaround",
+    "2026-10-19T22:16:55Z-a",
+    "the CI-tally control typed inline as a nested bash -c string broke on quoting; run instead from a scratchpad script file under bash -o pipefail"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-20-load-wait",
+    "friction",
+    "2026-10-20T01:56:03Z-c",
+    "the gate-20 log-tally control typed as bash -c with the TOML triple-quote delimiters copied in failed to parse (syntax error near '('); re-run from a scratchpad"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-20-select-by-id",
+    "fact:workaround",
+    "2026-10-20T04:07:12Z-a",
+    "the per-OS tally control typed into the session broke on nested quoting; its run text was written to a scratchpad script and run under bash -o pipefail"
+   ]
+  ],
+  "provenance": [
+   [
+    "escher-0.1.0 / Epoch 3 - Observation model",
+    "2026-10-07-change-tracking-and-diff",
+    "friction",
+    "2026-10-07T00:57:36Z-c",
+    "P4 leaned to claim v010-06 on its acceptance wording and the v010-05 precedent without reading that the working route lists the cap on Act by id as well (workin"
+   ],
+   [
+    "escher-0.1.0 / Epoch 4 - Driver core",
+    "2026-10-07-audit-corrections",
+    "fact:workaround",
+    "2026-10-07T03:42:24Z-a",
+    "P4's read of the 7 extracts and their history files was not made in this run: the revision changes one entry's addresses and reaches no master section, so the a"
+   ],
+   [
+    "escher-0.2.0 / Epoch 1 - Foundation",
+    "2026-10-16-fast-failing-mutants",
+    "friction",
+    "2026-10-17T08:26:39Z-c",
+    "cascade.py leaves groups services/escher-driver.md under architecture alone (its provenance), yet the leaf restates test-plan §1's per-crate unit count; a compa"
+   ],
+   [
+    "escher-0.2.0 / Epoch 3 - Determinism and traces",
+    "2026-10-18-upstream-sync-determinism-and-traces",
+    "friction",
+    "2026-10-18T07:06:59Z-d",
+    "design-system.md:316 first written with the retired value ('where it read no cursor (hidden in the shell)') in the body — provenance the classification contract"
+   ],
+   [
+    "escher-0.2.0 / Epoch 3 - Determinism and traces",
+    "2026-10-19-session-recording",
+    "fact:workaround",
+    "2026-10-19T06:41:41Z-a",
+    "classify provenance arm flagged 5 standing spans whose 8-token anchor my in-line edits changed; re-shaped 3 edits to keep the anchors and dropped one superseded"
+   ],
+   [
+    "escher-0.2.0 / Epoch 3 - Determinism and traces",
+    "2026-10-19-session-recording",
+    "friction",
+    "2026-10-19T06:41:41Z-b",
+    "three architecture.md:182/325 in-line edits landed changing the anchor of a standing provenance parenthesis; classify standing FAIL provenance 5 caught them, re"
+   ],
+   [
+    "escher-0.2.0 / Epoch 3 - Determinism and traces",
+    "2026-10-19-recorded-check-replay",
+    "friction",
+    "2026-10-19T10:47:19Z-b",
+    "obs-plan.md:70: inserting stand_replay just before the parenthesis '(twenty measured ..., where eighteen stood)' made classify read it as new provenance — the 2"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+    "friction",
+    "2026-10-19T20:17:00Z-c",
+    "architecture.md Upstream sync line first written with 'the first partial take ratified by the founder (2026-10-18)'; classify.py check standing read FAIL proven"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-19-visual-lint",
+    "friction",
+    "2026-10-20T01:26:37Z-d",
+    "two first writes corrected before commit: obs-plan.md:70 stand_lint inserted beside a standing «where eighteen stood» clause read as new provenance by classify."
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-19-visual-lint",
+    "friction",
+    "2026-10-20T01:29:08Z-b",
+    "the 2026-10-19 Tier-3 entry on an in-line edit beside a provenance parenthesis states the hazard correctly, and this wrap's obs-plan.md:70 replace reproduced it"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-20-select-by-id",
+    "fact:workaround",
+    "2026-10-20T07:00:02Z-a",
+    "classify v1.2's provenance arm re-anchored pre-existing chunk markers in history parentheses beside counts this pass moved; the markers were dropped from those "
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-20-select-by-id",
+    "friction",
+    "2026-10-20T07:00:02Z-b",
+    "test-plan amendments first written with chunk-marker provenance (17 classify rows: 'since/until 2026-10-20-select-by-id' new, plus pre-existing markers re-ancho"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-20-select-by-id",
+    "friction",
+    "2026-10-20T07:01:26Z-b",
+    "the 2026-10-19 entry 'An in-line edit beside a provenance parenthesis reads as new provenance' states the rule correctly; this wrap's P2 apply reproduced the fa"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-19-visual-lint",
+    "fact:workaround",
+    "2026-10-20T08:54:51Z-a",
+    "classify's provenance arm keys a dated parenthesis on the 8 tokens before it, so a count edited inside that window (eleven→twelve, seven→eight) flagged the pare"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-19-visual-lint",
+    "friction",
+    "2026-10-20T08:54:51Z-b",
+    "body edits written then corrected before the commit, each caught by classify.py check --mode standing: arch :118 :196 :202 :227 first wrote 'ratified by the fou"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-19-visual-lint",
+    "friction",
+    "2026-10-20T08:55:50Z-b",
+    "the provenance arm flagged count edits inside the 8 tokens before a dated parenthesis at arch :196 and test-plan :22, the failure the curated Tier-3 entry «2026"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-20-large-screen-in-parts",
+    "friction",
+    "2026-10-20T10:32:33Z-b",
+    "plan.md Codebase touchpoints row for execute.rs names 'the record fed from the part' while Implementation step 7 and Provenance state the record takes the whole"
+   ]
+  ],
+  "stdout-suppressed": [
+   [
+    "escher-0.1.0 / Epoch 6 - Polish & ship",
+    "2026-10-13-range-input-interaction",
+    "friction",
+    "2026-10-13T21:50:35Z-b",
+    "route.py epoch was re-fired for step 3b's predicate with its output redirected to /dev/null, against host-linux.md 2026-10-13 (pipeline tools bare or redirected"
+   ],
+   [
+    "escher-0.1.0 / Epoch 6 - Polish & ship",
+    "2026-10-15-cold-agent-test",
+    "friction",
+    "2026-10-15T08:17:08Z-b",
+    "a companion sweep piped through `xargs command grep -l … 2>/dev/null` returned an empty result: xargs looks for an executable named `command`, the error was dis"
+   ],
+   [
+    "escher-0.2.0 / Epoch 1 - Foundation",
+    "2026-10-16-handler-splits-and-readme",
+    "friction",
+    "2026-10-16T14:13:59Z-b",
+    "a compound command opening with a cd into the run dir (cd X 2>/dev/null; …) passed the Bash guard and moved the session cwd into the run dir; one extra call ret"
+   ],
+   [
+    "escher-0.2.0 / Epoch 1 - Foundation",
+    "2026-10-16-file-splits",
+    "fact:workaround",
+    "2026-10-16T17:49:24Z-a",
+    "the cites.py apply call's stdout was sent to /dev/null against the tools rule; the line-1 counts were taken from the trail and the dry run beside it"
+   ],
+   [
+    "escher-0.2.0 / Epoch 1 - Foundation",
+    "2026-10-16-file-splits",
+    "friction",
+    "2026-10-16T17:50:57Z-c",
+    "implement's process census by ps piped into grep -c counted its own probing shell twice, the failure host-linux's Processes rule already states; re-taken on the"
+   ],
+   [
+    "escher-0.2.0 / Epoch 1 - Foundation",
+    "2026-10-16-fast-failing-mutants",
+    "friction",
+    "2026-10-16T19:21:10Z-c",
+    "cargo mutants --list --file {path} without -p printed nothing on stdout for all three files, its reason on stderr hidden by 2>/dev/null; re-run with -p {pkg} an"
+   ],
+   [
+    "escher-0.2.0 / Epoch 2 - Engine debts",
+    "2026-10-17-upstream-sync-engine-debts",
+    "fact:workaround",
+    "2026-10-18T01:57:54Z-a",
+    "the citation sweep's writing call had its stdout sent to /dev/null against Setup 3's letter; its listing was read back from the trail's apply record"
+   ],
+   [
+    "escher-0.2.0 / Epoch 3 - Determinism and traces",
+    "2026-10-19-recorded-check-replay",
+    "fact:workaround",
+    "2026-10-19T10:47:19Z-a",
+    "cites.py apply's stdout was sent to /dev/null against the letter; its listing and counts were recovered from the trail's first applied record"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-20-select-by-id",
+    "fact:workaround",
+    "2026-10-20T04:13:01Z-a",
+    "one gate.py baseline call's output was piped into grep, against the host rule that tool output is read bare; later calls ran bare"
+   ],
+   [
+    "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+    "2026-10-20-large-screen-in-parts",
+    "fact:workaround",
+    "2026-10-20T12:20:13Z-a",
+    "two tool calls (`cites.py apply`, `cascade.py replace` on replace-2.md) had stdout sent to /dev/null and were read from their trail records instead; the skill s"
+   ]
+  ]
+ }
+}

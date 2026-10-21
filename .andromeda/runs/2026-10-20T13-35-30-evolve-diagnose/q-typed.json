@@ -1,0 +1,1531 @@
+{
+ "denominators": {
+  "new-session/orientation": 7,
+  "phase/take-up": 7,
+  "phase/distill": 7,
+  "phase/research": 7,
+  "phase/plan": 7,
+  "phase/validate": 7,
+  "implement/code": 8,
+  "implement/fix-loop": 8,
+  "implement/smoke": 8,
+  "wrap-session/report": 8,
+  "wrap-session/reconcile": 8,
+  "wrap-session/curation": 8,
+  "wrap-session/route-resolve": 8,
+  "wrap-session/gates": 8
+ },
+ "groups": [
+  {
+   "key": "*/*/recall.corpus-recurrence",
+   "n": 12,
+   "weight": 22,
+   "score": 22,
+   "rate": null,
+   "steps": [
+    "wrap-session/curation"
+   ],
+   "chunks": [
+    "2026-10-19-test-splits",
+    "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+    "2026-10-19-visual-lint",
+    "2026-10-20-large-screen-in-parts",
+    "2026-10-20-load-wait",
+    "2026-10-20-select-by-id"
+   ],
+   "halt_or_softexit": false,
+   "above": true,
+   "cases": [
+    {
+     "id": "2026-10-19T20:18:06Z-b",
+     "chunk": "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "what": "the P1 site sweep keyed a count on a bare number (\\b575\\b), which matched four line-range citations and none of the figure's sites, despite the curated entry 'A sweep pattern for a bare count also matches a citation's digits' stating the remedy",
+     "impact": {
+      "extra_reads": 4
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-19T19-54-24-wrap/curation.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T20:18:06Z-c",
+     "chunk": "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "what": "two 2026-10-19 wraps left test-plan's per-OS tallies, local baseline and run-all series unwritten, and this chunk's report keyed its run-all sweep on the before-take value, missing the series' last written figure, despite the curated entry 'A count the plan names may stand in no master' naming both the cause and the sweep-for-the-latest-reading remedy",
+     "impact": {
+      "extra_reads": 2
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md",
+      ".andromeda/test-plan.md:118"
+     ],
+     "evidence": ".andromeda/runs/2026-10-19T19-54-24-wrap/curation.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T21:49:21Z-b",
+     "chunk": "2026-10-19-test-splits",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "what": "the shell grep refused a bounded repetition at this wrap's P1 and printed nothing, read by Python instead; the T1 learning of 2026-10-07 and the global CLAUDE.md Shell rule both state it",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      "CLAUDE.md",
+      "escher-0.2.0/chunks/2026-10-19-test-splits/report.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-19T21-24-54-wrap/curation.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T01:29:08Z-b",
+     "chunk": "2026-10-19-visual-lint",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "what": "the 2026-10-19 Tier-3 entry on an in-line edit beside a provenance parenthesis states the hazard correctly, and this wrap's obs-plan.md:70 replace reproduced it (classify.py provenance FAIL on «where eighteen stood»), corrected by moving the insertion",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md",
+      ".andromeda/obs-plan.md:70"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T00-54-29-wrap/curation.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T03:33:27Z-b",
+     "chunk": "2026-10-20-load-wait",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "what": "a phase P5 control script landed the repo root, a scratchpad path and a home path in its run dir, past the 2026-10-13 Tier-3 entry on host paths in phase controls",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T03:33:27Z-c",
+     "chunk": "2026-10-20-load-wait",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "what": "a redirect through the unset $TMPDIR failed Permission denied, past the 2026-10-07 Tier-3 entry naming exactly that",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T03:33:27Z-d",
+     "chunk": "2026-10-20-load-wait",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "what": "rustc read an import used only by an intra-doc link as unused, past the 2026-10-16 Tier-3 entry giving the path-form remedy",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T03:33:27Z-e",
+     "chunk": "2026-10-20-load-wait",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "what": "the P1 site sweep keyed reader counts on digits and missed «twenty-six checks» and arch's «by 26 … by 20» forms, past the 2026-10-20 Tier-3 entry curated one wrap earlier",
+     "impact": {
+      "extra_reads": 3
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T07:01:26Z-b",
+     "chunk": "2026-10-20-select-by-id",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "what": "the 2026-10-19 entry 'An in-line edit beside a provenance parenthesis reads as new provenance' states the rule correctly; this wrap's P2 apply reproduced the failure on test-plan.md:22, :68, :104 and session-lifecycle.md:11 (22 classify rows) before re-writing",
+     "impact": {
+      "retries": 3
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T05-49-12-wrap/curation.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T07:01:26Z-c",
+     "chunk": "2026-10-20-select-by-id",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "what": "the 2026-10-20 entry 'A count stated in more than one form needs every form in its sweep pattern' states the rule correctly; this chunk's P1 site sweep still missed 'twenty-seven checks' at obs-plan.md:70, caught by the obs-plan detector",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T05-49-12-wrap/fanout-obs-plan.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T08:55:50Z-b",
+     "chunk": "2026-10-19-visual-lint",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "what": "the provenance arm flagged count edits inside the 8 tokens before a dated parenthesis at arch :196 and test-plan :22, the failure the curated Tier-3 entry «2026-10-19 — An in-line edit beside a provenance parenthesis reads as new provenance» states with its remedy; the entry was not read before the apply",
+     "impact": {
+      "retries": 2
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T07-57-08-wrap/replace-3.md · replace-9.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T12:22:18Z-b",
+     "chunk": "2026-10-20-large-screen-in-parts",
+     "skill": "wrap-session",
+     "step": "curation",
+     "type": "recall.corpus-recurrence",
+     "what": "the report's `readers` site-sweep pattern missed «by 28 checks», «twenty-eight checks» and «23 readers» — the forms the 2026-10-20 count-forms entry of docs/session-learnings.md says every moved count's pattern must carry",
+     "impact": {
+      "extra_reads": 2
+     },
+     "artifacts": [
+      ".claude/docs/session-learnings.md",
+      ".andromeda/runs/2026-10-20T11-11-53-wrap/report-patterns.toml"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T11-11-53-wrap/curation.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.in-pass-correction",
+   "n": 9,
+   "weight": 27,
+   "score": 27,
+   "rate": "9/8",
+   "steps": [
+    "wrap-session/reconcile"
+   ],
+   "chunks": [
+    "2026-10-19-shared-fixtures",
+    "2026-10-19-test-splits",
+    "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+    "2026-10-19-visual-lint",
+    "2026-10-20-large-screen-in-parts",
+    "2026-10-20-load-wait",
+    "2026-10-20-select-by-id"
+   ],
+   "halt_or_softexit": false,
+   "above": true,
+   "cases": [
+    {
+     "id": "2026-10-19T20:17:00Z-c",
+     "chunk": "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.in-pass-correction",
+     "what": "architecture.md Upstream sync line first written with 'the first partial take ratified by the founder (2026-10-18)'; classify.py check standing read FAIL provenance (a date new on the line); rewritten to 'the first partial take ratified', the ratification left to the sidecar",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      ".andromeda/architecture.md:279"
+     ],
+     "evidence": ".andromeda/runs/2026-10-19T19-54-24-wrap/classify-2026-10-19-upstream-sync-visual-lint-and-real-app-readiness.json",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T20:17:00Z-d",
+     "chunk": "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.in-pass-correction",
+     "what": "the new [DOM semantics] detail bullet was first written registering Node::add_focus_within, remove_focus_within and contains_focus, the very registration Validate had rejected as registry over-reach (architecture proposal 2); the orchestrator's own re-read caught it and the clause was removed before the classify check",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      ".andromeda/architecture.md:103"
+     ],
+     "evidence": ".andromeda/runs/2026-10-19T19-54-24-wrap/fanout-results.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T21:48:43Z-c",
+     "chunk": "2026-10-19-test-splits",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.in-pass-correction",
+     "what": "cascade-patterns.toml first written with two TOML literal strings holding a doubled single quote; cascade.py sweep refused it (exit 2, not TOML at line 17); rewritten as triple-quoted literals and re-fired",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      ".andromeda/runs/2026-10-19T21-24-54-wrap/cascade-patterns.toml"
+     ],
+     "evidence": ".andromeda/runs/2026-10-19T21-24-54-wrap/cascade-2026-10-19-test-splits.json",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T23:26:54Z-c",
+     "chunk": "2026-10-19-shared-fixtures",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.in-pass-correction",
+     "what": "CLAUDE.md:13 hand write first called tests/fixtures/ 'the fixture checks' (it is a shared module, not checks); a re-read after the write corrected it to 'the checks on fixture pages'",
+     "impact": {
+      "reformulations": 1
+     },
+     "artifacts": [
+      "CLAUDE.md:13"
+     ],
+     "evidence": ".andromeda/runs/2026-10-19T23-02-04-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T01:26:37Z-d",
+     "chunk": "2026-10-19-visual-lint",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.in-pass-correction",
+     "what": "two first writes corrected before commit: obs-plan.md:70 stand_lint inserted beside a standing «where eighteen stood» clause read as new provenance by classify.py (moved to the list head, replace-5.md); test-plan.md:351 coverage pointer named evidence/ci.md, which holds no 4634/4732 reading (a grep caught it; re-pointed to the report, replace-6.md)",
+     "impact": {
+      "retries": 2
+     },
+     "artifacts": [
+      ".andromeda/obs-plan.md:70",
+      ".andromeda/test-plan.md:351"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T00-54-29-wrap/fanout-results.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T03:32:15Z-c",
+     "chunk": "2026-10-20-load-wait",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.in-pass-correction",
+     "what": "citation-dispositions.md copied the stretched row arch:192@c40334 as «execute.rs:95-254» instead of the printed «95-253 → 95-254»; caught on re-read before the fan-out and corrected by Edit",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      ".andromeda/runs/2026-10-20T03-00-02-wrap/citation-dispositions.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T07:00:02Z-b",
+     "chunk": "2026-10-20-select-by-id",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.in-pass-correction",
+     "what": "test-plan amendments first written with chunk-marker provenance (17 classify rows: 'since/until 2026-10-20-select-by-id' new, plus pre-existing markers re-anchored by moved counts) and the key file session-lifecycle.md:11 (5 rows); caught by classify.py check standing, corrected by replace-5/6/9",
+     "impact": {
+      "retries": 3
+     },
+     "artifacts": [
+      ".andromeda/test-plan.md",
+      ".andromeda/registries/contracts/test-plan/session-lifecycle.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T05-49-12-wrap/classify-2026-10-20-select-by-id.json",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T08:54:51Z-b",
+     "chunk": "2026-10-19-visual-lint",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.in-pass-correction",
+     "what": "body edits written then corrected before the commit, each caught by classify.py check --mode standing: arch :118 :196 :202 :227 first wrote 'ratified by the founder (2026-10-20)' and relay provenance (13 provenance rows), then arch :196 two anchored chunk markers (2 rows), then test-plan :22 a json-tests insertion inside a dated parenthesis's anchor window (3 rows); also citation-dispositions.md first dispositioned the tool's summary line as a row, caught by re-read",
+     "impact": {
+      "retries": 3,
+      "iterations": 4
+     },
+     "artifacts": [
+      ".andromeda/architecture.md",
+      ".andromeda/test-plan.md",
+      "citation-dispositions.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T07-57-08-wrap/replace-2.md · replace-3.md · replace-9.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T12:20:13Z-d",
+     "chunk": "2026-10-20-large-screen-in-parts",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.in-pass-correction",
+     "what": "citation-dispositions.md first carried a disposition on the sweep's second summary line (`out-of-range 1 · unresolved 2 …`), caught by a row count of 67 against the 66 printed rows and removed",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      ".andromeda/runs/2026-10-20T11-11-53-wrap/citation-dispositions.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/validate/contract.mechanical-check",
+   "n": 7,
+   "weight": 16,
+   "score": 16,
+   "rate": "7/7",
+   "steps": [
+    "phase/validate"
+   ],
+   "chunks": [
+    "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+    "2026-10-19-visual-lint",
+    "2026-10-20-large-screen-in-parts",
+    "2026-10-20-load-wait",
+    "2026-10-20-select-by-id"
+   ],
+   "halt_or_softexit": false,
+   "above": true,
+   "cases": [
+    {
+     "id": "2026-10-19T19:15:52Z-b",
+     "chunk": "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+     "skill": "phase",
+     "step": "validate",
+     "type": "contract.mechanical-check",
+     "what": "check 10 read 4 UNPARSED citations (inputs#I3, I4, I6, I7) inside the verbatim CARRY 3 and CARRY 4 quotes folded at P1; the fold had re-spelt I6/I7 by path beside the quote but left the tokens in it, and CARRY 4's I3/I4 not at all",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-upstream-sync-visual-lint-and-real-app-readiness/scope.md:29",
+      "escher-0.2.0/chunks/2026-10-19-upstream-sync-visual-lint-and-real-app-readiness/scope.md:30"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T00:12:46Z-b",
+     "chunk": "2026-10-19-visual-lint",
+     "skill": "phase",
+     "step": "validate",
+     "type": "contract.mechanical-check",
+     "what": "check 4 (6) fired: the gated acceptance criterion named lint_answers_one_line_of_findings with no entry running cli_commands; a gated entry was added",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T00:12:46Z-c",
+     "chunk": "2026-10-19-visual-lint",
+     "skill": "phase",
+     "step": "validate",
+     "type": "contract.mechanical-check",
+     "what": "check 4 (9) fired: the escher-driver lint unit entry baselined green with 0 selected (92 filtered out); two libtest test-line atoms were added and it re-baselined red",
+     "impact": {
+      "iterations": 1,
+      "retries": 1
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T02:00:45Z-b",
+     "chunk": "2026-10-20-load-wait",
+     "skill": "phase",
+     "step": "validate",
+     "type": "contract.mechanical-check",
+     "what": "entry 9's changed-files guard filtered by a grep -v alternation that omitted the new check; after the operator pre-CI commit it would read red at the wrap light gate (the shared-fixtures wrap hit the same shape); planlint 4 (16) reads exclusion pathspecs only, not a grep -v filter, so no predicate attempted it; caught by reading at P5, fixed before the word",
+     "impact": {
+      "iterations": 1
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-20-load-wait/plan.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T01-41-31-phase/p5-controls.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T04:13:01Z-b",
+     "chunk": "2026-10-20-select-by-id",
+     "skill": "phase",
+     "step": "validate",
+     "type": "contract.mechanical-check",
+     "what": "planlint check 4 (13) HIT on the per-OS tally entry (a gh run view job-log read, not ci.py) fires by construction on every plan carrying it; resolved by the read with a known-positive control fired on HEAD's completed run, as in the previous chunk",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-20-select-by-id/plan.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T03-46-58-phase/planlint-2026-10-20-select-by-id.json",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T09:52:35Z-b",
+     "chunk": "2026-10-20-large-screen-in-parts",
+     "skill": "phase",
+     "step": "validate",
+     "type": "contract.mechanical-check",
+     "what": "check 4 (9)'s must-pass control read the silence-census entry red: grep -c over two silent files exits 1 not 0, and the shared session module holds registered test-only std::fs and env! reads the pattern matched; the entry was split into a full census of the new check and a print/log census of session_common, both re-baselined and re-controlled",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "plan.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T09-07-29-phase/p5-controls.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T09:52:35Z-c",
+     "chunk": "2026-10-20-large-screen-in-parts",
+     "skill": "phase",
+     "step": "validate",
+     "type": "contract.mechanical-check",
+     "what": "the plan shipped a hand preservation guard (git diff | grep -v whitelist) and a hand untracked-file read where plan-template's rule makes such a guard one gate.py guard call; no planlint predicate flags a hand guard that should be the tool's, and the operator's review caught it; both entries were folded into one guard call with six controls, the fence going 22 → 21",
+     "impact": {
+      "dialogue_rounds": 1,
+      "iterations": 1
+     },
+     "artifacts": [
+      "plan.md",
+      "p5-card-1.md",
+      "p5-card-2.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T09-07-29-phase/p5-card-2.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/code/input.plan-step-ambiguous",
+   "n": 5,
+   "weight": 9,
+   "score": 9,
+   "rate": "5/8",
+   "steps": [
+    "implement/code"
+   ],
+   "chunks": [
+    "2026-10-19-shared-fixtures",
+    "2026-10-19-visual-lint",
+    "2026-10-20-large-screen-in-parts",
+    "2026-10-20-load-wait",
+    "2026-10-20-select-by-id"
+   ],
+   "halt_or_softexit": false,
+   "above": true,
+   "cases": [
+    {
+     "id": "2026-10-19T22:31:26Z-b",
+     "chunk": "2026-10-19-shared-fixtures",
+     "skill": "implement",
+     "step": "code",
+     "type": "input.plan-step-ambiguous",
+     "what": "plan step 6 lists stand_mcp_tools :532 under fixtures::hold, but the site is serve_mcp's boot closure (label from the caller, Result returned); took step 5's stand_mcp_masked form, Session::start(app, || fixtures::boot(fixtures::covered, incremental)), and surfaced it in the report",
+     "impact": {
+      "reformulations": 1
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-shared-fixtures/plan.md",
+      "tests/blitz-tests/tests/stand_mcp_tools.rs"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T00:24:41Z-b",
+     "chunk": "2026-10-19-visual-lint",
+     "skill": "implement",
+     "step": "code",
+     "type": "input.plan-step-ambiguous",
+     "what": "plan steps 3-4 assume escher-driver can name blitz_dom::BoundingRect and read computed contain/overflow; the crate depends on neither blitz-dom nor style, and the git guard entry forbids the manifest edit that would add one",
+     "impact": {
+      "extra_reads": 4
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md",
+      "packages/escher-driver/Cargo.toml"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T02:07:01Z-b",
+     "chunk": "2026-10-20-load-wait",
+     "skill": "implement",
+     "step": "code",
+     "type": "input.plan-step-ambiguous",
+     "what": "plan step 1's two stopping clauses for the never-answered wait disagree (return before the next poll would pass the bound vs. never sleep past it and end within one settle of it); implemented the second, which the arm-2 criterion (>= LOAD_WAIT) requires",
+     "impact": {
+      "reformulations": 1
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-20-load-wait/plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T04:30:29Z-b",
+     "chunk": "2026-10-20-select-by-id",
+     "skill": "implement",
+     "step": "code",
+     "type": "input.plan-step-ambiguous",
+     "what": "plan step 4 named the mutator's tree entry points for re-seeding but a Dioxus static template is deep-cloned and enters the document through process_added_subtree, so a select with no selected option never settled until a select arm was added there; and step 14's counting app with dynamic selected reverted every key choice on re-render",
+     "impact": {
+      "iterations": 2,
+      "extra_reads": 2
+     },
+     "artifacts": [
+      "plan.md step 4",
+      "plan.md step 14"
+     ],
+     "evidence": "tests/blitz-tests/tests/select_interaction.rs first run: 6 of 7 red",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T10:32:33Z-b",
+     "chunk": "2026-10-20-large-screen-in-parts",
+     "skill": "implement",
+     "step": "code",
+     "type": "input.plan-step-ambiguous",
+     "what": "plan.md Codebase touchpoints row for execute.rs names 'the record fed from the part' while Implementation step 7 and Provenance state the record takes the whole screen's ids; resolved by the step's explicit text",
+     "impact": {
+      "extra_reads": 0
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-20-large-screen-in-parts/plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/input.report-insufficient",
+   "n": 6,
+   "weight": 6,
+   "score": 6,
+   "rate": "6/8",
+   "steps": [
+    "wrap-session/reconcile"
+   ],
+   "chunks": [
+    "2026-10-19-test-splits",
+    "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+    "2026-10-19-visual-lint",
+    "2026-10-20-large-screen-in-parts",
+    "2026-10-20-load-wait",
+    "2026-10-20-select-by-id"
+   ],
+   "halt_or_softexit": false,
+   "above": true,
+   "cases": [
+    {
+     "id": "2026-10-19T20:17:00Z-b",
+     "chunk": "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "input.report-insufficient",
+     "what": "the report's Counts said no master site states the run-all agent-run figure; its sweep pattern \\b575\\b could not meet a series last written at 546 (test-plan.md:118), which the test-plan detector found and the orchestrator confirmed by offset read",
+     "impact": {
+      "extra_reads": 2
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-upstream-sync-visual-lint-and-real-app-readiness/report.md",
+      ".andromeda/test-plan.md:118"
+     ],
+     "evidence": ".andromeda/runs/2026-10-19T19-54-24-wrap/fanout-results.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T21:48:43Z-b",
+     "chunk": "2026-10-19-test-splits",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "input.report-insufficient",
+     "what": "the report's pre-pass site dispositions misread two architecture sites: :309 (blitz-dom row) listed stale under the five-to-eight fact though it names only blitz-dom's own children, and :223 listed citation-only though its list of the seven_guis shared module's helpers missed the moved fragment; caught by the architecture doc-agent's note and main's window read",
+     "impact": {
+      "extra_reads": 2
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-test-splits/report.md",
+      ".andromeda/architecture.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-19T21-24-54-wrap/fanout-results.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T01:26:37Z-b",
+     "chunk": "2026-10-19-visual-lint",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "input.report-insufficient",
+     "what": "the report Counts carried no escher-driver unit-count fact (92 -> 94) and dispositioned test-plan.md:68, obs-plan.md:70 and obs-plan.md:79 as path citations though each states a reader count the chunk moved",
+     "impact": {
+      "extra_reads": 4
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-visual-lint/report.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T00-54-29-wrap/fanout-results.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T03:32:15Z-b",
+     "chunk": "2026-10-20-load-wait",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "input.report-insufficient",
+     "what": "the report's digit-keyed pre-pass sweep missed three stale count sites (a count in words, a «19 stand_*» restatement, and arch §Existing Scopes' «by 26 … by 20» form); detectors caught two, the cascade sweep the third",
+     "impact": {
+      "extra_reads": 3
+     },
+     "artifacts": [
+      "obs-plan.md:70",
+      "test-plan.md:132",
+      "architecture.md:363"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T03-00-02-wrap/fanout-results.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T07:00:02Z-c",
+     "chunk": "2026-10-20-select-by-id",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "input.report-insufficient",
+     "what": "the report's site sweep missed three moved-count sites stated in another form: obs-plan.md:70 'twenty-seven checks' (a word form), obs-plan.md:79 '21 readers', test-plan.md:132 'run stand 185 · 0 · 7'; the detectors caught each",
+     "impact": {
+      "extra_reads": 3
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-20-select-by-id/report.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T05-49-12-wrap/fanout-obs-plan.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T12:20:13Z-b",
+     "chunk": "2026-10-20-large-screen-in-parts",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "input.report-insufficient",
+     "what": "the report's pre-pass patterns `unitcount` and `readers` missed six standing count sites (test-plan.md:22, :25, :132; session-lifecycle.md:11; obs-plan.md:70, :79) that the detectors then proposed from the report's deltas",
+     "impact": {
+      "extra_reads": 3
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-20-large-screen-in-parts/report.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T11-11-53-wrap/fanout-results.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "*/*/tooling.host-shell",
+   "n": 3,
+   "weight": 6,
+   "score": 6,
+   "rate": null,
+   "steps": [
+    "phase/plan",
+    "wrap-session/report"
+   ],
+   "chunks": [
+    "2026-10-19-test-splits",
+    "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+    "2026-10-20-load-wait"
+   ],
+   "halt_or_softexit": false,
+   "above": true,
+   "cases": [
+    {
+     "id": "2026-10-19T19:09:05Z-b",
+     "chunk": "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+     "skill": "phase",
+     "step": "plan",
+     "type": "tooling.host-shell",
+     "what": "a TOML-literal style triple-single-quoted run string pasted into bash -c failed as a syntax error near ( because bash has no triple-quote form; one re-issue through a script file",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      "plan.md gate 34"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T21:31:30Z-b",
+     "chunk": "2026-10-19-test-splits",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "tooling.host-shell",
+     "what": "the embedded ugrep refused a bounded-repetition context pattern (.{200}) and printed no rows, the third standing-learning recurrence of this hazard (T1 2026-10-07, global CLAUDE.md Shell); re-issued once through python",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-test-splits/report.md"
+     ],
+     "evidence": null,
+     "clause_retracted": [
+      "discount «the third standing-learning recurrence of this hazard»: no count of prior recurrences was taken; the refusal and its one re-issue stand"
+     ]
+    },
+    {
+     "id": "2026-10-20T01:56:03Z-c",
+     "chunk": "2026-10-20-load-wait",
+     "skill": "phase",
+     "step": "plan",
+     "type": "tooling.host-shell",
+     "what": "the gate-20 log-tally control typed as bash -c with the TOML triple-quote delimiters copied in failed to parse (syntax error near '('); re-run from a scratchpad script file",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-20-load-wait/plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/UNTYPED",
+   "n": 2,
+   "weight": 7,
+   "score": 7,
+   "rate": "2/8",
+   "steps": [
+    "wrap-session/reconcile"
+   ],
+   "chunks": [
+    "2026-10-20-load-wait",
+    "2026-10-20-select-by-id"
+   ],
+   "halt_or_softexit": true,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-20T03:32:15Z-d",
+     "chunk": "2026-10-20-load-wait",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": null,
+     "what": "a leaf comparer (architecture-1) wrote its file and returned while its own background job stayed open, so the batch could not be read as quiet until the orchestrator stopped it",
+     "impact": {
+      "extra_reads": 0,
+      "retries": 0
+     },
+     "artifacts": [
+      "leaf-architecture-1.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T07:00:02Z-d",
+     "chunk": "2026-10-20-select-by-id",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": null,
+     "what": "the shell failed EDQUOT (disk quota on Claude Code's temp dir) for every command, read-only ones included, mid-apply; the wrap stopped and asked; the operator measured 14G free and a write succeeding, and the retry ran",
+     "impact": {
+      "dialogue_rounds": 1,
+      "halted": 1
+     },
+     "artifacts": [
+      "$TMPDIR/claude-1000 tasks dir"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/gates/tooling.light-gate-red",
+   "n": 1,
+   "weight": 7,
+   "score": 7,
+   "rate": "1/8",
+   "steps": [
+    "wrap-session/gates"
+   ],
+   "chunks": [
+    "2026-10-19-shared-fixtures"
+   ],
+   "halt_or_softexit": true,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-19T23:43:31Z-b",
+     "chunk": "2026-10-19-shared-fixtures",
+     "skill": "wrap-session",
+     "step": "gates",
+     "type": "tooling.light-gate-red",
+     "what": "entry 12 (git diff --name-only {base} | grep -c -v the nineteen) green at implement, red at the wrap: the operator pass's pre-CI commit moved the new module from untracked (entry 13's whitelist) to tracked (entry 12's diff), so a probe split by tracked/untracked flips once the pass commits",
+     "impact": {
+      "iterations": 1,
+      "dialogue_rounds": 1,
+      "halted": 1
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-shared-fixtures/plan.md:229"
+     ],
+     "evidence": ".andromeda/runs/2026-10-19T23-02-04-wrap/gate-red-12.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.false-positive-proposal",
+   "n": 2,
+   "weight": 3,
+   "score": 3,
+   "rate": "2/8",
+   "steps": [
+    "wrap-session/reconcile"
+   ],
+   "chunks": [
+    "2026-10-19-shared-fixtures",
+    "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness"
+   ],
+   "halt_or_softexit": false,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-19T20:17:00Z-e",
+     "chunk": "2026-10-19-upstream-sync-visual-lint-and-real-app-readiness",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.false-positive-proposal",
+     "what": "D-arch-resources proposed registering three public Node methods into §Standard Contracts; rejected under the playbook's Registry over-reach rule (architecture enumerates no Node method)",
+     "impact": {},
+     "artifacts": [
+      ".andromeda/runs/2026-10-19T19-54-24-wrap/fanout-architecture.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-19T19-54-24-wrap/fanout-results.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-19T23:26:54Z-b",
+     "chunk": "2026-10-19-shared-fixtures",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.false-positive-proposal",
+     "what": "narrowed, not rejected: test-plan proposal 4 spelled the boot command `cargo test -p blitz-tests --locked --no-run`, a spelling the report does not carry (it reads `cargo test --no-run`); the applied text took the report's",
+     "impact": {
+      "reformulations": 1
+     },
+     "artifacts": [
+      "fanout-test-plan.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-19T23-02-04-wrap/fanout-results.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "*/*/contract.narrow-basis-claim",
+   "n": 2,
+   "weight": 2,
+   "score": 2,
+   "rate": null,
+   "steps": [
+    "wrap-session/report"
+   ],
+   "chunks": [
+    "2026-10-19-test-splits",
+    "2026-10-19-visual-lint"
+   ],
+   "halt_or_softexit": false,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-19T21:31:54Z-a",
+     "chunk": "2026-10-19-test-splits",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "contract.narrow-basis-claim",
+     "what": "a recurrence ordinal was typed from no count of the ledger",
+     "impact": {},
+     "artifacts": null,
+     "evidence": null,
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T08:05:19Z-d",
+     "chunk": "2026-10-19-visual-lint",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "contract.narrow-basis-claim",
+     "what": "the report's external-claims bullet first said I1-I6 were all cited, written from recall before inputs.py verify was read; verify printed I6 UNCITED, and the bullet was rewritten from its rows",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-visual-lint/report-gated.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T07-57-08-wrap/inputs-2026-10-19-visual-lint.json",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/reconcile/contract.cascade-miss",
+   "n": 2,
+   "weight": 2,
+   "score": 2,
+   "rate": "2/8",
+   "steps": [
+    "wrap-session/reconcile"
+   ],
+   "chunks": [
+    "2026-10-19-visual-lint",
+    "2026-10-20-large-screen-in-parts"
+   ],
+   "halt_or_softexit": false,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-20T01:26:37Z-c",
+     "chunk": "2026-10-19-visual-lint",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.cascade-miss",
+     "what": "registries/contracts/test-plan/session-lifecycle.md:11 restated escher-driver 92 unit tests; no detector proposed it, the step-2 sweep unit-count pattern caught it and it was amended in the pass",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      ".andromeda/registries/contracts/test-plan/session-lifecycle.md:11"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T00-54-29-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T12:20:13Z-c",
+     "chunk": "2026-10-20-large-screen-in-parts",
+     "skill": "wrap-session",
+     "step": "reconcile",
+     "type": "contract.cascade-miss",
+     "what": "two standing restatements no detector proposed were caught by the step-2 sweep and folded into the pass: security-plan.md:84 «`--id`, `--text`, `--key` and `--ms` each followed by one value» and session-lifecycle.md:5 «`snapshot` returns `Outcome::Screen`»",
+     "impact": {
+      "extra_reads": 2
+     },
+     "artifacts": [
+      ".andromeda/security-plan.md:84",
+      ".andromeda/registries/contracts/test-plan/session-lifecycle.md:5"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T11-11-53-wrap/cascade-dispositions.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/report/input.implement-outcome-unsettled",
+   "n": 2,
+   "weight": 2,
+   "score": 2,
+   "rate": "2/8",
+   "steps": [
+    "wrap-session/report"
+   ],
+   "chunks": [
+    "2026-10-19-visual-lint",
+    "2026-10-20-select-by-id"
+   ],
+   "halt_or_softexit": false,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-20T05:56:43Z-b",
+     "chunk": "2026-10-20-select-by-id",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "input.implement-outcome-unsettled",
+     "what": "implement ended surfaced on plan gate entry 12; the operator then edited plan.md (entry 12's alternation gains events/mod) and the re-fire read green, so the report's outcome basis is the operator's edit plus the pass, not implement's P4 verdict",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "outcome-2026-10-20-select-by-id.md",
+      "evidence/gate-12-amend.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T04-14-31-implement/outcome-2026-10-20-select-by-id.md",
+     "clause_retracted": null
+    },
+    {
+     "id": "2026-10-20T08:05:19Z-b",
+     "chunk": "2026-10-19-visual-lint",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": "input.implement-outcome-unsettled",
+     "what": "implement's P4 outcome listed reds 7, 10 and 14 on take-up-frozen atoms; the operator then changed the plan's precondition (inputs#I8: entries 10 and 14 re-expect HEAD plus this chunk's counts, entry 7 deferred), and the re-fires 10.2.log and 14.2.log read green; the report rests on those re-fires and evidence/gate-amend-gated.md",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      ".andromeda/runs/2026-10-20T07-11-30-implement/outcome-2026-10-19-visual-lint.md",
+      "escher-0.2.0/chunks/2026-10-19-visual-lint/evidence/gate-amend-gated.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T07-11-30-implement/gate-2026-10-19-visual-lint.json",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/report/UNTYPED",
+   "n": 1,
+   "weight": 3,
+   "score": 3,
+   "rate": "1/8",
+   "steps": [
+    "wrap-session/report"
+   ],
+   "chunks": [
+    "2026-10-19-visual-lint"
+   ],
+   "halt_or_softexit": false,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-20T08:05:19Z-c",
+     "chunk": "2026-10-19-visual-lint",
+     "skill": "wrap-session",
+     "step": "report",
+     "type": null,
+     "what": "the site sweep's verbs12 pattern set ignore_case on an alternative holding the code token \\bVERBS\\b, so it matched every plain word verbs (36 rows); the first per-row disposition miscounted (21 + 15) and was re-derived twice to 26 + 10 against the printed rows",
+     "impact": {
+      "retries": 2
+     },
+     "artifacts": [
+      ".andromeda/runs/2026-10-20T07-57-08-wrap/report-patterns.toml"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T07-57-08-wrap/cascade-2026-10-19-visual-lint-pre-pass.json",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/fix-loop/UNTYPED",
+   "n": 1,
+   "weight": 2,
+   "score": 2,
+   "rate": "1/8",
+   "steps": [
+    "implement/fix-loop"
+   ],
+   "chunks": [
+    "2026-10-20-large-screen-in-parts"
+   ],
+   "halt_or_softexit": false,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-20T10:45:45Z-b",
+     "chunk": "2026-10-20-large-screen-in-parts",
+     "skill": "implement",
+     "step": "fix-loop",
+     "type": null,
+     "what": "plan step 12.7 asked for MCP snapshot with no argument and part 2 only, while verification-matrix v020-09's acceptance says 'the same walk through serve_mcp returns the same JSON lines'; the green test was extended to the full walk before the ref was written, costing one more full block run",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-20-large-screen-in-parts/plan.md",
+      "escher-0.2.0/verification-matrix.json"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/plan/UNTYPED",
+   "n": 1,
+   "weight": 2,
+   "score": 2,
+   "rate": "1/7",
+   "steps": [
+    "phase/plan"
+   ],
+   "chunks": [
+    "2026-10-20-load-wait"
+   ],
+   "halt_or_softexit": false,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-20T01:56:03Z-b",
+     "chunk": "2026-10-20-load-wait",
+     "skill": "phase",
+     "step": "plan",
+     "type": null,
+     "what": "wrote estimated clock stamps (Generated 01:56Z, control fired 01:58Z) into plan.md without reading the clock; the stamp-ahead hook refused the second, both re-written from date -u readings",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-20-load-wait/plan.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/plan/retry.synthesis-rework",
+   "n": 1,
+   "weight": 2,
+   "score": 2,
+   "rate": "1/7",
+   "steps": [
+    "phase/plan"
+   ],
+   "chunks": [
+    "2026-10-20-large-screen-in-parts"
+   ],
+   "halt_or_softexit": false,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-20T09:43:48Z-b",
+     "chunk": "2026-10-20-large-screen-in-parts",
+     "skill": "phase",
+     "step": "plan",
+     "type": "retry.synthesis-rework",
+     "what": "the plan first fed the record of ids from a part's ids alone and built a stale/not-found fixture witness for it; re-reading execute.rs showed resolve records the whole screen before every acting call, so the witness could not pass and the lean was moot; step 7, step 12 item 7 and the fixture were rewritten to the whole-screen record",
+     "impact": {
+      "iterations": 1,
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "plan.md",
+      "research.md",
+      "scope.md"
+     ],
+     "evidence": "packages/escher-driver/src/execute.rs:378-382",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "phase/validate/UNTYPED",
+   "n": 1,
+   "weight": 2,
+   "score": 2,
+   "rate": "1/7",
+   "steps": [
+    "phase/validate"
+   ],
+   "chunks": [
+    "2026-10-20-load-wait"
+   ],
+   "halt_or_softexit": false,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-20T02:00:45Z-c",
+     "chunk": "2026-10-20-load-wait",
+     "skill": "phase",
+     "step": "validate",
+     "type": null,
+     "what": "entry 9's first must-fail control edited the root Cargo.toml, outside the entry's pathspecs, and read green; re-aimed at blitz-dom lib.rs inside the read, red",
+     "impact": {
+      "retries": 1
+     },
+     "artifacts": [
+      ".andromeda/runs/2026-10-20T01-41-31-phase/p5-controls.md"
+     ],
+     "evidence": null,
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "*/*/contract.jointly-contradictory-instructions",
+   "n": 1,
+   "weight": 1,
+   "score": 1,
+   "rate": null,
+   "steps": [
+    "implement/fix-loop"
+   ],
+   "chunks": [
+    "2026-10-19-visual-lint"
+   ],
+   "halt_or_softexit": false,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-20T07:26:35Z-b",
+     "chunk": "2026-10-19-visual-lint",
+     "skill": "implement",
+     "step": "fix-loop",
+     "type": "contract.jointly-contradictory-instructions",
+     "what": "gate entry 7 (no tracked file outside the six moves before the founder word) and plan step 12 (option 1 edits nineteen listed files) were authored together at P4 and cannot both hold in gated mode; entry 7 has no defer key, so the block reads red 7 on the work step 12 orders; no mechanical check attempted the pair",
+     "impact": {
+      "iterations": 0
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T07-11-30-implement/gate-2026-10-19-visual-lint.json",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "*/*/contract.skill-reference-drift",
+   "n": 1,
+   "weight": 1,
+   "score": 1,
+   "rate": null,
+   "steps": [
+    "phase/take-up"
+   ],
+   "chunks": [
+    "2026-10-20-load-wait"
+   ],
+   "halt_or_softexit": false,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-20T01:42:51Z-b",
+     "chunk": "2026-10-20-load-wait",
+     "skill": "phase",
+     "step": "take-up",
+     "type": "contract.skill-reference-drift",
+     "what": "misreading: wrap SKILL.md P7.3 does say «the same call with --gated»; its --gated-file parenthesis names the phase P5.4 claim, so no letter-vs-tool drift existed",
+     "impact": {},
+     "artifacts": [
+      "andromeda-wrap-session/SKILL.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T00-54-29-wrap/matrix-2026-10-19-visual-lint.json",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "*/*/contract.structural-blind-spot",
+   "n": 1,
+   "weight": 1,
+   "score": 1,
+   "rate": null,
+   "steps": [
+    "implement/fix-loop"
+   ],
+   "chunks": [
+    "2026-10-19-visual-lint"
+   ],
+   "halt_or_softexit": false,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-20T07:26:35Z-c",
+     "chunk": "2026-10-19-visual-lint",
+     "skill": "implement",
+     "step": "fix-loop",
+     "type": "contract.structural-blind-spot",
+     "what": "a gated take-up re-fires the block P5 froze at the first take-up; entries 10 and 14 hold exact counts (183, 1055) that two chunks committed in between moved to 190 and 1083, so they read red by construction; measured 192 and 1087, the HEAD control plus this chunk's tests",
+     "impact": {
+      "extra_reads": 2
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-visual-lint/plan.md",
+      "escher-0.2.0/chunks/2026-10-19-visual-lint/evidence/counts.md"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T07-11-30-implement/gate-2026-10-19-visual-lint.json",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "*/*/tooling.output-cap-overflow",
+   "n": 1,
+   "weight": 1,
+   "score": 1,
+   "rate": null,
+   "steps": [
+    "phase/research"
+   ],
+   "chunks": [
+    "2026-10-20-load-wait"
+   ],
+   "halt_or_softexit": false,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-20T01:51:21Z-b",
+     "chunk": "2026-10-20-load-wait",
+     "skill": "phase",
+     "step": "research",
+     "type": "tooling.output-cap-overflow",
+     "what": "code-graph.py query printed 147 rows (32.5 KB) past the Bash display cap; recovered by tallying the persisted output per callee and file with one python read",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "scripts/code-graph.py"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T01-41-31-phase/tree-query-2026-10-20-load-wait.json",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/code/input.research-files-wrong",
+   "n": 1,
+   "weight": 1,
+   "score": 1,
+   "rate": "1/8",
+   "steps": [
+    "implement/code"
+   ],
+   "chunks": [
+    "2026-10-19-visual-lint"
+   ],
+   "halt_or_softexit": false,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-20T07:19:00Z-b",
+     "chunk": "2026-10-19-visual-lint",
+     "skill": "implement",
+     "step": "code",
+     "type": "input.research-files-wrong",
+     "what": "research §Sweeps said stand_act_scroll.rs reads VERBS and pins no count; its a_scroll_needs_a_target test asserts VERBS.len() == 11, so a twelfth verb needed a companion edit outside the lists",
+     "impact": {
+      "extra_reads": 1
+     },
+     "artifacts": [
+      "escher-0.2.0/chunks/2026-10-19-visual-lint/research.md",
+      "tests/blitz-tests/tests/stand_act_scroll.rs"
+     ],
+     "evidence": "escher-0.2.0/chunks/2026-10-19-visual-lint/scope-record.md",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "implement/fix-loop/contract.spec-reality-gap",
+   "n": 1,
+   "weight": 1,
+   "score": 1,
+   "rate": "1/8",
+   "steps": [
+    "implement/fix-loop"
+   ],
+   "chunks": [
+    "2026-10-20-select-by-id"
+   ],
+   "halt_or_softexit": false,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-20T04:41:26Z-b",
+     "chunk": "2026-10-20-select-by-id",
+     "skill": "implement",
+     "step": "fix-loop",
+     "type": "contract.spec-reality-gap",
+     "what": "plan entry 12 (no tracked file outside the write set) lists events/(keyboard|pointer) but not events/mod.rs, which the new DomEventData::Change variant forces edited; its P5 must-fail control used lib.rs, never the companion step 8 anticipates",
+     "impact": {
+      "iterations": 0
+     },
+     "artifacts": [
+      "plan.md entry 12",
+      "packages/blitz-dom/src/events/mod.rs"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T04-14-31-implement/gate-2026-10-20-select-by-id.json entry 12 firing 2",
+     "clause_retracted": null
+    }
+   ]
+  },
+  {
+   "key": "wrap-session/gates/contract.coverage-hold",
+   "n": 1,
+   "weight": 1,
+   "score": 1,
+   "rate": "1/8",
+   "steps": [
+    "wrap-session/gates"
+   ],
+   "chunks": [
+    "2026-10-19-visual-lint"
+   ],
+   "halt_or_softexit": false,
+   "above": false,
+   "cases": [
+    {
+     "id": "2026-10-20T01:37:33Z-b",
+     "chunk": "2026-10-19-visual-lint",
+     "skill": "wrap-session",
+     "step": "gates",
+     "type": "contract.coverage-hold",
+     "what": "v020-05 held below verified by the gated arm: the founder's own word on F1 (the lint's carriage) not recorded; master flipped pending -> gated",
+     "impact": {
+      "deferred": 1
+     },
+     "artifacts": [
+      "escher-0.2.0/verification-matrix.json"
+     ],
+     "evidence": ".andromeda/runs/2026-10-20T00-54-29-wrap/matrix-2026-10-19-visual-lint.json",
+     "clause_retracted": null
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,53 @@
+{
+ "epoch": "escher-0.2.0 / Epoch 4 - Visual lint and real-app readiness",
+ "facts_in_epoch": 23,
+ "solution_counts": {"workaround": 19, "overridden": 2, "removed-cause": 1, "unresolved": 1},
+ "pass_a_themes": [
+  {
+   "theme": "classify.py's provenance arm: an in-line edit within the 8-token anchor window of a dated parenthesis reads as new provenance",
+   "facts_in_epoch": ["2026-10-20T07:00:02Z-a#1 (process, workaround)", "2026-10-20T08:54:51Z-a#0 (process, workaround)"],
+   "facts_prior": ["2026-10-19T06:41:41Z-a (Epoch 3, product-logic, workaround)"],
+   "typed_correlates_in_epoch": ["2026-10-19T20:17:00Z-c", "2026-10-20T01:26:37Z-d", "2026-10-20T07:00:02Z-b", "2026-10-20T08:54:51Z-b (contract.in-pass-correction)", "2026-10-20T01:29:08Z-b", "2026-10-20T07:01:26Z-b", "2026-10-20T08:55:50Z-b (recall.corpus-recurrence)"],
+   "threshold": "met: n >= 2 recurring from a prior epoch", "signature": "band-aid"
+  },
+  {
+   "theme": "a plan control or tally typed into the session as a bash -c string (TOML triple-quoted run text copied in) breaks on quoting; re-run from a scratchpad script",
+   "facts_in_epoch": ["2026-10-19T19:09:05Z-a#0 (environment)", "2026-10-19T22:16:55Z-a#0 (environment)", "2026-10-20T04:07:12Z-a#0 (process)"],
+   "facts_prior": [],
+   "typed_correlates_in_epoch": ["2026-10-19T19:09:05Z-b", "2026-10-20T01:56:03Z-c (tooling.host-shell)"],
+   "untyped_prior": ["2026-10-19T03:49:26Z-d (Epoch 3, python heredoc nesting triple quotes)"],
+   "threshold": "met: n >= 3 in-epoch", "signature": "band-aid", "chunks": 4
+  },
+  {
+   "theme": "a pipeline tool's stdout suppressed (/dev/null) or piped into grep against the read-bare rule, recovered from its trail",
+   "facts_in_epoch": ["2026-10-20T04:13:01Z-a#0 (process)", "2026-10-20T12:20:13Z-a#0 (process)"],
+   "facts_prior": ["2026-10-19T10:47:19Z-a (Epoch 3, process)"],
+   "threshold": "met: n >= 2 recurring from a prior epoch", "signature": "band-aid (a prohibition worked around)"
+  },
+  {
+   "theme": "many anchored edits applied by one scripted replace instead of N Edit calls",
+   "facts_in_epoch": ["2026-10-20T01:51:21Z-a#0 (process)"],
+   "facts_prior": ["2026-10-18T09:23:19Z-a (Epoch 3, process)"],
+   "threshold": "met: n >= 2 recurring from a prior epoch", "signature": "band-aid"
+  },
+  {"theme": "a step's contract holds no slot for the measurement it needs; a hand run outside it", "facts_in_epoch": ["2026-10-20T03:58:03Z-a#0", "2026-10-20T07:27:04Z-a#0"], "facts_prior": [], "threshold": "below (2 in-epoch, no prior)"},
+  {"theme": "a skill-mandated read or no-read rule replaced by a narrower equivalent", "facts_in_epoch": ["2026-10-19T18:53:27Z-a#0", "2026-10-20T01:42:51Z-a#0"], "facts_prior": [], "threshold": "below (two different rules)"},
+  {"theme": "a bare cd moved the session cwd", "facts_in_epoch": ["2026-10-19T22:02:31Z-a#0"], "threshold": "below"},
+  {"theme": "embedded ugrep refused a bounded repetition", "facts_in_epoch": ["2026-10-19T21:31:30Z-a#0"], "threshold": "below as a fact theme; in P6 as a typed case"},
+  {"theme": "scratch clone path puts the session socket past 94 bytes", "facts_in_epoch": ["2026-10-20T00:12:46Z-a#0"], "threshold": "below"},
+  {"theme": "founder's label in a gitignored incubator file that snap refuses", "facts_in_epoch": ["2026-10-19T23:49:01Z-a#0"], "threshold": "below"},
+  {"theme": "crate types unnameable under the plan's no-move manifest guard", "facts_in_epoch": ["2026-10-20T00:24:41Z-a#0 (product-logic)"], "threshold": "below as a fact; in X2"},
+  {"theme": "stale code-graph DB regenerated", "facts_in_epoch": ["2026-10-20T03:58:03Z-a#1"], "threshold": "below"},
+  {"theme": "a leaf comparer's background job left open", "facts_in_epoch": ["2026-10-20T03:32:15Z-a#0"], "threshold": "below"},
+  {"theme": "removed-cause: an estimated stamp refused by the stamp-ahead hook", "facts_in_epoch": ["2026-10-20T04:07:12Z-a#1"], "threshold": "below as a removed-cause theme; folded into U1"}
+ ],
+ "pass_b": {
+  "band_aid": ["provenance arm", "bash -c quoting", "stdout suppressed", "scripted bulk edit"],
+  "chronic_degrade": {"tooling.host-shell": "recorded in 6 of the 10 epochs (q-lookback.json), never halting", "ok-degraded outcomes in epoch": ["2026-10-20T04:41:26Z-a"]},
+  "deferred_forever": "none: no solution:deferred fact and no deferral-open signal in the epoch; the one deferral (2026-10-20T01:37:33Z-b coverage-hold, v020-05 gated) closed at the visual-lint gated wrap",
+  "override": [
+   {"rule": "phase P4: founder forks asked as a dialog", "in_epoch": ["2026-10-20T00:05:58Z-a#0"], "prior": ["2026-10-19T03:18:48Z-a (Epoch 3)", "2026-10-18T07:41:31Z-a (Epoch 3)", "2026-10-18T03:01:31Z-a (Epoch 2)", "2026-10-10T08:21:37Z-a (0.1.0 Epoch 5)"]},
+   {"rule": "wrap gates: a red light-gate entry stops the wrap tests-failing", "in_epoch": ["2026-10-19T23:43:31Z-a#0"], "prior": ["2026-10-18T21:40:26Z-a (0.2.0 Epoch 2, entry 21 source-list probe --skipped)", "2026-10-16T17:56:52Z-a (0.2.0 Epoch 1, entry 13 after the pre-CI commit tracked new files)", "2026-10-06T11:52:55Z-a (0.1.0 Epoch 2, entry 17 diff guard)"]}
+  ]
+ }
+}

@@ -37,3 +37,14 @@
   form in its sweep pattern». This wrap's `readers` pre-pass pattern missed «by 28 checks», «twenty-eight checks» and
   «23 readers»; the detectors caught the sites.
 - Last failed command: none.
+
+## AUTO-COMPACT 2026-10-20 15:24 (unattended)
+- Context at compact: 575k / 1.00M (58%); alarm level reached before it: none.
+- The pre-compact ritual did NOT run. Post-compact instance: re-verify the END STATE of every in-flight edit (phrase/hash probe per planned site), refresh the handoff, then continue.
+
+## Session End Status
+Completed normally at 2026-10-20 15:43:28
+
+## AUTO-COMPACT 2026-10-21 00:13 (unattended)
+- Context at compact: 242k / 1.00M (24%); alarm level reached before it: none.
+- The pre-compact ritual did NOT run. Post-compact instance: re-verify the END STATE of every in-flight edit (phrase/hash probe per planned site), refresh the handoff, then continue.
