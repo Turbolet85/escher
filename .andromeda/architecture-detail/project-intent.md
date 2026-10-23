@@ -1,0 +1,35 @@
+# architecture · Project Intent
+Read whole. The master's broad view is .andromeda/architecture.md; this file holds its Project Intent detail.
+
+## Project Intent
+
+<!-- detail: values · intent -->
+
+Origin: adopted at 0f60502ea724ef703b34220b3847bb3483f70b5f
+Upstream sync: DioxusLabs/blitz `main` last merged at 23b9b26a9b6af5947b8f003d2c2cc768bff10b8a (merge commit 3eda07bc, parents `143b6013` · `23b9b26a9`, 2026-10-17) — the next sync's merge base; upstream `main` last read at `17de049b1`, 7 commits past it, of which three are taken by no-commit cherry-picks of upstream's text, each with its `(cherry picked from commit …)` trailer, the merge base unmoved: `fb8d6c15e` (the default cursor over no box, upstream #1220) alone (`275950dc0`), then `38ca4e777` (`:focus-within`, upstream #1226) and `17de049b1` (the WPT pin, upstream #1228) together (`79603d1ef`) — the four Taffy-main commits (`1a11761bc` · `4a5ab9cc9` · `510b592ab` · `1e5479ae6`) wait for the next sync, since they put a git Taffy in the root manifest, so Taffy stays the registry "0.15"; both partial takes ratified (as measured at escher-0.2.0/chunks/2026-10-19-upstream-sync-visual-lint-and-real-app-readiness/evidence/take.md)
+
+<!-- /detail -->
+
+<!-- detail: values · intent -->
+
+- **Product type (as adopted):** a Rust library workspace for an HTML/CSS engine — "High-level APIs for rendering HTML with Blitz" (packages/blitz/Cargo.toml:3), "The core DOM abstraction in Blitz" with `BaseDocument` as "the primary entry point" (packages/blitz-dom/src/lib.rs:1; packages/blitz-dom/src/lib.rs:34-37), the `Document` trait existing so wrappers around `BaseDocument` can all be driven by blitz-shell (packages/blitz-dom/src/document.rs:165-167); homepage and repository `https://github.com/dioxuslabs/blitz` as adopted, `https://github.com/Turbolet85/escher` since 2026-10-14-quality-gates (Cargo.toml:37-38)
+
+<!-- /detail -->
+
+<!-- detail: values · intent -->
+
+- **Front page:** the root `README.md` is escher's own page, not upstream Blitz's — what escher is and, since 2026-10-16-handler-splits-and-readme, its state under `## Status`: 0.1.0 done and verified, its six stages listed with three recorded facts (17 capabilities verified, 43 cold-agent tool calls with 0 wrong, 0 surviving mutants of 1,558), and 0.2.0 planned in five stages, one line per epoch of `escher-0.2.0/working-route.md`, where it read built vs planned; the page spells the name «Escher» in its prose and title, crate, binary and path names, URLs and the e-mail unchanged, on the founder's word «чтоб эшер там с большой буквы писался» (2026-10-16) — and since 2026-10-10-driver-cli how the driver's command line is run (the `escher-session` binary: `start`, one driver command per call answering one line of JSON on stdout, the four exit statuses, `stop`), since 2026-10-10-mcp-surface how an MCP client drives the same apps (it spawns `target/debug/escher-session mcp` as its own child and gets the driver commands as tools, ten since 2026-10-12-self-description and eleven since 2026-10-12-headless-screenshot, the page saying eleven since 2026-10-13-upstream-sync-polish-and-ship), since 2026-10-12-self-description how to ask for `help` on both surfaces, the screenshot no longer named as still to come since 2026-10-13-upstream-sync-polish-and-ship, its Blitz lineage, the 0.1.0 epochs, the licence and an Author / Contact section, with the fork's `ci.yml` badge as its one image (README.md). No build, doc or test step reads it; `rdme` resolves a `README.md` at runtime only (apps/readme/src/main.rs:220-233). At an Upstream sync an upstream change to `README.md` resolves to escher's version (upstream touched it 6 times in the 12 months to 2026-10-06, as measured at escher-0.1.0/chunks/2026-10-06-project-readme/research.md)
+
+<!-- /detail -->
+
+<!-- detail: values · intent -->
+
+- **Crate purposes:** blitz-html "Blitz HTML parser" (packages/blitz-html/Cargo.toml:3); blitz-net "Blitz networking" (packages/blitz-net/Cargo.toml:3); blitz-paint "Paint a Blitz Document using anyrender" (packages/blitz-paint/Cargo.toml:3); blitz-shell "Blitz application shell" / "Event loop, windowing and system integration." (packages/blitz-shell/Cargo.toml:3; packages/blitz-shell/src/lib.rs:3), whose crate doc lists a hot-reload feature its manifest does not declare (packages/blitz-shell/src/lib.rs:8; packages/blitz-shell/Cargo.toml:13-25); blitz-test-harness "Headless test harness for Blitz documents" (packages/blitz-test-harness/Cargo.toml:3); blitz-vibey-script "JavaScript execution for Blitz using the Boa engine" (packages/blitz-vibey-script/Cargo.toml:3), able to run real-world frameworks such as Preact (packages/blitz-vibey-script/src/lib.rs:8); blitz-traits "Shared traits and types for Blitz" (packages/blitz-traits/Cargo.toml:3); debug_timer "Utilities for simple timings" (packages/debug_timer/Cargo.toml:3); blitz-dom "Blitz DOM implementation" (packages/blitz-dom/Cargo.toml:3), its layout module meant to "Enable the dom to lay itself out using taffy" (packages/blitz-dom/src/layout/mod.rs:1); accesskit_xplat "AccessKit UI accessibility infrastructure: cross-platform adapter" (packages/accesskit_xplat/Cargo.toml:5); Dioxus crates with keywords dom, ui, gui, react and repository `https://github.com/DioxusLabs/dioxus/` (packages/dioxus-native-dom/Cargo.toml:8-10; packages/dioxus-native/Cargo.toml:8-10), `launch` starting "an interactive HTML/CSS renderer driven by the Dioxus virtualdom" (packages/dioxus-native/src/lib.rs:94); `stylo_taffy` keywords css and layout (packages/stylo_taffy/Cargo.toml:5)
+
+<!-- /detail -->
+
+<!-- detail: values · intent -->
+
+- **Validation sources:** the WPT runner reports product `blitz` and runs web-platform-tests from a local checkout of https://github.com/web-platform-tests/wpt (wpt/runner/src/report.rs:30; wpt/runner/src/main.rs:471-475); blitz-tests is "Integration tests for Blitz" (tests/blitz-tests/Cargo.toml:3), some of them Rust ports of script-driven WPT tests the runner cannot run (tests/blitz-tests/tests/oof_dynamic_cb.rs:7-12); regressions trace to real sites — Hacker News, gosub.io, old.reddit.com, www.wikipedia.org, bbc.co.uk, crowdsupply.com (tests/blitz-tests/tests/br_trailing_line.rs:6-9; tests/blitz-tests/tests/details_element.rs:112-113; tests/blitz-tests/tests/pseudo_element_update.rs:5-8; tests/blitz-tests/tests/rem_after_viewport_change.rs:4-8; tests/blitz-tests/tests/stale_dirty_descendants.rs:4; tests/blitz-tests/tests/svg_background_size.rs:6-7); fixtures reproduce shapes from a "kopuz" application (tests/blitz-tests/tests/display_contents.rs:57; tests/blitz-tests/tests/display_contents.rs:91; tests/blitz-tests/tests/display_contents.rs:121; tests/blitz-tests/tests/pointer_events.rs:31); a test exercises Tailwind v4's `inset: calc(var(--spacing) * 0)` (tests/blitz-tests/tests/comment_layout.rs:91-113); `tests/stylo_usage.rs` carries "TODO: clean up and upstream to stylo repo" (tests/stylo_usage.rs:2); the servo-new fixture's prose describes Servo, a third-party engine (examples/assets/servo-new.html:261-263)
+
+<!-- /detail -->

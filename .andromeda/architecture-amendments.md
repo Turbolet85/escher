@@ -1110,3 +1110,9 @@ Partly retires the PROVISIONAL clause of every earlier 2026-10-18-engine-debts a
 - Existing Scopes: snapshot_text gains `text_parts` and `TextPart`; `session_common` readers 29 (was 28), `fixtures` 24 (was 23), 22 `stand_*` (was 21).
 **Why:** the founder's own ratification of a boundary widening: his answers to the P4 forks, F1 «Аргумент part, части по умолчанию (Рекомендую)» and F2 «Пустая часть (Рекомендую)», given by question dialog in the overseer session and relayed verbatim by the overseer (2026-10-20, chunk inputs#I2). His confirm of this wrap's answer card is «Подтвердить все (Рекомендую)» (inputs#I5), on the same channel. The counts are measured.
 **Ref:** .andromeda/runs/2026-10-20T11-11-53-wrap/
+
+## U55 — the door: architecture split into its body and its category files
+**Section:** (the whole master — the door)
+**Change:** split into its body and 10 category files; the map .andromeda/architecture.map.tsv
+**Why:** the operator's word: the founder's, 2026-10-24, on the door's card, relayed by overseer1.
+**Ref:** $TMPDIR/claude-1000/-home-turbolet-dev-projects-additional-andromeda-worker/d27ed186-56d7-4e67-a724-455c06ee4635/scratchpad/u55-door-2026-10-23-r2/
