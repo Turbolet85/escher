@@ -1111,7 +1111,7 @@ Partly retires the PROVISIONAL clause of every earlier 2026-10-18-engine-debts a
 **Why:** the founder's own ratification of a boundary widening: his answers to the P4 forks, F1 «Аргумент part, части по умолчанию (Рекомендую)» and F2 «Пустая часть (Рекомендую)», given by question dialog in the overseer session and relayed verbatim by the overseer (2026-10-20, chunk inputs#I2). His confirm of this wrap's answer card is «Подтвердить все (Рекомендую)» (inputs#I5), on the same channel. The counts are measured.
 **Ref:** .andromeda/runs/2026-10-20T11-11-53-wrap/
 
-## U55 — the door: architecture split into its body and its category files
+## 2026-10-23-u55-door — architecture: split into its body and 10 category files
 **Section:** (the whole master — the door)
 **Change:** split into its body and 10 category files; the map .andromeda/architecture.map.tsv
 **Why:** the operator's word: the founder's, 2026-10-24, on the door's card, relayed by overseer1.

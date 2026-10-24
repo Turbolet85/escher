@@ -872,7 +872,7 @@ Partly retires the PROVISIONAL clause of the earlier 2026-10-18-engine-debts and
 **Why:** this chunk's measured counts, CI green 17/17 on 191e66fdb (CI#39410865604). The paged carriage is the founder's own word, F1 «Аргумент part, части по умолчанию (Рекомендую)», relayed verbatim by the overseer (2026-10-20, chunk inputs#I2); his card confirm is inputs#I5.
 **Ref:** .andromeda/runs/2026-10-20T11-11-53-wrap/
 
-## U55 — the door: test-plan split into its body and its category files
+## 2026-10-24-u55-door — test-plan: split into its body and 9 category files
 **Section:** (the whole master — the door)
 **Change:** split into its body and 9 category files; the map .andromeda/test-plan.map.tsv
 **Why:** the operator's word: the founder's, 2026-10-24, given after the door's third pass, once the scoped reviewer accepted with 0 disputes; relayed by overseer1.

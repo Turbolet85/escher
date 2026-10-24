@@ -428,7 +428,7 @@ Partly retires the PROVISIONAL clause of the earlier 2026-10-18-engine-debts and
 **Why:** this chunk's a11y readings (report Outcome), on the paged answer the founder ratified, F1 «Аргумент part, части по умолчанию (Рекомендую)», relayed verbatim by the overseer (2026-10-20, chunk inputs#I2); his card confirm «Подтвердить все (Рекомендую)» (inputs#I5).
 **Ref:** .andromeda/runs/2026-10-20T11-11-53-wrap/
 
-## U55 — the door: a11y-plan split into its body and its category files
+## 2026-10-24-u55-door — a11y-plan: split into its body and 8 category files
 **Section:** (the whole master — the door)
 **Change:** split into its body and 8 category files; the map .andromeda/a11y-plan.map.tsv
 **Why:** the operator's word: the founder's standing word of 2026-10-24 for the door on escher's masters, given after two review rounds, the last open row taken in the reviewer's own wording; relayed by overseer1.

@@ -458,7 +458,7 @@ The delegate-answered facts PROVISIONAL.
 **Why:** this chunk's span reading and silence census, CI green 17/17 on 191e66fdb (CI#39410865604). No field is added, so no ruling is owed.
 **Ref:** .andromeda/runs/2026-10-20T11-11-53-wrap/
 
-## U55 — the door: obs-plan split into its body and its category files
+## 2026-10-24-u55-door — obs-plan: split into its body and 7 category files
 **Section:** (the whole master — the door)
 **Change:** split into its body and 7 category files; the map .andromeda/obs-plan.map.tsv
 **Why:** the operator's word: the founder's standing word of 2026-10-24 for the door on escher's masters, given after two review rounds, the last four open rows taken in the reviewer's own wording; relayed by overseer1.
