@@ -122,6 +122,10 @@ pub struct Node {
 
     // Flags
     pub flags: NodeFlags,
+    /// Whether the node's box is out of flow (absolutely positioned and not `display: none`).
+    /// Written by the style traversal from the node's new primary style, so that layout
+    /// passes can test it without reading styles.
+    pub out_of_flow: AtomicBool,
 
     /// Node type (Element, TextNode, etc) specific data.
     ///
@@ -418,6 +422,7 @@ impl Node {
             sc_contribution_cache: RefCell::new(ThinVec::new()),
 
             flags: NodeFlags::empty(),
+            out_of_flow: AtomicBool::new(false),
             data,
         }
     }
@@ -1263,11 +1268,15 @@ impl Node {
     /// block's hoisted child list rather than from its parent (`display: none` boxes
     /// generate no box and are never hoisted).
     pub fn is_out_of_flow(&self) -> bool {
-        self.primary_styles().is_some_and(|s| {
-            let box_style = s.get_box();
-            stylo_taffy::convert::position(box_style.position).is_out_of_flow()
-                && stylo_taffy::convert::display(box_style.display) != taffy::Display::None
-        })
+        self.primary_styles()
+            .is_some_and(|s| style_is_out_of_flow(&s))
+    }
+
+    /// Record in [`Node::out_of_flow`] whether `style` (the node's new primary style)
+    /// makes its box out of flow.
+    pub(crate) fn record_out_of_flow(&self, style: &ComputedValues) {
+        self.out_of_flow
+            .store(style_is_out_of_flow(style), Ordering::Relaxed);
     }
 
     pub fn text_content(&self) -> String {
@@ -1401,6 +1410,10 @@ impl Node {
     ///    - Some(HitResult) if the position is within the node but doesn't match any children
     ///    - The result of recursively calling child.hit() on the the child element that is
     ///      positioned at that position if there is one.
+    ///
+    /// Hit testing may run between a DOM mutation and the next `resolve`, so the
+    /// paint lists and inline layouts it walks can still name nodes the mutation
+    /// dropped; those are skipped.
     ///
     /// TODO: z-index
     /// (If multiple children are positioned at the position then a random one will be recursed into)
@@ -1556,13 +1569,13 @@ impl Node {
         if matches_hoisted_content {
             if let Some(hoisted) = &self.stacking_context {
                 for hoisted_child in hoisted.pos_z_hoisted_children().rev() {
+                    let Some(child) = self.tree().get(hoisted_child.node_id) else {
+                        continue;
+                    };
                     let pos = hoisted_child.position(self.tree(), self.id);
                     let x = x - pos.x;
                     let y = y - pos.y;
-                    if let Some(hit) = self
-                        .with(hoisted_child.node_id)
-                        .hit_inner(x, y, scale, scrollbar)
-                    {
+                    if let Some(hit) = child.hit_inner(x, y, scale, scrollbar) {
                         return Some(hit);
                     }
                 }
@@ -1571,7 +1584,9 @@ impl Node {
 
         // Call `.hit()` on each child in turn. If any return `Some` then return that value. Else return `Some(self.id).
         for child_id in self.paint_children.borrow().iter().flatten().rev() {
-            let child = self.with(*child_id);
+            let Some(child) = self.tree().get(*child_id) else {
+                continue;
+            };
             let child_position = child.taffy_position();
             let mut child_x = x;
             let mut child_y = y;
@@ -1603,13 +1618,13 @@ impl Node {
         if matches_hoisted_content {
             if let Some(hoisted) = &self.stacking_context {
                 for hoisted_child in hoisted.neg_z_hoisted_children().rev() {
+                    let Some(child) = self.tree().get(hoisted_child.node_id) else {
+                        continue;
+                    };
                     let pos = hoisted_child.position(self.tree(), self.id);
                     let x = x - pos.x;
                     let y = y - pos.y;
-                    if let Some(hit) = self
-                        .with(hoisted_child.node_id)
-                        .hit_inner(x, y, scale, scrollbar)
-                    {
+                    if let Some(hit) = child.hit_inner(x, y, scale, scrollbar) {
                         return Some(hit);
                     }
                 }
@@ -1628,11 +1643,11 @@ impl Node {
                     Cluster::from_point_exact(layout, x * scale, y * scale)
                 {
                     let node_id = cluster.style().brush.id;
-                    let text_pointer_events_none = self
-                        .with(node_id)
-                        .primary_styles()
-                        .is_some_and(|style| style.clone_pointer_events() == PointerEvents::None);
-                    if !text_pointer_events_none {
+                    if let Some(text_node) = self.tree().get(node_id)
+                        && !text_node.primary_styles().is_some_and(|style| {
+                            style.clone_pointer_events() == PointerEvents::None
+                        })
+                    {
                         return Some(HitResult {
                             node_id,
                             x,
@@ -2049,6 +2064,15 @@ impl std::fmt::Debug for Node {
             // .field("final_layout", &self.final_layout)
             .finish()
     }
+}
+
+/// Whether a box with `style` is out of flow: Taffy positions it from its containing
+/// block's hoisted child list rather than from its parent (`display: none` boxes generate
+/// no box and are never hoisted).
+pub(crate) fn style_is_out_of_flow(style: &ComputedValues) -> bool {
+    let box_style = style.get_box();
+    matches!(box_style.position, Position::Absolute | Position::Fixed)
+        && !box_style.display.is_none()
 }
 
 #[cfg(test)]

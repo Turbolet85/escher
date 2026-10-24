@@ -1,0 +1,28 @@
+# obs · Metric Coverage — category read
+
+## Carried
+- (.andromeda/obs-plan.md:139) The section's broad line stands after the take: in-process timings and counters stay printed, shown in the browser's overlay or held in process, and the WPT scores stay published on upstream alone. Nothing the sync carries may turn one into an exported metric.
+  > In-process timings and counters are printed, shown in the browser's in-app FPS overlay or held in process — the frame and phase timings behind the `log-times` features, blitz-dom's resolve phases, `debug_timer`, blitz-paint's layer counters, the bench and screenshot examples and the WPT runner's per-test, per-run and report figures — and the WPT scores are published to Pages on upstream `DioxusLabs/blitz` only.
+- (.andromeda/obs-plan.md:143) The body's absence must still hold on the take's tree. The sink re-check reads upstream's delta for new call sites, so it also reads that delta for any metrics exporter or counter, gauge or histogram emission, and finds none.
+  > - Metrics exporters, metric emission and counters, gauges or histograms observed absent over the reading's apps, s05, s06, layout, blitz-vibey-script / blitz and s11 slices and the 16 listed files.
+- (.andromeda/obs-plan-detail/metric-coverage.md:10) The frame and phase timing gates must stay behind their `log-times` features only. Their cited manifests are the root `Cargo.toml` and `packages/dioxus-native/Cargo.toml`, which a take of upstream's pin moves (`06ecec886`, `286874cc1`) would edit, so those cites are re-read on the take's tree.
+  > | Frame / phase timing | Timing logs gated by `log-frame-times`, `log-phase-times`, umbrella `log-times` | log features only | (Cargo.toml:265-268); (packages/dioxus-native/Cargo.toml:60-68) |
+- (.andromeda/obs-plan-detail/metric-coverage.md:11) blitz-dom's resolve phase times must stay a printed, prefixed figure. The take carries engine code into blitz-dom's style and layout passes (`fb297a38c` serialises Parallel style traversals; `28f848d3b` splits inline layout), so the `resolve.rs` cite is re-read wherever the take moves that file.
+  > | blitz-dom `resolve` | Phase times style, mark_all, damage, construct, pconstruct, layout, transform, paint_tree, c_damage, subdocs | printed, prefixed `Resolve({id}): ` | (packages/blitz-dom/src/resolve.rs:77-169) |
+- (.andromeda/obs-plan-detail/metric-coverage.md:12) `debug_timer` must stay opt-in printed timing. The phase timings above reach it through blitz-dom's `log-phase-times`, and the take must add no other emitter.
+  > | debug_timer | Labelled instants; total and per-step durations in ns/us/ms/s | printed | (packages/debug_timer/src/lib.rs:14-24; packages/debug_timer/src/lib.rs:33-66) |
+- (.andromeda/obs-plan-detail/metric-coverage.md:19) The WPT runner's figures must stay printed. Upstream's `f8723f495` (#1247) and `9eeebb302` (#1239, `mimalloc` in the runner) edit `wpt/runner`, so these three rows' `main.rs` cites are re-read on the take's tree when it carries them.
+  > | WPT runner, per test | Duration in ms | printed | (wpt/runner/src/main.rs:624; wpt/runner/src/main.rs:694; wpt/runner/src/main.rs:375) |
+  > | WPT runner, per run | Pass, fail, timeout, skip, crash, subtests, fractional pass, failure buckets and total duration | printed | (wpt/runner/src/main.rs:498-518; wpt/runner/src/main.rs:783-829) |
+  > | WPT runner, report | Report generation and write times in ms | printed | (wpt/runner/src/main.rs:837-851) |
+- (.andromeda/obs-plan-detail/metric-coverage.md:22) WPT scores must stay published on upstream `DioxusLabs/blitz` only. Any merge of upstream's workflow text must keep the `wpt` job's repository guard. The chunk leaves upstream's WPT conformance numbers out of scope.
+  > | WPT scores (CI) | Scores computed into `wptscores.json` | published to Pages, on upstream `DioxusLabs/blitz` only (the `wpt` job is repository-guarded) | (.github/workflows/wpt.yml:26; .github/workflows/wpt.yml:64-67) |
+- (.andromeda/obs-plan-detail/metric-coverage.md:28) The recorded absences must hold on the merged tree. The re-check of upstream's added `.rs` lines (one `println!` and two env reads in `examples/multi_doc.rs`) must find no metrics exporter and no `counter!|histogram!|gauge!` site.
+  > - observed absent — metrics exporters · searched: `opentelemetry|metrics|prometheus|sentry` over the 86 slice files (apps slice)
+  > - observed absent — telemetry metrics · searched: `counter!|histogram!|gauge!` over the 15 s05 files
+
+## Bindings
+- **Printed timings ↔ the body's §6 / §8 sink allowlist**: every metric row is printed or held in process, outside escher's sink. The sync's "sink allowlist re-checked" reads upstream's new prints, including `examples/multi_doc.rs`'s `println!`, against the same rule, and this category adds no field to that sink (.andromeda/obs-plan-detail/metric-coverage.md:11) (.andromeda/obs-plan.md:139)
+- **WPT scores guard ↔ the body's §9 CI Integration**: the scores and report publish on upstream alone, and the fork uploads only its two artifacts. A merged `wpt.yml` keeps the repository guard on both sides (.andromeda/obs-plan-detail/metric-coverage.md:22) (.andromeda/obs-plan.md:277)
+- **Metric absence ↔ the body's §2 Absent line**: the telemetry-backend absence and the metric absence are re-read together over the take's delta (.andromeda/obs-plan-detail/metric-coverage.md:28) (.andromeda/obs-plan.md:143)
+- **Frame/phase timing features ↔ the body's §2 Feature wiring**: `log-frame-times` and `log-phase-times` forward through dioxus-native, and upstream's Dioxus 0.8 sync (`286874cc1`) would rewrite that package. The gates keep their forwarding (.andromeda/obs-plan-detail/metric-coverage.md:10)

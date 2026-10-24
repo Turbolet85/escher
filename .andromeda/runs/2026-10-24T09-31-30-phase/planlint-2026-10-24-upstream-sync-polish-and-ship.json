@@ -1,0 +1,430 @@
+[
+{
+"tool": "planlint",
+"v": "1.13",
+"sha8": "638bfd34",
+"ts": "2026-10-24T11:23:53Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-24T09-31-30-phase",
+"--marker",
+"2026-10-24-upstream-sync-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 37 entries · plan: escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/plan.md · research: escher-0.2.0…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — the one folded CI r…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` — r…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 37 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 1 of 2 with an exclusion → HIT",
+"  gate 1 · diff <(git diff --src-prefix=a/ --dst-prefix=b/ a356f908661f55cf866d3341337a54a79ca7ac25 -- packages tests w…",
+"    omits examples/multi_doc.rs",
+"    omits packages/blitz-dom/src/layout/inline/build.rs",
+"    omits packages/blitz-dom/src/layout/inline/layout.rs",
+"    omits packages/blitz-dom/src/layout/inline/mod.rs",
+"    omits tests/blitz-tests/tests/hit_test_dropped_nodes.rs",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 32 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 7",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 10 of 10 — listed, P5's read",
+"  line 22 · «unchanged» · evidence/lock.md (Test Commands) · deny.toml (Test Commands) · windows-sys (Test Commands)",
+"      syn (Test Commands) · 9eeebb302 (Files to modify)",
+"  line 27 · «untouched» · node/node.rs (Files to modify) · hit_inner (Files to modify) · 46d7cf993 (Files to modify)",
+"      is_out_of_flow (Files to modify) · node/element.rs (Files to modify) · classes (Files to modify)",
+"      absolute_position (Test Commands)",
+"  line 337 · «byte-identical» · deny.toml (step 3) · evidence/lock.md (step 3)",
+"  line 342 · «untouched» · hit_clipped_at_scrolling_box (Test Commands) · inert_subtree (Test Commands)",
+"      transformed_client_rect (Test Commands) · scrolled_box_absolute_position (Test Commands)",
+"      password_caret_click (Test Commands) · select_interaction (Test Commands) · stand_act_select (Test Commands)",
+"      virtual_clock_engine (Test Commands) · incremental_oracle (Test Commands) · evidence/readings.md (step 5)",
+"  line 343 · «unchanged» · dbg! (Test Commands) · clock.rs (Test Commands) · host_log (Test Commands)",
+"      mcp_log (Test Commands) · fast (Test Commands) · hit_test_dropped_nodes (step 5) · println! (Test Commands)",
+"      evidence/sink.md (step 5)",
+"  line 384 · «byte-identical» · Cargo.toml (Files to modify) · deny.toml (step 3)",
+"  line 389 · «unchanged» · inline (Files to modify) · construct (step 2) · node (step 2) · replaced (Files to modify)",
+"      stylo (Files to modify) · layout/mod.rs (Files to modify) · multi_doc.rs (Test Commands)",
+"  line 390 · «unchanged» · config.rs (step 5) · multi_doc.rs (Test Commands) · MULTI_DOC_N (Test Commands)",
+"  line 392 · «not touched» · mutator.rs (step 5) · hit_test_dropped_nodes.rs (Test Commands)",
+"  line 394 · «untouched» · accessibility (Test Commands) · 9eeebb302 (step 3) · mimalloc (step 3)",
+"      accessibility.rs (Test Commands) · mutator.rs (step 5) · f102663b8 (Files to modify)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 6",
+"hits: 2 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+37
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 2,
+"hits": [
+1
+],
+"abstain": []
+},
+"wrap": {
+"asserting": 32,
+"listed": []
+},
+"check2": {
+"entries": 11,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 6,
+"refs": 7,
+"hits": []
+},
+"claims": {
+"read": 10,
+"listed": [
+22,
+27,
+337,
+342,
+343,
+384,
+389,
+390,
+392,
+394
+]
+},
+"c44": {
+"paths": 6,
+"hits": [],
+"skipped": []
+},
+"hits": 2
+}
+},
+{
+"tool": "planlint",
+"v": "1.13",
+"sha8": "638bfd34",
+"ts": "2026-10-24T11:25:19Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-24T09-31-30-phase",
+"--marker",
+"2026-10-24-upstream-sync-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 39 entries · plan: escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/plan.md · research: escher-0.2.0…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — the one folded CI r…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` — r…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 39 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 2 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 34 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 7",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 10 of 10 — listed, P5's read",
+"  line 22 · «unchanged» · evidence/lock.md (Test Commands) · deny.toml (Test Commands) · windows-sys (Test Commands)",
+"      syn (Test Commands) · 9eeebb302 (Files to modify)",
+"  line 27 · «untouched» · node/node.rs (Files to modify) · hit_inner (Files to modify) · 46d7cf993 (Files to modify)",
+"      is_out_of_flow (Files to modify) · node/element.rs (Files to modify) · classes (Files to modify)",
+"      absolute_position (Test Commands)",
+"  line 352 · «byte-identical» · deny.toml (step 3) · evidence/lock.md (step 3)",
+"  line 357 · «untouched» · hit_clipped_at_scrolling_box (Test Commands) · inert_subtree (Test Commands)",
+"      transformed_client_rect (Test Commands) · scrolled_box_absolute_position (Test Commands)",
+"      password_caret_click (Test Commands) · select_interaction (Test Commands) · stand_act_select (Test Commands)",
+"      virtual_clock_engine (Test Commands) · incremental_oracle (Test Commands) · evidence/readings.md (step 5)",
+"  line 358 · «unchanged» · dbg! (Test Commands) · clock.rs (Test Commands) · host_log (Test Commands)",
+"      mcp_log (Test Commands) · fast (Test Commands) · hit_test_dropped_nodes (step 5) · println! (Test Commands)",
+"      evidence/sink.md (step 5)",
+"  line 399 · «byte-identical» · Cargo.toml (Files to modify) · deny.toml (step 3)",
+"  line 404 · «unchanged» · inline (Files to modify) · construct (step 2) · node (step 2) · replaced (Files to modify)",
+"      stylo (Files to modify) · layout/mod.rs (Files to modify) · multi_doc.rs (Test Commands)",
+"  line 405 · «unchanged» · config.rs (step 5) · multi_doc.rs (Test Commands) · MULTI_DOC_N (Test Commands)",
+"  line 407 · «not touched» · mutator.rs (step 5) · hit_test_dropped_nodes.rs (Test Commands)",
+"  line 409 · «untouched» · accessibility (Test Commands) · 9eeebb302 (step 3) · mimalloc (step 3)",
+"      accessibility.rs (Test Commands) · mutator.rs (step 5) · f102663b8 (Files to modify)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 6",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+39
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 2,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 34,
+"listed": []
+},
+"check2": {
+"entries": 11,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 6,
+"refs": 7,
+"hits": []
+},
+"claims": {
+"read": 10,
+"listed": [
+22,
+27,
+352,
+357,
+358,
+399,
+404,
+405,
+407,
+409
+]
+},
+"c44": {
+"paths": 6,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.13",
+"sha8": "638bfd34",
+"ts": "2026-10-24T11:35:03Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-24T09-31-30-phase",
+"--marker",
+"2026-10-24-upstream-sync-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 39 entries · plan: escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/plan.md · research: escher-0.2.0…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — the one folded CI r…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` — r…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 39 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 2 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 34 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 7",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 11 of 11 — listed, P5's read",
+"  line 22 · «unchanged» · evidence/lock.md (Test Commands) · deny.toml (Test Commands) · windows-sys (Test Commands)",
+"      syn (Test Commands) · 9eeebb302 (Files to modify)",
+"  line 27 · «untouched» · node/node.rs (Files to modify) · hit_inner (Files to modify) · 46d7cf993 (Files to modify)",
+"      is_out_of_flow (Files to modify) · node/element.rs (Files to modify) · classes (Files to modify)",
+"      absolute_position (Test Commands)",
+"  line 404 · «byte-identical» · inline/layout.rs (Test Commands) · inline.rs (Files to modify)",
+"      28f848d3b (Files to modify) · 21edc92d9 (Test Commands) · construct.rs (step 2) · evidence/take.md (step 2)",
+"  line 405 · «byte-identical» · deny.toml (step 3) · evidence/lock.md (step 3)",
+"  line 410 · «untouched» · hit_clipped_at_scrolling_box (Test Commands) · inert_subtree (Test Commands)",
+"      transformed_client_rect (Test Commands) · scrolled_box_absolute_position (Test Commands)",
+"      password_caret_click (Test Commands) · select_interaction (Test Commands) · stand_act_select (Test Commands)",
+"      virtual_clock_engine (Test Commands) · incremental_oracle (Test Commands) · evidence/readings.md (step 5)",
+"  line 411 · «unchanged» · dbg! (Test Commands) · clock.rs (Test Commands) · host_log (Test Commands)",
+"      mcp_log (Test Commands) · fast (Test Commands) · hit_test_dropped_nodes (step 5) · println! (Test Commands)",
+"      evidence/sink.md (step 5)",
+"  line 452 · «byte-identical» · Cargo.toml (Files to modify) · deny.toml (step 3)",
+"  line 457 · «unchanged» · inline (Files to modify) · construct (step 2) · node (step 2) · replaced (Files to modify)",
+"      stylo (Files to modify) · layout/mod.rs (Files to modify) · multi_doc.rs (Test Commands)",
+"  line 458 · «unchanged» · config.rs (step 5) · multi_doc.rs (Test Commands) · MULTI_DOC_N (Test Commands)",
+"  line 460 · «not touched» · mutator.rs (step 5) · hit_test_dropped_nodes.rs (Test Commands)",
+"  line 462 · «untouched» · accessibility (Test Commands) · 9eeebb302 (step 3) · mimalloc (step 3)",
+"      accessibility.rs (Test Commands) · mutator.rs (step 5) · f102663b8 (Files to modify)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 6",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+39
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 2,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 34,
+"listed": []
+},
+"check2": {
+"entries": 11,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 6,
+"refs": 7,
+"hits": []
+},
+"claims": {
+"read": 11,
+"listed": [
+22,
+27,
+404,
+405,
+410,
+411,
+452,
+457,
+458,
+460,
+462
+]
+},
+"c44": {
+"paths": 6,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+}
+]

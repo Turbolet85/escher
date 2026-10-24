@@ -1,0 +1,223 @@
+[
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name IN ('hit_inner','compute_replaced_layout','is_out_of_flow','record_out_of_flow') AND callee_kind = 'fn' AND callee_crate = 'blitz-dom' ORDER BY callee_name, file, line",
+"rows": 13,
+"result": [
+{
+"caller_name": "layout",
+"file": "packages/blitz-dom/src/layout/mod.rs",
+"line": 36
+},
+{
+"caller_name": "dispatch_child_layout",
+"file": "packages/blitz-dom/src/layout/mod.rs",
+"line": 496
+},
+{
+"caller_name": "hit_with_scrollbar",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2040
+},
+{
+"caller_name": "hit",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1407
+},
+{
+"caller_name": "hit_inner",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1563
+},
+{
+"caller_name": "hit_inner",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1596
+},
+{
+"caller_name": "hit_inner",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1610
+},
+{
+"caller_name": "dispatch_child_layout",
+"file": "packages/blitz-dom/src/layout/mod.rs",
+"line": 510
+},
+{
+"caller_name": "is_out_of_flow",
+"file": "packages/blitz-dom/src/layout/mod.rs",
+"line": 855
+},
+{
+"caller_name": "compute_orthogonal_child_layout",
+"file": "packages/blitz-dom/src/layout/writing_mode.rs",
+"line": 121
+},
+{
+"caller_name": "physicalise_and_round_inner",
+"file": "packages/blitz-dom/src/layout/writing_mode.rs",
+"line": 282
+},
+{
+"caller_name": "resolve_transforms",
+"file": "packages/blitz-dom/src/resolve.rs",
+"line": 208
+},
+{
+"caller_name": "resolve_transforms",
+"file": "packages/blitz-dom/src/resolve.rs",
+"line": 227
+}
+],
+"db_state": "regenerated",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, callee_kind, file, line FROM refs WHERE callee_name IN ('StyleThreading','style_threading','ElementData','classes') AND callee_crate = 'blitz-dom' AND file NOT LIKE 'packages/blitz-dom/%' ORDER BY callee_name, file, line",
+"rows": 9,
+"result": [
+{
+"callee_name": "ElementData",
+"callee_kind": "type",
+"file": "packages/blitz-paint/src/render.rs",
+"line": 25
+},
+{
+"callee_name": "ElementData",
+"callee_kind": "type",
+"file": "packages/blitz-paint/src/render.rs",
+"line": 707
+},
+{
+"callee_name": "ElementData",
+"callee_kind": "type",
+"file": "packages/blitz-vibey-script/src/dom/mod.rs",
+"line": 389
+},
+{
+"callee_name": "ElementData",
+"callee_kind": "type",
+"file": "packages/blitz-vibey-script/src/dom/mod.rs",
+"line": 412
+},
+{
+"callee_name": "ElementData",
+"callee_kind": "type",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 6
+},
+{
+"callee_name": "ElementData",
+"callee_kind": "type",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 233
+},
+{
+"callee_name": "ElementData",
+"callee_kind": "type",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 255
+},
+{
+"callee_name": "ElementData",
+"callee_kind": "type",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 677
+},
+{
+"callee_name": "ElementData",
+"callee_kind": "type",
+"file": "wpt/runner/src/test_runners/mod.rs",
+"line": 46
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee_name, caller_name, file, line FROM calls WHERE callee_name IN ('hit_inner','compute_replaced_layout','is_out_of_flow') AND callee_kind = 'fn' AND callee_crate = 'blitz-dom' ORDER BY callee_name, file, line",
+"rows": 13,
+"result": [
+{
+"callee_name": "compute_replaced_layout",
+"caller_name": "layout",
+"file": "packages/blitz-dom/src/layout/mod.rs",
+"line": 36
+},
+{
+"callee_name": "compute_replaced_layout",
+"caller_name": "dispatch_child_layout",
+"file": "packages/blitz-dom/src/layout/mod.rs",
+"line": 496
+},
+{
+"callee_name": "hit_inner",
+"caller_name": "hit_with_scrollbar",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2040
+},
+{
+"callee_name": "hit_inner",
+"caller_name": "hit",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1407
+},
+{
+"callee_name": "hit_inner",
+"caller_name": "hit_inner",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1563
+},
+{
+"callee_name": "hit_inner",
+"caller_name": "hit_inner",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1596
+},
+{
+"callee_name": "hit_inner",
+"caller_name": "hit_inner",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1610
+},
+{
+"callee_name": "is_out_of_flow",
+"caller_name": "dispatch_child_layout",
+"file": "packages/blitz-dom/src/layout/mod.rs",
+"line": 510
+},
+{
+"callee_name": "is_out_of_flow",
+"caller_name": "is_out_of_flow",
+"file": "packages/blitz-dom/src/layout/mod.rs",
+"line": 855
+},
+{
+"callee_name": "is_out_of_flow",
+"caller_name": "compute_orthogonal_child_layout",
+"file": "packages/blitz-dom/src/layout/writing_mode.rs",
+"line": 121
+},
+{
+"callee_name": "is_out_of_flow",
+"caller_name": "physicalise_and_round_inner",
+"file": "packages/blitz-dom/src/layout/writing_mode.rs",
+"line": 282
+},
+{
+"callee_name": "is_out_of_flow",
+"caller_name": "resolve_transforms",
+"file": "packages/blitz-dom/src/resolve.rs",
+"line": 208
+},
+{
+"callee_name": "is_out_of_flow",
+"caller_name": "resolve_transforms",
+"file": "packages/blitz-dom/src/resolve.rs",
+"line": 227
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]
