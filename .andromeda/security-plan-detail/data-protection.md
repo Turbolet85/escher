@@ -1,0 +1,16 @@
+# security-plan · Data Protection
+Read whole. The master's broad view is .andromeda/security-plan.md; this file holds its Data Protection detail.
+
+## Data Protection
+
+<!-- detail: values · data-rest -->
+
+- **Files (kept checks):** since 2026-10-19-session-recording, under `--record <dir>` on `escher-session` (`start`, the host role, the `mcp` role) or `Session::recording_into` in process, one `check-{n}.json` (`0600`) per recorded session in a `0700` directory the launcher named — a JSON array: the app label, then per answered call its verb, its arguments, its acceptance, a FNV-1a 64 digest of its written answer (a shot's PNG included) and, since 2026-10-19-recorded-check-replay, the answer itself as `answer` — the line the driver wrote, masked as on every carrier (a password's or file input's value as `MASKED_VALUE`), a shot's as `{"width","height"}` with no `png` — holding call content (the target ids, `press` keys, `advance` ms and text typed into unmasked controls; a masked or unresolved `type`'s text as `MASKED_STAND_IN`) and the screens' readings at rest — ids, names, values, snapshot text and diffs, never a pixel — never logged, and never removed by escher but for its own check when a recording ends; the call-content class ratified by the founder (2026-10-19, F1 A and F2 B) and each answer kept whole, a shot's pixels excepted, ratified by the founder (2026-10-19, F3 B) (packages/escher-driver/src/recording.rs:105-138; packages/escher-driver/src/recording.rs:145-190)
+
+<!-- /detail -->
+
+<!-- detail: exception · data-rest -->
+
+- **Files (committed checks):** since 2026-10-19-recorded-check-replay two kept checks are committed to the public repository, `tests/blitz-tests/checks/counter-cli.json` and `counter-mcp.json` (git mode `100644`) — the one exception to a kept check's owner-only medium: the repository's own scripted stand-Counter sessions, one through the command line and one through the `mcp` role, written as the binary records them by `examples/seven_guis/tests/flows/record_checks.sh` (POSIX `sh`, its scratch `rec/` made `mkdir -m 700`, printing only `step N` on failure), holding the Counter's ids, names, values, snapshot text and diffs and the scripts' calls — no typed text, host path, name or secret (both read by the operator, 2026-10-19) and no `screenshot` step (a shot's PNG bytes differ by OS, as measured at CI#39225375577); read only through the strict `Check::from_bytes` (`stand_replay`) and compared byte for byte with a fresh recording (seven_guis `recording::the_committed_checks_are_what_the_binary_records`); a check a launcher records of any other session stays owner-only and is never committed — a boundary widening ratified by the founder (2026-10-19, F1 A, «Коммитить две проверки (Рекомендую)») (tests/blitz-tests/checks/counter-cli.json:1-8; tests/blitz-tests/checks/counter-mcp.json:1-11; examples/seven_guis/tests/flows/record_checks.sh:1-65)
+
+<!-- /detail -->

@@ -739,3 +739,9 @@ Partly retires the PROVISIONAL clause of the earlier 2026-10-18-engine-debts, 20
 - Logging & Monitoring: `host_log` and `mcp_log` each drive one `lint` and one part read with 0 needles, so a part's number, count and text reach no log.
 **Why:** the founder's own ratification of a boundary widening of this validated surface onto every ratified carrier: F1 «Аргумент part, части по умолчанию (Рекомендую)» and F2 «Пустая часть (Рекомендую)», given by question dialog in the overseer session and relayed verbatim by the overseer (2026-10-20, chunk inputs#I2); his card confirm «Подтвердить все (Рекомендую)» (inputs#I5). The table's argument count is measured over `schema.rs`.
 **Ref:** .andromeda/runs/2026-10-20T11-11-53-wrap/
+
+## U55 — the door: security-plan split into its body and its category files
+**Section:** (the whole master — the door)
+**Change:** split into its body and 9 category files; the map .andromeda/security-plan.map.tsv
+**Why:** the operator's word: the founder's standing word of 2026-10-24 for the door on escher's masters, given after three review rounds, the last open row taken in the reviewer's own wording; relayed by overseer1.
+**Ref:** $TMPDIR/claude-1000/-home-turbolet-dev-projects-additional-andromeda-worker/9a5434fe-fa07-4859-9671-f503cd8de21b/scratchpad/u55-door-2026-10-24/security-plan/
