@@ -187,3 +187,9 @@ One entry per amendment to `design-system.md` (sidecar-contract.md §Entry form)
 **Change:** `escher-session snapshot [--part <part>]` answers one uncoloured line with no ESC byte, `{"text":…}` for a whole screen and `{"text":…,"part":n,"parts":m}` for a screen read in parts, status `0`. Over the `mcp` role a paged `snapshot` result is that JSON line (was the screen text alone).
 **Why:** the paged answer the founder ratified, F1 «Аргумент part, части по умолчанию (Рекомендую)», by question dialog in the overseer session, relayed verbatim by the overseer (2026-10-20, chunk inputs#I2); his card confirm «Подтвердить все (Рекомендую)» (inputs#I5).
 **Ref:** .andromeda/runs/2026-10-20T11-11-53-wrap/
+
+## U55 — the door: design-system split into its body and its category files
+**Section:** (the whole master — the door)
+**Change:** split into its body and 8 category files; the map .andromeda/design-system.map.tsv
+**Why:** the operator's word: the founder's standing word of 2026-10-24 for the door on escher's masters, given after one review round, the three open rows taken in overseer1's wording from the master's own lines; relayed by overseer1.
+**Ref:** $TMPDIR/claude-1000/-home-turbolet-dev-projects-additional-andromeda-worker/9a5434fe-fa07-4859-9671-f503cd8de21b/scratchpad/u55-door-2026-10-24/design-system/
