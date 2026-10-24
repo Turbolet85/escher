@@ -1,0 +1,20 @@
+# tests · Mocking & Stubbing Discipline — category read
+
+## Carried
+- (.andromeda/test-plan.md:358) The re-asserted `stand_keyboard` and `stand_contrast` rows, and any row the chunk adds (the flight booker's `select` keyboard row), must run on the stand's real pinned font with system fonts off and no skip path — a contrast or Tab-order reading may never pass by skipping.
+  > - The headless-stand checks keep a real but pinned font — the bundled DejaVu Sans woff2, decoded through seven_guis' native `dioxus-native` `woff` feature, with system fonts off and no skip (examples/seven_guis/src/stand.rs:52-54; examples/seven_guis/Cargo.toml:31)
+- (.andromeda/test-plan.md:348) Any stand-in a re-read or newly-leg-listed a11y check needs must be a hand-written one of the kinds the plan lists, never a new mocking approach.
+  > - **Stand-ins:** hand-written stand-ins replace the shell, the network, a document's poll, navigation, event handlers, widgets, the renderer, time, timer instrumentation, the WPT JS harness, worker publication, notify and the GitHub API
+- (.andromeda/test-plan.md:362) Widening the `a11y` leg and adding a select keyboard row must add no mocking library to CI, the build configuration or the apps, so the observed absence keeps holding.
+  > - Observed absent, each by its search: a mocking library in CI, the build configuration and the apps, and mocks in slices s03, s06–s09 and s11
+- (.andromeda/test-plan-detail/mocking-stubbing-discipline.md:43) The absence searches the plan records, which the chunk's CI-leg change must leave true, cover the CI workflows, the root manifests and `.github/scripts/*.py`, which is where the a11y leg's pin `test_ci_workflows.py` lives.
+  > - Mocking libraries in CI and build configuration · searched: `mock` over .github/workflows/*.yml, Cargo.toml, Cross.toml, flake.nix, .github/scripts/*.py
+- (.andromeda/test-plan.md:352) The Timer's Tab order and contrast, re-read at boot and in enabled states, must be read through the stand boot's `TimerTicks` stand-in: settle does not advance the Timer, so the screen under assertion stays put while nothing is delivered.
+  > - **Time (seven_guis timer):** `TimerTicks`, provided by every headless-stand boot, replaces the timer's `futures_timer::Delay`; settle neither advances the timer nor waits on a tick not yet delivered
+- (.andromeda/test-plan-detail/mocking-stubbing-discipline.md:26) Detail behind the Timer stand-in: a Timer reading the re-read makes holds elapsed at 0.0 s until a tick is delivered, and a delivered tick takes effect only on the next pass.
+  > | Time (seven_guis timer) | `TimerTicks`, provided in context by every headless-stand boot, replaces the timer's 100 ms `futures_timer::Delay`: each `deliver(n)` tick is one 0.1 s step capped at the duration, applied on the next pass — a `pump`, an input helper's own pump, or a settle (`Harness::settle`, `Session::act`, each acting verb of `Session::run`) — so a delivery made before an input helper is applied by that helper's pump and one made after it by nothing until a later pass; settle neither advances the timer nor waits on a tick not yet delivered; an undelivered source holds elapsed at 0.0 s
+
+## Bindings
+- **Real pinned font ↔ body §9 Fonts and the a11y plan's contrast witness**: the font rule in §8 (.andromeda/test-plan.md:358) is the same fact §9 states for CI runners (.andromeda/test-plan.md:387); on it `stand_contrast`'s SC 1.4.3 rows read the same on every runner, in the `a11y` leg included.
+- **No mocking library ↔ body §3 third-party frameworks**: §8's recorded absence (.andromeda/test-plan.md:362) sits beside §3's record that blitz-tests' only assertion crate is test-that (.andromeda/test-plan.md:126), which upstream's merged `accessibility_label` / `accessibility_description` checks use. Those checks are candidates for the widened `a11y` leg and must bring no mocking crate with them.
+- **`TimerTicks` ↔ body §3 Construction**: the Timer stand-in (.andromeda/test-plan.md:352) comes from `stand::boot_timer`, as stated in §3 (.andromeda/test-plan.md:130), and `stand_keyboard` and `stand_contrast` boot the Timer through it.

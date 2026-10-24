@@ -1,0 +1,2 @@
+### authentication-authorization#2.5 · values · auth · ## Authentication & Authorization · lines 30–30
+| RBAC / permissions (CI tokens) | ci.yml declares a workflow-level `permissions: contents: read` and no job-level grant, so every ci.yml job's `GITHUB_TOKEN` is read-only; asserted by `test_ci_workflows.py` (.github/workflows/ci.yml:16-17; .github/scripts/test_ci_workflows.py:201-205) | GitHub Actions `permissions` |

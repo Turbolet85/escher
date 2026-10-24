@@ -1,0 +1,17 @@
+# design · Surface: {type} — category read
+
+## Carried
+- (.andromeda/design-system-detail/surface.md:8) The contrast re-read must read each stand control's background as the one user-agent stylesheet every document gets through `DocumentConfig::default()` paints it, so a row whose background comes from the engine's sheet is measured against that sheet, not a design token.
+  > Every document gets the blitz `DEFAULT_CSS` user-agent stylesheet, once, through `DocumentConfig::default()` — `UserAgentStylesheet::default_sheet()` (packages/blitz-dom/src/config.rs:74-93)
+- (.andromeda/design-system-detail/surface.md:9) A row the re-read adds for the flight booker's `select`, whether a keyboard row or a contrast row, must read the select as the engine's defaults lay it out: a white box with a `#999` border that shows only its chosen option's label. These are engine defaults with no design token behind them, so a contrast pair for the select is its text over that white background.
+  > In that sheet a `select` takes the border (`1px solid #999`), padding (`2px`) and background (`white`) of `input, textarea` and `display: inline-block`, and a single-choice select shows its chosen option alone (`select:not([multiple]) > option:checked { display: inline; }` beside `option { display: none; }`), so it lays out as a box holding its chosen option's label — engine defaults, no design token
+- (.andromeda/design-system-detail/surface.md:11) The re-asserted contrast rows must be read under the Light scheme the default viewport carries. The re-read owes no dark-scheme row.
+  > The default viewport is window size (0, 0), hidpi scale 1.0, zoom 1.0, Light scheme
+- (.andromeda/design-system.md:162) The stand the re-read covers is the desktop-native surface's seven_guis app, launched through `dioxus_native::launch`. Its Tab order, Enter/Space activation and contrast must be re-read on that app as 0.2.0 leaves it.
+  > Dioxus apps open through `dioxus_native::launch` (examples/box_shadow.rs:4; examples/custom_widget.rs:18; examples/counter/src/main.rs:15-17; examples/seven_guis/src/main.rs:4-10; examples/todomvc/src/main.rs:15-19)
+
+## Bindings
+- **select's engine-default box ↔ a11y-plan §Contrast (`stand_contrast`)**: a `select` row added to `TEXT_ROWS` or `STATE_ROWS` reads its text over the user-agent sheet's `white` background and must clear SC 1.4.3's 4.5 (3.0 for large text). The design side holds no token for it, so the a11y side's expected pair comes from the engine default (.andromeda/design-system-detail/surface.md:9)
+- **desktop-native token source ↔ Color Palette (the stand accent)**: the stand's own colours are the accent `#3a5ce5` with its hover `#2a4cd3` and active `#1f3fc1`, and white button text on them must keep clearing 4.5 at rest, on hover and when active. That is the reading `stand_contrast`'s rows re-assert, over the user-agent sheet's defaults (.andromeda/design-system.md:16; .andromeda/design-system-detail/surface.md:8)
+- **Light scheme ↔ a11y-plan §Contrast**: every contrast figure the re-read asserts is the Light-scheme reading, composited over opaque white (.andromeda/design-system-detail/surface.md:11)
+- **desktop-native surface ↔ layout-templates (focus order)**: the stand's Tab sequences (`common::tab_order`, `common::ENABLED_TAB_ORDER`) are the layout side's per-screen focus order and not design-token content. This category holds no focus-order value — (none)

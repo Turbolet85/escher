@@ -296,7 +296,10 @@ class LegScriptTest(unittest.TestCase):
         for leg, expected in (
             ("audit", ("deny", "--locked", "--workspace", "--all-features", "advisories", "licenses")),
             ("a11y", ("--workspace", "--locked", "accessibility_hidden", "accessibility_roles", "focusability_updates",
-                      "stand_keyboard", "stand_contrast", "stand_accessibility_ids")),
+                      "stand_keyboard", "stand_contrast", "stand_accessibility_ids", "accessibility_states",
+                      "accessibility_label", "accessibility_description", "accessibility_merged_states",
+                      "accessibility_active_descendant_unread", "inert_subtree", "select_interaction",
+                      "stand_act_select")),
         ):
             with self.subTest(leg=leg):
                 words = self.leg_log_words(leg)

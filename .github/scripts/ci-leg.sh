@@ -36,7 +36,7 @@ run_leg() {
         ;;
     doc) cargo doc --workspace --no-deps --locked ;;
     audit) cargo deny --locked --workspace --all-features check advisories licenses ;;
-    a11y) cargo test --workspace --locked --test accessibility_hidden --test accessibility_roles --test focusability_updates --test stand_keyboard --test stand_contrast --test stand_accessibility_ids ;;
+    a11y) cargo test --workspace --locked --test accessibility_hidden --test accessibility_roles --test focusability_updates --test stand_keyboard --test stand_contrast --test stand_accessibility_ids --test accessibility_states --test accessibility_label --test accessibility_description --test accessibility_merged_states --test accessibility_active_descendant_unread --test inert_subtree --test select_interaction --test stand_act_select ;;
     coverage)
         # keyboard_compat.rs is upstream's temporary keyboard-types 0.7/0.8 bridge in dioxus-native-dom,
         # excluded by filename until upstream retires it.

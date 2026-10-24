@@ -48,7 +48,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
    ↓
 [2026-10-24-stand-requirement-sweep] Stand requirement sweep — every 0.2.0 capability proven headless on stand or fixture, inside stand-repeat; coverage floors held, new verbs' stderr id-free (intent §Principles)
    ↓
-A11y re-read — stand Tab order, Enter/Space activation and contrast re-asserted after 0.2.0's engine changes; new a11y checks in the `a11y` leg (a11y-plan §9)
+[2026-10-24-a11y-re-read] A11y re-read — stand Tab order, Enter/Space activation and contrast re-asserted after 0.2.0's engine changes; new a11y checks in the `a11y` leg (a11y-plan §9)
    ↓
 Capability statement — what escher can do, its stated limits, a11y reach and what MCP client carries onward, where Viola's planning reads it (v020-10)  CARRY: README.md still says the MCP role gives «the eleven driver commands as tools»; since 2026-10-19-visual-lint's gated part the verb table holds twelve, `lint` the eighth instance verb on every carrier (escher-0.2.0/chunks/2026-10-19-visual-lint/report-gated.md, Symbols / APIs)  CARRY: the stated limit that an acting verb's diff and a lint's findings are not paged — on a large screen either can pass 10,000 bytes, held only by the 1,048,576-byte answer bound, while `snapshot` reads a screen over the budget in parts (the operator's «yes» on the 2026-10-20-large-screen-in-parts P5 card, row 1: escher-0.2.0/chunks/2026-10-20-large-screen-in-parts/inputs/I3-relay-3.md.txt; measured at escher-0.2.0/chunks/2026-10-20-large-screen-in-parts/report.md, Counts «The stated limit»)
    ↓
