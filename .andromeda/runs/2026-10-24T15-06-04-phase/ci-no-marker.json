@@ -1,0 +1,60 @@
+[
+{
+"tool": "ci",
+"v": "1.3",
+"sha8": "8b65a6de",
+"ts": "2026-10-24T15:06:13Z",
+"argv": [
+"conclusion",
+"--sha",
+"4b4804ba5d420bff40b752cc13a3ba645073edcb",
+"--sha",
+"7ad040af66c2af746d723e8d1d1e258b67e90332",
+"--sha",
+"126f56e670020d67cb7e15157330fd10379a3c57",
+"--run-dir",
+".andromeda/runs/2026-10-24T15-06-04-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"repo Turbolet85/escher (the push remote `origin`)",
+"4b4804ba5d42 verdict: in progress · checks 4/4 · runs CI#40105170961 in_progress/-",
+"7ad040af66c2 verdict: green · checks 17/17 · wall 1225 s · runs CI#40101552119 completed/success",
+"126f56e67002 verdict: not green · checks 14/14 · wall 91 s · runs CI#40101465212 completed/cancelled · not success: Test (${{ matrix.platform.name }})=cancelled · Documentation=cancelled · Accessibility (a11y) tests=cancelled · Dependency audit=cancelled · Stand checks repeated=cancelled · Build [default features]=cancelled · Build counter example=cancelled · MSRV Build [Rust 1.91]=cancelled · Coverage report=cancelled · Build wasm examples=cancelled · Test [default features]=cancelled · Clippy=cancelled · run CI=cancelled"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"repo": "Turbolet85/escher",
+"host": "github.com",
+"repo_source": "the push remote `origin`",
+"names": [],
+"shas": [
+{
+"sha": "4b4804ba5d420bff40b752cc13a3ba645073edcb",
+"word": "in progress",
+"polls": [
+"in progress"
+]
+},
+{
+"sha": "7ad040af66c2af746d723e8d1d1e258b67e90332",
+"word": "green",
+"polls": [
+"green"
+]
+},
+{
+"sha": "126f56e670020d67cb7e15157330fd10379a3c57",
+"word": "not green",
+"polls": [
+"not green"
+]
+}
+]
+}
+}
+]

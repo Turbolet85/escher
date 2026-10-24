@@ -1,7 +1,10 @@
 //! `Session::lint` reads the screen of a held instance for six defects, each named by the stable
 //! id of the element it is found on with its measured reason, in both layout modes. On a page
 //! that plants each defect beside six negatives it names exactly the seven planted findings in
-//! document order, with their reasons; on each lean stand task at boot it reads nothing; it
+//! document order, with their reasons; on a page of three paragraphs holding text, an off-screen
+//! one reads `truncated` beside `off-screen`, a clipped one whose line leaves the box that clips
+//! it reads `clipped` and `truncated`, and a clipped one whose line stays inside reads `clipped`
+//! alone, the verb answering the same; on each lean stand task at boot it reads nothing; it
 //! changes nothing; after twelve Creates it names the last CRUD row cut by the list's box, the
 //! row a `click` is refused `off-screen` on; and an app with no font is refused
 //! `fonts-unavailable`. The verb `lint`, run through `Session::run`, answers exactly the findings
@@ -104,6 +107,39 @@ fn lint_page() -> Element {
     }
 }
 
+/// Three paragraphs holding text: one whose line runs past the box that clips it, one whose
+/// padding alone passes that box while its line stays inside, and one wholly right of the
+/// viewport.
+fn reading_page() -> Element {
+    rsx! {
+        div { id: "fx-root", style: "position: relative; width: 784px; height: 584px;",
+            div {
+                id: "fx-cut-box",
+                style: "position: absolute; left: 20px; top: 20px; width: 100px; height: 40px; overflow: hidden;",
+                p {
+                    id: "fx-cut-text",
+                    style: "width: 200px; margin: 0; white-space: nowrap;",
+                    "A line past its box"
+                }
+            }
+            div {
+                id: "fx-padded-box",
+                style: "position: absolute; left: 220px; top: 20px; width: 100px; height: 40px; overflow: hidden;",
+                p {
+                    id: "fx-padded-text",
+                    style: "width: 60px; margin: 0; padding-right: 100px;",
+                    "Go"
+                }
+            }
+            p {
+                id: "fx-off-text",
+                style: "position: absolute; left: 820px; top: 20px; margin: 0; white-space: nowrap;",
+                "Off"
+            }
+        }
+    }
+}
+
 /// The findings, each as its element's id and its defect's word.
 fn named(findings: &[Finding]) -> Vec<(&str, &str)> {
     findings
@@ -183,6 +219,56 @@ fn the_planted_defects_are_named_each_by_its_id_and_reason() {
             matches!(findings[6].reason, Reason::Contrast { ratio, required }
                 if ratio == measured.unwrap().ratio && ratio < required && required == 4.5),
             "{at}: row 6 reads the harness's ratio, below the 4.5 it needs"
+        );
+    }
+}
+
+#[test]
+fn a_clipped_or_off_screen_node_holding_text_reads_truncated_beside_it() {
+    let rows = [
+        ("fx-cut-text", "clipped"),
+        ("fx-cut-text", "truncated"),
+        ("fx-padded-text", "clipped"),
+        ("fx-off-text", "truncated"),
+        ("fx-off-text", "off-screen"),
+    ];
+    for incremental in [false, true] {
+        let at = format!("incremental={incremental}");
+        let mut session = fixtures::hold("lint", reading_page, incremental);
+
+        // The condition first: each paragraph lays out a line with the bundled font.
+        for (index, selector) in ["#fx-cut-text", "#fx-padded-text", "#fx-off-text"]
+            .into_iter()
+            .enumerate()
+        {
+            let node = session.harness().query(selector);
+            assert!(node.is_some(), "{at}: row {index} resolves");
+            let extent = session.harness().base().text_extent(node.unwrap());
+            assert!(
+                extent.is_some_and(|extent| extent.text.width > 0.0 && extent.text.height > 0.0),
+                "{at}: row {index} lays out a line"
+            );
+        }
+
+        let findings = session.lint();
+        assert!(findings.is_ok(), "{at}: the lint reads the page");
+        let findings = findings.unwrap();
+        assert!(
+            named(&findings) == rows,
+            "{at}: the findings in document order, then defect order"
+        );
+        assert!(
+            matches!(findings[1].reason, Reason::Truncated { text, visible: Some(visible) }
+                if visible.width < text.width),
+            "{at}: row 1's line is seen in part"
+        );
+        assert!(
+            matches!(findings[3].reason, Reason::Truncated { visible: None, .. }),
+            "{at}: row 3's line is not seen"
+        );
+        assert!(
+            linted(&mut session, &lint()) == Some(findings),
+            "{at}: the verb answers the reader's findings"
         );
     }
 }

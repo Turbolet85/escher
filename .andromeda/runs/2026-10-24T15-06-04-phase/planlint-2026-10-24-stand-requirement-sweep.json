@@ -1,0 +1,490 @@
+[
+{
+"tool": "planlint",
+"v": "1.14",
+"sha8": "261426fd",
+"ts": "2026-10-24T16:25:07Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.2.0/chunks/2026-10-24-stand-requirement-sweep/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-24T15-06-04-phase",
+"--marker",
+"2026-10-24-stand-requirement-sweep"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 23 entries · plan: escher-0.2.0/chunks/2026-10-24-stand-requirement-sweep/plan.md · research: escher-0.2.0/chunk…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — the one CI bullet i…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` (41…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 23 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 19 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 1 · on a capability not verified: 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 16",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 5 of 7 — listed, P5's read",
+"  line 38 · «unchanged» · stand_snapshot_parts.rs (Files to modify) · fixtures::many_items (step 4)",
+"  line 102 · «unchanged» · --locked (Test Commands) · a11y (step 2) · coverage (step 7)",
+"  line 182 · «unchanged» · tests/blitz-tests/tests/stand_requirement_sweep.rs (step 8) · Subject::Unit (step 8)",
+"      WITNESSES_020 (step 8) · STAND_REPEAT_NAMED (step 8) · WITNESSES (step 8)",
+"  line 400 · «unchanged» · LegScriptTest (step 7)",
+"  line 483 · «unchanged» · accessibility_states (step 6) · inert_subtree (step 6)",
+"      accessibility_active_descendant_unread (step 6)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 0",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+23
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 19,
+"listed": []
+},
+"check2": {
+"entries": 21,
+"tokens": 1,
+"hits": 0,
+"reading": "on a capability not verified: 0"
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 9,
+"refs": 16,
+"hits": []
+},
+"claims": {
+"read": 7,
+"listed": [
+38,
+102,
+182,
+400,
+483
+]
+},
+"c44": {
+"paths": 0,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.14",
+"sha8": "261426fd",
+"ts": "2026-10-24T16:25:45Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.2.0/chunks/2026-10-24-stand-requirement-sweep/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-24T15-06-04-phase",
+"--marker",
+"2026-10-24-stand-requirement-sweep"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 23 entries · plan: escher-0.2.0/chunks/2026-10-24-stand-requirement-sweep/plan.md · research: escher-0.2.0/chunk…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — the one CI bullet i…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` (41…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 23 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 19 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 1 · on a capability not verified: 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 16",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 5 of 7 — listed, P5's read",
+"  line 38 · «unchanged» · stand_snapshot_parts.rs (Files to modify) · fixtures::many_items (step 4)",
+"  line 102 · «unchanged» · --locked (Test Commands) · a11y (step 2) · coverage (step 7)",
+"  line 182 · «unchanged» · tests/blitz-tests/tests/stand_requirement_sweep.rs (step 8) · Subject::Unit (step 8)",
+"      WITNESSES_020 (step 8) · STAND_REPEAT_NAMED (step 8) · WITNESSES (step 8)",
+"  line 400 · «unchanged» · LegScriptTest (step 7)",
+"  line 483 · «unchanged» · accessibility_states (step 6) · inert_subtree (step 6)",
+"      accessibility_active_descendant_unread (step 6)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 0",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+23
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 19,
+"listed": []
+},
+"check2": {
+"entries": 21,
+"tokens": 1,
+"hits": 0,
+"reading": "on a capability not verified: 0"
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 9,
+"refs": 16,
+"hits": []
+},
+"claims": {
+"read": 7,
+"listed": [
+38,
+102,
+182,
+400,
+483
+]
+},
+"c44": {
+"paths": 0,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.14",
+"sha8": "261426fd",
+"ts": "2026-10-24T16:39:50Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.2.0/chunks/2026-10-24-stand-requirement-sweep/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-24T15-06-04-phase",
+"--marker",
+"2026-10-24-stand-requirement-sweep"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 23 entries · plan: escher-0.2.0/chunks/2026-10-24-stand-requirement-sweep/plan.md · research: escher-0.2.0/chunk…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — the one CI bullet i…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` (41…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 23 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 19 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 1 · on a capability not verified: 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 16",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 5 of 7 — listed, P5's read",
+"  line 38 · «unchanged» · stand_snapshot_parts.rs (Files to modify) · fixtures::many_items (step 4)",
+"  line 104 · «unchanged» · --locked (Test Commands) · a11y (step 2) · coverage (step 7)",
+"  line 184 · «unchanged» · tests/blitz-tests/tests/stand_requirement_sweep.rs (step 8) · Subject::Unit (step 8)",
+"      WITNESSES_020 (step 8) · STAND_REPEAT_NAMED (step 8) · WITNESSES (step 8)",
+"  line 421 · «unchanged» · LegScriptTest (step 7)",
+"  line 504 · «unchanged» · accessibility_states (step 6) · inert_subtree (step 6)",
+"      accessibility_active_descendant_unread (step 6)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 0",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+23
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 19,
+"listed": []
+},
+"check2": {
+"entries": 21,
+"tokens": 1,
+"hits": 0,
+"reading": "on a capability not verified: 0"
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 9,
+"refs": 16,
+"hits": []
+},
+"claims": {
+"read": 7,
+"listed": [
+38,
+104,
+184,
+421,
+504
+]
+},
+"c44": {
+"paths": 0,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.14",
+"sha8": "261426fd",
+"ts": "2026-10-24T16:41:10Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.2.0/chunks/2026-10-24-stand-requirement-sweep/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-24T15-06-04-phase",
+"--marker",
+"2026-10-24-stand-requirement-sweep"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 23 entries · plan: escher-0.2.0/chunks/2026-10-24-stand-requirement-sweep/plan.md · research: escher-0.2.0/chunk…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — the one CI bullet i…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` (41…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 23 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 19 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 1 · on a capability not verified: 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 16",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 5 of 7 — listed, P5's read",
+"  line 38 · «unchanged» · stand_snapshot_parts.rs (Files to modify) · fixtures::many_items (step 4)",
+"  line 104 · «unchanged» · --locked (Test Commands) · a11y (step 2) · coverage (step 7)",
+"  line 184 · «unchanged» · tests/blitz-tests/tests/stand_requirement_sweep.rs (step 8) · Subject::Unit (step 8)",
+"      WITNESSES_020 (step 8) · STAND_REPEAT_NAMED (step 8) · WITNESSES (step 8)",
+"  line 421 · «unchanged» · LegScriptTest (step 7)",
+"  line 504 · «unchanged» · accessibility_states (step 6) · inert_subtree (step 6)",
+"      accessibility_active_descendant_unread (step 6)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 0",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+23
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 19,
+"listed": []
+},
+"check2": {
+"entries": 21,
+"tokens": 1,
+"hits": 0,
+"reading": "on a capability not verified: 0"
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 9,
+"refs": 16,
+"hits": []
+},
+"claims": {
+"read": 7,
+"listed": [
+38,
+104,
+184,
+421,
+504
+]
+},
+"c44": {
+"paths": 0,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+}
+]

@@ -356,7 +356,10 @@ class LegScriptTest(unittest.TestCase):
         words = log.split()
         self.assertEqual(words.count(self.MARKER), 6)
         for word in ("blitz-tests", "seven_guis", "--locked", "stand_settle", "cli_flow", "mcp_server",
-                     "recording", "stand_session_recording", "stand_replay"):
+                     "recording", "stand_session_recording", "stand_replay", "inert_subtree",
+                     "accessibility_states", "scrolled_box_absolute_position", "hit_clipped_at_scrolling_box",
+                     "password_caret_click", "transformed_client_rect", "accessibility_active_descendant_unread",
+                     "virtual_clock_engine", "select_interaction", "text_extent"):
             self.assertIn(word, words)
         self.assertNotIn("--ignored", words)
         self.assertEqual(log.splitlines()[-1], "stand-repeat: 3 of 3 rounds green")

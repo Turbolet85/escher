@@ -3,8 +3,9 @@
 //! call run through `Session::run` — the eight verbs on the stand's CRUD task and its Timer, and
 //! a refused call for each of the eight causes, the `covered` one on a fixture booted with the
 //! stand's options and the `fonts-unavailable` one on the CRUD task booted with a font context
-//! that holds no family, and a `press` on a fixture that renders on every pass — leaves exactly
-//! one line under `escher_driver`: at INFO, stamped with the
+//! that holds no family, a `press` on a fixture that renders on every pass, and a part read of
+//! a screen that pages, part 2 of the fixture of 400 keyed buttons — leaves exactly one line
+//! under `escher_driver`: at INFO, stamped with the
 //! service identity, its `span` reading `command`, its `verb` the table's word and absent for a
 //! verb the table lacks. Any other line a call leaves is an engine record, which a build with
 //! the engine's own call sites compiled in logs beside it. An acting call's line carries its
@@ -239,7 +240,7 @@ impl Needles {
                 self.ids.push(id);
             }
         }
-        for selector in ["#crud-list > div", "label"] {
+        for selector in ["#crud-list > div", "label", "#items > button"] {
             for node in harness.query_all(selector) {
                 let text = harness
                     .base()
@@ -681,6 +682,15 @@ fn child_records_each_command_at_info() {
         );
         needles.read(&fixture);
 
+        let mut paged = fixtures::hold("paged", fixtures::many_items, incremental);
+        let read = run.drive("paged fixture", &mut paged, &snapshot_part(2), Expect::Part);
+        assert!(
+            matches!(read, Ok(Outcome::Part { part: 2, parts, .. }) if parts >= 2),
+            "{}: paged fixture: the part read is part 2 of a screen that pages",
+            run.mode
+        );
+        needles.read(&paged);
+
         let mut no_font = Session::start(slug(LeanTask::Crud), || {
             stand::boot(
                 LeanTask::Crud,
@@ -714,7 +724,7 @@ fn child_records_each_command_at_info() {
         );
         needles.read(&restless);
 
-        assert!(run.calls == 35, "{}: {} calls", run.mode, run.calls);
+        assert!(run.calls == 36, "{}: {} calls", run.mode, run.calls);
         run.finish(&needles);
     }
 }

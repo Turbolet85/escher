@@ -1,0 +1,57 @@
+[
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "8b0aa2f8",
+"ts": "2026-10-24T16:42:17Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.2.0",
+"--run-dir",
+".andromeda/runs/2026-10-24T15-06-04-phase",
+"--marker",
+"2026-10-24-stand-requirement-sweep"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 9/11 · deferred 0 · planned 2 · implemented 0 · unclaimed 2",
+"unclaimed: v020-10 v020-11",
+"claimed-unfinished: none",
+"done-test: NO — 2 not verified|deferred · unclaimed 2",
+"chunks referenced: 9 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "8b0aa2f8",
+"ts": "2026-10-24T16:42:17Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.2.0",
+"--chunk",
+"2026-10-24-stand-requirement-sweep",
+"--plan",
+"escher-0.2.0/chunks/2026-10-24-stand-requirement-sweep/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-24T15-06-04-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-24-stand-requirement-sweep: 0 · ## Acceptance Criteria: line 394, 31 lines",
+"pool: unclaimed 2 [v020-10 v020-11]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

@@ -14,43 +14,20 @@
 
 use std::time::Duration;
 
-use dioxus::prelude::*;
 use dioxus_native_dom::{MASKED_VALUE, SNAPSHOT_TEXT_BUDGET};
 use escher_driver::{Outcome, Session, SessionError, serve_mcp};
 use seven_guis::stand::LeanTask;
 
 mod fixtures;
 mod session_common;
+use fixtures::many_items;
 use session_common::{act, click, hold, part, scroll, snapshot, snapshot_part, type_into};
-
-/// The buttons on the fixture page.
-const ITEMS: usize = 400;
 
 /// The text typed into the password input: synthetic, and no part of any id or name.
 const SENTINEL: &str = "synthetic-pt-7Qv";
 
 /// The label the fixture's session is held under.
 const LABEL: &str = "parts";
-
-/// 400 keyed buttons, each counting its clicks into one output, then a password input.
-fn many_items() -> Element {
-    let mut clicks = use_signal(|| 0u32);
-    rsx! {
-        div { id: "items",
-            output { id: "clicks", "{clicks}" }
-            for i in 1..=ITEMS {
-                button {
-                    key: "{i}",
-                    id: format!("item-{i:03}"),
-                    style: "display: block;",
-                    onclick: move |_| clicks += 1,
-                    "Item {i:03}"
-                }
-            }
-            input { id: "secret", r#type: "password", aria_label: "Secret" }
-        }
-    }
-}
 
 /// Reads every part of the screen `session` holds, from part 1 to the last, as the driver
 /// answers them: each part's text, and the count the first answer gives.

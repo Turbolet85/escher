@@ -61,6 +61,29 @@ pub fn covered() -> Element {
     }
 }
 
+/// The buttons on the fixture page.
+pub const ITEMS: usize = 400;
+
+/// 400 keyed buttons, each counting its clicks into one output, then a password input.
+pub fn many_items() -> Element {
+    let mut clicks = use_signal(|| 0u32);
+    rsx! {
+        div { id: "items",
+            output { id: "clicks", "{clicks}" }
+            for i in 1..=ITEMS {
+                button {
+                    key: "{i}",
+                    id: format!("item-{i:03}"),
+                    style: "display: block;",
+                    onclick: move |_| clicks += 1,
+                    "Item {i:03}"
+                }
+            }
+            input { id: "secret", r#type: "password", aria_label: "Secret" }
+        }
+    }
+}
+
 /// A `NetProvider` that keeps every request with its handler for the check to answer.
 #[derive(Default)]
 pub struct HeldNet {

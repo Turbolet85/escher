@@ -1,0 +1,45 @@
+[
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'text_extent' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 7,
+"result": [
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 lint/truncated().",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 486
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_line_that_cannot_wrap_reads_wider_than_its_box().",
+"file": "tests/blitz-tests/tests/text_extent.rs",
+"line": 39
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_wrapped_paragraph_reads_inside_its_box().",
+"file": "tests/blitz-tests/tests/text_extent.rs",
+"line": 64
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_wrapped_paragraph_reads_inside_its_box().",
+"file": "tests/blitz-tests/tests/text_extent.rs",
+"line": 70
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 an_element_with_no_inline_content_reads_none().",
+"file": "tests/blitz-tests/tests/text_extent.rs",
+"line": 91
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 an_element_with_no_inline_content_reads_none().",
+"file": "tests/blitz-tests/tests/text_extent.rs",
+"line": 96
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 an_element_with_no_inline_content_reads_none().",
+"file": "tests/blitz-tests/tests/text_extent.rs",
+"line": 105
+}
+],
+"db_state": "regenerated",
+"plane": "rust"
+}
+]

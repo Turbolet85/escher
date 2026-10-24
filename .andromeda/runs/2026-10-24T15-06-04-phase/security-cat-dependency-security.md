@@ -1,0 +1,29 @@
+# security · Dependency Security — category read
+
+## Carried
+- (.andromeda/security-plan.md:229) The chunk's CI must read the Dependency audit green with no ignore added. Any advisory that fires during the sweep must be met by a per-ID ignore with a written reason or by a fix, never by a blanket allow, and `unsound` must stay at its default.
+  > ignores per ID only, each with a written reason, no blanket allow; `unsound` at its default, which keeps memmap2's unsound advisory out of the gate); each ignore re-read on every push
+- (.andromeda/security-plan-detail/dependency-security.md:8) Any edit the chunk makes to `.github/scripts/ci-leg.sh` (its `stand-repeat` selection or its `coverage` floors) must leave the audit leg's invocation exactly as it stands.
+  > **Audit tool:** cargo-deny 0.20.2 — `cargo deny --locked --workspace --all-features check advisories licenses` against the RustSec advisory database and the licence table, over the whole workspace's graph since 2026-10-14-quality-gates
+- (.andromeda/security-plan-detail/dependency-security.md:11) The audit reading at the chunk's end must match the stated baseline: every standing ignore still encountered, and only these two warnings printed.
+  > every standing ignore is still encountered, and the leg prints two warnings, `yanked` clipboard-win 5.4.1 and `license-not-encountered` NCSA (deny.toml:46)
+- (.andromeda/security-plan.md:267) The licence gate must keep reading `licenses ok` on every push, including after any new dev-dependency the sweep's checks take.
+  > - **Licence compliance:** the root `deny.toml` holds upstream's `[licenses]` table byte for byte, and the audit leg runs it on every push over the whole workspace's graph, so the fork gates on licences; upstream's own `licenses` job stays reverted.
+- (.andromeda/security-plan.md:253) The audit job runs on every push, so the CI verdict the chunk reads at its end includes it.
+  > **CI integration:** ci.yml's `audit` job ("Dependency audit") runs `bash .github/scripts/ci-leg.sh audit` on every pull request and push, in the slow tier behind the four fast jobs, uncached, its log uploaded on failure as `ci-log-audit` (.github/workflows/ci.yml:225-244).
+- (.andromeda/security-plan.md:264) If the chunk widens `stand-repeat`'s selection or changes `coverage`'s floors, the changed leg commands must still pass `--locked`.
+  > and so does every ci.yml cargo leg — the leg script's build, test, clippy (both lines), doc, msrv, counter, wasm, audit, a11y, coverage and, since 2026-10-14-quality-gates, stand-repeat commands and the matrix command — except `examples/wasm_hello`, a standalone workspace with no `Cargo.lock` (.github/scripts/ci-leg.sh:20-60; .github/workflows/ci.yml:417)
+- (.andromeda/security-plan.md:237) Any dev-dependency a new fixture or stand check adds to blitz-tests must be inherited with `workspace = true`.
+  > - Most dependency versions are inherited with `workspace = true` (apps/browser/Cargo.toml:46-75; packages/blitz-dom/Cargo.toml:48-108); every dependency in the blitz-html and blitz-net manifests does so (packages/blitz-html/Cargo.toml:19-26; packages/blitz-net/Cargo.toml:22-41), as do the blitz-traits and blitz manifests (packages/blitz-traits/Cargo.toml:14-22; packages/blitz/Cargo.toml:24-39) and every dev-dependency of blitz-tests (tests/blitz-tests/Cargo.toml:15-42)
+- (.andromeda/security-plan.md:247) A CI gate change (a coverage floor, `stand-repeat`'s selection, or `test_ci_workflows.py`'s invariants) must keep the coverage tool pinned and every `uses:` pinned to a SHA, as `test_ci_workflows.py` asserts.
+  > ci.yml installs `cargo-deny@0.20.2` (the audit tool) and `cargo-llvm-cov@0.9.1` (the coverage tool) through `taiki-e/install-action` (.github/workflows/ci.yml:234-236; .github/workflows/ci.yml:281-283); every ci.yml `uses:` is pinned to a 40-hex commit SHA with its ref kept as a trailing comment, asserted by `test_ci_workflows.py` (.github/scripts/test_ci_workflows.py:186-192)
+- (.andromeda/security-plan-detail/dependency-security.md:40) If the sweep takes a dependency, it must be reviewed in the established way: no package enters `Cargo.lock` unreviewed, and the audit reads `advisories ok` with `deny.toml` unchanged.
+  > reviewed at that chunk: no package enters `Cargo.lock` (its one changed line `"color",` inside blitz-test-harness's dependency list), the audit leg reads `advisories ok` with `deny.toml` unchanged
+- (.andromeda/security-plan-detail/dependency-security.md:22) The sweep must bump none of the coupled pins and take no git dependency.
+  > the pins stay — Stylo "0.22.0", Taffy the registry "0.15", Dioxus "0.7.3", no git dependency;
+
+## Bindings
+- **Audit and licence gate ↔ test-plan §CI Integration (`ci-leg.sh` legs, `test_ci_workflows.py`)**: the scope opens `ci-leg.sh` for `stand-repeat` and `coverage` only where a P4 fork answers "change". The `audit` leg's command and its `--locked` must come through that edit unchanged (.andromeda/security-plan-detail/dependency-security.md:8), (.andromeda/security-plan.md:264).
+- **Coverage tool pin ↔ test-plan coverage floors (`coverage_floor.py`, `ci-leg.sh:46`)**: a floor raised or a crate added changes the gate but not the tool, which stays `cargo-llvm-cov@0.9.1` installed through a SHA-pinned action (.andromeda/security-plan.md:247).
+- **blitz-tests dev-dependencies ↔ test-plan (one file and one target per behaviour, `test_blitz_tests_targets.py`)**: a new fixture check that takes a crate inherits it from the workspace, and the audit and licence gates must stay green (.andromeda/security-plan.md:237), (.andromeda/security-plan.md:267).
+- **Audit baseline ↔ the chunk's CI verdict (scope §CI)**: the end-of-chunk run must read the Dependency audit green, printing only the two baseline warnings (.andromeda/security-plan-detail/dependency-security.md:11), (.andromeda/security-plan.md:253).

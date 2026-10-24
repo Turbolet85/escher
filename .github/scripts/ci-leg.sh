@@ -51,6 +51,11 @@ run_leg() {
         for f in "$SCRIPTS"/../../tests/blitz-tests/tests/stand_*.rs; do
             stand+=(--test "$(basename "$f" .rs)")
         done
+        # The 0.2.0 witnesses outside the stand_ prefix, named here on the founder's word (2026-10-24).
+        stand+=(--test inert_subtree --test accessibility_states --test scrolled_box_absolute_position
+            --test hit_clipped_at_scrolling_box --test password_caret_click --test transformed_client_rect
+            --test accessibility_active_descendant_unread --test virtual_clock_engine --test select_interaction
+            --test text_extent)
         for round in 1 2 3; do
             echo "stand-repeat: round $round of 3"
             cargo test -p blitz-tests --locked "${stand[@]}" || return

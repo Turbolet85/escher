@@ -7,7 +7,12 @@
 //! and an id no screen read is refused `not-found`, the instance unchanged and the remedy in
 //! the refusal's written form. A stated table names, for each requirement, the check that
 //! witnesses it on the task or fixture that holds its case, and every named test is checked to
-//! exist. A screen's text is content: this file prints none, and a failure message carries the
+//! exist. A second stated table does the same for each 0.2.0 requirement: the two that are no
+//! behaviour of a screen name the crates' unit tests their acceptance places, which the `test`
+//! leg runs and `stand-repeat` cannot select, and every other witness is checked to run inside
+//! `stand-repeat` — a `stand_` file, one of the targets the leg names one by one, or one of its
+//! seven_guis targets — each name read from the leg's own script. A screen's text is content:
+//! this file prints none, and a failure message carries the
 //! layout mode, the task and a step index, never an id or what a screen reads.
 
 use std::collections::HashSet;
@@ -219,9 +224,12 @@ enum Subject {
     Task(LeanTask),
     /// A minimal fixture beside the stand, booted with the stand's options.
     Fixture,
+    /// A crate's unit test, run by the workspace `test` leg: no `--test` target, so outside
+    /// `stand-repeat` by construction.
+    Unit,
 }
 
-use Subject::{AllFour, Fixture, Task};
+use Subject::{AllFour, Fixture, Task, Unit};
 
 /// One check that witnesses a requirement: what it proves it on, its test file relative to the
 /// project root, and the name of its `#[test]` function.
@@ -527,6 +535,316 @@ const WITNESSES: [(&str, &[Witness]); 16] = [
     ),
 ];
 
+/// Each 0.2.0 requirement, in order, with the checks that witness it. The two that are no
+/// behaviour of a screen name the unit tests their acceptance places: the code audit's
+/// complexity and size readings and the mutation tier, run on the dev host alone, stay their
+/// instruments.
+const WITNESSES_020: [(&str, &[Witness]); 9] = [
+    (
+        "v020-01",
+        &[
+            (
+                Unit,
+                "packages/blitz-dom/src/document_changed_set_tests.rs",
+                "changed_set_fresh_document_reads_no_change",
+            ),
+            (
+                Unit,
+                "packages/escher-driver/src/schema_tests.rs",
+                "the_twelve_verbs_are_named_in_order_each_at_its_level",
+            ),
+            (
+                Unit,
+                "packages/escher-driver/src/mcp_tests.rs",
+                "each_line_is_read_by_its_rules",
+            ),
+        ],
+    ),
+    (
+        "v020-02",
+        &[
+            (
+                Unit,
+                "examples/seven_guis/src/tasks/timer.rs",
+                "a_delivered_tick_is_taken_once_and_an_empty_wait_parks",
+            ),
+            (
+                Unit,
+                "packages/escher-driver/src/mcp_tests.rs",
+                "read_request_takes_each_line_with_its_terminator",
+            ),
+            (
+                Unit,
+                "packages/dioxus-native-dom/src/dioxus_document_tests.rs",
+                "a_created_text_node_is_mapped_and_left_on_the_stack",
+            ),
+        ],
+    ),
+    (
+        "v020-03",
+        &[
+            (
+                Fixture,
+                "tests/blitz-tests/tests/inert_subtree.rs",
+                "tab_and_shift_tab_skip_an_inert_subtree",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/inert_subtree.rs",
+                "the_tree_holds_no_node_for_an_inert_subtree",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/stand_keyboard.rs",
+                "an_inert_subtree_is_skipped_by_tab",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/accessibility_states.rs",
+                "aria_checked_reads_its_three_values_on_a_checkable_role_alone",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/accessibility_active_descendant_unread.rs",
+                "a_focused_listbox_reads_focus_and_no_active_descendant",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/scrolled_box_absolute_position.rs",
+                "a_scrolled_box_reads_its_absolute_position_where_it_stands",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/hit_clipped_at_scrolling_box.rs",
+                "a_contain_paint_box_stops_the_hit_at_its_padding_box",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/password_caret_click.rs",
+                "a_click_at_one_offset_places_the_caret_by_the_bullets",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/stand_keyboard.rs",
+                "a_disabled_attribute_skips_a_form_control_and_not_a_div",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/transformed_client_rect.rs",
+                "a_translated_box_reads_its_rect_moved_by_the_translation",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/stand_act_transformed.rs",
+                "a_click_on_a_translated_button_is_accepted_and_lands",
+            ),
+            (
+                AllFour,
+                "tests/blitz-tests/tests/stand_act_ids.rs",
+                "the_snapshot_the_accessibility_tree_and_the_driver_read_one_id",
+            ),
+        ],
+    ),
+    (
+        "v020-04",
+        &[
+            (
+                Task(LeanTask::Counter),
+                "tests/blitz-tests/tests/stand_replay.rs",
+                "each_committed_check_holds_on_the_unchanged_stand",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/stand_replay.rs",
+                "each_committed_check_turns_red_at_its_first_activation_on_a_changed_counter",
+            ),
+            (
+                Task(LeanTask::Counter),
+                "examples/seven_guis/tests/recording.rs",
+                "the_committed_checks_are_what_the_binary_records",
+            ),
+            (
+                AllFour,
+                "tests/blitz-tests/tests/stand_session_recording.rs",
+                "a_recorded_session_keeps_each_answer_but_a_shots_image_and_replays",
+            ),
+        ],
+    ),
+    (
+        "v020-05",
+        &[
+            (
+                Fixture,
+                "tests/blitz-tests/tests/stand_lint.rs",
+                "the_planted_defects_are_named_each_by_its_id_and_reason",
+            ),
+            (
+                AllFour,
+                "tests/blitz-tests/tests/stand_lint.rs",
+                "the_stand_at_boot_reads_no_finding",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/stand_lint.rs",
+                "a_clipped_or_off_screen_node_holding_text_reads_truncated_beside_it",
+            ),
+            (
+                AllFour,
+                "tests/blitz-tests/tests/stand_lint.rs",
+                "the_lint_verb_answers_what_the_reader_reads",
+            ),
+            (
+                Task(LeanTask::Counter),
+                "examples/seven_guis/tests/cli_commands.rs",
+                "lint_answers_one_line_of_findings",
+            ),
+            (
+                AllFour,
+                "tests/blitz-tests/tests/stand_mcp_tools.rs",
+                "a_lint_tool_call_answers_the_readers_findings_and_parents_its_command",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/text_extent.rs",
+                "right_to_left_text_reads_as_a_left_to_right_line_from_the_content_box",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/text_extent.rs",
+                "vertical_text_reads_as_a_horizontal_line",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/text_extent.rs",
+                "a_transformed_box_reads_its_lines_at_its_client_rect",
+            ),
+        ],
+    ),
+    (
+        "v020-06",
+        &[
+            (
+                Task(LeanTask::Crud),
+                "tests/blitz-tests/tests/stand_virtual_clock.rs",
+                "a_shot_after_a_scroll_repeats_until_advance_moves_the_fade",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/virtual_clock_engine.rs",
+                "the_scrollbar_fade_moves_only_with_the_clock",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/virtual_clock_engine.rs",
+                "a_smooth_scroll_stands_still_until_the_clock_moves",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/virtual_clock_engine.rs",
+                "two_clicks_are_a_double_click_by_the_clock_alone",
+            ),
+        ],
+    ),
+    (
+        "v020-07",
+        &[
+            (
+                Fixture,
+                "tests/blitz-tests/tests/stand_load_wait.rs",
+                "a_load_answered_inside_the_bound_ends_the_step_settled_with_its_content_on_screen",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/stand_load_wait.rs",
+                "a_load_never_answered_ends_the_step_at_the_bound_still_loading",
+            ),
+        ],
+    ),
+    (
+        "v020-08",
+        &[
+            (
+                Fixture,
+                "tests/blitz-tests/tests/stand_act_select.rs",
+                "at_boot_the_snapshot_reads_the_select_its_name_value_and_options",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/stand_act_select.rs",
+                "type_with_a_label_chooses_that_option",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/stand_act_select.rs",
+                "the_tab_walk_skips_the_disabled_select_before_and_after_the_choices",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/select_interaction.rs",
+                "the_arrows_home_and_end_choose_an_enabled_option",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/select_interaction.rs",
+                "typed_text_is_kept_for_one_second_of_the_documents_clock",
+            ),
+            (
+                Unit,
+                "packages/blitz-dom/src/node/select.rs",
+                "the_selectedness_setting_algorithm_keeps_one_chosen_option",
+            ),
+        ],
+    ),
+    (
+        "v020-09",
+        &[
+            (
+                Fixture,
+                "tests/blitz-tests/tests/stand_snapshot_parts.rs",
+                "a_screen_over_the_budget_is_walked_in_parts",
+            ),
+            (
+                Fixture,
+                "tests/blitz-tests/tests/stand_snapshot_parts.rs",
+                "over_mcp_the_walk_answers_the_json_lines_of_the_same_calls",
+            ),
+            (
+                Task(LeanTask::Counter),
+                "examples/seven_guis/tests/cli_commands.rs",
+                "snapshot_reads_a_part_by_number_and_a_part_outside_its_bound_is_refused",
+            ),
+        ],
+    ),
+];
+
+/// The blitz-tests targets outside the `stand_` prefix that `stand-repeat` names one by one.
+const STAND_REPEAT_NAMED: [&str; 10] = [
+    "inert_subtree",
+    "accessibility_states",
+    "scrolled_box_absolute_position",
+    "hit_clipped_at_scrolling_box",
+    "password_caret_click",
+    "transformed_client_rect",
+    "accessibility_active_descendant_unread",
+    "virtual_clock_engine",
+    "select_interaction",
+    "text_extent",
+];
+
+/// The seven_guis targets `stand-repeat` runs.
+const STAND_REPEAT_SEVEN_GUIS: [&str; 8] = [
+    "cli_commands",
+    "cli_flow",
+    "host_binary",
+    "host_log",
+    "host_timer",
+    "mcp_server",
+    "mcp_log",
+    "recording",
+];
+
+const CI_LEG: &str = ".github/scripts/ci-leg.sh";
+
 /// The text of a witness file, read at compile time: `None` for a file this check does not
 /// carry.
 fn source(file: &str) -> Option<&'static str> {
@@ -571,6 +889,67 @@ fn source(file: &str) -> Option<&'static str> {
         "examples/seven_guis/tests/mcp_server.rs" => {
             include_str!("../../../examples/seven_guis/tests/mcp_server.rs")
         }
+        "tests/blitz-tests/tests/inert_subtree.rs" => include_str!("inert_subtree.rs"),
+        "tests/blitz-tests/tests/stand_keyboard.rs" => include_str!("stand_keyboard.rs"),
+        "tests/blitz-tests/tests/accessibility_states.rs" => {
+            include_str!("accessibility_states.rs")
+        }
+        "tests/blitz-tests/tests/accessibility_active_descendant_unread.rs" => {
+            include_str!("accessibility_active_descendant_unread.rs")
+        }
+        "tests/blitz-tests/tests/scrolled_box_absolute_position.rs" => {
+            include_str!("scrolled_box_absolute_position.rs")
+        }
+        "tests/blitz-tests/tests/hit_clipped_at_scrolling_box.rs" => {
+            include_str!("hit_clipped_at_scrolling_box.rs")
+        }
+        "tests/blitz-tests/tests/password_caret_click.rs" => {
+            include_str!("password_caret_click.rs")
+        }
+        "tests/blitz-tests/tests/transformed_client_rect.rs" => {
+            include_str!("transformed_client_rect.rs")
+        }
+        "tests/blitz-tests/tests/stand_act_transformed.rs" => {
+            include_str!("stand_act_transformed.rs")
+        }
+        "tests/blitz-tests/tests/stand_replay.rs" => include_str!("stand_replay.rs"),
+        "tests/blitz-tests/tests/stand_session_recording.rs" => {
+            include_str!("stand_session_recording.rs")
+        }
+        "tests/blitz-tests/tests/stand_lint.rs" => include_str!("stand_lint.rs"),
+        "tests/blitz-tests/tests/text_extent.rs" => include_str!("text_extent.rs"),
+        "tests/blitz-tests/tests/stand_virtual_clock.rs" => include_str!("stand_virtual_clock.rs"),
+        "tests/blitz-tests/tests/virtual_clock_engine.rs" => {
+            include_str!("virtual_clock_engine.rs")
+        }
+        "tests/blitz-tests/tests/stand_load_wait.rs" => include_str!("stand_load_wait.rs"),
+        "tests/blitz-tests/tests/stand_act_select.rs" => include_str!("stand_act_select.rs"),
+        "tests/blitz-tests/tests/select_interaction.rs" => include_str!("select_interaction.rs"),
+        "tests/blitz-tests/tests/stand_snapshot_parts.rs" => {
+            include_str!("stand_snapshot_parts.rs")
+        }
+        "examples/seven_guis/tests/recording.rs" => {
+            include_str!("../../../examples/seven_guis/tests/recording.rs")
+        }
+        "examples/seven_guis/src/tasks/timer.rs" => {
+            include_str!("../../../examples/seven_guis/src/tasks/timer.rs")
+        }
+        "packages/blitz-dom/src/document_changed_set_tests.rs" => {
+            include_str!("../../../packages/blitz-dom/src/document_changed_set_tests.rs")
+        }
+        "packages/blitz-dom/src/node/select.rs" => {
+            include_str!("../../../packages/blitz-dom/src/node/select.rs")
+        }
+        "packages/escher-driver/src/schema_tests.rs" => {
+            include_str!("../../../packages/escher-driver/src/schema_tests.rs")
+        }
+        "packages/escher-driver/src/mcp_tests.rs" => {
+            include_str!("../../../packages/escher-driver/src/mcp_tests.rs")
+        }
+        "packages/dioxus-native-dom/src/dioxus_document_tests.rs" => {
+            include_str!("../../../packages/dioxus-native-dom/src/dioxus_document_tests.rs")
+        }
+        CI_LEG => include_str!("../../../.github/scripts/ci-leg.sh"),
         _ => return None,
     })
 }
@@ -607,6 +986,83 @@ fn every_requirement_names_its_witness() {
             assert!(
                 text.contains(&format!("fn {test}(")),
                 "row {row}, witness {index}: the test exists in its file"
+            );
+        }
+    }
+}
+
+#[test]
+fn every_0_2_0_requirement_names_its_witness_inside_stand_repeat() {
+    const BLITZ_TESTS: &str = "tests/blitz-tests/tests/";
+    const SEVEN_GUIS: &str = "examples/seven_guis/tests/";
+    let requirements: Vec<String> = (1..=9).map(|n| format!("v020-{n:02}")).collect();
+    assert_eq!(WITNESSES_020.len(), 9);
+    assert!(
+        WITNESSES_020
+            .iter()
+            .map(|(requirement, _)| *requirement)
+            .eq(requirements.iter().map(String::as_str)),
+        "the rows name the requirements in order"
+    );
+
+    let Some(leg) = source(CI_LEG) else {
+        panic!("the leg script is carried");
+    };
+    assert!(
+        leg.contains("tests/blitz-tests/tests/stand_*.rs"),
+        "stand-repeat selects every stand_ file"
+    );
+    for (index, name) in STAND_REPEAT_NAMED
+        .iter()
+        .chain(&STAND_REPEAT_SEVEN_GUIS)
+        .enumerate()
+    {
+        assert!(
+            leg.contains(&format!("--test {name}")),
+            "named target {index}: the leg runs it"
+        );
+    }
+
+    for (row, (requirement, witnesses)) in WITNESSES_020.iter().enumerate() {
+        assert!(!witnesses.is_empty(), "row {row}: names a witness");
+        let units = witnesses
+            .iter()
+            .filter(|(subject, _, _)| *subject == Unit)
+            .count();
+        if ["v020-01", "v020-02"].contains(requirement) {
+            assert!(
+                units == witnesses.len(),
+                "row {row}: names unit tests alone"
+            );
+        } else {
+            assert!(
+                units < witnesses.len(),
+                "row {row}: names a witness stand-repeat runs"
+            );
+        }
+        for (index, (subject, file, test)) in witnesses.iter().enumerate() {
+            let Some(text) = source(file) else {
+                panic!("row {row}, witness {index}: the file is carried");
+            };
+            assert!(
+                text.contains(&format!("fn {test}(")),
+                "row {row}, witness {index}: the test exists in its file"
+            );
+            if *subject == Unit {
+                continue;
+            }
+            let inside = if let Some(name) = file.strip_prefix(BLITZ_TESTS) {
+                let target = name.strip_suffix(".rs").unwrap_or(name);
+                target.starts_with("stand_") || STAND_REPEAT_NAMED.contains(&target)
+            } else if let Some(name) = file.strip_prefix(SEVEN_GUIS) {
+                let target = name.strip_suffix(".rs").unwrap_or(name);
+                STAND_REPEAT_SEVEN_GUIS.contains(&target)
+            } else {
+                false
+            };
+            assert!(
+                inside,
+                "row {row}, witness {index}: stand-repeat runs its target"
             );
         }
     }

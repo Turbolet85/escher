@@ -27,3 +27,6 @@ the CARRY 3–5 owners moved to a residuals line; one stale clause the detectors
 - The six `detail.py tally` rows and the sampler lines are in the wrap's console report and the run dir's trail.
 - Known limit, owned by F334's line: the sweep tools and the leaf deltas read master bodies only (the Tier-1 learning).
 - Last failed command: none.
+
+## Session End Status
+Completed normally at 2026-10-24 18:43:07

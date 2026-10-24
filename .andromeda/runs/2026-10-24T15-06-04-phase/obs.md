@@ -1,0 +1,35 @@
+# obs extract
+
+## Relevance
+partial — the entry's "new verbs' stderr id-free" leg is this domain's (the sink's needle readings on `escher-session`'s host and `mcp` role for `lint`, the `part` read and `--record`), and every check the sweep adds must stay silent; the requirement record, stand-repeat selection and coverage floors are tests' and CI's.
+
+## Constraints
+- obs-plan §6 Log Coverage (Detail: `.andromeda/obs-plan-detail/log-coverage.md`, escher-driver emitter) requires a `lint` call's line to read `span="command" verb="lint"` (with `cause` when refused) and hold no finding, id, bound or count, and a part read's line to read `span="command" verb="snapshot"` and hold no part number, count, size or text — with `host_log` and `mcp_log` each driving one `lint` and one part read at `trace` with 0 needles. The plan records these as measured; whether the two checks at HEAD still drive both, under both builds, is research's question.
+- obs-plan §8 PII Scrubbing & Compliance (Detail: `.andromeda/obs-plan-detail/pii-scrubbing-compliance.md`, "Past escher's scrub") requires a sink-installing binary's stderr to carry 0 id needles, 0 name needles, 0 typed-sentinel occurrences and 0 of a shot's first 64 base64 characters at `trace`, read on the `escher-session` host and its `mcp` role under both the per-package and the workspace build.
+- obs-plan §3 Observability Harness Contract (Detail block "absence · logs", the session-recording bullet) requires `host_log` and `mcp_log` each to read a recording host and a recording `mcp` role at `trace` with 0 recording needles (the kept check's directory name and contents) and the span counts unchanged. Whether that reading already covers `--record` on every launcher the scope names (`start`, host role, `mcp` role) is research's question.
+- obs-plan §3 Observability Harness Contract (Logging stack, and its "absence · logs" detail) requires every stand and fixture check to install no subscriber, read no env var and print nothing, readings going into assertions only — the named exceptions being `stand_act_spans`' two re-run children, `stand_mcp_tools`' in-process `Recorder`, and the re-executed children of `stand_id_persistence` and `stand_screenshot_repeat`; a new sweep or C1 fixture check joins the silent set, not the exceptions.
+- obs-plan §2 Telemetry Strategy (By invocation) requires the "both builds" reading to mean two different engine-feature sets: a `-p seven_guis` build leaves `blitz-dom/tracing` off, and a `--workspace` build turns it on, so engine events then reach the sink. A stderr reading taken under one build alone does not stand for the other.
+- obs-plan §4 Span / Trace Coverage (Detail: `.andromeda/obs-plan-detail/span-trace-coverage.md`) requires escher-driver to keep its 2 `info_span!` sites: `command` with its eight fields and `tool_call` with its two. `Session::lint`, `BaseDocument::text_extent`, `Harness::text_contrast` and `Snapshot::text_parts` open no span, emit no event and record no field.
+- obs-plan §8 PII Scrubbing & Compliance (Scrubbing) requires escher's sink allowlist to stay as it is: an engine target prints only its safe fields, an `escher_` target has its content-named set redacted, and any other target is dropped whole at every level. The sweep measures the allowlist and changes no scrub set.
+
+## Patterns to follow
+- The log checks' shared readers in `examples/seven_guis/tests/common/mod.rs` (`Needles`, `stand_needles`, `stamped_lines`, `found`, `occurrences`, unix-only `recorded_needles`) whose assertion messages name a kind and a count, never a needle or a captured line (per obs-plan §3 Observability Harness Contract, test-splits bullet).
+- `host_log` / `mcp_log`: spawn the real binary at `RUST_LOG=trace`, drain both streams from the spawn, read them into assertions only; a failure prints a kind and a count (per obs-plan §3 Observability Harness Contract, Logging stack).
+- The silence census over each new or touched check file and its shared modules (`println!|eprintln!|print!|dbg!|std::env|env::var|escher_telemetry|tracing_subscriber|UnixListener|TcpListener|bind\(`), reading 0, as the 0.1.0 sweep and the engine-debts, visual-lint, select and parts chunks recorded it (per obs-plan §3 Observability Harness Contract, Logging stack and "absence · logs").
+- A span-field reading in process goes through `stand_act_spans`' re-run children over `init_with_writer` or `stand_mcp_tools`' `Recorder`, never a new sink install in another check (per obs-plan §4 Span / Trace Coverage).
+
+## Anti-patterns to avoid
+- Never field a lint's findings or their count, a part's number or the part count, the screen text or its length, any argument, or any `Command` / `Call` / `ArgValue` / `Outcome` with `Debug` on the `command` span (per obs-plan §4 Span / Trace Coverage).
+- Never let a check's failure message, test name or assertion text print a needle, a captured stderr line or a kept check's content (per obs-plan §3 Observability Harness Contract, test-splits bullet).
+- Never add a log site, span, field, log field or env read to `packages/escher-driver/src/lint.rs` or `packages/blitz-dom/src/text_extent.rs` if a founder's fork answers "change" for C1. Both stay silent (per obs-plan §3 Observability Harness Contract, visual-lint bullet).
+
+## Contract bindings
+- obs ↔ tests: the stderr needle checks `host_log` and `mcp_log` are among the eight seven_guis targets `stand-repeat` runs (scope; `.github/scripts/ci-leg.sh`). The "both builds" meaning binds to test-plan §9 → Engine features by runner (per obs-plan §2 Telemetry Strategy).
+- obs ↔ security: the content-named scrub set, together with the rule that no span field holds what a call supplied or a screen reads, binds to `.andromeda/security-plan.md` §Input Validation. That section covers the driver's log records and their `verb` / `cause` fields only (per obs-plan §8 PII Scrubbing & Compliance).
+- obs ↔ CI: the coverage leg's `target/coverage/lcov.info` artifact holds line counts only, no user data. A floor change leaves it a line-count artifact (per obs-plan §9 CI Integration).
+
+## Acceptance criteria contributions
+- `host_log` and `mcp_log`, at `RUST_LOG=trace` under both the `-p seven_guis` and the `--workspace` build, each drive one accepted `lint`, one `snapshot` part read and one `--record` recording. Each reads 0 id needles, 0 name needles, 0 typed-sentinel occurrences and 0 recording needles on stderr, with stdout carrying only answers (per obs-plan §6 Log Coverage).
+- Every check file the sweep adds or extends, and every shared module it touches, reads 0 on the silence census (no subscriber, env read or print), its readings going into assertions only (per obs-plan §3 Observability Harness Contract).
+- escher-driver still holds exactly 2 `info_span!` sites. The `command` span keeps its eight fields and `tool_call` its two, and an accepted `lint` or part read records `verb` alone (per obs-plan §4 Span / Trace Coverage).
+- `packages/escher-telemetry/` holds no scrub-set or allowlist change at the chunk's end (per obs-plan §8 PII Scrubbing & Compliance).
