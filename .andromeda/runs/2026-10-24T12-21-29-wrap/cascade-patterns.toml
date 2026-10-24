@@ -1,0 +1,84 @@
+[[pattern]]
+id = 'par-default'
+regex = 'defaults to .Parallel.|documented to panic|already mutably borrowed|two .Parallel. documents|style_threading'
+
+[[pattern]]
+id = 'par-pool'
+regex = 'rayon pool|StyleThreading::Parallel'
+
+[[pattern]]
+id = 'flake'
+regex = '1\.90\.0|sits below'
+
+[[pattern]]
+id = 'up-read'
+regex = '17de049b1|three of its commits|7 commits past|three are taken|both partial takes|last read at'
+
+[[pattern]]
+id = 'taffy-main'
+regex = 'four Taffy-main|Taffy-main'
+ignore_case = true
+
+[[pattern]]
+id = 'mimalloc'
+regex = 'optional .mimalloc.|mimalloc|global allocator'
+
+[[pattern]]
+id = 'carry-owner'
+regex = 'CARRY on «Upstream sync'
+
+[[pattern]]
+id = 'tree-only'
+regex = 'only tree.structure'
+
+[[pattern]]
+id = 'inline-path'
+fixed = 'layout/inline.rs'
+
+[[pattern]]
+id = 'files-count'
+regex = '143 .\.rs|142 test targets|143 and 142'
+
+[[pattern]]
+id = 'tally'
+regex = '205 · 1098|186 · 1095|186 · 1051|205 result lines|1098 passed'
+
+[[pattern]]
+id = 'run-all'
+regex = '616 passed|passed 616|the 616'
+
+[[pattern]]
+id = 'moved-none'
+regex = 'moved none|by cherry-pick'
+
+[[pattern]]
+id = 'bench-shot'
+regex = 'bench and screenshot|console printing of timings'
+
+[[pattern]]
+id = 'ex-panic'
+regex = 'cannot be resolved panics|preact_script'
+
+[[pattern]]
+id = 'env-list'
+fixed = 'PAINT_TREE_BENCH_HTML'
+
+[[pattern]]
+id = 'hit-walk'
+regex = 'hit_inner|positive-z hoisted|hit-testing walks'
+
+[[pattern]]
+id = 'tokio'
+regex = 'RUSTSEC-2026-0386|tokio 1\.53|tokio = "1\.42"'
+
+[[pattern]]
+id = 'kbd-compat'
+regex = 'until upstream retires it|keyboard_compat'
+
+[[pattern]]
+id = 'replaced'
+regex = 'compute_replaced_layout|Degenerate aspect ratios'
+
+[[pattern]]
+id = 'node-fields'
+regex = 'node module re-exports|is_out_of_flow|ElementData::is_disabled\(&self\)'

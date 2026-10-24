@@ -1,0 +1,31 @@
+--- a/.andromeda/layout-templates.md
++++ b/.andromeda/layout-templates.md
+@@ -20,3 +20,3 @@
+ 
+-- Browser toolbar row: back, forward, refresh, home, urlbar with suggestion dropdown, overflow menu (apps/browser/src/toolbar.rs:317-445)
++- Browser toolbar row: back, forward, refresh, home, urlbar with suggestion dropdown, overflow menu (apps/browser/src/toolbar.rs:318-446)
+ - `ShellProvider` offers window chrome controls for documents drawing their own titlebar: request_window_close, set_window_minimized, set_window_maximized, is_window_maximized, set_window_decorations, drag_window (packages/blitz-traits/src/shell.rs:45-62)
+@@ -59,3 +59,3 @@
+ 
+-- On mobile the toolbar omits the forward and home buttons (apps/browser/src/toolbar.rs:324-334)
++- On mobile the toolbar omits the forward and home buttons (apps/browser/src/toolbar.rs:325-335)
+ - A bottom-toolbar (`column-reverse`) mobile layout is present only as commented-out CSS (apps/browser/assets/browser.css:141-155)
+@@ -71,2 +71,3 @@
+ - `paint_bench` — usage line `paint_bench <url> [width] [height] [scale] [iters] [backend]` with `backend: vello (default) | cpu | hybrid` (examples/paint_bench.rs:6-7)
++- `multi_doc` — a root example taking a mode and an iteration count as positional arguments, an unknown mode ending in a panic; its document count from `MULTI_DOC_N` (a default when absent or unparsed) and its layout and style threading from the flags `MULTI_DOC_FLAT` and `MULTI_DOC_SEQ`; its timing printed as one line on stdout (examples/multi_doc.rs:17-19; examples/multi_doc.rs:47-116)
+ - `scripts/agent-run.sh` — the agent-invocable test contract, run from the repository root: usage `agent-run.sh <verb> [selection]` with verbs `boot · run · status · cleanup · logs` and run selections `stand · all · <blitz-tests file name>`, printed to stderr on a usage error (exit 2); every verb's stdout is JSON lines only, one object per event, and the raw cargo output stays in `target/agent-run/run.log`; `scripts/agent-run.ps1` is its Windows pass-through. The exit grammar and event schema live in test-plan §3 (scripts/agent-run.sh:12-17; scripts/agent-run.ps1:1-4)
+@@ -77,8 +78,8 @@
+ 
+-- Non-verbose terminal mode reserves one line per rayon thread and rewrites each thread's line in place with ANSI cursor escapes as `[done/count] thread N: STATUS name` (wpt/runner/src/main.rs:531-537; wpt/runner/src/main.rs:704-717)
+-- Non-terminal non-verbose mode prints `[done/count] ...` every 1000 tests and at the end (wpt/runner/src/main.rs:718-720)
+-- Verbose mode prints `[num/count] ` and the full result line per test (wpt/runner/src/main.rs:698-702)
+-- A panicking test's line is followed by the panic message, `Panicked at file:line:column` and a trimmed backtrace (wpt/runner/src/main.rs:444-459)
+-- After the run, an "Ordered Results" heading precedes alphabetically sorted result lines numbered `[NNNN/count]` (wpt/runner/src/main.rs:729-738)
+-- Summary block: duration, then FOUND/SKIPPED/RUN, subtest counts, CRASHED/PASSED/FAILED/TIMED OUT with percentages of run and found, partial-pass count, and failure buckets by feature, with counts right-aligned to width 4 (wpt/runner/src/main.rs:783-829)
++- Non-verbose terminal mode reserves one line per rayon thread and rewrites each thread's line in place with ANSI cursor escapes as `[done/count] thread N: STATUS name` (wpt/runner/src/main.rs:534-540; wpt/runner/src/main.rs:707-720)
++- Non-terminal non-verbose mode prints `[done/count] ...` every 1000 tests and at the end (wpt/runner/src/main.rs:721-723)
++- Verbose mode prints `[num/count] ` and the full result line per test (wpt/runner/src/main.rs:701-705)
++- A panicking test's line is followed by the panic message, `Panicked at file:line:column` and a trimmed backtrace (wpt/runner/src/main.rs:447-462)
++- After the run, an "Ordered Results" heading precedes alphabetically sorted result lines numbered `[NNNN/count]` (wpt/runner/src/main.rs:732-741)
++- Summary block: duration, then FOUND/SKIPPED/RUN, subtest counts, CRASHED/PASSED/FAILED/TIMED OUT with percentages of run and found, partial-pass count, and failure buckets by feature, with counts right-aligned to width 4 (wpt/runner/src/main.rs:786-832)
+ 

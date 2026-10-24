@@ -1,0 +1,85 @@
+[[pattern]]
+id = 'title'
+fixed = 'Upstream sync ahead of polish and ship'
+ignore_case = true
+
+[[pattern]]
+id = 'owned'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true
+
+[[pattern]]
+id = 'tally-local'
+regex = '205 · 1098|1098 passed|205 result lines|Local baseline'
+
+[[pattern]]
+id = 'tally-os'
+regex = '186 · 1095|186 · 1051|1095 passed|1051 passed|Per-OS test tallies'
+ignore_case = true
+
+[[pattern]]
+id = 'run-all'
+regex = '616 passed|passed 616|616 · 0|run all'
+
+[[pattern]]
+id = 'files-dir'
+regex = '144 \.rs|144 files|144 →|Directory pattern'
+
+[[pattern]]
+id = 'new-target'
+regex = 'hit_test_dropped_nodes|dropped since the last resolve|dropped nodes'
+ignore_case = true
+
+[[pattern]]
+id = 'upstream'
+regex = 'Upstream sync:|17de049b1|f9cbb2756|23b9b26a9'
+
+[[pattern]]
+id = 'threading'
+regex = 'StyleThreading|style_threading|already mutably borrowed|PARALLEL_TRAVERSAL_LOCK|Style threading'
+
+[[pattern]]
+id = 'replaced'
+regex = 'aspect-ratio|natural height|compute_replaced_layout|replaced\.rs'
+
+[[pattern]]
+id = 'out-of-flow'
+regex = 'out_of_flow|is_out_of_flow|out-of-flow'
+ignore_case = true
+
+[[pattern]]
+id = 'classes'
+regex = 'ElementData::classes|parse_classes|class atoms'
+
+[[pattern]]
+id = 'multi-doc'
+regex = 'MULTI_DOC_|multi_doc'
+
+[[pattern]]
+id = 'mimalloc'
+regex = 'mimalloc|global_allocator|global allocator'
+ignore_case = true
+
+[[pattern]]
+id = 'flake'
+regex = 'flake\.nix|rust-bin|flake drift'
+
+[[pattern]]
+id = 'inline'
+regex = 'layout/inline|inline\.rs|inline/layout\.rs|inline/build\.rs'
+
+[[pattern]]
+id = 'tokio'
+regex = 'RUSTSEC-2026-0386|tokio 1\.53|tokio 1\.54'
+
+[[pattern]]
+id = 'validation'
+regex = 'attr_test|is_usable_ratio|degenerate'
+
+[[pattern]]
+id = 'kbd-compat'
+regex = 'keyboard_compat'
+
+[[pattern]]
+id = 'carry'
+regex = 'Taffy-main|merge surface|engine-debts|one-virtual-clock|select-by-id'

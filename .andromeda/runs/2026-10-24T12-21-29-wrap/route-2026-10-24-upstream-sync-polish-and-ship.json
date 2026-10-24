@@ -1,0 +1,125 @@
+[
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "f23fb885",
+"ts": "2026-10-24T14:11:57Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-24-upstream-sync-polish-and-ship",
+"--run-dir",
+".andromeda/runs/2026-10-24T12-21-29-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"flip master-route.md:72 - 2026-10-24-upstream-sync-polish-and-ship pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "f23fb885",
+"ts": "2026-10-24T14:11:57Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-24-upstream-sync-polish-and-ship",
+"--date",
+"2026-10-24",
+"--run-dir",
+".andromeda/runs/2026-10-24T12-21-29-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :47 strip CARRY: 573ch \"CARRY: upstream's four Taffy-main commit\"",
+"pin :47 strip CARRY: 221ch \"CARRY: whether upstream retired `keyboar\"",
+"pin :47 strip CARRY: 669ch \"CARRY: the merge surface of 2026-10-18-e\"",
+"pin :47 strip CARRY: 551ch \"CARRY: the merge surface of 2026-10-18-o\"",
+"pin :47 strip CARRY: 586ch \"CARRY: the merge surface of 2026-10-20-s\"",
+"pin next markerless :49 holds CARRY:×1",
+"47 · 2026-10-24-upstream-sync-polish-and-ship · strip 5 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 47,
+"marker": "2026-10-24-upstream-sync-polish-and-ship",
+"blocks": 5,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "f23fb885",
+"ts": "2026-10-24T14:12:03Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-24-upstream-sync-polish-and-ship",
+"--date",
+"2026-10-24",
+"--run-dir",
+".andromeda/runs/2026-10-24T12-21-29-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :47 strip CARRY: 573ch \"CARRY: upstream's four Taffy-main commit\"",
+"pin :47 strip CARRY: 221ch \"CARRY: whether upstream retired `keyboar\"",
+"pin :47 strip CARRY: 669ch \"CARRY: the merge surface of 2026-10-18-e\"",
+"pin :47 strip CARRY: 551ch \"CARRY: the merge surface of 2026-10-18-o\"",
+"pin :47 strip CARRY: 586ch \"CARRY: the merge surface of 2026-10-20-s\"",
+"pin next markerless :49 holds CARRY:×1",
+"47 · 2026-10-24-upstream-sync-polish-and-ship · strip 5 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.2.0/route-archive.md",
+"./escher-0.2.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 47,
+"marker": "2026-10-24-upstream-sync-polish-and-ship",
+"blocks": 5,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]

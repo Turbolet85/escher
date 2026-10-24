@@ -1,0 +1,11 @@
+proposals:
+  - detector: D-design-tokens
+    severity: warning
+    file: .andromeda/design-system-detail/depth-strategy.md
+    near: 26
+    section: "## Depth Strategy"
+    change: "New item following line 26, inside its detail block: \"- Since 2026-10-24-upstream-sync-polish-and-ship the hit-test walk skips a node dropped since the last resolve (`self.tree().get(id)` with `continue` where it indexed the id) in each of its three stacking loops (positive-z hoisted children, paint children, negative-z hoisted children) and in the text-cluster lookup, and the paint tree's build skips one the same way; `hit_inner` keeps its signature (packages/blitz-dom/src/node/node.rs:1414-1417; packages/blitz-dom/src/node/node.rs:1572-1574; packages/blitz-dom/src/node/node.rs:1587-1589; packages/blitz-dom/src/node/node.rs:1621-1623; packages/blitz-dom/src/node/node.rs:1646-1650; packages/blitz-dom/src/layout/paint_tree.rs:164-172; tests/blitz-tests/tests/hit_test_dropped_nodes.rs:32-82)\""
+    sidecar: "depth-strategy: the stacking-order hit-test walk and the paint tree skip nodes dropped since the last resolve (upstream f102663b8, taken 2026-10-24-upstream-sync-polish-and-ship)."
+    rationale: "New detail to the engine stacking-order hit-test walk this file records at line 26: report Changes → Symbols / APIs (Hit testing, `Node::hit_inner` skips dropped nodes in the positive-z hoisted loop, the paint-children loop, the negative-z hoisted loop and the text-cluster lookup; `paint_tree.rs` the same) and item 26 of the same section (an engine change for every document, ratified by the founder's «Десять коммитов (Рекомендую)», inputs#I4); test `hit_test_dropped_nodes` (Coverage of new surfaces). Filed under the doc's one scoped detector as new detail — D-design-tokens' own invariant (Coverage `tokens` flags) is not violated: every new surface reads `tokens n/a`."
+    basis: escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/report.md:22
+note: D-design-tokens' invariant holds — the report's Coverage rows all read `tokens n/a` and no new UI is rendered; Retired is none; line 26's `node.rs:1555-1617` and `node.rs:1521-1554` cites into the moved file are the citation sweep's (report Expected amendments, every master), not proposed here.

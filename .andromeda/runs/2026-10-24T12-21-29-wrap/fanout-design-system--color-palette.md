@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens holds — every Coverage row reads `tokens n/a` and the chunk renders no new UI; Retired is none; the file's cites into files the take shifted (wpt/runner/src/main.rs:388-398 under added 1-3, packages/blitz-dom/src/resolve.rs:148-152 under added 29 · 32, packages/blitz-dom/src/stylo.rs:1184-1191 under added 29-35 · 157-163 · 586-590 · 697-699 · 710) are P2's citation sweep's (`cites.py apply`, report Expected amendments), no proposal here.

@@ -1,0 +1,11 @@
+
+## 2026-10-24-upstream-sync-polish-and-ship — `multi_doc`, the merge surfaces and their owners, the `inline` paths and the coverage exclusion's clause
+**Section:** §Standard Contracts (body: CLIs; standard-contracts.md: CLIs, the coverage leg) · §Existing Scopes (existing-scopes.md: Root examples, dioxus-native-dom) · §Cross-cutting Patterns (body: Rendering details; cross-cutting-patterns.md: Logging and timing) · §Established Decisions (established-decisions.md: range input, keyboard activation, the engine-debts merge surfaces, [Layout] paths) · §Conventions (conventions.md: Known gaps, Unsafe and borrowing)
+**Change:**
+- CLIs: the root example `multi_doc` — a mode and an iteration count from its arguments, `MULTI_DOC_N` · `MULTI_DOC_FLAT` · `MULTI_DOC_SEQ`, each resolve timed with `Instant::now()`, one summary line on stdout, a panic on an unknown mode. Root examples list it; Logging and timing names its timing and its `println!`; the WPT runner's `env_logger` cites re-pointed on that line.
+- Range input's and keyboard activation's merge surfaces: at upstream `main` `f9cbb2756` upstream's taken hunks reach `node/element.rs`, `node/mod.rs`, `layout/construct.rs` and `mutator.rs` — the one conflict `construct.rs`'s import list, resolved to upstream's list plus `RangeInputData` — and keyboard activation's `node/element.rs` with no conflict.
+- The three engine-debts merge surfaces: was «owned by a CARRY on «Upstream sync ahead of polish and ship»»; now owned by a `.andromeda/residuals.md` line (target: next), re-read at the next upstream sync.
+- Paths: `packages/blitz-dom/src/layout/inline.rs` (gone) → `layout/inline/layout.rs`, every cited line keeping its number.
+- The coverage exclusion of dioxus-native-dom's `keyboard_compat.rs`: was «until upstream retires it»; now «until escher takes upstream's retirement of it» — upstream retires the file in `286874cc1`, not taken.
+**Why:** the CARRY's entry closes with this chunk; its owners move on the operator's own word «yes — apply» on the phase's P5 card (inputs#I5). The paths are fixed under the operator's word that category-file citations are owned forward, a gone path and a line this pass amends excepted (inputs#I10). The exclusion's clause read stale once upstream retired the file; the exclusion itself stands.
+**Ref:** .andromeda/runs/2026-10-24T12-21-29-wrap/

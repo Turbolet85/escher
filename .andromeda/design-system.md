@@ -159,7 +159,7 @@ The cursor is the CSS `cursor` keyword, else Text for text inputs, Pointer insid
 ## Surface: desktop-native
 
 **Platform:** Windows (NSIS .exe), macOS (.dmg) and Linux (.AppImage) on x86_64 and aarch64 (.github/workflows/publish-browser.yml:47-82); the flake's default package is the browser app whose binary is `blitz`, wrapped with winit/wgpu runtime libraries on Linux (flake.nix:40-53; flake.nix:117-121)
-**Toolkit / Framework:** winit windows (packages/blitz-shell/src/window.rs:200-206); HTML launches into a native window with `WindowConfig` and the Vello window renderer (packages/blitz/src/lib.rs:106-137; examples/inner_html.rs:28-30; examples/preact_script.rs:37); Dioxus apps open through `dioxus_native::launch` (examples/box_shadow.rs:4; examples/custom_widget.rs:18; examples/counter/src/main.rs:15-17; examples/seven_guis/src/main.rs:4-10; examples/todomvc/src/main.rs:15-19), built from `WindowAttributes` and titled from dioxus-cli-config or "Dioxus App" (packages/dioxus-native/src/config.rs:17-20; packages/dioxus-native/src/lib.rs:236-237)
+**Toolkit / Framework:** winit windows (packages/blitz-shell/src/window.rs:200-206); HTML launches into a native window with `WindowConfig` and the Vello window renderer (packages/blitz/src/lib.rs:106-137; examples/inner_html.rs:28-30; examples/preact_script.rs:37); Dioxus apps open through `dioxus_native::launch` (examples/box_shadow.rs:4; examples/custom_widget.rs:18; examples/counter/src/main.rs:15-17; examples/seven_guis/src/main.rs:4-10; examples/todomvc/src/main.rs:15-19), built from `WindowAttributes` and titled from dioxus-cli-config or "Dioxus App" (packages/dioxus-native/src/config.rs:17-20; packages/dioxus-native/src/lib.rs:238-239)
 
 ### Tokens (platform-specific)
 Detail: .andromeda/design-system-detail/surface.md — read whole.
@@ -196,8 +196,8 @@ Detail: .andromeda/design-system-detail/surface.md — read whole.
 
 ## Surface: cli
 
-**Platform:** command-line binaries — the WPT runner has `fn main` (wpt/runner/src/main.rs:463); `paint_bench` and `screenshot` examples print to the terminal (examples/paint_bench.rs:113-115; examples/screenshot.rs:31)
-**Toolkit / Framework:** output colors come from `owo-colors` (wpt/runner/src/main.rs:24; wpt/runner/Cargo.toml:40)
+**Platform:** command-line binaries — the WPT runner has `fn main` (wpt/runner/src/main.rs:466); `paint_bench` and `screenshot` examples print to the terminal (examples/paint_bench.rs:113-115; examples/screenshot.rs:31)
+**Toolkit / Framework:** output colors come from `owo-colors` (wpt/runner/src/main.rs:27; wpt/runner/Cargo.toml:41)
 
 ### Tokens (platform-specific)
 Detail: .andromeda/design-system-detail/surface.md — read whole.

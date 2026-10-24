@@ -1,0 +1,2 @@
+proposals: []
+note: no drift — the report adds no interactive UI element (D-a11y-surface) and moves no violation or obs log schema (D-a11y-obs-schema; report.md:33 escher-telemetry, escher-driver, dioxus-native-dom unchanged); no CI file or leg changed (report.md:52), the a11y leg 6 · 43 and Stand checks repeated 168 · 684 · 0 · 21 read unmoved on CI#40092092468 (report.md:43), and Retired is none (report.md:35), so .andromeda/a11y-plan-detail/ci-integration.md:8-9 stand as written.

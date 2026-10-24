@@ -1,0 +1,2 @@
+proposals: []
+note: the category file holds only the kept-check and committed-check data-at-rest records (data-protection.md:8, :14); the report leaves packages/escher-driver/ and tests/blitz-tests/checks/ unchanged (report.md Changes → Schema / config, gate entry 6), adds no input, auth or secret surface at rest, and no package to Cargo.lock (mimalloc already locked) — no detector fires here; body line 199's apps/browser/src/toolbar.rs:298-310 cite sits in the body, not this file, and is the citation sweep's.

@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens unfired — the report's Coverage rows mark every new surface `tokens n/a` (no new UI rendered), and Retired is none; the stale `file:line` cites at .andromeda/design-system-detail/spacing.md:26, :27 (packages/blitz-dom/src/stylo.rs, lines added at 29-35 · 157-163 · 586-590 · 697-699 · 710) and :29 (packages/blitz-dom/src/node/node.rs, lines added at 125-128 · 425) are P2's citation sweep's (`cites.py apply`, report Expected amendments), not this detector's.

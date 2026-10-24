@@ -1,0 +1,2 @@
+proposals: []
+note: The chunk adds no UI, duration, easing or animation (Coverage tokens all n/a; Retired none), so D-design-tokens holds and Motion takes no new detail. The digits of motion.md:19 (packages/blitz-dom/src/stylo.rs:105-123) and motion.md:13 (packages/blitz-dom/src/resolve.rs:67-74) sit below the take's added lines (stylo.rs 29-35, resolve.rs 29 · 32), so they shift. Re-pointing them is the citation sweep's job (`cites.py apply`), not this detector's.

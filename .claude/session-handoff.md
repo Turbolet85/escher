@@ -1,35 +1,29 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-24T11:38Z
-**Branch:** build/escher-0.2.0 · HEAD a356f9086 (no commit this session)
-**Status:** phase complete — chunk `2026-10-24-upstream-sync-polish-and-ship` planned and approved; next `/andromeda-implement`
-**Last Commit:** a356f9086 chore(u55): the door — design-system split into its body and 8 category files
+**Last Updated:** 2026-10-24T14:02Z
+**Branch:** build/escher-0.2.0 · 0 ahead of origin/build/escher-0.2.0 as read at this wrap's resume
+**Status:** clean
+**Last Commit:** 2026-10-24-upstream-sync-polish-and-ship — feat: ten upstream commits cherry-picked at f9cbb2756, tokio past RUSTSEC-2026-0386, the pins kept
 
 ## Position
-- Chunk `2026-10-24-upstream-sync-polish-and-ship` — master record **pending**, plan approved by the operator's «yes — apply» on
-  `.andromeda/runs/2026-10-24T09-31-30-phase/p5-card-1.md` (inputs#I5). Run dir `.andromeda/runs/2026-10-24T09-31-30-phase/`;
-  `matrix-2026-10-24-upstream-sync-polish-and-ship.json` written (the approval fact); 0 capabilities claimed.
-- P3 resumed on overseer1's ruling over P2's validated products (P2 not re-run); the forced-sample word stands for the wrap.
-- The take (the founder's own «Десять коммитов (Рекомендую)», inputs#I4 — ratified, not PROVISIONAL): ten no-commit
-  cherry-picks (`28f848d3b` · `9eeebb302` · `e4ca5b9b5` · `46d7cf993` · `fb297a38c` · `50bf2f235` · `f8723f495` ·
-  `21edc92d9` · `f102663b8` · `f9cbb2756`), one import-line conflict in `construct.rs`, then `cargo update -p tokio`
-  (1.54.1) for RUSTSEC-2026-0386; pins unchanged. Measured whole at P3: green, 206 · 1099 · 0 · 12.
-- Next: `/andromeda-implement` on `escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/plan.md` (39 gate entries,
-  33 baselined), then the operator pass, then `/andromeda-wrap-session`.
+- Done: 2026-10-24-upstream-sync-polish-and-ship — ten of upstream's commits taken at `f9cbb2756` with tokio 1.54.1, the
+  pins kept; the masters and their category files reconciled (wrap run `.andromeda/runs/2026-10-24T12-21-29-wrap/`).
+- Before the next chunk, in this order (`.andromeda/residuals.md`, the F334 line; the operator relaying overseer1):
+  the founder deploys cites v1.5; then ONE run of `cites.py apply --base a356f9086`, its dry run first, re-points the
+  402 category-file citations and lists 14 sites for a hand read. No wrap runs cites v1.5 before that run.
+- Next: then `/andromeda-phase` — the next markerless entry is «Stand requirement sweep» (working-route.md:49).
 
-## Facts implement and the wrap need
-- rerere is on (global git config); seven P3 trial resolutions stand in `.git/rr-cache` (named in research.md). The operator's
-  word: read each auto-applied resolution against the plan before staging (step 2). The trial worktree is removed.
-- The P5 card's two Beyond-the-plan rows (residuals.md lines, target next): the left-out upstream delta (Stylo 0.23 + its two
-  dependants, the Taffy git bumps with CARRY 1, Dioxus 0.8 with the stable-id port and CARRY 2) and the CARRY 3–5 merge
-  surfaces — the wrap's route-resolve appends them.
-- inputs#I3 item 1 says twelve `windows-sys` edges; the measured count is eleven (+ one `syn`), corrected in research/scope.
-- The example's env reads `MULTI_DOC_N` · `MULTI_DOC_SEQ` · `MULTI_DOC_FLAT` register at the wrap (plan Expected amendments).
+## Work done
+The take, its audit and CI green (CI#40092092468); P2's forced-sample cascade read every category file; 84 proposals
+applied, 12 sidecar entries; 17 leaf findings (15 by the tool, 2 by hand); 1 Tier-1 learning; 3 residuals lines.
+
+## Drift resolved
+Three engine changes registered (the dropped-node hit skip, a replaced element's `aspect-ratio` height, `Parallel`
+serialised under `PARALLEL_TRAVERSAL_LOCK`); `multi_doc`, mimalloc and `MULTI_DOC_*` registered; the `inline/` path move;
+the CARRY 3–5 owners moved to a residuals line; one stale clause the detectors missed — `keyboard_compat.rs` excluded
+«until upstream retires it» → «until escher takes upstream's retirement of it» (four master sites, five leaves).
 
 ## Notes
-- Uncommitted: chunk folder (scope, research, plan, inputs I1–I5), run dir, master/working stamp, friction-log appends —
-  the wrap commits them.
+- The six `detail.py tally` rows and the sampler lines are in the wrap's console report and the run dir's trail.
+- Known limit, owned by F334's line: the sweep tools and the leaf deltas read master bodies only (the Tier-1 learning).
 - Last failed command: none.
-
-## Session End Status
-Completed normally at 2026-10-24 13:38:00

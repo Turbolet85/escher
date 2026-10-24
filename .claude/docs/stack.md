@@ -5,7 +5,7 @@ _Mirrors `.andromeda/architecture.md` §Stack and Technologies (citations live t
 ## Languages & Runtimes
 - Rust Cargo workspace, resolver "2", edition 2024, `rust-version` 1.91.0 (CI guarantees latest stable; an MSRV job builds only). `debug_timer` and `wgpu_texture` are edition 2021.
 - Workspace version `0.3.0-beta.4`, license MIT OR Apache-2.0; in-repo engine crates pinned `=0.3.0-beta.4`, dioxus-native / dioxus-native-dom `0.7.0`.
-- Nix flake dev shell: rust-bin stable 1.90.0 with rust-src, rust-analyzer, clippy; openssl, fontconfig (Linux), pkg-config, python3 (build-time codegen for stylo). The 1.90.0 pin sits below `rust-version` 1.91.0 despite its keep-in-sync comment.
+- Nix flake dev shell: rust-bin stable 1.91.0, in sync with `rust-version`, with rust-src, rust-analyzer, clippy; openssl, fontconfig (Linux), pkg-config, python3 (build-time codegen for stylo). 
 - Measured dev host (2026-10-05, Omarchy 4.0.4 / Arch, `escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/baseline.md`): no flake; host stable rustc/cargo 1.99.0, no `rust-toolchain*` file; Arch fontconfig 2.18.3, openssl 3.6.4, pkgconf 3.0.7, python 3.14.7 stand in for CI's `libfontconfig1-dev` + python3.
 - WASM: wasm-bindgen 0.2, web-sys, tracing-wasm, console_error_panic_hook; examples built with Trunk.
 
@@ -24,7 +24,7 @@ _Mirrors `.andromeda/architecture.md` §Stack and Technologies (citations live t
 | JavaScript | Boa 0.22 (boa_engine with annex-b, boa_runtime, boa_gc) |
 | UI framework | Dioxus 0.7.3 crates |
 | Media | image 0.25.6, png 0.18 (since 2026-10-12-headless-screenshot also escher-driver's encoder of a shot and a blitz-tests dev-dependency, resolved 0.18.1, no package entering `Cargo.lock`; no `base64` crate taken), html-escape, percent-encoding, serde 1, serde_json 1 (1.0.151; since 2026-10-10-mcp-surface escher-driver's reader of MCP requests, of kept checks and of the live answer line a replay compares, writing nothing) |
-| Parallelism & misc | rayon 1, slotmap, rustc-hash, bytes, smallvec, thin-vec, atomic_refcell, bitflags, bytemuck, pollster, smol_str, thread_local |
+| Parallelism & misc | rayon 1, slotmap, rustc-hash, bytes, smallvec, thin-vec, atomic_refcell, bitflags, bytemuck, pollster, smol_str, thread_local; mimalloc, the global allocator of two upstream-only binaries, the browser app (by default) and the WPT runner |
 
 ## Data Storage
 - None in the engine. The browser app persists history with rusqlite 0.32 (bundled) + rusqlite_migration 1.3 (`history.sqlite3`); blitz-net's optional HTTP cache uses `CACacheManager` in the platform cache dir.

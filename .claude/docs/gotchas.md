@@ -8,9 +8,9 @@ _Documented architectural traps from `.andromeda/architecture.md` and the specia
 **References:** arch §Established Decisions [Dependency pinning]
 
 ## `StyleThreading::Parallel` with two documents
-**What breaks:** two documents resolving concurrently on Stylo's global pool panic (`already mutably borrowed`, blitz issue 430). The `Default` derive says `Sequential` while the field doc says `Parallel`.
-**How to avoid:** a driver holding several documents (or a test running several in one process) uses `Sequential`. `LAYOUT_CTX` is thread-local with a FIXME for multi-document use.
-**References:** `packages/blitz-dom/src/config.rs`, `resolve.rs`; arch [Style threading]
+**What breaks:** no longer a panic — `Parallel` traversals are serialised process-wide by the static `PARALLEL_TRAVERSAL_LOCK` (its poison recovered, no panic path), so two documents resolving `Parallel` concurrently on Stylo's global pool no longer panic `already mutably borrowed` (blitz issue 430); the `Default` derive and the field doc both name `Sequential` the default. What still stands: `LAYOUT_CTX` is thread-local with a FIXME for multi-document use.
+**How to avoid:** no choice is needed for safety — the windowed `dioxus_native::launch` and the browser build their documents `Parallel`, serialised by the lock, and no headless document (harness, stand or driver) sets `style_threading`, so it resolves `Sequential`, which bypasses Stylo's global pool.
+**References:** `packages/blitz-dom/src/config.rs`, `stylo.rs`, `resolve.rs`; arch [Style threading]
 
 ## Stale `NodeId` indexing panics
 **What breaks:** `tree[id]` on a dropped node panics with "invalid SlotMap key used". Since 2026-10-13-upstream-sync-polish-and-ship (upstream #1185) a node the Dioxus bridge removes is dropped with its descendants and their `element_id_mapping` / `node_id_mapping` entries are cleared, so a re-render-removed node no longer resolves; until then the mappings were not cleared so dioxus-core could reuse detached nodes.

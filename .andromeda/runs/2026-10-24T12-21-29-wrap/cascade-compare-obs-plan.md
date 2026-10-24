@@ -1,0 +1,22 @@
+# Cascade compare — obs-plan · wrap · 2026-10-24-upstream-sync-polish-and-ship
+E items 3 · held 2 · lost at classify 1 · lost at strong 0 · cascade only 0 · body 0 · unplaced 0
+
+## Lost — the full read carried these and the cascade did not; the wrap validates each, marked «(sampler)»
+
+### pii-scrubbing-compliance#1.1 · lost at classify · .andromeda/obs-plan-detail/pii-scrubbing-compliance.md:11
+  - detector: D-obs-pii
+    severity: warning
+    file: .andromeda/obs-plan-detail/pii-scrubbing-compliance.md
+    near: 11
+    section: "## 8. PII Scrubbing & Compliance"
+    change: "New item after line 11, inside the same `values · pii` group (one fact, under 2 000 chars): \"- The sink allowlist re-check after the 2026-10-24 upstream sync (ten upstream commits taken, no telemetry change) holds: no scrub set, redaction shape or violation schema moved — `packages/escher-telemetry/`, `packages/escher-driver/` and `packages/dioxus-native-dom/` are unchanged; `host_log` and `mcp_log` (the host's and the `mcp` role's stderr at `trace`, read for id, name and typed-sentinel needles) pass in the per-package build and the workspace build; the ten commits' added engine lines hold one commented `dbg!` and no new log site; the new target `hit_test_dropped_nodes` reads 0 env · 0 print · 0 subscriber; and the new root example `examples/multi_doc.rs` writes its timings with one `println!` to stdout, example output holding no page or user content, outside escher's sink (as measured at escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/report.md).\""
+    sidecar: "obs-plan §8 PII detail: the 2026-10-24 upstream sync's sink allowlist re-check recorded — scrub sets unchanged, host_log and mcp_log green under both builds, the take adding no log site."
+    rationale: "The report's Changes → Schema / config states no scrub set, redaction shape or violation schema moved and escher-telemetry, escher-driver and dioxus-native-dom are unchanged; its Outcome «The sink allowlist re-check holds» reads the fixed-sha census (one commented `dbg!`, entry 11), `host_log` and `mcp_log` passing in both builds (entries 32 and 19), `hit_test_dropped_nodes` 0 env · 0 print · 0 subscriber; Coverage of new surfaces gives `multi_doc.rs` PII n/a, its `println!` example output on stdout. No raw PII is logged — no drift; this is the chunk's new PII-category reading, recorded as earlier re-measurements of the same needles were (line 10)."
+    basis: escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/report.md:147
+
+## Held
+
+- log-coverage#4.1
+- metric-coverage#1.7
+
+## Cascade only

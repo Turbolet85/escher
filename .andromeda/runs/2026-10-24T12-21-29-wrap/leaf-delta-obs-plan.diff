@@ -1,0 +1,65 @@
+--- a/.andromeda/obs-plan.md
++++ b/.andromeda/obs-plan.md
+@@ -9,3 +9,3 @@
+ - **apps/browser** — observability is `tracing` logging, optional frame/phase timing features, and an in-app FPS overlay (apps/browser/Cargo.toml:28-30; apps/browser/Cargo.toml:37; apps/browser/src/fps_overlay.rs:94-124)
+-- **examples** — console printing of timings (examples/screenshot.rs:200-214), and the escher-telemetry events of seven_guis' two binaries, `seven_guis_native` and `escher-session`, on stderr (examples/seven_guis/src/main.rs:6-9; examples/seven_guis/src/session_host.rs:20-22)
++- **examples** — console printing of timings (examples/screenshot.rs:200-214; examples/multi_doc.rs:111-115), and the escher-telemetry events of seven_guis' two binaries, `seven_guis_native` and `escher-session`, on stderr (examples/seven_guis/src/main.rs:6-9; examples/seven_guis/src/session_host.rs:20-22)
+ - **escher-telemetry** — escher's telemetry bootstrap crate: the stderr subscriber with service identity, the allowlist formatter — a scrub for engine and escher targets, a drop for every other target, printing one line per event and one per closed span — and the chaining panic hook (packages/escher-telemetry/src/lib.rs:1-22; Cargo.toml:17)
+@@ -13,4 +13,4 @@
+ - **blitz-dom (events / util)** — six `tracing` log call sites, all behind the `tracing` feature (packages/blitz-dom/src/stylo_to_cursor_icon.rs:9-10; packages/blitz-dom/src/events/ime.rs:27-28; packages/blitz-dom/src/events/pointer.rs:900-906; packages/blitz-dom/src/util.rs:26-27; packages/blitz-dom/src/util.rs:34-35)
+-- **blitz-dom (layout)** — emits `tracing` events only when the `tracing` feature is enabled (packages/blitz-dom/src/layout/mod.rs:247; packages/blitz-dom/src/layout/construct.rs:480; packages/blitz-dom/src/layout/damage.rs:583; packages/blitz-dom/src/layout/table.rs:536)
+-- **blitz-net, blitz-html, blitz-dom node module** — `tracing` log events behind optional cargo features (packages/blitz-net/Cargo.toml:18; packages/blitz-html/Cargo.toml:15; packages/blitz-dom/src/node/element.rs:781-782)
++- **blitz-dom (layout)** — emits `tracing` events only when the `tracing` feature is enabled (packages/blitz-dom/src/layout/mod.rs:247; packages/blitz-dom/src/layout/construct.rs:471; packages/blitz-dom/src/layout/damage.rs:583; packages/blitz-dom/src/layout/table.rs:536)
++- **blitz-net, blitz-html, blitz-dom node module** — `tracing` log events behind optional cargo features (packages/blitz-net/Cargo.toml:18; packages/blitz-html/Cargo.toml:15; packages/blitz-dom/src/node/element.rs:798-799)
+ - **blitz-shell, blitz-paint** — in-app devtools offer a layout outline, hover highlight overlay, node highlight overlay and taffy tree print (packages/blitz-shell/src/window.rs:667-685; packages/blitz-paint/src/render.rs:245-275; packages/blitz-paint/src/render.rs:1350-1366); the debug overlay visualises content, padding, border and margin boxes of a node (packages/blitz-paint/src/debug_overlay.rs:7-16)
+@@ -19,3 +19,3 @@
+ - **dioxus-native, dioxus-native-dom** — optional `tracing` logging plus `log-times` features (log-phase-times, log-frame-times) (packages/dioxus-native/Cargo.toml:60-69; packages/dioxus-native-dom/Cargo.toml:19)
+-- **wpt/runner** — `log`-facade logging via `env_logger` and printed run statistics (wpt/runner/src/main.rs:464; wpt/runner/src/main.rs:783-829)
++- **wpt/runner** — `log`-facade logging via `env_logger` and printed run statistics (wpt/runner/src/main.rs:467; wpt/runner/src/main.rs:786-832)
+ 
+@@ -33,4 +33,4 @@
+ 
+-- Each feature-gated `tracing` call has a no-op path when the feature is off (packages/blitz-dom/src/layout/mod.rs:247-255; packages/blitz-dom/src/layout/construct.rs:480-488)
+-- Each blitz-dom log site is compiled only with `#[cfg(feature = "tracing")]` (packages/blitz-dom/src/document.rs:1441; packages/blitz-dom/src/mutator.rs:1363)
++- Each feature-gated `tracing` call has a no-op path when the feature is off (packages/blitz-dom/src/layout/mod.rs:247-255; packages/blitz-dom/src/layout/construct.rs:471-479)
++- Each blitz-dom log site is compiled only with `#[cfg(feature = "tracing")]` (packages/blitz-dom/src/document.rs:1441; packages/blitz-dom/src/mutator.rs:1371)
+ - The blitz-dom crate root comment lists a `tracing` feature that "Enables tracing support", under a TODO to document features (packages/blitz-dom/src/lib.rs:26-29)
+@@ -95,2 +95,3 @@
+ - The parts check is silent: `stand_snapshot_parts` (a `fixtures` and `session_common` reader, both layout modes, in process and through `serve_mcp`) installs no subscriber, reads no env var and prints nothing, its readings going into assertions only — the silence census reading 0 over it and the print/log census 0 over `tests/blitz-tests/tests/session_common/mod.rs`, whose `snapshot_part` and `part` add none; dioxus-native-dom's `Snapshot::text_parts` and `TextPart` hold no log, print or failure path, and a part's answer (`Outcome::Part`) is written by `to_json` alone as `{"text":…,"part":n,"parts":m}` — a command's answer, over MCP its JSON line — never logged or fielded, with no log site, span, field, log field or env read added (as measured at escher-0.2.0/chunks/2026-10-20-large-screen-in-parts/report.md).
++- The upstream take read at `f9cbb2756` is silent: upstream's target `hit_test_dropped_nodes` installs no subscriber, reads no env var and prints nothing, its readings going into assertions only; the taken commits add no tracing site over `packages/` (the fixed-sha census reading one commented `dbg!`) and no wall-clock read in blitz-dom outside `clock.rs`, and the process-wide `PARALLEL_TRAVERSAL_LOCK`, `Node::out_of_flow`, `ElementData::classes`, the dropped-node hit skip and a replaced element's `aspect-ratio` height add no log site, span, field, log field or env read; `packages/escher-telemetry/` is unchanged and `host_log` and `mcp_log` pass under both builds (as measured at escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/evidence/sink.md).
+ 
+@@ -100,3 +101,3 @@
+ - wasm_hello installs `tracing_wasm::set_as_global_default()` (examples/wasm_hello/src/lib.rs:105)
+-- The wpt runner logs through the `log` facade via `env_logger` (wpt/runner/src/main.rs:464; wpt/runner/src/main.rs:783-829)
++- The wpt runner logs through the `log` facade via `env_logger` (wpt/runner/src/main.rs:467; wpt/runner/src/main.rs:786-832)
+ - observed absent — tracing subscriber or exporter setup · searched: `subscriber|opentelemetry|sentry` over the 15 s05 files
+@@ -138,3 +139,3 @@
+ 
+-In-process timings and counters are printed, shown in the browser's in-app FPS overlay or held in process — the frame and phase timings behind the `log-times` features, blitz-dom's resolve phases, `debug_timer`, blitz-paint's layer counters, the bench and screenshot examples and the WPT runner's per-test, per-run and report figures — and the WPT scores are published to Pages on upstream `DioxusLabs/blitz` only.
++In-process timings and counters are printed, shown in the browser's in-app FPS overlay or held in process — the frame and phase timings behind the `log-times` features, blitz-dom's resolve phases, `debug_timer`, blitz-paint's layer counters, the bench, screenshot and `multi_doc` examples and the WPT runner's per-test, per-run and report figures — and the WPT scores are published to Pages on upstream `DioxusLabs/blitz` only.
+ 
+@@ -209,3 +210,3 @@
+ 
+-- Browser: JS errors are drained with `take_js_errors` and logged (apps/browser/src/document_loader.rs:240-243); load errors are shown to the user on an error page with the Debug-formatted error (apps/browser/src/document_loader.rs:153-165)
++- Browser: JS errors are drained with `take_js_errors` and logged (apps/browser/src/document_loader.rs:241-244); load errors are shown to the user on an error page with the Debug-formatted error (apps/browser/src/document_loader.rs:154-166)
+ - blitz-dom: resource load errors are logged as `tracing::warn!` with `error` field and not propagated further (packages/blitz-dom/src/document.rs:1438-1457)
+@@ -213,3 +214,3 @@
+ - blitz-dom: recoverable failures are logged and a fallback is used, as with font decompression (packages/blitz-dom/src/util.rs:25-29)
+-- blitz-dom layout: SVG parse errors are captured into the `error` field of a warn event and not propagated (packages/blitz-dom/src/layout/construct.rs:479-489)
++- blitz-dom layout: SVG parse errors are captured into the `error` field of a warn event and not propagated (packages/blitz-dom/src/layout/construct.rs:470-480)
+ - blitz-net: fetch errors in `NetProvider::fetch` are logged and not propagated to the handler (packages/blitz-net/src/lib.rs:307-319); `ProviderError` implements `Display` with a message per variant (packages/blitz-net/src/lib.rs:378-391)
+@@ -238,10 +239,10 @@
+ 
+-- Visited URLs are logged at info and urlbar text at warn (apps/browser/src/document_loader.rs:120; apps/browser/src/toolbar.rs:130)
+-- blitz-dom log lines include resource URLs (packages/blitz-dom/src/document.rs:1442-1447; packages/blitz-dom/src/mutator.rs:1322; packages/blitz-dom/src/mutator.rs:1341)
++- Visited URLs are logged at info and urlbar text at warn (apps/browser/src/document_loader.rs:121; apps/browser/src/toolbar.rs:130)
++- blitz-dom log lines include resource URLs (packages/blitz-dom/src/document.rs:1442-1447; packages/blitz-dom/src/mutator.rs:1330; packages/blitz-dom/src/mutator.rs:1349)
+ - `debug_log_node` prints every attribute name and value of a node (packages/blitz-dom/src/debug.rs:30-34)
+ - Log lines include the raw href, the document URL and element attributes unfiltered (packages/blitz-dom/src/events/pointer.rs:901; packages/blitz-dom/src/events/pointer.rs:906)
+-- The SVG parse-failure event carries the element's full outer HTML in field `html` (packages/blitz-dom/src/layout/construct.rs:463; packages/blitz-dom/src/layout/construct.rs:481-486)
++- The SVG parse-failure event carries the element's full outer HTML in field `html` (packages/blitz-dom/src/layout/construct.rs:454; packages/blitz-dom/src/layout/construct.rs:472-477)
+ - Image-fetch info events carry the full image URL (packages/blitz-dom/src/layout/damage.rs:581-599)
+ - Full request URLs are logged as field `url` (packages/blitz-net/src/lib.rs:238; packages/blitz-net/src/lib.rs:285; packages/blitz-net/src/lib.rs:290)
+-- The CSS property value is logged in the "Invalid property value" warning (packages/blitz-dom/src/node/element.rs:793-794)
++- The CSS property value is logged in the "Invalid property value" warning (packages/blitz-dom/src/node/element.rs:810-811)
+ - dioxus-native debug logs record text-node contents and attribute values; asset logs record the full request (packages/dioxus-native-dom/src/mutation_writer.rs:172; packages/dioxus-native-dom/src/mutation_writer.rs:224; packages/dioxus-native-dom/src/mutation_writer.rs:410; packages/dioxus-native/src/assets.rs:48)

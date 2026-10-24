@@ -204,3 +204,9 @@ One entry per amendment to `layout-templates.md` (sidecar-contract.md §Entry fo
 **Change:** `escher-session`'s instance flags gain `--part`, one value. `snapshot` takes an optional `--part` (a whole number, 1 to 1000) and answers one line: `{"text":…}` for a whole screen, `{"text":…,"part":n,"parts":m}` for a screen read in parts (from part 1 without `--part`), a part past the last the empty text with the same `parts`, a `--part` outside its bound refused `malformed`, exit 1. The usage line opens `snapshot [--part <part>]` (was `snapshot`). Over the `mcp` role a paged `snapshot` result is its JSON line as one text block.
 **Why:** the founder's F1 «Аргумент part, части по умолчанию (Рекомендую)» and F2 «Пустая часть (Рекомендую)», by question dialog in the overseer session, relayed verbatim by the overseer (2026-10-20, chunk inputs#I2); his card confirm «Подтвердить все (Рекомендую)» (inputs#I5).
 **Ref:** .andromeda/runs/2026-10-20T11-11-53-wrap/
+
+## 2026-10-24-upstream-sync-polish-and-ship — `multi_doc` among the CLI's primary screens
+**Section:** §Surface: cli (Primary screens)
+**Change:** `multi_doc` is listed beside `paint_bench`: a root example taking a mode and an iteration count as positional arguments, an unknown mode ending in a panic; its document count from `MULTI_DOC_N` (a default when absent or unparsed), its layout and style threading from the flags `MULTI_DOC_FLAT` and `MULTI_DOC_SEQ`; its timing printed as one line on stdout.
+**Why:** upstream's root example, taken with the ten-commit sync on the founder's own word «Десять коммитов (Рекомендую)», relayed verbatim by the overseer (2026-10-24, chunk inputs#I4) — a command-line surface the doc did not describe.
+**Ref:** .andromeda/runs/2026-10-24T12-21-29-wrap/

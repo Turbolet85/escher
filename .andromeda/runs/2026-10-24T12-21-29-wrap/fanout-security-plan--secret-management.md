@@ -1,0 +1,11 @@
+proposals:
+  - detector: D-security-auth
+    severity: warning
+    file: .andromeda/security-plan-detail/secret-management.md
+    near: 15
+    section: "## Secret Management"
+    change: "add after line 15, inside the values · secrets block: - **Environment values read (root example, none secret-bearing):** since 2026-10-24-upstream-sync-polish-and-ship upstream's root example `examples/multi_doc.rs` (taken from `fb297a38c`) reads three env variables through two `std::env::var` call sites — `MULTI_DOC_N`, a document count parsed with a default fallback (examples/multi_doc.rs:55-58), and the presence flags `MULTI_DOC_SEQ` (examples/multi_doc.rs:36-40) and `MULTI_DOC_FLAT` (examples/multi_doc.rs:22), both through `env_flag` (examples/multi_doc.rs:17-19) — no credential, token or key and no new secret source; it also reads `std::env::args` (examples/multi_doc.rs:48-54); registered beside the body's Environment values read list (security-plan.md:294) and arch §Occupied Resources → Environment variables"
+    sidecar: "secret-management: registered the root example multi_doc's three env reads (MULTI_DOC_N · MULTI_DOC_SEQ · MULTI_DOC_FLAT), none secret-bearing (2026-10-24-upstream-sync-polish-and-ship)"
+    rationale: "The report's Changes → Symbols names three new env reads in examples/multi_doc.rs (MULTI_DOC_N 55-58, MULTI_DOC_SEQ 36-40, MULTI_DOC_FLAT 22, through env_flag 17-19), and Expected amendments lists them as a new registration at security-plan §Secret Management, Environment values read (security-plan.md:294), with pattern multi-doc unfired and 0 detail hits; the standing rule is that source's env reads are an enumerated, non-secret set, so an unregistered read is drift against §Secret Management."
+    basis: escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/report.md:24
+note: the primary registration site for the MULTI_DOC_* reads is the body's own Environment values read list (.andromeda/security-plan.md:294-301, Expected amendments at report.md:83), outside this category file; D-security-input and D-security-deps fire nothing in Secret Management (no auth, token or key touched; mimalloc and tokio belong to dependency-security.md); Retired is none.

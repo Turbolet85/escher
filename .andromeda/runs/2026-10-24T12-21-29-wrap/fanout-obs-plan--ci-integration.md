@@ -1,0 +1,2 @@
+proposals: []
+note: no drift in .andromeda/obs-plan-detail/ci-integration.md — the report's Harness / gate surface is "none" (no script, CI file or scripts/ file changed, gate entry 6), so every artifact row and its .github/ and scripts/ cites stand; the Coverage report row's `keyboard_compat.rs` exclusion still holds (gate entry 15, the kbd-compat pattern no-change); the WPT runner's new mimalloc allocator moves no WPT artifact; the chunk adds no log site, span, artifact or PII path (Coverage of new surfaces: instrumentation n/a, PII n/a), and Retired is none.

@@ -1,0 +1,4 @@
+## Addendum — the F334 order, 2026-10-24
+- inputs#I11 · message: the operator, relaying overseer1, a message to the wrap mid-P2, 2026-10-24 13:56Z · copy message · n/a — the F334 residuals line (the 402 category-file citations, target next) writes the order into its text: this wrap commits; then the founder deploys cites v1.5; then a one-time `cites.py apply --base a356f9086` (dry run first) re-points the category-file backlog, leaving 14 sites listed for a hand read; only then the next chunk. No wrap runs cites v1.5 before that run, or it re-points the stale set's lines wrongly.
+  - bears on **Sweep hazard — the pre-pass sweep reads master bodies only**: adds to it (the order in which the citation backlog is repaired)
+  - bears on **Cross-project / external claims**: adds to it (an eleventh input, a message)

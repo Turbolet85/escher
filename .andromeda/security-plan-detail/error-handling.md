@@ -24,3 +24,9 @@ Read whole. The master's broad view is .andromeda/security-plan.md; this file ho
 - Shell and runtime setup: event loop construction, window creation and Android app set/get unwrap and panic on failure (packages/blitz-shell/src/lib.rs:63; packages/blitz-shell/src/lib.rs:74-85; packages/blitz-shell/src/window.rs:149); downcast_doc_mut unwraps the downcast (packages/blitz-shell/src/window.rs:274-278); JS runtime setup failures panic via `expect` ("failed to build JS context", "failed to register console", "failed to register boa_runtime extensions") (packages/blitz-vibey-script/src/runtime.rs:1302; packages/blitz-vibey-script/src/runtime.rs:1306; packages/blitz-vibey-script/src/runtime.rs:1328); spawning the timer thread panics on failure (packages/blitz-vibey-script/src/document.rs:344-347); building the tokio runtime, running the event loop and getting the raw window handle all `unwrap` (packages/dioxus-native/src/lib.rs:158-161; packages/dioxus-native/src/lib.rs:243; packages/dioxus-native/src/lib.rs:86-91); `current_android_app` is documented to panic if the activity has not been set up (packages/dioxus-native/src/lib.rs:47-51)
 
 <!-- /detail -->
+
+<!-- detail: values · errors -->
+
+- Parallel style traversal: a process-wide `static PARALLEL_TRAVERSAL_LOCK: Mutex<()>` is taken around every `StyleThreading::Parallel` traversal, its poison recovered by `unwrap_or_else(|e| e.into_inner())`, so it adds no panic path, and two documents resolving `Parallel` at once are serialised rather than panicking `already mutably borrowed` (blitz issue 430) (packages/blitz-dom/src/stylo.rs:29-35; packages/blitz-dom/src/stylo.rs:157-163).
+
+<!-- /detail -->

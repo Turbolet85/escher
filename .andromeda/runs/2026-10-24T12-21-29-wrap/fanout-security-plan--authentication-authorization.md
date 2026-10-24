@@ -1,0 +1,2 @@
+proposals: []
+note: The report's Changes don't touch identity, session, token, key, cookie-store or CI-permission surfaces. Every path this category cites stays unchanged: blitz-net Cargo.toml and lib.rs, the .github workflows and scripts (Harness / gate surface none), escher-driver host.rs and mcp.rs (escher-driver unchanged, Schema / config), and tests/stylo_usage.rs. The new env reads (MULTI_DOC_*) and mimalloc fall to Secret Management, Input Validation and Dependency Security. Retired is none.

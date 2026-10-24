@@ -1,0 +1,10 @@
+
+## 2026-10-24-upstream-sync-polish-and-ship — `multi_doc`'s inputs, the attribute runner's unwrap, the traversal lock and the moved `inline` path
+**Section:** §Input Validation (body: CLI arguments (examples); input-validation.md: Numeric arguments, Aspect ratios, Inline-box heights) · §Secret Management (body: Environment values read) · §Error Handling (body: Layout, Apps and examples, WPT runner; error-handling.md: a new group) · §Logging & Monitoring (logging-monitoring.md: Stdout output)
+**Change:**
+- Input Validation: an unknown `multi_doc` mode panics, as an unresolvable URL or `preact_script` path does; `multi_doc`'s `MULTI_DOC_N` is parsed with a default fallback, as the examples' numeric arguments are; the aspect-ratio guard (its cite re-pointed to `replaced.rs:132-145`) also covers the natural height a usable `aspect-ratio` coerces, clamped at 0; the inline-box height cite moves to `layout/inline/layout.rs`.
+- Environment values read: `MULTI_DOC_N`, `MULTI_DOC_SEQ` and `MULTI_DOC_FLAT`, read by the root example `multi_doc` alone through two `std::env::var` call sites, none secret-bearing.
+- Error Handling: the layout `unreachable!()` cite moves to `layout/inline/layout.rs:732`; Apps and examples gains `multi_doc`'s panic on an unknown mode; the WPT runner gains the attribute test runner's unwrap of the node it reads (`attr_test.rs:135-136`); a new group: the process-wide `PARALLEL_TRAVERSAL_LOCK`, its poison recovered, adds no panic path, and two documents resolving `Parallel` are serialised rather than panicking.
+- Stdout output: `multi_doc` prints one summary line via `println!`.
+**Why:** the new inputs are an upstream example's and an upstream-only runner's, taken on the founder's own word «Десять коммитов (Рекомендую)», relayed verbatim by the overseer (2026-10-24, chunk inputs#I4); each is validated in the examples' established shape (a default fallback, a panic on an unresolvable argument), so no boundary is widened. The lock retires a panic path. The paths are fixed under the operator's word on category-file citations (inputs#I10).
+**Ref:** .andromeda/runs/2026-10-24T12-21-29-wrap/

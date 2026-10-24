@@ -12,7 +12,7 @@ _Extracted from architecture.md and project conventions by `/andromeda-setup-pro
 
 ## Andromeda workflow
 
-This project was adopted into the Andromeda pipeline (`/andromeda-adopt` at `0f60502e`); its masters describe the code as built. Upstream DioxusLabs/blitz `main` was last merged at `23b9b26a9` (merge commit `3eda07bc`, 2026-10-17), the next sync's merge base; upstream `main` was last read at `17de049b1`, 7 commits past it, of which three are taken by no-commit cherry-picks of upstream's text, the merge base unmoved: `fb8d6c15e` (the default cursor over no box, upstream #1220) alone (`275950dc0`), then `38ca4e777` (`:focus-within`, upstream #1226) and `17de049b1` (the WPT pin, upstream #1228) together (`79603d1ef`) — the four Taffy-main commits wait for the next sync, since they put a git Taffy in the root manifest, so Taffy stays the registry "0.15"; both partial takes ratified.
+This project was adopted into the Andromeda pipeline (`/andromeda-adopt` at `0f60502e`); its masters describe the code as built. Upstream DioxusLabs/blitz `main` was last merged at `23b9b26a9` (merge commit `3eda07bc`, 2026-10-17), the next sync's merge base; upstream `main` was last read at `f9cbb2756`, thirteen of its commits taken by no-commit cherry-picks with the merge base unmoved; git Stylo 0.23-pre, the six Taffy-main commits and Dioxus 0.8.0-alpha.3 wait for escher's next version, so Stylo stays "0.22.0", Taffy the registry "0.15" and Dioxus "0.7.3".
 
 **Initial planning (done):** adopt → architecture + 6 specialist plans → `/andromeda-route` (escher-0.1.0 working route) → `/andromeda-setup-project` (this ecosystem).
 

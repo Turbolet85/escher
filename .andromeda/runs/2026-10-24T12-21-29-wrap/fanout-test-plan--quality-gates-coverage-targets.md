@@ -1,0 +1,11 @@
+proposals:
+  - detector: D-tests-coverage
+    severity: warning
+    file: .andromeda/test-plan-detail/quality-gates-coverage-targets.md
+    near: 14
+    section: "## 10. Quality Gates & Coverage Targets"
+    change: "Append to the Coverage floors item (after its 2026-10-17 record, before the `*_tests.rs` sentence) one dated re-read: \"Re-read at 2026-10-24-upstream-sync-polish-and-ship: upstream retires `keyboard_compat.rs` at `286874cc1` (Dioxus 0.8.0-alpha.3), a commit that take leaves out, so the file stays in the tree and both `--ignore-filename-regex 'keyboard_compat\\.rs$'` lines stand, the three floors and `coverage_floor.py` unchanged; the exclusion lifts when escher takes that move, owned by the `.andromeda/residuals.md` line of that chunk's left-out upstream delta (target: next) (as measured at escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/report.md, its gate entries 14 and 15).\""
+    sidecar: "test-plan §10 detail — Coverage floors: the keyboard_compat exclusion re-read at the 2026-10-24 sync; upstream retires the file at 286874cc1 (left out), the exclusion stands, owned by the next-version residuals line."
+    rationale: "The report's gate entries 14 (`git ls-tree … 286874cc1 -- …/keyboard_compat.rs | wc -l` → 0) and 15 (the file present, the exclusion read twice in ci-leg.sh) measure that upstream has now retired the bridge in a commit this take leaves out (P5 card row 1, approved inputs#I5: «CARRY 2's `keyboard_compat.rs`, retired upstream there»), while the file's 'until upstream retires it' condition reads as if upstream had not; the exclusion stands (Expected amendments: kbd-compat no-change), so the new detail is a dated record, not a rewrite of the 2026-10-17 record."
+    basis: escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/report.md:169
+note: "D-tests-framework and D-tests-obs-harness hold (no runner, harness, status or log-format change: Harness / gate surface none); the three floor crates' code is unchanged (Schema / config) and the report gives no per-crate coverage reading, so no floor figure moves; `stand_*.rs` 48 and Stand checks repeated 168 · 684 · 0 · 21 are unmoved, so the Flakiness budget item stands; the body's test-plan.md:408 'until upstream retires it' is the body's own fanout's to weigh."

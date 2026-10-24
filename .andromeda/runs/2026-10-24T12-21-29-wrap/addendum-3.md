@@ -1,0 +1,4 @@
+## Addendum — the P2 Validate halt, 2026-10-24
+- inputs#I10 · message: the operator, the P2 Validate question dialog, 2026-10-24 13:28Z · copy message · n/a — category-file citations owned forward: this wrap re-points only the citations whose path is gone (`layout/inline.rs`, 6 category sites and 3 body sites) and those inside text it amends; the digit drift over the rest — 402 citations in `.andromeda/*-detail/` naming a file this take changed — is the structural blind spot overseer1 logged as F334 (`cites.py`, `cascade.py` and `planlint.py` read no `*-detail/` file; the fix in the cascade hotfix awaiting deploy), owned by a `.andromeda/residuals.md` line, target next.
+  - bears on **Sweep hazard — the pre-pass sweep reads master bodies only**: adds to it (the citation sweep is blind the same way; the operator's ruling on the drift)
+  - bears on **Cross-project / external claims**: adds to it (a tenth input, a message)

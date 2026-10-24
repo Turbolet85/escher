@@ -1,0 +1,9 @@
+proposals:
+  - detector: D-layout-surface
+    severity: warning
+    section: Surface: cli → Primary screens
+    change: add a bullet after `paint_bench` — `multi_doc` — an upstream root example (since 2026-10-24-upstream-sync-polish-and-ship, from `fb297a38c`) run from the command line, taking a mode and an iteration count as positional arguments (`std::env::args`), an unknown mode ending in a `panic!`, its document count read from `MULTI_DOC_N` (a default when absent or unparsed) and its style threading from the flags `MULTI_DOC_SEQ` and `MULTI_DOC_FLAT`, printing its timing as one `println!` on stdout — example output, no log line (examples/multi_doc.rs:17-19; examples/multi_doc.rs:47-116)
+    sidecar: layout-templates §Surface: cli — the new root example `multi_doc` (upstream `fb297a38c`) listed as a CLI primary screen beside `paint_bench`
+    rationale: the report's Changes → Files adds `examples/multi_doc.rs` (116 lines, from `fb297a38c`) and Crates / modules says "The root examples gain `multi_doc`"; Changes → Symbols gives its surface — `std::env::args` (48-54), `MULTI_DOC_N` (55-58, parsed with a default fallback), `MULTI_DOC_SEQ` (36-40) and `MULTI_DOC_FLAT` (22) through `env_flag` (17-19), one `println!` (111-115), a `panic!` on an unknown mode (108) — and Coverage of new surfaces calls its `println!` "example output on stdout". §Surface: cli lists the analogous root example `paint_bench` with its usage line; `multi_doc` is a command-line surface the doc does not describe.
+    basis: examples/multi_doc.rs:47-116
+note: no other detector fired — Retired is none, and layout-templates holds no passage on the `StyleThreading` Parallel-panic doc warning or on `layout/inline.rs`; the wpt runner citations in §Output structure (wpt/runner/src/main.rs:447-462 and following) shift with the three added lines at main.rs:1-3, which the report assigns to P2's citation sweep (`cites.py apply`), not to this detector.

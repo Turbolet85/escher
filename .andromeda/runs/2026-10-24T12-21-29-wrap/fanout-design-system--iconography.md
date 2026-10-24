@@ -1,0 +1,2 @@
+proposals: []
+note: The report's Coverage gives every new surface `tokens n/a` and no `hardcoded✗` (D-design-tokens unfired). No icon, cursor or favicon surface changed. The apps/browser toolbar.rs hunk (added 3, 203) is the `StyleThreading::Parallel` config, not an icon. Retired is none. Neither cited file (packages/blitz-dom/src/document.rs, stylo_to_cursor_icon.rs) is in the report's Files list.

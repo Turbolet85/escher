@@ -10,7 +10,7 @@ Read whole. The master's broad view is .andromeda/security-plan.md; this file ho
   - **How (stack-specific):** Parsed with `Url::parse`, retried with `https://`, and `expect("Invalid url")` on failure (examples/screenshot.rs:33-35; examples/paint_bench.rs:66-67)
 - **Boundary:** CLI arguments (examples)
   - **What to validate:** Numeric arguments
-  - **How (stack-specific):** `parse().ok()` with default fallbacks (examples/paint_bench.rs:60-63; examples/screenshot.rs:61-64)
+  - **How (stack-specific):** `parse().ok()` with default fallbacks (examples/paint_bench.rs:60-63; examples/screenshot.rs:61-64), as is `multi_doc`'s `MULTI_DOC_N` (examples/multi_doc.rs:55-58)
 - **Boundary:** CLI arguments (examples)
   - **What to validate:** Output filename
   - **How (stack-specific):** Keeps only ASCII alphanumeric characters of the URL, truncated to 12 (examples/screenshot.rs:175-183)
@@ -242,10 +242,10 @@ Read whole. The master's broad view is .andromeda/security-plan.md; this file ho
  — `ClickTarget::TextInput`'s `password` flag (an `input` whose `type` reads `password`, ASCII case-insensitive) sends it to the private `click_password_input`, which lays out one U+2022 per character through `BaseDocument::layout_as_text_input`, scrolls that layout as paint scrolls it, finds the bullet under the point with parley's `Cursor::from_point` and moves the real editor to that character's byte offset (a click `move_to_byte`, a shift-click `extend_selection_to_byte`, two or more clicks `select_all`), so no width of the real characters reaches the caret, an overflowing value included, and where a click-placed caret paints in a shot says nothing of them; every other text input keeps `move_to_point`; the snapshot, the diff and the frame's bullets stay masked as above, and nothing new crosses (ratified by the founder, 2026-10-18) (packages/blitz-dom/src/events/pointer.rs:582-648; tests/blitz-tests/tests/password_caret_click.rs:83-121); a file input's paint is unchanged — as measured at escher-0.1.0/chunks/2026-10-12-headless-screenshot/report.md; since 2026-10-19-session-recording a recorded `type` whose element resolves to a masked control — `dioxus_native_dom::is_masked_input`, now public, the test the snapshot's `value` reader calls, no reading changed — or to none (refused `stale` or `not-found`) is kept in the check as `MASKED_STAND_IN` (`"masked"`) with `masked:true`, never the text, its length or a digest of it, while any other `type`'s text, one refused by `validate` included, is kept as it crossed (ratified by the founder, 2026-10-19: F1 A · F2 B); measured: 0 sentinel occurrences, and a secret of another length leaves byte-identical files (packages/dioxus-native-dom/src/snapshot.rs:232-239; packages/escher-driver/src/execute.rs:389-393; tests/blitz-tests/tests/stand_session_recording.rs:213-266)
 - **Boundary:** Layout values
   - **What to validate:** Aspect ratios
-  - **How (stack-specific):** Degenerate aspect ratios (zero, infinite, NaN) are discarded before use (packages/blitz-dom/src/layout/replaced.rs:132-147)
+  - **How (stack-specific):** Degenerate aspect ratios (zero, infinite, NaN) are discarded before use (packages/blitz-dom/src/layout/replaced.rs:132-145), the natural height a usable `aspect-ratio` coerces included, clamped at 0 (packages/blitz-dom/src/layout/replaced.rs:201-211)
 - **Boundary:** Layout values
   - **What to validate:** Inline-box heights
-  - **How (stack-specific):** Kept finite (`min(f32::MAX)`) so huge author lengths cannot stall the line breaker (packages/blitz-dom/src/layout/inline.rs:470-478)
+  - **How (stack-specific):** Kept finite (`min(f32::MAX)`) so huge author lengths cannot stall the line breaker (packages/blitz-dom/src/layout/inline/layout.rs:470-478)
 - **Boundary:** Layout values
   - **What to validate:** Text extent (`BaseDocument::text_extent`)
   - **How (stack-specific):** Since 2026-10-19-visual-lint a read-only reader on every document, remote pages included: an id that does not resolve, a node that is no inline root or one with no inline layout data reads `None` through `get_node`, never an index; it mutates nothing and has no log site, print, env read or panic path; it returns geometry only, and its one non-test caller is `Session::lint`, in process and through the `lint` verb's arm (packages/blitz-dom/src/text_extent.rs:18-54)

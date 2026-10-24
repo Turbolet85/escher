@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens unfired — every Coverage row reads `tokens n/a` and the chunk renders no new UI; Retired is none and no radius value moved. The `packages/blitz-dom/src/stylo.rs:1122-1143` cite at .andromeda/design-system-detail/border-radius.md:24 sits in a file the take edited (added ranges in stylo.rs before it), so its digits are P2's citation sweep's (report Expected amendments, `cites.py apply`), not this detector's.
