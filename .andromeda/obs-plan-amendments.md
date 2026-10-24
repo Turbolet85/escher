@@ -457,3 +457,9 @@ The delegate-answered facts PROVISIONAL.
 - §3: the parts check `stand_snapshot_parts` is silent, and `text_parts` and `Outcome::Part` are never logged (a new bullet in the `absence · logs` group). `session_common` readers twenty-nine (was twenty-eight), `fixtures` readers 24 (was 23).
 **Why:** this chunk's span reading and silence census, CI green 17/17 on 191e66fdb (CI#39410865604). No field is added, so no ruling is owed.
 **Ref:** .andromeda/runs/2026-10-20T11-11-53-wrap/
+
+## U55 — the door: obs-plan split into its body and its category files
+**Section:** (the whole master — the door)
+**Change:** split into its body and 7 category files; the map .andromeda/obs-plan.map.tsv
+**Why:** the operator's word: the founder's standing word of 2026-10-24 for the door on escher's masters, given after two review rounds, the last four open rows taken in the reviewer's own wording; relayed by overseer1.
+**Ref:** $TMPDIR/claude-1000/-home-turbolet-dev-projects-additional-andromeda-worker/9a5434fe-fa07-4859-9671-f503cd8de21b/scratchpad/u55-door-2026-10-24/obs-plan/
