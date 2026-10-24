@@ -427,3 +427,9 @@ Partly retires the PROVISIONAL clause of the earlier 2026-10-18-engine-debts and
 - §2: the `accessibility` feature also gates `Snapshot::text_parts`; five readers named by the crate doc (was four).
 **Why:** this chunk's a11y readings (report Outcome), on the paged answer the founder ratified, F1 «Аргумент part, части по умолчанию (Рекомендую)», relayed verbatim by the overseer (2026-10-20, chunk inputs#I2); his card confirm «Подтвердить все (Рекомендую)» (inputs#I5).
 **Ref:** .andromeda/runs/2026-10-20T11-11-53-wrap/
+
+## U55 — the door: a11y-plan split into its body and its category files
+**Section:** (the whole master — the door)
+**Change:** split into its body and 8 category files; the map .andromeda/a11y-plan.map.tsv
+**Why:** the operator's word: the founder's standing word of 2026-10-24 for the door on escher's masters, given after two review rounds, the last open row taken in the reviewer's own wording; relayed by overseer1.
+**Ref:** $TMPDIR/claude-1000/-home-turbolet-dev-projects-additional-andromeda-worker/9a5434fe-fa07-4859-9671-f503cd8de21b/scratchpad/u55-door-2026-10-24/a11y-plan/
