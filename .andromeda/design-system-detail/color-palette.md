@@ -9,7 +9,7 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 - The system color scheme is an enum `Light` (default) / `Dark`, set on the viewport, and it feeds `prefers-color-scheme` (packages/blitz-traits/src/shell.rs:68-74; tests/blitz-tests/tests/device_coalescing.rs:101; packages/blitz-dom/src/stylo_device.rs:80-83)
 - Color-scheme changes trigger a full recascade because `light-dark()` and system colors resolve at cascade time (packages/blitz-dom/src/document.rs:2312-2319)
 - The parent viewport's color scheme is copied to iframe sub-documents (packages/blitz-dom/src/resolve.rs:148-152)
-- The legacy `bgcolor` attribute maps to `background-color` (packages/blitz-dom/src/stylo.rs:1184-1191)
+- The legacy `bgcolor` attribute maps to `background-color` (packages/blitz-dom/src/stylo.rs:1186-1193)
 - The frame clear color is an optional `base_color` (a `peniko::Color`), unset by default (packages/dioxus-native/src/config.rs:12; packages/dioxus-native/src/config.rs:40; packages/dioxus-native/src/config.rs:76-80; packages/dioxus-native/src/dioxus_renderer.rs:37-38)
 - The canvas background is the root element's background colour, falling back to body's when the root is transparent (packages/blitz-paint/src/render.rs:193-228)
 - WPT-rendered pages get a white background fill (wpt/runner/src/test_runners/ref_test.rs:316-323)
@@ -79,12 +79,12 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 **Domain status colors** — WPT runner terminal result colors:
 | Result | Terminal color |
 |--------|----------------|
-| PASS | green (wpt/runner/src/main.rs:388-398) |
-| FAIL with some passing subtests | yellow (wpt/runner/src/main.rs:388-398) |
-| FAIL | red (wpt/runner/src/main.rs:388-398) |
-| TIMEOUT | bright red (wpt/runner/src/main.rs:388-398) |
-| SKIP | bright black (wpt/runner/src/main.rs:388-398) |
-| CRASH | bright magenta (wpt/runner/src/main.rs:388-398) |
+| PASS | green (wpt/runner/src/main.rs:391-401) |
+| FAIL with some passing subtests | yellow (wpt/runner/src/main.rs:391-401) |
+| FAIL | red (wpt/runner/src/main.rs:391-401) |
+| TIMEOUT | bright red (wpt/runner/src/main.rs:391-401) |
+| SKIP | bright black (wpt/runner/src/main.rs:391-401) |
+| CRASH | bright magenta (wpt/runner/src/main.rs:391-401) |
 
 <!-- /detail -->
 

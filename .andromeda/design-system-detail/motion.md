@@ -16,7 +16,7 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 
 <!-- detail: values · expression-motion -->
 
-- CSS animations and transitions move from pending to running to finished by the current time during style resolution (packages/blitz-dom/src/stylo.rs:105-123)
+- CSS animations and transitions move from pending to running to finished by the current time during style resolution (packages/blitz-dom/src/stylo.rs:112-130)
 - Active CSS animations/transitions, canvases, animating sub-documents, custom widgets, scroll animations and scrollbar fades keep the document animating (packages/blitz-dom/src/document.rs:2262-2279); a custom widget returning `true` from `requires_redraw` causes continuous redraw scheduling (packages/blitz-dom/src/node/custom_widget.rs:100-106); a harness settle answers for every member of that set the same way — none holds it open and none is waited on or advanced: it returns `Settled` with `animating` reading the document's animating flag, the scrollbar fade's membership read off the document's clock — after a driver `scroll` it reads true until 700 ms of that clock pass (packages/blitz-test-harness/src/settle.rs:151-186; one member, a CSS animation, exercised at tests/blitz-tests/tests/stand_settle.rs:247-275 — as measured at escher-0.1.0/chunks/2026-10-07-settle-detection/report.md)
 
 <!-- /detail -->

@@ -18,8 +18,8 @@ Read whole. The master's broad view is .andromeda/obs-plan.md; this file holds i
 <!-- detail: values · emitter-apps-browser -->
 
 - **apps/browser**
-  - Document loading logs info on success and error on failure (apps/browser/src/document_loader.rs:120; apps/browser/src/document_loader.rs:151)
-  - Script prefetch failures and JS errors log at error (apps/browser/src/document_loader.rs:235; apps/browser/src/document_loader.rs:241-243)
+  - Document loading logs info on success and error on failure (apps/browser/src/document_loader.rs:121; apps/browser/src/document_loader.rs:152)
+  - Script prefetch failures and JS errors log at error (apps/browser/src/document_loader.rs:236; apps/browser/src/document_loader.rs:242-244)
   - Urlbar parse failures log at warn (apps/browser/src/toolbar.rs:130)
   - Every persistence failure path logs at warn (apps/browser/persistence/src/lib.rs:107; apps/browser/persistence/src/lib.rs:160; apps/browser/persistence/src/lib.rs:176; apps/browser/persistence/src/lib.rs:202; apps/browser/persistence/src/lib.rs:263; apps/browser/persistence/src/lib.rs:273; apps/browser/persistence/src/lib.rs:298-300)
   - Dropped disk writes log at warn (apps/browser/src/browser_history.rs:161)
@@ -49,8 +49,8 @@ Read whole. The master's broad view is .andromeda/obs-plan.md; this file holds i
 - **blitz-dom (document / resolve / mutator / net)**
   - warn: no DOM on resolve (packages/blitz-dom/src/resolve.rs:45) and on hit test (packages/blitz-dom/src/document.rs:2035)
   - warn: unimplemented form scheme/method (packages/blitz-dom/src/form.rs:153-158)
-  - info: image cache hit, pending queue and fetch (packages/blitz-dom/src/mutator.rs:1321-1341); image loaded and node count (packages/blitz-dom/src/document.rs:1551-1555)
-  - warn: iframe depth cap and unresolvable iframe URL (packages/blitz-dom/src/mutator.rs:1363-1367; packages/blitz-dom/src/mutator.rs:1390-1391)
+  - info: image cache hit, pending queue and fetch (packages/blitz-dom/src/mutator.rs:1329-1349); image loaded and node count (packages/blitz-dom/src/document.rs:1551-1555)
+  - warn: iframe depth cap and unresolvable iframe URL (packages/blitz-dom/src/mutator.rs:1371-1375; packages/blitz-dom/src/mutator.rs:1398-1399)
   - warn: resource load failed with and without URL (packages/blitz-dom/src/document.rs:1441-1452)
   - info: focussed node (packages/blitz-dom/src/document.rs:1871-1872)
   - info/warn: WOFF decompression and skipped font sources (packages/blitz-dom/src/net.rs:340-365; packages/blitz-dom/src/net.rs:479-498)
@@ -63,12 +63,12 @@ Read whole. The master's broad view is .andromeda/obs-plan.md; this file holds i
   - `warn` logs a call to `stylo_to_cursor_icon` with `CursorKind::Auto` (packages/blitz-dom/src/stylo_to_cursor_icon.rs:10)
 - **blitz-dom (layout)**
   - `tracing::error!` "Tried to lay out text node individually" with fields `node_id`, `data` (packages/blitz-dom/src/layout/mod.rs:247-252)
-  - `tracing::warn!` "SVG parse failed" with fields `node_id`, `html`, `error` (packages/blitz-dom/src/layout/construct.rs:480-486)
+  - `tracing::warn!` "SVG parse failed" with fields `node_id`, `html`, `error` (packages/blitz-dom/src/layout/construct.rs:471-477)
   - `tracing::info!` for image loading from cache, image already pending, and image fetch start, each including the image URL (packages/blitz-dom/src/layout/damage.rs:583-584; packages/blitz-dom/src/layout/damage.rs:592-593; packages/blitz-dom/src/layout/damage.rs:598-599)
   - `tracing::info!` "Ignoring table descendent because it has no styles" (packages/blitz-dom/src/layout/table.rs:536-537)
 - **blitz-dom (node)**
-  - warn "Unsupported property" with field `property`, and warn "Invalid property value" with fields `property` and `value` (packages/blitz-dom/src/node/element.rs:780-795; packages/blitz-dom/src/node/element.rs:846-849)
-  - `Node::print_tree` writes the tree to stdout with `println!` (packages/blitz-dom/src/node/node.rs:1007-1021)
+  - warn "Unsupported property" with field `property`, and warn "Invalid property value" with fields `property` and `value` (packages/blitz-dom/src/node/element.rs:797-812; packages/blitz-dom/src/node/element.rs:863-866)
+  - `Node::print_tree` writes the tree to stdout with `println!` (packages/blitz-dom/src/node/node.rs:1012-1026)
 - **blitz-net**
   - info "Using cache dir" with field `path` (packages/blitz-net/src/lib.rs:57-58)
   - error "Failed to clear HTTP cache: {:?}" (packages/blitz-net/src/lib.rs:140-141)
@@ -94,7 +94,7 @@ Read whole. The master's broad view is .andromeda/obs-plan.md; this file holds i
   - A `blitz-dom/log-phase-times` feature prints per-phase resolve timings (tests/blitz-tests/tests/paint_tree_bench.rs:223-224; tests/blitz-tests/tests/paint_tree_bench.rs:261)
   - Test diagnostics go to stdout/stderr via `println!`/`eprintln!` (tests/blitz-tests/tests/br_trailing_line.rs:46-50; tests/blitz-tests/tests/paint_tree_bench.rs:266)
 - **wpt/runner**
-  - Log calls cover WPT_DIR setup, glob failures, net load errors, pending requests, skips, JS errors and missing harness results (wpt/runner/src/main.rs:470-475; wpt/runner/src/main.rs:295; wpt/runner/src/net_provider.rs:79; wpt/runner/src/net_provider.rs:205; wpt/runner/src/net_provider.rs:220; wpt/runner/src/test_runners/harness_test.rs:151-153; wpt/runner/src/test_runners/harness_test.rs:179)
+  - Log calls cover WPT_DIR setup, glob failures, net load errors, pending requests, skips, JS errors and missing harness results (wpt/runner/src/main.rs:473-478; wpt/runner/src/main.rs:298; wpt/runner/src/net_provider.rs:79; wpt/runner/src/net_provider.rs:205; wpt/runner/src/net_provider.rs:220; wpt/runner/src/test_runners/harness_test.rs:151-153; wpt/runner/src/test_runners/harness_test.rs:179)
   - Log messages are free-form format strings, not structured fields (wpt/runner/src/net_provider.rs:110; wpt/runner/src/test_runners/mod.rs:184)
 - **CI publish builds**
   - Publish builds log at `CARGO_LOG: info` with `--verbose --trace`, on upstream `DioxusLabs/blitz` only — the `release-cli` job is repository-guarded (.github/workflows/publish-browser.yml:33; .github/workflows/publish-browser.yml:37; .github/workflows/publish-browser.yml:153)

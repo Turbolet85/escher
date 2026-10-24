@@ -23,10 +23,10 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 
 <!-- detail: values · spacing -->
 
-- `hspace` and `vspace` map to horizontal and vertical margins on `embed`, `img`, `object`, `marquee` and image inputs (packages/blitz-dom/src/stylo.rs:1075-1101)
-- Body `marginwidth`, `marginheight`, `leftmargin` and `topmargin` map to pixel margins; `rightmargin` and `bottommargin` are deliberately ignored (packages/blitz-dom/src/stylo.rs:1145-1182)
+- `hspace` and `vspace` map to horizontal and vertical margins on `embed`, `img`, `object`, `marquee` and image inputs (packages/blitz-dom/src/stylo.rs:1077-1103)
+- Body `marginwidth`, `marginheight`, `leftmargin` and `topmargin` map to pixel margins; `rightmargin` and `bottommargin` are deliberately ignored (packages/blitz-dom/src/stylo.rs:1147-1184)
 - Overlay scrollbar thumb geometry: thickness 10.0, thin thickness 6.0, margin 2.0 and minimum length 32.0 CSS px (packages/blitz-dom/src/node/scrollbar.rs:122-126)
-- Single-line text inputs are vertically centered within their content box (packages/blitz-dom/src/node/node.rs:855-873)
+- Single-line text inputs are vertically centered within their content box (packages/blitz-dom/src/node/node.rs:860-878)
 - Outside list markers using a character are padded 8 CSS px from the item's border box (packages/blitz-paint/src/render.rs:1057-1068)
 - The double text decoration places its second line thickness + 1 CSS px away (packages/blitz-paint/src/text.rs:323-333)
 

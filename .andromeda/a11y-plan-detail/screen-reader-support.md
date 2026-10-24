@@ -94,7 +94,7 @@ Read whole. The master's broad view is .andromeda/a11y-plan.md; this file holds 
 
 <!-- detail: values · sr-ime -->
 
-- Focusing a text input enables IME and sets the IME cursor area to the input's content box; blurring disables IME (packages/blitz-dom/src/node/node.rs:766-779; packages/blitz-dom/src/node/node.rs:789-796)
+- Focusing a text input enables IME and sets the IME cursor area to the input's content box; blurring disables IME (packages/blitz-dom/src/node/node.rs:771-784; packages/blitz-dom/src/node/node.rs:794-801)
 - IME commit, preedit and disable events are applied to the text editor; `DeleteSurrounding` is a TODO (packages/blitz-dom/src/node/text.rs:763-803)
 
 <!-- /detail -->

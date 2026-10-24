@@ -52,7 +52,7 @@ Read whole. The master's broad view is .andromeda/architecture.md; this file hol
   - **Role:** Browser-target builds of examples
 - **Layer:** Parallelism and misc
   - **Technology:** rustc-hash, bytes, slotmap, tracing "0.1.40", tracing-subscriber "0.3", tracing-log "0.2", futures-util, futures-intrusive, pollster, smol_str, bitflags, bytemuck, rayon "1", test-that "0.6.0" (0.5.2 until the 2026-10-17 upstream sync, reviewed by hand at that bump), thread_local; atomic_refcell "0.1.13", smallvec "1", thin-vec "0.2" (Cargo.toml:184-199; Cargo.toml:78-83)
-  - **Role:** Parallel style traversal on Stylo's global `STYLE_THREAD_POOL` (packages/blitz-dom/src/stylo.rs:28; packages/blitz-dom/src/stylo.rs:149-153); `parallel-construct` with rayon and `thread_local` (packages/blitz-dom/src/resolve.rs:12-13; packages/blitz-dom/src/document.rs:74-75)
+  - **Role:** Parallel style traversal on Stylo's global `STYLE_THREAD_POOL` (packages/blitz-dom/src/stylo.rs:28; packages/blitz-dom/src/stylo.rs:156-165); `parallel-construct` with rayon and `thread_local` (packages/blitz-dom/src/resolve.rs:12-13; packages/blitz-dom/src/document.rs:74-75)
 - **Layer:** Database (browser app)
   - **Technology:** rusqlite 0.32 (bundled), rusqlite_migration 1.3, `directories` on non-mobile targets (apps/browser/persistence/Cargo.toml:9-15)
   - **Role:** Browser history persistence

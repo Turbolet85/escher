@@ -52,7 +52,7 @@ Read whole. The master's broad view is .andromeda/a11y-plan.md; this file holds 
 <!-- detail: values · visual-state-color -->
 
 - Disabled icon buttons render at 0.35 opacity (apps/browser/assets/browser.css:191-198)
-- Each WPT runner result line prints its status word as text alongside its color (wpt/runner/src/main.rs:369-398)
+- Each WPT runner result line prints its status word as text alongside its color (wpt/runner/src/main.rs:372-401)
 - A comment in the form example notes the input color "Should be accent-color" (examples/form.rs:126-129)
 
 <!-- /detail -->
@@ -73,8 +73,8 @@ Read whole. The master's broad view is .andromeda/a11y-plan.md; this file holds 
 <!-- detail: values · visual-visibility -->
 
 - Nodes with `display: none` or `visibility: hidden` or carrying `inert`, and their descendants, are excluded from the accessibility tree, and so from the snapshot — a select's option excepted from `display: none` (§4 Hidden content), so a select's options are its children in the tree and the snapshot; a hit answers nothing at an element carrying `inert`, before any other test, so a hit passes through it, and removing `inert` restores the tree and the hit (the `inert` read ratified by the founder (2026-10-18)) (packages/blitz-dom/src/accessibility.rs:19-28; packages/blitz-dom/src/accessibility.rs:254-274; packages/blitz-dom/src/node/node.rs:1437-1446; tests/blitz-tests/tests/inert_subtree.rs:95-194); a hit also skips a node dropped since the last resolve (architecture §Standard Contracts → Scrolling, selection, tree)
-- Elements with `visibility: hidden` or `collapse` are never hit-test targets (packages/blitz-dom/src/node/node.rs:1435-1443)
-- `pointer-events: none` makes an element transparent to hits while its descendants are still tested (packages/blitz-dom/src/node/node.rs:1445-1449; packages/blitz-dom/src/node/node.rs:1647-1655)
+- Elements with `visibility: hidden` or `collapse` are never hit-test targets (packages/blitz-dom/src/node/node.rs:1448-1456)
+- `pointer-events: none` makes an element transparent to hits while its descendants are still tested (packages/blitz-dom/src/node/node.rs:1458-1462; packages/blitz-dom/src/node/node.rs:1662-1670)
 - `scrollbar-width: none` suppresses overlay scrollbars (packages/blitz-dom/src/node/scrollbar.rs:76-87); a test asserts it paints no scrollbar (tests/blitz-tests/tests/scrollbars.rs:162-175)
 - Devtools layout outlines and hover/node highlight overlays exist as settings (packages/blitz-traits/src/devtools.rs:5-34)
 

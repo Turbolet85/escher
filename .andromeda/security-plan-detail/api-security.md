@@ -37,7 +37,7 @@ No served network API exists — no TCP or UDP port; the one listener is local: 
   - **Configuration:** Non-success HTTP statuses become `ProviderError::HttpStatus` (packages/blitz-net/src/lib.rs:225-228)
   - **Stack reference:** blitz-net
 - **Control:** Cancellation
-  - **Configuration:** Requests can carry an `AbortSignal` (packages/blitz-traits/src/net.rs:59; packages/blitz-traits/src/net.rs:74-77); aborting the configured `AbortSignal` cancels every in-flight fetch tied to the document (packages/blitz-dom/src/config.rs:64-67)
+  - **Configuration:** Requests can carry an `AbortSignal` (packages/blitz-traits/src/net.rs:59; packages/blitz-traits/src/net.rs:74-77); aborting the configured `AbortSignal` cancels every in-flight fetch tied to the document (packages/blitz-dom/src/config.rs:62-65)
   - **Stack reference:** blitz-traits
 - **Control:** Sub-resource requests
   - **Configuration:** GETs built by `stamped_request` (packages/blitz-dom/src/net.rs:29-35)

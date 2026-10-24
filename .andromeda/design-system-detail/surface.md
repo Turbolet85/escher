@@ -5,7 +5,7 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 
 <!-- detail: values · desktop-native-tokens -->
 
-- Every document gets the blitz `DEFAULT_CSS` user-agent stylesheet, once, through `DocumentConfig::default()` — `UserAgentStylesheet::default_sheet()` (packages/blitz-dom/src/config.rs:76-95) — since 2026-10-13-upstream-sync-polish-and-ship (upstream #1189), where until then `DioxusDocument::new` added it itself
+- Every document gets the blitz `DEFAULT_CSS` user-agent stylesheet, once, through `DocumentConfig::default()` — `UserAgentStylesheet::default_sheet()` (packages/blitz-dom/src/config.rs:74-93) — since 2026-10-13-upstream-sync-polish-and-ship (upstream #1189), where until then `DioxusDocument::new` added it itself
 - In that sheet a `select` takes the border (`1px solid #999`), padding (`2px`) and background (`white`) of `input, textarea` and `display: inline-block`, and a single-choice select shows its chosen option alone (`select:not([multiple]) > option:checked { display: inline; }` beside `option { display: none; }`), so it lays out as a box holding its chosen option's label — engine defaults, no design token (packages/blitz-dom/assets/default.css:77-78; packages/blitz-dom/assets/default.css:84-86; packages/blitz-dom/assets/default.css:155-159)
 - The initial theme is the window's theme, defaulting to Light (packages/blitz-shell/src/window.rs:181-182)
 - The default viewport is window size (0, 0), hidpi scale 1.0, zoom 1.0, Light scheme; its logical size is the physical window size divided by hidpi × zoom (packages/blitz-traits/src/shell.rs:84-93; packages/blitz-traits/src/shell.rs:110-127)
@@ -102,9 +102,9 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 
 <!-- detail: values · cli-tokens -->
 
-- Result colors: PASS green, FAIL with some passing subtests yellow, FAIL red, TIMEOUT bright red, SKIP bright black, CRASH bright magenta (wpt/runner/src/main.rs:388-398)
-- Test kind, flag markers and summary section headings print in bright black (wpt/runner/src/main.rs:401; wpt/runner/src/main.rs:411-438; wpt/runner/src/main.rs:793; wpt/runner/src/main.rs:797; wpt/runner/src/main.rs:811; wpt/runner/src/main.rs:816)
-- Test names are wrapped in OSC 8 hyperlinks to `https://wpt.live/{name}` only when `supports_hyperlinks::on(Stdout)` (stdout is a terminal, honouring `FORCE_HYPERLINK`) (wpt/runner/src/main.rs:56-65; wpt/runner/src/main.rs:366-376)
+- Result colors: PASS green, FAIL with some passing subtests yellow, FAIL red, TIMEOUT bright red, SKIP bright black, CRASH bright magenta (wpt/runner/src/main.rs:391-401)
+- Test kind, flag markers and summary section headings print in bright black (wpt/runner/src/main.rs:404; wpt/runner/src/main.rs:414-441; wpt/runner/src/main.rs:796; wpt/runner/src/main.rs:800; wpt/runner/src/main.rs:814; wpt/runner/src/main.rs:819)
+- Test names are wrapped in OSC 8 hyperlinks to `https://wpt.live/{name}` only when `supports_hyperlinks::on(Stdout)` (stdout is a terminal, honouring `FORCE_HYPERLINK`) (wpt/runner/src/main.rs:59-68; wpt/runner/src/main.rs:369-379)
 
 <!-- /detail -->
 

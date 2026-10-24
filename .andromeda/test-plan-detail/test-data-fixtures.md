@@ -21,12 +21,12 @@ Read whole. The master's broad view is .andromeda/test-plan.md; this file holds 
 |-----------|----------|--------|
 | Inline HTML | inline HTML string constants or `format!`-built pages | (tests/blitz-tests/tests/incremental_oracle.rs:371-420; tests/blitz-tests/tests/dir_attribute.rs:12-29) |
 | Inline HTML (script tests) | inline raw strings per test | (packages/blitz-vibey-script/tests/dom.rs:25-36) |
-| Inline literals | inline string literals, including generated multi-line text | (packages/blitz-html/src/html_sink.rs:319; packages/blitz-dom/src/node/element.rs:1082; packages/blitz-dom/src/node/element.rs:1115-1118) |
+| Inline literals | inline string literals, including generated multi-line text | (packages/blitz-html/src/html_sink.rs:319; packages/blitz-dom/src/node/element.rs:1099; packages/blitz-dom/src/node/element.rs:1132-1135) |
 | SVG inputs | inline byte-string literals | (packages/blitz-dom/src/util.rs:186; packages/blitz-dom/src/util.rs:193) |
 | Fuzzy runner inputs | inline HTML and byte-array fixtures | (wpt/runner/src/test_runners/fuzzy.rs:184-188; wpt/runner/src/test_runners/fuzzy.rs:231-232) |
 | Python script entries | inline `ENTRIES` list covering changed, added and removed entries | (.github/scripts/test_wpt_diff_to_pr.py:8-48) |
 | Style fixtures | inline user-agent stylesheets | (packages/blitz-dom/src/document.rs:3303-3306; packages/blitz-dom/src/document.rs:3598-3602) |
-| Viewports | fixed sizes (800x600 and 400x300, scale 1.0, Light) | (packages/blitz-dom/src/mutator.rs:1848; packages/blitz-dom/src/document.rs:3204) |
+| Viewports | fixed sizes (800x600 and 400x300, scale 1.0, Light) | (packages/blitz-dom/src/mutator.rs:1856; packages/blitz-dom/src/document.rs:3204) |
 | Font payload | the embedded bullet font; the bundled DejaVu Sans woff2 `seven_guis::DEJAVU_SANS`, which the headless stand registers for every generic | (packages/blitz-dom/src/document.rs:3691-3706; examples/seven_guis/src/lib.rs:7) |
 | Image loads | injected directly into `background_images` layers as `ImageData::Raster` or `ImageData::Svg` with `Status::Ok` | (tests/blitz-tests/tests/background_size.rs:31-43; tests/blitz-tests/tests/svg_background_size.rs:37-46) |
 | Benchmark pages | generated in code: ~2000-node realistic, 5000-item stress, 50 nested stacking contexts, ~40k-node large page | (tests/blitz-tests/tests/paint_tree_bench.rs:59-98; tests/blitz-tests/tests/paint_tree_bench.rs:208-221) |
