@@ -871,3 +871,9 @@ Partly retires the PROVISIONAL clause of the earlier 2026-10-18-engine-debts and
 - Readings, each the newest only: `run stand` 195 · 0 · 7 over 48 files (was 192 · 0 · 7 over 47); the workspace tally 205 · 1098 · 0 · 12 (was 204 · 1087); CI#39410865604: linux 205 · 1098, macos and coverage 186 · 1095, windows 186 · 1051, stand repeat 168 · 684 (was CI#39387656399's 204 · 1087, 185 · 1084, 185 · 1041, 165 · 672).
 **Why:** this chunk's measured counts, CI green 17/17 on 191e66fdb (CI#39410865604). The paged carriage is the founder's own word, F1 «Аргумент part, части по умолчанию (Рекомендую)», relayed verbatim by the overseer (2026-10-20, chunk inputs#I2); his card confirm is inputs#I5.
 **Ref:** .andromeda/runs/2026-10-20T11-11-53-wrap/
+
+## U55 — the door: test-plan split into its body and its category files
+**Section:** (the whole master — the door)
+**Change:** split into its body and 9 category files; the map .andromeda/test-plan.map.tsv
+**Why:** the operator's word: the founder's, 2026-10-24, given after the door's third pass, once the scoped reviewer accepted with 0 disputes; relayed by overseer1.
+**Ref:** $TMPDIR/claude-1000/-home-turbolet-dev-projects-additional-andromeda-worker/d27ed186-56d7-4e67-a724-455c06ee4635/scratchpad/u55-door-2026-10-23-r2/test-plan/
