@@ -1,32 +1,27 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-24T14:02Z
+**Last Updated:** 2026-10-24T19:13Z
 **Branch:** build/escher-0.2.0 · 0 ahead of origin/build/escher-0.2.0 as read at this wrap's resume
 **Status:** clean
-**Last Commit:** 2026-10-24-upstream-sync-polish-and-ship — feat: ten upstream commits cherry-picked at f9cbb2756, tokio past RUSTSEC-2026-0386, the pins kept
+**Last Commit:** 2026-10-24-stand-requirement-sweep — test: every 0.2.0 requirement witnessed inside stand-repeat, ten targets named in its leg
 
 ## Position
-- Done: 2026-10-24-upstream-sync-polish-and-ship — ten of upstream's commits taken at `f9cbb2756` with tokio 1.54.1, the
-  pins kept; the masters and their category files reconciled (wrap run `.andromeda/runs/2026-10-24T12-21-29-wrap/`).
-- Before the next chunk, in this order (`.andromeda/residuals.md`, the F334 line; the operator relaying overseer1):
-  the founder deploys cites v1.5; then ONE run of `cites.py apply --base a356f9086`, its dry run first, re-points the
-  402 category-file citations and lists 14 sites for a hand read. No wrap runs cites v1.5 before that run.
-- Next: then `/andromeda-phase` — the next markerless entry is «Stand requirement sweep» (working-route.md:49).
+- Done: 2026-10-24-stand-requirement-sweep — `WITNESSES_020` and its leg check, `stand-repeat`'s ten named targets,
+  the lint co-reading and the text extent's limits asserted, the recording clients' stderr read at `trace`; masters and
+  leaves reconciled (wrap run `.andromeda/runs/2026-10-24T17-32-19-wrap/`, a resume of that run).
+- Next: `/andromeda-phase` — the next markerless entry is «A11y re-read» (working-route.md:51).
 
 ## Work done
-The take, its audit and CI green (CI#40092092468); P2's forced-sample cascade read every category file; 84 proposals
-applied, 12 sidecar entries; 17 leaf findings (15 by the tool, 2 by hand); 1 Tier-1 learning; 3 residuals lines.
+CI green (CI#40114977936); P2 forced-sample cascade, 63 proposals applied, 7 sidecar entries; 53 leaf findings
+applied; 1 Tier-1 correction; 1 residuals line added, the F334 line's premise corrected.
 
 ## Drift resolved
-Three engine changes registered (the dropped-node hit skip, a replaced element's `aspect-ratio` height, `Parallel`
-serialised under `PARALLEL_TRAVERSAL_LOCK`); `multi_doc`, mimalloc and `MULTI_DOC_*` registered; the `inline/` path move;
-the CARRY 3–5 owners moved to a residuals line; one stale clause the detectors missed — `keyboard_compat.rs` excluded
-«until upstream retires it» → «until escher takes upstream's retirement of it» (four master sites, five leaves).
+The leg selection (the founder's named `--test` list), six counts and the readings they move, two "asserted by no
+check" claims retired, two state directories registered, `many_items` among the shared pages, one false
+typography cite re-pointed; the new stated limit — a paged `part` read through the host's own sink is unmeasured —
+owned by its residuals line.
 
 ## Notes
-- The six `detail.py tally` rows and the sampler lines are in the wrap's console report and the run dir's trail.
-- Known limit, owned by F334's line: the sweep tools and the leaf deltas read master bodies only (the Tier-1 learning).
+- The six `detail.py tally` rows are in the wrap's console report and `detail-2026-10-24-stand-requirement-sweep.json`.
+- F334's line: three hand-read citation sites remain (`typography.md:23` re-pointed here); `planlint.py` not re-read.
 - Last failed command: none.
-
-## Session End Status
-Completed normally at 2026-10-24 18:43:07

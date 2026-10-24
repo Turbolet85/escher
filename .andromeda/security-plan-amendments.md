@@ -764,3 +764,9 @@ Partly retires the PROVISIONAL clause of the earlier 2026-10-18-engine-debts, 20
 - Stdout output: `multi_doc` prints one summary line via `println!`.
 **Why:** the new inputs are an upstream example's and an upstream-only runner's, taken on the founder's own word «Десять коммитов (Рекомендую)», relayed verbatim by the overseer (2026-10-24, chunk inputs#I4); each is validated in the examples' established shape (a default fallback, a panic on an unresolvable argument), so no boundary is widened. The lock retires a panic path. The paths are fixed under the operator's word on category-file citations (inputs#I10).
 **Ref:** .andromeda/runs/2026-10-24T12-21-29-wrap/
+
+## 2026-10-24-stand-requirement-sweep — a recording session's clients read at `trace` by a standing check
+**Section:** Logging & Monitoring (logging-monitoring.md: escher's own sink)
+**Change:** the 2026-10-14 one-off reading of a client's own stderr is joined by a standing check, seven_guis `host_log` — `start crud --record`, a typed sentinel, `snapshot`, `snapshot --part 1`, `lint`, `stop`, each at `RUST_LOG=trace` in `hl-client` and `hl-client-rec`, 0 id, name, sentinel, recording-path and recorded needles, both builds; a paged part read is measured in process (`stand_act_spans`, part 2 of `many_items`, 36 calls per mode) and unmeasured through the host's own sink (the host boots the four lean tasks, none pages), owned by a `.andromeda/residuals.md` line (target: next).
+**Why:** measured at this chunk; no log site, field, env read or listener added. The limit's owner is the operator's own word «yes — apply.» on the phase's P5 card 2 (chunk inputs#I2).
+**Ref:** .andromeda/runs/2026-10-24T17-32-19-wrap/

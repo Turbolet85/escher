@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk changes test files and one CI leg only (report Changes: Dependencies none, Retired none, Coverage of new surfaces "no new external surface, hot-path op"); its moved obs-plan rows (Counts 3, 6, 8, 9) sit at obs-plan.md:77, obs-plan-detail/pii-scrubbing-compliance.md:9-10 and obs-plan-detail/ci-integration.md:15, none in telemetry-strategy.md, whose by-invocation line (:14) reads hosts' and the windowed stand's stderr, not the `start --record` clients' own stderr that host_log's new test reads.

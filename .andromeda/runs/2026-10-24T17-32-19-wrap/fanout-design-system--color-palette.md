@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens has nothing to read — the report's Coverage of new surfaces names no new UI element (test files and one CI leg only, `tokens n/a`), Retired is none, and no change (the fixture pages `reading_page`, `many_items`, text_extent's paragraphs) states a colour, contrast figure or status, so .andromeda/design-system-detail/color-palette.md and the body's Color Palette stand unchanged.

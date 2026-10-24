@@ -1,0 +1,11 @@
+proposals:
+  - detector: D-new-detail
+    severity: warning
+    file: .andromeda/test-plan-detail/test-data-fixtures.md
+    near: 16
+    section: "## 7. Test Data & Fixtures"
+    change: "after line 16, a new `<!-- detail: values · data-fixtures -->` block holding one record — `- **tests/blitz-tests/tests/fixtures (many_items):** since 2026-10-24-stand-requirement-sweep the shared fixture module also states `pub const ITEMS: usize = 400` and the page `pub fn many_items() -> Element` — a `#items` list of 400 buttons with the ids `item-NNN`, a screen that pages — moved unchanged from `stand_snapshot_parts.rs`, read by `stand_snapshot_parts` and by `stand_act_spans`, which holds it through `fixtures::hold(\"paged\", fixtures::many_items, …)` and reads `snapshot_part(2)` in its sink capture, the `#items > button` texts its name needles and the 400 `item-NNN` ids its id needles (tests/blitz-tests/tests/fixtures/mod.rs:64-86; tests/blitz-tests/tests/stand_act_spans.rs:243; tests/blitz-tests/tests/stand_act_spans.rs:685-693)`"
+    sidecar: "test-data-fixtures: the shared fixture page `many_items` (`ITEMS` 400), moved into `tests/fixtures/mod.rs` and read by `stand_snapshot_parts` and `stand_act_spans`, recorded (2026-10-24-stand-requirement-sweep)"
+    rationale: "the report's Changes name `fixtures/mod.rs` gaining `ITEMS` and `many_items` (64-86), moved unchanged from `stand_snapshot_parts.rs`, and `stand_act_spans` reading it as a paged part with its buttons' texts and `item-NNN` ids as needles (Counts fact 10, `fixture-pages`); the category file holds no record of the shared fixture module's pages, so the new shared page enters as one record in the file's data-fixtures shape"
+    basis: escher-0.2.0/chunks/2026-10-24-stand-requirement-sweep/report.md:57
+note: D-tests-coverage, D-tests-framework and D-tests-obs-harness find no drift in this file (test code only, runner and harness unchanged, Retired none); fact 10's moved rows `test-plan.md:151` and `:320` are body lines this detector does not edit, and the new one-reader pages (`stand_lint`'s `reading_page`, `text_extent`'s `#ltr` · `#rtl` · `#vertical` · `#scaled`) stay in their files under the body's existing one-reader rule.

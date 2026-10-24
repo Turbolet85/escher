@@ -1,0 +1,2 @@
+proposals: []
+note: the category file holds six absence records of error-reporting clients and panic hooks over the reading's slices; the chunk changes test files and one CI leg only (report Changes — no dependency, no library surface, no hot-path op, no new panic hook or error path, Retired none), so D-obs-instrumentation, D-obs-stack and D-obs-pii read no drift here — the new `host_log` client-stderr reading at `trace` belongs to pii-scrubbing-compliance.md:10 (report Counts fact 8), not this file.

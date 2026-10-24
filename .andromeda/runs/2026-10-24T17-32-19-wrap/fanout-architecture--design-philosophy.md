@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk is test code and one CI leg's selection only (report Changes — no crate, dependency, listener, env var or engine change; Retired none); its one new resource, the test state directories `hl-client` and `hl-client-rec`, belongs to .andromeda/architecture-detail/occupied-resources.md:25 (report Count 9), not to Design Philosophy, whose five values and their cited detail no fact of the report touches.

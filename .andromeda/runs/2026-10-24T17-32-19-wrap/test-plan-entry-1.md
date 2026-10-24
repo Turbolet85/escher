@@ -1,0 +1,11 @@
+
+## 2026-10-24-stand-requirement-sweep — `stand-repeat` runs ten named targets beside the `stand_` files
+**Section:** §9 CI Integration (body: Legs; ci-integration.md: Legs, Engine features by runner, Per-OS test tallies, Local baseline) · §10 Quality Gates & Coverage Targets (body: Flakiness budget; quality-gates-coverage-targets.md: Coverage floors, Flakiness budget) · §1 (test-scope-summary.md: the runner clauses of `text_extent`, `password_caret_click`, `accessibility_states`, `inert_subtree`, `accessibility_active_descendant_unread`, `select_interaction`) · §3 Agent-run contract (body: Proof; Test-data bootstrap)
+**Change:**
+- Legs and Flakiness budget: was «the stand checks and seven_guis' process checks»; now the `stand_*.rs` files, then on the same `cargo test -p blitz-tests --locked` line ten named targets as literal `--test` words — `inert_subtree`, `accessibility_states`, `scrolled_box_absolute_position`, `hit_clipped_at_scrolling_box`, `password_caret_click`, `transformed_client_rect`, `accessibility_active_descendant_unread`, `virtual_clock_engine`, `select_interaction`, `text_extent`, each file keeping its name — then seven_guis' eight; `test_stand_repeat_leg_runs_three_rounds` pins the glob and the ten words.
+- The six runner clauses in §1 gain the `stand-repeat` leg; `accessibility_merged_states` does not.
+- `run stand` keeps its prefix rule: 197 · 0 · 7 over 48 files (was 195), the ten reached through `run all` and `run {name}` alone.
+- Readings, each the newest: CI#40114977936 linux 206 · 1105, macos and coverage 187 · 1102, windows 187 · 1057, a11y 6 · 43, stand repeat 198 · 837 · 0 · 21 (was CI#40092092468's 206 · 1099, 187 · 1096, 187 · 1052, 168 · 684); the workspace 206 · 1105 · 0 · 12 (was 1099); coverage 97.99 · 85.57 · 94.15 %, the floors unchanged.
+**Why:** the selection is the founder's own word «Список в скрипте (Рекомендую)» (2026-10-24, relayed verbatim by the overseer, chunk inputs#I1): the 0.2.0 witnesses outside the prefix enter the leg by a fixed list, «Rename them stand_*» passed over. The counts are measured, CI green 17/17 on 18b50a2a2.
+**Kept:** `run stand`'s prefix selection and the 48-file `stand_*.rs` count.
+**Ref:** .andromeda/runs/2026-10-24T17-32-19-wrap/

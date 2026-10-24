@@ -58,7 +58,7 @@ Read whole. The master's broad view is .andromeda/architecture.md; this file hol
 <!-- detail: values · conv-tests -->
 
 - Three of the eight sit in escher-driver beside `mcp::tests` and `schema::tests`, each moved out whole with its test paths unchanged: `cli::tests` in `cli_tests.rs`, `recording::tests` in `recording_tests.rs` (`#[cfg(all(test, unix))]`) and `recording::off_unix_tests` in `recording_off_unix_tests.rs` (`#[cfg(all(test, not(unix)))]`, which the windows job alone runs) (packages/escher-driver/src/cli.rs:478-480; packages/escher-driver/src/recording.rs:457-459; packages/escher-driver/src/recording.rs:453-455).
-- A third such module, `tests/blitz-tests/tests/fixtures/mod.rs`, read by `mod fixtures;`, states once the fixture boot and hold, the fixture pages more than one check reads and the held network stand-in `HeldNet`; what it holds is test-plan §3's (Crate-local test helpers), and a page with one reader stays in its check's file (tests/blitz-tests/tests/fixtures/mod.rs:17-25; tests/blitz-tests/tests/fixtures/mod.rs:64-107).
+- A third such module, `tests/blitz-tests/tests/fixtures/mod.rs`, read by `mod fixtures;`, states once the fixture boot and hold, the fixture pages more than one check reads and the held network stand-in `HeldNet`; what it holds is test-plan §3's (Crate-local test helpers), and a page with one reader stays in its check's file (tests/blitz-tests/tests/fixtures/mod.rs:17-25; tests/blitz-tests/tests/fixtures/mod.rs:87-130).
 
 <!-- /detail -->
 

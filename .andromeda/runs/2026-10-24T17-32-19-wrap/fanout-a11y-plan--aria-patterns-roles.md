@@ -1,0 +1,2 @@
+proposals: []
+note: no drift — the report adds no UI element (Coverage of new surfaces: test files and one CI leg only) and changes no a11y violation or obs log schema; Retired none; the category file's one test citation (`.andromeda/a11y-plan-detail/aria-patterns-roles.md:16`, accessibility_states' fourth test as pin) names no leg, so Count 1's stand-repeat move lands at the body's §3 rows `.andromeda/a11y-plan.md:53` · `55` (another detector's), not here.

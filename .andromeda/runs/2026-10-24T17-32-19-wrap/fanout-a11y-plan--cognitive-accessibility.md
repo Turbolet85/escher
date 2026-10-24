@@ -1,0 +1,2 @@
+proposals: []
+note: no drift in .andromeda/a11y-plan-detail/cognitive-accessibility.md — the report adds no UI element (Coverage of new surfaces: "no new external surface, hot-path op or UI element"), changes no a11y violation or obs log schema, retires nothing, and none of its 12 moved facts or 9 changed files touches this file's cites (flight_booker.rs, stand_flight_booker.rs, stand_snapshot_state.rs, stand_accessibility_ids.rs, common/mod.rs, stand_snapshot.rs, the browser app) or its §8 claims.

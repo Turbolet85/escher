@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk adds no stand-in, fake or stub (test code only: moved fixture page `many_items`/`ITEMS`, new readings in existing checks, the stand-repeat list), runners unchanged and agent-run untouched; the `HeldNet` row's cite `tests/blitz-tests/tests/fixtures/mod.rs:87-130` (.andromeda/test-plan-detail/mocking-stubbing-discipline.md:14) already sits after the report's added 64-86 range, so no re-point is owed here.

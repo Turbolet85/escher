@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens has nothing to read — the report's Coverage of new surfaces states "no new external surface, hot-path op or UI element — test files and one CI leg only", its one row `tokens n/a`, so no hardcoded✗ flag exists; Retired is "none", so no D-retired passage; the test fixture pages added (stand_lint's reading_page, text_extent's paragraphs, fixtures::many_items moved unchanged) are test-only markup, no stand or app UI.

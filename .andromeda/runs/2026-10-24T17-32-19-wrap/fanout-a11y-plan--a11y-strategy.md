@@ -1,0 +1,2 @@
+proposals: []
+note: D-a11y-surface unfired (report Coverage of new surfaces: no UI element, test files and one CI leg only); D-a11y-obs-schema unfired (no a11y violation or obs log schema change); Retired none; the chunk's a11y moves (accessibility_states, inert_subtree, accessibility_active_descendant_unread now in stand-repeat) land at a11y-plan.md:53 · 55 (§3), and this file's citations of tests/blitz-tests/tests/accessibility_states.rs and stand_accessibility_ids.rs name no leg or runner, so nothing here moves.

@@ -1,0 +1,55 @@
+[[pattern]]
+id = 'nocheck'
+regex = 'asserted by no check'
+
+[[pattern]]
+id = 'extent-old'
+regex = 'RTL and vertical|read as LTR|`text_extent` 3'
+
+[[pattern]]
+id = 'lint-count'
+regex = '`stand_lint` 6|stand_lint`, 6|its sixth'
+
+[[pattern]]
+id = 'sweep-count'
+regex = '`stand_requirement_sweep` 2|`stand_requirement_sweep`, 2 tests|`WITNESSES`, 16 rows|`WITNESSES` table'
+
+[[pattern]]
+id = 'spans-calls'
+regex = '35 calls'
+
+[[pattern]]
+id = 'hostlog-count'
+regex = '`host_log` 2|host_log\.rs` \(2 tests|\(2 each\)'
+
+[[pattern]]
+id = 'client-stderr'
+regex = '''client's own stderr|clients' own stderr'''
+
+[[pattern]]
+id = 'state-dirs'
+regex = 'hl-trace'
+
+[[pattern]]
+id = 'fixture-pages'
+regex = '`password_named` and `covered`|three pages|`password_named`, `covered`'
+
+[[pattern]]
+id = 'stand-select'
+regex = '''stand checks and seven_guis'|`stand_\*\.rs` files and seven_guis|one `--test` per'''
+
+[[pattern]]
+id = 'runner-ten'
+regex = 'not by `run stand`|per package and not by the `a11y`|outside the a11y leg'
+
+[[pattern]]
+id = 'run-stand-195'
+regex = '195 · 0 · 7|passed 195'
+
+[[pattern]]
+id = 'tallies-old'
+regex = '1099 · 0|168 · 684'
+
+[[pattern]]
+id = 'typography'
+fixed = 'construct.rs:1106-1112'

@@ -46,7 +46,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
 ### Epoch 5 — Polish & ship
 [2026-10-24-upstream-sync-polish-and-ship] Upstream sync ahead of polish and ship — upstream/main merged, changes mostly additive; CI and audit green, per-OS tallies re-read, sink allowlist re-checked
    ↓
-[2026-10-24-stand-requirement-sweep] Stand requirement sweep — every 0.2.0 capability proven headless on stand or fixture, inside stand-repeat; coverage floors held, new verbs' stderr id-free (intent §Principles)  CARRY: the visual lint's readings no check asserts — a clipped or off-screen node holding text also reads `truncated`, and `BaseDocument::text_extent`'s stated limits (RTL and vertical text read as LTR lines, a transformed box at its client rect); measured at escher-0.2.0/chunks/2026-10-19-visual-lint/report.md (Decisions «Untested reading»; Symbols / APIs)
+[2026-10-24-stand-requirement-sweep] Stand requirement sweep — every 0.2.0 capability proven headless on stand or fixture, inside stand-repeat; coverage floors held, new verbs' stderr id-free (intent §Principles)
    ↓
 A11y re-read — stand Tab order, Enter/Space activation and contrast re-asserted after 0.2.0's engine changes; new a11y checks in the `a11y` leg (a11y-plan §9)
    ↓

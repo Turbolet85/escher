@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk adds test files and one CI leg selection only — no secret source, auth library, dependency (report Dependencies: none) or external-input surface; host_log.rs's `RUST_LOG=trace` is set on a child Command and is the registered `RUST_LOG` read (report Outcome), so neither the CI-secret and dev-login records nor the absence searches in .andromeda/security-plan-detail/secret-management.md move, and Retired is none.

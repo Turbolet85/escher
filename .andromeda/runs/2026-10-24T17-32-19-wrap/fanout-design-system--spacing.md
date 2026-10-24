@@ -1,0 +1,2 @@
+proposals: []
+note: the report's Coverage names no new UI element (one CI leg's named list, tokens n/a); stand_lint's reading_page and text_extent's paragraphs carry test-only geometry (a 100 × 40 box, padding-right 100px, an 800 px viewport) that probes the lint and the reader, not a spacing value of any app or example, so .andromeda/design-system-detail/spacing.md has no D-design-tokens, D-retired (Retired: none) or D-new-detail drift.

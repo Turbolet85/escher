@@ -1,0 +1,2 @@
+proposals: []
+note: No drift in .andromeda/architecture-detail/inherited-defaults.md — the report adds no crate, package, env var, listener or dependency (Changes: Crates/modules none, Dependencies none), and its Counts fact 1 lists inherited-defaults.md:14 as no-change (it names the stand-repeat leg's budget alone); that line's cite `.github/scripts/ci-leg.sh:37-64` now spans the five lines added at ci-leg.sh:54-58 (New text, by line), so its end may have moved — a citation re-point for cites.py, not a prose amendment.

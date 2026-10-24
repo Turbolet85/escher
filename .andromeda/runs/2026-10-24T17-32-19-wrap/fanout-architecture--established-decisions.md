@@ -1,0 +1,2 @@
+proposals: []
+note: test-only chunk with Dependencies none, Crates none and Retired none, so neither D-arch-decisions nor D-arch-resources fires on this category; its one decision, the founder's named `--test` list in stand-repeat (inputs#I1), is a CI contract the report places at .andromeda/architecture-detail/standard-contracts.md:256, and `hl-client` / `hl-client-rec` go at .andromeda/architecture-detail/occupied-resources.md:25. This file's test citations (e.g. inert_subtree at line 104) name no leg and are unchanged under fact 1's no-change rows.

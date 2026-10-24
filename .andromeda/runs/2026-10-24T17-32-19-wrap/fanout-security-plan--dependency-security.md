@@ -1,0 +1,2 @@
+proposals: []
+note: no drift in .andromeda/security-plan-detail/dependency-security.md — the report's Dependencies reads none (Cargo.toml, Cargo.lock, deny.toml 0 changed), Crates none, Retired none, no new external-input or auth surface; the file's two `.github/scripts/ci-leg.sh:38` cites sit above the 5 lines added at 54-58 and stand; outside this file, the body's `.github/scripts/ci-leg.sh:20-65` cites (security-plan.md:236, :264) enclose that added range, so their end line is the citation tool's to re-read (the report rates security-plan.md:264 no-change for its text).

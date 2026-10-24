@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk is test files and one CI leg only (report Changes: no library surface, no crate, no dependency, Retired none); its two new state dirs `hl-client` / `hl-client-rec` belong to occupied-resources.md:25 (report Count 9) and the client `RUST_LOG=trace` read is the registered `RUST_LOG`, so no config, logging, wiring, event or invalidation pattern in .andromeda/architecture-detail/cross-cutting-patterns.md moves.

@@ -895,3 +895,27 @@ Partly retires the PROVISIONAL clause of the earlier 2026-10-18-engine-debts and
 **Why:** measured at this sync (`286874cc1` holds no `keyboard_compat.rs`; the file and both regex lines stand in the tree). The left-out delta's residuals line is the operator's own word «yes — apply» on the phase's P5 card (inputs#I5).
 **Kept:** the exclusion itself and the floors — the bridge is still in the tree.
 **Ref:** .andromeda/runs/2026-10-24T12-21-29-wrap/
+
+## 2026-10-24-stand-requirement-sweep — `stand-repeat` runs ten named targets beside the `stand_` files
+**Section:** §9 CI Integration (body: Legs; ci-integration.md: Legs, Engine features by runner, Per-OS test tallies, Local baseline) · §10 Quality Gates & Coverage Targets (body: Flakiness budget; quality-gates-coverage-targets.md: Coverage floors, Flakiness budget) · §1 (test-scope-summary.md: the runner clauses of `text_extent`, `password_caret_click`, `accessibility_states`, `inert_subtree`, `accessibility_active_descendant_unread`, `select_interaction`) · §3 Agent-run contract (body: Proof; Test-data bootstrap)
+**Change:**
+- Legs and Flakiness budget: was «the stand checks and seven_guis' process checks»; now the `stand_*.rs` files, then on the same `cargo test -p blitz-tests --locked` line ten named targets as literal `--test` words — `inert_subtree`, `accessibility_states`, `scrolled_box_absolute_position`, `hit_clipped_at_scrolling_box`, `password_caret_click`, `transformed_client_rect`, `accessibility_active_descendant_unread`, `virtual_clock_engine`, `select_interaction`, `text_extent`, each file keeping its name — then seven_guis' eight; `test_stand_repeat_leg_runs_three_rounds` pins the glob and the ten words.
+- The six runner clauses in §1 gain the `stand-repeat` leg; `accessibility_merged_states` does not.
+- `run stand` keeps its prefix rule: 197 · 0 · 7 over 48 files (was 195), the ten reached through `run all` and `run {name}` alone.
+- Readings, each the newest: CI#40114977936 linux 206 · 1105, macos and coverage 187 · 1102, windows 187 · 1057, a11y 6 · 43, stand repeat 198 · 837 · 0 · 21 (was CI#40092092468's 206 · 1099, 187 · 1096, 187 · 1052, 168 · 684); the workspace 206 · 1105 · 0 · 12 (was 1099); coverage 97.99 · 85.57 · 94.15 %, the floors unchanged.
+**Why:** the selection is the founder's own word «Список в скрипте (Рекомендую)» (2026-10-24, relayed verbatim by the overseer, chunk inputs#I1): the 0.2.0 witnesses outside the prefix enter the leg by a fixed list, «Rename them stand_*» passed over. The counts are measured, CI green 17/17 on 18b50a2a2.
+**Kept:** `run stand`'s prefix selection and the 48-file `stand_*.rs` count.
+**Ref:** .andromeda/runs/2026-10-24T17-32-19-wrap/
+
+## 2026-10-24-stand-requirement-sweep — the 0.2.0 record, the asserted limits and the recording clients' stderr
+**Section:** §1 Test Scope Summary (body: blitz-dom covered behaviours; test-scope-summary.md: apps, blitz-dom covered behaviours, tests/blitz-tests) · §3 (body: Crate-local test helpers → blitz-tests (fixtures); → Session lifecycle) · §5 Integration Test Strategy (body and integration-test-strategy.md: Session host ↔ what it writes) · §7 Test Data & Fixtures (body: tests/blitz-tests/tests/fixtures; test-data-fixtures.md: Data seeds)
+**Change:**
+- `stand_requirement_sweep` 3 (was 2): `WITNESSES_020`, nine rows and 46 witnesses, `Subject::Unit` a crate's unit test outside `stand-repeat` by construction, and its leg check reading `ci-leg.sh` for the glob and all 18 names; `WITNESSES` unchanged.
+- `stand_lint` 7 (was 6): a clipped or off-screen node holding text also reading `truncated` is asserted (was «asserted by no check»), on `reading_page`'s `fx-cut-text` · `fx-padded-text` · `fx-off-text`.
+- `text_extent` 6 (was 3): its three stated limits asserted (was «asserted by no check»); the select's limits and `PARALLEL_TRAVERSAL_LOCK` still asserted by none.
+- `stand_act_spans` 36 calls per mode (was 35), a part 2 of the shared `many_items` page among them, its ids and names joining the needles.
+- `host_log` 3 (was 2): a recording session's clients read 0 needles of each class over their own stderr at `trace`, a standing check beside the 2026-10-14 one-off reading; `mcp_log` 2.
+- The shared pages gain `many_items` with `ITEMS` (400), moved unchanged from `stand_snapshot_parts`, read by it and `stand_act_spans`.
+- New stated limit: a paged `part` read through the `escher-session` host's own sink is unmeasured (the host boots only the four lean tasks, none pages), owned by a `.andromeda/residuals.md` line (target: next).
+**Why:** each count and reading measured at this chunk (red before green, both layout modes, both builds). The limit's owner is the operator's own word «yes — apply.» on the phase's P5 card 2 (chunk inputs#I2).
+**Ref:** .andromeda/runs/2026-10-24T17-32-19-wrap/

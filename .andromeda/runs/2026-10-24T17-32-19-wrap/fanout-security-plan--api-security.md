@@ -1,0 +1,2 @@
+proposals: []
+note: test files and one CI leg only (report Changes — Symbols/APIs "test code only", Dependencies none, Retired none, Coverage of new surfaces "no new external surface"); no new input surface, auth, secret or dependency, and no sweep row (Counts 1-12) lands in .andromeda/security-plan-detail/api-security.md, whose listener, outbound, settle/LOAD_WAIT and session-socket rows stand as written.

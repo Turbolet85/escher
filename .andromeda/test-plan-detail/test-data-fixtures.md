@@ -20,6 +20,7 @@ Read whole. The master's broad view is .andromeda/test-plan.md; this file holds 
 | Data type | Strategy | Source |
 |-----------|----------|--------|
 | Inline HTML | inline HTML string constants or `format!`-built pages | (tests/blitz-tests/tests/incremental_oracle.rs:371-420; tests/blitz-tests/tests/dir_attribute.rs:12-29) |
+| Shared fixture page (`rsx!`) | `many_items`: `ITEMS` (400) buttons under `#items`, ids `item-NNN`, a screen over the snapshot text budget, read by `stand_snapshot_parts` and `stand_act_spans` | (tests/blitz-tests/tests/fixtures/mod.rs:64-86) |
 | Inline HTML (script tests) | inline raw strings per test | (packages/blitz-vibey-script/tests/dom.rs:25-36) |
 | Inline literals | inline string literals, including generated multi-line text | (packages/blitz-html/src/html_sink.rs:319; packages/blitz-dom/src/node/element.rs:1099; packages/blitz-dom/src/node/element.rs:1132-1135) |
 | SVG inputs | inline byte-string literals | (packages/blitz-dom/src/util.rs:186; packages/blitz-dom/src/util.rs:193) |

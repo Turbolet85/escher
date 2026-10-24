@@ -1,0 +1,66 @@
+[[pattern]]
+id = 'owner-title'
+fixed = 'Stand requirement sweep'
+ignore_case = true
+
+[[pattern]]
+id = 'owner-generic'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true
+
+[[pattern]]
+id = 'leg-select'
+regex = 'stand-repeat|Stand checks repeated|three rounds|zero-failure budget'
+
+[[pattern]]
+id = 'leg-pin'
+regex = 'test_stand_repeat_leg_runs_three_rounds|test_ci_workflows'
+
+[[pattern]]
+id = 'sweep-record'
+regex = 'stand_requirement_sweep|WITNESSES|every_requirement_names_its_witness|Subject::Unit'
+
+[[pattern]]
+id = 'lint-coread'
+regex = 'asserted by no check|also reads `truncated`|stand_lint'
+
+[[pattern]]
+id = 'extent-limits'
+regex = 'text_extent|RTL and vertical|read as LTR|stated limits'
+
+[[pattern]]
+id = 'spans-calls'
+regex = 'stand_act_spans|\b35 calls|35 calls'
+
+[[pattern]]
+id = 'paged-limit'
+regex = 'paged|part 1 of 1|screen that pages|host-role'
+ignore_case = true
+
+[[pattern]]
+id = 'host-log'
+regex = '''host_log|start --record|clients?'s? own stderr'''
+
+[[pattern]]
+id = 'state-dirs'
+regex = 'hl-trace|hl-rec|hl-client'
+
+[[pattern]]
+id = 'fixture-pages'
+regex = 'many_items|password_labelled|fixtures/mod\.rs|fixtures::'
+
+[[pattern]]
+id = 'ten-witnesses'
+regex = 'inert_subtree|accessibility_states|scrolled_box_absolute_position|hit_clipped_at_scrolling_box|password_caret_click|transformed_client_rect|accessibility_active_descendant_unread|virtual_clock_engine|select_interaction'
+
+[[pattern]]
+id = 'tallies'
+regex = '\b(1099|1096|1052|684)\b'
+
+[[pattern]]
+id = 'run-stand'
+regex = 'run stand'
+
+[[pattern]]
+id = 'stand-files'
+regex = '\b48 .{0,3}stand_|48 files'
