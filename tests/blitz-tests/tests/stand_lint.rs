@@ -4,8 +4,9 @@
 //! document order, with their reasons; on a page of three paragraphs holding text, an off-screen
 //! one reads `truncated` beside `off-screen`, a clipped one whose line leaves the box that clips
 //! it reads `clipped` and `truncated`, and a clipped one whose line stays inside reads `clipped`
-//! alone, the verb answering the same; on each lean stand task at boot it reads nothing; it
-//! changes nothing; after twelve Creates it names the last CRUD row cut by the list's box, the
+//! alone, the verb answering the same; on each lean stand task at boot it reads what is
+//! measured there — nothing, but on the flight booker one `overlap` between its type select's
+//! two options, which the snapshot gives their select's client rect; it changes nothing; after twelve Creates it names the last CRUD row cut by the list's box, the
 //! row a `click` is refused `off-screen` on; and an app with no font is refused
 //! `fonts-unavailable`. The verb `lint`, run through `Session::run`, answers exactly the findings
 //! the reader reads, on the planted page and on each lean task. A failure message carries a
@@ -273,21 +274,41 @@ fn a_clipped_or_off_screen_node_holding_text_reads_truncated_beside_it() {
     }
 }
 
+/// What the lint reads on `task` at boot, measured: each finding's id, defect and the other
+/// element of its overlap. The flight booker's two type options read their select's client rect
+/// as their bounds, so they overlap each other.
+fn at_boot(task: LeanTask) -> &'static [(&'static str, Defect, &'static str)] {
+    match task {
+        LeanTask::FlightBooker => &[("flight-type-one-way", Defect::Overlap, "flight-type-return")],
+        LeanTask::Counter | LeanTask::Timer | LeanTask::Crud => &[],
+    }
+}
+
 #[test]
-fn the_stand_at_boot_reads_no_finding() {
+fn the_stand_at_boot_reads_its_measured_findings() {
+    assert_eq!(LeanTask::ALL.map(|task| at_boot(task).len()), [0, 1, 0, 0]);
     for incremental in [false, true] {
         for (index, task) in LeanTask::ALL.into_iter().enumerate() {
             let at = format!("incremental={incremental}: task {index}");
             let (mut session, _ticks) = hold(task, incremental);
             let findings = session.lint();
             assert!(findings.is_ok(), "{at}: the lint reads the task");
-            let defects: Vec<&str> = findings
+            let read: Vec<(&str, Defect, &str)> = findings
                 .as_ref()
                 .unwrap()
                 .iter()
-                .map(|finding| finding.defect.name())
+                .map(|finding| {
+                    let other = match &finding.reason {
+                        Reason::Overlap { other, .. } => other.as_str(),
+                        _ => "",
+                    };
+                    (finding.id.as_str(), finding.defect, other)
+                })
                 .collect();
-            assert!(defects.is_empty(), "{at}: no finding, read {defects:?}");
+            assert!(
+                read == at_boot(task),
+                "{at}: the lint reads the measured findings"
+            );
         }
     }
 }
@@ -404,8 +425,13 @@ fn the_lint_verb_answers_what_the_reader_reads() {
             assert!(read.is_ok(), "{at}: the reader reads the screen");
             let read = read.unwrap();
             assert!(
-                read.len() == if case == 0 { 7 } else { 0 },
-                "{at}: the reader reads the planted findings, and none on a task at boot"
+                read.len()
+                    == if case == 0 {
+                        7
+                    } else {
+                        at_boot(LeanTask::ALL[case - 1]).len()
+                    },
+                "{at}: the reader reads the planted findings, and a task's measured ones at boot"
             );
             assert!(
                 linted(&mut session, &lint()) == Some(read),

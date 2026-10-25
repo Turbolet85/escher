@@ -9,7 +9,7 @@
 //! SC 1.4.3 is asserted on what is measured, not on what is stated: every text-bearing reading
 //! that is not exempt meets its ratio — the control rows at boot, the CRUD list rows and the
 //! text outside the controls (`TEXT_ROWS`), and the colours the controls take under real input
-//! (`STATE_ROWS`: a toggle, an unparseable date, a booking, a selected row, hover and active).
+//! (`STATE_ROWS`: a choice, an unparseable date, a booking, a selected row, hover and active).
 //! A failure message carries a layout mode, a task and an index, never an id or what a screen
 //! reads.
 
@@ -65,13 +65,8 @@ const RECORD: &[(LeanTask, &str, Reading)] = &[
     ),
     (
         LeanTask::FlightBooker,
-        "flight-one-way",
-        Pass(pair(0xffffff, 0x3a5ce5, 5.47, 14, 600.0)),
-    ),
-    (
-        LeanTask::FlightBooker,
-        "flight-return",
-        Pass(pair(0x444444, 0xfafafa, 9.33, 14, 400.0)),
+        "flight-type",
+        Pass(pair(0x1a1a1a, 0xffffff, 17.40, 15, 400.0)),
     ),
     (
         LeanTask::FlightBooker,
@@ -281,7 +276,7 @@ const TEXT_ROWS: [(LeanTask, &str, Reading); 14] = [
 /// The real input a state row is read after, on a fresh boot of its task.
 #[derive(Clone, Copy, Debug)]
 enum Reach {
-    /// A click on `flight-return`.
+    /// A click on `flight-type` and End, choosing its return flight.
     ReturnChosen,
     /// A click on `flight-start` and one character typed after its date, which then parses no
     /// more.
@@ -297,18 +292,12 @@ enum Reach {
 }
 
 /// The colours the controls take under real input, each read after its `Reach` on a fresh boot.
-const STATE_ROWS: [(LeanTask, Reach, &str, Reading); 19] = [
+const STATE_ROWS: [(LeanTask, Reach, &str, Reading); 18] = [
     (
         LeanTask::FlightBooker,
         Reach::ReturnChosen,
-        "flight-return",
-        Pass(pair(0xffffff, 0x3a5ce5, 5.47, 14, 600.0)),
-    ),
-    (
-        LeanTask::FlightBooker,
-        Reach::ReturnChosen,
-        "flight-one-way",
-        Pass(pair(0x444444, 0xfafafa, 9.33, 14, 400.0)),
+        "flight-type",
+        Pass(pair(0x1a1a1a, 0xffffff, 17.40, 15, 400.0)),
     ),
     (
         LeanTask::FlightBooker,
@@ -421,11 +410,17 @@ const STATE_ROWS: [(LeanTask, Reach, &str, Reading); 19] = [
 fn reach(harness: &mut Harness<DioxusDocument>, reach: Reach, id: &str, at: &str) {
     match reach {
         Reach::ReturnChosen => {
-            harness.click("#flight-return");
+            harness.click("#flight-type");
+            harness.press(Key::Named(NamedKey::End));
             let snapshot = harness.doc.snapshot();
             assert!(
-                common::node(&snapshot, "flight-return").state.pressed == Some(true),
-                "{at}: the return toggle reads pressed"
+                common::node(&snapshot, "flight-type")
+                    .state
+                    .value
+                    .as_deref()
+                    == Some("return")
+                    && common::node(&snapshot, "flight-type-return").state.selected == Some(true),
+                "{at}: the flight type reads the return flight chosen"
             );
         }
         Reach::StartUnparseable => {
@@ -481,7 +476,7 @@ fn control_rows() -> Vec<(LeanTask, &'static str)> {
 #[test]
 fn every_stand_control_reads_its_recorded_pair() {
     let rows = control_rows();
-    assert_eq!(rows.len(), 18, "the four lean tasks state 18 controls");
+    assert_eq!(rows.len(), 17, "the four lean tasks state 17 controls");
     assert_eq!(RECORD.len(), rows.len(), "the record has a row per control");
     for (index, ((task, id), (stated_task, stated_id, _))) in rows.iter().zip(RECORD).enumerate() {
         assert!(
@@ -597,7 +592,7 @@ fn every_measured_control_meets_its_required_ratio() {
         }
         assert_eq!(
             tally(&readings),
-            (14, 0, 3, 1),
+            (13, 0, 3, 1),
             "{}: pass, fail, exempt-inactive and no-text rows",
             mode(incremental)
         );
@@ -636,7 +631,7 @@ fn every_list_row_and_text_outside_the_controls_meets_its_ratio() {
 
 #[test]
 fn every_colour_state_meets_its_ratio() {
-    assert_eq!(STATE_ROWS.len(), 19, "the stated state rows");
+    assert_eq!(STATE_ROWS.len(), 18, "the stated state rows");
     for incremental in [false, true] {
         let mut readings = Vec::new();
         for (index, (task, how, id, stated)) in STATE_ROWS.into_iter().enumerate() {
@@ -653,7 +648,7 @@ fn every_colour_state_meets_its_ratio() {
         }
         assert_eq!(
             tally(&readings),
-            (18, 0, 1, 0),
+            (17, 0, 1, 0),
             "{}: pass, fail, exempt-inactive and no-text rows",
             mode(incremental)
         );

@@ -3,7 +3,8 @@
 //! and reaps a host a failing check still holds, one bounded run of the binary as a client with
 //! both its streams drained, a child held with a piped stdin that is spoken to one line at a
 //! time and answers one line at a time, the readers of an answer's one line, and what the two
-//! log checks read stderr with: the CRUD screen's id and name needles, the service-name stamp,
+//! log checks read stderr with: the CRUD screen's id and name needles, a Cells part's id
+//! needles and the cell a name is committed to, the service-name stamp,
 //! the needle and occurrence counts and a recording's needles. A check declares `mod common;`
 //! and reads what it needs. This module holds no test.
 
@@ -419,6 +420,37 @@ pub fn stand_needles(sentinel: &str) -> Needles {
         "no needle is empty or a part of the sentinel"
     );
     Needles { ids, names }
+}
+
+/// Reads part `part` of the Cells screen the binary serves, booted here in process: its author
+/// keys as id needles, by `stand_needles`' rule, and the middle one of its column-A cells, where
+/// a check commits the name it then looks for. Cells' own names at boot — empty cells and row
+/// numbers — are no needle a hit could be attributed by. Asserts that enough ids were read.
+#[track_caller]
+pub fn cells_needles(part: usize) -> (Vec<String>, String) {
+    use seven_guis::stand;
+
+    let harness = stand::boot_cells(stand::options(true));
+    let parts = harness
+        .doc
+        .snapshot()
+        .text_parts(dioxus_native::SNAPSHOT_TEXT_BUDGET);
+    assert!(parts.len() > part, "the screen reads past part {part}");
+    let ids: Vec<String> = parts[part - 1]
+        .ids
+        .iter()
+        .filter(|id| !id.contains('/') && id.contains('-'))
+        .cloned()
+        .collect();
+    let column_a: Vec<&String> = ids.iter().filter(|id| id.starts_with("cell-A")).collect();
+    assert!(ids.len() >= 100, "{} id needles were read", ids.len());
+    assert!(
+        column_a.len() >= 3,
+        "{} column-A cells were read",
+        column_a.len()
+    );
+    let cell = column_a[column_a.len() / 2].clone();
+    (ids, cell)
 }
 
 /// Asserts that the sink's install line reached stderr and that every line carries the service

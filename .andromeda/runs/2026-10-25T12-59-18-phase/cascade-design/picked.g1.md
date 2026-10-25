@@ -1,0 +1,24 @@
+### color-palette#1.1 · values · palette · ## Color Palette · lines 8–8
+- The `Color` type is `AlphaColor<Srgb>` and Stylo colors convert to it via sRGB (packages/blitz-dom/src/util.rs:12; packages/blitz-dom/src/util.rs:166-178)
+### color-palette#1.2 · values · palette · ## Color Palette · lines 9–9
+- The system color scheme is an enum `Light` (default) / `Dark`, set on the viewport, and it feeds `prefers-color-scheme` (packages/blitz-traits/src/shell.rs:68-74; tests/blitz-tests/tests/device_coalescing.rs:101; packages/blitz-dom/src/stylo_device.rs:80-83)
+### color-palette#1.7 · values · palette · ## Color Palette · lines 14–14
+- The canvas background is the root element's background colour, falling back to body's when the root is transparent (packages/blitz-paint/src/render.rs:193-228)
+### color-palette#2.3 · values · palette · ## Color Palette › ### Core Colors · lines 27–27
+| seven_guis accent | `#3a5ce5` (hover `#2a4cd3`, active `#1f3fc1`) | Accent on page `#f5f5f5` with text `#1a1a1a` (examples/seven_guis/src/tasks/counter.rs:49; examples/seven_guis/src/tasks/counter.rs:59-72; examples/seven_guis/src/app.rs:183); one step darker since 2026-10-14-stand-a11y-assertions, the operator's choice — until then `#4a6cf7` (hover `#3a5ce5`, active `#2a4cd3`) — in every task CSS that declares it, its non-text uses moving with it and its three `rgba` uses reading `rgba(58, 92, 229, …)`, alpha kept; measured as the background of white `#ffffff` button text on the five accent controls (`counter-increment`, `flight-one-way`, `flight-book`, `timer-reset`, `crud-create`, 14–16 px, weight 500–600, at boot): 5.47 against SC 1.4.3's 4.5, a pass — the old `#4a6cf7` read 4.39, a fail — and white on the hover shade 6.83 and on the active shade 8.27, each a reached colour state of `stand_contrast`; every measured stand colour equals its declared value (tests/blitz-tests/tests/stand_contrast.rs:49-137; tests/blitz-tests/tests/stand_contrast.rs:299-417; as measured at escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/report.md and its evidence/pairs.md, the re-colour and its ratios at escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/report.md) |
+### color-palette#2.4 · values · palette · ## Color Palette › ### Core Colors · lines 28–28
+| blitz-dom default link | `rgb(0, 0, 238)` | Default stylesheet link, its rule selecting `a[href]` — an anchor with no `href` takes neither the colour nor the underline; input focus outline `#4D90FE`; button background `#EFEFEF` (packages/blitz-dom/assets/default.css:43-46; packages/blitz-dom/assets/default.css:98-101; packages/blitz-dom/assets/default.css:111) |
+### color-palette#3.5 · values · palette · ## Color Palette › ### Surface Scale (elevation hierarchy) · lines 44–44
+| seven_guis / todomvc page | `#f5f5f5` | Page background (examples/seven_guis/src/tasks/counter.rs:49; examples/seven_guis/src/tasks/counter.rs:59-72; examples/seven_guis/src/app.rs:183; examples/todomvc/src/todomvc.css:26-27; examples/todomvc/src/todomvc.css:76) |
+### color-palette#4.4 · values · palette · ## Color Palette › ### Text Hierarchy · lines 59–59
+| seven_guis text | `#1a1a1a` | (examples/seven_guis/src/tasks/counter.rs:49; examples/seven_guis/src/tasks/counter.rs:59-72; examples/seven_guis/src/app.rs:183) |
+### color-palette#5.1 · values · status-states · ## Color Palette › ### Semantic Colors · lines 69–71
+| State | Values (as declared) | Usage |
+|-------|----------------------|-------|
+| seven_guis invalid | `#e53e3e` / `#fff5f5` / `#c53030` | Invalid state (examples/seven_guis/src/tasks/flight_booker.rs:197-201; examples/seven_guis/src/tasks/flight_booker.rs:232-240) |
+### color-palette#5.2 · values · status-states · ## Color Palette › ### Semantic Colors · lines 72–72
+| seven_guis success | `#ebf8ee` / `#68d391` / `#276749` | Success message (examples/seven_guis/src/tasks/flight_booker.rs:197-201; examples/seven_guis/src/tasks/flight_booker.rs:232-240) |
+### color-palette#7.3 · values · palette · ## Color Palette › ### Border Progression · lines 99–99
+| Focus — blitz-dom default input outline | `#4D90FE` | (packages/blitz-dom/assets/default.css:43-46; packages/blitz-dom/assets/default.css:98-101; packages/blitz-dom/assets/default.css:111) |
+### color-palette#8.1 · values · palette · ## Color Palette › ### Border Progression · lines 105–105
+- Default scrollbar thumbs: dark scheme rest 214,214,214,178 · hover 190,190,190,222 · active 172,172,172,255 · stroke 0,0,0,102; light scheme rest 128,128,128,178 · hover 152,152,152,222 · active 170,170,170,255 · stroke 255,255,255,102 (packages/blitz-paint/src/render.rs:757-776); the palette follows the viewport color scheme and paints as a fill plus a thin contrast stroke (tests/blitz-tests/tests/scrollbars.rs:204-211; tests/blitz-tests/tests/scrollbars.rs:194-202)

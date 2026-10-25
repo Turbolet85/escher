@@ -1,6 +1,8 @@
 //! Every driver command through the real `escher-session` binary: `start`, `status`, `stop` and
 //! each of the eight verbs answer one line of uncoloured JSON on stdout and end with a status
-//! that tells accepted (`0`) from refused (`1`) and from a session error (`3`). The snapshot's
+//! that tells accepted (`0`) from refused (`1`) and from a session error (`3`); each of the six
+//! served tasks — the four lean tasks, Cells and the load page — starts, answers and stops, and
+//! the usage line names the six. The snapshot's
 //! line is the library's own form of the screen booted in process, inside its byte budget; the
 //! screenshot's `png` is the PNG of the screen booted in process, 800 × 600; a lint on a held
 //! counter answers one line whose `findings` is empty. On a screen inside the budget,
@@ -32,8 +34,11 @@ use seven_guis::stand::{self, LeanTask};
 
 const BINARY: &str = env!("CARGO_BIN_EXE_escher-session");
 
-/// The four tasks the binary boots, by the slug `start` takes.
-const TASKS: [(&str, LeanTask); 4] = [
+/// The six tasks the binary serves, by the slug `start` takes.
+const TASKS: [&str; 6] = ["counter", "flight-booker", "timer", "crud", "cells", "load"];
+
+/// The four lean tasks among them, each with the stand's own task.
+const LEAN: [(&str, LeanTask); 4] = [
     ("counter", LeanTask::Counter),
     ("flight-booker", LeanTask::FlightBooker),
     ("timer", LeanTask::Timer),
@@ -129,7 +134,7 @@ impl Session {
 #[test]
 fn each_task_starts_answers_and_stops() {
     assert_eq!(VERBS.len(), 12);
-    for (index, (task, _)) in TASKS.into_iter().enumerate() {
+    for (index, task) in TASKS.into_iter().enumerate() {
         let dir = state_dir(&format!("cc-life-{index}"));
         clear(&dir);
         let at = text(&dir);
@@ -258,7 +263,7 @@ fn each_verb_is_accepted_and_answers_its_fields() {
 
 #[test]
 fn a_snapshot_is_the_in_process_text_as_one_line_inside_its_budget() {
-    for (index, (task, lean)) in TASKS.into_iter().enumerate() {
+    for (index, (task, lean)) in LEAN.into_iter().enumerate() {
         // The host boots in the incremental layout mode; so does this.
         let screen = stand::boot(lean, stand::options(true)).doc.snapshot();
         let in_process = Outcome::Screen {
@@ -584,6 +589,12 @@ fn a_line_that_is_no_command_is_a_usage_error() {
                 "row {row}: the usage line names --record"
             );
         }
+        assert!(
+            stderr
+                .trim_end()
+                .ends_with(&format!("; apps: {}", TASKS.join(" | "))),
+            "row {row}: the usage line names the six served tasks"
+        );
         assert!(!dir.exists(), "row {row}: no state directory is created");
     }
 }

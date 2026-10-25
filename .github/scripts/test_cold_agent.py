@@ -22,10 +22,18 @@ ANSWER_MARKER = "cold-agent-answer-marker"
 CHECK_MARKER = "cold-agent-check-marker"
 VERBS = ["snapshot", "click", "type", "press", "advance", "scroll", "screenshot", "lint", "start", "status", "stop", "help"]
 TOOLS = ["mcp__escher__" + verb for verb in VERBS]
-APPS = ("counter", "flight-booker", "timer", "crud")
-STAND_IDS = ("counter-", "flight-", "timer-", "crud-", "task-header", "id=")
+APPS = ("counter", "flight-booker", "timer", "crud", "cells", "load")
+STAND_IDS = ("counter-", "flight-", "timer-", "crud-", "cell-", "load-", "task-header", "id=")
 
 HEADER = 'Header "" id="task-header" @0,0 800x46\n  GenericContainer "" id="task-header-spacer" @181,22.5 603x0\n'
+
+
+def cells(b1, z25):
+    """A Cells screen of eight lines: read in two parts, B1 in the first and Z25 in the second."""
+    rows = [("A0", "5"), ("B1", b1), ("C2", ""), ("D3", ""), ("E4", ""), ("Z25", z25)]
+    return HEADER + "".join(f'GenericContainer "{value}" id="cell-{cell}"\n' for cell, value in rows)
+
+
 SCREENS = {
     "counter": [HEADER + f'Paragraph "{n}" id="counter-value" @314,309 60x28\n' for n in range(4)],
     "flight-booker": [
@@ -40,26 +48,45 @@ SCREENS = {
         HEADER + 'ListBoxOption "Emil, Hans" id="crud-person-0"\nListBoxOption "Tisch, Roman" id="crud-person-2"\n',
         HEADER + 'ListBoxOption "Tischler, Roman" id="crud-person-2"\nListBoxOption "Lovelace, Ada" id="crud-person-3"\n',
     ],
+    "cells": [cells("", ""), cells("10", "11")],
+    "load": [
+        HEADER + 'Button "Load" id="load-fetch"\n',
+        HEADER + 'Button "Load" id="load-fetch"\nParagraph "Loaded" id="load-done"\n',
+    ],
 }
+# The apps whose screen reads in parts, with the count of parts.
+PAGES = {"cells": 2}
 ACTS = {
     "counter": [("click", {"id": "counter-increment"})] * 3,
     "flight-booker": [("click", {"id": "flight-book"})],
     "timer": [("advance", {"ms": 10000})],
     "crud": [("click", {"id": "crud-create"})],
+    "cells": [("type", {"id": "cell-input", "text": "=B1+1"})],
+    "load": [("click", {"id": "load-fetch"})],
+}
+# The calls each app's flow makes after its final snapshot: the capabilities the verdict counts.
+EXTRA = {
+    "flight-booker": [("screenshot", {})],
+    "cells": [("snapshot", {"part": 2}), ("lint", {})],
 }
 EXPECT = {
     "counter": ['"3" id="counter-value"'],
     "flight-booker": ["Booked return flight: 24.12.2026"],
     "timer": ["Elapsed: 10.0s", '"10.0s" id="timer-duration-value"'],
     "crud": ["Lovelace, Ada", "Tischler, Roman"],
+    "cells": ['"10" id="cell-B1"'],
+    "load": ['"Loaded" id="load-done"'],
 }
 SPACER_CLICK = {"tool": "mcp__escher__click", "arguments": {"id": "task-header-spacer"}}
 LEFT = {"tool": "mcp__escher__press", "arguments": {"key": "arrowleft"}}
 STOP = {"tool": "mcp__escher__stop"}
+HELP = {"tool": "mcp__escher__help"}
 
 # The fake stands in for the built `escher-session`: its `mcp` role answers the twelve tools, holds one app at a
-# time, answers a snapshot with the scenario's screen for that app indexed by its count of accepted acting calls, and
-# writes one tool_call span line per tools/call on stderr when RUST_LOG=info, as escher's sink does.
+# time, answers a snapshot with the scenario's screen for that app indexed by its count of accepted acting calls — a
+# paged app's as the JSON line of the part asked, its lines cut into the scenario's count of parts — writes one
+# tool_call span line per tools/call on stderr when RUST_LOG=info, as escher's sink does, and under `--record <dir>`
+# keeps one check per accepted start in that directory, opening with the start's record.
 FAKE = """\
 #!/usr/bin/env python3
 import json, os, sys
@@ -71,7 +98,9 @@ with open(__SPAWNS__, "a", encoding="utf-8") as f:
 VERBS = __VERBS__
 ACTING = {"click", "type", "press", "advance", "scroll"}
 screens = scenario["screens"]
+pages = scenario.get("pages", {})
 refuse = scenario["refuse"]
+record = sys.argv[sys.argv.index("--record") + 1] if "--record" in sys.argv else None
 spans = os.environ.get("RUST_LOG") == "info"
 drop = scenario.get("drop_span", False)
 started, acts = None, 0
@@ -85,6 +114,10 @@ def call(name, arguments):
         if started is not None:
             return "error", '{"error":{"kind":"already-running"}}'
         started, acts = arguments["app"], 0
+        if record is not None and not scenario.get("no_record"):
+            kept = len(os.listdir(record)) + 1
+            with open(os.path.join(record, "check-%d.json" % kept), "w", encoding="utf-8") as f:
+                json.dump([{"tool": "start", "arguments": {"app": scenario.get("record_as", started)}}], f)
         return "accepted", json.dumps({"label": started})
     if name in ("help", "status"):
         return "accepted", "{}"
@@ -96,7 +129,14 @@ def call(name, arguments):
         started = None
         return "accepted", '{"stopped":true}'
     if name in ("snapshot", "screenshot"):
-        return "accepted", screens[started][min(acts, len(screens[started]) - 1)]
+        screen = screens[started][min(acts, len(screens[started]) - 1)]
+        if name == "screenshot" or started not in pages:
+            return "accepted", screen
+        lines, parts = screen.splitlines(keepends=True), pages[started]
+        size = -(-len(lines) // parts)
+        part = arguments.get("part", 1)
+        text = "".join(lines[(part - 1) * size:part * size])
+        return "accepted", json.dumps({"text": text, "part": part, "parts": parts})
     if name == "lint":
         return "accepted", '{"findings":[]}'
     if any(value in refuse for value in arguments.values()):
@@ -197,17 +237,25 @@ sys.exit(scenario.get("exit", 0))
 """
 
 
-def flow(counter_clicks=3, snapshot_apps=APPS):
-    """The agent's calls: each app started, driven, snapshotted and stopped in turn."""
+def flow(counter_clicks=3, snapshot_apps=APPS, acts=ACTS, extra=EXTRA):
+    """The agent's calls: each app started, driven, snapshotted, its counted capabilities used and stopped in turn."""
     calls = []
     for app in APPS:
-        acts = ACTS[app] if app != "counter" else ACTS[app][:1] * counter_clicks
+        driven = acts[app] if app != "counter" else acts[app][:1] * counter_clicks
         calls.append({"tool": "mcp__escher__start", "arguments": {"app": app}})
-        calls += [{"tool": "mcp__escher__" + tool, "arguments": arguments} for tool, arguments in acts]
+        calls += [{"tool": "mcp__escher__" + tool, "arguments": arguments} for tool, arguments in driven]
         if app in snapshot_apps:
             calls.append({"tool": "mcp__escher__snapshot"})
+        calls += [{"tool": "mcp__escher__" + tool, "arguments": arguments} for tool, arguments in extra.get(app, [])]
         calls.append(STOP)
     return calls
+
+
+def with_wrong(wrong, total):
+    """The flow with `wrong` refused presses inside the counter's session, padded with help calls to `total` calls."""
+    calls = flow()
+    calls = calls[:1] + [LEFT] * wrong + calls[1:]
+    return calls + [HELP] * (total - len(calls))
 
 
 def stand_check(expect=None, apps=APPS):
@@ -267,7 +315,7 @@ class ColdAgentPipeTest(unittest.TestCase):
 
     def run_scenario(self, calls=None, **knobs):
         scenario = {"calls": flow() if calls is None else calls, "check": stand_check(), "screens": SCREENS,
-                    "refuse": ["task-header-spacer", "arrowleft"]}
+                    "pages": PAGES, "refuse": ["task-header-spacer", "arrowleft"]}
         scenario.update(knobs)
         if scenario["check"] is None:
             del scenario["check"]
@@ -285,6 +333,10 @@ class ColdAgentPipeTest(unittest.TestCase):
     def client_record(self):
         return json.loads(self.record.read_text(encoding="utf-8"))
 
+    def live_spawn(self):
+        """The live server's arguments as the fake records them: the `mcp` role keeping its sessions under record/."""
+        return "mcp --record " + str((self.state / "record").resolve())
+
     def spawned(self):
         return self.spawns.read_text(encoding="utf-8").splitlines() if self.spawns.exists() else []
 
@@ -300,7 +352,7 @@ class ColdAgentPipeTest(unittest.TestCase):
         self.assertEqual((verdict["outcome"], verdict["reasons"]), ("passed", []))
         return verdict
 
-    def test_a_four_app_run_passes_with_no_wrong_call(self):
+    def test_a_six_app_run_passes_with_no_wrong_call(self):
         proc = self.run_scenario()
         verdict = self.assert_passed(proc)
         start, end = self.json_lines(proc.stdout)
@@ -309,10 +361,14 @@ class ColdAgentPipeTest(unittest.TestCase):
         calls = len(flow())
         self.assertEqual(
             {k: verdict[k] for k in ("isolated", "counts_agree", "tool_calls", "server_tool_calls", "refused_calls",
-                                     "error_calls", "wrong_calls", "spacer_calls", "tasks_met", "check_steps",
-                                     "check_expects", "check_passed", "check_can_fail")},
+                                     "error_calls", "wrong_calls", "wrong_call_bar_pct", "spacer_calls", "lint_calls",
+                                     "screenshot_calls", "advance_calls", "part_reads", "recorded_sessions",
+                                     "recording_kept", "tasks_met", "check_steps", "check_expects", "check_passed",
+                                     "check_can_fail")},
             {"isolated": True, "counts_agree": True, "tool_calls": calls, "server_tool_calls": calls,
-             "refused_calls": 0, "error_calls": 0, "wrong_calls": 0, "spacer_calls": 0, "tasks_met": list(APPS),
+             "refused_calls": 0, "error_calls": 0, "wrong_calls": 0, "wrong_call_bar_pct": 5, "spacer_calls": 0,
+             "lint_calls": 1, "screenshot_calls": 1, "advance_calls": 1, "part_reads": 1,
+             "recorded_sessions": len(APPS), "recording_kept": True, "tasks_met": list(APPS),
              "check_steps": len(stand_check()), "check_expects": sum(len(texts) for texts in EXPECT.values()),
              "check_passed": True, "check_can_fail": True},
         )
@@ -327,19 +383,26 @@ class ColdAgentPipeTest(unittest.TestCase):
         self.assertNotIn("final_count", verdict)
         self.assertEqual({k: v for k, v in end.items() if k != "event"}, verdict)
         self.assertEqual(sorted(p.name for p in self.state.iterdir()),
-                         ["check.json", "client.log", "events.jsonl", "server.log", "transcript.jsonl", "verdict.json"])
+                         ["check.json", "client.log", "events.jsonl", "record", "server.log", "transcript.jsonl",
+                          "verdict.json"])
         self.assertEqual(json.loads((self.state / "check.json").read_text(encoding="utf-8")), stand_check())
-        self.assertEqual(self.spawned(), ["mcp", "mcp", "mcp"])
+        self.assertEqual(self.spawned(), [self.live_spawn(), "mcp", "mcp"])
 
     def test_wrong_calls_are_counted_from_the_span_lines_and_agree_with_the_transcript(self):
         calls = flow()
         proc = self.run_scenario([STOP, calls[0], LEFT, LEFT] + calls[1:])
-        verdict = self.assert_passed(proc)
+        verdict = self.assert_failed_with(proc, ["wrong-calls-over-bar"])
         self.assertEqual(
             [verdict[k] for k in ("refused_calls", "error_calls", "wrong_calls", "transcript_errors", "counts_agree",
                                   "server_tool_calls")],
             [2, 1, 3, 3, True, len(calls) + 3],
         )
+
+    def test_five_wrong_calls_of_a_hundred_pass_and_six_fail_the_bar(self):
+        verdict = self.assert_passed(self.run_scenario(with_wrong(5, 100)))
+        self.assertEqual((verdict["wrong_calls"], verdict["tool_calls"], verdict["counts_agree"]), (5, 100, True))
+        verdict = self.assert_failed_with(self.run_scenario(with_wrong(6, 100)), ["wrong-calls-over-bar"])
+        self.assertEqual((verdict["wrong_calls"], verdict["tool_calls"]), (6, 100))
 
     def test_a_tool_outside_the_escher_server_is_a_wrong_call(self):
         proc = self.run_scenario([{"tool": "Bash", "arguments": {"command": "ls"}}] + flow())
@@ -360,18 +423,48 @@ class ColdAgentPipeTest(unittest.TestCase):
 
     def test_an_unmet_app_fails(self):
         verdict = self.assert_failed_with(self.run_scenario(flow(counter_clicks=2)), ["task-unmet"])
-        self.assertEqual(verdict["tasks_met"], ["flight-booker", "timer", "crud"])
+        self.assertEqual(verdict["tasks_met"], list(APPS[1:]))
 
     def test_an_app_without_a_final_snapshot_is_unmet(self):
         calls = flow(snapshot_apps=APPS[:3]) + [{"tool": "mcp__escher__snapshot"}]
         verdict = self.assert_failed_with(self.run_scenario(calls), ["task-unmet"])
         self.assertEqual((verdict["tasks_met"], verdict["error_calls"]), (list(APPS[:3]), 1))
 
+    def test_a_paged_answer_is_read_as_its_parts_joined(self):
+        verdict = self.assert_passed(self.run_scenario())
+        self.assertIn("cells", verdict["tasks_met"])
+        transcript = (self.state / "transcript.jsonl").read_text(encoding="utf-8")
+        self.assertNotIn('"10" id="cell-B1"', transcript)
+        self.assertIn(r'\\\"10\\\" id=\\\"cell-B1\\\"', transcript)
+        extra = dict(EXTRA, cells=[("lint", {})])
+        verdict = self.assert_failed_with(self.run_scenario(flow(extra=extra)), ["task-unmet", "capability-unused"])
+        self.assertEqual((verdict["tasks_met"], verdict["part_reads"]), ([app for app in APPS if app != "cells"], 0))
+
+    def test_each_unused_capability_fails(self):
+        timer_pressed = dict(ACTS, timer=[("press", {"key": "arrowright"})])
+        cases = (
+            ("lint_calls", {"extra": dict(EXTRA, cells=[("snapshot", {"part": 2})])}, {}),
+            ("screenshot_calls", {"extra": dict(EXTRA, **{"flight-booker": []})}, {}),
+            ("advance_calls", {"acts": timer_pressed}, {}),
+            ("part_reads", {"extra": dict(EXTRA, cells=[("lint", {})])}, {"pages": {"cells": 1}}),
+        )
+        for field, shape, knobs in cases:
+            with self.subTest(field=field):
+                verdict = self.assert_failed_with(self.run_scenario(flow(**shape), **knobs), ["capability-unused"])
+                self.assertEqual(verdict[field], 0)
+                self.assertEqual(verdict["tasks_met"], list(APPS))
+
+    def test_a_start_that_left_no_kept_check_fails(self):
+        for knobs, recorded in (({"no_record": True}, 0), ({"record_as": "counter"}, len(APPS))):
+            with self.subTest(knobs=knobs):
+                verdict = self.assert_failed_with(self.run_scenario(**knobs), ["recording-not-kept"])
+                self.assertEqual((verdict["recorded_sessions"], verdict["recording_kept"]), (recorded, False))
+
     def test_a_reply_without_a_check_fails(self):
         verdict = self.assert_failed_with(self.run_scenario(check=None), ["no-check"])
         self.assertEqual((verdict["check_steps"], verdict["check_passed"], verdict["check_can_fail"]), (0, False, False))
         self.assertFalse((self.state / "check.json").exists())
-        self.assertEqual(self.spawned(), ["mcp"])
+        self.assertEqual(self.spawned(), [self.live_spawn()])
 
     def test_a_check_step_answered_is_error_fails(self):
         verdict = self.assert_failed_with(self.run_scenario(check=[{"tool": "stop"}] + stand_check()),
@@ -394,7 +487,7 @@ class ColdAgentPipeTest(unittest.TestCase):
             with self.subTest(last=check[-1], steps=len(check)):
                 verdict = self.assert_failed_with(self.run_scenario(check=check), ["check-failed"])
                 self.assertFalse(verdict["check_can_fail"])
-                self.assertEqual(self.spawned(), ["mcp"])
+                self.assertEqual(self.spawned(), [self.live_spawn()])
 
     def test_a_check_that_cannot_fail_fails(self):
         expect = {app: ['id="task-header-spacer"'] for app in APPS}
@@ -406,7 +499,9 @@ class ColdAgentPipeTest(unittest.TestCase):
                                 ["check-failed", "check-cannot-fail"])
 
     def test_an_empty_session_is_never_a_pass(self):
-        verdict = self.assert_failed_with(self.run_scenario([], check=None), ["no-tool-call", "task-unmet", "no-check"])
+        verdict = self.assert_failed_with(self.run_scenario([], check=None),
+                                          ["no-tool-call", "task-unmet", "capability-unused", "recording-not-kept",
+                                           "no-check"])
         self.assertEqual((verdict["tool_calls"], verdict["tasks_met"]), (0, []))
 
     def test_a_tool_beside_the_escher_tools_is_not_isolated(self):
@@ -499,9 +594,11 @@ class ColdAgentPipeTest(unittest.TestCase):
         self.assertTrue(Path(argv[argv.index("--mcp-config") + 1]).is_absolute())
         (name, server), = record["mcp"]["mcpServers"].items()
         self.assertEqual((name, server["type"], server["command"]), ("escher", "stdio", "sh"))
-        self.assertEqual(server["args"], ["-c", 'exec env RUST_LOG=info "$1" mcp 2>"$2"', "sh",
-                                          str(self.server.resolve()), str((self.state / "server.log").resolve())])
+        self.assertEqual(server["args"], ["-c", 'exec env RUST_LOG=info "$1" mcp --record "$3" 2>"$2"', "sh",
+                                          str(self.server.resolve()), str((self.state / "server.log").resolve()),
+                                          str((self.state / "record").resolve())])
         self.assertIn(' span="tool_call" ', (self.state / "server.log").read_text(encoding="utf-8"))
+        self.assertEqual(stat.S_IMODE((self.state / "record").stat().st_mode), 0o700)
 
     def test_the_prompt_names_no_stand_id(self):
         self.run_scenario()
@@ -509,8 +606,9 @@ class ColdAgentPipeTest(unittest.TestCase):
         prompt = argv[argv.index("-p") + 1]
         for token in STAND_IDS:
             self.assertNotIn(token, prompt.casefold())
-        for goal in ("reads 3", "24.12.2026", "31.12.2026", "10 seconds", "10.0s", "Ada Lovelace", "Tischler",
-                     "Hans Emil", "```json"):
+        for goal in ("six apps", "reads 3", "24.12.2026", "31.12.2026", "flight type control", "screenshot",
+                     "10 seconds", "10.0s", "Ada Lovelace", "Tischler", "Hans Emil", "A0 holds 5", "=A0*2", "reads 10",
+                     "Z25", "=B1+1", "reads 11", "visual lint", "Load page", "message is shown", "```json"):
             self.assertIn(goal, prompt)
 
     def test_the_session_runs_outside_the_root_in_a_directory_removed_after(self):

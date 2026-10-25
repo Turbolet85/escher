@@ -1,0 +1,33 @@
+# security · Dependency Security — category read
+
+## Carried
+- (.andromeda/security-plan-detail/dependency-security.md:8) The chunk's tree, whatever the stand and the pipe take, must read green under the audit command over the whole workspace's graph, advisories and licences both.
+  > **Audit tool:** cargo-deny 0.20.2 — `cargo deny --locked --workspace --all-features check advisories licenses` against the RustSec advisory database and the licence table, over the whole workspace's graph
+- (.andromeda/security-plan-detail/dependency-security.md:8) Any advisory the chunk meets must be met by a per-ID ignore with a written reason or a fix, never a blanket allow or a lowered `unmaintained`/`unsound`; the eight standing ignores are the count the chunk must keep unless it records a change.
+  > `[advisories]` per-ID ignores only, each with a written reason, no blanket allow, `unmaintained` and `unsound` at their defaults (deny.toml:1-29; .github/scripts/ci-leg.sh:38). The file also holds a `[licenses]` table, which the audit leg reads since 2026-10-14-quality-gates (deny.toml:31-50; Supply chain integrity below). Eight ignores stand.
+- (.andromeda/security-plan-detail/dependency-security.md:9) If the Dependency audit turns red at this chunk's CI over a `Cargo.lock` and `deny.toml` unchanged from a green base, it must be handled as the recorded external-decay pattern — per-ID ignores on a recorded word, the red and green runs cited — never folded silently.
+  > on the operator's word under the playbook's External decay pattern (2026-10-17) — external decay: the three advisories turned the Dependency audit red (CI#39055555592 on `3eda07bc`) over the tree `45fcd733` that had read green (CI#39043080454), and the ignores read green (CI#39056637407 on `ae8c8daf`)
+- (.andromeda/security-plan-detail/dependency-security.md:10) A crate the extended stand (or a load-in-flight stand-in) pulls into seven_guis' or blitz-tests' build graph enters the audit's reach, so any such addition must be audited as part of the resolved graph.
+  > The audit's reach is cargo-deny's resolved graph, not the whole lockfile.
+- (.andromeda/security-plan-detail/dependency-security.md:11) The chunk's audit reading must match the latest recorded baseline — no ignore added, every standing ignore still encountered, the same two warnings and no new one.
+  > with no ignore added; every standing ignore is still encountered, and the leg prints two warnings, `yanked` clipboard-win 5.4.1 and `license-not-encountered` NCSA (deny.toml:46)
+- (.andromeda/security-plan-detail/dependency-security.md:17) Any package that enters `Cargo.lock` with this chunk (e.g. for Cells, the select or a held load on the stand) must come from crates.io with a checksum and be reviewed by hand on these five points.
+  > each from crates.io with a checksum and reviewed by hand for licence, repository, build script, proc-macro flag and direct dependent
+- (.andromeda/security-plan-detail/dependency-security.md:28) The acceptance's replay half (an agent-written check and possibly a `--record` kept check through `Check::from_bytes` / `Check::replay`) must keep `serde_json` as escher-driver's featureless, read-only reader — no `preserve_order`, writing nothing.
+  > inherited by escher-driver with no feature and no `[features]` table — so no `preserve_order` (packages/escher-driver/Cargo.toml:17): the reader of the MCP server's untrusted stdin (`from_str::<Value>`) and, since 2026-10-19-session-recording, of a kept check's bytes (`Check::from_bytes`) and, since 2026-10-19-recorded-check-replay, of the driver's own answer line the replay compares (`from_str` in `Check::replay`), writing nothing
+- (.andromeda/security-plan-detail/dependency-security.md:48) Licences gate every push: any dependency the chunk adds must keep the leg reading `licenses ok` under upstream's unchanged `[licenses]` table.
+  > the audit leg runs it on every push since 2026-10-14-quality-gates — `licenses` over the whole workspace's graph, reading `licenses ok` on the dev host and in CI#38692629940 — so the fork gates on licences
+- (.andromeda/security-plan.md:229) Each standing ignore is re-read on every push, so the chunk's flip run is itself an audit reading the verdict must show green.
+  > each ignore re-read on every push; the reach is cargo-deny's resolved graph, not the whole lockfile.
+- (.andromeda/security-plan.md:237) A dev-dependency the chunk adds to blitz-tests (its re-pinned stand checks) must be inherited with `workspace = true`, as every one there is.
+  > and every dev-dependency of blitz-tests (tests/blitz-tests/Cargo.toml:15-42)
+- (.andromeda/security-plan.md:253) The chunk's CI must pass the slow-tier "Dependency audit" job, which `ci-leg.sh fast` does not run — read it in CI or with the `audit` leg.
+  > ci.yml's `audit` job ("Dependency audit") runs `bash .github/scripts/ci-leg.sh audit` on every pull request and push, in the slow tier behind the four fast jobs
+- (.andromeda/security-plan.md:264) Every cargo leg the chunk moves — `stand-repeat`'s targets included — must still run `--locked`, so any lock change is committed with the chunk.
+  > and so does every ci.yml cargo leg — the leg script's build, test, clippy (both lines), doc, msrv, counter, wasm, audit, a11y, coverage and, since 2026-10-14-quality-gates, stand-repeat commands and the matrix command
+
+## Bindings
+- **Hand review of an entering package ↔ the P4 load-in-flight fork (scope; API Security, security-plan body)**: a held load on the stand that took a provider crate (blitz-net, reqwest or a new one) into seven_guis' graph would put new packages under the audit's reach and the hand review, beside the body's outbound-request limits (.andromeda/security-plan.md:211) — (.andromeda/security-plan-detail/dependency-security.md:17)
+- **Audit leg ↔ tests §CI Integration / the chunk's flip CI**: the Dependency audit is a slow-tier CI job outside `ci-leg.sh fast`; the chunk's verdict reads it green there, a red over an unchanged lock taking the external-decay path — (.andromeda/security-plan.md:253), (.andromeda/security-plan-detail/dependency-security.md:9)
+- **serde_json read-only ↔ Input Validation (Recorded check)**: the replay half of the acceptance reads kept bytes through the strict reader, its parser featureless and writing nothing — (.andromeda/security-plan-detail/dependency-security.md:28) with (.andromeda/security-plan.md:73)
+- **`--locked` lockfile ↔ arch §Occupied Resources**: a new workspace crate (e.g. a separate stand-in for loads) is an arch registration before it lands, and its lock entry rides every `--locked` leg — (.andromeda/security-plan.md:264)

@@ -1,0 +1,356 @@
+[
+  {
+    "tool": "start",
+    "arguments": {
+      "app": "counter"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "counter-increment"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "counter-increment"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "counter-increment"
+    }
+  },
+  {
+    "tool": "snapshot",
+    "expect": [
+      "Paragraph \"3\" id=\"counter-value\""
+    ]
+  },
+  {
+    "tool": "stop"
+  },
+  {
+    "tool": "start",
+    "arguments": {
+      "app": "flight-booker"
+    }
+  },
+  {
+    "tool": "type",
+    "arguments": {
+      "id": "flight-type",
+      "text": "return"
+    }
+  },
+  {
+    "tool": "type",
+    "arguments": {
+      "id": "flight-start",
+      "text": "24.12.2026"
+    }
+  },
+  {
+    "tool": "type",
+    "arguments": {
+      "id": "flight-return-date",
+      "text": "31.12.2026"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "flight-book"
+    }
+  },
+  {
+    "tool": "screenshot"
+  },
+  {
+    "tool": "snapshot",
+    "expect": [
+      "value=\"return\"",
+      "ListBoxOption \"return flight\" id=\"flight-type-return\" selected",
+      "value=\"24.12.2026\"",
+      "value=\"31.12.2026\"",
+      "Booked return flight: 24.12.2026 → 31.12.2026"
+    ]
+  },
+  {
+    "tool": "stop"
+  },
+  {
+    "tool": "start",
+    "arguments": {
+      "app": "timer"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "timer-duration"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "arrow-left"
+    }
+  },
+  {
+    "tool": "advance",
+    "arguments": {
+      "ms": 10000
+    }
+  },
+  {
+    "tool": "snapshot",
+    "expect": [
+      "Elapsed: 10.0s",
+      "id=\"timer-duration\" enabled value=\"10\"",
+      "Unknown \"10.0s\" id=\"timer-duration-value\""
+    ]
+  },
+  {
+    "tool": "stop"
+  },
+  {
+    "tool": "start",
+    "arguments": {
+      "app": "crud"
+    }
+  },
+  {
+    "tool": "type",
+    "arguments": {
+      "id": "crud-name",
+      "text": "Ada"
+    }
+  },
+  {
+    "tool": "type",
+    "arguments": {
+      "id": "crud-surname",
+      "text": "Lovelace"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "crud-create"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "crud-person-2"
+    }
+  },
+  {
+    "tool": "type",
+    "arguments": {
+      "id": "crud-surname",
+      "text": "Tischler"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "crud-update"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "crud-person-0"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "crud-delete"
+    }
+  },
+  {
+    "tool": "snapshot",
+    "expect": [
+      "ListBoxOption \"Lovelace, Ada\"",
+      "ListBoxOption \"Tischler, Roman\"",
+      "ListBoxOption \"Mustermann, Max\""
+    ]
+  },
+  {
+    "tool": "stop"
+  },
+  {
+    "tool": "start",
+    "arguments": {
+      "app": "cells"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "cell-A0"
+    }
+  },
+  {
+    "tool": "type",
+    "arguments": {
+      "id": "cell-input",
+      "text": "5"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "enter"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "cell-B1"
+    }
+  },
+  {
+    "tool": "type",
+    "arguments": {
+      "id": "cell-input",
+      "text": "=A0*2"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "enter"
+    }
+  },
+  {
+    "tool": "scroll",
+    "arguments": {
+      "id": "cell-Z25"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "cell-Z25"
+    }
+  },
+  {
+    "tool": "type",
+    "arguments": {
+      "id": "cell-input",
+      "text": "=B1+1"
+    }
+  },
+  {
+    "tool": "press",
+    "arguments": {
+      "key": "enter"
+    }
+  },
+  {
+    "tool": "lint"
+  },
+  {
+    "tool": "snapshot",
+    "arguments": {
+      "part": 1
+    },
+    "expect": [
+      "GenericContainer \"5\" id=\"cell-A0\"",
+      "GenericContainer \"10\" id=\"cell-B1\""
+    ]
+  },
+  {
+    "tool": "snapshot",
+    "arguments": {
+      "part": 5
+    },
+    "expect": [
+      "GenericContainer \"11\" id=\"cell-Z25\""
+    ]
+  },
+  {
+    "tool": "stop"
+  },
+  {
+    "tool": "start",
+    "arguments": {
+      "app": "load"
+    }
+  },
+  {
+    "tool": "click",
+    "arguments": {
+      "id": "load-fetch"
+    }
+  },
+  {
+    "tool": "snapshot",
+    "expect": [
+      "Paragraph \"Loaded\" id=\"load-done\""
+    ]
+  },
+  {
+    "tool": "stop"
+  }
+]

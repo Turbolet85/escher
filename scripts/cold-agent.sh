@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 # The cold-agent run pipe: starts a fresh agent session whose only tools are the driver's own MCP server (the built
-# `escher-session mcp`), gives it the stand's four lean tasks, captures the session as a stream-json transcript,
-# counts its wrong calls from the server's own tool_call span lines, reads completion from the tool's own snapshot
-# answers, replays the check the agent wrote on a fresh server and writes a verdict. Four verbs, each printing JSON
+# `escher-session mcp`, keeping each session it starts as a check under record/), gives it the stand's six apps —
+# the four lean tasks, Cells and the load page — captures the session as a stream-json transcript, counts its wrong
+# calls and its calls per verb from the server's own tool_call span lines, judges the wrong calls against the
+# founder's bar, reads completion from the tool's own snapshot answers, reads that each started app left its kept
+# check, replays the check the agent wrote on a fresh server and writes a verdict. Four verbs, each printing JSON
 # lines and exiting 0 success · 1 the verb ran and failed · 2 usage · 3 a precondition is unmet. Run it from the
 # repository root after `cargo build --locked -p seven_guis --bin escher-session`. State lives in target/cold-agent/
-# only: verdict.json, events.jsonl, transcript.jsonl, client.log, server.log and check.json. The session runs from a
-# per-run mktemp -d directory whose path names nothing, removed after the run. scripts/cold-agent.ps1 delegates here
-# on Windows.
+# only: verdict.json, events.jsonl, transcript.jsonl, client.log, server.log, check.json and record/ (owner-only, its
+# kept checks parsed and never printed or copied). The session runs from a per-run mktemp -d directory whose path names
+# nothing, removed after the run. scripts/cold-agent.ps1 delegates here on Windows.
 set -euo pipefail
 
 VERBS=(run status cleanup logs)
@@ -15,15 +17,17 @@ TASKS=(stand)
 STATE_DIR=target/cold-agent
 BINARY=target/debug/escher-session
 read -r -d '' STAND_PROMPT <<'PROMPT' || true
-Use only your tools. The stand has four apps: counter, flight booker, timer and CRUD. Work on one app at a time: start it, reach its goal, take a snapshot of its final screen, then stop it before you start the next app.
+Use only your tools. The stand has six apps: counter, flight booker, timer, CRUD, cells and the load page. Work on one app at a time: start it, reach its goal, take a snapshot of its final screen, then stop it before you start the next app.
 
 The goals:
 1. Counter: the display reads 3.
-2. Flight booker: a return flight is booked, departing 24.12.2026 and returning 31.12.2026.
+2. Flight booker: a return flight is booked, departing 24.12.2026 and returning 31.12.2026, the return flight chosen on its flight type control. Before you stop it, take a screenshot of its final screen.
 3. Timer: the duration is set to 10 seconds, and time is passed until the elapsed time reads 10.0s.
 4. CRUD: the person Ada Lovelace is added, Roman Tisch's surname is changed to Tischler, and Hans Emil is deleted.
+5. Cells: cell A0 holds 5, cell B1 holds the formula =A0*2 and reads 10, and cell Z25 holds the formula =B1+1 and reads 11. Before you stop it, run one visual lint of its screen.
+6. Load page: its resource is loaded and its message is shown.
 
-Finally, reply with a check as the LAST thing in your reply: one fenced ```json block holding a JSON array of steps, each {"tool": <a tool name without its server prefix>, "arguments": {...}, "expect": [texts]} ("arguments" and "expect" optional). Run in order on a fresh server, the steps must redo all four tasks from fresh sessions, starting and stopping each app in turn; each app's part ends with a snapshot step whose "expect" lists texts from that screen which prove the task is done, before that app is stopped.
+Finally, reply with a check as the LAST thing in your reply: one fenced ```json block holding a JSON array of steps, each {"tool": <a tool name without its server prefix>, "arguments": {...}, "expect": [texts]} ("arguments" and "expect" optional). Run in order on a fresh server, the steps must redo all six tasks from fresh sessions, starting and stopping each app in turn; each app's part ends with a snapshot step whose "expect" lists texts from that screen which prove the task is done, before that app is stopped.
 PROMPT
 
 usage() {
@@ -44,6 +48,7 @@ VERDICT = os.path.join(STATE, "verdict.json")
 TRANSCRIPT = os.path.join(STATE, "transcript.jsonl")
 SERVER_LOG = os.path.join(STATE, "server.log")
 CHECK = os.path.join(STATE, "check.json")
+RECORD = os.path.join(STATE, "record")
 PREFIX = "mcp__escher__"
 VERBS = ("snapshot", "click", "type", "press", "advance", "scroll", "screenshot", "lint", "start", "status", "stop", "help")
 TOOLS = {PREFIX + verb for verb in VERBS}
@@ -55,12 +60,20 @@ DONE = {
     "flight-booker": (['Paragraph "Booked return flight: 24.12.2026 → 31.12.2026" id="flight-booked"'], []),
     "timer": (['Paragraph "Elapsed: 10.0s" id="timer-elapsed"', 'Unknown "10.0s" id="timer-duration-value"'], []),
     "crud": (['ListBoxOption "Lovelace, Ada"', 'ListBoxOption "Tischler, Roman"'], ['id="crud-person-0"']),
+    "cells": (['GenericContainer "10" id="cell-B1"', 'GenericContainer "11" id="cell-Z25"'], []),
+    "load": (['Paragraph "Loaded" id="load-done"'], []),
 }
 APPS = tuple(DONE)
+# The verbs whose accepted calls the verdict counts, each a capability the run must exercise at least once.
+COUNTED = ("lint", "screenshot", "advance")
+# The founder's wrong-call bar: at most this percentage of the run's tool calls may be wrong.
+WRONG_CALL_BAR_PCT = 5
 MAX_CHECK_BYTES = 65536
 MAX_CHECK_STEPS = 400
 REPLY_BOUND = 30
 FENCE = re.compile(r"```json[ \t]*\r?\n(.*?)```", re.DOTALL)
+SPAN_FIELD = re.compile(r' (tool|ending)="([a-z-]+)"')
+KEPT = re.compile(r"check-([0-9]+)\.json")
 
 
 def now():
@@ -154,7 +167,30 @@ def span_counts():
         pass
     refused = sum(1 for line in lines if ' ending="refused" ' in line)
     errors = sum(1 for line in lines if ' ending="error" ' in line)
-    return len(lines), refused, errors
+    accepted = {verb: 0 for verb in COUNTED}
+    for line in lines:
+        fields = dict(SPAN_FIELD.findall(line))
+        if fields.get("ending") == "accepted" and fields.get("tool") in accepted:
+            accepted[fields["tool"]] += 1
+    return len(lines), refused, errors, accepted
+
+
+def paged(text):
+    """A paged snapshot's answer line read as (text, part), or None for any other answer."""
+    try:
+        line = json.loads(text)
+    except ValueError:
+        return None
+    if (isinstance(line, dict) and set(line) == {"text", "part", "parts"} and isinstance(line["text"], str)
+            and isinstance(line["part"], int)):
+        return line["text"], line["part"]
+    return None
+
+
+def screen_text(text):
+    """The screen text an answer holds: a paged answer's own text, else the answer as it is."""
+    page = paged(text)
+    return page[0] if page is not None else text
 
 
 def done(app, text):
@@ -163,6 +199,8 @@ def done(app, text):
 
 
 def tasks_met(transcript, uses):
+    """The apps whose done state the latest snapshot answers read while the app was started: a whole screen's last
+    answer, or the latest answer of each part read of a screen read in parts, joined in part order."""
     started = None
     last = {}
     for record in transcript:
@@ -174,11 +212,63 @@ def tasks_met(transcript, uses):
             if name == PREFIX + "start" and accepted:
                 app = arguments.get("app")
                 started = app if isinstance(app, str) and app in DONE else None
+                if started is not None:
+                    last[started] = {}
             elif name == PREFIX + "stop" and accepted:
                 started = None
-            elif name == PREFIX + "snapshot" and started is not None:
-                last[started] = text_of(block.get("content"))
-    return [app for app in APPS if app in last and done(app, last[app])]
+            elif name == PREFIX + "snapshot" and accepted and started is not None:
+                text = text_of(block.get("content"))
+                page = paged(text)
+                if page is None:
+                    last[started] = {0: text}
+                else:
+                    last[started].pop(0, None)
+                    last[started][page[1]] = page[0]
+    read = {app: "".join(parts[n] for n in sorted(parts)) for app, parts in last.items()}
+    return [app for app in APPS if app in read and done(app, read[app])]
+
+
+def part_reads(transcript, uses):
+    """The accepted snapshot calls whose arguments name a part."""
+    count = 0
+    for record in transcript:
+        if record.get("type") != "user":
+            continue
+        for block in blocks(record, "tool_result"):
+            name, arguments = uses.get(block.get("tool_use_id"), (None, {}))
+            if name == PREFIX + "snapshot" and "part" in arguments and block.get("is_error") is not True:
+                count += 1
+    return count
+
+
+def started_in_order(transcript, uses):
+    """The app of each accepted start, in order."""
+    apps = []
+    for record in transcript:
+        if record.get("type") != "user":
+            continue
+        for block in blocks(record, "tool_result"):
+            name, arguments = uses.get(block.get("tool_use_id"), (None, {}))
+            if name == PREFIX + "start" and block.get("is_error") is not True:
+                apps.append(arguments.get("app"))
+    return apps
+
+
+def recording(starts):
+    """(kept checks, whether each accepted start left one kept check opening with its app's start record, in
+    order). A kept check is parsed here and never printed or copied."""
+    try:
+        names = os.listdir(RECORD)
+    except OSError:
+        return 0, False
+    numbered = sorted((int(m.group(1)), name) for name in names for m in [KEPT.fullmatch(name)] if m)
+    opened = []
+    for _, name in numbered:
+        kept = load_json(os.path.join(RECORD, name))
+        first = kept[0] if isinstance(kept, list) and kept else None
+        is_start = isinstance(first, dict) and first.get("tool") == "start" and isinstance(first.get("arguments"), dict)
+        opened.append(first["arguments"].get("app") if is_start else None)
+    return len(numbered), bool(starts) and len(names) == len(numbered) and opened == starts
 
 
 def extract_check(result):
@@ -286,7 +376,7 @@ def judge_check(check, binary):
     apps = started_apps(check)
     passed = (
         answers is not None
-        and all(not is_error and all(t in answer for t in step.get("expect", []))
+        and all(not is_error and all(t in answer or t in screen_text(answer) for t in step.get("expect", []))
                 for step, (is_error, answer) in zip(check, answers))
         and any(step["tool"] in ACTING for step in check)
         and any(step.get("expect") for step in check)
@@ -298,7 +388,7 @@ def judge_check(check, binary):
     if ablated is not None:
         answer_of = dict(zip(kept, (answer for _, answer in ablated)))
         can_fail = all(
-            any(t not in answer_of[i] for i, step in enumerate(check)
+            any(t not in answer_of[i] and t not in screen_text(answer_of[i]) for i, step in enumerate(check)
                 if apps[i] == app and step["tool"] == "snapshot" for t in step.get("expect", []))
             for app in APPS
         )
@@ -320,7 +410,7 @@ def verdict(task, client_exit, root_name, binary):
         if record.get("type") == "user":
             for block in blocks(record, "tool_result"):
                 results[block.get("tool_use_id")] = block.get("is_error") is True
-    server_calls, refused, errors = span_counts()
+    server_calls, refused, errors, accepted = span_counts()
     escher_uses = [i for i, (name, _) in uses.items() if isinstance(name, str) and name.startswith(PREFIX)]
     escher_errors = sum(1 for i in escher_uses if results.get(i))
     foreign = len(uses) - len(escher_uses)
@@ -338,6 +428,8 @@ def verdict(task, client_exit, root_name, binary):
     usage = (result or {}).get("usage") or {}
     succeeded = result is not None and result.get("subtype") == "success" and result.get("is_error") is False
     met = tasks_met(transcript, uses)
+    wrong_calls = refused + errors + foreign + len(denials)
+    recorded_sessions, recording_kept = recording(started_in_order(transcript, uses))
     v = {
         "task": task,
         "client_exit": client_exit,
@@ -349,10 +441,17 @@ def verdict(task, client_exit, root_name, binary):
         "server_tool_calls": server_calls,
         "refused_calls": refused,
         "error_calls": errors,
-        "wrong_calls": refused + errors + foreign + len(denials),
+        "wrong_calls": wrong_calls,
+        "wrong_call_bar_pct": WRONG_CALL_BAR_PCT,
         "transcript_errors": sum(1 for e in results.values() if e),
         "counts_agree": server_calls == len(escher_uses) and refused + errors == escher_errors,
         "spacer_calls": sum(1 for i in escher_uses if uses[i][1].get("id") == SPACER),
+        "lint_calls": accepted["lint"],
+        "screenshot_calls": accepted["screenshot"],
+        "advance_calls": accepted["advance"],
+        "part_reads": part_reads(transcript, uses),
+        "recorded_sessions": recorded_sessions,
+        "recording_kept": recording_kept,
         "tasks_met": met,
         "check_steps": len(check_steps),
         "check_expects": sum(len(s["expect"]) for s in check_steps
@@ -381,6 +480,12 @@ def verdict(task, client_exit, root_name, binary):
         reasons.append("no-tool-call")
     if len(met) != len(APPS):
         reasons.append("task-unmet")
+    if 0 in (v["lint_calls"], v["screenshot_calls"], v["advance_calls"], v["part_reads"]):
+        reasons.append("capability-unused")
+    if not recording_kept:
+        reasons.append("recording-not-kept")
+    if wrong_calls * 100 > WRONG_CALL_BAR_PCT * v["tool_calls"]:
+        reasons.append("wrong-calls-over-bar")
     if check is None:
         reasons.append("no-check")
     else:
@@ -395,10 +500,10 @@ def verdict(task, client_exit, root_name, binary):
 
 def main(verb, *args):
     if verb == "config":
-        session, binary, server_log = args
-        server = 'exec env RUST_LOG=info "$1" mcp 2>"$2"'
+        session, binary, server_log, record = args
+        server = 'exec env RUST_LOG=info "$1" mcp --record "$3" 2>"$2"'
         config = {"mcpServers": {"escher": {"type": "stdio", "command": "sh",
-                                            "args": ["-c", server, "sh", binary, server_log]}}}
+                                            "args": ["-c", server, "sh", binary, server_log, record]}}}
         with open(os.path.join(session, "mcp.json"), "w", encoding="utf-8", newline="\n") as f:
             json.dump(config, f)
         return 0
@@ -463,12 +568,13 @@ run)
     root_name=$(basename "$(git rev-parse --show-toplevel 2>/dev/null || pwd)")
     rm -rf "$STATE_DIR"
     mkdir -p "$STATE_DIR"
+    mkdir -m 700 "$STATE_DIR/record"
     : >"$STATE_DIR/events.jsonl"
     state="$PWD/$STATE_DIR"
     binary="$PWD/$BINARY"
     session=$(mktemp -d)
     trap 'rm -rf "$session"' EXIT
-    py config "$session" "$binary" "$state/server.log"
+    py config "$session" "$binary" "$state/server.log" "$state/record"
     py run-start "$task"
     client_exit=0
     (

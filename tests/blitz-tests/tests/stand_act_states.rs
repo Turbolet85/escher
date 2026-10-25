@@ -1,9 +1,9 @@
 //! The step that changes what a control states of itself returns that control in its diff, as
 //! it reads after the step. On the stand's flight booker and CRUD, through the driver, in both
-//! layout modes: a click on the other flight mode returns both mode buttons with their pressed
-//! readings swapped, a click on a row returns that row selected and the row it leaves not
-//! selected, and a text typed into the start date returns that field invalid when the text is
-//! no date and not invalid when it is one. Each returned diff equals `Snapshot::diff` over this
+//! layout modes: a `type` choosing the other flight type returns the select with the value it
+//! chose and both of its options with their selected readings swapped, a click on a row returns
+//! that row selected and the row it leaves not selected, and a text typed into the start date
+//! returns that field invalid when the text is no date and not invalid when it is one. Each returned diff equals `Snapshot::diff` over this
 //! file's own snapshots taken either side of the call, and the two layout modes return equal
 //! diffs. A diff is content: this file prints none, and a failure message carries the layout
 //! mode, the task and a step index, never an id or what a screen reads.
@@ -77,23 +77,35 @@ fn assert_modes_agree(runs: &[Vec<SnapshotDiff>]) {
 }
 
 #[test]
-fn a_flight_mode_click_returns_both_mode_buttons_with_their_pressed_reading() {
+fn a_flight_type_choice_returns_the_select_value_and_both_options_selected_reading() {
     let mut runs = Vec::new();
     for incremental in [false, true] {
         let mut flight = Held::task(LeanTask::FlightBooker, incremental);
-        let pressed = |acted: &Acted, id: &str| changed(acted, id).map(|state| state.pressed);
+        let selected = |acted: &Acted, id: &str| changed(acted, id).map(|state| state.selected);
+        let value =
+            |acted: &Acted| changed(acted, "flight-type").and_then(|state| state.value.clone());
 
-        let chosen = flight.step(&click("flight-return"));
+        let chosen = flight.step(&type_into("flight-type", "return"));
         assert!(
-            pressed(&chosen, "flight-one-way") == Some(Some(false))
-                && pressed(&chosen, "flight-return") == Some(Some(true)),
-            "{}: step 0 returns the mode left not pressed and the mode chosen pressed",
+            value(&chosen).as_deref() == Some("return"),
+            "{}: step 0 returns the select reading the type chosen",
             flight.mode
         );
-        let back = flight.step(&click("flight-one-way"));
         assert!(
-            pressed(&back, "flight-one-way") == Some(Some(true))
-                && pressed(&back, "flight-return") == Some(Some(false)),
+            selected(&chosen, "flight-type-one-way") == Some(Some(false))
+                && selected(&chosen, "flight-type-return") == Some(Some(true)),
+            "{}: step 0 returns the option left not selected and the option chosen selected",
+            flight.mode
+        );
+        let back = flight.step(&type_into("flight-type", "one"));
+        assert!(
+            value(&back).as_deref() == Some("one-way"),
+            "{}: step 1 returns the select reading the type chosen back",
+            flight.mode
+        );
+        assert!(
+            selected(&back, "flight-type-one-way") == Some(Some(true))
+                && selected(&back, "flight-type-return") == Some(Some(false)),
             "{}: step 1 returns the two readings swapped back",
             flight.mode
         );

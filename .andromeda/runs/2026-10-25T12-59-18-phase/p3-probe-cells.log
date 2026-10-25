@@ -1,0 +1,41 @@
+PROBE mode=false boot_ms=129
+PROBE text_bytes=47949 lines=740 parts=5
+PROBE line         Main "" id="task-body" @0,46 800x554
+PROBE line               GenericContainer "" id="cell-A0" @59,77 80x22
+PROBE line               GenericContainer "" id="cell-B1" @139,99 80x22
+PROBE line               GenericContainer "" id="cell-B10" @139,297 80x22
+PROBE line               GenericContainer "" id="cell-B11" @139,319 80x22
+PROBE line               GenericContainer "" id="cell-B12" @139,341 80x22
+PROBE snapshot ms=9 part 1/5 9959B
+PROBE part1 ms=9 part 1/5 9959B
+PROBE click_A0 ms=110 Acted { settled: true, busy: None, diff: SnapshotDiff { added: [DiffNode { id: "cell-input", parent: Some("cell-A0"), role: TextInput, name: "", state: NodeStat
+PROBE type_input ms=157 Acted { settled: true, busy: None, diff: SnapshotDiff { added: [], removed: [], changed: [DiffNode { id: "cell-input", parent: Some("cell-A0"), role: TextInput,
+PROBE enter ms=106 Acted { settled: true, busy: None, diff: SnapshotDiff { added: [], removed: ["cell-input"], changed: [DiffNode { id: "cell-A0", parent: Some("TaskShell/Cells/di
+PROBE click_B1 ms=111 Acted { settled: true, busy: None, diff: SnapshotDiff { added: [DiffNode { id: "cell-input", parent: Some("cell-B1"), role: TextInput, name: "", state: NodeStat
+PROBE type_input2 ms=321 Acted { settled: true, busy: None, diff: SnapshotDiff { added: [], removed: [], changed: [DiffNode { id: "cell-input", parent: Some("cell-B1"), role: TextInput,
+PROBE enter2 ms=106 Acted { settled: true, busy: None, diff: SnapshotDiff { added: [], removed: ["cell-input"], changed: [DiffNode { id: "cell-B1", parent: Some("TaskShell/Cells/di
+PROBE lint ms=28 findings 490
+PROBE screenshot ms=473 shot 800x600
+PROBE after               GenericContainer "5" id="cell-A0" @59,77 80x22
+PROBE after               GenericContainer "10" id="cell-B1" @139,99 80x22
+PROBE mode=true boot_ms=113
+PROBE text_bytes=47949 lines=740 parts=5
+PROBE line         Main "" id="task-body" @0,46 800x554
+PROBE line               GenericContainer "" id="cell-A0" @59,77 80x22
+PROBE line               GenericContainer "" id="cell-B1" @139,99 80x22
+PROBE line               GenericContainer "" id="cell-B10" @139,297 80x22
+PROBE line               GenericContainer "" id="cell-B11" @139,319 80x22
+PROBE line               GenericContainer "" id="cell-B12" @139,341 80x22
+PROBE snapshot ms=9 part 1/5 9959B
+PROBE part1 ms=9 part 1/5 9959B
+PROBE click_A0 ms=67 Acted { settled: true, busy: None, diff: SnapshotDiff { added: [DiffNode { id: "cell-input", parent: Some("cell-A0"), role: TextInput, name: "", state: NodeStat
+PROBE type_input ms=68 Acted { settled: true, busy: None, diff: SnapshotDiff { added: [], removed: [], changed: [DiffNode { id: "cell-input", parent: Some("cell-A0"), role: TextInput,
+PROBE enter ms=63 Acted { settled: true, busy: None, diff: SnapshotDiff { added: [], removed: ["cell-input"], changed: [DiffNode { id: "cell-A0", parent: Some("TaskShell/Cells/di
+PROBE click_B1 ms=67 Acted { settled: true, busy: None, diff: SnapshotDiff { added: [DiffNode { id: "cell-input", parent: Some("cell-B1"), role: TextInput, name: "", state: NodeStat
+PROBE type_input2 ms=164 Acted { settled: true, busy: None, diff: SnapshotDiff { added: [], removed: [], changed: [DiffNode { id: "cell-input", parent: Some("cell-B1"), role: TextInput,
+PROBE enter2 ms=64 Acted { settled: true, busy: None, diff: SnapshotDiff { added: [], removed: ["cell-input"], changed: [DiffNode { id: "cell-B1", parent: Some("TaskShell/Cells/di
+PROBE lint ms=28 findings 490
+PROBE screenshot ms=445 shot 800x600
+PROBE after               GenericContainer "5" id="cell-A0" @59,77 80x22
+PROBE after               GenericContainer "10" id="cell-B1" @139,99 80x22
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.71s

@@ -1,0 +1,114 @@
+[
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "87845cb9",
+"ts": "2026-10-25T14:31:59Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.2.0",
+"--run-dir",
+".andromeda/runs/2026-10-25T12-59-18-phase",
+"--marker",
+"2026-10-25-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 10/11 · deferred 0 · planned 1 · implemented 0 · unclaimed 1",
+"unclaimed: v020-11",
+"claimed-unfinished: none",
+"done-test: NO — 1 not verified|deferred · unclaimed 1",
+"chunks referenced: 10 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "87845cb9",
+"ts": "2026-10-25T14:32:14Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.2.0",
+"--id",
+"v020-11",
+"--chunk",
+"2026-10-25-cold-agent-bar",
+"--acceptance-file",
+".andromeda/runs/2026-10-25T12-59-18-phase/acceptance-v020-11.md",
+"--method",
+"dynamic-external",
+"--note-file",
+".andromeda/runs/2026-10-25T12-59-18-phase/note-claim-v020-11.md",
+"--run-dir",
+".andromeda/runs/2026-10-25T12-59-18-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v020-11 → chunk 2026-10-25-cold-agent-bar (was null; status planned kept)",
+"acceptance: A fresh agent given only the tool exercises 0.2.0's new capabilities i… (206 chars)",
+"         → The founder's one live run («Один запуск, до $3 (Рекомендую)», 2026-10… (1224 chars)",
+"method: dynamic-external → dynamic-external",
+"notes: +406 chars (total 406)",
+"wrote escher-0.2.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 0"
+],
+"stderr": null,
+"wrote": [
+"escher-0.2.0/verification-matrix.json"
+],
+"before": {
+"id": "v020-11",
+"chunk": null,
+"status": "planned",
+"method": "dynamic-external",
+"ref": "null",
+"acceptance": "A fresh agent given only the tool exercises 0.2.0's new capabilities in one recorded run whose wrong-call count meets th… (206 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v020-11",
+"chunk": "2026-10-25-cold-agent-bar",
+"status": "planned",
+"method": "dynamic-external",
+"ref": "null",
+"acceptance": "The founder's one live run («Один запуск, до $3 (Рекомендую)», 2026-10-25) of `cargo build --locked -p seven_guis --bin … (1224 chars)",
+"notes_chars": 406
+}
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "87845cb9",
+"ts": "2026-10-25T14:32:14Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.2.0",
+"--chunk",
+"2026-10-25-cold-agent-bar",
+"--plan",
+"escher-0.2.0/chunks/2026-10-25-cold-agent-bar/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-25T12-59-18-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-25-cold-agent-bar: 1 · ## Acceptance Criteria: line 424, 49 lines",
+"v020-11: cited in ## Acceptance Criteria (line 438)",
+"pool: unclaimed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

@@ -2,9 +2,9 @@
 //! stand task, in both layout modes, the diff an acting call returns equals `Snapshot::diff`
 //! over this file's own snapshots taken either side of the call, and names exactly the nodes
 //! stated per step: a click names the value it rewrote and, the first time, the button it
-//! focused, a flight mode click the two mode buttons with the control it enabled, a row click
-//! that row with the button that lost focus, a typed text its input and the control that lost
-//! focus, Create the new row added with the control that lost focus and Create itself, which a
+//! focused, a flight type chosen by `type` its select, its two options and the control it
+//! enabled, a row click that row with the button that lost focus, a typed text its input and
+//! the control that lost focus, Create the new row added with the control that lost focus and Create itself, which a
 //! click focuses, and Delete that row removed, an advance the elapsed time. A click on an element that reacts to nothing returns settled with an empty
 //! diff, and the two layout modes return equal diffs. The case the lean tasks lack is proven on
 //! a fixture booted with the stand's options: a text typed by the driver into a password input
@@ -125,12 +125,17 @@ fn a_choice_on_the_flight_booker_returns_the_control_it_enabled() {
     let mut runs = Vec::new();
     for incremental in [false, true] {
         let mut flight = Held::task(LeanTask::FlightBooker, incremental);
-        const MODE_STEP: Named = [
+        const TYPE_STEP: Named = [
             &[],
             &[],
-            &["flight-one-way", "flight-return", "flight-return-date"],
+            &[
+                "flight-type",
+                "flight-type-one-way",
+                "flight-type-return",
+                "flight-return-date",
+            ],
         ];
-        let chosen = flight.step(&click("flight-return"), MODE_STEP);
+        let chosen = flight.step(&type_into("flight-type", "return"), TYPE_STEP);
         assert!(
             entry(&chosen, "flight-return-date")
                 .is_some_and(|date| date.state.enabled == Some(true)),
@@ -138,13 +143,16 @@ fn a_choice_on_the_flight_booker_returns_the_control_it_enabled() {
             flight.mode
         );
         assert!(
-            entry(&chosen, "flight-one-way").is_some_and(|mode| mode.state.pressed == Some(false))
-                && entry(&chosen, "flight-return")
-                    .is_some_and(|mode| mode.state.pressed == Some(true)),
-            "{}: a return flight returns the mode chosen pressed and the other not",
+            entry(&chosen, "flight-type").is_some_and(|select| {
+                select.state.value.as_deref() == Some("return") && select.state.focused
+            }) && entry(&chosen, "flight-type-one-way")
+                .is_some_and(|option| option.state.selected == Some(false))
+                && entry(&chosen, "flight-type-return")
+                    .is_some_and(|option| option.state.selected == Some(true)),
+            "{}: a return flight returns the select's value, its focus and the option chosen",
             flight.mode
         );
-        let back = flight.step(&click("flight-one-way"), MODE_STEP);
+        let back = flight.step(&type_into("flight-type", "one"), TYPE_STEP);
         assert!(
             entry(&back, "flight-return-date")
                 .is_some_and(|date| date.state.enabled == Some(false)),
@@ -152,10 +160,13 @@ fn a_choice_on_the_flight_booker_returns_the_control_it_enabled() {
             flight.mode
         );
         assert!(
-            entry(&back, "flight-one-way").is_some_and(|mode| mode.state.pressed == Some(true))
-                && entry(&back, "flight-return")
-                    .is_some_and(|mode| mode.state.pressed == Some(false)),
-            "{}: a one-way flight returns the two modes' readings swapped back",
+            entry(&back, "flight-type")
+                .is_some_and(|select| select.state.value.as_deref() == Some("one-way"))
+                && entry(&back, "flight-type-one-way")
+                    .is_some_and(|option| option.state.selected == Some(true))
+                && entry(&back, "flight-type-return")
+                    .is_some_and(|option| option.state.selected == Some(false)),
+            "{}: a one-way flight returns the two options' readings swapped back",
             flight.mode
         );
         runs.push(flight.diffs);

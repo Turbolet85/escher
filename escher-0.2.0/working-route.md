@@ -52,4 +52,4 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
    ↓
 [2026-10-25-capability-statement] Capability statement — what escher can do, its stated limits, a11y reach and what MCP client carries onward, where Viola's planning reads it (v020-10)
    ↓
-Cold-agent bar — fresh agent over 0.2.0's new capabilities via the cold-agent pipe, operator's login; judged by the founder's bar from 0.1.0's baseline (v020-11)
+[2026-10-25-cold-agent-bar] Cold-agent bar — fresh agent over 0.2.0's new capabilities via the cold-agent pipe, operator's login; judged by the founder's bar from 0.1.0's baseline (v020-11)

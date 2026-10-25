@@ -3,8 +3,9 @@
 //! until the app enables it, typed text reads back as the value, and exactly the focused
 //! control reads focused after a click, a Tab press and Shift+Tab. What a control states of
 //! itself in its markup reads the same way, each reading equal to its accessibility node's:
-//! exactly the active flight mode reads pressed, exactly the selected row reads selected, and a
-//! date field reads invalid while what it holds is no date. The cases the lean tasks
+//! exactly the chosen flight type's option reads selected, its select reading that type as its
+//! value, exactly the selected row reads selected, and a date field reads invalid while what it
+//! holds is no date. The cases the lean tasks
 //! lack are proven on a minimal fixture booted with the stand's options: a checkbox and a
 //! radio read checked after a click, a password input reads a fixed mask, never its text, and
 //! a textarea reads back the text typed into it.
@@ -117,6 +118,17 @@ fn invalid(harness: &Harness<DioxusDocument>) -> Vec<String> {
         .collect()
 }
 
+/// Chooses the flight booker's type by keyboard alone: a click focuses its select, then End
+/// chooses its last option, the return flight, and Home its first, the one-way flight.
+fn choose_flight_type(flight: &mut Harness<DioxusDocument>, returning: bool) {
+    flight.click("#flight-type");
+    flight.press(Key::Named(if returning {
+        NamedKey::End
+    } else {
+        NamedKey::Home
+    }));
+}
+
 /// The readings [`pressed`] and [`selected`] return, stated by id.
 fn readings(stated: &[(&str, bool)]) -> Vec<(String, bool)> {
     stated
@@ -153,7 +165,7 @@ fn a_disabled_control_reads_disabled_until_the_app_enables_it() {
             "{mode}"
         );
         assert_eq!(enabled(&flight, "flight-book"), Some(true), "{mode}");
-        flight.click("#flight-return");
+        choose_flight_type(&mut flight, true);
         assert_eq!(
             enabled(&flight, "flight-return-date"),
             Some(true),
@@ -167,7 +179,7 @@ fn a_disabled_control_reads_disabled_until_the_app_enables_it() {
             Some(false),
             "{mode}: an invalid return date disables Book"
         );
-        flight.click("#flight-one-way");
+        choose_flight_type(&mut flight, false);
         assert_eq!(
             enabled(&flight, "flight-book"),
             Some(true),
@@ -353,23 +365,43 @@ fn focus_reads_on_exactly_the_focused_control() {
 }
 
 #[test]
-fn exactly_the_active_flight_mode_reads_pressed() {
+fn exactly_the_chosen_flight_type_reads_selected() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
         let mut flight = boot(LeanTask::FlightBooker, incremental);
-        let one_way = readings(&[("flight-one-way", true), ("flight-return", false)]);
-        let returning = readings(&[("flight-one-way", false), ("flight-return", true)]);
+        let one_way = readings(&[("flight-type-one-way", true), ("flight-type-return", false)]);
+        let returning = readings(&[("flight-type-one-way", false), ("flight-type-return", true)]);
 
-        assert_eq!(pressed(&flight), one_way, "{mode}: at boot");
-        flight.click("#flight-return");
-        assert_eq!(pressed(&flight), returning, "{mode}: a return flight");
-        flight.click("#flight-one-way");
-        assert_eq!(pressed(&flight), one_way, "{mode}: one-way again");
-        flight.click("#flight-one-way");
+        assert_eq!(selected(&flight), one_way, "{mode}: at boot");
+        assert!(
+            reads_value(&flight, "flight-type", Some("one-way")),
+            "{mode}: the select reads the one-way type at boot"
+        );
+        assert!(
+            pressed(&flight).is_empty(),
+            "{mode}: no control reads pressed"
+        );
+        choose_flight_type(&mut flight, true);
+        assert_eq!(selected(&flight), returning, "{mode}: a return flight");
+        assert!(
+            reads_value(&flight, "flight-type", Some("return")),
+            "{mode}: the select reads the return type"
+        );
+        choose_flight_type(&mut flight, false);
+        assert_eq!(selected(&flight), one_way, "{mode}: one-way again");
+        choose_flight_type(&mut flight, false);
         assert_eq!(
-            pressed(&flight),
+            selected(&flight),
             one_way,
-            "{mode}: a click on the active mode"
+            "{mode}: a choice of the chosen type"
+        );
+        assert!(
+            reads_value(&flight, "flight-type", Some("one-way")),
+            "{mode}: the select reads the one-way type again"
+        );
+        assert!(
+            pressed(&flight).is_empty(),
+            "{mode}: still no control reads pressed"
         );
     }
 }
@@ -441,7 +473,7 @@ fn a_date_that_is_no_date_reads_invalid() {
             "{mode}: a start date that is no date"
         );
 
-        flight.click("#flight-return");
+        choose_flight_type(&mut flight, true);
         assert_eq!(
             invalid(&flight),
             ["flight-start"],
@@ -454,7 +486,7 @@ fn a_date_that_is_no_date_reads_invalid() {
             ["flight-start", "flight-return-date"],
             "{mode}: a return date that is no date"
         );
-        flight.click("#flight-one-way");
+        choose_flight_type(&mut flight, false);
         assert_eq!(
             invalid(&flight),
             ["flight-start"],

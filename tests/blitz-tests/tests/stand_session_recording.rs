@@ -50,7 +50,7 @@ fn script(task: LeanTask) -> Vec<Call> {
             scroll("counter-increment"),
         ],
         LeanTask::FlightBooker => vec![
-            click("flight-return"),
+            type_into("flight-type", "return"),
             type_into("flight-start", "01.01.2030"),
             press("tab", false),
             advance(100),

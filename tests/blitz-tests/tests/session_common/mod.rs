@@ -302,17 +302,20 @@ pub fn mode(path: &Path) -> u32 {
         & 0o777
 }
 
-/// One command that changes what `task` shows: a click, or for the timer three delivered ticks.
+/// One command that changes what `task` shows: a click, the flight booker's return flight chosen
+/// by `type`, or for the timer three delivered ticks.
 pub fn change(task: LeanTask, session: &mut Session, ticks: &TimerTicks) {
-    let harness = session.harness_mut();
     match task {
-        LeanTask::Counter => harness.click("#counter-increment"),
-        LeanTask::FlightBooker => harness.click("#flight-return"),
+        LeanTask::Counter => session.harness_mut().click("#counter-increment"),
+        LeanTask::FlightBooker => {
+            act(session, &type_into("flight-type", "return"))
+                .expect("the flight type takes the return flight");
+        }
         LeanTask::Timer => {
             ticks.deliver(3);
-            harness.pump();
+            session.harness_mut().pump();
         }
-        LeanTask::Crud => harness.click("#crud-person-0"),
+        LeanTask::Crud => session.harness_mut().click("#crud-person-0"),
     }
 }
 

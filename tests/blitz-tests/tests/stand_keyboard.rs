@@ -4,12 +4,15 @@
 //! *Tab walk:* from a fresh boot, Tab walks each task's stated sequence and wraps to its first
 //! control, and Shift+Tab walks it back and wraps to its last; at every step the engine's focused
 //! node, the snapshot's one `focused` node and the accessibility tree's focus name the same
-//! control. The flight booker with a return flight chosen by Enter and CRUD with a row selected
-//! by ArrowDown walk their longer stated sequences the same way, so every stand control is
-//! reached by Tab in some state, and Enter and Space on the CRUD buttons enabled then read as
-//! their click. *Activation:* Enter and Space on every focused stand button leave the screen as a
-//! click on it does, a stated table of 20 rows; Space types into a text input, Enter changes
-//! nothing there, and neither key moves the range input. On a fixture: Space toggles a checkbox
+//! control. The flight booker with a return flight chosen by ArrowDown on its type select and
+//! CRUD with a row selected by ArrowDown walk their longer stated sequences the same way, so
+//! every stand control is reached by Tab in some state, and Enter and Space on the CRUD buttons
+//! enabled then read as their click. *Activation:* Enter and Space on every focused stand button
+//! leave the screen as a click on it does, a stated table of 16 rows; Space types into a text
+//! input, Enter changes nothing there, and neither key moves the range input. *Choice:* the
+//! flight type's select, focused by Tab, takes its arrows — ArrowDown chooses the return flight,
+//! ArrowUp the one-way flight, each enabling or disabling the return date — while focus stays
+//! on it, and Enter and Space change nothing there. On a fixture: Space toggles a checkbox
 //! and a radio and Enter does not, Enter follows a link and Space does not, both toggle a
 //! `details` through its `summary` and press an `input type="button"`, a button whose `disabled`
 //! attribute appeared after it took focus takes neither, and a button that is itself a scrolled
@@ -39,12 +42,10 @@ use common::{ENABLED_TAB_ORDER, boot, controls, editor_text, focused, node, tab_
 
 /// Each stand button in the four Tab sequences, and whether a click on it changes the screen
 /// beyond its focus.
-const BUTTONS: [(LeanTask, &str, bool); 10] = [
+const BUTTONS: [(LeanTask, &str, bool); 8] = [
     (LeanTask::Counter, "back-btn", false),
     (LeanTask::Counter, "counter-increment", true),
     (LeanTask::FlightBooker, "back-btn", false),
-    (LeanTask::FlightBooker, "flight-one-way", false),
-    (LeanTask::FlightBooker, "flight-return", true),
     (LeanTask::FlightBooker, "flight-book", true),
     (LeanTask::Timer, "back-btn", false),
     (LeanTask::Timer, "timer-reset", false),
@@ -204,20 +205,20 @@ fn enter_and_space_on_a_focused_button_read_as_its_click() {
                 }
             }
         }
-        assert_eq!(rows, 20, "{mode}: the stated rows");
+        assert_eq!(rows, 16, "{mode}: the stated rows");
         assert!(changing >= 1, "{mode}: a row changes the screen");
     }
 }
 
 /// Brings `task` from a fresh boot into the state `ENABLED_TAB_ORDER` states for it, by keyboard
-/// alone — Enter on `flight-return`, ArrowDown on the CRUD list — asserted to have enabled the
+/// alone — ArrowDown on `flight-type`, ArrowDown on the CRUD list — asserted to have enabled the
 /// controls disabled at boot. Focus is left where the last key was pressed.
 #[track_caller]
 fn enable_by_keyboard(harness: &mut Harness<DioxusDocument>, task: LeanTask, mode: &str) {
     let (stop, key, enabled): (&str, Key, &[&str]) = match task {
         LeanTask::FlightBooker => (
-            "flight-return",
-            Key::Named(NamedKey::Enter),
+            "flight-type",
+            Key::Named(NamedKey::ArrowDown),
             &["flight-return-date"],
         ),
         LeanTask::Crud => (
@@ -242,6 +243,68 @@ fn enable_by_keyboard(harness: &mut Harness<DioxusDocument>, task: LeanTask, mod
             node(&snapshot, id).state.enabled == Some(true),
             "{mode}: {task:?}: control {index} is enabled by the key"
         );
+    }
+}
+
+#[test]
+fn the_flight_type_select_moves_its_choice_by_its_arrows() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut harness = boot(LeanTask::FlightBooker, incremental);
+        tab_to(&mut harness, LeanTask::FlightBooker, "flight-type", &mode);
+        // Each key, then the select's value, the return date's enabled reading and the
+        // options' selected readings it leaves.
+        let rows = [
+            (
+                Key::Named(NamedKey::ArrowDown),
+                "return",
+                true,
+                [false, true],
+            ),
+            (
+                Key::Named(NamedKey::ArrowDown),
+                "return",
+                true,
+                [false, true],
+            ),
+            (Key::Named(NamedKey::Enter), "return", true, [false, true]),
+            (Key::Character(" ".into()), "return", true, [false, true]),
+            (
+                Key::Named(NamedKey::ArrowUp),
+                "one-way",
+                false,
+                [true, false],
+            ),
+            (
+                Key::Named(NamedKey::ArrowUp),
+                "one-way",
+                false,
+                [true, false],
+            ),
+        ];
+        assert_eq!(rows.len(), 6);
+        for (index, (key, value, enabled, options)) in rows.into_iter().enumerate() {
+            harness.press(key);
+            let snapshot = harness.doc.snapshot();
+            assert!(
+                node(&snapshot, "flight-type").state.value.as_deref() == Some(value),
+                "{mode}: key {index}: the select reads the stated choice"
+            );
+            assert!(
+                node(&snapshot, "flight-return-date").state.enabled == Some(enabled),
+                "{mode}: key {index}: the return date follows the choice"
+            );
+            assert!(
+                ["flight-type-one-way", "flight-type-return"]
+                    .map(|id| node(&snapshot, id).state.selected)
+                    == options.map(Some),
+                "{mode}: key {index}: exactly the chosen option reads selected"
+            );
+            assert!(
+                holder(&harness) == ["flight-type"],
+                "{mode}: key {index}: focus stays on the select"
+            );
+        }
     }
 }
 

@@ -1,13 +1,20 @@
-//! The headless stand: mounts one of the lean four 7GUIs tasks inside the stand's
-//! `TaskShell` chrome with no window and no GPU, at one pinned viewport, with the
-//! bundled DejaVu Sans and no network, building a fresh document per boot.
+//! The headless stand: mounts one of the lean four 7GUIs tasks, Cells, or the load page inside
+//! the stand's `TaskShell` chrome with no window and no GPU, at one pinned viewport, with the
+//! bundled DejaVu Sans, building a fresh document per boot. Every boot is offline but the load
+//! page's, whose one stylesheet an in-process stand-in answers after 200 ms from a thread of its
+//! own, reaching no network.
+
+use std::sync::Arc;
+use std::thread;
+use std::time::Duration;
 
 use blitz_test_harness::{Harness, HarnessOptions};
+use blitz_traits::net::{Bytes, NetHandler, NetProvider, Request};
 use blitz_traits::shell::ColorScheme;
 use dioxus_native::prelude::*;
 use dioxus_native::{DioxusDocument, FontContext, build_single_font_ctx};
 
-use crate::app::{Task, task_in_shell};
+use crate::app::{Task, TaskShell, task_in_shell};
 use crate::tasks::timer::TimerTicks;
 
 /// The four tasks the stand proves capabilities on.
@@ -121,6 +128,121 @@ fn stand_root(props: StandRoot) -> Element {
     task_in_shell(props.task.task(), EventHandler::new(|_| {}))
 }
 
+/// Boot Cells in a fresh document. Cells is no [`LeanTask`]: its screen passes the snapshot
+/// text's budget and reads in parts.
+pub fn boot_cells(options: HarnessOptions) -> Harness<DioxusDocument> {
+    Harness::from_vdom(VirtualDom::new(cells_root), options)
+}
+
+fn cells_root() -> Element {
+    task_in_shell(Task::Cells, EventHandler::new(|_| {}))
+}
+
+/// Boot the load page in a fresh document: its `load-fetch` button links a stylesheet that
+/// shows the `load-done` message, and the in-process stand-in this boot alone carries answers
+/// it after [`LOAD_ANSWER_DELAY`]. Every other field of `options` is kept.
+pub fn boot_load(options: HarnessOptions) -> Harness<DioxusDocument> {
+    Harness::from_vdom(
+        VirtualDom::new(load_root),
+        HarnessOptions {
+            net_provider: Some(Arc::new(LoadNet)),
+            ..options
+        },
+    )
+}
+
+/// How long the load page's stand-in holds a request before it answers.
+pub const LOAD_ANSWER_DELAY: Duration = Duration::from_millis(200);
+
+/// The stylesheet the load page links, under the `.test` TLD no resolver answers.
+const LOAD_URL: &str = "http://stand.test/load.css";
+
+/// The one rule the linked stylesheet holds: it shows the message.
+const LOADED_CSS: &str = ".load-body .load-done { display: block; }";
+
+/// A `NetProvider` that answers every request with [`LOADED_CSS`] from a thread of its own,
+/// after [`LOAD_ANSWER_DELAY`].
+struct LoadNet;
+
+impl NetProvider for LoadNet {
+    fn fetch(&self, _doc_id: usize, request: Request, handler: Box<dyn NetHandler>) {
+        let url = request.url.to_string();
+        thread::spawn(move || {
+            thread::sleep(LOAD_ANSWER_DELAY);
+            handler.bytes(url, Bytes::from_static(LOADED_CSS.as_bytes()));
+        });
+    }
+}
+
+fn load_root() -> Element {
+    rsx! {
+        TaskShell { title: "Load", on_back: EventHandler::new(|_| {}),
+            LoadPage {}
+        }
+    }
+}
+
+#[component]
+fn LoadPage() -> Element {
+    let mut linked = use_signal(|| false);
+    rsx! {
+        div { class: "load-root",
+            style { {LOAD_CSS} }
+            div { class: "load-body",
+                button { id: "load-fetch", class: "load-btn", onclick: move |_| linked.set(true), "Load" }
+                if linked() {
+                    link { rel: "stylesheet", href: LOAD_URL }
+                }
+                p { id: "load-done", class: "load-done", "Loaded" }
+            }
+        }
+    }
+}
+
+const LOAD_CSS: &str = r#"
+.load-root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #f5f5f5;
+    font-family: sans-serif;
+}
+
+.load-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.load-btn {
+    font-size: 15px;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #3a5ce5;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 24px;
+    cursor: pointer;
+}
+
+.load-btn:hover {
+    background-color: #2a4cd3;
+}
+
+.load-btn:active {
+    background-color: #1f3fc1;
+}
+
+.load-done {
+    display: none;
+    font-size: 15px;
+    color: #1a1a1a;
+}
+"#;
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -155,6 +277,54 @@ mod tests {
                     "incremental={incremental}: row {row} reads its elapsed time"
                 );
             }
+        }
+    }
+
+    #[test]
+    fn the_stand_options_stay_offline() {
+        for incremental in [false, true] {
+            assert!(
+                options(incremental).net_provider.is_none(),
+                "incremental={incremental}"
+            );
+        }
+    }
+
+    #[test]
+    fn cells_boots_in_the_shell() {
+        for incremental in [false, true] {
+            let harness = boot_cells(options(incremental));
+            assert!(
+                harness.text_content("#task-title") == "Cells",
+                "incremental={incremental}: the shell's title names Cells"
+            );
+            assert!(
+                harness.query("#cell-A0").is_some() && harness.query("#cell-Z25").is_some(),
+                "incremental={incremental}: the grid's first and last cells are mounted"
+            );
+        }
+    }
+
+    #[test]
+    fn the_load_page_click_leaves_a_load_in_flight() {
+        for incremental in [false, true] {
+            let mut harness = boot_load(options(incremental));
+            assert!(
+                harness.text_content("#task-title") == "Load",
+                "incremental={incremental}: the shell's title names the page"
+            );
+            assert!(
+                harness.settle().is_ok(),
+                "incremental={incremental}: nothing loads at boot"
+            );
+            harness.click("#load-fetch");
+            assert!(
+                harness.settle()
+                    == Err(blitz_test_harness::NotSettled {
+                        busy: blitz_test_harness::Busy::Loads
+                    }),
+                "incremental={incremental}: the click's stylesheet is a load in flight"
+            );
         }
     }
 

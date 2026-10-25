@@ -22,8 +22,7 @@ pub fn controls(task: LeanTask) -> &'static [(&'static str, Role)] {
         ],
         LeanTask::FlightBooker => &[
             ("back-btn", Role::Button),
-            ("flight-one-way", Role::Button),
-            ("flight-return", Role::Button),
+            ("flight-type", Role::ComboBox),
             ("flight-start", Role::TextInput),
             ("flight-return-date", Role::TextInput),
             ("flight-book", Role::Button),
@@ -50,13 +49,7 @@ pub fn controls(task: LeanTask) -> &'static [(&'static str, Role)] {
 pub fn tab_order(task: LeanTask) -> &'static [&'static str] {
     match task {
         LeanTask::Counter => &["back-btn", "counter-increment"],
-        LeanTask::FlightBooker => &[
-            "back-btn",
-            "flight-one-way",
-            "flight-return",
-            "flight-start",
-            "flight-book",
-        ],
+        LeanTask::FlightBooker => &["back-btn", "flight-type", "flight-start", "flight-book"],
         LeanTask::Timer => &["back-btn", "timer-duration", "timer-reset"],
         LeanTask::Crud => &[
             "back-btn",
@@ -70,14 +63,13 @@ pub fn tab_order(task: LeanTask) -> &'static [&'static str] {
 }
 
 /// The focus sequence of the two tasks whose controls disabled at boot are enabled by input:
-/// the flight booker once `flight-return` is chosen, CRUD once a row is selected.
+/// the flight booker once its `flight-type` select chooses return, CRUD once a row is selected.
 pub const ENABLED_TAB_ORDER: [(LeanTask, &[&str]); 2] = [
     (
         LeanTask::FlightBooker,
         &[
             "back-btn",
-            "flight-one-way",
-            "flight-return",
+            "flight-type",
             "flight-start",
             "flight-return-date",
             "flight-book",
@@ -148,8 +140,7 @@ pub fn rendered(task: LeanTask) -> &'static [&'static str] {
         LeanTask::FlightBooker => &[
             "back-btn",
             "task-title",
-            "flight-one-way",
-            "flight-return",
+            "flight-type",
             "flight-start",
             "flight-return-date",
             "flight-book",

@@ -1,0 +1,35 @@
+# design · cascade read · group 2 of 3
+
+## Carried
+- (.andromeda/design-system-detail/typography.md:18) The served Cells task and the restyled flight-booker choice must paint their text in the stand's `sans-serif` family at its stated sizes, the values the contrast rows and the lint's text readings are re-pinned against.
+  > | seven_guis | sans-serif | home title 700 | base 14px; home title 36px | not stated | (examples/seven_guis/src/app.rs:179-205) |
+- (.andromeda/design-system-detail/typography.md:15) A flight-booker `select` the stand does not style must paint its chosen label in the user-agent form-control family at the engine's generic base size, and its row in the contrast table and its `bounds` must be read at that family and size.
+  > | blitz-dom default form controls | inputs/selects/buttons `system-ui, sans-serif`; textarea monospace | not stated | not stated | not stated | (packages/blitz-dom/assets/default.css:88-96; packages/blitz-dom/assets/default.css:311-357; packages/blitz-dom/assets/default.css:368-376; packages/blitz-dom/assets/default.css:672-677) |
+  (.andromeda/design-system-detail/typography.md:22)
+  > | Engine generic base size | generics | not stated | monospace 13px; other generics 16px | not stated | (packages/blitz-dom/src/font_metrics.rs:167-176) |
+  (.andromeda/design-system-detail/typography.md:42)
+  > - Generic font families map to Parley generics, with `None` as sans-serif (packages/blitz-dom/src/stylo_to_parley.rs:50-60)
+- (.andromeda/design-system-detail/typography.md:30) Every task `start` serves, Cells and the select included, must boot through `stand::options` with the one bundled DejaVu Sans registered for every generic and system fonts off, so a shot and a lint read the same text on every host.
+  > - The seven_guis headless stand registers the same bundled DejaVu Sans for every generic, with system fonts off, on native — `build_single_font_ctx(DEJAVU_SANS)` through `HarnessOptions.font_ctx`, decoded by seven_guis' native `woff` feature (examples/seven_guis/src/stand.rs:52-54; examples/seven_guis/src/lib.rs:7; examples/seven_guis/Cargo.toml:31)
+  (.andromeda/design-system-detail/typography.md:31)
+  > - A custom `FontContext` can be set; on WASM a context with bundled fonts must be provided, using `build_single_font_ctx` for one font (packages/dioxus-native/src/config.rs:56-64); `build_single_font_ctx` registers one font as fallback for SansSerif, Serif, Monospace and SystemUi with system fonts disabled (packages/blitz-dom/src/lib.rs:134-165)
+- (.andromeda/design-system-detail/typography.md:34) A `screenshot` or `lint` the cold agent sends to any served task, Cells and the flight booker's select included, must find the bundled font and never be refused `fonts-unavailable`.
+  > - Since 2026-10-12-headless-screenshot a driver `screenshot` of an app whose font context resolves no `sans-serif` family (`BaseDocument::can_paint_text` false) is refused `fonts-unavailable` with nothing painted — a shot never paints text skipped; the stand's bundled font passes the check (packages/blitz-dom/src/document.rs:1134-1147; as measured at escher-0.1.0/chunks/2026-10-12-headless-screenshot/report.md)
+  (.andromeda/design-system.md:46)
+  > A driver `screenshot` of an app whose font context resolves no `sans-serif` family is refused `fonts-unavailable` with nothing painted — a shot never paints text skipped.
+- (.andromeda/design-system-detail/typography.md:36) The stand checks the chunk re-pins in blitz-tests (snapshot, diff, contrast, keyboard, select and load-wait checks) must run with text that measures, never passing vacuously on 0x0 text.
+  > - `blitz-dom` is built with the `system-fonts` feature for the blitz-tests crate; without it text measures 0x0 and font-dependent assertions pass vacuously, and the feature is stated to be enabled by default when testing the whole workspace (tests/blitz-tests/Cargo.toml:17; tests/blitz-tests/tests/br_trailing_line.rs:11-13; tests/blitz-tests/tests/inline_box_baseline.rs:4-6)
+  (.andromeda/design-system.md:48)
+  > `blitz-dom` is built with the `system-fonts` feature for the blitz-tests crate: without it text measures 0x0 and font-dependent assertions pass vacuously.
+- (.andromeda/design-system-detail/typography.md:45) Cells' fixed-height cells must hold one line of their text at the engine's `normal` line height, the text box the lint's `clipped` and `truncated` compare with each cell's content box.
+  > - Line height maps `normal`, number and length to Parley line heights (packages/blitz-dom/src/stylo_to_parley.rs:407-412); the layout engine resolves `line-height: normal` as 1.2 × font size (packages/blitz-dom/src/layout/mod.rs:232-236)
+- (.andromeda/design-system-detail/typography.md:48) Cells' `white-space: nowrap` cells and the select's chosen label must lay out through the engine's wrap and white-space mapping, which sets the text extents the lint's `truncated` reads when the agent fills a cell.
+  > - `text-align` and `text-align-last` map to Parley alignment (packages/blitz-dom/src/stylo_to_parley.rs:304-329); word break, line break, overflow wrap, wrap mode and white-space collapse map to Parley settings (packages/blitz-dom/src/stylo_to_parley.rs:331-346; packages/blitz-dom/src/stylo_to_parley.rs:467-484)
+- (.andromeda/design-system-detail/spacing.md:29) Cells' `cell-input` and the flight booker's date inputs must centre their one line vertically in their content box, the placement a shot paints and the lint's text readings take.
+  > - Single-line text inputs are vertically centered within their content box (packages/blitz-dom/src/node/node.rs:860-878)
+
+## Bindings
+- **typography's stand family and sizes ↔ color-palette's contrast rows**: the font size and weight a served Cells cell or the flight booker's select paints at decide whether its stand contrast row is held to 3.0 or 4.5, so a size the chunk sets moves that row, (.andromeda/design-system-detail/typography.md:18) and (.andromeda/design-system-detail/typography.md:22)
+- **typography's line height and nowrap mapping ↔ depth-strategy's clip at the padding box**: Cells' cells clip by `overflow: hidden` inside a grid that scrolls by `overflow: auto`, so the text extents the line height and the white-space mapping set are what the lint reads `clipped` or `truncated` against the clipping box, (.andromeda/design-system-detail/typography.md:45) and (.andromeda/design-system-detail/typography.md:48)
+- **typography's bundled font ↔ surface's pinned headless viewport**: the served tasks must fit and read the same at the pinned 800 × 600 viewport through one bundled font, so a shot and a lint replay identically on the cold agent's fresh children, (.andromeda/design-system-detail/typography.md:30)
+- **spacing's input centring ↔ typography's line height**: a one-line input's text sits centred in a content box whose line is sized by the `normal` line height, so Cells' 22px cell input holds its 13px line, (.andromeda/design-system-detail/spacing.md:29) and (.andromeda/design-system-detail/typography.md:45)

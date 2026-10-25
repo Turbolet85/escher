@@ -5,7 +5,7 @@
 use std::collections::{BTreeMap, HashMap, HashSet};
 use std::process::Command;
 
-use blitz_test_harness::Harness;
+use blitz_test_harness::{Harness, Key, NamedKey};
 use dioxus::prelude::*;
 use dioxus_native_dom::{DioxusDocument, NodeId};
 use seven_guis::stand::{self, LeanTask};
@@ -89,12 +89,13 @@ fn ids_hold_across_rerenders() {
         let mut flight = stand::boot(LeanTask::FlightBooker, stand::options(incremental));
         let first = ids(&flight);
         assert!(flight.attr("#flight-return-date", "disabled").is_some());
-        rerender(&mut flight, &format!("flight return {mode}"), |h| {
-            h.click("#flight-return");
-            assert!(h.attr("#flight-return-date", "disabled").is_none());
-        });
         assert!(flight.query("#flight-booked").is_none());
-        let booked = rerender(&mut flight, &format!("flight book {mode}"), |h| {
+        // A choice on the select moves no class or text the DOM string shows, so the return
+        // flight is chosen and booked in one re-render.
+        let booked = rerender(&mut flight, &format!("flight return book {mode}"), |h| {
+            h.click("#flight-type");
+            h.press(Key::Named(NamedKey::End));
+            assert!(h.attr("#flight-return-date", "disabled").is_none());
             h.click("#flight-book")
         });
         let inserted = flight.node("#flight-booked");

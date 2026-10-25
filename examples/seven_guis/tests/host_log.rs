@@ -12,7 +12,9 @@
 //! of a session `start --record` launched, each run at `RUST_LOG=trace` — `start`, a `type`, a
 //! `snapshot`, a `snapshot` of part 1, a `lint` and `stop` — write to their own stderr no id, no
 //! name, no typed text, no recording directory's path and nothing the kept check holds; the
-//! host `start` spawns has its streams closed, so this reads the clients alone.
+//! host `start` spawns has its streams closed, so this reads the clients alone. And a host
+//! serving Cells, whose screen reads in parts, writes to stderr at `RUST_LOG=trace` none of part
+//! 2's ids and not the name a `type` committed to one of its cells while it answers that part.
 
 #![cfg(not(target_arch = "wasm32"))]
 
@@ -127,6 +129,151 @@ fn a_recording_sessions_clients_log_nothing_of_it_at_trace() {
         recorded.len()
     );
     let _ = std::fs::remove_dir_all(&kept);
+}
+
+#[cfg(unix)]
+#[test]
+fn a_cells_part_read_through_the_host_logs_no_id_and_no_name_at_trace() {
+    use std::process::{Command, Stdio};
+    use std::thread;
+    use std::time::{Duration, Instant};
+
+    use common::{Host, cells_needles, clear, drain, found, stamped_lines, state_dir};
+    use escher_driver::{ArgValue, Call, attach, call, stop};
+
+    const READY: Duration = Duration::from_secs(60);
+    const EXIT: Duration = Duration::from_secs(10);
+    const PART: usize = 2;
+
+    // The needles are read from the part the host answers; the name is the one committed.
+    let (ids, cell) = cells_needles(PART);
+    let names = vec![SENTINEL.to_string()];
+
+    let dir = state_dir("hl-cells");
+    clear(&dir);
+    let mut host = Host(
+        Command::new(BINARY)
+            .args(["serve", "cells", "--session"])
+            .arg(&dir)
+            .env("RUST_LOG", "trace")
+            .stdin(Stdio::null())
+            .stdout(Stdio::piped())
+            .stderr(Stdio::piped())
+            .spawn()
+            .expect("the binary spawns"),
+    );
+    let stdout = drain(host.0.stdout.take().expect("stdout is piped"));
+    let stderr = drain(host.0.stderr.take().expect("stderr is piped"));
+
+    let deadline = Instant::now() + READY;
+    let hello = loop {
+        if let Ok(hello) = attach(&dir) {
+            break hello;
+        }
+        let exited = host.0.try_wait().expect("the host can be waited on");
+        assert!(exited.is_none(), "the host exited before it answered");
+        assert!(
+            Instant::now() < deadline,
+            "the host answers within the bound"
+        );
+        thread::sleep(Duration::from_millis(10));
+    };
+    assert_eq!(hello.label, "cells");
+
+    // A name committed into a cell of the part, then the part read. Each answer is checked for
+    // what it must hold, so the absences read below are of things the host did handle.
+    let text = |value: &str| ArgValue::Text(value.to_string());
+    let calls = [
+        Call {
+            verb: "click".to_string(),
+            args: vec![("id".to_string(), text(&cell))],
+        },
+        Call {
+            verb: "type".to_string(),
+            args: vec![
+                ("id".to_string(), text("cell-input")),
+                ("text".to_string(), text(SENTINEL)),
+            ],
+        },
+        Call {
+            verb: "press".to_string(),
+            args: vec![("key".to_string(), text("enter"))],
+        },
+        Call {
+            verb: "snapshot".to_string(),
+            args: vec![(
+                "part".to_string(),
+                ArgValue::Number(i64::try_from(PART).expect("a small part")),
+            )],
+        },
+    ];
+    let answers: Vec<String> = calls
+        .iter()
+        .enumerate()
+        .map(|(sent, call_sent)| {
+            let answer = call(&dir, call_sent).expect("the host answers the call");
+            assert!(answer.accepted, "call {sent} ran");
+            answer.json
+        })
+        .collect();
+    let part = &answers[3];
+    let ids_answered = ids.iter().filter(|id| part.contains(id.as_str())).count();
+    assert!(
+        part.contains(&format!(",\"part\":{PART},")) && part.contains(SENTINEL),
+        "the answer is the part, holding the committed name"
+    );
+    assert!(
+        ids_answered == ids.len(),
+        "the part's answer holds {ids_answered} of {} id needles",
+        ids.len()
+    );
+
+    stop(&dir).expect("the session stops");
+    let deadline = Instant::now() + EXIT;
+    let status = loop {
+        if let Some(status) = host.0.try_wait().expect("the host can be waited on") {
+            break status;
+        }
+        assert!(Instant::now() < deadline, "the host exits after stop");
+        thread::sleep(Duration::from_millis(10));
+    };
+    let stdout = stdout
+        .join()
+        .expect("the stdout reader ends")
+        .expect("stdout is read to its end");
+    let stderr = stderr
+        .join()
+        .expect("the stderr reader ends")
+        .expect("stderr is read to its end");
+    let stderr = String::from_utf8_lossy(&stderr);
+
+    // A failure names a kind and a count only.
+    assert_eq!(status.code(), Some(0), "the host exits 0 after stop");
+    assert!(
+        stdout.is_empty(),
+        "the host wrote {} bytes to stdout",
+        stdout.len()
+    );
+    assert!(!dir.exists(), "stop leaves no state directory");
+    let lines = stamped_lines(&stderr);
+    let command_spans = stderr
+        .lines()
+        .filter(|line| line.contains(" escher_driver ") && line.contains(" span=\"command\""))
+        .count();
+    assert_eq!(
+        command_spans,
+        calls.len(),
+        "{command_spans} command-span lines for {} calls sent",
+        calls.len()
+    );
+    let (ids_found, names_found) = (found(&stderr, &ids), found(&stderr, &names));
+    assert!(
+        ids_found == 0 && names_found == 0,
+        "{ids_found} of {} id needles and {names_found} of {} name needles found in {lines} \
+         stderr lines",
+        ids.len(),
+        names.len()
+    );
 }
 
 /// The host's flow at `RUST_LOG=trace` in the state directory `name`, keeping its session as a

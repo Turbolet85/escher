@@ -1,10 +1,11 @@
 //! One string names an element to the driver. For every node of each lean stand task's
 //! snapshot, in both layout modes, the id the snapshot lists is the `author_id` of the element's
 //! accessibility node, the element that id resolves to is that node's, and a driver `click`
-//! naming it is accepted — but for the seven nodes that cannot take a click at boot, stated
-//! here from the measured stand, each refused with its cause: the three disabled controls, and
-//! the header's spacer, a box with no height, at whose centre the header is hit. And an
-//! id-addressed click lands on the element it names: for each of the stand's 15 controls a
+//! naming it is accepted — but for the nine nodes that cannot take a click at boot, stated
+//! here from the measured stand, each refused with its cause: the three disabled controls, the
+//! flight type's two options, which a hit at their select's box finds the select over, and the
+//! header's spacer, a box with no height, at whose centre the header is hit. And an
+//! id-addressed click lands on the element it names: for each of the stand's 14 controls a
 //! click is accepted on, the diff the driver returns is the diff a twin instance reads when
 //! the same control is clicked by selector and settled — not empty for every control a click
 //! is accepted on, since a click focuses a button as it does a text input and the slider; for a
@@ -38,13 +39,7 @@ const NOBODY: &str = "act-ids-names-no-element";
 fn changes_at_boot(task: LeanTask) -> &'static [&'static str] {
     match task {
         LeanTask::Counter => &["back-btn", "counter-increment"],
-        LeanTask::FlightBooker => &[
-            "back-btn",
-            "flight-one-way",
-            "flight-return",
-            "flight-start",
-            "flight-book",
-        ],
+        LeanTask::FlightBooker => &["back-btn", "flight-type", "flight-start", "flight-book"],
         LeanTask::Timer => &["back-btn", "timer-duration", "timer-reset"],
         LeanTask::Crud => &[
             "back-btn",
@@ -62,6 +57,8 @@ fn refused_at_boot(task: LeanTask) -> &'static [(&'static str, Cause)] {
         LeanTask::Counter => &[("task-header-spacer", Cause::Covered)],
         LeanTask::FlightBooker => &[
             ("task-header-spacer", Cause::Covered),
+            ("flight-type-one-way", Cause::Covered),
+            ("flight-type-return", Cause::Covered),
             ("flight-return-date", Cause::Disabled),
         ],
         LeanTask::Timer => &[("task-header-spacer", Cause::Covered)],
@@ -88,7 +85,7 @@ fn the_snapshot_the_accessibility_tree_and_the_driver_read_one_id() {
             .map(|task| refused_at_boot(task).len())
             .iter()
             .sum::<usize>(),
-        7
+        9
     );
     for incremental in [false, true] {
         let mut named_controls = HashSet::new();
@@ -166,13 +163,13 @@ fn the_snapshot_the_accessibility_tree_and_the_driver_read_one_id() {
             );
         }
         assert!(
-            named_controls.len() == 15,
-            "incremental={incremental}: the stand's 15 controls"
+            named_controls.len() == 14,
+            "incremental={incremental}: the stand's 14 controls"
         );
         assert!(
-            (accepted, refusals) == (70, 7),
-            "incremental={incremental}: of the stand's 77 nodes a click is accepted on 70 and \
-             refused on the table's 7"
+            (accepted, refusals) == (68, 9),
+            "incremental={incremental}: of the stand's 77 nodes a click is accepted on 68 and \
+             refused on the table's 9"
         );
     }
 }
@@ -236,12 +233,12 @@ fn an_id_addressed_click_has_the_effect_of_a_selector_click_on_a_twin() {
             }
         }
         assert!(
-            clicked.len() == 15,
-            "incremental={incremental}: the stand's 15 controls"
+            clicked.len() == 14,
+            "incremental={incremental}: the stand's 14 controls"
         );
         assert!(
-            changing == 15,
-            "incremental={incremental}: fifteen control rows change the screen at boot"
+            changing == 14,
+            "incremental={incremental}: fourteen control rows change the screen at boot"
         );
         assert!(
             refused_controls == 3,

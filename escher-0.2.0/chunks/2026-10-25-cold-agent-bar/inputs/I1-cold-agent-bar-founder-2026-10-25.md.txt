@@ -1,0 +1,28 @@
+# The founder's word on «Cold-agent bar» (2026-10-25), given ahead of its phase
+
+The founder raised the question himself in the escher overseer session on 2026-10-25, while chunk 4's wrap was
+running: «нам же надо проверить весь функционал колд агентом, но на чем его проверять?». The phase is not promoted
+yet. The entry is `escher-0.2.0/working-route.md:55` (v020-11). This relay goes into that phase's `inputs/`.
+
+**What the overseer measured and put to him:**
+- The cold-agent pipe has one task set, `stand` (`scripts/cold-agent.sh`, `TASKS=(stand)`).
+- The driver's `start` boots four lean tasks: `counter`, `flight-booker`, `timer`, `crud` (`examples/seven_guis/src/session_host.rs:14-17`).
+- On those four, an agent can reach lint, `advance`, the screenshot, and recording and replay.
+- It cannot reach the `select` (v020-08), the load wait (v020-07) or the screen read in parts (v020-09). Each of those is proven only on an in-file test fixture (`stand_act_select`, `stand_load_wait`, `stand_snapshot_parts`), and `start` does not boot those fixtures.
+- `cells` is the stand's one screen over the 10,000-byte budget, and the driver does not serve it.
+- Flight booker's one-way and return choice is two buttons, not a `select`.
+
+**The three options:**
+1. Extend the stand inside the chunk. Serve `cells` to the driver, make flight booker's choice a real `select` as the 7GUIs spec's combobox, and give the agent goals for lint, `advance`, the screenshot and recording. The load wait does not fall naturally on the stand.
+2. A dedicated fixture app holding a select, a load and a large screen.
+3. Keep the four tasks and add goals for lint, `advance`, the screenshot and recording only.
+
+**His word, verbatim:** «поскольку живого проекта на котором можно потестить нет то думаю надо расширять стенд, чтоб он покрывал все проверки, так что первый вариант наверно»
+
+How to read it:
+- He chose option 1: extend the stand.
+- His reason is that no live project exists to test on.
+- His scope is wider than option 1 as offered. He wants the stand to cover ALL the checks, «чтоб он покрывал все проверки». The load wait is included in that, although option 1 had left it to its fixture test. The phase settles how the stand carries a load in flight.
+- «наверно» is his hedge. It is still the direction he chose, not a delegate's answer, so it is not marked PROVISIONAL. The phase confirms it at P4, together with the wrong-call bar.
+
+**Still open, for that phase's P4:** the wrong-call bar itself, set from 0.1.0's baseline of 0 wrong in 43 calls.

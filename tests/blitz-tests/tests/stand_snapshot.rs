@@ -1,8 +1,8 @@
 //! The snapshot of each lean stand task, booted headlessly in both layout modes: every node
 //! is an element the accessibility tree keeps, carrying its stable element id, the role and
 //! name of its accessibility node, its state as the engine reads it and its bounding client
-//! rect; the tree follows the TaskShell; and the snapshot is deterministic and follows a
-//! re-render.
+//! rect; the tree follows the TaskShell, the flight booker's type select holding its two
+//! options; and the snapshot is deterministic and follows a re-render.
 
 use std::collections::HashSet;
 
@@ -115,7 +115,59 @@ fn role_and_name_match_the_accessibility_tree() {
             }
         }
     }
-    assert_eq!(checked.len(), 15, "the stand's 15 controls");
+    assert_eq!(checked.len(), 14, "the stand's 14 controls");
+}
+
+#[test]
+fn the_flight_type_select_holds_its_two_options() {
+    for incremental in [false, true] {
+        let snapshot = boot(LeanTask::FlightBooker, incremental).doc.snapshot();
+        let select = node(&snapshot, "flight-type");
+        assert_eq!(select.role, Role::ComboBox, "incremental={incremental}");
+        assert_eq!(select.name, "Flight type", "incremental={incremental}");
+        assert_eq!(
+            select.state.value.as_deref(),
+            Some("one-way"),
+            "incremental={incremental}: the one-way flight is chosen at boot"
+        );
+        let options: Vec<(&str, Role, &str, Option<bool>)> = select
+            .children
+            .iter()
+            .map(|option| {
+                (
+                    option.id.as_str(),
+                    option.role,
+                    option.name.as_str(),
+                    option.state.selected,
+                )
+            })
+            .collect();
+        assert_eq!(
+            options,
+            [
+                (
+                    "flight-type-one-way",
+                    Role::ListBoxOption,
+                    "one-way flight",
+                    Some(true)
+                ),
+                (
+                    "flight-type-return",
+                    Role::ListBoxOption,
+                    "return flight",
+                    Some(false)
+                ),
+            ],
+            "incremental={incremental}: the options in order, named, the first selected"
+        );
+        for option in &select.children {
+            assert_eq!(
+                option.bounds, select.bounds,
+                "incremental={incremental}: {:?} reads its select's client rect",
+                option.id
+            );
+        }
+    }
 }
 
 #[test]

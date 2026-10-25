@@ -27,6 +27,7 @@ mod session_common;
 use common::tab_order;
 use session_common::{
     act, advance, click, focused, hold, press, refused_unchanged, screenshot, shot, snapshot,
+    type_into,
 };
 
 /// What a node line of the screen text says after its role and name: its id, then its state
@@ -77,11 +78,12 @@ fn screen(session: &mut Session, at: &str) -> String {
 }
 
 /// The id-addressed acting call that changes what `task` shows: a click on a control with an
-/// effect at boot, or for the timer an advance of three ticks.
+/// effect at boot, the flight type's return flight chosen by `type`, or for the timer an advance
+/// of three ticks.
 fn acting(task: LeanTask) -> Call {
     match task {
         LeanTask::Counter => click("counter-increment"),
-        LeanTask::FlightBooker => click("flight-return"),
+        LeanTask::FlightBooker => type_into("flight-type", "return"),
         LeanTask::Timer => advance(300),
         LeanTask::Crud => click("crud-person-0"),
     }
@@ -224,12 +226,14 @@ enum Subject {
     Task(LeanTask),
     /// A minimal fixture beside the stand, booted with the stand's options.
     Fixture,
+    /// A page the stand serves beside the lean four: Cells or the load page.
+    Served,
     /// A crate's unit test, run by the workspace `test` leg: no `--test` target, so outside
     /// `stand-repeat` by construction.
     Unit,
 }
 
-use Subject::{AllFour, Fixture, Task, Unit};
+use Subject::{AllFour, Fixture, Served, Task, Unit};
 
 /// One check that witnesses a requirement: what it proves it on, its test file relative to the
 /// project root, and the name of its `#[test]` function.
@@ -524,7 +528,7 @@ const WITNESSES: [(&str, &[Witness]); 16] = [
             (
                 Task(LeanTask::FlightBooker),
                 "tests/blitz-tests/tests/stand_act_states.rs",
-                "a_flight_mode_click_returns_both_mode_buttons_with_their_pressed_reading",
+                "a_flight_type_choice_returns_the_select_value_and_both_options_selected_reading",
             ),
             (
                 Task(LeanTask::Crud),
@@ -681,7 +685,7 @@ const WITNESSES_020: [(&str, &[Witness]); 9] = [
             (
                 AllFour,
                 "tests/blitz-tests/tests/stand_lint.rs",
-                "the_stand_at_boot_reads_no_finding",
+                "the_stand_at_boot_reads_its_measured_findings",
             ),
             (
                 Fixture,
@@ -758,6 +762,11 @@ const WITNESSES_020: [(&str, &[Witness]); 9] = [
                 "tests/blitz-tests/tests/stand_load_wait.rs",
                 "a_load_never_answered_ends_the_step_at_the_bound_still_loading",
             ),
+            (
+                Served,
+                "tests/blitz-tests/tests/stand_load_page.rs",
+                "the_load_page_click_waits_out_its_load_and_shows_the_message",
+            ),
         ],
     ),
     (
@@ -793,6 +802,11 @@ const WITNESSES_020: [(&str, &[Witness]); 9] = [
                 "packages/blitz-dom/src/node/select.rs",
                 "the_selectedness_setting_algorithm_keeps_one_chosen_option",
             ),
+            (
+                Task(LeanTask::FlightBooker),
+                "tests/blitz-tests/tests/stand_act_states.rs",
+                "a_flight_type_choice_returns_the_select_value_and_both_options_selected_reading",
+            ),
         ],
     ),
     (
@@ -812,6 +826,11 @@ const WITNESSES_020: [(&str, &[Witness]); 9] = [
                 Task(LeanTask::Counter),
                 "examples/seven_guis/tests/cli_commands.rs",
                 "snapshot_reads_a_part_by_number_and_a_part_outside_its_bound_is_refused",
+            ),
+            (
+                Served,
+                "tests/blitz-tests/tests/stand_cells_served.rs",
+                "cells_is_walked_in_parts_through_the_driver",
             ),
         ],
     ),
@@ -923,6 +942,8 @@ fn source(file: &str) -> Option<&'static str> {
             include_str!("virtual_clock_engine.rs")
         }
         "tests/blitz-tests/tests/stand_load_wait.rs" => include_str!("stand_load_wait.rs"),
+        "tests/blitz-tests/tests/stand_load_page.rs" => include_str!("stand_load_page.rs"),
+        "tests/blitz-tests/tests/stand_cells_served.rs" => include_str!("stand_cells_served.rs"),
         "tests/blitz-tests/tests/stand_act_select.rs" => include_str!("stand_act_select.rs"),
         "tests/blitz-tests/tests/select_interaction.rs" => include_str!("select_interaction.rs"),
         "tests/blitz-tests/tests/stand_snapshot_parts.rs" => {

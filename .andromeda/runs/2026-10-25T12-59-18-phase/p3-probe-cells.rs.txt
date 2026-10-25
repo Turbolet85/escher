@@ -1,0 +1,91 @@
+//! P3 measurement probe for 2026-10-25-cold-agent-bar (removed after the reading): Cells booted
+//! through Home and held as a driver session — its snapshot text size, part count and the wall
+//! time of snapshot, part, click, type, lint and screenshot calls, in both layout modes.
+
+use std::time::Instant;
+
+use blitz_test_harness::Harness;
+use dioxus::prelude::*;
+use escher_driver::{Outcome, Session};
+use seven_guis::stand;
+use seven_guis::tasks::timer::TimerTicks;
+
+mod session_common;
+use session_common::{click, lint, press, screenshot, snapshot, snapshot_part, type_into};
+
+fn app_root() -> Element {
+    use_hook(|| provide_context(TimerTicks::default()));
+    seven_guis::app::app()
+}
+
+#[test]
+fn probe() {
+    for incremental in [false, true] {
+        let t = Instant::now();
+        let mut harness =
+            Harness::from_vdom(VirtualDom::new(app_root), stand::options(incremental));
+        let card = harness.node("#task-card-cells");
+        harness.scroll_into_view(card);
+        harness.click("#task-card-cells");
+        println!(
+            "PROBE mode={incremental} boot_ms={}",
+            t.elapsed().as_millis()
+        );
+        let snap = harness.doc.snapshot();
+        let text = snap.to_text();
+        let parts = snap.text_parts(dioxus_native_dom::SNAPSHOT_TEXT_BUDGET);
+        println!(
+            "PROBE text_bytes={} lines={} parts={}",
+            text.len(),
+            text.lines().count(),
+            parts.len()
+        );
+        for line in text
+            .lines()
+            .filter(|l| {
+                l.contains("cell-A0")
+                    || l.contains("cell-B1")
+                    || l.contains("task-body")
+                    || l.contains("col-header")
+            })
+            .take(6)
+        {
+            println!("PROBE line {line}");
+        }
+        let mut session = Session::start("cells", || harness).expect("label");
+        for (name, call) in [
+            ("snapshot", snapshot()),
+            ("part1", snapshot_part(1)),
+            ("click_A0", click("cell-A0")),
+            ("type_input", type_into("cell-input", "5")),
+            ("enter", press("enter", false)),
+            ("click_B1", click("cell-B1")),
+            ("type_input2", type_into("cell-input", "=A0*2")),
+            ("enter2", press("enter", false)),
+            ("lint", lint()),
+            ("screenshot", screenshot()),
+        ] {
+            let t = Instant::now();
+            let out = session.run(&call);
+            let ms = t.elapsed().as_millis();
+            let summary = match &out {
+                Ok(Outcome::Screen { text }) => format!("screen {}B", text.len()),
+                Ok(Outcome::Part { part, parts, text }) => {
+                    format!("part {part}/{parts} {}B", text.len())
+                }
+                Ok(Outcome::Linted { findings }) => format!("findings {}", findings.len()),
+                Ok(Outcome::Shot { width, height, .. }) => format!("shot {width}x{height}"),
+                Ok(other) => format!("{:?}", other).chars().take(160).collect(),
+                Err(e) => format!("ERR {e:?}"),
+            };
+            println!("PROBE {name} ms={ms} {summary}");
+        }
+        let text = session.harness().doc.snapshot().to_text();
+        for line in text
+            .lines()
+            .filter(|l| l.contains("\"cell-A0\"") || l.contains("\"cell-B1\""))
+        {
+            println!("PROBE after {line}");
+        }
+    }
+}

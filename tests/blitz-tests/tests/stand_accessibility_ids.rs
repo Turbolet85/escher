@@ -178,7 +178,7 @@ fn controls_carry_role_and_name() {
             }
         }
     }
-    assert_eq!(checked.len(), 15, "the stand's 15 controls");
+    assert_eq!(checked.len(), 14, "the stand's 14 controls");
 }
 
 #[test]

@@ -1,0 +1,736 @@
+[
+{
+"sql": "SELECT callee_name, callee_kind, regexp_extract(file, '[^/]+$') AS f, COUNT(*) AS n FROM refs WHERE callee_name IN ('LeanTask','options','boot','boot_timer','ALL') AND callee_file LIKE '%seven_guis/src/stand.rs' GROUP BY 1,2,3 ORDER BY 1,3",
+"rows": 119,
+"result": [
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_accessibility_ids.rs",
+"n": 7
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_act_diff.rs",
+"n": 1
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_act_ids.rs",
+"n": 3
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_act_screenshot.rs",
+"n": 1
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_actionable_keys.rs",
+"n": 1
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_boot.rs",
+"n": 5
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_contrast.rs",
+"n": 5
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_diff.rs",
+"n": 1
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_element_ids.rs",
+"n": 3
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_id_edits.rs",
+"n": 1
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_id_persistence.rs",
+"n": 2
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_keyboard.rs",
+"n": 3
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_lint.rs",
+"n": 3
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_non_lean_tasks.rs",
+"n": 1
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_requirement_sweep.rs",
+"n": 1
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_screenshot_repeat.rs",
+"n": 1
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_session_fresh.rs",
+"n": 2
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_session_ids.rs",
+"n": 1
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_session_recording.rs",
+"n": 1
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_settle.rs",
+"n": 1
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_snapshot.rs",
+"n": 7
+},
+{
+"callee_name": "ALL",
+"callee_kind": "term",
+"f": "stand_snapshot_text.rs",
+"n": 4
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "cli_commands.rs",
+"n": 7
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "mod.rs",
+"n": 36
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "session_host.rs",
+"n": 7
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand.rs",
+"n": 14
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_accessibility_ids.rs",
+"n": 16
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_act_diff.rs",
+"n": 7
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_act_disabled.rs",
+"n": 3
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_act_filled.rs",
+"n": 4
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_act_ids.rs",
+"n": 16
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_act_keys.rs",
+"n": 4
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_act_obstructed.rs",
+"n": 3
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_act_range.rs",
+"n": 3
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_act_refused.rs",
+"n": 4
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_act_screenshot.rs",
+"n": 7
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_act_scroll.rs",
+"n": 4
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_act_spans.rs",
+"n": 7
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_act_states.rs",
+"n": 5
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_act_timer.rs",
+"n": 3
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_actionable_keys.rs",
+"n": 5
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_boot.rs",
+"n": 12
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_contrast.rs",
+"n": 62
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_counter.rs",
+"n": 2
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_crud.rs",
+"n": 3
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_diff.rs",
+"n": 10
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_element_ids.rs",
+"n": 24
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_flight_booker.rs",
+"n": 2
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_id_edits.rs",
+"n": 13
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_id_persistence.rs",
+"n": 13
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_keyboard.rs",
+"n": 34
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_lint.rs",
+"n": 8
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_mcp_tools.rs",
+"n": 9
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_non_lean_tasks.rs",
+"n": 2
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_replay.rs",
+"n": 5
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_requirement_sweep.rs",
+"n": 34
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_screenshot_repeat.rs",
+"n": 7
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_session_fresh.rs",
+"n": 3
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_session_ids.rs",
+"n": 4
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_session_lifecycle.rs",
+"n": 3
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_session_quiet.rs",
+"n": 3
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_session_recording.rs",
+"n": 8
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_session_state.rs",
+"n": 4
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_settle.rs",
+"n": 3
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_snapshot.rs",
+"n": 12
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_snapshot_parts.rs",
+"n": 2
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_snapshot_state.rs",
+"n": 11
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_snapshot_text.rs",
+"n": 15
+},
+{
+"callee_name": "LeanTask",
+"callee_kind": "type",
+"f": "stand_virtual_clock.rs",
+"n": 3
+},
+{
+"callee_name": "boot",
+"callee_kind": "fn",
+"f": "cli_commands.rs",
+"n": 2
+},
+{
+"callee_name": "boot",
+"callee_kind": "fn",
+"f": "mod.rs",
+"n": 3
+},
+{
+"callee_name": "boot",
+"callee_kind": "fn",
+"f": "session_host.rs",
+"n": 1
+},
+{
+"callee_name": "boot",
+"callee_kind": "fn",
+"f": "stand_act_screenshot.rs",
+"n": 1
+},
+{
+"callee_name": "boot",
+"callee_kind": "fn",
+"f": "stand_act_spans.rs",
+"n": 1
+},
+{
+"callee_name": "boot",
+"callee_kind": "fn",
+"f": "stand_boot.rs",
+"n": 7
+},
+{
+"callee_name": "boot",
+"callee_kind": "fn",
+"f": "stand_counter.rs",
+"n": 1
+},
+{
+"callee_name": "boot",
+"callee_kind": "fn",
+"f": "stand_crud.rs",
+"n": 2
+},
+{
+"callee_name": "boot",
+"callee_kind": "fn",
+"f": "stand_diff.rs",
+"n": 1
+},
+{
+"callee_name": "boot",
+"callee_kind": "fn",
+"f": "stand_element_ids.rs",
+"n": 1
+},
+{
+"callee_name": "boot",
+"callee_kind": "fn",
+"f": "stand_flight_booker.rs",
+"n": 1
+},
+{
+"callee_name": "boot",
+"callee_kind": "fn",
+"f": "stand_id_edits.rs",
+"n": 1
+},
+{
+"callee_name": "boot",
+"callee_kind": "fn",
+"f": "stand_id_persistence.rs",
+"n": 6
+},
+{
+"callee_name": "boot",
+"callee_kind": "fn",
+"f": "stand_lint.rs",
+"n": 1
+},
+{
+"callee_name": "boot",
+"callee_kind": "fn",
+"f": "stand_mcp_tools.rs",
+"n": 1
+},
+{
+"callee_name": "boot_timer",
+"callee_kind": "fn",
+"f": "mod.rs",
+"n": 1
+},
+{
+"callee_name": "boot_timer",
+"callee_kind": "fn",
+"f": "session_host.rs",
+"n": 1
+},
+{
+"callee_name": "boot_timer",
+"callee_kind": "fn",
+"f": "stand.rs",
+"n": 2
+},
+{
+"callee_name": "boot_timer",
+"callee_kind": "fn",
+"f": "stand_act_ids.rs",
+"n": 1
+},
+{
+"callee_name": "boot_timer",
+"callee_kind": "fn",
+"f": "stand_diff.rs",
+"n": 1
+},
+{
+"callee_name": "boot_timer",
+"callee_kind": "fn",
+"f": "stand_id_persistence.rs",
+"n": 2
+},
+{
+"callee_name": "boot_timer",
+"callee_kind": "fn",
+"f": "stand_session_state.rs",
+"n": 1
+},
+{
+"callee_name": "boot_timer",
+"callee_kind": "fn",
+"f": "stand_timer.rs",
+"n": 3
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "cli_commands.rs",
+"n": 2
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "mod.rs",
+"n": 5
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "password_caret_click.rs",
+"n": 1
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "session_host.rs",
+"n": 2
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand.rs",
+"n": 2
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_act_ids.rs",
+"n": 1
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_act_screenshot.rs",
+"n": 1
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_act_spans.rs",
+"n": 1
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_actionable_keys.rs",
+"n": 1
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_boot.rs",
+"n": 7
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_counter.rs",
+"n": 1
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_crud.rs",
+"n": 2
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_diff.rs",
+"n": 2
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_element_ids.rs",
+"n": 1
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_flight_booker.rs",
+"n": 1
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_id_edits.rs",
+"n": 3
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_id_persistence.rs",
+"n": 9
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_lint.rs",
+"n": 1
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_load_wait.rs",
+"n": 1
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_mcp_tools.rs",
+"n": 1
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_non_lean_tasks.rs",
+"n": 1
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_session_state.rs",
+"n": 1
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_settle.rs",
+"n": 3
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "stand_timer.rs",
+"n": 3
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "text_extent.rs",
+"n": 1
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "transformed_client_rect.rs",
+"n": 1
+},
+{
+"callee_name": "options",
+"callee_kind": "fn",
+"f": "virtual_clock_engine.rs",
+"n": 1
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT COUNT(DISTINCT file) AS files, COUNT(*) AS sites FROM refs WHERE callee_name = 'LeanTask' AND callee_kind = 'type' AND callee_file LIKE '%seven_guis/src/stand.rs'",
+"rows": 1,
+"result": [
+{
+"files": 49,
+"sites": 466
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

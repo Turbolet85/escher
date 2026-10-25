@@ -63,19 +63,27 @@ pub fn FlightBooker() -> Element {
             style { {CSS} }
             div { class: "flight-card",
                 h2 { class: "flight-title", "Flight Booker" }
-                div { class: "flight-type-row",
-                    button {
-                        id: "flight-one-way",
-                        aria_pressed: if !is_return { "true" } else { "false" },
-                        class: if !is_return { "type-btn type-btn-active" } else { "type-btn" },
-                        onclick: move |_| flight_type.set("one-way".into()),
+                select {
+                    id: "flight-type",
+                    aria_label: "Flight type",
+                    class: "type-select",
+                    oninput: move |evt| {
+                        let chosen = match evt.value().as_str() {
+                            "return" => "return",
+                            _ => "one-way",
+                        };
+                        flight_type.set(chosen.into());
+                    },
+                    option {
+                        id: "flight-type-one-way",
+                        value: "one-way",
+                        selected: !is_return,
                         "one-way flight"
                     }
-                    button {
-                        id: "flight-return",
-                        aria_pressed: if is_return { "true" } else { "false" },
-                        class: if is_return { "type-btn type-btn-active" } else { "type-btn" },
-                        onclick: move |_| flight_type.set("return".into()),
+                    option {
+                        id: "flight-type-return",
+                        value: "return",
+                        selected: is_return,
                         "return flight"
                     }
                 }
@@ -149,29 +157,18 @@ const CSS: &str = r#"
     white-space: nowrap;
 }
 
-.flight-type-row {
-    display: flex;
-    flex-direction: row;
-    gap: 0;
+.type-select {
+    font-size: 15px;
+    padding: 8px 10px;
     border: 1px solid #c0c0c0;
     border-radius: 6px;
-    overflow: hidden;
+    color: #1a1a1a;
+    background: #ffffff;
 }
 
-.type-btn {
-    flex: 1;
-    font-size: 14px;
-    padding: 8px 10px;
-    border: none;
-    background: #fafafa;
-    color: #444;
-    cursor: pointer;
-}
-
-.type-btn-active {
-    background: #3a5ce5;
-    color: #ffffff;
-    font-weight: 600;
+.type-select:focus {
+    outline: none;
+    border-color: #3a5ce5;
 }
 
 .date-input {

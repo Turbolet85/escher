@@ -68,7 +68,8 @@ fn a_disabled_date_input_refuses_typing_until_the_app_enables_it() {
         );
 
         assert!(
-            act(&mut session, &click("flight-return")).is_some_and(|chosen| chosen.settled),
+            act(&mut session, &type_into("flight-type", "return"))
+                .is_some_and(|chosen| chosen.settled),
             "{mode}: the driver chooses the return flight"
         );
         assert!(

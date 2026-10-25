@@ -32,8 +32,9 @@ fn task_keys(task: LeanTask) -> &'static [&'static str] {
     match task {
         LeanTask::Counter => &["counter-value", "counter-increment"],
         LeanTask::FlightBooker => &[
-            "flight-one-way",
-            "flight-return",
+            "flight-type",
+            "flight-type-one-way",
+            "flight-type-return",
             "flight-start",
             "flight-return-date",
             "flight-book",
