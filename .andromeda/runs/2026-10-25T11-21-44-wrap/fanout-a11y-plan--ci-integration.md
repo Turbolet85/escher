@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk adds no interactive UI element (docs/capabilities.md and the pin are a11y n/a per the report's Coverage) and changes no a11y or obs schema; the a11y leg, job and its fourteen files are unchanged (no leg, job, workflow or ci-leg.sh line changed — Harness / gate surface), the report's a11y Outcome restating 14 · 84 · 0 · 0 on CI#40134371519 as the file already holds; CI#40184674449's per-job tallies were not read, so no new a11y job reading; no `atowner` or `ciscripts` site lies in this file.

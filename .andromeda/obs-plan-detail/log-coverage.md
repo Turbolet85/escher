@@ -44,6 +44,12 @@ Read whole. The master's broad view is .andromeda/obs-plan.md; this file holds i
 
 <!-- /detail -->
 
+<!-- detail: values · emitter-escher-driver -->
+
+- The published statement `docs/capabilities.md` restates this emitter's reach: the `command` and `tool_call` spans with closed-word, bool and count fields, stderr only, no driver line at the default `warn`, and the scrub's limits (the raw panic message, `log.file` on a bridged `js_console` record, the dropped third-party WARN or ERROR, the unscrubbed upstream apps and WPT runner); its pin `.github/scripts/test_capability_statement.py` reads none of these claims, so a change to the span set or to the scrub's limits is made in that document by hand (as measured at escher-0.2.0/chunks/2026-10-25-capability-statement/report.md)
+
+<!-- /detail -->
+
 <!-- detail: values · logs -->
 
 - **blitz-dom (document / resolve / mutator / net)**

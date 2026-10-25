@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk adds no E2E driver, flow or process check — docs/capabilities.md is pinned by the CI-script unit test test_capability_statement.py (unittest, the ci-scripts leg: test-plan §4, the `ciscripts` rows in test-scope-summary.md and unit-test-strategy.md), no harness, status or log-format change, Retired none; the file's twelve-tool MCP listing and its windowed-unmeasured absence agree with the report's Outcome (layouts, tests).

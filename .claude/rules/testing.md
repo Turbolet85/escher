@@ -18,7 +18,7 @@ Path-scoped rules for test files. Source: `.andromeda/test-plan.md` §2 §4 §5 
 - No mocking library, property-test or snapshot crate is used (blitz-tests carries the assertion crate test-that 0.6.0 with test-that-macro 0.6.0 as dev-dependencies, 0.5.2 until 2026-10-17-upstream-sync-engine-debts, whose `verify_that!` and `TestResult<()>` upstream's merged `accessibility_label` and `accessibility_description` checks assert through under the same `#[test]` harness) — stand-ins are hand-written fakes (`RecordingNetProvider` and `ManualNetProvider`, upstream's; escher's one held network stand-in `fixtures::HeldNet`; since 2026-10-20-load-wait `stand_load_wait`'s in-file self-answering `LateNet`, whose `fetch` answers each request from its own thread after a 200 ms sleep; `RecordingShell`, `NoopEventHandler`, probe widgets). A check decodes a PNG through blitz-tests' `png` dev-dependency, or, in seven_guis, which has none, by a hand base64 reader and the PNG header.
 
 ## File and naming conventions
-- Each integration file opens with a `//!` doc naming the behaviour and any guarded bug; regression tests cite the upstream issue/PR URL and the real page that exposed it.
+- Each integration file opens with a `//!` doc naming the behaviour and any guarded bug; regression tests cite the upstream issue/PR URL and the real page that exposed it. `docs/capabilities.md` ends on `## Where each claim is proven`, naming the check behind each claim it makes — the stand checks among them — and only its names and counts are pinned, so a check renamed or moved changes that section by hand.
 - Descriptive snake_case test names; `#[track_caller]` on assertion helpers.
 - Assert first that the fixture produces the condition under test, then the behaviour.
 

@@ -1,0 +1,2 @@
+proposals: []
+note: no drift in this category — the report adds no interactive UI element (Coverage: `docs/capabilities.md` and the pin a11y n/a) and changes no a11y violation or obs log schema (Symbols / APIs: no field, log field or span); Retired none; the file holds no `atowner` «(target: next)» site; the report's (design) Outcome restates the accent pairs `#3a5ce5` 5.47 · 6.83 · 8.27 that .andromeda/a11y-plan-detail/visual-design-verification.md:12 already records, so no value moves.

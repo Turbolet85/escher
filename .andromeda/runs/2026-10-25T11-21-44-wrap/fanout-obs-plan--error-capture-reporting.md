@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk adds docs/capabilities.md, one README.md line and the CI-script pin .github/scripts/test_capability_statement.py — no runtime surface, error class, panic hook or reporting client (report Changes · Symbols / APIs, Coverage of new surfaces: instrumentation n/a · PII n/a), Retired none, so .andromeda/obs-plan-detail/error-capture-reporting.md's six absence rows stand unmoved under D-obs-instrumentation, D-obs-stack and D-obs-pii.

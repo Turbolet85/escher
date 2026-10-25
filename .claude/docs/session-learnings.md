@@ -8,6 +8,18 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-25 — A sweep pattern's negated class must not exclude the dot the masters' paths carry
+A cascade sweep pattern that bounds its window with a negated class such as `[^;.]{0,300}` (to stop at a clause end)
+cannot cross a backticked path — `` `.andromeda/residuals.md` `` holds a dot — so a clause like «owned by a
+`.andromeda/residuals.md` line (target: next)» never matches, its known-positive control reads unfired, and
+`cascade.py sweep` refuses the call. Bound the window by `;` alone (`[^;]{0,300}`) or by a plain count, and keep the
+control on a line whose clause holds a path.
+
+Where it applies: every `cascade-patterns.toml` and `report-patterns.toml` a wrap writes for a claim worded inside
+master clauses that cite files.
+
+---
+
 ## 2026-10-25 — The session hooks write the handoff in the middle of a wrap
 The harness's own hooks append to `.claude/session-handoff.md` while a wrap runs — the Stop hook rewrites its
 `## Session End Status` line, and an auto-compaction appends an `## AUTO-COMPACT` block — so a P2 snapshot pair that

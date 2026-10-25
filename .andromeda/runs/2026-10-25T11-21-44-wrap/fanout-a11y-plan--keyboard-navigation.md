@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk adds no interactive UI element (docs/capabilities.md and a CI-script pin only) and changes neither the a11y violation schema nor the obs log schema; Retired is none; the report's six a11y-plan `atowner` rows (body :9 · :27 · :35, a11y-scope-summary.md:17, a11y-strategy.md:9 · :21) lie outside this file — its one «(target: next)» owner (.andromeda/a11y-plan-detail/keyboard-navigation.md:8, as body .andromeda/a11y-plan.md:107) is the focus-fixup residual, which the report names only as a stated limit and does not re-dispose, so it stands.

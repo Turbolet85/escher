@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk adds docs/capabilities.md, one README line and a CI-script test, with no span, field, event or tracing site (report Changes · Symbols, Coverage "instrumentation n/a"; Retired none); the file's eight-cause list at .andromeda/obs-plan-detail/span-trace-coverage.md:24 already matches `CAUSES: [Cause; 8]` (report causes9), and the statement's restatement of `command` / `tool_call` (report Outcome, obs) brings no new span detail

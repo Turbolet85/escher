@@ -1,0 +1,119 @@
+[
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "54dfac12",
+"ts": "2026-10-25T12:34:17Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-25-capability-statement",
+"--run-dir",
+".andromeda/runs/2026-10-25T11-21-44-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"flip master-route.md:75 - 2026-10-25-capability-statement pending -> complete"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "54dfac12",
+"ts": "2026-10-25T12:34:17Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-25-capability-statement",
+"--date",
+"2026-10-25",
+"--run-dir",
+".andromeda/runs/2026-10-25T11-21-44-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :53 strip CARRY: 282ch \"CARRY: README.md still says the MCP role\"",
+"pin :53 strip CARRY: 499ch \"CARRY: the stated limit that an acting v\"",
+"pin next markerless :55 holds no freight",
+"53 · 2026-10-25-capability-statement · strip 2 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 53,
+"marker": "2026-10-25-capability-statement",
+"blocks": 2,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "54dfac12",
+"ts": "2026-10-25T12:34:21Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-25-capability-statement",
+"--date",
+"2026-10-25",
+"--run-dir",
+".andromeda/runs/2026-10-25T11-21-44-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :53 strip CARRY: 282ch \"CARRY: README.md still says the MCP role\"",
+"pin :53 strip CARRY: 499ch \"CARRY: the stated limit that an acting v\"",
+"pin next markerless :55 holds no freight",
+"53 · 2026-10-25-capability-statement · strip 2 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.2.0/route-archive.md",
+"./escher-0.2.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 53,
+"marker": "2026-10-25-capability-statement",
+"blocks": 2,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]

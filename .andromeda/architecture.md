@@ -239,6 +239,7 @@ tests/blitz-tests/     checks/ — the two committed kept checks `stand_replay` 
 examples/
   counter/  transparent/  seven_guis/  todomvc/  wgpu_texture/  wasm_hello/
 scripts/               agent-run.{sh,ps1} (test contract) · cold-agent.{sh,ps1} (cold-agent pipe) · code-graph tooling
+docs/                  capabilities.md (escher's capability statement) beside upstream's three files — an upstream change under docs/ never conflicts with it
 sites/                 excluded from the workspace
 ```
 
@@ -289,7 +290,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 
 - **Product type:** a Rust library workspace for an HTML/CSS engine — high-level APIs for rendering HTML with Blitz, the core DOM abstraction with `BaseDocument` its primary entry point, the `Document` trait letting blitz-shell drive every wrapper around it; homepage and repository `https://github.com/Turbolet85/escher`.
 
-- **Front page:** the root `README.md` is escher's own page, not upstream Blitz's — what escher is, its status, how the driver's command line and MCP surface are run, its Blitz lineage, licence and contact, the name spelled «Escher» in its prose and title, crate, binary and path names, URLs and the e-mail unchanged; no build, doc or test step reads it, and at an Upstream sync an upstream change to `README.md` resolves to escher's version.
+- **Front page:** the root `README.md` is escher's own page, not upstream Blitz's — what escher is, its status, how the driver's command line and MCP surface are run, its Blitz lineage, licence and contact, and a link to `docs/capabilities.md`, the statement of what Escher can do and its limits, the name spelled «Escher» in its prose and title, crate, binary and path names, URLs and the e-mail unchanged; no build or doc step reads it, one test does — the capability-statement pin reads its count of the driver commands an MCP client gets as tools — and at an Upstream sync an upstream change to `README.md` resolves to escher's version.
 
 - **Crate purposes:** each crate as its own description states it — blitz-html the HTML parser, blitz-net networking, blitz-paint painting through anyrender, blitz-shell the application shell, blitz-test-harness the headless test harness, blitz-vibey-script JavaScript on Boa, blitz-traits the shared traits, debug_timer timings, blitz-dom the DOM, accesskit_xplat the cross-platform AccessKit adapter, and the Dioxus crates.
 

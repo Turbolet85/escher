@@ -25,6 +25,12 @@ Read whole. The master's broad view is .andromeda/test-plan.md; this file holds 
 
 <!-- detail: procedure · strategy -->
 
+- **Claims mapped to checks:** `docs/capabilities.md`, a document with no runtime surface, ends on `## Where each claim is proven`, naming the check behind each claim it makes — the stand checks the `stand-repeat` leg runs among them — and states each limit as pinned by its check or as asserted by no check (the `select` model's limits); only its names and counts are held to the schema's tables, by the CI-script pin `test_capability_statement.py` (§4), so a check renamed or moved changes that section by hand (docs/capabilities.md:172-174; docs/capabilities.md:188-192; docs/capabilities.md:300-301)
+
+<!-- /detail -->
+
+<!-- detail: procedure · strategy -->
+
 - **Pixel tests:** render to a CPU buffer and sample pixels; box-shadow expectations come from Chromium renders with a 1px antialiasing tolerance (tests/blitz-tests/tests/paint_order.rs:12-29; tests/blitz-tests/tests/outset_box_shadow_shape.rs:6; tests/blitz-tests/tests/outset_box_shadow_shape.rs:82-88); since 2026-10-12-headless-screenshot frames are also compared whole — a shot's PNG equal to the harness's raster (`stand_act_screenshot`), byte-identical across two child runs of the test binary's own `#[ignore]` child, whose stdout the check reads, and the parent on one host, 12 shots in both layout modes under both builds (`stand_screenshot_repeat`) — a shot's PNG bytes differ between linux x86_64 and macOS aarch64 (CI#39225375577), so a check compared byte for byte across OSes holds no shot — and a password field's pixels equal for two values of one length (`password_painted_masked`, through `render_to_buffer::<VelloCpuImageRenderer, _>`); a check decodes a PNG through blitz-tests' `png` dev-dependency, or, in seven_guis, which has none, by a hand base64 reader and the PNG header (tests/blitz-tests/tests/stand_screenshot_repeat.rs:75-137; tests/blitz-tests/tests/password_painted_masked.rs:41-82)
 
 <!-- /detail -->

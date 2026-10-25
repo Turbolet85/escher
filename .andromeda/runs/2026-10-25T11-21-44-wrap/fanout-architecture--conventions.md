@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk adds no symbol, crate, dependency or resource (report Changes: Symbols / APIs, Crates / modules, Dependencies all none; Retired none); its new `.github/scripts/test_capability_statement.py` is one `unittest` `TestCase` and stays inside the Tests convention's CI-Python-tests clause at .andromeda/architecture-detail/conventions.md:54, while `docs/capabilities.md` lands under Infrastructure Patterns → Directory structure (`docsdir`) and test-plan §4 (`ciscripts`), not this category.

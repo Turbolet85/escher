@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens holds — the report's Coverage reads `tokens n/a` for both new surfaces (docs/capabilities.md, test_capability_statement.py), no UI is rendered, Retired is none, and no duration, easing or animation moved; docs/capabilities.md:196-197 restates the Dioxus bridge's animation-event limit that .andromeda/design-system-detail/motion.md:34 already holds, so no new detail.

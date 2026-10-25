@@ -1,0 +1,2 @@
+proposals: []
+note: The report's Changes add no crate, dependency, env var, socket, publish setting, feature or code-quality gate (Crates / Dependencies / Schema none; the new `.github/scripts/test_capability_statement.py` joins the existing `ci-scripts` leg with no leg, job or `ci-leg.sh` line changed), so none of the file's three groups (Publishability, Code quality, Optional capabilities) moves; Retired is none.

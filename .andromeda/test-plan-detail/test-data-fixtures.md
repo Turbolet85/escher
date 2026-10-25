@@ -26,6 +26,7 @@ Read whole. The master's broad view is .andromeda/test-plan.md; this file holds 
 | SVG inputs | inline byte-string literals | (packages/blitz-dom/src/util.rs:186; packages/blitz-dom/src/util.rs:193) |
 | Fuzzy runner inputs | inline HTML and byte-array fixtures | (wpt/runner/src/test_runners/fuzzy.rs:184-188; wpt/runner/src/test_runners/fuzzy.rs:231-232) |
 | Python script entries | inline `ENTRIES` list covering changed, added and removed entries | (.github/scripts/test_wpt_diff_to_pr.py:8-48) |
+| Repository text (CI-script pin) | no fixture file: `test_capability_statement.py` reads the files it pins by path from the repository root — `docs/capabilities.md`, `README.md` and escher-driver's `schema.rs`, `refusal.rs` and `error.rs` — beside an inline `NUMBER_WORDS` table (one … twenty), writing nothing | (.github/scripts/test_capability_statement.py:13-34; .github/scripts/test_capability_statement.py:37-38) |
 | Style fixtures | inline user-agent stylesheets | (packages/blitz-dom/src/document.rs:3303-3306; packages/blitz-dom/src/document.rs:3598-3602) |
 | Viewports | fixed sizes (800x600 and 400x300, scale 1.0, Light) | (packages/blitz-dom/src/mutator.rs:1856; packages/blitz-dom/src/document.rs:3204) |
 | Font payload | the embedded bullet font; the bundled DejaVu Sans woff2 `seven_guis::DEJAVU_SANS`, which the headless stand registers for every generic | (packages/blitz-dom/src/document.rs:3691-3706; examples/seven_guis/src/lib.rs:7) |

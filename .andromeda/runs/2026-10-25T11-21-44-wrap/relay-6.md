@@ -1,0 +1,1 @@
+Keep the 8 sites. The founder's word, by dialog in the overseer session: «Да, и эти 8 (Рекомендую)». His reconciliation covers all ten carried-set sites. Record that in the security-plan sidecar entry and in fanout-results.md security 11. Then continue into P3-P7, through the commit and push, and stop on any hard failure.

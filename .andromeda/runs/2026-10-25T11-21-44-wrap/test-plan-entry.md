@@ -1,0 +1,12 @@
+
+## 2026-10-25-capability-statement — the capability-statement pin, the ci-scripts tally and the AT owner
+**Section:** §1 Test Scope Summary (body: CI Python scripts, tests/blitz-tests; test-scope-summary.md: CI Python scripts, tests/blitz-tests) · §2 Test Strategy (test-strategy.md, a new group) · §3 → Session lifecycle (the key file: the socket's answer) · §4 Unit Test Strategy (body: a Capability statement bullet; unit-test-strategy.md: the CI-scripts tally, a new Capability statement group) · §7 Test Data & Fixtures (test-data-fixtures.md: a seeds row)
+**Change:**
+- §1: the `ci-scripts` leg runs 104 tests in eight test files (was 100 in seven), among them the four of `CapabilityStatementTest`, through which `docs/capabilities.md`, a document with no runtime surface, is in test scope; the body names the pin among what the leg tests.
+- §1: the adapter-crossing gap, owed at an active assistive technology this version does not reach, is owned by the residuals line that reads `re-carried:0.2.0` (was «(target: next)»), in the body and the detail.
+- §2: a new group, claims mapped to checks — the statement's `## Where each claim is proven` names each claim's check, only its names and counts pinned, so a renamed check changes it by hand.
+- §3 Session lifecycle: the socket's answer names a lint's findings beside the snapshot text and the diff.
+- §4: a body bullet and a detail group for `test_capability_statement.py` — four tests: every `VERBS` verb and every `Cause::name` a code span, five counts in words from the schema's tables, README's «the {word} driver commands as tools»; by path, no write, no env read, whitespace folded, the phrase as each `assertIn`'s message, controlled red-before-green; the CI-scripts tally 104 over eight, its per-file list adding test_capability_statement.py's 4, the 2026-10-15 reading kept as the series' second.
+- §7: a seeds row — repository text read by path and an inline `NUMBER_WORDS` table, no fixture file.
+**Why:** the pin and its leg tally are this chunk's own new test surface, measured green (`Ran 104 tests`, CI#40184674449); the AT owner is the report's measured disposition of the residuals line; the session-lifecycle list follows the visual lint's crossing onto every ratified carrier, reconciled on the founder's own answer at this wrap's P2 halt, «Применить как сверку (Рекомендую)», by dialog in the overseer session.
+**Ref:** .andromeda/runs/2026-10-25T11-21-44-wrap/

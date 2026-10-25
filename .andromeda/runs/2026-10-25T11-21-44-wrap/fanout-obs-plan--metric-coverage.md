@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk adds docs/capabilities.md, a README line and the CI-script pin .github/scripts/test_capability_statement.py — no runtime surface, no Rust symbol, dependency or telemetry change (report Changes: Symbols / APIs, Dependencies none; Coverage of new surfaces: instrumentation n/a · PII n/a; Retired none), so no timing, counter or metric row and no metrics-absence search in .andromeda/obs-plan-detail/metric-coverage.md moves.

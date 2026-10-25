@@ -1,0 +1,2 @@
+proposals: []
+note: ci-integration.md states no ci-scripts test or file count (the `ciscripts` rows are test-scope-summary.md:8 and unit-test-strategy.md:29, outside this file); the chunk's workspace tally `206 · 1105 · 0 · 12` equals the last reading at .andromeda/test-plan-detail/ci-integration.md:63, and CI#40184674449's per-job tallies were not read (report Cross-project / external claims), so no per-OS tally row is owed here.

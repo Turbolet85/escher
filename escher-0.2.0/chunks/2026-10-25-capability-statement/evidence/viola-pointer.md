@@ -17,4 +17,8 @@ path: docs/capabilities.md
 commit: written by the operator pass after the pre-CI commit
 ```
 
-The commit line after the operator pass: (pending)
+The commit line after the operator pass (entry 15, 2026-10-25, on CI#40184674449 green):
+
+```
+commit: e7e71221dfdcd29c6df603d222104855f43c07f4
+```

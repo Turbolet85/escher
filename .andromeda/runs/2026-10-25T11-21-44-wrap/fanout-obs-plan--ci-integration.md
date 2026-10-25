@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk adds no CI artifact, upload, leg or log location — test_capability_statement.py joins the existing ci-scripts leg, writes nothing and reads no env var (report Changes: Symbols / APIs, Harness / gate surface), and docs/capabilities.md is a document with instrumentation and PII n/a (Coverage of new surfaces); Retired is none, so no row of .andromeda/obs-plan-detail/ci-integration.md moves under D-obs-instrumentation, D-obs-stack or D-obs-pii.

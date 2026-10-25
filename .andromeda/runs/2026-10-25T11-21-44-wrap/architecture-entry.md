@@ -1,0 +1,13 @@
+
+## 2026-10-25-capability-statement — the capability statement, README's twelve tools, the AT owner and two counts
+**Section:** §Infrastructure Patterns → Directory structure · §Project Intent → Front page (body; project-intent.md, and its new Capability statement group) · §Standard Contracts (standard-contracts.md: Mutation, query and CSSOM; Driver session; CI contracts) · §Established Decisions (established-decisions.md: Driver session, a kept check at rest)
+**Change:**
+- Directory structure: a `docs/` row — `capabilities.md`, escher's capability statement, beside upstream's three files; an upstream change under `docs/` never conflicts with it.
+- Front page: README.md links `docs/capabilities.md`, the statement of what Escher can do and its limits; no build or doc step reads README.md and one test does — the capability-statement pin reads its count of the driver commands as tools (was «no build, doc or test step reads it»); the detail's MCP count reads «the page saying twelve, the count `VERBS` holds» (was ten, then eleven, «the page saying eleven»).
+- A new Project Intent group: the Capability statement — its five sections in order, its names and five counts held to the schema's tables by the pin, no check reading its other claims, README's link, Viola's pointer outside this repository.
+- Mutation, query and CSSOM: the windowed AT witness's owner is the residuals line that reads `re-carried:0.2.0`, at an active assistive technology this version does not reach (was «(target: next)»).
+- Driver session: `covered`'s restatement keeps «the eight causes» (was «the nine causes», beside the same sentence's eight).
+- CI contracts: the `ci-scripts` leg discovers eight test files (was seven, six until 2026-10-14-quality-gates); a new contract, the capability-statement pin — `CapabilityStatementTest`'s four cases over `VERBS`, `Cause::name`, `SESSION_ERRORS`, `NODE_FIELDS` and `EXIT_STATUSES`, the five counts in words, README's «the {word} driver commands as tools», by path, no write, no env read.
+- Established Decisions (a kept check at rest): the screens' readings at rest name a lint's findings beside the snapshot text and diffs.
+**Why:** the chunk's statement and its pin are new surfaces of this chunk; the README count, the cause count, the file count and the AT owner are measured facts the report carries and the plan's Expected amendments name. The at-rest list follows the visual lint's crossing onto every ratified carrier, reconciled on the founder's own answer at this wrap's P2 halt, «Применить как сверку (Рекомендую)», by dialog in the overseer session — no new crossing.
+**Ref:** .andromeda/runs/2026-10-25T11-21-44-wrap/

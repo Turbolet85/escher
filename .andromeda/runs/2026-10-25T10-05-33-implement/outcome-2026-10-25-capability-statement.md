@@ -29,8 +29,12 @@ pointer's commit line 15 · the operator's confirmation, step 6, read by 16), th
 
 ## Matrix
 `v020-10` (`manual`): no ref written. Its acceptance needs the pushed commit, the pointer's `commit:` line naming it and
-the operator's confirmation in `evidence/operator-confirm.md` — none exist at /implement, so the pin's green does not
-satisfy it as written. The ref belongs after the operator pass (the confirmation and entries 14-16 its witnesses).
+the operator's confirmation in `evidence/operator-confirm.md` — none existed at /implement, so the pin's green did not
+satisfy it as written.
+
+Written after the operator pass (entries 12-16 green, `evidence/operator-pass.md`; the founder's «Подтверждаю
+(Рекомендую)» in `evidence/operator-confirm.md`): `v020-10 · status planned → implemented`, ref
+`manual: escher-0.2.0/chunks/2026-10-25-capability-statement/evidence/operator-confirm.md (confirmed: e7e71221dfdcd29c6df603d222104855f43c07f4 · 2026-10-25 · the founder, «Подтверждаю (Рекомендую)») · docs/capabilities.md at e7e71221d, pinned by .github/scripts/test_capability_statement.py (4 tests, green on CI#40184674449, 17/17) · README.md:48 links it · Viola pointer viola-0.2.0-incubator/research/escher-capabilities.md names docs/capabilities.md at that commit (evidence/viola-pointer.md; operator entries 15, 16 green)`.
 
 ## Deviations from plan, with justifications
 1. **The pin's count case reads five tables, not three.** Beside the verb, cause and session-error counts it reads

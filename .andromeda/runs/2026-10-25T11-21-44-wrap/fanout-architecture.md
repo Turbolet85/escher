@@ -1,0 +1,18 @@
+proposals:
+  - detector: D-new-detail
+    severity: warning
+    section: §Infrastructure Patterns → Directory structure
+    file: new
+    near: the Directory structure tree's `scripts/` row («agent-run.{sh,ps1} (test contract) · cold-agent.{sh,ps1} (cold-agent pipe) · code-graph tooling»)
+    change: the Directory structure tree gains a `docs/` row — `docs/                  capabilities.md — escher's statement of what it can do, its stated limits, its a11y reach and what an MCP client carries onward, its counts pinned by .github/scripts/test_capability_statement.py · upstream's three files beside it`
+    sidecar: §Infrastructure Patterns Directory structure — `docs/` row added for escher's `docs/capabilities.md`, beside upstream's three files (2026-10-25-capability-statement).
+    rationale: the report's Changes → Files lists the new `docs/capabilities.md` (304 lines, five sections), and its Counts / qualifiers moved bullet records that `docs/` now holds escher's own `capabilities.md` beside upstream's three files while «the arch Directory structure names no `docs/`» (pattern `docsdir`, control unfired); Expected amendments names «architecture §Infrastructure Patterns → Directory structure — `docs/` holds escher's `capabilities.md` beside upstream's three → the amendment adds the row». §Infrastructure Patterns has no category file under .andromeda/architecture-detail/, so the row is the body's.
+    basis: escher-0.2.0/chunks/2026-10-25-capability-statement/report.md:8
+  - detector: D-arch-decisions
+    severity: warning
+    section: §Project Intent → Front page
+    change: the Front page bullet says README.md also links `docs/capabilities.md` as the statement of what Escher can do and its limits, and that one test step reads it — `.github/scripts/test_capability_statement.py` (the `ci-scripts` leg) asserts it holds «the twelve driver commands as tools», the count read from `VERBS` — so «no build, doc or test step reads it» becomes «no build or doc step reads it, and one CI-script test pins its MCP tool count»
+    sidecar: §Project Intent Front page — README links `docs/capabilities.md`, and the `ci-scripts` leg's `test_capability_statement.py` now reads it to pin «the twelve driver commands as tools» (2026-10-25-capability-statement).
+    rationale: the report's Changes → Files records README.md:48 replaced with «the twelve driver commands as tools» plus a sentence linking `docs/capabilities.md`; its Symbols / APIs bullet lists `CapabilityStatementTest`'s fourth case «README.md holds «the {word} driver commands as tools»», and its Harness / gate surface bullet puts that pin in the `ci-scripts` leg run by CI's «Test CI scripts» job — so the body's standing «no build, doc or test step reads it» is contradicted and its list of what the page holds lacks the link.
+    basis: escher-0.2.0/chunks/2026-10-25-capability-statement/report.md:9
+note: D-arch-resources finds nothing unregistered — the chunk adds no Rust symbol, verb, carrier, socket, port, env var (the pin reads none) or crate (report Changes, Symbols / APIs and Crates / modules); D-arch-decisions finds no new library or runtime (Dependencies: none; the pin is stdlib unittest under the ci-scripts leg's standing Python 3.11). The body's «eight closed causes» (Driver session) and its «windowed witness is still owed» (Mutation, query and CSSOM; report: no-change) already stand true. The readme12, causes9, ciscripts and atowner category-file sites (project-intent.md:21, standard-contracts.md:149, :261, :27) are the cascade's; project-intent.md:21's Front page detail likely restates «no build, doc or test step reads it» as the body does, for its reader to weigh beside proposal 2.

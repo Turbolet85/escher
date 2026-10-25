@@ -6,7 +6,7 @@ Detail: .andromeda/a11y-plan-detail/a11y-scope-summary.md — read whole.
 
 **A11y scope (entities needing assertions):**
 
-- **Dioxus crates** — `accessibility` is a default feature of both Dioxus crates, which the workspace takes with `default-features = false`; it reaches seven_guis through `escher-driver`, which names it unconditionally, while seven_guis' own manifest names none, and no stand binary builds a platform adapter, so no assistive technology is given a tree by the stand binary — the adapter and its windowed AT witness owned by a `.andromeda/residuals.md` line (target: next).
+- **Dioxus crates** — `accessibility` is a default feature of both Dioxus crates, which the workspace takes with `default-features = false`; it reaches seven_guis through `escher-driver`, which names it unconditionally, while seven_guis' own manifest names none, and no stand binary builds a platform adapter, so no assistive technology is given a tree by the stand binary — the adapter and its windowed AT witness owned by a `.andromeda/residuals.md` line that reads `re-carried:0.2.0`, an active assistive technology this version does not reach.
 
 **A11y surfaces & assistive tech reach:** the AccessKit platform adapters and their per-platform gaps are recorded in §2 (Platform adapters).
 
@@ -24,7 +24,7 @@ Detail: .andromeda/a11y-plan-detail/a11y-strategy.md — read whole.
 
 **Accessibility tree lifecycle:**
 
-- The accessibility tree is built from the document on InitialTreeRequested and refreshed on change: a poll that takes a non-empty changed set rebuilds the platform tree, both paths through the `Document::accessibility_tree` trait method, so a wrapper's override (DioxusDocument's stable ids) reaches it; proven headlessly on the stand in both layout modes, its windowed witness at the platform adapter owed — owned by a `.andromeda/residuals.md` line (target: next).
+- The accessibility tree is built from the document on InitialTreeRequested and refreshed on change: a poll that takes a non-empty changed set rebuilds the platform tree, both paths through the `Document::accessibility_tree` trait method, so a wrapper's override (DioxusDocument's stable ids) reaches it; proven headlessly on the stand in both layout modes, its windowed witness at the platform adapter owed — owned by a `.andromeda/residuals.md` line that reads `re-carried:0.2.0`, an active assistive technology this version does not reach.
 
 - `changed_nodes` is the engine's changed set, the nodes written since the last `take_changed_nodes`: an in-document mutation, a focus or checked change, a text control's input and a select's changed choice mark it, node creation, hover, active, scroll and layout do not, so a pointer move alone reaches no refresh; a harness settle neither reads nor drains it and a fresh harness document's set is non-empty, so a check reading `has_changes()` as "this step changed something" drains first.
 
@@ -32,7 +32,7 @@ Detail: .andromeda/a11y-plan-detail/a11y-strategy.md — read whole.
 - A node's role comes from its `role` attribute, else from the HTML element mapping, else `Role::Unknown` (packages/blitz-dom/src/accessibility.rs:139-149)
 - A TODO notes that elements with strong native semantics can currently have their role overridden, contrary to WAI-ARIA 1.2 (packages/blitz-dom/src/accessibility.rs:142-143)
 
-- The builder writes three states from ARIA state attributes, trimmed and matched in lower case: `aria-selected` → `selected`; `aria-pressed` → `toggled` on all but the five checkable roles, `aria-checked` → `toggled` on those alone; `aria-invalid` → `invalid`; a select's option reads its chosen state; nothing else writes `toggled`, so the tree never states a native checkbox or radio checked — that fix and the windowed AT witness owned by `.andromeda/residuals.md` lines (target: next).
+- The builder writes three states from ARIA state attributes, trimmed and matched in lower case: `aria-selected` → `selected`; `aria-pressed` → `toggled` on all but the five checkable roles, `aria-checked` → `toggled` on those alone; `aria-invalid` → `invalid`; a select's option reads its chosen state; nothing else writes `toggled`, so the tree never states a native checkbox or radio checked — that fix owned by a `.andromeda/residuals.md` line (target: next), the windowed AT witness by one that reads `re-carried:0.2.0`, an active assistive technology this version does not reach.
 
 - The builder also holds upstream's six reads — `aria-labelledby` (its targets' text the `label`, outranking a `<label>` and an `aria-label`, accname 2B), `aria-describedby`, `aria-description`, `aria-expanded`, `aria-disabled` and `aria-level` — still one read per attribute; the description and the new closed values leave only to the platform adapter, which no stand binary builds, so what an assistive technology reads of them is not measured.
 

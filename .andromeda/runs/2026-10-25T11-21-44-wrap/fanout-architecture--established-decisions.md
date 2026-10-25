@@ -1,0 +1,2 @@
+proposals: []
+note: no drift in this category — the report adds no resource, dependency, crate, symbol or carrier (Changes: Symbols/Crates/Dependencies none, Retired none), and its `atowner` move concerns only the AT witness's residuals line; this file's four «(target: next)» owners (.andromeda/architecture-detail/established-decisions.md:75, :76, :78, :104) are the merge-surface and focus-fixup residuals lines, which the report does not move, and :65's «stays unmeasured until the windowed check» names no owner disposition, like the `atowner` no-change rows.

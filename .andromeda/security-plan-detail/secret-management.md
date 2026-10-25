@@ -30,5 +30,6 @@ Read whole. The master's broad view is .andromeda/security-plan.md; this file ho
 - searched: `token|password|secret|authorization|cookie|x-api-key|auth` and `std::env|env::var|getenv` over the 21 listed s11 files
 - searched: `token|password|secret|api[_-]?key|authorization|cookie` (case-insensitive) over the 61 s12 files
 - searched: `authorization|cookie|x-api-key|password|secret|token` (case-insensitive) over the 12 listed s13 files
+- searched: `/home/|api[_-]?key|authorization:|bearer ` and two e-mail domains (case-insensitive) over `docs/capabilities.md` and `.github/scripts/test_capability_statement.py` (0 hits); the pin reads no environment variable
 
 <!-- /detail -->

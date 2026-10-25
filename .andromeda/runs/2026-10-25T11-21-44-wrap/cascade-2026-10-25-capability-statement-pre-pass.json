@@ -1,0 +1,158 @@
+[
+{
+"tool": "cascade",
+"v": "1.16",
+"sha8": "d5143641",
+"ts": "2026-10-25T11:23:12Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-10-25T11-21-44-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-25T11-21-44-wrap",
+"--marker",
+"2026-10-25-capability-statement"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline e7e71221 (pre-pass — HEAD)",
+"title · control UNFIRED over the seven masters (bodies and sets) at e7e71221",
+"docsdir · control UNFIRED over the seven masters (bodies and sets) at e7e71221"
+],
+"stderr": "control: title, docsdir never fired over the seven masters' pre-pass text, bodies and sets (e7e71221) — a sweep runs a positive control or refuses; drop the pattern or control it by hand",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.16",
+"sha8": "d5143641",
+"ts": "2026-10-25T11:23:22Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-10-25T11-21-44-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-10-25T11-21-44-wrap",
+"--marker",
+"2026-10-25-capability-statement",
+"--pattern",
+"owner",
+"--pattern",
+"readme12",
+"--pattern",
+"ciscripts",
+"--pattern",
+"mcpcarry",
+"--pattern",
+"causes9",
+"--pattern",
+"atowner"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline e7e71221 (pre-pass — HEAD)",
+"owner · new 0 · standing 1 · leaf 0 · curation 0 · base 2 · control security-plan-detail/input-validation.md:197 (prose)",
+"readme12 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture-detail/project-intent.md:21 (prose)",
+"ciscripts · new 0 · standing 3 · leaf 0 · curation 0 · base 0 · control architecture-detail/standard-contracts.md:261 (…",
+"mcpcarry · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control security-plan.md:423 (comment)",
+"causes9 · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture-detail/standard-contracts.md:149 (pr…",
+"atowner · new 0 · standing 12 · leaf 5 · curation 0 · base 0 · control architecture.md:139 (prose)",
+".andromeda/security-plan-detail/input-validation.md:197 owner standing …becomes one is owned by a route entry) — the id…",
+".andromeda/playbook.md:58 owner base markup …d limit, and the fix is owned by a `CARRY:` on a route entry. Appended on …",
+".andromeda/playbook.md:66 owner base …s word, its merge surface owned by a CARRY on the upstream-sync entry. A delegate…",
+".andromeda/architecture-detail/project-intent.md:21 readme12 standing …shot, the page saying eleven since 2026-10-13-up…",
+".andromeda/architecture-detail/standard-contracts.md:261 ciscripts standing …ch discovers seven test files since 2026-1…",
+".andromeda/test-plan-detail/test-scope-summary.md:8 ciscripts standing …scripts` leg — 100 tests in seven test files (§…",
+".andromeda/test-plan-detail/unit-test-strategy.md:29 ciscripts standing ×2 …00 tests over seven test files — test_ci_wo…",
+".andromeda/security-plan.md:423 mcpcarry standing …dary-session-socket · boundary-mcp-stdio · auth · input · data-rest …",
+".andromeda/security-plan-detail/threat-model-summary.md:30 mcpcarry standing …-- detail: values · boundary-mcp-stdio -->",
+".andromeda/architecture-detail/standard-contracts.md:149 causes9 standing …e remedy, the nine causes and their names un…",
+".andromeda/security-plan-detail/error-handling.md:9 causes9 standing …its remedy, the cause set (nine) and the cause na…",
+".andromeda/architecture.md:139 atowner standing …latform-tree refresh's windowed witness is still owed, the refresh hel…",
+".andromeda/architecture-detail/cross-cutting-patterns.md:35 atowner standing …me item, its windowed witness still owed …",
+".andromeda/architecture-detail/standard-contracts.md:28 atowner standing …n drain\"; its windowed witness is still owed:…",
+".andromeda/security-plan-detail/input-validation.md:193 atowner standing …26-10-07; its windowed witness is still owed …",
+".andromeda/security-plan-detail/input-validation.md:195 atowner standing ×2 …seer's), its windowed witness owed like th…",
+".andromeda/security-plan-detail/input-validation.md:210 atowner standing … states, that windowed witness owned by its `…",
+".andromeda/a11y-plan.md:9 atowner standing …y — the adapter and its windowed AT witness owned by a `.andromeda/residual…",
+".andromeda/a11y-plan.md:27 atowner standing … both layout modes, its windowed witness at the platform adapter owed — ow…",
+".andromeda/a11y-plan.md:35 atowner standing …cked — that fix and the windowed AT witness owned by `.andromeda/residuals…",
+".andromeda/a11y-plan-detail/a11y-scope-summary.md:17 atowner standing …binary and its windowed AT witness owned by a `.…",
+".andromeda/a11y-plan-detail/a11y-strategy.md:9 atowner standing ×2  Its windowed witness is still owed: no windowed run…",
+".andromeda/a11y-plan-detail/a11y-strategy.md:21 atowner standing …active — and the windowed witness, at an active assis…",
+".claude/rules/a11y.md:25 atowner leaf @c2500/2762 …m is unmeasured — the windowed witness, at an active assistive techn…",
+".claude/rules/a11y.md:27 atowner leaf … founder, 2026-10-07, its windowed witness, at the platform adapter, still owed …",
+".claude/docs/a11y-summary.md:21 atowner leaf @c1434/2989 … is unmeasured, the windowed witness, at an active assistive …",
+".claude/docs/a11y-summary.md:26 atowner leaf @c535/2407 …fresh never ran; no windowed witness on the dev host — still o…",
+".claude/docs/services/blitz-shell.md:18 atowner leaf …under, 2026-10-07; a windowed witness is still owed, held by a `.…",
+"by line · 0 lines · 0 offsets",
+"owner · new 0 · standing 1 · leaf 0 · curation 0 · base 2 · control security-plan-detail/input-validation.md:197 (prose)",
+"readme12 · new 0 · standing 1 · leaf 0 · curation 0 · base 0 · control architecture-detail/project-intent.md:21 (prose)",
+"ciscripts · new 0 · standing 3 · leaf 0 · curation 0 · base 0 · control architecture-detail/standard-contracts.md:261 (…",
+"mcpcarry · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control security-plan.md:423 (comment)",
+"causes9 · new 0 · standing 2 · leaf 0 · curation 0 · base 0 · control architecture-detail/standard-contracts.md:149 (pr…",
+"atowner · new 0 · standing 12 · leaf 5 · curation 0 · base 0 · control architecture.md:139 (prose)",
+"total (6 patterns) · 28 rows over 17 files",
+"per class · new 0/0 · standing 21/13 · leaf 5/3 · curation 0/0 · base 2/1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "e7e71221dfdcd29c6df603d222104855f43c07f4",
+"how": "pre-pass — HEAD",
+"counts": {
+"owner": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 2
+},
+"readme12": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"ciscripts": {
+"new": 0,
+"standing": 3,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"mcpcarry": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"causes9": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"atowner": {
+"new": 0,
+"standing": 12,
+"leaf": 5,
+"curation": 0,
+"base": 0
+}
+},
+"bare": []
+}
+}
+]

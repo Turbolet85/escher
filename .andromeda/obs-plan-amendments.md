@@ -488,3 +488,12 @@ The delegate-answered facts PROVISIONAL.
 **Change:** a new absence row: the eight checks the `a11y` leg runs beside its six earlier files (`accessibility_states`, `accessibility_label`, `accessibility_description`, `accessibility_merged_states`, `accessibility_active_descendant_unread`, `inert_subtree`, `select_interaction`, `stand_act_select`) and the two shared modules they read (`tests/common/mod.rs`, `tests/fixtures/mod.rs`) hold no print, env read, subscriber or listener — the silence census over the ten files reading 0, `packages/` unchanged.
 **Why:** measured by the chunk's silence-census gate, read red with a planted `println!` and green on the tree.
 **Ref:** .andromeda/runs/2026-10-24T21-49-26-wrap/
+
+## 2026-10-25-capability-statement — the statement restates the driver's spans; a kept check at rest names a lint's findings
+**Section:** §6 Log Coverage (log-coverage.md: a new `emitter-escher-driver` group) · §9 CI Integration (ci-integration.md: the recording row)
+**Change:**
+- Log Coverage: the published statement `docs/capabilities.md` restates the escher-driver emitter's reach — the `command` and `tool_call` spans with closed-word, bool and count fields, stderr only, no driver line at the default `warn`, and the scrub's limits; its pin reads none of these claims, so a change to the span set or the scrub's limits is made there by hand.
+- CI Integration: a kept check holds the screens' ids, names, values, snapshot text, diffs and a lint's findings at rest (was no lint finding).
+**Why:** the statement is this chunk's new surface and restates what this plan owns; the at-rest list follows the visual lint's crossing onto every ratified carrier, one of the eight sites the cascade sweep found, reconciled on the founder's own word «Да, и эти 8 (Рекомендую)», extending his P2-halt answer «Применить как сверку (Рекомендую)» to all ten carried-set sites, by dialog in the overseer session, relayed by the operator.
+**Kept:** the capability-statement pin is not recorded silent: its proposal named no silence census over the file, so an `observed absent` row would have stood on no search.
+**Ref:** .andromeda/runs/2026-10-25T11-21-44-wrap/

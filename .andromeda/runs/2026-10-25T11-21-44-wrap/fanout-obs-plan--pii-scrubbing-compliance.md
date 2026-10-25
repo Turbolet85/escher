@@ -1,0 +1,2 @@
+proposals: []
+note: The chunk adds no log site, span, field, subscriber, telemetry dependency or env read (report Changes: Symbols / APIs, Dependencies none; Coverage: PII n/a, instrumentation n/a; Retired none), so D-obs-pii, D-obs-instrumentation and D-obs-stack do not fire here. docs/capabilities.md only restates this file's existing scrub limits (report Outcome, obs). The "(target: next)" owner at .andromeda/obs-plan-detail/pii-scrubbing-compliance.md:11 belongs to the paged-part host-sink reading, not to the AT witness the `atowner` pattern names, so it is no-change.

@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk adds docs/capabilities.md, one README.md line and a CI-script pin, with no crate, dependency, symbol, resource or retired item (report Changes); Design Philosophy's five values (modular engine, injected providers, spec-cited behaviour, one incremental pipeline, headless testability) hold no claim it moves — the docs/ row belongs to Infrastructure Patterns → Directory structure and the README count to Project Intent → Front page.

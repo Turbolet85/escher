@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk adds no integration path (Symbols: no Rust symbol, verb, carrier, log field or span; its one test, test_capability_statement.py, is a ci-scripts unit test under §4); .andromeda/test-plan-detail/integration-test-strategy.md:21's «(target: next)» owns the paged-part host-sink measurement, a different residual from the AT witness the report's `atowner` row names, and the report states no fact about it — left unchanged.

@@ -1,0 +1,2 @@
+proposals: []
+note: the report's Changes add no Rust symbol, log site, span, field, dependency or telemetry setup (Symbols / APIs, Dependencies none; Coverage of new surfaces instrumentation n/a · PII n/a for docs/capabilities.md and .github/scripts/test_capability_statement.py) and retire nothing, so D-obs-instrumentation, D-obs-stack and D-obs-pii hold for .andromeda/obs-plan-detail/telemetry-strategy.md; the statement's obs section restates the two spans and scrub limits as the masters already hold them.

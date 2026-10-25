@@ -1,0 +1,2 @@
+proposals: []
+note: the report's Changes add no IPC method, endpoint, event, socket, port, env var, workspace crate or dependency (Symbols/APIs, Crates, Dependencies, Schema all none; the pin .github/scripts/test_capability_statement.py reads by path, writes nothing, reads no env var), and docs/capabilities.md is a document, no runtime path — so .andromeda/architecture-detail/occupied-resources.md holds no drift; the report's docsdir row belongs to §Infrastructure Patterns → Directory structure, outside this category.

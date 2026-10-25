@@ -1,0 +1,2 @@
+proposals: []
+note: The chunk adds no stand-in, fake, stub or mock: `.github/scripts/test_capability_statement.py` reads the real `schema.rs`, `refusal.rs`, `error.rs`, `docs/capabilities.md` and `README.md` by path and replaces nothing (report Changes › Symbols / APIs, Harness / gate surface); Retired is none, no harness, status or log-format change (D-tests-obs-harness n/a), the runner is the §3 `python3 -m unittest discover` (D-tests-framework holds), and the pin's coverage belongs to unit-test-strategy's `ciscripts` rows, not this category.

@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk adds docs/capabilities.md, one README.md line and a CI-script test, both new surfaces `tokens n/a` (escher-0.2.0/chunks/2026-10-25-capability-statement/report.md:43-44), Retired none (:14); no z-index, shadow, stacking or hit-test depth value or fact moved, so D-design-tokens, D-retired and D-new-detail have nothing to change in .andromeda/design-system-detail/depth-strategy.md

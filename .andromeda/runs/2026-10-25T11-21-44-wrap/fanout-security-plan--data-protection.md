@@ -1,0 +1,2 @@
+proposals: []
+note: no drift in .andromeda/security-plan-detail/data-protection.md — the chunk adds no external-input surface (docs/capabilities.md and .github/scripts/test_capability_statement.py read repository files only), no auth, secret or dependency (Dependencies none, Retired none), and no at-rest medium; its kept-check rows (lines 8, 14) still stand, and the security-plan facts it moves (mcpcarry, causes9, atowner) sit in threat-model-summary.md, error-handling.md and input-validation.md, not here.

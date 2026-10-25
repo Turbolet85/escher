@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk adds no auth, session, token, key, secret source, dependency or input surface (report Changes: Symbols "guard: clean", Dependencies none, Retired none); docs/capabilities.md restates the socket's 0700/0600 filesystem access and the MCP stdio boundary with no authentication, matching .andromeda/security-plan-detail/authentication-authorization.md:31-32 and .andromeda/security-plan.md:41 as they stand, so no row moves.
