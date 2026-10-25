@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk changes only the a11y leg's selection (.github/scripts/ci-leg.sh:39) and its pin (.github/scripts/test_ci_workflows.py:298-302), with no Rust symbol, runner, harness or log-format change; this file names no CI leg for any check (line 17's `stand_act_select` cite states its behaviour, not its leg), its one sweep row (line 30, "the 86 files of slice s04") is a no-change token match, nothing is Retired, and the leg's fourteen belong to ci-integration.md / test-scope-summary.md, not here.

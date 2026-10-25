@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk changes only the a11y arm of .github/scripts/ci-leg.sh (one line replaced, line count unchanged) and the a11y row of .github/scripts/test_ci_workflows.py (+3 lines after 299); this file names no a11y leg, file count or tally, its ci-leg.sh citations do not move, and its two test_ci_workflows.py citations (:15, :186-199) sit above line 299 — no dependency, crate, resource or stack change (report Changes: Dependencies none, Crates none, Retired none).

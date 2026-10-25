@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk changed two CI script lines only (escher-0.2.0/chunks/2026-10-24-a11y-re-read/report.md:8-14 — no Rust symbol, dependency, input surface, auth or secret, Retired none); .andromeda/security-plan-detail/error-handling.md:1-32 names no a11y leg, leg tally or `test_ci_workflows.py` coordinate, and the site sweep lists no security-plan error-handling row (report.md:39), so D-security-input, D-security-auth and D-security-deps hold and no new detail falls to this category.

@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk changes only the `a11y` leg's selection (escher-0.2.0/chunks/2026-10-24-a11y-re-read/report.md:8-9, :31) — no interactive UI element (D-a11y-surface), no a11y violation or obs log schema (D-a11y-obs-schema), Retired none; this file states no leg or count claim, and its one swept row (.andromeda/a11y-plan-detail/aria-patterns-roles.md:54, "the 17 listed s06 files") is the report's own no-change false match (report.md:23).

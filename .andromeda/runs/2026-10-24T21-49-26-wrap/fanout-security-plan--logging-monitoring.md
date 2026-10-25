@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk changed only the a11y CI leg's selection (.github/scripts/ci-leg.sh:39) and its pin (.github/scripts/test_ci_workflows.py:298-302) — no new external-input surface, no auth/secret handling, no dependency (report Changes: Dependencies none, Retired none); .andromeda/security-plan-detail/logging-monitoring.md holds no a11y-leg, six-file or LegScriptTest claim, and none of its sink, span or stdout readings moved.

@@ -1,0 +1,2 @@
+proposals: []
+note: no drift — the chunk changes only .github/scripts/ci-leg.sh:39 and .github/scripts/test_ci_workflows.py:299-302 (report Changes · Coverage of new surfaces: instrumentation n/a · PII n/a, no symbol, dependency or log site), so D-obs-instrumentation, D-obs-stack and D-obs-pii have nothing to read in this file; its one sweep row, .andromeda/obs-plan-detail/pii-scrubbing-compliance.md:40 ("the 17 listed s06 files"), is the a11y-tally pattern's no-boundary false match the report lists as no-change; Retired is none.

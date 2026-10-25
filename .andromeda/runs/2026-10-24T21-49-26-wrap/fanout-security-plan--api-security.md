@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk changes two CI script lines only (.github/scripts/ci-leg.sh:39, .github/scripts/test_ci_workflows.py:299-302) — no new external-input surface, no auth/secret handling, no dependency (report Changes: Dependencies none, Symbols none, Retired none); .andromeda/security-plan-detail/api-security.md holds no a11y-leg, tally or leg-pin site (none in the report's site sweep) and cites neither moved script, so no D-security-input, D-security-auth, D-security-deps, D-retired or D-new-detail drift.

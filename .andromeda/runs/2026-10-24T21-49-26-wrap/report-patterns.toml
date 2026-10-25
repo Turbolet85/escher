@@ -1,0 +1,34 @@
+[[pattern]]
+id = 'a11y-leg'
+regex = '''ci-leg\.sh a11y|`?a11y`? (CI )?leg|Accessibility \(a11y\) tests|the a11y job'''
+ignore_case = true
+
+[[pattern]]
+id = 'a11y-tally'
+regex = '''six (test )?files|6 (test )?files|6 · 43|43 (tests|passed)|43 over|over 6 targets'''
+ignore_case = true
+
+[[pattern]]
+id = 'outside-leg'
+regex = '''(not|outside) (by |in )?the `?a11y`? (CI )?leg|a11y leg'?s six|neither file in the `?a11y'''
+ignore_case = true
+
+[[pattern]]
+id = 'leg-pin'
+regex = '''LegScriptTest|test_gate_legs_dispatch_to_cargo|a11y tuple|pinning all six'''
+ignore_case = true
+
+[[pattern]]
+id = 'ci-tally'
+regex = '''40125511019|a11y job'?s (CI )?tally'''
+ignore_case = true
+
+[[pattern]]
+id = 'title'
+fixed = 'A11y re-read'
+ignore_case = true
+
+[[pattern]]
+id = 'owner-generic'
+regex = '''owned by a (route entry|CARRY)'''
+ignore_case = true

@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk changed two CI scripts only (escher-0.2.0/chunks/2026-10-24-a11y-re-read/report.md:8, Coverage `tokens n/a` at :48, Retired none at :14) — no duration, easing, animation or UI element; the one sweep row in this file, .andromeda/design-system-detail/motion.md:46 ("the 17 listed s06 files"), is the `a11y-tally` pattern's false match the report itself disposes no-change (report.md:23).

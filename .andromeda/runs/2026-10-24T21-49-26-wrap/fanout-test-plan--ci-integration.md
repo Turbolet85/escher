@@ -1,0 +1,29 @@
+proposals:
+  - detector: D-new-detail
+    severity: warning
+    file: .andromeda/test-plan-detail/ci-integration.md
+    near: 8
+    section: "## 9. CI Integration"
+    change: "Replace line 8's a11y clause (`--test accessibility_hidden … --test stand_accessibility_ids`, six files since 2026-10-14-stand-a11y-assertions, three until then; the a11y job's definition unchanged) with: a11y (one `cargo test --workspace --locked` line of fourteen `--test` targets since 2026-10-24-a11y-re-read, in order `accessibility_hidden`, `accessibility_roles`, `focusability_updates`, `stand_keyboard`, `stand_contrast`, `stand_accessibility_ids` (six since 2026-10-14-stand-a11y-assertions, three until then), then `accessibility_states`, `accessibility_label`, `accessibility_description`, `accessibility_merged_states`, `accessibility_active_descendant_unread`, `inert_subtree`, `select_interaction`, `stand_act_select` on the founder's «Плюс проверки дерева (Рекомендую)» (2026-10-24), each joining file keeping every leg it already ran in — `stand_act_select` now in both the a11y and stand-repeat legs (.github/scripts/ci-leg.sh:39); pinned by `LegScriptTest`'s a11y row, one `assertIn` per word over the shimmed log, in no order (.github/scripts/test_ci_workflows.py:298-302); the a11y job's definition unchanged) — if line 8 then passes 2 000 chars, break it before `coverage (` into a continuation line, as lines 9-10 continue it"
+    sidecar: "test-plan CI Integration › Legs: the a11y leg's selection six → fourteen `--test` targets (2026-10-24-a11y-re-read, the founder's inputs#I1), its pin LegScriptTest's a11y row at test_ci_workflows.py:298-302"
+    rationale: "The report's Symbols / APIs and Harness / gate surface: the a11y leg (`.github/scripts/ci-leg.sh:39`) now runs fourteen `--test` targets, the six in their order then the eight joining, still one `cargo test --workspace --locked` line; its pin names the fourteen (`test_ci_workflows.py:298-302`), one assertIn each, in no order; the site sweep lists `test-plan-detail/ci-integration.md:8` as changed under `a11y-leg` and `a11y-tally`; the choice is inputs#I1, «Плюс проверки дерева (Рекомендую)»."
+    basis: escher-0.2.0/chunks/2026-10-24-a11y-re-read/report.md:9
+  - detector: D-new-detail
+    severity: warning
+    file: .andromeda/test-plan-detail/ci-integration.md
+    near: 42
+    section: "## 9. CI Integration"
+    change: "Line 42's end gains `;` and a new continuation line follows it: re-read with the a11y leg's fourteen targets on CI#40134371519, the pre-CI commit `4cbf0a4c9` (green 17/17): linux 206 · 1105 · 0 · 12; macos and coverage 187 · 1102 · 0 · 12; windows 187 · 1057 · 0 · 9; the a11y job 14 · 84 · 0 · 0, from 6 · 43 · 0 · 0 on CI#40125511019 (`db585b711`) — +8 result lines and +41 passed, the eight joining files (accessibility_states 5 · accessibility_label 13 · accessibility_description 3 · accessibility_merged_states 3 · accessibility_active_descendant_unread 1 · inert_subtree 4 · select_interaction 7 · stand_act_select 5); the stand repeat 198 · 837 · 0 · 21 and every other job unmoved — as measured at escher-0.2.0/chunks/2026-10-24-a11y-re-read/evidence/ci.md"
+    sidecar: "test-plan CI Integration › Per-OS test tallies: CI#40134371519's per-job reading added, the a11y job 6 · 43 → 14 · 84 · 0 · 0, every other job unmoved"
+    rationale: "Counts / qualifiers moved: the CI a11y job's tally 6 · 43 · 0 · 0 on CI#40125511019 → 14 · 84 · 0 · 0 on CI#40134371519 (`4cbf0a4c9`), per file in evidence/ci.md; Outcome entry 21 reads Test [default features] 206 · 1105 · 0 · 12, Test (macos) and Coverage report 187 · 1102 · 0 · 12, Test (windows) 187 · 1057 · 0 · 9, Stand checks repeated 198 · 837 · 0 · 21; the site sweep names `:42` as owed this chunk's reading after it (its 6 · 43 true as dated)."
+    basis: escher-0.2.0/chunks/2026-10-24-a11y-re-read/report.md:17
+  - detector: D-new-detail
+    severity: warning
+    file: .andromeda/test-plan-detail/ci-integration.md
+    near: 64
+    section: "## 9. CI Integration"
+    change: "Replace line 64's a11y clause (`ci-leg.sh a11y` 6 · 6 · 3 passed (since 2026-10-14-stand-a11y-assertions six files, exit 0: … stand_keyboard 14, `target/ci-logs/a11y.log`, as measured at escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/report.md)) with: `ci-leg.sh a11y` exit 0, 14 result lines · 84 passed · 0 failed · 0 ignored over fourteen files since 2026-10-24-a11y-re-read (accessibility_hidden 6 · accessibility_roles 6 · focusability_updates 4 · stand_keyboard 14 · stand_contrast 5 · stand_accessibility_ids 8 · accessibility_states 5 · accessibility_label 13 · accessibility_description 3 · accessibility_merged_states 3 · accessibility_active_descendant_unread 1 · inert_subtree 4 · select_interaction 7 · stand_act_select 5, `target/ci-logs/a11y.log`, as measured at escher-0.2.0/chunks/2026-10-24-a11y-re-read/evidence/counts.md), six files and 43 passed from 2026-10-14-stand-a11y-assertions until then"
+    sidecar: "test-plan CI Integration › Local baseline: the local `ci-leg.sh a11y` reading six files · 43 → fourteen files, 14 · 84 · 0 · 0, per file"
+    rationale: "Counts / qualifiers moved: the a11y leg's local tally 6 result lines · 43 passed → `lines 14 passed 84 failed 0 ignored 0` (gate entries 1–2), per file in evidence/counts.md; the site sweep lists `test-plan-detail/ci-integration.md:64` as changed under `a11y-leg` and `a11y-tally` (the six-file reading, true as dated, this chunk's 14-file reading owed)."
+    basis: escher-0.2.0/chunks/2026-10-24-a11y-re-read/report.md:16
+note: "No D-tests-coverage / D-tests-framework / D-tests-obs-harness violation (no Rust symbol, runner or harness change; the leg change is pinned by LegScriptTest, 33 tests); line 9's `.github/scripts/test_ci_workflows.py:361-365` lies past line 299 and moved +3 — left to the citation sweep, as the report's Counts bullet assigns."

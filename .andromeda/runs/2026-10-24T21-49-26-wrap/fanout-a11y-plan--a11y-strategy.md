@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk adds no interactive UI element (D-a11y-surface quiet) and changes no a11y violation or obs log schema (D-a11y-obs-schema quiet); Retired is none; the report's site sweep lists no row in .andromeda/a11y-plan-detail/a11y-strategy.md, whose cites of accessibility_states, accessibility_label, accessibility_description and stand_accessibility_ids (lines 9, 21, 23) name no leg or count; the leg widening's detail belongs to §3 and §9 (a11y-plan.md:53-55, :235; .andromeda/a11y-plan-detail/ci-integration.md), not §2.

@@ -1,0 +1,2 @@
+proposals: []
+note: The chunk changes two CI scripts only (escher-0.2.0/chunks/2026-10-24-a11y-re-read/report.md:8-14, Symbols/APIs none, Dependencies none, Retired none); its one new surface states instrumentation n/a (report.md:48), so no span site is added and none retired. The sweep's one hit in this file, .andromeda/obs-plan-detail/span-trace-coverage.md:11 ("the 17 listed s06 files"), is the report's own false match of `6 (test )?files`, not about the a11y leg (report.md:23). escher-driver's 2 `info_span!` sites stand unmoved (packages/ unchanged, report.md:73).

@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk touches no secret, identity, token, key, input surface or dependency (report Changes: Files are .github/scripts/ci-leg.sh:39 and .github/scripts/test_ci_workflows.py:299-302 only; Dependencies none; Retired none), so D-security-auth, D-security-input and D-security-deps do not fire here; the one sweep row in this file, .andromeda/security-plan-detail/secret-management.md:25 ("the 17 listed s06 files"), is the report's own a11y-tally false match, disposed no-change.

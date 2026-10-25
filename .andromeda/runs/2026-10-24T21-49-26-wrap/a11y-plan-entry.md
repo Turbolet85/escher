@@ -1,0 +1,12 @@
+
+## 2026-10-24-a11y-re-read — the a11y leg runs fourteen files
+**Section:** §3 A11y Assertion Harness Contract (body: the state check; the label and description bullet; the merged-states · inert · active-descendant bullet) · §5 Keyboard Navigation (keyboard-navigation.md: the select key and typeahead check) · §6 Visual Design Verification (visual-design-verification.md: the visual lint's `contrast`) · §9 CI Integration (body; ci-integration.md)
+**Change:**
+- §9 body: `ci-leg.sh a11y` runs `cargo test --workspace --locked` over fourteen files (was six), eight of them — the four `stand_*` files, `accessibility_states`, `inert_subtree`, `accessibility_active_descendant_unread` and `select_interaction` — also in `stand-repeat` (was «the three `stand_*` files»).
+- ci-integration: the six-file command dated, its pin cited `:298-302`, «were then unchanged» on the two dated readings; the fourteen in order on one line with no comment line, the five tree-reading checks beside the three tier-0 witnesses, `focus_redraw` · `focus_within` · `accessibility_names` left out; each joining file a witness, a tree reading the founder took or a recorded gap, keeping every leg it ran in, `stand_act_select` in both legs; the log 14 · 84 · 0 · 0 locally and on CI#40134371519 (6 · 43 on CI#40125511019), the job's tier, `needs`, cache and upload kept; the pin one `assertIn` per target word, in no order; the stand's Tab order, Enter and Space and contrast hold after 0.2.0's engine changes, nothing re-baselined; `aria-checked` asserted by `accessibility_states`, not `accessibility_merged_states`.
+- §3: the state check, the label and description checks and the merged-states · inert · active-descendant checks run in the `a11y` leg (was «not in the `a11y` leg, which runs six files», «outside the a11y leg's six files», «all three outside the a11y leg's six files»).
+- keyboard-navigation: `select_interaction` and `stand_act_select` in the `a11y` leg (was «neither file in the a11y leg's six»).
+- visual-design-verification: the `a11y` leg reads 84 tests over 14 targets (was «43 tests over 6 targets»).
+**Why:** the leg's membership is the founder's own word on the chunk's P4 fork, «Плюс проверки дерева (Рекомендую)», over the tier-0 witnesses alone, relayed verbatim by the overseer (2026-10-24, chunk inputs#I1); the counts measured at the chunk and on CI#40134371519.
+**Kept:** each file's `stand-repeat` placement.
+**Ref:** .andromeda/runs/2026-10-24T21-49-26-wrap/

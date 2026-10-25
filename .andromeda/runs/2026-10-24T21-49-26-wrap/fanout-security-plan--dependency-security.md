@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk adds no dependency (report Changes · Dependencies none; manifest probe 0 over Cargo.toml, Cargo.lock, deny.toml), no input surface and no auth/secret touch; the file's one leg citation, the audit line .github/scripts/ci-leg.sh:38, is unmoved (line 39 replaced one-for-one, line count unchanged per the report), and the a11y leg keeps `--locked` (Outcome, security), so the body's Lockfile verification cite .github/scripts/ci-leg.sh:20-65 still holds.

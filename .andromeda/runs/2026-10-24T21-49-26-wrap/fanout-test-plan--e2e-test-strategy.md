@@ -1,0 +1,2 @@
+proposals: []
+note: The chunk changed only the a11y leg's --test list and its LegScriptTest row (no E2E driver, binary, flow or MCP surface); the one sweep hit in this file, .andromeda/test-plan-detail/e2e-test-strategy.md:19 ("the 86 files of slice s04"), is the a11y-tally pattern's no-word-boundary false match the report itself disposes no-change (escher-0.2.0/chunks/2026-10-24-a11y-re-read/report.md:23); D-tests-coverage, D-tests-framework and D-tests-obs-harness find nothing in this category.

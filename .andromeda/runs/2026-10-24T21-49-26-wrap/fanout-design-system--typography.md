@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk changed two CI scripts only (escher-0.2.0/chunks/2026-10-24-a11y-re-read/report.md:8), its one new surface has tokens n/a (:48) and Retired is none (:14); no typography value, font or loading claim moved, and the sweep's three design-system a11y-tally rows are in border-radius.md, depth-strategy.md and motion.md, none in this file, each a false match on "the 17 listed s06 files" (:23).

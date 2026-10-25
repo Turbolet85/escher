@@ -1,0 +1,2 @@
+proposals: []
+note: Inherited Defaults (.andromeda/architecture-detail/inherited-defaults.md:8, :14, :20) names no a11y leg, no leg file count and no test_ci_workflows.py line; the chunk adds no crate, dependency, env var, socket or publish setting (report Changes: Crates / Dependencies / Schema none), and its one ci-leg.sh edit (line 39, numstat 1 1, line count unchanged) leaves the cite .github/scripts/ci-leg.sh:37-64 at :14 in range and unmoved.

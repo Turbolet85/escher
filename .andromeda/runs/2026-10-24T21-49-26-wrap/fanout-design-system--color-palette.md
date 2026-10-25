@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens unfired — the report's one Coverage line (the a11y CI leg's selection) reads `tokens n/a` and no UI element is new; Retired none; no stand colour or table changed (`stand_contrast` re-read green, `TEXT_ROWS` · `STATE_ROWS` unedited), so color-palette.md:27's accent row and its ratios stand; the sweep's three design-system `a11y-tally` rows (border-radius.md:40, depth-strategy.md:49, motion.md:46) lie outside this file and are token collisions.

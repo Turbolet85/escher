@@ -1,36 +1,27 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-24T19:13Z
+**Last Updated:** 2026-10-25T01:36:47Z
 **Branch:** build/escher-0.2.0 · 0 ahead of origin/build/escher-0.2.0 as read at this wrap's resume
 **Status:** clean
-**Last Commit:** 2026-10-24-stand-requirement-sweep — test: every 0.2.0 requirement witnessed inside stand-repeat, ten targets named in its leg
-
-## In flight (2026-10-24T20:51Z, context alarm)
-- `/andromeda-phase` on 2026-10-24-a11y-re-read: master record PENDING, P1–P3 done, P4 not written. Resume with
-  `/andromeda-phase` (Setup 3 (c) → P4) in `.andromeda/runs/2026-10-24T19-44-05-phase/`; read its `p4-state.md`
-  first — it holds the plan's shape and the one founder fork to ask (which files join the `a11y` leg). Leave every
-  P2 file and `.raw-*` twin there as it is.
+**Last Commit:** 2026-10-24-a11y-re-read — ci: the a11y leg runs fourteen files, the tree reads beside the tier-0 witnesses
 
 ## Position
-- Done: 2026-10-24-stand-requirement-sweep — `WITNESSES_020` and its leg check, `stand-repeat`'s ten named targets,
-  the lint co-reading and the text extent's limits asserted, the recording clients' stderr read at `trace`; masters and
-  leaves reconciled (wrap run `.andromeda/runs/2026-10-24T17-32-19-wrap/`, a resume of that run).
-- Next: `/andromeda-phase` — the next markerless entry is «A11y re-read» (working-route.md:51).
+- Done: 2026-10-24-a11y-re-read — the `a11y` leg widened six → fourteen files (14 · 84 · 0 · 0, CI#40134371519) on the
+  founder's «Плюс проверки дерева (Рекомендую)»; stand Tab order, Enter/Space and contrast re-read after 0.2.0, nothing
+  moved; masters and leaves reconciled (wrap run `.andromeda/runs/2026-10-24T21-49-26-wrap/`, a two-window resume).
+- Next: `/andromeda-phase` — the next markerless entry is «Capability statement» (working-route.md:53).
 
 ## Work done
-CI green (CI#40114977936); P2 forced-sample cascade, 63 proposals applied, 7 sidecar entries; 53 leaf findings
-applied; 1 Tier-1 correction; 1 residuals line added, the F334 line's premise corrected.
+CI green (CI#40134371519, 17/17); P2 forced-sample cascade, 33 amendments applied over four masters, 4 sidecar entries;
+21 leaf findings written; curation T3 2 new + 1 extended.
 
 ## Drift resolved
-The leg selection (the founder's named `--test` list), six counts and the readings they move, two "asserted by no
-check" claims retired, two state directories registered, `many_items` among the shared pages, one false
-typography cite re-pointed; the new stated limit — a paged `part` read through the host's own sink is unmeasured —
-owned by its residuals line.
+The leg's six-file claims retired across a11y-plan (body §3 and §9 and three category files), test-plan (§1, §4, §9) and
+architecture (CI contracts, Existing Scopes); the pin's «all six … in order» corrected to one `assertIn` per word; the
+CI and local a11y tallies re-read; the eight joining checks' silence recorded in obs-plan.
 
 ## Notes
-- The six `detail.py tally` rows are in the wrap's console report and `detail-2026-10-24-stand-requirement-sweep.json`.
-- F334's line: three hand-read citation sites remain (`typography.md:23` re-pointed here); `planlint.py` not re-read.
-- Last failed command: none.
-
-## Session End Status
-Completed normally at 2026-10-24 23:08:52
+- Deferred learnings: `recurrence-despite-learning: «Provenance is counted by class and span, not by the words beside
+  it»` (2026-10-19) — P2's first apply wrote chunk markers, a date and relay words into 23 master sites; classify's
+  standing check caught them before any landed.
+- Last failed command: none open (the P3 evolve append refused once for an estimated stamp, re-fired from `date -u`).

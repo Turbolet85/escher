@@ -1,0 +1,2 @@
+proposals: []
+note: The chunk changed only the a11y leg's selection (.github/scripts/ci-leg.sh:39) and its pin (.github/scripts/test_ci_workflows.py:299-302); no Rust symbol, dependency, log site or error path, so D-obs-instrumentation, D-obs-stack and D-obs-pii find nothing here; the one sweep row in this file, .andromeda/obs-plan-detail/error-capture-reporting.md:11 ("the 17 listed s06 files"), is the report's no-change token collision under `a11y-tally`, not an a11y-leg site.

@@ -919,3 +919,14 @@ Partly retires the PROVISIONAL clause of the earlier 2026-10-18-engine-debts and
 - New stated limit: a paged `part` read through the `escher-session` host's own sink is unmeasured (the host boots only the four lean tasks, none pages), owned by a `.andromeda/residuals.md` line (target: next).
 **Why:** each count and reading measured at this chunk (red before green, both layout modes, both builds). The limit's owner is the operator's own word «yes — apply.» on the phase's P5 card 2 (chunk inputs#I2).
 **Ref:** .andromeda/runs/2026-10-24T17-32-19-wrap/
+
+## 2026-10-24-a11y-re-read — the a11y leg's fourteen files in §1, §4 and §9
+**Section:** §1 Test Scope Summary (test-scope-summary.md: tests/blitz-tests) · §4 Unit Test Strategy (unit-test-strategy.md: CI workflows and leg script) · §9 CI Integration (ci-integration.md: Legs, Per-OS test tallies, Local baseline)
+**Change:**
+- Legs: `a11y` names its fourteen `--test` words on one line (was six) — its membership the tier-0 witnesses and the five tree-reading checks, 14 files and 84 tests, over the tier-0 witnesses alone, 9 and 59; `focus_redraw`, `focus_within` and `accessibility_names` not added; each file an SC 2.1.1 or 2.4.3 witness, a tree reading the founder took or a recorded gap (`accessibility_active_descendant_unread`); each joining file keeps its legs, `stand_act_select` in both `a11y` and `stand-repeat`.
+- Per-OS test tallies: CI#40134371519 on `4cbf0a4c9` read — the a11y job 14 · 84 · 0 · 0 (was 6 · 43 · 0 · 0), every other job equal to CI#40125511019's; a per-job tally strips ANSI codes with `(\x1b|\^\[)\[[0-9;]*m`, the log spelling ESC as the literal `^[`.
+- Local baseline: `ci-leg.sh a11y` fourteen files, 14 · 84 · 0 · 0, per file (was «6 · 6 · 3 passed», the six files' 43).
+- Unit Test Strategy: the a11y pin row asserts each of the fourteen target words, beside `--workspace` and `--locked`, by one `assertIn`, in no order, `:298-302` (was «pinning all six test files in order», `:298-299`).
+- Test Scope Summary: `accessibility_states`, `accessibility_label`, `accessibility_description`, `accessibility_merged_states`, `accessibility_active_descendant_unread`, `inert_subtree`, `select_interaction` and `stand_act_select` run by the `a11y` leg (was «not by the `a11y` leg's six», or no leg named); `focus_within`, `focus_redraw` and `hit_test_dropped_nodes` still outside, «not among its fourteen» (was «the `a11y` leg's six»); the adapter gap gains the `cargo tree --locked -p seven_guis -e normal` probe reading 0, so no a11y-leg check reaches the adapter crossing.
+**Why:** the leg's membership is the founder's own word on the chunk's P4 fork, «Плюс проверки дерева (Рекомендую)», relayed verbatim by the overseer (2026-10-24, chunk inputs#I1); the counts measured at the chunk; «in order» disproved by reading the pin, one `assertIn` per word.
+**Ref:** .andromeda/runs/2026-10-24T21-49-26-wrap/

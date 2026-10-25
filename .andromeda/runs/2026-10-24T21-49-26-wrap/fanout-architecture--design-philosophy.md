@@ -1,0 +1,2 @@
+proposals: []
+note: The chunk changed only the a11y CI leg's selection (.github/scripts/ci-leg.sh:39) and its pin (.github/scripts/test_ci_workflows.py:298-302) — no crate, socket, port, env var, IPC method, dependency or decision (report Changes: Symbols none, Crates none, Dependencies none, Retired none); .andromeda/architecture-detail/design-philosophy.md names no a11y leg, leg count or pin, and its "Headless, measurable, testable" values group stays true as written, so neither D-arch-resources nor D-arch-decisions fires here and no new detail belongs in this category.

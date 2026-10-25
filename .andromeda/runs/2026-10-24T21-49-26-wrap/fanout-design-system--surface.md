@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk changed only the a11y CI leg's selection (.github/scripts/ci-leg.sh:39, its pin .github/scripts/test_ci_workflows.py:298-302); its one Coverage line reads `tokens n/a`, Retired none, and no surface, component, output shape or stack in .andromeda/design-system-detail/surface.md moves; design-system's three a11y-tally rows (border-radius.md:40, depth-strategy.md:49, motion.md:46) are false matches outside this file.

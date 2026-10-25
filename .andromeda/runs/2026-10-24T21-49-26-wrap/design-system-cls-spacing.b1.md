@@ -1,0 +1,20 @@
+# Classified — design-system · spacing.b1
+
+## Answers
+spacing#1.1 · no · apps/readme/assets/github-markdown.css is outside Reached files, and no CSS or layout value changed (Untouched: spacing values)
+spacing#2.1 · no · apps/browser/assets/browser.css is outside Reached files, and no CSS or layout value changed (Untouched: spacing values)
+spacing#2.2 · no · apps/browser/assets/about-history.css is outside Reached files, and no CSS or layout value changed (Untouched: spacing values)
+spacing#2.3 · no · apps/readme/assets/blitz-markdown-overrides.css is outside Reached files, and no CSS or layout value changed (Untouched: spacing values)
+spacing#2.4 · no · examples/seven_guis/src/tasks/counter.rs and examples/seven_guis/src/app.rs are outside Reached files, and no Rust source changed (Untouched: spacing values)
+spacing#2.5 · no · packages/blitz-dom/assets/default.css is outside Reached files, and no CSS or layout value changed (Untouched: spacing values)
+spacing#3.1 · no · packages/blitz-dom/src/stylo.rs is outside Reached files, and no Rust source changed (Untouched: spacing values)
+spacing#3.2 · no · packages/blitz-dom/src/stylo.rs is outside Reached files, and no Rust source changed (Untouched: spacing values)
+spacing#3.3 · no · packages/blitz-dom/src/node/scrollbar.rs is outside Reached files, and no Rust source changed (Untouched: spacing values)
+spacing#3.4 · no · packages/blitz-dom/src/node/node.rs is outside Reached files, and no Rust source changed (Untouched: spacing values)
+spacing#3.5 · no · packages/blitz-paint/src/render.rs is outside Reached files, and no Rust source changed (Untouched: spacing values)
+spacing#3.6 · no · packages/blitz-paint/src/text.rs is outside Reached files, and no Rust source changed (Untouched: spacing values)
+spacing#4.1 · no · examples/assets/border-styles.html and examples/assets/cursor.html are outside Reached files, and no CSS or layout value changed (Untouched: spacing values)
+spacing#4.2 · no · examples/assets/graphite.html is outside Reached files, and no CSS or layout value changed (Untouched: spacing values)
+spacing#4.3 · no · examples/assets/hr.html is outside Reached files, and no CSS or layout value changed (Untouched: spacing values)
+spacing#4.4 · no · examples/assets/servo.css is outside Reached files, and no CSS or layout value changed (Untouched: spacing values)
+spacing#4.5 · no · examples/preact/index.html and examples/preact/core_dom_apis.html are outside Reached files, and no CSS or layout value changed (Untouched: spacing values)

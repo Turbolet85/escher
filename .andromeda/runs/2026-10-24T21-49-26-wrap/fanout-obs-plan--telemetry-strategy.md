@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk changes two CI script lines only (Changes: Files · Symbols none · Dependencies none · Retired none); no tracing site, span, subscriber, telemetry dependency or log of user data is added, and the a11y leg was already a `cargo test --workspace` build, so the by-invocation feature wiring at .andromeda/obs-plan-detail/telemetry-strategy.md:14 stands unmoved — no D-obs-instrumentation, D-obs-stack, D-obs-pii, D-retired or D-new-detail occurrence in this category.

@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk changed only the a11y leg's selection (.github/scripts/ci-leg.sh:39) and its pin (.github/scripts/test_ci_workflows.py:298-302), adding no fixture, page, seed or check data; the one sweep row in this file, .andromeda/test-plan-detail/test-data-fixtures.md:44 ("the 16 files of slice s08"), is the report's own false match of `6 (test )?files`, dispositioned no-change (escher-0.2.0/chunks/2026-10-24-a11y-re-read/report.md:23); D-tests-coverage, D-tests-framework and D-tests-obs-harness hold no drift for this category.

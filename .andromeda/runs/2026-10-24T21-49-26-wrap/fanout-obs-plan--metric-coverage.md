@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk changed only the a11y leg's --test selection (.github/scripts/ci-leg.sh:39) and its pin (.github/scripts/test_ci_workflows.py:299-302) — no Rust symbol, dependency, metric, counter or timing site (report Changes; Coverage of new surfaces "instrumentation n/a"), so D-obs-instrumentation, D-obs-stack and D-obs-pii hold over .andromeda/obs-plan-detail/metric-coverage.md; its one sweep row, :31 ("the 17 listed s06 files"), is the a11y-tally pattern matching inside another number, confirmed no-change as the report disposes it.

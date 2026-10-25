@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk changes only the a11y CI leg's selection (.github/scripts/ci-leg.sh:39) and its pin (.github/scripts/test_ci_workflows.py:298-302) — no new external-input surface, no auth/secret handling, no dependency, nothing retired, and no data-at-rest medium moved; .andromeda/security-plan-detail/data-protection.md (kept and committed checks) holds no a11y-leg site and none of the report's swept rows.

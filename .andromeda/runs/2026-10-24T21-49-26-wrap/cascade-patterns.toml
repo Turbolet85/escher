@@ -1,0 +1,24 @@
+[[pattern]]
+id = 'a11y-leg'
+regex = '''ci-leg\.sh a11y|`?a11y`? (CI )?leg|Accessibility \(a11y\) tests|the a11y job'''
+ignore_case = true
+
+[[pattern]]
+id = 'six-files'
+regex = '''a11y leg'?s six|\bsix (named |test )?files|runs six|6 · 43|43 tests over 6|over 6 targets|over six files'''
+ignore_case = true
+
+[[pattern]]
+id = 'outside-leg'
+regex = '''(not|outside) (by |in )?the `?a11y`? (CI )?leg|neither file in the `?a11y|not among (them|its six)'''
+ignore_case = true
+
+[[pattern]]
+id = 'pin-order'
+regex = '''pinning all six|all six test files|test_ci_workflows\.py:298-299|in order, `accessibility_hidden'''
+ignore_case = true
+
+[[pattern]]
+id = 'three-stand'
+regex = '''the three `stand_\*` files also run'''
+ignore_case = true

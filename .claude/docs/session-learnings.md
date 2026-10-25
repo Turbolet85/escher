@@ -8,6 +8,26 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-25 — The session hooks write the handoff in the middle of a wrap
+The harness's own hooks append to `.claude/session-handoff.md` while a wrap runs — the Stop hook rewrites its
+`## Session End Status` line, and an auto-compaction appends an `## AUTO-COMPACT` block — so a P2 snapshot pair that
+spans either shows `M .claude/session-handoff.md` beside the agents' files, and the path check stops on it. Before
+asking the operator to rule, diff the handoff between the pair's two trees: a hunk that is only those hook blocks is the
+harness's write, not an agent's; name it in the batch note and leave the file for P6's rewrite.
+
+Where it applies: every snapshot pair of wrap P2 (and phase P2), above all one that spans a context compaction.
+
+---
+
+## 2026-10-25 — An agent's hand-back is its return
+Under Agent spawns the hand-back message is both the agent's return and the session's wake; the task-notification
+that follows it starts nothing (the overseer's ruling, F342). Count running = spawned − returned by hand-backs, and
+take a batch's after snapshot once every hand-back has arrived, without waiting for the notifications behind them.
+
+Where it applies: the pacing and the path check of every fan-out batch (wrap P2, phase P2, consolidation).
+
+---
+
 ## 2026-10-20 — Read a capability's acceptance against the plan's steps before writing its test
 When the verification matrix's acceptance for a capability names more than the plan step that satisfies it — an
 acceptance reading «the same walk through `serve_mcp`» while the step names two calls — the acceptance is the contract.
@@ -192,6 +212,8 @@ A pattern for a count such as `\b805\b` matches every master citation whose rang
 Where it applies: writing `report-patterns.toml` and `cascade-patterns.toml` for a moved test count, re-export count or line count.
 
 Extended 2026-10-19: a count pattern keyed on a target's name followed by a number (`recording\W{0,3}\d+`) also matches a chunk marker that ends in that word followed by a history count («…2026-10-19-session-recording, 73 until…»), so read every row before counting it.
+
+Extended 2026-10-25: a count alternative with no leading word boundary (`6 (test )?files`) also matches inside a longer number or a slice name («the 17 listed s06 files», «86 files»), so open every count alternative with `\b`.
 
 ---
 

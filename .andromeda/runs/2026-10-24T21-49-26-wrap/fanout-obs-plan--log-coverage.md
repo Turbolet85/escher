@@ -1,0 +1,11 @@
+proposals:
+  - detector: D-new-detail
+    severity: warning
+    file: .andromeda/obs-plan-detail/log-coverage.md
+    near: 108
+    section: "## 6. Log Coverage"
+    change: "Add after line 108, inside the same `absence · logs` block: `- observed absent — a log site, span, field, env read or listener added by the a11y leg's widening (`.github/scripts/ci-leg.sh:39`, six → fourteen `--test` targets, and its pin row `.github/scripts/test_ci_workflows.py:298-302`; the eight joining files `accessibility_states`, `accessibility_label`, `accessibility_description`, `accessibility_merged_states`, `accessibility_active_descendant_unread`, `inert_subtree`, `select_interaction`, `stand_act_select` unedited) · searched: the silence census over the eight joining files and two modules, reading 0 (exit 1); the stand graph's adapter probe `cargo tree --locked -p seven_guis -e normal` reading 0 `accesskit_(xplat|winit)`; `packages/` unchanged, the leg's tee to `target/ci-logs/a11y.log` unchanged (as measured at escher-0.2.0/chunks/2026-10-24-a11y-re-read/report.md, its gate entries 8–9)`"
+    sidecar: "log-coverage: absence record for 2026-10-24-a11y-re-read — the a11y leg's widening to fourteen targets adds no log site, span, field, env read or listener; silence census 0 over the eight joining files."
+    rationale: "The report's only obs reading is a re-measured absence: Outcome '(obs) silence census `0` (exit 1); `cargo tree` adapter probe `0`; `packages/` unchanged — MET' (report.md:73), gate entries 'the silence census (… eight joining files and two modules …) — green · exit 1 · last line 0' and the adapter probe (report.md:84-85), Coverage of new surfaces 'instrumentation n/a · PII n/a' (report.md:48). Line 108 records the previous chunk's census in this shape; this chunk's census is the same kind of fact. No D-obs-instrumentation / D-obs-stack / D-obs-pii drift: Symbols / APIs none, Dependencies none, no logging added (report.md:9-12), Retired none (report.md:14)."
+    basis: .andromeda/obs-plan-detail/log-coverage.md:108
+note: no detector violated — the chunk changes one ci-leg.sh line and one test_ci_workflows.py row, adds no hot-path op, telemetry dependency or log site; the report names the census's "two modules" without naming them, so the proposal leaves them unnamed.

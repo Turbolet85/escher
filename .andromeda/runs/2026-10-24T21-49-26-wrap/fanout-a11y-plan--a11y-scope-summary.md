@@ -1,0 +1,2 @@
+proposals: []
+note: No drift in a11y-scope-summary.md. D-a11y-surface did not fire: the report's only new surface is the a11y CI leg's selection, not a UI element (Coverage of new surfaces). D-a11y-obs-schema did not fire: Schema / config is none and no log schema changed. Retired is none. Line 28's "17 listed s06 files" is one of the report's false a11y-tally matches, and the report rules it no-change. The report's adapter probe (`cargo tree … ^accesskit_(xplat|winit) ` → 0) reconfirms lines 16-18, but no dependency moved, so no re-read record is owed.

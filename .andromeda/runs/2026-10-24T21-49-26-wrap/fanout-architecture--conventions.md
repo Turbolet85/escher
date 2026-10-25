@@ -1,0 +1,2 @@
+proposals: []
+note: conventions.md holds no a11y-leg, leg-pin or tally claim; its two ci-leg.sh cites (.andromeda/architecture-detail/conventions.md:8, ci-leg.sh:20-25 and :37) do not move, since the report's numstat for ci-leg.sh is `1 1` with its line count unchanged; it cites no line of test_ci_workflows.py; the report has no new resource, dependency or retired item (D-arch-resources and D-arch-decisions are clean); and the body's Conventions section (.andromeda/architecture.md:98-127) needs no change.

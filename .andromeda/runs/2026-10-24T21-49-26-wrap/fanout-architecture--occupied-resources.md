@@ -1,0 +1,2 @@
+proposals: []
+note: the report lands no new socket, port, env var, crate or dependency (Changes: Symbols/APIs, Crates, Dependencies all none; Retired none); the category's one a11y-leg site, .andromeda/architecture-detail/occupied-resources.md:71 (the a11y job restoring workspace-test with save-if false), is the sweep's no-change row and ci.yml is byte-identical; ci-leg.sh's line count is unchanged (numstat 1 1), so the :88-89 and :40-47 cites at :23 hold.
