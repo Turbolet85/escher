@@ -1,0 +1,108 @@
+# arch · cascade read · group 5 of 7
+
+## Carried
+- (.andromeda/architecture-detail/standard-contracts.md:202) The statement must state stable element ids as computed on demand in four tiers, written to neither DOM nor vdom, exactly as this contract defines them.
+  > **stable element ids** — `DioxusDocument::element_id(NodeId) -> Option<String>` (`None` for a non-element, stale or detached node, never panics) and `element_ids() -> Vec<(NodeId, String)>` (every element reachable from the document root, document pre-order, ids pairwise distinct) compute the id on demand from a vdom walk joined with a DOM walk and write it to neither the DOM nor the vdom (packages/dioxus-native-dom/src/dioxus_document.rs:182-214; packages/dioxus-native-dom/src/element_id.rs:186-282); the id is one of four tiers, in order of precedence — (1) the **author key** — the HTML `id` verbatim when non-empty, `/`-free and the first in document pre-order to claim it — else (2) the **anchored path**
+  (.andromeda/architecture-detail/standard-contracts.md:204)
+  > no `NodeId`, `ElementId`, `ScopeId` or pointer enters an id; the id **holds across code edits** on the stand, in both layout modes
+  (.andromeda/architecture-detail/standard-contracts.md:205)
+  > the id **persists** on the stand, in both layout modes and on each lean task: every element present before and after a re-render reads the same id;
+  (.andromeda/architecture.md:177)
+  > **Dioxus DOM bridge:** DOM events reach the vdom through `data-dioxus-id`; a falsy value of upstream's 28 boolean attributes clears the attribute; `DioxusDocument::element_id` and `element_ids` compute a stable id on demand in four tiers — author key, anchored path, component path, document path — written to neither DOM nor vdom; under `accessibility` the snapshot, its text form and its diff read the screen read-only, holding no `NodeId`.
+- (.andromeda/architecture-detail/standard-contracts.md:207) The statement must describe the snapshot as a read-only tree of id · role · name · state · bounds, its state the seven fields this contract names.
+  > under the same feature `DioxusDocument::snapshot(&self) -> Snapshot` reads the screen as a tree, read-only: it builds from that `accessibility_tree` override and walks its `children` lists from `TreeInfo.root`; `Snapshot { roots: Vec<SnapshotNode> }` offers `nodes()` (pre-order) and `get(&str)` (by stable element id), a `SnapshotNode` carries `id: String`, `role: accesskit::Role`, `name: String`, `state: NodeState`, `bounds: blitz_dom::BoundingRect` and `children`, and `NodeState` carries seven fields in the order `enabled: Option<bool>` · `checked: Option<bool>` · `value: Option<String>` · `selected: Option<bool>` · `pressed: Option<bool>` · `invalid: bool` · `focused: bool`
+- (.andromeda/architecture-detail/standard-contracts.md:210) The statement's limits must include the boolean model's two limits as this contract words them.
+  > a boolean model with two limits, a mixed toggle reading not pressed and a grammar or spelling error reading invalid, the node keeping the full value
+  (.andromeda/architecture-detail/standard-contracts.md:208)
+  > while the snapshot reads no description and its `enabled` still reads the `disabled` attribute, so `aria-disabled` moves no snapshot reading
+- (.andromeda/architecture-detail/standard-contracts.md:213) The statement must state the text form, its parts and the 10,000-byte budget, the parts being the one paged reading, so the unpaged diff and findings stand as a limit beside it (CARRY 2).
+  > beside it `Snapshot::text_parts(&self, budget: usize) -> Vec<TextPart>` (`TextPart { text: String, ids: Vec<String> }`, `Debug` · `Clone` · `Default` · `PartialEq` · `Eq`) cuts that text into parts — consecutive pre-order lines while a part stays within `budget` bytes, never splitting a line, a line longer than `budget` a part alone, an empty snapshot one empty part — the parts concatenated being `to_text()`
+  (.andromeda/architecture-detail/standard-contracts.md:213)
+  > the public constant `SNAPSHOT_TEXT_BUDGET: usize = 10_000` is the ceiling one screen's text stays under, in bytes of `to_text`'s result
+  (.andromeda/architecture-detail/standard-contracts.md:212)
+  > there is no `Display` impl, no second entry point, no parser of the text, no JSON form, and `to_text` itself never truncates or pages;
+- (.andromeda/architecture-detail/standard-contracts.md:214) The statement must describe the diff by stable id into added, removed and changed nodes, and state that the acting verbs return it whole, unpaged (CARRY 2's limit).
+  > under the same feature `Snapshot::diff(&self, after: &Snapshot) -> SnapshotDiff`, an inherent method in the crate-private module `snapshot_diff`, is the snapshot's diff
+  (.andromeda/architecture-detail/standard-contracts.md:215)
+  > a node is added when its id is in `after` and not in `self`, removed when in `self` and not in `after`, and changed when in both and its role, name, state, bounds or parent's id differ
+  (.andromeda/architecture-detail/standard-contracts.md:217)
+  > since 2026-10-07-act-by-id `diff` has one caller outside the tests, escher-driver's executor, whose five acting commands return it in `Outcome::Acted`, `Outcome::Advanced` and, since 2026-10-07-refusal-detection, `Outcome::Scrolled` to the caller of `Session::run`
+- (.andromeda/architecture-detail/standard-contracts.md:213) What the statement says leaves escher must match these exits of the snapshot text and diff — the answer on every carrier and a kept check at rest, never a log — and add none.
+  > the text leaves the process through the returned value and, since 2026-10-10-driver-cli, in a hosted `snapshot`'s answer — over the session socket and onto the command line's stdout (ratified by the founder, 2026-10-10; until then the returned value was its only exit, ratified by the founder, 2026-10-07) — and no log or event carries the snapshot or its text, while a kept check holds it at rest — each kept answer whole, a `snapshot`'s text and an acting verb's diff included — in an owner-only file never logged, the two committed checks under `tests/blitz-tests/checks/` the one exception to owner-only;
+  (.andromeda/architecture-detail/standard-contracts.md:216)
+  > values come from the two snapshots only, so a password's or a file input's value in a diff is `MASKED_VALUE`, and no field holds a `NodeId`, an `ElementId`, a `ScopeId`, an AccessKit tree id or a pointer;
+  (.andromeda/architecture.md:179)
+  > No log or event carries the snapshot, its text or a diff, except a diff's three counts — added, removed and changed — on escher-driver's command span.
+- (.andromeda/architecture-detail/standard-contracts.md:217) The statement may state the actionable-key check as a capability only with its limit that no driver, CLI or MCP command exposes it.
+  > under the same feature `DioxusDocument::unkeyed_actionable(&self) -> Vec<UnkeyedActionable>` is the check behind the rule that every element an agent can act on reads an author key
+  (.andromeda/architecture-detail/standard-contracts.md:218)
+  > the check has no wire form, and no driver, CLI or MCP command exposes it yet
+  (.andromeda/architecture.md:181)
+  > Every element an agent can act on reads an author key: `DioxusDocument::unkeyed_actionable` lists, read-only, each actionable element whose stable id holds a `/`, with a remedy naming the fix.
+- (.andromeda/architecture-detail/standard-contracts.md:225) The statement's account of what an MCP client receives must say a password's or file input's value crosses as the fixed mask, `is_masked_input` the one test behind it.
+  > - `is_masked_input(&ElementData) -> bool`, public and re-exported beside `MASKED_VALUE`: true for an `input` whose `type` reads `password` or `file`, ASCII case-insensitive — the test the snapshot's `value` reader calls, no reading changed, and the one escher-driver's recorder reads to keep a masked `type` as its stand-in (packages/dioxus-native-dom/src/snapshot.rs:232-239).
+  (.andromeda/architecture-detail/standard-contracts.md:210)
+  > else the `value` attribute of a `textarea` or a text-entry `input`, except that a password `input` or a file `input` (the `type` compared ASCII-case-insensitively) reads `MASKED_VALUE` where that reading is non-empty and `""` where it is empty (a file input with no `value` attribute reads `None`), never the text, its length or a file's host path
+  (.andromeda/architecture.md:183)
+  > `is_masked_input` is the one masked-control test, a password or file `input`;
+- (.andromeda/architecture-detail/standard-contracts.md:226) The statement's select capability must read as this contract states it — a select's value read unmasked through `select_value`, its options its children in the snapshot.
+  > - A select in the bridge and the snapshot: `Input | Change` reach the app as `NativeFormData { value }`, so an `onchange` handler fires (packages/dioxus-native-dom/src/dioxus_document.rs:377-382); the snapshot's `value` reader takes the document and the node and reads a `select` through `BaseDocument::select_value`, no mask applying (packages/dioxus-native-dom/src/snapshot.rs:253-259); and an option whose parent is a `select` reads its select's client rect as its `bounds` (the private `select_parent`), so a select's options are its children in the snapshot, named by their labels (packages/dioxus-native-dom/src/snapshot.rs:144-152; packages/dioxus-native-dom/src/snapshot.rs:241-250).
+  (.andromeda/architecture.md:183)
+  > a select's `input` and `change` reach the app as form data, and its options are its children in the snapshot.
+- (.andromeda/architecture-detail/standard-contracts.md:233) The statement and README's MCP-role line must name the twelve verbs of `VERBS` (CARRY 1), the `mcp` role and the four exit statuses, over the four lean stand tasks.
+  > the driver's command line over the four lean stand tasks since 2026-10-10-driver-cli
+  (.andromeda/architecture-detail/standard-contracts.md:233)
+  > the verbs are the twelve of `VERBS` — `snapshot`, `click --id`, `type --id --text`, `press --key [--shift]`, `advance --ms`, `scroll --id`, `screenshot [--id <id>]`, `lint`, `start <task> [--record <dir>]`, `status`, `stop` and, since 2026-10-12-self-description, `help`
+  (.andromeda/architecture-detail/standard-contracts.md:233)
+  > since 2026-10-10-mcp-surface the `mcp` role is `mcp [--record <dir>]`, an MCP server on the binary's standard streams whose `start` tool boots the same four through the same boot;
+  (.andromeda/architecture-detail/standard-contracts.md:233)
+  > a command answers one uncoloured line of JSON on stdout and exits `0` accepted · `1` refused · `2` usage error, a fixed line on stderr and stdout empty, nothing booted and no state created · `3` session error, the error object on stdout and its fixed message on stderr — the four read from `EXIT_STATUSES` and served by `help` since 2026-10-12-self-description;
+  (.andromeda/architecture-detail/standard-contracts.md:232)
+  > `escher-session <verb> [arguments] --session <dir>` (a binary of seven_guis; an empty `main` on wasm)
+  (.andromeda/architecture.md:187)
+  > **CLIs:** the command lines of the examples and apps (`paint_bench`, `screenshot`, `preact_script`, `multi_doc`, browser, rdme, wgpu_texture, wpt), and `escher-session <verb> [arguments] --session <dir>`, the driver's command line over the four lean stand tasks, with its `serve` host role and its `mcp` role, answering one line of JSON and exiting `0` accepted · `1` refused · `2` usage · `3` session error.
+- (.andromeda/architecture-detail/standard-contracts.md:255) The statement's a11y reach must name the `a11y` leg's fourteen files as what the WCAG target is proven on in CI.
+  > `a11y` (fourteen integration tests on one `cargo test --workspace --locked` line with no comment line — `accessibility_hidden`, `accessibility_roles`, `focusability_updates`, `stand_keyboard`, `stand_contrast` and `stand_accessibility_ids`, then `accessibility_states`, `accessibility_label`, `accessibility_description`, `accessibility_merged_states`, `accessibility_active_descendant_unread`, `inert_subtree`, `select_interaction` and `stand_act_select` — fourteen on the founder's «Плюс проверки дерева (Рекомендую)» (the five tree-reading checks beside the three tier-0 witnesses, the six earlier files kept in their order)
+- (.andromeda/architecture-detail/standard-contracts.md:260) The statement must cite the cold-agent pipe — an isolated `claude` client holding only the escher server's twelve tools over `escher-session mcp` — as the measured instance of an MCP client carrying escher's content onward.
+  > the cold-agent run pipe `bash scripts/cold-agent.sh {run <task> | status | cleanup | logs}`, run from the repository root with the one task `stand` (since 2026-10-15-cold-agent-test; `counter` retired)
+  (.andromeda/architecture-detail/standard-contracts.md:260)
+  > `run` starts one isolated `claude -p` session (ratified by the founder, 2026-10-06) from a per-run `mktemp -d` directory with the fixed prompt `STAND_PROMPT` and only the escher server's twelve tools
+  (.andromeda/architecture-detail/standard-contracts.md:261)
+  > — the driver's own `escher-session mcp` (`--tools ""`, `--strict-mcp-config`, `--allowedTools mcp__escher`, `--setting-sources ""`, `--disable-slash-commands`, `--no-session-persistence`, `--model claude-opus-5-5`, `--max-budget-usd 3`, under `timeout 600`) — and writes `verdict.json`
+  (.andromeda/architecture.md:193)
+  > `scripts/agent-run.sh` and `scripts/cold-agent.sh` the agent-run test and cold-agent pipe contracts, in full in test-plan §3.
+- (.andromeda/architecture.md:135) The statement's one virtual clock and select capabilities must rest on the document's clock and the read-only `select_value` as stated here.
+  > - The document's clock: `DocumentConfig.clock`, the config's clock or else a fresh `WallClock`; the crate root re-exports `Clock`, `WallClock` and `VirtualClock`, every clone of a `VirtualClock` reading one time; no `Instant::now()` or `SystemTime::now()` stands in blitz-dom outside `clock.rs`; `BaseDocument::select_value` reads a select's value, public and read-only, its writers crate-private.
+  (.andromeda/architecture.md:133)
+  > the read-only `can_paint_text` and `layout_as_text_input`.
+- (.andromeda/architecture.md:139) The statement's a11y reach must report these two measured limits as unmeasured or unbuilt, not as capabilities.
+  > - Two measured limits: the accessibility tree states no native checkbox's or radio's checked state, its fix owned by a `.andromeda/residuals.md` line, and the platform-tree refresh's windowed witness is still owed, the refresh held by the document-level tests and both feature builds of blitz-shell.
+- (.andromeda/architecture.md:141) The statement's range input, keyboard activation and select capabilities must match the event contract.
+  > - **Events:** `EventHandler` and `EventDriver` dispatch DOM events — mouse compatibility and touch events from pointers, non-bubbling events to the target only, a focus change as `blur`, `focusout`, `focus`, `focusin`; a range input's default actions dispatch `input`; Enter and a released Space dispatch a Click the driver queues, so the app's handlers run before the default action; the engine dispatches `change` only after `input` on a select's choice.
+- (.andromeda/architecture.md:145) The statement's limits must include `visible_region`'s untransformed reading of a scrolling box under a transform, and `text_extent` stated as a read-only reader.
+  > - `get_client_bounding_rect` reads an element where its transforms move it, while `visible_region` reads a scrolling box under a transform where it stands untransformed (a measured limit); `BaseDocument::text_extent` is a read-only reader that mutates nothing.
+  (.andromeda/architecture.md:143)
+  > `scroll_into_view` scrolls every scrolling box on the target's chain, nested ones instantly with no `scroll` event, then the viewport; `visible_region` is the read-only reader of what can be seen, and seeing is never read from a hit; a hit stops at the padding box of a box paint clips and skips a node dropped since the last resolve;
+- (.andromeda/architecture.md:157) The statement's account of what a shot carries must rest on a password input painting masked in every document.
+  > a password `input` paints its value masked in every document and through every renderer that paints with blitz-paint, its caret placed by the bullets, so no width of the real characters reaches a frame or the caret.
+- (.andromeda/architecture.md:159) The statement's headless screenshot, contrast and settle capabilities must read as the harness contract states them, settle never waiting on a load or moving time.
+  > - **Test harness:** blitz-test-harness's `Harness`, generic over the document, with constructors, inspection and input helpers that pump and never settle; `screenshot` and `screenshot_rect` paint a raster through blitz-paint, printing, panicking and logging nothing; `text_contrast` reads a WCAG contrast and changes nothing; `settle` drives render and layout to quiet, reports a load in flight and never waits on one or moves time.
+  (.andromeda/architecture.md:161)
+  > - The harness holds one `VirtualClock` its documents share; `tick` and `advance_time` move it, and `screenshot`, `screenshot_rect`, `text_contrast` and `settle` never do.
+- (.andromeda/architecture.md:163) The statement must name the headless stand — the four lean tasks, offline, at a pinned 800x600 Light viewport with one bundled font — as what every capability is proven on.
+  > - **Headless stand (seven_guis, native only):** `seven_guis::stand` boots the four lean tasks offline in a pinned 800x600 Light viewport with one bundled font, and `timer_step` hands the Timer its ticks for a driver session; it installs no telemetry, reads no env var and names no `blitz_net`.
+- (.andromeda/architecture.md:167) The statement's driver capabilities — twelve verbs, eight closed causes, every call through `Session::run`, the `v3` wire, the command line and the MCP server, no `NodeId` crossing — must be read from this contract, and recording, replay, lint and the load wait from its companion lines.
+  > - **Driver session (escher-driver):** a `Session` (one booted app) runs every call through `Session::run`, which validates first; nothing public runs a `Command` that did not come from `validate`; the command and refusal schema stated once as `'static` data — twelve verbs, eight closed causes, no refusal holding what a call supplied; the `v3` wire, the command line, the MCP server and the `command` and `tool_call` spans carry it; no `NodeId` crosses, and nothing logs an id, a name or a value.
+  (.andromeda/architecture.md:169)
+  > - Every answer is written by hand in the crate-private `json` module — no serialization crate writes one, `serde_json` only reading MCP requests and kept checks — and no command's ending writes back anything the caller typed.
+  (.andromeda/architecture.md:171)
+  > - The recording keeps a session's answered calls as a kept check, a masked `type` as its stand-in and a shot without its pixels; `Check::replay` runs them again through `Session::run`; `Session::lint` reads the screen and changes nothing; `LOAD_WAIT` (5 s) bounds an acting step's wait for a load, moving no time.
+
+## Bindings
+- **Dioxus DOM bridge (diff, text parts) ↔ Driver session**: the diff the acting verbs return whole (.andromeda/architecture-detail/standard-contracts.md:217) and the paged snapshot text (.andromeda/architecture-detail/standard-contracts.md:213) are carried by the driver's answer (.andromeda/architecture.md:167), so CARRY 2's limit — the diff and a lint's findings unpaged, held only by the answer bound — is stated across both contracts (.andromeda/architecture.md:171).
+- **CLIs ↔ README front page (Established Decisions, another group)**: README's MCP-role line must read the twelve verbs the CLI contract states (.andromeda/architecture-detail/standard-contracts.md:233) — (none) quoted here for the front-page rule, which another group carries.
+- **CLIs (`mcp` role) ↔ Occupied Resources**: the `mcp` role over the binary's standard streams (.andromeda/architecture-detail/standard-contracts.md:233) is the no-listener crossing beside the one socket (.andromeda/architecture.md:201), under the server name `escher` (.andromeda/architecture.md:218); the statement adds no carrier to either.
+- **CI contracts (cold-agent pipe) ↔ Occupied Resources (outbound hosts)**: the pipe's isolated `claude` client (.andromeda/architecture-detail/standard-contracts.md:260) is the one reach of the model provider, made by that client and never by escher code (.andromeda/architecture.md:203) — the measured instance of onward carriage, beyond escher's boundary.
+- **Dioxus DOM bridge (mask) ↔ Paint and shell ↔ Established Decisions (driver crossing, another group)**: a masked value in the snapshot and diff (.andromeda/architecture-detail/standard-contracts.md:225) and a masked password in a shot (.andromeda/architecture.md:157) are together what the statement says an MCP client receives.
+- **CI contracts (a11y leg) ↔ Mutation, query and CSSOM's two limits ↔ a11y-plan §3 (another plan)**: the fourteen files (.andromeda/architecture-detail/standard-contracts.md:255) are the proven reach and the two limits (.andromeda/architecture.md:139) the unmeasured remainder; the a11y-plan carries the WCAG criteria themselves.
+- **CI contracts ↔ test-plan §3 (another plan)**: the cold-agent pipe's full contract lives in test-plan §3 (.andromeda/architecture.md:193).

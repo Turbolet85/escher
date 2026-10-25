@@ -25,3 +25,6 @@ CI and local a11y tallies re-read; the eight joining checks' silence recorded in
   it»` (2026-10-19) — P2's first apply wrote chunk markers, a date and relay words into 23 master sites; classify's
   standing check caught them before any landed.
 - Last failed command: none open (the P3 evolve append refused once for an estimated stamp, re-fired from `date -u`).
+
+## Session End Status
+Completed normally at 2026-10-25 11:05:26

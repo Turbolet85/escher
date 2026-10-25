@@ -1,0 +1,35 @@
+# security extract
+
+## Relevance
+partial — a document chunk with no code, carrier, verb or field change; its security load is to state accurately the crossings, masking, at-rest medium and trust boundaries the plan records, in a document that may be committed or placed beside another repository's planning.
+
+## Constraints
+- The «what an MCP client carries onward» part must state the stdio crossing as security-plan §Threat Model Summary (boundary-mcp-stdio) records it: the trust boundary is the spawning client process with no authentication, the carried classes are its ratified ones (ids, accessible names, control values with a password's and a file input's masked, snapshot text, a shot as an `image` block with a password painted masked), and what a client does with a result, a model provider included, is the client's; the cold-agent run is the measured second carriage. That section's listing names neither diffs nor a lint's findings. Whether it falls short of the shipped `lint` verb and the returned diff, which security-plan §Input Validation (Driver command schema rows) and the rules' §Surfaces do name, is research's question. If it does, that is drift for the wrap, not a fix here.
+- The socket's trust boundary must be stated as security-plan §Authentication & Authorization records it: owner-only by file mode (`0700` directory, `0600` socket, a group- or other-open directory refused), with no handshake, token, secret or peer check. The MCP server answers only whoever holds its stdio. The statement claims no authentication beyond that.
+- Masked readings must be stated as security-plan §Input Validation (Markup attributes, password and file input row) requires: a password's or file input's value reads as the fixed `MASKED_VALUE` on the snapshot, its text, diffs and every carrier, never the text, its length or a host path. A password paints one bullet per character. A recorded masked `type` is kept as `MASKED_STAND_IN`. The DOM and form submission keep the value, and the statement should say so as a limit of the masking's reach.
+- Session recording must be stated with its at-rest medium per security-plan §Data Protection (Files, kept checks; Files, committed checks): one owner-only `check-{n}.json` per recorded session holds the calls and the screens' readings at rest, never a pixel. The two committed stand-Counter checks are the one public exception, and a check of any other session stays owner-only and is never committed.
+- The statement and the README edit (CARRY 1) are committed text. Per security-plan §Secret Management they hold no credential, no token and no detail of the operator's Claude Code login used by the cold-agent run, and they name the login only as the operator's own, held by the `claude` CLI.
+- Consumer-facing limits on the security side are candidates for P3's completeness close of the limits list. They are: `file:` URLs read with no path restriction (security-plan §Input Validation, the `file:` URLs row); no CORS or same-origin check, no response size limit and no request timeout on outbound fetches, with `LOAD_WAIT` bounding the driver's wait (security-plan §API Security); and an acting verb's unpaged diff and findings held only by the 1,048,576-byte answer bound (CARRY 2).
+- The telemetry sink's reach is stated per security-plan §Logging & Monitoring: escher's own sink scrubs and drops, while upstream's `fmt::init()` apps, the WPT runner's `env_logger` and the panic hook stay unscrubbed. This is a limit a consumer embedding the engine should read.
+
+## Patterns to follow
+- Use the plan's own boundary phrasing «what a client does with a result is the client's» for the onward-carriage part, with the cold-agent run cited as the measured instance by its report path (security-plan §Threat Model Summary, boundary-mcp-stdio).
+- State every capability and limit from the program's fixed `'static` text where one exists (the `help` self-description, the schema's help texts, the refusal remedies). That text already rides ratified carriers (security-plan §Input Validation, Driver command schema rows). Cite measured reports as «as measured at …» rather than restating counts unsourced.
+- Name content classes, not content: describe what crosses (ids, names, values, closed state words, counts) and quote no page text, typed text or kept-check answer beyond what the committed Counter checks already make public (security-plan §Data Protection, committed checks).
+
+## Anti-patterns to avoid
+- Do not claim or imply an authentication, peer check or encryption on the socket, the MCP stdio or a kept check that the plan records as absent (security-plan §Authentication & Authorization).
+- Do not copy an owner-only kept check, a cold-agent transcript, a server log or a `check.json` into the statement, the README or another repository's incubator. Those stay unprinted, and each committed transcript copy is host-path-masked (security-plan §Logging & Monitoring, the cold-agent pipe row).
+- Do not let the statement propose or describe a new carrier, field, verb or exit as if it stood. Under the widening rule of security-plan §Input Validation (Driver session socket rows), a new carrier or an open value set is a widening question for the founder, never a statement's claim.
+
+## Contract bindings
+- security ↔ a11y: the «a11y reach» part's unmeasured assistive-technology witness is the same residual that security-plan §Input Validation (Markup attributes) and the rules' accessibility-adapter crossing rest on. Its wording must match a11y-plan's and `.andromeda/residuals.md`'s.
+- security ↔ tests: the cold-agent pipe as the measured onward carriage binds test-plan §3 (cold-agent run pipe) and security-plan §Input Validation (Cold-agent check row).
+- security ↔ obs: the telemetry sink's stated reach binds obs-plan's sink contract and security-plan §Bootstrap phases (logging-redaction-wire, still open for upstream's subscribers).
+- security ↔ arch: the statement registers nothing. Any surface it lists must already stand in arch §Occupied Resources (security-plan §API Security).
+
+## Acceptance criteria contributions
+- The statement's MCP-onward part names the trust boundary as the spawning client with no authentication, lists each carried class with a password's and a file input's value as the fixed mask and a shot's password painted masked, and states that the client's onward use, a model provider included, is beyond escher's boundary (per security-plan §Threat Model Summary).
+- The statement claims no authentication for the socket or the MCP stdio beyond file mode and holding the stdio (per security-plan §Authentication & Authorization).
+- A search of the chunk's committed text (the statement and the README diff) finds no credential, token, auth header, e-mail address or host home path (per security-plan §Secret Management).
+- The chunk's diff touches no file under `packages/`, `examples/` or `tests/`, so no carrier, field, verb, exit, log field or span is added (per security-plan §Input Validation, the widening rule of the Driver session socket rows).

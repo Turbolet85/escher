@@ -1,0 +1,154 @@
+[
+{
+"tool": "inputs",
+"v": "1.3",
+"sha8": "8932e692",
+"ts": "2026-10-25T03:00:09Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-25-capability-statement",
+"--source",
+"~/dev/projects/viola/viola-0.2.0-incubator/README.md",
+"--kind",
+"sibling",
+"--why",
+"Viola's 0.2.0 planning reads its incubator, assembled into intent.md and routed by /andromeda-route; no escher capability statement is named there yet",
+"--step",
+"phase:P1",
+"--run-dir",
+".andromeda/runs/2026-10-25T02-58-45-phase",
+"--marker",
+"2026-10-25-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I1 · copy untracked · ../viola:viola-0.2.0-incubator/README.md",
+"commit 1862fcfb · ref build/viola-0.1.0 · upstream pushed",
+"cite: inputs#I1"
+],
+"stderr": null,
+"wrote": [
+"inputs/.gitattributes",
+"inputs/I1-README.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I1",
+"kind": "sibling",
+"repo": "../viola",
+"path": "viola-0.2.0-incubator/README.md",
+"form": "copy",
+"state": "untracked",
+"commit": "1862fcfb6fb42fdd9c85d796af716c2267622a48",
+"ref": "build/viola-0.1.0",
+"upstream": "pushed",
+"claimed": null,
+"sha256": "e460244b1eaced01e1664266626bb4773d0fa500b1daeb39ea007665a46a831a",
+"copy": "I1-README.md.txt",
+"link": false,
+"read_at": "2026-10-25T03:00:09Z",
+"step": "phase:P1",
+"why": "Viola's 0.2.0 planning reads its incubator, assembled into intent.md and routed by /andromeda-route; no escher capability statement is named there yet"
+}
+},
+{
+"tool": "inputs",
+"v": "1.3",
+"sha8": "8932e692",
+"ts": "2026-10-25T09:50:03Z",
+"argv": [
+"snap",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-25-capability-statement",
+"--message-file",
+".andromeda/runs/2026-10-25T02-58-45-phase/relay-3.md",
+"--kind",
+"relay",
+"--origin",
+"the operator, relaying the founder verbatim from his dialog in the overseer session, 2026-10-25",
+"--why",
+"the founder chose F1 A (docs/capabilities.md + a pointer in Viola incubator research/) and F2 A (the CI-script pin)",
+"--step",
+"phase:P4",
+"--run-dir",
+".andromeda/runs/2026-10-25T02-58-45-phase",
+"--marker",
+"2026-10-25-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I2 · copy message · message: the operator, relaying the founder verbatim from his dialog in the overseer session, 2026-10-25",
+"cite: inputs#I2"
+],
+"stderr": null,
+"wrote": [
+"inputs/I2-relay-3.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I2",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, relaying the founder verbatim from his dialog in the overseer session, 2026-10-25",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "07f9c338006c5a16109f9207b45c6e7d4d0ee3322a8ac9abf2a1ffd986494b6d",
+"copy": "I2-relay-3.md.txt",
+"link": false,
+"read_at": "2026-10-25T09:50:03Z",
+"step": "phase:P4",
+"why": "the founder chose F1 A (docs/capabilities.md + a pointer in Viola incubator research/) and F2 A (the CI-script pin)"
+}
+},
+{
+"tool": "inputs",
+"v": "1.3",
+"sha8": "8932e692",
+"ts": "2026-10-25T09:56:35Z",
+"argv": [
+"verify",
+"--chunk-dir",
+"escher-0.2.0/chunks/2026-10-25-capability-statement",
+"--run-dir",
+".andromeda/runs/2026-10-25T02-58-45-phase",
+"--marker",
+"2026-10-25-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 unchanged · copy untracked@1862fcfb · ../viola:viola-0.2.0-incubator/README.md",
+"I1 cited scope.md:45 · research.md:7 · research.md:23 · plan.md:18 · plan.md:67 · plan.md:173 (in fence) · plan.md:297",
+"I2 n/a — a message has no live source · copy message · message: the operator, relaying the founder verbatim from his dialog in the overseer session, 2026-10-25",
+"I2 cited plan.md:10 · plan.md:92 · plan.md:298 · plan.md:309",
+"inputs: 2 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 1 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 2,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 1
+},
+"uncited": 0,
+"unparsed": 0
+}
+}
+]

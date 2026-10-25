@@ -1,0 +1,28 @@
+# tests · CI Integration — category read
+
+## Carried
+- (.andromeda/test-plan-detail/ci-integration.md:8) The statement's a11y reach must name the `a11y` leg as these fourteen files, 14 files and 84 tests, and must count `accessibility_active_descendant_unread` as a pinned gap, not as proof of a reading.
+  > a11y (`--test accessibility_hidden --test accessibility_roles --test focusability_updates --test stand_keyboard --test stand_contrast --test stand_accessibility_ids --test accessibility_states --test accessibility_label --test accessibility_description --test accessibility_merged_states --test accessibility_active_descendant_unread --test inert_subtree --test select_interaction --test stand_act_select`, still one line, fourteen files — its membership the founder's «Плюс проверки дерева (Рекомендую)»: the tier-0 witnesses and the five tree-reading checks, 14 files and 84 tests, over the tier-0 witnesses alone, 9 files and 59 tests, `focus_redraw`, `focus_within` and `accessibility_names` not added; each file witnessing an SC 2.1.1 or 2.4.3 requirement, a tree reading the founder took or a recorded gap, `accessibility_active_descendant_unread` the pinned gap;
+- (.andromeda/test-plan-detail/ci-integration.md:42) Any CI figure the statement gives as its a11y or stand witness must match this newest CI reading (CI#40134371519): the a11y job 14 · 84 · 0 · 0 and the stand repeat 198 · 837 · 0 · 21.
+  > re-read with the `a11y` leg's fourteen files on CI#40134371519, the pre-CI commit `4cbf0a4c9` (green 17/17): linux 206 · 1105 · 0 · 12; macos and coverage 187 · 1102 · 0 · 12; windows 187 · 1057 · 0 · 9; the a11y job 14 · 84 · 0 · 0; the stand repeat 198 · 837 · 0 · 21
+- (.andromeda/test-plan-detail/ci-integration.md:65) Any local a11y tally the statement gives must match this per-file reading of `ci-leg.sh a11y`.
+  > `ci-leg.sh a11y` fourteen files, exit 0, 14 result lines · 84 passed · 0 failed · 0 ignored (accessibility_hidden 6 · accessibility_roles 6 · focusability_updates 4 · stand_accessibility_ids 8 · stand_contrast 5 · stand_keyboard 14 · accessibility_states 5 · accessibility_label 13 · accessibility_description 3 · accessibility_merged_states 3 · accessibility_active_descendant_unread 1 · inert_subtree 4 · select_interaction 7 · stand_act_select 5, `target/ci-logs/a11y.log`, as measured at escher-0.2.0/chunks/2026-10-24-a11y-re-read/evidence/counts.md)
+- (.andromeda/test-plan-detail/ci-integration.md:32) The statement's limit "a shot's PNG bytes differ across OSes" must be stated as measured here: shots are byte-identical on one host under both builds and differ between macOS aarch64 and linux x86_64.
+  > `stand_screenshot_repeat` reads byte-identical shots under the per-package and the workspace build on one host — the shot's bytes differ across OSes (CI#39225375577, macOS aarch64 against linux x86_64) —
+- (.andromeda/test-plan.md:374) If the statement cites repeat-run proof, it must describe the `stand-repeat` leg's reach and its no-retry rule as written here.
+  > the `stand-repeat` leg runs the stand checks, ten named blitz-tests targets outside the `stand_` prefix and seven_guis' process checks for three rounds, the first red command ending the leg with its status — no retry, no `--ignored`, no env var
+- (.andromeda/test-plan.md:391) Any platform reach in the statement must match what CI runs: ios and android are built only, and windows runs no unix-gated binary.
+  > **Per-OS test tallies:** linux runs more than macOS by the doc-test result lines, and macOS more than windows by the unix-gated binaries; ios and android build only
+- (.andromeda/test-plan.md:384) The chunk must pass the local pre-push gate before it is done, even though it changes documents only (README and the statement).
+  > - **Local pre-push gate:** `bash .github/scripts/ci-leg.sh fast` — fmt → clippy → test → ci-scripts, stopping at the first red (.github/scripts/ci-leg.sh:80-85)
+- (.andromeda/test-plan-detail/ci-integration.md:8) The chunk must also pass the `doc` leg.
+  > doc (`cargo doc --workspace --no-deps`)
+- (.andromeda/test-plan.md:370) The chunk's commits on the build branch trigger CI, and the wrap must read that run's verdict, including the still-pending verdict for `e2eb01b44` that the scope recorded at take-up.
+  > **Platform:** GitHub Actions; tests run on PRs and pushes to main, v0.* and build/** — escher's build branch included (.github/workflows/ci.yml:3-9)
+
+## Bindings
+- **a11y leg membership ↔ a11y-plan §3 and the scope's "a11y reach"**: the leg's fourteen files and 14 · 84 tally (.andromeda/test-plan-detail/ci-integration.md:8), (.andromeda/test-plan-detail/ci-integration.md:65) must agree with what a11y-plan states the WCAG target is proven on. The unmeasured assistive-technology witness stays a residuals line and is not part of the leg.
+- **Cross-OS shot bytes ↔ body §2 Pixel tests and §6 Command line**: the limit measured at (.andromeda/test-plan-detail/ci-integration.md:32) is the same one the body states for checks compared across OSes, (.andromeda/test-plan.md:89). The statement must say it once, consistent with both.
+- **stand-repeat ↔ body §10 Flakiness budget**: the repeat leg (.andromeda/test-plan.md:374) carries the zero-failure budget (.andromeda/test-plan.md:410). Any proof claim in the statement must use both sides' wording.
+- **Platform reach ↔ security-plan §Surfaces and the arch escher-driver contract (session unix only, `Unsupported` elsewhere)**: the per-OS reach (.andromeda/test-plan.md:391) is the CI witness of that limit.
+- **Gates ↔ CLAUDE.md's done rule (`ci-leg.sh fast` and `doc`)**: (.andromeda/test-plan.md:384), (.andromeda/test-plan-detail/ci-integration.md:8).

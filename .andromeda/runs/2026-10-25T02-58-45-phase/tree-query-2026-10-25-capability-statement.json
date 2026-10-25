@@ -1,0 +1,165 @@
+[
+{
+"sql": "SELECT callee_name, file, COUNT(*) AS sites FROM refs WHERE callee_name IN ('VERBS','CAUSES','NODE_FIELDS','EXIT_STATUSES') AND callee_crate = 'escher-driver' GROUP BY 1, 2 ORDER BY 1, 2",
+"rows": 31,
+"result": [
+{
+"callee_name": "CAUSES",
+"file": "examples/seven_guis/tests/cli_commands.rs",
+"sites": 2
+},
+{
+"callee_name": "CAUSES",
+"file": "packages/escher-driver/src/describe.rs",
+"sites": 3
+},
+{
+"callee_name": "CAUSES",
+"file": "packages/escher-driver/src/json.rs",
+"sites": 2
+},
+{
+"callee_name": "CAUSES",
+"file": "packages/escher-driver/src/lib.rs",
+"sites": 1
+},
+{
+"callee_name": "CAUSES",
+"file": "packages/escher-driver/src/refusal.rs",
+"sites": 9
+},
+{
+"callee_name": "CAUSES",
+"file": "tests/blitz-tests/tests/stand_act_refused.rs",
+"sites": 2
+},
+{
+"callee_name": "CAUSES",
+"file": "tests/blitz-tests/tests/stand_act_spans.rs",
+"sites": 2
+},
+{
+"callee_name": "CAUSES",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"sites": 3
+},
+{
+"callee_name": "EXIT_STATUSES",
+"file": "packages/escher-driver/src/cli.rs",
+"sites": 5
+},
+{
+"callee_name": "EXIT_STATUSES",
+"file": "packages/escher-driver/src/cli_tests.rs",
+"sites": 2
+},
+{
+"callee_name": "EXIT_STATUSES",
+"file": "packages/escher-driver/src/describe.rs",
+"sites": 3
+},
+{
+"callee_name": "EXIT_STATUSES",
+"file": "packages/escher-driver/src/lib.rs",
+"sites": 1
+},
+{
+"callee_name": "EXIT_STATUSES",
+"file": "packages/escher-driver/src/schema_tests.rs",
+"sites": 3
+},
+{
+"callee_name": "NODE_FIELDS",
+"file": "packages/escher-driver/src/describe.rs",
+"sites": 3
+},
+{
+"callee_name": "NODE_FIELDS",
+"file": "packages/escher-driver/src/json.rs",
+"sites": 5
+},
+{
+"callee_name": "NODE_FIELDS",
+"file": "packages/escher-driver/src/lib.rs",
+"sites": 1
+},
+{
+"callee_name": "NODE_FIELDS",
+"file": "packages/escher-driver/src/schema_tests.rs",
+"sites": 4
+},
+{
+"callee_name": "VERBS",
+"file": "examples/seven_guis/tests/cli_commands.rs",
+"sites": 2
+},
+{
+"callee_name": "VERBS",
+"file": "examples/seven_guis/tests/mcp_server.rs",
+"sites": 2
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/cli.rs",
+"sites": 2
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/cli_tests.rs",
+"sites": 1
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/command.rs",
+"sites": 2
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/describe.rs",
+"sites": 4
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/execute.rs",
+"sites": 2
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/lib.rs",
+"sites": 1
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/mcp/listing.rs",
+"sites": 2
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/mcp_tests.rs",
+"sites": 4
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/schema.rs",
+"sites": 1
+},
+{
+"callee_name": "VERBS",
+"file": "packages/escher-driver/src/schema_tests.rs",
+"sites": 8
+},
+{
+"callee_name": "VERBS",
+"file": "tests/blitz-tests/tests/stand_act_scroll.rs",
+"sites": 3
+},
+{
+"callee_name": "VERBS",
+"file": "tests/blitz-tests/tests/stand_act_spans.rs",
+"sites": 2
+}
+],
+"db_state": "regenerated",
+"plane": "rust"
+}
+]

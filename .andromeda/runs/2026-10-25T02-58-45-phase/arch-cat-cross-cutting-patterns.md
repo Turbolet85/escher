@@ -1,0 +1,22 @@
+# arch · Cross-cutting Patterns — category read
+
+## Carried
+- (.andromeda/architecture-detail/cross-cutting-patterns.md:8) The statement's snapshot, text, diff and actionable-key capabilities must be stated as holding under the `accessibility` feature (a default feature), not unconditionally.
+  > `accessibility` also to `dioxus-native-dom/accessibility`, which enables dioxus-native-dom's own optional `accesskit` and gates its `accessibility_tree` override and its `snapshot`, `snapshot_diff`, `snapshot_text` and `actionable` modules
+- (.andromeda/architecture.md:264) The broad line the statement's feature claim must match.
+  > optional capabilities are compile-time Cargo features forwarded down the crates, `accessibility` also gating the dioxus-native-dom snapshot modules
+- (.andromeda/architecture-detail/cross-cutting-patterns.md:14) Any claim the statement makes about what escher's binaries log (the `escher-session` host and its `mcp` role beside the MCP client's stdio) must match the sink as built: stderr only, records outside the two prefix sets dropped at every level, the rest scrubbed.
+  > writes to stderr only, stamps `service.name` / `service.version` on every line, bridges `log` records, drops every record whose target is outside the engine and escher prefix sets (`ENGINE_TARGET_PREFIXES`, `ESCHER_TARGET_PREFIXES`) at every level and whatever `RUST_LOG` names, scrubs the records that print — a closed span's fields by the rule that judges an event's — and chains the panic hook
+- (.andromeda/architecture-detail/cross-cutting-patterns.md:15) A no-content-in-logs claim must be scoped to escher's binaries and must not reach the upstream apps, whose installs write stdout unscrubbed — a limit the statement states rather than hides.
+  > escher-driver emits its command span and, since 2026-10-10-mcp-surface, its `tool_call` span through `tracing` ungated and installs no subscriber (packages/escher-driver/src/execute.rs:96-111); the upstream `tracing_subscriber::fmt::init()` installs run only under the `tracing` feature and write to stdout unscrubbed
+- (.andromeda/architecture.md:266) The broad logging line the statement's log claims must not exceed.
+  > escher binaries install `escher_telemetry::init` at start — a stderr-only sink stamping the service identity, bridging `log`, dropping every record outside the engine and escher prefix sets at every level whatever `RUST_LOG` names, scrubbing what prints and chaining the panic hook; escher-driver emits its spans ungated and installs no subscriber; the upstream `fmt::init()` installs run only under `tracing` and write stdout unscrubbed.
+- (.andromeda/architecture-detail/cross-cutting-patterns.md:35) The a11y-reach section must state the platform-tree refresh as proven headlessly only, its windowed witness still owed — never as measured at a window or an assistive technology.
+  > under `accessibility` the shell rebuilds the platform accessibility tree on a poll that reported work when the changed set that poll took was non-empty — not on every document change — and takes the set on every such poll with or without the feature; ratified by the founder (2026-10-07), the shell half of the same item, its windowed witness still owed
+- (.andromeda/architecture.md:274) The broad line of the same refresh the a11y-reach claim must match.
+  > the shell rebuilds the platform tree only when a poll took a non-empty set.
+
+## Bindings
+- **accessibility-gated snapshot modules ↔ body §Standard Contracts (Dioxus DOM bridge)**: the statement's snapshot, text form and diff are read "under `accessibility`" on both sides — (.andromeda/architecture-detail/cross-cutting-patterns.md:8) and (.andromeda/architecture.md:177).
+- **escher sink and driver spans ↔ body §Standard Contracts (Driver session, Telemetry bootstrap)**: what the statement says crosses to a log must agree with "nothing logs an id, a name or a value" and the sink's drop and scrub — (.andromeda/architecture-detail/cross-cutting-patterns.md:14), (.andromeda/architecture-detail/cross-cutting-patterns.md:15), (.andromeda/architecture.md:167), (.andromeda/architecture.md:165).
+- **platform-tree refresh's owed windowed witness ↔ body §Standard Contracts (Mutation, query and CSSOM) and a11y-plan**: the a11y reach's "not measured" list carries this owed witness beside the assistive-technology residual the scope names — (.andromeda/architecture-detail/cross-cutting-patterns.md:35), (.andromeda/architecture.md:139).

@@ -1,0 +1,109 @@
+[
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "b54a9198",
+"ts": "2026-10-25T10:01:42Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.2.0",
+"--run-dir",
+".andromeda/runs/2026-10-25T02-58-45-phase",
+"--marker",
+"2026-10-25-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 9/11 · deferred 0 · planned 2 · implemented 0 · unclaimed 2",
+"unclaimed: v020-10 v020-11",
+"claimed-unfinished: none",
+"done-test: NO — 2 not verified|deferred · unclaimed 2",
+"chunks referenced: 9 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "b54a9198",
+"ts": "2026-10-25T10:01:42Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.2.0",
+"--id",
+"v020-10",
+"--chunk",
+"2026-10-25-capability-statement",
+"--acceptance-file",
+".andromeda/runs/2026-10-25T02-58-45-phase/acceptance-v020-10.md",
+"--run-dir",
+".andromeda/runs/2026-10-25T02-58-45-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v020-10 → chunk 2026-10-25-capability-statement (was null; status planned kept)",
+"acceptance: Before Viola's frontend planning starts, the operator confirms one sta… (193 chars)",
+"         → docs/capabilities.md stands at the pushed commit on build/escher-0.2.0… (718 chars)",
+"wrote escher-0.2.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 1 [v020-11]"
+],
+"stderr": null,
+"wrote": [
+"escher-0.2.0/verification-matrix.json"
+],
+"before": {
+"id": "v020-10",
+"chunk": null,
+"status": "planned",
+"method": "manual",
+"ref": "null",
+"acceptance": "Before Viola's frontend planning starts, the operator confirms one statement of what escher can do and its stated limits… (193 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v020-10",
+"chunk": "2026-10-25-capability-statement",
+"status": "planned",
+"method": "manual",
+"ref": "null",
+"acceptance": "docs/capabilities.md stands at the pushed commit on build/escher-0.2.0, holding its five sections in order — what it can… (718 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "b54a9198",
+"ts": "2026-10-25T10:01:42Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.2.0",
+"--chunk",
+"2026-10-25-capability-statement",
+"--plan",
+"escher-0.2.0/chunks/2026-10-25-capability-statement/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-25T02-58-45-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-25-capability-statement: 1 · ## Acceptance Criteria: line 236, 51 lines",
+"v020-10: cited in ## Acceptance Criteria (line 281)",
+"  shape v020-10: method manual · no interaction verb",
+"pool: unclaimed 1 [v020-11]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]
