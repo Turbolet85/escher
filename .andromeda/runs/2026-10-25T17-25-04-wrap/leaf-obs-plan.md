@@ -1,0 +1,38 @@
+group: obs-plan
+read: .claude/docs/obs-summary.md · 59 · «**Full plan:** `.andromeda/obs-plan.md`. Path-scoped rules: »
+read: .claude/rules/observability.md · 41 · «- 2026-10-06: With the workspace's tracing 0.1.44, `tracing:»
+
+- leaf: .claude/rules/observability.md:36   class: stale
+  leaf-text: «A paged `part` read through the `escher-session` host's own sink stays unmeasured — the host boots only the four lean tasks and none pages — its measurement owned by a `.andromeda/residuals.md` line (target: next);»
+  source: .andromeda/obs-plan-detail/pii-scrubbing-compliance.md:11 «a paged `part` read through the `escher-session` host's own sink is read by its fourth test (unix only), which runs `serve cells` at `RUST_LOG=trace` in `hl-cells`»
+  replace-with: «A paged `part` read through the `escher-session` host's own sink is measured since 2026-10-25-cold-agent-bar by `host_log`'s fourth test (unix only), which runs `serve cells` at `RUST_LOG=trace` in `hl-cells`, commits a sentinel into a part-2 cell and calls `snapshot --part 2`: 0 id and 0 name needles under both builds, its failures naming a kind and a count only;»
+
+- leaf: .claude/rules/observability.md:26   class: omission
+  leaf-text: «its raw session transcript stays in `target/cold-agent/transcript.jsonl` and the agent's check in `check.json`, neither printed; since 2026-10-15-cold-agent-test its one MCP server is `escher-session mcp` spawned with `RUST_LOG=info` on that child only, so escher's sink writes its closed `tool_call` / `command` span lines to `target/cold-agent/server.log`, which the pipe reads only to count ` span="tool_call" ` lines and their ` ending="refused" ` / ` ending="error" `, never printing or copying it»
+  source: .andromeda/obs-plan.md:118 «which the pipe reads only to count ` span="tool_call" ` lines, their ` ending="refused" ` / ` ending="error" ` and the accepted lines of each counted verb (`lint` · `screenshot` · `advance`)»
+  replace-with: «its raw session transcript stays in `target/cold-agent/transcript.jsonl`, the agent's check in `check.json` and the live session's kept checks in the owner-only `target/cold-agent/record/` (`mkdir -m 700`), none printed or copied; since 2026-10-15-cold-agent-test its one MCP server is `escher-session mcp --record <abs target/cold-agent/record>` spawned with `RUST_LOG=info` on that child only, so escher's sink writes its closed `tool_call` / `command` span lines to `target/cold-agent/server.log`, which the pipe reads only to count ` span="tool_call" ` lines, their ` ending="refused" ` / ` ending="error" ` and the accepted lines of each counted verb (`lint` · `screenshot` · `advance`, `span_counts`), never printing or copying it; a judged check is replayed on two further `escher-session mcp` children without `--record`, stderr to `/dev/null`»
+
+- leaf: .claude/docs/obs-summary.md:43   class: stale
+  leaf-text: «a paged `part` read through the `escher-session` host's own sink stays unmeasured — the host boots only the four lean tasks and none pages — owned by a `.andromeda/residuals.md` line (target: next).»
+  source: .andromeda/obs-plan-detail/pii-scrubbing-compliance.md:11 «a paged `part` read through the `escher-session` host's own sink is read by its fourth test (unix only), which runs `serve cells` at `RUST_LOG=trace` in `hl-cells`»
+  replace-with: «a paged `part` read through the `escher-session` host's own sink is read by `host_log`'s fourth test (unix only), which runs `serve cells` at `RUST_LOG=trace` in `hl-cells`, commits a sentinel into a part-2 cell and calls `snapshot --part 2`: 0 id and 0 name needles under both builds, its failures naming a kind and a count only (`host_log` 4; measured at 2026-10-25-cold-agent-bar).»
+
+- leaf: .claude/docs/obs-summary.md:17   class: omission
+  leaf-text: «its per-run `mcp.json` spawns `escher-session mcp` with `RUST_LOG=info` on that child only, so the child's escher sink writes its closed `tool_call` / `command` span lines to `target/cold-agent/server.log`, which the pipe reads only to count ` span="tool_call" ` lines and their ` ending="refused" ` / ` ending="error" `, never printing or copying it; the agent's check goes to `check.json`, never printed.»
+  source: .andromeda/obs-plan.md:174 «the live child runs `mcp --record` into `target/cold-agent/record/` (made `mkdir -m 700`), the replay children without `--record` (scripts/cold-agent.sh:161-175)»
+  replace-with: «its per-run `mcp.json` spawns `escher-session mcp --record <abs target/cold-agent/record>` with `RUST_LOG=info` on that child only, so the child's escher sink writes its closed `tool_call` / `command` span lines to `target/cold-agent/server.log`, which the pipe reads only to count ` span="tool_call" ` lines, their ` ending="refused" ` / ` ending="error" ` and the accepted lines of each counted verb (`lint` · `screenshot` · `advance`, `span_counts`, giving the verdict's `lint_calls` · `screenshot_calls` · `advance_calls`), never printing or copying it; a judged check is replayed on two further `escher-session mcp` children without `--record`, stderr to `/dev/null`; the agent's check goes to `check.json` and the live session's kept checks to the owner-only `target/cold-agent/record/` (`mkdir -m 700`), none printed or copied.»
+
+- leaf: .claude/docs/obs-summary.md:45   class: omission
+  leaf-text: «`target/cold-agent/transcript.jsonl` is raw by design (model output and tool I/O — since 2026-10-15-cold-agent-test the stand's screen from the escher server, element ids, accessible names and control values in snapshot texts and diffs,»
+  source: .andromeda/obs-plan.md:265 «carries the stand's screens (ids, accessible names, control values; on the live run of six apps also Cells' contents, the flight booker's select options and value, a lint's findings and a shot)»
+  replace-with: «`target/cold-agent/transcript.jsonl` is raw by design (model output and tool I/O — since 2026-10-15-cold-agent-test the stand's screens from the escher server, element ids, accessible names and control values in snapshot texts and diffs, and on the live run of six apps also Cells' contents, the flight booker's select options and value, a lint's findings and a shot,»
+
+- leaf: .claude/docs/obs-summary.md:45   class: omission
+  leaf-text: «`check.json` holds the agent's check — stand fixture ids and texts — never printed.»
+  source: .andromeda/obs-plan.md:265 «the live session's kept checks under the owner-only `target/cold-agent/record/` hold its calls and answers at rest, never printed, copied or committed.»
+  replace-with: «`check.json` holds the agent's check — stand fixture ids and texts — never printed; the live session's kept checks under the owner-only `target/cold-agent/record/` hold its calls and answers at rest, never printed, copied or committed.»
+
+- leaf: .claude/docs/obs-summary.md:49   class: omission
+  leaf-text: «the silence census over those ten files reading 0, `packages/` unchanged (2026-10-24-a11y-re-read).»
+  source: .andromeda/obs-plan.md:96 «The served stand is silent: `seven_guis::stand`'s `boot_cells` and `boot_load` and the load page's stand-in `LoadNet` — each `fetch` answering `LOADED_CSS` from a thread of its own after»
+  replace-with: «the silence census over those ten files reading 0, `packages/` unchanged (2026-10-24-a11y-re-read); the served stand — `seven_guis::stand`'s `boot_cells` and `boot_load` and the load page's in-process stand-in `LoadNet` (each `fetch` answering `LOADED_CSS` from a thread of its own after 200 ms) — with the checks `stand_cells_served` and `stand_load_page` holds no `blitz_net`, print, `tracing` call, env read, socket or listener, no driver schema, span field or log line moving (2026-10-25-cold-agent-bar).»

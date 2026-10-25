@@ -1,0 +1,2 @@
+proposals: []
+note: the report's Dependencies reads none (Cargo.toml, Cargo.lock and deny.toml unchanged from e84dc818, entry 11) and `LoadNet` takes `blitz-traits`, already a native seven_guis dependency, with no `blitz_net`, so no edge enters or moves; D-security-input and D-security-auth touch no passage of this category, and the Retired bullet (the flight booker's `aria-pressed` buttons and their CSS) names nothing this file states.

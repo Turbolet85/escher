@@ -1,0 +1,137 @@
+# The site sweep of 2026-10-25-cold-agent-bar's wrap P1: one pattern per moved fact, its wording and its name token.
+
+[[pattern]]
+id = 'title'
+fixed = 'Cold-agent bar'
+ignore_case = true
+
+[[pattern]]
+id = 'owner-generic'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true
+
+# F1 — escher-session serves six tasks (was the four lean tasks); name token session_host.
+[[pattern]]
+id = 'served-tasks'
+regex = 'four lean (stand )?tasks|lean four|over the four|boots counter, flight booker, timer or CRUD|session_host|escher-session <verb>'
+ignore_case = true
+
+# F2 — the flight booker's mode buttons become the select flight-type.
+[[pattern]]
+id = 'flight-mode'
+regex = 'flight-one-way|flight-return(?!-date)|mode buttons?|flight-type|one-way / return'
+ignore_case = true
+
+# F3 — the lint at boot: 0 findings per lean task → the flight booker reads one overlap.
+[[pattern]]
+id = 'lint-at-boot'
+regex = 'reading 0 findings|0 findings at boot|reads? (no|0) findings?|the_stand_at_boot_reads_no_finding|stand at boot'
+ignore_case = true
+
+# F4 — the stand's controls 15 → 14.
+[[pattern]]
+id = 'controls-15'
+regex = '(15|fifteen) (stand )?controls'
+ignore_case = true
+
+# F5 — stand_contrast's control rows 18 → 17 and STATE_ROWS 19 → 18.
+[[pattern]]
+id = 'contrast-rows'
+regex = '18 stand control rows|18 control rows|STATE_ROWS|19 state rows'
+ignore_case = true
+
+# F6 — stand_act_ids' census: 77 nodes, 70 accepted · 7 refused → 68 · 9.
+[[pattern]]
+id = 'act-ids-census'
+regex = '77 nodes|accepted on 70|70 accepted|refused on (the table.s )?7|stand_act_ids'
+ignore_case = true
+
+# F7 — stand_keyboard's activation table 20 rows → 16; its tests 14 → 15.
+[[pattern]]
+id = 'activation-rows'
+regex = 'table of 20 rows|20 rows|stand_keyboard \(1[45]'
+ignore_case = true
+
+# F8 — the a11y leg 84 → 85 tests.
+[[pattern]]
+id = 'a11y-84'
+regex = '84 (tests|passed)|\(84 tests\)|14 · 84|fourteen files \(84'
+ignore_case = true
+
+# F9 — the ci-scripts leg 104 → 108 tests; the cold-agent contract cases 33 → 37.
+[[pattern]]
+id = 'ci-scripts-104'
+regex = '104 tests|\(104|33 (tests|cases)|test_cold_agent'
+ignore_case = true
+
+# F10 — agent-run stand 48 → 50 files, 197 → 205 passed.
+[[pattern]]
+id = 'run-stand'
+regex = '48 files|197 passed|48 stand|22 `?stand_|run stand'
+ignore_case = true
+
+# F11 — the workspace tally 206 lines · 1105 passed → 208 · 1117.
+[[pattern]]
+id = 'tally'
+regex = '1105|1,105|206 (result )?lines'
+ignore_case = true
+
+# F12 — coverage dioxus-native-dom 85.57 → 85.60 %, blitz-test-harness 94.15 → 94.44 %.
+[[pattern]]
+id = 'coverage'
+regex = '85\.57|94\.15|2740/3202|949/1008'
+ignore_case = true
+
+# F13 — host_log 3 → 4 tests; the host-sink part read (residuals.md:38) measured.
+[[pattern]]
+id = 'host-sink-part'
+regex = 'residuals\.md:38|host_log|paged part read|part read through the host'
+ignore_case = true
+
+# F14 — the cold-agent pipe: four apps → six, the verdict's new fields, wrong_calls deciding, --record on the child.
+[[pattern]]
+id = 'pipe'
+regex = 'four lean apps|never deciding|decides nothing|wrong_calls|tasks_met|cold-agent\.sh|recording_kept|part_reads'
+ignore_case = true
+
+# F15 — the live run and its carriage: 0.1.0's 43 calls / $0.32 / eleven tools, the new run's 66 / $0.82.
+[[pattern]]
+id = 'live-run'
+regex = 'Один запуск|43 calls|\$0\.32|eleven tools|live run|second live'
+ignore_case = true
+
+# F16 — every stand screen under the snapshot budget (Cells passes it).
+[[pattern]]
+id = 'stand-budget'
+regex = 'every stand screen under|stand screen.{0,40}budget|under the 10,000-byte'
+ignore_case = true
+
+# F17 — the stand offline / the in-process load stand-in (boot_load, boot_cells).
+[[pattern]]
+id = 'stand-offline'
+regex = 'boot_load|boot_cells|net_provider: None|offline|in-process stand-in|LateNet|HeldNet'
+ignore_case = true
+
+# F18 — the flight booker states pressed (aria-pressed) on the stand.
+[[pattern]]
+id = 'stand-pressed'
+regex = 'which control is pressed|states? (which control is )?pressed|aria-pressed|active flight mode'
+ignore_case = true
+
+# F19 — renamed tests named in the ledgers and masters.
+[[pattern]]
+id = 'renamed-tests'
+regex = 'exactly_the_active_flight_mode_reads_pressed|a_flight_mode_click_returns_both_mode_buttons|the_stand_at_boot_reads_no_finding'
+ignore_case = false
+
+# F20 — the requirement sweep's witness table and its subjects.
+[[pattern]]
+id = 'witnesses'
+regex = 'WITNESSES_020|stand_requirement_sweep'
+ignore_case = true
+
+# F21 — a select's options overlap in the lint (new fact) and the shown overlay scrollbar taking a click (new fact).
+[[pattern]]
+id = 'new-hazards'
+regex = 'overlay scrollbar|scrollbar fade|ListBoxOption|select.s client rect'
+ignore_case = true

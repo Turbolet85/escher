@@ -9,7 +9,7 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 |-------|-------|-------|
 | Browser chrome (untokenized) | 4px tabs (top corners), tooltip, urlbar input, icon buttons, menu; 3px close button and status bar (top-right) | (apps/browser/assets/browser.css:45-46; apps/browser/assets/browser.css:67; apps/browser/assets/browser.css:104; apps/browser/assets/browser.css:166; apps/browser/assets/browser.css:180; apps/browser/assets/browser.css:216; apps/browser/assets/browser.css:295) |
 | Browser about pages (untokenized) | clear button 6px, history rows 8px, newtab search input 8px | (apps/browser/assets/about-history.css:27; apps/browser/assets/about-history.css:48; apps/browser/assets/about-newtab.css:29) |
-| seven_guis (untokenized) | cards 8px, buttons 6px, inputs 4px, task cards 6px, tags 3px | (examples/seven_guis/src/tasks/counter.rs:41; examples/seven_guis/src/tasks/counter.rs:61; examples/seven_guis/src/tasks/temp_converter.rs:71; examples/seven_guis/src/app.rs:228; examples/seven_guis/src/app.rs:269) |
+| seven_guis (untokenized) | cards 8px, buttons 6px, inputs 4px, task cards 6px, tags 3px, the flight booker's `flight-type` select 6px | (examples/seven_guis/src/tasks/counter.rs:41; examples/seven_guis/src/tasks/counter.rs:61; examples/seven_guis/src/tasks/temp_converter.rs:71; examples/seven_guis/src/app.rs:228; examples/seven_guis/src/app.rs:269; examples/seven_guis/src/tasks/flight_booker.rs:160-167) |
 | transparent example card | 16px | (examples/transparent/src/app.rs:121) |
 | blitz-dom default button | 1px | (packages/blitz-dom/assets/default.css:108) |
 | Checkbox frame (engine) | 2 × control scale | (packages/blitz-paint/src/render/form_controls.rs:28-33) |

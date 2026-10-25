@@ -1,0 +1,2 @@
+proposals: []
+note: no drift in this category — the socket and MCP stdio access rows cite packages/escher-driver (the report's `git diff` over packages reads 0, entry 11), no CI permission step changes, Dependencies none, the live run used the same operator Claude Code login (F15 rows security-plan.md:290 · :306 and secret-management.md:14 no-change), and the pipe's new owner-only `target/cold-agent/record/` (mkdir -m 700) is a state set of the pipe, not an auth control, and no sweep row names this file.

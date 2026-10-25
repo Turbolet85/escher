@@ -1,0 +1,22 @@
+proposals:
+  - detector: D-new-detail
+    severity: warning
+    file: .andromeda/security-plan-detail/logging-monitoring.md
+    near: 14
+    section: "## Logging & Monitoring"
+    change: "Replace the clause from `— while through the `escher-session` host's own sink it is unmeasured` to the line's end with: `— and, since 2026-10-25-cold-agent-bar, through the `escher-session` host's own sink, the host serving six tasks (`counter` · `flight-booker` · `timer` · `crud` · `cells` · `load`): seven_guis `host_log`'s fourth test, `a_cells_part_read_through_the_host_logs_no_id_and_no_name_at_trace`, runs `serve cells` at `RUST_LOG=trace`, commits a sentinel into a part-2 cell (Cells' part-2 names at boot hold no attributable needle), then reads `snapshot --part 2` — 0 id and 0 name needles under both builds (examples/seven_guis/tests/host_log.rs:134-277; as measured at escher-0.2.0/chunks/2026-10-25-cold-agent-bar/report.md), the `.andromeda/residuals.md` line that owned the measurement discharged (inputs#I4)`"
+    sidecar: "security-plan · Logging & Monitoring: the host-sink paged part read is measured (host_log's Cells part-2 read, 0 id and 0 name needles, both builds) and the host serves six tasks — the four-lean-tasks, unmeasured claim and its residual owner retired (2026-10-25-cold-agent-bar, F13 · F1)"
+    rationale: "The report's F13 marks logging-monitoring.md:14 stale (pattern host-sink-part) and F1 marks it stale (pattern served-tasks); Spec claims disproved names «the host boots only the four lean tasks and none pages» at logging-monitoring.md:14 as false since `serve cells`; inputs#I4 row 1 discharges residuals.md:38 by this measurement; New text lists host_log.rs 134-277 @136."
+    basis: escher-0.2.0/chunks/2026-10-25-cold-agent-bar/report.md:157-164
+    fact: F13
+  - detector: D-new-detail
+    severity: warning
+    file: .andromeda/security-plan-detail/logging-monitoring.md
+    near: 21
+    section: "## Logging & Monitoring"
+    change: "Add a new item after line 21, inside the same detail block: `- Since 2026-10-25-cold-agent-bar the pipe's live server child runs `mcp --record` into `target/cold-agent/record/` (made `0700`, removed by `cleanup` with the state) and the replay children run without `--record`: its kept checks are read for the verdict's `recorded_sessions` and `recording_kept`, never printed or copied, none committed; `server.log` is also counted for accepted `tool_call` lines of the verbs `lint` · `screenshot` · `advance`; the verdict's seven new fields (`wrong_call_bar_pct` · `lint_calls` · `screenshot_calls` · `advance_calls` · `part_reads` · `recorded_sessions` · `recording_kept`) are counts and booleans and its three new reasons (`capability-unused` · `recording-not-kept` · `wrong-calls-over-bar`) closed words, so events and verdict still carry no scrub-set key or planted marker (scripts/cold-agent.sh:231-271; scripts/cold-agent.sh:483-488; as measured at escher-0.2.0/chunks/2026-10-25-cold-agent-bar/report.md)`"
+    sidecar: "security-plan · Logging & Monitoring: the cold-agent pipe's `--record` live child, its never-printed kept checks, the per-verb `tool_call` counts and the verdict's seven count/boolean fields and three closed reasons recorded (2026-10-25-cold-agent-bar, F14)"
+    rationale: "F14 and Symbols / APIs (the pipe) add `--record` on the live child into `target/cold-agent/record` (`mkdir -m 700`), `span_counts` per COUNTED verb and seven verdict fields and three reasons; Schema / config names the state set owner-only with `cleanup` removing it; Coverage of new surfaces and Outcome (obs, security) state the kept checks never printed or copied, none committed, events and verdict carrying counts and closed words with planted-marker cases green; New text lists cold-agent.sh 231-241 · 244-254 · 257-271 · 483-488."
+    basis: escher-0.2.0/chunks/2026-10-25-cold-agent-bar/report.md:70-83
+    fact: F14
+note: "No D-security-input/auth/deps violation in this category (inputs are input-validation's; dependencies none). Citations moved but not proposed here: session_host.rs:30-32 at lines 8 and 15 (F1's citation rows, the P2 citation sweep's); line 13's host_log.rs:398-411 and line 14's host_log.rs:42-132 sit in a file with added ranges 15-17 · 134-278, and line 21's scripts/cold-agent.sh:42-536 · :161-175 in a file grown by 127 lines, none of the three in F13's or F14's citation lists — the citation sweep should re-read them."

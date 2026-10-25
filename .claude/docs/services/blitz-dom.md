@@ -24,6 +24,7 @@ The headless DOM (`BaseDocument`): node tree, CSS parsing and resolution through
 - `StyleThreading::Parallel` traversals are serialised process-wide by the static `PARALLEL_TRAVERSAL_LOCK`, so two concurrent documents no longer panic (blitz issue 430); `Sequential` is the default, which no headless document overrides; `LAYOUT_CTX` is thread-local with a FIXME for multi-document use.
 - Stale `NodeId` indexing panics; a node the Dioxus bridge removes is dropped with its descendants and its `node_id_mapping` entries cleared (upstream #1185, since 2026-10-13-upstream-sync-polish-and-ship), so it no longer resolves.
 - Interaction state references DOM nodes only and is retargeted before a node is freed.
+- Right after a `scroll`, a main-button pointerdown in the shown overlay scrollbar's band is taken as a thumb drag and dispatches nothing (`events/pointer.rs`, `hit_with_scrollbar` while `scrollbar_opacity > 0`; a measured hazard, no engine change); on the virtual clock the bar stays shown until an `advance` passes its fade, so a driver `click` inside a just-scrolled box needs an `advance` past the fade first (`stand_cells_served`).
 See `.claude/docs/gotchas.md`.
 
 ## Entry points for modification

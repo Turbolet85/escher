@@ -1,0 +1,2 @@
+proposals: []
+note: no drift in .andromeda/architecture-detail/project-intent.md — the report adds no crate, dependency, resource or Retired item this category names, and README.md and docs/capabilities.md are outside its Files list, so the front-page and capability-statement entries stand; the report's inputs#I4 row 3 (restating docs/capabilities.md:288-289 against the 2026-10-25 live run) edits that document, not this file, and if it lands, this file's five-section description of docs/capabilities.md still holds.

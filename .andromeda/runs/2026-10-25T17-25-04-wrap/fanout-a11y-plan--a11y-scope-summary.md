@@ -1,0 +1,2 @@
+proposals: []
+note: a11y-scope-summary.md holds no site of F1–F21 or the Retired buttons — its no-platform-adapter claim (:16-18) stands (report Outcome (arch) "no platform adapter: MET", Dependencies none) and :22's fourteen a11y files stand (F8); the body's own stale sites a11y-plan.md:64 (contrast-rows, F5) and a11y-plan.md:196 (flight-mode · stand-pressed, F2 · F18) lie outside this category's file, for the body's detector.

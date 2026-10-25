@@ -1,0 +1,2 @@
+proposals: []
+note: The chunk adds no metric, timer or counter emitter (no dependency, span, field or log line moves; `LoadNet` and `boot_cells`/`boot_load` are instrumentation n/a per the report's Coverage of new surfaces), and the Retired flight buttons appear nowhere in this file; the pipe's new verdict counts (`lint_calls` · `screenshot_calls` · `advance_calls` · `part_reads` · `recorded_sessions` · `wrong_call_bar_pct`) are §6 Log Coverage detail per the report's Expected amendments (obs-plan.md:169, log-coverage.md:14), not this table's.

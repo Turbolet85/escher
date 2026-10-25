@@ -1,0 +1,11 @@
+proposals:
+  - detector: D-new-detail
+    severity: warning
+    file: .andromeda/security-plan-detail/api-security.md
+    near: 32
+    section: "## API Security"
+    change: "add, after the Settle and loads in flight control, one control record — `- **Control:** Network stand-in (stand load page)` / `  - **Configuration:** `seven_guis::stand::boot_load` (since 2026-10-25-cold-agent-bar) replaces its harness options' `net_provider` with the in-process `LoadNet`, whose every `fetch` answers the fixed `LOADED_CSS` from a thread of its own after `LOAD_ANSWER_DELAY`, 200 ms, for the fixed `LOAD_URL` `http://stand.test/load.css` — no outbound request, no `blitz_net`, print, env read, socket or listener; no `is_noop` override, so the harness counts its load and the driver's acting step waits it out inside `LOAD_WAIT`; every other stand boot keeps `net_provider: None` (examples/seven_guis/src/stand.rs:141-152; examples/seven_guis/src/stand.rs:167-175; tests/blitz-tests/tests/stand_load_page.rs:34-68)` / `  - **Stack reference:** blitz-traits `NetProvider`'"
+    sidecar: "api-security: the stand's load page and its in-process network stand-in `LoadNet` recorded as a request control — fixed URL and bytes after 200 ms, no outbound request, every other stand boot offline (2026-10-25-cold-agent-bar)"
+    rationale: "the report's Changes › Symbols / APIs names `boot_load` and `LoadNet` (`impl NetProvider`, fixed `LOADED_CSS` after `LOAD_ANSWER_DELAY` 200 ms, no `blitz_net`, socket or listener, no `is_noop` override so the harness counts the load) and F17 (the stand offline but for this in-process stand-in); this category's controls govern requests and loads in flight, and its Settle control names `LOAD_WAIT` — the stand's first served page that issues a request, answered in process, is new detail here; Dependencies: none; no new external-input surface reaches this category (the served slugs a closed table, Coverage of new surfaces)"
+    basis: examples/seven_guis/src/stand.rs:167-175
+note: D-security-input, D-security-auth and D-security-deps hold for this category (no new served API, listener, auth or dependency — report Dependencies none, Schema/config no driver move); no F1/F17/Retired site falls in api-security.md, so no stale or D-retired row.

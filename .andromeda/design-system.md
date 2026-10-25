@@ -246,7 +246,7 @@ Detail: .andromeda/design-system-detail/surface.md — read whole.
 
 ---
 
-<!-- subjects: palette · status-states · typography · spacing · depth · radius · expression-motion · icons · desktop-native-tokens · desktop-native-titlebar · desktop-native-custom-widget · desktop-native-devtools-overlay · desktop-native-window · desktop-native-stack · mobile-native-tokens · mobile-native-urlbar · mobile-native-back-button · mobile-native-capture · mobile-native-stack · cli-tokens · cli-output · web-spa-tokens · web-spa-canvas -->
+<!-- subjects: palette · status-states · typography · spacing · depth · radius · expression-motion · icons · desktop-native-tokens · desktop-native-titlebar · desktop-native-custom-widget · desktop-native-devtools-overlay · desktop-native-stand-load-page · desktop-native-window · desktop-native-stack · mobile-native-tokens · mobile-native-urlbar · mobile-native-back-button · mobile-native-capture · mobile-native-stack · cli-tokens · cli-output · web-spa-tokens · web-spa-canvas -->
 
 ## Design Decisions Log
 

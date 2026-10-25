@@ -1,0 +1,11 @@
+
+## 2026-10-25-cold-agent-bar — six served slugs, the load page's in-process stand-in and the host-sink part read
+**Section:** §Input Validation (input-validation.md: the command-line row, the MCP `start` row, the remote-content row, the 7GUIs inputs row) · §API Security (api-security.md: the load wait's served witness) · §Logging & Monitoring (logging-monitoring.md: the host's own sink)
+**Change:**
+- `main` hands `command_line` the stand's six slugs (`counter`, `flight-booker`, `timer`, `crud`, `cells`, `load`), a closed six-entry `TASKS` table over the private `Served` enum (was four, a four-entry table); the MCP `start` tool refuses an app outside the binary's six, its `app` enum listing them as the program's own fixed table text.
+- The stand boots on its bundled font, offline but for the load page (`stand::boot_load`), whose one fixed stylesheet request `http://stand.test/load.css` the in-process `LoadNet` answers — no `blitz_net`, no `@font-face` source and no agent- or user-supplied URL (was offline whole).
+- The load wait has one served witness: the load page's one fetch answered by `LoadNet` after `LOAD_ANSWER_DELAY` (200 ms) from a thread of its own with fixed CSS bytes — no `blitz_net`, socket, listener, print or env read — and, `LoadNet` overriding no `is_noop`, the harness counts the load and the page's click waits it out within `LOAD_WAIT` (`stand_load_page`); every other stand boot holds `net_provider: None`.
+- The flight booker's `select#flight-type` writes its `flight_type` signal by a closed match on the `input` value — `return` a return flight, any other value one-way — over its two options.
+- Through the `escher-session` host's own sink, seven_guis `host_log` runs `serve cells` at `RUST_LOG=trace` in `hl-cells`, commits a sentinel into a part-2 cell and reads `snapshot --part 2`: 0 id and 0 name needles under both builds (was unmeasured, the host booting the four lean tasks and no paged screen, owned by a `.andromeda/residuals.md` line).
+**Why:** measured at the chunk; the slugs are the program's own fixed text inside a ratified carrier (the playbook's rule); a fixed URL and fixed bytes answered in process are no crossing. The residual's discharge is the operator's own word on the phase's P5 card (chunk inputs#I4).
+**Ref:** .andromeda/runs/2026-10-25T17-25-04-wrap/
