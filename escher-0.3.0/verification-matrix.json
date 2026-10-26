@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "version": "escher-0.3.0",
+  "source": "intent",
+  "id_scheme": "v030-NN",
+  "capabilities": [
+    {
+      "id": "v030-01",
+      "title": "Codebase health",
+      "requirement": "escher's three functions over the cognitive-complexity ceiling (the lint's findings walk and two table-asserting tests) fall under it as a table walk or named helpers; test functions stay in the count, the engine function stays as it is; every check stays green",
+      "observed_gap": "Functions over the cognitive-complexity ceiling of 15 went 84 → 87 → 88 over three epochs; three escher-written functions crossed it — the lint's findings walk (16), the MCP listing test (18) and the 0.2.0 requirement-sweep test (18), the two tests asserting a table row by row inline; one engine function went 11 → 17 by a fork change (the Epoch 5 audit, 2026-10-26, M1).",
+      "verification": {
+        "method": "integration",
+        "acceptance": "On the code audit's own complexity reading, the three escher-written functions the Epoch 5 audit found over the ceiling of 15 read at or under it, the two tests still counted and asserting the same rows, the engine function left as it was, and every check green.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v030-02",
+      "title": "The version on the GitHub page",
+      "requirement": "The README shows 0.2.0 done and verified, with what it can do and its cold-agent result, and 0.3.0 planned with its stages; the capabilities statement describes the 2026-10-25 run",
+      "observed_gap": "The README describes 0.1.0 as done and 0.2.0 as planned; the capabilities statement still describes the 2026-10-15 live run (.andromeda/residuals.md:41).",
+      "verification": {
+        "method": "manual",
+        "acceptance": "The project's front page on GitHub shows 0.2.0 done and verified, with what it can do and its cold-agent result, and 0.3.0 planned with its stages; the capabilities statement describes the 2026-10-25 run of six apps, 66 calls and 0 wrong, and the statement's pin stays green.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v030-03",
+      "title": "Upstream sync",
+      "requirement": "Upstream's new work is taken in by the take the founder chooses, the fork's engine-change merge surfaces keep their owners, and every check stays green",
+      "observed_gap": "Measured 2026-10-26T19:10Z after a fetch: upstream/main at 6fee0db25, 37 commits not in HEAD, some possibly already in as cherry-picks; pins Stylo 0.22.0, taffy 0.15 and Dioxus 0.7.3, the Dioxus 0.8 alpha passed over (residual lines 35, 36).",
+      "verification": {
+        "method": "integration",
+        "acceptance": "Upstream's new work is in by the take the founder chose, each fork engine change's merge surface still has its owner, and every CI leg, the accessibility leg and the dependency audit read green after it.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v030-04",
+      "title": "Engine debts dispositioned",
+      "requirement": "Each recorded debt reaches the founder as a fork, then is fixed and proven on the stand or a fixture, pinned as a stated limit, or kept as a residual by his word",
+      "observed_gap": "A target inside a transformed scrolling box reads outside its visible region; a focused node that becomes inert keeps focus; a native checkbox or radio never states its checked state to the platform adapter; a multiple select and optgroup are not modelled, no popup is painted and an option is not clicked; the driver lint reads a select's options as overlapping; the served pages hold no Tab-order, keyboard-activation or contrast row (residual lines 31-34, 39, 40).",
+      "verification": {
+        "method": "integration",
+        "acceptance": "Each debt the intent names reaches the founder as a fork and ends as his word says: fixed and proven on the stand or a fixture, pinned as a stated limit, or kept as a residual.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v030-05",
+      "title": "The UI graph",
+      "requirement": "One read gives, for the current screen, node → component → handlers → the state they write → the nodes that read it; a probe of what the Dioxus runtime exposes without a fork-level change comes first and reaches the founder before the graph is built; the \"reacts to a click\" reading rides with it",
+      "observed_gap": "An agent reads what is drawn (the snapshot, stable ids, refusal causes), but not which component rendered a node, which handlers it carries, which state they write, or which nodes read that state (residual line 23).",
+      "verification": {
+        "method": "integration",
+        "acceptance": "For the current screen of a stand task, one read names each node's component, the handlers it carries, the state those handlers write and the nodes that read that state, and says which nodes react to a click; the probe of what the runtime exposes reached the founder before it.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v030-06",
+      "title": "What can I do here",
+      "requirement": "One command lists each actionable node on the current screen with its verbs, and why it can or cannot be acted on now (disabled, covered, off-screen), read from the UI graph; the actionable-key check joins it if it fits",
+      "observed_gap": "An agent learns an action is refused only by trying it (residual line 12).",
+      "verification": {
+        "method": "integration",
+        "acceptance": "On the stand, one command lists each actionable node on the current screen with its verbs and, for each that cannot be acted on now, why (disabled, covered, off-screen), agreeing with the refusal an actual call returns.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v030-07",
+      "title": "Handler coverage",
+      "requirement": "One command lists the handlers no recorded check exercised, read from the UI graph",
+      "observed_gap": "Nothing says which handlers no check reached.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "After a set of recorded checks has run on the stand, one command lists exactly the handlers none of them exercised.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v030-08",
+      "title": "Start in a state",
+      "requirement": "A session can start in a given state, a fixture, building on 0.2.0's shared fixtures",
+      "observed_gap": "A check starts from boot and clicks its way to the state it tests.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "A session starts in a named fixture state, and its first screen reads as that state does when reached by hand from boot.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v030-09",
+      "title": "Auto-exploration",
+      "requirement": "One command drives every available action breadth-first within a step budget, catches panics and refusals, and records each path as a replayable check",
+      "observed_gap": "Every path an agent explores is driven by hand.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "One command, given a step budget, drives every available action breadth-first, reports each panic and refusal it meets, and leaves each path as a recorded check that replays green.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v030-10",
+      "title": "Errors with the action",
+      "requirement": "An action's answer carries the panic, error or handler log it caused, tied to the node id and, through the UI graph, to the handler; what of a log may enter an answer reaches the founder as a boundary fork, bounded by his log rulings of 2026-10-07/09",
+      "observed_gap": "A panic, an error log or a handler's log reaches the agent only through the log sink, not tied to the action that caused it.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "An action that causes a panic, an error or a handler log returns it in that action's answer, tied to the node and the handler, within the boundary the founder sets.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v030-11",
+      "title": "Layout explained",
+      "requirement": "An agent can ask why an element is where it is and at its size, read from the layout and style chain",
+      "observed_gap": "Lint names an element's finding but not its cause.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "Asked of an element on the stand, an answer gives why it sits where it does and at its size, traced through the style and layout that placed it.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v030-12",
+      "title": "A component in isolation",
+      "requirement": "One component renders alone with given props, across the UI graph's component boundary",
+      "observed_gap": "A component is seen only inside its app.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "One component renders alone with given props, and its reading matches the same component's reading inside its app.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v030-13",
+      "title": "Seeded randomness",
+      "requirement": "A run's randomness comes from a seed, so two runs of one seed read the same state",
+      "observed_gap": "Randomness depends on the host.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "Two runs given one seed read the same state at every step.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v030-14",
+      "title": "Bundled fonts",
+      "requirement": "A run's fonts are bundled, so two hosts read the same state the same way",
+      "observed_gap": "Fonts depend on the host.",
+      "verification": {
+        "method": "integration",
+        "acceptance": "Hosts of different operating systems read one state of a run the same way, compared by its readings, not by image bytes.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v030-15",
+      "title": "Cold-agent bar",
+      "requirement": "0.3.0 ends with a cold-agent run over its new capabilities, judged against a bar the founder sets from 0.2.0's baseline of six apps, 66 calls, 0 wrong",
+      "observed_gap": "0.2.0's run is the baseline: six apps, 66 calls, 0 wrong, $0.82, under the founder's «Не больше 5% (Рекомендую)».",
+      "verification": {
+        "method": "dynamic-external",
+        "acceptance": "A cold agent's run over 0.3.0's new capabilities passes the bar the founder sets from 0.2.0's baseline of six apps, 66 calls and 0 wrong.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    },
+    {
+      "id": "v030-16",
+      "title": "Records kept true",
+      "requirement": "The two verified ledger refs name the tests' current names, the design-system stand rows (the accent, the success row, the cards item, the stand's DejaVu Sans item) move out of the product surface into architecture and layout-templates, and the incubator is ignored by .gitignore in place of a local exclude",
+      "observed_gap": "Two verified ledger refs, v010-17 and v020-05, cite renamed tests (.andromeda/residuals.md:42); the design-system stand rows sit in its product surface; the incubator is excluded only locally.",
+      "verification": {
+        "method": "manual",
+        "acceptance": "The two ledger references name the tests' current names, the design-system's stand rows stand in architecture and layout-templates instead, and the incubator is ignored by the repository's own ignore file.",
+        "ref": null,
+        "status": "planned"
+      },
+      "chunk": null
+    }
+  ]
+}

@@ -74,3 +74,6 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 2026-10-24-a11y-re-read · complete · A11y re-read — stand Tab order, Enter/Space activation and contrast re-asserted after 0.2.0's engine changes, new a11y checks in the `a11y` leg · → escher-0.2.0/chunks/2026-10-24-a11y-re-read/
 2026-10-25-capability-statement · complete · what escher 0.2.0 can do, its stated limits, a11y reach and what an MCP client carries onward, stated where Viola's planning reads it (v020-10) · → escher-0.2.0/chunks/2026-10-25-capability-statement/
 2026-10-25-cold-agent-bar · complete · Cold-agent bar — the stand serves Cells and a load page beside the lean four, the flight booker's mode a select; a fresh agent drove all six through the cold-agent pipe, 66 calls, 0 wrong under the founder's 5 % bar · → escher-0.2.0/chunks/2026-10-25-cold-agent-bar/
+
+## escher-0.3.0
+_(no chunks promoted yet)_
