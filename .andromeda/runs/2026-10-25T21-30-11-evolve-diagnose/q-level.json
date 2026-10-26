@@ -1,0 +1,61 @@
+{
+ "epoch": "Epoch 5 — Polish & ship",
+ "version": "escher-0.2.0",
+ "problem_facts": 27,
+ "by_solution": {"workaround": 13, "overridden": 5, "deferred": 5, "unresolved": 2, "removed-cause": 2},
+ "pass_a_themes": [
+  {"theme": "disposable measurement spaces and their cleanup (throwaway worktree / probe target / scratch dir; recursive rm denied; residue accumulates)",
+   "facts": [
+    {"id": "2026-10-24T11:10:12Z-a", "idx": 1, "chunk": "2026-10-24-upstream-sync-polish-and-ship", "at": "phase/research", "nature": "process", "solution": "workaround"},
+    {"id": "2026-10-24T11:10:12Z-a", "idx": 2, "chunk": "2026-10-24-upstream-sync-polish-and-ship", "at": "phase/research", "nature": "environment", "solution": "unresolved"},
+    {"id": "2026-10-25T14:03:00Z-a", "idx": 0, "chunk": "2026-10-25-cold-agent-bar", "at": "phase/research", "nature": "process", "solution": "workaround"},
+    {"id": "2026-10-25T15:04:38Z-a", "idx": 2, "chunk": "2026-10-25-cold-agent-bar", "at": "implement/code", "nature": "process", "solution": "workaround"},
+    {"id": "2026-10-25T13:52:50Z-a", "idx": 0, "chunk": "2026-10-25-cold-agent-bar", "at": "phase/distill", "nature": "environment", "solution": "removed-cause"}],
+   "correlates": ["2026-10-24T11:10:12Z-b (untyped)", "2026-10-25T10:01:52Z-b (untyped)", "2026-10-25T13:52:50Z-b (tooling.host-shell, halted)"],
+   "prior_epochs": ["escher-0.1.0 Epoch 2: 2026-10-06T08:02:00Z-a (fact), -b", "escher-0.2.0 Epoch 1: 2026-10-16T19:34:20Z-a (fact), -c"],
+   "n_in_epoch": 5, "at_threshold": true, "signature": "band-aid"},
+  {"theme": "a founder dialog outlives the driver's 58-minute dialog hold; answers arrive by operator relay",
+   "facts": [
+    {"id": "2026-10-25T09:53:39Z-a", "idx": 0, "chunk": "2026-10-25-capability-statement", "at": "phase/plan", "nature": "process", "solution": "workaround"}],
+   "correlates": ["2026-10-25T16:56:06Z-c (untyped, implement/fix-loop, dialogue_rounds 1)"],
+   "prior_epochs": ["escher-0.1.0 Epoch 5: 2026-10-10T00:34:22Z-a (fact), 2026-10-10T00:34:22Z-c, 2026-10-10T08:21:37Z-a (fact, overridden), 2026-10-12T08:16:22Z-a (fact), 2026-10-13T06:23:35Z-b",
+                    "escher-0.2.0 Epoch 2: 2026-10-17T14:21:45Z-a (fact), 2026-10-18T01:57:54Z-d"],
+   "n_in_epoch": 2, "at_threshold": true, "threshold_basis": "n>=2 recurring from prior epochs (one fact + one friction in-epoch)", "signature": "band-aid"},
+  {"theme": "cascade sweep reads master bodies only, not the U55 {doc}-detail/ category files",
+   "facts": [
+    {"id": "2026-10-24T12:28:09Z-a", "idx": 0, "chunk": "2026-10-24-upstream-sync-polish-and-ship", "at": "wrap-session/report", "nature": "process", "solution": "workaround"},
+    {"id": "2026-10-24T13:59:24Z-a", "idx": 2, "chunk": "2026-10-24-upstream-sync-polish-and-ship", "at": "wrap-session/reconcile", "nature": "process", "solution": "workaround"}],
+   "correlates": ["contract.structural-blind-spot x3 (P7)"], "prior_epochs": [], "n_in_epoch": 2, "at_threshold": false,
+   "note": "absorbed mid-epoch: cascade v1.16 reads category files (project CLAUDE.md session learning 2026-10-24)"},
+  {"theme": "subagent concurrency cap / forced-sample scale",
+   "facts": [{"id": "2026-10-24T10:42:33Z-a", "idx": 0, "chunk": "2026-10-24-upstream-sync-polish-and-ship", "at": "phase/distill", "nature": "environment", "solution": "workaround"}],
+   "correlates": ["2026-10-24T10:42:33Z-b (skill-reference-drift, halted)", "2026-10-24T13:59:24Z-f (detector-respawn, halted)", "2026-10-24T19:09:54Z-c (untyped)", "2026-10-24T16:10:58Z-b (untyped, halted)"],
+   "n_in_epoch": 1, "at_threshold": false, "note": "carried by typed proposal P8"},
+  {"theme": "a standing tool-use rule bypassed then corrected (ledger no-read; bare-read; Edit tool)", "facts": [
+    {"id": "2026-10-24T13:59:24Z-a", "idx": 0}, {"id": "2026-10-24T13:59:24Z-a", "idx": 1}, {"id": "2026-10-24T20:43:53Z-a", "idx": 0}],
+   "n_in_epoch": 3, "at_threshold": false, "note": "three different conventions routed around; no shared obstacle, so no single theme"},
+  {"theme": "session cwd moved by a cd that passed the guard", "facts": [{"id": "2026-10-24T20:43:53Z-a", "idx": 1}],
+   "correlates": ["2026-10-24T11:10:12Z-c (untyped)"], "n_in_epoch": 1, "at_threshold": false},
+  {"theme": "singletons", "facts": [
+    {"id": "2026-10-24T16:10:58Z-a", "idx": 0, "note": "gh api job log → gh run view"},
+    {"id": "2026-10-24T16:26:03Z-a", "idx": 0, "note": "research's new file replaced at P4"},
+    {"id": "2026-10-25T03:49:01Z-a", "idx": 0, "note": "tree.db stale, regenerated (removed-cause)"},
+    {"id": "2026-10-24T17:05:45Z-a", "idx": 0, "note": "ScheduleWakeup fallback left scheduled (unresolved)"}]}
+ ],
+ "pass_b": {
+  "band_aid": ["disposable measurement spaces and their cleanup", "founder dialog outlives the 58-minute hold"],
+  "chronic_degrade": {"hits": [], "note": "no ok-degraded outcome in the epoch; tooling.host-shell recurs in 7 of 10 ledger epochs (1-3 each) but its one in-epoch record halted"},
+  "deferred_forever": {"hits": [], "deferred_facts": [
+    {"id": "2026-10-24T19:09:54Z-a", "routed": "check 7 run in the resumed window (same record)"},
+    {"id": "2026-10-25T15:04:38Z-a", "idx": 0, "routed": "left to the wrap; residuals.md:39"},
+    {"id": "2026-10-25T15:04:38Z-a", "idx": 1, "routed": "reported for the wrap"},
+    {"id": "2026-10-25T20:25:45Z-a", "routed": "residuals.md:41, 0.3.0's first chunk"},
+    {"id": "2026-10-25T20:45:32Z-a", "routed": "residuals.md:42"}]},
+  "override": [
+   {"rule": "cascade reader halt on a second failure (fan-out.md) vs re-spawn once (validation-cascade-strong.md)",
+    "records": ["2026-10-24T20:43:53Z-c (skill-reference-drift; operator ruled per check)", "2026-10-25T03:40:32Z-a idx 0 (overridden; F343)", "2026-10-25T03:40:32Z-c (token-proxy-check, halted)"],
+    "chunks": ["2026-10-24-a11y-re-read", "2026-10-25-capability-statement"], "at_threshold": true},
+   {"rule": "single overrides", "records": ["2026-10-24T11:10:12Z-a idx 0 (Setup 3(c) resume)", "2026-10-24T16:05:12Z-a idx 0 (operator-added -detail/ stop)", "2026-10-25T01:33:33Z-a idx 0 (AUTO-COMPACT handoff append vs path check)", "2026-10-25T01:33:33Z-a idx 1 (F342 task-notification wait)"], "at_threshold": false}
+  ]
+ }
+}

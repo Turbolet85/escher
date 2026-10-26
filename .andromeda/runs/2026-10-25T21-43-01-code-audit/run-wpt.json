@@ -1,0 +1,10 @@
+{
+ "unit": "wpt",
+ "scope": "in-diff",
+ "planned": 7,
+ "command": "CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants TMPDIR=target/mutants-tmp taskset -c 12-15,28-31 cargo mutants -p wpt --in-diff .andromeda/runs/2026-10-25T21-43-01-code-audit/window.diff --test-tool nextest -j 2 --timeout 600 --output .andromeda/runs/2026-10-25T21-43-01-code-audit/mutants-wpt",
+ "exit": 2,
+ "wall_s": 90,
+ "cap_s": 1800,
+ "stopped": null
+}

@@ -1,0 +1,1728 @@
+[
+ {
+  "key": "phase/distill/UNTYPED",
+  "n": 4,
+  "weight": 39,
+  "score": 156,
+  "rate": "4/5",
+  "chunks": [
+   "2026-10-24-a11y-re-read",
+   "2026-10-24-stand-requirement-sweep",
+   "2026-10-24-upstream-sync-polish-and-ship",
+   "2026-10-25-capability-statement"
+  ],
+  "iters": 0,
+  "retries": 35,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-24T10:42:33Z-c",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "distill",
+    "what": "[QUOTES_VERBATIM] failed on 14 of 51 category readers and 14 of 19 strong readers: quotes dropped a provenance parenthetical or clause from the middle of a run; each re-spawned once with the check named and passed; overseer1 recorded the cause as F332",
+    "impact": {
+     "retries": 28
+    },
+    "evidence": ".andromeda/runs/2026-10-24T09-31-30-phase",
+    "artifacts": [
+     ".andromeda/runs/2026-10-24T09-31-30-phase/.raw-*"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T16:05:12Z-d",
+    "chunk": "2026-10-24-stand-requirement-sweep",
+    "step": "distill",
+    "what": "two strong-reader retries stepped outside their prompt's form without failing a named check: arch g6 wrote its extract then edited it twice (the prompt says ONE Write call); tests g4 read files outside its read list (an adopt run's slices.md, fixtures/mod.rs, stand.rs) to resolve a slice reference",
+    "impact": {
+     "extra_reads": 2
+    },
+    "evidence": null,
+    "artifacts": [
+     "arch-cascade-g6.md",
+     "tests-cascade-g4.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T20:43:53Z-b",
+    "chunk": "2026-10-24-a11y-re-read",
+    "step": "distill",
+    "what": "3 of 18 cascade strong readers failed first-try validation: arch g5 [QUOTES_VERBATIM] 9 + [CARRIED_ARE_CITED] 4, security g2 [QUOTES_VERBATIM] 1, tests g3 [CARRIED_ARE_CITED] 4; the arch g5 retry passed those and failed [COVERED_DROP] (existing-scopes#1.13), passing on a second retry",
+    "impact": {
+     "retries": 4
+    },
+    "evidence": ".andromeda/runs/2026-10-24T19-44-05-phase/.raw-arch-cascade-g5.md, .andromeda/runs/2026-10-24T19-44-05-phase/.raw-arch-cascade-g5-2.md, .andromeda/runs/2026-10-24T19-44-05-phase/.raw-security-cascade-g2.md, .andromeda/runs/2026-10-24T19-44-05-phase/.raw-tests-cascade-g3.md",
+    "artifacts": [
+     "arch-cascade-g5",
+     "security-cascade-g2",
+     "tests-cascade-g3"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T03:40:32Z-b",
+    "chunk": "2026-10-25-capability-statement",
+    "step": "distill",
+    "what": "three strong readers (arch-cascade-g1, security-cascade-g2, security-cascade-g4) failed COVERED_DROP on the first try, each dropping one entity as held by another item without carrying it; one re-spawn batch strong-r1 cleared two",
+    "impact": {
+     "retries": 3
+    },
+    "evidence": ".andromeda/runs/2026-10-25T02-58-45-phase/fanout-2026-10-25-capability-statement.json",
+    "artifacts": [
+     "arch-cascade-g1",
+     "security-cascade-g2",
+     "security-cascade-g4"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/contract.in-pass-correction",
+  "n": 6,
+  "weight": 16,
+  "score": 96,
+  "rate": "6/5",
+  "chunks": [
+   "2026-10-24-a11y-re-read",
+   "2026-10-24-stand-requirement-sweep",
+   "2026-10-24-upstream-sync-polish-and-ship",
+   "2026-10-25-capability-statement",
+   "2026-10-25-cold-agent-bar"
+  ],
+  "iters": 5,
+  "retries": 5,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-24T13:59:24Z-e",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "reconcile",
+    "what": "3 first writes corrected before commit: test-scope-summary.md:22 continuation lacked its ';' (re-read); cross-cutting-patterns.md:15 said two Instant::now() reads inside timed_resolve, one is the run's (source read); cascade-dispositions.md Leaves bullet muddled (re-read)",
+    "impact": {
+     "iterations": 3
+    },
+    "evidence": ".andromeda/runs/2026-10-24T12-21-29-wrap/cascade-dispositions.md",
+    "artifacts": null,
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T19:09:54Z-e",
+    "chunk": "2026-10-24-stand-requirement-sweep",
+    "step": "reconcile",
+    "what": "2 in-pass corrections: design-system-entry.md's Why first named an upstream layout move as the cite's cause (no report basis), caught by a re-read before the append; cascade-dispositions.md first counted 14 edited standing rows, 17 on recount against the 30",
+    "impact": {
+     "retries": 2
+    },
+    "evidence": null,
+    "artifacts": [
+     "design-system-entry.md",
+     "cascade-dispositions.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T01:33:33Z-c",
+    "chunk": "2026-10-24-a11y-re-read",
+    "step": "reconcile",
+    "what": "the first apply wrote provenance into 23 master sites across 9 sections (new chunk markers «since 2026-10-24-a11y-re-read», a date, «relayed verbatim by», «At the same chunk»); classify.py check --mode standing failed provenance on each, and the tokens were stripped to the sidecar entries before they landed",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-24T21-49-26-wrap/classify-2026-10-24-a11y-re-read.json",
+    "artifacts": [
+     ".andromeda/a11y-plan-detail/ci-integration.md",
+     ".andromeda/test-plan-detail/test-scope-summary.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T12:22:01Z-f",
+    "chunk": "2026-10-25-capability-statement",
+    "step": "reconcile",
+    "what": "standard-contracts.md:261 first written with the pin contract on the same line, past 2000 chars; a re-read split it onto a continuation line before any check",
+    "impact": {
+     "iterations": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     ".andromeda/architecture-detail/standard-contracts.md:261"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T12:22:01Z-g",
+    "chunk": "2026-10-25-capability-statement",
+    "step": "reconcile",
+    "what": "cascade-patterns.toml first written with a doubled-quote TOML literal (sweep exit 2) and an atowner class [^;.] the .andromeda dot defeats (control unfired, exit 3); rewritten as a triple-quoted literal and [^;]",
+    "impact": {
+     "retries": 2
+    },
+    "evidence": ".andromeda/runs/2026-10-25T11-21-44-wrap/cascade-2026-10-25-capability-statement.json",
+    "artifacts": [
+     "cascade-patterns.toml"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T20:17:45Z-c",
+    "chunk": "2026-10-25-cold-agent-bar",
+    "step": "reconcile",
+    "what": "secret-management.md:14 folded first as «each of its two live runs … 2.1.296 … 2.1.308», duplicating the same line's later second-run sentence; caught by the security word-diff read for the sidecar entry and narrowed to «its first live run»",
+    "impact": {
+     "iterations": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-25T17-25-04-wrap/replace-5.md",
+    "artifacts": null,
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "phase/distill/retry.distiller-respawn",
+  "n": 4,
+  "weight": 17,
+  "score": 68,
+  "rate": "4/5",
+  "chunks": [
+   "2026-10-24-stand-requirement-sweep",
+   "2026-10-25-cold-agent-bar"
+  ],
+  "iters": 0,
+  "retries": 13,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-24T16:05:12Z-b",
+    "chunk": "2026-10-24-stand-requirement-sweep",
+    "step": "distill",
+    "what": "cascade readers re-spawned 4 times: category reader a11y keyboard-navigation on [QUOTES_VERBATIM] ('focusing' for 'focuses'), then on [OWN_FILE] (a (working-route.md:51) cite in Bindings); strong arch g6 on [QUOTES_VERBATIM] + [CARRIED_ARE_CITED]; strong tests g4 on [COVERED_DROP]; each passed on its last try, no halt",
+    "impact": {
+     "retries": 4
+    },
+    "evidence": ".andromeda/runs/2026-10-24T15-06-04-phase/.raw-a11y-cat-keyboard-navigation.md, .raw-a11y-cat-keyboard-navigation-2.md, .raw-arch-cascade-g6.md, .raw-tests-cascade-picked-g4.md",
+    "artifacts": [
+     "a11y-cat-keyboard-navigation.md",
+     "arch-cascade-g6.md",
+     "tests-cascade-g4.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T13:52:50Z-c",
+    "chunk": "2026-10-25-cold-agent-bar",
+    "step": "distill",
+    "what": "seven cascade agents failed QUOTES_VERBATIM on first try (catread security-cat-error-handling, tests-cat-e2e-test-strategy; strong arch-cascade-g2, g3, g6, g7, a11y-cascade-g3); each re-spawn passed",
+    "impact": {
+     "retries": 7
+    },
+    "evidence": ".andromeda/runs/2026-10-25T12-59-18-phase/fanout-2026-10-25-cold-agent-bar.json",
+    "artifacts": null,
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T13:52:50Z-d",
+    "chunk": "2026-10-25-cold-agent-bar",
+    "step": "distill",
+    "what": "strong reader design-cascade-g3 dropped depth-strategy#2.2 as a row no plan holds (UNPLANNED_DROP); its re-spawn passed",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-25T12-59-18-phase/.raw-design-cascade-picked-g3.md",
+    "artifacts": null,
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T13:52:50Z-e",
+    "chunk": "2026-10-25-cold-agent-bar",
+    "step": "distill",
+    "what": "Haiku classifier a11y-cls-a11y-scope-summary.b1 wrote a stray '</content>' line after its answers (EVERY_ENTITY); its re-spawn passed",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-25T12-59-18-phase/.raw-a11y-cls-a11y-scope-summary.b1.md",
+    "artifacts": null,
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/retry.detector-respawn",
+  "n": 4,
+  "weight": 16,
+  "score": 64,
+  "rate": "4/5",
+  "chunks": [
+   "2026-10-24-a11y-re-read",
+   "2026-10-24-stand-requirement-sweep",
+   "2026-10-24-upstream-sync-polish-and-ship",
+   "2026-10-25-capability-statement"
+  ],
+  "iters": 0,
+  "retries": 9,
+  "dlg": 0,
+  "halts": 1,
+  "softx": 0,
+  "halt_impact": true,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-24T13:59:24Z-f",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "reconcile",
+    "what": "prior window: one classifier spawn refused at the harness's 20-subagent limit; resumed at <=16 running on the operator's word (inputs#I9)",
+    "impact": {
+     "retries": 1,
+     "halted": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-24T12-21-29-wrap/fanout-results.md",
+    "artifacts": null,
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T19:09:54Z-b",
+    "chunk": "2026-10-24-stand-requirement-sweep",
+    "step": "reconcile",
+    "what": "fan-out re-spawns (earlier window, read from fanout-results.md): architecture task writer [NEW_FACTS], architecture--conventions [OWN_FILE], test-plan--integration-test-strategy [YAML_FORM], two category detectors, one security-plan classifier that never returned",
+    "impact": {
+     "retries": 6
+    },
+    "evidence": ".andromeda/runs/2026-10-24T17-32-19-wrap/fanout-results.md",
+    "artifacts": [
+     "fanout-results.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T01:33:33Z-b",
+    "chunk": "2026-10-24-a11y-re-read",
+    "step": "reconcile",
+    "what": "test-plan's cascade task writer named a reached file (.github/scripts/test_ci_workflows.py) under ## Untouched — [UNTOUCHED_REACHED]; moved aside and re-spawned once with the failure named, the second return passing",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-24T21-49-26-wrap/batch-notes.md",
+    "artifacts": [
+     ".andromeda/runs/2026-10-24T21-49-26-wrap/.raw-test-plan-cascade-task.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T12:22:01Z-b",
+    "chunk": "2026-10-25-capability-statement",
+    "step": "reconcile",
+    "what": "two security-plan category detectors (error-handling, input-validation) failed [OWN_FILE] on a section: naming no origin line of their file nor a body heading; re-spawned once, both passed",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-25T11-21-44-wrap/fanout-2026-10-25-capability-statement.json",
+    "artifacts": [
+     "fanout-security-plan--error-handling.md",
+     "fanout-security-plan--input-validation.md"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "*/*/contract.token-proxy-check",
+  "n": 5,
+  "weight": 12,
+  "score": 60,
+  "rate": null,
+  "chunks": [
+   "2026-10-24-a11y-re-read",
+   "2026-10-24-stand-requirement-sweep",
+   "2026-10-24-upstream-sync-polish-and-ship",
+   "2026-10-25-capability-statement"
+  ],
+  "iters": 0,
+  "retries": 0,
+  "dlg": 1,
+  "halts": 1,
+  "softx": 0,
+  "halt_impact": true,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-24T10:42:33Z-d",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "distill",
+    "what": "my OWN_FILE probe matched (path:line) cites inside verbatim > quote lines and read 43 false positives; re-run excluding quote lines read 0; truth from reading the hits (direction: false positive)",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": null,
+    "artifacts": null,
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T10:42:33Z-e",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "distill",
+    "what": "my transcript audit for -detail/ reads first matched the readers' own Write content (19 hits) then two Bash scripts whose regex strings name -detail/ cite paths; reading the commands showed no file under a -detail/ dir was opened (direction: false positive)",
+    "impact": {
+     "extra_reads": 2
+    },
+    "evidence": null,
+    "artifacts": null,
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T16:05:12Z-c",
+    "chunk": "2026-10-24-stand-requirement-sweep",
+    "step": "distill",
+    "what": "the orchestrator's own structural checker read tokens, not the grammar, twice: [OWN_FILE] matched (path:line) citations inside quoted `  > ` file text (7 false hits), and [CLEAN_EXTRACT] matched the `## Carried` heading and prose uses of 'carried' (20 false hits); direction false positive both times, truth from reading the hits",
+    "impact": {
+     "reformulations": 2,
+     "extra_reads": 2
+    },
+    "evidence": "session scratchpad scripts",
+    "artifacts": [
+     "stage1_struct.py",
+     "strong_struct.py"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T20:43:53Z-d",
+    "chunk": "2026-10-24-a11y-re-read",
+    "step": "distill",
+    "what": "the orchestrator's [OWN_FILE] probe matched any (path:line) text and flagged 3 category readers on plan citations inside verbatim `  > ` quotes; false positive, the truth from reading the hit lines",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "arch-cat-design-philosophy.md",
+     "arch-cat-project-intent.md",
+     "security-cat-dependency-security.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T03:40:32Z-c",
+    "chunk": "2026-10-25-capability-statement",
+    "step": "distill",
+    "what": "COVERED_DROP fired on arch-cascade-g1.r1 for design-philosophy#2.1, whose not-in-scope reason the operator ruled sound: the check read the remark's wording as a held-by-another drop (false positive); the truth came from the operator reading the row, and the halt cost one dialogue round",
+    "impact": {
+     "halted": 1,
+     "dialogue_rounds": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-25T02-58-45-phase/batch-notes.md",
+    "artifacts": [
+     "arch-cascade-picked-g1.md"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "*/*/contract.grammar-irregularity",
+  "n": 6,
+  "weight": 6,
+  "score": 36,
+  "rate": null,
+  "chunks": [
+   "2026-10-24-upstream-sync-polish-and-ship"
+  ],
+  "iters": 0,
+  "retries": 0,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-24T10:42:33Z-f",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "distill",
+    "what": "sidecar.py summary printed UNPARSED: the U55 door heading '## U55 — the door: ...' is not in {marker} — {title} form",
+    "impact": null,
+    "evidence": ".andromeda/runs/2026-10-24T09-31-30-phase/sidecar-2026-10-24-upstream-sync-polish-and-ship.json",
+    "artifacts": [
+     ".andromeda/architecture-amendments.md:1114"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T10:42:33Z-g",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "distill",
+    "what": "sidecar.py summary printed UNPARSED: the U55 door heading '## U55 — the door: ...' is not in {marker} — {title} form",
+    "impact": null,
+    "evidence": ".andromeda/runs/2026-10-24T09-31-30-phase/sidecar-2026-10-24-upstream-sync-polish-and-ship.json",
+    "artifacts": [
+     ".andromeda/security-plan-amendments.md:743"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T10:42:33Z-h",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "distill",
+    "what": "sidecar.py summary printed UNPARSED: the U55 door heading '## U55 — the door: ...' is not in {marker} — {title} form",
+    "impact": null,
+    "evidence": ".andromeda/runs/2026-10-24T09-31-30-phase/sidecar-2026-10-24-upstream-sync-polish-and-ship.json",
+    "artifacts": [
+     ".andromeda/design-system-amendments.md:191"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T10:42:33Z-i",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "distill",
+    "what": "sidecar.py summary printed UNPARSED: the U55 door heading '## U55 — the door: ...' is not in {marker} — {title} form",
+    "impact": null,
+    "evidence": ".andromeda/runs/2026-10-24T09-31-30-phase/sidecar-2026-10-24-upstream-sync-polish-and-ship.json",
+    "artifacts": [
+     ".andromeda/test-plan-amendments.md:875"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T10:42:33Z-j",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "distill",
+    "what": "sidecar.py summary printed UNPARSED: the U55 door heading '## U55 — the door: ...' is not in {marker} — {title} form",
+    "impact": null,
+    "evidence": ".andromeda/runs/2026-10-24T09-31-30-phase/sidecar-2026-10-24-upstream-sync-polish-and-ship.json",
+    "artifacts": [
+     ".andromeda/obs-plan-amendments.md:461"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T10:42:33Z-k",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "distill",
+    "what": "sidecar.py summary printed UNPARSED: the U55 door heading '## U55 — the door: ...' is not in {marker} — {title} form",
+    "impact": null,
+    "evidence": ".andromeda/runs/2026-10-24T09-31-30-phase/sidecar-2026-10-24-upstream-sync-polish-and-ship.json",
+    "artifacts": [
+     ".andromeda/a11y-plan-amendments.md:431"
+    ],
+    "clause_retracted": null
+   }
+  ],
+  "sites": {
+   ".andromeda/architecture-amendments.md:1114": 1,
+   ".andromeda/security-plan-amendments.md:743": 1,
+   ".andromeda/design-system-amendments.md:191": 1,
+   ".andromeda/test-plan-amendments.md:875": 1,
+   ".andromeda/obs-plan-amendments.md:461": 1,
+   ".andromeda/a11y-plan-amendments.md:431": 1
+  }
+ },
+ {
+  "key": "phase/research/UNTYPED",
+  "n": 4,
+  "weight": 8,
+  "score": 32,
+  "rate": "4/5",
+  "chunks": [
+   "2026-10-24-a11y-re-read",
+   "2026-10-24-stand-requirement-sweep",
+   "2026-10-24-upstream-sync-polish-and-ship"
+  ],
+  "iters": 0,
+  "retries": 1,
+  "dlg": 0,
+  "halts": 1,
+  "softx": 0,
+  "halt_impact": true,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-24T11:10:12Z-b",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "research",
+    "what": "a trial merge in a throwaway git worktree wrote rerere resolutions into the main repository's shared rr-cache (rerere enabled in the user's global git config), a side effect on the real repo the trial was meant to avoid; removal refused by the host guard's recursive-rm deny",
+    "impact": {
+     "extra_reads": 2
+    },
+    "evidence": "escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/research.md §The trial takes",
+    "artifacts": [
+     ".git/rr-cache"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T11:10:12Z-c",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "research",
+    "what": "a bare cd into the trial worktree inside a compound command persisted the session cwd there (the harness then reported the session as a worktree); restored by a cd to the project root before any andromeda tool ran",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": null,
+    "artifacts": null,
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T16:10:58Z-b",
+    "chunk": "2026-10-24-stand-requirement-sweep",
+    "step": "research",
+    "what": "the session's context reached 85% during P3 (CONTEXT ALARM); the forced-sample P2 put 164 subagent notifications and their spawn prompts in the orchestrator window, so the take-up stops after P3 and resumes at P4 through Setup 3(c)",
+    "impact": {
+     "halted": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-24T15-06-04-phase",
+    "artifacts": null,
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T20:49:36Z-b",
+    "chunk": "2026-10-24-a11y-re-read",
+    "step": "research",
+    "what": "the tests extract stated test_ci_workflows.py pins every a11y-leg file in order; the pin is an assertIn per word over the shimmed log (test_ci_workflows.py:295-305), no order asserted",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "tests.md",
+     ".github/scripts/test_ci_workflows.py"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/contract.false-positive-proposal",
+  "n": 5,
+  "weight": 6,
+  "score": 30,
+  "rate": "5/5",
+  "chunks": [
+   "2026-10-24-a11y-re-read",
+   "2026-10-24-stand-requirement-sweep",
+   "2026-10-25-capability-statement"
+  ],
+  "iters": 1,
+  "retries": 0,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-24T19:09:54Z-d",
+    "chunk": "2026-10-24-stand-requirement-sweep",
+    "step": "reconcile",
+    "what": "Validate rejected 31 of 94: 20 re-pointing citation digits the P2 sweep already wrote, 7 duplicates, 4 no-change claims the report rules no-change (arch g1#3, g3#5, test-plan g3#10, design-system g#1); 0 for a coordinate",
+    "impact": {
+     "retries": 0
+    },
+    "evidence": ".andromeda/runs/2026-10-24T17-32-19-wrap/fanout-results.md",
+    "artifacts": null,
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T01:33:33Z-d",
+    "chunk": "2026-10-24-a11y-re-read",
+    "step": "reconcile",
+    "what": "test-plan strong reader g2 proposed F4 (aria-checked asserted by accessibility_states alone, «the one file») — a duplicate of standing test-scope-summary :97/:100 whose exclusivity a dioxus-native-dom unit test contradicts; rejected at check 7",
+    "impact": null,
+    "evidence": ".andromeda/runs/2026-10-24T21-49-26-wrap/fanout-results.md",
+    "artifacts": [
+     ".andromeda/runs/2026-10-24T21-49-26-wrap/fanout-test-plan--cascade-g2.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T01:33:33Z-e",
+    "chunk": "2026-10-24-a11y-re-read",
+    "step": "reconcile",
+    "what": "test-plan strong readers g1 and g2 each placed F5 (the adapter-free stand graph), at test-scope-summary :19 and :97; g1's rejected as the duplicate placement at check 2/7",
+    "impact": null,
+    "evidence": ".andromeda/runs/2026-10-24T21-49-26-wrap/fanout-results.md",
+    "artifacts": [
+     ".andromeda/runs/2026-10-24T21-49-26-wrap/fanout-test-plan--cascade-g1.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T01:33:33Z-f",
+    "chunk": "2026-10-24-a11y-re-read",
+    "step": "reconcile",
+    "what": "the a11y-plan leaf comparer's replace-with for a11y-summary.md:35 named seven of the eight files joining the a11y leg (inert_subtree left out); held from the tool apply and written by hand",
+    "impact": null,
+    "evidence": ".andromeda/runs/2026-10-24T21-49-26-wrap/cascade-dispositions.md",
+    "artifacts": [
+     ".claude/docs/a11y-summary.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T12:22:01Z-e",
+    "chunk": "2026-10-25-capability-statement",
+    "step": "reconcile",
+    "what": "obs-plan's cascade proposed an observed-absent row for the pin whose own searched: clause said no silence census was fired; rejected at check 4",
+    "impact": {
+     "iterations": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-25T11-21-44-wrap/fanout-results.md",
+    "artifacts": [
+     "fanout-obs-plan--cascade.md"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "*/*/contract.structural-blind-spot",
+  "n": 4,
+  "weight": 6,
+  "score": 24,
+  "rate": null,
+  "chunks": [
+   "2026-10-24-upstream-sync-polish-and-ship",
+   "2026-10-25-cold-agent-bar"
+  ],
+  "iters": 0,
+  "retries": 2,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-24T12:28:09Z-b",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "report",
+    "what": "the P1 site sweep (cascade.py sweep --pre-pass) reads the seven master bodies and .andromeda/registries/** but not the U55 category files .andromeda/{doc}-detail/*.md, which now hold most master text; the owner-title pattern read control unfired while established-decisions.md:75, :76, :78 name the chunk title as the CARRY owner",
+    "impact": {
+     "extra_reads": 2,
+     "retries": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-24T12-21-29-wrap/cascade-2026-10-24-upstream-sync-polish-and-ship-pre-pass.json",
+    "artifacts": [
+     ".andromeda/architecture-detail/established-decisions.md",
+     "cascade.py"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T13:59:24Z-b",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "reconcile",
+    "what": "cascade.py sweep reads masters' bodies and registries only: 10 of 21 step-2 patterns stood in category files alone and were refused unfired; the hand sweep over the category files found the stale «until upstream retires it» clause",
+    "impact": {
+     "extra_reads": 2,
+     "retries": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-24T12-21-29-wrap/cascade-2026-10-24-upstream-sync-polish-and-ship.json",
+    "artifacts": [
+     ".andromeda/runs/2026-10-24T12-21-29-wrap/cascade-patterns.toml",
+     ".andromeda/runs/2026-10-24T12-21-29-wrap/cascade-dispositions.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T13:59:24Z-c",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "reconcile",
+    "what": "cascade.py leaves writes each leaf-delta-{doc}.diff from the body alone (0 key files, no category file), so a category-only change (existing-scopes.md:76) never reached its comparer; services/dioxus-native-dom.md:38 was fixed by hand",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-24T12-21-29-wrap/cascade-dispositions.md",
+    "artifacts": [
+     ".claude/docs/services/dioxus-native-dom.md:38"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T20:17:45Z-d",
+    "chunk": "2026-10-25-cold-agent-bar",
+    "step": "reconcile",
+    "what": "a leaf comparer of the leaf batch overwrote the orchestrator's scratchpad script wdiff.py (outside the project), which the batch's path check cannot see by construction; nothing in the tree was touched",
+    "impact": {
+     "iterations": 0
+    },
+    "evidence": ".andromeda/runs/2026-10-25T17-25-04-wrap/prompts/leaf.manifest.json",
+    "artifacts": null,
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "*/*/contract.skill-reference-drift",
+  "n": 2,
+  "weight": 10,
+  "score": 20,
+  "rate": null,
+  "chunks": [
+   "2026-10-24-a11y-re-read",
+   "2026-10-24-upstream-sync-polish-and-ship"
+  ],
+  "iters": 0,
+  "retries": 1,
+  "dlg": 2,
+  "halts": 1,
+  "softx": 0,
+  "halt_impact": true,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-24T10:42:33Z-b",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "distill",
+    "what": "fan-out.md caps a launch message at 20 agents but not concurrent running agents; a forced-sample stage 1 needs 64 and the harness refused the 17th spawn of the second message (CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS=20); recorded by overseer1 as F331",
+    "impact": {
+     "retries": 1,
+     "halted": 1,
+     "dialogue_rounds": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-24T09-31-30-phase",
+    "artifacts": [
+     "andromeda-phase/references/fan-out.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-24T20:43:53Z-c",
+    "chunk": "2026-10-24-a11y-re-read",
+    "step": "distill",
+    "what": "fan-out.md halts on a second failure of the same check, validation-cascade-strong.md re-spawns a reader ONCE; a reader whose retry failed a new check ([COVERED_DROP]) read as both a retry and a halt; the operator ruled per check, on overseer1's standing ruling",
+    "impact": {
+     "dialogue_rounds": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "andromeda-phase/references/fan-out.md",
+     "andromeda-phase/references/phase-1/validation-cascade-strong.md"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/UNTYPED",
+  "n": 3,
+  "weight": 3,
+  "score": 9,
+  "rate": "3/5",
+  "chunks": [
+   "2026-10-24-a11y-re-read",
+   "2026-10-24-stand-requirement-sweep",
+   "2026-10-25-cold-agent-bar"
+  ],
+  "iters": 0,
+  "retries": 0,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": true,
+  "cases": [
+   {
+    "id": "2026-10-24T19:09:54Z-c",
+    "chunk": "2026-10-24-stand-requirement-sweep",
+    "step": "reconcile",
+    "what": "pacing: one classifier spawn ran 17 at once against the 16-running cap (a counting error, nothing refused); the resumed window's leaf batch ran 12",
+    "impact": {
+     "retries": 0
+    },
+    "evidence": ".andromeda/runs/2026-10-24T17-32-19-wrap/fanout-results.md",
+    "artifacts": null,
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T01:33:33Z-g",
+    "chunk": "2026-10-24-a11y-re-read",
+    "step": "reconcile",
+    "what": "three strong readers' notes said the +3 test_ci_workflows.py cites past :299 were still owed to cites.py, reading the already re-pointed digits as the old ones; test-plan g1's note would have moved 381-495 to 384-498, a second move; checked against git diff HEAD and not applied",
+    "impact": null,
+    "evidence": ".andromeda/runs/2026-10-24T21-49-26-wrap/fanout-results.md",
+    "artifacts": [
+     ".andromeda/runs/2026-10-24T21-49-26-wrap/fanout-test-plan--cascade-g1.md",
+     ".andromeda/runs/2026-10-24T21-49-26-wrap/fanout-security-plan--cascade.md",
+     ".andromeda/runs/2026-10-24T21-49-26-wrap/fanout-architecture--cascade.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T20:17:45Z-e",
+    "chunk": "2026-10-25-cold-agent-bar",
+    "step": "reconcile",
+    "what": "the phase P5 card's row 3 (inputs#I4) directed this wrap to restate docs/capabilities.md:288-289 against the live run; the report carried the row but no edit was made before P1's scope read, so it surfaced at P2 apply, past the slot where a wrap may take a directed source edit",
+    "impact": {
+     "dialogue_rounds": 0
+    },
+    "evidence": "escher-0.2.0/chunks/2026-10-25-cold-agent-bar/report.md",
+    "artifacts": null,
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "phase/validate/UNTYPED",
+  "n": 2,
+  "weight": 4,
+  "score": 8,
+  "rate": "2/5",
+  "chunks": [
+   "2026-10-24-stand-requirement-sweep",
+   "2026-10-25-capability-statement"
+  ],
+  "iters": 0,
+  "retries": 2,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-24T16:42:33Z-c",
+    "chunk": "2026-10-24-stand-requirement-sweep",
+    "step": "validate",
+    "what": "relay-2.md stamped the operator's word 'about 16:43Z' by estimate before the clock was read (16:42:07Z), and it was snapped as inputs#I2 with that stamp; the stamp runs about a minute late",
+    "impact": {},
+    "evidence": null,
+    "artifacts": [
+     ".andromeda/runs/2026-10-24T15-06-04-phase/relay-2.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T10:01:52Z-b",
+    "chunk": "2026-10-25-capability-statement",
+    "step": "validate",
+    "what": "the guard entry fired in the scratch clone read red unmodified twice (exit 2 --chunk-dir absent, exit 3 plan.md absent) where the real tree read green, because a shared clone lacks the uncommitted chunk folder the guard reads; copying plan.md, research.md and scope.md into the clone made it match",
+    "impact": {
+     "retries": 2
+    },
+    "evidence": ".andromeda/runs/2026-10-25T02-58-45-phase/p5-controls.md",
+    "artifacts": [
+     "escher-0.2.0/chunks/2026-10-25-capability-statement/plan.md"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "*/*/contract.narrow-basis-claim",
+  "n": 2,
+  "weight": 4,
+  "score": 8,
+  "rate": null,
+  "chunks": [
+   "2026-10-24-stand-requirement-sweep",
+   "2026-10-25-cold-agent-bar"
+  ],
+  "iters": 0,
+  "retries": 2,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-24T17:39:11Z-b",
+    "chunk": "2026-10-24-stand-requirement-sweep",
+    "step": "report",
+    "what": "the first report draft carried per-master hit counts typed by hand (test-plan 7 body / 26 detail; host-log obs-plan 13, test-plan 14), a 52-row remainder and two per-fact remainders (7, 37) not taken from the sweep's rows; a re-read counted them from the listing (16 / 25; 14 / 17; 61; 8, 38) and moved two rows out of the moved set (test-scope-summary.md:98, :110 are not ten-witness rows) before the paste",
+    "impact": {
+     "retries": 1,
+     "extra_reads": 2
+    },
+    "evidence": ".andromeda/runs/2026-10-24T17-32-19-wrap/cascade-2026-10-24-stand-requirement-sweep-pre-pass.json",
+    "artifacts": [
+     "escher-0.2.0/chunks/2026-10-24-stand-requirement-sweep/report.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T14:03:00Z-c",
+    "chunk": "2026-10-25-cold-agent-bar",
+    "step": "research",
+    "what": "research.md first stated LeanTask's reference count from a hand tally (36 files, 486 sites); a COUNT query over refs re-derived 49 files, 466 sites before the file left the step",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-25T12-59-18-phase/tree-query-2026-10-25-cold-agent-bar.json",
+    "artifacts": null,
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "*/*/recall.corpus-recurrence",
+  "n": 2,
+  "weight": 4,
+  "score": 8,
+  "rate": null,
+  "chunks": [
+   "2026-10-24-a11y-re-read",
+   "2026-10-25-capability-statement"
+  ],
+  "iters": 0,
+  "retries": 2,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-25T01:35:44Z-b",
+    "chunk": "2026-10-24-a11y-re-read",
+    "step": "curation",
+    "what": "P2's first apply wrote new chunk markers, a date and relay words into 23 master sites although session-learnings.md's 2026-10-19 entry «Provenance is counted by class and span» states that a new marker, date or who-ruled anywhere in the body fails the arm; classify's standing check caught it",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-24T21-49-26-wrap/curation.md",
+    "artifacts": [
+     ".claude/docs/session-learnings.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T12:30:25Z-b",
+    "chunk": "2026-10-25-capability-statement",
+    "step": "curation",
+    "what": "a phase P5 control wrote a planted host-shaped home path verbatim into its run dir and the operator pass's hygiene read refused it, past the 2026-10-06 Tier-3 entry that says to describe such a path in words",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": "escher-0.2.0/chunks/2026-10-25-capability-statement/evidence/operator-pass.md",
+    "artifacts": [
+     ".claude/docs/session-learnings.md"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/contract.cascade-miss",
+  "n": 2,
+  "weight": 4,
+  "score": 8,
+  "rate": "2/5",
+  "chunks": [
+   "2026-10-25-capability-statement",
+   "2026-10-25-cold-agent-bar"
+  ],
+  "iters": 2,
+  "retries": 0,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-25T12:22:01Z-d",
+    "chunk": "2026-10-25-capability-statement",
+    "step": "reconcile",
+    "what": "eight carried-set sites (socket, MCP, command line, at rest) stated without a lint's findings, no detector proposing them; the step-2 sweep's carriedset pattern found them and they were folded into the pass",
+    "impact": {
+     "iterations": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-25T11-21-44-wrap/cascade-dispositions.md",
+    "artifacts": [
+     "established-decisions.md:172",
+     "security-plan.md:65",
+     "data-protection.md:8",
+     "input-validation.md:38",
+     "input-validation.md:65",
+     "input-validation.md:70",
+     "obs ci-integration.md:16",
+     "session-lifecycle.md:7"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T20:17:45Z-b",
+    "chunk": "2026-10-25-cold-agent-bar",
+    "step": "reconcile",
+    "what": "the re-fired step-2 sweep found seven stale master sites no detector proposed: standard-contracts.md:230 and e2e-test-strategy.md:8 snapshot sizes (the flight booker's select moved them; re-measured), session-lifecycle.md:9 four slugs and three tasks, :11 host_log 3, layout-templates.md:10 the stand's mount, secret-management.md:14 its one live run, the a11y bootstrap registry's 18 rows",
+    "impact": {
+     "iterations": 1,
+     "extra_reads": 3
+    },
+    "evidence": ".andromeda/runs/2026-10-25T17-25-04-wrap/cascade-dispositions.md",
+    "artifacts": null,
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "implement/code/input.plan-step-ambiguous",
+  "n": 2,
+  "weight": 3,
+  "score": 6,
+  "rate": "2/5",
+  "chunks": [
+   "2026-10-24-stand-requirement-sweep",
+   "2026-10-25-cold-agent-bar"
+  ],
+  "iters": 0,
+  "retries": 0,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-24T16:49:41Z-b",
+    "chunk": "2026-10-24-stand-requirement-sweep",
+    "step": "code",
+    "what": "step 3's transformed-box assertion compares the scaled 80 px box's content width with 'the twin's', but the only twin the step names (#ltr) is 300 px wide; the box's own offset_rect (CSSOM, transform-blind) was taken as the untransformed reading",
+    "impact": {
+     "extra_reads": 2
+    },
+    "evidence": null,
+    "artifacts": [
+     "escher-0.2.0/chunks/2026-10-24-stand-requirement-sweep/plan.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T15:04:38Z-c",
+    "chunk": "2026-10-25-cold-agent-bar",
+    "step": "code",
+    "what": "step 4 puts the select's two options in controls/tab_order/ENABLED_TAB_ORDER, but options take no focus and the a11y acceptance needs every control in the tab union; the select alone was pinned and its options asserted in stand_snapshot",
+    "impact": {
+     "reformulations": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "plan.md"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "*/*/tooling.host-shell",
+  "n": 1,
+  "weight": 6,
+  "score": 6,
+  "rate": null,
+  "chunks": [
+   "2026-10-25-cold-agent-bar"
+  ],
+  "iters": 0,
+  "retries": 0,
+  "dlg": 1,
+  "halts": 1,
+  "softx": 0,
+  "halt_impact": true,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-25T13:52:50Z-b",
+    "chunk": "2026-10-25-cold-agent-bar",
+    "step": "distill",
+    "what": "/tmp inode exhaustion made the Bash tool's cwd-file write fail with ENOSPC, so every call exited 1 regardless of the command; the run halted before fanout.py check rather than read verdicts through untrustworthy exits",
+    "impact": {
+     "halted": 1,
+     "dialogue_rounds": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-25T12-59-18-phase/prompts/classify.manifest.json",
+    "artifacts": null,
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/route-resolve/contract.no-sanctioned-channel",
+  "n": 1,
+  "weight": 6,
+  "score": 6,
+  "rate": "1/5",
+  "chunks": [
+   "2026-10-25-cold-agent-bar"
+  ],
+  "iters": 0,
+  "retries": 0,
+  "dlg": 1,
+  "halts": 1,
+  "softx": 0,
+  "halt_impact": true,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-25T20:25:45Z-b",
+    "chunk": "2026-10-25-cold-agent-bar",
+    "step": "route-resolve",
+    "what": "a directed source edit (docs/capabilities.md restated, P5 card row 3) reached P5 with no permitted surface left on the resumed wrap's path: the wrap takes such an edit only before P1, and the version has no markerless entry to CARRY it; asked of the operator, placed in a residuals line",
+    "impact": {
+     "dialogue_rounds": 1,
+     "halted": 1
+    },
+    "evidence": "escher-0.2.0/chunks/2026-10-25-cold-agent-bar/inputs/I7-relay-1.md.txt",
+    "artifacts": null,
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/reconcile/input.report-insufficient",
+  "n": 2,
+  "weight": 2,
+  "score": 4,
+  "rate": "2/5",
+  "chunks": [
+   "2026-10-24-upstream-sync-polish-and-ship",
+   "2026-10-25-capability-statement"
+  ],
+  "iters": 0,
+  "retries": 0,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-24T13:59:24Z-d",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "reconcile",
+    "what": "the report dispositioned the keyboard_compat exclusion no-change, yet «until upstream retires it» was stale once upstream retired the file in 286874cc1; four master sites and five leaves amended in-pass",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-24T12-21-29-wrap/cascade-dispositions.md",
+    "artifacts": [
+     ".andromeda/test-plan.md:408",
+     "escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/report.md"
+    ],
+    "clause_retracted": null
+   },
+   {
+    "id": "2026-10-25T12:22:01Z-c",
+    "chunk": "2026-10-25-capability-statement",
+    "step": "reconcile",
+    "what": "the report's atowner rows and disproved claims missed input-validation.md:194 and test-scope-summary.md:98 (AT owner), the Front page's «no build, doc or test step reads it» (the pin reads README) and error-handling.md:8's «seven by the executor»; the cascade and doc agents found each",
+    "impact": {
+     "extra_reads": 4
+    },
+    "evidence": ".andromeda/runs/2026-10-25T11-21-44-wrap/fanout-results.md",
+    "artifacts": [
+     "report"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "phase/validate/contract.mechanical-check",
+  "n": 1,
+  "weight": 4,
+  "score": 4,
+  "rate": "1/5",
+  "chunks": [
+   "2026-10-24-stand-requirement-sweep"
+  ],
+  "iters": 1,
+  "retries": 0,
+  "dlg": 1,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-24T16:42:33Z-b",
+    "chunk": "2026-10-24-stand-requirement-sweep",
+    "step": "validate",
+    "what": "the operator's review caught two of the 18 sampler items (dependency-security#5.1, mocking-stubbing-discipline#1.6) cited in plan.md under shortened ids, so a search by entity id missed them; no P5 predicate checks the sampler items' citation form",
+    "impact": {
+     "dialogue_rounds": 1,
+     "iterations": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-24T15-06-04-phase/p5-card-2.md",
+    "artifacts": [
+     "escher-0.2.0/chunks/2026-10-24-stand-requirement-sweep/plan.md:150",
+     "escher-0.2.0/chunks/2026-10-24-stand-requirement-sweep/plan.md:288",
+     "escher-0.2.0/chunks/2026-10-24-stand-requirement-sweep/plan.md:460"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "implement/code/input.research-files-wrong",
+  "n": 1,
+  "weight": 4,
+  "score": 4,
+  "rate": "1/5",
+  "chunks": [
+   "2026-10-25-cold-agent-bar"
+  ],
+  "iters": 1,
+  "retries": 0,
+  "dlg": 1,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-25T15:04:38Z-b",
+    "chunk": "2026-10-25-cold-agent-bar",
+    "step": "code",
+    "what": "stand_lint.rs pins 0 lint findings on every lean task and turns red with the select; not in research's Files to modify, found by the gate run",
+    "impact": {
+     "iterations": 1,
+     "dialogue_rounds": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "research.md",
+     "tests/blitz-tests/tests/stand_lint.rs"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "phase/plan/UNTYPED",
+  "n": 1,
+  "weight": 3,
+  "score": 3,
+  "rate": "1/5",
+  "chunks": [
+   "2026-10-24-upstream-sync-polish-and-ship"
+  ],
+  "iters": 0,
+  "retries": 2,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-24T11:25:43Z-c",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "plan",
+    "what": "two hand-made slips caught by P4's entry validation: a lock-edge count written at P3 as twelve windows-sys edges where the measured list names eleven (in research.md, scope.md and the already-snapped inputs#I3, so the correction stands beside the immutable snapshot), and a full sha typed from memory in a validation probe, which read git's error line as a count",
+    "impact": {
+     "retries": 2
+    },
+    "evidence": "escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/research.md §Scope",
+    "artifacts": null,
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "implement/fix-loop/UNTYPED",
+  "n": 1,
+  "weight": 3,
+  "score": 3,
+  "rate": "1/5",
+  "chunks": [
+   "2026-10-25-cold-agent-bar"
+  ],
+  "iters": 0,
+  "retries": 0,
+  "dlg": 1,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-25T16:56:06Z-c",
+    "chunk": "2026-10-25-cold-agent-bar",
+    "step": "fix-loop",
+    "what": "the dialog asking the operator's word on the live run timed out after 58 min with no answer (held by the driver's hook); the run stopped with an interim outcome and resumed on the founder's relayed word",
+    "impact": {
+     "dialogue_rounds": 1
+    },
+    "evidence": null,
+    "artifacts": null,
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "phase/plan/retry.synthesis-rework",
+  "n": 1,
+  "weight": 2,
+  "score": 2,
+  "rate": "1/5",
+  "chunks": [
+   "2026-10-24-upstream-sync-polish-and-ship"
+  ],
+  "iters": 1,
+  "retries": 0,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-24T11:25:43Z-b",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "plan",
+    "what": "planlint check 4 (16) flagged the exact-take compare: its construct.rs exclusion left research's new files inside a change read that cannot see them until the pre-CI commit; the entry was re-spelt with the new files and the rename excluded and two entries added (byte-identity to the adding commits, the rename by line compare), each re-validated on the take and on HEAD",
+    "impact": {
+     "iterations": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/plan.md"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/curation/UNTYPED",
+  "n": 1,
+  "weight": 2,
+  "score": 2,
+  "rate": "1/5",
+  "chunks": [
+   "2026-10-24-upstream-sync-polish-and-ship"
+  ],
+  "iters": 1,
+  "retries": 0,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-24T14:01:05Z-b",
+    "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+    "step": "curation",
+    "what": "curation.md first logged three guard-held duplicates as recurrence-despite-learning; the curation playbook read at this checkpoint says a guard refusal that cost one re-issue is no recurrence, so the log was corrected before commit",
+    "impact": {
+     "iterations": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-24T12-21-29-wrap/curation.md",
+    "artifacts": null,
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "wrap-session/report/UNTYPED",
+  "n": 1,
+  "weight": 2,
+  "score": 2,
+  "rate": "1/5",
+  "chunks": [
+   "2026-10-24-a11y-re-read"
+  ],
+  "iters": 0,
+  "retries": 1,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-24T21:54:29Z-b",
+    "chunk": "2026-10-24-a11y-re-read",
+    "step": "report",
+    "what": "per-master standing counts in the Expected-amendments bullet were hand-tallied from the sweep listing and three were wrong (a11y-plan a11y-leg 9 vs 11, a11y-tally 6 vs 10; test-plan 15 vs 14, 22 vs 20) plus a changed/no-change split 13/28 vs 11/30; caught by re-summing to the tool's per-pattern totals before the paste",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": ".andromeda/runs/2026-10-24T21-49-26-wrap/cascade-2026-10-24-a11y-re-read-pre-pass.json",
+    "artifacts": [
+     "escher-0.2.0/chunks/2026-10-24-a11y-re-read/report.md"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "implement/code/UNTYPED",
+  "n": 1,
+  "weight": 2,
+  "score": 2,
+  "rate": "1/5",
+  "chunks": [
+   "2026-10-25-cold-agent-bar"
+  ],
+  "iters": 0,
+  "retries": 1,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-25T15:04:38Z-d",
+    "chunk": "2026-10-25-cold-agent-bar",
+    "step": "code",
+    "what": "a probe command held a stray `cat > /dev/null` that waited on stdin past the Bash limit and was stopped by TaskStop; its python edit had already applied, so the re-run's assert read a false miss",
+    "impact": {
+     "retries": 1
+    },
+    "evidence": null,
+    "artifacts": null,
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "implement/fix-loop/contract.test-expectation",
+  "n": 1,
+  "weight": 2,
+  "score": 2,
+  "rate": "1/5",
+  "chunks": [
+   "2026-10-25-cold-agent-bar"
+  ],
+  "iters": 1,
+  "retries": 0,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-25T16:56:06Z-b",
+    "chunk": "2026-10-25-cold-agent-bar",
+    "step": "fix-loop",
+    "what": "first block firing: 7 reds from 2 pins outside the sweep's grep (stand_accessibility_ids' 15-control count; the sweep's include_str! table not carrying the two new files); one fix each, the second firing green",
+    "impact": {
+     "iterations": 1
+    },
+    "evidence": null,
+    "artifacts": [
+     "tests/blitz-tests/tests/stand_accessibility_ids.rs",
+     "tests/blitz-tests/tests/stand_requirement_sweep.rs"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "new-session/orientation/input.handoff-git-mismatch",
+  "n": 1,
+  "weight": 1,
+  "score": 1,
+  "rate": "1/5",
+  "chunks": [
+   "None"
+  ],
+  "iters": 0,
+  "retries": 0,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-24T15:03:31Z-b",
+    "chunk": null,
+    "step": "orientation",
+    "what": "handoff Position names the one cites v1.5 backlog run as still owed before the next chunk; git HEAD 4b4804ba5 (after the wrap's handoff write) records it done, so the Position half was stale and the truth came from the commit body and residuals.md:37",
+    "impact": {
+     "extra_reads": 2
+    },
+    "evidence": "git log 4b4804ba5",
+    "artifacts": [
+     ".claude/session-handoff.md",
+     ".andromeda/residuals.md:37"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "phase/plan/input.research-thin",
+  "n": 1,
+  "weight": 1,
+  "score": 1,
+  "rate": "1/5",
+  "chunks": [
+   "2026-10-24-stand-requirement-sweep"
+  ],
+  "iters": 0,
+  "retries": 0,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-24T16:26:03Z-b",
+    "chunk": "2026-10-24-stand-requirement-sweep",
+    "step": "plan",
+    "what": "P4 had to read stand_lint, text_extent, stand_requirement_sweep, stand_act_spans, stand_snapshot_parts, host_log and eight witness files for test names and insertion points research did not carry, and rewrote research's write set",
+    "impact": {
+     "extra_reads": 12
+    },
+    "evidence": null,
+    "artifacts": [
+     "escher-0.2.0/chunks/2026-10-24-stand-requirement-sweep/research.md"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "phase/distill/contract.extract-format",
+  "n": 1,
+  "weight": 1,
+  "score": 1,
+  "rate": "1/5",
+  "chunks": [
+   "2026-10-24-a11y-re-read"
+  ],
+  "iters": 0,
+  "retries": 0,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-24T20:43:53Z-e",
+    "chunk": "2026-10-24-a11y-re-read",
+    "step": "distill",
+    "what": "the tests test-scope-summary category reader's receipt said carried 31, its file holds 32 carried items (the quotes check counted 32); the file used, the receipt noted",
+    "impact": {},
+    "evidence": null,
+    "artifacts": [
+     "tests-cat-test-scope-summary.md"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "phase/take-up/input.working-entry-thin",
+  "n": 1,
+  "weight": 1,
+  "score": 1,
+  "rate": "1/5",
+  "chunks": [
+   "2026-10-25-capability-statement"
+  ],
+  "iters": 0,
+  "retries": 0,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-25T03:00:47Z-b",
+    "chunk": "2026-10-25-capability-statement",
+    "step": "take-up",
+    "what": "the entry and v020-10's requirement say the statement stands «where Viola's planning reads it» but no escher or Viola artifact names that place; four reads into the Viola tree found only its gitignored incubator, snapped as inputs#I1, and the location went to scope as a P4 fork",
+    "impact": {
+     "extra_reads": 4
+    },
+    "evidence": "escher-0.2.0/chunks/2026-10-25-capability-statement/scope.md",
+    "artifacts": [
+     "escher-0.2.0/working-route.md:53",
+     "escher-0.2.0/verification-matrix.json#v020-10"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "*/*/contract.premise-falsified",
+  "n": 1,
+  "weight": 1,
+  "score": 1,
+  "rate": null,
+  "chunks": [
+   "2026-10-25-capability-statement"
+  ],
+  "iters": 0,
+  "retries": 0,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-25T03:49:01Z-b",
+    "chunk": "2026-10-25-capability-statement",
+    "step": "research",
+    "what": "scope stated, after a11y-plan and the extracts, that the windowed AT witness is a residuals line with target next; residuals.md:14 reads re-carried:0.2.0 and requirements.md:42-43 says 0.2.0 does not reach it",
+    "impact": {
+     "extra_reads": 2
+    },
+    "evidence": "escher-0.2.0/chunks/2026-10-25-capability-statement/research.md",
+    "artifacts": [
+     "escher-0.2.0/chunks/2026-10-25-capability-statement/scope.md",
+     ".andromeda/residuals.md:14"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ },
+ {
+  "key": "phase/research/input.extract-signal-gap",
+  "n": 1,
+  "weight": 1,
+  "score": 1,
+  "rate": "1/5",
+  "chunks": [
+   "2026-10-25-cold-agent-bar"
+  ],
+  "iters": 0,
+  "retries": 0,
+  "dlg": 0,
+  "halts": 0,
+  "softx": 0,
+  "halt_impact": false,
+  "above_threshold": false,
+  "cases": [
+   {
+    "id": "2026-10-25T14:03:00Z-b",
+    "chunk": "2026-10-25-cold-agent-bar",
+    "step": "research",
+    "what": "extracts signalled examples/seven_guis/tests/flows/flight.sh as moving with the flight booker's select; a sweep showed 0 mode-button hits in it (it books one-way)",
+    "impact": {
+     "extra_reads": 1
+    },
+    "evidence": "escher-0.2.0/chunks/2026-10-25-cold-agent-bar/research.md",
+    "artifacts": [
+     "tests.md",
+     "arch-history.md"
+    ],
+    "clause_retracted": null
+   }
+  ]
+ }
+]

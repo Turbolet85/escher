@@ -1,0 +1,56 @@
+{
+ "state": "GO — Phase 2 released",
+ "hold": {
+  "founder_word": "только эшнр наверно мутантов проверяет когда спать лягу пока пусть подождет",
+  "meaning": "the mutation run fires when the founder signs off for the night; the operator sends the go together with the wpt answer",
+  "relayed_by": "the operator, from the founder's dialog in the overseer session",
+  "recorded": "2026-10-26"
+ },
+ "footprint": "TMPDIR=target/mutants-tmp CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants taskset -c 12-15,28-31 cargo mutants -p {unit} … --test-tool nextest -j 2 --timeout 600 --baseline=skip, each after the same test set run by hand on the unmutated tree (command and exit recorded)",
+ "window_diff": ".andromeda/runs/2026-10-25T21-43-01-code-audit/window.diff (git diff cbe90e22413191bb5d38504c62a6ebc93b4361f6..HEAD -- packages/ examples/ apps/ wpt/)",
+ "units": {
+  "blitz-dom": {
+   "answer": "Только дифф, 70 мутантов (Рекомендую)",
+   "scope": "in-diff",
+   "planned": 70,
+   "cap_s": 5263,
+   "cap_basis": "70 x 50.1 s (baseline mutation.timing blitz-dom 9021/180 at jobs 2) x 1.5",
+   "test_set": "the baseline record's blitz-dom set (-p blitz-dom -p blitz-tests -p seven_guis -p escher-driver -p dioxus-native-dom -p blitz-test-harness -p blitz-vibey-script --lib + 152 targets) + hit_test_dropped_nodes, stand_cells_served, stand_load_page"
+  },
+  "seven_guis": {
+   "answer": "Только дифф, 15 мутантов (Рекомендую)",
+   "scope": "in-diff",
+   "planned": 15,
+   "cap_s": 1800,
+   "cap_basis": "no recorded figure: starts under the 30-min floor, re-sized once from its own rate",
+   "test_set": "the baseline record's escher-driver set (--lib + 71 targets) under -p seven_guis -p blitz-tests -p escher-driver + stand_cells_served, stand_load_page"
+  },
+  "dioxus-native": {
+   "answer": "Не запускать (Рекомендую)",
+   "scope": null,
+   "skip": "declined"
+  },
+  "browser": {
+   "answer": "Не запускать (Рекомендую)",
+   "scope": null,
+   "skip": "declined"
+  },
+  "wpt": {
+   "answer": "Только дифф, 7 мутантов (Рекомендую)",
+   "scope": "in-diff",
+   "planned": 7,
+   "cap_s": 1800,
+   "cap_basis": "no recorded figure: starts under the 30-min floor, re-sized once from its own rate",
+   "test_set": "wpt's own tests (its bin unit tests), the tool's own unmutated baseline"
+  },
+  "blitz-examples": {
+   "answer": null,
+   "state": "no question: --list reads 0 mutants (root examples are not mutated) — a no-op, skips[] declined"
+  }
+ },
+ "go": {
+  "founder_word": "можешь уже запускать",
+  "relayed_by": "the operator, from the founder's dialog in the overseer session",
+  "recorded": "2026-10-26"
+ }
+}

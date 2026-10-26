@@ -1,0 +1,2175 @@
+diff --git a/apps/browser/Cargo.toml b/apps/browser/Cargo.toml
+index 2acb39c84..efa57fb90 100644
+--- a/apps/browser/Cargo.toml
++++ b/apps/browser/Cargo.toml
+@@ -11,7 +11,7 @@ path = "src/main.rs"
+ doc = false
+ 
+ [features]
+-default = ["hybrid", "cookies", "cache", "screenshot", "apple-font-embolden", "scrollbars"]
++default = ["hybrid", "cookies", "cache", "screenshot", "apple-font-embolden", "scrollbars", "mimalloc"]
+ android-defaults = ["skia", "cookies"]
+ 
+ screenshot = ["dep:anyrender_vello_cpu", "dep:blitz-paint", "dep:png", "dep:peniko", "dep:rfd"]
+diff --git a/apps/browser/src/document_loader.rs b/apps/browser/src/document_loader.rs
+index 2a6a9e6b3..aeb2c2a3c 100644
+--- a/apps/browser/src/document_loader.rs
++++ b/apps/browser/src/document_loader.rs
+@@ -1,6 +1,6 @@
+ use std::sync::{Arc, Mutex};
+ 
+-use blitz_dom::{DocumentConfig, FontContext};
++use blitz_dom::{DocumentConfig, FontContext, StyleThreading};
+ use blitz_html::{HtmlDocument, HtmlProvider};
+ use blitz_traits::{
+     net::{AbortController, AbortSignal, Request, Url},
+@@ -59,6 +59,7 @@ pub fn make_doc_config(
+         font_ctx: Some(font_ctx),
+         media_type: None,
+         abort_signal,
++        style_threading: StyleThreading::Parallel,
+         ..Default::default()
+     }
+ }
+diff --git a/apps/browser/src/toolbar.rs b/apps/browser/src/toolbar.rs
+index 5e1346efb..639e4c936 100644
+--- a/apps/browser/src/toolbar.rs
++++ b/apps/browser/src/toolbar.rs
+@@ -1,6 +1,6 @@
+ use std::{cell::RefCell, rc::Rc, sync::Arc};
+ 
+-use blitz_dom::{BaseDocument, DocumentConfig};
++use blitz_dom::{BaseDocument, DocumentConfig, StyleThreading};
+ use blitz_html::{HtmlDocument, HtmlProvider};
+ use blitz_traits::net::{Request, Url};
+ use dioxus_native::{NodeHandle, SubDocumentAttr, prelude::*};
+@@ -200,6 +200,7 @@ pub fn Toolbar(
+             html_parser_provider: Some(Arc::new(HtmlProvider)),
+             font_ctx: Some(tab.loader_rc().font_ctx.clone()),
+             media_type: None,
++            style_threading: StyleThreading::Parallel,
+             ..Default::default()
+         };
+         let mut document = HtmlDocument::from_html(view_source_html, config).into_inner();
+diff --git a/examples/multi_doc.rs b/examples/multi_doc.rs
+new file mode 100644
+index 000000000..a729e7796
+--- /dev/null
++++ b/examples/multi_doc.rs
+@@ -0,0 +1,116 @@
++//! Resolves several `BaseDocument`s with `StyleThreading::Parallel` in the
++//! ways an embedder might: alternating on one thread, nested (a sub-document
++//! resolved from its parent's `resolve`), and concurrently from many threads.
++//!
++//! Usage: `multi_doc <interleaved|nested|threads> [iterations]`
++//!
++//! Environment: `MULTI_DOC_SEQ=1` uses `StyleThreading::Sequential` instead,
++//! `MULTI_DOC_N=<n>` sets the number of top-level elements (default 2000),
++//! `MULTI_DOC_FLAT=1` makes them leaves instead of `<div><p/><span/></div>`.
++//! Build with `--features blitz-dom/log-phase-times` to see per-phase times.
++
++use std::time::{Duration, Instant};
++
++use blitz_dom::{BaseDocument, Document as _, DocumentConfig, StyleThreading};
++use blitz_html::HtmlDocument;
++
++fn env_flag(name: &str) -> bool {
++    std::env::var(name).is_ok_and(|v| !v.is_empty())
++}
++
++fn html(n: usize) -> String {
++    let flat = env_flag("MULTI_DOC_FLAT");
++    let mut s = String::from("<style>.a{color:red}.b{display:flex}.c p{margin:1px}</style><body>");
++    for i in 0..n {
++        let class = ["a", "b", "c"][i % 3];
++        let children = if flat { "" } else { "<p>x</p><span>y</span>" };
++        s.push_str(&format!(
++            "<div class=\"{class}\" style=\"width:{i}px\">{children}</div>"
++        ));
++    }
++    s.push_str("</body>");
++    s
++}
++
++fn config() -> DocumentConfig {
++    let style_threading = if env_flag("MULTI_DOC_SEQ") {
++        StyleThreading::Sequential
++    } else {
++        StyleThreading::Parallel
++    };
++    DocumentConfig {
++        style_threading,
++        ..Default::default()
++    }
++}
++
++fn main() {
++    let mode = std::env::args()
++        .nth(1)
++        .unwrap_or_else(|| "interleaved".into());
++    let iters: usize = std::env::args()
++        .nth(2)
++        .and_then(|s| s.parse().ok())
++        .unwrap_or(200);
++    let n: usize = std::env::var("MULTI_DOC_N")
++        .ok()
++        .and_then(|s| s.parse().ok())
++        .unwrap_or(2000);
++    let html = html(n);
++
++    let start = Instant::now();
++    let mut resolve_time = Duration::ZERO;
++    let mut timed_resolve = |doc: &mut BaseDocument| {
++        let t = Instant::now();
++        doc.resolve(0.0);
++        resolve_time += t.elapsed();
++    };
++
++    match mode.as_str() {
++        // Two documents resolved alternately on one thread.
++        "interleaved" => {
++            for _ in 0..iters {
++                let mut a = HtmlDocument::from_html(&html, config());
++                let mut b = HtmlDocument::from_html(&html, config());
++                timed_resolve(&mut a.inner_mut());
++                timed_resolve(&mut b.inner_mut());
++                timed_resolve(&mut a.inner_mut());
++            }
++        }
++        // Document B nested inside document A, resolved from within A's resolve.
++        "nested" => {
++            for _ in 0..iters {
++                let mut a = HtmlDocument::from_html(&html, config()).into_inner();
++                let b = HtmlDocument::from_html(&html, config()).into_inner();
++                let host = a.root_element().id;
++                a.set_sub_document(host, Box::new(b));
++                timed_resolve(&mut a);
++            }
++        }
++        // Many threads each resolving their own documents concurrently (issue #430).
++        "threads" => {
++            let handles: Vec<_> = (0..8)
++                .map(|_| {
++                    let html = html.clone();
++                    std::thread::spawn(move || {
++                        for _ in 0..iters {
++                            HtmlDocument::from_html(&html, config())
++                                .inner_mut()
++                                .resolve(0.0);
++                        }
++                    })
++                })
++                .collect();
++            for handle in handles {
++                handle.join().expect("a worker thread panicked");
++            }
++        }
++        other => panic!("unknown mode {other}"),
++    }
++
++    println!(
++        "{mode}: ok in {:?} (resolve: {:?})",
++        start.elapsed(),
++        resolve_time
++    );
++}
+diff --git a/examples/seven_guis/src/session_host.rs b/examples/seven_guis/src/session_host.rs
+index 59a99bc4f..94333eb3e 100644
+--- a/examples/seven_guis/src/session_host.rs
++++ b/examples/seven_guis/src/session_host.rs
+@@ -1,20 +1,30 @@
+-//! The `escher-session` binary: the driver's command line over the four lean stand tasks. As a
+-//! client it runs one driver command against a session in a state directory; in its host role
+-//! (`serve <task> --session <dir>`) it boots one task headlessly and serves it as that session
+-//! until it is stopped or idle; in its `mcp` role it speaks MCP on its standard streams,
+-//! holding the apps it starts in its own process.
++//! The `escher-session` binary: the driver's command line over six stand tasks — the four lean
++//! tasks, Cells and the load page. As a client it runs one driver command against a session in a
++//! state directory; in its host role (`serve <task> --session <dir>`) it boots one task
++//! headlessly and serves it as that session until it is stopped or idle; in its `mcp` role it
++//! speaks MCP on its standard streams, holding the apps it starts in its own process.
+ 
+ #[cfg(not(target_arch = "wasm32"))]
+ fn main() -> std::process::ExitCode {
+     use escher_driver::{Session, SessionError, command_line};
+     use seven_guis::stand::{self, LeanTask};
+ 
+-    /// The lean tasks by the stand's own slugs.
+-    const TASKS: [(&str, LeanTask); 4] = [
+-        ("counter", LeanTask::Counter),
+-        ("flight-booker", LeanTask::FlightBooker),
+-        ("timer", LeanTask::Timer),
+-        ("crud", LeanTask::Crud),
++    /// A task the binary serves: a lean task, Cells or the load page, each its own boot.
++    #[derive(Clone, Copy)]
++    enum Served {
++        Lean(LeanTask),
++        Cells,
++        Load,
++    }
++
++    /// The served tasks by the stand's own slugs.
++    const TASKS: [(&str, Served); 6] = [
++        ("counter", Served::Lean(LeanTask::Counter)),
++        ("flight-booker", Served::Lean(LeanTask::FlightBooker)),
++        ("timer", Served::Lean(LeanTask::Timer)),
++        ("crud", Served::Lean(LeanTask::Crud)),
++        ("cells", Served::Cells),
++        ("load", Served::Load),
+     ];
+ 
+     if let Err(error) = escher_telemetry::init(escher_telemetry::service_identity!()) {
+@@ -30,12 +40,14 @@ fn main() -> std::process::ExitCode {
+         // the step that moves the timer's time.
+         let mut ticks = None;
+         let session = Session::start(slug, || match task {
+-            LeanTask::Timer => {
++            Served::Lean(LeanTask::Timer) => {
+                 let (harness, handle) = stand::boot_timer(stand::options(true));
+                 ticks = Some(handle);
+                 harness
+             }
+-            task => stand::boot(task, stand::options(true)),
++            Served::Lean(task) => stand::boot(task, stand::options(true)),
++            Served::Cells => stand::boot_cells(stand::options(true)),
++            Served::Load => stand::boot_load(stand::options(true)),
+         })?;
+         Ok(match ticks {
+             Some(handle) => session.with_time(stand::timer_step(handle)),
+diff --git a/examples/seven_guis/src/stand.rs b/examples/seven_guis/src/stand.rs
+index 512b2f9ab..635d76405 100644
+--- a/examples/seven_guis/src/stand.rs
++++ b/examples/seven_guis/src/stand.rs
+@@ -1,13 +1,20 @@
+-//! The headless stand: mounts one of the lean four 7GUIs tasks inside the stand's
+-//! `TaskShell` chrome with no window and no GPU, at one pinned viewport, with the
+-//! bundled DejaVu Sans and no network, building a fresh document per boot.
++//! The headless stand: mounts one of the lean four 7GUIs tasks, Cells, or the load page inside
++//! the stand's `TaskShell` chrome with no window and no GPU, at one pinned viewport, with the
++//! bundled DejaVu Sans, building a fresh document per boot. Every boot is offline but the load
++//! page's, whose one stylesheet an in-process stand-in answers after 200 ms from a thread of its
++//! own, reaching no network.
++
++use std::sync::Arc;
++use std::thread;
++use std::time::Duration;
+ 
+ use blitz_test_harness::{Harness, HarnessOptions};
++use blitz_traits::net::{Bytes, NetHandler, NetProvider, Request};
+ use blitz_traits::shell::ColorScheme;
+ use dioxus_native::prelude::*;
+ use dioxus_native::{DioxusDocument, FontContext, build_single_font_ctx};
+ 
+-use crate::app::{Task, task_in_shell};
++use crate::app::{Task, TaskShell, task_in_shell};
+ use crate::tasks::timer::TimerTicks;
+ 
+ /// The four tasks the stand proves capabilities on.
+@@ -121,6 +128,121 @@ fn stand_root(props: StandRoot) -> Element {
+     task_in_shell(props.task.task(), EventHandler::new(|_| {}))
+ }
+ 
++/// Boot Cells in a fresh document. Cells is no [`LeanTask`]: its screen passes the snapshot
++/// text's budget and reads in parts.
++pub fn boot_cells(options: HarnessOptions) -> Harness<DioxusDocument> {
++    Harness::from_vdom(VirtualDom::new(cells_root), options)
++}
++
++fn cells_root() -> Element {
++    task_in_shell(Task::Cells, EventHandler::new(|_| {}))
++}
++
++/// Boot the load page in a fresh document: its `load-fetch` button links a stylesheet that
++/// shows the `load-done` message, and the in-process stand-in this boot alone carries answers
++/// it after [`LOAD_ANSWER_DELAY`]. Every other field of `options` is kept.
++pub fn boot_load(options: HarnessOptions) -> Harness<DioxusDocument> {
++    Harness::from_vdom(
++        VirtualDom::new(load_root),
++        HarnessOptions {
++            net_provider: Some(Arc::new(LoadNet)),
++            ..options
++        },
++    )
++}
++
++/// How long the load page's stand-in holds a request before it answers.
++pub const LOAD_ANSWER_DELAY: Duration = Duration::from_millis(200);
++
++/// The stylesheet the load page links, under the `.test` TLD no resolver answers.
++const LOAD_URL: &str = "http://stand.test/load.css";
++
++/// The one rule the linked stylesheet holds: it shows the message.
++const LOADED_CSS: &str = ".load-body .load-done { display: block; }";
++
++/// A `NetProvider` that answers every request with [`LOADED_CSS`] from a thread of its own,
++/// after [`LOAD_ANSWER_DELAY`].
++struct LoadNet;
++
++impl NetProvider for LoadNet {
++    fn fetch(&self, _doc_id: usize, request: Request, handler: Box<dyn NetHandler>) {
++        let url = request.url.to_string();
++        thread::spawn(move || {
++            thread::sleep(LOAD_ANSWER_DELAY);
++            handler.bytes(url, Bytes::from_static(LOADED_CSS.as_bytes()));
++        });
++    }
++}
++
++fn load_root() -> Element {
++    rsx! {
++        TaskShell { title: "Load", on_back: EventHandler::new(|_| {}),
++            LoadPage {}
++        }
++    }
++}
++
++#[component]
++fn LoadPage() -> Element {
++    let mut linked = use_signal(|| false);
++    rsx! {
++        div { class: "load-root",
++            style { {LOAD_CSS} }
++            div { class: "load-body",
++                button { id: "load-fetch", class: "load-btn", onclick: move |_| linked.set(true), "Load" }
++                if linked() {
++                    link { rel: "stylesheet", href: LOAD_URL }
++                }
++                p { id: "load-done", class: "load-done", "Loaded" }
++            }
++        }
++    }
++}
++
++const LOAD_CSS: &str = r#"
++.load-root {
++    display: flex;
++    align-items: center;
++    justify-content: center;
++    width: 100%;
++    height: 100%;
++    background-color: #f5f5f5;
++    font-family: sans-serif;
++}
++
++.load-body {
++    display: flex;
++    flex-direction: column;
++    align-items: center;
++    gap: 12px;
++}
++
++.load-btn {
++    font-size: 15px;
++    font-weight: 500;
++    color: #ffffff;
++    background-color: #3a5ce5;
++    border: none;
++    border-radius: 6px;
++    padding: 10px 24px;
++    cursor: pointer;
++}
++
++.load-btn:hover {
++    background-color: #2a4cd3;
++}
++
++.load-btn:active {
++    background-color: #1f3fc1;
++}
++
++.load-done {
++    display: none;
++    font-size: 15px;
++    color: #1a1a1a;
++}
++"#;
++
+ #[cfg(test)]
+ mod tests {
+     use super::*;
+@@ -158,6 +280,54 @@ mod tests {
+         }
+     }
+ 
++    #[test]
++    fn the_stand_options_stay_offline() {
++        for incremental in [false, true] {
++            assert!(
++                options(incremental).net_provider.is_none(),
++                "incremental={incremental}"
++            );
++        }
++    }
++
++    #[test]
++    fn cells_boots_in_the_shell() {
++        for incremental in [false, true] {
++            let harness = boot_cells(options(incremental));
++            assert!(
++                harness.text_content("#task-title") == "Cells",
++                "incremental={incremental}: the shell's title names Cells"
++            );
++            assert!(
++                harness.query("#cell-A0").is_some() && harness.query("#cell-Z25").is_some(),
++                "incremental={incremental}: the grid's first and last cells are mounted"
++            );
++        }
++    }
++
++    #[test]
++    fn the_load_page_click_leaves_a_load_in_flight() {
++        for incremental in [false, true] {
++            let mut harness = boot_load(options(incremental));
++            assert!(
++                harness.text_content("#task-title") == "Load",
++                "incremental={incremental}: the shell's title names the page"
++            );
++            assert!(
++                harness.settle().is_ok(),
++                "incremental={incremental}: nothing loads at boot"
++            );
++            harness.click("#load-fetch");
++            assert!(
++                harness.settle()
++                    == Err(blitz_test_harness::NotSettled {
++                        busy: blitz_test_harness::Busy::Loads
++                    }),
++                "incremental={incremental}: the click's stylesheet is a load in flight"
++            );
++        }
++    }
++
+     #[test]
+     fn the_timer_step_takes_the_largest_advance() {
+         for incremental in [false, true] {
+diff --git a/examples/seven_guis/src/tasks/flight_booker.rs b/examples/seven_guis/src/tasks/flight_booker.rs
+index 25d56bb36..189531921 100644
+--- a/examples/seven_guis/src/tasks/flight_booker.rs
++++ b/examples/seven_guis/src/tasks/flight_booker.rs
+@@ -63,19 +63,27 @@ pub fn FlightBooker() -> Element {
+             style { {CSS} }
+             div { class: "flight-card",
+                 h2 { class: "flight-title", "Flight Booker" }
+-                div { class: "flight-type-row",
+-                    button {
+-                        id: "flight-one-way",
+-                        aria_pressed: if !is_return { "true" } else { "false" },
+-                        class: if !is_return { "type-btn type-btn-active" } else { "type-btn" },
+-                        onclick: move |_| flight_type.set("one-way".into()),
++                select {
++                    id: "flight-type",
++                    aria_label: "Flight type",
++                    class: "type-select",
++                    oninput: move |evt| {
++                        let chosen = match evt.value().as_str() {
++                            "return" => "return",
++                            _ => "one-way",
++                        };
++                        flight_type.set(chosen.into());
++                    },
++                    option {
++                        id: "flight-type-one-way",
++                        value: "one-way",
++                        selected: !is_return,
+                         "one-way flight"
+                     }
+-                    button {
+-                        id: "flight-return",
+-                        aria_pressed: if is_return { "true" } else { "false" },
+-                        class: if is_return { "type-btn type-btn-active" } else { "type-btn" },
+-                        onclick: move |_| flight_type.set("return".into()),
++                    option {
++                        id: "flight-type-return",
++                        value: "return",
++                        selected: is_return,
+                         "return flight"
+                     }
+                 }
+@@ -149,29 +157,18 @@ const CSS: &str = r#"
+     white-space: nowrap;
+ }
+ 
+-.flight-type-row {
+-    display: flex;
+-    flex-direction: row;
+-    gap: 0;
++.type-select {
++    font-size: 15px;
++    padding: 8px 10px;
+     border: 1px solid #c0c0c0;
+     border-radius: 6px;
+-    overflow: hidden;
++    color: #1a1a1a;
++    background: #ffffff;
+ }
+ 
+-.type-btn {
+-    flex: 1;
+-    font-size: 14px;
+-    padding: 8px 10px;
+-    border: none;
+-    background: #fafafa;
+-    color: #444;
+-    cursor: pointer;
+-}
+-
+-.type-btn-active {
+-    background: #3a5ce5;
+-    color: #ffffff;
+-    font-weight: 600;
++.type-select:focus {
++    outline: none;
++    border-color: #3a5ce5;
+ }
+ 
+ .date-input {
+diff --git a/examples/seven_guis/tests/cli_commands.rs b/examples/seven_guis/tests/cli_commands.rs
+index 20191be33..2d56a93a9 100644
+--- a/examples/seven_guis/tests/cli_commands.rs
++++ b/examples/seven_guis/tests/cli_commands.rs
+@@ -1,6 +1,8 @@
+ //! Every driver command through the real `escher-session` binary: `start`, `status`, `stop` and
+ //! each of the eight verbs answer one line of uncoloured JSON on stdout and end with a status
+-//! that tells accepted (`0`) from refused (`1`) and from a session error (`3`). The snapshot's
++//! that tells accepted (`0`) from refused (`1`) and from a session error (`3`); each of the six
++//! served tasks — the four lean tasks, Cells and the load page — starts, answers and stops, and
++//! the usage line names the six. The snapshot's
+ //! line is the library's own form of the screen booted in process, inside its byte budget; the
+ //! screenshot's `png` is the PNG of the screen booted in process, 800 × 600; a lint on a held
+ //! counter answers one line whose `findings` is empty. On a screen inside the budget,
+@@ -32,8 +34,11 @@ use seven_guis::stand::{self, LeanTask};
+ 
+ const BINARY: &str = env!("CARGO_BIN_EXE_escher-session");
+ 
+-/// The four tasks the binary boots, by the slug `start` takes.
+-const TASKS: [(&str, LeanTask); 4] = [
++/// The six tasks the binary serves, by the slug `start` takes.
++const TASKS: [&str; 6] = ["counter", "flight-booker", "timer", "crud", "cells", "load"];
++
++/// The four lean tasks among them, each with the stand's own task.
++const LEAN: [(&str, LeanTask); 4] = [
+     ("counter", LeanTask::Counter),
+     ("flight-booker", LeanTask::FlightBooker),
+     ("timer", LeanTask::Timer),
+@@ -129,7 +134,7 @@ impl Session {
+ #[test]
+ fn each_task_starts_answers_and_stops() {
+     assert_eq!(VERBS.len(), 12);
+-    for (index, (task, _)) in TASKS.into_iter().enumerate() {
++    for (index, task) in TASKS.into_iter().enumerate() {
+         let dir = state_dir(&format!("cc-life-{index}"));
+         clear(&dir);
+         let at = text(&dir);
+@@ -258,7 +263,7 @@ fn each_verb_is_accepted_and_answers_its_fields() {
+ 
+ #[test]
+ fn a_snapshot_is_the_in_process_text_as_one_line_inside_its_budget() {
+-    for (index, (task, lean)) in TASKS.into_iter().enumerate() {
++    for (index, (task, lean)) in LEAN.into_iter().enumerate() {
+         // The host boots in the incremental layout mode; so does this.
+         let screen = stand::boot(lean, stand::options(true)).doc.snapshot();
+         let in_process = Outcome::Screen {
+@@ -584,6 +589,12 @@ fn a_line_that_is_no_command_is_a_usage_error() {
+                 "row {row}: the usage line names --record"
+             );
+         }
++        assert!(
++            stderr
++                .trim_end()
++                .ends_with(&format!("; apps: {}", TASKS.join(" | "))),
++            "row {row}: the usage line names the six served tasks"
++        );
+         assert!(!dir.exists(), "row {row}: no state directory is created");
+     }
+ }
+diff --git a/examples/seven_guis/tests/common/mod.rs b/examples/seven_guis/tests/common/mod.rs
+index 16eaa3a25..d5d267745 100644
+--- a/examples/seven_guis/tests/common/mod.rs
++++ b/examples/seven_guis/tests/common/mod.rs
+@@ -3,7 +3,8 @@
+ //! and reaps a host a failing check still holds, one bounded run of the binary as a client with
+ //! both its streams drained, a child held with a piped stdin that is spoken to one line at a
+ //! time and answers one line at a time, the readers of an answer's one line, and what the two
+-//! log checks read stderr with: the CRUD screen's id and name needles, the service-name stamp,
++//! log checks read stderr with: the CRUD screen's id and name needles, a Cells part's id
++//! needles and the cell a name is committed to, the service-name stamp,
+ //! the needle and occurrence counts and a recording's needles. A check declares `mod common;`
+ //! and reads what it needs. This module holds no test.
+ 
+@@ -421,6 +422,37 @@ pub fn stand_needles(sentinel: &str) -> Needles {
+     Needles { ids, names }
+ }
+ 
++/// Reads part `part` of the Cells screen the binary serves, booted here in process: its author
++/// keys as id needles, by `stand_needles`' rule, and the middle one of its column-A cells, where
++/// a check commits the name it then looks for. Cells' own names at boot — empty cells and row
++/// numbers — are no needle a hit could be attributed by. Asserts that enough ids were read.
++#[track_caller]
++pub fn cells_needles(part: usize) -> (Vec<String>, String) {
++    use seven_guis::stand;
++
++    let harness = stand::boot_cells(stand::options(true));
++    let parts = harness
++        .doc
++        .snapshot()
++        .text_parts(dioxus_native::SNAPSHOT_TEXT_BUDGET);
++    assert!(parts.len() > part, "the screen reads past part {part}");
++    let ids: Vec<String> = parts[part - 1]
++        .ids
++        .iter()
++        .filter(|id| !id.contains('/') && id.contains('-'))
++        .cloned()
++        .collect();
++    let column_a: Vec<&String> = ids.iter().filter(|id| id.starts_with("cell-A")).collect();
++    assert!(ids.len() >= 100, "{} id needles were read", ids.len());
++    assert!(
++        column_a.len() >= 3,
++        "{} column-A cells were read",
++        column_a.len()
++    );
++    let cell = column_a[column_a.len() / 2].clone();
++    (ids, cell)
++}
++
+ /// Asserts that the sink's install line reached stderr and that every line carries the service
+ /// name, and returns how many lines stderr holds.
+ #[track_caller]
+diff --git a/examples/seven_guis/tests/host_log.rs b/examples/seven_guis/tests/host_log.rs
+index 6aaeb9854..d8e3228c0 100644
+--- a/examples/seven_guis/tests/host_log.rs
++++ b/examples/seven_guis/tests/host_log.rs
+@@ -8,7 +8,13 @@
+ //! its own build makes it; the workspace build compiles the engine's tracing call sites in, and
+ //! the same check is run on that host too. The flow runs once more on a host keeping its session
+ //! as a check (`--record`): its stderr then holds neither the recording directory's name nor
+-//! any digest the check keeps, and its command-span lines are as many as without.
++//! any digest the check keeps, and its command-span lines are as many as without. The clients
++//! of a session `start --record` launched, each run at `RUST_LOG=trace` — `start`, a `type`, a
++//! `snapshot`, a `snapshot` of part 1, a `lint` and `stop` — write to their own stderr no id, no
++//! name, no typed text, no recording directory's path and nothing the kept check holds; the
++//! host `start` spawns has its streams closed, so this reads the clients alone. And a host
++//! serving Cells, whose screen reads in parts, writes to stderr at `RUST_LOG=trace` none of part
++//! 2's ids and not the name a `type` committed to one of its cells while it answers that part.
+ 
+ #![cfg(not(target_arch = "wasm32"))]
+ 
+@@ -33,6 +39,243 @@ fn a_recording_host_logs_nothing_of_its_check_at_trace() {
+     host_flow("hl-rec", true);
+ }
+ 
++#[cfg(unix)]
++#[test]
++fn a_recording_sessions_clients_log_nothing_of_it_at_trace() {
++    use std::process::Command;
++
++    use common::{
++        Needles, Ran, Started, clear, found, number, occurrences, recorded_needles, run,
++        stand_needles, state_dir, text,
++    };
++
++    let Needles { ids, names } = stand_needles(SENTINEL);
++    let dir = state_dir("hl-client");
++    clear(&dir);
++    let kept = state_dir("hl-client-rec");
++    let _ = std::fs::remove_dir_all(&kept);
++
++    // One client run of the binary at `RUST_LOG=trace`, its arguments as given.
++    let client = |args: &[&str]| -> Ran {
++        let mut command = Command::new(BINARY);
++        command.args(args).env("RUST_LOG", "trace");
++        run(command)
++    };
++    let mut stderr = Vec::new();
++    let mut ended = |step: usize, ran: Ran| -> String {
++        assert_eq!(ran.status, Some(0), "client {step} ends accepted");
++        let line = ran.line().to_string();
++        stderr.extend_from_slice(&ran.stderr);
++        line
++    };
++
++    let started = ended(
++        0,
++        client(&[
++            "start",
++            "crud",
++            "--record",
++            text(&kept),
++            "--session",
++            text(&dir),
++        ]),
++    );
++    let pid = number(&started, "pid").expect("start answers its host's process id");
++    let _guard = Started {
++        dir: dir.clone(),
++        pid: Some(pid),
++    };
++    let calls: [&[&str]; 5] = [
++        &["type", "--id", "crud-name", "--text", SENTINEL],
++        &["snapshot"],
++        &["snapshot", "--part", "1"],
++        &["lint"],
++        &["stop"],
++    ];
++    let answers: Vec<String> = calls
++        .iter()
++        .enumerate()
++        .map(|(index, args)| {
++            let mut line = args.to_vec();
++            line.extend(["--session", text(&dir)]);
++            ended(index + 1, client(&line))
++        })
++        .collect();
++    assert!(
++        answers[0].contains(SENTINEL) && ids.iter().all(|id| answers[1].contains(id.as_str())),
++        "the answers hold the typed text and the screen's ids"
++    );
++    assert!(
++        answers[3].starts_with(r#"{"findings":["#),
++        "the lint's answer holds its findings"
++    );
++    assert!(!dir.exists(), "stop leaves no state directory");
++
++    // A failure names a kind and a count only: what the session handled is ids and names.
++    let stderr = String::from_utf8_lossy(&stderr);
++    let lines = stderr.lines().count();
++    let (ids_found, names_found) = (found(&stderr, &ids), found(&stderr, &names));
++    let sentinels = stderr.matches(SENTINEL).count();
++    let paths = occurrences(&stderr, &[text(&kept).to_string()]);
++    let recorded = recorded_needles(&kept);
++    let recorded_found = occurrences(&stderr, &recorded);
++    assert!(
++        ids_found == 0 && names_found == 0 && sentinels == 0 && paths == 0 && recorded_found == 0,
++        "{ids_found} of {} id needles, {names_found} of {} name needles, {sentinels} \
++         occurrences of the typed text, {paths} of the recording directory's path and \
++         {recorded_found} of {} recording needles found in {lines} client stderr lines",
++        ids.len(),
++        names.len(),
++        recorded.len()
++    );
++    let _ = std::fs::remove_dir_all(&kept);
++}
++
++#[cfg(unix)]
++#[test]
++fn a_cells_part_read_through_the_host_logs_no_id_and_no_name_at_trace() {
++    use std::process::{Command, Stdio};
++    use std::thread;
++    use std::time::{Duration, Instant};
++
++    use common::{Host, cells_needles, clear, drain, found, stamped_lines, state_dir};
++    use escher_driver::{ArgValue, Call, attach, call, stop};
++
++    const READY: Duration = Duration::from_secs(60);
++    const EXIT: Duration = Duration::from_secs(10);
++    const PART: usize = 2;
++
++    // The needles are read from the part the host answers; the name is the one committed.
++    let (ids, cell) = cells_needles(PART);
++    let names = vec![SENTINEL.to_string()];
++
++    let dir = state_dir("hl-cells");
++    clear(&dir);
++    let mut host = Host(
++        Command::new(BINARY)
++            .args(["serve", "cells", "--session"])
++            .arg(&dir)
++            .env("RUST_LOG", "trace")
++            .stdin(Stdio::null())
++            .stdout(Stdio::piped())
++            .stderr(Stdio::piped())
++            .spawn()
++            .expect("the binary spawns"),
++    );
++    let stdout = drain(host.0.stdout.take().expect("stdout is piped"));
++    let stderr = drain(host.0.stderr.take().expect("stderr is piped"));
++
++    let deadline = Instant::now() + READY;
++    let hello = loop {
++        if let Ok(hello) = attach(&dir) {
++            break hello;
++        }
++        let exited = host.0.try_wait().expect("the host can be waited on");
++        assert!(exited.is_none(), "the host exited before it answered");
++        assert!(
++            Instant::now() < deadline,
++            "the host answers within the bound"
++        );
++        thread::sleep(Duration::from_millis(10));
++    };
++    assert_eq!(hello.label, "cells");
++
++    // A name committed into a cell of the part, then the part read. Each answer is checked for
++    // what it must hold, so the absences read below are of things the host did handle.
++    let text = |value: &str| ArgValue::Text(value.to_string());
++    let calls = [
++        Call {
++            verb: "click".to_string(),
++            args: vec![("id".to_string(), text(&cell))],
++        },
++        Call {
++            verb: "type".to_string(),
++            args: vec![
++                ("id".to_string(), text("cell-input")),
++                ("text".to_string(), text(SENTINEL)),
++            ],
++        },
++        Call {
++            verb: "press".to_string(),
++            args: vec![("key".to_string(), text("enter"))],
++        },
++        Call {
++            verb: "snapshot".to_string(),
++            args: vec![(
++                "part".to_string(),
++                ArgValue::Number(i64::try_from(PART).expect("a small part")),
++            )],
++        },
++    ];
++    let answers: Vec<String> = calls
++        .iter()
++        .enumerate()
++        .map(|(sent, call_sent)| {
++            let answer = call(&dir, call_sent).expect("the host answers the call");
++            assert!(answer.accepted, "call {sent} ran");
++            answer.json
++        })
++        .collect();
++    let part = &answers[3];
++    let ids_answered = ids.iter().filter(|id| part.contains(id.as_str())).count();
++    assert!(
++        part.contains(&format!(",\"part\":{PART},")) && part.contains(SENTINEL),
++        "the answer is the part, holding the committed name"
++    );
++    assert!(
++        ids_answered == ids.len(),
++        "the part's answer holds {ids_answered} of {} id needles",
++        ids.len()
++    );
++
++    stop(&dir).expect("the session stops");
++    let deadline = Instant::now() + EXIT;
++    let status = loop {
++        if let Some(status) = host.0.try_wait().expect("the host can be waited on") {
++            break status;
++        }
++        assert!(Instant::now() < deadline, "the host exits after stop");
++        thread::sleep(Duration::from_millis(10));
++    };
++    let stdout = stdout
++        .join()
++        .expect("the stdout reader ends")
++        .expect("stdout is read to its end");
++    let stderr = stderr
++        .join()
++        .expect("the stderr reader ends")
++        .expect("stderr is read to its end");
++    let stderr = String::from_utf8_lossy(&stderr);
++
++    // A failure names a kind and a count only.
++    assert_eq!(status.code(), Some(0), "the host exits 0 after stop");
++    assert!(
++        stdout.is_empty(),
++        "the host wrote {} bytes to stdout",
++        stdout.len()
++    );
++    assert!(!dir.exists(), "stop leaves no state directory");
++    let lines = stamped_lines(&stderr);
++    let command_spans = stderr
++        .lines()
++        .filter(|line| line.contains(" escher_driver ") && line.contains(" span=\"command\""))
++        .count();
++    assert_eq!(
++        command_spans,
++        calls.len(),
++        "{command_spans} command-span lines for {} calls sent",
++        calls.len()
++    );
++    let (ids_found, names_found) = (found(&stderr, &ids), found(&stderr, &names));
++    assert!(
++        ids_found == 0 && names_found == 0,
++        "{ids_found} of {} id needles and {names_found} of {} name needles found in {lines} \
++         stderr lines",
++        ids.len(),
++        names.len()
++    );
++}
++
+ /// The host's flow at `RUST_LOG=trace` in the state directory `name`, keeping its session as a
+ /// check beside it when `record` is set.
+ #[cfg(unix)]
+diff --git a/packages/blitz-dom/src/config.rs b/packages/blitz-dom/src/config.rs
+index 42534557d..d4aefe8ac 100644
+--- a/packages/blitz-dom/src/config.rs
++++ b/packages/blitz-dom/src/config.rs
+@@ -10,20 +10,18 @@ use style::media_queries::MediaType;
+ 
+ /// Strategy for Stylo's style traversal during `resolve`.
+ ///
+-/// Two `Document`s resolving on [`StyleThreading::Parallel`] concurrently
+-/// share Stylo's global thread pool and can panic with
+-/// `already mutably borrowed` — see
+-/// <https://github.com/DioxusLabs/blitz/issues/430>. Set
+-/// [`StyleThreading::Sequential`] on documents that may resolve from a
+-/// user thread while another `Parallel` resolve is in flight.
++/// `Parallel` traversals are serialised process-wide (Stylo's global pool can
++/// only run one traversal at a time), so documents resolving from several
++/// threads never run their style traversals concurrently but also never
++/// overlap: it only pays off when a single thread resolves all documents
++/// (e.g. a UI thread, including nested sub-documents).
+ #[derive(Default, Clone, Copy, PartialEq, Eq, Debug)]
+ pub enum StyleThreading {
+     /// Use Stylo's parallel traversal via its global rayon thread pool.
+-    /// Fastest for a single document; panics if another `Parallel` resolve
+-    /// is in flight on a different thread.
+     Parallel,
+     /// Run style traversal sequentially on the calling thread, bypassing
+-    /// the global pool. Safe to use from many user threads concurrently.
++    /// the global pool and its lock. Threads resolving their own documents
++    /// run independently of each other.
+     #[default]
+     Sequential,
+ }
+@@ -53,7 +51,7 @@ pub struct DocumentConfig {
+     /// Defaults to [`MediaType::screen`].
+     pub media_type: Option<MediaType>,
+     /// Strategy for Stylo's style traversal.
+-    /// Defaults to [`StyleThreading::Parallel`].
++    /// Defaults to [`StyleThreading::Sequential`].
+     pub style_threading: StyleThreading,
+     /// Whether incremental layout is enabled. Defaults to `true`.
+     ///
+diff --git a/packages/blitz-dom/src/layout/construct.rs b/packages/blitz-dom/src/layout/construct.rs
+index a129c7a81..c1166cff5 100644
+--- a/packages/blitz-dom/src/layout/construct.rs
++++ b/packages/blitz-dom/src/layout/construct.rs
+@@ -3,10 +3,7 @@ use core::str;
+ use std::sync::Arc;
+ 
+ use markup5ever::{QualName, local_name, ns};
+-use parley::{
+-    FontContext, InlineBox, InlineBoxKind, LayoutContext, StyleProperty, TreeBuilder,
+-    WhiteSpaceCollapse,
+-};
++use parley::StyleProperty;
+ use style::{
+     computed_values::position::T as PositionProperty,
+     data::ElementData as StyloElementData,
+@@ -23,20 +20,14 @@ use crate::{
+     layout::damage::{
+         CONSTRUCT_BOX, CONSTRUCT_DESCENDENT, CONSTRUCT_FC, sort_layout_children_by_order,
+     },
+-    node::{
+-        ListItemLayout, ListItemLayoutPosition, Marker, NodeFlags, NodeKind, RangeInputData,
+-        SpecialElementData, TextBrush, TextInputData, TextLayout,
+-    },
++    node::{NodeFlags, NodeKind, RangeInputData, SpecialElementData, TextInputData, TextLayout},
+     qual_name, stylo_to_parley,
+     traversal::{iter_children, iter_children_and_pseudos},
+ };
+ 
+ use super::{
+-    damage::ALL_DAMAGE,
+-    list::{BULLET_FONT_FAMILY, collect_list_item_children},
+-    replaced::is_inline_box_element,
++    damage::ALL_DAMAGE, list::collect_list_item_children, replaced::is_inline_box_element,
+     table::build_table_context,
+-    text_transform::{CaseTransform, TextTransformer},
+ };
+ 
+ const DUMMY_NAME: QualName = qual_name!("div", html);
+@@ -726,6 +717,7 @@ fn flush_pseudo_elements(doc: &mut BaseDocument, node_id: NodeId) {
+                 doc.nodes[new_node_id].children.push(text_node_id);
+             }
+ 
++            doc.nodes[new_node_id].record_out_of_flow(pe_style);
+             let mut element_data = StyloElementData::default();
+             element_data.styles.primary = Some(pe_style.clone());
+             element_data.set_restyled();
+@@ -780,6 +772,7 @@ fn flush_pseudo_elements(doc: &mut BaseDocument, node_id: NodeId) {
+                 (None, None) => {}
+             }
+ 
++            doc.nodes[pe_node_id].record_out_of_flow(&pe_style);
+             let mut node_styles = doc.nodes[pe_node_id]
+                 .try_stylo_element_data_mut()
+                 .and_then(|s| s.get_mut());
+@@ -1051,285 +1044,3 @@ pub(crate) fn find_inline_layout_embedded_boxes(
+         }
+     }
+ }
+-
+-pub(crate) fn build_inline_layout_into(
+-    nodes: &crate::NodeTree,
+-    layout_ctx: &mut LayoutContext<TextBrush>,
+-    font_ctx: &mut FontContext,
+-    text_layout: &mut TextLayout,
+-    scale: f32,
+-    inline_context_root_node_id: NodeId,
+-) {
+-    // Get the inline context's root node's text styles
+-    let root_node = &nodes[inline_context_root_node_id];
+-    let root_node_style = root_node.primary_styles().or_else(|| {
+-        root_node
+-            .parent
+-            .and_then(|parent_id| nodes[parent_id].primary_styles())
+-    });
+-
+-    let parley_style = root_node_style
+-        .as_ref()
+-        .map(|s| stylo_to_parley::style(inline_context_root_node_id, s))
+-        .unwrap_or_else(|| parley::TextStyle {
+-            white_space_collapse: WhiteSpaceCollapse::Collapse,
+-            ..Default::default()
+-        });
+-
+-    // Create a parley tree builder
+-    let mut builder = layout_ctx.tree_builder(font_ctx, scale, true, &parley_style);
+-    if let Some(style) = root_node_style.as_deref() {
+-        builder.set_base_direction(stylo_to_parley::base_direction(
+-            style.clone_direction(),
+-            style.clone_unicode_bidi(),
+-        ));
+-    }
+-
+-    let text_transform = root_node_style
+-        .as_deref()
+-        .map(|s| CaseTransform::from_style(s))
+-        .unwrap_or(CaseTransform::NONE);
+-
+-    // Render position-inside list items
+-    if let Some(ListItemLayout {
+-        marker,
+-        position: ListItemLayoutPosition::Inside,
+-    }) = root_node
+-        .element_data()
+-        .and_then(|el| el.list_item_data.as_deref())
+-    {
+-        match marker {
+-            // Bullet glyphs live in the bundled bullet font. The position-outside
+-            // path already asks for it; without the same span here a marker like
+-            // disclosure-closed (U+25B8) falls back to the element's own font and
+-            // renders as a missing glyph.
+-            Marker::Char(char) => {
+-                let mut marker_style = parley_style.clone();
+-                marker_style.font_family = BULLET_FONT_FAMILY.into();
+-                builder.push_style_span(marker_style);
+-                builder.push_text(&format!("{char} "));
+-                builder.pop_style_span();
+-            }
+-            Marker::String(str) => builder.push_text(str),
+-        }
+-    };
+-    // The marker is a separate box, so words in the content don't continue from it.
+-    let mut text_transformer = TextTransformer::default();
+-    text_transformer.word_break(&builder);
+-
+-    if let Some(before_id) = root_node.before() {
+-        build_inline_layout_recursive(
+-            &mut builder,
+-            &mut text_transformer,
+-            nodes,
+-            before_id,
+-            &text_transform,
+-        );
+-    }
+-    for child_id in root_node.children.iter().copied() {
+-        build_inline_layout_recursive(
+-            &mut builder,
+-            &mut text_transformer,
+-            nodes,
+-            child_id,
+-            &text_transform,
+-        );
+-    }
+-    if let Some(after_id) = root_node.after() {
+-        build_inline_layout_recursive(
+-            &mut builder,
+-            &mut text_transformer,
+-            nodes,
+-            after_id,
+-            &text_transform,
+-        );
+-    }
+-
+-    text_layout.text = builder.build_into(&mut text_layout.layout);
+-    return;
+-
+-    fn build_inline_layout_recursive(
+-        builder: &mut TreeBuilder<TextBrush>,
+-        text_transformer: &mut TextTransformer,
+-        nodes: &crate::NodeTree,
+-        node_id: NodeId,
+-        parent_text_transform: &CaseTransform,
+-    ) {
+-        let node = &nodes[node_id];
+-
+-        let style = node.primary_styles();
+-        let style = style.as_ref();
+-
+-        let text_transform = style
+-            .map(|s| CaseTransform::from_style(s))
+-            .unwrap_or(CaseTransform::NONE);
+-
+-        match &node.data {
+-            NodeData::Element(element_data) | NodeData::AnonymousBlock(element_data) => {
+-                // if the input type is hidden, hide it
+-                if *element_data.name.local == *"input" {
+-                    if let Some("hidden") = element_data.attr(local_name!("type")) {
+-                        return;
+-                    }
+-                }
+-
+-                let display = node.display_style().unwrap_or(Display::inline());
+-                let position = style
+-                    .map(|s| s.clone_position())
+-                    .unwrap_or(PositionProperty::Static);
+-                let float = style.map(|s| s.clone_float()).unwrap_or(Float::None);
+-                let box_kind = if position.is_absolutely_positioned() {
+-                    InlineBoxKind::OutOfFlow
+-                } else if float.is_floating() {
+-                    InlineBoxKind::CustomOutOfFlow
+-                } else {
+-                    InlineBoxKind::InFlow
+-                };
+-
+-                match (display.outside(), display.inside()) {
+-                    (DisplayOutside::None, DisplayInside::None) => {
+-                        // node.remove_damage(CONSTRUCT_DESCENDENT | CONSTRUCT_FC | CONSTRUCT_BOX);
+-                    }
+-                    (DisplayOutside::None, DisplayInside::Contents) => {
+-                        let whitespace = style.map(|s| {
+-                            [
+-                                parley::StyleProperty::WhiteSpaceCollapse(
+-                                    stylo_to_parley::white_space_collapse(
+-                                        s.clone_white_space_collapse(),
+-                                    ),
+-                                ),
+-                                parley::StyleProperty::TextWrapMode(
+-                                    stylo_to_parley::text_wrap_mode(s.clone_text_wrap_mode()),
+-                                ),
+-                            ]
+-                        });
+-                        builder.push_style_modification_span(
+-                            whitespace
+-                                .as_ref()
+-                                .map_or(&[][..], |styles| styles.as_slice()),
+-                        );
+-                        for child_id in node.children.iter().copied() {
+-                            // node.remove_damage(CONSTRUCT_DESCENDENT | CONSTRUCT_FC | CONSTRUCT_BOX);
+-                            build_inline_layout_recursive(
+-                                builder,
+-                                text_transformer,
+-                                nodes,
+-                                child_id,
+-                                &text_transform,
+-                            );
+-                        }
+-                        builder.pop_style_span();
+-                    }
+-                    (DisplayOutside::Inline, DisplayInside::Flow) => {
+-                        let tag_name = &element_data.name.local;
+-
+-                        if is_inline_box_element(tag_name) {
+-                            if box_kind == InlineBoxKind::InFlow {
+-                                text_transformer.word_break(builder);
+-                            }
+-                            builder.push_inline_box(InlineBox {
+-                                id: node_id.as_u64(),
+-                                kind: box_kind,
+-                                // Overridden by push_inline_box method
+-                                index: 0,
+-                                // Width and height are set during layout
+-                                width: 0.0,
+-                                height: 0.0,
+-                                baseline: None,
+-                                vertical_align: node
+-                                    .primary_styles()
+-                                    .map(|s| stylo_to_parley::vertical_align(&s))
+-                                    .unwrap_or_default(),
+-                            });
+-                        } else if *tag_name == local_name!("br") {
+-                            // node.remove_damage(CONSTRUCT_DESCENDENT | CONSTRUCT_FC | CONSTRUCT_BOX);
+-                            // TODO: update span id for br spans
+-                            builder.push_style_modification_span(&[
+-                                parley::StyleProperty::WhiteSpaceCollapse(
+-                                    WhiteSpaceCollapse::Preserve,
+-                                ),
+-                            ]);
+-                            builder.push_text("\n");
+-                            builder.pop_style_span();
+-                            text_transformer.word_break(builder);
+-                        } else {
+-                            // node.remove_damage(CONSTRUCT_DESCENDENT | CONSTRUCT_FC | CONSTRUCT_BOX);
+-                            let style = node
+-                                .primary_styles()
+-                                .map(|s| stylo_to_parley::style(node.id, &s))
+-                                .unwrap_or_else(|| parley::TextStyle {
+-                                    white_space_collapse: WhiteSpaceCollapse::Collapse,
+-                                    ..Default::default()
+-                                });
+-
+-                            builder.push_style_span(style);
+-
+-                            if let Some(before_id) = node.before() {
+-                                build_inline_layout_recursive(
+-                                    builder,
+-                                    text_transformer,
+-                                    nodes,
+-                                    before_id,
+-                                    &text_transform,
+-                                );
+-                            }
+-
+-                            for child_id in node.children.iter().copied() {
+-                                build_inline_layout_recursive(
+-                                    builder,
+-                                    text_transformer,
+-                                    nodes,
+-                                    child_id,
+-                                    &text_transform,
+-                                );
+-                            }
+-                            if let Some(after_id) = node.after() {
+-                                build_inline_layout_recursive(
+-                                    builder,
+-                                    text_transformer,
+-                                    nodes,
+-                                    after_id,
+-                                    &text_transform,
+-                                );
+-                            }
+-
+-                            builder.pop_style_span();
+-                        }
+-                    }
+-                    // Inline box
+-                    (_, _) => {
+-                        if box_kind == InlineBoxKind::InFlow {
+-                            text_transformer.word_break(builder);
+-                        }
+-                        builder.push_inline_box(InlineBox {
+-                            id: node_id.as_u64(),
+-                            kind: box_kind,
+-                            // Overridden by push_inline_box method
+-                            index: 0,
+-                            // Width and height are set during layout
+-                            width: 0.0,
+-                            height: 0.0,
+-                            baseline: None,
+-                            vertical_align: node
+-                                .primary_styles()
+-                                .map(|s| stylo_to_parley::vertical_align(&s))
+-                                .unwrap_or_default(),
+-                        });
+-                    }
+-                };
+-            }
+-            NodeData::Text(data) => {
+-                // node.remove_damage(CONSTRUCT_DESCENDENT | CONSTRUCT_FC | CONSTRUCT_BOX);
+-                // dbg!(&data.content);
+-
+-                let text =
+-                    text_transformer.transform(&data.content, parent_text_transform, builder);
+-                builder.push_text(text);
+-            }
+-            NodeData::Comment { .. } => {
+-                // node.remove_damage(CONSTRUCT_DESCENDENT | CONSTRUCT_FC | CONSTRUCT_BOX);
+-            }
+-            NodeData::Document(_) => unreachable!(),
+-        }
+-    }
+-}
+diff --git a/packages/blitz-dom/src/layout/inline/build.rs b/packages/blitz-dom/src/layout/inline/build.rs
+new file mode 100644
+index 000000000..d489460aa
+--- /dev/null
++++ b/packages/blitz-dom/src/layout/inline/build.rs
+@@ -0,0 +1,303 @@
++use blitz_traits::node_id::NodeId;
++use markup5ever::local_name;
++use parley::{
++    FontContext, InlineBox, InlineBoxKind, LayoutContext, TreeBuilder, WhiteSpaceCollapse,
++};
++use style::{
++    computed_values::position::T as PositionProperty,
++    values::{
++        computed::{Display, Float},
++        specified::box_::{DisplayInside, DisplayOutside},
++    },
++};
++
++use crate::{
++    NodeData,
++    layout::list::BULLET_FONT_FAMILY,
++    layout::replaced::is_inline_box_element,
++    layout::text_transform::{CaseTransform, TextTransformer},
++    node::{ListItemLayout, ListItemLayoutPosition, Marker, TextBrush, TextLayout},
++    stylo_to_parley,
++};
++
++pub(crate) fn build_inline_layout_into(
++    nodes: &crate::NodeTree,
++    layout_ctx: &mut LayoutContext<TextBrush>,
++    font_ctx: &mut FontContext,
++    text_layout: &mut TextLayout,
++    scale: f32,
++    inline_context_root_node_id: NodeId,
++) {
++    // Get the inline context's root node's text styles
++    let root_node = &nodes[inline_context_root_node_id];
++    let root_node_style = root_node.primary_styles().or_else(|| {
++        root_node
++            .parent
++            .and_then(|parent_id| nodes[parent_id].primary_styles())
++    });
++
++    let parley_style = root_node_style
++        .as_ref()
++        .map(|s| stylo_to_parley::style(inline_context_root_node_id, s))
++        .unwrap_or_else(|| parley::TextStyle {
++            white_space_collapse: WhiteSpaceCollapse::Collapse,
++            ..Default::default()
++        });
++
++    // Create a parley tree builder
++    let mut builder = layout_ctx.tree_builder(font_ctx, scale, true, &parley_style);
++    if let Some(style) = root_node_style.as_deref() {
++        builder.set_base_direction(stylo_to_parley::base_direction(
++            style.clone_direction(),
++            style.clone_unicode_bidi(),
++        ));
++    }
++
++    let text_transform = root_node_style
++        .as_deref()
++        .map(|s| CaseTransform::from_style(s))
++        .unwrap_or(CaseTransform::NONE);
++
++    // Render position-inside list items
++    if let Some(ListItemLayout {
++        marker,
++        position: ListItemLayoutPosition::Inside,
++    }) = root_node
++        .element_data()
++        .and_then(|el| el.list_item_data.as_deref())
++    {
++        match marker {
++            // Bullet glyphs live in the bundled bullet font. The position-outside
++            // path already asks for it; without the same span here a marker like
++            // disclosure-closed (U+25B8) falls back to the element's own font and
++            // renders as a missing glyph.
++            Marker::Char(char) => {
++                let mut marker_style = parley_style.clone();
++                marker_style.font_family = BULLET_FONT_FAMILY.into();
++                builder.push_style_span(marker_style);
++                builder.push_text(&format!("{char} "));
++                builder.pop_style_span();
++            }
++            Marker::String(str) => builder.push_text(str),
++        }
++    };
++    // The marker is a separate box, so words in the content don't continue from it.
++    let mut text_transformer = TextTransformer::default();
++    text_transformer.word_break(&builder);
++
++    if let Some(before_id) = root_node.before() {
++        build_inline_layout_recursive(
++            &mut builder,
++            &mut text_transformer,
++            nodes,
++            before_id,
++            &text_transform,
++        );
++    }
++    for child_id in root_node.children.iter().copied() {
++        build_inline_layout_recursive(
++            &mut builder,
++            &mut text_transformer,
++            nodes,
++            child_id,
++            &text_transform,
++        );
++    }
++    if let Some(after_id) = root_node.after() {
++        build_inline_layout_recursive(
++            &mut builder,
++            &mut text_transformer,
++            nodes,
++            after_id,
++            &text_transform,
++        );
++    }
++
++    text_layout.text = builder.build_into(&mut text_layout.layout);
++    return;
++
++    fn build_inline_layout_recursive(
++        builder: &mut TreeBuilder<TextBrush>,
++        text_transformer: &mut TextTransformer,
++        nodes: &crate::NodeTree,
++        node_id: NodeId,
++        parent_text_transform: &CaseTransform,
++    ) {
++        let node = &nodes[node_id];
++
++        let style = node.primary_styles();
++        let style = style.as_ref();
++
++        let text_transform = style
++            .map(|s| CaseTransform::from_style(s))
++            .unwrap_or(CaseTransform::NONE);
++
++        match &node.data {
++            NodeData::Element(element_data) | NodeData::AnonymousBlock(element_data) => {
++                // if the input type is hidden, hide it
++                if *element_data.name.local == *"input" {
++                    if let Some("hidden") = element_data.attr(local_name!("type")) {
++                        return;
++                    }
++                }
++
++                let display = node.display_style().unwrap_or(Display::inline());
++                let position = style
++                    .map(|s| s.clone_position())
++                    .unwrap_or(PositionProperty::Static);
++                let float = style.map(|s| s.clone_float()).unwrap_or(Float::None);
++                let box_kind = if position.is_absolutely_positioned() {
++                    InlineBoxKind::OutOfFlow
++                } else if float.is_floating() {
++                    InlineBoxKind::CustomOutOfFlow
++                } else {
++                    InlineBoxKind::InFlow
++                };
++
++                match (display.outside(), display.inside()) {
++                    (DisplayOutside::None, DisplayInside::None) => {
++                        // node.remove_damage(CONSTRUCT_DESCENDENT | CONSTRUCT_FC | CONSTRUCT_BOX);
++                    }
++                    (DisplayOutside::None, DisplayInside::Contents) => {
++                        let whitespace = style.map(|s| {
++                            [
++                                parley::StyleProperty::WhiteSpaceCollapse(
++                                    stylo_to_parley::white_space_collapse(
++                                        s.clone_white_space_collapse(),
++                                    ),
++                                ),
++                                parley::StyleProperty::TextWrapMode(
++                                    stylo_to_parley::text_wrap_mode(s.clone_text_wrap_mode()),
++                                ),
++                            ]
++                        });
++                        builder.push_style_modification_span(
++                            whitespace
++                                .as_ref()
++                                .map_or(&[][..], |styles| styles.as_slice()),
++                        );
++                        for child_id in node.children.iter().copied() {
++                            // node.remove_damage(CONSTRUCT_DESCENDENT | CONSTRUCT_FC | CONSTRUCT_BOX);
++                            build_inline_layout_recursive(
++                                builder,
++                                text_transformer,
++                                nodes,
++                                child_id,
++                                &text_transform,
++                            );
++                        }
++                        builder.pop_style_span();
++                    }
++                    (DisplayOutside::Inline, DisplayInside::Flow) => {
++                        let tag_name = &element_data.name.local;
++
++                        if is_inline_box_element(tag_name) {
++                            if box_kind == InlineBoxKind::InFlow {
++                                text_transformer.word_break(builder);
++                            }
++                            builder.push_inline_box(InlineBox {
++                                id: node_id.as_u64(),
++                                kind: box_kind,
++                                // Overridden by push_inline_box method
++                                index: 0,
++                                // Width and height are set during layout
++                                width: 0.0,
++                                height: 0.0,
++                                baseline: None,
++                                vertical_align: node
++                                    .primary_styles()
++                                    .map(|s| stylo_to_parley::vertical_align(&s))
++                                    .unwrap_or_default(),
++                            });
++                        } else if *tag_name == local_name!("br") {
++                            // node.remove_damage(CONSTRUCT_DESCENDENT | CONSTRUCT_FC | CONSTRUCT_BOX);
++                            // TODO: update span id for br spans
++                            builder.push_style_modification_span(&[
++                                parley::StyleProperty::WhiteSpaceCollapse(
++                                    WhiteSpaceCollapse::Preserve,
++                                ),
++                            ]);
++                            builder.push_text("\n");
++                            builder.pop_style_span();
++                            text_transformer.word_break(builder);
++                        } else {
++                            // node.remove_damage(CONSTRUCT_DESCENDENT | CONSTRUCT_FC | CONSTRUCT_BOX);
++                            let style = node
++                                .primary_styles()
++                                .map(|s| stylo_to_parley::style(node.id, &s))
++                                .unwrap_or_else(|| parley::TextStyle {
++                                    white_space_collapse: WhiteSpaceCollapse::Collapse,
++                                    ..Default::default()
++                                });
++
++                            builder.push_style_span(style);
++
++                            if let Some(before_id) = node.before() {
++                                build_inline_layout_recursive(
++                                    builder,
++                                    text_transformer,
++                                    nodes,
++                                    before_id,
++                                    &text_transform,
++                                );
++                            }
++
++                            for child_id in node.children.iter().copied() {
++                                build_inline_layout_recursive(
++                                    builder,
++                                    text_transformer,
++                                    nodes,
++                                    child_id,
++                                    &text_transform,
++                                );
++                            }
++                            if let Some(after_id) = node.after() {
++                                build_inline_layout_recursive(
++                                    builder,
++                                    text_transformer,
++                                    nodes,
++                                    after_id,
++                                    &text_transform,
++                                );
++                            }
++
++                            builder.pop_style_span();
++                        }
++                    }
++                    // Inline box
++                    (_, _) => {
++                        if box_kind == InlineBoxKind::InFlow {
++                            text_transformer.word_break(builder);
++                        }
++                        builder.push_inline_box(InlineBox {
++                            id: node_id.as_u64(),
++                            kind: box_kind,
++                            // Overridden by push_inline_box method
++                            index: 0,
++                            // Width and height are set during layout
++                            width: 0.0,
++                            height: 0.0,
++                            baseline: None,
++                            vertical_align: node
++                                .primary_styles()
++                                .map(|s| stylo_to_parley::vertical_align(&s))
++                                .unwrap_or_default(),
++                        });
++                    }
++                };
++            }
++            NodeData::Text(data) => {
++                // node.remove_damage(CONSTRUCT_DESCENDENT | CONSTRUCT_FC | CONSTRUCT_BOX);
++                // dbg!(&data.content);
++
++                let text =
++                    text_transformer.transform(&data.content, parent_text_transform, builder);
++                builder.push_text(text);
++            }
++            NodeData::Comment { .. } => {
++                // node.remove_damage(CONSTRUCT_DESCENDENT | CONSTRUCT_FC | CONSTRUCT_BOX);
++            }
++            NodeData::Document(_) => unreachable!(),
++        }
++    }
++}
+diff --git a/packages/blitz-dom/src/layout/inline.rs b/packages/blitz-dom/src/layout/inline/layout.rs
+similarity index 99%
+rename from packages/blitz-dom/src/layout/inline.rs
+rename to packages/blitz-dom/src/layout/inline/layout.rs
+index 1f9857001..90e6d880d 100644
+--- a/packages/blitz-dom/src/layout/inline.rs
++++ b/packages/blitz-dom/src/layout/inline/layout.rs
+@@ -20,8 +20,8 @@ use taffy::{BlockItemStyle as _, Clear, Float, prelude::TaffyMaxContent};
+ 
+ use stylo_taffy::StyleFlags;
+ 
+-use super::resolve_calc_value;
+ use crate::layout::LayoutPassState;
++use crate::layout::resolve_calc_value;
+ use crate::stylo_to_parley;
+ 
+ /// Subtract a child's margins from the definite axes of the available space it is laid out in.
+@@ -916,10 +916,13 @@ impl LayoutPassState<'_> {
+         inline_layout.block_offset = block_offset;
+         let line_box_top = container_pb.top + block_offset;
+ 
+-        // Store sizes and positions of inline boxes
++        // Store sizes and positions of inline boxes. Walking a line's items builds every
++        // glyph run on it, so lines are only walked when there are boxes to find.
+         let mut ibox_order: u32 = 0;
+         let mut span_cb_flags = StyleFlags::empty();
+-        for line in inline_layout.layout.lines() {
++        let has_inline_boxes = inline_layout.layout.inline_boxes().len() > 0;
++        let lines = has_inline_boxes.then(|| inline_layout.layout.lines());
++        for line in lines.into_iter().flatten() {
+             for item in line.items() {
+                 if let parley::layout::PositionedLayoutItem::InlineBox(ibox) = item {
+                     let order = ibox_order;
+diff --git a/packages/blitz-dom/src/layout/inline/mod.rs b/packages/blitz-dom/src/layout/inline/mod.rs
+new file mode 100644
+index 000000000..4fe031b4c
+--- /dev/null
++++ b/packages/blitz-dom/src/layout/inline/mod.rs
+@@ -0,0 +1,4 @@
++mod build;
++mod layout;
++
++pub(crate) use build::build_inline_layout_into;
+diff --git a/packages/blitz-dom/src/layout/mod.rs b/packages/blitz-dom/src/layout/mod.rs
+index 0a5fbc1dc..6d73fd922 100644
+--- a/packages/blitz-dom/src/layout/mod.rs
++++ b/packages/blitz-dom/src/layout/mod.rs
+@@ -853,7 +853,9 @@ impl RoundTree for LayoutPassState<'_> {
+     }
+ 
+     fn is_out_of_flow(&self, node_id: NodeId) -> bool {
+-        self.node_from_id(node_id).is_out_of_flow()
++        self.node_from_id(node_id)
++            .out_of_flow
++            .load(core::sync::atomic::Ordering::Relaxed)
+     }
+ 
+     fn hoisted_child_count(&self, node_id: NodeId) -> usize {
+diff --git a/packages/blitz-dom/src/layout/paint_tree.rs b/packages/blitz-dom/src/layout/paint_tree.rs
+index 99875eae8..8b7ede00b 100644
+--- a/packages/blitz-dom/src/layout/paint_tree.rs
++++ b/packages/blitz-dom/src/layout/paint_tree.rs
+@@ -143,8 +143,8 @@ impl StackingContext {
+             return cached;
+         }
+ 
+-        let child_rect = |child: &HoistedPaintChild| -> Rect<f32> {
+-            let node = &tree[child.node_id];
++        let child_rect = |child: &HoistedPaintChild| -> Option<Rect<f32>> {
++            let node = tree.get(child.node_id)?;
+             let position = child.position(tree, sc_root_id);
+             let location = node.final_layout().location;
+             let mut overflow = *node.scrollable_overflow();
+@@ -153,24 +153,23 @@ impl StackingContext {
+             }
+             let left = position.x + location.x;
+             let top = position.y + location.y;
+-            Rect {
++            Some(Rect {
+                 left: left + (overflow.x0 / scale) as f32,
+                 top: top + (overflow.y0 / scale) as f32,
+                 right: left + (overflow.x1 / scale) as f32,
+                 bottom: top + (overflow.y1 / scale) as f32,
+-            }
++            })
+         };
+ 
+-        let mut area = Rect::ZERO;
+-        if let Some((first, rest)) = self.children.split_first() {
+-            area = child_rect(first);
+-            for child in rest {
+-                let pos = child_rect(child);
+-                area.left = area.left.min(pos.left);
+-                area.top = area.top.min(pos.top);
+-                area.right = area.right.max(pos.right);
+-                area.bottom = area.bottom.max(pos.bottom);
+-            }
++        // Children dropped by a DOM mutation since the last `resolve` yield
++        // `None` and are left out, like hit testing skips them.
++        let mut rects = self.children.iter().filter_map(child_rect);
++        let mut area = rects.next().unwrap_or(Rect::ZERO);
++        for pos in rects {
++            area.left = area.left.min(pos.left);
++            area.top = area.top.min(pos.top);
++            area.right = area.right.max(pos.right);
++            area.bottom = area.bottom.max(pos.bottom);
+         }
+         self.hoisted_content_bbox.set((generation, area));
+         area
+diff --git a/packages/blitz-dom/src/layout/replaced.rs b/packages/blitz-dom/src/layout/replaced.rs
+index 0da3ced59..04bd61e30 100644
+--- a/packages/blitz-dom/src/layout/replaced.rs
++++ b/packages/blitz-dom/src/layout/replaced.rs
+@@ -141,10 +141,8 @@ pub fn compute_replaced_layout(
+     // element get no preferred aspect ratio at all.
+     let is_usable_ratio = |ratio: &f32| ratio.is_finite() && *ratio > 0.0;
+     let intrinsic = context.intrinsic_sizes;
+-    let aspect_ratio: Option<f32> = style
+-        .aspect_ratio()
+-        .filter(is_usable_ratio)
+-        .or(intrinsic.ratio.filter(is_usable_ratio));
++    let style_aspect_ratio = style.aspect_ratio().filter(is_usable_ratio);
++    let aspect_ratio: Option<f32> = style_aspect_ratio.or(intrinsic.ratio.filter(is_usable_ratio));
+ 
+     // Concrete object size per the CSS default sizing algorithm with no
+     // specified size (https://drafts.csswg.org/css-images/#default-sizing):
+@@ -200,6 +198,17 @@ pub fn compute_replaced_layout(
+             None => default_size,
+         },
+     };
++    // The `aspect-ratio` property coerces the natural height to match the natural width, in the
++    // box-sizing box (https://github.com/w3c/csswg-drafts/issues/11236).
++    let inherent_size = match style_aspect_ratio {
++        Some(ratio) => Size {
++            width: inherent_size.width,
++            height: ((inherent_size.width + box_sizing_adjustment.width) / ratio
++                - box_sizing_adjustment.height)
++                .max(0.0),
++        },
++        None => inherent_size,
++    };
+ 
+     // Percentages are only resolved against zero in the inline axis.
+     // See https://www.w3.org/TR/css-sizing-3/#replaced-percentage-min-contribution
+diff --git a/packages/blitz-dom/src/mutator.rs b/packages/blitz-dom/src/mutator.rs
+index 1a1377d5a..5c8de73fb 100644
+--- a/packages/blitz-dom/src/mutator.rs
++++ b/packages/blitz-dom/src/mutator.rs
+@@ -372,6 +372,10 @@ impl DocumentMutator<'_> {
+             element.id = Some(Atom::from(value))
+         }
+ 
++        if *attr == local_name!("class") {
++            element.classes = crate::node::parse_classes(value);
++        }
++
+         if *attr == local_name!("value") {
+             if let Some(input_data) = element.text_input_data_mut() {
+                 // Update text input value
+@@ -492,6 +496,10 @@ impl DocumentMutator<'_> {
+             element.id = None;
+         }
+ 
++        if name.local == local_name!("class") {
++            element.classes.clear();
++        }
++
+         // As in `set_attribute`: taking one of these away can make the element
+         // unfocusable again.
+         if name.local == local_name!("tabindex")
+diff --git a/packages/blitz-dom/src/node/element.rs b/packages/blitz-dom/src/node/element.rs
+index 7a1bb59c9..107466af7 100644
+--- a/packages/blitz-dom/src/node/element.rs
++++ b/packages/blitz-dom/src/node/element.rs
+@@ -42,6 +42,10 @@ macro_rules! local_names {
+     };
+ }
+ 
++pub(crate) fn parse_classes(value: &str) -> ThinVec<Atom> {
++    value.split_ascii_whitespace().map(Atom::from).collect()
++}
++
+ pub struct ElementData {
+     /// The elements tag name, namespace and prefix
+     pub name: QualName,
+@@ -49,6 +53,12 @@ pub struct ElementData {
+     /// The elements id attribute parsed as an atom (if it has one)
+     pub id: Option<Atom>,
+ 
++    /// The elements class attribute split into atoms (empty if it has none).
++    /// Kept in sync with `attrs` by `ElementData::new` and the mutator's
++    /// `set_attribute`/`remove_attribute`, so selector matching can compare
++    /// atoms instead of re-splitting and re-interning the attribute string.
++    pub classes: ThinVec<Atom>,
++
+     /// The element's attributes
+     pub attrs: Attributes,
+ 
+@@ -300,6 +310,7 @@ impl Clone for ElementData {
+         Self {
+             name: self.name.clone(),
+             id: self.id.clone(),
++            classes: self.classes.clone(),
+             attrs: self.attrs.clone(),
+             is_focussable: self.is_focussable,
+             style_attribute: self.style_attribute.clone(),
+@@ -408,10 +419,16 @@ impl ElementData {
+             .find(|attr| &attr.name.local == "id")
+             .map(|attr| attr.value.as_ref())
+             .map(|value: &str| Atom::from(value));
++        let classes = attrs
++            .iter()
++            .find(|attr| &attr.name.local == "class")
++            .map(|attr| parse_classes(&attr.value))
++            .unwrap_or_default();
+ 
+         let mut data = ElementData {
+             name,
+             id: id_attr_atom,
++            classes,
+             attrs: Attributes::new(attrs),
+             is_focussable: false,
+             style_attribute: Default::default(),
+diff --git a/packages/blitz-dom/src/node/mod.rs b/packages/blitz-dom/src/node/mod.rs
+index bd5b8c4aa..f7a2d23bc 100644
+--- a/packages/blitz-dom/src/node/mod.rs
++++ b/packages/blitz-dom/src/node/mod.rs
+@@ -19,6 +19,7 @@ pub use attributes::{Attribute, Attributes};
+ pub use custom_widget::{
+     ComputedStyles, CustomWidgetData, CustomWidgetStatus, ProxyRenderContext, Widget,
+ };
++pub(crate) use element::parse_classes;
+ pub use element::{
+     CanvasData, DocumentData, ElementData, ImageData, ImageResourceData, LayoutData,
+     ListItemLayout, ListItemLayoutPosition, Marker, RasterImageData, SpecialElementData,
+diff --git a/packages/blitz-dom/src/node/node.rs b/packages/blitz-dom/src/node/node.rs
+index 564f8baa9..683d1c546 100644
+--- a/packages/blitz-dom/src/node/node.rs
++++ b/packages/blitz-dom/src/node/node.rs
+@@ -122,6 +122,10 @@ pub struct Node {
+ 
+     // Flags
+     pub flags: NodeFlags,
++    /// Whether the node's box is out of flow (absolutely positioned and not `display: none`).
++    /// Written by the style traversal from the node's new primary style, so that layout
++    /// passes can test it without reading styles.
++    pub out_of_flow: AtomicBool,
+ 
+     /// Node type (Element, TextNode, etc) specific data.
+     ///
+@@ -418,6 +422,7 @@ impl Node {
+             sc_contribution_cache: RefCell::new(ThinVec::new()),
+ 
+             flags: NodeFlags::empty(),
++            out_of_flow: AtomicBool::new(false),
+             data,
+         }
+     }
+@@ -1263,11 +1268,15 @@ impl Node {
+     /// block's hoisted child list rather than from its parent (`display: none` boxes
+     /// generate no box and are never hoisted).
+     pub fn is_out_of_flow(&self) -> bool {
+-        self.primary_styles().is_some_and(|s| {
+-            let box_style = s.get_box();
+-            stylo_taffy::convert::position(box_style.position).is_out_of_flow()
+-                && stylo_taffy::convert::display(box_style.display) != taffy::Display::None
+-        })
++        self.primary_styles()
++            .is_some_and(|s| style_is_out_of_flow(&s))
++    }
++
++    /// Record in [`Node::out_of_flow`] whether `style` (the node's new primary style)
++    /// makes its box out of flow.
++    pub(crate) fn record_out_of_flow(&self, style: &ComputedValues) {
++        self.out_of_flow
++            .store(style_is_out_of_flow(style), Ordering::Relaxed);
+     }
+ 
+     pub fn text_content(&self) -> String {
+@@ -1402,6 +1411,10 @@ impl Node {
+     ///    - The result of recursively calling child.hit() on the the child element that is
+     ///      positioned at that position if there is one.
+     ///
++    /// Hit testing may run between a DOM mutation and the next `resolve`, so the
++    /// paint lists and inline layouts it walks can still name nodes the mutation
++    /// dropped; those are skipped.
++    ///
+     /// TODO: z-index
+     /// (If multiple children are positioned at the position then a random one will be recursed into)
+     pub fn hit(&self, x: f32, y: f32, scale: f64) -> Option<HitResult> {
+@@ -1556,13 +1569,13 @@ impl Node {
+         if matches_hoisted_content {
+             if let Some(hoisted) = &self.stacking_context {
+                 for hoisted_child in hoisted.pos_z_hoisted_children().rev() {
++                    let Some(child) = self.tree().get(hoisted_child.node_id) else {
++                        continue;
++                    };
+                     let pos = hoisted_child.position(self.tree(), self.id);
+                     let x = x - pos.x;
+                     let y = y - pos.y;
+-                    if let Some(hit) = self
+-                        .with(hoisted_child.node_id)
+-                        .hit_inner(x, y, scale, scrollbar)
+-                    {
++                    if let Some(hit) = child.hit_inner(x, y, scale, scrollbar) {
+                         return Some(hit);
+                     }
+                 }
+@@ -1571,7 +1584,9 @@ impl Node {
+ 
+         // Call `.hit()` on each child in turn. If any return `Some` then return that value. Else return `Some(self.id).
+         for child_id in self.paint_children.borrow().iter().flatten().rev() {
+-            let child = self.with(*child_id);
++            let Some(child) = self.tree().get(*child_id) else {
++                continue;
++            };
+             let child_position = child.taffy_position();
+             let mut child_x = x;
+             let mut child_y = y;
+@@ -1603,13 +1618,13 @@ impl Node {
+         if matches_hoisted_content {
+             if let Some(hoisted) = &self.stacking_context {
+                 for hoisted_child in hoisted.neg_z_hoisted_children().rev() {
++                    let Some(child) = self.tree().get(hoisted_child.node_id) else {
++                        continue;
++                    };
+                     let pos = hoisted_child.position(self.tree(), self.id);
+                     let x = x - pos.x;
+                     let y = y - pos.y;
+-                    if let Some(hit) = self
+-                        .with(hoisted_child.node_id)
+-                        .hit_inner(x, y, scale, scrollbar)
+-                    {
++                    if let Some(hit) = child.hit_inner(x, y, scale, scrollbar) {
+                         return Some(hit);
+                     }
+                 }
+@@ -1628,11 +1643,11 @@ impl Node {
+                     Cluster::from_point_exact(layout, x * scale, y * scale)
+                 {
+                     let node_id = cluster.style().brush.id;
+-                    let text_pointer_events_none = self
+-                        .with(node_id)
+-                        .primary_styles()
+-                        .is_some_and(|style| style.clone_pointer_events() == PointerEvents::None);
+-                    if !text_pointer_events_none {
++                    if let Some(text_node) = self.tree().get(node_id)
++                        && !text_node.primary_styles().is_some_and(|style| {
++                            style.clone_pointer_events() == PointerEvents::None
++                        })
++                    {
+                         return Some(HitResult {
+                             node_id,
+                             x,
+@@ -2051,6 +2066,15 @@ impl std::fmt::Debug for Node {
+     }
+ }
+ 
++/// Whether a box with `style` is out of flow: Taffy positions it from its containing
++/// block's hoisted child list rather than from its parent (`display: none` boxes generate
++/// no box and are never hoisted).
++pub(crate) fn style_is_out_of_flow(style: &ComputedValues) -> bool {
++    let box_style = style.get_box();
++    matches!(box_style.position, Position::Absolute | Position::Fixed)
++        && !box_style.display.is_none()
++}
++
+ #[cfg(test)]
+ mod test {
+     use style_dom::ElementState;
+diff --git a/packages/blitz-dom/src/resolve.rs b/packages/blitz-dom/src/resolve.rs
+index fd85f6b86..5fafe217e 100644
+--- a/packages/blitz-dom/src/resolve.rs
++++ b/packages/blitz-dom/src/resolve.rs
+@@ -26,10 +26,10 @@ use crate::{
+         LayoutPassState,
+         construct::{
+             ConstructionTask, ConstructionTaskData, ConstructionTaskResult,
+-            ConstructionTaskResultData, LayoutChildren, build_inline_layout_into,
+-            collect_layout_children,
++            ConstructionTaskResultData, LayoutChildren, collect_layout_children,
+         },
+         damage::{ALL_DAMAGE, CONSTRUCT_BOX, CONSTRUCT_DESCENDENT, CONSTRUCT_FC},
++        inline::build_inline_layout_into,
+     },
+     node::TextBrush,
+ };
+diff --git a/packages/blitz-dom/src/stylo.rs b/packages/blitz-dom/src/stylo.rs
+index cb4249343..6b5d9d763 100644
+--- a/packages/blitz-dom/src/stylo.rs
++++ b/packages/blitz-dom/src/stylo.rs
+@@ -26,6 +26,13 @@ use style::bloom::each_relevant_element_hash;
+ use style::color::AbsoluteColor;
+ use style::data::{ElementDataMut, ElementDataRef};
+ use style::global_style_data::STYLE_THREAD_POOL;
++
++/// Serialises `Parallel` style traversals across documents. Stylo's per-worker
++/// caches (`StyleSharingCache`, `StyleBloom`) live in native thread-locals that
++/// a traversal borrows mutably for its whole duration, so two traversals in
++/// flight on the shared pool at once panic with `already mutably borrowed`
++/// (<https://github.com/DioxusLabs/blitz/issues/430>).
++static PARALLEL_TRAVERSAL_LOCK: Mutex<()> = Mutex::new(());
+ use style::invalidation::element::restyle_hints::RestyleHint;
+ use style::properties::ComputedValues;
+ use style::properties::{Importance, PropertyDeclaration};
+@@ -147,8 +154,13 @@ impl crate::document::BaseDocument {
+             // Style the elements, resolving their data
+             let mut traverser = RecalcStyle::new(context);
+             // `Sequential` bypasses Stylo's global pool. See `StyleThreading`.
+-            let pool_guard = matches!(self.style_threading, StyleThreading::Parallel)
+-                .then(|| STYLE_THREAD_POOL.pool());
++            let parallel = matches!(self.style_threading, StyleThreading::Parallel);
++            let _traversal_lock = parallel.then(|| {
++                PARALLEL_TRAVERSAL_LOCK
++                    .lock()
++                    .unwrap_or_else(|e| e.into_inner())
++            });
++            let pool_guard = parallel.then(|| STYLE_THREAD_POOL.pool());
+             let rayon_pool = pool_guard.as_ref().and_then(|g| g.as_ref());
+             style::driver::traverse_dom(&traverser, token, rayon_pool);
+             nodes_needing_style_image_flush =
+@@ -571,18 +583,11 @@ impl selectors::Element for BlitzNode<'_> {
+         search_name: &<Self::Impl as selectors::SelectorImpl>::Identifier,
+         case_sensitivity: selectors::attr::CaseSensitivity,
+     ) -> bool {
+-        let class_attr = self.data.attr(local_name!("class"));
+-        if let Some(class_attr) = class_attr {
+-            // split the class attribute
+-            for pheme in class_attr.split_ascii_whitespace() {
+-                let atom = Atom::from(pheme);
+-                if case_sensitivity.eq_atom(&atom, search_name) {
+-                    return true;
+-                }
+-            }
+-        }
+-
+-        false
++        self.element_data().is_some_and(|data| {
++            data.classes
++                .iter()
++                .any(|class| case_sensitivity.eq_atom(class, search_name))
++        })
+     }
+ 
+     fn imported_part(
+@@ -689,12 +694,9 @@ impl<'a> TElement for BlitzNode<'a> {
+     where
+         F: FnMut(&style::values::AtomIdent),
+     {
+-        let class_attr = self.data.attr(local_name!("class"));
+-        if let Some(class_attr) = class_attr {
+-            // split the class attribute
+-            for pheme in class_attr.split_ascii_whitespace() {
+-                let atom = Atom::from(pheme); // interns the string
+-                callback(AtomIdent::cast(&atom));
++        if let Some(data) = self.element_data() {
++            for class in &data.classes {
++                callback(AtomIdent::cast(class));
+             }
+         }
+     }
+@@ -705,7 +707,7 @@ impl<'a> TElement for BlitzNode<'a> {
+     {
+         if let Some(attrs) = self.data.attrs() {
+             for attr in attrs.iter() {
+-                callback(&GenericAtomIdent(attr.name.local.clone()));
++                callback(GenericAtomIdent::cast(&attr.name.local));
+             }
+         }
+     }
+@@ -1337,6 +1339,9 @@ impl<'dom> DomTraversal<BlitzNode<'dom>> for RecalcStyle<'_> {
+             recalc_style_at(self, context, el, &mut data, note_child);
+ 
+             sync_pseudo_element_styles(el, &data, &self.nodes_needing_style_image_flush);
++            if let Some(style) = data.styles.get_primary() {
++                el.record_out_of_flow(style);
++            }
+ 
+             if !data.damage.is_empty() {
+                 // Mark the ancestor chain so that the damage propagation pass
+@@ -1451,6 +1456,7 @@ fn sync_pseudo_element_styles(
+                     .push(pe_node_id);
+             }
+         }
++        pe_node.record_out_of_flow(&pe_style);
+         pe_data.styles.primary = Some(pe_style);
+         pe_data.set_restyled();
+     }
+diff --git a/packages/dioxus-native/src/lib.rs b/packages/dioxus-native/src/lib.rs
+index eb8d0b7ff..4c806d2a1 100644
+--- a/packages/dioxus-native/src/lib.rs
++++ b/packages/dioxus-native/src/lib.rs
+@@ -60,6 +60,7 @@ pub use {
+     wgpu_context::DeviceHandle,
+ };
+ 
++use blitz_dom::StyleThreading;
+ pub use blitz_dom::{FontContext, Widget, build_single_font_ctx};
+ pub use config::Config;
+ pub use event_handlers::WinitEventHandlerId;
+@@ -218,6 +219,7 @@ pub fn launch_cfg_with_props<P: Clone + 'static, M: 'static>(
+             html_parser_provider,
+             navigation_provider,
+             font_ctx: config.font_ctx,
++            style_threading: StyleThreading::Parallel,
+             ..Default::default()
+         },
+     );
+diff --git a/wpt/runner/Cargo.toml b/wpt/runner/Cargo.toml
+index 337c23ede..ffcf046ac 100644
+--- a/wpt/runner/Cargo.toml
++++ b/wpt/runner/Cargo.toml
+@@ -12,6 +12,7 @@ gpu = ["dep:anyrender_vello"]
+ cpu = ["dep:anyrender_vello_cpu"]
+ 
+ [dependencies]
++mimalloc = "0.1.48"
+ blitz-dom = { workspace = true, features = ["svg", "floats", "system-fonts", "woff", "complex-scripts", "text-transform-icu", "writing-mode"] }
+ blitz-html = {workspace = true }
+ blitz-vibey-script = { workspace = true }
+diff --git a/wpt/runner/src/main.rs b/wpt/runner/src/main.rs
+index e11dad02e..b7633b036 100644
+--- a/wpt/runner/src/main.rs
++++ b/wpt/runner/src/main.rs
+@@ -1,3 +1,6 @@
++#[global_allocator]
++static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
++
+ use anyrender::ImageRenderer as _;
+ #[cfg(feature = "gpu")]
+ use anyrender_vello::VelloImageRenderer;
+diff --git a/wpt/runner/src/test_runners/attr_test.rs b/wpt/runner/src/test_runners/attr_test.rs
+index 5b4e81a9c..84f162e16 100644
+--- a/wpt/runner/src/test_runners/attr_test.rs
++++ b/wpt/runner/src/test_runners/attr_test.rs
+@@ -1,6 +1,6 @@
+ use std::time::Duration;
+ 
+-use blitz_dom::{BaseDocument, Document as _, Node};
++use blitz_dom::{BaseDocument, Document as _, Node, NodeId};
+ use log::warn;
+ use style_traits::ToCss;
+ 
+@@ -94,8 +94,7 @@ fn check_layout(
+         .map(|(idx, root_id)| {
+             let mut errors = Vec::new();
+             document.iter_subtree_mut(root_id, |node_id, doc| {
+-                let node = doc.get_node(node_id).unwrap();
+-                errors.extend_from_slice(&check_node_layout(node));
++                errors.extend_from_slice(&check_node_layout(doc, node_id));
+             });
+ 
+             let has_error = !errors.is_empty();
+@@ -133,11 +132,19 @@ fn check_layout(
+     (status, subtest_counts, subtest_results)
+ }
+ 
+-pub fn check_node_layout(node: &Node) -> Vec<String> {
++pub fn check_node_layout(doc: &BaseDocument, node_id: NodeId) -> Vec<String> {
++    let node = doc.get_node(node_id).unwrap();
+     if node.element_data().is_none() {
+         return Vec::new();
+     }
+     let layout = node.final_layout();
++    // Width and height are checked against `offsetWidth`/`offsetHeight`, which round the
++    // unrounded physical size rather than the pixel-snapped edges
++    let (offset_width, offset_height) = doc
++        .offset_rect(node_id)
++        .map_or((layout.size.width, layout.size.height), |rect| {
++            (rect.width.round() as f32, rect.height.round() as f32)
++        });
+ 
+     let client_width =
+         layout.size.width - layout.border.left - layout.border.right - layout.scrollbar_size.width;
+@@ -154,8 +161,8 @@ pub fn check_node_layout(node: &Node) -> Vec<String> {
+                     let name = attr.name.local.as_ref();
+                     let value = &attr.value;
+                     match name {
+-                        "data-expected-width" => check_attr(name, value, layout.size.width),
+-                        "data-expected-height" => check_attr(name, value, layout.size.height),
++                        "data-expected-width" => check_attr(name, value, offset_width),
++                        "data-expected-height" => check_attr(name, value, offset_height),
+                         "data-expected-padding-top" => check_attr(name, value, layout.padding.top),
+                         "data-expected-padding-bottom" => {
+                             check_attr(name, value, layout.padding.bottom)

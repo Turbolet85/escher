@@ -1,0 +1,7 @@
+{
+ "coverage": {"line": 68.73, "branch": null},
+ "source": "coverage.out:2495 TOTAL row, Lines Cover column (47443 lines, 14837 missed); Branches column '-' (not collected) -> null",
+ "command": "bash .github/scripts/ci-leg.sh coverage (cargo llvm-cov --workspace --locked --ignore-filename-regex 'keyboard_compat\\.rs$' --lcov --output-path target/coverage/lcov.info && cargo llvm-cov report --workspace --locked --ignore-filename-regex 'keyboard_compat\\.rs$' && coverage_floor.py; TOTAL row, Lines Cover column; exit 0)",
+ "exit": 0,
+ "baseline_line": 68.67
+}

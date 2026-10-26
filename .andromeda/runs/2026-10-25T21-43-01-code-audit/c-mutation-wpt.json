@@ -1,0 +1,62 @@
+{
+ "unit": "wpt",
+ "host": "x86_64-unknown-linux-gnu",
+ "run": {
+  "unit": "wpt",
+  "scope": "in-diff",
+  "planned": 7,
+  "command": "CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants TMPDIR=target/mutants-tmp taskset -c 12-15,28-31 cargo mutants -p wpt --in-diff .andromeda/runs/2026-10-25T21-43-01-code-audit/window.diff --test-tool nextest -j 2 --timeout 600 --output .andromeda/runs/2026-10-25T21-43-01-code-audit/mutants-wpt",
+  "exit": 2,
+  "wall_s": 90,
+  "cap_s": 1800,
+  "stopped": null
+ },
+ "complete": true,
+ "baseline_outcome": "Success",
+ "counts": {
+  "mutants": 7,
+  "caught": 0,
+  "missed": 5,
+  "not_measured": 0,
+  "timeout": 0,
+  "unviable": 2
+ },
+ "tool_tally": {
+  "total_mutants": 7,
+  "caught": 0,
+  "missed": 5,
+  "timeout": 0,
+  "unviable": 2,
+  "success": 0
+ },
+ "survivors": [
+  [
+   "wpt/runner/src/test_runners/attr_test.rs:136:5",
+   "replace check_node_layout -> Vec<String> with vec![]"
+  ],
+  [
+   "wpt/runner/src/test_runners/attr_test.rs:136:5",
+   "replace check_node_layout -> Vec<String> with vec![String::new()]"
+  ],
+  [
+   "wpt/runner/src/test_runners/attr_test.rs:136:5",
+   "replace check_node_layout -> Vec<String> with vec![\"xyzzy\".into()]"
+  ],
+  [
+   "wpt/runner/src/test_runners/attr_test.rs:164:25",
+   "delete match arm \"data-expected-width\" in check_node_layout"
+  ],
+  [
+   "wpt/runner/src/test_runners/attr_test.rs:165:25",
+   "delete match arm \"data-expected-height\" in check_node_layout"
+  ]
+ ],
+ "not_measured": [],
+ "tested": 7,
+ "listed": 7,
+ "wall_s": 89,
+ "timeout_sites": [],
+ "state": "complete",
+ "score": 0.0,
+ "unit_state": "complete 7/7 (total_mutants/mutants.json 7/7)"
+}

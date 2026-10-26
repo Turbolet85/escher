@@ -1,0 +1,117 @@
+{
+ "epoch": "Epoch 5 - Polish & ship",
+ "version": "escher-0.2.0",
+ "records_in_epoch": 146,
+ "records_after_retractions": 146,
+ "step": 70,
+ "friction": 76,
+ "retracted_in_epoch": [],
+ "clause_retracted_in_epoch": {},
+ "unparseable": 0,
+ "malformed_ts": [],
+ "coverage": {
+  "(session starts)": {
+   "new-session": 5
+  },
+  "2026-10-24-upstream-sync-polish-and-ship": {
+   "phase": {
+    "got": 5,
+    "expected": 5
+   },
+   "implement": {
+    "got": 3,
+    "expected": 3
+   },
+   "wrap-session": {
+    "got": 5,
+    "expected": 5
+   }
+  },
+  "2026-10-24-stand-requirement-sweep": {
+   "phase": {
+    "got": 5,
+    "expected": 5
+   },
+   "implement": {
+    "got": 3,
+    "expected": 3
+   },
+   "wrap-session": {
+    "got": 5,
+    "expected": 5
+   }
+  },
+  "2026-10-24-a11y-re-read": {
+   "phase": {
+    "got": 5,
+    "expected": 5
+   },
+   "implement": {
+    "got": 3,
+    "expected": 3
+   },
+   "wrap-session": {
+    "got": 5,
+    "expected": 5
+   }
+  },
+  "2026-10-25-capability-statement": {
+   "phase": {
+    "got": 5,
+    "expected": 5
+   },
+   "implement": {
+    "got": 3,
+    "expected": 3
+   },
+   "wrap-session": {
+    "got": 5,
+    "expected": 5
+   }
+  },
+  "2026-10-25-cold-agent-bar": {
+   "phase": {
+    "got": 5,
+    "expected": 5
+   },
+   "implement": {
+    "got": 3,
+    "expected": 3
+   },
+   "wrap-session": {
+    "got": 5,
+    "expected": 5
+   }
+  }
+ },
+ "untyped_rate_per_step": {
+  "phase/distill": "4/23",
+  "phase/research": "4/7",
+  "phase/plan": "1/3",
+  "wrap-session/report": "1/3",
+  "wrap-session/reconcile": "3/25",
+  "wrap-session/curation": "1/3",
+  "new-session/orientation": "0/1",
+  "phase/validate": "2/3",
+  "implement/code": "1/4",
+  "phase/take-up": "0/1",
+  "implement/fix-loop": "1/2",
+  "wrap-session/route-resolve": "0/1"
+ },
+ "problem_fact_fill": "19/70",
+ "id_fill": "146/146",
+ "signal_line": "guard-refused 43 over 70 step records · exact-hit 5 over 5 curation records",
+ "signal_odd": [],
+ "non_ok_outcomes": {
+  "phase/distill:halted-resolved": 3,
+  "wrap-session/reconcile:halted-resolved": 4,
+  "wrap-session/route-resolve:halted-resolved": 1
+ },
+ "unresolvable_retractions_whole_ledger": [
+  [
+   "2026-10-07T04:21:25Z-a",
+   "unknown-id-or-scope",
+   "{\"id\": null, \"note\": \"in step record 2026-10-07T04:21:04Z-a (a step record, so n"
+  ]
+ ]
+}

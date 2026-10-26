@@ -1,0 +1,356 @@
+{
+ "baseline": {
+  "sha": "cbe90e22413191bb5d38504c62a6ebc93b4361f6",
+  "epoch": "Epoch 4 — Visual lint and real-app readiness",
+  "ts": "2026-10-20T21:17:28Z"
+ },
+ "baseline_of_baseline": {
+  "sha": "7eff48f7aa9aad1d3d8dfa072999d1ed275a97db",
+  "epoch": "Epoch 3 — Determinism and traces"
+ },
+ "tool_version_breaks": [],
+ "proposals": [
+  {
+   "check": "monotonic",
+   "metric": "complexity.over_ceiling",
+   "values": [
+    84,
+    87,
+    88
+   ],
+   "epochs": [
+    "Epoch 3 — Determinism and traces",
+    "Epoch 4 — Visual lint and real-app readiness",
+    "Epoch 5 — Polish & ship"
+   ]
+  }
+ ],
+ "informational": [
+  {
+   "check": "top-N entrants",
+   "list": "complexity.top",
+   "entrants": [
+    [
+     "compute_inline_layout_inner",
+     "packages/blitz-dom/src/layout/inline/layout.rs:230",
+     139.0
+    ],
+    [
+     "build_inline_layout_into",
+     "packages/blitz-dom/src/layout/inline/build.rs:23",
+     58.0
+    ],
+    [
+     "compute_replaced_layout",
+     "packages/blitz-dom/src/layout/replaced.rs:52",
+     56.0
+    ]
+   ]
+  },
+  {
+   "check": "top-N entrants",
+   "list": "sizes.top",
+   "entrants": [
+    [
+     "tests/blitz-tests/tests/stand_requirement_sweep.rs",
+     1007
+    ],
+    [
+     "packages/blitz-dom/src/layout/inline/layout.rs",
+     927
+    ],
+    [
+     "packages/blitz-dom/src/node/element.rs",
+     927
+    ]
+   ]
+  },
+  {
+   "check": "top-N entrants",
+   "list": "duplication.top",
+   "entrants": [
+    [
+     "packages/blitz-dom/src/layout/inline/layout.rs",
+     "packages/blitz-dom/src/layout/inline/layout.rs",
+     29
+    ]
+   ]
+  },
+  {
+   "check": "top-N entrants",
+   "list": "hotspots",
+   "entrants": [
+    [
+     "packages/blitz-dom/src/layout/inline/layout.rs",
+     139.0
+    ],
+    [
+     "packages/blitz-dom/src/layout/mod.rs",
+     68.0
+    ],
+    [
+     "packages/blitz-dom/src/layout/inline/build.rs",
+     58.0
+    ],
+    [
+     "packages/blitz-dom/src/layout/replaced.rs",
+     56.0
+    ],
+    [
+     "apps/browser/src/toolbar.rs",
+     41.0
+    ],
+    [
+     "packages/blitz-dom/src/layout/construct.rs",
+     37.0
+    ],
+    [
+     "wpt/runner/src/main.rs",
+     37.0
+    ]
+   ]
+  },
+  {
+   "check": "mutation-drop",
+   "unit": "blitz-dom",
+   "was": 100.0,
+   "was_epoch": "Epoch 4 — Visual lint and real-app readiness",
+   "was_scope": [
+    "in-diff",
+    ".andromeda/runs/2026-10-20T13-44-30-code-audit/window.diff",
+    180
+   ],
+   "now": 100.0,
+   "now_scope": [
+    "in-diff",
+    ".andromeda/runs/2026-10-25T21-43-01-code-audit/window.diff",
+    70
+   ],
+   "note": "not comparable"
+  },
+  {
+   "check": "mutation",
+   "unit": "wpt",
+   "note": "no prior score — first scored at this boundary",
+   "now": 0.0,
+   "scope": [
+    "in-diff",
+    ".andromeda/runs/2026-10-25T21-43-01-code-audit/window.diff",
+    7
+   ]
+  },
+  {
+   "check": "mutation",
+   "unit": "seven_guis",
+   "note": "no score: unviable-dominant 12/15"
+  }
+ ],
+ "below": [
+  {
+   "check": "new-cycle",
+   "metric": "graph.cycles",
+   "was": 0,
+   "now": 0
+  },
+  {
+   "check": "duplication-up",
+   "metric": "duplication.pct",
+   "was": 3.76,
+   "now": 3.8,
+   "delta": 0.04
+  },
+  {
+   "check": "complexity-creep",
+   "metric": "complexity.over_ceiling",
+   "was": 87,
+   "now": 88,
+   "delta": 1
+  },
+  {
+   "check": "dead-growth",
+   "metric": "dead.zero_ref_candidates",
+   "was": 115,
+   "now": 115,
+   "delta": 0
+  },
+  {
+   "check": "coverage-drop",
+   "metric": "coverage.line",
+   "was": 68.67,
+   "now": 68.73,
+   "delta": 0.06
+  },
+  {
+   "check": "movement",
+   "metric": "sizes.file_max",
+   "was": 2784,
+   "now": 2784
+  },
+  {
+   "check": "movement",
+   "metric": "sizes.over_800",
+   "was": 17,
+   "now": 18
+  },
+  {
+   "check": "movement",
+   "metric": "sizes.file_p50",
+   "was": 143,
+   "now": 144
+  },
+  {
+   "check": "movement",
+   "metric": "sizes.file_p90",
+   "was": 556,
+   "now": 576
+  },
+  {
+   "check": "movement",
+   "metric": "complexity.cyclomatic_p90",
+   "was": 5.0,
+   "now": 5.0
+  },
+  {
+   "check": "movement",
+   "metric": "complexity.cognitive_p90",
+   "was": 3.0,
+   "now": 3.0
+  },
+  {
+   "check": "movement",
+   "metric": "graph.cross_unit_edges",
+   "was": 97,
+   "now": 97
+  },
+  {
+   "check": "movement",
+   "metric": "churn.pct",
+   "was": 13.7,
+   "now": 8.2
+  },
+  {
+   "check": "movement",
+   "metric": "churn.files_churned",
+   "was": 21,
+   "now": 3
+  },
+  {
+   "check": "monotonic",
+   "metric": "duplication.pct",
+   "values": [
+    3.88,
+    3.76,
+    3.8
+   ],
+   "epochs": [
+    "Epoch 3 — Determinism and traces",
+    "Epoch 4 — Visual lint and real-app readiness",
+    "Epoch 5 — Polish & ship"
+   ]
+  },
+  {
+   "check": "monotonic",
+   "metric": "dead.zero_ref_candidates",
+   "values": [
+    116,
+    115,
+    115
+   ],
+   "epochs": [
+    "Epoch 3 — Determinism and traces",
+    "Epoch 4 — Visual lint and real-app readiness",
+    "Epoch 5 — Polish & ship"
+   ]
+  },
+  {
+   "check": "monotonic",
+   "metric": "sizes.file_max",
+   "values": [
+    2680,
+    2784,
+    2784
+   ],
+   "epochs": [
+    "Epoch 3 — Determinism and traces",
+    "Epoch 4 — Visual lint and real-app readiness",
+    "Epoch 5 — Polish & ship"
+   ]
+  },
+  {
+   "check": "monotonic",
+   "metric": "sizes.over_800",
+   "values": [
+    17,
+    17,
+    18
+   ],
+   "epochs": [
+    "Epoch 3 — Determinism and traces",
+    "Epoch 4 — Visual lint and real-app readiness",
+    "Epoch 5 — Polish & ship"
+   ]
+  },
+  {
+   "check": "monotonic",
+   "metric": "coverage.line",
+   "values": [
+    68.42,
+    68.67,
+    68.73
+   ],
+   "epochs": [
+    "Epoch 3 — Determinism and traces",
+    "Epoch 4 — Visual lint and real-app readiness",
+    "Epoch 5 — Polish & ship"
+   ]
+  },
+  {
+   "check": "count-under-ratio",
+   "note": "ratio rose with the counts (not this rule)",
+   "clones": [
+    410,
+    417
+   ],
+   "duplicated_lines": [
+    4632,
+    4746
+   ],
+   "pct": [
+    3.76,
+    3.8
+   ],
+   "population_rel": 1.55,
+   "split": [
+    {
+     "src": {
+      "pairs": 181,
+      "lines": 1893
+     },
+     "test": {
+      "pairs": 218,
+      "lines": 2558
+     },
+     "mixed": {
+      "pairs": 11,
+      "lines": 181
+     }
+    },
+    {
+     "src": {
+      "pairs": 181,
+      "lines": 1893
+     },
+     "test": {
+      "pairs": 226,
+      "lines": 2678
+     },
+     "mixed": {
+      "pairs": 10,
+      "lines": 175
+     }
+    }
+   ]
+  }
+ ],
+ "ledger_records": 11
+}

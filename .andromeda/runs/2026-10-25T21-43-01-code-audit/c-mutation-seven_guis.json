@@ -1,0 +1,40 @@
+{
+ "unit": "seven_guis",
+ "host": "x86_64-unknown-linux-gnu",
+ "run": {
+  "unit": "seven_guis",
+  "scope": "in-diff",
+  "planned": 15,
+  "command": "CARGO_BUILD_JOBS=4 NEXTEST_PROFILE=mutants TMPDIR=target/mutants-tmp taskset -c 12-15,28-31 cargo mutants -p seven_guis --in-diff .andromeda/runs/2026-10-25T21-43-01-code-audit/window.diff --test-tool nextest --test-package=seven_guis,blitz-tests,escher-driver --cargo-test-arg=--lib --cargo-test-arg=--test=accessibility_active_descendant_unread --cargo-test-arg=--test=accessibility_description --cargo-test-arg=--test=accessibility_label --cargo-test-arg=--test=accessibility_merged_states --cargo-test-arg=--test=cli_commands --cargo-test-arg=--test=cli_flow --cargo-test-arg=--test=focus_redraw --cargo-test-arg=--test=focus_within --cargo-test-arg=--test=font_face_sniffed_source --cargo-test-arg=--test=host_binary --cargo-test-arg=--test=host_log --cargo-test-arg=--test=host_timer --cargo-test-arg=--test=inert_subtree --cargo-test-arg=--test=mcp_log --cargo-test-arg=--test=mcp_server --cargo-test-arg=--test=password_caret_click --cargo-test-arg=--test=password_painted_masked --cargo-test-arg=--test=recording --cargo-test-arg=--test=select_interaction --cargo-test-arg=--test=stand_accessibility_ids --cargo-test-arg=--test=stand_act_diff --cargo-test-arg=--test=stand_act_disabled --cargo-test-arg=--test=stand_act_filled --cargo-test-arg=--test=stand_act_ids --cargo-test-arg=--test=stand_act_keys --cargo-test-arg=--test=stand_act_obstructed --cargo-test-arg=--test=stand_act_range --cargo-test-arg=--test=stand_act_refused --cargo-test-arg=--test=stand_act_screenshot --cargo-test-arg=--test=stand_act_scroll --cargo-test-arg=--test=stand_act_select --cargo-test-arg=--test=stand_act_spans --cargo-test-arg=--test=stand_act_states --cargo-test-arg=--test=stand_act_timer --cargo-test-arg=--test=stand_act_transformed --cargo-test-arg=--test=stand_actionable_keys --cargo-test-arg=--test=stand_boot --cargo-test-arg=--test=stand_cells_served --cargo-test-arg=--test=stand_contrast --cargo-test-arg=--test=stand_counter --cargo-test-arg=--test=stand_crud --cargo-test-arg=--test=stand_diff --cargo-test-arg=--test=stand_element_ids --cargo-test-arg=--test=stand_flight_booker --cargo-test-arg=--test=stand_id_edits --cargo-test-arg=--test=stand_id_persistence --cargo-test-arg=--test=stand_keyboard --cargo-test-arg=--test=stand_lint --cargo-test-arg=--test=stand_load_page --cargo-test-arg=--test=stand_load_wait --cargo-test-arg=--test=stand_mcp_masked --cargo-test-arg=--test=stand_mcp_tools --cargo-test-arg=--test=stand_non_lean_tasks --cargo-test-arg=--test=stand_replay --cargo-test-arg=--test=stand_requirement_sweep --cargo-test-arg=--test=stand_screenshot_repeat --cargo-test-arg=--test=stand_session_fresh --cargo-test-arg=--test=stand_session_ids --cargo-test-arg=--test=stand_session_lifecycle --cargo-test-arg=--test=stand_session_quiet --cargo-test-arg=--test=stand_session_recording --cargo-test-arg=--test=stand_session_state --cargo-test-arg=--test=stand_settle --cargo-test-arg=--test=stand_snapshot --cargo-test-arg=--test=stand_snapshot_parts --cargo-test-arg=--test=stand_snapshot_state --cargo-test-arg=--test=stand_snapshot_text --cargo-test-arg=--test=stand_timer --cargo-test-arg=--test=stand_virtual_clock --cargo-test-arg=--test=telemetry_scrub --cargo-test-arg=--test=text_extent --cargo-test-arg=--test=transformed_client_rect --cargo-test-arg=--test=virtual_clock_engine --baseline=skip -j 2 --timeout 600 --output .andromeda/runs/2026-10-25T21-43-01-code-audit/mutants-seven_guis",
+  "exit": 0,
+  "wall_s": 300,
+  "cap_s": 1800,
+  "stopped": null
+ },
+ "complete": true,
+ "baseline_outcome": "skipped (hand pass)",
+ "counts": {
+  "mutants": 15,
+  "caught": 3,
+  "missed": 0,
+  "not_measured": 0,
+  "timeout": 0,
+  "unviable": 12
+ },
+ "tool_tally": {
+  "total_mutants": 15,
+  "caught": 3,
+  "missed": 0,
+  "timeout": 0,
+  "unviable": 12,
+  "success": 0
+ },
+ "survivors": [],
+ "not_measured": [],
+ "tested": 15,
+ "listed": 15,
+ "wall_s": 297,
+ "timeout_sites": [],
+ "state": "unviable-dominant",
+ "unit_state": "unviable-dominant"
+}

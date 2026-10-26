@@ -1,0 +1,39 @@
+health: {"records_in_epoch": 146, "step": 70, "friction": 76, "problem_fact_fill": "19/70", "id_fill": "146/146", "signal_line": "guard-refused 43 over 70 step records · exact-hit 5 over 5 curation records", "signal_odd": [], "non_ok_outcomes": {"phase/distill:halted-resolved": 3, "wrap-session/reconcile:halted-resolved": 4, "wrap-session/route-resolve:halted-resolved": 1}, "retracted_in_epoch": [], "clause_retracted_in_epoch": {}}
+untyped rate: {'phase/distill': '4/23', 'phase/research': '4/7', 'phase/plan': '1/3', 'wrap-session/report': '1/3', 'wrap-session/reconcile': '3/25', 'wrap-session/curation': '1/3', 'new-session/orientation': '0/1', 'phase/validate': '2/3', 'implement/code': '1/4', 'phase/take-up': '0/1', 'implement/fix-loop': '1/2', 'wrap-session/route-resolve': '0/1'}
+typed groups: 34 above: 11
+  * phase/distill/UNTYPED n=4 w=39 rate=4/5 halt=False chunks=4
+  * wrap-session/reconcile/contract.in-pass-correction n=6 w=16 rate=6/5 halt=False chunks=5
+  * phase/distill/retry.distiller-respawn n=4 w=17 rate=4/5 halt=False chunks=2
+  * wrap-session/reconcile/retry.detector-respawn n=4 w=16 rate=4/5 halt=True chunks=4
+  * */*/contract.token-proxy-check n=5 w=12 rate=None halt=True chunks=4
+  * */*/contract.grammar-irregularity n=6 w=6 rate=None halt=False chunks=1
+  * phase/research/UNTYPED n=4 w=8 rate=4/5 halt=True chunks=3
+  * wrap-session/reconcile/contract.false-positive-proposal n=5 w=6 rate=5/5 halt=False chunks=3
+  * */*/contract.structural-blind-spot n=4 w=6 rate=None halt=False chunks=2
+  * */*/contract.skill-reference-drift n=2 w=10 rate=None halt=True chunks=2
+  * wrap-session/reconcile/UNTYPED n=3 w=3 rate=3/5 halt=False chunks=3
+    phase/validate/UNTYPED n=2 w=4 rate=2/5 halt=False chunks=2
+    */*/contract.narrow-basis-claim n=2 w=4 rate=None halt=False chunks=2
+    */*/recall.corpus-recurrence n=2 w=4 rate=None halt=False chunks=2
+    wrap-session/reconcile/contract.cascade-miss n=2 w=4 rate=2/5 halt=False chunks=2
+    implement/code/input.plan-step-ambiguous n=2 w=3 rate=2/5 halt=False chunks=2
+    */*/tooling.host-shell n=1 w=6 rate=None halt=True chunks=1
+    wrap-session/route-resolve/contract.no-sanctioned-channel n=1 w=6 rate=1/5 halt=True chunks=1
+    wrap-session/reconcile/input.report-insufficient n=2 w=2 rate=2/5 halt=False chunks=2
+    phase/validate/contract.mechanical-check n=1 w=4 rate=1/5 halt=False chunks=1
+    implement/code/input.research-files-wrong n=1 w=4 rate=1/5 halt=False chunks=1
+    phase/plan/UNTYPED n=1 w=3 rate=1/5 halt=False chunks=1
+    implement/fix-loop/UNTYPED n=1 w=3 rate=1/5 halt=False chunks=1
+    phase/plan/retry.synthesis-rework n=1 w=2 rate=1/5 halt=False chunks=1
+    wrap-session/curation/UNTYPED n=1 w=2 rate=1/5 halt=False chunks=1
+    wrap-session/report/UNTYPED n=1 w=2 rate=1/5 halt=False chunks=1
+    implement/code/UNTYPED n=1 w=2 rate=1/5 halt=False chunks=1
+    implement/fix-loop/contract.test-expectation n=1 w=2 rate=1/5 halt=False chunks=1
+    new-session/orientation/input.handoff-git-mismatch n=1 w=1 rate=1/5 halt=False chunks=1
+    phase/plan/input.research-thin n=1 w=1 rate=1/5 halt=False chunks=1
+    phase/distill/contract.extract-format n=1 w=1 rate=1/5 halt=False chunks=1
+    phase/take-up/input.working-entry-thin n=1 w=1 rate=1/5 halt=False chunks=1
+    */*/contract.premise-falsified n=1 w=1 rate=None halt=False chunks=1
+    phase/research/input.extract-signal-gap n=1 w=1 rate=1/5 halt=False chunks=1
+chain links: 24 shapes: [('wrap-session/report →report→ wrap-session/reconcile', 3), ('phase/research →research→ phase/plan', 1), ('phase/validate →plan→ implement/code', 1), ('phase/distill →extracts→ phase/research', 1), ('phase/plan →plan→ implement/code', 1), ('phase/research →research→ implement/code', 1), ('phase/plan →plan→ phase/validate', 1), ('phase/research →research→ implement/fix-loop', 1)]
+untyped: 18 problem facts: 27 Counter({'workaround': 13, 'overridden': 5, 'deferred': 5, 'unresolved': 2, 'removed-cause': 2})

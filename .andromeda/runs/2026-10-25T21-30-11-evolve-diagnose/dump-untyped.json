@@ -1,0 +1,196 @@
+[
+ {
+  "id": "2026-10-24T10:42:33Z-c",
+  "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+  "at": "phase/distill",
+  "type": null,
+  "what": "[QUOTES_VERBATIM] failed on 14 of 51 category readers and 14 of 19 strong readers: quotes dropped a provenance parenthetical or clause from the middle of a run; each re-spawned once with the check named and passed; overseer1 recorded the cause as F332",
+  "impact": {
+   "retries": 28
+  },
+  "evidence": ".andromeda/runs/2026-10-24T09-31-30-phase"
+ },
+ {
+  "id": "2026-10-24T11:10:12Z-b",
+  "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+  "at": "phase/research",
+  "type": null,
+  "what": "a trial merge in a throwaway git worktree wrote rerere resolutions into the main repository's shared rr-cache (rerere enabled in the user's global git config), a side effect on the real repo the trial was meant to avoid; removal refused by the host guard's recursive-rm deny",
+  "impact": {
+   "extra_reads": 2
+  },
+  "evidence": "escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/research.md §The trial takes"
+ },
+ {
+  "id": "2026-10-24T11:10:12Z-c",
+  "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+  "at": "phase/research",
+  "type": null,
+  "what": "a bare cd into the trial worktree inside a compound command persisted the session cwd there (the harness then reported the session as a worktree); restored by a cd to the project root before any andromeda tool ran",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": null
+ },
+ {
+  "id": "2026-10-24T11:25:43Z-c",
+  "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+  "at": "phase/plan",
+  "type": null,
+  "what": "two hand-made slips caught by P4's entry validation: a lock-edge count written at P3 as twelve windows-sys edges where the measured list names eleven (in research.md, scope.md and the already-snapped inputs#I3, so the correction stands beside the immutable snapshot), and a full sha typed from memory in a validation probe, which read git's error line as a count",
+  "impact": {
+   "retries": 2
+  },
+  "evidence": "escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/research.md §Scope"
+ },
+ {
+  "id": "2026-10-24T14:01:05Z-b",
+  "chunk": "2026-10-24-upstream-sync-polish-and-ship",
+  "at": "wrap-session/curation",
+  "type": null,
+  "what": "curation.md first logged three guard-held duplicates as recurrence-despite-learning; the curation playbook read at this checkpoint says a guard refusal that cost one re-issue is no recurrence, so the log was corrected before commit",
+  "impact": {
+   "iterations": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-24T12-21-29-wrap/curation.md"
+ },
+ {
+  "id": "2026-10-24T16:05:12Z-d",
+  "chunk": "2026-10-24-stand-requirement-sweep",
+  "at": "phase/distill",
+  "type": null,
+  "what": "two strong-reader retries stepped outside their prompt's form without failing a named check: arch g6 wrote its extract then edited it twice (the prompt says ONE Write call); tests g4 read files outside its read list (an adopt run's slices.md, fixtures/mod.rs, stand.rs) to resolve a slice reference",
+  "impact": {
+   "extra_reads": 2
+  },
+  "evidence": null
+ },
+ {
+  "id": "2026-10-24T16:10:58Z-b",
+  "chunk": "2026-10-24-stand-requirement-sweep",
+  "at": "phase/research",
+  "type": null,
+  "what": "the session's context reached 85% during P3 (CONTEXT ALARM); the forced-sample P2 put 164 subagent notifications and their spawn prompts in the orchestrator window, so the take-up stops after P3 and resumes at P4 through Setup 3(c)",
+  "impact": {
+   "halted": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-24T15-06-04-phase"
+ },
+ {
+  "id": "2026-10-24T16:42:33Z-c",
+  "chunk": "2026-10-24-stand-requirement-sweep",
+  "at": "phase/validate",
+  "type": null,
+  "what": "relay-2.md stamped the operator's word 'about 16:43Z' by estimate before the clock was read (16:42:07Z), and it was snapped as inputs#I2 with that stamp; the stamp runs about a minute late",
+  "impact": {},
+  "evidence": null
+ },
+ {
+  "id": "2026-10-24T19:09:54Z-c",
+  "chunk": "2026-10-24-stand-requirement-sweep",
+  "at": "wrap-session/reconcile",
+  "type": null,
+  "what": "pacing: one classifier spawn ran 17 at once against the 16-running cap (a counting error, nothing refused); the resumed window's leaf batch ran 12",
+  "impact": {
+   "retries": 0
+  },
+  "evidence": ".andromeda/runs/2026-10-24T17-32-19-wrap/fanout-results.md"
+ },
+ {
+  "id": "2026-10-24T20:43:53Z-b",
+  "chunk": "2026-10-24-a11y-re-read",
+  "at": "phase/distill",
+  "type": null,
+  "what": "3 of 18 cascade strong readers failed first-try validation: arch g5 [QUOTES_VERBATIM] 9 + [CARRIED_ARE_CITED] 4, security g2 [QUOTES_VERBATIM] 1, tests g3 [CARRIED_ARE_CITED] 4; the arch g5 retry passed those and failed [COVERED_DROP] (existing-scopes#1.13), passing on a second retry",
+  "impact": {
+   "retries": 4
+  },
+  "evidence": ".andromeda/runs/2026-10-24T19-44-05-phase/.raw-arch-cascade-g5.md, .andromeda/runs/2026-10-24T19-44-05-phase/.raw-arch-cascade-g5-2.md, .andromeda/runs/2026-10-24T19-44-05-phase/.raw-security-cascade-g2.md, .andromeda/runs/2026-10-24T19-44-05-phase/.raw-tests-cascade-g3.md"
+ },
+ {
+  "id": "2026-10-24T20:49:36Z-b",
+  "chunk": "2026-10-24-a11y-re-read",
+  "at": "phase/research",
+  "type": null,
+  "what": "the tests extract stated test_ci_workflows.py pins every a11y-leg file in order; the pin is an assertIn per word over the shimmed log (test_ci_workflows.py:295-305), no order asserted",
+  "impact": {
+   "extra_reads": 1
+  },
+  "evidence": null
+ },
+ {
+  "id": "2026-10-24T21:54:29Z-b",
+  "chunk": "2026-10-24-a11y-re-read",
+  "at": "wrap-session/report",
+  "type": null,
+  "what": "per-master standing counts in the Expected-amendments bullet were hand-tallied from the sweep listing and three were wrong (a11y-plan a11y-leg 9 vs 11, a11y-tally 6 vs 10; test-plan 15 vs 14, 22 vs 20) plus a changed/no-change split 13/28 vs 11/30; caught by re-summing to the tool's per-pattern totals before the paste",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": ".andromeda/runs/2026-10-24T21-49-26-wrap/cascade-2026-10-24-a11y-re-read-pre-pass.json"
+ },
+ {
+  "id": "2026-10-25T01:33:33Z-g",
+  "chunk": "2026-10-24-a11y-re-read",
+  "at": "wrap-session/reconcile",
+  "type": null,
+  "what": "three strong readers' notes said the +3 test_ci_workflows.py cites past :299 were still owed to cites.py, reading the already re-pointed digits as the old ones; test-plan g1's note would have moved 381-495 to 384-498, a second move; checked against git diff HEAD and not applied",
+  "impact": null,
+  "evidence": ".andromeda/runs/2026-10-24T21-49-26-wrap/fanout-results.md"
+ },
+ {
+  "id": "2026-10-25T03:40:32Z-b",
+  "chunk": "2026-10-25-capability-statement",
+  "at": "phase/distill",
+  "type": null,
+  "what": "three strong readers (arch-cascade-g1, security-cascade-g2, security-cascade-g4) failed COVERED_DROP on the first try, each dropping one entity as held by another item without carrying it; one re-spawn batch strong-r1 cleared two",
+  "impact": {
+   "retries": 3
+  },
+  "evidence": ".andromeda/runs/2026-10-25T02-58-45-phase/fanout-2026-10-25-capability-statement.json"
+ },
+ {
+  "id": "2026-10-25T10:01:52Z-b",
+  "chunk": "2026-10-25-capability-statement",
+  "at": "phase/validate",
+  "type": null,
+  "what": "the guard entry fired in the scratch clone read red unmodified twice (exit 2 --chunk-dir absent, exit 3 plan.md absent) where the real tree read green, because a shared clone lacks the uncommitted chunk folder the guard reads; copying plan.md, research.md and scope.md into the clone made it match",
+  "impact": {
+   "retries": 2
+  },
+  "evidence": ".andromeda/runs/2026-10-25T02-58-45-phase/p5-controls.md"
+ },
+ {
+  "id": "2026-10-25T15:04:38Z-d",
+  "chunk": "2026-10-25-cold-agent-bar",
+  "at": "implement/code",
+  "type": null,
+  "what": "a probe command held a stray `cat > /dev/null` that waited on stdin past the Bash limit and was stopped by TaskStop; its python edit had already applied, so the re-run's assert read a false miss",
+  "impact": {
+   "retries": 1
+  },
+  "evidence": null
+ },
+ {
+  "id": "2026-10-25T16:56:06Z-c",
+  "chunk": "2026-10-25-cold-agent-bar",
+  "at": "implement/fix-loop",
+  "type": null,
+  "what": "the dialog asking the operator's word on the live run timed out after 58 min with no answer (held by the driver's hook); the run stopped with an interim outcome and resumed on the founder's relayed word",
+  "impact": {
+   "dialogue_rounds": 1
+  },
+  "evidence": null
+ },
+ {
+  "id": "2026-10-25T20:17:45Z-e",
+  "chunk": "2026-10-25-cold-agent-bar",
+  "at": "wrap-session/reconcile",
+  "type": null,
+  "what": "the phase P5 card's row 3 (inputs#I4) directed this wrap to restate docs/capabilities.md:288-289 against the live run; the report carried the row but no edit was made before P1's scope read, so it surfaced at P2 apply, past the slot where a wrap may take a directed source edit",
+  "impact": {
+   "dialogue_rounds": 0
+  },
+  "evidence": "escher-0.2.0/chunks/2026-10-25-cold-agent-bar/report.md"
+ }
+]
