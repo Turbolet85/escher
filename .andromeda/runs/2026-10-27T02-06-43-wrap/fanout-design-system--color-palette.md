@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens holds — the report's Coverage rows read `tokens n/a` for every new surface (private lint.rs helpers and test helpers, no UI rendered); Retired none; no colour, token or state enters the category; the one Color Palette hit in the report (`.andromeda/design-system-detail/color-palette.md:107`, `hover 152` matched by the complexity pattern) is a no-change false hit.

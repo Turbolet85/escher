@@ -1,0 +1,2 @@
+proposals: []
+note: The chunk adds only private helpers (lint.rs readings/placement; mcp_tests.rs and stand_requirement_sweep.rs test helpers) with no metric, counter, timing or telemetry dependency (report Changes: Dependencies none, Coverage of new surfaces instrumentation n/a, Retired none); the complexity population 88 -> 85 and the coverage reading are code-quality and test-plan readings, not runtime metrics, so .andromeda/obs-plan-detail/metric-coverage.md takes no amendment.

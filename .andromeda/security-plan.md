@@ -292,7 +292,7 @@ Detail: .andromeda/security-plan-detail/secret-management.md — read whole.
 **Never in code:** secret reads in source are observed absent in every slice that searched:
 
 **Environment values read (none secret-bearing):**
-- `env!("CARGO_MANIFEST_DIR")` at build time (examples/screenshot.rs:172), in a test (packages/blitz-vibey-script/tests/preact.rs:13), since 2026-10-19-session-recording in escher-driver's unit tests, which reach the workspace `target/tmp` through it (packages/escher-driver/src/mcp_tests.rs:633-634) and in upstream's `tests/all.rs` of blitz-tests, a target held at `test = false` and never built (tests/blitz-tests/tests/all.rs:77-94)
+- `env!("CARGO_MANIFEST_DIR")` at build time (examples/screenshot.rs:172), in a test (packages/blitz-vibey-script/tests/preact.rs:13), since 2026-10-19-session-recording in escher-driver's unit tests, which reach the workspace `target/tmp` through it (packages/escher-driver/src/mcp_tests.rs:650-651) and in upstream's `tests/all.rs` of blitz-tests, a target held at `test = false` and never built (tests/blitz-tests/tests/all.rs:77-94)
 - `HOME`, used for the iOS cache path (packages/blitz-net/src/lib.rs:46)
 - `PAINT_TREE_BENCH_HTML`, an HTML file path for an ignored benchmark (tests/blitz-tests/tests/paint_tree_bench.rs:262-269)
 - `MULTI_DOC_N`, `MULTI_DOC_SEQ` and `MULTI_DOC_FLAT`, read by the root example `multi_doc` alone through two `std::env::var` call sites: a document count parsed with a default fallback and two flags read through its `env_flag` (examples/multi_doc.rs:17-19; examples/multi_doc.rs:22; examples/multi_doc.rs:36-40; examples/multi_doc.rs:55-58)

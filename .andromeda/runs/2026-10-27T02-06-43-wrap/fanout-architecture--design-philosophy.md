@@ -1,0 +1,2 @@
+proposals: []
+note: The chunk lands private items only (lint.rs readings/placement, five private test helpers), no resource, dependency, crate, retired item or spec-master edit (report Changes); D-arch-resources and D-arch-decisions hold, and no group of design-philosophy.md names the lint walk, the two table tests, the complexity population or the sweep test's reach, so there is no D-retired or D-new-detail here.

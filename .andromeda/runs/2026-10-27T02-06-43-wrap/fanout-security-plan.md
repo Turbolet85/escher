@@ -1,0 +1,2 @@
+proposals: []
+note: D-security-input clean (report Symbols/APIs: no public symbol, verb, field, carrier, socket, port or env var added; new items private lint helpers and test helpers, Coverage of new surfaces validation n/a); D-security-auth n/a (no identity/session/token/key touched); D-security-deps clean (Dependencies: none, no Cargo.toml/Cargo.lock/deny.toml change); Retired: none; the disproved sweep-reach claim has no site in security-plan or its detail; the security-plan.md:295 mcp_tests.rs:633-634 -> :650-651 move is a citation, the citation sweep's.

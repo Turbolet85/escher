@@ -1,38 +1,32 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-25T20:26:11Z
-**Branch:** build/escher-0.2.0 · 0 ahead of origin/build/escher-0.2.0 as read at this wrap's resume
+**Last Updated:** 2026-10-27T03:07:53Z
+**Branch:** build/escher-0.3.0 · 0 ahead of origin/build/escher-0.3.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-25-cold-agent-bar — feat: the stand serves Cells and a load page, a fresh agent drives six apps under the founder's 5 % bar
+**Last Commit:** 2026-10-26-codebase-health — refactor: the lint's findings walk and two table-asserting tests under the complexity ceiling
 
 ## Position
-- Done: 2026-10-25-cold-agent-bar — the flight booker's mode a select, `boot_cells` / `boot_load` served by
-  `escher-session` (six slugs), the cold-agent pipe over six apps with `--record` and the 5 % wrong-call bar; the
-  live run passed (66 calls, 0 wrong, $0.8244); v020-11. The last chunk of Epoch 5 and of 0.2.0's route (wrap run
-  `.andromeda/runs/2026-10-25T17-25-04-wrap/`, four windows).
-- Next: 0.2.0's working route has no markerless entry left — `/andromeda-evolve-diagnose` for Epoch 5, then
-  `/andromeda-route` to open 0.3.0; its first chunk restates `docs/capabilities.md:288-289` at its P1
-  (`.andromeda/residuals.md:41`).
+- Done: 2026-10-26-codebase-health — `lint.rs::findings` and the two table-asserting tests (`mcp_tests.rs`'s listing
+  test, the 0.2.0 sweep test) factored into private helpers under the cognitive-complexity ceiling of 15, test
+  functions counted, the engine's function untouched; v030-01 (wrap run `.andromeda/runs/2026-10-27T02-06-43-wrap/`,
+  two windows).
+- Next: «README and records» (Epoch 1, v030-02 · v030-16) — /andromeda-phase to promote and plan it.
 
 ## Work done
-P2 over all seven masters (226 amendments + 7 sweep folds, 18 sidecar entries, 148 leaf findings in whole mode);
-residuals 38 corrected, 39–42 added and mirrored into `escher-0.3.0-incubator/deferred-from-0.2.0.md`.
+P2: 16 proposals applied (+3 merged) as 15 master edits over architecture · test-plan · obs-plan · a11y-plan, 11 sidecar
+entries, 8 citations re-pointed, 5 leaf findings applied; P3 one Tier-3 extension; P5 one CARRY.
 
 ## Drift resolved
-Six served tasks, the select in place of the `aria-pressed` mode buttons, the lint at boot `[0, 1, 0, 0]`, the pipe's
-verdict fields and recording, the host-sink part read measured, and the snapshot line sizes re-measured — on the
-founder's «Подтверждаю (Рекомендую)» · «Внутри, записать (Рекомендую)» · «Записать пробел, владелец на P5
-(Рекомендую)» at the P2 halt, and «Строка в residuals (Рекомендую)» at P5.
+The three sentences crediting stand-repeat membership to the sweep test alone restated to the measured limit (held
+jointly with `test_stand_repeat_leg_runs_three_rounds`); the complexity reading recorded in test-plan §10 alone; the
+coverage reading, the per-OS tallies, the factoring's helpers and their silence recorded — on the operator's dialog
+answers at the P2 halt (the founder asleep): «Merge into 1 (Recommended)» · «test-plan only (Recommended)» ·
+«CARRY: Stand requirement sweep (Recommended)».
 
 ## Notes
-- Open owners: the lint's select-option overlap (residuals.md:39), the served pages' keyboard and contrast gap (:40),
-  the capability statement's live-run lines (:41), two verified ledger refs naming renamed tests (:42).
-- 0.2.0's matrix reads `verified 11/11 · deferred 0`, done-test YES.
+- The sweep test's reach gap is owned by a `CARRY:` on «Stand requirement sweep» (Epoch 6).
+- The resume line named `2026-10-27T02-03-18-wrap`; the operator corrected it to `02-06-43` (inputs#I4).
+- Deferred learnings: `recurrence-despite-learning: .claude/docs/session-learnings.md` «A sweep pattern for a bare
+  count also matches a citation's digits», its 2026-10-25 extension (open every count alternative with `\b`) — P1's
+  `over 15` matched `hover 152`.
 - Last failed command: none open.
-
-## Session End Status
-Completed normally at 2026-10-27 02:14:33
-
-## AUTO-COMPACT 2026-10-26 21:38 (unattended)
-- Context at compact: 367k / 1.00M (37%); alarm level reached before it: none.
-- The pre-compact ritual did NOT run. Post-compact instance: re-verify the END STATE of every in-flight edit (phrase/hash probe per planned site), refresh the handoff, then continue.

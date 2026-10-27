@@ -1,0 +1,2 @@
+proposals: []
+note: No drift in API Security — the report adds no external-input surface, carrier, socket, port, env var or dependency and retires nothing (report.md:21, :48, :51); the one sweep hit in this file, .andromeda/security-plan-detail/api-security.md:30 (the `lint` verb's `findings` result field), is the report's own no-change row (report.md:64-67), and the private `readings` / `placement` helpers and test helpers it adds cross no input (report.md:175-181).

@@ -1,0 +1,2 @@
+proposals: []
+note: The chunk changes private items in lint.rs, mcp_tests.rs and stand_requirement_sweep.rs only. It adds no interactive UI element (D-a11y-surface) and changes no a11y violation or obs log schema (D-a11y-obs-schema). Retired: none. None of the files this category cites (flight_booker.rs, stand.rs, app.rs, stand_flight_booker.rs, stand_accessibility_ids.rs, common/mod.rs, stand_snapshot.rs, stand_snapshot_state.rs, stand_load_page.rs, apps/browser) is in the report's Changes, so the category gets no new detail.

@@ -1,0 +1,2 @@
+proposals: []
+note: D-design-tokens holds — the chunk renders no new UI (escher-0.3.0/chunks/2026-10-26-codebase-health/report.md Coverage of new surfaces reads `tokens n/a` for every new private item); Retired reads none, and no z-index, shadow, stacking or hit-test change reaches .andromeda/design-system-detail/depth-strategy.md (lint.rs, mcp_tests.rs and stand_requirement_sweep.rs private refactors only).

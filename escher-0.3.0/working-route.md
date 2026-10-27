@@ -51,7 +51,7 @@ A component in isolation — one component alone with given props, a validated w
 ### Epoch 6 — Polish & ship
 Upstream sync ahead of polish and ship — upstream/main merged, changes mostly additive; CI, a11y leg and audit green, per-OS tallies re-read, sink allowlist re-checked
    ↓
-Stand requirement sweep — 0.3.0 capabilities proven on stand or fixture inside stand-repeat; floors held, agent-run re-counted; stderr content-free; masks, stand layout held (intent §Principles)
+Stand requirement sweep — 0.3.0 capabilities proven on stand or fixture inside stand-repeat; floors held, agent-run re-counted; stderr content-free; masks, stand layout held (intent §Principles)  CARRY: the 0.2.0 sweep test's leg check cannot see a target dropped from `stand-repeat` alone while the `a11y` leg still names it — it reads `ci-leg.sh` whole by `contains`, so stand-repeat membership is held only jointly with `test_stand_repeat_leg_runs_three_rounds` today; close that reach gap (measured at 2026-10-26-codebase-health's row-guard control (a), a gap predating it — record: escher-0.3.0/chunks/2026-10-26-codebase-health/report.md, Spec claims disproved; placed here on the operator's answer at that wrap's P2 halt, .andromeda/runs/2026-10-27T02-06-43-wrap/escalation-answers.md)
    ↓
 A11y re-read — SC 2.1.1, 2.4.3, 1.4.3 re-asserted on stand and served pages after engine debts and bundled fonts; checks in the `a11y` leg (a11y-plan §9)
    ↓

@@ -1,0 +1,2 @@
+proposals: []
+note: no drift in .andromeda/security-plan-detail/secret-management.md — the report adds no input surface, secret source, auth flow or dependency, retires nothing, and brings no new secret-management detail (escher-driver's `env!` reads stay 2 in mcp_tests.rs, the CARGO_MANIFEST_DIR site's moved line is body .andromeda/security-plan.md:295, a citation the cites.py sweep owns and which already reads :650-651)

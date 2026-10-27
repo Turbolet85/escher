@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk changed three files' private items only (lint.rs helpers, mcp_tests.rs and stand_requirement_sweep.rs test helpers); no E2E driver, binary, flow, test file or count this category states (cli_commands, cli_flow, host_timer, recording, mcp_server, mcp_log, stand_mcp_tools, stand_mcp_masked) moved, Retired is none, and no harness or runner changed — D-tests-coverage, D-tests-framework and D-tests-obs-harness hold for this category.

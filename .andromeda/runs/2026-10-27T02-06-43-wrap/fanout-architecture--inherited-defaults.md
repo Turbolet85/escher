@@ -1,0 +1,2 @@
+proposals: []
+note: the report's Changes add no crate, publish flag, dependency, feature, CI leg or gate (three source files, private items only; Crates / Dependencies / Harness / gate surface all none; Retired none), so the category's three groups (publishability, code quality, optional capabilities) stand; the complexity ceiling of 15 is a dev-host reading by rust-code-analysis-cli 0.0.25, no CI leg, so the code-quality line needs no addition.

@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk edits three files only (lint.rs, mcp_tests.rs, stand_requirement_sweep.rs) with private items, adding test assertion helpers that are no fixture, page, seed or committed check; no file this category cites (fixtures/mod.rs, stand.rs, stand_replay.rs, recording.rs, stand_cells_served.rs, stand_load_page.rs, the checks/ data) changed, Retired is none, and the runner and harness are unchanged (report Changes: Files, Symbols, Harness / gate surface).

@@ -335,6 +335,8 @@ The `.andromeda/` masters carry lines of 1–5 KB, so a grep row viewed through 
 ## 2026-10-06 — Grepping `agent-run` also finds the cold-agent marker and "agent-runnable"
 A fixed-string grep or sweep pattern `agent-run` matches inside the chunk marker `cold-agent-run-pipe` (every evidence path and sidecar citation under it) and the prose word "agent-runnable". So a hit count of the agent-run contract's sites overcounts. Anchor the pattern on the contract's own forms (`scripts/agent-run`, `target/agent-run`, `agent-run contract`) or read every row before counting it as a site.
 
+Extended 2026-10-27: a file-citation pattern on a bare file name (`lint\.rs:\d+`) also matches every citation of a file whose name ends in it (`stand_lint.rs:`), so anchor it on the path's directory (`src/lint\.rs:`).
+
 ---
 
 ## 2026-10-06 — A probe's write-up claims only what the probe read

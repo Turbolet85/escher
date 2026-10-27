@@ -1,0 +1,2 @@
+proposals: []
+note: no drift — the chunk adds no interactive UI element (D-a11y-surface) and changes no a11y violation or obs log schema (D-a11y-obs-schema); Retired is none; the lint refactor is private (`readings` · `placement` in packages/escher-driver/src/lint.rs) with `contrast`, `overlaps` and `Session::lint` untouched, so lines 14-15's contrast-arm, overlap and `[0, 1, 0, 0]` claims stand, and their `stand_lint.rs` citations name an unedited file (report Expected amendments, a11y-plan §6 not carried).

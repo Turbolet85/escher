@@ -1,0 +1,2 @@
+proposals: []
+note: The report adds no log site, span, field, subscriber, telemetry dependency or env read (Symbols / APIs; Dependencies none; Coverage of new surfaces marks instrumentation and PII n/a for readings · placement and the six test helpers; info_span! 2 unchanged) and retires nothing, so D-obs-instrumentation, D-obs-stack and D-obs-pii hold over this file; the census's new file mcp_tests.rs belongs to obs-plan.md:93 (§3 silence census), not to §8.

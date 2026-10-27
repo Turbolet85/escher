@@ -1,0 +1,51 @@
+[[pattern]]
+id = 'lintcite'
+regex = 'lint\.rs:\d+'
+
+[[pattern]]
+id = 'mcptestcite'
+regex = 'mcp_tests\.rs:\d+'
+
+[[pattern]]
+id = 'sweepcite'
+regex = 'stand_requirement_sweep\.rs:\d+'
+
+[[pattern]]
+id = 'coverage'
+regex = '''4918 ?/ ?5019|97\.99 ?%|escher-driver('s)? coverage'''
+
+[[pattern]]
+id = 'complexity'
+regex = 'cognitive[- ]complexity|cognitive\.sum|rust-code-analysis|complexity ceiling|over 15'
+ignore_case = true
+
+[[pattern]]
+id = 'factored'
+regex = 'lint\.rs::findings|`findings`|fn findings|fn readings|`readings`|the_listing_is_the_twelve_verbs_of_the_table|every_0_2_0_requirement_names_its_witness_inside_stand_repeat|assert_described|assert_schema|assert_property|assert_0_2_0_row|assert_0_2_0_witness|inside_stand_repeat'
+
+[[pattern]]
+id = 'silence'
+regex = 'silence census'
+ignore_case = true
+
+[[pattern]]
+id = 'envread'
+regex = 'CARGO_MANIFEST_DIR'
+
+[[pattern]]
+id = 'selint'
+regex = 'select_interaction'
+
+[[pattern]]
+id = 'sweeptest'
+regex = 'stand_requirement_sweep|STAND_REPEAT_NAMED'
+
+[[pattern]]
+id = 'title'
+fixed = 'Codebase health'
+ignore_case = true
+
+[[pattern]]
+id = 'ownerphrase'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true

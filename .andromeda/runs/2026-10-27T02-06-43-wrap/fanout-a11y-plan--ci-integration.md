@@ -1,0 +1,11 @@
+proposals:
+  - detector: D-new-detail
+    severity: warning
+    file: .andromeda/a11y-plan-detail/ci-integration.md
+    near: 9
+    section: ## 9. CI Integration
+    change: In line 9 replace the clause «and their membership held by `stand_requirement_sweep`'s leg check» with «and their membership in `stand-repeat` held jointly — `test_stand_repeat_leg_runs_three_rounds` asserting each among that leg's own logged words, while `stand_requirement_sweep`'s leg check reads `ci-leg.sh` whole by `contains`, so a name dropped from `stand-repeat` alone while the `a11y` leg still names it (as it names all three) leaves the sweep test green — a reach that predates 2026-10-26-codebase-health, its gap's owner placed at that wrap's P5 (as measured at escher-0.3.0/chunks/2026-10-26-codebase-health/report.md, Spec claims disproved by measurement)»; the rest of the line unchanged.
+    sidecar: a11y-plan §9 CI Integration — the three named stand-repeat witnesses' membership restated as held jointly by test_stand_repeat_leg_runs_three_rounds and the sweep test's whole-file leg check, the sweep test alone not seeing a stand-repeat-only drop (2026-10-26-codebase-health, disproved claim).
+    rationale: The report's Spec claims disproved by measurement names this file's line 9 claim «their membership held by `stand_requirement_sweep`'s leg check» as measured false — the sweep test reads `ci-leg.sh` whole by `contains`, so `--test select_interaction` dropped from `stand-repeat` alone (`ci-leg.sh:57`) stays green while the `a11y` leg (`ci-leg.sh:39`) names it, and stand-repeat membership is held by that test jointly with `test_stand_repeat_leg_runs_three_rounds`; Validate check 6 needs every disproved entry matched; the reach gap's owner is P5's per the report's Outcome.
+    basis: escher-0.3.0/chunks/2026-10-26-codebase-health/report.md:133
+note: D-a11y-surface and D-a11y-obs-schema find no drift — the chunk adds no interactive UI element and changes neither the a11y violation schema nor the obs log schema (report Changes: private items only, Harness / gate surface none); Retired is none; the body's §9 (a11y-plan.md:237) carries no membership claim, so line 9 is this category's one occurrence of the disproved claim.

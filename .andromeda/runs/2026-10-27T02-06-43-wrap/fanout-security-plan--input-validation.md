@@ -1,0 +1,2 @@
+proposals: []
+note: D-security-input holds — the report adds no external-input surface (private lint.rs helpers `readings` · `placement` and private test helpers only, validation n/a per Coverage of new surfaces); D-security-auth n/a (no identity, session, token or key touched); D-security-deps holds (Dependencies: none); Retired none; the two hits in this file (`input-validation.md:54` pattern factored, `:197` pattern ownerphrase) are the report's no-change rows and the file holds no `lint.rs`, `mcp_tests.rs` or `stand_requirement_sweep.rs` citation.

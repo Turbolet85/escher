@@ -1233,3 +1233,29 @@ Partly retires the PROVISIONAL clause of every earlier 2026-10-18-engine-debts a
 - A select's choice moves no class or text `dom_string` shows, so `stand_id_persistence` chooses the return flight and books in one re-render; seven_guis' shared `tests/common/mod.rs` holds `cells_needles(part)` among its readers.
 **Why:** measured at the chunk; the lint re-pin on the founder's own word at /implement, relayed by the operator, its owner pinned at this wrap's P5.
 **Ref:** .andromeda/runs/2026-10-25T17-25-04-wrap/
+
+## 2026-10-26-codebase-health — the two table-asserting tests' row helpers and the sweep test's target predicate
+**Section:** §Conventions (conventions.md: Tests — the notes on escher-driver's and blitz-tests' test modules) · §Existing Scopes (existing-scopes.md: the notes on escher-driver's and blitz-tests' modules)
+**Change:**
+- Conventions, a new line: escher-driver's MCP listing test and blitz-tests' 0.2.0 requirement-sweep test keep their outer assertions and row walk in the test function and assert each row through private `#[track_caller]` helpers whose messages name the row and index only (`mcp_tests.rs:415-496`, `stand_requirement_sweep.rs:1050-1093`).
+- Existing Scopes, a new line: blitz-tests' `stand_requirement_sweep` reads whether a 0.2.0 witness lies inside `stand-repeat` through a private target predicate of its own, `inside_stand_repeat`, which holds the two path-prefix constants `BLITZ_TESTS` and `SEVEN_GUIS` the test held before.
+**Why:** v030-01 brought the two tests, with the lint's findings walk, under the code audit's cognitive-complexity ceiling of 15, inside the founder's 0.3.0 scope ruling M1 as the overseer's route relay records it (chunk inputs#I1); the report reads private items only — no public symbol, test name, target or message changed, each test's count unchanged.
+**Kept:** the Conventions line states what the two tests do, not a rule for every table-asserting test — the pass's disposition of the proposal.
+**Ref:** .andromeda/runs/2026-10-27T02-06-43-wrap/
+
+## 2026-10-26-codebase-health — `stand-repeat`'s membership held jointly: the sweep test's reach measured
+**Section:** §Existing Scopes (existing-scopes.md: blitz-tests, `stand_requirement_sweep`'s `WITNESSES_020`) · §Standard Contracts (standard-contracts.md: CI contracts → the `stand-repeat` leg)
+**Change:**
+- Existing Scopes: was «every other witness found inside `stand-repeat` by the `stand_` prefix or by the named `--test` list of `ci-leg.sh`'s own text»; now every other witness read as inside `stand-repeat` by the `stand_` prefix or by its name anywhere in `ci-leg.sh`'s text, which the test reads whole by `contains` — so a witness dropped from `stand-repeat` alone while the `a11y` leg still names it still reads inside — the leg's membership held jointly with `test_stand_repeat_leg_runs_three_rounds`; the line's citation `stand_requirement_sweep.rs:1015-1090` now `:1015-1109`, the test and its helpers.
+- Standard Contracts: was «pinned by `test_stand_repeat_leg_runs_three_rounds` and read from the script's own text by `stand_requirement_sweep`'s leg check», per 2026-10-24-stand-requirement-sweep — `stand-repeat`'s named list, the pinned limits and two state directories; now its membership held jointly by `test_stand_repeat_leg_runs_three_rounds`, which asserts named targets, `select_interaction` among them, in the leg's own logged words, and the sweep test's leg check, which reads the script whole by `contains` and so cannot see a target dropped from `stand-repeat` alone while the `a11y` leg still names it (`test_ci_workflows.py:361-366`).
+**Why:** measured at implement's row-guard control: `--test select_interaction` dropped from `stand-repeat` alone left the sweep test green while the `a11y` leg still named it, only both sites removed reading red; the property predates the chunk, whose factoring left the leg check unchanged — the sentences restated under the playbook's disproved-claim rule. The gap's owner is the operator's dialog answer at this wrap's P2 halt (Q3, the operator's word with the founder asleep): a `CARRY:` on the 0.3.0 working route's «Stand requirement sweep» entry.
+**Kept:** the sweep test's leg check left as it reads — the reach gap is outside the chunk's scope, its fix the carried owner's.
+**Ref:** .andromeda/runs/2026-10-27T02-06-43-wrap/
+
+## 2026-10-26-codebase-health — the dev-host cognitive-complexity reading beside the mutation tier
+**Section:** §Stack and Technologies (stack-and-technologies.md: a new detail block, the Code quality layer)
+**Change:**
+- New: beside the host-run mutation tier, a cognitive-complexity reading on the dev host alone, never in CI — `rust-code-analysis-cli` 0.0.25 in `~/.cargo/bin`, resolved by no lockfile and run by no CI leg, reading each function against the ceiling of 15.
+**Why:** the report's dev-tool reading names the analyser re-read at 0.0.25 on the dev host, installed before the chunk and resolved by no lockfile, and its gate surface says the complexity entry is a dev-host reading with no CI leg; the chunk worked to that ceiling (v030-01: 88 functions over it at base, 85 after).
+**Kept:** the ceiling of 15 is stated as no architecture convention — the operator's dialog answer at this wrap's P2 halt (Q2, the operator's word, not the founder's, keeping the founder's M1 at his scope): the reading recorded in test-plan alone, no project-wide convention claimed, so 85 functions still reading over it, the engine's `clear_interaction_state_for_removed_node` (17.0) and blitz-dom's `get_text_selection_ranges` (32.0) among them, stand untouched.
+**Ref:** .andromeda/runs/2026-10-27T02-06-43-wrap/

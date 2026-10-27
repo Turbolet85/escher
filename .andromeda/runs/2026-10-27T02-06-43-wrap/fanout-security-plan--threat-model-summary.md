@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk changes three files' private items only (lint.rs helpers, two test files' helpers) — no new external-input surface, carrier, socket, port or env var (D-security-input), no identity/session/token/key handling (D-security-auth), no dependency or deny.toml change (D-security-deps), Retired none; the category file's citations (host.rs:36, session_host.rs:34-56, mcp.rs:44-112 and the engine sites) name no file the chunk edited, and the report brings no new threat-model detail.

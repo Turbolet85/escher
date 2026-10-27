@@ -488,3 +488,11 @@ Partly retires the PROVISIONAL clause of the earlier 2026-10-18-engine-debts and
 - Cognitive: the load page shows its status in text — `load-done` reads "Loaded" once the stylesheet lands after `load-fetch` is clicked, the in-process stand-in answering after `LOAD_ANSWER_DELAY` (200 ms).
 **Why:** measured at the chunk. The open gap is recorded on the founder's own answer at this wrap's P2 halt, relayed by the operator; the lint at boot re-pinned as measured on his word at /implement, relayed by the operator; both owner lines are written at this wrap's P5.
 **Ref:** .andromeda/runs/2026-10-25T17-25-04-wrap/
+
+## 2026-10-26-codebase-health — the stand-repeat list's membership held jointly
+**Section:** §9 CI Integration (ci-integration.md: the three a11y witnesses outside the `stand_` prefix in `stand-repeat`)
+**Change:**
+- The stand-repeat `--test` list's membership: was «held by `stand_requirement_sweep`'s leg check»; now the leg check also reads their names, but reads `ci-leg.sh` as one whole text by `contains`, so it cannot see a name dropped from the stand-repeat list alone while the a11y leg still names it — only both sites removed read red — and the list's membership is held by that check and `test_stand_repeat_leg_runs_three_rounds` jointly, as measured at the chunk's report.
+**Why:** the report's Spec claims disproved by measurement: implement's row-guard control measured that `--test select_interaction` dropped from `stand-repeat` alone leaves the sweep test green while the `a11y` leg names it, a property that predates the chunk (the leg check unchanged by its factoring), and `test_stand_repeat_leg_runs_three_rounds` asserts `select_interaction` among the stand-repeat leg's own logged words; the playbook's disproved-claim rule.
+**Kept:** the clause rewritten in place, no separate line added for the reach gap or for the joint hold — the operator's answer at the P2 halt, by question dialog in the escher session (2026-10-27, the operator's record placement, not the founder's), merged both into this sentence; the rest of the sentence — the three witnesses, the ten words pinned by `test_stand_repeat_leg_runs_three_rounds`, the a11y leg's six files and its job unchanged, CI#40114977936 reading 6 · 43 — stands.
+**Ref:** .andromeda/runs/2026-10-27T02-06-43-wrap/

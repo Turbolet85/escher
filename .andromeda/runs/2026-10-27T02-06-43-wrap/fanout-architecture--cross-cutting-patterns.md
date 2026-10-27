@@ -1,0 +1,2 @@
+proposals: []
+note: no drift in .andromeda/architecture-detail/cross-cutting-patterns.md — the report's Changes add no public symbol, IPC method, socket, port, env var, crate or dependency (D-arch-resources, D-arch-decisions hold), Retired is none, and the chunk's private helpers in packages/escher-driver/src/lint.rs, mcp_tests.rs and stand_requirement_sweep.rs touch none of the file's five groups (escher-driver's spans unchanged, info_span! 2; blitz-dom untouched, clear_interaction_state_for_removed_node standing).

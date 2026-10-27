@@ -424,7 +424,7 @@ Detail: .andromeda/test-plan-detail/quality-gates-coverage-targets.md — read w
 
 ---
 
-<!-- subjects: scope-entities · strategy · naming · unit · integration · e2e · data-fixtures · data-seeds · data · mocking · ci · gate-coverage-floor · gate-flakiness · gate-mutation -->
+<!-- subjects: scope-entities · strategy · naming · unit · integration · e2e · data-fixtures · data-seeds · data · mocking · ci · gate-coverage-floor · gate-flakiness · gate-mutation · gate-complexity -->
 
 ## 12. Test Decisions Log
 

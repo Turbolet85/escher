@@ -1,0 +1,2 @@
+proposals: []
+note: D-layout-surface holds — the report's Changes add no user-facing surface or region (Symbols / APIs: private items only in lint.rs, mcp_tests.rs and stand_requirement_sweep.rs; no verb, field, carrier, markup, id, class or style), and Retired reads none, so no D-retired site; the one layout-templates hit (layout-templates.md:54, pattern lintcite) is stand_lint.rs citations the report marks not carried, a citation the detector does not touch.

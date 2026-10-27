@@ -1,0 +1,2 @@
+proposals: []
+note: the chunk adds no stand-in, fake, stub or mocking library — its new private items are lint.rs's readings/placement and #[track_caller] assertion helpers in mcp_tests.rs and stand_requirement_sweep.rs, read by real stand_lint and unit/integ controls (report Coverage of new surfaces); Retired none; no runner or harness change (report Harness / gate surface), so no row of .andromeda/test-plan-detail/mocking-stubbing-discipline.md moves

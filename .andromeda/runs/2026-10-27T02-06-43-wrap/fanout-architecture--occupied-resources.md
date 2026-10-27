@@ -1,0 +1,2 @@
+proposals: []
+note: The report (Changes, Symbols / APIs, Crates / modules, Dependencies, Retired) lands no port, socket, listener, env var, crate, binary, name, filesystem path or thread and no dependency; the private lint.rs, mcp_tests.rs and stand_requirement_sweep.rs helpers are no Occupied Resources entity, and the category file's two CARGO_MANIFEST_DIR passages (occupied-resources.md:30, :32) name other readers, as the report's envread pattern reads them (no-change).
