@@ -62,7 +62,7 @@ escher is a fork of Blitz being turned into an agent-first UI framework — a he
 | Telemetry bootstrap (subscriber · event and closed-span lines · target allowlist and scrub sets · panic hook) | `packages/escher-telemetry/src/{lib,format,panic}.rs` |
 | Code map / impact (symbols · callers · crate deps) | `.andromeda/cache/rust/tree.db` — query via `scripts/code-graph.py query <run_dir> <marker> "<sql>"`; schema + templates in `scripts/code-graph-cookbook.md` |
 | Threat model · trust boundaries | `.andromeda/security-plan.md` §Threat Model Summary / §Input Validation |
-| Design tokens (as built) | `.andromeda/design-system.md` §Color Palette / §Typography |
+| Design tokens (as built) | `.andromeda/design-system.md` §Color Palette / §Typography — the seven_guis stand's colours, depth, spacing and radius in `.andromeda/layout-templates.md` §Surface: desktop-native → Primary screens, its font in `.andromeda/architecture.md` §Standard Contracts → Headless stand |
 | Screen layouts per surface | `.andromeda/layout-templates.md` |
 | Test harness · agent-run contract | `.andromeda/test-plan.md` §3 (keyed contracts: `.andromeda/registries/test-plan-contracts.toml`) · `scripts/agent-run.sh` (contract tests `.github/scripts/test_agent_run.py`) |
 | Cold-agent run pipe (isolated agent session · the driver's own MCP server `escher-session mcp` · the agent's replayed check · verdict) | `.andromeda/test-plan.md` §3 · `scripts/cold-agent.sh` (contract tests `.github/scripts/test_cold_agent.py`) |

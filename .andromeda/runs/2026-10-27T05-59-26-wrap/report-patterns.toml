@@ -1,0 +1,81 @@
+# Wrap P1 site sweep — 2026-10-27-readme-and-records. One pattern per claim; each carries its fact's name token.
+
+[[pattern]]
+id = 'title'
+fixed = 'README and records'
+ignore_case = true
+
+[[pattern]]
+id = 'owner-generic'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true
+
+[[pattern]]
+id = 'readme-status'
+regex = 'README.{0,40}(## Status|Status section)|0\.2\.0 — planned|planned, in (five|six) stages|0\.1\.0 done and verified|0\.2\.0 done'
+
+[[pattern]]
+id = 'readme-cite'
+regex = 'README\.md:[0-9]+'
+
+[[pattern]]
+id = 'front-page'
+regex = 'front page|default branch|build/escher-0\.1\.0'
+ignore_case = true
+
+[[pattern]]
+id = 'cap-run'
+regex = '2026-10-15 (cold-agent )?(live )?run|measured instance is|not been re-fired|eleven tools'
+
+[[pattern]]
+id = 'part-sink'
+regex = 'part. read through the host|paged .?part.? read|part read through'
+
+[[pattern]]
+id = 'lint-boot'
+regex = '0 findings at boot|reads? 0 findings|reads_no_finding|reads_its_measured_findings'
+
+[[pattern]]
+id = 'old-names'
+regex = 'exactly_the_active_flight_mode_reads_pressed|a_flight_mode_click_returns_both_mode_buttons|the_stand_at_boot_reads_no_finding'
+
+[[pattern]]
+id = 'ds-accent'
+regex = '#3a5ce5|#2a4cd3|#1f3fc1|#4a6cf7|rgba\(58, 92, 229'
+ignore_case = true
+
+[[pattern]]
+id = 'ds-success'
+regex = '#ebf8ee|#68d391|#276749'
+ignore_case = true
+
+[[pattern]]
+id = 'ds-dejavu'
+regex = 'DejaVu Sans|DEJAVU_SANS|build_single_font_ctx'
+
+[[pattern]]
+id = 'ds-cards'
+regex = '0 2px 8px|24px 32px|48px 32px 64px|seven_guis \(untokenized\)'
+
+[[pattern]]
+id = 'ds-select'
+regex = '#c0c0c0|select#flight-type'
+ignore_case = true
+
+[[pattern]]
+id = 'ds-extra'
+regex = '#e53e3e|#fff5f5|#c53030|desktop-native-stand-load-page'
+ignore_case = true
+
+[[pattern]]
+id = 'ds-shared'
+regex = '#f5f5f5|#1a1a1a'
+ignore_case = true
+
+[[pattern]]
+id = 'incubator'
+regex = 'incubator|info/exclude'
+
+[[pattern]]
+id = 'a11y-ds-cite'
+fixed = 'design-system §Color Palette'

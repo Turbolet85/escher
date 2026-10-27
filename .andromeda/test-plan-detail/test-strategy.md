@@ -25,7 +25,7 @@ Read whole. The master's broad view is .andromeda/test-plan.md; this file holds 
 
 <!-- detail: procedure · strategy -->
 
-- **Claims mapped to checks:** `docs/capabilities.md`, a document with no runtime surface, ends on `## Where each claim is proven`, naming the check behind each claim it makes — the stand checks the `stand-repeat` leg runs among them — and states each limit as pinned by its check or as asserted by no check (the `select` model's limits); only its names and counts are held to the schema's tables, by the CI-script pin `test_capability_statement.py` (§4), so a check renamed or moved changes that section by hand (docs/capabilities.md:172-174; docs/capabilities.md:188-192; docs/capabilities.md:300-301)
+- **Claims mapped to checks:** `docs/capabilities.md`, a document with no runtime surface, ends on `## Where each claim is proven`, naming the check behind each claim it makes — the stand checks the `stand-repeat` leg runs among them — and states each limit as pinned by its check or as asserted by no check (the `select` model's limits); only its names and counts are held to the schema's tables, by the CI-script pin `test_capability_statement.py` (§4), so a check renamed or moved changes that section by hand (docs/capabilities.md:173-175; docs/capabilities.md:189-193; docs/capabilities.md:304-305)
 
 <!-- /detail -->
 

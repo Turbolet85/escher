@@ -1,0 +1,289 @@
+[
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "d1666daf",
+"ts": "2026-10-27T06:06:02Z",
+"argv": [
+"append",
+"--file",
+"escher-0.3.0/chunks/2026-10-27-readme-and-records/report.md",
+"--payload-file",
+".andromeda/runs/2026-10-27T05-59-26-wrap/new-text.md",
+"--lines",
+"9",
+"--if-absent-prefix",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-59-26-wrap",
+"--marker",
+"2026-10-27-readme-and-records"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append report.md:+9 at line 320 · lines 319→328 · bytes 30760→31307 · term lf",
+"last line now: added: 108-110 · 225-226 · 290-295"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/chunks/2026-10-27-readme-and-records/report.md"
+],
+"before": {
+"lines": 319,
+"bytes": 30760,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 328,
+"bytes": 31307
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "d1666daf",
+"ts": "2026-10-27T06:29:52Z",
+"argv": [
+"append",
+"--file",
+"escher-0.3.0/chunks/2026-10-27-readme-and-records/report.md",
+"--payload-file",
+".andromeda/runs/2026-10-27T05-59-26-wrap/addendum-1.md",
+"--lines",
+"27",
+"--before-line",
+"320",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-59-26-wrap",
+"--marker",
+"2026-10-27-readme-and-records"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append report.md:+27 at line 320 · lines 328→355 · bytes 31307→34005 · term lf",
+"last line now: added: 108-110 · 225-226 · 290-295"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/chunks/2026-10-27-readme-and-records/report.md"
+],
+"before": {
+"lines": 328,
+"bytes": 31307,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 355,
+"bytes": 34005
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "d1666daf",
+"ts": "2026-10-27T06:47:04Z",
+"argv": [
+"append",
+"--file",
+".andromeda/architecture-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-27T05-59-26-wrap/architecture-entries.md",
+"--lines",
+"33",
+"--blank-before",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-59-26-wrap",
+"--marker",
+"2026-10-27-readme-and-records"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"a blank line put before the block (line 1261 is not blank)",
+"append architecture-amendments.md:+34 at line 1262 · lines 1261→1295 · bytes 258081→264174 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-27T05-59-26-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/architecture-amendments.md"
+],
+"before": {
+"lines": 1261,
+"bytes": 258081,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 1295,
+"bytes": 264174
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "d1666daf",
+"ts": "2026-10-27T06:47:04Z",
+"argv": [
+"append",
+"--file",
+".andromeda/design-system-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-27T05-59-26-wrap/design-system-entries.md",
+"--lines",
+"31",
+"--blank-before",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-59-26-wrap",
+"--marker",
+"2026-10-27-readme-and-records"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"a blank line put before the block (line 219 is not blank)",
+"append design-system-amendments.md:+32 at line 220 · lines 219→251 · bytes 29453→36013 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-27T05-59-26-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/design-system-amendments.md"
+],
+"before": {
+"lines": 219,
+"bytes": 29453,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 251,
+"bytes": 36013
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "d1666daf",
+"ts": "2026-10-27T06:47:04Z",
+"argv": [
+"append",
+"--file",
+".andromeda/layout-templates-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-27T05-59-26-wrap/layout-templates-entries.md",
+"--lines",
+"12",
+"--blank-before",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-59-26-wrap",
+"--marker",
+"2026-10-27-readme-and-records"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"a blank line put before the block (line 223 is not blank)",
+"append layout-templates-amendments.md:+13 at line 224 · lines 223→236 · bytes 32290→34641 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-27T05-59-26-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/layout-templates-amendments.md"
+],
+"before": {
+"lines": 223,
+"bytes": 32290,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 236,
+"bytes": 34641
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "d1666daf",
+"ts": "2026-10-27T06:47:04Z",
+"argv": [
+"append",
+"--file",
+".andromeda/security-plan-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-27T05-59-26-wrap/security-plan-entries.md",
+"--lines",
+"8",
+"--blank-before",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-59-26-wrap",
+"--marker",
+"2026-10-27-readme-and-records"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"a blank line put before the block (line 814 is not blank)",
+"append security-plan-amendments.md:+9 at line 815 · lines 814→823 · bytes 157388→158865 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-27T05-59-26-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/security-plan-amendments.md"
+],
+"before": {
+"lines": 814,
+"bytes": 157388,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 823,
+"bytes": 158865
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "d1666daf",
+"ts": "2026-10-27T06:47:04Z",
+"argv": [
+"append",
+"--file",
+".andromeda/a11y-plan-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-27T05-59-26-wrap/a11y-plan-entries.md",
+"--lines",
+"7",
+"--blank-before",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-59-26-wrap",
+"--marker",
+"2026-10-27-readme-and-records"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"a blank line put before the block (line 498 is not blank)",
+"append a11y-plan-amendments.md:+8 at line 499 · lines 498→506 · bytes 84374→85876 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-27T05-59-26-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/a11y-plan-amendments.md"
+],
+"before": {
+"lines": 498,
+"bytes": 84374,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 506,
+"bytes": 85876
+}
+}
+]

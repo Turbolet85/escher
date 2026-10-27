@@ -1,0 +1,2 @@
+proposals: []
+note: No drift. The report's Symbols, Crates, Dependencies and Coverage bullets read none (documents only — README.md and docs/capabilities.md), so D-obs-instrumentation, D-obs-stack and D-obs-pii have nothing to evaluate; the Retired local incubator exclude has no obs-plan site (git grep incubator|info/exclude over obs-plan.md, obs-plan-detail and its contract files: 0); the host-sink part read the statement restated is already the measured reading at obs-plan.md:80 (the report's part-sink pattern, no-change).

@@ -8,6 +8,16 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-27 — A phase P5 control that plants a home-dir path trips hygiene at the operator pass
+A phase P5 control script that plants a host-path literal to prove a `/home/` probe reads red (a literal like
+`/home/someone/x`) lands in the committed run dir, and `gate.py hygiene` P1 refuses it at the operator pass, costing a
+respell and a re-fire there. Plant the control's literal in a form hygiene does not read as a host path — a
+placeholder such as `/home/<user>/x` keeps the probe red and the run dir clean — from the first write.
+
+Where it applies: every control a phase P5 writes into `.andromeda/runs/*-phase/` whose subject is a host-path probe.
+
+---
+
 ## 2026-10-25 — A sweep pattern's negated class must not exclude the dot the masters' paths carry
 A cascade sweep pattern that bounds its window with a negated class such as `[^;.]{0,300}` (to stop at a clause end)
 cannot cross a backticked path — `` `.andromeda/residuals.md` `` holds a dot — so a clause like «owned by a

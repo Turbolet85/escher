@@ -1,0 +1,105 @@
+[
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T07:16:29Z",
+"argv": [
+"refine",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-17",
+"--chunk",
+"2026-10-10-snapshot-states",
+"--ref-file",
+".andromeda/runs/2026-10-27T05-59-26-wrap/ref-v010-17.md",
+"--text-file",
+".andromeda/runs/2026-10-27T05-59-26-wrap/refine-v010-17.md",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-59-26-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"refine v010-17 (chunk 2026-10-10-snapshot-states; status verified kept)",
+"ref: tests/blitz-tests/tests/stand_snapshot_state.rs::exactly_the_active_fl… (603 chars)",
+"  → tests/blitz-tests/tests/stand_snapshot_state.rs::exactly_the_chosen_fl… (611 chars)",
+"notes: +910 chars (total 2799)",
+"dry-run: nothing written"
+],
+"stderr": null,
+"wrote": [],
+"before": {
+"id": "v010-17",
+"chunk": "2026-10-10-snapshot-states",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_snapshot_state.rs::exactly_the_active_flight_mode_reads_pressed · ::exactly_the_selected_r… (603 chars)",
+"acceptance": "On the stand, in both layout modes, read through `DioxusDocument::snapshot` after real input: at boot `flight-one-way` r… (1728 chars)",
+"notes_chars": 1887
+},
+"after": {
+"id": "v010-17",
+"chunk": "2026-10-10-snapshot-states",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_snapshot_state.rs::exactly_the_chosen_flight_type_reads_selected · ::exactly_the_selected_… (611 chars)",
+"acceptance": "On the stand, in both layout modes, read through `DioxusDocument::snapshot` after real input: at boot `flight-one-way` r… (1728 chars)",
+"notes_chars": 2799
+}
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T07:17:45Z",
+"argv": [
+"refine",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-17",
+"--chunk",
+"2026-10-10-snapshot-states",
+"--ref-file",
+".andromeda/runs/2026-10-27T05-59-26-wrap/ref-v010-17.md",
+"--text-file",
+".andromeda/runs/2026-10-27T05-59-26-wrap/refine-v010-17.md",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-59-26-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"refine v010-17 (chunk 2026-10-10-snapshot-states; status verified kept)",
+"ref: tests/blitz-tests/tests/stand_snapshot_state.rs::exactly_the_active_fl… (603 chars)",
+"  → tests/blitz-tests/tests/stand_snapshot_state.rs::exactly_the_chosen_fl… (611 chars)",
+"notes: +910 chars (total 2799)",
+"wrote escher-0.1.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.1.0/verification-matrix.json"
+],
+"before": {
+"id": "v010-17",
+"chunk": "2026-10-10-snapshot-states",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_snapshot_state.rs::exactly_the_active_flight_mode_reads_pressed · ::exactly_the_selected_r… (603 chars)",
+"acceptance": "On the stand, in both layout modes, read through `DioxusDocument::snapshot` after real input: at boot `flight-one-way` r… (1728 chars)",
+"notes_chars": 1887
+},
+"after": {
+"id": "v010-17",
+"chunk": "2026-10-10-snapshot-states",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_snapshot_state.rs::exactly_the_chosen_flight_type_reads_selected · ::exactly_the_selected_… (611 chars)",
+"acceptance": "On the stand, in both layout modes, read through `DioxusDocument::snapshot` after real input: at boot `flight-one-way` r… (1728 chars)",
+"notes_chars": 2799
+}
+}
+]

@@ -1,0 +1,7 @@
+## 2026-10-27-readme-and-records — the stand accent's home re-pointed to layout-templates (PROVISIONAL)
+**Section:** §6 Visual Design Verification (visual-design-verification.md: the 2026-10-14-stand-a11y-assertions accent and contrast-record entry)
+**Change:**
+- The stand accent's cross-master home: was `design-system §Color Palette`; now `layout-templates §Surface: desktop-native → Primary screens`, its `values · desktop-native-screens` block.
+- Nothing else in the entry moves: the shades `#3a5ce5` · `#2a4cd3` · `#1f3fc1`, white on each 5.47 · 6.83 · 8.27, the old `#4a6cf7` at 4.39, the record's pass 13 · fail 0 · exempt-inactive 3 · no-text 1, `TEXT_ROWS` 14 and `STATE_ROWS` 18 and every quoted pair (the invalid `#c53030` on `#fff5f5`, the select's `#1a1a1a` on `#ffffff`) read as before.
+**Why:** this chunk moves every seven_guis stand row, the accent rows among them, out of design-system into layout-templates' `values · desktop-native-screens` block with values unchanged, so the pointer follows its rows. The move rests on F2, the founder's delegate answer, which the operator had marked PROVISIONAL until the founder rules himself. The founder's later word supersedes it, and this entry falls with it if he rules otherwise. The ten further stand lines (the invalid pair and the select's text pair among them) stay in design-system on the operator's dialog answer, so their quoted values here need no further edit.
+**Ref:** .andromeda/runs/2026-10-27T05-59-26-wrap/

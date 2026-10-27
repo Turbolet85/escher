@@ -13,8 +13,6 @@ Detail: .andromeda/design-system-detail/color-palette.md — read whole.
 ### Core Colors
 Detail: .andromeda/design-system-detail/color-palette.md — read whole.
 
-seven_guis accent — `#3a5ce5` (hover `#2a4cd3`, active `#1f3fc1`) in every task CSS that declares it, its non-text uses moving with it, so white button text on the accent controls passes SC 1.4.3's 4.5 at rest, on hover and when active.
-
 ### Surface Scale (elevation hierarchy)
 Detail: .andromeda/design-system-detail/color-palette.md — read whole.
 

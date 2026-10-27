@@ -1,0 +1,1298 @@
+[
+{
+"tool": "cites",
+"v": "1.7",
+"sha8": "2a689b40",
+"ts": "2026-10-27T06:00:55Z",
+"argv": [
+"added",
+"--out",
+".andromeda/runs/2026-10-27T05-59-26-wrap/new-text.md",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-59-26-wrap",
+"--marker",
+"2026-10-27-readme-and-records"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: 316c6d25 — the parent of the oldest pre-CI commit 64256172",
+"README.md — added 31 line(s) in 8 range(s)",
+"docs/capabilities.md — added 11 line(s) in 3 range(s)",
+"new text: 2 file(s) · 0 new · 11 added range(s) · 42 line(s) · 0 block(s) → .andromeda/runs/2026-10-27T05-59-26-wrap/new-text.md (9 lines) · written"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-10-27T05-59-26-wrap/new-text.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"base": "316c6d25b59ad5518ec5c9e175913f3f61cd4420",
+"counts": {
+"files": 2,
+"new": 0,
+"ranges": 11,
+"lines": 42,
+"blocks": 0
+},
+"out": ".andromeda/runs/2026-10-27T05-59-26-wrap/new-text.md",
+"state": "written",
+"lines": 9
+}
+},
+{
+"tool": "cites",
+"v": "1.7",
+"sha8": "2a689b40",
+"ts": "2026-10-27T06:09:53Z",
+"argv": [
+"apply",
+"--dry-run",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-59-26-wrap",
+"--marker",
+"2026-10-27-readme-and-records"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: 316c6d25 — the previous sweep (2026-10-27T02-06-43-wrap)",
+"sites 6164 (bare \":digits\" 6208) over 90 file(s) · unmoved 6144 · moved 6 · stretched 0 · changed 0",
+"out-of-range 1 · unresolved 2 · new 0 · repointed 0 · hand 0 · held 11 · INDETERMINATE 0 · listed, not written 0",
+"rows: 12 owed a read — the cites batch reads them from this call's trail record",
+"unresolved 2: their rows are `map`'s — another repository's file is never touched",
+"dry-run: would write .andromeda/architecture-detail/project-intent.md: 2 citation(s)",
+"dry-run: would write .andromeda/architecture-detail/standard-contracts.md: 1 citation(s)",
+"dry-run: would write .andromeda/test-plan-detail/test-strategy.md: 3 citation(s)",
+"dry-run: 6 citation(s) in 3 file(s) — nothing written"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"mode": "sweep",
+"base": "316c6d25b59ad5518ec5c9e175913f3f61cd4420",
+"counts": {
+"unmoved": 6144,
+"moved": 6,
+"stretched": 0,
+"changed": 0,
+"out-of-range": 1,
+"unresolved": 2,
+"new": 0,
+"repointed": 0,
+"hand": 0,
+"INDETERMINATE": 0,
+"held": 11,
+"listed": 0
+},
+"rows": [
+{
+"class": "held",
+"file": ".andromeda/architecture.md",
+"line": 118,
+"col": 435,
+"path": "examples/screenshot.rs",
+"now": "41-51",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-10T01-56-50-wrap, not touched since",
+"text": "let file_content = std::fs::read(url.path()).unwrap();",
+"sha": [
+"ce46419e4649",
+"91a3252080a8"
+],
+"citing": "02da67409b0c",
+"nth": 6,
+"since": "2026-10-10T01-56-50-wrap"
+},
+{
+"class": "held",
+"file": ".andromeda/architecture-detail/established-decisions.md",
+"line": 91,
+"col": 1205,
+"path": "packages/blitz-dom/src/layout/paint_tree.rs",
+"now": "420-462",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-24T15-00-29-cites-backlog, not touched since",
+"text": "",
+"sha": [],
+"citing": "e701379ca92a",
+"nth": 10,
+"since": "2026-10-24T15-00-29-cites-backlog"
+},
+{
+"class": "moved",
+"file": ".andromeda/architecture-detail/project-intent.md",
+"line": 21,
+"col": 1252,
+"path": "README.md",
+"now": "48",
+"base": "48",
+"to": "49",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "An MCP client can drive the same apps: it spawns `target/debug/escher-session m…",
+"sha": [
+"c2a1bfe54a06"
+],
+"citing": "e8513ea289ba",
+"nth": 0,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/architecture-detail/project-intent.md",
+"line": 27,
+"col": 600,
+"path": "README.md",
+"now": "48",
+"base": "48",
+"to": "49",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "An MCP client can drive the same apps: it spawns `target/debug/escher-session m…",
+"sha": [
+"c2a1bfe54a06"
+],
+"citing": "d2bbb5ea5084",
+"nth": 0,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/architecture-detail/standard-contracts.md",
+"line": 279,
+"col": 1065,
+"path": "README.md",
+"now": "48",
+"base": "48",
+"to": "49",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "An MCP client can drive the same apps: it spawns `target/debug/escher-session m…",
+"sha": [
+"c2a1bfe54a06"
+],
+"citing": "c94f8da8aa91",
+"nth": 4,
+"since": null
+},
+{
+"class": "held",
+"file": ".andromeda/security-plan.md",
+"line": 183,
+"col": 393,
+"path": "apps/browser/Cargo.toml",
+"now": "14",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-24T12-21-29-wrap, not touched since",
+"text": "default = [\"hybrid\", \"cookies\", \"cache\", \"screenshot\", \"apple-font-embolden\", \"…",
+"sha": [
+"9b5ed29a16a8"
+],
+"citing": "e55afd81ef1e",
+"nth": 3,
+"since": "2026-10-24T12-21-29-wrap"
+},
+{
+"class": "held",
+"file": ".andromeda/security-plan.md",
+"line": 331,
+"col": 85,
+"path": "packages/blitz-dom/src/layout/table.rs",
+"now": "535-539",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-13T15-50-37-wrap, not touched since",
+"text": "let Some(display) = node.primary_styles().map(|s| s.clone_display()) else {",
+"sha": [
+"24e7dff73bcf",
+"ede9befdbd87"
+],
+"citing": "16bacd6cba80",
+"nth": 0,
+"since": "2026-10-13T15-50-37-wrap"
+},
+{
+"class": "held",
+"file": ".andromeda/security-plan-detail/dependency-security.md",
+"line": 9,
+"col": 876,
+"path": ".andromeda/residuals.md",
+"now": "29",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-27T02-06-43-wrap, not touched since",
+"text": "2026-10-16-fast-failing-mutants · open · dropping the RUSTSEC-2026-0367 · RUSTS…",
+"sha": [
+"fff75ad5c114"
+],
+"citing": "6fdd5e24bb9e",
+"nth": 1,
+"since": "2026-10-27T02-06-43-wrap"
+},
+{
+"class": "held",
+"file": ".andromeda/security-plan-detail/dependency-security.md",
+"line": 9,
+"col": 1812,
+"path": ".andromeda/residuals.md",
+"now": "30",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-27T02-06-43-wrap, not touched since",
+"text": "2026-10-17-upstream-sync-engine-debts · open · dropping the RUSTSEC-2026-0370 ·…",
+"sha": [
+"9fa530683571"
+],
+"citing": "6fdd5e24bb9e",
+"nth": 3,
+"since": "2026-10-27T02-06-43-wrap"
+},
+{
+"class": "held",
+"file": ".andromeda/security-plan-detail/input-validation.md",
+"line": 201,
+"col": 293,
+"path": "tests/blitz-tests/tests/stand_snapshot.rs",
+"now": "1-5",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-25T17-25-04-wrap, not touched since",
+"text": "//! The snapshot of each lean stand task, booted headlessly in both layout mode…",
+"sha": [
+"5c7cae901140",
+"550c2f2bb685"
+],
+"citing": "eff856203c32",
+"nth": 6,
+"since": "2026-10-25T17-25-04-wrap"
+},
+{
+"class": "held",
+"file": ".andromeda/test-plan.md",
+"line": 284,
+"col": 225,
+"path": ".github/workflows/wpt-post-results.yml",
+"now": "43-49",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-10T01-56-50-wrap, not touched since",
+"text": "- name: Post results to PR description",
+"sha": [
+"62243d0630b1",
+"26ae749fd798"
+],
+"citing": "ecc9b8df98be",
+"nth": 1,
+"since": "2026-10-10T01-56-50-wrap"
+},
+{
+"class": "moved",
+"file": ".andromeda/test-plan-detail/test-strategy.md",
+"line": 28,
+"col": 514,
+"path": "docs/capabilities.md",
+"now": "172-174",
+"base": "172-174",
+"to": "173-175",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "- **The boolean model's two limits.** A mixed toggle reads unpressed, and a gra…",
+"sha": [
+"5d514e57ff95",
+"bdd60f3be6b2"
+],
+"citing": "5dfad79c875c",
+"nth": 0,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/test-plan-detail/test-strategy.md",
+"line": 28,
+"col": 544,
+"path": "docs/capabilities.md",
+"now": "188-192",
+"base": "188-192",
+"to": "189-193",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "- **The `select` model's limits.** A `multiple` select and an `optgroup`'s opti…",
+"sha": [
+"8cb54a92a8c6",
+"dc309c48ef4a"
+],
+"citing": "5dfad79c875c",
+"nth": 1,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/test-plan-detail/test-strategy.md",
+"line": 28,
+"col": 574,
+"path": "docs/capabilities.md",
+"now": "300-301",
+"base": "300-301",
+"to": "304-305",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "- **`stand-repeat`**: the 48 `stand_*` files, ten named blitz-tests targets and…",
+"sha": [
+"73905ebee3b8",
+"d5588b8e2f29"
+],
+"citing": "5dfad79c875c",
+"nth": 2,
+"since": null
+},
+{
+"class": "held",
+"file": ".andromeda/obs-plan.md",
+"line": 44,
+"col": 97,
+"path": "packages/blitz/Cargo.toml",
+"now": "14",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-10T01-56-50-wrap, not touched since",
+"text": "default = [\"net\", \"accessibility\", \"tracing\"]",
+"sha": [
+"ba383435c49e"
+],
+"citing": "2ed57f535777",
+"nth": 0,
+"since": "2026-10-10T01-56-50-wrap"
+},
+{
+"class": "held",
+"file": ".andromeda/a11y-plan-detail/a11y-scope-summary.md",
+"line": 20,
+"col": 115,
+"path": "apps/browser/Cargo.toml",
+"now": "14",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-24T15-00-29-cites-backlog, not touched since",
+"text": "default = [\"hybrid\", \"cookies\", \"cache\", \"screenshot\", \"apple-font-embolden\", \"…",
+"sha": [
+"9b5ed29a16a8"
+],
+"citing": "651910bd88e8",
+"nth": 0,
+"since": "2026-10-24T15-00-29-cites-backlog"
+},
+{
+"class": "held",
+"file": ".andromeda/a11y-plan-detail/screen-reader-support.md",
+"line": 24,
+"col": 843,
+"path": "tests/blitz-tests/tests/stand_snapshot.rs",
+"now": "1-5",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-25T17-25-04-wrap, not touched since",
+"text": "//! The snapshot of each lean stand task, booted headlessly in both layout mode…",
+"sha": [
+"5c7cae901140",
+"550c2f2bb685"
+],
+"citing": "efb744669ea6",
+"nth": 2,
+"since": "2026-10-25T17-25-04-wrap"
+},
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 257,
+"col": 123,
+"path": "tests/common/mod.rs",
+"now": "1-4",
+"base": "1-4",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at 316c6d25",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 0,
+"since": null
+},
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 257,
+"col": 169,
+"path": "tests/common/mod.rs",
+"now": "1-40",
+"base": "1-40",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at 316c6d25",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 1,
+"since": null
+},
+{
+"class": "out-of-range",
+"file": ".claude/docs/session-learnings.md",
+"line": 257,
+"col": 571,
+"path": "host.rs",
+"now": "350",
+"base": "350",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the file held 231 lines at the base",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 3,
+"since": null
+}
+],
+"applied": false,
+"owed": [
+{
+"row": "held .andromeda/architecture.md:118 examples/screenshot.rs:41-51 — refused at 2026-10-10T01-56-50-wrap, not touched since «let file_co…»",
+"file": ".andromeda/architecture.md",
+"line": 118,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": "examples/screenshot.rs",
+"nth": 6,
+"at": "41-51"
+},
+{
+"row": "held .andromeda/architecture-detail/established-decisions.md:91 packages/blitz-dom/src/layout/paint_tree.rs:420-462 — refused at 2026-10-24T15-00-29-cites-backlog, not touched since",
+"file": ".andromeda/architecture-detail/established-decisions.md",
+"line": 91,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": "packages/blitz-dom/src/layout/paint_tree.rs",
+"nth": 10,
+"at": "420-462"
+},
+{
+"row": "held .andromeda/security-plan.md:183 apps/browser/Cargo.toml:14 — refused at 2026-10-24T12-21-29-wrap, not touched since «default = […»",
+"file": ".andromeda/security-plan.md",
+"line": 183,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": "apps/browser/Cargo.toml",
+"nth": 3,
+"at": "14"
+},
+{
+"row": "held .andromeda/security-plan.md:331 packages/blitz-dom/src/layout/table.rs:535-539 — refused at 2026-10-13T15-50-37-wrap, not touched since «let Some(di…»",
+"file": ".andromeda/security-plan.md",
+"line": 331,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": "packages/blitz-dom/src/layout/table.rs",
+"nth": 0,
+"at": "535-539"
+},
+{
+"row": "held .andromeda/security-plan-detail/dependency-security.md:9 .andromeda/residuals.md:29 — refused at 2026-10-27T02-06-43-wrap, not touched since «2026-10-16-…»",
+"file": ".andromeda/security-plan-detail/dependency-security.md",
+"line": 9,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": ".andromeda/residuals.md",
+"nth": 1,
+"at": "29"
+},
+{
+"row": "held .andromeda/security-plan-detail/dependency-security.md:9 .andromeda/residuals.md:30 — refused at 2026-10-27T02-06-43-wrap, not touched since «2026-10-17-…»",
+"file": ".andromeda/security-plan-detail/dependency-security.md",
+"line": 9,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": ".andromeda/residuals.md",
+"nth": 3,
+"at": "30"
+},
+{
+"row": "held .andromeda/security-plan-detail/input-validation.md:201 tests/blitz-tests/tests/stand_snapshot.rs:1-5 — refused at 2026-10-25T17-25-04-wrap, not touched since «//! The sna…»",
+"file": ".andromeda/security-plan-detail/input-validation.md",
+"line": 201,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": "tests/blitz-tests/tests/stand_snapshot.rs",
+"nth": 6,
+"at": "1-5"
+},
+{
+"row": "held .andromeda/test-plan.md:284 .github/workflows/wpt-post-results.yml:43-49 — refused at 2026-10-10T01-56-50-wrap, not touched since «- name: Pos…»",
+"file": ".andromeda/test-plan.md",
+"line": 284,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": ".github/workflows/wpt-post-results.yml",
+"nth": 1,
+"at": "43-49"
+},
+{
+"row": "held .andromeda/obs-plan.md:44 packages/blitz/Cargo.toml:14 — refused at 2026-10-10T01-56-50-wrap, not touched since «default = […»",
+"file": ".andromeda/obs-plan.md",
+"line": 44,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": "packages/blitz/Cargo.toml",
+"nth": 0,
+"at": "14"
+},
+{
+"row": "held .andromeda/a11y-plan-detail/a11y-scope-summary.md:20 apps/browser/Cargo.toml:14 — refused at 2026-10-24T15-00-29-cites-backlog, not touched since «default = […»",
+"file": ".andromeda/a11y-plan-detail/a11y-scope-summary.md",
+"line": 20,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": "apps/browser/Cargo.toml",
+"nth": 0,
+"at": "14"
+},
+{
+"row": "held .andromeda/a11y-plan-detail/screen-reader-support.md:24 tests/blitz-tests/tests/stand_snapshot.rs:1-5 — refused at 2026-10-25T17-25-04-wrap, not touched since «//! The sna…»",
+"file": ".andromeda/a11y-plan-detail/screen-reader-support.md",
+"line": 24,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": "tests/blitz-tests/tests/stand_snapshot.rs",
+"nth": 2,
+"at": "1-5"
+},
+{
+"row": "out-of-range .claude/docs/session-learnings.md:257 host.rs:350 — the file held 231 lines at the base",
+"file": ".claude/docs/session-learnings.md",
+"line": 257,
+"class": "out-of-range",
+"home": "leaf",
+"listed": "leaf",
+"path": "host.rs",
+"nth": 3,
+"at": "350"
+}
+]
+}
+},
+{
+"tool": "cites",
+"v": "1.7",
+"sha8": "2a689b40",
+"ts": "2026-10-27T06:10:00Z",
+"argv": [
+"apply",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-59-26-wrap",
+"--marker",
+"2026-10-27-readme-and-records"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: 316c6d25 — the previous sweep (2026-10-27T02-06-43-wrap)",
+"sites 6164 (bare \":digits\" 6208) over 90 file(s) · unmoved 6144 · moved 6 · stretched 0 · changed 0",
+"out-of-range 1 · unresolved 2 · new 0 · repointed 0 · hand 0 · held 11 · INDETERMINATE 0 · listed, not written 0",
+"rows: 12 owed a read — the cites batch reads them from this call's trail record",
+"unresolved 2: their rows are `map`'s — another repository's file is never touched",
+"wrote .andromeda/architecture-detail/project-intent.md: 2 citation(s), read back digits-only",
+"wrote .andromeda/architecture-detail/standard-contracts.md: 1 citation(s), read back digits-only",
+"wrote .andromeda/test-plan-detail/test-strategy.md: 3 citation(s), read back digits-only",
+"re-pointed 6 citation(s) in 3 file(s)"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/architecture-detail/project-intent.md",
+"./.andromeda/architecture-detail/standard-contracts.md",
+"./.andromeda/test-plan-detail/test-strategy.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"mode": "sweep",
+"base": "316c6d25b59ad5518ec5c9e175913f3f61cd4420",
+"counts": {
+"unmoved": 6144,
+"moved": 6,
+"stretched": 0,
+"changed": 0,
+"out-of-range": 1,
+"unresolved": 2,
+"new": 0,
+"repointed": 0,
+"hand": 0,
+"INDETERMINATE": 0,
+"held": 11,
+"listed": 0
+},
+"rows": [
+{
+"class": "held",
+"file": ".andromeda/architecture.md",
+"line": 118,
+"col": 435,
+"path": "examples/screenshot.rs",
+"now": "41-51",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-10T01-56-50-wrap, not touched since",
+"text": "let file_content = std::fs::read(url.path()).unwrap();",
+"sha": [
+"ce46419e4649",
+"91a3252080a8"
+],
+"citing": "02da67409b0c",
+"nth": 6,
+"since": "2026-10-10T01-56-50-wrap"
+},
+{
+"class": "held",
+"file": ".andromeda/architecture-detail/established-decisions.md",
+"line": 91,
+"col": 1205,
+"path": "packages/blitz-dom/src/layout/paint_tree.rs",
+"now": "420-462",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-24T15-00-29-cites-backlog, not touched since",
+"text": "",
+"sha": [],
+"citing": "e701379ca92a",
+"nth": 10,
+"since": "2026-10-24T15-00-29-cites-backlog"
+},
+{
+"class": "moved",
+"file": ".andromeda/architecture-detail/project-intent.md",
+"line": 21,
+"col": 1252,
+"path": "README.md",
+"now": "48",
+"base": "48",
+"to": "49",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "An MCP client can drive the same apps: it spawns `target/debug/escher-session m…",
+"sha": [
+"c2a1bfe54a06"
+],
+"citing": "e8513ea289ba",
+"nth": 0,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/architecture-detail/project-intent.md",
+"line": 27,
+"col": 600,
+"path": "README.md",
+"now": "48",
+"base": "48",
+"to": "49",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "An MCP client can drive the same apps: it spawns `target/debug/escher-session m…",
+"sha": [
+"c2a1bfe54a06"
+],
+"citing": "d2bbb5ea5084",
+"nth": 0,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/architecture-detail/standard-contracts.md",
+"line": 279,
+"col": 1065,
+"path": "README.md",
+"now": "48",
+"base": "48",
+"to": "49",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "An MCP client can drive the same apps: it spawns `target/debug/escher-session m…",
+"sha": [
+"c2a1bfe54a06"
+],
+"citing": "c94f8da8aa91",
+"nth": 4,
+"since": null
+},
+{
+"class": "held",
+"file": ".andromeda/security-plan.md",
+"line": 183,
+"col": 393,
+"path": "apps/browser/Cargo.toml",
+"now": "14",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-24T12-21-29-wrap, not touched since",
+"text": "default = [\"hybrid\", \"cookies\", \"cache\", \"screenshot\", \"apple-font-embolden\", \"…",
+"sha": [
+"9b5ed29a16a8"
+],
+"citing": "e55afd81ef1e",
+"nth": 3,
+"since": "2026-10-24T12-21-29-wrap"
+},
+{
+"class": "held",
+"file": ".andromeda/security-plan.md",
+"line": 331,
+"col": 85,
+"path": "packages/blitz-dom/src/layout/table.rs",
+"now": "535-539",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-13T15-50-37-wrap, not touched since",
+"text": "let Some(display) = node.primary_styles().map(|s| s.clone_display()) else {",
+"sha": [
+"24e7dff73bcf",
+"ede9befdbd87"
+],
+"citing": "16bacd6cba80",
+"nth": 0,
+"since": "2026-10-13T15-50-37-wrap"
+},
+{
+"class": "held",
+"file": ".andromeda/security-plan-detail/dependency-security.md",
+"line": 9,
+"col": 876,
+"path": ".andromeda/residuals.md",
+"now": "29",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-27T02-06-43-wrap, not touched since",
+"text": "2026-10-16-fast-failing-mutants · open · dropping the RUSTSEC-2026-0367 · RUSTS…",
+"sha": [
+"fff75ad5c114"
+],
+"citing": "6fdd5e24bb9e",
+"nth": 1,
+"since": "2026-10-27T02-06-43-wrap"
+},
+{
+"class": "held",
+"file": ".andromeda/security-plan-detail/dependency-security.md",
+"line": 9,
+"col": 1812,
+"path": ".andromeda/residuals.md",
+"now": "30",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-27T02-06-43-wrap, not touched since",
+"text": "2026-10-17-upstream-sync-engine-debts · open · dropping the RUSTSEC-2026-0370 ·…",
+"sha": [
+"9fa530683571"
+],
+"citing": "6fdd5e24bb9e",
+"nth": 3,
+"since": "2026-10-27T02-06-43-wrap"
+},
+{
+"class": "held",
+"file": ".andromeda/security-plan-detail/input-validation.md",
+"line": 201,
+"col": 293,
+"path": "tests/blitz-tests/tests/stand_snapshot.rs",
+"now": "1-5",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-25T17-25-04-wrap, not touched since",
+"text": "//! The snapshot of each lean stand task, booted headlessly in both layout mode…",
+"sha": [
+"5c7cae901140",
+"550c2f2bb685"
+],
+"citing": "eff856203c32",
+"nth": 6,
+"since": "2026-10-25T17-25-04-wrap"
+},
+{
+"class": "held",
+"file": ".andromeda/test-plan.md",
+"line": 284,
+"col": 225,
+"path": ".github/workflows/wpt-post-results.yml",
+"now": "43-49",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-10T01-56-50-wrap, not touched since",
+"text": "- name: Post results to PR description",
+"sha": [
+"62243d0630b1",
+"26ae749fd798"
+],
+"citing": "ecc9b8df98be",
+"nth": 1,
+"since": "2026-10-10T01-56-50-wrap"
+},
+{
+"class": "moved",
+"file": ".andromeda/test-plan-detail/test-strategy.md",
+"line": 28,
+"col": 514,
+"path": "docs/capabilities.md",
+"now": "172-174",
+"base": "172-174",
+"to": "173-175",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "- **The boolean model's two limits.** A mixed toggle reads unpressed, and a gra…",
+"sha": [
+"5d514e57ff95",
+"bdd60f3be6b2"
+],
+"citing": "5dfad79c875c",
+"nth": 0,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/test-plan-detail/test-strategy.md",
+"line": 28,
+"col": 544,
+"path": "docs/capabilities.md",
+"now": "188-192",
+"base": "188-192",
+"to": "189-193",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "- **The `select` model's limits.** A `multiple` select and an `optgroup`'s opti…",
+"sha": [
+"8cb54a92a8c6",
+"dc309c48ef4a"
+],
+"citing": "5dfad79c875c",
+"nth": 1,
+"since": null
+},
+{
+"class": "moved",
+"file": ".andromeda/test-plan-detail/test-strategy.md",
+"line": 28,
+"col": 574,
+"path": "docs/capabilities.md",
+"now": "300-301",
+"base": "300-301",
+"to": "304-305",
+"write": true,
+"listed": null,
+"detail": "",
+"text": "- **`stand-repeat`**: the 48 `stand_*` files, ten named blitz-tests targets and…",
+"sha": [
+"73905ebee3b8",
+"d5588b8e2f29"
+],
+"citing": "5dfad79c875c",
+"nth": 2,
+"since": null
+},
+{
+"class": "held",
+"file": ".andromeda/obs-plan.md",
+"line": 44,
+"col": 97,
+"path": "packages/blitz/Cargo.toml",
+"now": "14",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-10T01-56-50-wrap, not touched since",
+"text": "default = [\"net\", \"accessibility\", \"tracing\"]",
+"sha": [
+"ba383435c49e"
+],
+"citing": "2ed57f535777",
+"nth": 0,
+"since": "2026-10-10T01-56-50-wrap"
+},
+{
+"class": "held",
+"file": ".andromeda/a11y-plan-detail/a11y-scope-summary.md",
+"line": 20,
+"col": 115,
+"path": "apps/browser/Cargo.toml",
+"now": "14",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-24T15-00-29-cites-backlog, not touched since",
+"text": "default = [\"hybrid\", \"cookies\", \"cache\", \"screenshot\", \"apple-font-embolden\", \"…",
+"sha": [
+"9b5ed29a16a8"
+],
+"citing": "651910bd88e8",
+"nth": 0,
+"since": "2026-10-24T15-00-29-cites-backlog"
+},
+{
+"class": "held",
+"file": ".andromeda/a11y-plan-detail/screen-reader-support.md",
+"line": 24,
+"col": 843,
+"path": "tests/blitz-tests/tests/stand_snapshot.rs",
+"now": "1-5",
+"base": null,
+"to": null,
+"write": false,
+"listed": null,
+"detail": "refused at 2026-10-25T17-25-04-wrap, not touched since",
+"text": "//! The snapshot of each lean stand task, booted headlessly in both layout mode…",
+"sha": [
+"5c7cae901140",
+"550c2f2bb685"
+],
+"citing": "efb744669ea6",
+"nth": 2,
+"since": "2026-10-25T17-25-04-wrap"
+},
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 257,
+"col": 123,
+"path": "tests/common/mod.rs",
+"now": "1-4",
+"base": "1-4",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at 316c6d25",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 0,
+"since": null
+},
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 257,
+"col": 169,
+"path": "tests/common/mod.rs",
+"now": "1-40",
+"base": "1-40",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at 316c6d25",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 1,
+"since": null
+},
+{
+"class": "out-of-range",
+"file": ".claude/docs/session-learnings.md",
+"line": 257,
+"col": 571,
+"path": "host.rs",
+"now": "350",
+"base": "350",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the file held 231 lines at the base",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 3,
+"since": null
+}
+],
+"applied": true,
+"owed": [
+{
+"row": "held .andromeda/architecture.md:118 examples/screenshot.rs:41-51 — refused at 2026-10-10T01-56-50-wrap, not touched since «let file_co…»",
+"file": ".andromeda/architecture.md",
+"line": 118,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": "examples/screenshot.rs",
+"nth": 6,
+"at": "41-51"
+},
+{
+"row": "held .andromeda/architecture-detail/established-decisions.md:91 packages/blitz-dom/src/layout/paint_tree.rs:420-462 — refused at 2026-10-24T15-00-29-cites-backlog, not touched since",
+"file": ".andromeda/architecture-detail/established-decisions.md",
+"line": 91,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": "packages/blitz-dom/src/layout/paint_tree.rs",
+"nth": 10,
+"at": "420-462"
+},
+{
+"row": "held .andromeda/security-plan.md:183 apps/browser/Cargo.toml:14 — refused at 2026-10-24T12-21-29-wrap, not touched since «default = […»",
+"file": ".andromeda/security-plan.md",
+"line": 183,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": "apps/browser/Cargo.toml",
+"nth": 3,
+"at": "14"
+},
+{
+"row": "held .andromeda/security-plan.md:331 packages/blitz-dom/src/layout/table.rs:535-539 — refused at 2026-10-13T15-50-37-wrap, not touched since «let Some(di…»",
+"file": ".andromeda/security-plan.md",
+"line": 331,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": "packages/blitz-dom/src/layout/table.rs",
+"nth": 0,
+"at": "535-539"
+},
+{
+"row": "held .andromeda/security-plan-detail/dependency-security.md:9 .andromeda/residuals.md:29 — refused at 2026-10-27T02-06-43-wrap, not touched since «2026-10-16-…»",
+"file": ".andromeda/security-plan-detail/dependency-security.md",
+"line": 9,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": ".andromeda/residuals.md",
+"nth": 1,
+"at": "29"
+},
+{
+"row": "held .andromeda/security-plan-detail/dependency-security.md:9 .andromeda/residuals.md:30 — refused at 2026-10-27T02-06-43-wrap, not touched since «2026-10-17-…»",
+"file": ".andromeda/security-plan-detail/dependency-security.md",
+"line": 9,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": ".andromeda/residuals.md",
+"nth": 3,
+"at": "30"
+},
+{
+"row": "held .andromeda/security-plan-detail/input-validation.md:201 tests/blitz-tests/tests/stand_snapshot.rs:1-5 — refused at 2026-10-25T17-25-04-wrap, not touched since «//! The sna…»",
+"file": ".andromeda/security-plan-detail/input-validation.md",
+"line": 201,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": "tests/blitz-tests/tests/stand_snapshot.rs",
+"nth": 6,
+"at": "1-5"
+},
+{
+"row": "held .andromeda/test-plan.md:284 .github/workflows/wpt-post-results.yml:43-49 — refused at 2026-10-10T01-56-50-wrap, not touched since «- name: Pos…»",
+"file": ".andromeda/test-plan.md",
+"line": 284,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": ".github/workflows/wpt-post-results.yml",
+"nth": 1,
+"at": "43-49"
+},
+{
+"row": "held .andromeda/obs-plan.md:44 packages/blitz/Cargo.toml:14 — refused at 2026-10-10T01-56-50-wrap, not touched since «default = […»",
+"file": ".andromeda/obs-plan.md",
+"line": 44,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": "packages/blitz/Cargo.toml",
+"nth": 0,
+"at": "14"
+},
+{
+"row": "held .andromeda/a11y-plan-detail/a11y-scope-summary.md:20 apps/browser/Cargo.toml:14 — refused at 2026-10-24T15-00-29-cites-backlog, not touched since «default = […»",
+"file": ".andromeda/a11y-plan-detail/a11y-scope-summary.md",
+"line": 20,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": "apps/browser/Cargo.toml",
+"nth": 0,
+"at": "14"
+},
+{
+"row": "held .andromeda/a11y-plan-detail/screen-reader-support.md:24 tests/blitz-tests/tests/stand_snapshot.rs:1-5 — refused at 2026-10-25T17-25-04-wrap, not touched since «//! The sna…»",
+"file": ".andromeda/a11y-plan-detail/screen-reader-support.md",
+"line": 24,
+"class": "held",
+"home": "master",
+"listed": null,
+"path": "tests/blitz-tests/tests/stand_snapshot.rs",
+"nth": 2,
+"at": "1-5"
+},
+{
+"row": "out-of-range .claude/docs/session-learnings.md:257 host.rs:350 — the file held 231 lines at the base",
+"file": ".claude/docs/session-learnings.md",
+"line": 257,
+"class": "out-of-range",
+"home": "leaf",
+"listed": "leaf",
+"path": "host.rs",
+"nth": 3,
+"at": "350"
+}
+]
+}
+},
+{
+"tool": "cites",
+"v": "1.7",
+"sha8": "2a689b40",
+"ts": "2026-10-27T06:11:08Z",
+"argv": [
+"dispositions",
+"--write",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-59-26-wrap",
+"--marker",
+"2026-10-27-readme-and-records"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dispositions: 12 row(s) · curation home — P3 1 · holds — re-pointed by hand to {N} 1 · holds — stands 10",
+"held .andromeda/architecture-detail/established-decisions.md:91 packages/blitz-dom/src/layout/paint_tree.rs:420-462 → holds — re-pointed by hand to 420-461 (the file has 461 lines; `position_to_order` and `node_to_paint_order`…)",
+".andromeda/runs/2026-10-27T05-59-26-wrap/citation-dispositions.md (13 lines) · written",
+"wrote .andromeda/architecture-detail/established-decisions.md: 1 hand re-point(s), read back digits-only",
+"hand re-points: 1 written in 1 file(s) · 0 already written"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-10-27T05-59-26-wrap/citation-dispositions.md",
+"./.andromeda/architecture-detail/established-decisions.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"rows": 12,
+"tally": {
+"holds — stands": 10,
+"holds — re-pointed by hand to {N}": 1,
+"curation home — P3": 1
+},
+"state": "written"
+}
+},
+{
+"tool": "cites",
+"v": "1.7",
+"sha8": "2a689b40",
+"ts": "2026-10-27T07:15:23Z",
+"argv": [
+"added",
+"--out",
+".andromeda/runs/2026-10-27T05-59-26-wrap/new-text.md",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-59-26-wrap",
+"--marker",
+"2026-10-27-readme-and-records"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: 316c6d25 — the parent of the oldest pre-CI commit 64256172",
+"README.md — added 31 line(s) in 8 range(s)",
+"docs/capabilities.md — added 11 line(s) in 3 range(s)",
+"new text: 2 file(s) · 0 new · 11 added range(s) · 42 line(s) · 0 block(s) → .andromeda/runs/2026-10-27T05-59-26-wrap/new-text.md (9 lines) · unchanged"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"base": "316c6d25b59ad5518ec5c9e175913f3f61cd4420",
+"counts": {
+"files": 2,
+"new": 0,
+"ranges": 11,
+"lines": 42,
+"blocks": 0
+},
+"out": ".andromeda/runs/2026-10-27T05-59-26-wrap/new-text.md",
+"state": "unchanged",
+"lines": 9
+}
+}
+]

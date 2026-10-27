@@ -1,35 +1,32 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-27T03:07:53Z
+**Last Updated:** 2026-10-27T07:14:50Z
 **Branch:** build/escher-0.3.0 · 0 ahead of origin/build/escher-0.3.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-26-codebase-health — refactor: the lint's findings walk and two table-asserting tests under the complexity ceiling
+**Last Commit:** 2026-10-27-readme-and-records — docs: the README at 0.2.0 done and 0.3.0 planned, the capabilities statement on the 2026-10-25 run, ledger refs, stand rows, incubator ignore
 
 ## Position
-- Done: 2026-10-26-codebase-health — `lint.rs::findings` and the two table-asserting tests (`mcp_tests.rs`'s listing
-  test, the 0.2.0 sweep test) factored into private helpers under the cognitive-complexity ceiling of 15, test
-  functions counted, the engine's function untouched; v030-01 (wrap run `.andromeda/runs/2026-10-27T02-06-43-wrap/`,
-  two windows).
-- Next: «README and records» (Epoch 1, v030-02 · v030-16) — /andromeda-phase to promote and plan it.
+- Done: 2026-10-27-readme-and-records — `README.md`'s `## Status` (0.1.0 and 0.2.0 done, 0.3.0 planned in six
+  stages), `docs/capabilities.md` on the 2026-10-25 live run, the two stale ledger refs re-pointed, the nine stand rows
+  moved out of design-system (F2, PROVISIONAL), the incubator ignored by `.gitignore`; v030-02 · v030-16. Closes
+  Epoch 1. Wrap run `.andromeda/runs/2026-10-27T05-59-26-wrap/` (three windows), its gated part's take-up implement
+  `.andromeda/runs/2026-10-27T07-06-33-implement/`.
+- Next: «Upstream sync ahead of engine debts» (Epoch 2, v030-03) — /andromeda-phase to promote and plan it.
 
 ## Work done
-P2: 16 proposals applied (+3 merged) as 15 master edits over architecture · test-plan · obs-plan · a11y-plan, 11 sidecar
-entries, 8 citations re-pointed, 5 leaf findings applied; P3 one Tier-3 extension; P5 one CARRY.
+P2: 22 amendments over architecture · design-system · layout-templates · security-plan · a11y-plan, 10 sidecar
+entries, 6 citations re-pointed, 16 leaf findings applied; P3 one Tier-3 learning; P5 no tail edit.
 
 ## Drift resolved
-The three sentences crediting stand-repeat membership to the sweep test alone restated to the measured limit (held
-jointly with `test_stand_repeat_leg_runs_three_rounds`); the complexity reading recorded in test-plan §10 alone; the
-coverage reading, the per-OS tallies, the factoring's helpers and their silence recorded — on the operator's dialog
-answers at the P2 halt (the founder asleep): «Merge into 1 (Recommended)» · «test-plan only (Recommended)» ·
-«CARRY: Stand requirement sweep (Recommended)».
+The front page and status facts restated (the default branch `build/escher-0.3.0` since the founder's «Да,
+переключить»); the nine stand rows moved to layout-templates' desktop-native screens, values unchanged, each line
+PROVISIONAL; on the operator's P2 answers «The nine rows only» · «Apply with their pairs (Recommended)».
 
 ## Notes
-- The sweep test's reach gap is owned by a `CARRY:` on «Stand requirement sweep» (Epoch 6).
-- The resume line named `2026-10-27T02-03-18-wrap`; the operator corrected it to `02-06-43` (inputs#I4).
-- Deferred learnings: `recurrence-despite-learning: .claude/docs/session-learnings.md` «A sweep pattern for a bare
-  count also matches a citation's digits», its 2026-10-25 extension (open every count alternative with `\b`) — P1's
-  `over 15` matched `hover 152`.
+- For the founder: F2 «Every stand row» is the delegate's PROVISIONAL answer, and the ten further stand lines
+  (`escher-0.3.0/chunks/2026-10-27-readme-and-records/evidence/records.md` (b); the operator's «The nine rows only»)
+  wait on his word — they stand in design-system as they read.
+- `gated 2026-10-27-readme-and-records: premise cleared` — `gh repo view` read `build/escher-0.3.0` at 07:13:44Z;
+  v030-02's front-page entry run green by the take-up implement, so the chunk wrapped on the plain arm.
+- `.andromeda/residuals.md:41` · `:42` (absorbed) close by v030-02 · v030-16 reading verified; no line written there.
 - Last failed command: none open.
-
-## Session End Status
-Completed normally at 2026-10-27 06:19:28

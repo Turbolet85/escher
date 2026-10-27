@@ -5,7 +5,7 @@ _Extracted from architecture.md and project conventions by `/andromeda-setup-pro
 ## Git workflow
 - **Branching:** one long-lived build branch per version — `build/escher-0.1.0` for 0.1.0; chunks commit on it (no per-chunk feature branches).
 - **Commit format:** conventional commits (`feat:`, `fix:`, `chore:`, `refactor:`, `docs:`, `test:`, `perf:`, `build:`, `ci:`).
-- **Main branch:** `main` (upstream Blitz CI runs on `main` and `v0.*`; escher's `ci.yml` also runs on every `build/**` push).
+- **Main branch:** `main` (upstream Blitz CI runs on `main` and `v0.*`; escher's `ci.yml` also runs on every `build/**` push); the fork's GitHub default branch is the version's build branch, `build/escher-0.3.0`, whose root `README.md` is the front page GitHub renders.
 - **Before a push:** `bash .github/scripts/ci-leg.sh fast` — the local pre-push gate, the same leg commands CI runs.
 - **Never force push** to main/master. Use `gh` for GitHub operations.
 - **Upstream:** escher is a fork of Blitz; keep upstream conventions (spec citations, one-behaviour test files) so merges stay cheap.

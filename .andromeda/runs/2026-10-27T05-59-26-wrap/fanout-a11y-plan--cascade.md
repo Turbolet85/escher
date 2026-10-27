@@ -1,0 +1,11 @@
+proposals:
+  - detector: D-cascade
+    severity: warning
+    file: .andromeda/a11y-plan-detail/visual-design-verification.md
+    near: 12
+    section: "## 6. Visual Design Verification"
+    change: "In the 2026-10-14-stand-a11y-assertions sentence, the accent's home `(design-system §Color Palette)` becomes `(layout-templates §Surface: desktop-native → Primary screens, its values · desktop-native-screens block — moved out of design-system §Color Palette on F2, PROVISIONAL)`; the shades `#3a5ce5` · `#2a4cd3` · `#1f3fc1`, the ratios 5.47 · 6.83 · 8.27, the record's counts and every quoted pair (the invalid `#c53030` on `#fff5f5`, the select's `#1a1a1a` on `#ffffff`) stay as they read."
+    sidecar: "a11y-plan §6 Visual Design Verification (visual-design-verification.md:12): the stand accent's cross-master home moved from design-system §Color Palette to layout-templates §Surface: desktop-native → Primary screens with the design-system stand-row move; values unchanged — PROVISIONAL under F2 (inputs#I3, I5), the founder's later word supersedes it."
+    rationale: "Report Expected amendments 5 (pattern a11y-ds-cite, 1 standing, visual-design-verification.md:12) follows amendments 2 and 3: every seven_guis stand row, the accent rows 1–3 among them, leaves design-system for layout-templates' values · desktop-native-screens block (F2, PROVISIONAL, Decisions & corrections); the report's Counts sweep reads visual-design-verification.md:12 and :32 no-change for the accent values, so only the named home moves. This is a section pointer between masters (no digits for cites.py) — the Relations side, not a path:line citation."
+    basis: .andromeda/a11y-plan-detail/visual-design-verification.md:12
+note: "Apply only together with design-system amendments 2 and 3 (the accent rows leaving design-system §Color Palette); if the operator also moves the invalid pair (`color-palette.md:72`) or the select's text pair (`:60`, `surface.md:10`) among the ten further stand lines, visual-design-verification.md:12's quoted values still stand (pattern ds-extra / ds-shared no-change) and no further a11y-plan edit follows; detectors D-a11y-surface and D-a11y-obs-schema do not fire (no UI element added, no violation or log schema changed — report Coverage of new surfaces, Schema / config)."

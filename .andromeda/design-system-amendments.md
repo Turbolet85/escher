@@ -119,18 +119,6 @@ One entry per amendment to `design-system.md` (sidecar-contract.md §Entry form)
 **Why:** upstream's mechanism, merged; the claim stands and only its path changed. The reconcile was confirmed by the founder (2026-10-13, by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option label «Подтвердить (Рекомендую)»; the English wording is the overseer's).
 **Ref:** .andromeda/runs/2026-10-13T15-50-37-wrap/
 
-## 2026-10-13-stand-contrast-harness — the seven_guis accent measured under white button text
-**Section:** §Color Palette → Core Colors (seven_guis accent row)
-**Change:** the row adds the measured reading: `#4a6cf7` is the background of white `#ffffff` button text on the five accent controls (`counter-increment`, `flight-one-way`, `flight-book`, `timer-reset`, `crud-create`; 14–16 px, weight 500–600, at boot), 4.39 against SC 1.4.3's 4.5 — a fail; every measured stand colour equals its declared value. The declared accent, hover and active values are unchanged.
-**Why:** the stand contrast check measured the declared pairs; the palette states what its accent reads under the text the stand paints on it. Re-colouring is owned by the route entry "Stand a11y assertions", not by this row.
-**Ref:** .andromeda/runs/2026-10-13T18-00-36-wrap/
-
-## 2026-10-14-stand-a11y-assertions — the stand's accent one step darker, SC 1.4.3 met
-**Section:** §Color Palette → Core Colors (the `seven_guis accent` row)
-**Change:** the accent is `#3a5ce5`, hover `#2a4cd3`, active `#1f3fc1` in every task CSS that declares it, its non-text uses moving with it and its three `rgba` uses at `rgba(58, 92, 229, …)`, alpha kept; was `#4a6cf7` / `#3a5ce5` / `#2a4cd3`. White button text on the five accent controls reads 5.47, a pass (was 4.39, a fail); on the hover shade 6.83 and on the active shade 8.27, reached states of `stand_contrast`.
-**Why:** the operator's F5, "One step darker, stand-wide", by question dialog — a stand change and no engine change, the hex literals staying where each task declares them (the token set is NOT YET MEASURED).
-**Ref:** .andromeda/runs/2026-10-14T19-50-50-wrap/
-
 ## 2026-10-14-stand-requirement-sweep — the hit at an element's own box measured
 **Section:** §Depth Strategy → Engine depth behavior (the hit-testing bullet)
 **Change:** the bullet adds the measured answers at an element's own box — an `img` holding raster data answers the `img`, a block inside an `iframe`'s `srcdoc` sub-document answers the `iframe` (the parent's walk does not enter it, pinned as it reads), a filled text `input` answers the `input` — and a box both transformed and scrolled hit where its rows show, not through its scrolled-out content; both layout modes, both builds.
@@ -217,3 +205,35 @@ One entry per amendment to `design-system.md` (sidecar-contract.md §Entry form)
 - Motion: right after a scroll the shown overlay scrollbar takes a main-button pointerdown in its band as a thumb drag and dispatches nothing, stays shown until an `advance` passes its fade, and a pointer left on the thumb keeps it shown — a driver `click` on a Cells cell in that band takes an `advance` past the fade first; the load page's `LoadNet` answers its one stylesheet after `LOAD_ANSWER_DELAY` (200 ms) from a thread of its own, so a `click` on `load-fetch` waits it out.
 **Why:** the flight booker's mode moved from two `aria-pressed` buttons to one select and the stand serves Cells and a load page beside the lean four, measured at the chunk; a stand change, no engine crate moving and no token added — the load page reuses the stand accent.
 **Ref:** .andromeda/runs/2026-10-25T17-25-04-wrap/
+
+## 2026-10-27-readme-and-records — the stand's radii, card shadows and card padding leave for layout-templates, PROVISIONAL
+**Section:** §Border Radius (border-radius.md: the seven_guis row) · §Depth Strategy (depth-strategy.md: the seven_guis cards item) · §Spacing (spacing.md: the seven_guis cards item)
+**Change:**
+- Border Radius: was a «seven_guis (untokenized)» row — cards 8px, buttons 6px, inputs 4px, task cards 6px, tags 3px, the flight booker's `flight-type` select 6px; now a «seven_guis stand» row holding no value: the stand's card, button, input, task-card, tag and flight-type select radii are held in layout-templates §Surface: desktop-native → Primary screens (`values · desktop-native-screens`), not as design-system values.
+- Depth Strategy: was «seven_guis cards use `0 2px 8px rgba(0, 0, 0, 0.08)`; the circle dialog uses 0.10»; now the stand's card and circle-dialog shadows are held in that layout-templates block, not as design-system values.
+- Spacing: was «seven_guis cards pad 24px 32px with 16px gap; home pads 48px 32px 64px»; now the stand's card and Home padding is held in that layout-templates block, not as a design-system value.
+**Why:** every seven_guis stand row leaves the product surface, its values as they stand (the report's Expected amendments 2 and 3, the move set's rows 7–9): a stand's own values are layout-templates', by the founder's rule of 2026-10-25 «The Apply benches». F2 «Every stand row (Recommended)» is the founder's delegate answer, given by the operator by question dialog at phase P4 (chunk inputs#I3), PROVISIONAL until the founder's own word, which supersedes it by rule. Each pointer went in with the removal it stands beside, atomically, on the operator's Q2 «Apply with their pairs (Recommended)» (the escher overseer, by question dialog at this wrap's P2 Validate, inputs#I8).
+**Kept:** spacing's `flight-type` select padding (8px vertical, 10px horizontal) stands — one of the ten further stand lines the operator's Q1 «The nine rows only» (inputs#I8) left for the founder's word, F2 not widened past the plan's nine rows.
+**Ref:** .andromeda/runs/2026-10-27T05-59-26-wrap/
+
+## 2026-10-27-readme-and-records — the stand's colours leave the product surface, PROVISIONAL
+**Section:** §Color Palette → Core Colors (design-system.md body; color-palette.md: the seven_guis accent and load page rows) · → Semantic Colors (color-palette.md: the seven_guis success row) · → Border Progression (color-palette.md: the flight-type select field row)
+**Change:**
+- Body, Core Colors: the seven_guis accent line (`#3a5ce5`, hover `#2a4cd3`, active `#1f3fc1`, white button text passing SC 1.4.3's 4.5 at rest, on hover and when active) removed; the subsection keeps its Detail pointer alone.
+- Core Colors: was a «seven_guis accent» row (its shades, the old `#4a6cf7`, its `rgba(58, 92, 229, …)` uses, white text 5.47 · 6.83 · 8.27, the old 4.39) and a «seven_guis load page (stand)» row (`load-fetch` on the accent, `load-done` `#1a1a1a` on `#f5f5f5`); now one «seven_guis stand» row holding no value: the stand's accent (its load page's `load-fetch` included), its flight booker's success-message colours and its flight-type select's border are held in layout-templates §Surface: desktop-native → Primary screens (`values · desktop-native-screens`), not as design-system values.
+- Semantic: the «seven_guis success» row (`#ebf8ee` / `#68d391` / `#276749`) removed.
+- Border Progression: the «Field — seven_guis flight-type select» row (`1px solid #c0c0c0`, focused `#3a5ce5`) removed.
+- Was the four accent controls' white text, the select's colours and the load page's colours, per «2026-10-25-cold-agent-bar — the flight booker's select, the served load page and the scrollbar's band»; now held in layout-templates.
+**Why:** the report's Expected amendment 2, the move set's rows 1–5, values as they stand, on F2 «Every stand row (Recommended)» — the founder's delegate answer, given by the operator by question dialog at phase P4 (chunk inputs#I3), PROVISIONAL — and the pointer row atomic with the removals on the operator's Q2 «Apply with their pairs (Recommended)» (inputs#I8).
+**Kept:** the seven_guis invalid row, the page `#f5f5f5` (shared with todomvc) and text `#1a1a1a` rows, surface.md's select overrides and load page group with the subjects line's `desktop-native-stand-load-page`, and the body's WASM-pages line stand — among the ten further stand lines Q1 «The nine rows only» (inputs#I8) left for the founder's word.
+**Supersedes:**
+2026-10-13-stand-contrast-harness — the seven_guis accent measured under white button text
+2026-10-14-stand-a11y-assertions — the stand's accent one step darker, SC 1.4.3 met
+**Ref:** .andromeda/runs/2026-10-27T05-59-26-wrap/
+
+## 2026-10-27-readme-and-records — the stand's font registration leaves for architecture's Headless stand, PROVISIONAL
+**Section:** §Typography (typography.md: the `values · typography` list)
+**Change:** was «The seven_guis headless stand registers the same bundled DejaVu Sans for every generic, with system fonts off, on native — `build_single_font_ctx(DEJAVU_SANS)` through `HarnessOptions.font_ctx`, for every boot, Cells' (`boot_cells`) and the load page's (`boot_load`) among them, decoded by seven_guis' native `woff` feature», per «2026-10-06-headless-stand — the headless stand registers the bundled DejaVu Sans on native» and the Typography item of «2026-10-25-cold-agent-bar — the flight booker's select, the served load page and the scrollbar's band»; now an item says the stand's font registration is held in architecture §Standard Contracts → Headless stand, beside `font_ctx()`, not as a design-system typography value. The WASM builds' bundled-font item and the custom `FontContext` item stand.
+**Why:** the report's Expected amendments 2 and 4, the move set's row 6: the stand's font is a contract of its headless boot, stated there once — on F2 «Every stand row (Recommended)», the founder's delegate answer given by the operator by question dialog at phase P4 (chunk inputs#I3), PROVISIONAL; the pointer atomic with the removal on the operator's Q2 «Apply with their pairs (Recommended)» (inputs#I8).
+**Kept:** typography.md's two seven_guis type-table rows (base 14px with a 36px 700 home title; the `flight-type` select 15px 400) stand — among the ten further stand lines Q1 «The nine rows only» (inputs#I8) left for the founder's word.
+**Ref:** .andromeda/runs/2026-10-27T05-59-26-wrap/

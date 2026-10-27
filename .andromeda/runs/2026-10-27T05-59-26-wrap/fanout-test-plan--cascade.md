@@ -1,0 +1,2 @@
+proposals: []
+note: the report's Spec claims disproved 1 (`docs/capabilities.md:108` «each lean task reads 0 findings at boot», false against `stand_lint::the_stand_at_boot_reads_its_measured_findings`, restated by hand) is the hand-kept-prose limit test-strategy#4.1 already states (only names and counts pinned); no test-plan site moves, and the `docs/capabilities.md` citations in test-strategy#4.1 are the citation sweep's to re-check after the `:108-110` · `:225-226` · `:290-295` restatements.

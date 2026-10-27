@@ -1,0 +1,123 @@
+[
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "ef6ddbd7",
+"ts": "2026-10-27T07:20:20Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-10-27-readme-and-records",
+"--desc-file",
+".andromeda/runs/2026-10-27T05-59-26-wrap/master-desc.txt",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-59-26-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"flip master-route.md:80 - 2026-10-27-readme-and-records pending -> complete - desc REWRITTEN from --desc-file"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "ef6ddbd7",
+"ts": "2026-10-27T07:20:20Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-27-readme-and-records",
+"--date",
+"2026-10-27",
+"--header-file",
+".andromeda/runs/2026-10-27T05-59-26-wrap/archive-header.md",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-59-26-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :13 strip BLOCKED-ON: 268ch \"BLOCKED-ON: the founder's own word on F3\"",
+"pin next markerless :16 holds no freight",
+"13 · 2026-10-27-readme-and-records · strip 1 block(s) · archive APPEND",
+"dry-run - would archive 1 and compact 1 line(s); route-archive.md would be CREATED"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 13,
+"marker": "2026-10-27-readme-and-records",
+"blocks": 1,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+},
+{
+"tool": "route",
+"v": "1.8",
+"sha8": "ef6ddbd7",
+"ts": "2026-10-27T07:20:27Z",
+"argv": [
+"route.py",
+"compact",
+"--root",
+".",
+"--chunk",
+"2026-10-27-readme-and-records",
+"--date",
+"2026-10-27",
+"--header-file",
+".andromeda/runs/2026-10-27T05-59-26-wrap/archive-header.md",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-59-26-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin :13 strip BLOCKED-ON: 268ch \"BLOCKED-ON: the founder's own word on F3\"",
+"pin next markerless :16 holds no freight",
+"13 · 2026-10-27-readme-and-records · strip 1 block(s) · archive APPEND",
+"compacted 1 complete line(s) -> route-archive.md (1 archived, 0 already there)"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.3.0/route-archive.md",
+"./escher-0.3.0/working-route.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"targets": [
+{
+"n": 13,
+"marker": "2026-10-27-readme-and-records",
+"blocks": 1,
+"archived": false
+}
+],
+"skips": [],
+"kept_notes": []
+}
+}
+]

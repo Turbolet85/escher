@@ -7,7 +7,7 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 
 - Browser z-index: tooltip, menu and suggestions 100; FPS overlay 50; status bar 10 (apps/browser/assets/browser.css:69; apps/browser/assets/browser.css:218; apps/browser/assets/browser.css:274; apps/browser/assets/browser.css:304; apps/browser/assets/browser.css:324)
 - Browser menu and suggestions share `box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15)` (apps/browser/assets/browser.css:217; apps/browser/assets/browser.css:323)
-- seven_guis cards use `0 2px 8px rgba(0, 0, 0, 0.08)`; the circle dialog uses 0.10 (examples/seven_guis/src/tasks/counter.rs:43; examples/seven_guis/src/tasks/timer.rs:76; examples/seven_guis/src/tasks/flight_booker.rs:148; examples/seven_guis/src/tasks/circle_drawer.rs:210)
+- The seven_guis stand's card and circle-dialog shadows are held in layout-templates §Surface: desktop-native → Primary screens (`values · desktop-native-screens`), not as design-system values
 - todomvc uses layered shadows on the app and footer (examples/todomvc/src/todomvc.css:48; examples/todomvc/src/todomvc.css:279)
 - wgpu_texture layers overlay z-index 10, underlay -10, header 100 (examples/wgpu_texture/src/styles.css:26; examples/wgpu_texture/src/styles.css:34; examples/wgpu_texture/src/styles.css:45); the custom-widget example stacks header 100, overlay 10, underlay -10 (examples/custom_widget.rs:195-198; examples/custom_widget.rs:201-206; examples/custom_widget.rs:213-217); the transforms example's `.overlay` uses z-index 99 (examples/transforms.rs:277-282)
 - blitz-dom default dialog backdrop `rgba(0, 0, 0, 0.1)` (packages/blitz-dom/assets/default.css:999-1002)

@@ -24,8 +24,7 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 |------|-------|-------|
 | Browser chrome focus | `#5E9ED6` | Focus color; icon button hover `#CCC`, active `#BBB` (apps/browser/assets/browser.css:172-175; apps/browser/assets/browser.css:182-189) |
 | Browser about:history link | `#1a73e8` | History link color (apps/browser/assets/about-history.css:3; apps/browser/assets/about-history.css:69; apps/browser/assets/about-history.css:77; apps/browser/assets/about-history.css:84; apps/browser/assets/about-newtab.css:7; apps/browser/assets/about-stub.css:2) |
-| seven_guis accent | `#3a5ce5` (hover `#2a4cd3`, active `#1f3fc1`) | Accent on page `#f5f5f5` with text `#1a1a1a` (examples/seven_guis/src/tasks/counter.rs:49; examples/seven_guis/src/tasks/counter.rs:59-72; examples/seven_guis/src/app.rs:183); one step darker since 2026-10-14-stand-a11y-assertions, the operator's choice — until then `#4a6cf7` (hover `#3a5ce5`, active `#2a4cd3`) — in every task CSS that declares it, its non-text uses moving with it and its three `rgba` uses reading `rgba(58, 92, 229, …)`, alpha kept; measured as the background of white `#ffffff` button text on the four accent controls (`counter-increment`, `flight-book`, `timer-reset`, `crud-create`, 14–16 px, weight 500, at boot): 5.47 against SC 1.4.3's 4.5, a pass — the old `#4a6cf7` read 4.39, a fail — and white on the hover shade 6.83 and on the active shade 8.27, each a reached colour state of `stand_contrast`; every measured stand colour equals its declared value (tests/blitz-tests/tests/stand_contrast.rs:49-132; tests/blitz-tests/tests/stand_contrast.rs:294-406; as measured at escher-0.1.0/chunks/2026-10-13-stand-contrast-harness/report.md and its evidence/pairs.md, the re-colour and its ratios at escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions/report.md) |
-| seven_guis load page (stand) | `#3a5ce5` (hover `#2a4cd3`, active `#1f3fc1`), `#1a1a1a`, `#f5f5f5` | The served load page's button `load-fetch` is white on the accent at rest, on hover and when active (`.load-btn` and its `:hover` · `:active`), its `load-done` text `#1a1a1a` on the page `#f5f5f5`; no contrast row reads it, the page being no lean task (examples/seven_guis/src/stand.rs:202-244; as measured at escher-0.2.0/chunks/2026-10-25-cold-agent-bar/report.md) |
+| seven_guis stand | — | The stand's accent (its load page's `load-fetch` included), its flight booker's success-message colours and its flight-type select's border are held in layout-templates §Surface: desktop-native → Primary screens (`values · desktop-native-screens`), not as design-system values |
 | blitz-dom default link | `rgb(0, 0, 238)` | Default stylesheet link, its rule selecting `a[href]` — an anchor with no `href` takes neither the colour nor the underline; input focus outline `#4D90FE`; button background `#EFEFEF` (packages/blitz-dom/assets/default.css:43-46; packages/blitz-dom/assets/default.css:98-101; packages/blitz-dom/assets/default.css:111) |
 | Default text-selection highlight | rgb 180, 213, 255 | Engine default (packages/blitz-paint/src/lib.rs:28-29) |
 | counter / transparent buttons | named green, red, blue | Buttons with white text (examples/counter/src/app.rs:83-111; examples/transparent/src/app.rs:184-212) |
@@ -70,7 +69,6 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 | State | Values (as declared) | Usage |
 |-------|----------------------|-------|
 | seven_guis invalid | `#e53e3e` / `#fff5f5` / `#c53030` | Invalid state (examples/seven_guis/src/tasks/flight_booker.rs:194-198; examples/seven_guis/src/tasks/flight_booker.rs:229-237) |
-| seven_guis success | `#ebf8ee` / `#68d391` / `#276749` | Success message (examples/seven_guis/src/tasks/flight_booker.rs:194-198; examples/seven_guis/src/tasks/flight_booker.rs:229-237) |
 | Disabled checkbox/radio | rgba 209, 209, 209, 255 | Disabled accent; otherwise the element's color stands in for accent-color per a TODO (packages/blitz-paint/src/render/form_controls.rs:21-26) |
 
 <!-- /detail -->
@@ -98,7 +96,6 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 | Browser urlbar border | `#EEE` | (apps/browser/assets/browser.css:25; apps/browser/assets/browser.css:44; apps/browser/assets/browser.css:51; apps/browser/assets/browser.css:77; apps/browser/assets/browser.css:134-135) |
 | Focus — browser chrome | `#5E9ED6` | (apps/browser/assets/browser.css:172-175; apps/browser/assets/browser.css:182-189) |
 | Focus — blitz-dom default input outline | `#4D90FE` | (packages/blitz-dom/assets/default.css:43-46; packages/blitz-dom/assets/default.css:98-101; packages/blitz-dom/assets/default.css:111) |
-| Field — seven_guis flight-type select | `1px solid #c0c0c0`; focused, `#3a5ce5` | The flight booker's `flight-type` select (`.type-select`) paints `#1a1a1a` on `#ffffff` (17.40, 15px 400) inside a `1px solid #c0c0c0` border; on focus it drops the outline for a `#3a5ce5` border, as the date inputs do (examples/seven_guis/src/tasks/flight_booker.rs:160-172; as measured at escher-0.2.0/chunks/2026-10-25-cold-agent-bar/report.md) |
 
 <!-- /detail -->
 
