@@ -1,0 +1,76 @@
+[
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T05:25:35Z",
+"argv": [
+"show",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-10-27-readme-and-records",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-19-41-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-27-readme-and-records: 2",
+"v030-02 · manual · planned · ref null · chunk 2026-10-27-readme-and-records · On `build/escher-0.3.0`, `README.md`'s `## Status` holds `### 0.1.0 — do… (1523 chars)",
+"v030-16 · by-construction · planned · ref null · chunk 2026-10-27-readme-and-records · By construction, from implement's enumeration `escher-0.3.0/chunks/2026-… (1541 chars)",
+"pool: unclaimed 13 [v030-03 v030-04 v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T05:27:45Z",
+"argv": [
+"implement",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-10-27-readme-and-records",
+"--id",
+"v030-16",
+"--ref-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-19-41-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"implement v030-16 · status planned → implemented · ref by-construction: escher-0.3.0/chunks/2026-10-27-readme-and-records/evidence/reco… (529 chars)",
+"wrote escher-0.3.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/verification-matrix.json"
+],
+"before": {
+"id": "v030-16",
+"chunk": "2026-10-27-readme-and-records",
+"status": "planned",
+"method": "by-construction",
+"ref": "null",
+"acceptance": "By construction, from implement's enumeration `escher-0.3.0/chunks/2026-10-27-readme-and-records/evidence/records.md`, w… (1541 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v030-16",
+"chunk": "2026-10-27-readme-and-records",
+"status": "implemented",
+"method": "by-construction",
+"ref": "by-construction: escher-0.3.0/chunks/2026-10-27-readme-and-records/evidence/records.md enumerates (a) the three renamed … (529 chars)",
+"acceptance": "By construction, from implement's enumeration `escher-0.3.0/chunks/2026-10-27-readme-and-records/evidence/records.md`, w… (1541 chars)",
+"notes_chars": 0
+}
+}
+]

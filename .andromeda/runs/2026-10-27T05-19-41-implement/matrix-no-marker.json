@@ -1,0 +1,163 @@
+[
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T05:21:25Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.2.0",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-19-41-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 11/11 · deferred 0 · planned 0 · implemented 0 · unclaimed 0",
+"claimed-unfinished: none",
+"done-test: YES — every entry verified|deferred and unclaimed 0",
+"chunks referenced: 11 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T05:22:37Z",
+"argv": [
+"show",
+"--dir",
+"escher-0.1.0",
+"--id",
+"v010-17",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-19-41-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"id: v010-17",
+"title: Snapshot selection, toggle and validity states",
+"requirement: snapshot state also reflects selected, pressed and invalid; the active flight mode, the selected row and an invalid date each read so on the stand",
+"observed_gap: a fresh agent could not read which flight mode is active, which CRUD row is selected or that a date is invalid, and inferred each from a side effect, in 2 of 3 tasks of the first live trial",
+"method: integration",
+"status: verified",
+"ref: tests/blitz-tests/tests/stand_snapshot_state.rs::exactly_the_active_flight_mode_reads_pressed · ::exactly_the_selected_row_reads_selected · ::a_date_that_is_no_date_reads_invalid · tests/blitz-tests/tests/stand_act_states.rs::a_flight_mode_click_returns_both_mode_buttons_with_their_pressed_reading · ::a_row_click_returns_the_row_selected_and_the_row_it_leaves_not_selected · ::a_typed_start_date_returns_the_field_invalid_or_not · tests/blitz-tests/tests/stand_act_diff.rs::a_choice_on_the_flight_booker_returns_the_control_it_enabled · ::create_returns_the_new_row_added_and_delete_returns_it_removed",
+"acceptance: On the stand, in both layout modes, read through `DioxusDocument::snapshot` after real input: at boot `flight-one-way` reads `pressed: Some(true)` and `flight-return` `Some(false)`, the two readings swap after a click on `flight-return` and swap back after a click on `flight-one-way`, and no other node reads a `pressed`; with no row selected every CRUD row reads `selected: Some(false)`, after a click on a row exactly that row reads `Some(true)`, a click on another row moves the reading, and a filter edit or Delete leaves no row selected; `flight-start` reads `invalid: false` at boot and `true` once what it holds is no date, `flight-return-date` reads the same way under a return flight, and no other node reads invalid; each of these snapshot readings equals the accessibility node's (`is_selected`, `toggled`, `invalid`). Each reading follows the app's state when it changes, and through `escher_driver::Session::run` the step that changes it returns that node among its `changed` nodes as it reads after the step — the click on `flight-return` returns both mode buttons, a click on a row returns that row and the row it leaves, the `type` that makes `flight-start` no date returns it invalid and the `type` that makes it a date returns it not invalid — each returned diff equal to the check's own reading of the two snapshots and equal in both layout modes. Proved by `cargo test -p blitz-tests --locked --test stand_snapshot_state --test stand_act_diff` and `cargo test -p blitz-tests --locked --test accessibility_states --test stand_act_states`, and by the same four files under `cargo test --workspace --locked --test accessibility_states --test stand_act_states --test stand_snapshot_state --test stand_act_diff`.",
+"chunk: 2026-10-10-snapshot-states",
+"notes: 2026-10-10 (2026-10-10-scrolling-box-bounds-and-hit, wrap P5): added on the founder's ruling of 2026-10-10 — asked by question dialog in the overseer session whether the states a snapshot does not read belong in 0.1.0, he chose their own chunk in 0.1.0, ahead of \"MCP surface\" (relayed by the overseer; the relay is this chunk's `inputs#I6`). It widens the version's scope by his own word: intent §Out of this version sets \"states beyond what the snapshot needs\" in later versions, and intent.md is not rewritten. The line and the five fields were approved as drafted by the operator, 2026-10-10, by question dialog at this wrap, with the choice of a new requirement over a widened v010-05 — v010-05 stays verified as worded (enabled, checked, value, focused). Unclaimed; the route entry \"Snapshot states\" names it.\n\n2026-10-10 (2026-10-10-snapshot-states, phase P5): claimed and concretized. The outcome-level acceptance is kept whole and made concrete per control: pressed on the flight booker's two mode buttons (toggle buttons, `aria-pressed`), selected on the CRUD's rows (`role=\"option\"` in a `role=\"listbox\"` list, `aria-selected`), invalid on the two date inputs (`aria-invalid`) — the roles and the attributes chosen by the operator at P4 by question dialog, 2026-10-10. \"The other as not\" and \"no other row\" are explicit false readings (`Some(false)`); \"a valid one as not\" is the flag reading false, since the accessibility node holds no value for valid. The way back to a valid date is proven through the driver's `type`, which replaces what the control holds, because no stand check presses a deleting key. Outside the claim: `aria-checked`, a mixed toggle and a grammar or spelling error on the stand (no stand screen shows one — each is pinned on a fixture), and what any platform adapter reads. Measured absent first, at P3 on HEAD f0cb9dd7 (research.md §Measured first).",
+"pool: unclaimed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T05:22:37Z",
+"argv": [
+"show",
+"--dir",
+"escher-0.2.0",
+"--id",
+"v020-05",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-19-41-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"id: v020-05",
+"title: Visual lint",
+"requirement: one command reports, for the current screen, each element that overlaps another, is clipped, has truncated text, lies off-screen, has zero size or fails text contrast, naming its stable id and measured reason",
+"observed_gap: covered and off-screen are named per action only; text contrast is checked on the stand by one test, not by a command",
+"method: integration",
+"status: verified",
+"ref: tests/blitz-tests/tests/stand_lint.rs::the_planted_defects_are_named_each_by_its_id_and_reason + ::the_stand_at_boot_reads_no_finding (Session::lint, both layout modes) + ::the_lint_verb_answers_what_the_reader_reads (the `lint` verb through Session::run answers Session::lint's findings on the planted page and the four lean tasks, both modes) + examples/seven_guis/tests/cli_commands.rs::lint_answers_one_line_of_findings (the escher-session binary) + tests/blitz-tests/tests/stand_mcp_tools.rs::a_lint_tool_call_answers_the_readers_findings_and_parents_its_command (MCP) — the carriage the founder's own word on F1 set, option 1 (inputs#I7)",
+"acceptance: On `tests/blitz-tests/tests/stand_lint.rs`'s planted page, which holds the six defects (two sibling boxes that overlap; an element clipped by an `overflow: hidden` box and one clipped by a `contain: paint` box; a nowrap line truncated by its own `overflow: hidden`; an element wholly right of the 800 px viewport; a labelled button with zero size; `#999999` text on `#ffffff`) and six negatives (an `inert` and a `hidden` element over another box, a disabled low-contrast button, low-contrast text under `opacity: 0.5`, a text input holding a value wider than its box, a wrapping paragraph), one lint names exactly the seven planted findings, in document order, each by its stable id, its defect word (`overlap` · `clipped` · `clipped` · `truncated` · `off-screen` · `zero-size` · `contrast`) and its measured reason (the other element's id; the visible part inside its clipping box; the text box wider than its box; the contrast ratio equal to `Harness::text_contrast`'s reading and below its required 4.5), and nothing on a negative; on each of the four lean stand tasks at boot it names 0 findings; both in both layout modes. Proven through `Session::lint` (escher-driver), and through the one command the founder's own word on F1 of `.andromeda/runs/2026-10-19T23-47-25-phase/founder-forks.md` sets, whose answer equals `Session::lint`'s findings on the same screens (gated: the founder's own word on F1, the lint's carriage, answered by the operator as delegate «In process only (Most conservative)», PROVISIONAL — escher-0.2.0/chunks/2026-10-19-visual-lint/inputs#I2). The in-process reader alone never verifies the cap.",
+"chunk: 2026-10-19-visual-lint",
+"notes: 2026-10-20 (2026-10-19-visual-lint, phase P5): claimed GATED on the operator's note to F1 (inputs#I2): v020-05 asks for one command, so the in-process `Session::lint` this chunk builds does not verify it; it verifies only when the founder's own word on F1 sets the carriage and the one command answers `Session::lint`'s findings (plan step 12). His word confirming in process only releases the claim; option 2 or 4 is a phase revision. Approved by the operator's word at P5 (inputs#I3).\n\n# Cleared — v020-05 (2026-10-19-visual-lint)\n\n- Block: the founder's own word on F1 of `.andromeda/runs/2026-10-19T23-47-25-phase/founder-forks.md`, the lint's\n  carriage (inputs#I2's delegate answer «In process only (Most conservative)», PROVISIONAL).\n- Cleared 2026-10-20: the founder answered by question dialog in the escher overseer session at about 04:35Z, relayed\n  verbatim by the overseer — F1 «Новая команда lint (Рекомендую)», option 1 «New verb, all carriers, recorded»; F2\n  «Без поля (Рекомендую)», option 1 «No new field».\n- Evidence: `escher-0.2.0/chunks/2026-10-19-visual-lint/inputs/I7-morning-founder-answers-2026-10-20.md.txt` (inputs#I7,\n  snapped at implement from `~/dev/projects/additional/escher-overseer/relays/morning-founder-answers-2026-10-20.md`) and\n  its row in `escher-0.2.0/chunks/2026-10-19-visual-lint/evidence/founder-word.md`.\n- Built against the real carriage: the `lint` verb through `Session::run`, the command line, MCP, `help` and the\n  recorder — no stand-in.\n\n2026-10-24 (2026-10-24-stand-requirement-sweep, wrap P7.3, the plan's ledger-note entry): this cap's witnesses run inside `stand-repeat` — `stand_lint`, `stand_mcp_tools` by the `stand_` prefix, `text_extent` by the leg's named `--test` list (the founder's own word «Список в скрипте (Рекомендую)», chunk inputs#I1); and two readings once asserted by no check are asserted: a clipped or off-screen node holding text also reads `truncated` (`stand_lint::a_clipped_or_off_screen_node_holding_text_reads_truncated_beside_it`, both layout modes, the `lint` verb answering the same), and `BaseDocument::text_extent`'s three stated limits (RTL and vertical text read as left-to-right lines, a transformed box at its client rect) by `text_extent`'s three new tests, both layout modes and both builds. `WITNESSES_020` row v020-05 names them. Status, ref and acceptance untouched.",
+"pool: unclaimed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T05:25:46Z",
+"argv": [
+"show",
+"--dir",
+"escher-0.3.0",
+"--id",
+"v030-16",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-19-41-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"id: v030-16",
+"title: Records kept true",
+"requirement: The two verified ledger refs name the tests' current names, the design-system stand rows (the accent, the success row, the cards item, the stand's DejaVu Sans item) move out of the product surface into architecture and layout-templates, and the incubator is ignored by .gitignore in place of a local exclude",
+"observed_gap: Two verified ledger refs, v010-17 and v020-05, cite renamed tests (.andromeda/residuals.md:42); the design-system stand rows sit in its product surface; the incubator is excluded only locally.",
+"method: by-construction",
+"status: planned",
+"ref: None",
+"acceptance: By construction, from implement's enumeration `escher-0.3.0/chunks/2026-10-27-readme-and-records/evidence/records.md`, written from the tree at the chunk's base: (1) the three renamed test names the verified refs hold — v010-17's `stand_snapshot_state::exactly_the_active_flight_mode_reads_pressed` and `stand_act_states::a_flight_mode_click_returns_both_mode_buttons_with_their_pressed_reading`, v020-05's `stand_lint::the_stand_at_boot_reads_no_finding` — each paired with its current name found as `fn {name}(` in its file, every other name of both refs found as it stands, and both full re-pointed ref texts; (2) every seven_guis stand row of design-system — the accent's body sentence and row, the load page row, the success row, the `flight-type` select's Border Progression row, the stand's DejaVu Sans item, and the cards' shadow, padding and the seven_guis radius row — each with its `file:line`, its values and the architecture or layout-templates section it lands in; (3) `git check-ignore -v escher-0.3.0-incubator/intent.md` naming `.gitignore:39`, with `.git/info/exclude` holding no incubator line. The wrap writes exactly that: the refs by `matrix.py refine --chunk {the owning marker} --ref-file` at P7.3 (F1, the operator's answer, inputs#I3), the rows by design-system's door amendment with values unchanged (F2, the founder's delegate answer, PROVISIONAL, inputs#I3). The cap reads verified only when both ledgers' refs read the enumerated texts and design-system's body and detail files hold none of the enumerated rows.",
+"chunk: 2026-10-27-readme-and-records",
+"notes: None",
+"pool: unclaimed 13 [v030-03 v030-04 v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T05:25:46Z",
+"argv": [
+"show",
+"--dir",
+"escher-0.3.0",
+"--id",
+"v030-02",
+"--run-dir",
+".andromeda/runs/2026-10-27T05-19-41-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"id: v030-02",
+"title: The version on the GitHub page",
+"requirement: The README shows 0.2.0 done and verified, with what it can do and its cold-agent result, and 0.3.0 planned with its stages; the capabilities statement describes the 2026-10-25 run",
+"observed_gap: The README describes 0.1.0 as done and 0.2.0 as planned; the capabilities statement still describes the 2026-10-15 live run (.andromeda/residuals.md:41).",
+"method: manual",
+"status: planned",
+"ref: None",
+"acceptance: On `build/escher-0.3.0`, `README.md`'s `## Status` holds `### 0.1.0 — done and verified`, `### 0.2.0 — done and verified` (its five epochs of escher-0.2.0/working-route.md, one line each, and its facts read from their records: 11 of 11 capabilities verified; the cold-agent bar run's six apps, 66 tool calls and 0 wrong under the founder's 5 % bar, from escher-0.2.0/chunks/2026-10-25-cold-agent-bar/evidence/live-verdict.json) and `### 0.3.0 — planned, in six stages` (one line per epoch of escher-0.3.0/working-route.md), and no `0.2.0 — planned` line; \"What Escher is\" and the driver paragraph name 0.2.0's additions as `docs/capabilities.md` states them; every prose mention reads «Escher», crate, binary and path names lowercase. `docs/capabilities.md`'s run paragraph opens «The measured instance is the 2026-10-25 cold-agent live run» and states that run — six apps, twelve tools, 66 calls, 0 wrong against the 5 % bar, a lint and a screenshot called — as the security plan records its carriage, with no «eleven tools, 43» or «not been re-fired» sentence and no «sink is unmeasured» line remaining; `.github/scripts/test_capability_statement.py` passes its four tests and `bash .github/scripts/ci-leg.sh fast` is green. Gated on the founder's own word on F3 (inputs#I4): the project's front page on GitHub — the default branch's README as `gh api repos/Turbolet85/escher/readme` serves it — reads the `### 0.2.0 — done and verified` and `### 0.3.0 — planned, in six stages` headings; nothing stands in for that page.",
+"chunk: 2026-10-27-readme-and-records",
+"notes: None",
+"pool: unclaimed 13 [v030-03 v030-04 v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

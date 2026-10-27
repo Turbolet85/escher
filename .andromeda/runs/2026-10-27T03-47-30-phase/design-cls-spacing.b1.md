@@ -1,0 +1,21 @@
+# Classified — design · spacing.b1
+
+## Answers
+spacing#1.1 · no · the rdme spacing tokens are an unedited Spacing unit the chunk does not reach (Not needed: no layout change)
+spacing#2.1 · no · the browser urlbar, tab and menu padding is an unedited Spacing unit the chunk does not reach (Not needed: no layout change)
+spacing#2.2 · no · the about:history padding is an unedited Spacing unit the chunk does not reach (Not needed: no layout change)
+spacing#2.3 · no · the rdme markdown body width and padding are an unedited Spacing unit the chunk does not reach (Not needed: no layout change)
+spacing#2.4 · no · the seven_guis cards and home padding are an unedited Spacing unit that cites no moved row, the cards item moving with its values unchanged (Not needed: no layout change)
+spacing#2.5 · no · the flight-type select padding is an unedited Spacing unit, and stand_snapshot_state is re-read by test name for its selected reading, not its padding (Not needed: no layout change)
+spacing#2.6 · no · the blitz-dom default body margin is an unedited Spacing unit, and stand_lint is re-read by test name only (Not needed: no layout change)
+spacing#3.1 · no · the hspace and vspace margins are an unedited Spacing unit in stylo.rs, which the chunk does not change (Not needed: no layout change)
+spacing#3.2 · no · the legacy body margin attributes are an unedited Spacing unit in stylo.rs, which the chunk does not change (Not needed: no layout change)
+spacing#3.3 · no · the overlay scrollbar thumb geometry is an unedited Spacing unit and not a motion value (Not needed: no layout change)
+spacing#3.4 · no · the single-line input vertical centring is an unedited Spacing unit in node.rs, which the chunk does not change (Not needed: no layout change)
+spacing#3.5 · no · the outside list marker padding is an unedited Spacing unit in blitz-paint, which the chunk does not change (Not needed: no layout change)
+spacing#3.6 · no · the double text decoration offset is an unedited Spacing unit in blitz-paint, which the chunk does not change (Not needed: no layout change)
+spacing#4.1 · no · the example pages' grid and flex gaps are an unedited Spacing unit, and the cursor page's padding is layout, not a cursor rule (Not needed: no layout change)
+spacing#4.2 · no · the graphite root spacing variables are an unedited Spacing unit on an example page the chunk does not reach (Not needed: no layout change)
+spacing#4.3 · no · the hr margin and body padding are an unedited Spacing unit on an example page the chunk does not reach (Not needed: no layout change)
+spacing#4.4 · no · the servo.css column gap and container and button padding are an unedited Spacing unit on an example stylesheet the chunk does not reach (Not needed: no layout change)
+spacing#4.5 · no · the Preact TodoMVC and reference-page widths and padding are an unedited Spacing unit on example pages the chunk does not reach (Not needed: no layout change)

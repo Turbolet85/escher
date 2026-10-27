@@ -10,7 +10,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
 ### Epoch 1 — Foundation
 [2026-10-26-codebase-health] Codebase health — the lint's findings walk and two table-asserting tests under the complexity ceiling; test functions counted, engine function untouched (v030-01; Epoch 5 audit M1)
    ↓
-README and records — README shows 0.2.0 done, 0.3.0 planned; capabilities statement on the 2026-10-25 run; ledger refs, design stand rows, incubator ignore (v030-02, v030-16)
+[2026-10-27-readme-and-records] README and records — README shows 0.2.0 done, 0.3.0 planned; capabilities statement on the 2026-10-25 run; ledger refs, design stand rows, incubator ignore (v030-02, v030-16)  BLOCKED-ON: the founder's own word on F3 of .andromeda/runs/2026-10-27T03-47-30-phase/relay-2.md, whether the GitHub front page comes to render build/escher-0.3.0's README (the default branch reads build/escher-0.1.0; the operator's «Ask the founder first», inputs#I4)
 
 ### Epoch 2 — Engine debts
 Upstream sync ahead of engine debts — the founder's chosen take; merge-surface owners kept; CI, a11y, audit green; per-OS tallies, sink allowlist re-read (v030-03)

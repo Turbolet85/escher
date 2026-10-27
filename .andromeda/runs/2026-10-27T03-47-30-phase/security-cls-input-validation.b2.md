@@ -1,0 +1,28 @@
+# Classified — security · input-validation.b2
+
+## Answers
+input-validation#1.26 · no · the script fetch byte check in blitz-vibey-script fetch.rs; the chunk reaches no script path (Not needed: script execution on Boa and the default ScriptFetcher)
+input-validation#1.27 · no · the script type gate in blitz-vibey-script document.rs; the chunk executes no script (Not needed: script execution on Boa)
+input-validation#1.28 · no · the scripting-disabled parse in blitz-html html_sink.rs; the chunk changes no parser (Not needed: HTML parsing, no engine change)
+input-validation#1.29 · no · the stylesheet UTF-8 check in blitz-dom net.rs; the load page's one stylesheet is a fixed LoadNet answer and the chunk re-reads no stylesheet check (Not needed: remote web content handling)
+input-validation#1.30 · no · the iframe HTML lossy decode in blitz-dom net.rs; the chunk reaches no subdocument (Not needed: subdocument caps)
+input-validation#1.31 · no · the image format decode in blitz-dom net.rs; the chunk fetches no image (Not needed: remote web content handling)
+input-validation#1.32 · no · the favicon byte check in apps/browser favicon.rs; the reference browser is not among the reached files
+input-validation#1.33 · no · the font format sniff in blitz-dom net.rs, witnessed by font_face_sniffed_source.rs which the chunk does not re-read; the stand boots on its bundled font, offline but for the load page (Not needed: fetched fonts and @font-face sniffing)
+input-validation#1.34 · no · the font length and WOFF fallback in blitz-dom util.rs; no font is fetched on a path the chunk reaches (Not needed: fetched fonts)
+input-validation#1.35 · no · the @font-face source URL rule and its ratified sniff widening in blitz-dom net.rs; no driver verb takes a URL and the load page carries no @font-face source (Not needed: @font-face sniffing)
+input-validation#1.36 · no · the SVG encoding and DTD check in blitz-dom svg.rs; the chunk renders no SVG (Not needed: SVG)
+input-validation#1.37 · no · the SVGZ magic-byte decompression in blitz-dom svg.rs; the chunk renders no SVG (Not needed: SVG)
+input-validation#1.38 · no · the SVG viewBox number check in blitz-dom svg.rs; the chunk renders no SVG (Not needed: SVG)
+input-validation#1.39 · no · the inline SVG parse in blitz-dom layout construct.rs; the chunk changes no box construction (Not needed: SVG)
+input-validation#1.40 · no · the CSS declaration validity in blitz-dom resolved_style.rs and cssom.rs; the chunk changes no CSS path (Not needed: CSS and HTML parsing)
+input-validation#1.41 · no · the set and remove style-property checks in blitz-dom node element.rs; the chunk changes no element setter (no engine change)
+input-validation#1.42 · no · the selectorText setter check in blitz-dom cssom.rs; the chunk changes no stylesheet path (Not needed: CSS parsing)
+input-validation#1.43 · no · the query-string parse in blitz-dom query_selector.rs; the chunk changes no selector path (no engine change)
+input-validation#1.44 · no · the style element entity decoding in blitz-dom document.rs; the chunk changes no HTML parse (Not needed: HTML parsing)
+input-validation#1.45 · no · the legacy bgcolor check in blitz-dom stylo.rs; the chunk changes no legacy-attribute path (Not needed: HTML parsing)
+input-validation#1.46 · no · the legacy dimension parse in blitz-dom stylo.rs; the chunk changes no legacy-attribute path (Not needed: HTML parsing)
+input-validation#1.47 · no · the SVG width and height check in blitz-dom stylo.rs; the chunk renders no SVG (Not needed: SVG)
+input-validation#1.48 · no · the legacy border and body margin parse in blitz-dom stylo.rs; the chunk changes no legacy-attribute path (Not needed: HTML parsing)
+input-validation#1.49 · no · the markup numeric attribute fallbacks in blitz-dom layout mod.rs and table.rs; the chunk changes no table or replaced-element layout (Not needed: HTML parsing, no engine change)
+input-validation#1.50 · no · the rowspan clamp in blitz-dom layout table.rs; the chunk changes no table layout (no engine change)

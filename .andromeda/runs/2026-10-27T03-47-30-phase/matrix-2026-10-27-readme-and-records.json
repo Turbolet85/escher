@@ -1,0 +1,167 @@
+[
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T05:14:49Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.3.0",
+"--run-dir",
+".andromeda/runs/2026-10-27T03-47-30-phase",
+"--marker",
+"2026-10-27-readme-and-records"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 1/16 · deferred 0 · planned 15 · implemented 0 · unclaimed 15",
+"unclaimed: v030-02 v030-03 v030-04 v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13",
+"          v030-14 v030-15 v030-16",
+"claimed-unfinished: none",
+"done-test: NO — 15 not verified|deferred · unclaimed 15",
+"chunks referenced: 1 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T05:15:21Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.3.0",
+"--id",
+"v030-02",
+"--chunk",
+"2026-10-27-readme-and-records",
+"--acceptance-file",
+".andromeda/runs/2026-10-27T03-47-30-phase/acceptance-v030-02.md",
+"--gated-file",
+".andromeda/runs/2026-10-27T03-47-30-phase/gated-v030-02.md",
+"--run-dir",
+".andromeda/runs/2026-10-27T03-47-30-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v030-02 → chunk 2026-10-27-readme-and-records (was null; status planned kept)",
+"acceptance: The project's front page on GitHub shows 0.2.0 done and verified, with… (275 chars)",
+"         → On `build/escher-0.3.0`, `README.md`'s `## Status` holds `### 0.1.0 — … (1523 chars)",
+"gated: the founder's own word on F3 of .andromeda/runs/2026-10-27T03-47-30-phase/relay-… (256 chars)",
+"wrote escher-0.3.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 14 [v030-03 v030-04 v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15 v030-16]"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/verification-matrix.json"
+],
+"before": {
+"id": "v030-02",
+"chunk": null,
+"status": "planned",
+"method": "manual",
+"ref": "null",
+"acceptance": "The project's front page on GitHub shows 0.2.0 done and verified, with what it can do and its cold-agent result, and 0.3… (275 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v030-02",
+"chunk": "2026-10-27-readme-and-records",
+"status": "planned",
+"method": "manual",
+"ref": "null",
+"acceptance": "On `build/escher-0.3.0`, `README.md`'s `## Status` holds `### 0.1.0 — done and verified`, `### 0.2.0 — done and verified… (1523 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T05:15:21Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.3.0",
+"--id",
+"v030-16",
+"--chunk",
+"2026-10-27-readme-and-records",
+"--acceptance-file",
+".andromeda/runs/2026-10-27T03-47-30-phase/acceptance-v030-16.md",
+"--method",
+"by-construction",
+"--run-dir",
+".andromeda/runs/2026-10-27T03-47-30-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v030-16 → chunk 2026-10-27-readme-and-records (was null; status planned kept)",
+"acceptance: The two ledger references name the tests' current names, the design-sy… (205 chars)",
+"         → By construction, from implement's enumeration `escher-0.3.0/chunks/202… (1541 chars)",
+"method: manual → by-construction",
+"wrote escher-0.3.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 13 [v030-03 v030-04 v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15]"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/verification-matrix.json"
+],
+"before": {
+"id": "v030-16",
+"chunk": null,
+"status": "planned",
+"method": "manual",
+"ref": "null",
+"acceptance": "The two ledger references name the tests' current names, the design-system's stand rows stand in architecture and layout… (205 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v030-16",
+"chunk": "2026-10-27-readme-and-records",
+"status": "planned",
+"method": "by-construction",
+"ref": "null",
+"acceptance": "By construction, from implement's enumeration `escher-0.3.0/chunks/2026-10-27-readme-and-records/evidence/records.md`, w… (1541 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T05:15:21Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-10-27-readme-and-records",
+"--plan",
+"escher-0.3.0/chunks/2026-10-27-readme-and-records/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-27T03-47-30-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-27-readme-and-records: 2 · ## Acceptance Criteria: line 281, 33 lines",
+"v030-02: cited in ## Acceptance Criteria (line 282)",
+"  shape v030-02: method manual · no interaction verb",
+"v030-16: cited in ## Acceptance Criteria (line 294)",
+"pool: unclaimed 13 [v030-03 v030-04 v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

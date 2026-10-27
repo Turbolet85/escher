@@ -1,0 +1,1 @@
+the founder's own word on F3 of .andromeda/runs/2026-10-27T03-47-30-phase/relay-2.md, whether the GitHub front page comes to render build/escher-0.3.0's README (the default branch reads build/escher-0.1.0; the operator's «Ask the founder first», inputs#I4)

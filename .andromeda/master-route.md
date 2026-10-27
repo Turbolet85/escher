@@ -77,3 +77,4 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 
 ## escher-0.3.0
 2026-10-26-codebase-health · complete · Codebase health — the lint's findings walk and the two table-asserting tests under the cognitive-complexity ceiling of 15; test functions counted, the engine function untouched (v030-01) · → escher-0.3.0/chunks/2026-10-26-codebase-health/
+2026-10-27-readme-and-records · pending · README and records — the README shows 0.2.0 done and 0.3.0 planned, the capabilities statement on the 2026-10-25 run, two ledger refs re-pointed, the design-system stand rows moved, the incubator ignored by .gitignore (v030-02 · v030-16) · → escher-0.3.0/chunks/2026-10-27-readme-and-records/

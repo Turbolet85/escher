@@ -24,11 +24,12 @@
       "observed_gap": "The README describes 0.1.0 as done and 0.2.0 as planned; the capabilities statement still describes the 2026-10-15 live run (.andromeda/residuals.md:41).",
       "verification": {
         "method": "manual",
-        "acceptance": "The project's front page on GitHub shows 0.2.0 done and verified, with what it can do and its cold-agent result, and 0.3.0 planned with its stages; the capabilities statement describes the 2026-10-25 run of six apps, 66 calls and 0 wrong, and the statement's pin stays green.",
+        "acceptance": "On `build/escher-0.3.0`, `README.md`'s `## Status` holds `### 0.1.0 — done and verified`, `### 0.2.0 — done and verified` (its five epochs of escher-0.2.0/working-route.md, one line each, and its facts read from their records: 11 of 11 capabilities verified; the cold-agent bar run's six apps, 66 tool calls and 0 wrong under the founder's 5 % bar, from escher-0.2.0/chunks/2026-10-25-cold-agent-bar/evidence/live-verdict.json) and `### 0.3.0 — planned, in six stages` (one line per epoch of escher-0.3.0/working-route.md), and no `0.2.0 — planned` line; \"What Escher is\" and the driver paragraph name 0.2.0's additions as `docs/capabilities.md` states them; every prose mention reads «Escher», crate, binary and path names lowercase. `docs/capabilities.md`'s run paragraph opens «The measured instance is the 2026-10-25 cold-agent live run» and states that run — six apps, twelve tools, 66 calls, 0 wrong against the 5 % bar, a lint and a screenshot called — as the security plan records its carriage, with no «eleven tools, 43» or «not been re-fired» sentence and no «sink is unmeasured» line remaining; `.github/scripts/test_capability_statement.py` passes its four tests and `bash .github/scripts/ci-leg.sh fast` is green. Gated on the founder's own word on F3 (inputs#I4): the project's front page on GitHub — the default branch's README as `gh api repos/Turbolet85/escher/readme` serves it — reads the `### 0.2.0 — done and verified` and `### 0.3.0 — planned, in six stages` headings; nothing stands in for that page.",
         "ref": null,
-        "status": "planned"
+        "status": "planned",
+        "gated": "the founder's own word on F3 of .andromeda/runs/2026-10-27T03-47-30-phase/relay-2.md, whether the GitHub front page comes to render build/escher-0.3.0's README (the default branch reads build/escher-0.1.0; the operator's «Ask the founder first», inputs#I4)"
       },
-      "chunk": null
+      "chunk": "2026-10-27-readme-and-records"
     },
     {
       "id": "v030-03",
@@ -205,12 +206,12 @@
       "requirement": "The two verified ledger refs name the tests' current names, the design-system stand rows (the accent, the success row, the cards item, the stand's DejaVu Sans item) move out of the product surface into architecture and layout-templates, and the incubator is ignored by .gitignore in place of a local exclude",
       "observed_gap": "Two verified ledger refs, v010-17 and v020-05, cite renamed tests (.andromeda/residuals.md:42); the design-system stand rows sit in its product surface; the incubator is excluded only locally.",
       "verification": {
-        "method": "manual",
-        "acceptance": "The two ledger references name the tests' current names, the design-system's stand rows stand in architecture and layout-templates instead, and the incubator is ignored by the repository's own ignore file.",
-        "ref": null,
-        "status": "planned"
+        "method": "by-construction",
+        "acceptance": "By construction, from implement's enumeration `escher-0.3.0/chunks/2026-10-27-readme-and-records/evidence/records.md`, written from the tree at the chunk's base: (1) the three renamed test names the verified refs hold — v010-17's `stand_snapshot_state::exactly_the_active_flight_mode_reads_pressed` and `stand_act_states::a_flight_mode_click_returns_both_mode_buttons_with_their_pressed_reading`, v020-05's `stand_lint::the_stand_at_boot_reads_no_finding` — each paired with its current name found as `fn {name}(` in its file, every other name of both refs found as it stands, and both full re-pointed ref texts; (2) every seven_guis stand row of design-system — the accent's body sentence and row, the load page row, the success row, the `flight-type` select's Border Progression row, the stand's DejaVu Sans item, and the cards' shadow, padding and the seven_guis radius row — each with its `file:line`, its values and the architecture or layout-templates section it lands in; (3) `git check-ignore -v escher-0.3.0-incubator/intent.md` naming `.gitignore:39`, with `.git/info/exclude` holding no incubator line. The wrap writes exactly that: the refs by `matrix.py refine --chunk {the owning marker} --ref-file` at P7.3 (F1, the operator's answer, inputs#I3), the rows by design-system's door amendment with values unchanged (F2, the founder's delegate answer, PROVISIONAL, inputs#I3). The cap reads verified only when both ledgers' refs read the enumerated texts and design-system's body and detail files hold none of the enumerated rows.",
+        "ref": "by-construction: escher-0.3.0/chunks/2026-10-27-readme-and-records/evidence/records.md enumerates (a) the three renamed ref names with their current fn lines and both re-pointed ref texts, (b) the nine seven_guis stand rows of design-system with file:line, values and landing section, (c) the incubator's two check-ignore readings (.gitignore:39) with .git/info/exclude holding no incubator line — plan entries 8, 9, 10 green (run 2026-10-27T05-19-41-implement); the wrap's refine (F1) and door move (F2, PROVISIONAL) complete it",
+        "status": "implemented"
       },
-      "chunk": null
+      "chunk": "2026-10-27-readme-and-records"
     }
   ]
 }

@@ -1,0 +1,29 @@
+# obs extract
+
+## Relevance
+partial — the chunk changes no log site, span, field or sink (scope §Boundaries). Two things it writes restate obs facts: the capabilities statement (`docs/capabilities.md`, its §Telemetry and its cold-agent paragraph at lines 288-291) and the README's cold-agent result. Each restated line must match what the obs plan records. The ledger refs, the design-system move and the incubator ignore carry no obs content.
+
+## Constraints
+- The restated cold-agent result ("six apps, 66 calls, 0 wrong, a screenshot and a lint called") comes from the run's verdict. Per obs-plan §6 Log Coverage (Log format, the cold-agent pipe), every verdict field is a count, a boolean or a closed word. `tool_calls` and `wrong_calls` are tied to the server's `tool_call` span lines (`counts_agree`), and `lint_calls` · `screenshot_calls` count the accepted span lines of each verb. P3 reads each number from the 2026-10-25 run's verdict or report, never from the scope. The statement's existing sentence "Its verdict holds counts, booleans and closed words only" stays true only if nothing other than verdict fields is cited.
+- Per obs-plan §3 Observability Harness Contract (Cold-agent pipe log), `server.log`, `transcript.jsonl`, `client.log`, `check.json` and `record/` are never printed or copied. The README and the statement may cite the verdict's counts and the run's report. They must not quote, excerpt or link any of those state files.
+- Per obs-plan §8 PII Scrubbing & Compliance (Scrubbing, the cold-agent pipe paragraph), what the live six-app run carried to the model provider was the stand's screens: ids, accessible names, control values, Cells' contents, the flight booker's select options and value, a lint's findings and a shot. Wherever the restated statement says what crossed on the 2026-10-25 run, it must agree with this paragraph and with the security plan's record of the same crossing, and claim no more.
+- Per obs-plan §6 Log Coverage (detail `.andromeda/obs-plan-detail/log-coverage.md`, values · emitter-escher-driver), `docs/capabilities.md` §Telemetry restates the driver's span set and the scrub's limits by hand, and `test_capability_statement.py` reads none of those claims. Any line this chunk writes in that section therefore has no pin and has to be checked against the plan by hand.
+- Per obs-plan §4 Span / Trace Coverage (detail `.andromeda/obs-plan-detail/span-trace-coverage.md`, values · spans), a hosted part read through the host's sink at `trace` is measured: `host_log`'s fourth test reads 0 id and 0 name needles under both builds (as measured at 2026-10-25-cold-agent-bar). The statement's line "A paged `part` read through the host's sink is unmeasured, owned by an open `.andromeda/residuals.md` line" (`docs/capabilities.md:224`) may therefore be stale. Whether that residual line is still open is research's question, and P3's sweep of the file decides whether this chunk restates the line.
+- Per obs-plan §3 Observability Harness Contract (Service identity and line format), both seven_guis binaries log `service.name=seven_guis`. Per obs-plan §6 Log Coverage (Log format, escher's sink), the sink writes stderr only. If the README's prose about the driver or "Try it" mentions logging, it must say these and no more. The README's prose name «Escher» does not change the package-derived `service.name`.
+
+## Patterns to follow
+- State each obs fact the way the statement already does: closed words, booleans and counts, each with its witnesses named (`stand_act_spans`, `telemetry_*`, `host_log`, `mcp_log`). Per obs-plan §6 Log Coverage, these checks are the ones that stand behind it.
+- Restate a measured run by its counts and its date, and say what crossed as the security and obs plans record it. This follows the shape of the existing paragraph at `docs/capabilities.md:288-291` (per obs-plan §3, Cold-agent pipe log).
+
+## Anti-patterns to avoid
+- Copying or excerpting anything from the cold-agent state area (transcript, server log, client log, the agent's check, the kept checks) into the README, the statement or a chunk record. Per obs-plan §3, Cold-agent pipe log, none is printed or copied.
+- Describing a telemetry capability the plan marks NOT YET MEASURED or absent as built: a log JSON schema, a log file, OTel export, trace propagation, metrics (per obs-plan §3, the NOT YET MEASURED note; §5 Metric Coverage, Absent; §6 Log Coverage, the NOT YET MEASURED note).
+
+## Contract bindings
+- obs ↔ security: what crossed to the model provider on the 2026-10-25 run is recorded twice, in obs-plan §8 (Scrubbing, the cold-agent pipe paragraph) and in the security plan's cold-agent crossing. The restated statement must agree with both.
+- obs ↔ tests: the cold-agent verdict's counts (obs-plan §6, Log format, the cold-agent pipe) are the test-plan §3 cold-agent pipe's output. The README's and the statement's cold-agent numbers are read from that verdict.
+
+## Acceptance criteria contributions
+- (obs) Every count the restated cold-agent paragraph and the README's cold-agent result give (apps, calls, wrong calls, lint and screenshot called) equals a field of the 2026-10-25 run's verdict or report. None is taken from a transcript, a server log or a check (per obs-plan §6 Log Coverage).
+- (obs) `docs/capabilities.md` §Telemetry still names the two spans `command` · `tool_call`, stderr only, no driver line at `warn`, and the three scrub limits. Its paged-part line agrees with obs-plan §4's record of `host_log`'s fourth test and with the state of the residual line that owns it (per obs-plan §4 Span / Trace Coverage).
+- (obs) No line the chunk writes in `README.md` or `docs/capabilities.md` holds content from `target/cold-agent/` (transcript, `server.log`, `client.log`, `check.json`, `record/`) or a host path (per obs-plan §8 PII Scrubbing & Compliance).

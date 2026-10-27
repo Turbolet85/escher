@@ -105,8 +105,9 @@ Witnesses: `stand_act_screenshot`, `stand_screenshot_repeat`, `password_painted_
 
 `lint` reads the held screen for six defects: overlap, clipped, truncated, off-screen, zero-size and contrast. It
 returns one finding per defect, each holding a stable id, a closed defect word and numbers only, and changes nothing.
-On the stand each lean task reads 0 findings at boot; after twelve Creates the last CRUD row, `crud-person-14`, reads
-`clipped` inside `crud-list`.
+On the stand the counter, the timer and CRUD read 0 findings at boot, and the flight booker one `overlap`, its
+`flight-type` select's two options, which read the select's own bounds; after twelve Creates the last CRUD row,
+`crud-person-14`, reads `clipped` inside `crud-list`.
 
 Witnesses: `stand_lint`, `text_extent`.
 
@@ -221,7 +222,8 @@ WARN or ERROR included; the rest are scrubbed. The scrub's limits:
 
 Both binaries of the seven_guis package log `service.name=seven_guis`. There is no OTel export or trace propagation,
 and no log schema or log file. Engine tracing is behind each crate's `tracing` feature, while escher's spans are
-ungated. A paged `part` read through the host's sink is unmeasured, owned by an open `.andromeda/residuals.md` line.
+ungated. A paged `part` read through the host's sink, `serve cells` at `trace`, reads 0 id and 0 name needles under
+both builds, as measured at escher-0.2.0/chunks/2026-10-25-cold-agent-bar/report.md.
 
 Witnesses: `stand_act_spans`, `telemetry_scrub`, `telemetry_drop`, `telemetry_stdout_silent`,
 `telemetry_panic_hook`, seven_guis' `host_log` and `mcp_log`.
@@ -285,10 +287,12 @@ No description crosses any driver carrier, since descriptions go to the platform
 What the client does with a result is the client's, a model provider included. Escher's boundary ends at the stdio
 it answers on.
 
-The measured instance is the 2026-10-15 cold-agent live run. Through the operator's own login, the stand's screen
-reached the model provider: ids, names and values in snapshot texts and diffs. It was one run, with eleven tools, 43
-calls, 0 wrong and no `screenshot`. It has not been re-fired since `lint` made the tools twelve. Its verdict holds
-counts, booleans and closed words only.
+The measured instance is the 2026-10-25 cold-agent live run. Through the operator's own login, the stand's six apps
+reached the model provider: ids, names and values in snapshot texts, paged parts and diffs, Cells' contents, the
+`flight-type` select's options and value, a lint's findings and one screenshot. It was one run with twelve tools: it
+passed, all six apps met, in 66 tool calls with 0 wrong against a bar of at most 5 % wrong, one `lint` and one
+`screenshot` among them, through the `claude` client 2.1.308. Its verdict holds counts, booleans and closed words only.
+The earlier 2026-10-15 run drove the four lean tasks with the eleven tools of its day.
 
 ## Where each claim is proven
 
