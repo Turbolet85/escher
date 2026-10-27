@@ -1,0 +1,60 @@
+[
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name IN ('findings','overlaps','truncated','contrast','holds_content','flatten','ordered','clip_region') AND callee_kind = 'fn' AND callee_file LIKE '%escher-driver/src/lint.rs' ORDER BY file, line",
+"rows": 10,
+"result": [
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 lint/impl#[Session]lint().",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 228
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 lint/findings().",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 253
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 lint/findings().",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 263
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 lint/findings().",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 274
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 lint/findings().",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 286
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 lint/findings().",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 289
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 lint/findings().",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 293
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 lint/flatten().",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 313
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 lint/flatten().",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 327
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 lint/tests/findings_follow_document_order_then_the_defect_order().",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 595
+}
+],
+"db_state": "regenerated",
+"plane": "rust"
+}
+]

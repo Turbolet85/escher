@@ -412,70 +412,87 @@ fn the_listing_is_the_twelve_verbs_of_the_table() {
     );
     for (row, (listed_tool, verb)) in tools.iter().zip(VERBS).enumerate() {
         assert!(listed_tool["name"] == verb.name, "row {row}");
-        let Some(Value::String(described)) = listed_tool.get("description") else {
-            panic!("row {row}: each tool is described");
-        };
-        assert!(described == &description(verb), "row {row}");
-        assert!(described.starts_with(verb.help), "row {row}");
-        for field in verb.fields {
-            let named = format!("{} ({}): {}", field.name, field.kind.name(), field.help);
-            assert!(described.contains(&named), "row {row}");
-        }
-        let schema = &listed_tool["inputSchema"];
-        assert!(schema["type"] == "object", "row {row}");
-        assert!(schema["additionalProperties"] == false, "row {row}");
-        let (names, required, types) = listed(verb);
-        let Some(Value::Object(properties)) = schema.get("properties") else {
-            panic!("row {row}: the schema holds its properties");
-        };
-        // serde_json reads an object's members in key order.
-        let mut sorted = names.clone();
-        sorted.sort_unstable();
-        assert!(
-            properties.keys().cloned().collect::<Vec<_>>() == sorted,
-            "row {row}"
-        );
-        // The written form keeps the table's order.
-        let written = tool(verb, &APPS);
-        let order: Vec<usize> = names
-            .iter()
-            .map(|name| {
-                written
-                    .find(&format!("\"{name}\":{{\"type\""))
-                    .expect("each property is written")
-            })
-            .collect();
-        assert!(order.windows(2).all(|pair| pair[0] < pair[1]), "row {row}");
-        assert!(schema["required"] == Value::from(required), "row {row}");
-        for ((name, kind), arg) in names.iter().zip(&types).zip(verb.args) {
-            let property = &properties[*name];
-            assert!(property["type"] == *kind, "row {row}");
-            assert!(
-                property["description"] == format!("{} ({})", arg.help, arg.kind.bound()),
-                "row {row}"
-            );
-            let listed_enum = match arg.kind {
-                ArgKind::Key => Some(KEY_NAMES.to_vec()),
-                ArgKind::Name => Some(APPS.to_vec()),
-                _ => None,
-            };
-            match listed_enum {
-                Some(values) => assert!(property["enum"] == Value::from(values), "row {row}"),
-                None => assert!(property.get("enum").is_none(), "row {row}"),
-            }
-            let maximum = match arg.kind {
-                ArgKind::Milliseconds => Some(Value::from(MAX_MILLISECONDS)),
-                ArgKind::Part => Some(Value::from(MAX_PART)),
-                _ => None,
-            };
-            let bounded = maximum.is_some();
-            assert!(
-                (property.get("minimum") == Some(&Value::from(1))) == bounded
-                    && property.get("maximum") == maximum.as_ref(),
-                "row {row}"
-            );
-        }
+        assert_described(row, listed_tool, verb);
+        assert_schema(row, &listed_tool["inputSchema"], verb);
     }
+}
+
+/// Asserts row `row`'s description: `verb`'s help, then each of its result fields.
+#[track_caller]
+fn assert_described(row: usize, listed_tool: &Value, verb: &VerbSpec) {
+    let Some(Value::String(described)) = listed_tool.get("description") else {
+        panic!("row {row}: each tool is described");
+    };
+    assert!(described == &description(verb), "row {row}");
+    assert!(described.starts_with(verb.help), "row {row}");
+    for field in verb.fields {
+        let named = format!("{} ({}): {}", field.name, field.kind.name(), field.help);
+        assert!(described.contains(&named), "row {row}");
+    }
+}
+
+/// Asserts row `row`'s input schema: closed, its properties `verb`'s arguments in the table's
+/// order, the required ones required.
+#[track_caller]
+fn assert_schema(row: usize, schema: &Value, verb: &VerbSpec) {
+    assert!(schema["type"] == "object", "row {row}");
+    assert!(schema["additionalProperties"] == false, "row {row}");
+    let (names, required, types) = listed(verb);
+    let Some(Value::Object(properties)) = schema.get("properties") else {
+        panic!("row {row}: the schema holds its properties");
+    };
+    // serde_json reads an object's members in key order.
+    let mut sorted = names.clone();
+    sorted.sort_unstable();
+    assert!(
+        properties.keys().cloned().collect::<Vec<_>>() == sorted,
+        "row {row}"
+    );
+    // The written form keeps the table's order.
+    let written = tool(verb, &APPS);
+    let order: Vec<usize> = names
+        .iter()
+        .map(|name| {
+            written
+                .find(&format!("\"{name}\":{{\"type\""))
+                .expect("each property is written")
+        })
+        .collect();
+    assert!(order.windows(2).all(|pair| pair[0] < pair[1]), "row {row}");
+    assert!(schema["required"] == Value::from(required), "row {row}");
+    for ((name, kind), arg) in names.iter().zip(&types).zip(verb.args) {
+        assert_property(row, &properties[*name], kind, arg);
+    }
+}
+
+/// Asserts one property of row `row`'s schema: `arg`'s type, description, values and bounds.
+#[track_caller]
+fn assert_property(row: usize, property: &Value, kind: &str, arg: &ArgSpec) {
+    assert!(property["type"] == kind, "row {row}");
+    assert!(
+        property["description"] == format!("{} ({})", arg.help, arg.kind.bound()),
+        "row {row}"
+    );
+    let listed_enum = match arg.kind {
+        ArgKind::Key => Some(KEY_NAMES.to_vec()),
+        ArgKind::Name => Some(APPS.to_vec()),
+        _ => None,
+    };
+    match listed_enum {
+        Some(values) => assert!(property["enum"] == Value::from(values), "row {row}"),
+        None => assert!(property.get("enum").is_none(), "row {row}"),
+    }
+    let maximum = match arg.kind {
+        ArgKind::Milliseconds => Some(Value::from(MAX_MILLISECONDS)),
+        ArgKind::Part => Some(Value::from(MAX_PART)),
+        _ => None,
+    };
+    let bounded = maximum.is_some();
+    assert!(
+        (property.get("minimum") == Some(&Value::from(1))) == bounded
+            && property.get("maximum") == maximum.as_ref(),
+        "row {row}"
+    );
 }
 
 #[test]

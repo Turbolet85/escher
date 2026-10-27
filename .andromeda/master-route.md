@@ -76,4 +76,4 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 2026-10-25-cold-agent-bar · complete · Cold-agent bar — the stand serves Cells and a load page beside the lean four, the flight booker's mode a select; a fresh agent drove all six through the cold-agent pipe, 66 calls, 0 wrong under the founder's 5 % bar · → escher-0.2.0/chunks/2026-10-25-cold-agent-bar/
 
 ## escher-0.3.0
-_(no chunks promoted yet)_
+2026-10-26-codebase-health · pending · Codebase health — the lint's findings walk and the two table-asserting tests under the cognitive-complexity ceiling of 15; test functions counted, the engine function untouched (v030-01) · → escher-0.3.0/chunks/2026-10-26-codebase-health/

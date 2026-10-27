@@ -1,0 +1,20 @@
+# security · Dependency Security — category read
+
+## Carried
+- (.andromeda/security-plan.md:229) The chunk's pushes must keep the dependency audit green over the whole workspace's graph with `deny.toml` unchanged: the refactor of `lint.rs::findings` and the two tests adds no dependency, dev-dependency or ignore, so no advisory or licence row may move.
+  > **Audit tool:** cargo-deny 0.20.2 — `cargo deny --locked --workspace --all-features check advisories licenses` over the whole workspace's graph, configured by the root `deny.toml` (the six platforms ci.yml builds, all features; ignores per ID only, each with a written reason, no blanket allow; `unsound` at its default, which keeps memmap2's unsound advisory out of the gate); each ignore re-read on every push
+- (.andromeda/security-plan-detail/dependency-security.md:8) Should an advisory turn the audit red during the chunk (external decay, as the zip and zbus families did), it must be answered by a per-ID ignore with a written reason or a semver-compatible update, never a blanket allow or a lowered `unmaintained` / `unsound` level.
+  > `[advisories]` per-ID ignores only, each with a written reason, no blanket allow, `unmaintained` and `unsound` at their defaults (deny.toml:1-29; .github/scripts/ci-leg.sh:38).
+- (.andromeda/security-plan.md:253) "Every check green" includes CI's slow-tier `audit` job on the chunk's push, read beside the fast legs the scope names (`ci-leg.sh fast`, `doc`).
+  > **CI integration:** ci.yml's `audit` job ("Dependency audit") runs `bash .github/scripts/ci-leg.sh audit` on every pull request and push, in the slow tier behind the four fast jobs, uncached, its log uploaded on failure as `ci-log-audit` (.github/workflows/ci.yml:225-244).
+- (.andromeda/security-plan.md:264) Every cargo leg the chunk's verification runs passes `--locked`, so the refactor must leave `Cargo.lock` byte-identical: no helper crate, table-walk macro or test utility enters the lock.
+  > **Lockfile verification:** builds pass `--locked` (flake.nix:100; .github/workflows/publish-browser.yml:153), and so does every ci.yml cargo leg — the leg script's build, test, clippy (both lines), doc, msrv, counter, wasm, audit, a11y, coverage and, since 2026-10-14-quality-gates, stand-repeat commands and the matrix command
+- (.andromeda/security-plan.md:241) The `mcp_tests.rs` listing test lives in escher-driver, whose `serde_json` must stay featureless: a table walk over the `tools/list` answer must not take `preserve_order` or any other feature to assert the verbs' order.
+  > `serde_json = "1"` is a root `[workspace.dependencies]` entry inherited by escher-driver with no feature (no `preserve_order`): the reader of the MCP server's untrusted stdin, of a kept check's bytes and of the driver's own answer line the replay compares, writing nothing; no ban list exists (§Security Anti-Patterns).
+- (.andromeda/security-plan-detail/dependency-security.md:28) The same rule in its detail: escher-driver's manifest keeps no `[features]` table on `serde_json`.
+  > inherited by escher-driver with no feature and no `[features]` table — so no `preserve_order` (packages/escher-driver/Cargo.toml:17)
+
+## Bindings
+- **Audit gate ↔ the body's CI integration and the test plan's CI legs**: the audit (.andromeda/security-plan.md:229) is run by ci.yml's `audit` job on every push (.andromeda/security-plan.md:253); the chunk's "every check green" reads that slow-tier job beside the fast and doc legs the scope names.
+- **Lockfile `--locked` ↔ the test plan's leg script**: every leg of `.github/scripts/ci-leg.sh` passes `--locked` (.andromeda/security-plan.md:264), so a lock change by the refactor would fail the gates the scope already requires.
+- **`serde_json` featureless ↔ the body's Input Validation (MCP server)**: the featureless reader (.andromeda/security-plan.md:241; .andromeda/security-plan-detail/dependency-security.md:28) is the one that reads the MCP server's untrusted stdin, so a test refactor in `mcp_tests.rs` must not widen it.

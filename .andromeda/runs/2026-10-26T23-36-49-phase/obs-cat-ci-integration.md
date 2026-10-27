@@ -1,0 +1,17 @@
+# obs · CI Integration — category read
+
+## Carried
+- (.andromeda/obs-plan-detail/ci-integration.md:12) The chunk's "every check green" is read through `ci-leg.sh fast` and `ci-leg.sh doc`, whose merged output must land in `target/ci-logs/{leg}.log` and stay build output with no user data — the refactor of `lint.rs` and the two tests must add no print or log line that would put a screen reading into a leg log.
+  > | Per-leg CI log | each ci.yml leg's merged stdout+stderr, written by `ci-leg.sh` to `target/ci-logs/{leg}.log` (matrix: `target/ci-logs/matrix-{platform}.log`), truncated at the leg's start; uploaded only on failure as artifact `ci-log-{job id}` (`if-no-files-found: ignore`), kept 7 days, from `target/ci-logs/` alone; unscrubbed build output (no user data — §8) |
+- (.andromeda/obs-plan-detail/ci-integration.md:13) The helpers or table walk the chunk introduces in `packages/escher-driver/src/lint.rs` are workspace public source counted in the `coverage` leg's lcov report, so the CI run the chunk's verdict reads must still produce and upload that report on a passing coverage leg.
+  > | Coverage report | the `coverage` leg's lcov file `target/coverage/lcov.info` — line counts of the workspace's public source, no user data (§8), `keyboard_compat.rs` excluded by filename since 2026-10-17-upstream-sync-engine-debts (test-plan §10 Coverage floors); uploaded only on success as artifact `coverage-report` from `target/coverage/`, kept 7 days — the one fork-CI artifact outside `target/ci-logs/` |
+- (.andromeda/obs-plan-detail/ci-integration.md:19) "No behaviour changes" includes the two committed kept checks: they stay as committed and still replay under `stand_replay` with every kept answer equal, the chunk writing no check of its own into git.
+  > | Committed checks | `tests/blitz-tests/checks/counter-cli.json` and `counter-mcp.json`, two kept checks in git (mode `100644`, a public repository) — the repository's own scripted stand-Counter sessions, written by `examples/seven_guis/tests/flows/record_checks.sh` (which prints only `step N`), holding the Counter's ids, names, values, snapshot text and diffs and the scripts' calls, no typed text, host path, name, secret or `screenshot` step — read by `stand_replay` and seven_guis' freshness check; no log or event line; uploaded by no CI leg |
+- (.andromeda/obs-plan.md:281) The fork's CI artifact set must stay the two it is — the chunk adds no upload, artifact or CI step.
+  > the fork's CI uploads two artifacts — a leg's merged log on failure and the coverage report on success, each kept 7 days, neither holding user data.
+
+## Bindings
+- **Per-leg CI log ↔ test-plan (CI legs) and the body's §8**: the `fast` and `doc` legs the chunk must pass write their logs where this row says, unscrubbed and holding no user data by the §8 rule; the chunk adds no print to keep it so (.andromeda/obs-plan-detail/ci-integration.md:12)
+- **Coverage report ↔ test-plan §10 Coverage floors**: the lcov file this row stores is what `coverage_floor.py` reads for escher-driver's floor, so the `lint.rs` factoring must keep the coverage leg green (.andromeda/obs-plan-detail/ci-integration.md:13)
+- **Committed checks ↔ security plan (the `100644` exception) and test-plan's `stand_replay`**: the two committed checks stay unchanged and replay green, the public exception to owner-only not widened (.andromeda/obs-plan-detail/ci-integration.md:19)
+- **Artifact set ↔ the body's §9 broad line**: no new CI artifact (.andromeda/obs-plan.md:281)

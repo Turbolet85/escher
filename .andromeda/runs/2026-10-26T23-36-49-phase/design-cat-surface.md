@@ -1,0 +1,11 @@
+# design · Surface: {type} — category read
+
+## Carried
+- (.andromeda/design-system.md:208) The refactored `lint.rs::findings` feeds the `lint` verb's answer on the agent-read surfaces, so the factoring must leave that output exactly as this rule states it: one JSON line per command on stdout (or one JSON-RPC line per reply in the `mcp` role), no colour or ESC byte, no terminal test, the same exit classes.
+  > `escher-session`, the driver's command line, and its `mcp` role are surfaces an agent reads, not a person: stdout holds only JSON — one line per command (the answer, the refusal or a session error's object), or newline-delimited JSON-RPC 2.0 lines — never colour or an ESC byte, and no code tests for a terminal, so the output is the same piped or not; the command line's exit status carries the class (`0` accepted · `1` refused · `2` usage · `3` session error), and an `mcp` `Err` ending exits `3`.
+- (.andromeda/design-system-detail/surface.md:129) The `lint` answer the refactored walk produces is a command line answer keyed by the driver schema's own words, so after the factoring the command must still print that one uncoloured JSON line and nothing else on stdout.
+  > `escher-session`, the driver's command line (since 2026-10-10-driver-cli), is a surface an agent reads, not a person: a command prints one line of JSON on stdout — the answer, the refusal or a session error's object, keyed by the driver schema's own words — and nothing else there
+
+## Bindings
+- **The agent-read output contract ↔ the chunk's scope boundary "No behaviour, verb, field, carrier, log site or span changes"**: the surface rule is the design-side statement of the carrier output the factoring of `lint.rs::findings` must leave byte-identical; the evidence is `stand_lint` and escher-driver's lint unit tests passing unchanged, with no ESC byte on any answer line as the seven_guis checks' shared reader asserts (.andromeda/design-system.md:208) (.andromeda/design-system-detail/surface.md:129)
+- **The `mcp` role surface ↔ test-plan (the MCP listing test `the_listing_is_the_twelve_verbs_of_the_table`)**: the test, refactored into a table walk, asserts the `tools/list` reply the `mcp` role prints as one JSON-RPC line; the surface's one-line, JSON-only stdout is unchanged by it, and the test keeps its same rows (.andromeda/design-system.md:208)

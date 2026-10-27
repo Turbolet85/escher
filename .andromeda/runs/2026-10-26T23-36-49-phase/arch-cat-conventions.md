@@ -1,0 +1,29 @@
+# arch · Conventions — category read
+
+## Carried
+- (.andromeda/architecture-detail/conventions.md:8) Every factored function, helper and table walk in `lint.rs`, `mcp_tests.rs` and `stand_requirement_sweep.rs` must pass the fmt and clippy `-D warnings` legs, and the rustdoc `-D warnings` docs leg, as `ci-leg.sh` runs them.
+  > `cargo fmt --all --check` and `cargo clippy --workspace --locked -- -D warnings` — then, only when that line is green and since 2026-10-14-quality-gates, upstream's own blitz-dom line `cargo clippy -p blitz-dom --no-default-features --features svg,woff,accessibility,system-fonts,file-input,custom-widget --all-targets --locked -- -D warnings` — each run as its `.github/scripts/ci-leg.sh` leg in CI and on the dev host (.github/scripts/ci-leg.sh:20-25; .github/workflows/ci.yml:146-162; .github/workflows/ci.yml:164-184); rustdoc warnings set to errors workflow-wide (.github/workflows/ci.yml:19-20; .github/workflows/wpt.yml:13-14), and CI's docs job documents the whole workspace (`cargo doc --workspace --no-deps --locked`), so every library crate's docs are held to it
+- (.andromeda/architecture-detail/conventions.md:33) A helper split out of `lint.rs::findings` must stay a crate internal and widen no public API.
+  > crate internals are `pub(crate)` / `pub(super)`
+- (.andromeda/architecture-detail/conventions.md:39) The refactored lint walk in escher-driver must keep the driver's tracing form: no `#[instrument]` on a new helper and no `cfg(feature = "tracing")` gate added.
+  > escher-driver, since 2026-10-07-driver-command-spans, takes `tracing` with no feature and builds its spans by hand with `tracing::info_span!` — the `command` span and, since 2026-10-10-mcp-surface, the `tool_call` span, the parent of `command` on an MCP tool call (packages/escher-driver/src/mcp.rs:118-121) — no `#[instrument]`, no `cfg(feature = "tracing")` gate
+- (.andromeda/architecture-detail/conventions.md:46) Flattening `findings`' branch ladder may use the workspace's let-chain form in `if` conditions.
+  > let-chains in `if` conditions
+- (.andromeda/architecture-detail/conventions.md:52) The MCP listing test must stay inside `mcp_tests.rs` as a child of `mcp::tests`, its test path unchanged by the factoring.
+  > escher-driver's `mcp::tests` and `schema::tests` in `mcp_tests.rs` and `schema_tests.rs` (packages/escher-driver/src/mcp.rs:291-293; packages/escher-driver/src/schema.rs:540-542), each moved out whole with its test paths unchanged;
+- (.andromeda/architecture-detail/conventions.md:53) `stand_requirement_sweep.rs` must still cover its one behavior under its opening `//!` doc after the refactor.
+  > each integration test file covers one behavior and opens with a `//!` doc naming the behavior and any guarded bug
+- (.andromeda/architecture-detail/conventions.md:53) A named assertion helper introduced in either test takes the workspace's `#[track_caller]` form, so a failing row reports where the row was asserted.
+  > `#[track_caller]` assertion helpers (tests/blitz-tests/tests/accessibility_roles.rs:40-41)
+- (.andromeda/architecture-detail/conventions.md:54) A helper only the sweep reads stays in its file; one that other session-holding checks share goes in `session_common/mod.rs`, which the sweep already reads, never a new test-target file.
+  > the checks that hold a `Session` — the session checks, the settle check `stand_settle`, the fifteen driver-action checks `stand_act_*`, since 2026-10-10-mcp-surface `stand_mcp_tools`, since 2026-10-12-headless-screenshot, `stand_screenshot_repeat` and, since 2026-10-14-stand-requirement-sweep, the driver sweep `stand_requirement_sweep`, and the served-page checks `stand_cells_served` and `stand_load_page` — keep what they share in a second such module, `tests/blitz-tests/tests/session_common/mod.rs`, read by `mod session_common;` (tests/blitz-tests/tests/session_common/mod.rs:1-7)
+- (.andromeda/architecture-detail/conventions.md:54) The sweep must remain one blitz-tests target under `tests/`, with its name and target unchanged as `BlitzTestsTargetsTest` pins them.
+  > blitz-tests keeps one test target per file directly under `tests/` — its `[package]` sets no `autotests` — and the one file there that is declared and never built is upstream's single-binary `tests/all.rs`, the manifest's one `[[test]]` table, held at `test = false`: the operator's decision of 2026-10-10, a standing two-line difference from upstream's manifest that `BlitzTestsTargetsTest` pins (tests/blitz-tests/Cargo.toml:46-59; .github/scripts/test_blitz_tests_targets.py:17-26)
+- (.andromeda/architecture.md:123) The broad rule over both test files: a unit-test module in its own file keeps its test paths.
+  > Unit-test modules moved to files of their own keep their test paths
+
+## Bindings
+- **Formatting and lints ↔ the body's Inherited Defaults (Code quality)**: the fmt, clippy and rustdoc legs this chunk must pass are the same gates the body's Code quality line names, all through `.github/scripts/ci-leg.sh` (.andromeda/architecture-detail/conventions.md:8) · (.andromeda/architecture.md:316)
+- **Feature gating (escher-driver) ↔ the body's Standard Contracts (Driver session)**: the hand-built spans and no-gate form stay as they are while `Session::lint` keeps reading the screen and changing nothing (.andromeda/architecture-detail/conventions.md:39) · (.andromeda/architecture.md:171)
+- **Tests (session_common · one target per file) ↔ test-plan §3 and `.github/scripts/test_blitz_tests_targets.py`**: where the sweep's helper lives and that its target stays as it is pinned (.andromeda/architecture-detail/conventions.md:54)
+- **Tests (`mcp::tests` in its own file) ↔ the body's Conventions (Tests)**: the detail's moved-whole rule and the body's broad line both require the listing test's path to stay unchanged (.andromeda/architecture-detail/conventions.md:52) · (.andromeda/architecture.md:123)

@@ -31,4 +31,8 @@ founder's «Подтверждаю (Рекомендую)» · «Внутри, �
 - Last failed command: none open.
 
 ## Session End Status
-Completed normally at 2026-10-26 20:11:13
+Completed normally at 2026-10-27 02:14:33
+
+## AUTO-COMPACT 2026-10-26 21:38 (unattended)
+- Context at compact: 367k / 1.00M (37%); alarm level reached before it: none.
+- The pre-compact ritual did NOT run. Post-compact instance: re-verify the END STATE of every in-flight edit (phrase/hash probe per planned site), refresh the handoff, then continue.

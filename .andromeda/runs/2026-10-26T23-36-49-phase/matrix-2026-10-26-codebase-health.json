@@ -1,0 +1,112 @@
+[
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T01:07:56Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.3.0",
+"--run-dir",
+".andromeda/runs/2026-10-26T23-36-49-phase",
+"--marker",
+"2026-10-26-codebase-health"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 0/16 · deferred 0 · planned 16 · implemented 0 · unclaimed 16",
+"unclaimed: v030-01 v030-02 v030-03 v030-04 v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12",
+"          v030-13 v030-14 v030-15 v030-16",
+"claimed-unfinished: none",
+"done-test: NO — 16 not verified|deferred · unclaimed 16",
+"chunks referenced: 0 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T01:08:05Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.3.0",
+"--id",
+"v030-01",
+"--chunk",
+"2026-10-26-codebase-health",
+"--acceptance-file",
+".andromeda/runs/2026-10-26T23-36-49-phase/acceptance-v030-01.md",
+"--method",
+"integration",
+"--run-dir",
+".andromeda/runs/2026-10-26T23-36-49-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v030-01 → chunk 2026-10-26-codebase-health (was null; status planned kept)",
+"acceptance: On the code audit's own complexity reading, the three escher-written f… (262 chars)",
+"         → On the Epoch 5 code audit's own complexity reading — rust-code-analysi… (1031 chars)",
+"method: integration → integration",
+"wrote escher-0.3.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 15 [v030-02 v030-03 v030-04 v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15 v030-16]"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/verification-matrix.json"
+],
+"before": {
+"id": "v030-01",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the code audit's own complexity reading, the three escher-written functions the Epoch 5 audit found over the ceiling … (262 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v030-01",
+"chunk": "2026-10-26-codebase-health",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the Epoch 5 code audit's own complexity reading — rust-code-analysis 0.0.25, every space of kind function (closures i… (1031 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T01:08:05Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-10-26-codebase-health",
+"--plan",
+"escher-0.3.0/chunks/2026-10-26-codebase-health/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-26T23-36-49-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-26-codebase-health: 1 · ## Acceptance Criteria: line 359, 41 lines",
+"v030-01: cited in ## Acceptance Criteria (line 360)",
+"pool: unclaimed 15 [v030-02 v030-03 v030-04 v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15 v030-16]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

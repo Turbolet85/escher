@@ -8,7 +8,7 @@ _verbatim line to route-archive.md); markerless lines stay mutable._
 _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` headers are structural._
 
 ### Epoch 1 — Foundation
-Codebase health — the lint's findings walk and two table-asserting tests under the complexity ceiling; test functions counted, engine function untouched (v030-01; Epoch 5 audit M1)
+[2026-10-26-codebase-health] Codebase health — the lint's findings walk and two table-asserting tests under the complexity ceiling; test functions counted, engine function untouched (v030-01; Epoch 5 audit M1)
    ↓
 README and records — README shows 0.2.0 done, 0.3.0 planned; capabilities statement on the 2026-10-25 run; ledger refs, design stand rows, incubator ignore (v030-02, v030-16)
 

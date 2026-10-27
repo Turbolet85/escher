@@ -1,0 +1,39 @@
+# The founder's scope for escher 0.3.0 (2026-10-26)
+
+**His words, typed in the escher overseer session** (the clock read 2026-10-26T19:09:50Z just after it): «Ок давай
+запланируем 0.3.0 надо посмотреть что у нас там в инкубаторе вроде там мы уже смотрели что брать на 0.3.0 плюс
+первыми чанками надо будет сделать улучшения кодовой базы на основе аудита, обновить ридми под новую версию и
+синхронизироваться с апстримом».
+
+The overseer's reading: this is the go for `/andromeda-route --version 0.3.0`. The first entries are, in order: the
+codebase improvement on the Epoch 5 audit, the README updated to the new version, and the upstream sync. The theme comes
+after them.
+
+**His answers by question dialog**, in the same session, right after. These are his chosen labels, verbatim:
+
+| Q | His chosen label(s) |
+|---|---|
+| Which capabilities of «Глубокий агентский слой» go into 0.3.0 (multi-select) | «D2 граф UI + B3 + E3 (Рекомендую)» · «E2 автоисследование + C4 фикстуры» · «D1 ошибки вместе с действием» · «D3 + F2 + C2/C3», which is all four |
+| The order of the theme | «Сначала D2, потом потребители (Рекомендую)». The D2 probe comes first, then B3, E3 and E2 on the graph |
+| The 0.2.0 engine debts | «Один пункт «долги движка» (Рекомендую)». One entry after the first three, and each engine change goes to him as its own fork |
+| M1, the complexity creep | «Код escher, тесты таблицами (Рекомендую)». `lint.rs::findings` and the two test functions are factored into table walks or helpers. The engine function `clear_interaction_state_for_removed_node` is left as is. Test functions stay in the count |
+
+Passed over: «B3 и C4 сначала, D2 потом» · «Только то, что мешает теме» · «Оставить в остатках» · «Всё, включая
+функцию движка» · «Тесты убрать из счёта».
+
+D1 carries the boundary fork named in the incubator draft, which is what of a log may enter an answer. It comes to him
+at D1's phase, bounded by his log rulings of 2026-10-07/09.
+
+None of these is a delegate answer, so none is PROVISIONAL.
+
+## The route's approval (answered 2026-10-26, clock 19:35:52Z right after)
+
+The route is `.andromeda/runs/2026-10-26T19-21-21-route/`, presented with 23 chunks in 6 epochs. Residuals: 12 absorbed,
+9 re-carried, 1 dropped (line 38, on the operator's word). The overseer checked the draft against his scope and found
+no gap. The founder answered by question dialog in the escher overseer session.
+
+**His chosen label:** «Утвердить (Рекомендую)». **Passed over:** «Меньше синков», which keeps the upstream sync in
+epochs 2 and 6 only, and «Есть правки».
+
+Operator answers in the same route, not his: the pivot is «No», since 0.3.0 retires nothing; the intent file is «Use
+intent.md»; and L38 is «Drop it», a line the operator placed and discharged.

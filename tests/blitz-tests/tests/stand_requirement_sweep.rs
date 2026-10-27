@@ -1014,8 +1014,6 @@ fn every_requirement_names_its_witness() {
 
 #[test]
 fn every_0_2_0_requirement_names_its_witness_inside_stand_repeat() {
-    const BLITZ_TESTS: &str = "tests/blitz-tests/tests/";
-    const SEVEN_GUIS: &str = "examples/seven_guis/tests/";
     let requirements: Vec<String> = (1..=9).map(|n| format!("v020-{n:02}")).collect();
     assert_eq!(WITNESSES_020.len(), 9);
     assert!(
@@ -1045,46 +1043,67 @@ fn every_0_2_0_requirement_names_its_witness_inside_stand_repeat() {
     }
 
     for (row, (requirement, witnesses)) in WITNESSES_020.iter().enumerate() {
-        assert!(!witnesses.is_empty(), "row {row}: names a witness");
-        let units = witnesses
-            .iter()
-            .filter(|(subject, _, _)| *subject == Unit)
-            .count();
-        if ["v020-01", "v020-02"].contains(requirement) {
-            assert!(
-                units == witnesses.len(),
-                "row {row}: names unit tests alone"
-            );
-        } else {
-            assert!(
-                units < witnesses.len(),
-                "row {row}: names a witness stand-repeat runs"
-            );
-        }
-        for (index, (subject, file, test)) in witnesses.iter().enumerate() {
-            let Some(text) = source(file) else {
-                panic!("row {row}, witness {index}: the file is carried");
-            };
-            assert!(
-                text.contains(&format!("fn {test}(")),
-                "row {row}, witness {index}: the test exists in its file"
-            );
-            if *subject == Unit {
-                continue;
-            }
-            let inside = if let Some(name) = file.strip_prefix(BLITZ_TESTS) {
-                let target = name.strip_suffix(".rs").unwrap_or(name);
-                target.starts_with("stand_") || STAND_REPEAT_NAMED.contains(&target)
-            } else if let Some(name) = file.strip_prefix(SEVEN_GUIS) {
-                let target = name.strip_suffix(".rs").unwrap_or(name);
-                STAND_REPEAT_SEVEN_GUIS.contains(&target)
-            } else {
-                false
-            };
-            assert!(
-                inside,
-                "row {row}, witness {index}: stand-repeat runs its target"
-            );
-        }
+        assert_0_2_0_row(row, requirement, witnesses);
+    }
+}
+
+/// Asserts row `row` of [`WITNESSES_020`]: a witness named, v020-01 and v020-02 by unit tests
+/// alone and every other requirement by one `stand-repeat` runs, each witness found.
+#[track_caller]
+fn assert_0_2_0_row(row: usize, requirement: &str, witnesses: &[Witness]) {
+    assert!(!witnesses.is_empty(), "row {row}: names a witness");
+    let units = witnesses
+        .iter()
+        .filter(|(subject, _, _)| *subject == Unit)
+        .count();
+    if ["v020-01", "v020-02"].contains(&requirement) {
+        assert!(
+            units == witnesses.len(),
+            "row {row}: names unit tests alone"
+        );
+    } else {
+        assert!(
+            units < witnesses.len(),
+            "row {row}: names a witness stand-repeat runs"
+        );
+    }
+    for (index, witness) in witnesses.iter().enumerate() {
+        assert_0_2_0_witness(row, index, witness);
+    }
+}
+
+/// Asserts witness `index` of row `row`: its file carried and holding its test, and, but for a
+/// unit test, its target inside `stand-repeat`.
+#[track_caller]
+fn assert_0_2_0_witness(row: usize, index: usize, &(subject, file, test): &Witness) {
+    let Some(text) = source(file) else {
+        panic!("row {row}, witness {index}: the file is carried");
+    };
+    assert!(
+        text.contains(&format!("fn {test}(")),
+        "row {row}, witness {index}: the test exists in its file"
+    );
+    if subject == Unit {
+        return;
+    }
+    assert!(
+        inside_stand_repeat(file),
+        "row {row}, witness {index}: stand-repeat runs its target"
+    );
+}
+
+/// Whether `stand-repeat` runs the target of the test file `file`: a blitz-tests `stand_` file or
+/// one of [`STAND_REPEAT_NAMED`], or one of [`STAND_REPEAT_SEVEN_GUIS`].
+fn inside_stand_repeat(file: &str) -> bool {
+    const BLITZ_TESTS: &str = "tests/blitz-tests/tests/";
+    const SEVEN_GUIS: &str = "examples/seven_guis/tests/";
+    if let Some(name) = file.strip_prefix(BLITZ_TESTS) {
+        let target = name.strip_suffix(".rs").unwrap_or(name);
+        target.starts_with("stand_") || STAND_REPEAT_NAMED.contains(&target)
+    } else if let Some(name) = file.strip_prefix(SEVEN_GUIS) {
+        let target = name.strip_suffix(".rs").unwrap_or(name);
+        STAND_REPEAT_SEVEN_GUIS.contains(&target)
+    } else {
+        false
     }
 }

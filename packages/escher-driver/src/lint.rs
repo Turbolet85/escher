@@ -270,28 +270,44 @@ fn findings(harness: &Harness<DioxusDocument>, screen: &Snapshot) -> Vec<Finding
         let Some(element) = entry.element else {
             continue;
         };
-        let mut push = |defect, reason| found.push((index, finding(entry, defect, reason)));
-        if !entry.bounds.has_area() {
-            if holds_content(harness, entry.node, element) {
-                push(Defect::ZeroSize, Reason::ZeroSize);
-            }
-            continue;
-        }
-        match (entry.region, entry.visible) {
-            (_, None) => push(Defect::OffScreen, Reason::OffScreen),
-            (Some(region), Some(visible)) if !entry.bounds.within(region) => {
-                push(Defect::Clipped, Reason::Clipped { visible })
-            }
-            _ => {}
-        }
-        if let Some(reason) = truncated(harness, entry, element) {
-            push(Defect::Truncated, reason);
-        }
-        if let Some(reason) = contrast(harness, entry.node, element) {
-            push(Defect::Contrast, reason);
+        for (defect, reason) in readings(harness, entry, element) {
+            found.push((index, finding(entry, defect, reason)));
         }
     }
     ordered(found)
+}
+
+/// The defects `entry` reads, each with its reason, in the order they are found: zero-size alone
+/// for a box with no area, else off-screen or clipped, then truncated, then contrast.
+fn readings(
+    harness: &Harness<DioxusDocument>,
+    entry: &Entry,
+    element: NodeId,
+) -> Vec<(Defect, Reason)> {
+    if !entry.bounds.has_area() {
+        return holds_content(harness, entry.node, element)
+            .then_some((Defect::ZeroSize, Reason::ZeroSize))
+            .into_iter()
+            .collect();
+    }
+    let lines = truncated(harness, entry, element).map(|reason| (Defect::Truncated, reason));
+    let colours = contrast(harness, entry.node, element).map(|reason| (Defect::Contrast, reason));
+    placement(entry)
+        .into_iter()
+        .chain(lines)
+        .chain(colours)
+        .collect()
+}
+
+/// The off-screen or clipped reading of `entry`, a box with an area.
+fn placement(entry: &Entry) -> Option<(Defect, Reason)> {
+    match (entry.region, entry.visible) {
+        (_, None) => Some((Defect::OffScreen, Reason::OffScreen)),
+        (Some(region), Some(visible)) if !entry.bounds.within(region) => {
+            Some((Defect::Clipped, Reason::Clipped { visible }))
+        }
+        _ => None,
+    }
 }
 
 /// The findings in document order, one element's in [`Defect::ALL`]'s order, and findings of one

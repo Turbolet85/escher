@@ -1,0 +1,21 @@
+# arch · Cross-cutting Patterns — category read
+
+## Carried
+- (.andromeda/architecture-detail/cross-cutting-patterns.md:33) The engine function `clear_interaction_state_for_removed_node` (packages/blitz-dom/src/document.rs:1007, inside the cited 963-1065 range) carries this invariant and must stay as it is: the chunk leaves that range unedited, so the invariant and its cite hold unchanged at the chunk's HEAD.
+  > **Invalidation and state integrity:** interaction state referencing a removed node is cleared or retargeted before the node is freed (packages/blitz-dom/src/document.rs:963-1065);
+- (.andromeda/architecture.md:275) The body's broad line for the same invariant must still describe the engine as built after the chunk, which it does only if the engine function is left untouched.
+  > - **Invalidation and state integrity:** interaction state on a removed node is cleared or retargeted before the node is freed;
+- (.andromeda/architecture-detail/cross-cutting-patterns.md:15) The factored `lint.rs::findings` and its new helpers must add no `tracing` site or span: escher-driver's log records stay the `command` and `tool_call` spans alone, and the cited span site in `execute.rs` must not move.
+  > escher-driver emits its command span and, since 2026-10-10-mcp-surface, its `tool_call` span through `tracing` ungated and installs no subscriber (packages/escher-driver/src/execute.rs:96-111);
+- (.andromeda/architecture.md:267) The body's logging line must hold unchanged: the chunk adds no subscriber and no log site to escher-driver.
+  > escher-driver emits its spans ungated and installs no subscriber;
+- (.andromeda/architecture-detail/cross-cutting-patterns.md:34) The refactored lint walk must stay a pure reader: no helper or table walk it introduces may write the changed set, so a `lint` still leaves the held instance unchanged in both layout modes.
+  > and is not written by node creation, hover, active, scroll, a viewport resize, a resource load, an animation or layout, so a `resolve` with nothing written marks nothing in either layout mode;
+- (.andromeda/architecture-detail/cross-cutting-patterns.md:8) `lint.rs::findings` reads a `Snapshot`, and the snapshot modules are gated under `accessibility`. Every helper the factoring introduces must therefore sit behind the same gating as the code it comes from, and must build in every feature set the workspace builds, so the both-build checks stay green.
+  > `accessibility` also to `dioxus-native-dom/accessibility`, which enables dioxus-native-dom's own optional `accesskit` and gates its `accessibility_tree` override and its `snapshot`, `snapshot_diff`, `snapshot_text` and `actionable` modules (packages/dioxus-native/Cargo.toml:16-33; packages/dioxus-native-dom/Cargo.toml:15-23; packages/dioxus-native-dom/Cargo.toml:41)
+
+## Bindings
+- **Invalidation and state integrity ↔ the scope's boundary (engine function untouched)**: the founder's M1 leaves `clear_interaction_state_for_removed_node` as it is, and this category's invariant and its `document.rs:963-1065` cite only hold if the chunk leaves that range unedited (.andromeda/architecture-detail/cross-cutting-patterns.md:33) (.andromeda/architecture.md:275)
+- **Logging and timing ↔ the body's §Standard Contracts (Driver session) and the obs plan**: this category's "spans ungated, no subscriber" and the driver contract's "`command` and `tool_call` spans carry it" both require the lint refactor to add no span, field or log site. The scope's "no log site or span changes" boundary is the same rule seen from the chunk's side (.andromeda/architecture-detail/cross-cutting-patterns.md:15) (.andromeda/architecture.md:267)
+- **Changed set ↔ the body's §Standard Contracts (`Session::lint` reads the screen and changes nothing)**: a factored findings walk must write no changed-set site. That keeps the lint's "changes nothing" contract and the scope's "nothing changed on the held instance" (.andromeda/architecture-detail/cross-cutting-patterns.md:34)
+- **Config management ↔ the tests plan (both builds)**: the `accessibility` gating of the snapshot modules sets the feature sets that the lint helpers must compile under, and those are the builds where the scope's "every check green" is read (.andromeda/architecture-detail/cross-cutting-patterns.md:8)
