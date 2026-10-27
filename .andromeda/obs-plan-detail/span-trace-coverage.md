@@ -12,9 +12,9 @@ Read whole. The master's broad view is .andromeda/obs-plan.md; this file holds i
 - observed absent — spans or instrumented functions · searched: `span!|instrument` over the 8 slice files (layout slice)
 - observed absent — spans or `#[instrument]` · searched: `instrument|span` over the 16 listed files (only a doc comment "The node id for the span" matched)
 - observed absent — span or instrument usage · searched: `instrument|span!` over the 32 listed s09 files
-- observed absent — tracing spans or instrumentation · searched: `span!|instrument` over the 32 slice files (blitz-vibey-script / blitz slice)
+- observed absent — tracing spans or instrumentation · searched: `span!|instrument` over the 32 slice files (blitz-vibey-script / blitz slice); the slice's blitz-vibey-script code stands split — the runtime and the element bindings, upstream's side moved whole, in the `runtime/` and `dom/element/` module trees (13 Rust modules, 9 JS bootstrap files) — and the take adds no span, so the absence stands for the moved code — 32 the reading's own count (as measured at escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/report.md)
 - observed absent — spans or instrumented functions · searched: `span!|instrument` over the 21 listed s11 files
-- observed absent — spans or traces · searched: `tracing|log::|env_logger|sentry|opentelemetry|metrics` over the 61 slice files (test crate slice)
+- observed absent — spans or traces · searched: `tracing|log::|env_logger|sentry|opentelemetry|metrics` over the 61 slice files (test crate slice); the slice also holds upstream's target `pseudo_element_flow_classification`, which installs no subscriber, reads no env var, prints nothing and opens no span — 61 the reading's own count (as measured at escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/report.md)
 - observed absent — spans or traces · searched: `tracing|opentelemetry|metrics|span!` (case-insensitive) over the 12 listed files (wpt runner slice)
 
 <!-- /detail -->

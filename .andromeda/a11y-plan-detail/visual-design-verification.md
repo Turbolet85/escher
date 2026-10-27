@@ -53,6 +53,7 @@ Read whole. The master's broad view is .andromeda/a11y-plan.md; this file holds 
 <!-- detail: values · visual-state-color -->
 
 - Disabled icon buttons render at 0.35 opacity (apps/browser/assets/browser.css:191-198)
+- Author styles keyed on `:open` apply to an open `details` or `dialog` in every document, `:open` reading the element's `OPEN` state (§5 Focus restoration); unasserted — no test asserts `:open` (packages/blitz-dom/src/stylo.rs:510) — as measured at escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/report.md
 - Each WPT runner result line prints its status word as text alongside its color (wpt/runner/src/main.rs:372-401)
 - A comment in the form example notes the input color "Should be accent-color" (examples/form.rs:126-129)
 
@@ -63,7 +64,7 @@ Read whole. The master's broad view is .andromeda/a11y-plan.md; this file holds 
 - The viewport carries a light/dark color scheme and a document zoom level (`1.0` unzoomed) (packages/blitz-traits/src/shell.rs:68-82; packages/blitz-traits/src/shell.rs:134-150)
 - Color-scheme changes on the viewport are tracked as a device change that rebuilds the stylist device (packages/blitz-dom/src/stylo_device.rs:37-38; packages/blitz-dom/src/stylo_device.rs:55-57)
 - Total scale changes from hidpi or zoom are tracked and invalidate text shaping (packages/blitz-dom/src/stylo_device.rs:33-36; packages/blitz-dom/src/stylo_device.rs:52-54)
-- Page zoom is adjustable from the keyboard in 0.1 steps and resettable to 1.0 (packages/blitz-shell/src/window.rs:654-662)
+- Page zoom is adjustable from the keyboard in 0.1 steps and resettable to 1.0 (packages/blitz-shell/src/window.rs:655-663)
 - rdme follows `prefers-color-scheme` for dark/light tokens and backgrounds (apps/readme/assets/github-markdown.css:13-124; apps/readme/assets/blitz-markdown-overrides.css:11-35)
 - The TodoMVC page declares `color-scheme: light`; the reference page declares `color-scheme: light dark` (examples/preact/index.html:8; examples/preact/core_dom_apis.html:8)
 - blitz-dom default stylesheet un-inverts images and video under `inverted-colors` (packages/blitz-dom/assets/default.css:1087-1098)

@@ -41,7 +41,7 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 | Browser tooltip / FPS overlay / status bar | `#fff` / `rgba(0, 0, 0, 0.7)` / `rgba(240, 240, 240, 0.95)` | Tooltip background; FPS overlay background behind `rgb(0, 255, 0)`; status bar background (apps/browser/assets/browser.css:61-62; apps/browser/assets/browser.css:267-268; apps/browser/assets/browser.css:292; apps/browser/assets/browser.css:303) |
 | Browser about pages | `#f0f0f0` | About-page backgrounds (apps/browser/assets/about-history.css:3; apps/browser/assets/about-history.css:69; apps/browser/assets/about-history.css:77; apps/browser/assets/about-history.css:84; apps/browser/assets/about-newtab.css:7; apps/browser/assets/about-stub.css:2) |
 | rdme page | `#0d1117` (dark) / white (light) | Page background per scheme (apps/readme/assets/blitz-markdown-overrides.css:11-27) |
-| seven_guis / todomvc page | `#f5f5f5` | Page background (examples/seven_guis/src/tasks/counter.rs:49; examples/seven_guis/src/tasks/counter.rs:59-72; examples/seven_guis/src/app.rs:183; examples/todomvc/src/todomvc.css:26-27; examples/todomvc/src/todomvc.css:76) |
+| todomvc page | `#f5f5f5` | Page background (examples/todomvc/src/todomvc.css:26-27; examples/todomvc/src/todomvc.css:76) |
 | wasm_hello | `#0f1226`, `#1a1d3a` | Dark palette (examples/wasm_hello/src/lib.rs:46; examples/wasm_hello/src/lib.rs:55; examples/wasm_hello/src/lib.rs:62; examples/wasm_hello/src/lib.rs:68) |
 | custom-widget, static-HTML and wgpu_texture examples | `#f4e8d2` | Main background (examples/custom_widget.rs:187; examples/html.rs:16; examples/wgpu_texture/src/styles.css:15) |
 
@@ -56,7 +56,6 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 | Browser tooltip and status bar text | `#333` | (apps/browser/assets/browser.css:61-62; apps/browser/assets/browser.css:267-268; apps/browser/assets/browser.css:292; apps/browser/assets/browser.css:303) |
 | Browser about-page muted text | `#888` / `#777` / `#aaa` | (apps/browser/assets/about-history.css:3; apps/browser/assets/about-history.css:69; apps/browser/assets/about-history.css:77; apps/browser/assets/about-history.css:84; apps/browser/assets/about-newtab.css:7; apps/browser/assets/about-stub.css:2) |
 | Browser error page paragraph | `#666` | (apps/browser/assets/error.html:14) |
-| seven_guis text | `#1a1a1a` | (examples/seven_guis/src/tasks/counter.rs:49; examples/seven_guis/src/tasks/counter.rs:59-72; examples/seven_guis/src/app.rs:183) |
 | todomvc body / heading | `#4d4d4d` / `rgba(175, 47, 47, 1.0)` | Body text on `#f5f5f5`; heading (examples/todomvc/src/todomvc.css:26-27; examples/todomvc/src/todomvc.css:76) |
 | wasm_hello heading / code | `#ffd166` / `#ff7b9c` | (examples/wasm_hello/src/lib.rs:46; examples/wasm_hello/src/lib.rs:55; examples/wasm_hello/src/lib.rs:62; examples/wasm_hello/src/lib.rs:68) |
 
@@ -68,7 +67,6 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 
 | State | Values (as declared) | Usage |
 |-------|----------------------|-------|
-| seven_guis invalid | `#e53e3e` / `#fff5f5` / `#c53030` | Invalid state (examples/seven_guis/src/tasks/flight_booker.rs:194-198; examples/seven_guis/src/tasks/flight_booker.rs:229-237) |
 | Disabled checkbox/radio | rgba 209, 209, 209, 255 | Disabled accent; otherwise the element's color stands in for accent-color per a TODO (packages/blitz-paint/src/render/form_controls.rs:21-26) |
 
 <!-- /detail -->

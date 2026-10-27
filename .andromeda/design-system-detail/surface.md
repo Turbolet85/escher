@@ -7,10 +7,9 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 
 - Every document gets the blitz `DEFAULT_CSS` user-agent stylesheet, once, through `DocumentConfig::default()` — `UserAgentStylesheet::default_sheet()` (packages/blitz-dom/src/config.rs:74-93) — since 2026-10-13-upstream-sync-polish-and-ship (upstream #1189), where until then `DioxusDocument::new` added it itself
 - In that sheet a `select` takes the border (`1px solid #999`), padding (`2px`) and background (`white`) of `input, textarea` and `display: inline-block`, and a single-choice select shows its chosen option alone (`select:not([multiple]) > option:checked { display: inline; }` beside `option { display: none; }`), so it lays out as a box holding its chosen option's label — engine defaults, no design token (packages/blitz-dom/assets/default.css:77-78; packages/blitz-dom/assets/default.css:84-86; packages/blitz-dom/assets/default.css:155-159)
-- The stand's flight booker overrides those select defaults on its one select, `select#flight-type` (class `type-select`, `aria-label` "Flight type"): 15px text, `#1a1a1a` on `#ffffff`, `1px solid #c0c0c0`, radius 6, padding 8/10, and on `:focus` no outline but a `#3a5ce5` border, as the stand's date inputs do; its two options (`one-way flight`, `return flight`) show the chosen one alone by the engine rule above (examples/seven_guis/src/tasks/flight_booker.rs:66-89; examples/seven_guis/src/tasks/flight_booker.rs:160-172)
 - The initial theme is the window's theme, defaulting to Light (packages/blitz-shell/src/window.rs:181-182)
 - The default viewport is window size (0, 0), hidpi scale 1.0, zoom 1.0, Light scheme; its logical size is the physical window size divided by hidpi × zoom (packages/blitz-traits/src/shell.rs:84-93; packages/blitz-traits/src/shell.rs:110-127)
-- JS `innerWidth`/`innerHeight` are window size ÷ scale, `outerWidth`/`outerHeight` alias them, `devicePixelRatio` is the scale (packages/blitz-vibey-script/src/runtime.rs:1414-1419; packages/blitz-vibey-script/src/runtime.rs:2137-2159)
+- JS `innerWidth`/`innerHeight` are window size ÷ scale, `outerWidth`/`outerHeight` alias them, `devicePixelRatio` is the scale (packages/blitz-vibey-script/src/runtime/bootstrap.rs:127-132; packages/blitz-vibey-script/src/runtime/window.rs:125-151)
 
 <!-- /detail -->
 
@@ -19,7 +18,7 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 <!-- detail: values · desktop-native-titlebar -->
 
 - On macOS the browser tabstrip gets `merged-titlebar` with 90px left padding and 44px height (apps/browser/src/tab_strip.rs:9-12; apps/browser/assets/browser.css:28-31)
-- The shell provider exposes minimize, maximize, decorations toggle and window drag for custom titlebars (packages/blitz-shell/src/lib.rs:139-153; packages/blitz-shell/src/event.rs:28-32)
+- The shell provider exposes minimize, maximize, decorations toggle and window drag for custom titlebars (packages/blitz-shell/src/lib.rs:146-160; packages/blitz-shell/src/event.rs:28-32)
 
 <!-- /detail -->
 
@@ -35,17 +34,11 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 
 <!-- /detail -->
 
-<!-- detail: values · desktop-native-stand-load-page -->
-
-- The stand's load page (`seven_guis::stand::boot_load`, mounted in `TaskShell` titled "Load") holds two keyed elements, the button `load-fetch` and the paragraph `load-done` (`display: none` until its stylesheet lands); no CSS selects by id — its classes are `load-root`, `load-body`, `load-btn` (with `:hover` and `:active`) and `load-done` (examples/seven_guis/src/stand.rs:185-200; examples/seven_guis/src/stand.rs:202-244)
-
-<!-- /detail -->
-
 ## Surface: desktop-native › ### Navigation Pattern
 
 <!-- detail: values · desktop-native-window -->
 
-- The browser window title follows the active tab's display title (apps/browser/src/main.rs:166; apps/browser/src/main.rs:173); the shell sets the window title from the document's title node when it was set before the window existed (packages/blitz-shell/src/window.rs:200-206)
+- The browser window title follows the active tab's display title (apps/browser/src/main.rs:166; apps/browser/src/main.rs:173); the shell sets the window title from the document's title node when it was set before the window existed (packages/blitz-shell/src/window.rs:201-207)
 - rdme titles its window "README for" plus the last path segment, and toggles light/dark theme with Ctrl/Cmd+T (apps/readme/src/main.rs:109-112; apps/readme/src/readme_application.rs:124-131; apps/readme/src/readme_application.rs:175)
 
 <!-- /detail -->

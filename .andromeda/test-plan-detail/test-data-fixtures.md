@@ -22,14 +22,15 @@ Read whole. The master's broad view is .andromeda/test-plan.md; this file holds 
 | Inline HTML | inline HTML string constants or `format!`-built pages | (tests/blitz-tests/tests/incremental_oracle.rs:371-420; tests/blitz-tests/tests/dir_attribute.rs:12-29) |
 | Shared fixture page (`rsx!`) | `many_items`: `ITEMS` (400) buttons under `#items`, ids `item-NNN`, a screen over the snapshot text budget, read by `stand_snapshot_parts` and `stand_act_spans` | (tests/blitz-tests/tests/fixtures/mod.rs:64-86) |
 | Stand screen over the budget | the stand's own Cells screen, booted through `stand::boot_cells`: 47,949 bytes in 740 lines, 5 parts of `SNAPSHOT_TEXT_BUDGET`, walked in parts by `stand_cells_served` and read by part through the host by `host_log` | (examples/seven_guis/src/stand.rs:131-135; tests/blitz-tests/tests/stand_cells_served.rs:91-133) |
-| Inline HTML (script tests) | inline raw strings per test | (packages/blitz-vibey-script/tests/dom.rs:25-36) |
-| Inline literals | inline string literals, including generated multi-line text | (packages/blitz-html/src/html_sink.rs:319; packages/blitz-dom/src/node/element.rs:1099; packages/blitz-dom/src/node/element.rs:1132-1135) |
+| Inline HTML (script tests) | inline raw strings per test, and one `FILE_LOAD_TEST_HTML` page with its `FILE_LOAD_TEST_FILES` shared by the two `file:`-load tests | (packages/blitz-vibey-script/tests/dom.rs:25-36; packages/blitz-vibey-script/tests/dom.rs:871-892; packages/blitz-vibey-script/tests/dom.rs:895-902) |
+| Files on disk (script tests) | `temp_dir_with_files` writes a directory of sibling files under `std::env::temp_dir()` at test time for the two `file:`-load tests — test data on disk beside the in-code seeds, through a test-only `TMPDIR` read (arch §Occupied Resources) | (packages/blitz-vibey-script/tests/dom.rs:860-869) |
+| Inline literals | inline string literals, including generated multi-line text | (packages/blitz-html/src/html_sink.rs:319; packages/blitz-dom/src/node/element.rs:1109; packages/blitz-dom/src/node/element.rs:1142-1145) |
 | SVG inputs | inline byte-string literals | (packages/blitz-dom/src/util.rs:186; packages/blitz-dom/src/util.rs:193) |
 | Fuzzy runner inputs | inline HTML and byte-array fixtures | (wpt/runner/src/test_runners/fuzzy.rs:184-188; wpt/runner/src/test_runners/fuzzy.rs:231-232) |
 | Python script entries | inline `ENTRIES` list covering changed, added and removed entries | (.github/scripts/test_wpt_diff_to_pr.py:8-48) |
 | Repository text (CI-script pin) | no fixture file: `test_capability_statement.py` reads the files it pins by path from the repository root — `docs/capabilities.md`, `README.md` and escher-driver's `schema.rs`, `refusal.rs` and `error.rs` — beside an inline `NUMBER_WORDS` table (one … twenty), writing nothing | (.github/scripts/test_capability_statement.py:13-34; .github/scripts/test_capability_statement.py:37-38) |
 | Style fixtures | inline user-agent stylesheets | (packages/blitz-dom/src/document.rs:3303-3306; packages/blitz-dom/src/document.rs:3598-3602) |
-| Viewports | fixed sizes (800x600 and 400x300, scale 1.0, Light) | (packages/blitz-dom/src/mutator.rs:1856; packages/blitz-dom/src/document.rs:3204) |
+| Viewports | fixed sizes (800x600 and 400x300, scale 1.0, Light) | (packages/blitz-dom/src/mutator.rs:1864; packages/blitz-dom/src/document.rs:3204) |
 | Font payload | the embedded bullet font; the bundled DejaVu Sans woff2 `seven_guis::DEJAVU_SANS`, which the headless stand registers for every generic | (packages/blitz-dom/src/document.rs:3691-3706; examples/seven_guis/src/lib.rs:7) |
 | Image loads | injected directly into `background_images` layers as `ImageData::Raster` or `ImageData::Svg` with `Status::Ok` | (tests/blitz-tests/tests/background_size.rs:31-43; tests/blitz-tests/tests/svg_background_size.rs:37-46) |
 | Benchmark pages | generated in code: ~2000-node realistic, 5000-item stress, 50 nested stacking contexts, ~40k-node large page | (tests/blitz-tests/tests/paint_tree_bench.rs:59-98; tests/blitz-tests/tests/paint_tree_bench.rs:208-221) |
@@ -37,7 +38,7 @@ Read whole. The master's broad view is .andromeda/test-plan.md; this file holds 
 | Browser entries | helpers build entries from URL strings, with titles or fixed timestamps | (apps/browser/src/url_suggestions.rs:348-362; apps/browser/persistence/src/lib.rs:328-339; apps/browser/src/browser_history.rs:170-176) |
 | Test URLs | the `.test` TLD | (apps/browser/src/browser_history.rs:181; apps/browser/persistence/src/lib.rs:377-379) |
 | Favicon bytes | a 1x1 PNG encoded in-test | (apps/browser/src/favicon.rs:75-81) |
-| Fetch body | base URL `http://example.test/dir/page.html` and a fixed JSON body for `/data.json` | (packages/blitz-vibey-script/tests/dom.rs:710-720; packages/blitz-vibey-script/tests/dom.rs:740-742) |
+| Fetch body | base URL `http://example.test/dir/page.html` and a fixed JSON body for `/data.json` | (packages/blitz-vibey-script/tests/dom.rs:744-754; packages/blitz-vibey-script/tests/dom.rs:774-776) |
 | Network answer (stand load page) | `stand::boot_load`'s stand-in `LoadNet` answers every fetch of the fixed URL `http://stand.test/load.css` with the fixed bytes `LOADED_CSS` (`.load-body .load-done { display: block; }`) from a thread of its own after `LOAD_ANSWER_DELAY` (200 ms); every other stand boot keeps `net_provider: None`; read by `stand_load_page` and the stand unit test `the_load_page_click_leaves_a_load_in_flight` | (examples/seven_guis/src/stand.rs:154-175; tests/blitz-tests/tests/stand_load_page.rs:34-68) |
 
 <!-- /detail -->

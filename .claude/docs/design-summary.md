@@ -10,8 +10,8 @@ _Distilled from `.andromeda/design-system.md` + `.andromeda/layout-templates.md`
 ### Colour (selected)
 | Where | Value | Use |
 |---|---|---|
-| seven_guis (the stand; held provisionally in layout-templates §Surface: desktop-native → Primary screens, not as a design-system value) | `#3a5ce5` (hover `#2a4cd3`, active `#1f3fc1`; one step darker since 2026-10-14-stand-a11y-assertions, the operator's choice, until then `#4a6cf7`) | accent, on page `#f5f5f5`, text `#1a1a1a`; white `#ffffff` button text on it (the four accent controls `counter-increment` · `flight-book` · `timer-reset` · `crud-create`, 14–16 px, weight 500) measures 5.47 against SC 1.4.3's 4.5, a pass (since 2026-10-14-stand-a11y-assertions; the old `#4a6cf7` read 4.39, a fail), and 6.83 on the hover shade, 8.27 on the active shade |
-| seven_guis invalid | `#e53e3e` / `#fff5f5` / `#c53030` | flight-booker invalid state |
+| seven_guis (the stand; held in layout-templates §Surface: desktop-native → Primary screens, not as a design-system value) | `#3a5ce5` (hover `#2a4cd3`, active `#1f3fc1`; one step darker since 2026-10-14-stand-a11y-assertions, the operator's choice, until then `#4a6cf7`) | accent, on page `#f5f5f5`, text `#1a1a1a`; white `#ffffff` button text on it (the four accent controls `counter-increment` · `flight-book` · `timer-reset` · `crud-create`, 14–16 px, weight 500) measures 5.47 against SC 1.4.3's 4.5, a pass (since 2026-10-14-stand-a11y-assertions; the old `#4a6cf7` read 4.39, a fail), and 6.83 on the hover shade, 8.27 on the active shade |
+| seven_guis invalid (the stand; held in layout-templates §Surface: desktop-native → Primary screens, not as a design-system value) | `#e53e3e` / `#fff5f5` / `#c53030` | flight-booker invalid state |
 | seven_guis success (the stand; held in layout-templates §Surface: desktop-native → Primary screens, not as a design-system value) | `#ebf8ee` / `#68d391` / `#276749` | success message |
 | blitz-dom UA stylesheet | links (`a[href]`) `rgb(0,0,238)`, input focus outline `#4D90FE`, button `#EFEFEF` | engine defaults |
 | Engine selection highlight | rgb 180, 213, 255 | default text selection |

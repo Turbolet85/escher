@@ -1,0 +1,46 @@
+# Apply — design-system
+
+## Verdicts
+- fanout-design-system--cascade-g2.md 3 · refused · a hand removal · .andromeda/design-system.md:247-247
+- fanout-design-system.md 1 · applied · .andromeda/design-system.md:218#1
+- fanout-design-system--cascade-g1.md 1 · applied · .andromeda/design-system-detail/color-palette.md:44#1
+- fanout-design-system--cascade-g1.md 2 · refused · a hand removal · .andromeda/design-system-detail/color-palette.md:59–59
+- fanout-design-system--cascade-g1.md 3 · refused · a hand removal · .andromeda/design-system-detail/color-palette.md:71–71
+- fanout-design-system--cascade-g1.md 4 · refused · a hand removal · .andromeda/design-system-detail/typography.md:18–18
+- fanout-design-system--cascade-g1.md 5 · refused · a hand removal · .andromeda/design-system-detail/typography.md:19–19
+- fanout-design-system.md 4 · applied · .andromeda/design-system-detail/typography.md:36#1
+- fanout-design-system--cascade-g1.md 6 · refused · a hand removal · .andromeda/design-system-detail/spacing.md:20–20
+- fanout-design-system--cascade-g1.md 7 · refused · a hand removal · .andromeda/design-system-detail/motion.md:34–34
+- fanout-design-system.md 2 · applied · .andromeda/design-system-detail/motion.md:10#1, .andromeda/design-system-detail/motion.md:35#1
+- fanout-design-system--cascade-g2.md 1 · refused · a hand removal · .andromeda/design-system-detail/surface.md:10–10
+- fanout-design-system--cascade-g2.md 2 · refused · a hand removal · .andromeda/design-system-detail/surface.md:37–42
+- fanout-design-system.md 3 · applied · .andromeda/design-system-detail/surface.md:13#1
+
+## Edits
+- line: .andromeda/design-system.md:218
+  old: «seven_guis and todomvc fill the window with a canvas on `#f5f5f5` (examples/seven_guis/index.html:7-10; examples/todomvc/index.html:7-10)»
+  new: «todomvc fills the window with a canvas on `#f5f5f5` (examples/todomvc/index.html:7-10)»
+- line: .andromeda/design-system-detail/color-palette.md:44
+  old: «| seven_guis / todomvc page | `#f5f5f5` | Page background (examples/seven_guis/src/tasks/counter.rs:49; examples/seven_guis/src/tasks/counter.rs:59-72; examples/seven_guis/src/app.rs:183; examples/todomvc/src/todomvc.css:26-27»
+  new: «| todomvc page | `#f5f5f5` | Page background (examples/todomvc/src/todomvc.css:26-27»
+- line: .andromeda/design-system-detail/typography.md:36
+  old: «(packages/blitz-vibey-script/src/runtime.rs:1060-1074)»
+  new: «(packages/blitz-vibey-script/src/runtime/bootstrap/fonts.js:1-15)»
+- line: .andromeda/design-system-detail/motion.md:10
+  old: «(packages/blitz-vibey-script/src/dom/element.rs:1183-1198)»
+  new: «(packages/blitz-vibey-script/src/dom/element/scrolling.rs:37-52)»
+- line: .andromeda/design-system-detail/motion.md:35
+  old: «(packages/blitz-vibey-script/src/runtime.rs:2108-2133)»
+  new: «(packages/blitz-vibey-script/src/runtime/timers.rs:98-123)»
+- line: .andromeda/design-system-detail/surface.md:13
+  old: «(packages/blitz-vibey-script/src/runtime.rs:1414-1419; packages/blitz-vibey-script/src/runtime.rs:2137-2159)»
+  new: «(packages/blitz-vibey-script/src/runtime/bootstrap.rs:127-132; packages/blitz-vibey-script/src/runtime/window.rs:125-151)»
+
+## Patterns
+[[pattern]]
+id = "ds-01"
+fixed = "seven_guis and todomvc fill the window"
+
+[[pattern]]
+id = "ds-02"
+fixed = "seven_guis / todomvc page"

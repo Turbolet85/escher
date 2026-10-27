@@ -31,7 +31,7 @@ Read whole. The master's broad view is .andromeda/obs-plan.md; this file holds i
 - observed absent — metric emission · searched: `counter!|histogram!|gauge!` over the 17 listed s06 files
 - observed absent — metrics · searched: `metric|counter!|histogram` over the 8 slice files (matches are only text-layout `metrics()` calls and comments)
 - observed absent — metrics · searched: `metric|counter|histogram|gauge` over the 16 listed files (no match)
-- observed absent — metrics counters, gauges or histograms · searched: `metrics|counter!|histogram|gauge` over the 32 slice files (blitz-vibey-script / blitz slice)
+- observed absent — metrics counters, gauges or histograms · searched: `metrics|counter!|histogram|gauge` over the 32 slice files (blitz-vibey-script / blitz slice); the slice's blitz-vibey-script code stands split into the `runtime/` and `dom/element/` module trees (13 Rust modules, 9 JS bootstrap files, upstream's side moved whole), and the take moves no dependency, feature or manifest and adds no log site, span or field — 32 the reading's own count (as measured at escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/report.md)
 - observed absent — metrics or telemetry backends · searched: `metric|counter!|histogram|opentelemetry|sentry|prometheus` over the 21 listed s11 files
 
 <!-- /detail -->

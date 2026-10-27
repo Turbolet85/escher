@@ -1,35 +1,35 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-27T07:14:50Z
+**Last Updated:** 2026-10-27T12:45:06Z
 **Branch:** build/escher-0.3.0 · 0 ahead of origin/build/escher-0.3.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-27-readme-and-records — docs: the README at 0.2.0 done and 0.3.0 planned, the capabilities statement on the 2026-10-25 run, ledger refs, stand rows, incubator ignore
+**Last Commit:** 2026-10-27-upstream-sync-engine-debts — feat: eleven upstream commits cherry-picked at ebacd68bd, the pins kept, F2 ratified and the ten stand lines moved
 
 ## Position
-- Done: 2026-10-27-readme-and-records — `README.md`'s `## Status` (0.1.0 and 0.2.0 done, 0.3.0 planned in six
-  stages), `docs/capabilities.md` on the 2026-10-25 live run, the two stale ledger refs re-pointed, the nine stand rows
-  moved out of design-system (F2, PROVISIONAL), the incubator ignored by `.gitignore`; v030-02 · v030-16. Closes
-  Epoch 1. Wrap run `.andromeda/runs/2026-10-27T05-59-26-wrap/` (three windows), its gated part's take-up implement
-  `.andromeda/runs/2026-10-27T07-06-33-implement/`.
-- Next: «Upstream sync ahead of engine debts» (Epoch 2, v030-03) — /andromeda-phase to promote and plan it.
+- Done: 2026-10-27-upstream-sync-engine-debts — upstream/main `ebacd68bd` read, eleven commits taken by no-commit
+  cherry-pick on the founder's «Одиннадцать коммитов (Рекомендую)», sixteen left out, the merge base `23b9b26a9` and
+  every pin unmoved; CI#40487650912 green 17/17; v030-03. Wrap run `.andromeda/runs/2026-10-27T10-45-32-wrap/`
+  (two windows: P1, then P2–P7).
+- Next: «Engine debts» (Epoch 2, v030-04) — /andromeda-phase to promote and plan it. escher pauses after this wrap on
+  the founder's word; its three new CARRYs wait on that entry until he resumes.
 
 ## Work done
-P2: 22 amendments over architecture · design-system · layout-templates · security-plan · a11y-plan, 10 sidecar
-entries, 6 citations re-pointed, 16 leaf findings applied; P3 one Tier-3 learning; P5 no tail edit.
+P2: 107 amendments over all seven masters, 55 sidecar entries, 209 citations re-pointed and 65 claim-false rows
+re-pointed by path, 22 leaf findings applied; P3 one Tier-2 (host-linux) and one Tier-3 learning; P5 four CARRYs.
 
 ## Drift resolved
-The front page and status facts restated (the default branch `build/escher-0.3.0` since the founder's «Да,
-переключить»); the nine stand rows moved to layout-templates' desktop-native screens, values unchanged, each line
-PROVISIONAL; on the operator's P2 answers «The nine rows only» · «Apply with their pairs (Recommended)».
+The take's six engine changes for every document (`:open`, the pseudo flow vote, IME at editor construction, the
+redraw route, the `file:` refusal by document, the `CSSStyleDeclaration` accessors) recorded as upstream's, ratified
+for this take; blitz-vibey-script's runtime split re-pointed across every master; F2 ratified on the founder's own
+word «Подтвердить (Рекомендую)», its two gap markers dropped, one new sidecar entry per doc; the ten further stand
+lines moved on «Все десять, общие разделить (Рекомендую)», the stand text folding into layout-templates :16 (the
+operator's Q2), the stand facts outside the ten kept on the founder's «Оставить как есть (Рекомендую)».
 
 ## Notes
-- For the founder: F2 «Every stand row» is the delegate's PROVISIONAL answer, and the ten further stand lines
-  (`escher-0.3.0/chunks/2026-10-27-readme-and-records/evidence/records.md` (b); the operator's «The nine rows only»)
-  wait on his word — they stand in design-system as they read.
-- `gated 2026-10-27-readme-and-records: premise cleared` — `gh repo view` read `build/escher-0.3.0` at 07:13:44Z;
-  v030-02's front-page entry run green by the take-up implement, so the chunk wrapped on the plain arm.
-- `.andromeda/residuals.md:41` · `:42` (absorbed) close by v030-02 · v030-16 reading verified; no line written there.
+- The trial worktree `target/tmp/trial-wt` (detached at shape A `02b24fccf`, the plan said shape B) still stands; its
+  removal is the founder's.
+- The security-plan sidecar entry «… — the `open` attribute read by presence, `:open` matching» keeps the report's
+  `remove_attribute` spelling; the bodies read `clear_attribute`, the method `mutator.rs` holds.
+- Friction for overseer1 logged at the reconcile checkpoint: a raised disposition aimed at the body by a bare file
+  name, and no plain re-render of an unlaunched batch (`--fresh` taken on the operator's word).
 - Last failed command: none open.
-
-## Session End Status
-Completed normally at 2026-10-27 10:57:03

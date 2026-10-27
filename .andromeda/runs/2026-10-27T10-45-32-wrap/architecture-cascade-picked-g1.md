@@ -1,0 +1,13 @@
+# architecture · picked accounting · group 1 of 7
+
+## Picked
+design-philosophy#2.1 · not touched · providers are still injected with no-op defaults and script fetch still goes through the embedder's fetcher (`runtime/fetch.rs` `fetch_sync` takes the `ScriptFetcher`, `modules.rs` `BlitzModuleLoader::new` too); the split is a move and the uncaught-error capture moved whole, so only citations into `runtime.rs` · `document.rs` · `dioxus_document.rs` move, the citation sweep's (`vibey-mods`, `moved-files`)
+design-philosophy#3.1 · not touched · `stylo.rs` gained only line 510 and `node/element.rs` only 488-489 · 543-550, which leave the dimension-value parsing and the Gecko copy-on-write claims standing; `:open` is F1, an established-decisions fact, and the moved citations are the sweep's (`moved-files`)
+design-philosophy#4.1 · not touched · `construct.rs` gained the IME call and the pseudo vote (313-317, 860, 867-872) and `element.rs` `flush_open_state`, leaving the deferred inline construction, element-data and clone claims standing, `incremental_oracle` green; the moved citations are the sweep's (`moved-files`)
+design-philosophy#5.1 · not touched · `tab.rs`'s added lines (130-136, 177-182, tests) carry the tab-lens survival (F9, an established-decisions fact), the report's `browser-tab` rows being citation rows with claim text unchanged; harness, WPT runner (only its pin moved) and bench claims unreached
+stack-and-technologies#1.3 · not touched · Stylo 0.22.0 and every manifest and `Cargo.lock` byte-identical (Dependencies: none); `stylo.rs` gained only line 510, the role claim standing
+stack-and-technologies#1.9 · not touched · winit, keyboard-types and the other pins unchanged (Dependencies: none); `blitz-shell/src/lib.rs` gained lines after the cited `ApplicationHandler`/`EventLoop` wiring, the redraw route being F4, an established-decisions fact
+stack-and-technologies#1.12 · not touched · Boa 0.22 unchanged (Dependencies: none, Boa named among the untouched stack); blitz-vibey-script `lib.rs` gained only the re-export at 43, the role claim standing
+stack-and-technologies#1.16 · not touched · no package moved (Dependencies: none); `stylo.rs`'s one added line leaves the `STYLE_THREAD_POOL` traversal claim standing
+stack-and-technologies#1.18 · not touched · the browser's manifest is byte-identical and `apps/browser/src/main.rs` gained only 192-193, so mimalloc and the other extras stand
+stack-and-technologies#1.22 · not touched · no ci.yml, `ci-leg.sh` or CI-script change and Dev-tool versions: none; `publish-browser.yml`'s 15 added lines are upstream-only and repository-guarded, the `publish` rows citation-only with the upstream-only and guard claims no-change

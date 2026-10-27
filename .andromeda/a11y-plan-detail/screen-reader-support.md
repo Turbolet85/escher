@@ -96,6 +96,7 @@ Read whole. The master's broad view is .andromeda/a11y-plan.md; this file holds 
 <!-- detail: values · sr-ime -->
 
 - Focusing a text input enables IME and sets the IME cursor area to the input's content box; blurring disables IME (packages/blitz-dom/src/node/node.rs:771-784; packages/blitz-dom/src/node/node.rs:794-801)
+- A text input already focused when its text editor is constructed enables IME there — `create_text_editor` calls `shell_provider.set_ime_enabled(true)` — so an input focused before its editor exists has IME on with no fresh focus, in every document; pinned by dioxus-native-dom's `input_focused_on_mount_enables_ime` (packages/blitz-dom/src/layout/construct.rs:860; packages/blitz-dom/src/layout/construct.rs:867-872; packages/dioxus-native-dom/src/dioxus_document.rs:725-759) — as measured at escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/report.md
 - IME commit, preedit and disable events are applied to the text editor; `DeleteSurrounding` is a TODO (packages/blitz-dom/src/node/text.rs:763-803)
 
 <!-- /detail -->

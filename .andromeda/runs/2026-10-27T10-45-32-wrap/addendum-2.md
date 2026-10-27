@@ -1,0 +1,2 @@
+- inputs#I9 · message: the operator, the P5 route-resolve dialog, 2026-10-27 · copy message · n/a — the owner of the three upstream behaviours holding no check of their own (`:open`, the windowed redraw route, `pseudo_element_flow_classification`'s one layout mode) and of the misnamed `remove_attribute` at `architecture-detail/standard-contracts.md:78` is «Engine debts», each a CARRY; escher pauses after this wrap on the founder's word, the CARRYs waiting on that entry
+  - bears on **Outcome**: adds to it — the gaps' owner, P5's to pin

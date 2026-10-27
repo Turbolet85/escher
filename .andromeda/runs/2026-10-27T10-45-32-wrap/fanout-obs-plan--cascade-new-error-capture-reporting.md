@@ -1,0 +1,2 @@
+proposals: []
+note: F3 (blitz-vibey-script's `file:` refusal for a non-`file:` document through `document_may_load`, a typed `FetchError` variant re-exported from the crate root and checked by `fetch()`, module `import` and `<script src>`, an error class with no log site; report Symbols / APIs and Coverage of new surfaces) has no home in .andromeda/obs-plan-detail/error-capture-reporting.md, which holds absence searches alone; its home is obs-plan.md §7's "Error classes captured" list or "Script (JS) error surface — blitz-vibey-script" group in the body.

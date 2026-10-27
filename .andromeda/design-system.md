@@ -142,7 +142,7 @@ Detail: .andromeda/design-system-detail/iconography.md — read whole.
 
 **Style:** Browser toolbar icons are SVG assets rotate-cw, house, arrow-left, arrow-right, ellipsis-vertical, external-link, code, and camera (feature-gated) (apps/browser/src/icons.rs:3-11); tab close and new-tab controls are text glyphs "×" and "+" (apps/browser/src/tab_strip.rs:92-96; apps/browser/src/tab_strip.rs:102-106)
 **Library:** `IconButton` renders an `img.urlbar-icon` inside a clickable div (apps/browser/src/icons.rs:13-40; apps/browser/assets/browser.css:200-202); bundle icons are `blitz-logo.png` and `blitz-logo.ico` (apps/browser/Dioxus.toml:7); rdme styles GitHub octicons (apps/readme/assets/github-markdown.css:139-157)
-**Size grid:** toolbar icon images 20px high (apps/browser/src/icons.rs:13-40; apps/browser/assets/browser.css:200-202); menu item icons 16x16 (apps/browser/assets/browser.css:243-246); favicons 16x16 (apps/browser/src/tab.rs:269-281)
+**Size grid:** toolbar icon images 20px high (apps/browser/src/icons.rs:13-40; apps/browser/assets/browser.css:200-202); menu item icons 16x16 (apps/browser/assets/browser.css:243-246); favicons 16x16 (apps/browser/src/tab.rs:280-292)
 
 **Cursors and favicons (engine):**
 
@@ -157,7 +157,7 @@ The cursor is the CSS `cursor` keyword, else Text for text inputs, Pointer insid
 ## Surface: desktop-native
 
 **Platform:** Windows (NSIS .exe), macOS (.dmg) and Linux (.AppImage) on x86_64 and aarch64 (.github/workflows/publish-browser.yml:47-82); the flake's default package is the browser app whose binary is `blitz`, wrapped with winit/wgpu runtime libraries on Linux (flake.nix:40-53; flake.nix:117-121)
-**Toolkit / Framework:** winit windows (packages/blitz-shell/src/window.rs:200-206); HTML launches into a native window with `WindowConfig` and the Vello window renderer (packages/blitz/src/lib.rs:106-137; examples/inner_html.rs:28-30; examples/preact_script.rs:37); Dioxus apps open through `dioxus_native::launch` (examples/box_shadow.rs:4; examples/custom_widget.rs:18; examples/counter/src/main.rs:15-17; examples/seven_guis/src/main.rs:4-10; examples/todomvc/src/main.rs:15-19), built from `WindowAttributes` and titled from dioxus-cli-config or "Dioxus App" (packages/dioxus-native/src/config.rs:17-20; packages/dioxus-native/src/lib.rs:238-239)
+**Toolkit / Framework:** winit windows (packages/blitz-shell/src/window.rs:201-207); HTML launches into a native window with `WindowConfig` and the Vello window renderer (packages/blitz/src/lib.rs:106-137; examples/inner_html.rs:28-30; examples/preact_script.rs:37); Dioxus apps open through `dioxus_native::launch` (examples/box_shadow.rs:4; examples/custom_widget.rs:18; examples/counter/src/main.rs:15-17; examples/seven_guis/src/main.rs:4-10; examples/todomvc/src/main.rs:15-19), built from `WindowAttributes` and titled from dioxus-cli-config or "Dioxus App" (packages/dioxus-native/src/config.rs:17-20; packages/dioxus-native/src/lib.rs:238-239)
 
 ### Tokens (platform-specific)
 Detail: .andromeda/design-system-detail/surface.md — read whole.
@@ -215,7 +215,7 @@ Detail: .andromeda/design-system-detail/surface.md — read whole.
 
 ## Surface: web-spa
 
-**Platform:** WASM pages rendering into a canvas — seven_guis and todomvc fill the window with a canvas on `#f5f5f5` (examples/seven_guis/index.html:7-10; examples/todomvc/index.html:7-10)
+**Platform:** WASM pages rendering into a canvas — todomvc fills the window with a canvas on `#f5f5f5` (examples/todomvc/index.html:7-10)
 **Toolkit / Framework:** on wasm32 dioxus-native's surface is a canvas appended to the page body, sized from host CSS (packages/dioxus-native/src/config.rs:22-34)
 
 ### Tokens (platform-specific)
@@ -244,7 +244,7 @@ Detail: .andromeda/design-system-detail/surface.md — read whole.
 
 ---
 
-<!-- subjects: palette · status-states · typography · spacing · depth · radius · expression-motion · icons · desktop-native-tokens · desktop-native-titlebar · desktop-native-custom-widget · desktop-native-devtools-overlay · desktop-native-stand-load-page · desktop-native-window · desktop-native-stack · mobile-native-tokens · mobile-native-urlbar · mobile-native-back-button · mobile-native-capture · mobile-native-stack · cli-tokens · cli-output · web-spa-tokens · web-spa-canvas -->
+<!-- subjects: palette · status-states · typography · spacing · depth · radius · expression-motion · icons · desktop-native-tokens · desktop-native-titlebar · desktop-native-custom-widget · desktop-native-devtools-overlay · desktop-native-window · desktop-native-stack · mobile-native-tokens · mobile-native-urlbar · mobile-native-back-button · mobile-native-capture · mobile-native-stack · cli-tokens · cli-output · web-spa-tokens · web-spa-canvas -->
 
 ## Design Decisions Log
 

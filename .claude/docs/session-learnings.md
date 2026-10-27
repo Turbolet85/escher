@@ -8,6 +8,13 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-27 — `fanout-results.md`'s lines are a grammar fanout.py parses, not prose
+The wrap's Validate dispositions in `fanout-results.md` are the apply batch's input, read by `fanout.py`'s own patterns: each proposal file's heading is its bare file name alone on a line (`fanout-architecture.md`, never `### fanout-architecture.md` — a decorated heading leaves every disposition under it unread, and the render refuses with `no disposition line`), and an item main raises is aimed at the first `.andromeda/…md` path its line names, else at the master's body. A raised item that names a category file by its bare name (`conventions.md:27`) passes the render and lands on the body.
+
+Where it applies: every raised item at a wrap's Validate. Name each target by its full `.andromeda/{doc}-detail/{slug}.md` path, one target file per item, and split an item that spans files. A render is refused again once it exists, except as `--respawn` or `--fresh`, so check the lines before the first render.
+
+---
+
 ## 2026-10-27 — A phase P5 control that plants a home-dir path trips hygiene at the operator pass
 A phase P5 control script that plants a host-path literal to prove a `/home/` probe reads red (a literal like
 `/home/someone/x`) lands in the committed run dir, and `gate.py hygiene` P1 refuses it at the operator pass, costing a

@@ -1,0 +1,40 @@
+## 2026-10-27-upstream-sync-engine-debts — F2's stand-row move ratified by the founder's own word
+**Section:** §Border Radius (border-radius.md) · §Depth Strategy (depth-strategy.md) · §Spacing (spacing.md) · §Color Palette (design-system.md body; color-palette.md) · §Typography (typography.md) — the move's pointer rows, no line changed
+**Change:**
+- No body line moves for it: the stand's radii, card shadows and card padding, its accent, success colours and select border, and its font registration stay held in layout-templates §Surface: desktop-native → Primary screens and architecture §Standard Contracts → Headless stand, each design-system pointer standing as these entries record it, now ratified, no longer PROVISIONAL: «2026-10-27-readme-and-records — the stand's radii, card shadows and card padding leave for layout-templates, PROVISIONAL» · «2026-10-27-readme-and-records — the stand's colours leave the product surface, PROVISIONAL» · «2026-10-27-readme-and-records — the stand's font registration leaves for architecture's Headless stand, PROVISIONAL».
+**Why:** F2 «Every stand row (Recommended)», the founder's delegate answer and PROVISIONAL, is ratified by the founder's own word «Подтвердить (Рекомендую)», by phone, 2026-10-27, relayed for this wrap by the operator (inputs#I7), which supersedes it by rule; the operator's Q1 «Confirm (Recommended)» at this wrap's P2 Validate (inputs#I8) carries the ratification as one new entry per touched doc.
+**Kept:** the three entries keep their words — a superseded provisional record is kept, never reworked, and their move still stands, so none is named under Supersedes; their Kept clauses are retired by the two move entries below.
+**Ref:** .andromeda/runs/2026-10-27T10-45-32-wrap/
+
+## 2026-10-27-upstream-sync-engine-debts — the stand's colours, type and select padding leave design-system, the todomvc rows split
+**Section:** §Color Palette (color-palette.md: Surface Scale's page row, Text Hierarchy, Semantic Colors) · §Spacing (spacing.md) · §Typography (typography.md: the type table) · §Surface: web-spa (design-system.md body: Platform)
+**Change:**
+- Surface Scale: was a «seven_guis / todomvc page» `#f5f5f5` row citing seven_guis' sources beside todomvc's CSS; now a «todomvc page» row citing todomvc's CSS alone, value and usage unchanged.
+- Text Hierarchy: the «seven_guis text» `#1a1a1a` row removed.
+- Semantic Colors: the «seven_guis invalid» row (`#e53e3e` / `#fff5f5` / `#c53030`) removed; the disabled checkbox/radio row stands.
+- Spacing: the flight booker's `flight-type` select padding item (8px vertical, 10px horizontal) removed; the stand's card-and-Home pointer item stands.
+- Typography: the «seven_guis» row (sans-serif, home title 700, base 14px, home title 36px) and the flight booker's `flight-type` select (`.type-select`) row (400, 15px) removed.
+- Web-spa Platform: was «seven_guis and todomvc fill the window with a canvas on `#f5f5f5`», citing both pages; now «todomvc fills the window with a canvas on `#f5f5f5`», citing todomvc's alone.
+- The values are now held in layout-templates' `values · desktop-native-screens` block, unchanged. Was kept, per the colours, radii and font registration PROVISIONAL entries of 2026-10-27-readme-and-records (the invalid, page and text rows and the WASM-pages line; the select padding; the two type rows); now gone from design-system.
+**Why:** the founder's own word «Все десять, общие разделить (Рекомендую)», by phone, 2026-10-27, relayed for this wrap by the operator (inputs#I7): the stand-only lines go to layout-templates' desktop-native screens with values unchanged, and the two rows shared with todomvc keep todomvc and drop seven_guis. The text row lands as no new line, layout-templates already stating `#1a1a1a`, on the operator's Q2 «Fold into :16 (Recommended)» at this wrap's P2 Validate (inputs#I8).
+**Ref:** .andromeda/runs/2026-10-27T10-45-32-wrap/
+
+## 2026-10-27-upstream-sync-engine-debts — citations follow the script runtime's split and the taken commits' line moves
+**Section:** §Iconography (iconography.md: the cursor item; design-system.md body: Size grid) · §Motion (motion.md: the scroll-behaviour, animation-clock and `requestAnimationFrame` items) · §Surface: desktop-native (surface.md: the JS viewport, titlebar and window-title items; design-system.md body: Toolkit / Framework) · §Typography (typography.md: the `document.fonts` item)
+**Change:**
+- Re-pointed to blitz-vibey-script's split modules, claim text unchanged: scroll-behaviour parsing was `dom/element.rs`, now `dom/element/scrolling.rs`; `requestAnimationFrame` was `runtime.rs`, now `runtime/timers.rs`; the JS viewport sizes and `devicePixelRatio` were `runtime.rs` twice, now `runtime/bootstrap.rs` and `runtime/window.rs`; the `document.fonts` stub was `runtime.rs`, now `runtime/bootstrap/fonts.js`.
+- Line ranges moved, path and claim unchanged: blitz-shell's `lib.rs` (the cursor's `None` handling, the titlebar provider), blitz-shell's `window.rs` (the animation clock, the window title, the winit toolkit line) and apps/browser's `tab.rs` (the 16x16 favicon).
+**Why:** the take of eleven upstream commits, on the founder's own word «Одиннадцать коммитов (Рекомендую)», 2026-10-27, relayed verbatim by the overseer (inputs#I4): it split blitz-vibey-script's runtime and element bindings into the `runtime/` and `dom/element/` trees, a move removing nothing (`runtime.rs` keeps 151 lines), so the old paths read claim-false while each claim holds at its new site; and it added lines to blitz-shell's `lib.rs` and `window.rs` (the redraw route through the event loop) and to `tab.rs` (tab lenses surviving a props replacement).
+**Ref:** .andromeda/runs/2026-10-27T10-45-32-wrap/
+
+## 2026-10-27-upstream-sync-engine-debts — the flight-type select overrides and the load page's group leave design-system
+**Section:** §Motion (motion.md: the `values · expression-motion` list) · §Surface: desktop-native (surface.md: Tokens; the `values · desktop-native-stand-load-page` group) · the subjects line (design-system.md)
+**Change:**
+- Motion: the stand load page's item (`LoadNet` answering its one stylesheet after `LOAD_ANSWER_DELAY`, 200 ms, from a thread of its own; `load-done` `display: none` until it lands, so a `click` on `load-fetch` waits it out) removed; the driver's load-wait item above it stands.
+- Surface Tokens: the flight booker's `select#flight-type` overrides item (15px, `#1a1a1a` on `#ffffff`, `1px solid #c0c0c0`, radius 6, padding 8/10, on `:focus` a `#3a5ce5` border, its two options) removed; the engine's select-defaults item stands.
+- Surface: the `desktop-native-stand-load-page` group (`boot_load` in a TaskShell titled "Load", keyed `load-fetch` and `load-done`, classes `load-root` · `load-body` · `load-btn` · `load-done`) removed whole with its markers.
+- Subjects line: drops `desktop-native-stand-load-page`, every other subject in its order.
+- The load-page facts fold into layout-templates' served-screens bullet and the select's into its mode-region bullet, values unchanged. Was kept, per «2026-10-27-readme-and-records — the stand's colours leave the product surface, PROVISIONAL» (the select overrides, the load-page group, the subject); now gone from design-system.
+**Why:** the founder's own word «Все десять, общие разделить (Рекомендую)», by phone, 2026-10-27, relayed for this wrap by the operator (inputs#I7): the stand-only lines go to layout-templates' desktop-native screens with values unchanged, the subjects line dropping the emptied group.
+**Kept:** the stand facts outside the ten — the five pointer rows to layout-templates (border radius, colour palette, depth, spacing, typography), surface's cli item naming the six served tasks, motion's observed absence of transitions in seven_guis styles and the driver's load-wait items in motion and the body — stay, settled, on the founder's own word «Оставить как есть (Рекомендую)», by phone, 2026-10-27, relayed by the operator at this wrap's P2 Validate (inputs#I8).
+**Ref:** .andromeda/runs/2026-10-27T10-45-32-wrap/

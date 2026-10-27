@@ -1,0 +1,114 @@
+# wrap P1 site sweep — 2026-10-27-upstream-sync-engine-debts (one pattern per claim; the fact's name token joined)
+
+[[pattern]]
+id = 'title'
+fixed = 'Upstream sync ahead of engine debts'
+ignore_case = true
+
+[[pattern]]
+id = 'owner-generic'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true
+
+[[pattern]]
+id = 'ui-graph'
+fixed = 'Upstream sync ahead of the UI graph'
+ignore_case = true
+
+[[pattern]]
+id = 'bt-files'
+regex = '147 `\.rs` files|146 test targets|pseudo_element_flow_classification'
+
+[[pattern]]
+id = 'ws-tally'
+regex = '208 · 1117|189 · 1114|189 · 1068|1117 passed|40434241601'
+
+[[pattern]]
+id = 'run-all'
+regex = 'passed 630|630 passed|run all`?.s `?run\.end`? reads passed \d+'
+
+[[pattern]]
+id = 'dom-rs'
+regex = 'tests/dom\.rs'
+
+[[pattern]]
+id = 'dnd-lib'
+regex = '\b81 (passed|tests|unit)|lib 81|input_focused_on_mount_enables_ime'
+
+[[pattern]]
+id = 'tmpdir'
+regex = 'TMPDIR|temp_dir'
+
+[[pattern]]
+id = 'fetcher'
+regex = 'ScriptFetcher|only `file:` and `data:`|document_may_load|FetchError::Forbidden'
+
+[[pattern]]
+id = 'upstream'
+regex = 'f9cbb2756|ebacd68bd|23b9b26a9'
+
+[[pattern]]
+id = 'open'
+regex = ':open\b|flush_open_state'
+
+[[pattern]]
+id = 'pseudo'
+regex = '::before|::after|classify_flow_children'
+
+[[pattern]]
+id = 'ime'
+regex = '\bIME\b|set_ime_enabled'
+
+[[pattern]]
+id = 'redraw'
+regex = 'redraw'
+ignore_case = true
+
+[[pattern]]
+id = 'vibey-mods'
+regex = 'blitz-vibey-script/src/runtime|blitz-vibey-script/src/dom/element|runtime\.rs'
+
+[[pattern]]
+id = 'cssdecl'
+regex = 'CSSStyleDeclaration|__blitz_wrap_style'
+
+[[pattern]]
+id = 'jserr'
+regex = 'Uncaught JS error|js_console|report_js_error'
+
+[[pattern]]
+id = 'wpt-pin'
+regex = 'WPT_COMMIT'
+
+[[pattern]]
+id = 'publish'
+regex = 'publish-browser'
+
+[[pattern]]
+id = 'silence'
+regex = 'silence census'
+
+[[pattern]]
+id = 'lockrec'
+regex = 'Stylo "0\.22\.0"|byte-identical'
+
+[[pattern]]
+id = 'browser-tab'
+regex = 'tab lens|TabWebView|apps/browser/src/tab\.rs'
+
+[[pattern]]
+id = 'res-35-36'
+regex = 'merge surfaces?|upstream delta'
+ignore_case = true
+
+[[pattern]]
+id = 'stand-prov'
+regex = 'OPEN — PROVISIONAL|owner: F2'
+
+[[pattern]]
+id = 'stand-ten'
+regex = 'desktop-native-stand-load-page|seven_guis / todomvc page|seven_guis text|seven_guis invalid|seven_guis and todomvc|type-select|LOAD_ANSWER_DELAY|boot_load'
+
+[[pattern]]
+id = 'moved-files'
+regex = 'blitz-dom/src/(layout/construct|mutator|node/element|stylo)\.rs|blitz-shell/src/(lib|window)\.rs|dioxus-native-dom/src/dioxus_document\.rs|apps/browser/src/(main|tab)\.rs|blitz-vibey-script/src/(document|fetch|lib|dom/element)\.rs'

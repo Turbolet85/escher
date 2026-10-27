@@ -1,0 +1,145 @@
+--- a/.andromeda/obs-plan.md
++++ b/.andromeda/obs-plan.md
+@@ -13,6 +13,6 @@
+ - **blitz-dom (events / util)** — six `tracing` log call sites, all behind the `tracing` feature (packages/blitz-dom/src/stylo_to_cursor_icon.rs:9-10; packages/blitz-dom/src/events/ime.rs:27-28; packages/blitz-dom/src/events/pointer.rs:900-906; packages/blitz-dom/src/util.rs:26-27; packages/blitz-dom/src/util.rs:34-35)
+-- **blitz-dom (layout)** — emits `tracing` events only when the `tracing` feature is enabled (packages/blitz-dom/src/layout/mod.rs:247; packages/blitz-dom/src/layout/construct.rs:471; packages/blitz-dom/src/layout/damage.rs:583; packages/blitz-dom/src/layout/table.rs:536)
+-- **blitz-net, blitz-html, blitz-dom node module** — `tracing` log events behind optional cargo features (packages/blitz-net/Cargo.toml:18; packages/blitz-html/Cargo.toml:15; packages/blitz-dom/src/node/element.rs:798-799)
+-- **blitz-shell, blitz-paint** — in-app devtools offer a layout outline, hover highlight overlay, node highlight overlay and taffy tree print (packages/blitz-shell/src/window.rs:667-685; packages/blitz-paint/src/render.rs:245-275; packages/blitz-paint/src/render.rs:1350-1366); the debug overlay visualises content, padding, border and margin boxes of a node (packages/blitz-paint/src/debug_overlay.rs:7-16)
+-- **blitz-vibey-script, blitz** — `tracing` is an optional dependency behind a `tracing` feature (packages/blitz-vibey-script/Cargo.toml:16; packages/blitz-vibey-script/Cargo.toml:43; packages/blitz/Cargo.toml:18; packages/blitz/Cargo.toml:36); JS console output is routed to the `log` crate (packages/blitz-vibey-script/src/runtime.rs:1248-1257)
++- **blitz-dom (layout)** — emits `tracing` events only when the `tracing` feature is enabled (packages/blitz-dom/src/layout/mod.rs:247; packages/blitz-dom/src/layout/construct.rs:461; packages/blitz-dom/src/layout/damage.rs:583; packages/blitz-dom/src/layout/table.rs:536)
++- **blitz-net, blitz-html, blitz-dom node module** — `tracing` log events behind optional cargo features (packages/blitz-net/Cargo.toml:18; packages/blitz-html/Cargo.toml:15; packages/blitz-dom/src/node/element.rs:808-809)
++- **blitz-shell, blitz-paint** — in-app devtools offer a layout outline, hover highlight overlay, node highlight overlay and taffy tree print (packages/blitz-shell/src/window.rs:668-686; packages/blitz-paint/src/render.rs:245-275; packages/blitz-paint/src/render.rs:1350-1366); the debug overlay visualises content, padding, border and margin boxes of a node (packages/blitz-paint/src/debug_overlay.rs:7-16)
++- **blitz-vibey-script, blitz** — `tracing` is an optional dependency behind a `tracing` feature (packages/blitz-vibey-script/Cargo.toml:16; packages/blitz-vibey-script/Cargo.toml:43; packages/blitz/Cargo.toml:18; packages/blitz/Cargo.toml:36); JS console output is routed to the `log` crate (packages/blitz-vibey-script/src/runtime.rs:29-38)
+ - **debug_timer** — provides opt-in duration timing (packages/debug_timer/Cargo.toml:3; packages/debug_timer/Cargo.toml:11-12)
+@@ -33,4 +33,4 @@
+ 
+-- Each feature-gated `tracing` call has a no-op path when the feature is off (packages/blitz-dom/src/layout/mod.rs:247-255; packages/blitz-dom/src/layout/construct.rs:471-479)
+-- Each blitz-dom log site is compiled only with `#[cfg(feature = "tracing")]` (packages/blitz-dom/src/document.rs:1441; packages/blitz-dom/src/mutator.rs:1371)
++- Each feature-gated `tracing` call has a no-op path when the feature is off (packages/blitz-dom/src/layout/mod.rs:247-255; packages/blitz-dom/src/layout/construct.rs:461-469)
++- Each blitz-dom log site is compiled only with `#[cfg(feature = "tracing")]` (packages/blitz-dom/src/document.rs:1441; packages/blitz-dom/src/mutator.rs:1379)
+ - The blitz-dom crate root comment lists a `tracing` feature that "Enables tracing support", under a TODO to document features (packages/blitz-dom/src/lib.rs:26-29)
+@@ -97,3 +97,3 @@
+ - The parts check is silent: `stand_snapshot_parts` (a `fixtures` and `session_common` reader, both layout modes, in process and through `serve_mcp`) installs no subscriber, reads no env var and prints nothing, its readings going into assertions only — the silence census reading 0 over it and the print/log census 0 over `tests/blitz-tests/tests/session_common/mod.rs`, whose `snapshot_part` and `part` add none; dioxus-native-dom's `Snapshot::text_parts` and `TextPart` hold no log, print or failure path, and a part's answer (`Outcome::Part`) is written by `to_json` alone as `{"text":…,"part":n,"parts":m}` — a command's answer, over MCP its JSON line — never logged or fielded, with no log site, span, field, log field or env read added (as measured at escher-0.2.0/chunks/2026-10-20-large-screen-in-parts/report.md).
+-- The upstream take read at `f9cbb2756` is silent: upstream's target `hit_test_dropped_nodes` installs no subscriber, reads no env var and prints nothing, its readings going into assertions only; the taken commits add no tracing site over `packages/` (the fixed-sha census reading one commented `dbg!`) and no wall-clock read in blitz-dom outside `clock.rs`, and the process-wide `PARALLEL_TRAVERSAL_LOCK`, `Node::out_of_flow`, `ElementData::classes`, the dropped-node hit skip and a replaced element's `aspect-ratio` height add no log site, span, field, log field or env read; `packages/escher-telemetry/` is unchanged and `host_log` and `mcp_log` pass under both builds (as measured at escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/evidence/sink.md).
++- The upstream take read at `ebacd68bd` is silent: upstream's target `pseudo_element_flow_classification` installs no subscriber, reads no env var and prints nothing (0 env · 0 print · 0 subscriber), its readings going into assertions only; the taken commits add no log site, print, listener or env read in source — the fixed-sha census over their `packages/*.rs` lines reading its two named hits, the uncaught-JS-error `tracing::error!` standing whole in `report_js_error`, still under `#[cfg(feature = "tracing")]` at the engine target `blitz_vibey_script` (packages/blitz-vibey-script/src/runtime/events.rs:20-21), and a test-only `TMPDIR` read (§6) — and no wall-clock read in blitz-dom outside `clock.rs`; `ElementData::flush_open_state` (`:open`), `document_may_load`, the IME enable at a focused input's editor construction, the pseudo vote in flow classification and the shell's redraw route add no log site, span, field, log field or env read; `packages/escher-telemetry/` and `packages/escher-driver/` are unchanged and `host_log` and `mcp_log` pass under both builds (as measured at escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/evidence/sink.md).
+ 
+@@ -110,4 +110,4 @@
+ 
+-- Embedders drain JS errors with `take_js_errors` and JS messages with `take_messages` (packages/blitz-vibey-script/src/document.rs:233-252)
+-- At most 256 errors are retained between drains (packages/blitz-vibey-script/src/state.rs:103-105; packages/blitz-vibey-script/src/document.rs:247)
++- Embedders drain JS errors with `take_js_errors` and JS messages with `take_messages` (packages/blitz-vibey-script/src/document.rs:242-261)
++- At most 256 errors are retained between drains (packages/blitz-vibey-script/src/state.rs:103-105; packages/blitz-vibey-script/src/document.rs:256)
+ 
+@@ -217,3 +217,3 @@
+ - blitz-dom: recoverable failures are logged and a fallback is used, as with font decompression (packages/blitz-dom/src/util.rs:25-29)
+-- blitz-dom layout: SVG parse errors are captured into the `error` field of a warn event and not propagated (packages/blitz-dom/src/layout/construct.rs:470-480)
++- blitz-dom layout: SVG parse errors are captured into the `error` field of a warn event and not propagated (packages/blitz-dom/src/layout/construct.rs:460-470)
+ - blitz-net: fetch errors in `NetProvider::fetch` are logged and not propagated to the handler (packages/blitz-net/src/lib.rs:307-319); `ProviderError` implements `Display` with a message per variant (packages/blitz-net/src/lib.rs:378-391)
+@@ -225,6 +225,7 @@
+ 
+-- The window `error` event carries message, filename "", lineno 0, colno 0 and error (packages/blitz-vibey-script/src/runtime.rs:1142-1158)
+-- `window.onerror` is called with message, source, lineno, colno, error (packages/blitz-vibey-script/src/runtime.rs:1168-1180)
+-- Exceptions thrown by error handlers are recorded but fire no further error events (packages/blitz-vibey-script/src/runtime.rs:1118-1120; packages/blitz-vibey-script/src/state.rs:93-96)
+-- Error sources labelled in reports include "timer callback", "event listener", "error event listener", "timer microtasks", "event microtasks" (packages/blitz-vibey-script/src/runtime.rs:1636; packages/blitz-vibey-script/src/runtime.rs:1639; packages/blitz-vibey-script/src/runtime.rs:1691; packages/blitz-vibey-script/src/runtime.rs:1810; packages/blitz-vibey-script/src/runtime.rs:1165)
++- The window `error` event carries message, filename "", lineno 0, colno 0 and error (packages/blitz-vibey-script/src/runtime/events.rs:58-74)
++- `window.onerror` is called with message, source, lineno, colno, error (packages/blitz-vibey-script/src/runtime/events.rs:84-96)
++- Exceptions thrown by error handlers are recorded but fire no further error events (packages/blitz-vibey-script/src/runtime/events.rs:34-36; packages/blitz-vibey-script/src/state.rs:93-96)
++- Error sources labelled in reports include "timer callback", "event listener", "error event listener", "timer microtasks", "event microtasks" (packages/blitz-vibey-script/src/runtime/timers.rs:32; packages/blitz-vibey-script/src/runtime/timers.rs:35; packages/blitz-vibey-script/src/runtime/events.rs:191; packages/blitz-vibey-script/src/runtime/events.rs:310; packages/blitz-vibey-script/src/runtime/events.rs:81)
++- A `file:` load asked by a non-`file:` document is refused by `document_may_load` as a typed `FetchError::Forbidden`, with no log site of its own: `fetch()` rejects with a TypeError, a module `import` fails, and a `<script src>` is skipped and recorded as a script error, which the recorded-error path drains and logs (§6) (packages/blitz-vibey-script/src/fetch.rs:40-46; packages/blitz-vibey-script/src/runtime/fetch.rs:40-44; packages/blitz-vibey-script/src/document.rs:163-169)
+ 
+@@ -243,9 +244,9 @@
+ - Visited URLs are logged at info and urlbar text at warn (apps/browser/src/document_loader.rs:121; apps/browser/src/toolbar.rs:130)
+-- blitz-dom log lines include resource URLs (packages/blitz-dom/src/document.rs:1442-1447; packages/blitz-dom/src/mutator.rs:1330; packages/blitz-dom/src/mutator.rs:1349)
++- blitz-dom log lines include resource URLs (packages/blitz-dom/src/document.rs:1442-1447; packages/blitz-dom/src/mutator.rs:1338; packages/blitz-dom/src/mutator.rs:1357)
+ - `debug_log_node` prints every attribute name and value of a node (packages/blitz-dom/src/debug.rs:30-34)
+ - Log lines include the raw href, the document URL and element attributes unfiltered (packages/blitz-dom/src/events/pointer.rs:901; packages/blitz-dom/src/events/pointer.rs:906)
+-- The SVG parse-failure event carries the element's full outer HTML in field `html` (packages/blitz-dom/src/layout/construct.rs:454; packages/blitz-dom/src/layout/construct.rs:472-477)
++- The SVG parse-failure event carries the element's full outer HTML in field `html` (packages/blitz-dom/src/layout/construct.rs:444; packages/blitz-dom/src/layout/construct.rs:462-467)
+ - Image-fetch info events carry the full image URL (packages/blitz-dom/src/layout/damage.rs:581-599)
+ - Full request URLs are logged as field `url` (packages/blitz-net/src/lib.rs:238; packages/blitz-net/src/lib.rs:285; packages/blitz-net/src/lib.rs:290)
+-- The CSS property value is logged in the "Invalid property value" warning (packages/blitz-dom/src/node/element.rs:810-811)
++- The CSS property value is logged in the "Invalid property value" warning (packages/blitz-dom/src/node/element.rs:820-821)
+ - dioxus-native debug logs record text-node contents and attribute values; asset logs record the full request (packages/dioxus-native-dom/src/mutation_writer.rs:172; packages/dioxus-native-dom/src/mutation_writer.rs:224; packages/dioxus-native-dom/src/mutation_writer.rs:410; packages/dioxus-native/src/assets.rs:48)
+@@ -284,3 +285,3 @@
+ 
+-- Publish builds log at `CARGO_LOG: info` with `--verbose --trace`, on upstream `DioxusLabs/blitz` only (.github/workflows/publish-browser.yml:33; .github/workflows/publish-browser.yml:37; .github/workflows/publish-browser.yml:153)
++- Publish builds log at `CARGO_LOG: info` with `--verbose --trace`, on upstream `DioxusLabs/blitz` only (.github/workflows/publish-browser.yml:33; .github/workflows/publish-browser.yml:37; .github/workflows/publish-browser.yml:157)
+ - The package install's output stays in the job's step log: ci.yml's install steps call `.github/scripts/apt-install.sh`, which no `ci-leg.sh` leg runs, so no `target/ci-logs/` file holds its output and no artifact uploads it; the script's own diagnostic is one stderr line per failed attempt — the attempt number, the phase (`update` or `install`, or, since 2026-10-14-quality-gates, `repair` — the bounded `dpkg --configure -a` every attempt after the first runs first) and the exit status, nothing of a user's, the line's shape unchanged (.github/scripts/apt-install.sh:52-60; .github/scripts/apt-install.sh:67-73) — as measured at escher-0.1.0/chunks/2026-10-09-audit-corrections-agent-surfaces/report.md
+--- a/.andromeda/obs-plan-detail/log-coverage.md
++++ b/.andromeda/obs-plan-detail/log-coverage.md
+@@ -66,4 +66,4 @@
+   - warn: unimplemented form scheme/method (packages/blitz-dom/src/form.rs:153-158)
+-  - info: image cache hit, pending queue and fetch (packages/blitz-dom/src/mutator.rs:1329-1349); image loaded and node count (packages/blitz-dom/src/document.rs:1551-1555)
+-  - warn: iframe depth cap and unresolvable iframe URL (packages/blitz-dom/src/mutator.rs:1371-1375; packages/blitz-dom/src/mutator.rs:1398-1399)
++  - info: image cache hit, pending queue and fetch (packages/blitz-dom/src/mutator.rs:1337-1357); image loaded and node count (packages/blitz-dom/src/document.rs:1551-1555)
++  - warn: iframe depth cap and unresolvable iframe URL (packages/blitz-dom/src/mutator.rs:1379-1383; packages/blitz-dom/src/mutator.rs:1406-1407)
+   - warn: resource load failed with and without URL (packages/blitz-dom/src/document.rs:1441-1452)
+@@ -80,3 +80,3 @@
+   - `tracing::error!` "Tried to lay out text node individually" with fields `node_id`, `data` (packages/blitz-dom/src/layout/mod.rs:247-252)
+-  - `tracing::warn!` "SVG parse failed" with fields `node_id`, `html`, `error` (packages/blitz-dom/src/layout/construct.rs:471-477)
++  - `tracing::warn!` "SVG parse failed" with fields `node_id`, `html`, `error` (packages/blitz-dom/src/layout/construct.rs:461-467)
+   - `tracing::info!` for image loading from cache, image already pending, and image fetch start, each including the image URL (packages/blitz-dom/src/layout/damage.rs:583-584; packages/blitz-dom/src/layout/damage.rs:592-593; packages/blitz-dom/src/layout/damage.rs:598-599)
+@@ -84,3 +84,3 @@
+ - **blitz-dom (node)**
+-  - warn "Unsupported property" with field `property`, and warn "Invalid property value" with fields `property` and `value` (packages/blitz-dom/src/node/element.rs:797-812; packages/blitz-dom/src/node/element.rs:863-866)
++  - warn "Unsupported property" with field `property`, and warn "Invalid property value" with fields `property` and `value` (packages/blitz-dom/src/node/element.rs:807-822; packages/blitz-dom/src/node/element.rs:873-876)
+   - `Node::print_tree` writes the tree to stdout with `println!` (packages/blitz-dom/src/node/node.rs:1012-1026)
+@@ -95,3 +95,3 @@
+ - **blitz-shell, blitz-paint**
+-  - `tracing::error!` is logged for unsupported Ime, PointerSource, PointerKind, ButtonSource and MouseScrollDelta variants (packages/blitz-shell/src/convert_events.rs:41-45; packages/blitz-shell/src/convert_events.rs:78-82; packages/blitz-shell/src/convert_events.rs:94-98; packages/blitz-shell/src/convert_events.rs:112-116; packages/blitz-shell/src/convert_events.rs:140-144; packages/blitz-shell/src/window.rs:849-853)
++  - `tracing::error!` is logged for unsupported Ime, PointerSource, PointerKind, ButtonSource and MouseScrollDelta variants (packages/blitz-shell/src/convert_events.rs:41-45; packages/blitz-shell/src/convert_events.rs:78-82; packages/blitz-shell/src/convert_events.rs:94-98; packages/blitz-shell/src/convert_events.rs:112-116; packages/blitz-shell/src/convert_events.rs:140-144; packages/blitz-shell/src/window.rs:850-854)
+   - `warn!` is logged for unimplemented image layer kinds and unsupported mask-mode luminance (packages/blitz-paint/src/render/background.rs:201-220; packages/blitz-paint/src/render/mask.rs:102-111)
+@@ -99,5 +99,5 @@
+   - `launch_url` logs `tracing::info!` with "Launching" and the URL under the `tracing` feature (packages/blitz/src/lib.rs:48-49)
+-  - Recorded script errors are logged with a "blitz-vibey-script:" prefix under the `tracing` feature (packages/blitz-vibey-script/src/document.rs:255-258)
+-  - Uncaught JS errors are logged as "Uncaught JS error in" plus the source description (packages/blitz-vibey-script/src/runtime.rs:1104-1105)
+-  - JS console log, info, warn and error all map to one debug-level log call (packages/blitz-vibey-script/src/runtime.rs:1253-1269)
++  - Recorded script errors are logged with a "blitz-vibey-script:" prefix under the `tracing` feature (packages/blitz-vibey-script/src/document.rs:264-267)
++  - Uncaught JS errors are logged as "Uncaught JS error in" plus the source description (packages/blitz-vibey-script/src/runtime/events.rs:20-21)
++  - JS console log, info, warn and error all map to one debug-level log call (packages/blitz-vibey-script/src/runtime.rs:34-50)
+ - **dioxus-native, dioxus-native-dom**
+@@ -114,3 +114,3 @@
+ - **CI publish builds**
+-  - Publish builds log at `CARGO_LOG: info` with `--verbose --trace`, on upstream `DioxusLabs/blitz` only — the `release-cli` job is repository-guarded (.github/workflows/publish-browser.yml:33; .github/workflows/publish-browser.yml:37; .github/workflows/publish-browser.yml:153)
++  - Publish builds log at `CARGO_LOG: info` with `--verbose --trace`, on upstream `DioxusLabs/blitz` only — the `release-cli` job is repository-guarded (.github/workflows/publish-browser.yml:33; .github/workflows/publish-browser.yml:37; .github/workflows/publish-browser.yml:157)
+ 
+@@ -125,2 +125,3 @@
+ - observed absent — a print, log site, span, field, env read or subscriber in the private items that factor the lint's findings walk and the two table-asserting tests (escher-driver `lint.rs`'s `readings` and `placement`; `mcp_tests.rs`'s `#[track_caller]` `assert_described`, `assert_schema` and `assert_property`; `stand_requirement_sweep`'s `#[track_caller]` `assert_0_2_0_row` and `assert_0_2_0_witness` and its target predicate `inside_stand_repeat`), the test helpers' assertion messages naming a row and an index only · searched: the silence census over `lint.rs`, `mcp_tests.rs` and `stand_requirement_sweep.rs`, reading 0 (exit 1), `mcp_tests.rs`'s first census; `mcp_tests.rs`'s env reads the 2 compile-time `env!` alone (`CARGO_MANIFEST_DIR`, `CARGO_PKG_VERSION`); escher-driver holding 2 `info_span!` sites, no event and no `#[instrument]` (as measured at escher-0.3.0/chunks/2026-10-26-codebase-health/report.md, its Counts / qualifiers moved census bullet)
++- observed absent — a print or log site in blitz-vibey-script `tests/dom.rs`'s `style_property_accessors`, `remote_document_cannot_load_file_urls` and `file_document_can_load_sibling_file_urls` · searched: the fixed-sha census over the added `packages/*.rs` lines of the upstream take read at `ebacd68bd`, its one hit in the file a test-only env read — `temp_dir_with_files` reads `TMPDIR` through `std::env::temp_dir()`, test code only and not secret, the second test-only `TMPDIR` site beside escher-driver's client unit test (packages/blitz-vibey-script/tests/dom.rs:863; as measured at escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/evidence/sink.md)
+ 
+--- a/.andromeda/obs-plan-detail/metric-coverage.md
++++ b/.andromeda/obs-plan-detail/metric-coverage.md
+@@ -33,3 +33,3 @@
+ - observed absent — metrics · searched: `metric|counter|histogram|gauge` over the 16 listed files (no match)
+-- observed absent — metrics counters, gauges or histograms · searched: `metrics|counter!|histogram|gauge` over the 32 slice files (blitz-vibey-script / blitz slice)
++- observed absent — metrics counters, gauges or histograms · searched: `metrics|counter!|histogram|gauge` over the 32 slice files (blitz-vibey-script / blitz slice); the slice's blitz-vibey-script code stands split into the `runtime/` and `dom/element/` module trees (13 Rust modules, 9 JS bootstrap files, upstream's side moved whole), and the take moves no dependency, feature or manifest and adds no log site, span or field — 32 the reading's own count (as measured at escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/report.md)
+ - observed absent — metrics or telemetry backends · searched: `metric|counter!|histogram|opentelemetry|sentry|prometheus` over the 21 listed s11 files
+--- a/.andromeda/obs-plan-detail/pii-scrubbing-compliance.md
++++ b/.andromeda/obs-plan-detail/pii-scrubbing-compliance.md
+@@ -12,3 +12,3 @@
+  The session host's reading above, of a host that runs no call, was re-measured unchanged at 2026-10-07-driver-command-spans — 0 · 1 · 1 · 1 stderr lines, ids 0 of 15, names 0 of 6, stdout 0 B (the readings above as measured at escher-0.1.0/chunks/2026-10-07-sink-target-allowlist/evidence/by-level.md; the typing command at escher-0.1.0/chunks/2026-10-07-act-by-id/report.md; the in-process capture and the re-measurement at escher-0.1.0/chunks/2026-10-07-driver-command-spans/report.md).
+- The sink allowlist re-checked after the upstream take read at `f9cbb2756` holds: no scrub set, redaction shape or violation schema moves, `packages/escher-telemetry/`, `packages/escher-driver/` and `packages/dioxus-native-dom/` unchanged; `host_log` and `mcp_log` (the host's and the `mcp` role's stderr at `trace`, read for id, name and typed-sentinel needles) pass in the per-package and the workspace build; the taken commits' added engine lines hold one commented `dbg!` and no log site, `hit_test_dropped_nodes` reads 0 env · 0 print · 0 subscriber, and the root example `multi_doc` writes its timings with one `println!` to stdout, outside escher's sink, holding no page or user content (as measured at escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/report.md)
++ The sink allowlist re-checked after the upstream take read at `ebacd68bd` holds: no scrub set, redaction shape or violation schema moves, `packages/escher-telemetry/` and `packages/escher-driver/` unchanged and dioxus-native-dom taking one test alone (`input_focused_on_mount_enables_ime`); `host_log` and `mcp_log` (the host's and the `mcp` role's stderr at `trace`, read for id, name and typed-sentinel needles) pass in the per-package and the workspace build; the fixed-sha census over the taken commits' `packages/*.rs` lines reads its two named hits, blitz-dom holds 0 wall-clock reads outside `clock.rs`, and the take adds no log site, span, field, log field or env read in source — the uncaught-JS-error `tracing::error!` stands whole in `report_js_error` (`runtime/events.rs`), still `#[cfg(feature = "tracing")]` under the engine target `blitz_vibey_script`, the sink printing its safe fields and the message `[redacted]`; `pseudo_element_flow_classification` reads 0 env · 0 print · 0 subscriber (as measured at escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/evidence/sink.md)
+ 
+@@ -43,3 +43,3 @@
+ - observed absent — scrubbing or redaction code · searched: `scrub|redact|pii|PII` over the 32 listed s09 files
+-- observed absent — redaction or scrubbing · searched: `redact|scrub|sanitiz|mask` over the 32 slice files (blitz-vibey-script / blitz slice)
++- observed absent — redaction or scrubbing · searched: `redact|scrub|sanitiz|mask` over the 32 slice files (blitz-vibey-script / blitz slice); the slice's blitz-vibey-script code stands split into the `runtime/` and `dom/element/` module trees (13 Rust modules, 9 JS bootstrap files, upstream's side moved whole), and the take adds no scrub or redaction shape — 32 the reading's own count (as measured at escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/report.md)
+ - observed absent — scrubbing or redaction · searched: `sanitiz|scrub|redact|pii` over the 21 listed s11 files
+--- a/.andromeda/obs-plan-detail/span-trace-coverage.md
++++ b/.andromeda/obs-plan-detail/span-trace-coverage.md
+@@ -14,5 +14,5 @@
+ - observed absent — span or instrument usage · searched: `instrument|span!` over the 32 listed s09 files
+-- observed absent — tracing spans or instrumentation · searched: `span!|instrument` over the 32 slice files (blitz-vibey-script / blitz slice)
++- observed absent — tracing spans or instrumentation · searched: `span!|instrument` over the 32 slice files (blitz-vibey-script / blitz slice); the slice's blitz-vibey-script code stands split — the runtime and the element bindings, upstream's side moved whole, in the `runtime/` and `dom/element/` module trees (13 Rust modules, 9 JS bootstrap files) — and the take adds no span, so the absence stands for the moved code — 32 the reading's own count (as measured at escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/report.md)
+ - observed absent — spans or instrumented functions · searched: `span!|instrument` over the 21 listed s11 files
+-- observed absent — spans or traces · searched: `tracing|log::|env_logger|sentry|opentelemetry|metrics` over the 61 slice files (test crate slice)
++- observed absent — spans or traces · searched: `tracing|log::|env_logger|sentry|opentelemetry|metrics` over the 61 slice files (test crate slice); the slice also holds upstream's target `pseudo_element_flow_classification`, which installs no subscriber, reads no env var, prints nothing and opens no span — 61 the reading's own count (as measured at escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/report.md)
+ - observed absent — spans or traces · searched: `tracing|opentelemetry|metrics|span!` (case-insensitive) over the 12 listed files (wpt runner slice)
+--- a/.andromeda/obs-plan-detail/telemetry-strategy.md
++++ b/.andromeda/obs-plan-detail/telemetry-strategy.md
+@@ -21,3 +21,3 @@
+ - observed absent — telemetry or tracing framework · searched: `tracing::|log::|env_logger` and `sentry|opentelemetry|metrics::` over the 32 slice files (examples slice)
+-- observed absent — telemetry or logging crates · searched: `tracing|log::|env_logger|sentry|opentelemetry|metrics` over the 61 slice files (test crate slice)
++- observed absent — telemetry or logging crates · searched: `tracing|log::|env_logger|sentry|opentelemetry|metrics` over the 61 slice files (test crate slice); the slice also holds upstream's target `pseudo_element_flow_classification` (3 tests, its `mod` line in the unbuilt `all.rs`), which installs no subscriber, reads no env var and prints nothing (0 env · 0 print · 0 subscriber) and holds no log site — 61 the reading's own count (as measured at escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/report.md)
+ - observed absent — tracing or metrics libraries · searched: `tracing|opentelemetry|metrics|span!` (case-insensitive) over the 12 listed files (wpt runner slice)

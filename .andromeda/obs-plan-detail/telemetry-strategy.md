@@ -19,7 +19,7 @@ Read whole. The master's broad view is .andromeda/obs-plan.md; this file holds i
 
 - observed absent — telemetry backends · searched: `sentry|opentelemetry|otel|prometheus|metrics` over .github/workflows/*.yml, Cargo.toml, Cross.toml, flake.nix, .github/scripts/*.py
 - observed absent — telemetry or tracing framework · searched: `tracing::|log::|env_logger` and `sentry|opentelemetry|metrics::` over the 32 slice files (examples slice)
-- observed absent — telemetry or logging crates · searched: `tracing|log::|env_logger|sentry|opentelemetry|metrics` over the 61 slice files (test crate slice)
+- observed absent — telemetry or logging crates · searched: `tracing|log::|env_logger|sentry|opentelemetry|metrics` over the 61 slice files (test crate slice); the slice also holds upstream's target `pseudo_element_flow_classification` (3 tests, its `mod` line in the unbuilt `all.rs`), which installs no subscriber, reads no env var and prints nothing (0 env · 0 print · 0 subscriber) and holds no log site — 61 the reading's own count (as measured at escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/report.md)
 - observed absent — tracing or metrics libraries · searched: `tracing|opentelemetry|metrics|span!` (case-insensitive) over the 12 listed files (wpt runner slice)
 
 <!-- /detail -->

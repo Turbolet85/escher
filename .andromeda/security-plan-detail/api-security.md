@@ -43,7 +43,7 @@ No served network API exists — no TCP or UDP port; the one listener is local: 
   - **Configuration:** GETs built by `stamped_request` (packages/blitz-dom/src/net.rs:29-35)
   - **Stack reference:** blitz-dom
 - **Control:** JS-facing fetch
-  - **Configuration:** GET/HEAD-only over the embedder's ScriptFetcher (packages/blitz-vibey-script/src/runtime.rs:155-180)
+  - **Configuration:** GET/HEAD-only over the embedder's ScriptFetcher (packages/blitz-vibey-script/src/runtime/bootstrap/fetch.js:81-83; packages/blitz-vibey-script/src/runtime/fetch.rs:14-66)
   - **Stack reference:** blitz-vibey-script
 - **Control:** Form submission
   - **Configuration:** GET for http/https/data appends the query; POST body only for http/https; mailto GET/POST build the URL; other scheme/method combinations are not implemented and return (packages/blitz-dom/src/form.rs:115-161); the `dialog` form method is rejected as not an HTTP method (packages/blitz-dom/src/form.rs:388-396)

@@ -7,7 +7,7 @@ Read whole. The master's broad view is .andromeda/test-plan.md; this file holds 
 
 | Concern | Stand-in | Source |
 |---------|----------|--------|
-| Shell | hand-written `ShellProvider` fakes count redraw requests | (packages/blitz-dom/src/mutator.rs:1723-1732; packages/blitz-dom/src/document.rs:3160-3168) |
+| Shell | hand-written `ShellProvider` fakes count redraw requests | (packages/blitz-dom/src/mutator.rs:1731-1740; packages/blitz-dom/src/document.rs:3160-3168) |
 | Shell | `RecordingShell` implements `ShellProvider` and records `set_ime_enabled` calls | (tests/blitz-tests/tests/interaction_state_teardown.rs:27-35) |
 | Network | `RecordingNetProvider` records requested URLs instead of fetching | (tests/blitz-tests/tests/link_rel_attribute.rs:14-24) |
 | Network | `ManualNetProvider` holds requests and handlers so the test delivers responses when it chooses — upstream's file-private one in `render_blocking_stylesheet` | (tests/blitz-tests/tests/render_blocking_stylesheet.rs:16-30; tests/blitz-tests/tests/render_blocking_stylesheet.rs:62-66) |
@@ -16,7 +16,7 @@ Read whole. The master's broad view is .andromeda/test-plan.md; this file holds 
 | Network | `LoadNet`, the load page's network stand-in, private to `examples/seven_guis/src/stand.rs` — a third hand-written network stand-in beside `HeldNet` and `LateNet`: `stand::boot_load` replaces its options' `net_provider` with `Some(Arc::new(LoadNet))` through `..options`, every other boot keeping `net_provider: None` (`the_stand_options_stay_offline`); each `fetch` answers the fixed sheet `LOADED_CSS` for `http://stand.test/load.css` from a thread of its own after `LOAD_ANSWER_DELAY` (200 ms); it does not override `is_noop`, so the harness counts its load — `the_load_page_click_leaves_a_load_in_flight` reads it in flight and `stand_load_page`'s click waits it out and shows the message; no `blitz_net`, print, env read, socket or listener | (examples/seven_guis/src/stand.rs:141-175; examples/seven_guis/src/stand.rs:308-329; tests/blitz-tests/tests/stand_load_page.rs:34-68) |
 | Document, network (settle unit tests) | a `Scripted` `Document` whose `poll` answers from a script and counts its calls, and a `Held` `NetProvider` that keeps each handler until the test takes it | (packages/blitz-test-harness/src/settle.rs:207-242; packages/blitz-test-harness/src/settle.rs:317-374) |
 | Network (WPT) | `WptNetProvider` serves files from the local WPT directory | (wpt/runner/src/net_provider.rs:16-27; wpt/runner/src/net_provider.rs:70-78) |
-| Script fetch | a test-local `MapFetcher` implements `ScriptFetcher`, returning a NotFound IO error for unknown paths | (packages/blitz-vibey-script/tests/dom.rs:710-720; packages/blitz-vibey-script/tests/dom.rs:745) |
+| Script fetch | a test-local `MapFetcher` implements `ScriptFetcher`, returning a NotFound IO error for unknown paths | (packages/blitz-vibey-script/tests/dom.rs:744-754; packages/blitz-vibey-script/tests/dom.rs:779) |
 | Navigation (WPT) | `DummyNavigationProvider` and base URL `http://dummy.local` | (wpt/runner/src/main.rs:581-582) |
 | Net, navigation, shell | no-op provider implementations | (packages/blitz-traits/src/net.rs:165-173; packages/blitz-traits/src/navigation.rs:14-20; packages/blitz-traits/src/shell.rs:65-66) |
 | Events | `RecordingHandler` EventHandler installed by dispatch_recorded records each dispatched DOM event name | (packages/blitz-test-harness/src/harness.rs:195-220) |
