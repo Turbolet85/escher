@@ -1,0 +1,262 @@
+[
+{
+"sql": "SELECT caller_name, callee_name, file, line FROM calls WHERE callee_name IN ('hit_inner','physical_unrounded_geometry','scroll_into_view','visible_region','absolute_position') AND callee_kind = 'fn' AND callee_crate = 'blitz-dom' ORDER BY callee_name, file, line",
+"rows": 42,
+"result": [
+{
+"caller_name": "handle_dom_event",
+"callee_name": "absolute_position",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 109
+},
+{
+"caller_name": "focus",
+"callee_name": "absolute_position",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 777
+},
+{
+"caller_name": "position_in_containing_block",
+"callee_name": "absolute_position",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1769
+},
+{
+"caller_name": "synthetic_click_event_data",
+"callee_name": "absolute_position",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 2014
+},
+{
+"caller_name": "scroll_into_view",
+"callee_name": "absolute_position",
+"file": "packages/blitz-dom/src/scrolling.rs",
+"line": 714
+},
+{
+"caller_name": "layout_rect_of",
+"callee_name": "absolute_position",
+"file": "packages/blitz-test-harness/src/inspect.rs",
+"line": 59
+},
+{
+"caller_name": "write_node",
+"callee_name": "absolute_position",
+"file": "packages/blitz-test-harness/src/inspect.rs",
+"line": 141
+},
+{
+"caller_name": "hover",
+"callee_name": "absolute_position",
+"file": "tests/blitz-tests/tests/anonymous_block_restyle.rs",
+"line": 99
+},
+{
+"caller_name": "absolute_position",
+"callee_name": "absolute_position",
+"file": "tests/blitz-tests/tests/scrolled_box_absolute_position.rs",
+"line": 47
+},
+{
+"caller_name": "hover_keeps_working_after_undamaged_subtree_restyle",
+"callee_name": "absolute_position",
+"file": "tests/blitz-tests/tests/stale_dirty_descendants.rs",
+"line": 80
+},
+{
+"caller_name": "hover_keeps_working_after_undamaged_subtree_restyle",
+"callee_name": "absolute_position",
+"file": "tests/blitz-tests/tests/stale_dirty_descendants.rs",
+"line": 89
+},
+{
+"caller_name": "hover_keeps_working_after_undamaged_subtree_restyle",
+"callee_name": "absolute_position",
+"file": "tests/blitz-tests/tests/stale_dirty_descendants.rs",
+"line": 99
+},
+{
+"caller_name": "hit_with_scrollbar",
+"callee_name": "hit_inner",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2040
+},
+{
+"caller_name": "hit",
+"callee_name": "hit_inner",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1420
+},
+{
+"caller_name": "hit_inner",
+"callee_name": "hit_inner",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1577
+},
+{
+"caller_name": "hit_inner",
+"callee_name": "hit_inner",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1611
+},
+{
+"caller_name": "hit_inner",
+"callee_name": "hit_inner",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1626
+},
+{
+"caller_name": "get_client_bounding_rect",
+"callee_name": "physical_unrounded_geometry",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2517
+},
+{
+"caller_name": "transformed_bounds",
+"callee_name": "physical_unrounded_geometry",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2566
+},
+{
+"caller_name": "transformed_bounds",
+"callee_name": "physical_unrounded_geometry",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2569
+},
+{
+"caller_name": "offset_rect",
+"callee_name": "physical_unrounded_geometry",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2678
+},
+{
+"caller_name": "inline_fragment_rects",
+"callee_name": "physical_unrounded_geometry",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2723
+},
+{
+"caller_name": "resolved_style_value",
+"callee_name": "physical_unrounded_geometry",
+"file": "packages/blitz-dom/src/resolved_style.rs",
+"line": 508
+},
+{
+"caller_name": "resolved_style_value",
+"callee_name": "physical_unrounded_geometry",
+"file": "packages/blitz-dom/src/resolved_style.rs",
+"line": 520
+},
+{
+"caller_name": "visible_region",
+"callee_name": "physical_unrounded_geometry",
+"file": "packages/blitz-dom/src/scrolling.rs",
+"line": 768
+},
+{
+"caller_name": "text_extent",
+"callee_name": "physical_unrounded_geometry",
+"file": "packages/blitz-dom/src/text_extent.rs",
+"line": 31
+},
+{
+"caller_name": "scroll_to_fragment_with_behavior",
+"callee_name": "scroll_into_view",
+"file": "packages/blitz-dom/src/scrolling.rs",
+"line": 831
+},
+{
+"caller_name": "scroll_into_view",
+"callee_name": "scroll_into_view",
+"file": "packages/blitz-test-harness/src/input.rs",
+"line": 237
+},
+{
+"caller_name": "scroll_into_view",
+"callee_name": "scroll_into_view",
+"file": "packages/blitz-vibey-script/src/dom/element.rs",
+"line": 1383
+},
+{
+"caller_name": "scroll_to",
+"callee_name": "scroll_into_view",
+"file": "packages/dioxus-native-dom/src/events.rs",
+"line": 261
+},
+{
+"caller_name": "scroll_into_view_smooth_animates",
+"callee_name": "scroll_into_view",
+"file": "tests/blitz-tests/tests/fragment_navigation.rs",
+"line": 202
+},
+{
+"caller_name": "scroll_into_view_aligns_each_axis",
+"callee_name": "scroll_into_view",
+"file": "tests/blitz-tests/tests/fragment_navigation.rs",
+"line": 230
+},
+{
+"caller_name": "scroll_into_view_aligns_each_axis",
+"callee_name": "scroll_into_view",
+"file": "tests/blitz-tests/tests/fragment_navigation.rs",
+"line": 236
+},
+{
+"caller_name": "scroll_into_view_nearest_preserves_visible_target",
+"callee_name": "scroll_into_view",
+"file": "tests/blitz-tests/tests/fragment_navigation.rs",
+"line": 252
+},
+{
+"caller_name": "scroll_to_target",
+"callee_name": "scroll_into_view",
+"file": "tests/blitz-tests/tests/scroll_into_view_nested.rs",
+"line": 126
+},
+{
+"caller_name": "in_view",
+"callee_name": "visible_region",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 453
+},
+{
+"caller_name": "crop",
+"callee_name": "visible_region",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 464
+},
+{
+"caller_name": "clip_region",
+"callee_name": "visible_region",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 393
+},
+{
+"caller_name": "reader_holds_the_target",
+"callee_name": "visible_region",
+"file": "tests/blitz-tests/tests/scroll_into_view_nested.rs",
+"line": 119
+},
+{
+"caller_name": "the_visible_region_inside_a_scrolled_box_is_its_padding_box_cut_by_the_viewport",
+"callee_name": "visible_region",
+"file": "tests/blitz-tests/tests/scrolled_box_client_rect.rs",
+"line": 337
+},
+{
+"caller_name": "a_target_beside_a_box_clipped_on_one_axis_is_refused_covered",
+"callee_name": "visible_region",
+"file": "tests/blitz-tests/tests/stand_act_obstructed.rs",
+"line": 581
+},
+{
+"caller_name": "region",
+"callee_name": "visible_region",
+"file": "tests/blitz-tests/tests/transformed_client_rect.rs",
+"line": 174
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

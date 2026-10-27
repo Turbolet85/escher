@@ -1,0 +1,12 @@
+# Classified — arch · project-intent.b1
+
+## Answers
+project-intent#1.0 · yes · the Upstream sync line the Needs name, with merge base 23b9b26a9, upstream read at f9cbb2756, the thirteen cherry-picks, the left-out Stylo, Taffy-main and Dioxus 0.8 commits, and the 0.22.0, 0.15 and 0.7.3 pins the take keeps or moves
+project-intent#2.1 · yes · the homepage and repository lines at root Cargo.toml:37-38 and the Document trait at packages/blitz-dom/src/document.rs:165-167 sit in merge surfaces the take reaches, so a merge can move what this entity states
+project-intent#3.1 · yes · its last sentence is the Needs' rule that an upstream change to README.md resolves to escher's version, so the take keeps this front page as escher's
+project-intent#4.1 · no · the default-branch fact and the README's three status headings are a measured front-page reading that no reached file, named check or Need reads, and the README keep rule rides project-intent#3.1
+project-intent#5.1 · no · the six-driver-things list and the Later line are README wording that no reached file or named check reads, the driver features they summarise are contracts the task lists as Not needed, and the README keep rule rides project-intent#3.1
+project-intent#6.1 · no · the 0.2.0 figures (cold-agent calls, DOM-crate and stand mutation counts, WPT-runner catches, capabilities verified) record measurements the take does not re-run, its re-runs being the fast and doc legs, the stand checks, the a11y leg, the audit and fork CI
+project-intent#7.1 · yes · the fast leg the take re-runs includes the CI-script pin test_capability_statement.py, which holds the statement's verb and cause names and its five counts to the driver schema tables, and the take changes no driver table, so the pin is re-asserted
+project-intent#8.1 · yes · the descriptions at packages/blitz-shell/src/lib.rs:3 and packages/blitz-shell/Cargo.toml:3, the hot-reload doc line at lib.rs:8 and its feature table at Cargo.toml:13-25, and dioxus-native's keywords at packages/dioxus-native/Cargo.toml:8-10 sit in merge surfaces the take reaches, and the take may edit those feature lists under the clipboard move
+project-intent#9.1 · yes · the kopuz-shaped fixtures at tests/blitz-tests/tests/display_contents.rs:57, :91 and :121 are a rule in a merge surface the take reaches, so the merge must keep them, while the WPT-runner, other test-file and servo-fixture clauses cite files the take does not reach

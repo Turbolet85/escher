@@ -1,0 +1,109 @@
+[
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T09:53:06Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.3.0",
+"--run-dir",
+".andromeda/runs/2026-10-27T07-42-37-phase",
+"--marker",
+"2026-10-27-upstream-sync-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 3/16 · deferred 0 · planned 13 · implemented 0 · unclaimed 13",
+"unclaimed: v030-03 v030-04 v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14",
+"          v030-15",
+"claimed-unfinished: none",
+"done-test: NO — 13 not verified|deferred · unclaimed 13",
+"chunks referenced: 2 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T09:53:18Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.3.0",
+"--id",
+"v030-03",
+"--chunk",
+"2026-10-27-upstream-sync-engine-debts",
+"--acceptance-file",
+".andromeda/runs/2026-10-27T07-42-37-phase/acceptance-v030-03.md",
+"--run-dir",
+".andromeda/runs/2026-10-27T07-42-37-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v030-03 → chunk 2026-10-27-upstream-sync-engine-debts (was null; status planned kept)",
+"acceptance: Upstream's new work is in by the take the founder chose, each fork eng… (203 chars)",
+"         → Upstream's new work is in by the take the founder chose — «Одиннадцать… (1119 chars)",
+"wrote escher-0.3.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 12 [v030-04 v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15]"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/verification-matrix.json"
+],
+"before": {
+"id": "v030-03",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "Upstream's new work is in by the take the founder chose, each fork engine change's merge surface still has its owner, an… (203 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v030-03",
+"chunk": "2026-10-27-upstream-sync-engine-debts",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "Upstream's new work is in by the take the founder chose — «Одиннадцать коммитов (Рекомендую)», his own word (2026-10-27,… (1119 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "6cb09937",
+"ts": "2026-10-27T09:53:18Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-10-27-upstream-sync-engine-debts",
+"--plan",
+"escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-27T07-42-37-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-27-upstream-sync-engine-debts: 1 · ## Acceptance Criteria: line 356, 11 lines",
+"v030-03: cited in ## Acceptance Criteria (line 366)",
+"pool: unclaimed 12 [v030-04 v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

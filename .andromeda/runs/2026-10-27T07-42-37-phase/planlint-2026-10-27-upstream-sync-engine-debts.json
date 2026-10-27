@@ -1,0 +1,617 @@
+[
+{
+"tool": "planlint",
+"v": "1.14",
+"sha8": "9ee5c3a3",
+"ts": "2026-10-27T09:35:24Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-27T07-42-37-phase",
+"--marker",
+"2026-10-27-upstream-sync-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 35 entries · plan: escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/plan.md · research: escher-0.3.0/ch…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` — r…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 35 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 3 of 3 with an exclusion → HIT",
+"  gate 1 · diff <(git diff --src-prefix=a/ --dst-prefix=b/ de85792f5e9dcb895d75bb65a3b91e79a4ea24c2 -- packages tests w…",
+"    omits tests/blitz-tests/tests/clipboard.rs",
+"  gate 2 · git diff --quiet e6f4615ecdf25e917e8d62c3dfc9a407a5781f81 -- packages/blitz-vibey-script/src/runtime.rs && g…",
+"    omits packages/blitz-vibey-script/src/dom/element/attributes.rs",
+"    omits packages/blitz-vibey-script/src/dom/element/form_controls.rs",
+"    omits packages/blitz-vibey-script/src/dom/element/geometry.rs",
+"    omits packages/blitz-vibey-script/src/dom/element/markup.rs",
+"    omits packages/blitz-vibey-script/src/dom/element/scrolling.rs",
+"    omits packages/blitz-vibey-script/src/dom/element/selectors.rs",
+"    omits packages/blitz-vibey-script/src/runtime/bootstrap.rs",
+"    omits packages/blitz-vibey-script/src/runtime/css.rs",
+"    omits packages/blitz-vibey-script/src/runtime/fetch.rs",
+"    omits packages/blitz-vibey-script/src/runtime/modules.rs",
+"    omits packages/blitz-vibey-script/src/runtime/timers.rs",
+"    omits packages/blitz-vibey-script/src/runtime/window.rs",
+"    omits tests/blitz-tests/tests/pseudo_element_flow_classification.rs",
+"  gate 5 · git diff --quiet de85792f5e9dcb895d75bb65a3b91e79a4ea24c2 -- Cargo.toml Cargo.lock deny.toml packages exampl…",
+"    omits tests/blitz-tests/tests/clipboard.rs",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 30 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 8",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 12 of 12 — listed, P5's read",
+"  line 13 · «byte-identical» · main (Files to modify) · d63ed2c8c (Files to modify) · 6587e7e79 (Files to modify)",
+"      e6f4615ec (step 2) · a7ea9631b (Files to modify) · b5b163450 (Files to modify)",
+"      publish-browser.yml (Files to modify) · 7fc9ee3af (step 2) · 2963b65a2 (Files to modify)",
+"      ::before (Test Commands) · ::after (Test Commands) · cee6b8731 (step 2) · file: (Test Commands)",
+"      53e9d81c6 (step 2) · :open (Test Commands) · 6fee0db25 (Files to modify) · efdc5472a (step 2)",
+"      =0.31.0-beta.3 (Test Commands) · Cargo.toml (step 3) · Cargo.lock (step 3) · deny.toml (step 3)",
+"  line 27 · «byte-identical» · evidence/lock.md (Test Commands) · Cargo.toml (Test Commands)",
+"      Cargo.lock (Test Commands) · deny.toml (Test Commands)",
+"  line 30 · «untouched» · node/node.rs (Files to modify) · accessibility.rs (Test Commands)",
+"      document.rs (Files to modify) · scrolling.rs (Files to modify) · node/element.rs (Files to modify)",
+"      53e9d81c6 (step 2) · flush_open_state (step 2)",
+"  line 32 · «untouched» · mutator.rs (step 2) · open (step 2) · node/element.rs (Files to modify) · runtime.rs (step 2)",
+"      runtime/events.rs (step 2) · layout/construct.rs (step 2) · select_interaction (Test Commands)",
+"      stand_act_select (Test Commands)",
+"  line 34 · «untouched» · visible_region (Files to modify) · scrolling.rs (Files to modify)",
+"  line 327 · «byte-identical» · runtime.rs (step 2) · e6f4615ec (step 2) · runtime/events.rs (step 2)",
+"      efdc5472a (step 2) · evidence/take.md (step 2)",
+"  line 328 · «byte-identical» · Cargo.toml (step 3) · Cargo.lock (step 3) · deny.toml (step 3)",
+"      =0.31.0-beta.3 (Test Commands) · evidence/lock.md (step 3)",
+"  line 333 · «untouched» · evidence/readings.md (step 5) · .andromeda/residuals.md (step 5)",
+"  line 334 · «unchanged» · std::env::temp_dir() (Test Commands) · clock.rs (step 5) · host_log (Test Commands)",
+"      mcp_log (Test Commands) · fast (Test Commands) · pseudo_element_flow_classification (step 5)",
+"      evidence/sink.md (step 5)",
+"  line 365 · «byte-identical» · Cargo.lock (step 3)",
+"  line 376 · «byte-identical» · file: (Test Commands) · Cargo.toml (step 3) · Cargo.lock (step 3) · deny.toml (step 3)",
+"  line 378 · «unchanged» · :open (Test Commands) · details (Test Commands) · summary (Test Commands)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 6",
+"hits: 4 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+35
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 3,
+"hits": [
+1,
+2,
+5
+],
+"abstain": []
+},
+"wrap": {
+"asserting": 30,
+"listed": []
+},
+"check2": {
+"entries": 8,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 6,
+"refs": 8,
+"hits": []
+},
+"claims": {
+"read": 12,
+"listed": [
+13,
+27,
+30,
+32,
+34,
+327,
+328,
+333,
+334,
+365,
+376,
+378
+]
+},
+"c44": {
+"paths": 6,
+"hits": [],
+"skipped": []
+},
+"hits": 4
+}
+},
+{
+"tool": "planlint",
+"v": "1.14",
+"sha8": "9ee5c3a3",
+"ts": "2026-10-27T09:36:49Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-27T07-42-37-phase",
+"--marker",
+"2026-10-27-upstream-sync-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 35 entries · plan: escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/plan.md · research: escher-0.3.0/ch…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` — r…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 35 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 2 with an exclusion · INDETERMINATE: 2",
+"  gate 1 · INDETERMINATE: a glob or derived item `packages/blitz-vibey-script/src/runtime/bootstrap/*.js` · diff <(git …",
+"  gate 5 · INDETERMINATE: a glob or derived item `packages/blitz-vibey-script/src/runtime/bootstrap/*.js` · git diff --…",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 30 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 8",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 12 of 12 — listed, P5's read",
+"  line 13 · «byte-identical» · main (Files to modify) · d63ed2c8c (Files to modify) · 6587e7e79 (Files to modify)",
+"      e6f4615ec (step 2) · a7ea9631b (Files to modify) · b5b163450 (Files to modify)",
+"      publish-browser.yml (Files to modify) · 7fc9ee3af (step 2) · 2963b65a2 (Files to modify)",
+"      ::before (Test Commands) · ::after (Test Commands) · cee6b8731 (step 2) · file: (Test Commands)",
+"      53e9d81c6 (step 2) · :open (Test Commands) · 6fee0db25 (Files to modify) · efdc5472a (step 2)",
+"      =0.31.0-beta.3 (Test Commands) · Cargo.toml (step 3) · Cargo.lock (step 3) · deny.toml (step 3)",
+"  line 27 · «byte-identical» · evidence/lock.md (Test Commands) · Cargo.toml (Test Commands)",
+"      Cargo.lock (Test Commands) · deny.toml (Test Commands)",
+"  line 30 · «untouched» · node/node.rs (Files to modify) · accessibility.rs (Test Commands)",
+"      document.rs (Files to modify) · scrolling.rs (Files to modify) · node/element.rs (Files to modify)",
+"      53e9d81c6 (step 2) · flush_open_state (step 2)",
+"  line 32 · «untouched» · mutator.rs (step 2) · open (step 2) · node/element.rs (Files to modify) · runtime.rs (step 2)",
+"      runtime/events.rs (step 2) · layout/construct.rs (step 2) · select_interaction (Test Commands)",
+"      stand_act_select (Test Commands)",
+"  line 34 · «untouched» · visible_region (Files to modify) · scrolling.rs (Files to modify)",
+"  line 328 · «byte-identical» · runtime.rs (step 2) · e6f4615ec (step 2) · runtime/events.rs (step 2)",
+"      efdc5472a (step 2) · evidence/take.md (step 2)",
+"  line 329 · «byte-identical» · Cargo.toml (step 3) · Cargo.lock (step 3) · deny.toml (step 3)",
+"      =0.31.0-beta.3 (Test Commands) · evidence/lock.md (step 3)",
+"  line 334 · «untouched» · evidence/readings.md (step 5) · .andromeda/residuals.md (step 5)",
+"  line 335 · «unchanged» · std::env::temp_dir() (Test Commands) · clock.rs (step 5) · host_log (Test Commands)",
+"      mcp_log (Test Commands) · fast (Test Commands) · pseudo_element_flow_classification (step 5)",
+"      evidence/sink.md (step 5)",
+"  line 366 · «byte-identical» · Cargo.lock (step 3)",
+"  line 377 · «byte-identical» · file: (Test Commands) · Cargo.toml (step 3) · Cargo.lock (step 3) · deny.toml (step 3)",
+"  line 379 · «unchanged» · :open (Test Commands) · details (Test Commands) · summary (Test Commands)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 6",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+35
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 2,
+"hits": [],
+"abstain": [
+1,
+5
+]
+},
+"wrap": {
+"asserting": 30,
+"listed": []
+},
+"check2": {
+"entries": 8,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 6,
+"refs": 8,
+"hits": []
+},
+"claims": {
+"read": 12,
+"listed": [
+13,
+27,
+30,
+32,
+34,
+328,
+329,
+334,
+335,
+366,
+377,
+379
+]
+},
+"c44": {
+"paths": 6,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.14",
+"sha8": "9ee5c3a3",
+"ts": "2026-10-27T09:37:13Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-27T07-42-37-phase",
+"--marker",
+"2026-10-27-upstream-sync-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 35 entries · plan: escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/plan.md · research: escher-0.3.0/ch…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` — r…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 35 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 2 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 30 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 8",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 12 of 12 — listed, P5's read",
+"  line 13 · «byte-identical» · main (Files to modify) · d63ed2c8c (Files to modify) · 6587e7e79 (Files to modify)",
+"      e6f4615ec (step 2) · a7ea9631b (Files to modify) · b5b163450 (Files to modify)",
+"      publish-browser.yml (Files to modify) · 7fc9ee3af (step 2) · 2963b65a2 (Files to modify)",
+"      ::before (Test Commands) · ::after (Test Commands) · cee6b8731 (step 2) · file: (Test Commands)",
+"      53e9d81c6 (step 2) · :open (Test Commands) · 6fee0db25 (Files to modify) · efdc5472a (step 2)",
+"      =0.31.0-beta.3 (Test Commands) · Cargo.toml (step 3) · Cargo.lock (step 3) · deny.toml (step 3)",
+"  line 27 · «byte-identical» · evidence/lock.md (Test Commands) · Cargo.toml (Test Commands)",
+"      Cargo.lock (Test Commands) · deny.toml (Test Commands)",
+"  line 30 · «untouched» · node/node.rs (Files to modify) · accessibility.rs (Test Commands)",
+"      document.rs (Files to modify) · scrolling.rs (Files to modify) · node/element.rs (Files to modify)",
+"      53e9d81c6 (step 2) · flush_open_state (step 2)",
+"  line 32 · «untouched» · mutator.rs (step 2) · open (step 2) · node/element.rs (Files to modify) · runtime.rs (step 2)",
+"      runtime/events.rs (step 2) · layout/construct.rs (step 2) · select_interaction (Test Commands)",
+"      stand_act_select (Test Commands)",
+"  line 34 · «untouched» · visible_region (Files to modify) · scrolling.rs (Files to modify)",
+"  line 328 · «byte-identical» · runtime.rs (step 2) · e6f4615ec (step 2) · runtime/events.rs (step 2)",
+"      efdc5472a (step 2) · evidence/take.md (step 2)",
+"  line 329 · «byte-identical» · Cargo.toml (step 3) · Cargo.lock (step 3) · deny.toml (step 3)",
+"      =0.31.0-beta.3 (Test Commands) · evidence/lock.md (step 3)",
+"  line 334 · «untouched» · evidence/readings.md (step 5) · .andromeda/residuals.md (step 5)",
+"  line 335 · «unchanged» · std::env::temp_dir() (Test Commands) · clock.rs (step 5) · host_log (Test Commands)",
+"      mcp_log (Test Commands) · fast (Test Commands) · pseudo_element_flow_classification (step 5)",
+"      evidence/sink.md (step 5)",
+"  line 366 · «byte-identical» · Cargo.lock (step 3)",
+"  line 377 · «byte-identical» · file: (Test Commands) · Cargo.toml (step 3) · Cargo.lock (step 3) · deny.toml (step 3)",
+"  line 379 · «unchanged» · :open (Test Commands) · details (Test Commands) · summary (Test Commands)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 6",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+35
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 2,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 30,
+"listed": []
+},
+"check2": {
+"entries": 8,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 6,
+"refs": 8,
+"hits": []
+},
+"claims": {
+"read": 12,
+"listed": [
+13,
+27,
+30,
+32,
+34,
+328,
+329,
+334,
+335,
+366,
+377,
+379
+]
+},
+"c44": {
+"paths": 6,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.14",
+"sha8": "9ee5c3a3",
+"ts": "2026-10-27T09:48:45Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-27T07-42-37-phase",
+"--marker",
+"2026-10-27-upstream-sync-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 35 entries · plan: escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/plan.md · research: escher-0.3.0/ch…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` — r…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 35 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 2 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 30 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 8",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 12 of 12 — listed, P5's read",
+"  line 13 · «byte-identical» · main (Files to modify) · d63ed2c8c (Files to modify) · 6587e7e79 (Files to modify)",
+"      e6f4615ec (step 2) · a7ea9631b (Files to modify) · b5b163450 (Files to modify)",
+"      publish-browser.yml (Files to modify) · 7fc9ee3af (step 2) · 2963b65a2 (Files to modify)",
+"      ::before (Test Commands) · ::after (Test Commands) · cee6b8731 (step 2) · file: (Test Commands)",
+"      53e9d81c6 (step 2) · :open (Test Commands) · 6fee0db25 (Files to modify) · efdc5472a (step 2)",
+"      =0.31.0-beta.3 (Test Commands) · Cargo.toml (step 3) · Cargo.lock (step 3) · deny.toml (step 3)",
+"  line 27 · «byte-identical» · evidence/lock.md (Test Commands) · Cargo.toml (Test Commands)",
+"      Cargo.lock (Test Commands) · deny.toml (Test Commands)",
+"  line 30 · «untouched» · node/node.rs (Files to modify) · accessibility.rs (Test Commands)",
+"      document.rs (Files to modify) · scrolling.rs (Files to modify) · node/element.rs (Files to modify)",
+"      53e9d81c6 (step 2) · flush_open_state (step 2)",
+"  line 32 · «untouched» · mutator.rs (step 2) · open (step 2) · node/element.rs (Files to modify) · runtime.rs (step 2)",
+"      runtime/events.rs (step 2) · layout/construct.rs (step 2) · select_interaction (Test Commands)",
+"      stand_act_select (Test Commands)",
+"  line 34 · «untouched» · visible_region (Files to modify) · scrolling.rs (Files to modify)",
+"  line 357 · «byte-identical» · runtime.rs (step 2) · e6f4615ec (step 2) · runtime/events.rs (step 2)",
+"      efdc5472a (step 2) · evidence/take.md (step 2)",
+"  line 358 · «byte-identical» · Cargo.toml (step 3) · Cargo.lock (step 3) · deny.toml (step 3)",
+"      =0.31.0-beta.3 (Test Commands) · evidence/lock.md (step 3)",
+"  line 363 · «untouched» · evidence/readings.md (step 5) · .andromeda/residuals.md (step 5)",
+"  line 364 · «unchanged» · std::env::temp_dir() (Test Commands) · clock.rs (step 5) · host_log (Test Commands)",
+"      mcp_log (Test Commands) · fast (Test Commands) · pseudo_element_flow_classification (step 5)",
+"      evidence/sink.md (step 5)",
+"  line 395 · «byte-identical» · Cargo.lock (step 3)",
+"  line 406 · «byte-identical» · file: (Test Commands) · Cargo.toml (step 3) · Cargo.lock (step 3) · deny.toml (step 3)",
+"  line 408 · «unchanged» · :open (Test Commands) · details (Test Commands) · summary (Test Commands)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 6",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+35
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 2,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 30,
+"listed": []
+},
+"check2": {
+"entries": 8,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 6,
+"refs": 8,
+"hits": []
+},
+"claims": {
+"read": 12,
+"listed": [
+13,
+27,
+30,
+32,
+34,
+357,
+358,
+363,
+364,
+395,
+406,
+408
+]
+},
+"c44": {
+"paths": 6,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+}
+]

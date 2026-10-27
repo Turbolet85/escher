@@ -13,7 +13,7 @@ _Chunks separated by `   ↓` within an epoch; only `### Epoch K — {name}` hea
 [2026-10-27-readme-and-records] README and records — README shows 0.2.0 done, 0.3.0 planned; capabilities statement on the 2026-10-25 run; ledger refs, design stand rows, incubator ignore (v030-02, v030-16)
 
 ### Epoch 2 — Engine debts
-Upstream sync ahead of engine debts — the founder's chosen take; merge-surface owners kept; CI, a11y, audit green; per-OS tallies, sink allowlist re-read (v030-03)
+[2026-10-27-upstream-sync-engine-debts] Upstream sync ahead of engine debts — the founder's chosen take; merge-surface owners kept; CI, a11y, audit green; per-OS tallies, sink allowlist re-read (v030-03)
    ↓
 Engine debts — transformed scrolling box, `inert` focus fixup, native checkedness, select limits, select-option overlap, served pages' keyboard and contrast rows; each the founder's fork (v030-04)
 

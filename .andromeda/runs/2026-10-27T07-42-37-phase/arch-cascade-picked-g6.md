@@ -1,0 +1,27 @@
+# arch · picked accounting · group 6 of 12
+
+## Picked
+standard-contracts#1.1 · carried · the Document trait, DocumentConfig and the changed set live in document.rs and dioxus_document.rs (merge surfaces) and the changed set is the mutator.rs conflict's contract to keep
+standard-contracts#2.1 · carried · the clock invariant the chunk re-reads on the take's tree, over upstream's rewritten scrolling.rs (conflict surface)
+standard-contracts#2.2 · carried · the select model's reader and crate-private writers in document.rs (merge surface), a residual-36 row the chunk re-reads and keeps unchanged
+standard-contracts#3.1 · carried · mutations through mutator.rs (conflict surface), the accessibility builder re-proven by the a11y leg and accessibility_* checks, and the shell's poll-time refresh in blitz-shell window.rs (merge surface, #1269)
+standard-contracts#4.1 · carried · event dispatch, activation and the range arms live in events/pointer.rs and events/driver.rs and blitz-traits events.rs, all merge surfaces of the take
+standard-contracts#5.1 · carried · scroll_into_view, visible_region, the hit stops and absolute_position live in scrolling.rs and node/node.rs, both conflict surfaces the scope names
+standard-contracts#6.1 · carried · the transformed client rect in document.rs over physical_unrounded_geometry's writing_mode.rs body (conflict surface), and its measured limit the scope records for the next entry
+standard-contracts#6.2 · not in scope · text_extent.rs is not reached and the chunk only reads through it via the lint; its pinned limits are kept by its own check, a re-check every change owes
+standard-contracts#6.3 · carried · the dropped-node skip in hit_inner lives in node/node.rs (conflict surface), where upstream's #1304 adds a hit test of an element with no computed styles
+standard-contracts#7.1 · carried · LayoutPassState as Taffy's one implementer and the ConstructionTask types over the construct.rs conflict and any Taffy move
+standard-contracts#8.1 · carried · SpecialElementData and GeneratedTextInputEvent live in node/element.rs and node/text.rs, merge surfaces of #1007 and #1271
+standard-contracts#9.1 · carried · is_disabled in node/element.rs (merge surface), the one disabled reading the scope keeps through the conflicts
+standard-contracts#9.2 · carried · the select's crate-private rules module, carried with the select model the chunk keeps unchanged
+standard-contracts#9.3 · carried · out_of_flow's recording and reader live in node/node.rs (conflict surface) and layout's pass state
+standard-contracts#9.4 · carried · classes kept by the mutator.rs class arm and read by stylo.rs, a conflict and a merge surface (#1007 :open)
+standard-contracts#10.1 · carried · ShellProvider's clipboard default and set_ime_enabled live in blitz-traits shell.rs, a merge surface of #1273 and the IME commit
+standard-contracts#12.1 · carried · blitz-shell's winit re-exports, BlitzShellEvent and BlitzShellProvider's clipboard in lib.rs and window.rs, merge surfaces of #1269, #1271 and #1273, and the password caret in events/pointer.rs
+standard-contracts#13.1 · carried · the screenshot's white composite and the contrast reader's canvas are inputs of the screenshot pixels and contrast rows the chunk re-measures where a take moves them
+standard-contracts#14.1 · carried · the harness's VirtualClock reaches its documents through DocumentConfig.clock, the clock the chunk re-reads on the take's tree, carried with the clock item
+standard-contracts#15.1 · carried · the stand's pinned viewport, scale, colour scheme and font are inputs of every stand number the chunk re-measures
+standard-contracts#16.1 · carried · the stand's one font, the family every re-measured stand number is measured at
+standard-contracts#17.1 · carried · the Cells screen's reading over the snapshot text budget, a byte size the chunk re-measures where a take moves layout
+standard-contracts#17.2 · not in scope · the load page is a component the chunk only uses; it holds no contrast or Tab-order row and no value the chunk re-measures
+standard-contracts#17.3 · not in scope · LoadNet is a stand-in the chunk only uses; no net provider file is reached and no fork names it

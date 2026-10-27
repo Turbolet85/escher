@@ -1,0 +1,85 @@
+# Task — obs · 2026-10-27-upstream-sync-engine-debts
+
+## The chunk
+Takes in this fork's eighth upstream sync from DioxusLabs/blitz `upstream/main` at the measured sha `ebacd68bd`: 27 commits to take or leave (the ten left out at the last sync and seventeen new since `f9cbb2756`), by a take chosen at P4 — a cherry-pick onto the registry pins, that plus winit beta.4 and the winit-clipboard commit, a whole merge, or nothing.
+Resolves the predicted conflicts in nine files so the changed set, the document clock, the select model, the hit stops and the scrolled-box bounds keep their contracts, and carries upstream's new and edited test files as blitz-tests targets.
+Re-reads the sink allowlist against upstream's delta: every new `tracing`/`log` call site, target, print and env read, including the two new `tracing::error!` sites (blitz-shell's clipboard failure and blitz-vibey-script's uncaught JS error), and re-runs the standing capture checks, which stay at 0 needles.
+Re-reads the clock invariant on the take's tree, re-runs every CI leg (fast, doc, a11y, audit) and fork CI, and re-reads the per-OS tallies from the take's green run.
+
+## Reached files
+- Cargo.toml
+- Cargo.lock · conflict surface
+- packages/blitz-dom/src/layout/construct.rs · conflict surface
+- packages/blitz-dom/src/layout/inline/build.rs · conflict surface
+- packages/blitz-dom/src/layout/writing_mode.rs · conflict surface
+- packages/blitz-dom/src/mutator.rs · conflict surface
+- packages/blitz-dom/src/node/node.rs · conflict surface
+- packages/blitz-dom/src/scrolling.rs · conflict surface
+- packages/blitz-vibey-script/src/runtime.rs · conflict surface
+- wpt/WPT_COMMIT · conflict surface
+- packages/blitz-dom/src/document.rs
+- packages/blitz-dom/src/events/pointer.rs
+- packages/blitz-dom/src/events/driver.rs
+- packages/blitz-dom/src/node/element.rs
+- packages/blitz-dom/src/node/text.rs
+- packages/blitz-dom/src/stylo.rs
+- packages/blitz-shell/src/lib.rs
+- packages/blitz-shell/src/window.rs
+- packages/blitz-shell/src/convert_events.rs
+- packages/blitz-shell/Cargo.toml
+- packages/dioxus-native/Cargo.toml
+- packages/blitz-traits/src/events.rs
+- packages/blitz-traits/src/shell.rs
+- packages/dioxus-native-dom/src/dioxus_document.rs
+- packages/blitz-vibey-script/src/dom/element.rs
+- packages/blitz-vibey-script/tests/dom.rs
+- tests/blitz-tests/tests/pseudo_element_flow_classification.rs
+- tests/blitz-tests/tests/clipboard.rs
+- tests/blitz-tests/tests/all.rs
+- tests/blitz-tests/tests/inline_box_scrollable_overflow.rs
+- tests/blitz-tests/tests/display_contents.rs
+- tests/blitz-tests/tests/pre_overflow_scroll.rs
+- apps/browser
+- .github/workflows/publish-browser.yml
+- packages/escher-telemetry/src/format.rs · re-reads the sink allowlist (engine and `escher_*` targets admitted, the rest dropped)
+- examples/seven_guis/tests/host_log.rs · re-reads the standing capture check at 0 needles
+- examples/seven_guis/tests/mcp_log.rs · re-reads the standing capture check at 0 needles
+- .github/scripts/test_blitz_tests_targets.py · re-reads the blitz-tests target pin
+- .github/scripts/ci-leg.sh · re-reads the fast, doc, a11y and audit legs
+
+## Needs
+- escher's sink target allowlist and its three outcomes (engine target prints only safe fields, an `escher_` target redacts content-named fields, any other target dropped whole) re-read against every target upstream's delta adds; escher-telemetry itself is unchanged by the take.
+- The two new `tracing::error!` sites in the delta — blitz-shell's clipboard failure (with `527394724`) and blitz-vibey-script's uncaught JS error message (inside `e6f4615ec`'s split) — read for their target, for whether the second is moved or new, and for whether either message can carry page content past the engine-target safe-field rule.
+- Engine telemetry rule over every taken upstream log site: behind its crate's `tracing` feature with a no-op fallback, never an unconditional `println!`; the delta's census of tracing/log sites, prints and env reads (no `println!` and no `std::env::var` in the added lines) recorded per take.
+- The no-new-user-content-log-field rule applied to the taken commits: a site whose fields hold URLs, attribute values, outer HTML or script text is recorded as a value logged as-is, never added silently.
+- blitz-vibey-script's JS console bridge to the `log` crate (`js_console`, its bridged `log.file` able to carry a host path) and its JS error surface (window `error` event, `window.onerror`, the labelled error sources) — their sites move with the script runtime's split into modules and its conflict resolution, so their recorded locations are re-read.
+- blitz-vibey-script's embedder drain (`take_js_errors`, `take_messages`, the 256-error retention) re-read where the split moves it.
+- blitz-dom's feature-gated log sites inside the conflicted and edited files — `document.rs` resource-load warnings, `mutator.rs` URL lines, `construct.rs`'s SVG parse-failure event carrying outer HTML, `node/element.rs`'s invalid-property-value warning, `events/pointer.rs`'s href and attribute lines — kept behind the `tracing` feature through each resolution; their recorded line locations may move.
+- blitz-dom layout tracing events (`layout/mod.rs`, `damage.rs`'s image-fetch URL events) and the other files `0980cce5f` reaches, read in the same census.
+- blitz-shell's optional `tracing` dependency and its `clipboard` feature leaving the defaults (`527394724`), which is where the new clipboard-failure error site lives.
+- dioxus-native-dom's debug log sites (`mutation_writer.rs` text-node contents and attribute values) and dioxus-native's asset log sites, re-read where `7fc9ee3af` edits the bridge and where a take of `286874cc1` replaces upstream's side of it.
+- Feature wiring by invocation: a workspace build turns `blitz-dom/tracing` on, a `-p` build leaves it off, so the capture checks are re-run under both builds after the take.
+- `host_log` and `mcp_log` re-run at `trace` under both builds on the synced tree: 0 id, name, typed-sentinel, shot-byte and recording needles, the `tool_call`/`command` span counts unchanged.
+- escher-driver's two `info_span!` sites and 0 events unchanged after the take, the driver not edited.
+- Upstream's new test targets `pseudo_element_flow_classification` and `clipboard`, and the edited `inline_box_scrollable_overflow`, `display_contents`, `pre_overflow_scroll` and blitz-vibey-script `tests/dom.rs`, each read for subscriber, env read and print, as the earlier upstream-take rows recorded per file.
+- The clock invariant (no `Instant::now()` or `SystemTime::now()` in blitz-dom outside `clock.rs`) re-read on the take's tree, as the last take's silence row recorded no wall-clock read added.
+- The take's silence record for its taken commits, written as the last take's (`escher-0.2.0/chunks/2026-10-24-upstream-sync-polish-and-ship/evidence/sink.md`) was: no tracing site, log site, span, field, log field or env read added, `packages/escher-telemetry/` unchanged.
+- The browser app's logged events and its `fmt::init()` stdout subscriber (upstream-only, unscrubbed) re-read where a take carries `d63ed2c8c`.
+- The publish builds' `CARGO_LOG: info` with `--verbose --trace` in `publish-browser.yml` (upstream-only) re-read where a take carries `a7ea9631b` and `b5b163450`.
+- The script fetcher's narrowing (`cee6b8731`) and the `CSSStyleDeclaration` accessors (`efdc5472a`) read for any log site or env read they add.
+
+## Standing conventions
+- S1 · each test target the take carries installs no subscriber, reads no env var and prints nothing, its readings going into assertions only, confirmed by the silence census per file · §3 Observability Harness Contract (Logging stack)
+- S2 · an engine log site is compiled only behind its crate's `tracing` feature with a no-op fallback · §2 Telemetry Strategy · .andromeda/obs-plan-detail/telemetry-strategy.md
+- S3 · no new user-content log field; a value logged as-is is recorded, and only the sink's allowlist and scrub decide what reaches stderr · §8 PII Scrubbing & Compliance · .andromeda/obs-plan-detail/pii-scrubbing-compliance.md
+- S4 · a measured fact cites the chunk report or evidence that measured it · §3 Observability Harness Contract
+
+## Not needed
+- Metric coverage — in-process timings, `debug_timer`, the FPS overlay, the bench and screenshot examples, the WPT scores: the take adds no exporter, counter or metric emission.
+- The cold-agent pipe's log, its verdict fields and its server-log counting: the chunk runs no cold-agent pass.
+- The agent-run harness log and its events.
+- escher-telemetry's panic hook, its startup event and the service identity on each line: the take leaves the escher-telemetry crate unedited.
+- The driver's command-line stdout endings, the MCP protocol lines and a kept check's call content at rest, with the session and recording directories under CI's local state: escher-driver and seven_guis' host are not edited.
+- The WPT runner's `env_logger` logging, its panic hook and its report messages: the take moves only the pinned WPT revision, not the runner's source.
+- The WASM builds' `console_error_panic_hook` and wasm_hello's `tracing_wasm`: the take does not reach them.
+- The fork CI's uploaded artifacts (a failed leg's merged log, the coverage report): the take adds no upload.
