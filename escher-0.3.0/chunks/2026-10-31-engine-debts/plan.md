@@ -126,11 +126,11 @@ Every gate is one entry of the fence below, in the order /implement runs it.
 
 ```toml
 [[gate]]
-run = '''git diff --quiet 2109f1c2ecaf56e22db53d7af04d07c32f3db400 -- Cargo.toml deny.toml ':(glob)**/Cargo.toml' tests/blitz-tests/checks packages/escher-telemetry packages/blitz-paint apps wpt .github/workflows flake.nix'''
+run = '''git diff --quiet 2109f1c2ecaf56e22db53d7af04d07c32f3db400 -- Cargo.toml deny.toml ':(glob)**/Cargo.toml' tests/blitz-tests/checks packages/escher-telemetry packages/blitz-paint apps wpt flake.nix'''
 role = 'probe'
 env = []
 new = true
-note = 'preservation guard: no manifest or audit config moves, so no pin and no ignore (Stylo 0.22.0, taffy 0.15, Dioxus 0.7.3, winit =0.31.0-beta.3; security-plan §Dependency Security), the one move in the lock read by its own entry, the two committed Counter checks unmoved (no kept answer holds a moved text: git grep over tests/blitz-tests/checks reads 0; keeps security S6), no popup: blitz-paint unmoved (F8), escher-telemetry, the apps, the WPT runner and the workflows untouched (obs-plan §8)'
+note = 'preservation guard: no manifest or audit config moves, so no pin and no ignore (Stylo 0.22.0, taffy 0.15, Dioxus 0.7.3, winit =0.31.0-beta.3; security-plan §Dependency Security), the one move in the lock read by its own entry, the two committed Counter checks unmoved (no kept answer holds a moved text: git grep over tests/blitz-tests/checks reads 0; keeps security S6), no popup: blitz-paint unmoved (F8), escher-telemetry, the apps and the WPT runner untouched (obs-plan §8). .github/workflows left this guard on the operator word of 2026-10-31, for the free-disk step in stand-repeat alone (evidence/ci.md, scope-record.md)'
 baseline = "green — exit 0 on the untouched tree, 2026-10-31T07:53Z: an existing property; must-fail: red, exit 1, with a line in blitz-paint and with one in deny.toml (p5-controls.md)"
 
 [[gate]]
