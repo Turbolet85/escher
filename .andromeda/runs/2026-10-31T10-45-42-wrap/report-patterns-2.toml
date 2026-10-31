@@ -1,0 +1,50 @@
+# The site sweep's second fire: each bare delta and each count the first fire's name tokens hold, as its own claim.
+
+[[pattern]]
+id = 'ten-named'
+regex = '\bten named|\bten .{0,24}targets|\bten\b.{0,30}--test'
+ignore_case = true
+
+[[pattern]]
+id = 'n-inert'
+regex = 'inert_subtree.{0,4}\(?4\b'
+
+[[pattern]]
+id = 'n-a11y-states'
+regex = 'accessibility_states.{0,4}\(?5\b'
+
+[[pattern]]
+id = 'n-select'
+regex = 'select_interaction.{0,4}\(?7\b'
+
+[[pattern]]
+id = 'n-act-select'
+regex = 'stand_act_select.{0,4}\(?5\b'
+
+[[pattern]]
+id = 'n-act-transf'
+regex = 'stand_act_transformed.{0,4}\(?2\b'
+
+[[pattern]]
+id = 'n-lint'
+regex = 'stand_lint.{0,4}\(?7\b'
+
+[[pattern]]
+id = 'n-keyboard'
+regex = 'stand_keyboard.{0,4}\(?1[45]\b'
+
+[[pattern]]
+id = 'n-contrast'
+regex = 'stand_contrast.{0,4}\(?5\b'
+
+[[pattern]]
+id = 'n-load-page'
+regex = 'stand_load_page.{0,4}\(?2\b'
+
+[[pattern]]
+id = 'n-cells'
+regex = 'stand_cells_served.{0,4}\(?4\b'
+
+[[pattern]]
+id = 'no-assert-gap'
+regex = 'no test asserts|asserts neither|read only by the boot smoke|OPEN — '

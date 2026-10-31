@@ -1,0 +1,2 @@
+proposals: []
+note: No resource this chunk lands falls in this file, the report's Changes stating no crate, listener, env read or port added and none of its Retired items standing here; the one new CI surface, the pinned jlumbroso/free-disk-space step in Stand checks repeated (.github/workflows/ci.yml:311-316), is a job step and none of this file's CI infrastructure rows, its natural home the CI/CD row of §Infrastructure Patterns in .andromeda/architecture.md, outside this detector's file.

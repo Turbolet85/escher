@@ -1,0 +1,2 @@
+proposals: []
+note: no picked entity moved and no New facts item is of this category; F3, F4, F5, F9 and F10 belong to input-validation, as threat-model-summary#1.1 itself points; detectors D-security-input, D-security-auth and D-security-deps fire on nothing in this group; the report asks P2 for the boundary reading, and read here for the socket and MCP groups alone it finds no new field, carrier or exit and a group's `label` inside the ratified name crossing, per the report's Coverage of new surfaces, the ruling staying P2's.

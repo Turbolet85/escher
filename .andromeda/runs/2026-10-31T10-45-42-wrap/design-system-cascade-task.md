@@ -1,0 +1,100 @@
+# Task — design-system · 2026-10-31-engine-debts
+
+## The session
+The engine-debts chunk settled recorded engine debts for every document: `visible_region` reads clipping boxes through their transforms, a non-invertible transform takes no hit, focus clears with no blur when its node goes inert, the tree's focus falls back to the window, native checkables write `toggled`, and the engine sends `change` on a checkbox and a radio, the script runtime's synthesis retired.
+It built the `multiple` select and `optgroup` in the keys, pointer, form, accessibility tree, default sheet, snapshot and bridge, with a new engine-default chosen-row colour pair; no popup is built and `packages/blitz-paint/` shows no diff.
+The driver gained `type` on a `multiple` select, its lint skips a closed select's options, and the `off-screen` text was restated; verbs, causes, defects, session errors and exits stay unmoved.
+The seven_guis Cells grid became one Tab stop with arrow keys, an Enter-opened editor and a focus outline on the current cell in the stand accent, moving the reacting-element count from 676 to 677 while the 676 data cells stand.
+Measured: `blitz-tests` files 148 to 153, `stand-repeat` named targets ten to fifteen, workspace tally 214 · 1181 · 0 · 12; the `ci.yml` job `Stand checks repeated` gained a free-disk step of 6 lines, and `pulldown-cmark` moved to 0.13.5 in `Cargo.lock` alone.
+Reached files lists 40 of the 47 changed, the cap; the seven left out are `.github/scripts/test_ci_workflows.py`, `Cargo.lock`, `packages/escher-driver/src/lib.rs`, `packages/escher-driver/src/schema_tests.rs`, `packages/dioxus-native-dom/src/lib.rs`, `packages/blitz-vibey-script/tests/dom.rs` and `tests/blitz-tests/tests/text_range_no_change_event.rs`.
+
+## Reached files
+- packages/blitz-dom/assets/default.css
+- packages/blitz-dom/src/scrolling.rs
+- packages/blitz-dom/src/document.rs
+- packages/blitz-dom/src/node/node.rs
+- packages/blitz-dom/src/node/select.rs
+- packages/blitz-dom/src/mutator.rs
+- packages/blitz-dom/src/accessibility.rs
+- packages/blitz-dom/src/events/keyboard.rs
+- packages/blitz-dom/src/events/pointer.rs
+- packages/blitz-dom/src/form.rs
+- packages/blitz-vibey-script/src/runtime/events.rs
+- packages/blitz-shell/src/event.rs
+- packages/dioxus-native-dom/src/snapshot.rs
+- packages/dioxus-native-dom/src/dioxus_document.rs
+- packages/escher-driver/src/execute.rs
+- packages/escher-driver/src/lint.rs
+- packages/escher-driver/src/refusal.rs
+- packages/escher-driver/src/schema.rs
+- examples/seven_guis/src/tasks/cells.rs
+- docs/capabilities.md
+- .github/scripts/ci-leg.sh
+- .github/workflows/ci.yml
+- tests/blitz-tests/tests/visible_region_transformed.rs
+- tests/blitz-tests/tests/hit_non_invertible_transform.rs
+- tests/blitz-tests/tests/open_state.rs
+- tests/blitz-tests/tests/checkable_change_event.rs
+- tests/blitz-tests/tests/transformed_client_rect.rs
+- tests/blitz-tests/tests/stand_act_transformed.rs
+- tests/blitz-tests/tests/inert_subtree.rs
+- tests/blitz-tests/tests/accessibility_states.rs
+- tests/blitz-tests/tests/select_interaction.rs
+- tests/blitz-tests/tests/stand_act_select.rs
+- tests/blitz-tests/tests/stand_lint.rs
+- tests/blitz-tests/tests/stand_keyboard.rs
+- tests/blitz-tests/tests/stand_contrast.rs
+- tests/blitz-tests/tests/stand_load_page.rs
+- tests/blitz-tests/tests/stand_cells_served.rs
+- tests/blitz-tests/tests/pseudo_element_flow_classification.rs
+- tests/blitz-tests/tests/stand_non_lean_tasks.rs
+- tests/blitz-tests/tests/common/mod.rs
+
+## Touches
+- Every citation of `packages/blitz-dom/assets/default.css` past line 160: 28 lines were added at :161-188, so those line numbers moved while the claims stand; the report counts 9 mentions of the sheet in design-system's detail.
+- Surface: desktop-native's component patterns and tokens: the default sheet now holds rows and groups for a `multiple` select, and the group for a closed select's `optgroup`.
+- Color Palette's engine-painted defaults: the default sheet now holds a chosen-row colour pair, so a list or statement of the engine's default colours is incomplete without it.
+- Color Palette's engine statements: the pair is hardcoded because the engine holds no tokens, so a statement that the engine's colours carry no token stays true and gains a case.
+- Depth Strategy's engine behavior on hit-testing: a transform with a zero or non-finite determinant now answers no hit for the whole subtree, which a rule on how hits reach a node's children must read beside.
+- Depth Strategy's engine behavior on transforms and clipping: a clipping box's visible region is now read through its transforms, so any text calling that box untransformed is stale.
+- Citations of `packages/blitz-dom/src/node/node.rs` past :1472, whose hit-testing rule gained 6 lines at :1472-1477, including those behind Depth Strategy's padding-box hit rule.
+- Citations of `packages/blitz-dom/src/scrolling.rs`, which gained 33 lines in 5 ranges, including those behind Motion's into-view scroll rule; the rule itself and `scroll_into_view` were not edited.
+- Citations of `packages/blitz-dom/src/document.rs` (46 lines added), `events/pointer.rs` (75), `events/keyboard.rs` (132), `mutator.rs` (43), `accessibility.rs` (39), `node/select.rs` (341) and `form.rs` (129): line numbers moved wherever a group cites them, the cursor rule and engine control defaults included.
+- Citations of `packages/blitz-shell/src/event.rs`, which gained a 46-line test module at its end at :128-172: numbers before it stand, numbers past it moved.
+- Citations of `packages/dioxus-native-dom/src/snapshot.rs` (17 lines added) and `dioxus_document.rs` (19 added).
+- Surface: mobile-native's citation of `.github/workflows/ci.yml:359-374` in design-system's body: the 6 lines added at :311-316 push it down by 6, as the report's own :386 to :392 shows.
+- Any other `.github/workflows/ci.yml` citation past :311: moved by the same 6 lines.
+- Surface: cli's output and exit statements: their citations of `packages/escher-driver/src/schema.rs` (5 lines added), `refusal.rs` (8 added), `execute.rs` (28 added) and `lint.rs` (10 added) moved; the verbs, the eight causes, the exits and the `describe` count row `[12, 13, 12, 3, 8, 4, 15]` are unmoved.
+- Typography's refused `fonts-unavailable` statement: only its citations in the driver can move; the cause and its meaning are unmoved.
+- Example fixtures of any category citing `examples/seven_guis/src/tasks/cells.rs`: 83 lines were added in 12 ranges, with the CSS at :551-554, so those line numbers moved.
+- Example fixtures or color statements on the stand accent `#3a5ce5`: it gains a use as the Cells current-cell focus outline, its value held.
+- Any count of Cells' reacting elements: 676 to 677, `cells-grid` joining the 676 data cells; a count of 676 data cells stays true.
+- Any contrast statement or count citing `stand_contrast`: 5 to 7 tests, the Cells outline and load-page rows now asserted, the rows' colours read through the shared `read` with no hex copied.
+- Any test inventory or count reaching `stand_keyboard` (15 to 21), `stand_lint` (7 to 8), `select_interaction` (7 to 18), `stand_act_select` (5 to 10), `stand_act_transformed` (2 to 3), `inert_subtree` (4 to 6), `accessibility_states` (5 to 6) or `blitz-tests` files (148 to 153).
+- Status-state statements on focus: a focused node that comes to read inert now loses focus with no `blur` or `focusout`, so its focus styling stops applying; `disabled` and `hidden` read as before.
+- Status-state statements on `:checked`: a `multiple` select can hold several chosen options, each matching on its own, and disabled rows are never chosen.
+- Any statement of the flight booker's lint overlap at boot: `at_boot` moved from `[0, 1, 0, 0]` to `[0, 0, 0, 0]`, a closed select's options no longer linted while their client rects stay the select's.
+- Any citation of the retired pin name `a_target_inside_a_translated_scrolling_box_reads_outside_its_visible_region`, now `a_target_inside_a_translated_scrolling_box_reads_inside_its_visible_region`.
+
+## New facts
+- F1 · surface · The default sheet lays out a `multiple` select as rows: `select[multiple] > option` and `select[multiple] > optgroup > option` are `display: block`, `padding: 0 2px`, `white-space: nowrap`, and `select[multiple] > optgroup` is `display: block` (`packages/blitz-dom/assets/default.css:161-188`).
+- F2 · surface · The default sheet paints a `multiple` select's chosen row with the engine-default pair `#c8c8c8` background and `#000000` text, under `select[multiple] > option:checked` and `select[multiple] > optgroup > option:checked`, 12.56:1 measured by `select_interaction`, Chromium's inactive selected pair, hardcoded because the engine holds no tokens.
+- F3 · surface · The default sheet makes a closed select's group transparent to layout: `select:not([multiple]) > optgroup:not([hidden])` is `display: contents`, and its chosen option under `select:not([multiple]) > optgroup > option:checked` is `display: inline`.
+- F4 · surface · No select popup is painted: Enter and Space open nothing on a single select, a group's `label` is named in the accessibility tree and left unpainted, and `size` is not read; a later working-route chunk owns them.
+- F5 · depth-strategy · A transform whose determinant is 0 or not finite answers no hit for the whole subtree (`Node::hit_inner`, `packages/blitz-dom/src/node/node.rs:1472-1477`), pinned by `hit_non_invertible_transform`.
+- F6 · depth-strategy · `BaseDocument::visible_region` reads each clipping box through its transforms: exact under a translate and a scale, the bounding box of the rotated padding box under a rotation, so it holds corners the box does not show, and `None` for a mapped box with a non-finite edge; pinned by `visible_region_transformed`.
+- F7 · color-palette · The stand's Cells grid shows its current cell under keyboard focus through `.cells-grid:focus .cell.current`: `outline: 2px solid #3a5ce5` with `outline-offset: -2px`, the stand accent's held value (`examples/seven_guis/src/tasks/cells.rs:551-554`).
+- F8 · motion · The stand's Cells grid brings its current cell into view with no animation, by a synchronous `MountedData::scroll_to(ScrollBehavior::Instant)` from its key handler.
+
+## Untouched
+- Engine paint rules for box shadow, radius, gradient and outline drawing under `packages/blitz-paint/`: the package shows no diff.
+- The browser app's colours, type sizes, spacing, depth and radii in `apps/browser/assets/browser.css`: no app stylesheet changed.
+- Iconography's toolbar icons, tab glyphs, bundle icons and favicons in `apps/browser/src/` and `apps/browser/Dioxus.toml`: no icon or asset moved.
+- rdme's GitHub markdown styles and octicons in `apps/readme/assets/github-markdown.css`: the `pulldown-cmark` move is a lock entry and changes no output style.
+- Surface: desktop-native's platform and toolkit lines in `.github/workflows/publish-browser.yml`, `flake.nix` and `packages/blitz-shell/src/window.rs`: none of these changed.
+- Surface: mobile-native's URL bar, back button, capture and `IS_MOBILE` patterns in `apps/browser/src/`: nothing there changed.
+- Surface: web-spa's canvas in `packages/dioxus-native/src/config.rs` and `examples/todomvc/index.html`: not changed.
+- Surface: cli's `owo-colors` output of the WPT runner in `wpt/runner/`: not changed.
+- Motion's harness settle and `VirtualClock` rules in the test harness: no harness source changed and no clock read was added.
+- Reduced motion, observed absent: the session adds no animation and no reduced-motion handling, so the absence stands.
+- The NO RECORDED INTENT and NOT YET MEASURED markers: the session records no brand intent and no project-wide colour, type, spacing, elevation or radius scale.

@@ -1,0 +1,2 @@
+- inputs#I17 · message: the operator, by dialog at the wrap P5, 2026-10-31 13:52Z · copy message · n/a — the P5 route card applied as written: the popup entry and `v030-17`, the `press` residual, the owners on four route lines, the two matrix notes at P7.3.
+  - bears on **Asks of later phases, this window not carrying them:** adds to it: residual lines 23, 31 to 34, 39 and 40 already read `absorbed:`, so their corrections are matrix notes; the `.gitignore` line waits for the popup's wrap.

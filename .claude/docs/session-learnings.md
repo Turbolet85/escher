@@ -8,6 +8,28 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-10-31 — A classifier that dies twice on the output-token limit is answered yes, by hand
+A Haiku · max classifier can spend its whole output-token limit on one listing and die with no file, and its retry can do
+the same, each death costing over half an hour. The letter's second failure halts. A `yes` only sends an entity to the
+strong reader, so all-`yes` loses nothing: the operator ruled that the answer file is written by hand, class `stale`, each
+clause saying no classifier answered, the second death and the word, and read through `detail.py answered` and `fanout.py
+check`. The batch's false-yes figure then reads high for that reason.
+
+Where it applies: a classifier that fails twice with no file, on the operator's word at that halt.
+
+---
+
+## 2026-10-31 — A count pattern misses the form "`N` tests"
+A site sweep's count pattern shaped `{target}.{0,4}\(?N\b` reads `` `inert_subtree` (4) `` and misses "`N` tests in both
+layout modes" further along a long line, so a master's count can stand outside the pattern that names it. A bare `\b676\b`
+also matches citation digits (18 of 19 hits on one pattern were digits), and `synthesi[sz]` read a harness's input synthesis
+at 7 of 9 hits. Write the wording of the sentence beside the name token, read a long line's offsets through `cascade.py
+window`, and keep the detectors' own sweeps as the control.
+
+Where it applies: P1's site sweep over test counts and any pattern naming a bare number or a common verb.
+
+---
+
 ## 2026-10-27 — `fanout-results.md`'s lines are a grammar fanout.py parses, not prose
 The wrap's Validate dispositions in `fanout-results.md` are the apply batch's input, read by `fanout.py`'s own patterns: each proposal file's heading is its bare file name alone on a line (`fanout-architecture.md`, never `### fanout-architecture.md` — a decorated heading leaves every disposition under it unread, and the render refuses with `no disposition line`), and an item main raises is aimed at the first `.andromeda/…md` path its line names, else at the master's body. A raised item that names a category file by its bare name (`conventions.md:27`) passes the render and lands on the body.
 

@@ -1,0 +1,7 @@
+{
+  "title": "Select popup",
+  "requirement": "a closed select opens a painted list of its options, chosen by pointer and key",
+  "observed_gap": "No popup is painted: Enter and Space open nothing on a single select, an option of a closed select is refused `covered`, a group's label is unpainted and `size` is unread (2026-10-31-engine-debts).",
+  "method": "integration",
+  "acceptance": "A closed select opens a painted list of its options; a person or an agent chooses one by pointer and by key and the select then reads that choice; an option of the opened list can be acted on through the driver; the list closes without a choice."
+}

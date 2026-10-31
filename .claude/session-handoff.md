@@ -1,50 +1,28 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-27T12:45:06Z
+**Last Updated:** 2026-10-31T13:53:30Z
 **Branch:** build/escher-0.3.0 · 0 ahead of origin/build/escher-0.3.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-27-upstream-sync-engine-debts — feat: eleven upstream commits cherry-picked at ebacd68bd, the pins kept, F2 ratified and the ten stand lines moved
+**Last Commit:** 2026-10-31-engine-debts — feat: the six engine debts ended as the founder's forks say, eight engine changes for every document, CI#41192433140 green 17/17
 
 ## Position
-- Done: 2026-10-27-upstream-sync-engine-debts — upstream/main `ebacd68bd` read, eleven commits taken by no-commit
-  cherry-pick on the founder's «Одиннадцать коммитов (Рекомендую)», sixteen left out, the merge base `23b9b26a9` and
-  every pin unmoved; CI#40487650912 green 17/17; v030-03. Wrap run `.andromeda/runs/2026-10-27T10-45-32-wrap/`
-  (two windows: P1, then P2–P7).
-- Next: «Engine debts» (Epoch 2, v030-04) — /andromeda-phase to promote and plan it. escher pauses after this wrap on
-  the founder's word; its three new CARRYs wait on that entry until he resumes.
+- Done: 2026-10-31-engine-debts — `v030-04`. Wrap run `.andromeda/runs/2026-10-31T10-45-42-wrap/` (P1 in one window, P2–P7 in the next).
+- Next: «Select popup» (`v030-17`, last of Epoch 2), `/andromeda-phase` to promote and plan it. **Nothing starts it:** escher's pause holds the next chunk, and only the founder lifts it.
 
 ## Work done
-P2: 107 amendments over all seven masters, 55 sidecar entries, 209 citations re-pointed and 65 claim-false rows
-re-pointed by path, 22 leaf findings applied; P3 one Tier-2 (host-linux) and one Tier-3 learning; P5 four CARRYs.
+P2: 295 proposals applied, 20 merged, 41 rejected, over all seven masters, with their sidecar entries; 840 citations re-pointed, 27 by hand; 194 of 213 leaf findings written. P3: one Tier-2 and two Tier-3 learnings. P5: the popup's entry and `v030-17`, the `press` residual, eight CARRYs and a free-disk WATCH.
 
 ## Drift resolved
-The take's six engine changes for every document (`:open`, the pseudo flow vote, IME at editor construction, the
-redraw route, the `file:` refusal by document, the `CSSStyleDeclaration` accessors) recorded as upstream's, ratified
-for this take; blitz-vibey-script's runtime split re-pointed across every master; F2 ratified on the founder's own
-word «Подтвердить (Рекомендую)», its two gap markers dropped, one new sidecar entry per doc; the ten further stand
-lines moved on «Все десять, общие разделить (Рекомендую)», the stand text folding into layout-templates :16 (the
-operator's Q2), the stand facts outside the ten kept on the founder's «Оставить как есть (Рекомендую)».
+The eight engine changes recorded as ratified by the founder's words F1 to F10; the five boundary widenings (the `multiple` select's keys and clicks, `optgroup`, the set's exits, `type` on it, `change` on a checkbox and a radio) confirmed by the operator as his reading of the fork texts, not a new word of the founder's; a group's `label` as a name stands on the P5 lean, recorded so. F13's unmet clause restated, the behaviour kept (inputs#I16). An older false reading fixed: every cargo leg `--locked` but `fmt` too.
 
 ## Notes
-- The trial worktree `target/tmp/trial-wt` (detached at shape A `02b24fccf`, the plan said shape B) still stands; its
-  removal is the founder's.
-- The security-plan sidecar entry «… — the `open` attribute read by presence, `:open` matching» keeps the report's
-  `remove_attribute` spelling; the bodies read `clear_attribute`, the method `mutator.rs` holds.
-- Friction for overseer1 logged at the reconcile checkpoint: a raised disposition aimed at the body by a bare file
-  name, and no plain re-render of an unlaunched batch (`--fresh` taken on the operator's word).
+- **A classifier answered by hand:** `obs-plan-cls-log-coverage.b1` died twice at Haiku · max past the output-token limit; on the operator's word its 25 entities read `yes · stale` by hand (inputs#I15), so obs-plan's false-yes figure runs high.
+- **Absorbed residuals:** lines 23, 31–34, 39 and 40 already read `absorbed:`, so 676 to 677 and line 34's popup half are dated matrix notes on `v030-05` and `v030-04`.
+- **Waiting on a later chunk:** the `.gitignore` line for `escher-0.4.0-incubator/` is a CARRY on the popup, a chunk's tree being held from P1 to its commit.
+- **The trial worktree** `target/tmp/trial-wt` still stands; its removal is the founder's.
+- **The free-disk step** is a scope widening on the operator's word and is not shown to be the cure: the red job alone among the `ubuntu-24.04` jobs stood on image `20261018.96.1`, its free disk unread. A WATCH holds it.
 - Last failed command: none open.
 
-## Session End Status
-Completed normally at 2026-10-31 09:53:05
-
-## In flight (2026-10-31, the operator pass stopped red at entry 36)
-- `2026-10-31-engine-debts` is pushed at `42eed99a6`. Local gates green; the whole outcome, its nine deviations included,
-  is `.andromeda/runs/2026-10-31T08-53-14-implement/outcome-2026-10-31-engine-debts.md`.
-- CI#41190771843 reads red: `Stand checks repeated` ran out of disk (`ld` bus error, `Free space left: 5 MB`) in round 1,
-  before any test ran. Record: `escher-0.3.0/chunks/2026-10-31-engine-debts/evidence/ci.md`, uncommitted.
-- The operator's word: a free-disk step in `stand-repeat`, entry 1 losing `.github/workflows`. A fix commit carries it;
-  then entry 35, the CI read on the new sha, entry 37. The wrap waits on a green run.
-- The pause holds the next chunk, not this one (the operator's word, 2026-10-31); only the founder lifts it.
-- Last failed command: `ci.py conclusion --sha HEAD --wait 1800` read red on `42eed99a6`; the step answers it.
-- The popup's route entry, requirement and residual lines land at this chunk's wrap, from the card's `## Beyond the
-  plan`; `matrix.py add` mints its id (`v030-16` is held). Nothing starts it.
+## Deferred learnings
+- `recurrence-despite-learning`: 2026-10-27 «`fanout-results.md`'s lines are a grammar» says one target file per raised item; two raised items named a sentence and landed on the bodies alone.
+- `recurrence-despite-learning`: `harness.center_of` on an inline element reads no box (`checkable_change_event`); the report calls it a standing learning, and no text under `.claude/rules` or `session-learnings.md` holds it.

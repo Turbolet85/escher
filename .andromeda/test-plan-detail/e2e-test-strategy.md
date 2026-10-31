@@ -13,6 +13,12 @@ Read whole. The master's broad view is .andromeda/test-plan.md; this file holds 
 
 <!-- /detail -->
 
+<!-- detail: procedure · e2e -->
+
+- **Cells' handle calls, headless:** Cells calls its `MountedData` handles synchronously, measured headlessly, their windowed path read from the same lines and not run; a `MountedData` call in a task spawned from a key handler panics with `RefCell already borrowed` at `events.rs:162` (as measured at escher-0.3.0/chunks/2026-10-31-engine-debts/evidence/readings.md)
+
+<!-- /detail -->
+
 <!-- detail: absence · e2e -->
 
 - Automated assertions in the example fixtures · searched: `\bassert|expect\(` over the 21 files of slice s02

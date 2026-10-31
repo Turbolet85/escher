@@ -46,7 +46,7 @@ No served network API exists — no TCP or UDP port; the one listener is local: 
   - **Configuration:** GET/HEAD-only over the embedder's ScriptFetcher (packages/blitz-vibey-script/src/runtime/bootstrap/fetch.js:81-83; packages/blitz-vibey-script/src/runtime/fetch.rs:14-66)
   - **Stack reference:** blitz-vibey-script
 - **Control:** Form submission
-  - **Configuration:** GET for http/https/data appends the query; POST body only for http/https; mailto GET/POST build the URL; other scheme/method combinations are not implemented and return (packages/blitz-dom/src/form.rs:115-161); the `dialog` form method is rejected as not an HTTP method (packages/blitz-dom/src/form.rs:388-396)
+  - **Configuration:** GET for http/https/data appends the query; POST body only for http/https; mailto GET/POST build the URL; other scheme/method combinations are not implemented and return (packages/blitz-dom/src/form.rs:115-161); the `dialog` form method is rejected as not an HTTP method (packages/blitz-dom/src/form.rs:384-392)
   - **Stack reference:** blitz-dom
 - **Control:** Iframe navigation
   - **Configuration:** Sub-document navigations route back to the parent document instead of navigating the host (packages/blitz-dom/src/iframe.rs:29-46)

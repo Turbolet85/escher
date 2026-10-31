@@ -16,6 +16,6 @@ Read whole. The master's broad view is .andromeda/a11y-plan.md; this file holds 
 - Tabs show a tooltip with the full title on hover (apps/browser/assets/browser.css:56-74; apps/browser/src/tab_strip.rs:86-90)
 - The status bar shows the hovered link target or a loading message (apps/browser/src/status_bar.rs:73-88)
 - seven_guis cards carry a description and a tag per task (examples/seven_guis/src/app.rs:25-75; examples/seven_guis/src/app.rs:143-153)
-- The stand's served load page shows its status in text: the paragraph `load-done` reads "Loaded", `display: none` until the page's stylesheet lands after the Button "Load" (`load-fetch`) is clicked, its in-process stand-in answering after `LOAD_ANSWER_DELAY` (200 ms) (examples/seven_guis/src/stand.rs:141-152; examples/seven_guis/src/stand.rs:185-200; tests/blitz-tests/tests/stand_load_page.rs:34-84)
+- The stand's served load page shows its status in text: the paragraph `load-done` reads "Loaded", `display: none` until the page's stylesheet lands after the Button "Load" (`load-fetch`) is clicked, its in-process stand-in answering after `LOAD_ANSWER_DELAY` (200 ms) (examples/seven_guis/src/stand.rs:141-152; examples/seven_guis/src/stand.rs:185-200; tests/blitz-tests/tests/stand_load_page.rs:35-127)
 
 <!-- /detail -->

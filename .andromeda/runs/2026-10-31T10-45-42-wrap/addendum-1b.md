@@ -1,0 +1,2 @@
+- inputs#I15 · message: the operator, by dialog at the wrap P2 classifier halt, 2026-10-31 12:53Z · copy message · n/a — classifier `obs-plan-cls-log-coverage.b1` died twice at Haiku · max, its response past the 128000 output token maximum; on this word its answer file is written by hand, all 25 entities `yes · stale`, each clause saying no classifier answered, and read through `fanout.py check` (1 of 1 pass, `detail.py answered` PASS).
+  - no fact above rests on it

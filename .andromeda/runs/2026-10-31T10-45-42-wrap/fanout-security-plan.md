@@ -1,0 +1,2 @@
+proposals: []
+note: No detector fires and the body holds no retired item (a grep of its wording reads 0); the report's security-plan expected amendments (pulldown-cmark 0.13.5, the input-validation rows, off-screen's text, the open row) all land in existing category files under .andromeda/security-plan-detail/, the cascade's; the added free-disk-space action is pinned by SHA, so the body's every-uses-pinned claim stands.

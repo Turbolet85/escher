@@ -1,0 +1,2 @@
+- inputs#I16 · message: the operator, by dialog at P2 Validate, 2026-10-31 13:13Z · copy message · n/a — the answer card confirmed as the operator's reading of the founder's fork texts, not a new word of his: F6 B, F7 B, F10 A; a group's `label` as a name stands on the P5 lean, not F7's text; the F13 clause restated, the behaviour kept, the criterion the plan's and F13 A saying nothing of it.
+  - bears on **Outcome**: adds to it: (F13, a11y)'s unmet clause is settled by this word.

@@ -1,0 +1,1 @@
+run P1 only and stop, for 2026-10-31-engine-debts. Operator's word: the sampler is forced on this wrap (detail.py sample --side wrap --force), as it was on the phase. The run was green on CI#41192433140 at 40ac6ddac; the uncommitted evidence/ci.md, outcome and handoff ride this wrap. Stop after P1 and report the wrap run dir.

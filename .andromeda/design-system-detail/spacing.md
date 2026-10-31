@@ -17,7 +17,8 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 - about:history padding 32px 48px; list items 12px 16px with gap 12px and margin-bottom 8px (apps/browser/assets/about-history.css:4; apps/browser/assets/about-history.css:49-54)
 - rdme markdown body max-width 892px with padding 16px 32px (apps/readme/assets/blitz-markdown-overrides.css:1-5)
 - The seven_guis stand's card and Home padding is held in layout-templates §Surface: desktop-native → Primary screens (`values · desktop-native-screens`), not as a design-system value
-- blitz-dom default body margin 8px (packages/blitz-dom/assets/default.css:274-277)
+- blitz-dom default body margin 8px (packages/blitz-dom/assets/default.css:302-305)
+- blitz-dom default `multiple` select rows (`select[multiple] > option`, `select[multiple] > optgroup > option`) padding 0 2px (packages/blitz-dom/assets/default.css:173-177)
 
 <!-- /detail -->
 

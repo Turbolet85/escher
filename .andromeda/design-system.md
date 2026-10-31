@@ -175,7 +175,7 @@ Detail: .andromeda/design-system-detail/surface.md — read whole.
 
 ## Surface: mobile-native
 
-**Platform:** Android aarch64 APK bundled with `--android --package-types apk --no-default-features --features android-defaults` (.github/workflows/publish-browser.yml:83-89); CI builds (does not test) for `aarch64-apple-ios` and `aarch64-linux-android` (.github/workflows/ci.yml:353-368)
+**Platform:** Android aarch64 APK bundled with `--android --package-types apk --no-default-features --features android-defaults` (.github/workflows/publish-browser.yml:83-89); CI builds (does not test) for `aarch64-apple-ios` and `aarch64-linux-android` (.github/workflows/ci.yml:359-374)
 **Toolkit / Framework:** the browser app; `IS_MOBILE` is true for Android and iOS and adds the `mobile` class to the frame (apps/browser/src/main.rs:48; apps/browser/src/main.rs:172)
 
 ### Tokens (platform-specific)

@@ -21,7 +21,7 @@ Read whole. The master's broad view is .andromeda/security-plan.md; this file ho
 - searched: `password|token|secret|cookie|authorization|x-api-key` over the 21 s02 files
 - searched: `password|secret|token|authorization|cookie|x-api-key` and `std::env::var|env!\(` over the 32 s03 files
 - searched: `password|secret|api_key|x-api-key|authorization|token` (case-insensitive) over the 86 s04 files; only the formula `Token` enum in cells.rs matched
-- searched: `env::var|secret|token|authorization|cookie|x-api-key` over the 15 s05 files; the only `password` occurrence maps the input type `password` to `Role::PasswordInput` (packages/blitz-dom/src/accessibility.rs:519)
+- searched: `env::var|secret|token|authorization|cookie|x-api-key` over the 15 s05 files; the only `password` occurrence maps the input type `password` to `Role::PasswordInput` (packages/blitz-dom/src/accessibility.rs:543)
 - searched: `env::var|std::env|api_key` over the 17 listed s06 files
 - searched: `env::var|secret|token` over the 8 s07 files
 - searched: `password|secret|token|authorization|x-api-key` over the 16 listed s08 files (no credential match)

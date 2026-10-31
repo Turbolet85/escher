@@ -1,0 +1,329 @@
+[
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "f258a1ca",
+"ts": "2026-10-31T13:50:30Z",
+"argv": [
+"add",
+"--dir",
+"escher-0.3.0",
+"--payload-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/add-select-popup.json",
+"--dry-run",
+"--marker",
+"2026-10-31-engine-debts",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"add v030-17 · planned · chunk null · ref null · method integration",
+"title: Select popup",
+"requirement: a closed select opens a painted list of its options, chosen by pointer and key",
+"observed_gap: No popup is painted: Enter and Space open nothing on a single select, an option of a close… (197 chars)",
+"acceptance: A closed select opens a painted list of its options; a person or an agent chooses one by p… (245 chars)",
+"requirements.md: 16 capability lines · `- **id** · ` 0 · `- id · ` 16",
+"(dry-run) requirements.md carries no line for v030-17 — the id is assigned there first (contract §ID scheme) — the write refuses until one line stands",
+"dry-run: nothing written",
+"pool: unclaimed 12 [v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15 v030-17]",
+"version: verified 4/17"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": {
+"id": "v030-17",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "A closed select opens a painted list of its options; a person or an agent chooses one by pointer and by key and the sele… (245 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "f258a1ca",
+"ts": "2026-10-31T13:52:31Z",
+"argv": [
+"add",
+"--dir",
+"escher-0.3.0",
+"--payload-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/add-select-popup.json",
+"--marker",
+"2026-10-31-engine-debts",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"add v030-17 · planned · chunk null · ref null · method integration",
+"title: Select popup",
+"requirement: a closed select opens a painted list of its options, chosen by pointer and key",
+"observed_gap: No popup is painted: Enter and Space open nothing on a single select, an option of a close… (197 chars)",
+"acceptance: A closed select opens a painted list of its options; a person or an agent chooses one by p… (245 chars)",
+"requirements.md: 17 capability lines · `- **id** · ` 0 · `- id · ` 17",
+"requirements.md: line 28 carries v030-17",
+"wrote escher-0.3.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 12 [v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15 v030-17]",
+"version: verified 4/17"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/verification-matrix.json"
+],
+"before": null,
+"after": {
+"id": "v030-17",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "A closed select opens a painted list of its options; a person or an agent chooses one by pointer and by key and the sele… (245 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "f258a1ca",
+"ts": "2026-10-31T13:52:31Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.3.0",
+"--id",
+"v030-17",
+"--text-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/note-v030-17.md",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v030-17: +586 chars (total 586) · status planned · ref/acceptance untouched",
+"wrote escher-0.3.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/verification-matrix.json"
+],
+"before": {
+"id": "v030-17",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "A closed select opens a painted list of its options; a person or an agent chooses one by pointer and by key and the sele… (245 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v030-17",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "A closed select opens a painted list of its options; a person or an agent chooses one by pointer and by key and the sele… (245 chars)",
+"notes_chars": 586
+}
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "f258a1ca",
+"ts": "2026-10-31T14:02:32Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-10-31-engine-debts",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-31-engine-debts: 1 · to flip 1 · already verified 0 · below 0",
+"flipped v030-04 → verified — Each debt the intent names reached the founder as a fork in `founder-forks.md` (… (1412 chars)",
+"dry-run: nothing written",
+"version: verified 5/17"
+],
+"stderr": null,
+"wrote": [],
+"before": [
+{
+"id": "v030-04",
+"chunk": "2026-10-31-engine-debts",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/visible_region_transformed.rs · stand_act_transformed.rs::a_control_in_a_scrolling_box_under_a_z… (899 chars)",
+"acceptance": "Each debt the intent names reached the founder as a fork in `founder-forks.md` (inputs#I8) and ends as his word says (in… (1412 chars)",
+"notes_chars": 0
+}
+],
+"after": [
+{
+"id": "v030-04",
+"chunk": "2026-10-31-engine-debts",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/visible_region_transformed.rs · stand_act_transformed.rs::a_control_in_a_scrolling_box_under_a_z… (899 chars)",
+"acceptance": "Each debt the intent names reached the founder as a fork in `founder-forks.md` (inputs#I8) and ends as his word says (in… (1412 chars)",
+"notes_chars": 0
+}
+]
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "f258a1ca",
+"ts": "2026-10-31T14:02:32Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-10-31-engine-debts",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-31-engine-debts: 1 · to flip 1 · already verified 0 · below 0",
+"flipped v030-04 → verified — Each debt the intent names reached the founder as a fork in `founder-forks.md` (… (1412 chars)",
+"wrote escher-0.3.0/verification-matrix.json · 1 entry changed",
+"version: verified 5/17"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/verification-matrix.json"
+],
+"before": [
+{
+"id": "v030-04",
+"chunk": "2026-10-31-engine-debts",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/visible_region_transformed.rs · stand_act_transformed.rs::a_control_in_a_scrolling_box_under_a_z… (899 chars)",
+"acceptance": "Each debt the intent names reached the founder as a fork in `founder-forks.md` (inputs#I8) and ends as his word says (in… (1412 chars)",
+"notes_chars": 0
+}
+],
+"after": [
+{
+"id": "v030-04",
+"chunk": "2026-10-31-engine-debts",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/visible_region_transformed.rs · stand_act_transformed.rs::a_control_in_a_scrolling_box_under_a_z… (899 chars)",
+"acceptance": "Each debt the intent names reached the founder as a fork in `founder-forks.md` (inputs#I8) and ends as his word says (in… (1412 chars)",
+"notes_chars": 0
+}
+]
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "f258a1ca",
+"ts": "2026-10-31T14:02:32Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.3.0",
+"--id",
+"v030-04",
+"--text-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/note-v030-04.md",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v030-04: +470 chars (total 470) · status verified · ref/acceptance untouched",
+"wrote escher-0.3.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/verification-matrix.json"
+],
+"before": {
+"id": "v030-04",
+"chunk": "2026-10-31-engine-debts",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/visible_region_transformed.rs · stand_act_transformed.rs::a_control_in_a_scrolling_box_under_a_z… (899 chars)",
+"acceptance": "Each debt the intent names reached the founder as a fork in `founder-forks.md` (inputs#I8) and ends as his word says (in… (1412 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v030-04",
+"chunk": "2026-10-31-engine-debts",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/visible_region_transformed.rs · stand_act_transformed.rs::a_control_in_a_scrolling_box_under_a_z… (899 chars)",
+"acceptance": "Each debt the intent names reached the founder as a fork in `founder-forks.md` (inputs#I8) and ends as his word says (in… (1412 chars)",
+"notes_chars": 470
+}
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "f258a1ca",
+"ts": "2026-10-31T14:02:32Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.3.0",
+"--id",
+"v030-05",
+"--text-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/note-v030-05.md",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v030-05: +482 chars (total 482) · status planned · ref/acceptance untouched",
+"wrote escher-0.3.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/verification-matrix.json"
+],
+"before": {
+"id": "v030-05",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "For the current screen of a stand task, one read names each node's component, the handlers it carries, the state those h… (277 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v030-05",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "For the current screen of a stand task, one read names each node's component, the handlers it carries, the state those h… (277 chars)",
+"notes_chars": 482
+}
+}
+]

@@ -1,0 +1,606 @@
+[
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "db835829",
+"ts": "2026-10-31T10:55:13Z",
+"argv": [
+"append",
+"--file",
+"escher-0.3.0/chunks/2026-10-31-engine-debts/report.md",
+"--payload-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/new-text.md",
+"--lines",
+"363",
+"--if-absent-prefix",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append report.md:+363 at line 251 · lines 250→613 · bytes 58853→81774 · term lf",
+"last line now:   - 250-275 «for incremental in [false, true] {»"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/chunks/2026-10-31-engine-debts/report.md"
+],
+"before": {
+"lines": 250,
+"bytes": 58853,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 613,
+"bytes": 81774
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "db835829",
+"ts": "2026-10-31T11:02:36Z",
+"argv": [
+"append",
+"--file",
+"escher-0.3.0/chunks/2026-10-31-engine-debts/report.md",
+"--payload-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/new-text.md",
+"--lines",
+"363",
+"--if-absent-prefix",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"skipped — '## New text, by line' already at line 251 (the append is idempotent)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "db835829",
+"ts": "2026-10-31T11:03:01Z",
+"argv": [
+"append",
+"--file",
+"escher-0.3.0/chunks/2026-10-31-engine-debts/report.md",
+"--payload-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/addendum-1.md",
+"--lines",
+"6",
+"--before-line",
+"251",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append report.md:+6 at line 251 · lines 613→619 · bytes 81903→83527 · term lf",
+"last line now:   - 250-275 «for incremental in [false, true] {»"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/chunks/2026-10-31-engine-debts/report.md"
+],
+"before": {
+"lines": 613,
+"bytes": 81903,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 619,
+"bytes": 83527
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "db835829",
+"ts": "2026-10-31T12:55:05Z",
+"argv": [
+"append",
+"--file",
+"escher-0.3.0/chunks/2026-10-31-engine-debts/report.md",
+"--payload-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/addendum-1b.md",
+"--lines",
+"2",
+"--before-line",
+"256",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append report.md:+2 at line 256 · lines 619→621 · bytes 83527→84005 · term lf",
+"last line now:   - 250-275 «for incremental in [false, true] {»"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/chunks/2026-10-31-engine-debts/report.md"
+],
+"before": {
+"lines": 619,
+"bytes": 83527,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 621,
+"bytes": 84005
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "db835829",
+"ts": "2026-10-31T13:12:16Z",
+"argv": [
+"append",
+"--file",
+"escher-0.3.0/chunks/2026-10-31-engine-debts/report.md",
+"--payload-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/addendum-1c.md",
+"--lines",
+"2",
+"--before-line",
+"258",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append report.md:+2 at line 258 · lines 621→623 · bytes 84005→84496 · term lf",
+"last line now:   - 250-275 «for incremental in [false, true] {»"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/chunks/2026-10-31-engine-debts/report.md"
+],
+"before": {
+"lines": 621,
+"bytes": 84005,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 623,
+"bytes": 84496
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "db835829",
+"ts": "2026-10-31T13:36:45Z",
+"argv": [
+"append",
+"--file",
+".andromeda/architecture-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/architecture-entries.md",
+"--lines",
+"247",
+"--blank-before",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"a blank line put before the block (line 1422 is not blank)",
+"append architecture-amendments.md:+248 at line 1423 · lines 1422→1670 · bytes 285547→318834 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-31T10-45-42-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/architecture-amendments.md"
+],
+"before": {
+"lines": 1422,
+"bytes": 285547,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 1670,
+"bytes": 318834
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "db835829",
+"ts": "2026-10-31T13:36:45Z",
+"argv": [
+"append",
+"--file",
+".andromeda/security-plan-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/security-plan-entries.md",
+"--lines",
+"141",
+"--blank-before",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"a blank line put before the block (line 889 is not blank)",
+"append security-plan-amendments.md:+142 at line 890 · lines 889→1031 · bytes 169466→188684 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-31T10-45-42-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/security-plan-amendments.md"
+],
+"before": {
+"lines": 889,
+"bytes": 169466,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 1031,
+"bytes": 188684
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "db835829",
+"ts": "2026-10-31T13:36:45Z",
+"argv": [
+"append",
+"--file",
+".andromeda/design-system-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/design-system-entries.md",
+"--lines",
+"66",
+"--blank-before",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"a blank line put before the block (line 280 is not blank)",
+"append design-system-amendments.md:+67 at line 281 · lines 280→347 · bytes 42614→50541 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-31T10-45-42-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/design-system-amendments.md"
+],
+"before": {
+"lines": 280,
+"bytes": 42614,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 347,
+"bytes": 50541
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "db835829",
+"ts": "2026-10-31T13:36:45Z",
+"argv": [
+"append",
+"--file",
+".andromeda/layout-templates-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/layout-templates-entries.md",
+"--lines",
+"52",
+"--blank-before",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"a blank line put before the block (line 264 is not blank)",
+"append layout-templates-amendments.md:+53 at line 265 · lines 264→317 · bytes 38963→45471 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-31T10-45-42-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/layout-templates-amendments.md"
+],
+"before": {
+"lines": 264,
+"bytes": 38963,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 317,
+"bytes": 45471
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "db835829",
+"ts": "2026-10-31T13:36:46Z",
+"argv": [
+"append",
+"--file",
+".andromeda/test-plan-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/test-plan-entries.md",
+"--lines",
+"245",
+"--blank-before",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"a blank line put before the block (line 1154 is not blank)",
+"append test-plan-amendments.md:+246 at line 1155 · lines 1154→1400 · bytes 202074→231191 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-31T10-45-42-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/test-plan-amendments.md"
+],
+"before": {
+"lines": 1154,
+"bytes": 202074,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 1400,
+"bytes": 231191
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "db835829",
+"ts": "2026-10-31T13:36:46Z",
+"argv": [
+"append",
+"--file",
+".andromeda/obs-plan-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/obs-plan-entries.md",
+"--lines",
+"59",
+"--blank-before",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"a blank line put before the block (line 568 is not blank)",
+"append obs-plan-amendments.md:+60 at line 569 · lines 568→628 · bytes 97440→105109 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-31T10-45-42-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/obs-plan-amendments.md"
+],
+"before": {
+"lines": 568,
+"bytes": 97440,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 628,
+"bytes": 105109
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "db835829",
+"ts": "2026-10-31T13:36:46Z",
+"argv": [
+"append",
+"--file",
+".andromeda/a11y-plan-amendments.md",
+"--payload-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/a11y-plan-entries.md",
+"--lines",
+"161",
+"--blank-before",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"a blank line put before the block (line 556 is not blank)",
+"append a11y-plan-amendments.md:+162 at line 557 · lines 556→718 · bytes 93854→117961 · term lf",
+"last line now: **Ref:** .andromeda/runs/2026-10-31T10-45-42-wrap/"
+],
+"stderr": null,
+"wrote": [
+".andromeda/a11y-plan-amendments.md"
+],
+"before": {
+"lines": 556,
+"bytes": 93854,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 718,
+"bytes": 117961
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "db835829",
+"ts": "2026-10-31T13:52:01Z",
+"argv": [
+"append",
+"--file",
+"escher-0.3.0/working-route.md",
+"--payload-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/route-popup.txt",
+"--lines",
+"2",
+"--after-line",
+"18",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append working-route.md:+2 at line 19 · lines 60→62 · bytes 7683→8845 · term lf",
+"last line now: Cold-agent bar — cold-agent pipe widened past its twelve verbs, span counts wi"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/working-route.md"
+],
+"before": {
+"lines": 60,
+"bytes": 7683,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 62,
+"bytes": 8845
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "db835829",
+"ts": "2026-10-31T13:52:01Z",
+"argv": [
+"append",
+"--file",
+".andromeda/residuals.md",
+"--payload-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/residual.txt",
+"--lines",
+"1",
+"--if-absent-prefix",
+"2026-10-31-engine-debts · open · ",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append residuals.md:+1 at line 43 · lines 42→43 · bytes 31869→32229 · term lf",
+"last line now: 2026-10-31-engine-debts · open · `press` holds no Ctrl, so a non-adjacent `mul"
+],
+"stderr": null,
+"wrote": [
+".andromeda/residuals.md"
+],
+"before": {
+"lines": 42,
+"bytes": 31869,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 43,
+"bytes": 32229
+}
+},
+{
+"tool": "splice",
+"v": "1.2",
+"sha8": "db835829",
+"ts": "2026-10-31T13:52:51Z",
+"argv": [
+"append",
+"--file",
+"escher-0.3.0/chunks/2026-10-31-engine-debts/report.md",
+"--payload-file",
+".andromeda/runs/2026-10-31T10-45-42-wrap/addendum-1d.md",
+"--lines",
+"2",
+"--before-line",
+"260",
+"--run-dir",
+".andromeda/runs/2026-10-31T10-45-42-wrap",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"append report.md:+2 at line 260 · lines 623→625 · bytes 84496→84995 · term lf",
+"last line now:   - 250-275 «for incremental in [false, true] {»"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/chunks/2026-10-31-engine-debts/report.md"
+],
+"before": {
+"lines": 623,
+"bytes": 84496,
+"terminator": "LF",
+"final_terminator": true
+},
+"after": {
+"lines": 625,
+"bytes": 84995
+}
+}
+]

@@ -4,11 +4,11 @@ Every entry `/implement` may fire reads green on the final tree: `entries 37 · 
 
 The thirteen forks end as the founder's word says: F1 to F7, F9, F10 and F13 fixed, F8 not built, F11 pinned as a stated limit, F12's rows added. CARRY 2's three checks are written, CARRY 1's reading is recorded, and CARRY 3 stays the wrap's amendment. `v030-04` is `implemented`.
 
-**Next → the operator pass, entries 34, 35, 36 and 37, then `/andromeda-wrap-session`.** Entry 34 is the hygiene read, 35 the pre-CI commit's gate and the push, 36 the CI read, 37 the CI tallies. The pause on escher (inputs#I9) is the founder's to lift, and whether it holds this chunk's push is not settled here: I9 names it about the popup's chunk.
+**Next → `/andromeda-wrap-session`.** The operator pass is done: entries 34 to 37 stand in `evidence/ci.md`, green at the fix commit `40ac6ddac`, CI#41192433140, 17 of 17. The pause holds the next chunk, not this one (the operator's word, 2026-10-31); only the founder lifts it.
 
 ## Files changed
 
-46 against the base `2109f1c2e`, +2898 −331: 43 listed in research.md, 3 recorded. `scope: clean — changed 46 · listed 43 · recorded 3 (companion 3 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 615`.
+47 against the base `2109f1c2e`: 43 listed in research.md, 4 recorded. `scope: clean — changed 47 · listed 43 · recorded 4 (companion 3 · mechanical 0 · in-intent 0 · widening 1) · absorbed 0 · excluded 617`.
 
 - **Engine:** `blitz-dom` (`scrolling`, `document`, `node/node`, `node/select`, `mutator`, `accessibility`, `events/keyboard`, `events/pointer`, `form`, `assets/default.css`), `blitz-vibey-script` (`runtime/events`, `tests/dom`), `blitz-shell/event`, `dioxus-native-dom` (`snapshot`, `dioxus_document`).
 - **Driver:** `escher-driver` (`execute`, `lint`, `refusal`, `schema`, `lib`).
@@ -23,6 +23,7 @@ Scope record lines:
 - `packages/escher-driver/src/schema_tests.rs` · companion: it pins `type`'s help.
 - `packages/dioxus-native-dom/src/lib.rs` · companion: it re-exports the two readers below.
 - `tests/blitz-tests/tests/stand_non_lean_tasks.rs` · companion: the moved pin, deviation 1.
+- `.github/workflows/ci.yml` · widening, on the operator's word: deviation 10.
 
 Each deviation, with its justification:
 
@@ -39,6 +40,8 @@ Each deviation, with its justification:
 8. **Step 12's planted case is two overlapping rows** of the `multiple` select, reading exactly `fx-row-a` × `fx-row-b`. A box laid over the select reads once, at the select, and would not show that rows are linted.
 9. **Extra rows the plan did not list:** `cells_a_click_on_another_cell_commits_an_open_editor_to_its_own_cell`, which pins the mixed-path defect step 15 closes, and `a_click_and_a_space_move_a_native_control_in_the_tree` as a sixth test in `accessibility_states`, not inside the restated fourth.
 
+10. **After this outcome, on the operator's word:** the first CI run read red on `Stand checks repeated`, a runner out of disk, so `.github/workflows/ci.yml` gained a free-disk step in that job, and entry 1 lost `.github/workflows`. `scope-record.md` holds it as a `widening` carrying the word. The green run does not prove the step was the cure (`evidence/ci.md`).
+
 No plan-listed rejection was crossed: no DOM `blur`, no `ctrl` on `press`, no `size` read, no `grid` role, `blitz-paint` unmoved.
 
 ## Guard entries
@@ -48,7 +51,7 @@ None: the plan lists no `gate.py guard` entry. Entry 1, its preservation guard, 
 ## Surfaced for the wrap and the operator
 
 - **A hazard outside this chunk's fixes:** any app spawning a `MountedData` call beside a signal write meets the panic in deviation 2. No engine line moved. It holds no owner yet; the wrap pins one.
-- **Unmeasured until CI:** MSRV 1.91, macOS and Windows, the coverage floor (escher-driver stands under one point above its floor) and the `stand-repeat` leg, now fifteen named targets. I ran none of them here. This chunk adds no `cfg` site.
+- **Read on CI#41192433140:** MSRV 1.91, macOS and Windows, the coverage floors (escher-driver 98.04 % against 97 %) and the `stand-repeat` leg over fifteen named targets, each green.
 - **The wrap's records:** the expected amendments in `plan.md`, the popup's route entry and requirement (`matrix.py add` mints its id), the residual line for `press` holding no Ctrl, and `CLAUDE.md`'s and the rules' statements of the old limits, none of which `/implement` touches. `.claude/rules/a11y.md` still states the fixup unbuilt and 85 tests.
 - **The windowed smoke reads the boot alone.** Cells' keyboard path is proven headlessly and through the binary, never by a person at a window. What an assistive technology reads stays unmeasured.
 

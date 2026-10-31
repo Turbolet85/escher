@@ -1,0 +1,5 @@
+# Citation dispositions — layout-templates
+
+stretched .andromeda/layout-templates.md:14 tests/blitz-tests/tests/stand_load_page.rs:34-68 → 35-111 — changed inside → holds (the click test still waits out the load and reads the message; the range now also holds the Enter test)
+stretched .andromeda/layout-templates.md:59 packages/blitz-dom/src/scrolling.rs:655-796 → 655-788 — changed inside → holds (the padding box is now read where its transforms show it, through padding_box_in_view at 793, past the range; the viewport is still narrowed to every clipping box's)
+stretched .andromeda/layout-templates.md:60 tests/blitz-tests/tests/stand_lint.rs:277-314 → 277-363 — changed inside → claim false — raised at Validate (the flight booker no longer reads one `overlap`, `flight-type-one-way` × `flight-type-return`, at boot: `at_boot` holds no finding for it and the check pins `[0, 0, 0, 0]`, a closed select's options overlapping nothing, so all four lean tasks read 0, and the `.andromeda/residuals.md` line said to own that reading is marked `absorbed:v030-04`)

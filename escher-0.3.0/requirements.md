@@ -25,6 +25,7 @@
 - v030-14 · Bundled fonts — a run's fonts are bundled, so two hosts read the same state the same way (per intent §9, C3)
 - v030-15 · Cold-agent bar — 0.3.0 ends with a cold-agent run over its new capabilities, judged against a bar the founder sets from 0.2.0's baseline of six apps, 66 calls, 0 wrong (per intent §10; covers v030-05…v030-14 end to end)
 - v030-16 · Records kept true — the two verified ledger refs name the tests' current names, the design-system stand rows (the accent, the success row, the cards item, the stand's DejaVu Sans item) move out of the product surface into architecture and layout-templates, and the incubator is ignored by `.gitignore` in place of a local exclude (per intent §Also carried; residual: line 42)
+- v030-17 · Select popup — a closed select opens a painted list of its options, chosen by pointer and key (per the operator's ruling 2026-10-31)
 
 ## Carried residuals (NOT 0.3.0 capabilities — deliberately unnumbered, no matrix entry)
 Each line below was dispositioned at this route's Phase A. Every one is named by intent §Out of this version («The

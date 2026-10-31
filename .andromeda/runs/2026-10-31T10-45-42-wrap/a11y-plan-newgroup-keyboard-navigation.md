@@ -1,0 +1,24 @@
+# New groups — a11y-plan · keyboard-navigation
+
+## Verdicts
+- fanout-a11y-plan--cascade-g2.md 2 · contradiction · lines 8–8 · «HTML's focus fixup is not built, so a node that holds focus when it becomes inert keeps it until focus moves» · the standing limit says inert leaves focus in place, the proposal says flush clears it
+- fanout-a11y-plan--cascade-g2.md 3 · contradiction · lines 38–38 · «a `multiple` select and an `optgroup`'s options are not modelled» · the standing line holds an optgroup's options unmodelled, the proposal has them among the select's options, reachable by keys and text
+- fanout-a11y-plan--cascade-g2.md 5 · contradiction · lines 25–25 · «while an option is not clicked (a driver `click` on one is refused `covered`» · the standing line says no option is clicked, the proposal gives `handle_click` an `option` arm for a `multiple` select's row, and line 38 also holds that select unmodelled
+- fanout-a11y-plan--cascade-g2.md 6 · duplicate · lines 38–38 · «Enter and Space open nothing, a released Space activates no select» · line 38 holds the keys and no popup and line 25 the option refused `covered`, leaving only "under a group too" unstated
+- fanout-a11y-plan--cascade-g2.md 8 · distinct · line 29 names `input` without denying a `change`, and no line states the engine's `change` or the runtime's synthesis
+- fanout-a11y-plan--cascade-g3.md 3 · contradiction · lines 38–38 · «(a `multiple` select takes no key)» · the standing line says a `multiple` select takes no key, the proposal gives it arrows, Home and End with Shift and Ctrl or Meta
+- fanout-a11y-plan--cascade-g3.md 4 · contradiction · lines 38–38 · «(a `multiple` select takes no key)» · the standing line says a `multiple` select takes no key, the proposal gives it Space and typed characters
+- fanout-a11y-plan--cascade-g3.md 5 · contradiction · lines 38–38 · «a `multiple` select and an `optgroup`'s options are not modelled» · the standing line holds a `multiple` select unmodelled, the proposal states a choosing rule for its rows and only Ctrl+A unmodelled
+- fanout-a11y-plan--cascade-g3.md 6 · contradiction · lines 38–38 · «a `multiple` select and an `optgroup`'s options are not modelled» · the standing line holds a `multiple` select unmodelled, the proposal states its Shift span from the last chosen row
+- fanout-a11y-plan--cascade-g3.md 7 · contradiction · lines 25–25 · «while an option is not clicked (a driver `click` on one is refused `covered`» · the standing line says no option is clicked, the proposal states the `option` arm's `click_select_row`, the same fact as fanout-a11y-plan--cascade-g2.md 5
+- fanout-a11y-plan--cascade-g3.md 8 · contradiction · lines 38–38 · «a `multiple` select and an `optgroup`'s options are not modelled» · the standing line holds an optgroup's options unmodelled, the proposal has them reachable by keys and text, the same fact as fanout-a11y-plan--cascade-g2.md 3
+- fanout-a11y-plan--cascade-g3.md 9 · duplicate · lines 38–38 · «Enter and Space open nothing, a released Space activates no select» · line 38 holds the keys and line 25 the option refused `covered`, leaving only "under a group too" unstated, the same fact as fanout-a11y-plan--cascade-g2.md 6
+- fanout-a11y-plan--cascade-g3.md 10 · contradiction · lines 38–38 · «a `multiple` select and an `optgroup`'s options are not modelled» · the standing line holds a `multiple` select unmodelled, the proposal states the model's rule for its writes and removals
+- fanout-a11y-plan--cascade-g3.md 11 · twin · fanout-a11y-plan--cascade-g2.md 8 · both state `handle_click` dispatching `change` after `input` on a checkbox and a radio
+- fanout-a11y-plan--cascade-g3.md 12 · contradiction · lines 38–38 · «(a `multiple` select takes no key)» · the standing line says a `multiple` select takes no key, the proposal has the driver's `type` typing into one
+- fanout-a11y-plan--cascade-g3.md 13 · distinct · no line states the driver's `press` holding no Ctrl or the limit it sets on a non-adjacent set
+- fanout-a11y-plan--cascade-g3.md 14 · distinct · line 61 names `set_focus` alone, and no line states the `MountedData` panic in a spawned task or Cells' synchronous handles
+- fanout-a11y-plan--cascade-g3.md 15 · distinct · line 76 holds Cells' commit alone, and no line states `cells-grid`'s Tab stop or arrows
+- fanout-a11y-plan--cascade-g3.md 16 · distinct · line 76 holds the commit on Enter alone, and no line states opening the editor by Enter, the return of focus to the grid or the early return on a click
+- fanout-a11y-plan--cascade-g3.md 20 · distinct · lines 99–100 place `tab_order` and `ENABLED_TAB_ORDER` in the shared module and name neither `LOAD_TAB_ORDER` nor `CELLS_TAB_ORDER`
+- cascade-compare-a11y-plan.md 3 · distinct · no line names `text_range_no_change_event` or states that a text input's typing and a range's key and pointerdown fire no `change`
