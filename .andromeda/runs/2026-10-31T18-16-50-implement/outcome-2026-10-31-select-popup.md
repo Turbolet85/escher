@@ -1,6 +1,8 @@
-# Outcome — 2026-10-31-select-popup: green + smoke, one finding surfaced
+# Outcome — 2026-10-31-select-popup: green + smoke, one finding surfaced, one CI red fixed
 
-**Outcome word: green + smoke.** The last full block reads `entries 31 · green 27 · red 0 · recorded 0 · timeout 0 · not-run 4`. The four not run are the operator's. `v030-17` reads `implemented`. **Next: the operator pass, entries 28 (hygiene), 29 (the pre-CI commit's push), 30 (the CI read) and 31 (the per-OS tally), then `/andromeda-wrap-session`.** CI has not run on this tree.
+**Outcome word: green + smoke.** The last full block on the pre-CI tree reads `entries 31 · green 27 · red 0 · recorded 0 · timeout 0 · not-run 4`. The four not run are the operator's. `v030-17` reads `implemented`.
+
+**Corrected after the first CI read.** CI#41233234207 on `8cd9c1286` ended red on `Test (macos)` alone, every other job green: `a_groups_header_is_darker_than_a_row_by_weight` read the header and the row equal, because this chunk's paint gave a synthesized bold the same embolden an emboldening build gives every run. A defect of this chunk's, on the operator's word fixed in `packages/blitz-paint/src/text.rs` with the test as written. The block's green above did not witness it: no local gate builds `blitz-paint`'s `font-embolden`. The plan's "no OS-sensitive case" did not hold for this feature on macOS. The record, both builds' readings and the next CI read are in `chunks/2026-10-31-select-popup/evidence/ci.md`. **Next: the fix commit's entries 29, 30 and 31, then `/andromeda-wrap-session`.**
 
 ## What needs a decision
 
@@ -21,7 +23,7 @@
 
 Scope record: `packages/blitz-paint/src/text.rs` · in-intent · serves step 10 · self. `gate.py scope` reads `clean — changed 41 · listed 40 · recorded 1`.
 
-1. **`text.rs`, outside the lists.** Step 4's "brush its row state gives" cannot carry a colour: `TextBrush` holds only a node id and `stroke_text` reads the colour from that node. `stroke_text` now delegates to `stroke_text_as`, which takes a `RunPaint` (a colour in place of the computed one; synthesized bold on request, without which a font with no bold face paints a header no darker than a row). Every other caller paints as before.
+1. **`text.rs`, outside the lists.** Step 4's "brush its row state gives" cannot carry a colour: `TextBrush` holds only a node id and `stroke_text` reads the colour from that node. `stroke_text` now delegates to `stroke_text_as`, which takes a `RunPaint` (a colour in place of the computed one; synthesized bold on request, without which a font with no bold face paints a header no darker than a row). A synthesized bold adds to a build's own embolden, the first CI read's fix. Every other caller paints as before, read by frame hashes on both builds (`evidence/ci.md`).
 2. **`SelectList` has a seventh field, `fresh`.** A click focuses and opens in one step, before a `:focus` rule's restyle. A rule that moves the box, such as a thicker focus border, would otherwise read as the select having moved and close the list at once. The first reconcile takes the anchor again. `a_focus_rule_that_moves_the_selects_box_leaves_the_list_a_click_opened` pins it.
 3. **The public read surface is `SelectListView` and `SelectListRow`,** where the plan says one type. Paint needs the row's fields. The colour constants are associated constants of the view, so they add no type.
 4. **The `select_interaction` `KEYS` table moved one row.** Step 14 says the closed-key tables read as they stand after `focused_pick`'s Escape, but its Enter row now opens and marks the set. That row became `PageDown`; the count stays 14.
@@ -46,7 +48,8 @@ Hand mutations, restored and sha-compared each time, red before green: no paint 
 
 ## What stays unproven
 
-- **CI:** the macOS and Windows jobs, MSRV, coverage floors and the stand repeat over seventeen named targets are entries 29 to 31.
+- **CI on the fix:** the first run's other sixteen jobs were green on `8cd9c1286`; the fix's own run is entries 29 to 31, read in `evidence/ci.md`.
+- **A real macOS build's header** is read by that job alone. This host reproduces the red and the fix through `font-embolden`, which sets the same flag.
 - **The windowed list** is read, not run: the smoke proves the boot alone (entry 27, `service.name=seven_guis`). A whole-screen shot through the binary was read by eye and looked as intended.
 - **What an assistive technology reads** is unmeasured, as stated.
 - **No cold-agent run:** the new `covered` clause and the list could move `wrong_calls`, and `v030-15` owns the next run.

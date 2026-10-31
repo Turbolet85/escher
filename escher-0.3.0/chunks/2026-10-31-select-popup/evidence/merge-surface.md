@@ -19,7 +19,7 @@ graph».
 | `packages/blitz-dom/src/node/mod.rs` | yes | 2/0 | the module and its read types | |
 | `packages/blitz-dom/src/node/select_list.rs` | no, escher's | 539/0 | state, rows, placement, constants, unit tables | F2, F6, F7, F8 |
 | `packages/blitz-paint/src/render.rs` | yes | 3/0 | the module and the one call in `paint_scene` | F6 |
-| `packages/blitz-paint/src/text.rs` | yes | 44/7 | `stroke_text` delegates to `stroke_text_as`, which takes a `RunPaint` | F6, F7 |
+| `packages/blitz-paint/src/text.rs` | yes | 47/3 | `stroke_text` delegates to `stroke_text_as`, which takes a `RunPaint`; a synthesized bold adds to a build's embolden | F6, F7 |
 | `packages/blitz-paint/src/render/select_list.rs` | no, escher's | 155/0 | the list's paint | F5, F6, F7 |
 | `packages/dioxus-native-dom/src/lib.rs` | yes | 1/1 | `is_select`'s re-export | |
 | `packages/dioxus-native-dom/src/snapshot.rs` | no, escher's | 13/5 | an open row's bounds, `closed_select_of`, `is_select` | F9, F10 |
@@ -28,4 +28,5 @@ graph».
 `click_select_row` nor `press_multiple_select_key`'s semantics.
 
 `packages/blitz-paint/src/text.rs` is on no plan list. It has one line of upstream's body changed in effect, the glyph
-colour, and one branch widened, the embolden. It is recorded in the chunk's scope record.
+colour, and one step added after the embolden, which reads no change where no synthesized bold is asked for. It is recorded in
+the chunk's scope record.

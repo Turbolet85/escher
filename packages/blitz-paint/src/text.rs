@@ -673,13 +673,20 @@ pub(crate) fn stroke_text_as<'a>(
                     .or_else(|| stack.last().map(|e| e.text_color))
                     .unwrap_or(Color::BLACK);
 
-                let embolden =
-                    if FONT_EMBOLDEN_ENABLED || (paint.synthesize_bold && synthesis.embolden()) {
-                        let fs = font_size as f64 / scale;
-                        kurbo::Vec2::new((0.015125 * fs).min(0.3), (0.0121 * fs).min(0.3))
-                    } else {
-                        kurbo::Vec2::default()
-                    };
+                let fs = font_size as f64 / scale;
+                let weight = kurbo::Vec2::new((0.015125 * fs).min(0.3), (0.0121 * fs).min(0.3));
+                let embolden = if FONT_EMBOLDEN_ENABLED {
+                    weight
+                } else {
+                    kurbo::Vec2::default()
+                };
+                // A synthesized bold adds to a build's embolden: in its place, a bold run would
+                // read no heavier than the runs beside it on an emboldening build.
+                let embolden = if paint.synthesize_bold && synthesis.embolden() {
+                    embolden + weight
+                } else {
+                    embolden
+                };
 
                 let normalized_coords: &[i16] = bytemuck::cast_slice(run.normalized_coords());
                 scene.draw_glyphs(
