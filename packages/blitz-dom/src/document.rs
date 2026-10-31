@@ -7,7 +7,8 @@ use crate::net::{
     Resource, ResourceHandler, ResourceLoadResponse, StylesheetHandler, StylesheetLoader,
 };
 use crate::node::{
-    ImageData, NodeFlags, RasterImageData, SpecialElementData, Status, TextBrush, select,
+    ImageData, NodeFlags, RasterImageData, SelectListRow, SelectListView, SpecialElementData,
+    Status, TextBrush, select, select_list,
 };
 use crate::scrolling::ScrollAnimationState;
 use crate::selection::TextSelection;
@@ -339,6 +340,8 @@ pub struct BaseDocument {
     pub(crate) select_typeahead: Option<crate::node::select::Typeahead>,
     /// Where the keys and clicks on a `multiple` select stand
     pub(crate) select_cursor: Option<crate::node::select::SelectCursor>,
+    /// The list a single-choice select has open; read through [`Self::live_select_list`]
+    pub(crate) select_list: Option<crate::node::select_list::SelectList>,
 
     // TODO: collapse animating state into a bitflags
     /// Whether there are active CSS animations/transitions (so we should re-render every frame)
@@ -556,6 +559,7 @@ impl BaseDocument {
             text_selection: TextSelection::default(),
             select_typeahead: None,
             select_cursor: None,
+            select_list: None,
         };
 
         // Initialise document with root Document node
@@ -752,6 +756,335 @@ impl BaseDocument {
     /// Starts the text typed into a select afresh, as a click on it does.
     pub fn clear_select_typeahead(&mut self) {
         self.select_typeahead = None;
+    }
+
+    /// Whether `select` can hold a list open: a single-choice select in the document that holds
+    /// focus, is neither disabled nor inert, computes neither `display: none` nor a hidden
+    /// `visibility`, and stands under no transform that shows nothing.
+    fn select_list_allowed(&self, select: NodeId) -> bool {
+        let Some(node) = self.get_node(select) else {
+            return false;
+        };
+        let Some(element) = node.element_data() else {
+            return false;
+        };
+        let shown = || {
+            node.primary_styles().is_some_and(|style| {
+                !style.clone_display().is_none()
+                    && style.clone_visibility() == style::computed_values::visibility::T::Visible
+            })
+        };
+        let invertible = || {
+            std::iter::successors(Some(node), |node| {
+                node.parent.and_then(|parent| self.get_node(parent))
+            })
+            .all(|node| {
+                node.transform().as_deref().is_none_or(|transform| {
+                    let determinant = transform.determinant();
+                    determinant != 0.0 && determinant.is_finite()
+                })
+            })
+        };
+        self.focus_node_id == Some(select)
+            && node.flags.is_in_document()
+            && select::is_single_select(element)
+            && !element.is_disabled()
+            && !node.is_inert()
+            && shown()
+            && invertible()
+    }
+
+    /// The list that stands open: the one reader of the field. It answers only while its select
+    /// may hold one and reads the client rect it opened at.
+    pub(crate) fn live_select_list(&self) -> Option<&select_list::SelectList> {
+        let list = self.select_list.as_ref()?;
+        let live = self.select_list_allowed(list.select)
+            && (list.fresh || self.get_client_bounding_rect(list.select) == Some(list.anchor));
+        live.then_some(list)
+    }
+
+    /// The select whose list stands open, where it is `select`.
+    pub(crate) fn select_list_for(&self, select: NodeId) -> Option<&select_list::SelectList> {
+        self.live_select_list().filter(|list| list.select == select)
+    }
+
+    /// Opens `select`'s list, its highlight on the chosen option, else on the first enabled one. A
+    /// select that may hold no list, or has no row to show, opens nothing.
+    pub(crate) fn open_select_list(&mut self, select: NodeId) {
+        if !self.select_list_allowed(select) {
+            return;
+        }
+        let Some(anchor) = self.get_client_bounding_rect(select) else {
+            return;
+        };
+        let rows = select_list::rows(self, select);
+        let Some((row_height, width)) = self.measure_select_list(select, &rows) else {
+            return;
+        };
+        let options = select_list::option_rows(&rows);
+        let readings = select::readings(self, &options);
+        let current = select::last_chosen(&readings)
+            .or_else(|| readings.iter().position(|option| !option.disabled))
+            .and_then(|index| options.get(index).copied());
+        self.select_list = Some(select_list::SelectList {
+            select,
+            current,
+            scroll_y: 0.0,
+            row_height,
+            width,
+            anchor,
+            fresh: true,
+        });
+        if let Some(current) = current {
+            self.scroll_select_list_to(current);
+        }
+        self.select_typeahead = None;
+        self.changed_nodes.insert(select);
+        self.shell_provider.request_redraw();
+    }
+
+    /// The height of a row, the select's own font on one line with its padding, and the width the
+    /// widest row asks for, as they stand now; `None` with no row to show.
+    fn measure_select_list(&self, select: NodeId, rows: &[select_list::Row]) -> Option<(f64, f64)> {
+        use select_list::{BORDER_WIDTH, GROUP_INDENT, ROW_PADDING_X, ROW_PADDING_Y};
+        if rows.is_empty() {
+            return None;
+        }
+        let scale = self.viewport.scale_f64();
+        let mut font_ctx = self
+            .font_ctx
+            .lock()
+            .unwrap_or_else(std::sync::PoisonError::into_inner);
+        let mut layout_ctx = parley::LayoutContext::new();
+        let line = self.text_row_layout(&mut font_ctx, &mut layout_ctx, select, "x")?;
+        let row_height = f64::from(line.height()) / scale + 2.0 * ROW_PADDING_Y;
+        let mut widest: f64 = 0.0;
+        for row in rows {
+            let Some(node) = self.get_node(row.node) else {
+                continue;
+            };
+            let label = select_list::row_label(node, row);
+            let Some(layout) =
+                self.text_row_layout(&mut font_ctx, &mut layout_ctx, row.node, &label)
+            else {
+                continue;
+            };
+            let indent = if row.indented { GROUP_INDENT } else { 0.0 };
+            widest = widest.max(f64::from(layout.full_width()) / scale + indent);
+        }
+        Some((
+            row_height,
+            widest + 2.0 * ROW_PADDING_X + 2.0 * BORDER_WIDTH,
+        ))
+    }
+
+    /// Closes any list that stands, with no choice. A list that stood marks its select and asks a
+    /// redraw.
+    pub fn close_select_list(&mut self) {
+        if let Some(list) = self.select_list.take() {
+            self.select_typeahead = None;
+            self.changed_nodes.insert(list.select);
+            self.shell_provider.request_redraw();
+        }
+    }
+
+    /// After a layout: closes a list its select can no longer hold, and takes the client rect of a
+    /// list opened since the last layout, which any `:focus` rule has now moved.
+    pub(crate) fn reconcile_select_list(&mut self) {
+        let Some(list) = self.select_list else {
+            return;
+        };
+        if list.fresh && self.select_list_allowed(list.select) {
+            let anchor = self.get_client_bounding_rect(list.select);
+            if let (Some(held), Some(anchor)) = (self.select_list.as_mut(), anchor) {
+                held.anchor = anchor;
+                held.fresh = false;
+            }
+        }
+        if self.live_select_list().is_none() {
+            self.close_select_list();
+        }
+    }
+
+    /// The options of `select`'s open list, and the index among them of the highlighted one.
+    pub(crate) fn select_list_options(&self, select: NodeId) -> (Vec<NodeId>, Option<usize>) {
+        let Some(list) = self.select_list_for(select) else {
+            return (Vec::new(), None);
+        };
+        let options = select_list::option_rows(&select_list::rows(self, select));
+        let current = list
+            .current
+            .and_then(|current| options.iter().position(|option| *option == current));
+        (options, current)
+    }
+
+    /// Moves the highlight to `option` and brings its row in, asking a redraw and marking nothing.
+    pub(crate) fn move_select_list_current(&mut self, option: NodeId) {
+        if let Some(list) = self.select_list.as_mut() {
+            list.current = Some(option);
+        }
+        self.scroll_select_list_to(option);
+        self.shell_provider.request_redraw();
+    }
+
+    /// Writes the open list's scroll offset at once so that the row of `node` shows; reads whether
+    /// `node` has a row there.
+    pub(crate) fn scroll_select_list_to(&mut self, node: NodeId) -> bool {
+        let Some(list) = self.live_select_list() else {
+            return false;
+        };
+        let geometry = select_list::geometry(self, list);
+        let Some(index) = geometry.rows.iter().position(|row| row.node == node) else {
+            return false;
+        };
+        let scroll_y = geometry.scroll_showing(index);
+        if let Some(list) = self.select_list.as_mut() {
+            list.scroll_y = scroll_y;
+        }
+        true
+    }
+
+    /// Scrolls the open list by `delta`, kept within its rows, showing its thumb.
+    pub(crate) fn scroll_select_list_by(&mut self, delta: f64) {
+        let Some(list) = self.live_select_list() else {
+            return;
+        };
+        let select = list.select;
+        let geometry = select_list::geometry(self, list);
+        let scroll_y = geometry.clamped(geometry.scroll_y - delta);
+        if let Some(list) = self.select_list.as_mut() {
+            list.scroll_y = scroll_y;
+        }
+        self.show_scrollbars(select);
+        self.shell_provider.request_redraw();
+    }
+
+    /// What the open list answers at the page point `(x, y)`: a row its `option`, a header its
+    /// `optgroup`, and its border or a row computing `pointer-events: none` its select. `None`
+    /// outside the list and with no list open.
+    pub(crate) fn select_list_hit(&self, x: f32, y: f32) -> Option<HitResult> {
+        use style::computed_values::pointer_events::T as PointerEvents;
+        let list = self.live_select_list()?;
+        let geometry = select_list::geometry(self, list);
+        let scroll = self.viewport_scroll();
+        let (client_x, client_y) = (f64::from(x) - scroll.x, f64::from(y) - scroll.y);
+        if !geometry.holds(client_x, client_y) {
+            return None;
+        }
+        let row = geometry
+            .row_at(client_x, client_y)
+            .map(|row| row.node)
+            .filter(|row| {
+                self.get_node(*row)
+                    .and_then(|row| row.primary_styles())
+                    .is_some_and(|style| style.clone_pointer_events() != PointerEvents::None)
+            });
+        Some(HitResult {
+            node_id: row.unwrap_or(list.select),
+            x: (client_x - geometry.bounds.x) as f32,
+            y: (client_y - geometry.bounds.y) as f32,
+            is_text: false,
+        })
+    }
+
+    /// The select whose list stands open, if any.
+    pub fn open_select(&self) -> Option<NodeId> {
+        self.live_select_list().map(|list| list.select)
+    }
+
+    /// Where an open list shows `node`, relative to the viewport: a row's box, a header's, past the
+    /// scrollport too, and the list's for a group with no header. `None` for any other node, and
+    /// for an option of a select with no list open.
+    pub fn select_list_bounds(&self, node: NodeId) -> Option<BoundingRect> {
+        let list = self.live_select_list()?;
+        if select::owner_select(self, node)? != list.select {
+            return None;
+        }
+        let geometry = select_list::geometry(self, list);
+        match geometry.rows.iter().position(|row| row.node == node) {
+            Some(index) => Some(geometry.row_rect(index)),
+            None => self
+                .get_node(node)?
+                .data
+                .is_element_with_tag_name(&local_name!("optgroup"))
+                .then_some(geometry.bounds),
+        }
+    }
+
+    /// The part of the viewport the rows of an open list show through, for a row or a group of it;
+    /// `None` for any other node.
+    pub(crate) fn select_list_region(&self, node: NodeId) -> Option<BoundingRect> {
+        self.select_list_bounds(node)?;
+        let list = self.live_select_list()?;
+        Some(select_list::geometry(self, list).scrollport)
+    }
+
+    /// What paint reads of the open list; `None` with none open. Only the rows that reach its
+    /// scrollport are read.
+    pub fn select_list_view(&self) -> Option<SelectListView> {
+        use select_list::{GROUP_INDENT, ROW_PADDING_X};
+        let list = self.live_select_list()?;
+        let geometry = select_list::geometry(self, list);
+        let rows = geometry
+            .rows_in_view()
+            .filter_map(|index| {
+                let row = geometry.rows.get(index)?;
+                let node = self.get_node(row.node)?;
+                let bounds = geometry.row_rect(index);
+                let indent = if row.indented { GROUP_INDENT } else { 0.0 };
+                Some(SelectListRow {
+                    node: row.node,
+                    bounds,
+                    text_x: bounds.x + ROW_PADDING_X + indent,
+                    label: select_list::row_label(node, row),
+                    highlighted: list.current == Some(row.node),
+                    disabled: select_list::row_disabled(node),
+                })
+            })
+            .collect();
+        Some(SelectListView {
+            select: list.select,
+            bounds: geometry.bounds,
+            scrollport: geometry.scrollport,
+            thumb: geometry.thumb(),
+            rows,
+        })
+    }
+
+    /// `text` as the list's row for `row` lays it out: the row's own computed font, a group's
+    /// header at weight 700, on one line, the brush naming the row. `None` for a row with no
+    /// styles. Builds a fresh layout on each call and changes no state.
+    pub fn select_row_layout(&self, row: NodeId, text: &str) -> Option<parley::Layout<TextBrush>> {
+        let mut font_ctx = self
+            .font_ctx
+            .lock()
+            .unwrap_or_else(std::sync::PoisonError::into_inner);
+        let mut layout_ctx = parley::LayoutContext::new();
+        self.text_row_layout(&mut font_ctx, &mut layout_ctx, row, text)
+    }
+
+    fn text_row_layout(
+        &self,
+        font_ctx: &mut parley::FontContext,
+        layout_ctx: &mut parley::LayoutContext<TextBrush>,
+        row: NodeId,
+        text: &str,
+    ) -> Option<parley::Layout<TextBrush>> {
+        let node = self.get_node(row)?;
+        let styles = node.primary_styles()?;
+        let mut style = crate::stylo_to_parley::style(row, &styles);
+        if node.data.is_element_with_tag_name(&local_name!("optgroup")) {
+            style.font_weight = parley::FontWeight::BOLD;
+        }
+        let mut builder = layout_ctx.tree_builder(font_ctx, self.viewport.scale(), true, &style);
+        builder.push_text(text);
+        let mut layout = builder.build().0;
+        layout.break_all_lines(None);
+        layout.align(
+            parley::Alignment::Start,
+            parley::AlignmentOptions::default(),
+        );
+        Some(layout)
     }
 
     /// Runs a single-choice select's selectedness setting algorithm, leaving one option chosen.
@@ -1071,6 +1404,9 @@ impl BaseDocument {
         }
         if self.mousedown_node_id == Some(node_id) {
             self.mousedown_node_id = None;
+        }
+        if self.select_list.is_some_and(|list| list.select == node_id) {
+            self.select_list = None;
         }
         if self.text_selection.anchor.node_or_parent == Some(node_id)
             || self.text_selection.focus.node_or_parent == Some(node_id)
@@ -2064,6 +2400,9 @@ impl BaseDocument {
             #[cfg(feature = "tracing")]
             tracing::warn!("No DOM - not resolving hit test");
             return (None, None);
+        }
+        if let Some(hit) = self.select_list_hit(x, y) {
+            return (Some(hit), None);
         }
         let mut scrollbar = None;
         let hit = self

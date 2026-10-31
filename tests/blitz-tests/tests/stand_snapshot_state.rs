@@ -118,8 +118,9 @@ fn invalid(harness: &Harness<DioxusDocument>) -> Vec<String> {
         .collect()
 }
 
-/// Chooses the flight booker's type by keyboard alone: a click focuses its select, then End
-/// chooses its last option, the return flight, and Home its first, the one-way flight.
+/// Chooses the flight booker's type: a click focuses its select and opens its list, End moves
+/// the highlight to its last option, the return flight, and Home to its first, the one-way
+/// flight, and Enter chooses the row.
 fn choose_flight_type(flight: &mut Harness<DioxusDocument>, returning: bool) {
     flight.click("#flight-type");
     flight.press(Key::Named(if returning {
@@ -127,6 +128,7 @@ fn choose_flight_type(flight: &mut Harness<DioxusDocument>, returning: bool) {
     } else {
         NamedKey::Home
     }));
+    flight.press(Key::Named(NamedKey::Enter));
 }
 
 /// The readings [`pressed`] and [`selected`] return, stated by id.

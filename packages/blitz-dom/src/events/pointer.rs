@@ -217,9 +217,13 @@ pub(crate) fn handle_pointermove<F: FnMut(DomEvent)>(
     let buttons = event.buttons;
 
     let mut changed = doc.set_hover_to(x, y);
+    changed |= hover_list_row(doc, x, y);
 
     // Check if we've moved enough to be considered a selection drag (2px threshold)
-    if buttons != MouseEventButtons::None && doc.drag_mode == DragMode::None {
+    if buttons != MouseEventButtons::None
+        && doc.drag_mode == DragMode::None
+        && !pressed_in_list(doc)
+    {
         let dx = x - doc.mousedown_position.x;
         let dy = y - doc.mousedown_position.y;
         if dx.abs() > 2.0 || dy.abs() > 2.0 {
@@ -408,6 +412,12 @@ pub(crate) fn handle_pointerdown(
     doc.drag_mode = DragMode::None;
     doc.scroll_animation = ScrollAnimationState::None;
 
+    // A press on the list selects no text under it; one outside closes the list.
+    if doc.select_list_hit(x, y).is_some() {
+        return;
+    }
+    close_list_outside(doc, x, y);
+
     let Some(hit) = doc.hit(x, y) else {
         // Clear text selection when clicking outside any element
         doc.clear_text_selection();
@@ -580,6 +590,68 @@ pub(crate) fn handle_pointerdown(
             );
         }
     }
+}
+
+/// Moves an open list's highlight to the enabled row under the point; reads whether it moved. It
+/// runs for a pointer that moved and not on every hover refresh, which would undo a key's move.
+fn hover_list_row(doc: &mut BaseDocument, x: f32, y: f32) -> bool {
+    let Some(hit) = doc.select_list_hit(x, y) else {
+        return false;
+    };
+    let enabled_option = doc
+        .get_node(hit.node_id)
+        .is_some_and(|node| select::is_select_option(node) && !select::option_disabled(node));
+    match doc.select_list.as_mut() {
+        Some(list) if enabled_option && list.current != Some(hit.node_id) => {
+            list.current = Some(hit.node_id);
+            true
+        }
+        _ => false,
+    }
+}
+
+/// Whether the pointer went down on an open list, where a drag selects no text.
+fn pressed_in_list(doc: &BaseDocument) -> bool {
+    doc.select_list_hit(doc.mousedown_position.x, doc.mousedown_position.y)
+        .is_some()
+}
+
+/// Closes an open list when the point lands outside it and outside its select, with no choice;
+/// the press goes on to what it landed on.
+fn close_list_outside(doc: &mut BaseDocument, x: f32, y: f32) {
+    let Some(select) = doc.open_select() else {
+        return;
+    };
+    let mut landed = doc.hit(x, y).map(|hit| hit.node_id);
+    while let Some(node) = landed {
+        if node == select {
+            return;
+        }
+        landed = doc.get_node(node).and_then(|node| node.parent);
+    }
+    doc.close_select_list();
+}
+
+/// Whether the click at `event`'s point fell on `row` of an open list, and not on the select's own
+/// box, which shows its chosen option's text.
+fn click_lands_on_row(doc: &BaseDocument, row: NodeId, event: &BlitzPointerEvent) -> bool {
+    doc.select_list_hit(event.page_x(), event.page_y())
+        .is_some_and(|hit| hit.node_id == row)
+}
+
+/// A click on an option of an open list: a disabled row changes nothing and leaves the list open;
+/// any other is chosen, and the list closes.
+fn click_list_row(
+    doc: &mut BaseDocument,
+    select: NodeId,
+    row: NodeId,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) {
+    if doc.get_node(row).is_some_and(select::option_disabled) {
+        return;
+    }
+    doc.close_select_list();
+    doc.apply_select_choice(select, &[row], dispatch_event);
 }
 
 /// A click in a password input places its caret by the bullets painted for its text, never by
@@ -872,22 +944,23 @@ pub(crate) fn handle_click(
                         }
                     }
                 }
-                // A click focuses a select and starts its typed text afresh; it opens no list of
-                // options, and the text it hit inside the select is not selected.
+                // A click focuses a select and starts its typed text afresh, and the text it hit
+                // inside the select is not selected; on a single select it opens the list, or
+                // closes the one that stands.
                 local_name!("select") => {
-                    doc.select_typeahead = None;
-                    doc.text_selection.clear();
-                    generate_focus_events(
-                        doc,
-                        &mut |doc| {
-                            doc.set_focus_to(node_id);
-                        },
-                        dispatch_event,
-                    );
+                    let single = select::is_single_select(el);
+                    let standing = doc.select_list_for(node_id).is_some();
+                    focus_select(doc, node_id, dispatch_event);
+                    if standing {
+                        doc.close_select_list();
+                    } else if single {
+                        doc.open_select_list(node_id);
+                    }
                     break 'matched true;
                 }
-                // A `multiple` select's row takes a click; an option of a closed select has no
-                // box to take one, and the walk goes on to its select.
+                // A `multiple` select's row takes a click, and so does a row of an open list; an
+                // option of a closed select has no box to take one, and the walk goes on to its
+                // select.
                 local_name!("option") => {
                     if let Some(select) = doc.select_of(node_id).filter(|select| {
                         doc.get_node(*select)
@@ -896,12 +969,34 @@ pub(crate) fn handle_click(
                         click_select_row(doc, select, node_id, event.mods, dispatch_event);
                         break 'matched true;
                     }
+                    if let Some(select) = doc.open_select()
+                        && click_lands_on_row(doc, node_id, event)
+                    {
+                        click_list_row(doc, select, node_id, dispatch_event);
+                        break 'matched true;
+                    }
+                }
+                // A header of an open list chooses nothing and leaves it open.
+                local_name!("optgroup") => {
+                    if click_lands_on_row(doc, node_id, event) {
+                        break 'matched true;
+                    }
                 }
                 // Clicking labels triggers click, and possibly input event, of associated input
                 local_name!("label") => {
                     if let Some(target_node_id) =
                         doc.label_bound_input_element(node_id).map(|n| n.id)
                     {
+                        // A label focuses its single select and opens nothing.
+                        if doc
+                            .get_node(target_node_id)
+                            .and_then(|node| node.element_data())
+                            .is_some_and(|el| select::is_single_select(el) && !el.is_disabled())
+                        {
+                            focus_select(doc, target_node_id, dispatch_event);
+                            break 'matched true;
+                        }
+
                         // Apply default click event action for target node
                         let target_node = doc.get_node_mut(target_node_id).unwrap();
                         let syn_event = target_node.synthetic_click_event_data(event.mods);
@@ -1010,6 +1105,19 @@ pub(crate) fn handle_click(
     }
 }
 
+/// Focuses a clicked select and starts its typed text afresh, the document's text selection cleared.
+fn focus_select(doc: &mut BaseDocument, select: NodeId, dispatch_event: &mut dyn FnMut(DomEvent)) {
+    doc.select_typeahead = None;
+    doc.text_selection.clear();
+    generate_focus_events(
+        doc,
+        &mut |doc| {
+            doc.set_focus_to(select);
+        },
+        dispatch_event,
+    );
+}
+
 /// A click on a row of a `multiple` select focuses the select and starts its typed text afresh;
 /// plain it chooses the row alone, with Ctrl or Meta flips it and with Shift spans from the
 /// anchor to it. A disabled select takes no click, and a disabled row changes nothing.
@@ -1082,6 +1190,15 @@ pub(crate) fn handle_wheel<F: FnMut(DomEvent)>(
         BlitzWheelDelta::Lines(x, y) => (x * 20.0, y * 20.0),
         BlitzWheelDelta::Pixels(x, y) => (x, y),
     };
+
+    if doc
+        .select_list_hit(event.page_x(), event.page_y())
+        .is_some()
+    {
+        doc.scroll_select_list_by(scroll_y);
+        return;
+    }
+    doc.close_select_list();
 
     let has_changed = doc.scroll_chain_by(
         doc.get_hover_node_id(),

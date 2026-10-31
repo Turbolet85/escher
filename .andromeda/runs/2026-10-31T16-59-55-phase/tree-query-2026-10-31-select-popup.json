@@ -1,0 +1,320 @@
+[
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name IN ('closed_select_of','visible_region','apply_select_choice','hit_with_scrollbar','select_of','paint_scene') AND callee_kind = 'fn' ORDER BY callee_name, file, line",
+"rows": 62,
+"result": [
+{
+"caller_name": "press_select_key",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 192
+},
+{
+"caller_name": "apply_row_gesture",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 377
+},
+{
+"caller_name": "crate",
+"file": "packages/dioxus-native-dom/src/lib.rs",
+"line": 35
+},
+{
+"caller_name": "visit",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 147
+},
+{
+"caller_name": "lint",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 6
+},
+{
+"caller_name": "flatten",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 337
+},
+{
+"caller_name": "hit",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1763
+},
+{
+"caller_name": "set_hover_to",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2083
+},
+{
+"caller_name": "handle_pointerdown",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 420
+},
+{
+"caller_name": "capture",
+"file": "apps/browser/src/capture.rs",
+"line": 3
+},
+{
+"caller_name": "render_scene",
+"file": "apps/browser/src/capture.rs",
+"line": 95
+},
+{
+"caller_name": "crate",
+"file": "examples/paint_bench.rs",
+"line": 16
+},
+{
+"caller_name": "main",
+"file": "examples/paint_bench.rs",
+"line": 147
+},
+{
+"caller_name": "main",
+"file": "examples/paint_bench.rs",
+"line": 191
+},
+{
+"caller_name": "main",
+"file": "examples/paint_bench.rs",
+"line": 276
+},
+{
+"caller_name": "crate",
+"file": "examples/screenshot.rs",
+"line": 7
+},
+{
+"caller_name": "main",
+"file": "examples/screenshot.rs",
+"line": 119
+},
+{
+"caller_name": "paint_scene",
+"file": "packages/blitz-paint/src/lib.rs",
+"line": 69
+},
+{
+"caller_name": "draw_sub_document",
+"file": "packages/blitz-paint/src/render.rs",
+"line": 1345
+},
+{
+"caller_name": "window",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 9
+},
+{
+"caller_name": "complete_resume",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 349
+},
+{
+"caller_name": "redraw",
+"file": "packages/blitz-shell/src/window.rs",
+"line": 423
+},
+{
+"caller_name": "screenshot",
+"file": "packages/blitz-test-harness/src/screenshot.rs",
+"line": 5
+},
+{
+"caller_name": "paint_viewport",
+"file": "packages/blitz-test-harness/src/screenshot.rs",
+"line": 83
+},
+{
+"caller_name": "color_only_restyle_repaints_anonymous_text",
+"file": "tests/blitz-tests/tests/anonymous_block_restyle.rs",
+"line": 13
+},
+{
+"caller_name": "color_only_restyle_repaints_anonymous_text",
+"file": "tests/blitz-tests/tests/anonymous_block_restyle.rs",
+"line": 22
+},
+{
+"caller_name": "background_size",
+"file": "tests/blitz-tests/tests/background_size.rs",
+"line": 7
+},
+{
+"caller_name": "pixel",
+"file": "tests/blitz-tests/tests/background_size.rs",
+"line": 45
+},
+{
+"caller_name": "outset_box_shadow_shape",
+"file": "tests/blitz-tests/tests/outset_box_shadow_shape.rs",
+"line": 11
+},
+{
+"caller_name": "pixels",
+"file": "tests/blitz-tests/tests/outset_box_shadow_shape.rs",
+"line": 36
+},
+{
+"caller_name": "paint_order",
+"file": "tests/blitz-tests/tests/paint_order.rs",
+"line": 7
+},
+{
+"caller_name": "center_pixel",
+"file": "tests/blitz-tests/tests/paint_order.rs",
+"line": 22
+},
+{
+"caller_name": "bench_page",
+"file": "tests/blitz-tests/tests/paint_tree_bench.rs",
+"line": 163
+},
+{
+"caller_name": "external_page_timings",
+"file": "tests/blitz-tests/tests/paint_tree_bench.rs",
+"line": 289
+},
+{
+"caller_name": "crate",
+"file": "tests/blitz-tests/tests/password_painted_masked.rs",
+"line": 10
+},
+{
+"caller_name": "paint",
+"file": "tests/blitz-tests/tests/password_painted_masked.rs",
+"line": 43
+},
+{
+"caller_name": "pointer_hover_does_not_summon_hidden_scrollbars",
+"file": "tests/blitz-tests/tests/scrollbar_drag.rs",
+"line": 139
+},
+{
+"caller_name": "render",
+"file": "tests/blitz-tests/tests/scrollbar_drag.rs",
+"line": 143
+},
+{
+"caller_name": "thumb_brightens_on_hover_and_drag",
+"file": "tests/blitz-tests/tests/scrollbar_drag.rs",
+"line": 171
+},
+{
+"caller_name": "thumb_pixel",
+"file": "tests/blitz-tests/tests/scrollbar_drag.rs",
+"line": 175
+},
+{
+"caller_name": "white_author_thumb_still_signals_hover_and_drag",
+"file": "tests/blitz-tests/tests/scrollbar_drag.rs",
+"line": 229
+},
+{
+"caller_name": "thumb_pixel",
+"file": "tests/blitz-tests/tests/scrollbar_drag.rs",
+"line": 233
+},
+{
+"caller_name": "scrollbars",
+"file": "tests/blitz-tests/tests/scrollbars.rs",
+"line": 9
+},
+{
+"caller_name": "pixel_in",
+"file": "tests/blitz-tests/tests/scrollbars.rs",
+"line": 37
+},
+{
+"caller_name": "stale_scroll_offset_alone_paints_no_thumb",
+"file": "tests/blitz-tests/tests/scrollbars.rs",
+"line": 100
+},
+{
+"caller_name": "svg_background_size",
+"file": "tests/blitz-tests/tests/svg_background_size.rs",
+"line": 13
+},
+{
+"caller_name": "pixel",
+"file": "tests/blitz-tests/tests/svg_background_size.rs",
+"line": 48
+},
+{
+"caller_name": "crash_test",
+"file": "wpt/runner/src/test_runners/crash_test.rs",
+"line": 5
+},
+{
+"caller_name": "render_to_buffer",
+"file": "wpt/runner/src/test_runners/crash_test.rs",
+"line": 67
+},
+{
+"caller_name": "ref_test",
+"file": "wpt/runner/src/test_runners/ref_test.rs",
+"line": 3
+},
+{
+"caller_name": "render_document_to_buffer",
+"file": "wpt/runner/src/test_runners/ref_test.rs",
+"line": 324
+},
+{
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 891
+},
+{
+"caller_name": "closed_select_of",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 244
+},
+{
+"caller_name": "in_view",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 466
+},
+{
+"caller_name": "crop",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 477
+},
+{
+"caller_name": "clip_region",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 399
+},
+{
+"caller_name": "reader_holds_the_target",
+"file": "tests/blitz-tests/tests/scroll_into_view_nested.rs",
+"line": 119
+},
+{
+"caller_name": "the_visible_region_inside_a_scrolled_box_is_its_padding_box_cut_by_the_viewport",
+"file": "tests/blitz-tests/tests/scrolled_box_client_rect.rs",
+"line": 337
+},
+{
+"caller_name": "a_target_beside_a_box_clipped_on_one_axis_is_refused_covered",
+"file": "tests/blitz-tests/tests/stand_act_obstructed.rs",
+"line": 581
+},
+{
+"caller_name": "cells_arrows_clamp_at_the_grids_ends_and_bring_a_cell_into_view",
+"file": "tests/blitz-tests/tests/stand_keyboard.rs",
+"line": 314
+},
+{
+"caller_name": "region",
+"file": "tests/blitz-tests/tests/transformed_client_rect.rs",
+"line": 174
+},
+{
+"caller_name": "region",
+"file": "tests/blitz-tests/tests/visible_region_transformed.rs",
+"line": 80
+}
+],
+"db_state": "regenerated",
+"plane": "rust"
+}
+]

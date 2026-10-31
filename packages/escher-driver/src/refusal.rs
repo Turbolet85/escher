@@ -17,7 +17,8 @@ pub enum Cause {
     Stale,
     /// The element carries the `disabled` attribute, which the snapshot reads as not enabled.
     Disabled,
-    /// Another element is hit at the point the action would land. A box clipped on one axis
+    /// Another element is hit at the point the action would land. An option of a closed select
+    /// lies under it: click the select first, then the option. A box clipped on one axis
     /// stops a hit at its whole padding box, so an element lying outside it along the axis it
     /// does not clip can read covered though it shows; a box with no width or no height is hit
     /// at its centre on the element that holds it, so it can read covered though nothing covers
@@ -72,11 +73,12 @@ impl Cause {
                  enabled"
             }
             Cause::Covered => {
-                "another element is hit at the point the action would land; a box clipped on one \
-                 axis stops a hit at its whole padding box, so an element lying outside it along \
-                 the axis it does not clip can read `covered` though it shows; a box with no width \
-                 or no height is hit at its centre on the element that holds it, so it can read \
-                 `covered` though nothing covers it"
+                "another element is hit at the point the action would land; an option of a closed \
+                 select lies under it: click the select first, then the option; a box clipped on \
+                 one axis stops a hit at its whole padding box, so an element lying outside it \
+                 along the axis it does not clip can read `covered` though it shows; a box with no \
+                 width or no height is hit at its centre on the element that holds it, so it can \
+                 read `covered` though nothing covers it"
             }
             Cause::OffScreen => {
                 "the element lies outside the viewport, or outside the visible part of a \
@@ -256,11 +258,12 @@ mod tests {
             ),
             (
                 "covered",
-                "another element is hit at the point the action would land; a box clipped on one \
-                 axis stops a hit at its whole padding box, so an element lying outside it along \
-                 the axis it does not clip can read `covered` though it shows; a box with no width \
-                 or no height is hit at its centre on the element that holds it, so it can read \
-                 `covered` though nothing covers it",
+                "another element is hit at the point the action would land; an option of a closed \
+                 select lies under it: click the select first, then the option; a box clipped on \
+                 one axis stops a hit at its whole padding box, so an element lying outside it \
+                 along the axis it does not clip can read `covered` though it shows; a box with no \
+                 width or no height is hit at its centre on the element that holds it, so it can \
+                 read `covered` though nothing covers it",
                 "another element covers this one: act on the covering element or dismiss it first",
             ),
             (

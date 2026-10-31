@@ -95,6 +95,7 @@ fn ids_hold_across_rerenders() {
         let booked = rerender(&mut flight, &format!("flight return book {mode}"), |h| {
             h.click("#flight-type");
             h.press(Key::Named(NamedKey::End));
+            h.press(Key::Named(NamedKey::Enter));
             assert!(h.attr("#flight-return-date", "disabled").is_none());
             h.click("#flight-book")
         });

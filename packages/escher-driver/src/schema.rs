@@ -219,9 +219,11 @@ pub(crate) const SNAPSHOT: VerbSpec = VerbSpec {
 pub(crate) const CLICK: VerbSpec = VerbSpec {
     name: "click",
     level: Level::Instance,
-    help: "clicks the element an id names, then settles; a click on the same point within 500 ms \
-           of the session's time after the last click there, `type`'s own click included, is a \
-           double click, and an `advance` of at least 500 ms separates two single clicks",
+    help: "clicks the element an id names, then settles; a click on a select opens its list or \
+           closes the one standing, and a click on a row of an open list chooses it; a click on \
+           the same point within 500 ms of the session's time after the last click there, \
+           `type`'s own click included, is a double click, and an `advance` of at least 500 ms \
+           separates two single clicks",
     args: &[ArgSpec {
         name: "id",
         kind: ArgKind::Id,
@@ -235,9 +237,10 @@ pub(crate) const TYPE: VerbSpec = VerbSpec {
     name: "type",
     level: Level::Instance,
     help: "types text into the element an id names, replacing what the element holds, then \
-           settles; an empty text clears it; on a select, the text chooses the first option \
-           whose label starts with it, and on a `multiple` select that option alone, with no \
-           click on a row; a text no label starts, or an empty one, leaves a select's choice",
+           settles; an empty text clears it; on a select, focused with no click and leaving no \
+           list open, the text chooses the first option whose label starts with it, and on a \
+           `multiple` select that option alone, with no click on a row; a text no label starts, \
+           or an empty one, leaves a select's choice",
     args: &[
         ArgSpec {
             name: "id",
@@ -258,9 +261,12 @@ pub(crate) const TYPE: VerbSpec = VerbSpec {
 pub(crate) const PRESS: VerbSpec = VerbSpec {
     name: "press",
     level: Level::Instance,
-    help: "presses one key on the focused element, then settles; on a `multiple` select the \
-           arrows, `home` and `end` choose a row alone and with `shift` span to it, while a set \
-           of rows that are not adjacent needs Ctrl, which this verb does not carry",
+    help: "presses one key on the focused element, then settles; on a closed select `enter` and \
+           `space` open its list, and on an open one the arrows, `home` and `end` move its \
+           highlight, which only a screenshot shows, `enter` or `space` chooses the highlighted \
+           row and `escape` closes with no choice; on a `multiple` select the arrows, `home` and \
+           `end` choose a row alone and with `shift` span to it, while a set of rows that are \
+           not adjacent needs Ctrl, which this verb does not carry",
     args: &[
         ArgSpec {
             name: "key",

@@ -14,7 +14,10 @@
 //! name, no typed text, no recording directory's path and nothing the kept check holds; the
 //! host `start` spawns has its streams closed, so this reads the clients alone. And a host
 //! serving Cells, whose screen reads in parts, writes to stderr at `RUST_LOG=trace` none of part
-//! 2's ids and not the name a `type` committed to one of its cells while it answers that part.
+//! 2's ids and not the name a `type` committed to one of its cells while it answers that part. A
+//! host serving the flight booker writes none of the flight type's option ids, names or values
+//! while a `click` opens its list, another chooses a row by id, and a third opens it for an
+//! `escape` to close.
 
 #![cfg(not(target_arch = "wasm32"))]
 
@@ -273,6 +276,119 @@ fn a_cells_part_read_through_the_host_logs_no_id_and_no_name_at_trace() {
          stderr lines",
         ids.len(),
         names.len()
+    );
+}
+
+#[cfg(unix)]
+#[test]
+fn a_select_list_opened_and_chosen_through_the_host_logs_no_option_at_trace() {
+    use std::process::{Command, Stdio};
+    use std::thread;
+    use std::time::{Duration, Instant};
+
+    use common::{Host, clear, drain, found, option_needles, stamped_lines, state_dir};
+    use escher_driver::{ArgValue, Call, attach, call, stop};
+
+    const READY: Duration = Duration::from_secs(60);
+    const EXIT: Duration = Duration::from_secs(10);
+
+    let needles = option_needles();
+    let dir = state_dir("hl-popup");
+    clear(&dir);
+    let mut host = Host(
+        Command::new(BINARY)
+            .args(["serve", "flight-booker", "--session"])
+            .arg(&dir)
+            .env("RUST_LOG", "trace")
+            .stdin(Stdio::null())
+            .stdout(Stdio::piped())
+            .stderr(Stdio::piped())
+            .spawn()
+            .expect("the binary spawns"),
+    );
+    let stdout = drain(host.0.stdout.take().expect("stdout is piped"));
+    let stderr = drain(host.0.stderr.take().expect("stderr is piped"));
+
+    let deadline = Instant::now() + READY;
+    while attach(&dir).is_err() {
+        let exited = host.0.try_wait().expect("the host can be waited on");
+        assert!(exited.is_none(), "the host exited before it answered");
+        assert!(
+            Instant::now() < deadline,
+            "the host answers within the bound"
+        );
+        thread::sleep(Duration::from_millis(10));
+    }
+
+    let id = |value: &str| vec![("id".to_string(), ArgValue::Text(value.to_string()))];
+    let key = |value: &str| vec![("key".to_string(), ArgValue::Text(value.to_string()))];
+    let calls = [
+        ("click", id("flight-type")),
+        ("click", id("flight-type-return")),
+        ("snapshot", Vec::new()),
+        ("click", id("flight-type")),
+        ("press", key("escape")),
+    ];
+    let answers: Vec<String> = calls
+        .iter()
+        .enumerate()
+        .map(|(sent, (verb, args))| {
+            let sent_call = Call {
+                verb: verb.to_string(),
+                args: args.clone(),
+            };
+            let answer = call(&dir, &sent_call).expect("the host answers the call");
+            assert!(answer.accepted, "call {sent} ran");
+            answer.json
+        })
+        .collect();
+    assert!(
+        answers[0].contains("flight-type-return") && answers[2].contains("return"),
+        "the answers hold the options the absences read below are of"
+    );
+
+    stop(&dir).expect("the session stops");
+    let deadline = Instant::now() + EXIT;
+    let status = loop {
+        if let Some(status) = host.0.try_wait().expect("the host can be waited on") {
+            break status;
+        }
+        assert!(Instant::now() < deadline, "the host exits after stop");
+        thread::sleep(Duration::from_millis(10));
+    };
+    let stdout = stdout
+        .join()
+        .expect("the stdout reader ends")
+        .expect("stdout is read to its end");
+    let stderr = stderr
+        .join()
+        .expect("the stderr reader ends")
+        .expect("stderr is read to its end");
+    let stderr = String::from_utf8_lossy(&stderr);
+
+    // A failure names a kind and a count only.
+    assert_eq!(status.code(), Some(0), "the host exits 0 after stop");
+    assert!(
+        stdout.is_empty(),
+        "the host wrote {} bytes to stdout",
+        stdout.len()
+    );
+    let command_spans = stderr
+        .lines()
+        .filter(|line| line.contains(" escher_driver ") && line.contains(" span=\"command\""))
+        .count();
+    assert_eq!(
+        command_spans,
+        calls.len(),
+        "{command_spans} command-span lines for {} calls sent",
+        calls.len()
+    );
+    let lines = stamped_lines(&stderr);
+    let needles_found = found(&stderr, &needles);
+    assert!(
+        needles_found == 0,
+        "{needles_found} of {} option needles found in {lines} stderr lines",
+        needles.len()
     );
 }
 

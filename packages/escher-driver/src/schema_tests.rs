@@ -95,9 +95,19 @@ fn every_verb_states_its_help_its_arguments_and_a_result() {
         (
             Some(TYPE.help),
             "types text into the element an id names, replacing what the element holds, then \
-             settles; an empty text clears it; on a select, the text chooses the first option \
-             whose label starts with it, and on a `multiple` select that option alone, with no \
-             click on a row; a text no label starts, or an empty one, leaves a select's choice",
+             settles; an empty text clears it; on a select, focused with no click and leaving no \
+             list open, the text chooses the first option whose label starts with it, and on a \
+             `multiple` select that option alone, with no click on a row; a text no label starts, \
+             or an empty one, leaves a select's choice",
+        ),
+        (
+            Some(PRESS.help),
+            "presses one key on the focused element, then settles; on a closed select `enter` and \
+             `space` open its list, and on an open one the arrows, `home` and `end` move its \
+             highlight, which only a screenshot shows, `enter` or `space` chooses the highlighted \
+             row and `escape` closes with no choice; on a `multiple` select the arrows, `home` and \
+             `end` choose a row alone and with `shift` span to it, while a set of rows that are \
+             not adjacent needs Ctrl, which this verb does not carry",
         ),
         (
             Some(SCREENSHOT.help),
@@ -106,10 +116,11 @@ fn every_verb_states_its_help_its_arguments_and_a_result() {
         ),
         (
             Some(CLICK.help),
-            "clicks the element an id names, then settles; a click on the same point within \
-             500 ms of the session's time after the last click there, `type`'s own click \
-             included, is a double click, and an `advance` of at least 500 ms separates two \
-             single clicks",
+            "clicks the element an id names, then settles; a click on a select opens its list or \
+             closes the one standing, and a click on a row of an open list chooses it; a click on \
+             the same point within 500 ms of the session's time after the last click there, \
+             `type`'s own click included, is a double click, and an `advance` of at least 500 ms \
+             separates two single clicks",
         ),
         (
             Some(ADVANCE.help),
@@ -122,7 +133,7 @@ fn every_verb_states_its_help_its_arguments_and_a_result() {
             "the time the session's clock moved, in milliseconds: exactly `ms`",
         ),
     ];
-    assert_eq!(amended.len(), 10);
+    assert_eq!(amended.len(), 11);
     for (row, (stated, text)) in amended.into_iter().enumerate() {
         assert!(stated == Some(text), "row {row}");
     }

@@ -364,7 +364,7 @@ class LegScriptTest(unittest.TestCase):
                      "password_caret_click", "transformed_client_rect", "accessibility_active_descendant_unread",
                      "virtual_clock_engine", "select_interaction", "text_extent", "visible_region_transformed",
                      "hit_non_invertible_transform", "open_state", "checkable_change_event",
-                     "text_range_no_change_event"):
+                     "text_range_no_change_event", "select_popup", "select_popup_painted"):
             self.assertIn(word, words)
         self.assertNotIn("--ignored", words)
         self.assertEqual(log.splitlines()[-1], "stand-repeat: 3 of 3 rounds green")

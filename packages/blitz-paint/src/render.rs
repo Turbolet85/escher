@@ -4,6 +4,7 @@ mod box_shadow;
 mod clip_path;
 mod form_controls;
 mod mask;
+mod select_list;
 
 use std::cell::RefCell;
 use std::collections::HashMap;
@@ -241,6 +242,8 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
             }),
             viewport_clip_rect,
         );
+
+        self.paint_select_list(scene);
 
         // Render debug overlay
         if self.dom.devtools().highlight_hover {

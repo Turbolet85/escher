@@ -223,11 +223,11 @@
       "observed_gap": "No popup is painted: Enter and Space open nothing on a single select, an option of a closed select is refused `covered`, a group's label is unpainted and `size` is unread (2026-10-31-engine-debts).",
       "verification": {
         "method": "integration",
-        "acceptance": "A closed select opens a painted list of its options; a person or an agent chooses one by pointer and by key and the select then reads that choice; an option of the opened list can be acted on through the driver; the list closes without a choice.",
-        "ref": null,
-        "status": "planned"
+        "acceptance": "A closed select opens a painted list of its options; a person or an agent chooses one by pointer and by key and the select then reads that choice; an option of the opened list can be acted on through the driver; the list closes without a choice. Concretely, in both layout modes through the real dispatch: `select_popup` opens by click, Enter and Space, chooses by click, Enter, Space and Tab, one `input` then one `change` per change, and closes by Escape, a second click and a click outside with no event; `select_popup_painted` reads the rows on frames; `stand_act_popup` accepts `click flight-type`, then `click flight-type-return`, the next snapshot reading value `return`, and closes by `press escape` with the value unchanged.",
+        "ref": "tests/blitz-tests/tests/select_popup.rs · tests/blitz-tests/tests/select_popup_painted.rs · tests/blitz-tests/tests/stand_act_popup.rs::a_click_opens_the_list_and_a_click_on_a_row_chooses_it",
+        "status": "implemented"
       },
-      "chunk": null,
+      "chunk": "2026-10-31-select-popup",
       "notes": "2026-10-31: added at the 2026-10-31-engine-debts wrap, the operator's word on the P5 route card (\"Apply as written (Recommended)\", by dialog, 2026-10-31, snapped in that chunk's inputs), carrying the phase card's rows 1 to 3; no popup was built on the founder's «Давай нарисовать в отдельном чанке» and «Только строки multiple (Рекомендую)», its chunk placed «Сразу после Engine debts (Рекомендую)», and `size` is this entry's on «В чанк с попапом (Рекомендую)» (the founder, 2026-10-31, relayed verbatim by the operator). Nothing starts it: escher's pause stands, and only he lifts it."
     }
   ]

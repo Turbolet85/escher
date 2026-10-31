@@ -144,12 +144,15 @@ impl Builder<'_> {
             let node = self.doc.get_node(node_id)?;
             let element = node.element_data()?;
             // A closed select's option or group is seen in its select's box, the one it shows or
-            // not; a `multiple` select's rows and groups have boxes of their own.
+            // not; an open list's rows and a `multiple` select's have boxes of their own.
             let boxed_by = match closed_select_of(self.doc, node_id) {
                 Some(select) => select,
                 None => node_id,
             };
-            let bounds = self.doc.get_client_bounding_rect(boxed_by)?;
+            let bounds = match self.doc.select_list_bounds(node_id) {
+                Some(bounds) => bounds,
+                None => self.doc.get_client_bounding_rect(boxed_by)?,
+            };
             Some((author_id, node_id, element, bounds))
         });
         match element {
@@ -239,12 +242,17 @@ pub fn is_masked_input(element: &ElementData) -> bool {
         })
 }
 
-/// The select with no `multiple` an `option` or an `optgroup` belongs to; `None` for any other
-/// node.
+/// The select with no `multiple` and no list open that an `option` or an `optgroup` belongs to;
+/// `None` for any other node.
 pub fn closed_select_of(doc: &BaseDocument, node: NodeId) -> Option<NodeId> {
     let select = doc.select_of(node)?;
     let element = doc.get_node(select)?.element_data()?;
-    (!is_multiple_select(element)).then_some(select)
+    (!is_multiple_select(element) && doc.open_select() != Some(select)).then_some(select)
+}
+
+/// Whether `element` is a `select`, which the driver's `type` focuses with no click.
+pub fn is_select(element: &ElementData) -> bool {
+    &*element.name.local == "select"
 }
 
 /// Whether `element` is a `select` with `multiple`, whose rows have boxes of their own.

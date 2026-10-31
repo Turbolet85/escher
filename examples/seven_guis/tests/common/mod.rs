@@ -422,6 +422,36 @@ pub fn stand_needles(sentinel: &str) -> Needles {
     Needles { ids, names }
 }
 
+/// Reads the needles of the flight booker's `flight-type` options, booted here in process: each
+/// option's id, its name and its value. Asserts that the two options were read.
+#[track_caller]
+pub fn option_needles() -> Vec<String> {
+    use seven_guis::stand::{self, LeanTask};
+
+    let harness = stand::boot(LeanTask::FlightBooker, stand::options(true));
+    let snapshot = harness.doc.snapshot();
+    let select = snapshot
+        .get("flight-type")
+        .expect("the flight booker reads its select");
+    assert_eq!(
+        select.children.len(),
+        2,
+        "the select's two options are read"
+    );
+    let mut needles = Vec::new();
+    for option in &select.children {
+        let value = harness.attr(&format!("#{}", option.id), "value");
+        needles.extend([option.id.clone(), option.name.clone()]);
+        needles.extend(value);
+    }
+    assert_eq!(needles.len(), 6, "each option gives three needles");
+    assert!(
+        needles.iter().all(|needle| !needle.is_empty()),
+        "no needle is empty"
+    );
+    needles
+}
+
 /// Reads part `part` of the Cells screen the binary serves, booted here in process: its author
 /// keys as id needles, by `stand_needles`' rule, and the middle one of its column-A cells, where
 /// a check commits the name it then looks for. Cells' own names at boot — empty cells and row

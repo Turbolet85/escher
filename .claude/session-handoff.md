@@ -26,3 +26,6 @@ The eight engine changes recorded as ratified by the founder's words F1 to F10; 
 ## Deferred learnings
 - `recurrence-despite-learning`: 2026-10-27 «`fanout-results.md`'s lines are a grammar» says one target file per raised item; two raised items named a sentence and landed on the bodies alone.
 - `recurrence-despite-learning`: `harness.center_of` on an inline element reads no box (`checkable_change_event`); the report calls it a standing learning, and no text under `.claude/rules` or `session-learnings.md` holds it.
+
+## Session End Status
+Completed normally at 2026-10-31 19:16:42

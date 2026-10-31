@@ -180,6 +180,17 @@ select[multiple] > optgroup {
     display: block;
 }
 
+/* A `size` makes the box that many rows tall (its height a presentational hint of
+ * `size × 1.2em`), each row exactly `1.2em` on every font, and the rest scroll. */
+select[multiple][size] {
+    overflow-y: auto;
+}
+
+select[multiple][size] > option,
+select[multiple][size] > optgroup > option {
+    line-height: 1.2;
+}
+
 select[multiple] > option:checked,
 select[multiple] > optgroup > option:checked {
     background-color: #c8c8c8;

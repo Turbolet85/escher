@@ -417,6 +417,53 @@ fn a_screenshot_answers_one_line_whose_png_is_the_screen() {
 }
 
 #[test]
+fn a_hosted_click_opens_a_list_a_shot_shows_it_and_a_click_on_a_row_chooses() {
+    // The host boots in the incremental layout mode; so does this.
+    let mut held = escher_driver::Session::start("flight-booker", || {
+        stand::boot(LeanTask::FlightBooker, stand::options(true))
+    })
+    .expect("the slug is a label");
+    let opening = Call {
+        verb: "click".to_string(),
+        args: vec![(
+            "id".to_string(),
+            escher_driver::ArgValue::Text("flight-type".to_string()),
+        )],
+    };
+    assert!(held.run(&opening).is_ok(), "the click runs in process");
+    let shot = Call {
+        verb: "screenshot".to_string(),
+        args: Vec::new(),
+    };
+    let Ok(Outcome::Shot { png, .. }) = held.run(&shot) else {
+        panic!("the screenshot runs in process");
+    };
+
+    let flight = Session::start("cc-popup", "flight-booker");
+    let opened = flight.accepted(&["click", "--id", "flight-type"]);
+    assert!(
+        opened.contains("flight-type-return"),
+        "the click's diff names the rows"
+    );
+    let answer = flight.accepted(&["screenshot"]);
+    let hosted = string_at(&answer, "png")
+        .and_then(|text| decode_base64(&text))
+        .expect("the png is base64");
+    assert!(
+        hosted == png,
+        "the shot with the list open is the screen's, as painted in process"
+    );
+    flight.accepted(&["click", "--id", "flight-type-return"]);
+    assert!(
+        flight
+            .accepted(&["snapshot"])
+            .contains("value=\\\"return\\\""),
+        "the next snapshot reads the row's value"
+    );
+    flight.stop();
+}
+
+#[test]
 fn lint_answers_one_line_of_findings() {
     let counter = Session::start("cc-lint", "counter");
     let answer = counter.accepted(&["lint"]);

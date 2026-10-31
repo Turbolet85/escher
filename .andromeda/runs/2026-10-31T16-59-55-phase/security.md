@@ -1,0 +1,36 @@
+# security extract
+
+## Relevance
+relevant — the list is an engine change in every document, remote pages included, admitting new pointer and key input and new pixels, and reaching the driver's refusal, help and snapshot readings.
+
+## Constraints
+- The list's readers of an option's label and value, a group's `label` and `size` take parsed content from remote pages, so security-plan requires them to stay in-process readers with no log site or panic path, leaving escher only by the ratified carriers (per security-plan §Input Validation, Markup attributes; the vector per §Threat Model Summary, Attack surface, remote web content).
+- If this chunk reads `size`, security-plan requires it to pass the numeric-attribute form, default fallback on a bad value and a clamp where the value drives a count, and it requires the list's geometry to stay finite and its paint to cull non-finite values, however many options or however long a label a page authors (per security-plan §Input Validation, Markup numeric attributes · Layout values · Paint values). Whether any of the three already bounds a popup's box is research's question.
+- A choice from the open list must pass the one write path `apply_select_choice`, firing `input` then `change` as the `select` row states, a choice of the chosen option firing nothing and a disabled option or select never chosen; the choice may leave only by that row's named exits (per security-plan §Input Validation, `select` and `select` with `multiple` rows in `.andromeda/security-plan-detail/input-validation.md`).
+- The open list's keys must be a closed key match, every other key doing nothing, and typeahead must stay in the private buffer, never kept past its 1 s nor carried out; the keys themselves are the founder's P4 fork (per security-plan §Input Validation, `select` row in `.andromeda/security-plan-detail/input-validation.md`).
+- Acting on an option through the driver must run through `validate` and `Session::run` alone, an element that cannot take the call refused with nothing run in the fixed cause order, no `NodeId` kept between calls or crossing a carrier, and no `unwrap`, `expect` or panic on anything a call supplies (per security-plan §Input Validation, Driver command schema).
+- The restated `covered` reading and the schema help must stay fixed `'static` text; `Refusal` keeps its closed eight causes and no `String` field, so a refusal or help line holds no option label or value (per security-plan §Error Handling, Error format).
+- security-plan classifies each thing the list adds to the driver: a new field of a closed value set inside a ratified carrier (an open or `expanded` reading, say) is no widening, while authored text, an open value set, a new carrier or a new exit is; the `optgroup` row leaves a group's `label` as a name unratified, so a painted or read group label is named on the wrap's founder card (per security-plan §Input Validation, Driver session socket widening rule and `optgroup` row).
+
+## Patterns to follow
+- The closed key match shape security-plan records for `press_multiple_select_key`, with its disabled gate, as the form for the open list's keys (per security-plan §Input Validation, `select` with `multiple` row).
+- `click_select_row` behind `handle_click`'s `option` arm as security-plan records it: a disabled select stops it, then focus, then clearing typeahead and text selection, a disabled row changing nothing (per security-plan §Input Validation, `select` with `multiple` row).
+- Stale ids resolving to `None` through `get`, and the public select readers going through `get_node`, as the form for any node the open list holds (per security-plan §Error Handling, Graceful degradation; §Input Validation, public select readers row).
+- A boundary row closing with its statement that no carrier, verb, argument, key name, result field, cause, session error, exit, log field or span is added, pinned in both layout modes, for this chunk's restated `select` row and its stated limits (per security-plan §Input Validation, `select` row).
+
+## Anti-patterns to avoid
+- A second write path, or a list state read that a page's attribute text can steer past the disabled and `inert` gates: `inert` and `disabled` read by presence and bar focus and hit (per security-plan §Input Validation, Markup attributes).
+- Option labels, values or a group's label in a log field, print or span: escher's sink redacts only its own reach, and upstream's `fmt::init()` subscribers and `env_logger` stay unscrubbed, so the bar is no emission at all (per security-plan §Logging & Monitoring, Log format and backends).
+- Overlay code reaching the node accessors security-plan lists as panic paths, on an option that computes `display: none` or a node a mutation removed while the list stands open (per security-plan §Error Handling, Panic paths). Whether the overlay's design can reach them is research's question.
+
+## Contract bindings
+- security ↔ wrap playbook: the chunk's Boundary widening halts once as the founder's answer card; each new input and pixel class goes on it, classified by the widening rule (per security-plan §Input Validation, Driver session socket widening rule).
+- security ↔ tests: a recorded check of a popup session stays owner-only and is never committed, the two stand-Counter checks being the one exception, and a kept check holds no pixel (per security-plan §Data Protection, Files (kept checks) · Files (committed checks)); fixtures hold no real PII (obs §PII Scrubbing).
+- security ↔ tests §CI Integration: the audit job stays the security gate; any crate a fork would need is named on that fork, and no package enters `Cargo.lock` otherwise (per security-plan §Dependency Security, Audit tool · CI integration).
+- security ↔ a11y and design: the reduced-motion fork must not bring an env read into the driver or an unregistered one anywhere, each env value read being a registered row (per security-plan §Secret Management, Environment values read); an animated list must add no wait argument or result field to a verb, and a settle never waits (per security-plan §API Security, Settle and loads in flight).
+
+## Acceptance criteria contributions
+- With the select disabled or under `inert`, or the option disabled, pointer, key and driver paths open nothing or change no choice and fire no `input` or `change`; removing the select by mutation while its list stands open ends with no panic, in both layout modes (per security-plan §Input Validation, Markup attributes).
+- A page with a non-numeric and an oversized `size`, a very large option count and a label of 5,500 characters opens or refuses the list with finite geometry and no panic, in both layout modes (per security-plan §Input Validation, Markup numeric attributes).
+- A sentinel in an option's label, value and group label appears in no record of the `escher_telemetry` sink and no `command` span across opening, choosing and refusing (per security-plan §Logging & Monitoring, Log format and backends).
+- The chunk's diff leaves `VERBS` at twelve, the refusal causes at eight and the session errors, exit statuses, carriers, env reads and workspace crates unchanged, unless a fork names the addition (per security-plan §Input Validation, Driver command schema).

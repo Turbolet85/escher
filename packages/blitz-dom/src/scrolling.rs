@@ -666,6 +666,10 @@ impl BaseDocument {
         vertical: ScrollLogicalPosition,
         horizontal: ScrollLogicalPosition,
     ) {
+        // A row of an open list scrolls within the list, and nothing else moves.
+        if self.scroll_select_list_to(node_id) {
+            return;
+        }
         let Some(target_size) = self.nodes.get(node_id).map(|node| node.final_layout().size) else {
             return;
         };
@@ -739,13 +743,17 @@ impl BaseDocument {
     /// containing-block chain whose `overflow` on that axis is not `visible`, each padding box
     /// where its transforms show it. Exact under a translate and a scale; under a rotation it
     /// reads the bounding box of the rotated padding box, so it holds corners the box does not
-    /// show.
+    /// show. A row or a group of an open list is seen through the list, past any box that holds
+    /// its select.
     ///
     /// `None` for a node that does not resolve, and when nothing is left. It reads layout and
     /// scroll offsets and writes nothing. The element's own box is not consulted: a caller
     /// tests a point or a rect of the element against the answer.
     pub fn visible_region(&self, node_id: NodeId) -> Option<BoundingRect> {
         self.nodes.get(node_id)?;
+        if let Some(region) = self.select_list_region(node_id) {
+            return Some(region);
+        }
         let scale = self.viewport.scale() as f64;
         let (mut left, mut top) = (0.0_f64, 0.0_f64);
         let mut right = self.viewport.window_size.0 as f64 / scale;

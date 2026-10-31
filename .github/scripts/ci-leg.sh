@@ -56,7 +56,8 @@ run_leg() {
             --test hit_clipped_at_scrolling_box --test password_caret_click --test transformed_client_rect
             --test accessibility_active_descendant_unread --test virtual_clock_engine --test select_interaction
             --test text_extent --test visible_region_transformed --test hit_non_invertible_transform
-            --test open_state --test checkable_change_event --test text_range_no_change_event)
+            --test open_state --test checkable_change_event --test text_range_no_change_event
+            --test select_popup --test select_popup_painted)
         for round in 1 2 3; do
             echo "stand-repeat: round $round of 3"
             cargo test -p blitz-tests --locked "${stand[@]}" || return

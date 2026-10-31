@@ -1,0 +1,45 @@
+# a11y · ARIA Patterns & Roles — category read
+
+## Carried
+- (.andromeda/a11y-plan-detail/aria-patterns-roles.md:19) A single select must keep reading `ComboBox` and a `multiple` select `ListBox` with the list open or closed, the role table's check still passing, and this line's citations must move with any edit to the mapping they cite.
+  > - **Select** — `<select multiple>` is ListBox, else ComboBox (packages/blitz-dom/src/accessibility.rs:498-515; tests/blitz-tests/tests/accessibility_roles.rs:128-155)
+- (.andromeda/a11y-plan-detail/aria-patterns-roles.md:20) A `multiple` select must keep writing `set_multiselectable`; the popup applies to the closed single select and must not change this role's state.
+  > - **Select, `multiple`** — a `multiple` select's `ListBox` writes `set_multiselectable` (packages/blitz-dom/src/accessibility.rs) — as measured at escher-0.3.0/chunks/2026-10-31-engine-debts/report.md
+- (.andromeda/a11y-plan-detail/aria-patterns-roles.md:21) An `optgroup` must stay `Role::Group` named by its non-empty `label`, and "unpainted" must be restated here if the chunk paints a group's label in the open list, which the chunk is required to decide.
+  > - **Option group** — `optgroup` → `Role::Group`, its non-empty `label` attribute its name; a group's label is named in the tree and unpainted (packages/blitz-dom/src/accessibility.rs) — as measured at escher-0.3.0/chunks/2026-10-31-engine-debts/report.md
+- (.andromeda/a11y-plan-detail/aria-patterns-roles.md:25) Every option of a single select, open or closed, must stay in the tree with `hidden`, `inert` and `visibility: hidden` still excluding it, and this carve-out, written on options computing `display: none`, must be restated if an open list changes what they compute.
+  > - **Hidden content** — `aria-hidden="true"` keeps the node but marks it hidden (`is_hidden`); `hidden`, `display: none` and `visibility: hidden` exclude it — an `option` of a `select`, its child or under its `optgroup` (`is_select_option`), excepted from `display: none`, which every option of a single-choice select but its chosen one computes and a `multiple` select's rows do not: it stays in the tree, `hidden`, `inert` and `visibility: hidden` still excluding it (packages/blitz-dom/src/accessibility.rs:280-281; packages/blitz-dom/src/accessibility.rs:283-296); children of a hidden element are excluded (packages/blitz-dom/src/accessibility.rs:178-181; tests/blitz-tests/tests/accessibility_hidden.rs:28-137)
+- (.andromeda/a11y-plan-detail/aria-patterns-roles.md:16) An option's `selected` must keep reading its chosen state, so a choice from the open list must reach the tree as that state and an author's `aria-selected` must not override it.
+  > a select's option excepted, its `selected` its chosen state (packages/blitz-dom/src/accessibility.rs:184-194)
+- (.andromeda/a11y-plan.md:5) The chunk's assertions must be held to the tier-0 criteria, on which the list's keys, contrast and focus order are judged.
+  > **A11y tier:** `0 — SC 2.1.1 · 1.4.3 · 2.4.3`
+- (.andromeda/a11y-plan.md:37) If the tree says whether the select is open, that read must be asserted off the built tree and must not be claimed as measured at an assistive technology, since no stand binary builds the adapter.
+  > `aria-expanded`, `aria-disabled` and `aria-level` — still one read per attribute; the description and the new closed values leave only to the platform adapter, which no stand binary builds, so what an assistive technology reads of them is not measured.
+- (.andromeda/a11y-plan.md:55) Any `expanded` the builder writes for an open select must leave this pinned `aria-expanded` table passing as stated.
+  > the merged `aria-expanded` (true and false and nothing else)
+- (.andromeda/a11y-plan.md:91) The body's Hidden content line must stay true of an open list, and must move with the detail line if the carve-out is restated.
+  > - **Hidden content** — `aria-hidden="true"` keeps a node, marked hidden; `hidden`, `display: none` and `visibility: hidden` exclude it and its children, an `option` under a `select` excepted from `display: none`.
+- (.andromeda/a11y-plan.md:123) This line's "no popup is painted" must be restated at the chunk's close, an `optgroup`'s options must stay the select's own in tree order, and a `multiple` select's own keys and row clicks must stay as they stand.
+  > an `optgroup`'s options are the select's own in tree order, a `multiple` select takes its own keys and row clicks, and no popup is painted.
+- (.andromeda/a11y-plan.md:133) The focus fork must name where the tree's focus sits while the list is open, since an active option cannot be carried by `aria-activedescendant` while that attribute stays unread and pinned so.
+  > the tree's focus is the list, never the option — the builder reads no `aria-activedescendant` (SC 4.1.2 work outside the tier-0 target), kept unread and pinned by `accessibility_active_descendant_unread`.
+- (.andromeda/a11y-plan.md:192) The open list's options must take their roles and names from the one builder and the checks' stated tables, with no second mapping added for the overlay.
+  > the roles and names the checks expect are stated once, in the shared module's tables — never a second role or name mapping.
+- (.andromeda/a11y-plan.md:194) An open list's options in the snapshot must take role, name, focus and `selected` from the tree and never from the element or the overlay.
+  > `DioxusDocument::snapshot` takes each node's role, name, focus and `selected`, `pressed` and `invalid` from `accessibility_tree`, never from the element
+- (.andromeda/a11y-plan.md:198) An option the driver can act on in the open list must satisfy the actionable-key rule, and `unkeyed_actionable` must still return nothing on every stand task, the stand's `select#flight-type` options included.
+  > The actionable-key rule: every element an agent can act on — focusable, carrying an interactive role or an event listener — reads an author key, so its `author_id` is that key and holds under any edit of the code around it; `DioxusDocument::unkeyed_actionable` is the check, with no second role mapping, and returns nothing on every stand task
+- (.andromeda/a11y-plan.md:200) The flight booker's select must keep stating its choice by its options' `selected`, its popup adding no ARIA state attribute to the stand's markup beyond what a fork names.
+  > the flight booker's mode a `select` whose options state its choice by `selected`
+- (.andromeda/a11y-plan.md:202) The tree facts on a `multiple` select and an `optgroup` must stay true or be restated with the chunk's lean or fork on painting a group's label, and what an assistive technology reads must stay stated as not measured.
+  > - A `multiple` select carries `set_multiselectable` in the tree and its rows read their own client rects in the snapshot, its `value` reading `select_value`, its first chosen option in tree order; an `optgroup` reads `Role::Group`, its non-empty `label` attribute its name, named in the tree and unpainted; what an assistive technology reads of them is not measured.
+- (.andromeda/a11y-plan.md:241) The chunk's tree and select assertions must run in the `a11y` leg, whose list must grow and whose count of fourteen must move if a new test file carries them.
+  > `cargo test --workspace --locked` over fourteen files, `accessibility_hidden`, `accessibility_roles`, `focusability_updates`, `stand_keyboard`, `stand_contrast`, `stand_accessibility_ids`, `accessibility_states`, `accessibility_label`, `accessibility_description`, `accessibility_merged_states`, `accessibility_active_descendant_unread`, `inert_subtree`, `select_interaction` and `stand_act_select`
+
+## Bindings
+- **Hidden content ↔ body §6 Visibility and hit-testing**: the option carve-out stands in the detail and in §6's line pointing back to it; a restatement of one must move the other, (.andromeda/a11y-plan-detail/aria-patterns-roles.md:25) and (.andromeda/a11y-plan.md:176)
+- **Select role ↔ body §5 Keyboard handling**: the roles stay as mapped while the key contract is the founder's P4 fork, and the keyboard line's "no popup is painted" must end with the chunk, (.andromeda/a11y-plan-detail/aria-patterns-roles.md:19) and (.andromeda/a11y-plan.md:123)
+- **Option group ↔ body §7 Accessibility tree output**: "named in the tree and unpainted" stands in both, and must move together if the group's label is painted, (.andromeda/a11y-plan-detail/aria-patterns-roles.md:21) and (.andromeda/a11y-plan.md:202)
+- **Option chosen state ↔ body §7 snapshot model**: the tree's `selected` is what the snapshot reads of an option, so the one write path's choice must reach both through the tree, (.andromeda/a11y-plan-detail/aria-patterns-roles.md:16) and (.andromeda/a11y-plan.md:194)
+- **Open state ↔ body §3 Harness Contract**: an open select's `expanded` must be asserted off the built tree beside the merged `aria-expanded` table, (.andromeda/a11y-plan.md:37) and (.andromeda/a11y-plan.md:55)
+- **A11y leg ↔ test-plan §10**: the leg's list and the `stand-repeat` list named beside it must move with any new select check, (.andromeda/a11y-plan.md:241)

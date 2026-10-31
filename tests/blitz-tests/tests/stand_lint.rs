@@ -489,3 +489,31 @@ fn the_lint_verb_answers_what_the_reader_reads() {
         }
     }
 }
+
+#[test]
+fn an_open_lists_rows_read_no_overlap_on_the_stand() {
+    const ROWS: [&str; 2] = ["flight-type-one-way", "flight-type-return"];
+    for incremental in [false, true] {
+        let at = format!("incremental={incremental}");
+        let (mut session, _ticks) = hold(LeanTask::FlightBooker, incremental);
+        assert!(
+            act(&mut session, &click("flight-type")).is_some(),
+            "{at}: the click opens the list"
+        );
+        let findings = session.lint();
+        assert!(findings.is_ok(), "{at}: the lint reads the open list");
+        let overlapping = findings
+            .iter()
+            .flatten()
+            .filter(|finding| {
+                let other = match &finding.reason {
+                    Reason::Overlap { other, .. } => other.as_str(),
+                    _ => "",
+                };
+                finding.defect == Defect::Overlap
+                    && (ROWS.contains(&finding.id.as_str()) || ROWS.contains(&other))
+            })
+            .count();
+        assert_eq!(overlapping, 0, "{at}: no row reads an overlap");
+    }
+}

@@ -235,7 +235,11 @@ impl BaseDocument {
                 Some(_) => builder.set_invalid(Invalid::True),
             }
 
-            if let Some(aria_expanded) = element_data.attr(local_name!("aria-expanded"))
+            // A single select states whether its list is open and reads no author attribute
+            // (https://www.w3.org/TR/html-aam-1.0/#el-select-combobox).
+            if select::is_single_select(element_data) {
+                builder.set_expanded(self.select_list_for(node.id).is_some());
+            } else if let Some(aria_expanded) = element_data.attr(local_name!("aria-expanded"))
                 && let Ok(aria_expanded) = aria_expanded.parse()
             {
                 builder.set_expanded(aria_expanded);

@@ -78,13 +78,14 @@ Witnesses: `stand_snapshot`, `stand_snapshot_state`, `stand_snapshot_text`, `sta
 settled step and returns its diff. An id the screen does not read is refused `stale` when an earlier screen of the
 session read it, else `not-found`; a `click` or a `type` on a target that cannot take it is refused `disabled`,
 `off-screen` or `covered`, in that order. `type` replaces what a control holds, and on a `select` it chooses the first
-enabled option whose label starts with the text, on a `multiple` select that option alone with no click on a row. A
-`click` on a `multiple` select's row chooses it. `scroll` brings its target into view through every scrolling box that holds
+enabled option whose label starts with the text, on a `multiple` select that option alone with no click on a row, and
+it leaves no list open. A `click` on a single `select` opens its list or closes the one standing, and a `click` on an
+open list's row chooses it. A `click` on a `multiple` select's row chooses it. `scroll` brings its target into view through every scrolling box that holds
 it and answers `in_view`. The five acting verbs wait on a page load in flight for up to `LOAD_WAIT`, 5 s of wall
 time, moving no time on the instance; a step that does not go quiet answers `settled: false` with its busy class.
 
 Witnesses: `stand_act_ids`, `stand_act_keys`, `stand_act_filled`, `stand_act_disabled`, `stand_act_obstructed`,
-`stand_act_scroll`, `stand_act_select`, `stand_act_states`, `stand_settle`, `stand_load_wait`.
+`stand_act_scroll`, `stand_act_select`, `stand_act_popup`, `stand_act_states`, `stand_settle`, `stand_load_wait`.
 
 ### One virtual clock
 
@@ -131,6 +132,13 @@ Escher changed the engine, for every document and not the stand alone, in these 
 - **keyboard activation**: Enter and Space on a focused button and its kin dispatch a click;
 - **click focus**: a click focuses a button or a select;
 - **a single-choice `select` model**: arrows, `Home`, `End` and typeahead;
+- **a `select` list**: a click, Enter and Space open a list the engine paints over the page, past any box that clips the
+  select, in every document and through every renderer that paints with `blitz-paint`. Its rows are the select's own
+  options, a labelled group's header among them; arrows, `Home`, `End` and typed text move a highlight; Enter, Space, Tab
+  and a click on a row choose, one `input` then one `change`; Escape, a second click, a click outside, which goes on to
+  what it landed on, and the page scrolling close it with no event. Focus stays on the select, whose tree node states
+  `expanded`;
+- **`size`** on a `multiple` select makes it that many rows tall, the rest scrolling;
 - **a `multiple` `select` model**: its rows have boxes of their own and take a click, plain, with Ctrl or Meta and with
   Shift; its arrows, `Home` and `End` choose a row alone, with Shift span and with Ctrl or Meta move the current row; a
   Space flips the current row; typed text chooses its match alone; each change fires one `input` and one `change`, a
@@ -148,7 +156,8 @@ Escher changed the engine, for every document and not the stand alone, in these 
 - **a transform** moves what a box clips: `visible_region` reads a clipping box where its transforms show it, and a box
   under a transform with no inverse takes no hit.
 
-Witnesses: `range_input_interaction`, `stand_act_range`, `stand_keyboard`, `select_interaction`, `stand_act_select`,
+Witnesses: `range_input_interaction`, `stand_act_range`, `stand_keyboard`, `select_interaction`, `select_popup`,
+`select_popup_painted`, `stand_act_popup`, `stand_act_select`,
 `inert_subtree`, `focusability_updates`, `checkable_change_event`, `accessibility_states`, `visible_region_transformed`,
 `hit_non_invertible_transform`, `open_state`.
 
@@ -193,9 +202,15 @@ The driver's own refusal texts state three readings that are off:
   set.
 - **The focus fixup fires no `blur`.** A node that holds focus when it comes under `inert` gives focus up at the
   mutator's flush, and no DOM `blur` or `focusout` fires. Pinned by `inert_subtree`.
-- **The `select` model's limits.** No popup is painted, and Enter and Space open nothing on a single select; an option of
-  a closed select is not clicked (a click on one is refused `covered`, under a group too); only a `multiple` select's
-  rows take a click. Pinned by `select_interaction` and `stand_act_select`.
+- **The `select` model's limits.** An option of a closed select is not clicked: a driver click on one is refused
+  `covered`, under a group too, and an agent clicks the select first, then the option. A single select's `size` is
+  unread. A list inside an iframe stays there. Pinned by `select_interaction`, `select_popup` and `stand_act_select`.
+- **The highlight is unread.** The highlighted row is in no snapshot and no tree, so an agent pressing keys sees it only
+  in a screenshot, and an assistive technology hears that the list is open and not which row is highlighted. The lint's
+  `contrast` reads a row's plain pair even when it is highlighted. Pinned by `select_popup_painted`.
+- **The list's thumb and one row height.** The thumb is painted and not draggable; keys, the wheel and `scroll` reach the
+  rows. All rows take one height, measured from the select's font at opening, so a row with a larger authored font
+  clips. Pinned by `select_popup`.
 - **`change` on a text input and a range.** They fire `input` and no `change`. Pinned by `text_range_no_change_event`.
 - **A shot's PNG bytes.** They repeat byte for byte on one host and differ between linux x86_64 and macOS aarch64, as
   measured at CI#39225375577. A check compared byte for byte across operating systems holds no `screenshot` step.
@@ -205,10 +220,10 @@ The driver's own refusal texts state three readings that are off:
 - **Unpaged diffs and findings.** An acting verb's diff and a lint's findings are not paged: on a large screen either
   can pass 10,000 bytes, held only by the 1,048,576-byte answer bound. `snapshot` alone reads a screen in parts. As
   measured at escher-0.2.0/chunks/2026-10-20-large-screen-in-parts/report.md.
-- **The `select` model's other limits.** `size` is unread, so a `multiple` select lists every row; a group's label is
-  named in the tree and unpainted; Ctrl+A is not modelled; `press` holds no Ctrl, so a set of rows that are not adjacent
-  cannot be built through the driver. A controlled app must write `selected` back, or a choice reverts. A single-choice
-  select shows its chosen option's label alone. A closed select's contrast pair is unmeasured.
+- **The `select` model's other limits.** A `multiple` select with no `size` lists every row; Ctrl+A is not modelled;
+  `press` holds no Ctrl, so a set of rows that are not adjacent cannot be built through the driver. A controlled app must
+  write `selected` back, or a choice reverts. A single-choice select shows its chosen option's label alone. The windowed
+  list is read and not run: no test launches a window.
 - **The bounded record of ids.** The session keeps the last 4,096 ids its screens read, to tell `stale` from
   `not-found`. Past that bound a once-read id can read `not-found`.
 - **Selectors that never match.** `:focus-visible`, `:valid`, `:invalid`, `:required` and `:target` always read false.
@@ -279,7 +294,8 @@ What is not reached:
   technology, which this version does not reach. The platform adapters have their
   own gaps: Android's `set_focus` and `set_window_bounds` are empty, Windows' `set_focus` and macOS'
   `set_window_bounds` are no-ops.
-- `aria-activedescendant` is unread (SC 4.1.2, outside tier 0), pinned by `accessibility_active_descendant_unread`.
+- `aria-activedescendant` is unread (SC 4.1.2, outside tier 0), pinned by `accessibility_active_descendant_unread`, so
+  an open `select` list states `expanded` on its select and not which row is highlighted.
 - Descriptions (`aria-describedby`, `aria-description`) reach the platform adapter only, never the snapshot.
 - A `role` attribute reaches the tree through the engine's one role-name mapping. The role, name and state mappings
   are stated in `.andromeda/a11y-plan.md`, not here.

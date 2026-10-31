@@ -130,6 +130,9 @@ impl BaseDocument {
         self.clear_damage_and_dirty_flags(doc_node_id);
         timer.record_time("c_damage");
 
+        // A list closes on what this pass settled, before hover reads what it answers.
+        self.reconcile_select_list();
+
         // Re-resolve the hover node from the pointer position against the fresh
         // layout. This must run *after* the damage/dirty flags are cleared
         // above, so that the restyle hint and ancestor `dirty_descendants`

@@ -200,7 +200,8 @@ impl Session {
     ///   intersect. A pair is found once, at the highest level it occurs, on the earlier
     ///   element: not where an ancestor of either, below the two's nearest common ancestor,
     ///   already overlaps the other. An option or a group of a closed select, read in its
-    ///   select's box, overlaps nothing; a `multiple` select's rows are read like any element.
+    ///   select's box, overlaps nothing, nor does a row or a group of an open list, which sits
+    ///   over the page by design; a `multiple` select's rows are read like any element.
     /// - [`Defect::Clipped`]: part of the box, not all of it, lies outside its clip region.
     /// - [`Defect::Truncated`]: the box the element's laid-out lines take is not inside its clip
     ///   region, cut further by its own padding box where it clips. A text control's value is
@@ -243,8 +244,9 @@ struct Entry<'a> {
     region: Option<Bounds>,
     /// The part of its box that can be seen, for a box with an area.
     visible: Option<Bounds>,
-    /// Whether the element is an option or a group of a closed select, read in its select's box.
-    in_closed_select: bool,
+    /// Whether the element is an option or a group of a closed select, read in its select's box,
+    /// or a row or a group of an open list, which sits over the page by design.
+    in_select_box: bool,
 }
 
 fn findings(harness: &Harness<DioxusDocument>, screen: &Snapshot) -> Vec<Finding> {
@@ -334,8 +336,10 @@ fn flatten<'a>(
     let visible = region
         .filter(|_| bounds.has_area())
         .and_then(|region| bounds.intersection(region));
-    let in_closed_select =
-        element.is_some_and(|element| closed_select_of(&harness.base(), element).is_some());
+    let in_select_box = element.is_some_and(|element| {
+        let doc = harness.base();
+        closed_select_of(&doc, element).is_some() || doc.select_list_bounds(element).is_some()
+    });
     let index = out.len();
     out.push(Entry {
         node,
@@ -344,7 +348,7 @@ fn flatten<'a>(
         bounds,
         region,
         visible,
-        in_closed_select,
+        in_select_box,
     });
     for child in &node.children {
         flatten(harness, elements, child, Some(index), out);
@@ -361,11 +365,11 @@ fn overlaps(entries: &[Entry]) -> Vec<(usize, usize, Bounds)> {
         .collect();
     let mut pairs = Vec::new();
     for (earlier, first) in entries.iter().enumerate() {
-        let Some(a) = first.visible.filter(|_| !first.in_closed_select) else {
+        let Some(a) = first.visible.filter(|_| !first.in_select_box) else {
             continue;
         };
         for (later, second) in entries.iter().enumerate().skip(earlier + 1) {
-            let Some(b) = second.visible.filter(|_| !second.in_closed_select) else {
+            let Some(b) = second.visible.filter(|_| !second.in_select_box) else {
                 continue;
             };
             if ancestors[later].contains(&earlier) {
@@ -398,6 +402,10 @@ fn overlaps(entries: &[Entry]) -> Vec<(usize, usize, Bounds)> {
 fn clip_region(harness: &Harness<DioxusDocument>, element: NodeId) -> Option<Bounds> {
     let doc = harness.base();
     let mut region = bounds!(doc.visible_region(element)?);
+    // An open list is painted past every clip, so nothing that holds its select cuts its rows.
+    if doc.select_list_bounds(element).is_some() {
+        return region.has_area().then_some(region);
+    }
     let root = doc.try_root_element().map(|root| root.id);
     let mut current = doc.get_node(element).and_then(|node| node.parent);
     while let Some(id) = current.filter(|&id| Some(id) != root) {

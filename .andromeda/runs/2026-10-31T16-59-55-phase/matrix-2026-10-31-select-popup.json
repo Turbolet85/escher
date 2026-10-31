@@ -1,0 +1,80 @@
+[
+{
+"tool": "matrix",
+"v": "1.6",
+"sha8": "613eb3cd",
+"ts": "2026-10-31T18:14:14Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.3.0",
+"--id",
+"v030-17",
+"--chunk",
+"2026-10-31-select-popup",
+"--acceptance-file",
+".andromeda/runs/2026-10-31T16-59-55-phase/acceptance-v030-17.md",
+"--run-dir",
+".andromeda/runs/2026-10-31T16-59-55-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v030-17 → chunk 2026-10-31-select-popup (was null; status planned kept)",
+"acceptance: A closed select opens a painted list of its options; a person or an ag… (245 chars)",
+"         → A closed select opens a painted list of its options; a person or an ag… (733 chars)",
+"wrote ./escher-0.3.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 11 [v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15]"
+],
+"stderr": null,
+"wrote": [
+"./escher-0.3.0/verification-matrix.json"
+],
+"before": {
+"id": "v030-17",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "A closed select opens a painted list of its options; a person or an agent chooses one by pointer and by key and the sele… (245 chars)",
+"notes_chars": 586
+},
+"after": {
+"id": "v030-17",
+"chunk": "2026-10-31-select-popup",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "A closed select opens a painted list of its options; a person or an agent chooses one by pointer and by key and the sele… (733 chars)",
+"notes_chars": 586
+}
+},
+{
+"tool": "matrix",
+"v": "1.6",
+"sha8": "613eb3cd",
+"ts": "2026-10-31T18:14:14Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-10-31-select-popup",
+"--plan",
+"escher-0.3.0/chunks/2026-10-31-select-popup/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-31T16-59-55-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-31-select-popup: 1 · ## Acceptance Criteria: line 412, 21 lines",
+"v030-17: cited in ## Acceptance Criteria (line 413)",
+"pool: unclaimed 11 [v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

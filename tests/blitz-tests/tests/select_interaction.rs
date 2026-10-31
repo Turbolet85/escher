@@ -7,7 +7,8 @@
 //! the text kept for 1 s of the document's clock after each character; a click focuses it; each
 //! change fires one `input` then one `change` event and marks the changed set, and a key or text
 //! that changes nothing fires none and marks nothing; a disabled select takes no key and no
-//! click; Enter and Space open nothing, as no list is painted. A `multiple` select lays out its
+//! click; a click and Enter and Space open its list, a released Space doing nothing more, each
+//! firing no event (`select_popup` holds the list's own reading). A `multiple` select lays out its
 //! rows with boxes of their own: its arrows, Home and End choose a row alone, with Shift span from
 //! the anchor and with Ctrl or Meta move the current row and change nothing, a Space flips the
 //! current row, and typed text chooses its match alone; a plain click chooses a row alone, Ctrl or
@@ -107,10 +108,11 @@ fn measured(harness: &mut Page, act: impl FnOnce(&mut Page)) -> ((u32, u32), boo
     )
 }
 
-/// A fixture booted with `fx-pick` focused by a click.
+/// A fixture booted with `fx-pick` focused by a click, the list the click opens closed again.
 fn focused_pick(incremental: bool) -> Page {
     let mut harness = fixtures::boot(page, incremental);
     harness.click("#fx-pick");
+    harness.press(Key::Named(NamedKey::Escape));
     let pick = harness.node("#fx-pick");
     assert_eq!(
         harness.focused(),
@@ -190,7 +192,7 @@ const KEYS: [(Key, Modifiers, &str, u32); 14] = [
     (Key::Named(NamedKey::Home), Modifiers::empty(), "a", 0),
     (Key::Named(NamedKey::End), Modifiers::empty(), "c", 1),
     (Key::Named(NamedKey::End), Modifiers::empty(), "c", 0),
-    (Key::Named(NamedKey::Enter), Modifiers::empty(), "c", 0),
+    (Key::Named(NamedKey::PageDown), Modifiers::empty(), "c", 0),
     (Key::Named(NamedKey::Backspace), Modifiers::empty(), "c", 0),
     (Key::Named(NamedKey::ArrowLeft), Modifiers::empty(), "c", 0),
     (Key::Character(String::new()), Modifiers::CONTROL, "c", 0),
@@ -280,6 +282,7 @@ fn typed_text_is_kept_for_one_second_of_the_documents_clock() {
         );
         harness.type_text("x");
         harness.click("#fx-pick");
+        harness.press(Key::Named(NamedKey::Escape));
         harness.type_text("a");
         assert_eq!(
             value(&harness, "#fx-pick").as_deref(),
@@ -353,18 +356,29 @@ fn an_app_writing_selected_on_another_option_re_seeds_the_choice() {
 }
 
 #[test]
-fn enter_and_space_open_nothing_on_a_single_select() {
+fn enter_and_space_open_the_list_and_a_released_space_does_nothing_more() {
     for incremental in [false, true] {
         let mut harness = focused_pick(incremental);
+        let pick = harness.node("#fx-pick");
         for (row, key) in [Key::Named(NamedKey::Enter), Key::Character(" ".to_string())]
             .into_iter()
             .enumerate()
         {
-            let (fired, marked) = measured(&mut harness, |harness| harness.press(key));
             assert_eq!(
-                (fired, marked),
-                ((0, 0), false),
-                "incremental {incremental}: row {row} changes nothing"
+                harness.base().open_select(),
+                None,
+                "incremental {incremental}: row {row}: the fixture's list is closed"
+            );
+            let (fired, _) = measured(&mut harness, |harness| harness.press(key));
+            assert_eq!(
+                fired,
+                (0, 0),
+                "incremental {incremental}: row {row} fires no event"
+            );
+            assert_eq!(
+                harness.base().open_select(),
+                Some(pick),
+                "incremental {incremental}: row {row} leaves the list open"
             );
             let doc = harness.base();
             for option in ["#fx-apple", "#fx-avocado", "#fx-cherry"] {
@@ -372,9 +386,11 @@ fn enter_and_space_open_nothing_on_a_single_select() {
                 assert!(
                     !doc.get_client_bounding_rect(node)
                         .is_some_and(|rect| rect.width > 0.0),
-                    "incremental {incremental}: row {row}: no list of options is laid out"
+                    "incremental {incremental}: row {row}: the list lays nothing out"
                 );
             }
+            drop(doc);
+            harness.press(Key::Named(NamedKey::Escape));
         }
     }
 }
@@ -793,6 +809,7 @@ fn a_groups_options_are_chosen_by_a_single_selects_keys_and_shown_alone() {
     for incremental in [false, true] {
         let mut harness = fixtures::boot(groups_page, incremental);
         harness.click("#fx-grouped");
+        harness.press(Key::Named(NamedKey::Escape));
         assert_eq!(
             value(&harness, "#fx-grouped").as_deref(),
             Some("p"),

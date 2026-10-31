@@ -8,6 +8,7 @@ mod node;
 mod range;
 pub(crate) mod scrollbar;
 pub(crate) mod select;
+pub(crate) mod select_list;
 mod serialize;
 mod stylo_data;
 #[cfg(feature = "svg")]
@@ -29,6 +30,7 @@ pub use node::*;
 pub use range::RangeInputData;
 pub(crate) use range::{RangeMove, RangeRules};
 pub use scrollbar::{ScrollbarColor, ScrollbarRef, ScrollbarWidth};
+pub use select_list::{SelectListRow, SelectListView};
 pub use stylo_data::ComputedStyleRef;
 #[cfg(feature = "svg")]
 pub use svg::{SvgImageData, SvgIntrinsicDimensions};

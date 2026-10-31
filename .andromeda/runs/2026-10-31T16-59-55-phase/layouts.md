@@ -1,0 +1,38 @@
+# layouts extract
+
+## Relevance
+partial — the plan governs the popup's host on the desktop-native surface (the flight booker's select, its Tab sequence, the closed reading, the lint and the coordinate model), but holds no wireframe, modal, responsive or empty-state section for an opened list, so the list's own placement and anchoring carry no layout mandate and fall to P3 and the P4 forks.
+
+## Constraints
+- The stand's host is the flight booker's mode region inside the TaskShell mount at the pinned viewport; layout-templates requires that mount and viewport to hold after commands, in both layout modes. Whether an opened `select#flight-type` list fits that viewport from where the select sits is research's question (per layout-templates §Surface: desktop-native → Primary screens, "seven_guis Home and TaskShell" and "seven_guis flight booker's mode region").
+- layout-templates requires the flight booker's stated Tab sequence, four stops and five with `flight-return-date` enabled, with `flight-type` as the select's one stop. Whether an open list adds, traps or skips stops is the founder's P4 focus and key fork; the plan states no sequence for that state (per layout-templates §Surface: desktop-native → Primary screens, "seven_guis flight booker's mode region").
+- layout-templates requires the closed reading of the select as a `ComboBox` holding two `ListBoxOption`s, each at the select's client rect. The chunk's real boxes belong to the open state; whether the closed reading survives unchanged beside them is for P3 to close (per layout-templates §Surface: desktop-native → Primary screens, "seven_guis flight booker's mode region").
+- layout-templates requires stand changes to add no class, style, wrapper or order through ids and accessible names, with no task CSS selecting by id, and requires `flight-type-one-way` and `flight-type-return` as the options' stable element ids. Whether the opened list's rows are those option nodes or new painted entries is research's question (per layout-templates §Surface: desktop-native → Primary screens, seven_guis stable-id facts).
+- layout-templates requires `overlaps` to skip the options of a closed select by reading the element and never the role, leaving CRUD's `role="option"` rows and a `multiple` select's rows linted as usual. The chunk's restated exclusion for an open list must keep those two readings (per layout-templates §Surface: desktop-native → IA notes, visual lint).
+- layout-templates requires into-view scrolling through every scrolling box holding the target, innermost first and then the viewport, and `visible_region` narrowed by every clipping box, for every document. Whether a list painted past `task-body` or another clipping box reads as visible under that rule is research's question (per layout-templates §Surface: desktop-native → IA notes, scrolling boxes).
+- layout-templates requires pointer client coordinates net of safe-area insets and page coordinates with viewport scroll added, and fixed-position children of the root not scrolling with the viewport. An engine overlay's paint and hit test must agree under that model in every document (per layout-templates §Surface: desktop-native → IA notes, viewport and pointer coordinates).
+
+## Patterns to follow
+- Single-stop keyboard region: the CRUD list and the Cells grid each hold one Tab stop, take arrows on the region, and keep the tree's focus on the region rather than the row; a reference for the open list's keys if his fork takes that shape (per layout-templates §Surface: desktop-native → Primary screens, CRUD keyboard region and "seven_guis Cells grid").
+- Focus return on commit: the Cells editor's Enter commits, stops propagation and returns focus to the grid; a reference for closing the list with or without a choice (per layout-templates §Surface: desktop-native → Primary screens, "seven_guis Cells grid").
+- Absolutely positioned popovers: the browser's menu dropdown and urlbar suggestions are app-level precedents for a list above page content; a placement reference only, since the scope infers the overlay in the engine (per layout-templates §Surface: desktop-native → Component — Footer and §Surface: desktop-native → Component — Header).
+- Nested scroller as clipping box: `crud-list` is the box that clips its rows, with a driver `click` refused `off-screen` until a driver `scroll` brings the row inside; a reference if a long list scrolls (per layout-templates §Surface: desktop-native → IA notes, scrolling boxes).
+- Tab orders walked as stated tables in both layout modes, as `LOAD_TAB_ORDER` and `CELLS_TAB_ORDER` do; a reference for any open-list sequence his fork adds (per layout-templates §Surface: desktop-native → Primary screens, "seven_guis served screens beside the lean four" and "seven_guis Cells grid").
+
+## Anti-patterns to avoid
+- Reaching the popup through new stand wrappers, classes or id-selecting CSS instead of engine behaviour (per layout-templates §Surface: desktop-native → Primary screens, seven_guis stable-id facts).
+- Reading open or closed select state from an element's role, which would catch CRUD's `role="option"` rows (per layout-templates §Surface: desktop-native → IA notes, visual lint).
+- Reporting the windowed path as measured from headless readings; the plan marks the windowed stand as not booted and the windowed Cells path as not run, so the chunk's windowed claim needs its own evidence or a stated gap (per layout-templates §Surface: desktop-native → Primary screens, windowed-stand notes).
+
+## Contract bindings
+- Layouts focus order ↔ a11y §Focus Order SC 2.4.3: the flight booker's Tab sequence and any open-list order must match the visible reading order.
+- Closing without a choice ↔ a11y §Modal focus trap (Escape dismiss, restore focus): layout-templates holds no modal section, so whether that rule applies to the list is settled by the P4 focus and key fork.
+- Option boxes ↔ the driver's `snapshot`, `lint` and schema help, and test-plan §3: the verb table and carrier forms are stated at layout-templates §Surface: cli → Primary screens (`escher-session`), and the scope adds no verb.
+- Stand tables ↔ tests: `stand_contrast`, `stand_keyboard`, `stand_act_select` and `stand_lint` move with any new row, as the scope infers.
+- Painted list colours ↔ design: the engine default is a P4 fork; this extract takes no colour values.
+
+## Acceptance criteria contributions
+- (layouts) After opening `select#flight-type` and closing it without a choice, the snapshot reads the same `ComboBox` value and the same two `ListBoxOption`s at the select's client rect as at boot, at the pinned 800 × 600 viewport in both layout modes (per layout-templates §Surface: desktop-native → Primary screens, "seven_guis flight booker's mode region").
+- (layouts) With the list closed, the Tab walk reads `back-btn` → `flight-type` → `flight-start` → `flight-book` and adds `flight-return-date` when enabled, in both layout modes (per layout-templates §Surface: desktop-native → Primary screens, "seven_guis flight booker's mode region").
+- (layouts) With every select closed, `stand_lint` still reads 0 findings at boot on the counter, flight booker, timer and CRUD in both layout modes and on the load page, and CRUD's `role="option"` rows and a `multiple` select's rows are still linted (per layout-templates §Surface: desktop-native → IA notes, visual lint).
+- (layouts) A pointer at the centre of an open list's option box lands on that option both unscrolled and with the viewport scrolled, on an in-file fixture taller than the viewport (per layout-templates §Surface: desktop-native → IA notes, viewport and pointer coordinates).

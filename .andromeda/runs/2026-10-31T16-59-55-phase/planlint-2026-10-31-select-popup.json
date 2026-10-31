@@ -1,0 +1,258 @@
+[
+{
+"tool": "planlint",
+"v": "1.16",
+"sha8": "67c33716",
+"ts": "2026-10-31T18:02:28Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.3.0/chunks/2026-10-31-select-popup/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-31T16-59-55-phase",
+"--marker",
+"2026-10-31-select-popup"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 31 entries · plan: escher-0.3.0/chunks/2026-10-31-select-popup/plan.md · research: escher-0.3.0/chunks/2026-10-3…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` — 2…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 31 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 27 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 7",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 7 of 7 — listed, P5's read",
+"  line 76 · «unchanged» · packages/escher-driver/src/refusal.rs (Files to modify) · covered (step 5)",
+"  line 100 · «byte-equal» · tests/blitz-tests/tests/select_popup_painted.rs (Test Commands) · None (step 2)",
+"  line 103 · «unchanged» · click (step 6) · enter (step 14)",
+"  line 391 · «unchanged» · select_popup (step 16) · input (step 14) · change (step 14) · select_popup_painted (step 17)",
+"      stand_act_popup (step 18) · return (step 18)",
+"  line 394 · «unchanged» · paint_scene (step 10) · packages/blitz-shell (Test Commands)",
+"      packages/dioxus-native (Test Commands)",
+"  line 406 · «unchanged» · select#flight-type (step 18)",
+"  line 434 · «same bytes» · keyboard-navigation.md (step 3) · obs-plan-detail/ci-integration.md (step 10)",
+"      pointer.rs (step 5) · input-validation.md (step 8) · help (step 12) · lint (step 9)",
+"      e2e-test-strategy.md (step 20) · mocking-stubbing-discipline.md (step 16) · multiple (step 6) · :open (step 8)",
+"      established-decisions.md (step 5) · type (step 2) · CARGO_TARGET_TMPDIR (step 20) · (sampler) (step 3)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 0",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+31
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 27,
+"listed": []
+},
+"check2": {
+"entries": 7,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 22,
+"refs": 7,
+"hits": []
+},
+"claims": {
+"read": 7,
+"listed": [
+76,
+100,
+103,
+391,
+394,
+406,
+434
+]
+},
+"c44": {
+"paths": 0,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.16",
+"sha8": "67c33716",
+"ts": "2026-10-31T18:09:11Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.3.0/chunks/2026-10-31-select-popup/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-31T16-59-55-phase",
+"--marker",
+"2026-10-31-select-popup"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 31 entries · plan: escher-0.3.0/chunks/2026-10-31-select-popup/plan.md · research: escher-0.3.0/chunks/2026-10-3…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: filled · ``.claude/rules/verification-harness.md` — 2…`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 31 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 0 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 27 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 7",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 7 of 7 — listed, P5's read",
+"  line 76 · «unchanged» · packages/escher-driver/src/refusal.rs (Files to modify) · covered (step 5)",
+"  line 100 · «byte-equal» · tests/blitz-tests/tests/select_popup_painted.rs (Test Commands) · None (step 2)",
+"  line 103 · «unchanged» · click (step 6) · enter (step 14)",
+"  line 413 · «unchanged» · select_popup (step 16) · input (step 14) · change (step 14) · select_popup_painted (step 17)",
+"      stand_act_popup (step 18) · return (step 18)",
+"  line 416 · «unchanged» · paint_scene (step 10) · packages/blitz-shell (Test Commands)",
+"      packages/dioxus-native (Test Commands)",
+"  line 428 · «unchanged» · select#flight-type (step 18)",
+"  line 456 · «same bytes» · keyboard-navigation.md (step 3) · obs-plan-detail/ci-integration.md (step 10)",
+"      pointer.rs (step 5) · input-validation.md (step 8) · help (step 12) · lint (step 9)",
+"      e2e-test-strategy.md (step 20) · mocking-stubbing-discipline.md (step 16) · multiple (step 6) · :open (step 8)",
+"      established-decisions.md (step 5) · type (step 2) · CARGO_TARGET_TMPDIR (step 20) · (sampler) (step 3)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 0",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "filled",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+31
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 0,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 27,
+"listed": []
+},
+"check2": {
+"entries": 7,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 22,
+"refs": 7,
+"hits": []
+},
+"claims": {
+"read": 7,
+"listed": [
+76,
+100,
+103,
+413,
+416,
+428,
+456
+]
+},
+"c44": {
+"paths": 0,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+}
+]

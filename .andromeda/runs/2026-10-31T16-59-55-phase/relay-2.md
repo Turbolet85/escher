@@ -1,0 +1,1 @@
+Orchestrator, please take one correction to my directive: classify rendering in parts is the designed path (F360), so parts alone are not a stop; note how many parts. Stop and tell me only if a part misbehaves: a Workflow size fault, a part's check failing on its shape, or draws read short by pick.

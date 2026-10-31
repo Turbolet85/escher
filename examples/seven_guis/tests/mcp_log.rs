@@ -9,8 +9,10 @@
 //! it; the workspace build compiles the engine's tracing call sites in, and the same check is
 //! run on that build too. The flow runs once more on a role keeping each session as a check
 //! (`mcp --record`): its stderr then holds neither the recording directory's name nor any
-//! digest the check keeps, and its span lines are as many as without. A failure message names a
-//! kind and a count, never a captured line.
+//! digest the check keeps, and its span lines are as many as without. The role serving the flight
+//! booker writes none of the flight type's option ids, names or values while a `click` opens its
+//! list, another chooses a row by id, and a third opens it for an `escape` to close. A failure
+//! message names a kind and a count, never a captured line.
 
 #![cfg(not(target_arch = "wasm32"))]
 
@@ -61,6 +63,53 @@ fn a_recording_mcp_role_logs_nothing_of_its_checks_at_trace() {
     let _ = std::fs::remove_dir_all(&kept);
     mcp_flow(Some(&kept));
     let _ = std::fs::remove_dir_all(&kept);
+}
+
+#[test]
+fn a_select_list_opened_and_chosen_through_the_role_logs_no_option_at_trace() {
+    let needles = common::option_needles();
+
+    let mut command = Command::new(BINARY);
+    command.arg("mcp").env("RUST_LOG", "trace");
+    let mut speaker = Speaker::spawn(command);
+    speaker.send(
+        br#"{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18"}}"#,
+    );
+    let _ = speaker.reply();
+    let calls = [
+        ("start", r#"{"app":"flight-booker"}"#),
+        ("click", r#"{"id":"flight-type"}"#),
+        ("click", r#"{"id":"flight-type-return"}"#),
+        ("snapshot", "{}"),
+        ("click", r#"{"id":"flight-type"}"#),
+        ("press", r#"{"key":"escape"}"#),
+        ("stop", "{}"),
+    ];
+    assert_eq!(calls.len(), 7);
+    let mut replies = Vec::new();
+    for (index, (name, arguments)) in calls.iter().enumerate() {
+        speaker.send(tool_call(index as u32 + 2, name, arguments).as_bytes());
+        let reply = speaker.reply();
+        assert!(
+            reply.ends_with(r#""isError":false}}"#),
+            "call {index}: accepted"
+        );
+        replies.push(reply);
+    }
+    assert!(
+        replies[1].contains("flight-type-return") && replies[3].contains("return flight"),
+        "the replies hold the options the absences read below are of"
+    );
+    let spoke = speaker.close();
+    assert_eq!(spoke.status, Some(0), "closing stdin ends the process");
+    let stderr = String::from_utf8_lossy(&spoke.stderr);
+    let lines = stamped_lines(&stderr);
+    let needles_found = found(&stderr, &needles);
+    assert!(
+        needles_found == 0,
+        "{needles_found} of {} option needles found in {lines} stderr lines",
+        needles.len()
+    );
 }
 
 /// The role's CRUD flow at `RUST_LOG=trace`, keeping its session as a check in `record` when

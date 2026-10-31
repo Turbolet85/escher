@@ -865,7 +865,8 @@ mod tests {
         // The limits measured for `covered` are in every `covered` refusal an agent is handed.
         let covered = Refusal::new(Cause::Covered).to_json();
         assert!(covered.contains(
-            "a box clipped on one axis stops a hit at its whole padding box, so an element lying \
+            "an option of a closed select lies under it: click the select first, then the option; \
+             a box clipped on one axis stops a hit at its whole padding box, so an element lying \
              outside it along the axis it does not clip can read `covered` though it shows; a box \
              with no width or no height is hit at its centre on the element that holds it, so it \
              can read `covered` though nothing covers it"

@@ -1121,6 +1121,22 @@ impl<'a> TElement for BlitzNode<'a> {
                 }
             }
 
+            // A `multiple` select's `size` makes it that many rows tall, each row `1.2em` by the
+            // default sheet's rule. A single select's `size` stays unread: it is a closed box.
+            if *tag == local_name!("select")
+                && *name == local_name!("size")
+                && elem.has_attr(local_name!("multiple"))
+            {
+                if let Some(rows) = crate::node::select_list::size_rows(value) {
+                    use style::values::generics::{NonNegative, length::Size};
+                    use style::values::specified::{LengthPercentage, NoCalcLength};
+                    let height = LengthPercentage::Length(NoCalcLength::from_em(rows as f32 * 1.2));
+                    push_style(PropertyDeclaration::Height(Size::LengthPercentage(
+                        NonNegative(height),
+                    )));
+                }
+            }
+
             // The `border` attribute maps to the four border widths as a
             // pixel length, plus the four border styles as `solid` -- width
             // alone would compute back to zero against the default

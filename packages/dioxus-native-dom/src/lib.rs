@@ -34,7 +34,7 @@ pub use events::{NodeHandle, synthetic_click_event, synthetic_form_event};
 #[cfg(feature = "accessibility")]
 pub use snapshot::{
     MASKED_VALUE, NodeState, Snapshot, SnapshotNode, closed_select_of, is_masked_input,
-    is_multiple_select,
+    is_multiple_select, is_select,
 };
 #[cfg(feature = "accessibility")]
 pub use snapshot_diff::{DiffNode, Reading, SnapshotDiff};

@@ -1,8 +1,11 @@
 # Coverage — escher-0.3.0
 
-verified 5/17 · deferred 0 · planned 12 · implemented 0 · unclaimed 12
+verified 5/17 · deferred 0 · planned 11 · implemented 1 · unclaimed 11
 
-## planned, unclaimed (12)
+## implemented (1)
+- v030-17 · Select popup · 2026-10-31-select-popup
+
+## planned, unclaimed (11)
 - v030-05 · The UI graph
 - v030-06 · What can I do here
 - v030-07 · Handler coverage
@@ -14,7 +17,6 @@ verified 5/17 · deferred 0 · planned 12 · implemented 0 · unclaimed 12
 - v030-13 · Seeded randomness
 - v030-14 · Bundled fonts
 - v030-15 · Cold-agent bar
-- v030-17 · Select popup
 
 ## verified (5)
 - v030-01 · Codebase health · 2026-10-26-codebase-health

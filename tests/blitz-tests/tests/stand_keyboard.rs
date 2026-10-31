@@ -1052,3 +1052,83 @@ fn an_inert_subtree_is_skipped_by_tab() {
         );
     }
 }
+
+/// A step of the flight booker's walk with its list: the key, whether Shift is held, the control
+/// that then holds focus and whether the list then stands open.
+type ListStep = (Key, bool, &'static str, bool);
+
+/// From `flight-type` focused and the list closed: open and close by each key, Tab from a closed
+/// select, back, then open, move and Tab, which chooses and moves on into the enabled order.
+fn list_walk() -> [ListStep; 10] {
+    let (enter, escape, tab) = (
+        Key::Named(NamedKey::Enter),
+        Key::Named(NamedKey::Escape),
+        Key::Named(NamedKey::Tab),
+    );
+    [
+        (enter.clone(), false, "flight-type", true),
+        (escape.clone(), false, "flight-type", false),
+        (space(), false, "flight-type", true),
+        (escape, false, "flight-type", false),
+        (tab.clone(), false, "flight-start", false),
+        (tab.clone(), true, "flight-type", false),
+        (enter.clone(), false, "flight-type", true),
+        (Key::Named(NamedKey::ArrowDown), false, "flight-type", true),
+        (tab.clone(), false, "flight-start", false),
+        (tab, false, "flight-return-date", false),
+    ]
+}
+
+#[test]
+fn the_flight_type_walk_holds_with_its_list_open_and_after_each_close() {
+    assert_eq!(list_walk().len(), 10);
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut harness = boot(LeanTask::FlightBooker, incremental);
+        tab_to(&mut harness, LeanTask::FlightBooker, "flight-type", &mode);
+        for (index, (key, shift, stop, open)) in list_walk().into_iter().enumerate() {
+            let modifiers = if shift {
+                Modifiers::SHIFT
+            } else {
+                Modifiers::empty()
+            };
+            harness.press_with(key, modifiers);
+            assert!(
+                holder(&harness) == [stop],
+                "{mode}: step {index}: the engine, snapshot and tree read the stated stop"
+            );
+            assert!(
+                harness.base().open_select().is_some() == open,
+                "{mode}: step {index}: the list's state"
+            );
+        }
+        let snapshot = harness.doc.snapshot();
+        assert!(
+            node(&snapshot, "flight-type").state.value.as_deref() == Some("return"),
+            "{mode}: Tab chose the highlighted row"
+        );
+    }
+}
+
+#[test]
+fn a_click_opens_the_list_focus_stays_on_the_select_and_the_walk_goes_on_from_it() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut harness = boot(LeanTask::FlightBooker, incremental);
+        harness.click("#flight-type");
+        assert!(
+            holder(&harness) == ["flight-type"] && harness.base().open_select().is_some(),
+            "{mode}: the click opens the list and focuses the select"
+        );
+        harness.press(Key::Named(NamedKey::Tab));
+        assert!(
+            holder(&harness) == ["flight-start"] && harness.base().open_select().is_none(),
+            "{mode}: Tab closes and moves on"
+        );
+        let snapshot = harness.doc.snapshot();
+        assert!(
+            node(&snapshot, "flight-type").state.value.as_deref() == Some("one-way"),
+            "{mode}: the chosen option stays chosen"
+        );
+    }
+}

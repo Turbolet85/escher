@@ -61,7 +61,8 @@
 //! and the refusal names why: the id names nothing on the screen ([`Cause::NotFound`], or
 //! [`Cause::Stale`] when an earlier screen of the session read it), or the element is not
 //! enabled ([`Cause::Disabled`]), out of view ([`Cause::OffScreen`]) or under another element
-//! ([`Cause::Covered`]). A refused call leaves the held instance as it was.
+//! ([`Cause::Covered`], which an option of a closed select reads: click the select first, then the
+//! option). A refused call leaves the held instance as it was.
 //!
 //! An element's `bounds` are where it stands on the screen — a box reads the same bounds
 //! however far its content is scrolled — and a hit stops where a box clips by `overflow`, so

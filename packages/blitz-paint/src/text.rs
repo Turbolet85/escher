@@ -571,6 +571,39 @@ pub(crate) fn stroke_text<'a>(
     inline_root_id: NodeId,
     context: &mut DrawTextContext,
 ) {
+    stroke_text_as(
+        scene,
+        lines,
+        doc,
+        transform,
+        scale,
+        inline_root_id,
+        context,
+        RunPaint::default(),
+    );
+}
+
+/// What a caller sets on every run it strokes, past what the run's node computes.
+#[derive(Clone, Copy, Default)]
+pub(crate) struct RunPaint {
+    /// The glyphs' colour, in place of the node's computed `color`.
+    pub(crate) color: Option<Color>,
+    /// Whether a run the font has no bold face for is emboldened, as the layout asked.
+    pub(crate) synthesize_bold: bool,
+}
+
+/// [`stroke_text`], every run painted as `paint` says.
+#[allow(clippy::too_many_arguments)]
+pub(crate) fn stroke_text_as<'a>(
+    scene: &mut impl PaintScene,
+    lines: impl Iterator<Item = Line<'a, TextBrush>>,
+    doc: &BaseDocument,
+    transform: Affine,
+    scale: f64,
+    inline_root_id: NodeId,
+    context: &mut DrawTextContext,
+    paint: RunPaint,
+) {
     let DrawTextContext {
         stack,
         path_scratch,
@@ -635,14 +668,18 @@ pub(crate) fn stroke_text<'a>(
 
                 // The glyph colour comes from the run's own node (the stack top): `color`
                 // inherits, so the innermost inline element already carries the right value.
-                let text_color = stack.last().map(|e| e.text_color).unwrap_or(Color::BLACK);
+                let text_color = paint
+                    .color
+                    .or_else(|| stack.last().map(|e| e.text_color))
+                    .unwrap_or(Color::BLACK);
 
-                let embolden = if FONT_EMBOLDEN_ENABLED {
-                    let fs = font_size as f64 / scale;
-                    kurbo::Vec2::new((0.015125 * fs).min(0.3), (0.0121 * fs).min(0.3))
-                } else {
-                    kurbo::Vec2::default()
-                };
+                let embolden =
+                    if FONT_EMBOLDEN_ENABLED || (paint.synthesize_bold && synthesis.embolden()) {
+                        let fs = font_size as f64 / scale;
+                        kurbo::Vec2::new((0.015125 * fs).min(0.3), (0.0121 * fs).min(0.3))
+                    } else {
+                        kurbo::Vec2::default()
+                    };
 
                 let normalized_coords: &[i16] = bytemuck::cast_slice(run.normalized_coords());
                 scene.draw_glyphs(

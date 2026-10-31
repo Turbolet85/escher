@@ -1,0 +1,23 @@
+# design · Motion — category read
+
+## Carried
+- (.andromeda/design-system.md:117) No expression level grants the list an opening or closing animation: any motion on it must come from the founder's P4 fork, and absent his word the list opens and closes with none.
+  > NO RECORDED INTENT
+- (.andromeda/design-system-detail/motion.md:48) The chunk's reduced-motion fork must be decided with no engine reduced-motion handling to lean on: an animated list must bring its own override, and a list with no animation must say so on the fork.
+  > Observed absent — reduced-motion handling
+- (.andromeda/design-system-detail/motion.md:12) Bringing a key-highlighted or chosen option into view inside a scrolling list must be an instant write, and a driver `scroll` over the list must stay instant inside one settled step, with no smooth scroll introduced for the list.
+  > A programmatic into-view scroll never animates a nested scrolling box: `BaseDocument::scroll_into_view` writes every scrolling box that holds its target at once, innermost first, whatever behaviour was asked — the document holds one scroll animation at a time — and the requested behaviour, `Smooth` included, applies to the viewport alone; the driver's `scroll` is instant in every box and in the viewport, made inside one settled step
+- (.andromeda/design-system-detail/motion.md:14) A list that scrolls must show its overlay scrollbar on these timings, adding no duration of its own.
+  > Overlay scrollbars show at full opacity on scroll, stay opaque for `FADE_DELAY` = 500 ms after last activity, then fade linearly over `FADE_DURATION` = 200 ms, documented as Chromium's overlay timings
+- (.andromeda/design-system-detail/motion.md:15) If the list scrolls, driver acting on an option in the scrollbar's band right after a `scroll` must either honour this rule, with an `advance` past the fade first, or have its difference named on the chunk's key and pointer fork.
+  > Right after a scroll the shown overlay scrollbar takes a main-button pointerdown in its band as a thumb drag (`hit_with_scrollbar` while `scrollbar_opacity > 0`) and dispatches nothing; on the virtual clock it stays shown until an `advance` passes its fade, and a pointer left on the thumb keeps it shown — so a driver `click` on a Cells cell in that band right after a `scroll` lands on the scrollbar, and an `advance` past the fade comes first
+- (.andromeda/design-system-detail/motion.md:22) Any motion the list adds joins the document's animating set and must obey this settle: it neither holds a settle open nor is waited on, and `animating` reads it.
+  > a harness settle answers for every member of that set the same way — none holds it open and none is waited on or advanced: it returns `Settled` with `animating` reading the document's animating flag, the scrollbar fade's membership read off the document's clock — after a driver `scroll` it reads true until 700 ms of that clock pass
+- (.andromeda/design-system-detail/motion.md:28) Opening, choosing in and closing the list by driver `click` or `press` must leave the `VirtualClock` where it was, so the list's state must read true at the settled step with no `advance` owed, and any timed list motion must run only on that clock.
+  > settle reads animation time only through that clock, never advancing it; the driver's `advance` moves that clock by exactly its `ms` and, through the step a session's caller hands it, the app's own time — on the stand whole Timer ticks — together (ratified by the founder, 2026-10-18), while `click`, `type` and `press` leave it where it was: a driver click beside a running CSS animation returns settled without waiting on it
+
+## Bindings
+- **Reduced motion ↔ a11y-plan**: any list animation the fork admits owes the a11y plan's reduced-motion override (SC 2.3.3), and the override has no engine handling to reuse (.andromeda/design-system-detail/motion.md:48)
+- **Expression level ↔ Brand Identity**: Brand Identity is the single source for how much motion, and it records no intent, so the amount of list motion is the founder's to set at P4 (.andromeda/design-system.md:117)
+- **Clock and settle ↔ architecture**: the driver's acting verbs on the list keep the clock and settle contract, with no new verb, cause or session error for a list in motion (.andromeda/design-system-detail/motion.md:28)
+- **Scrollbar band ↔ Depth Strategy**: the band's thumb-drag rule and the padding-box hit-test rule (.andromeda/design-system.md:85) together answer where a pointer on the list lands, and both must hold for an option the driver acts on (.andromeda/design-system-detail/motion.md:15)

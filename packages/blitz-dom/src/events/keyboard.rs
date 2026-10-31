@@ -1,9 +1,10 @@
 use crate::events::focus::generate_focus_events;
 use crate::{
-    BaseDocument, ElementData,
+    BaseDocument, ElementData, ScrollBehavior, ScrollLogicalPosition,
     node::{
         GeneratedTextInputEvent, RangeMove,
         select::{self, RowGesture, SelectCursor, SelectStep, TYPEAHEAD_TIMEOUT, Typeahead},
+        select_list,
     },
     util::ACTION_MOD,
 };
@@ -28,6 +29,9 @@ pub(crate) fn handle_key_or_input_event<F: FnMut(DomEvent)>(
 ) {
     if let KeyboardOrTextInputEvent::KeyPress(event) = &event {
         if event.key == Key::Named(NamedKey::Tab) {
+            if let Some(select) = doc.open_select() {
+                choose_current_and_close(doc, select, &mut dispatch_event);
+            }
             let backwards = event.modifiers.contains(Modifiers::SHIFT);
             generate_focus_events(
                 doc,
@@ -168,29 +172,97 @@ fn press_range_input_key(
     doc.apply_range_move(node_id, to, dispatch_event);
 }
 
-/// A focused single-choice select's keys: the arrows choose the next or previous option that is
-/// not disabled, Home and End the first and last, and a typed character joins the text typed so
-/// far — afresh where it was typed into another select, or after [`TYPEAHEAD_TIMEOUT`] of the
-/// document's clock — choosing the first option whose label starts with it. Every other key, and
-/// a character typed with Ctrl, Alt or Meta held, does nothing: no list is opened.
+/// A focused single-choice select's keys. With its list open they are [`press_open_list_key`]'s.
+/// Closed, Enter opens the list and so does a Space with no typed text standing; the arrows choose
+/// the next or previous option that is not disabled, Home and End the first and last, and a typed
+/// character joins the text typed so far — afresh where it was typed into another select, or after
+/// [`TYPEAHEAD_TIMEOUT`] of the document's clock — choosing the first option whose label starts
+/// with it. Every other key, and a character typed with Ctrl, Alt or Meta held, does nothing.
 fn press_select_key(
     doc: &mut BaseDocument,
     node_id: NodeId,
     event: &BlitzKeyEvent,
     dispatch_event: &mut dyn FnMut(DomEvent),
 ) {
+    if doc.select_list_for(node_id).is_some() {
+        press_open_list_key(doc, node_id, event, dispatch_event);
+        return;
+    }
     let options = select::options(doc, node_id);
     let readings = select::readings(doc, &options);
     let target = match (&event.key, select_step(&event.key)) {
         (_, Some(step)) => select::stepped(&readings, step, select::last_chosen(&readings)),
+        (Key::Named(NamedKey::Enter), None) => {
+            doc.open_select_list(node_id);
+            None
+        }
         (Key::Character(text), None) if types_into_select(event.modifiers) => {
-            let typed = doc.type_into_select(node_id, text);
-            select::matched(&readings, &typed)
+            if text == " " && !doc.select_text_stands(node_id) {
+                doc.open_select_list(node_id);
+                None
+            } else {
+                let typed = doc.type_into_select(node_id, text);
+                select::matched(&readings, &typed)
+            }
         }
         _ => None,
     };
     if let Some(option) = target.and_then(|index| options.get(index).copied()) {
         doc.apply_select_choice(node_id, &[option], dispatch_event);
+    }
+}
+
+/// The keys of a select whose list is open: the arrows, Home, End and typed text move the highlight
+/// over the enabled rows and choose nothing; Enter, and a Space with no typed text standing, choose
+/// the highlighted row and close; Escape closes with no choice. Every other key does nothing.
+fn press_open_list_key(
+    doc: &mut BaseDocument,
+    node_id: NodeId,
+    event: &BlitzKeyEvent,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) {
+    let (options, current) = doc.select_list_options(node_id);
+    let readings = select::readings(doc, &options);
+    let target = match (&event.key, select_step(&event.key)) {
+        (_, Some(step)) => select::stepped(&readings, step, current),
+        (Key::Named(NamedKey::Enter), None) => {
+            choose_current_and_close(doc, node_id, dispatch_event);
+            None
+        }
+        (Key::Named(NamedKey::Escape), None) => {
+            doc.close_select_list();
+            None
+        }
+        (Key::Character(text), None) if types_into_select(event.modifiers) => {
+            if text == " " && !doc.select_text_stands(node_id) {
+                choose_current_and_close(doc, node_id, dispatch_event);
+                None
+            } else {
+                let typed = doc.type_into_select(node_id, text);
+                select::matched(&readings, &typed)
+            }
+        }
+        _ => None,
+    };
+    if let Some(option) = target.and_then(|index| options.get(index).copied()) {
+        doc.move_select_list_current(option);
+    }
+}
+
+/// Closes `select`'s list and makes its highlighted row the choice, where the row is enabled.
+fn choose_current_and_close(
+    doc: &mut BaseDocument,
+    select: NodeId,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) {
+    let current = doc.select_list_for(select).and_then(|list| list.current);
+    doc.close_select_list();
+    if let Some(option) = current
+        && doc
+            .get_node(option)
+            .is_some_and(|node| !select::option_disabled(node))
+    {
+        doc.apply_select_choice(select, &[option], dispatch_event);
     }
 }
 
@@ -348,6 +420,14 @@ impl BaseDocument {
         }
     }
 
+    /// Whether `select`'s `size` asks for a number of rows, so that its own box scrolls them.
+    fn carries_valid_size(&self, select: NodeId) -> bool {
+        self.get_node(select)
+            .and_then(|node| node.attr(local_name!("size")))
+            .and_then(select_list::size_rows)
+            .is_some()
+    }
+
     /// Runs `gesture` on the rows `options` of a `multiple` select: its cursor moves, and the set
     /// it leaves goes through [`Self::apply_select_choice`].
     pub(crate) fn apply_row_gesture(
@@ -369,6 +449,14 @@ impl BaseDocument {
                 anchor,
                 current,
             });
+            if self.carries_valid_size(select) {
+                self.scroll_into_view(
+                    current,
+                    ScrollBehavior::Instant,
+                    ScrollLogicalPosition::Nearest,
+                    ScrollLogicalPosition::Nearest,
+                );
+            }
         }
         if let Some(set) = gestured.set {
             let chosen: Vec<NodeId> = set

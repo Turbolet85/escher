@@ -9,7 +9,8 @@
 //! SC 1.4.3 is asserted on what is measured, not on what is stated: every text-bearing reading
 //! that is not exempt meets its ratio — the control rows at boot, the CRUD list rows and the
 //! text outside the controls (`TEXT_ROWS`), and the colours the controls take under real input
-//! (`STATE_ROWS`: a choice, an unparseable date, a booking, a selected row, hover and active).
+//! (`STATE_ROWS`: a choice, an open list, an unparseable date, a booking, a selected row, hover and
+//! active).
 //! The pages the stand serves beside them are held to their required ratios with no recorded hex:
 //! the load page's button at rest, hover and active, its shell and its message once its sheet has
 //! landed, and Cells' shell, a filled cell, its open editor and its headers.
@@ -282,8 +283,10 @@ const TEXT_ROWS: [(LeanTask, &str, Reading); 14] = [
 /// The real input a state row is read after, on a fresh boot of its task.
 #[derive(Clone, Copy, Debug)]
 enum Reach {
-    /// A click on `flight-type` and End, choosing its return flight.
+    /// A click on `flight-type`, End and Enter, choosing its return flight.
     ReturnChosen,
+    /// A click on `flight-type`, its list left open.
+    ListOpen,
     /// A click on `flight-start` and one character typed after its date, which then parses no
     /// more.
     StartUnparseable,
@@ -298,7 +301,19 @@ enum Reach {
 }
 
 /// The colours the controls take under real input, each read after its `Reach` on a fresh boot.
-const STATE_ROWS: [(LeanTask, Reach, &str, Reading); 18] = [
+const STATE_ROWS: [(LeanTask, Reach, &str, Reading); 20] = [
+    (
+        LeanTask::FlightBooker,
+        Reach::ListOpen,
+        "flight-type-one-way",
+        Pass(pair(0x1a1a1a, 0xffffff, 17.40, 15, 400.0)),
+    ),
+    (
+        LeanTask::FlightBooker,
+        Reach::ListOpen,
+        "flight-type-return",
+        Pass(pair(0x1a1a1a, 0xffffff, 17.40, 15, 400.0)),
+    ),
     (
         LeanTask::FlightBooker,
         Reach::ReturnChosen,
@@ -418,6 +433,7 @@ fn reach(harness: &mut Harness<DioxusDocument>, reach: Reach, id: &str, at: &str
         Reach::ReturnChosen => {
             harness.click("#flight-type");
             harness.press(Key::Named(NamedKey::End));
+            harness.press(Key::Named(NamedKey::Enter));
             let snapshot = harness.doc.snapshot();
             assert!(
                 common::node(&snapshot, "flight-type")
@@ -427,6 +443,13 @@ fn reach(harness: &mut Harness<DioxusDocument>, reach: Reach, id: &str, at: &str
                     == Some("return")
                     && common::node(&snapshot, "flight-type-return").state.selected == Some(true),
                 "{at}: the flight type reads the return flight chosen"
+            );
+        }
+        Reach::ListOpen => {
+            harness.click("#flight-type");
+            assert!(
+                harness.base().open_select() == Some(harness.node("#flight-type")),
+                "{at}: the list stands open"
             );
         }
         Reach::StartUnparseable => {
@@ -705,7 +728,7 @@ fn cells_meets_its_ratios() {
 
 #[test]
 fn every_colour_state_meets_its_ratio() {
-    assert_eq!(STATE_ROWS.len(), 18, "the stated state rows");
+    assert_eq!(STATE_ROWS.len(), 20, "the stated state rows");
     for incremental in [false, true] {
         let mut readings = Vec::new();
         for (index, (task, how, id, stated)) in STATE_ROWS.into_iter().enumerate() {
@@ -722,7 +745,7 @@ fn every_colour_state_meets_its_ratio() {
         }
         assert_eq!(
             tally(&readings),
-            (17, 0, 1, 0),
+            (19, 0, 1, 0),
             "{}: pass, fail, exempt-inactive and no-text rows",
             mode(incremental)
         );

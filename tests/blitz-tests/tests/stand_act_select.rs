@@ -3,7 +3,8 @@
 //! select labelled `Fruit` with role `ComboBox`, that name and its chosen option's value, its
 //! options under it named by their labels and the chosen one selected; `type` with an option's
 //! label chooses that option, its diff naming the select's value and the two options' selection;
-//! a `click` then a `press` of the arrows or Home chooses by key; the Tab walk skips the disabled
+//! a `click` opens the list, a `press` of the arrows or Home moves its highlight and `enter`
+//! chooses; the Tab walk skips the disabled
 //! select and reads the same before and after the choices; a `type` into the disabled select is
 //! refused `disabled` and a `click` on an option that is not chosen — seen in its select's box,
 //! where the chosen option's text lies — `covered`, each with the snapshot unchanged. A `multiple`
@@ -21,7 +22,7 @@ use escher_driver::{Cause, Session};
 
 mod fixtures;
 mod session_common;
-use session_common::{Acted, act, click, focused, press, refused_unchanged, type_into};
+use session_common::{Acted, act, advance, click, focused, press, refused_unchanged, type_into};
 
 /// Two buttons around a labelled select, a select named by `aria-label` and a disabled one;
 /// every option carries an author `id`.
@@ -171,7 +172,8 @@ fn type_with_a_label_chooses_that_option() {
     }
 }
 
-/// Keys pressed on `fx-named` after a click focuses it, and the value each leaves.
+/// Keys pressed on `fx-named`'s open list, a click opening it before each row and `enter`
+/// choosing after it, and the value each leaves.
 const KEYS: [(&str, &str); 3] = [("arrow-down", "g"), ("arrow-down", "g"), ("home", "r")];
 
 #[test]
@@ -179,20 +181,26 @@ fn a_click_then_a_key_chooses_an_option() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}");
         let mut session = hold(incremental);
-        let clicked = act(&mut session, &click("fx-named"));
-        assert!(
-            clicked.is_some_and(|clicked| clicked.settled),
-            "{mode}: the click is accepted and settled"
-        );
-        assert!(
-            focused(&session).0 == ["fx-named"],
-            "{mode}: the click focuses the select"
-        );
         for (row, (key, expected)) in KEYS.into_iter().enumerate() {
-            let pressed = act(&mut session, &press(key, false));
+            let clicked = act(&mut session, &click("fx-named"));
             assert!(
-                pressed.is_some_and(|pressed| pressed.settled),
-                "{mode}: row {row}: the press is accepted and settled"
+                clicked.is_some_and(|clicked| clicked.settled),
+                "{mode}: row {row}: the click is accepted and settled"
+            );
+            assert!(
+                focused(&session).0 == ["fx-named"],
+                "{mode}: row {row}: the click focuses the select"
+            );
+            for pressed in [key, "enter"] {
+                let pressed = act(&mut session, &press(pressed, false));
+                assert!(
+                    pressed.is_some_and(|pressed| pressed.settled),
+                    "{mode}: row {row}: the press is accepted and settled"
+                );
+            }
+            assert!(
+                act(&mut session, &advance(500)).is_some(),
+                "{mode}: row {row}: the next click reads as a single one"
             );
             assert!(
                 value(&session, "fx-named").as_deref() == Some(expected),
@@ -216,6 +224,7 @@ fn the_tab_walk_skips_the_disabled_select_before_and_after_the_choices() {
             type_into("fx-pick", "a"),
             click("fx-named"),
             press("end", false),
+            press("enter", false),
         ]
         .iter()
         .enumerate()
