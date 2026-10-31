@@ -124,3 +124,49 @@ pub fn create_waker(proxy: &BlitzShellProxy, id: WindowId) -> std::task::Waker {
     let proxy = proxy.clone();
     futures_util::task::waker(Arc::new(DomHandle { id, proxy }))
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::sync::atomic::{AtomicUsize, Ordering};
+    use winit::event_loop::EventLoopProxyProvider;
+
+    /// Stands in for the event loop a real proxy wakes, counting its wake-ups.
+    #[derive(Debug, Default)]
+    struct CountedWakes(AtomicUsize);
+
+    impl EventLoopProxyProvider for CountedWakes {
+        fn wake_up(&self) {
+            self.0.fetch_add(1, Ordering::SeqCst);
+        }
+    }
+
+    /// The redraw route's first hop, with no window: a redraw request goes through the proxy to
+    /// its receiver, and wakes the event loop once. What comes after it needs a real window and
+    /// stays with the windowed boot smoke: `BlitzShellProvider::request_redraw` holds one, and the
+    /// application's handling of `RequestRedraw` asks one for its frame.
+    #[test]
+    fn a_redraw_request_reaches_the_receiver_and_wakes_the_loop_once() {
+        let wakes = Arc::new(CountedWakes::default());
+        let (proxy, receiver) = BlitzShellProxy::new(EventLoopProxy::new(wakes.clone()));
+        assert!(
+            receiver.try_recv().is_err(),
+            "the fixture's receiver starts empty"
+        );
+
+        proxy.send_event(BlitzShellEvent::RequestRedraw { doc_id: 7 });
+
+        assert!(
+            matches!(
+                receiver.try_recv(),
+                Ok(BlitzShellEvent::RequestRedraw { doc_id: 7 })
+            ),
+            "the request reaches the receiver"
+        );
+        assert!(
+            receiver.try_recv().is_err(),
+            "the one request is the one event"
+        );
+        assert_eq!(wakes.0.load(Ordering::SeqCst), 1, "the loop wakes once");
+    }
+}

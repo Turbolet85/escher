@@ -74,10 +74,11 @@
 //! at its whole padding box, so an element lying outside it along the axis it does not clip can
 //! read [`Cause::Covered`] though it shows; a box with no width or no height is hit at its
 //! centre on the element that holds it, so it can read [`Cause::Covered`] though nothing covers
-//! it; and a scrolling box under a transform is read where it stands untransformed, so an
-//! element inside it can read [`Cause::OffScreen`] though it shows. A screenshot no longer
-//! depends on wall time: the overlay scrollbar fade reads the session's clock, so two shots of
-//! one state with no `advance` between them read the same pixels.
+//! it; and under a rotation a box's visible part reads as the bounding box of its rotated padding
+//! box, so an element in a corner it does not show can read in view, where [`Cause::OffScreen`]
+//! would be the truth. A screenshot no longer depends on wall time: the overlay scrollbar fade
+//! reads the session's clock, so two shots of one state with no `advance` between them read the
+//! same pixels.
 //!
 //! [`Session::lint`] reads the screen of the held instance for six defects: an element that
 //! overlaps another, is clipped, has text cut from view, lies off-screen, holds content in a box

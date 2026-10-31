@@ -1,0 +1,648 @@
+[
+{
+"tool": "planlint",
+"v": "1.15",
+"sha8": "32aa853b",
+"ts": "2026-10-31T07:44:26Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.3.0/chunks/2026-10-31-engine-debts/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-31T03-24-40-phase",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 34 entries · plan: escher-0.3.0/chunks/2026-10-31-engine-debts/plan.md · research: escher-0.3.0/chunks/2026-10-3…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: none · `none — no live leg in this chunk's research; …`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 34 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 1 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 29 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 7",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 5 of 5 — listed, P5's read",
+"  line 24 · «unchanged» · visible_region (step 20) · packages/blitz-dom/src/scrolling.rs (Files to modify)",
+"      transformed_bounds (Files to modify) · pub(crate) (Files to modify) · packages/blitz-dom/src/document.rs (step 6)",
+"      None (step 4) · (sampler) (step 1) · packages/escher-driver/src/execute.rs (step 10) · crop (step 4)",
+"      execute.rs (step 10) · packages/escher-driver/src/lint.rs (step 12) · scroll_into_view (step 15)",
+"  line 32 · «untouched» · packages/blitz-dom/src/mutator.rs (step 8) · get_node (step 9) · document.rs (step 2)",
+"      blur (step 19) · disabled (step 8) · hidden (step 4)",
+"      .andromeda/a11y-plan-detail/screen-reader-support.md (step 16) · (sampler) (step 1)",
+"  line 46 · «no change» · tests/blitz-tests/tests/select_interaction.rs (Files to modify) · multiple (step 8)",
+"      input (step 6) · change (step 9) · has_changes (step 6) · evt.values() (step 9) · selected (step 15)",
+"      optgroup (step 8) · click (step 4) · .andromeda/a11y-plan-detail/keyboard-navigation.md (step 12)",
+"  line 49 · «untouched» · overlaps (Files to modify) · packages/escher-driver/src/lint.rs (step 2)",
+"      BaseDocument::select_of (step 8) · multiple (step 8)",
+"      .andromeda/a11y-plan-detail/keyboard-navigation.md (step 11) · readings (step 2)",
+"      tests/blitz-tests/tests/stand_lint.rs (Files to modify)",
+"  line 365 · «no change» · multiple (step 8) · ListBox (step 11) · input (step 6) · change (step 9)",
+"      evt.values() (step 9) · select_interaction (step 11) · form.rs (step 8)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 2",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "none",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+34
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 1,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 29,
+"listed": []
+},
+"check2": {
+"entries": 8,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 20,
+"refs": 7,
+"hits": []
+},
+"claims": {
+"read": 5,
+"listed": [
+24,
+32,
+46,
+49,
+365
+]
+},
+"c44": {
+"paths": 2,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.15",
+"sha8": "32aa853b",
+"ts": "2026-10-31T07:53:54Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.3.0/chunks/2026-10-31-engine-debts/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-31T03-24-40-phase",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 37 entries · plan: escher-0.3.0/chunks/2026-10-31-engine-debts/plan.md · research: escher-0.3.0/chunks/2026-10-3…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: none · `none — no live leg in this chunk's research; …`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 37 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 1 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 32 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 8",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 5 of 5 — listed, P5's read",
+"  line 24 · «unchanged» · visible_region (step 20) · packages/blitz-dom/src/scrolling.rs (Files to modify)",
+"      transformed_bounds (Files to modify) · pub(crate) (Files to modify) · packages/blitz-dom/src/document.rs (step 6)",
+"      None (step 4) · (sampler) (step 1) · packages/escher-driver/src/execute.rs (step 10) · crop (step 4)",
+"      execute.rs (step 10) · packages/escher-driver/src/lint.rs (step 12) · scroll_into_view (step 15)",
+"  line 46 · «no change» · tests/blitz-tests/tests/select_interaction.rs (Files to modify) · multiple (step 8)",
+"      input (step 6) · change (step 9) · has_changes (step 6) · evt.values() (step 9) · selected (step 15)",
+"      optgroup (step 8) · click (step 4) · .andromeda/a11y-plan-detail/keyboard-navigation.md (step 12)",
+"  line 49 · «untouched» · overlaps (Files to modify) · packages/escher-driver/src/lint.rs (step 2)",
+"      BaseDocument::select_of (step 8) · multiple (step 8)",
+"      .andromeda/a11y-plan-detail/keyboard-navigation.md (step 11) · readings (step 1)",
+"      tests/blitz-tests/tests/stand_lint.rs (Files to modify)",
+"  line 67 · «untouched» · p5-controls.md (Test Commands) · .claude/rules/security.md (Test Commands)",
+"      rdme (Test Commands) · deny.toml (Test Commands) · evidence/counts.md (step 1)",
+"  line 410 · «no change» · multiple (step 8) · ListBox (step 11) · input (step 6) · change (step 9)",
+"      evt.values() (step 9) · select_interaction (step 11) · form.rs (step 8)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 2",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "none",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+37
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 1,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 32,
+"listed": []
+},
+"check2": {
+"entries": 8,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 21,
+"refs": 8,
+"hits": []
+},
+"claims": {
+"read": 5,
+"listed": [
+24,
+46,
+49,
+67,
+410
+]
+},
+"c44": {
+"paths": 2,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.15",
+"sha8": "32aa853b",
+"ts": "2026-10-31T07:55:33Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.3.0/chunks/2026-10-31-engine-debts/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-31T03-24-40-phase",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 37 entries · plan: escher-0.3.0/chunks/2026-10-31-engine-debts/plan.md · research: escher-0.3.0/chunks/2026-10-3…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: none · `none — no live leg in this chunk's research; …`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 37 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 1 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 32 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 8",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 5 of 5 — listed, P5's read",
+"  line 24 · «unchanged» · visible_region (step 20) · packages/blitz-dom/src/scrolling.rs (Files to modify)",
+"      transformed_bounds (Files to modify) · pub(crate) (Files to modify) · packages/blitz-dom/src/document.rs (step 6)",
+"      None (step 4) · (sampler) (step 1) · packages/escher-driver/src/execute.rs (step 10) · crop (step 4)",
+"      execute.rs (step 10) · packages/escher-driver/src/lint.rs (step 12) · scroll_into_view (step 15)",
+"  line 46 · «no change» · tests/blitz-tests/tests/select_interaction.rs (Files to modify) · multiple (step 8)",
+"      input (step 6) · change (step 9) · has_changes (step 6) · evt.values() (step 9) · selected (step 15)",
+"      optgroup (step 8) · click (step 4) · .andromeda/a11y-plan-detail/keyboard-navigation.md (step 12)",
+"  line 49 · «untouched» · overlaps (Files to modify) · packages/escher-driver/src/lint.rs (step 2)",
+"      BaseDocument::select_of (step 8) · multiple (step 8)",
+"      .andromeda/a11y-plan-detail/keyboard-navigation.md (step 11) · readings (step 1)",
+"      tests/blitz-tests/tests/stand_lint.rs (Files to modify)",
+"  line 67 · «untouched» · p5-controls.md (Test Commands) · .claude/rules/security.md (Test Commands)",
+"      rdme (Test Commands) · deny.toml (Test Commands) · evidence/counts.md (step 1)",
+"  line 410 · «no change» · multiple (step 8) · ListBox (step 11) · input (step 6) · change (step 9)",
+"      evt.values() (step 9) · select_interaction (step 11) · form.rs (step 8)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 2",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "none",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+37
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 1,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 32,
+"listed": []
+},
+"check2": {
+"entries": 8,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 21,
+"refs": 8,
+"hits": []
+},
+"claims": {
+"read": 5,
+"listed": [
+24,
+46,
+49,
+67,
+410
+]
+},
+"c44": {
+"paths": 2,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.15",
+"sha8": "32aa853b",
+"ts": "2026-10-31T08:51:37Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.3.0/chunks/2026-10-31-engine-debts/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-31T03-24-40-phase",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 37 entries · plan: escher-0.3.0/chunks/2026-10-31-engine-debts/plan.md · research: escher-0.3.0/chunks/2026-10-3…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: none · `none — no live leg in this chunk's research; …`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 37 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 1 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 32 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 8",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 5 of 5 — listed, P5's read",
+"  line 24 · «unchanged» · visible_region (step 20) · packages/blitz-dom/src/scrolling.rs (Files to modify)",
+"      transformed_bounds (Files to modify) · pub(crate) (Files to modify) · packages/blitz-dom/src/document.rs (step 6)",
+"      None (step 4) · (sampler) (step 1) · packages/escher-driver/src/execute.rs (step 10) · crop (step 4)",
+"      execute.rs (step 10) · packages/escher-driver/src/lint.rs (step 12) · scroll_into_view (step 15)",
+"  line 46 · «no change» · tests/blitz-tests/tests/select_interaction.rs (Files to modify) · multiple (step 8)",
+"      input (step 6) · change (step 9) · has_changes (step 6) · evt.values() (step 9) · selected (step 15)",
+"      optgroup (step 8) · click (step 4) · .andromeda/a11y-plan-detail/keyboard-navigation.md (step 12)",
+"  line 49 · «untouched» · overlaps (Files to modify) · packages/escher-driver/src/lint.rs (step 2)",
+"      BaseDocument::select_of (step 8) · multiple (step 8)",
+"      .andromeda/a11y-plan-detail/keyboard-navigation.md (step 11) · readings (step 1)",
+"      tests/blitz-tests/tests/stand_lint.rs (Files to modify)",
+"  line 67 · «untouched» · p5-controls.md (Test Commands) · .claude/rules/security.md (Test Commands)",
+"      rdme (Test Commands) · deny.toml (Test Commands) · evidence/counts.md (step 1)",
+"  line 410 · «no change» · multiple (step 8) · ListBox (step 11) · input (step 6) · change (step 9)",
+"      evt.values() (step 9) · select_interaction (step 11) · form.rs (step 8)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 2",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "none",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+37
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 1,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 32,
+"listed": []
+},
+"check2": {
+"entries": 8,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 21,
+"refs": 8,
+"hits": []
+},
+"claims": {
+"read": 5,
+"listed": [
+24,
+46,
+49,
+67,
+410
+]
+},
+"c44": {
+"paths": 2,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+},
+{
+"tool": "planlint",
+"v": "1.15",
+"sha8": "32aa853b",
+"ts": "2026-10-31T08:52:13Z",
+"argv": [
+"check",
+"--plan",
+"escher-0.3.0/chunks/2026-10-31-engine-debts/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-31T03-24-40-phase",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fence: 37 entries · plan: escher-0.3.0/chunks/2026-10-31-engine-debts/plan.md · research: escher-0.3.0/chunks/2026-10-3…",
+"check 9 · CI-outcome reads: 2 · leg operator exempt: 2 · Platform issues consulted: none · `none — no runner-only bull…`",
+"check 9 · runner-only scope bullet: not read — the letter's",
+"check 4 (5) · leg = 'live' entries: 0 · Harness rules consulted: none · `none — no live leg in this chunk's research; …`",
+"check 4 (5) · leg entries with a content atom: 2 · note without `atom from`: 0",
+"check 4 (13) · operator CI-outcome reads: 2 · not ci.py conclusion: 1 → HIT",
+"  gate 37 · leg operator · gh run view <id> -R Turbolet85/escher --log | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk -F'\\…",
+"check 4 (13) · job-log reads by pattern: 0",
+"check 4 (14) · base-less git change reads outside the operator and round legs: 0",
+"check 4 (15) · grep → wc -l counts asserting exit 0 and last line 0: 0",
+"check 4 (16) · guards whose exclusions leave a new file in: 0 of 1 with an exclusion",
+"check 4 (17) · entries reading a path the wrap writes: 0 of 32 asserting — listed, P5's read",
+"check 4 (17) · a path the wrap writes, read from inside a program an entry runs (a suite, the ledger's tool): not read",
+"check 2 · ledger-note entries (matrix#): 0",
+"check 5 · placeholders outside code: 0",
+"check 12 (c) · step references the plan's steps lack: 0 of 8",
+"check 12 (d) · «unchanged» claims on a name another part of the plan names: 5 of 5 — listed, P5's read",
+"  line 24 · «unchanged» · visible_region (step 20) · packages/blitz-dom/src/scrolling.rs (Files to modify)",
+"      transformed_bounds (Files to modify) · pub(crate) (Files to modify) · packages/blitz-dom/src/document.rs (step 6)",
+"      None (step 4) · (sampler) (step 1) · packages/escher-driver/src/execute.rs (step 10) · crop (step 4)",
+"      execute.rs (step 10) · packages/escher-driver/src/lint.rs (step 12) · scroll_into_view (step 15)",
+"  line 46 · «no change» · tests/blitz-tests/tests/select_interaction.rs (Files to modify) · multiple (step 8)",
+"      input (step 6) · change (step 9) · has_changes (step 6) · evt.values() (step 9) · selected (step 15)",
+"      optgroup (step 8) · click (step 4) · .andromeda/a11y-plan-detail/keyboard-navigation.md (step 12)",
+"  line 49 · «untouched» · overlaps (Files to modify) · packages/escher-driver/src/lint.rs (step 2)",
+"      BaseDocument::select_of (step 8) · multiple (step 8)",
+"      .andromeda/a11y-plan-detail/keyboard-navigation.md (step 11) · readings (step 1)",
+"      tests/blitz-tests/tests/stand_lint.rs (Files to modify)",
+"  line 67 · «untouched» · p5-controls.md (Test Commands) · .claude/rules/security.md (Test Commands)",
+"      rdme (Test Commands) · deny.toml (Test Commands) · evidence/counts.md (step 1)",
+"  line 410 · «no change» · multiple (step 8) · ListBox (step 11) · input (step 6) · change (step 9)",
+"      evt.values() (step 9) · select_interaction (step 11) · form.rs (step 8)",
+"  a claim on a name no other step, Files to modify or Test Commands names is not listed — P5's read",
+"check 4 (4) · criterion evidence paths the plan names nowhere else: 0 of 2",
+"hits: 1 — resolved by its check (validation.md 2 · 5 · 9 · 4 (4) · 4 (5) · 4 (13)–(16) · 12 (c)); 0 is not a pass"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"check9": {
+"slot": "none",
+"ci_reads": 2,
+"operator": 2,
+"hit": false
+},
+"harness": {
+"slot": "none",
+"live": 0,
+"hit": false
+},
+"atom": {
+"atomed": 2,
+"bare": []
+},
+"tool": {
+"operator": 2,
+"hand": [
+37
+]
+},
+"log": [],
+"base": {
+"operator": 4,
+"reads": []
+},
+"count": {
+"hits": [],
+"unsplit": []
+},
+"newfiles": {
+"operator": 4,
+"guards": 1,
+"hits": [],
+"abstain": []
+},
+"wrap": {
+"asserting": 32,
+"listed": []
+},
+"check2": {
+"entries": 8,
+"tokens": 0,
+"hits": []
+},
+"check5": {
+"hits": []
+},
+"steps": {
+"steps": 21,
+"refs": 8,
+"hits": []
+},
+"claims": {
+"read": 5,
+"listed": [
+24,
+46,
+49,
+67,
+410
+]
+},
+"c44": {
+"paths": 2,
+"hits": [],
+"skipped": []
+},
+"hits": 1
+}
+}
+]

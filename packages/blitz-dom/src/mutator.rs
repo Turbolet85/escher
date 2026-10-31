@@ -322,6 +322,10 @@ impl DocumentMutator<'_> {
             self.set_option_selectedness(node_id, true);
         }
 
+        if name.local == local_name!("multiple") {
+            self.record_select_of_multiple_write(node_id);
+        }
+
         let node = &mut self.doc.nodes[node_id];
 
         let NodeData::Element(ref mut element) = node.data else {
@@ -480,6 +484,10 @@ impl DocumentMutator<'_> {
 
         if name.local == local_name!("selected") {
             self.set_option_selectedness(node_id, false);
+        }
+
+        if name.local == local_name!("multiple") {
+            self.record_select_of_multiple_write(node_id);
         }
 
         let node = &mut self.doc.nodes[node_id];
@@ -1040,6 +1048,19 @@ impl<'doc> DocumentMutator<'doc> {
                 self.doc.set_focus_to(node_id);
             }
         }
+
+        // https://html.spec.whatwg.org/multipage/interaction.html#focus-fixup-rule: a focused
+        // node made inert, or moved under an inert box, gives focus up. Reading it here covers
+        // both, with no `inert` arm on the attribute writes. No `blur` fires: the mutator holds
+        // no route to dispatch one.
+        if self
+            .doc
+            .focus_node_id
+            .and_then(|id| self.doc.get_node(id))
+            .is_some_and(|node| node.is_inert())
+        {
+            self.doc.clear_focus();
+        }
     }
 
     pub fn set_inner_html(&mut self, node_id: NodeId, html: &str) {
@@ -1229,20 +1250,37 @@ impl<'doc> DocumentMutator<'doc> {
             "select" => {
                 self.select_nodes.insert(node_id);
             }
+            "optgroup" => {
+                if let Some(select) = crate::node::select::owner_select(self.doc, node_id) {
+                    self.select_nodes.insert(select);
+                }
+            }
             _ => {}
         }
     }
 
+    /// A select whose `multiple` is written or removed settles at the flush: one that loses it
+    /// is left one chosen option.
+    fn record_select_of_multiple_write(&mut self, node_id: NodeId) {
+        if self.doc.nodes[node_id]
+            .data
+            .is_element_with_tag_name(&local_name!("select"))
+        {
+            self.select_nodes.insert(node_id);
+        }
+    }
+
     /// https://html.spec.whatwg.org/multipage/form-elements.html#concept-option-selectedness:
-    /// an option's `selected` written sets it selected, and its select's other options not,
-    /// and one cleared sets it not selected; its select settles its choice at the flush.
+    /// an option's `selected` written sets it selected, and a single-choice select's other
+    /// options not, and one cleared sets it not selected; its select settles its choice at the
+    /// flush. A `multiple` select's other options stand.
     fn set_option_selectedness(&mut self, node_id: NodeId, selected: bool) {
         let node = &self.doc.nodes[node_id];
         if !node.data.is_element_with_tag_name(&local_name!("option")) {
             return;
         }
-        let select = node.parent.filter(|parent| {
-            self.doc.nodes[*parent]
+        let select = crate::node::select::owner_select(self.doc, node_id).filter(|select| {
+            self.doc.nodes[*select]
                 .element_data()
                 .is_some_and(crate::node::select::is_single_select)
         });
@@ -1250,7 +1288,7 @@ impl<'doc> DocumentMutator<'doc> {
         if let Some(select) = select {
             if selected {
                 let options = crate::node::select::options(self.doc, select);
-                self.doc.set_select_choice(&options, Some(node_id));
+                self.doc.set_select_choice(&options, &[node_id]);
             }
             self.select_nodes.insert(select);
         }

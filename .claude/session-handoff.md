@@ -35,4 +35,15 @@ operator's Q2), the stand facts outside the ten kept on the founder's «Оста
 - Last failed command: none open.
 
 ## Session End Status
-Completed normally at 2026-10-30 19:28:35
+Completed normally at 2026-10-31 09:53:05
+
+## In flight (2026-10-31, /andromeda-implement done: built and green, uncommitted)
+- `2026-10-31-engine-debts` is built in the working tree on `build/escher-0.3.0`: 46 files against `2109f1c2e`, nothing
+  committed or pushed. Gates: green 32 · red 0 · recorded 1 · not-run 4; `v030-04` `implemented`. The whole outcome, its
+  nine deviations included, is `.andromeda/runs/2026-10-31T08-53-14-implement/outcome-2026-10-31-engine-debts.md`.
+- Next: the operator pass, plan entries 34 to 37 (hygiene, the pre-CI commit and push, the CI read, the CI tallies), then
+  `/andromeda-wrap-session`. escher's pause stands, and only the founder lifts it (inputs#I9).
+- Unread until CI: MSRV 1.91, macOS and Windows, the coverage floor, `stand-repeat` over fifteen named targets.
+- Last failed command: none open.
+- The popup's route entry, requirement and residual lines land at this chunk's wrap, from the card's `## Beyond the
+  plan`; `matrix.py add` mints its id (`v030-16` is held). Nothing starts it.

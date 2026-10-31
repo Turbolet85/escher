@@ -7,6 +7,7 @@ use blitz_test_harness::{
 };
 use dioxus_native_dom::{
     DioxusDocument, NodeId, SNAPSHOT_TEXT_BUDGET, Snapshot, SnapshotDiff, is_masked_input,
+    is_multiple_select,
 };
 use tracing::Span;
 use tracing::field::Empty;
@@ -218,15 +219,24 @@ impl Session {
                 let (before, target) = resolved?;
                 let (x, y) = action_point(harness, &target)?;
                 let holds_value = target.holds_value;
+                let (node, multiple) = (target.node, target.multiple);
                 Ok(acted(harness, seen, span, before, |harness| {
-                    harness.click_at(x, y);
+                    if multiple {
+                        focus_multiple_select(harness, node);
+                    } else {
+                        harness.click_at(x, y);
+                    }
                     if holds_value {
                         select_all(harness);
                         if text.is_empty() {
                             press(harness, Key::Backspace, false);
                         }
                     }
-                    harness.type_text(&text);
+                    // No label starts with a space, and on a `multiple` select a Space with no
+                    // text before it flips a row.
+                    if !(multiple && text.starts_with(' ')) {
+                        harness.type_text(&text);
+                    }
                 }))
             }
             Command::Press { key, shift } => {
@@ -357,6 +367,9 @@ struct Target {
     holds_value: bool,
     /// Whether the element is a masked control ([`is_masked_input`]).
     masked: bool,
+    /// Whether the element is a `multiple` select ([`is_multiple_select`]), whose centre lies on
+    /// one of its rows.
+    multiple: bool,
     /// The centre of the element's bounds, relative to the viewport.
     centre: (f64, f64),
     /// The element's bounds as the snapshot reads them: x, y, width and height, relative to
@@ -386,17 +399,17 @@ fn locate(harness: &Harness<DioxusDocument>, screen: &Snapshot, id: &str) -> Opt
         .element_ids()
         .into_iter()
         .find(|(_, read)| read == id)?;
-    let masked = harness
-        .base()
-        .get_node(node)?
-        .element_data()
-        .is_some_and(is_masked_input);
+    let doc = harness.base();
+    let element = doc.get_node(node)?.element_data();
+    let masked = element.is_some_and(is_masked_input);
+    let multiple = element.is_some_and(is_multiple_select);
     let bounds = listed.bounds;
     Some(Target {
         node,
         enabled: listed.state.enabled,
         holds_value: listed.state.value.is_some(),
         masked,
+        multiple,
         centre: (
             bounds.x + bounds.width / 2.0,
             bounds.y + bounds.height / 2.0,
@@ -540,6 +553,14 @@ fn acted(
 const ACTION_MODIFIER: Modifiers = Modifiers::META;
 #[cfg(not(target_os = "macos"))]
 const ACTION_MODIFIER: Modifiers = Modifiers::CONTROL;
+
+/// Focuses a `multiple` select with no click, which would land on the row at its centre, its
+/// typed text starting afresh as a click on a select's would.
+fn focus_multiple_select(harness: &mut Harness<DioxusDocument>, select: NodeId) {
+    let mut doc = harness.base_mut();
+    doc.clear_select_typeahead();
+    doc.set_focus_to(select);
+}
 
 /// Selects everything the focused control holds, through the editor's own select-all key:
 /// what is typed next replaces the selection.

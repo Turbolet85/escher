@@ -2,17 +2,26 @@
 //! it holds — takes no focus, no hit and no accessibility node, in both layout modes:
 //! Tab and Shift+Tab skip the buttons under it, a hit at one of them answers the element beneath,
 //! and the tree the shell hands the platform adapter holds nothing of it. Removing the attribute
-//! restores all three. Known limit: HTML's focus fixup is not built, so a node that holds focus
-//! when it becomes inert keeps it until focus moves — pinned by the fourth test.
+//! restores all three. A node that holds focus when it or an ancestor becomes inert, or moves
+//! under an inert box, gives focus up at the mutator's flush, as HTML's focus fixup has it, with
+//! no `blur` fired: the engine, the snapshot and the tree agree on no focus, and neither a key
+//! nor typed text lands there. The tree names the window as its focus whenever the focused node
+//! was not built, so it never names a node it does not hold. What an assistive technology reads
+//! stays unmeasured: no adapter runs here.
 //!
 //! <https://html.spec.whatwg.org/multipage/interaction.html#the-inert-attribute>
+//! <https://html.spec.whatwg.org/multipage/interaction.html#focus-fixup-rule>
 
 use ::keyboard_types::{Key, Modifiers, NamedKey};
 use accesskit::NodeId as TreeNodeId;
-use blitz_dom::{QualName, local_name, ns};
+use blitz_dom::{Document, QualName, local_name, ns};
 use blitz_html::HtmlDocument;
 use blitz_test_harness::{Harness, HarnessOptions};
 use blitz_traits::node_id::NodeId;
+use dioxus::prelude::*;
+use dioxus_native_dom::DioxusDocument;
+
+mod fixtures;
 
 /// Two buttons inside an inert box between two outside it, the box lying over an empty block.
 const FIXTURE: &str = r#"<html><body style="margin:0">
@@ -170,25 +179,185 @@ fn removing_inert_restores_focus_hit_and_tree() {
                 "{mode}: node {index} of the box is in the tree"
             );
         }
+    }
+}
 
-        // The limit, as measured: the focused button keeps focus when its box becomes inert,
-        // and the next Tab leaves the box.
-        assert!(
-            shift_tab(&mut harness) == Some(in_b),
-            "{mode}: Shift+Tab reaches the second button"
-        );
+/// Two buttons around a box holding a counting button and a text input, a box with no `inert`
+/// yet.
+fn focus_page() -> Element {
+    let mut clicks = use_signal(|| 0u32);
+    rsx! {
+        div { id: "fx-root",
+            button { id: "fx-first", "First" }
+            div { id: "fx-box",
+                button { id: "fx-in-button", onclick: move |_| clicks += 1, "In" }
+                input { id: "fx-in-text" }
+            }
+            button { id: "fx-last", "Last" }
+            div { id: "fx-shelter", "inert": "true" }
+            p { id: "fx-clicks", "{clicks}" }
+        }
+    }
+}
+
+/// The engine's focused node with the root it reads when nothing is focused dropped, and the
+/// focus the snapshot and the tree read.
+#[track_caller]
+fn focus_readings(harness: &Harness<DioxusDocument>) -> (Option<NodeId>, usize, TreeNodeId) {
+    let root = harness.base().try_root_element().map(|root| root.id);
+    (
+        harness.focused().filter(|node| Some(*node) != root),
         harness
-            .base_mut()
-            .mutate()
-            .set_attribute(shield, inert(), "");
-        harness.pump();
-        assert!(
-            harness.focused() == Some(in_b),
-            "{mode}: the focused button keeps focus when its box becomes inert"
+            .doc
+            .snapshot()
+            .nodes()
+            .filter(|node| node.state.focused)
+            .count(),
+        harness.doc.accessibility_tree().focus,
+    )
+}
+
+/// The ways a focused node comes under `inert`: on an ancestor, on the node itself and by moving
+/// under a box that already carries it.
+#[derive(Clone, Copy)]
+enum MadeInert {
+    Ancestor,
+    Itself,
+    Moved,
+}
+
+#[test]
+fn a_node_made_inert_loses_focus_and_takes_no_key() {
+    const ROWS: [(&str, MadeInert); 5] = [
+        ("#fx-in-button", MadeInert::Ancestor),
+        ("#fx-in-text", MadeInert::Ancestor),
+        ("#fx-in-button", MadeInert::Itself),
+        ("#fx-in-text", MadeInert::Itself),
+        ("#fx-in-button", MadeInert::Moved),
+    ];
+    assert_eq!(ROWS.len(), 5);
+    let window = TreeNodeId(u64::MAX);
+    for incremental in [false, true] {
+        for (row, (focused, how)) in ROWS.into_iter().enumerate() {
+            let mode = format!("incremental={incremental}: row {row}");
+            let mut harness = fixtures::boot(focus_page, incremental);
+            let target = harness.node(focused);
+            harness.base_mut().set_focus_to(target);
+            harness.pump();
+            assert!(
+                focus_readings(&harness) == (Some(target), 1, TreeNodeId(target.as_u64())),
+                "{mode}: the fixture holds the node focused"
+            );
+
+            harness.base_mut().take_changed_nodes();
+            match how {
+                MadeInert::Ancestor => {
+                    let boxed = harness.node("#fx-box");
+                    harness
+                        .base_mut()
+                        .mutate()
+                        .set_attribute(boxed, inert(), "");
+                }
+                MadeInert::Itself => {
+                    harness
+                        .base_mut()
+                        .mutate()
+                        .set_attribute(target, inert(), "");
+                }
+                MadeInert::Moved => {
+                    let shelter = harness.node("#fx-shelter");
+                    harness
+                        .base_mut()
+                        .mutate()
+                        .append_children(shelter, &[target]);
+                }
+            }
+            harness.pump();
+            assert!(
+                harness.base_mut().take_changed_nodes().contains(&target),
+                "{mode}: the lost focus marks the node in the changed set"
+            );
+            assert!(
+                focus_readings(&harness) == (None, 0, window),
+                "{mode}: the engine, the snapshot and the tree agree on no focus"
+            );
+
+            harness.press(Key::Named(NamedKey::Enter));
+            harness.type_text("x");
+            assert!(
+                harness.text_content("#fx-clicks") == "0",
+                "{mode}: Enter clicks nothing"
+            );
+            let typed = harness
+                .base()
+                .get_node(harness.node("#fx-in-text"))
+                .and_then(|node| node.element_data())
+                .and_then(|element| element.text_input_data())
+                .map(|data| data.editor.text().to_string());
+            assert!(
+                typed.as_deref() == Some(""),
+                "{mode}: a typed character lands nowhere"
+            );
+
+            let first = harness.node("#fx-first");
+            harness.press(Key::Named(NamedKey::Tab));
+            assert!(
+                harness.focused() == Some(first),
+                "{mode}: the next Tab lands on the first stop"
+            );
+        }
+    }
+}
+
+/// A button shown beside three left out of the tree, by `display: none`, by `hidden` and under a
+/// `display: none` box.
+const LEFT_OUT: &str = r#"<html><body>
+    <button id="shown">Shown</button>
+    <button id="by-display" style="display:none">A</button>
+    <button id="by-hidden" hidden>B</button>
+    <div style="display:none"><button id="under-display">C</button></div>
+</body></html>"#;
+
+#[test]
+fn the_tree_focus_falls_back_to_the_window_when_the_focused_node_is_not_built() {
+    const ROWS: [&str; 3] = ["#by-display", "#by-hidden", "#under-display"];
+    assert_eq!(ROWS.len(), 3);
+    let window = TreeNodeId(u64::MAX);
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut harness = Harness::from_html_with(
+            LEFT_OUT,
+            HarnessOptions {
+                incremental: Some(incremental),
+                ..Default::default()
+            },
         );
+        for (row, selector) in ROWS.into_iter().enumerate() {
+            let node = harness.node(selector);
+            harness.base_mut().set_focus_to(node);
+            harness.pump();
+            let doc: &dyn Document = &harness.doc;
+            let tree = doc.accessibility_tree();
+            assert!(
+                !tree
+                    .nodes
+                    .iter()
+                    .any(|(id, _)| *id == TreeNodeId(node.as_u64())),
+                "{mode}: row {row}: the focused node is left out of the tree"
+            );
+            assert!(
+                tree.focus == window && tree.nodes.iter().any(|(id, _)| *id == tree.focus),
+                "{mode}: row {row}: the tree's focus is the window, a node it holds"
+            );
+        }
+
+        let shown = harness.node("#shown");
+        harness.base_mut().set_focus_to(shown);
+        harness.pump();
+        let doc: &dyn Document = &harness.doc;
         assert!(
-            tab(&mut harness) == Some(after),
-            "{mode}: the next Tab leaves the inert box"
+            doc.accessibility_tree().focus == TreeNodeId(shown.as_u64()),
+            "{mode}: a focused node the tree holds is its focus"
         );
     }
 }

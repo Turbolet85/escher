@@ -18,7 +18,10 @@ use taffy::AbsoluteAxis;
 
 use crate::{
     BaseDocument,
-    node::{RangeMove, ScrollbarRef, SpecialElementData},
+    node::{
+        RangeMove, ScrollbarRef, SpecialElementData,
+        select::{self, RowGesture},
+    },
     scrolling::{FlingState, ScrollAnimationState},
 };
 
@@ -787,7 +790,13 @@ pub(crate) fn handle_click(
                     let value = is_checked.to_string();
                     dispatch_event(DomEvent::new(
                         node_id,
-                        DomEventData::Input(BlitzInputEvent { value }),
+                        DomEventData::Input(BlitzInputEvent {
+                            value: value.clone(),
+                        }),
+                    ));
+                    dispatch_event(DomEvent::new(
+                        node_id,
+                        DomEventData::Change(BlitzInputEvent { value }),
                     ));
                     generate_focus_events(
                         doc,
@@ -799,6 +808,7 @@ pub(crate) fn handle_click(
                     break 'matched true;
                 }
                 local_name!("input") if el.attr(local_name!("type")) == Some("radio") => {
+                    let was_checked = el.checkbox_input_checked() == Some(true);
                     if let Some(radio_set) = el.attr(local_name!("name")).map(str::to_string) {
                         BaseDocument::toggle_radio(doc, radio_set, node_id);
                     } else if el.checkbox_input_checked().is_some() {
@@ -814,8 +824,16 @@ pub(crate) fn handle_click(
                     let value = String::from("true");
                     dispatch_event(DomEvent::new(
                         node_id,
-                        DomEventData::Input(BlitzInputEvent { value }),
+                        DomEventData::Input(BlitzInputEvent {
+                            value: value.clone(),
+                        }),
                     ));
+                    if !was_checked {
+                        dispatch_event(DomEvent::new(
+                            node_id,
+                            DomEventData::Change(BlitzInputEvent { value }),
+                        ));
+                    }
 
                     generate_focus_events(
                         doc,
@@ -867,6 +885,17 @@ pub(crate) fn handle_click(
                         dispatch_event,
                     );
                     break 'matched true;
+                }
+                // A `multiple` select's row takes a click; an option of a closed select has no
+                // box to take one, and the walk goes on to its select.
+                local_name!("option") => {
+                    if let Some(select) = doc.select_of(node_id).filter(|select| {
+                        doc.get_node(*select)
+                            .is_some_and(|node| node.attr(local_name!("multiple")).is_some())
+                    }) {
+                        click_select_row(doc, select, node_id, event.mods, dispatch_event);
+                        break 'matched true;
+                    }
                 }
                 // Clicking labels triggers click, and possibly input event, of associated input
                 local_name!("label") => {
@@ -978,6 +1007,49 @@ pub(crate) fn handle_click(
             target,
             DomEventData::DoubleClick(double_click_event),
         ));
+    }
+}
+
+/// A click on a row of a `multiple` select focuses the select and starts its typed text afresh;
+/// plain it chooses the row alone, with Ctrl or Meta flips it and with Shift spans from the
+/// anchor to it. A disabled select takes no click, and a disabled row changes nothing.
+fn click_select_row(
+    doc: &mut BaseDocument,
+    select: NodeId,
+    row: NodeId,
+    mods: Modifiers,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) {
+    if doc
+        .get_node(select)
+        .and_then(|node| node.element_data())
+        .is_some_and(|element| element.is_disabled())
+    {
+        return;
+    }
+    doc.select_typeahead = None;
+    doc.text_selection.clear();
+    generate_focus_events(
+        doc,
+        &mut |doc| {
+            doc.set_focus_to(select);
+        },
+        dispatch_event,
+    );
+    let options = select::options(doc, select);
+    let Some(index) = options.iter().position(|option| *option == row) else {
+        return;
+    };
+    let gesture = if mods.intersects(Modifiers::CONTROL | Modifiers::META) {
+        RowGesture::Toggle(index)
+    } else if mods.contains(Modifiers::SHIFT) {
+        RowGesture::Span(index)
+    } else {
+        RowGesture::Alone(index)
+    };
+    let disabled = doc.get_node(row).is_some_and(select::option_disabled);
+    if !disabled {
+        doc.apply_row_gesture(select, &options, gesture, dispatch_event);
     }
 }
 

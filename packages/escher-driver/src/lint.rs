@@ -4,7 +4,7 @@
 use std::collections::HashMap;
 
 use blitz_test_harness::Harness;
-use dioxus_native_dom::{DioxusDocument, NodeId, Snapshot, SnapshotNode};
+use dioxus_native_dom::{DioxusDocument, NodeId, Snapshot, SnapshotNode, closed_select_of};
 
 use crate::refusal::{Cause, Refusal};
 use crate::session::Session;
@@ -199,7 +199,8 @@ impl Session {
     /// - [`Defect::Overlap`]: the visible parts of two elements, neither holding the other,
     ///   intersect. A pair is found once, at the highest level it occurs, on the earlier
     ///   element: not where an ancestor of either, below the two's nearest common ancestor,
-    ///   already overlaps the other.
+    ///   already overlaps the other. An option or a group of a closed select, read in its
+    ///   select's box, overlaps nothing; a `multiple` select's rows are read like any element.
     /// - [`Defect::Clipped`]: part of the box, not all of it, lies outside its clip region.
     /// - [`Defect::Truncated`]: the box the element's laid-out lines take is not inside its clip
     ///   region, cut further by its own padding box where it clips. A text control's value is
@@ -242,6 +243,8 @@ struct Entry<'a> {
     region: Option<Bounds>,
     /// The part of its box that can be seen, for a box with an area.
     visible: Option<Bounds>,
+    /// Whether the element is an option or a group of a closed select, read in its select's box.
+    in_closed_select: bool,
 }
 
 fn findings(harness: &Harness<DioxusDocument>, screen: &Snapshot) -> Vec<Finding> {
@@ -331,6 +334,8 @@ fn flatten<'a>(
     let visible = region
         .filter(|_| bounds.has_area())
         .and_then(|region| bounds.intersection(region));
+    let in_closed_select =
+        element.is_some_and(|element| closed_select_of(&harness.base(), element).is_some());
     let index = out.len();
     out.push(Entry {
         node,
@@ -339,6 +344,7 @@ fn flatten<'a>(
         bounds,
         region,
         visible,
+        in_closed_select,
     });
     for child in &node.children {
         flatten(harness, elements, child, Some(index), out);
@@ -355,11 +361,11 @@ fn overlaps(entries: &[Entry]) -> Vec<(usize, usize, Bounds)> {
         .collect();
     let mut pairs = Vec::new();
     for (earlier, first) in entries.iter().enumerate() {
-        let Some(a) = first.visible else {
+        let Some(a) = first.visible.filter(|_| !first.in_closed_select) else {
             continue;
         };
         for (later, second) in entries.iter().enumerate().skip(earlier + 1) {
-            let Some(b) = second.visible else {
+            let Some(b) = second.visible.filter(|_| !second.in_closed_select) else {
                 continue;
             };
             if ancestors[later].contains(&earlier) {

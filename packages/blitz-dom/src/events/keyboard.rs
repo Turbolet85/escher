@@ -3,7 +3,7 @@ use crate::{
     BaseDocument, ElementData,
     node::{
         GeneratedTextInputEvent, RangeMove,
-        select::{self, SelectStep, TYPEAHEAD_TIMEOUT, Typeahead},
+        select::{self, RowGesture, SelectCursor, SelectStep, TYPEAHEAD_TIMEOUT, Typeahead},
     },
     util::ACTION_MOD,
 };
@@ -111,6 +111,12 @@ pub(crate) fn handle_key_or_input_event<F: FnMut(DomEvent)>(
             && key_event.state.is_pressed()
         {
             press_select_key(doc, node_id, key_event, &mut dispatch_event);
+        } else if select::is_multiple_select(element_data)
+            && !element_data.is_disabled()
+            && let KeyboardOrTextInputEvent::KeyPress(key_event) = &event
+            && key_event.state.is_pressed()
+        {
+            press_multiple_select_key(doc, node_id, key_event, &mut dispatch_event);
         } else if let KeyboardOrTextInputEvent::KeyPress(key_event) = &event
             && key_event.state.is_pressed()
             && key_event.key == Key::Named(NamedKey::Enter)
@@ -175,27 +181,76 @@ fn press_select_key(
 ) {
     let options = select::options(doc, node_id);
     let readings = select::readings(doc, &options);
-    let step = match &event.key {
-        Key::Named(NamedKey::ArrowDown) => Some(SelectStep::Next),
-        Key::Named(NamedKey::ArrowUp) => Some(SelectStep::Previous),
-        Key::Named(NamedKey::Home) => Some(SelectStep::First),
-        Key::Named(NamedKey::End) => Some(SelectStep::Last),
-        _ => None,
-    };
-    let target = match (&event.key, step) {
-        (_, Some(step)) => select::stepped(&readings, step),
-        (Key::Character(text), None)
-            if !event
-                .modifiers
-                .intersects(Modifiers::CONTROL | Modifiers::ALT | Modifiers::META) =>
-        {
+    let target = match (&event.key, select_step(&event.key)) {
+        (_, Some(step)) => select::stepped(&readings, step, select::last_chosen(&readings)),
+        (Key::Character(text), None) if types_into_select(event.modifiers) => {
             let typed = doc.type_into_select(node_id, text);
             select::matched(&readings, &typed)
         }
         _ => None,
     };
     if let Some(option) = target.and_then(|index| options.get(index).copied()) {
-        doc.apply_select_choice(node_id, option, dispatch_event);
+        doc.apply_select_choice(node_id, &[option], dispatch_event);
+    }
+}
+
+/// The step a select's key takes.
+fn select_step(key: &Key) -> Option<SelectStep> {
+    match key {
+        Key::Named(NamedKey::ArrowDown) => Some(SelectStep::Next),
+        Key::Named(NamedKey::ArrowUp) => Some(SelectStep::Previous),
+        Key::Named(NamedKey::Home) => Some(SelectStep::First),
+        Key::Named(NamedKey::End) => Some(SelectStep::Last),
+        _ => None,
+    }
+}
+
+/// Whether a character pressed with `modifiers` held is typed text: none of Ctrl, Alt or Meta.
+fn types_into_select(modifiers: Modifiers) -> bool {
+    !modifiers.intersects(Modifiers::CONTROL | Modifiers::ALT | Modifiers::META)
+}
+
+/// A focused `multiple` select's keys: the arrows, Home and End alone choose the row they reach
+/// alone, with Shift span from the anchor to it, and with Ctrl or Meta move the current row and
+/// change nothing; a Space with no typed text standing flips the current row, and with typed text
+/// standing joins it; a character typed with no Ctrl, Alt or Meta chooses the first row its label
+/// starts, alone. Every other key does nothing: no list is opened.
+fn press_multiple_select_key(
+    doc: &mut BaseDocument,
+    node_id: NodeId,
+    event: &BlitzKeyEvent,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) {
+    let options = select::options(doc, node_id);
+    let readings = select::readings(doc, &options);
+    let (_, current) = doc.select_rows(node_id, &options);
+    let current = current.or_else(|| select::last_chosen(&readings));
+    let gesture = match (&event.key, select_step(&event.key)) {
+        (_, Some(step)) => select::stepped(&readings, step, current)
+            .map(|row| keyed_row_gesture(row, event.modifiers)),
+        (Key::Character(text), None) if types_into_select(event.modifiers) => {
+            if text == " " && !doc.select_text_stands(node_id) {
+                current.map(RowGesture::Toggle)
+            } else {
+                let typed = doc.type_into_select(node_id, text);
+                select::matched(&readings, &typed).map(RowGesture::Alone)
+            }
+        }
+        _ => None,
+    };
+    if let Some(gesture) = gesture {
+        doc.apply_row_gesture(node_id, &options, gesture, dispatch_event);
+    }
+}
+
+/// What a step to `row` does with `modifiers` held.
+fn keyed_row_gesture(row: usize, modifiers: Modifiers) -> RowGesture {
+    if modifiers.intersects(Modifiers::CONTROL | Modifiers::META) {
+        RowGesture::Move(row)
+    } else if modifiers.contains(Modifiers::SHIFT) {
+        RowGesture::Span(row)
+    } else {
+        RowGesture::Alone(row)
     }
 }
 
@@ -268,17 +323,73 @@ impl BaseDocument {
         typed
     }
 
-    /// Makes `option` a single-choice select's chosen option. Where the choice changed, the
-    /// select joins the changed set, an `input` and then a `change` event, each carrying the
-    /// select's new value, are dispatched and a redraw is requested.
+    /// Whether text typed into `select` is still kept for the next character.
+    fn select_text_stands(&self, select: NodeId) -> bool {
+        let now = self.clock.now();
+        self.select_typeahead.as_ref().is_some_and(|typeahead| {
+            typeahead.select == select && now.saturating_sub(typeahead.at) < TYPEAHEAD_TIMEOUT
+        })
+    }
+
+    /// The anchor and the current row of a `multiple` select's cursor, as indices into `options`:
+    /// each `None` where the cursor is another select's or its row has gone.
+    pub(crate) fn select_rows(
+        &self,
+        select: NodeId,
+        options: &[NodeId],
+    ) -> (Option<usize>, Option<usize>) {
+        let row = |id: NodeId| {
+            self.get_node(id)?;
+            options.iter().position(|option| *option == id)
+        };
+        match self.select_cursor.filter(|cursor| cursor.select == select) {
+            Some(cursor) => (row(cursor.anchor), row(cursor.current)),
+            None => (None, None),
+        }
+    }
+
+    /// Runs `gesture` on the rows `options` of a `multiple` select: its cursor moves, and the set
+    /// it leaves goes through [`Self::apply_select_choice`].
+    pub(crate) fn apply_row_gesture(
+        &mut self,
+        select: NodeId,
+        options: &[NodeId],
+        gesture: RowGesture,
+        dispatch_event: &mut dyn FnMut(DomEvent),
+    ) {
+        let readings = select::readings(self, options);
+        let (anchor, _) = self.select_rows(select, options);
+        let anchor = anchor.or_else(|| select::last_chosen(&readings));
+        let gestured = select::gestured(&readings, anchor, gesture);
+        if let (Some(&anchor), Some(&current)) =
+            (options.get(gestured.anchor), options.get(gestured.current))
+        {
+            self.select_cursor = Some(SelectCursor {
+                select,
+                anchor,
+                current,
+            });
+        }
+        if let Some(set) = gestured.set {
+            let chosen: Vec<NodeId> = set
+                .into_iter()
+                .filter_map(|row| options.get(row).copied())
+                .collect();
+            self.apply_select_choice(select, &chosen, dispatch_event);
+        }
+    }
+
+    /// Makes `chosen` a select's chosen options. Where the choice changed, the select joins the
+    /// changed set, an `input` and then a `change` event, each carrying the select's new value,
+    /// are dispatched and a redraw is requested.
     pub(crate) fn apply_select_choice(
         &mut self,
         select: NodeId,
-        option: NodeId,
+        chosen: &[NodeId],
         dispatch_event: &mut dyn FnMut(DomEvent),
     ) {
         let options = select::options(self, select);
-        if !self.set_select_choice(&options, Some(option)) {
+        if !self.set_select_choice(&options, chosen) {
             return;
         }
         let value = self.select_value(select).unwrap_or_default();

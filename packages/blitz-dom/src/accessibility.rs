@@ -101,6 +101,13 @@ impl BaseDocument {
             nodes.insert(node_id, (id, builder));
         }
 
+        // AccessKit's consumer panics on a focus its node list does not hold, and a focused node
+        // left out of the tree has no node to name.
+        let focus = self
+            .focus_node_id
+            .filter(|id| nodes.contains_key(id))
+            .map_or(u64::MAX, |id| id.as_u64());
+
         let mut nodes: Vec<_> = nodes
             .into_iter()
             .map(|(_, (id, node))| (id, node))
@@ -112,7 +119,7 @@ impl BaseDocument {
             tree_id: TreeId::ROOT,
             nodes,
             tree: Some(tree),
-            focus: NodeId(self.focus_node_id.map(|id| id.as_u64()).unwrap_or(u64::MAX)),
+            focus: NodeId(focus),
         }
     }
 
@@ -154,12 +161,18 @@ impl BaseDocument {
                 .filter(|label| !label.trim().is_empty())
             {
                 builder.set_label(label);
-            } else if select::is_select_option(node)
+            } else if (select::is_select_option(node)
+                || element_data.name.local == local_name!("optgroup"))
                 && let Some(label) = element_data
                     .attr(local_name!("label"))
                     .filter(|label| !label.is_empty())
             {
                 builder.set_label(label);
+            }
+
+            // https://www.w3.org/TR/html-aam-1.0/#att-multiple
+            if select::is_multiple_select(element_data) {
+                builder.set_multiselectable();
             }
 
             // https://www.w3.org/TR/wai-aria-1.2/#tree_exclusion
@@ -183,22 +196,32 @@ impl BaseDocument {
 
             // AccessKit holds a checkable role's `aria-checked` and every other role's
             // `aria-pressed` as the one `toggled` property, so each element reads one of the two.
-            // A native checkbox or radio keeps its own checkedness and reads neither author
-            // attribute (https://www.w3.org/TR/html-aria/#docconformance).
+            // A native checkbox or radio reads neither author attribute and writes its own
+            // checkedness where its role is checkable; under another role it writes nothing, so
+            // it never reads pressed (https://www.w3.org/TR/html-aria/#docconformance,
+            // https://www.w3.org/TR/html-aam-1.0/#att-checked).
             // https://www.w3.org/TR/wai-aria-1.2/#aria-checked
             // https://www.w3.org/TR/wai-aria-1.2/#aria-pressed
-            let toggled = if is_native_checkable(element_data) {
-                None
-            } else if is_checkable(role) {
-                element_data.attr(local_name!("aria-checked"))
+            if is_native_checkable(element_data) {
+                if is_checkable(role) {
+                    match element_data.checkbox_input_checked() {
+                        Some(true) => builder.set_toggled(Toggled::True),
+                        Some(false) => builder.set_toggled(Toggled::False),
+                        None => {}
+                    }
+                }
             } else {
-                element_data.attr(local_name!("aria-pressed"))
-            };
-            match toggled.map(str::trim_ascii) {
-                Some("true") => builder.set_toggled(Toggled::True),
-                Some("false") => builder.set_toggled(Toggled::False),
-                Some("mixed") => builder.set_toggled(Toggled::Mixed),
-                _ => {}
+                let toggled = if is_checkable(role) {
+                    element_data.attr(local_name!("aria-checked"))
+                } else {
+                    element_data.attr(local_name!("aria-pressed"))
+                };
+                match toggled.map(str::trim_ascii) {
+                    Some("true") => builder.set_toggled(Toggled::True),
+                    Some("false") => builder.set_toggled(Toggled::False),
+                    Some("mixed") => builder.set_toggled(Toggled::Mixed),
+                    _ => {}
+                }
             }
 
             // https://www.w3.org/TR/wai-aria-1.2/#aria-invalid
@@ -491,6 +514,7 @@ fn role_from_element_data(element_data: &ElementData) -> Option<Role> {
             None => Some(Role::ComboBox),
         },
         "option" => Some(Role::ListBoxOption),
+        "optgroup" => Some(Role::Group),
         "textarea" => Some(Role::MultilineTextInput),
         "progress" => Some(Role::ProgressIndicator),
         "meter" => Some(Role::Meter),

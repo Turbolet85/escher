@@ -275,18 +275,67 @@ fn a_clipped_or_off_screen_node_holding_text_reads_truncated_beside_it() {
 }
 
 /// What the lint reads on `task` at boot, measured: each finding's id, defect and the other
-/// element of its overlap. The flight booker's two type options read their select's client rect
-/// as their bounds, so they overlap each other.
+/// element of its overlap. The flight booker's two type options read their closed select's client
+/// rect as their bounds, which the lint does not read as an overlap.
 fn at_boot(task: LeanTask) -> &'static [(&'static str, Defect, &'static str)] {
     match task {
-        LeanTask::FlightBooker => &[("flight-type-one-way", Defect::Overlap, "flight-type-return")],
-        LeanTask::Counter | LeanTask::Timer | LeanTask::Crud => &[],
+        LeanTask::FlightBooker | LeanTask::Counter | LeanTask::Timer | LeanTask::Crud => &[],
+    }
+}
+
+/// A closed select's options, a closed select's options under a group, and a `multiple` select
+/// whose second row is planted over its first.
+fn selects_page() -> Element {
+    rsx! {
+        div { id: "fx-root", style: "position: relative; width: 784px; height: 584px;",
+            select {
+                id: "fx-closed",
+                aria_label: "Closed",
+                style: "position: absolute; left: 20px; top: 20px; width: 120px;",
+                option { id: "fx-closed-a", value: "a", "A" }
+                option { id: "fx-closed-b", value: "b", "B" }
+            }
+            select {
+                id: "fx-grouped",
+                aria_label: "Grouped",
+                style: "position: absolute; left: 200px; top: 20px; width: 120px;",
+                optgroup { id: "fx-group", label: "Group",
+                    option { id: "fx-grouped-a", value: "a", "A" }
+                    option { id: "fx-grouped-b", value: "b", "B" }
+                }
+            }
+            select {
+                id: "fx-rows",
+                aria_label: "Rows",
+                multiple: true,
+                style: "position: absolute; left: 400px; top: 20px; width: 120px;",
+                option { id: "fx-row-a", value: "a", "A" }
+                option { id: "fx-row-b", value: "b", style: "margin-top: -6px;", "B" }
+            }
+        }
+    }
+}
+
+#[test]
+fn a_closed_selects_options_overlap_nothing_and_a_multiple_selects_rows_are_linted() {
+    for incremental in [false, true] {
+        let at = format!("incremental={incremental}");
+        let mut session = fixtures::hold("lint", selects_page, incremental);
+        let findings = linted(&mut session, &lint()).expect("the lint is answered");
+        assert!(
+            named(&findings) == [("fx-row-a", "overlap")],
+            "{at}: the planted rows are the one finding"
+        );
+        assert!(
+            matches!(&findings[0].reason, Reason::Overlap { other, .. } if other == "fx-row-b"),
+            "{at}: the finding names the row over it"
+        );
     }
 }
 
 #[test]
 fn the_stand_at_boot_reads_its_measured_findings() {
-    assert_eq!(LeanTask::ALL.map(|task| at_boot(task).len()), [0, 1, 0, 0]);
+    assert_eq!(LeanTask::ALL.map(|task| at_boot(task).len()), [0, 0, 0, 0]);
     for incremental in [false, true] {
         for (index, task) in LeanTask::ALL.into_iter().enumerate() {
             let at = format!("incremental={incremental}: task {index}");

@@ -22,23 +22,30 @@
 //! disables form controls alone; the CRUD list takes focus and its arrows, Home and End move the
 //! selection as a click on a row does, while the focus stays on the list. *Delete:* the Apple
 //! delete binding deletes one character on every OS. *Inert:* Tab skips content under a truthy
-//! `inert` and reaches content under a falsy one, whose attribute the bridge removed. Known
-//! limit: a node that holds focus when it becomes inert keeps it until focus moves, as HTML's
-//! focus fixup is not built — pinned by `inert_subtree`.
+//! `inert` and reaches content under a falsy one, whose attribute the bridge removed; a node that
+//! holds focus when it becomes inert gives it up, pinned by `inert_subtree`. *Served pages:* the
+//! load page walks `back-btn` and `load-fetch`, and Enter and Space on its button each leave a load
+//! in flight. Cells walks `back-btn` and its one `cells-grid` stop: the arrows move the current
+//! cell, clamped at the grid's ends, and bring it into view, Enter opens its editor focused, a
+//! typed value and Enter commit it with focus back on the grid, and Tab leaving an open editor
+//! commits it.
 //!
 //! A failure message carries a layout mode, a task and an index, never an id or what a screen
 //! reads.
 
 use ::keyboard_types::{Key, Modifiers, NamedKey};
 use blitz_dom::{QualName, ScrollBehavior, local_name, ns};
-use blitz_test_harness::Harness;
+use blitz_test_harness::{Busy, Harness, NotSettled};
 use dioxus::prelude::*;
 use dioxus_native_dom::DioxusDocument;
-use seven_guis::stand::LeanTask;
+use seven_guis::stand::{self, LeanTask};
 
 mod common;
 mod fixtures;
-use common::{ENABLED_TAB_ORDER, boot, controls, editor_text, focused, node, tab_order};
+use common::{
+    CELLS_TAB_ORDER, ENABLED_TAB_ORDER, LOAD_TAB_ORDER, boot, controls, editor_text, focused, node,
+    tab_order,
+};
 
 /// Each stand button in the four Tab sequences, and whether a click on it changes the screen
 /// beyond its focus.
@@ -120,6 +127,211 @@ fn tab_until(harness: &mut Harness<DioxusDocument>, id: &str, bound: usize, what
 
 fn text(harness: &Harness<DioxusDocument>) -> String {
     harness.doc.snapshot().to_text()
+}
+
+/// Asserts Tab walks `sequence` from nothing focused and wraps to its first stop, and Shift+Tab
+/// walks it back and wraps to its last.
+#[track_caller]
+fn assert_walk(harness: &mut Harness<DioxusDocument>, sequence: &[&str], mode: &str) {
+    let n = sequence.len();
+    assert!(
+        holder(harness).is_empty(),
+        "{mode}: nothing is focused at boot"
+    );
+    for index in 0..=n {
+        harness.press(Key::Named(NamedKey::Tab));
+        assert!(
+            holder(harness) == [sequence[index % n]],
+            "{mode}: Tab {index}"
+        );
+    }
+    for index in 1..=n + 1 {
+        harness.press_with(Key::Named(NamedKey::Tab), Modifiers::SHIFT);
+        assert!(
+            holder(harness) == [sequence[(n - index % n) % n]],
+            "{mode}: Shift+Tab {index}"
+        );
+    }
+}
+
+#[test]
+fn the_load_page_walks_its_stated_sequence_and_its_button_takes_enter_and_space() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut harness = stand::boot_load(stand::options(incremental));
+        assert_walk(&mut harness, &LOAD_TAB_ORDER, &mode);
+        for (key_name, key) in activation_keys() {
+            let mut harness = stand::boot_load(stand::options(incremental));
+            tab_until(&mut harness, "load-fetch", 2, &mode);
+            assert!(
+                harness.settle().is_ok(),
+                "{mode}: {key_name}: nothing loads before the key"
+            );
+            harness.press(key);
+            assert!(
+                harness.settle() == Err(NotSettled { busy: Busy::Loads }),
+                "{mode}: {key_name}: the key leaves a load in flight"
+            );
+        }
+    }
+}
+
+/// Cells booted with focus on its grid by Tab.
+fn cells_on_grid(incremental: bool, mode: &str) -> Harness<DioxusDocument> {
+    let mut harness = stand::boot_cells(stand::options(incremental));
+    tab_until(&mut harness, "cells-grid", 2, mode);
+    harness
+}
+
+/// Whether the cell `id` is the grid's current one.
+fn is_current(harness: &Harness<DioxusDocument>, id: &str) -> bool {
+    harness
+        .attr(&format!("#{id}"), "class")
+        .is_some_and(|class| class.split_whitespace().any(|word| word == "current"))
+}
+
+#[test]
+fn cells_walks_its_stated_sequence() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut harness = stand::boot_cells(stand::options(incremental));
+        assert_walk(&mut harness, &CELLS_TAB_ORDER, &mode);
+    }
+}
+
+#[test]
+fn cells_arrows_and_enter_open_the_moved_to_cell_and_its_value_commits_by_keyboard() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut harness = cells_on_grid(incremental, &mode);
+        assert!(is_current(&harness, "cell-A0"), "{mode}: A0 starts current");
+        harness.press(Key::Named(NamedKey::ArrowRight));
+        harness.press(Key::Named(NamedKey::ArrowDown));
+        assert!(
+            is_current(&harness, "cell-B1") && !is_current(&harness, "cell-A0"),
+            "{mode}: the arrows move the current cell"
+        );
+        assert!(
+            holder(&harness) == ["cells-grid"],
+            "{mode}: the arrows leave focus on the grid"
+        );
+
+        harness.press(Key::Named(NamedKey::Enter));
+        assert!(
+            holder(&harness) == ["cell-input"],
+            "{mode}: Enter opens the editor, focused"
+        );
+        let input = harness.node("#cell-input");
+        let cell = harness.node("#cell-B1");
+        assert!(
+            harness
+                .base()
+                .get_node(input)
+                .is_some_and(|input| input.parent == Some(cell)),
+            "{mode}: the editor stands in the moved-to cell"
+        );
+
+        harness.type_text("42");
+        harness.press(Key::Named(NamedKey::Enter));
+        assert!(
+            harness.query("#cell-input").is_none(),
+            "{mode}: Enter closes the editor, and the bubbled key does not open it again"
+        );
+        assert!(
+            harness.text_content("#cell-B1").trim() == "42",
+            "{mode}: the value is committed"
+        );
+        assert!(
+            holder(&harness) == ["cells-grid"],
+            "{mode}: focus returns to the grid"
+        );
+    }
+}
+
+#[test]
+fn cells_tab_leaving_an_open_editor_commits_it() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut harness = cells_on_grid(incremental, &mode);
+        harness.press(Key::Named(NamedKey::Enter));
+        harness.type_text("7");
+        harness.press(Key::Named(NamedKey::Tab));
+        assert!(
+            harness.query("#cell-input").is_none(),
+            "{mode}: leaving the editor closes it"
+        );
+        assert!(
+            harness.text_content("#cell-A0").trim() == "7",
+            "{mode}: leaving the editor commits it"
+        );
+    }
+}
+
+/// The keyboard and the pointer meet: an editor still open when another cell is clicked commits to
+/// its own cell, and the blur that follows writes nothing to any other.
+#[test]
+fn cells_a_click_on_another_cell_commits_an_open_editor_to_its_own_cell() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut harness = cells_on_grid(incremental, &mode);
+        harness.press(Key::Named(NamedKey::Enter));
+        harness.type_text("7");
+        harness.click("#cell-C2");
+        assert!(
+            harness.text_content("#cell-A0").trim() == "7",
+            "{mode}: the open editor commits to its own cell"
+        );
+        harness.click("#cell-D3");
+        assert!(
+            harness.text_content("#cell-A0").trim() == "7"
+                && harness.text_content("#cell-C2").trim().is_empty(),
+            "{mode}: the cell clicked next holds nothing of what was typed"
+        );
+    }
+}
+
+#[test]
+fn cells_arrows_clamp_at_the_grids_ends_and_bring_a_cell_into_view() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut harness = cells_on_grid(incremental, &mode);
+        for (row, key) in [NamedKey::ArrowLeft, NamedKey::ArrowUp]
+            .into_iter()
+            .enumerate()
+        {
+            harness.press(Key::Named(key));
+            assert!(
+                is_current(&harness, "cell-A0"),
+                "{mode}: row {row}: the arrow stops at A0"
+            );
+        }
+
+        let far = harness.node("#cell-Z0");
+        let shows = |harness: &Harness<DioxusDocument>| {
+            let doc = harness.base();
+            let centre = doc
+                .get_client_bounding_rect(far)
+                .map(|rect| (rect.x + rect.width / 2.0, rect.y + rect.height / 2.0));
+            let seen = doc.visible_region(far);
+            centre.zip(seen).is_some_and(|((x, y), seen)| {
+                x >= seen.x && x <= seen.x + seen.width && y >= seen.y && y <= seen.y + seen.height
+            })
+        };
+        assert!(!shows(&harness), "{mode}: the far cell starts out of view");
+        for _ in 0..25 {
+            harness.press(Key::Named(NamedKey::ArrowRight));
+        }
+        assert!(
+            is_current(&harness, "cell-Z0"),
+            "{mode}: 25 arrows reach the last column"
+        );
+        assert!(shows(&harness), "{mode}: the far cell is brought into view");
+        harness.press(Key::Named(NamedKey::ArrowRight));
+        assert!(
+            is_current(&harness, "cell-Z0"),
+            "{mode}: the arrow stops at the last column"
+        );
+    }
 }
 
 #[test]

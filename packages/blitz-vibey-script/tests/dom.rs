@@ -359,6 +359,46 @@ fn checkbox_click_fires_input_and_change_events() {
     assert_eq!(text_of_selector(&doc, "#out"), "input:true,change:true");
 }
 
+/// A click on the document's `#radio`.
+fn radio_click(doc: &ScriptDocument) -> Option<DomEvent> {
+    let inner = doc.inner();
+    let radio = inner.query_selector("#radio").ok().flatten()?;
+    let click = inner
+        .get_node(radio)?
+        .synthetic_click_event(Modifiers::empty());
+    Some(DomEvent::new(radio, click))
+}
+
+#[test]
+fn radio_click_fires_change_only_where_it_was_not_checked() {
+    let mut doc = doc_from_html(
+        r#"
+        <html><body>
+            <input type="radio" id="radio" name="set">
+            <div id="out"></div>
+            <script>
+                const radio = document.getElementById("radio");
+                const log = [];
+                const write = (word) => {
+                    log.push(word);
+                    document.getElementById("out").textContent = log.join(",");
+                };
+                radio.addEventListener("input", () => write("input"));
+                radio.addEventListener("change", () => write("change"));
+            </script>
+        </body></html>
+        "#,
+    );
+    doc.inner_mut().resolve(0.0);
+
+    for expected in ["input,change", "input,change,input"] {
+        if let Some(click) = radio_click(&doc) {
+            doc.dispatch_dom_event(click);
+        }
+        assert_eq!(text_of_selector(&doc, "#out"), expected);
+    }
+}
+
 #[test]
 fn dom_content_loaded_and_window_load_fire() {
     let doc = doc_from_html(

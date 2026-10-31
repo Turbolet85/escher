@@ -78,7 +78,8 @@ Witnesses: `stand_snapshot`, `stand_snapshot_state`, `stand_snapshot_text`, `sta
 settled step and returns its diff. An id the screen does not read is refused `stale` when an earlier screen of the
 session read it, else `not-found`; a `click` or a `type` on a target that cannot take it is refused `disabled`,
 `off-screen` or `covered`, in that order. `type` replaces what a control holds, and on a `select` it chooses the first
-option whose label starts with the text. `scroll` brings its target into view through every scrolling box that holds
+enabled option whose label starts with the text, on a `multiple` select that option alone with no click on a row. A
+`click` on a `multiple` select's row chooses it. `scroll` brings its target into view through every scrolling box that holds
 it and answers `in_view`. The five acting verbs wait on a page load in flight for up to `LOAD_WAIT`, 5 s of wall
 time, moving no time on the instance; a step that does not go quiet answers `settled: false` with its busy class.
 
@@ -105,9 +106,9 @@ Witnesses: `stand_act_screenshot`, `stand_screenshot_repeat`, `password_painted_
 
 `lint` reads the held screen for six defects: overlap, clipped, truncated, off-screen, zero-size and contrast. It
 returns one finding per defect, each holding a stable id, a closed defect word and numbers only, and changes nothing.
-On the stand the counter, the timer and CRUD read 0 findings at boot, and the flight booker one `overlap`, its
-`flight-type` select's two options, which read the select's own bounds; after twelve Creates the last CRUD row,
-`crud-person-14`, reads `clipped` inside `crud-list`.
+On the stand the four lean tasks read 0 findings at boot: an option or a group of a closed `select`, which reads the
+select's own bounds, overlaps nothing, while a `multiple` select's rows are linted like any element. After twelve
+Creates the last CRUD row, `crud-person-14`, reads `clipped` inside `crud-list`.
 
 Witnesses: `stand_lint`, `text_extent`.
 
@@ -130,12 +131,26 @@ Escher changed the engine, for every document and not the stand alone, in these 
 - **keyboard activation**: Enter and Space on a focused button and its kin dispatch a click;
 - **click focus**: a click focuses a button or a select;
 - **a single-choice `select` model**: arrows, `Home`, `End` and typeahead;
+- **a `multiple` `select` model**: its rows have boxes of their own and take a click, plain, with Ctrl or Meta and with
+  Shift; its arrows, `Home` and `End` choose a row alone, with Shift span and with Ctrl or Meta move the current row; a
+  Space flips the current row; typed text chooses its match alone; each change fires one `input` and one `change`, a
+  Dioxus handler reading the set through `evt.values()`;
+- **`optgroup`**: its options are in its select's list, chosen by keys and text, a disabled group's rows skipped and left
+  out of a form's entries;
 - **`inert`** is honoured: an inert subtree is skipped by Tab, passed through by a hit and left out of the
-  accessibility tree;
-- **`disabled`** is read by its presence on a form control alone.
+  accessibility tree, and a node that holds focus when it comes under `inert` gives focus up at the mutator's flush, with
+  no `blur` fired;
+- **the tree's focus** is the window when the focused node was not built, so the tree never names a node it does not
+  hold;
+- **`disabled`** is read by its presence on a form control alone;
+- **`change`** fires on a checkbox and, where its state moved, on a radio, after their `input`;
+- **a native checkbox or radio** states its own checked state as `toggled` where its role is checkable;
+- **a transform** moves what a box clips: `visible_region` reads a clipping box where its transforms show it, and a box
+  under a transform with no inverse takes no hit.
 
-Witnesses: `range_input_interaction`, `stand_act_range`, `stand_keyboard`, `select_interaction`, `inert_subtree`,
-`focusability_updates`.
+Witnesses: `range_input_interaction`, `stand_act_range`, `stand_keyboard`, `select_interaction`, `stand_act_select`,
+`inert_subtree`, `focusability_updates`, `checkable_change_event`, `accessibility_states`, `visible_region_transformed`,
+`hit_non_invertible_transform`, `open_state`.
 
 The snapshot, its text, parts and diff, and the actionable-key check stand behind the default `accessibility`
 feature, which escher-driver names unconditionally.
@@ -164,9 +179,9 @@ The driver's own refusal texts state three readings that are off:
   `stand_act_obstructed` and `hit_clipped_at_scrolling_box`.
 - **`covered` on a box with no width or height.** Such a box is hit at its centre on the element that holds it, so it
   can read `covered` though nothing covers it. Stated in the tool's text; asserted by no check.
-- **`off-screen` inside a transformed scrolling box.** A scrolling box under a transform is read where it stands
-  untransformed, so an element inside it can read `off-screen` though it shows. Owned by an open
-  `.andromeda/residuals.md` line.
+- **An element in a rotated box's corner.** Under a rotation a box's visible part reads as the bounding box of its
+  rotated padding box, so an element in a corner it does not show can read in view. Pinned by
+  `visible_region_transformed`.
 
 ### Pinned by a check
 
@@ -176,8 +191,12 @@ The driver's own refusal texts state three readings that are off:
 - **`text_extent`, which the lint reads.** RTL and vertical text read as left-to-right horizontal lines, and a
   transformed box reads at its client rect. Pinned by `text_extent`. Vertical writing modes are in no default feature
   set.
-- **HTML's focus fixup is not built.** A node that holds focus when it becomes inert keeps focus until focus moves.
-  Pinned by `inert_subtree`; owned by an open `.andromeda/residuals.md` line.
+- **The focus fixup fires no `blur`.** A node that holds focus when it comes under `inert` gives focus up at the
+  mutator's flush, and no DOM `blur` or `focusout` fires. Pinned by `inert_subtree`.
+- **The `select` model's limits.** No popup is painted, and Enter and Space open nothing on a single select; an option of
+  a closed select is not clicked (a click on one is refused `covered`, under a group too); only a `multiple` select's
+  rows take a click. Pinned by `select_interaction` and `stand_act_select`.
+- **`change` on a text input and a range.** They fire `input` and no `change`. Pinned by `text_range_no_change_event`.
 - **A shot's PNG bytes.** They repeat byte for byte on one host and differ between linux x86_64 and macOS aarch64, as
   measured at CI#39225375577. A check compared byte for byte across operating systems holds no `screenshot` step.
 
@@ -186,11 +205,10 @@ The driver's own refusal texts state three readings that are off:
 - **Unpaged diffs and findings.** An acting verb's diff and a lint's findings are not paged: on a large screen either
   can pass 10,000 bytes, held only by the 1,048,576-byte answer bound. `snapshot` alone reads a screen in parts. As
   measured at escher-0.2.0/chunks/2026-10-20-large-screen-in-parts/report.md.
-- **The `select` model's limits.** A `multiple` select and an `optgroup`'s options are not modelled, no popup is
-  painted, and an option is not clicked (a click on one is refused `covered`). Asserted by no check; owned by an open
-  `.andromeda/residuals.md` line. A controlled app must write `selected` back, or a choice reverts. A single-choice
-  select shows its chosen option's label alone. A `multiple` select still maps to the `ListBox` role. The select's
-  contrast pair is unmeasured.
+- **The `select` model's other limits.** `size` is unread, so a `multiple` select lists every row; a group's label is
+  named in the tree and unpainted; Ctrl+A is not modelled; `press` holds no Ctrl, so a set of rows that are not adjacent
+  cannot be built through the driver. A controlled app must write `selected` back, or a choice reverts. A single-choice
+  select shows its chosen option's label alone. A closed select's contrast pair is unmeasured.
 - **The bounded record of ids.** The session keeps the last 4,096 ids its screens read, to tell `stale` from
   `not-found`. Past that bound a once-read id can read `not-found`.
 - **Selectors that never match.** `:focus-visible`, `:valid`, `:invalid`, `:required` and `:target` always read false.
@@ -261,7 +279,6 @@ What is not reached:
   technology, which this version does not reach. The platform adapters have their
   own gaps: Android's `set_focus` and `set_window_bounds` are empty, Windows' `set_focus` and macOS'
   `set_window_bounds` are no-ops.
-- A native checkbox's or radio's own checked state is absent from the accessibility tree (an open residuals line).
 - `aria-activedescendant` is unread (SC 4.1.2, outside tier 0), pinned by `accessibility_active_descendant_unread`.
 - Descriptions (`aria-describedby`, `aria-description`) reach the platform adapter only, never the snapshot.
 - A `role` attribute reaches the tree through the engine's one role-name mapping. The role, name and state mappings
@@ -301,8 +318,11 @@ They run in these CI legs (`.github/scripts/ci-leg.sh`):
 
 - **`test`**: the whole workspace, on linux, macOS and windows.
 - **`a11y`**: the fourteen accessibility files.
-- **`stand-repeat`**: the 48 `stand_*` files, ten named blitz-tests targets and seven_guis' eight process checks,
-  three rounds under a zero-failure budget, read 198 · 837 · 0 · 21 on CI#40134371519.
+- **`stand-repeat`**: the `stand_*` files, fifteen named blitz-tests targets and seven_guis' eight process checks, three
+  rounds under a zero-failure budget; with 48 files and ten named targets it read 198 · 837 · 0 · 21 on CI#40134371519.
+  Among the fifteen: `visible_region_transformed`, `hit_non_invertible_transform`, `open_state`,
+  `checkable_change_event`, `text_range_no_change_event` and `transformed_client_rect`, whose
+  `a_target_inside_a_translated_scrolling_box_reads_inside_its_visible_region` holds the transformed box's reading.
 - **`ci-scripts`**: the CI-script checks, this page's pin among them.
 
 The 0.2.0 requirement record is `WITNESSES_020` in `stand_requirement_sweep`: nine rows, 46 witnesses.

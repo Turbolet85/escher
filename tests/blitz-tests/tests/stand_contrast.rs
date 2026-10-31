@@ -10,13 +10,19 @@
 //! that is not exempt meets its ratio — the control rows at boot, the CRUD list rows and the
 //! text outside the controls (`TEXT_ROWS`), and the colours the controls take under real input
 //! (`STATE_ROWS`: a choice, an unparseable date, a booking, a selected row, hover and active).
+//! The pages the stand serves beside them are held to their required ratios with no recorded hex:
+//! the load page's button at rest, hover and active, its shell and its message once its sheet has
+//! landed, and Cells' shell, a filled cell, its open editor and its headers.
 //! A failure message carries a layout mode, a task and an index, never an id or what a screen
 //! reads.
 
+use std::time::Instant;
+
 use blitz_test_harness::{Harness, PixelRect, TextContrast};
 use dioxus_native_dom::DioxusDocument;
+use escher_driver::LOAD_WAIT;
 use keyboard_types::{Key, NamedKey};
-use seven_guis::stand::LeanTask;
+use seven_guis::stand::{self, LeanTask};
 
 mod common;
 use Reading::{ExemptInactive, Fail, NoText, Pass};
@@ -626,6 +632,74 @@ fn every_list_row_and_text_outside_the_controls_meets_its_ratio() {
             "{}: every text row is read and passes",
             mode(incremental)
         );
+    }
+}
+
+/// Asserts `selector` reads a ratio that meets its required one.
+#[track_caller]
+fn assert_meets_its_ratio(harness: &Harness<DioxusDocument>, selector: &str, at: &str) {
+    assert!(
+        matches!(read(harness, selector, at), Pass(_)),
+        "{at}: the measured ratio meets the required one"
+    );
+}
+
+#[test]
+fn the_load_page_meets_its_ratios() {
+    const REST: [&str; 3] = ["#load-fetch", "#back-btn", "#task-title"];
+    assert_eq!(REST.len(), 3);
+    for incremental in [false, true] {
+        let boot_load = || stand::boot_load(stand::options(incremental));
+        let harness = boot_load();
+        for (row, selector) in REST.into_iter().enumerate() {
+            let at = format!("{}, load page, row {row}", mode(incremental));
+            assert_meets_its_ratio(&harness, selector, &at);
+        }
+        for (row, how) in [Reach::Hover, Reach::Active].into_iter().enumerate() {
+            let at = format!("{}, load page, state {row}", mode(incremental));
+            let mut harness = boot_load();
+            reach(&mut harness, how, "load-fetch", &at);
+            assert_meets_its_ratio(&harness, "#load-fetch", &at);
+        }
+
+        // The message shows past `LOADED_CSS` alone, so its row reads the page once the fetch is
+        // answered: an answer that comes on a thread of its own, the driver's own bound on it.
+        let at = format!("{}, load page, message", mode(incremental));
+        let mut harness = boot_load();
+        harness.click("#load-fetch");
+        let deadline = Instant::now() + LOAD_WAIT;
+        while harness.settle().is_err() {
+            assert!(Instant::now() < deadline, "{at}: the load is answered");
+            std::thread::yield_now();
+        }
+        assert_meets_its_ratio(&harness, "#load-done", &at);
+    }
+}
+
+#[test]
+fn cells_meets_its_ratios() {
+    const ROWS: [&str; 5] = [
+        "#back-btn",
+        "#task-title",
+        "#cell-A0",
+        ".col-header",
+        ".row-header",
+    ];
+    assert_eq!(ROWS.len(), 5);
+    for incremental in [false, true] {
+        let mut harness = stand::boot_cells(stand::options(incremental));
+        for _ in 0..2 {
+            harness.press(Key::Named(NamedKey::Tab));
+        }
+        harness.press(Key::Named(NamedKey::Enter));
+        harness.type_text("5");
+        let at = format!("{}, Cells, its editor", mode(incremental));
+        assert_meets_its_ratio(&harness, "#cell-input", &at);
+        harness.press(Key::Named(NamedKey::Enter));
+        for (row, selector) in ROWS.into_iter().enumerate() {
+            let at = format!("{}, Cells, row {row}", mode(incremental));
+            assert_meets_its_ratio(&harness, selector, &at);
+        }
     }
 }
 

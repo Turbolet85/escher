@@ -1,5 +1,5 @@
 //! The tasks outside the lean four, reached through Home in process, in both layout modes:
-//! how many elements on each of the seven tasks react to a click and state no role (measured
+//! how many elements on each of the seven tasks react to input and state no role (measured
 //! and pinned; the snapshot carries no field for it), whether Circle Drawer's dialog rule sizes
 //! its range input, and that the dialog's two controls read their author keys while it is open.
 
@@ -35,7 +35,7 @@ fn open(card: &str, title: &str, incremental: bool) -> Harness<DioxusDocument> {
 }
 
 /// The elements whose accessibility node is a generic container and which carry the listener
-/// mark: they react to a click and state no role.
+/// mark: they react to input, a click or a key, and state no role.
 fn reacting_without_role(harness: &Harness<DioxusDocument>) -> usize {
     let roles: HashMap<u64, Role> = harness
         .doc
@@ -99,7 +99,8 @@ fn elements_that_react_to_a_click_and_state_no_role_are_counted() {
         ("CRUD", 0),
         ("Temperature Converter", 0),
         ("Circle Drawer", 1),
-        ("Cells", 676),
+        // The 676 data cells and the grid, whose listener is its keys and which states no role.
+        ("Cells", 677),
     ];
     for incremental in [false, true] {
         let mut measured = Vec::new();

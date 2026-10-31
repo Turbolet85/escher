@@ -1,0 +1,37 @@
+# The founder's answers on «Engine debts» forks (2026-10-31, by dialog in the escher overseer session)
+
+Run `.andromeda/runs/2026-10-31T03-24-40-phase`, chunk `2026-10-31-engine-debts`, `v030-04`. The clock read 07:29Z after his last answer. Each label is his chosen label, in his words, beside the builder's option.
+
+| Fork | His word | The option |
+|---|---|---|
+| F1 `visible_region` under a transform | «Починить (Рекомендую)» | A |
+| F2 `scale(0)` takes hits | «Починить (Рекомендую)» | A |
+| F3 `inert` focus fixup | «Снимать фокус без blur (Рекомендую)» | A |
+| F4 the tree names an absent focus | «Откат на окно (Рекомендую)» | A |
+| F5 native checkedness | «Писать на checkable-ролях (Рекомендую)» | A |
+| F6 `multiple` select | «Построить сейчас» | B |
+| F7 `optgroup` | «Построить сейчас» | B |
+| F8 popup and clicking an option | **typed: «Давай нарисовать в отдельном чанке»** | C, in a chunk of its own |
+| F9 lint's option overlap | «Исключить закрытые option (Рекомендую)» | A, as restated below |
+| F10 `change` on checkbox and radio | «Шлёт движок (Рекомендую)» | A |
+| F11 `change` on text input and range | «Закрепить ограничение (Рекомендую)» | A |
+| F12 the load page's rows | «Добавить строки (Рекомендую)» | A |
+| F13 Cells' keyboard path | «Одна Tab-остановка (Рекомендую)» | A |
+
+## Two further questions his answers raised, and his words
+
+**The click on an option until the popup's chunk** (F6 B needs clicks on its rows; F8's popup is later): «Только строки multiple (Рекомендую)». A `multiple` select's rows take a click from both the pointer and the driver, since they have real boxes. An option of a closed single select stays refused `covered` until the popup's chunk.
+
+**F9 as restated for F6, F7 and F8:** `overlaps` skips the options of a closed single select, those under an `optgroup` included. A `multiple` select's rows, with boxes of their own, are linted as usual.
+
+**Where the popup's chunk goes:** «Сразу после Engine debts (Рекомендую)». The last chunk of Epoch 2, before «Upstream sync ahead of the UI graph». It is a boundary widening, and its wrap halts on it once, as the forks file says. It is not started by this word: escher's pause stands, and only he lifts it.
+
+## Two more from the P5 card, by dialog 2026-10-31, the clock reading 08:50:14Z at the send that relayed them
+
+- **`press` holds no Ctrl, so an agent cannot build a non-adjacent set:** «Ограничение и residual (Рекомендую)». As the plan has it.
+- **`size` unread on a `multiple` select:** «В чанк с попапом (Рекомендую)». As the plan has it.
+
+The pulldown-cmark 0.13.5 lock bump (RUSTSEC-2026-0414, the audit red on the untouched tree) is the operator's call, not put to him; a semver-compatible fix inside `.claude/rules/security.md` §Dependencies, the advisory read at rustsec.org.
+
+## Standing
+F6 and F7 stay in this chunk. He was told F6 B is «по сути отдельный чанк» and chose it. F11 stays A, so F3's note on a dirty input losing its `change` has no subject.

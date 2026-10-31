@@ -1,0 +1,41 @@
+# design · cascade read · group 1 of 2
+
+## Carried
+- (.andromeda/design-system-detail/color-palette.md:8) Every contrast row the chunk adds or re-asserts must compute its SC 1.4.3 ratio from colours as this sRGB conversion yields them, so the stated ratio is the one the engine paints.
+  > The `Color` type is `AlphaColor<Srgb>` and Stylo colors convert to it via sRGB (packages/blitz-dom/src/util.rs:12; packages/blitz-dom/src/util.rs:166-178)
+- (.andromeda/design-system-detail/color-palette.md:9) A contrast row must state the scheme it measures under, the `Light` default unless the row sets another, because this value reaches what a `prefers-color-scheme` page paints.
+  > The system color scheme is an enum `Light` (default) / `Dark`, set on the viewport, and it feeds `prefers-color-scheme` (packages/blitz-traits/src/shell.rs:68-74; tests/blitz-tests/tests/device_coalescing.rs:101; packages/blitz-dom/src/stylo_device.rs:80-83)
+- (.andromeda/design-system-detail/color-palette.md:14) A contrast row over text with no background of its own box must read this canvas background as its background, root before body, never an assumed white.
+  > The canvas background is the root element's background colour, falling back to body's when the root is transparent (packages/blitz-paint/src/render.rs:193-228)
+  (.andromeda/design-system-detail/color-palette.md:13)
+  > The frame clear color is an optional `base_color` (a `peniko::Color`), unset by default (packages/dioxus-native/src/config.rs:12; packages/dioxus-native/src/config.rs:40; packages/dioxus-native/src/config.rs:76-80; packages/dioxus-native/src/dioxus_renderer.rs:37-38)
+- (.andromeda/design-system-detail/color-palette.md:27) The `load-fetch` contrast row, any re-read of the flight booker's colours and any select fix must take these stand values from layout-templates §Surface: desktop-native → Primary screens, and a move of one follows that home.
+  > | seven_guis stand | — | The stand's accent (its load page's `load-fetch` included), its flight booker's success-message colours and its flight-type select's border are held in layout-templates §Surface: desktop-native → Primary screens (`values · desktop-native-screens`), not as design-system values |
+- (.andromeda/design-system-detail/color-palette.md:28) A contrast row over a control or link with no authored colour must read these defaults as its input, and any fix that changes one is an engine change reaching every document, for the founder's fork.
+  > | blitz-dom default link | `rgb(0, 0, 238)` | Default stylesheet link, its rule selecting `a[href]` — an anchor with no `href` takes neither the colour nor the underline; input focus outline `#4D90FE`; button background `#EFEFEF` (packages/blitz-dom/assets/default.css:43-46; packages/blitz-dom/assets/default.css:98-101; packages/blitz-dom/assets/default.css:111) |
+  (.andromeda/design-system-detail/color-palette.md:96)
+  > | Focus — blitz-dom default input outline | `#4D90FE` | (packages/blitz-dom/assets/default.css:43-46; packages/blitz-dom/assets/default.css:98-101; packages/blitz-dom/assets/default.css:111) |
+- (.andromeda/design-system-detail/typography.md:15) A row over a form control must be measured at this default family unless an authored one stands, and any modelled select's option text must take it.
+  > | blitz-dom default form controls | inputs/selects/buttons `system-ui, sans-serif`; textarea monospace | not stated | not stated | not stated | (packages/blitz-dom/assets/default.css:88-96; packages/blitz-dom/assets/default.css:311-357; packages/blitz-dom/assets/default.css:368-376; packages/blitz-dom/assets/default.css:672-677) |
+  (.andromeda/design-system-detail/typography.md:41)
+  > Generic font families map to Parley generics, with `None` as sans-serif (packages/blitz-dom/src/stylo_to_parley.rs:50-60)
+- (.andromeda/design-system-detail/typography.md:16) A contrast row over a heading must take its size and weight from these defaults unless authored ones stand, because they decide whether the row holds the large-text threshold or the normal one.
+  > | blitz-dom default headings | not stated | bold | h1–h6 from 2em down to 0.67em | not stated | (packages/blitz-dom/assets/default.css:88-96; packages/blitz-dom/assets/default.css:311-357; packages/blitz-dom/assets/default.css:368-376; packages/blitz-dom/assets/default.css:672-677) |
+  (.andromeda/design-system-detail/typography.md:42)
+  > Font weight, width, style and variation settings convert to Parley values (packages/blitz-dom/src/stylo_to_parley.rs:87-112)
+- (.andromeda/design-system-detail/typography.md:20) A contrast row over text in an input, Cells' cell editors included, must state the size it is measured at, reading this editor size where no authored size stands.
+  > | Text input editors | not stated | not stated | `parley::PlainEditor::new(16.0)` | not stated | (packages/blitz-dom/src/node/text.rs:86) |
+- (.andromeda/design-system-detail/typography.md:21) A contrast row over text with no authored size must be measured at this generic base, 16px or monospace's 13px, never one size assumed for both.
+  > | Engine generic base size | generics | not stated | monospace 13px; other generics 16px | not stated | (packages/blitz-dom/src/font_metrics.rs:167-176) |
+- (.andromeda/design-system-detail/typography.md:29) A stand row or proof that reads text must measure under the stand's fonts as architecture §Standard Contracts → Headless stand holds them, and the served pages' rows must state whether they share that registration.
+  > The seven_guis headless stand's font registration is held in architecture §Standard Contracts → Headless stand, beside `font_ctx()`, not as a design-system typography value
+- (.andromeda/design-system-detail/typography.md:44) If the founder takes a modelled option or a painted popup, each option's bounds must follow this line height, and the overlap fork asked with it must read those bounds rather than its select's client rect.
+  > Line height maps `normal`, number and length to Parley line heights (packages/blitz-dom/src/stylo_to_parley.rs:407-412); the layout engine resolves `line-height: normal` as 1.2 × font size (packages/blitz-dom/src/layout/mod.rs:232-236)
+- (.andromeda/design-system-detail/typography.md:50) The new `:open` check on a `details` must assert what the page shows in each state, the disclosure marker `▾` open and `▸` closed among it.
+  > List markers: decimal `"N. "`, lower/upper-alpha, disc `•`, circle `◦`, square `▪`, disclosure-open `▾`, disclosure-closed `▸`, other names `□` (packages/blitz-dom/src/layout/list.rs:116-158)
+
+## Bindings
+- **Contrast row's colour pair ↔ its size and weight**: an SC 1.4.3 row's threshold is set by the type it is measured at, so each row must state its foreground and background from the palette together with the size and weight from typography, (.andromeda/design-system-detail/color-palette.md:28) with (.andromeda/design-system-detail/typography.md:15) and (.andromeda/design-system-detail/typography.md:16).
+- **Stand colours ↔ layout-templates**: the stand's `load-fetch` and select values live in that spec, not here, so a red row that moves a stand colour moves it there, after its own fork, (.andromeda/design-system-detail/color-palette.md:27).
+- **Stand fonts ↔ architecture**: the family a stand row is measured at is architecture's Headless stand contract, and this plan holds only the pointer, (.andromeda/design-system-detail/typography.md:29).
+- **Select's text ↔ an option's bounds**: a modelled option's height follows its family and size through `line-height: normal`, so the popup's fork and the overlap's fork read one value, (.andromeda/design-system-detail/typography.md:15) with (.andromeda/design-system-detail/typography.md:44).

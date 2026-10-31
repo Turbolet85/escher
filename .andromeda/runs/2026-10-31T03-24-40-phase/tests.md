@@ -1,0 +1,36 @@
+# tests extract
+
+## Relevance
+relevant — tier `0` (per test-plan §1 Test tier); every debt's disposition and all three CARRY checks end in a witness, a re-pinned check or a stated limit on the blitz-tests surface, though which witnesses exist turns on the founder's P4 forks.
+
+## Constraints
+- Every pipeline check a fix or a new row adds runs `for incremental in [false, true]`; `pseudo_element_flow_classification` is the recorded exception, and running it in both modes (CARRY 2) removes that exception, so the plan text moves at wrap (per test-plan §5 Layout assertions ↔ both layout modes).
+- An engine fix must keep incremental and non-incremental documents identical in layout and paint tree after each step, with no damage left: a fix to `visible_region`, focus fixup or `toggled` is read against `incremental_oracle`, and whether the oracle's sequences reach the changed path at all is research's question (per test-plan §2 Differential oracle).
+- A new behaviour is one auto-discovered target file under `tests/blitz-tests/tests/`, no `[[test]]` table and no manifest line, the manifest's shape pinned (per test-plan §2 Directory pattern; per test-plan §4 blitz-tests targets).
+- `cargo test --workspace` and `-p blitz-tests` build different engine features, `writing-mode` and `tracing` on in the workspace alone: a per-package green is not the workspace leg's green, and each body of the engine's bounds reader must hold a check; whether a `visible_region` fix touches a body behind `writing-mode` is research's question (per test-plan §9 Engine features by runner).
+- Stand checks hold a zero-failure budget over three rounds with no retry: a new check with no `stand_` prefix reaches that budget only as a literal `--test` word, the list pinned in the leg's contract test; `inert_subtree`, `transformed_client_rect` and `select_interaction` are on it by name, and whether a new witness joins is the plan's to state (per test-plan §10 Flakiness budget; per test-plan §9 Legs; per test-plan §4 CI workflows and leg script).
+- Three per-crate line floors bind, with `packages/escher-driver` the nearest for a `lint.rs` `overlaps` change, `packages/dioxus-native-dom` for a snapshot change and `packages/blitz-test-harness` for any helper a row needs; a moved `#[path]` test child moves a reading with no code changed (per test-plan §10 Coverage floors).
+- The plan records as unasserted the select's stated limits, `:open` on `details` or `dialog`, and the windowed shell's redraw route; whether each is still so is research's question. A limit the founder pins as stated needs a check of its own to count as pinned, and the redraw route's check must state what it can read headlessly or say it cannot (per test-plan §1 blitz-dom covered behaviours; per test-plan §1 blitz-dom (node) — `:open`; per test-plan §1 blitz-dom covered behaviours — `focus_redraw`).
+
+## Patterns to follow
+- A fixture page more than one check reads goes in `tests/blitz-tests/tests/fixtures/mod.rs` as an `rsx!` component booted through `fixtures::boot` or `fixtures::hold`; a page with one reader stays in its check's file — the pan/zoom container (inputs#I2 adaptation), if the fix is taken, chooses by its reader count (per test-plan §3 blitz-tests (fixtures); per test-plan §7 tests/blitz-tests/tests/fixtures).
+- Driver-level readings go through `session_common`'s `hold`, `act`, `refused`, `refused_unchanged`, `lint` and `linted`, the shape `stand_lint` and `stand_act_transformed` read (per test-plan §3 blitz-tests (session checks); per test-plan §5 Session ↔ held instance).
+- Served-page rows extend the one statement of shared tables in `tests/common/mod.rs` (`tab_order`, `ENABLED_TAB_ORDER` and kin), which stay stated expectation and never a second role or name mapping, and boot through `stand::boot_cells` and `stand::boot_load`; contrast reads through `text_contrast` and `required_ratio` (per test-plan §3 blitz-tests (stand checks); per test-plan §3 blitz-test-harness Construction; per test-plan §3 blitz-test-harness Core).
+- A regression check is named for the bug it guards, so a fix that inverts a limit's pin (`a_target_inside_a_translated_scrolling_box_reads_outside_its_visible_region`, `removing_inert_restores_focus_hit_and_tree`'s limit) renames it to the new behaviour, never leaving a name that states the old one (per test-plan §2 Test function naming).
+
+## Anti-patterns to avoid
+- A skip path in a headless-stand check: contrast and keyboard rows assert unconditionally under the bundled font with system fonts off (per test-plan §2 Font-dependent tests; per test-plan §8 Real dependencies kept).
+- A sleep or wall-clock read in a session check: load-page rows wait through the driver's load wait over `LoadNet`, and Cells' rows take the driver's `advance`, with only the two named wall-time subjects excepted (per test-plan §5 Wall time in the session checks).
+- A shot compared byte for byte across OSes, should a painted popup's fork bring a frame check: sample pixels or compare on one host (per test-plan §2 Pixel tests).
+
+## Contract bindings
+- tests ↔ a11y: the `a11y` leg's fourteen-file list holds `stand_keyboard`, `stand_contrast`, `inert_subtree`, `select_interaction` and `stand_act_select`; a11y-plan §5's OPEN gap on Cells and the load page closes through rows in those targets or a new file added to that list, and the route's «A11y re-read» reads them (per test-plan §9 Legs; per test-plan §3 blitz-tests (stand checks)).
+- tests ↔ a11y (native checkedness): a witness can read the accessibility tree the shell builds, while no check reads states as the platform adapter hands them over, owed to its own residual line and out of this entry (per test-plan §1 tests/blitz-tests).
+- tests ↔ arch and capability statement: a change to `off-screen` or `covered` schema text must keep `test_capability_statement.py`'s pin over `docs/capabilities.md` and README.md green; verb, cause and node-key counts are pinned there, so no new one passes silently (per test-plan §4 Capability statement).
+- tests ↔ obs: `agent-run.sh` events are harness metadata, not a telemetry sink, and the driver's `command` span line carries closed sets a refusal's `cause` writes into; this entry adds no word to them (per test-plan §3 Events; per test-plan §3 Stand log format).
+
+## Acceptance criteria contributions
+- `bash scripts/agent-run.sh run {name}` for each touched non-stand target (`transformed_client_rect`, `inert_subtree`, `select_interaction`, `pseudo_element_flow_classification` and any new file), `run stand` and `run all` each exit 0 with `run.end` failed 0, and every new or re-pinned pipeline check holds both layout modes (per test-plan §3 Agent-run contract `run {selection}`).
+- `bash .github/scripts/ci-leg.sh fast` exits 0 on the dev host (per test-plan §9 Local pre-push gate), and the `stand-repeat` leg reads 3 of 3 rounds green with no retry (per test-plan §10 Flakiness budget).
+- The `coverage` leg ends `coverage floor: 3 of 3 crates at or above their floors` (per test-plan §10 Coverage floors).
+- A check of its own exists and fails red when its behaviour is broken, for `:open` on `details` and on `dialog` through `open`'s write and removal, and for each select limit the founder pins as stated (per test-plan §1 blitz-dom (node) — `:open`; per test-plan §1 blitz-dom covered behaviours).

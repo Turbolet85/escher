@@ -278,11 +278,7 @@ fn construct_entry_list(doc: &BaseDocument, form_id: NodeId, submitter_id: NodeI
                 let Some(option) = doc.get_node(option) else {
                     continue;
                 };
-                if select::is_chosen(option)
-                    && !option
-                        .element_data()
-                        .is_some_and(|option| option.has_attr(local_name!("disabled")))
-                {
+                if select::is_chosen(option) && !select::option_disabled(option) {
                     create_entry(name, select::option_value(option).as_str().into());
                 }
             }
@@ -489,6 +485,134 @@ mod tests {
         Attribute {
             name: QualName::new(None, markup5ever::ns!(), LocalName::from(name)),
             value: value.to_string(),
+        }
+    }
+
+    /// One option of a select: its value, its group, whether it is disabled and whether selected.
+    type Row<'a> = (&'a str, Option<&'a str>, bool, bool);
+
+    /// The entries of a form holding one select named `fruit`, carrying `attributes`, its rows
+    /// written selected as each row states; a group holding `disabled` is the one named `off`.
+    fn select_entries(attributes: Vec<Attribute>, rows: &[Row<'_>]) -> Vec<(String, String)> {
+        let mut doc = BaseDocument::new(DocumentConfig::default());
+        let root_id = doc.root_node().id;
+        let mut mutator = doc.mutate();
+        let html = mutator.create_element(qual_name!("html", html), vec![]);
+        let body = mutator.create_element(qual_name!("body", html), vec![]);
+        let form = mutator.create_element(qual_name!("form", html), vec![]);
+        let mut select_attributes = vec![attribute("name", "fruit")];
+        select_attributes.extend(attributes);
+        let select = mutator.create_element(qual_name!("select", html), select_attributes);
+        mutator.append_children(form, &[select]);
+        mutator.append_children(body, &[form]);
+        mutator.append_children(html, &[body]);
+        mutator.append_children(root_id, &[html]);
+
+        let mut groups: Vec<(&str, NodeId)> = Vec::new();
+        for (value, group, disabled, selected) in rows.iter().copied() {
+            let mut option_attributes = vec![attribute("value", value)];
+            if disabled {
+                option_attributes.push(attribute("disabled", ""));
+            }
+            let option = mutator.create_element(qual_name!("option", html), option_attributes);
+            let parent = match group {
+                None => select,
+                Some(label) => match groups.iter().find(|(name, _)| *name == label) {
+                    Some((_, id)) => *id,
+                    None => {
+                        let group_attributes = if label == "off" {
+                            vec![attribute("disabled", "")]
+                        } else {
+                            vec![]
+                        };
+                        let id =
+                            mutator.create_element(qual_name!("optgroup", html), group_attributes);
+                        mutator.append_children(select, &[id]);
+                        groups.push((label, id));
+                        id
+                    }
+                },
+            };
+            mutator.append_children(parent, &[option]);
+            if selected {
+                mutator.set_attribute(option, qual_name!("selected"), "");
+            }
+        }
+        drop(mutator);
+        doc.resolve(0.0);
+
+        construct_entry_list(&doc, form, form)
+            .0
+            .iter()
+            .map(|entry| (entry.name.clone(), entry.value.as_ref().to_string()))
+            .collect()
+    }
+
+    fn entries_of(values: &[&str]) -> Vec<(String, String)> {
+        values
+            .iter()
+            .map(|value| ("fruit".to_string(), value.to_string()))
+            .collect()
+    }
+
+    #[test]
+    fn a_multiple_select_submits_its_set_less_its_disabled_rows() {
+        let multiple = || vec![attribute("multiple", "")];
+        let rows: [(&[Row<'_>], &[&str]); 4] = [
+            (
+                &[("a", None, false, true), ("b", None, false, false)],
+                &["a"],
+            ),
+            (
+                &[
+                    ("a", None, false, true),
+                    ("b", None, false, true),
+                    ("c", None, false, true),
+                ],
+                &["a", "b", "c"],
+            ),
+            (&[("a", None, true, true), ("b", None, false, true)], &["b"]),
+            (
+                &[
+                    ("a", Some("on"), false, true),
+                    ("b", Some("off"), false, true),
+                    ("c", None, false, true),
+                ],
+                &["a", "c"],
+            ),
+        ];
+        assert_eq!(rows.len(), 4);
+        for (index, (options, expected)) in rows.into_iter().enumerate() {
+            assert_eq!(
+                select_entries(multiple(), options),
+                entries_of(expected),
+                "row {index}"
+            );
+        }
+    }
+
+    #[test]
+    fn a_single_select_submits_its_choice_through_a_group() {
+        let rows: [(&[Row<'_>], &[&str]); 2] = [
+            (
+                &[
+                    ("a", Some("on"), false, false),
+                    ("b", Some("on"), false, true),
+                ],
+                &["b"],
+            ),
+            (
+                &[("a", Some("off"), false, true), ("b", None, false, false)],
+                &[],
+            ),
+        ];
+        assert_eq!(rows.len(), 2);
+        for (index, (options, expected)) in rows.into_iter().enumerate() {
+            assert_eq!(
+                select_entries(vec![], options),
+                entries_of(expected),
+                "row {index}"
+            );
         }
     }
 

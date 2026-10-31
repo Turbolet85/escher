@@ -90,6 +90,12 @@ pub const ENABLED_TAB_ORDER: [(LeanTask, &[&str]); 2] = [
     ),
 ];
 
+/// The focus sequence of the load page the stand serves beside the lean tasks.
+pub const LOAD_TAB_ORDER: [&str; 2] = ["back-btn", "load-fetch"];
+
+/// The focus sequence of Cells, whose grid is one stop that moves among its cells by its keys.
+pub const CELLS_TAB_ORDER: [&str; 2] = ["back-btn", "cells-grid"];
+
 /// The ids of the snapshot nodes reading focused, asserted to be the element the
 /// accessibility tree reports as its focus: none when that is the `Window`.
 #[track_caller]

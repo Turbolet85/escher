@@ -6,8 +6,13 @@
 //! a `click` then a `press` of the arrows or Home chooses by key; the Tab walk skips the disabled
 //! select and reads the same before and after the choices; a `type` into the disabled select is
 //! refused `disabled` and a `click` on an option that is not chosen — seen in its select's box,
-//! where the chosen option's text lies — `covered`, each with the snapshot unchanged. A failure
-//! message carries the layout mode and a row index, never an id or what a screen reads.
+//! where the chosen option's text lies — `covered`, each with the snapshot unchanged. A `multiple`
+//! select reads its name, `ListBox` and its rows, each row with bounds of its own: a `click` on a
+//! row is accepted and chooses it, its diff naming the row's selection and the select's value
+//! where the first chosen moved; a `press` with shift spans; a `type` chooses its match alone with
+//! no click on the row at the select's centre; and an option under a closed select's group stays
+//! refused `covered`. A failure message carries the layout mode and a row index, never an id or
+//! what a screen reads.
 
 use accesskit::Role;
 use dioxus::prelude::*;
@@ -16,7 +21,7 @@ use escher_driver::{Cause, Session};
 
 mod fixtures;
 mod session_common;
-use session_common::{act, click, focused, press, refused_unchanged, type_into};
+use session_common::{Acted, act, click, focused, press, refused_unchanged, type_into};
 
 /// Two buttons around a labelled select, a select named by `aria-label` and a disabled one;
 /// every option carries an author `id`.
@@ -252,5 +257,201 @@ fn a_disabled_select_and_an_unchosen_option_are_refused() {
                 "{mode}: row {row}: the refused call leaves the snapshot as it was"
             );
         }
+    }
+}
+
+/// A `multiple` select of three rows, and a closed select whose options lie under a group.
+fn rows_page() -> Element {
+    rsx! {
+        div { id: "fx-root",
+            select { id: "fx-rows", aria_label: "Rows", multiple: true,
+                option { id: "fx-one", value: "1", "One" }
+                option { id: "fx-two", value: "2", "Two" }
+                option { id: "fx-three", value: "3", "Three" }
+            }
+            select { id: "fx-closed", aria_label: "Closed",
+                optgroup { id: "fx-closed-group", label: "Group",
+                    option { id: "fx-closed-a", value: "a", "A" }
+                    option { id: "fx-closed-b", value: "b", "B" }
+                }
+            }
+        }
+    }
+}
+
+fn hold_rows(incremental: bool) -> Session {
+    fixtures::hold("select", rows_page, incremental)
+}
+
+/// What `id` is named as changing in `acted`'s diff.
+fn differs(acted: &Acted, id: &str) -> Vec<Reading> {
+    acted
+        .diff
+        .changed
+        .iter()
+        .find(|node| node.id == id)
+        .map(|node| node.differs.clone())
+        .unwrap_or_default()
+}
+
+/// The rows of `fx-rows` reading selected, in order.
+fn chosen_rows(session: &Session) -> Vec<String> {
+    let snapshot = session.harness().doc.snapshot();
+    ["fx-one", "fx-two", "fx-three"]
+        .into_iter()
+        .filter(|id| {
+            snapshot
+                .get(id)
+                .is_some_and(|row| row.state.selected == Some(true))
+        })
+        .map(str::to_string)
+        .collect()
+}
+
+#[test]
+fn a_multiple_select_reads_its_name_role_and_rows_each_with_its_own_bounds() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let session = hold_rows(incremental);
+        let doc = &session.harness().doc;
+        assert!(
+            doc.unkeyed_actionable().is_empty(),
+            "{mode}: every element an agent can act on reads an author key"
+        );
+        let snapshot = doc.snapshot();
+        let rows = snapshot.get("fx-rows");
+        assert!(
+            rows.is_some_and(|rows| (rows.role, rows.name.as_str()) == (Role::ListBox, "Rows")),
+            "{mode}: the select reads its role and its name"
+        );
+        let bounds: Vec<_> = ["fx-one", "fx-two", "fx-three"]
+            .into_iter()
+            .filter_map(|id| snapshot.get(id))
+            .map(|row| {
+                assert!(
+                    row.role == Role::ListBoxOption && row.state.selected == Some(false),
+                    "{mode}: a row reads its role and no selection"
+                );
+                (row.bounds.y, row.bounds.height)
+            })
+            .collect();
+        assert!(bounds.len() == 3, "{mode}: the select holds its three rows");
+        assert!(
+            bounds
+                .windows(2)
+                .all(|pair| pair[0].0 + pair[0].1 <= pair[1].0),
+            "{mode}: each row reads bounds of its own, below the last"
+        );
+        assert!(
+            snapshot.get("fx-closed-group").is_some_and(|group| {
+                (group.role, group.name.as_str()) == (Role::Group, "Group")
+            }),
+            "{mode}: a group reads its role and its label as its name"
+        );
+    }
+}
+
+#[test]
+fn a_click_on_a_row_is_accepted_and_chooses_it() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut session = hold_rows(incremental);
+        let clicked = act(&mut session, &click("fx-two"))
+            .unwrap_or_else(|| panic!("{mode}: the click is accepted"));
+        assert!(clicked.settled, "{mode}: the click settles");
+        assert!(
+            differs(&clicked, "fx-two").contains(&Reading::Selected),
+            "{mode}: the diff names the row's selection"
+        );
+        assert!(
+            differs(&clicked, "fx-rows").contains(&Reading::Value),
+            "{mode}: the diff names the select's value, the first chosen having moved"
+        );
+        assert!(
+            value(&session, "fx-rows").as_deref() == Some("2"),
+            "{mode}: the select reads the row's value"
+        );
+        assert!(
+            focused(&session).0 == ["fx-rows"],
+            "{mode}: the click focuses the select"
+        );
+    }
+}
+
+#[test]
+fn a_press_with_shift_spans_the_rows() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut session = hold_rows(incremental);
+        assert!(
+            act(&mut session, &click("fx-one")).is_some(),
+            "{mode}: the click is accepted"
+        );
+        for (row, expected) in [
+            vec!["fx-one", "fx-two"],
+            vec!["fx-one", "fx-two", "fx-three"],
+        ]
+        .into_iter()
+        .enumerate()
+        {
+            let pressed = act(&mut session, &press("arrow-down", true));
+            assert!(
+                pressed.is_some_and(|pressed| pressed.settled),
+                "{mode}: row {row}: the press is accepted and settled"
+            );
+            assert!(
+                chosen_rows(&session) == expected,
+                "{mode}: row {row}: the span reads its rows"
+            );
+        }
+    }
+}
+
+#[test]
+fn type_on_a_multiple_select_chooses_its_match_alone_with_no_stray_click() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut session = hold_rows(incremental);
+        let typed = act(&mut session, &type_into("fx-rows", "Three"))
+            .unwrap_or_else(|| panic!("{mode}: the type is accepted"));
+        assert!(
+            differs(&typed, "fx-three").contains(&Reading::Selected),
+            "{mode}: the diff names the matched row's selection"
+        );
+        assert!(
+            differs(&typed, "fx-two").is_empty(),
+            "{mode}: the row at the select's centre takes no click"
+        );
+        assert!(
+            chosen_rows(&session) == ["fx-three"],
+            "{mode}: the text chooses its match alone"
+        );
+
+        let retyped = act(&mut session, &type_into("fx-rows", "One"));
+        assert!(retyped.is_some(), "{mode}: a second type is accepted");
+        assert!(
+            chosen_rows(&session) == ["fx-one"],
+            "{mode}: a second type starts its text afresh"
+        );
+
+        for (row, text) in ["No such row", "", " One"].into_iter().enumerate() {
+            let left = act(&mut session, &type_into("fx-rows", text));
+            assert!(left.is_some(), "{mode}: row {row}: the type is accepted");
+            assert!(
+                chosen_rows(&session) == ["fx-one"],
+                "{mode}: row {row}: a text no label starts leaves the set"
+            );
+        }
+    }
+}
+
+#[test]
+fn an_option_under_a_closed_selects_group_is_refused_covered() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut session = hold_rows(incremental);
+        let (cause, unchanged) = refused_unchanged(&mut session, &click("fx-closed-b"));
+        assert!(cause == Some(Cause::Covered), "{mode}: the refusal's cause");
+        assert!(unchanged, "{mode}: the refused call changes nothing");
     }
 }

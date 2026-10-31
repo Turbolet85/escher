@@ -7,10 +7,10 @@
 //! by its translation; a scaled box reads its scaled box about its centre; an untransformed child
 //! of a translated parent, and an inline span inside it, move with the parent, while
 //! `offset_rect` — CSSOM's `offsetTop` and kin, which ignore transforms — reads as on the
-//! untransformed page. *A limit, measured:* `visible_region` reads a scrolling box where it
-//! stands untransformed, so an element inside a translated scrolling box, shown in the viewport,
-//! has its centre outside its own visible region — the driver reads it `off-screen` though it
-//! shows. A failure message carries the layout mode and the page, never a coordinate.
+//! untransformed page; and an element inside a translated scrolling box, shown in the viewport,
+//! has its centre inside its own visible region, which reads the box where it shows
+//! (`visible_region_transformed` proves the reach). A failure message carries the layout mode and
+//! the page, never a coordinate.
 
 use blitz_dom::BoundingRect;
 use blitz_html::HtmlDocument;
@@ -180,10 +180,9 @@ fn inside(point: (f64, f64), (x, y, width, height): (f64, f64, f64, f64)) -> boo
     point.0 >= x && point.0 <= x + width && point.1 >= y && point.1 <= y + height
 }
 
-/// The reading as measured: the scrolling box's clip is read where the box stands untransformed,
-/// while the target's rect reads where it shows.
+/// The scrolling box's clip and the target's rect each read where they show.
 #[test]
-fn a_target_inside_a_translated_scrolling_box_reads_outside_its_visible_region() {
+fn a_target_inside_a_translated_scrolling_box_reads_inside_its_visible_region() {
     for incremental in [false, true] {
         let mode = format!("incremental={incremental}: a scrolling box");
         let plain = page(&scrolling_box(""), incremental);
@@ -209,12 +208,12 @@ fn a_target_inside_a_translated_scrolling_box_reads_outside_its_visible_region()
         );
         let seen = region(&translated, "#target");
         assert!(
-            seen == region(&plain, "#target"),
-            "{mode}: the visible region reads as on the untransformed page"
+            seen == region(&plain, "#target").map(|seen| moved(seen, (300.0, 0.0))),
+            "{mode}: the visible region moves with the box"
         );
         assert!(
-            seen.is_some_and(|seen| !inside(centre(target), seen)),
-            "{mode}: the target's centre lies outside its own visible region"
+            seen.is_some_and(|seen| inside(centre(target), seen)),
+            "{mode}: the target's centre lies inside its own visible region"
         );
     }
 }

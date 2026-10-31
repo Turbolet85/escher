@@ -1,0 +1,315 @@
+[
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'visible_region' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 7,
+"result": [
+{
+"caller_name": "in_view",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 453
+},
+{
+"caller_name": "crop",
+"file": "packages/escher-driver/src/execute.rs",
+"line": 464
+},
+{
+"caller_name": "clip_region",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 393
+},
+{
+"caller_name": "reader_holds_the_target",
+"file": "tests/blitz-tests/tests/scroll_into_view_nested.rs",
+"line": 119
+},
+{
+"caller_name": "the_visible_region_inside_a_scrolled_box_is_its_padding_box_cut_by_the_viewport",
+"file": "tests/blitz-tests/tests/scrolled_box_client_rect.rs",
+"line": 337
+},
+{
+"caller_name": "a_target_beside_a_box_clipped_on_one_axis_is_refused_covered",
+"file": "tests/blitz-tests/tests/stand_act_obstructed.rs",
+"line": 581
+},
+{
+"caller_name": "region",
+"file": "tests/blitz-tests/tests/transformed_client_rect.rs",
+"line": 174
+}
+],
+"db_state": "regenerated",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'set_focus_to' AND callee_kind='fn' AND file NOT LIKE '%tests/%' ORDER BY file, line",
+"rows": 17,
+"result": [
+{
+"caller_name": "focus_next_node",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1826
+},
+{
+"caller_name": "focus_prev_node",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1834
+},
+{
+"caller_name": "changed_set_focus_move_marks_both_nodes_and_hover_marks_nothing",
+"file": "packages/blitz-dom/src/document_changed_set_tests.rs",
+"line": 120
+},
+{
+"caller_name": "changed_set_focus_move_marks_both_nodes_and_hover_marks_nothing",
+"file": "packages/blitz-dom/src/document_changed_set_tests.rs",
+"line": 125
+},
+{
+"caller_name": "handle_dom_event",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 142
+},
+{
+"caller_name": "handle_dom_event",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 172
+},
+{
+"caller_name": "handle_pointerdown",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 573
+},
+{
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 770
+},
+{
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 794
+},
+{
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 822
+},
+{
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 848
+},
+{
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 864
+},
+{
+"caller_name": "click_button",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 993
+},
+{
+"caller_name": "flush",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 1039
+},
+{
+"caller_name": "focus",
+"file": "packages/blitz-vibey-script/src/dom/element/form_controls.rs",
+"line": 288
+},
+{
+"caller_name": "set_focus",
+"file": "packages/dioxus-native-dom/src/events.rs",
+"line": 297
+},
+{
+"caller_name": "a_stepped_uncontrolled_range_input_reads_its_moved_value",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 684
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'clear_focus' AND callee_kind='fn' ORDER BY file, line",
+"rows": 10,
+"result": [
+{
+"caller_name": "Toolbar",
+"file": "apps/browser/src/toolbar.rs",
+"line": 59
+},
+{
+"caller_name": "changed_set_focus_move_marks_both_nodes_and_hover_marks_nothing",
+"file": "packages/blitz-dom/src/document_changed_set_tests.rs",
+"line": 141
+},
+{
+"caller_name": "handle_click",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 970
+},
+{
+"caller_name": "blur",
+"file": "packages/blitz-vibey-script/src/dom/element/form_controls.rs",
+"line": 295
+},
+{
+"caller_name": "set_focus",
+"file": "packages/dioxus-native-dom/src/events.rs",
+"line": 301
+},
+{
+"caller_name": "blurring_requests_a_redraw",
+"file": "tests/blitz-tests/tests/focus_redraw.rs",
+"line": 100
+},
+{
+"caller_name": "blurring_requests_a_redraw",
+"file": "tests/blitz-tests/tests/focus_redraw.rs",
+"line": 104
+},
+{
+"caller_name": "focus_within_matches_the_ancestors_and_clears_on_blur",
+"file": "tests/blitz-tests/tests/focus_within.rs",
+"line": 61
+},
+{
+"caller_name": "focus_state_is_cleared_when_focused_node_is_dropped",
+"file": "tests/blitz-tests/tests/stale_interaction_state.rs",
+"line": 194
+},
+{
+"caller_name": "tab_walk",
+"file": "tests/blitz-tests/tests/stand_act_select.rs",
+"line": 63
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'build_accessibility_tree' AND callee_kind='fn' AND file NOT LIKE '%tests/%' ORDER BY file, line",
+"rows": 3,
+"result": [
+{
+"caller_name": "accessibility_tree",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 196
+},
+{
+"caller_name": "handle_blitz_shell_event",
+"file": "packages/blitz-shell/src/application.rs",
+"line": 81
+},
+{
+"caller_name": "accessibility_tree",
+"file": "packages/dioxus-native-dom/src/dioxus_document.rs",
+"line": 297
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'is_select_option' OR callee_name='options' AND callee_file LIKE '%node/select.rs' ORDER BY file, line",
+"rows": 15,
+"result": [
+{
+"caller_name": "build_accessibility_node",
+"file": "packages/blitz-dom/src/accessibility.rs",
+"line": 156
+},
+{
+"caller_name": "build_accessibility_node",
+"file": "packages/blitz-dom/src/accessibility.rs",
+"line": 172
+},
+{
+"caller_name": "is_hidden_from_accessibility_tree",
+"file": "packages/blitz-dom/src/accessibility.rs",
+"line": 259
+},
+{
+"caller_name": "settle_select_choice",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 738
+},
+{
+"caller_name": "press_select_key",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 175
+},
+{
+"caller_name": "apply_select_choice",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 279
+},
+{
+"caller_name": "construct_entry_list",
+"file": "packages/blitz-dom/src/form.rs",
+"line": 276
+},
+{
+"caller_name": "set_option_selectedness",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 1251
+},
+{
+"caller_name": "chosen_option",
+"file": "packages/blitz-dom/src/node/select.rs",
+"line": 95
+},
+{
+"caller_name": "the_selectedness_setting_algorithm_keeps_one_chosen_option",
+"file": "packages/blitz-dom/src/node/select.rs",
+"line": 231
+},
+{
+"caller_name": "a_step_skips_disabled_options_and_stops_at_the_ends",
+"file": "packages/blitz-dom/src/node/select.rs",
+"line": 237
+},
+{
+"caller_name": "a_step_skips_disabled_options_and_stops_at_the_ends",
+"file": "packages/blitz-dom/src/node/select.rs",
+"line": 254
+},
+{
+"caller_name": "a_step_skips_disabled_options_and_stops_at_the_ends",
+"file": "packages/blitz-dom/src/node/select.rs",
+"line": 256
+},
+{
+"caller_name": "a_step_skips_disabled_options_and_stops_at_the_ends",
+"file": "packages/blitz-dom/src/node/select.rs",
+"line": 258
+},
+{
+"caller_name": "typed_text_matches_the_first_enabled_label_it_starts",
+"file": "packages/blitz-dom/src/node/select.rs",
+"line": 266
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'is_native_checkable' ORDER BY file, line",
+"rows": 1,
+"result": [
+{
+"caller_name": "build_accessibility_node",
+"file": "packages/blitz-dom/src/accessibility.rs",
+"line": 189
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

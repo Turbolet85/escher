@@ -8,11 +8,11 @@ use crate::mutation_writer::{DioxusState, MutationWriter};
 use crate::qual_name;
 use blitz_dom::{
     Attribute, BaseDocument, DocGuard, DocGuardMut, Document, DocumentConfig, EventDriver,
-    EventHandler, Node,
+    EventHandler, Node, local_name,
 };
 use blitz_traits::events::{DomEvent, DomEventData, EventState, UiEvent};
 use dioxus_core::{ElementId, Event, VirtualDom};
-use dioxus_html::{PlatformEventData, set_event_converter};
+use dioxus_html::{FormValue, PlatformEventData, set_event_converter};
 use futures_util::task::noop_waker;
 use std::cell::RefCell;
 #[cfg(feature = "accessibility")]
@@ -26,6 +26,22 @@ use std::{any::Any, rc::Rc};
 
 fn wrap_event_data<T: Any>(value: T) -> Rc<dyn Any> {
     Rc::new(PlatformEventData::new(Box::new(value)))
+}
+
+/// What a form event's `values()` reads for a `multiple` select: one entry under its name per
+/// chosen option. Empty for any other target, whose `value()` says it all.
+fn multiple_select_values(doc: &BaseDocument, target: NodeId) -> Vec<(String, FormValue)> {
+    let Some(element) = doc.get_node(target).and_then(Node::element_data) else {
+        return Vec::new();
+    };
+    if element.name.local != local_name!("select") || !element.has_attr(local_name!("multiple")) {
+        return Vec::new();
+    }
+    let name = element.attr(local_name!("name")).unwrap_or_default();
+    doc.select_values(target)
+        .into_iter()
+        .map(|value| (name.to_string(), FormValue::Text(value)))
+        .collect()
 }
 
 /// Get the value of the "dioxus-data-id" attribute parsed aa usize
@@ -377,7 +393,7 @@ impl EventHandler for DioxusEventHandler<'_> {
             DomEventData::Input(data) | DomEventData::Change(data) => {
                 Some(wrap_event_data(NativeFormData {
                     value: data.value.clone(),
-                    values: vec![],
+                    values: multiple_select_values(&doc.inner(), event.target),
                 }))
             }
 

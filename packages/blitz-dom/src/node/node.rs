@@ -1469,6 +1469,12 @@ impl Node {
         let mut y = own_y + self.scroll_offset().y as f32;
 
         if let Some(t) = self.transform().as_deref() {
+            // Paint shows nothing under a transform with no inverse, and the NaN coordinates an
+            // inverse would leave read inside every bound below.
+            let determinant = t.determinant();
+            if determinant == 0.0 || !determinant.is_finite() {
+                return None;
+            }
             let inverse = t.inverse();
             let p = inverse * kurbo::Point::new(x as f64 * scale, y as f64 * scale);
             x = (p.x / scale) as f32;

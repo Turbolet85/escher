@@ -4,7 +4,7 @@
 use std::collections::{HashMap, HashSet};
 
 use accesskit::{Node as TreeNode, NodeId as TreeNodeId, Role, Toggled, TreeUpdate};
-use blitz_dom::{BaseDocument, BoundingRect, Document, ElementData, Node, NodeId, local_name};
+use blitz_dom::{BaseDocument, BoundingRect, Document, ElementData, NodeId, local_name};
 
 use crate::DioxusDocument;
 
@@ -143,8 +143,9 @@ impl Builder<'_> {
             let node_id = NodeId::from_u64(id.0);
             let node = self.doc.get_node(node_id)?;
             let element = node.element_data()?;
-            // A select's option is seen in its select's box, the one it shows or not.
-            let boxed_by = match select_parent(self.doc, node) {
+            // A closed select's option or group is seen in its select's box, the one it shows or
+            // not; a `multiple` select's rows and groups have boxes of their own.
+            let boxed_by = match closed_select_of(self.doc, node_id) {
                 Some(select) => select,
                 None => node_id,
             };
@@ -238,21 +239,22 @@ pub fn is_masked_input(element: &ElementData) -> bool {
         })
 }
 
-/// The parent of an `option` whose parent is a `select`; `None` for any other node.
-fn select_parent(doc: &BaseDocument, node: &Node) -> Option<NodeId> {
-    let parent = node.parent?;
-    (node.data.is_element_with_tag_name(&local_name!("option"))
-        && doc
-            .get_node(parent)?
-            .data
-            .is_element_with_tag_name(&local_name!("select")))
-    .then_some(parent)
+/// The select with no `multiple` an `option` or an `optgroup` belongs to; `None` for any other
+/// node.
+pub fn closed_select_of(doc: &BaseDocument, node: NodeId) -> Option<NodeId> {
+    let select = doc.select_of(node)?;
+    let element = doc.get_node(select)?.element_data()?;
+    (!is_multiple_select(element)).then_some(select)
+}
+
+/// Whether `element` is a `select` with `multiple`, whose rows have boxes of their own.
+pub fn is_multiple_select(element: &ElementData) -> bool {
+    &*element.name.local == "select" && element.has_attr(local_name!("multiple"))
 }
 
 /// The form reader's value of a text-entry control: its editor's text or a range input's
-/// current value, else its `value` attribute, and a single-choice select's chosen option's
-/// value. A masked control ([`is_masked_input`]) reads [`MASKED_VALUE`] in place of a
-/// non-empty one.
+/// current value, else its `value` attribute, and a select's [`BaseDocument::select_value`]. A
+/// masked control ([`is_masked_input`]) reads [`MASKED_VALUE`] in place of a non-empty one.
 fn value(doc: &BaseDocument, node_id: NodeId, element: &ElementData) -> Option<String> {
     if &*element.name.local == "select" {
         return doc.select_value(node_id);

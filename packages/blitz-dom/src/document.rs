@@ -337,6 +337,8 @@ pub struct BaseDocument {
     pub(crate) text_selection: TextSelection,
     /// The text typed so far into the focused select, for typeahead
     pub(crate) select_typeahead: Option<crate::node::select::Typeahead>,
+    /// Where the keys and clicks on a `multiple` select stand
+    pub(crate) select_cursor: Option<crate::node::select::SelectCursor>,
 
     // TODO: collapse animating state into a bitflags
     /// Whether there are active CSS animations/transitions (so we should re-render every frame)
@@ -553,6 +555,7 @@ impl BaseDocument {
             scroll_animation: ScrollAnimationState::None,
             text_selection: TextSelection::default(),
             select_typeahead: None,
+            select_cursor: None,
         };
 
         // Initialise document with root Document node
@@ -714,17 +717,41 @@ impl BaseDocument {
         }
     }
 
-    /// A single-choice select's value: its chosen option's value, `None` with no chosen option
-    /// or for any other node.
+    /// A select's value: a single-choice select's chosen option's value, a `multiple` select's
+    /// first chosen option's in tree order; `None` with no chosen option or for any other node.
     ///
     /// <https://html.spec.whatwg.org/multipage/form-elements.html#dom-select-value>
     pub fn select_value(&self, select: NodeId) -> Option<String> {
         let element = self.get_node(select)?.element_data()?;
-        if !select::is_single_select(element) {
+        let option = if select::is_single_select(element) {
+            select::chosen_option(self, select)?
+        } else if select::is_multiple_select(element) {
+            select::first_chosen_option(self, select)?
+        } else {
             return None;
-        }
-        let option = select::chosen_option(self, select)?;
+        };
         self.get_node(option).map(select::option_value)
+    }
+
+    /// The value of every option a select holds chosen, in tree order; empty for any other node.
+    pub fn select_values(&self, select: NodeId) -> Vec<String> {
+        select::options(self, select)
+            .into_iter()
+            .filter_map(|option| self.get_node(option))
+            .filter(|option| select::is_chosen(option))
+            .map(select::option_value)
+            .collect()
+    }
+
+    /// The select an `option` or an `optgroup` belongs to; `None` for an id that does not resolve
+    /// and for any other node.
+    pub fn select_of(&self, node: NodeId) -> Option<NodeId> {
+        select::owner_select(self, node)
+    }
+
+    /// Starts the text typed into a select afresh, as a click on it does.
+    pub fn clear_select_typeahead(&mut self) {
+        self.select_typeahead = None;
     }
 
     /// Runs a single-choice select's selectedness setting algorithm, leaving one option chosen.
@@ -738,16 +765,19 @@ impl BaseDocument {
         }
         let options = select::options(self, select);
         let settled = select::settled(&select::readings(self, &options));
-        let target = settled.and_then(|index| options.get(index).copied());
-        self.set_select_choice(&options, target);
+        let target: Vec<NodeId> = settled
+            .and_then(|index| options.get(index).copied())
+            .into_iter()
+            .collect();
+        self.set_select_choice(&options, &target);
     }
 
-    /// Makes `target` the one chosen option of `options`, writing each option whose
-    /// selectedness changes; reads whether any did.
-    pub(crate) fn set_select_choice(&mut self, options: &[NodeId], target: Option<NodeId>) -> bool {
+    /// Makes `chosen` the chosen options of `options`, writing each option whose selectedness
+    /// changes; reads whether any did.
+    pub(crate) fn set_select_choice(&mut self, options: &[NodeId], chosen: &[NodeId]) -> bool {
         let mut changed = false;
         for &option in options {
-            changed |= self.set_option_chosen(option, Some(option) == target);
+            changed |= self.set_option_chosen(option, chosen.contains(&option));
         }
         changed
     }
@@ -2541,7 +2571,11 @@ impl BaseDocument {
     /// the hit and paint map them: the axis-aligned bounding box of the mapped corners. `None`
     /// when no box on the chain is transformed, where the untransformed reading stands.
     /// <https://drafts.csswg.org/cssom-view/#dom-element-getboundingclientrect>
-    fn transformed_bounds(&self, node_id: NodeId, rect: kurbo::Rect) -> Option<kurbo::Rect> {
+    pub(crate) fn transformed_bounds(
+        &self,
+        node_id: NodeId,
+        rect: kurbo::Rect,
+    ) -> Option<kurbo::Rect> {
         let chain =
             || std::iter::successors(Some(node_id), |id| self.nodes[*id].containing_block());
         if !self.is_transformed_chain(node_id) {

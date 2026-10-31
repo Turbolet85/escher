@@ -158,6 +158,34 @@ select:not([multiple]) > option:checked {
     display: inline;
 }
 
+/* A single-choice select's group draws no box: its chosen option shows alone. */
+select:not([multiple]) > optgroup:not([hidden]) {
+    display: contents;
+}
+
+select:not([multiple]) > optgroup > option:checked {
+    display: inline;
+}
+
+/* A `multiple` select lists its rows, every one with a box of its own
+ * (https://html.spec.whatwg.org/#the-select-element-2). */
+select[multiple] > option,
+select[multiple] > optgroup > option {
+    display: block;
+    padding: 0 2px;
+    white-space: nowrap;
+}
+
+select[multiple] > optgroup {
+    display: block;
+}
+
+select[multiple] > option:checked,
+select[multiple] > optgroup > option:checked {
+    background-color: #c8c8c8;
+    color: #000000;
+}
+
 picture {
     display: contents;
 }

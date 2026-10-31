@@ -7,9 +7,11 @@
 //! into view; a click at its centre right after the scroll lands on the scrolling root's overlay
 //! scrollbar, which takes it as a thumb drag and opens nothing, while once an `advance` has let
 //! the scrollbar fade the same click opens the editor, and a formula committed there reads its
-//! value in the last part. The lint at boot reads the 490 findings measured on a grid larger than its viewport. A
-//! screen's text is content: this file prints none, and a failure message carries the layout
-//! mode and a step or part index only.
+//! value in the last part. By keyboard alone: `press` tabs to the grid, moves its current cell and
+//! opens the editor, `type` supplies the characters `press` has no key for, and `press` commits a
+//! value read in the first part with focus back on the grid. The lint at boot reads the 490
+//! findings measured on a grid larger than its viewport. A screen's text is content: this file
+//! prints none, and a failure message carries the layout mode and a step or part index only.
 
 use dioxus_native_dom::SNAPSHOT_TEXT_BUDGET;
 use escher_driver::{Call, Outcome, Session};
@@ -17,7 +19,8 @@ use seven_guis::stand;
 
 mod session_common;
 use session_common::{
-    act, advance, click, lint, linted, part, press, scroll, snapshot, snapshot_part, type_into,
+    act, advance, click, focused, lint, linted, part, press, scroll, snapshot, snapshot_part,
+    type_into,
 };
 
 /// The parts Cells' screen reads in at boot, measured.
@@ -169,6 +172,43 @@ fn committed_cells_read_their_values_and_a_cell_past_the_viewport_reads_in_the_l
                 .iter()
                 .all(|text| !text.contains("id=\"cell-Z25\"")),
             "{mode}: no earlier part reads the cell"
+        );
+    }
+}
+
+#[test]
+fn the_keyboard_walks_to_a_cell_and_commits_a_value_read_in_the_first_part() {
+    const WALK: [&str; 4] = ["tab", "tab", "arrow-right", "arrow-down"];
+    assert_eq!(WALK.len(), 4);
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut session = hold_cells(incremental);
+        for (index, key) in WALK.into_iter().enumerate() {
+            step(&mut session, &press(key, false), &mode, index);
+        }
+        assert!(
+            focused(&session).0 == ["cells-grid"],
+            "{mode}: the walk leaves focus on the grid"
+        );
+        let opened = step(&mut session, &press("enter", false), &mode, 4);
+        assert!(
+            opened.added() == ["cell-input"] && focused(&session).0 == ["cell-input"],
+            "{mode}: Enter opens the editor, focused"
+        );
+        step(&mut session, &type_into("cell-input", "42"), &mode, 5);
+        let committed = step(&mut session, &press("enter", false), &mode, 6);
+        assert!(
+            committed.removed() == ["cell-input"],
+            "{mode}: Enter closes the editor"
+        );
+        assert!(
+            focused(&session).0 == ["cells-grid"],
+            "{mode}: focus returns to the grid"
+        );
+        let read = parts(&mut session, &mode);
+        assert!(
+            reads(&read[0], "cell-B1", "42"),
+            "{mode}: the first part reads the committed value"
         );
     }
 }

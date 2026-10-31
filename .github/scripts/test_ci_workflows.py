@@ -362,7 +362,9 @@ class LegScriptTest(unittest.TestCase):
                      "recording", "stand_session_recording", "stand_replay", "inert_subtree",
                      "accessibility_states", "scrolled_box_absolute_position", "hit_clipped_at_scrolling_box",
                      "password_caret_click", "transformed_client_rect", "accessibility_active_descendant_unread",
-                     "virtual_clock_engine", "select_interaction", "text_extent"):
+                     "virtual_clock_engine", "select_interaction", "text_extent", "visible_region_transformed",
+                     "hit_non_invertible_transform", "open_state", "checkable_change_event",
+                     "text_range_no_change_event"):
             self.assertIn(word, words)
         self.assertNotIn("--ignored", words)
         self.assertEqual(log.splitlines()[-1], "stand-repeat: 3 of 3 rounds green")

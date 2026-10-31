@@ -1,5 +1,6 @@
 use dioxus_native::prelude::*;
 use std::collections::{HashMap, HashSet};
+use std::rc::Rc;
 
 // ---------------------------------------------------------------------------
 // Data model
@@ -349,11 +350,47 @@ pub fn Cells() -> Element {
     let mut sheet: Signal<Sheet> = use_signal(Sheet::default);
     let mut selected: Signal<Option<(usize, usize)>> = use_signal(|| None);
     let mut edit_val: Signal<String> = use_signal(String::new);
+    // The cell the grid's keys stand on, and whether its keys opened the editor.
+    let mut current: Signal<(usize, usize)> = use_signal(|| (0, 0));
+    let mut keyed_open: Signal<bool> = use_signal(|| false);
+    let mut grid: Signal<Option<Rc<MountedData>>> = use_signal(|| None);
+    let mut cell_handles = use_hook(|| CopyValue::new(HashMap::new()));
 
     rsx! {
         div { class: "cells-root",
             style { {CSS} }
-            div { class: "cells-grid",
+            div {
+                id: "cells-grid",
+                class: "cells-grid",
+                tabindex: "0",
+                aria_label: "Cells",
+                onmounted: move |evt: MountedEvent| grid.set(Some(evt.data())),
+                onkeydown: move |evt| {
+                    if selected().is_some() {
+                        return;
+                    }
+                    let (r, c) = current();
+                    let moved = match evt.key() {
+                        Key::ArrowLeft => (r, c.saturating_sub(1)),
+                        Key::ArrowRight => (r, (c + 1).min(COLS - 1)),
+                        Key::ArrowUp => (r.saturating_sub(1), c),
+                        Key::ArrowDown => ((r + 1).min(ROWS - 1), c),
+                        Key::Enter => {
+                            edit_val.set(sheet().get_raw(r, c).to_string());
+                            keyed_open.set(true);
+                            selected.set(Some((r, c)));
+                            return;
+                        }
+                        _ => return,
+                    };
+                    current.set(moved);
+                    let handle: Option<Rc<MountedData>> = cell_handles.read().get(&moved).cloned();
+                    if let Some(handle) = handle {
+                        // The native handle acts at the call. A task spawned here would first be
+                        // polled inside the render this write schedules, which holds the document.
+                        drop(handle.scroll_to(ScrollBehavior::Instant));
+                    }
+                },
                 // Corner header cell
                 div { class: "cell header corner", "" }
                 // Column headers A–Z
@@ -368,15 +405,36 @@ pub fn Cells() -> Element {
                     for c in 0..COLS {
                         {
                             let is_selected = selected() == Some((r, c));
+                            let is_current = current() == (r, c);
                             let display = sheet().evaluate(r, c);
                             rsx! {
                                 div {
                                     key: "{r}-{c}",
                                     id: "cell-{col_label(c)}{r}",
-                                    class: if is_selected { "cell selected" } else { "cell" },
+                                    class: if is_selected {
+                                        "cell selected"
+                                    } else if is_current {
+                                        "cell current"
+                                    } else {
+                                        "cell"
+                                    },
+                                    onmounted: move |evt: MountedEvent| {
+                                        cell_handles.write().insert((r, c), evt.data());
+                                    },
                                     onclick: move |_| {
+                                        let open = selected();
+                                        if open == Some((r, c)) {
+                                            return;
+                                        }
+                                        // An editor still open elsewhere commits to its own cell
+                                        // first, so the blur that follows finds nothing to write.
+                                        if let Some(open) = open {
+                                            sheet.write().raw.insert(open, edit_val());
+                                        }
                                         let raw = sheet().get_raw(r, c).to_string();
                                         edit_val.set(raw);
+                                        keyed_open.set(false);
+                                        current.set((r, c));
                                         selected.set(Some((r, c)));
                                     },
                                     if is_selected {
@@ -384,15 +442,31 @@ pub fn Cells() -> Element {
                                             id: "cell-input",
                                             class: "cell-input",
                                             value: "{edit_val}",
+                                            onmounted: move |evt: MountedEvent| {
+                                                if keyed_open() {
+                                                    drop(evt.set_focus(true));
+                                                }
+                                            },
                                             oninput: move |evt| edit_val.set(evt.value()),
                                             onblur: move |_| {
-                                                sheet.write().raw.insert((r, c), edit_val());
-                                                selected.set(None);
+                                                if selected() == Some((r, c)) {
+                                                    sheet.write().raw.insert((r, c), edit_val());
+                                                    keyed_open.set(false);
+                                                    selected.set(None);
+                                                }
                                             },
                                             onkeydown: move |evt| {
                                                 if evt.key() == Key::Enter {
+                                                    // The bubbled key would open the editor again.
+                                                    evt.stop_propagation();
                                                     sheet.write().raw.insert((r, c), edit_val());
                                                     selected.set(None);
+                                                    if keyed_open() {
+                                                        keyed_open.set(false);
+                                                        if let Some(grid) = grid() {
+                                                            drop(grid.set_focus(true));
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
@@ -472,6 +546,11 @@ const CSS: &str = r#"
     outline: 2px solid #3a5ce5;
     outline-offset: -2px;
     padding: 0;
+}
+
+.cells-grid:focus .cell.current {
+    outline: 2px solid #3a5ce5;
+    outline-offset: -2px;
 }
 
 .cell-input {

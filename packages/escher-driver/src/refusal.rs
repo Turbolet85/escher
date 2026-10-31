@@ -24,8 +24,8 @@ pub enum Cause {
     /// it.
     Covered,
     /// The element lies outside the viewport, or outside the visible part of a scrolling box
-    /// that holds it. A scrolling box under a transform is read where it stands untransformed,
-    /// so an element inside it can read off-screen though it shows.
+    /// that holds it. Under a rotation a box's visible part reads as the bounding box of its
+    /// rotated padding box, so an element in a corner it does not show can read in view.
     OffScreen,
     /// The app this session holds has no font it can paint text with.
     FontsUnavailable,
@@ -80,9 +80,9 @@ impl Cause {
             }
             Cause::OffScreen => {
                 "the element lies outside the viewport, or outside the visible part of a \
-                 scrolling box that holds it; a scrolling box under a transform is read where it \
-                 stands untransformed, so an element inside it can read `off-screen` though it \
-                 shows"
+                 scrolling box that holds it; under a rotation a box's visible part reads as the \
+                 bounding box of its rotated padding box, so an element in a corner it does not \
+                 show can read in view"
             }
             Cause::FontsUnavailable => {
                 "the app this session holds has no font it can paint text with"
@@ -266,9 +266,9 @@ mod tests {
             (
                 "off-screen",
                 "the element lies outside the viewport, or outside the visible part of a \
-                 scrolling box that holds it; a scrolling box under a transform is read where it \
-                 stands untransformed, so an element inside it can read `off-screen` though it \
-                 shows",
+                 scrolling box that holds it; under a rotation a box's visible part reads as the \
+                 bounding box of its rotated padding box, so an element in a corner it does not \
+                 show can read in view",
                 "the element is out of view: bring it into view with `scroll`, then act again",
             ),
             (

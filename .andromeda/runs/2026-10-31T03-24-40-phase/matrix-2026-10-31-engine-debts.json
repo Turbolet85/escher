@@ -1,0 +1,146 @@
+[
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "f258a1ca",
+"ts": "2026-10-31T08:52:14Z",
+"argv": [
+"coverage",
+"--dir",
+"escher-0.3.0",
+"--run-dir",
+".andromeda/runs/2026-10-31T03-24-40-phase",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 4/16 · deferred 0 · planned 12 · implemented 0 · unclaimed 12",
+"unclaimed: v030-04 v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15",
+"claimed-unfinished: none",
+"done-test: NO — 12 not verified|deferred · unclaimed 12",
+"chunks referenced: 3 distinct"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "f258a1ca",
+"ts": "2026-10-31T08:52:14Z",
+"argv": [
+"show",
+"--dir",
+"escher-0.3.0",
+"--unclaimed",
+"--run-dir",
+".andromeda/runs/2026-10-31T03-24-40-phase",
+"--marker",
+"2026-10-31-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unclaimed 12 of 16",
+"v030-04 · integration · planned · ref null · chunk — · Each debt the intent names reaches the founder as a fork and ends as his… (176 chars)",
+"v030-05 · integration · planned · ref null · chunk — · For the current screen of a stand task, one read names each node's compo… (277 chars)",
+"v030-06 · integration · planned · ref null · chunk — · On the stand, one command lists each actionable node on the current scre… (219 chars)",
+"v030-07 · integration · planned · ref null · chunk — · After a set of recorded checks has run on the stand, one command lists e… (115 chars)",
+"v030-08 · integration · planned · ref null · chunk — · A session starts in a named fixture state, and its first screen reads as… (120 chars)",
+"v030-09 · integration · planned · ref null · chunk — · One command, given a step budget, drives every available action breadth-… (180 chars)",
+"v030-10 · integration · planned · ref null · chunk — · An action that causes a panic, an error or a handler log returns it in t… (164 chars)",
+"v030-11 · integration · planned · ref null · chunk — · Asked of an element on the stand, an answer gives why it sits where it d… (144 chars)",
+"v030-12 · integration · planned · ref null · chunk — · One component renders alone with given props, and its reading matches th… (114 chars)",
+"v030-13 · integration · planned · ref null · chunk — · Two runs given one seed read the same state at every step.",
+"v030-14 · integration · planned · ref null · chunk — · Hosts of different operating systems read one state of a run the same wa… (120 chars)",
+"v030-15 · dynamic-external · planned · ref null · chunk — · A cold agent's run over 0.3.0's new capabilities passes the bar the foun… (137 chars)",
+"pool: unclaimed 12 [v030-04 v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "f258a1ca",
+"ts": "2026-10-31T08:52:14Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.3.0",
+"--id",
+"v030-04",
+"--chunk",
+"2026-10-31-engine-debts",
+"--acceptance-file",
+".andromeda/runs/2026-10-31T03-24-40-phase/acceptance-v030-04.md",
+"--run-dir",
+".andromeda/runs/2026-10-31T03-24-40-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v030-04 → chunk 2026-10-31-engine-debts (was null; status planned kept)",
+"acceptance: Each debt the intent names reaches the founder as a fork and ends as h… (176 chars)",
+"         → Each debt the intent names reached the founder as a fork in `founder-f… (1412 chars)",
+"wrote escher-0.3.0/verification-matrix.json · 1 entry changed",
+"pool: unclaimed 11 [v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15]"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/verification-matrix.json"
+],
+"before": {
+"id": "v030-04",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "Each debt the intent names reaches the founder as a fork and ends as his word says: fixed and proven on the stand or a f… (176 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v030-04",
+"chunk": "2026-10-31-engine-debts",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "Each debt the intent names reached the founder as a fork in `founder-forks.md` (inputs#I8) and ends as his word says (in… (1412 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "f258a1ca",
+"ts": "2026-10-31T08:52:15Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-10-31-engine-debts",
+"--plan",
+"escher-0.3.0/chunks/2026-10-31-engine-debts/plan.md",
+"--run-dir",
+".andromeda/runs/2026-10-31T03-24-40-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-31-engine-debts: 1 · ## Acceptance Criteria: line 402, 21 lines",
+"v030-04: cited in ## Acceptance Criteria (line 403)",
+"pool: unclaimed 11 [v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

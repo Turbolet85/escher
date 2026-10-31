@@ -1,0 +1,75 @@
+[
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "f258a1ca",
+"ts": "2026-10-31T09:38:37Z",
+"argv": [
+"show",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-10-31-engine-debts",
+"--run-dir",
+".andromeda/runs/2026-10-31T08-53-14-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-10-31-engine-debts: 1",
+"v030-04 · integration · planned · ref null · chunk 2026-10-31-engine-debts · Each debt the intent names reached the founder as a fork in `founder-for… (1412 chars)",
+"pool: unclaimed 11 [v030-05 v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.5",
+"sha8": "f258a1ca",
+"ts": "2026-10-31T09:49:05Z",
+"argv": [
+"implement",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-10-31-engine-debts",
+"--id",
+"v030-04",
+"--ref-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-10-31T08-53-14-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"implement v030-04 · status planned → implemented · ref tests/blitz-tests/tests/visible_region_transformed.rs · stand_act_transformed.rs… (899 chars)",
+"wrote escher-0.3.0/verification-matrix.json · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"escher-0.3.0/verification-matrix.json"
+],
+"before": {
+"id": "v030-04",
+"chunk": "2026-10-31-engine-debts",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "Each debt the intent names reached the founder as a fork in `founder-forks.md` (inputs#I8) and ends as his word says (in… (1412 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v030-04",
+"chunk": "2026-10-31-engine-debts",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/visible_region_transformed.rs · stand_act_transformed.rs::a_control_in_a_scrolling_box_under_a_z… (899 chars)",
+"acceptance": "Each debt the intent names reached the founder as a fork in `founder-forks.md` (inputs#I8) and ends as his word says (in… (1412 chars)",
+"notes_chars": 0
+}
+}
+]

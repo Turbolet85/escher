@@ -1,0 +1,1 @@
+yes — apply. The founder read two of the leans by dialog and kept both as planned: «Ограничение и residual (Рекомендую)» on press holding no Ctrl, «В чанк с попапом (Рекомендую)» on size. The lock bump stays in this chunk on my word. One correction for the wrap: the popup id cannot be v030-16, which v030-16 «Records kept true» already holds; matrix.py add mints it.

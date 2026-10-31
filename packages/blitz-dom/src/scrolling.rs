@@ -736,7 +736,10 @@ impl BaseDocument {
     /// The part of the viewport an element can be seen through, in CSS pixels relative to the
     /// viewport (the space of [`BaseDocument::get_client_bounding_rect`]): the viewport's rect
     /// narrowed, on each axis a box clips, to the padding box of every box on the element's
-    /// containing-block chain whose `overflow` on that axis is not `visible`.
+    /// containing-block chain whose `overflow` on that axis is not `visible`, each padding box
+    /// where its transforms show it. Exact under a translate and a scale; under a rotation it
+    /// reads the bounding box of the rotated padding box, so it holds corners the box does not
+    /// show.
     ///
     /// `None` for a node that does not resolve, and when nothing is left. It reads layout and
     /// scroll offsets and writes nothing. The element's own box is not consulted: a caller
@@ -744,7 +747,6 @@ impl BaseDocument {
     pub fn visible_region(&self, node_id: NodeId) -> Option<BoundingRect> {
         self.nodes.get(node_id)?;
         let scale = self.viewport.scale() as f64;
-        let viewport_scroll = self.viewport_scroll();
         let (mut left, mut top) = (0.0_f64, 0.0_f64);
         let mut right = self.viewport.window_size.0 as f64 / scale;
         let mut bottom = self.viewport.window_size.1 as f64 / scale;
@@ -766,24 +768,14 @@ impl BaseDocument {
             if !clips_x && !clips_y {
                 continue;
             }
-            let (origin, layout) = self.physical_unrounded_geometry(box_id);
+            let shown = self.padding_box_in_view(box_id)?;
             if clips_x {
-                let start = origin.x as f64 - viewport_scroll.x;
-                left = left.max(snap(start + layout.border.left as f64));
-                right = right.min(snap(
-                    start
-                        + (layout.size.width - layout.border.right - layout.scrollbar_size.width)
-                            as f64,
-                ));
+                left = left.max(snap(shown.x0));
+                right = right.min(snap(shown.x1));
             }
             if clips_y {
-                let start = origin.y as f64 - viewport_scroll.y;
-                top = top.max(snap(start + layout.border.top as f64));
-                bottom = bottom.min(snap(
-                    start
-                        + (layout.size.height - layout.border.bottom - layout.scrollbar_size.height)
-                            as f64,
-                ));
+                top = top.max(snap(shown.y0));
+                bottom = bottom.min(snap(shown.y1));
             }
         }
 
@@ -793,6 +785,30 @@ impl BaseDocument {
             width: right - left,
             height: bottom - top,
         })
+    }
+
+    /// `box_id`'s padding box less its scrollbar, relative to the viewport: where its transforms
+    /// show it, or, with none on its chain, where layout puts it. `None` for a mapped box with an
+    /// edge that is not finite, since `f64::max` would drop a NaN and read the box as no clip.
+    fn padding_box_in_view(&self, box_id: NodeId) -> Option<kurbo::Rect> {
+        let (origin, layout) = self.physical_unrounded_geometry(box_id);
+        let scroll = self.viewport_scroll();
+        let (border_left, border_top) = (layout.border.left as f64, layout.border.top as f64);
+        let far_x = (layout.size.width - layout.border.right - layout.scrollbar_size.width) as f64;
+        let far_y =
+            (layout.size.height - layout.border.bottom - layout.scrollbar_size.height) as f64;
+        let padding_box = kurbo::Rect::new(border_left, border_top, far_x, far_y);
+        if let Some(shown) = self.transformed_bounds(box_id, padding_box) {
+            let shown = shown - kurbo::Vec2::new(scroll.x, scroll.y);
+            return shown.is_finite().then_some(shown);
+        }
+        let (x, y) = (origin.x as f64 - scroll.x, origin.y as f64 - scroll.y);
+        Some(kurbo::Rect::new(
+            x + border_left,
+            y + border_top,
+            x + far_x,
+            y + far_y,
+        ))
     }
 
     /// Resolve a URL fragment (the `#...` part of a URL) to a scroll target.

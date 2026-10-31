@@ -7,14 +7,24 @@
 //! the text kept for 1 s of the document's clock after each character; a click focuses it; each
 //! change fires one `input` then one `change` event and marks the changed set, and a key or text
 //! that changes nothing fires none and marks nothing; a disabled select takes no key and no
-//! click. In both layout modes.
+//! click; Enter and Space open nothing, as no list is painted. A `multiple` select lays out its
+//! rows with boxes of their own: its arrows, Home and End choose a row alone, with Shift span from
+//! the anchor and with Ctrl or Meta move the current row and change nothing, a Space flips the
+//! current row, and typed text chooses its match alone; a plain click chooses a row alone, Ctrl or
+//! Meta flips it and Shift spans to it, a disabled row never chosen; each change fires one `input`
+//! then one `change`, `evt.values()` reading the set; `multiple` removed settles it to one option.
+//! An `optgroup`'s options are in its select's list: a single select's keys and text reach them,
+//! the chosen one shows alone with no box for its group, and a disabled group's rows are skipped.
+//! In both layout modes.
 //!
 //! <https://html.spec.whatwg.org/multipage/form-elements.html#the-select-element>
 
 use std::time::Duration;
 
 use ::keyboard_types::{Key, Modifiers, NamedKey};
-use blitz_test_harness::Harness;
+use blitz_dom::{QualName, local_name, ns};
+use blitz_test_harness::{Harness, mouse_pointer_event};
+use blitz_traits::events::UiEvent;
 use dioxus::prelude::*;
 use dioxus_native_dom::DioxusDocument;
 
@@ -338,6 +348,547 @@ fn an_app_writing_selected_on_another_option_re_seeds_the_choice() {
             doc.get_client_bounding_rect(cherry)
                 .is_some_and(|rect| rect.width > 0.0),
             "incremental {incremental}: the re-seeded option is shown"
+        );
+    }
+}
+
+#[test]
+fn enter_and_space_open_nothing_on_a_single_select() {
+    for incremental in [false, true] {
+        let mut harness = focused_pick(incremental);
+        for (row, key) in [Key::Named(NamedKey::Enter), Key::Character(" ".to_string())]
+            .into_iter()
+            .enumerate()
+        {
+            let (fired, marked) = measured(&mut harness, |harness| harness.press(key));
+            assert_eq!(
+                (fired, marked),
+                ((0, 0), false),
+                "incremental {incremental}: row {row} changes nothing"
+            );
+            let doc = harness.base();
+            for option in ["#fx-apple", "#fx-avocado", "#fx-cherry"] {
+                let node = harness.node(option);
+                assert!(
+                    !doc.get_client_bounding_rect(node)
+                        .is_some_and(|rect| rect.width > 0.0),
+                    "incremental {incremental}: row {row}: no list of options is laid out"
+                );
+            }
+        }
+    }
+}
+
+/// A `multiple` select in an app that writes `selected` back from `evt.values()` and shows the
+/// set, whose third row is disabled; and a disabled `multiple` select.
+fn rows_page() -> Element {
+    let mut inputs = use_signal(|| 0u32);
+    let mut changes = use_signal(|| 0u32);
+    let mut set = use_signal(Vec::<String>::new);
+    let holds = move |value: &str| set.read().iter().any(|held| held == value);
+    rsx! {
+        div { id: "fx-root",
+            select {
+                id: "fx-rows",
+                name: "fruit",
+                multiple: true,
+                oninput: move |event| {
+                    *inputs.write() += 1;
+                    set.set(
+                        event
+                            .values()
+                            .into_iter()
+                            .filter_map(|(_, value)| match value {
+                                FormValue::Text(text) => Some(text),
+                                FormValue::File(_) => None,
+                            })
+                            .collect(),
+                    );
+                },
+                onchange: move |_| *changes.write() += 1,
+                option { id: "fx-a", value: "a", selected: holds("a"), "Apple" }
+                option { id: "fx-b", value: "b", selected: holds("b"), "Banana" }
+                option { id: "fx-c", value: "c", disabled: true, "Cherry" }
+                option { id: "fx-d", value: "d", selected: holds("d"), "Date" }
+                option { id: "fx-e", value: "e", selected: holds("e"), "Elder Berry" }
+            }
+            select { id: "fx-rows-off", multiple: true, disabled: true,
+                option { id: "fx-off-row", value: "x", "X" }
+            }
+            p { id: "fx-inputs", "{inputs}" }
+            p { id: "fx-changes", "{changes}" }
+            p { id: "fx-set", {set.read().join(",")} }
+        }
+    }
+}
+
+/// The set the select `selector` holds, in tree order.
+fn values(harness: &Page, selector: &str) -> Vec<String> {
+    harness.base().select_values(harness.node(selector))
+}
+
+/// A `rows_page` booted with `fx-rows` focused by Tab, nothing chosen.
+fn focused_rows(incremental: bool) -> Page {
+    let mut harness = fixtures::boot(rows_page, incremental);
+    harness.press(Key::Named(NamedKey::Tab));
+    let rows = harness.node("#fx-rows");
+    assert_eq!(
+        harness.focused(),
+        Some(rows),
+        "incremental {incremental}: Tab focuses the select"
+    );
+    assert!(
+        values(&harness, "#fx-rows").is_empty(),
+        "incremental {incremental}: the fixture chooses nothing"
+    );
+    harness
+}
+
+#[test]
+fn a_multiple_select_lays_out_its_rows_with_boxes_of_their_own() {
+    const ROWS: [&str; 5] = ["#fx-a", "#fx-b", "#fx-c", "#fx-d", "#fx-e"];
+    assert_eq!(ROWS.len(), 5);
+    for incremental in [false, true] {
+        let harness = fixtures::boot(rows_page, incremental);
+        let doc = harness.base();
+        let rect = |selector: &str| {
+            doc.get_client_bounding_rect(harness.node(selector))
+                .expect("the element reads a client rect")
+        };
+        let list = rect("#fx-rows");
+        let mut below = list.y;
+        for (row, selector) in ROWS.into_iter().enumerate() {
+            let read = rect(selector);
+            assert!(
+                read.width > 0.0 && read.height > 0.0,
+                "incremental {incremental}: row {row} has a box of its own"
+            );
+            assert!(
+                read.y >= below
+                    && read.x >= list.x
+                    && read.x + read.width <= list.x + list.width
+                    && read.y + read.height <= list.y + list.height,
+                "incremental {incremental}: row {row} lies below the last, inside the select"
+            );
+            below = read.y + read.height;
+        }
+    }
+}
+
+/// Keys pressed in order on `fx-rows` from no row: the set each leaves and the events it fires.
+fn row_keys() -> [(Key, Modifiers, &'static [&'static str], u32); 17] {
+    let (none, shift, ctrl, meta) = (
+        Modifiers::empty(),
+        Modifiers::SHIFT,
+        Modifiers::CONTROL,
+        Modifiers::META,
+    );
+    let (down, up) = (
+        Key::Named(NamedKey::ArrowDown),
+        Key::Named(NamedKey::ArrowUp),
+    );
+    let (home, end) = (Key::Named(NamedKey::Home), Key::Named(NamedKey::End));
+    let space = Key::Character(" ".to_string());
+    [
+        (down.clone(), none, &["a"], 1),
+        (down.clone(), none, &["b"], 1),
+        (down.clone(), none, &["d"], 1),
+        (up.clone(), shift, &["b", "d"], 1),
+        (down.clone(), shift, &["d"], 1),
+        (down.clone(), ctrl, &["d"], 0),
+        (space.clone(), none, &["d", "e"], 1),
+        (up.clone(), meta, &["d", "e"], 0),
+        (space, none, &["e"], 1),
+        (home.clone(), none, &["a"], 1),
+        (home.clone(), none, &["a"], 0),
+        (end, none, &["e"], 1),
+        (home, shift, &["a", "b", "d", "e"], 1),
+        (Key::Named(NamedKey::Enter), none, &["a", "b", "d", "e"], 0),
+        (
+            Key::Named(NamedKey::ArrowLeft),
+            none,
+            &["a", "b", "d", "e"],
+            0,
+        ),
+        (
+            Key::Character("a".to_string()),
+            ctrl,
+            &["a", "b", "d", "e"],
+            0,
+        ),
+        (down, none, &["b"], 1),
+    ]
+}
+
+#[test]
+fn the_keys_of_a_multiple_select_choose_span_and_flip_its_rows() {
+    let rows = row_keys();
+    assert_eq!(rows.len(), 17);
+    for incremental in [false, true] {
+        let mut harness = focused_rows(incremental);
+        for (row, (key, modifiers, expected, events)) in row_keys().into_iter().enumerate() {
+            let (fired, marked) =
+                measured(&mut harness, |harness| harness.press_with(key, modifiers));
+            assert_eq!(
+                values(&harness, "#fx-rows"),
+                expected,
+                "incremental {incremental}: row {row}"
+            );
+            assert_eq!(
+                fired,
+                (events, events),
+                "incremental {incremental}: row {row}"
+            );
+            assert_eq!(marked, events > 0, "incremental {incremental}: row {row}");
+            assert_eq!(
+                harness.text_content("#fx-set"),
+                expected.join(","),
+                "incremental {incremental}: row {row}: `evt.values()` reads the set"
+            );
+            let doc = harness.base();
+            assert_eq!(
+                doc.select_value(harness.node("#fx-rows")).as_deref(),
+                expected.first().copied(),
+                "incremental {incremental}: row {row}: the value is the first chosen"
+            );
+        }
+    }
+}
+
+#[test]
+fn typed_text_chooses_its_row_alone_and_a_space_joins_it_while_it_stands() {
+    for incremental in [false, true] {
+        let mut harness = focused_rows(incremental);
+        harness.press_with(Key::Named(NamedKey::Home), Modifiers::SHIFT);
+        harness.press_with(Key::Named(NamedKey::End), Modifiers::SHIFT);
+        assert_eq!(
+            values(&harness, "#fx-rows"),
+            ["a", "b", "d", "e"],
+            "incremental {incremental}: the fixture spans the rows"
+        );
+        harness.type_text("elder b");
+        assert_eq!(
+            values(&harness, "#fx-rows"),
+            ["e"],
+            "incremental {incremental}: the text, its space within it, chooses its match alone"
+        );
+        harness.advance_time(Duration::from_secs(1));
+        harness.press(Key::Character(" ".to_string()));
+        assert!(
+            values(&harness, "#fx-rows").is_empty(),
+            "incremental {incremental}: with no text standing a Space flips the current row"
+        );
+        harness.advance_time(Duration::from_secs(1));
+        harness.type_text("c");
+        assert!(
+            values(&harness, "#fx-rows").is_empty(),
+            "incremental {incremental}: the disabled row is not chosen by its text"
+        );
+    }
+}
+
+/// Clicks the row `selector` with `mods` held, then lets a click on that point read as a new one.
+fn click_row(harness: &mut Page, selector: &str, mods: Modifiers) {
+    let (x, y) = harness.center_of(selector);
+    let mut event = mouse_pointer_event(x, y);
+    event.mods = mods;
+    harness.dispatch(UiEvent::PointerDown(event.clone()));
+    harness.dispatch(UiEvent::PointerUp(event));
+    harness.pump();
+    harness.advance_time(Duration::from_millis(500));
+}
+
+#[test]
+fn a_click_on_a_row_chooses_flips_or_spans_it() {
+    let rows: [(&str, Modifiers, &[&str], u32); 10] = [
+        ("#fx-a", Modifiers::empty(), &["a"], 1),
+        ("#fx-d", Modifiers::empty(), &["d"], 1),
+        ("#fx-b", Modifiers::CONTROL, &["b", "d"], 1),
+        ("#fx-e", Modifiers::META, &["b", "d", "e"], 1),
+        ("#fx-e", Modifiers::CONTROL, &["b", "d"], 1),
+        ("#fx-a", Modifiers::SHIFT, &["a", "b", "d", "e"], 1),
+        ("#fx-c", Modifiers::empty(), &["a", "b", "d", "e"], 0),
+        ("#fx-d", Modifiers::empty(), &["d"], 1),
+        ("#fx-d", Modifiers::empty(), &["d"], 0),
+        ("#fx-e", Modifiers::SHIFT, &["d", "e"], 1),
+    ];
+    assert_eq!(rows.len(), 10);
+    for incremental in [false, true] {
+        let mut harness = fixtures::boot(rows_page, incremental);
+        let select = harness.node("#fx-rows");
+        for (row, (selector, mods, expected, events)) in rows.into_iter().enumerate() {
+            let (fired, _) = measured(&mut harness, |harness| {
+                click_row(harness, selector, mods);
+            });
+            assert_eq!(
+                values(&harness, "#fx-rows"),
+                expected,
+                "incremental {incremental}: row {row}"
+            );
+            assert_eq!(
+                fired,
+                (events, events),
+                "incremental {incremental}: row {row}"
+            );
+            assert_eq!(
+                harness.focused(),
+                Some(select),
+                "incremental {incremental}: row {row}: a click focuses the select"
+            );
+        }
+    }
+}
+
+#[test]
+fn a_disabled_multiple_select_takes_no_click_and_no_key() {
+    for incremental in [false, true] {
+        let mut harness = fixtures::boot(rows_page, incremental);
+        let off = harness.node("#fx-rows-off");
+        click_row(&mut harness, "#fx-off-row", Modifiers::empty());
+        assert!(
+            values(&harness, "#fx-rows-off").is_empty(),
+            "incremental {incremental}: its row takes no click"
+        );
+        assert_ne!(
+            harness.focused(),
+            Some(off),
+            "incremental {incremental}: a click does not focus it"
+        );
+        harness.base_mut().set_focus_to(off);
+        harness.press(Key::Named(NamedKey::ArrowDown));
+        assert!(
+            values(&harness, "#fx-rows-off").is_empty(),
+            "incremental {incremental}: it takes no key"
+        );
+    }
+}
+
+#[test]
+fn multiple_removed_settles_the_set_to_one_option() {
+    for incremental in [false, true] {
+        let mut harness = focused_rows(incremental);
+        harness.press_with(Key::Named(NamedKey::End), Modifiers::SHIFT);
+        harness.press_with(Key::Named(NamedKey::Home), Modifiers::SHIFT);
+        assert_eq!(
+            values(&harness, "#fx-rows"),
+            ["a", "b", "d", "e"],
+            "incremental {incremental}: the fixture spans the rows"
+        );
+        let rows = harness.node("#fx-rows");
+        harness
+            .base_mut()
+            .mutate()
+            .clear_attribute(rows, QualName::new(None, ns!(), local_name!("multiple")));
+        harness.pump();
+        assert_eq!(
+            values(&harness, "#fx-rows"),
+            ["e"],
+            "incremental {incremental}: the last chosen option stays"
+        );
+    }
+}
+
+#[test]
+fn a_chosen_row_and_a_plain_one_meet_their_ratio_at_the_user_agents_pair() {
+    for incremental in [false, true] {
+        let mut harness = focused_rows(incremental);
+        harness.press(Key::Named(NamedKey::Home));
+        let read = |harness: &Page, selector: &str| {
+            harness
+                .text_contrast(harness.node(selector))
+                .expect("the row's text is measured")
+        };
+        let chosen = read(&harness, "#fx-a");
+        let plain = read(&harness, "#fx-b");
+        assert!(
+            chosen.ratio >= chosen.required_ratio() && plain.ratio >= plain.required_ratio(),
+            "incremental {incremental}: both rows meet their ratios"
+        );
+        assert!(
+            (chosen.ratio - 12.56).abs() < 0.01,
+            "incremental {incremental}: the chosen row reads the user agent's pair"
+        );
+    }
+}
+
+/// A `multiple` select whose markup chooses its second row.
+fn seeded_page() -> Element {
+    rsx! {
+        select { id: "fx-seeded", multiple: true,
+            option { id: "fx-s-a", value: "a", "A" }
+            option { id: "fx-s-b", value: "b", selected: true, "B" }
+            option { id: "fx-s-c", value: "c", "C" }
+        }
+    }
+}
+
+#[test]
+fn a_set_the_markup_seeds_is_stepped_and_spanned_from_its_last_chosen_row() {
+    for incremental in [false, true] {
+        let mut harness = fixtures::boot(seeded_page, incremental);
+        assert_eq!(
+            values(&harness, "#fx-seeded"),
+            ["b"],
+            "incremental {incremental}: the markup seeds the set"
+        );
+        let seeded = harness.node("#fx-seeded");
+        harness.base_mut().set_focus_to(seeded);
+        harness.press_with(Key::Named(NamedKey::ArrowDown), Modifiers::SHIFT);
+        assert_eq!(
+            values(&harness, "#fx-seeded"),
+            ["b", "c"],
+            "incremental {incremental}: the first span reaches from the chosen row"
+        );
+    }
+}
+
+/// A single select holding a plain option, a group, a disabled group and a last option; and a
+/// `multiple` select holding a group.
+fn groups_page() -> Element {
+    let mut inputs = use_signal(|| 0u32);
+    let mut changes = use_signal(|| 0u32);
+    rsx! {
+        div { id: "fx-root",
+            select {
+                id: "fx-grouped",
+                oninput: move |_| *inputs.write() += 1,
+                onchange: move |_| *changes.write() += 1,
+                option { id: "fx-plain", value: "p", "Plain" }
+                optgroup { id: "fx-fruit", label: "Fruit",
+                    option { id: "fx-apple", value: "a", "Apple" }
+                    option { id: "fx-berry", value: "b", "Berry" }
+                }
+                optgroup { id: "fx-off-group", label: "Off", disabled: true,
+                    option { id: "fx-gone", value: "g", "Gone" }
+                }
+                option { id: "fx-last", value: "l", "Last" }
+            }
+            select { id: "fx-rows-grouped", multiple: true,
+                optgroup { id: "fx-row-group", label: "Rows",
+                    option { id: "fx-row-a", value: "a", "A" }
+                    option { id: "fx-row-b", value: "b", "B" }
+                }
+                optgroup { id: "fx-row-off", label: "Off", disabled: true,
+                    option { id: "fx-row-c", value: "c", "C" }
+                }
+            }
+            p { id: "fx-inputs", "{inputs}" }
+            p { id: "fx-changes", "{changes}" }
+        }
+    }
+}
+
+#[test]
+fn a_groups_options_are_chosen_by_a_single_selects_keys_and_shown_alone() {
+    let keys = [
+        (Key::Named(NamedKey::ArrowDown), "a", 1),
+        (Key::Named(NamedKey::ArrowDown), "b", 1),
+        (Key::Named(NamedKey::ArrowDown), "l", 1),
+        (Key::Named(NamedKey::ArrowDown), "l", 0),
+        (Key::Named(NamedKey::ArrowUp), "b", 1),
+        (Key::Named(NamedKey::Home), "p", 1),
+        (Key::Named(NamedKey::End), "l", 1),
+    ];
+    assert_eq!(keys.len(), 7);
+    for incremental in [false, true] {
+        let mut harness = fixtures::boot(groups_page, incremental);
+        harness.click("#fx-grouped");
+        assert_eq!(
+            value(&harness, "#fx-grouped").as_deref(),
+            Some("p"),
+            "incremental {incremental}: the first enabled option is seeded"
+        );
+        for (row, (key, expected, events)) in keys.iter().cloned().enumerate() {
+            let (fired, _) = measured(&mut harness, |harness| harness.press(key));
+            assert_eq!(
+                value(&harness, "#fx-grouped").as_deref(),
+                Some(expected),
+                "incremental {incremental}: row {row}"
+            );
+            assert_eq!(
+                fired,
+                (events, events),
+                "incremental {incremental}: row {row}"
+            );
+        }
+
+        harness.advance_time(Duration::from_secs(1));
+        harness.type_text("be");
+        assert_eq!(
+            value(&harness, "#fx-grouped").as_deref(),
+            Some("b"),
+            "incremental {incremental}: typed text reaches a group's option"
+        );
+        harness.advance_time(Duration::from_secs(1));
+        harness.type_text("g");
+        assert_eq!(
+            value(&harness, "#fx-grouped").as_deref(),
+            Some("b"),
+            "incremental {incremental}: a disabled group's option is not chosen by its text"
+        );
+
+        let doc = harness.base();
+        let shown = |selector: &str| {
+            doc.get_client_bounding_rect(harness.node(selector))
+                .is_some_and(|rect| rect.width > 0.0)
+        };
+        assert!(
+            shown("#fx-berry"),
+            "incremental {incremental}: the chosen option shows"
+        );
+        for (row, selector) in [
+            "#fx-fruit",
+            "#fx-apple",
+            "#fx-plain",
+            "#fx-gone",
+            "#fx-last",
+        ]
+        .into_iter()
+        .enumerate()
+        {
+            assert!(
+                !shown(selector),
+                "incremental {incremental}: row {row} lays out nothing beside it"
+            );
+        }
+    }
+}
+
+#[test]
+fn a_multiple_selects_groups_lay_out_and_a_disabled_groups_rows_are_not_chosen() {
+    for incremental in [false, true] {
+        let mut harness = fixtures::boot(groups_page, incremental);
+        click_row(&mut harness, "#fx-row-b", Modifiers::empty());
+        assert_eq!(
+            values(&harness, "#fx-rows-grouped"),
+            ["b"],
+            "incremental {incremental}: a group's row takes a click"
+        );
+        click_row(&mut harness, "#fx-row-c", Modifiers::empty());
+        assert_eq!(
+            values(&harness, "#fx-rows-grouped"),
+            ["b"],
+            "incremental {incremental}: a disabled group's row takes none"
+        );
+        harness.press(Key::Named(NamedKey::End));
+        assert_eq!(
+            values(&harness, "#fx-rows-grouped"),
+            ["b"],
+            "incremental {incremental}: End stops at the last row that is enabled"
+        );
+        harness.press_with(Key::Named(NamedKey::ArrowUp), Modifiers::SHIFT);
+        assert_eq!(
+            values(&harness, "#fx-rows-grouped"),
+            ["a", "b"],
+            "incremental {incremental}: a span reaches across a group's rows"
+        );
+        let doc = harness.base();
+        let group = doc
+            .get_client_bounding_rect(harness.node("#fx-row-group"))
+            .expect("the group reads a client rect");
+        assert!(
+            group.width > 0.0 && group.height > 0.0,
+            "incremental {incremental}: a `multiple` select's group has a box"
         );
     }
 }

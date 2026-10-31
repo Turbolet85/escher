@@ -13,20 +13,27 @@
 //! `aria-pressed` or `aria-invalid` reads it as one whose role does; each attribute sets its own
 //! property alone; and AccessKit's one `toggled` property takes `aria-checked` on the five
 //! checkable roles alone, where `aria-pressed` sets nothing, and `aria-pressed` everywhere else,
-//! where `aria-checked` sets nothing — but for a native checkbox or radio `input`, which keeps
-//! its own checkedness and whose `aria-checked` and `aria-pressed` set nothing whatever its role.
+//! where `aria-checked` sets nothing — but for a native checkbox or radio `input`, whose
+//! `aria-checked` and `aria-pressed` set nothing whatever its role, and which states its own
+//! checkedness as `toggled` where its role is checkable, and nothing under any other role: a
+//! click and a Space move the tree, and the snapshot's `checked` and `pressed` read as they did.
 //! <https://www.w3.org/TR/html-aria/#docconformance>
+//! <https://www.w3.org/TR/html-aam-1.0/#att-checked>
 //!
 //! <https://www.w3.org/TR/wai-aria-1.2/#aria-selected>
 //! <https://www.w3.org/TR/wai-aria-1.2/#aria-pressed>
 //! <https://www.w3.org/TR/wai-aria-1.2/#aria-checked>
 //! <https://www.w3.org/TR/wai-aria-1.2/#aria-invalid>
 
+use ::keyboard_types::Key;
 use accesskit::{Invalid, NodeId, Role, Toggled, TreeUpdate};
-use blitz_dom::DocumentConfig;
+use blitz_dom::{Document, DocumentConfig};
 use blitz_html::{HtmlDocument, HtmlProvider};
 use blitz_traits::shell::{ColorScheme, Viewport};
+use dioxus::prelude::*;
 use std::sync::Arc;
+
+mod fixtures;
 
 /// What a node reads for the three states: its `selected`, its `toggled` and its `invalid`.
 type States = (Option<bool>, Option<Toggled>, Option<Invalid>);
@@ -264,37 +271,158 @@ fn aria_checked_reads_its_three_values_on_a_checkable_role_alone() {
         .collect();
     assert_rows_on_roles("aria-checked", &[BUTTON, OPTION, INPUT], &unread);
 
-    // A native checkbox or radio keeps its own checkedness: neither its author `aria-checked`
-    // nor its `aria-pressed` writes a `toggled`, here on an input that is not checked, so the
-    // attribute is the only source.
+    // A native checkbox or radio states its own checkedness: its author `aria-checked` and
+    // `aria-pressed`, each here saying the opposite, write nothing, and under a role that is not
+    // checkable nothing is written at all.
     let natives = [
-        (r#"type="checkbox""#, Role::CheckBox),
-        (r#"type="radio""#, Role::RadioButton),
-        (r#"type="checkbox" role="switch""#, Role::Switch),
-        (r#"type="radio" role="button""#, Role::Button),
+        (
+            r#"type="checkbox""#,
+            false,
+            Role::CheckBox,
+            Some(Toggled::False),
+        ),
+        (
+            r#"type="checkbox""#,
+            true,
+            Role::CheckBox,
+            Some(Toggled::True),
+        ),
+        (
+            r#"type="radio""#,
+            false,
+            Role::RadioButton,
+            Some(Toggled::False),
+        ),
+        (
+            r#"type="radio""#,
+            true,
+            Role::RadioButton,
+            Some(Toggled::True),
+        ),
+        (
+            r#"type="checkbox" role="switch""#,
+            false,
+            Role::Switch,
+            Some(Toggled::False),
+        ),
+        (
+            r#"type="checkbox" role="switch""#,
+            true,
+            Role::Switch,
+            Some(Toggled::True),
+        ),
+        (r#"type="radio" role="button""#, false, Role::Button, None),
+        (r#"type="radio" role="button""#, true, Role::Button, None),
     ];
     let attributes = ["aria-checked", "aria-pressed"];
-    assert_eq!((natives.len(), attributes.len()), (4, 2));
+    assert_eq!((natives.len(), attributes.len()), (8, 2));
     for incremental in [false, true] {
-        for (row, (typed, role_read)) in natives.into_iter().enumerate() {
+        for (row, (typed, checked, role_read, toggled)) in natives.into_iter().enumerate() {
             for attribute in attributes {
                 let mode = format!("incremental={incremental}: native input {row}: {attribute}");
+                let (state, stated) = if checked {
+                    ("checked", "false")
+                } else {
+                    ("", "true")
+                };
                 let html = format!(
-                    r#"<html><body><input id="box" {typed} {attribute}="true"></body></html>"#
+                    r#"<html><body><input id="box" {typed} {state} {attribute}="{stated}"></body></html>"#
                 );
                 let doc = page(&html, incremental);
-                let unchecked = doc
+                let holds = doc
                     .get_element_by_id("box")
                     .and_then(|id| doc.get_node(id))
                     .and_then(|node| node.element_data())
-                    .is_some_and(|element| element.checkbox_input_checked() == Some(false));
-                assert!(unchecked, "{mode}: the fixture's input is not checked");
-                let tree = doc.build_accessibility_tree();
+                    .is_some_and(|element| element.checkbox_input_checked() == Some(checked));
+                assert!(holds, "{mode}: the fixture's input holds its stated state");
+                let dynamic: &dyn Document = &doc;
+                let tree = dynamic.accessibility_tree();
                 let (role, states) = read(&doc, &tree, "box");
                 assert_eq!(role, role_read, "{mode}: the fixture's role");
-                assert_eq!(states, NOTHING, "{mode}: the attribute writes no toggled");
+                assert_eq!(
+                    states,
+                    (None, toggled, None),
+                    "{mode}: the input's own state is the toggle"
+                );
             }
         }
+    }
+}
+
+/// A checkbox, a radio and a checkbox whose `role` names no checkable role.
+fn natives_page() -> Element {
+    rsx! {
+        div { id: "fx-root",
+            input { id: "fx-check", r#type: "checkbox" }
+            input { id: "fx-radio", r#type: "radio" }
+            input { id: "fx-button", r#type: "checkbox", role: "button" }
+        }
+    }
+}
+
+/// What `id` reads: the toggle in the tree the shell builds, and the snapshot's `checked` and
+/// `pressed`.
+#[track_caller]
+fn native_readings(
+    harness: &blitz_test_harness::Harness<dioxus_native_dom::DioxusDocument>,
+    id: &str,
+) -> (Option<Toggled>, Option<bool>, Option<bool>) {
+    let doc: &dyn Document = &harness.doc;
+    let tree = doc.accessibility_tree();
+    let node = NodeId(harness.node(&format!("#{id}")).as_u64());
+    let toggled = tree
+        .nodes
+        .iter()
+        .find(|(found, _)| *found == node)
+        .and_then(|(_, node)| node.toggled());
+    let snapshot = harness.doc.snapshot();
+    let state = &snapshot
+        .get(id)
+        .expect("the fixture's input is a node")
+        .state;
+    (toggled, state.checked, state.pressed)
+}
+
+#[test]
+fn a_click_and_a_space_move_a_native_control_in_the_tree() {
+    let reads = |toggled, checked| (Some(toggled), Some(checked), None);
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut harness = fixtures::boot(natives_page, incremental);
+        assert_eq!(
+            native_readings(&harness, "fx-check"),
+            reads(Toggled::False, false),
+            "{mode}: at boot"
+        );
+        harness.click("#fx-check");
+        assert_eq!(
+            native_readings(&harness, "fx-check"),
+            reads(Toggled::True, true),
+            "{mode}: a click checks it"
+        );
+        harness.press(Key::Character(" ".to_string()));
+        assert_eq!(
+            native_readings(&harness, "fx-check"),
+            reads(Toggled::False, false),
+            "{mode}: a Space unchecks it"
+        );
+        assert_eq!(
+            native_readings(&harness, "fx-radio"),
+            reads(Toggled::False, false),
+            "{mode}: the radio at boot"
+        );
+        harness.click("#fx-radio");
+        assert_eq!(
+            native_readings(&harness, "fx-radio"),
+            reads(Toggled::True, true),
+            "{mode}: a click checks the radio"
+        );
+        harness.click("#fx-button");
+        assert_eq!(
+            native_readings(&harness, "fx-button"),
+            (None, Some(true), None),
+            "{mode}: under another role the tree states nothing and `pressed` reads nothing"
+        );
     }
 }
 

@@ -236,7 +236,8 @@ pub(crate) const TYPE: VerbSpec = VerbSpec {
     level: Level::Instance,
     help: "types text into the element an id names, replacing what the element holds, then \
            settles; an empty text clears it; on a select, the text chooses the first option \
-           whose label starts with it",
+           whose label starts with it, and on a `multiple` select that option alone, with no \
+           click on a row; a text no label starts, or an empty one, leaves a select's choice",
     args: &[
         ArgSpec {
             name: "id",
@@ -257,7 +258,9 @@ pub(crate) const TYPE: VerbSpec = VerbSpec {
 pub(crate) const PRESS: VerbSpec = VerbSpec {
     name: "press",
     level: Level::Instance,
-    help: "presses one key on the focused element, then settles",
+    help: "presses one key on the focused element, then settles; on a `multiple` select the \
+           arrows, `home` and `end` choose a row alone and with `shift` span to it, while a set \
+           of rows that are not adjacent needs Ctrl, which this verb does not carry",
     args: &[
         ArgSpec {
             name: "key",
