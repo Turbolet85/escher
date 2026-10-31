@@ -28,7 +28,7 @@ _Documented architectural traps from `.andromeda/architecture.md` and the specia
 **References:** `tests/blitz-tests/tests/interaction_state_*.rs`
 
 ## The changed set is not a diff
-**What breaks:** reading `has_changes()` / `take_changed_nodes()` as "what an agent sees changed". The set is engine-touched: an attribute re-written to itself marks and changes no reading, a further character in a masked password marks and changes no reading, and bounds-only movement (a re-wrap, a scroll) changes a reading and marks nothing. It holds `NodeId`s of text nodes too, and a drained id may name a dropped node.
+**What breaks:** reading `has_changes()` / `take_changed_nodes()` as "what an agent sees changed". The set is engine-touched: an attribute re-written to itself marks and changes no reading, a further character in a masked password marks and changes no reading, and bounds-only movement (a re-wrap, a scroll with no select list standing) changes a reading and marks nothing, while a select list's opening or closing, a page scroll or a move of the select's box that closes it included, marks its select, and a highlight or a wheel move inside the list marks nothing. It holds `NodeId`s of text nodes too, and a drained id may name a dropped node.
 **How to avoid:** take what changed from `Snapshot::diff` over two snapshots; read a drained id through `get_node`; drain before a step you want to observe (after boot the set holds the initial build).
 **References:** arch §Cross-cutting Patterns (Invalidation and state integrity); `tests/blitz-tests/tests/stand_diff.rs`
 

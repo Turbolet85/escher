@@ -1,0 +1,105 @@
+# Apply — architecture · part 2 of 4
+
+## Verdicts
+- fanout-architecture--cascade-g2.md 1 · applied · .andromeda/architecture-detail/established-decisions.md:63#1
+- fanout-architecture--cascade-g2.md 2 · applied · .andromeda/architecture-detail/established-decisions.md:69#1
+- fanout-architecture--cascade-g2.md 3 · applied · .andromeda/architecture-detail/established-decisions.md:78#1, .andromeda/architecture-detail/established-decisions.md:78#2
+- fanout-architecture--cascade-g2.md 4 · applied · .andromeda/architecture-detail/established-decisions.md:78#3
+- fanout-architecture--cascade-g2.md 5 · applied · .andromeda/architecture-detail/established-decisions.md:78#4
+- fanout-architecture--cascade-g2.md 6 · applied · .andromeda/architecture-detail/established-decisions.md:79+#1
+- fanout-architecture--cascade-g2.md 7 · applied · .andromeda/architecture-detail/established-decisions.md:79+#2
+- fanout-architecture--cascade-g2.md 8 · applied · .andromeda/architecture-detail/established-decisions.md:79+#3
+- fanout-architecture--cascade-g2.md 9 · applied · .andromeda/architecture-detail/established-decisions.md:79+#4
+- fanout-architecture--cascade-g2.md 10 · applied · .andromeda/architecture-detail/established-decisions.md:79+#5
+- fanout-architecture--cascade-g2.md 11 · applied · .andromeda/architecture-detail/established-decisions.md:79+#6
+- fanout-architecture--cascade-g2.md 12 · applied · .andromeda/architecture-detail/established-decisions.md:80#1
+- fanout-architecture--cascade-g2.md 13 · applied · .andromeda/architecture-detail/established-decisions.md:88#1
+- fanout-architecture--cascade-g2.md 14 · applied · .andromeda/architecture-detail/established-decisions.md:121#1
+- fanout-architecture--cascade-g2.md 15 · applied · .andromeda/architecture-detail/established-decisions.md:121+#1
+- fanout-architecture--cascade-g2.md 16 · applied · .andromeda/architecture-detail/established-decisions.md:122+#1
+- fanout-architecture--cascade-g2.md 17 · applied · .andromeda/architecture-detail/established-decisions.md:200+#1
+- fanout-architecture--cascade-g3.md 1 · applied · .andromeda/architecture-detail/conventions.md:54#1
+
+## Edits
+- line: .andromeda/architecture-detail/established-decisions.md:63
+  old: «innermost first, and then the viewport — each nested write»
+  new: «innermost first, and then the viewport, a row of an open select list excepted (§Standard Contracts → Scrolling, selection, tree) — each nested write»
+- line: .andromeda/architecture-detail/established-decisions.md:69
+  old: «wheel line deltas × 20 (packages/blitz-dom/src/events/pointer.rs:1189-1192);»
+  new: «wheel line deltas × 20 (packages/blitz-dom/src/events/pointer.rs:1189-1192), a wheel over an open select list scrolling the list alone and a wheel elsewhere closing the list and then scrolling (packages/blitz-dom/src/events/pointer.rs:1194-1202);»
+- line: .andromeda/architecture-detail/established-decisions.md:78
+  old: «(no `multiple`) that is no disabled form control takes»
+  new: «(no `multiple`), its list closed, that is no disabled form control takes»
+- line: .andromeda/architecture-detail/established-decisions.md:78
+  old: «every other key does nothing — Enter and Space open nothing, and a released Space activates no select»
+  new: «Enter, and a Space with no typed text standing, opens its list (below), every other key does nothing, and a released Space does nothing more»
+- line: .andromeda/architecture-detail/established-decisions.md:78
+  old: «/ `set_focus_to`; the walk's disabled gate»
+  new: «/ `set_focus_to`, and on a single select opens its list or closes one standing; the walk's disabled gate»
+- line: .andromeda/architecture-detail/established-decisions.md:78
+  old: «Its limits: no popup is painted (owner: the route entry «Select popup»), `size` is unread, and an option»
+  new: «Its limits: a single select's `size` is unread, and an option»
+- after: .andromeda/architecture-detail/established-decisions.md:79
+  anchor: « Flagged upstreamable, with no upstream pull request open; its merge surface, by file — blitz-dom `node/select.rs`, `document.rs`, `events/{keyboard,pointer,mod}.rs`, `mutator.rs`, `accessibility.rs`, `form.rs`, `node/element.rs` and `assets/default.css`, blitz-traits `events.rs` and blitz-vibey-script `runtime/events.rs` — is owned by the same `.andromeda/residuals.md` line, whose owner is Epoch 3's «Upstream sync ahead of the UI graph» (inputs#I5).»
+  add: «- The select list stands beside the select model, a direct engine change for every document, remote pages included, ratified by the founder (2026-10-31): a single select opens a list the engine paints over the page by a click, by Enter, or by a Space with no typed text standing (packages/blitz-dom/src/document.rs:811-844; packages/blitz-paint/src/render.rs:246-247; tests/blitz-tests/tests/select_popup.rs:202-230) — as measured at escher-0.3.0/chunks/2026-10-31-select-popup/report.md.»
+- after: .andromeda/architecture-detail/established-decisions.md:79
+  anchor: « Flagged upstreamable, with no upstream pull request open; its merge surface, by file — blitz-dom `node/select.rs`, `document.rs`, `events/{keyboard,pointer,mod}.rs`, `mutator.rs`, `accessibility.rs`, `form.rs`, `node/element.rs` and `assets/default.css`, blitz-traits `events.rs` and blitz-vibey-script `runtime/events.rs` — is owned by the same `.andromeda/residuals.md` line, whose owner is Epoch 3's «Upstream sync ahead of the UI graph» (inputs#I5).»
+  add: «- An open select list closes with no event on Escape, a second click on the select, a press outside, a wheel outside the list and a page scroll or move of the select's box, and removal, `disabled`, `hidden` or `inert` on the select closes it too (packages/blitz-dom/src/document.rs:881-889; packages/blitz-dom/src/document.rs:891-907; packages/blitz-dom/src/events/pointer.rs:619-633; tests/blitz-tests/tests/select_popup.rs:401-426; tests/blitz-tests/tests/select_popup.rs:478-520).»
+- after: .andromeda/architecture-detail/established-decisions.md:79
+  anchor: « Flagged upstreamable, with no upstream pull request open; its merge surface, by file — blitz-dom `node/select.rs`, `document.rs`, `events/{keyboard,pointer,mod}.rs`, `mutator.rs`, `accessibility.rs`, `form.rs`, `node/element.rs` and `assets/default.css`, blitz-traits `events.rs` and blitz-vibey-script `runtime/events.rs` — is owned by the same `.andromeda/residuals.md` line, whose owner is Epoch 3's «Upstream sync ahead of the UI graph» (inputs#I5).»
+  add: «- On an open select list Tab chooses the current row and closes before focus moves, in either direction; Enter, Space and a click on a row choose through `apply_select_choice`, and a disabled row changes nothing and leaves the list open; the move keys shift the highlight over enabled rows and choose nothing (packages/blitz-dom/src/events/keyboard.rs:32-34; packages/blitz-dom/src/events/keyboard.rs:215-250; packages/blitz-dom/src/events/keyboard.rs:252-267; packages/blitz-dom/src/events/pointer.rs:642-655; tests/blitz-tests/tests/select_popup.rs:249-273; tests/blitz-tests/tests/select_popup.rs:294-327; tests/blitz-tests/tests/select_popup.rs:329-361; tests/blitz-tests/tests/select_popup.rs:377-388).»
+- after: .andromeda/architecture-detail/established-decisions.md:79
+  anchor: « Flagged upstreamable, with no upstream pull request open; its merge surface, by file — blitz-dom `node/select.rs`, `document.rs`, `events/{keyboard,pointer,mod}.rs`, `mutator.rs`, `accessibility.rs`, `form.rs`, `node/element.rs` and `assets/default.css`, blitz-traits `events.rs` and blitz-vibey-script `runtime/events.rs` — is owned by the same `.andromeda/residuals.md` line, whose owner is Epoch 3's «Upstream sync ahead of the UI graph» (inputs#I5).»
+  add: «- Rejected and unbuilt for the select list: `:open` plus rows as boxes, a second OS window, an overlay hit in `hit_inner`, and the list's colours in `default.css` (as measured at escher-0.3.0/chunks/2026-10-31-select-popup/report.md).»
+- after: .andromeda/architecture-detail/established-decisions.md:79
+  anchor: « Flagged upstreamable, with no upstream pull request open; its merge surface, by file — blitz-dom `node/select.rs`, `document.rs`, `events/{keyboard,pointer,mod}.rs`, `mutator.rs`, `accessibility.rs`, `form.rs`, `node/element.rs` and `assets/default.css`, blitz-traits `events.rs` and blitz-vibey-script `runtime/events.rs` — is owned by the same `.andromeda/residuals.md` line, whose owner is Epoch 3's «Upstream sync ahead of the UI graph» (inputs#I5).»
+  add: «- The select list's standing limits: the thumb is painted and not draggable, a highlighted row's contrast is unread by the lint, a larger authored font clips in the one row height, the highlight is absent from the snapshot and the tree, and a single select's `size` is unread (docs/capabilities.md:208-210; docs/capabilities.md:211-213; as measured at escher-0.3.0/chunks/2026-10-31-select-popup/report.md).»
+- after: .andromeda/architecture-detail/established-decisions.md:79
+  anchor: « Flagged upstreamable, with no upstream pull request open; its merge surface, by file — blitz-dom `node/select.rs`, `document.rs`, `events/{keyboard,pointer,mod}.rs`, `mutator.rs`, `accessibility.rs`, `form.rs`, `node/element.rs` and `assets/default.css`, blitz-traits `events.rs` and blitz-vibey-script `runtime/events.rs` — is owned by the same `.andromeda/residuals.md` line, whose owner is Epoch 3's «Upstream sync ahead of the UI graph» (inputs#I5).»
+  add: «- The select list's merge surface is sixteen files, its line owned by Epoch 3's «Upstream sync ahead of the UI graph» (as measured at escher-0.3.0/chunks/2026-10-31-select-popup/evidence/merge-surface.md).»
+- line: .andromeda/architecture-detail/established-decisions.md:80
+  old: «disabled rows are never chosen; Ctrl+A is not modelled»
+  new: «disabled rows are never chosen; a key brings the current row into view only where the select carries a valid `size` (packages/blitz-dom/src/events/keyboard.rs:423-430; packages/blitz-dom/src/events/keyboard.rs:452-459); Ctrl+A is not modelled»
+- line: .andromeda/architecture-detail/established-decisions.md:88
+  old: «with `advance 5000` (as measured at escher-0.2.0/chunks/2026-10-25-cold-agent-bar/report.md).»
+  new: «with `advance 5000` (as measured at escher-0.2.0/chunks/2026-10-25-cold-agent-bar/report.md). A row of an open select list is never taken as a thumb drag, `hit_with_scrollbar` answering `select_list_hit` first and no scrollbar with it (packages/blitz-dom/src/document.rs:2404-2406); the hazard stands at every other overlay scrollbar.»
+- line: .andromeda/architecture-detail/established-decisions.md:121
+  old: «named by its non-empty `label`, which stays unpainted (packages»
+  new: «named by its non-empty `label`, which an open select list paints as a header (below) (packages»
+- after: .andromeda/architecture-detail/established-decisions.md:121
+  anchor: «- `optgroup`: `is_select_option` holds under a group, `option_disabled` is the one rule `readings` and `form.rs` share, `maybe_record_node`'s `optgroup` arm records its select, and the tree gives a group `Role::Group` named by its non-empty `label`, which stays unpainted (packages/blitz-dom/src/node/select.rs:131-134; packages/blitz-dom/src/node/select.rs:175-190; packages/blitz-dom/src/form.rs:281; packages/blitz-dom/src/mutator.rs:1253-1257).»
+  add: «- In an open select list a group's `label` paints as a header heavier than a row on every build, by a synthesized bold through `stroke_text_as` and its `RunPaint`; a header chooses nothing, and a group with no label reads the whole list's box (packages/blitz-paint/src/text.rs:586-593; packages/blitz-paint/src/text.rs:683-689; tests/blitz-tests/tests/select_popup.rs:805-855; tests/blitz-tests/tests/select_popup_painted.rs:282-297).»
+- after: .andromeda/architecture-detail/established-decisions.md:122
+  anchor: «- The default sheet lays out `optgroup` and `multiple` rows — `select:not([multiple]) > optgroup:not([hidden]) { display: contents; }`, `select:not([multiple]) > optgroup > option:checked { display: inline; }`, `select[multiple] > option, select[multiple] > optgroup > option { display: block; padding: 0 2px; white-space: nowrap; }` and `select[multiple] > optgroup { display: block; }` — and holds the engine-default chosen-row pair `select[multiple] > option:checked, select[multiple] > optgroup > option:checked { background-color: #c8c8c8; color: #000000; }`, 12.56:1 as `select_interaction` measures it, Chromium's inactive selected pair, hardcoded since the engine holds no tokens (packages/blitz-dom/assets/default.css:161-199).»
+  add: «- A `multiple` select's `size` hints a `height` of `size` × 1.2em through `size_rows`, capped at 65534, `0` or a bad value no hint, with `select[multiple][size] { overflow-y: auto; }` and `line-height: 1.2` on its rows in the default sheet (packages/blitz-dom/src/node/select_list.rs:125-130; packages/blitz-dom/src/stylo.rs:1124-1139; packages/blitz-dom/assets/default.css:183-193; tests/blitz-tests/tests/select_popup.rs:995-1032).»
+- after: .andromeda/architecture-detail/established-decisions.md:200
+  anchor: « a lint's findings cross on those carriers and rest in a kept check as the `lint` verb's answer — stable ids, the closed defect words and numbers, no page text, colour, control value or `NodeId` — with no new carrier, exit, path argument, cause, session error, span field or dependency: a ratified boundary widening; a screen over the snapshot budget crosses them in parts — `snapshot`'s optional `part` (a whole number, 1 to `MAX_PART` = 1000) in, one part's text with the closed counts `part` and `parts` out, a part past the last the empty text, a screen within the budget answering whole as before, over MCP a paged answer its JSON line — with no new verb, carrier, exit, cause, session error, span field or dependency: a ratified boundary widening — as measured at escher-0.1.0/chunks/2026-10-07-driver-session/report.md, the `tracing` dependency and the span at escher-0.1.0/chunks/2026-10-07-driver-command-spans/report.md, the call on the wire and the idle expiry at escher-0.1.0/chunks/2026-10-10-driver-cli/report.md, the MCP crossing, `serde_json` and the `tool_call` span at escher-0.1.0/chunks/2026-10-10-mcp-surface/report.md, the fixed text on the carriers at escher-0.1.0/chunks/2026-10-12-self-description/report.md, the in-band shot and `png` at escher-0.1.0/chunks/2026-10-12-headless-screenshot/report.md, the lint's findings on the carriers at escher-0.2.0/chunks/2026-10-19-visual-lint/report-gated.md, the paged screen at escher-0.2.0/chunks/2026-10-20-large-screen-in-parts/report.md»
+  add: «- The select list crosses the ratified carriers only as a row's own `bounds` in the snapshot and the diff — `differs` naming `bounds`, a closed set inside the ratified crossing — and as pixels in a `screenshot`, with no new carrier, exit, cause, session error, node key, log field or span; an option's and a group's label leaving as pixels in every shot of an open list is a boundary widening, ratified by the founder (2026-10-31) — as measured at escher-0.3.0/chunks/2026-10-31-select-popup/report.md.»
+- line: .andromeda/architecture-detail/conventions.md:54
+  old: «the fifteen driver-action checks `stand_act_*`»
+  new: «the sixteen driver-action checks `stand_act_*`»
+
+## Patterns
+[[pattern]]
+id = "arch2-01"
+fixed = 'Enter and Space open nothing'
+
+[[pattern]]
+id = "arch2-02"
+fixed = 'a released Space activates no select'
+
+[[pattern]]
+id = "arch2-03"
+fixed = 'no popup is painted'
+
+[[pattern]]
+id = "arch2-04"
+regex = '(?<!single select.s )`size` is unread'
+
+[[pattern]]
+id = "arch2-05"
+fixed = 'which stays unpainted'
+
+[[pattern]]
+id = "arch2-06"
+fixed = 'fifteen driver-action checks'

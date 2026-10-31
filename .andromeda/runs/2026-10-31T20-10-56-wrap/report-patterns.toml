@@ -1,0 +1,167 @@
+# The site sweep of 2026-10-31-select-popup's report: one pattern per claim, its wording and its name token.
+
+[[pattern]]
+id = 'owner-title'
+fixed = 'Select popup'
+ignore_case = true
+
+[[pattern]]
+id = 'owner-generic'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true
+
+[[pattern]]
+id = 'no-popup'
+regex = '''no (select )?popup|popup is painted|painted popup|unpainted popup|select_popup|stand_act_popup|open(s|ing)? no list|no list (is )?(opened|open|painted)'''
+ignore_case = true
+
+[[pattern]]
+id = 'enter-space'
+regex = '''enter and space (open|opening)|space open(s|ing)? nothing|enter_and_space_open|enter .{0,12}space open(s|ing)? nothing'''
+ignore_case = true
+
+[[pattern]]
+id = 'closed-option'
+regex = '''(option|options) (of|under) a closed|closed (single )?select|closed_select_of|in_closed_select|in_select_box'''
+ignore_case = true
+
+[[pattern]]
+id = 'size-unread'
+regex = '''`size` (is |stays |left )?unread|size. unread|`size`|select\[multiple\]\[size\]|size_rows|carries_valid_size'''
+
+[[pattern]]
+id = 'group-label'
+regex = '''unpainted|group's .?label|label. as a name|as a name stands'''
+ignore_case = true
+
+[[pattern]]
+id = 'focus-select'
+regex = '''focus_multiple_select|focus_select|\bis_select\b|is_multiple_select|clear_select_typeahead'''
+
+[[pattern]]
+id = 'type-focus'
+regex = '''`type` (clicks|focuses|on a|replaces)|focused with no click|focuses with no click'''
+
+[[pattern]]
+id = 'expanded'
+regex = '''aria-expanded|set_expanded|native .?expanded'''
+
+[[pattern]]
+id = 'changed-set'
+regex = '''changed set|changed_nodes|has_changes'''
+
+[[pattern]]
+id = 'hit-first'
+regex = '''hit_with_scrollbar|select_list_hit'''
+
+[[pattern]]
+id = 'paint-order'
+regex = '''paint_scene|paint_select_list|select_list_view|SelectListView|SelectListRow'''
+
+[[pattern]]
+id = 'stroke-text'
+regex = '''stroke_text|RunPaint|font-embolden|FONT_EMBOLDEN_ENABLED|synthesize_bold|synthesized bold'''
+
+[[pattern]]
+id = 'region-scroll'
+regex = '''select_list_region|select_list_bounds|open_select\b|close_select_list|reconcile_select_list'''
+
+[[pattern]]
+id = 'visible-reg'
+regex = '''pub fn visible_region|visible_region. reads|`visible_region`.{0,40}(reads|answers)'''
+
+[[pattern]]
+id = 'covered-text'
+regex = '''another element is hit at the point|`covered`.{0,30}(meaning|text)|covered.s (meaning|reading)|click the select first'''
+
+[[pattern]]
+id = 'click-help'
+regex = '''a click on a select opens|click. on a single|a click focuses a select|click focuses'''
+ignore_case = true
+
+[[pattern]]
+id = 'repeat-names'
+regex = '''fifteen( named)?|named blitz-tests targets|seventeen'''
+ignore_case = true
+
+[[pattern]]
+id = 'stand-files'
+regex = '''222 · 0 · 7|over 50 files|50 files|stand_\*\.rs|237 · 0 · 7'''
+
+[[pattern]]
+id = 'a11y-tally'
+regex = '''14 · 112|112 passed|passed 112|14 · 114'''
+
+[[pattern]]
+id = 'state-rows'
+regex = '''STATE_ROWS'''
+
+[[pattern]]
+id = 'kbd-count'
+regex = '''stand_keyboard.{0,30}\b21\b|\b21 tests?\b.{0,30}stand_keyboard'''
+
+[[pattern]]
+id = 'cli-count'
+regex = '''cli_commands.{0,40}\b14\b|\b14\b.{0,40}cli_commands'''
+
+[[pattern]]
+id = 'ci-tally'
+regex = '''41192433140|214 · 1181|195 · 1178|195 · 1132|219 · 1008|41235503227'''
+
+[[pattern]]
+id = 'incubator'
+regex = '''escher-0\.4\.0-incubator|deferred-from-0\.3\.0'''
+
+[[pattern]]
+id = 'free-disk'
+regex = '''free-disk|free disk'''
+ignore_case = true
+
+[[pattern]]
+id = 'panic-pos'
+regex = '''position_in_containing_block|anonymous block|listed panic path'''
+
+[[pattern]]
+id = 'os-sensitive'
+regex = '''OS-sensitive|OS-conditional|apple-font-embolden'''
+
+[[pattern]]
+id = 'select-colours'
+regex = '''#c8c8c8|#6d6d6d|`#999`|#999999|1px solid #999'''
+
+[[pattern]]
+id = 'select-model'
+regex = '''select_interaction|stand_act_select|apply_select_choice|press_select_key|press_open_list_key|choose_current_and_close'''
+
+[[pattern]]
+id = 'act-files'
+regex = '''fifteen .?stand_act|fifteen driver-action|fourteen driver-action|the fifteenth (driver|reader)|stand_act_popup'''
+
+[[pattern]]
+id = 'mod-decl'
+regex = '''declar\w+ .?mod (fixtures|session_common);|mod (fixtures|session_common);. (by|in|readers?)'''
+
+[[pattern]]
+id = 'target-files'
+regex = '''\b153 (targets?|files|test)|\b153\b.{0,30}blitz-tests'''
+
+[[pattern]]
+id = 'cover-read'
+regex = '''4950/5049|2786/3235|956/1008'''
+
+[[pattern]]
+id = 'run-all'
+regex = '''run all.{0,30}passed \d+|`run all` \d+|\b\d+ · 0 · 12\b'''
+
+[[pattern]]
+id = 'ua-pair'
+regex = '''contrast pair is unmeasured|pair is unmeasured|select's (contrast )?pair|closed select's contrast'''
+
+[[pattern]]
+id = 'label-click'
+regex = '''click on a select's label|label re-dispatched|bound single select|label.{0,30}re-dispatch'''
+
+[[pattern]]
+id = 'lint-exclude'
+regex = '''overlaps.{0,60}(skip|exclu)|(skip|exclu).{0,60}overlaps'''
+ignore_case = true

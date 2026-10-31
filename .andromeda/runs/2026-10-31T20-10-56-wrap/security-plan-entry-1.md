@@ -1,0 +1,5 @@
+## 2026-10-31-select-popup — his words on the select list's widening
+**Section:** §Input Validation; §Threat Model Summary; §Error Handling (the entries of this chunk that read a boundary widening ratified, or name a CARRY's owner)
+**Change:** No body text moves. The words the bodies' «a boundary widening, ratified» stand on are gathered here, each as he gave it.
+**Why:** his forks, by dialog in the overseer session, 2026-10-31, relayed verbatim by the operator (inputs#I4): F1 «Клик, Enter, Space (Рекомендую)», F2 «Подсветка, затем выбор (Рекомендую)», F3 «Остаётся на select (Рекомендую)», F4 «Закрывает и срабатывает (Рекомендую)», F5 «Без анимации (Рекомендую)», F6 «Как у select (Рекомендую)», F7 «Рисовать заголовком (Рекомендую)», F8 «Читать на multiple (Рекомендую)», F9 «По-прежнему covered (Рекомендую)», F10 «Строки без overlap (Рекомендую)». His word on this wrap's answer card, by dialog at P2 Validate, 2026-10-31, relayed verbatim by the operator, who entered it as his: Q1 «Утверждаю (Рекомендую)». On the two owners, the same dialog: Q2 «В ближайший Upstream sync (Рекомендую)».
+**Ref:** .andromeda/runs/2026-10-31T20-10-56-wrap/answer-card.md

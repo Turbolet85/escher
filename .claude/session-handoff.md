@@ -1,31 +1,22 @@
 # Session Handoff
 
-**Last Updated:** 2026-10-31T13:53:30Z
+**Last Updated:** 2026-10-31T22:36:03Z
 **Branch:** build/escher-0.3.0 · 0 ahead of origin/build/escher-0.3.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-10-31-engine-debts — feat: the six engine debts ended as the founder's forks say, eight engine changes for every document, CI#41192433140 green 17/17
+**Last Commit:** 2026-10-31-select-popup — a closed select opens a painted list of its options, chosen by pointer and key
 
 ## Position
-- Done: 2026-10-31-engine-debts — `v030-04`. Wrap run `.andromeda/runs/2026-10-31T10-45-42-wrap/` (P1 in one window, P2–P7 in the next).
-- Next: «Select popup» (`v030-17`, last of Epoch 2), `/andromeda-phase` to promote and plan it. **Nothing starts it:** escher's pause holds the next chunk, and only the founder lifts it.
+- Done: 2026-10-31-select-popup, `v030-17` verified. It closes escher-0.3.0's Epoch 2 — Engine debts. Version: verified 6/17 · deferred 0 · planned 11 · implemented 0 · unclaimed 11.
+- Next: «Upstream sync ahead of the UI graph». **Nothing starts it:** escher's pause stands again at this seam, and only the founder lifts it. The trial worktree `target/tmp/trial-wt` still stands; its removal is the founder's.
 
 ## Work done
-P2: 295 proposals applied, 20 merged, 41 rejected, over all seven masters, with their sidecar entries; 840 citations re-pointed, 27 by hand; 194 of 213 leaf findings written. P3: one Tier-2 and two Tier-3 learnings. P5: the popup's entry and `v030-17`, the `press` residual, eight CARRYs and a free-disk WATCH.
+A single select opens an engine-painted list, by click, Enter and Space, chosen by pointer and key. Wrap: 328 amendments over all seven masters, 20 merged, 69 rejected as twins; 768 citations re-pointed; five CARRY pins, the WATCH at 2 of 3, five residual lines and six deferred lines. The light gate read green 27, its four `operator` entries from `evidence/ci.md`, CI#41235503227 green 17/17 on `715798ce2`.
 
 ## Drift resolved
-The eight engine changes recorded as ratified by the founder's words F1 to F10; the five boundary widenings (the `multiple` select's keys and clicks, `optgroup`, the set's exits, `type` on it, `change` on a checkbox and a radio) confirmed by the operator as his reading of the fork texts, not a new word of the founder's; a group's `label` as a name stands on the P5 lean, recorded so. F13's unmet clause restated, the behaviour kept (inputs#I16). An older false reading fixed: every cargo leg `--locked` but `fmt` too.
+The widening answered by the founder's own word, Q1 «Утверждаю (Рекомендую)» over his ten forks; the panic's and the `font-embolden` gate's owner by his Q2 «В ближайший Upstream sync (Рекомендую)». Both in `answer-card.md`.
 
 ## Notes
-- **A classifier answered by hand:** `obs-plan-cls-log-coverage.b1` died twice at Haiku · max past the output-token limit; on the operator's word its 25 entities read `yes · stale` by hand (inputs#I15), so obs-plan's false-yes figure runs high.
-- **Absorbed residuals:** lines 23, 31–34, 39 and 40 already read `absorbed:`, so 676 to 677 and line 34's popup half are dated matrix notes on `v030-05` and `v030-04`.
-- **Waiting on a later chunk:** the `.gitignore` line for `escher-0.4.0-incubator/` is a CARRY on the popup, a chunk's tree being held from P1 to its commit.
-- **The trial worktree** `target/tmp/trial-wt` still stands; its removal is the founder's.
-- **The free-disk step** is a scope widening on the operator's word and is not shown to be the cure: the red job alone among the `ubuntu-24.04` jobs stood on image `20261018.96.1`, its free disk unread. A WATCH holds it.
-- Last failed command: none open.
-
-## Deferred learnings
-- `recurrence-despite-learning`: 2026-10-27 «`fanout-results.md`'s lines are a grammar» says one target file per raised item; two raised items named a sentence and landed on the bodies alone.
-- `recurrence-despite-learning`: `harness.center_of` on an inline element reads no box (`checkable_change_event`); the report calls it a standing learning, and no text under `.claude/rules` or `session-learnings.md` holds it.
-
-## Session End Status
-Completed normally at 2026-10-31 19:16:42
+- The claim-false rows' citation digits were not hand re-pointed: the next sweep's `new` or `changed` rows read them. On the rows the writers rewrote the digits stand as the apply left them.
+- Epoch 2's sidecar consolidation fired and had nothing to do: set 0 and prunable 0 on all seven, no rewriter spawned, no byte moved. Four sidecars stand over the 120,000 B whole-read bound (architecture, test-plan, security-plan, a11y-plan), and `UNRESOLVED` supersessions stand: architecture 1, design-system 2.
+- Deferred learnings: `recurrence-despite-learning` «`fanout-results.md`'s lines are a grammar» (the last handoff's) still stands; `recurrence-despite-learning`: a controlled-select fixture first written uncontrolled, the limit `docs/capabilities.md` states.
+- Last failed command: none.

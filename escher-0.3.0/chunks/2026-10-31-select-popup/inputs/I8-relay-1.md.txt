@@ -1,0 +1,1 @@
+run P1 only and stop, for 2026-10-31-select-popup. Operator's word: the sampler is forced on this wrap (detail.py sample --side wrap --force). The run was green on CI#41235503227 at 715798ce2; the uncommitted evidence/ci.md and outcome ride this wrap. Stop after P1 and report the wrap run dir.

@@ -27,6 +27,8 @@ Detail: .andromeda/design-system-detail/color-palette.md — read whole.
 
 **Engine-painted defaults:**
 
+The open select list's colours are engine constants, the associated constants of `SelectListView` (`HIGHLIGHT_TEXT`, `HIGHLIGHT_BACKGROUND`, `DISABLED_TEXT`, `BORDER`), not design tokens and not in `default.css`, the engine holding no tokens; its highlight is the pair of a `multiple` select's chosen row.
+
 **Token sets:**
 
 **Example fixtures:**
@@ -82,7 +84,7 @@ Detail: .andromeda/design-system-detail/depth-strategy.md — read whole.
 
 **Engine depth behavior:**
 
-Hit-testing stops at the padding box of a node paint clips — by `overflow`, or by a computed `contain` that includes `paint` — the root element excepted: a point outside that box reaches none of the node's hoisted children, paint children or inline content, and the node itself is still answered inside its border box.
+Hit-testing stops at the padding box of a node paint clips — by `overflow`, or by a computed `contain` that includes `paint` — the root element excepted: a point outside that box reaches none of the node's hoisted children, paint children or inline content, and the node itself is still answered inside its border box; a row of an open select list stands outside this, answered before the walk, so a box clipping the select clips no row.
 
 **Example fixtures:**
 
@@ -118,7 +120,7 @@ Detail: .andromeda/design-system-detail/motion.md — read whole.
 
 **This project's values:**
 
-A programmatic into-view scroll never animates a nested scrolling box: every scrolling box holding its target is written at once, innermost first, whatever behaviour was asked, and the requested behaviour, `Smooth` included, applies to the viewport alone; the driver's `scroll` is instant in every box and in the viewport.
+A programmatic into-view scroll never animates a nested scrolling box: every scrolling box holding its target is written at once, innermost first, whatever behaviour was asked, and the requested behaviour, `Smooth` included, applies to the viewport alone; the driver's `scroll` is instant in every box and in the viewport; into view on a row of an open select list writes that list's own scroll at once, moving no other box and no viewport.
 
 **Animation runtime:**
 

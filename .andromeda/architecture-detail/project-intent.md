@@ -12,7 +12,7 @@ Upstream sync: DioxusLabs/blitz `main` last merged at 23b9b26a9b6af5947b8f003d2c
 
 <!-- detail: values · intent -->
 
-- **Product type (as adopted):** a Rust library workspace for an HTML/CSS engine — "High-level APIs for rendering HTML with Blitz" (packages/blitz/Cargo.toml:3), "The core DOM abstraction in Blitz" with `BaseDocument` as "the primary entry point" (packages/blitz-dom/src/lib.rs:1; packages/blitz-dom/src/lib.rs:34-37), the `Document` trait existing so wrappers around `BaseDocument` can all be driven by blitz-shell (packages/blitz-dom/src/document.rs:165-167); homepage and repository `https://github.com/dioxuslabs/blitz` as adopted, `https://github.com/Turbolet85/escher` since 2026-10-14-quality-gates (Cargo.toml:37-38)
+- **Product type (as adopted):** a Rust library workspace for an HTML/CSS engine — "High-level APIs for rendering HTML with Blitz" (packages/blitz/Cargo.toml:3), "The core DOM abstraction in Blitz" with `BaseDocument` as "the primary entry point" (packages/blitz-dom/src/lib.rs:1; packages/blitz-dom/src/lib.rs:34-37), the `Document` trait existing so wrappers around `BaseDocument` can all be driven by blitz-shell (packages/blitz-dom/src/document.rs:166-168); homepage and repository `https://github.com/dioxuslabs/blitz` as adopted, `https://github.com/Turbolet85/escher` since 2026-10-14-quality-gates (Cargo.toml:37-38)
 
 <!-- /detail -->
 

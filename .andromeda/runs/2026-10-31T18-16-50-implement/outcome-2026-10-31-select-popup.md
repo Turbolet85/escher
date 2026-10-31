@@ -2,7 +2,7 @@
 
 **Outcome word: green + smoke.** The last full block on the pre-CI tree reads `entries 31 · green 27 · red 0 · recorded 0 · timeout 0 · not-run 4`. The four not run are the operator's. `v030-17` reads `implemented`.
 
-**Corrected after the first CI read.** CI#41233234207 on `8cd9c1286` ended red on `Test (macos)` alone, every other job green: `a_groups_header_is_darker_than_a_row_by_weight` read the header and the row equal, because this chunk's paint gave a synthesized bold the same embolden an emboldening build gives every run. A defect of this chunk's, on the operator's word fixed in `packages/blitz-paint/src/text.rs` with the test as written. The block's green above did not witness it: no local gate builds `blitz-paint`'s `font-embolden`. The plan's "no OS-sensitive case" did not hold for this feature on macOS. The record, both builds' readings and the next CI read are in `chunks/2026-10-31-select-popup/evidence/ci.md`. **Next: the fix commit's entries 29, 30 and 31, then `/andromeda-wrap-session`.**
+**Corrected after the first CI read.** CI#41233234207 on `8cd9c1286` ended red on `Test (macos)` alone, every other job green: `a_groups_header_is_darker_than_a_row_by_weight` read the header and the row equal, because this chunk's paint gave a synthesized bold the same embolden an emboldening build gives every run. A defect of this chunk's, on the operator's word fixed in `packages/blitz-paint/src/text.rs` with the test as written. The block's green above did not witness it: no local gate builds `blitz-paint`'s `font-embolden`. The plan's "no OS-sensitive case" did not hold for this feature on macOS. CI#41235503227 on the fix, `715798ce2`, reads `verdict: green`, 17/17, the per-OS tally recorded. The record and both builds' readings are in `chunks/2026-10-31-select-popup/evidence/ci.md`. **Next: `/andromeda-wrap-session`.**
 
 ## What needs a decision
 
@@ -48,8 +48,7 @@ Hand mutations, restored and sha-compared each time, red before green: no paint 
 
 ## What stays unproven
 
-- **CI on the fix:** the first run's other sixteen jobs were green on `8cd9c1286`; the fix's own run is entries 29 to 31, read in `evidence/ci.md`.
-- **A real macOS build's header** is read by that job alone. This host reproduces the red and the fix through `font-embolden`, which sets the same flag.
+- **A real macOS build's header** is read by that CI job alone, green on the fix. This host reproduces the red and the fix through `font-embolden`, which sets the same flag.
 - **The windowed list** is read, not run: the smoke proves the boot alone (entry 27, `service.name=seven_guis`). A whole-screen shot through the binary was read by eye and looked as intended.
 - **What an assistive technology reads** is unmeasured, as stated.
 - **No cold-agent run:** the new `covered` clause and the list could move `wrong_calls`, and `v030-15` owns the next run.

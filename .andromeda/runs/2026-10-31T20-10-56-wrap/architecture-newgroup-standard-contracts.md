@@ -1,0 +1,27 @@
+# New groups — architecture · standard-contracts
+
+## Verdicts
+- fanout-architecture--cascade-g4.md 2 · distinct · no line names the `select_list` field or any of its readers and writers
+- fanout-architecture--cascade-g4.md 3 · distinct · no line names `live_select_list`, its two reads past it or `hover_list_row`'s write
+- fanout-architecture--cascade-g4.md 4 · distinct · no line states a reconcile step in `resolve` or the field's clearing on removal
+- fanout-architecture--cascade-g4.md 8 · contradiction · lines 27–27 · «`aria-expanded` (a boolean)» · the builder's `aria-expanded` read stands with no exception, the proposal has a single select read none and write `set_expanded(open)`
+- fanout-architecture--cascade-g4.md 10 · distinct · no line states `handle_click`'s `label` arm; line 26 holds only the tree's label binding
+- fanout-architecture--cascade-g4.md 11 · contradiction · lines 48–48 · «`scroll_into_view` scrolls every scrolling box on its target's containing-block chain, innermost first, and then the viewport» · the line has every target scroll its chain and the viewport, the proposal has a row of an open list move neither · its own line rewritten
+- fanout-architecture--cascade-g4.md 14 · contradiction · lines 259–259 · «`bounds` `BaseDocument::get_client_bounding_rect` (viewport-relative, unclamped, for every element» · the line reads `bounds` from the client rect for every element, the proposal reads `select_list_bounds` first for a row of an open list
+- fanout-architecture--cascade-g4.md 15 · contradiction · lines 59–59 · «Its callers `execute.rs` `in_view` and `crop` and `lint.rs` `clip_region` are unchanged» · the line has `clip_region` unchanged, the proposal has it take an open row's region from `visible_region` alone, against line 212's cut too · its own line rewritten
+- fanout-architecture--cascade-g4.md 16 · contradiction · lines 61–61 · «its callers `hit` and `hit_with_scrollbar` are unchanged» · the line has `hit_with_scrollbar` unchanged, the proposal has it answer `select_list_hit` first · its own line rewritten
+- fanout-architecture--cascade-g4.md 19 · distinct · line 83's no-public-type claim is `node::select`'s, and no line names `node::select_list`, its read types or its colours
+- fanout-architecture--cascade-g4.md 20 · distinct · no line names `SelectList.fresh` or what it holds against
+- fanout-architecture--cascade-g4.md 21 · distinct · no line states the list's row cap, placement or empty-select rule
+- fanout-architecture--cascade-g4.md 23 · distinct · no line names `paint_select_list` or the module `render::select_list`
+- fanout-architecture--cascade-g5.md 5 · contradiction · lines 189–189 · «`type`, on every target but a `multiple` select, which it focuses with no click (below), clicks it the same way» · the line has `type` click a single select, the proposal has it fire no DOM focus events there, focusing with no click; lines 18 and 190 name `focus_multiple_select` where it names `focus_select`
+- fanout-architecture--cascade-g5.md 7 · contradiction · lines 212–212 · «Each node's clip region is `visible_region` cut by the padding box of every DOM ancestor below the root whose computed `contain` includes `paint`» · the sentence cuts every node's region by `contain: paint`, the proposal exempts an open row, the fact of fanout-architecture--cascade-g4.md 15 · its own line rewritten
+- fanout-architecture--cascade-g6.md 2 · contradiction · lines 259–259 · «`bounds` `BaseDocument::get_client_bounding_rect` (viewport-relative, unclamped, for every element» · the line reads `bounds` from the client rect for every element, the proposal reads `select_list_bounds` first for an open row, the fact of fanout-architecture--cascade-g4.md 14; its `is_select` half stands nowhere
+- fanout-architecture--cascade-g6.md 4 · distinct · lines 173 and 258 list the thirteen keys and seven fields with no `expanded`, yet no line states the operator's call against that key or that the list adds no field
+- fanout-architecture--cascade-g6.md 6 · distinct · no line names `font-embolden` or a local witness for it
+- cascade-compare-architecture.md 17 · twin · fanout-architecture--cascade-g4.md 2 · the same field and methods, folding in the reader of fanout-architecture--cascade-g4.md 3, the resolve step of fanout-architecture--cascade-g4.md 4 and the empty-select rule of fanout-architecture--cascade-g4.md 21
+- cascade-compare-architecture.md 18 · contradiction · lines 27–27 · «`aria-expanded` (a boolean)» · the builder's `aria-expanded` read stands with no exception, the proposal has a single select read none, the fact of fanout-architecture--cascade-g4.md 8
+- cascade-compare-architecture.md 19 · distinct · no line states the pointer's actions on an open list, only its `label` arm overlapping fanout-architecture--cascade-g4.md 10
+- cascade-compare-architecture.md 20 · distinct · no line names `press_select_key`, `press_open_list_key`, `choose_current_and_close` or the keys' actions on an open list
+- cascade-compare-architecture.md 21 · contradiction · lines 61–61 · «its callers `hit` and `hit_with_scrollbar` are unchanged» · the line has `hit_with_scrollbar` unchanged, the proposal has `select_list_hit` answer before any walk, the fact of fanout-architecture--cascade-g4.md 16
+- cascade-compare-architecture.md 22 · twin · fanout-architecture--cascade-g4.md 23 · the same module and paint rules, its `stroke_text_as`, `RunPaint` and synthesized-bold half new to this list

@@ -1,0 +1,138 @@
+# architecture — outline (10 files)
+
+## .andromeda/architecture-detail/conventions.md · conventions · 23.6 KB
+- ## Conventions
+  - values · conv-formatting-and-lints · lines 8–9
+  - values · conv-manifests · lines 15–15
+  - values · conv-documentation · lines 21–21
+  - values · conv-known-gaps · lines 27–27
+  - values · conv-visibility-and-naming · lines 33–33
+  - values · conv-feature-gating · lines 39–40
+  - values · conv-unsafe-and-borrowing · lines 46–46
+  - values · conv-tests · lines 52–54
+  - values · conv-tests · lines 60–62
+  - values · conv-apps-and-examples · lines 68–69
+  - values · conv-html-fixtures · lines 75–75
+## .andromeda/architecture-detail/cross-cutting-patterns.md · cross-cutting-patterns · 13.9 KB
+- ## Cross-cutting Patterns
+  - values · crosscut-config-management · lines 8–8
+  - values · crosscut-logging-and-timing · lines 14–15
+  - values · crosscut-service-wiring · lines 21–21
+  - values · crosscut-service-wiring · lines 27–27
+  - values · crosscut-event-processing · lines 33–33
+  - values · crosscut-invalidation-and-state-integrity · lines 39–41
+## .andromeda/architecture-detail/design-philosophy.md · design-philosophy · 15.9 KB
+- ## Design Philosophy
+  - values · philosophy · lines 8–17
+  - values · philosophy · lines 23–27
+  - values · philosophy · lines 33–39
+  - values · philosophy · lines 45–53
+  - values · philosophy · lines 59–63
+## .andromeda/architecture-detail/established-decisions.md · established-decisions · 72.2 KB
+- ## Established Decisions
+  - values · dec-dependency-pinning · lines 8–8
+  - values · dec-build-profiles · lines 14–14
+  - values · dec-release-versioning · lines 20–20
+  - values · dec-renderer-backends · lines 26–26
+  - values · dec-default-features · lines 32–33
+  - values · dec-document-defaults · lines 39–39
+  - values · dec-resource-loading · lines 45–45
+  - values · dec-css-approximations · lines 51–51
+  - values · dec-unsupported-features · lines 57–57
+  - values · dec-scrolling-and-input · lines 63–69
+  - values · dec-scrolling-and-input · lines 75–82
+  - values · dec-scrolling-and-input · lines 88–88
+  - values · dec-layout · lines 94–95
+  - values · dec-layout · lines 101–103
+  - values · dec-dom-semantics · lines 109–110
+  - values · dec-dom-semantics · lines 116–122
+  - values · dec-dom-semantics · lines 128–129
+  - values · dec-html-parsing · lines 135–135
+  - values · dec-shell-and-windowing · lines 141–141
+  - values · dec-shell-and-windowing · lines 147–147
+  - values · dec-painting · lines 153–153
+  - values · dec-javascript · lines 159–159
+  - values · dec-dioxus-integration · lines 165–165
+  - values · dec-dioxus-integration · lines 171–171
+  - values · dec-browser-app · lines 177–177
+  - values · dec-browser-app · lines 183–183
+  - values · dec-wpt-runner · lines 189–190
+  - values · dec-driver-session · lines 196–200
+  - values · dec-driver-session · lines 206–206
+## .andromeda/architecture-detail/existing-scopes.md · existing-scopes · 54.0 KB
+- ## Existing Scopes
+  - values · scopes · lines 8–129
+  - values · scopes · lines 135–135
+  - values · scopes · lines 141–145
+  - values · scopes · lines 151–151
+## .andromeda/architecture-detail/inherited-defaults.md · inherited-defaults · 2.6 KB
+- ## Inherited Defaults
+  - values · defaults · lines 8–8
+  - values · defaults · lines 14–14
+  - values · defaults · lines 20–20
+## .andromeda/architecture-detail/occupied-resources.md · occupied-resources · 38.6 KB
+- ## Occupied Resources
+  - values · res-network-ports-and-listeners · lines 8–11
+  - values · res-outbound-hosts · lines 17–17
+  - values · res-outbound-hosts · lines 23–24
+  - values · res-filesystem · lines 30–32
+  - values · res-filesystem · lines 38–40
+  - values · res-filesystem · lines 46–47
+  - values · res-process-wide-state-and-threads · lines 53–59
+  - values · res-process-wide-state-and-threads · lines 65–65
+  - values · res-process-wide-state-and-threads · lines 71–73
+  - values · res-environment-variables · lines 79–79
+  - values · res-names · lines 85–86
+  - values · res-ci-infrastructure · lines 92–92
+  - values · res-ci-infrastructure · lines 98–98
+  - values · res-ci-infrastructure · lines 104–104
+## .andromeda/architecture-detail/project-intent.md · project-intent · 11.5 KB
+- ## Project Intent
+  - values · intent · lines 8–9
+  - values · intent · lines 15–15
+  - values · intent · lines 21–21
+  - values · intent · lines 27–27
+  - values · intent · lines 33–33
+  - values · intent · lines 39–39
+  - values · intent · lines 45–45
+  - values · intent · lines 51–51
+  - values · intent · lines 57–57
+## .andromeda/architecture-detail/stack-and-technologies.md · stack-and-technologies · 22.5 KB
+- ## Stack and Technologies
+  - values · stack · lines 8–80
+  - values · stack · lines 86–86
+## .andromeda/architecture-detail/standard-contracts.md · standard-contracts · 204.2 KB
+- ## Standard Contracts
+  - values · contract-document-core · lines 8–10
+  - values · contract-document-core · lines 16–19
+  - values · contract-mutation-query-and-cssom · lines 25–32
+  - values · contract-events · lines 38–42
+  - values · contract-scrolling-selection-tree · lines 48–52
+  - values · contract-scrolling-selection-tree · lines 58–62
+  - values · contract-layout · lines 68–69
+  - values · contract-nodes-and-widgets · lines 75–76
+  - values · contract-nodes-and-widgets · lines 82–87
+  - values · contract-provider-traits · lines 93–93
+  - values · contract-html-and-networking-crates · lines 99–99
+  - values · contract-paint-and-shell · lines 105–106
+  - values · contract-paint-and-shell · lines 112–112
+  - values · contract-test-harness · lines 118–123
+  - values · contract-test-harness · lines 129–129
+  - values · contract-headless-stand · lines 135–136
+  - values · contract-headless-stand · lines 142–142
+  - values · contract-headless-stand · lines 148–150
+  - values · contract-telemetry-bootstrap · lines 156–158
+  - values · contract-driver-session · lines 164–202
+  - values · contract-driver-session · lines 208–214
+  - values · contract-driver-session · lines 220–221
+  - values · contract-javascript · lines 227–228
+  - values · contract-javascript · lines 234–234
+  - values · contract-javascript · lines 240–240
+  - values · contract-high-level-launch · lines 246–246
+  - values · contract-dioxus-dom-bridge · lines 252–272
+  - values · contract-dioxus-dom-bridge · lines 278–281
+  - values · contract-clis · lines 287–291
+  - values · contract-browser-app · lines 297–297
+  - values · contract-wpt-runner-outputs · lines 303–304
+  - values · contract-ci-contracts · lines 310–319
+  - values · contract-ci-contracts · lines 325–325

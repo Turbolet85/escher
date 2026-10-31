@@ -1,0 +1,12 @@
+# architecture · picked accounting · group 1 of 8
+
+## Picked
+design-philosophy#1.1 · not touched · blitz-dom's `lib.rs`, blitz-paint's `render.rs` and dioxus-native-dom's `lib.rs` are reached, yet no crate is added and the list's state stays in blitz-dom with its paint in blitz-paint through `paint_scene` alone, on a document already resolved, so each claim holds
+design-philosophy#2.1 · not touched · `document.rs` is reached but the report adds only the `select_list` field, `None` at construction, and moves no provider, default or embedder path, so the claim holds
+design-philosophy#3.1 · not touched · the reached `document.rs`, `stylo.rs`, `pointer.rs`, `keyboard.rs`, `accessibility.rs`, `render.rs` and `text.rs` keep the named-spec and named-engine readings, the list's teardown adds an arm beside node removal's, and every other text caller passes `RunPaint::default()`, so page text still paints as stated
+design-philosophy#4.1 · proposed · a wheel over an open list and `scroll_into_view` on its row move the list's own `scroll_y`, an exception to line 51's one scrolling primitive; the group's other claims hold, the list's state naming a select by `NodeId`, no layout box and both layout modes green
+stack-and-technologies#1.3 · not touched · `document.rs` and `stylo.rs` are reached, yet the report's Dependencies read none with every manifest unmoved, and the `size` hint adds no Stylo role, so the versions and role hold
+stack-and-technologies#1.5 · not touched · `resolve.rs` and `lib.rs` are reached, yet no manifest moved and the crate root's new re-exports are the list's read types, so taffy's version, features, role and re-export hold
+stack-and-technologies#1.16 · not touched · `stylo.rs`, `resolve.rs` and `document.rs` are reached, yet no dependency moved and the report names no thread, pool or `parallel-construct` change, so the claim holds
+stack-and-technologies#1.22 · not touched · `ci-leg.sh` and `test_ci_workflows.py` are reached, yet the report's harness surface adds two `stand-repeat` words and one assertion, with no action, tool, package or Python need moved and no verdict shape, so the claim holds
+stack-and-technologies#1.23 · not touched · `ci-leg.sh` is reached, yet `fast`, the audit, the floors (read 3 of 3) and `stand-repeat`'s zero-failure budget stand with only its word list grown and no host tool changed, the 98.34 · 84.25 · 91.69 % reading dated to its own chunk, so the claim holds

@@ -87,3 +87,56 @@ The authored-bold paragraph goes through the ordinary path, which asks for no sy
 | open list with a header | `5f679e03df361e51` | same | `84b3332ff404b632` | **`f8295ffd12736ac5`** |
 
 Only the frame holding a synthesized header moved, and only on the build that had the defect.
+
+## The second pass, on the fix
+
+| Entry | What ran | Reading |
+|---|---|---|
+| the commit | `fix(2026-10-31-select-popup): a group header heavier than a row on an emboldening build` | `715798ce2e5c7bb378b6474c6d2e2fe5b35fcc00`, above the pre-CI commit · 4 files · tree clean after |
+| 29 | `ci-leg.sh fast`, the clean-tree guard, `git push origin build/escher-0.3.0` | exit 0 · `8cd9c1286..715798ce2` · the remote read back at `715798ce2` |
+| 30 | `ci.py conclusion --sha HEAD --wait 2400` | **green**, below |
+| 31 | the per-OS tally, `<id>` = 41235503227 | below |
+
+Entry 30, verbatim:
+
+```
+715798ce2e5c verdict: green · checks 17/17 · wall 1381 s · runs CI#41235503227 completed/success
+runs: CI#41235503227 push completed/success
+checks: Accessibility (a11y) tests · Build [default features] · Build counter example · Build wasm examples · Clippy
+  Coverage report · Dependency audit · Documentation · MSRV Build [Rust 1.91] · Rustfmt · Stand checks repeated
+  Test (android) · Test (ios) · Test (macos) · Test (windows) · Test CI scripts · Test [default features]
+```
+
+### The per-OS tally, against CI#41192433140
+
+Result lines · passed · failed · ignored.
+
+| Job | CI#41192433140 | CI#41235503227 | Moved |
+|---|---|---|---|
+| Test [default features] | 214 · 1181 · 0 · 12 | 217 · 1236 · 0 · 12 | +3 · +55 |
+| Test (macos) | 195 · 1178 · 0 · 12 | 198 · 1233 · 0 · 12 | +3 · +55 |
+| Coverage report | 195 · 1178 · 0 · 12 | 198 · 1233 · 0 · 12 | +3 · +55 |
+| Test (windows) | 195 · 1132 · 0 · 9 | 198 · 1185 · 0 · 9 | +3 · +53 |
+| Accessibility (a11y) tests | 14 · 112 · 0 · 0 | 14 · 114 · 0 · 0 | 0 · +2 |
+| Stand checks repeated | 219 · 1008 · 0 · 21 | 228 · 1155 · 0 · 21 | +9 · +147 |
+
+Every moved count, by name:
+
+- **+3 result lines:** the three new targets, `select_popup`, `select_popup_painted` and `stand_act_popup`.
+- **+55 passed:** `select_popup` 25, `select_popup_painted` 6, `stand_act_popup` 12, blitz-dom's `node::select_list` tables 6,
+  `stand_keyboard` 2, `stand_lint` 1, `cli_commands` 1, `host_log` 1, `mcp_log` 1.
+- **Windows, +53:** the +55 less `host_log`'s and `cli_commands`' new tests, both off on that job, those files' session tests
+  being unix-only.
+- **a11y, +2:** `stand_keyboard`'s two. The leg stays fourteen files.
+- **Stand repeat, +9 and +147:** three rounds of the three new targets, and three rounds of the +55 less blitz-dom's 6 unit
+  tables, which that leg does not run: 3 × 49.
+
+### The rest of the acceptance, from the jobs' own logs
+
+- **The test that was red:** `Test (macos)` reads `test a_groups_header_is_darker_than_a_row_by_weight ... ok`.
+- **Coverage floors, 3 of 3:** escher-driver 4959/5058 = 98.04 % (floor 97 %) · dioxus-native-dom 2791/3240 = 86.14 % (floor
+  83 %) · blitz-test-harness 968/1008 = 96.03 % (floor 90 %).
+- **Stand repeat:** `stand-repeat: 3 of 3 rounds green`, with `select_popup`, `select_popup_painted` and `stand_act_popup` each
+  running 3 times.
+- **The free-disk watch:** `Stand checks repeated` read success on CI#41233234207 and on CI#41235503227. Whether that counts
+  the watch to 2 of 3 is the wrap's reading; the step's own lines in those logs were not read here.
