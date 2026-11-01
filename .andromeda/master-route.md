@@ -1,13 +1,7 @@
 # Master Route — escher
 
-<!--
-Cross-version immutable index. APPEND-ONLY via promotion in /andromeda-phase — route never adds records.
-One record per promoted chunk, grouped under its version:
-  {marker} · {status: pending|gated|complete} · {super-laconic description} · → {link to chunk folder}
-marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
--->
-
 ## escher-0.1.0
+
 2026-10-05-as-built-baseline · complete · workspace build + blitz-tests green on this host, wall-clock recorded · → escher-0.1.0/chunks/2026-10-05-as-built-baseline/
 2026-10-05-fork-ci-reached · complete · Fork CI on the build branch — cached, fast/slow split, failure artifacts, signing jobs excluded · → escher-0.1.0/chunks/2026-10-05-fork-ci-reached/
 2026-10-05-ci-gate-legs · complete · CI gate legs — dependency audit, SHA-pinned actions, least-privilege tokens, coverage report, a11y leg, real rustdoc gate · → escher-0.1.0/chunks/2026-10-05-ci-gate-legs/
@@ -53,6 +47,7 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 2026-10-15-cold-agent-test · complete · cold-agent test: a fresh agent given only the driver's MCP tool completes a stand task and writes a passing check, wrong calls counted (v010-15) · → escher-0.1.0/chunks/2026-10-15-cold-agent-test/
 
 ## escher-0.2.0
+
 2026-10-16-handler-splits-and-readme · complete · Handler splits and README — blitz-dom's range and activation handler arms as named functions, parse_float in steps; the README at the current state, «Escher» capitalized (v020-01) · → escher-0.2.0/chunks/2026-10-16-handler-splits-and-readme/
 2026-10-16-file-splits · complete · escher's document.rs test modules out, mcp.rs and schema.rs split along their seams · → escher-0.2.0/chunks/2026-10-16-file-splits/
 2026-10-16-fast-failing-mutants · complete · the six timeout-only mutants each caught by a fast-failing test, a scoped mutation run at 0 survivors (v020-02) · → escher-0.2.0/chunks/2026-10-16-fast-failing-mutants/
@@ -76,6 +71,7 @@ marker = {date}-{slug} (e.g. 2026-06-04-otlp-http-ingest), minted at promotion.
 2026-10-25-cold-agent-bar · complete · Cold-agent bar — the stand serves Cells and a load page beside the lean four, the flight booker's mode a select; a fresh agent drove all six through the cold-agent pipe, 66 calls, 0 wrong under the founder's 5 % bar · → escher-0.2.0/chunks/2026-10-25-cold-agent-bar/
 
 ## escher-0.3.0
+
 2026-10-26-codebase-health · complete · Codebase health — the lint's findings walk and the two table-asserting tests under the cognitive-complexity ceiling of 15; test functions counted, the engine function untouched (v030-01) · → escher-0.3.0/chunks/2026-10-26-codebase-health/
 2026-10-27-readme-and-records · complete · README and records — the README shows 0.2.0 done and 0.3.0 planned (the front page renders it since the default branch moved to build/escher-0.3.0), the capabilities statement on the 2026-10-25 run, two ledger refs re-pointed, the nine design-system stand rows moved (PROVISIONAL, ten further lines left for the founder), the incubator ignored by .gitignore (v030-02 · v030-16) · → escher-0.3.0/chunks/2026-10-27-readme-and-records/
 2026-10-27-upstream-sync-engine-debts · complete · Upstream sync ahead of engine debts — upstream/main ebacd68bd measured, 27 of 40 past the merge base not yet in (ten left out at the last sync, seventeen new); the take the founder's delegate chooses, merge-surface owners kept; CI, a11y and audit green, per-OS tallies and sink allowlist re-read (v030-03) · → escher-0.3.0/chunks/2026-10-27-upstream-sync-engine-debts/
