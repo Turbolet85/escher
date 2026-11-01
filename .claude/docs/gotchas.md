@@ -18,8 +18,8 @@ _Documented architectural traps from `.andromeda/architecture.md` and the specia
 **References:** `packages/blitz-dom/src/tree.rs`; `tests/blitz-tests/tests/stale_node_mapping.rs`
 
 ## Render-blocking stylesheets gate `resolve`
-**What breaks:** `resolve` returns before styling while a `<head>` stylesheet is pending — layout reads look empty.
-**How to avoid:** headless loops resolve until the net provider `is_empty()`, then once more; a `NetProvider` with `is_noop() == true` registers no pending-critical resources.
+**What breaks:** `resolve` returns before styling while a `<head>` stylesheet is pending — layout reads look empty; a failed, empty or non-CSS stylesheet stops blocking render, and a bad `href`, `doc.url.resolve_relative` refusing it, starts no load.
+**How to avoid:** headless loops resolve until the net provider `is_empty()`, then once more; a `NetProvider` with `is_noop() == true` registers no pending-critical resources; a wrapping handler must forward `NetHandler::error` or the failure stops at the wrapper, as blitz-test-harness's `CountedHandler` forwards it.
 **References:** `packages/blitz-dom/src/resolve.rs`; `examples/screenshot.rs`
 
 ## Interaction state is DOM-only
@@ -38,7 +38,7 @@ _Documented architectural traps from `.andromeda/architecture.md` and the specia
 **References:** `tests/blitz-tests/tests/anonymous_block_cache_invalidation.rs`, `incremental_oracle.rs`
 
 ## Unsupported CSS that silently reads false
-**What breaks:** `:focus-visible`, `:valid`, `:invalid`, `:required`, `:target` always match false, while `:focus-within` matches the focused element and its ancestors by the `FOCUS_WITHIN` element state; Shadow DOM, container queries, 3D transforms, anchor positioning (hits `unreachable!()` on size variants), subgrid/masonry are absent.
+**What breaks:** `:focus-visible`, `:valid`, `:invalid`, `:required`, `:target` always match false, while `:focus-within` matches the focused element and its ancestors by the `FOCUS_WITHIN` element state; Shadow DOM, container queries, 3D transforms, anchor positioning (hits `unreachable!()` on size variants), subgrid/masonry are absent; `background-clip: text` is not supported, `BackgroundClip::Text` being `gecko`-only on Stylo 0.22, and upstream `ac6f9f582`, which paints it, stays left out.
 **How to avoid:** stand styles use `:focus`; never feed anchor-positioning sizes to `stylo_taffy`.
 **References:** arch [Unsupported features]
 

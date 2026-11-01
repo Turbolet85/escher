@@ -1,0 +1,2 @@
+proposals: []
+note: F1 to F7 belong to visual-design-verification and keyboard-navigation, which no picked entity of this group can carry; the upstream line at a11y-scope-summary.md:19 and the focus fixup at a11y-scope-summary.md:24 are not among these picked entities, the report reading both no-change as such, so any sentence for this take beside line 19 is not proposed here; neither scoped detector fires for this group, the report adding no interactive UI element and moving no violation schema.

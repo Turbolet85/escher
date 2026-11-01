@@ -1,0 +1,1 @@
+Orchestrator, please take one operator note: this window read 71 % at 19:52Z, and the founder wants no auto-compact. At the next step boundary past 80 %, and before P7 at the latest, write the resume state to disk as you did last wrap and stop for my clear. The P5 card still comes to me first.

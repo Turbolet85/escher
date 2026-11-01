@@ -5,9 +5,9 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 
 <!-- detail: values · icons -->
 
-- The cursor is taken from the CSS `cursor` keyword, else Text for text inputs, Pointer inside links, Text over selectable text, Default otherwise — a pointer over no box included, so the shell keeps a visible arrow there — upstream's #1220, taken on F1 answered B by the founder's delegate, ratified by the founder (2026-10-18) (packages/blitz-dom/src/document.rs:2759-2819; packages/blitz-dom/src/document.rs:3652-3660)
+- The cursor is taken from the CSS `cursor` keyword, else Text for text inputs, Pointer inside links, Text over selectable text, Default otherwise — a pointer over no box included, so the shell keeps a visible arrow there — upstream's #1220, taken on F1 answered B by the founder's delegate, ratified by the founder (2026-10-18) (packages/blitz-dom/src/document.rs:2791-2851; packages/blitz-dom/src/document.rs:3684-3692)
 - CSS `cursor` keywords map one-to-one to `CursorIcon` values, and `cursor: none` maps to no cursor (packages/blitz-dom/src/stylo_to_cursor_icon.rs:4-49); cursor icons use the `cursor-icon` crate and `ShellProvider::set_cursor` takes an optional `CursorIcon` (packages/blitz-traits/Cargo.toml:21; packages/blitz-traits/src/shell.rs:3; packages/blitz-traits/src/shell.rs:13-15); in the shell they are winit CursorIcon values, and None hides the cursor and resets it to Default (packages/blitz-shell/src/lib.rs:108-119)
-- `favicon_url` returns the `href` of the first `<link>` whose `rel` contains `icon` (packages/blitz-dom/src/document.rs:638-653)
+- `favicon_url` returns the `href` of the first `<link>` whose `rel` contains `icon` (packages/blitz-dom/src/document.rs:649-664)
 
 <!-- /detail -->
 

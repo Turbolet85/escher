@@ -55,5 +55,5 @@ See `.andromeda/architecture.md` §Established Decisions — each `[Tag]` explai
 ## Version updates
 1. Amend `.andromeda/architecture.md` §Stack (via the pipeline's amendment flow).
 2. Update `Cargo.toml` `[workspace.dependencies]` — respect the coupled pins (see gotchas.md).
-3. Run the gates (`bash .github/scripts/ci-leg.sh fast` — fmt, clippy, test, CI scripts).
+3. Run the gates (`bash .github/scripts/ci-leg.sh fast` — fmt, clippy, test, CI scripts, embolden).
 4. Commit as `chore: bump {crate} to {version}`.

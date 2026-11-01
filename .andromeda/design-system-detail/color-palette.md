@@ -7,11 +7,11 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 
 - The `Color` type is `AlphaColor<Srgb>` and Stylo colors convert to it via sRGB (packages/blitz-dom/src/util.rs:12; packages/blitz-dom/src/util.rs:166-178)
 - The system color scheme is an enum `Light` (default) / `Dark`, set on the viewport, and it feeds `prefers-color-scheme` (packages/blitz-traits/src/shell.rs:68-74; tests/blitz-tests/tests/device_coalescing.rs:101; packages/blitz-dom/src/stylo_device.rs:80-83)
-- Color-scheme changes trigger a full recascade because `light-dark()` and system colors resolve at cascade time (packages/blitz-dom/src/document.rs:2681-2688)
+- Color-scheme changes trigger a full recascade because `light-dark()` and system colors resolve at cascade time (packages/blitz-dom/src/document.rs:2713-2720)
 - The parent viewport's color scheme is copied to iframe sub-documents (packages/blitz-dom/src/resolve.rs:151-155)
-- The legacy `bgcolor` attribute maps to `background-color` (packages/blitz-dom/src/stylo.rs:1202-1209)
+- The legacy `bgcolor` attribute maps to `background-color` (packages/blitz-dom/src/stylo.rs:1210-1217)
 - The frame clear color is an optional `base_color` (a `peniko::Color`), unset by default (packages/dioxus-native/src/config.rs:12; packages/dioxus-native/src/config.rs:40; packages/dioxus-native/src/config.rs:76-80; packages/dioxus-native/src/dioxus_renderer.rs:37-38)
-- The canvas background is the root element's background colour, falling back to body's when the root is transparent (packages/blitz-paint/src/render.rs:194-229)
+- The canvas background is the root element's background colour, falling back to body's when the root is transparent (packages/blitz-paint/src/render.rs:196-231)
 - WPT-rendered pages get a white background fill (wpt/runner/src/test_runners/ref_test.rs:316-323)
 
 <!-- /detail -->
@@ -31,7 +31,7 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 | blitz-dom select list disabled row | `#6d6d6d` text | An open select list's disabled row: `SelectListView::DISABLED_TEXT`, a fixed constant, hardcoded as the engine holds no tokens, not in the default sheet (packages/blitz-dom/src/node/select_list.rs:110-123; tests/blitz-tests/tests/select_popup_painted.rs:119-159) |
 | blitz-dom select list border | `#999999` | An open select list's border: `SelectListView::BORDER`, a fixed constant, hardcoded as the engine holds no tokens, not in the default sheet (packages/blitz-dom/src/node/select_list.rs:110-123) |
 | blitz-dom select list plain row | no `SelectListView` constant; value not stated | An open select list's plain pair, measured by `select_popup_painted` at the default sheet and at the stand; a highlighted row's contrast is unread by the lint and a closed select's own pair is unread (tests/blitz-tests/tests/select_popup_painted.rs:161-187; as measured at escher-0.3.0/chunks/2026-10-31-select-popup/report.md) |
-| Default text-selection highlight | rgb 180, 213, 255 | Engine default (packages/blitz-paint/src/lib.rs:28-29) |
+| Default text-selection highlight | rgb 180, 213, 255 | Engine default (packages/blitz-paint/src/lib.rs:29-30) |
 | counter / transparent buttons | named green, red, blue | Buttons with white text (examples/counter/src/app.rs:83-111; examples/transparent/src/app.rs:184-212) |
 
 <!-- /detail -->
@@ -104,11 +104,11 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 
 <!-- detail: values · palette -->
 
-- Default scrollbar thumbs: dark scheme rest 214,214,214,178 · hover 190,190,190,222 · active 172,172,172,255 · stroke 0,0,0,102; light scheme rest 128,128,128,178 · hover 152,152,152,222 · active 170,170,170,255 · stroke 255,255,255,102 (packages/blitz-paint/src/render.rs:760-779); the palette follows the viewport color scheme and paints as a fill plus a thin contrast stroke (tests/blitz-tests/tests/scrollbars.rs:204-211; tests/blitz-tests/tests/scrollbars.rs:194-202)
-- `scrollbar-color` resolves to absolute thumb and track colors against the element's computed `color`, defaulting to `Auto` (packages/blitz-dom/src/node/scrollbar.rs:38-48; packages/blitz-dom/src/node/scrollbar.rs:58-74); author thumbs blend for contrast at 1.8 on hover and 1.3 when active (packages/blitz-paint/src/render.rs:781-783; packages/blitz-paint/src/render.rs:818-825), and a near-white author thumb darkens on hover/drag (tests/blitz-tests/tests/scrollbars.rs:125-160; tests/blitz-tests/tests/scrollbar_drag.rs:224-227)
+- Default scrollbar thumbs: dark scheme rest 214,214,214,178 · hover 190,190,190,222 · active 172,172,172,255 · stroke 0,0,0,102; light scheme rest 128,128,128,178 · hover 152,152,152,222 · active 170,170,170,255 · stroke 255,255,255,102 (packages/blitz-paint/src/render.rs:799-818); the palette follows the viewport color scheme and paints as a fill plus a thin contrast stroke (tests/blitz-tests/tests/scrollbars.rs:204-211; tests/blitz-tests/tests/scrollbars.rs:194-202)
+- `scrollbar-color` resolves to absolute thumb and track colors against the element's computed `color`, defaulting to `Auto` (packages/blitz-dom/src/node/scrollbar.rs:38-48; packages/blitz-dom/src/node/scrollbar.rs:58-74); author thumbs blend for contrast at 1.8 on hover and 1.3 when active (packages/blitz-paint/src/render.rs:820-822; packages/blitz-paint/src/render.rs:857-864), and a near-white author thumb darkens on hover/drag (tests/blitz-tests/tests/scrollbars.rs:125-160; tests/blitz-tests/tests/scrollbar_drag.rs:224-227)
 - Unchecked radio rings use the CSS palette GRAY; checkbox ticks/gaps use white (packages/blitz-paint/src/render/form_controls.rs:76-79; packages/blitz-paint/src/render/form_controls.rs:99-101)
 - Debug overlay: content blue 66,144,245,128 · padding green 81,144,66,128 · border red 245,66,66,128 · margin orange 249,204,157,128 (packages/blitz-paint/src/debug_overlay.rs:95; packages/blitz-paint/src/debug_overlay.rs:98; packages/blitz-paint/src/debug_overlay.rs:110; packages/blitz-paint/src/debug_overlay.rs:119)
-- Devtools layout strokes are red for block/flow-root, green for flex, blue for grid (packages/blitz-paint/src/render.rs:1358-1365); devtools `show_layout` documents "different border colors" without stating values (packages/blitz-traits/src/devtools.rs:8-10)
+- Devtools layout strokes are red for block/flow-root, green for flex, blue for grid (packages/blitz-paint/src/render.rs:1398-1405); devtools `show_layout` documents "different border colors" without stating values (packages/blitz-traits/src/devtools.rs:8-10)
 - In SVG serialization, `currentColor` in attribute values is replaced with the element's computed `color` (packages/blitz-dom/src/node/serialize.rs:18-19; packages/blitz-dom/src/node/serialize.rs:120-125; packages/blitz-dom/src/node/serialize.rs:186-194)
 
 <!-- /detail -->

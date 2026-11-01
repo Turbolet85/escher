@@ -13,15 +13,15 @@ Read whole. The master's broad view is .andromeda/design-system.md; this file ho
 | transparent example card | 16px | (examples/transparent/src/app.rs:121) |
 | blitz-dom default button | 1px | (packages/blitz-dom/assets/default.css:108) |
 | Checkbox frame (engine) | 2 × control scale | (packages/blitz-paint/src/render/form_controls.rs:28-33) |
-| Scrollbar thumb (engine) | half the thumb thickness (fully rounded) | (packages/blitz-paint/src/render.rs:826-836) |
+| Scrollbar thumb (engine) | half the thumb thickness (fully rounded) | (packages/blitz-paint/src/render.rs:865-875) |
 
 <!-- /detail -->
 
 <!-- detail: values · radius -->
 
-- Per-corner elliptical radii are resolved from computed border-*-radius values and scaled to device pixels (packages/blitz-paint/src/render.rs:1398-1415)
+- Per-corner elliptical radii are resolved from computed border-*-radius values and scaled to device pixels (packages/blitz-paint/src/render.rs:1438-1455)
 - `inset()` clip-path ignores border-radius per a TODO (packages/blitz-paint/src/render/clip_path.rs:167-168)
-- The `border` attribute on `img`, `object` and image inputs maps to four solid pixel borders (packages/blitz-dom/src/stylo.rs:1140-1161)
+- The `border` attribute on `img`, `object` and image inputs maps to four solid pixel borders (packages/blitz-dom/src/stylo.rs:1148-1169)
 
 <!-- /detail -->
 

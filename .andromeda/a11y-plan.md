@@ -104,7 +104,7 @@ Detail: .andromeda/a11y-plan-detail/keyboard-navigation.md — read whole.
 
 **Focus order per layout (engine):**
 
-- An element is focusable if it holds a sub-document, or is not inert, is no disabled form control and has `tabindex >= 0` or, with no tabindex, is an `<a>`/`<area>` with `href` or a `button`, `input`, `select`, `textarea`, `frame`, `iframe` or `summary`; `disabled` counts by presence on a form control alone; HTML's focus fixup is built, so a node holding focus when it comes under `inert`, a subtree moved under an inert box included, gives focus up as the mutator flushes, no DOM `blur` or `focusout` firing.
+- An element is focusable if it holds a sub-document, or is not inert, is no disabled form control and has `tabindex >= 0` or, with no tabindex, is an `<a>`/`<area>` with `href` or a `button`, `input`, `select`, `textarea`, `frame`, `iframe` or `summary`; `disabled` counts by presence on a form control alone; HTML's focus fixup is built, so a node holding focus when it comes under `inert`, a subtree moved under an inert box included, gives focus up as the mutator flushes, no DOM `blur` or `focusout` firing. The fixup reads `is_inert()` alone, so a focused control that no longer shows, by `hidden`, `style="display:none"` or CSS alone, keeps focus and takes keys, with no panic; the limit is owned by a `CARRY:` on the entry «A11y re-read».
 
 - Disabled-ness is keyed one way: the `DISABLED`/`ENABLED` state (hence `:disabled`), the pointer gates, Enter and Space activation and focusability read the `disabled` attribute's presence on a `button`, `input`, `select` or `textarea`, so `disabled="false"` and a bare `disabled` on a form control match `:disabled` and are not focusable.
 
@@ -157,7 +157,7 @@ Detail: .andromeda/a11y-plan-detail/visual-design-verification.md — read whole
 
 **Color contrast:**
 
-- SC 1.4.3 on the stand: `Harness::text_contrast` reads the text colour, font metrics and the background composited behind it from computed styles (`None` under opacity below 1, a filter or a background image); `contrast_ratio` is the WCAG 2.x ratio, 3.0 required of large text, else 4.5; `stand_contrast` asserts three tables in both layout modes, a row exempt exactly where the snapshot's `enabled` reads `Some(false)`, and the load page's and Cells' ratios in tests of their own (`the_load_page_meets_its_ratios`, `cells_meets_its_ratios`), so SC 1.4.3 is met on every measured non-exempt stand row.
+- SC 1.4.3 on the stand: `Harness::text_contrast` reads the text colour, font metrics and the background composited behind it from computed styles (`None` under opacity below 1, a filter, a background image or a `mix-blend-mode` other than `normal`); `contrast_ratio` is the WCAG 2.x ratio, 3.0 required of large text, else 4.5; `stand_contrast` asserts three tables in both layout modes, a row exempt exactly where the snapshot's `enabled` reads `Some(false)`, and the load page's and Cells' ratios in tests of their own (`the_load_page_meets_its_ratios`, `cells_meets_its_ratios`), so SC 1.4.3 is met on every measured non-exempt stand row.
 
 - escher-driver's visual lint (`Session::lint`, the `lint` verb on every carrier) reads `contrast` through `Harness::text_contrast` with `stand_contrast`'s exempt rule and no second formula or threshold, a finding written as ids, closed words and numbers only.
 

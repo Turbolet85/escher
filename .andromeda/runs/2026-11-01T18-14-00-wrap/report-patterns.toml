@@ -1,0 +1,122 @@
+[[pattern]]
+id = 'owner-title'
+fixed = 'Upstream sync ahead of the UI graph'
+ignore_case = true
+
+[[pattern]]
+id = 'owner-generic'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true
+
+[[pattern]]
+id = 'sync-line'
+regex = 'Upstream sync:|ebacd68bd|e42ee1f25|twenty-four of|of 57'
+
+[[pattern]]
+id = 'panic'
+regex = 'node\.rs:1775|node/node\.rs:1775|key-press panic|position_in_containing_block|deallocate_anonymous_block'
+
+[[pattern]]
+id = 'ws-tally'
+regex = '217 · 1236|198 · 1233|198 · 1185|219 · 1299|200 · 1296|200 · 1248'
+
+[[pattern]]
+id = 'run-all'
+regex = '\b727\b|run all.{0,40}passed'
+
+[[pattern]]
+id = 'ci-scripts'
+regex = 'Ran 108|Ran 110|test_ci_workflows'
+
+[[pattern]]
+id = 'harness-lib'
+regex = 'blitz-test-harness.{0,40}\b22\b|settle\.rs|CountedHandler'
+
+[[pattern]]
+id = 'cov-floors'
+regex = '86\.14|96\.03|98\.04'
+
+[[pattern]]
+id = 'fast-leg'
+regex = 'fmt · clippy|fmt → clippy|FAST_LEGS|ci-leg\.sh fast'
+
+[[pattern]]
+id = 'embolden'
+regex = 'font-embolden|embolden'
+
+[[pattern]]
+id = 'free-disk'
+regex = 'free-disk|Free Disk Space|matrix_test'
+
+[[pattern]]
+id = 'contrast-none'
+regex = 'text_contrast|paints_more_than_colour|mix-blend-mode'
+
+[[pattern]]
+id = 'net-error'
+regex = 'NetHandler|Resource load failed|failed stylesheet|render_blocking_stylesheet|pending_critical_resources'
+
+[[pattern]]
+id = 'test-bind'
+regex = 'test-only bind|TcpListener|loopback|one test-only'
+
+[[pattern]]
+id = 'url-params'
+regex = 'URLSearchParams|url_search_params|bootstrap scripts|BOOTSTRAP_JS|nine bootstrap'
+
+[[pattern]]
+id = 'blend-mod'
+regex = 'blend\.rs|convert_blend_mode|LayerManager|maybe_with_layer|isolation'
+
+[[pattern]]
+id = 'snapshot-node'
+regex = 'snapshot_node|restyle_for_attribute_change|restyle_for_child_list_change|restyle_subtree'
+
+[[pattern]]
+id = 'stylo-prefs'
+regex = 'init_stylo_prefs|set_pref!'
+
+[[pattern]]
+id = 'cw-replay'
+regex = 'attribute_changed|set_custom_widget|custom-widget'
+
+[[pattern]]
+id = 'inline-flag'
+regex = 'is_inline_with_only_block_children|IS_INLINE_WITH_ONLY_BLOCK_CHILDREN|has_inline_level'
+
+[[pattern]]
+id = 'resolved-size'
+regex = 'resolved_style\.rs|unrounded_layout'
+
+[[pattern]]
+id = 'cells-bytes'
+regex = '47,949|47949|47,089|47089'
+
+[[pattern]]
+id = 'orphan'
+regex = 'Re-export taffy|lib\.rs:96'
+
+[[pattern]]
+id = 'mounted-guard'
+regex = 'try_element_to_node_id|flush_queued_mounted_events|element_removed_before'
+
+[[pattern]]
+id = 'panic-check'
+regex = 'key_press_after_container_lost_its_box'
+
+[[pattern]]
+id = 'focus-limit'
+regex = 'keeps focus|keep focus|focus stays|focus fixup'
+ignore_case = true
+
+[[pattern]]
+id = 'table-damage'
+regex = 'compute_layout_damage|table_needs_rebuild'
+
+[[pattern]]
+id = 'quarantine'
+regex = 'timeout-quarantine'
+
+[[pattern]]
+id = 'stand-repeat-n'
+regex = 'seventeen named|fifteen named'

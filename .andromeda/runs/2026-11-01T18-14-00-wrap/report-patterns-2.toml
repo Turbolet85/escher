@@ -1,0 +1,31 @@
+[[pattern]]
+id = 'ran-count'
+regex = 'Ran 108|108 tests|108 OK|\b108\b,? OK'
+
+[[pattern]]
+id = 'ci-yml-cite'
+regex = 'ci\.yml:39[2-8]'
+
+[[pattern]]
+id = 'mix-blend'
+regex = 'mix-blend-mode|mix_blend_mode'
+
+[[pattern]]
+id = 'harness-count'
+regex = 'blitz-test-harness.{0,80}\b22\b|now 22|22 inline'
+
+[[pattern]]
+id = 'anon-block'
+regex = 'anonymous block'
+
+[[pattern]]
+id = 'picture'
+regex = '<picture>|`picture`|picture rule'
+
+[[pattern]]
+id = 'left-out'
+regex = 'sixteen left out|twenty-one left out|left-out upstream delta|left out'
+
+[[pattern]]
+id = 'load-wait'
+regex = 'NotSettled\(Loads\)|settle_waiting'

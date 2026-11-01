@@ -1,0 +1,2 @@
+proposals: []
+note: "report.md:98 hands §9 to this detector's own sweep; the file holds no free-disk or matrix_test claim, only ci.yml citation digits, which are cites.py's; the embolden leg has no CI job (report.md:64), so the per-leg log row on ci.yml legs stands; the report's bare ci-integration.md rows (:8, :12, :34, :58, :88 and others) do not read as this 21-line file: line 8 is a table header and line 12 the per-leg log row"

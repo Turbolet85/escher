@@ -1,0 +1,5 @@
+# Citation dispositions — design-system
+
+stretched .andromeda/design-system-detail/depth-strategy.md:20 packages/blitz-dom/src/node/node.rs:1332-1375 → 1343-1388 — changed inside → claim false — raised at Validate (the closed list of what makes a stacking-context root omits a `mix-blend-mode` other than `normal`, which `is_stacking_context_root` now also answers true for, at node.rs:1382-1384)
+stretched .andromeda/design-system-detail/depth-strategy.md:39 packages/blitz-paint/src/render.rs:499-531 → 530-563 — changed inside → holds (the layer still takes opacity, filter and backdrop-filter, clipped to the border box plus the filter expansion; the change inside passes `BlendMode::default()` and gates the box's own painting)
+stretched .andromeda/design-system-detail/surface.md:18 tests/blitz-tests/tests/select_popup.rs:478-520 → 478-516 — changed inside → holds (the check still closes the list on inert, disabled, hidden and removed; the change inside drops the guard that skipped the key press on row 3)

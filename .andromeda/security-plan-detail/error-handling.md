@@ -15,7 +15,7 @@ Read whole. The master's broad view is .andromeda/security-plan.md; this file ho
 
 <!-- detail: values · errors -->
 
-- Unimplemented paths: Stylo hooks use `todo!`, `unimplemented!` or `panic!` (packages/blitz-dom/src/stylo.rs:745-751; packages/blitz-dom/src/stylo.rs:1238-1243; packages/blitz-dom/src/stylo.rs:1389-1395); twelve dioxus event-data conversions (cancel, animation, clipboard, composition, drag, image, media, selection, toggle, transition, resize, visible) call `unimplemented!()` (packages/dioxus-native-dom/src/events.rs:43-45; packages/dioxus-native-dom/src/events.rs:71-93; packages/dioxus-native-dom/src/events.rs:111-117; packages/dioxus-native-dom/src/events.rs:123-125; packages/dioxus-native-dom/src/events.rs:131-137); since the 2026-10-17 upstream sync's keyboard-types 0.8 the shell passes winit's physical key `Code` through, so no physical key code hits a `todo!()` (the KeyboardBacklightToggle and unlisted-code arms are gone; packages/blitz-shell/src/convert_events.rs:165-170); accesskit_xplat macOS and Windows adapters call `unimplemented!()` for UiKit and WinRt handles (packages/accesskit_xplat/src/platform_impl/macos.rs:20-24; packages/accesskit_xplat/src/platform_impl/windows.rs:20-24)
+- Unimplemented paths: Stylo hooks use `todo!`, `unimplemented!` or `panic!` (packages/blitz-dom/src/stylo.rs:748-754; packages/blitz-dom/src/stylo.rs:1246-1251; packages/blitz-dom/src/stylo.rs:1397-1403); twelve dioxus event-data conversions (cancel, animation, clipboard, composition, drag, image, media, selection, toggle, transition, resize, visible) call `unimplemented!()` (packages/dioxus-native-dom/src/events.rs:43-45; packages/dioxus-native-dom/src/events.rs:71-93; packages/dioxus-native-dom/src/events.rs:111-117; packages/dioxus-native-dom/src/events.rs:123-125; packages/dioxus-native-dom/src/events.rs:131-137); since the 2026-10-17 upstream sync's keyboard-types 0.8 the shell passes winit's physical key `Code` through, so no physical key code hits a `todo!()` (the KeyboardBacklightToggle and unlisted-code arms are gone; packages/blitz-shell/src/convert_events.rs:165-170); accesskit_xplat macOS and Windows adapters call `unimplemented!()` for UiKit and WinRt handles (packages/accesskit_xplat/src/platform_impl/macos.rs:20-24; packages/accesskit_xplat/src/platform_impl/windows.rs:20-24)
 
 <!-- /detail -->
 
@@ -33,7 +33,7 @@ Read whole. The master's broad view is .andromeda/security-plan.md; this file ho
 
 <!-- detail: values · errors -->
 
-- Select list readers: the list's public `BaseDocument` readers `open_select`, `select_list_bounds`, `select_list_view` and `select_row_layout`, and its public writer `close_select_list`, go through `get_node`, a row with no styles reading `None`, and call no `layout_style()`, so they add no panic path (packages/blitz-dom/src/document.rs:881-889; packages/blitz-dom/src/document.rs:990-993; packages/blitz-dom/src/document.rs:995-1012; packages/blitz-dom/src/document.rs:1022-1052; packages/blitz-dom/src/document.rs:1054-1064) — as measured at escher-0.3.0/chunks/2026-10-31-select-popup/report.md
+- Select list readers: the list's public `BaseDocument` readers `open_select`, `select_list_bounds`, `select_list_view` and `select_row_layout`, and its public writer `close_select_list`, go through `get_node`, a row with no styles reading `None`, and call no `layout_style()`, so they add no panic path (packages/blitz-dom/src/document.rs:892-900; packages/blitz-dom/src/document.rs:1001-1004; packages/blitz-dom/src/document.rs:1006-1023; packages/blitz-dom/src/document.rs:1033-1063; packages/blitz-dom/src/document.rs:1065-1075) — as measured at escher-0.3.0/chunks/2026-10-31-select-popup/report.md
 
 <!-- /detail -->
 
@@ -45,12 +45,24 @@ Read whole. The master's broad view is .andromeda/security-plan.md; this file ho
 
 <!-- detail: values · errors -->
 
-- Key press after a hidden ancestor: a key press panics in `position_in_containing_block` (packages/blitz-dom/src/node/node.rs:1775), the stack through `handle_dom_event`'s `absolute_position`, when the focused control's anonymous block was dropped because an ancestor gained `hidden`; any control, reproduced on a `select` and a plain `button` with no list opened, and a remote page can reach it; that it predates the select list rests on `node.rs` and `events/mod.rs` unchanged against the chunk's base and on the stack, no controlled run at that base taken; `select_popup` skips the key press in that one row — as measured at escher-0.3.0/chunks/2026-10-31-select-popup/report.md; not fixed, owner: a CARRY on «Upstream sync ahead of the UI graph», the fix the founder's fork at that entry's P4
+- Mounted event of a removed element: `flush_queued_mounted_events` skips an element removed since its event was queued, through `try_element_to_node_id` (packages/dioxus-native-dom/src/dioxus_document.rs:235-239), an engine behaviour for every document; the upstream test `element_removed_before_its_mounted_event_is_flushed` is left out, reading 1 mounted event on Dioxus 0.7 where it asserts 0 — as measured at escher-0.3.0/chunks/2026-11-01-upstream-sync-ui-graph/report.md
 
 <!-- /detail -->
 
 <!-- detail: values · errors -->
 
-- Select list closing: a select removed, disabled, hidden or made inert with its list open closes the list with no panic (`a_select_made_inert_disabled_hidden_or_removed_with_its_list_open_closes`; tests/blitz-tests/tests/select_popup.rs:478-520), `clear_interaction_state_for_removed_node` clearing the field for a removed select (packages/blitz-dom/src/document.rs:1408-1410), and an option dropped with the list open is no row (`an_option_dropped_with_the_list_open_is_no_row`; tests/blitz-tests/tests/select_popup.rs:522-552); this holds of the close alone, a key pressed after an ancestor gained `hidden` being the panic of this section's `Key press after a hidden ancestor` row — as measured at escher-0.3.0/chunks/2026-10-31-select-popup/report.md
+- Anonymous block dropped: `BaseDocument::deallocate_anonymous_block` takes the block's `layout_children` and sets `layout_parent` to `None` on each child still in the slab naming the block (packages/blitz-dom/src/document.rs:1493-1503), so the id does not go stale and every reader of a stale `layout_parent` is cured with it; a key press with focus on a control whose anonymous block was dropped does not panic, for `hidden`, `style="display:none"` and CSS alone; focus stays and the key still acts, `DocumentMutator::flush` unedited; witnessed by `key_press_after_container_lost_its_box`, 3 tests in both layout modes, and by row 3 of `select_popup` — as measured at escher-0.3.0/chunks/2026-11-01-upstream-sync-ui-graph/report.md
+
+<!-- /detail -->
+
+<!-- detail: values · errors -->
+
+- Select list closing: a select removed, disabled, hidden or made inert with its list open closes the list with no panic (`a_select_made_inert_disabled_hidden_or_removed_with_its_list_open_closes`; tests/blitz-tests/tests/select_popup.rs:478-516), `clear_interaction_state_for_removed_node` clearing the field for a removed select (packages/blitz-dom/src/document.rs:1419-1421), and an option dropped with the list open is no row (`an_option_dropped_with_the_list_open_is_no_row`; tests/blitz-tests/tests/select_popup.rs:518-548); a key pressed after an ancestor gained `hidden` does not panic, `select_popup` pressing it in every row (tests/blitz-tests/tests/select_popup.rs:513) — as measured at escher-0.3.0/chunks/2026-10-31-select-popup/report.md, the key press at escher-0.3.0/chunks/2026-11-01-upstream-sync-ui-graph/report.md
+
+<!-- /detail -->
+
+<!-- detail: values · errors -->
+
+- Failed load answered through the handler: `NetHandler::error` stands on the public trait, a default that does nothing (packages/blitz-traits/src/net.rs:36-38), so a wrapping implementer that does not forward it compiles and drops the failure silently; `ResourceHandler<StylesheetHandler>::error` responds `Err(error)` (packages/blitz-dom/src/net.rs:144-146), so `pending_critical_resources` loses the request and a failed, empty or non-CSS stylesheet does not block render — as measured at escher-0.3.0/chunks/2026-11-01-upstream-sync-ui-graph/report.md
 
 <!-- /detail -->

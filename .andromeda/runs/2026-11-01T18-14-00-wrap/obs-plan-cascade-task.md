@@ -1,0 +1,96 @@
+# Task — obs-plan · 2026-11-01-upstream-sync-ui-graph
+
+## The session
+Took twelve upstream `DioxusLabs/blitz` commits by no-commit cherry-pick, upstream read at `e42ee1f25`, merge base `23b9b26a9`: thirty-six of 57 now taken, twenty-one left out; each an engine behaviour change for every document unless the report says otherwise; no dependency, manifest or lock moved.
+Fixed the key-press panic, escher's own change: `BaseDocument::deallocate_anonymous_block` clears `layout_parent` on the dropped block's children; focus stays on the control and the key still acts; the panic is retired.
+Made a failed load reach its handler: `NetHandler::error` is new on the public trait, a default that does nothing; blitz-net's error arm calls it; the stylesheet handler answers `Err(error)`; blitz-test-harness's `CountedHandler` forwards it, so a failed load now ends the wait.
+Made `mix-blend-mode` and `isolation` paint, through blitz-paint's new private module `blend`; `Harness::text_contrast` now reads `None` past a blended element; added the `URLSearchParams` global and `URL.prototype.searchParams` as a tenth bootstrap script.
+Changed the gate surface: `ci-leg.sh` gained a leg `embolden`, last in `FAST_LEGS`, with no CI job; `matrix_test`'s free-disk step left `ci.yml`; two tests joined `test_ci_workflows.py`.
+Measured the sink: no env read, print, `tracing` site or wall-clock read added, no scrub set moved, escher-driver at 2 `info_span!`, `stand_act_spans` at eight fields, `host_log` and `mcp_log` at 0 needles at `trace` under both builds; CI green at `45c333f16`.
+
+## Reached files
+- packages/blitz-dom/assets/default.css · merge surface
+- packages/blitz-dom/src/document.rs · merge surface
+- packages/blitz-dom/src/layout/construct.rs · merge surface
+- packages/blitz-dom/src/layout/damage.rs · merge surface
+- packages/blitz-dom/src/lib.rs
+- packages/blitz-dom/src/mutator.rs · merge surface
+- packages/blitz-dom/src/net.rs · merge surface
+- packages/blitz-dom/src/node/custom_widget.rs
+- packages/blitz-dom/src/node/element.rs · merge surface
+- packages/blitz-dom/src/node/node.rs · merge surface
+- packages/blitz-dom/src/resolved_style.rs · merge surface
+- packages/blitz-dom/src/stylo.rs · merge surface
+- packages/blitz-net/src/lib.rs · merge surface
+- packages/blitz-paint/src/blend.rs · merge surface
+- packages/blitz-paint/src/layers.rs · merge surface
+- packages/blitz-paint/src/lib.rs · merge surface
+- packages/blitz-paint/src/render.rs · merge surface
+- packages/blitz-paint/src/render/background.rs
+- packages/blitz-paint/src/render/box_shadow.rs
+- packages/blitz-test-harness/src/contrast.rs
+- packages/blitz-test-harness/src/settle.rs
+- packages/blitz-traits/src/net.rs · merge surface
+- packages/blitz-vibey-script/src/runtime/bootstrap.rs · merge surface
+- packages/blitz-vibey-script/src/runtime/bootstrap/url_search_params.js · merge surface
+- packages/blitz-vibey-script/tests/url_search_params.rs · merge surface
+- packages/dioxus-native-dom/src/dioxus_document.rs · merge surface
+- tests/blitz-tests/tests/key_press_after_container_lost_its_box.rs
+- tests/blitz-tests/tests/render_blocking_stylesheet.rs · merge surface
+- tests/blitz-tests/tests/select_popup.rs
+- wpt/runner/timeout-quarantine.txt · merge surface
+- .github/workflows/ci.yml
+- .github/scripts/ci-leg.sh
+- .github/scripts/test_ci_workflows.py
+
+## Touches
+- §7's blitz-net error class, which says fetch errors are logged and not propagated to the handler (`packages/blitz-net/src/lib.rs:304-315`), is contradicted: the error arm now calls `handler.error(url, e.to_string())` at `:313`, and the waker moved after the handler to `:316`.
+- §7's blitz-dom error class, resource load errors logged as a warn with an `error` field and not propagated further (`packages/blitz-dom/src/document.rs:1826-1845`): a failed stylesheet now reaches this path; the report says the error text stops in `ResourceLoadResponse` and that log line, so the claim holds and its citation moved.
+- The silence line of the last take, `.andromeda/obs-plan.md:99`, with `.andromeda/obs-plan-detail/log-coverage.md:136` and `.andromeda/obs-plan-detail/pii-scrubbing-compliance.md:13`: each reads the upstream take at `ebacd68bd`; true as history, while the report's expected amendment puts this take's silence line in place of `.andromeda/obs-plan.md:99`'s, across §6 and §8.
+- §6 and §8's engine emitters `Error fetching` and `Resource load failed`: no site added, but a failed stylesheet now travels through the second as well as the first, which is the report's named instrumentation for the new path.
+- A stylesheet with a bad `href` now starts no load (`packages/blitz-dom/src/mutator.rs:1392-1394`, `doc.url.resolve_relative` in place of `resolve_url`), which reaches any log coverage text about a stylesheet fetch's URL lines.
+- Line citations into `packages/blitz-dom/src/document.rs`, lines added at 45-47, 87-103, 106-108, 444-445, 1493-1503 and from 1987 on: the body's `:1739`, `:1826-1845`, `:1829`, `:1830-1835` and `:2269-2270` (the `Focussed node` INFO line), and any like them in detail.
+- Line citations into `packages/blitz-dom/src/mutator.rs`, lines added from 2 through 1394 and past: the body's `:1450`, `:1469` and `:1491`, and any like them in detail.
+- Line citations into `packages/blitz-dom/src/layout/construct.rs` (added 290-291, 301, 384-385, 587-599) and `packages/blitz-dom/src/layout/damage.rs` (added 442-459, 468-469): the body's `construct.rs:449`, `:465-475`, `:466`, `:466-474`, `:467-472` and `damage.rs:601-619`, `:603`.
+- Line citations into `packages/blitz-dom/src/net.rs` (added 144-147): the body's `:170` and `:280`.
+- Line citations into `packages/blitz-paint/src/render.rs` (added 14, 46-47, 374-378, 477, 485-510, 516, 557-586, 633-634, 1293): the body's `:250-280` and `:1393-1409`.
+- Line citations into `packages/blitz-net/src/lib.rs` (added 313, 316, 464-546): the body's `:304-315` and `:375-388`; its `:238`, `:285` and `:289` sit above the edit.
+- Line citations in detail into the other reached sources, where any stands: `packages/blitz-dom/src/node/node.rs`, `node/element.rs`, `node/custom_widget.rs`, `resolved_style.rs`, `stylo.rs`, `packages/blitz-paint/src/layers.rs`, `render/background.rs`, `render/box_shadow.rs`, `packages/blitz-test-harness/src/settle.rs`, `contrast.rs`, `packages/dioxus-native-dom/src/dioxus_document.rs`, `packages/blitz-vibey-script/src/runtime/bootstrap.rs`.
+- §9's citations into `.github/workflows/ci.yml` (the `matrix_test` free-disk step removed, `:392-398` at the base) and `.github/scripts/ci-leg.sh` (added 8-9, 28-29): the report's sweep found no free-disk or `ci.yml` digits in obs-plan and leaves §9 to this read.
+- Any list or count of `ci-leg.sh` legs in §9: a new leg `embolden`, in `LEGS` and last in `FAST_LEGS`, with no CI job, so `ci-integration` text on which legs CI runs or what a leg's merged log holds needs reading against it.
+- By-invocation engine features, `.andromeda/obs-plan.md:46` and `.andromeda/obs-plan-detail/telemetry-strategy.md:14`: they name `ci-leg.sh fast` as resolving the whole workspace, and `fast` now ends on a `cargo test -p blitz-tests` step; the report reads both lines as naming the command, no change.
+- The settle loop's silence, `.andromeda/obs-plan.md:76`, `packages/blitz-test-harness/src/settle.rs`: the file gained the `CountedHandler` forward and one test; the report re-read the claim, no `tracing` dependency, env read, print or log, as no change.
+- The load wait's silence, `.andromeda/obs-plan.md:94` and `.andromeda/obs-plan-detail/span-trace-coverage.md:27`: a failed load now ends the wait, with `settle_waiting` unedited; the report found no log site added, no change, and any text saying a failed load runs to `LOAD_WAIT` is stale.
+- The contrast reader's silence, `.andromeda/obs-plan.md:78-79`, `Harness::text_contrast`: `contrast.rs` now returns `None` past a `mix-blend-mode` other than `normal`; no print, panic or log named as added, and the reader still changes nothing in the document.
+- The select checks' silence, `.andromeda/obs-plan.md:96`: `select_popup` lost its row-3 skip, now one `harness.press` for every row; no print or sink added.
+- Listener searches, `.andromeda/obs-plan.md:77` and `:97`, `.andromeda/obs-plan-detail/log-coverage.md:134` and `:137`: blitz-net's `#[cfg(test)] mod tests` now holds two `std::net::TcpListener::bind("127.0.0.1:0")` at `packages/blitz-net/src/lib.rs:526` and `:534`, served by no binary; those searches cover other file sets, read as no change, and any wider claim of no listener needs reading against them.
+- blitz-paint's layer counters, §5 and `.andromeda/obs-plan-detail/metric-coverage.md:14`: `LayerManager::maybe_with_layer` and `maybe_push_layer` now take a `BlendMode` and `render_element` pushes a viewport-wide blend layer; no counter added, read as no change.
+- Focus lines `.andromeda/obs-plan-detail/log-coverage.md:73` and `:76`: the fixup under `inert` is unmoved, `DocumentMutator::flush` unedited, read as no change, though `mutator.rs` itself moved.
+- The claim of no wall-clock read in blitz-dom outside `clock.rs`, `.andromeda/obs-plan.md:99`: re-measured by the `Instant::now|SystemTime::now` census, 0 in added lines; `init_stylo_prefs`'s `Once` reads no clock.
+- Engine-debts and upstream focus silence lines, `.andromeda/obs-plan.md:87` and `:90`: they name changes in `document.rs` and `mutator.rs`, which moved; their claims stand, only the `document.rs` citation moved.
+- blitz-dom's crate-root citation `packages/blitz-dom/src/lib.rs:26-29`: sits above the removed `:96-97` comment, unmoved.
+- Any text on blitz-vibey-script's bootstrap, globals or JS surface: ten bootstrap scripts where nine stood, `url_search_params` first, its native helper `__blitz_parse_search_params` deleted from `globalThis` before any page script.
+- Any count of quarantined WPT files or text on the runner's timeouts: two files joined `wpt/runner/timeout-quarantine.txt`, at `:105` and `:107`.
+
+## New facts
+- F1 · log-coverage · The upstream take read at `e42ee1f25` is silent: its twelve commits and escher's companions add no env read, print, `tracing` site or wall-clock read; the census names its 2 hits; escher-driver holds 2 `info_span!`, `stand_act_spans` eight fields, and `host_log` and `mcp_log` read 0 needles at `trace` under both builds.
+- F2 · log-coverage · The engine changes that silence covers: the restyle narrowing, `NetHandler::error` and the failed-stylesheet path, the `blend` module and its blend layer, `init_stylo_prefs`, `is_inline_with_only_block_children` and its paint skip, the mounted-event guard, and the `deallocate_anonymous_block` fix.
+- F3 · log-coverage · The new test targets `key_press_after_container_lost_its_box` (blitz-tests, 3 tests, both layout modes, no `stand_` prefix) and `url_search_params` (blitz-vibey-script, 4 tests) add no env read, print or `tracing` site.
+- F4 · log-coverage · `URLSearchParams`, `URL.prototype.searchParams` and the native `parse_search_params` hold no log site and no carrier for what a page passes them.
+- F5 · pii-scrubbing-compliance · A failed load's error text now travels `NetHandler::error` into `ResourceLoadResponse` and the `Resource load failed` line; `url` and `error` are in escher-telemetry's scrub set (`packages/escher-telemetry/src/format.rs:50`, `:59`), so the sink prints `waiting_nodes` and the message, and no other carrier takes the text.
+- F6 · error-capture-reporting · A failed stylesheet is now captured as a typed answer: `ResourceHandler<StylesheetHandler>::error` responds `Err(error)` (`packages/blitz-dom/src/net.rs:144-146`), `pending_critical_resources` loses the request, and a failed, empty or non-CSS stylesheet stops blocking render.
+- F7 · error-capture-reporting · `NetHandler::error` is a public trait method with a default that does nothing (`packages/blitz-traits/src/net.rs:36-38`), so a handler without an override drops the error; `CountedHandler` forwards it (`packages/blitz-test-harness/src/settle.rs:121-125`).
+
+## Untouched
+- escher-telemetry whole: the sink, the line format, the target allowlist, the scrub set, the panic hook and every `packages/escher-telemetry/src/` citation; the package has no diff in this session.
+- escher-driver's spans and modules: `command` and its eight fields, `tool_call` and its two, the private modules' silence and the `packages/escher-driver/` citations; the package has no diff in this session.
+- `examples/seven_guis` whole: both binaries' install sites, `seven_guis::stand`, `LoadNet`, `host_log`, `mcp_log`, `recording` and the shared module; no diff, and the two log checks were re-run and pass.
+- The agent-run harness log and the cold-agent pipe log, their event shapes and state areas: `scripts/agent-run.sh` is unedited, the status and verdict shapes are unmoved, and the cold-agent scripts are not among the changed files.
+- The stand-ins `HeldNet`, `LateNet` and `LoadNet`, which answer through `NetHandler::bytes`: their files are not reached and the new `error` method changes none of them.
+- `Cargo.toml` citations and all of §2's feature wiring, §1's optional-feature statements and the `console_error_panic_hook` lines: no manifest or lock moved.
+- §7's panic hooks: the retired key-press panic is an engine limit held by the security and test plans, not by a hook, and no hook file is reached.
+- §7's script error surface in `packages/blitz-vibey-script/src/runtime/events.rs`, `timers.rs`, `fetch.rs` and `state.rs`, and that crate's own drain of script errors: none reached, and `URLSearchParams` adds no error source label.
+- §7's `DataUriNetProvider` line on `packages/blitz-shell/src/net.rs`, its error callbacks commented out: that file is not reached, and the new trait method does not wire them.
+- The upstream apps' `fmt::init()` subscribers, `apps/browser`'s logged events, wasm_hello, and the WPT runner's `env_logger` and report under `wpt/runner/src/`: none reached.
+- §9's WPT publication on upstream only, its publish builds and `.github/scripts/apt-install.sh`'s diagnostic line: `publish-browser.yml`, `wpt.yml` and that script are not reached.
+- §10, §11 and §12: each holds no recorded intent, and the session records none.

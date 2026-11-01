@@ -6,13 +6,13 @@ _Extracted from architecture.md and project conventions by `/andromeda-setup-pro
 - **Branching:** one long-lived build branch per version — `build/escher-0.1.0` for 0.1.0; chunks commit on it (no per-chunk feature branches).
 - **Commit format:** conventional commits (`feat:`, `fix:`, `chore:`, `refactor:`, `docs:`, `test:`, `perf:`, `build:`, `ci:`).
 - **Main branch:** `main` (upstream Blitz CI runs on `main` and `v0.*`; escher's `ci.yml` also runs on every `build/**` push); the fork's GitHub default branch is the version's build branch, `build/escher-0.3.0`, whose root `README.md` is the front page GitHub renders.
-- **Before a push:** `bash .github/scripts/ci-leg.sh fast` — the local pre-push gate, the same leg commands CI runs; no local gate builds `blitz-paint/font-embolden`, which CI's macOS leg alone exercises, so a paint change under that feature takes `--features blitz-paint/font-embolden` on `cargo test -p blitz-tests` as its local witness.
+- **Before a push:** `bash .github/scripts/ci-leg.sh fast` — the local pre-push gate, the same leg commands CI runs for fmt, clippy, test and CI scripts, then `embolden`, which has no CI job; `blitz-paint/font-embolden` is built locally by the `embolden` step of `fast`, `--features blitz-paint/font-embolden` on `cargo test -p blitz-tests` the local witness for a paint change under that feature.
 - **Never force push** to main/master. Use `gh` for GitHub operations.
 - **Upstream:** escher is a fork of Blitz; keep upstream conventions (spec citations, one-behaviour test files) so merges stay cheap.
 
 ## Andromeda workflow
 
-This project was adopted into the Andromeda pipeline (`/andromeda-adopt` at `0f60502e`); its masters describe the code as built. Upstream DioxusLabs/blitz `main` was last merged at `23b9b26a9` (merge commit `3eda07bc`, 2026-10-17), the next sync's merge base; upstream `main` was last read at `ebacd68bd`, twenty-four of the forty commits past the merge base taken by no-commit cherry-picks with the merge base unmoved and sixteen left out; git Stylo 0.23-pre, the six Taffy-main commits and Dioxus 0.8.0-alpha.3 wait for escher's next version, so Stylo stays "0.22.0", Taffy the registry "0.15" and Dioxus "0.7.3".
+This project was adopted into the Andromeda pipeline (`/andromeda-adopt` at `0f60502e`); its masters describe the code as built. Upstream DioxusLabs/blitz `main` was last merged at `23b9b26a9` (merge commit `3eda07bc`, 2026-10-17), the next sync's merge base; upstream `main` was last read at `e42ee1f25`, thirty-six of the fifty-seven commits past the merge base taken by no-commit cherry-picks with the merge base unmoved and twenty-one left out; git Stylo 0.23-pre, the six Taffy-main commits and Dioxus 0.8.0-alpha.3 wait for escher's next version, so Stylo stays "0.22.0", Taffy the registry "0.15" and Dioxus "0.7.3".
 
 **Initial planning (done):** adopt → architecture + 6 specialist plans → `/andromeda-route` (escher-0.1.0 working route) → `/andromeda-setup-project` (this ecosystem).
 
@@ -25,7 +25,7 @@ This project was adopted into the Andromeda pipeline (`/andromeda-adopt` at `0f6
 
 ## Daily session lifecycle
 - **Start:** `/andromeda-new-session` — reads the handoff, dashboard, health check, next action.
-- **During:** follow the current chunk's plan; run the gates (`bash .github/scripts/ci-leg.sh fmt` / `clippy` — or `fast` for all four fast legs — and targeted `cargo test -p …`).
+- **During:** follow the current chunk's plan; run the gates (`bash .github/scripts/ci-leg.sh fmt` / `clippy` — or `fast` for all four fast legs, then the `embolden` step — and targeted `cargo test -p …`).
 - **End:** `/andromeda-wrap-session` — commits, updates `.claude/session-handoff.md`, curates learnings into the right tier.
 
 **Don't skip session boundaries** — new-session and wrap-session keep CLAUDE.md and the masters current.
