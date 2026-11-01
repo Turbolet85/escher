@@ -20,3 +20,13 @@ The widening answered by the founder's own word, Q1 «Утверждаю (Рек
 - Epoch 2's sidecar consolidation fired and had nothing to do: set 0 and prunable 0 on all seven, no rewriter spawned, no byte moved. Four sidecars stand over the 120,000 B whole-read bound (architecture, test-plan, security-plan, a11y-plan), and `UNRESOLVED` supersessions stand: architecture 1, design-system 2.
 - Deferred learnings: `recurrence-despite-learning` «`fanout-results.md`'s lines are a grammar» (the last handoff's) still stands; `recurrence-despite-learning`: a controlled-select fixture first written uncontrolled, the limit `docs/capabilities.md` states.
 - Last failed command: none.
+
+## Session End Status
+Completed normally at 2026-11-01 18:11:26
+
+## In flight (2026-11-01, this section supersedes Position's Next)
+- The founder lifted the pause for this one chunk. 2026-11-01-upstream-sync-ui-graph is promoted and planned on his F1 A and F2 A: run dir `.andromeda/runs/2026-11-01T15-27-01-phase`, `doc:2026-11-01-upstream-sync-ui-graph/plan` rev 5.
+- Implemented, green + smoke: run dir `.andromeda/runs/2026-11-01T17-11-33-implement`, whose `outcome-2026-11-01-upstream-sync-ui-graph.md` holds the whole report. 24 gate entries green, 0 red; hygiene clean, scope clean, files landed.
+- Nothing is committed: the index holds the twelve picks, the work tree the later edits, so the pre-CI commit needs `git add -A`, with the twelve trailers in `evidence/take.md`.
+- Next: the operator pass, entries 25 to 28, then `/andromeda-wrap-session`. Before it, run `rec.py files --root . 2026-11-01-upstream-sync-ui-graph`. `target/tmp/trial-wt-ui` (`a24aebdc5`) goes once CI reads green.
+- Last failed command: none.

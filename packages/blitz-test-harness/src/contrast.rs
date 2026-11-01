@@ -65,8 +65,8 @@ impl<D: Document> Harness<D> {
     ///
     /// `None` when there is no such text, when an element on the walk has no computed styles, or
     /// when an element between the text and the first opaque background paints a background image,
-    /// an `opacity` below 1 or a `filter`: colours alone do not determine what such text is
-    /// painted on.
+    /// an `opacity` below 1, a `filter` or a `mix-blend-mode` other than `normal`: colours alone do
+    /// not determine what such text is painted on.
     pub fn text_contrast(&self, node_id: NodeId) -> Option<TextContrast> {
         let doc = self.base();
         let element = text_bearing_element(&doc, doc.get_node(node_id)?)?;
@@ -149,6 +149,9 @@ fn background_behind(doc: &BaseDocument, from: &Node) -> Option<Color> {
 fn paints_more_than_colour(doc: &BaseDocument, node: &Node) -> Option<bool> {
     let styles = node.primary_styles()?;
     if styles.clone_opacity() < 1.0 || !styles.get_effects().filter.0.is_empty() {
+        return Some(true);
+    }
+    if doc.resolved_style_value(node.id, "mix-blend-mode") != "normal" {
         return Some(true);
     }
     let images = doc.resolved_style_value(node.id, "background-image");
@@ -296,6 +299,19 @@ mod tests {
         for (channel, value) in rgb8(reading.background).into_iter().enumerate() {
             assert!(value.abs_diff(0x80) <= 1, "channel {channel}: read {value}");
         }
+    }
+
+    #[test]
+    fn a_blended_ancestor_reads_none_and_an_unblended_one_its_pair() {
+        let page = |blend: &str| {
+            format!(
+                r#"<html><body><div style="mix-blend-mode: {blend}; background: rgba(0, 0, 0, 0.5);"><span id="s">Text</span></div></body></html>"#
+            )
+        };
+        let plain = Harness::from_html(&page("normal"));
+        assert!(plain.text_contrast(plain.node("#s")).is_some());
+        let blended = Harness::from_html(&page("multiply"));
+        assert_eq!(blended.text_contrast(blended.node("#s")), None);
     }
 
     #[test]

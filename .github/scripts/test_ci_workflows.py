@@ -107,6 +107,13 @@ class CiWorkflowTest(unittest.TestCase):
         cls.jobs = cls.ci["jobs"]
         cls.text = (WORKFLOWS / "ci.yml").read_text(encoding="utf-8")
 
+    def test_only_stand_repeat_frees_disk(self):
+        def free_disk_steps(job):
+            return [step for step in job["steps"] if "free-disk-space" in str(step.get("uses", ""))]
+
+        self.assertEqual(free_disk_steps(self.jobs["matrix_test"]), [])
+        self.assertEqual(len(free_disk_steps(self.jobs["stand-repeat"])), 1)
+
     def test_a_push_triggers_build_branches(self):
         self.assertIn("build/**", triggers(self.ci)["push"]["branches"])
 
@@ -350,6 +357,22 @@ class LegScriptTest(unittest.TestCase):
         self.assertNotEqual(code, 0)
         self.assertEqual(words.count(self.MARKER), 1)
         self.assertNotIn("blitz-dom", words)
+
+    def test_fast_leg_ends_on_the_font_embolden_witness(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            # `fast` also runs the ci-scripts leg, which would discover nothing from this directory.
+            bin_dir = Path(tmp) / "bin"
+            bin_dir.mkdir()
+            python_shim = bin_dir / "python3"
+            python_shim.write_text("#!/bin/sh\nexit 0\n", encoding="utf-8")
+            python_shim.chmod(python_shim.stat().st_mode | stat.S_IXUSR)
+            proc = self.run_leg(tmp, "fast", 0, echo_args=True)
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            words = (Path(tmp) / "target" / "ci-logs" / "embolden.log").read_text(encoding="utf-8").split()
+        for word in ("test", "-p", "blitz-tests", "--locked", "--no-fail-fast", "--features",
+                     "blitz-paint/font-embolden", "--test", "select_popup_painted"):
+            self.assertIn(word, words)
+        self.assertEqual(words.count(self.MARKER), 1)
 
     def test_stand_repeat_leg_runs_three_rounds(self):
         with tempfile.TemporaryDirectory() as tmp:

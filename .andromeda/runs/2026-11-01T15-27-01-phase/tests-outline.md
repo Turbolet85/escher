@@ -1,0 +1,124 @@
+# test-plan — outline (9 files)
+
+## .andromeda/test-plan-detail/ci-integration.md · ci-integration · 53.3 KB
+- ## 9. CI Integration
+  - values · ci · lines 8–10
+  - values · ci · lines 16–16
+  - values · ci · lines 22–22
+  - values · ci · lines 28–28
+  - values · ci · lines 34–34
+  - values · ci · lines 40–40
+  - values · ci · lines 46–46
+  - values · ci · lines 52–52
+  - values · ci · lines 58–58
+  - values · ci · lines 64–65
+  - values · ci · lines 71–74
+  - values · ci · lines 80–89
+  - values · ci · lines 95–112
+  - procedure · ci · lines 118–118
+## .andromeda/test-plan-detail/e2e-test-strategy.md · e2e-test-strategy · 9.6 KB
+- ## 6. E2E Test Strategy
+  - procedure · e2e · lines 8–13
+  - procedure · e2e · lines 19–19
+  - procedure · e2e · lines 25–25
+  - absence · e2e · lines 31–32
+## .andromeda/test-plan-detail/integration-test-strategy.md · integration-test-strategy · 24.0 KB
+- ## 5. Integration Test Strategy
+  - procedure · integration · lines 8–8
+  - procedure · integration · lines 14–14
+  - procedure · integration · lines 20–20
+  - procedure · integration · lines 26–38
+  - procedure · integration · lines 44–44
+  - procedure · integration · lines 50–50
+  - procedure · integration · lines 56–56
+  - procedure · integration · lines 62–62
+  - procedure · integration · lines 68–68
+  - procedure · integration · lines 74–74
+  - absence · integration · lines 80–80
+## .andromeda/test-plan-detail/mocking-stubbing-discipline.md · mocking-stubbing-discipline · 10.2 KB
+- ## 8. Mocking & Stubbing Discipline
+  - values · mocking · lines 8–34
+  - procedure · mocking · lines 40–40
+  - absence · mocking · lines 46–53
+## .andromeda/test-plan-detail/quality-gates-coverage-targets.md · quality-gates-coverage-targets · 9.3 KB
+- ## 10. Quality Gates & Coverage Targets
+  - values · gate-coverage-floor · lines 8–8
+  - values · gate-coverage-floor · lines 14–16
+  - procedure · gate-flakiness · lines 22–22
+  - procedure · gate-mutation · lines 28–28
+  - procedure · gate-complexity · lines 34–34
+## .andromeda/test-plan-detail/test-data-fixtures.md · test-data-fixtures · 8.9 KB
+- ## 7. Test Data & Fixtures
+  - values · data-fixtures · lines 8–8
+  - values · data-fixtures · lines 14–14
+  - values · data-seeds · lines 20–45
+  - absence · data · lines 51–51
+## .andromeda/test-plan-detail/test-scope-summary.md · test-scope-summary · 131.9 KB
+- ## 1. Test Scope Summary
+  - procedure · scope-entities · lines 8–8
+  - procedure · scope-entities · lines 14–25
+  - procedure · scope-entities · lines 31–31
+  - procedure · scope-entities · lines 37–37
+  - procedure · scope-entities · lines 43–43
+  - procedure · scope-entities · lines 49–49
+  - procedure · scope-entities · lines 55–55
+  - procedure · scope-entities · lines 61–61
+  - procedure · scope-entities · lines 67–70
+  - procedure · scope-entities · lines 76–76
+  - procedure · scope-entities · lines 82–82
+  - procedure · scope-entities · lines 88–88
+  - procedure · scope-entities · lines 94–94
+  - procedure · scope-entities · lines 100–100
+  - procedure · scope-entities · lines 106–113
+  - procedure · scope-entities · lines 119–119
+  - procedure · scope-entities · lines 125–132
+  - absence · scope-entities · lines 138–138
+  - procedure · scope-entities · lines 144–180
+  - procedure · scope-entities · lines 186–186
+  - procedure · scope-entities · lines 192–192
+  - procedure · scope-entities · lines 198–198
+  - procedure · scope-entities · lines 204–204
+  - procedure · scope-entities · lines 210–210
+  - procedure · scope-entities · lines 216–216
+  - procedure · scope-entities · lines 222–222
+  - procedure · scope-entities · lines 228–228
+  - procedure · scope-entities · lines 234–234
+  - procedure · scope-entities · lines 240–240
+  - procedure · scope-entities · lines 246–246
+  - procedure · scope-entities · lines 252–252
+  - procedure · scope-entities · lines 258–258
+  - procedure · scope-entities · lines 264–264
+  - procedure · scope-entities · lines 270–273
+  - procedure · scope-entities · lines 279–279
+  - procedure · scope-entities · lines 285–285
+  - procedure · scope-entities · lines 291–291
+## .andromeda/test-plan-detail/test-strategy.md · test-strategy · 23.1 KB
+- ## 2. Test Strategy
+  - values · strategy · lines 8–8
+  - procedure · strategy · lines 14–16
+  - procedure · strategy · lines 22–22
+  - procedure · strategy · lines 28–28
+  - procedure · strategy · lines 34–34
+  - procedure · strategy · lines 40–40
+  - procedure · strategy · lines 46–46
+  - procedure · strategy · lines 52–52
+  - values · naming · lines 58–64
+  - values · naming · lines 70–70
+## .andromeda/test-plan-detail/unit-test-strategy.md · unit-test-strategy · 34.1 KB
+- ## 4. Unit Test Strategy
+  - values · unit · lines 8–8
+  - procedure · unit · lines 14–14
+  - procedure · unit · lines 20–27
+  - procedure · unit · lines 33–33
+  - procedure · unit · lines 39–39
+  - procedure · unit · lines 45–45
+  - procedure · unit · lines 51–56
+  - procedure · unit · lines 62–62
+  - procedure · unit · lines 68–70
+  - procedure · unit · lines 76–76
+  - procedure · unit · lines 82–82
+  - procedure · unit · lines 88–88
+  - procedure · unit · lines 94–94
+  - procedure · unit · lines 100–100
+  - procedure · unit · lines 106–106
+  - absence · unit · lines 112–115

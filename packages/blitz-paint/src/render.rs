@@ -11,6 +11,7 @@ use std::collections::HashMap;
 use std::sync::Arc;
 
 use super::kurbo_css::CssBox;
+use crate::blend::convert_blend_mode;
 use crate::color::{Color, ToColorColor};
 use crate::debug_overlay::render_debug_overlay;
 use crate::filters::convert_filters;
@@ -42,7 +43,8 @@ use style::{
 };
 
 use kurbo::{self, Affine, Insets, Point, Rect, Shape, Size, Stroke, Vec2};
-use peniko::{self, Fill, ImageData, ImageSampler};
+use peniko::{self, BlendMode, Fill, ImageData, ImageSampler};
+use style::computed_values::isolation::T as Isolation;
 use style::values::generics::color::GenericColor;
 use taffy::Layout;
 
@@ -369,8 +371,11 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
             ..
         } = *node.final_layout();
         let box_position = Vec2::new(location.x as f64, location.y as f64) * self.scale;
-        let box_size = Size::new(size.width as f64, size.height as f64);
-        let border_box = Rect::from_origin_size(box_position.to_point(), box_size);
+        let box_size = Size::new(
+            size.width as f64 * self.scale,
+            size.height as f64 * self.scale,
+        );
+        let border_box = Rect::from_origin_size(Point::ORIGIN, box_size);
         let scaled_pb = (padding + border).map(f64::from);
         let content_position = kurbo::Point {
             x: scaled_pb.left,
@@ -469,6 +474,7 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
         let css_clip_layer_pushed = self.layer_manager.maybe_push_layer(
             scene,
             css_clip_rect.is_some(),
+            BlendMode::default(),
             1.0,
             cx.transform,
             &css_clip_rect.unwrap_or(Rect::ZERO),
@@ -476,13 +482,38 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
             None,
         );
 
+        // Use the viewport in scene coordinates so outlines, shadows and overflowing
+        // descendants are not clipped to the element's border box.
+        let blend = convert_blend_mode(effects.mix_blend_mode);
+        let isolate = styles.get_box().isolation == Isolation::Isolate;
+        let blend_layer_pushed = self.layer_manager.maybe_push_layer(
+            scene,
+            isolate || blend != BlendMode::default(),
+            blend,
+            if isolate { 1.0 - f32::EPSILON } else { 1.0 },
+            Affine::IDENTITY,
+            &Rect::new(
+                self.initial_x,
+                self.initial_y,
+                self.initial_x + self.width as f64,
+                self.initial_y + self.height as f64,
+            ),
+            None,
+            None,
+        );
+
+        let paints_own_box = !node.is_inline_with_only_block_children();
+
         cx.draw_outline(scene);
-        cx.draw_outset_box_shadow(scene);
+        if paints_own_box {
+            cx.draw_outset_box_shadow(scene);
+        }
 
         // clip-path clip ayer
         self.layer_manager.maybe_with_layer(
             scene,
             has_clip_path,
+            BlendMode::default(),
             1.0,
             cx.transform,
             &clip_path_for_layer,
@@ -523,17 +554,22 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
                 self.layer_manager.maybe_with_layer(
                     scene,
                     has_opacity || filter.is_some() || backdrop_filter.is_some(),
+                    BlendMode::default(),
                     opacity,
                     cx.transform,
                     &effect_layer_clip,
                     filter,
                     backdrop_filter,
                     |scene| {
-                        cx.draw_background(scene);
-                        cx.draw_inset_box_shadow(scene);
+                        if paints_own_box {
+                            cx.draw_background(scene);
+                            cx.draw_inset_box_shadow(scene);
+                        }
                         cx.draw_table_row_backgrounds(scene);
                         cx.draw_table_borders(scene);
-                        cx.draw_border(scene);
+                        if paints_own_box {
+                            cx.draw_border(scene);
+                        }
                         cx.stroke_devtools(scene);
 
                         // TODO: allow layers with opacity to be unclipped (overflow: visible)
@@ -547,6 +583,7 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
                         self.layer_manager.maybe_with_layer(
                             scene,
                             should_clip,
+                            BlendMode::default(),
                             1.0, // opacity
                             cx.transform,
                             clip,
@@ -593,6 +630,8 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
             },
         );
 
+        self.layer_manager
+            .maybe_pop_layer(scene, blend_layer_pushed);
         self.layer_manager
             .maybe_pop_layer(scene, css_clip_layer_pushed);
     }
@@ -1251,6 +1290,7 @@ impl ElementCx<'_, '_> {
         self.context.layer_manager.maybe_with_layer(
             scene,
             overflows,
+            BlendMode::default(),
             1.0,
             self.transform,
             &self.frame.content_box_path(),

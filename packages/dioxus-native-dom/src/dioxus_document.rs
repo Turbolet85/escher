@@ -232,7 +232,11 @@ impl DioxusDocument {
     pub(crate) fn flush_queued_mounted_events(&mut self) {
         let mut queued_mounted_events = mem::take(&mut self.vdom_state.queued_mounted_events);
         for element_id in queued_mounted_events.drain(..) {
-            let node_id = self.vdom_state.element_to_node_id(element_id);
+            // The element may have been removed again since its mounted event was queued (in the
+            // same render), which unmaps its `ElementId`.
+            let Some(node_id) = self.vdom_state.try_element_to_node_id(element_id) else {
+                continue;
+            };
 
             if self.inner.borrow().get_node(node_id).is_some() {
                 let event = Event::new(

@@ -1,0 +1,439 @@
+[
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'absolute_position' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 14,
+"result": [
+{
+"caller_name": "handle_dom_event",
+"file": "packages/blitz-dom/src/events/mod.rs",
+"line": 109
+},
+{
+"caller_name": "focus",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 777
+},
+{
+"caller_name": "position_in_containing_block",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1775
+},
+{
+"caller_name": "synthetic_click_event_data",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 2020
+},
+{
+"caller_name": "scroll_into_view",
+"file": "packages/blitz-dom/src/scrolling.rs",
+"line": 718
+},
+{
+"caller_name": "layout_rect_of",
+"file": "packages/blitz-test-harness/src/inspect.rs",
+"line": 59
+},
+{
+"caller_name": "write_node",
+"file": "packages/blitz-test-harness/src/inspect.rs",
+"line": 141
+},
+{
+"caller_name": "hover",
+"file": "tests/blitz-tests/tests/anonymous_block_restyle.rs",
+"line": 99
+},
+{
+"caller_name": "absolute_position",
+"file": "tests/blitz-tests/tests/scrolled_box_absolute_position.rs",
+"line": 47
+},
+{
+"caller_name": "a_scrolled_box_reads_its_absolute_position_where_it_stands",
+"file": "tests/blitz-tests/tests/scrolled_box_absolute_position.rs",
+"line": 72
+},
+{
+"caller_name": "a_scrolled_box_reads_its_absolute_position_where_it_stands",
+"file": "tests/blitz-tests/tests/scrolled_box_absolute_position.rs",
+"line": 76
+},
+{
+"caller_name": "hover_keeps_working_after_undamaged_subtree_restyle",
+"file": "tests/blitz-tests/tests/stale_dirty_descendants.rs",
+"line": 80
+},
+{
+"caller_name": "hover_keeps_working_after_undamaged_subtree_restyle",
+"file": "tests/blitz-tests/tests/stale_dirty_descendants.rs",
+"line": 89
+},
+{
+"caller_name": "hover_keeps_working_after_undamaged_subtree_restyle",
+"file": "tests/blitz-tests/tests/stale_dirty_descendants.rs",
+"line": 99
+}
+],
+"db_state": "regenerated",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'containing_block' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 25,
+"result": [
+{
+"caller_name": "transformed_bounds",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2918
+},
+{
+"caller_name": "transformed_bounds",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2940
+},
+{
+"caller_name": "is_transformed_chain",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2962
+},
+{
+"caller_name": "offset_rect",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3018
+},
+{
+"caller_name": "hoisted_child_position",
+"file": "packages/blitz-dom/src/layout/paint_tree.rs",
+"line": 35
+},
+{
+"caller_name": "hoisted_child_position",
+"file": "packages/blitz-dom/src/layout/paint_tree.rs",
+"line": 43
+},
+{
+"caller_name": "hoisted_child_position",
+"file": "packages/blitz-dom/src/layout/paint_tree.rs",
+"line": 62
+},
+{
+"caller_name": "physical_unrounded_geometry",
+"file": "packages/blitz-dom/src/layout/writing_mode.rs",
+"line": 398
+},
+{
+"caller_name": "placer_geometry",
+"file": "packages/blitz-dom/src/layout/writing_mode.rs",
+"line": 420
+},
+{
+"caller_name": "hit_inner",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1546
+},
+{
+"caller_name": "hit_inner",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1609
+},
+{
+"caller_name": "position_in_containing_block",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1772
+},
+{
+"caller_name": "offset_parent",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1813
+},
+{
+"caller_name": "offset_top_left",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1957
+},
+{
+"caller_name": "resolved_style_value",
+"file": "packages/blitz-dom/src/resolved_style.rs",
+"line": 544
+},
+{
+"caller_name": "containing_block_chain",
+"file": "packages/blitz-dom/src/scrolling.rs",
+"line": 623
+},
+{
+"caller_name": "containing_block_chain",
+"file": "packages/blitz-dom/src/scrolling.rs",
+"line": 632
+},
+{
+"caller_name": "offset_within",
+"file": "packages/blitz-dom/src/scrolling.rs",
+"line": 643
+},
+{
+"caller_name": "offset_within",
+"file": "packages/blitz-dom/src/scrolling.rs",
+"line": 649
+},
+{
+"caller_name": "render_debug_overlay",
+"file": "packages/blitz-paint/src/debug_overlay.rs",
+"line": 63
+},
+{
+"caller_name": "render_debug_overlay",
+"file": "packages/blitz-paint/src/debug_overlay.rs",
+"line": 66
+},
+{
+"caller_name": "abs_pos",
+"file": "tests/blitz-tests/tests/paint_tree_incremental.rs",
+"line": 36
+},
+{
+"caller_name": "abs_pos",
+"file": "tests/blitz-tests/tests/paint_tree_incremental.rs",
+"line": 41
+},
+{
+"caller_name": "oof_box_is_owned_by_containing_block",
+"file": "tests/blitz-tests/tests/paint_tree_incremental.rs",
+"line": 500
+},
+{
+"caller_name": "oof_box_is_owned_by_containing_block",
+"file": "tests/blitz-tests/tests/paint_tree_incremental.rs",
+"line": 523
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'with' AND callee_kind = 'fn' AND callee_file LIKE '%node/node.rs' ORDER BY file, line",
+"rows": 38,
+"result": [
+{
+"caller_name": "write_flat_text_content",
+"file": "packages/blitz-dom/src/accessibility.rs",
+"line": 317
+},
+{
+"caller_name": "get_cursor",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 2803
+},
+{
+"caller_name": "push_children_and_pseudos",
+"file": "packages/blitz-dom/src/layout/construct.rs",
+"line": 182
+},
+{
+"caller_name": "push_non_whitespace_children_and_pseudos",
+"file": "packages/blitz-dom/src/layout/construct.rs",
+"line": 274
+},
+{
+"caller_name": "is_collapsible_whitespace_node",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 548
+},
+{
+"caller_name": "is_inert",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 570
+},
+{
+"caller_name": "print_tree",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1022
+},
+{
+"caller_name": "forward",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1046
+},
+{
+"caller_name": "backward",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1058
+},
+{
+"caller_name": "write_text_content",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1294
+},
+{
+"caller_name": "inline_root_ancestor",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1689
+},
+{
+"caller_name": "position_in_containing_block",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1774
+},
+{
+"caller_name": "offset_parent",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1813
+},
+{
+"caller_name": "inline_fragment_boxes",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1847
+},
+{
+"caller_name": "offset_top_left",
+"file": "packages/blitz-dom/src/node/node.rs",
+"line": 1960
+},
+{
+"caller_name": "select_holding",
+"file": "packages/blitz-dom/src/node/select.rs",
+"line": 106
+},
+{
+"caller_name": "select_holding",
+"file": "packages/blitz-dom/src/node/select.rs",
+"line": 117
+},
+{
+"caller_name": "option_disabled",
+"file": "packages/blitz-dom/src/node/select.rs",
+"line": 183
+},
+{
+"caller_name": "parent_node",
+"file": "packages/blitz-dom/src/stylo.rs",
+"line": 305
+},
+{
+"caller_name": "first_child",
+"file": "packages/blitz-dom/src/stylo.rs",
+"line": 309
+},
+{
+"caller_name": "last_child",
+"file": "packages/blitz-dom/src/stylo.rs",
+"line": 313
+},
+{
+"caller_name": "owner_doc",
+"file": "packages/blitz-dom/src/stylo.rs",
+"line": 328
+},
+{
+"caller_name": "next",
+"file": "packages/blitz-dom/src/stylo.rs",
+"line": 1300
+},
+{
+"caller_name": "sync_pseudo_element_styles",
+"file": "packages/blitz-dom/src/stylo.rs",
+"line": 1447
+},
+{
+"caller_name": "walk_tree",
+"file": "packages/blitz-dom/src/util.rs",
+"line": 146
+},
+{
+"caller_name": "inner_text",
+"file": "packages/blitz-vibey-script/src/inner_text.rs",
+"line": 34
+},
+{
+"caller_name": "is_rendered",
+"file": "packages/blitz-vibey-script/src/inner_text.rs",
+"line": 58
+},
+{
+"caller_name": "is_rendered",
+"file": "packages/blitz-vibey-script/src/inner_text.rs",
+"line": 63
+},
+{
+"caller_name": "is_generated_pseudo",
+"file": "packages/blitz-vibey-script/src/inner_text.rs",
+"line": 84
+},
+{
+"caller_name": "is_inclusive_descendant_of",
+"file": "packages/blitz-vibey-script/src/inner_text.rs",
+"line": 95
+},
+{
+"caller_name": "visit",
+"file": "packages/blitz-vibey-script/src/inner_text.rs",
+"line": 156
+},
+{
+"caller_name": "visit",
+"file": "packages/blitz-vibey-script/src/inner_text.rs",
+"line": 160
+},
+{
+"caller_name": "visit_child",
+"file": "packages/blitz-vibey-script/src/inner_text.rs",
+"line": 180
+},
+{
+"caller_name": "visit_inline_layout",
+"file": "packages/blitz-vibey-script/src/inner_text.rs",
+"line": 196
+},
+{
+"caller_name": "visit_inline_box",
+"file": "packages/blitz-vibey-script/src/inner_text.rs",
+"line": 232
+},
+{
+"caller_name": "is_last_table_cell",
+"file": "packages/blitz-vibey-script/src/inner_text.rs",
+"line": 250
+},
+{
+"caller_name": "is_last_table_cell",
+"file": "packages/blitz-vibey-script/src/inner_text.rs",
+"line": 256
+},
+{
+"caller_name": "total_offset",
+"file": "wpt/runner/src/test_runners/attr_test.rs",
+"line": 240
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller_name, file, line FROM calls WHERE callee_name = 'deallocate_anonymous_block' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 4,
+"result": [
+{
+"caller_name": "drop_node_ignoring_parent_with",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1460
+},
+{
+"caller_name": "deallocate_anonymous_block",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1478
+},
+{
+"caller_name": "remove_pe_ignoring_parent",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1594
+},
+{
+"caller_name": "resolve_layout_children_recursive",
+"file": "packages/blitz-dom/src/resolve.rs",
+"line": 275
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

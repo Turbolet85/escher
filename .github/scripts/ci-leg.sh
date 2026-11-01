@@ -5,8 +5,8 @@
 # the leg command's own status.
 set -euo pipefail
 
-LEGS=(fmt clippy test ci-scripts build msrv counter wasm doc audit a11y coverage stand-repeat fast)
-FAST_LEGS=(fmt clippy test ci-scripts)
+LEGS=(fmt clippy test ci-scripts embolden build msrv counter wasm doc audit a11y coverage stand-repeat fast)
+FAST_LEGS=(fmt clippy test ci-scripts embolden)
 SCRIPTS="$(dirname "$0")"
 
 usage() {
@@ -25,6 +25,8 @@ run_leg() {
         ;;
     test) cargo test --workspace --locked ;;
     ci-scripts) python3 -m unittest discover -s .github/scripts ;;
+    # CI's macOS leg alone builds this feature; the dev host's witness of a paint change under it.
+    embolden) cargo test -p blitz-tests --locked --no-fail-fast --features blitz-paint/font-embolden --test select_popup_painted ;;
     build) cargo build --workspace --locked ;;
     msrv) cargo +1.91 build --workspace --locked ;;
     counter) cargo build -p counter --locked ;;

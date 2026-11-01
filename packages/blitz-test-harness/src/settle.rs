@@ -65,9 +65,9 @@ struct LoadCounts {
 
 /// A [`NetProvider`] that counts the requests crossing it and stores nothing else.
 ///
-/// A request is in flight from `fetch` until its handler is consumed by `bytes` or dropped
-/// unanswered. An answered handler has put its message on the document's channel by then, so
-/// the next resolve applies it.
+/// A request is in flight from `fetch` until its handler is consumed by `bytes` or `error`, or
+/// dropped unanswered. An answered handler has put its message on the document's channel by then,
+/// so the next resolve applies it.
 pub(crate) struct LoadCounter {
     inner: Arc<dyn NetProvider>,
     counts: Arc<LoadCounts>,
@@ -115,6 +115,12 @@ impl NetHandler for CountedHandler {
     fn bytes(mut self: Box<Self>, resolved_url: String, bytes: Bytes) {
         if let Some(inner) = self.inner.take() {
             inner.bytes(resolved_url, bytes);
+        }
+    }
+
+    fn error(mut self: Box<Self>, url: String, error: String) {
+        if let Some(inner) = self.inner.take() {
+            inner.error(url, error);
         }
     }
 }
@@ -445,6 +451,25 @@ mod tests {
 
         held.take().bytes(URL.to_string(), Bytes::new());
         assert_eq!(harness.settle().map(|settled| settled.passes), Ok(1));
+    }
+
+    #[test]
+    fn a_failed_stylesheet_reaches_the_document_through_the_counter_and_unblocks_it() {
+        let held = Arc::new(Held::default());
+        let mut harness = Harness::from_html_with(
+            r#"<html><head><link rel="stylesheet" href="http://settle.test/sheet.css"></head><body></body></html>"#,
+            crate::HarnessOptions {
+                net_provider: Some(Arc::clone(&held) as _),
+                ..Default::default()
+            },
+        );
+        assert!(harness.base().has_pending_critical_resources());
+        assert_eq!(harness.settle(), Err(NotSettled { busy: Busy::Loads }));
+
+        held.take().error(URL.to_string(), "refused".to_string());
+
+        assert!(harness.settle().is_ok());
+        assert!(!harness.base().has_pending_critical_resources());
     }
 
     #[test]

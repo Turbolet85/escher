@@ -510,11 +510,7 @@ fn a_select_made_inert_disabled_hidden_or_removed_with_its_list_open_closes() {
                 harness.hit(x, y).is_none_or(|hit| hit.node_id != pick),
                 "{at}: a hit reads what stands there"
             );
-            // A key with focus under a newly hidden ancestor reads the anonymous block that hiding
-            // dropped, a panic of the event path with no list open too; it is not this check's.
-            if row != 3 {
-                harness.press(named(NamedKey::ArrowDown));
-            }
+            harness.press(named(NamedKey::ArrowDown));
         }
     }
 }
