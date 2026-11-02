@@ -1,1 +1,0 @@
-"Stand contrast harness" (working-route.md:88). The bash guard arm (d) is live now: never pipe a pipeline tool into head/tail/grep/cut/sed/awk. Redirect its output to a file and read the file whole. The founder's word stands: no mutation runs.
