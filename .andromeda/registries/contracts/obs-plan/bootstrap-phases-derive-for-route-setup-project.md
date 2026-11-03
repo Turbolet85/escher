@@ -1,6 +1,0 @@
-### Bootstrap phases (derive for route / setup-project)
-
-- **otel-sdk-install:** no OTel SDK or telemetry backend is present — recorded absent in §2 Telemetry Strategy and §3 Observability Harness Contract (OTel SDK init); escher 0.1.0 ships no OTel export (ruled by the founder, 2026-10-06): no OTel crate, no egress and no `OTEL_EXPORTER_OTLP_HEADERS` credential path, with the export transport and the credential path both left undecided — a cross-version residual in `.andromeda/residuals.md`; the sink's `service.name` / `service.version` already use the OTel resource keys (§3).
-- **pii-scrubbing-wire:** discharged for escher's own sink — escher-telemetry's target allowlist in the two binaries that install it, `seven_guis_native` and `escher-session`: engine-prefixed targets scrubbed to their safe fields, the content-named fields of escher targets redacted, and every record from a target outside the allowlist dropped at every level — no stable id and no accessible name at `RUST_LOG=debug` or `trace`, measured on both binaries, delivered by the route entry "Sink target allowlist" (§8 PII Scrubbing & Compliance → Scrubbing); still open for the upstream apps' `fmt::init()` stdout subscribers and the WPT runner's `env_logger`, which stay unscrubbed.
-
----
