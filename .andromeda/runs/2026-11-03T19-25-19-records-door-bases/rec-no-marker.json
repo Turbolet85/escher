@@ -1,0 +1,65 @@
+[
+{
+"tool": "rec",
+"v": "1.13",
+"sha8": "cc38f294",
+"ts": "2026-11-03T19:25:21Z",
+"argv": [
+"migrate",
+"--root",
+".",
+"--family",
+"bases",
+"--work",
+"~/.cache/andromeda-door/escher-bases-2026-11-03T19-25-19",
+"--stage",
+"--verify",
+"--run-dir",
+".andromeda/runs/2026-11-03T19-25-19-records-door-bases"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"rows: carry 42 · detector 15 · metric 11 · residual 42 · rule 14 · run 1 · lines: blank 74 · carried 42 · header 7 · heading-em 44 · matched 2 · placed 173 · preamble 47 · prose 3 · schema 1 · section 7",
+"route-archive: 3 file(s), 2 block(s) the spine holds already · frozen: 0 file(s), 0 B (none)",
+"staged 2026-11-03T19-25-20-door-bases.ndjson · 125 node(s) · 0 edge(s) · 8 file(s) · HEAD 4132d25c7ee7 · work ~/.cache/andromeda-door/escher-bases-2026-11-03T19-25-19",
+"proof: 125 row(s) and 0 edge(s) placed again equal · every line of 8 file(s) accounted once · residual lines, detectors by master, metric records and the base equal · 3 archive(s) block for block · 0 frozen file(s) byte-equal · controls: a residual's byte · a detector gone · a metric's field · the base's count · an archived block's byte",
+"verified: the proof holds"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.13",
+"sha8": "cc38f294",
+"ts": "2026-11-03T19:25:37Z",
+"argv": [
+"migrate",
+"--root",
+".",
+"--family",
+"bases",
+"--work",
+"~/.cache/andromeda-door/escher-bases-2026-11-03T19-25-19",
+"--apply",
+"--run-dir",
+".andromeda/runs/2026-11-03T19-25-19-records-door-bases"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"moved: bases · 125 line(s) · ffc531e5 · 2026-11-03T19-25-20-door-bases.ndjson · nothing committed",
+"git rm: 8 file(s) of the family · nothing committed"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-03T19-25-20-door-bases.ndjson",
+"./.andromeda/db/moved"
+],
+"before": null,
+"after": null
+}
+]
