@@ -1,1 +1,0 @@
-Correction to my last line: the founder's label is «Ратифицировать», in Cyrillic, exactly as arch-amend :534 holds it. «[the operator's transliteration — withdrawn; on his word written nowhere, so respelled here]» was my transliteration; don't write it anywhere.

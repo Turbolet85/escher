@@ -1,4 +1,0 @@
-# Citation dispositions — registries
-
-changed .andromeda/registries/contracts/test-plan/session-lifecycle.md:5@c3539 packages/escher-driver/src/execute.rs:557-563 → ? — the start rewritten → claim false — raised at Validate (the exception to `type`'s focusing click is not a `multiple` select alone: `focus_select`, now at execute.rs:558-565, focuses every select with no click, on `is_select`, and closes any list that stands, so a one-row select takes no focusing click either)
-stretched .andromeda/registries/contracts/test-plan/session-lifecycle.md:5@c6218 packages/escher-driver/src/execute.rs:114-308 → 114-309 — changed inside → holds (114-309 is `impl Session` whole; `run`'s signature at line 165 and its `command` span at line 166 stand unchanged, the changes inside being the `type` arm and its doc comment)

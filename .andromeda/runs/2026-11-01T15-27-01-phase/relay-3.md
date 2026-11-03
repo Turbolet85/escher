@@ -1,1 +1,0 @@
-yes — apply, on one addition for the wrap, as a row on this card: a focused control that no longer shows keeps focus and takes keys, the limit his F1 A leaves, gets a residual line and a line in escher-0.4.0-incubator/deferred-from-0.3.0.md, and CARRY the same to the entry that owns focus next if one fits, else say so. Snap this word, take the checkpoint, and stop for my clear.

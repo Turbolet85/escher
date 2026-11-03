@@ -1,9 +1,0 @@
-# Classified — obs · telemetry-strategy.b1
-
-## Answers
-telemetry-strategy#1.1 · yes · the escher-driver span surface (2 info_span! sites, command's eight fields, tool_call's two, stand_act_spans children) and the ungated tracing dependency of escher-driver and escher-telemetry, both named in Needs; its engine-only tracing gate is the standing S2 and is not carried on its own
-telemetry-strategy#2.1 · yes · the by-invocation rule (a workspace build turns blitz-dom/tracing on, -p builds leave it off), which Needs names as deciding what the legs and the font-embolden run compile, and the engine INFO line a test child's sink receives, which bears on the host_log and mcp_log capture checks
-telemetry-strategy#3.1 · yes · the recorded absence of telemetry backends over Cargo.toml and the workflows binds where the take edits the root manifest and lock (Cargo.toml and Cargo.lock are reached, Cargo.lock a conflict surface) and the ci.yml free-disk edit; Needs names telemetry dependencies in the root manifest and the lock
-telemetry-strategy#3.2 · yes · the absence of tracing, log, env_logger and metrics call sites over the examples slice binds through cells.rs, a conflict surface in that slice, and through the delta read of every new tracing or log call site the take brings; the examples slice holds the re-read host_log and mcp_log checks
-telemetry-strategy#3.3 · yes · the test crate silence census binds because the take adds upstream's pseudo_element_flow_classification target, a conflict surface run under the blitz-tests rule, so the census must record its 0 env, 0 print and 0 subscriber reading; Needs names the recorded census the take's line joins
-telemetry-strategy#3.4 · no · the 12 listed WPT runner files are not in the reached files, no Needs line names them, and the WPT runner is excluded by Not needed as upstream-only tooling

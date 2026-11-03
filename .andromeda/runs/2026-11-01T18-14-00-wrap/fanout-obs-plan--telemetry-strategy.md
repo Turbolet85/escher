@@ -1,2 +1,0 @@
-proposals: []
-note: The report rules .andromeda/obs-plan-detail/telemetry-strategy.md:14 no-change for the fast leg (.andromeda/cache/docs/2026-11-01-upstream-sync-ui-graph/report.md:41) and this pass honours it; the new last step of fast, embolden, is a -p blitz-tests build (.andromeda/cache/docs/2026-11-01-upstream-sync-ui-graph/report.md:64), so the line's claim that ci-leg.sh fast turns blitz-dom/tracing on holds of its workspace test step, and the report measures no feature set for the new step.

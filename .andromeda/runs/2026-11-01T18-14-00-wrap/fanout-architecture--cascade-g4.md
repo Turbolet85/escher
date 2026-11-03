@@ -1,2 +1,0 @@
-proposals: []
-note: every picked conventions entity moves by citation digits at most, left to the citation sweep; no New facts item is of this category; the task's Touches names conventions' DOM API patterns, which holds no picked entity here, its claim at architecture.md line 121 still true by the report since `snapshot_node` keeps its two callers at mutator.rs:288 and :429 with the new `attr` only.

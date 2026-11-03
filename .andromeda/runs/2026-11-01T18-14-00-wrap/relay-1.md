@@ -1,1 +1,0 @@
-run P1 only and stop, for 2026-11-01-upstream-sync-ui-graph. Operator's word: the sampler is forced on this wrap (detail.py sample --side wrap --force). The run was green on CI#41333172440 at 45c333f16. Stop after P1 and report the wrap run dir.
