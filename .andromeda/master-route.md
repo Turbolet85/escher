@@ -78,3 +78,4 @@
 2026-10-31-engine-debts · complete · Engine debts — the six recorded debts, each the founder's fork · → escher-0.3.0/chunks/2026-10-31-engine-debts/
 2026-10-31-select-popup · complete · Select popup — a closed select opens a painted list of its options, chosen by pointer and key · → escher-0.3.0/chunks/2026-10-31-select-popup/
 2026-11-01-upstream-sync-ui-graph · complete · Upstream sync ahead of the UI graph — the founder's chosen take of upstream/main; merge surfaces re-read; CI, a11y leg and audit green; per-OS tallies, sink allowlist re-read · → chk:2026-11-01-upstream-sync-ui-graph
+2026-11-04-dioxus-runtime-probe · pending · Dioxus runtime probe — what Dioxus 0.7 exposes of component, handlers, written state and readers with no fork-level change; the reading and the MountedData fork to the founder · → chk:2026-11-04-dioxus-runtime-probe

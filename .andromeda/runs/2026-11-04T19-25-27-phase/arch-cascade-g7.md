@@ -1,0 +1,36 @@
+@carried n=1 label=architecture/existing-scopes fact=fct-kaaobbkf
+why: The probe must read links (1) and (2) through the bridge's own modules and re-verify the hazard in its `dioxus_document.rs` and `events.rs`, naming each API it reads by the module that holds it and changing none of them.
+quote: dioxus_document (with one `cfg(test)` child module, `bridge_tests`, in its own file `dioxus_document_tests.rs` — seven unit tests of the bridge (six until 2026-10-16-fast-failing-mutants, which added a created text node's mapping and stack read), declared at the end of `dioxus_document.rs`, not in `lib.rs`: packages/dioxus-native-dom/src/dioxus_document.rs:838-840), element_id (crate-private: the stable element id derivation behind `DioxusDocument::element_id` / `element_ids`), events, mutation_writer, snapshot (crate-private, compiled only under `accessibility`: the snapshot model behind `DioxusDocument::snapshot`, its three types, `is_masked_input`, the `MASKED_VALUE` constant, `closed_select_of`, `is_multiple_select` and `is_select` re-exported)
+@carried n=1 run=2 label=architecture fact=fct-54e4fuk7
+quote: every window event is followed by a Poll (packages/blitz-shell/src/application.rs:162-165); a futures waker sends Poll events (packages/blitz-shell/src/event.rs:105-126)
+@carried n=2 label=architecture/existing-scopes fact=fct-mzrxx2a3
+why: The served task the probe runs beside a lean one must be held through the driver's existing `Session`, adding no verb, argument, cause or exit to it.
+quote: session (`Session`, the label rule, the settled step `act`, the caller's time step `with_time`, and the crate-private bounded record of the ids the session's screens have read)
+@carried n=3 label=architecture/existing-scopes fact=fct-4zmppehn
+why: A probe check must live in blitz-tests beside the existing Dioxus-integration and stand checks over Counter and CRUD, and a `stand_`-prefixed one joins the `stand-repeat` leg and its zero-failure budget.
+quote: Dioxus integration (tests/blitz-tests/tests/stale_node_mapping.rs:18-23; tests/blitz-tests/tests/harness_smoke.rs:102-113); `<link>` stylesheet loading (tests/blitz-tests/tests/link_rel_attribute.rs:1-2; tests/blitz-tests/tests/render_blocking_stylesheet.rs:1-8); the seven_guis headless stand — mount, bundled-font text, fresh-boot and incremental identity, offline, one driven interaction per lean task, timer ticks, one stable element id per element (tests/blitz-tests/tests/stand_boot.rs:1-3; tests/blitz-tests/tests/stand_counter.rs:1-2; tests/blitz-tests/tests/stand_flight_booker.rs:1-3; tests/blitz-tests/tests/stand_timer.rs:1-3; tests/blitz-tests/tests/stand_crud.rs:1-3; tests/blitz-tests/tests/stand_element_ids.rs:1-5)
+@carried n=3 run=2 label=architecture/existing-scopes fact=fct-4zmppehn
+quote: the per-task count of elements that react to input and state no role (0 on the four lean tasks, Home and Temperature Converter, Circle Drawer 1, Cells 677, its 676 data cells and `cells-grid` with its `onkeydown`, measured and pinned)
+@carried n=3 run=3 label=architecture/existing-scopes fact=fct-4zmppehn
+quote: in the `stand-repeat` leg by its `stand_` prefix
+@carried n=4 label=architecture/existing-scopes fact=fct-o6vmxcuj
+why: A probe check that reads one of blitz-tests' shared modules must be recorded as one more reader in these counts.
+quote: blitz-tests holds three shared modules that are no target — `tests/common/mod.rs`, read through `mod common;` by 21 checks, `tests/session_common/mod.rs`, by 32, and `tests/fixtures/mod.rs`, the fixture boot and hold, the shared fixture pages and the held network stand-in `HeldNet`, by 31
+@carried n=5 label=architecture/existing-scopes fact=fct-qkp2micb
+why: The probe must measure on the seven_guis stand as it stands: a lean task (Counter or CRUD) booted by `stand`, and one served task beside it from the six `escher-session` serves.
+quote: Tasks cells, circle_drawer, counter, crud, flight_booker, temp_converter, timer (examples/seven_guis/src/tasks/mod.rs:1-7); native-only module `stand`, the headless stand booting the lean four, Cells and the load page in TaskShell, every boot offline but the load page's (examples/seven_guis/src/lib.rs:2-3; examples/seven_guis/src/stand.rs:1-5)
+@carried n=5 run=2 label=architecture/existing-scopes fact=fct-qkp2micb
+quote: the one place a served task, the stand's boot and the timer's tick handle meet a driver `Session`
+@carried n=6 label=architecture/existing-scopes fact=fct-okim3jaw
+why: The served task the probe runs must be booted and held the way these served-page checks do, and a probe test added to either file must re-pin its stated test count.
+quote: `stand_cells_served`, 5 tests in both layout modes — Cells booted through `stand::boot_cells` and held as a session, its screen 47,089 bytes in 740 lines walked in 5 parts of `SNAPSHOT_TEXT_BUDGET` through the driver, committed cells reading their values and a cell past the viewport in the last part, a click right after a `scroll` landing on the shown overlay scrollbar, the lint at boot reading its measured findings, and the keyboard walking to a cell and committing a value read in the first part; `stand_load_page`, 3 tests in both layout modes — the load page booted through `stand::boot_load` and held as a session
+@binding n=1
+**existing-scopes dioxus-native-dom ↔ existing-scopes seven_guis and blitz-tests**: each link's verdict must be measured by a run that reads the bridge's `element_id`, `events` and `dioxus_document` surfaces (architecture/existing-scopes fct-kaaobbkf) on a stand lean task with a handler writing state another node reads, Counter or CRUD (architecture/existing-scopes fct-qkp2micb), from a check homed in blitz-tests beside the existing stand and Dioxus-integration checks (architecture/existing-scopes fct-4zmppehn).
+@binding n=2
+**existing-scopes blitz-tests (input-reacting count) ↔ the chunk's link (2) for `click`**: the listener-map reading must agree with the pinned per-task count of elements that react to input, Cells' `cells-grid` with its `onkeydown` among them (architecture/existing-scopes fct-4zmppehn), or name the difference as part of its verdict.
+@binding n=3
+**existing-scopes escher-driver ↔ existing-scopes seven_guis and served-page checks**: the served task must be booted through `stand::boot_cells` or `stand::boot_load` and held as a `Session` (architecture/existing-scopes fct-okim3jaw; architecture/existing-scopes fct-qkp2micb), through the existing session module alone, adding nothing to the driver's schema (architecture/existing-scopes fct-mzrxx2a3).
+@binding n=4
+**existing-scopes blitz-tests shared modules ↔ blitz-tests stand-repeat**: a probe check that reads `mod common;`, `mod session_common;` or `tests/fixtures/mod.rs` must raise that module's stated reader count (architecture/existing-scopes fct-o6vmxcuj), and a `stand_`-prefixed one runs under `stand-repeat`'s zero-failure budget (architecture/existing-scopes fct-4zmppehn).
+@binding n=5
+**existing-scopes dioxus-native-dom (`dioxus_document.rs`) ↔ the body's Shell loop**: the hazard's windowed path must be stated as read from the shell's Poll after every window event (architecture fct-54e4fuk7), not run, beside the headless re-verification of `poll` in the bridge (architecture/existing-scopes fct-kaaobbkf).

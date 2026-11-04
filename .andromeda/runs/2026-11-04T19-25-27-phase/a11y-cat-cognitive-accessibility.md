@@ -1,0 +1,10 @@
+@carried n=1 label=a11y-plan/cognitive-accessibility fact=fct-d4aqaj2h
+why: The probe's run on the stand (a lean task with state, the Counter or CRUD) and any probe check in tests/blitz-tests must leave the stand's stated CRUD focus sequence and the flight booker's error-recovery cue as asserted, with no listener or stop added to a stand task.
+quote: the stand asserts each lean task's forward focus sequence through `focus_next_node` against the shared table `tab_order` — moved into the stand checks' shared module since 2026-10-13-stand-keyboard-harness, CRUD's sequence restated there to six stops, `back-btn`, `crud-filter`, `crud-list`, `crud-name`, `crud-surname`, `crud-create`, and the flight booker's to four, `back-btn`, `flight-type`, `flight-start`, `flight-book` (`flight-return-date` joining in `ENABLED_TAB_ORDER`, five stops), the error-recovery cue unchanged
+@carried n=2 label=a11y-plan/cognitive-accessibility fact=fct-2jvvlu33
+why: Where the probe's served task beside the lean one is the load page, its run must leave the page's text status cue and its stated delay as measured, the probe reading and never changing them.
+quote: The stand's served load page shows its status in text: the paragraph `load-done` reads "Loaded", `display: none` until the page's stylesheet lands after the Button "Load" (`load-fetch`) is clicked, its in-process stand-in answering after `LOAD_ANSWER_DELAY` (200 ms)
+@binding n=1
+**CRUD focus sequence ↔ a11y-plan §5 Keyboard Navigation**: the six-stop `tab_order` the cognitive file states for CRUD is the same table `stand_keyboard` walks forward and back in both layout modes; a probe on the CRUD task keeps both green (a11y-plan/cognitive-accessibility fct-d4aqaj2h) (a11y-plan fct-ivsezocx)
+@binding n=2
+**Load page status cue ↔ a11y-plan §5 Test harness pattern**: the load page's `load-fetch` Button and its text status hold the Tab-order, keyboard and contrast rows of `stand_load_page`; a probe served beside it leaves those rows asserted (a11y-plan/cognitive-accessibility fct-2jvvlu33) (a11y-plan fct-j36rkqej)

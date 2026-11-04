@@ -1,0 +1,44 @@
+@carried n=1 label=security-plan/input-validation fact=fct-d2yejoup
+why: link 1 (node to component) must read the component through the stable element id as the bridge computes it, treat a `None` as no answer with no panic, and the probe must write no id it reads to any log, print or field.
+quote: an element with no key reads one of three `/`-bearing paths — an anchored path `{key}//{segment}` (then `/{segment}` per further DOM level) under the nearest element of its own component instance that reads an author key, else its component path, else its document path, a template root owned by another component instance restarting at that component's chain, so an anchor acts inside one component only; an author key holds no `/`, an anchored path is the only id holding `//`, and a component or document path has no empty segment, so no `id` can make two ids equal — a key spelled like a component name included (`Item//b:0` beside `Item/b:0`) — the anchored tier ratified by the founder (2026-10-06); a non-element, stale or detached node reads `None`, and no path panics; the id is computed on demand and escher's own code writes it to no log, DOM or vdom
+@carried n=1 run=2 label=security-plan/input-validation fact=fct-d2yejoup
+quote: the 7GUIs CRUD row also carries the HTML `id` `crud-person-{person.id}`, so its stable id is that author key, built like its Dioxus key from its person's model-assigned `u64` (fixture `crud-person-0..2`, Create from `crud-person-3`), and Home's seven cards read the fixed-slug author keys `task-card-{slug}` — never a list index, pointer, hash, clock or process-local value
+@carried n=1 run=3 label=security-plan fact=fct-4jl4t3ye
+quote: Markup attributes — the stable element id: the HTML `id` as an author key when non-empty, `/`-free and first in document order, else an anchored, component or document path, so no `id` can make two ids equal; computed on demand and written by escher's code to no log, it leaves by the platform adapter, the driver's answers, MCP results and kept checks, and no `NodeId` crosses.
+@carried n=1 run=4 label=security-plan fact=fct-n4q5kc73
+quote: Driver session socket (escher-driver) — the widening rule: a new field of a closed value set inside an already ratified carrier is not a boundary widening, while a field holding authored text, an open value set, a new carrier or a new exit still is.
+@carried n=1 run=5 label=security-plan fact=fct-cvyxuuhn
+quote: nothing public runs a `Command` that did not come from `validate`, and the socket, the command line and MCP all pass through it
+@carried n=2 label=security-plan/input-validation fact=fct-omhuceqe
+why: the probe reads the bridge's element-id reads as its surface for nodes and their listeners, and must take a `data-dioxus-id` that fails to parse as no element id, never as a node.
+quote: Parsed as `usize`; a parse failure yields no element id (packages/dioxus-native-dom/src/dioxus_document.rs:48-55)
+@carried n=2 run=2 label=security-plan fact=fct-qk7naa6l
+quote: Dioxus mutations — `data-dioxus-id` parsed as `usize`
+@carried n=3 label=security-plan/input-validation fact=fct-3l4zlejk
+why: the probe's readings of control values and of the state behind them, its test output and the founder's reading must keep a password's or file input's value as `MASKED_VALUE`, never its text, length or host path.
+quote: Masked by the in-process reader: under dioxus-native-dom's `accessibility` feature `DioxusDocument::snapshot` reads `NodeState::value` for an `input` whose `type` is `password` or `file` (each compared ASCII-case-insensitively) as the public constant `MASKED_VALUE` — eight U+2022 characters, one fixed marker whatever was typed or chosen — where the control holds a non-empty value (a password's editor text, else its `value` attribute; a file input's `value` attribute — it holds no text editor), as `""` where that value is empty and as `None` where a file input has no `value` attribute; never the text, never its length and never a file's host path.
+@carried n=3 run=2 label=security-plan fact=fct-767qdy6s
+quote: Markup attributes — a password's or file input's value reads as the fixed `MASKED_VALUE` in the snapshot, its text, diffs and every carrier, never the text, its length or a file's host path; a password input paints a bullet per character, and a recorded masked `type` is kept as `MASKED_STAND_IN`; the DOM and form submission keep the value.
+@carried n=4 label=security-plan/input-validation fact=fct-anxwobo4
+why: the probe's tests on the headless harness must pass only valid fixed selectors to its query helper, which panics on one that fails to parse.
+quote: the harness query helper panics with "invalid selector" on a selector that fails to parse (packages/blitz-test-harness/src/inspect.rs:27-34); scoped queries with a text or comment node as scope return no matches (tests/blitz-tests/tests/scoped_query_selector.rs:126-149)
+@carried n=4 run=2 label=security-plan fact=fct-ydvrpbvz
+quote: Test harness queries — selector parsing returns a `Result`, while the harness query helper panics on an invalid selector; a text or comment scope matches nothing.
+@carried n=5 label=security-plan/input-validation fact=fct-ppqmcyh2
+why: the stand is reached whole and the hazard's re-verification drives a key handler that spawns a task, so the cells grid's closed key match and its ratified behaviour must keep holding under the probe.
+quote: `cells-grid` takes `tabindex` 0 and an `onkeydown` with a closed key match and no role: arrows move `current`, clamped, Enter opens the editor on `current`, focused, and the editor's Enter commits, stops propagation and returns focus to the grid; a click inside a cell's own open editor returns early (examples/seven_guis/src/tasks/cells.rs:425-433), ratified as to the grid — as measured at escher-0.3.0/chunks/2026-10-31-engine-debts/report.md
+@carried n=6 label=security-plan/input-validation fact=fct-z2c6uyfa
+why: the stand is reached whole, so any probe code it takes must leave its 7GUIs input validations holding, the flight booker's closed match that writes a signal among them.
+quote: Flight booker validates `dd.mm.yyyy` dates including month range and leap years, and return date not before start (examples/seven_guis/src/tasks/flight_booker.rs:3-41; examples/seven_guis/src/tasks/flight_booker.rs:50-59); cells tokenizer rejects unknown characters, detects reference cycles as `#CYCLE`, and treats division by zero as an error (examples/seven_guis/src/tasks/cells.rs:29-31; examples/seven_guis/src/tasks/cells.rs:147; examples/seven_guis/src/tasks/cells.rs:230-233); circle drawer clamps diameter to 5–100 (examples/seven_guis/src/tasks/circle_drawer.rs:111-114); the flight booker's mode `select#flight-type` writes its `flight_type` signal by a closed match on the `input` value — `return` a return flight, any other value one-way — over its two options (`one-way`, `return`) (examples/seven_guis/src/tasks/flight_booker.rs:66-89)
+@carried n=6 run=2 label=security-plan fact=fct-qwmipbkb
+quote: Example apps — the 7GUIs inputs, the widget's `color` attribute and the TodoMVC input are validated or fall back.
+@binding n=1
+**Input Validation (stable element id) ↔ Logging & Monitoring**: the ids, component paths and values the probe reads go to no log line, span or field of its own and to no stdout diagnostic beyond masked values, so the id's ratified exits stay the only ones (security-plan/input-validation fct-d2yejoup) ↔ (security-plan fct-eabjzys7)
+@binding n=2
+**Input Validation (`data-dioxus-id`) ↔ Error Handling**: the probe reads element ids through the option-returning `try_element_to_node_id`, never the unwrapping `element_to_node_id`, so an unparsed or stale id yields no answer and no panic (security-plan/input-validation fct-omhuceqe) ↔ (security-plan fct-c4rr3jfv) (security-plan fct-f4v2lnec)
+@binding n=3
+**Input Validation (masked value) ↔ Data Protection**: a file input's host path and a password's text stay out of every reading, test output and committed evidence the probe makes, the mask holding on each (security-plan/input-validation fct-3l4zlejk) ↔ (security-plan fct-mkaeodr2)
+@binding n=4
+**Input Validation (stand key handler) ↔ Error Handling**: the hazard is measured, not repaired: a key handler's spawned task first polled inside `render_immediate` meets `try_doc` returning `None` while the document is mutably borrowed and the `MountedError::OperationFailed` paths, read at HEAD (security-plan/input-validation fct-ppqmcyh2) ↔ (security-plan fct-c4rr3jfv) (security-plan fct-p5sm3bek)
+@binding n=5
+**Input Validation (harness selectors) ↔ API Security**: the probe runs on harness settles that never wait on a load in flight, and passes only valid fixed selectors to the panicking query helper (security-plan/input-validation fct-anxwobo4) ↔ (security-plan fct-dlhusvs4)

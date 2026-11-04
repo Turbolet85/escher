@@ -1,0 +1,16 @@
+@carried n=1 label=a11y-plan/ci-integration fact=fct-3xv5s7f6
+why: The probe's checks live in `tests/blitz-tests/`, and the a11y leg must still run exactly its fourteen `--test` targets on one `cargo test --workspace --locked` line; a probe file joins it only by a recorded founder's word.
+quote: The leg now runs fourteen `--test` targets, still one `cargo test --workspace --locked` line with no comment line: the six, in their order, then `accessibility_states`, `accessibility_label`, `accessibility_description`, `accessibility_merged_states`, `accessibility_active_descendant_unread`, `inert_subtree`, `select_interaction` and `stand_act_select`
+@carried n=2 label=a11y-plan/ci-integration fact=fct-3xv5s7f6
+why: The chunk must leave the a11y job's log reading the same per-file counts and totals, locally and in CI, and must leave the job's tier, `needs`, cache and check status as they are.
+quote: Its log reads the six with `stand_keyboard` 23 and `stand_contrast` 7 (54) and accessibility_states 6 · accessibility_label 13 · accessibility_description 3 · accessibility_merged_states 3 · accessibility_active_descendant_unread 1 · inert_subtree 6 · select_interaction 18 · stand_act_select 10 (60): 14 result lines · 114 passed · 0 failed · 0 ignored, locally and on the "Accessibility (a11y) tests" job of CI#41235503227 (as measured at escher-0.3.0/chunks/2026-10-31-select-popup/report.md); the job keeps its slow tier, its `needs`, its restore-only `workspace-test` cache, its failure-only log upload and no required status check.
+@carried n=3 label=a11y-plan/ci-integration fact=fct-3xv5s7f6
+why: A probe check named `stand_*.rs` under `tests/blitz-tests/tests/` is taken by the `stand-repeat` glob and must pass all three rounds under the zero-failure budget; the leg's fixed `--test` list must stay as it is.
+quote: by the leg's fixed `--test` list after its `tests/blitz-tests/tests/stand_*.rs` glob on the same `cargo test -p blitz-tests --locked` line, each keeping its name, the list's seventeen words pinned by `test_stand_repeat_leg_runs_three_rounds` and their names also read by `stand_requirement_sweep`'s leg check
+@carried n=4 label=a11y-plan fact=fct-6kcxmj7u
+why: The body's broad line for §9 is the target state the chunk must keep: the a11y job over its fourteen files, and eight of them repeated in `stand-repeat`.
+quote: in the slow tier behind the four fast jobs, with no required status check; eight of them — the four `stand_*` files, `accessibility_states`, `inert_subtree`, `accessibility_active_descendant_unread` and `select_interaction` — also run three times in the `stand-repeat` leg under the zero-failure budget (test-plan §10).
+@binding n=1
+**a11y leg's fourteen files and counts ↔ the scope's surfaces (`tests/blitz-tests/`, `packages/dioxus-native-dom/`)**: any probe check or bridge-side measurement must leave the a11y leg at 14 result lines · 114 passed · 0 failed, and must add no target to it (a11y-plan/ci-integration fct-3xv5s7f6), with the job unchanged (a11y-plan fct-6kcxmj7u).
+@binding n=2
+**stand-repeat glob ↔ test-plan §10 zero-failure budget**: a probe check named `stand_*` runs three rounds in `Stand checks repeated` and must pass each of them, and the leg's fixed `--test` list stays as `test_stand_repeat_leg_runs_three_rounds` pins it (a11y-plan/ci-integration fct-3xv5s7f6).
