@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-04 — `rec.py runs --file {name} --show` prints every run's file of that name
+`rec.py runs --root . --file 'p5-card-{k}.md' --show` matches by file name across every run, sealed runs included, so a chunk's own phase card comes back beside every earlier phase's card of the same name — at escher's 2026-11-04 wrap, 246 KB of output for one card. A chunk's own card is read in its open phase run dir (`.andromeda/runs/{…}-phase/`), or, once that run is sealed, the call is narrowed to that run by `--kind '{its run name}'` (a glob over a run's name) beside `--file … --show`.
+
+---
+
 ## 2026-10-31 — A classifier that dies twice on the output-token limit is answered yes, by hand
 A Haiku · max classifier can spend its whole output-token limit on one listing and die with no file, and its retry can do
 the same, each death costing over half an hour. The letter's second failure halts. A `yes` only sends an entity to the

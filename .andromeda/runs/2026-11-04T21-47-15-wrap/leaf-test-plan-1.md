@@ -1,0 +1,15 @@
+@leaf_group group=test-plan-1
+@leaf_read leaf=.claude/docs/tests-summary.md lines=56
+last: **Full plan:** `.andromeda/test-plan.md`. Path-scoped rules: 
+@leaf_edit n=1 leaf=.claude/docs/tests-summary.md line=18 class=stale
+leaf-text: `run stand` 237 · 0 · 7 over 51 files at 2026-11-01-upstream-sync-ui-graph, where `run all` reads 733 · 0 · 12
+source: fct-glytb3w3 «`run all`'s reads passed 743 · failed 0 · ignored 12, `dioxus_runtime_probe`, with no `stand_` prefix, picked up by `run all` with no script change»
+replace-with: `run stand` 237 · 0 · 7 over 51 files at 2026-11-04-dioxus-runtime-probe, where `run all` reads 743 · 0 · 12, `dioxus_runtime_probe`, with no `stand_` prefix, picked up by `run all` with no script change; 237 · 0 · 7 over 51 files at 2026-11-01-upstream-sync-ui-graph, where `run all` reads 733 · 0 · 12
+@leaf_edit n=2 leaf=.claude/docs/tests-summary.md line=21 class=omission
+leaf-text: or the `a11y` leg) — and process telemetry
+source: fct-luwk6iun «a blitz-tests target of 10 tests, 8 looping `for incremental in [false, true]` and the MountedData hazard pinned as two `should_panic` tests, one per layout mode, with no `stand_` prefix»
+replace-with: or the `a11y` leg), since 2026-11-04-dioxus-runtime-probe `dioxus_runtime_probe` (10, its own target with no `stand_` prefix, reading Dioxus 0.7.10 public API alone with no fork-level change: 8 tests looping `for incremental in [false, true]` — the component that rendered each node, a deleted CRUD row resolving to nothing, each node's handlers, a listener removed on a re-render leaving its attribute and `data-dioxus-id` mark standing (`link_2_a_removed_listeners_attribute_stays`), a handler's effect as its step's snapshot diff and a held `GlobalSignal`'s readers (`links_3_and_4_a_held_signals_subscribers_are_its_readers`), and `set_focus` asked at once in a key handler moving focus (`mounted_data_asked_at_once_in_a_key_handler_acts`) — and the MountedData hazard pinned as two `should_panic` tests, one per layout mode; run by the workspace `test` leg, `run all` and `run dioxus_runtime_probe`, none of `stand-repeat`'s seventeen named `--test` words and none of the `a11y` leg's fourteen files, so not by `stand-repeat`, `run stand` or the `a11y` leg) — and process telemetry
+@leaf_edit n=3 leaf=.claude/docs/tests-summary.md line=37 class=omission
+leaf-text: a `MountedData` call in a task spawned from a key handler panicking with `RefCell already borrowed` at `events.rs:162`;
+source: fct-kgita7a3 «borrows through `doc_mut` and panics, in both layout modes, pinned by `dioxus_runtime_probe` (below); its fix is routed to the route entry «MountedData buffered render»»
+replace-with: a `MountedData` call in a task spawned from a key handler panicking with `RefCell already borrowed` at `events.rs:162`, in both layout modes, pinned by `dioxus_runtime_probe`'s two `should_panic` tests, its fix routed to the route entry «MountedData buffered render», which ports upstream `286874cc1`'s buffered render onto the 0.7 bridge and inverts the pin;

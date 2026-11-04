@@ -1,0 +1,1 @@
+@compare side=wrap doc=security-plan marker=2026-11-04-dioxus-runtime-probe e_items=3 held=2 lost_classify=0 lost_strong=0 beside=0 cascade_only=3 listed=- body=0 unplaced=0 held_ids=dependency-security#1.0,error-handling#6.1 only_ids=input-validation#1.64,input-validation#1.66,input-validation#1.69

@@ -1,1 +1,0 @@
-Dioxus runtime probe. The founder lifted the pause for this one chunk. Force the sampler on this run: the operator's word, so detail.py sample runs with --force. The fix of the MountedData panic is the founder's fork: bring it with its options, do not decide it. The probe's reading goes to the founder before the UI graph is planned.

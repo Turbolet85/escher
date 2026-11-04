@@ -1,0 +1,63 @@
+# Wrap P1 site sweep — 2026-11-04-dioxus-runtime-probe. One pattern per claim; the chunk title and the generic
+# owner phrase last.
+
+[[pattern]]
+id = 'probe-target'
+regex = 'dioxus_runtime_probe|runtime probe check'
+ignore_case = true
+
+[[pattern]]
+id = 'targets'
+regex = '\b15[678]\b[^.\n]{0,40}\b(targets?|files?)\b|\b(targets?|files?)\b[^.\n]{0,20}\b15[678]\b'
+
+[[pattern]]
+id = 'run-all'
+regex = '\b(733|743) passed|passed[^.\n]{0,12}\b(733|743)\b|run all[^.\n]{0,40}\b(733|743)\b'
+
+[[pattern]]
+id = 'mounted'
+regex = 'MountedData|already borrowed|task_polled_during_render|render_immediate'
+
+[[pattern]]
+id = 'click-read'
+regex = 'reacts? to a click|reacts to input'
+ignore_case = true
+
+[[pattern]]
+id = 'listener'
+regex = 'data-dioxus-id|listener mark|<rust func>|event_handler_counts|remove_event_listener|create_event_listener'
+
+[[pattern]]
+id = 'buffered'
+regex = '286874cc1|buffered render|mutation buffer|MutationBuffer'
+
+[[pattern]]
+id = 'coords'
+regex = 'events\.rs:16[12]|dioxus_document\.rs:29[0-9]|doc_mut'
+
+[[pattern]]
+id = 'zip-ignore'
+regex = 'RUSTSEC-2026-036[789]|RUSTSEC-2026-0429|RUSTSEC-2026-0433|pulldown-cmark|pulldown_cmark'
+
+[[pattern]]
+id = 'subscribers'
+regex = 'origin_scope|subscribers\(\)|hook-local|use_signal'
+
+[[pattern]]
+id = 'silence'
+regex = 'silence census|silence row|census over the new file'
+ignore_case = true
+
+[[pattern]]
+id = 'count-15x'
+regex = '\b15[678]\b'
+
+[[pattern]]
+id = 'title'
+fixed = 'Dioxus runtime probe'
+ignore_case = true
+
+[[pattern]]
+id = 'owned-generic'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true
