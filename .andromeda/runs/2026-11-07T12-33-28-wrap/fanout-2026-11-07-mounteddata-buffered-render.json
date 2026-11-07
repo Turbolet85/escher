@@ -1,0 +1,2171 @@
+[
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T12:50:30Z",
+"argv": [
+"status",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"VERDICT: 0 batch(es) rendered under .andromeda/runs/2026-11-07T12-33-28-wrap/prompts · 0 unchecked"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T12:51:03Z",
+"argv": [
+"render",
+"--batch",
+"cites",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--report",
+"doc:2026-11-07-mounteddata-buffered-render/report",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--fresh"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"VERDICT: rendered 6 (cites 6) · batch cites · script ./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/cites.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/citedisp-architecture.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/citedisp-security-plan.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/citedisp-test-plan.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/citedisp-obs-plan.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/citedisp-a11y-plan.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/citedisp-leaves.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/cites.workflow.js",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/cites.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T12:52:09Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-07T12-33-28-wrap/prompts/cites.manifest.json",
+"--before",
+"tree fbb1e0d27dc4c5b54511ad96139f12e80d7d7811 index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--after",
+"tree 72decc2cd099fa7049a967a3fc49f244f65f4c3a index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch cites · 6 agents · 6 with every named path · trails: none",
+"[PATH_CHECK] PASS · index and head unchanged",
+"cites: 6 agents · 4 pass · failed EVERY_ROW 1, DISPOSITION 1",
+"citedisp-architecture · [EVERY_ROW] line 13: no row of yours heads it — stretched fct-kaaobbkf packages/dioxus-native-dom/src/lib.rs:15-29 — …",
+"citedisp-test-plan · [DISPOSITION] line 7: «claim false — raised at Validate» is no disposition of a master `changed` row: holds — re-pointed by hand to {N} · not a citation of the tree — no change",
+"citedisp-architecture · [EVERY_ROW] 6 row(s) disposed, 7 handed; the order first differs at row 5",
+"VERDICT: 4 of 6 pass · failed: citedisp-architecture [EVERY_ROW]; citedisp-test-plan [DISPOSITION]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "cites",
+"agents": {
+"citedisp-architecture": {
+"failed": {
+"EVERY_ROW": [
+"[EVERY_ROW] line 13: no row of yours heads it — stretched fct-kaaobbkf packages/dioxus-native-dom/src/lib.rs:15-29 — …",
+"[EVERY_ROW] 6 row(s) disposed, 7 handed; the order first differs at row 5"
+]
+},
+"yes": null
+},
+"citedisp-security-plan": {
+"failed": {},
+"yes": null
+},
+"citedisp-test-plan": {
+"failed": {
+"DISPOSITION": [
+"[DISPOSITION] line 7: «claim false — raised at Validate» is no disposition of a master `changed` row: holds — re-pointed by hand to {N} · not a citation of the tree — no change"
+]
+},
+"yes": null
+},
+"citedisp-obs-plan": {
+"failed": {},
+"yes": null
+},
+"citedisp-a11y-plan": {
+"failed": {},
+"yes": null
+},
+"citedisp-leaves": {
+"failed": {},
+"yes": null
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [],
+"harness": [],
+"notes": []
+}
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T12:52:20Z",
+"argv": [
+"render",
+"--batch",
+"cites",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--report",
+"doc:2026-11-07-mounteddata-buffered-render/report",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--respawn",
+"citedisp-architecture,citedisp-test-plan",
+"--failed",
+"EVERY_ROW,DISPOSITION"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"MOVE .andromeda/runs/2026-11-07T12-33-28-wrap/citedisp-architecture.md → .andromeda/runs/2026-11-07T12-33-28-wrap/.raw-citedisp-architecture.md",
+"MOVE .andromeda/runs/2026-11-07T12-33-28-wrap/citedisp-test-plan.md → .andromeda/runs/2026-11-07T12-33-28-wrap/.raw-citedisp-test-plan.md",
+"VERDICT: rendered 2 (cites 2) · batch cites-r1 · script ./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/cites-r1.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/citedisp-architecture.r1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/citedisp-test-plan.r1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/cites-r1.workflow.js",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/cites-r1.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T12:53:25Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-07T12-33-28-wrap/prompts/cites-r1.manifest.json",
+"--before",
+"tree 7de18004f3bf3075ec09056393f27bbf266a0654 index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--after",
+"tree 08c9f20e3c73922eea4862dd1495b2aad7c3f6ad index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch cites-r1 · 2 agents · 2 with every named path · trails: none",
+"[PATH_CHECK] PASS · index and head unchanged",
+"cites: 2 agents · 2 pass",
+"VERDICT: 2 of 2 pass · failed: none"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "cites-r1",
+"agents": {
+"citedisp-architecture": {
+"failed": {},
+"yes": null
+},
+"citedisp-test-plan": {
+"failed": {},
+"yes": null
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [],
+"harness": [],
+"notes": []
+}
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T12:54:02Z",
+"argv": [
+"render",
+"--batch",
+"stage1",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--report",
+"doc:2026-11-07-mounteddata-buffered-render/report",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"VERDICT: rendered 13 (doc 7 · task 6) · batch stage1 · script ./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/stage1.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-architecture.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-security-plan.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-design-system.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-layout-templates.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-test-plan.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-obs-plan.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-a11y-plan.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cascade-task.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cascade-task.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cascade-task.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cascade-task.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-cascade-task.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cascade-task.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/stage1.workflow.js",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/stage1.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T12:55:54Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-07T12-33-28-wrap/prompts/stage1.manifest.json",
+"--before",
+"tree dae7ec9c359f5ff94fe92df372cc5e8966a9cb5c index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--after",
+"tree a20e25c293c49042f0ca960359e133b88351175c index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch stage1 · 13 agents · 13 with every named path · trails: .andromeda/runs/2026-11-07T12-33-28-wrap/rec-read-2026-11-07-mounteddata-buffered-render.ndjson",
+"[PATH_CHECK] PASS · index and head unchanged",
+"doc: 7 agents · 7 pass",
+"task: 6 agents · 6 pass",
+"proposals: architecture 0 · security-plan 0 · design-system 0 · layout-templates 0 · test-plan 0 · obs-plan 0 · a11y-plan 0",
+"VERDICT: 13 of 13 pass · failed: none"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "stage1",
+"agents": {
+"fanout-architecture": {
+"failed": {},
+"yes": null
+},
+"fanout-security-plan": {
+"failed": {},
+"yes": null
+},
+"fanout-design-system": {
+"failed": {},
+"yes": null
+},
+"fanout-layout-templates": {
+"failed": {},
+"yes": null
+},
+"fanout-test-plan": {
+"failed": {},
+"yes": null
+},
+"fanout-obs-plan": {
+"failed": {},
+"yes": null
+},
+"fanout-a11y-plan": {
+"failed": {},
+"yes": null
+},
+"architecture-cascade-task": {
+"failed": {},
+"yes": null
+},
+"security-plan-cascade-task": {
+"failed": {},
+"yes": null
+},
+"design-system-cascade-task": {
+"failed": {},
+"yes": null
+},
+"test-plan-cascade-task": {
+"failed": {},
+"yes": null
+},
+"obs-plan-cascade-task": {
+"failed": {},
+"yes": null
+},
+"a11y-plan-cascade-task": {
+"failed": {},
+"yes": null
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [
+".andromeda/runs/2026-11-07T12-33-28-wrap/rec-read-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"harness": [],
+"notes": []
+}
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T12:56:02Z",
+"argv": [
+"render",
+"--batch",
+"classify",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--report",
+"doc:2026-11-07-mounteddata-buffered-render/report",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"VERDICT: rendered 158 (classify 158) · batch classify · script ./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/classify.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-conventions.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-conventions.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-cross-cutting-patterns.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-cross-cutting-patterns.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-design-philosophy.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-design-philosophy.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-established-decisions.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-established-decisions.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-established-decisions.b2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-established-decisions.b2.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-established-decisions.b3.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-established-decisions.b3.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-existing-scopes.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-existing-scopes.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-existing-scopes.b2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-existing-scopes.b2.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-inherited-defaults.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-inherited-defaults.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-occupied-resources.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-occupied-resources.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-project-intent.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-project-intent.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-stack-and-technologies.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-stack-and-technologies.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-standard-contracts.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-standard-contracts.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-standard-contracts.b2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-standard-contracts.b2.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-standard-contracts.b3.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-standard-contracts.b3.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-standard-contracts.b4.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-cls-standard-contracts.b4.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-api-security.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-api-security.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-authentication-authorization.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-authentication-authorization.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-data-protection.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-data-protection.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-dependency-security.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-dependency-security.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-error-handling.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-error-handling.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-input-validation.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-input-validation.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-input-validation.b2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-input-validation.b2.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-input-validation.b3.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-input-validation.b3.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-input-validation.b4.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-input-validation.b4.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-input-validation.b5.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-input-validation.b5.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-input-validation.b6.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-input-validation.b6.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-logging-monitoring.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-logging-monitoring.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-secret-management.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-secret-management.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-threat-model-summary.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-cls-threat-model-summary.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-border-radius.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-border-radius.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-color-palette.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-color-palette.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-color-palette.b2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-color-palette.b2.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-color-palette.b3.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-color-palette.b3.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-depth-strategy.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-depth-strategy.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-depth-strategy.b2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-depth-strategy.b2.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-iconography.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-iconography.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-motion.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-motion.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-spacing.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-spacing.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-surface.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-surface.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-surface.b2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-surface.b2.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-typography.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-typography.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-typography.b2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-cls-typography.b2.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-ci-integration.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-ci-integration.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-e2e-test-strategy.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-e2e-test-strategy.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-integration-test-strategy.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-integration-test-strategy.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-mocking-stubbing-discipline.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-mocking-stubbing-discipline.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-mocking-stubbing-discipline.b2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-mocking-stubbing-discipline.b2.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-quality-gates-coverage-targets.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-quality-gates-coverage-targets.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-test-data-fixtures.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-test-data-fixtures.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-test-data-fixtures.b2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-test-data-fixtures.b2.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-test-scope-summary.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-test-scope-summary.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-test-scope-summary.b2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-test-scope-summary.b2.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-test-scope-summary.b3.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-test-scope-summary.b3.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-test-strategy.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-test-strategy.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-unit-test-strategy.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-cls-unit-test-strategy.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-cls-ci-integration.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-cls-ci-integration.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-cls-error-capture-reporting.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-cls-error-capture-reporting.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-cls-log-coverage.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-cls-log-coverage.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-cls-log-coverage.b2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-cls-log-coverage.b2.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-cls-metric-coverage.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-cls-metric-coverage.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-cls-pii-scrubbing-compliance.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-cls-pii-scrubbing-compliance.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-cls-span-trace-coverage.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-cls-span-trace-coverage.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-cls-telemetry-strategy.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-cls-telemetry-strategy.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-a11y-scope-summary.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-a11y-scope-summary.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-a11y-strategy.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-a11y-strategy.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-aria-patterns-roles.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-aria-patterns-roles.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-aria-patterns-roles.b2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-aria-patterns-roles.b2.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-ci-integration.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-ci-integration.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-cognitive-accessibility.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-cognitive-accessibility.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-keyboard-navigation.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-keyboard-navigation.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-keyboard-navigation.b2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-keyboard-navigation.b2.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-keyboard-navigation.b3.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-keyboard-navigation.b3.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-keyboard-navigation.b4.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-keyboard-navigation.b4.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-screen-reader-support.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-screen-reader-support.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-screen-reader-support.b2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-screen-reader-support.b2.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-visual-design-verification.b1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-visual-design-verification.b1.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-visual-design-verification.b2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-visual-design-verification.b2.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-visual-design-verification.b3.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-cls-visual-design-verification.b3.d2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/classify.workflow.js",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/classify.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T13:05:02Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-07T12-33-28-wrap/prompts/classify.manifest.json",
+"--before",
+"tree e937a0530e71af1947a8cf05ae732d58150e45d9 index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--after",
+"tree f477ef732946cfa0d38c41ec933d6755cbddb9af index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch classify · 158 agents · 158 with every named path · trails: .andromeda/runs/2026-11-07T12-33-28-wrap/rec-read-2026-11-07-mounteddata-buffered-render.ndjson",
+"[PATH_CHECK] PASS · index and head unchanged",
+"classify: 158 agents · 158 pass · yes 97 of 1370 (draw 1 85 · draw 2 86 · one draw only 23)",
+"VERDICT: 158 of 158 pass · failed: none"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "classify",
+"agents": {
+"architecture-cls-conventions.b1": {
+"failed": {},
+"yes": 4
+},
+"architecture-cls-conventions.b1.d2": {
+"failed": {},
+"yes": 3
+},
+"architecture-cls-cross-cutting-patterns.b1": {
+"failed": {},
+"yes": 3
+},
+"architecture-cls-cross-cutting-patterns.b1.d2": {
+"failed": {},
+"yes": 3
+},
+"architecture-cls-design-philosophy.b1": {
+"failed": {},
+"yes": 1
+},
+"architecture-cls-design-philosophy.b1.d2": {
+"failed": {},
+"yes": 1
+},
+"architecture-cls-established-decisions.b1": {
+"failed": {},
+"yes": 3
+},
+"architecture-cls-established-decisions.b1.d2": {
+"failed": {},
+"yes": 3
+},
+"architecture-cls-established-decisions.b2": {
+"failed": {},
+"yes": 5
+},
+"architecture-cls-established-decisions.b2.d2": {
+"failed": {},
+"yes": 5
+},
+"architecture-cls-established-decisions.b3": {
+"failed": {},
+"yes": 2
+},
+"architecture-cls-established-decisions.b3.d2": {
+"failed": {},
+"yes": 2
+},
+"architecture-cls-existing-scopes.b1": {
+"failed": {},
+"yes": 1
+},
+"architecture-cls-existing-scopes.b1.d2": {
+"failed": {},
+"yes": 1
+},
+"architecture-cls-existing-scopes.b2": {
+"failed": {},
+"yes": 2
+},
+"architecture-cls-existing-scopes.b2.d2": {
+"failed": {},
+"yes": 1
+},
+"architecture-cls-inherited-defaults.b1": {
+"failed": {},
+"yes": 0
+},
+"architecture-cls-inherited-defaults.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"architecture-cls-occupied-resources.b1": {
+"failed": {},
+"yes": 0
+},
+"architecture-cls-occupied-resources.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"architecture-cls-project-intent.b1": {
+"failed": {},
+"yes": 1
+},
+"architecture-cls-project-intent.b1.d2": {
+"failed": {},
+"yes": 1
+},
+"architecture-cls-stack-and-technologies.b1": {
+"failed": {},
+"yes": 0
+},
+"architecture-cls-stack-and-technologies.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"architecture-cls-standard-contracts.b1": {
+"failed": {},
+"yes": 3
+},
+"architecture-cls-standard-contracts.b1.d2": {
+"failed": {},
+"yes": 2
+},
+"architecture-cls-standard-contracts.b2": {
+"failed": {},
+"yes": 0
+},
+"architecture-cls-standard-contracts.b2.d2": {
+"failed": {},
+"yes": 0
+},
+"architecture-cls-standard-contracts.b3": {
+"failed": {},
+"yes": 4
+},
+"architecture-cls-standard-contracts.b3.d2": {
+"failed": {},
+"yes": 4
+},
+"architecture-cls-standard-contracts.b4": {
+"failed": {},
+"yes": 3
+},
+"architecture-cls-standard-contracts.b4.d2": {
+"failed": {},
+"yes": 2
+},
+"security-plan-cls-api-security.b1": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-api-security.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-authentication-authorization.b1": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-authentication-authorization.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-data-protection.b1": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-data-protection.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-dependency-security.b1": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-dependency-security.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-error-handling.b1": {
+"failed": {},
+"yes": 2
+},
+"security-plan-cls-error-handling.b1.d2": {
+"failed": {},
+"yes": 2
+},
+"security-plan-cls-input-validation.b1": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-input-validation.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-input-validation.b2": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-input-validation.b2.d2": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-input-validation.b3": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-input-validation.b3.d2": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-input-validation.b4": {
+"failed": {},
+"yes": 3
+},
+"security-plan-cls-input-validation.b4.d2": {
+"failed": {},
+"yes": 3
+},
+"security-plan-cls-input-validation.b5": {
+"failed": {},
+"yes": 1
+},
+"security-plan-cls-input-validation.b5.d2": {
+"failed": {},
+"yes": 1
+},
+"security-plan-cls-input-validation.b6": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-input-validation.b6.d2": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-logging-monitoring.b1": {
+"failed": {},
+"yes": 1
+},
+"security-plan-cls-logging-monitoring.b1.d2": {
+"failed": {},
+"yes": 1
+},
+"security-plan-cls-secret-management.b1": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-secret-management.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-threat-model-summary.b1": {
+"failed": {},
+"yes": 0
+},
+"security-plan-cls-threat-model-summary.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-border-radius.b1": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-border-radius.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-color-palette.b1": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-color-palette.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-color-palette.b2": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-color-palette.b2.d2": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-color-palette.b3": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-color-palette.b3.d2": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-depth-strategy.b1": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-depth-strategy.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-depth-strategy.b2": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-depth-strategy.b2.d2": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-iconography.b1": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-iconography.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-motion.b1": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-motion.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-spacing.b1": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-spacing.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-surface.b1": {
+"failed": {},
+"yes": 1
+},
+"design-system-cls-surface.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-surface.b2": {
+"failed": {},
+"yes": 1
+},
+"design-system-cls-surface.b2.d2": {
+"failed": {},
+"yes": 1
+},
+"design-system-cls-typography.b1": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-typography.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-typography.b2": {
+"failed": {},
+"yes": 0
+},
+"design-system-cls-typography.b2.d2": {
+"failed": {},
+"yes": 0
+},
+"test-plan-cls-ci-integration.b1": {
+"failed": {},
+"yes": 3
+},
+"test-plan-cls-ci-integration.b1.d2": {
+"failed": {},
+"yes": 3
+},
+"test-plan-cls-e2e-test-strategy.b1": {
+"failed": {},
+"yes": 2
+},
+"test-plan-cls-e2e-test-strategy.b1.d2": {
+"failed": {},
+"yes": 2
+},
+"test-plan-cls-integration-test-strategy.b1": {
+"failed": {},
+"yes": 2
+},
+"test-plan-cls-integration-test-strategy.b1.d2": {
+"failed": {},
+"yes": 2
+},
+"test-plan-cls-mocking-stubbing-discipline.b1": {
+"failed": {},
+"yes": 0
+},
+"test-plan-cls-mocking-stubbing-discipline.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"test-plan-cls-mocking-stubbing-discipline.b2": {
+"failed": {},
+"yes": 0
+},
+"test-plan-cls-mocking-stubbing-discipline.b2.d2": {
+"failed": {},
+"yes": 0
+},
+"test-plan-cls-quality-gates-coverage-targets.b1": {
+"failed": {},
+"yes": 1
+},
+"test-plan-cls-quality-gates-coverage-targets.b1.d2": {
+"failed": {},
+"yes": 2
+},
+"test-plan-cls-test-data-fixtures.b1": {
+"failed": {},
+"yes": 1
+},
+"test-plan-cls-test-data-fixtures.b1.d2": {
+"failed": {},
+"yes": 1
+},
+"test-plan-cls-test-data-fixtures.b2": {
+"failed": {},
+"yes": 0
+},
+"test-plan-cls-test-data-fixtures.b2.d2": {
+"failed": {},
+"yes": 0
+},
+"test-plan-cls-test-scope-summary.b1": {
+"failed": {},
+"yes": 1
+},
+"test-plan-cls-test-scope-summary.b1.d2": {
+"failed": {},
+"yes": 1
+},
+"test-plan-cls-test-scope-summary.b2": {
+"failed": {},
+"yes": 5
+},
+"test-plan-cls-test-scope-summary.b2.d2": {
+"failed": {},
+"yes": 5
+},
+"test-plan-cls-test-scope-summary.b3": {
+"failed": {},
+"yes": 0
+},
+"test-plan-cls-test-scope-summary.b3.d2": {
+"failed": {},
+"yes": 0
+},
+"test-plan-cls-test-strategy.b1": {
+"failed": {},
+"yes": 1
+},
+"test-plan-cls-test-strategy.b1.d2": {
+"failed": {},
+"yes": 1
+},
+"test-plan-cls-unit-test-strategy.b1": {
+"failed": {},
+"yes": 2
+},
+"test-plan-cls-unit-test-strategy.b1.d2": {
+"failed": {},
+"yes": 2
+},
+"obs-plan-cls-ci-integration.b1": {
+"failed": {},
+"yes": 0
+},
+"obs-plan-cls-ci-integration.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"obs-plan-cls-error-capture-reporting.b1": {
+"failed": {},
+"yes": 0
+},
+"obs-plan-cls-error-capture-reporting.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"obs-plan-cls-log-coverage.b1": {
+"failed": {},
+"yes": 2
+},
+"obs-plan-cls-log-coverage.b1.d2": {
+"failed": {},
+"yes": 2
+},
+"obs-plan-cls-log-coverage.b2": {
+"failed": {},
+"yes": 2
+},
+"obs-plan-cls-log-coverage.b2.d2": {
+"failed": {},
+"yes": 1
+},
+"obs-plan-cls-metric-coverage.b1": {
+"failed": {},
+"yes": 0
+},
+"obs-plan-cls-metric-coverage.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"obs-plan-cls-pii-scrubbing-compliance.b1": {
+"failed": {},
+"yes": 3
+},
+"obs-plan-cls-pii-scrubbing-compliance.b1.d2": {
+"failed": {},
+"yes": 2
+},
+"obs-plan-cls-span-trace-coverage.b1": {
+"failed": {},
+"yes": 0
+},
+"obs-plan-cls-span-trace-coverage.b1.d2": {
+"failed": {},
+"yes": 2
+},
+"obs-plan-cls-telemetry-strategy.b1": {
+"failed": {},
+"yes": 0
+},
+"obs-plan-cls-telemetry-strategy.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"a11y-plan-cls-a11y-scope-summary.b1": {
+"failed": {},
+"yes": 0
+},
+"a11y-plan-cls-a11y-scope-summary.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"a11y-plan-cls-a11y-strategy.b1": {
+"failed": {},
+"yes": 3
+},
+"a11y-plan-cls-a11y-strategy.b1.d2": {
+"failed": {},
+"yes": 2
+},
+"a11y-plan-cls-aria-patterns-roles.b1": {
+"failed": {},
+"yes": 0
+},
+"a11y-plan-cls-aria-patterns-roles.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"a11y-plan-cls-aria-patterns-roles.b2": {
+"failed": {},
+"yes": 0
+},
+"a11y-plan-cls-aria-patterns-roles.b2.d2": {
+"failed": {},
+"yes": 7
+},
+"a11y-plan-cls-ci-integration.b1": {
+"failed": {},
+"yes": 0
+},
+"a11y-plan-cls-ci-integration.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"a11y-plan-cls-cognitive-accessibility.b1": {
+"failed": {},
+"yes": 0
+},
+"a11y-plan-cls-cognitive-accessibility.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"a11y-plan-cls-keyboard-navigation.b1": {
+"failed": {},
+"yes": 2
+},
+"a11y-plan-cls-keyboard-navigation.b1.d2": {
+"failed": {},
+"yes": 1
+},
+"a11y-plan-cls-keyboard-navigation.b2": {
+"failed": {},
+"yes": 1
+},
+"a11y-plan-cls-keyboard-navigation.b2.d2": {
+"failed": {},
+"yes": 0
+},
+"a11y-plan-cls-keyboard-navigation.b3": {
+"failed": {},
+"yes": 5
+},
+"a11y-plan-cls-keyboard-navigation.b3.d2": {
+"failed": {},
+"yes": 5
+},
+"a11y-plan-cls-keyboard-navigation.b4": {
+"failed": {},
+"yes": 1
+},
+"a11y-plan-cls-keyboard-navigation.b4.d2": {
+"failed": {},
+"yes": 1
+},
+"a11y-plan-cls-screen-reader-support.b1": {
+"failed": {},
+"yes": 5
+},
+"a11y-plan-cls-screen-reader-support.b1.d2": {
+"failed": {},
+"yes": 5
+},
+"a11y-plan-cls-screen-reader-support.b2": {
+"failed": {},
+"yes": 2
+},
+"a11y-plan-cls-screen-reader-support.b2.d2": {
+"failed": {},
+"yes": 3
+},
+"a11y-plan-cls-visual-design-verification.b1": {
+"failed": {},
+"yes": 0
+},
+"a11y-plan-cls-visual-design-verification.b1.d2": {
+"failed": {},
+"yes": 0
+},
+"a11y-plan-cls-visual-design-verification.b2": {
+"failed": {},
+"yes": 0
+},
+"a11y-plan-cls-visual-design-verification.b2.d2": {
+"failed": {},
+"yes": 0
+},
+"a11y-plan-cls-visual-design-verification.b3": {
+"failed": {},
+"yes": 0
+},
+"a11y-plan-cls-visual-design-verification.b3.d2": {
+"failed": {},
+"yes": 0
+}
+},
+"classify": {
+"draws": 2,
+"yes_d1": 85,
+"yes_d2": 86,
+"union": 97,
+"one_draw": 23
+},
+"stray": [],
+"closing_tags": [],
+"trails": [
+".andromeda/runs/2026-11-07T12-33-28-wrap/rec-read-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"harness": [],
+"notes": []
+}
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T13:05:21Z",
+"argv": [
+"render",
+"--batch",
+"strong",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--report",
+"doc:2026-11-07-mounteddata-buffered-render/report",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"VERDICT: rendered 11 (strong 11) · batch strong · script ./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/strong.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-architecture--cascade-g1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-architecture--cascade-g2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-architecture--cascade-g3.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-security-plan--cascade.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-design-system--cascade.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-test-plan--cascade-g1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-test-plan--cascade-g2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-test-plan--cascade-g3.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-obs-plan--cascade.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-a11y-plan--cascade-g1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/fanout-a11y-plan--cascade-g2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/strong.workflow.js",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/strong.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T13:08:26Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-07T12-33-28-wrap/prompts/strong.manifest.json",
+"--before",
+"tree 7a4903fe297e3c8015804b77ed61c1dc297840f9 index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--after",
+"tree 78d0306757bccbb63ce74fbd7230af39964e36fd index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch strong · 11 agents · 11 with every named path · trails: .andromeda/runs/2026-11-07T12-33-28-wrap/rec-read-2026-11-07-mounteddata-buffered-render.ndjson",
+"[PATH_CHECK] PASS · index and head unchanged",
+"strong: 11 agents · 11 pass",
+"VERDICT: 11 of 11 pass · failed: none"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "strong",
+"agents": {
+"fanout-architecture--cascade-g1": {
+"failed": {},
+"yes": null
+},
+"fanout-architecture--cascade-g2": {
+"failed": {},
+"yes": null
+},
+"fanout-architecture--cascade-g3": {
+"failed": {},
+"yes": null
+},
+"fanout-security-plan--cascade": {
+"failed": {},
+"yes": null
+},
+"fanout-design-system--cascade": {
+"failed": {},
+"yes": null
+},
+"fanout-test-plan--cascade-g1": {
+"failed": {},
+"yes": null
+},
+"fanout-test-plan--cascade-g2": {
+"failed": {},
+"yes": null
+},
+"fanout-test-plan--cascade-g3": {
+"failed": {},
+"yes": null
+},
+"fanout-obs-plan--cascade": {
+"failed": {},
+"yes": null
+},
+"fanout-a11y-plan--cascade-g1": {
+"failed": {},
+"yes": null
+},
+"fanout-a11y-plan--cascade-g2": {
+"failed": {},
+"yes": null
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [
+".andromeda/runs/2026-11-07T12-33-28-wrap/rec-read-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"harness": [],
+"notes": []
+}
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T13:10:21Z",
+"argv": [
+"render",
+"--batch",
+"newgroup",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--report",
+"doc:2026-11-07-mounteddata-buffered-render/report",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"VERDICT: rendered 13 (newgroup 13) · batch newgroup · script ./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/newgroup.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-newgroup-established-decisions.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-newgroup-standard-contracts.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-newgroup-existing-scopes.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-newgroup-error-handling.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-newgroup-logging-monitoring.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-newgroup-surface.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-newgroup-test-scope-summary.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-newgroup-e2e-test-strategy.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-newgroup-ci-integration.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-newgroup-quality-gates-coverage-targets.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-newgroup-log-coverage.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-newgroup-pii-scrubbing-compliance.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-newgroup-keyboard-navigation.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/newgroup.workflow.js",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/newgroup.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T13:11:15Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-07T12-33-28-wrap/prompts/newgroup.manifest.json",
+"--before",
+"tree ad25f30906d84809ba42411945b4a563e30ee7a2 index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--after",
+"tree b4ec98d66d9de85269bc0c53420dde4a1a585b9a index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch newgroup · 13 agents · 13 with every named path · trails: .andromeda/runs/2026-11-07T12-33-28-wrap/rec-2026-11-07-mounteddata-buffered-render.json, .andromeda/runs/2026-11-07T12-33-28-wrap/rec-read-2026-11-07-mounteddata-buffered-render.ndjson",
+"[PATH_CHECK] PASS · index and head unchanged",
+"newgroup: 13 agents · 13 pass",
+"VERDICT: 13 of 13 pass · failed: none"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "newgroup",
+"agents": {
+"architecture-newgroup-established-decisions": {
+"failed": {},
+"yes": null
+},
+"architecture-newgroup-standard-contracts": {
+"failed": {},
+"yes": null
+},
+"architecture-newgroup-existing-scopes": {
+"failed": {},
+"yes": null
+},
+"security-plan-newgroup-error-handling": {
+"failed": {},
+"yes": null
+},
+"security-plan-newgroup-logging-monitoring": {
+"failed": {},
+"yes": null
+},
+"design-system-newgroup-surface": {
+"failed": {},
+"yes": null
+},
+"test-plan-newgroup-test-scope-summary": {
+"failed": {},
+"yes": null
+},
+"test-plan-newgroup-e2e-test-strategy": {
+"failed": {},
+"yes": null
+},
+"test-plan-newgroup-ci-integration": {
+"failed": {},
+"yes": null
+},
+"test-plan-newgroup-quality-gates-coverage-targets": {
+"failed": {},
+"yes": null
+},
+"obs-plan-newgroup-log-coverage": {
+"failed": {},
+"yes": null
+},
+"obs-plan-newgroup-pii-scrubbing-compliance": {
+"failed": {},
+"yes": null
+},
+"a11y-plan-newgroup-keyboard-navigation": {
+"failed": {},
+"yes": null
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [
+".andromeda/runs/2026-11-07T12-33-28-wrap/rec-2026-11-07-mounteddata-buffered-render.json",
+".andromeda/runs/2026-11-07T12-33-28-wrap/rec-read-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"harness": [],
+"notes": []
+}
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T13:13:11Z",
+"argv": [
+"render",
+"--batch",
+"apply",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--report",
+"doc:2026-11-07-mounteddata-buffered-render/report",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"VERDICT: rendered 6 (apply 6) · batch apply · script ./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/apply.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/apply-architecture.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/apply-security-plan.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/apply-design-system.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/apply-test-plan.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/apply-obs-plan.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/apply-a11y-plan.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/apply.workflow.js",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/apply.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T13:18:16Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-07T12-33-28-wrap/prompts/apply.manifest.json",
+"--before",
+"tree 06feae7a55aa1543d414667a4f49e1fc9c72feed index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--after",
+"tree 42f9fd279ac866f0672e7adb22270031be5ff2b4 index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch apply · 6 agents · 6 with every named path · trails: .andromeda/runs/2026-11-07T12-33-28-wrap/rec-read-2026-11-07-mounteddata-buffered-render.ndjson",
+"[PATH_CHECK] PASS · index and head unchanged",
+"apply: 6 agents · 4 pass · failed OWN_FILE 2",
+"apply-security-plan · [OWN_FILE] E1: .andromeda/security-plan-detail/input-validation.md — not a target of this writer (.andromeda/security-plan.md, .andromeda/security-plan-detail/error-handling.md, .andromeda/security-plan-detail/logging-monitoring.md)",
+"apply-obs-plan · [OWN_FILE] E1: .andromeda/registries/contracts/obs-plan/bootstrap-phases-derive-for-route-setup-project.md — not a target of this writer (.andromeda/obs-plan.md, .andromeda/obs-plan-detail/log-coverage.md, .andromeda/obs-plan-detail/pii-scrubbing-compliance.md)",
+"apply-security-plan · [OWN_FILE] E2: .andromeda/security-plan-detail/input-validation.md — not a target of this writer (.andromeda/security-plan.md, .andromeda/security-plan-detail/error-handling.md, .andromeda/security-plan-detail/logging-monitoring.md)",
+"apply-security-plan · [OWN_FILE] E3: .andromeda/security-plan-detail/input-validation.md — not a target of this writer (.andromeda/security-plan.md, .andromeda/security-plan-detail/error-handling.md, .andromeda/security-plan-detail/logging-monitoring.md)",
+"VERDICT: 4 of 6 pass · failed: apply-security-plan [OWN_FILE]; apply-obs-plan [OWN_FILE]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "apply",
+"agents": {
+"apply-architecture": {
+"failed": {},
+"yes": null
+},
+"apply-security-plan": {
+"failed": {
+"OWN_FILE": [
+"[OWN_FILE] E1: .andromeda/security-plan-detail/input-validation.md — not a target of this writer (.andromeda/security-plan.md, .andromeda/security-plan-detail/error-handling.md, .andromeda/security-plan-detail/logging-monitoring.md)",
+"[OWN_FILE] E2: .andromeda/security-plan-detail/input-validation.md — not a target of this writer (.andromeda/security-plan.md, .andromeda/security-plan-detail/error-handling.md, .andromeda/security-plan-detail/logging-monitoring.md)",
+"[OWN_FILE] E3: .andromeda/security-plan-detail/input-validation.md — not a target of this writer (.andromeda/security-plan.md, .andromeda/security-plan-detail/error-handling.md, .andromeda/security-plan-detail/logging-monitoring.md)"
+]
+},
+"yes": null
+},
+"apply-design-system": {
+"failed": {},
+"yes": null
+},
+"apply-test-plan": {
+"failed": {},
+"yes": null
+},
+"apply-obs-plan": {
+"failed": {
+"OWN_FILE": [
+"[OWN_FILE] E1: .andromeda/registries/contracts/obs-plan/bootstrap-phases-derive-for-route-setup-project.md — not a target of this writer (.andromeda/obs-plan.md, .andromeda/obs-plan-detail/log-coverage.md, .andromeda/obs-plan-detail/pii-scrubbing-compliance.md)"
+]
+},
+"yes": null
+},
+"apply-a11y-plan": {
+"failed": {},
+"yes": null
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [
+".andromeda/runs/2026-11-07T12-33-28-wrap/rec-read-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"harness": [],
+"notes": []
+}
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T13:18:39Z",
+"argv": [
+"render",
+"--batch",
+"apply",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--report",
+"doc:2026-11-07-mounteddata-buffered-render/report",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--respawn",
+"apply-security-plan,apply-obs-plan",
+"--failed",
+"OWN_FILE,RULED",
+"--rows",
+"apply-security-plan=rows ref_n=5, 6 and 7 of fanout-security-plan--cascade.md (fct-agnqdsgq, fct-d2yejoup, fct-q2xi4t6k in input-validation) are main's own: write each as v=refused why: main's own — its target lies outside this writer's files, and write no edit for them; every other row as before",
+"--rows",
+"apply-obs-plan=row ref_n=4 of fanout-obs-plan--cascade.md (fct-k2hfwj7x in the bootstrap-phases key document) is main's own: write it as v=refused why: main's own — its target lies outside this writer's files, and write no edit for it; every other row as before"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"MOVE .andromeda/runs/2026-11-07T12-33-28-wrap/apply-security-plan.md → .andromeda/runs/2026-11-07T12-33-28-wrap/.raw-apply-security-plan.md",
+"MOVE .andromeda/runs/2026-11-07T12-33-28-wrap/apply-obs-plan.md → .andromeda/runs/2026-11-07T12-33-28-wrap/.raw-apply-obs-plan.md",
+"VERDICT: rendered 2 (apply 2) · batch apply-r1 · script ./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/apply-r1.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/apply-security-plan.r1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/apply-obs-plan.r1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/apply-r1.workflow.js",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/apply-r1.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T13:20:49Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-07T12-33-28-wrap/prompts/apply-r1.manifest.json",
+"--before",
+"tree 8d1849cd8230532584b5264f5384112037421a34 index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--after",
+"tree 27f7f0a516b652311a6421137a80d730ba2e9367 index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch apply-r1 · 2 agents · 2 with every named path · trails: .andromeda/runs/2026-11-07T12-33-28-wrap/rec-read-2026-11-07-mounteddata-buffered-render.ndjson",
+"[PATH_CHECK] PASS · index and head unchanged",
+"apply: 2 agents · 2 pass",
+"VERDICT: 2 of 2 pass · failed: none"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "apply-r1",
+"agents": {
+"apply-security-plan": {
+"failed": {},
+"yes": null
+},
+"apply-obs-plan": {
+"failed": {},
+"yes": null
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [
+".andromeda/runs/2026-11-07T12-33-28-wrap/rec-read-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"harness": [],
+"notes": []
+}
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T13:24:42Z",
+"argv": [
+"render",
+"--batch",
+"entry",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--report",
+"doc:2026-11-07-mounteddata-buffered-render/report",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"VERDICT: rendered 6 (entry 6) · batch entry · script ./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/entry.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-entries.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/architecture-entries.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/design-system-entries.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/obs-plan-entries.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/security-plan-entries.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/test-plan-entries.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/entry.workflow.js",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/entry.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T13:26:43Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-07T12-33-28-wrap/prompts/entry.manifest.json",
+"--before",
+"tree 69916431b7e0e6ac4fa2a4b6cb6e7cac2004d1b7 index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--after",
+"tree dfc14a898301d4e5bc31bd071eea0bfc81dc3095 index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch entry · 6 agents · 6 with every named path · trails: .andromeda/runs/2026-11-07T12-33-28-wrap/rec-read-2026-11-07-mounteddata-buffered-render.ndjson",
+"[PATH_CHECK] PASS · index and head unchanged",
+"entry: 6 agents · 6 pass",
+"VERDICT: 6 of 6 pass · failed: none"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "entry",
+"agents": {
+"a11y-plan-entries": {
+"failed": {},
+"yes": null
+},
+"architecture-entries": {
+"failed": {},
+"yes": null
+},
+"design-system-entries": {
+"failed": {},
+"yes": null
+},
+"obs-plan-entries": {
+"failed": {},
+"yes": null
+},
+"security-plan-entries": {
+"failed": {},
+"yes": null
+},
+"test-plan-entries": {
+"failed": {},
+"yes": null
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [
+".andromeda/runs/2026-11-07T12-33-28-wrap/rec-read-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"harness": [],
+"notes": []
+}
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T13:27:14Z",
+"argv": [
+"render",
+"--batch",
+"entry",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--report",
+"doc:2026-11-07-mounteddata-buffered-render/report",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--respawn",
+"a11y-plan-entries",
+"--failed",
+"RULED",
+"--rows",
+"a11y-plan-entries=the entry «the residual owner clauses re-said to their rows' status»: its first change bullet says «Six owner clauses naming residual res-llkgqygv» — they are five (fct-kbjv4usk, fct-zyrpeqlm, fct-cixbakze in the body; fct-p7eqwwyx, fct-ngdl2hcv in a11y-strategy.md; rec.py find --regex 'res-llkgqygv`, re-carried' prints 5 rows); write «Five owner clauses» and keep every other entry and word as it stands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"MOVE .andromeda/runs/2026-11-07T12-33-28-wrap/a11y-plan-entries.md → .andromeda/runs/2026-11-07T12-33-28-wrap/.raw-a11y-plan-entries.md",
+"VERDICT: rendered 1 (entry 1) · batch entry-r1 · script ./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/entry-r1.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/a11y-plan-entries.r1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/entry-r1.workflow.js",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/entry-r1.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T13:29:24Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-07T12-33-28-wrap/prompts/entry-r1.manifest.json",
+"--before",
+"tree 0fc745c219072c994afa096277586091b2764da1 index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--after",
+"tree 9ed4cb7e7f417ba37fdd7c8fee68f4ef1ead6c23 index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch entry-r1 · 1 agents · 1 with every named path · trails: .andromeda/runs/2026-11-07T12-33-28-wrap/rec-read-2026-11-07-mounteddata-buffered-render.ndjson",
+"[PATH_CHECK] PASS · index and head unchanged",
+"entry: 1 agents · 1 pass",
+"VERDICT: 1 of 1 pass · failed: none"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "entry-r1",
+"agents": {
+"a11y-plan-entries": {
+"failed": {},
+"yes": null
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [
+".andromeda/runs/2026-11-07T12-33-28-wrap/rec-read-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"harness": [],
+"notes": []
+}
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T13:30:10Z",
+"argv": [
+"render",
+"--batch",
+"leaf",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--report",
+"doc:2026-11-07-mounteddata-buffered-render/report",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"VERDICT: rendered 15 (leaf 15) · batch leaf · script ./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf-architecture-1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf-architecture-2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf-architecture-3.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf-architecture+security-plan+design-system+test-plan+obs-plan+a11y-plan-1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf-architecture+security-plan+test-plan-1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf-architecture+test-plan.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf-architecture+obs-plan.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf-security-plan-1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf-security-plan-2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf-design-system.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf-test-plan-1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf-test-plan-2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf-obs-plan.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf-a11y-plan-1.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf-a11y-plan-2.md",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf.workflow.js",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T13:31:47Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-07T12-33-28-wrap/prompts/leaf.manifest.json",
+"--before",
+"tree 9807151c4ee83adb4500791b67a04d3dc4bef66f index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--after",
+"tree 370f63259609ededab016512a8d08398d177eda9 index 3e7b51ee0ee09dbceb66edf8dcaaa604d7723e21 head e26f1a2076b12c7383bd2ab662a05beb8da523fe",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch leaf · 15 agents · 15 with every named path · trails: none",
+"[PATH_CHECK] PASS · index and head unchanged",
+"leaf: 15 agents · 15 pass",
+"VERDICT: 15 of 15 pass · failed: none"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "leaf",
+"agents": {
+"leaf-architecture-1": {
+"failed": {},
+"yes": null
+},
+"leaf-architecture-2": {
+"failed": {},
+"yes": null
+},
+"leaf-architecture-3": {
+"failed": {},
+"yes": null
+},
+"leaf-architecture+security-plan+design-system+test-plan+obs-plan+a11y-plan-1": {
+"failed": {},
+"yes": null
+},
+"leaf-architecture+security-plan+test-plan-1": {
+"failed": {},
+"yes": null
+},
+"leaf-architecture+test-plan": {
+"failed": {},
+"yes": null
+},
+"leaf-architecture+obs-plan": {
+"failed": {},
+"yes": null
+},
+"leaf-security-plan-1": {
+"failed": {},
+"yes": null
+},
+"leaf-security-plan-2": {
+"failed": {},
+"yes": null
+},
+"leaf-design-system": {
+"failed": {},
+"yes": null
+},
+"leaf-test-plan-1": {
+"failed": {},
+"yes": null
+},
+"leaf-test-plan-2": {
+"failed": {},
+"yes": null
+},
+"leaf-obs-plan": {
+"failed": {},
+"yes": null
+},
+"leaf-a11y-plan-1": {
+"failed": {},
+"yes": null
+},
+"leaf-a11y-plan-2": {
+"failed": {},
+"yes": null
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [],
+"harness": [],
+"notes": []
+}
+},
+{
+"tool": "fanout",
+"v": "30",
+"sha8": "1eeff99b",
+"ts": "2026-11-07T13:33:54Z",
+"argv": [
+"census",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"cites · 6 agents · first try 4 (cites 4/6) · wall 66 s",
+"stage1 · 13 agents · first try 13 (doc 7/7 · task 6/6) · wall 112 s",
+"classify · 158 agents · first try 158 (classify 158/158) · wall 540 s",
+"strong · 11 agents · first try 11 (strong 11/11) · wall 185 s",
+"newgroup · 13 agents · first try 13 (newgroup 13/13) · wall 54 s",
+"apply · 6 agents · first try 4 (apply 4/6) · wall 305 s",
+"entry · 6 agents · first try 6 (entry 6/6) · wall 121 s",
+"leaf · 15 agents · first try 15 (leaf 15/15) · wall 97 s",
+"re-spawned 5 agent(s) · DISPOSITION 1, EVERY_ROW 1, OWN_FILE 2, RULED 1 · wall 325 s",
+"tally: 6 master(s) · entities 1370 · classify-yes 97 · one-draw-yes 23 · false-yes 66 · draws-dead 0 · batches-on-one 0 · draws 2",
+"sample: off · wrap · 2026-11-07-mounteddata-buffered-render · not forced — the sampler runs on --force alone",
+"SIGNALS: [\"agents-cites:6\", \"first-cites:4\", \"wall-cites:66\", \"agents-doc:7\", \"first-doc:7\", \"agents-task:6\", \"first-task:6\", \"wall-stage1:112\", \"agents-classify:158\", \"first-classify:158\", \"wall-classify:540\", \"agents-strong:11\", \"first-strong:11\", \"wall-strong:185\", \"agents-newgroup:13\", \"first-newgroup:13\", \"wall-newgroup:54\", \"agents-apply:6\", \"first-apply:4\", \"wall-apply:305\", \"agents-entry:6\", \"first-entry:6\", \"wall-entry:121\", \"agents-leaf:15\", \"first-leaf:15\", \"wall-leaf:97\", \"respawn-agents:5\", \"respawn-disposition:1\", \"respawn-every-row:1\", \"respawn-own-file:2\", \"respawn-ruled:1\", \"wall-respawn:325\", \"unchecked:0\", \"entities:1370\", \"classify-yes:97\", \"one-draw-yes:23\", \"false-yes:66\", \"draws-dead:0\", \"batches-on-one:0\", \"draws:2\", \"sampled:0\", \"forced:0\"]",
+"VERDICT: 42 signals · 8 batch(es) · trail .andromeda/runs/2026-11-07T12-33-28-wrap/fanout-2026-11-07-mounteddata-buffered-render.json"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "census",
+"signals": [
+"agents-cites:6",
+"first-cites:4",
+"wall-cites:66",
+"agents-doc:7",
+"first-doc:7",
+"agents-task:6",
+"first-task:6",
+"wall-stage1:112",
+"agents-classify:158",
+"first-classify:158",
+"wall-classify:540",
+"agents-strong:11",
+"first-strong:11",
+"wall-strong:185",
+"agents-newgroup:13",
+"first-newgroup:13",
+"wall-newgroup:54",
+"agents-apply:6",
+"first-apply:4",
+"wall-apply:305",
+"agents-entry:6",
+"first-entry:6",
+"wall-entry:121",
+"agents-leaf:15",
+"first-leaf:15",
+"wall-leaf:97",
+"respawn-agents:5",
+"respawn-disposition:1",
+"respawn-every-row:1",
+"respawn-own-file:2",
+"respawn-ruled:1",
+"wall-respawn:325",
+"unchecked:0",
+"entities:1370",
+"classify-yes:97",
+"one-draw-yes:23",
+"false-yes:66",
+"draws-dead:0",
+"batches-on-one:0",
+"draws:2",
+"sampled:0",
+"forced:0"
+]
+}
+}
+]

@@ -1,0 +1,17 @@
+@proposal n=1 detector=D-cascade severity=warning file=existing-scopes anchor=fct-kaaobbkf basis_doc=doc:2026-11-07-mounteddata-buffered-render/report basis_fact=fct-ttcgtdir
+section: ## Existing Scopes
+change: in dioxus-native-dom's module list, after `mutation_writer`, add «mutation_buffer (crate-private, since 2026-11-07-mounteddata-buffered-render, outside every `accessibility` gate, no `pub use`: the `MutationBuffer` that `DioxusDocument::initial_build` and `Document::poll` render into with the document unborrowed, then replay through one `MutationWriter`)»; `keyboard_compat` stays as written
+sidecar: existing-scopes — dioxus-native-dom's module list gains the crate-private `mutation_buffer` (2026-11-07-mounteddata-buffered-render)
+rationale: the report's Crates / modules adds `mod mutation_buffer;` at lib.rs 21, private and ungated, `keyboard_compat` kept; its Counts / qualifiers moved names fct-kaaobbkf as the one changed module-list site
+@proposal n=2 detector=D-retired severity=warning file=existing-scopes anchor=fct-ktfizprz basis_doc=doc:2026-11-07-mounteddata-buffered-render/report basis_fact=fct-lzssryef
+section: ## Existing Scopes
+change: replace «8 looping both layout modes and the MountedData hazard pinned as two `should_panic` tests, one per mode» with «8 looping both layout modes and two, one per mode, `mounted_data_in_a_task_a_key_handler_spawned_acts_{non_incremental,incremental}` through the helper `spawned_focus_acts`, asserting that the focus a task spawned by a key handler sets acts (`#presses` reads 1, and the engine's focus, the snapshot's one `focused` node and the tree's focus are `focus-target`), the MountedData hazard fixed by the buffered render»; the rest of the record stands
+sidecar: existing-scopes — the probe's two `should_panic` hazard pins re-said as the two `…_spawned_acts_*` tests, the hazard closed by the buffered render (2026-11-07-mounteddata-buffered-render)
+rationale: the report's Retired names the two `should_panic` pins and their helper, renamed and inverted; Symbols / APIs › Tests states the new pins' assertions, and Counts / qualifiers moved lists fct-ktfizprz under `hazard`, `pins` and `probe`; the file keeps 10 `#[test]`
+@proposal n=3 detector=D-new-detail severity=warning file=existing-scopes anchor=fct-ktfizprz fact=F5 basis_doc=doc:2026-11-07-mounteddata-buffered-render/report basis_fact=fct-jkkd7b4q
+section: ## Existing Scopes
+change: add after it the record «- dioxus-native-dom's `DioxusDocument` tests hold upstream's `task_polled_during_render_can_access_document`, ported from `286874cc1` as upstream wrote it, and it passes; on Dioxus 0.7 it also passes with the borrowed render restored, so it is insensitive to the borrow there, and the buffered render's discriminating witness on 0.7 is `dioxus_runtime_probe`'s two `…_spawned_acts_*` tests, which fail with `RefCell already borrowed` under that mutation.»
+sidecar: existing-scopes — upstream's ported render-time task test recorded as insensitive to the borrow on Dioxus 0.7; the probe's two pins named the fix's witness (2026-11-07-mounteddata-buffered-render)
+rationale: the report's Spec claims disproved measured the ported test `ok` with the borrowed render restored and the two pins FAILED; the operator's ruling (`inputs#I3`) is to amend the specs
+@remark
+F3 and F4 (established-decisions) are another group's; test-plan fct-e2zfwpza holds the same witness claim, so proposal 3 should be applied together with test-plan's amendment of that fact.

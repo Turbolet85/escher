@@ -33,7 +33,7 @@ _Extracted from `.andromeda/architecture.md` §Conventions (citations live there
 
 ## Unsafe and borrowing
 - `unsafe` blocks carry an `allow unsafe_code` or `// SAFETY:` comment.
-- Borrow conflicts are worked around by taking a child list or layout out and restoring it; let-chains in `if` conditions are used.
+- Borrow conflicts are worked around by taking a child list or layout out and restoring it, and, on the Dioxus bridge, by rendering the vdom into a crate-private `MutationBuffer` with the document's `RefCell` unborrowed, then borrowing the document once and replaying the buffer through one `MutationWriter`; let-chains in `if` conditions are used.
 
 ## DOM API patterns
 - Mutations go through `DocumentMutator`, which flushes deferred work on `Drop`; take a Stylo snapshot before attribute mutation of in-document nodes.

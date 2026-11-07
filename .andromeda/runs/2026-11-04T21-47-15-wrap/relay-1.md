@@ -1,3 +1,0 @@
-The operator, in this session, after the operator pass stopped on CI#41911351081's red Dependency audit (verbatim):
-
-Both, in one commit "fix(deps): pulldown-cmark 0.13.6, and ignore zip RUSTSEC-2026-0429 by ID" on top of 53ae48a65, as .claude/rules/security.md says. Run cargo update -p pulldown-cmark --precise 0.13.6. Add RUSTSEC-2026-0429 to deny.toml ignore with the reason the three zip IDs carry: anyrender_serialize 0.8.0 (src/lib.rs:562-614) opens ZipArchive and reads only by_name, never extract. Add the ID to the zip drop residual. Run ci-leg.sh audit locally, then the fast leg, the clean-tree guard and the push, then ci.py conclusion. Record it in operator-pass.md. Stop if red.

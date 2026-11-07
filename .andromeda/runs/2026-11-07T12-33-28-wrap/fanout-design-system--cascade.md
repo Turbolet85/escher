@@ -1,0 +1,7 @@
+@proposal n=1 detector=D-new-detail severity=warning file=surface anchor=fct-d47jlprw fact=F1 basis_doc=doc:2026-11-07-mounteddata-buffered-render/report basis_fact=fct-u4yklhu2
+section: ## Surface: desktop-native › ### Platform-Specific Notes
+change: Add after the wasm32 item: "- On every dioxus-native surface (the windowed dioxus_native::launch included), user code run during a render, a component body or a task it polls, can call MountedData set_focus, scroll_to, scroll and the rect and scroll queries without panicking; the call acts on the document as the previous render left it, so a node created in that same render is not yet reachable and set_focus_to returns false for it"
+sidecar: surface: desktop-native platform notes gain the render-time MountedData behaviour and its previous-render limit (2026-11-07-mounteddata-buffered-render)
+rationale: Report Changes, Symbols / APIs: the engine change for every Dioxus document lets MountedData calls run during render with no RefCell already borrowed panic, and the Limit, by construction says such a task sees the previous render's document, so set_focus_to returns false for a node created in that render (F1)
+@remark
+D-design-tokens did not fire: the report's Coverage gives the one new surface, MutationBuffer, tokens n/a with no UI element; the hazard's closure and the pins belong to architecture, test-plan, security-plan and a11y-plan.

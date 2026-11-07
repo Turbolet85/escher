@@ -1,0 +1,1831 @@
+[
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T12:42:24Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-07-mounteddata-buffered-render",
+"--file",
+".andromeda/cache/docs/2026-11-07-mounteddata-buffered-render/report.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-07-mounteddata-buffered-render/report rev 1 · 34 new · 0 revised · 0 retired · 0 kept · tx 196"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T12:42:30Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-07-mounteddata-buffered-render",
+"--section-file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-07-mounteddata-buffered-render/report rev 2 · 9 new · 0 revised · 0 retired · 34 kept · tx 197"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T12:42:53Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-07-mounteddata-buffered-render",
+"--file",
+".andromeda/cache/docs/2026-11-07-mounteddata-buffered-render/report.md",
+"--expect-rev",
+"2",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-07-mounteddata-buffered-render/report rev 3 · 0 new · 1 revised · 0 retired · 42 kept · tx 198"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T12:43:28Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-07-mounteddata-buffered-render",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-07-mounteddata-buffered-render · 1 new · 0 changed · 0 gone · 6 kept · tx 200"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T12:47:28Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-07-mounteddata-buffered-render",
+"--section-file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 2026-11-07-mounteddata-buffered-render/report rev 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T12:50:04Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-07-mounteddata-buffered-render",
+"--section-file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/addendum-1.md",
+"--heading",
+"## Addendum 1 — resumed 2026-11-07",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 2,
+"stdout": [],
+"stderr": "--section-file: its first line must be the heading `## Addendum 1 — resumed 2026-11-07` — nothing written",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T12:50:14Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-07-mounteddata-buffered-render",
+"--section-file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/addendum-1.md",
+"--heading",
+"## Addendum 1 — resumed 2026-11-07",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-07-mounteddata-buffered-render/report rev 4 · 5 new · 0 revised · 0 retired · 43 kept · tx 203"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T12:50:45Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/cites-land-2026-11-07-mounteddata-buffered-render.ndjson",
+"--base",
+"0022acc21f4660283168296321d45c53a68b3461",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 88 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T12:50:56Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/cites-land-2026-11-07-mounteddata-buffered-render.ndjson",
+"--base",
+"0022acc21f4660283168296321d45c53a68b3461",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 88 edge(s) · tx 204"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T12:53:32Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/cites-land-2026-11-07-mounteddata-buffered-render.ndjson",
+"--base",
+"",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 fact(s) · 1 edge(s) · tx 205"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:10:34Z",
+"argv": [
+"get",
+"--root",
+".",
+"fct-kbjv4usk",
+"--at-char",
+"200",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"# fct-kbjv4usk rev 2 · from char 200 of 510",
+"it unconditionally, while seven_guis' own manifest names none, and no stand binary builds a platform adapter, so no assistive technology is given a tree by the stand binary — the adapter and its windowed AT witness owned by residual `res-llkgqygv`, an active assistive technology this version does not reach.\n\n"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:10:34Z",
+"argv": [
+"get",
+"--root",
+".",
+"fct-k2hfwj7x",
+"--at-char",
+"200",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"# fct-k2hfwj7x rev 2 · from char 200 of 515",
+"(ruled by the founder, 2026-10-06): no OTel crate, no egress and no `OTEL_EXPORTER_OTLP_HEADERS` credential path, with the export transport and the credential path both left undecided — a cross-version residual, `res-fzitzzw2`; the sink's `service.name` / `service.version` already use the OTel resource keys (§3).\n"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:10:34Z",
+"argv": [
+"get",
+"--root",
+".",
+"fct-pofw2owv",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"# fct-pofw2owv rev 2 · fact · - — - · tx 154",
+"in: a11y-plan › 7. Screen Reader Support",
+"← in sec-5l3ijcl5 «7. Screen Reader Support»",
+"- Cells' `cells-grid` takes `aria_label` `Cells` and no role; role and cell semantics stay out by residual `res-wvatzhpe`, and what a person reads at a window is `unrunnable-here` — as measured at escher-0.3.0/chunks/2026-10-31-engine-debts/report.md\n",
+"{\"fam\": \"masters\", \"file\": \"screen-reader-support\", \"gid\": \"grp-6svlr2j7\", \"kind\": \"values\", \"subject\": \"sr-actionable-keys\", \"unit\": true, \"last_by\": {\"by\": \"chunk\", \"chunk\": \"2026-10-31-engine-debts\", \"commit\": \"da536ea7a71465aa8c2a65e8b83c2b6203e7e7e9\"}}"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:10:40Z",
+"argv": [
+"get",
+"--root",
+".",
+"fct-agnqdsgq",
+"--at-char",
+"2900",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"# fct-agnqdsgq rev 2 · from char 2900 of 5023",
+"what an assistive technology reads of them unmeasured until a windowed check (no stand binary builds a platform adapter and the dev host's AT-SPI bus reads inactive), the witness owned by residual `res-llkgqygv`, at an active assistive technology this version does not reach, on the founder's F1 «Пока нет, перенести (Рекомендую)» (2026-10-14), the headless half — the tree the shell hands the adapter — proven since 2026-10-14-stand-a11y-assertions (the `id` row) — and the snapshot, which takes the three from the tree node and never parses the element a second time: `NodeState.selected`, `.pressed` (left out for the five checkable roles) and `.checked` (a native checkbox's or radio's own state, else a checkable role's toggle, a mixed one `Some(false)`), each an `Option<bool>` (only `Toggled::True` reads `Some(true)`;\n `False` and `Mixed` read `Some(false)`), and `.invalid`, a `bool` (a grammar or spelling error reads invalid), written by `Snapshot::to_text` as the bare words `selected` / `unselected`, `pressed` / `unpressed` and `invalid` and by `Outcome::to_json` as booleans, crossing the session socket and the client's stdout inside the ratified carriers (the Driver session socket row) and, since 2026-10-10-mcp-surface, MCP tool results on the `mcp` role's stdout — a whole-screen `snapshot` result is `to_text`'s output, a paged one its JSON line `{\"text\",\"part\",\"parts\"}` holding the same lines, and an acting call's result its JSON line, so the states cross there as the same closed words and booleans, never the attribute's text; the password and file mask is untouched (packages/blitz-dom/src/accessibility.rs:182-236; packages/blitz-dom/src/accessibility.rs:374; packages/blitz-dom/src/accessibility.rs:422-442; packages/dioxus-native-dom/src/snapshot.rs:63-74; packages/dioxus-native-dom/src/snapshot.rs:173-186; packages/dioxus-native-dom/src/snapshot.rs:223-235; packages/"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:10:40Z",
+"argv": [
+"get",
+"--root",
+".",
+"fct-d2yejoup",
+"--at-char",
+"4150",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"# fct-d2yejoup rev 2 · from char 4150 of 17923",
+"т, перенести (Рекомендую)» (2026-10-14, by question dialog in the overseer session, relayed by the overseer as his chosen option label, inputs#I2 of escher-0.1.0/chunks/2026-10-14-stand-a11y-assertions), that witness owned by residual `res-llkgqygv`, at an active assistive technology this version does not reach; since 2026-10-10-snapshot-states the crossing carries a third content class, control states — `selected`, `toggled` and `invalid` on each element node whose markup or native checked state states them, closed enums and booleans, never an attribute's value as typed (`toggled` from `aria-checked` on a checkable role and from `aria-pressed` on every other, and on a native checkable from `checkbox_input_checked()` on a checkable role and nothing under any other role, neither author attribute read on it, so `pressed` never begins to read on one; the `aria-selected` · `aria-pressed` · `aria-checked` · `aria-invalid` row) — a widening ratified by the founder (2026-10-10, by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option label «Ратифицировать»;\n the English wording is the overseer's), its windowed witness owed like the refresh's: no check reads the three at the adapter on the dev host; since the 2026-10-17 upstream sync the names it carries include `aria-labelledby`'s computed text (the `aria-label` · `<label for>` row), and it carries a fourth content class, descriptions — `aria-description`'s own text and `aria-describedby`'s targets as `described_by` (the `aria-describedby` · `aria-description` row) — a widening by upstream merge ratified as upstream's behaviour by the founder (2026-10-17, «Утвердить оба (Рекомендую)», both sources confirmed by his «Подтвердить все 10 (Рекомендую)», 2026-10-18), its windowed witness owed like the states'; under the same feature `DioxusDocument::snapshot` is a second, in-process reader "
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:10:40Z",
+"argv": [
+"get",
+"--root",
+".",
+"fct-q2xi4t6k",
+"--at-char",
+"1250",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"# fct-q2xi4t6k rev 2 · from char 1250 of 1646",
+"ed by the overseer); escher routes no agent- or user-supplied input through it; unmeasured at an assistive technology like the states, that windowed witness owned by residual `res-llkgqygv`; pinned by `accessibility_description`'s 3 tests (packages/blitz-dom/src/accessibility.rs:89-102; packages/blitz-dom/src/accessibility.rs:237-268; tests/blitz-tests/tests/accessibility_description.rs:8-93)\n"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:21:00Z",
+"argv": [
+"put",
+"--root",
+".",
+"--section",
+"Edits",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/apply-architecture.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"E1 · applied · fct-apdputpm",
+"E2 · applied · as n1",
+"E3 · applied · as n2",
+"E4 · applied · fct-j4ls6r2g",
+"E5 · applied · fct-hff77mh6",
+"E6 · applied · fct-2fe67avo",
+"E7 · applied · fct-knw5nmxh",
+"E8 · applied · fct-ivrm3he5",
+"E9 · applied · as n3",
+"E10 · applied · fct-67g4co3e",
+"E11 · applied · fct-4ncs7geh",
+"E12 · applied · fct-kaaobbkf",
+"E13 · applied · fct-ktfizprz",
+"E14 · applied · as n4",
+"dry-run · would land 14 record(s) · 41 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:21:00Z",
+"argv": [
+"put",
+"--root",
+".",
+"--section",
+"Edits",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/apply-security-plan.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"E1 · applied · fct-7ni72vcj",
+"E2 · applied · as n1",
+"E3 · applied · as n2",
+"E4 · applied · fct-v23mzgh4",
+"dry-run · would land 4 record(s) · 11 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:21:00Z",
+"argv": [
+"put",
+"--root",
+".",
+"--section",
+"Edits",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/apply-design-system.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"E1 · applied · as n1",
+"dry-run · would land 1 record(s) · 4 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:21:01Z",
+"argv": [
+"put",
+"--root",
+".",
+"--section",
+"Edits",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/apply-test-plan.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"E1 · applied · fct-aitehs62",
+"E2 · applied · fct-jydhmppz",
+"E3 · applied · fct-luwk6iun",
+"E4 · applied · fct-i5a6vv3t",
+"E5 · applied · fct-a7ecinup",
+"E6 · applied · fct-e2zfwpza",
+"E7 · applied · fct-ybmlkzsq",
+"E8 · applied · fct-z2ynupl3",
+"E9 · applied · fct-kgita7a3",
+"E10 · applied · fct-tkwa5aea",
+"E11 · applied · fct-mealwlke",
+"E12 · applied · fct-o7txuegv",
+"E13 · applied · fct-qjdo4c7k",
+"E14 · applied · fct-6torcoto",
+"E15 · applied · fct-fx4qekph",
+"E16 · applied · fct-tp2sx6l7",
+"dry-run · would land 16 record(s) · 21 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:21:01Z",
+"argv": [
+"put",
+"--root",
+".",
+"--section",
+"Edits",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/apply-obs-plan.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"E1 · applied · as n1",
+"E2 · applied · as n2",
+"E3 · applied · as n3",
+"dry-run · would land 3 record(s) · 5 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:21:02Z",
+"argv": [
+"put",
+"--root",
+".",
+"--section",
+"Edits",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/apply-a11y-plan.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"E1 · applied · fct-zyrpeqlm",
+"E2 · applied · fct-cixbakze",
+"E3 · applied · fct-5i3imozy",
+"E4 · applied · fct-kbjv4usk",
+"E5 · applied · fct-gmhtpdel",
+"E6 · applied · as n1",
+"E7 · applied · fct-p7eqwwyx",
+"E8 · applied · fct-ngdl2hcv",
+"E9 · applied · fct-pofw2owv",
+"dry-run · would land 9 record(s) · 12 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:21:02Z",
+"argv": [
+"put",
+"--root",
+".",
+"--section",
+"Edits",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/edits-main.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"E1 · applied · fct-agnqdsgq",
+"E2 · applied · fct-d2yejoup",
+"E3 · applied · fct-q2xi4t6k",
+"E4 · applied · fct-k2hfwj7x",
+"dry-run · would land 4 record(s) · 5 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:21:10Z",
+"argv": [
+"put",
+"--root",
+".",
+"--section",
+"Edits",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/apply-architecture.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"E1 · applied · fct-apdputpm",
+"E2 · applied · as n1",
+"E3 · applied · as n2",
+"E4 · applied · fct-j4ls6r2g",
+"E5 · applied · fct-hff77mh6",
+"E6 · applied · fct-2fe67avo",
+"E7 · applied · fct-knw5nmxh",
+"E8 · applied · fct-ivrm3he5",
+"E9 · applied · as n3",
+"E10 · applied · fct-67g4co3e",
+"E11 · applied · fct-4ncs7geh",
+"E12 · applied · fct-kaaobbkf",
+"E13 · applied · fct-ktfizprz",
+"E14 · applied · as n4",
+"landed 14 record(s) · 41 edge(s) · tx 206"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:21:10Z",
+"argv": [
+"put",
+"--root",
+".",
+"--section",
+"Edits",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/apply-security-plan.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"E1 · applied · fct-7ni72vcj",
+"E2 · applied · as n1",
+"E3 · applied · as n2",
+"E4 · applied · fct-4cylhur3",
+"landed 4 record(s) · 11 edge(s) · tx 207"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:21:11Z",
+"argv": [
+"put",
+"--root",
+".",
+"--section",
+"Edits",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/apply-design-system.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"E1 · applied · as n1",
+"landed 1 record(s) · 4 edge(s) · tx 208"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:21:11Z",
+"argv": [
+"put",
+"--root",
+".",
+"--section",
+"Edits",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/apply-test-plan.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"E1 · applied · fct-aitehs62",
+"E2 · applied · fct-jydhmppz",
+"E3 · applied · fct-luwk6iun",
+"E4 · applied · fct-i5a6vv3t",
+"E5 · applied · fct-4q3czvm2",
+"E6 · applied · fct-e2zfwpza",
+"E7 · applied · fct-ybmlkzsq",
+"E8 · applied · fct-z2ynupl3",
+"E9 · applied · fct-kgita7a3",
+"E10 · applied · fct-sys2coyr",
+"E11 · applied · fct-mealwlke",
+"E12 · applied · fct-o7txuegv",
+"E13 · applied · fct-qjdo4c7k",
+"E14 · applied · fct-3kqdhqos",
+"E15 · applied · fct-fx4qekph",
+"E16 · applied · fct-ucb2m2kd",
+"landed 16 record(s) · 21 edge(s) · tx 209"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:21:12Z",
+"argv": [
+"put",
+"--root",
+".",
+"--section",
+"Edits",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/apply-obs-plan.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"E1 · applied · as n1",
+"E2 · applied · as n2",
+"E3 · applied · as n3",
+"landed 3 record(s) · 5 edge(s) · tx 210"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:21:12Z",
+"argv": [
+"put",
+"--root",
+".",
+"--section",
+"Edits",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/apply-a11y-plan.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"E1 · applied · fct-zyrpeqlm",
+"E2 · applied · fct-cixbakze",
+"E3 · applied · fct-5i3imozy",
+"E4 · applied · fct-kbjv4usk",
+"E5 · applied · fct-gmhtpdel",
+"E6 · applied · as n1",
+"E7 · applied · fct-p7eqwwyx",
+"E8 · applied · fct-ngdl2hcv",
+"E9 · applied · fct-pofw2owv",
+"landed 9 record(s) · 12 edge(s) · tx 211"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:21:13Z",
+"argv": [
+"put",
+"--root",
+".",
+"--section",
+"Edits",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/edits-main.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"E1 · applied · fct-agnqdsgq",
+"E2 · applied · fct-d2yejoup",
+"E3 · applied · fct-q2xi4t6k",
+"E4 · applied · fct-k2hfwj7x",
+"landed 4 record(s) · 5 edge(s) · tx 212"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:23:03Z",
+"argv": [
+"put",
+"--root",
+".",
+"--section",
+"Edits",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/edits-main-2.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"E1 · applied · fct-gosirpve",
+"E2 · applied · fct-h5tukp3g",
+"E3 · applied · fct-4q3czvm2",
+"E4 · applied · fct-yhqlhdr3",
+"dry-run · would land 4 record(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:23:03Z",
+"argv": [
+"put",
+"--root",
+".",
+"--section",
+"Edits",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/edits-main-2.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"E1 · applied · fct-gosirpve",
+"E2 · applied · fct-h5tukp3g",
+"E3 · applied · fct-4q3czvm2",
+"E4 · applied · fct-yhqlhdr3",
+"landed 4 record(s) · 0 edge(s) · tx 213"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:29:31Z",
+"argv": [
+"amend",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/architecture-entries.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"2026-11-07-mounteddata-buffered-render — the bridge's citations re-pointed to their moved  · on-form · 1286 B · amd-yeegoyou",
+"2026-11-07-mounteddata-buffered-render — the bridge's buffered render recorded as a contra · on-form · 1890 B · amd-sbkjeoiq",
+"2026-11-07-mounteddata-buffered-render — the MountedData hazard closed as an engine change · on-form · 2112 B · amd-qm7hofx3",
+"2026-11-07-mounteddata-buffered-render — the buffered render's limit and dioxus-core 0.7.1 · on-form · 1336 B · amd-jxlrl2yf",
+"2026-11-07-mounteddata-buffered-render — non-open residual owner clauses re-said to their  · on-form · 1101 B · amd-hdyz7akn",
+"2026-11-07-mounteddata-buffered-render — the buffered render's witness on Dioxus 0.7 · on-form · 1380 B · amd-642y5ucg",
+"dry-run · would land 6 entr(ies) · 34 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:29:32Z",
+"argv": [
+"amend",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/security-plan-entries.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"2026-11-07-mounteddata-buffered-render — the spawned-task MountedData panic, removed by th · on-form · 1810 B · amd-rxfjbvxo",
+"2026-11-07-mounteddata-buffered-render — the render-path recorder, no panic path and no lo · on-form · 1116 B · amd-pba2tvqa",
+"2026-11-07-mounteddata-buffered-render — the buffered render's limit for a task polled dur · on-form · 715 B · amd-n6oenvw3",
+"2026-11-07-mounteddata-buffered-render — citations re-pointed past the chunk's added bridg · on-form · 823 B · amd-ijqn5sro",
+"2026-11-07-mounteddata-buffered-render — the windowed AT witness's residual, re-said to it · on-form · 783 B · amd-f2yybluw",
+"dry-run · would land 5 entr(ies) · 22 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:29:32Z",
+"argv": [
+"amend",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/design-system-entries.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"2026-11-07-mounteddata-buffered-render — render-time MountedData calls on every Dioxus doc · on-form · 1337 B · amd-psvbcz5h",
+"dry-run · would land 1 entr(ies) · 8 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:29:32Z",
+"argv": [
+"amend",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/test-plan-entries.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"2026-11-07-mounteddata-buffered-render — dioxus-native-dom's unit tests and the mutation b · on-form · 944 B · amd-ul3gmnxe",
+"2026-11-07-mounteddata-buffered-render — residual owners re-said to their rows' status · on-form · 1167 B · amd-scmndtfy",
+"2026-11-07-mounteddata-buffered-render — dioxus_document.rs and dioxus_runtime_probe.rs ci · on-form · 951 B · amd-prwy65bo",
+"2026-11-07-mounteddata-buffered-render — the fix's witness on Dioxus 0.7, the probe's two  · on-form · 2010 B · amd-l56csjar",
+"2026-11-07-mounteddata-buffered-render — the per-OS CI tallies re-read, and attributing a  · on-form · 1254 B · amd-jj6gposz",
+"2026-11-07-mounteddata-buffered-render — the MountedData hazard closed by the buffered ren · on-form · 1264 B · amd-g6ygyaav",
+"2026-11-07-mounteddata-buffered-render — dioxus-native-dom's coverage reading and mutation · on-form · 763 B · amd-blpf5udv",
+"2026-11-07-mounteddata-buffered-render — the buffered render's limit · on-form · 713 B · amd-anldnz3d",
+"2026-11-07-mounteddata-buffered-render — upstream's mounted-event test stays out · on-form · 1009 B · amd-75dlzfnf",
+"dry-run · would land 9 entr(ies) · 42 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:29:32Z",
+"argv": [
+"amend",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/obs-plan-entries.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"2026-11-07-mounteddata-buffered-render — the buffered render's mutation buffer, silent and · on-form · 1603 B · amd-s6e4fhux",
+"2026-11-07-mounteddata-buffered-render — the probe's renamed spawned_acts pins, recorded s · on-form · 977 B · amd-nzrswnsk",
+"2026-11-07-mounteddata-buffered-render — the multiple select's form-entry citation, re-poi · on-form · 512 B · amd-ev74kj4m",
+"2026-11-07-mounteddata-buffered-render — the OTel export residual's status, at its owner s · on-form · 814 B · amd-aglcob3o",
+"dry-run · would land 4 entr(ies) · 16 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:29:33Z",
+"argv": [
+"amend",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/a11y-plan-entries.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"2026-11-07-mounteddata-buffered-render — the residual owner clauses re-said to their rows' · on-form · 1407 B · amd-qg73muve",
+"2026-11-07-mounteddata-buffered-render — citations re-pointed to the bridge's and the prob · on-form · 1279 B · amd-qehlflua",
+"2026-11-07-mounteddata-buffered-render — the spawned-task MountedData hazard record, close · on-form · 2034 B · amd-jujcyqqr",
+"2026-11-07-mounteddata-buffered-render — the buffered render's same-render limit · on-form · 839 B · amd-itvslwih",
+"dry-run · would land 4 entr(ies) · 21 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:29:37Z",
+"argv": [
+"amend",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/architecture-entries.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"2026-11-07-mounteddata-buffered-render — the bridge's citations re-pointed to their moved  · on-form · 1286 B · amd-otydzpuz",
+"2026-11-07-mounteddata-buffered-render — the bridge's buffered render recorded as a contra · on-form · 1890 B · amd-gu53aumo",
+"2026-11-07-mounteddata-buffered-render — the MountedData hazard closed as an engine change · on-form · 2112 B · amd-7nqjoojl",
+"2026-11-07-mounteddata-buffered-render — the buffered render's limit and dioxus-core 0.7.1 · on-form · 1336 B · amd-62mpv4th",
+"2026-11-07-mounteddata-buffered-render — non-open residual owner clauses re-said to their  · on-form · 1101 B · amd-5vcgkdw4",
+"2026-11-07-mounteddata-buffered-render — the buffered render's witness on Dioxus 0.7 · on-form · 1380 B · amd-5ibsrl24",
+"landed 6 entr(ies) · 34 edge(s) · tx 214"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:29:37Z",
+"argv": [
+"amend",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/security-plan-entries.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"2026-11-07-mounteddata-buffered-render — the spawned-task MountedData panic, removed by th · on-form · 1810 B · amd-r7gjmvn5",
+"2026-11-07-mounteddata-buffered-render — the render-path recorder, no panic path and no lo · on-form · 1116 B · amd-pahrhqsl",
+"2026-11-07-mounteddata-buffered-render — the buffered render's limit for a task polled dur · on-form · 715 B · amd-mj4ozyft",
+"2026-11-07-mounteddata-buffered-render — citations re-pointed past the chunk's added bridg · on-form · 823 B · amd-kc5bmabu",
+"2026-11-07-mounteddata-buffered-render — the windowed AT witness's residual, re-said to it · on-form · 783 B · amd-7p6df46t",
+"landed 5 entr(ies) · 22 edge(s) · tx 215"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:29:38Z",
+"argv": [
+"amend",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/design-system-entries.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"2026-11-07-mounteddata-buffered-render — render-time MountedData calls on every Dioxus doc · on-form · 1337 B · amd-btcjq4vl",
+"landed 1 entr(ies) · 8 edge(s) · tx 216"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:29:38Z",
+"argv": [
+"amend",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/test-plan-entries.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"2026-11-07-mounteddata-buffered-render — dioxus-native-dom's unit tests and the mutation b · on-form · 944 B · amd-x4m5gjdg",
+"2026-11-07-mounteddata-buffered-render — residual owners re-said to their rows' status · on-form · 1167 B · amd-mfx3nppa",
+"2026-11-07-mounteddata-buffered-render — dioxus_document.rs and dioxus_runtime_probe.rs ci · on-form · 951 B · amd-losj47yu",
+"2026-11-07-mounteddata-buffered-render — the fix's witness on Dioxus 0.7, the probe's two  · on-form · 2010 B · amd-kmiudnmn",
+"2026-11-07-mounteddata-buffered-render — the per-OS CI tallies re-read, and attributing a  · on-form · 1254 B · amd-jy34nxjf",
+"2026-11-07-mounteddata-buffered-render — the MountedData hazard closed by the buffered ren · on-form · 1264 B · amd-jmojotdw",
+"2026-11-07-mounteddata-buffered-render — dioxus-native-dom's coverage reading and mutation · on-form · 763 B · amd-g4rjfxtm",
+"2026-11-07-mounteddata-buffered-render — the buffered render's limit · on-form · 713 B · amd-f6w3v2eb",
+"2026-11-07-mounteddata-buffered-render — upstream's mounted-event test stays out · on-form · 1009 B · amd-6kqtriic",
+"landed 9 entr(ies) · 42 edge(s) · tx 217"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:29:38Z",
+"argv": [
+"amend",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/obs-plan-entries.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"2026-11-07-mounteddata-buffered-render — the buffered render's mutation buffer, silent and · on-form · 1603 B · amd-qrj3ym2p",
+"2026-11-07-mounteddata-buffered-render — the probe's renamed spawned_acts pins, recorded s · on-form · 977 B · amd-kdvlpiyf",
+"2026-11-07-mounteddata-buffered-render — the multiple select's form-entry citation, re-poi · on-form · 512 B · amd-j2dguaiu",
+"2026-11-07-mounteddata-buffered-render — the OTel export residual's status, at its owner s · on-form · 814 B · amd-frvauysc",
+"landed 4 entr(ies) · 16 edge(s) · tx 218"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:29:39Z",
+"argv": [
+"amend",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/a11y-plan-entries.md",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"2026-11-07-mounteddata-buffered-render — the residual owner clauses re-said to their rows' · on-form · 1407 B · amd-uqlhz7da",
+"2026-11-07-mounteddata-buffered-render — citations re-pointed to the bridge's and the prob · on-form · 1279 B · amd-rtazdf67",
+"2026-11-07-mounteddata-buffered-render — the spawned-task MountedData hazard record, close · on-form · 2034 B · amd-mxckucab",
+"2026-11-07-mounteddata-buffered-render — the buffered render's same-render limit · on-form · 839 B · amd-6mvyo2z4",
+"landed 4 entr(ies) · 21 edge(s) · tx 219"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:32:39Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/conventions.md",
+"--file",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/staged-leaf-.claude__docs__conventions.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/conventions.md rev 2 · 0 new · 1 revised · 0 retired · tx 220"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson",
+"./.claude/docs/conventions.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:32:39Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/dioxus-native-dom.md",
+"--file",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/staged-leaf-.claude__docs__services__dioxus-native-dom.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/dioxus-native-dom.md rev 3 · 0 new · 3 revised · 0 retired · tx 221"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson",
+"./.claude/docs/services/dioxus-native-dom.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:32:40Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/seven_guis.md",
+"--file",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/staged-leaf-.claude__docs__services__seven_guis.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/seven_guis.md rev 3 · 0 new · 1 revised · 0 retired · tx 222"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson",
+"./.claude/docs/services/seven_guis.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:32:40Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/obs-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/staged-leaf-.claude__docs__obs-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/obs-summary.md rev 3 · 0 new · 2 revised · 0 retired · tx 223"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson",
+"./.claude/docs/obs-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:32:40Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/tests-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/staged-leaf-.claude__docs__tests-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/tests-summary.md rev 3 · 0 new · 2 revised · 0 retired · tx 224"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson",
+"./.claude/docs/tests-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:32:41Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/testing.md",
+"--file",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap/staged-leaf-.claude__rules__testing.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/testing.md rev 2 · 0 new · 1 revised · 0 retired · tx 225"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson",
+"./.claude/rules/testing.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:37:05Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 4 record(s) · 2 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:37:10Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 4 record(s) · 2 edge(s) · tx 239 · cry-nmakbxjn … res-433ttjb2"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson",
+"./escher-0.3.0/working-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:37:11Z",
+"argv": [
+"retire",
+"--root",
+".",
+"cry-2uvuatvh",
+"--expect-rev",
+"1",
+"--dry-run",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would retire cry-2uvuatvh"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:37:17Z",
+"argv": [
+"retire",
+"--root",
+".",
+"cry-2uvuatvh",
+"--expect-rev",
+"1",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"retired 1 node(s) · 1 edge(s) · tx 240"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:37:58Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-07T12-33-28-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap",
+"--marker",
+"2026-11-07-mounteddata-buffered-render"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 242 · run-ppj3z74u … run-ppj3z74u"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T10-50-04-2026-11-07-mounteddata-buffered-render.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.18",
+"sha8": "4d05acd4",
+"ts": "2026-11-07T13:45:28Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-07-mounteddata-buffered-render",
+"--run-dir",
+".andromeda/runs/2026-11-07T12-33-28-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 9 file(s) of 2026-11-07-mounteddata-buffered-render"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

@@ -1,0 +1,12 @@
+@carry in=chk-236uegsz
+CARRY: six product lines still name the retired `.andromeda/residuals.md` as an owner, each now a `residual` row: `deny.toml:22` (RUSTSEC-2024-0436's ignore reason) → `res-kdhnfj5p`; `deny.toml:27-29` (the RUSTSEC-2026-0370 · 0371 · 0372 ignore reasons) → `res-p73cueyv`; `docs/capabilities.md:293` (the windowed witness, «disposition reads `re-carried:0.2.0`») → `res-llkgqygv`; `docs/capabilities.md:15`, the convention line → «an `@residual` row»; the three rows read `re-carried` at 0.3.0, target `next`; this entry rewrites that statement and the ignore reasons with it (listed at escher-0.3.0/chunks/2026-11-07-mounteddata-buffered-render/inputs/I5-f424-next-wrap-2026-11-05.md.txt; placed on the operator's word at that chunk's wrap, escher-0.3.0/chunks/2026-11-07-mounteddata-buffered-render/inputs/I4-relay-2.md.txt)
+
+@carry in=chk-sdwbtjim
+CARRY: the merge surface of 2026-11-07-mounteddata-buffered-render's buffered render, flagged not upstreamable with nothing sent: `packages/dioxus-native-dom/src/dioxus_document.rs` (the two render sites, the `buffered_mutations` field, the ported `task_polled_during_render_can_access_document`), `mutation_buffer.rs` (escher's own file, which upstream's 0.8 `mutation_buffer.rs` replaces whole when the 0.8 move is taken) and `lib.rs` (one `mod` line); re-read at this take beside the merge-surface residual `res-3v42legm`, absorbed into `v030-03` (record: escher-0.3.0/chunks/2026-11-07-mounteddata-buffered-render/report.md)
+
+@carry id=cry-jlxpxul2 expect_rev=1
+old: it returns with `286874cc1` (placed
+new: it returns with the Dioxus 0.8 move, not with `286874cc1`'s buffered render, which was ported onto the 0.7 bridge without it and moves no scheduling (measured at escher-0.3.0/chunks/2026-11-07-mounteddata-buffered-render/report.md) (placed
+
+@residual origin=2026-11-07-mounteddata-buffered-render status=open target=next
+the buffered render's limit, by construction: a task polled during a Dioxus render acts on the document as the previous render left it, so a node created in that same render is not yet in it and `MountedData::set_focus` on it does nothing (`set_focus_to` returns `false`); the probe's two `…_spawned_acts_*` pins act on nodes an earlier render mounted (measured at escher-0.3.0/chunks/2026-11-07-mounteddata-buffered-render/report.md); recorded as a residual on the operator's directive at that chunk's wrap (escher-0.3.0/chunks/2026-11-07-mounteddata-buffered-render/inputs/I4-relay-2.md.txt)

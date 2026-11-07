@@ -1,3 +1,0 @@
-The operator, at this wrap's resume invocation (`/andromeda-wrap-session`), verbatim:
-
-resume from report.md in .andromeda/runs/2026-11-04T21-47-15-wrap. Force the sampler: the operator's word, so detail.py sample runs with --force. The founder answered the probe reading's fork 1 by dialog in the overseer session, relayed by the overseer: «Реестр сигналов escher (Рекомендую)». Forks 2 and 3: A and A. So «The UI graph» carries these three answers as a dated note, and takes no BLOCKED-ON. The criterion on Cargo.lock and deny.toml: resolve it by the plan's-wording arm on the operator's word: they moved only by the advisory fix 9b3b29714, and what the criterion protects held.

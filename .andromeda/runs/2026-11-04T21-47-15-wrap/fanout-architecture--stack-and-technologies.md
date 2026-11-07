@@ -1,7 +1,0 @@
-@proposal n=1 detector=D-arch-decisions severity=warning file=stack-and-technologies anchor=fct-kjoxjobc basis_doc=doc:2026-11-04-dioxus-runtime-probe/report basis_fact=fct-wwfanvdo
-section: ## Stack and Technologies
-change: In the Markdown app (rdme) row's Technology, «pulldown-cmark 0.13 (resolved 0.13.5, past RUSTSEC-2026-0414; `rdme` never sets `ENABLE_WIKILINKS`, so no reader is exposed; …)» becomes «pulldown-cmark 0.13 (resolved 0.13.6, past RUSTSEC-2026-0414 and RUSTSEC-2026-0433, the 0.13.5 → 0.13.6 bump a `Cargo.lock`-only semver-compatible update at 2026-11-04-dioxus-runtime-probe; `rdme` never sets `ENABLE_WIKILINKS`, so no reader is exposed; …)», the rest of the row unchanged.
-sidecar: architecture/stack-and-technologies rdme row: pulldown-cmark resolved 0.13.5 → 0.13.6, past RUSTSEC-2026-0433 too (2026-11-04-dioxus-runtime-probe, fix commit 9b3b29714).
-rationale: The report's Dependencies bullet (fct-wwfanvdo) bumps pulldown-cmark 0.13.5 → 0.13.6 in Cargo.lock alone, fixing RUSTSEC-2026-0433, and its zip-ignore pattern names this fact's «resolved 0.13.5» as changed; the row still states 0.13.5 as the resolution.
-@remark
-No other drift in this file: no crate added, Dioxus stays "0.7.3" (dioxus-core/signals 0.7.10 in the lock), the new test target uses only listed blitz-tests dev-dependencies, and the deny.toml ignore is covered by the Code quality row's generic «per-ID ignores each with a reason»; the zip 2.4.2 fourth ID is security-plan's site.

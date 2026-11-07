@@ -1,0 +1,13 @@
+@leaf_group group=obs-plan
+@leaf_read leaf=.claude/docs/obs-summary.md lines=59
+last: **Full plan:** `.andromeda/obs-plan.md`. Path-scoped rules: `
+@leaf_read leaf=.claude/rules/observability.md lines=41
+last: - 2026-10-06: With the workspace's tracing 0.1.44, `tracing::
+@leaf_edit n=1 leaf=.claude/docs/obs-summary.md line=43 class=omission
+leaf-text: a label leaves only as a painted pixel and the snapshot's existing `name` (2026-10-31-select-popup).
+source: fct-myhl4hwq «The buffered render's `MutationBuffer` (dioxus-native-dom, crate-private) holds element ids, tag and attribute names, attribute values and text node contents in process memory only, from a render to its replay»
+replace-with: a label leaves only as a painted pixel and the snapshot's existing `name` (2026-10-31-select-popup). The buffered render's `MutationBuffer` (dioxus-native-dom, crate-private) holds element ids, tag and attribute names, attribute values and text node contents in process memory only, from a render to its replay, which drains the entries and clears its text arena; its `Debug` prints `len` alone, and nothing logs, fields or prints its contents, the silence census over the module reading 0 (2026-11-07-mounteddata-buffered-render).
+@leaf_edit n=2 leaf=.claude/docs/obs-summary.md line=49 class=omission
+leaf-text: `checkable_change_event` and `text_range_no_change_event` hold no print, env read, subscriber or listener, the silence census reading 0 (2026-10-31-engine-debts).
+source: fct-x7v6upkc «no site added: dioxus-native-dom's crate-private module `mutation_buffer` (`MutationBuffer`, recording dioxus-core 0.7.10's 15 `WriteMutations` calls and replaying them into `MutationWriter`)»
+replace-with: `checkable_change_event` and `text_range_no_change_event` hold no print, env read, subscriber or listener, the silence census reading 0 (2026-10-31-engine-debts); dioxus-native-dom's crate-private `mutation_buffer` (`MutationBuffer`, recording dioxus-core 0.7.10's 15 `WriteMutations` calls and replaying them into `MutationWriter`) and the lines of `DioxusDocument::initial_build` and `Document::poll` that render through it hold no log site, print, env read, listener or panic token, both silence censuses reading 0, the replay re-firing `MutationWriter`'s own `trace!` calls so the log stream is the one the direct write gives, and `dioxus_runtime_probe`'s two pins `mounted_data_in_a_task_a_key_handler_spawned_acts_non_incremental` and `…_incremental` and their helper `spawned_focus_acts` hold no print, env read, subscriber or listener, the silence census reading 0 (2026-11-07-mounteddata-buffered-render).

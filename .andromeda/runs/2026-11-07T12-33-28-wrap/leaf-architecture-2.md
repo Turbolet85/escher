@@ -1,0 +1,23 @@
+@leaf_group group=architecture-2
+@leaf_read leaf=.claude/docs/services/dioxus-native-dom.md lines=44
+last: - `.andromeda/architecture.md` · `.claude/docs/services/blit
+@leaf_read leaf=.claude/docs/services/seven_guis.md lines=44
+last: - `.claude/rules/a11y.md` (the stand is in its paths) · `.clau
+@leaf_read leaf=.claude/docs/stack.md lines=59
+last: 4. Commit as `chore: bump {crate} to {version}`.
+@leaf_edit n=1 leaf=.claude/docs/services/dioxus-native-dom.md line=31 class=retired
+leaf-text: `DioxusDocument::poll` holds the document's `RefCell` across `render_immediate`, where dioxus-core 0.7.10 first polls a queued task through `handle_task_wakeup`, so a task spawned from a key handler that writes a signal and calls `set_focus` borrows through `doc_mut` and panics (`events.rs:162`, `RefCell already borrowed`) — a measured hazard any app meets, no engine change, pinned by `dioxus_runtime_probe`'s two `should_panic` tests; Cells calls its handles synchronously, and the fix, a port of upstream `286874cc1`'s buffered render onto the Dioxus 0.7 bridge, is owned by the route entry «MountedData buffered render».
+source: fct-apdputpm «`DioxusDocument::initial_build` and `Document::poll` render through the crate-private `MutationBuffer` (`buffered_mutations`) with the document unborrowed, then take `inner.borrow_mut()` once»
+replace-with: `DioxusDocument::initial_build` and `Document::poll` render through the crate-private `MutationBuffer` (`buffered_mutations`) with the document unborrowed, then take `inner.borrow_mut()` once, replay through one `MutationWriter` and drop the writer and the borrow before `flush_queued_mounted_events`, so a task dioxus-core 0.7.10 polls inside `render_immediate` that writes a signal and calls `set_focus` reaches the document through `MountedData` and `doc_mut` with no `RefCell already borrowed` panic — a direct engine change for every Dioxus document, a port of upstream `286874cc1`'s buffered render onto the Dioxus 0.7 bridge, flagged not upstreamable (upstream holds its 0.8 form), witnessed by `dioxus_runtime_probe`'s two `mounted_data_in_a_task_a_key_handler_spawned_acts_{non_incremental,incremental}` tests; its limit: a task polled during render acts on the document as the previous render left it, so `set_focus_to` returns `false` for a node created in that same render; Cells still calls its handles synchronously, kept, the hazard not needing it.
+@leaf_edit n=2 leaf=.claude/docs/services/dioxus-native-dom.md line=38 class=omission
+leaf-text: `src/{actionable,dioxus_document,element_id,mutation_writer,events,snapshot,snapshot_diff,snapshot_text,write_once_attr,keyboard_compat}.rs`
+source: fct-kaaobbkf «mutation_buffer (crate-private, outside every `accessibility` gate, no `pub use`: the `MutationBuffer` that `DioxusDocument::initial_build` and `Document::poll` render into with the document unborrowed»
+replace-with: `src/{actionable,dioxus_document,element_id,mutation_writer,mutation_buffer,events,snapshot,snapshot_diff,snapshot_text,write_once_attr,keyboard_compat}.rs` (`mutation_buffer`, crate-private, outside every `accessibility` gate, no `pub use`: the `MutationBuffer` the bridge renders into with the document unborrowed, then replays through one `MutationWriter`)
+@leaf_edit n=3 leaf=.claude/docs/services/dioxus-native-dom.md line=41 class=omission
+leaf-text: four drop tests in `dioxus_document.rs`
+source: fct-mxtbc4gi «dioxus-native-dom's `DioxusDocument` tests hold upstream's `task_polled_during_render_can_access_document` from `286874cc1`, as upstream wrote it, and it passes»
+replace-with: four drop tests in `dioxus_document.rs` (beside them upstream's `task_polled_during_render_can_access_document` from `286874cc1`, as upstream wrote it — it passes, but on Dioxus 0.7 also with the borrowed render restored, so the buffered render's discriminating witness is `dioxus_runtime_probe`'s two `…_spawned_acts_*` tests)
+@leaf_edit n=4 leaf=.claude/docs/services/seven_guis.md line=31 class=stale
+leaf-text: it calls its `MountedData` handles synchronously, such a call in a signal-writing task spawned from a key handler panicking at `events.rs:162` (`RefCell already borrowed`)
+source: fct-apdputpm «so a task dioxus-core 0.7.10 polls inside `render_immediate` that writes a signal and calls `set_focus` reaches the document through `MountedData` and `doc_mut` with no `RefCell already borrowed` panic»
+replace-with: it calls its `MountedData` handles synchronously, kept since the bridge's buffered render though the hazard no longer needs it — a signal-writing task spawned from a key handler now reaches the document through `MountedData` with no `RefCell already borrowed` panic
