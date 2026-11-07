@@ -1,0 +1,24 @@
+@extract_section name=relevance
+partial — the chunk changes no surface, region, component placement or focus order; its layouts stake is that every Dioxus document's layout, focus and in-render MountedData effects come out the same once the render goes through the buffer
+@extract_section name=constraints
+- layout-templates §Primary screens (sec-dq2cwdsx) requires the stand's mount to stay as stated: `main#main > #task-shell`, `#task-header > #back-btn + #task-title` above `#task-body`, at the pinned 800 × 600, scale 1.0, Light viewport. A buffered render must build that same tree with no markup, id, class, style, wrapper or order moved (@fct-nxmh4fah).
+- layout-templates §Primary screens (sec-dq2cwdsx) requires every stand Tab sequence to stay as stated: CRUD's six stops, the flight booker's four or five, `CELLS_TAB_ORDER`, `LOAD_TAB_ORDER`. The tree's focus stays on the CRUD list and never moves to a row (@fct-nxmh4fah, @fct-bla7ziiz, @fct-xlkkhy76, @fct-5a7qhqx6).
+- layout-templates §Primary screens (sec-dq2cwdsx) requires the Cells grid's arrows to bring the current cell into view through a synchronous `MountedData::scroll_to(ScrollBehavior::Instant)`, and the editor's Enter to return focus to the grid. That MountedData path is the one this chunk's buffered render must leave working. Whether those handlers run inside a render, and so hit the borrow today, is research's question (@fct-xlkkhy76).
+- layout-templates §IA notes (sec-ge4vhhot) requires each document to start from the fixed skeleton `<html><head></head><body><main id="main"></main></body></html>`, with the app mounting into `main`. Head elements must still go to `<head>`. Replaying buffered mutations must keep both (@fct-3yebjmlo, @fct-bvy3ajht).
+- layout-templates §IA notes (sec-ge4vhhot) requires `scroll_into_view` to scroll every scrolling box that holds its target, innermost first, and then the viewport. On the stand, `crud-list` must read (24, 112.796875, 369 × 419.203125) at boot and `task-body` (0, 46, 800 × 554). A MountedData `scroll_to`/`scroll` reached during render must give these same readings (@fct-kontkuux).
+- layout-templates §IA notes (sec-ge4vhhot) requires the visual lint to read 0 findings at boot on the four lean tasks (`stand_lint` `at_boot` `[0, 0, 0, 0]`) and on the load page, in both layout modes (@fct-g6ui4uo3).
+@extract_section name=patterns
+- The stand's stable element ids are author `id`s that add no class, style, wrapper or order. Node identity and the snapshot depend on them, so the buffer has to replay them unchanged (per layout-templates §Primary screens).
+- A keyboard region is a container with `tabindex="0"`, an `onkeydown` and focus held on the container. The CRUD list and the Cells grid follow this pattern, and the Cells grid moves its current cell into view through MountedData (per layout-templates §Primary screens).
+- The scrolling boxes inside the viewport and their into-view scroll order are the geometry that a MountedData `scroll_to`/`get_scroll_offset`/`get_client_rect` reads and writes (per layout-templates §IA notes).
+@extract_section name=anti_patterns
+- No stand markup, id, class, style, wrapper or order moved. layout-templates §Primary screens bans this across the stand, and the chunk's engine change must not get around it by producing a different tree.
+- No change to Tab sequences or the focus target (list, not row). layout-templates §Primary screens bans this, and it covers focus set through `set_focus` from a task polled during render as well.
+@extract_section name=bindings
+- layouts ↔ a11y: the stand's Tab sequences and the focus a MountedData `set_focus` sets bind to a11y §Focus Order SC 2.4.3. The inverted probe pins assert that focus moves (per layout-templates §Primary screens).
+- layouts ↔ tests: the layout invariants are witnessed by the existing `stand_keyboard`, `stand_lint`, `stand_act_scroll` and `stand_load_page` checks in both layout modes (per layout-templates §Primary screens and §IA notes).
+@extract_section name=acceptance
+- (layouts) After the port, the stand mounts `main#main > #task-shell` with `#task-header > #back-btn + #task-title` above `#task-body` at 800 × 600, and every task's stable element ids are unchanged (per layout-templates §Primary screens).
+- (layouts) CRUD, flight booker, Cells and load page Tab sequences read as stated (`CELLS_TAB_ORDER`, `LOAD_TAB_ORDER`, CRUD's six stops) in both layout modes. A Cells arrow key still brings the current cell into view through `MountedData::scroll_to` (per layout-templates §Primary screens).
+- (layouts) `crud-list` reads (24, 112.796875, 369 × 419.203125) and `task-body` reads (0, 46, 800 × 554) at boot (per layout-templates §IA notes).
+- (layouts) `stand_lint` `at_boot` reads `[0, 0, 0, 0]` and the load page reads 0 at boot, in both layout modes (per layout-templates §IA notes).

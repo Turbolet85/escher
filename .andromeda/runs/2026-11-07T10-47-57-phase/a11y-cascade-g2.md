@@ -1,0 +1,25 @@
+@carried n=1 label=a11y-plan/keyboard-navigation fact=fct-3kktmzb3
+why: the inverted pins' precondition walks Tab over this focusability reading and the replayed buffer must still reach the mutator flush where the focus fixup runs, so both must hold under the buffered render.
+quote: the Tab walk (`focus_next_node` / `focus_prev_node`), autofocus (a disabled form control or an inert candidate skipped) and `DioxusDocument::unkeyed_actionable` read it (packages/blitz-dom/src/node/element.rs:516-520; packages/blitz-dom/src/node/element.rs:743; packages/blitz-dom/src/node/node.rs:574-591; tests/blitz-tests/tests/stand_keyboard.rs:889-930) — the presence reading ratified by the founder (2026-10-13, «По наличию (Рекомендую)», confirmed on the wrap's answer card on 2026-10-14 «Подтвердить (Рекомендую)», each by question dialog in the overseer session, relayed verbatim by the overseer as his chosen option label), its narrowing to form controls and the `inert` read ratified by the founder (2026-10-18); HTML's focus fixup is built, in every document, so a node that holds focus when it becomes inert gives focus up at the flush, no DOM `blur` or `focusout` firing (the line below)
+@carried n=1 run=2 label=a11y-plan fact=fct-2bz7tofn
+quote: HTML's focus fixup is built, so a node holding focus when it comes under `inert`, a subtree moved under an inert box included, gives focus up as the mutator flushes, no DOM `blur` or `focusout` firing.
+@carried n=2 label=a11y-plan/keyboard-navigation fact=fct-r67nqedq
+why: the buffered render must apply its buffer through MutationWriter and still flush the mutator once per applied buffer, so the fixup's clear_focus runs on the replayed document as on the direct write.
+quote: `DocumentMutator::flush` calls `BaseDocument::clear_focus` where `focus_node_id` resolves to a node reading `is_inert()`, in every document, with no `inert` arm joining the attribute writes, so a subtree moved under an inert box is covered too; no DOM `blur` or `focusout` fires, and `disabled` and `hidden` take no part in it
+@carried n=3 label=a11y-plan/keyboard-navigation fact=fct-pqyrk5rl
+why: each inverted pin must first focus the key target by a Tab press through the harness and read it back before the spawned task's set_focus, in both layout modes.
+quote: Tab moves focus to the next node and Shift+Tab to the previous, dispatching focus events (packages/blitz-dom/src/events/keyboard.rs:30-48); `focus_next_node` / `focus_prev_node` move focus to the next/previous focussable node (packages/blitz-dom/src/document.rs:2222-2235)
+@carried n=4 label=a11y-plan/keyboard-navigation fact=fct-is66hfzy
+why: the replay must route every recorded set-attribute and remove-attribute call through MutationWriter's existing mutator paths, never a shortcut write, so cached focusability is recomputed exactly as under the direct write.
+quote: Cached focusability is recomputed when `tabindex`, `href` or `disabled` is set or removed (packages/blitz-dom/src/mutator.rs:334-343; packages/blitz-dom/src/mutator.rs:489-496)
+@carried n=5 label=a11y-plan/keyboard-navigation fact=fct-37ibnveb
+why: disabled-ness and focusability read the attribute's presence, so the replayed set-attribute calls must reach both of MutationWriter's attribute paths where a falsy Dioxus value removes the attribute.
+quote: the `DISABLED`/`ENABLED` element state (hence `:disabled`) reads the attribute's PRESENCE, and the pointer-move gate, `ClickTarget::Disabled`, `handle_click`'s walk gate, the Enter and Space activation and focusability read `ElementData::is_disabled`
+@carried n=5 run=2 label=a11y-plan fact=fct-fi2um7zb
+quote: A falsy Dioxus value (Bool false, Text `"false"`, Int 0, Float 0.0, None) of one of the bridge's 28 boolean attributes — upstream's `is_bool_attr` set, `disabled`, `hidden` and `inert` among them — removes the attribute on both attribute paths, so an enabled control does not match `:disabled` and `hidden: false` keeps an element laid out and in the tree
+@binding n=1
+**keyboard-focus-order ↔ scope (buffered render)**: the buffer is applied through the existing MutationWriter and the mutator flushed once per applied buffer, so the inert focus fixup runs on the replayed document (a11y-plan/keyboard-navigation fct-r67nqedq) and every attribute write reaches the mutator's set/remove paths where cached focusability is recomputed (a11y-plan/keyboard-navigation fct-is66hfzy).
+@binding n=2
+**keyboard-focus-order ↔ keyboard-framework**: the presence-keyed disabled reading (a11y-plan/keyboard-navigation fct-37ibnveb) holds only while the replay keeps the falsy-value removal on both attribute paths (a11y-plan fct-fi2um7zb); a recorder that stores a falsy value as a written attribute would make an enabled control unfocusable.
+@binding n=3
+**keyboard-focus-order ↔ the inverted pins and strategy's changed set**: the Tab press precondition (a11y-plan/keyboard-navigation fct-pqyrk5rl) is asserted before the task's set_focus, and the focus change set_focus makes must mark the changed set so the tree refresh sees it (a11y-plan fct-xhpyuh5z).

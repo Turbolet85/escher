@@ -9,13 +9,12 @@
 //! hook-local signals, which dioxus-core keeps crate-private, so links 3 and 4 for that state are
 //! read from the code and not run here.
 //!
-//! It also pins the MountedData hazard as it stands: a task spawned from a key handler that writes
-//! a signal is first polled inside `render_immediate`, while `DioxusDocument::poll` holds the
-//! document's `RefCell`, so a `MountedData` call in it panics `RefCell already borrowed`. Any app
-//! can meet it; the engine-debts reading of 2026-10-31 measured it beside its step 15. Upstream
-//! fixed it by rendering into a mutation buffer with the document unborrowed
-//! (https://github.com/DioxusLabs/blitz/pull/1260), in the commit that moves Dioxus to 0.8; its
-//! port inverts the pin. The same handler calling `set_focus` with no task acts.
+//! It also pins the MountedData hazard's fix: a task spawned from a key handler that writes a
+//! signal is first polled inside `render_immediate`, which once held the document's `RefCell`, so
+//! a `MountedData` call in it panicked `RefCell already borrowed` (the engine-debts reading of
+//! 2026-10-31 measured it beside its step 15). The bridge now renders into a mutation buffer with
+//! the document unborrowed (upstream `286874cc1`, https://github.com/DioxusLabs/blitz/pull/1260,
+//! ported onto Dioxus 0.7), so the same `MountedData` call acts, as it does with no task.
 //!
 //! Every failure message names a layout mode, a task or page and a link or an index; none holds
 //! a component name, a listener read off a node, a signal's value or a node id.
@@ -572,21 +571,46 @@ fn hazard_ready(page: fn() -> Element, incremental: bool) -> Harness<DioxusDocum
     harness
 }
 
-fn press_with_spawned_focus(incremental: bool) {
+/// Presses a key on the spawning hazard page and reads that the task's focus request moved focus
+/// to the focus target, as the engine, the snapshot and the accessibility tree each read it.
+#[track_caller]
+fn spawned_focus_acts(incremental: bool) {
     let mut harness = hazard_ready(hazard_spawned, incremental);
+    let focus_target = harness.node("#focus-target");
     harness.press(Key::Named(NamedKey::ArrowDown));
+    assert!(
+        harness.text_content("#presses") == "1",
+        "incremental={incremental} hazard page: the key handler ran once"
+    );
+    assert!(
+        harness.focused() == Some(focus_target),
+        "incremental={incremental} hazard page: the spawned task's focus request acts"
+    );
+    let snapshot = harness.doc.snapshot();
+    let focused: Vec<&str> = snapshot
+        .nodes()
+        .filter(|node| node.state.focused)
+        .map(|node| node.id.as_str())
+        .collect();
+    assert!(
+        focused == ["focus-target"],
+        "incremental={incremental} hazard page: the snapshot reads the focus target alone focused"
+    );
+    let tree = Document::accessibility_tree(&harness.doc);
+    assert!(
+        tree.focus.0 == focus_target.as_u64(),
+        "incremental={incremental} hazard page: the accessibility tree's focus is the focus target"
+    );
 }
 
 #[test]
-#[should_panic(expected = "RefCell already borrowed")]
-fn mounted_data_in_a_task_a_key_handler_spawned_panics_non_incremental() {
-    press_with_spawned_focus(false);
+fn mounted_data_in_a_task_a_key_handler_spawned_acts_non_incremental() {
+    spawned_focus_acts(false);
 }
 
 #[test]
-#[should_panic(expected = "RefCell already borrowed")]
-fn mounted_data_in_a_task_a_key_handler_spawned_panics_incremental() {
-    press_with_spawned_focus(true);
+fn mounted_data_in_a_task_a_key_handler_spawned_acts_incremental() {
+    spawned_focus_acts(true);
 }
 
 #[test]

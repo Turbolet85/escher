@@ -27,3 +27,6 @@ Forced sampler, 2 draws, every classifier `haiku · high`, no dead draw. 37 prop
 - Growth: 8 flags, 17 warnings. Split candidates: `established-decisions.md`, `existing-scopes.md`, `standard-contracts.md`, `input-validation.md`, `ci-integration.md`, `test-scope-summary.md`, `keyboard-navigation.md`.
 - Deferred from before: a plan quoting a reading its master flags as old re-reads it (0.8); a real take compared byte for byte against its trial commit keeps conflict resolutions honest (0.8); `recurrence-despite-learning` «`fanout-results.md`'s lines are a grammar»; a controlled-select fixture first written uncontrolled.
 - Last failed command: none.
+
+## Session End Status
+Completed normally at 2026-11-07 12:47:13

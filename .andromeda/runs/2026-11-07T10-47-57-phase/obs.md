@@ -1,0 +1,23 @@
+@extract_section name=relevance
+partial — the chunk is a render-path engine change in packages/dioxus-native-dom that by scope adds no log field, span or env read; obs binds it only through the existing mutation_writer.rs trace sites, the PII rule on mutation content, and the silence census over the changed tests
+@extract_section name=constraints
+- Telemetry in dioxus-native-dom is feature-gated `tracing` only, each call with a no-op path when the feature is off; the new buffer module must add no ungated log site, print or subscriber (per obs-plan §2 Telemetry Strategy, Telemetry mechanism and Feature wiring).
+- obs-plan §6 Log Coverage (dioxus-native, dioxus-native-dom emitter row) records every DOM mutation as logged at debug through `trace!` in mutation_writer.rs; with that file kept byte-identical, the replay must still reach those same trace sites once per mutation, with no second trace site added at record time in the buffer. Whether replay keeps their order and count is research's question.
+- obs-plan §8 PII Scrubbing & Compliance (Values logged as-is) lists mutation_writer.rs debug logs as carrying text-node contents and attribute values unscrubbed; the buffer holds the same content (ids, tag and attribute names, text) and must never print, log, field or `Debug`-dump it.
+- obs-plan §8 PII Scrubbing & Compliance (Scrubbing) leaves escher's sink allowlist and its engine-target scrub untouched: no engine call site is edited to pass the scrub, so packages/escher-telemetry/ and packages/escher-driver/ stay unchanged.
+- obs-plan §4 Span / Trace Coverage allows only two spans, `command` and `tool_call` in escher-driver; the render sites `initial_build` / `poll` and the buffer's apply open no span.
+- The inverted `dioxus_runtime_probe` pins keep that target's recorded silence: no print, env read, subscriber or listener, and failure messages naming a layout mode, task or page and a link or index, never a node id or panic payload (per obs-plan §8 PII Scrubbing & Compliance, the `dioxus_runtime_probe` row).
+@extract_section name=patterns
+- The silence census idiom: each changed or added check holds no subscriber, env read or print, its readings going into assertions only, measured by the probe `println!|eprintln!|print!|dbg!|std::env|env::var|escher_telemetry|tracing_subscriber|UnixListener|TcpListener|bind\(` reading 0 (per obs-plan §3 Observability Harness Contract, Logging stack, and the silent-check rows of its absence detail).
+- Engine changes recorded as "add no log site, span, field, log field or env read", with escher-driver keeping its 2 `info_span!` sites and `stand_act_spans` its eight fields, and `host_log` / `mcp_log` passing under both builds with 0 needles at `trace` (per obs-plan §3 Observability Harness Contract, the upstream-take silence rows).
+- The two-build distinction: a workspace build turns `blitz-dom/tracing` on while `-p blitz-tests` / `-p seven_guis` leave it off, so mutation_writer's trace sites compile under one build only (per obs-plan §2 Telemetry Strategy, By invocation).
+@extract_section name=anti_patterns
+- Never log, field or print buffered mutation content (text, attribute values, element ids) from the new buffer module, including via a derived `Debug` (per obs-plan §8 PII Scrubbing & Compliance, Values logged as-is).
+- Never quote a captured panic payload, stderr or node id in the inverted pins' failure messages or in the chunk's evidence (per obs-plan §8 PII Scrubbing & Compliance, the `dioxus_runtime_probe` row).
+@extract_section name=bindings
+- obs ↔ tests: the silence census over tests/blitz-tests/tests/dioxus_runtime_probe.rs and the ported upstream test in packages/dioxus-native-dom/src/dioxus_document.rs `mod tests`; `host_log` and `mcp_log` (examples/seven_guis/tests/) are the sink witnesses under both builds (test-plan §3, §9 Engine features by runner).
+- obs ↔ security: mutation content in the buffer is the §8 PII class kept in process only (security §Logging & Monitoring).
+@extract_section name=acceptance
+- The added-lines census over packages/dioxus-native-dom/src/ (the buffer module, dioxus_document.rs, lib.rs) reads 0 new print, `tracing` site, subscriber, env read or listener; mutation_writer.rs's diff against `434e0661` stays empty or its named change adds no log site (per obs-plan §6 Log Coverage).
+- The silence census over tests/blitz-tests/tests/dioxus_runtime_probe.rs and the ported test reads 0 · 0 · 0 (env · print · subscriber) (per obs-plan §8 PII Scrubbing & Compliance).
+- packages/escher-telemetry/ and packages/escher-driver/ are unchanged, escher-driver keeping its 2 `info_span!` sites, and `host_log` and `mcp_log` pass with 0 needles at `trace` under both builds (per obs-plan §4 Span / Trace Coverage).

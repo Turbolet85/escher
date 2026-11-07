@@ -1,0 +1,35 @@
+@carried n=1 label=security-plan/error-handling fact=fct-7ni72vcj
+why: The buffered render must close this panic: no document borrow may be held across vdom.rebuild or render_immediate, so a task dioxus-core polls there reaches set_focus and the other MountedData calls without `RefCell already borrowed`, and the two should_panic pins become passing tests in both layout modes.
+quote: `DioxusDocument::poll` holds `inner.borrow_mut()` (packages/dioxus-native-dom/src/dioxus_document.rs:295) across `vdom.render_immediate` (packages/dioxus-native-dom/src/dioxus_document.rs:297), where dioxus-core 0.7.10 first polls a task spawned from a key handler that wrote a signal (`handle_task_wakeup`, dioxus-core `virtual_dom.rs:611`), so that task's `set_focus` (packages/dioxus-native-dom/src/events.rs:295), borrowing through `doc_mut` (packages/dioxus-native-dom/src/events.rs:162), panics `RefCell already borrowed`, any app able to meet it — measured headlessly in both layout modes and pinned by `dioxus_runtime_probe`'s two `should_panic` tests, one per layout mode, its fix routed to the route entry «MountedData buffered render», the windowed path read, not run; the same handler calling `set_focus` at once with no task moves focus and does not panic; `get_scroll_offset` / `get_scroll_size` take a shared borrow through `doc` (packages/dioxus-native-dom/src/events.rs:152), read from the code, not run
+@carried n=1 run=2 label=security-plan fact=fct-c4rr3jfv
+quote: `try_doc` returns `None` when the document is mutably borrowed (packages/dioxus-native-dom/src/events.rs:155-177); `try_element_to_node_id` returns an option (packages/dioxus-native-dom/src/mutation_writer.rs:41-49)
+@carried n=1 run=3 label=security-plan fact=fct-p5sm3bek
+quote: Missing nodes in mounted-element operations return `MountedError::OperationFailed` wrapping `NodeNotExistErr` (packages/dioxus-native-dom/src/events.rs:179-193; packages/dioxus-native-dom/src/events.rs:222-225; packages/dioxus-native-dom/src/events.rs:239-244)
+@carried n=2 label=security-plan/error-handling fact=fct-dpj6t54a
+why: Both render sites must still flush the queued mounted events after the buffer is replayed, so a removed element keeps being skipped through try_element_to_node_id and the replay never reaches the element_to_node_id unwrap with an unmapped or stale id.
+quote: `flush_queued_mounted_events` skips an element removed since its event was queued, through `try_element_to_node_id` (packages/dioxus-native-dom/src/dioxus_document.rs:235-239), an engine behaviour for every document; the upstream test `element_removed_before_its_mounted_event_is_flushed` is left out, reading 1 mounted event on Dioxus 0.7 where it asserts 0
+@carried n=2 run=2 label=security-plan fact=fct-f4v2lnec
+quote: Dioxus nodes: supported event-data conversions `unwrap` the platform-data downcast (packages/dioxus-native-dom/src/events.rs:47-129); `NodeHandle::node`/`node_mut` panic with "Node does not exist in the Document" (packages/dioxus-native-dom/src/events.rs:155-177); `element_to_node_id` unwraps (packages/dioxus-native-dom/src/mutation_writer.rs:41-49)
+@carried n=2 run=3 label=security-plan fact=fct-rng3zi7h
+quote: Tests guard against panics from stale ids ("invalid SlotMap key used", "invalid key") and `unreachable!()` (tests/blitz-tests/tests/stale_interaction_state.rs:117-118; tests/blitz-tests/tests/animations.rs:4-7; tests/blitz-tests/tests/custom_widget_layout.rs:3-5; tests/blitz-tests/tests/stale_node_mapping.rs:118-136)
+@carried n=3 label=security-plan/dependency-security fact=fct-f5jtvf4a
+why: The port must take only the 0.7-compatible shape of upstream 286874cc1, so the Dioxus "0.7.3" pin stays and Dioxus 0.8.0-alpha.3 stays not taken, with no git dependency entering.
+quote: the pins stay — Stylo "0.22.0", Taffy the registry "0.15", Dioxus "0.7.3", no git dependency; git Stylo 0.23-pre (`06ecec886`, with `3954ecb85` and `1c5265a8b`), the six Taffy-main commits (`b8f4ba6fd` and `9babd796a`, a git Taffy, with `1a11761bc` · `4a5ab9cc9` · `510b592ab` · `1e5479ae6`) and Dioxus 0.8.0-alpha.3 (`286874cc1`) are not taken
+@carried n=3 run=2 label=security-plan/dependency-security fact=fct-tnbysnlo
+quote: the pins stay — Stylo "0.22.0", Taffy the registry "0.15", Dioxus "0.7.3", winit `=0.31.0-beta.3`, no git dependency
+@carried n=3 run=3 label=security-plan/dependency-security fact=fct-7aitszps
+quote: the pins stay — Stylo "0.22.0", Taffy the registry "0.15", Dioxus "0.7.3", winit `=0.31.0-beta.3`, no git dependency
+@carried n=4 label=security-plan/dependency-security fact=fct-uxldgqq5
+why: Upstream's keyboard-types 0.8 move and keyboard_compat.rs removal must stay unported, so Dioxus 0.7.3 keeps its own keyboard-types 0.7 beside the workspace's 0.8.
+quote: keyboard-types "0.7" → "0.8" (lock 0.8.3), while Dioxus 0.7.3 keeps its own keyboard-types 0.7, so two versions stand in the graph
+@carried n=5 label=security-plan/api-security fact=fct-svo6bgmr
+why: The buffer must stay in process, so no served TCP or UDP port and no new listener is added and the session socket stays the one listener.
+quote: No served network API exists — no served TCP or UDP port: two `blitz-net` tests each call `std::net::TcpListener::bind("127.0.0.1:0")` in the crate's `#[cfg(test)] mod tests`, served by no binary, reached by no caller, so no crossing
+@carried n=5 run=2 label=security-plan fact=fct-s4jqcqqv
+quote: No served network API exists — no served TCP or UDP port, two `blitz-net` tests alone binding TCP on loopback, served by no binary; the one listener is local, the driver session's Unix-domain socket `{state_dir}/session.sock`
+@binding n=1
+**error-handling ↔ dependency-security**: the panic must be closed inside Dioxus 0.7. dioxus-core 0.7.10 polls the task during `render_immediate` (security-plan/error-handling fct-7ni72vcj), and the fix is a 0.7 buffer of `WriteMutations` calls replayed into `MutationWriter`, with the Dioxus "0.7.3" pin and the unported 0.8 parts of 286874cc1 kept as they are (security-plan/dependency-security fct-f5jtvf4a) and keyboard-types 0.7 kept beside 0.8 (security-plan/dependency-security fct-uxldgqq5).
+@binding n=2
+**error-handling (hazard) ↔ error-handling (degradation and panic paths)**: once the document borrow is gone during render, MountedData calls must degrade only as recorded. `try_doc` gives `None` under a mutable borrow and a missing node gives `MountedError::OperationFailed` (security-plan fct-c4rr3jfv; security-plan fct-p5sm3bek). The replay and the flush after it must reach `element_to_node_id`'s unwrap only with mapped ids, and must keep skipping removed elements (security-plan/error-handling fct-dpj6t54a; security-plan fct-f4v2lnec). Any panic path the port adds or removes is recorded with its reason.
+@binding n=3
+**api-security ↔ the body's Nothing-crosses rule**: the mutation buffer is held in process only. It opens no port or listener, so the no-served-API state (security-plan/api-security fct-svo6bgmr) and the one local socket listener (security-plan fct-s4jqcqqv) stay as stated.
