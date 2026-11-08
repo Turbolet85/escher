@@ -1,0 +1,81 @@
+[
+{
+"tool": "matrix",
+"v": "1.9",
+"sha8": "e8f6f683",
+"ts": "2026-11-08T00:07:57Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.3.0",
+"--id",
+"v030-05",
+"--chunk",
+"2026-11-07-ui-graph",
+"--acceptance-file",
+".andromeda/runs/2026-11-07T22-57-25-phase/acceptance-v030-05.md",
+"--method",
+"integration",
+"--run-dir",
+".andromeda/runs/2026-11-07T22-57-25-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v030-05 → chunk 2026-11-07-ui-graph (was null; status planned kept)",
+"acceptance: For the current screen of a stand task, one read names each node's com… (277 chars)",
+"         → For the current screen of each lean stand task and Cells, in both layo… (1270 chars)",
+"method: integration → integration",
+"landed, rendered ./.andromeda/db/log/2026-11-07T22-58-19-2026-11-07-ui-graph.ndjson · 1 entry changed",
+"pool: unclaimed 10 [v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15]"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T22-58-19-2026-11-07-ui-graph.ndjson"
+],
+"before": {
+"id": "v030-05",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "For the current screen of a stand task, one read names each node's component, the handlers it carries, the state those h… (277 chars)",
+"notes_chars": 2055
+},
+"after": {
+"id": "v030-05",
+"chunk": "2026-11-07-ui-graph",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "For the current screen of each lean stand task and Cells, in both layout modes, one read — the `graph` verb through `Ses… (1270 chars)",
+"notes_chars": 2055
+}
+},
+{
+"tool": "matrix",
+"v": "1.9",
+"sha8": "e8f6f683",
+"ts": "2026-11-08T00:07:58Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-11-07-ui-graph",
+"--run-dir",
+".andromeda/runs/2026-11-07T22-57-25-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-11-07-ui-graph: 1 · ## Acceptance Criteria: line 385, 35 lines",
+"v030-05: cited in ## Acceptance Criteria (line 386)",
+"pool: unclaimed 10 [v030-06 v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

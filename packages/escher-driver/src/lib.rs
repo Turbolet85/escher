@@ -28,9 +28,9 @@
 //! process: [`VERBS`] lists each verb with its level, its argument shapes and its result
 //! shape, [`validate`] turns a [`Call`] into a typed [`Command`] or a [`Refusal`] before
 //! anything runs, and every refusal names one of eight [`Cause`]s ([`CAUSES`]) with a fixed
-//! remedy. Twelve verbs stand in
-//! three levels. Eight are asked of the held instance: `snapshot`, `click`, `type`, `press`,
-//! `advance`, `scroll`, `screenshot` and `lint`. Three are asked of the session itself — `start`, `status` and
+//! remedy. Thirteen verbs stand in
+//! three levels. Nine are asked of the held instance: `snapshot`, `click`, `type`, `press`,
+//! `advance`, `scroll`, `screenshot`, `lint` and `graph`. Three are asked of the session itself — `start`, `status` and
 //! `stop` — and one of the tool itself, `help`; these four are checked by [`validate_session`],
 //! and a session runs none of them.
 //!
@@ -87,6 +87,13 @@
 //! stable id, its [`Defect`] and the measured [`Reason`], numbers and ids only. It runs no step
 //! and changes nothing. The verb `lint` answers its findings on every surface
 //! ([`Outcome::Linted`]), and a recorded session keeps them as it keeps every answer.
+//!
+//! The verb `graph` answers the screen's UI graph ([`Outcome::Graphed`], read by
+//! `DioxusDocument::graph`): every element a snapshot lists with the component that rendered
+//! it, the handlers it carries and the registered states each handler is declared to write or
+//! was seen writing, and every registered state with the elements whose component reads it —
+//! ids, component and state names and event names, never a state's value. It runs no step and
+//! changes nothing; a node reads whether it reacts to a click (`clickable`) in every snapshot.
 //!
 //! A session can keep itself as a replayable check ([`Session::recording_into`]): every call
 //! [`Session::run`] answers, written to an owner-only file of a directory its launcher names as

@@ -19,13 +19,32 @@
 //! only id holding `//`: a key holds no `/`, a component path has no empty segment, and a document
 //! path starts with `/` and has none after it. No `NodeId`, `ElementId`, `ScopeId` or pointer
 //! appears in an id, so the same tree reads the same ids in any process.
+//!
+//! A fifth form is reserved and produced by nothing yet: a **virtual node** — a target an owner
+//! element's own handler serves inside it, with no element of its own — reads its owner's id,
+//! [`VIRTUAL_KEY_SEPARATOR`] (`///`), then a non-empty key holding no `/`
+//! ([`virtual_node_id`]). No other form can hold `///`, two empty segments in a row: a key
+//! holds no `/`, a component chain joins non-empty names, a segment is never empty, and the only
+//! empty segment an id holds is the single one an anchor writes (`{key}//`).
 
 use crate::NodeId;
 use crate::mutation_writer::DioxusState;
 use blitz_dom::{BaseDocument, local_name};
-use dioxus_core::{DynamicNode, ScopeId, TemplateNode, VComponent, VNode, VirtualDom};
+use dioxus_core::{
+    AttributeValue, DynamicNode, ScopeId, TemplateNode, VComponent, VNode, VirtualDom,
+};
 use rustc_hash::{FxHashMap, FxHashSet};
 use std::rc::Rc;
+
+/// What separates a virtual node's owner id from its key: a string no element id holds.
+pub const VIRTUAL_KEY_SEPARATOR: &str = "///";
+
+/// The reserved id of the virtual node `key` its owner element `owner` serves:
+/// `{owner}///{key}`. `None` for an empty key or one holding `/`. Nothing produces such a node
+/// yet; this is the one spelling its producer is to write.
+pub fn virtual_node_id(owner: &str, key: &str) -> Option<String> {
+    (!key.is_empty() && !key.contains('/')).then(|| format!("{owner}{VIRTUAL_KEY_SEPARATOR}{key}"))
+}
 
 /// The component instance whose render produced a template root.
 #[derive(Clone)]
@@ -33,6 +52,13 @@ struct Owner {
     instance: usize,
     /// `/`-joined component segments, empty for the app root and dioxus-core's own wrappers.
     chain: Rc<str>,
+}
+
+/// Who an owner instance is: its scope, and its component's name where the author wrote one.
+#[derive(Clone, Copy)]
+struct OwnerScope {
+    scope: ScopeId,
+    component: Option<&'static str>,
 }
 
 struct RootInfo {
@@ -63,11 +89,16 @@ struct VdomWalk<'a> {
     state: &'a DioxusState,
     roots: FxHashMap<NodeId, RootInfo>,
     instances: usize,
+    /// Each owner instance's scope and component name, by instance.
+    scopes: FxHashMap<usize, OwnerScope>,
+    /// The events of the listeners each mounted element carries now, without their `on`.
+    listeners: FxHashMap<NodeId, Vec<&'static str>>,
 }
 
 impl VdomWalk<'_> {
-    fn new_owner(&mut self, chain: Rc<str>) -> Owner {
+    fn new_owner(&mut self, chain: Rc<str>, scope: OwnerScope) -> Owner {
         self.instances += 1;
+        self.scopes.insert(self.instances, scope);
         Owner {
             instance: self.instances,
             chain,
@@ -77,6 +108,7 @@ impl VdomWalk<'_> {
     /// `seen` counts, per component name, the instances `owner` has rendered so far.
     fn walk(&mut self, vnode: &VNode, owner: &Owner, seen: &mut FxHashMap<&'static str, usize>) {
         self.record_roots(vnode, owner);
+        self.record_listeners(vnode);
 
         for (idx, node) in vnode.dynamic_nodes.iter().enumerate() {
             match node {
@@ -114,6 +146,29 @@ impl VdomWalk<'_> {
         }
     }
 
+    /// Records the listeners `vnode`'s dynamic attributes hold now on each mounted element: the
+    /// vdom's own reading, so a listener a re-render dropped is gone and `mounted` is read.
+    fn record_listeners(&mut self, vnode: &VNode) {
+        for (idx, attributes) in vnode.dynamic_attrs.iter().enumerate() {
+            let node = vnode
+                .mounted_dynamic_attribute(idx, self.dom)
+                .and_then(|element_id| self.state.try_element_to_node_id(element_id));
+            let Some(node) = node else {
+                continue;
+            };
+            for attribute in attributes.iter() {
+                if let (AttributeValue::Listener(_), Some(event)) =
+                    (&attribute.value, attribute.name.strip_prefix("on"))
+                {
+                    let events = self.listeners.entry(node).or_default();
+                    if !events.contains(&event) {
+                        events.push(event);
+                    }
+                }
+            }
+        }
+    }
+
     /// Walks what the component at dynamic node `idx` of `vnode` rendered, under an owner of its
     /// own; a component that mounted no root is skipped and counts for no ordinal.
     fn walk_component(
@@ -130,12 +185,19 @@ impl VdomWalk<'_> {
         let Some(child_root) = scope.try_root_node() else {
             return;
         };
-        let chain = if is_framework_scope(scope.id()) {
-            Rc::clone(&owner.chain)
+        let (chain, name) = if is_framework_scope(scope.id()) {
+            (Rc::clone(&owner.chain), None)
         } else {
-            child_chain(owner, component_name(component.name), seen)
+            let name = component_name(component.name);
+            (child_chain(owner, name, seen), Some(name))
         };
-        let child_owner = self.new_owner(chain);
+        let child_owner = self.new_owner(
+            chain,
+            OwnerScope {
+                scope: scope.id(),
+                component: name,
+            },
+        );
         self.walk(child_root, &child_owner, &mut FxHashMap::default());
     }
 }
@@ -160,18 +222,24 @@ fn child_chain(
     }
 }
 
-fn template_roots(dom: &VirtualDom, state: &DioxusState) -> FxHashMap<NodeId, RootInfo> {
+fn vdom_walk<'a>(dom: &'a VirtualDom, state: &'a DioxusState) -> VdomWalk<'a> {
     let mut walk = VdomWalk {
         dom,
         state,
         roots: FxHashMap::default(),
         instances: 0,
+        scopes: FxHashMap::default(),
+        listeners: FxHashMap::default(),
     };
     if let Some(root) = dom.base_scope().try_root_node() {
-        let owner = walk.new_owner(Rc::from(""));
+        let base = OwnerScope {
+            scope: dom.base_scope().id(),
+            component: None,
+        };
+        let owner = walk.new_owner(Rc::from(""), base);
         walk.walk(root, &owner, &mut FxHashMap::default());
     }
-    walk.roots
+    walk
 }
 
 /// Where an element sits: the component instance that owns it (`None` outside every component)
@@ -182,18 +250,76 @@ struct Placed {
     path: String,
 }
 
+/// What the walk reads of one element beside its stable id.
+#[cfg(feature = "accessibility")]
+pub(crate) struct ElementFacts {
+    pub(crate) node: NodeId,
+    pub(crate) id: String,
+    /// The scope of the component instance whose render holds the element; `None` outside
+    /// every component.
+    pub(crate) scope: Option<ScopeId>,
+    /// That component's name as its path reads it; `None` for the app root, dioxus-core's own
+    /// wrappers and outside every component.
+    pub(crate) component: Option<&'static str>,
+    /// The events of the listeners the element carries now, without their `on`.
+    pub(crate) listeners: Vec<&'static str>,
+}
+
 /// Every element of `doc` with its stable id, in document pre-order.
 pub(crate) fn element_ids(
     dom: &VirtualDom,
     state: &DioxusState,
     doc: &BaseDocument,
 ) -> Vec<(NodeId, String)> {
-    let roots = template_roots(dom, state);
+    placed_ids(&vdom_walk(dom, state).roots, doc)
+        .into_iter()
+        .map(|(node, id, _)| (node, id))
+        .collect()
+}
+
+/// Every element of `doc` with its stable id, its owner and its listeners, in document
+/// pre-order.
+#[cfg(feature = "accessibility")]
+pub(crate) fn element_facts(
+    dom: &VirtualDom,
+    state: &DioxusState,
+    doc: &BaseDocument,
+) -> Vec<ElementFacts> {
+    let mut walk = vdom_walk(dom, state);
+    placed_ids(&walk.roots, doc)
+        .into_iter()
+        .map(|(node, id, owner)| {
+            let owner = owner.and_then(|instance| walk.scopes.get(&instance).copied());
+            ElementFacts {
+                node,
+                id,
+                scope: owner.map(|owner| owner.scope),
+                component: owner.and_then(|owner| owner.component),
+                listeners: walk.listeners.remove(&node).unwrap_or_default(),
+            }
+        })
+        .collect()
+}
+
+/// The events of the listeners each mounted element carries now, by node.
+#[cfg(feature = "accessibility")]
+pub(crate) fn element_listeners(
+    dom: &VirtualDom,
+    state: &DioxusState,
+) -> FxHashMap<NodeId, Vec<&'static str>> {
+    vdom_walk(dom, state).listeners
+}
+
+/// Every element of `doc` with its stable id and its owner instance, in document pre-order.
+fn placed_ids(
+    roots: &FxHashMap<NodeId, RootInfo>,
+    doc: &BaseDocument,
+) -> Vec<(NodeId, String, Option<usize>)> {
     let mut claimed_keys = FxHashSet::default();
     let mut ids = Vec::new();
 
     let document_root = doc.root_node();
-    let mut stack = place_children(doc, &roots, document_root.id, None, "");
+    let mut stack = place_children(doc, roots, document_root.id, None, "");
     stack.reverse();
 
     while let Some(placed) = stack.pop() {
@@ -211,8 +337,8 @@ pub(crate) fn element_ids(
             None => (placed.path, None),
         };
         let base = anchor.as_deref().unwrap_or(&id);
-        let mut children = place_children(doc, &roots, placed.node, placed.owner, base);
-        ids.push((placed.node, id));
+        let mut children = place_children(doc, roots, placed.node, placed.owner, base);
+        ids.push((placed.node, id, placed.owner));
         children.reverse();
         stack.extend(children);
     }
@@ -591,5 +717,60 @@ mod tests {
         assert_eq!(last(before), "box//p:0");
         assert_eq!(last(edited_outside), "box//p:0");
         assert_eq!(last(edited_inside), "box//p:1");
+    }
+
+    /// Author ids and Dioxus keys chosen to crowd the separators: slashes, colons, brackets and a
+    /// component's name.
+    fn adversarial() -> Element {
+        #[component]
+        fn Item() -> Element {
+            rsx! {
+                b { id: "Item" }
+                i {}
+            }
+        }
+        rsx! {
+            div { id: "a//b",
+                span {}
+            }
+            div { id: "x:1",
+                for key in ["y[2]", "Item", "a//b", "/"] {
+                    p { key: "{key}",
+                        u {}
+                    }
+                }
+            }
+            section { id: "y[2]", Item {} }
+            Item {}
+            ul {
+                for key in ["", "x:1"] {
+                    li { key: "{key}", Item {} }
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn no_id_the_walk_writes_holds_the_virtual_separator() {
+        let ids = ids(&build(adversarial));
+        assert!(ids.len() > 10, "the page holds its elements: {ids:?}");
+        assert_distinct(&ids);
+        for id in &ids {
+            assert!(!id.contains(super::VIRTUAL_KEY_SEPARATOR), "{id:?}");
+        }
+    }
+
+    #[test]
+    fn a_virtual_node_id_spells_the_reserved_form_and_names_no_element() {
+        use super::virtual_node_id;
+        assert_eq!(virtual_node_id("", "k"), Some("///k".to_string()));
+        assert_eq!(virtual_node_id("x", ""), None);
+        assert_eq!(virtual_node_id("x", "a/b"), None);
+        let ids = ids(&build(adversarial));
+        for owner in &ids {
+            let virtual_id = virtual_node_id(owner, "cell-3").expect("a key with no slash");
+            assert_eq!(virtual_id, format!("{owner}///cell-3"));
+            assert!(!ids.contains(&virtual_id), "{virtual_id:?}");
+        }
     }
 }

@@ -7,7 +7,7 @@ use blitz_test_harness::Busy;
 
 use super::*;
 
-const VERB_NAMES: [&str; 12] = [
+const VERB_NAMES: [&str; 13] = [
     "snapshot",
     "click",
     "type",
@@ -16,6 +16,7 @@ const VERB_NAMES: [&str; 12] = [
     "scroll",
     "screenshot",
     "lint",
+    "graph",
     "start",
     "status",
     "stop",
@@ -23,13 +24,13 @@ const VERB_NAMES: [&str; 12] = [
 ];
 
 #[test]
-fn the_twelve_verbs_are_named_in_order_each_at_its_level() {
-    assert_eq!(VERBS.len(), 12);
+fn the_thirteen_verbs_are_named_in_order_each_at_its_level() {
+    assert_eq!(VERBS.len(), 13);
     let names: Vec<&str> = VERBS.iter().map(|verb| verb.name).collect();
     assert_eq!(names, VERB_NAMES);
     let levels: Vec<Level> = VERBS.iter().map(|verb| verb.level).collect();
     let stated = [
-        [Level::Instance; 8].as_slice(),
+        [Level::Instance; 9].as_slice(),
         &[Level::Session; 3],
         &[Level::Tool; 1],
     ]
@@ -48,7 +49,7 @@ fn the_twelve_verbs_are_named_in_order_each_at_its_level() {
 
 #[test]
 fn every_verb_states_its_help_its_arguments_and_a_result() {
-    assert_eq!(VERBS.len(), 12);
+    assert_eq!(VERBS.len(), 13);
     let field_help = |verb: &VerbSpec, name: &str| {
         verb.fields
             .iter()
@@ -62,9 +63,9 @@ fn every_verb_states_its_help_its_arguments_and_a_result() {
             "the screen as one text, or the part of it asked for: one line per element, nested \
              by indent, a part's lines as they read in the whole text; a line's state words, \
              each written only where the element states it, are enabled or disabled, checked \
-             or unchecked, value=, selected or unselected, pressed or unpressed, invalid and \
-             focused; a mixed toggle reads unpressed, and a grammar or spelling error reads \
-             invalid",
+             or unchecked, value=, selected or unselected, pressed or unpressed, invalid, \
+             focused and clickable; a mixed toggle reads unpressed, and a grammar or spelling \
+             error reads invalid",
         ),
         (
             Some(SNAPSHOT.help),
@@ -88,8 +89,8 @@ fn every_verb_states_its_help_its_arguments_and_a_result() {
         (
             field_help(&CLICK, "changed"),
             "the elements on the screen before and after the step whose role, name, state, \
-             bounds or parent differ, as they read after it; `selected` and `pressed` are \
-             left out where the element states neither, `pressed` is false for a mixed \
+             bounds or parent differ, as they read after it, `clickable` among its state; \
+             `selected` and `pressed` are left out where the element states neither, `pressed` is false for a mixed \
              toggle, and `invalid` is true for a grammar or spelling error",
         ),
         (
@@ -192,7 +193,7 @@ fn a_verb_is_found_by_its_exact_name_only() {
 fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
     const ACTING: [&str; 5] = ["settled", "busy", "added", "removed", "changed"];
     type Args = &'static [(&'static str, ArgKind, bool)];
-    let rows: [(&str, Args, Vec<&str>); 12] = [
+    let rows: [(&str, Args, Vec<&str>); 13] = [
         (
             "snapshot",
             &[("part", ArgKind::Part, false)],
@@ -225,6 +226,7 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
             vec!["width", "height", "png"],
         ),
         ("lint", &[], vec!["findings"]),
+        ("graph", &[], vec!["nodes", "states"]),
         (
             "start",
             &[("app", ArgKind::Name, true)],
@@ -287,6 +289,8 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         ("height", FieldKind::Count),
         ("png", FieldKind::Png),
         ("findings", FieldKind::Entries),
+        ("nodes", FieldKind::GraphNodes),
+        ("states", FieldKind::GraphStates),
         ("verbs", FieldKind::Entries),
         ("node_keys", FieldKind::Entries),
         ("key_names", FieldKind::Words),
@@ -295,7 +299,7 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         ("exit_statuses", FieldKind::Entries),
         ("session_errors", FieldKind::Entries),
     ];
-    assert_eq!(field_kinds.len(), 26);
+    assert_eq!(field_kinds.len(), 28);
     for verb in VERBS {
         for field in verb.fields {
             let stated = field_kinds.iter().find(|(name, _)| *name == field.name);
@@ -360,20 +364,34 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         (FieldKind::Words, "words"),
         (FieldKind::Entries, "entries"),
         (FieldKind::Png, "png"),
+        (FieldKind::GraphNodes, "graph-nodes"),
+        (FieldKind::GraphStates, "graph-states"),
     ];
-    assert_eq!(field_kind_names.len(), 10);
+    assert_eq!(field_kind_names.len(), 12);
     for (kind, name) in field_kind_names {
         assert_eq!(kind.name(), name);
     }
 }
 
 #[test]
-fn the_thirteen_node_keys_are_named_in_order_each_with_its_help() {
+fn the_fourteen_node_keys_are_named_in_order_each_with_its_help() {
     let names = [
-        "id", "parent", "role", "name", "enabled", "checked", "value", "selected", "pressed",
-        "invalid", "focused", "bounds", "differs",
+        "id",
+        "parent",
+        "role",
+        "name",
+        "enabled",
+        "checked",
+        "value",
+        "selected",
+        "pressed",
+        "invalid",
+        "focused",
+        "clickable",
+        "bounds",
+        "differs",
     ];
-    assert_eq!(NODE_FIELDS.len(), 13);
+    assert_eq!(NODE_FIELDS.len(), 14);
     assert_eq!(NODE_FIELDS.map(|key| key.name), names);
     for (row, key) in NODE_FIELDS.iter().enumerate() {
         assert!(!key.help.is_empty(), "row {row}");

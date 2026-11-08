@@ -1,6 +1,7 @@
 //! The tasks outside the lean four, reached through Home in process, in both layout modes:
 //! how many elements on each of the seven tasks react to input and state no role (measured
-//! and pinned; the snapshot carries no field for it), whether Circle Drawer's dialog rule sizes
+//! and pinned) and, beside it, how many of those the snapshot reads `clickable` — an app
+//! `click` handler of their own — whether Circle Drawer's dialog rule sizes
 //! its range input, and that the dialog's two controls read their author keys while it is open.
 
 use std::collections::HashMap;
@@ -62,6 +63,17 @@ fn reacting_without_role(harness: &Harness<DioxusDocument>) -> usize {
         .count()
 }
 
+/// Of the elements [`reacting_without_role`] counts, those whose snapshot node reads
+/// `clickable`.
+fn clickable_without_role(harness: &Harness<DioxusDocument>) -> usize {
+    harness
+        .doc
+        .snapshot()
+        .nodes()
+        .filter(|node| node.role == Role::GenericContainer && node.state.clickable)
+        .count()
+}
+
 const NON_LEAN: [(&str, &str); 3] = [
     ("task-card-temp-converter", "Temperature Converter"),
     ("task-card-circle-drawer", "Circle Drawer"),
@@ -102,17 +114,36 @@ fn elements_that_react_to_a_click_and_state_no_role_are_counted() {
         // The 676 data cells and the grid, whose listener is its keys and which states no role.
         ("Cells", 677),
     ];
+    // Of them, the ones reading `clickable`: Circle Drawer's canvas and the 676 data cells; the
+    // grid reacts to its keys alone.
+    const CLICKABLE: [(&str, usize); 7] = [
+        ("Counter", 0),
+        ("Flight Booker", 0),
+        ("Timer", 0),
+        ("CRUD", 0),
+        ("Temperature Converter", 0),
+        ("Circle Drawer", 1),
+        ("Cells", 676),
+    ];
     for incremental in [false, true] {
         let mut measured = Vec::new();
+        let mut clickable = Vec::new();
         for task in LeanTask::ALL {
             let harness = boot(task, incremental);
             let title = harness.text_content("#task-title");
-            measured.push((title, reacting_without_role(&harness)));
+            measured.push((title.clone(), reacting_without_role(&harness)));
+            clickable.push((title, clickable_without_role(&harness)));
         }
         for (card, title) in NON_LEAN {
             let harness = open(card, title, incremental);
             measured.push((title.to_string(), reacting_without_role(&harness)));
+            clickable.push((title.to_string(), clickable_without_role(&harness)));
         }
+        let clickable: Vec<(&str, usize)> = clickable
+            .iter()
+            .map(|(title, count)| (title.as_str(), *count))
+            .collect();
+        assert_eq!(clickable, CLICKABLE, "incremental={incremental}");
         let measured: Vec<(&str, usize)> = measured
             .iter()
             .map(|(title, count)| (title.as_str(), *count))

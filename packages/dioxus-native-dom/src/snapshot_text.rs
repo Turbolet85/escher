@@ -35,7 +35,7 @@ impl Snapshot {
     /// A line reads, left to right: the role in its `Debug` spelling; the name as a quoted
     /// string; `id=` and the id quoted; the state tokens the node holds, in this order —
     /// `enabled` or `disabled`, `checked` or `unchecked`, `value=` and the value quoted,
-    /// `selected` or `unselected`, `pressed` or `unpressed`, `invalid`, `focused`; then
+    /// `selected` or `unselected`, `pressed` or `unpressed`, `invalid`, `focused`, `clickable`; then
     /// `@x,y widthxheight`, each number the shortest decimal that reads back as the same
     /// bound. A mixed toggle is written `unpressed`, and a grammar or a spelling error
     /// `invalid`, as [`NodeState`](crate::NodeState) reads them. A quoted string is written
@@ -124,6 +124,9 @@ fn write_line(text: &mut String, node: &SnapshotNode, depth: usize) {
     }
     if node.state.focused {
         text.push_str(" focused");
+    }
+    if node.state.clickable {
+        text.push_str(" clickable");
     }
     let bounds = node.bounds;
     writeln!(
@@ -297,11 +300,19 @@ mod tests {
                 pressed: Some(true),
                 invalid: true,
                 focused: true,
+                clickable: true,
             }),
             concat!(
                 "Unknown \"\" id=\"n\" enabled unchecked value=\"on\" unselected pressed invalid",
-                " focused @0,0 10x10\n"
+                " focused clickable @0,0 10x10\n"
             )
+        );
+        assert_eq!(
+            line(NodeState {
+                clickable: true,
+                ..state()
+            }),
+            "Unknown \"\" id=\"n\" clickable @0,0 10x10\n"
         );
     }
 

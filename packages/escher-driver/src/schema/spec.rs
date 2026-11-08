@@ -85,6 +85,10 @@ pub enum FieldKind {
     Entries,
     /// A PNG image, written as base64 text (RFC 4648 §4, padded).
     Png,
+    /// A list of UI-graph nodes, each keyed as its field's help names.
+    GraphNodes,
+    /// A list of UI-graph states, each keyed as its field's help names.
+    GraphStates,
 }
 
 impl FieldKind {
@@ -101,6 +105,8 @@ impl FieldKind {
             FieldKind::Words => "words",
             FieldKind::Entries => "entries",
             FieldKind::Png => "png",
+            FieldKind::GraphNodes => "graph-nodes",
+            FieldKind::GraphStates => "graph-states",
         }
     }
 }

@@ -238,3 +238,85 @@ fn a_handled_event_reports_cancel_and_stop_as_the_listener_left_them() {
         );
     }
 }
+
+/// Dispatches an `input` on the element `id` and returns what the page's paragraph then reads.
+fn input_on(doc: &mut DioxusDocument, id: &str) -> String {
+    let node = doc
+        .element_ids()
+        .into_iter()
+        .find_map(|(node, read)| (read == id).then_some(node))
+        .unwrap_or_else(|| panic!("{id:?} is an element"));
+    let mut event = DomEvent::new(
+        node,
+        DomEventData::Input(BlitzInputEvent {
+            value: String::new(),
+        }),
+    );
+    doc.dispatch_to_vdom(&[node], &mut event);
+    doc.poll(None);
+    let inner = doc.inner.borrow();
+    let paragraph = doc
+        .element_ids()
+        .into_iter()
+        .find_map(|(node, read)| (read == "heard").then_some(node))
+        .expect("the paragraph");
+    inner
+        .get_node(paragraph)
+        .map(|node| node.text_content())
+        .unwrap_or_default()
+}
+
+#[test]
+fn a_dispatch_is_recorded_where_a_state_is_registered_and_acts_as_before_where_none_is() {
+    use crate::signal_registry::{DeclaredWrite, SignalRegistry, use_graph_state};
+
+    fn plain() -> Element {
+        let mut heard = use_signal(|| 0u32);
+        rsx! {
+            input { id: "field", oninput: move |_| heard += 1 }
+            p { id: "heard", "{heard}" }
+        }
+    }
+    fn registered() -> Element {
+        const WRITES: &[DeclaredWrite] = &[DeclaredWrite::new("field", "input")];
+        let mut heard = use_signal(|| 0u32);
+        use_graph_state("heard", WRITES, heard.subscribers());
+        rsx! {
+            input { id: "field", oninput: move |_| heard += 1 }
+            p { id: "heard", "{heard}" }
+        }
+    }
+
+    let mut doc = build(plain);
+    assert_eq!(
+        input_on(&mut doc, "field"),
+        "1",
+        "the plain page's listener acts"
+    );
+    assert!(
+        doc.vdom
+            .runtime()
+            .has_context::<SignalRegistry>(ScopeId::ROOT)
+            .is_none(),
+        "the plain page holds no registry"
+    );
+
+    let mut doc = build(registered);
+    let registry = doc
+        .vdom
+        .runtime()
+        .has_context::<SignalRegistry>(ScopeId::ROOT)
+        .expect("the registered page holds the registry");
+    assert!(registry.dispatches().is_empty(), "nothing dispatched yet");
+    assert_eq!(
+        input_on(&mut doc, "field"),
+        "1",
+        "the registered page's listener acts"
+    );
+    let dispatches = registry.dispatches();
+    assert_eq!(dispatches.len(), 1, "one dispatch recorded");
+    assert_eq!(dispatches[0].event, "input");
+    let writes = registry.writes();
+    assert_eq!(writes.len(), 1, "one write recorded");
+    assert_eq!(writes[0].dispatch.as_ref(), Some(&dispatches[0]));
+}

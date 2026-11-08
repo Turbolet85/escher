@@ -46,7 +46,7 @@ target/debug/escher-session lint --session demo-session
 target/debug/escher-session stop --session demo-session
 ```
 
-An MCP client can drive the same apps: it spawns `target/debug/escher-session mcp` as its own child and gets the twelve driver commands as tools. [`docs/capabilities.md`](docs/capabilities.md) states what Escher can do and its limits. The driver describes itself: `target/debug/escher-session help` answers one line of JSON with every command, its arguments and its result, the refusal causes and session errors with their remedies, and the exit statuses; an MCP client gets the same from the `help` tool. The `screenshot` command returns the whole screen, or one element of it by `--id`, as a PNG, and an MCP client receives it as an image.
+An MCP client can drive the same apps: it spawns `target/debug/escher-session mcp` as its own child and gets the thirteen driver commands as tools. [`docs/capabilities.md`](docs/capabilities.md) states what Escher can do and its limits. The driver describes itself: `target/debug/escher-session help` answers one line of JSON with every command, its arguments and its result, the refusal causes and session errors with their remedies, and the exit statuses; an MCP client gets the same from the `help` tool. The `screenshot` command returns the whole screen, or one element of it by `--id`, as a PNG, and an MCP client receives it as an image.
 
 Since 0.2.0 the driver also does these:
 

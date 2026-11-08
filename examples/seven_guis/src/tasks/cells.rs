@@ -1,4 +1,6 @@
 use dioxus_native::prelude::*;
+
+use super::{use_graph_signal, writes};
 use std::collections::{HashMap, HashSet};
 use std::rc::Rc;
 
@@ -347,13 +349,60 @@ fn col_label(c: usize) -> String {
 
 #[component]
 pub fn Cells() -> Element {
-    let mut sheet: Signal<Sheet> = use_signal(Sheet::default);
-    let mut selected: Signal<Option<(usize, usize)>> = use_signal(|| None);
-    let mut edit_val: Signal<String> = use_signal(String::new);
+    // A data cell's click commits an editor open elsewhere, so it writes `sheet` only then.
+    let mut sheet: Signal<Sheet> = use_graph_signal(
+        "sheet",
+        const {
+            &[
+                writes("cell-*", "click"),
+                writes("cell-input", "blur"),
+                writes("cell-input", "keydown"),
+            ]
+        },
+        Sheet::default,
+    );
+    let mut selected: Signal<Option<(usize, usize)>> = use_graph_signal(
+        "selected",
+        const {
+            &[
+                writes("cells-grid", "keydown"),
+                writes("cell-*", "click"),
+                writes("cell-input", "blur"),
+                writes("cell-input", "keydown"),
+            ]
+        },
+        || None,
+    );
+    let mut edit_val: Signal<String> = use_graph_signal(
+        "edit_val",
+        const {
+            &[
+                writes("cells-grid", "keydown"),
+                writes("cell-*", "click"),
+                writes("cell-input", "input"),
+            ]
+        },
+        String::new,
+    );
     // The cell the grid's keys stand on, and whether its keys opened the editor.
-    let mut current: Signal<(usize, usize)> = use_signal(|| (0, 0));
-    let mut keyed_open: Signal<bool> = use_signal(|| false);
-    let mut grid: Signal<Option<Rc<MountedData>>> = use_signal(|| None);
+    let mut current: Signal<(usize, usize)> = use_graph_signal(
+        "current",
+        const { &[writes("cells-grid", "keydown"), writes("cell-*", "click")] },
+        || (0, 0),
+    );
+    let mut keyed_open: Signal<bool> = use_graph_signal(
+        "keyed_open",
+        const {
+            &[
+                writes("cells-grid", "keydown"),
+                writes("cell-*", "click"),
+                writes("cell-input", "blur"),
+                writes("cell-input", "keydown"),
+            ]
+        },
+        || false,
+    );
+    let mut grid: Signal<Option<Rc<MountedData>>> = use_graph_signal("grid", &[], || None);
     let mut cell_handles = use_hook(|| CopyValue::new(HashMap::new()));
 
     rsx! {

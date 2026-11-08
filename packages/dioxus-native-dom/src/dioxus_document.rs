@@ -7,12 +7,13 @@ use crate::events::{
 use crate::mutation_buffer::MutationBuffer;
 use crate::mutation_writer::{DioxusState, MutationWriter};
 use crate::qual_name;
+use crate::signal_registry::SignalRegistry;
 use blitz_dom::{
     Attribute, BaseDocument, DocGuard, DocGuardMut, Document, DocumentConfig, EventDriver,
     EventHandler, Node, local_name,
 };
 use blitz_traits::events::{DomEvent, DomEventData, EventState, UiEvent};
-use dioxus_core::{ElementId, Event, VirtualDom};
+use dioxus_core::{ElementId, Event, ScopeId, VirtualDom};
 use dioxus_html::{FormValue, PlatformEventData, set_event_converter};
 use futures_util::task::noop_waker;
 use std::cell::RefCell;
@@ -236,6 +237,18 @@ impl DioxusDocument {
         crate::element_id::element_ids(&self.vdom, &self.vdom_state, &self.inner.borrow())
     }
 
+    /// Hands `event`, along `chain`, to the bridge's event handler alone: what the event driver
+    /// does for each event it dispatches, with no default action.
+    #[cfg(test)]
+    pub(crate) fn dispatch_to_vdom(&mut self, chain: &[NodeId], event: &mut DomEvent) {
+        let mut handler = DioxusEventHandler {
+            vdom: &mut self.vdom,
+            vdom_state: &mut self.vdom_state,
+        };
+        let mut state = EventState::default();
+        handler.handle_event(chain, event, &mut self.inner, &mut state);
+    }
+
     pub(crate) fn flush_queued_mounted_events(&mut self) {
         let mut queued_mounted_events = mem::take(&mut self.vdom_state.queued_mounted_events);
         for element_id in queued_mounted_events.drain(..) {
@@ -430,11 +443,18 @@ impl EventHandler for DioxusEventHandler<'_> {
             return;
         };
 
-        // Handle event in vdom
+        // Handle event in vdom, the graph's registry (when an app registered a state) recording
+        // each write against this dispatch.
         let dx_event = Event::new(event_data.clone(), event.bubbles);
-        self.vdom
-            .runtime()
-            .handle_event(event.name(), dx_event.clone(), id);
+        let runtime = self.vdom.runtime();
+        let registry = runtime.has_context::<SignalRegistry>(ScopeId::ROOT);
+        if let Some(registry) = &registry {
+            registry.begin_dispatch(chain, event.name());
+        }
+        runtime.handle_event(event.name(), dx_event.clone(), id);
+        if let Some(registry) = &registry {
+            registry.end_dispatch();
+        }
 
         // Update event state
         if !dx_event.default_action_enabled() {

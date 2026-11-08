@@ -230,3 +230,94 @@ pub fn editor_text(harness: &Harness<DioxusDocument>, id: &str) -> String {
         .map(|data| data.editor.text().to_string())
         .unwrap_or_else(|| panic!("{id:?} is a text input"))
 }
+
+/// One driver step of [`GRAPH_DRIVES`]: a verb and its arguments.
+#[derive(Clone, Copy, Debug)]
+pub enum Drive {
+    Click(&'static str),
+    Type(&'static str, &'static str),
+    Press(&'static str),
+    Advance(i64),
+}
+
+/// Per stand task, by its title, the driver steps that run each handler of its code that writes
+/// a registered state, every write its declaration names made by at least one run — a
+/// conditional write by a run that takes it: a Cells cell's click commits an editor open in
+/// another cell, so two cells are clicked in turn, and the grid's editor is left once by Enter and
+/// once by Tab. Circle Drawer's two clicks on one point add a circle and open its dialog.
+pub const GRAPH_DRIVES: [(&str, &[Drive]); 7] = [
+    ("Counter", &[Drive::Click("counter-increment")]),
+    (
+        "Flight Booker",
+        &[
+            Drive::Type("flight-start", "02.01.2026"),
+            Drive::Type("flight-type", "r"),
+            Drive::Type("flight-return-date", "03.01.2026"),
+            Drive::Click("flight-book"),
+        ],
+    ),
+    (
+        "Timer",
+        &[
+            Drive::Click("timer-duration"),
+            Drive::Press("arrow-right"),
+            Drive::Advance(300),
+            Drive::Click("timer-reset"),
+        ],
+    ),
+    (
+        "CRUD",
+        &[
+            Drive::Press("tab"),
+            Drive::Press("tab"),
+            Drive::Press("tab"),
+            Drive::Press("arrow-down"),
+            Drive::Type("crud-filter", "M"),
+            Drive::Type("crud-filter", ""),
+            Drive::Click("crud-person-0"),
+            Drive::Type("crud-name", "Ada"),
+            Drive::Type("crud-surname", "Byron"),
+            Drive::Click("crud-create"),
+            Drive::Click("crud-person-1"),
+            Drive::Click("crud-update"),
+            Drive::Click("crud-delete"),
+        ],
+    ),
+    (
+        "Temperature Converter",
+        &[
+            Drive::Type("temp-celsius", "10"),
+            Drive::Type("temp-fahrenheit", "50"),
+        ],
+    ),
+    (
+        "Circle Drawer",
+        &[
+            Drive::Click("circle-canvas"),
+            Drive::Advance(600),
+            Drive::Click("circle-undo"),
+            Drive::Click("circle-redo"),
+            Drive::Advance(600),
+            Drive::Click("circle-canvas"),
+            Drive::Click("circle-canvas"),
+            Drive::Click("circle-diameter"),
+            Drive::Click("circle-close"),
+        ],
+    ),
+    (
+        "Cells",
+        &[
+            Drive::Press("tab"),
+            Drive::Press("tab"),
+            Drive::Press("arrow-right"),
+            Drive::Press("enter"),
+            Drive::Press("space"),
+            Drive::Press("enter"),
+            Drive::Press("enter"),
+            Drive::Press("tab"),
+            Drive::Click("cell-A0"),
+            Drive::Click("cell-C0"),
+            Drive::Click("cell-A0"),
+        ],
+    ),
+];

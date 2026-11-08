@@ -1,11 +1,12 @@
 //! Every driver command through the real `escher-session` binary: `start`, `status`, `stop` and
-//! each of the eight verbs answer one line of uncoloured JSON on stdout and end with a status
+//! each of the nine verbs answer one line of uncoloured JSON on stdout and end with a status
 //! that tells accepted (`0`) from refused (`1`) and from a session error (`3`); each of the six
 //! served tasks — the four lean tasks, Cells and the load page — starts, answers and stops, and
 //! the usage line names the six. The snapshot's
 //! line is the library's own form of the screen booted in process, inside its byte budget; the
 //! screenshot's `png` is the PNG of the screen booted in process, 800 × 600; a lint on a held
-//! counter answers one line whose `findings` is empty. On a screen inside the budget,
+//! counter answers one line whose `findings` is empty, and a graph on it one line naming the
+//! counter's component, its click handler and the state it is declared to write. On a screen inside the budget,
 //! `snapshot --part 1` answers that screen's text as part 1 of 1, a part past it the empty text,
 //! and a part outside its bound or of another kind is refused `malformed`, its line the
 //! library's own refusal.
@@ -133,7 +134,7 @@ impl Session {
 
 #[test]
 fn each_task_starts_answers_and_stops() {
-    assert_eq!(VERBS.len(), 12);
+    assert_eq!(VERBS.len(), 13);
     for (index, task) in TASKS.into_iter().enumerate() {
         let dir = state_dir(&format!("cc-life-{index}"));
         clear(&dir);
@@ -461,6 +462,33 @@ fn a_hosted_click_opens_a_list_a_shot_shows_it_and_a_click_on_a_row_chooses() {
         "the next snapshot reads the row's value"
     );
     flight.stop();
+}
+
+#[test]
+fn graph_answers_one_line_of_the_ui_graph() {
+    let counter = Session::start("cc-graph", "counter");
+    let answer = counter.accepted(&["graph"]);
+    assert!(keys(&answer) == fields("graph"), "the graph's fields");
+    assert!(
+        answer.contains(r#"{"id":"counter-increment","component":"Counter","handlers":[{"event":"click","writes":[{"state":"count","declared":true,"confirmed":false}]}],"reads":["count"]}"#),
+        "the button's node reads its component, its handler and its declared write"
+    );
+    assert!(
+        answer.contains(r#""states":[{"name":"count","component":"Counter","declared":[{"id":"counter-increment","event":"click"}],"#),
+        "the state reads its component and its declaration"
+    );
+    let ran = counter.run(&["graph", "--id", NOBODY]);
+    assert_eq!(
+        ran.status,
+        Some(1),
+        "a graph naming an argument ends refused"
+    );
+    assert_eq!(remedied(ran.line()), "malformed");
+    assert!(
+        !ran.line().contains(NOBODY) && ran.stderr.is_empty(),
+        "the refusal writes back nothing the line named"
+    );
+    counter.stop();
 }
 
 #[test]

@@ -20,7 +20,7 @@ MARKER = "cold-agent-reply-marker"
 ARGUMENT_MARKER = "cold-agent-argument-marker"
 ANSWER_MARKER = "cold-agent-answer-marker"
 CHECK_MARKER = "cold-agent-check-marker"
-VERBS = ["snapshot", "click", "type", "press", "advance", "scroll", "screenshot", "lint", "start", "status", "stop", "help"]
+VERBS = ["snapshot", "click", "type", "press", "advance", "scroll", "screenshot", "lint", "graph", "start", "status", "stop", "help"]
 TOOLS = ["mcp__escher__" + verb for verb in VERBS]
 APPS = ("counter", "flight-booker", "timer", "crud", "cells", "load")
 STAND_IDS = ("counter-", "flight-", "timer-", "crud-", "cell-", "load-", "task-header", "id=")
@@ -139,6 +139,8 @@ def call(name, arguments):
         return "accepted", json.dumps({"text": text, "part": part, "parts": parts})
     if name == "lint":
         return "accepted", '{"findings":[]}'
+    if name == "graph":
+        return "accepted", '{"nodes":[],"states":[]}'
     if any(value in refuse for value in arguments.values()):
         return "refused", '{"refused":{"cause":"covered"}}'
     acts += 1

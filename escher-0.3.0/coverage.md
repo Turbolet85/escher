@@ -1,9 +1,11 @@
 # Coverage — escher-0.3.0
 
-verified 6/17 · deferred 0 · planned 11 · implemented 0 · unclaimed 11
+verified 6/17 · deferred 0 · planned 10 · implemented 1 · unclaimed 10
 
-## planned, unclaimed (11)
-- v030-05 · The UI graph
+## implemented (1)
+- v030-05 · The UI graph · 2026-11-07-ui-graph
+
+## planned, unclaimed (10)
 - v030-06 · What can I do here
 - v030-07 · Handler coverage
 - v030-08 · Start in a state

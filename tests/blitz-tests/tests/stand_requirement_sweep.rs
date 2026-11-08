@@ -555,7 +555,7 @@ const WITNESSES_020: [(&str, &[Witness]); 9] = [
             (
                 Unit,
                 "packages/escher-driver/src/schema_tests.rs",
-                "the_twelve_verbs_are_named_in_order_each_at_its_level",
+                "the_thirteen_verbs_are_named_in_order_each_at_its_level",
             ),
             (
                 Unit,

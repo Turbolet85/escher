@@ -24,7 +24,7 @@ use session_common::{
 };
 
 /// The parts Cells' screen reads in at boot, measured.
-const PARTS: u32 = 5;
+const PARTS: u32 = 6;
 
 /// The lint's findings on Cells at boot, measured: a grid wider and taller than the viewport
 /// inside a clipping root.

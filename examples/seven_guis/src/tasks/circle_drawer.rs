@@ -1,4 +1,6 @@
 use dioxus_native::prelude::*;
+
+use super::{use_graph_signal, writes};
 use std::rc::Rc;
 
 #[derive(Clone, PartialEq)]
@@ -10,16 +12,44 @@ struct Circle {
 
 #[component]
 pub fn CircleDrawer() -> Element {
-    let mut circles: Signal<Vec<Circle>> = use_signal(Vec::new);
+    // The canvas's click is async, and its task runs inside the click's own dispatch.
+    const HISTORY: &[dioxus_native::DeclaredWrite] = &[
+        writes("circle-canvas", "click"),
+        writes("circle-undo", "click"),
+        writes("circle-redo", "click"),
+        writes("circle-diameter", "input"),
+    ];
+    let mut circles: Signal<Vec<Circle>> = use_graph_signal("circles", HISTORY, Vec::new);
     // undo stack: each entry is a full snapshot of circles vec
-    let mut undo_stack: Signal<Vec<Vec<Circle>>> = use_signal(Vec::new);
-    let mut redo_stack: Signal<Vec<Vec<Circle>>> = use_signal(Vec::new);
+    let mut undo_stack: Signal<Vec<Vec<Circle>>> =
+        use_graph_signal("undo_stack", HISTORY, Vec::new);
+    let mut redo_stack: Signal<Vec<Vec<Circle>>> =
+        use_graph_signal("redo_stack", HISTORY, Vec::new);
     // index of circle being resized, if dialog is open
-    let mut dialog_idx: Signal<Option<usize>> = use_signal(|| None);
-    let mut dialog_r: Signal<f64> = use_signal(|| 20.0);
+    let mut dialog_idx: Signal<Option<usize>> = use_graph_signal(
+        "dialog_idx",
+        const {
+            &[
+                writes("circle-canvas", "dblclick"),
+                writes("circle-close", "click"),
+            ]
+        },
+        || None,
+    );
+    let mut dialog_r: Signal<f64> = use_graph_signal(
+        "dialog_r",
+        const {
+            &[
+                writes("circle-canvas", "dblclick"),
+                writes("circle-diameter", "input"),
+            ]
+        },
+        || 20.0,
+    );
     // Captured at mount; rect is read at click time because Blitz fires
     // `mounted` before layout, and `element_coordinates()` is unimplemented.
-    let mut canvas_handle: Signal<Option<Rc<MountedData>>> = use_signal(|| None);
+    let mut canvas_handle: Signal<Option<Rc<MountedData>>> =
+        use_graph_signal("canvas_handle", &[], || None);
 
     rsx! {
         div { class: "cd-root",

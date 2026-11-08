@@ -7,7 +7,9 @@
 //!  - `accessibility`: Enables [`accesskit`](https://docs.rs/accesskit/latest/accesskit/) accessibility support,
 //!    and the snapshot model (`DioxusDocument::snapshot`), its text form (`Snapshot::to_text`)
 //!    and its parts (`Snapshot::text_parts`), its diff (`Snapshot::diff`) and the actionable-key check
-//!    (`DioxusDocument::unkeyed_actionable`) built on it.
+//!    (`DioxusDocument::unkeyed_actionable`) built on it, and the UI graph (`DioxusDocument::graph`),
+//!    which reads the states an app registered through `use_graph_state` (a hook every build
+//!    holds, so an app registers alike with the feature off).
 //!  - `hot-reload`: Enables hot-reloading of Dioxus RSX.
 //!  - `menu`: Enables the [`muda`](https://docs.rs/muda/latest/muda/) menubar.
 //!  - `tracing`: Enables tracing support.
@@ -17,9 +19,12 @@ mod actionable;
 mod dioxus_document;
 mod element_id;
 mod events;
+#[cfg(feature = "accessibility")]
+mod graph;
 mod keyboard_compat;
 mod mutation_buffer;
 mod mutation_writer;
+mod signal_registry;
 #[cfg(feature = "accessibility")]
 mod snapshot;
 #[cfg(feature = "accessibility")]
@@ -31,7 +36,11 @@ mod write_once_attr;
 pub use actionable::UnkeyedActionable;
 pub use blitz_dom::DocumentConfig;
 pub use dioxus_document::DioxusDocument;
+pub use element_id::{VIRTUAL_KEY_SEPARATOR, virtual_node_id};
 pub use events::{NodeHandle, synthetic_click_event, synthetic_form_event};
+#[cfg(feature = "accessibility")]
+pub use graph::{GraphHandler, GraphNode, GraphState, GraphWrite, GraphWriter, UiGraph, WriteFlag};
+pub use signal_registry::{DeclaredWrite, SignalRegistry, use_graph_state};
 #[cfg(feature = "accessibility")]
 pub use snapshot::{
     MASKED_VALUE, NodeState, Snapshot, SnapshotNode, closed_select_of, is_masked_input,

@@ -74,6 +74,10 @@ pub struct NodeState {
     pub invalid: bool,
     /// Whether the element is the document's focused node.
     pub focused: bool,
+    /// Whether the element reacts to a click: it carries a `click` listener of the app's own now
+    /// and is no disabled form control. A native activation with no app handler (a bare button,
+    /// a checkbox, a `summary`) and a listener on an ancestor read false.
+    pub clickable: bool,
 }
 
 impl Snapshot {
@@ -105,6 +109,11 @@ impl DioxusDocument {
             doc: &doc,
             nodes: tree.nodes.iter().map(|(id, node)| (*id, node)).collect(),
             focus: tree.focus,
+            clicked: crate::element_id::element_listeners(&self.vdom, &self.vdom_state)
+                .into_iter()
+                .filter(|(_, events)| events.contains(&"click"))
+                .map(|(node, _)| node)
+                .collect(),
         };
         let mut roots = Vec::new();
         if let Some(root) = tree_root(&tree) {
@@ -122,6 +131,8 @@ struct Builder<'a> {
     doc: &'a BaseDocument,
     nodes: HashMap<TreeNodeId, &'a TreeNode>,
     focus: TreeNodeId,
+    /// The elements carrying an app `click` listener now.
+    clicked: HashSet<NodeId>,
 }
 
 impl Builder<'_> {
@@ -185,6 +196,7 @@ impl Builder<'_> {
                             .map(|toggled| toggled == Toggled::True),
                         invalid: tree_node.invalid().is_some(),
                         focused: id == self.focus,
+                        clickable: self.clicked.contains(&node_id) && !element.is_disabled(),
                     },
                     bounds,
                     children,
@@ -1021,5 +1033,28 @@ mod tests {
             assert_eq!(child.bounds, pick.bounds, "{}", child.id);
             assert_eq!(child.state.value, None, "{}", child.id);
         }
+    }
+
+    #[test]
+    fn an_element_with_an_app_click_listener_reads_clickable() {
+        fn app() -> Element {
+            rsx! {
+                div { id: "tile", onclick: move |_| {},
+                    span { id: "inside", "Tile" }
+                }
+                button { id: "go", onclick: move |_| {}, "Go" }
+                button { id: "off", disabled: true, onclick: move |_| {}, "Off" }
+                button { id: "bare", "Bare" }
+                input { id: "agree", r#type: "checkbox" }
+                div { id: "keys", tabindex: "0", onkeydown: move |_| {}, "Keys" }
+            }
+        }
+        let snapshot = build(app).snapshot();
+        let clickable = |id: &str| node(&snapshot, id).state.clickable;
+        assert!(clickable("tile") && clickable("go"));
+        for id in ["inside", "off", "bare", "agree", "keys"] {
+            assert!(!clickable(id), "{id}");
+        }
+        assert!(snapshot.to_text().contains("id=\"go\" enabled clickable @"));
     }
 }

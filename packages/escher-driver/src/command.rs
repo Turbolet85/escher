@@ -178,6 +178,8 @@ pub enum Command {
     },
     /// Read the screen for its visual defects.
     Lint,
+    /// Read the screen's UI graph.
+    Graph,
 }
 
 impl Command {
@@ -192,6 +194,7 @@ impl Command {
             Command::Scroll { .. } => &schema::SCROLL,
             Command::Screenshot { .. } => &schema::SCREENSHOT,
             Command::Lint => &schema::LINT,
+            Command::Graph => &schema::GRAPH,
         }
     }
 }
@@ -271,6 +274,7 @@ pub fn validate(call: &Call) -> Result<Command, Refusal> {
             id: Some((*id).to_owned()),
         }),
         ("lint", []) => Ok(Command::Lint),
+        ("graph", []) => Ok(Command::Graph),
         // A verb the table lists in a shape no command has is not one this function knows.
         _ => Err(Refusal::new(Cause::UnknownVerb)),
     }
@@ -517,6 +521,7 @@ mod tests {
                 },
             ),
             (call("lint", &[]), Command::Lint),
+            (call("graph", &[]), Command::Graph),
         ];
         let keys = [
             ("tab", Key::Tab),
@@ -544,7 +549,7 @@ mod tests {
     #[test]
     fn an_admitted_call_becomes_its_command() {
         let rows = admitted_rows();
-        assert_eq!(rows.len(), 33);
+        assert_eq!(rows.len(), 34);
         for (row, (call, command)) in rows.iter().enumerate() {
             assert!(validate(call).as_ref() == Ok(command), "row {row}");
         }
@@ -640,7 +645,7 @@ mod tests {
         }
 
         let instance = admitted_rows();
-        assert_eq!(instance.len(), 33);
+        assert_eq!(instance.len(), 34);
         for (row, (call, command)) in instance.iter().enumerate() {
             assert!(validate(call).as_ref() == Ok(command), "row {row}");
             assert!(validate_session(call) == Err(unknown), "row {row}");
@@ -706,6 +711,7 @@ mod tests {
             (call("scroll", &[]), Fault::Missing("id")),
             (call("snapshot", &[id()]), Fault::Unnamed),
             (call("lint", &[id()]), Fault::Unnamed),
+            (call("graph", &[id()]), Fault::Unnamed),
             (call("screenshot", &[("text", text("Ada"))]), Fault::Unnamed),
             (call("screenshot", &[id(), id()]), Fault::Repeated("id")),
             (
@@ -817,7 +823,7 @@ mod tests {
                 Fault::OutOfBound("key"),
             ),
         ];
-        assert_eq!(rows.len(), 46);
+        assert_eq!(rows.len(), 47);
         for (row, (call, fault)) in rows.into_iter().enumerate() {
             assert!(validate(&call) == malformed(fault), "row {row}");
         }
@@ -889,7 +895,7 @@ mod tests {
             }
         }
         let table: Vec<&str> = schema::VERBS.iter().map(|verb| verb.name).collect();
-        assert_eq!(table.len(), 12);
+        assert_eq!(table.len(), 13);
         assert_eq!(reached, table);
         let at = |level: Level| {
             schema::VERBS
@@ -899,7 +905,7 @@ mod tests {
         };
         assert_eq!(
             (at(Level::Instance), at(Level::Session), at(Level::Tool)),
-            (8, 3, 1)
+            (9, 3, 1)
         );
     }
 }

@@ -48,7 +48,7 @@ pub struct NodeFieldSpec {
 /// The keys of each node in a `nodes` result field, in the order a node is written with them.
 /// `parent`, `enabled`, `checked`, `value`, `selected` and `pressed` are left out where the
 /// node has no reading for them, and `differs` is written on a changed node only.
-pub const NODE_FIELDS: [NodeFieldSpec; 13] = [
+pub const NODE_FIELDS: [NodeFieldSpec; 14] = [
     NodeFieldSpec {
         name: "id",
         help: "the element's stable id, the one a call names it by",
@@ -106,6 +106,12 @@ pub const NODE_FIELDS: [NodeFieldSpec; 13] = [
         help: "whether the element holds the document's focus",
     },
     NodeFieldSpec {
+        name: "clickable",
+        help: "whether the element reacts to a click: it carries a click handler of the app's \
+               own and is not a disabled form control; a native activation with no app handler, \
+               and a handler on an ancestor, read false",
+    },
+    NodeFieldSpec {
         name: "bounds",
         help: "where the element stands on the screen: x, y, width and height, in pixels; a box \
                reads the same bounds however far its content is scrolled",
@@ -152,8 +158,8 @@ const CHANGED: FieldSpec = FieldSpec {
     kind: FieldKind::Nodes,
     always: true,
     help: "the elements on the screen before and after the step whose role, name, state, bounds \
-           or parent differ, as they read after it; `selected` and `pressed` are left out where \
-           the element states neither, `pressed` is false for a mixed toggle, and `invalid` is \
+           or parent differ, as they read after it, `clickable` among its state; `selected` and \
+           `pressed` are left out where the element states neither, `pressed` is false for a mixed toggle, and `invalid` is \
            true for a grammar or spelling error",
 };
 
@@ -198,8 +204,8 @@ pub(crate) const SNAPSHOT: VerbSpec = VerbSpec {
                    nested by indent, a part's lines as they read in the whole text; a line's state \
                    words, each written only where the element states it, are enabled or disabled, \
                    checked or unchecked, value=, selected or unselected, pressed or unpressed, \
-                   invalid and focused; a mixed toggle reads unpressed, and a grammar or spelling \
-                   error reads invalid",
+                   invalid, focused and clickable; a mixed toggle reads unpressed, and a grammar \
+                   or spelling error reads invalid",
         },
         FieldSpec {
             name: "part",
@@ -373,6 +379,53 @@ pub(crate) const LINT: VerbSpec = VerbSpec {
     }],
 };
 
+pub(crate) const GRAPH: VerbSpec = VerbSpec {
+    name: "graph",
+    level: Level::Instance,
+    help: "reads the screen's UI graph: every element a snapshot lists, by its id, with the \
+           component that rendered it, the handlers it carries and, for each handler, the \
+           registered states it writes, and every registered state with the elements whose \
+           component reads it; a handler's writes are what the app declares when it registers \
+           the state, shown before the handler runs, each confirmed once a run of it writes the \
+           state; only states the app registers are graphed, a write no handler made (a timer, \
+           a task) names no handler, and a reader is a component, so every element it rendered \
+           reads the state; no state's value is read",
+    args: &[],
+    fields: &[
+        FieldSpec {
+            name: "nodes",
+            kind: FieldKind::GraphNodes,
+            always: true,
+            help: "one entry per element a snapshot lists, in its order, keyed id; owner, the id \
+                   of the element whose handler serves it — a select's for its options and \
+                   groups — left out where it is its own; component, the name of the component \
+                   that rendered it, left out outside every component the app wrote; handlers, \
+                   one per handler it carries now, keyed event and writes, each write keyed \
+                   state, declared, whether the state's declaration names the handler, \
+                   confirmed, whether a run of it wrote the state, and flag, left out where the \
+                   two agree: undeclared for a write no declaration names, unconfirmed for a \
+                   declared write once the handler has run and no run of it wrote the state; and \
+                   reads, the states its component reads",
+        },
+        FieldSpec {
+            name: "states",
+            kind: FieldKind::GraphStates,
+            always: true,
+            help: "one entry per registered state, in the order the app registered them, keyed \
+                   name, a later registration of a name its component already registered \
+                   reading name:k; component, left out for the app root; declared, the \
+                   handlers the app declares write it, each keyed id, an element's id or a \
+                   prefix ending in *, and event; writers, one per element whose handler a run \
+                   confirmed writing it or whose write is flagged, keyed id, event, declared, \
+                   confirmed and flag as a node's write, a declared write no run confirmed being \
+                   in declared and on its node alone; and readers, the names of the components that read \
+                   it, each once: a state's reading elements are the nodes whose component it \
+                   names, each of which names the state among its reads; a state only the app \
+                   root reads is named in its nodes' reads alone",
+        },
+    ],
+};
+
 const LABEL: FieldSpec = FieldSpec {
     name: "label",
     kind: FieldKind::Text,
@@ -494,10 +547,11 @@ pub(crate) const HELP: VerbSpec = VerbSpec {
     ],
 };
 
-/// The verb set, in the schema's order: the eight verbs asked of the held instance, the three
+/// The verb set, in the schema's order: the nine verbs asked of the held instance, the three
 /// asked of the session, then `help`, asked of the tool itself.
 pub const VERBS: &[VerbSpec] = &[
-    SNAPSHOT, CLICK, TYPE, PRESS, ADVANCE, SCROLL, SCREENSHOT, LINT, START, STATUS, STOP, HELP,
+    SNAPSHOT, CLICK, TYPE, PRESS, ADVANCE, SCROLL, SCREENSHOT, LINT, GRAPH, START, STATUS, STOP,
+    HELP,
 ];
 
 /// One way a run of the command line ends: its status, its name and what it means.

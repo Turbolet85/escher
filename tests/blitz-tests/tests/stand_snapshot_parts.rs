@@ -150,7 +150,7 @@ fn a_screen_over_the_budget_is_walked_in_parts() {
         );
         let (texts, _) = walk(&mut session, mode);
         assert!(
-            lines_holding(&texts, " focused @") == 1,
+            lines_holding(&texts, " focused clickable @") == 1,
             "{mode}: one line reads focused"
         );
 

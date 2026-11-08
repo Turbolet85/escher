@@ -422,6 +422,35 @@ pub fn stand_needles(sentinel: &str) -> Needles {
     Needles { ids, names }
 }
 
+/// Reads the CRUD screen's UI-graph needles, booted here in process: the component names and the
+/// registered state names its graph reads. Asserts that enough were read.
+#[track_caller]
+pub fn graph_needles() -> Vec<String> {
+    use seven_guis::stand::{self, LeanTask};
+
+    let harness = stand::boot(LeanTask::Crud, stand::options(true));
+    let graph = harness.doc.graph();
+    let mut needles: Vec<String> = Vec::new();
+    let components = graph.nodes.iter().filter_map(|node| node.component.clone());
+    let states = graph.states.iter().map(|state| state.name.clone());
+    for name in components.chain(states) {
+        if !needles.contains(&name) {
+            needles.push(name);
+        }
+    }
+    assert!(
+        needles.iter().any(|needle| needle == "Crud")
+            && needles.iter().any(|needle| needle == "first_field"),
+        "the CRUD graph's component and state names are read"
+    );
+    assert!(
+        needles.len() >= 8,
+        "{} graph needles were read",
+        needles.len()
+    );
+    needles
+}
+
 /// Reads the needles of the flight booker's `flight-type` options, booted here in process: each
 /// option's id, its name and its value. Asserts that the two options were read.
 #[track_caller]

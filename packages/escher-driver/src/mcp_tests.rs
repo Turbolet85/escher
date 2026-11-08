@@ -396,7 +396,7 @@ fn listed(verb: &VerbSpec) -> (Vec<&'static str>, Vec<&'static str>, Vec<&'stati
 }
 
 #[test]
-fn the_listing_is_the_twelve_verbs_of_the_table() {
+fn the_listing_is_the_thirteen_verbs_of_the_table() {
     let Ok(Value::Object(result)) = serde_json::from_str::<Value>(&tool_list(&APPS)) else {
         panic!("the listing is an object");
     };
@@ -405,11 +405,15 @@ fn the_listing_is_the_twelve_verbs_of_the_table() {
     };
     assert_eq!(result.len(), 1, "no member beside the tools, no cursor");
     assert_eq!(tools.len(), VERBS.len());
-    assert_eq!(VERBS.len(), 12);
+    assert_eq!(VERBS.len(), 13);
     assert_eq!(
         tools.last().map(|tool| &tool["name"]),
         Some(&Value::from("help"))
     );
+    let names: Vec<&Value> = tools.iter().map(|tool| &tool["name"]).collect();
+    let graph = names.iter().position(|name| **name == "graph");
+    let lint = names.iter().position(|name| **name == "lint");
+    assert_eq!(graph, lint.map(|at| at + 1), "graph right after lint");
     for (row, (listed_tool, verb)) in tools.iter().zip(VERBS).enumerate() {
         assert!(listed_tool["name"] == verb.name, "row {row}");
         assert_described(row, listed_tool, verb);

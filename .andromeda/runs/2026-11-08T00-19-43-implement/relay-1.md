@@ -1,0 +1,3 @@
+The operator, in the implement session after its first report (2026-11-08), verbatim:
+
+Before the operator pass, one fix in this chunk: the Cells graph answer at 547,685 bytes is too large for an agent to read, though inside the 1 MB bound. Make each state list its reading COMPONENTS, not every element of them: each node already names its component, so an agent maps readers to nodes by that join and nothing is lost. Add no argument and no new field (a part argument would widen the crossing). Re-run the affected gates, re-measure the Cells answer's bytes, and state the new figure and the per-component reader form in the report and docs/capabilities.md.

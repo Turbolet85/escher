@@ -20,7 +20,10 @@
 //! `tool_call` span holds `screenshot` and parents its command; a refused one is one text block
 //! marked as an error. A `lint` tool result on each lean task is one text block, the line of the
 //! findings `Session::lint` reads on a session booted the same way, and its `tool_call` span
-//! holds `lint` and parents its command. A `help`
+//! holds `lint` and parents its command. A `graph` tool result on each lean task is one text
+//! block, the line of the graph `DioxusDocument::graph` reads on a session booted the same way,
+//! and its `tool_call` span holds `graph` and parents one command that records `verb` alone. A
+//! `help`
 //! tool call is answered by the server, with or without a held session: its text is the tool's
 //! description of itself, and its `tool_call` span holds `help` and `accepted` and parents no
 //! command. No check here sleeps or reads a clock. A failure message carries a layout mode and
@@ -760,6 +763,80 @@ fn a_lint_tool_call_answers_the_readers_findings_and_parents_its_command() {
             assert!(
                 accepted && children == 1,
                 "{mode}: task {row}: the lint's tool_call is accepted and parents one command"
+            );
+        }
+    }
+}
+
+#[test]
+fn a_graph_tool_call_answers_the_readers_graph_and_parents_a_command_recording_its_verb_alone() {
+    for incremental in [false, true] {
+        let mode = if incremental { "incremental" } else { "full" };
+        for (row, task) in TASKS.into_iter().enumerate() {
+            let start = format!(r#"{{"app":"{}"}}"#, slug(task));
+            let requests = [
+                tool_call(1, "start", &start),
+                tool_call(2, "graph", "{}"),
+                tool_call(3, "graph", r#"{"id":"x"}"#),
+                tool_call(4, "stop", "{}"),
+            ];
+            let recorder = Recorder::default();
+            let replies = tracing::subscriber::with_default(recorder.clone(), || {
+                serve(&requests, incremental)
+            });
+            assert_eq!(replies.len(), 4, "{mode}: task {row}: one reply per call");
+
+            let (direct, _ticks) = hold(task, incremental);
+            let graph = direct.harness().doc.graph();
+            assert!(
+                result(&replies[1]) == (false, Outcome::Graphed { graph }.to_json()),
+                "{mode}: task {row}: the text block is the line of the reader's own graph"
+            );
+            let (is_error, text) = result(&replies[2]);
+            assert!(
+                is_error && remedied(&text) == Some(Cause::Malformed),
+                "{mode}: task {row}: a graph naming an argument is refused malformed"
+            );
+
+            let recorded = recorder.0.lock().unwrap();
+            let graphs: Vec<usize> = recorded
+                .spans
+                .iter()
+                .enumerate()
+                .filter(|(_, seen)| {
+                    seen.name == "tool_call"
+                        && seen
+                            .fields
+                            .iter()
+                            .any(|(field, value)| *field == "tool" && value == "graph")
+                })
+                .map(|(at, _)| at)
+                .collect();
+            assert_eq!(
+                graphs.len(),
+                2,
+                "{mode}: task {row}: one tool_call per graph"
+            );
+            let accepted = recorded.spans[graphs[0]]
+                .fields
+                .iter()
+                .any(|(field, value)| *field == "ending" && value == "accepted");
+            let children: Vec<&Seen> = recorded
+                .spans
+                .iter()
+                .filter(|seen| seen.name == "command" && seen.parent == Some(graphs[0]))
+                .collect();
+            assert!(
+                accepted && children.len() == 1,
+                "{mode}: task {row}: the graph's tool_call is accepted and parents one command"
+            );
+            assert!(
+                children[0]
+                    .fields
+                    .iter()
+                    .all(|(field, value)| *field == "verb" && value == "graph")
+                    && !children[0].fields.is_empty(),
+                "{mode}: task {row}: the graph's command records its verb alone"
             );
         }
     }

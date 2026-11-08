@@ -4,6 +4,8 @@ use std::task::{Poll, Waker};
 
 use dioxus_native::prelude::*;
 
+use super::{use_graph_signal, writes};
+
 /// A tick source for [`Timer`]. Provided in context, it replaces the timer's
 /// 100 ms wall-clock delay: each delivered tick advances elapsed time once.
 #[derive(Clone, Default)]
@@ -42,8 +44,17 @@ impl TimerTicks {
 
 #[component]
 pub fn Timer() -> Element {
-    let mut elapsed = use_signal(|| 0.0f64);
-    let mut duration = use_signal(|| 15.0f64);
+    // The time step's ticks write `elapsed` too, from no handler.
+    let mut elapsed = use_graph_signal(
+        "elapsed",
+        const { &[writes("timer-reset", "click")] },
+        || 0.0f64,
+    );
+    let mut duration = use_graph_signal(
+        "duration",
+        const { &[writes("timer-duration", "input")] },
+        || 15.0f64,
+    );
     let ticks = try_use_context::<TimerTicks>();
 
     use_coroutine(move |_: UnboundedReceiver<()>| {

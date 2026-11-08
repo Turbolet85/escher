@@ -31,9 +31,10 @@ checks it with `validate` before anything runs. The same session is carried four
 
 A kept check is a fifth medium, at rest (see Session recording and replay below).
 
-The schema holds twelve verbs in three levels:
+The schema holds thirteen verbs in three levels:
 
-- asked of the held instance: `snapshot` · `click` · `type` · `press` · `advance` · `scroll` · `screenshot` · `lint`;
+- asked of the held instance: `snapshot` · `click` · `type` · `press` · `advance` · `scroll` · `screenshot` · `lint` ·
+  `graph`;
 - asked of the session: `start` · `status` · `stop`;
 - asked of the tool itself: `help`.
 
@@ -63,8 +64,9 @@ Witnesses: `stand_element_ids`, `stand_id_persistence`, `stand_id_edits`, `stand
 
 ### The snapshot
 
-`snapshot` reads the screen as a tree of nodes, each with id · role · name · state · bounds, written under thirteen
-node keys. Its text form is one line per node, nested by indent, under a 10,000-byte budget. A screen over the budget
+`snapshot` reads the screen as a tree of nodes, each with id · role · name · state · bounds, written under fourteen
+node keys. A node's state says whether it reacts to a click, `clickable`: it carries a `click` handler of the app's own
+and is no disabled form control. Its text form is one line per node, nested by indent, under a 10,000-byte budget. A screen over the budget
 is read in parts with `snapshot --part` (1 to 1,000): runs of whole lines that concatenate to the whole text. Each
 acting verb returns the diff of the screen before and after its step, by stable id: the nodes added, removed and
 changed, a changed node's `differs` naming the readings that moved.
@@ -112,6 +114,26 @@ select's own bounds, overlaps nothing, while a `multiple` select's rows are lint
 Creates the last CRUD row, `crud-person-14`, reads `clipped` inside `crud-list`.
 
 Witnesses: `stand_lint`, `text_extent`.
+
+### The UI graph
+
+`graph` reads the held screen's UI graph and changes nothing. Each node a snapshot lists, by its stable id, names the
+component that rendered it, the handlers it carries now (read from the vdom, `mounted` included) and, for each handler,
+the registered states it writes; an option or a group of a `select` names the select as its owner, the element whose
+handler serves it. Each registered state names the component that registered it, the handlers the app declares write
+it, the writes a run confirmed or flagged and the components that read it, each named once: an agent finds a state's reading nodes by joining
+those names to the nodes' `component`, and each such node names the state among its `reads`. An app registers a signal by `use_graph_state` (the stand's
+`use_graph_signal`), declaring with it the handlers that write it: the graph shows those declared writes from boot,
+confirms each once a run of the handler writes the state, and flags `undeclared` a write no declaration names and
+`unconfirmed` a declared write once the handler has run and no run of it wrote the state. The stand's seven tasks
+register their signals, and once each of their handlers has run no write reads a flag. On Cells at boot the whole
+`graph` answer is 293,869 bytes, inside the 1,048,576-byte answer bound and not paged: its bulk is the 676 data cells'
+declared `click` writes, listed on each cell's node from boot.
+
+The stable-id grammar reserves a fifth form for a virtual node, a target an owner element's own handler serves inside
+it: `{owner}///{key}` (`virtual_node_id`), a separator no other id can hold. Nothing produces it yet.
+
+Witnesses: `stand_graph`, `stand_non_lean_tasks` (the `clickable` count per task), `dioxus_runtime_probe`.
 
 ### Session recording and replay
 
@@ -212,6 +234,13 @@ The driver's own refusal texts state three readings that are off:
   rows. All rows take one height, measured from the select's font at opening, so a row with a larger authored font
   clips. Pinned by `select_popup`.
 - **`change` on a text input and a range.** They fire `input` and no `change`. Pinned by `text_range_no_change_event`.
+- **The UI graph's reach.** Only states an app registers are graphed. A handler's writes before it runs are what its
+  declaration states, so only as true as the code it names; a handler the session never runs keeps its declaration
+  unconfirmed and unflagged, and a conditional write a run skipped reads `unconfirmed` until a run takes it. A write
+  no handler made — a tick of the Timer's time step, a `mounted` handler, a task outliving its event — names no handler.
+  A reader is a component, so every node it rendered reads its state; a state names a reading component once, and a
+  state only the app root reads is named in its nodes' `reads` alone, since the app root carries no component name. `clickable` reads an element's own `click`
+  handler, not a bubbled one or a native activation. Pinned by `stand_graph` and dioxus-native-dom's graph tests.
 - **A shot's PNG bytes.** They repeat byte for byte on one host and differ between linux x86_64 and macOS aarch64, as
   measured at CI#39225375577. A check compared byte for byte across operating systems holds no `screenshot` step.
 
@@ -220,6 +249,10 @@ The driver's own refusal texts state three readings that are off:
 - **Unpaged diffs and findings.** An acting verb's diff and a lint's findings are not paged: on a large screen either
   can pass 10,000 bytes, held only by the 1,048,576-byte answer bound. `snapshot` alone reads a screen in parts. As
   measured at escher-0.2.0/chunks/2026-10-20-large-screen-in-parts/report.md.
+- **An unpaged graph.** `graph` takes no argument and answers the whole screen at once: Cells at boot reads 293,869
+  bytes, nearly all of it its 676 cells' declared `click` writes on their nodes, held only by the answer bound. A graph
+  read in parts, as `snapshot`'s is, would add an argument and is next-version work, owned by the residual row
+  `res-7cc5bi4k` (target: next).
 - **The `select` model's other limits.** A `multiple` select with no `size` lists every row; Ctrl+A is not modelled;
   `press` holds no Ctrl, so a set of rows that are not adjacent cannot be built through the driver. A controlled app must
   write `selected` back, or a choice reverts. A single-choice select shows its chosen option's label alone. The windowed
@@ -264,7 +297,7 @@ Witnesses: `stand_act_spans`, `telemetry_scrub`, `telemetry_drop`, `telemetry_st
 ### Not built
 
 - A settle verb, or a reply naming the busy source.
-- A snapshot field saying an element reacts to a click.
+- A producer of the reserved virtual-node id form.
 
 ### Unmeasured
 
@@ -313,7 +346,9 @@ A tool result carries:
 - control values, with a password's and a file input's value as a fixed mask;
 - snapshot text and diffs;
 - a shot as an MCP `image` block (a PNG, base64), with any password input painted masked;
-- a lint's findings: ids, closed defect words and numbers.
+- a lint's findings: ids, closed defect words and numbers;
+- a UI graph: ids, component names, registered state names, handler event names, closed flag words and booleans, never
+  a state's value.
 
 No description crosses any driver carrier, since descriptions go to the platform adapter only.
 
@@ -340,5 +375,8 @@ They run in these CI legs (`.github/scripts/ci-leg.sh`):
   `checkable_change_event`, `text_range_no_change_event` and `transformed_client_rect`, whose
   `a_target_inside_a_translated_scrolling_box_reads_inside_its_visible_region` holds the transformed box's reading.
 - **`ci-scripts`**: the CI-script checks, this page's pin among them.
+
+The UI graph and the `clickable` reading are proven by `stand_graph`, a `stand_*` file of the `test` and
+`stand-repeat` legs.
 
 The 0.2.0 requirement record is `WITNESSES_020` in `stand_requirement_sweep`: nine rows, 46 witnesses.

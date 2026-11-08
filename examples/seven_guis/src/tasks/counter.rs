@@ -1,8 +1,14 @@
 use dioxus_native::prelude::*;
 
+use super::{use_graph_signal, writes};
+
 #[component]
 pub fn Counter() -> Element {
-    let mut count = use_signal(|| 0i32);
+    let mut count = use_graph_signal(
+        "count",
+        const { &[writes("counter-increment", "click")] },
+        || 0i32,
+    );
 
     rsx! {
         div { class: "counter-root",

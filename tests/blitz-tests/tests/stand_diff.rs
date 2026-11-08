@@ -236,6 +236,7 @@ fn assert_exact(mode: &str, before: &Snapshot, after: &Snapshot, diff: &Snapshot
                 b.pressed != a.pressed,
                 b.invalid != a.invalid,
                 b.focused != a.focused,
+                b.clickable != a.clickable,
                 was.bounds != now.bounds,
             ];
             let differs: Vec<Reading> = Reading::ALL

@@ -1,5 +1,7 @@
 use dioxus_native::prelude::*;
 
+use super::{use_graph_signal, writes};
+
 #[derive(Clone, PartialEq)]
 struct Person {
     id: u64,
@@ -9,30 +11,79 @@ struct Person {
 
 #[component]
 pub fn Crud() -> Element {
-    let mut people = use_signal(|| {
-        vec![
-            Person {
-                id: 0,
-                first: "Hans".into(),
-                last: "Emil".into(),
-            },
-            Person {
-                id: 1,
-                first: "Max".into(),
-                last: "Mustermann".into(),
-            },
-            Person {
-                id: 2,
-                first: "Roman".into(),
-                last: "Tisch".into(),
-            },
-        ]
-    });
-    let mut next_id = use_signal(|| 3u64);
-    let mut selected: Signal<Option<usize>> = use_signal(|| None);
-    let mut filter = use_signal(String::new);
-    let mut first_field = use_signal(String::new);
-    let mut last_field = use_signal(String::new);
+    let mut people = use_graph_signal(
+        "people",
+        const {
+            &[
+                writes("crud-create", "click"),
+                writes("crud-update", "click"),
+                writes("crud-delete", "click"),
+            ]
+        },
+        || {
+            vec![
+                Person {
+                    id: 0,
+                    first: "Hans".into(),
+                    last: "Emil".into(),
+                },
+                Person {
+                    id: 1,
+                    first: "Max".into(),
+                    last: "Mustermann".into(),
+                },
+                Person {
+                    id: 2,
+                    first: "Roman".into(),
+                    last: "Tisch".into(),
+                },
+            ]
+        },
+    );
+    let mut next_id = use_graph_signal(
+        "next_id",
+        const { &[writes("crud-create", "click")] },
+        || 3u64,
+    );
+    let mut selected: Signal<Option<usize>> = use_graph_signal(
+        "selected",
+        const {
+            &[
+                writes("crud-filter", "input"),
+                writes("crud-list", "keydown"),
+                writes("crud-person-*", "click"),
+                writes("crud-delete", "click"),
+            ]
+        },
+        || None,
+    );
+    let mut filter = use_graph_signal(
+        "filter",
+        const { &[writes("crud-filter", "input")] },
+        String::new,
+    );
+    let mut first_field = use_graph_signal(
+        "first_field",
+        const {
+            &[
+                writes("crud-list", "keydown"),
+                writes("crud-person-*", "click"),
+                writes("crud-name", "input"),
+            ]
+        },
+        String::new,
+    );
+    let mut last_field = use_graph_signal(
+        "last_field",
+        const {
+            &[
+                writes("crud-list", "keydown"),
+                writes("crud-person-*", "click"),
+                writes("crud-surname", "input"),
+            ]
+        },
+        String::new,
+    );
 
     let has_selection = selected().is_some();
 

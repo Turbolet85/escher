@@ -1,8 +1,8 @@
 //! The `escher-session` binary in its `mcp` role, its telemetry sink installed, writes nothing a
 //! tool call handled to stderr at `RUST_LOG=trace`: no stable element id, no accessible name, no
 //! typed text and no image byte — while a CRUD flow runs through it by tool calls, a `type`, two
-//! `screenshot`s, the whole screen and one element, a `lint` and a `snapshot` of part 1 among
-//! them — and
+//! `screenshot`s, the whole screen and one element, a `lint`, a `snapshot` of part 1 and a
+//! `graph` among them, nor any component or registered state name the graph answered — and
 //! each tool call leaves exactly one `tool_call` line there, holding only its `tool` and its
 //! `ending` beside the sink's own fields, and each call run on the held instance one `command`
 //! line. Stdout holds protocol lines only. The check reads the binary as its own build makes
@@ -20,7 +20,9 @@ mod common;
 
 use std::process::Command;
 
-use common::{Needles, Speaker, found, occurrences, stamped_lines, stand_needles, string_at};
+use common::{
+    Needles, Speaker, found, graph_needles, occurrences, stamped_lines, stand_needles, string_at,
+};
 
 const BINARY: &str = env!("CARGO_BIN_EXE_escher-session");
 
@@ -118,6 +120,7 @@ fn mcp_flow(record: Option<&std::path::Path>) {
     // The needles are read from the screen the role serves, as the host's own log check reads
     // them.
     let Needles { ids, names } = stand_needles(SENTINEL);
+    let graph = graph_needles();
     assert!(
         ids.iter().any(|id| id == "crud-name"),
         "the screen's author keys are among the id needles"
@@ -156,9 +159,10 @@ fn mcp_flow(record: Option<&std::path::Path>) {
         ),
         ("lint", "{}".to_string(), true, false),
         ("snapshot", r#"{"part":1}"#.to_string(), true, false),
+        ("graph", "{}".to_string(), true, false),
         ("stop", "{}".to_string(), false, false),
     ];
-    assert_eq!(calls.len(), 10);
+    assert_eq!(calls.len(), 11);
     for (index, (name, arguments, _, is_error)) in calls.iter().enumerate() {
         let id = index as u32 + 2;
         speaker.send(tool_call(id, name, arguments).as_bytes());
@@ -210,6 +214,15 @@ fn mcp_flow(record: Option<&std::path::Path>) {
             .is_some_and(|text| text.starts_with(r#"{"text":""#)
                 && text.ends_with(r#","part":1,"parts":1}"#)),
         "the part's result holds the screen as its one part"
+    );
+    assert!(
+        string_at(&replies[10], "text").is_some_and(|text| {
+            text.starts_with(r#"{"nodes":["#)
+                && graph
+                    .iter()
+                    .all(|needle| text.contains(&format!("\"{needle}\"")))
+        }),
+        "the graph's result holds its component and state names"
     );
 
     let spoke = speaker.close();
@@ -290,16 +303,23 @@ fn mcp_flow(record: Option<&std::path::Path>) {
     );
 
     let (ids_found, names_found) = (found(&stderr, &ids), found(&stderr, &names));
+    let graph_found = found(&stderr, &graph);
     let sentinels = stderr.matches(SENTINEL).count();
     let nobodies = stderr.matches(NOBODY).count();
     let image_bytes = occurrences(&stderr, &images);
     assert!(
-        ids_found == 0 && names_found == 0 && sentinels == 0 && nobodies == 0 && image_bytes == 0,
-        "{ids_found} of {} id needles, {names_found} of {} name needles, {sentinels} \
-         occurrences of the typed text, {nobodies} of the refused id and {image_bytes} of an \
-         image found in {lines} stderr lines",
+        ids_found == 0
+            && names_found == 0
+            && graph_found == 0
+            && sentinels == 0
+            && nobodies == 0
+            && image_bytes == 0,
+        "{ids_found} of {} id needles, {names_found} of {} name needles, {graph_found} of {} \
+         graph needles, {sentinels} occurrences of the typed text, {nobodies} of the refused id \
+         and {image_bytes} of an image found in {lines} stderr lines",
         ids.len(),
-        names.len()
+        names.len(),
+        graph.len()
     );
 
     #[cfg(unix)]

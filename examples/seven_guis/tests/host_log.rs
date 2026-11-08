@@ -1,7 +1,8 @@
 //! The `escher-session` host, its telemetry sink installed, writes nothing a command handled to
 //! stderr at `RUST_LOG=trace`: no stable element id, no accessible name, no typed text and no
 //! image byte — while a hosted `snapshot`, `click`, `type`, two `screenshot`s, the whole
-//! screen and one element, a `lint` and a `snapshot` of part 1 run on it — and each call it runs leaves
+//! screen and one element, a `lint`, a `snapshot` of part 1 and a `graph` run on it — and no
+//! component or registered state name the graph answered; and each call it runs leaves
 //! exactly one command-span line there. Guards a measured leak: the sink printed records from
 //! third-party targets as written, which put every author key of the screen on stderr at
 //! `debug` and each row's name and each label's text at `trace`. The check reads the host as
@@ -401,8 +402,8 @@ fn host_flow(name: &str, record: bool) {
     use std::time::{Duration, Instant};
 
     use common::{
-        Host, Needles, clear, drain, found, occurrences, recorded_needles, stamped_lines,
-        stand_needles, state_dir,
+        Host, Needles, clear, drain, found, graph_needles, occurrences, recorded_needles,
+        stamped_lines, stand_needles, state_dir,
     };
     use escher_driver::{ArgValue, Call, attach, call, stop};
 
@@ -411,6 +412,7 @@ fn host_flow(name: &str, record: bool) {
 
     // The needles are read from the screen the host serves.
     let Needles { ids, names } = stand_needles(SENTINEL);
+    let graph = graph_needles();
     assert!(
         ids.iter().any(|id| id == "crud-surname"),
         "the screen's author keys are among the id needles"
@@ -488,6 +490,10 @@ fn host_flow(name: &str, record: bool) {
             verb: "snapshot".to_string(),
             args: vec![("part".to_string(), ArgValue::Number(1))],
         },
+        Call {
+            verb: "graph".to_string(),
+            args: Vec::new(),
+        },
     ];
     let answers: Vec<String> = calls
         .iter()
@@ -533,6 +539,12 @@ fn host_flow(name: &str, record: bool) {
         answers[6].ends_with(r#","part":1,"parts":1}"#)
             && ids.iter().all(|id| answers[6].contains(id.as_str())),
         "the part's answer holds the screen as its one part"
+    );
+    assert!(
+        graph
+            .iter()
+            .all(|needle| answers[7].contains(&format!("\"{needle}\""))),
+        "the graph's answer holds its component and state names"
     );
 
     stop(&dir).expect("the session stops");
@@ -580,15 +592,21 @@ fn host_flow(name: &str, record: bool) {
     );
 
     let (ids_found, names_found) = (found(&stderr, &ids), found(&stderr, &names));
+    let graph_found = found(&stderr, &graph);
     let sentinels = stderr.matches(SENTINEL).count();
     let image_bytes = occurrences(&stderr, &images);
     assert!(
-        ids_found == 0 && names_found == 0 && sentinels == 0 && image_bytes == 0,
-        "{ids_found} of {} id needles, {names_found} of {} name needles, {sentinels} \
-         occurrences of the typed text and {image_bytes} of an image found in {lines} stderr \
-         lines",
+        ids_found == 0
+            && names_found == 0
+            && graph_found == 0
+            && sentinels == 0
+            && image_bytes == 0,
+        "{ids_found} of {} id needles, {names_found} of {} name needles, {graph_found} of {} \
+         graph needles, {sentinels} occurrences of the typed text and {image_bytes} of an image \
+         found in {lines} stderr lines",
         ids.len(),
-        names.len()
+        names.len(),
+        graph.len()
     );
 
     assert!(

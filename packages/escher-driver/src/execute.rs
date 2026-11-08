@@ -6,7 +6,7 @@ use blitz_test_harness::{
     Busy, Harness, Key as KeyboardKey, Modifiers, NamedKey, PixelRect, ScreenshotError,
 };
 use dioxus_native_dom::{
-    DioxusDocument, NodeId, SNAPSHOT_TEXT_BUDGET, Snapshot, SnapshotDiff, is_masked_input,
+    DioxusDocument, NodeId, SNAPSHOT_TEXT_BUDGET, Snapshot, SnapshotDiff, UiGraph, is_masked_input,
     is_select,
 };
 use tracing::Span;
@@ -90,6 +90,11 @@ pub enum Outcome {
         /// Every defect found on the screen, as [`Session::lint`] reads it.
         findings: Vec<Finding>,
     },
+    /// What `graph` returns.
+    Graphed {
+        /// The screen's UI graph, as [`DioxusDocument::graph`] reads it.
+        graph: UiGraph,
+    },
 }
 
 /// States the fields of a command's span once: the span that carries them, and the table of
@@ -138,7 +143,8 @@ impl Session {
     /// whole screen is recorded.
     ///
     /// `lint` runs no step either: it answers [`Session::lint`]'s findings on the screen as it
-    /// stands, or its refusal.
+    /// stands, or its refusal. Nor does `graph`, which answers the screen's UI graph
+    /// ([`DioxusDocument::graph`]) as it stands, recording every id it reads.
     ///
     /// An acting verb takes the screen's snapshot, runs its step, settles the instance
     /// ([`Harness::settle`]) and takes the snapshot again; its outcome carries the diff of the
@@ -304,6 +310,13 @@ impl Session {
             Command::Lint => Ok(Outcome::Linted {
                 findings: self.lint()?,
             }),
+            Command::Graph => {
+                let graph = harness.doc.graph();
+                for node in &graph.nodes {
+                    seen.record(&node.id);
+                }
+                Ok(Outcome::Graphed { graph })
+            }
         }
     }
 }
@@ -320,7 +333,8 @@ fn record_result(span: &Span, result: &Result<Outcome, Refusal>) {
             Outcome::Screen { .. }
             | Outcome::Part { .. }
             | Outcome::Shot { .. }
-            | Outcome::Linted { .. },
+            | Outcome::Linted { .. }
+            | Outcome::Graphed { .. },
         ) => return,
         Ok(
             Outcome::Acted {

@@ -1,9 +1,17 @@
 use dioxus_native::prelude::*;
 
+use super::{use_graph_signal, writes};
+
+/// Each field's input writes both: its own text, and the other's when its text parses.
+const BOTH_FIELDS: &[dioxus_native::DeclaredWrite] = &[
+    writes("temp-celsius", "input"),
+    writes("temp-fahrenheit", "input"),
+];
+
 #[component]
 pub fn TempConverter() -> Element {
-    let mut celsius = use_signal(|| String::from("0"));
-    let mut fahrenheit = use_signal(|| String::from("32"));
+    let mut celsius = use_graph_signal("celsius", BOTH_FIELDS, || String::from("0"));
+    let mut fahrenheit = use_graph_signal("fahrenheit", BOTH_FIELDS, || String::from("32"));
 
     rsx! {
         div { class: "temp-root",

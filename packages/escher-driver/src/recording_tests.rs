@@ -11,6 +11,7 @@ use dioxus_native_dom::SnapshotDiff;
 
 use super::*;
 use crate::lint::{Bounds, Defect, Finding, Reason};
+use dioxus_native_dom::{GraphNode, UiGraph};
 
 /// A fresh path under the workspace's `target/tmp`, named for the test: nothing is there.
 fn scratch(name: &str) -> PathBuf {
@@ -148,12 +149,28 @@ fn a_recording_reads_back_as_the_calls_it_kept() {
             }),
         ),
         (
+            call("graph", &[]),
+            false,
+            Ok(Outcome::Graphed {
+                graph: UiGraph {
+                    nodes: vec![GraphNode {
+                        id: "go".to_string(),
+                        owner: None,
+                        component: Some("Counter".to_string()),
+                        handlers: Vec::new(),
+                        reads: vec!["count".to_string()],
+                    }],
+                    states: Vec::new(),
+                },
+            }),
+        ),
+        (
             call("click", &[("id", ArgValue::Number(7))]),
             false,
             not_found,
         ),
     ];
-    assert_eq!(calls.len(), 10);
+    assert_eq!(calls.len(), 11);
     for (row, (call, masked, answer)) in calls.iter().enumerate() {
         assert!(recording.record(call, *masked, answer), "row {row}");
     }
@@ -184,6 +201,10 @@ fn a_recording_reads_back_as_the_calls_it_kept() {
     // A lint's findings are kept whole.
     assert_eq!(check.steps()[8].call().verb, "lint");
     assert!(check.steps()[8].answer()["findings"][0]["defect"] == "zero-size");
+    // A graph is kept whole.
+    assert_eq!(check.steps()[9].call().verb, "graph");
+    assert!(check.steps()[9].answer()["nodes"][0]["component"] == "Counter");
+    assert!(check.steps()[9].answer()["states"] == Value::Array(Vec::new()));
     let text = String::from_utf8(bytes).expect("the check is text");
     assert!(text.starts_with("[\n{\"tool\":\"start\",\"arguments\":{\"app\":\"counter\"}},\n"));
     assert!(text.contains(

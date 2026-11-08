@@ -1,5 +1,7 @@
 use dioxus_native::prelude::*;
 
+use super::{use_graph_signal, writes};
+
 fn is_leap_year(y: i32) -> bool {
     (y % 4 == 0 && y % 100 != 0) || y % 400 == 0
 }
@@ -42,10 +44,26 @@ fn date_le(a: (u32, u32, i32), b: (u32, u32, i32)) -> bool {
 
 #[component]
 pub fn FlightBooker() -> Element {
-    let mut flight_type = use_signal(|| String::from("one-way"));
-    let mut start_str = use_signal(|| String::from("01.01.2026"));
-    let mut return_str = use_signal(|| String::from("01.01.2026"));
-    let mut booked_msg: Signal<Option<String>> = use_signal(|| None);
+    let mut flight_type = use_graph_signal(
+        "flight_type",
+        const { &[writes("flight-type", "input")] },
+        || String::from("one-way"),
+    );
+    let mut start_str = use_graph_signal(
+        "start_str",
+        const { &[writes("flight-start", "input")] },
+        || String::from("01.01.2026"),
+    );
+    let mut return_str = use_graph_signal(
+        "return_str",
+        const { &[writes("flight-return-date", "input")] },
+        || String::from("01.01.2026"),
+    );
+    let mut booked_msg: Signal<Option<String>> = use_graph_signal(
+        "booked_msg",
+        const { &[writes("flight-book", "click")] },
+        || None,
+    );
 
     let is_return = flight_type() == "return";
     let start_valid = parse_date(&start_str()).is_some();

@@ -4,7 +4,7 @@
 use std::fmt::Write as _;
 
 use blitz_test_harness::Busy;
-use dioxus_native_dom::{DiffNode, Reading, SnapshotDiff};
+use dioxus_native_dom::{DiffNode, GraphNode, GraphState, Reading, SnapshotDiff, WriteFlag};
 
 use crate::client::Hello;
 use crate::error::SessionError;
@@ -110,6 +110,7 @@ struct NodeParts<'a> {
     pressed: Option<bool>,
     invalid: bool,
     focused: bool,
+    clickable: bool,
     /// x, y, width and height.
     bounds: [f64; 4],
     /// For a changed node, the readings that differ; `None` for any other node.
@@ -129,7 +130,8 @@ fn reading_word(reading: Reading) -> &'static str {
         Reading::Pressed => 8,
         Reading::Invalid => 9,
         Reading::Focused => 10,
-        Reading::Bounds => 11,
+        Reading::Clickable => 11,
+        Reading::Bounds => 12,
     };
     NODE_FIELDS[index].name
 }
@@ -161,6 +163,7 @@ fn node(parts: &NodeParts<'_>) -> String {
     }
     object.flag("invalid", parts.invalid);
     object.flag("focused", parts.focused);
+    object.flag("clickable", parts.clickable);
     let bounds = object.member("bounds");
     bounds.push('[');
     for (index, bound) in parts.bounds.into_iter().enumerate() {
@@ -213,6 +216,7 @@ fn nodes(nodes: &[DiffNode], changed: bool) -> String {
             pressed: read.state.pressed,
             invalid: read.state.invalid,
             focused: read.state.focused,
+            clickable: read.state.clickable,
             bounds: [
                 read.bounds.x,
                 read.bounds.y,
@@ -222,6 +226,85 @@ fn nodes(nodes: &[DiffNode], changed: bool) -> String {
             differs: changed.then_some(read.differs.as_slice()),
         })
     }))
+}
+
+/// A list of texts.
+fn texts<'a>(items: impl Iterator<Item = &'a str>) -> String {
+    list(items.map(|item| {
+        let mut text = String::new();
+        string(&mut text, item);
+        text
+    }))
+}
+
+/// The two readings of a write and its flag, where there is one.
+fn write_readings(object: &mut Object, declared: bool, confirmed: bool, flag: Option<WriteFlag>) {
+    object.flag("declared", declared);
+    object.flag("confirmed", confirmed);
+    if let Some(flag) = flag {
+        object.text("flag", flag.word());
+    }
+}
+
+/// One node of a `graph`'s `nodes`, keyed as the field's help names.
+fn graph_node(node: &GraphNode) -> String {
+    let mut object = Object::new();
+    object.text("id", &node.id);
+    if let Some(owner) = &node.owner {
+        object.text("owner", owner);
+    }
+    if let Some(component) = &node.component {
+        object.text("component", component);
+    }
+    object.json(
+        "handlers",
+        &list(node.handlers.iter().map(|handler| {
+            let mut entry = Object::new();
+            entry.text("event", &handler.event);
+            entry.json(
+                "writes",
+                &list(handler.writes.iter().map(|write| {
+                    let mut entry = Object::new();
+                    entry.text("state", &write.state);
+                    write_readings(&mut entry, write.declared, write.confirmed, write.flag);
+                    entry.end()
+                })),
+            );
+            entry.end()
+        })),
+    );
+    object.json("reads", &texts(node.reads.iter().map(String::as_str)));
+    object.end()
+}
+
+/// One state of a `graph`'s `states`, keyed as the field's help names.
+fn graph_state(state: &GraphState) -> String {
+    let mut object = Object::new();
+    object.text("name", &state.name);
+    if let Some(component) = &state.component {
+        object.text("component", component);
+    }
+    object.json(
+        "declared",
+        &list(state.declared.iter().map(|declared| {
+            let mut entry = Object::new();
+            entry.text("id", declared.id);
+            entry.text("event", declared.event);
+            entry.end()
+        })),
+    );
+    object.json(
+        "writers",
+        &list(state.writers.iter().map(|writer| {
+            let mut entry = Object::new();
+            entry.text("id", &writer.id);
+            entry.text("event", &writer.event);
+            write_readings(&mut entry, writer.declared, writer.confirmed, writer.flag);
+            entry.end()
+        })),
+    );
+    object.json("readers", &texts(state.readers.iter().map(String::as_str)));
+    object.end()
 }
 
 /// The fields every acting verb returns, in the schema's order.
@@ -369,6 +452,12 @@ impl Outcome {
                 object.json("findings", &list(findings.iter().map(finding)));
                 object.end()
             }
+            Outcome::Graphed { graph } => {
+                let mut object = Object::new();
+                object.json("nodes", &list(graph.nodes.iter().map(graph_node)));
+                object.json("states", &list(graph.states.iter().map(graph_state)));
+                object.end()
+            }
         }
     }
 }
@@ -436,7 +525,9 @@ pub(crate) fn stopped() -> String {
 mod tests {
     use std::io;
 
-    use dioxus_native_dom::MASKED_VALUE;
+    use dioxus_native_dom::{
+        DeclaredWrite, GraphHandler, GraphWrite, GraphWriter, MASKED_VALUE, UiGraph,
+    };
 
     use super::*;
     use crate::lint::Defect;
@@ -564,12 +655,13 @@ mod tests {
             pressed: Some(true),
             invalid: true,
             focused: true,
+            clickable: true,
             bounds: [8.0, 8.5, 200.0, 24.0],
             differs: Some(&[Reading::Value, Reading::Focused]),
         });
         assert_eq!(
             full,
-            r#"{"id":"who","parent":"form","role":"TextInput","name":"Name:","enabled":true,"checked":false,"value":"Ada","selected":false,"pressed":true,"invalid":true,"focused":true,"bounds":[8,8.5,200,24],"differs":["value","focused"]}"#
+            r#"{"id":"who","parent":"form","role":"TextInput","name":"Name:","enabled":true,"checked":false,"value":"Ada","selected":false,"pressed":true,"invalid":true,"focused":true,"clickable":true,"bounds":[8,8.5,200,24],"differs":["value","focused"]}"#
         );
         assert_eq!(keys(&full), NODE_FIELDS.map(|key| key.name));
 
@@ -585,16 +677,25 @@ mod tests {
             pressed: None,
             invalid: false,
             focused: false,
+            clickable: false,
             bounds: [0.0, 0.0, f64::NAN, 600.0],
             differs: None,
         });
         assert_eq!(
             bare,
-            r#"{"id":"root","role":"GenericContainer","name":"","invalid":false,"focused":false,"bounds":[0,0,null,600]}"#
+            r#"{"id":"root","role":"GenericContainer","name":"","invalid":false,"focused":false,"clickable":false,"bounds":[0,0,null,600]}"#
         );
         assert_eq!(
             keys(&bare),
-            ["id", "role", "name", "invalid", "focused", "bounds"]
+            [
+                "id",
+                "role",
+                "name",
+                "invalid",
+                "focused",
+                "clickable",
+                "bounds"
+            ]
         );
 
         // A masked control's value is the mask: the writer writes what the snapshot reads.
@@ -610,6 +711,7 @@ mod tests {
             pressed: None,
             invalid: false,
             focused: true,
+            clickable: false,
             bounds: [0.0, 0.0, 1.0, 1.0],
             differs: None,
         });
@@ -621,7 +723,7 @@ mod tests {
         assert_eq!(list(std::iter::empty()), "[]");
 
         // Each reading is written as the node key it reads.
-        assert_eq!(Reading::ALL.len(), 11);
+        assert_eq!(Reading::ALL.len(), 12);
         for (row, reading) in Reading::ALL.into_iter().enumerate() {
             let word = reading_word(reading);
             assert!(word == NODE_FIELDS[row + 1].name, "row {row}");
@@ -700,6 +802,86 @@ mod tests {
                 },
             ),
         ]
+    }
+
+    /// A graph holding every optional key and both flags: a select owning its option, a node
+    /// outside every component, and a state the app root registered.
+    fn a_graph() -> UiGraph {
+        let write = |state: &str, declared, confirmed, flag| GraphWrite {
+            state: state.to_string(),
+            declared,
+            confirmed,
+            flag,
+        };
+        let writer = |id: &str, event: &str, declared, confirmed, flag| GraphWriter {
+            id: id.to_string(),
+            event: event.to_string(),
+            declared,
+            confirmed,
+            flag,
+        };
+        let handler = |event: &str, writes| GraphHandler {
+            event: event.to_string(),
+            writes,
+        };
+        let mode = || vec!["mode".to_string()];
+        let form = || Some("Form".to_string());
+        UiGraph {
+            nodes: vec![
+                GraphNode {
+                    id: "pick".to_string(),
+                    owner: None,
+                    component: form(),
+                    handlers: vec![handler("input", vec![write("mode", true, true, None)])],
+                    reads: mode(),
+                },
+                GraphNode {
+                    id: "one".to_string(),
+                    owner: Some("pick".to_string()),
+                    component: form(),
+                    handlers: Vec::new(),
+                    reads: mode(),
+                },
+                GraphNode {
+                    id: "go".to_string(),
+                    owner: None,
+                    component: None,
+                    handlers: vec![handler(
+                        "click",
+                        vec![
+                            write("mode", false, true, Some(WriteFlag::Undeclared)),
+                            write("a\"b", true, false, Some(WriteFlag::Unconfirmed)),
+                        ],
+                    )],
+                    reads: Vec::new(),
+                },
+            ],
+            states: vec![
+                GraphState {
+                    name: "mode".to_string(),
+                    component: form(),
+                    declared: vec![DeclaredWrite::new("pick", "input")],
+                    writers: vec![
+                        writer("pick", "input", true, true, None),
+                        writer("go", "click", false, true, Some(WriteFlag::Undeclared)),
+                    ],
+                    readers: vec!["Form".to_string()],
+                },
+                GraphState {
+                    name: "a\"b".to_string(),
+                    component: None,
+                    declared: vec![DeclaredWrite::new("g*", "click")],
+                    writers: vec![writer(
+                        "go",
+                        "click",
+                        true,
+                        false,
+                        Some(WriteFlag::Unconfirmed),
+                    )],
+                    readers: Vec::new(),
+                },
+            ],
+        }
     }
 
     #[test]
@@ -813,8 +995,32 @@ mod tests {
                     r#"{"id":"g","defect":"contrast","bounds":[0,80,50,18],"ratio":2.85,"required":4.5}]}"#,
                 ),
             ),
+            (
+                Outcome::Graphed {
+                    graph: UiGraph::default(),
+                },
+                &schema::GRAPH,
+                &[][..],
+                r#"{"nodes":[],"states":[]}"#,
+            ),
+            (
+                Outcome::Graphed { graph: a_graph() },
+                &schema::GRAPH,
+                &[][..],
+                concat!(
+                    r#"{"nodes":[{"id":"pick","component":"Form","handlers":[{"event":"input","writes":[{"state":"mode","declared":true,"confirmed":true}]}],"reads":["mode"]},"#,
+                    r#"{"id":"one","owner":"pick","component":"Form","handlers":[],"reads":["mode"]},"#,
+                    r#"{"id":"go","handlers":[{"event":"click","writes":[{"state":"mode","declared":false,"confirmed":true,"flag":"undeclared"},"#,
+                    r#"{"state":"a\"b","declared":true,"confirmed":false,"flag":"unconfirmed"}]}],"reads":[]}],"#,
+                    r#""states":[{"name":"mode","component":"Form","declared":[{"id":"pick","event":"input"}],"#,
+                    r#""writers":[{"id":"pick","event":"input","declared":true,"confirmed":true},"#,
+                    r#"{"id":"go","event":"click","declared":false,"confirmed":true,"flag":"undeclared"}],"readers":["Form"]},"#,
+                    r#"{"name":"a\"b","declared":[{"id":"g*","event":"click"}],"#,
+                    r#""writers":[{"id":"go","event":"click","declared":true,"confirmed":false,"flag":"unconfirmed"}],"readers":[]}]}"#,
+                ),
+            ),
         ];
-        assert_eq!(rows.len(), 10);
+        assert_eq!(rows.len(), 12);
         for (row, (outcome, verb, absent, json)) in rows.into_iter().enumerate() {
             let line = outcome.to_json();
             assert!(line == json, "row {row}");
