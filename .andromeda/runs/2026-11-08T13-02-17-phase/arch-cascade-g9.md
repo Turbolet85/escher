@@ -1,0 +1,54 @@
+@carried n=1 label=architecture/occupied-resources fact=fct-crxfkvwh
+why: the new read's answer must cross only on the one ratified socket within the v3 wire's bounds, carrying no NodeId, and a new verb on that carrier is a boundary widening the founder decides.
+quote: serving three requests at wire version `v3`, a call's replies including the fixed `recording-failed` — `hello`, `stop` and, since 2026-10-10-driver-cli, `call` — so a call's element id and typed text cross in and an answer's ids, accessible names, control values (a password's or a file input's as the fixed mask), snapshot text and diff cross out, no `NodeId` among them, a request line at most 16,384 bytes and an answer at most 1,048,576; still no second served listener;
+@carried n=1 run=2 label=architecture fact=fct-uu6lok3l
+quote: one local listener, the driver session's Unix-domain socket `{state_dir}/session.sock` (`0600`, in a `0700` state directory), unix only; the `escher-session mcp` role speaks over its own stdio, with no listener; still no second served listener.
+@carried n=2 label=architecture/occupied-resources fact=fct-o232y5ww
+why: the new read must cross both carriers and a kept check as the graph verb does — ids, owner ids, closed words and booleans, never a value, typed text or NodeId, a malformed argument refused with nothing run — its whole answer on the Cells screen measured under the answer bound, and its crossing recorded as a ratified widening.
+quote: Both carriers, and a kept check, also take the screen's UI graph out as the `graph` verb's answer — stable ids, owner ids, component names, handler event names, registered state names, the declared writes the app authors, the closed flag words `undeclared` and `unconfirmed` and booleans, never a value, typed text or `NodeId`; `graph` takes no argument, and a call that gives one is refused `malformed` with nothing run; a snapshot node's `clickable`, a closed bool, crosses in the snapshot and the diff; a boundary widening ratified (§Established Decisions → [Driver session]); still the one listener and no port, the wire's bounds unchanged, the whole Cells answer 293,869 bytes under the 1,048,576-byte answer bound (as measured at escher-0.3.0/chunks/2026-11-07-ui-graph/report.md).
+@carried n=3 label=architecture/occupied-resources fact=fct-xzzhfdyl
+why: a session check the plan adds for the new read must keep its state directory under target/tmp and be recorded in this list of the session checks' state directories.
+quote: the session checks' own state directories are `ss-life`, `ss-idle` and `ss-quiet` (blitz-tests) and `hb-*`, `hl-trace`, `hl-client`, `hl-client-rec`, `hl-cells`, `hl-popup`, `cc-*`, `cf-*` and `ht-timer` (seven_guis: `host_binary`, `host_log`, `cli_commands`, `cli_flow`, `host_timer`; the select list's two `cc-popup` and `hl-popup`, `mcp_log`'s select list test recording nothing and no `ml-popup` existing: examples/seven_guis/tests/cli_commands.rs:443; examples/seven_guis/tests/host_log.rs:297) under `CARGO_TARGET_TMPDIR`, i.e. `target/tmp/`,
+@carried n=4 label=architecture/occupied-resources fact=fct-p7m5lrau
+why: recording the new read in a kept check (recording.rs) must keep the recording directory launcher-named, owner-only and named by no verb, argument or result field, each check rewritten whole through its temporary file.
+quote: The recording directory: a path the launcher names by `--record <dir>` on `start`, the host role or the `mcp` role (`Session::recording_into` in process) — never an env read or a default, and named by no tool call, verb, argument or result field — created `0700` when absent, its parent existing, and refused `RecordDirNotPrivate` when present and open to its group or others; it holds one `check-{n}.json` per recorded session (`0600`, `create_new`, `n` the smallest from 1 naming no file, so no file is replaced), rewritten whole after every call through `.check-{n}.json.tmp` (`0600`) and a rename;
+@carried n=4 run=2 label=architecture fact=fct-kjd5y7c4
+quote: The recording directory is a path the launcher names by `--record <dir>`, never an env read or a default and named by no tool call, created `0700` and refused when open to its group or others;
+@carried n=5 label=architecture/occupied-resources fact=fct-bw7ybeh6
+why: replay.rs's edited reading of a kept check must keep reading the two committed stand checks through Check::from_bytes and keep a fresh recording equal to them byte for byte.
+quote: read by `stand_replay` through `Check::from_bytes`, compared byte for byte with a fresh recording by seven_guis `recording` in `rc-fresh` under `CARGO_TARGET_TMPDIR`, uploaded by no CI leg
+@carried n=6 label=architecture/occupied-resources fact=fct-j4gmcppp
+why: the new read's command span must record verb alone (and, refused, cause), parented by tool_call under the mcp role, with host_log and mcp_log each making one such call and reading zero id, name and content needles at trace under both builds.
+quote: A `graph` call's `command` span records `verb` alone, its `tool_call` parenting it under the `mcp` role, and `host_log` and `mcp_log` each make one graph call and read 0 id, name and graph needles (component and state names) at `trace` under both builds;
+@carried n=6 run=2 label=architecture/occupied-resources fact=fct-drud2scu
+quote: log target `escher_driver`, under which escher-driver's command span is emitted at INFO since 2026-10-07-driver-command-spans and its `tool_call` span since 2026-10-10-mcp-surface
+@carried n=7 label=architecture/occupied-resources fact=fct-jzxi3spj
+why: a needle set the log checks read for the new read's call must be stated once in the shared module beside graph_needles and recorded in this list.
+quote: The eight seven_guis checks' shared module `examples/seven_guis/tests/common/mod.rs` also holds what the two log checks read stderr with, stated once for `host_log` and `mcp_log` alone:
+@carried n=7 run=2 label=architecture/occupied-resources fact=fct-jzxi3spj
+quote: `graph_needles` (each served component and registered state name, for the one `graph` call each log check makes) (examples/seven_guis/tests/common/mod.rs:371-573).
+@carried n=8 label=architecture/cross-cutting-patterns fact=fct-dw3hon6z
+why: the read reaches the graph, snapshot and actionable readers through dioxus-native-dom's accessibility gate, and any reader P3 adds there must sit under that same gate.
+quote: `accessibility` also to `dioxus-native-dom/accessibility`, which enables dioxus-native-dom's own optional `accesskit` and gates its `accessibility_tree` override and its `snapshot`, `snapshot_diff`, `snapshot_text`, `actionable` and `graph` modules, its `signal_registry` module ungated
+@carried n=8 run=2 label=architecture fact=fct-nmnb5xux
+quote: optional capabilities are compile-time Cargo features forwarded down the crates, `accessibility` also gating the dioxus-native-dom snapshot modules;
+@carried n=9 label=architecture/project-intent fact=fct-ldsoar27
+why: a new verb changes the README's stated count of driver commands an MCP client gets as tools, which must equal the count VERBS holds and which the capability-statement pin re-reads.
+quote: since 2026-10-10-mcp-surface how an MCP client drives the same apps (it spawns `target/debug/escher-session mcp` as its own child and gets the driver commands as tools, the page saying thirteen, the count `VERBS` holds),
+@carried n=9 run=2 label=architecture/project-intent fact=fct-ldsoar27
+quote: No build or doc step reads it, and one test does — the capability-statement pin reads its count of the driver commands as tools (§Standard Contracts → CI contracts);
+@carried n=9 run=3 label=architecture fact=fct-3eyld63q
+quote: one test does — the capability-statement pin reads its count of the driver commands an MCP client gets as tools
+@carried n=10 label=architecture/project-intent fact=fct-k7yo6bgj
+why: the chunk's edit of docs/capabilities.md must keep its five sections in order and its verb and cause names and five counts equal to the driver schema's tables, as the pin the chunk re-reads holds them.
+quote: in five sections in order — `## What it can do` · `## Stated limits` · `## Accessibility reach` · `## What an MCP client carries onward` · `## Where each claim is proven`; the CI-script pin `.github/scripts/test_capability_statement.py` holds its verb and cause names and its five counts — verbs, refusal causes, session errors, node keys, exit statuses — to the driver schema's tables (§Standard Contracts → CI contracts), and no check reads its other claims;
+@binding n=1
+**Occupied resources (the socket and its graph answer) ↔ the body's driver session boundary**: the new read's answer crosses the socket's `call`, the mcp role and a kept check only as ids, owner ids, verb names, closed cause words and booleans, never a NodeId, within the 1,048,576-byte answer bound measured on the stand's largest screen, and its new verb on every ratified carrier is a boundary widening the founder decides (architecture/occupied-resources fct-crxfkvwh) (architecture/occupied-resources fct-o232y5ww) (architecture fct-nb3g6bqn)
+@binding n=2
+**Project intent (README count) ↔ Project intent (capability statement) ↔ the schema's VERBS**: a new verb moves VERBS's count, the README's stated tool count and docs/capabilities.md's verb count together, and the capability-statement pin re-reads all three against the schema's tables, so all three must move in one change (architecture/project-intent fct-ldsoar27) (architecture/project-intent fct-k7yo6bgj)
+@binding n=3
+**Occupied resources (recording directory, committed checks) ↔ the body's recording and replay contract**: recording the new read keeps the owner-only, launcher-named recording directory, and replaying it from a kept check runs through Session::run while the committed counter checks still parse through Check::from_bytes and match a fresh recording byte for byte (architecture/occupied-resources fct-p7m5lrau) (architecture/occupied-resources fct-bw7ybeh6) (architecture fct-elnqiowc)
+@binding n=4
+**Occupied resources (log target and needle helpers) ↔ Occupied resources (session check state directories)**: the log checks that witness the new read's span at zero id, name and content needles take their needles from the one shared module and any new session check names its state directory under target/tmp in the recorded list (architecture/occupied-resources fct-j4gmcppp) (architecture/occupied-resources fct-jzxi3spj) (architecture/occupied-resources fct-xzzhfdyl)
+@binding n=5
+**Cross-cutting patterns (accessibility gate) ↔ the body's Dioxus DOM bridge contract**: the read reads the UI graph, the snapshot's clickable and unkeyed_actionable only under the accessibility feature escher-driver names, and a reader P3 adds to dioxus-native-dom sits under the same gate, read-only and holding no NodeId (architecture/cross-cutting-patterns fct-dw3hon6z) (architecture fct-srb7slak)

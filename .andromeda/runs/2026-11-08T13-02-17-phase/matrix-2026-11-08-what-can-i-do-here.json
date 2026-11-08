@@ -1,0 +1,78 @@
+[
+{
+"tool": "matrix",
+"v": "1.9",
+"sha8": "e8f6f683",
+"ts": "2026-11-08T14:06:31Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.3.0",
+"--id",
+"v030-06",
+"--chunk",
+"2026-11-08-what-can-i-do-here",
+"--acceptance-file",
+".andromeda/runs/2026-11-08T13-02-17-phase/acceptance-v030-06.md",
+"--run-dir",
+".andromeda/runs/2026-11-08T13-02-17-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v030-06 → chunk 2026-11-08-what-can-i-do-here (was null; status planned kept)",
+"acceptance: On the stand, one command lists each actionable node on the current sc… (219 chars)",
+"         → On the stand's six served screens, in both layout modes, the `actions`… (742 chars)",
+"landed, rendered ./.andromeda/db/log/2026-11-08T13-03-56-2026-11-08-what-can-i-do-here.ndjson · 1 entry changed",
+"pool: unclaimed 9 [v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15]"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-08T13-03-56-2026-11-08-what-can-i-do-here.ndjson"
+],
+"before": {
+"id": "v030-06",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, one command lists each actionable node on the current screen with its verbs and, for each that cannot be a… (219 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v030-06",
+"chunk": "2026-11-08-what-can-i-do-here",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand's six served screens, in both layout modes, the `actions` verb lists each actionable node (focusable, an in… (742 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.9",
+"sha8": "e8f6f683",
+"ts": "2026-11-08T14:06:36Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-11-08-what-can-i-do-here",
+"--run-dir",
+".andromeda/runs/2026-11-08T13-02-17-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-11-08-what-can-i-do-here: 1 · ## Acceptance Criteria: line 350, 36 lines",
+"v030-06: cited in ## Acceptance Criteria (line 351)",
+"pool: unclaimed 9 [v030-07 v030-08 v030-09 v030-10 v030-11 v030-12 v030-13 v030-14 v030-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

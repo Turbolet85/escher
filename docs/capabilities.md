@@ -31,10 +31,10 @@ checks it with `validate` before anything runs. The same session is carried four
 
 A kept check is a fifth medium, at rest (see Session recording and replay below).
 
-The schema holds thirteen verbs in three levels:
+The schema holds fourteen verbs in three levels:
 
 - asked of the held instance: `snapshot` · `click` · `type` · `press` · `advance` · `scroll` · `screenshot` · `lint` ·
-  `graph`;
+  `graph` · `actions`;
 - asked of the session: `start` · `status` · `stop`;
 - asked of the tool itself: `help`.
 
@@ -134,6 +134,21 @@ The stable-id grammar reserves a fifth form for a virtual node, a target an owne
 it: `{owner}///{key}` (`virtual_node_id`), a separator no other id can hold. Nothing produces it yet.
 
 Witnesses: `stand_graph`, `stand_non_lean_tasks` (the `clickable` count per task), `dioxus_runtime_probe`.
+
+### What can be done here
+
+`actions` reads what an agent can do on the held screen now, and changes nothing. It lists each actionable node in the
+snapshot's order: a focusable element, one of an interactive role, one carrying a handler now (read from the vdom,
+`mounted` left out), or one an owner's handler serves, as a select serves its options and groups. Each node names its
+stable id, its owner and `keyed`, whether its id is an author key. It also names each verb a call can name it by:
+the verb table's instance verbs that take an id, today `click` · `type` · `scroll` · `screenshot`. A verb that would
+be accepted now carries no cause. One that would be refused carries the cause the call would return, decided by the
+same check the call's own run meets before it acts, so the two agree by construction. `unkeyed_actionable` reads the
+same actionable rule, its listener reading the current handlers. At boot the six served screens list 2, 7, 3, 11, 678
+and 2 nodes (Counter, the flight booker, the Timer, CRUD, Cells, the load page). For every listed node and verb on
+the four lean tasks, and on a stated Cells and load-page subset, the listed answer equals the real call's.
+
+Witnesses: `stand_actions`, `stand_mcp_tools`, dioxus-native-dom's actionable tests.
 
 ### Session recording and replay
 
@@ -241,6 +256,9 @@ The driver's own refusal texts state three readings that are off:
   A reader is a component, so every node it rendered reads its state; a state names a reading component once, and a
   state only the app root reads is named in its nodes' `reads` alone, since the app root carries no component name. `clickable` reads an element's own `click`
   handler, not a bubbled one or a native activation. Pinned by `stand_graph` and dioxus-native-dom's graph tests.
+- **Accepted is not acting.** `actions` answers whether a call would be accepted, not what it would do: `type` reads
+  accepted on any enabled, visible, uncovered node, a button included, since the call's only check is the one a
+  `click` meets. `press` and `advance` act on focus and the clock, so no node lists them. Pinned by `stand_actions`.
 - **A shot's PNG bytes.** They repeat byte for byte on one host and differ between linux x86_64 and macOS aarch64, as
   measured at CI#39225375577. A check compared byte for byte across operating systems holds no `screenshot` step.
 
@@ -253,6 +271,9 @@ The driver's own refusal texts state three readings that are off:
   bytes, nearly all of it its 676 cells' declared `click` writes on their nodes, held only by the answer bound. A graph
   read in parts, as `snapshot`'s is, would add an argument and is next-version work, owned by the residual row
   `res-7cc5bi4k` (target: next).
+- **An unpaged actions answer.** `actions` takes no argument and answers the whole screen at once. Cells at boot reads
+  106,088 bytes for 678 nodes, held only by the answer bound. A `click` in the overlay scrollbar band of a box just
+  scrolled reads accepted and dispatches nothing until the scrollbar fades.
 - **The `select` model's other limits.** A `multiple` select with no `size` lists every row; Ctrl+A is not modelled;
   `press` holds no Ctrl, so a set of rows that are not adjacent cannot be built through the driver. A controlled app must
   write `selected` back, or a choice reverts. A single-choice select shows its chosen option's label alone. The windowed
@@ -348,7 +369,8 @@ A tool result carries:
 - a shot as an MCP `image` block (a PNG, base64), with any password input painted masked;
 - a lint's findings: ids, closed defect words and numbers;
 - a UI graph: ids, component names, registered state names, handler event names, closed flag words and booleans, never
-  a state's value.
+  a state's value;
+- an actions answer: ids, owner ids, verb names, closed cause words and booleans, never a value or typed text.
 
 No description crosses any driver carrier, since descriptions go to the platform adapter only.
 
@@ -377,6 +399,6 @@ They run in these CI legs (`.github/scripts/ci-leg.sh`):
 - **`ci-scripts`**: the CI-script checks, this page's pin among them.
 
 The UI graph and the `clickable` reading are proven by `stand_graph`, a `stand_*` file of the `test` and
-`stand-repeat` legs.
+`stand-repeat` legs. The `actions` read is proven by `stand_actions`, a `stand_*` file of the same two legs.
 
 The 0.2.0 requirement record is `WITNESSES_020` in `stand_requirement_sweep`: nine rows, 46 witnesses.

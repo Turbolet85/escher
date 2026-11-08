@@ -10,6 +10,7 @@ use std::os::unix::fs::PermissionsExt;
 use dioxus_native_dom::SnapshotDiff;
 
 use super::*;
+use crate::actions::{ActionNode, VerbReading};
 use crate::lint::{Bounds, Defect, Finding, Reason};
 use dioxus_native_dom::{GraphNode, UiGraph};
 
@@ -165,12 +166,33 @@ fn a_recording_reads_back_as_the_calls_it_kept() {
             }),
         ),
         (
+            call("actions", &[]),
+            false,
+            Ok(Outcome::Actions {
+                nodes: vec![ActionNode {
+                    id: "go".to_string(),
+                    owner: None,
+                    keyed: true,
+                    verbs: vec![
+                        VerbReading {
+                            verb: "click",
+                            cause: None,
+                        },
+                        VerbReading {
+                            verb: "scroll",
+                            cause: Some(Cause::OffScreen),
+                        },
+                    ],
+                }],
+            }),
+        ),
+        (
             call("click", &[("id", ArgValue::Number(7))]),
             false,
             not_found,
         ),
     ];
-    assert_eq!(calls.len(), 11);
+    assert_eq!(calls.len(), 12);
     for (row, (call, masked, answer)) in calls.iter().enumerate() {
         assert!(recording.record(call, *masked, answer), "row {row}");
     }
@@ -205,6 +227,14 @@ fn a_recording_reads_back_as_the_calls_it_kept() {
     assert_eq!(check.steps()[9].call().verb, "graph");
     assert!(check.steps()[9].answer()["nodes"][0]["component"] == "Counter");
     assert!(check.steps()[9].answer()["states"] == Value::Array(Vec::new()));
+    // An actions answer is kept whole.
+    assert_eq!(check.steps()[10].call().verb, "actions");
+    assert!(check.steps()[10].answer()["nodes"][0]["verbs"][1]["cause"] == "off-screen");
+    assert!(
+        check.steps()[10].answer()["nodes"][0]["verbs"][0]
+            .get("cause")
+            .is_none()
+    );
     let text = String::from_utf8(bytes).expect("the check is text");
     assert!(text.starts_with("[\n{\"tool\":\"start\",\"arguments\":{\"app\":\"counter\"}},\n"));
     assert!(text.contains(

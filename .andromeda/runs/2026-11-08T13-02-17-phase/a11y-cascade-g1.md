@@ -1,0 +1,64 @@
+@carried n=1 label=a11y-plan/a11y-scope-summary fact=fct-dzuhkwn2
+why: The read's owner-served select options and its covered cause must agree with the select list, which a closed single select opens over the page and which answers a hit first.
+quote: an engine overlay on every document, remote pages included, that a closed single select opens: one `BaseDocument` field `select_list`, answered first by `hit_with_scrollbar` and painted by `paint_scene` after the root's render
+@carried n=2 label=a11y-plan/a11y-scope-summary fact=fct-r6zswm2d
+why: The new read in escher-driver must reach the gated graph and snapshot through escher-driver's existing unconditional accessibility edge, with no platform adapter joining the stand graph.
+quote: the session library `escher-driver`, which seven_guis depends on since 2026-10-07-driver-session, names `accessibility` on `dioxus-native-dom` since 2026-10-07-act-by-id — unconditionally, with no `[features]` table of its own: its executor reads the snapshot, which stands behind that feature
+@carried n=2 run=2 label=a11y-plan fact=fct-kbjv4usk
+quote: it reaches seven_guis through `escher-driver`, which names it unconditionally, while seven_guis' own manifest names none, and no stand binary builds a platform adapter
+@carried n=3 label=a11y-plan/a11y-scope-summary fact=fct-lxyhqmtz
+why: The folded actionable-key check must answer, on the load page and Cells as on the lean tasks, what their own checks read: every actionable id an author key.
+quote: their own checks read them keyed, `unkeyed_actionable` empty, the load page's lint 0
+@carried n=4 label=a11y-plan/a11y-scope-summary fact=fct-fichvpza
+why: docs/capabilities.md is reached whole, so any change the read makes to the published accessibility reach must be written there by hand, its pin reading none of these claims.
+quote: `docs/capabilities.md` («What Escher can do») publishes the accessibility reach under `## Accessibility reach`: tier 0, SC 2.1.1 · 1.4.3 · 2.4.3 and no other criterion, the `a11y` leg's fourteen files with no required status check, what an assistive technology reads unmeasured, and the named limits (the focus fixup firing no `blur`, a single select's `size` unread, `aria-activedescendant` unread); its pin `.github/scripts/test_capability_statement.py` reads none of these claims, so a change to the reach is made in that document by hand
+@carried n=5 label=a11y-plan/a11y-strategy fact=fct-p7eqwwyx
+why: The refresh is driven by draining the changed set on a poll, so the read, which runs no step, must never call take_changed_nodes nor lean on the set.
+quote: on a poll that reported work the shell's `View::poll` takes the document's changed set (`BaseDocument::take_changed_nodes` — outside the `accessibility` cfg, so a shell built without the feature still drains it) and, under `accessibility`, rebuilds the platform tree when the set it took was non-empty
+@carried n=5 run=2 label=a11y-plan fact=fct-zyrpeqlm
+quote: a poll that takes a non-empty changed set rebuilds the platform tree, both paths through the `Document::accessibility_tree` trait method
+@carried n=6 label=a11y-plan/a11y-strategy fact=fct-3hktsq24
+why: A check that the read changes nothing must drain the changed set first and then read has_changes() false after the read.
+quote: A harness settle (`Harness::settle`, the driver session's `act`) neither reads nor drains the set, so a step settled through it leaves the refresh above, and a later diff, exactly what the step marked; and the set is non-empty on a freshly booted harness document — the boot's own in-document mutations mark it and nothing has drained it — so a check that reads `has_changes()` as "this step changed something" drains first
+@carried n=6 run=2 label=a11y-plan fact=fct-xhpyuh5z
+quote: a harness settle neither reads nor drains it and a fresh harness document's set is non-empty, so a check reading `has_changes()` as "this step changed something" drains first.
+@carried n=7 label=a11y-plan/a11y-strategy fact=fct-4gzpgxiu
+why: The read's disabled cause must follow the snapshot's enabled, keyed on the disabled attribute, so aria-disabled must not make the read name a disabled cause.
+quote: the snapshot reads no description and its `enabled` reads the `disabled` attribute, so `aria-disabled` moves no snapshot reading
+@carried n=8 label=a11y-plan/a11y-strategy fact=fct-d5bs73pt
+why: The graph, snapshot and actionable-key check the read consumes stand behind dioxus-native-dom's accessibility feature, so the read must stay inside that gate.
+quote: dioxus-native-dom's feature also gates its own `accessibility_tree` override, its snapshot model (`DioxusDocument::snapshot`), that model's text form (`Snapshot::to_text`) and its parts (`Snapshot::text_parts`), its diff (`Snapshot::diff`) and its actionable-key check (`DioxusDocument::unkeyed_actionable`), all five of which its crate doc names, and its read-only UI graph reader (`DioxusDocument::graph`, a `UiGraph`, its `graph` module)
+@carried n=9 label=a11y-plan/aria-patterns-roles fact=fct-5srxbxx3
+why: How a select serves its rows depends on whether it is multiple or single, so the owner-served node's verbs must read that distinction.
+quote: `<select multiple>` is ListBox, else ComboBox
+@carried n=10 label=a11y-plan/aria-patterns-roles fact=fct-hkcbpsam
+why: Whether an option of a single select takes a click turns on its list's open state, so the read's accepted-or-refused verdict for an owner-served option must follow that state.
+quote: a single select's pattern is `ComboBox` with `expanded` written from its list's open state, a closed bool of engine state with no `aria-expanded` read, and the chosen option `selected`
+@carried n=11 label=a11y-plan/aria-patterns-roles fact=fct-cnvkjgev
+why: The scope names a select serving its groups, so the owner-served group node is the optgroup reading Role::Group.
+quote: `optgroup` → `Role::Group`, its non-empty `label` attribute its name; a group's label is named in the tree and painted as a header on an open list
+@carried n=12 label=a11y-plan/aria-patterns-roles fact=fct-e4xc55aq
+why: A group header choosing nothing means the read must not report a click on a group header as one that chooses.
+quote: in an open list a group's header row chooses nothing, its options stand under it, and a group with no label reads the whole list's box
+@carried n=13 label=a11y-plan/aria-patterns-roles fact=fct-saem6dco
+why: Where the verb table comes to state which elements a verb such as type applies to, the text controls it names must be the input roles mapped by type, with no second role mapping.
+quote: `<input>` roles are mapped by `type`, defaulting to TextInput
+@carried n=14 label=a11y-plan/aria-patterns-roles fact=fct-x7vrlpec
+why: Excluded nodes are in no snapshot and so cannot be listed, while an aria-hidden node stays in the tree marked hidden and a select's options stay despite display none, which the actionable set must decide over.
+quote: `aria-hidden="true"` keeps the node but marks it hidden (`is_hidden`); `hidden`, `display: none` and `visibility: hidden` exclude it — an `option` of a `select`, its child or under its `optgroup` (`is_select_option`), excepted from `display: none`, which every option of a single-choice select but its chosen one computes and a `multiple` select's rows do not: it stays in the tree, `hidden`, `inert` and `visibility: hidden` still excluding it
+@carried n=14 run=2 label=a11y-plan fact=fct-zeglb7pr
+quote: **Hidden content** — `aria-hidden="true"` keeps a node, marked hidden; `hidden`, `display: none` and `visibility: hidden` exclude it and its children, an `option` under a `select` excepted from `display: none`.
+@binding n=1
+**aria-patterns-roles select patterns ↔ a11y-scope-summary select list**: the owner-served select's options and groups must be listed with verbs and causes that follow the list's open state and the single-versus-multiple pattern (a11y-plan/aria-patterns-roles fct-hkcbpsam) (a11y-plan/aria-patterns-roles fct-5srxbxx3), and a target lying under an open list must read covered because the list answers a hit first (a11y-plan/a11y-scope-summary fct-dzuhkwn2); a group header chooses nothing (a11y-plan/aria-patterns-roles fct-e4xc55aq).
+@binding n=2
+**a11y-strategy changed set ↔ the read that runs no step**: the read must neither drain nor depend on `changed_nodes` (a11y-plan/a11y-strategy fct-p7eqwwyx), and its no-change check must drain before reading `has_changes()` (a11y-plan/a11y-strategy fct-3hktsq24).
+@binding n=3
+**a11y-scope-summary Dioxus crates ↔ a11y-strategy feature gates**: the driver's new read reaches `DioxusDocument::graph`, the snapshot and `unkeyed_actionable` only behind dioxus-native-dom's `accessibility` feature (a11y-plan/a11y-strategy fct-d5bs73pt), carried through escher-driver's unconditional edge with no platform adapter joining the stand graph (a11y-plan/a11y-scope-summary fct-r6zswm2d).
+@binding n=4
+**a11y-strategy aria-disabled ↔ the body's disabled refusal**: the read's disabled cause must match the driver's refusal where the snapshot's `enabled` reads `Some(false)` (a11y-plan fct-2hrkecxm), which `aria-disabled` does not move (a11y-plan/a11y-strategy fct-4gzpgxiu).
+@binding n=5
+**a11y-scope-summary served pages ↔ the body's actionable-key rule**: the folded check must report every listed id an author key on every stand task, the served pages included (a11y-plan/a11y-scope-summary fct-lxyhqmtz), as `unkeyed_actionable` does (a11y-plan fct-77ewqepn).
+@binding n=6
+**aria-patterns-roles hidden content ↔ the body's visibility and hit-testing**: the actionable set is bounded by tree presence (a11y-plan/aria-patterns-roles fct-x7vrlpec), and an inert element is passed through by a hit (a11y-plan fct-xkzcu6wr), so covered must not name an inert element as the cover.
+@binding n=7
+**a11y-scope-summary capability statement ↔ the read's carriers**: a change to the published reach that the new read brings must be written into `docs/capabilities.md` by hand, its pin reading none of the claims (a11y-plan/a11y-scope-summary fct-fichvpza).

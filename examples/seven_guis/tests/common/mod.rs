@@ -451,6 +451,30 @@ pub fn graph_needles() -> Vec<String> {
     needles
 }
 
+/// Reads the CRUD screen's actions needles, booted here in process and held as a session: the
+/// ids its `actions` read lists that are author keys holding a `-`, as [`stand_needles`] takes
+/// them. Asserts that the read lists the screen's controls.
+#[track_caller]
+pub fn actions_needles() -> Vec<String> {
+    use seven_guis::stand::{self, LeanTask};
+
+    let harness = stand::boot(LeanTask::Crud, stand::options(true));
+    let mut session =
+        escher_driver::Session::start("crud", || harness).expect("the label is valid");
+    let needles: Vec<String> = session
+        .actions()
+        .into_iter()
+        .map(|node| node.id)
+        .filter(|id| !id.contains('/') && id.contains('-'))
+        .collect();
+    assert!(
+        needles.iter().any(|needle| needle == "crud-create") && needles.len() >= 8,
+        "{} actions needles were read",
+        needles.len()
+    );
+    needles
+}
+
 /// Reads the needles of the flight booker's `flight-type` options, booted here in process: each
 /// option's id, its name and its value. Asserts that the two options were read.
 #[track_caller]

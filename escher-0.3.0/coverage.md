@@ -1,9 +1,11 @@
 # Coverage — escher-0.3.0
 
-verified 7/17 · deferred 0 · planned 10 · implemented 0 · unclaimed 10
+verified 7/17 · deferred 0 · planned 9 · implemented 1 · unclaimed 9
 
-## planned, unclaimed (10)
-- v030-06 · What can I do here
+## implemented (1)
+- v030-06 · What can I do here · 2026-11-08-what-can-i-do-here
+
+## planned, unclaimed (9)
 - v030-07 · Handler coverage
 - v030-08 · Start in a state
 - v030-09 · Auto-exploration

@@ -89,6 +89,8 @@ pub enum FieldKind {
     GraphNodes,
     /// A list of UI-graph states, each keyed as its field's help names.
     GraphStates,
+    /// A list of actionable nodes, each keyed as its field's help names.
+    ActionNodes,
 }
 
 impl FieldKind {
@@ -107,6 +109,7 @@ impl FieldKind {
             FieldKind::Png => "png",
             FieldKind::GraphNodes => "graph-nodes",
             FieldKind::GraphStates => "graph-states",
+            FieldKind::ActionNodes => "action-nodes",
         }
     }
 }

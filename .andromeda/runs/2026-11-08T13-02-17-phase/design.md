@@ -1,0 +1,28 @@
+@extract_section name=relevance
+partial — the chunk renders nothing and adds no visual token; it touches only the agent-read CLI/MCP surface and the engine's hit/scroll/select behaviour its refusal causes read
+@extract_section name=constraints
+- design-system §Surface: cli › Component Patterns (sec-f5ysaan4, fct-6fb4pz6c) requires every `escher-session` command answer to be one uncoloured line of JSON on stdout, keyed by the driver schema's own words, with no ESC byte and no terminal test, so the new read's answer must be the same piped or not.
+- design-system §Surface: cli › Component Patterns (sec-f5ysaan4, fct-6fb4pz6c) requires the exit status to carry the class (`0` accepted · `1` refused · `2` usage · `3` session error), read from the schema's `EXIT_STATUSES` table; the new read adds no exit status.
+- design-system §Surface: cli › Component Patterns (sec-f5ysaan4, fct-6fb4pz6c) requires the `mcp` role's stdout to hold only newline-delimited JSON-RPC 2.0 lines, each reply one uncoloured line; the new read's tool result follows that form.
+- design-system §Surface: cli › Component Patterns (sec-f5ysaan4, fct-gnekz77j) records that `graph` gives the same answer on the socket's `call`, the CLI, a kept check and MCP, and that its line carries ids, owner ids, names, closed flag words and booleans only, never a value or typed text; the new read, built on the same node model, is held to the same content rule.
+- design-system §Depth Strategy (sec-z7dbidjj, fct-zdoz4c52) defines what "covered" means at the engine: hit-testing stops at the padding box of a node that paint-clips, the root excepted, and an open select list's row is answered before the walk, so a box clipping the select clips no row; a `covered` cause must agree with this rule.
+- design-system §Motion (sec-45tfcf3e, fct-tnwqvola) requires programmatic into-view scrolling to be instant in nested boxes and the driver's `scroll` to be instant everywhere, a row of an open select list scrolling only that list; an `off-screen` cause must agree with the call's actual into-view behaviour. Whether the executor's `action_point` already follows this is research's question.
+- design-system §Surface: desktop-native › Tokens (sec-yfvfpbhy, fct-ypgr7m5t, fct-grd6lupt) records that a disabled, inert or hidden select opens nothing and that a row of an open list carries its own `bounds` in the snapshot; an owner-served node (a select's option or group) must report its causes consistently with this.
+@extract_section name=patterns
+- The `graph` command (design-system §Surface: cli › Component Patterns, sec-f5ysaan4, fct-gnekz77j): no argument, an argument refused `malformed` with nothing run, one JSON line `{"nodes":[…],"states":[…]}`, the same answer on every carrier; it is the closest model for a read-only "what can I do here" command.
+- The `snapshot` paging form `{"text":…,"part":n,"parts":m}` (design-system §Surface: cli › Component Patterns, sec-f5ysaan4, fct-6fb4pz6c) is the existing pattern for an answer read in parts.
+- The self-description (`help`) is served from the schema's tables (design-system §Surface: cli › Component Patterns, sec-f5ysaan4, fct-6fb4pz6c), the pattern for reading verb meaning from the schema rather than a list in code.
+- The open select list's highlighted row is in no snapshot and no tree (design-system §Surface: desktop-native › Tokens, sec-yfvfpbhy, fct-6br6qi3d), so owner-served sub-targets are the snapshot's option/group nodes, not the painted highlight.
+@extract_section name=anti_patterns
+- No colour, no colour dependency, no ESC byte and no terminal test on any answer line (design-system §Surface: cli › Component Patterns, sec-f5ysaan4, fct-6fb4pz6c).
+- No value or typed text in the answer: ids, owner ids, verb names, closed cause words and booleans only (design-system §Surface: cli › Component Patterns, sec-f5ysaan4, fct-gnekz77j).
+- An unpaged whole-screen line is a recorded limit (design-system §Surface: cli › Component Patterns, sec-f5ysaan4, fct-bzczuomv: Cells at boot answers 293,869 bytes for `graph`, residual `res-7cc5bi4k`); the new read should not repeat it without a decision.
+@extract_section name=bindings
+- design ↔ security: what the answer may carry (no value, no typed text) matches the `command` span rule recording `verb` and `cause` alone (scope sec-jobherry, `doc:security-plan` §Surfaces).
+- design ↔ tests: the no-ESC reading is checked on every answer line by the seven_guis checks' shared reader and on every MCP reply by the shared `Speaker` (design-system §Surface: cli › Component Patterns, sec-f5ysaan4, fct-6fb4pz6c); the new command's lines go through them.
+- design ↔ engine behaviour: the `covered` and `off-screen` causes bind to design-system §Depth Strategy (sec-z7dbidjj) and §Motion (sec-45tfcf3e).
+@extract_section name=acceptance
+- The new read's answer on the CLI is one line of JSON on stdout with no ESC byte, status `0`, the same piped or not, and the same answer on the socket's `call`, MCP and a kept check (per design-system §Surface: cli › Component Patterns).
+- The answer holds no value or typed text, only ids, owner ids, verb names, closed cause words and booleans (per design-system §Surface: cli › Component Patterns).
+- On a fixture where a paint-clipping ancestor hides the target, the read's `covered` matches the real call's refusal, and a row of an open select list is not reported covered by a clipping box around its select (per design-system §Depth Strategy).
+- On a fixture with a target scrolled out of view inside a nested scrolling box, the read's `off-screen` (or its absence) matches what the real call does after its instant into-view scroll (per design-system §Motion).

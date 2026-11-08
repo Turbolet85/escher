@@ -1,0 +1,45 @@
+@carried n=1 label=design-system/surface fact=fct-aboeejrv
+why: The read must list a closed single select's options as owner-served sub-targets and report for each the cause a call would return, though they lay out with display none beside the chosen one.
+quote: a single-choice select shows its chosen option alone (`select:not([multiple]) > option:checked { display: inline; }` beside `option { display: none; }`), so it lays out as a box holding its chosen option's label
+@carried n=1 run=2 label=design-system/surface fact=fct-jperyeod
+quote: In that sheet a single-choice select's group is transparent to layout: `select:not([multiple]) > optgroup:not([hidden])` is `display: contents`, and its chosen option under `select:not([multiple]) > optgroup > option:checked` is `display: inline`
+@carried n=2 label=design-system/surface fact=fct-cbwqjv4z
+why: The read must list a multiple select's options and groups as owner-served nodes under the select, each with the box it lays out as.
+quote: In that sheet a `multiple` select lays out as rows: `select[multiple] > option` and `select[multiple] > optgroup > option` are `display: block` and `white-space: nowrap`, their padding at §Spacing, and `select[multiple] > optgroup` is `display: block`
+@carried n=3 label=design-system/surface fact=fct-epbt6wng
+why: The read must name click on a single select as a verb its call accepts, and the stand proof of owner-served rows must open the list by that verb before the read runs.
+quote: A single select's list is painted: a click, Enter, or a Space with no typed text standing opens it, a group's `label` is named in the accessibility tree and painted as a header
+@carried n=4 label=design-system/surface fact=fct-ayatph22
+why: The read's covered and off-screen causes for an open list's row must come from the list's own answer, as action_point decides them, never from a layout box the row does not have.
+quote: On desktop-native a single select's list is an engine overlay reaching the screen through `paint_scene` alone, not a second OS window and not rows as boxes
+@carried n=4 run=2 label=design-system/surface fact=fct-grd6lupt
+quote: A row of an open list carries its own `bounds` in the snapshot, and a `screenshot` of a row crops to it and leaves the list open
+@carried n=5 label=design-system/surface fact=fct-hpj6y5dq
+why: A disabled row or a disabled, inert or hidden select must be reported with the disabled cause the call returns, agreeing with what the call does.
+quote: a disabled row changes nothing and leaves the list open; a choice of the chosen option fires nothing
+@carried n=5 run=2 label=design-system/surface fact=fct-ypgr7m5t
+quote: A disabled, inert or hidden select, or one with no row to show, opens nothing; a `multiple` select opens no list; a label's click focuses a single select and opens nothing
+@carried n=6 label=design-system/surface fact=fct-uazyshoy
+why: The read must scroll nothing, click nothing and dispatch nothing, so an open list it lists stays open with the rows it reported.
+quote: Escape, a second click, a click outside, a wheel elsewhere and the page scrolling each close the list with no `input` or `change`
+@carried n=7 label=design-system/surface fact=fct-d3xc3mih
+why: The verbs the read lists on an owner-served group must agree with a group header choosing nothing.
+quote: In the list a group reads as a header with its options under it, and a header chooses nothing; a group with no label reads the whole list's box
+@carried n=8 label=design-system/surface fact=fct-lyaafumo
+why: The off-screen cause measures a node against the viewport, so the stand and fixture proofs must run at a sized window, not the zero default where every node reads off-screen.
+quote: The default viewport is window size (0, 0), hidpi scale 1.0, zoom 1.0, Light scheme; its logical size is the physical window size divided by hidpi × zoom
+@carried n=9 label=design-system/surface fact=fct-gvo7figj
+why: A row scrolled out of a scrolled list must read off-screen by the list's own scroll, and the thumb, taking no hit, must never be the cause a row reads covered.
+quote: A scrolled select list paints a thumb under `feature = "scrollbars"` that takes no hit and is not draggable; keys, the wheel and `scroll` move the rows
+@carried n=10 label=design-system/surface fact=fct-gnekz77j
+why: The new read is graph's sibling on the same carriers, so its argument rule, its one-line answer on call, the command line, MCP and a kept check, and its closed-words-only content must be decided against graph's, a widening being the founder's fork.
+quote: `escher-session graph` takes no argument, and an argument is refused `malformed` with nothing run; it answers the screen's whole UI graph as one uncoloured line of JSON `{"nodes":[…],"states":[…]}` on stdout, status `0`, the same answer on the session socket's `call` and in a kept check, and over the `mcp` role its tool result is the text block of that one line; the line carries ids, owner ids, component names, registered state names, handler event names, the closed flag words `undeclared` · `unconfirmed` and booleans only, never a value or typed text
+@carried n=11 label=design-system/surface fact=fct-bzczuomv
+why: The new read's answer over the same nodes must state whether it is paged or meets the same stated limit, its size measured on Cells at boot beside graph's.
+quote: The `graph` answer is unpaged, the whole screen in one line: Cells at boot answers 293,869 bytes — the stated limit «An unpaged graph» (docs/capabilities.md:252-255) · owner: residual `res-7cc5bi4k`, target next
+@binding n=1
+**surface (open select list rows) ↔ depth-strategy (hit-testing)**: an open list's row is an overlay with its own snapshot bounds (design-system/surface fct-ayatph22, design-system/surface fct-grd6lupt), answered before the hit walk so a clipping box clips no row (design-system fct-zdoz4c52); the read's covered cause for a row must come through action_point's list path, never the box walk.
+@binding n=2
+**surface (scrolled select list) ↔ motion (into-view scrolling)**: a row's off-screen cause reads the list's own scroll (design-system/surface fct-gvo7figj), the scroll into view writing that list alone (design-system fct-tnwqvola); the read itself scrolls nothing, since a page scroll closes the list (design-system/surface fct-uazyshoy).
+@binding n=3
+**surface (cli-graph, cli-unpaged-graph) ↔ the plan's carrier fork**: the new read's carriers, argument rule, closed words and answer size are set against graph's (design-system/surface fct-gnekz77j, design-system/surface fct-bzczuomv); any new verb or field on them is a boundary widening the founder decides.

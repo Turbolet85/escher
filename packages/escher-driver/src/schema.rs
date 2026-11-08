@@ -426,6 +426,31 @@ pub(crate) const GRAPH: VerbSpec = VerbSpec {
     ],
 };
 
+pub(crate) const ACTIONS: VerbSpec = VerbSpec {
+    name: "actions",
+    level: Level::Instance,
+    help: "reads what can be done on the screen now: every actionable element — focusable, of \
+           an interactive role, carrying a handler now, or served by an owner's handler — by \
+           its id, with its owner, whether its id is an author key, and each verb a call can \
+           name it by, the table's instance verbs that take an id; a verb with no cause would \
+           be accepted now, and one with a cause would be refused with it; accepted is not \
+           acting: a type on a button is accepted, a click in the scrollbar band of a box just \
+           scrolled is accepted and dispatches nothing, and press and advance act on focus and \
+           the clock, so no element lists them; it runs no step and changes nothing",
+    args: &[],
+    fields: &[FieldSpec {
+        name: "nodes",
+        kind: FieldKind::ActionNodes,
+        always: true,
+        help: "one entry per actionable element, in the snapshot's order, keyed id; owner, the \
+               id of the element whose handler serves it — a select's for its options and \
+               groups — left out where it is its own; keyed, whether its id is an author key \
+               rather than a path; and verbs, one per verb a call can name it by, in the \
+               table's order, keyed verb and cause, the cause a call would be refused with now, \
+               left out where the call would be accepted",
+    }],
+};
+
 const LABEL: FieldSpec = FieldSpec {
     name: "label",
     kind: FieldKind::Text,
@@ -547,11 +572,11 @@ pub(crate) const HELP: VerbSpec = VerbSpec {
     ],
 };
 
-/// The verb set, in the schema's order: the nine verbs asked of the held instance, the three
+/// The verb set, in the schema's order: the ten verbs asked of the held instance, the three
 /// asked of the session, then `help`, asked of the tool itself.
 pub const VERBS: &[VerbSpec] = &[
-    SNAPSHOT, CLICK, TYPE, PRESS, ADVANCE, SCROLL, SCREENSHOT, LINT, GRAPH, START, STATUS, STOP,
-    HELP,
+    SNAPSHOT, CLICK, TYPE, PRESS, ADVANCE, SCROLL, SCREENSHOT, LINT, GRAPH, ACTIONS, START, STATUS,
+    STOP, HELP,
 ];
 
 /// One way a run of the command line ends: its status, its name and what it means.

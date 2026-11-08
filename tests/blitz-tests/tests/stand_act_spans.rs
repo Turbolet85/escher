@@ -1,6 +1,6 @@
 //! Every driver command leaves one line in escher's sink, and nothing a command handled is on
 //! it. With the sink installed over a capture and `RUST_LOG=info`, in both layout modes, each
-//! call run through `Session::run` — the nine verbs on the stand's CRUD task and its Timer, and
+//! call run through `Session::run` — the ten verbs on the stand's CRUD task and its Timer, and
 //! a refused call for each of the eight causes, the `covered` one on a fixture booted with the
 //! stand's options and the `fonts-unavailable` one on the CRUD task booted with a font context
 //! that holds no family, a `press` on a fixture that renders on every pass, and a part read of
@@ -39,7 +39,7 @@ mod common;
 mod fixtures;
 mod session_common;
 use session_common::{
-    advance, click, graph, hold, lint, press, screenshot, screenshot_of, scroll, slug,
+    actions, advance, click, graph, hold, lint, press, screenshot, screenshot_of, scroll, slug,
     snapshot_part, type_into,
 };
 
@@ -185,6 +185,7 @@ enum Expect {
     Shot,
     Linted,
     Graphed,
+    Actioned,
     Acts,
     /// An acting verb whose instance renders on every pass, so it never settles.
     Restless,
@@ -198,7 +199,8 @@ fn acting(outcome: &Outcome) -> Option<(bool, Option<Busy>, &SnapshotDiff)> {
         | Outcome::Part { .. }
         | Outcome::Shot { .. }
         | Outcome::Linted { .. }
-        | Outcome::Graphed { .. } => None,
+        | Outcome::Graphed { .. }
+        | Outcome::Actions { .. } => None,
         Outcome::Acted {
             settled,
             busy,
@@ -403,6 +405,13 @@ impl<'c> Run<'c> {
                 );
                 self.verbs.extend(verb.map(str::to_string));
             }
+            (Ok(Outcome::Actions { .. }), Expect::Actioned) => {
+                assert!(
+                    !record.has("cause") && ACTING_FIELDS.iter().all(|field| !record.has(field)),
+                    "{at}: an actions read's line carries its verb alone"
+                );
+                self.verbs.extend(verb.map(str::to_string));
+            }
             (Ok(outcome), Expect::Acts) => {
                 let Some((settled, busy, diff)) = acting(outcome) else {
                     panic!("{at}: the call returns an acting verb's outcome");
@@ -504,8 +513,8 @@ impl<'c> Run<'c> {
             .map(|verb| verb.name)
             .collect();
         assert!(
-            run_by_a_session.len() == 9 && read_back(&self.verbs, run_by_a_session),
-            "{mode}: each of the nine verbs ran and was read back from its line"
+            run_by_a_session.len() == 10 && read_back(&self.verbs, run_by_a_session),
+            "{mode}: each of the ten verbs ran and was read back from its line"
         );
         assert!(
             CAUSES.len() == 8 && read_back(&self.causes, CAUSES.map(Cause::name).to_vec()),
@@ -642,6 +651,7 @@ fn child_records_each_command_at_info() {
         let _ = run.drive("Crud", &mut crud, &screenshot_of("crud-list"), Expect::Shot);
         let _ = run.drive("Crud", &mut crud, &lint(), Expect::Linted);
         let _ = run.drive("Crud", &mut crud, &graph(), Expect::Graphed);
+        let _ = run.drive("Crud", &mut crud, &actions(), Expect::Actioned);
         needles.read_graph(&crud);
         let _ = run.drive(
             "Crud",
@@ -754,7 +764,7 @@ fn child_records_each_command_at_info() {
         );
         needles.read(&restless);
 
-        assert!(run.calls == 37, "{}: {} calls", run.mode, run.calls);
+        assert!(run.calls == 38, "{}: {} calls", run.mode, run.calls);
         run.finish(&needles);
     }
 }

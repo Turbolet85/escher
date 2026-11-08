@@ -28,9 +28,9 @@
 //! process: [`VERBS`] lists each verb with its level, its argument shapes and its result
 //! shape, [`validate`] turns a [`Call`] into a typed [`Command`] or a [`Refusal`] before
 //! anything runs, and every refusal names one of eight [`Cause`]s ([`CAUSES`]) with a fixed
-//! remedy. Thirteen verbs stand in
-//! three levels. Nine are asked of the held instance: `snapshot`, `click`, `type`, `press`,
-//! `advance`, `scroll`, `screenshot`, `lint` and `graph`. Three are asked of the session itself — `start`, `status` and
+//! remedy. Fourteen verbs stand in
+//! three levels. Ten are asked of the held instance: `snapshot`, `click`, `type`, `press`,
+//! `advance`, `scroll`, `screenshot`, `lint`, `graph` and `actions`. Three are asked of the session itself — `start`, `status` and
 //! `stop` — and one of the tool itself, `help`; these four are checked by [`validate_session`],
 //! and a session runs none of them.
 //!
@@ -95,6 +95,13 @@
 //! ids, component and state names and event names, never a state's value. It runs no step and
 //! changes nothing; a node reads whether it reacts to a click (`clickable`) in every snapshot.
 //!
+//! The verb `actions` answers what can be done on the screen now ([`Outcome::Actions`], read by
+//! [`Session::actions`]): every actionable element — focusable, of an interactive role, carrying
+//! a handler now, or served by an owner's handler — by its id, with its owner, whether its id is
+//! an author key, and each verb of [`VERBS`] that names an element, with the [`Cause`] a call of
+//! it would be refused with now, or none. A cause is decided by the one check the call's own
+//! run meets, so it is the cause that call would return. It runs no step and changes nothing.
+//!
 //! A session can keep itself as a replayable check ([`Session::recording_into`]): every call
 //! [`Session::run`] answers, written to an owner-only file of a directory its launcher names as
 //! the call crossed in, with whether it was accepted, the [`answer_digest`] of its answer and the
@@ -128,6 +135,7 @@
 
 #![deny(missing_docs)]
 
+mod actions;
 mod cli;
 mod client;
 mod command;
@@ -147,6 +155,7 @@ mod session;
 #[cfg_attr(not(unix), allow(dead_code))]
 mod wire;
 
+pub use actions::{ActionNode, VerbReading};
 pub use blitz_test_harness::{Busy, Settled};
 pub use cli::command_line;
 pub use client::{Answer, Hello, Started, attach, call, start, stop};

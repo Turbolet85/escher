@@ -7,7 +7,7 @@ use blitz_test_harness::Busy;
 
 use super::*;
 
-const VERB_NAMES: [&str; 13] = [
+const VERB_NAMES: [&str; 14] = [
     "snapshot",
     "click",
     "type",
@@ -17,6 +17,7 @@ const VERB_NAMES: [&str; 13] = [
     "screenshot",
     "lint",
     "graph",
+    "actions",
     "start",
     "status",
     "stop",
@@ -24,13 +25,13 @@ const VERB_NAMES: [&str; 13] = [
 ];
 
 #[test]
-fn the_thirteen_verbs_are_named_in_order_each_at_its_level() {
-    assert_eq!(VERBS.len(), 13);
+fn the_fourteen_verbs_are_named_in_order_each_at_its_level() {
+    assert_eq!(VERBS.len(), 14);
     let names: Vec<&str> = VERBS.iter().map(|verb| verb.name).collect();
     assert_eq!(names, VERB_NAMES);
     let levels: Vec<Level> = VERBS.iter().map(|verb| verb.level).collect();
     let stated = [
-        [Level::Instance; 9].as_slice(),
+        [Level::Instance; 10].as_slice(),
         &[Level::Session; 3],
         &[Level::Tool; 1],
     ]
@@ -49,7 +50,7 @@ fn the_thirteen_verbs_are_named_in_order_each_at_its_level() {
 
 #[test]
 fn every_verb_states_its_help_its_arguments_and_a_result() {
-    assert_eq!(VERBS.len(), 13);
+    assert_eq!(VERBS.len(), 14);
     let field_help = |verb: &VerbSpec, name: &str| {
         verb.fields
             .iter()
@@ -133,8 +134,19 @@ fn every_verb_states_its_help_its_arguments_and_a_result() {
             field_help(&ADVANCE, "advanced_ms"),
             "the time the session's clock moved, in milliseconds: exactly `ms`",
         ),
+        (
+            Some(ACTIONS.help),
+            "reads what can be done on the screen now: every actionable element — focusable, of \
+             an interactive role, carrying a handler now, or served by an owner's handler — by \
+             its id, with its owner, whether its id is an author key, and each verb a call can \
+             name it by, the table's instance verbs that take an id; a verb with no cause would \
+             be accepted now, and one with a cause would be refused with it; accepted is not \
+             acting: a type on a button is accepted, a click in the scrollbar band of a box just \
+             scrolled is accepted and dispatches nothing, and press and advance act on focus and \
+             the clock, so no element lists them; it runs no step and changes nothing",
+        ),
     ];
-    assert_eq!(amended.len(), 11);
+    assert_eq!(amended.len(), 12);
     for (row, (stated, text)) in amended.into_iter().enumerate() {
         assert!(stated == Some(text), "row {row}");
     }
@@ -193,7 +205,7 @@ fn a_verb_is_found_by_its_exact_name_only() {
 fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
     const ACTING: [&str; 5] = ["settled", "busy", "added", "removed", "changed"];
     type Args = &'static [(&'static str, ArgKind, bool)];
-    let rows: [(&str, Args, Vec<&str>); 13] = [
+    let rows: [(&str, Args, Vec<&str>); 14] = [
         (
             "snapshot",
             &[("part", ArgKind::Part, false)],
@@ -227,6 +239,7 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         ),
         ("lint", &[], vec!["findings"]),
         ("graph", &[], vec!["nodes", "states"]),
+        ("actions", &[], vec!["nodes"]),
         (
             "start",
             &[("app", ArgKind::Name, true)],
@@ -289,7 +302,8 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         ("height", FieldKind::Count),
         ("png", FieldKind::Png),
         ("findings", FieldKind::Entries),
-        ("nodes", FieldKind::GraphNodes),
+        ("graph.nodes", FieldKind::GraphNodes),
+        ("actions.nodes", FieldKind::ActionNodes),
         ("states", FieldKind::GraphStates),
         ("verbs", FieldKind::Entries),
         ("node_keys", FieldKind::Entries),
@@ -299,10 +313,15 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         ("exit_statuses", FieldKind::Entries),
         ("session_errors", FieldKind::Entries),
     ];
-    assert_eq!(field_kinds.len(), 28);
+    assert_eq!(field_kinds.len(), 29);
     for verb in VERBS {
         for field in verb.fields {
-            let stated = field_kinds.iter().find(|(name, _)| *name == field.name);
+            // A name two verbs give fields of different kinds is stated per verb.
+            let qualified = format!("{}.{}", verb.name, field.name);
+            let stated = field_kinds
+                .iter()
+                .find(|(name, _)| *name == qualified)
+                .or_else(|| field_kinds.iter().find(|(name, _)| *name == field.name));
             assert_eq!(stated.map(|(_, kind)| *kind), Some(field.kind));
         }
     }
@@ -366,8 +385,9 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         (FieldKind::Png, "png"),
         (FieldKind::GraphNodes, "graph-nodes"),
         (FieldKind::GraphStates, "graph-states"),
+        (FieldKind::ActionNodes, "action-nodes"),
     ];
-    assert_eq!(field_kind_names.len(), 12);
+    assert_eq!(field_kind_names.len(), 13);
     for (kind, name) in field_kind_names {
         assert_eq!(kind.name(), name);
     }

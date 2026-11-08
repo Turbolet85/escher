@@ -6,12 +6,13 @@ use blitz_test_harness::{
     Busy, Harness, Key as KeyboardKey, Modifiers, NamedKey, PixelRect, ScreenshotError,
 };
 use dioxus_native_dom::{
-    DioxusDocument, NodeId, SNAPSHOT_TEXT_BUDGET, Snapshot, SnapshotDiff, UiGraph, is_masked_input,
-    is_select,
+    DioxusDocument, NodeId, SNAPSHOT_TEXT_BUDGET, Snapshot, SnapshotDiff, SnapshotNode, UiGraph,
+    is_masked_input, is_select,
 };
 use tracing::Span;
 use tracing::field::Empty;
 
+use crate::actions::ActionNode;
 use crate::command::{Call, Command, Key, validate};
 use crate::image;
 use crate::lint::Finding;
@@ -95,6 +96,12 @@ pub enum Outcome {
         /// The screen's UI graph, as [`DioxusDocument::graph`] reads it.
         graph: UiGraph,
     },
+    /// What `actions` returns.
+    Actions {
+        /// Every actionable element of the screen with what a call naming it would meet now,
+        /// as [`Session::actions`](crate::Session::actions) reads it.
+        nodes: Vec<ActionNode>,
+    },
 }
 
 /// States the fields of a command's span once: the span that carries them, and the table of
@@ -144,7 +151,9 @@ impl Session {
     ///
     /// `lint` runs no step either: it answers [`Session::lint`]'s findings on the screen as it
     /// stands, or its refusal. Nor does `graph`, which answers the screen's UI graph
-    /// ([`DioxusDocument::graph`]) as it stands, recording every id it reads.
+    /// ([`DioxusDocument::graph`]) as it stands, recording every id it reads, nor `actions`,
+    /// which answers [`Session::actions`](crate::Session::actions): each actionable element
+    /// with the cause the one check below would refuse each of its verbs with now.
     ///
     /// An acting verb takes the screen's snapshot, runs its step, settles the instance
     /// ([`Harness::settle`]) and takes the snapshot again; its outcome carries the diff of the
@@ -210,21 +219,21 @@ impl Session {
                     .unwrap_or_default();
                 Ok(Outcome::Part { text, part, parts })
             }
-            Command::Click { id } => {
-                let (before, target) = resolve(harness, seen, &id)?;
-                let (x, y) = action_point(harness, &target)?;
+            Command::Click { ref id } => {
+                let (before, target) = resolve(harness, seen, id)?;
+                let (x, y) = check_target(harness, &command, &target)?.point();
                 Ok(acted(harness, seen, span, before, |harness| {
                     harness.click_at(x, y)
                 }))
             }
-            Command::Type { id, text } => {
-                let resolved = resolve(harness, seen, &id);
+            Command::Type { ref id, ref text } => {
+                let resolved = resolve(harness, seen, id);
                 *masked = resolved
                     .as_ref()
                     .ok()
                     .is_none_or(|(_, target)| target.masked);
                 let (before, target) = resolved?;
-                let (x, y) = action_point(harness, &target)?;
+                let (x, y) = check_target(harness, &command, &target)?.point();
                 let holds_value = target.holds_value;
                 let (node, select) = (target.node, target.select);
                 Ok(acted(harness, seen, span, before, |harness| {
@@ -242,7 +251,7 @@ impl Session {
                     // No label starts with a space, and on a select a Space with no text before it
                     // flips a row or opens the list.
                     if !(select && text.starts_with(' ')) {
-                        harness.type_text(&text);
+                        harness.type_text(text);
                     }
                 }))
             }
@@ -268,13 +277,14 @@ impl Session {
                     advanced_ms: ms,
                 })
             }
-            Command::Scroll { id } => {
-                let (before, target) = resolve(harness, seen, &id)?;
+            Command::Scroll { ref id } => {
+                let (before, target) = resolve(harness, seen, id)?;
+                check_target(harness, &command, &target)?;
                 let (busy, diff, after) = settled_step(harness, seen, span, before, |harness| {
                     harness.scroll_into_view(target.node)
                 });
                 let in_view =
-                    locate(harness, &after, &id).is_some_and(|target| in_view(harness, &target));
+                    locate(harness, &after, id).is_some_and(|target| in_view(harness, &target));
                 Ok(Outcome::Scrolled {
                     settled: busy.is_none(),
                     busy,
@@ -282,16 +292,15 @@ impl Session {
                     in_view,
                 })
             }
-            Command::Screenshot { id } => {
+            Command::Screenshot { ref id } => {
                 let shot = match id {
                     None => harness.screenshot(),
                     Some(id) => {
-                        let (_, target) = resolve(harness, seen, &id)?;
-                        if !in_view(harness, &target) {
-                            return Err(Refusal::new(Cause::OffScreen));
+                        let (_, target) = resolve(harness, seen, id)?;
+                        match check_target(harness, &command, &target)? {
+                            Cleared::Rect(rect) => harness.screenshot_rect(rect),
+                            Cleared::Point(..) | Cleared::Free => harness.screenshot(),
                         }
-                        let rect = crop(harness, &target).ok_or(Refusal::new(Cause::OffScreen))?;
-                        harness.screenshot_rect(rect)
                     }
                 };
                 let raster = shot.map_err(|error| match error {
@@ -317,6 +326,9 @@ impl Session {
                 }
                 Ok(Outcome::Graphed { graph })
             }
+            Command::Actions => Ok(Outcome::Actions {
+                nodes: self.actions(),
+            }),
         }
     }
 }
@@ -334,7 +346,8 @@ fn record_result(span: &Span, result: &Result<Outcome, Refusal>) {
             | Outcome::Part { .. }
             | Outcome::Shot { .. }
             | Outcome::Linted { .. }
-            | Outcome::Graphed { .. },
+            | Outcome::Graphed { .. }
+            | Outcome::Actions { .. },
         ) => return,
         Ok(
             Outcome::Acted {
@@ -375,7 +388,7 @@ pub(crate) fn busy_word(busy: Busy) -> &'static str {
 }
 
 /// An element a call names, as the screen reads it.
-struct Target {
+pub(crate) struct Target {
     node: NodeId,
     enabled: Option<bool>,
     /// Whether the snapshot reads a value for the element: a control that holds one.
@@ -414,6 +427,16 @@ fn locate(harness: &Harness<DioxusDocument>, screen: &Snapshot, id: &str) -> Opt
         .element_ids()
         .into_iter()
         .find(|(_, read)| read == id)?;
+    target_of(harness, listed, node)
+}
+
+/// The [`Target`] of `node`, which the snapshot lists as `listed`; `None` where the node no
+/// longer resolves.
+pub(crate) fn target_of(
+    harness: &Harness<DioxusDocument>,
+    listed: &SnapshotNode,
+    node: NodeId,
+) -> Option<Target> {
     let doc = harness.base();
     let element = doc.get_node(node)?.element_data();
     let masked = element.is_some_and(is_masked_input);
@@ -449,6 +472,56 @@ fn resolve(
         Some(target) => Ok((screen, target)),
         None if read_earlier => Err(Refusal::new(Cause::Stale)),
         None => Err(Refusal::new(Cause::NotFound)),
+    }
+}
+
+/// What an id-taking call's check after [`resolve`] leaves its arm to act on.
+pub(crate) enum Cleared {
+    /// The page point a `click` or a `type` lands at.
+    Point(f32, f32),
+    /// The device pixels a `screenshot` of an element paints.
+    Rect(PixelRect),
+    /// Nothing to act on: a `scroll`, which no check stops.
+    Free,
+}
+
+impl Cleared {
+    /// The page point; the origin for a check that gives none, which no `click` or `type` meets.
+    fn point(self) -> (f32, f32) {
+        match self {
+            Self::Point(x, y) => (x, y),
+            Self::Rect(_) | Self::Free => (0.0, 0.0),
+        }
+    }
+}
+
+/// The one check an id-taking `command` meets once its `target` resolves, in its verb's order,
+/// before its arm acts: `click` and `type` the three of [`action_point`]; `scroll` none; a
+/// `screenshot` of an element out of view, then one whose visible part holds no pixel, then an
+/// app with no font it can paint text with. [`Session::run`](crate::Session::run)'s arms and
+/// [`Session::actions`](crate::Session::actions) both decide through it, so the read names the
+/// cause a call meets.
+pub(crate) fn check_target(
+    harness: &Harness<DioxusDocument>,
+    command: &Command,
+    target: &Target,
+) -> Result<Cleared, Refusal> {
+    match command {
+        Command::Click { .. } | Command::Type { .. } => {
+            let (x, y) = action_point(harness, target)?;
+            Ok(Cleared::Point(x, y))
+        }
+        Command::Screenshot { id: Some(_) } => {
+            if !in_view(harness, target) {
+                return Err(Refusal::new(Cause::OffScreen));
+            }
+            let rect = crop(harness, target).ok_or(Refusal::new(Cause::OffScreen))?;
+            if !harness.base().can_paint_text() {
+                return Err(Refusal::new(Cause::FontsUnavailable));
+            }
+            Ok(Cleared::Rect(rect))
+        }
+        _ => Ok(Cleared::Free),
     }
 }
 

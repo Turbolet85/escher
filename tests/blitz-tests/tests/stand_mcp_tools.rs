@@ -22,7 +22,8 @@
 //! findings `Session::lint` reads on a session booted the same way, and its `tool_call` span
 //! holds `lint` and parents its command. A `graph` tool result on each lean task is one text
 //! block, the line of the graph `DioxusDocument::graph` reads on a session booted the same way,
-//! and its `tool_call` span holds `graph` and parents one command that records `verb` alone. A
+//! and its `tool_call` span holds `graph` and parents one command that records `verb` alone; an
+//! `actions` tool result is the same, the line of the nodes `Session::actions` reads. A
 //! `help`
 //! tool call is answered by the server, with or without a held session: its text is the tool's
 //! description of itself, and its `tool_call` span holds `help` and `accepted` and parents no
@@ -770,14 +771,42 @@ fn a_lint_tool_call_answers_the_readers_findings_and_parents_its_command() {
 
 #[test]
 fn a_graph_tool_call_answers_the_readers_graph_and_parents_a_command_recording_its_verb_alone() {
+    a_read_tool_call_answers_its_reader_and_parents_a_command_recording_its_verb_alone(
+        "graph",
+        |session| {
+            let graph = session.harness().doc.graph();
+            Outcome::Graphed { graph }.to_json()
+        },
+    );
+}
+
+#[test]
+fn an_actions_tool_call_answers_the_readers_nodes_and_parents_a_command_recording_its_verb_alone() {
+    a_read_tool_call_answers_its_reader_and_parents_a_command_recording_its_verb_alone(
+        "actions",
+        |session| {
+            let nodes = session.actions();
+            Outcome::Actions { nodes }.to_json()
+        },
+    );
+}
+
+/// On each lean task in both layout modes, a tool call of `verb`, a read that takes no
+/// argument, is one text block, the line `read` answers on a session booted the same way; one
+/// naming an argument is refused malformed; and each tool call's span holds `verb` and the
+/// accepted one parents one command recording its verb alone.
+fn a_read_tool_call_answers_its_reader_and_parents_a_command_recording_its_verb_alone(
+    verb: &str,
+    read: fn(&mut Session) -> String,
+) {
     for incremental in [false, true] {
         let mode = if incremental { "incremental" } else { "full" };
         for (row, task) in TASKS.into_iter().enumerate() {
             let start = format!(r#"{{"app":"{}"}}"#, slug(task));
             let requests = [
                 tool_call(1, "start", &start),
-                tool_call(2, "graph", "{}"),
-                tool_call(3, "graph", r#"{"id":"x"}"#),
+                tool_call(2, verb, "{}"),
+                tool_call(3, verb, r#"{"id":"x"}"#),
                 tool_call(4, "stop", "{}"),
             ];
             let recorder = Recorder::default();
@@ -786,20 +815,19 @@ fn a_graph_tool_call_answers_the_readers_graph_and_parents_a_command_recording_i
             });
             assert_eq!(replies.len(), 4, "{mode}: task {row}: one reply per call");
 
-            let (direct, _ticks) = hold(task, incremental);
-            let graph = direct.harness().doc.graph();
+            let (mut direct, _ticks) = hold(task, incremental);
             assert!(
-                result(&replies[1]) == (false, Outcome::Graphed { graph }.to_json()),
-                "{mode}: task {row}: the text block is the line of the reader's own graph"
+                result(&replies[1]) == (false, read(&mut direct)),
+                "{mode}: task {row}: the text block is the line of the reader's own answer"
             );
             let (is_error, text) = result(&replies[2]);
             assert!(
                 is_error && remedied(&text) == Some(Cause::Malformed),
-                "{mode}: task {row}: a graph naming an argument is refused malformed"
+                "{mode}: task {row}: a read naming an argument is refused malformed"
             );
 
             let recorded = recorder.0.lock().unwrap();
-            let graphs: Vec<usize> = recorded
+            let calls: Vec<usize> = recorded
                 .spans
                 .iter()
                 .enumerate()
@@ -808,35 +836,31 @@ fn a_graph_tool_call_answers_the_readers_graph_and_parents_a_command_recording_i
                         && seen
                             .fields
                             .iter()
-                            .any(|(field, value)| *field == "tool" && value == "graph")
+                            .any(|(field, value)| *field == "tool" && value == verb)
                 })
                 .map(|(at, _)| at)
                 .collect();
-            assert_eq!(
-                graphs.len(),
-                2,
-                "{mode}: task {row}: one tool_call per graph"
-            );
-            let accepted = recorded.spans[graphs[0]]
+            assert_eq!(calls.len(), 2, "{mode}: task {row}: one tool_call per read");
+            let accepted = recorded.spans[calls[0]]
                 .fields
                 .iter()
                 .any(|(field, value)| *field == "ending" && value == "accepted");
             let children: Vec<&Seen> = recorded
                 .spans
                 .iter()
-                .filter(|seen| seen.name == "command" && seen.parent == Some(graphs[0]))
+                .filter(|seen| seen.name == "command" && seen.parent == Some(calls[0]))
                 .collect();
             assert!(
                 accepted && children.len() == 1,
-                "{mode}: task {row}: the graph's tool_call is accepted and parents one command"
+                "{mode}: task {row}: the read's tool_call is accepted and parents one command"
             );
             assert!(
                 children[0]
                     .fields
                     .iter()
-                    .all(|(field, value)| *field == "verb" && value == "graph")
+                    .all(|(field, value)| *field == "verb" && value == verb)
                     && !children[0].fields.is_empty(),
-                "{mode}: task {row}: the graph's command records its verb alone"
+                "{mode}: task {row}: the read's command records its verb alone"
             );
         }
     }

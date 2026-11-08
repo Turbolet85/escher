@@ -7,7 +7,8 @@
 //!  - `accessibility`: Enables [`accesskit`](https://docs.rs/accesskit/latest/accesskit/) accessibility support,
 //!    and the snapshot model (`DioxusDocument::snapshot`), its text form (`Snapshot::to_text`)
 //!    and its parts (`Snapshot::text_parts`), its diff (`Snapshot::diff`) and the actionable-key check
-//!    (`DioxusDocument::unkeyed_actionable`) built on it, and the UI graph (`DioxusDocument::graph`),
+//!    (`DioxusDocument::unkeyed_actionable`) and the actionable nodes (`DioxusDocument::actionable_nodes`)
+//!    built on it, and the UI graph (`DioxusDocument::graph`),
 //!    which reads the states an app registered through `use_graph_state` (a hook every build
 //!    holds, so an app registers alike with the feature off).
 //!  - `hot-reload`: Enables hot-reloading of Dioxus RSX.
@@ -33,7 +34,7 @@ mod snapshot_diff;
 mod snapshot_text;
 mod write_once_attr;
 #[cfg(feature = "accessibility")]
-pub use actionable::UnkeyedActionable;
+pub use actionable::{ActionableNode, UnkeyedActionable};
 pub use blitz_dom::DocumentConfig;
 pub use dioxus_document::DioxusDocument;
 pub use element_id::{VIRTUAL_KEY_SEPARATOR, virtual_node_id};

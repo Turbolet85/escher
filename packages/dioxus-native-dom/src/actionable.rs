@@ -1,13 +1,16 @@
 //! The actionable-key check: every element an agent can act on should read its author key, so
 //! that its stable element id survives any edit of the code around it. An element that reads a
-//! positional path instead is returned by [`DioxusDocument::unkeyed_actionable`].
+//! positional path instead is returned by [`DioxusDocument::unkeyed_actionable`]. The same rule
+//! lists the screen's actionable nodes, [`DioxusDocument::actionable_nodes`].
 
 use std::collections::HashMap;
 
 use accesskit::Role;
-use blitz_dom::{Document, NodeId};
+use blitz_dom::{Document, Node, NodeId};
+use rustc_hash::FxHashMap;
 
 use crate::DioxusDocument;
+use crate::element_id::{ElementFacts, element_facts};
 
 /// An actionable element that reads a positional path where the rule asks for an author key.
 /// Built by [`DioxusDocument::unkeyed_actionable`]. It names structure only: no field holds the
@@ -29,7 +32,7 @@ pub struct UnkeyedActionable {
     /// Whether [`role`](Self::role) is an interactive one: a button, a link, a text or other
     /// input, a slider, a list or menu option and the like.
     pub interactive_role: bool,
-    /// Whether the element carries an event listener other than `onmounted`.
+    /// Whether the element's current listeners hold an event other than `mounted`.
     pub listener: bool,
 }
 
@@ -43,46 +46,111 @@ impl UnkeyedActionable {
     }
 }
 
+/// One actionable node of the screen. Built by [`DioxusDocument::actionable_nodes`]. It holds
+/// ids and a bool only: no `NodeId`, text, name or value.
+#[derive(Debug, Clone, PartialEq)]
+pub struct ActionableNode {
+    /// The node's stable element id, as its snapshot node reads it.
+    pub id: String,
+    /// The stable id of the element whose handler serves this node, as the UI graph reads it:
+    /// a select for its options and groups. `None` where the node is its own.
+    pub owner: Option<String>,
+    /// Whether the id is an author key, which holds no `/`; every path id holds one.
+    pub keyed: bool,
+}
+
+/// The three readings of the actionable rule for one element.
+struct Readings {
+    focusable: bool,
+    interactive_role: bool,
+    listener: bool,
+}
+
+impl Readings {
+    fn of(node: &Node, role: Option<Role>, listeners: &[&'static str]) -> Self {
+        Self {
+            focusable: node.is_focussable(),
+            interactive_role: role.is_some_and(is_interactive),
+            listener: listeners.iter().any(|event| *event != "mounted"),
+        }
+    }
+
+    fn actionable(&self) -> bool {
+        self.focusable || self.interactive_role || self.listener
+    }
+}
+
 impl DioxusDocument {
     /// Every actionable element whose stable element id is a positional path, in document
     /// pre-order; empty when every actionable element reads its author key.
     ///
     /// An element is actionable when it is focusable, or its accessibility node has an
-    /// interactive role, or it carries an event listener. Ids are those of
+    /// interactive role, or its current listeners hold an event other than `mounted` — the
+    /// vdom's own reading, so a listener a re-render dropped is not counted. Ids are those of
     /// [`element_ids`](Self::element_ids) and roles those of the document's accessibility tree,
     /// so a disabled control is still held by its role and a hidden one by the other two
     /// readers.
     pub fn unkeyed_actionable(&self) -> Vec<UnkeyedActionable> {
-        let roles: HashMap<u64, Role> = self
-            .accessibility_tree()
+        let roles = self.roles();
+        let facts = element_facts(&self.vdom, &self.vdom_state, &self.inner.borrow());
+        let doc = self.inner();
+        facts
+            .into_iter()
+            .filter(|fact| fact.id.contains('/'))
+            .filter_map(|fact| {
+                let node = doc.get_node(fact.node)?;
+                let element = node.element_data()?;
+                let role = roles.get(&fact.node.as_u64()).copied();
+                let readings = Readings::of(node, role, &fact.listeners);
+                readings.actionable().then(|| UnkeyedActionable {
+                    node: fact.node,
+                    id: fact.id,
+                    tag: element.name.local.to_string(),
+                    role,
+                    focusable: readings.focusable,
+                    interactive_role: readings.interactive_role,
+                    listener: readings.listener,
+                })
+            })
+            .collect()
+    }
+
+    /// Every actionable node of the screen, in snapshot pre-order: each node of the UI graph
+    /// ([`graph`](Self::graph)) that the rule of [`unkeyed_actionable`](Self::unkeyed_actionable)
+    /// holds for, or whose graph `owner` is another element. Read on demand; it writes nothing.
+    pub fn actionable_nodes(&self) -> Vec<ActionableNode> {
+        let graph = self.graph();
+        let roles = self.roles();
+        let facts = element_facts(&self.vdom, &self.vdom_state, &self.inner.borrow());
+        let by_id: FxHashMap<&str, &ElementFacts> =
+            facts.iter().map(|fact| (fact.id.as_str(), fact)).collect();
+        let doc = self.inner();
+        graph
+            .nodes
+            .into_iter()
+            .filter(|node| {
+                node.owner.is_some()
+                    || by_id.get(node.id.as_str()).is_some_and(|fact| {
+                        doc.get_node(fact.node).is_some_and(|element| {
+                            let role = roles.get(&fact.node.as_u64()).copied();
+                            Readings::of(element, role, &fact.listeners).actionable()
+                        })
+                    })
+            })
+            .map(|node| ActionableNode {
+                keyed: !node.id.contains('/'),
+                id: node.id,
+                owner: node.owner,
+            })
+            .collect()
+    }
+
+    /// The role of each node the accessibility tree keeps.
+    fn roles(&self) -> HashMap<u64, Role> {
+        self.accessibility_tree()
             .nodes
             .iter()
             .map(|(id, node)| (id.0, node.role()))
-            .collect();
-        let ids = self.element_ids();
-        let doc = self.inner();
-        ids.into_iter()
-            .filter(|(_, id)| id.contains('/'))
-            .filter_map(|(node_id, id)| {
-                let node = doc.get_node(node_id)?;
-                let element = node.element_data()?;
-                let role = roles.get(&node_id.as_u64()).copied();
-                let focusable = node.is_focussable();
-                let interactive_role = role.is_some_and(is_interactive);
-                let listener = element
-                    .attrs
-                    .iter()
-                    .any(|attr| *attr.name.local == *"data-dioxus-id");
-                (focusable || interactive_role || listener).then(|| UnkeyedActionable {
-                    node: node_id,
-                    id,
-                    tag: element.name.local.to_string(),
-                    role,
-                    focusable,
-                    interactive_role,
-                    listener,
-                })
-            })
             .collect()
     }
 }
@@ -124,6 +192,7 @@ fn is_interactive(role: Role) -> bool {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::signal_registry::tests::{click, node};
     use blitz_dom::DocumentConfig;
     use dioxus::prelude::*;
 
@@ -243,6 +312,123 @@ mod tests {
         assert_eq!(disabled.role, Some(Role::TextInput));
         assert!(disabled.interactive_role);
         assert!(!disabled.focusable && !disabled.listener);
+    }
+
+    fn listed(doc: &DioxusDocument) -> Vec<(String, Option<String>, bool)> {
+        doc.actionable_nodes()
+            .into_iter()
+            .map(|node| (node.id, node.owner, node.keyed))
+            .collect()
+    }
+
+    #[test]
+    fn a_listener_removed_on_a_re_render_is_read_by_neither_reader() {
+        fn page() -> Element {
+            let mut armed = use_signal(|| true);
+            let spread: Vec<Attribute> = if armed() {
+                vec![dioxus::html::onclick(move |_: MouseEvent| {})]
+            } else {
+                Vec::new()
+            };
+            rsx! {
+                div { ..spread, "Toggled" }
+                button { id: "disarm", onclick: move |_| armed.set(false), "Disarm" }
+                div { id: "held", onmounted: move |_| {}, "Held" }
+            }
+        }
+        let mut doc = build(page);
+        assert_eq!(ids(&doc.unkeyed_actionable()), ["/div:0"]);
+        assert_eq!(
+            listed(&doc),
+            [
+                ("/div:0".to_string(), None, false),
+                ("disarm".to_string(), None, true),
+            ],
+            "a mounted listener alone makes no node actionable"
+        );
+
+        let disarm = node(&doc, "disarm");
+        click(&mut doc, disarm);
+        doc.inner_mut().resolve(0.0);
+        let (toggled, _) = doc
+            .element_ids()
+            .into_iter()
+            .find(|(_, id)| id == "/div:0")
+            .expect("the toggled div stands");
+        let marked = doc
+            .inner()
+            .get_node(toggled)
+            .and_then(|node| node.element_data())
+            .is_some_and(|element| {
+                element
+                    .attrs
+                    .iter()
+                    .any(|attr| *attr.name.local == *"data-dioxus-id")
+            });
+        assert!(
+            marked,
+            "the listener mark outlives the listener, so a mark reading would still count it"
+        );
+        assert_eq!(doc.unkeyed_actionable(), []);
+        assert_eq!(listed(&doc), [("disarm".to_string(), None, true)]);
+    }
+
+    #[test]
+    fn a_selects_options_and_group_are_listed_with_the_select_as_owner() {
+        fn page() -> Element {
+            rsx! {
+                select { id: "pick", oninput: move |_| {},
+                    option { id: "one", value: "1", "One" }
+                    optgroup { id: "group", label: "More",
+                        option { id: "two", value: "2", "Two" }
+                    }
+                }
+            }
+        }
+        let pick = Some("pick".to_string());
+        assert_eq!(
+            listed(&build(page)),
+            [
+                ("pick".to_string(), None, true),
+                ("one".to_string(), pick.clone(), true),
+                ("group".to_string(), pick.clone(), true),
+                ("two".to_string(), pick, true),
+            ]
+        );
+    }
+
+    #[test]
+    fn a_positional_id_reads_unkeyed_and_an_author_key_keyed() {
+        fn page() -> Element {
+            rsx! {
+                button { "Positional" }
+                button { id: "named", "Named" }
+                p { "Words" }
+            }
+        }
+        let doc = build(page);
+        assert_eq!(
+            listed(&doc),
+            [
+                ("/button:0".to_string(), None, false),
+                ("named".to_string(), None, true),
+            ]
+        );
+        assert_eq!(ids(&doc.unkeyed_actionable()), ["/button:0"]);
+    }
+
+    #[test]
+    fn an_inert_or_hidden_element_is_not_listed() {
+        fn page() -> Element {
+            rsx! {
+                button { id: "shown", "Shown" }
+                button { id: "hidden", style: "display: none", onclick: |_| {}, "Hidden" }
+                div { inert: true,
+                    button { id: "inert", onclick: |_| {}, "Inert" }
+                }
+            }
+        }
+        assert_eq!(listed(&build(page)), [("shown".to_string(), None, true)]);
     }
 
     #[test]

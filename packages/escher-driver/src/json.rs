@@ -6,6 +6,7 @@ use std::fmt::Write as _;
 use blitz_test_harness::Busy;
 use dioxus_native_dom::{DiffNode, GraphNode, GraphState, Reading, SnapshotDiff, WriteFlag};
 
+use crate::actions::ActionNode;
 use crate::client::Hello;
 use crate::error::SessionError;
 use crate::execute::{Outcome, busy_word};
@@ -247,6 +248,28 @@ fn write_readings(object: &mut Object, declared: bool, confirmed: bool, flag: Op
 }
 
 /// One node of a `graph`'s `nodes`, keyed as the field's help names.
+/// One node of an `actions` answer, keyed as the field's help names.
+fn action_node(node: &ActionNode) -> String {
+    let mut object = Object::new();
+    object.text("id", &node.id);
+    if let Some(owner) = &node.owner {
+        object.text("owner", owner);
+    }
+    object.flag("keyed", node.keyed);
+    object.json(
+        "verbs",
+        &list(node.verbs.iter().map(|reading| {
+            let mut entry = Object::new();
+            entry.text("verb", reading.verb);
+            if let Some(cause) = reading.cause {
+                entry.text("cause", cause.name());
+            }
+            entry.end()
+        })),
+    );
+    object.end()
+}
+
 fn graph_node(node: &GraphNode) -> String {
     let mut object = Object::new();
     object.text("id", &node.id);
@@ -456,6 +479,11 @@ impl Outcome {
                 let mut object = Object::new();
                 object.json("nodes", &list(graph.nodes.iter().map(graph_node)));
                 object.json("states", &list(graph.states.iter().map(graph_state)));
+                object.end()
+            }
+            Outcome::Actions { nodes } => {
+                let mut object = Object::new();
+                object.json("nodes", &list(nodes.iter().map(action_node)));
                 object.end()
             }
         }
@@ -806,6 +834,36 @@ mod tests {
 
     /// A graph holding every optional key and both flags: a select owning its option, a node
     /// outside every component, and a state the app root registered.
+    /// Three actionable nodes: one with a verb accepted and one refused, one served by an
+    /// owner, one whose id is a path.
+    fn action_nodes() -> Vec<ActionNode> {
+        use crate::actions::VerbReading;
+        let reading = |verb, cause| VerbReading { verb, cause };
+        vec![
+            ActionNode {
+                id: "pick".to_string(),
+                owner: None,
+                keyed: true,
+                verbs: vec![
+                    reading("click", None),
+                    reading("type", Some(Cause::Disabled)),
+                ],
+            },
+            ActionNode {
+                id: "one".to_string(),
+                owner: Some("pick".to_string()),
+                keyed: true,
+                verbs: vec![reading("click", Some(Cause::Covered))],
+            },
+            ActionNode {
+                id: "/div:0".to_string(),
+                owner: None,
+                keyed: false,
+                verbs: Vec::new(),
+            },
+        ]
+    }
+
     fn a_graph() -> UiGraph {
         let write = |state: &str, declared, confirmed, flag| GraphWrite {
             state: state.to_string(),
@@ -1019,8 +1077,26 @@ mod tests {
                     r#""writers":[{"id":"go","event":"click","declared":true,"confirmed":false,"flag":"unconfirmed"}],"readers":[]}]}"#,
                 ),
             ),
+            (
+                Outcome::Actions { nodes: Vec::new() },
+                &schema::ACTIONS,
+                &[][..],
+                r#"{"nodes":[]}"#,
+            ),
+            (
+                Outcome::Actions {
+                    nodes: action_nodes(),
+                },
+                &schema::ACTIONS,
+                &[][..],
+                concat!(
+                    r#"{"nodes":[{"id":"pick","keyed":true,"verbs":[{"verb":"click"},{"verb":"type","cause":"disabled"}]},"#,
+                    r#"{"id":"one","owner":"pick","keyed":true,"verbs":[{"verb":"click","cause":"covered"}]},"#,
+                    r#"{"id":"/div:0","keyed":false,"verbs":[]}]}"#,
+                ),
+            ),
         ];
-        assert_eq!(rows.len(), 12);
+        assert_eq!(rows.len(), 14);
         for (row, (outcome, verb, absent, json)) in rows.into_iter().enumerate() {
             let line = outcome.to_json();
             assert!(line == json, "row {row}");

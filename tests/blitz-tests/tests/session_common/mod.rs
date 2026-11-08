@@ -17,7 +17,7 @@ use std::time::{Duration, Instant};
 
 use blitz_dom::Document;
 use dioxus_native_dom::{SnapshotDiff, UiGraph};
-use escher_driver::{ArgValue, Busy, Call, Cause, Check, Finding, Outcome, Session};
+use escher_driver::{ActionNode, ArgValue, Busy, Call, Cause, Check, Finding, Outcome, Session};
 use seven_guis::stand::{self, LeanTask};
 use seven_guis::tasks::timer::TimerTicks;
 
@@ -136,6 +136,20 @@ pub fn graph() -> Call {
     call("graph", &[])
 }
 
+/// The driver call that reads what each actionable element of the screen can take now.
+pub fn actions() -> Call {
+    call("actions", &[])
+}
+
+/// Runs `call` on `session` through the driver and reads its outcome as an actions answer:
+/// `None` for a refused call and for any other outcome.
+pub fn actioned(session: &mut Session, call: &Call) -> Option<Vec<ActionNode>> {
+    match session.run(call).ok()? {
+        Outcome::Actions { nodes } => Some(nodes),
+        _ => None,
+    }
+}
+
 /// Runs `call` on `session` through the driver and reads its outcome as a UI graph: `None` for
 /// a refused call and for any other outcome.
 pub fn graphed(session: &mut Session, call: &Call) -> Option<UiGraph> {
@@ -221,14 +235,15 @@ pub fn focused(session: &Session) -> (Vec<String>, Vec<String>) {
 }
 
 /// Runs `call` on `session` through the driver and reads its outcome as an acting one: `None`
-/// for a refused call, a `snapshot`, a `screenshot`, a `lint` and a `graph`.
+/// for a refused call, a `snapshot`, a `screenshot`, a `lint`, a `graph` and an `actions`.
 pub fn act(session: &mut Session, call: &Call) -> Option<Acted> {
     match session.run(call).ok()? {
         Outcome::Screen { .. }
         | Outcome::Part { .. }
         | Outcome::Shot { .. }
         | Outcome::Linted { .. }
-        | Outcome::Graphed { .. } => None,
+        | Outcome::Graphed { .. }
+        | Outcome::Actions { .. } => None,
         Outcome::Acted {
             settled,
             busy,

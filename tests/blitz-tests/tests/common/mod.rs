@@ -90,6 +90,17 @@ pub const ENABLED_TAB_ORDER: [(LeanTask, &[&str]); 2] = [
     ),
 ];
 
+/// Each served screen's actionable nodes at boot, by its session label, as the `actions` verb
+/// lists them, measured.
+pub const ACTIONABLE_AT_BOOT: [(&str, usize); 6] = [
+    ("counter", 2),
+    ("flight-booker", 7),
+    ("timer", 3),
+    ("crud", 11),
+    ("cells", 678),
+    ("load", 2),
+];
+
 /// The focus sequence of the load page the stand serves beside the lean tasks.
 pub const LOAD_TAB_ORDER: [&str; 2] = ["back-btn", "load-fetch"];
 
