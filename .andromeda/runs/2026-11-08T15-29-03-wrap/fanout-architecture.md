@@ -1,0 +1,15 @@
+@proposal n=1 detector=D-arch-resources severity=warning basis_doc=architecture basis_fact=fct-ksgwc2yv
+section: §Standard Contracts → Driver session
+change: The command and refusal schema stated once as `'static` data — fourteen verbs (`actions` the tenth instance verb, after `graph`, answered by `Session::actions` as `Outcome::Actions`), eight closed causes, no refusal holding what a call supplied; the rest of the sentence unchanged.
+sidecar: Driver session body: thirteen verbs -> fourteen, the new `actions` instance verb (Command::Actions, Outcome::Actions, Session::actions) registered.
+rationale: The report's Symbols / APIs (fct-yftgk4an) adds `Command::Actions`, `Outcome::Actions`, `Session::actions` and `schema::ACTIONS` (`schema.rs:429-452`), and Schema / config (fct-wuaab5w2) moves `VERBS` to 14; the body still says thirteen, so the new verb carried on the socket, command line and MCP is unregistered.
+@proposal n=2 detector=D-arch-resources severity=warning basis_doc=architecture basis_fact=fct-d5zuqqfb
+section: §Standard Contracts → Dioxus DOM bridge
+change: Every element an agent can act on reads an author key: `DioxusDocument::unkeyed_actionable` lists, read-only, each actionable element whose stable id holds a `/`, with a remedy naming the fix; beside it the read-only `DioxusDocument::actionable_nodes` lists every actionable node (`ActionableNode` id, owner, `keyed`), both reading the one actionable rule — focusable, an interactive role, or current listeners holding an event other than `mounted`.
+sidecar: Dioxus DOM bridge body: registers `actionable_nodes` / `ActionableNode` and the one shared actionable rule on exact current listeners.
+rationale: The report's Symbols / APIs (fct-yftgk4an) adds the public `ActionableNode` (`actionable.rs:49-60`, re-exported at `lib.rs:37`) and `DioxusDocument::actionable_nodes` (`actionable.rs:118-146`), both readers sharing the crate-private `Readings` rule (`actionable.rs:62-81`); Crates / modules (fct-xxsa6syv) names the crate-root addition; the body registers only `unkeyed_actionable`.
+@proposal n=3 detector=D-arch-decisions severity=warning basis_doc=architecture basis_fact=fct-nb3g6bqn
+section: §Established Decisions → Driver session
+change: Ids, names, masked values, snapshot text, diffs, shots, lint findings, a UI graph's names, closed flag words and booleans, and the `actions` answer's ids, owner ids, verb words, closed cause words and booleans cross, never a `NodeId`; the rest of the decision unchanged.
+sidecar: [Driver session] decision: the boundary widened to carry the `actions` answer, ratified by the founder's word (inputs#I4, relayed again as inputs#I6).
+rationale: The report's Expected amendments (fct-otmrcodh) names the actions answer's crossing onto every carrier a boundary widening on `rul-izni57qv`, answered by the founder (inputs#I4, re-relayed in fct-zylybc3q); Schema / config (fct-wuaab5w2) states what it carries; the decision's crossing list, which says a new carrier widens the boundary, does not yet name it.

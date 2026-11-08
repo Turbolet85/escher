@@ -1,0 +1,81 @@
+[[pattern]]
+id = 'title'
+fixed = 'What can I do here'
+ignore_case = true
+
+[[pattern]]
+id = 'owner-generic'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true
+
+[[pattern]]
+id = 'verbs'
+regex = '13 verbs|13 tools|13 driver commands|thirteen instance|VERBS`? (holding|holds|of) (13|thirteen)|`VERBS`[^\n]{0,60}thirteen'
+
+[[pattern]]
+id = 'instance'
+regex = '9 instance verbs|9 are asked of the held instance|nine instance|instance verbs[^\n]{0,20}\bnine\b|instance rows[^\n]{0,20}(== 9|nine)'
+
+[[pattern]]
+id = 'fieldkind'
+regex = '12 field kinds|twelve field kinds|`FieldKind`[^\n]{0,80}\b(twelve|12)\b|graph-states'
+
+[[pattern]]
+id = 'describe'
+fixed = '[13, 14, 12, 3, 8, 4, 15]'
+
+[[pattern]]
+id = 'stand-tally'
+regex = '244 · 0 · 7|244 passed|52 files|52 stand'
+
+[[pattern]]
+id = 'span-calls'
+regex = '37 calls|stand_act_spans[^\n]{0,120}\b37\b'
+
+[[pattern]]
+id = 'sc-readers'
+regex = '33 readers|thirty-third|`stand_graph` the thirty'
+
+[[pattern]]
+id = 'fx-readers'
+regex = '31 checks|23 `stand_\*` files'
+
+[[pattern]]
+id = 'modules'
+regex = '17 private modules|seventeen private modules|re-exports 57 names'
+
+[[pattern]]
+id = 'unkeyed'
+regex = 'unkeyed_actionable|data-dioxus-id'
+
+[[pattern]]
+id = 'needles'
+regex = 'graph_needles|option_needles'
+
+[[pattern]]
+id = 'shared-check'
+regex = 'action_point|check_target'
+
+[[pattern]]
+id = 'res-paging'
+regex = 'res-7cc5bi4k|unpaged graph|An unpaged'
+
+[[pattern]]
+id = 'renamed-tests'
+regex = 'the_thirteen_verbs_are_named|the_listing_is_the_thirteen_verbs'
+
+[[pattern]]
+id = 'host-calls'
+regex = 'host_log[^\n]{0,160}\b(eight|8) (calls|hosted calls)|mcp_log[^\n]{0,160}\b(eleven|11) (tool )?calls'
+
+[[pattern]]
+id = 'cold-tools'
+regex = 'cold-agent[^\n]{0,160}\b(13|thirteen) (tools|verbs)|pipe.s `VERBS`'
+
+[[pattern]]
+id = 'unit-counts'
+regex = 'four actionable|actionable::tests|escher-driver[^\n]{0,40}\b(100|one hundred) (unit )?tests'
+
+[[pattern]]
+id = 'cmd-variants'
+regex = '`Command`[^\n]{0,60}\b(ten|10|eleven|11) variants|`Outcome`[^\n]{0,60}\b(ten|10|eleven|11) variants'

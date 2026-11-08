@@ -1,0 +1,12 @@
+@apply_row n=1 ref_file=fanout-design-system--cascade.md ref_n=1 v=applied edit=E1,E4
+@apply_row n=2 ref_file=fanout-design-system--cascade.md ref_n=2 v=applied edit=E2
+@apply_row n=3 ref_file=fanout-design-system--cascade.md ref_n=3 v=applied edit=E3
+@fact after=fct-gnekz77j file=surface gid=new:cli-actions kind=values subject=cli-actions as=n1
+- `escher-session actions` takes no argument, and an argument is refused `malformed`; it answers one uncoloured line of JSON `{"nodes":[{"id":…,"owner":…,"keyed":…,"verbs":[{"verb":…,"cause":…}]}]}` on stdout, status `0`, the same answer on the session socket's `call`, over the `mcp` role and in a kept check; it lists every actionable node in snapshot pre-order — focusable, of an interactive role or holding a current listener for an event other than `mounted`, or owned by another node — each with the verb table's id-taking instance verbs and the cause each would be refused with, `owner` and `cause` left out when absent; the line carries ids, owner ids, the table's verb words, closed cause words and booleans only, never a value, typed text or `NodeId` (packages/escher-driver/src/json.rs:251-272; packages/escher-driver/src/schema.rs:429-452; examples/seven_guis/tests/cli_commands.rs:495-516; as measured at escher-0.3.0/chunks/2026-11-08-what-can-i-do-here/report.md)
+@fact after=@n1 as=n2
+- The `actions` answer reports whether each call would be accepted, not what it would do: a node's verbs are decided by the same `validate` and per-verb target check (`check_target`) that every id-taking verb meets before it acts, so a listed cause is the cause the call returns, and a node that resolves to no element reads `stale` (docs/capabilities.md:259-261; packages/escher-driver/src/actions.rs:40-102; packages/escher-driver/src/execute.rs:498-526; as measured at escher-0.3.0/chunks/2026-11-08-what-can-i-do-here/report.md)
+@fact after=fct-bzczuomv file=surface gid=new:cli-unpaged-actions kind=pending subject=cli-unpaged-actions
+- The `actions` answer is unpaged, taking no argument and answering the whole screen in one line: Cells at boot answers 106,088 bytes for 678 nodes, within the 1,048,576-byte answer bound — the stated limit «An unpaged actions answer» beside «An unpaged graph» (docs/capabilities.md:274-276) · owner: residual `res-7cc5bi4k`, target next (as measured at escher-0.3.0/chunks/2026-11-08-what-can-i-do-here/report.md)
+@fact id=fct-h64spsrj expect_rev=2
+old: cli-graph · cli-unpaged-graph ·
+new: cli-graph · cli-actions · cli-unpaged-graph · cli-unpaged-actions ·

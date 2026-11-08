@@ -1,0 +1,7 @@
+@proposal n=1 detector=D-cascade severity=warning file=a11y-strategy anchor=fct-d5bs73pt basis_doc=doc:2026-11-08-what-can-i-do-here/report basis_fact=fct-yftgk4an
+section: ## 2. A11y Strategy
+change: the gated list also names, after the actionable-key check, the read-only actionable-node reader (`DioxusDocument::actionable_nodes`, its `ActionableNode` re-exported from the crate root beside `UnkeyedActionable`), which shares the one crate-private actionable rule `Readings` with `unkeyed_actionable` and sits in the same accessibility-gated `actionable` module, since 2026-11-08-what-can-i-do-here
+sidecar: a11y-strategy#4.1 — dioxus-native-dom's accessibility feature now also gates actionable_nodes and ActionableNode (2026-11-08-what-can-i-do-here)
+rationale: the report's Symbols / APIs puts ActionableNode and DioxusDocument::actionable_nodes in src/actionable.rs under accessibility, re-exported at lib.rs:37, read by the same Readings as unkeyed_actionable; the fact's list of what the feature gates leaves them out
+@remark
+F1-F9 are all slug=screen-reader-support (group 2, not mine); the inserted ACTIONABLE_AT_BOOT (common/mod.rs:93-102) and capabilities.md's added lines only shift citations in keyboard-navigation#7.2, #7.3, a11y-scope-summary#1.11 and several capabilities.md cites, which the citation sweep owns; D-a11y-surface and D-a11y-obs-schema do not fire (report: a11y n/a, no UI element; no schema change)

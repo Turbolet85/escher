@@ -2,8 +2,8 @@
 
 verified 7/17 · deferred 0 · planned 9 · implemented 1 · unclaimed 9
 
-## implemented (1)
-- v030-06 · What can I do here · 2026-11-08-what-can-i-do-here
+## implemented, unclaimed (1)
+- v030-06 · What can I do here
 
 ## planned, unclaimed (9)
 - v030-07 · Handler coverage

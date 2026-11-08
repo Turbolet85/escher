@@ -1,0 +1,15 @@
+[[pattern]]
+id = 'smt-tests'
+regex = 'stand_mcp_tools[^\n]{0,80}\b(\d+|[a-z]+) tests'
+
+[[pattern]]
+id = 'cli-tests'
+regex = 'cli_commands[^\n]{0,80}\b(\d+|[a-z]+) tests'
+
+[[pattern]]
+id = 'mcps-tests'
+regex = 'mcp_server[^\n]{0,80}\b(\d+|[a-z]+) tests'
+
+[[pattern]]
+id = 'targets'
+regex = 'blitz-tests[^\n]{0,60}\b(\d+|[a-z]+-?[a-z]*) (test )?targets'

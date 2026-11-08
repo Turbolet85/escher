@@ -1,4 +1,0 @@
-@none
-reason: no proposal
-@remark
-D-security-input holds: the one new external-input surface, the graph verb (socket, command line, MCP, kept check), is validated by validate's ("graph", []) with an argument refused malformed (report fct-qxguy4c4, fct-dbzqvx2q); use_graph_state and SignalRegistry are in-process app API. D-security-deps holds (Dependencies none, fct-yz7yufdi); D-security-auth n/a (no identity/session/token/key touched); D-retired n/a (no security-plan passage names the retired not-built click field). The body's stale counts (fct-cvyxuuhn "twelve verbs") and the carried answer sets that the graph's names join (fct-z5ttw3ol, fct-dgkl4a64, fct-6hwcr6nz; pattern lint-crossing, security-plan 12 sites; the ratified widening of inputs#I4 halted at Validate per inputs#I9) are the cascade's sweep rows, not detector drift.

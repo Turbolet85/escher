@@ -1,0 +1,583 @@
+[
+{
+"tool": "cascade",
+"v": "1.29",
+"sha8": "83f1de0a",
+"ts": "2026-11-08T15:30:55Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-08T15-29-03-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-08T15-29-03-wrap",
+"--marker",
+"2026-11-08-what-can-i-do-here"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline f9a91327 (pre-pass — HEAD)",
+"title · control UNFIRED over the seven masters (bodies and sets) at f9a91327",
+"span-calls · control UNFIRED over the seven masters (bodies and sets) at f9a91327",
+"shared-check · control UNFIRED over the seven masters (bodies and sets) at f9a91327",
+"renamed-tests · control UNFIRED over the seven masters (bodies and sets) at f9a91327",
+"cmd-variants · control UNFIRED over the seven masters (bodies and sets) at f9a91327"
+],
+"stderr": "control: title, span-calls, shared-check, renamed-tests, cmd-variants never fired over the seven masters' pre-pass text, bodies and sets (f9a91327) — a sweep runs a positive control or refuses; drop the pattern or control it by hand",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.29",
+"sha8": "83f1de0a",
+"ts": "2026-11-08T15:31:21Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-08T15-29-03-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-08T15-29-03-wrap",
+"--marker",
+"2026-11-08-what-can-i-do-here",
+"--pattern",
+"owner-generic",
+"--pattern",
+"verbs",
+"--pattern",
+"instance",
+"--pattern",
+"fieldkind",
+"--pattern",
+"describe",
+"--pattern",
+"stand-tally",
+"--pattern",
+"sc-readers",
+"--pattern",
+"fx-readers",
+"--pattern",
+"modules",
+"--pattern",
+"unkeyed",
+"--pattern",
+"needles",
+"--pattern",
+"res-paging",
+"--pattern",
+"host-calls",
+"--pattern",
+"cold-tools",
+"--pattern",
+"unit-counts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline f9a91327 (pre-pass — HEAD)",
+"architecture · 25 rows over 5 files · new 0 · standing 25 · 8 patterns",
+"security-plan · 16 rows over 3 files · new 0 · standing 16 · 6 patterns",
+"design-system · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"layout-templates · 2 rows over 1 files · new 0 · standing 2 · 2 patterns",
+"test-plan · 38 rows over 10 files · new 0 · standing 38 · 13 patterns",
+"obs-plan · 5 rows over 3 files · new 0 · standing 5 · 4 patterns",
+"a11y-plan · 8 rows over 6 files · new 0 · standing 8 · 2 patterns",
+"by line · 4 lines · 4 offsets",
+"total (15 patterns) · 150 rows over 46 files",
+"per class · new 0/0 · standing 95/29 · leaf 53/16 · curation 0/0 · base 2/1",
+"rows 1/1 · .andromeda/runs/2026-11-08T15-29-03-wrap/sweep-pre-pass-1.1.txt · 200 lines · 23382 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-08T15-29-03-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "f9a9132798a407324ea08b028cd5e862978a4ab5",
+"how": "pre-pass — HEAD",
+"counts": {
+"owner-generic": {
+"new": 0,
+"standing": 4,
+"leaf": 2,
+"curation": 0,
+"base": 2
+},
+"verbs": {
+"new": 0,
+"standing": 20,
+"leaf": 15,
+"curation": 0,
+"base": 0
+},
+"instance": {
+"new": 0,
+"standing": 11,
+"leaf": 4,
+"curation": 0,
+"base": 0
+},
+"fieldkind": {
+"new": 0,
+"standing": 4,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"describe": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"stand-tally": {
+"new": 0,
+"standing": 4,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"sc-readers": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"fx-readers": {
+"new": 0,
+"standing": 3,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"modules": {
+"new": 0,
+"standing": 3,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"unkeyed": {
+"new": 0,
+"standing": 25,
+"leaf": 10,
+"curation": 0,
+"base": 0
+},
+"needles": {
+"new": 0,
+"standing": 7,
+"leaf": 5,
+"curation": 0,
+"base": 0
+},
+"res-paging": {
+"new": 0,
+"standing": 4,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"host-calls": {
+"new": 0,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"cold-tools": {
+"new": 0,
+"standing": 2,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"unit-counts": {
+"new": 0,
+"standing": 3,
+"leaf": 3,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 25,
+"files": 5,
+"new": 0,
+"standing": 25,
+"patterns": 8
+},
+"security-plan": {
+"rows": 16,
+"files": 3,
+"new": 0,
+"standing": 16,
+"patterns": 6
+},
+"design-system": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+},
+"layout-templates": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 2
+},
+"test-plan": {
+"rows": 38,
+"files": 10,
+"new": 0,
+"standing": 38,
+"patterns": 13
+},
+"obs-plan": {
+"rows": 5,
+"files": 3,
+"new": 0,
+"standing": 5,
+"patterns": 4
+},
+"a11y-plan": {
+"rows": 8,
+"files": 6,
+"new": 0,
+"standing": 8,
+"patterns": 2
+}
+},
+"per_master": {
+"owner-generic": {
+"security-plan": 1,
+"test-plan": 1,
+"a11y-plan": 2
+},
+"verbs": {
+"architecture": 6,
+"security-plan": 5,
+"layout-templates": 1,
+"test-plan": 8
+},
+"instance": {
+"architecture": 2,
+"security-plan": 3,
+"test-plan": 5,
+"obs-plan": 1
+},
+"fieldkind": {
+"architecture": 1,
+"security-plan": 1,
+"test-plan": 2
+},
+"describe": {
+"test-plan": 2
+},
+"stand-tally": {
+"test-plan": 4
+},
+"sc-readers": {
+"obs-plan": 1
+},
+"fx-readers": {
+"architecture": 1,
+"test-plan": 2
+},
+"modules": {
+"architecture": 3
+},
+"unkeyed": {
+"architecture": 9,
+"security-plan": 5,
+"layout-templates": 1,
+"test-plan": 4,
+"a11y-plan": 6
+},
+"needles": {
+"architecture": 2,
+"test-plan": 3,
+"obs-plan": 2
+},
+"res-paging": {
+"architecture": 1,
+"security-plan": 1,
+"design-system": 1,
+"test-plan": 1
+},
+"host-calls": {
+"test-plan": 2
+},
+"cold-tools": {
+"test-plan": 1,
+"obs-plan": 1
+},
+"unit-counts": {
+"test-plan": 3
+}
+},
+"forms": {
+"verbs": [
+{
+"form": "thirteen verbs",
+"from": "13"
+},
+{
+"form": "thirteen tools",
+"from": "13"
+},
+{
+"form": "thirteen driver commands",
+"from": "13"
+},
+{
+"form": "13 instance",
+"from": "thirteen"
+},
+{
+"form": "`VERBS`[^n]{0,60}13",
+"from": "thirteen"
+}
+],
+"instance": [
+{
+"form": "nine instance verbs",
+"from": "9"
+},
+{
+"form": "nine are asked of the held instance",
+"from": "9"
+},
+{
+"form": "9 instance",
+"from": "nine"
+},
+{
+"form": "instance verbs[^n]{0,20}b9b",
+"from": "nine"
+}
+],
+"fieldkind": [
+{
+"form": "twelve field kinds",
+"from": "12"
+}
+],
+"describe": [
+{
+"form": "[13, 14, 12, 3, 8, 4, fifteen]",
+"from": "15"
+}
+],
+"stand-tally": [
+{
+"form": "244 · zero · seven",
+"from": "0 · 7"
+},
+{
+"form": "fifty-two",
+"from": "52"
+}
+],
+"sc-readers": [
+{
+"form": "thirty-three",
+"from": "33"
+},
+{
+"form": "`stand_graph` the 30",
+"from": "thirty"
+}
+],
+"fx-readers": [
+{
+"form": "thirty-one",
+"from": "31"
+},
+{
+"form": "twenty-three",
+"from": "23"
+}
+],
+"modules": [
+{
+"form": "seventeen private modules",
+"from": "17"
+},
+{
+"form": "fifty-seven",
+"from": "57"
+}
+],
+"unit-counts": [
+{
+"form": "4 actionable",
+"from": "four"
+},
+{
+"form": "escher-driver[^n]{0,40}b(100|1 hundred) (unit )?tests",
+"from": "one"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+},
+{
+"tool": "cascade",
+"v": "1.29",
+"sha8": "83f1de0a",
+"ts": "2026-11-08T15:32:32Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-08T15-29-03-wrap/report-patterns-2.toml",
+"--run-dir",
+".andromeda/runs/2026-11-08T15-29-03-wrap",
+"--marker",
+"2026-11-08-what-can-i-do-here"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline f9a91327 (pre-pass — HEAD)",
+"smt-tests · control UNFIRED over the seven masters (bodies and sets) at f9a91327"
+],
+"stderr": "control: smt-tests never fired over the seven masters' pre-pass text, bodies and sets (f9a91327) — a sweep runs a positive control or refuses; drop the pattern or control it by hand",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.29",
+"sha8": "83f1de0a",
+"ts": "2026-11-08T15:32:41Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-08T15-29-03-wrap/report-patterns-2.toml",
+"--run-dir",
+".andromeda/runs/2026-11-08T15-29-03-wrap",
+"--marker",
+"2026-11-08-what-can-i-do-here",
+"--pattern",
+"cli-tests",
+"--pattern",
+"mcps-tests",
+"--pattern",
+"targets"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline f9a91327 (pre-pass — HEAD)",
+"architecture · 4 rows over 2 files · new 0 · standing 4 · 3 patterns",
+"security-plan · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"test-plan · 5 rows over 2 files · new 0 · standing 5 · 3 patterns",
+"obs-plan · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"by line · 0 lines · 0 offsets",
+"total (3 patterns) · 13 rows over 8 files",
+"per class · new 0/0 · standing 11/6 · leaf 2/2 · curation 0/0 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-08T15-29-03-wrap/sweep-pre-pass-2.1.txt · 20 lines · 2253 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-08T15-29-03-wrap/sweep-pre-pass-2.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "f9a9132798a407324ea08b028cd5e862978a4ab5",
+"how": "pre-pass — HEAD",
+"counts": {
+"cli-tests": {
+"new": 0,
+"standing": 4,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"mcps-tests": {
+"new": 0,
+"standing": 3,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"targets": {
+"new": 0,
+"standing": 4,
+"leaf": 1,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 4,
+"files": 2,
+"new": 0,
+"standing": 4,
+"patterns": 3
+},
+"security-plan": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+},
+"test-plan": {
+"rows": 5,
+"files": 2,
+"new": 0,
+"standing": 5,
+"patterns": 3
+},
+"obs-plan": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+}
+},
+"per_master": {
+"cli-tests": {
+"architecture": 1,
+"test-plan": 2,
+"obs-plan": 1
+},
+"mcps-tests": {
+"architecture": 1,
+"test-plan": 2
+},
+"targets": {
+"architecture": 2,
+"security-plan": 1,
+"test-plan": 1
+}
+},
+"forms": {},
+"parts": [
+"sweep-pre-pass-2.1.txt"
+]
+}
+}
+]

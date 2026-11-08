@@ -1,29 +1,28 @@
 # Session Handoff
 
-**Last Updated:** 2026-11-08T03:35:00Z
+**Last Updated:** 2026-11-08T17:05:00Z
 **Branch:** build/escher-0.3.0 · 0 ahead of origin/build/escher-0.3.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-11-07-ui-graph — one read of the screen's UI graph and the snapshot's `clickable` reading, the masters reconciled
+**Last Commit:** 2026-11-08-what-can-i-do-here — one read of what each actionable node can take now, the masters reconciled
 
 ## Position
-- Done: 2026-11-07-ui-graph. The `graph` verb, the ninth instance verb, answers the screen's UI graph on every carrier and in a kept check. The graph holds each node's component, handlers, declared and confirmed writes and the states' reading components. Each snapshot node now carries `clickable`. v030-05 verified. Version: verified 7/17 · deferred 0 · planned 10 · implemented 0 · unclaimed 10.
-- Next: «What can I do here» (v030-06). **Nothing starts it:** the founder lifted the pause for «The UI graph» alone (the chunk's inputs I1), so the pause stands again and only the founder lifts it. `target/tmp/trial-wt` still stands; removing it is the founder's call.
+- Done: 2026-11-08-what-can-i-do-here. The `actions` verb, the tenth instance verb, lists each actionable node with the id-taking verbs of `VERBS` and the cause each would meet. It answers on every carrier and in a kept check. `unkeyed_actionable` and `actionable_nodes` now read one actionable rule, on the exact current listeners.
+- v030-06 is **not verified**. On the operator's direction (inputs#I6), a kept `actions` step's replay is owed a test. v030-06 is un-claimed (no chunk, state still `implemented`, ref kept, a dated ledger note). It is outside the UNCLAIMED pool, whose predicate is `planned`, so «Handler coverage»'s phase must name it explicitly beside v030-07. It is verified only once the replay test passes. Version: verified 7/17 · deferred 0 · planned 9 · implemented 1 · unclaimed 9.
+- Next: «Handler coverage» (v030-07). It carries the owed replay test (CARRY `cry-sxrivdk3`). This wrap did not read whether the founder's pause stands; that is his call. `target/tmp/trial-wt` still stands; removing it is the founder's call.
 
 ## Work done
-The wrap was resumed from P1's report. The operator's resume relay was snapped as inputs#I9 and cited in Addendum 1: the widening has the founder's two words, and the Cells graph size stays a stated limit with `res-7cc5bi4k`, target next.
+The wrap was resumed from P1's report. The operator's resume relay was snapped as inputs#I6 and cited in Addendum 1. It carries the founder's word on the widening and the ruling that the replay test is owed.
 
 ## Drift resolved
-The sampler was off, and no classifier draw died. 187 proposals came in: 182 were applied, 5 rejected as twins, and 6 edits were raised by main. Main measured the counts the report did not state.
-- The `graph` verb's boundary widening halted on one answer card (Q1, 22 proposals). The overseer confirmed it on the founder's «Новый глагол graph (Рекомендую)» and «Ещё и статическая подсказка». That confirm is **PROVISIONAL**, delegated by the overseer, for the founder's own word in his batch at the epoch boundary. Each owning sidecar entry says so.
-- 57 sidecar entries landed. Citations: 560 re-pointed, 9 changed, 101 stretched. Leaves: 153 findings written across 18 leaves, none declined.
+The sampler was off, and no classifier draw died. 158 proposals came in and main raised 5 items: 158 applied, 5 rejected as check-7 twins or a restatement. Main measured the two counts the report missed: blitz-tests `common` declarers 22 → 23, and cli_tests rows 101 → 102.
+- The `actions` widening halted on one answer card (Q1, 24 proposals). The founder confirmed it himself, «Подтвердить все 24 (Рекомендую)», on his word «Новый глагол actions (Рекомендую)», so this ratification is not provisional. The `keyed` field stays **PROVISIONAL**: it was the overseer's call as delegate, and is discharged at the epoch boundary.
+- The step-2 sweep found 10 stale master sites no detector proposed; main fixed them. 45 sidecar entries landed. Citations: 331 re-pointed, 6 changed, 89 stretched. Leaves: 132 findings applied across 16 leaves, none declined.
 
 ## Notes
-- Records: `.andromeda/runs/2026-11-08T02-04-13-wrap/` — `fanout-results.md`, `answer-card.md`, `cascade-dispositions.md`, `route-record.md`, `curation.md`.
-- Route: one CARRY on «Cold-agent bar»: `graph` is in the pipe's `VERBS` and no cold agent is required to use it; whether the bar counts it is that entry's call.
-- Curation: 1 Tier 2 entry (`host-linux.md`, a backslash-escaped quote in a Python edit script). Deferred learnings: `recurrence-despite-learning: testing.md 2026-10-10 «search tests/ for a table's readers before calling a standing check unaffected»`. Four checks outside research's lists read red again this chunk.
-- Growth: 9 flags, 18 warnings. Split candidates: `established-decisions.md`, `existing-scopes.md`, `standard-contracts.md`, `input-validation.md`, `ci-integration.md`, `test-scope-summary.md`, `keyboard-navigation.md`.
-- Deferred from before: a plan quoting a reading its master flags as old re-reads it (0.8); a real take compared byte for byte against its trial commit keeps conflict resolutions honest (0.8); `recurrence-despite-learning` «`fanout-results.md`'s lines are a grammar» (it recurred here: the apply render refused `###` file headings); a controlled-select fixture first written uncontrolled.
+- Records: `.andromeda/runs/2026-11-08T15-29-03-wrap/` — `fanout-results.md`, `answer-card.md`, `cascade-dispositions.md`, `route-record.md`, `curation.md`.
+- Route: a CARRY on «Handler coverage» (the owed replay test). The «Cold-agent bar» carry now names `actions` beside `graph`; whether the bar counts them is that entry's call.
+- Curation: no new entries. Deferred learnings: `recurrence-despite-learning: testing.md 2026-10-10 «search tests/ for what a check pins before changing a table»`. It recurred twice at implement (a renamed schema test, the `run.calls` pin) and three wraps running now.
+- Growth: 10 flags, 18 warnings. Split candidates: `established-decisions.md`, `existing-scopes.md`, `standard-contracts.md`, `input-validation.md`, `ci-integration.md`, `test-scope-summary.md`, `keyboard-navigation.md`.
+- One citation is left to the next sweep: architecture `fct-t7zq5feb`'s `schema.rs:197-202`, the snapshot help now at 202-207.
+- Deferred from before: a plan quoting a reading its master flags as old re-reads it (0.8); a real take compared byte for byte against its trial commit keeps conflict resolutions honest (0.8); `recurrence-despite-learning` «`fanout-results.md`'s lines are a grammar»; a controlled-select fixture first written uncontrolled.
 - Last failed command: none.
-
-## Session End Status
-Completed normally at 2026-11-08 15:09:38

@@ -1,2 +1,0 @@
-@fact after=fct-qk7naa6l
-Dioxus bridge (dioxus-native-dom) — on every Dioxus document the event dispatch sets a registered `SignalRegistry`'s dispatch around `runtime.handle_event` and clears it after, inert where no state is registered; the in-process signal registry (`use_graph_state`) takes dioxus-core types alone, holds no value of a state, and has no log site, print, env read or `unwrap` on app input; no input class enters from outside the process.
