@@ -1,0 +1,27 @@
+[[pattern]]
+id = 'm-needles'
+regex = 'cells_needles|graph_needles|log checks read stderr with'
+
+[[pattern]]
+id = 'm-cli-rows'
+regex = '64 rows|101 rows|line is read by its rules'
+
+[[pattern]]
+id = 'm-cli-count'
+regex = 'cli_commands`? \(?1[56]\)?'
+
+[[pattern]]
+id = 'm-mcp-server'
+regex = 'mcp_server`? \(?[67]\b'
+
+[[pattern]]
+id = 'm-sc-readers'
+regex = 'thirty-(two|three) checks read|module (32|33) checks'
+
+[[pattern]]
+id = 'm-run-stand'
+regex = 'run stand` 2[34][47] · 0 · 7 over 5[12] files'
+
+[[pattern]]
+id = 'm-iv-bridge'
+regex = 'Dioxus (bridge|mutations)'

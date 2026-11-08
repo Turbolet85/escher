@@ -1,0 +1,12 @@
+@proposal n=1 detector=D-new-detail severity=warning file=surface anchor=fct-6fb4pz6c fact=F1 basis_doc=doc:2026-11-07-ui-graph/report basis_fact=fct-6qy6da5y
+section: ## Surface: cli › ### Component Patterns
+change: add a list item after the cli-output item — since 2026-11-07-ui-graph `escher-session graph` takes no argument (one is refused `malformed` with nothing run) and answers the whole UI graph as one uncoloured line of JSON `{"nodes":[…],"states":[…]}` on stdout with no ESC byte, status `0`, the same on the socket and in a kept check, and over the `mcp` role its tool result is the text block of that line; the line carries ids, component names, state names, handler event names, closed flag words and booleans only, never a typed value (as measured at escher-0.3.0/chunks/2026-11-07-ui-graph/report.md)
+sidecar: surface cli-output gains the graph verb's answer line (one uncoloured JSON line, status 0, no argument, names and closed words only), 2026-11-07-ui-graph
+rationale: the report's Schema / config states escher-session answers graph on the socket, the command line, MCP and in a kept check, its Outcome (design) reads one uncoloured JSON line, status 0, and one JSON-RPC line over MCP, and its Outcome (security) reads names, flag words and booleans only
+@proposal n=2 detector=D-new-detail severity=warning file=surface anchor=fct-6fb4pz6c fact=F3 basis_doc=doc:2026-11-07-ui-graph/report basis_fact=fct-reiinlg2
+section: ## Surface: cli › ### Component Patterns
+change: add a pending list item after the cli-output item — the `graph` answer is unpaged: Cells at boot answers 293,869 bytes in one line, the stated limit «An unpaged graph» in docs/capabilities.md, owned by residual res-7cc5bi4k, target next (as measured at escher-0.3.0/chunks/2026-11-07-ui-graph/report.md)
+sidecar: surface cli gains the pending unpaged-graph limit (Cells 293,869 B in one line, res-7cc5bi4k, target next), 2026-11-07-ui-graph
+rationale: the report's Insufficient fixes and Deviations 6 record the remaining size as the stated limit «An unpaged graph» and residual res-7cc5bi4k, target next, measured 293,869 B for Cells at boot
+@remark
+F2 (the snapshot's clickable reading and the CLICKABLE table) is the snapshot model's and a11y-plan's, not a design-system category's; the usage line and tools/list gaining graph are layout-templates' Primary screens — cli; every new surface reads tokens n/a, so D-design-tokens does not fire

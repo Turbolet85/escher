@@ -80,4 +80,4 @@
 2026-11-01-upstream-sync-ui-graph · complete · Upstream sync ahead of the UI graph — the founder's chosen take of upstream/main; merge surfaces re-read; CI, a11y leg and audit green; per-OS tallies, sink allowlist re-read · → chk:2026-11-01-upstream-sync-ui-graph
 2026-11-04-dioxus-runtime-probe · complete · Dioxus runtime probe — what Dioxus 0.7 exposes of component, handlers, written state and readers with no fork-level change; the reading and the MountedData fork to the founder · → chk:2026-11-04-dioxus-runtime-probe
 2026-11-07-mounteddata-buffered-render · complete · MountedData buffered render — the Dioxus 0.7 bridge renders into a mutation buffer with the document unborrowed, so a task polled during render reaches it · → chk:2026-11-07-mounteddata-buffered-render
-2026-11-07-ui-graph · pending · one read of the screen's UI graph — node, component, handlers, written state, readers — and the «reacts to a click» snapshot field · → chk:2026-11-07-ui-graph
+2026-11-07-ui-graph · complete · one read of the screen's UI graph — node, component, handlers, written state, readers — and the «reacts to a click» snapshot field · → chk:2026-11-07-ui-graph

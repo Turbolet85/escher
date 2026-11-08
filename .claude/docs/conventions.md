@@ -22,7 +22,7 @@ _Extracted from `.andromeda/architecture.md` §Conventions (citations live there
 - Crate internals are `pub(crate)` / `pub(super)`; the slotmap key is used only at the storage boundary — public APIs use `NodeId`.
 
 ## Feature gating
-- Optional capabilities are Cargo features forwarded across crates (each dioxus-native feature forwards to the same-named blitz feature; `accessibility` also to dioxus-native-dom's, which gates its own `accessibility_tree` override and its `snapshot`, `snapshot_diff`, `snapshot_text` and `actionable` modules). The workspace takes both Dioxus crates with `default-features = false`, so a feature is on only where a crate names it or depends on a crate that names it — escher-driver names dioxus-native-dom's `accessibility`, which reaches both seven_guis binaries through that edge.
+- Optional capabilities are Cargo features forwarded across crates (each dioxus-native feature forwards to the same-named blitz feature; `accessibility` also to dioxus-native-dom's, which gates its own `accessibility_tree` override and its `snapshot`, `snapshot_diff`, `snapshot_text`, `actionable` and `graph` modules, its `signal_registry` module ungated, so an app registers state whatever its features). The workspace takes both Dioxus crates with `default-features = false`, so a feature is on only where a crate names it or depends on a crate that names it — escher-driver names dioxus-native-dom's `accessibility`, which reaches both seven_guis binaries through that edge.
 - In the engine and upstream crates `tracing` is gated per call site with a `#[cfg(not(feature = "tracing"))] let _ = …;` fallback; escher-telemetry (no `[features]`) emits its startup and panic events ungated, and escher-driver takes `tracing` with no feature for its spans — the `command` span and, since 2026-10-10-mcp-surface, the `tool_call` span, the parent of `command` on an MCP tool call — built by hand with `tracing::info_span!` (no `#[instrument]`).
 - Desktop-only code gated by the repeated cfg list windows / macos / linux / dragonfly / freebsd / netbsd / openbsd.
 
@@ -55,7 +55,7 @@ See `.claude/rules/testing.md` (authoring) and `.claude/rules/verification-harne
 
 ## Apps and examples
 - Binaries set `windows_subsystem = "windows"` outside tests; Android entry `#[unsafe(no_mangle)] pub fn android_main`.
-- Dioxus examples: `fn main() { dioxus_native::launch(app); }`, `fn app() -> Element`, `#[component]`, state via `use_signal` / `use_store` / `use_memo`; example CSS in `const CSS: &str` raw strings.
+- Dioxus examples: `fn main() { dioxus_native::launch(app); }`, `fn app() -> Element`, `#[component]`, state via `use_signal` / `use_store` / `use_memo` — seven_guis' tasks register each signal through `tasks::use_graph_signal(name, writers, init)` (`use_signal` left to the stand shell's `active` and `stand.rs`'s `linked`), their writers built by the `const fn` `tasks::writes(id, event)` and written `const { &[…] }` or as a `const` item, since a bare `&[writes(..)]` is not promoted to `'static` and errors `E0716`; example CSS in `const CSS: &str` raw strings.
 
 ## Cross-references
 - Architecture: `.andromeda/architecture.md` · directory layout: §Infrastructure Patterns · gotchas: `.claude/docs/gotchas.md` · per-crate notes: `.claude/docs/services/`.

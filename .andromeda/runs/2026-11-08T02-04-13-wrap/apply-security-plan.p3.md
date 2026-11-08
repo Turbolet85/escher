@@ -1,0 +1,4 @@
+@apply_row n=1 ref_file=fanout-security-plan--cascade-g4.md ref_n=6 v=applied edit=E1
+
+@fact after=fct-4cylhur3 file=logging-monitoring gid=new:graph-verb-silence kind=values subject=logging
+- The graph verb's silence: `graph`, the ninth instance-level verb, records `verb` alone on its `command` span, and an MCP `tools/call` of it writes one `tool_call` line parenting that one `command` span; `packages/escher-driver/src` holds two `info_span!`, and dioxus-native-dom's `graph` and `signal_registry` modules hold no log site; `host_log` and `mcp_log` each drive one `graph` call with 0 id, name and graph needles at `RUST_LOG=trace` under both builds, so a graph's ids, component names, state names and handler event names reach no log — as measured at escher-0.3.0/chunks/2026-11-07-ui-graph/report.md

@@ -1,6 +1,0 @@
---- a/.andromeda/design-system-detail/surface.md
-+++ b/.andromeda/design-system-detail/surface.md
-@@ -72,2 +72,3 @@
- - On wasm32 the same surface is a canvas appended to the page body, sized from host CSS (packages/dioxus-native/src/config.rs:22-34)
-+- On every Dioxus document, the windowed `dioxus-native` launch and the headless stand alike, code the vdom runs during a render, a component body or a task it polls, can call `MountedData`'s `set_focus`, `get_client_rect`, `scroll_to`, `scroll`, `get_scroll_offset` and `get_scroll_size` with no `RefCell already borrowed` panic: the render is recorded into a mutation buffer with the document unborrowed, then replayed under one borrow; by construction such a call acts on the document as the previous render left it, so a node created in that same render is not yet in it and `set_focus_to` returns `false` for it (packages/dioxus-native-dom/src/dioxus_document.rs:166-168; packages/dioxus-native-dom/src/dioxus_document.rs:302-304; packages/dioxus-native-dom/src/mutation_buffer.rs:97-140; as measured at escher-0.3.0/chunks/2026-11-07-mounteddata-buffered-render/report.md)
- - The optional `scrollbars` feature forwards to blitz-paint (packages/dioxus-native/Cargo.toml:49)

@@ -1,0 +1,53 @@
+# Host Recipes
+
+Shell mechanics of the Bash tool on this host: the recurring ways a recipe breaks. Every rule is measured on live
+work, not hypothetical.
+
+## Paths & the working directory
+- The working directory MAY persist across calls (measured both ways on one host: persisted in one session,
+  reset after every call in another) — rely on neither: anchor every cross-call path absolutely, or `cd` only
+  inside a subshell `( cd X && … )` (setup's Bash guard denies a `cd` that would move the cwd); a
+  `cd` inside a compound command can also trip a permission prompt.
+
+## Probes & pattern tools
+- A zero-is-healthy count probe (`grep -c` / `grep -q`) exits non-zero on no matches and aborts a
+  `&&` chain — suffix `|| true`, or chain with `;`.
+
+## Transports (JSON & documents)
+- Never build JSON — or any multi-KB document — through shell quoting: `printf` collapses escapes
+  content-dependently.
+- Documents: the Write tool, whole-content (setup's Bash guard refuses a `cat`/`tee` heredoc with a file
+  target). Ledger appends: a VALIDATED python append (`json.dumps(json.loads(...))` — a mangled payload fails
+  loudly instead of landing).
+- Inline `python -c` is fine for a SHORT, quote-free, single-expression probe; anything longer,
+  quote-bearing, or document-carrying goes through a scratchpad file run by path (the measured failure
+  modes are size and unquoted expansion, not inlining or quoted heredocs).
+
+## Compound commands & permissions
+- `rm -rf` + `mkdir` + launch compounds get denied by permission layers and abort mid-chain —
+  granular steps, fresh unique dirs, no `rm` in a launch path.
+- `;` over `&&` for optional probes: an optional probe's failure must not abort the chain.
+
+## Processes
+- Never `pgrep -f` / `pkill -f` on a pattern the invoking shell's own command line contains — it matches, and
+  kills, that shell. Select by `ps -eo pid,comm,args` and act on the pid.
+
+## Exit codes
+- Read `$?` from the BARE command — `| tail` / `| head` report the pipe's LAST command's exit
+  (measured green-masking red gates). Redirect output to a file and inspect the file.
+- When a tool prints its own verdict, the printed text outranks an unisolated `$?`.
+
+## Encoding & heredocs
+- Heredoc terminators must be column-0 and whitespace-exact — a padded terminator silently
+  swallows the rest of the script.
+- The repo pins LF through `.gitattributes` (setup appends the lines): `git ls-files --eol` on a pipeline file
+  reads `i/lf w/lf`. Never write CRLF into a pipeline file, and never fix a terminator reading with a
+  terminator-agnostic script.
+
+## Session Additions
+- 2026-10-10: `pgrep -x` matches nothing for a process name over 15 characters and says so on stderr only — take a census by `ps -eo comm=` and the name's first 15 characters (`seven_guis_nati`).
+- 2026-10-13: Run every pipeline tool (`{tools_dir}/*.py`, a CI leg script) bare or redirected to a file that is then read whole — never piped into `head`, `tail`, `grep`, `cut`, `sed` or `awk`, even when its verdict is its last line (the founder's standing direction).
+- 2026-10-13: `escher-session` refuses a state directory whose socket path passes 94 bytes (`state-dir-too-long`, exit 3), and the session scratchpad's absolute path is already over it — give a manual driver run a relative `target/tmp/{name}` directory, as the session checks do.
+- 2026-10-20: A whole-tree `grep -rn` from the repository root walks `target/` and runs past the Bash tool's 120 s limit — search tracked files with `git grep`, which answers at once.
+- 2026-10-27: `rerere.enabled` is on for this checkout, so a cherry-pick's conflict resolutions land in the shared `.git/rr-cache` and replay on later picks — run every trial or take cherry-pick of an upstream sync as `git -c rerere.enabled=false cherry-pick …`.
+- 2026-11-08: A Python edit script that writes a backslash-escaped quote (`\"`) into Rust source carries it in a raw string `r'…'`, or the edit goes through the Edit tool — a plain Python string turns `\"` into `"` with no error, so a Rust `r#"…"#` expectation changes silently and its test reads red.

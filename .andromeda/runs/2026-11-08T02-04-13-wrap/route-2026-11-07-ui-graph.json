@@ -1,0 +1,67 @@
+[
+{
+"tool": "route",
+"v": "1.13",
+"sha8": "0c2eea5c",
+"ts": "2026-11-08T03:43:00Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-11-07-ui-graph",
+"--date",
+"2026-11-08",
+"--run-dir",
+".andromeda/runs/2026-11-08T02-04-13-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin cry-73rllxhl strip CARRY: 651ch \"CARRY: the founder's answers of 2026-11-\"",
+"pin next markerless chk-qvyrzmek holds no freight",
+"2026-11-07-ui-graph · strip 1 block(s) · spent in the spine",
+"dry-run · would flip 2026-11-07-ui-graph pending -> complete"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.13",
+"sha8": "0c2eea5c",
+"ts": "2026-11-08T03:43:06Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-11-07-ui-graph",
+"--date",
+"2026-11-08",
+"--run-dir",
+".andromeda/runs/2026-11-08T02-04-13-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin cry-73rllxhl strip CARRY: 651ch \"CARRY: the founder's answers of 2026-11-\"",
+"pin next markerless chk-qvyrzmek holds no freight",
+"flip 2026-11-07-ui-graph pending -> complete · tx 353",
+"compacted 1 complete line(s) — their freight spent in the spine, no archive (U61)"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-07T22-58-19-2026-11-07-ui-graph.ndjson",
+"./.andromeda/master-route.md",
+"./escher-0.3.0/working-route.md"
+],
+"before": null,
+"after": null
+}
+]

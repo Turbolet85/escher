@@ -1,3 +1,0 @@
-The operator, at this phase's invocation (`/andromeda-phase`), verbatim:
-
-The UI graph. The founder lifted the pause for this one chunk. Snap into the inputs ~/dev/projects/additional/escher-overseer/relays/adapt-0.3.0-canvas-founder-2026-10-29.md and ~/dev/projects/escher/escher-0.4.0-incubator/adapt-0.3.0-for-canvas.md: their «The UI graph» row is direction for this plan. Reserve a virtual-node id form that collides with none of today's four, key the graph on the agent-visible node with an optional owner element, and let a handler on an owner serve sub-targets. A contract or boundary change from it is the founder's fork. At the phase's end, stop before /andromeda-implement and tell me: I hold the seam.
