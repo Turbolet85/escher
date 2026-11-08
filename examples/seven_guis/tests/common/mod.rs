@@ -451,6 +451,33 @@ pub fn graph_needles() -> Vec<String> {
     needles
 }
 
+/// Reads the CRUD screen's coverage needles, booted here in process: the ids of the graph nodes
+/// carrying a handler other than `mounted` — what a coverage of a CRUD check lists — that are
+/// author keys holding a `-`, as [`stand_needles`] takes them. Asserts that enough were read.
+#[track_caller]
+pub fn coverage_needles() -> Vec<String> {
+    use seven_guis::stand::{self, LeanTask};
+
+    let harness = stand::boot(LeanTask::Crud, stand::options(true));
+    let mut needles: Vec<String> = Vec::new();
+    for node in harness.doc.graph().nodes {
+        let handled = node
+            .handlers
+            .iter()
+            .any(|handler| handler.event != "mounted");
+        if handled && !node.id.contains('/') && node.id.contains('-') && !needles.contains(&node.id)
+        {
+            needles.push(node.id);
+        }
+    }
+    assert!(
+        needles.iter().any(|needle| needle == "crud-create") && needles.len() >= 10,
+        "{} coverage needles were read",
+        needles.len()
+    );
+    needles
+}
+
 /// Reads the CRUD screen's actions needles, booted here in process and held as a session: the
 /// ids its `actions` read lists that are author keys holding a `-`, as [`stand_needles`] takes
 /// them. Asserts that the read lists the screen's controls.

@@ -2,7 +2,9 @@
 //! tasks, Cells and the load page. As a client it runs one driver command against a session in a
 //! state directory; in its host role (`serve <task> --session <dir>`) it boots one task
 //! headlessly and serves it as that session until it is stopped or idle; in its `mcp` role it
-//! speaks MCP on its standard streams, holding the apps it starts in its own process.
+//! speaks MCP on its standard streams, holding the apps it starts in its own process; in its
+//! `coverage` role (`coverage <task> <check>...`) it replays each kept check on a fresh boot of
+//! the task and answers the handlers no replay exercised.
 
 #[cfg(not(target_arch = "wasm32"))]
 fn main() -> std::process::ExitCode {

@@ -1,12 +1,12 @@
 # Coverage — escher-0.3.0
 
-verified 7/17 · deferred 0 · planned 9 · implemented 1 · unclaimed 9
+verified 7/17 · deferred 0 · planned 8 · implemented 2 · unclaimed 8
 
-## implemented, unclaimed (1)
-- v030-06 · What can I do here
+## implemented (2)
+- v030-06 · What can I do here · 2026-11-08-handler-coverage
+- v030-07 · Handler coverage · 2026-11-08-handler-coverage
 
-## planned, unclaimed (9)
-- v030-07 · Handler coverage
+## planned, unclaimed (8)
 - v030-08 · Start in a state
 - v030-09 · Auto-exploration
 - v030-10 · Errors with the action

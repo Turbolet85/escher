@@ -301,6 +301,23 @@ pub(crate) fn element_facts(
         .collect()
 }
 
+/// Every element of `doc` with its stable id and the events of the listeners it carries now,
+/// in document pre-order. One walk, on every build.
+pub(crate) fn element_listener_ids(
+    dom: &VirtualDom,
+    state: &DioxusState,
+    doc: &BaseDocument,
+) -> Vec<(NodeId, String, Vec<&'static str>)> {
+    let mut walk = vdom_walk(dom, state);
+    placed_ids(&walk.roots, doc)
+        .into_iter()
+        .map(|(node, id, _)| {
+            let listeners = walk.listeners.remove(&node).unwrap_or_default();
+            (node, id, listeners)
+        })
+        .collect()
+}
+
 /// The events of the listeners each mounted element carries now, by node.
 #[cfg(feature = "accessibility")]
 pub(crate) fn element_listeners(

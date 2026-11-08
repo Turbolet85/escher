@@ -64,6 +64,13 @@ fn malformed(fault: Fault) -> Line {
     Line::Refused(Refusal::malformed(fault))
 }
 
+fn covered(checks: &[&str]) -> Line {
+    Line::Coverage {
+        app: "counter".to_string(),
+        checks: checks.iter().map(PathBuf::from).collect(),
+    }
+}
+
 #[test]
 fn a_line_is_read_by_its_rules_in_order() {
     let unknown = || Line::Refused(Refusal::new(Cause::UnknownVerb));
@@ -118,6 +125,20 @@ fn a_line_is_read_by_its_rules_in_order() {
         ),
         (&["mcp", "x"], Line::Usage),
         (&["mcp", "--session", DIR], Line::Usage),
+        // The coverage role: an app the binary boots, then one or more checks.
+        (&["coverage", "counter", "one.json"], covered(&["one.json"])),
+        (
+            &["coverage", "counter", "one.json", "two.json"],
+            covered(&["one.json", "two.json"]),
+        ),
+        (&["coverage"], Line::Usage),
+        (&["coverage", "counter"], Line::Usage),
+        (&["coverage", "timer", "one.json"], Line::Usage),
+        (
+            &["coverage", "counter", "one.json", "--session", DIR],
+            Line::Usage,
+        ),
+        (&["coverage", "counter", "--record", RECORD], Line::Usage),
         (&["mcp", "--record"], Line::Usage),
         (
             &["mcp", "--record", RECORD, "--record", RECORD],
@@ -435,7 +456,7 @@ fn a_line_is_read_by_its_rules_in_order() {
         // `start` on an app the binary does not boot.
         (&["start", "timer", "--session", DIR], Line::Usage),
     ];
-    assert_eq!(rows.len(), 102);
+    assert_eq!(rows.len(), 109);
     for (row, (words, read)) in rows.into_iter().enumerate() {
         assert!(line(words) == read, "row {row}");
     }
@@ -553,7 +574,7 @@ fn the_usage_line_is_built_from_the_table_and_the_apps() {
          <id> | type --id <id> --text <text> | press --key <key> [--shift] | advance --ms <milliseconds> | \
          scroll --id <id> | screenshot [--id <id>] | lint | graph | actions | start <app> [--record <dir>] \
          | status | stop | help; host role: serve <app> --session <dir> [--record <dir>]; mcp role: mcp \
-         [--record <dir>]; apps: counter | flight-booker"
+         [--record <dir>]; coverage role: coverage <app> <check>...; apps: counter | flight-booker"
     );
     for verb in VERBS {
         assert!(usage(&[]).contains(verb.name));
@@ -579,4 +600,75 @@ fn a_line_that_is_no_command_or_is_refused_runs_nothing() {
         run(serve, &APPS, |_| Err(SessionError::InvalidLabel)),
         Ending::Failed(SessionError::InvalidLabel)
     );
+}
+
+/// A fresh directory under the workspace's `target/tmp`, named for the test.
+fn scratch(name: &str) -> PathBuf {
+    let dir = Path::new(concat!(env!("CARGO_MANIFEST_DIR"), "/../../target/tmp"))
+        .join(format!("escher-driver-cli-{}-{name}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&dir);
+    std::fs::create_dir_all(&dir).expect("the scratch directory is created");
+    dir
+}
+
+#[test]
+fn the_coverage_role_reads_its_checks_refusing_any_it_cannot_read() {
+    use blitz_test_harness::Harness;
+
+    let dir = scratch("coverage");
+    let opening = |app: &str| format!(r#"[{{"tool":"start","arguments":{{"app":"{app}"}}}}]"#);
+    let counter = dir.join("counter-check.json");
+    std::fs::write(&counter, opening("counter")).expect("a check is written");
+    let crud = dir.join("crud-check.json");
+    std::fs::write(&crud, opening("crud")).expect("a check is written");
+    let not_a_check = dir.join("not-a-check.json");
+    std::fs::write(&not_a_check, "[]").expect("a file is written");
+    let past_bound = dir.join("past-bound.json");
+    let mut long = opening("counter");
+    long.push_str(&" ".repeat(MAX_CHECK_BYTES));
+    std::fs::write(&past_bound, long).expect("a file is written");
+    let absent = dir.join("absent-check.json");
+    // The bound alone sets it apart: the same check at the bound reads.
+    assert!(Check::from_bytes(opening("counter").as_bytes()).is_ok());
+
+    let never = |_: &str| -> Result<Session, SessionError> {
+        panic!("the boot ran for a coverage line it refuses")
+    };
+    let refused = Ending::Refused(Refusal::new(Cause::Malformed).to_json());
+    for (row, path) in [&absent, &not_a_check, &past_bound, &crud]
+        .into_iter()
+        .enumerate()
+    {
+        let line = Line::Coverage {
+            app: "counter".to_string(),
+            checks: vec![counter.clone(), path.clone()],
+        };
+        let ending = run(line, &APPS, never);
+        assert!(ending == refused, "row {row}");
+        let written = ending.written(&APPS);
+        assert_eq!(written.status, REFUSED, "row {row}");
+        let stdout = written.stdout.expect("a refusal is written");
+        assert!(!stdout.contains(&*dir.to_string_lossy()), "row {row}");
+        assert!(!stdout.contains("check.json"), "row {row}");
+    }
+
+    let line = || Line::Coverage {
+        app: "counter".to_string(),
+        checks: vec![counter.clone(), counter.clone()],
+    };
+    assert_eq!(
+        run(line(), &APPS, |_| Err(SessionError::InvalidLabel)),
+        Ending::Failed(SessionError::InvalidLabel)
+    );
+    let mut boots = 0;
+    let ending = run(line(), &APPS, |app| {
+        boots += 1;
+        Session::start(app, || Harness::from_component(|| Ok(Default::default())))
+    });
+    assert_eq!(
+        ending,
+        Ending::Accepted(r#"{"unexercised":[],"checks":2,"held":2}"#.to_string())
+    );
+    assert_eq!(boots, 2, "one fresh session per check");
+    let _ = std::fs::remove_dir_all(&dir);
 }

@@ -9,7 +9,10 @@
 //! the check's first activation step (a `click` on the Counter's button, or `enter` or `space`
 //! pressed on it), accepted then and now, with `changed` among the keys that differ, and every
 //! step before it held. *On a session of another app* a check runs nothing, leaves the screen as
-//! it was and does not hold. A failure message names the layout mode, the check's file and a
+//! it was and does not hold. *A kept `actions` step replays*: a Counter session recorded in
+//! process with an `actions` step before and after a click holds on a fresh Counter, all four
+//! steps run, and a copy whose last `actions` answer reads one node's `keyed` flipped stops at
+//! that step, naming `nodes`. A failure message names the layout mode, the check's file and a
 //! step index, never an id, a name or a reading.
 
 use dioxus::prelude::*;
@@ -254,5 +257,73 @@ fn a_check_on_a_session_of_another_app_runs_nothing() {
                 "{mode} {file}: the screen is as it was"
             );
         }
+    }
+}
+
+/// A Counter session recorded in process, with an `actions` step before and after a click, read
+/// back and replayed on a fresh Counter; then the same bytes with the last `actions` answer's
+/// first `keyed` reading flipped.
+#[cfg(unix)]
+#[test]
+fn a_kept_actions_step_replays_and_a_changed_one_stops_naming_nodes() {
+    use session_common::{actions, click, snapshot, state_dir};
+
+    for incremental in [false, true] {
+        let mode = mode_name(incremental);
+        let dir = state_dir(&format!("replay-actions-{mode}"));
+        let _ = std::fs::remove_dir_all(&dir);
+        {
+            let (session, _ticks) = hold(LeanTask::Counter, incremental);
+            let mut session = session.recording_into(&dir).expect("the recording starts");
+            for call in [snapshot(), actions(), click(BUTTON), actions()] {
+                assert!(session.run(&call).is_ok(), "{mode}: each step is accepted");
+            }
+            assert!(!session.recording_failed(), "{mode}: the recording stands");
+        }
+        let bytes = std::fs::read(dir.join("check-1.json")).expect("the check is kept");
+        let _ = std::fs::remove_dir_all(&dir);
+
+        let check = Check::from_bytes(&bytes).expect("the kept check reads");
+        let verbs: Vec<&str> = check
+            .steps()
+            .iter()
+            .map(|step| step.call().verb.as_str())
+            .collect();
+        assert!(
+            verbs == ["snapshot", "actions", "click", "actions"],
+            "{mode}: the four steps are kept"
+        );
+        let (mut session, _ticks) = hold(LeanTask::Counter, incremental);
+        let replay = check.replay(&mut session);
+        assert!(replay.holds(), "{mode}: the replay holds");
+        assert!(replay.ran() == 4, "{mode}: all four steps ran");
+
+        let text = std::str::from_utf8(&bytes).expect("a check is text");
+        let last = text.rfind(r#""tool":"actions""#).expect("an actions step");
+        let keyed = last
+            + text[last..]
+                .find(r#""keyed":true"#)
+                .expect("the last actions answer reads a keyed node");
+        let changed = format!(
+            "{}{}{}",
+            &text[..keyed],
+            r#""keyed":false"#,
+            &text[keyed + r#""keyed":true"#.len()..]
+        );
+        let check = Check::from_bytes(changed.as_bytes()).expect("the changed check reads");
+        let (mut session, _ticks) = hold(LeanTask::Counter, incremental);
+        let replay = check.replay(&mut session);
+        assert!(!replay.holds(), "{mode}: the changed check does not hold");
+        let change = replay.change().expect("a step changed");
+        assert!(change.step() == 3, "{mode}: it stops at step 3");
+        assert!(replay.ran() == 4, "{mode}: every step before step 3 held");
+        assert!(
+            change.accepted_then() && change.accepted_now(),
+            "{mode}: step 3 accepted then and now"
+        );
+        assert!(
+            change.keys() == ["nodes"],
+            "{mode}: step 3 differs in its nodes"
+        );
     }
 }

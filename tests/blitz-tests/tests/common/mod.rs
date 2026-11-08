@@ -332,3 +332,81 @@ pub const GRAPH_DRIVES: [(&str, &[Drive]); 7] = [
         ],
     ),
 ];
+
+/// Per served task, by its slug, the handlers its boot screen shows, each as (id, event),
+/// `mounted` left out, in the UI graph's pre-order. Cells' grid then shows each of its cells'
+/// `click` ([`grid_cells`]) after the rows stated here.
+pub const HANDLERS_AT_BOOT: [(&str, &[(&str, &str)]); 6] = [
+    (
+        "counter",
+        &[("back-btn", "click"), ("counter-increment", "click")],
+    ),
+    (
+        "flight-booker",
+        &[
+            ("back-btn", "click"),
+            ("flight-type", "input"),
+            ("flight-start", "input"),
+            ("flight-return-date", "input"),
+            ("flight-book", "click"),
+        ],
+    ),
+    (
+        "timer",
+        &[
+            ("back-btn", "click"),
+            ("timer-duration", "input"),
+            ("timer-reset", "click"),
+        ],
+    ),
+    (
+        "crud",
+        &[
+            ("back-btn", "click"),
+            ("crud-filter", "input"),
+            ("crud-list", "keydown"),
+            ("crud-person-0", "click"),
+            ("crud-person-1", "click"),
+            ("crud-person-2", "click"),
+            ("crud-name", "input"),
+            ("crud-surname", "input"),
+            ("crud-create", "click"),
+            ("crud-update", "click"),
+            ("crud-delete", "click"),
+        ],
+    ),
+    ("cells", &[("back-btn", "click"), ("cells-grid", "keydown")]),
+    ("load", &[("back-btn", "click"), ("load-fetch", "click")]),
+];
+
+/// Per stand task with a [`GRAPH_DRIVES`] row, by its title, the handlers a check of exactly
+/// those drives leaves unexercised, each as (id, event), in the order first seen. CRUD's Create
+/// adds the row `crud-person-3`, which no drive clicks. Cells' grid then leaves each of its cells'
+/// `click` but [`CELLS_CLICKED_BY_DRIVES`] after the rows stated here.
+pub const UNEXERCISED_AFTER_DRIVES: [(&str, &[(&str, &str)]); 7] = [
+    ("Counter", &[("back-btn", "click")]),
+    ("Flight Booker", &[("back-btn", "click")]),
+    ("Timer", &[("back-btn", "click")]),
+    (
+        "CRUD",
+        &[
+            ("back-btn", "click"),
+            ("crud-person-2", "click"),
+            ("crud-person-3", "click"),
+        ],
+    ),
+    ("Temperature Converter", &[("back-btn", "click")]),
+    ("Circle Drawer", &[("back-btn", "click")]),
+    ("Cells", &[("back-btn", "click")]),
+];
+
+/// The grid cells Cells' [`GRAPH_DRIVES`] row clicks.
+pub const CELLS_CLICKED_BY_DRIVES: [&str; 2] = ["cell-A0", "cell-C0"];
+
+/// Cells' grid cells, each `cell-{column}{row}`, row by row from `cell-A0` to `cell-Z25`: the
+/// order the graph reads them in.
+pub fn grid_cells() -> Vec<String> {
+    (0..26)
+        .flat_map(|row| ('A'..='Z').map(move |column| format!("cell-{column}{row}")))
+        .collect()
+}

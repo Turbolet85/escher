@@ -7,7 +7,11 @@
 //! screenshot's `png` is the PNG of the screen booted in process, 800 × 600; a lint on a held
 //! counter answers one line whose `findings` is empty, and a graph on it one line naming the
 //! counter's component, its click handler and the state it is declared to write, and an actions
-//! read on it one line listing its button with every verb accepted. On a screen inside the budget,
+//! read on it one line listing its button with every verb accepted. A Counter session kept
+//! through `start --record`, its button clicked, read back by `coverage counter <check>` answers
+//! one line leaving the back button alone; a file that is no check is refused `malformed` with
+//! nothing of its path written back, and `coverage` on an app the binary does not boot is a usage
+//! error. On a screen inside the budget,
 //! `snapshot --part 1` answers that screen's text as part 1 of 1, a part past it the empty text,
 //! and a part outside its bound or of another kind is refused `malformed`, its line the
 //! library's own refusal.
@@ -516,6 +520,57 @@ fn actions_answers_one_line_of_the_actionable_nodes() {
 }
 
 #[test]
+fn coverage_replays_a_kept_check_and_lists_the_handlers_it_left() {
+    let kept = state_dir("cc-cover-rec");
+    let _ = std::fs::remove_dir_all(&kept);
+    let dir = state_dir("cc-cover");
+    clear(&dir);
+    let ran = client(
+        BINARY,
+        &[
+            "start",
+            "counter",
+            "--session",
+            text(&dir),
+            "--record",
+            text(&kept),
+        ],
+    );
+    assert_eq!(ran.status, Some(0), "start ends accepted");
+    let pid = number(ran.line(), "pid").expect("start answers its host's process id");
+    let counter = Session {
+        started: Started {
+            dir,
+            pid: Some(pid),
+        },
+    };
+    counter.accepted(&["click", "--id", "counter-increment"]);
+    counter.stop();
+
+    let check = kept.join("check-1.json");
+    let ran = client(BINARY, &["coverage", "counter", text(&check)]);
+    assert_eq!(ran.status, Some(0), "the coverage run ends accepted");
+    assert!(ran.stderr.is_empty(), "an accepted run writes no stderr");
+    assert!(
+        ran.line() == r#"{"unexercised":[{"id":"back-btn","event":"click"}],"checks":1,"held":1}"#,
+        "the back button alone is left, the click on the counter exercised"
+    );
+
+    // A file that is no check is refused, and nothing of its path is written back.
+    let not_a_check = kept.join("cc-not-a-check.json");
+    std::fs::write(&not_a_check, "[]").expect("a file is written");
+    let ran = client(BINARY, &["coverage", "counter", text(&not_a_check)]);
+    assert_eq!(ran.status, Some(1), "the run ends refused");
+    assert_eq!(remedied(ran.line()), "malformed");
+    assert!(
+        !ran.line().contains(text(&kept)) && !ran.line().contains("cc-not-a-check"),
+        "the refusal writes back nothing of the path"
+    );
+    assert!(ran.stderr.is_empty(), "a refused run writes no stderr");
+    let _ = std::fs::remove_dir_all(&kept);
+}
+
+#[test]
 fn lint_answers_one_line_of_findings() {
     let counter = Session::start("cc-lint", "counter");
     let answer = counter.accepted(&["lint"]);
@@ -652,7 +707,7 @@ fn a_line_that_is_no_command_is_a_usage_error() {
     let dir = state_dir("cc-usage");
     clear(&dir);
     let at = text(&dir);
-    let rows: [&[&str]; 9] = [
+    let rows: [&[&str]; 10] = [
         &[],
         &["snapshot"],
         &["click", "--id", "counter-increment"],
@@ -663,6 +718,8 @@ fn a_line_that_is_no_command_is_a_usage_error() {
         &["start", "counter", "--session", at, "--record"],
         &["mcp", "--record"],
         &["serve", "counter", "--session", at, "--record"],
+        // The coverage role on an app the binary does not boot.
+        &["coverage", "nowhere", at],
     ];
     for (row, args) in rows.into_iter().enumerate() {
         let ran = client(BINARY, args);
@@ -682,6 +739,7 @@ fn a_line_that_is_no_command_is_a_usage_error() {
             " start <app> [--record <dir>] ",
             "; host role: serve <app> --session <dir> [--record <dir>]; ",
             "; mcp role: mcp [--record <dir>]; ",
+            "; coverage role: coverage <app> <check>...; ",
         ] {
             assert!(
                 stderr.contains(spelt),

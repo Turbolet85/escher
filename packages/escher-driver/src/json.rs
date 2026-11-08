@@ -8,6 +8,7 @@ use dioxus_native_dom::{DiffNode, GraphNode, GraphState, Reading, SnapshotDiff, 
 
 use crate::actions::ActionNode;
 use crate::client::Hello;
+use crate::coverage::Coverage;
 use crate::error::SessionError;
 use crate::execute::{Outcome, busy_word};
 use crate::image;
@@ -415,6 +416,30 @@ fn finding(finding: &Finding) -> String {
 
 /// What `screenshot` returns without its image: the line an MCP tool result carries beside the
 /// image itself.
+impl Coverage {
+    /// The reading as one line of JSON: `unexercised`, each handler keyed `id`, `owner` where
+    /// there is one, and `event`, then the counts `checks` and `held`. It holds ids, owner ids
+    /// and event names only: an answer to the caller, never a log line.
+    pub fn to_json(&self) -> String {
+        let mut object = Object::new();
+        object.json(
+            "unexercised",
+            &list(self.unexercised.iter().map(|handler| {
+                let mut entry = Object::new();
+                entry.text("id", &handler.id);
+                if let Some(owner) = &handler.owner {
+                    entry.text("owner", owner);
+                }
+                entry.text("event", &handler.event);
+                entry.end()
+            })),
+        );
+        object.count("checks", u64::try_from(self.checks).unwrap_or(u64::MAX));
+        object.count("held", u64::try_from(self.held).unwrap_or(u64::MAX));
+        object.end()
+    }
+}
+
 pub(crate) fn shot_without_image(width: u32, height: u32) -> String {
     shot(width, height).end()
 }
@@ -1215,5 +1240,36 @@ mod tests {
             assert!(line == json, "row {row}");
             assert!(keys(&line) == field_names(verb, &[]), "row {row}");
         }
+    }
+
+    #[test]
+    fn a_coverage_line_keys_each_handler_and_leaves_out_an_absent_owner() {
+        use crate::coverage::{Coverage, HandlerRef};
+
+        let handler = |id: &str, owner: Option<&str>, event: &str| HandlerRef {
+            id: id.to_string(),
+            owner: owner.map(str::to_string),
+            event: event.to_string(),
+        };
+        let coverage = Coverage {
+            unexercised: vec![
+                handler("back-btn", None, "click"),
+                handler("kind-a", Some("kind"), "input"),
+                handler("say \"hi\"", None, "keydown"),
+            ],
+            checks: 3,
+            held: 2,
+        };
+        assert_eq!(
+            coverage.to_json(),
+            r#"{"unexercised":[{"id":"back-btn","event":"click"},{"id":"kind-a","owner":"kind","event":"input"},{"id":"say \"hi\"","event":"keydown"}],"checks":3,"held":2}"#
+        );
+        assert_eq!(keys(&coverage.to_json()), ["unexercised", "checks", "held"]);
+        let none = Coverage {
+            unexercised: Vec::new(),
+            checks: 0,
+            held: 0,
+        };
+        assert_eq!(none.to_json(), r#"{"unexercised":[],"checks":0,"held":0}"#);
     }
 }

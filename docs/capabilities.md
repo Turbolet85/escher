@@ -150,6 +150,20 @@ the four lean tasks, and on a stated Cells and load-page subset, the listed answ
 
 Witnesses: `stand_actions`, `stand_mcp_tools`, dioxus-native-dom's actionable tests.
 
+### Handler coverage
+
+`escher-session coverage <app> <check>...` lists the handlers no kept check exercised. It is a role of the command
+line, not a verb: it reads each kept check its paths name, replays each on a fresh session of the app, reads the UI
+graph at boot and after every replayed step, and answers one line of JSON, `{"unexercised":[…],"checks":n,"held":m}`.
+Each unexercised handler is named by its node's stable id, its owner where it has one, and its event; `mounted` is
+left out. A handler is exercised when a replayed dispatch reached it, recorded by the bridge as the event is handed to
+the app, so it holds on an app that registers no state and on a handler whose own run removes its element. A step
+refused before it ran exercises nothing. A path that cannot be read, a file that is no check or is past 1,048,576
+bytes, and a check of another app are refused `malformed`, with nothing of the path or the file written back. In
+process the reading is `escher_driver::handler_coverage`.
+
+Witnesses: `stand_handler_coverage`, seven_guis' `cli_commands` and `host_log`.
+
 ### Session recording and replay
 
 A session started with `--record <dir>` keeps its answered calls as one owner-only replayable check, `check-{n}.json`
@@ -256,6 +270,15 @@ The driver's own refusal texts state three readings that are off:
   A reader is a component, so every node it rendered reads its state; a state names a reading component once, and a
   state only the app root reads is named in its nodes' `reads` alone, since the app root carries no component name. `clickable` reads an element's own `click`
   handler, not a bubbled one or a native activation. Pinned by `stand_graph` and dioxus-native-dom's graph tests.
+- **Handlers inside a canvas are not counted.** Handler coverage counts the UI graph's DOM listeners on agent-visible
+  nodes, so the handlers a canvas dispatches inside one listener are invisible to it; 0.4.0 extends the count rather
+  than redefining it. Pinned by `stand_handler_coverage`.
+- **A handler on no screen a replay reached is not listed.** The graph reads the screen at boot and after each
+  replayed step, so a handler that only a screen no replay showed carries is in no reading. Pinned by
+  `stand_handler_coverage`.
+- **A bubbling dispatch counts every ancestor listener it passed.** A dispatch reaches each element of its chain
+  whose current listeners hold its event; a `stopPropagation` is not read. Pinned by dioxus-native-dom's reached
+  tests.
 - **Accepted is not acting.** `actions` answers whether a call would be accepted, not what it would do: `type` reads
   accepted on any enabled, visible, uncovered node, a button included, since the call's only check is the one a
   `click` meets. `press` and `advance` act on focus and the clock, so no node lists them. Pinned by `stand_actions`.
@@ -399,6 +422,8 @@ They run in these CI legs (`.github/scripts/ci-leg.sh`):
 - **`ci-scripts`**: the CI-script checks, this page's pin among them.
 
 The UI graph and the `clickable` reading are proven by `stand_graph`, a `stand_*` file of the `test` and
-`stand-repeat` legs. The `actions` read is proven by `stand_actions`, a `stand_*` file of the same two legs.
+`stand-repeat` legs. The `actions` read is proven by `stand_actions`, a `stand_*` file of the same two legs. Handler
+coverage is proven by `stand_handler_coverage`, a `stand_*` file of the same two legs, and through the binary by
+seven_guis' `cli_commands` and `host_log`; a kept `actions` step's replay by `stand_replay`.
 
 The 0.2.0 requirement record is `WITNESSES_020` in `stand_requirement_sweep`: nine rows, 46 witnesses.

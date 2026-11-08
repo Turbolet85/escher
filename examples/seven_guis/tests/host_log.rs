@@ -19,7 +19,9 @@
 //! 2's ids and not the name a `type` committed to one of its cells while it answers that part. A
 //! host serving the flight booker writes none of the flight type's option ids, names or values
 //! while a `click` opens its list, another chooses a row by id, and a third opens it for an
-//! `escape` to close.
+//! `escape` to close. A coverage run (`coverage crud <check>`) over a CRUD session kept through the
+//! binary writes to its stderr at `RUST_LOG=trace` no id, no name, none of the ids its answer
+//! lists, no typed text, no recording directory's path and nothing the check keeps.
 
 #![cfg(not(target_arch = "wasm32"))]
 
@@ -131,6 +133,93 @@ fn a_recording_sessions_clients_log_nothing_of_it_at_trace() {
          {recorded_found} of {} recording needles found in {lines} client stderr lines",
         ids.len(),
         names.len(),
+        recorded.len()
+    );
+    let _ = std::fs::remove_dir_all(&kept);
+}
+
+#[cfg(unix)]
+#[test]
+fn a_coverage_run_logs_no_id_no_name_and_nothing_of_its_check_at_trace() {
+    use std::process::Command;
+
+    use common::{
+        Needles, Ran, Started, clear, client, coverage_needles, found, number, occurrences,
+        recorded_needles, run, stand_needles, state_dir, text,
+    };
+
+    let Needles { ids, names } = stand_needles(SENTINEL);
+    let listed = coverage_needles();
+    let dir = state_dir("hl-cover");
+    clear(&dir);
+    let kept = state_dir("hl-cover-rec");
+    let _ = std::fs::remove_dir_all(&kept);
+
+    // A CRUD session kept as a check through the binary, its clients quiet.
+    let session = |args: &[&str]| -> Ran {
+        let mut line = args.to_vec();
+        line.extend(["--session", text(&dir)]);
+        client(BINARY, &line)
+    };
+    let started = session(&["start", "crud", "--record", text(&kept)]);
+    assert_eq!(started.status, Some(0), "start ends accepted");
+    let pid = number(started.line(), "pid").expect("start answers its host's process id");
+    let _guard = Started {
+        dir: dir.clone(),
+        pid: Some(pid),
+    };
+    for (step, args) in [
+        &["type", "--id", "crud-name", "--text", SENTINEL][..],
+        &["click", "--id", "crud-person-0"],
+        &["stop"],
+    ]
+    .into_iter()
+    .enumerate()
+    {
+        assert_eq!(session(args).status, Some(0), "step {step} ends accepted");
+    }
+    let recorded = recorded_needles(&kept);
+    let check = kept.join("check-1.json");
+
+    // The coverage run, at `RUST_LOG=trace`.
+    let mut command = Command::new(BINARY);
+    command
+        .args(["coverage", "crud", text(&check)])
+        .env("RUST_LOG", "trace");
+    let ran = run(command);
+    assert_eq!(ran.status, Some(0), "the coverage run ends accepted");
+    let answer = ran.line().to_string();
+    assert!(
+        answer.starts_with(r#"{"unexercised":["#)
+            && listed
+                .iter()
+                .filter(|id| *id != "crud-name" && *id != "crud-person-0")
+                .all(|id| answer.contains(&format!(r#""id":"{id}""#))),
+        "the answer lists the handlers the check left"
+    );
+
+    // A failure names a kind and a count only: what the run handled is ids and names.
+    let stderr = String::from_utf8_lossy(&ran.stderr);
+    let lines = stderr.lines().count();
+    let (ids_found, names_found) = (found(&stderr, &ids), found(&stderr, &names));
+    let listed_found = found(&stderr, &listed);
+    let sentinels = stderr.matches(SENTINEL).count();
+    let paths = occurrences(&stderr, &[text(&kept).to_string()]);
+    let recorded_found = occurrences(&stderr, &recorded);
+    assert!(
+        ids_found == 0
+            && names_found == 0
+            && listed_found == 0
+            && sentinels == 0
+            && paths == 0
+            && recorded_found == 0,
+        "{ids_found} of {} id needles, {names_found} of {} name needles, {listed_found} of {} \
+         coverage needles, {sentinels} occurrences of the typed text, {paths} of the recording \
+         directory's path and {recorded_found} of {} recording needles found in {lines} stderr \
+         lines",
+        ids.len(),
+        names.len(),
+        listed.len(),
         recorded.len()
     );
     let _ = std::fs::remove_dir_all(&kept);

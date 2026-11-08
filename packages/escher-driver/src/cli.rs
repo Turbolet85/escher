@@ -2,19 +2,21 @@
 //! JSON on stdout and a status that says how it ended.
 
 use std::ffi::OsString;
-use std::io::{self, Write as _};
+use std::fs::File;
+use std::io::{self, Read as _, Write as _};
 use std::path::{Path, PathBuf};
 use std::process::{Command as Process, ExitCode, Stdio};
 use std::time::Duration;
 
 use crate::client::{self, Answer};
 use crate::command::{ArgValue, Call, SessionCommand, validate, validate_session};
+use crate::coverage::handler_coverage;
 use crate::describe::describe;
 use crate::error::SessionError;
 use crate::host::{IDLE_EXPIRY, serve};
 use crate::json;
 use crate::mcp::serve_mcp;
-use crate::recording;
+use crate::recording::{self, Check, MAX_CHECK_BYTES};
 use crate::refusal::{Cause, Refusal};
 use crate::schema::{self, ArgKind, ArgSpec, EXIT_STATUSES, Level, VERBS, VerbSpec};
 use crate::session::Session;
@@ -40,6 +42,9 @@ const HOST_ROLE: &str = "serve";
 /// The word of the MCP role.
 const MCP_ROLE: &str = "mcp";
 
+/// The word of the coverage role.
+const COVERAGE_ROLE: &str = "coverage";
+
 /// How long `start` waits for the host it spawns to answer.
 const START_BOUND: Duration = Duration::from_secs(30);
 
@@ -49,7 +54,7 @@ const START_BOUND: Duration = Duration::from_secs(30);
 /// boots, and `boot` builds the session of the app a name names: the binary's own boot, as
 /// this crate names no app.
 ///
-/// The first word is a verb of [`VERBS`], `serve` or `mcp`. A verb's arguments are flags spelt as
+/// The first word is a verb of [`VERBS`], `serve`, `mcp` or `coverage`. A verb's arguments are flags spelt as
 /// the schema spells them — `--id`, `--text`, `--key`, `--ms`, each followed by its value, and
 /// a bare `--shift` — except that `start` takes its app as one plain word; `--session <dir>`
 /// names the session's state directory on every command. `start` spawns the running binary
@@ -71,6 +76,16 @@ const START_BOUND: Duration = Duration::from_secs(30);
 /// stderr when a read or a write fails or its recording directory is refused. A `--record`
 /// anywhere else, given twice or with no directory after it, is a usage error.
 ///
+/// `coverage <app> <check>...` is the coverage role ([`handler_coverage`](crate::handler_coverage)):
+/// it reads each kept check its paths name, at most 1,048,576 bytes each, through
+/// [`Check::from_bytes`], replays each on a fresh session of the app booted for it, and answers
+/// the handlers the UI graph showed that no replay reached, with the counts of checks read and
+/// of replays that held. It takes no `--session` and no `--record` and reaches no session. A
+/// path that cannot be read, a file past the bound or no check, and a check of another app are
+/// refused `malformed`, holding nothing of the path or the file. Its two limits: the handlers a
+/// canvas dispatches inside one listener are not counted, and a handler on no screen a replay
+/// read is not listed.
+///
 /// A command ends one of four ways, the rows of [`EXIT_STATUSES`], and its status says which:
 ///
 /// - `0`, accepted: the answer on stdout as one line of JSON. A step that ran and did not go
@@ -80,7 +95,7 @@ const START_BOUND: Duration = Duration::from_secs(30);
 ///   session is asked for, so a refused call reaches no session.
 /// - `2`, usage: one fixed line on stderr and nothing on stdout — no command, an argument
 ///   that is not text, a `--session` that is absent or given twice, an app the binary does
-///   not boot, a `serve` or an `mcp` line of another shape.
+///   not boot, a `serve`, an `mcp` or a `coverage` line of another shape.
 /// - `3`, session error: the error on stdout as one line of JSON, and its fixed message on
 ///   stderr.
 ///
@@ -122,6 +137,8 @@ enum Line {
     },
     /// The MCP role.
     Mcp { record: Option<PathBuf> },
+    /// The coverage role: an app and the kept checks to replay on it.
+    Coverage { app: String, checks: Vec<PathBuf> },
     /// The tool's description of itself.
     Help,
     /// A session-level command; a recording directory on `start` alone.
@@ -161,6 +178,23 @@ fn read(args: &[String], apps: &[&str]) -> Line {
         return match record_option(rest) {
             Some(record) => Line::Mcp { record },
             None => Line::Usage,
+        };
+    }
+    if word == COVERAGE_ROLE {
+        return match rest {
+            [app, checks @ ..]
+                if apps.contains(&app.as_str())
+                    && !checks.is_empty()
+                    && !checks
+                        .iter()
+                        .any(|check| check == SESSION_OPTION || check == RECORD_OPTION) =>
+            {
+                Line::Coverage {
+                    app: app.clone(),
+                    checks: checks.iter().map(PathBuf::from).collect(),
+                }
+            }
+            _ => Line::Usage,
         };
     }
     let Some(spec) = schema::verb(word) else {
@@ -361,7 +395,8 @@ fn usage(apps: &[&str]) -> String {
     }
     line.push_str(&format!(
         "; host role: {HOST_ROLE} <app> {SESSION_OPTION} <dir> [{RECORD_OPTION} <dir>]; mcp role: \
-         {MCP_ROLE} [{RECORD_OPTION} <dir>]; apps: {}",
+         {MCP_ROLE} [{RECORD_OPTION} <dir>]; coverage role: {COVERAGE_ROLE} <app> <check>...; \
+         apps: {}",
         apps.join(" | ")
     ));
     line
@@ -424,6 +459,18 @@ fn run(
                 )
             }))
         }
+        Line::Coverage { app, checks } => {
+            let read: Option<Vec<Check>> = checks
+                .iter()
+                .map(|path| read_check(path).filter(|check| check.app() == app))
+                .collect();
+            match read {
+                Some(checks) => answered(
+                    handler_coverage(&checks, || boot(&app)).map(|coverage| coverage.to_json()),
+                ),
+                None => Ending::Refused(Refusal::new(Cause::Malformed).to_json()),
+            }
+        }
         Line::Session {
             command,
             state_dir,
@@ -443,6 +490,17 @@ fn run(
             Err(error) => Ending::Failed(error),
         },
     }
+}
+
+/// The kept check at `path`, read to one byte past the check bound, or `None` when it cannot be
+/// read, passes the bound or is no check.
+fn read_check(path: &Path) -> Option<Check> {
+    let bound = u64::try_from(MAX_CHECK_BYTES).ok()?.saturating_add(1);
+    let mut bytes = Vec::new();
+    File::open(path)
+        .and_then(|file| file.take(bound).read_to_end(&mut bytes))
+        .ok()?;
+    Check::from_bytes(&bytes).ok()
 }
 
 /// `session`, recording into `record` when one is named.

@@ -7,6 +7,7 @@ use crate::events::{
 use crate::mutation_buffer::MutationBuffer;
 use crate::mutation_writer::{DioxusState, MutationWriter};
 use crate::qual_name;
+use crate::reached::ReachedRecord;
 use crate::signal_registry::SignalRegistry;
 use blitz_dom::{
     Attribute, BaseDocument, DocGuard, DocGuardMut, Document, DocumentConfig, EventDriver,
@@ -444,9 +445,19 @@ impl EventHandler for DioxusEventHandler<'_> {
         };
 
         // Handle event in vdom, the graph's registry (when an app registered a state) recording
-        // each write against this dispatch.
+        // each write against this dispatch. The reached record (when coverage switched it on)
+        // resolves its ids now, before a handler can remove its element.
         let dx_event = Event::new(event_data.clone(), event.bubbles);
         let runtime = self.vdom.runtime();
+        if let Some(record) = runtime.has_context::<ReachedRecord>(ScopeId::ROOT) {
+            record.record(
+                self.vdom,
+                self.vdom_state,
+                &doc.inner(),
+                chain,
+                event.name(),
+            );
+        }
         let registry = runtime.has_context::<SignalRegistry>(ScopeId::ROOT);
         if let Some(registry) = &registry {
             registry.begin_dispatch(chain, event.name());

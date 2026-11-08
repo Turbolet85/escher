@@ -111,6 +111,9 @@
 //! [`Check::replay`] runs their calls again through [`Session::run`] and says in a [`Replay`]
 //! whether every answer is the kept one, or names the first step that changed and the keys of
 //! its answer that differ ([`Change`]). Nothing of a recording or a replay is logged.
+//! [`handler_coverage`] replays a set of kept checks, each on a fresh session, and lists in a
+//! [`Coverage`] the handlers the UI graph showed on their screens that no replay's dispatch
+//! reached ([`HandlerRef`]); it adds no verb and logs nothing.
 //!
 //! [`command_line`] is the whole command line of a binary that boots apps: every verb as one
 //! run, answered with one line of JSON on stdout and a status that tells accepted from
@@ -139,6 +142,7 @@ mod actions;
 mod cli;
 mod client;
 mod command;
+mod coverage;
 mod describe;
 mod error;
 mod execute;
@@ -160,6 +164,7 @@ pub use blitz_test_harness::{Busy, Settled};
 pub use cli::command_line;
 pub use client::{Answer, Hello, Started, attach, call, start, stop};
 pub use command::{ArgValue, Call, Command, Key, SessionCommand, validate, validate_session};
+pub use coverage::{Coverage, HandlerRef, handler_coverage};
 pub use describe::describe;
 pub use error::SessionError;
 pub use execute::Outcome;

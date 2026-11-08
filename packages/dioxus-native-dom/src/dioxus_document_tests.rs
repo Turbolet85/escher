@@ -320,3 +320,35 @@ fn a_dispatch_is_recorded_where_a_state_is_registered_and_acts_as_before_where_n
     assert_eq!(writes.len(), 1, "one write recorded");
     assert_eq!(writes[0].dispatch.as_ref(), Some(&dispatches[0]));
 }
+
+#[test]
+fn the_reached_record_holds_on_a_page_with_no_registered_state() {
+    use crate::ReachedHandler;
+    use crate::signal_registry::SignalRegistry;
+
+    fn plain() -> Element {
+        let mut heard = use_signal(|| 0u32);
+        rsx! {
+            input { id: "field", oninput: move |_| heard += 1 }
+            p { id: "heard", "{heard}" }
+        }
+    }
+
+    let mut doc = build(plain);
+    doc.record_reached();
+    assert_eq!(input_on(&mut doc, "field"), "1", "the listener acts");
+    assert!(
+        doc.vdom
+            .runtime()
+            .has_context::<SignalRegistry>(ScopeId::ROOT)
+            .is_none(),
+        "the page holds no registry"
+    );
+    assert_eq!(
+        doc.reached_handlers(),
+        [ReachedHandler {
+            id: "field".to_string(),
+            event: "input".to_string(),
+        }]
+    );
+}

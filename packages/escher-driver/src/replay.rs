@@ -44,6 +44,15 @@ impl Check {
     /// A session started with another label than the app the check was recorded on runs
     /// nothing, and the replay does not hold.
     pub fn replay(&self, session: &mut Session) -> Replay {
+        self.replay_each(session, |_| {})
+    }
+
+    /// [`replay`](Self::replay), calling `after_step` on the session after each step it runs.
+    pub(crate) fn replay_each(
+        &self,
+        session: &mut Session,
+        mut after_step: impl FnMut(&Session),
+    ) -> Replay {
         if session.label() != self.app() {
             return Replay {
                 another_app: true,
@@ -55,6 +64,7 @@ impl Check {
         let mut change = None;
         for (index, step) in self.steps().iter().enumerate() {
             let answer = session.run(step.call());
+            after_step(session);
             ran += 1;
             change = change_of(index, step, &answer);
             if change.is_some() {
