@@ -1,6 +1,6 @@
 # Gotchas
 
-_Documented architectural traps from `.andromeda/architecture.md` and the specialist plans. Runtime discoveries go to `session-learnings.md` (curated by `/andromeda-wrap-session`) — this file is for traps known from the code as adopted._
+_Documented architectural traps from the architecture master `doc:architecture` (the records store) and the specialist plans. Runtime discoveries go to `session-learnings.md` (curated by `/andromeda-wrap-session`) — this file is for traps known from the code as adopted._
 
 ## Coupled dependency pins
 **What breaks:** bumping one side of a coupled pin fails to build or mis-renders.
@@ -65,4 +65,4 @@ _Documented architectural traps from `.andromeda/architecture.md` and the specia
 ## Related
 - Runtime learnings: `.claude/docs/session-learnings.md`
 - Path rules: `.claude/rules/*.md`
-- Decisions and rationale: `.andromeda/architecture.md` §Established Decisions
+- Decisions and rationale: `doc:architecture` (the records store) §Established Decisions

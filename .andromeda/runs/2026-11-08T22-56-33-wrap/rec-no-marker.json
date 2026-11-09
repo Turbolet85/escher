@@ -1,0 +1,171 @@
+[
+{
+"tool": "rec",
+"v": "1.19",
+"sha8": "4a249c43",
+"ts": "2026-11-09T00:08:56Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+".claude/rules/testing.md",
+"--file",
+".andromeda/runs/2026-11-08T22-56-33-wrap/draft-.claude-rules-testing.md",
+"--run-dir",
+".andromeda/runs/2026-11-08T22-56-33-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land .claude/rules/testing.md rev 6 · 2 node(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.19",
+"sha8": "4a249c43",
+"ts": "2026-11-09T00:09:05Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+".claude/rules/testing.md",
+"--file",
+".andromeda/runs/2026-11-08T22-56-33-wrap/draft-.claude-rules-testing.md",
+"--run-dir",
+".andromeda/runs/2026-11-08T22-56-33-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/testing.md rev 6 · 0 new · 1 revised · 0 retired · tx 522"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-09T00-09-05-2026-11-08T22-56-33-wrap.ndjson",
+"./.claude/rules/testing.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.19",
+"sha8": "4a249c43",
+"ts": "2026-11-09T00:10:51Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+".claude/rules/testing.md",
+"--file",
+".andromeda/runs/2026-11-08T22-56-33-wrap/draft-.claude-rules-testing.md",
+"--run-dir",
+".andromeda/runs/2026-11-08T22-56-33-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land .claude/rules/testing.md rev 7 · 2 node(s) · 1 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.19",
+"sha8": "4a249c43",
+"ts": "2026-11-09T00:10:52Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+".claude/rules/testing.md",
+"--file",
+".andromeda/runs/2026-11-08T22-56-33-wrap/draft-.claude-rules-testing.md",
+"--run-dir",
+".andromeda/runs/2026-11-08T22-56-33-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/testing.md rev 7 · 1 new · 0 revised · 0 retired · tx 524"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-09T00-09-05-2026-11-08T22-56-33-wrap.ndjson",
+"./.claude/rules/testing.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.19",
+"sha8": "4a249c43",
+"ts": "2026-11-09T00:25:17Z",
+"argv": [
+"outputs",
+"land",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-08T22-56-33-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"left · a11y-plan-entries.md · masters' records alone — main lands them after its ruling",
+"left · architecture-entries.md · masters' records alone — main lands them after its ruling",
+"left · design-system-entries.md · masters' records alone — main lands them after its ruling",
+"left · layout-templates-entries.md · masters' records alone — main lands them after its ruling",
+"left · obs-plan-entries.md · masters' records alone — main lands them after its ruling",
+"left · security-plan-entries.md · masters' records alone — main lands them after its ruling",
+"left · test-plan-entries.md · masters' records alone — main lands them after its ruling",
+"landed tx 530 · 4013 record(s) of 278 payload(s)"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-09T00-09-05-2026-11-08T22-56-33-wrap.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.19",
+"sha8": "4a249c43",
+"ts": "2026-11-09T00:25:24Z",
+"argv": [
+"seal",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-08T22-56-33-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"sealed 2026-11-08T15-29-03-wrap · 506 file(s) · 2026-11-08T15-29-03-wrap.parquet · tx 531 · 506 removed · 297 set aside",
+"sealed 2026-11-08T20-10-44-phase · 549 file(s) · 2026-11-08T20-10-44-phase.parquet · tx 532 · 549 removed · 324 set aside",
+"sealed 2026-11-08T21-57-04-implement · 5 file(s) · 2026-11-08T21-57-04-implement.parquet · tx 533 · 5 removed · 0 set aside",
+"seal · 3 run(s) · own 2026-11-08T22-56-33-wrap left as files"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

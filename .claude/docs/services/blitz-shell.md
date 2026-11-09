@@ -1,6 +1,6 @@
 # blitz-shell
 
-_Crate notes. Primary source: `.andromeda/architecture.md` (§Standard Contracts Paint and shell, §Infrastructure Patterns Shell loop, [Shell and windowing])._
+_Crate notes. Primary source: the architecture master `doc:architecture` (§Standard Contracts Paint and shell, §Infrastructure Patterns Shell loop, [Shell and windowing])._
 
 ## Responsibility
 Event loop, windowing and system integration on winit: `BlitzApplication`, `View`, `WindowConfig`, the `BlitzShellProvider` implementation of `ShellProvider`, the AccessKit adapter wiring and a data-URI-only net provider. It is the windowed path — escher's headless driver does not go through it.
@@ -31,4 +31,4 @@ Event loop, windowing and system integration on winit: `BlitzApplication`, `View
 - One in-crate unit test, in `src/event.rs`'s one `#[cfg(test)]` module: a redraw request reaching the receiver and waking the loop once; headless behaviour is tested through `blitz-test-harness`.
 
 ## References
-- `.andromeda/architecture.md` · `.claude/docs/services/blitz-dom.md`
+- `doc:architecture` (the records store) · `.claude/docs/services/blitz-dom.md`

@@ -1,0 +1,16 @@
+# Main's own patterns for the texts main wrote (edits-main.md, edits-main-2.md) — 2026-11-08-handler-coverage.
+
+# host_log's Cells part read: its fourth test → its fifth (the coverage-run test inserted before it)
+[[pattern]]
+id = 'm-hl-ordinal'
+regex = "host_log.{0,4}s fourth test|in its fourth test, on .cells|read by its fourth test"
+
+# stand_replay 3 → 4 (key file contracts/session-lifecycle)
+[[pattern]]
+id = 'm-replay-3'
+regex = 'stand_replay. 3[^0-9]|stand_replay. \(3 tests'
+
+# the usage line's role clauses — the coverage role clause joins after the mcp role
+[[pattern]]
+id = 'm-usage-roles'
+fixed = 'mcp role: mcp [--record <dir>]'

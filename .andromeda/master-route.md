@@ -82,4 +82,4 @@
 2026-11-07-mounteddata-buffered-render · complete · MountedData buffered render — the Dioxus 0.7 bridge renders into a mutation buffer with the document unborrowed, so a task polled during render reaches it · → chk:2026-11-07-mounteddata-buffered-render
 2026-11-07-ui-graph · complete · one read of the screen's UI graph — node, component, handlers, written state, readers — and the «reacts to a click» snapshot field · → chk:2026-11-07-ui-graph
 2026-11-08-what-can-i-do-here · complete · one read of what each actionable node can take now: its verbs from the schema's table and the refusal each would meet · → chk:2026-11-08-what-can-i-do-here
-2026-11-08-handler-coverage · pending · One command lists the UI graph's handlers no recorded check exercised; a kept `actions` step replays under test · → chk:2026-11-08-handler-coverage
+2026-11-08-handler-coverage · complete · One command lists the UI graph's handlers no recorded check exercised; a kept `actions` step replays under test · → chk:2026-11-08-handler-coverage

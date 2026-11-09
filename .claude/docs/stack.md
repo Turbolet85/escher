@@ -1,6 +1,6 @@
 # Technology Stack
 
-_Mirrors `.andromeda/architecture.md` §Stack and Technologies (citations live there). A convenience reference, read on demand._
+_Mirrors `doc:architecture` §Stack and Technologies (citations live there). A convenience reference, read on demand._
 
 ## Languages & Runtimes
 - Rust Cargo workspace, resolver "2", edition 2024, `rust-version` 1.91.0 (CI guarantees latest stable; an MSRV job builds only). `debug_timer` and `wgpu_texture` are edition 2021.
@@ -50,10 +50,10 @@ _Mirrors `.andromeda/architecture.md` §Stack and Technologies (citations live t
 - None at runtime. Upstream CI uses GitHub Pages and a repository dispatch to `DioxusLabs/blitz-wpt-results`; neither runs on the fork. The fork's Actions cache (10 GB per-repository budget, least-recently-used eviction) held 12 entries, 10 723 071 252 B — over the budget — after the first run on a re-keyed lockfile (CI run 37386253475, 2026-10-05).
 
 ## Rationale
-See `.andromeda/architecture.md` §Established Decisions — each `[Tag]` explains a pin or a default.
+See `doc:architecture` §Established Decisions — each `[Tag]` explains a pin or a default.
 
 ## Version updates
-1. Amend `.andromeda/architecture.md` §Stack (via the pipeline's amendment flow).
+1. Amend `doc:architecture` §Stack (via the pipeline's amendment flow).
 2. Update `Cargo.toml` `[workspace.dependencies]` — respect the coupled pins (see gotchas.md).
 3. Run the gates (`bash .github/scripts/ci-leg.sh fast` — fmt, clippy, test, CI scripts, embolden).
 4. Commit as `chore: bump {crate} to {version}`.

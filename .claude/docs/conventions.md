@@ -1,6 +1,6 @@
 # Project Conventions
 
-_Extracted from `.andromeda/architecture.md` §Conventions (citations live there). Detail that does not fit CLAUDE.md's budget._
+_Extracted from the architecture master `doc:architecture` (the records store) §Conventions (citations live there). Detail that does not fit CLAUDE.md's budget._
 
 ## File & directory naming
 - Crates under `packages/`, apps under `apps/`, example crates under `examples/{name}/`, root examples as `examples/*.rs`; integration tests one file per behaviour in `tests/blitz-tests/tests/`, each its own test target — upstream's single-binary `tests/all.rs` stays in the manifest at `test = false`, never built, pinned by `BlitzTestsTargetsTest` — with the stand checks' shared tables and helpers stated once in `tests/blitz-tests/tests/common/mod.rs`, and what the checks that hold a `Session` share in a second such module, `tests/blitz-tests/tests/session_common/mod.rs`, and the fixture boot and hold, the fixture pages more than one check reads and the held network stand-in `HeldNet` in a third, `tests/blitz-tests/tests/fixtures/mod.rs`, read by `mod fixtures;` — a page with one reader staying in its check's file (none of the three a test target); the two committed kept checks `stand_replay` replays sit in `tests/blitz-tests/checks/`.
@@ -16,7 +16,7 @@ _Extracted from `.andromeda/architecture.md` §Conventions (citations live there
 ## Manifests
 - Dependencies declared once in `[workspace.dependencies]` and consumed as `{ workspace = true }`; dependency groups separated by comment headers.
 - In-repo crates are declared with `default-features = false` — except `seven_guis`, which keeps its default renderer feature (dioxus-native refuses to compile with none); package metadata inherited with `*.workspace = true`.
-- App and example crates, blitz-tests, blitz-test-harness, escher-telemetry, escher-driver, blitz-vibey-script (since 2026-10-13-upstream-sync-polish-and-ship) and wpt set `publish = false`; docs.rs builds with all features and `doc_cfg` under `docsrs`.
+- App and example crates, blitz-tests, blitz-test-harness, escher-telemetry, escher-driver, blitz-vibey-script (since 2026-10-13-upstream-sync-polish-and-ship) and wpt set `publish = false`, rdme `publish = true`; docs.rs builds with all features and `doc_cfg` under `docsrs`.
 
 ## Visibility
 - Crate internals are `pub(crate)` / `pub(super)`; the slotmap key is used only at the storage boundary — public APIs use `NodeId`.
@@ -58,4 +58,4 @@ See `.claude/rules/testing.md` (authoring) and `.claude/rules/verification-harne
 - Dioxus examples: `fn main() { dioxus_native::launch(app); }`, `fn app() -> Element`, `#[component]`, state via `use_signal` / `use_store` / `use_memo` — seven_guis' tasks register each signal through `tasks::use_graph_signal(name, writers, init)` (`use_signal` left to the stand shell's `active` and `stand.rs`'s `linked`), their writers built by the `const fn` `tasks::writes(id, event)` and written `const { &[…] }` or as a `const` item, since a bare `&[writes(..)]` is not promoted to `'static` and errors `E0716`; example CSS in `const CSS: &str` raw strings.
 
 ## Cross-references
-- Architecture: `.andromeda/architecture.md` · directory layout: §Infrastructure Patterns · gotchas: `.claude/docs/gotchas.md` · per-crate notes: `.claude/docs/services/`.
+- Architecture: `doc:architecture` (the records store) · directory layout: §Infrastructure Patterns · gotchas: `.claude/docs/gotchas.md` · per-crate notes: `.claude/docs/services/`.

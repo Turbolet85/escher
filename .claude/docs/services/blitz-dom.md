@@ -1,6 +1,6 @@
 # blitz-dom
 
-_Crate notes. Primary source: `.andromeda/architecture.md` (§Standard Contracts, §Existing Scopes, §Infrastructure Patterns)._
+_Crate notes. Primary source: the architecture master `doc:architecture` (§Standard Contracts, §Existing Scopes, §Infrastructure Patterns)._
 
 ## Responsibility
 The headless DOM (`BaseDocument`): node tree, CSS parsing and resolution through Stylo, damage, box construction, Taffy/Parley layout, paint-tree topology, event dispatch, scrolling, selection, CSSOM, forms, iframes and the AccessKit tree. It does NOT parse HTML (blitz-html), fetch (blitz-net), paint (blitz-paint) or own windows (blitz-shell). Driven by external code; most users go through a wrapper (`HtmlDocument`, `DioxusDocument`, `ScriptDocument`).
@@ -41,4 +41,4 @@ See `.claude/docs/gotchas.md`.
 - **Fixtures:** DOM built by hand through `DocumentMutator` (blitz-html would be a circular dev-dependency)
 
 ## References
-- `.andromeda/architecture.md` · `.claude/docs/stack.md` · `.claude/docs/conventions.md`
+- `doc:architecture` (the records store) · `.claude/docs/stack.md` · `.claude/docs/conventions.md`

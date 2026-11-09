@@ -32,7 +32,7 @@ This project was adopted into the Andromeda pipeline (`/andromeda-adopt` at `0f6
 
 ## Code review
 - **Locally:** the **code-reviewer** agent at `.claude/agents/code-reviewer.md` — "review this" / "does this make sense?".
-- **Architecture review:** check `.andromeda/architecture.md` §Established Decisions and §Occupied Resources for any new resource.
+- **Architecture review:** check `doc:architecture` §Established Decisions and §Occupied Resources for any new resource.
 
 ## Release process
 - Upstream model: main is a prepatch until 1.0, one minor ahead of the release; blitz packages are versioned together through the one workspace version and the in-repo `=` pins — no in-repo release tool remains since upstream deleted the bump crate (merged at the 2026-10-17 upstream sync); the browser is bundled by `publish-browser.yml` (signed builds only on main / `ci-test`, and only in `DioxusLabs/blitz` — the fork never runs it).

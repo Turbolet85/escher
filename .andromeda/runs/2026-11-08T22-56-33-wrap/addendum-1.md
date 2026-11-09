@@ -1,0 +1,5 @@
+## Addendum 1 — resumed 2026-11-09
+- inputs#I7 · message: the operator, relaying the founder (by dialog in the overseer session) and the overseer, the /andromeda-wrap-session resume invocation, 2026-11-08 23:06Z · copy message · n/a — residual `res-7cc5bi4k` (the UI graph not paged) gains its ruled form at P5: `graph --part N`, paged as `snapshot` is, the argument on the ratified crossing, on the founder's «A. graph --part N (Рекомендую)»; and each residual this wrap opens is mirrored into `escher-0.4.0-incubator/deferred-from-0.3.0.md`
+  - bears on **The operator's word on P5 card 2**: adds to it — the residual row 2 opens (the `stopPropagation` limit) is mirrored into the incubator's deferred list
+  - no other fact above rests on it: `res-7cc5bi4k` is no part of this chunk's Changes; its ruled form is a P5 residual edit
+- inputs.py verify, re-fired: `inputs: 7 entries — unchanged 2 · drifted 1 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 4 · uncited 0 · unparsed 0`; moved since the report: I6 snapped at this wrap's first window (unchanged), I7 snapped at this resume; uncited 1 → 0

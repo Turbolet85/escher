@@ -1,6 +1,6 @@
 # blitz-paint
 
-_Crate notes. Primary source: `.andromeda/architecture.md` (§Design Philosophy, §Standard Contracts Paint and shell, [Painting])._
+_Crate notes. Primary source: the architecture master `doc:architecture` (§Design Philosophy, §Standard Contracts Paint and shell, [Painting])._
 
 ## Responsibility
 Pushes anyrender drawing commands for an already-resolved `BaseDocument` into an `impl PaintScene`; the scene decides whether to rasterize, emit SVG/PDF or serialize. It assumes styles and layout are resolved and never mutates the document's layout; an open select's rows' text is the carve-out, laid out at paint through blitz-dom's public `select_row_layout`, only the rows in the scrollport.
@@ -32,4 +32,4 @@ Pushes anyrender drawing commands for an already-resolved `BaseDocument` into an
 - **Headless screenshots:** `examples/screenshot.rs` renders through `VelloCpuImageRenderer`, and since 2026-10-12-headless-screenshot so does blitz-test-harness's `Harness::screenshot` / `screenshot_rect` (`anyrender_vello_cpu` with no `multithreading`), which composites the frame over opaque white after paint where the example fills before `paint_scene`
 
 ## References
-- `.andromeda/architecture.md` · `.claude/docs/services/blitz-dom.md`
+- `doc:architecture` (the records store) · `.claude/docs/services/blitz-dom.md`

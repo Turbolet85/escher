@@ -1,7 +1,0 @@
-@leaf_group group=a11y-plan-1
-@leaf_read leaf=.claude/docs/a11y-summary.md lines=45
-last: **Full plan:** `.andromeda/a11y-plan.md`. Path-scoped rules:
-@leaf_edit n=1 leaf=.claude/docs/a11y-summary.md line=24 class=omission
-leaf-text: a graph read changes nothing and holds no typed text.
-source: fct-vlvcclau «The `actions` verb (`Session::actions`) is one more read-only reader: for every actionable node it answers each verb of the verb table's instance rows taking an id with the cause `check_target` would refuse»
-replace-with: a graph read changes nothing and holds no typed text. Since 2026-11-08-what-can-i-do-here the driver's `actions` verb (`Session::actions`) is one more read-only reader: for every actionable node (`DioxusDocument::actionable_nodes`, each an `ActionableNode` of `id`, `owner` and `keyed`, read through the one crate-private actionable rule `Readings` it shares with `unkeyed_actionable` — focusable, one of 27 interactive roles, or current vdom-walk listeners holding an event other than `mounted`, so a listener a re-render removed is read by neither) it answers each id-taking verb with the cause `check_target` would refuse it with, changing nothing and writing ids, owner ids, verb and cause words and booleans only, never a value; `keyed` on the carriers is PROVISIONAL, and Cells' unpaged answer (678 nodes, 106,088 bytes) is a stated limit owned by residual `res-7cc5bi4k`.

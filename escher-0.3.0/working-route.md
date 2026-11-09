@@ -18,7 +18,7 @@
 [2026-11-07-mounteddata-buffered-render] MountedData buffered render — a task polled during render reaches the document: upstream `286874cc1`'s buffered render on the Dioxus 0.7 bridge, its test the witness, the hazard pin inverted; every Dioxus document
 [2026-11-07-ui-graph] The UI graph — per screen: node, component, handlers, written state, its readers; "reacts to a click" reading; values masked, never logged (v030-05)
 [2026-11-08-what-can-i-do-here] What can I do here — actionable nodes' verbs and current refusal causes, from graph and snapshot; actionable-key check, an operator-asked crossing, if it fits (v030-06)
-[2026-11-08-handler-coverage] Handler coverage — one command: the handlers no recorded check exercised, read from the UI graph (v030-07)  CARRY: a kept `actions` step's replay is owed a test, not accepted by construction — `Check::replay` runs every instance-verb step through `Session::run`, so it holds by construction, unmeasured; this entry writes the test, and v030-06 reads verified only once it passes (the operator's direction at the 2026-11-08 wrap, relaying the overseer and the founder: escher-0.3.0/chunks/2026-11-08-what-can-i-do-here/inputs/I6-relay-1.md.txt; record: 2026-11-08-what-can-i-do-here's report, Outcome and Addendum 1)
+[2026-11-08-handler-coverage] Handler coverage — one command: the handlers no recorded check exercised, read from the UI graph (v030-07)
 
 ### Epoch 4 — Determinism and exploration
 

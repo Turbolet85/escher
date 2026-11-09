@@ -1,6 +1,6 @@
 # blitz-test-harness
 
-_Crate notes. Primary source: `.andromeda/test-plan.md` §3 and `.andromeda/architecture.md` §Standard Contracts Test harness._
+_Crate notes. Primary source: `doc:test-plan` §3 and `doc:architecture` §Standard Contracts Test harness._
 
 ## Responsibility
 The headless harness for Blitz documents (unpublished): wraps any blitz-dom `Document` (`HtmlDocument`, `DioxusDocument`) with deterministic construction defaults, a pump/tick loop, `settle` (that pass repeated until no work is due), input synthesis through the real event-dispatch pipeline, inspection helpers and, since 2026-10-12-headless-screenshot, a screenshot — the viewport painted through blitz-paint into `VelloCpuImageRenderer` and composited over opaque white, a paint with no display — and, since 2026-10-13-stand-contrast-harness, a contrast reader, `Harness::text_contrast`, reading a control's text colour against its composited background from computed styles and changing nothing. No window, GPU or compositor. It is the measured starting point for escher's headless stand and driver.
