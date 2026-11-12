@@ -1,0 +1,363 @@
+[
+{
+"tool": "fanout",
+"v": "37",
+"sha8": "4d270ccc",
+"ts": "2026-11-12T03:36:28Z",
+"argv": [
+"render",
+"--batch",
+"rows",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--run-dir",
+".andromeda/runs/2026-11-12T03-36-23-rows-layout-templates",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"VERDICT: rendered 2 (rows 2) · batch rows · script ./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/rows.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/rows-layout-templates.p1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/rows-layout-templates.p2.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/rows/p1.jsonl",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/rows/packs.json",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/rows/p2.jsonl",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/rows.workflow.js",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/rows.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "37",
+"sha8": "4d270ccc",
+"ts": "2026-11-12T03:42:00Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/rows.manifest.json",
+"--before",
+"tree 39bca149e5d2d6fbbf6aee718a095afb698c8420 index dfd73fe3d3de8a949899804ab2543a1382c476c5 head edd0cfaea7f089c87a210d326f05d82dcfde1e54",
+"--after",
+"tree 2eb8445eea2ca58a633477d01b47f80ef1f9a369 index dfd73fe3d3de8a949899804ab2543a1382c476c5 head edd0cfaea7f089c87a210d326f05d82dcfde1e54",
+"--run-dir",
+".andromeda/runs/2026-11-12T03-36-23-rows-layout-templates",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch rows · 2 agents · 2 with every named path · trails: none",
+"[PATH_CHECK] PASS · index and head unchanged",
+"rows: 2 agents · 2 pass · rows refused 0",
+"VERDICT: 2 of 2 pass · failed: none"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "rows",
+"agents": {
+"rows-layout-templates.p1": {
+"failed": {},
+"yes": null,
+"sha": "bd478217f1faac4b8577c74fc5c3749e86f329fcefc76f1121b9536174e9e1d5",
+"marked": {}
+},
+"rows-layout-templates.p2": {
+"failed": {},
+"yes": null,
+"sha": "b0b72803c67b97c43e25a6d204983301853070015550e11f2d672d3e4cd0568b",
+"marked": {}
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [],
+"harness": [],
+"notes": []
+}
+},
+{
+"tool": "fanout",
+"v": "37",
+"sha8": "4d270ccc",
+"ts": "2026-11-12T03:42:36Z",
+"argv": [
+"render",
+"--batch",
+"verify",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--run-dir",
+".andromeda/runs/2026-11-12T03-36-23-rows-layout-templates",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"VERDICT: rendered 9 (verify 9) · batch verify · script ./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify-layout-templates.v1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify-layout-templates.v2.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify-layout-templates.v3.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify-layout-templates.v4.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify-layout-templates.v5.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify-layout-templates.v6.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify-layout-templates.v7.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify-layout-templates.v8.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify-layout-templates.v9.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify.workflow.js",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "37",
+"sha8": "4d270ccc",
+"ts": "2026-11-12T03:44:45Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify.manifest.json",
+"--before",
+"tree 92f981a5681ea7a60e1580da5b9dabfc30e52214 index dfd73fe3d3de8a949899804ab2543a1382c476c5 head edd0cfaea7f089c87a210d326f05d82dcfde1e54",
+"--after",
+"tree 92f981a5681ea7a60e1580da5b9dabfc30e52214 index dfd73fe3d3de8a949899804ab2543a1382c476c5 head edd0cfaea7f089c87a210d326f05d82dcfde1e54",
+"--run-dir",
+".andromeda/runs/2026-11-12T03-36-23-rows-layout-templates",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch verify · 9 agents · 9 with every named path · trails: none",
+"[PATH_CHECK] PASS · index and head unchanged",
+"verify: 9 agents · 5 pass · failed QUOTE_AT_LINE 4 · rows refused 7",
+"verify-layout-templates.v6 · [QUOTE_AT_LINE] decision/cold-agent-uses-driver-mcp · the `quote:` under `at: scripts/cold-agent.sh:504-506` is not that line as it stands",
+"verify-layout-templates.v7 · [QUOTE_AT_LINE] contract/escher-session-snapshot/answer · the `quote:` under `at: packages/escher-driver/src/execute.rs:214-219` is not that line as it stands",
+"verify-layout-templates.v8 · [QUOTE_AT_LINE] contract/escher-session-mcp/end · the `quote:` under `at: packages/escher-driver/src/cli.rs:360-364` is not that line as it stands",
+"verify-layout-templates.v9 · [QUOTE_AT_LINE] contract/escher-session-record/record-dir-not-private · the `quote:` under `at: packages/escher-driver/src/recording.rs:217-220` is not that line as it stands",
+"verify-layout-templates.v6 · [QUOTE_AT_LINE] decision/no-caller-input-echoed · the `quote:` under `at: packages/escher-driver/src/cli.rs:350-354` is not that line as it stands",
+"verify-layout-templates.v6 · [QUOTE_AT_LINE] decision/mcp-server-local-stdio · the `quote:` under `at: packages/escher-driver/src/mcp.rs:84-90` is not that line as it stands",
+"verify-layout-templates.v7 · [QUOTE_AT_LINE] contract/escher-session-screenshot/answer · the `quote:` under `at: packages/escher-driver/src/execute.rs:296-302` is not that line as it stands",
+"VERDICT: 5 of 9 pass · failed: verify-layout-templates.v6 [QUOTE_AT_LINE]; verify-layout-templates.v7 [QUOTE_AT_LINE]; verify-layout-templates.v8 [QUOTE_AT_LINE]; verify-layout-templates.v9 [QUOTE_AT_LINE]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "verify",
+"agents": {
+"verify-layout-templates.v1": {
+"failed": {},
+"yes": null,
+"sha": "a40e2b2ae3486e4a874df22e464621752376093ee4ee80795d54cfd0766c3a50",
+"judge": "sonnet"
+},
+"verify-layout-templates.v2": {
+"failed": {},
+"yes": null,
+"sha": "575a0d8fc39e66819cb94b224205b3a767b5bc8985bd35922c32dbfeaa054b4d",
+"judge": "sonnet"
+},
+"verify-layout-templates.v3": {
+"failed": {},
+"yes": null,
+"sha": "08bef723f177695833a2c0a88888b33993e68b35d89484dd1cee354eeae7b029",
+"judge": "sonnet"
+},
+"verify-layout-templates.v4": {
+"failed": {},
+"yes": null,
+"sha": "beafacf692ed552d29c9feeebbf4e162346db47facfd215b98bb46dfd7ad36df",
+"judge": "sonnet"
+},
+"verify-layout-templates.v5": {
+"failed": {},
+"yes": null,
+"sha": "7593758a4a41f4a4d722c589bb0e5bf06716cd11bc666a733ed22ec7ecc1fc30",
+"judge": "sonnet"
+},
+"verify-layout-templates.v6": {
+"failed": {
+"QUOTE_AT_LINE": [
+"[QUOTE_AT_LINE] decision/cold-agent-uses-driver-mcp · the `quote:` under `at: scripts/cold-agent.sh:504-506` is not that line as it stands",
+"[QUOTE_AT_LINE] decision/no-caller-input-echoed · the `quote:` under `at: packages/escher-driver/src/cli.rs:350-354` is not that line as it stands",
+"[QUOTE_AT_LINE] decision/mcp-server-local-stdio · the `quote:` under `at: packages/escher-driver/src/mcp.rs:84-90` is not that line as it stands"
+]
+},
+"yes": null,
+"sha": "c9dafdb463fc2fd08157d53ff1493e2d492ff518f8e116d02f17a6e684ecd6fa",
+"judge": "sonnet"
+},
+"verify-layout-templates.v7": {
+"failed": {
+"QUOTE_AT_LINE": [
+"[QUOTE_AT_LINE] contract/escher-session-snapshot/answer · the `quote:` under `at: packages/escher-driver/src/execute.rs:214-219` is not that line as it stands",
+"[QUOTE_AT_LINE] contract/escher-session-screenshot/answer · the `quote:` under `at: packages/escher-driver/src/execute.rs:296-302` is not that line as it stands"
+]
+},
+"yes": null,
+"sha": "2480f5705d5574b91a75a2c7071a43f0de215ba78cd6d1224bcd06183dea02d9",
+"judge": "sonnet"
+},
+"verify-layout-templates.v8": {
+"failed": {
+"QUOTE_AT_LINE": [
+"[QUOTE_AT_LINE] contract/escher-session-mcp/end · the `quote:` under `at: packages/escher-driver/src/cli.rs:360-364` is not that line as it stands"
+]
+},
+"yes": null,
+"sha": "9b1428899d6dc7dfc466d29ec90667285065f501cafbaf2aa14ee90387146a60",
+"judge": "sonnet"
+},
+"verify-layout-templates.v9": {
+"failed": {
+"QUOTE_AT_LINE": [
+"[QUOTE_AT_LINE] contract/escher-session-record/record-dir-not-private · the `quote:` under `at: packages/escher-driver/src/recording.rs:217-220` is not that line as it stands"
+]
+},
+"yes": null,
+"sha": "8d95daaa3dcecc90c6acae384b4ef0d7912e9f0ef212bebaa611064a7c8cfcf1",
+"judge": "sonnet"
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [],
+"harness": [],
+"notes": []
+}
+},
+{
+"tool": "fanout",
+"v": "37",
+"sha8": "4d270ccc",
+"ts": "2026-11-12T03:44:51Z",
+"argv": [
+"render",
+"--batch",
+"verify",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--run-dir",
+".andromeda/runs/2026-11-12T03-36-23-rows-layout-templates",
+"--marker",
+"no-marker",
+"--respawn",
+"verify-layout-templates.v6,verify-layout-templates.v7,verify-layout-templates.v8,verify-layout-templates.v9",
+"--failed",
+"QUOTE_AT_LINE"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"MOVE .andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify/verify-layout-templates.v6.md → .andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify/.raw-verify-layout-templates.v6.md",
+"MOVE .andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify/verify-layout-templates.v7.md → .andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify/.raw-verify-layout-templates.v7.md",
+"MOVE .andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify/verify-layout-templates.v8.md → .andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify/.raw-verify-layout-templates.v8.md",
+"MOVE .andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify/verify-layout-templates.v9.md → .andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify/.raw-verify-layout-templates.v9.md",
+"VERDICT: rendered 4 (verify 4) · batch verify-r1 · script ./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify-r1.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify-layout-templates.v6.r1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify-layout-templates.v7.r1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify-layout-templates.v8.r1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify-layout-templates.v9.r1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify-r1.workflow.js",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify-r1.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "37",
+"sha8": "4d270ccc",
+"ts": "2026-11-12T03:51:54Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-12T03-36-23-rows-layout-templates/prompts/verify-r1.manifest.json",
+"--before",
+"tree 957e22136881d3543dcbc2cd3e61750250e32ad9 index dfd73fe3d3de8a949899804ab2543a1382c476c5 head edd0cfaea7f089c87a210d326f05d82dcfde1e54",
+"--after",
+"tree 957e22136881d3543dcbc2cd3e61750250e32ad9 index dfd73fe3d3de8a949899804ab2543a1382c476c5 head edd0cfaea7f089c87a210d326f05d82dcfde1e54",
+"--run-dir",
+".andromeda/runs/2026-11-12T03-36-23-rows-layout-templates",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch verify-r1 · 4 agents · 4 with every named path · trails: none",
+"[PATH_CHECK] PASS · index and head unchanged",
+"verify: 4 agents · 4 pass · rows refused 0",
+"VERDICT: 4 of 4 pass · failed: none"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "verify-r1",
+"agents": {
+"verify-layout-templates.v6": {
+"failed": {},
+"yes": null,
+"sha": "f96443f20cec6a04f5b2708466acc16bc36a7e3f6e66e7cdef75bd84004c2198",
+"judge": "sonnet"
+},
+"verify-layout-templates.v7": {
+"failed": {},
+"yes": null,
+"sha": "33e9d14957c7e855a353131daac6daa259b1baa3b2ffcad724d64536d100c267",
+"judge": "sonnet"
+},
+"verify-layout-templates.v8": {
+"failed": {},
+"yes": null,
+"sha": "b5298d859af5951a47549af8fd7986b8753615e5a08d6dbec4dcfb93e5b2d1fd",
+"judge": "sonnet"
+},
+"verify-layout-templates.v9": {
+"failed": {},
+"yes": null,
+"sha": "9aebfd7d4ddbd281c341cec21cc82e619b08695f8786ec4c380c2d26bdaa1958",
+"judge": "sonnet"
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [],
+"harness": [],
+"notes": []
+}
+}
+]

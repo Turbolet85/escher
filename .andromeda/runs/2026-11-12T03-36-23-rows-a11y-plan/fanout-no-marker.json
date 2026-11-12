@@ -1,0 +1,668 @@
+[
+{
+"tool": "fanout",
+"v": "37",
+"sha8": "4d270ccc",
+"ts": "2026-11-12T04:07:05Z",
+"argv": [
+"render",
+"--batch",
+"rows",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--run-dir",
+".andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"VERDICT: rendered 8 (rows 8) · batch rows · script ./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows-a11y-plan.p1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows-a11y-plan.p2.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows-a11y-plan.p3.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows-a11y-plan.p4.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows-a11y-plan.p5.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows-a11y-plan.p6.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows-a11y-plan.p7.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows-a11y-plan.p8.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows/p1.jsonl",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows/packs.json",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows/p2.jsonl",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows/p3.jsonl",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows/p4.jsonl",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows/p5.jsonl",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows/p6.jsonl",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows/p7.jsonl",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows/p8.jsonl",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows.workflow.js",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "37",
+"sha8": "4d270ccc",
+"ts": "2026-11-12T04:09:37Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows.manifest.json",
+"--before",
+"tree aec7d33ae5d19e5cbcf42abce2dffb78280ee0ea index dfd73fe3d3de8a949899804ab2543a1382c476c5 head edd0cfaea7f089c87a210d326f05d82dcfde1e54",
+"--after",
+"tree 8786174dd5b373d313389e52da046de6ac774faf index dfd73fe3d3de8a949899804ab2543a1382c476c5 head edd0cfaea7f089c87a210d326f05d82dcfde1e54",
+"--run-dir",
+".andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch rows · 8 agents · 8 with every named path · trails: none",
+"[PATH_CHECK] PASS · index and head unchanged",
+"rows: 8 agents · 8 pass · rows refused 0",
+"VERDICT: 8 of 8 pass · failed: none"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "rows",
+"agents": {
+"rows-a11y-plan.p1": {
+"failed": {},
+"yes": null,
+"sha": "18219f056184ea743cd501aa050ce0df8a8f52b55b5d106a3ffa85e7fe46ea11",
+"marked": {}
+},
+"rows-a11y-plan.p2": {
+"failed": {},
+"yes": null,
+"sha": "0c71de73ae279ab7225d440d323cc0cb3606b0fe5bb351201f7b4059a8b6d6e2",
+"marked": {}
+},
+"rows-a11y-plan.p3": {
+"failed": {},
+"yes": null,
+"sha": "3667fb1c15d0d3eb5ca06862c1cbb5ceb43803bf0336afc9eec4b2f3a5ab893a",
+"marked": {}
+},
+"rows-a11y-plan.p4": {
+"failed": {},
+"yes": null,
+"sha": "793196d83637f28db3fc92ad380a4968b420d1c65c6bc39a177f27f83e7a3547",
+"marked": {}
+},
+"rows-a11y-plan.p5": {
+"failed": {},
+"yes": null,
+"sha": "3dc6fa41a43a28802b75262aad09317f878fc76ab549135d76bcaea0831f53d2",
+"marked": {}
+},
+"rows-a11y-plan.p6": {
+"failed": {},
+"yes": null,
+"sha": "d066eabe1994253ba15ff92dc0ef5412914055a9c009cc1e1eb4b1375103ada7",
+"marked": {}
+},
+"rows-a11y-plan.p7": {
+"failed": {},
+"yes": null,
+"sha": "af48a307c92ed9bbbd3db155121b2172db5c3040d5c8eeb96fcb66c27e6eac9a",
+"marked": {}
+},
+"rows-a11y-plan.p8": {
+"failed": {},
+"yes": null,
+"sha": "68d5fe17affa39ac9684ef354e73933f65c879410358f60268c1d464538c3cbe",
+"marked": {}
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [],
+"harness": [],
+"notes": []
+}
+},
+{
+"tool": "fanout",
+"v": "37",
+"sha8": "4d270ccc",
+"ts": "2026-11-12T04:09:45Z",
+"argv": [
+"render",
+"--batch",
+"rowsfix",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--run-dir",
+".andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"VERDICT: rendered 2 (rowsfix 2) · batch rowsfix · script ./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rowsfix.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows-a11y-plan.f1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rows-a11y-plan.f2.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rowsfix.workflow.js",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rowsfix.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "37",
+"sha8": "4d270ccc",
+"ts": "2026-11-12T04:10:26Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/rowsfix.manifest.json",
+"--before",
+"tree cef7d2747d9a761069bf9be234d9eaa934f9fc74 index dfd73fe3d3de8a949899804ab2543a1382c476c5 head edd0cfaea7f089c87a210d326f05d82dcfde1e54",
+"--after",
+"tree d3d6692a6a122a58bcac388d1755102461248d3b index dfd73fe3d3de8a949899804ab2543a1382c476c5 head edd0cfaea7f089c87a210d326f05d82dcfde1e54",
+"--run-dir",
+".andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch rowsfix · 2 agents · 2 with every named path · trails: none",
+"[PATH_CHECK] PASS · index and head unchanged",
+"rowsfix: 2 agents · 2 pass · rows refused 0",
+"VERDICT: 2 of 2 pass · failed: none"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "rowsfix",
+"agents": {
+"rows-a11y-plan.f1": {
+"failed": {},
+"yes": null,
+"sha": "286c5f57eb4bd756abbca5a0c48dfda7f4416ef3536e53fc5b08005974acaf23",
+"marked": {}
+},
+"rows-a11y-plan.f2": {
+"failed": {},
+"yes": null,
+"sha": "e27c4e515795bab7d11cc237877ce6c8fd55376f67d65274a61bf0911a393669",
+"marked": {}
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [],
+"harness": [],
+"notes": []
+}
+},
+{
+"tool": "fanout",
+"v": "37",
+"sha8": "4d270ccc",
+"ts": "2026-11-12T04:10:37Z",
+"argv": [
+"render",
+"--batch",
+"verify",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--run-dir",
+".andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"VERDICT: rendered 16 (verify 16) · batch verify · script ./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v2.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v3.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v4.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v5.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v6.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v7.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v8.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v9.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v10.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v11.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v12.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v13.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v14.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v15.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v16.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify.workflow.js",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "37",
+"sha8": "4d270ccc",
+"ts": "2026-11-12T04:12:20Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify.manifest.json",
+"--before",
+"tree 54cd8ade91d4208d52416b4101a4e6bf76c49439 index dfd73fe3d3de8a949899804ab2543a1382c476c5 head edd0cfaea7f089c87a210d326f05d82dcfde1e54",
+"--after",
+"tree 54cd8ade91d4208d52416b4101a4e6bf76c49439 index dfd73fe3d3de8a949899804ab2543a1382c476c5 head edd0cfaea7f089c87a210d326f05d82dcfde1e54",
+"--run-dir",
+".andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch verify · 16 agents · 16 with every named path · trails: none",
+"[PATH_CHECK] PASS · index and head unchanged",
+"verify: 16 agents · 4 pass · failed CHECK_FORM 1, QUOTE_AT_LINE 11 · rows refused 31",
+"verify-a11y-plan.v1 · [QUOTE_AT_LINE] contract/accessibility-tree-states/aria-checked · the `quote:` under `at: packages/blitz-dom/src/accessibility.rs:214-216` is not that line as it stands",
+"verify-a11y-plan.v2 · [QUOTE_AT_LINE] decision/html-aam-role-mapping · `at: packages/blitz-dom/src/accessibility.rs:467-479` names 13 lines — 10 at the most, in their order",
+"verify-a11y-plan.v3 · [QUOTE_AT_LINE] contract/range-input/click · the `quote:` under `at: packages/blitz-dom/src/events/pointer.rs:840-843` is not that line as it stands",
+"verify-a11y-plan.v5 · [QUOTE_AT_LINE] contract/cells-grid/arrows · the `quote:` under `at: examples/seven_guis/src/tasks/cells.rs:424-426` is not that line as it stands",
+"verify-a11y-plan.v6 · [QUOTE_AT_LINE] contract/accessible-name/label-element · the `quote:` under `at: packages/blitz-dom/src/accessibility.rs:53-59` is not that line as it stands",
+"verify-a11y-plan.v7 · [QUOTE_AT_LINE] contract/snapshot/enabled · the `quote:` under `at: packages/dioxus-native-dom/src/snapshot.rs:181-183` is not that line as it stands",
+"verify-a11y-plan.v9 · [QUOTE_AT_LINE] decision/a11y-tree-refresh-on-change · the `quote:` under `at: packages/blitz-shell/src/window.rs:377-380` is not that line as it stands",
+"verify-a11y-plan.v10 · [QUOTE_AT_LINE] decision/click-focuses-buttons · `at: packages/blitz-dom/src/events/pointer.rs:1035-1045` names 11 lines — 10 at the most, in their order",
+"verify-a11y-plan.v11 · [QUOTE_AT_LINE] contract/dioxus-document/reached-handlers · the `quote:` under `at: packages/dioxus-native-dom/src/reached.rs:99-104` is not that line as it stands",
+"verify-a11y-plan.v13 · [CHECK_FORM] contract/snapshot/open-list-highlighted-row · `holds` owes `at:` and `quote:` — `searched:` alone shows a thing absent, and this row states none absent",
+"verify-a11y-plan.v14 · [QUOTE_AT_LINE] contract/driver-screenshot/element-shot · the `quote:` under `at: packages/escher-driver/src/execute.rs:569-572` is not that line as it stands",
+"verify-a11y-plan.v15 · [QUOTE_AT_LINE] decision/author-thumb-visible-state-change · the `quote:` under `at: packages/blitz-paint/src/render.rs:858-859` is not that line as it stands",
+"verify-a11y-plan.v1 · [QUOTE_AT_LINE] contract/aria-property-reads/aria-level · `at: packages/blitz-dom/src/accessibility.rs:255-266` names 12 lines — 10 at the most, in their order",
+"verify-a11y-plan.v5 · [QUOTE_AT_LINE] contract/cells-grid/enter · the `quote:` under `at: examples/seven_guis/src/tasks/cells.rs:427-431` is not that line as it stands",
+"… +18 rows in .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/fanout-no-marker.json",
+"VERDICT: 4 of 16 pass · failed: verify-a11y-plan.v1 [QUOTE_AT_LINE]; verify-a11y-plan.v2 [QUOTE_AT_LINE]; verify-a11y-plan.v3 [QUOTE_AT_LINE]; verify-a11y-plan.v5 [QUOTE_AT_LINE]; verify-a11y-plan.v6 [QUOTE_AT_LINE]; verify-a11y-plan.v7 [QUOTE_AT_LINE]; verify-a11y-plan.v9 [QUOTE_AT_LINE]; verify-a11y-plan.v10 [QUOTE_AT_LINE]; verify-a11y-plan.v11 [QUOTE_AT_LINE]; verify-a11y-plan.v13 [CHECK_FORM]; verify-a11y-plan.v14 [QUOTE_AT_LINE]; verify-a11y-plan.v15 [QUOTE_AT_LINE]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "verify",
+"agents": {
+"verify-a11y-plan.v1": {
+"failed": {
+"QUOTE_AT_LINE": [
+"[QUOTE_AT_LINE] contract/accessibility-tree-states/aria-checked · the `quote:` under `at: packages/blitz-dom/src/accessibility.rs:214-216` is not that line as it stands",
+"[QUOTE_AT_LINE] contract/aria-property-reads/aria-level · `at: packages/blitz-dom/src/accessibility.rs:255-266` names 12 lines — 10 at the most, in their order"
+]
+},
+"yes": null,
+"sha": "cd3f7a55433a60535f4dfb494f6dee7123227156d91510843ea1653d803c52a2",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v2": {
+"failed": {
+"QUOTE_AT_LINE": [
+"[QUOTE_AT_LINE] decision/html-aam-role-mapping · `at: packages/blitz-dom/src/accessibility.rs:467-479` names 13 lines — 10 at the most, in their order"
+]
+},
+"yes": null,
+"sha": "08bc08383284088ef81dbbfb68201ce631e7bf73bd8f3f3e49b926f51147c6ae",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v3": {
+"failed": {
+"QUOTE_AT_LINE": [
+"[QUOTE_AT_LINE] contract/range-input/click · the `quote:` under `at: packages/blitz-dom/src/events/pointer.rs:840-843` is not that line as it stands"
+]
+},
+"yes": null,
+"sha": "bf8512e705f83a8b10d1f52057e2bdceaa850228fffa065448bada3df3725dc0",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v4": {
+"failed": {},
+"yes": null,
+"sha": "cf3d97faebd045a15a65d2ca25c1f8b90c11ed0c4f49270fed33325487f6ad4e",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v5": {
+"failed": {
+"QUOTE_AT_LINE": [
+"[QUOTE_AT_LINE] contract/cells-grid/arrows · the `quote:` under `at: examples/seven_guis/src/tasks/cells.rs:424-426` is not that line as it stands",
+"[QUOTE_AT_LINE] contract/cells-grid/enter · the `quote:` under `at: examples/seven_guis/src/tasks/cells.rs:427-431` is not that line as it stands",
+"[QUOTE_AT_LINE] contract/accessibility-tree/optgroup · the `quote:` under `at: packages/blitz-dom/src/accessibility.rs:164-170` is not that line as it stands"
+]
+},
+"yes": null,
+"sha": "b4739e0a1f352be2e3dfb77dcc9650647b0a1d699b349468daad4f93f3e2c2db",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v6": {
+"failed": {
+"QUOTE_AT_LINE": [
+"[QUOTE_AT_LINE] contract/accessible-name/label-element · the `quote:` under `at: packages/blitz-dom/src/accessibility.rs:53-59` is not that line as it stands",
+"[QUOTE_AT_LINE] decision/adapter-tree-equals-harness-tree · the `quote:` under `at: tests/blitz-tests/tests/stand_accessibility_ids.rs:322-326` is not that line as it stands"
+]
+},
+"yes": null,
+"sha": "de09f8934a62d7368101e3179f4e5905cb271dd0968dff442ef2bcddcc019396",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v7": {
+"failed": {
+"QUOTE_AT_LINE": [
+"[QUOTE_AT_LINE] contract/snapshot/enabled · the `quote:` under `at: packages/dioxus-native-dom/src/snapshot.rs:181-183` is not that line as it stands",
+"[QUOTE_AT_LINE] contract/snapshot/checked · the `quote:` under `at: packages/dioxus-native-dom/src/snapshot.rs:184-190` is not that line as it stands",
+"[QUOTE_AT_LINE] contract/snapshot/value · the `quote:` under `at: packages/dioxus-native-dom/src/snapshot.rs:295-299` is not that line as it stands",
+"[QUOTE_AT_LINE] decision/a11y-test-leg · the `quote:` under `at: .github/scripts/ci-leg.sh:63-65` is not that line as it stands"
+]
+},
+"yes": null,
+"sha": "ad6f2413ba0d4149141f177fe2bea3eee918f96f7f4d743d8e1df79c7e5e692c",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v8": {
+"failed": {},
+"yes": null,
+"sha": "ecd0b2edd54a0dfb5fbbbb8f234dc8c7542ec7b1057766f143c4cee27e2c9fe9",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v9": {
+"failed": {
+"QUOTE_AT_LINE": [
+"[QUOTE_AT_LINE] decision/a11y-tree-refresh-on-change · the `quote:` under `at: packages/blitz-shell/src/window.rs:377-380` is not that line as it stands",
+"[QUOTE_AT_LINE] decision/harness-settle-leaves-changed-set · `at: packages/blitz-test-harness/src/settle.rs:156-169` names 14 lines — 10 at the most, in their order",
+"[QUOTE_AT_LINE] decision/native-checkable-toggle · the `quote:` under `at: packages/blitz-dom/src/accessibility.rs:205-209` is not that line as it stands",
+"[QUOTE_AT_LINE] decision/aria-labelledby-outranks-label · `at: packages/blitz-dom/src/accessibility.rs:74-85` names 12 lines — 10 at the most, in their order"
+]
+},
+"yes": null,
+"sha": "05730c85c6c1f2745d620c4026a5252f62ee1d0728e5aa5b5ee7831db041f9de",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v10": {
+"failed": {
+"QUOTE_AT_LINE": [
+"[QUOTE_AT_LINE] decision/click-focuses-buttons · `at: packages/blitz-dom/src/events/pointer.rs:1035-1045` names 11 lines — 10 at the most, in their order",
+"[QUOTE_AT_LINE] decision/double-click-on-document-clock · `at: packages/blitz-dom/src/events/pointer.rs:397-407` names 11 lines — 10 at the most, in their order",
+"[QUOTE_AT_LINE] decision/range-click-focuses-not-value · the `quote:` under `at: packages/blitz-dom/src/events/pointer.rs:842-851` is not that line as it stands",
+"[QUOTE_AT_LINE] decision/range-input-keys · the `quote:` under `at: packages/blitz-dom/src/events/keyboard.rs:543-548` is not that line as it stands",
+"[QUOTE_AT_LINE] decision/keyboard-activation-enter-space · `at: packages/blitz-dom/src/events/keyboard.rs:331-343` names 13 lines — 10 at the most, in their order",
+"[QUOTE_AT_LINE] decision/buffered-dioxus-render · the `quote:` under `at: packages/dioxus-native-dom/src/dioxus_document.rs:318-321` is not that line as it stands",
+"[QUOTE_AT_LINE] decision/falsy-boolean-attributes-removed · `at: packages/dioxus-native-dom/src/mutation_writer.rs:443-475` names 33 lines — 10 at the most, in their order"
+]
+},
+"yes": null,
+"sha": "5c21a577f1c51c3bb6acef3264b98f84cceeafd8e37071881cea9059494cb334",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v11": {
+"failed": {
+"QUOTE_AT_LINE": [
+"[QUOTE_AT_LINE] contract/dioxus-document/reached-handlers · the `quote:` under `at: packages/dioxus-native-dom/src/reached.rs:99-104` is not that line as it stands",
+"[QUOTE_AT_LINE] contract/dioxus-document/reached-handlers · the `quote:` under `at: packages/dioxus-native-dom/src/reached.rs:67-70` is not that line as it stands"
+]
+},
+"yes": null,
+"sha": "952f0a0fd579ae47b4e66008009644b52c61b9c7798f34a810b9c8ae40bd266d",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v12": {
+"failed": {},
+"yes": null,
+"sha": "9a98e086c0af92d44271dae49fa5a885c395ad9715abc444f4d8c775cd47da6e",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v13": {
+"failed": {
+"CHECK_FORM": [
+"[CHECK_FORM] contract/snapshot/open-list-highlighted-row · `holds` owes `at:` and `quote:` — `searched:` alone shows a thing absent, and this row states none absent"
+]
+},
+"yes": null,
+"sha": "fae1be6c86d8f7c05eb8368410c6c5a7cef2600a1504ee34632d45e4360a2fb6",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v14": {
+"failed": {
+"QUOTE_AT_LINE": [
+"[QUOTE_AT_LINE] contract/driver-screenshot/element-shot · the `quote:` under `at: packages/escher-driver/src/execute.rs:569-572` is not that line as it stands",
+"[QUOTE_AT_LINE] contract/handler-coverage/answer · the `quote:` under `at: packages/escher-driver/src/json.rs:437-438` is not that line as it stands"
+]
+},
+"yes": null,
+"sha": "10cc383714f9ffb4b7ae5ef9065f20bacd6497d9de788df7f25addb468d27da9",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v15": {
+"failed": {
+"QUOTE_AT_LINE": [
+"[QUOTE_AT_LINE] decision/author-thumb-visible-state-change · the `quote:` under `at: packages/blitz-paint/src/render.rs:858-859` is not that line as it stands",
+"[QUOTE_AT_LINE] decision/text-contrast-required-ratio · the `quote:` under `at: packages/blitz-test-harness/src/contrast.rs:141-145` is not that line as it stands",
+"[QUOTE_AT_LINE] decision/inert-element-takes-no-hit · the `quote:` under `at: packages/blitz-dom/src/node/node.rs:1454-1458` is not that line as it stands"
+]
+},
+"yes": null,
+"sha": "453a451025258ecfa2026f7dc5c362aa95e0ce8f627903eb2e5c9c5304367ea8",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v16": {
+"failed": {},
+"yes": null,
+"sha": "4d245516f4708e2269f7b6dea05671b1c858f23a0b8ea46e997748a1184f2260",
+"judge": "sonnet"
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [],
+"harness": [],
+"notes": []
+}
+},
+{
+"tool": "fanout",
+"v": "37",
+"sha8": "4d270ccc",
+"ts": "2026-11-12T04:12:26Z",
+"argv": [
+"render",
+"--batch",
+"verify",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--run-dir",
+".andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan",
+"--marker",
+"no-marker",
+"--respawn",
+"verify-a11y-plan.v1,verify-a11y-plan.v2,verify-a11y-plan.v3,verify-a11y-plan.v5,verify-a11y-plan.v6,verify-a11y-plan.v7,verify-a11y-plan.v9,verify-a11y-plan.v10,verify-a11y-plan.v11,verify-a11y-plan.v13,verify-a11y-plan.v14,verify-a11y-plan.v15",
+"--failed",
+"QUOTE_AT_LINE,CHECK_FORM"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"MOVE .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/verify-a11y-plan.v1.md → .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/.raw-verify-a11y-plan.v1.md",
+"MOVE .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/verify-a11y-plan.v2.md → .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/.raw-verify-a11y-plan.v2.md",
+"MOVE .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/verify-a11y-plan.v3.md → .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/.raw-verify-a11y-plan.v3.md",
+"MOVE .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/verify-a11y-plan.v5.md → .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/.raw-verify-a11y-plan.v5.md",
+"MOVE .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/verify-a11y-plan.v6.md → .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/.raw-verify-a11y-plan.v6.md",
+"MOVE .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/verify-a11y-plan.v7.md → .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/.raw-verify-a11y-plan.v7.md",
+"MOVE .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/verify-a11y-plan.v9.md → .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/.raw-verify-a11y-plan.v9.md",
+"MOVE .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/verify-a11y-plan.v10.md → .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/.raw-verify-a11y-plan.v10.md",
+"MOVE .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/verify-a11y-plan.v11.md → .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/.raw-verify-a11y-plan.v11.md",
+"MOVE .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/verify-a11y-plan.v13.md → .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/.raw-verify-a11y-plan.v13.md",
+"MOVE .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/verify-a11y-plan.v14.md → .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/.raw-verify-a11y-plan.v14.md",
+"MOVE .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/verify-a11y-plan.v15.md → .andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify/.raw-verify-a11y-plan.v15.md",
+"VERDICT: rendered 12 (verify 12) · batch verify-r1 · script ./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-r1.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v1.r1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v2.r1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v3.r1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v5.r1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v6.r1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v7.r1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v9.r1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v10.r1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v11.r1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v13.r1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v14.r1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-a11y-plan.v15.r1.md",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-r1.workflow.js",
+"./.andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-r1.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "37",
+"sha8": "4d270ccc",
+"ts": "2026-11-12T04:13:15Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan/prompts/verify-r1.manifest.json",
+"--before",
+"tree 12540477e98bcd72239e47b6e6ff29392d76dc87 index dfd73fe3d3de8a949899804ab2543a1382c476c5 head edd0cfaea7f089c87a210d326f05d82dcfde1e54",
+"--after",
+"tree 12540477e98bcd72239e47b6e6ff29392d76dc87 index dfd73fe3d3de8a949899804ab2543a1382c476c5 head edd0cfaea7f089c87a210d326f05d82dcfde1e54",
+"--run-dir",
+".andromeda/runs/2026-11-12T03-36-23-rows-a11y-plan",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch verify-r1 · 12 agents · 12 with every named path · trails: none",
+"[PATH_CHECK] PASS · index and head unchanged",
+"verify: 12 agents · 12 pass · rows refused 0",
+"VERDICT: 12 of 12 pass · failed: none"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "verify-r1",
+"agents": {
+"verify-a11y-plan.v1": {
+"failed": {},
+"yes": null,
+"sha": "a8daac8173cabb0114fda882dbc2caadc573260e4180dd715cbd27236aaa42a8",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v2": {
+"failed": {},
+"yes": null,
+"sha": "9916cf0d9a4c6b326d0eff456e88cb5726eb588d51155bb179ee9bf316b43cf2",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v3": {
+"failed": {},
+"yes": null,
+"sha": "ebd837392e22280cbc961d506454cc0bb0d61cedfb2a8a9edb3ef07fefd12f2d",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v5": {
+"failed": {},
+"yes": null,
+"sha": "666ecb4f172ae764061056d587ceb212b7ce98fc929818ca55b11acf835c2c63",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v6": {
+"failed": {},
+"yes": null,
+"sha": "24bec86aba339316ad1ef93a334f8dc51792fe3b3b3ef7c00d572034721e6105",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v7": {
+"failed": {},
+"yes": null,
+"sha": "f7097b33152da813f56776148fc467a112cfd3d1687156ab1a1cd96f86830763",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v9": {
+"failed": {},
+"yes": null,
+"sha": "e8e23833afdf385d050dc323723d411f922a544a6538a8055ba27a4b89a4ce62",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v10": {
+"failed": {},
+"yes": null,
+"sha": "7c97a610d5ddf926c55c910316f92c7f8dc4a5ea3a44dcc90158c4a0b99b67f0",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v11": {
+"failed": {},
+"yes": null,
+"sha": "a10de4557c1233fbd62bfe6439245e66f06a75ce0f9cacb44b4780b03e44b40a",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v13": {
+"failed": {},
+"yes": null,
+"sha": "d6c4438991231c48a5d21157f4bc846caa95d4f8821f176fd2ee7d98d59fabc0",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v14": {
+"failed": {},
+"yes": null,
+"sha": "225fa1d191e08984d3f0bbb12475c89c1340ea04f2ac9b60ad1c833494f1e133",
+"judge": "sonnet"
+},
+"verify-a11y-plan.v15": {
+"failed": {},
+"yes": null,
+"sha": "48bcbc397af85e7ed10b3bcbd013d3e195cb46c146d8075eb3d1c5e49d828b6c",
+"judge": "sonnet"
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [],
+"harness": [],
+"notes": []
+}
+}
+]

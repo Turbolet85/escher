@@ -1,0 +1,1 @@
+contract/agent-run-selections/all · no row · scripts/agent-run.sh:186 · shows: `run all` leaves the file list empty and runs the whole `cargo test -p blitz-tests` (line 204), every reader including the stand ones, not only the readers the other selections leave; there is no `run fixtures` selection. · fct-6bs5asmb@3
