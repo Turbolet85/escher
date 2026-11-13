@@ -1,1 +1,0 @@
-- none — the plans' §Anti-Patterns (Universal) hold no row; the every-turn guards are `.claude/rules/security.md` and `.claude/rules/host-linux.md`, the rest path-scoped in `.claude/rules/`

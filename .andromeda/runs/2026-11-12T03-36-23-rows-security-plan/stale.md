@@ -1,2 +1,0 @@
-absence/monitoring-and-alerts · no row · packages/escher-driver/src/mcp.rs:120 · shows: The tree has info_span instrumentation (escher-driver tool_call and command spans), so span monitoring is not absent. · fct-2j6yni6g@1
-contract/escher-session-output/caller-text · no row · packages/escher-driver/src/json.rs:158 · shows: An accepted answer writes a node's value on stdout, so text a caller typed into an unmasked control is written back in an output line. · fct-uh4dhzjw@2
