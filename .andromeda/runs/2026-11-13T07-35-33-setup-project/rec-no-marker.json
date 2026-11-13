@@ -1,0 +1,81 @@
+[
+{
+"tool": "rec",
+"v": "1.40",
+"sha8": "bd622cd7",
+"ts": "2026-11-13T07:39:35Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+"CLAUDE.md",
+"--file",
+".andromeda/runs/2026-11-13T07-35-33-setup-project/harness/CLAUDE.md",
+"--run-dir",
+".andromeda/runs/2026-11-13T07-35-33-setup-project",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land CLAUDE.md rev 6 · 50 node(s) · 14 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.40",
+"sha8": "bd622cd7",
+"ts": "2026-11-13T07:39:43Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+"CLAUDE.md",
+"--file",
+".andromeda/runs/2026-11-13T07-35-33-setup-project/harness/CLAUDE.md",
+"--run-dir",
+".andromeda/runs/2026-11-13T07-35-33-setup-project"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 6 · 4 new · 35 revised · 10 retired · tx 561"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T07-39-43-2026-11-13T07-35-33-setup-project.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.40",
+"sha8": "bd622cd7",
+"ts": "2026-11-13T07:39:43Z",
+"argv": [
+"ingest",
+"--root",
+".",
+"--bases",
+"--run-dir",
+".andromeda/runs/2026-11-13T07-35-33-setup-project"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · bases: came through its door (U61), its seeds with it"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

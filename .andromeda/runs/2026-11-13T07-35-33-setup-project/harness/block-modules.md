@@ -1,0 +1,21 @@
+- **`blitz-dom`** — the headless DOM (`BaseDocument`): tree, Stylo styling, layout, events, scrolling, hit testing, the accessibility tree, the form controls' models and the document's clock
+- **`blitz-traits`** — shared types and provider traits (net, navigation, shell, events, `NodeId`)
+- **`blitz`** — high-level APIs for rendering HTML, re-exporting the engine crates
+- **`blitz-vibey-script`** — `<script>` execution on the Boa engine with DOM bindings (`ScriptDocument`)
+- **`accesskit_xplat`** — cross-platform AccessKit adapter
+- **`debug_timer`** — utilities for simple, opt-in timings
+- **`dioxus-native-dom`** — headless Dioxus renderer on blitz (`DioxusDocument`): stable element ids, the snapshot, its text, parts and diff, the UI graph and the reached record
+- **`blitz-test-harness`** — headless `Harness` for blitz documents: virtual time, pump, settle, input synthesis, inspection, screenshot, contrast
+- **`escher-telemetry`** — telemetry bootstrap for escher binaries: stderr `tracing` subscriber, service identity, target allowlist and scrub, panic hook
+- **`escher-driver`** — the driver: session, command schema, executor, command line, MCP server, recording, replay and handler coverage
+- **`browser`** — the reference browser app (`blitz` binary)
+- **`browser-persistence`** — the browser's rusqlite history store
+- **`rdme`** — the markdown viewer app
+- **`seven_guis`** — the 7GUIs stand; its `escher-session` binary is the driver's command line and MCP server over six served tasks
+- **`counter`** — a Dioxus counter driving the renderer
+- **`todomvc`** — the TodoMVC app in Dioxus (`todomvc_native`)
+- **`transparent`** — a Dioxus Native app with a transparent window background
+- **`wgpu_texture`** — a custom wgpu-rendered widget inside a Dioxus Native page
+- **`wasm_hello`** — the minimal WASM proof: `BlitzApplication` on `wasm32-unknown-unknown`
+- **`wpt`** — the Web Platform Tests conformance runner (`wpt/runner/`)
+- **`blitz-tests`** — the integration tests, one target per behaviour
