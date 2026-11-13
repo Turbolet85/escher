@@ -816,279 +816,7 @@ pub(crate) fn handle_click(
 ) {
     let double_click_event = event.clone();
 
-    let mut maybe_node_id = Some(target);
-    let matched = 'matched: {
-        while let Some(node_id) = maybe_node_id {
-            let maybe_element = {
-                let node = &mut doc.nodes[node_id];
-                node.data.downcast_element_mut()
-            };
-
-            let Some(el) = maybe_element else {
-                maybe_node_id = doc.nodes[node_id].parent;
-                continue;
-            };
-
-            if el.is_disabled() {
-                break 'matched true;
-            }
-
-            if let SpecialElementData::TextInput(_) = el.special_data {
-                break 'matched true;
-            }
-
-            // A click focuses a range input; its value was set by the pointerdown, so a label's
-            // synthetic click leaves it alone.
-            if el.range_input_data().is_some() {
-                generate_focus_events(
-                    doc,
-                    &mut |doc| {
-                        doc.set_focus_to(node_id);
-                    },
-                    dispatch_event,
-                );
-                break 'matched true;
-            }
-
-            match el.name.local {
-                local_name!("input") if el.attr(local_name!("type")) == Some("checkbox") => {
-                    let mut is_checked = false;
-                    doc.snapshot_node_and(node_id, ElementState::CHECKED, |node| {
-                        if let Some(el) = node.element_data_mut() {
-                            is_checked = BaseDocument::toggle_checkbox(el);
-                        }
-                        node.mark_ancestors_dirty();
-                    });
-                    let value = is_checked.to_string();
-                    dispatch_event(DomEvent::new(
-                        node_id,
-                        DomEventData::Input(BlitzInputEvent {
-                            value: value.clone(),
-                        }),
-                    ));
-                    dispatch_event(DomEvent::new(
-                        node_id,
-                        DomEventData::Change(BlitzInputEvent { value }),
-                    ));
-                    generate_focus_events(
-                        doc,
-                        &mut |doc| {
-                            doc.set_focus_to(node_id);
-                        },
-                        dispatch_event,
-                    );
-                    break 'matched true;
-                }
-                local_name!("input") if el.attr(local_name!("type")) == Some("radio") => {
-                    let was_checked = el.checkbox_input_checked() == Some(true);
-                    if let Some(radio_set) = el.attr(local_name!("name")).map(str::to_string) {
-                        BaseDocument::toggle_radio(doc, radio_set, node_id);
-                    } else if el.checkbox_input_checked().is_some() {
-                        doc.snapshot_node_and(node_id, ElementState::CHECKED, |node| {
-                            if let Some(el) = node.element_data_mut() {
-                                el.set_checkbox_input_checked(true);
-                            }
-                            node.mark_ancestors_dirty();
-                        });
-                    }
-
-                    // TODO: make input event conditional on value actually changing
-                    let value = String::from("true");
-                    dispatch_event(DomEvent::new(
-                        node_id,
-                        DomEventData::Input(BlitzInputEvent {
-                            value: value.clone(),
-                        }),
-                    ));
-                    if !was_checked {
-                        dispatch_event(DomEvent::new(
-                            node_id,
-                            DomEventData::Change(BlitzInputEvent { value }),
-                        ));
-                    }
-
-                    generate_focus_events(
-                        doc,
-                        &mut |doc| {
-                            doc.set_focus_to(node_id);
-                        },
-                        dispatch_event,
-                    );
-
-                    break 'matched true;
-                }
-                // Activating the first <summary> of a <details> element toggles
-                // the details' `open` attribute (expand/collapse).
-                local_name!("summary") => {
-                    if let Some(parent_id) = doc.nodes[node_id].parent {
-                        let parent = &doc.nodes[parent_id];
-                        let is_first_summary = parent
-                            .data
-                            .is_element_with_tag_name(&local_name!("details"))
-                            && parent.children.iter().copied().find(|&child_id| {
-                                doc.nodes[child_id]
-                                    .data
-                                    .is_element_with_tag_name(&local_name!("summary"))
-                            }) == Some(node_id);
-
-                        if is_first_summary {
-                            doc.toggle_details_open(parent_id);
-                            generate_focus_events(
-                                doc,
-                                &mut |doc| {
-                                    doc.set_focus_to(node_id);
-                                },
-                                dispatch_event,
-                            );
-                            break 'matched true;
-                        }
-                    }
-                }
-                // A click focuses a select and starts its typed text afresh, and the text it hit
-                // inside the select is not selected; on a single select it opens the list, or
-                // closes the one that stands.
-                local_name!("select") => {
-                    let single = select::is_single_select(el);
-                    let standing = doc.select_list_for(node_id).is_some();
-                    focus_select(doc, node_id, dispatch_event);
-                    if standing {
-                        doc.close_select_list();
-                    } else if single {
-                        doc.open_select_list(node_id);
-                    }
-                    break 'matched true;
-                }
-                // A `multiple` select's row takes a click, and so does a row of an open list; an
-                // option of a closed select has no box to take one, and the walk goes on to its
-                // select.
-                local_name!("option") => {
-                    if let Some(select) = doc.select_of(node_id).filter(|select| {
-                        doc.get_node(*select)
-                            .is_some_and(|node| node.attr(local_name!("multiple")).is_some())
-                    }) {
-                        click_select_row(doc, select, node_id, event.mods, dispatch_event);
-                        break 'matched true;
-                    }
-                    if let Some(select) = doc.open_select()
-                        && click_lands_on_row(doc, node_id, event)
-                    {
-                        click_list_row(doc, select, node_id, dispatch_event);
-                        break 'matched true;
-                    }
-                }
-                // A header of an open list chooses nothing and leaves it open.
-                local_name!("optgroup") => {
-                    if click_lands_on_row(doc, node_id, event) {
-                        break 'matched true;
-                    }
-                }
-                // Clicking labels triggers click, and possibly input event, of associated input
-                local_name!("label") => {
-                    if let Some(target_node_id) =
-                        doc.label_bound_input_element(node_id).map(|n| n.id)
-                    {
-                        // A label focuses its single select and opens nothing.
-                        if doc
-                            .get_node(target_node_id)
-                            .and_then(|node| node.element_data())
-                            .is_some_and(|el| select::is_single_select(el) && !el.is_disabled())
-                        {
-                            focus_select(doc, target_node_id, dispatch_event);
-                            break 'matched true;
-                        }
-
-                        // Apply default click event action for target node
-                        let target_node = doc.get_node_mut(target_node_id).unwrap();
-                        let syn_event = target_node.synthetic_click_event_data(event.mods);
-                        handle_click(doc, target_node_id, &syn_event, dispatch_event);
-                        break 'matched true;
-                    }
-                }
-                local_name!("a") => {
-                    if let Some(href) = el.attr(local_name!("href")).map(str::to_string) {
-                        if let Some(url) = doc.url.resolve_relative(&href) {
-                            // If the link only differs from the current document URL by its
-                            // fragment (this includes links whose href is just `#fragment`),
-                            // perform in-page fragment navigation (scrolling) instead of a
-                            // full navigation.
-                            if url.fragment().is_some() && doc.url.is_same_document(&url) {
-                                doc.scroll_to_fragment(url.fragment().unwrap_or_default());
-                            } else {
-                                doc.navigation_provider.navigate_to(NavigationOptions::new(
-                                    url,
-                                    None,
-                                    doc.id(),
-                                ));
-                            }
-                        } else {
-                            #[cfg(feature = "tracing")]
-                            tracing::warn!("{href} is not parseable as a url. : {:?}", *doc.url);
-                        }
-                        break 'matched true;
-                    } else {
-                        #[cfg(feature = "tracing")]
-                        tracing::info!("Clicked link without href: {:?}", el.attrs());
-                    }
-                }
-                // A click focuses a button, as a pointerdown does in browsers, and a submit
-                // button submits its form owner.
-                local_name!("input") | local_name!("button")
-                    if el.name.local == local_name!("button")
-                        || matches!(
-                            el.attr(local_name!("type")),
-                            Some("submit" | "reset" | "button")
-                        ) =>
-                {
-                    let submits =
-                        el.is_submit_button() || el.attr(local_name!("type")) == Some("submit");
-                    click_button(doc, node_id, submits, dispatch_event);
-                    break 'matched true;
-                }
-                #[cfg(feature = "file-input")]
-                local_name!("input") if el.attr(local_name!("type")) == Some("file") => {
-                    use crate::qual_name;
-                    //TODO: Handle accept attribute https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/accept by passing an appropriate filter
-                    let multiple = el.attr(local_name!("multiple")).is_some();
-                    let files = doc.shell_provider.open_file_dialog(multiple, None);
-
-                    if let Some(file) = files.first() {
-                        el.attrs
-                            .set(qual_name!("value", html), &file.to_string_lossy());
-                    }
-                    let text_content = match files.len() {
-                        0 => "No Files Selected".to_string(),
-                        1 => files
-                            .first()
-                            .unwrap()
-                            .file_name()
-                            .unwrap_or_default()
-                            .to_string_lossy()
-                            .to_string(),
-                        x => format!("{x} Files Selected"),
-                    };
-
-                    if files.is_empty() {
-                        el.special_data = SpecialElementData::None;
-                    } else {
-                        el.special_data = SpecialElementData::FileInput(files.into())
-                    }
-                    let child_label_id = doc.nodes[node_id].children[1];
-                    let child_text_id = doc.nodes[child_label_id].children[0];
-                    let text_data = doc.nodes[child_text_id]
-                        .text_data_mut()
-                        .expect("Text data not found");
-                    text_data.content = text_content;
-                }
-                _ => {}
-            }
-
-            // No match. Recurse up to parent.
-            maybe_node_id = doc.nodes[node_id].parent;
-        }
-
-        // Didn't match anything
-        false
-    };
+    let matched = click_walk(doc, target, event, dispatch_event);
 
     // If nothing is matched then clear focus
     if !matched {
@@ -1103,6 +831,359 @@ pub(crate) fn handle_click(
             DomEventData::DoubleClick(double_click_event),
         ));
     }
+}
+
+/// The walk of a click from `target` up through its parents, until an element takes it; reads
+/// whether one did. A disabled form control and a text input take it and do nothing more.
+fn click_walk(
+    doc: &mut BaseDocument,
+    target: NodeId,
+    event: &BlitzPointerEvent,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) -> bool {
+    let mut maybe_node_id = Some(target);
+    while let Some(node_id) = maybe_node_id {
+        let Some(el) = doc.nodes[node_id].data.downcast_element() else {
+            maybe_node_id = doc.nodes[node_id].parent;
+            continue;
+        };
+
+        if el.is_disabled() {
+            return true;
+        }
+
+        if let SpecialElementData::TextInput(_) = el.special_data {
+            return true;
+        }
+
+        // A click focuses a range input; its value was set by the pointerdown, so a label's
+        // synthetic click leaves it alone.
+        if el.range_input_data().is_some() {
+            generate_focus_events(
+                doc,
+                &mut |doc| {
+                    doc.set_focus_to(node_id);
+                },
+                dispatch_event,
+            );
+            return true;
+        }
+
+        if click_element(doc, node_id, event, dispatch_event) {
+            return true;
+        }
+
+        // No match. Recurse up to parent.
+        maybe_node_id = doc.nodes[node_id].parent;
+    }
+
+    // Didn't match anything
+    false
+}
+
+/// The default action of a click on the element `node_id`, by its name; reads whether the
+/// element took the click, which ends the walk.
+fn click_element(
+    doc: &mut BaseDocument,
+    node_id: NodeId,
+    event: &BlitzPointerEvent,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) -> bool {
+    let Some(el) = doc.nodes[node_id].element_data() else {
+        return false;
+    };
+    match el.name.local {
+        local_name!("input") if el.attr(local_name!("type")) == Some("checkbox") => {
+            click_checkbox(doc, node_id, dispatch_event)
+        }
+        local_name!("input") if el.attr(local_name!("type")) == Some("radio") => {
+            click_radio(doc, node_id, dispatch_event)
+        }
+        local_name!("summary") => click_summary(doc, node_id, dispatch_event),
+        local_name!("select") => click_select(doc, node_id, dispatch_event),
+        local_name!("option") => click_option(doc, node_id, event, dispatch_event),
+        // A header of an open list chooses nothing and leaves it open.
+        local_name!("optgroup") => click_lands_on_row(doc, node_id, event),
+        local_name!("label") => click_label(doc, node_id, event, dispatch_event),
+        local_name!("a") => click_link(doc, node_id),
+        // A click focuses a button, as a pointerdown does in browsers, and a submit
+        // button submits its form owner.
+        local_name!("input") | local_name!("button")
+            if el.name.local == local_name!("button")
+                || matches!(
+                    el.attr(local_name!("type")),
+                    Some("submit" | "reset" | "button")
+                ) =>
+        {
+            let submits = el.is_submit_button() || el.attr(local_name!("type")) == Some("submit");
+            click_button(doc, node_id, submits, dispatch_event);
+            true
+        }
+        #[cfg(feature = "file-input")]
+        local_name!("input") if el.attr(local_name!("type")) == Some("file") => {
+            click_file_input(doc, node_id);
+            false
+        }
+        _ => false,
+    }
+}
+
+/// A click on a checkbox flips it, fires `input` then `change`, and focuses it.
+fn click_checkbox(
+    doc: &mut BaseDocument,
+    node_id: NodeId,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) -> bool {
+    let mut is_checked = false;
+    doc.snapshot_node_and(node_id, ElementState::CHECKED, |node| {
+        if let Some(el) = node.element_data_mut() {
+            is_checked = BaseDocument::toggle_checkbox(el);
+        }
+        node.mark_ancestors_dirty();
+    });
+    let value = is_checked.to_string();
+    dispatch_event(DomEvent::new(
+        node_id,
+        DomEventData::Input(BlitzInputEvent {
+            value: value.clone(),
+        }),
+    ));
+    dispatch_event(DomEvent::new(
+        node_id,
+        DomEventData::Change(BlitzInputEvent { value }),
+    ));
+    generate_focus_events(
+        doc,
+        &mut |doc| {
+            doc.set_focus_to(node_id);
+        },
+        dispatch_event,
+    );
+    true
+}
+
+/// A click on a radio checks it, fires `input`, and `change` where it was not checked before,
+/// and focuses it.
+fn click_radio(
+    doc: &mut BaseDocument,
+    node_id: NodeId,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) -> bool {
+    let Some(el) = doc.nodes[node_id].element_data() else {
+        return false;
+    };
+    let was_checked = el.checkbox_input_checked() == Some(true);
+    if let Some(radio_set) = el.attr(local_name!("name")).map(str::to_string) {
+        BaseDocument::toggle_radio(doc, radio_set, node_id);
+    } else if el.checkbox_input_checked().is_some() {
+        doc.snapshot_node_and(node_id, ElementState::CHECKED, |node| {
+            if let Some(el) = node.element_data_mut() {
+                el.set_checkbox_input_checked(true);
+            }
+            node.mark_ancestors_dirty();
+        });
+    }
+
+    // TODO: make input event conditional on value actually changing
+    let value = String::from("true");
+    dispatch_event(DomEvent::new(
+        node_id,
+        DomEventData::Input(BlitzInputEvent {
+            value: value.clone(),
+        }),
+    ));
+    if !was_checked {
+        dispatch_event(DomEvent::new(
+            node_id,
+            DomEventData::Change(BlitzInputEvent { value }),
+        ));
+    }
+
+    generate_focus_events(
+        doc,
+        &mut |doc| {
+            doc.set_focus_to(node_id);
+        },
+        dispatch_event,
+    );
+
+    true
+}
+
+/// Activating the first <summary> of a <details> element toggles
+/// the details' `open` attribute (expand/collapse).
+fn click_summary(
+    doc: &mut BaseDocument,
+    node_id: NodeId,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) -> bool {
+    let Some(parent_id) = doc.nodes[node_id].parent else {
+        return false;
+    };
+    let parent = &doc.nodes[parent_id];
+    let is_first_summary = parent
+        .data
+        .is_element_with_tag_name(&local_name!("details"))
+        && parent.children.iter().copied().find(|&child_id| {
+            doc.nodes[child_id]
+                .data
+                .is_element_with_tag_name(&local_name!("summary"))
+        }) == Some(node_id);
+
+    if !is_first_summary {
+        return false;
+    }
+    doc.toggle_details_open(parent_id);
+    generate_focus_events(
+        doc,
+        &mut |doc| {
+            doc.set_focus_to(node_id);
+        },
+        dispatch_event,
+    );
+    true
+}
+
+/// A click focuses a select and starts its typed text afresh, and the text it hit
+/// inside the select is not selected; on a single select it opens the list, or
+/// closes the one that stands.
+fn click_select(
+    doc: &mut BaseDocument,
+    node_id: NodeId,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) -> bool {
+    let single = doc.nodes[node_id]
+        .element_data()
+        .is_some_and(select::is_single_select);
+    let standing = doc.select_list_for(node_id).is_some();
+    focus_select(doc, node_id, dispatch_event);
+    if standing {
+        doc.close_select_list();
+    } else if single {
+        doc.open_select_list(node_id);
+    }
+    true
+}
+
+/// A `multiple` select's row takes a click, and so does a row of an open list; an
+/// option of a closed select has no box to take one, and the walk goes on to its
+/// select.
+fn click_option(
+    doc: &mut BaseDocument,
+    node_id: NodeId,
+    event: &BlitzPointerEvent,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) -> bool {
+    if let Some(select) = doc.select_of(node_id).filter(|select| {
+        doc.get_node(*select)
+            .is_some_and(|node| node.attr(local_name!("multiple")).is_some())
+    }) {
+        click_select_row(doc, select, node_id, event.mods, dispatch_event);
+        return true;
+    }
+    if let Some(select) = doc.open_select()
+        && click_lands_on_row(doc, node_id, event)
+    {
+        click_list_row(doc, select, node_id, dispatch_event);
+        return true;
+    }
+    false
+}
+
+/// Clicking labels triggers click, and possibly input event, of associated input
+fn click_label(
+    doc: &mut BaseDocument,
+    node_id: NodeId,
+    event: &BlitzPointerEvent,
+    dispatch_event: &mut dyn FnMut(DomEvent),
+) -> bool {
+    let Some(target_node_id) = doc.label_bound_input_element(node_id).map(|n| n.id) else {
+        return false;
+    };
+    // A label focuses its single select and opens nothing.
+    if doc
+        .get_node(target_node_id)
+        .and_then(|node| node.element_data())
+        .is_some_and(|el| select::is_single_select(el) && !el.is_disabled())
+    {
+        focus_select(doc, target_node_id, dispatch_event);
+        return true;
+    }
+
+    // Apply default click event action for target node
+    let target_node = doc.get_node_mut(target_node_id).unwrap();
+    let syn_event = target_node.synthetic_click_event_data(event.mods);
+    handle_click(doc, target_node_id, &syn_event, dispatch_event);
+    true
+}
+
+/// A click on a link with an href navigates to it, or scrolls to its fragment in the same
+/// document; one with no href takes no click.
+fn click_link(doc: &mut BaseDocument, node_id: NodeId) -> bool {
+    let Some(el) = doc.nodes[node_id].element_data() else {
+        return false;
+    };
+    let Some(href) = el.attr(local_name!("href")).map(str::to_string) else {
+        #[cfg(feature = "tracing")]
+        tracing::info!("Clicked link without href: {:?}", el.attrs());
+        return false;
+    };
+    if let Some(url) = doc.url.resolve_relative(&href) {
+        // If the link only differs from the current document URL by its
+        // fragment (this includes links whose href is just `#fragment`),
+        // perform in-page fragment navigation (scrolling) instead of a
+        // full navigation.
+        if url.fragment().is_some() && doc.url.is_same_document(&url) {
+            doc.scroll_to_fragment(url.fragment().unwrap_or_default());
+        } else {
+            doc.navigation_provider
+                .navigate_to(NavigationOptions::new(url, None, doc.id()));
+        }
+    } else {
+        #[cfg(feature = "tracing")]
+        tracing::warn!("{href} is not parseable as a url. : {:?}", *doc.url);
+    }
+    true
+}
+
+/// A click on a file input opens the shell's file dialog and shows what was chosen.
+#[cfg(feature = "file-input")]
+fn click_file_input(doc: &mut BaseDocument, node_id: NodeId) {
+    use crate::qual_name;
+    let Some(el) = doc.nodes[node_id].data.downcast_element_mut() else {
+        return;
+    };
+    //TODO: Handle accept attribute https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/accept by passing an appropriate filter
+    let multiple = el.attr(local_name!("multiple")).is_some();
+    let files = doc.shell_provider.open_file_dialog(multiple, None);
+
+    if let Some(file) = files.first() {
+        el.attrs
+            .set(qual_name!("value", html), &file.to_string_lossy());
+    }
+    let text_content = match files.len() {
+        0 => "No Files Selected".to_string(),
+        1 => files
+            .first()
+            .unwrap()
+            .file_name()
+            .unwrap_or_default()
+            .to_string_lossy()
+            .to_string(),
+        x => format!("{x} Files Selected"),
+    };
+
+    if files.is_empty() {
+        el.special_data = SpecialElementData::None;
+    } else {
+        el.special_data = SpecialElementData::FileInput(files.into())
+    }
+    let child_label_id = doc.nodes[node_id].children[1];
+    let child_text_id = doc.nodes[child_label_id].children[0];
+    let text_data = doc.nodes[child_text_id]
+        .text_data_mut()
+        .expect("Text data not found");
+    text_data.content = text_content;
 }
 
 /// Focuses a clicked select and starts its typed text afresh, the document's text selection cleared.

@@ -19,7 +19,7 @@ use dioxus_core::ScopeId;
 
 use crate::DioxusDocument;
 use crate::element_id::{ElementFacts, element_facts};
-use crate::signal_registry::{DeclaredWrite, Registered, SignalRegistry, WriteRecord};
+use crate::signal_registry::{DeclaredWrite, Dispatch, Registered, SignalRegistry, WriteRecord};
 
 /// The UI graph of one screen. Built by [`DioxusDocument::graph`].
 #[derive(Debug, Clone, PartialEq, Default)]
@@ -157,42 +157,7 @@ impl DioxusDocument {
         let components = scope_components(&facts);
 
         let doc = self.inner.borrow();
-        let mut seen_names: FxHashMap<(&'static str, ScopeId), usize> = FxHashMap::default();
-        let states: Vec<StateReading> = registered
-            .into_iter()
-            .map(|registered| {
-                let ordinal = seen_names
-                    .entry((registered.name, registered.scope))
-                    .or_default();
-                let name = match *ordinal {
-                    0 => registered.name.to_string(),
-                    k => format!("{}:{k}", registered.name),
-                };
-                *ordinal += 1;
-                let confirmed = writes
-                    .iter()
-                    .filter(|write| write.state == registered.key)
-                    .filter_map(|write| resolve_write(write, &by_node, &doc))
-                    .collect();
-                StateReading {
-                    name,
-                    component: components
-                        .get(&registered.scope)
-                        .copied()
-                        .flatten()
-                        .map(str::to_string),
-                    registered,
-                    confirmed,
-                }
-            })
-            .collect();
-
-        // A handler has run where a dispatch of its event passed through its element.
-        let ran = |node: NodeId, event: &str| {
-            dispatches
-                .iter()
-                .any(|dispatch| dispatch.event == event && dispatch.chain.contains(&node))
-        };
+        let states = state_readings(registered, &writes, &by_node, &components, &doc);
 
         let mut nodes = Vec::new();
         let mut writers: Vec<Vec<GraphWriter>> = vec![Vec::new(); states.len()];
@@ -206,57 +171,8 @@ impl DioxusDocument {
             let mut handlers = Vec::new();
             let mut reads = Vec::new();
             if let Some(fact) = fact {
-                for &event in &fact.listeners {
-                    let mut handler_writes = Vec::new();
-                    for (index, state) in states.iter().enumerate() {
-                        let declared = state
-                            .registered
-                            .declared
-                            .iter()
-                            .any(|write| write.event == event && write.names(&fact.id));
-                        let confirmed = state.confirmed.contains(&(fact.node, event));
-                        if !declared && !confirmed {
-                            continue;
-                        }
-                        let flag = match (declared, confirmed) {
-                            (false, true) => Some(WriteFlag::Undeclared),
-                            (true, false) if ran(fact.node, event) => Some(WriteFlag::Unconfirmed),
-                            _ => None,
-                        };
-                        handler_writes.push(GraphWrite {
-                            state: state.name.clone(),
-                            declared,
-                            confirmed,
-                            flag,
-                        });
-                        if !confirmed && flag.is_none() {
-                            continue;
-                        }
-                        writers[index].push(GraphWriter {
-                            id: fact.id.clone(),
-                            event: event.to_string(),
-                            declared,
-                            confirmed,
-                            flag,
-                        });
-                    }
-                    handlers.push(GraphHandler {
-                        event: event.to_string(),
-                        writes: handler_writes,
-                    });
-                }
-                if let Some(scope) = fact.scope {
-                    for (index, state) in states.iter().enumerate() {
-                        if reads_state(&state.registered, scope) {
-                            reads.push(state.name.clone());
-                            if let Some(component) = fact.component
-                                && !readers[index].iter().any(|name| name == component)
-                            {
-                                readers[index].push(component.to_string());
-                            }
-                        }
-                    }
-                }
+                handlers = node_handlers(fact, &states, &dispatches, &mut writers);
+                reads = node_reads(fact, &states, &mut readers);
             }
             nodes.push(GraphNode {
                 id: snapshot_node.id.clone(),
@@ -267,20 +183,167 @@ impl DioxusDocument {
             });
         }
 
-        let states = states
-            .into_iter()
-            .zip(writers)
-            .zip(readers)
-            .map(|((state, writers), readers)| GraphState {
-                name: state.name,
-                component: state.component,
-                declared: state.registered.declared.to_vec(),
-                writers,
-                readers,
-            })
-            .collect();
-        UiGraph { nodes, states }
+        UiGraph {
+            nodes,
+            states: graph_states(states, writers, readers),
+        }
     }
+}
+
+/// Each registered state with its graph name — `{name}:{k}` for the `k`-th later registration of
+/// a name its scope already registered — its component, and the writes a run confirmed.
+fn state_readings(
+    registered: Vec<Registered>,
+    writes: &[WriteRecord],
+    by_node: &FxHashMap<NodeId, &ElementFacts>,
+    components: &FxHashMap<ScopeId, Option<&'static str>>,
+    doc: &BaseDocument,
+) -> Vec<StateReading> {
+    let mut seen_names: FxHashMap<(&'static str, ScopeId), usize> = FxHashMap::default();
+    registered
+        .into_iter()
+        .map(|registered| {
+            let ordinal = seen_names
+                .entry((registered.name, registered.scope))
+                .or_default();
+            let name = match *ordinal {
+                0 => registered.name.to_string(),
+                k => format!("{}:{k}", registered.name),
+            };
+            *ordinal += 1;
+            let confirmed = writes
+                .iter()
+                .filter(|write| write.state == registered.key)
+                .filter_map(|write| resolve_write(write, by_node, doc))
+                .collect();
+            StateReading {
+                name,
+                component: components
+                    .get(&registered.scope)
+                    .copied()
+                    .flatten()
+                    .map(str::to_string),
+                registered,
+                confirmed,
+            }
+        })
+        .collect()
+}
+
+/// Whether a handler has run: a dispatch of its event passed through its element.
+fn ran(dispatches: &[Dispatch], node: NodeId, event: &str) -> bool {
+    dispatches
+        .iter()
+        .any(|dispatch| dispatch.event == event && dispatch.chain.contains(&node))
+}
+
+/// The handlers `fact` carries, each with the states it is declared to write or a run confirmed
+/// writing; a write confirmed or flagged is also kept among its state's `writers`.
+fn node_handlers(
+    fact: &ElementFacts,
+    states: &[StateReading],
+    dispatches: &[Dispatch],
+    writers: &mut [Vec<GraphWriter>],
+) -> Vec<GraphHandler> {
+    let mut handlers = Vec::new();
+    for &event in &fact.listeners {
+        let mut handler_writes = Vec::new();
+        for (index, state) in states.iter().enumerate() {
+            let Some(write) = handler_write(fact, event, state, dispatches) else {
+                continue;
+            };
+            if write.confirmed || write.flag.is_some() {
+                writers[index].push(GraphWriter {
+                    id: fact.id.clone(),
+                    event: event.to_string(),
+                    declared: write.declared,
+                    confirmed: write.confirmed,
+                    flag: write.flag,
+                });
+            }
+            handler_writes.push(write);
+        }
+        handlers.push(GraphHandler {
+            event: event.to_string(),
+            writes: handler_writes,
+        });
+    }
+    handlers
+}
+
+/// The write of `state` by `fact`'s handler of `event`: declared, confirmed and flagged; `None`
+/// where it is neither declared nor confirmed.
+fn handler_write(
+    fact: &ElementFacts,
+    event: &'static str,
+    state: &StateReading,
+    dispatches: &[Dispatch],
+) -> Option<GraphWrite> {
+    let declared = state
+        .registered
+        .declared
+        .iter()
+        .any(|write| write.event == event && write.names(&fact.id));
+    let confirmed = state.confirmed.contains(&(fact.node, event));
+    if !declared && !confirmed {
+        return None;
+    }
+    let flag = match (declared, confirmed) {
+        (false, true) => Some(WriteFlag::Undeclared),
+        (true, false) if ran(dispatches, fact.node, event) => Some(WriteFlag::Unconfirmed),
+        _ => None,
+    };
+    Some(GraphWrite {
+        state: state.name.clone(),
+        declared,
+        confirmed,
+        flag,
+    })
+}
+
+/// The states `fact`'s component reads, by their graph names; its component joins each such
+/// state's `readers` once, in the pre-order of its first node.
+fn node_reads(
+    fact: &ElementFacts,
+    states: &[StateReading],
+    readers: &mut [Vec<String>],
+) -> Vec<String> {
+    let mut reads = Vec::new();
+    let Some(scope) = fact.scope else {
+        return reads;
+    };
+    for (index, state) in states.iter().enumerate() {
+        if !reads_state(&state.registered, scope) {
+            continue;
+        }
+        reads.push(state.name.clone());
+        if let Some(component) = fact.component
+            && !readers[index].iter().any(|name| name == component)
+        {
+            readers[index].push(component.to_string());
+        }
+    }
+    reads
+}
+
+/// The graph's states, in registration order, each with its writers and readers.
+fn graph_states(
+    states: Vec<StateReading>,
+    writers: Vec<Vec<GraphWriter>>,
+    readers: Vec<Vec<String>>,
+) -> Vec<GraphState> {
+    states
+        .into_iter()
+        .zip(writers)
+        .zip(readers)
+        .map(|((state, writers), readers)| GraphState {
+            name: state.name,
+            component: state.component,
+            declared: state.registered.declared.to_vec(),
+            writers,
+            readers,
+        })
+        .collect()
 }
 
 /// Each scope the walk met, with its component's name.

@@ -18,7 +18,7 @@ use crate::image;
 use crate::lint::Finding;
 use crate::refusal::{Cause, Refusal};
 use crate::schema::{self, BUSY_CLASSES};
-use crate::session::{SeenIds, Session, settle_waiting};
+use crate::session::{SeenIds, Session, TimeStep, settle_waiting};
 
 /// What a call that ran returns: one variant per result shape of the verb table.
 ///
@@ -202,135 +202,208 @@ impl Session {
         let command = validate(call)?;
         let (harness, seen) = (&mut self.harness, &mut self.seen);
         match command {
-            Command::Snapshot { part } => {
-                let screen = read_screen(harness, seen);
-                let text = screen.to_text();
-                if part.is_none() && text.len() <= SNAPSHOT_TEXT_BUDGET {
-                    return Ok(Outcome::Screen { text });
-                }
-                let mut cut = screen.text_parts(SNAPSHOT_TEXT_BUDGET);
-                let part = part.unwrap_or(1);
-                let parts = u32::try_from(cut.len()).unwrap_or(u32::MAX);
-                let text = part
-                    .checked_sub(1)
-                    .and_then(|index| usize::try_from(index).ok())
-                    .filter(|index| *index < cut.len())
-                    .map(|index| cut.swap_remove(index).text)
-                    .unwrap_or_default();
-                Ok(Outcome::Part { text, part, parts })
-            }
-            Command::Click { ref id } => {
-                let (before, target) = resolve(harness, seen, id)?;
-                let (x, y) = check_target(harness, &command, &target)?.point();
-                Ok(acted(harness, seen, span, before, |harness| {
-                    harness.click_at(x, y)
-                }))
-            }
+            Command::Snapshot { part } => Ok(snapshot(harness, seen, part)),
+            Command::Click { ref id } => click(harness, seen, span, &command, id),
             Command::Type { ref id, ref text } => {
-                let resolved = resolve(harness, seen, id);
-                *masked = resolved
-                    .as_ref()
-                    .ok()
-                    .is_none_or(|(_, target)| target.masked);
-                let (before, target) = resolved?;
-                let (x, y) = check_target(harness, &command, &target)?.point();
-                let holds_value = target.holds_value;
-                let (node, select) = (target.node, target.select);
-                Ok(acted(harness, seen, span, before, |harness| {
-                    if select {
-                        focus_select(harness, node);
-                    } else {
-                        harness.click_at(x, y);
-                    }
-                    if holds_value {
-                        select_all(harness);
-                        if text.is_empty() {
-                            press(harness, Key::Backspace, false);
-                        }
-                    }
-                    // No label starts with a space, and on a select a Space with no text before it
-                    // flips a row or opens the list.
-                    if !(select && text.starts_with(' ')) {
-                        harness.type_text(text);
-                    }
-                }))
+                type_into(harness, seen, span, &command, id, text, masked)
             }
-            Command::Press { key, shift } => {
-                let before = read_screen(harness, seen);
-                Ok(acted(harness, seen, span, before, |harness| {
-                    press(harness, key, shift)
-                }))
-            }
-            Command::Advance { ms } => {
-                let step = &mut self.time;
-                let before = read_screen(harness, seen);
-                let (busy, diff, _) = settled_step(harness, seen, span, before, |harness| {
-                    harness.advance_time(Duration::from_millis(u64::from(ms)));
-                    if let Some(step) = step.as_mut() {
-                        step(harness, ms);
-                    }
-                });
-                Ok(Outcome::Advanced {
-                    settled: busy.is_none(),
-                    busy,
-                    diff,
-                    advanced_ms: ms,
-                })
-            }
-            Command::Scroll { ref id } => {
-                let (before, target) = resolve(harness, seen, id)?;
-                check_target(harness, &command, &target)?;
-                let (busy, diff, after) = settled_step(harness, seen, span, before, |harness| {
-                    harness.scroll_into_view(target.node)
-                });
-                let in_view =
-                    locate(harness, &after, id).is_some_and(|target| in_view(harness, &target));
-                Ok(Outcome::Scrolled {
-                    settled: busy.is_none(),
-                    busy,
-                    diff,
-                    in_view,
-                })
-            }
-            Command::Screenshot { ref id } => {
-                let shot = match id {
-                    None => harness.screenshot(),
-                    Some(id) => {
-                        let (_, target) = resolve(harness, seen, id)?;
-                        match check_target(harness, &command, &target)? {
-                            Cleared::Rect(rect) => harness.screenshot_rect(rect),
-                            Cleared::Point(..) | Cleared::Free => harness.screenshot(),
-                        }
-                    }
-                };
-                let raster = shot.map_err(|error| match error {
-                    ScreenshotError::FontsUnavailable => Refusal::new(Cause::FontsUnavailable),
-                    ScreenshotError::EmptyRect => Refusal::new(Cause::OffScreen),
-                })?;
-                // A raster always fills its own non-empty size, and the encoder writes to
-                // memory, so the empty fallback is never taken.
-                let png = image::png(raster.width, raster.height, &raster.rgba).unwrap_or_default();
-                Ok(Outcome::Shot {
-                    width: raster.width,
-                    height: raster.height,
-                    png,
-                })
-            }
+            Command::Press { key, shift } => Ok(press_key(harness, seen, span, key, shift)),
+            Command::Advance { ms } => Ok(advance(harness, seen, &mut self.time, span, ms)),
+            Command::Scroll { ref id } => scroll(harness, seen, span, &command, id),
+            Command::Screenshot { ref id } => screenshot(harness, seen, &command, id.as_deref()),
             Command::Lint => Ok(Outcome::Linted {
                 findings: self.lint()?,
             }),
-            Command::Graph => {
-                let graph = harness.doc.graph();
-                for node in &graph.nodes {
-                    seen.record(&node.id);
-                }
-                Ok(Outcome::Graphed { graph })
-            }
+            Command::Graph => Ok(graph(harness, seen)),
             Command::Actions => Ok(Outcome::Actions {
                 nodes: self.actions(),
             }),
         }
     }
+}
+
+/// `snapshot`: the screen whole, or the `part` asked of it — part 1 without one — when one is
+/// asked or the screen's text is over the budget.
+fn snapshot(harness: &Harness<DioxusDocument>, seen: &mut SeenIds, part: Option<u32>) -> Outcome {
+    let screen = read_screen(harness, seen);
+    let text = screen.to_text();
+    if part.is_none() && text.len() <= SNAPSHOT_TEXT_BUDGET {
+        return Outcome::Screen { text };
+    }
+    let mut cut = screen.text_parts(SNAPSHOT_TEXT_BUDGET);
+    let part = part.unwrap_or(1);
+    let parts = u32::try_from(cut.len()).unwrap_or(u32::MAX);
+    let text = part
+        .checked_sub(1)
+        .and_then(|index| usize::try_from(index).ok())
+        .filter(|index| *index < cut.len())
+        .map(|index| cut.swap_remove(index).text)
+        .unwrap_or_default();
+    Outcome::Part { text, part, parts }
+}
+
+/// `click`: the centre of the element `id` names, once its check clears it.
+fn click(
+    harness: &mut Harness<DioxusDocument>,
+    seen: &mut SeenIds,
+    span: &Span,
+    command: &Command,
+    id: &str,
+) -> Result<Outcome, Refusal> {
+    let (before, target) = resolve(harness, seen, id)?;
+    let (x, y) = check_target(harness, command, &target)?.point();
+    Ok(acted(harness, seen, span, before, |harness| {
+        harness.click_at(x, y)
+    }))
+}
+
+/// `type`: `text` into the element `id` names, once its check clears it. `masked` is set before
+/// any refusal, from what the id resolves to.
+fn type_into(
+    harness: &mut Harness<DioxusDocument>,
+    seen: &mut SeenIds,
+    span: &Span,
+    command: &Command,
+    id: &str,
+    text: &str,
+    masked: &mut bool,
+) -> Result<Outcome, Refusal> {
+    let resolved = resolve(harness, seen, id);
+    *masked = resolved
+        .as_ref()
+        .ok()
+        .is_none_or(|(_, target)| target.masked);
+    let (before, target) = resolved?;
+    let point = check_target(harness, command, &target)?.point();
+    Ok(acted(harness, seen, span, before, |harness| {
+        type_step(harness, &target, point, text)
+    }))
+}
+
+/// The step of a `type`: the select focused or the point clicked, everything a control holds
+/// selected — and cleared for an empty text — then the text typed.
+fn type_step(
+    harness: &mut Harness<DioxusDocument>,
+    target: &Target,
+    (x, y): (f32, f32),
+    text: &str,
+) {
+    if target.select {
+        focus_select(harness, target.node);
+    } else {
+        harness.click_at(x, y);
+    }
+    if target.holds_value {
+        select_all(harness);
+        if text.is_empty() {
+            press(harness, Key::Backspace, false);
+        }
+    }
+    // No label starts with a space, and on a select a Space with no text before it
+    // flips a row or opens the list.
+    if !(target.select && text.starts_with(' ')) {
+        harness.type_text(text);
+    }
+}
+
+/// `press`: `key` on what holds focus.
+fn press_key(
+    harness: &mut Harness<DioxusDocument>,
+    seen: &mut SeenIds,
+    span: &Span,
+    key: Key,
+    shift: bool,
+) -> Outcome {
+    let before = read_screen(harness, seen);
+    acted(harness, seen, span, before, |harness| {
+        press(harness, key, shift)
+    })
+}
+
+/// `advance`: the held instance's clock moved by `ms`, then the session's time step handed them.
+fn advance(
+    harness: &mut Harness<DioxusDocument>,
+    seen: &mut SeenIds,
+    step: &mut Option<TimeStep>,
+    span: &Span,
+    ms: u32,
+) -> Outcome {
+    let before = read_screen(harness, seen);
+    let (busy, diff, _) = settled_step(harness, seen, span, before, |harness| {
+        harness.advance_time(Duration::from_millis(u64::from(ms)));
+        if let Some(step) = step.as_mut() {
+            step(harness, ms);
+        }
+    });
+    Outcome::Advanced {
+        settled: busy.is_none(),
+        busy,
+        diff,
+        advanced_ms: ms,
+    }
+}
+
+/// `scroll`: the element `id` names brought into view, and whether it then is.
+fn scroll(
+    harness: &mut Harness<DioxusDocument>,
+    seen: &mut SeenIds,
+    span: &Span,
+    command: &Command,
+    id: &str,
+) -> Result<Outcome, Refusal> {
+    let (before, target) = resolve(harness, seen, id)?;
+    check_target(harness, command, &target)?;
+    let (busy, diff, after) = settled_step(harness, seen, span, before, |harness| {
+        harness.scroll_into_view(target.node)
+    });
+    let in_view = locate(harness, &after, id).is_some_and(|target| in_view(harness, &target));
+    Ok(Outcome::Scrolled {
+        settled: busy.is_none(),
+        busy,
+        diff,
+        in_view,
+    })
+}
+
+/// `screenshot`: the whole screen, or the visible part of the element `id` names once its
+/// check clears it, as a PNG.
+fn screenshot(
+    harness: &mut Harness<DioxusDocument>,
+    seen: &mut SeenIds,
+    command: &Command,
+    id: Option<&str>,
+) -> Result<Outcome, Refusal> {
+    let shot = match id {
+        None => harness.screenshot(),
+        Some(id) => {
+            let (_, target) = resolve(harness, seen, id)?;
+            match check_target(harness, command, &target)? {
+                Cleared::Rect(rect) => harness.screenshot_rect(rect),
+                Cleared::Point(..) | Cleared::Free => harness.screenshot(),
+            }
+        }
+    };
+    let raster = shot.map_err(|error| match error {
+        ScreenshotError::FontsUnavailable => Refusal::new(Cause::FontsUnavailable),
+        ScreenshotError::EmptyRect => Refusal::new(Cause::OffScreen),
+    })?;
+    // A raster always fills its own non-empty size, and the encoder writes to
+    // memory, so the empty fallback is never taken.
+    let png = image::png(raster.width, raster.height, &raster.rgba).unwrap_or_default();
+    Ok(Outcome::Shot {
+        width: raster.width,
+        height: raster.height,
+        png,
+    })
+}
+
+/// `graph`: the screen's UI graph, every id it reads recorded.
+fn graph(harness: &Harness<DioxusDocument>, seen: &mut SeenIds) -> Outcome {
+    let graph = harness.doc.graph();
+    for node in &graph.nodes {
+        seen.record(&node.id);
+    }
+    Outcome::Graphed { graph }
 }
 
 /// Records on a call's span what the call returned: the cause of a refusal, or an acting
