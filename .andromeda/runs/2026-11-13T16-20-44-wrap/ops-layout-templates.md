@@ -1,0 +1,2 @@
+@none
+reason: The report adds no user-facing surface or region (D-layout-surface quiet) and leaves every layout-templates row true: the take's changes are engine-internal pub(crate) behaviour, CI pins, an audit ignore and tests, its sweep reads layout-templates' one-mode-exc (3) and left-out (2) hits as no change (fct-uluruybu), the Counter checks' re-record moved only bounds and digests (fct-vk7l4bgv), and no paint_bench argument or backend change is reported (fct-xve6mmf5).

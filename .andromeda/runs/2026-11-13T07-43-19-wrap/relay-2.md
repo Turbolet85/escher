@@ -1,1 +1,0 @@
-Approved as written; item 2 is (b), the new entry right after the corrective one. For item 5: a row operation whose check 7 reads not_master stops on its card and is not applied. Then the commit and the push, and stop.

@@ -1,0 +1,14 @@
+--- a/.andromeda/design-system.md
++++ b/.andromeda/design-system.md
+@@ -13,2 +13,3 @@
+ > NOT YET MEASURED — a project-wide type scale: the examples slice (s01) recorded the project's own type scale as out of slice, and the WPT runner slice (s13) recorded typography as out of slice.
++decision/font-element-face-and-size · Font element face and size as presentational hints — The font element's face sets the font family when it is a valid family list, and its size maps to a font-size keyword; a size without digits or a face that is not a valid family list is ignored. · why: Taken from upstream, ratified as upstream's behaviour. · guard: font_element_attributes
+ decision/lang-attribute-sets-text-locale · lang attribute sets the text locale — The `lang` attribute decides the locale text is shaped and broken with. · why: pinned by the lang_attribute tests, among them the_language_is_inherited_from_the_root; text layout reads the inherited -x-lang as its locale
+@@ -19,2 +20,3 @@
+ decision/tests-built-with-system-fonts · Tests built with system fonts — The blitz-tests crate builds `blitz-dom` with the `system-fonts` feature, which is also enabled by default when testing the whole workspace. · why: Without system fonts text measures 0x0 and font-dependent assertions pass vacuously.
++decision/unavailable-families-use-default-font · Unavailable font families fall back to the default font — When none of an element's listed font families is available, its text lays out in the engine's default font, and font-relative units measure against that font. · why: Taken from upstream, ratified as upstream's behaviour. · guard: font_family_fallback
+ decision/wasm-bundled-font-context · Bundled font context on WASM — On WASM a font context with bundled fonts must be provided, a single-font context for one font.
+@@ -29,2 +31,3 @@
+ decision/select-list-placed-in-viewport · Open select list placed inside the viewport — An open select list is placed inside the viewport, at least its select's width and at most the viewport's, every edge finite. · why: pinned by every_edge_of_a_placed_list_is_finite and hostile_markup_keeps_every_box_finite_and_panics_nowhere
++decision/table-cell-spacing-presentational-hints · Table cellspacing, cellpadding and valign hints — A table's cellspacing and cellpadding attributes and a cell's valign attribute act as presentational hints, and a change of a table's cellpadding restyles the table's descendants. · why: Taken from upstream, ratified as upstream's behaviour.
+ ## design-system · depth-strategy

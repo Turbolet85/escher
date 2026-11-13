@@ -1,1 +1,0 @@
-yes. Q1 stands as the operator's technical answer: cherry-picks onto the pins is the shape of the last three syncs; a whole merge is what would go to the founder. The three Beyond-the-plan rows are approved. Leave the trial worktrees and their build dirs standing and name them in the handoff. Then stop: implement starts in a fresh window.

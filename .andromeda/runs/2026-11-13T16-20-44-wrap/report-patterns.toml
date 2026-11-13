@@ -1,0 +1,151 @@
+[[pattern]]
+id = 'owner-title'
+fixed = 'Upstream sync ahead of determinism and exploration'
+ignore_case = true
+
+[[pattern]]
+id = 'owner-generic'
+regex = 'owned by a (route entry|CARRY)'
+ignore_case = true
+
+[[pattern]]
+id = 'sync-read'
+regex = 'e42ee1f25|563d3db73|upstream-sync-merge-base|merge base'
+
+[[pattern]]
+id = 'pick-shape'
+regex = 'upstream-taken-by-cherry-pick|cherry-pick|upstream-sync-dependency-set'
+
+[[pattern]]
+id = 'clippy-1100'
+regex = 'needless_bool|rustc 1\.100|clippy 1\.100|fmt-and-clippy-gates'
+
+[[pattern]]
+id = 'audit-ignores'
+regex = 'RUSTSEC-2026-0\d{3}|dependency-audit-cargo-deny|advisory-ignores-by-id|ignored by ID'
+
+[[pattern]]
+id = 'sqlite'
+regex = 'rusqlite|libsqlite3|browser-persistence'
+
+[[pattern]]
+id = 'action-pins'
+regex = 'pinned to (a )?(40-hex |commit )?SHA|actions-pinned-to-commit-sha|pinned-actions|ci-actions-pinned-to-sha|40-hex'
+ignore_case = true
+
+[[pattern]]
+id = 'upstream-wf'
+regex = 'wpt\.yml|publish-browser|wpt-post-results|upstream-only'
+
+[[pattern]]
+id = 'ci-scripts-n'
+regex = '\b(110|112) (tests|cases)|test_ci_workflows|ci-scripts'
+
+[[pattern]]
+id = 'run-all-n'
+regex = '768|785 passed|run all'
+
+[[pattern]]
+id = 'tally-linux'
+regex = '1371|1394'
+
+[[pattern]]
+id = 'tally-windows'
+regex = '1307|1331'
+
+[[pattern]]
+id = 'tally-macos'
+regex = '1368|1391'
+
+[[pattern]]
+id = 'tally-a11y'
+regex = '114 passed|115 passed|114 tests|a11y leg'
+
+[[pattern]]
+id = 'stand-repeat-n'
+regex = '1248|stand-repeat'
+
+[[pattern]]
+id = 'counter-checks'
+regex = 'counter-cli\.json|counter-mcp\.json|committed-stand-checks|record_checks'
+
+[[pattern]]
+id = 'targets'
+regex = 'blitz-tests-target-per-file|one-test-target-per-file|test = false|all\.rs'
+
+[[pattern]]
+id = 'one-mode-exc'
+regex = 'pseudo_element_flow_classification|stand-checks-in-both-layout-modes|both layout modes'
+
+[[pattern]]
+id = 'changed-set'
+regex = 'changed-set-write-sites|select-list-changed-set|take_changed_nodes'
+
+[[pattern]]
+id = 'w-lossy'
+regex = 'lossy|non-UTF-8|UTF-8'
+
+[[pattern]]
+id = 'w-css-bytes'
+regex = '@charset|\bBOM\b|decoded from bytes|stylesheets decoded'
+
+[[pattern]]
+id = 'w-font-elem'
+regex = 'font element|`font` element|<font>'
+
+[[pattern]]
+id = 'w-valign'
+regex = 'valign'
+
+[[pattern]]
+id = 'w-cellspacing'
+regex = 'cellspacing|cellpadding'
+
+[[pattern]]
+id = 'w-empty-alt'
+regex = 'empty alt|alt=""|decorative'
+
+[[pattern]]
+id = 'w-font-fallback'
+regex = 'default-font fallback|default font|font-family-fallback|font fallback'
+ignore_case = true
+
+[[pattern]]
+id = 'w-ratified'
+regex = 'upstream-behaviour-changes-ratified-per-take|ratified as upstream|Boundary widening by upstream merge'
+
+[[pattern]]
+id = 'resolve-url'
+regex = 'resolve_url|resolve_relative'
+
+[[pattern]]
+id = 'hit-arm'
+regex = 'hit_inner|clips_to_padding_box|content-box offset'
+
+[[pattern]]
+id = 'frame-tests'
+regex = 'convert_blend_mode|paints_own_box|mix-blend-mode|isolation|blend_mode_frame|inline_box_decorations_frame'
+
+[[pattern]]
+id = 'toolchain'
+regex = 'rustup|rust-toolchain|toolchain 1\.|stable 1\.9'
+
+[[pattern]]
+id = 'cdp'
+regex = 'BLITZ_CDP_PORT|CDP|DevTools|blitz-vibey-cdp-server'
+
+[[pattern]]
+id = 'wpt-pin'
+regex = 'WPT_COMMIT|WPT pin'
+
+[[pattern]]
+id = 'sink'
+regex = 'sink-target-allowlist|@font-face'
+
+[[pattern]]
+id = 'checkbox-state'
+regex = 'checkbox_input_checked|CheckboxInput'
+
+[[pattern]]
+id = 'left-out'
+regex = 'left out|left-out'

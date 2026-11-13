@@ -1,1 +1,0 @@
-The pause is lifted for this chunk. The handoff's two setup questions are settled by the re-run 19596fd4b (ten warnings, the six crates back in the module map). upstream/main was fetched just now and stands at 563d3db73. A boundary widening that arrives by the merge is listed for the operator at P4, never settled silently.

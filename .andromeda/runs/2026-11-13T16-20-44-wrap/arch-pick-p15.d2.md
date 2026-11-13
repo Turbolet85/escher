@@ -1,0 +1,93 @@
+@pick n=1 row=contract/escher-session-command-line/coverage v=no
+@pick n=2 row=decision/no-screenshot-in-cross-os-byte-check v=no
+@pick n=3 row=decision/keyboard-compat-coverage-exclusion v=no
+@pick n=4 row=decision/driver-unit-tests-in-path-children v=no
+@pick n=5 row=decision/dioxus-bridge-buffered-render v=no
+@pick n=6 row=decision/unpublished-crates v=no
+@pick n=7 row=decision/stand-repeat-zero-failure v=no
+@pick n=8 row=decision/rustdoc-warnings-denied v=no
+@pick n=9 row=decision/published-crates-versioned-together v=no
+@pick n=10 row=decision/internal-crates-unpublished v=no
+@pick n=11 row=decision/fmt-and-clippy-gates v=yes mode=stale
+@pick n=12 row=decision/engine-tracing-gated-per-call-site v=no
+@pick n=13 row=decision/embedder-services-default-noop v=no
+@pick n=14 row=decision/driver-session-unix-socket v=no
+@pick n=15 row=decision/coverage-floors v=no
+@pick n=16 row=decision/ci-quality-gates v=no
+@pick n=17 row=decision/cargo-deny-audit v=yes mode=stale
+@pick n=18 row=decision/browser-publish-upstream-only v=yes mode=stale
+@pick n=19 row=contract/root-readme/mcp-tool-count v=no
+@pick n=20 row=contract/capability-statement/sections v=no
+@pick n=21 row=decision/validation-sources v=no
+@pick n=22 row=decision/upstream-taken-by-cherry-pick v=no
+@pick n=23 row=decision/upstream-sync-merge-base v=no
+@pick n=24 row=decision/separately-usable-crates v=no
+@pick n=25 row=decision/readme-is-escher-page v=no
+@pick n=26 row=decision/readme-is-escher-own v=no
+@pick n=27 row=decision/lockstep-versioning v=no
+@pick n=28 row=decision/escher-name-spelling v=no
+@pick n=29 row=decision/escher-capitalised-in-prose v=no
+@pick n=30 row=decision/document-trait-drives-wrappers v=no
+@pick n=31 row=decision/deferred-upstream-dependency-bumps v=no
+@pick n=32 row=decision/capability-statement v=no
+@pick n=33 row=contract/telemetry-line/service-version v=no
+@pick n=34 row=contract/telemetry-line/service-name v=no
+@pick n=35 row=decision/wpt-runner-logging v=no
+@pick n=36 row=decision/wpt-failures-bucketed-by-feature v=no
+@pick n=37 row=decision/wasm-font-setup v=no
+@pick n=38 row=decision/upstream-fmt-subscriber v=no
+@pick n=39 row=decision/typed-results v=no
+@pick n=40 row=decision/telemetry-target-prefix-drop v=no
+@pick n=41 row=decision/telemetry-scrubbing v=no
+@pick n=42 row=decision/telemetry-closed-span-lines v=no
+@pick n=43 row=decision/targeted-restyle-on-mutation v=yes mode=contradict
+@pick n=44 row=decision/sub-document-event-forwarding v=no
+@pick n=45 row=decision/signal-write-recorded-against-dispatch v=no
+@pick n=46 row=decision/signal-watcher-no-resubscribe v=no
+@pick n=47 row=decision/shortcut-modifier v=no
+@pick n=48 row=decision/shell-and-navigation-providers v=no
+@pick n=49 row=decision/shared-state-rc-refcell v=no
+@pick n=50 row=decision/select-list-changed-set v=no
+@pick n=51 row=decision/runtime-inputs v=no
+@pick n=52 row=decision/resolve-before-js-reads v=yes mode=stale
+@pick n=53 row=decision/resolve-before-js-geometry v=yes mode=stale
+@pick n=54 row=decision/removed-node-interaction-state v=no
+@pick n=55 row=decision/redraw-skip v=yes mode=stale
+@pick n=56 row=decision/redraw-requests v=no
+@pick n=57 row=decision/reached-recorded-before-handlers v=no
+@pick n=58 row=decision/platform-tree-rebuild v=no
+@pick n=59 row=decision/platform-gating v=no
+@pick n=60 row=decision/platform-action-modifier v=no
+@pick n=61 row=decision/optional-capabilities-cargo-features v=no
+@pick n=62 row=decision/opt-in-time-logging v=no
+@pick n=63 row=decision/node-send-sync-by-unsafe-impl v=yes mode=stale
+@pick n=64 row=decision/mounted-after-build-and-poll v=no
+@pick n=65 row=decision/legacy-attributes-as-pres-hints v=yes mode=stale
+@pick n=66 row=decision/js-microtasks-drained v=no
+@pick n=67 row=decision/js-microtask-drain v=no
+@pick n=68 row=decision/interaction-state-cleared-on-removal v=no
+@pick n=69 row=decision/ime-enabled-at-editor-construction v=no
+@pick n=70 row=decision/handlers-before-default-action v=no
+@pick n=71 row=decision/geometry-memo-generation v=no
+@pick n=72 row=decision/forwarded-event-coordinates v=no
+@pick n=73 row=decision/first-graph-state-hook-provides-registry v=no
+@pick n=74 row=decision/failed-stylesheet-stops-blocking v=yes mode=stale
+@pick n=75 row=decision/escher-telemetry-sink v=no
+@pick n=76 row=decision/escher-driver-spans-ungated v=no
+@pick n=77 row=decision/dom-mutation-reconstructs-box v=yes mode=stale
+@pick n=78 row=decision/document-config v=no
+@pick n=79 row=decision/dirty-descendant-invariants v=yes mode=stale
+@pick n=80 row=decision/dioxus-skips-unhandled-event-kinds v=no
+@pick n=81 row=decision/dioxus-root-contexts v=no
+@pick n=82 row=decision/device-read-flushes-pending v=yes mode=stale
+@pick n=83 row=decision/default-action-event-order v=no
+@pick n=84 row=decision/damage-propagation v=yes mode=stale
+@pick n=85 row=decision/color-scheme-follows-window-theme v=yes mode=stale
+@pick n=86 row=decision/color-scheme-change-recascades v=yes mode=stale
+@pick n=87 row=decision/changed-set-write-sites v=yes mode=stale
+@pick n=88 row=decision/changed-set-engine-touched v=no
+@pick n=89 row=decision/anonymous-blocks-in-layout-children-only v=yes mode=stale
+@pick n=90 row=decision/animations-advance-by-resolve v=no
+@pick n=91 row=decision/agent-driven-development v=no
+@pick n=92 row=decision/accessibility-feature-gating v=no
+@pick n=93 row=decision/a11y-rebuild-on-nonempty-changed-set v=no

@@ -20,14 +20,14 @@ Pushes anyrender drawing commands for an already-resolved `BaseDocument` into an
 
 ## Crate-specific gotchas
 - `LAYER_LIMIT = 1024`; non-finite transformed boxes are culled; `render_element`'s border box and culling stand on the scaled size, `location` and `box_position` kept for the transform (an upstream engine change for every document, upstream #1342); gradients needing >500 tiles are skipped (FIXME).
-- Painting an inline root without inline layout data panics. `render_element` skips the own shadow, background and border of a box whose `Node::is_inline_with_only_block_children` reads true, through `paints_own_box`, with no frame test.
+- Painting an inline root without inline layout data panics. `render_element` skips the own shadow, background and border of a box whose `Node::is_inline_with_only_block_children` reads true, through `paints_own_box`, read on a frame by `inline_box_decorations_frame` in both layout modes.
 - Custom widgets are pre-painted into Scenes keyed by document and node id.
 
 ## Entry points for modification
 - `src/lib.rs` (`paint_scene`), `src/render.rs`, `src/render/*.rs`, `src/color.rs` (contrast helper), `src/text.rs` (`stroke_text` delegates to the `pub(crate)` `stroke_text_as`, which takes `RunPaint { color, synthesize_bold }`, every other caller passing `RunPaint::default()`; a synthesized bold, a list group's header, adds one embolden weight to a build's own), `src/layers.rs`, `src/blend.rs` (`convert_blend_mode`)
 
 ## Testing this crate
-- **Unit:** `cargo test -p blitz-paint` (gradient.rs, css_box.rs, layers.rs); the blend has no frame witness: no fork or upstream test paints a blended element to a frame or names `convert_blend_mode`, and its unit tests are the 3 of `layers.rs` (owner: a `CARRY:` on Upstream sync ahead of determinism and exploration)
+- **Unit:** `cargo test -p blitz-paint` (gradient.rs, css_box.rs, layers.rs); the blend's frame witness is `blend_mode_frame` (a multiply blend, a normal blend and an isolated group read on a frame in both layout modes), beside the 3 unit tests of `layers.rs`
 - **Pixel tests:** `tests/blitz-tests/tests/{paint_order,background_size,outset_box_shadow_shape,scrollbars}.rs` render to a CPU buffer (`anyrender_vello_cpu`); `tests/blitz-tests/tests/select_popup_painted.rs`, 6 tests in both layout modes, holds an open list's painted frames — the highlight and a disabled row against their constants, the plain pair, opacity and clips, a closed select's frame byte-equal, a group's header darker than a row by weight and a thumb that takes no hit
 - **Headless screenshots:** `examples/screenshot.rs` renders through `VelloCpuImageRenderer`, and since 2026-10-12-headless-screenshot so does blitz-test-harness's `Harness::screenshot` / `screenshot_rect` (`anyrender_vello_cpu` with no `multithreading`), which composites the frame over opaque white after paint where the example fills before `paint_scene`
 

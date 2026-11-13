@@ -43,7 +43,7 @@ _Documented architectural traps from the architecture master `doc:architecture` 
 **References:** arch [Unsupported features]
 
 ## Panic paths on embedder input
-**What breaks:** `resolve_url` panics on an unresolvable URL; `set_base_url` unwraps `Url::parse`; parse drivers unwrap `read_from`; shell/event-loop setup unwraps.
+**What breaks:** an unresolvable href or relative URL is skipped, never a panic (the document's URL resolution yields nothing and every caller skips it); `set_base_url` unwraps `Url::parse`; parse drivers unwrap `read_from`; shell/event-loop setup unwraps.
 **How to avoid:** a driver validates URLs and inputs before handing them to these APIs; a refusal is a typed result, never a panic.
 **References:** security-plan §Error Handling (Panic paths)
 

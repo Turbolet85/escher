@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-13 — A CI job cancelled for runner capacity reads red until re-run
+A GitHub-hosted job the runner pool never picks up ends `cancelled` with «The job was not acquired by Runner of type hosted» and no step run; the CI reader counts it red, the same as a failure. It is no verdict on the tree: re-run that job, and read the verdict again — the reader takes the run's latest attempt. A red read whose one non-green job ran no step is this case first.
+
+---
+
 ## 2026-11-04 — `rec.py runs --file {name} --show` prints every run's file of that name
 `rec.py runs --root . --file 'p5-card-{k}.md' --show` matches by file name across every run, sealed runs included, so a chunk's own phase card comes back beside every earlier phase's card of the same name — at escher's 2026-11-04 wrap, 246 KB of output for one card. A chunk's own card is read in its open phase run dir (`.andromeda/runs/{…}-phase/`), or, once that run is sealed, the call is narrowed to that run by `--kind '{its run name}'` (a glob over a run's name) beside `--file … --show`.
 

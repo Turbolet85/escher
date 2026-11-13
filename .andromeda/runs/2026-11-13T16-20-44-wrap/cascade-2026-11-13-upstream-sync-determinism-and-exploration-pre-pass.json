@@ -1,0 +1,466 @@
+[
+{
+"tool": "cascade",
+"v": "1.31",
+"sha8": "e61a6790",
+"ts": "2026-11-13T16:21:53Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-13T16-20-44-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-13T16-20-44-wrap",
+"--marker",
+"2026-11-13-upstream-sync-determinism-and-exploration"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline eda00d15 (pre-pass — HEAD)",
+"owner-title · control UNFIRED over the seven masters (bodies and sets) at eda00d15",
+"owner-generic · control UNFIRED over the seven masters (bodies and sets) at eda00d15",
+"tally-linux · control UNFIRED over the seven masters (bodies and sets) at eda00d15",
+"tally-windows · control UNFIRED over the seven masters (bodies and sets) at eda00d15",
+"tally-macos · control UNFIRED over the seven masters (bodies and sets) at eda00d15",
+"w-css-bytes · control UNFIRED over the seven masters (bodies and sets) at eda00d15",
+"w-font-elem · control UNFIRED over the seven masters (bodies and sets) at eda00d15",
+"w-valign · control UNFIRED over the seven masters (bodies and sets) at eda00d15",
+"w-cellspacing · control UNFIRED over the seven masters (bodies and sets) at eda00d15",
+"w-empty-alt · control UNFIRED over the seven masters (bodies and sets) at eda00d15",
+"w-font-fallback · control UNFIRED over the seven masters (bodies and sets) at eda00d15",
+"resolve-url · control UNFIRED over the seven masters (bodies and sets) at eda00d15",
+"cdp · control UNFIRED over the seven masters (bodies and sets) at eda00d15",
+"checkbox-state · control UNFIRED over the seven masters (bodies and sets) at eda00d15"
+],
+"stderr": "control: owner-title, owner-generic, tally-linux, tally-windows, tally-macos, w-css-bytes, w-font-elem, w-valign, w-cellspacing, w-empty-alt, w-font-fallback, resolve-url, cdp, checkbox-state never fired over the seven masters' pre-pass text, bodies and sets (eda00d15) — no master holds them: re-fire with --pattern sync-read --pattern pick-shape --pattern clippy-1100 --pattern audit-ignores --pattern sqlite --pattern action-pins --pattern upstream-wf --pattern ci-scripts-n --pattern run-all-n --pattern tally-a11y --pattern stand-repeat-n --pattern counter-checks --pattern targets --pattern one-mode-exc --pattern changed-set --pattern w-lossy --pattern w-ratified --pattern hit-arm --pattern frame-tests --pattern toolchain --pattern wpt-pin --pattern sink --pattern left-out; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.31",
+"sha8": "e61a6790",
+"ts": "2026-11-13T16:22:09Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-13T16-20-44-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-13T16-20-44-wrap",
+"--marker",
+"2026-11-13-upstream-sync-determinism-and-exploration",
+"--pattern",
+"sync-read",
+"--pattern",
+"pick-shape",
+"--pattern",
+"clippy-1100",
+"--pattern",
+"audit-ignores",
+"--pattern",
+"sqlite",
+"--pattern",
+"action-pins",
+"--pattern",
+"upstream-wf",
+"--pattern",
+"ci-scripts-n",
+"--pattern",
+"run-all-n",
+"--pattern",
+"tally-a11y",
+"--pattern",
+"stand-repeat-n",
+"--pattern",
+"counter-checks",
+"--pattern",
+"targets",
+"--pattern",
+"one-mode-exc",
+"--pattern",
+"changed-set",
+"--pattern",
+"w-lossy",
+"--pattern",
+"w-ratified",
+"--pattern",
+"hit-arm",
+"--pattern",
+"frame-tests",
+"--pattern",
+"toolchain",
+"--pattern",
+"wpt-pin",
+"--pattern",
+"sink",
+"--pattern",
+"left-out"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline eda00d15 (pre-pass — HEAD)",
+"architecture · 70 rows over 1 files · new 0 · standing 70 · 21 patterns",
+"security-plan · 19 rows over 1 files · new 0 · standing 19 · 11 patterns",
+"design-system · 2 rows over 1 files · new 0 · standing 2 · 1 pattern",
+"layout-templates · 5 rows over 1 files · new 0 · standing 5 · 2 patterns",
+"test-plan · 40 rows over 1 files · new 0 · standing 40 · 11 patterns",
+"obs-plan · 5 rows over 1 files · new 0 · standing 5 · 3 patterns",
+"a11y-plan · 10 rows over 1 files · new 0 · standing 10 · 4 patterns",
+"by line · 0 lines · 0 offsets",
+"total (23 patterns) · 337 rows over 32 files",
+"per class · new 0/0 · standing 151/7 · leaf 180/22 · curation 5/2 · base 1/1",
+"rows 1/1 · .andromeda/runs/2026-11-13T16-20-44-wrap/sweep-pre-pass-1.1.txt · 408 lines · 48348 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-13T16-20-44-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "eda00d157ed12613eb0500879a569cab64d648ef",
+"how": "pre-pass — HEAD",
+"counts": {
+"sync-read": {
+"new": 0,
+"standing": 2,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"pick-shape": {
+"new": 0,
+"standing": 3,
+"leaf": 1,
+"curation": 1,
+"base": 0
+},
+"clippy-1100": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"audit-ignores": {
+"new": 0,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"sqlite": {
+"new": 0,
+"standing": 4,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"action-pins": {
+"new": 0,
+"standing": 5,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"upstream-wf": {
+"new": 0,
+"standing": 13,
+"leaf": 4,
+"curation": 0,
+"base": 0
+},
+"ci-scripts-n": {
+"new": 0,
+"standing": 21,
+"leaf": 12,
+"curation": 1,
+"base": 0
+},
+"run-all-n": {
+"new": 0,
+"standing": 2,
+"leaf": 7,
+"curation": 0,
+"base": 0
+},
+"tally-a11y": {
+"new": 0,
+"standing": 5,
+"leaf": 17,
+"curation": 0,
+"base": 0
+},
+"stand-repeat-n": {
+"new": 0,
+"standing": 16,
+"leaf": 26,
+"curation": 1,
+"base": 0
+},
+"counter-checks": {
+"new": 0,
+"standing": 1,
+"leaf": 12,
+"curation": 0,
+"base": 0
+},
+"targets": {
+"new": 0,
+"standing": 5,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"one-mode-exc": {
+"new": 0,
+"standing": 18,
+"leaf": 39,
+"curation": 1,
+"base": 0
+},
+"changed-set": {
+"new": 0,
+"standing": 4,
+"leaf": 7,
+"curation": 0,
+"base": 0
+},
+"w-lossy": {
+"new": 0,
+"standing": 3,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"w-ratified": {
+"new": 0,
+"standing": 3,
+"leaf": 4,
+"curation": 0,
+"base": 1
+},
+"hit-arm": {
+"new": 0,
+"standing": 1,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"frame-tests": {
+"new": 0,
+"standing": 9,
+"leaf": 14,
+"curation": 0,
+"base": 0
+},
+"toolchain": {
+"new": 0,
+"standing": 1,
+"leaf": 6,
+"curation": 1,
+"base": 0
+},
+"wpt-pin": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"sink": {
+"new": 0,
+"standing": 4,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"left-out": {
+"new": 0,
+"standing": 27,
+"leaf": 13,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 70,
+"files": 1,
+"new": 0,
+"standing": 70,
+"patterns": 21
+},
+"security-plan": {
+"rows": 19,
+"files": 1,
+"new": 0,
+"standing": 19,
+"patterns": 11
+},
+"design-system": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 1
+},
+"layout-templates": {
+"rows": 5,
+"files": 1,
+"new": 0,
+"standing": 5,
+"patterns": 2
+},
+"test-plan": {
+"rows": 40,
+"files": 1,
+"new": 0,
+"standing": 40,
+"patterns": 11
+},
+"obs-plan": {
+"rows": 5,
+"files": 1,
+"new": 0,
+"standing": 5,
+"patterns": 3
+},
+"a11y-plan": {
+"rows": 10,
+"files": 1,
+"new": 0,
+"standing": 10,
+"patterns": 4
+}
+},
+"per_master": {
+"sync-read": {
+"architecture": 2
+},
+"pick-shape": {
+"architecture": 2,
+"security-plan": 1
+},
+"clippy-1100": {
+"architecture": 1
+},
+"audit-ignores": {
+"security-plan": 2
+},
+"sqlite": {
+"architecture": 4
+},
+"action-pins": {
+"architecture": 2,
+"security-plan": 1,
+"test-plan": 2
+},
+"upstream-wf": {
+"architecture": 6,
+"security-plan": 3,
+"test-plan": 2,
+"obs-plan": 2
+},
+"ci-scripts-n": {
+"architecture": 10,
+"security-plan": 2,
+"test-plan": 9
+},
+"run-all-n": {
+"architecture": 1,
+"test-plan": 1
+},
+"tally-a11y": {
+"architecture": 2,
+"test-plan": 1,
+"a11y-plan": 2
+},
+"stand-repeat-n": {
+"architecture": 7,
+"security-plan": 1,
+"test-plan": 6,
+"a11y-plan": 2
+},
+"counter-checks": {
+"architecture": 1
+},
+"targets": {
+"architecture": 2,
+"test-plan": 3
+},
+"one-mode-exc": {
+"architecture": 2,
+"layout-templates": 3,
+"test-plan": 8,
+"a11y-plan": 5
+},
+"changed-set": {
+"architecture": 4
+},
+"w-lossy": {
+"architecture": 1,
+"security-plan": 2
+},
+"w-ratified": {
+"architecture": 2,
+"security-plan": 1
+},
+"hit-arm": {
+"architecture": 1
+},
+"frame-tests": {
+"architecture": 4,
+"security-plan": 1,
+"test-plan": 3,
+"a11y-plan": 1
+},
+"toolchain": {
+"architecture": 1
+},
+"wpt-pin": {
+"test-plan": 1
+},
+"sink": {
+"architecture": 1,
+"security-plan": 2,
+"obs-plan": 1
+},
+"left-out": {
+"architecture": 14,
+"security-plan": 3,
+"design-system": 2,
+"layout-templates": 2,
+"test-plan": 4,
+"obs-plan": 2
+}
+},
+"forms": {
+"action-pins": [
+{
+"form": "forty",
+"from": "40"
+}
+],
+"w-lossy": [
+{
+"form": "non-UTF-eight",
+"from": "8"
+},
+{
+"form": "UTF-eight",
+"from": "8"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

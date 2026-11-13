@@ -1,0 +1,96 @@
+@pick n=1 row=contract/layout/taffy-traits v=yes mode=stale
+@pick n=2 row=contract/layout/stylo-taffy-exports v=no
+@pick n=3 row=contract/launch/dioxus-native-configs v=yes mode=stale
+@pick n=4 row=contract/key-names/tab v=no
+@pick n=5 row=contract/key-names/space v=no
+@pick n=6 row=contract/key-names/home v=no
+@pick n=7 row=contract/key-names/escape v=no
+@pick n=8 row=contract/key-names/enter v=no
+@pick n=9 row=contract/key-names/end v=no
+@pick n=10 row=contract/key-names/delete v=no
+@pick n=11 row=contract/key-names/backspace v=no
+@pick n=12 row=contract/key-names/arrow-up v=no
+@pick n=13 row=contract/key-names/arrow-right v=no
+@pick n=14 row=contract/key-names/arrow-left v=no
+@pick n=15 row=contract/key-names/arrow-down v=no
+@pick n=16 row=contract/kept-check/tool v=no
+@pick n=17 row=contract/kept-check/opening-record v=no
+@pick n=18 row=contract/kept-check/masked v=no
+@pick n=19 row=contract/kept-check/kept-verbs v=no
+@pick n=20 row=contract/kept-check/digest v=no
+@pick n=21 row=contract/kept-check/bounds v=no
+@pick n=22 row=contract/kept-check/arguments v=no
+@pick n=23 row=contract/kept-check/answer v=no
+@pick n=24 row=contract/kept-check/accepted v=no
+@pick n=25 row=contract/kept-check-reader/strict-read v=no
+@pick n=26 row=contract/kept-check-reader/refusal v=no
+@pick n=27 row=contract/html-open-attribute/select v=no
+@pick n=28 row=contract/html-net/provider v=no
+@pick n=29 row=contract/html-net/document-html-parser v=yes mode=stale
+@pick n=30 row=contract/headless-stand/timer-step v=no
+@pick n=31 row=contract/headless-stand/offline-boots v=no
+@pick n=32 row=contract/headless-stand/no-telemetry v=no
+@pick n=33 row=contract/headless-stand/boot v=no
+@pick n=34 row=contract/handler-coverage/written-form v=no
+@pick n=35 row=contract/handler-coverage/unreached-screens v=no
+@pick n=36 row=contract/handler-coverage/reached v=no
+@pick n=37 row=contract/handler-coverage/per-check-boot v=no
+@pick n=38 row=contract/handler-coverage/canvas v=no
+@pick n=39 row=contract/handler-coverage/bubbling v=no
+@pick n=40 row=contract/graph-verb/unpaged v=no
+@pick n=41 row=contract/graph-verb/state v=no
+@pick n=42 row=contract/graph-verb/node v=no
+@pick n=43 row=contract/graph-verb/no-values v=no
+@pick n=44 row=contract/graph-verb/argument v=no
+@pick n=45 row=contract/graph-registry/use-graph-state v=no
+@pick n=46 row=contract/graph-registry/declared-write v=no
+@pick n=47 row=contract/graph-registry/debug v=no
+@pick n=48 row=contract/geometry/visible-region-transforms v=yes mode=stale
+@pick n=49 row=contract/geometry/visible-region-select-list v=no
+@pick n=50 row=contract/geometry/visible-region-non-finite v=no
+@pick n=51 row=contract/geometry/text-extent v=yes mode=stale
+@pick n=52 row=contract/geometry/get-client-bounding-rect v=yes mode=stale
+@pick n=53 row=contract/geometry/bounding-rect v=no
+@pick n=54 row=contract/form-submission/request-content-type v=yes mode=stale
+@pick n=55 row=contract/form-controls/select-rules v=no
+@pick n=56 row=contract/form-controls/select-list-state v=no
+@pick n=57 row=contract/form-controls/option-disabled v=no
+@pick n=58 row=contract/form-controls/is-disabled v=yes mode=stale
+@pick n=59 row=contract/example-clis/wgpu-texture v=no
+@pick n=60 row=contract/example-clis/url v=yes mode=stale
+@pick n=61 row=contract/example-clis/screenshot v=no
+@pick n=62 row=contract/example-clis/preact-script v=no
+@pick n=63 row=contract/example-clis/paint-bench v=no
+@pick n=64 row=contract/example-clis/multi-doc v=no
+@pick n=65 row=contract/event-state/fields v=no
+@pick n=66 row=contract/event-dispatch/targeting v=no
+@pick n=67 row=contract/event-dispatch/space-release-click v=no
+@pick n=68 row=contract/event-dispatch/range-input v=no
+@pick n=69 row=contract/event-dispatch/pointer-compatibility-events v=no
+@pick n=70 row=contract/event-dispatch/non-bubbling v=no
+@pick n=71 row=contract/event-dispatch/focus-change v=no
+@pick n=72 row=contract/event-dispatch/enter-click v=no
+@pick n=73 row=contract/event-dispatch/button-click-focus v=no
+@pick n=74 row=contract/event-dispatch/activation-click-order v=no
+@pick n=75 row=contract/escher-session/type v=no
+@pick n=76 row=contract/escher-session/two-argument-form v=no
+@pick n=77 row=contract/escher-session/stop v=no
+@pick n=78 row=contract/escher-session/status v=no
+@pick n=79 row=contract/escher-session/start v=no
+@pick n=80 row=contract/escher-session/snapshot v=no
+@pick n=81 row=contract/escher-session/session-flag v=no
+@pick n=82 row=contract/escher-session/serve v=no
+@pick n=83 row=contract/escher-session/scroll v=no
+@pick n=84 row=contract/escher-session/screenshot v=no
+@pick n=85 row=contract/escher-session/press v=no
+@pick n=86 row=contract/escher-session/mcp v=no
+@pick n=87 row=contract/escher-session/lint v=no
+@pick n=88 row=contract/escher-session/invocation v=no
+@pick n=89 row=contract/escher-session/help v=no
+@pick n=90 row=contract/escher-session/graph v=no
+@pick n=91 row=contract/escher-session/click v=no
+@pick n=92 row=contract/escher-session/answer-line v=no
+@pick n=93 row=contract/escher-session/advance v=no
+@pick n=94 row=contract/escher-session/actions v=no
+@pick n=95 row=contract/escher-session-mcp-exit-codes/3 v=no
+@pick n=96 row=contract/escher-session-mcp-exit-codes/0 v=no

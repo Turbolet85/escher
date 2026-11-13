@@ -1,0 +1,2 @@
+@fit n=1 row=decision/stylesheet-charset-decoding sha=a620c881e102 v=not_master type=4
+why: The basis is a diff inventory that only retells how the network provider decodes stylesheet bytes (BOM and @charset, the standard behaviour), and its why cell restates the generic per-take ratification already held by decision/upstream-behaviour-changes-ratified-per-take rather than a reason for this mechanism, so the code holds it.

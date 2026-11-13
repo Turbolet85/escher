@@ -1,0 +1,64 @@
+@row_set n=1 row=decision/upstream-take-engine-changes cell=rule seen=1 detector=none
+value: The twenty-nine commits of the upstream take read at `563d3db73` are engine behaviour changes for every document.
+basis: fct-uluruybu (Counts, the take's reading moves from `e42ee1f25` to `563d3db73`, 29 picks; `dec-z45xhlo5` stale)
+because: The take's reading moved from twelve commits at `e42ee1f25` to 29 picks at `563d3db73`, a value the rule already holds, so the rule must name the new reading.
+@row_set n=2 row=decision/pinned-actions cell=rule seen=1 fact=F12 detector=none
+value: Every uses: of every workflow is pinned to a 40-hex commit SHA, its ref kept as a trailing comment, and every rust-toolchain step names its toolchain.
+basis: fct-uluruybu (Counts, the pin check widened from `ci.yml` to every workflow; `dec-wholok3w` stale), fct-spbatvsg (WorkflowPinTest reads every workflow)
+because: The pin check now reads every workflow file, not only ci.yml, and requires each pin's ref as a trailing comment, so the row limited to ci.yml no longer states the rule.
+@row_set n=3 row=decision/changed-set-write-sites cell=except seen=1 detector=none
+value: a page scroll or a move that closes an open select list marks its select at the next resolve
+basis: fct-uluruybu (Counts, the changed-set never-list takes the select-list qualifier, `dec-ut2clwr7` stale), fct-nwxd36le
+because: The rule says never by scroll while a scroll that closes a select list marks its select, so the row takes that qualifier as its exception.
+@row_set n=4 row=decision/link-load-start cell=rule seen=1 detector=none
+value: A link starts loading once it has both rel=stylesheet, matched case-insensitively, and an href, and an href the document URL refuses to resolve starts no load.
+basis: fct-xve6mmf5 (DocumentMutator: `rel` matches `stylesheet` case-insensitively)
+because: The take matches rel against stylesheet case-insensitively, which the row's rule for when a link starts loading must now say.
+@row_set n=5 row=decision/input-control-data-at-construction cell=rule seen=1 fact=F9 detector=none
+value: Text, checkbox, radio and range inputs get their control data at construction, a checkbox or radio even with no layout box, and a checked attribute write is read back into a checkbox's state.
+basis: fct-xve6mmf5 (DocumentMutator: a `checked` write read back into an existing checkbox state, a checkbox or radio's state made even with no box)
+because: A checkbox or radio now holds its checked state without a layout box and takes a checked write back, which the row on control data says less.
+@row_set n=6 row=decision/url-scheme-routing cell=rule seen=1 fact=F10 detector=none
+value: `data:` URLs are decoded locally, `file:` URLs read from disk, a Windows absolute path resolving as a `file:` URL, and every other scheme goes over HTTP.
+basis: fct-xve6mmf5 (`url.rs` resolves Windows absolute paths)
+because: A Windows absolute path given as a document or resource URL now resolves as a file URL, which the row on fetching by scheme must say.
+@row_set n=7 row=decision/both-layout-modes cell=except seen=1 fact=F11 detector=none
+value: upstream-taken blitz-tests targets are kept as taken even where they run one layout mode; escher's own targets run both
+basis: fct-uluruybu (Counts, six of the seven upstream targets run one layout mode), fct-kq6gb6jt
+because: Six upstream-taken targets run one layout mode and are kept as taken, a named exception to the convention of scenarios in both layout modes.
+@row_add n=1 row=decision/unresolvable-url-skipped area=established-decisions fact=F1 detector=none
+name: Unresolvable URLs skipped, never a panic
+rule: An unresolvable href or relative URL is skipped, never a panic: the document's URL resolution yields nothing and every caller skips it.
+why: an upstream change taken, ratified for its take
+basis: fct-xve6mmf5 (`BaseDocument::resolve_url` returns an Option where it panicked; its callers skip on None)
+because: The take made URL resolution fallible with every caller skipping, a rule future callers must keep, which no row states.
+@row_add n=2 row=decision/lossy-page-decoding area=established-decisions fact=F2 detector=none
+name: Pages decoded lossily
+rule: Page bytes that are not UTF-8 are decoded lossily, replaced and never a panic.
+why: an upstream behaviour change taken, ratified for its take
+basis: fct-xve6mmf5 (pages decoded lossily, no panic on non-UTF-8), fct-uluruybu (the take's widenings, ratified)
+because: The take decodes non-UTF-8 pages lossily, a ratified widening no architecture row holds.
+@row_add n=3 row=decision/stylesheet-charset-decoding area=established-decisions fact=F3 detector=none
+name: Stylesheets decoded honouring BOM and @charset
+rule: Stylesheets are decoded from their bytes, honouring a BOM and an @charset rule.
+why: an upstream behaviour change taken, ratified for its take
+basis: fct-xve6mmf5 (`net.rs`: stylesheets decoded from bytes with BOM and `@charset`), fct-uluruybu (the take's widenings, ratified)
+because: The take decodes stylesheets from their bytes by BOM and @charset, a ratified widening no architecture row holds.
+@row_add n=4 row=decision/default-font-fallback area=established-decisions fact=F5 detector=none
+name: Default font when no listed family is available
+rule: When none of an element's listed font families is available, the default font is used, for text and for ch and ex metrics alike.
+why: an upstream behaviour change taken, ratified for its take
+basis: fct-xve6mmf5 (`fallback_font_family`: the default font when no listed family is available), fct-uluruybu (the take's widenings, ratified)
+because: The take falls back to the default font for text and font-relative metrics, a ratified widening no architecture row holds.
+@row_add n=5 row=contract/accessibility-tree/img-empty-alt area=standard-contracts fact=F6 detector=none
+boundary: Accessibility tree
+item: img with an empty alt
+promise: An img whose alt is empty reads as GenericContainer, decorative and unnamed.
+basis: fct-xve6mmf5 (the accessibility builder reads an `img` with `alt=""` as `Role::GenericContainer`), fct-nctk6ufi
+because: The accessibility tree now promises a decorative reading of an empty-alt image, a contract item no row of the boundary holds.
+@row_none n=1 fact=F4 type=5
+what: which legacy attributes cascade as presentational hints is a list the code holds; decision/legacy-attributes-as-pres-hints already states the rule they follow
+@row_none n=2 fact=F7 type=4
+relied: the pointer cursor over a link's text and inline-blocks, an anonymous block included, found by walking DOM parents
+@row_none n=3 fact=F8 type=4
+relied: transforms of boxes inside anonymous blocks resolved, and a scale change re-resolving every transform and rescaling overflow on the next resolve

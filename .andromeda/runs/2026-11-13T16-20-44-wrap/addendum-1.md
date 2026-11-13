@@ -1,0 +1,2 @@
+## Addendum 1 — resumed 2026-11-13
+- **`inputs#I7`** · message · n/a — the founder's word on this wrap's P2 card Q1 (the 19 rows recording the take's boundary widenings, playbook rul-72xhfjoz), given by dialog in the overseer session on 2026-11-13 and relayed by the overseer through the operator: «Утвердить все 19 (Рекомендую)». It covers all 19 rows, the six his `inputs#I2` answer did not name included. A `not_master` at check 7 still stops on its card (`inputs#I6`).

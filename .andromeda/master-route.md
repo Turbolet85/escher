@@ -83,4 +83,4 @@
 2026-11-07-ui-graph · complete · one read of the screen's UI graph — node, component, handlers, written state, readers — and the «reacts to a click» snapshot field · → chk:2026-11-07-ui-graph
 2026-11-08-what-can-i-do-here · complete · one read of what each actionable node can take now: its verbs from the schema's table and the refusal each would meet · → chk:2026-11-08-what-can-i-do-here
 2026-11-08-handler-coverage · complete · One command lists the UI graph's handlers no recorded check exercised; a kept `actions` step replays under test · → chk:2026-11-08-handler-coverage
-2026-11-13-upstream-sync-determinism-and-exploration · pending · upstream/main 563d3db73 taken by the founder's shape, CI and audit back to green, the seven carries absorbed · → chk:2026-11-13-upstream-sync-determinism-and-exploration
+2026-11-13-upstream-sync-determinism-and-exploration · complete · upstream/main 563d3db73 taken by the founder's shape, CI and audit back to green, the seven carries absorbed · → chk:2026-11-13-upstream-sync-determinism-and-exploration
