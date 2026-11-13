@@ -45,6 +45,8 @@ NO_CACHE_JOBS = {"coverage"}
 RESTORE_ONLY_JOBS = {"a11y", "stand-repeat"}
 CACHE_ACTION = "Swatinem/rust-cache@"
 PINNED_USES = re.compile(r"^[^/@\s]+/[^@\s]+@[0-9a-f]{40}$")
+USES_LINE = re.compile(r"^\s*(?:-\s*)?uses:")
+PINNED_USES_LINE = re.compile(r"^\s*(?:-\s*)?uses:\s*[^/@\s]+/[^@\s]+@[0-9a-f]{40} # \S+\s*$")
 LEG_STEP = re.compile(r"^bash \.github/scripts/ci-leg\.sh (\S+)$")
 # A package install: the script and package names, no option, optionally behind the PyYAML guard.
 INSTALL_STEP = re.compile(
@@ -190,21 +192,6 @@ class CiWorkflowTest(unittest.TestCase):
         names = {p["name"] for p in self.jobs["matrix_test"]["strategy"]["matrix"]["platform"]}
         self.assertEqual(names, {"windows", "macos", "ios", "android"})
 
-    def test_j_every_action_is_pinned_to_a_commit_sha(self):
-        for job_id, job in self.jobs.items():
-            for step in job.get("steps", []):
-                if "uses" in step:
-                    with self.subTest(job=job_id, uses=step["uses"]):
-                        self.assertRegex(step["uses"], PINNED_USES)
-
-    def test_k_pinned_rust_toolchain_names_its_toolchain(self):
-        # A SHA pin loses the toolchain that the `@stable` branch name used to select.
-        for job_id, job in self.jobs.items():
-            for step in job.get("steps", []):
-                if str(step.get("uses", "")).startswith("dtolnay/rust-toolchain@"):
-                    with self.subTest(job=job_id):
-                        self.assertTrue(str(step.get("with", {}).get("toolchain", "")))
-
     def test_l_token_is_read_only_at_the_workflow_level(self):
         self.assertEqual(self.ci.get("permissions"), {"contents": "read"})
         for job_id, job in self.jobs.items():
@@ -240,6 +227,41 @@ class CiWorkflowTest(unittest.TestCase):
                         self.assertGreater(timeout, 0)
         self.assertEqual(script_jobs, INSTALL_JOBS)
         self.assertEqual(action_jobs, APT_ACTION_JOBS)
+
+
+class WorkflowPinTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.files = sorted(p for p in WORKFLOWS.iterdir() if p.suffix in (".yml", ".yaml"))
+
+    def test_the_pin_check_reads_every_workflow(self):
+        self.assertTrue({"ci.yml", "wpt.yml", "publish-browser.yml", "wpt-post-results.yml"} <= {p.name for p in self.files})
+
+    def test_j_every_action_is_pinned_to_a_commit_sha(self):
+        for path in self.files:
+            for job_id, job in load(path.name)["jobs"].items():
+                uses = [job["uses"]] if "uses" in job else []
+                uses += [step["uses"] for step in job.get("steps", []) if "uses" in step]
+                for ref in uses:
+                    with self.subTest(workflow=path.name, job=job_id, uses=ref):
+                        self.assertRegex(ref, PINNED_USES)
+
+    def test_every_pin_keeps_its_ref_as_a_trailing_comment(self):
+        # YAML drops comments, so the live `uses:` lines are read as text; a commented-out step is not live.
+        for path in self.files:
+            for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+                if USES_LINE.match(line):
+                    with self.subTest(workflow=path.name, line=number):
+                        self.assertRegex(line, PINNED_USES_LINE)
+
+    def test_k_pinned_rust_toolchain_names_its_toolchain(self):
+        # A SHA pin loses the toolchain that the `@stable` branch name used to select.
+        for path in self.files:
+            for job_id, job in load(path.name)["jobs"].items():
+                for step in job.get("steps", []):
+                    if str(step.get("uses", "")).startswith("dtolnay/rust-toolchain@"):
+                        with self.subTest(workflow=path.name, job=job_id):
+                            self.assertTrue(str(step.get("with", {}).get("toolchain", "")))
 
 
 class UpstreamGuardTest(unittest.TestCase):

@@ -1,17 +1,29 @@
 # Session Handoff
 
-**Last Updated:** 2026-11-13T07:43:19Z
-**Branch:** build/escher-0.3.0 · 0 ahead of origin/build/escher-0.3.0 as read at this wrap's Setup
-**Status:** clean
-**Last Commit:** chore(route): operator-requested adaptation — 0-pending wrap (session 89)
+**Last Updated:** 2026-11-13T14:46:57Z
+**Branch:** build/escher-0.3.0 · 0 ahead of origin/build/escher-0.3.0 as read at this session's Setup
+**Status:** phase take-up uncommitted (the chunk's journal records in `.andromeda/db/log/`, its run dir), plan approved
+**Last Commit:** chore(setup-project): upgrade escher — re-run (`19596fd4b`)
 
 ## Position
-- No chunk is in flight. Epoch 3, «The UI graph», is complete.
-- Epoch 4 now opens: «Upstream sync ahead of determinism and exploration» (first, pinned) → «Cognitive load corrective» (new) → «Local files for local documents» (new) → Seeded randomness …
-- Next: «Upstream sync ahead of determinism and exploration», via /andromeda-phase. It carries 7 CARRYs, two of them new:
-  - pin every CI action to a SHA;
-  - the `changed-set-write-sites` clause.
-- Whether the founder's pause stands is his call. `target/tmp/trial-wt` still stands, and removing it is his call too.
+- Pending: `2026-11-13-upstream-sync-determinism-and-exploration` («Upstream sync ahead of determinism and exploration»). Its plan, `doc:…/plan` rev 3, was approved at P5 by the operator's word (`inputs#I3`, on `.andromeda/runs/2026-11-13T13-29-45-phase/p5-card-1.md`). It claims no capability.
+- Next: `/andromeda-implement`, in a fresh window. The take is 29 no-commit cherry-picks from `563d3db73`, listed in plan step 1. The pins stay unchanged.
+- The pause is lifted for this chunk alone (`inputs#I1`). Q1, the take shape, is the operator's technical answer. Q2 is the founder's own ratification of the take's widenings as upstream's (`inputs#I2`).
+
+## Phase run 2026-11-13T13-29-45
+- The run dir is `.andromeda/runs/2026-11-13T13-29-45-phase/`. It holds the trails, the P5 card, `p5-controls.md` and relays 1-3.
+- **Left standing on the operator's word, for removal at the operator's call:**
+  - trial worktree `target/tmp/trial-det` (HEAD + `da271cde1`), with build dir `target/trial`;
+  - trial worktree `target/tmp/trial-a` (the 29-pick take), with build dir `target/trial-a`;
+  - trial logs `target/trial-*.log`, `target/trial-a.txt`, `target/merge-tree.txt`.
+- `target/tmp/trial-wt` is still the founder's. `git worktree list` now marks it `prunable`.
+- **Host changes from P3:**
+  - toolchain 1.100.0, installed beside the default (stable is 1.99.0); the plan's clippy gates run as `cargo +1.100.0`;
+  - rustup self-updated 1.29.1 → 1.29.3.
+- **Approved Beyond-the-plan rows, for the wrap to place:**
+  - the 99 left-out commits go to «Upstream sync ahead of errors and explanation»;
+  - a new residual owns the RUSTSEC-2026-0459 ignore;
+  - the CDP server's listener (`BLITZ_CDP_PORT`) goes to that entry as a CARRY, a security-plan amendment first.
 
 ## Work done
 - Rows proposal 2026-11-12T03-36-23:
@@ -31,7 +43,10 @@
 - The `changed-set-write-sites` qualifier is pinned, not landed. It lands at the wrap of the anchor chunk.
 
 ## Notes
-- The founder's still-open asks, from the setup re-run card: whether CLAUDE.md's warnings block keeps «none». Six crates also left the module map: blitz-html, blitz-net, blitz-paint, blitz-shell, stylo_taffy and dioxus-native.
+- The setup re-run card's two asks are settled by `19596fd4b`: ten warnings, and the six crates back in the module map (`inputs#I1`).
 - `host-linux.md` is 9 template lines behind (U04 `noted`). `regenerate` is the operator's word.
 - Residuals `res-7cc5bi4k` and `res-4dr3wt62` are unchanged.
 - Last failed command: none.
+
+## Session End Status
+Completed normally at 2026-11-13 15:47:56

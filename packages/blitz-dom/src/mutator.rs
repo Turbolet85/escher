@@ -397,6 +397,12 @@ impl DocumentMutator<'_> {
         // If node if not in the document, then don't apply any special behaviours
         // and simply set the attribute value
         if !node.flags.is_in_document() {
+            // Except checkedness, which is read back from the checkbox state once it exists
+            if (tag, attr) == tag_and_attr!("input", "checked")
+                && element.checkbox_input_checked().is_some()
+            {
+                set_input_checked_state(element, value.to_string());
+            }
             return;
         }
 
@@ -717,12 +723,18 @@ impl DocumentMutator<'_> {
                     | local_name!("srcdoc")
                     | local_name!("span")
             );
+        // A table's `cellpadding` is a presentational hint on its cells, not on the table.
+        let restyles_cells = *attr == local_name!("cellpadding")
+            && node.data.is_element_with_tag_name(&local_name!("table"));
         if let Some(mut data) = node.try_stylo_element_data_mut().and_then(|s| s.get_mut()) {
             data.hint |= if is_style {
                 RestyleHint::RESTYLE_STYLE_ATTRIBUTE
             } else {
                 RestyleHint::RESTYLE_SELF
             };
+            if restyles_cells {
+                data.hint |= RestyleHint::RESTYLE_DESCENDANTS;
+            }
             if read_by_layout {
                 data.damage.insert(ALL_DAMAGE);
             }
@@ -1385,7 +1397,10 @@ impl<'doc> DocumentMutator<'doc> {
         let (Some(rels), Some(href)) = (rel_attr, href_attr) else {
             return;
         };
-        if !rels.split_ascii_whitespace().any(|rel| rel == "stylesheet") {
+        if !rels
+            .split_ascii_whitespace()
+            .any(|rel| rel.eq_ignore_ascii_case("stylesheet"))
+        {
             return;
         }
 
@@ -1423,8 +1438,14 @@ impl<'doc> DocumentMutator<'doc> {
         let Some(element) = node.element_data_mut() else {
             unreachable!();
         };
-        let SpecialElementData::Stylesheet(stylesheet) = element.special_data.take() else {
-            unreachable!();
+        // An icon link never holds a stylesheet, and a stylesheet link holds none
+        // until its fetch has completed.
+        let stylesheet = match element.special_data.take() {
+            SpecialElementData::Stylesheet(stylesheet) => stylesheet,
+            other => {
+                element.special_data = other;
+                return;
+            }
         };
 
         let guard = self.doc.guard.read();
@@ -1440,8 +1461,9 @@ impl<'doc> DocumentMutator<'doc> {
     fn load_image(&mut self, target_id: NodeId) {
         let node = &self.doc.nodes[target_id];
         if let Some(raw_src) = node.attr(local_name!("src")) {
-            if !raw_src.is_empty() {
-                let src = self.doc.resolve_url(raw_src);
+            if !raw_src.is_empty()
+                && let Some(src) = self.doc.resolve_url(raw_src)
+            {
                 let src_string = src.as_str();
 
                 // Check cache first
@@ -1544,6 +1566,18 @@ impl<'doc> DocumentMutator<'doc> {
         let tagname = data.name.local.as_ref();
         let type_attr = data.attr(local_name!("type"));
         let value = data.attr(local_name!("value"));
+
+        // Checkbox state must exist even if the input never gets a box (e.g. `display: none`
+        // inside a `<label>`), so that it can be toggled and matched by `:checked`.
+        if let ("input", Some("checkbox" | "radio")) = (tagname, type_attr) {
+            let element = self.doc.nodes[target_id].element_data_mut().unwrap();
+            if element.checkbox_input_checked().is_none() {
+                let checked = element.has_attr(local_name!("checked"));
+                element.special_data = SpecialElementData::CheckboxInput(checked);
+                element.set_checkbox_input_checked(checked);
+            }
+            return;
+        }
 
         // Add content of "value" attribute as a text node child if:
         //   - Tag name is
@@ -1652,6 +1686,74 @@ mod test {
 
     use super::{DocumentMutator, NodeId};
     use crate::{Attribute, BaseDocument, DocumentConfig, ElementData, NodeData, qual_name};
+
+    #[test]
+    fn unresolvable_relative_urls_are_skipped() {
+        // Without a base url, relative urls cannot be resolved against the default
+        // `data:` document url. Loading such resources should be skipped, not panic.
+        let mut document = BaseDocument::new(DocumentConfig::default());
+        let root_id = document.root_node().id;
+        let attr = |name, value: &str| Attribute {
+            name,
+            value: value.to_string(),
+        };
+
+        let mut mutator = document.mutate();
+        let html = mutator.create_element(qual_name!("html"), vec![]);
+        let img = mutator.create_element(
+            qual_name!("img"),
+            vec![attr(qual_name!("src"), "image.png")],
+        );
+        let link = mutator.create_element(
+            qual_name!("link"),
+            vec![
+                attr(qual_name!("rel"), "stylesheet"),
+                attr(qual_name!("href"), "style.css"),
+            ],
+        );
+        mutator.append_children(html, &[img, link]);
+        mutator.append_children(root_id, &[html]);
+        mutator.set_attribute(img, qual_name!("src"), "other.png");
+        drop(mutator);
+
+        document.resolve(0.0);
+    }
+
+    #[test]
+    fn removing_href_from_a_link_without_a_loaded_stylesheet() {
+        // An icon link never holds a stylesheet, and a stylesheet link holds none
+        // until its fetch completes (here it never starts, as the url is unresolvable).
+        let mut document = BaseDocument::new(DocumentConfig::default());
+        let root_id = document.root_node().id;
+        let attr = |name, value: &str| Attribute {
+            name,
+            value: value.to_string(),
+        };
+
+        let mut mutator = document.mutate();
+        let html = mutator.create_element(qual_name!("html"), vec![]);
+        let icon = mutator.create_element(
+            qual_name!("link"),
+            vec![
+                attr(qual_name!("rel"), "icon"),
+                attr(qual_name!("href"), "favicon.png"),
+            ],
+        );
+        let stylesheet = mutator.create_element(
+            qual_name!("link"),
+            vec![
+                attr(qual_name!("rel"), "stylesheet"),
+                attr(qual_name!("href"), "style.css"),
+            ],
+        );
+        mutator.append_children(html, &[icon, stylesheet]);
+        mutator.append_children(root_id, &[html]);
+        mutator.clear_attribute(icon, qual_name!("href"));
+        mutator.clear_attribute(stylesheet, qual_name!("href"));
+        drop(mutator);
+
+        document.resolve(0.0);
+    }
 
     #[cfg(feature = "custom-widget")]
     #[test]

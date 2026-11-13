@@ -509,7 +509,6 @@ impl LayoutPassState<'_> {
 
                 #[cfg(feature = "floats")]
                 let float_width = match available_space.width {
-                    AvailableSpace::Definite(_) => 0.0,
                     AvailableSpace::MinContent => {
                         let mut width: f32 = 0.0;
                         for ibox in inline_layout.layout.inline_boxes_mut() {
@@ -535,7 +534,9 @@ impl LayoutPassState<'_> {
 
                         width * scale
                     }
-                    AvailableSpace::MaxContent => {
+                    // A definite available width only occurs here when shrink-to-fit sizing,
+                    // which needs the max-content contribution of the floats.
+                    AvailableSpace::MaxContent | AvailableSpace::Definite(_) => {
                         // When computing a max-content size the available width is effectively
                         // infinite, so floats never wrap onto a new "band" due to a lack of
                         // horizontal space. They only move below preceding floats when the `clear`
@@ -596,8 +597,7 @@ impl LayoutPassState<'_> {
                     AvailableSpace::Definite(limit) => (limit * scale)
                         .min(max_content_width + float_width)
                         .max(min_content_width),
-                }
-                .ceil();
+                };
 
                 let style_width = node_size.width.map(|w| w * scale);
                 let min_width = node_min_size.width.map(|w| w * scale);
@@ -640,7 +640,7 @@ impl LayoutPassState<'_> {
                 .inline_layout_data = Some(inline_layout);
 
             let measured_size = inputs.known_dimensions.unwrap_or(taffy::Size {
-                width: width.ceil() / scale,
+                width: width / scale,
                 // Height is ignored if RequestedAxis if Horizontal
                 height: 0.0,
             });
@@ -923,7 +923,11 @@ impl LayoutPassState<'_> {
         let has_inline_boxes = inline_layout.layout.inline_boxes().len() > 0;
         let lines = has_inline_boxes.then(|| inline_layout.layout.lines());
         for line in lines.into_iter().flatten() {
+            let mut line_has_in_flow_content = false;
             for item in line.items() {
+                if let parley::layout::PositionedLayoutItem::GlyphRun(run) = &item {
+                    line_has_in_flow_content |= run.advance() > 0.0;
+                }
                 if let parley::layout::PositionedLayoutItem::InlineBox(ibox) = item {
                     let order = ibox_order;
                     ibox_order += 1;
@@ -994,7 +998,9 @@ impl LayoutPassState<'_> {
                         //   within the line (`ibox.y` is the baseline as out-of-flow boxes are
                         //   zero-sized) and spans the line box in the block axis.
                         // - A block-level box's rectangle spans the containing block's content
-                        //   box in the inline axis and is zero-height below the line box.
+                        //   box in the inline axis and is zero-height at the top of the line
+                        //   box, or below it if in-flow content precedes it on the line (its
+                        //   hypothetical box would start a new line after that content).
                         let line_metrics = line.metrics();
                         let line_top = (line_metrics.block_min_coord / scale) + line_box_top;
                         let line_bottom = (line_metrics.block_max_coord / scale) + line_box_top;
@@ -1008,15 +1014,17 @@ impl LayoutPassState<'_> {
                                 },
                             )
                         } else {
+                            let y = if line_has_in_flow_content {
+                                line_bottom
+                            } else {
+                                line_top
+                            };
                             (
                                 taffy::Line {
                                     start: container_pb.left,
                                     end: final_size.width - container_pb.right,
                                 },
-                                taffy::Line {
-                                    start: line_bottom,
-                                    end: line_bottom,
-                                },
+                                taffy::Line { start: y, end: y },
                             )
                         };
 
@@ -1051,6 +1059,7 @@ impl LayoutPassState<'_> {
                         layout.border = border; //.map(|p| p / scale);
                         layout.margin = margin;
                     } else {
+                        line_has_in_flow_content = true;
                         // Re-measure the box to get its border-box size (this hits the layout
                         // cache). The size cannot be recovered from `ibox` dimensions as the
                         // space reserved in the line is clamped to be non-negative.

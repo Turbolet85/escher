@@ -89,15 +89,15 @@ jobs:
             artifact_path: ./target/dx/blitz/release/android/app/app/build/outputs/apk/release/Blitz_0.0.0_aarch64.apk
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
 
       - name: Install Rust
-        uses: dtolnay/rust-toolchain@master
+        uses: dtolnay/rust-toolchain@7e38f4b43b4db5c8dd498af069a4f6196df1d067 # master
         with:
           toolchain: "1.96.1"
           targets: ${{ matrix.platform.target }}
 
-      - uses: Swatinem/rust-cache@v2
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
         with:
           cache-all-crates: "true"
           save-if: ${{ github.ref == 'refs/heads/main' }}
@@ -121,7 +121,7 @@ jobs:
 
       - name: Install Dioxus CLI
         if: ${{ matrix.platform.use_git_cli == false }}
-        uses: taiki-e/install-action@v2
+        uses: taiki-e/install-action@cfdb7ed4ccc7c7dce37759eae89dc5674b469b39 # v2
         with:
           tool: dioxus-cli@0.8.0-alpha.3
 
@@ -139,7 +139,7 @@ jobs:
 
       - name: Free Disk Space (Ubuntu)
         if: ${{ matrix.platform.os == 'ubuntu-24.04' || matrix.platform.os == 'ubuntu-24.04-arm' }}
-        uses: jlumbroso/free-disk-space@v1.3.1
+        uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v1.3.1
         with: # speed things up a bit
           android: ${{ matrix.platform.target != 'aarch64-linux-android' }}
           large-packages: false
@@ -148,6 +148,14 @@ jobs:
       - name: Install Linux dependencies
         if: ${{ startsWith(matrix.platform.os, 'ubuntu') }}
         run: sudo apt-get update && sudo apt-get install -y libfontconfig1-dev
+
+      # The skia-binaries prebuilt for Android are built with NDK r30, whose libc++ the runner's default NDK (r27) can't link
+      - name: Use latest Android NDK
+        if: ${{ matrix.platform.target == 'aarch64-linux-android' }}
+        run: |
+          for var in ANDROID_NDK ANDROID_NDK_HOME ANDROID_NDK_ROOT NDK_HOME; do
+            echo "$var=$ANDROID_NDK_LATEST_HOME" >> "$GITHUB_ENV"
+          done
 
       - name: Bundle browser
         shell: bash
@@ -185,7 +193,7 @@ jobs:
         run: rm ./apps/browser/keystore.jks
 
       - name: Upload app bundle
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         if: ${{ matrix.platform.artifact_path != '' && matrix.platform.artifact_name != '' }}
         with:
           name: ${{ matrix.platform.artifact_name }}

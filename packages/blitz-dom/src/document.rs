@@ -22,6 +22,7 @@ use crate::{
     EventDriver, HtmlParserProvider, Node, NodeData, NoopEventHandler, StyleThreading,
     TextNodeData, WallClock,
 };
+use bitflags::bitflags;
 use blitz_traits::devtools::DevtoolSettings;
 use blitz_traits::events::{DomEvent, HitResult, UiEvent};
 use blitz_traits::navigation::{DummyNavigationProvider, NavigationProvider};
@@ -277,6 +278,8 @@ pub struct BaseDocument {
     /// last [`resolve`](Self::resolve), to be applied (coalesced into a single
     /// device rebuild) at the start of the next resolve.
     pub(crate) pending_device_changes: DeviceChanges,
+    /// Document-wide work for the next [`resolve`](Self::resolve).
+    pub(crate) flags: DocumentFlags,
     /// Strategy for Stylo's style traversal during `resolve`.
     pub(crate) style_threading: StyleThreading,
     /// Whether incremental layout is enabled for this document. When disabled,
@@ -438,6 +441,17 @@ pub struct BaseDocument {
     pub(crate) abort_signal: Option<AbortSignal>,
 }
 
+bitflags! {
+    /// Document-wide work for the next [`resolve`](BaseDocument::resolve).
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
+    pub(crate) struct DocumentFlags: u8 {
+        /// Recompute the transform and scrollable overflow of every node, not
+        /// only of the damaged ones. Both are kept in device pixels, so a scale
+        /// change makes them stale throughout the tree.
+        const RESOLVE_ALL_TRANSFORMS = 0b0000_0001;
+    }
+}
+
 impl BaseDocument {
     /// Create a new (empty) [`BaseDocument`] with the specified configuration
     pub fn new(config: DocumentConfig) -> Self {
@@ -517,6 +531,7 @@ impl BaseDocument {
             viewport,
             media_type,
             pending_device_changes: DeviceChanges::empty(),
+            flags: DocumentFlags::empty(),
             style_threading: config.style_threading,
             incremental_layout: config.incremental.unwrap_or(true),
             subdocument_depth: config.subdocument_depth,
@@ -1631,13 +1646,8 @@ impl BaseDocument {
         node
     }
 
-    pub(crate) fn resolve_url(&self, raw: &str) -> url::Url {
-        self.url.resolve_relative(raw).unwrap_or_else(|| {
-            panic!(
-                "to be able to resolve {raw} with the base_url: {:?}",
-                *self.url
-            )
-        })
+    pub(crate) fn resolve_url(&self, raw: &str) -> Option<url::Url> {
+        self.url.resolve_relative(raw)
     }
 
     pub fn print_tree(&self) {
@@ -1658,8 +1668,9 @@ impl BaseDocument {
             if element.name.local == local_name!("link") {
                 if let Some(href) = element.attr(local_name!("href")) {
                     // println!("Node {node_id} {href} {href_to_reload} {} {}", resolved_href.as_str(), resolved_href.as_str() == url_to_reload);
-                    if href == href_to_reload {
-                        let resolved_href = self.resolve_url(href);
+                    if href == href_to_reload
+                        && let Some(resolved_href) = self.resolve_url(href)
+                    {
                         self.net_provider.fetch(
                             self.id(),
                             self.build_request(resolved_href.clone()),
@@ -2705,9 +2716,11 @@ impl BaseDocument {
         self.scroll_viewport_by(0.0, 0.0); // Clamp scroll offset
 
         // Text is shaped at a specific scale factor, so cached inline layouts
-        // must be invalidated when the scale changes.
+        // must be invalidated when the scale changes, as must every node's
+        // transform and scrollable overflow (kept in device pixels).
         if changes.contains(DeviceChanges::SCALE) {
             self.invalidate_inline_contexts();
+            self.flags.insert(DocumentFlags::RESOLVE_ALL_TRANSFORMS);
         }
 
         // Color-scheme changes affect values that are resolved at cascade time
@@ -2826,14 +2839,16 @@ impl BaseDocument {
             return Some(CursorIcon::Text);
         }
 
-        // Use "pointer" cursor if any ancestor is a link
+        // Use "pointer" cursor if any ancestor is a link. Walk DOM parents: an atomic
+        // inline's layout parent is its inline root, which skips the inline elements
+        // (such as `<a>`) between them.
         let mut maybe_node = Some(node);
         while let Some(node) = maybe_node {
             if node.is_link() {
                 return Some(CursorIcon::Pointer);
             }
 
-            maybe_node = node.layout_parent.get().map(|node_id| node.with(node_id));
+            maybe_node = node.parent.map(|node_id| node.with(node_id));
         }
 
         // Return text cursor for text nodes
@@ -3220,11 +3235,7 @@ impl BaseDocument {
             let Some(element) = node.element_data() else {
                 return false;
             };
-            if element.name.local == local_name!("canvas") && element.has_attr(local_name!("src")) {
-                return true;
-            }
-
-            false
+            element.name.local == local_name!("canvas") && element.has_attr(local_name!("src"))
         })
     }
 
