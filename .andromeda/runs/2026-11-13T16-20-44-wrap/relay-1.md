@@ -1,1 +1,0 @@
-run P1 only and stop. Standing for the whole wrap: the take's widenings are ratified by the founder's own word, given by dialog in the overseer session and relayed by the overseer, «Утвердить как upstream (Рекомендую)» (inputs#I2); the changed-set-write-sites CARRY lands its qualifier here; a row operation whose check 7 reads not_master stops on its card and is not applied.

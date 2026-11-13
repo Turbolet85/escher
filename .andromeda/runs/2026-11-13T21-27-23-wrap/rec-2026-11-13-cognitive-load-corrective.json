@@ -1,0 +1,637 @@
+[
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:31:28Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-13-cognitive-load-corrective",
+"--file",
+".andromeda/cache/docs/2026-11-13-cognitive-load-corrective/report.md",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-13-cognitive-load-corrective/report rev 1 · 45 new · 0 revised · 0 retired · 0 kept · tx 682"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T20-06-14-2026-11-13-cognitive-load-corrective.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:31:34Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-13-cognitive-load-corrective",
+"--section-file",
+".andromeda/runs/2026-11-13T21-27-23-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-13-cognitive-load-corrective/report rev 2 · 43 new · 0 revised · 0 retired · 45 kept · tx 683"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T20-06-14-2026-11-13-cognitive-load-corrective.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:35:04Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-13T21-27-23-wrap/cites-land-2026-11-13-cognitive-load-corrective.ndjson",
+"--base",
+"5a4d029f31a79f542f6d5e114eb96db6ecfd4128",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:35:09Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-13T21-27-23-wrap/cites-land-2026-11-13-cognitive-load-corrective.ndjson",
+"--base",
+"5a4d029f31a79f542f6d5e114eb96db6ecfd4128",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 685"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T20-06-14-2026-11-13-cognitive-load-corrective.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:37:16Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1477 · packs 15 · pack 100 · 364179 B",
+"security-plan: rows 544 · packs 6 · pack 100 · 152945 B",
+"design-system: rows 136 · packs 2 · pack 100 · 37294 B",
+"layout-templates: rows 120 · packs 2 · pack 100 · 29783 B",
+"test-plan: rows 598 · packs 6 · pack 100 · 162633 B",
+"obs-plan: rows 274 · packs 3 · pack 100 · 73323 B",
+"a11y-plan: rows 240 · packs 3 · pack 100 · 75200 B",
+"rows-packs: 7 master(s) · 3389 row(s) · 37 pack(s) · 2 draw(s) a pack · pin 685"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-13T21-27-23-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:48:43Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1477 · packs 15 · picked 39 (16 by every draw) · standing 0 · 144105 B · Standard Contracts: by boundary, the rest under `also here:`",
+"security-plan: rows 544 · packs 6 · picked 25 (19 by every draw) · standing 0 · 58572 B · Input Validation: by boundary, the rest under `also here:`",
+"design-system: rows 136 · packs 2 · picked 0 (0 by every draw) · standing 0 · no proposer",
+"layout-templates: rows 120 · packs 2 · picked 1 (0 by every draw) · standing 0 · 13798 B",
+"test-plan: rows 598 · packs 6 · picked 59 (3 by every draw) · standing 0 · 113088 B",
+"obs-plan: rows 274 · packs 3 · picked 39 (0 by every draw) · standing 0 · 35137 B",
+"a11y-plan: rows 240 · packs 3 · picked 21 (5 by every draw) · standing 0 · 48817 B",
+"rows-union: 7 master(s) · picked 184 of 3389 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-13T21-27-23-wrap/arch-rows.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/arch-standing.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/security-rows.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/security-standing.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/design-standing.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/tests-rows.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/tests-standing.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/obs-rows.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/obs-standing.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-13T21-27-23-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:51:44Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-13T21-27-23-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-13T21-27-23-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-13-cognitive-load-corrective — Input Validation: 1 row(s)\n**Section:** Input Validation\n**Change:** ~ decision/unresolvable-stylesheet-href-no-load · why: was «Resolution goes through the non-panicking resolver instead of the one that panics.»; now «»\n**Why:** decision/unresolvable-stylesheet-href-no-load: The report measures the row's why false, the URL resolver answering none for an unresolvable URL so that no resolver panics, while the rule still holds, so the why must drop its false clause, which is the whole cell.\n**Ref:** .andromeda/runs/2026-11-13T21-27-23-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:51:44Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-13T21-27-23-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-13T21-27-23-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/mutation-controlled-tests · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-13-cognitive-load-corrective — 10. Quality Gates & Coverage Targets: 1 row(s)\n**Section:** 10. Quality Gates & Coverage Targets\n**Change:** ~ decision/complexity-ceiling-host-only · except: was «»; now «The engine's click handler is held below the ceiling, upstream's arms included, at the price of a hand re-apply when an upstream sync edits one of its arms.»\n**Why:** decision/complexity-ceiling-host-only: The chunk restructured the engine's click handler below the ceiling with upstream's arms on the operator's word, so the row's stance that engine functions over the ceiling are left as they are now holds one named exception.\n**Ref:** .andromeda/runs/2026-11-13T21-27-23-wrap/",
+"## 2026-11-13-cognitive-load-corrective — 3. Test Harness Contract: 1 row(s)\n**Section:** 3. Test Harness Contract\n**Change:** + contract/harness-inspect/focused — Harness inspection helpers · focused\n**Why:** contract/harness-inspect/focused: The chunk met the engine's focus reading answering the root element when nothing is focused, a promise of the harness's focused reading that checks rely on and no row states.\n**Ref:** .andromeda/runs/2026-11-13T21-27-23-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:51:44Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-13T21-27-23-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-13T21-27-23-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/cognitive-complexity-ceiling · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:51:44Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-13T21-27-23-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-13T21-27-23-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/click-focuses-buttons · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:51:49Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-13T21-27-23-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-13T21-27-23-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 686 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T20-06-14-2026-11-13-cognitive-load-corrective.ndjson",
+".andromeda/runs/2026-11-13T21-27-23-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:51:50Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-13T21-27-23-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-13T21-27-23-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/mutation-controlled-tests · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 687 · 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T20-06-14-2026-11-13-cognitive-load-corrective.ndjson",
+".andromeda/runs/2026-11-13T21-27-23-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:54:52Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/blitz-test-harness.md",
+"--file",
+"./.andromeda/runs/2026-11-13T21-27-23-wrap/staged-leaf-.claude__docs__services__blitz-test-harness.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/blitz-test-harness.md rev 3 · 0 new · 1 revised · 0 retired · tx 688"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T20-06-14-2026-11-13-cognitive-load-corrective.ndjson",
+"./.claude/docs/services/blitz-test-harness.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:54:53Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/testing.md",
+"--file",
+"./.andromeda/runs/2026-11-13T21-27-23-wrap/staged-leaf-.claude__rules__testing.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/testing.md rev 10 · 0 new · 1 revised · 0 retired · tx 689"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T20-06-14-2026-11-13-cognitive-load-corrective.ndjson",
+"./.claude/rules/testing.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:54:53Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/verification-harness.md",
+"--file",
+"./.andromeda/runs/2026-11-13T21-27-23-wrap/staged-leaf-.claude__rules__verification-harness.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/verification-harness.md rev 4 · 0 new · 1 revised · 0 retired · tx 690"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T20-06-14-2026-11-13-cognitive-load-corrective.ndjson",
+"./.claude/rules/verification-harness.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:58:17Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-13T21-27-23-wrap/carry-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 1 record(s) · 1 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:58:21Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-13T21-27-23-wrap/carry-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 1 edge(s) · tx 695 · cry-lrzp6e2g … cry-lrzp6e2g"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T20-06-14-2026-11-13-cognitive-load-corrective.ndjson",
+"./escher-0.3.0/working-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T21:58:39Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-13T21-27-23-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 697 · run-yltyh7k5 … run-yltyh7k5"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T20-06-14-2026-11-13-cognitive-load-corrective.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.44",
+"sha8": "d269bf00",
+"ts": "2026-11-13T22:03:41Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-13-cognitive-load-corrective",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 8 file(s) of 2026-11-13-cognitive-load-corrective"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

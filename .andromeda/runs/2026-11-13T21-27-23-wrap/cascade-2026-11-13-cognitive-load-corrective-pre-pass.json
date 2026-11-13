@@ -1,0 +1,185 @@
+[
+{
+"tool": "cascade",
+"v": "1.32",
+"sha8": "38a4fbc1",
+"ts": "2026-11-13T21:28:59Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-13T21-27-23-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline 4a05d94f (pre-pass — HEAD)",
+"cog-exec · control UNFIRED over the seven masters (bodies and sets) at 4a05d94f",
+"cog-graph · control UNFIRED over the seven masters (bodies and sets) at 4a05d94f",
+"fn-over-count · control UNFIRED over the seven masters (bodies and sets) at 4a05d94f",
+"cites-three · control UNFIRED over the seven masters (bodies and sets) at 4a05d94f",
+"cov-reading · control UNFIRED over the seven masters (bodies and sets) at 4a05d94f",
+"own-title · control UNFIRED over the seven masters (bodies and sets) at 4a05d94f",
+"own-generic · control UNFIRED over the seven masters (bodies and sets) at 4a05d94f"
+],
+"stderr": "control: cog-exec, cog-graph, fn-over-count, cites-three, cov-reading, own-title, own-generic never fired over the seven masters' pre-pass text, bodies and sets (4a05d94f) — no master holds them: re-fire with --pattern cog-click --pattern ceiling-left --pattern cda-silent --pattern unres-why; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.32",
+"sha8": "38a4fbc1",
+"ts": "2026-11-13T21:29:08Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-13T21-27-23-wrap/report-patterns.toml",
+"--pattern",
+"cog-click",
+"--pattern",
+"ceiling-left",
+"--pattern",
+"cda-silent",
+"--pattern",
+"unres-why",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--marker",
+"2026-11-13-cognitive-load-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 4a05d94f (pre-pass — HEAD)",
+"architecture · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"security-plan · 2 rows over 1 files · new 0 · standing 2 · 2 patterns",
+"test-plan · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"a11y-plan · 2 rows over 1 files · new 0 · standing 2 · 2 patterns",
+"by line · 0 lines · 0 offsets",
+"total (4 patterns) · 30 rows over 16 files",
+"per class · new 0/0 · standing 6/4 · leaf 24/12 · curation 0/0 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-13T21-27-23-wrap/sweep-pre-pass-1.1.txt · 43 lines · 4683 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-13T21-27-23-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "4a05d94fc0edd7f049d679f8554b18f238102c2e",
+"how": "pre-pass — HEAD",
+"counts": {
+"cog-click": {
+"new": 0,
+"standing": 1,
+"leaf": 8,
+"curation": 0,
+"base": 0
+},
+"ceiling-left": {
+"new": 0,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"cda-silent": {
+"new": 0,
+"standing": 2,
+"leaf": 12,
+"curation": 0,
+"base": 0
+},
+"unres-why": {
+"new": 0,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+},
+"security-plan": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 2
+},
+"test-plan": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+},
+"a11y-plan": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 2
+}
+},
+"per_master": {
+"cog-click": {
+"a11y-plan": 1
+},
+"ceiling-left": {
+"architecture": 1,
+"test-plan": 1
+},
+"cda-silent": {
+"security-plan": 1,
+"a11y-plan": 1
+},
+"unres-why": {
+"security-plan": 1
+}
+},
+"forms": {
+"cog-click": [
+{
+"form": "left above (the )?(ceiling|fifteen)",
+"from": "15"
+},
+{
+"form": "ninety-seven",
+"from": "97"
+}
+],
+"ceiling-left": [
+{
+"form": "ceiling of fifteen",
+"from": "15"
+}
+],
+"unres-why": [
+{
+"form": "the 1 that panics",
+"from": "one"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

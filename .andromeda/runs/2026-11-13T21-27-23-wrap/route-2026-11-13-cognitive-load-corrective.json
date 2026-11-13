@@ -1,0 +1,63 @@
+[
+{
+"tool": "route",
+"v": "1.14",
+"sha8": "12dee473",
+"ts": "2026-11-13T22:04:25Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-11-13-cognitive-load-corrective",
+"--date",
+"2026-11-13",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin listing NOT DERIVED -- 2026-11-13-cognitive-load-corrective carries no freight (already compact)",
+"dry-run · would flip 2026-11-13-cognitive-load-corrective pending -> complete"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.14",
+"sha8": "12dee473",
+"ts": "2026-11-13T22:04:36Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-11-13-cognitive-load-corrective",
+"--date",
+"2026-11-13",
+"--run-dir",
+".andromeda/runs/2026-11-13T21-27-23-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin listing NOT DERIVED -- 2026-11-13-cognitive-load-corrective carries no freight (already compact)",
+"flip 2026-11-13-cognitive-load-corrective pending -> complete · tx 702",
+"compacted 0 complete line(s) — their freight spent in the spine, no archive (U61)"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T20-06-14-2026-11-13-cognitive-load-corrective.ndjson",
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+}
+]

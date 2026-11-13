@@ -1,0 +1,2 @@
+@none
+reason: The chunk restructured handle_click, Session::execute and DioxusDocument::graph with behaviour unchanged and added no user-facing surface, region, verb, field or provider (fct-xhynuok7, fct-v6e35mmt, fct-pseqlxla); the click_default_actions check boots a plain HTML page with a navigation recorder, not a stand boot or a network provider, so decision/load-page-only-network and every other row of layout-templates stays true, and D-layout-surface does not fire.

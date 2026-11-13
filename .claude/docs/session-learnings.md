@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-13 — A master row's `verified` evidence cites lines no sweep re-points
+Since the masters became rows, a row holds no line citation in its text, so a site-sweep pattern on `path.rs:N` never fires its control over them and reads nothing. But a row's `verified` metadata (`rec.py get` prints it under the cells) still quotes `at: {path}:{lines}` evidence from the tree it was verified on. Neither the citation sweep nor the cascade sweep reads that cell, so a chunk that moves code those lines name leaves the evidence pointing at the old lines with no tool flagging it. When a chunk restructures a file, read the rows its change-pattern hits with `rec.py get` and check their `verified` coordinates by hand; the report names any that moved.
+
+---
+
 ## 2026-11-13 — A CI job cancelled for runner capacity reads red until re-run
 A GitHub-hosted job the runner pool never picks up ends `cancelled` with «The job was not acquired by Runner of type hosted» and no step run; the CI reader counts it red, the same as a failure. It is no verdict on the tree: re-run that job, and read the verdict again — the reader takes the run's latest attempt. A red read whose one non-green job ran no step is this case first.
 
