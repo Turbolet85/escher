@@ -6,7 +6,7 @@ _Mirrors `doc:architecture` §Stack and Technologies (citations live there). A c
 - Rust Cargo workspace, resolver "2", edition 2024, `rust-version` 1.91.0 (CI guarantees latest stable; an MSRV job builds only). `debug_timer` and `wgpu_texture` are edition 2021.
 - Workspace version `0.3.0-beta.4`, license MIT OR Apache-2.0; in-repo engine crates pinned `=0.3.0-beta.4`, dioxus-native / dioxus-native-dom `0.7.0`.
 - Nix flake dev shell: rust-bin stable 1.91.0, in sync with `rust-version`, with rust-src, rust-analyzer, clippy; openssl, fontconfig (Linux), pkg-config, python3 (build-time codegen for stylo). 
-- Measured dev host (2026-10-05, Omarchy 4.0.4 / Arch, `escher-0.1.0/chunks/2026-10-05-as-built-baseline/evidence/baseline.md`): no flake; host stable rustc/cargo 1.99.0, no `rust-toolchain*` file; Arch fontconfig 2.18.3, openssl 3.6.4, pkgconf 3.0.7, python 3.14.7 stand in for CI's `libfontconfig1-dev` + python3.
+- Measured dev host (2026-10-05, Omarchy 4.0.4 / Arch): no flake; host stable rustc/cargo 1.99.0, no `rust-toolchain*` file; Arch fontconfig 2.18.3, openssl 3.6.4, pkgconf 3.0.7, python 3.14.7 stand in for CI's `libfontconfig1-dev` + python3.
 - WASM: wasm-bindgen 0.2, web-sys, tracing-wasm, console_error_panic_hook; examples built with Trunk.
 
 ## Core Frameworks

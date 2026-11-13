@@ -1,0 +1,59 @@
+# Technology Stack
+
+_Mirrors `doc:architecture` §Stack and Technologies (citations live there). A convenience reference, read on demand._
+
+## Languages & Runtimes
+- Rust Cargo workspace, resolver "2", edition 2024, `rust-version` 1.91.0 (CI guarantees latest stable; an MSRV job builds only). `debug_timer` and `wgpu_texture` are edition 2021.
+- Workspace version `0.3.0-beta.4`, license MIT OR Apache-2.0; in-repo engine crates pinned `=0.3.0-beta.4`, dioxus-native / dioxus-native-dom `0.7.0`.
+- Nix flake dev shell: rust-bin stable 1.91.0, in sync with `rust-version`, with rust-src, rust-analyzer, clippy; openssl, fontconfig (Linux), pkg-config, python3 (build-time codegen for stylo). 
+- Measured dev host (2026-10-05, Omarchy 4.0.4 / Arch): no flake; host stable rustc/cargo 1.99.0, no `rust-toolchain*` file; Arch fontconfig 2.18.3, openssl 3.6.4, pkgconf 3.0.7, python 3.14.7 stand in for CI's `libfontconfig1-dev` + python3.
+- WASM: wasm-bindgen 0.2, web-sys, tracing-wasm, console_error_panic_hook; examples built with Trunk.
+
+## Core Frameworks
+| Layer | Technology |
+|---|---|
+| CSS engine | Servo Stylo 0.22.0 (stylo, stylo_traits, stylo_atoms, stylo_static_prefs, stylo_dom); selectors 0.41.0; cssparser 0.38.0 |
+| HTML / XML parsing | html5ever 0.40.1, markup5ever 0.40.0, xml5ever 0.40.0 |
+| Layout | Taffy 0.15 (crates.io registry, resolved 0.15.0; a git dependency at a pinned rev until 2026-10-13-upstream-sync-polish-and-ship; std, flexbox, flexbox_balance, grid, block_layout, content_size, calc, detailed_layout_info) via `stylo_taffy` |
+| Text & fonts | Parley 0.12 (registry), skrifa 0.44, fontique; ICU4X 2.3 (icu_casemap, icu_locale_core, icu_properties, icu_segmenter) with writeable 0.6 — icu_casemap and writeable behind blitz-dom's default `text-transform-icu`; `wuff` for WOFF/WOFF2 |
+| Rendering | anyrender 0.14.0 + anyrender_vello / _vello_cpu / _vello_hybrid / _skia / _svg / _serialize; wgpu 30 |
+| Graphics | color 0.3, peniko 0.6.0, kurbo 0.13.1, usvg 0.48.1, svgtypes 0.16.1, euclid 0.22, app_units 0.7.5 |
+| Windowing & input | winit `=0.31.0-beta.3`, raw-window-handle 0.6, arboard 3.4.1, rfd 0.17.1, keyboard-types 0.8 (lock 0.8.3; Dioxus 0.7.3 carries its own 0.7, so two versions stand in the graph), cursor-icon 1 |
+| Accessibility | accesskit 0.25; accesskit_xplat (windows 0.35, macos 0.27, unix 0.24, android 0.9) |
+| Networking & async | url 2.5, http 1.1, data-url 0.3.1, tokio 1.42, reqwest 0.13 (native-tls), reqwest-middleware 0.5.1, http-cache =1.0.0-alpha.6 |
+| JavaScript | Boa 0.22 (boa_engine with annex-b, boa_runtime, boa_gc) |
+| UI framework | Dioxus 0.7.3 crates |
+| Media | image 0.25.6, png 0.18 (since 2026-10-12-headless-screenshot also escher-driver's encoder of a shot and a blitz-tests dev-dependency, resolved 0.18.1, no package entering `Cargo.lock`; no `base64` crate taken), html-escape, percent-encoding, serde 1, serde_json 1 (1.0.151; since 2026-10-10-mcp-surface escher-driver's reader of MCP requests, of kept checks and of the live answer line a replay compares, writing nothing) |
+| Parallelism & misc | rayon 1, slotmap, rustc-hash, bytes, smallvec, thin-vec, atomic_refcell, bitflags, bytemuck, pollster, smol_str, thread_local; mimalloc, the global allocator of two upstream-only binaries, the browser app (by default) and the WPT runner |
+
+## Data Storage
+- None in the engine. The browser app persists history with rusqlite 0.32 (bundled) + rusqlite_migration 1.3 (`history.sqlite3`); blitz-net's optional HTTP cache uses `CACacheManager` in the platform cache dir.
+
+## Messaging & Events
+- No broker. In-process: per-document mpsc channel drained at `resolve`; shell events over an mpsc channel + winit proxy.
+
+## Observability
+- `tracing` 0.1 + `tracing-subscriber` 0.3 behind per-crate `tracing` features in the engine; `tracing-log` 0.2 + `tracing-subscriber` (env-filter · fmt · registry · std · tracing-log) in escher-telemetry, escher's ungated stderr bootstrap; `tracing` alone, ungated, in escher-driver for its `command` span and, since 2026-10-10-mcp-surface, its `tool_call` span; `log` + `env_logger` in the WPT runner; `debug_timer` phase timing behind `log-phase-times`. No OTel, metrics or error-reporting service.
+
+## Development & CI
+- `cargo fmt --all --check`, `cargo clippy --workspace --locked -- -D warnings` — then, only when that line is green and since 2026-10-14-quality-gates, upstream's own blitz-dom line `cargo clippy -p blitz-dom --no-default-features --features svg,woff,accessibility,system-fonts,file-input,custom-widget --all-targets --locked -- -D warnings` — run as legs of `.github/scripts/ci-leg.sh` (the same script on the dev host; `ci-leg.sh fast` is the local pre-push gate); `RUSTDOCFLAGS=-D warnings` is set workflow-wide and the docs job's `cargo doc --workspace --no-deps --locked` holds every workspace library crate to it; a cargo-deny audit of the advisories and licences of the whole workspace's graph (`deny.toml`) and a cargo-llvm-cov coverage report gated since 2026-10-14-quality-gates by per-crate line floors through `.github/scripts/coverage_floor.py` (escher-driver 97 %, dioxus-native-dom 83 %, blitz-test-harness 90 %) run as the `audit` and `coverage` legs, and the `stand-repeat` leg (not a fast leg) holds the stand checks to a zero-failure budget over three rounds; since 2026-10-16-fast-failing-mutants a mutation tier runs on the dev host alone, never in CI: cargo-mutants 27.1.0 with `--test-tool nextest` and `--baseline=skip`, its test tool cargo-nextest 0.9.146 under the `mutants` profile of the root `.config/nextest.toml` (fail-fast at the first failure, four test threads, one priority override naming the direct tests; the default profile untouched), selected by `NEXTEST_PROFILE=mutants`, each unit's mutant test command read green on the unmutated tree first — neither tool lockfile-resolved (the recipe in test-plan §10); beside it, since 2026-10-26-codebase-health, a cognitive-complexity reading on the dev host alone, never in CI: `rust-code-analysis-cli` 0.0.25 in `~/.cargo/bin`, resolved by no lockfile and run by no CI leg, reading each function against the ceiling of 15.
+- Dev profile `debug = "line-tables-only"` (one debuginfo level for host and CI; the test profile inherits it).
+- GitHub Actions: `ci.yml` on PRs and pushes to `main`, `v0.*`, `build/**`, under a workflow-level `permissions: contents: read` with every `uses:` pinned to a commit SHA — fast legs fmt, clippy, test, CI-script tests (no `needs`), then MSRV build, build, counter, wasm, docs (the whole workspace), dependency audit, accessibility (a11y) tests, coverage report, stand checks repeated (`stand-repeat`, since 2026-10-14-quality-gates, with a `jlumbroso/free-disk-space` free-disk step) and the windows/macos/ios/android matrix; rust-cache on every compiling job but coverage (saved on `main` + `build/*`; a11y and, since 2026-10-14-quality-gates, stand-repeat restore the test job's `workspace-test` key and never save), a 7-day `ci-log-*` artifact per failed leg and a 7-day `coverage-report` artifact on success. `wpt.yml` (css + svg WPT, scores, Pages), `wpt-post-results.yml`, `publish-browser.yml` (dx bundle, signed builds) run only in `DioxusLabs/blitz` (repository guard).
+- CI scripts: Python 3 — 3.11 or later, since `test_blitz_tests_targets.py` reads a manifest with the stdlib `tomllib` (`wpt_diff_to_pr.py`, upstream's `wpt_area_changes.py`, since 2026-10-14-quality-gates escher's `coverage_floor.py` — the coverage leg's floor — and its tests `test_coverage_floor.py`, stdlib only, unittest suites; `test_ci_workflows.py` needs PyYAML, which the `ci-scripts` job installs only where `import yaml` fails), the bash leg runner `ci-leg.sh` and the bash install script `apt-install.sh` — fork CI's one statement of its package install, using the runner image's `sudo`, GNU `timeout`, `apt-get` and, since 2026-10-14-quality-gates, `dpkg` (`dpkg --configure -a`, its bounded repair before a retried attempt), no package or action added.
+- Cold-agent run pipe (operator host only, ratified by the founder, 2026-10-06): the Claude Code CLI `claude` as the agent client (read at 2.1.308 on the dev host, the live run's `client_version` the same (at 2026-10-25-cold-agent-bar); a `run` precondition, not a CI requirement — CI runs only the pipe's shim tests), its MCP server since 2026-10-15-cold-agent-test the workspace's own `escher-session mcp` (a `run` precondition built by the operator, never by the pipe; the stub retired with that chunk), and its judge stdlib python3 (`datetime json os queue re subprocess sys threading`), no package added.
+- Testing deps: blitz-test-harness, seven_guis (the headless stand), escher-driver (the driver session), test-that 0.6.0, usvg and, since 2026-10-12-headless-screenshot, png, which `stand_act_screenshot` and `stand_screenshot_repeat` decode a shot with, and since 2026-10-13-upstream-sync-polish-and-ship cursor-icon, for upstream's `pointer_leave` check's hand-written `ShellProvider`; seven_guis' unix-gated test target `cli_flow` runs two POSIX `sh` scripts under plain `sh` and its `recording` target a third, `record_checks.sh`, under `sh` to record the two committed checks and compare them byte for byte — a shell is those two targets' requirement, no dependency or framework added; WPT runner: dify 0.7.4, wptreport 0.0.5, glob, regex, owo-colors.
+
+## Infrastructure
+- Library workspace — no deployment target for the engine. The browser bundles per platform via `dx bundle --package browser --release --profile production --locked` (upstream `DioxusLabs/blitz` only); Nix `packages.browser`; WASM examples via Trunk.
+
+## Third-party services
+- None at runtime. Upstream CI uses GitHub Pages and a repository dispatch to `DioxusLabs/blitz-wpt-results`; neither runs on the fork. The fork's Actions cache (10 GB per-repository budget, least-recently-used eviction) held 12 entries, 10 723 071 252 B — over the budget — after the first run on a re-keyed lockfile (CI run 37386253475, 2026-10-05).
+
+## Rationale
+See `doc:architecture` §Established Decisions — each `[Tag]` explains a pin or a default.
+
+## Version updates
+1. Amend `doc:architecture` §Stack (via the pipeline's amendment flow).
+2. Update `Cargo.toml` `[workspace.dependencies]` — respect the coupled pins (see gotchas.md).
+3. Run the gates (`bash .github/scripts/ci-leg.sh fast` — fmt, clippy, test, CI scripts, embolden).
+4. Commit as `chore: bump {crate} to {version}`.

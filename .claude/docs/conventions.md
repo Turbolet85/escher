@@ -15,14 +15,14 @@ _Extracted from the architecture master `doc:architecture` (the records store) �
 
 ## Manifests
 - Dependencies declared once in `[workspace.dependencies]` and consumed as `{ workspace = true }`; dependency groups separated by comment headers.
-- In-repo crates are declared with `default-features = false` — except `seven_guis`, which keeps its default renderer feature (dioxus-native refuses to compile with none); package metadata inherited with `*.workspace = true`.
+- The in-repo engine crates (blitz-dom, blitz-html, blitz-net, blitz-paint, blitz-vibey-script, blitz-shell, blitz-traits, stylo_taffy, dioxus-native, dioxus-native-dom, accesskit_xplat) are declared with `default-features = false`, the other in-repo crates without it — except `seven_guis`, which keeps its default renderer feature (dioxus-native refuses to compile with none); package metadata inherited with `*.workspace = true`.
 - App and example crates, blitz-tests, blitz-test-harness, escher-telemetry, escher-driver, blitz-vibey-script (since 2026-10-13-upstream-sync-polish-and-ship) and wpt set `publish = false`, rdme `publish = true`; docs.rs builds with all features and `doc_cfg` under `docsrs`.
 
 ## Visibility
 - Crate internals are `pub(crate)` / `pub(super)`; the slotmap key is used only at the storage boundary — public APIs use `NodeId`.
 
 ## Feature gating
-- Optional capabilities are Cargo features forwarded across crates (each dioxus-native feature forwards to the same-named blitz feature; `accessibility` also to dioxus-native-dom's, which gates its own `accessibility_tree` override and its `snapshot`, `snapshot_diff`, `snapshot_text`, `actionable` and `graph` modules, its `signal_registry` module ungated, so an app registers state whatever its features). The workspace takes both Dioxus crates with `default-features = false`, so a feature is on only where a crate names it or depends on a crate that names it — escher-driver names dioxus-native-dom's `accessibility`, which reaches both seven_guis binaries through that edge.
+- Optional capabilities are Cargo features forwarded across crates (each dioxus-native feature forwards to the same-named blitz feature; `accessibility` also to dioxus-native-dom's, which gates its own `accessibility_tree` override and its `snapshot`, `snapshot_diff`, `snapshot_text`, `actionable` and `graph` modules, its `signal_registry` and `reached` modules ungated, so an app registers state whatever its features and the reached record compiles on the wasm build that leaves `accessibility` off). The workspace takes both Dioxus crates with `default-features = false`, so a feature is on only where a crate names it or depends on a crate that names it — escher-driver names dioxus-native-dom's `accessibility`, which reaches both seven_guis binaries through that edge.
 - In the engine and upstream crates `tracing` is gated per call site with a `#[cfg(not(feature = "tracing"))] let _ = …;` fallback; escher-telemetry (no `[features]`) emits its startup and panic events ungated, and escher-driver takes `tracing` with no feature for its spans — the `command` span and, since 2026-10-10-mcp-surface, the `tool_call` span, the parent of `command` on an MCP tool call — built by hand with `tracing::info_span!` (no `#[instrument]`).
 - Desktop-only code gated by the repeated cfg list windows / macos / linux / dragonfly / freebsd / netbsd / openbsd.
 
@@ -32,7 +32,7 @@ _Extracted from the architecture master `doc:architecture` (the records store) �
 - `clippy::expect_used` / `clippy::unwrap_used` allowed only locally, next to a justification. Examples may fail with `unwrap`/`expect`/`panic!`.
 
 ## Unsafe and borrowing
-- `unsafe` blocks carry an `allow unsafe_code` or `// SAFETY:` comment.
+- `unsafe` blocks carry an `allow unsafe_code` or `// SAFETY:` comment; upstream engine code holds unannotated blocks (a node's tree pointer, stylo data, the taffy conversion, layout), and escher's own crates hold no `unsafe`.
 - Borrow conflicts are worked around by taking a child list or layout out and restoring it, and, on the Dioxus bridge, by rendering the vdom into a crate-private `MutationBuffer` with the document's `RefCell` unborrowed, then borrowing the document once and replaying the buffer through one `MutationWriter`; let-chains in `if` conditions are used.
 
 ## DOM API patterns
@@ -45,7 +45,7 @@ _Extracted from the architecture master `doc:architecture` (the records store) �
 - Spec URLs are cited above or next to implementations; constants carry a rationale doc comment.
 
 ## Lints
-- `cargo fmt --all --check` and `cargo clippy --workspace --locked -- -D warnings` — then, only when that line is green and since 2026-10-14-quality-gates, upstream's own blitz-dom line `cargo clippy -p blitz-dom --no-default-features --features svg,woff,accessibility,system-fonts,file-input,custom-widget --all-targets --locked -- -D warnings` — each run as its `.github/scripts/ci-leg.sh` leg; `clippy::collapsible_if` allowed crate-wide in browser, blitz-dom, blitz-html, blitz-vibey-script; `clippy::module_inception` in blitz-dom's node module; other allows are local, ideally with a reason; rustdoc warnings are errors workflow-wide, over every library crate.
+- `cargo fmt --all --check` and `cargo clippy --workspace --locked -- -D warnings` — then, only when that line is green and since 2026-10-14-quality-gates, upstream's own blitz-dom line `cargo clippy -p blitz-dom --no-default-features --features svg,woff,accessibility,system-fonts,file-input,custom-widget --all-targets --locked -- -D warnings` — each run as its `.github/scripts/ci-leg.sh` leg; `clippy::collapsible_if` allowed crate-wide in browser, blitz-dom, blitz-html, blitz-paint, blitz-vibey-script; `clippy::module_inception` in blitz-dom's node module; other allows are local, ideally with a reason; rustdoc warnings are errors workflow-wide, over every library crate.
 
 ## Logging
 See `.claude/rules/observability.md` for enforcement; this doc carries the conventions.

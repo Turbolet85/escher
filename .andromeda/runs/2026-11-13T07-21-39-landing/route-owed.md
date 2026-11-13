@@ -1,0 +1,2 @@
+architecture · decision/actions-pinned-to-commit-sha · Pin every action of wpt.yml, publish-browser.yml and wpt-post-results.yml to a 40-hex commit SHA, its ref a trailing comment, and widen the pinning check past ci.yml to every workflow.
+security-plan · decision/ci-actions-pinned-to-sha · Pin every action of wpt.yml, publish-browser.yml and wpt-post-results.yml to a 40-hex commit SHA, its ref a trailing comment, and widen the pinning check past ci.yml to every workflow.
