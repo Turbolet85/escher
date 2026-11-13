@@ -1,0 +1,84 @@
+[
+{
+"tool": "rec",
+"v": "1.40",
+"sha8": "bd622cd7",
+"ts": "2026-11-13T07:19:36Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-13T07-19-25-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-13T07-19-25-wrap",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 541 · run-opxkzyjr … run-opxkzyjr"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-12T14-22-05-no-marker.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.40",
+"sha8": "bd622cd7",
+"ts": "2026-11-13T07:20:01Z",
+"argv": [
+"outputs",
+"land",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-13T07-19-25-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"outputs land: no field payload in the run — nothing to land"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.40",
+"sha8": "bd622cd7",
+"ts": "2026-11-13T07:20:01Z",
+"argv": [
+"seal",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-13T07-19-25-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"kept: 2026-11-12T03-36-23-rows — a proposal awaiting its landing",
+"kept: 2026-11-12T03-36-23-rows-a11y-plan — a proposal awaiting its landing",
+"kept: 2026-11-12T03-36-23-rows-architecture — a proposal awaiting its landing",
+"kept: 2026-11-12T03-36-23-rows-design-system — a proposal awaiting its landing",
+"kept: 2026-11-12T03-36-23-rows-layout-templates — a proposal awaiting its landing",
+"kept: 2026-11-12T03-36-23-rows-obs-plan — a proposal awaiting its landing",
+"kept: 2026-11-12T03-36-23-rows-security-plan — a proposal awaiting its landing",
+"kept: 2026-11-12T03-36-23-rows-test-plan — a proposal awaiting its landing",
+"sealed 2026-11-12T14-21-30-wrap · 4 file(s) · 2026-11-12T14-21-30-wrap.parquet · tx 542 · 4 removed · 0 set aside",
+"seal · 1 run(s) · own 2026-11-13T07-19-25-wrap left as files"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]
