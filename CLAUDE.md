@@ -20,10 +20,16 @@ escher is a fork of Blitz, a Rust library workspace for an HTML/CSS engine (high
 <!-- GENERATED:setup:modules start -->
 - **`blitz-dom`** — the headless DOM (`BaseDocument`): tree, Stylo styling, layout, events, scrolling, hit testing, the accessibility tree, the form controls' models and the document's clock
 - **`blitz-traits`** — shared types and provider traits (net, navigation, shell, events, `NodeId`)
+- **`stylo_taffy`** — the Stylo ↔ Taffy bridge: `to_taffy_style`, `TaffyStyloStyle`, writing modes
+- **`blitz-html`** — the HTML parser: `DocumentHtmlParser`, an html5ever `TreeSink`
+- **`blitz-net`** — networking: the `Provider` behind `NetProvider::fetch` — HTTP through reqwest, filesystem, `data:` URIs
+- **`blitz-paint`** — paints a document through anyrender (`paint_scene`): the open select list last, a password input masked
+- **`blitz-shell`** — the winit application shell: drives any `Document`, refreshes the platform accessibility tree
 - **`blitz`** — high-level APIs for rendering HTML, re-exporting the engine crates
 - **`blitz-vibey-script`** — `<script>` execution on the Boa engine with DOM bindings (`ScriptDocument`)
 - **`accesskit_xplat`** — cross-platform AccessKit adapter
 - **`debug_timer`** — utilities for simple, opt-in timings
+- **`dioxus-native`** — the native Dioxus renderer: launch configs, a window renderer chosen at compile time
 - **`dioxus-native-dom`** — headless Dioxus renderer on blitz (`DioxusDocument`): stable element ids, the snapshot, its text, parts and diff, the UI graph and the reached record
 - **`blitz-test-harness`** — headless `Harness` for blitz documents: virtual time, pump, settle, input synthesis, inspection, screenshot, contrast
 - **`escher-telemetry`** — telemetry bootstrap for escher binaries: stderr `tracing` subscriber, service identity, target allowlist and scrub, panic hook
@@ -39,11 +45,21 @@ escher is a fork of Blitz, a Rust library workspace for an HTML/CSS engine (high
 - **`wasm_hello`** — the minimal WASM proof: `BlitzApplication` on `wasm32-unknown-unknown`
 - **`wpt`** — the Web Platform Tests conformance runner (`wpt/runner/`)
 - **`blitz-tests`** — the integration tests, one target per behaviour
+- **`blitz-examples`**
 <!-- GENERATED:setup:modules end -->
 
 ## Critical Warnings (universal invariants)
 <!-- GENERATED:setup:warnings start -->
-- none — the plans' §Anti-Patterns (Universal) hold no row; the every-turn guards are `.claude/rules/security.md` and `.claude/rules/host-linux.md`, the rest path-scoped in `.claude/rules/`
+- Secrets live only in GitHub Actions secrets and vars — never in source, fixtures, events or committed evidence; never commit `.env*`
+- The driver session's Unix socket is the one listener: a new socket, port, IPC endpoint or credential path is a security-plan amendment first
+- No panic path on untrusted input — a driver call's arguments — refuse it as a typed value, never `unwrap` · `expect` · `panic!` · `unreachable!`
+- `NodeId` is versioned: a dropped node's id stops resolving instead of aliasing a reused slot — a stale id resolves to none on lookup, never a panic
+- No content in a log field: `url` · `href` · `src` · `html` · `text` · `value` · `attrs` · `path` · `request` · `error` print `[redacted]` on `escher_*` targets — add no field that carries them
+- Every build, test and CI cargo leg passes `--locked` against the committed `Cargo.lock` (`examples/wasm_hello` aside — a standalone workspace)
+- The workspace takes no git dependency — every crate a crates.io registry version
+- Incremental and non-incremental layout must produce identical layouts after any sequence of mutations — the `incremental_oracle` holds them to it
+- DOM mutations go through `DocumentMutator`, which flushes deferred work on drop
+- `clippy::unwrap_used` / `clippy::expect_used` are allowed only locally, next to a written justification — never crate-wide
 <!-- GENERATED:setup:warnings end -->
 
 ## Where to Look
