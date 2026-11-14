@@ -1,0 +1,1178 @@
+[
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:34:55Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-13-local-files-for-local-documents",
+"--file",
+".andromeda/cache/docs/2026-11-13-local-files-for-local-documents/report.md",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-13-local-files-for-local-documents/report rev 1 · 47 new · 0 revised · 0 retired · 0 kept · tx 731"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:34:55Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-13-local-files-for-local-documents",
+"--section-file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-13-local-files-for-local-documents/report rev 2 · 30 new · 0 revised · 0 retired · 47 kept · tx 732"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:38:28Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-13-local-files-for-local-documents",
+"--section-file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/addendum-1.md",
+"--heading",
+"## Addendum 1 — resumed 2026-11-14",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 2,
+"stdout": [],
+"stderr": "--section-file: its first line must be the heading `## Addendum 1 — resumed 2026-11-14` — nothing written",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:38:34Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-13-local-files-for-local-documents",
+"--section-file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/addendum-1.md",
+"--heading",
+"## Addendum 1 — resumed 2026-11-14",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-13-local-files-for-local-documents/report rev 3 · 2 new · 0 revised · 0 retired · 77 kept · tx 735"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:38:45Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/cites-land-2026-11-13-local-files-for-local-documents.ndjson",
+"--base",
+"8a166d6aa3a368afa57e94f05b30a3237730afc0",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:38:49Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/cites-land-2026-11-13-local-files-for-local-documents.ndjson",
+"--base",
+"8a166d6aa3a368afa57e94f05b30a3237730afc0",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 736"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:41:23Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1477 · packs 15 · pack 100 · 364179 B",
+"security-plan: rows 544 · packs 6 · pack 100 · 152854 B",
+"design-system: rows 136 · packs 2 · pack 100 · 37294 B",
+"layout-templates: rows 120 · packs 2 · pack 100 · 29783 B",
+"test-plan: rows 599 · packs 6 · pack 100 · 163095 B",
+"obs-plan: rows 274 · packs 3 · pack 100 · 73323 B",
+"a11y-plan: rows 240 · packs 3 · pack 100 · 75200 B",
+"rows-packs: 7 master(s) · 3390 row(s) · 37 pack(s) · 2 draw(s) a pack · pin 736"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-14T00-30-46-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:52:39Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1477 · packs 15 · picked 60 (39 by every draw) · standing 0 · 196263 B · Standard Contracts: by boundary, the rest under `also here:`",
+"security-plan: rows 544 · packs 6 · picked 32 (15 by every draw) · standing 0 · 110212 B · Input Validation: by boundary, the rest under `also here:`",
+"design-system: rows 136 · packs 2 · picked 8 (4 by every draw) · standing 0 · 24201 B",
+"layout-templates: rows 120 · packs 2 · picked 2 (0 by every draw) · standing 0 · 13808 B",
+"test-plan: rows 599 · packs 6 · picked 23 (13 by every draw) · standing 0 · 125266 B",
+"obs-plan: rows 274 · packs 3 · picked 10 (9 by every draw) · standing 0 · 48132 B",
+"a11y-plan: rows 240 · packs 3 · picked 1 (1 by every draw) · standing 0 · 2650 B",
+"rows-union: 7 master(s) · picked 136 of 3390 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-14T00-30-46-wrap/arch-rows.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/arch-standing.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/security-rows.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/security-standing.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/design-rows.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/design-standing.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/tests-rows.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/tests-standing.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/obs-rows.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/obs-standing.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-14T00-30-46-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:56:34Z",
+"argv": [
+"rows-check",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/ops-main-test-plan.2.md",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"rows-check · standing · doc:test-plan",
+"decision/file-urls-only-for-file-documents · stale — seen=2, the row stands at r1 — read it again",
+"decision/file-urls-only-for-file-documents · over — guard: 209 chars, 120 at the most",
+"REFUSED · standing · 1 row(s) of 1 operation(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:56:43Z",
+"argv": [
+"rows-check",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/ops-main-test-plan.2.md",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"rows-check · standing · doc:test-plan",
+"decision/file-urls-only-for-file-documents · stale — seen=2, the row stands at r1 — read it again",
+"REFUSED · standing · 1 row(s) of 1 operation(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:58:30Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-14T00-30-46-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/blitz-traits-net/document-may-load · rejected",
+"decision/blitz-dom-clippy-config · rejected",
+"fit: fits 9 · not_master 0 · stands 0",
+"## 2026-11-13-local-files-for-local-documents — Established Decisions: 3 row(s)\n**Section:** Established Decisions\n**Change:** ~ decision/url-scheme-routing · rule: was «`data:` URLs are decoded locally, `file:` URLs read from disk, and every other scheme goes over HTTP.»; now «`data:` URLs are decoded locally, `file:` URLs are read from disk only for a top-level load or a `file:` loading document and are otherwise refused before any disk read, and every other scheme goes over HTTP.»\n~ decision/file-script-load-refused · rule: was «A script load from a `file:` URL is refused unless the loading document is itself a `file:` document.»; now «A script load from a `file:` URL is refused unless the loading document is itself a `file:` document, so a remote page cannot read local files.»\n+ decision/sub-resource-requests-carry-initiator — Engine sub-resource requests carry their document\n**Why:** decision/url-scheme-routing: blitz-net's file arm now refuses with FileForbidden any request whose loading document is not a `file:` document, so the row's unconditional disk read is false.\ndecision/file-script-load-refused: the clause «so a remote page cannot read local files» is owed to this row by the route adaptation and the operator's corrected directive (fct-zyy76wpv), now that the refusal reaches engine sub-resources too.\ndecision/sub-resource-requests-carry-initiator: the engine now stamps all seven sub-resource paths with their document, a standing decision blitz-net's file refusal relies on.\n**Ref:** .andromeda/runs/2026-11-14T00-30-46-wrap/",
+"## 2026-11-13-local-files-for-local-documents — Standard Contracts: 3 row(s)\n**Section:** Standard Contracts\n**Change:** ~ decision/file-url-load-rule · rule: was «A `file:` URL may be loaded only by a document whose own URL is `file:`; fetch, module imports and script sources each ask before the fetcher is called and read a refusal as Forbidden.»; now «A `file:` URL may be loaded only by a document whose own URL is `file:`, or as a top-level load; fetch, module imports and script sources ask before the fetcher is called and read a refusal as Forbidden, and blitz-net refuses every other engine request with FileForbidden before reading the disk.»\n+ contract/blitz-traits-net/request-initiator — blitz-traits net types · Request initiator\n+ contract/stylesheet-handler/document-url — blitz-dom StylesheetHandler · document_url\n**Why:** decision/file-url-load-rule: the rule named script loads alone, and blitz-net now applies the same predicate to every engine sub-resource request, top-level loads excepted.\ncontract/blitz-traits-net/request-initiator: a new public field and builder on a shared traits type is a contract other crates now rely on and must be registered.\ncontract/stylesheet-handler/document-url: a public struct of blitz-dom gains a public field, a public API change no row registers.\n**Ref:** .andromeda/runs/2026-11-14T00-30-46-wrap/",
+"## 2026-11-13-local-files-for-local-documents — Conventions: 2 row(s)\n**Section:** Conventions\n**Change:** ~ decision/builder-method-naming · except: was «»; now «blitz-traits' Request builders are named by their field, `signal` and `initiator`.»\n+ decision/blitz-dom-stamped-requests — blitz-dom requests only through the stamping constructor\n**Why:** decision/builder-method-naming: the new consuming builder Request::initiator stands beside signal and is not named `with_…`, so the convention as stated is contradicted without its exception.\ndecision/blitz-dom-stamped-requests: the chunk lands a crate-level construction guard that every future blitz-dom request must respect, and no row says it.\n**Ref:** .andromeda/runs/2026-11-14T00-30-46-wrap/",
+"## 2026-11-13-local-files-for-local-documents — Occupied Resources: 1 row(s)\n**Section:** Occupied Resources\n**Change:** + name/other/cargo-target-tmpdir — CARGO_TARGET_TMPDIR\n**Why:** name/other/cargo-target-tmpdir: a blitz-tests target reads CARGO_TARGET_TMPDIR for its test-only fixture directory, an occupied name the register does not hold.\n**Ref:** .andromeda/runs/2026-11-14T00-30-46-wrap/",
+"patterns: none: 4 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 9 operation(s) · 4 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:58:30Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-14T00-30-46-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 4 · not_master 0 · stands 0",
+"## 2026-11-13-local-files-for-local-documents — Threat Model Summary: 1 row(s)\n**Section:** Threat Model Summary\n**Change:** ~ decision/file-url-only-for-file-documents · rule: was «A file: URL loads only for a file: document; for any other document, remote pages included, JS fetch, module import and script src alike refuse it with a FetchError.»; now «A file: URL loads only for a file: document or a top-level load; for any other document, remote pages included, JS fetch, module import and script src refuse it with a FetchError, and blitz-net refuses the engine's stylesheet, @import, font, image and iframe loads before any disk read.»\n**Why:** decision/file-url-only-for-file-documents: blitz-net's file: read now refuses every engine sub-resource load whose loading document is not a file: document, so the rule that named script loads alone is incomplete.\n**Ref:** .andromeda/runs/2026-11-14T00-30-46-wrap/",
+"## 2026-11-13-local-files-for-local-documents — Input Validation: 2 row(s)\n**Section:** Input Validation\n**Change:** ~ decision/file-urls-only-from-file-documents · rule: was «A script fetch, a module import or a script src may load a file: URL only for a file: document, in every document, remote pages included.»; now «A script fetch, module import or script src, and every engine stylesheet, @import, font, image or iframe load, may read a file: URL only for a file: document or a top-level load, in every document, remote pages included; blitz-net refuses any other before a disk read.»\n+ decision/one-stamping-request-constructor — One stamping constructor for sub-resource requests\n**Why:** decision/file-urls-only-from-file-documents: Every engine sub-resource request now carries its loading document and blitz-net reads a file: URL only for no loading document or a file: one, so the rule stating script loads alone must widen to them.\ndecision/one-stamping-request-constructor: A crate clippy rule now forbids building a request in blitz-dom outside the stamping constructor, a validation gate no row states.\n**Ref:** .andromeda/runs/2026-11-14T00-30-46-wrap/",
+"## 2026-11-13-local-files-for-local-documents — Error Handling: 1 row(s)\n**Section:** Error Handling\n**Change:** + contract/blitz-net-provider-error/file-forbidden — blitz-net provider errors · FileForbidden\n**Why:** contract/blitz-net-provider-error/file-forbidden: blitz-net's typed error set gains a refusal whose text is promised fixed and path-free, a contract at the provider boundary no row holds.\n**Ref:** .andromeda/runs/2026-11-14T00-30-46-wrap/",
+"patterns: none: 2 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 4 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:58:35Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-14T00-30-46-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/blitz-traits-net/document-may-load · rejected",
+"decision/blitz-dom-clippy-config · rejected",
+"fit: fits 9 · not_master 0 · stands 0",
+"landed tx 737 · 9 operation(s) · 4 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson",
+".andromeda/runs/2026-11-14T00-30-46-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:58:35Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-14T00-30-46-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 4 · not_master 0 · stands 0",
+"landed tx 738 · 4 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson",
+".andromeda/runs/2026-11-14T00-30-46-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:58:39Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-14T00-30-46-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/sub-resource-requests-carry-their-document · rejected",
+"name/other/local-files-for-local-documents · rejected",
+"fit: fits 4 · not_master 0 · stands 0",
+"## 2026-11-13-local-files-for-local-documents — 5. Integration Test Strategy: 1 row(s)\n**Section:** 5. Integration Test Strategy\n**Change:** ~ decision/file-urls-only-for-file-documents · rule: was «A `file:` URL is loaded by `fetch()`, a module `import` or `<script src>` only for a `file:` document, and refused with a `FetchError` otherwise.»; now «A `file:` URL is loaded only for a `file:` document: a script's `fetch()`, module `import` or `<script src>` is refused with a `FetchError` otherwise, and an engine sub-resource load (stylesheet, `@import`, font, image, iframe) through blitz-net reads no local file for a non-`file:` document.»\n**Why:** decision/file-urls-only-for-file-documents: blitz-net now refuses a `file:` read for any engine sub-resource request whose loading document is not a `file:` document, so the rule naming script loads alone is incomplete.\n**Ref:** .andromeda/runs/2026-11-14T00-30-46-wrap/",
+"## 2026-11-13-local-files-for-local-documents — 2. Test Strategy: 1 row(s)\n**Section:** 2. Test Strategy\n**Change:** ~ decision/png-decoding-in-checks · rule: was «A blitz-tests check decodes a PNG through the png dev-dependency; seven_guis, which has none, reads it with a hand base64 reader and the PNG header.»; now «A blitz-tests check decodes or encodes a PNG through the png dev-dependency; seven_guis, which has none, reads it with a hand base64 reader and the PNG header.»\n**Why:** decision/png-decoding-in-checks: a blitz-tests check now also encodes a PNG through the png dev-dependency, so the row stating its role as decoding alone is incomplete.\n**Ref:** .andromeda/runs/2026-11-14T00-30-46-wrap/",
+"## 2026-11-13-local-files-for-local-documents — 9. CI Integration: 1 row(s)\n**Section:** 9. CI Integration\n**Change:** + decision/blitz-dom-requests-through-stamping-constructor — blitz-dom builds requests through one stamping constructor\n**Why:** decision/blitz-dom-requests-through-stamping-constructor: a new crate-level clippy config makes the clippy leg guard blitz-dom's request construction, a gate the CI rows do not state.\n**Ref:** .andromeda/runs/2026-11-14T00-30-46-wrap/",
+"## 2026-11-13-local-files-for-local-documents — 8. Mocking & Stubbing Discipline: 1 row(s)\n**Section:** 8. Mocking & Stubbing Discipline\n**Change:** + decision/real-provider-inside-stand-in — Real network provider inside a hand-written stand-in\n**Why:** decision/real-provider-inside-stand-in: the chunk's witness puts blitz-net's real provider behind a hand-written stand-in on its own runtime, a stubbing convention the discipline rows do not state.\n**Ref:** .andromeda/runs/2026-11-14T00-30-46-wrap/",
+"patterns: none: 2 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 4 operation(s) · 4 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:58:39Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-14T00-30-46-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-13-local-files-for-local-documents — 7. Error Capture & Reporting: 1 row(s)\n**Section:** 7. Error Capture & Reporting\n**Change:** ~ decision/no-file-loads-from-non-file-documents · rule: was «A file: load asked by a non-file: document is refused as a typed forbidden fetch error: a script fetch rejects with a TypeError, a module import fails, and a script element's source is skipped and recorded as a script error.»; now «A file: load asked by a non-file: document is refused as a typed forbidden error: a script fetch rejects with a TypeError, a module import fails, a script element's source is recorded as a script error, and an engine sub-resource fetch fails with fixed text naming no URL or path, adding no log site.»\n**Why:** decision/no-file-loads-from-non-file-documents: blitz-net now refuses a file: sub-resource fetch for a non-file: document with the fixed-text FileForbidden provider error through the handler's error path, so the rule that named script loads alone must name the engine's sub-resource refusal too.\n**Ref:** .andromeda/runs/2026-11-14T00-30-46-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:58:45Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-14T00-30-46-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/sub-resource-requests-carry-their-document · rejected",
+"name/other/local-files-for-local-documents · rejected",
+"fit: fits 4 · not_master 0 · stands 0",
+"landed tx 739 · 4 operation(s) · 4 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson",
+".andromeda/runs/2026-11-14T00-30-46-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:58:45Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-14T00-30-46-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 740 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson",
+".andromeda/runs/2026-11-14T00-30-46-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:58:45Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/ops-main-test-plan.2.md",
+"--results",
+".andromeda/runs/2026-11-14T00-30-46-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-13-local-files-for-local-documents — 5. Integration Test Strategy: 1 row(s)\n**Section:** 5. Integration Test Strategy\n**Change:** ~ decision/file-urls-only-for-file-documents · guard: was «remote_document_cannot_load_file_urls, file_document_can_load_sibling_file_urls»; now «remote_document_cannot_load_file_urls, file_document_can_load_sibling_file_urls, local_files_for_local_documents»\n**Why:** decision/file-urls-only-for-file-documents: the rule now covers the engine's sub-resource loads through blitz-net, and the new blitz-tests target that holds that half in both layout modes guards it beside the script-load checks.\n**Ref:** .andromeda/runs/2026-11-14T00-30-46-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:58:49Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/ops-main-test-plan.2.md",
+"--results",
+".andromeda/runs/2026-11-14T00-30-46-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 741 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson",
+".andromeda/runs/2026-11-14T00-30-46-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:58:49Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/ops-design-system.md",
+"--results",
+".andromeda/runs/2026-11-14T00-30-46-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"fanout-results.md: no line `ops-design-system.md` — §Validate writes the file's name on a line of its own, then a line an operation"
+],
+"stderr": "rows-land: 1 disposition problem(s) under ops-design-system.md — nothing written",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:58:49Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-14T00-30-46-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"fanout-results.md: no line `ops-layout-templates.md` — §Validate writes the file's name on a line of its own, then a line an operation"
+],
+"stderr": "rows-land: 1 disposition problem(s) under ops-layout-templates.md — nothing written",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T00:58:49Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-14T00-30-46-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"fanout-results.md: no line `ops-a11y-plan.md` — §Validate writes the file's name on a line of its own, then a line an operation"
+],
+"stderr": "rows-land: 1 disposition problem(s) under ops-a11y-plan.md — nothing written",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T01:02:32Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/conventions.md",
+"--file",
+"./.andromeda/runs/2026-11-14T00-30-46-wrap/staged-leaf-.claude__docs__conventions.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/conventions.md rev 6 · 0 new · 2 revised · 0 retired · tx 742"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson",
+"./.claude/docs/conventions.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T01:02:33Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/blitz-dom.md",
+"--file",
+"./.andromeda/runs/2026-11-14T00-30-46-wrap/staged-leaf-.claude__docs__services__blitz-dom.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/blitz-dom.md rev 7 · 0 new · 1 revised · 0 retired · tx 743"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson",
+"./.claude/docs/services/blitz-dom.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T01:02:33Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/blitz-traits.md",
+"--file",
+"./.andromeda/runs/2026-11-14T00-30-46-wrap/staged-leaf-.claude__docs__services__blitz-traits.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/blitz-traits.md rev 3 · 0 new · 1 revised · 0 retired · tx 744"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson",
+"./.claude/docs/services/blitz-traits.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T01:02:34Z",
+"argv": [
+"harness",
+"land",
+"CLAUDE.md",
+"--file",
+"./.andromeda/runs/2026-11-14T00-30-46-wrap/staged-leaf-CLAUDE.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 9 · 0 new · 1 revised · 0 retired · tx 745"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T01:02:34Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/obs-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-14T00-30-46-wrap/staged-leaf-.claude__docs__obs-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/obs-summary.md rev 8 · 0 new · 1 revised · 0 retired · tx 746"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson",
+"./.claude/docs/obs-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T01:02:35Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/security-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-14T00-30-46-wrap/staged-leaf-.claude__docs__security-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/security-summary.md rev 12 · 0 new · 1 revised · 0 retired · tx 747"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson",
+"./.claude/docs/security-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T01:02:35Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/security.md",
+"--file",
+"./.andromeda/runs/2026-11-14T00-30-46-wrap/staged-leaf-.claude__rules__security.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/security.md rev 12 · 0 new · 2 revised · 0 retired · tx 748"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson",
+"./.claude/rules/security.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T01:02:36Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/testing.md",
+"--file",
+"./.andromeda/runs/2026-11-14T00-30-46-wrap/staged-leaf-.claude__rules__testing.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/testing.md rev 12 · 0 new · 1 revised · 0 retired · tx 749"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson",
+"./.claude/rules/testing.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T01:06:33Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 3 record(s) · 3 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T01:06:37Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 3 record(s) · 3 edge(s) · tx 755 · chk-ih277nx6 … cry-nnm3rzya"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson",
+"./escher-0.3.0/working-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T01:07:04Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-14T00-30-46-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--marker",
+"2026-11-13-local-files-for-local-documents"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 757 · run-nortf4ch … run-nortf4ch"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.45",
+"sha8": "759adc81",
+"ts": "2026-11-14T01:12:21Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-13-local-files-for-local-documents",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 10 file(s) of 2026-11-13-local-files-for-local-documents"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

@@ -9,7 +9,7 @@ _Extracted from the architecture master `doc:architecture` (the records store) �
 
 ## Variable & identifier naming
 - Standard Rust casing. No-op implementations are prefixed `Dummy` (`DummyNetProvider`, …); internal JS natives are prefixed `__blitz_`.
-- Consuming builder methods named `with_*` / `without_*` (`with_virtual_time`, `without_timer_thread`).
+- Consuming builder methods named `with_*` / `without_*` (`with_virtual_time`, `without_timer_thread`), except blitz-traits' `Request` builders, named by their field: `signal` and `initiator`.
 - Stylo and Parley types are aliased under `stylo` / `parley` modules.
 - `#[non_exhaustive]` on extensible public structs (`NavigationOptions`, `Request`).
 
@@ -19,7 +19,7 @@ _Extracted from the architecture master `doc:architecture` (the records store) �
 - App and example crates, blitz-tests, blitz-test-harness, escher-telemetry, escher-driver, blitz-vibey-script (since 2026-10-13-upstream-sync-polish-and-ship) and wpt set `publish = false`, rdme `publish = true`; docs.rs builds with all features and `doc_cfg` under `docsrs`.
 
 ## Visibility
-- Crate internals are `pub(crate)` / `pub(super)`; the slotmap key is used only at the storage boundary — public APIs use `NodeId`.
+- Crate internals are `pub(crate)` / `pub(super)`; the slotmap key is used only at the storage boundary — public APIs use `NodeId`. blitz-dom builds a network `Request` only through its one crate-private constructor, which stamps the loading document as the request's initiator (guarded by blitz-dom's clippy `disallowed-methods` rule on `Request::get`, one local expect of the lint at that constructor).
 
 ## Feature gating
 - Optional capabilities are Cargo features forwarded across crates (each dioxus-native feature forwards to the same-named blitz feature; `accessibility` also to dioxus-native-dom's, which gates its own `accessibility_tree` override and its `snapshot`, `snapshot_diff`, `snapshot_text`, `actionable` and `graph` modules, its `signal_registry` and `reached` modules ungated, so an app registers state whatever its features and the reached record compiles on the wasm build that leaves `accessibility` off). The workspace takes both Dioxus crates with `default-features = false`, so a feature is on only where a crate names it or depends on a crate that names it — escher-driver names dioxus-native-dom's `accessibility`, which reaches both seven_guis binaries through that edge.

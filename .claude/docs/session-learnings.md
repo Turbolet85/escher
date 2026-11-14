@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-14 — A clippy lint's `#[expect]` is checked by the clippy leg alone
+`#[expect(clippy::disallowed_methods, reason = "…")]` reads nothing under a plain `cargo build` or `cargo test`: rustc does not check the expectation of a clippy lint without clippy, so a stale `expect` (one whose lint no longer fires) and a missing one both pass every non-clippy gate. Only the workspace clippy leg (`ci-leg.sh clippy`, inside `fast` and CI) fulfils or breaks it. A crate-level `clippy.toml` (escher's first, `packages/blitz-dom/clippy.toml`, banning `Request::get` outside `stamped_request`) is read by `cargo clippy -p {crate}` from the crate's own directory, and upstream's blitz-dom has none — an upstream sync that adds a `Request::get` call in blitz-dom reads green until the clippy leg runs. Prove such a guard by a control with the `expect` removed (measured at 2026-11-13-local-files-for-local-documents: `error: use of a disallowed method blitz_traits::net::Request::get`, exit 101).
+
+---
+
 ## 2026-11-13 — A master row's `verified` evidence cites lines no sweep re-points
 Since the masters became rows, a row holds no line citation in its text, so a site-sweep pattern on `path.rs:N` never fires its control over them and reads nothing. But a row's `verified` metadata (`rec.py get` prints it under the cells) still quotes `at: {path}:{lines}` evidence from the tree it was verified on. Neither the citation sweep nor the cascade sweep reads that cell, so a chunk that moves code those lines name leaves the evidence pointing at the old lines with no tool flagging it. When a chunk restructures a file, read the rows its change-pattern hits with `rec.py get` and check their `verified` coordinates by hand; the report names any that moved.
 

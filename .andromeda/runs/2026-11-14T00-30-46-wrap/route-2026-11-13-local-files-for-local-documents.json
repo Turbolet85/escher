@@ -1,0 +1,59 @@
+[
+{
+"tool": "route",
+"v": "1.14",
+"sha8": "cda292aa",
+"ts": "2026-11-14T01:13:02Z",
+"argv": [
+"route.py",
+"flip",
+"--chunk",
+"2026-11-13-local-files-for-local-documents",
+"--date",
+"2026-11-14",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin listing NOT DERIVED -- 2026-11-13-local-files-for-local-documents carries no freight (already compact)",
+"dry-run · would flip 2026-11-13-local-files-for-local-documents pending -> complete"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.14",
+"sha8": "cda292aa",
+"ts": "2026-11-14T01:13:07Z",
+"argv": [
+"route.py",
+"flip",
+"--chunk",
+"2026-11-13-local-files-for-local-documents",
+"--date",
+"2026-11-14",
+"--run-dir",
+".andromeda/runs/2026-11-14T00-30-46-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin listing NOT DERIVED -- 2026-11-13-local-files-for-local-documents carries no freight (already compact)",
+"flip 2026-11-13-local-files-for-local-documents pending -> complete · tx 762",
+"compacted 0 complete line(s) — their freight spent in the spine, no archive (U61)"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-13T23-11-39-2026-11-13-local-files-for-local-documents.ndjson",
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+}
+]

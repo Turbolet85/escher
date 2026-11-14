@@ -1,0 +1,51 @@
+[[pattern]]
+id = 'initiator'
+regex = '''initiator|non-exhaustive-request|non_exhaustive\]|Request::get'''
+
+[[pattern]]
+id = 'predicate'
+regex = '''document_may_load|document-may-load'''
+
+[[pattern]]
+id = 'fileurl'
+regex = '''file-url-load-rule|url-scheme-routing|file-urls?-only|blitz-net[^\n]{0,80}`file:`'''
+
+[[pattern]]
+id = 'forbid'
+regex = '''FileForbidden|ProviderError|blitz-net-provider/fetch'''
+
+[[pattern]]
+id = 'stamp'
+regex = '''stamped_request|clippy\.toml|disallowed[-_]methods'''
+
+[[pattern]]
+id = 'target'
+regex = '''local_files_for_local_documents'''
+
+[[pattern]]
+id = 'count'
+regex = '''\b1[67][0-9] (?:targets|test targets|`\.rs` files|\.rs files|integration)'''
+
+[[pattern]]
+id = 'tmpdir'
+regex = '''CARGO_TARGET_TMPDIR'''
+
+[[pattern]]
+id = 'notest'
+regex = '''`file:` (?:read|arm|branch)[^\n]{0,60}(?:no test|untested)|has no test'''
+
+[[pattern]]
+id = 'handler'
+regex = '''StylesheetHandler|StylesheetLoader|fetch_font_face'''
+
+[[pattern]]
+id = 'scriptrule'
+regex = '''file-script-load-refused|cannot read local files|remote pages? (?:cannot|can't) read'''
+
+[[pattern]]
+id = 'obsrule'
+regex = '''no-file-loads-from-non-file-documents'''
+
+[[pattern]]
+id = 'devdeps'
+regex = '''blitz-tests'?[^\n]{0,40}dev-dependenc'''

@@ -1,0 +1,2 @@
+@none
+reason: The chunk adds no user-facing surface or region and changes no layout, stand page or boot (fct-5mmpvrzk: smoke skipped, no boot-path or UI-surface change); it narrows blitz-net's file: reads to file: documents and stamps the loading document on engine requests (fct-z4iggkni), so D-layout-surface does not fire and the two picker-flagged rows, decision/fixed-document-skeleton-main-mount and decision/load-page-only-network, stay true (stand_load_page green, fct-5mmpvrzk).

@@ -22,7 +22,7 @@ escher is a fork of Blitz, a Rust library workspace for an HTML/CSS engine (high
 - **`blitz-traits`** — shared types and provider traits (net, navigation, shell, events, `NodeId`)
 - **`stylo_taffy`** — the Stylo ↔ Taffy bridge: `to_taffy_style`, `TaffyStyloStyle`, writing modes
 - **`blitz-html`** — the HTML parser: `DocumentHtmlParser`, an html5ever `TreeSink`
-- **`blitz-net`** — networking: the `Provider` behind `NetProvider::fetch` — HTTP through reqwest, filesystem, `data:` URIs
+- **`blitz-net`** — networking: the `Provider` behind `NetProvider::fetch` — HTTP through reqwest, filesystem (a `file:` URL only for a top-level load or a `file:` document, any other refused `FileForbidden` before a disk read), `data:` URIs
 - **`blitz-paint`** — paints a document through anyrender (`paint_scene`): the open select list last, a password input masked
 - **`blitz-shell`** — the winit application shell: drives any `Document`, refreshes the platform accessibility tree
 - **`blitz`** — high-level APIs for rendering HTML, re-exporting the engine crates

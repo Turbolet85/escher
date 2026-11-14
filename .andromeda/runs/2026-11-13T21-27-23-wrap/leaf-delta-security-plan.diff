@@ -1,7 +1,0 @@
---- a/.andromeda/security-plan.md
-+++ b/.andromeda/security-plan.md
-@@ -225,3 +225,3 @@
- decision/unknown-target-refused · Call on an unknown or unfit element refused — A call whose id names no element, or an element that cannot take the call, is refused with nothing run.
--decision/unresolvable-stylesheet-href-no-load · Unresolvable stylesheet href starts no load — In every document, a stylesheet href that cannot be resolved starts no load and blocks no render. · why: Resolution goes through the non-panicking resolver instead of the one that panics. · guard: invalid_stylesheet_url_does_not_block_rendering
-+decision/unresolvable-stylesheet-href-no-load · Unresolvable stylesheet href starts no load — In every document, a stylesheet href that cannot be resolved starts no load and blocks no render. · guard: invalid_stylesheet_url_does_not_block_rendering
- decision/untrusted-bytes-decoded-without-panic · Page and stylesheet bytes decoded without panic — A page whose bytes are not UTF-8 is decoded lossily and never panics, and a stylesheet is decoded from its bytes by its BOM and @charset rule. · why: Upstream's behaviour, ratified as an engine change for every document.
