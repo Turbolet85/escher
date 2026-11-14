@@ -1,0 +1,33 @@
+[[pattern]]
+id = 'FAV'
+regex = 'favicon_candidate|probe_favicon|favicon probe|favicon\.rs|first icon link'
+
+[[pattern]]
+id = 'NAV'
+regex = 'BrowserNavProvider|for_document|navigate_to|NavigationProvider|history\.rs'
+
+[[pattern]]
+id = 'DML'
+regex = 'document_may_load|top-level load|a navigation asked for'
+
+[[pattern]]
+id = 'OPEN'
+regex = 'still open|no loading document|two paths'
+
+[[pattern]]
+id = 'BRT'
+regex = 'browser app.s test module|apps/browser|browser unit test|justified-expect-unwrap'
+
+[[pattern]]
+id = 'SEED'
+regex = 'no-seed-on-carriers|no (run )?seed crosses|seed on (a|the driver.s) carrier'
+ignore_case = true
+
+[[pattern]]
+id = 'CAPS'
+regex = 'pending the founder|docs/capabilities\.md|capability statement'
+
+[[pattern]]
+id = 'PROV'
+regex = 'provisional'
+ignore_case = true

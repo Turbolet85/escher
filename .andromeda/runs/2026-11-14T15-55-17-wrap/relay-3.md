@@ -1,1 +1,0 @@
-One more answer of the founder arrived, relayed: fork F2 (navigation) = «A: не следует (Recommended)», so F2 is his word too, no longer PROVISIONAL: snap ~/dev/projects/additional/escher-overseer/relays/auto-exploration-f2-founder-2026-11-14.md and land the navigation absence row ratified. This replaces «F2 stays PROVISIONAL A» in my resume line. Carry on.

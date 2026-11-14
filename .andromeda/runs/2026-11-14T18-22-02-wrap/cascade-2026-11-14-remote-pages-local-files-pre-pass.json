@@ -1,0 +1,201 @@
+[
+{
+"tool": "cascade",
+"v": "1.34",
+"sha8": "8af87931",
+"ts": "2026-11-14T18:24:36Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline f25e8647 (pre-pass — HEAD)",
+"NAV · control UNFIRED over the seven masters (bodies and sets) at f25e8647",
+"OPEN · control UNFIRED over the seven masters (bodies and sets) at f25e8647"
+],
+"stderr": "control: NAV, OPEN never fired over the seven masters' pre-pass text, bodies and sets (f25e8647) — no master holds them: re-fire with --pattern FAV --pattern DML --pattern BRT --pattern SEED --pattern CAPS --pattern PROV; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.34",
+"sha8": "8af87931",
+"ts": "2026-11-14T18:24:44Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files",
+"--pattern",
+"FAV",
+"--pattern",
+"DML",
+"--pattern",
+"BRT",
+"--pattern",
+"SEED",
+"--pattern",
+"CAPS",
+"--pattern",
+"PROV"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline f25e8647 (pre-pass — HEAD)",
+"architecture · 13 rows over 1 files · new 0 · standing 13 · 5 patterns",
+"security-plan · 4 rows over 1 files · new 0 · standing 4 · 3 patterns",
+"design-system · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"test-plan · 3 rows over 1 files · new 0 · standing 3 · 1 pattern",
+"obs-plan · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"a11y-plan · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"by line · 0 lines · 0 offsets",
+"total (6 patterns) · 54 rows over 21 files",
+"per class · new 0/0 · standing 23/6 · leaf 25/14 · curation 0/0 · base 6/1",
+"rows 1/1 · .andromeda/runs/2026-11-14T18-22-02-wrap/sweep-pre-pass-1.1.txt · 67 lines · 7748 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-14T18-22-02-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "f25e8647402380afa361a2e57fe0bdc8e2a04e92",
+"how": "pre-pass — HEAD",
+"counts": {
+"FAV": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"DML": {
+"new": 0,
+"standing": 8,
+"leaf": 7,
+"curation": 0,
+"base": 0
+},
+"BRT": {
+"new": 0,
+"standing": 1,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"SEED": {
+"new": 0,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"CAPS": {
+"new": 0,
+"standing": 10,
+"leaf": 11,
+"curation": 0,
+"base": 0
+},
+"PROV": {
+"new": 0,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 6
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 13,
+"files": 1,
+"new": 0,
+"standing": 13,
+"patterns": 5
+},
+"security-plan": {
+"rows": 4,
+"files": 1,
+"new": 0,
+"standing": 4,
+"patterns": 3
+},
+"design-system": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+},
+"test-plan": {
+"rows": 3,
+"files": 1,
+"new": 0,
+"standing": 3,
+"patterns": 1
+},
+"obs-plan": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+},
+"a11y-plan": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+}
+},
+"per_master": {
+"FAV": {
+"security-plan": 1,
+"design-system": 1
+},
+"DML": {
+"architecture": 6,
+"security-plan": 2
+},
+"BRT": {
+"architecture": 1
+},
+"SEED": {
+"architecture": 1
+},
+"CAPS": {
+"architecture": 4,
+"security-plan": 1,
+"test-plan": 3,
+"obs-plan": 1,
+"a11y-plan": 1
+},
+"PROV": {
+"architecture": 1
+}
+},
+"forms": {},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

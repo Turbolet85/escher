@@ -8,6 +8,16 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-14 — A libtest name filter is a substring match
+`cargo test -p {crate} -- {module}::tests` selects every test whose path CONTAINS that string, so a filter for `history::tests` also runs `browser_history::tests`. A gate entry that means one module either passes `--exact` with full test paths, or runs the whole crate and asserts the names it expects (`contains … ok` atoms), as the browser crate's unit entry does. A pass count read off a substring filter counts the neighbour module's tests too.
+
+---
+
+## 2026-11-14 — A provider that needs a Dioxus runtime, read out after the rebuild
+A provider whose construction needs a live Dioxus runtime (`Store::new_maybe_sync`, `consume_context`) can't be built in a plain `#[test]`. Build it inside a small component run by a `VirtualDom`. Have the component write what it observed into a `thread_local!`, and assert on that after `rebuild_in_place`, rather than asserting inside the component, where a failed assert is a render-time panic. The browser app's navigation-provider tests use this form. A call site that runs only inside a launched runtime (`make_doc_config`'s wiring) is still reached by no unit test, so state it as a limit.
+
+---
+
 ## 2026-11-14 — A sweep alternative `cursive` matches «recursive»
 A pattern alternative written as a bare word stem matches inside longer words: `cursive` in a `cascade.py sweep` pattern for the font families hit «recursive» in four of the families pattern's ten standing master rows (architecture `decision/session-state-dir-removal` and three security-plan rows), each a false hit to be dispositioned by hand. Word-bound such an alternative (`\bcursive\b`) or expect those rows; the same holds for any family or keyword that is a suffix of a common word.
 

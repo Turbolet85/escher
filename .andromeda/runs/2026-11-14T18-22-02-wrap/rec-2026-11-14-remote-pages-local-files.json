@@ -1,0 +1,1214 @@
+[
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:27:36Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-14-remote-pages-local-files",
+"--file",
+".andromeda/cache/docs/2026-11-14-remote-pages-local-files/report.md",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-14-remote-pages-local-files/report rev 1 · 47 new · 0 revised · 0 retired · 0 kept · tx 1028"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:27:40Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-14-remote-pages-local-files",
+"--section-file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-14-remote-pages-local-files/report rev 2 · 6 new · 0 revised · 0 retired · 47 kept · tx 1029"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:27:54Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-14-remote-pages-local-files",
+"--file",
+".andromeda/cache/docs/2026-11-14-remote-pages-local-files/report.md",
+"--expect-rev",
+"2",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-14-remote-pages-local-files/report rev 3 · 0 new · 2 revised · 0 retired · 51 kept · tx 1030"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:32:30Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-14-remote-pages-local-files",
+"--section-file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/addendum-1.md",
+"--heading",
+"## Addendum 1 — resumed 2026-11-14",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 2,
+"stdout": [],
+"stderr": "--section-file: its first line must be the heading `## Addendum 1 — resumed 2026-11-14` — nothing written",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:32:38Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-14-remote-pages-local-files",
+"--section-file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/addendum-1.md",
+"--heading",
+"## Addendum 1 — resumed 2026-11-14",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-14-remote-pages-local-files/report rev 4 · 4 new · 0 revised · 0 retired · 53 kept · tx 1035"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:32:48Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/cites-land-2026-11-14-remote-pages-local-files.ndjson",
+"--base",
+"e73c5ff8cede598c43f583d5b56910652bc011f9",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:32:52Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/cites-land-2026-11-14-remote-pages-local-files.ndjson",
+"--base",
+"e73c5ff8cede598c43f583d5b56910652bc011f9",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 1036"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:34:56Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1497 · packs 15 · pack 100 · 372271 B",
+"security-plan: rows 550 · packs 6 · pack 100 · 155787 B",
+"design-system: rows 136 · packs 2 · pack 100 · 37294 B",
+"layout-templates: rows 120 · packs 2 · pack 100 · 29783 B",
+"test-plan: rows 605 · packs 7 · pack 100 · 166215 B",
+"obs-plan: rows 276 · packs 3 · pack 100 · 74075 B",
+"a11y-plan: rows 240 · packs 3 · pack 100 · 75200 B",
+"rows-packs: 7 master(s) · 3424 row(s) · 38 pack(s) · 2 draw(s) a pack · pin 1036"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-14T18-22-02-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:41:37Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1497 · packs 15 · picked 23 (14 by every draw) · standing 0 · 150334 B · Standard Contracts: by boundary, the rest under `also here:`",
+"security-plan: rows 550 · packs 6 · picked 7 (5 by every draw) · standing 0 · 92765 B · Input Validation: by boundary, the rest under `also here:`",
+"design-system: rows 136 · packs 2 · picked 2 (1 by every draw) · standing 0 · 18227 B",
+"layout-templates: rows 120 · packs 2 · picked 0 (0 by every draw) · standing 0 · no proposer",
+"test-plan: rows 605 · packs 7 · picked 14 (5 by every draw) · standing 0 · 121523 B",
+"obs-plan: rows 276 · packs 3 · picked 9 (2 by every draw) · standing 0 · 40878 B",
+"a11y-plan: rows 240 · packs 3 · picked 0 (0 by every draw) · standing 0 · no proposer",
+"rows-union: 7 master(s) · picked 55 of 3424 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-14T18-22-02-wrap/arch-rows.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/arch-standing.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/security-rows.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/security-standing.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/design-rows.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/design-standing.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/tests-rows.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/tests-standing.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/obs-rows.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/obs-standing.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-14T18-22-02-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:46:12Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-14T18-22-02-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/file-url-load-rule · rejected",
+"decision/browser-favicon-file-gate · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-14-remote-pages-local-files — Established Decisions: 1 row(s)\n**Section:** Established Decisions\n**Change:** ~ decision/sub-resource-requests-carry-initiator · rule: was «Every engine sub-resource request (linked stylesheet, its reload, @import, @font-face, CSS image, img, iframe) carries its loading document's URL as initiator; a request with no initiator is a top-level load an embedder or a navigation asked for.»; now «Every engine sub-resource request (linked stylesheet, its reload, @import, @font-face, CSS image, img, iframe) carries its loading document's URL as initiator; a request with no initiator is a top-level load an embedder or the user's own load asked for, or a navigation its page may start.»\n**Why:** decision/sub-resource-requests-carry-initiator: A navigation a non-file page starts to a file: URL no longer becomes a top-level load in the browser app, so «a navigation asked for» must read as the user's own loads and the navigations a page is allowed.\n**Ref:** .andromeda/runs/2026-11-14T18-22-02-wrap/",
+"## 2026-11-14-remote-pages-local-files — Conventions: 1 row(s)\n**Section:** Conventions\n**Change:** ~ decision/justified-expect-unwrap · except: was «The browser app's test module allows `clippy::expect_used` with no justification beside it.»; now «The browser app's favicon test module allows `clippy::expect_used` with no justification beside it.»\n**Why:** decision/justified-expect-unwrap: The browser app now holds a second test module whose allow stands beside a justification, so the exception must name the favicon test module alone.\n**Ref:** .andromeda/runs/2026-11-14T18-22-02-wrap/",
+"patterns: none: 2 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:46:16Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-14T18-22-02-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/file-url-load-rule · rejected",
+"decision/browser-favicon-file-gate · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 1037 · 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson",
+".andromeda/runs/2026-11-14T18-22-02-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:46:16Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/ops-main-architecture.md",
+"--results",
+".andromeda/runs/2026-11-14T18-22-02-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-14-remote-pages-local-files — Standard Contracts: 2 row(s)\n**Section:** Standard Contracts\n**Change:** ~ decision/file-url-load-rule · rule: was «A `file:` URL may be loaded only by a document whose own URL is `file:`, or as a top-level load; fetch, module imports and script sources ask before the fetcher is called and read a refusal as Forbidden, and blitz-net refuses every other engine request with FileForbidden before reading the disk.»; now «A `file:` URL loads only for a `file:` document or as a top-level load — in the browser app a navigation a non-`file:` page starts is none, dropped silently; script loads read a refusal as Forbidden, and blitz-net refuses any other engine request with FileForbidden before reading the disk.»\n~ decision/no-seed-on-carriers · state: was «provisional»; now «standing»\n**Why:** decision/file-url-load-rule: The browser app's navigation provider now drops, loading and logging nothing, a navigation a non-file document starts to a file: URL, so that navigation is no top-level load and the rule must say so while an embedder's top-level load stays one.\ndecision/no-seed-on-carriers: The founder answered his own fork on the seed (inputs#I2, his F1 of 2026-11-14-seeded-randomness), so the provisional absence is ratified and the row stands. — resolved by the operator (Q1): relayed verbatim by overseer1, 2026-11-14, inputs#I2: «A: нет, сид только при загрузке (Recommended)» (the operator's «Apply both», 2026-11-14)\n**Ref:** .andromeda/runs/2026-11-14T18-22-02-wrap/",
+"patterns: none: 2 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 2 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:46:20Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/ops-main-architecture.md",
+"--results",
+".andromeda/runs/2026-11-14T18-22-02-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 1038 · 2 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson",
+".andromeda/runs/2026-11-14T18-22-02-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:46:20Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/ops-main-architecture.2.md",
+"--results",
+".andromeda/runs/2026-11-14T18-22-02-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-14-remote-pages-local-files — Standard Contracts: 1 row(s)\n**Section:** Standard Contracts\n**Change:** ~ decision/no-seed-on-carriers · why: was «A seed on a carrier would widen the session boundary; the absence is the operator's answer A to the founder's fork, standing PROVISIONAL until the founder confirms or replaces it.»; now «A seed on a carrier would widen the session boundary; the absence is ratified.»\n**Why:** decision/no-seed-on-carriers: The founder's own answer to his fork (inputs#I2) ratifies the absence, so the clause naming it the operator's answer standing PROVISIONAL is no longer true. — resolved by the operator (Q1): relayed verbatim by overseer1, 2026-11-14, inputs#I2: «A: нет, сид только при загрузке (Recommended)» (the operator's «Apply both», 2026-11-14)\n**Ref:** .andromeda/runs/2026-11-14T18-22-02-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:46:25Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/ops-main-architecture.2.md",
+"--results",
+".andromeda/runs/2026-11-14T18-22-02-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 1039 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson",
+".andromeda/runs/2026-11-14T18-22-02-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:46:25Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-14T18-22-02-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/file-gate-covers-document-started-loads · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-14-remote-pages-local-files — Input Validation: 1 row(s)\n**Section:** Input Validation\n**Change:** ~ decision/file-urls-only-from-file-documents · rule: was «A script fetch, module import or script src, and every engine stylesheet, @import, font, image or iframe load, may read a file: URL only for a file: document or a top-level load, in every document, remote pages included; blitz-net refuses any other before a disk read.»; now «A file: URL is read only for a file: document or a top-level load: a script fetch, module import or script src, every engine stylesheet, @import, font, image or iframe load, and in the browser app a favicon and a link navigation; blitz-net refuses before a disk read, a navigation drops silently.»\n**Why:** decision/file-urls-only-from-file-documents: The browser app now refuses a non-file document's file: favicon candidate and its file: link navigation by the same rule, so the row's list of gated loads must name them.\n**Ref:** .andromeda/runs/2026-11-14T18-22-02-wrap/",
+"## 2026-11-14-remote-pages-local-files — Threat Model Summary: 1 row(s)\n**Section:** Threat Model Summary\n**Change:** ~ decision/file-url-only-for-file-documents · rule: was «A file: URL loads only for a file: document or a top-level load; for any other document, remote pages included, JS fetch, module import and script src refuse it with a FetchError, and blitz-net refuses the engine's stylesheet, @import, font, image and iframe loads before any disk read.»; now «A file: URL loads only for a file: document or a top-level load; for any other document, remote pages included, script fetch, module import and script src fail, blitz-net refuses engine loads before a disk read, and the browser app names no file: favicon and drops a file: navigation silently.»\n**Why:** decision/file-url-only-for-file-documents: A remote page can no longer have a local file probed as its favicon or reach one by a link navigation in the browser app, so the threat row's reach of the control is stale without them.\n**Ref:** .andromeda/runs/2026-11-14T18-22-02-wrap/",
+"patterns: 1 in cascade-patterns-security-plan-1.toml",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-14T18-22-02-wrap/cascade-patterns-security-plan-1.toml"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:46:25Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-14T18-22-02-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-14-remote-pages-local-files — 5. Integration Test Strategy: 1 row(s)\n**Section:** 5. Integration Test Strategy\n**Change:** ~ decision/file-urls-only-for-file-documents · rule: was «A `file:` URL is loaded only for a `file:` document: a script's `fetch()`, module `import` or `<script src>` is refused with a `FetchError` otherwise, and an engine sub-resource load (stylesheet, `@import`, font, image, iframe) through blitz-net reads no local file for a non-`file:` document.»; now «A `file:` URL is loaded only for a `file:` document: otherwise a script's `fetch()`, `import` or `<script src>` is refused with a `FetchError`, a blitz-net sub-resource load reads no local file, and the browser app drops a `file:` favicon or link navigation silently; user loads are not gated.»\n**Why:** decision/file-urls-only-for-file-documents: The browser app's favicon candidate and its navigation provider now refuse a `file:` URL for a non-`file:` document, silently, while the user's own loads stay ungated, so the row's rule, which names only script and engine sub-resource loads, must say the app's two gates too.\n**Ref:** .andromeda/runs/2026-11-14T18-22-02-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:46:26Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-14T18-22-02-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-14-remote-pages-local-files — 7. Error Capture & Reporting: 1 row(s)\n**Section:** 7. Error Capture & Reporting\n**Change:** ~ decision/no-file-loads-from-non-file-documents · rule: was «A file: load asked by a non-file: document is refused as a typed forbidden error: a script fetch rejects with a TypeError, a module import fails, a script element's source is recorded as a script error, and an engine sub-resource fetch fails with fixed text naming no URL or path, adding no log site.»; now «A file: load asked by a non-file: document is refused, adding no log site: a script fetch rejects with a TypeError, a module import fails, a script source records a script error, an engine fetch fails with fixed text naming no URL; the browser app's favicon and link navigation drop it silently.»\n**Why:** decision/no-file-loads-from-non-file-documents: The browser app now refuses a non-file: document's file: favicon and link-click navigation silently, raising no typed forbidden error and adding no log site, so the rule's «refused as a typed forbidden error» no longer covers every refusal.\n**Ref:** .andromeda/runs/2026-11-14T18-22-02-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:46:26Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/ops-design-system.md",
+"--results",
+".andromeda/runs/2026-11-14T18-22-02-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/favicon-from-first-icon-link · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:46:31Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-14T18-22-02-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/file-gate-covers-document-started-loads · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 1040 · 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson",
+".andromeda/runs/2026-11-14T18-22-02-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:46:31Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-14T18-22-02-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 1041 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson",
+".andromeda/runs/2026-11-14T18-22-02-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:46:31Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-14T18-22-02-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 1042 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson",
+".andromeda/runs/2026-11-14T18-22-02-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:51:18Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/dioxus-native-dom.md",
+"--file",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap/staged-leaf-.claude__docs__services__dioxus-native-dom.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/dioxus-native-dom.md rev 10 · 0 new · 1 revised · 0 retired · tx 1043"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson",
+"./.claude/docs/services/dioxus-native-dom.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:51:19Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-telemetry.md",
+"--file",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap/staged-leaf-.claude__docs__services__escher-telemetry.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-telemetry.md rev 8 · 0 new · 1 revised · 0 retired · tx 1044"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson",
+"./.claude/docs/services/escher-telemetry.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:51:19Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-driver.md",
+"--file",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap/staged-leaf-.claude__docs__services__escher-driver.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-driver.md rev 11 · 0 new · 2 revised · 0 retired · tx 1045"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson",
+"./.claude/docs/services/escher-driver.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:51:20Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/commands.md",
+"--file",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap/staged-leaf-.claude__docs__commands.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/commands.md rev 8 · 0 new · 1 revised · 0 retired · tx 1046"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson",
+"./.claude/docs/commands.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:51:20Z",
+"argv": [
+"harness",
+"land",
+"CLAUDE.md",
+"--file",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap/staged-leaf-CLAUDE.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 16 · 0 new · 1 revised · 0 retired · tx 1047"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:51:21Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/obs-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap/staged-leaf-.claude__docs__obs-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/obs-summary.md rev 10 · 0 new · 2 revised · 0 retired · tx 1048"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson",
+"./.claude/docs/obs-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:51:21Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/observability.md",
+"--file",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap/staged-leaf-.claude__rules__observability.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/observability.md rev 9 · 0 new · 1 revised · 0 retired · tx 1049"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson",
+"./.claude/rules/observability.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:51:22Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/security-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap/staged-leaf-.claude__docs__security-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/security-summary.md rev 16 · 0 new · 2 revised · 0 retired · tx 1050"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson",
+"./.claude/docs/security-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:51:22Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/security.md",
+"--file",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap/staged-leaf-.claude__rules__security.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/security.md rev 17 · 0 new · 3 revised · 0 retired · tx 1051"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson",
+"./.claude/rules/security.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:51:23Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/testing.md",
+"--file",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap/staged-leaf-.claude__rules__testing.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/testing.md rev 20 · 0 new · 2 revised · 0 retired · tx 1052"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson",
+"./.claude/rules/testing.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:54:35Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 1 record(s) · 1 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:54:41Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 1 edge(s) · tx 1056 · cry-eyudppev … cry-eyudppev"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson",
+"./escher-0.3.0/working-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T18:55:06Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-14T18-22-02-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap",
+"--marker",
+"2026-11-14-remote-pages-local-files"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 1058 · run-bndadl3c … run-bndadl3c"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T16-48-47-2026-11-14-remote-pages-local-files.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "9f0440dd",
+"ts": "2026-11-14T19:03:00Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-14-remote-pages-local-files",
+"--run-dir",
+".andromeda/runs/2026-11-14T18-22-02-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 11 file(s) of 2026-11-14-remote-pages-local-files"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

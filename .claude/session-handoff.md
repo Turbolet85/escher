@@ -1,47 +1,46 @@
 # Session Handoff
 
-**Last Updated:** 2026-11-14T16:34:00Z
+**Last Updated:** 2026-11-14T18:56:00Z
 **Branch:** build/escher-0.3.0 · 0 ahead of origin/build/escher-0.3.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-11-14-auto-exploration — the chunk's wrap commit (P7)
+**Last Commit:** 2026-11-14-remote-pages-local-files — the chunk's wrap commit (P7), which closes Epoch 4
 
 ## Position
-- Done: `2026-11-14-auto-exploration`.
-  - `escher_driver::explore` explores an app breadth-first under a `StepBudget` (1 to 10,000 acting calls). Each path runs on a fresh session, and a handler panic is caught per path. Every path ends one of four ways: `Accepted`, `Refused`, `Panicked` or `Diverged`. With a record directory, each path is kept as its own replayable check.
-  - A kept check's opening record carries `format` 1, read strictly.
-  - Exploration is in process only and follows no navigation. Both are the founder's own word (inputs#I6, inputs#I9), so both absence rows are ratified.
-  - `matrix#v030-09` verified; its acceptance was refined as a premise correction (the renamed Counter test; exhaustion is proved on the refusing-control page). CI#43608413417 is green.
-- Next: run `/andromeda-phase` to promote and plan «Remote pages and local files in the browser», Epoch 4's last markerless entry. Its wrap closes the epoch.
+- Done: `2026-11-14-remote-pages-local-files`.
+  - The browser app keeps a favicon candidate only where `document_may_load` allows it.
+  - Its navigation provider (`BrowserNavProvider::for_document`) silently drops a navigation that a non-`file:` page starts to a `file:` URL.
+  - The user's own loads stay ungated.
+  - `docs/capabilities.md`'s two «provisional» clauses are gone. CI#43622981487 is green.
+- Epoch 4 «Determinism and exploration» is closed: no markerless entry is left under it.
+- Next: `/andromeda-phase` to promote and plan «Upstream sync ahead of errors and explanation», Epoch 5's head (it now holds 9 carries).
 
 ## Work done
-- The wrap resumed at P2 from its landed P1 report in `.andromeda/runs/2026-11-14T15-55-17-wrap/`.
-  - The resume's relay was snapped as I8.
-  - The founder's F2 answer arrived mid-P2, snapped as I9 with I10.
-  - These are carried in Addenda 1 and 2.
-- 20 row operations landed in masters TXs 981–984, and 19 leaf findings were applied (2 declined).
-- The record is that run dir: `fanout-results.md`, `cascade-dispositions.md`, `curation.md`.
+- The wrap ran in two windows: P1 at `.andromeda/runs/2026-11-14T18-22-02-wrap/`, then P2–P7 resumed there.
+- The resume's inputs are I3 (the operator's carry), and I4 and I5 (the founder's «Подтвердить все 22 (Рекомендую)» and «Подтвердить все 29 (Рекомендую)»), all cited in the report's Addendum 1.
+- The record of the run: `fanout-results.md`, `cascade-dispositions.md` and `curation.md`, plus the epoch-close sidecar consolidation's record.
 
 ## Drift resolved
-- New rows:
-  - architecture: `contract/driver-explore/{explore,expansion,exhausted,step-budget,path-ending,explored-verbs}`, plus `absence/exploration-on-carriers` and `absence/exploration-follows-navigation` (both ratified).
-  - security-plan: `decision/exploration-report-closed-content`.
-  - test-plan: `contract/session-recording/exploration-checks`, `decision/exhaustion-asserted-on-finite-page`.
-  - obs-plan: `decision/exploration-adds-no-span`, `decision/exploration-catches-panics`.
-- Rows changed:
-  - the check format: architecture `contract/kept-check/opening-record`, security-plan `contract/recorded-check/start-record` and `contract/kept-check-file/{entry,medium}`, obs-plan `contract/escher-session-coverage/malformed`;
-  - architecture `decision/unit-tests-at-file-end` (its stale «Eight» dropped);
-  - test-plan `decision/mutation-controlled-tests` (a control loosens a bound to twice the budget).
-- Rejected: 37 duplicates of one fact across masters (check 2: one home each).
-- Escalations: Q1 was resolved reject, by the operator's «Hold to epoch boundary».
-- Route:
-  - A CARRY on «Remote pages and local files in the browser»: `docs/capabilities.md` lines 344 and 347 still say provisional; drop both clauses (the overseer's direction).
-  - That entry's `CONTEXT: PROVISIONAL` block is kept, with the founder's answer appended for the boundary batch (the operator's word).
+- 7 operations landed in masters TXs 1037–1042:
+  - architecture: `decision/file-url-load-rule`, `decision/sub-resource-requests-carry-initiator`, `decision/justified-expect-unwrap` (except narrowed to the favicon test module), and `decision/no-seed-on-carriers` provisional → standing, its why «ratified».
+  - security-plan: `decision/file-urls-only-from-file-documents` and `decision/file-url-only-for-file-documents`.
+  - test-plan: `decision/file-urls-only-for-file-documents`.
+  - obs-plan: `decision/no-file-loads-from-non-file-documents`.
+- Escalations: Q1, the seed row's provisional discharge, resolved apply. The authority is the founder's own word, relayed verbatim (I2 of this chunk), confirmed by the operator's «Apply both».
+- Rejected: 4.
+  - 2 on check 2: the favicon fact's home is security-plan.
+  - 1 that fit read `stands`.
+  - 1 the proposer narrowed to the user's own loads, replaced by main's own operation.
+- Not carried: expected amendment 3's guard half. The test-plan guard cell is capped at 120 chars and can't hold nine test names.
+- Leaves: 26 findings; 16 applied and 10 declined. Among the applied: CLAUDE.md's seed clause and `escher-driver.md:6` were discharged.
+- Route: a CARRY on «Upstream sync ahead of errors and explanation» covers `apps/browser/src/tab.rs`'s unjustified `expect_used` allow in `TabWebView`, against `decision/justified-expect-unwrap`.
 
 ## Notes
-- Owed at the Epoch 4 boundary wrap (the next chunk's), in one batch on the founder's own word, each already given and relayed verbatim (inputs#I6 of `2026-11-14-auto-exploration`):
-  - architecture `decision/no-seed-on-carriers`: `state` provisional → standing, with `CLAUDE.md`'s seed clause («provisional, the founder's to confirm»).
-  - The route entry «Remote pages and local files in the browser»: its `CONTEXT: PROVISIONAL` mark.
-- Curation: T2 1 in `testing.md`, the planted Dioxus panic as a plain fn (`SpawnIfAsync`).
+- PROVISIONAL marks:
+  - The 15 delegate-confirm sidecar entries (the 2026-11-07-ui-graph halt Q1 and the 2026-11-08-handler-coverage card Q1) are recorded ratified in this run's `consolidation-record.md`.
+  - Their text was not re-worded: every sidecar's consolidation set read 0, and the operator ruled «Record, don't re-word».
+  - That rests on the founder's words recorded at the 0-pending wrap 22e763982: its run `2026-11-13T07-43-19-wrap`, inputs I2 and I3.
+- Still standing, as the operator directed: the 0.2.0 carry `cry-qpg6ooo7` (2026-10-24-upstream-sync-polish-and-ship). It records upstream's four Taffy-main commits left out on F1 «Cherry-pick two (Recommended)», as «(delegate the operator, PROVISIONAL)». It waits for the founder's own word on that F1.
+- Curation: T3 2 (a libtest name filter is a substring match; a Dioxus-runtime provider read out after the rebuild).
 - Still standing on the operator's word, for removal at his call:
   - the worktrees `target/tmp/trial-det` and `target/tmp/trial-a`;
   - their build dirs `target/trial` and `target/trial-a`;
@@ -49,6 +48,3 @@
   - `target/tmp/trial-wt` is the founder's, and git marks it `prunable`.
 - `host-linux.md` is 9 template lines behind (U04 `noted`). Regenerating it is the operator's word.
 - Last failed command: none.
-
-## Session End Status
-Completed normally at 2026-11-14 18:29:10
