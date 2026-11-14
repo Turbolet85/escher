@@ -1,0 +1,19 @@
+--- a/.andromeda/security-plan.md
++++ b/.andromeda/security-plan.md
+@@ -314,3 +314,3 @@
+ contract/recorded-check/masked-stand-in · A recorded check · MASKED_STAND_IN — The text "masked", with masked:true, stands for a recorded type to a masked or unresolved control.
+-contract/recorded-check/start-record · Recorded check file · start record — The array opens with `{"tool":"start","arguments":{"app":…}}`.
++contract/recorded-check/start-record · Recorded check file · start record — The array opens with `{"tool":"start","arguments":{"app":…},"format":1}`; a check without format reads as format 1, and any other format value, of whatever JSON type, is refused malformed, holding nothing of the bytes.
+ contract/recorded-check/tool · Recorded check file · tool — One of the ten instance verbs.
+@@ -360,2 +360,3 @@
+ decision/coverage-line-no-user-data · Coverage line carries no user data — The coverage answer line holds ids, owner ids, event names and counts only, never a control value, typed text, path or NodeId. · guard: stand_handler_coverage a_typed_sentinel_never_reaches_the_coverage_line
++decision/exploration-report-closed-content · Exploration report holds closed content only — An exploration's report holds only closed endings, indices, calls and booleans, never a panic payload, NodeId, screen text or screen digest, and it is never logged or printed.
+ decision/file-dialog-via-rfd · Native file dialog through rfd — The native file dialog uses rfd, with optional name and extension filters, behind the file-dialog feature.
+@@ -375,5 +376,5 @@
+ contract/kept-check-file/contents · Kept check files · contents — A kept check holds per call its verb, arguments, acceptance, digest and masked answer, never a pixel.
+-contract/kept-check-file/entry · Kept check file · entry — A check is a JSON array: the app label, then per answered call its verb, its arguments, its acceptance, a FNV-1a 64 digest of its written answer and the answer itself as answer.
++contract/kept-check-file/entry · Kept check file · entry — A check is a JSON array: an opening record of the app label and the format, then per answered call its verb, its arguments, its acceptance, a FNV-1a 64 digest of its written answer and the answer itself as answer.
+ contract/kept-check-file/lifecycle · Kept check files · lifecycle — A kept check is never logged and never removed by escher, but for its own check when a recording ends.
+-contract/kept-check-file/medium · Kept check files · medium — Under `--record <dir>` or `Session::recording_into`, one `check-{n}.json` with mode `0600` per recorded session is written in a `0700` directory the launcher named.
++contract/kept-check-file/medium · Kept check files · medium — Under `--record <dir>`, `Session::recording_into` or an exploration's record directory, one `check-{n}.json` with mode `0600` per recorded session, each explored path its own, is written in a `0700` directory the launcher named.
+ absence/database-encryption — Encryption of the history database

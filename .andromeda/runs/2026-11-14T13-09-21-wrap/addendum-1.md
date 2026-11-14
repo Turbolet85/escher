@@ -1,5 +1,0 @@
-## Addendum 1 — resumed 2026-11-14
-- inputs#I6 · message: the operator (overseer), at the wrap's resume · copy message · n/a — the resume directive: P2 on from the landed report; F1 = C by the founder's own word (inputs#I4), so the absence rows land ratified and no boundary-widening escalation is owed for it; the founder is away for anything new — a fork goes to `founder-forks.md`, no dialog; an escalated operation reaches the operator only with its fit verdict; read-backs carry `--run-dir`.
-  - bears on **Expected amendments (from plan)**: supersedes «the escalation's weight is P2 Validate's to rule with that word cited» — no boundary-widening escalation is owed for the absence rows; they land ratified on inputs#I4.
-  - bears on **For later phases**: adds to it — a new fork found from here on goes to `founder-forks.md`, no dialog.
-- inputs.py verify, re-fired: `inputs: 6 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 5 · uncited 1 · unparsed 0`; moved since the report: nothing but I6 itself (uncited 1 → 0 once this block lands).

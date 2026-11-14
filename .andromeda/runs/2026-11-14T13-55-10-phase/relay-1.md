@@ -1,3 +1,0 @@
-# The operator's invocation of /andromeda-phase (2026-11-14), verbatim
-
-Take up «Auto-exploration». Snap into the inputs and plan with: ~/dev/projects/additional/escher-overseer/relays/adapt-0.3.0-canvas-founder-2026-10-29.md and escher-0.4.0-incubator/adapt-0.3.0-for-canvas.md (canvas: verbs from the schema, a step format that can carry a two-target verb, versioned). The seed fork stays as it stands: exploration reads DEFAULT_SEED alone, and the plan says a later seed argument is an addition, no rework. The founder is away: his forks (navigation is one) go to founder-forks.md, most conservative provisional, no dialog. Read-backs carry --run-dir.

@@ -1,0 +1,10 @@
+@fit n=1 row=contract/kept-check/opening-record sha=2f972ac00b77 v=fits type=3
+@fit n=2 row=decision/unit-tests-at-file-end sha=23deb5c44779 v=fits type=2
+@fit n=3 row=contract/driver-explore/explore sha=2910bdc4b4a6 v=fits type=3
+@fit n=4 row=contract/driver-explore/expansion sha=ceb955fb9fd7 v=fits type=3
+@fit n=5 row=contract/driver-explore/exhausted sha=ed0c944217e7 v=fits type=3
+@fit n=6 row=contract/driver-explore/step-budget sha=b5207fb55dc4 v=fits type=3
+@fit n=7 row=contract/driver-explore/path-ending sha=d331250b7c68 v=fits type=3
+@fit n=8 row=contract/driver-explore/explored-verbs sha=2d26c8fca896 v=fits type=3
+@fit n=9 row=absence/exploration-on-carriers sha=2603780fb9d8 v=fits type=7
+@fit n=10 row=absence/exploration-follows-navigation sha=b084d63fc561 v=fits type=7

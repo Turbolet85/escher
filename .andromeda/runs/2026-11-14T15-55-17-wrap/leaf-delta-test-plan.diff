@@ -1,0 +1,15 @@
+--- a/.andromeda/test-plan.md
++++ b/.andromeda/test-plan.md
+@@ -307,3 +307,3 @@
+ decision/fast-jobs-gate-the-rest · Fast jobs gate the rest — The four fast CI jobs need nothing and every other job needs all four. · guard: CiWorkflowTest
+-decision/mutation-controlled-tests · Tests controlled red-before-green — A new check is controlled: a named mutation of what it guards turns it red, and the restored tree reads green again.
++decision/mutation-controlled-tests · Tests controlled red-before-green — A new check is controlled: a named mutation of what it guards turns it red, and the restored tree reads green again; a control that removes a bound loosens it to twice the budget rather than removing it, so the mutated run stays bounded.
+ decision/one-actionable-rule · One actionable rule for both readers — Both actionable readers read one rule from an element's current listeners, never from the `data-dioxus-id` mark. · why: The mark outlives a listener removed on a re-render, so a reading of it would still count that listener. · guard: a_listener_removed_on_a_re_render_is_read_by_neither_reader
+@@ -359,2 +359,3 @@
+ decision/driver-log-fixed-words-only · Driver log lines hold fixed words and counts only — At `info` each call run through `Session::run` leaves exactly one `escher_driver` line of fixed words and counts, never the ids, names, values or typed text it handled; at the default level no driver line. · guard: stand_act_spans
++decision/exhaustion-asserted-on-finite-page · Exploration exhaustion asserted on a finite page — Exhaustion of an exploration's frontier is asserted only on a finite fixture page; an exploration of the Counter asserts exhausted false. · why: An unbounded app never exhausts a breadth-first frontier. · guard: a_refusing_control_is_met_and_reported_by_its_cause, the_counter_is_explored_and_each_path_replays_green
+ decision/file-urls-only-for-file-documents · file: URLs loadable only from a file: document — A `file:` URL is loaded only for a `file:` document: a script's `fetch()`, module `import` or `<script src>` is refused with a `FetchError` otherwise, and an engine sub-resource load (stylesheet, `@import`, font, image, iframe) through blitz-net reads no local file for a non-`file:` document. · guard: remote_document_cannot_load_file_urls, file_document_can_load_sibling_file_urls, local_files_for_local_documents
+@@ -612,2 +613,3 @@
+ contract/session-recording/directory · Session recording · directory — Unix only, `Unsupported` elsewhere; the directory is created `0700` or refused `RecordDirNotPrivate`.
++contract/session-recording/exploration-checks · session recording · exploration checks — With a recording directory an exploration keeps one check per path, each check's calls equal to its path's answered calls and replaying green; a panicked path's check holds the steps before the panic.
+ contract/session-recording/record-fields · Session recording · record fields — Each answered instance call is recorded as `tool`, `arguments` in schema order, `masked`, `accepted`, `digest` (FNV-1a 64 over the whole written line) and `answer` (the kept line as a JSON object, a shot's without `png`).

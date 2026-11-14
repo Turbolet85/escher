@@ -1,0 +1,58 @@
+@pick n=1 row=decision/capability-statement-pinned v=yes mode=stale
+@pick n=2 row=decision/ci-package-installs-bounded v=no
+@pick n=3 row=decision/ci-scripts-unit-tested v=no
+@pick n=4 row=decision/dedicated-headless-test-harness v=no
+@pick n=5 row=decision/driver-executor-integration-tested v=no
+@pick n=6 row=decision/native-platform-ci-matrix v=no
+@pick n=7 row=decision/one-test-target-per-behaviour v=yes mode=stale
+@pick n=8 row=decision/test-tier v=no
+@pick n=9 row=decision/workspace-tests-in-fast-ci-leg v=no
+@pick n=10 row=decision/wpt-conformance-runner v=no
+@pick n=11 row=decision/wpt-run-on-host-on-fork v=no
+@pick n=12 row=decision/advance-moves-exactly-the-ms-asked v=no
+@pick n=13 row=decision/advance-reports-exact-ms v=no
+@pick n=14 row=decision/blitz-tests-one-target-per-file v=yes mode=stale
+@pick n=15 row=decision/bounded-ci-package-installs v=no
+@pick n=16 row=decision/buffered-render-on-dioxus-07-bridge v=no
+@pick n=17 row=decision/capabilities-doc-pinned-to-schema v=yes mode=stale
+@pick n=18 row=decision/chosen-select-row-colours v=no
+@pick n=19 row=decision/driver-instance-verbs-tested-by-stand v=no
+@pick n=20 row=decision/eight-refusal-causes-in-order v=no
+@pick n=21 row=decision/failed-load-ends-settle-wait v=no
+@pick n=22 row=decision/key-after-dropped-anonymous-block v=no
+@pick n=23 row=decision/mcp-causes-served-with-remedy v=no
+@pick n=24 row=decision/no-screenshot-step-in-committed-checks v=yes mode=stale
+@pick n=25 row=decision/one-virtual-clock v=no
+@pick n=26 row=decision/open-pseudo-class-follows-attribute v=no
+@pick n=27 row=decision/owner-only-session-files v=yes mode=stale
+@pick n=28 row=decision/password-caret-placed-by-mask v=no
+@pick n=29 row=decision/snapshot-text-budget v=no
+@pick n=30 row=decision/stand-checks-in-both-layout-modes v=yes mode=stale
+@pick n=31 row=decision/typed-password-never-leaves v=no
+@pick n=32 row=decision/unrun-declared-write-reads-unconfirmed v=no
+@pick n=33 row=decision/upstream-buffered-render-test-kept-as-written v=no
+@pick n=34 row=decision/upstream-mounted-flush-test-left-out v=no
+@pick n=35 row=contract/driver-command-span/one-line-per-call v=yes mode=stale
+@pick n=36 row=contract/driver-refusal-causes/fonts-unavailable v=no
+@pick n=37 row=contract/driver-refusal-causes/malformed v=no
+@pick n=38 row=contract/driver-refusal-causes/not-found v=no
+@pick n=39 row=contract/driver-refusal-causes/stale v=no
+@pick n=40 row=contract/escher-session-exit-codes/0 v=no
+@pick n=41 row=contract/escher-session-exit-codes/1 v=no
+@pick n=42 row=contract/escher-session-exit-codes/2 v=no
+@pick n=43 row=contract/escher-session-exit-codes/3 v=no
+@pick n=44 row=contract/escher-session-exit-codes/closed-stdout v=no
+@pick n=45 row=contract/escher-session-stderr/no-ids-names-or-typed-text v=yes mode=stale
+@pick n=46 row=contract/escher-session-stderr/service-name v=no
+@pick n=47 row=contract/escher-session-stderr/tool-call-line v=no
+@pick n=48 row=contract/mcp-server/actions-argument v=no
+@pick n=49 row=contract/mcp-server/help v=no
+@pick n=50 row=contract/mcp-server/protocol-revision v=no
+@pick n=51 row=contract/mcp-server/refused-input v=no
+@pick n=52 row=contract/mcp-server/screenshot v=no
+@pick n=53 row=contract/mcp-server/stdout v=no
+@pick n=54 row=contract/mcp-server/tools-list v=no
+@pick n=55 row=contract/session-recording/group-open-directory v=yes mode=stale
+@pick n=56 row=contract/session-recording/off-unix v=yes mode=stale
+@pick n=57 row=contract/session-recording/same-check-on-both-surfaces v=yes mode=stale
+@pick n=58 row=contract/session-state-directory/length-bound v=no

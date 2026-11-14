@@ -1,0 +1,133 @@
+[
+{
+"tool": "cascade",
+"v": "1.34",
+"sha8": "8af87931",
+"ts": "2026-11-14T15:57:14Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-14T15-55-17-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-14T15-55-17-wrap",
+"--marker",
+"2026-11-14-auto-exploration"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline f6ba274c (pre-pass — HEAD)",
+"explore · control UNFIRED over the seven masters (bodies and sets) at f6ba274c",
+"callnaming · control UNFIRED over the seven masters (bodies and sets) at f6ba274c",
+"remote · control UNFIRED over the seven masters (bodies and sets) at f6ba274c",
+"committed · control UNFIRED over the seven masters (bodies and sets) at f6ba274c"
+],
+"stderr": "control: explore, callnaming, remote, committed never fired over the seven masters' pre-pass text, bodies and sets (f6ba274c) — no master holds them: re-fire with --pattern format --pattern panic --pattern nav --pattern seed; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.34",
+"sha8": "8af87931",
+"ts": "2026-11-14T15:57:23Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-14T15-55-17-wrap/report-patterns.toml",
+"--pattern",
+"format",
+"--pattern",
+"panic",
+"--pattern",
+"nav",
+"--pattern",
+"seed",
+"--run-dir",
+".andromeda/runs/2026-11-14T15-55-17-wrap",
+"--marker",
+"2026-11-14-auto-exploration"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline f6ba274c (pre-pass — HEAD)",
+"architecture · 5 rows over 1 files · new 0 · standing 5 · 4 patterns",
+"by line · 0 lines · 0 offsets",
+"total (4 patterns) · 7 rows over 3 files",
+"per class · new 0/0 · standing 5/1 · leaf 2/2 · curation 0/0 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-14T15-55-17-wrap/sweep-pre-pass-1.1.txt · 16 lines · 1480 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-14T15-55-17-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "f6ba274c28199a29c0be17ce84e6b76b64c295fe",
+"how": "pre-pass — HEAD",
+"counts": {
+"format": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"panic": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"nav": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"seed": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 5,
+"files": 1,
+"new": 0,
+"standing": 5,
+"patterns": 4
+}
+},
+"per_master": {
+"format": {
+"architecture": 1
+},
+"panic": {
+"architecture": 1
+},
+"nav": {
+"architecture": 2
+},
+"seed": {
+"architecture": 1
+}
+},
+"forms": {},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

@@ -1,0 +1,31 @@
+[[pattern]]
+id = 'explore'
+regex = '\b[Ee]xplor(e|es|ed|ing|ation|ations)\b|StepBudget|MAX_EXPLORE_STEPS|PathEnding|ExploredPath|stand_explore'
+
+[[pattern]]
+id = 'format'
+regex = '[Oo]pening record|CHECK_FORMAT|"format"|\bformat version\b'
+
+[[pattern]]
+id = 'callnaming'
+regex = 'call_naming|target_verbs'
+
+[[pattern]]
+id = 'panic'
+regex = 'catch_unwind|[Pp]anic catch|caught panic|[Pp]anicked'
+
+[[pattern]]
+id = 'nav'
+regex = '[Nn]avigation provider|DummyNavigationProvider|follows? no navigation'
+
+[[pattern]]
+id = 'seed'
+regex = 'no-seed-on-carriers|[Ss]eed on the driver|no seed crosses|[Nn]o seed (on|crosses)'
+
+[[pattern]]
+id = 'remote'
+regex = '[Rr]emote pages and local files'
+
+[[pattern]]
+id = 'committed'
+regex = 'counter-(cli|mcp)\.json|counter-\{cli,mcp\}'

@@ -1,0 +1,202 @@
+[
+{
+"tool": "matrix",
+"v": "1.12",
+"sha8": "0ea00907",
+"ts": "2026-11-14T16:33:34Z",
+"argv": [
+"refine",
+"--dir",
+"escher-0.3.0",
+"--id",
+"v030-09",
+"--chunk",
+"2026-11-14-auto-exploration",
+"--text-file",
+".andromeda/runs/2026-11-14T15-55-17-wrap/refine-v030-09.md",
+"--acceptance-file",
+".andromeda/runs/2026-11-14T15-55-17-wrap/acceptance-v030-09.md",
+"--run-dir",
+".andromeda/runs/2026-11-14T15-55-17-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"refine v030-09 (chunk 2026-11-14-auto-exploration; status implemented kept)",
+"acceptance: In process, in both layout modes: one call of `escher_driver::explore`… (927 chars)",
+"         → In process, in both layout modes: one call of `escher_driver::explore`… (1072 chars)",
+"notes: +1240 chars (total 1240)",
+"dry-run: nothing written"
+],
+"stderr": null,
+"wrote": [],
+"before": {
+"id": "v030-09",
+"chunk": "2026-11-14-auto-exploration",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_explore.rs::{every_served_task_is_explored_within_its_budget, the_counter_is_explored_and_… (433 chars)",
+"acceptance": "In process, in both layout modes: one call of `escher_driver::explore`, given a step budget, drives every action the `ac… (927 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v030-09",
+"chunk": "2026-11-14-auto-exploration",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_explore.rs::{every_served_task_is_explored_within_its_budget, the_counter_is_explored_and_… (433 chars)",
+"acceptance": "In process, in both layout modes: one call of `escher_driver::explore`, given a step budget, drives every action the `ac… (1072 chars)",
+"notes_chars": 1240
+}
+},
+{
+"tool": "matrix",
+"v": "1.12",
+"sha8": "0ea00907",
+"ts": "2026-11-14T16:40:06Z",
+"argv": [
+"refine",
+"--dir",
+"escher-0.3.0",
+"--id",
+"v030-09",
+"--chunk",
+"2026-11-14-auto-exploration",
+"--text-file",
+".andromeda/runs/2026-11-14T15-55-17-wrap/refine-v030-09.md",
+"--acceptance-file",
+".andromeda/runs/2026-11-14T15-55-17-wrap/acceptance-v030-09.md",
+"--run-dir",
+".andromeda/runs/2026-11-14T15-55-17-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"refine v030-09 (chunk 2026-11-14-auto-exploration; status implemented kept)",
+"acceptance: In process, in both layout modes: one call of `escher_driver::explore`… (927 chars)",
+"         → In process, in both layout modes: one call of `escher_driver::explore`… (1072 chars)",
+"notes: +1240 chars (total 1240)",
+"landed, rendered ./.andromeda/db/log/2026-11-14T13-56-02-2026-11-14-auto-exploration.ndjson · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T13-56-02-2026-11-14-auto-exploration.ndjson"
+],
+"before": {
+"id": "v030-09",
+"chunk": "2026-11-14-auto-exploration",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_explore.rs::{every_served_task_is_explored_within_its_budget, the_counter_is_explored_and_… (433 chars)",
+"acceptance": "In process, in both layout modes: one call of `escher_driver::explore`, given a step budget, drives every action the `ac… (927 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v030-09",
+"chunk": "2026-11-14-auto-exploration",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_explore.rs::{every_served_task_is_explored_within_its_budget, the_counter_is_explored_and_… (433 chars)",
+"acceptance": "In process, in both layout modes: one call of `escher_driver::explore`, given a step budget, drives every action the `ac… (1072 chars)",
+"notes_chars": 1240
+}
+},
+{
+"tool": "matrix",
+"v": "1.12",
+"sha8": "0ea00907",
+"ts": "2026-11-14T16:40:06Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-11-14-auto-exploration",
+"--run-dir",
+".andromeda/runs/2026-11-14T15-55-17-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-11-14-auto-exploration: 1 · to flip 1 · already verified 0 · below 0",
+"flipped v030-09 → verified — In process, in both layout modes: one call of `escher_driver::explore`, given a … (1072 chars)",
+"dry-run: nothing written",
+"version: verified 13/17"
+],
+"stderr": null,
+"wrote": [],
+"before": [
+{
+"id": "v030-09",
+"chunk": "2026-11-14-auto-exploration",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_explore.rs::{every_served_task_is_explored_within_its_budget, the_counter_is_explored_and_… (433 chars)",
+"acceptance": "In process, in both layout modes: one call of `escher_driver::explore`, given a step budget, drives every action the `ac… (1072 chars)",
+"notes_chars": 1240
+}
+],
+"after": [
+{
+"id": "v030-09",
+"chunk": "2026-11-14-auto-exploration",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_explore.rs::{every_served_task_is_explored_within_its_budget, the_counter_is_explored_and_… (433 chars)",
+"acceptance": "In process, in both layout modes: one call of `escher_driver::explore`, given a step budget, drives every action the `ac… (1072 chars)",
+"notes_chars": 1240
+}
+]
+},
+{
+"tool": "matrix",
+"v": "1.12",
+"sha8": "0ea00907",
+"ts": "2026-11-14T16:40:10Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-11-14-auto-exploration",
+"--run-dir",
+".andromeda/runs/2026-11-14T15-55-17-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-11-14-auto-exploration: 1 · to flip 1 · already verified 0 · below 0",
+"flipped v030-09 → verified — In process, in both layout modes: one call of `escher_driver::explore`, given a … (1072 chars)",
+"landed, rendered ./.andromeda/db/log/2026-11-14T13-56-02-2026-11-14-auto-exploration.ndjson · 1 entry changed",
+"version: verified 13/17"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T13-56-02-2026-11-14-auto-exploration.ndjson"
+],
+"before": [
+{
+"id": "v030-09",
+"chunk": "2026-11-14-auto-exploration",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_explore.rs::{every_served_task_is_explored_within_its_budget, the_counter_is_explored_and_… (433 chars)",
+"acceptance": "In process, in both layout modes: one call of `escher_driver::explore`, given a step budget, drives every action the `ac… (1072 chars)",
+"notes_chars": 1240
+}
+],
+"after": [
+{
+"id": "v030-09",
+"chunk": "2026-11-14-auto-exploration",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_explore.rs::{every_served_task_is_explored_within_its_budget, the_counter_is_explored_and_… (433 chars)",
+"acceptance": "In process, in both layout modes: one call of `escher_driver::explore`, given a step budget, drives every action the `ac… (1072 chars)",
+"notes_chars": 1240
+}
+]
+}
+]

@@ -20,7 +20,7 @@ Path-scoped rules for test files. Source: `.andromeda/test-plan.md` §2 §4 §5 
 ## File and naming conventions
 - Each integration file opens with a `//!` doc naming the behaviour and any guarded bug; regression tests cite the upstream issue/PR URL and the real page that exposed it. `docs/capabilities.md` ends on `## Where each claim is proven`, naming the check behind each claim it makes — the stand checks among them — and only its names and counts are pinned, so a check renamed or moved changes that section by hand.
 - Descriptive snake_case test names; `#[track_caller]` on assertion helpers.
-- Assert first that the fixture produces the condition under test, then the behaviour; a new check is controlled — a named mutation of what it guards turns it red, and the restored tree reads green again.
+- Assert first that the fixture produces the condition under test, then the behaviour; a new check is controlled — a named mutation of what it guards turns it red, and the restored tree reads green again; a control that removes a bound loosens it to twice the budget rather than removing it, so the mutated run stays bounded.
 
 ## Determinism
 - Build documents with `HtmlDocument::from_html` + a `DocumentConfig` carrying a fixed viewport (800×600 or 400×300, scale 1.0, `ColorScheme::Light`) and `HtmlProvider`, then `resolve(0.0)`.
@@ -68,3 +68,4 @@ _This section is owned by `/andromeda-wrap-session`. setup-project preserves con
 - 2026-11-14: A control for a font-family reading removes nothing from a one-font context — on a font collection holding one font, fontique's fallback reaches that font for every generic family, registered or not, so removing a family's registration reads green; make the red control a font context holding other fonts (the host's system fonts), where the family leaves the bundled face.
 - 2026-11-14: In a `gate.py control` file a control's `case` names the test function alone — never prefixed by its test binary's or target's id.
 - 2026-11-14: The Integration bullet's counts are stale — it reads «36 readers» of `session_common` and «32 checks» sharing `fixtures`, while the anchored `git grep -l -E '^mod session_common;'` and `'^mod fixtures;'` over `tests/blitz-tests/tests` read 38 and 35 — count the declarers before citing either figure.
+- 2026-11-14: To plant a panicking handler in a Dioxus fixture, write a plain function that panics and pass it by name — an `onclick` closure whose whole body is `panic!` has type `!`, which fails `SpawnIfAsync` and does not compile.

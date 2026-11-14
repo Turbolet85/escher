@@ -1,2 +1,0 @@
-@none
-reason: The chunk adds an in-process driver library API (Fixture, Session::reach, ReachError), the stand's fixture-state table and start_in, and a test-only hold_in; per fct-llv2u4hm it adds no markup, id, class or style to any task (a11y n/a), and per fct-th3flz3b no log field or schema, so neither D-a11y-surface nor D-a11y-obs-schema fires; the picked row decision/stand-contrast-asserted stays true, as the chunk moves no contrast check, leg or stand row (fct-paz7qiik: no CI step or leg changed), and the task brings no fact a11y-plan keeps.

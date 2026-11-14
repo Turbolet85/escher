@@ -1,0 +1,61 @@
+[
+{
+"tool": "gate",
+"v": "1.35",
+"sha8": "3fed1b3c",
+"ts": "2026-11-14T15:57:49Z",
+"argv": [
+"census",
+"--run-dir",
+".andromeda/runs/2026-11-14T15-55-17-wrap"
+],
+"cwd": ".",
+"exit": 2,
+"stdout": [],
+"stderr": "census: --comm NAME or --args TEXT, at least one",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.35",
+"sha8": "3fed1b3c",
+"ts": "2026-11-14T15:57:53Z",
+"argv": [
+"census",
+"--comm",
+"escher-session",
+"--comm",
+"seven_guis_nati",
+"--comm",
+"stand_explore",
+"--comm",
+"cargo",
+"--run-dir",
+".andromeda/runs/2026-11-14T15-55-17-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"census · ps · comm escher-session, seven_guis_nati, stand_explore, cargo · args — · own tree excluded: 8",
+"census: none running"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"census": {
+"comm": [
+"escher-session",
+"seven_guis_nati",
+"stand_explore",
+"cargo"
+],
+"args": [],
+"running": []
+}
+}
+}
+]
