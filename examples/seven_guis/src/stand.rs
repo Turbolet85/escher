@@ -151,7 +151,7 @@ pub fn start_in(
     task: LeanTask,
     name: &str,
     incremental: bool,
-) -> Result<Session, StartInError> {
+) -> std::result::Result<Session, StartInError> {
     let fixture = Fixture::named(fixtures(task), name).map_err(StartInError::Reach)?;
     let mut session = Session::start(label, || boot(task, options(incremental)))
         .map_err(StartInError::Session)?;
