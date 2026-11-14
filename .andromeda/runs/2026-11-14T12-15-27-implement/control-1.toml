@@ -1,0 +1,30 @@
+[[control]]
+id = "reach-stop"
+entry = 2
+guard = "the reach's stop at a refused step: a refused step's answer no longer returns, the reach runs on"
+case = "a_step_the_screen_refuses_stops_the_reach_naming_its_index_and_cause"
+
+[[control.edit]]
+path = "packages/escher-driver/src/fixture.rs"
+old = '''            let outcome =
+                self.run(&fixture_step.call())
+                    .map_err(|refusal| ReachError::Refused {
+                        step,
+                        cause: refusal.cause(),
+                    })?;
+'''
+new = '''            let Ok(outcome) = self.run(&fixture_step.call()) else {
+                continue;
+            };
+'''
+
+[[control]]
+id = "twelve-creates"
+entry = 2
+guard = "CRUD's fourteen-people row: one of its twelve Click(crud-create) steps removed"
+case = "every_named_state_reads_as_its_by_hand_path_from_boot"
+
+[[control.edit]]
+path = "examples/seven_guis/src/stand.rs"
+old = '''&[FixtureStep::Click("crud-create"); 12]'''
+new = '''&[FixtureStep::Click("crud-create"); 11]'''

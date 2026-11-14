@@ -13,6 +13,7 @@ use blitz_traits::net::{Bytes, NetHandler, NetProvider, Request};
 use blitz_traits::shell::ColorScheme;
 use dioxus_native::prelude::*;
 use dioxus_native::{DioxusDocument, FontContext, build_single_font_ctx};
+use escher_driver::{Fixture, FixtureStep, ReachError, Session, SessionError};
 
 use crate::app::{Task, TaskShell, task_in_shell};
 use crate::tasks::timer::TimerTicks;
@@ -106,6 +107,56 @@ pub fn timer_step(ticks: TimerTicks) -> impl FnMut(&mut Harness<DioxusDocument>,
         ticks.deliver(held / tick);
         carried_ms = held % tick;
     }
+}
+
+/// CRUD's fixture states: `fourteen-people`, twelve Creates from boot, the last row past the
+/// list's box; `person-selected`, the first row selected, Update and Delete enabled.
+const CRUD_FIXTURES: [Fixture; 2] = [
+    Fixture::new("fourteen-people", &[FixtureStep::Click("crud-create"); 12]),
+    Fixture::new("person-selected", &[FixtureStep::Click("crud-person-0")]),
+];
+
+/// The flight booker's fixture state: `return-flight`, the return flight chosen on its
+/// `flight-type` select, the return date enabled.
+const FLIGHT_BOOKER_FIXTURES: [Fixture; 1] = [Fixture::new(
+    "return-flight",
+    &[FixtureStep::Type("flight-type", "r")],
+)];
+
+/// The named fixture states of `task`, each reached from its boot by driver calls. The Counter
+/// and the Timer hold none.
+pub fn fixtures(task: LeanTask) -> &'static [Fixture] {
+    match task {
+        LeanTask::Crud => &CRUD_FIXTURES,
+        LeanTask::FlightBooker => &FLIGHT_BOOKER_FIXTURES,
+        LeanTask::Counter | LeanTask::Timer => &[],
+    }
+}
+
+/// Why [`start_in`] returned no session.
+#[derive(Debug)]
+pub enum StartInError {
+    /// The label is refused, or the session could not start.
+    Session(SessionError),
+    /// The name is no fixture state of the task, or a step reaching it was refused or left
+    /// unsettled.
+    Reach(ReachError),
+}
+
+/// A session started under `label` on `task`, booted through the stand and brought to the
+/// fixture state `name` of [`fixtures`] by its steps, each run through the driver's validated
+/// run path. A name the task's table does not hold is refused before anything boots.
+pub fn start_in(
+    label: &str,
+    task: LeanTask,
+    name: &str,
+    incremental: bool,
+) -> Result<Session, StartInError> {
+    let fixture = Fixture::named(fixtures(task), name).map_err(StartInError::Reach)?;
+    let mut session = Session::start(label, || boot(task, options(incremental)))
+        .map_err(StartInError::Session)?;
+    session.reach(fixture).map_err(StartInError::Reach)?;
+    Ok(session)
 }
 
 fn boot_with_ticks(
@@ -277,6 +328,28 @@ mod tests {
                     "incremental={incremental}: row {row} reads its elapsed time"
                 );
             }
+        }
+    }
+
+    #[test]
+    fn every_fixture_state_name_is_of_the_label_form_and_named_once() {
+        let names: Vec<&str> = LeanTask::ALL
+            .into_iter()
+            .flat_map(|task| fixtures(task).iter().map(Fixture::name))
+            .collect();
+        assert_eq!(names.len(), 3);
+        for (index, name) in names.iter().enumerate() {
+            assert!(
+                (1..=32).contains(&name.len())
+                    && name.bytes().all(|byte| byte.is_ascii_lowercase()
+                        || byte.is_ascii_digit()
+                        || byte == b'-'),
+                "index {index}"
+            );
+            assert!(
+                names.iter().filter(|other| *other == name).count() == 1,
+                "index {index}"
+            );
         }
     }
 

@@ -27,7 +27,7 @@
 [2026-11-13-local-files-for-local-documents] Local files for local documents — blitz-net's file: branch serves a file: document alone; a remote page reads no local file (the founder, 2026-11-12, «Как в коде + работа»)
 [2026-11-14-seeded-randomness] Seeded randomness — a run's randomness from one seed; two runs of one seed read the same state (v030-13)
 [2026-11-14-bundled-fonts] Bundled fonts — a run's fonts bundled from the stand's DejaVu Sans; `fonts-unavailable` kept; every CI OS reads one state, never compared by shot bytes (v030-14)
-Start in a state — a session starts in a given fixture state, a bounded validated argument, on 0.2.0's shared fixtures (v030-08)
+[2026-11-14-start-in-a-state] Start in a state — a session starts in a given fixture state, a bounded validated argument, on 0.2.0's shared fixtures (v030-08)
 Auto-exploration — breadth-first over available actions within a step budget; panics, refusals caught; each path an owner-only replayable check, no shot; navigation a boundary fork (v030-09)
 Remote pages and local files in the browser — a remote page's favicon and its navigation to a `file:` URL read no local file  CONTEXT: PROVISIONAL — placed on the operator's answer A to the founder's fork F1 (card `.andromeda/runs/2026-11-13T23-09-24-phase/p5-card-2.md` row 1, its «yes» `chunks/2026-11-13-local-files-for-local-documents/inputs/I3-relay-2.md.txt`), waiting for the founder to confirm it or replace it (B: a stated limit); the two paths still open after 2026-11-13-local-files-for-local-documents: the browser's favicon probe (`apps/browser/src/favicon.rs:49`) fetches with no loading document, and navigation from a non-`file:` document to a `file:` URL loads it top-level (that chunk's report, Insufficient fixes)
 

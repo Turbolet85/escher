@@ -174,6 +174,18 @@ the one public exception to owner-only.
 
 Witnesses: `stand_session_recording`, `stand_replay`, seven_guis' `recording`.
 
+### Starting in a state
+
+A session held in process can start in a named fixture state of its app instead of at boot. A state is static data
+the app owns, `escher_driver::Fixture`: a name and the driver calls that reach it from boot. `Fixture::named` finds
+one in the app's table by its whole name, and any other name is refused `UnknownState`. `Session::reach` runs each
+call through `Session::run` and stops at the first one refused or left unsettled, naming its index. The stand names
+three states, through `seven_guis::stand::start_in`: CRUD's `fourteen-people` and `person-selected` and the flight
+booker's `return-flight`. Each reads as the same state reached by hand from boot. A recording attached before the
+reach keeps its steps as ordinary steps, so the kept check replays from boot.
+
+Witnesses: `stand_start_in_state`, escher-driver's fixture tests.
+
 ### Engine behaviours every document gets
 
 Escher changed the engine, for every document and not the stand alone, in these ways:
@@ -314,6 +326,8 @@ The driver's own refusal texts state three readings that are off:
 
 - **Unix only.** The socket host, its client and session recording are unix only and answer `Unsupported` elsewhere.
   A session held in process and the MCP stdio role run elsewhere too.
+- **A state in process only.** No fixture state crosses the command line, MCP, the session socket or a kept check's
+  form; a session starts in one only in process. This is provisional, pending the founder's choice.
 - **The session state directory.** It is named by the caller, owner-only, holds the socket alone, and is removed at
   `stop` or idle expiry.
 - **WebAssembly.** The wasm builds of the examples are browser-target builds through Trunk. The driver does not run on
@@ -424,6 +438,7 @@ They run in these CI legs (`.github/scripts/ci-leg.sh`):
 The UI graph and the `clickable` reading are proven by `stand_graph`, a `stand_*` file of the `test` and
 `stand-repeat` legs. The `actions` read is proven by `stand_actions`, a `stand_*` file of the same two legs. Handler
 coverage is proven by `stand_handler_coverage`, a `stand_*` file of the same two legs, and through the binary by
-seven_guis' `cli_commands` and `host_log`; a kept `actions` step's replay by `stand_replay`.
+seven_guis' `cli_commands` and `host_log`; a kept `actions` step's replay by `stand_replay`. A start in a named state is
+proven by `stand_start_in_state`, a `stand_*` file of the same two legs.
 
 The 0.2.0 requirement record is `WITNESSES_020` in `stand_requirement_sweep`: nine rows, 46 witnesses.

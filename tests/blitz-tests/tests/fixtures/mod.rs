@@ -11,7 +11,7 @@ use blitz_test_harness::Harness;
 use blitz_traits::net::{Bytes, NetHandler, NetProvider, Request};
 use dioxus::prelude::*;
 use dioxus_native_dom::DioxusDocument;
-use escher_driver::Session;
+use escher_driver::{Fixture, Session};
 use seven_guis::stand;
 
 /// A fixture booted as the stand boots a task: pinned viewport, bundled font, offline.
@@ -22,6 +22,18 @@ pub fn boot(app: fn() -> Element, incremental: bool) -> Harness<DioxusDocument> 
 /// A session started under `label` on a fixture booted as the stand boots a task.
 pub fn hold(label: &str, app: fn() -> Element, incremental: bool) -> Session {
     Session::start(label, || boot(app, incremental)).expect("the label is one of the closed set")
+}
+
+/// A session started under `label` on a fixture booted as the stand boots a task, brought to
+/// `fixture`'s state through the driver's validated run path.
+pub fn hold_in(label: &str, app: fn() -> Element, fixture: &Fixture, incremental: bool) -> Session {
+    let mut session = hold(label, app, incremental);
+    // A fixture a check states for its own page must reach; one that does not is the check's
+    // defect, and the failure names it.
+    session
+        .reach(fixture)
+        .expect("the check's fixture state is reached");
+    session
 }
 
 /// A password input labelled `Passphrase` by a `<label>`, the control the lean tasks lack.

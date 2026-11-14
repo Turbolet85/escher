@@ -115,6 +115,14 @@
 //! [`Coverage`] the handlers the UI graph showed on their screens that no replay's dispatch
 //! reached ([`HandlerRef`]); it adds no verb and logs nothing.
 //!
+//! A session held in process can start in a named fixture state of its app instead of at boot.
+//! A [`Fixture`] is static data the app owns — a name and the driver calls ([`FixtureStep`])
+//! that reach the state from boot — and [`Fixture::named`] finds one in the app's table by its
+//! whole name, any other name refused [`ReachError::UnknownState`]. [`Session::reach`] runs each
+//! step through [`Session::run`] and stops at the first one refused or left unsettled, naming
+//! its index ([`ReachError`]); a recording attached before the reach keeps its steps as ordinary
+//! steps. No state crosses the command line, the MCP server, the socket or a kept check's form.
+//!
 //! [`command_line`] is the whole command line of a binary that boots apps: every verb as one
 //! run, answered with one line of JSON on stdout and a status that tells accepted from
 //! refused, from a usage error and from a session error.
@@ -146,6 +154,7 @@ mod coverage;
 mod describe;
 mod error;
 mod execute;
+mod fixture;
 mod host;
 mod image;
 mod json;
@@ -168,6 +177,7 @@ pub use coverage::{Coverage, HandlerRef, handler_coverage};
 pub use describe::describe;
 pub use error::SessionError;
 pub use execute::Outcome;
+pub use fixture::{Fixture, FixtureStep, ReachError};
 pub use host::{IDLE_EXPIRY, serve};
 pub use lint::{Bounds, Defect, Finding, Reason};
 pub use mcp::serve_mcp;

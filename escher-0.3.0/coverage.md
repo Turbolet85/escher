@@ -1,9 +1,11 @@
 # Coverage — escher-0.3.0
 
-verified 11/17 · deferred 0 · planned 6 · implemented 0 · unclaimed 6
+verified 11/17 · deferred 0 · planned 5 · implemented 1 · unclaimed 5
 
-## planned, unclaimed (6)
-- v030-08 · Start in a state
+## implemented (1)
+- v030-08 · Start in a state · 2026-11-14-start-in-a-state
+
+## planned, unclaimed (5)
 - v030-09 · Auto-exploration
 - v030-10 · Errors with the action
 - v030-11 · Layout explained

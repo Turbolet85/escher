@@ -1,0 +1,324 @@
+[
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'start' AND callee_kind = 'fn' AND callee_file LIKE '%escher-driver/src/session.rs' ORDER BY file, line",
+"rows": 35,
+"result": [
+{
+"caller": "rust-analyzer cargo seven_guis 0.1.0 main().",
+"file": "examples/seven_guis/src/session_host.rs",
+"line": 43
+},
+{
+"caller": "rust-analyzer cargo seven_guis 0.1.0 a_screenshot_answers_one_line_whose_png_is_the_screen().",
+"file": "examples/seven_guis/tests/cli_commands.rs",
+"line": 383
+},
+{
+"caller": "rust-analyzer cargo seven_guis 0.1.0 a_hosted_click_opens_a_list_a_shot_shows_it_and_a_click_on_a_row_chooses().",
+"file": "examples/seven_guis/tests/cli_commands.rs",
+"line": 427
+},
+{
+"caller": "rust-analyzer cargo seven_guis 0.1.0 common/actions_needles().",
+"file": "examples/seven_guis/tests/common/mod.rs",
+"line": 489
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 cli/tests/the_coverage_role_reads_its_checks_refusing_any_it_cannot_read().",
+"file": "packages/escher-driver/src/cli_tests.rs",
+"line": 665
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 mcp/tests/empty().",
+"file": "packages/escher-driver/src/mcp_tests.rs",
+"line": 25
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 replay/tests/empty().",
+"file": "packages/escher-driver/src/replay.rs",
+"line": 159
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 session/tests/a_label_outside_the_closed_set_is_refused_before_the_boot_runs().",
+"file": "packages/escher-driver/src/session.rs",
+"line": 260
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 session/tests/empty().",
+"file": "packages/escher-driver/src/session.rs",
+"line": 370
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 fixtures/hold().",
+"file": "tests/blitz-tests/tests/fixtures/mod.rs",
+"line": 23
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 session_common/hold().",
+"file": "tests/blitz-tests/tests/session_common/mod.rs",
+"line": 44
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 an_app_with_no_usable_font_is_refused_and_nothing_changes().",
+"file": "tests/blitz-tests/tests/stand_act_screenshot.rs",
+"line": 209
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 child_records_each_command_at_info().",
+"file": "tests/blitz-tests/tests/stand_act_spans.rs",
+"line": 733
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 hold_served().",
+"file": "tests/blitz-tests/tests/stand_actions.rs",
+"line": 66
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 the_fixtures_read_covered_unkeyed_and_fonts_unavailable().",
+"file": "tests/blitz-tests/tests/stand_actions.rs",
+"line": 469
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 hold_cells().",
+"file": "tests/blitz-tests/tests/stand_cells_served.rs",
+"line": 37
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 hold_served().",
+"file": "tests/blitz-tests/tests/stand_cross_os_readings.rs",
+"line": 87
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 hold_task().",
+"file": "tests/blitz-tests/tests/stand_graph.rs",
+"line": 64
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 every_graph_node_is_a_snapshot_node_and_no_served_id_holds_the_reserved_form().",
+"file": "tests/blitz-tests/tests/stand_graph.rs",
+"line": 292
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 boot().",
+"file": "tests/blitz-tests/tests/stand_handler_coverage.rs",
+"line": 79
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 an_app_with_no_font_is_refused_fonts_unavailable().",
+"file": "tests/blitz-tests/tests/stand_lint.rs",
+"line": 450
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 hold_load().",
+"file": "tests/blitz-tests/tests/stand_load_page.rs",
+"line": 21
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 hold().",
+"file": "tests/blitz-tests/tests/stand_load_wait.rs",
+"line": 63
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 boot().",
+"file": "tests/blitz-tests/tests/stand_mcp_masked.rs",
+"line": 23
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 every_cause_a_tool_call_reaches_is_served_with_its_remedy().",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"line": 520
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 boot_without_font().",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"line": 585
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 hold().",
+"file": "tests/blitz-tests/tests/stand_seeded_randomness.rs",
+"line": 75
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 session_host().",
+"file": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"line": 241
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 session_host_with_a_short_expiry().",
+"file": "tests/blitz-tests/tests/stand_session_lifecycle.rs",
+"line": 250
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 session_host_with_typed_text().",
+"file": "tests/blitz-tests/tests/stand_session_quiet.rs",
+"line": 104
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_later_command_reads_what_an_earlier_command_left().",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 60
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_later_command_reads_what_an_earlier_command_left().",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 77
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 focus_left_by_one_command_is_read_by_the_next().",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 104
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 timer_time_moves_only_with_delivered_ticks().",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"line": 136
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 over_mcp_the_walk_answers_the_json_lines_of_the_same_calls().",
+"file": "tests/blitz-tests/tests/stand_snapshot_parts.rs",
+"line": 256
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'command_line' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 3,
+"result": [
+{
+"caller": "rust-analyzer cargo seven_guis 0.1.0 main().",
+"file": "examples/seven_guis/src/session_host.rs",
+"line": 10
+},
+{
+"caller": "rust-analyzer cargo seven_guis 0.1.0 main().",
+"file": "examples/seven_guis/src/session_host.rs",
+"line": 36
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 crate/",
+"file": "packages/escher-driver/src/lib.rs",
+"line": 163
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'handler_coverage' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 5,
+"result": [
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 cli/",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 12
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 cli/run().",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 468
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 crate/",
+"file": "packages/escher-driver/src/lib.rs",
+"line": 166
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 crate/",
+"file": "tests/blitz-tests/tests/stand_handler_coverage.rs",
+"line": 24
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 coverage().",
+"file": "tests/blitz-tests/tests/stand_handler_coverage.rs",
+"line": 133
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'serve_mcp' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 15,
+"result": [
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 cli/",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 17
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 cli/run().",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 443
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 cli/run().",
+"file": "packages/escher-driver/src/cli.rs",
+"line": 452
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 crate/",
+"file": "packages/escher-driver/src/lib.rs",
+"line": 172
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 mcp/tests/exchange().",
+"file": "packages/escher-driver/src/mcp_tests.rs",
+"line": 35
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 mcp/tests/a_line_is_read_whole_across_reads_and_an_unended_last_line_is_one().",
+"file": "packages/escher-driver/src/mcp_tests.rs",
+"line": 141
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 mcp/tests/a_line_is_read_whole_across_reads_and_an_unended_last_line_is_one().",
+"file": "packages/escher-driver/src/mcp_tests.rs",
+"line": 155
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 crate/",
+"file": "tests/blitz-tests/tests/stand_mcp_masked.rs",
+"line": 11
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_password_typed_over_mcp_reads_the_mask_and_never_the_typed_text().",
+"file": "tests/blitz-tests/tests/stand_mcp_masked.rs",
+"line": 83
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 crate/",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"line": 36
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 serve().",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"line": 92
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 every_cause_a_tool_call_reaches_is_served_with_its_remedy().",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"line": 522
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 every_cause_a_tool_call_reaches_is_served_with_its_remedy().",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"line": 551
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 crate/",
+"file": "tests/blitz-tests/tests/stand_snapshot_parts.rs",
+"line": 17
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 over_mcp_the_walk_answers_the_json_lines_of_the_same_calls().",
+"file": "tests/blitz-tests/tests/stand_snapshot_parts.rs",
+"line": 258
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]
