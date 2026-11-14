@@ -87,4 +87,4 @@
 2026-11-13-cognitive-load-corrective · complete · handle_click, execute and graph restructured toward cognitive 15, behaviour unchanged · → chk:2026-11-13-cognitive-load-corrective
 2026-11-13-local-files-for-local-documents · complete · blitz-net's file: branch serves a file: document alone; a remote page's sub-resource fetch reads no local file · → chk:2026-11-13-local-files-for-local-documents
 2026-11-14-seeded-randomness · complete · Seeded randomness — a run's randomness from one seed; two runs of one seed read the same state · → chk:2026-11-14-seeded-randomness
-2026-11-14-bundled-fonts · pending · a run's fonts bundled from the stand's DejaVu Sans, system fonts off; fonts-unavailable kept; every CI OS reads one state by its readings · → chk:2026-11-14-bundled-fonts
+2026-11-14-bundled-fonts · complete · a run's fonts bundled from the stand's DejaVu Sans, system fonts off; fonts-unavailable kept; every CI OS reads one state by its readings · → chk:2026-11-14-bundled-fonts

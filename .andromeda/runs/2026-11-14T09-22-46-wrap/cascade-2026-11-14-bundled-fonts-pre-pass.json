@@ -1,0 +1,159 @@
+[
+{
+"tool": "cascade",
+"v": "1.32",
+"sha8": "6dcb7ac8",
+"ts": "2026-11-14T09:23:52Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-14T09-22-46-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-14T09-22-46-wrap",
+"--marker",
+"2026-11-14-bundled-fonts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 78b39d4f (pre-pass — HEAD)",
+"architecture · 10 rows over 1 files · new 0 · standing 10 · 4 patterns",
+"security-plan · 4 rows over 1 files · new 0 · standing 4 · 2 patterns",
+"design-system · 10 rows over 1 files · new 0 · standing 10 · 3 patterns",
+"layout-templates · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"test-plan · 10 rows over 1 files · new 0 · standing 10 · 3 patterns",
+"by line · 0 lines · 0 offsets",
+"total (5 patterns) · 74 rows over 18 files",
+"per class · new 0/0 · standing 35/5 · leaf 39/13 · curation 0/0 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-14T09-22-46-wrap/sweep-pre-pass-1.1.txt · 87 lines · 10396 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-14T09-22-46-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "78b39d4f11f30719e29ec1f15f7c0204308cad88",
+"how": "pre-pass — HEAD",
+"counts": {
+"xos-readings": {
+"new": 0,
+"standing": 5,
+"leaf": 6,
+"curation": 0,
+"base": 0
+},
+"bundled-typo": {
+"new": 0,
+"standing": 10,
+"leaf": 10,
+"curation": 0,
+"base": 0
+},
+"families": {
+"new": 0,
+"standing": 10,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"counter-xos": {
+"new": 0,
+"standing": 1,
+"leaf": 13,
+"curation": 0,
+"base": 0
+},
+"canvas-text": {
+"new": 0,
+"standing": 9,
+"leaf": 8,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 10,
+"files": 1,
+"new": 0,
+"standing": 10,
+"patterns": 4
+},
+"security-plan": {
+"rows": 4,
+"files": 1,
+"new": 0,
+"standing": 4,
+"patterns": 2
+},
+"design-system": {
+"rows": 10,
+"files": 1,
+"new": 0,
+"standing": 10,
+"patterns": 3
+},
+"layout-templates": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+},
+"test-plan": {
+"rows": 10,
+"files": 1,
+"new": 0,
+"standing": 10,
+"patterns": 3
+}
+},
+"per_master": {
+"xos-readings": {
+"architecture": 1,
+"test-plan": 4
+},
+"bundled-typo": {
+"architecture": 3,
+"design-system": 2,
+"layout-templates": 1,
+"test-plan": 4
+},
+"families": {
+"architecture": 4,
+"security-plan": 3,
+"design-system": 3
+},
+"counter-xos": {
+"security-plan": 1
+},
+"canvas-text": {
+"architecture": 2,
+"design-system": 5,
+"test-plan": 2
+}
+},
+"forms": {
+"xos-readings": [
+{
+"form": "across (OSes|operating systems|the 3 OSes)",
+"from": "three"
+}
+],
+"counter-xos": [
+{
+"form": "counter-(cli|mcp).json[^.]*(windows|macos|3 OS)",
+"from": "three"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

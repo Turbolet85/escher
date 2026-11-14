@@ -1,0 +1,1 @@
+run P1 only and stop. Carry: the plan's serif-append control stayed green (DejaVu Sans is the only font loaded, so every family falls back to it), so the row the plan expected states the fallback as the reason; the founder is away: a fork goes to founder-forks.md, no dialog; an escalated operation reaches me only with its fit verdict; read-backs carry --run-dir.

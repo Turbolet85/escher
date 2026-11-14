@@ -1,37 +1,37 @@
 # Session Handoff
 
-**Last Updated:** 2026-11-14T07:46:00Z
+**Last Updated:** 2026-11-14T09:58:00Z
 **Branch:** build/escher-0.3.0 · 0 ahead of origin/build/escher-0.3.0 as read at this wrap's Setup
 **Status:** clean
-**Last Commit:** 2026-11-14-seeded-randomness — the chunk's wrap commit (P7)
+**Last Commit:** 2026-11-14-bundled-fonts — the chunk's wrap commit (P7)
 
 ## Position
-- Done: `2026-11-14-seeded-randomness`.
-  - dioxus-native-dom holds an ungated `seed` module: `SeededRandom` (splitmix64, one shared stream per document), `use_seeded_random`, `DEFAULT_SEED` = 0.
-  - `Harness::from_vdom` provides the default seed where the builder gives none, so two runs of one seed read the same state at every step.
-  - `matrix#v030-13` verified. CI is green.
-- Next: run `/andromeda-phase` to promote and plan «Bundled fonts», the next markerless entry of Epoch 4.
+- Done: `2026-11-14-bundled-fonts`.
+  - `stand_cross_os_readings` reads the six served tasks against one 48-row table of driver answer digests (snapshot every part, lint, actions), the same on linux, windows and macOS.
+  - `stand_bundled_font_families` shows every generic family and an unavailable family laying out in DejaVu Sans. They do so by fallback to the only loaded font, not by registration.
+  - `matrix#v030-14` verified. CI#43578124948 is green.
+- Next: run `/andromeda-phase` to promote and plan «Start in a state», the next markerless entry of Epoch 4.
 
 ## Work done
-- The wrap resumed at P2 from its P1 report in `.andromeda/runs/2026-11-14T07-12-40-wrap/`. The resume's relay was snapped as I5 and carried in Addendum 1.
-- 10 row operations landed in masters TXs 796–800, and 12 leaves were re-derived (2 by hand). The record is that run dir: `fanout-results.md`, `cascade-dispositions.md`, `curation.md`.
+- The wrap resumed at P2 from its P1 report in `.andromeda/runs/2026-11-14T09-22-46-wrap/`. The resume's relay was snapped as I7 and carried in Addendum 1.
+- 6 row operations landed in masters TXs 862–865, and 10 leaf findings were applied (1 declined). The record is that run dir: `fanout-results.md`, `escalation-card.md`, `cascade-dispositions.md`, `curation.md`.
 
 ## Drift resolved
-- New rows:
-  - architecture: the `SeededRandom` and `use_seeded_random`/`DEFAULT_SEED` contracts, the harness's run seed, `decision/one-run-seed`, `decision/no-prng-crate`;
-  - architecture: `decision/no-seed-on-carriers`, PROVISIONAL — F1's answer A;
-  - security-plan: the seeded source takes its seed from in-process code only.
 - Rows changed:
-  - architecture `decision/accessibility-feature-gating`: `seed` joins the ungated modules;
-  - test-plan `from-vdom`: it provides the default run seed;
-  - obs-plan `decision/checks-silent`: a re-run child prints ids or digests.
-- Fit rejected 5 adds as `not_master`, three of them plan-expected amendments: the re-exec spawn in Occupied Resources, the seed in the silence census, and the seeded-runs check in test-plan §5. Nine duplicate adds were rejected so each fact keeps one home. No escalation.
-- Route: residual `res-jqbadec2` (page-script `Math.random` unseeded, target next), with its line in `escher-0.4.0-incubator/deferred-from-0.3.0.md`. No tail edit.
+  - architecture `decision/stand-typography-dejavu-sans`: «registered for every generic family» is replaced by the fallback; its guard is `stand_bundled_font_families`.
+  - security-plan `decision/driver-session-unix-socket-only`: «unix only» now covers the socket alone; an in-process session runs on all three OSes.
+  - test-plan `decision/stand-checks-bundled-font`: its guard is `stand_bundled_font_families`.
+- New rows: architecture `decision/stand-readings-same-on-every-ci-os`; test-plan `decision/cross-os-readings-by-answer-digest`.
+- Q1 (the operator, A): the design-system families row was rejected. The reading keeps its one home in the architecture row, which places the stand's typography off the design-system product surface.
+- Rejected: five check-2 duplicates of the cross-OS fact (a11y, layout-templates, security, design-system), and a test-plan `except` that was a lesson (it went to curation).
+- Route: no tail edit.
 
 ## Notes
-- F1 of this chunk (no seed on the driver's carriers) is still the founder's: the absence row stands PROVISIONAL. On his B, card 3 row 1's entry «Seed on the driver's carriers» goes before «Auto-exploration».
+- Deferred learnings: 1 analyzed but not applied (max-3 cap):
+  - a `gate.py control` `case` is the test name alone, never prefixed by the binary id (confidence 0.8).
+  - Review with `/andromeda-wrap-session --review` if it should be applied.
+- F1 of `2026-11-14-seeded-randomness` (no seed on the driver's carriers) is still the founder's: the absence row stands PROVISIONAL. On his B, «Seed on the driver's carriers» goes before «Auto-exploration».
 - F1 of `2026-11-13-local-files-for-local-documents` is still the founder's: «Remote pages and local files in the browser» stands PROVISIONAL.
-- The 2026-10-06 precedent of registering a test-binary re-exec spawn in arch Occupied Resources does not hold: fit reads it `not_master` (the test code holds it).
 - Still standing on the operator's word, for removal at his call:
   - the worktrees `target/tmp/trial-det` and `target/tmp/trial-a`;
   - their build dirs `target/trial` and `target/trial-a`;
@@ -39,6 +39,3 @@
   - `target/tmp/trial-wt` is the founder's, and git marks it `prunable`.
 - `host-linux.md` is 9 template lines behind (U04 `noted`). Regenerating it is the operator's word.
 - Last failed command: none.
-
-## Session End Status
-Completed normally at 2026-11-14 09:42:31

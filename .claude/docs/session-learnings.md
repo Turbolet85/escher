@@ -8,6 +8,16 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-14 — A sweep alternative `cursive` matches «recursive»
+A pattern alternative written as a bare word stem matches inside longer words: `cursive` in a `cascade.py sweep` pattern for the font families hit «recursive» in four of the families pattern's ten standing master rows (architecture `decision/session-state-dir-removal` and three security-plan rows), each a false hit to be dispositioned by hand. Word-bound such an alternative (`\bcursive\b`) or expect those rows; the same holds for any family or keyword that is a suffix of a common word.
+
+---
+
+## 2026-11-14 — A `gate.py control` controls file: a `run` holding a newline takes a `'''` literal
+A controls file is TOML: a `run` command that spans lines must be written as a multi-line literal `'''…'''`. A single-quoted `'…'` literal holding a newline is not TOML, and the tool refuses the whole file before anything runs (measured at 2026-11-14-bundled-fonts: the first `control-1.toml` refused, re-written with `'''` and re-fired).
+
+---
+
 ## 2026-11-14 — A clippy lint's `#[expect]` is checked by the clippy leg alone
 `#[expect(clippy::disallowed_methods, reason = "…")]` reads nothing under a plain `cargo build` or `cargo test`: rustc does not check the expectation of a clippy lint without clippy, so a stale `expect` (one whose lint no longer fires) and a missing one both pass every non-clippy gate. Only the workspace clippy leg (`ci-leg.sh clippy`, inside `fast` and CI) fulfils or breaks it. A crate-level `clippy.toml` (escher's first, `packages/blitz-dom/clippy.toml`, banning `Request::get` outside `stamped_request`) is read by `cargo clippy -p {crate}` from the crate's own directory, and upstream's blitz-dom has none — an upstream sync that adds a `Request::get` call in blitz-dom reads green until the clippy leg runs. Prove such a guard by a control with the `expect` removed (measured at 2026-11-13-local-files-for-local-documents: `error: use of a disallowed method blitz_traits::net::Request::get`, exit 101).
 

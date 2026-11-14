@@ -1,0 +1,63 @@
+[
+{
+"tool": "route",
+"v": "1.14",
+"sha8": "8c42edde",
+"ts": "2026-11-14T10:03:31Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-11-14-bundled-fonts",
+"--date",
+"2026-11-14",
+"--run-dir",
+".andromeda/runs/2026-11-14T09-22-46-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin listing NOT DERIVED -- 2026-11-14-bundled-fonts carries no freight (already compact)",
+"dry-run · would flip 2026-11-14-bundled-fonts pending -> complete"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.14",
+"sha8": "8c42edde",
+"ts": "2026-11-14T10:03:35Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-11-14-bundled-fonts",
+"--date",
+"2026-11-14",
+"--run-dir",
+".andromeda/runs/2026-11-14T09-22-46-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin listing NOT DERIVED -- 2026-11-14-bundled-fonts carries no freight (already compact)",
+"flip 2026-11-14-bundled-fonts pending -> complete · tx 884",
+"compacted 0 complete line(s) — their freight spent in the spine, no archive (U61)"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T08-06-05-2026-11-14-bundled-fonts.ndjson",
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+}
+]
