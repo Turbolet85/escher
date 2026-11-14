@@ -27,7 +27,7 @@ _Extracted from the architecture master `doc:architecture` (the records store) Â
 - Desktop-only code gated by the repeated cfg list windows / macos / linux / dragonfly / freebsd / netbsd / openbsd.
 
 ## Error handling
-- Fallible APIs return typed results (`Result<_, CssomError>`, `Result<_, ParseError>`, `Result<Resource, String>`); error types are enums with `Display` and `From` per wrapped error.
+- Fallible APIs return typed results (`Result<_, CssomError>`, `Result<_, ParseError>`, `Result<Resource, String>`); error types are enums with `Display` and `From` per wrapped error; a file that glob-imports the `dioxus_native` prelude spells a two-parameter result as `std::result::Result`, since on Android the glob brings manganis's one-parameter `Result` alias, a failure only the CI Android job sees.
 - Mutex locks recover from poisoning with `unwrap_or_else(|err| err.into_inner())`.
 - `clippy::expect_used` / `clippy::unwrap_used` allowed only locally, next to a justification. Examples may fail with `unwrap`/`expect`/`panic!`.
 

@@ -1,0 +1,92 @@
+@pick n=1 row=decision/obs-tier v=no
+@pick n=2 row=decision/engine-tracing-by-invocation v=no
+@pick n=3 row=decision/escher-crates-always-trace v=no
+@pick n=4 row=decision/telemetry-via-tracing v=no
+@pick n=5 row=decision/engine-tracing-feature-gated v=no
+@pick n=6 row=decision/escher-crates-tracing-ungated v=no
+@pick n=7 row=decision/tracing-for-telemetry v=no
+@pick n=8 row=decision/agent-run-raw-output-never-printed v=no
+@pick n=9 row=decision/answers-echo-nothing-typed v=yes mode=stale
+@pick n=10 row=decision/checks-silent v=yes mode=stale
+@pick n=11 row=decision/cold-agent-record-owner-only v=no
+@pick n=12 row=decision/cold-agent-server-log-counted-only v=no
+@pick n=13 row=decision/cold-agent-sink-on-live-child-only v=no
+@pick n=14 row=decision/cold-agent-state-never-printed v=no
+@pick n=15 row=decision/debug-types-never-logged v=no
+@pick n=16 row=decision/driver-library-installs-no-subscriber v=yes mode=stale
+@pick n=17 row=decision/empty-stderr-check-unsets-rust-log v=no
+@pick n=18 row=decision/harness-json-via-python-json v=no
+@pick n=19 row=decision/harness-log-not-telemetry-sink v=no
+@pick n=20 row=decision/headless-stand-no-sink v=yes mode=stale
+@pick n=21 row=decision/log-check-failures-name-kind-count v=no
+@pick n=22 row=decision/one-span-per-command v=yes mode=stale
+@pick n=23 row=decision/part-answer-never-logged v=no
+@pick n=24 row=decision/replay-children-uninstrumented v=no
+@pick n=25 row=decision/session-id-record-unprinted v=no
+@pick n=26 row=decision/sink-host-read-at-trace v=no
+@pick n=27 row=decision/sink-installed-first-in-main v=no
+@pick n=28 row=contract/command-answer/graphed v=no
+@pick n=29 row=contract/command-answer/linted v=no
+@pick n=30 row=contract/command-answer/shot v=no
+@pick n=31 row=contract/coverage-role-stdout/coverage-line v=no
+@pick n=32 row=contract/escher-log-line/service-name v=no
+@pick n=33 row=contract/escher-log-line/service-version v=no
+@pick n=34 row=contract/escher-log-line/text-format v=no
+@pick n=35 row=contract/escher-session-stdout/command-answer v=no
+@pick n=36 row=contract/kept-check/accepted v=yes mode=add-to fact=F3
+@pick n=37 row=contract/kept-check/answer v=yes mode=add-to fact=F3
+@pick n=38 row=contract/kept-check/answer-digest v=yes mode=add-to fact=F3
+@pick n=39 row=contract/kept-check/arguments v=yes mode=add-to fact=F3
+@pick n=40 row=contract/mcp-role-exit-status/0 v=no
+@pick n=41 row=contract/mcp-role-exit-status/3 v=no
+@pick n=42 row=contract/mcp-role-stdout/json-rpc v=yes mode=add-to fact=F3
+@pick n=43 row=contract/script-diagnostics-drain/error-retention v=no
+@pick n=44 row=contract/script-diagnostics-drain/take-js-errors v=no
+@pick n=45 row=contract/script-diagnostics-drain/take-messages v=no
+@pick n=46 row=contract/telemetry-sink/log-records v=no
+@pick n=47 row=contract/telemetry-sink/rust-log v=no
+@pick n=48 row=contract/telemetry-sink/stream v=no
+@pick n=49 row=decision/driver-emits-no-event v=yes mode=add-to fact=F1
+@pick n=50 row=decision/driver-spans-carry-no-content v=yes mode=add-to fact=F1
+@pick n=51 row=contract/escher-driver-command-span/added v=yes mode=add-to fact=F1
+@pick n=52 row=contract/escher-driver-command-span/busy v=yes mode=add-to fact=F1
+@pick n=53 row=contract/escher-driver-command-span/cause v=yes mode=add-to fact=F1
+@pick n=54 row=contract/escher-driver-command-span/changed v=yes mode=add-to fact=F1
+@pick n=55 row=contract/escher-driver-command-span/passes v=yes mode=add-to fact=F1
+@pick n=56 row=contract/escher-driver-command-span/removed v=yes mode=add-to fact=F1
+@pick n=57 row=contract/escher-driver-command-span/settled v=yes mode=add-to fact=F1
+@pick n=58 row=contract/escher-driver-command-span/span v=yes mode=add-to fact=F1
+@pick n=59 row=contract/escher-driver-command-span/verb v=yes mode=add-to fact=F1
+@pick n=60 row=contract/escher-driver-tool-call-span/command-child v=no
+@pick n=61 row=contract/escher-driver-tool-call-span/ending v=no
+@pick n=62 row=contract/escher-driver-tool-call-span/span v=no
+@pick n=63 row=contract/escher-driver-tool-call-span/tool v=no
+@pick n=64 row=decision/advance-accepted-every-session v=yes mode=add-to fact=F1
+@pick n=65 row=decision/command-span-no-call-content v=yes mode=add-to fact=F1
+@pick n=66 row=decision/hosted-call-through-session-run v=yes mode=add-to fact=F1
+@pick n=67 row=decision/tool-call-span-two-closed-fields v=no
+@pick n=68 row=contract/cold-agent-verdict/capability-unused v=no
+@pick n=69 row=contract/command-span/added v=yes mode=add-to fact=F1
+@pick n=70 row=contract/command-span/busy v=yes mode=add-to fact=F1
+@pick n=71 row=contract/command-span/cause v=yes mode=add-to fact=F1
+@pick n=72 row=contract/command-span/changed v=yes mode=add-to fact=F1
+@pick n=73 row=contract/command-span/passes v=yes mode=add-to fact=F1
+@pick n=74 row=contract/command-span/removed v=yes mode=add-to fact=F1
+@pick n=75 row=contract/command-span/settled v=yes mode=add-to fact=F1
+@pick n=76 row=contract/command-span/span v=yes mode=add-to fact=F1
+@pick n=77 row=contract/refusal-cause/covered v=yes mode=add-to fact=F1
+@pick n=78 row=contract/refusal-cause/disabled v=yes mode=add-to fact=F1
+@pick n=79 row=contract/refusal-cause/fonts-unavailable v=yes mode=add-to fact=F1
+@pick n=80 row=contract/refusal-cause/malformed v=yes mode=add-to fact=F1
+@pick n=81 row=contract/refusal-cause/not-found v=yes mode=add-to fact=F1
+@pick n=82 row=contract/refusal-cause/off-screen v=yes mode=add-to fact=F1
+@pick n=83 row=contract/refusal-cause/stale v=yes mode=add-to fact=F1
+@pick n=84 row=contract/refusal-cause/unknown-verb v=yes mode=add-to fact=F1
+@pick n=85 row=contract/tool-call-ending/accepted v=no
+@pick n=86 row=contract/tool-call-ending/error v=no
+@pick n=87 row=contract/tool-call-ending/refused v=no
+@pick n=88 row=contract/tool-call-span/command-child v=no
+@pick n=89 row=contract/tool-call-span/ending v=no
+@pick n=90 row=contract/tool-call-span/span v=no
+@pick n=91 row=contract/tool-call-span/tool v=no
+@pick n=92 row=decision/wpt-scores-upstream-only v=no

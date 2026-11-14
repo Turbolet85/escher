@@ -1,7 +1,0 @@
-## Addendum 1 — resumed 2026-11-14
-- inputs#I7 · message: the operator, /andromeda-wrap-session resume invocation · copy message · n/a — the resume directive: resume from the landed report at P2; the fallback is the stated reason for the families reading (inputs#I6); input I2 moved only by the operator's tick of its Bundled-fonts row after the snap, no fact changed; the founder is away — a fork goes to `founder-forks.md`, no dialog; an escalated operation reaches the operator only with its fit verdict; read-backs carry `--run-dir`.
-  - bears on **Cross-project / external claims**: adds to it — I2's DRIFT is the operator's own tick of its row 23, no fact of the founder's adaptation moved (the operator's word, inputs#I7).
-  - bears on **Expected amendments (from plan)**: adds to it — entry 3's row states the fallback as the reason, restated by the operator at this resume (inputs#I7).
-  - bears on **Decisions & corrections**: adds to it — the working directive (founder away, forks to `founder-forks.md`, escalations with their fit verdict, read-backs with `--run-dir`) restated for P2–P7 (inputs#I7).
-- I2 · drifted → drifted — unchanged since the report; the moved bytes are the operator's tick (inputs#I7).
-- inputs.py verify, re-fired: `inputs: 7 entries — unchanged 1 · drifted 1 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 5 · uncited 1 · unparsed 0`; moved since the report: entries 6 → 7 (I7, this resume's relay) · uncited 3 → 1 (I4–I6 cited by the report; I7 cited by this addendum).

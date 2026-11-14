@@ -1,0 +1,887 @@
+[
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:13:15Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-14-start-in-a-state",
+"--file",
+".andromeda/cache/docs/2026-11-14-start-in-a-state/report.md",
+"--run-dir",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-14-start-in-a-state/report rev 1 · 33 new · 0 revised · 0 retired · 0 kept · tx 914"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T11-33-17-2026-11-14-start-in-a-state.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:13:19Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-14-start-in-a-state",
+"--section-file",
+".andromeda/runs/2026-11-14T13-09-21-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-14-start-in-a-state/report rev 2 · 43 new · 0 revised · 0 retired · 33 kept · tx 915"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T11-33-17-2026-11-14-start-in-a-state.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:16:53Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-14-start-in-a-state",
+"--section-file",
+".andromeda/runs/2026-11-14T13-09-21-wrap/addendum-1.md",
+"--heading",
+"## Addendum 1 — resumed 2026-11-14",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-14-start-in-a-state/report rev 3 · 2 new · 0 revised · 0 retired · 76 kept · tx 918"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T11-33-17-2026-11-14-start-in-a-state.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:17:00Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-14-start-in-a-state",
+"--section-file",
+".andromeda/runs/2026-11-14T13-09-21-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 2026-11-14-start-in-a-state/report rev 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:17:11Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-14T13-09-21-wrap/cites-land-2026-11-14-start-in-a-state.ndjson",
+"--base",
+"45c878c1869d4722952de660de4d06c786e0c2f2",
+"--run-dir",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:17:16Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-14T13-09-21-wrap/cites-land-2026-11-14-start-in-a-state.ndjson",
+"--base",
+"45c878c1869d4722952de660de4d06c786e0c2f2",
+"--run-dir",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 919"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T11-33-17-2026-11-14-start-in-a-state.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:19:28Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1488 · packs 15 · pack 100 · 368968 B",
+"security-plan: rows 547 · packs 6 · pack 100 · 154486 B",
+"design-system: rows 136 · packs 2 · pack 100 · 37294 B",
+"layout-templates: rows 120 · packs 2 · pack 100 · 29783 B",
+"test-plan: rows 602 · packs 7 · pack 100 · 164855 B",
+"obs-plan: rows 274 · packs 3 · pack 100 · 73410 B",
+"a11y-plan: rows 240 · packs 3 · pack 100 · 75200 B",
+"rows-packs: 7 master(s) · 3407 row(s) · 38 pack(s) · 2 draw(s) a pack · pin 919"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-14T13-09-21-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:32:50Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1488 · packs 15 · picked 61 (37 by every draw) · standing 0 · 167530 B · Standard Contracts: by boundary, the rest under `also here:`",
+"security-plan: rows 547 · packs 6 · picked 35 (18 by every draw) · standing 0 · 85398 B · Input Validation: by boundary, the rest under `also here:`",
+"design-system: rows 136 · packs 2 · picked 18 (14 by every draw) · standing 0 · 22320 B",
+"layout-templates: rows 120 · packs 2 · picked 15 (13 by every draw) · standing 0 · 26086 B",
+"test-plan: rows 602 · packs 7 · picked 46 (22 by every draw) · standing 0 · 128461 B",
+"obs-plan: rows 274 · packs 3 · picked 48 (11 by every draw) · standing 0 · 56397 B",
+"a11y-plan: rows 240 · packs 3 · picked 1 (0 by every draw) · standing 0 · 9609 B",
+"rows-union: 7 master(s) · picked 224 of 3407 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-14T13-09-21-wrap/arch-rows.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/arch-standing.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/security-rows.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/security-standing.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/design-rows.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/design-standing.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/tests-rows.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/tests-standing.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/obs-rows.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/obs-standing.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-14T13-09-21-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:37:28Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-14T13-09-21-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-14T13-09-21-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/driver-session/fixture-named · rejected",
+"decision/fixtures-test-module · rejected by fit: not_master type 5 — The value only adds the hold in a named state to the list of what the fixtures module holds, an inventory item the code holds.",
+"decision/shared-fixtures-stated-once · rejected by fit: not_master type 5 — The value only adds the hold in a named state to the list of what the fixture module states, an inventory item the code holds.",
+"fit: fits 5 · not_master 2 · stands 0",
+"## 2026-11-14-start-in-a-state — Standard Contracts: 4 row(s)\n**Section:** Standard Contracts\n**Change:** + contract/driver-session/reach — escher-driver session · Session::reach\n+ absence/fixture-state-on-carriers — A fixture state on the driver's carriers: the command line, MCP, the session socket or a kept check\n+ contract/headless-stand/start-in — seven_guis headless stand · start_in\n~ contract/driver-recording/kept-check · promise: was «The recording keeps a session's answered calls as a kept check, a masked type as its stand-in and a shot without its pixels.»; now «The recording keeps a session's answered calls as a kept check, a masked type as its stand-in and a shot without its pixels; a session started in a fixture state keeps the reach's steps as ordinary calls, so its check replays from boot in the unchanged form.»\n**Why:** contract/driver-session/reach: The chunk lands a new public driver API that reaches a named fixture state through the validated run path, a contract no row registers.\nabsence/fixture-state-on-carriers: The founder ratified a start in a state as in process only, so the absence of any carrier for a fixture state is a whole capability the project does not have.\ncontract/headless-stand/start-in: The stand gains per-task fixture tables and a public start in a state that checks the name before the boot, a stand contract no row states.\ncontract/driver-recording/kept-check: A recorded session started in a state keeps its reach as ordinary calls and replays from boot, which the kept-check promise says less.\n**Ref:** .andromeda/runs/2026-11-14T13-09-21-wrap/",
+"## 2026-11-14-start-in-a-state — Conventions: 1 row(s)\n**Section:** Conventions\n**Change:** + decision/std-result-under-dioxus-prelude — std Result spelled under the Dioxus prelude glob\n**Why:** decision/std-result-under-dioxus-prelude: A red Android CI run showed the prelude glob's Result alias breaks a bare two-parameter Result, and the remedy is a convention every prelude-globbing file must follow.\n**Ref:** .andromeda/runs/2026-11-14T13-09-21-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 5 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:37:28Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-14T13-09-21-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-14T13-09-21-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/fixture-reach-through-session-run · rejected",
+"absence/fixture-state-on-carriers · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-14-start-in-a-state — Input Validation: 1 row(s)\n**Section:** Input Validation\n**Change:** + decision/fixture-name-closed-table — Fixture state name checked against a closed table\n**Why:** decision/fixture-name-closed-table: The chunk adds a start in a named fixture state whose name is a caller-supplied argument, and its validation as a whole-name lookup in a closed table before the boot is the input rule future work must keep.\n**Ref:** .andromeda/runs/2026-11-14T13-09-21-wrap/",
+"## 2026-11-14-start-in-a-state — Error Handling: 1 row(s)\n**Section:** Error Handling\n**Change:** + decision/reach-error-closed-set — Reach errors as a closed set with fixed texts\n**Why:** decision/reach-error-closed-set: The chunk adds the reach's error type, and its closed set of fixed texts keeps a refused name or step from echoing anything supplied, as the other driver errors do.\n**Ref:** .andromeda/runs/2026-11-14T13-09-21-wrap/",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:37:28Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-14T13-09-21-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-14T13-09-21-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/shared-fixtures-in-one-module · rejected by fit: not_master type 5 — The added clause lists one more fixture the module holds, an inventory item that the row's own \"every fixture more than one check reads\" already covers and the code holds.",
+"contract/driver-session/reach · rejected",
+"contract/driver-session/fixture-state-name · rejected",
+"absence/fixture-state-on-carriers · rejected",
+"contract/session-recording/reached-state · rejected",
+"contract/stand-boot/start-in · rejected",
+"decision/std-result-under-native-prelude · rejected",
+"fit: fits 2 · not_master 1 · stands 0",
+"## 2026-11-14-start-in-a-state — 2. Test Strategy: 1 row(s)\n**Section:** 2. Test Strategy\n**Change:** ~ decision/inline-cfg-test-modules · except: was «Eight cfg(test) modules held in files of their own through a path attribute at their parent.»; now «cfg(test) modules held in files of their own through a path attribute at their parent.»\n**Why:** decision/inline-cfg-test-modules: The driver gains another cfg(test) module held in a file of its own through a path attribute, so the exception's stated count of such modules no longer holds and the exception must stand without it.\n**Ref:** .andromeda/runs/2026-11-14T13-09-21-wrap/",
+"## 2026-11-14-start-in-a-state — 5. Integration Test Strategy: 1 row(s)\n**Section:** 5. Integration Test Strategy\n**Change:** + decision/start-in-state-reads-as-by-hand-path — Start in a state held to its by-hand path\n**Why:** decision/start-in-state-reads-as-by-hand-path: The start in a state is checked at the integration tier against its by-hand path in both layout modes, a standing equivalence future work on fixture states must keep.\n**Ref:** .andromeda/runs/2026-11-14T13-09-21-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:37:38Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-14T13-09-21-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-14T13-09-21-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/driver-session/fixture-named · rejected",
+"decision/fixtures-test-module · rejected",
+"decision/shared-fixtures-stated-once · rejected",
+"fit: fits 5 · not_master 0 · stands 0",
+"landed tx 920 · 5 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T11-33-17-2026-11-14-start-in-a-state.ndjson",
+".andromeda/runs/2026-11-14T13-09-21-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:37:39Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-14T13-09-21-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-14T13-09-21-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/fixture-reach-through-session-run · rejected",
+"absence/fixture-state-on-carriers · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 921 · 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T11-33-17-2026-11-14-start-in-a-state.ndjson",
+".andromeda/runs/2026-11-14T13-09-21-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:37:39Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-14T13-09-21-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-14T13-09-21-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/shared-fixtures-in-one-module · rejected",
+"contract/driver-session/reach · rejected",
+"contract/driver-session/fixture-state-name · rejected",
+"absence/fixture-state-on-carriers · rejected",
+"contract/session-recording/reached-state · rejected",
+"contract/stand-boot/start-in · rejected",
+"decision/std-result-under-native-prelude · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 922 · 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T11-33-17-2026-11-14-start-in-a-state.ndjson",
+".andromeda/runs/2026-11-14T13-09-21-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:40:32Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/conventions.md",
+"--file",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap/staged-leaf-.claude__docs__conventions.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/conventions.md rev 8 · 0 new · 1 revised · 0 retired · tx 923"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T11-33-17-2026-11-14-start-in-a-state.ndjson",
+"./.claude/docs/conventions.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:40:32Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/seven_guis.md",
+"--file",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap/staged-leaf-.claude__docs__services__seven_guis.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/seven_guis.md rev 10 · 0 new · 2 revised · 0 retired · tx 924"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T11-33-17-2026-11-14-start-in-a-state.ndjson",
+"./.claude/docs/services/seven_guis.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:40:33Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-driver.md",
+"--file",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap/staged-leaf-.claude__docs__services__escher-driver.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-driver.md rev 9 · 0 new · 4 revised · 0 retired · tx 925"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T11-33-17-2026-11-14-start-in-a-state.ndjson",
+"./.claude/docs/services/escher-driver.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:40:33Z",
+"argv": [
+"harness",
+"land",
+"CLAUDE.md",
+"--file",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap/staged-leaf-CLAUDE.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 14 · 0 new · 1 revised · 0 retired · tx 926"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T11-33-17-2026-11-14-start-in-a-state.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:40:34Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/commands.md",
+"--file",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap/staged-leaf-.claude__docs__commands.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/commands.md rev 7 · 0 new · 1 revised · 0 retired · tx 927"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T11-33-17-2026-11-14-start-in-a-state.ndjson",
+"./.claude/docs/commands.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:40:34Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/blitz-test-harness.md",
+"--file",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap/staged-leaf-.claude__docs__services__blitz-test-harness.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/blitz-test-harness.md rev 5 · 0 new · 1 revised · 0 retired · tx 928"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T11-33-17-2026-11-14-start-in-a-state.ndjson",
+"./.claude/docs/services/blitz-test-harness.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:40:35Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/security.md",
+"--file",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap/staged-leaf-.claude__rules__security.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/security.md rev 15 · 0 new · 1 revised · 0 retired · tx 929"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T11-33-17-2026-11-14-start-in-a-state.ndjson",
+"./.claude/rules/security.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:40:35Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/tests-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap/staged-leaf-.claude__docs__tests-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/tests-summary.md rev 11 · 0 new · 1 revised · 0 retired · tx 930"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T11-33-17-2026-11-14-start-in-a-state.ndjson",
+"./.claude/docs/tests-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:40:36Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/testing.md",
+"--file",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap/staged-leaf-.claude__rules__testing.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/testing.md rev 16 · 0 new · 1 revised · 0 retired · tx 931"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T11-33-17-2026-11-14-start-in-a-state.ndjson",
+"./.claude/rules/testing.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:43:39Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-14T13-09-21-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 1 record(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:43:43Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-14T13-09-21-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-14T13-09-21-wrap",
+"--marker",
+"2026-11-14-start-in-a-state"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 936 · run-dd3oyxqz … run-dd3oyxqz"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T11-33-17-2026-11-14-start-in-a-state.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.46",
+"sha8": "c96e78b6",
+"ts": "2026-11-14T13:48:32Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-14-start-in-a-state",
+"--run-dir",
+".andromeda/runs/2026-11-14T13-09-21-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 15 file(s) of 2026-11-14-start-in-a-state"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

@@ -1,0 +1,15 @@
+[[pattern]]
+id = 'fixreaders'
+regex = '(?i)\b34 (?:checks|readers|files)\b|mod fixtures|fixtures module|fixtures test module|fixtures/mod\.rs|hold_in'
+
+[[pattern]]
+id = 'sesscommon'
+regex = '(?i)\b36 readers\b|\b37 readers\b|session_common'
+
+[[pattern]]
+id = 'fixstate'
+regex = '(?i)fixture state|Session::reach|start_in\b|stand_start_in_state|ReachError|UnknownState|start(?:s|ed)? in a (?:named )?(?:fixture )?state'
+
+[[pattern]]
+id = 'carrierabs'
+regex = '(?i)no-seed-on-carriers|crosses the driver.s carriers|no seed crosses|on the driver.s carriers'

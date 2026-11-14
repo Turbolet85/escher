@@ -1,1 +1,0 @@
-The founder is away: a fork goes to founder-forks.md, no dialog. In a controls file the case is the test name alone. If you meet a master row that binds this work and the plan does not cite, name it in your report. Stop after your report; the operator pass waits for my line.

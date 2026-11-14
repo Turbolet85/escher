@@ -1,7 +1,0 @@
---- a/.andromeda/security-plan.md
-+++ b/.andromeda/security-plan.md
-@@ -12,3 +12,3 @@
- decision/driver-session-no-peer-authentication · Driver session and MCP server carry no authentication — The driver session socket and the MCP stdio server carry no handshake, token, secret or peer check, and session start does not check the answering pid; the trust boundary is the owning user or the spawning client process.
--decision/driver-session-unix-socket-only · Driver session on one Unix socket — The driver session binds one Unix-domain socket in a caller-named state directory, never a TCP or UDP port, and runs on unix only.
-+decision/driver-session-unix-socket-only · Driver session on one Unix socket — The driver session socket binds one Unix-domain socket in a caller-named state directory, never a TCP or UDP port, and exists on unix only, while an in-process session runs on linux, windows and macOS alike.
- decision/file-url-only-for-file-documents · File URLs load only for file documents — A file: URL loads only for a file: document or a top-level load; for any other document, remote pages included, JS fetch, module import and script src refuse it with a FetchError, and blitz-net refuses the engine's stylesheet, @import, font, image and iframe loads before any disk read.

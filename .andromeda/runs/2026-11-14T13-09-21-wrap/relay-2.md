@@ -1,0 +1,1 @@
+resume from the landed report, at P2. Carry: F1 = C by the founder's own word (inputs#I4), so the absence rows land ratified and no boundary-widening escalation is owed for it; the founder is away for anything new: a fork goes to founder-forks.md, no dialog; an escalated operation reaches me only with its fit verdict; read-backs carry --run-dir.

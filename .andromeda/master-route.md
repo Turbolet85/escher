@@ -88,4 +88,4 @@
 2026-11-13-local-files-for-local-documents · complete · blitz-net's file: branch serves a file: document alone; a remote page's sub-resource fetch reads no local file · → chk:2026-11-13-local-files-for-local-documents
 2026-11-14-seeded-randomness · complete · Seeded randomness — a run's randomness from one seed; two runs of one seed read the same state · → chk:2026-11-14-seeded-randomness
 2026-11-14-bundled-fonts · complete · a run's fonts bundled from the stand's DejaVu Sans, system fonts off; fonts-unavailable kept; every CI OS reads one state by its readings · → chk:2026-11-14-bundled-fonts
-2026-11-14-start-in-a-state · pending · Start in a state — a driver session starts in a named fixture state of its app, a bounded validated argument; its first screen reads as that state reached by hand from boot (v030-08) · → chk:2026-11-14-start-in-a-state
+2026-11-14-start-in-a-state · complete · Start in a state — a driver session starts in a named fixture state of its app, a bounded validated argument; its first screen reads as that state reached by hand from boot (v030-08) · → chk:2026-11-14-start-in-a-state

@@ -1,1 +1,0 @@
-resume from the landed report, at P2. Carry: the fallback is the stated reason for the families reading (inputs#I6); input I2 moved only by my tick of its Bundled-fonts row after your snap, no fact changed; the founder is away: a fork goes to founder-forks.md, no dialog; an escalated operation reaches me only with its fit verdict; read-backs carry --run-dir.
