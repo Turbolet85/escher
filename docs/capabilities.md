@@ -341,13 +341,12 @@ The driver's own refusal texts state three readings that are off:
 - **Unix only.** The socket host, its client and session recording are unix only and answer `Unsupported` elsewhere.
   A session held in process and the MCP stdio role run elsewhere too.
 - **A state in process only.** No fixture state crosses the command line, MCP, the session socket or a kept check's
-  form; a session starts in one only in process. This is provisional, pending the founder's choice.
+  form; a session starts in one only in process.
 - **An exploration in process only.** No verb, role, argument or carrier reaches `explore`, and it follows no
-  navigation: a harness-built session has no navigation provider, so a navigating action loads nothing. Both are
-  provisional, pending the founder's choice. No explored path holds a `screenshot` step. A caught panic's payload is
-  never read, though the std panic hook still prints it in the process that catches it. A session whose step panicked
-  is dropped. A path deeper than a kept check's 400 records ends its recording. `drag` and canvas virtual nodes are
-  0.4.0's.
+  navigation: a harness-built session has no navigation provider, so a navigating action loads nothing. No explored
+  path holds a `screenshot` step. A caught panic's payload is never read, though the std panic hook still prints it in
+  the process that catches it. A session whose step panicked is dropped. A path deeper than a kept check's 400 records
+  ends its recording. `drag` and canvas virtual nodes are 0.4.0's.
 - **The session state directory.** It is named by the caller, owner-only, holds the socket alone, and is removed at
   `stop` or idle expiry.
 - **WebAssembly.** The wasm builds of the examples are browser-target builds through Trunk. The driver does not run on

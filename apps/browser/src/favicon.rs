@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use std::io::Cursor;
 use std::sync::{Arc, LazyLock, RwLock};
 
-use blitz_traits::net::{Request, Url};
+use blitz_traits::net::{Request, Url, document_may_load};
 
 use crate::StdNetProvider;
 
@@ -17,11 +17,16 @@ static FAVICON_CACHE: LazyLock<RwLock<HashMap<Url, Url>>> =
 // Synchronously resolve which URL we'd probe, without doing any I/O. This is
 // what the document loader hands to the tab so the load can return immediately;
 // the actual probe runs in the background via `probe_favicon_cached`.
+/// A non-`file:` page names no `file:` favicon (Chromium: «Not allowed to load local resource»).
 pub fn favicon_candidate(base_url: &str, favicon_href: Option<&str>) -> Option<Url> {
     let base = Url::parse(base_url).ok()?;
     favicon_href
         .and_then(|href| base.join(href).ok())
         .or_else(|| base.join("/favicon.ico").ok())
+        // The Fetch standard leaves `file:` to the implementation
+        // (https://fetch.spec.whatwg.org/#scheme-fetch); filtering here, before the
+        // shared cache, keeps a `file:` icon a `file:` page cached from a remote page.
+        .filter(|candidate| document_may_load(Some(&base), candidate))
 }
 
 pub async fn probe_favicon_cached(
@@ -109,5 +114,47 @@ mod tests {
     fn rejects_empty_or_garbage() {
         assert!(!is_decodable_image(b""));
         assert!(!is_decodable_image(b"hello world"));
+    }
+
+    #[test]
+    fn remote_page_favicon_candidate_names_no_local_file() {
+        let base = "https://example.com/page.html";
+        assert_eq!(
+            Url::parse(base).expect("fixture base parses").scheme(),
+            "https"
+        );
+        assert_eq!(
+            Url::parse("file:///etc/hosts")
+                .expect("fixture href parses")
+                .scheme(),
+            "file"
+        );
+        assert_eq!(favicon_candidate(base, Some("file:///etc/hosts")), None);
+    }
+
+    #[test]
+    fn file_page_favicon_candidate_keeps_local_file() {
+        let base = "file:///tmp/page.html";
+        assert_eq!(
+            Url::parse(base).expect("fixture base parses").scheme(),
+            "file"
+        );
+        assert_eq!(
+            favicon_candidate(base, Some("icon.png")),
+            Some(Url::parse("file:///tmp/icon.png").expect("fixture icon parses"))
+        );
+    }
+
+    #[test]
+    fn remote_page_default_favicon_candidate_unchanged() {
+        let base = "https://example.com/page.html";
+        assert_eq!(
+            Url::parse(base).expect("fixture base parses").scheme(),
+            "https"
+        );
+        assert_eq!(
+            favicon_candidate(base, None),
+            Some(Url::parse("https://example.com/favicon.ico").expect("fixture icon parses"))
+        );
     }
 }

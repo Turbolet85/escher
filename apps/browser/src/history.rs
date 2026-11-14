@@ -1,5 +1,5 @@
 use blitz_traits::navigation::{NavigationOptions, NavigationProvider};
-use blitz_traits::net::Request;
+use blitz_traits::net::{Request, Url, document_may_load};
 use dioxus_native::prelude::*;
 
 pub type SyncStore<T> = Store<T, CopyValue<T, SyncStorage>>;
@@ -100,10 +100,98 @@ impl HistoryNav for SyncStore<History> {
 
 pub struct BrowserNavProvider {
     pub history: SyncStore<History>,
+    /// The URL of the document this provider navigates for; `None` reads as no `file:` document.
+    document_url: Option<Url>,
+}
+
+impl BrowserNavProvider {
+    /// A provider for the document at `base_url`; an absent or unparsable base reads as no URL.
+    pub fn for_document(history: SyncStore<History>, base_url: Option<&str>) -> Self {
+        Self {
+            history,
+            document_url: base_url.and_then(|url| Url::parse(url).ok()),
+        }
+    }
 }
 
 impl NavigationProvider for BrowserNavProvider {
     fn navigate_to(&self, options: NavigationOptions) {
+        // A non-`file:` document's navigation to a `file:` URL loads nothing, silently, as
+        // Chromium («Not allowed to load local resource») and Firefox refuse it; the Fetch
+        // standard leaves `file:` to the implementation (https://fetch.spec.whatwg.org/#scheme-fetch).
+        if !document_may_load(self.document_url.as_ref(), &options.url) {
+            return;
+        }
         HistoryNav::navigate(&self.history, options.into_request());
+    }
+}
+
+#[cfg(test)]
+// The expects parse literal fixture URLs the tests write themselves; a failed parse is a broken fixture.
+#[allow(clippy::expect_used)]
+mod tests {
+    use std::cell::{Cell, RefCell};
+
+    use super::*;
+
+    thread_local! {
+        static CASE: Cell<(&'static str, &'static str)> = const { Cell::new(("", "")) };
+        static CURRENT: RefCell<String> = const { RefCell::new(String::new()) };
+    }
+
+    fn navigate_app() -> Element {
+        let (document, target) = CASE.with(Cell::get);
+        let history = Store::new_maybe_sync(History::new(Request::get(
+            Url::parse("https://initial.example/").expect("fixture initial parses"),
+        )));
+        let provider = BrowserNavProvider::for_document(history, Some(document));
+        let target = Url::parse(target).expect("fixture target parses");
+        provider.navigate_to(NavigationOptions::new(target, None, 0));
+        let current = HistoryNav::current_url(&history).read().url.to_string();
+        CURRENT.with(|cell| *cell.borrow_mut() = current);
+        VNode::empty()
+    }
+
+    fn current_url_after(document: &'static str, target: &'static str) -> String {
+        CASE.with(|case| case.set((document, target)));
+        VirtualDom::new(navigate_app).rebuild_in_place();
+        CURRENT.with(|cell| cell.borrow().clone())
+    }
+
+    fn scheme(url: &str) -> String {
+        Url::parse(url)
+            .expect("fixture url parses")
+            .scheme()
+            .to_string()
+    }
+
+    #[test]
+    fn remote_page_navigation_to_file_url_loads_nothing() {
+        assert_eq!(scheme("https://example.com/"), "https");
+        assert_eq!(scheme("file:///etc/hosts"), "file");
+        assert_eq!(
+            current_url_after("https://example.com/", "file:///etc/hosts"),
+            "https://initial.example/"
+        );
+    }
+
+    #[test]
+    fn file_page_navigation_to_file_url_loads() {
+        assert_eq!(scheme("file:///tmp/page.html"), "file");
+        assert_eq!(scheme("file:///tmp/other.html"), "file");
+        assert_eq!(
+            current_url_after("file:///tmp/page.html", "file:///tmp/other.html"),
+            "file:///tmp/other.html"
+        );
+    }
+
+    #[test]
+    fn remote_page_navigation_to_https_url_loads() {
+        assert_eq!(scheme("https://example.com/"), "https");
+        assert_eq!(scheme("https://example.org/"), "https");
+        assert_eq!(
+            current_url_after("https://example.com/", "https://example.org/"),
+            "https://example.org/"
+        );
     }
 }

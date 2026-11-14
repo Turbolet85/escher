@@ -1,0 +1,65 @@
+[[control]]
+id = 'C1'
+entry = 1
+guard = 'favicon_candidate drops its document_may_load filter'
+case = 'remote_page_favicon_candidate_names_no_local_file'
+[[control.edit]]
+path = 'apps/browser/src/favicon.rs'
+old = '''        .filter(|candidate| document_may_load(Some(&base), candidate))
+'''
+new = '''        .filter(|candidate| document_may_load(Some(&base), candidate) || true)
+'''
+
+[[control]]
+id = 'C2'
+entry = 1
+guard = 'favicon_candidate filter refuses every candidate'
+case = ['file_page_favicon_candidate_keeps_local_file', 'remote_page_default_favicon_candidate_unchanged']
+[[control.edit]]
+path = 'apps/browser/src/favicon.rs'
+old = '''        .filter(|candidate| document_may_load(Some(&base), candidate))
+'''
+new = '''        .filter(|candidate| document_may_load(Some(&base), candidate) && false)
+'''
+
+[[control]]
+id = 'C3'
+entry = 1
+guard = 'navigate_to drops its early return'
+case = 'remote_page_navigation_to_file_url_loads_nothing'
+[[control.edit]]
+path = 'apps/browser/src/history.rs'
+old = '''        if !document_may_load(self.document_url.as_ref(), &options.url) {
+            return;
+        }
+'''
+new = '''        let _ = document_may_load(self.document_url.as_ref(), &options.url);
+'''
+
+[[control]]
+id = 'C4'
+entry = 1
+guard = 'for_document stores no URL'
+case = 'file_page_navigation_to_file_url_loads'
+[[control.edit]]
+path = 'apps/browser/src/history.rs'
+old = '''            document_url: base_url.and_then(|url| Url::parse(url).ok()),
+'''
+new = '''            document_url: base_url.and_then(|url| Url::parse(url).ok()).and(None),
+'''
+
+[[control]]
+id = 'C5'
+entry = 1
+guard = 'navigate_to returns for every target'
+case = 'remote_page_navigation_to_https_url_loads'
+[[control.edit]]
+path = 'apps/browser/src/history.rs'
+old = '''        if !document_may_load(self.document_url.as_ref(), &options.url) {
+            return;
+        }
+'''
+new = '''        if !document_may_load(self.document_url.as_ref(), &options.url) || true {
+            return;
+        }
+'''

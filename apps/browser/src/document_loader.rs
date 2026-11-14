@@ -49,11 +49,12 @@ pub fn make_doc_config(
     font_ctx: FontContext,
     abort_signal: Option<AbortSignal>,
 ) -> DocumentConfig {
+    let navigation_provider = BrowserNavProvider::for_document(history, base_url.as_deref());
     DocumentConfig {
         viewport: None,
         base_url,
         net_provider: Some(net_provider as _),
-        navigation_provider: Some(Arc::new(BrowserNavProvider { history })),
+        navigation_provider: Some(Arc::new(navigation_provider)),
         shell_provider: Some(consume_context::<Arc<dyn ShellProvider>>()),
         html_parser_provider: Some(Arc::new(HtmlProvider)),
         font_ctx: Some(font_ctx),
