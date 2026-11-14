@@ -1,0 +1,49 @@
+[
+{
+"tool": "matrix",
+"v": "1.12",
+"sha8": "d8272dda",
+"ts": "2026-11-14T06:46:34Z",
+"argv": [
+"implement",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-11-14-seeded-randomness",
+"--id",
+"v030-13",
+"--ref-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-11-14T06-45-57-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"implement v030-13 · status planned → implemented · ref tests/blitz-tests/tests/stand_seeded_randomness.rs::{one_seed_two_runs_read_the_… (181 chars)",
+"landed, rendered ./.andromeda/db/log/2026-11-14T01-53-14-2026-11-14-seeded-randomness.ndjson · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T01-53-14-2026-11-14-seeded-randomness.ndjson"
+],
+"before": {
+"id": "v030-13",
+"chunk": "2026-11-14-seeded-randomness",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "Two runs of a fixture app reading `use_seeded_random`, booted through `Harness::from_vdom` at the stand's options and he… (626 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v030-13",
+"chunk": "2026-11-14-seeded-randomness",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_seeded_randomness.rs::{one_seed_two_runs_read_the_same_state_at_every_step, a_second_proce… (181 chars)",
+"acceptance": "Two runs of a fixture app reading `use_seeded_random`, booted through `Harness::from_vdom` at the stand's options and he… (626 chars)",
+"notes_chars": 0
+}
+}
+]

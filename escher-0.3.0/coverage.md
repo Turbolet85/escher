@@ -1,14 +1,16 @@
 # Coverage — escher-0.3.0
 
-verified 9/17 · deferred 0 · planned 8 · implemented 0 · unclaimed 8
+verified 9/17 · deferred 0 · planned 7 · implemented 1 · unclaimed 7
 
-## planned, unclaimed (8)
+## implemented (1)
+- v030-13 · Seeded randomness · 2026-11-14-seeded-randomness
+
+## planned, unclaimed (7)
 - v030-08 · Start in a state
 - v030-09 · Auto-exploration
 - v030-10 · Errors with the action
 - v030-11 · Layout explained
 - v030-12 · A component in isolation
-- v030-13 · Seeded randomness
 - v030-14 · Bundled fonts
 - v030-15 · Cold-agent bar
 

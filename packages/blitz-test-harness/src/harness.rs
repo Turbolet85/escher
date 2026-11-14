@@ -8,8 +8,8 @@ use blitz_html::{HtmlDocument, HtmlProvider};
 use blitz_traits::events::UiEvent;
 use blitz_traits::net::NetProvider;
 use blitz_traits::shell::{ColorScheme, Viewport};
-use dioxus_core::{Element, VirtualDom};
-use dioxus_native_dom::DioxusDocument;
+use dioxus_core::{Element, ScopeId, VirtualDom};
+use dioxus_native_dom::{DEFAULT_SEED, DioxusDocument, SeededRandom};
 
 use crate::settle::LoadCounter;
 
@@ -109,7 +109,19 @@ impl Harness<DioxusDocument> {
         Self::from_vdom(VirtualDom::new(app), HarnessOptions::default())
     }
 
+    /// Build a document from `vdom` with `options`.
+    ///
+    /// The document reads the harness's clock and one run seed: the [`SeededRandom`] the vdom's
+    /// root already holds (`VirtualDom::with_root_context`), else one seeded with
+    /// [`DEFAULT_SEED`], provided at the root before the first render.
     pub fn from_vdom(vdom: VirtualDom, options: HarnessOptions) -> Self {
+        if vdom
+            .runtime()
+            .has_context::<SeededRandom>(ScopeId::ROOT)
+            .is_none()
+        {
+            vdom.provide_root_context(SeededRandom::from_seed(DEFAULT_SEED));
+        }
         let clock = VirtualClock::new();
         let (config, loads) = options.into_config(&clock);
         let mut doc = DioxusDocument::new(vdom, config);

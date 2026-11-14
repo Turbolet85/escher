@@ -26,6 +26,7 @@ mod keyboard_compat;
 mod mutation_buffer;
 mod mutation_writer;
 mod reached;
+mod seed;
 mod signal_registry;
 #[cfg(feature = "accessibility")]
 mod snapshot;
@@ -43,6 +44,7 @@ pub use events::{NodeHandle, synthetic_click_event, synthetic_form_event};
 #[cfg(feature = "accessibility")]
 pub use graph::{GraphHandler, GraphNode, GraphState, GraphWrite, GraphWriter, UiGraph, WriteFlag};
 pub use reached::ReachedHandler;
+pub use seed::{DEFAULT_SEED, SeededRandom, use_seeded_random};
 pub use signal_registry::{DeclaredWrite, SignalRegistry, use_graph_state};
 #[cfg(feature = "accessibility")]
 pub use snapshot::{

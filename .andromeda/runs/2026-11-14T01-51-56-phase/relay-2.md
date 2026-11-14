@@ -1,0 +1,1 @@
+yes. F1 is answered PROVISIONAL by the operator: A, no seed crosses a carrier, for the founder to confirm or replace. Beyond row 2 (page-script Math.random left out) is owned: the wrap writes it as a residual, target next. Then stop: implement starts in a fresh window.

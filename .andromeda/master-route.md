@@ -86,3 +86,4 @@
 2026-11-13-upstream-sync-determinism-and-exploration · complete · upstream/main 563d3db73 taken by the founder's shape, CI and audit back to green, the seven carries absorbed · → chk:2026-11-13-upstream-sync-determinism-and-exploration
 2026-11-13-cognitive-load-corrective · complete · handle_click, execute and graph restructured toward cognitive 15, behaviour unchanged · → chk:2026-11-13-cognitive-load-corrective
 2026-11-13-local-files-for-local-documents · complete · blitz-net's file: branch serves a file: document alone; a remote page's sub-resource fetch reads no local file · → chk:2026-11-13-local-files-for-local-documents
+2026-11-14-seeded-randomness · pending · Seeded randomness — a run's randomness from one seed; two runs of one seed read the same state · → chk:2026-11-14-seeded-randomness
