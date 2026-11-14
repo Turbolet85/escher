@@ -1,0 +1,1026 @@
+[
+{
+"tool": "gate",
+"v": "1.33",
+"sha8": "b20d4a4c",
+"ts": "2026-11-14T08:49:23Z",
+"argv": [
+"run",
+"--chunk",
+"2026-11-14-bundled-fonts",
+"--run-dir",
+".andromeda/runs/2026-11-14T08-42-37-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-11-14-bundled-fonts · entries 10",
+"logs $TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 182 · rust 2",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L114-116: The gates run on the dev host, Linux. Nothing boots outside the harness: there is no live … (241 chars)",
+"prose L118-122: v030-14's acceptance needs CI: the windows and macOS readings exist only on `matrix_test`'… (553 chars)",
+"  1 unit        green · exit 0 · 4.18s · 771 B → 1.log · cargo test -p blitz-tests --locked --test stand_cross_os_r… (65 chars)",
+"  2 integration green · exit 0 · 4.22s · 1273 B → 2.log · cargo test --workspace --locked --test stand_cross_os_read… (97 chars)",
+"  3 integration green · exit 0 · 1.88s · 757 B → 3.log · cargo test -p blitz-tests --locked --test stand_bundled_fo… (69 chars)",
+"  4 integration green · exit 0 · 18.46s · 3721 B → 4.log · cargo test --workspace --locked --test stand_replay --test… (141 chars)",
+"  5 probe       green · exit 0 · 0.01s · 2 B → 5.log · python3 -c \"⏎import re⏎n = 0⏎for f in [\\\"tests/blitz-tests… (327 chars)",
+"  6 probe       green · exit 0 · 0.0s · 0 B → 6.log · git diff --quiet 557f1c98d4e5639ec7e065025d092feda234b3b7 … (167 chars)",
+"  7 integration green · exit 0 · 221.53s · 145079 B → 7.log · bash .github/scripts/ci-leg.sh fast",
+"  8 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+"  9 probe       not run — leg operator (the letter drives it) · git diff --quiet && git diff --cached --quiet && git push … (83 chars)",
+" 10 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 10 · green 7 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-14-bundled-fonts",
+"plan": "doc:2026-11-14-bundled-fonts/plan",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37",
+"delta": {
+"docs": [
+".andromeda/db/log/2026-11-14T01-51-35-session-2026-11-14.ndjson",
+".andromeda/db/log/2026-11-14T01-53-14-2026-11-14-seeded-randomness.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-11-14T07-12-40-wrap/evolve-2026-11-14-seeded-randomness.json",
+".claude/session-handoff.md",
+"escher-0.3.0/coverage.md",
+"escher-0.3.0/working-route.md",
+".andromeda/db/log/2026-11-14T08-06-05-2026-11-14-bundled-fonts.ndjson",
+".andromeda/db/log/2026-11-14T08-41-50-2026-11-14T08-04-59-phase.ndjson",
+".andromeda/runs/2026-11-14T08-04-59-phase/a11y-history.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/a11y-pick-counts.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/a11y-pick-p1.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/a11y-pick-p1.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/a11y-pick-p1.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/a11y-pick-p2.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/a11y-pick-p2.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/a11y-pick-p2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/a11y-pick-p3.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/a11y-pick-p3.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/a11y-pick-p3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/a11y-rows.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/a11y-standing.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/a11y-task.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/acceptance-v030-14.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-history.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-counts.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p1.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p1.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p1.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p10.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p10.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p10.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p11.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p11.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p11.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p12.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p12.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p12.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p13.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p13.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p13.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p14.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p14.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p14.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p15.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p15.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p15.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p2.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p2.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p3.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p3.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p4.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p4.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p4.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p5.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p5.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p5.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p6.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p6.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p6.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p7.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p7.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p7.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p8.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p8.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p8.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p9.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p9.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-pick-p9.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-rows.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-standing.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/arch-task.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/cascade-tally.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/ci-no-marker.json",
+".andromeda/runs/2026-11-14T08-04-59-phase/design-history.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/design-pick-counts.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/design-pick-p1.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/design-pick-p1.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/design-pick-p1.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/design-pick-p2.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/design-pick-p2.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/design-pick-p2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/design-rows.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/design-standing.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/design-task.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/evolve-2026-11-14-bundled-fonts.json",
+".andromeda/runs/2026-11-14T08-04-59-phase/fanout-2026-11-14-bundled-fonts.json",
+".andromeda/runs/2026-11-14T08-04-59-phase/gate-2026-11-14-bundled-fonts.json",
+".andromeda/runs/2026-11-14T08-04-59-phase/inputs-2026-11-14-bundled-fonts.json",
+".andromeda/runs/2026-11-14T08-04-59-phase/layouts-history.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/layouts-pick-counts.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/layouts-pick-p1.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/layouts-pick-p1.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/layouts-pick-p1.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/layouts-pick-p2.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/layouts-pick-p2.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/layouts-pick-p2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/layouts-rows.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/layouts-standing.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/layouts-task.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/master-desc.txt",
+".andromeda/runs/2026-11-14T08-04-59-phase/matrix-2026-11-14-bundled-fonts.json",
+".andromeda/runs/2026-11-14T08-04-59-phase/obs-history.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/obs-pick-counts.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/obs-pick-p1.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/obs-pick-p1.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/obs-pick-p1.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/obs-pick-p2.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/obs-pick-p2.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/obs-pick-p2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/obs-pick-p3.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/obs-pick-p3.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/obs-pick-p3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/obs-rows.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/obs-standing.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/obs-task.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/p5-card-1.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/p5-controls.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/planlint-2026-11-14-bundled-fonts.json",
+".andromeda/runs/2026-11-14T08-04-59-phase/rec-2026-11-14-bundled-fonts.json",
+".andromeda/runs/2026-11-14T08-04-59-phase/rec-no-marker.json",
+".andromeda/runs/2026-11-14T08-04-59-phase/rec-read-2026-11-14-bundled-fonts.ndjson",
+".andromeda/runs/2026-11-14T08-04-59-phase/relay-1.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/relay-2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/route-2026-11-14-bundled-fonts.json",
+".andromeda/runs/2026-11-14T08-04-59-phase/rows-packs.json",
+".andromeda/runs/2026-11-14T08-04-59-phase/scope-cite-1.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/scope-cite-2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/scope-pin.json",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-history.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-counts.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p1.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p1.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p1.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p2.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p2.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p3.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p3.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p4.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p4.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p4.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p5.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p5.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p5.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p6.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p6.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-pick-p6.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-rows.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-standing.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/security-task.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-history.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-counts.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p1.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p1.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p1.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p2.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p2.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p3.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p3.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p4.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p4.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p4.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p5.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p5.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p5.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p6.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p6.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p6.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p7.d2.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p7.d3.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-pick-p7.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-rows.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-standing.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tests-task.md",
+".andromeda/runs/2026-11-14T08-04-59-phase/tree-query-2026-11-14-bundled-fonts.json",
+".andromeda/runs/2026-11-14T08-42-37-implement/evolve-2026-11-14-bundled-fonts.json"
+],
+"rust": [
+"tests/blitz-tests/tests/stand_bundled_font_families.rs",
+"tests/blitz-tests/tests/stand_cross_os_readings.rs"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 184,
+"problem": null
+},
+"prose": [
+{
+"from": 114,
+"to": 116,
+"text": "The gates run on the dev host, Linux. Nothing boots outside the harness: there is no live leg, and the real boot is /implement P3's. The base sha in the guard entry is HEAD as this plan is written, `557f1c98d4e5639ec7e065025d092feda234b3b7`."
+},
+{
+"from": 118,
+"to": 122,
+"text": "v030-14's acceptance needs CI: the windows and macOS readings exist only on `matrix_test`'s «Test (windows)» and «Test (macos)» jobs, and the linux one on the `test` leg; so the plan carries the operator's hygiene, push and CI-read entries, the CI read asserting `verdict: green`. «Stand checks repeated» runs both new `stand_` files three rounds (the glob, test-plan `decision/stand-checks-repeated-three-rounds`). No dependency and no production code change, so the audit and coverage legs are no local entry: CI runs them and the CI read covers them."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-tests --locked --test stand_cross_os_readings",
+"run_sha8": "c92d3d8b",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37/1.log",
+"bytes": 771,
+"log_sha8": "92351156",
+"exit": 0,
+"seconds": 4.18,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test --workspace --locked --test stand_cross_os_readings --test stand_bundled_font_families",
+"run_sha8": "7ea973de",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37/2.log",
+"bytes": 1273,
+"log_sha8": "9d05aa54",
+"exit": 0,
+"seconds": 4.22,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_bundled_font_families",
+"run_sha8": "22905e66",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37/3.log",
+"bytes": 757,
+"log_sha8": "1674d7c3",
+"exit": 0,
+"seconds": 1.88,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "cargo test --workspace --locked --test stand_replay --test stand_act_screenshot --test stand_lint --test stand_actions --test stand_mcp_tools",
+"run_sha8": "e1526c7e",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37/4.log",
+"bytes": 3721,
+"log_sha8": "9e5085ca",
+"exit": 0,
+"seconds": 18.46,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "python3 -c \"\nimport re\nn = 0\nfor f in [\\\"tests/blitz-tests/tests/stand_cross_os_readings.rs\\\", \\\"tests/blitz-tests/tests/stand_bundled_font_families.rs\\\"]:\n    n += len(re.findall(r\\\"println!|eprintln!|print!|dbg!|env::var\\\\(|tracing::|TcpListener|thread::sleep|Instant::now|SystemTime|screenshot\\\", open(f).read()))\nprint(n)\n\"",
+"run_sha8": "15382fec",
+"expect": [
+"exit 0",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37/5.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "git diff --quiet 557f1c98d4e5639ec7e065025d092feda234b3b7 -- packages examples apps Cargo.toml Cargo.lock .github tests/blitz-tests/checks tests/blitz-tests/Cargo.toml",
+"run_sha8": "8ec37ec0",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37/6.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37/7.log",
+"bytes": 145079,
+"log_sha8": "5e964d96",
+"exit": 0,
+"seconds": 221.53,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.3.0",
+"run_sha8": "4f65eadc",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 1800",
+"run_sha8": "20f114b9",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.33",
+"sha8": "b20d4a4c",
+"ts": "2026-11-14T08:49:31Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-11-14T08-42-37-implement",
+"--marker",
+"2026-11-14-bundled-fonts",
+"--n",
+"1"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"1 unit green",
+"run (c92d3d8b): cargo test -p blitz-tests --locked --test stand_cross_os_readings",
+"  exit 0 ✓",
+"log $TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37/1.log · 771 B · 92351156 · $TMPDIR = /tmp",
+"--- no anchored failure; last 20 non-empty lines ---",
+"   Compiling seven_guis v0.1.0 (./examples/seven_guis)",
+"   Compiling blitz-tests v0.3.0-beta.4 (./tests/blitz-tests)",
+"    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.47s",
+"     Running tests/stand_cross_os_readings.rs (target/debug/deps/stand_cross_os_readings-27abe40d3aded495)",
+"running 7 tests",
+"test the_table_counts_its_rows_and_covers_the_six_tasks ... ok",
+"test the_counter_reads_its_table ... ok",
+"test the_timer_reads_its_table ... ok",
+"test the_flight_booker_reads_its_table ... ok",
+"test crud_reads_its_table ... ok",
+"test the_load_page_reads_its_table ... ok",
+"test cells_reads_its_table ... ok",
+"test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.65s"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.33",
+"sha8": "b20d4a4c",
+"ts": "2026-11-14T08:49:31Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-11-14T08-42-37-implement",
+"--marker",
+"2026-11-14-bundled-fonts",
+"--n",
+"2"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"2 integration green",
+"run (7ea973de): cargo test --workspace --locked --test stand_cross_os_readings --test stand_bundled_font_families",
+"  exit 0 ✓",
+"log $TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37/2.log · 1273 B · 9d05aa54 · $TMPDIR = /tmp",
+"--- no anchored failure; last 20 non-empty lines ---",
+"    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.42s",
+"     Running tests/stand_bundled_font_families.rs (target/debug/deps/stand_bundled_font_families-23a32d1bd27eb3fb)",
+"running 6 tests",
+"test cursive_reads_the_bundled_font ... ok",
+"test monospace_reads_the_bundled_font ... ok",
+"test serif_reads_the_bundled_font ... ok",
+"test system_ui_reads_the_bundled_font ... ok",
+"test an_unavailable_family_reads_the_bundled_font ... ok",
+"test fantasy_reads_the_bundled_font ... ok",
+"test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s",
+"     Running tests/stand_cross_os_readings.rs (target/debug/deps/stand_cross_os_readings-d769f2de13f89081)",
+"running 7 tests",
+"test the_table_counts_its_rows_and_covers_the_six_tasks ... ok",
+"test the_counter_reads_its_table ... ok",
+"test the_timer_reads_its_table ... ok",
+"test the_flight_booker_reads_its_table ... ok",
+"test crud_reads_its_table ... ok",
+"test the_load_page_reads_its_table ... ok",
+"test cells_reads_its_table ... ok",
+"test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.64s"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.33",
+"sha8": "b20d4a4c",
+"ts": "2026-11-14T08:49:32Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-11-14T08-42-37-implement",
+"--marker",
+"2026-11-14-bundled-fonts",
+"--n",
+"3"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"3 integration green",
+"run (22905e66): cargo test -p blitz-tests --locked --test stand_bundled_font_families",
+"  exit 0 ✓",
+"log $TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37/3.log · 757 B · 1674d7c3 · $TMPDIR = /tmp",
+"--- no anchored failure; last 20 non-empty lines ---",
+"   Compiling seven_guis v0.1.0 (./examples/seven_guis)",
+"   Compiling blitz-tests v0.3.0-beta.4 (./tests/blitz-tests)",
+"    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.73s",
+"     Running tests/stand_bundled_font_families.rs (target/debug/deps/stand_bundled_font_families-d1883bc230ee696d)",
+"running 6 tests",
+"test fantasy_reads_the_bundled_font ... ok",
+"test system_ui_reads_the_bundled_font ... ok",
+"test cursive_reads_the_bundled_font ... ok",
+"test serif_reads_the_bundled_font ... ok",
+"test monospace_reads_the_bundled_font ... ok",
+"test an_unavailable_family_reads_the_bundled_font ... ok",
+"test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.33",
+"sha8": "b20d4a4c",
+"ts": "2026-11-14T08:49:32Z",
+"argv": [
+"control",
+"--chunk",
+"2026-11-14-bundled-fonts",
+"--controls-file",
+".andromeda/runs/2026-11-14T08-42-37-implement/control-1.toml",
+"--run-dir",
+".andromeda/runs/2026-11-14T08-42-37-implement"
+],
+"cwd": ".",
+"exit": 2,
+"stdout": [],
+"stderr": "control: --controls-file is not TOML — Found invalid character '\\n' (at line 19, column 42)",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.33",
+"sha8": "b20d4a4c",
+"ts": "2026-11-14T08:50:29Z",
+"argv": [
+"control",
+"--chunk",
+"2026-11-14-bundled-fonts",
+"--controls-file",
+".andromeda/runs/2026-11-14T08-42-37-implement/control-1.toml",
+"--run-dir",
+".andromeda/runs/2026-11-14T08-42-37-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · marker 2026-11-14-bundled-fonts · controls 3 · entries 2 (1,3)",
+"logs $TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37 · $TMPDIR = /tmp · bound: GNU timeout",
+"clone ~/.cache/andromeda-control/2ac18a16 · HEAD 557f1c98 · copied 188 · removed 0 · working folder 7 files · free 399.2 G",
+"entry 1 in place green · 37.67s → 1.2.log",
+"entry 3 in place green · 1.06s → 3.2.log",
+"control digest-flip · entry 1 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 37.67s · 2.65s → 1.without-digest-flip.log",
+"control font-reach · entry 1 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 37.67s · 2.71s → 1.without-font-reach.log",
+"control serif-append · entry 3 · DOES NOT HOLD — in place green, removed green · 1.06s · 3.37s → 3.without-serif-append.log",
+"control: 2 holds · 0 timeout · 1 does not hold · 0 unreproduced · clone removed"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-14-bundled-fonts",
+"plan": "doc:2026-11-14-bundled-fonts/plan",
+"root": ".",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37",
+"clone": "~/.cache/andromeda-control/2ac18a16",
+"head": "557f1c98d4e5639ec7e065025d092feda234b3b7",
+"copied": 188,
+"removed": 0,
+"skipped": 0,
+"in_place": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-tests --locked --test stand_cross_os_readings",
+"run_sha8": "c92d3d8b",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37/1.2.log",
+"bytes": 17575,
+"log_sha8": "524b7040",
+"exit": 0,
+"seconds": 37.67,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_bundled_font_families",
+"run_sha8": "22905e66",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37/3.2.log",
+"bytes": 683,
+"log_sha8": "dda8b404",
+"exit": 0,
+"seconds": 1.06,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+}
+],
+"controls": [
+{
+"id": "digest-flip",
+"entry": 1,
+"guard": "the committed digest table: the counter's boot snapshot digest's last hex digit flipped",
+"cases": [
+"the_counter_reads_its_table"
+],
+"edits": [
+{
+"path": "tests/blitz-tests/tests/stand_cross_os_readings.rs",
+"before": "87aca278",
+"after": "361ff583"
+}
+],
+"word": "holds",
+"removed": {
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-tests --locked --test stand_cross_os_readings",
+"run_sha8": "c92d3d8b",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37/1.without-digest-flip.log",
+"bytes": 1160,
+"log_sha8": "43d0c9a2",
+"exit": 101,
+"seconds": 2.65,
+"readings": [
+"exit 0 ✗ (exit 101)"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "font-reach",
+"entry": 1,
+"guard": "the stand's bundled font: its font context replaced by the default context (host system fonts)",
+"cases": [
+"the_counter_reads_its_table"
+],
+"edits": [
+{
+"path": "examples/seven_guis/src/stand.rs",
+"before": "347cb34c",
+"after": "9aad1d93"
+}
+],
+"word": "holds",
+"removed": {
+"n": 1,
+"role": "unit",
+"run": "cargo test -p blitz-tests --locked --test stand_cross_os_readings",
+"run_sha8": "c92d3d8b",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37/1.without-font-reach.log",
+"bytes": 2617,
+"log_sha8": "f1790eb5",
+"exit": 101,
+"seconds": 2.71,
+"readings": [
+"exit 0 ✗ (exit 101)"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "serif-append",
+"entry": 3,
+"guard": "build_single_font_ctx's Serif append: the bundled font no longer registered for serif",
+"cases": [
+"serif_reads_the_bundled_font"
+],
+"edits": [
+{
+"path": "packages/blitz-dom/src/lib.rs",
+"before": "62e53892",
+"after": "69b2fbe7"
+}
+],
+"word": "DOES NOT HOLD",
+"removed": {
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_bundled_font_families",
+"run_sha8": "22905e66",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37/3.without-serif-append.log",
+"bytes": 1687,
+"log_sha8": "4a791e12",
+"exit": 0,
+"seconds": 3.37,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+}
+}
+],
+"removal": "clone removed",
+"at": "serif-append"
+}
+},
+{
+"tool": "gate",
+"v": "1.33",
+"sha8": "b20d4a4c",
+"ts": "2026-11-14T08:50:49Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-11-14T08-42-37-implement",
+"--marker",
+"2026-11-14-bundled-fonts",
+"--n",
+"1",
+"--firing",
+"3"
+],
+"cwd": ".",
+"exit": 2,
+"stdout": [],
+"stderr": "--firing 3: entry 1 was fired 1 time(s) in this trail",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.33",
+"sha8": "b20d4a4c",
+"ts": "2026-11-14T08:51:47Z",
+"argv": [
+"control",
+"--chunk",
+"2026-11-14-bundled-fonts",
+"--controls-file",
+".andromeda/runs/2026-11-14T08-42-37-implement/control-2.toml",
+"--run-dir",
+".andromeda/runs/2026-11-14T08-42-37-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · marker 2026-11-14-bundled-fonts · controls 1 · entries 1 (3)",
+"logs $TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37 · $TMPDIR = /tmp · bound: GNU timeout",
+"clone ~/.cache/andromeda-control/99ea1cc6 · HEAD 557f1c98 · copied 189 · removed 0 · working folder 7 files · free 399.2 G",
+"entry 3 in place green · 56.98s → 3.3.log",
+"control families-host · entry 3 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 56.98s · 2.94s → 3.without-families-host.log",
+"control: 1 holds · 0 timeout · 0 does not hold · 0 unreproduced · clone removed"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-14-bundled-fonts",
+"plan": "doc:2026-11-14-bundled-fonts/plan",
+"root": ".",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37",
+"clone": "~/.cache/andromeda-control/99ea1cc6",
+"head": "557f1c98d4e5639ec7e065025d092feda234b3b7",
+"copied": 189,
+"removed": 0,
+"skipped": 0,
+"in_place": [
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_bundled_font_families",
+"run_sha8": "22905e66",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37/3.3.log",
+"bytes": 17561,
+"log_sha8": "d2801569",
+"exit": 0,
+"seconds": 56.98,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+}
+],
+"controls": [
+{
+"id": "families-host",
+"entry": 3,
+"guard": "the stand's bundled font under the families page: its font context replaced by the default context (host system fonts)",
+"cases": [
+"serif_reads_the_bundled_font",
+"monospace_reads_the_bundled_font"
+],
+"edits": [
+{
+"path": "examples/seven_guis/src/stand.rs",
+"before": "347cb34c",
+"after": "9aad1d93"
+}
+],
+"word": "holds",
+"removed": {
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_bundled_font_families",
+"run_sha8": "22905e66",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-14-bundled-fonts/implement-2026-11-14T08-42-37/3.without-families-host.log",
+"bytes": 1881,
+"log_sha8": "d2aa0a04",
+"exit": 101,
+"seconds": 2.94,
+"readings": [
+"exit 0 ✗ (exit 101)"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+}
+],
+"removal": "clone removed",
+"at": "families-host"
+}
+},
+{
+"tool": "gate",
+"v": "1.33",
+"sha8": "b20d4a4c",
+"ts": "2026-11-14T08:52:44Z",
+"argv": [
+"scope",
+"--chunk",
+"2026-11-14-bundled-fonts",
+"--run-dir",
+".andromeda/runs/2026-11-14T08-42-37-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 2 · modify 0 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 2 · listed 2 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 188"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 2,
+"listed": 2,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 188,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.33",
+"sha8": "b20d4a4c",
+"ts": "2026-11-14T08:52:44Z",
+"argv": [
+"census",
+"--comm",
+"cargo",
+"--comm",
+"rustc",
+"--comm",
+"escher-session",
+"--args",
+"stand_cross_os",
+"--args",
+"stand_bundled_font",
+"--run-dir",
+".andromeda/runs/2026-11-14T08-42-37-implement",
+"--marker",
+"2026-11-14-bundled-fonts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"census · ps · comm cargo, rustc, escher-session · args stand_cross_os, stand_bundled_font · own tree excluded: 8",
+"census: none running"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"census": {
+"comm": [
+"cargo",
+"rustc",
+"escher-session"
+],
+"args": [
+"stand_cross_os",
+"stand_bundled_font"
+],
+"running": []
+}
+}
+},
+{
+"tool": "gate",
+"v": "1.33",
+"sha8": "b20d4a4c",
+"ts": "2026-11-14T08:53:14Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-11-14T08-42-37-implement",
+"--marker",
+"2026-11-14-bundled-fonts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base HEAD (no pre-CI commit)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 190 (runs 181 · evidence 2 · inputs 7) · trails 15 not read · copies 5 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 181,
+"evidence": 2,
+"inputs": 7,
+"trails": 15,
+"copies": 5,
+"kept": 0,
+"binary": 0,
+"in_root": 0
+},
+"indeterminate": 0
+}
+}
+]

@@ -1,0 +1,1 @@
+A fact for your controls, measured on another project today under gate 1.33: in a controls file (control-{k}.toml for gate.py control) the `case` is the test NAME alone, the last token of a nextest line, never the binary id before it; a file with «{binary-id} {name}» was refused. Carry on.

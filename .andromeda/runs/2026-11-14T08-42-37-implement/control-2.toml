@@ -1,0 +1,10 @@
+[[control]]
+id = 'families-host'
+entry = 3
+guard = "the stand's bundled font under the families page: its font context replaced by the default context (host system fonts)"
+case = ['serif_reads_the_bundled_font', 'monospace_reads_the_bundled_font']
+[[control.edit]]
+path = 'examples/seven_guis/src/stand.rs'
+old = '    build_single_font_ctx(crate::DEJAVU_SANS)'
+new = '''    let _ = build_single_font_ctx;
+    FontContext::default()'''

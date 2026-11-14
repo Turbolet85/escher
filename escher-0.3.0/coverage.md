@@ -1,14 +1,16 @@
 # Coverage — escher-0.3.0
 
-verified 10/17 · deferred 0 · planned 7 · implemented 0 · unclaimed 7
+verified 10/17 · deferred 0 · planned 6 · implemented 1 · unclaimed 6
 
-## planned, unclaimed (7)
+## implemented (1)
+- v030-14 · Bundled fonts · 2026-11-14-bundled-fonts
+
+## planned, unclaimed (6)
 - v030-08 · Start in a state
 - v030-09 · Auto-exploration
 - v030-10 · Errors with the action
 - v030-11 · Layout explained
 - v030-12 · A component in isolation
-- v030-14 · Bundled fonts
 - v030-15 · Cold-agent bar
 
 ## verified (10)

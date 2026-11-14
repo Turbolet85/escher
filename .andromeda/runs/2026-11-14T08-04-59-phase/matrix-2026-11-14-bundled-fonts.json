@@ -1,0 +1,78 @@
+[
+{
+"tool": "matrix",
+"v": "1.12",
+"sha8": "2bd7a392",
+"ts": "2026-11-14T08:41:41Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.3.0",
+"--id",
+"v030-14",
+"--chunk",
+"2026-11-14-bundled-fonts",
+"--acceptance-file",
+".andromeda/runs/2026-11-14T08-04-59-phase/acceptance-v030-14.md",
+"--run-dir",
+".andromeda/runs/2026-11-14T08-04-59-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v030-14 → chunk 2026-11-14-bundled-fonts (was null; status planned kept)",
+"acceptance: Hosts of different operating systems read one state of a run the same … (120 chars)",
+"         → On the final HEAD's CI run, `stand_cross_os_readings` reads green on l… (806 chars)",
+"landed, rendered ./.andromeda/db/log/2026-11-14T08-06-05-2026-11-14-bundled-fonts.ndjson · 1 entry changed",
+"pool: unclaimed 6 [v030-08 v030-09 v030-10 v030-11 v030-12 v030-15]"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-14T08-06-05-2026-11-14-bundled-fonts.ndjson"
+],
+"before": {
+"id": "v030-14",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "Hosts of different operating systems read one state of a run the same way, compared by its readings, not by image bytes.",
+"notes_chars": 0
+},
+"after": {
+"id": "v030-14",
+"chunk": "2026-11-14-bundled-fonts",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the final HEAD's CI run, `stand_cross_os_readings` reads green on linux x86_64 (the `test` leg), windows x86_64 and m… (806 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.12",
+"sha8": "2bd7a392",
+"ts": "2026-11-14T08:41:41Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-11-14-bundled-fonts",
+"--run-dir",
+".andromeda/runs/2026-11-14T08-04-59-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-11-14-bundled-fonts: 1 · ## Acceptance Criteria: line 195, 23 lines",
+"v030-14: cited in ## Acceptance Criteria (line 196)",
+"pool: unclaimed 6 [v030-08 v030-09 v030-10 v030-11 v030-12 v030-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]
