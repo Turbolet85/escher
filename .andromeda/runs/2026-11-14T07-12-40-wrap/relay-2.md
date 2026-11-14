@@ -1,0 +1,1 @@
+resume from the landed report, at P2. Carry: F1 is A, PROVISIONAL (inputs#I4); the Math.random residual, target next, with its line in escher-0.4.0-incubator/deferred-from-0.3.0.md; an escalated operation reaches me only with its fit verdict; read-backs carry --run-dir; the founder is away, so a fork goes to founder-forks.md and no dialog is raised.

@@ -1,0 +1,11 @@
+[[pattern]]
+id = 'main-ungated'
+regex = '(?i)`?signal_registry`?\s+and\s+`?reached`?|`?reached`?\s+and\s+`?signal_registry`?'
+
+[[pattern]]
+id = 'main-rerun'
+regex = '(?i)re-?run child|child prints|prints ids'
+
+[[pattern]]
+id = 'main-fromvdom'
+regex = '(?i)from_vdom[^.\n]*pumps once|builds a Dioxus-backed harness'

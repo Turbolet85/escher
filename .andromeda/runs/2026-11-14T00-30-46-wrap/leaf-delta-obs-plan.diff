@@ -1,7 +1,0 @@
---- a/.andromeda/obs-plan.md
-+++ b/.andromeda/obs-plan.md
-@@ -206,3 +206,3 @@
- decision/failed-stylesheet-leaves-pending-set · Failed stylesheet leaves the pending critical set — A failed stylesheet fetch drops its request from the pending critical resources, so loading does not wait on it. · why: render_blocking_stylesheet's failed_stylesheet_unblocks_rendering pins it, and the harness settle and paint_scene both read the pending critical resources
--decision/no-file-loads-from-non-file-documents · No file: loads from non-file: documents — A file: load asked by a non-file: document is refused as a typed forbidden fetch error: a script fetch rejects with a TypeError, a module import fails, and a script element's source is skipped and recorded as a script error.
-+decision/no-file-loads-from-non-file-documents · No file: loads from non-file: documents — A file: load asked by a non-file: document is refused as a typed forbidden error: a script fetch rejects with a TypeError, a module import fails, a script element's source is recorded as a script error, and an engine sub-resource fetch fails with fixed text naming no URL or path, adding no log site.
- decision/wasm-console-panic-hook · console_error_panic_hook for WASM builds — WASM builds install console_error_panic_hook, a workspace dependency, as their panic hook.

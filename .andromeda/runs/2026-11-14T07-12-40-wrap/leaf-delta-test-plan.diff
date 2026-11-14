@@ -1,0 +1,7 @@
+--- a/.andromeda/test-plan.md
++++ b/.andromeda/test-plan.md
+@@ -220,3 +220,3 @@
+ contract/harness-construction/from-html-with · Harness construction · Harness::from_html_with — Harness::from_html_with(html, HarnessOptions) builds an HTML-backed harness with the given options and pumps once.
+-contract/harness-construction/from-vdom · Harness construction · Harness::from_vdom — Harness::from_vdom(vdom, options) builds a Dioxus-backed harness and pumps once.
++contract/harness-construction/from-vdom · Harness construction · Harness::from_vdom — Harness::from_vdom(vdom, options) builds a Dioxus-backed harness and pumps once, first providing SeededRandom::from_seed(DEFAULT_SEED) as a root context where the vdom's root holds none; a root context the builder gave stands.
+ contract/harness-construction/wrap · Harness construction · wrap — Harness wrap builds a harness without pumping.

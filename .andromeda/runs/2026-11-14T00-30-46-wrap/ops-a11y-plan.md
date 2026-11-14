@@ -1,2 +1,0 @@
-@none
-reason: The chunk closes blitz-net's file: branch for non-file documents and stamps every engine sub-resource request with its loading document; it adds no interactive UI element (every new surface reads a11y n/a, fct-nfuvmyp2), moves no a11y violation schema and no log field or obs schema (fct-vvhzkhrr), and says nothing of contrast, the a11y CI leg or the AccessKit assertions, so every a11y-plan row it touches stands true and no task fact is owed here.

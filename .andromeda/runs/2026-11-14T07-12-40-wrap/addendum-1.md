@@ -1,0 +1,4 @@
+## Addendum 1 — resumed 2026-11-14
+- inputs#I5 · message: the operator, in the /andromeda-wrap-session resume invocation (`.andromeda/runs/2026-11-14T07-12-40-wrap/relay-2.md`) · copy message · n/a — resume at P2; F1 is A, PROVISIONAL; the `Math.random` residual, target next, with its line in `escher-0.4.0-incubator/deferred-from-0.3.0.md`; an escalated operation reaches him only with its fit verdict; read-backs carry `--run-dir`; the founder away, so a fork goes to `founder-forks.md` and no dialog is raised.
+  - bears on **Decisions & corrections**: adds to it — a founder's fork this wrap raises is written to `founder-forks.md`, no dialog; the rest repeats `inputs#I4`.
+- inputs.py verify, re-fired: inputs: 5 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 5 · uncited 0 · unparsed 0; moved since the report: uncited 2 → 0 (I3 and I4 cited by the report, I5 by this addendum)

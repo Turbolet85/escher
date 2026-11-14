@@ -1,0 +1,6 @@
+--- a/.andromeda/security-plan.md
++++ b/.andromeda/security-plan.md
+@@ -178,2 +178,3 @@
+ decision/search-params-native-parser-hidden · Native search-params parser hidden from pages — The native search-params parser is deleted from the global object before any page script runs. · why: An engine change for every document, ratified. · guard: url_search_params
++decision/seeded-source-in-process-seed-only · Seeded source takes its seed from in-process code only — The seeded source of randomness takes its seed only from in-process code, a root context the virtual DOM's builder gives else the default seed 0, and outside any run seeds from the host's per-process random keys, reading no environment variable, file or carrier.
+ decision/select-choice-exits · Where a select's choice leaves — A select's choice leaves only as form submission's entries, the input and change events' value, the snapshot's value and the options' accessibility-tree nodes, inside the ratified name and control-value crossings. · why: A boundary widening, ratified.

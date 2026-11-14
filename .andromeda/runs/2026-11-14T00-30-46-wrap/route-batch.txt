@@ -1,6 +1,0 @@
-@chunk after=chk-uf2er4y2 as=n
-Remote pages and local files in the browser — a remote page's favicon and its navigation to a `file:` URL read no local file
-@carry in=@n
-CONTEXT: PROVISIONAL — placed on the operator's answer A to the founder's fork F1 (card `.andromeda/runs/2026-11-13T23-09-24-phase/p5-card-2.md` row 1, its «yes» `chunks/2026-11-13-local-files-for-local-documents/inputs/I3-relay-2.md.txt`), waiting for the founder to confirm it or replace it (B: a stated limit); the two paths still open after 2026-11-13-local-files-for-local-documents: the browser's favicon probe (`apps/browser/src/favicon.rs:49`) fetches with no loading document, and navigation from a non-`file:` document to a `file:` URL loads it top-level (that chunk's report, Insufficient fixes)
-@carry in=chk-tk3biyao
-CARRY: escher's `packages/blitz-dom/clippy.toml` (since 2026-11-13-local-files-for-local-documents) bans `Request::get` in blitz-dom outside `stamped_request`, and upstream's blitz-dom has none — a take that adds an upstream sub-resource `Request::get` there routes it through `stamped_request` with its document's URL, the clippy leg red until it does (measured at that chunk's control, `9.without-expect.log`, exit 101); an upstream edit to a `StylesheetHandler` construction or a `fetch_font_face` caller takes the new `document_url`

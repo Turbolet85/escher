@@ -24,7 +24,7 @@ _Mirrors `doc:architecture` §Stack and Technologies (citations live there). A c
 | JavaScript | Boa 0.22 (boa_engine with annex-b, boa_runtime, boa_gc) |
 | UI framework | Dioxus 0.7.3 crates |
 | Media | image 0.25.6, png 0.18 (since 2026-10-12-headless-screenshot also escher-driver's encoder of a shot and a blitz-tests dev-dependency, resolved 0.18.1, no package entering `Cargo.lock`; no `base64` crate taken), html-escape, percent-encoding, serde 1, serde_json 1 (1.0.151; since 2026-10-10-mcp-surface escher-driver's reader of MCP requests, of kept checks and of the live answer line a replay compares, writing nothing) |
-| Parallelism & misc | rayon 1, slotmap, rustc-hash, bytes, smallvec, thin-vec, atomic_refcell, bitflags, bytemuck, pollster, smol_str, thread_local; mimalloc, the global allocator of two upstream-only binaries, the browser app (by default) and the WPT runner |
+| Parallelism & misc | rayon 1, slotmap, rustc-hash, bytes, smallvec, thin-vec, atomic_refcell, bitflags, bytemuck, pollster, smol_str, thread_local; mimalloc, the global allocator of two upstream-only binaries, the browser app (by default) and the WPT runner; no PRNG crate (since 2026-11-14-seeded-randomness): seeded randomness's splitmix64 is written by hand and its host fallback seed comes from std `RandomState`, no package entering `Cargo.lock` |
 
 ## Data Storage
 - None in the engine. The browser app persists history with rusqlite 0.32 (bundled) + rusqlite_migration 1.3 (`history.sqlite3`); blitz-net's optional HTTP cache uses `CACacheManager` in the platform cache dir.
