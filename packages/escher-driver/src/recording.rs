@@ -1,8 +1,10 @@
 //! A session kept as a replayable check: the calls as they crossed in, each with whether it was
 //! accepted, a digest of the answer the driver wrote for it and that answer itself.
 //!
-//! A check is one JSON array. Its first record names the app the session was started on; every
-//! later record is one call the session answered: its verb, its arguments by their schema names,
+//! A check is one JSON array. Its first record names the app the session was started on and the
+//! check's format, [`CHECK_FORMAT`] — a check written before the format was stated reads as
+//! format 1, and a step of a verb with more than one target is written by its arguments' schema
+//! names like any other, so it needs no new format; every later record is one call the session answered: its verb, its arguments by their schema names,
 //! `masked` on a `type` whose text was not kept, `accepted`, `digest` and `answer`, the answer's
 //! line as the driver wrote it — masked as on every carrier, and a shot's without its pixels.
 //! The text typed into a masked control is [`MASKED_STAND_IN`]. The form is written here by the
@@ -24,6 +26,10 @@ use crate::session::valid_label;
 /// What a recorded `type` into a masked control carries as its text: one fixed stand-in, so no
 /// byte, length or digest of what was typed is kept.
 pub const MASKED_STAND_IN: &str = "masked";
+
+/// The format of a kept check this crate writes and the one it reads: the opening record's
+/// `format`. A check whose opening record holds none reads as this format.
+pub const CHECK_FORMAT: u32 = 1;
 
 /// The most records a check holds, its opening record included.
 pub(crate) const MAX_CHECK_STEPS: usize = 400;
@@ -59,7 +65,7 @@ pub(crate) fn kept_line(answer: &Result<Outcome, Refusal>) -> String {
     }
 }
 
-fn fnv1a(bytes: &[u8]) -> u64 {
+pub(crate) fn fnv1a(bytes: &[u8]) -> u64 {
     bytes.iter().fold(FNV_OFFSET_BASIS, |hash, byte| {
         (hash ^ u64::from(*byte)).wrapping_mul(FNV_PRIME)
     })
@@ -70,15 +76,19 @@ fn hex(digest: u64) -> String {
     format!("{digest:016x}")
 }
 
-/// The opening record: the app the session was started on.
+/// The opening record: the app the session was started on and the check's format.
 fn opening(app: &str) -> String {
     let mut arguments = Object::new();
     arguments.text(START_APP, app);
     let mut record = Object::new();
     record.text("tool", schema::START.name);
     record.json("arguments", &arguments.end());
+    record.count(FORMAT, u64::from(CHECK_FORMAT));
     record.end()
 }
+
+/// The opening record's key for the check's format.
+const FORMAT: &str = "format";
 
 /// The table's name for `start`'s one argument.
 const START_APP: &str = match schema::START.args {
@@ -322,7 +332,8 @@ impl Check {
     /// the bytes.
     ///
     /// The bytes are at most 1,048,576 and are one JSON array of at most 400 records. The first
-    /// is `{"tool":"start","arguments":{"app":…}}`, the app a session label. Every later one has
+    /// is `{"tool":"start","arguments":{"app":…},"format":1}`, the app a session label and
+    /// `format` the whole number [`CHECK_FORMAT`] or absent, read as it. Every later one has
     /// the keys `tool`, an instance verb of the table; `arguments`, an object of the verb's
     /// arguments by their schema names, each text, a whole number or a flag; `accepted`, a flag;
     /// `digest`, 16 lowercase hex digits; `answer`, an object, the answer's line as the driver
@@ -400,8 +411,14 @@ fn object_of<'a>(value: &'a Value, keys: &[&str]) -> Option<&'a Map<String, Valu
 }
 
 fn opening_app(record: &Value) -> Option<String> {
-    let record = object_of(record, &["tool", "arguments"])?;
+    let record = object_of(record, &["tool", "arguments", FORMAT])?;
     if record.get("tool")?.as_str()? != schema::START.name {
+        return None;
+    }
+    let format = record
+        .get(FORMAT)
+        .map_or(Some(u64::from(CHECK_FORMAT)), Value::as_u64);
+    if format != Some(u64::from(CHECK_FORMAT)) {
         return None;
     }
     let arguments = object_of(record.get("arguments")?, &[START_APP])?;

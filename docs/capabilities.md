@@ -186,6 +186,20 @@ reach keeps its steps as ordinary steps, so the kept check replays from boot.
 
 Witnesses: `stand_start_in_state`, escher-driver's fixture tests.
 
+### Exploring an app
+
+A breadth-first exploration in process: `escher_driver::explore` takes a boot and a step budget, from 1 to 10,000
+acting calls, and drives every action the `actions` reader offers on each screen it reaches. Each path of calls runs
+on a fresh session the boot starts, every call through `Session::run`, and the call driven for a node is the one
+`actions` judged. The verbs are the table's id-taking instance verbs whose result holds no image: today `click`,
+`type` and `scroll`. A screen reached before is not explored again. The report names each path's calls and how it
+ended: accepted, refused by its cause, a caught panic (`Panicked`), or a re-reach that diverged. A refused or panicked
+path is not explored further, and the exploration goes on. Given a directory, each path is kept as an owner-only check,
+whose opening record now states its format, `"format":1`, a check without one reading as format 1. The checks hold
+no `screenshot` step and replay holding.
+
+Witnesses: `stand_explore`, escher-driver's explore and recording tests.
+
 ### Engine behaviours every document gets
 
 Escher changed the engine, for every document and not the stand alone, in these ways:
@@ -328,6 +342,12 @@ The driver's own refusal texts state three readings that are off:
   A session held in process and the MCP stdio role run elsewhere too.
 - **A state in process only.** No fixture state crosses the command line, MCP, the session socket or a kept check's
   form; a session starts in one only in process. This is provisional, pending the founder's choice.
+- **An exploration in process only.** No verb, role, argument or carrier reaches `explore`, and it follows no
+  navigation: a harness-built session has no navigation provider, so a navigating action loads nothing. Both are
+  provisional, pending the founder's choice. No explored path holds a `screenshot` step. A caught panic's payload is
+  never read, though the std panic hook still prints it in the process that catches it. A session whose step panicked
+  is dropped. A path deeper than a kept check's 400 records ends its recording. `drag` and canvas virtual nodes are
+  0.4.0's.
 - **The session state directory.** It is named by the caller, owner-only, holds the socket alone, and is removed at
   `stop` or idle expiry.
 - **WebAssembly.** The wasm builds of the examples are browser-target builds through Trunk. The driver does not run on
@@ -439,6 +459,7 @@ The UI graph and the `clickable` reading are proven by `stand_graph`, a `stand_*
 `stand-repeat` legs. The `actions` read is proven by `stand_actions`, a `stand_*` file of the same two legs. Handler
 coverage is proven by `stand_handler_coverage`, a `stand_*` file of the same two legs, and through the binary by
 seven_guis' `cli_commands` and `host_log`; a kept `actions` step's replay by `stand_replay`. A start in a named state is
-proven by `stand_start_in_state`, a `stand_*` file of the same two legs.
+proven by `stand_start_in_state`, a `stand_*` file of the same two legs. An exploration is proven by `stand_explore`,
+a `stand_*` file of the same two legs.
 
 The 0.2.0 requirement record is `WITNESSES_020` in `stand_requirement_sweep`: nine rows, 46 witnesses.

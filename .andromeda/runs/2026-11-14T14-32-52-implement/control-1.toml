@@ -1,0 +1,35 @@
+[[control]]
+id = 'panic-catch'
+entry = 2
+guard = 'the catch_unwind around a path step: a step panic propagates out of explore'
+case = ['a_panicking_handler_is_caught_and_the_exploration_goes_on', 'a_panicking_paths_kept_check_holds_the_steps_before_it_and_replays_green']
+
+[[control.edit]]
+path = 'packages/escher-driver/src/explore.rs'
+old = '''    catch_unwind(AssertUnwindSafe(|| session.run(call))).ok()'''
+new = '''    Some(session.run(call))'''
+
+[[control]]
+id = 'budget-bound'
+entry = 2
+guard = 'the budget bound: a path is taken while it fits twice the budget, not the budget'
+case = 'the_budget_bounds_every_acting_call'
+
+[[control.edit]]
+path = 'packages/escher-driver/src/explore.rs'
+old = '''        if exploration.steps.saturating_add(cost) > budget.get() {'''
+new = '''        if exploration.steps.saturating_add(cost) > budget.get().saturating_mul(2) {'''
+
+[[control]]
+id = 'refused-stop'
+entry = 2
+guard = 'the stop on a refused path: a path ending Refused is expanded as its own, the accepted-screen dedupe kept'
+case = 'a_refusing_control_is_met_and_reported_by_its_cause'
+
+[[control.edit]]
+path = 'packages/escher-driver/src/explore.rs'
+old = '''        if matches!(ending, PathEnding::Accepted { .. }) && reached.insert(screen_digest(&session))
+        {'''
+new = '''        if (matches!(ending, PathEnding::Accepted { .. }) && reached.insert(screen_digest(&session)))
+            || matches!(ending, PathEnding::Refused(_))
+        {'''

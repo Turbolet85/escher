@@ -123,6 +123,15 @@
 //! its index ([`ReachError`]); a recording attached before the reach keeps its steps as ordinary
 //! steps. No state crosses the command line, the MCP server, the socket or a kept check's form.
 //!
+//! [`explore`] drives every action an app offers, breadth-first, within a [`StepBudget`]: each
+//! path of calls runs on a fresh session the caller boots, through [`Session::run`], the verbs
+//! those the `actions` reader judges a node by less any whose result holds an image, and the call
+//! the one `actions` judged. Its [`Exploration`] names each path's calls and ending
+//! ([`PathEnding`]): accepted, refused by its cause, a caught panic, or a re-reach that diverged.
+//! Given a directory, each path is kept as an owner-only check whose opening record states its
+//! format ([`CHECK_FORMAT`]). It is in process only — no verb, role, argument or carrier reaches
+//! it — follows no navigation of its own, and reads the seed the caller's boot gives.
+//!
 //! [`command_line`] is the whole command line of a binary that boots apps: every verb as one
 //! run, answered with one line of JSON on stdout and a status that tells accepted from
 //! refused, from a usage error and from a session error.
@@ -154,6 +163,7 @@ mod coverage;
 mod describe;
 mod error;
 mod execute;
+mod explore;
 mod fixture;
 mod host;
 mod image;
@@ -177,11 +187,12 @@ pub use coverage::{Coverage, HandlerRef, handler_coverage};
 pub use describe::describe;
 pub use error::SessionError;
 pub use execute::Outcome;
+pub use explore::{Exploration, ExploredPath, MAX_EXPLORE_STEPS, PathEnding, StepBudget, explore};
 pub use fixture::{Fixture, FixtureStep, ReachError};
 pub use host::{IDLE_EXPIRY, serve};
 pub use lint::{Bounds, Defect, Finding, Reason};
 pub use mcp::serve_mcp;
-pub use recording::{Check, MASKED_STAND_IN, Step, answer_digest};
+pub use recording::{CHECK_FORMAT, Check, MASKED_STAND_IN, Step, answer_digest};
 pub use refusal::{CAUSES, Cause, Fault, Refusal};
 pub use replay::{Change, Replay};
 pub use schema::{

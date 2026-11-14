@@ -103,7 +103,7 @@ impl Session {
 }
 
 /// The instance verbs of the table that take an element id, in its order.
-fn target_verbs() -> impl Iterator<Item = &'static VerbSpec> {
+pub(crate) fn target_verbs() -> impl Iterator<Item = &'static VerbSpec> {
     VERBS
         .iter()
         .filter(|spec| spec.level == Level::Instance)
@@ -112,7 +112,7 @@ fn target_verbs() -> impl Iterator<Item = &'static VerbSpec> {
 
 /// The call of `verb` naming `id` by its id argument, every other required argument given a
 /// fixed value within its kind's bound.
-fn call_naming(verb: &VerbSpec, id: &str) -> Call {
+pub(crate) fn call_naming(verb: &VerbSpec, id: &str) -> Call {
     let args = verb
         .args
         .iter()

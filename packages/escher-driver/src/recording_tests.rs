@@ -236,7 +236,9 @@ fn a_recording_reads_back_as_the_calls_it_kept() {
             .is_none()
     );
     let text = String::from_utf8(bytes).expect("the check is text");
-    assert!(text.starts_with("[\n{\"tool\":\"start\",\"arguments\":{\"app\":\"counter\"}},\n"));
+    assert!(text.starts_with(
+        "[\n{\"tool\":\"start\",\"arguments\":{\"app\":\"counter\"},\"format\":1},\n"
+    ));
     assert!(text.contains(
         r#"{"tool":"press","arguments":{"key":"tab","shift":true},"accepted":true,"digest":""#
     ));
@@ -557,6 +559,95 @@ fn a_check_outside_the_grammar_is_refused_as_malformed() {
             "row {row}"
         );
     }
+}
+
+#[test]
+fn the_opening_record_states_the_format_and_a_check_without_one_reads_as_format_one() {
+    assert_eq!(CHECK_FORMAT, 1);
+    assert_eq!(
+        opening("counter"),
+        r#"{"tool":"start","arguments":{"app":"counter"},"format":1}"#
+    );
+    // The opening record written, the one written before the format was stated, and the keys
+    // in another order.
+    let rows = [
+        check(&[&opening("counter"), CLICK]),
+        check(&[OPENING, CLICK]),
+        check(&[r#"{"format":1,"arguments":{"app":"counter"},"tool":"start"}"#]),
+    ];
+    assert_eq!(rows.len(), 3);
+    for (row, bytes) in rows.iter().enumerate() {
+        let read = Check::from_bytes(bytes);
+        assert!(read.as_ref().map(Check::app) == Ok("counter"), "row {row}");
+    }
+}
+
+#[test]
+fn a_format_other_than_the_whole_number_one_is_refused_as_malformed() {
+    let rows = [
+        r#"{"tool":"start","arguments":{"app":"counter"},"format":2}"#,
+        r#"{"tool":"start","arguments":{"app":"counter"},"format":"1"}"#,
+        r#"{"tool":"start","arguments":{"app":"counter"},"format":-1}"#,
+        r#"{"tool":"start","arguments":{"app":"counter"},"format":1.5}"#,
+        r#"{"tool":"start","arguments":{"app":"counter"},"format":1.0}"#,
+        r#"{"tool":"start","arguments":{"app":"counter"},"format":0}"#,
+        r#"{"tool":"start","arguments":{"app":"counter"},"format":null}"#,
+        r#"{"tool":"start","arguments":{"app":"counter"},"format":true}"#,
+    ];
+    assert_eq!(rows.len(), 8);
+    for (row, opening) in rows.into_iter().enumerate() {
+        assert!(
+            Check::from_bytes(&check(&[opening, CLICK])) == Err(Refusal::new(Cause::Malformed)),
+            "row {row}"
+        );
+    }
+}
+
+/// A verb of two targets, built here and held by no table: what a drag would be.
+const TWO_TARGETS: VerbSpec = VerbSpec {
+    name: "two-targets",
+    level: Level::Instance,
+    help: "",
+    args: &[
+        schema::ArgSpec {
+            name: "from",
+            kind: ArgKind::Id,
+            required: true,
+            help: "",
+        },
+        schema::ArgSpec {
+            name: "to",
+            kind: ArgKind::Id,
+            required: true,
+            help: "",
+        },
+    ],
+    fields: &[],
+};
+
+#[test]
+fn a_step_of_a_verb_with_two_targets_is_written_and_read_back_in_schema_order() {
+    static VERB: VerbSpec = TWO_TARGETS;
+    // The call as it crossed in, its second target first.
+    let crossed = call(
+        "two-targets",
+        &[("to", text("drop")), ("from", text("drag"))],
+    );
+    let record = record_of(&VERB, &crossed, false, &acted());
+    assert!(
+        record.starts_with(r#"{"tool":"two-targets","arguments":{"from":"drag","to":"drop"},"#)
+    );
+    let value: Value = serde_json::from_str(&record).expect("a record of JSON");
+    let arguments = object_of(&value["arguments"], &["from", "to"]).expect("the two targets");
+    let read = call_of(&VERB, arguments).expect("the call its arguments spell");
+    assert_eq!(
+        read.args,
+        vec![
+            ("from".to_string(), text("drag")),
+            ("to".to_string(), text("drop"))
+        ]
+    );
+    assert_eq!(read.verb, "two-targets");
 }
 
 #[test]

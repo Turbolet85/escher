@@ -1,9 +1,11 @@
 # Coverage — escher-0.3.0
 
-verified 12/17 · deferred 0 · planned 5 · implemented 0 · unclaimed 5
+verified 12/17 · deferred 0 · planned 4 · implemented 1 · unclaimed 4
 
-## planned, unclaimed (5)
-- v030-09 · Auto-exploration
+## implemented (1)
+- v030-09 · Auto-exploration · 2026-11-14-auto-exploration
+
+## planned, unclaimed (4)
 - v030-10 · Errors with the action
 - v030-11 · Layout explained
 - v030-12 · A component in isolation
