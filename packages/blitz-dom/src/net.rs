@@ -28,8 +28,12 @@ use url::Url;
 
 use crate::{document::DocumentEvent, util::ImageType};
 
-pub(crate) fn stamped_request(url: Url, signal: Option<&AbortSignal>) -> Request {
-    let mut req = Request::get(url);
+pub(crate) fn stamped_request(url: Url, signal: Option<&AbortSignal>, initiator: &Url) -> Request {
+    #[expect(
+        clippy::disallowed_methods,
+        reason = "the one Request constructor in blitz-dom: it stamps the loading document as the initiator"
+    )]
+    let mut req = Request::get(url).initiator(initiator.clone());
     if let Some(sig) = signal {
         req = req.signal(sig.clone());
     }
@@ -137,6 +141,8 @@ pub struct ResourceLoadResponse {
 
 pub struct StylesheetHandler {
     pub source_url: Url,
+    /// The URL of the document that loads the stylesheet
+    pub document_url: Url,
     pub guard: SharedRwLock,
     pub net_provider: Arc<dyn NetProvider>,
     pub abort_signal: Option<AbortSignal>,
@@ -165,6 +171,7 @@ impl NetHandler for ResourceHandler<StylesheetHandler> {
                 net_provider: self.data.net_provider.clone(),
                 shell_provider: self.shell_provider.clone(),
                 abort_signal: self.data.abort_signal.clone(),
+                document_url: self.data.document_url.clone(),
                 import_depth: 0,
             }),
             None, // error_reporter
@@ -191,6 +198,8 @@ pub(crate) struct StylesheetLoader {
     pub(crate) net_provider: Arc<dyn NetProvider>,
     pub(crate) shell_provider: Arc<dyn ShellProvider>,
     pub(crate) abort_signal: Option<AbortSignal>,
+    /// The URL of the document the stylesheets are loaded for
+    pub(crate) document_url: Url,
     /// Depth of `@import` nesting for the stylesheet this loader is parsing
     /// (0 for a top-level stylesheet)
     pub(crate) import_depth: usize,
@@ -227,7 +236,11 @@ impl ServoStylesheetLoader for StylesheetLoader {
         let import = ServoArc::new(lock.wrap(import));
         self.net_provider.fetch(
             self.doc_id,
-            stamped_request(url.as_ref().clone(), self.abort_signal.as_ref()),
+            stamped_request(
+                url.as_ref().clone(),
+                self.abort_signal.as_ref(),
+                &self.document_url,
+            ),
             ResourceHandler::boxed(
                 self.tx.clone(),
                 self.doc_id,
@@ -288,6 +301,7 @@ impl NetHandler for ResourceHandler<NestedStylesheetHandler> {
             &self.shell_provider,
             &self.data.lock.read(),
             self.data.loader.abort_signal.as_ref(),
+            &self.data.loader.document_url,
         );
 
         let import_rule = self.data.import_rule.clone();
@@ -387,6 +401,7 @@ pub(crate) fn fetch_font_face(
     shell_provider: &Arc<dyn ShellProvider>,
     read_guard: &SharedRwLockReadGuard,
     abort_signal: Option<&AbortSignal>,
+    document_url: &Url,
 ) {
     fetch_font_face_rules(
         sheet.contents(read_guard).rules(read_guard).iter(),
@@ -397,6 +412,7 @@ pub(crate) fn fetch_font_face(
         shell_provider,
         read_guard,
         abort_signal,
+        document_url,
     )
 }
 
@@ -411,6 +427,7 @@ pub(crate) fn fetch_font_face_rules<'a>(
     shell_provider: &Arc<dyn ShellProvider>,
     read_guard: &SharedRwLockReadGuard,
     abort_signal: Option<&AbortSignal>,
+    document_url: &Url,
 ) {
     rules
         .filter_map(|rule| match rule {
@@ -437,7 +454,7 @@ pub(crate) fn fetch_font_face_rules<'a>(
             if let Some((url, format)) = preferred_font_source(source_list) {
                 network_provider.fetch(
                     doc_id,
-                    stamped_request(url, abort_signal),
+                    stamped_request(url, abort_signal, document_url),
                     ResourceHandler::boxed(
                         tx.clone(),
                         doc_id,

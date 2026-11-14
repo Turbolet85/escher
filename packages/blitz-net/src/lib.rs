@@ -2,7 +2,9 @@
 //!
 //! Provides an implementation of the [`blitz_traits::net::NetProvider`] trait.
 
-use blitz_traits::net::{AbortSignal, Body, Bytes, NetHandler, NetProvider, NetWaker, Request};
+use blitz_traits::net::{
+    AbortSignal, Body, Bytes, NetHandler, NetProvider, NetWaker, Request, document_may_load,
+};
 use data_url::DataUrl;
 use std::{
     collections::HashMap,
@@ -157,6 +159,11 @@ impl Provider {
                 Ok((request.url.to_string(), Bytes::from(decoded.0)))
             }
             "file" => {
+                if let Some(document) = &request.initiator
+                    && !document_may_load(Some(document), &request.url)
+                {
+                    return Err(ProviderError::FileForbidden);
+                }
                 // The URL's path is `/C:/...` on Windows, which is no file
                 // there: the URL's own conversion knows the platform's paths.
                 #[cfg(not(target_arch = "wasm32"))]
@@ -360,6 +367,7 @@ where
 #[derive(Debug)]
 pub enum ProviderError {
     Abort,
+    FileForbidden,
     Io(std::io::Error),
     DataUrl(data_url::DataUrlError),
     DataUrlBase64(data_url::forgiving_base64::InvalidBase64),
@@ -376,6 +384,7 @@ impl std::fmt::Display for ProviderError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Self::Abort => write!(f, "request aborted"),
+            Self::FileForbidden => write!(f, "file: load refused for a non-file document"),
             Self::Io(e) => write!(f, "io error: {e}"),
             Self::DataUrl(e) => write!(f, "data url error: {e:?}"),
             Self::DataUrlBase64(e) => write!(f, "data url base64 error: {e:?}"),
@@ -465,6 +474,7 @@ impl NetWaker for DummyNetWaker {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use blitz_traits::net::Url;
     use std::io::{Read, Write};
     use std::sync::atomic::{AtomicBool, Ordering};
 
@@ -486,6 +496,10 @@ mod tests {
     }
 
     fn fetch(url: &str) -> Result<Bytes, String> {
+        fetch_request(Request::get(url.parse().unwrap()))
+    }
+
+    fn fetch_request(request: Request) -> Result<Bytes, String> {
         let runtime = tokio::runtime::Builder::new_current_thread()
             .enable_all()
             .build()
@@ -498,11 +512,7 @@ mod tests {
                 assert!(observed.load(Ordering::SeqCst));
             })));
             let (tx, rx) = tokio::sync::oneshot::channel();
-            provider.fetch(
-                42,
-                Request::get(url.parse().unwrap()),
-                Box::new(Handler { tx, completed }),
-            );
+            provider.fetch(42, request, Box::new(Handler { tx, completed }));
             tokio::time::timeout(std::time::Duration::from_secs(5), rx)
                 .await
                 .expect("fetch must complete")
@@ -527,6 +537,27 @@ mod tests {
         let addr = listener.local_addr().unwrap();
         drop(listener);
         assert!(fetch(&format!("http://{addr}/missing.css")).is_err());
+    }
+
+    #[test]
+    fn file_urls_are_read_only_for_file_documents_and_top_level_loads() {
+        let manifest = concat!(env!("CARGO_MANIFEST_DIR"), "/Cargo.toml");
+        let expected = std::fs::read(manifest).unwrap();
+        let file = Url::from_file_path(manifest).unwrap();
+        let file_document =
+            Url::from_file_path(concat!(env!("CARGO_MANIFEST_DIR"), "/page.html")).unwrap();
+        let remote_document: Url = "https://remote.test/page.html".parse().unwrap();
+        assert!(!expected.is_empty());
+
+        let refused = fetch_request(Request::get(file.clone()).initiator(remote_document));
+        assert_eq!(
+            refused.unwrap_err(),
+            "file: load refused for a non-file document"
+        );
+        let from_file_document = fetch_request(Request::get(file.clone()).initiator(file_document));
+        assert_eq!(from_file_document.unwrap(), expected);
+        let top_level = fetch_request(Request::get(file));
+        assert_eq!(top_level.unwrap(), expected);
     }
 
     #[test]

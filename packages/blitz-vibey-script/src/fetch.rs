@@ -37,13 +37,7 @@ pub trait ScriptFetcher: 'static {
     fn fetch(&self, url: &Url) -> Result<String, FetchError>;
 }
 
-/// Whether a document at `document_url` may load `url` (via `<script src>`,
-/// `import` or `fetch()`). `file:` URLs may only be loaded by `file:` documents,
-/// so that remote pages cannot read local files.
-pub fn document_may_load(document_url: Option<&Url>, url: &Url) -> bool {
-    url.scheme() != "file"
-        || document_url.is_some_and(|document_url| document_url.scheme() == "file")
-}
+pub use blitz_traits::net::document_may_load;
 
 /// The default [`ScriptFetcher`]: supports `file:` and `data:` URLs.
 pub struct DefaultScriptFetcher;

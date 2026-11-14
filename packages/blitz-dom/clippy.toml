@@ -1,0 +1,3 @@
+disallowed-methods = [
+    { path = "blitz_traits::net::Request::get", reason = "a sub-resource request is built through stamped_request, which stamps its loading document" },
+]

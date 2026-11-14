@@ -1,0 +1,189 @@
+[
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'stamped_request' AND callee_kind = 'fn' ORDER BY file, line;",
+"rows": 6,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/impl#[BaseDocument]build_request().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 660
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 iframe/",
+"file": "packages/blitz-dom/src/iframe.rs",
+"line": 11
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 iframe/impl#[BaseDocument]start_iframe_load().",
+"file": "packages/blitz-dom/src/iframe.rs",
+"line": 137
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 layout/damage/impl#[BaseDocument]flush_image_layers_from_style().",
+"file": "packages/blitz-dom/src/layout/damage.rs",
+"line": 615
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 net/impl#[StylesheetLoader][StylesheetLoader]request_stylesheet().",
+"file": "packages/blitz-dom/src/net.rs",
+"line": 229
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 net/fetch_font_face_rules().",
+"file": "packages/blitz-dom/src/net.rs",
+"line": 439
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'build_request' AND callee_kind = 'fn' ORDER BY file, line;",
+"rows": 3,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/impl#[BaseDocument]reload_resource_by_href().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1675
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 mutator/impl#[`DocumentMutator<'doc>`]load_linked_stylesheet().",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 1430
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 mutator/impl#[`DocumentMutator<'doc>`]load_image().",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 1497
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee, file, line FROM refs WHERE callee_name = 'get' AND callee_kind = 'fn' AND callee_file LIKE '%blitz-traits/src/net.rs' ORDER BY file, line;",
+"rows": 14,
+"result": [
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 net/impl#[Request]get().",
+"file": "apps/browser/src/about_pages.rs",
+"line": 176
+},
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 net/impl#[Request]get().",
+"file": "apps/browser/src/document_loader.rs",
+"line": 230
+},
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 net/impl#[Request]get().",
+"file": "apps/browser/src/favicon.rs",
+"line": 49
+},
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 net/impl#[Request]get().",
+"file": "apps/browser/src/nav.rs",
+"line": 6
+},
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 net/impl#[Request]get().",
+"file": "apps/browser/src/nav.rs",
+"line": 13
+},
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 net/impl#[Request]get().",
+"file": "apps/browser/src/tab.rs",
+"line": 90
+},
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 net/impl#[Request]get().",
+"file": "apps/browser/src/tab.rs",
+"line": 306
+},
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 net/impl#[Request]get().",
+"file": "apps/browser/src/toolbar.rs",
+"line": 84
+},
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 net/impl#[Request]get().",
+"file": "apps/browser/src/toolbar.rs",
+"line": 145
+},
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 net/impl#[Request]get().",
+"file": "apps/readme/src/main.rs",
+"line": 191
+},
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 net/impl#[Request]get().",
+"file": "packages/blitz-dom/src/net.rs",
+"line": 31
+},
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 net/impl#[Request]get().",
+"file": "packages/blitz-net/src/lib.rs",
+"line": 502
+},
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 net/impl#[Request]get().",
+"file": "packages/blitz-test-harness/src/settle.rs",
+"line": 256
+},
+{
+"callee": "rust-analyzer cargo blitz-traits 0.3.0-beta.4 net/impl#[Request]get().",
+"file": "packages/blitz/src/lib.rs",
+"line": 65
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee, file, line FROM refs WHERE callee_name = 'document_may_load' ORDER BY file, line;",
+"rows": 8,
+"result": [
+{
+"callee": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.4 fetch/document_may_load().",
+"file": "packages/blitz-vibey-script/src/document.rs",
+"line": 15
+},
+{
+"callee": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.4 fetch/document_may_load().",
+"file": "packages/blitz-vibey-script/src/document.rs",
+"line": 162
+},
+{
+"callee": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.4 fetch/document_may_load().",
+"file": "packages/blitz-vibey-script/src/document.rs",
+"line": 221
+},
+{
+"callee": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.4 fetch/document_may_load().",
+"file": "packages/blitz-vibey-script/src/lib.rs",
+"line": 42
+},
+{
+"callee": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.4 fetch/document_may_load().",
+"file": "packages/blitz-vibey-script/src/runtime/fetch.rs",
+"line": 6
+},
+{
+"callee": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.4 fetch/document_may_load().",
+"file": "packages/blitz-vibey-script/src/runtime/fetch.rs",
+"line": 39
+},
+{
+"callee": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.4 fetch/document_may_load().",
+"file": "packages/blitz-vibey-script/src/runtime/modules.rs",
+"line": 13
+},
+{
+"callee": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.4 fetch/document_may_load().",
+"file": "packages/blitz-vibey-script/src/runtime/modules.rs",
+"line": 76
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

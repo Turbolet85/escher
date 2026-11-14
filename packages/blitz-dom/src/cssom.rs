@@ -336,6 +336,7 @@ impl BaseDocument {
             net_provider: self.net_provider.clone(),
             shell_provider: self.shell_provider.clone(),
             abort_signal: self.abort_signal.clone(),
+            document_url: (*self.url).clone(),
             import_depth: 0,
         }
     }
@@ -522,6 +523,7 @@ impl BaseDocument {
                 &self.shell_provider,
                 &guard,
                 self.abort_signal.as_ref(),
+                &self.url,
             );
         }
         let (change_kind, ancestors) = match &list {

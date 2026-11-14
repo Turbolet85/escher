@@ -24,7 +24,7 @@
 
 [2026-11-13-upstream-sync-determinism-and-exploration] Upstream sync ahead of determinism and exploration — upstream/main merged, changes mostly additive; CI, a11y leg and audit green, per-OS tallies re-read, sink allowlist re-checked
 [2026-11-13-cognitive-load-corrective] Cognitive load corrective — handle_click (97), execute (32) and graph (50) brought under or toward cognitive 15; no file split, mutator.rs and document.rs kept whole
-Local files for local documents — blitz-net's file: branch serves a file: document alone; a remote page reads no local file (the founder, 2026-11-12, «Как в коде + работа»)
+[2026-11-13-local-files-for-local-documents] Local files for local documents — blitz-net's file: branch serves a file: document alone; a remote page reads no local file (the founder, 2026-11-12, «Как в коде + работа»)
 Seeded randomness — a run's randomness from one seed; two runs of one seed read the same state (v030-13)
 Bundled fonts — a run's fonts bundled from the stand's DejaVu Sans; `fonts-unavailable` kept; every CI OS reads one state, never compared by shot bytes (v030-14)
 Start in a state — a session starts in a given fixture state, a bounded validated argument, on 0.2.0's shared fixtures (v030-08)

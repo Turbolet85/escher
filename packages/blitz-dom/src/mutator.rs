@@ -1414,6 +1414,7 @@ impl<'doc> DocumentMutator<'doc> {
             self.doc.shell_provider.clone(),
             StylesheetHandler {
                 source_url: url.clone(),
+                document_url: (*self.doc.url).clone(),
                 guard: self.doc.guard.clone(),
                 net_provider: self.doc.net_provider.clone(),
                 abort_signal: self.doc.abort_signal.clone(),

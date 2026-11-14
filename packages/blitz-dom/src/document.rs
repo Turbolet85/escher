@@ -658,7 +658,7 @@ impl BaseDocument {
     /// Wrapper around [`crate::net::stamped_request`]. Use the free function
     /// when `&self` would conflict with a held `&mut` borrow on a field.
     pub(crate) fn build_request(&self, url: url::Url) -> Request {
-        crate::net::stamped_request(url, self.abort_signal.as_ref())
+        crate::net::stamped_request(url, self.abort_signal.as_ref(), &self.url)
     }
 
     pub fn favicon_url(&self) -> Option<String> {
@@ -1681,6 +1681,7 @@ impl BaseDocument {
                                 self.shell_provider.clone(),
                                 StylesheetHandler {
                                     source_url: resolved_href,
+                                    document_url: (*self.url).clone(),
                                     guard: self.guard.clone(),
                                     net_provider: self.net_provider.clone(),
                                     abort_signal: self.abort_signal.clone(),
@@ -1745,6 +1746,7 @@ impl BaseDocument {
                 net_provider: self.net_provider.clone(),
                 shell_provider: self.shell_provider.clone(),
                 abort_signal: self.abort_signal.clone(),
+                document_url: (*self.url).clone(),
                 import_depth: 0,
             }),
             None,
@@ -1779,6 +1781,7 @@ impl BaseDocument {
             &self.shell_provider,
             &self.guard.read(),
             self.abort_signal.as_ref(),
+            &self.url,
         );
 
         // Store data on element

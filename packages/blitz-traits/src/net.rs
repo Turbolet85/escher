@@ -60,6 +60,9 @@ pub struct Request {
     pub headers: HeaderMap,
     pub body: Body,
     pub signal: Option<AbortSignal>,
+    /// The URL of the document this request loads a sub-resource for.
+    /// `None` means a load no document asked for (an embedder's top-level load).
+    pub initiator: Option<Url>,
 }
 impl Request {
     /// A get request to the specified Url and an empty body
@@ -71,6 +74,7 @@ impl Request {
             headers: HeaderMap::new(),
             body: Body::Empty,
             signal: None,
+            initiator: None,
         }
     }
 
@@ -78,6 +82,19 @@ impl Request {
         self.signal = Some(signal);
         self
     }
+
+    pub fn initiator(mut self, url: Url) -> Self {
+        self.initiator = Some(url);
+        self
+    }
+}
+
+/// Whether a document at `document_url` may load `url` (via `<script src>`,
+/// `import` or `fetch()`). `file:` URLs may only be loaded by `file:` documents,
+/// so that remote pages cannot read local files.
+pub fn document_may_load(document_url: Option<&Url>, url: &Url) -> bool {
+    url.scheme() != "file"
+        || document_url.is_some_and(|document_url| document_url.scheme() == "file")
 }
 
 #[derive(Debug, Clone)]
@@ -211,5 +228,36 @@ impl AbortSignal {
     /// <https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal/aborted>
     pub fn aborted(&self) -> bool {
         self.0.load(Ordering::SeqCst)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{Url, document_may_load};
+
+    #[test]
+    fn file_urls_load_only_for_file_documents() {
+        let https = Some("https://remote.test/page.html");
+        let cases = [
+            (Some("file:///page.html"), "file:///style.css", true),
+            (https, "file:///style.css", false),
+            (Some("data:text/html,page"), "file:///style.css", false),
+            (None, "file:///style.css", false),
+            (https, "https://remote.test/style.css", true),
+            (https, "data:text/css,p{}", true),
+        ];
+        assert_eq!(cases.len(), 6);
+        for (document, target, expected) in cases {
+            let document = document.map(Url::parse).transpose();
+            let target = Url::parse(target);
+            let (Ok(document), Ok(target)) = (document, target) else {
+                panic!("every case's URLs parse");
+            };
+            assert_eq!(
+                document_may_load(document.as_ref(), &target),
+                expected,
+                "case {document:?} → {target}"
+            );
+        }
     }
 }
