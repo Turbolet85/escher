@@ -1,0 +1,19 @@
+[[pattern]]
+id = 'browser-tests'
+regex = '(browser|apps/browser)[^\n]{0,80}\b35 (unit )?tests|\b35 (unit )?tests[^\n]{0,40}browser|document_loader'
+
+[[pattern]]
+id = 'expect-allow'
+regex = 'justified-expect-unwrap|favicon[^\n]{0,60}(allow|expect_used)|TabWebView|bare `?#?\[?allow\(clippy::expect_used'
+
+[[pattern]]
+id = 'doc-config'
+regex = 'make_doc_config'
+
+[[pattern]]
+id = 'nav-guard'
+regex = 'file-urls-only-for-file-documents|remote_page_config_navigation|file_page_config_navigation'
+
+[[pattern]]
+id = 'browser-tested'
+regex = 'apps/browser/src|history\.rs|favicon\.rs|tab\.rs'
