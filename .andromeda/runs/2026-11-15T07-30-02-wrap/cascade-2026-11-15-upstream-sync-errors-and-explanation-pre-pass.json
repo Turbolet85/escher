@@ -1,0 +1,179 @@
+[
+{
+"tool": "cascade",
+"v": "1.34",
+"sha8": "23418a05",
+"ts": "2026-11-15T07:31:07Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-15T07-30-02-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-15T07-30-02-wrap",
+"--marker",
+"2026-11-15-upstream-sync-errors-and-explanation"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline 2f9508d0 (pre-pass — HEAD)",
+"lock-checksum · control UNFIRED over the seven masters (bodies and sets) at 2f9508d0",
+"take-count · control UNFIRED over the seven masters (bodies and sets) at 2f9508d0"
+],
+"stderr": "control: lock-checksum, take-count never fired over the seven masters' pre-pass text, bodies and sets (2f9508d0) — no master holds them: re-fire with --pattern taffy-ver --pattern upstream-pin --pattern left-out --pattern wpt-pin --pattern font-face-desc --pattern wpt-quarantine; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.34",
+"sha8": "23418a05",
+"ts": "2026-11-15T07:31:17Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-15T07-30-02-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-15T07-30-02-wrap",
+"--marker",
+"2026-11-15-upstream-sync-errors-and-explanation",
+"--pattern",
+"taffy-ver",
+"--pattern",
+"upstream-pin",
+"--pattern",
+"left-out",
+"--pattern",
+"wpt-pin",
+"--pattern",
+"font-face-desc",
+"--pattern",
+"wpt-quarantine"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 2f9508d0 (pre-pass — HEAD)",
+"architecture · 6 rows over 1 files · new 0 · standing 6 · 4 patterns",
+"security-plan · 2 rows over 1 files · new 0 · standing 2 · 2 patterns",
+"test-plan · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"by line · 0 lines · 0 offsets",
+"total (6 patterns) · 16 rows over 8 files",
+"per class · new 0/0 · standing 9/3 · leaf 7/5 · curation 0/0 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-15T07-30-02-wrap/sweep-pre-pass-1.1.txt · 30 lines · 3010 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-15T07-30-02-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "2f9508d093aef44a3f1900d182d81b46a1752b63",
+"how": "pre-pass — HEAD",
+"counts": {
+"taffy-ver": {
+"new": 0,
+"standing": 3,
+"leaf": 5,
+"curation": 0,
+"base": 0
+},
+"upstream-pin": {
+"new": 0,
+"standing": 2,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"left-out": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"wpt-pin": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"font-face-desc": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"wpt-quarantine": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 6,
+"files": 1,
+"new": 0,
+"standing": 6,
+"patterns": 4
+},
+"security-plan": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 2
+},
+"test-plan": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+}
+},
+"per_master": {
+"taffy-ver": {
+"architecture": 2,
+"security-plan": 1
+},
+"upstream-pin": {
+"architecture": 2
+},
+"left-out": {
+"architecture": 1
+},
+"wpt-pin": {
+"test-plan": 1
+},
+"font-face-desc": {
+"architecture": 1
+},
+"wpt-quarantine": {
+"security-plan": 1
+}
+},
+"forms": {
+"left-out": [
+{
+"form": "ninety-nine",
+"from": "99"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

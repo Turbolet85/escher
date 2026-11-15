@@ -1,0 +1,14 @@
+--- a/.andromeda/security-plan.md
++++ b/.andromeda/security-plan.md
+@@ -450,4 +450,4 @@
+ decision/no-base64-crate · No base64 crate — No base64 crate is taken as a dependency; a shot's base64 is written by hand.
+-decision/no-git-dependencies · No git dependencies in the root manifest — The root manifest holds no git dependency; taffy and parley are crates.io registry versions with checksums in the lockfile.
+-decision/no-git-dependency · No git dependency — The workspace takes no git dependency.
++decision/no-git-dependencies · No git dependencies in the root manifest — The root manifest holds no git dependency; taffy and parley are crates.io registry versions with checksums in the lockfile. · except: The taffy crate alone may take a git source; every other crate stays a crates.io registry version, and a git Taffy still passes the lock, audit and MSRV legs.
++decision/no-git-dependency · No git dependency — The workspace takes no git dependency. · except: The taffy crate alone may take a git source; every other crate stays a crates.io registry version, and a git Taffy still passes the lock, audit and MSRV legs.
+ decision/png-encodes-screenshots · png encodes a screenshot — The png crate is what encodes a screenshot in escher-driver, and blitz-tests takes it only as a dev-dependency.
+@@ -458,3 +458,3 @@
+ decision/test-harness-no-tracing-no-style · Test harness takes no tracing and no style — blitz-test-harness takes neither the tracing crate nor the style crate as a dependency.
+-decision/upstream-sync-dependency-set · Upstream sync takes the dependency set whole — Each upstream sync takes upstream's dependency set whole or, by cherry-pick, enters no package; its lock is read name by name against upstream's or the prior tree, and the audit leg is green after it.
++decision/upstream-sync-dependency-set · Upstream sync takes the dependency set whole — Each upstream sync takes upstream's dependency set whole or, by cherry-pick, enters no package and takes git-pinned content only by a lock-only, semver-compatible update of a pinned registry crate; its lock is read name by name against upstream's or the prior tree, the audit leg green after it.
+ decision/workspace-inherited-dependency-versions · Workspace-inherited dependency versions — Dependency versions are inherited from the workspace with workspace = true rather than declared inline in each manifest.

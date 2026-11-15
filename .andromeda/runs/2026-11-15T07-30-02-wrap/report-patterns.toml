@@ -1,0 +1,31 @@
+[[pattern]]
+id = 'taffy-ver'
+regex = '(?i)taffy[^\n]{0,60}0\.15|0\.15\.[01]\b'
+
+[[pattern]]
+id = 'lock-checksum'
+regex = '3c8480887e|Cargo\.lock:8040'
+
+[[pattern]]
+id = 'upstream-pin'
+regex = '563d3db73|ea07ee716|upstream-sync-merge-base'
+
+[[pattern]]
+id = 'left-out'
+regex = '(?i)\b99\b[^\n]{0,40}left[- ]out|left[- ]out[^\n]{0,40}\b99\b|deferred-upstream-dependency-bumps|Taffy-main'
+
+[[pattern]]
+id = 'wpt-pin'
+regex = 'WPT_COMMIT|07e827e|wpt-pinned-commit'
+
+[[pattern]]
+id = 'font-face-desc'
+regex = '(?i)font-face-css-descriptors|family, weight and style|font-stretch|font-width|FontFaceOverrides'
+
+[[pattern]]
+id = 'wpt-quarantine'
+regex = 'timeout-quarantine|dynamic-load-events|wpt-quarantine-entries-valid'
+
+[[pattern]]
+id = 'take-count'
+regex = '(?i)\b(tenth|eleventh|10th|11th) upstream (take|sync)'

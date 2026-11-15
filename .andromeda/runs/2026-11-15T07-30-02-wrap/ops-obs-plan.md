@@ -1,0 +1,2 @@
+@none
+reason: The chunk adds no log site, span, metric, telemetry dependency or logged user data (fct-xojovjqq: no log field or span; fct-h4wzeget: instrumentation n/a, census 0; fct-tx5xsxa7: no scrub, redaction or log schema changed; fct-hqhbkefo item 7: no obs-plan row holds a per-take silence line), so every obs-plan row read, the stale-marked decision/actions-read-changes-nothing included, stays true as written and no task fact was handed.

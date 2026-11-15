@@ -91,4 +91,4 @@
 2026-11-14-start-in-a-state · complete · Start in a state — a driver session starts in a named fixture state of its app, a bounded validated argument; its first screen reads as that state reached by hand from boot (v030-08) · → chk:2026-11-14-start-in-a-state
 2026-11-14-auto-exploration · complete · Auto-exploration — one command explores the available actions breadth-first within a step budget, catches panics and refusals, keeps each path as a replayable check · → chk:2026-11-14-auto-exploration
 2026-11-14-remote-pages-local-files · complete · Remote pages and local files in the browser — a remote page's favicon and its navigation to a file: URL read no local file · → chk:2026-11-14-remote-pages-local-files
-2026-11-15-upstream-sync-errors-and-explanation · pending · upstream/main merged to ea07ee716, the Taffy-main take measured and left out unless a registry Taffy carries it · → chk:2026-11-15-upstream-sync-errors-and-explanation
+2026-11-15-upstream-sync-errors-and-explanation · complete · upstream/main merged to ea07ee716, the Taffy-main take measured and left out unless a registry Taffy carries it · → chk:2026-11-15-upstream-sync-errors-and-explanation
