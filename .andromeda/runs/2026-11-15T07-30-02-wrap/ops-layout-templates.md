@@ -1,2 +1,0 @@
-@none
-reason: The report adds no user-facing surface or region (fct-xojovjqq: no surface added) and changes only the engine's @font-face width read, a lock-only taffy 0.15.1 move, the WPT pin and the WPT quarantine (fct-yeqqqy6o, fct-vixmrsy5, fct-tx5xsxa7). Every stand and CLI test leg stays green with no count moved (fct-5kufosju), so no layout-templates row is false or incomplete, and the task brings no fact to place. D-layout-surface does not fire.

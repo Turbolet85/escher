@@ -1,2 +1,0 @@
-@none
-reason: The chunk takes three upstream picks (an @font-face font-stretch read into FontFaceOverrides::width, the WPT pin, four WPT quarantine entries) and taffy 0.15.0 to 0.15.1 by the lock alone; it adds no interactive UI element, no a11y or log schema change, the a11y leg and stand runs stay green with no count moved and every new surface reads a11y n/a (fct-h4wzeget, fct-xojovjqq, fct-tx5xsxa7, fct-5kufosju), so every picked a11y-plan row stays true as written and the task brings no fact.
