@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-# The agent-driven test contract over the stand checks and blitz-tests: five verbs, each printing JSON lines and
-# exiting 0 success · 1 the verb ran and failed · 2 usage · 3 a precondition is unmet. Run it from the repository
-# root. State lives in target/agent-run/ only: status.json, events.jsonl (harness events, never captured test
-# output) and run.log (the raw cargo output). scripts/agent-run.ps1 delegates here on Windows.
+# The agent-driven test contract over the stand checks, blitz-tests and the session binary's flows (seven_guis'
+# cli_flow, `run session`): five verbs, each printing JSON lines and exiting 0 success · 1 the verb ran and failed ·
+# 2 usage · 3 a precondition is unmet. Run it from the repository root. State lives in target/agent-run/ only:
+# status.json, events.jsonl (harness events, never captured test output) and run.log (the raw cargo output).
+# scripts/agent-run.ps1 delegates here on Windows.
 set -euo pipefail
 
 VERBS=(boot run status cleanup logs)
@@ -12,7 +13,7 @@ TESTS_DIR=tests/blitz-tests/tests
 usage() {
     echo "usage: $0 <verb> [selection]" >&2
     echo "verbs: ${VERBS[*]}" >&2
-    echo "run selections: stand · all · <blitz-tests file name>" >&2
+    echo "run selections: stand · all · session · <blitz-tests file name>" >&2
     exit 2
 }
 
@@ -177,6 +178,7 @@ run)
     [[ $# -eq 2 ]] || usage
     selection="$2"
     files=()
+    package=blitz-tests
     case "$selection" in
     stand)
         for f in "$TESTS_DIR"/stand_*.rs; do
@@ -184,6 +186,10 @@ run)
         done
         ;;
     all) ;;
+    session)
+        files=(cli_flow)
+        package=seven_guis
+        ;;
     *)
         [[ "$selection" =~ ^[a-z0-9_]+$ && -f "$TESTS_DIR/$selection.rs" ]] || usage
         files=("$selection")
@@ -201,7 +207,7 @@ run)
     cargo_exit=""
     if [[ "$selection" == all || ${#files[@]} -gt 0 ]]; then
         cargo_exit=0
-        cargo test -p blitz-tests --locked ${test_args[@]+"${test_args[@]}"} >"$STATE_DIR/run.log" 2>&1 ||
+        cargo test -p "$package" --locked ${test_args[@]+"${test_args[@]}"} >"$STATE_DIR/run.log" 2>&1 ||
             cargo_exit=$?
     else
         : >"$STATE_DIR/run.log"

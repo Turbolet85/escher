@@ -84,6 +84,53 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 """
 
+SESSION_FLOW_CALL = ["test", "-p", "seven_guis", "--locked", "--test", "cli_flow"]
+
+PASSING_FLOWS = """\
+   Compiling seven_guis v0.3.0-beta.4 (/work/examples/seven_guis)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.10s
+     Running tests/cli_flow.rs (target/debug/deps/cli_flow-50cfa2445ed124aa)
+
+running 2 tests
+test a_flow_that_reads_something_else_says_which_step_and_stops_its_session ... ok
+test each_flow_completes_under_plain_sh_and_leaves_nothing ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.92s
+
+"""
+
+FAILING_FLOWS = f"""\
+     Running tests/cli_flow.rs (target/debug/deps/cli_flow-50cfa2445ed124aa)
+
+running 2 tests
+test a_flow_that_reads_something_else_says_which_step_and_stops_its_session ... ok
+test each_flow_completes_under_plain_sh_and_leaves_nothing ... FAILED
+
+failures:
+
+---- each_flow_completes_under_plain_sh_and_leaves_nothing stdout ----
+
+thread 'each_flow_completes_under_plain_sh_and_leaves_nothing' panicked at examples/seven_guis/tests/cli_flow.rs:52:9:
+{PANIC_TEXT}: counter.sh failed at step 3
+test {PANIC_TEXT}_printed_by_the_flow ... ok
+
+failures:
+    each_flow_completes_under_plain_sh_and_leaves_nothing
+
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.40s
+
+error: test failed, to rerun pass `-p seven_guis --test cli_flow`
+"""
+
+EMPTY_FLOWS = """\
+     Running tests/cli_flow.rs (target/debug/deps/cli_flow-50cfa2445ed124aa)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+"""
+
 
 class AgentRunTest(unittest.TestCase):
     def setUp(self):
@@ -264,6 +311,61 @@ class AgentRunTest(unittest.TestCase):
         self.boot()
         self.run_with("stand", 101, FAILING_STAND)
         self.assertEqual((self.state / "run.log").read_text(encoding="utf-8"), FAILING_STAND)
+
+    def test_run_session_runs_the_flow_target_of_seven_guis(self):
+        self.boot()
+        proc = self.run_with("session", 0, PASSING_FLOWS)
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        events = self.json_lines(proc.stdout)
+        start = events[0]
+        self.assertEqual((start["event"], start["selection"], start["files"]), ("run.start", "session", ["cli_flow"]))
+        self.assertEqual(
+            [(e["file"], e["test"], e["outcome"]) for e in events if e["event"] == "test"],
+            [
+                ("cli_flow", "a_flow_that_reads_something_else_says_which_step_and_stops_its_session", "ok"),
+                ("cli_flow", "each_flow_completes_under_plain_sh_and_leaves_nothing", "ok"),
+            ],
+        )
+        end = events[-1]
+        self.assertEqual(
+            (end["event"], end["passed"], end["failed"], end["ignored"], end["cargo_exit"], end["outcome"]),
+            ("run.end", 2, 0, 0, 0, "passed"),
+        )
+        self.assertEqual(self.cargo_calls()[-1], SESSION_FLOW_CALL)
+        run = self.json_lines(self.agent_run("status").stdout)[0]["run"]
+        self.assertEqual((run["selection"], run["state"], run["passed"]), ("session", "passed", 2))
+
+    def test_run_session_before_boot_exits_3(self):
+        self.assertEqual(self.agent_run("run", "session").returncode, 3)
+        self.assertEqual(self.cargo_calls(), [])
+
+    def test_run_session_with_an_extra_argument_exits_2(self):
+        self.boot()
+        self.assertEqual(self.agent_run("run", "session", "extra").returncode, 2)
+        self.assertEqual(len(self.cargo_calls()), 1)
+
+    def test_session_is_a_fixed_word_before_a_file_of_that_name(self):
+        self.add_test_files("session")
+        self.boot()
+        proc = self.run_with("session", 0, PASSING_FLOWS)
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertEqual(self.cargo_calls()[-1], SESSION_FLOW_CALL)
+
+    def test_a_failing_session_flow_exits_1_and_carries_no_captured_output(self):
+        self.boot()
+        proc = self.run_with("session", 101, FAILING_FLOWS)
+        self.assertEqual(proc.returncode, 1)
+        end = self.json_lines(proc.stdout)[-1]
+        self.assertEqual((end["passed"], end["failed"], end["outcome"]), (1, 1, "failed"))
+        self.assertNotIn(PANIC_TEXT, proc.stdout)
+        self.assertNotIn(PANIC_TEXT, (self.state / "events.jsonl").read_text(encoding="utf-8"))
+
+    def test_an_empty_session_run_is_never_a_pass(self):
+        self.boot()
+        proc = self.run_with("session", 0, EMPTY_FLOWS)
+        self.assertEqual(proc.returncode, 1)
+        end = self.json_lines(proc.stdout)[-1]
+        self.assertEqual((end["passed"], end["cargo_exit"], end["outcome"]), (0, 0, "failed"))
 
 
 if __name__ == "__main__":
