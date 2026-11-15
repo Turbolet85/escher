@@ -1,0 +1,71 @@
+[
+{
+"tool": "route",
+"v": "1.14",
+"sha8": "3d953162",
+"ts": "2026-11-15T22:53:53Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-11-15-taffy-from-upstream-git",
+"--date",
+"2026-11-15",
+"--desc-file",
+".andromeda/runs/2026-11-15T22-10-47-wrap/master-desc.txt",
+"--run-dir",
+".andromeda/runs/2026-11-15T22-10-47-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin cry-j2qpd7oi strip CARRY: 748ch \"CARRY: the git-Taffy remainder of 2026-1\"",
+"pin next markerless chk-fxsp66ya holds CARRY:×1",
+"2026-11-15-taffy-from-upstream-git · strip 1 block(s) · spent in the spine",
+"dry-run · would flip 2026-11-15-taffy-from-upstream-git pending -> complete"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.14",
+"sha8": "3d953162",
+"ts": "2026-11-15T22:53:58Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-11-15-taffy-from-upstream-git",
+"--date",
+"2026-11-15",
+"--desc-file",
+".andromeda/runs/2026-11-15T22-10-47-wrap/master-desc.txt",
+"--run-dir",
+".andromeda/runs/2026-11-15T22-10-47-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin cry-j2qpd7oi strip CARRY: 748ch \"CARRY: the git-Taffy remainder of 2026-1\"",
+"pin next markerless chk-fxsp66ya holds CARRY:×1",
+"flip 2026-11-15-taffy-from-upstream-git pending -> complete - desc REWRITTEN from --desc-file · tx 1225",
+"compacted 1 complete line(s) — their freight spent in the spine, no archive (U61)"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-15T18-30-16-2026-11-15-taffy-from-upstream-git.ndjson",
+"./.andromeda/master-route.md",
+"./escher-0.3.0/working-route.md"
+],
+"before": null,
+"after": null
+}
+]

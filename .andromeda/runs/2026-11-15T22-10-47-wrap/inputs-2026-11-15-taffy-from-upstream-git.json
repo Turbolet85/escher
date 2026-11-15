@@ -1,0 +1,101 @@
+[
+{
+"tool": "inputs",
+"v": "1.7",
+"sha8": "0150035c",
+"ts": "2026-11-15T22:11:19Z",
+"argv": [
+"snap",
+"--chunk",
+"2026-11-15-taffy-from-upstream-git",
+"--message-file",
+".andromeda/runs/2026-11-15T22-10-47-wrap/relay-1.md",
+"--origin",
+"the overseer, relaying the founder (invocation of /andromeda-wrap-session)",
+"--kind",
+"relay",
+"--why",
+"the wrap's directive: F1 mint the option-A entry after this chunk and restate the record's desc to e90751fd; F2 the eight commits' layout changes land ratified; the founder away, no dialog",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-11-15T22-10-47-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I5 · copy message · message: the overseer, relaying the founder (invocation of /andromeda-wrap-session)",
+"cite: inputs#I5"
+],
+"stderr": null,
+"wrote": [
+"inputs/I5-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I5",
+"kind": "relay",
+"repo": null,
+"path": "message: the overseer, relaying the founder (invocation of /andromeda-wrap-session)",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "0492813f2620a2e08e570fe766812673570b2eac4201db775c9d68d795856f21",
+"copy": "I5-relay-1.md.txt",
+"link": false,
+"read_at": "2026-11-15T22:11:19Z",
+"step": "wrap",
+"why": "the wrap's directive: F1 mint the option-A entry after this chunk and restate the record's desc to e90751fd; F2 the eight commits' layout changes land ratified; the founder away, no dialog"
+}
+},
+{
+"tool": "inputs",
+"v": "1.7",
+"sha8": "0150035c",
+"ts": "2026-11-15T22:11:19Z",
+"argv": [
+"verify",
+"--chunk",
+"2026-11-15-taffy-from-upstream-git",
+"--run-dir",
+".andromeda/runs/2026-11-15T22-10-47-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, /andromeda-phase invocation 2026-11-15",
+"I1 cited scope.md:29 · scope.md:36 · scope.md:78 · research.md:7 · research.md:43 · plan.md:25 · plan.md:270 · report.md:18",
+"I2 unchanged · copy no-repo · ../additional/escher-overseer/relays/taffy-git-forks-founder-2026-11-15.md",
+"I2 cited scope.md:6 · scope.md:23 · scope.md:79 · research.md:7 · research.md:26 · research.md:45 · plan.md:11 · plan.md:21 · plan.md:103 (in fence) · plan.md:235 · plan.md:247 · plan.md:248 · plan.md:256 · plan.md:270 · plan.md:276 · plan.md:277 · plan.md:290 · plan.md:306 · report.md:18 · report.md:19 · report.md:34",
+"I3 n/a — a message has no live source · copy message · message: the operator, /andromeda-phase invocation 2026-11-15 (resume)",
+"I3 cited scope.md:23 · scope.md:79 · research.md:7 · research.md:43 · plan.md:25 · plan.md:270 · report.md:18",
+"I4 n/a — a message has no live source · copy message · message: the operator, in this session, 2026-11-15",
+"I4 cited report.md:18",
+"I5 n/a — a message has no live source · copy message · message: the overseer, relaying the founder (invocation of /andromeda-wrap-session)",
+"I5 UNCITED",
+"inputs: 5 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 4 · uncited 1 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 5,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 4
+},
+"uncited": 1,
+"unparsed": 0
+}
+}
+]

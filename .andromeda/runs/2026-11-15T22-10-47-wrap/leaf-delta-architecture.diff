@@ -1,0 +1,17 @@
+--- a/.andromeda/architecture.md
++++ b/.andromeda/architecture.md
+@@ -119,3 +119,3 @@
+ decision/stylo-css-engine · Servo Stylo as the CSS engine — Servo Stylo 0.22.0, with selectors and cssparser, does styling and selector matching.
+-decision/taffy-layout · Taffy for layout — Taffy 0.15 from the crates.io registry does block, flexbox, grid, leaf, cached and out-of-flow layout through the stylo_taffy bridge, and is part of blitz-dom's public API through its signatures, with no re-export.
++decision/taffy-layout · Taffy for layout — Taffy 0.15 from upstream's git source, pinned to one revision, does block, flexbox, grid, leaf, cached and out-of-flow layout through the stylo_taffy bridge, and is part of blitz-dom's public API through its signatures, with no re-export.
+ decision/trunk-wasm-example-builds · Trunk for browser-target example builds — Browser-target builds of the examples go through Trunk and wasm-bindgen.
+@@ -283,3 +283,3 @@
+ decision/nix-single-derivation · Nix flake builds in one derivation — The Nix flake builds dependencies and crate in one derivation.
+-decision/no-git-dependencies · No git dependencies — No git dependency is left in the manifest; taffy is a registry version. · except: The taffy crate alone may take a git source; every other crate stays a crates.io registry version, and a git Taffy still passes the lock, audit and MSRV legs.
++decision/no-git-dependencies · No git dependencies — Every dependency in the manifest is a crates.io registry version, with no git source. · except: The taffy crate alone may take a git source; every other crate stays a crates.io registry version, and a git Taffy still passes the lock, audit and MSRV legs.
+ decision/no-local-font-sources · No local() font sources — `local()` font sources are not supported.
+@@ -1535,3 +1535,3 @@
+ decision/capability-statement · Capability statement — docs/capabilities.md is escher's own statement of what it can do and its limits; its verb and cause names and its five counts are held to the driver schema's tables, and no check reads its other claims. · guard: .github/scripts/test_capability_statement.py
+-decision/deferred-upstream-dependency-bumps · Deferred Stylo, Taffy and Dioxus bumps — Stylo stays "0.22.0", Taffy the registry "0.15" and Dioxus "0.7.3": git Stylo 0.23-pre and Dioxus 0.8.0-alpha.3 wait for escher's next version; the Taffy-main content comes through registry Taffy 0.15.x save #1303, which waits with the later git Taffy chain for its own chunk.
++decision/deferred-upstream-dependency-bumps · Deferred Stylo, Taffy and Dioxus bumps — Stylo stays "0.22.0", Taffy upstream's git source pinned before #1372 and Dioxus "0.7.3": git Stylo 0.23-pre and Dioxus 0.8.0-alpha.3 wait for escher's next version; Taffy from #1372 on, which leaves blitz-dom uncompiled, waits for its own take, where its reversed-scroll-origin change is asked.
+ decision/document-trait-drives-wrappers · Document trait drives every wrapper — `BaseDocument` is the core DOM's primary entry point, and the `Document` trait lets blitz-shell drive every wrapper around it.

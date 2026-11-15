@@ -6,7 +6,7 @@
 <!-- GENERATED:setup:overview start -->
 escher is a fork of Blitz, a Rust library workspace for an HTML/CSS engine (high-level APIs for rendering HTML, a core DOM abstraction whose primary entry point is `BaseDocument`, a `Document` trait so wrappers around `BaseDocument` can all be driven by blitz-shell), being turned into an agent-first UI framework: a headless driver (CLI and MCP), stable ids for every element, a compact semantic snapshot of the screen, proven on an internal 7GUIs stand. Development is agent-driven: the framework's own driver is meant to become the harness.
 
-**Stack:** Rust 2024 Cargo workspace 0.3.0-beta.4 (rust-version 1.91.0, no `rust-toolchain.toml`) · Stylo 0.22 · Taffy 0.15 · Parley 0.12 · anyrender 0.14 / Vello 0.11 · winit 0.31.0-beta.3 · AccessKit 0.25 · Dioxus 0.7.3 · Boa 0.22 · tokio 1.42 · reqwest 0.13 — a native-API engine library with no server and no database (the browser app keeps a rusqlite 0.32 history); versions as `Cargo.toml` pins them.
+**Stack:** Rust 2024 Cargo workspace 0.3.0-beta.4 (rust-version 1.91.0, no `rust-toolchain.toml`) · Stylo 0.22 · Taffy 0.15 (upstream's git source, pinned to one revision) · Parley 0.12 · anyrender 0.14 / Vello 0.11 · winit 0.31.0-beta.3 · AccessKit 0.25 · Dioxus 0.7.3 · Boa 0.22 · tokio 1.42 · reqwest 0.13 — a native-API engine library with no server and no database (the browser app keeps a rusqlite 0.32 history); versions as `Cargo.toml` pins them.
 
 **Key directories:**
 - `packages/` — the engine and integration crates and escher's own crates (telemetry bootstrap, driver)
@@ -56,7 +56,7 @@ escher is a fork of Blitz, a Rust library workspace for an HTML/CSS engine (high
 - `NodeId` is versioned: a dropped node's id stops resolving instead of aliasing a reused slot — a stale id resolves to none on lookup, never a panic
 - No content in a log field: `url` · `href` · `src` · `html` · `text` · `value` · `attrs` · `path` · `request` · `error` print `[redacted]` on `escher_*` targets — add no field that carries them
 - Every build, test and CI cargo leg passes `--locked` against the committed `Cargo.lock` (`examples/wasm_hello` aside — a standalone workspace)
-- The workspace takes no git dependency — every crate a crates.io registry version, the taffy crate alone excepted: it may take a git source, and a git Taffy still passes the lock, audit and MSRV legs
+- The workspace takes no git dependency — every crate a crates.io registry version, the taffy crate alone excepted: it takes upstream's git source pinned at a full commit rev, no patch section, its integrity resting on the rev (its lock entry has no checksum), and still passes the lock, audit and MSRV legs
 - Incremental and non-incremental layout must produce identical layouts after any sequence of mutations — the `incremental_oracle` holds them to it
 - DOM mutations go through `DocumentMutator`, which flushes deferred work on drop
 - `clippy::unwrap_used` / `clippy::expect_used` are allowed only locally, next to a written justification — never crate-wide

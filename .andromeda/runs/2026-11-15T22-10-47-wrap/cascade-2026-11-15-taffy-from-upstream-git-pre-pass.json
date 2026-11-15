@@ -1,0 +1,129 @@
+[
+{
+"tool": "cascade",
+"v": "1.34",
+"sha8": "5164991a",
+"ts": "2026-11-15T22:11:38Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-15T22-10-47-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-15T22-10-47-wrap",
+"--marker",
+"2026-11-15-taffy-from-upstream-git"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline d6b9c334 (pre-pass — HEAD)",
+"lock-cite · control UNFIRED over the seven masters (bodies and sets) at d6b9c334",
+"later-bumps · control UNFIRED over the seven masters (bodies and sets) at d6b9c334"
+],
+"stderr": "control: lock-cite, later-bumps never fired over the seven masters' pre-pass text, bodies and sets (d6b9c334) — no master holds them: re-fire with --pattern taffy-version --pattern git-source --pattern float-id; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.34",
+"sha8": "5164991a",
+"ts": "2026-11-15T22:11:46Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-15T22-10-47-wrap/report-patterns.toml",
+"--pattern",
+"taffy-version",
+"--pattern",
+"git-source",
+"--pattern",
+"float-id",
+"--run-dir",
+".andromeda/runs/2026-11-15T22-10-47-wrap",
+"--marker",
+"2026-11-15-taffy-from-upstream-git"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline d6b9c334 (pre-pass — HEAD)",
+"architecture · 6 rows over 1 files · new 0 · standing 6 · 3 patterns",
+"security-plan · 6 rows over 1 files · new 0 · standing 6 · 2 patterns",
+"by line · 0 lines · 0 offsets",
+"total (3 patterns) · 25 rows over 8 files",
+"per class · new 0/0 · standing 12/2 · leaf 13/6 · curation 0/0 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-15T22-10-47-wrap/sweep-pre-pass-1.1.txt · 32 lines · 3683 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-15T22-10-47-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "d6b9c3346fd0f0aff7411d64f5de76adf3d7e0c8",
+"how": "pre-pass — HEAD",
+"counts": {
+"taffy-version": {
+"new": 0,
+"standing": 6,
+"leaf": 7,
+"curation": 0,
+"base": 0
+},
+"git-source": {
+"new": 0,
+"standing": 5,
+"leaf": 5,
+"curation": 0,
+"base": 0
+},
+"float-id": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 6,
+"files": 1,
+"new": 0,
+"standing": 6,
+"patterns": 3
+},
+"security-plan": {
+"rows": 6,
+"files": 1,
+"new": 0,
+"standing": 6,
+"patterns": 2
+}
+},
+"per_master": {
+"taffy-version": {
+"architecture": 3,
+"security-plan": 3
+},
+"git-source": {
+"architecture": 2,
+"security-plan": 3
+},
+"float-id": {
+"architecture": 1
+}
+},
+"forms": {},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

@@ -1,0 +1,19 @@
+[[pattern]]
+id = 'taffy-version'
+regex = '''(?i)taffy\W{0,3}(v|version\W{0,3})?0\.15(\.\d)?|taffy[^.\n]{0,80}(registry|crates\.io)|(registry|crates\.io)[^.\n]{0,80}taffy'''
+
+[[pattern]]
+id = 'git-source'
+regex = '''(?i)git (dependenc\w*|source\w*)|git[- ]pinned|git taffy|no git\b'''
+
+[[pattern]]
+id = 'lock-cite'
+regex = '''Cargo\.lock:80\d\d|31f7bd2d'''
+
+[[pattern]]
+id = 'float-id'
+regex = '''place_floated_box|taffy #1303|#1303'''
+
+[[pattern]]
+id = 'later-bumps'
+regex = '''(?i)0980cce5f|ebacd68bd|ScrollableOverflow|#1372|a3997d55'''

@@ -1,0 +1,19 @@
+--- a/.andromeda/security-plan.md
++++ b/.andromeda/security-plan.md
+@@ -444,3 +444,3 @@
+ decision/embolden-locked-fast-leg · font-embolden tested by a locked fast leg — The blitz-paint font-embolden feature is tested by a locked cargo leg among the fast legs, with no CI job of its own.
+-decision/engine-dependency-pins · Engine dependency pins — The pins stay: Stylo 0.22.0, Taffy the registry 0.15, Dioxus 0.7.3 and winit =0.31.0-beta.3.
++decision/engine-dependency-pins · Engine dependency pins — The pins stay: Stylo 0.22.0, Taffy the git pin of upstream DioxusLabs/taffy at commit e90751fd, Dioxus 0.7.3 and winit =0.31.0-beta.3.
+ decision/free-disk-only-on-stand-repeat · Runner disk freed only for the repeated stand job — Only the `Stand checks repeated` CI job frees runner disk, with the free-disk-space action pinned to a commit; the `matrix_test` job holds no such step. · guard: test_only_stand_repeat_frees_disk
+@@ -450,4 +450,4 @@
+ decision/no-base64-crate · No base64 crate — No base64 crate is taken as a dependency; a shot's base64 is written by hand.
+-decision/no-git-dependencies · No git dependencies in the root manifest — The root manifest holds no git dependency; taffy and parley are crates.io registry versions with checksums in the lockfile. · except: The taffy crate alone may take a git source; every other crate stays a crates.io registry version, and a git Taffy still passes the lock, audit and MSRV legs.
+-decision/no-git-dependency · No git dependency — The workspace takes no git dependency. · except: The taffy crate alone may take a git source; every other crate stays a crates.io registry version, and a git Taffy still passes the lock, audit and MSRV legs.
++decision/no-git-dependencies · No git dependencies in the root manifest — The root manifest holds no git dependency; parley and every other crate are crates.io registry versions with checksums in the lockfile. · except: The taffy crate alone may take a git source; every other crate stays a crates.io registry version, and a git Taffy still passes the lock, audit and MSRV legs.
++decision/no-git-dependency · No git dependency — The workspace takes no git dependency. · except: Taffy alone takes a git source: upstream pinned at a full commit rev, no patch section, integrity resting on the rev as its lock entry has no checksum; it still passes the lock, audit and MSRV legs.
+ decision/png-encodes-screenshots · png encodes a screenshot — The png crate is what encodes a screenshot in escher-driver, and blitz-tests takes it only as a dev-dependency.
+@@ -458,3 +458,3 @@
+ decision/test-harness-no-tracing-no-style · Test harness takes no tracing and no style — blitz-test-harness takes neither the tracing crate nor the style crate as a dependency.
+-decision/upstream-sync-dependency-set · Upstream sync takes the dependency set whole — Each upstream sync takes upstream's dependency set whole or, by cherry-pick, enters no package and takes git-pinned content only by a lock-only, semver-compatible update of a pinned registry crate; its lock is read name by name against upstream's or the prior tree, the audit leg green after it.
++decision/upstream-sync-dependency-set · Upstream sync takes the dependency set whole — Each upstream sync takes upstream's dependency set whole or, by cherry-pick, enters no package and takes git-pinned content only by a lock-only, semver-compatible update of a pinned registry crate or Taffy's own git pin; its lock is read name by name, the audit leg green after it.
+ decision/workspace-inherited-dependency-versions · Workspace-inherited dependency versions — Dependency versions are inherited from the workspace with workspace = true rather than declared inline in each manifest.
