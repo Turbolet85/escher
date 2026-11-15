@@ -175,6 +175,8 @@ fn commit_loaded_document<Lens>(
 
 #[component]
 pub fn TabWebView(tabs: Store<Vec<Tab>>, tab_id: TabId, active_tab_id: Signal<TabId>) -> Element {
+    // The app renders one view per tab of `tabs`, keyed by its id, and closing a tab removes it
+    // from `tabs`, so a view runs only while its tab stands.
     #[allow(clippy::expect_used)]
     let tab = tabs
         .iter()

@@ -73,6 +73,7 @@ fn is_decodable_image(bytes: &[u8]) -> bool {
 }
 
 #[cfg(test)]
+// The expects encode a 1x1 PNG in memory and parse literal fixture URLs the tests write themselves; a failure is a broken fixture.
 #[allow(clippy::expect_used)]
 mod tests {
     use super::*;

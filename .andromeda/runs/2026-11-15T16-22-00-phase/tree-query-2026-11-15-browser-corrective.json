@@ -1,0 +1,30 @@
+[
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name IN ('make_doc_config','for_document') AND callee_kind = 'fn' ORDER BY file, line;",
+"rows": 4,
+"result": [
+{
+"caller": "rust-analyzer cargo browser 0.0.0 document_loader/make_doc_config().",
+"file": "apps/browser/src/document_loader.rs",
+"line": 51
+},
+{
+"caller": "rust-analyzer cargo browser 0.0.0 document_loader/impl#[DocumentLoader]load_document().",
+"file": "apps/browser/src/document_loader.rs",
+"line": 123
+},
+{
+"caller": "rust-analyzer cargo browser 0.0.0 document_loader/impl#[DocumentLoader]load_document().",
+"file": "apps/browser/src/document_loader.rs",
+"line": 156
+},
+{
+"caller": "rust-analyzer cargo browser 0.0.0 history/tests/navigate_app().",
+"file": "apps/browser/src/history.rs",
+"line": 146
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

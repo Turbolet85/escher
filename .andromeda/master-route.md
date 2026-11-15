@@ -92,3 +92,4 @@
 2026-11-14-auto-exploration · complete · Auto-exploration — one command explores the available actions breadth-first within a step budget, catches panics and refusals, keeps each path as a replayable check · → chk:2026-11-14-auto-exploration
 2026-11-14-remote-pages-local-files · complete · Remote pages and local files in the browser — a remote page's favicon and its navigation to a file: URL read no local file · → chk:2026-11-14-remote-pages-local-files
 2026-11-15-upstream-sync-errors-and-explanation · complete · upstream/main merged to ea07ee716, the Taffy-main take measured and left out unless a registry Taffy carries it · → chk:2026-11-15-upstream-sync-errors-and-explanation
+2026-11-15-browser-corrective · pending · the browser's make_doc_config hand-off proven by its own tests; every browser expect_used allow carries its reason · → chk:2026-11-15-browser-corrective

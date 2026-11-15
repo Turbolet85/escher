@@ -271,3 +271,120 @@ impl blitz_vibey_script::ScriptFetcher for PrefetchedScriptFetcher {
         blitz_vibey_script::DefaultScriptFetcher.fetch(url)
     }
 }
+
+#[cfg(test)]
+// The expects parse literal fixture URLs the tests write themselves; a failed parse is a broken fixture.
+#[allow(clippy::expect_used)]
+mod tests {
+    use std::cell::RefCell;
+    use std::rc::Rc;
+
+    use blitz_traits::navigation::NavigationOptions;
+
+    use super::*;
+    use crate::history::HistoryNav;
+
+    struct NoShell;
+    impl ShellProvider for NoShell {}
+
+    #[derive(Default)]
+    struct Probe {
+        page: &'static str,
+        target: &'static str,
+        base_url: Option<String>,
+        same_net_provider: bool,
+        has_navigation_provider: bool,
+        current_url: Option<String>,
+    }
+
+    fn config_app() -> Element {
+        let probe = consume_context::<Rc<RefCell<Probe>>>();
+        let (page, target) = {
+            let probe = probe.borrow();
+            (probe.page, probe.target)
+        };
+        let history = Store::new_maybe_sync(History::new(Request::get(
+            Url::parse("https://initial.example/").expect("fixture initial parses"),
+        )));
+        let net_provider = Arc::new(StdNetProvider::new(None));
+        let config = make_doc_config(
+            Some(page.to_string()),
+            Arc::clone(&net_provider),
+            history,
+            FontContext::default(),
+            None,
+        );
+
+        let mut probe = probe.borrow_mut();
+        probe.base_url = config.base_url.clone();
+        probe.same_net_provider = config.net_provider.as_ref().is_some_and(|provider| {
+            Arc::as_ptr(provider).cast::<()>() == Arc::as_ptr(&net_provider).cast::<()>()
+        });
+        probe.has_navigation_provider = config.navigation_provider.is_some();
+        if let Some(provider) = &config.navigation_provider {
+            let target = Url::parse(target).expect("fixture target parses");
+            provider.navigate_to(NavigationOptions::new(target, None, 0));
+            probe.current_url = Some(HistoryNav::current_url(&history).read().url.to_string());
+        }
+        VNode::empty()
+    }
+
+    fn probe_config(page: &'static str, target: &'static str) -> Probe {
+        let probe = Rc::new(RefCell::new(Probe {
+            page,
+            target,
+            ..Probe::default()
+        }));
+        let shell: Arc<dyn ShellProvider> = Arc::new(NoShell);
+        VirtualDom::new(config_app)
+            .with_root_context(shell)
+            .with_root_context(Rc::clone(&probe))
+            .rebuild_in_place();
+        probe.take()
+    }
+
+    fn scheme(url: &str) -> String {
+        Url::parse(url)
+            .expect("fixture url parses")
+            .scheme()
+            .to_string()
+    }
+
+    #[test]
+    fn config_carries_the_page_url_and_the_passed_net_provider() {
+        assert_eq!(scheme("https://example.com/"), "https");
+        let probe = probe_config("https://example.com/", "https://example.org/");
+        assert_eq!(
+            probe.base_url.as_deref(),
+            Some("https://example.com/"),
+            "base_url"
+        );
+        assert!(probe.same_net_provider, "net_provider");
+    }
+
+    #[test]
+    fn remote_page_config_navigation_to_file_url_loads_nothing() {
+        assert_eq!(scheme("https://example.com/"), "https");
+        assert_eq!(scheme("file:///etc/hosts"), "file");
+        let probe = probe_config("https://example.com/", "file:///etc/hosts");
+        assert!(probe.has_navigation_provider, "navigation_provider");
+        assert_eq!(
+            probe.current_url.as_deref(),
+            Some("https://initial.example/"),
+            "current url"
+        );
+    }
+
+    #[test]
+    fn file_page_config_navigation_to_file_url_loads() {
+        assert_eq!(scheme("file:///tmp/page.html"), "file");
+        assert_eq!(scheme("file:///tmp/other.html"), "file");
+        let probe = probe_config("file:///tmp/page.html", "file:///tmp/other.html");
+        assert!(probe.has_navigation_provider, "navigation_provider");
+        assert_eq!(
+            probe.current_url.as_deref(),
+            Some("file:///tmp/other.html"),
+            "current url"
+        );
+    }
+}
