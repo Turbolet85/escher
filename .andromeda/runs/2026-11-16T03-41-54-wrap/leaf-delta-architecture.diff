@@ -1,0 +1,34 @@
+--- a/.andromeda/architecture.md
++++ b/.andromeda/architecture.md
+@@ -196,3 +196,3 @@
+ decision/driver-library-side-effect-free · Driver library without side channels — The driver library depends on no app, emits no event, installs no subscriber and reads no env var.
+-decision/driver-spans-only · Driver opens spans and emits no event — The driver opens one tracing span per call it runs and one tool_call span per MCP tools/call request, and emits no event, installs no subscriber, reads no env var and has no default state location.
++decision/driver-spans-only · Driver opens spans and emits no event — The driver opens one tracing span per call its run path runs and one tool_call span per MCP tools/call request, an in-process read outside the run path opening none, and emits no event, installs no subscriber, reads no env var and has no default state location.
+ decision/driver-uses-tracing · tracing in the driver — The driver takes tracing from the workspace with no cargo feature.
+@@ -605,2 +605,3 @@
+ decision/keyed-wire-form · keyed as the actionable-key wire form — ActionableNode's keyed reading, true where the id holds no /, is the actionable-key check's first wire form, carried by the actions verb on every carrier.
++decision/layout-read-in-process-only · Layout read stays in process — No verb, MCP tool, session socket call or kept check reaches the driver's layout read; it is answered in process only. · provisional
+ decision/lint-own-bounds-type · Lint's own rectangle type — Every lint rectangle is the lint's own bounds type in the snapshot bounds' space, and lint types hold no engine node id, page text, colour or value. · why: the driver crate names neither blitz-dom nor stylo
+@@ -742,2 +743,3 @@
+ contract/base-document/layout-as-text-input · BaseDocument · layout_as_text_input — Public and read-only: lays text out with a text input's editor styles, scale and direction in the document's fonts, one unbroken line, None for a node that is no text input.
++contract/base-document/layout-reason · BaseDocument · layout_reason — Public, read-only: answers a LayoutReason (placing word, container, offset, shifts, a size reason per axis with its cause), or None for an unresolved id, a non-element, an element with no computed styles or one with no box (display none, display contents, a display none ancestor); no log, no panic.
+ contract/base-document/select-of · BaseDocument · select_of — Public and read-only: the select a node belongs to, if any.
+@@ -750,2 +752,3 @@
+ contract/blitz-dom-clock/wall-clock · blitz-dom clock API · WallClock — Wall time from a web_time Instant origin; new and Default.
++contract/blitz-dom-crate-root/layout-reason-types · blitz-dom crate root · LayoutReason, Placed, Shift, SizeReason, FlexInputs and their enums — The layout reason's structs and its non-exhaustive enums PlacedBy, ShiftBy, SizeCause, Length and SizeKeyword are public read types re-exported from the crate root.
+ contract/blitz-dom-crate-root/select-list-view-types · blitz-dom crate root · SelectListView and SelectListRow — The open select list's view and rows are public read types re-exported from the crate root.
+@@ -855,2 +858,3 @@
+ contract/dioxus-native-dom-api/is-masked-input · dioxus-native-dom public API · is_masked_input — Public and re-exported beside MASKED_VALUE: true for an input whose type reads password or file, ASCII case-insensitive; the test the snapshot's value reader and the driver's recorder read.
++contract/dioxus-native-dom-api/layout-reason-types · dioxus-native-dom public API · layout reason types and BoundingRect — Public and re-exported beside NodeId: the ten layout reason types of blitz-dom and BoundingRect.
+ contract/dioxus-native-dom-api/seeded-random · dioxus-native-dom public API · SeededRandom — Public and re-exported: a splitmix64 generator whose clones share one state, so every component of one document draws from one stream in draw order; from_seed(u64), next_u64 and below(bound), the high bits of the 128-bit product, 0 for a bound of 0, no panic path; Debug writes the type name alone.
+@@ -904,2 +908,3 @@
+ contract/driver-session/command-schema · escher-driver session · command and refusal schema — The command and refusal schema is stated once as 'static data: fourteen verbs, eight closed causes.
++contract/driver-session/layout · escher-driver session · Session::layout — An in-process read answering a LayoutExplanation of String ids, closed words and numbers with no NodeId; it resolves its id as the run path does, refusing stale or not-found, records the screen's ids, runs no step, pump, tick or settle and opens no span.
+ contract/driver-session/lint · escher-driver session · Session::lint — Session::lint reads the screen and changes nothing.
+@@ -1030,2 +1035,6 @@
+ contract/launch/dioxus-native-configs · high-level launch · dioxus-native launch configs — dioxus-native's launch, launch_cfg and launch_cfg_with_props downcast configs and drop unmatched ones.
++contract/layout-reason/length · blitz-dom layout reason · Length — A stated length is closed: Auto, None, Px, Percent (0 to 100), Calc in px, or a SizeKeyword of MinContent, MaxContent, FitContent or Stretch.
++contract/layout-reason/placed-by · blitz-dom layout reason · PlacedBy — The placing word is closed: Block, Flex, Grid, Table, Inline, Float, Absolute, Fixed, Root, Select or SelectList.
++contract/layout-reason/shift-by · blitz-dom layout reason · ShiftBy — The shift word is closed: Scroll or Transform.
++contract/layout-reason/size-cause · blitz-dom layout reason · SizeCause — The cause of a size is closed: Style, Min, Max, FlexGrow, FlexShrink, Stretch, Grid, Table, Replaced, Content or Layout.
+ contract/layout/stylo-taffy-exports · blitz-dom layout · stylo_taffy exports — stylo_taffy exports to_taffy_style, TaffyStyloStyle, StyleFlags, Atom, WritingMode and WritingModeExt.

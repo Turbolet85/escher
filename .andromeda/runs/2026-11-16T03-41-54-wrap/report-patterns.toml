@@ -1,0 +1,31 @@
+[[pattern]]
+id = 'targets'
+regex = '''stand_layout|layout_reason|blitz-tests (test )?targets?|one target per behaviour'''
+
+[[pattern]]
+id = 'drvcov'
+regex = '''98\.05|97\.99|escher-driver(['’]s)? (line )?coverage'''
+
+[[pattern]]
+id = 'sesscommon'
+regex = '''session_common'''
+
+[[pattern]]
+id = 'pumpctl'
+regex = '''the_read_runs_no_pass|pump on a settled|pending (work|ticks?) (that )?a pass would apply|no-change (read|case)'''
+ignore_case = true
+
+[[pattern]]
+id = 'archread'
+regex = '''Session::layout|BaseDocument::layout_reason|LayoutReason|LayoutExplanation|PlacedBy|SizeCause|Placer::|layout explained|why an element sits'''
+ignore_case = true
+
+[[pattern]]
+id = 'carrier'
+regex = '''v030-11|layout verb|Layout on the carriers|layout read'''
+ignore_case = true
+
+[[pattern]]
+id = 'obsspan'
+regex = '''opens no span|emits no event|driver-emits-no-event'''
+ignore_case = true

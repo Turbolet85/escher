@@ -1,0 +1,9 @@
+@fit n=1 row=decision/driver-spans-only sha=5753a7bc723a v=fits type=1
+@fit n=2 row=contract/base-document/layout-reason sha=e67794f30046 v=fits type=3
+@fit n=3 row=contract/layout-reason/placed-by sha=1608afd64a55 v=fits type=3
+@fit n=4 row=contract/layout-reason/shift-by sha=f14a95bb7533 v=fits type=3
+@fit n=5 row=contract/layout-reason/size-cause sha=5ad5ea0a8cd2 v=fits type=3
+@fit n=6 row=contract/layout-reason/length sha=31987704f7a4 v=fits type=3
+@fit n=7 row=contract/blitz-dom-crate-root/layout-reason-types sha=76fd7cfbd27b v=fits type=3
+@fit n=8 row=contract/dioxus-native-dom-api/layout-reason-types sha=18d39e675fdb v=fits type=3
+@fit n=9 row=contract/driver-session/layout sha=889e26118e1b v=fits type=3
