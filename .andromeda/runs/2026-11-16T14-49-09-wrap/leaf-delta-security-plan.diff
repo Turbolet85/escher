@@ -1,7 +1,0 @@
---- a/.andromeda/security-plan.md
-+++ b/.andromeda/security-plan.md
-@@ -447,3 +447,3 @@
- decision/embolden-locked-fast-leg · font-embolden tested by a locked fast leg — The blitz-paint font-embolden feature is tested by a locked cargo leg among the fast legs, with no CI job of its own.
--decision/engine-dependency-pins · Engine dependency pins — The pins stay: Stylo 0.22.0, Taffy the git pin of upstream DioxusLabs/taffy at commit e90751fd, Dioxus 0.7.3 and winit =0.31.0-beta.3.
-+decision/engine-dependency-pins · Engine dependency pins — The pins stay: Stylo 0.22.0, Taffy the git pin of upstream DioxusLabs/taffy at commit a3997d55, Dioxus 0.7.3 and winit =0.31.0-beta.3.
- decision/free-disk-only-on-stand-repeat · Runner disk freed only for the repeated stand job — Only the `Stand checks repeated` CI job frees runner disk, with the free-disk-space action pinned to a commit; the `matrix_test` job holds no such step. · guard: test_only_stand_repeat_frees_disk

@@ -1,0 +1,1 @@
+Two items of the report are dispositioned, not dropped: the boundary registry that only grows (a long session keeps every boundary an app ever built) and its untested fallback branch for a document built after its first render. Each gets an owner: a CARRY on a route entry or a residual row, and a deferred one is mirrored into escher-0.4.0-incubator/deferred-from-0.3.0.md.

@@ -1,0 +1,9 @@
+@fit n=1 row=contract/acting-verb-results/caused sha=df40d82e037b v=fits type=3
+@fit n=2 row=decision/driver-library-side-effect-free sha=0b2bf050eeab v=fits type=2
+@fit n=3 row=decision/no-node-id-across-session sha=9b11c3e9c6f9 v=fits type=1
+@fit n=4 row=decision/no-echo-of-typed-input sha=e81469989b5e v=fits type=2
+@fit n=5 row=contract/answer-json/outcome sha=88ee2d86ae52 v=fits type=3
+@fit n=6 row=contract/acting-verb-results/caused-past sha=018eb74e4ee3 v=fits type=3
+@fit n=7 row=contract/telemetry-capture/bounds sha=66974c6ccc65 v=fits type=3
+@fit n=8 row=contract/dioxus-native-dom-api/boundary-marks sha=2757fc680f38 v=fits type=3
+@fit n=9 row=contract/telemetry/subscriber sha=7a35196c1fda v=fits type=3
