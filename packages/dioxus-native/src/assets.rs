@@ -50,14 +50,14 @@ impl NetProvider for DioxusNativeNetProvider {
                 }
                 Err(_) => {
                     #[cfg(feature = "tracing")]
-                    tracing::warn!("fetching asset from file system error {request:#?}");
+                    tracing::warn!(request = ?request, "fetching asset from file system error");
                 }
             }
         } else if let Some(inner) = &self.inner_net_provider {
             inner.fetch(doc_id, request, handler);
         } else {
             #[cfg(feature = "tracing")]
-            tracing::warn!("net feature not enabled, cannot fetch {request:#?}");
+            tracing::warn!(request = ?request, "net feature not enabled, cannot fetch the request");
         }
     }
 }

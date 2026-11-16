@@ -174,15 +174,37 @@ const CAUSED: FieldSpec = FieldSpec {
     name: "caused",
     kind: FieldKind::Entries,
     always: false,
-    help: "what the step caused, present only when it caused something: one entry per kind and \
-           level, each keyed kind (panic, a handler panic caught, the session kept; error, a \
-           handler's error that reached the app's root error boundary; log, records the app \
-           logged, or the UI framework at warn or error), level (error, warn, info, debug or \
-           trace; error for a panic and an error), id, owner and event, the element, its owner \
-           and the event of the first handler the step reached, left out where it reached none, \
-           and count; on a bubbling dispatch an ancestor's reads as the first handler's; an \
-           error a boundary of the app's own catches is not reported, and a `log` crate record \
-           is counted only in a process whose telemetry bridged it; no message or payload",
+    help: "what the step caused, present only when it caused something: one entry per panic, \
+           error and record, panics first, then errors, then records in the order logged, at \
+           most 16; each keyed kind (panic, a handler panic, the session kept; error, a \
+           handler's error a boundary of the app took; log, a record the app logged at any \
+           level, or the UI framework or the engine at warn or error), level (error, warn, \
+           info, debug or trace; error for a panic and an error), source and target on a log \
+           (source app, framework or engine, the target the crate it came from; a crate outside \
+           the framework's and the engine's reads app), message (a panic's payload, an error's \
+           top line, a record's message), file, line and column where known (as the compiler \
+           wrote them, a dependency's an absolute path), boundary on an error (root, the app's \
+           root error boundary, or own, a boundary of the app's own) and its chain, each cause \
+           after the top line in order, at most 8, chain_past counting the rest, fields on a \
+           log, each name and value, at most 8, fields_past counting the rest, and id, owner \
+           and event, the element, its owner and the event of the first handler the step \
+           reached, left out where it reached none; on a bubbling dispatch an ancestor's reads \
+           as the first handler's. Every text is cut at 1024 bytes, a cut one followed by cut, \
+           the bytes cut. A field named url, href, src, html, text, value, attrs, path, \
+           request, error, panic.payload or password reads [redacted], the same for every \
+           source; every message crosses as its author wrote it, and holds what its author \
+           wrote into it. An engine record exists only in a build that compiled the engine's \
+           tracing, a `log` crate record is read only in a process whose telemetry bridged it, \
+           and an app that provides its own error boundary factory shadows the session's, so an \
+           error its boundaries take is not reported",
+};
+
+const CAUSED_PAST: FieldSpec = FieldSpec {
+    name: "caused_past",
+    kind: FieldKind::Entries,
+    always: false,
+    help: "the entries past caused's 16, present only when there are any: one per kind and \
+           source, keyed kind, source on a log, and count",
 };
 
 const IN_VIEW: FieldSpec = FieldSpec {
@@ -251,7 +273,7 @@ pub(crate) const CLICK: VerbSpec = VerbSpec {
         required: true,
         help: "the id of the element to click, as a snapshot lists it",
     }],
-    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, CAUSED],
+    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, CAUSED, CAUSED_PAST],
 };
 
 pub(crate) const TYPE: VerbSpec = VerbSpec {
@@ -276,7 +298,7 @@ pub(crate) const TYPE: VerbSpec = VerbSpec {
             help: "the text to type",
         },
     ],
-    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, CAUSED],
+    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, CAUSED, CAUSED_PAST],
 };
 
 pub(crate) const PRESS: VerbSpec = VerbSpec {
@@ -302,7 +324,7 @@ pub(crate) const PRESS: VerbSpec = VerbSpec {
             help: "whether shift is held while the key is pressed; false when absent",
         },
     ],
-    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, CAUSED],
+    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, CAUSED, CAUSED_PAST],
 };
 
 pub(crate) const ADVANCE: VerbSpec = VerbSpec {
@@ -317,7 +339,16 @@ pub(crate) const ADVANCE: VerbSpec = VerbSpec {
         required: true,
         help: "how far to move the session's clock, in milliseconds",
     }],
-    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, ADVANCED_MS, CAUSED],
+    fields: &[
+        SETTLED,
+        BUSY,
+        ADDED,
+        REMOVED,
+        CHANGED,
+        ADVANCED_MS,
+        CAUSED,
+        CAUSED_PAST,
+    ],
 };
 
 pub(crate) const SCROLL: VerbSpec = VerbSpec {
@@ -330,7 +361,16 @@ pub(crate) const SCROLL: VerbSpec = VerbSpec {
         required: true,
         help: "the id of the element to bring into view, as a snapshot lists it",
     }],
-    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, IN_VIEW, CAUSED],
+    fields: &[
+        SETTLED,
+        BUSY,
+        ADDED,
+        REMOVED,
+        CHANGED,
+        IN_VIEW,
+        CAUSED,
+        CAUSED_PAST,
+    ],
 };
 
 pub(crate) const SCREENSHOT: VerbSpec = VerbSpec {

@@ -1141,7 +1141,11 @@ fn click_link(doc: &mut BaseDocument, node_id: NodeId) -> bool {
         }
     } else {
         #[cfg(feature = "tracing")]
-        tracing::warn!("{href} is not parseable as a url. : {:?}", *doc.url);
+        tracing::warn!(
+            href = %href,
+            url = ?*doc.url,
+            "Clicked link's href is not parseable as a url"
+        );
     }
     true
 }

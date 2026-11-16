@@ -49,6 +49,7 @@ fn acted() -> Result<Outcome, Refusal> {
             changed: Vec::new(),
         },
         caused: Vec::new(),
+        caused_past: Vec::new(),
     })
 }
 

@@ -241,6 +241,7 @@ mod tests {
                 changed: Vec::new(),
             },
             caused: Vec::new(),
+            caused_past: Vec::new(),
         });
         let check = check(
             "counter",

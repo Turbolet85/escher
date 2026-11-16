@@ -1,0 +1,55 @@
+[[control]]
+id = 'scrub'
+entry = 4
+guard = 'the capture scrub content-name test made always-false'
+case = 'each_failure_answers_what_failed_where_and_from_which_source'
+[[control.edit]]
+path = 'packages/escher-telemetry/src/capture.rs'
+old = 'let value = if CONTENT_FIELDS.contains(&name) {'
+new = 'let value = if false && CONTENT_FIELDS.contains(&name) {'
+
+[[control]]
+id = 'cut'
+entry = 4
+guard = 'TEXT_CUT loosened from 1024 to 2048'
+case = 'a_flood_is_cut_counted_and_bounded'
+[[control.edit]]
+path = 'packages/escher-telemetry/src/capture.rs'
+old = 'pub const TEXT_CUT: usize = 1024;'
+new = 'pub const TEXT_CUT: usize = 2048;'
+
+[[control]]
+id = 'chain'
+entry = 4
+guard = 'the chaining hook call to the hook it replaced removed'
+case = 'the_hook_installs_once_and_a_panic_outside_a_capture_reads_as_before'
+[[control.edit]]
+path = 'packages/escher-telemetry/src/capture.rs'
+old = '''            keep_panic(info);
+            previous(info);'''
+new = '''            keep_panic(info);
+            let _ = &previous;'''
+
+[[control]]
+id = 'factory'
+entry = 4
+guard = 'the boundary factory provision in DioxusDocument::new removed'
+case = 'each_failure_answers_what_failed_where_and_from_which_source'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/dioxus_document.rs'
+old = '        crate::boundary::provide_boundary_registry(&vdom);'
+new = '        let _ = &vdom;'
+
+[[control]]
+id = 'href'
+entry = 5
+guard = 'the href interpolation restored in the pointer.rs warning message'
+case = 'each_failure_answers_what_failed_where_and_from_which_source'
+[[control.edit]]
+path = 'packages/blitz-dom/src/events/pointer.rs'
+old = '''        tracing::warn!(
+            href = %href,
+            url = ?*doc.url,
+            "Clicked link's href is not parseable as a url"
+        );'''
+new = '''        tracing::warn!("{href} is not parseable as a url. : {:?}", *doc.url);'''

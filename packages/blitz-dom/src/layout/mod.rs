@@ -247,7 +247,7 @@ impl LayoutPassState<'_> {
                 #[cfg(feature = "tracing")]
                 tracing::error!(
                     node_id = ?dom_node_id(node_id),
-                    data = ?data,
+                    text = ?data,
                     "Tried to lay out text node individually",
                 );
 

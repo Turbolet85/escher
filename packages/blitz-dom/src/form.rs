@@ -154,8 +154,8 @@ impl BaseDocument {
             _ => {
                 #[cfg(feature = "tracing")]
                 tracing::warn!(
-                    "Scheme {} with method {:?} is not implemented",
-                    scheme,
+                    url = %scheme,
+                    "Form submission scheme with method {:?} is not implemented",
                     method
                 );
                 return;

@@ -58,6 +58,7 @@ pub const CONTENT_FIELDS: &[&str] = &[
     "request",
     "error",
     "panic.payload",
+    "password",
 ];
 
 /// The marker printed in place of a redacted field's value.
@@ -315,6 +316,7 @@ mod tests {
             Verdict::Redact
         );
         assert_eq!(decide("blitz_net", "url"), Verdict::Redact);
+        assert_eq!(decide("escher_driver", "password"), Verdict::Redact);
     }
 
     #[test]

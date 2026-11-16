@@ -1,18 +1,19 @@
-//! An acting call's answer carries what its step caused, by node and handler: on a fixture page
-//! booted with the stand's options, in both layout modes, a `click` whose handler panics answers
-//! one `panic` item, a `click` whose handler returns `Err` one `error` item, a `click` whose
-//! handler logs at `info` and `warn` two `log` items, a `type` whose `oninput` logs at `debug` a
-//! `log` item, and a `press` Enter on the focused logging button its `click`'s items — each tied
-//! to the stable id, owner id and event of the handler the step reached, closed words and counts
-//! alone. An `advance`, a `scroll` and a click that caused nothing answer no `caused` key, and a
-//! refused call carries none. After the caught panic the held session still answers and a click
-//! acts. No answer line holds a byte of the panic payload or a log message; the `Err` the app's
-//! root error boundary takes replaces the app with that boundary's own rendering of the error,
-//! so its case runs on a session of its own and reads no byte of the error in `caused`. The same
+//! An acting call's answer carries what its step caused, one item per record, by node and
+//! handler: on a fixture page booted with the stand's options, in both layout modes, a `click`
+//! whose handler panics answers one `panic` item holding its payload and the location in this
+//! file, a `click` whose handler returns `Err` one `error` item holding the error's text and the
+//! `root` boundary, a `click` whose handler logs at `info` and `warn` two `log` items in the order
+//! logged, a `type` whose `oninput` logs at `debug` one `log` item per character typed, and a
+//! `press` Enter on the focused logging button its `click`'s items — each `app`-sourced record
+//! holding its message, each item tied to the stable id, owner id and event of the handler the
+//! step reached. An `advance`, a `scroll` and a click that caused nothing answer no `caused` key,
+//! and a refused call carries none. After the caught panic the held session still answers and a
+//! click acts. The `Err` the app's root error boundary takes replaces the app with that
+//! boundary's own rendering of the error, so its case runs on a session of its own. The same
 //! `caused` crosses `serve_mcp` in process and a kept check, which replays holding, and a copy
-//! with a count flipped stops at its step naming `caused`. The `command` span around a panicking
-//! call keeps its eight fields and holds nothing of `caused`, read through a recorder this check
-//! installs. A failure message names a layout mode and an index only.
+//! with its message changed stops at its step naming `caused`. The `command` span around a
+//! panicking call keeps its eight fields and holds nothing of `caused`, read through a recorder
+//! this check installs. A failure message names a layout mode and an index only.
 
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
@@ -22,6 +23,7 @@ use dioxus_core::CapturedError;
 use escher_driver::{
     Call, Cause, Caused, CausedKind, CausedLevel, Outcome, Refusal, Session, serve_mcp,
 };
+use escher_telemetry::Source;
 use tracing::field::{Field, Visit};
 use tracing::span::{Attributes, Id, Record};
 use tracing::{Event, Metadata, Subscriber};
@@ -49,6 +51,8 @@ const LABEL: &str = "errors";
 fn mode_name(incremental: bool) -> &'static str {
     if incremental { "incremental" } else { "full" }
 }
+
+const PANIC_LINE: u32 = line!() + 4;
 
 /// The panicking button's handler: a unit function, so the handler is no diverging closure.
 fn fail() {
@@ -127,25 +131,54 @@ fn handler(
     (Some(id.to_string()), owner, Some(event.to_string()))
 }
 
-fn item(
-    kind: CausedKind,
+/// What an item reads, beside its handler: its kind, level, source and message.
+type Read = (
+    CausedKind,
+    CausedLevel,
+    Option<Source>,
+    String,
+    (Option<String>, Option<String>, Option<String>),
+);
+
+fn read(caused: &[Caused]) -> Vec<Read> {
+    caused
+        .iter()
+        .map(|item| {
+            (
+                item.kind,
+                item.level,
+                item.source,
+                item.message.text.clone(),
+                (item.id.clone(), item.owner.clone(), item.event.clone()),
+            )
+        })
+        .collect()
+}
+
+fn logged(
     level: CausedLevel,
-    (id, owner, event): (Option<String>, Option<String>, Option<String>),
-    count: u32,
-) -> Caused {
-    Caused {
-        kind,
+    message: &str,
+    tied: &(Option<String>, Option<String>, Option<String>),
+) -> Read {
+    (
+        CausedKind::Log,
         level,
-        id,
-        owner,
-        event,
-        count,
-    }
+        Some(Source::App),
+        message.to_string(),
+        tied.clone(),
+    )
 }
 
 /// The written `caused` member of a line, from its key to the line's end.
 fn caused_member(line: &str) -> Option<&str> {
     line.find(r#""caused":"#).map(|at| &line[at..])
+}
+
+/// Asserts `sentinel` is written in the line's `caused` member.
+#[track_caller]
+fn carries(line: &str, sentinel: &str, at: &str) {
+    let member = caused_member(line).unwrap_or_else(|| panic!("{at}: a caused key"));
+    assert!(member.contains(sentinel), "{at}: the sentinel is in caused");
 }
 
 #[track_caller]
@@ -190,49 +223,61 @@ fn each_acting_call_answers_what_its_step_caused_by_its_handler() {
         let tied = handler(&session, "panic-button", "click");
         let (caused, line) = answered(&mut session, &click("panic-button"), &at);
         assert!(
-            caused == [item(CausedKind::Panic, CausedLevel::Error, tied, 1)],
-            "{at}: one panic item tied to the button's click"
+            read(&caused)
+                == [(
+                    CausedKind::Panic,
+                    CausedLevel::Error,
+                    None,
+                    PANIC_SENTINEL.to_string(),
+                    tied
+                )],
+            "{at}: one panic item holding its payload, tied to the button's click"
         );
-        holds_no_sentinel(&line, &at);
+        assert!(
+            caused[0].file.as_deref() == Some(file!()) && caused[0].line == Some(PANIC_LINE),
+            "{at}: the panic's location is the failing line"
+        );
+        carries(&line, PANIC_SENTINEL, &at);
         count_acts(&mut session, 1, &format!("{mode}: 0 after"));
 
         // 1: a click whose handler logs at info and warn.
         let at = format!("{mode}: 1");
         let tied = handler(&session, "log-button", "click");
         let (caused, line) = answered(&mut session, &click("log-button"), &at);
+        let expected = [
+            logged(CausedLevel::Info, INFO_SENTINEL, &tied),
+            logged(CausedLevel::Warn, WARN_SENTINEL, &tied),
+        ];
         assert!(
-            caused
-                == [
-                    item(CausedKind::Log, CausedLevel::Warn, tied.clone(), 1),
-                    item(CausedKind::Log, CausedLevel::Info, tied.clone(), 1),
-                ],
-            "{at}: warn then info, each once"
+            read(&caused) == expected,
+            "{at}: info then warn, in the order logged"
         );
-        holds_no_sentinel(&line, &at);
+        carries(&line, INFO_SENTINEL, &at);
+        carries(&line, WARN_SENTINEL, &at);
 
         // 2: Enter on the focused logging button reads its click's items.
         let at = format!("{mode}: 2");
         let (caused, line) = answered(&mut session, &press("enter", false), &at);
         assert!(
-            caused
-                == [
-                    item(CausedKind::Log, CausedLevel::Warn, tied.clone(), 1),
-                    item(CausedKind::Log, CausedLevel::Info, tied, 1),
-                ],
+            read(&caused) == expected,
             "{at}: the press reads the click's items"
         );
-        holds_no_sentinel(&line, &at);
+        carries(&line, WARN_SENTINEL, &at);
         count_acts(&mut session, 2, &format!("{mode}: 2 after"));
 
         // 3: a type whose oninput logs at debug, once per character typed.
         let at = format!("{mode}: 3");
         let tied = handler(&session, "log-input", "input");
         let (caused, line) = answered(&mut session, &type_into("log-input", "ab"), &at);
+        let expected = [
+            logged(CausedLevel::Debug, DEBUG_SENTINEL, &tied),
+            logged(CausedLevel::Debug, DEBUG_SENTINEL, &tied),
+        ];
         assert!(
-            caused == [item(CausedKind::Log, CausedLevel::Debug, tied, 2)],
-            "{at}: one debug item tied to the input"
+            read(&caused) == expected,
+            "{at}: one debug item per character, tied to the input"
         );
-        holds_no_sentinel(&line, &at);
+        carries(&line, DEBUG_SENTINEL, &at);
         count_acts(&mut session, 3, &format!("{mode}: 3 after"));
 
         // 4: an advance reaches no handler and causes nothing.
@@ -275,11 +320,23 @@ fn an_err_the_root_boundary_takes_reads_one_error_item_on_a_session_of_its_own()
         let tied = handler(&session, "err-button", "click");
         let (caused, line) = answered(&mut session, &click("err-button"), &at);
         assert!(
-            caused == [item(CausedKind::Error, CausedLevel::Error, tied, 1)],
-            "{at}: one error item tied to the button's click"
+            read(&caused)
+                == [(
+                    CausedKind::Error,
+                    CausedLevel::Error,
+                    None,
+                    ERR_SENTINEL.to_string(),
+                    tied
+                )],
+            "{at}: one error item holding its text, tied to the button's click"
         );
-        let member = caused_member(&line).unwrap_or_else(|| panic!("{at}: a caused key"));
-        holds_no_sentinel(member, &at);
+        assert!(
+            caused[0].boundary == Some(dioxus_native_dom::Boundary::Root)
+                && caused[0].chain.is_empty(),
+            "{at}: the root boundary took it, a chain of none"
+        );
+        carries(&line, ERR_SENTINEL, &at);
+        assert!(line.contains(r#""boundary":"root""#), "{at}: written root");
         assert!(
             session.harness().doc.root_error_mark().is_some(),
             "{at}: the root boundary holds the error"
@@ -344,13 +401,16 @@ fn the_same_caused_crosses_serve_mcp_in_process() {
             text.contains(member.trim_end_matches('}')),
             "{at}: the tool result carries the same caused"
         );
-        holds_no_sentinel(&replies[1], &at);
+        assert!(
+            replies[1].contains(PANIC_SENTINEL),
+            "{at}: the payload crosses"
+        );
     }
 }
 
 #[cfg(unix)]
 #[test]
-fn a_kept_check_replays_its_caused_and_a_flipped_count_stops_naming_caused() {
+fn a_kept_check_replays_its_caused_and_a_changed_message_stops_naming_caused() {
     use escher_driver::Check;
     use session_common::state_dir;
 
@@ -378,20 +438,19 @@ fn a_kept_check_replays_its_caused_and_a_flipped_count_stops_naming_caused() {
                 .unwrap_or_else(|_| panic!("{at}: the check is kept"));
             let _ = std::fs::remove_dir_all(&dir);
             let text = std::str::from_utf8(&bytes).expect("a check is text");
-            // The root boundary renders the error on the screen, so the Err row reads its
-            // kept caused alone.
+            let sentinel = if name == "err" {
+                ERR_SENTINEL
+            } else {
+                PANIC_SENTINEL
+            };
             let caused_at = text
-                .find(r#""caused":"#)
+                .find(r#"\"caused\":"#)
+                .or_else(|| text.find(r#""caused":"#))
                 .unwrap_or_else(|| panic!("{at}: the kept answer holds caused"));
-            let caused_end = caused_at + text[caused_at..].find(']').unwrap_or(0);
-            holds_no_sentinel(&text[caused_at..=caused_end], &at);
-            if name == "panic" {
-                holds_no_sentinel(text, &at);
-            }
-            let kind = format!(r#""kind":"{}""#, if name == "err" { "error" } else { name });
-            let item = text
-                .find(&kind)
-                .unwrap_or_else(|| panic!("{at}: the kept answer holds the item"));
+            let message = caused_at
+                + text[caused_at..]
+                    .find(sentinel)
+                    .unwrap_or_else(|| panic!("{at}: the kept caused holds the message"));
 
             let check =
                 Check::from_bytes(&bytes).unwrap_or_else(|_| panic!("{at}: the check reads"));
@@ -399,16 +458,7 @@ fn a_kept_check_replays_its_caused_and_a_flipped_count_stops_naming_caused() {
             assert!(replay.holds(), "{at}: the replay holds");
             assert!(replay.ran() == calls.len(), "{at}: every step ran");
 
-            let count = item
-                + text[item..]
-                    .find(r#""count":1"#)
-                    .unwrap_or_else(|| panic!("{at}: the item counts 1"));
-            let flipped = format!(
-                "{}{}{}",
-                &text[..count],
-                r#""count":2"#,
-                &text[count + r#""count":1"#.len()..]
-            );
+            let flipped = format!("{}{}{}", &text[..message], "changed-", &text[message..]);
             let check = Check::from_bytes(flipped.as_bytes())
                 .unwrap_or_else(|_| panic!("{at}: the flipped check reads"));
             let replay = check.replay(&mut hold(incremental));

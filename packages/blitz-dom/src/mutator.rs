@@ -1539,7 +1539,7 @@ impl<'doc> DocumentMutator<'doc> {
         }
         let Some(url) = self.doc.url.resolve_relative(raw_src) else {
             #[cfg(feature = "tracing")]
-            tracing::warn!("Not loading iframe: could not resolve url {raw_src}");
+            tracing::warn!(src = %raw_src, "Not loading iframe: could not resolve its src");
             return;
         };
         self.doc.start_iframe_load(target_id, url);

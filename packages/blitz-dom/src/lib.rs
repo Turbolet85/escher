@@ -31,6 +31,10 @@
 pub const DEFAULT_CSS: &str = include_str!("../assets/default.css");
 pub const BULLET_FONT: &[u8] = include_bytes!("../assets/moz-bullet-font.otf");
 
+/// Whether this build compiled the engine's `tracing` call sites (the crate's `tracing`
+/// feature): where it is false, the engine emits no record at any level.
+pub const TRACING_COMPILED: bool = cfg!(feature = "tracing");
+
 /// The DOM implementation.
 ///
 /// This is the primary entry point for this crate.

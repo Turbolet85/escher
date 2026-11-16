@@ -107,6 +107,7 @@ impl DioxusDocument {
     pub fn new(vdom: VirtualDom, mut config: DocumentConfig) -> Self {
         // Only really needs to happen once
         set_event_converter(Box::new(NativeConverter {}));
+        crate::boundary::provide_boundary_registry(&vdom);
 
         config.base_url = Some(
             config

@@ -14,7 +14,7 @@ use tracing::Span;
 use tracing::field::Empty;
 
 use crate::actions::ActionNode;
-use crate::caused::{Caused, StepReading, caused};
+use crate::caused::{Caused, CausedPast, StepReading, caused};
 use crate::command::{Call, Command, Key, validate};
 use crate::image;
 use crate::lint::Finding;
@@ -52,10 +52,12 @@ pub enum Outcome {
         /// What the screen reads differently after the step: the elements added, the ids
         /// removed and the elements changed.
         diff: SnapshotDiff,
-        /// What the step caused, each tied to the first handler it reached: a handler panic
-        /// the run path caught, an error that reached the app's root error boundary, the records
-        /// it logged per level. Empty when it caused nothing.
+        /// What the step caused, one item per panic, error and record, each tied to the first
+        /// handler it reached, at most [`CAUSED_KEPT`](crate::CAUSED_KEPT). Empty when it caused
+        /// nothing.
         caused: Vec<Caused>,
+        /// The items past [`CAUSED_KEPT`](crate::CAUSED_KEPT), counted by kind and source.
+        caused_past: Vec<CausedPast>,
     },
     /// What `advance` returns.
     Advanced {
@@ -68,10 +70,12 @@ pub enum Outcome {
         diff: SnapshotDiff,
         /// The time the app actually moved, in milliseconds: never more than was asked.
         advanced_ms: u32,
-        /// What the step caused, each tied to the first handler it reached: a handler panic
-        /// the run path caught, an error that reached the app's root error boundary, the records
-        /// it logged per level. Empty when it caused nothing.
+        /// What the step caused, one item per panic, error and record, each tied to the first
+        /// handler it reached, at most [`CAUSED_KEPT`](crate::CAUSED_KEPT). Empty when it caused
+        /// nothing.
         caused: Vec<Caused>,
+        /// The items past [`CAUSED_KEPT`](crate::CAUSED_KEPT), counted by kind and source.
+        caused_past: Vec<CausedPast>,
     },
     /// What `scroll` returns.
     Scrolled {
@@ -86,10 +90,12 @@ pub enum Outcome {
         /// bring it there: a `click` or a `type` naming it would still be refused as
         /// [`Cause::OffScreen`].
         in_view: bool,
-        /// What the step caused, each tied to the first handler it reached: a handler panic
-        /// the run path caught, an error that reached the app's root error boundary, the records
-        /// it logged per level. Empty when it caused nothing.
+        /// What the step caused, one item per panic, error and record, each tied to the first
+        /// handler it reached, at most [`CAUSED_KEPT`](crate::CAUSED_KEPT). Empty when it caused
+        /// nothing.
         caused: Vec<Caused>,
+        /// The items past [`CAUSED_KEPT`](crate::CAUSED_KEPT), counted by kind and source.
+        caused_past: Vec<CausedPast>,
     },
     /// What `screenshot` returns.
     Shot {
@@ -343,18 +349,20 @@ fn advance(
     ms: u32,
 ) -> Outcome {
     let before = read_screen(harness, seen);
-    let (busy, diff, _, caused) = settled_step(harness, seen, span, before, |harness| {
-        harness.advance_time(Duration::from_millis(u64::from(ms)));
-        if let Some(step) = step.as_mut() {
-            step(harness, ms);
-        }
-    });
+    let (busy, diff, _, (caused, caused_past)) =
+        settled_step(harness, seen, span, before, |harness| {
+            harness.advance_time(Duration::from_millis(u64::from(ms)));
+            if let Some(step) = step.as_mut() {
+                step(harness, ms);
+            }
+        });
     Outcome::Advanced {
         settled: busy.is_none(),
         busy,
         diff,
         advanced_ms: ms,
         caused,
+        caused_past,
     }
 }
 
@@ -368,9 +376,10 @@ fn scroll(
 ) -> Result<Outcome, Refusal> {
     let (before, target) = resolve(harness, seen, id)?;
     check_target(harness, command, &target)?;
-    let (busy, diff, after, caused) = settled_step(harness, seen, span, before, |harness| {
-        harness.scroll_into_view(target.node)
-    });
+    let (busy, diff, after, (caused, caused_past)) =
+        settled_step(harness, seen, span, before, |harness| {
+            harness.scroll_into_view(target.node)
+        });
     let in_view = locate(harness, &after, id).is_some_and(|target| in_view(harness, &target));
     Ok(Outcome::Scrolled {
         settled: busy.is_none(),
@@ -378,6 +387,7 @@ fn scroll(
         diff,
         in_view,
         caused,
+        caused_past,
     })
 }
 
@@ -695,6 +705,9 @@ fn covered(harness: &Harness<DioxusDocument>, target: &Target, page: (f32, f32))
     true
 }
 
+/// What a step caused: the items kept and those past the count.
+type StepCaused = (Vec<Caused>, Vec<CausedPast>);
+
 /// Runs `step` after the snapshot `before` and settles the instance before the next one: the
 /// class of work still outstanding, if any, the diff of the two, the snapshot after and what
 /// the step caused. The passes a settle that went quiet took are recorded on `span`.
@@ -708,9 +721,9 @@ fn settled_step(
     span: &Span,
     before: Snapshot,
     step: impl FnOnce(&mut Harness<DioxusDocument>),
-) -> (Option<Busy>, SnapshotDiff, Snapshot, Vec<Caused>) {
+) -> (Option<Busy>, SnapshotDiff, Snapshot, StepCaused) {
     harness.doc.take_step_reached();
-    let mark_before = harness.doc.root_error_mark();
+    let marks_before = harness.doc.boundary_marks();
     let ((panics, settle), captured) = escher_telemetry::capture(|| {
         let mut panics = 0u32;
         if catch_unwind(AssertUnwindSafe(|| step(harness))).is_err() {
@@ -740,7 +753,7 @@ fn settled_step(
         &harness.doc,
         StepReading {
             panics,
-            mark_before,
+            marks_before,
             captured,
             reached,
         },
@@ -755,12 +768,13 @@ fn acted(
     before: Snapshot,
     step: impl FnOnce(&mut Harness<DioxusDocument>),
 ) -> Outcome {
-    let (busy, diff, _, caused) = settled_step(harness, seen, span, before, step);
+    let (busy, diff, _, (caused, caused_past)) = settled_step(harness, seen, span, before, step);
     Outcome::Acted {
         settled: busy.is_none(),
         busy,
         diff,
         caused,
+        caused_past,
     }
 }
 

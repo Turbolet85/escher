@@ -7,7 +7,7 @@ use blitz_test_harness::Busy;
 use dioxus_native_dom::{DiffNode, GraphNode, GraphState, Reading, SnapshotDiff, WriteFlag};
 
 use crate::actions::ActionNode;
-use crate::caused::Caused;
+use crate::caused::{Caused, CausedKind, CausedPast, boundary_word};
 use crate::client::Hello;
 use crate::coverage::Coverage;
 use crate::error::SessionError;
@@ -352,18 +352,72 @@ fn acted(settled: bool, busy: Option<Busy>, diff: &SnapshotDiff) -> Object {
     object
 }
 
-/// Writes `caused` last on an acting answer, and only when the step caused something.
-fn with_caused(mut object: Object, caused: &[Caused]) -> String {
+/// Writes `caused` and then `caused_past` last on an acting answer, each only when it holds
+/// something.
+fn with_caused(mut object: Object, caused: &[Caused], past: &[CausedPast]) -> String {
     if !caused.is_empty() {
         object.json("caused", &list(caused.iter().map(caused_item)));
     }
+    if !past.is_empty() {
+        object.json("caused_past", &list(past.iter().map(caused_past_item)));
+    }
     object.end()
+}
+
+/// A kept text as `key`, then its `cut` only where it was cut.
+fn cut_text(object: &mut Object, key: &str, text: &escher_telemetry::Text) {
+    object.text(key, &text.text);
+    if text.cut > 0 {
+        object.count("cut", u64::try_from(text.cut).unwrap_or(u64::MAX));
+    }
 }
 
 fn caused_item(item: &Caused) -> String {
     let mut object = Object::new();
     object.text("kind", item.kind.name());
     object.text("level", item.level.name());
+    if let Some(source) = item.source {
+        object.text("source", source.name());
+    }
+    if let Some(target) = &item.target {
+        object.text("target", target);
+    }
+    cut_text(&mut object, "message", &item.message);
+    if let Some(file) = &item.file {
+        object.text("file", file);
+    }
+    if let Some(line) = item.line {
+        object.count("line", u64::from(line));
+    }
+    if let Some(column) = item.column {
+        object.count("column", u64::from(column));
+    }
+    if let Some(boundary) = item.boundary {
+        object.text("boundary", boundary_word(boundary));
+    }
+    if item.kind == CausedKind::Error {
+        object.json(
+            "chain",
+            &list(item.chain.iter().map(|link| {
+                let mut entry = Object::new();
+                cut_text(&mut entry, "message", link);
+                entry.end()
+            })),
+        );
+        object.count("chain_past", u64::from(item.chain_past));
+    }
+    if item.kind == CausedKind::Log {
+        object.json(
+            "fields",
+            &list(item.fields.iter().map(|field| {
+                let mut entry = Object::new();
+                entry.text("name", &field.name);
+                cut_text(&mut entry, "value", &field.value);
+                entry.end()
+            })),
+        );
+        object.count("fields_past", u64::from(item.fields_past));
+    }
     if let Some(id) = &item.id {
         object.text("id", id);
     }
@@ -373,7 +427,16 @@ fn caused_item(item: &Caused) -> String {
     if let Some(event) = &item.event {
         object.text("event", event);
     }
-    object.count("count", u64::from(item.count));
+    object.end()
+}
+
+fn caused_past_item(past: &CausedPast) -> String {
+    let mut object = Object::new();
+    object.text("kind", past.kind.name());
+    if let Some(source) = past.source {
+        object.text("source", source.name());
+    }
+    object.count("count", u64::from(past.count));
     object.end()
 }
 
@@ -496,17 +559,19 @@ impl Outcome {
                 busy,
                 diff,
                 caused,
-            } => with_caused(acted(*settled, *busy, diff), caused),
+                caused_past,
+            } => with_caused(acted(*settled, *busy, diff), caused, caused_past),
             Outcome::Advanced {
                 settled,
                 busy,
                 diff,
                 advanced_ms,
                 caused,
+                caused_past,
             } => {
                 let mut object = acted(*settled, *busy, diff);
                 object.count("advanced_ms", u64::from(*advanced_ms));
-                with_caused(object, caused)
+                with_caused(object, caused, caused_past)
             }
             Outcome::Scrolled {
                 settled,
@@ -514,10 +579,11 @@ impl Outcome {
                 diff,
                 in_view,
                 caused,
+                caused_past,
             } => {
                 let mut object = acted(*settled, *busy, diff);
                 object.flag("in_view", *in_view);
-                with_caused(object, caused)
+                with_caused(object, caused, caused_past)
             }
             Outcome::Shot { width, height, png } => {
                 let mut object = shot(*width, *height);
@@ -672,48 +738,103 @@ mod tests {
         }
     }
 
+    fn text(text: &str, cut: usize) -> escher_telemetry::Text {
+        escher_telemetry::Text {
+            text: text.to_string(),
+            cut,
+        }
+    }
+
     fn caused_item(
         kind: CausedKind,
         level: CausedLevel,
         handler: Option<(&str, Option<&str>, &str)>,
-        count: u32,
+        message: &str,
     ) -> Caused {
         Caused {
             kind,
             level,
+            source: None,
+            target: None,
+            message: text(message, 0),
+            file: None,
+            line: None,
+            column: None,
+            boundary: None,
+            chain: Vec::new(),
+            chain_past: 0,
+            fields: Vec::new(),
+            fields_past: 0,
             id: handler.map(|(id, ..)| id.to_string()),
             owner: handler.and_then(|(_, owner, _)| owner.map(str::to_string)),
             event: handler.map(|(.., event)| event.to_string()),
-            count,
         }
     }
 
     fn every_caused() -> Vec<Caused> {
-        vec![
-            caused_item(
-                CausedKind::Panic,
-                CausedLevel::Error,
-                Some(("go", Some("form"), "click")),
-                2,
-            ),
-            caused_item(
-                CausedKind::Error,
-                CausedLevel::Error,
-                Some(("go", None, "click")),
-                1,
-            ),
-            caused_item(
-                CausedKind::Log,
-                CausedLevel::Debug,
-                Some(("a\"b", Some("form"), "input")),
-                3,
-            ),
-            log_without_handler(),
-        ]
+        let mut panicked = caused_item(
+            CausedKind::Panic,
+            CausedLevel::Error,
+            Some(("go", Some("form"), "click")),
+            "index out of bounds",
+        );
+        panicked.file = Some("src/app.rs".to_string());
+        panicked.line = Some(12);
+        panicked.column = Some(5);
+        let mut errored = caused_item(
+            CausedKind::Error,
+            CausedLevel::Error,
+            Some(("go", None, "click")),
+            "could not load",
+        );
+        errored.boundary = Some(dioxus_native_dom::Boundary::Own);
+        errored.chain = vec![text("bad \"seats\"", 0), text("x", 2)];
+        errored.chain_past = 1;
+        let mut logged = caused_item(
+            CausedKind::Log,
+            CausedLevel::Debug,
+            Some(("a\"b", Some("form"), "input")),
+            "line one\nline two\u{1b}",
+        );
+        logged.source = Some(escher_telemetry::Source::Engine);
+        logged.target = Some("blitz_dom::events".to_string());
+        logged.message.cut = 7;
+        logged.file = Some("C:\\src\\a.rs".to_string());
+        logged.line = Some(3);
+        logged.fields = vec![
+            escher_telemetry::KeptField {
+                name: "href".to_string(),
+                value: text(escher_telemetry::REDACTED, 0),
+            },
+            escher_telemetry::KeptField {
+                name: "seats".to_string(),
+                value: text("4", 0),
+            },
+        ];
+        logged.fields_past = 4;
+        vec![panicked, errored, logged, log_without_handler()]
     }
 
     fn log_without_handler() -> Caused {
-        caused_item(CausedKind::Log, CausedLevel::Warn, None, 1)
+        let mut logged = caused_item(CausedKind::Log, CausedLevel::Warn, None, "full");
+        logged.source = Some(escher_telemetry::Source::App);
+        logged.target = Some("app".to_string());
+        logged
+    }
+
+    fn past() -> Vec<CausedPast> {
+        vec![
+            CausedPast {
+                kind: CausedKind::Log,
+                source: Some(escher_telemetry::Source::App),
+                count: 24,
+            },
+            CausedPast {
+                kind: CausedKind::Panic,
+                source: None,
+                count: 1,
+            },
+        ]
     }
 
     #[test]
@@ -1082,9 +1203,10 @@ mod tests {
                     busy: None,
                     diff: no_diff(),
                     caused: Vec::new(),
+                    caused_past: Vec::new(),
                 },
                 &schema::CLICK,
-                &["busy", "caused"][..],
+                &["busy", "caused", "caused_past"][..],
                 r#"{"settled":true,"added":[],"removed":[],"changed":[]}"#,
             ),
             (
@@ -1093,9 +1215,10 @@ mod tests {
                     busy: Some(Busy::Loads),
                     diff: removed.clone(),
                     caused: Vec::new(),
+                    caused_past: Vec::new(),
                 },
                 &schema::TYPE,
-                &["caused"][..],
+                &["caused", "caused_past"][..],
                 r#"{"settled":false,"busy":"loads","added":[],"removed":["row-1","a\"b"],"changed":[]}"#,
             ),
             (
@@ -1104,15 +1227,17 @@ mod tests {
                     busy: None,
                     diff: no_diff(),
                     caused: every_caused(),
+                    caused_past: past(),
                 },
                 &schema::PRESS,
                 &["busy"][..],
                 concat!(
                     r#"{"settled":true,"added":[],"removed":[],"changed":[],"caused":["#,
-                    r#"{"kind":"panic","level":"error","id":"go","owner":"form","event":"click","count":2},"#,
-                    r#"{"kind":"error","level":"error","id":"go","event":"click","count":1},"#,
-                    r#"{"kind":"log","level":"debug","id":"a\"b","owner":"form","event":"input","count":3},"#,
-                    r#"{"kind":"log","level":"warn","count":1}]}"#,
+                    r#"{"kind":"panic","level":"error","message":"index out of bounds","file":"src/app.rs","line":12,"column":5,"id":"go","owner":"form","event":"click"},"#,
+                    r#"{"kind":"error","level":"error","message":"could not load","boundary":"own","chain":[{"message":"bad \"seats\""},{"message":"x","cut":2}],"chain_past":1,"id":"go","event":"click"},"#,
+                    r#"{"kind":"log","level":"debug","source":"engine","target":"blitz_dom::events","message":"line one\nline two\u001b","cut":7,"file":"C:\\src\\a.rs","line":3,"fields":[{"name":"href","value":"[redacted]"},{"name":"seats","value":"4"}],"fields_past":4,"id":"a\"b","owner":"form","event":"input"},"#,
+                    r#"{"kind":"log","level":"warn","source":"app","target":"app","message":"full","fields":[],"fields_past":0}]"#,
+                    r#","caused_past":[{"kind":"log","source":"app","count":24},{"kind":"panic","count":1}]}"#,
                 ),
             ),
             (
@@ -1122,9 +1247,10 @@ mod tests {
                     diff: no_diff(),
                     advanced_ms: 200,
                     caused: Vec::new(),
+                    caused_past: Vec::new(),
                 },
                 &schema::ADVANCE,
-                &["busy", "caused"][..],
+                &["busy", "caused", "caused_past"][..],
                 r#"{"settled":true,"added":[],"removed":[],"changed":[],"advanced_ms":200}"#,
             ),
             (
@@ -1134,9 +1260,10 @@ mod tests {
                     diff: no_diff(),
                     in_view: false,
                     caused: Vec::new(),
+                    caused_past: Vec::new(),
                 },
                 &schema::SCROLL,
-                &["caused"][..],
+                &["caused", "caused_past"][..],
                 r#"{"settled":false,"busy":"render","added":[],"removed":[],"changed":[],"in_view":false}"#,
             ),
             (
@@ -1146,10 +1273,11 @@ mod tests {
                     diff: no_diff(),
                     advanced_ms: 5,
                     caused: vec![log_without_handler()],
+                    caused_past: Vec::new(),
                 },
                 &schema::ADVANCE,
-                &["busy"][..],
-                r#"{"settled":true,"added":[],"removed":[],"changed":[],"advanced_ms":5,"caused":[{"kind":"log","level":"warn","count":1}]}"#,
+                &["busy", "caused_past"][..],
+                r#"{"settled":true,"added":[],"removed":[],"changed":[],"advanced_ms":5,"caused":[{"kind":"log","level":"warn","source":"app","target":"app","message":"full","fields":[],"fields_past":0}]}"#,
             ),
             (
                 Outcome::Scrolled {
@@ -1157,11 +1285,12 @@ mod tests {
                     busy: None,
                     diff: no_diff(),
                     in_view: true,
-                    caused: vec![log_without_handler()],
+                    caused: Vec::new(),
+                    caused_past: past(),
                 },
                 &schema::SCROLL,
-                &["busy"][..],
-                r#"{"settled":true,"added":[],"removed":[],"changed":[],"in_view":true,"caused":[{"kind":"log","level":"warn","count":1}]}"#,
+                &["busy", "caused"][..],
+                r#"{"settled":true,"added":[],"removed":[],"changed":[],"in_view":true,"caused_past":[{"kind":"log","source":"app","count":24},{"kind":"panic","count":1}]}"#,
             ),
             (
                 Outcome::Shot {

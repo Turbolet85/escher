@@ -21,7 +21,7 @@
 //!
 //! The level filter is read from `RUST_LOG` and defaults to `warn`. It filters the sink alone:
 //! the same subscriber holds a [`CaptureLayer`], which sees every level and prints nothing, for
-//! [`capture()`]'s per-step counts.
+//! [`capture()`]'s per-step records and panics.
 
 #![deny(missing_docs)]
 
@@ -41,7 +41,10 @@ use tracing_subscriber::fmt::format::FmtSpan;
 use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::registry::LookupSpan;
 
-pub use capture::{CAPTURED_LEVELS, CaptureLayer, Captured, FRAMEWORK_TARGET_PREFIXES, capture};
+pub use capture::{
+    CAPTURED_LEVELS, CaptureLayer, Captured, FIELDS_KEPT, FRAMEWORK_TARGET_PREFIXES, KeptField,
+    Panic, RECORDS_KEPT, Record, Source, TEXT_CUT, Text, capture,
+};
 pub use format::{
     CONTENT_FIELDS, ENGINE_TARGET_PREFIXES, ESCHER_TARGET_PREFIXES, REDACTED, SAFE_FIELDS,
 };
@@ -120,8 +123,26 @@ where
         .with_writer(writer)
 }
 
+/// The sink's one subscriber over `writer`, printing from `level` up, and the [`CaptureLayer`]
+/// beside it — what [`init_with_writer`] installs, built without installing it, for a caller
+/// that sets it as a scoped default (`tracing::dispatcher::with_default`).
+pub fn subscriber<W>(
+    identity: ServiceIdentity,
+    writer: W,
+    level: tracing::level_filters::LevelFilter,
+) -> impl tracing::Subscriber + Send + Sync + 'static
+where
+    W: for<'w> MakeWriter<'w> + Send + Sync + 'static,
+{
+    filtered_subscriber(
+        identity,
+        writer,
+        EnvFilter::default().add_directive(level.into()),
+    )
+}
+
 /// The one subscriber: the sink's layer under `filter`, and the [`CaptureLayer`] unfiltered.
-fn subscriber<W>(
+fn filtered_subscriber<W>(
     identity: ServiceIdentity,
     writer: W,
     filter: EnvFilter,
@@ -164,7 +185,7 @@ where
     let max_level = filter
         .max_level_hint()
         .unwrap_or(tracing::level_filters::LevelFilter::TRACE);
-    let subscriber = subscriber(identity, writer, filter);
+    let subscriber = filtered_subscriber(identity, writer, filter);
 
     tracing_log::LogTracer::builder()
         .with_max_level(max_level.as_log())

@@ -39,7 +39,7 @@ mod write_once_attr;
 #[cfg(feature = "accessibility")]
 pub use actionable::{ActionableNode, UnkeyedActionable};
 pub use blitz_dom::DocumentConfig;
-pub use boundary::RootErrorMark;
+pub use boundary::{Boundary, BoundaryError, BoundaryMark, BoundaryRegistry, RootErrorMark};
 pub use dioxus_document::DioxusDocument;
 pub use element_id::{VIRTUAL_KEY_SEPARATOR, virtual_node_id};
 pub use events::{NodeHandle, synthetic_click_event, synthetic_form_event};
