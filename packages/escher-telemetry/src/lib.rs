@@ -19,10 +19,13 @@
 //!   logged under;
 //! - logs every panic as an error event, then chains the previously installed panic hook.
 //!
-//! The level filter is read from `RUST_LOG` and defaults to `warn`.
+//! The level filter is read from `RUST_LOG` and defaults to `warn`. It filters the sink alone:
+//! the same subscriber holds a [`CaptureLayer`], which sees every level and prints nothing, for
+//! [`capture`]'s per-step counts.
 
 #![deny(missing_docs)]
 
+pub mod capture;
 mod format;
 mod panic;
 
@@ -32,11 +35,13 @@ use std::sync::{Mutex, OnceLock};
 
 use tracing_log::AsLog;
 use tracing_subscriber::EnvFilter;
+use tracing_subscriber::Layer;
 use tracing_subscriber::fmt::MakeWriter;
 use tracing_subscriber::fmt::format::FmtSpan;
 use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::registry::LookupSpan;
 
+pub use capture::{CAPTURED_LEVELS, CaptureLayer, Captured, FRAMEWORK_TARGET_PREFIXES, capture};
 pub use format::{
     CONTENT_FIELDS, ENGINE_TARGET_PREFIXES, ESCHER_TARGET_PREFIXES, REDACTED, SAFE_FIELDS,
 };
@@ -115,6 +120,20 @@ where
         .with_writer(writer)
 }
 
+/// The one subscriber: the sink's layer under `filter`, and the [`CaptureLayer`] unfiltered.
+fn subscriber<W>(
+    identity: ServiceIdentity,
+    writer: W,
+    filter: EnvFilter,
+) -> impl tracing::Subscriber + Send + Sync + 'static
+where
+    W: for<'w> MakeWriter<'w> + Send + Sync + 'static,
+{
+    tracing_subscriber::registry()
+        .with(sink_layer(identity, writer).with_filter(filter))
+        .with(CaptureLayer)
+}
+
 /// Installs the telemetry bootstrap with stderr as its sink.
 ///
 /// Idempotent: a second call returns [`InitOutcome::AlreadyInstalled`] and changes nothing.
@@ -145,9 +164,7 @@ where
     let max_level = filter
         .max_level_hint()
         .unwrap_or(tracing::level_filters::LevelFilter::TRACE);
-    let subscriber = tracing_subscriber::registry()
-        .with(filter)
-        .with(sink_layer(identity, writer));
+    let subscriber = subscriber(identity, writer, filter);
 
     tracing_log::LogTracer::builder()
         .with_max_level(max_level.as_log())

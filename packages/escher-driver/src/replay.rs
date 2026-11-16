@@ -240,6 +240,7 @@ mod tests {
                 removed: Vec::new(),
                 changed: Vec::new(),
             },
+            caused: Vec::new(),
         });
         let check = check(
             "counter",

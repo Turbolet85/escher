@@ -170,6 +170,21 @@ const ADVANCED_MS: FieldSpec = FieldSpec {
     help: "the time the session's clock moved, in milliseconds: exactly `ms`",
 };
 
+const CAUSED: FieldSpec = FieldSpec {
+    name: "caused",
+    kind: FieldKind::Entries,
+    always: false,
+    help: "what the step caused, present only when it caused something: one entry per kind and \
+           level, each keyed kind (panic, a handler panic caught, the session kept; error, a \
+           handler's error that reached the app's root error boundary; log, records the app \
+           logged, or the UI framework at warn or error), level (error, warn, info, debug or \
+           trace; error for a panic and an error), id, owner and event, the element, its owner \
+           and the event of the first handler the step reached, left out where it reached none, \
+           and count; on a bubbling dispatch an ancestor's reads as the first handler's; an \
+           error a boundary of the app's own catches is not reported, and a `log` crate record \
+           is counted only in a process whose telemetry bridged it; no message or payload",
+};
+
 const IN_VIEW: FieldSpec = FieldSpec {
     name: "in_view",
     kind: FieldKind::Flag,
@@ -236,7 +251,7 @@ pub(crate) const CLICK: VerbSpec = VerbSpec {
         required: true,
         help: "the id of the element to click, as a snapshot lists it",
     }],
-    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED],
+    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, CAUSED],
 };
 
 pub(crate) const TYPE: VerbSpec = VerbSpec {
@@ -261,7 +276,7 @@ pub(crate) const TYPE: VerbSpec = VerbSpec {
             help: "the text to type",
         },
     ],
-    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED],
+    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, CAUSED],
 };
 
 pub(crate) const PRESS: VerbSpec = VerbSpec {
@@ -287,7 +302,7 @@ pub(crate) const PRESS: VerbSpec = VerbSpec {
             help: "whether shift is held while the key is pressed; false when absent",
         },
     ],
-    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED],
+    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, CAUSED],
 };
 
 pub(crate) const ADVANCE: VerbSpec = VerbSpec {
@@ -302,7 +317,7 @@ pub(crate) const ADVANCE: VerbSpec = VerbSpec {
         required: true,
         help: "how far to move the session's clock, in milliseconds",
     }],
-    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, ADVANCED_MS],
+    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, ADVANCED_MS, CAUSED],
 };
 
 pub(crate) const SCROLL: VerbSpec = VerbSpec {
@@ -315,7 +330,7 @@ pub(crate) const SCROLL: VerbSpec = VerbSpec {
         required: true,
         help: "the id of the element to bring into view, as a snapshot lists it",
     }],
-    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, IN_VIEW],
+    fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, IN_VIEW, CAUSED],
 };
 
 pub(crate) const SCREENSHOT: VerbSpec = VerbSpec {

@@ -153,9 +153,11 @@ impl Session {
         if !valid_label(label) {
             return Err(SessionError::InvalidLabel);
         }
+        let mut harness = boot();
+        harness.doc.record_reached();
         Ok(Session {
             label: label.to_string(),
-            harness: boot(),
+            harness,
             time: None,
             seen: SeenIds::with_bound(MAX_SEEN_IDS),
             recording: None,

@@ -1,9 +1,10 @@
 //! A call run on a held instance: checked, run, settled, and answered with a typed outcome.
 
+use std::panic::{AssertUnwindSafe, catch_unwind};
 use std::time::Duration;
 
 use blitz_test_harness::{
-    Busy, Harness, Key as KeyboardKey, Modifiers, NamedKey, PixelRect, ScreenshotError,
+    Busy, Harness, Key as KeyboardKey, Modifiers, NamedKey, NotSettled, PixelRect, ScreenshotError,
 };
 use dioxus_native_dom::{
     DioxusDocument, NodeId, SNAPSHOT_TEXT_BUDGET, Snapshot, SnapshotDiff, SnapshotNode, UiGraph,
@@ -13,6 +14,7 @@ use tracing::Span;
 use tracing::field::Empty;
 
 use crate::actions::ActionNode;
+use crate::caused::{Caused, StepReading, caused};
 use crate::command::{Call, Command, Key, validate};
 use crate::image;
 use crate::lint::Finding;
@@ -50,6 +52,10 @@ pub enum Outcome {
         /// What the screen reads differently after the step: the elements added, the ids
         /// removed and the elements changed.
         diff: SnapshotDiff,
+        /// What the step caused, each tied to the first handler it reached: a handler panic
+        /// the run path caught, an error that reached the app's root error boundary, the records
+        /// it logged per level. Empty when it caused nothing.
+        caused: Vec<Caused>,
     },
     /// What `advance` returns.
     Advanced {
@@ -62,6 +68,10 @@ pub enum Outcome {
         diff: SnapshotDiff,
         /// The time the app actually moved, in milliseconds: never more than was asked.
         advanced_ms: u32,
+        /// What the step caused, each tied to the first handler it reached: a handler panic
+        /// the run path caught, an error that reached the app's root error boundary, the records
+        /// it logged per level. Empty when it caused nothing.
+        caused: Vec<Caused>,
     },
     /// What `scroll` returns.
     Scrolled {
@@ -76,6 +86,10 @@ pub enum Outcome {
         /// bring it there: a `click` or a `type` naming it would still be refused as
         /// [`Cause::OffScreen`].
         in_view: bool,
+        /// What the step caused, each tied to the first handler it reached: a handler panic
+        /// the run path caught, an error that reached the app's root error boundary, the records
+        /// it logged per level. Empty when it caused nothing.
+        caused: Vec<Caused>,
     },
     /// What `screenshot` returns.
     Shot {
@@ -329,7 +343,7 @@ fn advance(
     ms: u32,
 ) -> Outcome {
     let before = read_screen(harness, seen);
-    let (busy, diff, _) = settled_step(harness, seen, span, before, |harness| {
+    let (busy, diff, _, caused) = settled_step(harness, seen, span, before, |harness| {
         harness.advance_time(Duration::from_millis(u64::from(ms)));
         if let Some(step) = step.as_mut() {
             step(harness, ms);
@@ -340,6 +354,7 @@ fn advance(
         busy,
         diff,
         advanced_ms: ms,
+        caused,
     }
 }
 
@@ -353,7 +368,7 @@ fn scroll(
 ) -> Result<Outcome, Refusal> {
     let (before, target) = resolve(harness, seen, id)?;
     check_target(harness, command, &target)?;
-    let (busy, diff, after) = settled_step(harness, seen, span, before, |harness| {
+    let (busy, diff, after, caused) = settled_step(harness, seen, span, before, |harness| {
         harness.scroll_into_view(target.node)
     });
     let in_view = locate(harness, &after, id).is_some_and(|target| in_view(harness, &target));
@@ -362,6 +377,7 @@ fn scroll(
         busy,
         diff,
         in_view,
+        caused,
     })
 }
 
@@ -427,6 +443,7 @@ fn record_result(span: &Span, result: &Result<Outcome, Refusal>) {
                 settled,
                 busy,
                 diff,
+                ..
             }
             | Outcome::Advanced {
                 settled,
@@ -679,17 +696,39 @@ fn covered(harness: &Harness<DioxusDocument>, target: &Target, page: (f32, f32))
 }
 
 /// Runs `step` after the snapshot `before` and settles the instance before the next one: the
-/// class of work still outstanding, if any, the diff of the two, and the snapshot after. The
-/// passes a settle that went quiet took are recorded on `span`.
+/// class of work still outstanding, if any, the diff of the two, the snapshot after and what
+/// the step caused. The passes a settle that went quiet took are recorded on `span`.
+///
+/// A panic in the step or the settle is caught and counted, and the settle runs on: once after
+/// a panic in the step, once more after a panic in the settle, and a second panic there reads
+/// as render work outstanding.
 fn settled_step(
     harness: &mut Harness<DioxusDocument>,
     seen: &mut SeenIds,
     span: &Span,
     before: Snapshot,
     step: impl FnOnce(&mut Harness<DioxusDocument>),
-) -> (Option<Busy>, SnapshotDiff, Snapshot) {
-    step(harness);
-    let busy = match settle_waiting(harness) {
+) -> (Option<Busy>, SnapshotDiff, Snapshot, Vec<Caused>) {
+    harness.doc.take_step_reached();
+    let mark_before = harness.doc.root_error_mark();
+    let ((panics, settle), captured) = escher_telemetry::capture(|| {
+        let mut panics = 0u32;
+        if catch_unwind(AssertUnwindSafe(|| step(harness))).is_err() {
+            panics += 1;
+        }
+        let mut settle = catch_unwind(AssertUnwindSafe(|| settle_waiting(harness)));
+        if settle.is_err() {
+            panics += 1;
+            settle = catch_unwind(AssertUnwindSafe(|| settle_waiting(harness)));
+            if settle.is_err() {
+                panics += 1;
+            }
+        }
+        let settle = settle.unwrap_or(Err(NotSettled { busy: Busy::Render }));
+        (panics, settle)
+    });
+    let reached = harness.doc.take_step_reached();
+    let busy = match settle {
         Ok(settled) => {
             span.record("passes", settled.passes);
             None
@@ -697,7 +736,16 @@ fn settled_step(
         Err(not_settled) => Some(not_settled.busy),
     };
     let after = read_screen(harness, seen);
-    (busy, before.diff(&after), after)
+    let caused = caused(
+        &harness.doc,
+        StepReading {
+            panics,
+            mark_before,
+            captured,
+            reached,
+        },
+    );
+    (busy, before.diff(&after), after, caused)
 }
 
 fn acted(
@@ -707,11 +755,12 @@ fn acted(
     before: Snapshot,
     step: impl FnOnce(&mut Harness<DioxusDocument>),
 ) -> Outcome {
-    let (busy, diff, _) = settled_step(harness, seen, span, before, step);
+    let (busy, diff, _, caused) = settled_step(harness, seen, span, before, step);
     Outcome::Acted {
         settled: busy.is_none(),
         busy,
         diff,
+        caused,
     }
 }
 

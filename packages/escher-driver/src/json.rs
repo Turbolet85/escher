@@ -7,6 +7,7 @@ use blitz_test_harness::Busy;
 use dioxus_native_dom::{DiffNode, GraphNode, GraphState, Reading, SnapshotDiff, WriteFlag};
 
 use crate::actions::ActionNode;
+use crate::caused::Caused;
 use crate::client::Hello;
 use crate::coverage::Coverage;
 use crate::error::SessionError;
@@ -351,6 +352,31 @@ fn acted(settled: bool, busy: Option<Busy>, diff: &SnapshotDiff) -> Object {
     object
 }
 
+/// Writes `caused` last on an acting answer, and only when the step caused something.
+fn with_caused(mut object: Object, caused: &[Caused]) -> String {
+    if !caused.is_empty() {
+        object.json("caused", &list(caused.iter().map(caused_item)));
+    }
+    object.end()
+}
+
+fn caused_item(item: &Caused) -> String {
+    let mut object = Object::new();
+    object.text("kind", item.kind.name());
+    object.text("level", item.level.name());
+    if let Some(id) = &item.id {
+        object.text("id", id);
+    }
+    if let Some(owner) = &item.owner {
+        object.text("owner", owner);
+    }
+    if let Some(event) = &item.event {
+        object.text("event", event);
+    }
+    object.count("count", u64::from(item.count));
+    object.end()
+}
+
 /// The size fields of what `screenshot` returns, in the schema's order.
 fn shot(width: u32, height: u32) -> Object {
     let mut object = Object::new();
@@ -469,26 +495,29 @@ impl Outcome {
                 settled,
                 busy,
                 diff,
-            } => acted(*settled, *busy, diff).end(),
+                caused,
+            } => with_caused(acted(*settled, *busy, diff), caused),
             Outcome::Advanced {
                 settled,
                 busy,
                 diff,
                 advanced_ms,
+                caused,
             } => {
                 let mut object = acted(*settled, *busy, diff);
                 object.count("advanced_ms", u64::from(*advanced_ms));
-                object.end()
+                with_caused(object, caused)
             }
             Outcome::Scrolled {
                 settled,
                 busy,
                 diff,
                 in_view,
+                caused,
             } => {
                 let mut object = acted(*settled, *busy, diff);
                 object.flag("in_view", *in_view);
-                object.end()
+                with_caused(object, caused)
             }
             Outcome::Shot { width, height, png } => {
                 let mut object = shot(*width, *height);
@@ -583,6 +612,7 @@ mod tests {
     };
 
     use super::*;
+    use crate::caused::{CausedKind, CausedLevel};
     use crate::lint::Defect;
     use crate::refusal::{CAUSES, Cause, Fault};
     use crate::schema::{self, NODE_FIELDS, VerbSpec};
@@ -640,6 +670,50 @@ mod tests {
             removed: Vec::new(),
             changed: Vec::new(),
         }
+    }
+
+    fn caused_item(
+        kind: CausedKind,
+        level: CausedLevel,
+        handler: Option<(&str, Option<&str>, &str)>,
+        count: u32,
+    ) -> Caused {
+        Caused {
+            kind,
+            level,
+            id: handler.map(|(id, ..)| id.to_string()),
+            owner: handler.and_then(|(_, owner, _)| owner.map(str::to_string)),
+            event: handler.map(|(.., event)| event.to_string()),
+            count,
+        }
+    }
+
+    fn every_caused() -> Vec<Caused> {
+        vec![
+            caused_item(
+                CausedKind::Panic,
+                CausedLevel::Error,
+                Some(("go", Some("form"), "click")),
+                2,
+            ),
+            caused_item(
+                CausedKind::Error,
+                CausedLevel::Error,
+                Some(("go", None, "click")),
+                1,
+            ),
+            caused_item(
+                CausedKind::Log,
+                CausedLevel::Debug,
+                Some(("a\"b", Some("form"), "input")),
+                3,
+            ),
+            log_without_handler(),
+        ]
+    }
+
+    fn log_without_handler() -> Caused {
+        caused_item(CausedKind::Log, CausedLevel::Warn, None, 1)
     }
 
     #[test]
@@ -1007,9 +1081,10 @@ mod tests {
                     settled: true,
                     busy: None,
                     diff: no_diff(),
+                    caused: Vec::new(),
                 },
                 &schema::CLICK,
-                &["busy"][..],
+                &["busy", "caused"][..],
                 r#"{"settled":true,"added":[],"removed":[],"changed":[]}"#,
             ),
             (
@@ -1017,10 +1092,28 @@ mod tests {
                     settled: false,
                     busy: Some(Busy::Loads),
                     diff: removed.clone(),
+                    caused: Vec::new(),
                 },
                 &schema::TYPE,
-                &[][..],
+                &["caused"][..],
                 r#"{"settled":false,"busy":"loads","added":[],"removed":["row-1","a\"b"],"changed":[]}"#,
+            ),
+            (
+                Outcome::Acted {
+                    settled: true,
+                    busy: None,
+                    diff: no_diff(),
+                    caused: every_caused(),
+                },
+                &schema::PRESS,
+                &["busy"][..],
+                concat!(
+                    r#"{"settled":true,"added":[],"removed":[],"changed":[],"caused":["#,
+                    r#"{"kind":"panic","level":"error","id":"go","owner":"form","event":"click","count":2},"#,
+                    r#"{"kind":"error","level":"error","id":"go","event":"click","count":1},"#,
+                    r#"{"kind":"log","level":"debug","id":"a\"b","owner":"form","event":"input","count":3},"#,
+                    r#"{"kind":"log","level":"warn","count":1}]}"#,
+                ),
             ),
             (
                 Outcome::Advanced {
@@ -1028,9 +1121,10 @@ mod tests {
                     busy: None,
                     diff: no_diff(),
                     advanced_ms: 200,
+                    caused: Vec::new(),
                 },
                 &schema::ADVANCE,
-                &["busy"][..],
+                &["busy", "caused"][..],
                 r#"{"settled":true,"added":[],"removed":[],"changed":[],"advanced_ms":200}"#,
             ),
             (
@@ -1039,10 +1133,35 @@ mod tests {
                     busy: Some(Busy::Render),
                     diff: no_diff(),
                     in_view: false,
+                    caused: Vec::new(),
                 },
                 &schema::SCROLL,
-                &[][..],
+                &["caused"][..],
                 r#"{"settled":false,"busy":"render","added":[],"removed":[],"changed":[],"in_view":false}"#,
+            ),
+            (
+                Outcome::Advanced {
+                    settled: true,
+                    busy: None,
+                    diff: no_diff(),
+                    advanced_ms: 5,
+                    caused: vec![log_without_handler()],
+                },
+                &schema::ADVANCE,
+                &["busy"][..],
+                r#"{"settled":true,"added":[],"removed":[],"changed":[],"advanced_ms":5,"caused":[{"kind":"log","level":"warn","count":1}]}"#,
+            ),
+            (
+                Outcome::Scrolled {
+                    settled: true,
+                    busy: None,
+                    diff: no_diff(),
+                    in_view: true,
+                    caused: vec![log_without_handler()],
+                },
+                &schema::SCROLL,
+                &["busy"][..],
+                r#"{"settled":true,"added":[],"removed":[],"changed":[],"in_view":true,"caused":[{"kind":"log","level":"warn","count":1}]}"#,
             ),
             (
                 Outcome::Shot {
@@ -1121,7 +1240,7 @@ mod tests {
                 ),
             ),
         ];
-        assert_eq!(rows.len(), 14);
+        assert_eq!(rows.len(), 17);
         for (row, (outcome, verb, absent, json)) in rows.into_iter().enumerate() {
             let line = outcome.to_json();
             assert!(line == json, "row {row}");

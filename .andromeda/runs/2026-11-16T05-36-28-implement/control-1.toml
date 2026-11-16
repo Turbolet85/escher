@@ -1,0 +1,47 @@
+[[control]]
+id = "step-catch"
+entry = 4
+guard = "the catch_unwind around the step in settled_step removed: the step runs bare"
+case = "each_acting_call_answers_what_its_step_caused_by_its_handler"
+[[control.edit]]
+path = "packages/escher-driver/src/execute.rs"
+old = '''        if catch_unwind(AssertUnwindSafe(|| step(harness))).is_err() {
+            panics += 1;
+        }
+'''
+new = '''        step(harness);
+'''
+
+[[control]]
+id = "root-mark"
+entry = 4
+guard = "the root mark comparison made always-equal: no step reads a new error"
+case = "an_err_the_root_boundary_takes_reads_one_error_item_on_a_session_of_its_own"
+[[control.edit]]
+path = "packages/escher-driver/src/caused.rs"
+old = '''    let errored = mark_after.is_some() && mark_after != reading.mark_before;'''
+new = '''    let errored = mark_after.is_some() && reading.mark_before.is_some() && false;'''
+
+[[control]]
+id = "prefix-test"
+entry = 1
+guard = "the capture's engine and escher prefix test inverted"
+case = "a_record_is_counted_by_its_target_and_level"
+[[control.edit]]
+path = "packages/escher-telemetry/src/capture.rs"
+old = '''    if starts_with_any(target, ENGINE_TARGET_PREFIXES)
+        || starts_with_any(target, ESCHER_TARGET_PREFIXES)
+    {'''
+new = '''    if !(starts_with_any(target, ENGINE_TARGET_PREFIXES)
+        || starts_with_any(target, ESCHER_TARGET_PREFIXES))
+    {'''
+
+[[control]]
+id = "step-drain"
+entry = 2
+guard = "take_step_reached made to return the deduplicated record"
+case = "two_clicks_of_one_handler_drain_one_entry_each_time"
+[[control.edit]]
+path = "packages/dioxus-native-dom/src/reached.rs"
+old = '''            .map(|record| record.take_step())'''
+new = '''            .map(|record| record.handlers())'''

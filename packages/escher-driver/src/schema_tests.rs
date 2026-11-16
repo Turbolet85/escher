@@ -211,26 +211,30 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
             &[("part", ArgKind::Part, false)],
             vec!["text", "part", "parts"],
         ),
-        ("click", &[("id", ArgKind::Id, true)], ACTING.to_vec()),
+        (
+            "click",
+            &[("id", ArgKind::Id, true)],
+            [&ACTING[..], &["caused"]].concat(),
+        ),
         (
             "type",
             &[("id", ArgKind::Id, true), ("text", ArgKind::Text, true)],
-            ACTING.to_vec(),
+            [&ACTING[..], &["caused"]].concat(),
         ),
         (
             "press",
             &[("key", ArgKind::Key, true), ("shift", ArgKind::Flag, false)],
-            ACTING.to_vec(),
+            [&ACTING[..], &["caused"]].concat(),
         ),
         (
             "advance",
             &[("ms", ArgKind::Milliseconds, true)],
-            [&ACTING[..], &["advanced_ms"]].concat(),
+            [&ACTING[..], &["advanced_ms", "caused"]].concat(),
         ),
         (
             "scroll",
             &[("id", ArgKind::Id, true)],
-            [&ACTING[..], &["in_view"]].concat(),
+            [&ACTING[..], &["in_view", "caused"]].concat(),
         ),
         (
             "screenshot",
@@ -277,7 +281,7 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         let stated: Vec<&str> = verb.fields.iter().map(|field| field.name).collect();
         assert_eq!(stated, fields, "{name}");
         for field in verb.fields {
-            let sometimes = ["busy", "part", "parts"].contains(&field.name);
+            let sometimes = ["busy", "part", "parts", "caused"].contains(&field.name);
             assert_eq!(field.always, !sometimes, "{name} {}", field.name);
         }
     }
@@ -293,6 +297,7 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         ("changed", FieldKind::Nodes),
         ("advanced_ms", FieldKind::Milliseconds),
         ("in_view", FieldKind::Flag),
+        ("caused", FieldKind::Entries),
         ("label", FieldKind::Text),
         ("pid", FieldKind::Count),
         ("served", FieldKind::Count),
@@ -313,7 +318,7 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         ("exit_statuses", FieldKind::Entries),
         ("session_errors", FieldKind::Entries),
     ];
-    assert_eq!(field_kinds.len(), 29);
+    assert_eq!(field_kinds.len(), 30);
     for verb in VERBS {
         for field in verb.fields {
             // A name two verbs give fields of different kinds is stated per verb.

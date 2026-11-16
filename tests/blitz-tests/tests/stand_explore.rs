@@ -6,8 +6,8 @@
 //! check per path, each of format 1, holding no `screenshot` step and replaying holding. *A
 //! refusing control* is met and its path reported by its cause and not explored further, and the
 //! page's finite screens are explored whole. *A panicking handler* is caught, its path reported
-//! `Panicked`, and the exploration goes on; recorded, its check holds the steps before it and
-//! replays holding. *A group-open recording directory* is refused before anything boots, with
+//! `Panicked`, and the exploration goes on; recorded, its check holds its steps, the panicked
+//! one with its answer, and replays holding. *A group-open recording directory* is refused before anything boots, with
 //! nothing written. *Cells' budget* bounds every acting call. A failure message names the layout
 //! mode, a task or page and an index only.
 
@@ -183,13 +183,9 @@ fn checks_hold(
             opening.contains(&format!("\"format\":{CHECK_FORMAT}}}")),
             "{at}: path {index} states format 1"
         );
-        let answered = match path.ending {
-            PathEnding::Panicked => path.calls.len() - 1,
-            _ => path.calls.len(),
-        };
         let calls: Vec<&Call> = check.steps().iter().map(|step| step.call()).collect();
         assert!(
-            calls == path.calls[..answered].iter().collect::<Vec<_>>(),
+            calls == path.calls.iter().collect::<Vec<_>>(),
             "{at}: path {index} keeps its answered calls"
         );
         assert!(
@@ -323,7 +319,7 @@ fn a_panicking_handler_is_caught_and_the_exploration_goes_on() {
 
 #[cfg(unix)]
 #[test]
-fn a_panicking_paths_kept_check_holds_the_steps_before_it_and_replays_green() {
+fn a_panicking_paths_kept_check_holds_the_panicked_step_and_replays_green() {
     for incremental in [false, true] {
         let at = format!("{}: panicking", mode_name(incremental));
         let dir = record_dir(&format!("explore-panic-{}", mode_name(incremental)));
@@ -336,9 +332,18 @@ fn a_panicking_paths_kept_check_holds_the_steps_before_it_and_replays_green() {
         let failed = first_path(&exploration, "click", "fx-panic")
             .unwrap_or_else(|| panic!("{at}: the panicking button is clicked"));
         let check = kept(&dir, failed + 1).unwrap_or_else(|| panic!("{at}: path {failed} reads"));
+        let verbs: Vec<&str> = check
+            .steps()
+            .iter()
+            .map(|step| step.call().verb.as_str())
+            .collect();
         assert!(
-            check.steps().is_empty(),
-            "{at}: path {failed} keeps no step of the panicking call"
+            verbs == ["click"],
+            "{at}: path {failed} keeps the panicking call"
+        );
+        assert!(
+            check.steps()[0].accepted(),
+            "{at}: path {failed} keeps the panicking call accepted"
         );
         let panicked = exploration
             .paths

@@ -21,6 +21,7 @@ use std::panic::{AssertUnwindSafe, catch_unwind};
 use std::path::Path;
 
 use crate::actions::{call_naming, target_verbs};
+use crate::caused::CausedKind;
 use crate::command::Call;
 use crate::error::SessionError;
 use crate::execute::Outcome;
@@ -193,9 +194,24 @@ fn children(session: &mut Session, calls: &[Call], verbs: &[&'static VerbSpec]) 
         .collect()
 }
 
-/// Runs `call`, catching a panic: `None` when it panicked.
+/// Runs `call`, catching a panic: `None` when it panicked, whether the run path caught the
+/// panic and answered it as a `panic` item or it unwound out of the run.
 fn run_caught(session: &mut Session, call: &Call) -> Option<Result<Outcome, Refusal>> {
-    catch_unwind(AssertUnwindSafe(|| session.run(call))).ok()
+    catch_unwind(AssertUnwindSafe(|| session.run(call)))
+        .ok()
+        .filter(|result| !result.as_ref().is_ok_and(panicked))
+}
+
+/// Whether an accepted call's step caused a handler panic.
+fn panicked(outcome: &Outcome) -> bool {
+    match outcome {
+        Outcome::Acted { caused, .. }
+        | Outcome::Advanced { caused, .. }
+        | Outcome::Scrolled { caused, .. } => {
+            caused.iter().any(|item| item.kind == CausedKind::Panic)
+        }
+        _ => false,
+    }
 }
 
 /// Runs a path's calls on its fresh session: how it ended and how many calls ran.

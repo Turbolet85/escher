@@ -205,6 +205,7 @@ fn acting(outcome: &Outcome) -> Option<(bool, Option<Busy>, &SnapshotDiff)> {
             settled,
             busy,
             diff,
+            ..
         }
         | Outcome::Advanced {
             settled,

@@ -29,20 +29,40 @@ pub struct ReachedHandler {
 /// The record a document's dispatches write, provided at its vdom's root.
 #[derive(Clone, Default)]
 pub(crate) struct ReachedRecord {
-    reached: Arc<Mutex<Vec<ReachedHandler>>>,
+    lists: Arc<Mutex<Lists>>,
+}
+
+/// The record's two lists: every handler reached since the record was switched on, and those
+/// reached since the step list was last drained, each once per list.
+#[derive(Default)]
+struct Lists {
+    reached: Vec<ReachedHandler>,
+    step: Vec<ReachedHandler>,
+}
+
+fn push_once(list: &mut Vec<ReachedHandler>, id: &str, event: &str) {
+    if !list
+        .iter()
+        .any(|handler| handler.id == id && handler.event == event)
+    {
+        list.push(ReachedHandler {
+            id: id.to_string(),
+            event: event.to_string(),
+        });
+    }
 }
 
 impl std::fmt::Debug for ReachedRecord {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("ReachedRecord")
-            .field("reached", &self.lock().len())
+            .field("reached", &self.lock().reached.len())
             .finish()
     }
 }
 
 impl ReachedRecord {
-    fn lock(&self) -> MutexGuard<'_, Vec<ReachedHandler>> {
-        self.reached.lock().unwrap_or_else(PoisonError::into_inner)
+    fn lock(&self) -> MutexGuard<'_, Lists> {
+        self.lists.lock().unwrap_or_else(PoisonError::into_inner)
     }
 
     /// Records each element of `chain` whose current listeners hold `event`, once each.
@@ -55,7 +75,7 @@ impl ReachedRecord {
         event: &'static str,
     ) {
         let elements = element_listener_ids(dom, state, doc);
-        let mut reached = self.lock();
+        let mut lists = self.lock();
         for node in chain {
             let Some((_, id, listeners)) = elements.iter().find(|(element, ..)| element == node)
             else {
@@ -64,20 +84,17 @@ impl ReachedRecord {
             if !listeners.contains(&event) {
                 continue;
             }
-            if !reached
-                .iter()
-                .any(|handler| handler.id == *id && handler.event == event)
-            {
-                reached.push(ReachedHandler {
-                    id: id.clone(),
-                    event: event.to_string(),
-                });
-            }
+            push_once(&mut lists.reached, id, event);
+            push_once(&mut lists.step, id, event);
         }
     }
 
     fn handlers(&self) -> Vec<ReachedHandler> {
-        self.lock().clone()
+        self.lock().reached.clone()
+    }
+
+    fn take_step(&self) -> Vec<ReachedHandler> {
+        std::mem::take(&mut self.lock().step)
     }
 }
 
@@ -101,6 +118,17 @@ impl DioxusDocument {
             .runtime()
             .has_context::<ReachedRecord>(ScopeId::ROOT)
             .map(|record| record.handlers())
+            .unwrap_or_default()
+    }
+
+    /// The handlers the dispatches reached since this was last asked, each once, in the order
+    /// first reached; empty where the record was never switched on.
+    /// [`reached_handlers`](Self::reached_handlers) reads as before.
+    pub fn take_step_reached(&self) -> Vec<ReachedHandler> {
+        self.vdom
+            .runtime()
+            .has_context::<ReachedRecord>(ScopeId::ROOT)
+            .map(|record| record.take_step())
             .unwrap_or_default()
     }
 }
@@ -192,6 +220,55 @@ mod tests {
             "the click removed its element"
         );
         assert_eq!(doc.reached_handlers(), [reached("dismiss", "click")]);
+    }
+
+    #[test]
+    fn two_clicks_of_one_handler_drain_one_entry_each_time() {
+        let mut doc = build(bump);
+        doc.record_reached();
+        let target = node(&doc, "bump");
+        click(&mut doc, target);
+        click(&mut doc, target);
+        assert_eq!(doc.take_step_reached(), [reached("bump", "click")]);
+        assert!(doc.take_step_reached().is_empty(), "drained");
+        click(&mut doc, target);
+        assert_eq!(doc.take_step_reached(), [reached("bump", "click")]);
+        click(&mut doc, target);
+        assert_eq!(doc.take_step_reached(), [reached("bump", "click")]);
+        assert_eq!(
+            doc.reached_handlers(),
+            [reached("bump", "click")],
+            "the deduplicated record is unmoved by the drains"
+        );
+    }
+
+    #[test]
+    fn a_bubbling_dispatch_drains_its_target_then_its_ancestor() {
+        fn app() -> Element {
+            let mut outer = use_signal(|| 0u32);
+            let mut inner = use_signal(|| 0u32);
+            rsx! {
+                div { id: "outer", onclick: move |_| outer += 1,
+                    button { id: "inner", onclick: move |_| inner += 1, "{inner} {outer}" }
+                }
+            }
+        }
+        let mut doc = build(app);
+        doc.record_reached();
+        let target = node(&doc, "inner");
+        click(&mut doc, target);
+        assert_eq!(
+            doc.take_step_reached(),
+            [reached("inner", "click"), reached("outer", "click")]
+        );
+    }
+
+    #[test]
+    fn with_the_record_off_the_drain_is_empty() {
+        let mut doc = build(bump);
+        let target = node(&doc, "bump");
+        click(&mut doc, target);
+        assert!(doc.take_step_reached().is_empty());
     }
 
     #[test]

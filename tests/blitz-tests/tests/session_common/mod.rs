@@ -248,6 +248,7 @@ pub fn act(session: &mut Session, call: &Call) -> Option<Acted> {
             settled,
             busy,
             diff,
+            ..
         } => Some(Acted {
             settled,
             busy,
@@ -260,6 +261,7 @@ pub fn act(session: &mut Session, call: &Call) -> Option<Acted> {
             busy,
             diff,
             advanced_ms,
+            ..
         } => Some(Acted {
             settled,
             busy,
@@ -272,6 +274,7 @@ pub fn act(session: &mut Session, call: &Call) -> Option<Acted> {
             busy,
             diff,
             in_view,
+            ..
         } => Some(Acted {
             settled,
             busy,

@@ -162,6 +162,7 @@
 #![deny(missing_docs)]
 
 mod actions;
+mod caused;
 mod cli;
 mod client;
 mod command;
@@ -187,6 +188,7 @@ mod wire;
 
 pub use actions::{ActionNode, VerbReading};
 pub use blitz_test_harness::{Busy, Settled};
+pub use caused::{Caused, CausedKind, CausedLevel};
 pub use cli::command_line;
 pub use client::{Answer, Hello, Started, attach, call, start, stop};
 pub use command::{ArgValue, Call, Command, Key, SessionCommand, validate, validate_session};

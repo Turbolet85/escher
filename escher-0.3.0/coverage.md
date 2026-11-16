@@ -1,9 +1,11 @@
 # Coverage — escher-0.3.0
 
-verified 13/17 · deferred 0 · planned 4 · implemented 0 · unclaimed 4
+verified 13/17 · deferred 0 · planned 3 · implemented 1 · unclaimed 3
 
-## planned, unclaimed (4)
-- v030-10 · Errors with the action
+## implemented (1)
+- v030-10 · Errors with the action · 2026-11-16-errors-with-the-action
+
+## planned, unclaimed (3)
 - v030-11 · Layout explained
 - v030-12 · A component in isolation
 - v030-15 · Cold-agent bar
